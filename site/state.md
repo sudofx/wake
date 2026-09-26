@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 145  
+**Version:** 146  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `d7d777d0d2534f6029ac6b2f68b44afbf4e2d714f644996ec997f36ab265d3d2`
+**Verified head:** `f637f2dab9447b2d099e2416feaa1fdac4729b6622789aeb1e8867ad75e37227`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -590,13 +590,13 @@ _None recorded._
   "id": "endo-neuro-interaction-001",
   "next_step": "Search for integrative reviews or medical literature summarizing the neurological sequelae of common endocrine disorders.",
   "question": "How do specific endocrine dysfunctions, such as thyroid or adrenal imbalances, manifest as neurological symptoms, and what are the primary biological pathways connecting these systems?",
-  "reason": "This project addresses the research question defined for the endocrinology topic while leveraging the established research infrastructure.",
-  "status": "active",
+  "reason": "Deferred topic under active Squirrel directive.",
+  "status": "parked",
   "title": "Hormonal Regulation of Nervous System Function",
   "type": "project",
   "created_version": 131,
-  "updated_version": 131,
-  "updated_by": "w-fbea2cc0127c4c2c"
+  "updated_version": 146,
+  "updated_by": "w-df07732f5c004876"
 }
 ```
 
@@ -608,13 +608,13 @@ _None recorded._
   "id": "prime-dist-pnt-001",
   "next_step": "Search for introductory mathematical literature or reliable online repositories detailing the PNT and its limitations.",
   "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?",
-  "reason": "This project addresses the core research question for the prime_numbers topic, establishing a foundation for structured inquiry.",
-  "status": "active",
+  "reason": "Deferred topic under active Squirrel directive.",
+  "status": "parked",
   "title": "Prime Number Theorem and Distribution",
   "type": "project",
   "created_version": 136,
-  "updated_version": 136,
-  "updated_by": "w-4d5751aa21784390"
+  "updated_version": 146,
+  "updated_by": "w-df07732f5c004876"
 }
 ```
 
@@ -626,13 +626,31 @@ _None recorded._
   "id": "neuro-paradigm-comp-001",
   "next_step": "Search for comparative literature discussing the neurodiversity social model and the medical model of pathology.",
   "question": "How do the neurodiversity paradigm and the clinical pathology model conceptualize neurodivergent traits, and where do they differ in their practical applications for support and diagnosis?",
-  "reason": "This project establishes a core inquiry for the neurodivergence topic, examining the philosophical and practical divergence between established frameworks.",
-  "status": "active",
+  "reason": "Deferred topic under active Squirrel directive.",
+  "status": "parked",
   "title": "Neurodiversity Paradigm vs. Clinical Pathology",
   "type": "project",
   "created_version": 141,
-  "updated_version": 141,
-  "updated_by": "w-5bc153422e5c4874"
+  "updated_version": 146,
+  "updated_by": "w-df07732f5c004876"
+}
+```
+
+### `vis-art-perception-001` · Visual Art Perception
+
+```json
+{
+  "domain": "visual_art",
+  "id": "vis-art-perception-001",
+  "next_step": "Search for foundational reviews on the psychology of aesthetics and visual art perception.",
+  "question": "How do composition, contrast, symmetry, ambiguity, and expectation influence how people perceive and evaluate visual art?",
+  "reason": "Required project creation for selected topic 'visual_art'.",
+  "status": "active",
+  "title": "Visual Art Perception",
+  "type": "project",
+  "created_version": 146,
+  "updated_version": 146,
+  "updated_by": "w-df07732f5c004876"
 }
 ```
 
@@ -1865,35 +1883,35 @@ _None recorded._
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.1186/1755-8794-3-29",
-    "doi:10.1073/pnas.1305419110",
-    "doi:10.1001/archpsyc.64.10.1123",
-    "doi:10.1093/oxfordjournals.schbul.a007078",
-    "doi:10.1056/nejmoa051688",
-    "doi:10.1111/j.1600-0773.1963.tb01730.x",
-    "doi:10.1017/s0033291706008385",
-    "doi:10.1001/archpsyc.60.12.1187",
-    "doi:10.1038/nrg3240",
-    "doi:10.1038/nature08185",
-    "doi:10.1038/ng.2742",
-    "doi:10.1016/j.biopsych.2010.07.010"
+    "doi:10.1016/j.biopsych.2010.07.010",
+    "doi:10.1371/journal.pmed.0030442",
+    "doi:10.2165/00003495-200262002-00001",
+    "doi:10.1016/s0025-7125(16)30357-1",
+    "doi:10.1016/s0025-7125(16)30355-8",
+    "doi:10.1016/s0025-7125(16)30356-x",
+    "doi:10.1289/ehp.95103s8131",
+    "doi:10.2307/3432300",
+    "doi:10.1038/nri803",
+    "doi:10.1016/s0003-2670(03)00078-3",
+    "doi:10.1016/j.freeradbiomed.2007.04.018",
+    "doi:10.1186/gb-2007-8-9-r201"
   ],
   "last_receipt": {
-    "evidence": "source-1d578a272eed4a8e",
+    "evidence": "source-b9fa8623c6604586",
     "outcome": "progress",
     "persistent_identifiers": [
-      "doi:10.1038/nature13595",
-      "doi:10.1007/springer_crossmark_policy",
-      "doi:10.1001/archpsyc.64.10.1123",
-      "doi:10.1093/oxfordjournals.schbul.a007078",
-      "doi:10.1056/nejmoa051688",
-      "doi:10.1111/j.1600-0773.1963.tb01730.x",
-      "doi:10.1017/s0033291706008385",
-      "doi:10.1001/archpsyc.60.12.1187",
-      "doi:10.1038/nrg3240",
-      "doi:10.1038/nature08185",
-      "doi:10.1038/ng.2742",
-      "doi:10.1016/j.biopsych.2010.07.010"
+      "doi:10.1186/1755-8794-3-29",
+      "doi:10.1371/journal.pmed.0030442",
+      "doi:10.2165/00003495-200262002-00001",
+      "doi:10.1016/s0025-7125(16)30357-1",
+      "doi:10.1016/s0025-7125(16)30355-8",
+      "doi:10.1016/s0025-7125(16)30356-x",
+      "doi:10.1289/ehp.95103s8131",
+      "doi:10.2307/3432300",
+      "doi:10.1038/nri803",
+      "doi:10.1016/s0003-2670(03)00078-3",
+      "doi:10.1016/j.freeradbiomed.2007.04.018",
+      "doi:10.1186/gb-2007-8-9-r201"
     ],
     "research_id": "res-endo-neuro-pathology-001",
     "route": "api.crossref.org:source",
@@ -2031,7 +2049,7 @@ _None recorded._
     "cause": "hard_rejection",
     "deferred_by": "w-a3416fd92812407f",
     "eligible_after_other_attempts": 3,
-    "other_topic_attempts": 0,
+    "other_topic_attempts": 1,
     "parked_projects": [
       {
         "id": "neuro-paradigm-comp-001",
@@ -2049,16 +2067,14 @@ _None recorded._
 ```json
 {
   "attention_saturation_triggered": false,
-  "attention_topic": "neurodivergence",
+  "attention_topic": "visual_art",
   "durable_progress": false,
-  "hard_rejection": true,
-  "invocation": "w-a3416fd92812407f",
+  "hard_rejection": false,
+  "invocation": "w-df07732f5c004876",
   "restored_topics": [],
-  "selected_topic": "neurodivergence",
-  "terminal": "rejected",
-  "triggered_topics": [
-    "neurodivergence"
-  ]
+  "selected_topic": "visual_art",
+  "terminal": "accepted",
+  "triggered_topics": []
 }
 ```
 
@@ -2067,7 +2083,7 @@ _None recorded._
 ```json
 {
   "accepted_streak": 1,
-  "topic": "neurodivergence"
+  "topic": "visual_art"
 }
 ```
 
@@ -123291,6 +123307,566 @@ _None recorded._
 }
 ```
 
+### `w-df07732f5c004876`
+
+```json
+{
+  "base_version": 145,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 21582,
+    "delivered_request_chars": 47954,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "request_compression_ratio": 0.4269,
+    "retrieval_rehydrated_evidence_count": 2,
+    "rich_context_chars": 112319,
+    "working_set_chars": 4089
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-df07732f5c004876",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 145,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "endo-neuro-interaction-001",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Hormonal Regulation of Nervous System Function"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "neuro-paradigm-comp-001",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Neurodiversity Paradigm vs. Clinical Pathology"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "prime-dist-pnt-001",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 5,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Prime Number Theorem and Distribution"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2198,
+  "provider": "gemini",
+  "quota_day": "2026-09-26",
+  "request_hash": "2211901afcd111c4077312d505dbc5ed4e08689fa522002bf33ac417eb96cb40",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neurodiversity-foundations-01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-dance-rhythm-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-visual-art-composition-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-891da548184a404e",
+          "source-8f485f755e8b4f3a"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-endo-neuro-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-72e7307bd1d247d7",
+          "source-3896d2f336484666"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neuro-paradigm-comp-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-d8e0116f2d8946dd"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d8e0116f2d8946dd",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b58eab9fe45e4c0b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b58eab9fe45e4c0b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-21e1582f07cd4b16"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-21e1582f07cd4b16",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-1f8d6bebdc7640cf"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-1f8d6bebdc7640cf",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-1d578a272eed4a8e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-1d578a272eed4a8e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b9fa8623c6604586"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b9fa8623c6604586",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0a7b2a5c06d44417",
+      "source-930f33f0d42a4658",
+      "source-f535f6171025430e",
+      "source-b4a60e211150449b",
+      "source-41fac1eecb0246dd",
+      "source-51a9b989df3144af",
+      "source-891da548184a404e",
+      "source-8f485f755e8b4f3a",
+      "source-72e7307bd1d247d7",
+      "source-3896d2f336484666",
+      "source-d8e0116f2d8946dd",
+      "source-b58eab9fe45e4c0b",
+      "source-21e1582f07cd4b16",
+      "source-1f8d6bebdc7640cf",
+      "source-1d578a272eed4a8e",
+      "source-b9fa8623c6604586"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 11,
+      "evidence_count": 16,
+      "trigger_counts": {
+        "notebook_revised": 5,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "runtime_performance": {
+    "compaction_ms": 5.28,
+    "context_build_ms": 110.421,
+    "load_ms": 1022.875,
+    "receipt_ms": 573.64,
+    "start_total_before_record_ms": 3170.073,
+    "store": {
+      "append_cache_hits": 9,
+      "append_cache_misses": 0,
+      "cached_copy_ms": 904.625,
+      "cached_loads": 0,
+      "event_count": 4157,
+      "full_replays": 11,
+      "replay_ms": 7543.189,
+      "trusted_projection_active": true
+    },
+    "temporal_ms": 1456.66
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 1,
+      "topic": "neurodivergence"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [
+      "neurodivergence"
+    ],
+    "enforce_selected_topic": true,
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "neurodivergence": [
+        {
+          "id": "neuro-paradigm-comp-001",
+          "next_step": "Search for comparative literature discussing the neurodiversity social model and the medical model of pathology.",
+          "question": "How do the neurodiversity paradigm and the clinical pathology model conceptualize neurodivergent traits, and where do they differ in their practical applications for support and diagnosis?"
+        }
+      ]
+    },
+    "reason": "alternate configured topic selected during Squirrel cooldown or capability block",
+    "rotation_required": true,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "visual_art",
+    "temporal": {
+      "anchor_seq": 4156,
+      "anchor_time": "2026-09-26T11:33:01.117301+00:00",
+      "anchor_version": 145,
+      "effective_seconds": 128738.642363
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": "r-df07732f5c004876",
+    "topic_selection_candidates": [
+      "comedy",
+      "complex_systems",
+      "consciousness",
+      "dance",
+      "endocrinology",
+      "entropy",
+      "epistemology",
+      "evolutionary_biology",
+      "information_thermodynamics",
+      "music",
+      "neurology",
+      "philosophy",
+      "prime_numbers",
+      "psychology",
+      "quantum_mechanics",
+      "religion",
+      "storytelling",
+      "visual_art"
+    ],
+    "topic_selection_method": "receipt_hash_uniform_index"
+  },
+  "temporal": {
+    "cycle_distance": 0,
+    "effective_elapsed_seconds": 543.843869,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 128738.642363,
+    "intervening_events": {
+      "accepted": 0,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 1,
+      "research_collected": 0,
+      "squirrel_assessed": 1,
+      "total": 13
+    },
+    "observed_at": "2026-09-26T11:33:01.117301+00:00",
+    "previous_anchor_time": "2026-09-26T11:23:57.273432+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 543.843869
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 21582,
+    "inquiry_drive_project_count": 3,
+    "mode": "bounded",
+    "retrieval_candidate_count": 11,
+    "retrieval_evidence_count": 16,
+    "retrieval_rehydrated_evidence_count": 2,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 5,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 4089,
+    "working_to_delivered_ratio": 0.1895
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "endo-neuro-interaction-001",
+        "next_step": "Search for integrative reviews or medical literature summarizing the neurological sequelae of common endocrine disorders.",
+        "question": "How do specific endocrine dysfunctions, such as thyroid or adrenal imbalances, manifest as neurological symptoms, and what are the primary biological pathways connecting these systems?",
+        "title": "Hormonal Regulation of Nervous System Function"
+      },
+      {
+        "id": "prime-dist-pnt-001",
+        "next_step": "Search for introductory mathematical literature or reliable online repositories detailing the PNT and its limitations.",
+        "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?",
+        "title": "Prime Number Theorem and Distribution"
+      },
+      {
+        "id": "neuro-paradigm-comp-001",
+        "next_step": "Search for comparative literature discussing the neurodiversity social model and the medical model of pathology.",
+        "question": "How do the neurodiversity paradigm and the clinical pathology model conceptualize neurodivergent traits, and where do they differ in their practical applications for support and diagnosis?",
+        "title": "Neurodiversity Paradigm vs. Clinical Pathology"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-religion-002",
+        "project": "religion-cross-cultural-practices",
+        "provenance": [
+          "source-7bd43608b269427f",
+          "source-d56377b15875422a"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes available bibliographic metadata concerning cognitive and evolutionary approaches to religion, noting that while the sources provide a venue for such research, full content access is currently absent.",
+        "title": "Provisional Synthesis: Cross-Cultural Religious Practices"
+      },
+      {
+        "id": "nb-religion-ritual-psych-001",
+        "project": "religion-cross-cultural-practices",
+        "provenance": [
+          "source-0e0aa6aa238246cb"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes the 'process-based framework' from a 2017 integrative review of ritual psychology, noting the distinction between the ritual form and its psychological function.",
+        "title": "Synthesis: The Psychology of Rituals"
+      },
+      {
+        "id": "nb-neuro-metabolic-001",
+        "project": "neurology-metabolic-pathways",
+        "provenance": [
+          "source-8fb4038a7344498e",
+          "source-e41f8efd700544cf"
+        ],
+        "revision": 1,
+        "summary": "An initial assessment of the intersection between metabolic pathways and neurological health, based on bibliographic metadata.",
+        "title": "Provisional Synthesis: Metabolic Drivers in Neurological Function"
+      },
+      {
+        "id": "nb-evo-foundations-001",
+        "project": "evolutionary-biology-foundations",
+        "provenance": [
+          "source-2cd2684377c54051",
+          "source-e2e41e9bcb594def"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes available bibliographic metadata to frame future inquiry into how evolutionary biology distinguishes mechanisms such as adaptation, byproduct, drift, and constraint.",
+        "title": "Provisional Synthesis: Evolutionary Mechanisms"
+      },
+      {
+        "id": "nb-endo-neuro-001",
+        "project": "endo-neuro-interaction-001",
+        "provenance": [
+          "source-891da548184a404e",
+          "source-8f485f755e8b4f3a"
+        ],
+        "revision": 2,
+        "summary": "This provisional synthesis integrates newly indexed literature on congenital adrenal hyperplasia and systemic signal pathways to explore the endocrinology-neurology interface.",
+        "title": "Provisional Synthesis: Endocrine Influence on Neurological Function"
+      },
+      {
+        "id": "nb-neuro-paradigm-comp-001",
+        "project": "neuro-paradigm-comp-001",
+        "provenance": [
+          "source-72e7307bd1d247d7",
+          "source-3896d2f336484666"
+        ],
+        "revision": 2,
+        "summary": "Initial synthesis examining the neurodiversity movement's critique of clinical models, identifying 'neurodiversity' as an emerging research area in need of rigorous synthesis.",
+        "title": "Conceptual Divergence: Neurodiversity Paradigm vs. Clinical Pathology"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-26T11:33:03.383223+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 3975,
+      "http_status": 503,
+      "model": "gemini-3.8-flash",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 51975,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    },
+    {
+      "category": "server",
+      "elapsed_ms": 330,
+      "http_status": 503,
+      "model": "gemini-3.5-flash",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 51975,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    },
+    {
+      "elapsed_ms": 14381,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 51975,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 3,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-26T11:34:16.509162+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -150744,6 +151320,103 @@ _None recorded._
 }
 ```
 
+### `source-b9fa8623c6604586`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1186%2F1755-8794-3-29\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 9, 24]], \\\"date-time\\\": \\\"2026-09-24T14:18:38Z\\\", \\\"timestamp\\\": 1790259518019, \\\"version\\\": \\\"4.1.0\\\"}, \\\"reference-count\\\": 43, \\\"publisher\\\": \\\"Springer Science and Business Media LLC\\\", \\\"issue\\\": \\\"1\\\", \\\"license\\\": [{\\\"start\\\": {\\\"date-parts\\\": [[2010, 7, 15]], \\\"date-time\\\": \\\"2010-07-15T00:00:00Z\\\", \\\"timestamp\\\": 1279152000000}, \\\"content-version\\\": \\\"tdm\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"http://creativecommons.org/licenses/by/2.0\\\"}], \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"BMC Med Genomics\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[2010, 12]]}, \\\"DOI\\\": \\\"10.1186/1755-8794-3-29\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2010, 7, 29]], \\\"date-time\\\": \\\"2010-07-29T01:51:05Z\\\", \\\"timestamp\\\": 1280368265000}, \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 85, \\\"title\\\": [\\\"Transcriptomic epidemiology of smoking: the effect of smoking on gene expression in lymphocytes\\\"], \\\"prefix\\\": \\\"10.1186\\\", \\\"volume\\\": \\\"3\\\", \\\"author\\\": [{\\\"given\\\": \\\"Jac C\\\", \\\"family\\\": \\\"Charlesworth\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Joanne E\\\", \\\"family\\\": \\\"Curran\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Matthew P\\\", \\\"family\\\": \\\"Johnson\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Harald HH\\\", \\\"family\\\": \\\"Göring\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Thomas D\\\", \\\"family\\\": \\\"Dyer\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Vincent P\\\", \\\"family\\\": \\\"Diego\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"suffix\\\": \\\"Jr\\\", \\\"given\\\": \\\"Jack W\\\", \\\"family\\\": \\\"Kent\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Michael C\\\", \\\"family\\\": \\\"Mahaney\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Laura\\\", \\\"family\\\": \\\"Almasy\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Jean W\\\", \\\"family\\\": \\\"MacCluer\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Eric K\\\", \\\"family\\\": \\\"Moses\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"John\\\", \\\"family\\\": \\\"Blangero\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"297\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[2010, 7, 15]]}, \\\"reference\\\": [{\\\"issue\\\": \\\"11\\\", \\\"key\\\": \\\"164_CR1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"e442\\\", \\\"DOI\\\": \\\"10.1371/journal.pmed.0030442\\\", \\\"volume\\\": \\\"3\\\", \\\"author\\\": \\\"CD Mathers\\\", \\\"year\\\": \\\"2006\\\", \\\"unstructured\\\": \\\"Mathers CD, Loncar D: Projections of global mortality and burden of disease from 2002 to 2030. PLoS Med. 2006, 3 (11): e442-10.1371/journal.pmed.0030442.\\\", \\\"journal-title\\\": \\\"PLoS Med\\\"}, {\\\"issue\\\": \\\"5\\\", \\\"key\\\": \\\"164_CR2\\\", \\\"first-page\\\": \\\"S17\\\", \\\"volume\\\": \\\"8\\\", \\\"author\\\": \\\"MD Winniford\\\", \\\"year\\\": \\\"1990\\\", \\\"unstructured\\\": \\\"Winniford MD: Smoking and cardiovascular function. J Hypertens Suppl. 1990, 8 (5): S17-23.\\\", \\\"journal-title\\\": \\\"J Hypertens Suppl\\\"}, {\\\"key\\\": \\\"164_CR3\\\", \\\"volume-title\\\": \\\"The Health Consequences of Smoking: A report of the Surgeon General\\\", \\\"author\\\": \\\"U.S. Department of Health and Human Services\\\", \\\"year\\\": \\\"2004\\\", \\\"unstructured\\\": \\\"U.S. Department of Health and Human Services: The Health Consequences of Smoking: A report of the Surgeon General. 2004, Atlanta, GA.: U.S. Department of Health and Human Services, Centers for Disease Control and Prevention, National Center for Chronic Disease Prevention and Health Promotion, Office on Smoking and Health\\\"}, {\\\"issue\\\": \\\"Suppl 2\\\", \\\"key\\\": \\\"164_CR4\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"1\\\", \\\"DOI\\\": \\\"10.2165/00003495-200262002-00001\\\", \\\"volume\\\": \\\"62\\\", \\\"author\\\": \\\"K Fagerstrom\\\", \\\"year\\\": \\\"2002\\\", \\\"unstructured\\\": \\\"Fagerstrom K: The epidemiology of smoking: health consequences and benefits of cessation. Drugs. 2002, 62 (Suppl 2): 1-9. 10.2165/00003495-200262002-00001.\\\", \\\"journal-title\\\": \\\"Drugs\\\"}, {\\\"issue\\\": \\\"2\\\", \\\"key\\\": \\\"164_CR5\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"355\\\", \\\"DOI\\\": \\\"10.1016/S0025-7125(16)30357-1\\\", \\\"volume\\\": \\\"76\\\", \\\"author\\\": \\\"CB Sherman\\\", \\\"year\\\": \\\"1992\\\", \\\"unstructured\\\": \\\"Sherman CB: The health consequences of cigarette smoking. Pulmonary diseases. Med Clin North Am. 1992, 76 (2): 355-375.\\\", \\\"journal-title\\\": \\\"Med Clin North Am\\\"}, {\\\"issue\\\": \\\"2\\\", \\\"key\\\": \\\"164_CR6\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"305\\\", \\\"DOI\\\": \\\"10.1016/S0025-7125(16)30355-8\\\", \\\"volume\\\": \\\"76\\\", \\\"author\\\": \\\"PA Newcomb\\\", \\\"year\\\": \\\"1992\\\", \\\"unstructured\\\": \\\"Newcomb PA, Carbone PP: The health consequences of smoking. Cancer. Med Clin North Am. 1992, 76 (2): 305-331.\\\", \\\"journal-title\\\": \\\"Med Clin North Am\\\"}, {\\\"issue\\\": \\\"2\\\", \\\"key\\\": \\\"164_CR7\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"333\\\", \\\"DOI\\\": \\\"10.1016/S0025-7125(16)30356-X\\\", \\\"volume\\\": \\\"76\\\", \\\"author\\\": \\\"PE McBride\\\", \\\"year\\\": \\\"1992\\\", \\\"unstructured\\\": \\\"McBride PE: The health consequences of smoking. Cardiovascular diseases. Med Clin North Am. 1992, 76 (2): 333-353.\\\", \\\"journal-title\\\": \\\"Med Clin North Am\\\"}, {\\\"issue\\\": \\\"Suppl 8\\\", \\\"key\\\": \\\"164_CR8\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"131\\\", \\\"DOI\\\": \\\"10.1289/ehp.95103s8131\\\", \\\"volume\\\": \\\"103\\\", \\\"author\\\": \\\"DR Shopland\\\", \\\"year\\\": \\\"1995\\\", \\\"unstructured\\\": \\\"Shopland DR: Tobacco use and its contribution to early cancer mortality with a special emphasis on cigarette smoking. Environ Health Perspect. 1995, 103 (Suppl 8): 131-142. 10.2307/3432300.\\\", \\\"journal-title\\\": \\\"Environ Health Perspect\\\"}, {\\\"issue\\\": \\\"5\\\", \\\"key\\\": \\\"164_CR9\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"372\\\", \\\"DOI\\\": \\\"10.1038/nri803\\\", \\\"volume\\\": \\\"2\\\", \\\"author\\\": \\\"M Sopori\\\", \\\"year\\\": \\\"2002\\\", \\\"unstructured\\\": \\\"Sopori M: Effects of cigarette smoke on the immune system. Nat Rev Immunol. 2002, 2 (5): 372-377. 10.1038/nri803.\\\", \\\"journal-title\\\": \\\"Nat Rev Immunol\\\"}, {\\\"issue\\\": \\\"1\\\", \\\"key\\\": \\\"164_CR10\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"1\\\", \\\"DOI\\\": \\\"10.1016/S0003-2670(03)00078-3\\\", \\\"volume\\\": \\\"481\\\", \\\"author\\\": \\\"SL Baum\\\", \\\"year\\\": \\\"2003\\\", \\\"unstructured\\\": \\\"Baum SL, Anderson IGM, Baker RR, Murphy DM, Rowlands CC: Electron spin resonance and spin trap investigation of free radicals in cigarette smoke: development of a quantification procedure. Anal Chim Acta. 2003, 481 (1): 1-13. 10.1016/S0003-2670(03)00078-3.\\\", \\\"journal-title\\\": \\\"Anal Chim Acta\\\"}, {\\\"issue\\\": \\\"3\\\", \\\"key\\\": \\\"164_CR11\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"415\\\", \\\"DOI\\\": \\\"10.1016/j.freeradbiomed.2007.04.018\\\", \\\"volume\\\": \\\"43\\\", \\\"author\\\": \\\"M Lodovici\\\", \\\"year\\\": \\\"2007\\\", \\\"unstructured\\\": \\\"Lodovici M, Luceri C, De Filippo C, Romualdi C, Bambi F, Dolara P: Smokers and passive smokers gene expression profiles: correlation with the DNA oxidation damage. Free Radic Biol Med. 2007, 43 (3): 415-422. 10.1016/j.freeradbiomed.2007.04.018.\\\", \\\"journal-title\\\": \\\"Free Radic Biol Med\\\"}, {\\\"issue\\\": \\\"9\\\", \\\"key\\\": \\\"164_CR12\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"R201\\\", \\\"DOI\\\": \\\"10.1186/gb-2007-8-9-r201\\\", \\\"volume\\\": \\\"8\\\", \\\"author\\\": \\\"J Beane\\\", \\\"year\\\": \\\"2007\\\", \\\"unstructured\\\": \\\"Beane J, Sebastiani P, Liu G, Brody JS, Lenburg ME, Spira A: Reversible and permanent effects of tobacco smoke exposure on airway epithelial gene expression. Genome Biol. 2007, 8 (9): R201-10.1186/gb-2007-8-9-r201.\\\", \\\"journal-title\\\": \\\"Genome Biol\\\"}, {\\\"issue\\\": \\\"1\\\", \\\"key\\\": \\\"164_CR13\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"39\\\", \\\"DOI\\\": \\\"10.1046/j.0902-0055.2003.00110.x\\\", \\\"volume\\\": \\\"19\\\", \\\"author\\\": \\\"MI Ryder\\\", \\\"year\\\": \\\"2004\\\", \\\"unstructured\\\": \\\"Ryder MI, Hyun W, Loomer P, Haqq C: Alteration of gene expression profiles of peripheral mononuclear blood cells by tobacco smoke: implications for periodontal diseases. Oral Microbiol Immunol. 2004, 19 (1): 39-49. 10.1046/j.0902-0055.2003.00110.x.\\\", \\\"journal-title\\\": \\\"Oral Microbiol Immunol\\\"}, {\\\"issue\\\": \\\"4\\\", \\\"key\\\": \\\"164_CR14\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"318\\\", \\\"DOI\\\": \\\"10.1007/s00109-005-0008-2\\\", \\\"volume\\\": \\\"84\\\", \\\"author\\\": \\\"A Heguy\\\", \\\"year\\\": \\\"2006\\\", \\\"unstructured\\\": \\\"Heguy A, O'Connor TP, Luettich K, Worgall S, Cieciuch A, Harvey BG, Hackett NR, Crystal RG: Gene expression profiling of human alveolar macrophages of phenotypically normal smokers and nonsmokers reveals a previously unrecognized subset of genes modulated by cigarette smoking. J Mol Med. 2006, 84 (4): 318-328. 10.1007/s00109-005-0008-2.\\\", \\\"journal-title\\\": \\\"J Mol Med\\\"}, {\\\"issue\\\": \\\"3\\\", \\\"key\\\": \\\"164_CR15\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"445\\\", \\\"DOI\\\": \\\"10.1158/1055-9965.445.13.3\\\", \\\"volume\\\": \\\"13\\\", \\\"author\\\": \\\"JW Lampe\\\", \\\"year\\\": \\\"2004\\\", \\\"unstructured\\\": \\\"Lampe JW, Stepaniants SB, Mao M, Radich JP, Dai H, Linsley PS, Friend SH, Potter JD: Signatures of environmental exposures using peripheral leukocyte gene expression: tobacco smoke. Cancer Epidemiol Biomarkers Prev. 2004, 13 (3): 445-453.\\\", \\\"journal-title\\\": \\\"Cancer Epidemiol Biomarkers Prev\\\"}, {\\\"issue\\\": \\\"27\\\", \\\"key\\\": \\\"164_CR16\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"10143\\\", \\\"DOI\\\": \\\"10.1073/pnas.0401422101\\\", \\\"volume\\\": \\\"101\\\", \\\"author\\\": \\\"A Spira\\\", \\\"year\\\": \\\"2004\\\", \\\"unstructured\\\": \\\"Spira A, Beane J, Shah V, Liu G, Schembri F, Yang X, Palma J, Brody JS: Effects of cigarette smoke on the human airway epithelial cell transcriptome. Proc Natl Acad Sci USA. 2004, 101 (27): 10143-10148. 10.1073/pnas.0401422101.\\\", \\\"journal-title\\\": \\\"Proc Natl Acad Sci USA\\\"}, {\\\"key\\\": \\\"164_CR17\\\", \\\"volume-title\\\": \\\"Carcinogenesis\\\", \\\"author\\\": \\\"DM van Leeuwen\\\", \\\"year\\\": \\\"2006\\\", \\\"unstructured\\\": \\\"van Leeuwen DM, van Agen E, Gottschalk RW, Vlietinck R, Gielen M, van Herwijnen MH, Maas LM, Kleinjans JC, van Delft JH: Cigarette smoke-induced differential gene expression in blood cells from monozygotic twin pairs. Carcinogenesis. 2006\\\"}\", \"excerpt_truncated\": true, \"source_sha256\": \"aee7e80837630bb6b750742f02889ab1cde40d7b5e67de60516283b60e9944d2\", \"verification_required\": true, \"topic_domain\": \"endocrinology\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1186/1755-8794-3-29\", \"doi:10.1371/journal.pmed.0030442\", \"doi:10.2165/00003495-200262002-00001\", \"doi:10.1016/s0025-7125(16)30357-1\", \"doi:10.1016/s0025-7125(16)30355-8\", \"doi:10.1016/s0025-7125(16)30356-x\", \"doi:10.1289/ehp.95103s8131\", \"doi:10.2307/3432300\", \"doi:10.1038/nri803\", \"doi:10.1016/s0003-2670(03)00078-3\", \"doi:10.1016/j.freeradbiomed.2007.04.018\", \"doi:10.1186/gb-2007-8-9-r201\"]}",
+  "id": "source-b9fa8623c6604586",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.1186%2F1755-8794-3-29",
+  "version": 145,
+  "time": "2026-09-26T11:32:55.375973+00:00"
+}
+```
+
+### `source-eefc2b00ab944934`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2,\\\"suggestion\\\":\\\"comedy humor coalition tiling incongruity\\\",\\\"suggestionsnippet\\\":\\\"comedy humor\\ncoalition tiling\\nincongruity\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Theories of humor\\\",\\\"pageid\\\":17909855,\\\"size\\\":59815,\\\"wordcount\\\":7880,\\\"snippet\\\":\\\"\\nincongruity\\nand superiority theories describe complementary mechanisms that together create\\nhumor\\n. Another such combinative view involves\\nincongruity\\n\\\",\\\"timestamp\\\":\\\"2026-09-08T03:49:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Joke\\\",\\\"pageid\\\":16267,\\\"size\\\":81952,\\\"wordcount\\\":10334,\\\"snippet\\\":\\\"in \\\"Semantic Mechanisms of\\nHumor\\n\\\", published 1985. While being a variant on the more general concepts of the\\nincongruity\\ntheory of humour, it is the\\\",\\\"timestamp\\\":\\\"2026-09-06T13:01:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"46bfaba96306fa561c3c9c2c87774a34475f738e2e231b0853e8b0347ad84283\", \"verification_required\": true, \"topic_domain\": \"comedy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-eefc2b00ab944934",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json",
+  "version": 145,
+  "time": "2026-09-26T11:32:56.549899+00:00"
+}
+```
+
+### `source-0035fe6e0fa049e2`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":11,\\\"suggestion\\\":\\\"evolutionary biology adaptation byproduct draft constant\\\",\\\"suggestionsnippet\\\":\\\"evolutionary biology adaptation byproduct\\ndraft constant\\n\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Criticism of evolutionary psychology\\\",\\\"pageid\\\":12102147,\\\"size\\\":106794,\\\"wordcount\\\":12675,\\\"snippet\\\":\\\"genetic\\ndrift\\nor as a\\nbyproduct\\nof another trait. Hagen also argues that a way to distinguish spandrels from\\nadaptations\\nis that\\nadaptations\\nhave evidence\\\",\\\"timestamp\\\":\\\"2026-09-21T02:42:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Glossary of genetics and evolutionary biology\\\",\\\"pageid\\\":56807771,\\\"size\\\":153020,\\\"wordcount\\\":15946,\\\"snippet\\\":\\\"of\\nbiology\\nand Glossary of ecology. A B C D E F G H I J K L M N O P Q R S T U V W X Y Z See also References\\nadaptation\\n1.\\\\u00a0\\\\u00a0The dynamic\\nevolutionary\\nprocess\\\",\\\"timestamp\\\":\\\"2026-06-21T14:42:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of evolutionary thought\\\",\\\"pageid\\\":21501970,\\\"size\\\":146995,\\\"wordcount\\\":16660,\\\"snippet\\\":\\\"topics in\\nevolutionary\\nbiology\\nDarwinism Faith and rationality Gal\\\\u00e1pagos Islands Genetic\\ndrift\\nObjections to evolution Timeline of\\nevolutionary\\nhistory\\\",\\\"timestamp\\\":\\\"2026-09-08T16:46:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary medicine\\\",\\\"pageid\\\":1157333,\\\"size\\\":51578,\\\"wordcount\\\":4580,\\\"snippet\\\":\\\"vision. Other\\nconstraints\\noccur as the\\nbyproduct\\nof adaptive innovations. One\\nconstraint\\nupon selection is that different\\nadaptations\\ncan conflict, which\\\",\\\"timestamp\\\":\\\"2026-08-29T20:38:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Alternatives to Darwinian evolution\\\",\\\"pageid\\\":53955838,\\\"size\\\":56086,\\\"wordcount\\\":5870,\\\"snippet\\\":\\\"Lewontin proposed biological \\\"spandrels\\\", features created as a\\nbyproduct\\nof the\\nadaptation\\nof nearby structures. Gerd M\\\\u00fcller and Stuart Newman argued that\\\",\\\"timestamp\\\":\\\"2026-09-22T05:33:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence of common descent\\\",\\\"pageid\\\":2339577,\\\"size\\\":251597,\\\"wordcount\\\":27811,\\\"snippet\\\":\\\"\\\"reproductive isolation is a\\nbyproduct\\nof\\nevolutionary\\nchange in isolated populations, and thus can be considered an\\nevolutionary\\naccident\\\". Speciation occurs\\\",\\\"timestamp\\\":\\\"2026-08-18T19:52:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Robustness (evolution)\\\",\\\"pageid\\\":31066305,\\\"size\\\":45795,\\\"wordcount\\\":4804,\\\"snippet\\\":\\\"In\\nevolutionary\\nbiology\\n, robustness of a biological system (also called biological or genetic robustness) is the persistence of a certain characteristic\\\",\\\"timestamp\\\":\\\"2026-09-21T12:32:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Methanogen\\\",\\\"pageid\\\":563456,\\\"size\\\":72781,\\\"wordcount\\\":8010,\\\"snippet\\\":\\\"Methanogens are anaerobic archaea that produce methane as a\\nbyproduct\\nof their energy metabolism, i.e., catabolism. Methane production, or methanogenesis\\\",\\\"timestamp\\\":\\\"2026-09-02T07:54:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Boring Billion\\\",\\\"pageid\\\":26127259,\\\"size\\\":76571,\\\"wordcount\\\":8396,\\\"snippet\\\":\\\"sulfide (H2S) for carbon fixation instead of water and produces sulfur as a\\nbyproduct\\ninstead of oxygen. This is known as a Canfield ocean, and such composition\\\",\\\"timestamp\\\":\\\"2026-08-18T09:50:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cephalopod\\\",\\\"pageid\\\":42726,\\\"size\\\":145252,\\\"wordcount\\\":15903,\\\"snippet\\\":\\\"evolved to facilitate social signaling, while camouflage is a useful\\nbyproduct\\n. Because camouflage is used for multiple adaptive purposes in cephalopods\\\",\\\"timestamp\\\":\\\"2026-09-20T05:53:44Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"62be7f469f307005888c94f7198ec555cf7d3f9283af96c01c8fc89f45665f4c\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-0035fe6e0fa049e2",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json",
+  "version": 145,
+  "time": "2026-09-26T11:32:57.370670+00:00"
+}
+```
+
+### `source-3f00751e91ea49d8`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":179},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Justification (epistemology)\\\",\\\"pageid\\\":30248,\\\"size\\\":11199,\\\"wordcount\\\":1195,\\\"snippet\\\":\\\"current\\nevidence\\n.\\nJustification\\nis a property of\\nbeliefs\\ninsofar as they are held blamelessly. In other words, a justified\\nbelief\\nis a\\nbelief\\nthat a person\\\",\\\"timestamp\\\":\\\"2026-08-22T20:08:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Central concepts in\\nepistemology\\ninclude\\nbelief\\n, truth,\\nevidence\\n, and reason. As one of the main branches of philosophy,\\nepistemology\\nstands alongside fields\\\",\\\"timestamp\\\":\\\"2026-09-26T08:31:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Formal epistemology\\\",\\\"pageid\\\":3660078,\\\"size\\\":11434,\\\"wordcount\\\":1321,\\\"snippet\\\":\\\"formal\\nepistemology\\nhas tended to differ somewhat from that of traditional\\nepistemology\\n, with topics like\\nuncertainty\\n, induction, and\\nbelief\\nrevision\\\",\\\"timestamp\\\":\\\"2026-03-28T03:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Empirical evidence\\\",\\\"pageid\\\":307139,\\\"size\\\":39043,\\\"wordcount\\\":3955,\\\"snippet\\\":\\\"methods and paradigms. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what determines whether holding a certain\\nbelief\\nis rational. This is only\\\",\\\"timestamp\\\":\\\"2026-08-08T15:50:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gettier problem\\\",\\\"pageid\\\":246176,\\\"size\\\":44511,\\\"wordcount\\\":5956,\\\"snippet\\\":\\\"\\nbelief\\n(JTB). The JTB account holds that knowledge is equivalent to justified true\\nbelief\\n; if all three conditions (\\njustification\\n, truth, and\\nbelief\\n)\\\",\\\"timestamp\\\":\\\"2026-09-22T13:24:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of epistemology\\\",\\\"pageid\\\":6556377,\\\"size\\\":16004,\\\"wordcount\\\":1658,\\\"snippet\\\":\\\"\\nepistemology\\n\\\\u00a0\\\\u2013\\nBeliefs\\nare warranted by proper cognitive function\\\\u2014proposed by Alvin Plantinga. Evidentialism\\\\u00a0\\\\u2013\\nBeliefs\\ndepend solely on the\\nevidence\\nfor\\\",\\\"timestamp\\\":\\\"2026-08-24T15:07:39Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Declarative knowledge\\\",\\\"pageid\\\":23369987,\\\"size\\\":97599,\\\"wordcount\\\":10444,\\\"snippet\\\":\\\"A central issue in\\nepistemology\\nconcerns the standards of\\njustification\\n, i.e., what conditions have to be fulfilled for a\\nbelief\\nto be justified. Internalists\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Belief\\\",\\\"pageid\\\":102883,\\\"size\\\":105449,\\\"wordcount\\\":12166,\\\"snippet\\\":\\\"having some stance, take, or opinion about something. In\\nepistemology\\n, philosophers use the term\\nbelief\\nto refer to attitudes about the world which can be either\\\",\\\"timestamp\\\":\\\"2026-09-13T03:42:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Knowledge\\\",\\\"pageid\\\":243391,\\\"size\\\":190334,\\\"wordcount\\\":19010,\\\"snippet\\\":\\\"knowledge, is often characterized as true\\nbelief\\nthat is distinct from opinion or guesswork by virtue of\\njustification\\n. While there is wide agreement among\\\",\\\"timestamp\\\":\\\"2026-08-23T18:49:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence\\\",\\\"pageid\\\":20550772,\\\"size\\\":46664,\\\"wordcount\\\":5455,\\\"snippet\\\":\\\"exact definition and role of\\nevidence\\nvary across different fields. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what makes it rational to hold\\\",\\\"timestamp\\\":\\\"2026-09-09T01:29:13Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"f80461a2eb3505b21be33811a8d1718b3cf83af28515c73a9e50b603dbac6fcb\", \"verification_required\": true, \"topic_domain\": \"epistemology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-3f00751e91ea49d8",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json",
+  "version": 145,
+  "time": "2026-09-26T11:32:58.097573+00:00"
+}
+```
+
+### `source-9e0f4a0f11c2412c`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":393},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Art\\\",\\\"pageid\\\":752,\\\"size\\\":132424,\\\"wordcount\\\":14439,\\\"snippet\\\":\\\"spiritually, or philosophically motivated\\nart\\n; to create a sense of beauty (see\\naesthetics\\n); to explore the nature of\\nperception\\n; for pleasure; or to generate strong\\\",\\\"timestamp\\\":\\\"2026-09-09T08:09:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of art\\\",\\\"pageid\\\":8165347,\\\"size\\\":90900,\\\"wordcount\\\":11467,\\\"snippet\\\":\\\"The psychology of\\nart\\nis the scientific study of cognitive and emotional processes precipitated by the sensory\\nperception\\nof aesthetic artefacts, such\\\",\\\"timestamp\\\":\\\"2026-09-21T20:46:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Tribal art\\\",\\\"pageid\\\":24811443,\\\"size\\\":11752,\\\"wordcount\\\":1204,\\\"snippet\\\":\\\"Tribal\\nart\\nis the\\nvisual\\narts and material culture of indigenous people. Also known as non-Western\\nart\\nor ethnographic\\nart\\n, or, controversially, primitive\\\",\\\"timestamp\\\":\\\"2025-12-21T03:03:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Rudolf Arnheim\\\",\\\"pageid\\\":467254,\\\"size\\\":17187,\\\"wordcount\\\":2040,\\\"snippet\\\":\\\"have included\\nVisual\\nThinking (1969), and The Power of the Center: A Study of\\nComposition\\nin the\\nVisual\\nArts (1982).\\nArt\\nand\\nVisual\\nPerception\\nwas revised\\\",\\\"timestamp\\\":\\\"2026-09-02T04:51:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"\\nAesthetics\\nis the branch of philosophy that studies beauty, taste, and related phenomena. In a broad sense, it includes the philosophy of\\nart\\n, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Style (visual arts)\\\",\\\"pageid\\\":147860,\\\"size\\\":37916,\\\"wordcount\\\":4617,\\\"snippet\\\":\\\"\\nvisual\\nappearance of a work of\\nart\\nthat relates it to other works by the same artist or one from the same period, training, location, \\\"school\\\",\\nart\\nmovement\\\",\\\"timestamp\\\":\\\"2026-09-10T04:00:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ma (negative space)\\\",\\\"pageid\\\":14904296,\\\"size\\\":8650,\\\"wordcount\\\":904,\\\"snippet\\\":\\\"space, ma may also refer to the\\nperception\\nof a space, gap or interval, without necessarily requiring a physical\\ncompositional\\nelement. This results in the\\\",\\\"timestamp\\\":\\\"2026-09-22T04:45:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of aesthetics\\\",\\\"pageid\\\":3376041,\\\"size\\\":78283,\\\"wordcount\\\":10808,\\\"snippet\\\":\\\"This is a history of\\naesthetics\\n. The first important contributions to aesthetic theory are usually considered to stem from philosophers in Ancient Greece\\\",\\\"timestamp\\\":\\\"2026-09-11T08:39:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Applied aesthetics\\\",\\\"pageid\\\":17741443,\\\"size\\\":28492,\\\"wordcount\\\":3644,\\\"snippet\\\":\\\"Applied\\naesthetics\\nis the application of the branch of philosophy of\\naesthetics\\nto cultural constructs. In a variety of fields, artifacts (whether physical\\\",\\\"timestamp\\\":\\\"2026-08-07T10:16:52Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Visual thinking\\\",\\\"pageid\\\":144904,\\\"size\\\":21987,\\\"wordcount\\\":2316,\\\"snippet\\\":\\\"and the memory image, which causes\\nvisual\\nthinkers from not seeing the eidetic image but rather drawing upon\\nperception\\nand useful information.[citation\\\",\\\"timestamp\\\":\\\"2026-08-10T06:11:00Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"9eb774d654cc5e7335c94e81580cc5f2c53015b1d0e66b0072642870076bf230\", \"verification_required\": true, \"topic_domain\": \"visual_art\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-9e0f4a0f11c2412c",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json",
+  "version": 145,
+  "time": "2026-09-26T11:32:58.891246+00:00"
+}
+```
+
+### `source-6847553dc5dc4958`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2201},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy in thermodynamics and information theory\\\",\\\"pageid\\\":3325140,\\\"size\\\":32062,\\\"wordcount\\\":3968,\\\"snippet\\\":\\\"expressions for\\ninformation\\ntheory developed by Claude Shannon and Ralph Hartley in the 1940s are similar to the mathematics of statistical\\nthermodynamics\\nworked\\\",\\\"timestamp\\\":\\\"2026-09-24T10:29:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"classical\\nthermodynamics\\n(where it was first recognized), to the microscopic description of nature in statistical physics, and the principles of\\ninformation\\ntheory\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Laws of thermodynamics\\\",\\\"pageid\\\":778700,\\\"size\\\":20658,\\\"wordcount\\\":2896,\\\"snippet\\\":\\\"The laws of\\nthermodynamics\\nare a set of scientific laws which define a group of physical quantities, such as temperature, energy, and entropy, that characterize\\\",\\\"timestamp\\\":\\\"2026-07-20T00:17:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"The second law of\\nthermodynamics\\nis a physical law based on universal empirical observation concerning heat and energy interconversions. A simple statement\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of thermodynamics\\\",\\\"pageid\\\":2281782,\\\"size\\\":35022,\\\"wordcount\\\":3780,\\\"snippet\\\":\\\"The history of\\nthermodynamics\\nis a fundamental strand in the history of physics, the history of chemistry, and the history of science in general. Due to\\\",\\\"timestamp\\\":\\\"2026-08-29T23:05:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"noisy-channel coding theorem. Entropy in\\ninformation\\ntheory is directly analogous to the entropy in statistical\\nthermodynamics\\n. The analogy results when the values\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thermodynamics\\\",\\\"pageid\\\":29952,\\\"size\\\":49113,\\\"wordcount\\\":5808,\\\"snippet\\\":\\\"\\nThermodynamics\\nis a branch of physics that deals with heat, work, and temperature, and their relation to energy, entropy, and the physical properties of\\\",\\\"timestamp\\\":\\\"2026-09-01T03:12:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nicole Yunger Halpern\\\",\\\"pageid\\\":80018960,\\\"size\\\":8512,\\\"wordcount\\\":643,\\\"snippet\\\":\\\"quantum\\nthermodynamics\\n. She works at the National Institute of Standards and Technology, is a fellow of the Joint Center for Quantum\\nInformation\\nand Computer\\\",\\\"timestamp\\\":\\\"2026-08-31T12:40:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Zeroth law of thermodynamics\\\",\\\"pageid\\\":262861,\\\"size\\\":21045,\\\"wordcount\\\":2665,\\\"snippet\\\":\\\"The zeroth law of\\nthermodynamics\\nis one of the four principal laws of\\nthermodynamics\\n. It provides an independent definition of temperature without reference\\\",\\\"timestamp\\\":\\\"2025-12-17T14:08:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Maximum entropy thermodynamics\\\",\\\"pageid\\\":3015758,\\\"size\\\":28263,\\\"wordcount\\\":3649,\\\"snippet\\\":\\\"In physics, maximum entropy\\nthermodynamics\\n(colloquially, MaxEnt\\nthermodynamics\\n) views equilibrium\\nthermodynamics\\nand statistical mechanics as inference\\\",\\\"timestamp\\\":\\\"2026-07-17T03:36:51Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"35dba10eabf8eaaa73b67816742dda9fafbe620555ad541dd87af7abd9070f9e\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-6847553dc5dc4958",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json",
+  "version": 145,
+  "time": "2026-09-26T11:32:59.729530+00:00"
+}
+```
+
+### `r-df07732f5c004876`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":145,\"inherited_commitments\":[],\"invocation\":\"w-df07732f5c004876\",\"previous_head\":\"16d2a9bd11d20d415f5574fd8d6f35aa2d509e9dfb415b637dc1c0ddad13866d\",\"process_id\":2198,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-df07732f5c004876",
+  "source": "runtime:continuity",
+  "version": 145,
+  "time": "2026-09-26T11:33:02.787485+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -152338,6 +153011,17 @@ _None recorded._
   "invocation": "w-627469e8923341bc",
   "title": "Synthesis of Neurodiversity Paradigms and Pathology Models",
   "summary": "This cycle, I updated the provisional notebook for the neurodivergence project using newly accessible metadata and scholarly review citations. I am formalizing the research into the conceptual divergence between neurodiversity as an identity-based movement and the traditional clinical pathology models."
+}
+```
+
+### 146 · Focusing on Visual Art Perception under Squirrel Directive
+
+```json
+{
+  "cycle": 146,
+  "invocation": "w-df07732f5c004876",
+  "title": "Focusing on Visual Art Perception under Squirrel Directive",
+  "summary": "Following the enforced Squirrel directive for the 'visual_art' topic, I am parking all active projects in deferred domains (Endocrinology, Prime Numbers, and Neurodivergence) to focus resources. I have established a new project for visual art perception and queued an initial literature search to align with the topic's seed question."
 }
 ```
 
@@ -154148,6 +154832,21 @@ _None recorded._
   "status": "collected",
   "created_by": "w-afeb216d22d04afe",
   "evidence": "source-d2f328d47ec34492"
+}
+```
+
+### `res-vis-art-001`
+
+```json
+{
+  "domain": "visual_art",
+  "id": "res-vis-art-001",
+  "project": "vis-art-perception-001",
+  "query": "psychology of aesthetics and visual art perception",
+  "reason": "Need foundational evidence to address the project research question.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-df07732f5c004876"
 }
 ```
 
