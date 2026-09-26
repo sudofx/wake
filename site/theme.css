@@ -13,7 +13,7 @@
   --pale:#e9eeff !important; --glow:transparent !important;
   --chart-0:#147fbe !important; --chart-1:#7e42c7 !important; --chart-2:#d93d9b !important;
   --chart-3:#568a2b !important; --chart-4:#b98500 !important; --chart-5:#7a84aa !important;
-  --success:#3FB950 !important; --danger:#d93d9b !important; --failure:#3d455d !important; --warning:#b98500 !important; --info:#147fbe !important;
+  --success:#3FB950 !important; --danger:#c84c5a !important; --failure:#6b7280 !important; --warning:#b98500 !important; --info:#147fbe !important;
   --topic-name:#3FB950 !important;
   --mono:ui-monospace,SFMono-Regular,Consolas,monospace !important;
   --sans:Arial,Helvetica,sans-serif !important; --serif:Georgia,'Times New Roman',serif !important;
@@ -27,7 +27,7 @@
   --pale:#2b314d !important; --glow:transparent !important;
   --chart-0:#46b5ff !important; --chart-1:#b25dff !important; --chart-2:#ff5bb9 !important;
   --chart-3:#93ff74 !important; --chart-4:#ffe574 !important; --chart-5:#a9b1d6 !important;
-  --success:#3FB950 !important; --danger:#ff5bb9 !important; --failure:#0f1424 !important; --warning:#ffe574 !important; --info:#46b5ff !important;
+  --success:#3FB950 !important; --danger:#ff6b78 !important; --failure:#7f8ca8 !important; --warning:#e7c35a !important; --info:#46b5ff !important;
   --topic-name:#3FB950 !important;
 }
 
