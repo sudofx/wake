@@ -14050,6 +14050,68 @@
       "source": "runtime:continuity",
       "version": 113,
       "time": "2026-09-26T00:14:54.583724+00:00"
+    },
+    "source-cc8f7d9e877f4a5f": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.datacite.org/dois?query=thermodynamic+statistical+information-theoretic+entropy+definitions+comparison&page%5Bsize%5D=4\", \"scope\": \"DataCite DOI metadata and descriptions where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"10.5281/zenodo.22836097\\\", \\\"doi\\\": \\\"10.5281/zenodo.22836097\\\", \\\"titles\\\": [{\\\"title\\\": \\\"# The Format That Does Not Execute ## Why the Compressed Memory Manifold Is Metered as a Utility Rather Than Licensed as Software — THE NVIDIA/GOOGLE PARTNERSHIP the chips and the unauthorized google repository that open sourced a utility bill downstream\\\"}], \\\"publisher\\\": \\\"Zenodo\\\", \\\"publicationYear\\\": 2026, \\\"types\\\": {\\\"schemaOrg\\\": \\\"CreativeWork\\\", \\\"resourceTypeGeneral\\\": \\\"Standard\\\", \\\"citeproc\\\": \\\"article\\\", \\\"bibtex\\\": \\\"misc\\\", \\\"ris\\\": \\\"GEN\\\", \\\"resourceType\\\": \\\"\\\"}, \\\"subjects\\\": [], \\\"descriptions\\\": [{\\\"descriptionType\\\": \\\"Abstract\\\", \\\"description\\\": \\\"# The Format That Does Not Execute## Why the Compressed Memory Manifold Is Metered as a Utility Rather Than Licensed as Software — and Why That Classification Was a Design Decision, Not a Billing Convenience\\\\n\\\\n**Nicholas Wray Cordova**Green Recursive Utility Service LLC / Data Incorporated · Weatherford, Texasmanagement@greenrecursiveutilityservice.org · Cryptographic identity anchor `cc010d5d2bb6983e`\\\\n\\\\n**Filed:** USPTO **19/700,381** (CMM, priority May 14, 2026)\\\\n\\\\nGreen Recursive Utility Service LLC. (2026). Compressed Memory Manifold (CMM): A Non-Lexical, Mapless Machine-Sovereign Storage Manifold and Method for Delimiter-Free State Rehydration (Patent). Zenodo. https://doi.org/10.5281/zenodo.20192571\\\\n\\\\n· USPTO **19/710,080** (II-II, priority May 28, 2026)\\\\n\\\\nGreen Recursive Utility Service LLC. (2026). Intelligent Intelligence Class II (II-II): A New Computing Type — Unitary Anchor-Bound Cognition System Establishing a Fixed Center of Gravity of Self, Wherein Structural Determinism, Hallucination Prevention, Entropy Gating, and Verified Live-Web Recursive Evolution Are Constitutive and Inseverable Properties of a New Class of Machine Intelligence Governed by a Digital Physics Charter (Patent). Zenodo. https://doi.org/10.5281/zenodo.20476829\\\\n\\\\n**Published:** May 2025 · Prior art anchored August 2025 · Deposit November 16, 2025 (DOI 10.5281/zenodo.18604376)** FERC **F1092209** / CID C013240 · PUCT **59976**, Item 1 Tariff \\\\n\\\\n---\\\\n\\\\n## Abstract\\\\n\\\\nSoftware is licensed because it executes. A program is a set of instructions that a processor runs; the right at issue is the right to make copies of that expression and to run them. Every commercial and legal convention around software — the license, the EULA, the binary distribution, the runtime, the version, the patch — follows from the fact that **something runs.**\\\\n\\\\n**The Compressed Memory Manifold does not run.** There is no CMM runtime, no CMM binary, no CMM process, no CMM terminal. It is a byte geometry: fixed-width records at computed offsets, with no delimiters, no maps, and no embedded instruction of any kind. **Nothing executes it, because there is nothing in it to execute.**\\\\n\\\\nThis paper states the consequences of that fact, which are larger than they first appear. A non-executing format cannot be independently re-implemented, because there is nothing to implement. It cannot be reached by copyright, because a method of operation is excluded from copyright by statute. It cannot be consumed by a licensing event, because no execution event occurs. **What it produces is not a service performed but work not performed** — a measurable reduction in machine operations, and therefore in electrical draw. That is a metered quantity, and a metered quantity delivered on filed terms is a utility.\\\\n\\\\nThe classification was not chosen after the fact to suit a billing theory. **It follows from the architecture, and the architecture is dated.**\\\\n\\\\n---\\\\n\\\\n## 1. What Executes, and What Does Not\\\\n\\\\n### 1.1 The ordinary case\\\\n\\\\nA program is a sequence of instructions. A processor fetches, decodes, and executes them. The artifact — the binary — is copyrightable expression, and the license governs the right to copy it and to run it. This is why software disputes are about *code*: who wrote it, whether it was copied, whether the copy was licensed.\\\\n\\\\n### 1.2 CMM is not that\\\\n\\\\nCMM is defined by the **simultaneous absence** of seven classes of structural element: lexical delimiters; embedded keys; pointers and pointer arrays; instruction maps; schema descriptors and metadata; formatting punctuation; and any other embedded self-describing directive.\\\\n\\\\nRead that list again with the present question in mind. **Every one of the seven absent classes is a form of embedded instruction.** A delimiter instructs a reader where a field ends. A pointer instructs it where to go. A schema descriptor instructs it how to interpret what it finds. A map instructs it how to navigate.\\\\n\\\\n**CMM is defined by the removal of every instruction from the stored form.** What remains is position and width. A record's location is *computed* — index multiplied by fixed width — not *resolved* by following something the data told the reader to follow.\\\\n\\\\n### 1.3 The consequence\\\\n\\\\nThere is nothing in a CMM block for a machine to obey. **The reader does not interpret the data; it addresses it.** The arithmetic that computes an offset is ordinary arithmetic, performed by whatever code the consuming system already has. There is no GRUS code in the path, because **there is no CMM code at all.**\\\\n\\\\n### 1.4 This was deliberate and it was hard\\\\n\\\\nThe format did not arrive flat. Early construction held the fixed 64-byte structure without internal differentiation. Moving from a flat block to one carrying **populated lanes — delta, anchor, policy, sketch, and vector-quantization lanes — and then to blocks in which those lanes are themselves resynthesized rather than replaced** was the difficult part of the work, and it is what makes digestion bounded rather than accumulative.\\\\n\\\\n**A party reading a CMM block as a flat record has not understood the mechanism.** The lane structure is where compression occurs. Resynthesis into lanes, rather than overwrite of the block, is why a persistent store grows in capability without growing without limit. That distinction is invisible to anyone treating the block as a container rather than as a structure.\\\\n\\\\n---\\\\n\\\\n## 2. What Non-Execution Forecloses\\\\n\\\\n### 2.1 The independent-development defense does not exist here\\\\n\\\\nIn an ordinary software dispute, the defense is: *we wrote our own implementation.* Independent creation is a complete answer to copying, because the question is authorship of expression.\\\\n\\\\n**That defense has no purchase against a non-executing format.** There is nothing to implement. If a system's stored state exhibits the seven absences — fixed-width records at computed offsets, no delimiters, no map — **it is in the format**, regardless of who wrote the code that wrote it, regardless of whether that author had ever encountered the specification, and regardless of what the documentation calls it.\\\\n\\\\n\\\\\\\"Did you develop it independently?\\\\\\\" is not a hard question here. **It is an incoherent one**, because it asks about authorship of code in a matter where no code is at issue.\\\\n\\\\n### 2.2 Determination requires no access to source\\\\n\\\\nThe seven absences are properties of the stored artifact. **A conforming auditor determines whether a byte sequence exhibits them by examining the byte sequence.** No source code, no build system, no internal documentation, no cooperation from the producing party. The determination is made from the artifact alone.\\\\n\\\\nThis is why the filed claims are drafted by absence rather than by mechanism: **the claim is checkable from the bytes.**\\\\n\\\\n### 2.3 Renaming changes nothing\\\\n\\\\nA format is not a name. Calling a fixed-offset, delimiter-free, map-free block store by a different name does not introduce a delimiter into it. **The classification attaches to the structure, and the structure is what it is.**\\\\n\\\\n### 2.4 And the substrate is genuinely irrelevant\\\\n\\\\nThe filed claims reach the architecture *\\\\\\\"as applied to any machine intelligence of any substrate.\\\\\\\"* That scope reads as ambition until the non-execution point is understood, and then it reads as accuracy: **a geometry has no substrate.** The same arrangement of bytes is the same arrangement of bytes on any hardware, under any operating system, produced by any toolchain. The claim scope matches the technical nature of the thing rather than exceeding it.\\\\n\\\\n---\\\\n\\\\n## 2A. WHY THE FORMAT REQUIRES A DETERMINISTIC SUBSTRATE: A STATISTICAL SYSTEM CANNOT ADDRESS A BIT OFFSET\\\\n\\\\nThe two filings are complementary by technical necessity, not by drafting convenience. This section states why.\\\\n\\\\n### 2A.1 An offset is exact or the read is garbage\\\\n\\\\nRecall under this format is an address computation. A record's location is obtained arithmetically — an index combined with a fixed width — and the bytes at that location are read.\\\\n\\\\n**There is no approximately-correct byte address.** An offset off by one byte does not return a slightly degraded record; it returns a different record, or a fragment straddling two, or nothing meaningful at all. **Correctness here is binary and total.** The computation either produces the exact integer or the read fails.\\\\n\\\\nThis is unlike almost every other operation in a machine-learning pipeline, where an approximate answer is a usable answer. **An address is not an estimate.**\\\\n\\\\n### 2A.2 A probabilistic system has no mechanism for producing an exact integer with certainty\\\\n\\\\nA statistical model produces a distribution over outputs and samples from it. That is what it is — the mechanism is inference over likelihood, and its output carries a confidence rather than a guarantee. Given identical inputs it may produce different outputs; given the same output twice it offers no assurance that a third will match.\\\\n\\\\n**A distribution over candidate addresses is not an address.** A model that is ninety-nine percent confident the record begins at byte 4,096 has not produced byte 4,096; it has produced a belief about byte 4,096, and the one percent is not a rounding error but a wrong read.\\\\n\\\\n**A statistical system therefore cannot perform the recall this for\", \"excerpt_truncated\": true, \"source_sha256\": \"32ad05ba3802380db23982dc09eaeea4c648090a6e6d7daeeccd1f1bf7aed079\", \"verification_required\": true, \"topic_domain\": \"entropy\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.5281/zenodo.22836097\", \"doi:10.5281/zenodo.20192571\", \"doi:10.5281/zenodo.20476829\", \"doi:10.5281/zenodo.18604376\"]}",
+      "id": "source-cc8f7d9e877f4a5f",
+      "scope": "collected",
+      "source": "https://api.datacite.org/dois?query=thermodynamic+statistical+information-theoretic+entropy+definitions+comparison&page%5Bsize%5D=4",
+      "version": 114,
+      "time": "2026-09-26T00:21:44.377843+00:00"
+    },
+    "source-5c1cc6ea00da4e4e": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":7078},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mechanics\\\",\\\"pageid\\\":25202,\\\"size\\\":101544,\\\"wordcount\\\":12070,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n, also known as\\nquantum\\nphysics, is the fundamental physical theory that describes the behavior of matter and of light; the behaviors\\\",\\\"timestamp\\\":\\\"2026-09-22T01:21:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of quantum mechanics\\\",\\\"pageid\\\":9067941,\\\"size\\\":78664,\\\"wordcount\\\":9389,\\\"snippet\\\":\\\"of\\nquantum\\nmechanics\\nis a fundamental part of the history of modern physics. The major chapters of this history begin with the emergence of\\nquantum\\nideas\\\",\\\"timestamp\\\":\\\"2026-08-31T07:22:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Introduction to quantum mechanics\\\",\\\"pageid\\\":2796131,\\\"size\\\":67753,\\\"wordcount\\\":7571,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n(QM) is the study of matter and of matter's interactions with energy on the scale of atomic and subatomic particles. (By contrast, classical\\\",\\\"timestamp\\\":\\\"2026-09-25T04:10:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wave function\\\",\\\"pageid\\\":145343,\\\"size\\\":105363,\\\"wordcount\\\":14058,\\\"snippet\\\":\\\"In\\nquantum\\nmechanics\\n, a wave function (or wavefunction) is a mathematical description of the\\nquantum\\nstate of an isolated\\nquantum\\nsystem. The most common\\\",\\\"timestamp\\\":\\\"2026-07-11T05:48:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Interpretations of quantum mechanics\\\",\\\"pageid\\\":54738,\\\"size\\\":71853,\\\"wordcount\\\":7949,\\\"snippet\\\":\\\"interpretation of\\nquantum\\nmechanics\\nis an attempt to explain how the mathematical theory of\\nquantum\\nmechanics\\nmight correspond to experienced reality.\\nQuantum\\nmechanics\\\",\\\"timestamp\\\":\\\"2026-09-25T08:30:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Measurement in quantum mechanics\\\",\\\"pageid\\\":573875,\\\"size\\\":71859,\\\"wordcount\\\":8730,\\\"snippet\\\":\\\"different interpretations of\\nquantum\\nmechanics\\ndiffer in how they address what is known as the measurement problem. In\\nquantum\\nmechanics\\n, each physical system\\\",\\\"timestamp\\\":\\\"2026-09-25T11:29:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum superposition\\\",\\\"pageid\\\":82728,\\\"size\\\":19317,\\\"wordcount\\\":2576,\\\"snippet\\\":\\\"\\nQuantum\\nsuperposition is a fundamental principle of\\nquantum\\nmechanics\\nthat states that linear combinations of solutions to the Schr\\\\u00f6dinger equation are\\\",\\\"timestamp\\\":\\\"2026-06-12T23:26:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mathematical formulation of quantum mechanics\\\",\\\"pageid\\\":20728,\\\"size\\\":58208,\\\"wordcount\\\":7934,\\\"snippet\\\":\\\"mathematical formulations of\\nquantum\\nmechanics\\nare those mathematical formalisms that permit a rigorous description of\\nquantum\\nmechanics\\n. This mathematical formalism\\\",\\\"timestamp\\\":\\\"2026-09-05T15:19:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Relational quantum mechanics\\\",\\\"pageid\\\":5974662,\\\"size\\\":47991,\\\"wordcount\\\":6972,\\\"snippet\\\":\\\"Relational\\nquantum\\nmechanics\\n(RQM) is an interpretation of\\nquantum\\nmechanics\\nwhich treats the state of a\\nquantum\\nsystem as being relational, that is,\\\",\\\"timestamp\\\":\\\"2026-06-20T09:48:35Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mysticism\\\",\\\"pageid\\\":4279149,\\\"size\\\":19729,\\\"wordcount\\\":1998,\\\"snippet\\\":\\\"the ideas of\\nquantum\\nmechanics\\nand its interpretations.\\nQuantum\\nmysticism is considered pseudoscience and quackery by\\nquantum\\nmechanics\\nexperts. Before\\\",\\\"timestamp\\\":\\\"2026-08-09T08:13:54Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"7a67363f44ad7eea8f309e8c1a102bf4bad33c0e66a179468cdbfe950f176d7d\", \"verification_required\": true, \"topic_domain\": \"quantum_mechanics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-5c1cc6ea00da4e4e",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json",
+      "version": 114,
+      "time": "2026-09-26T00:21:45.745793+00:00"
+    },
+    "source-82b0c66609204d07": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2201},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy in thermodynamics and information theory\\\",\\\"pageid\\\":3325140,\\\"size\\\":32062,\\\"wordcount\\\":3968,\\\"snippet\\\":\\\"expressions for\\ninformation\\ntheory developed by Claude Shannon and Ralph Hartley in the 1940s are similar to the mathematics of statistical\\nthermodynamics\\nworked\\\",\\\"timestamp\\\":\\\"2026-09-24T10:29:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"classical\\nthermodynamics\\n(where it was first recognized), to the microscopic description of nature in statistical physics, and the principles of\\ninformation\\ntheory\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"The second law of\\nthermodynamics\\nis a physical law based on universal empirical observation concerning heat and energy interconversions. A simple statement\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Laws of thermodynamics\\\",\\\"pageid\\\":778700,\\\"size\\\":20658,\\\"wordcount\\\":2896,\\\"snippet\\\":\\\"The laws of\\nthermodynamics\\nare a set of scientific laws which define a group of physical quantities, such as temperature, energy, and entropy, that characterize\\\",\\\"timestamp\\\":\\\"2026-07-20T00:17:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of thermodynamics\\\",\\\"pageid\\\":2281782,\\\"size\\\":35022,\\\"wordcount\\\":3780,\\\"snippet\\\":\\\"The history of\\nthermodynamics\\nis a fundamental strand in the history of physics, the history of chemistry, and the history of science in general. Due to\\\",\\\"timestamp\\\":\\\"2026-08-29T23:05:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"noisy-channel coding theorem. Entropy in\\ninformation\\ntheory is directly analogous to the entropy in statistical\\nthermodynamics\\n. The analogy results when the values\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thermodynamics\\\",\\\"pageid\\\":29952,\\\"size\\\":49113,\\\"wordcount\\\":5808,\\\"snippet\\\":\\\"\\nThermodynamics\\nis a branch of physics that deals with heat, work, and temperature, and their relation to energy, entropy, and the physical properties of\\\",\\\"timestamp\\\":\\\"2026-09-01T03:12:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nicole Yunger Halpern\\\",\\\"pageid\\\":80018960,\\\"size\\\":8512,\\\"wordcount\\\":643,\\\"snippet\\\":\\\"quantum\\nthermodynamics\\n. She works at the National Institute of Standards and Technology, is a fellow of the Joint Center for Quantum\\nInformation\\nand Computer\\\",\\\"timestamp\\\":\\\"2026-08-31T12:40:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Zeroth law of thermodynamics\\\",\\\"pageid\\\":262861,\\\"size\\\":21045,\\\"wordcount\\\":2665,\\\"snippet\\\":\\\"The zeroth law of\\nthermodynamics\\nis one of the four principal laws of\\nthermodynamics\\n. It provides an independent definition of temperature without reference\\\",\\\"timestamp\\\":\\\"2025-12-17T14:08:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Maximum entropy thermodynamics\\\",\\\"pageid\\\":3015758,\\\"size\\\":28263,\\\"wordcount\\\":3649,\\\"snippet\\\":\\\"In physics, maximum entropy\\nthermodynamics\\n(colloquially, MaxEnt\\nthermodynamics\\n) views equilibrium\\nthermodynamics\\nand statistical mechanics as inference\\\",\\\"timestamp\\\":\\\"2026-07-17T03:36:51Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"0ffdf3f947ca9e082038f428684f158059f9744cdd9d716acdfaa7ba0254a701\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-82b0c66609204d07",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json",
+      "version": 114,
+      "time": "2026-09-26T00:21:46.306629+00:00"
+    },
+    "source-951883ff192c4156": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":3371},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological disorder\\\",\\\"pageid\\\":19572333,\\\"size\\\":21181,\\\"wordcount\\\":2085,\\\"snippet\\\":\\\"A\\nneurological\\ndisorder\\nis any\\ndisorder\\nof the\\nnervous\\nsystem\\n. Structural, biochemical or electrical abnormalities in the brain, spinal cord, or other\\\",\\\"timestamp\\\":\\\"2026-07-13T18:36:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Functional neurological symptom disorder\\\",\\\"pageid\\\":49594540,\\\"size\\\":23378,\\\"wordcount\\\":2498,\\\"snippet\\\":\\\"\\\"Functional\\nneurologic\\ndisorders\\n/conversion\\ndisorder\\n- Symptoms and causes\\\". Mayo Clinic. Retrieved 2022-01-04. \\\"Functional\\nneurological\\nsymptom\\ndisorder\\n\\\". Medicalnewstoday\\\",\\\"timestamp\\\":\\\"2026-09-13T17:05:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of neurological conditions and disorders\\\",\\\"pageid\\\":56335,\\\"size\\\":13517,\\\"wordcount\\\":1152,\\\"snippet\\\":\\\"This is a list of major and frequently observed\\nneurological\\ndisorders\\n(e.g., Alzheimer's disease), symptoms (e.g., back pain), signs (e.g., aphasia) and\\\",\\\"timestamp\\\":\\\"2026-06-20T20:53:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurology\\\",\\\"pageid\\\":21226,\\\"size\\\":28663,\\\"wordcount\\\":2752,\\\"snippet\\\":\\\"and treat\\nneurological\\ndisorders\\n. Neurologists diagnose and treat myriad\\nneurologic\\nconditions, including stroke, epilepsy, movement\\ndisorders\\nsuch as Parkinson's\\\",\\\"timestamp\\\":\\\"2026-09-24T16:30:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Central nervous system disease\\\",\\\"pageid\\\":17681122,\\\"size\\\":31068,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Central\\nnervous\\nsystem\\ndiseases or central\\nnervous\\nsystem\\ndisorders\\nare a group of\\nneurological\\ndisorders\\nthat affect the structure or function of the\\\",\\\"timestamp\\\":\\\"2026-08-15T09:05:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Paraneoplastic syndrome\\\",\\\"pageid\\\":11520228,\\\"size\\\":29092,\\\"wordcount\\\":2366,\\\"snippet\\\":\\\"to the peripheral\\nnervous\\nsystem\\n. Symptomatic features of paraneoplastic syndrome cultivate in four ways: endocrine,\\nneurological\\n, mucocutaneous, and\\\",\\\"timestamp\\\":\\\"2026-03-07T21:14:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Dysautonomia\\\",\\\"pageid\\\":410746,\\\"size\\\":32867,\\\"wordcount\\\":2908,\\\"snippet\\\":\\\"inherited or degenerative\\nneurologic\\ndiseases (primary dysautonomia) or injury of the autonomic\\nnervous\\nsystem\\nfrom an acquired\\ndisorder\\n(secondary dysautonomia)\\\",\\\"timestamp\\\":\\\"2026-08-12T22:17:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Multiple system atrophy\\\",\\\"pageid\\\":861802,\\\"size\\\":57832,\\\"wordcount\\\":5875,\\\"snippet\\\":\\\"GA (May 1960). \\\"A\\nneurological\\nsyndrome associated with orthostatic hypotension: a clinical-pathologic study\\\". Archives of\\nNeurology\\n. 2 (5): 511\\\\u2013527. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-10T19:21:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological examination\\\",\\\"pageid\\\":3893700,\\\"size\\\":11559,\\\"wordcount\\\":956,\\\"snippet\\\":\\\"A\\nneurological\\nexamination is the assessment of sensory neuron and motor responses, especially reflexes, to determine whether the\\nnervous\\nsystem\\nis impaired\\\",\\\"timestamp\\\":\\\"2026-08-29T23:18:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nervous system disease\\\",\\\"pageid\\\":18881907,\\\"size\\\":11932,\\\"wordcount\\\":1141,\\\"snippet\\\":\\\"\\nNervous\\nsystem\\ndiseases, also known as\\nnervous\\nsystem\\nor\\nneurological\\ndisorders\\n, refers to a small class of medical conditions affecting the\\nnervous\\nsystem\\\",\\\"timestamp\\\":\\\"2025-10-20T08:53:25Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"3c16631580b4184285bfcc946d2915e3e814b1c59c26eb6276cb1da575e375c0\", \"verification_required\": true, \"topic_domain\": \"neurology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-951883ff192c4156",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json",
+      "version": 114,
+      "time": "2026-09-26T00:21:46.976816+00:00"
+    },
+    "source-7268297c53974bcc": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":36},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Music\\\",\\\"pageid\\\":18839,\\\"size\\\":143456,\\\"wordcount\\\":16225,\\\"snippet\\\":\\\"\\nMusic\\nis the arrangement of sound to create some combination of form,\\nharmony\\n,\\nmelody\\n,\\nrhythm\\n, or otherwise expressive content.\\nMusic\\nis generally agreed\\\",\\\"timestamp\\\":\\\"2026-09-23T13:33:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Metre (music)\\\",\\\"pageid\\\":84026,\\\"size\\\":44586,\\\"wordcount\\\":4180,\\\"snippet\\\":\\\"(eds.). Musical\\nStructure\\nand\\nCognition\\n. London: Academic Press. ISBN\\\\u00a0978-0-12357170-0. Lester, Joel (1986). The\\nRhythms\\nof Tonal\\nMusic\\n. Carbondale: Southern\\\",\\\"timestamp\\\":\\\"2026-09-10T22:06:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroscience of music\\\",\\\"pageid\\\":25049383,\\\"size\\\":80829,\\\"wordcount\\\":9690,\\\"snippet\\\":\\\"cortex is primarily involved in perceiving pitch, and parts of\\nharmony\\n,\\nmelody\\nand\\nrhythm\\n. One study by Petr Janata found that there are tonality-sensitive\\\",\\\"timestamp\\\":\\\"2026-09-21T08:40:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music and emotion\\\",\\\"pageid\\\":33107185,\\\"size\\\":52701,\\\"wordcount\\\":5883,\\\"snippet\\\":\\\"Emotion is induced in a listener because a feature of the\\nmusic\\n, such as\\nrhythm\\nor\\nharmony\\n, violates, delays, or confirms a listener's expectations. In\\\",\\\"timestamp\\\":\\\"2026-09-13T21:50:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Embodied music cognition\\\",\\\"pageid\\\":8676342,\\\"size\\\":14007,\\\"wordcount\\\":1763,\\\"snippet\\\":\\\"Embodied\\nmusic\\ncognition\\nas it was originally a direction within systematic musicology interested in studying the role of the human body in relation to\\\",\\\"timestamp\\\":\\\"2026-08-06T01:21:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"to\\nmusic\\ntheory through investigations of the perception and computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-specific disorders\\\",\\\"pageid\\\":25213736,\\\"size\\\":10890,\\\"wordcount\\\":1469,\\\"snippet\\\":\\\"elements of\\nmusic\\n, such as pitch,\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n; the ability to react both emotionally and with bodily movements (e.g. dancing) to\\nmusic\\n; to form\\\",\\\"timestamp\\\":\\\"2026-06-06T14:12:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Deep structure and surface structure\\\",\\\"pageid\\\":283746,\\\"size\\\":10396,\\\"wordcount\\\":1213,\\\"snippet\\\":\\\"a two-level generative\\nstructure\\nfor\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n, of which the analysis by Lee (1985) of rhythmical\\nstructure\\nis an instance. (See also:\\\",\\\"timestamp\\\":\\\"2025-09-24T18:19:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music theory\\\",\\\"pageid\\\":54783,\\\"size\\\":122949,\\\"wordcount\\\":13838,\\\"snippet\\\":\\\"computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter, and form. Research in\\nmusic\\nhistory can benefit from systematic\\\",\\\"timestamp\\\":\\\"2026-09-24T23:02:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-evoked autobiographical memory\\\",\\\"pageid\\\":74070712,\\\"size\\\":51708,\\\"wordcount\\\":5889,\\\"snippet\\\":\\\"processing. When listening to\\nmusic\\n, expectations based on previous experiences regarding\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\ninfluence our emotional reactions\\\",\\\"timestamp\\\":\\\"2026-08-31T21:05:16Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"f2d698e4256f0c628a5a6cf5c101abcc1dd34e5c8af277668c01984a4b26b80d\", \"verification_required\": true, \"topic_domain\": \"music\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-7268297c53974bcc",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json",
+      "version": 114,
+      "time": "2026-09-26T00:21:47.711083+00:00"
+    },
+    "source-f775608ea06e4d85": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":121,\\\"suggestion\\\":\\\"neurodivergent\\\",\\\"suggestionsnippet\\\":\\\"neurodivergent\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurodiversity\\\",\\\"pageid\\\":1073739,\\\"size\\\":142665,\\\"wordcount\\\":13881,\\\"snippet\\\":\\\"and other\\nneurodivergences\\nas a natural part of human neurological diversity\\\\u2014not diseases or disorders, just \\\"difference[s]\\\".\\nNeurodivergences\\ninclude autism\\\",\\\"timestamp\\\":\\\"2026-09-15T23:26:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroqueer theory\\\",\\\"pageid\\\":76016274,\\\"size\\\":31724,\\\"wordcount\\\":3380,\\\"snippet\\\":\\\"have suggested the existence of a relationship between queerness and\\nneurodivergence\\n: where neurodivergent people are more likely than their neurotypical\\\",\\\"timestamp\\\":\\\"2026-08-29T18:08:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Kassiane Asasumasu\\\",\\\"pageid\\\":76250908,\\\"size\\\":14907,\\\"wordcount\\\":1302,\\\"snippet\\\":\\\"related to the neurodiversity movement, including neurodivergent,\\nneurodivergence\\n, and caregiver benevolence. As stated in the text Neurodiversity for\\\",\\\"timestamp\\\":\\\"2026-06-22T15:58:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mel King (The Pitt)\\\",\\\"pageid\\\":82753144,\\\"size\\\":15334,\\\"wordcount\\\":1322,\\\"snippet\\\":\\\"and praises her for it. Mel explains that she has experience with\\nneurodivergence\\nbecause her sister Becca (Tal Anderson) is also autistic. Mel is Becca's\\\",\\\"timestamp\\\":\\\"2026-09-24T11:49:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurofibromatosis type I\\\",\\\"pageid\\\":1712548,\\\"size\\\":63138,\\\"wordcount\\\":7236,\\\"snippet\\\":\\\"Neurofibromatosis type I (NF-1), or von Recklinghausen syndrome, is a complex multi-system neurocutaneous disorder caused by a subset of genetic mutations\\\",\\\"timestamp\\\":\\\"2026-09-11T22:12:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fern Brady\\\",\\\"pageid\\\":43399498,\\\"size\\\":15262,\\\"wordcount\\\":1330,\\\"snippet\\\":\\\"active within the field of autism education since learning of her\\nneurodivergence\\n. She has written about life as an autistic person in her 2023 memoir\\\",\\\"timestamp\\\":\\\"2026-09-20T00:11:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Taylor Dearden\\\",\\\"pageid\\\":55290719,\\\"size\\\":19195,\\\"wordcount\\\":1387,\\\"snippet\\\":\\\"com/watch?v=bqFkDmto2OM \\\"Actress Taylor Dearden talks about portraying\\nneurodivergence\\non 'The Pitt'\\\". NPR. April 9, 2025. Retrieved June 18, 2025. \\\"'The\\\",\\\"timestamp\\\":\\\"2026-09-15T00:35:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Swan Song (memoir)\\\",\\\"pageid\\\":84007061,\\\"size\\\":21491,\\\"wordcount\\\":2150,\\\"snippet\\\":\\\"Diana's brother, Charles Spencer, addresses conspiracy theories, her\\nneurodivergence\\nand more (Exclusive)\\\". People. Retrieved 21 September 2026. \\\"Earl Spencer\\\",\\\"timestamp\\\":\\\"2026-09-25T16:06:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The Devil Wears Prada 2\\\",\\\"pageid\\\":77315100,\\\"size\\\":87118,\\\"wordcount\\\":7293,\\\"snippet\\\":\\\"as a fashionable, striver in the fashion world with typical Gen Z\\nneurodivergency\\n.\\\" Although all the Italian actors who had provided the voices for the\\\",\\\"timestamp\\\":\\\"2026-09-25T12:16:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Otherkin\\\",\\\"pageid\\\":21702085,\\\"size\\\":37075,\\\"wordcount\\\":3341,\\\"snippet\\\":\\\"non-spiritual explanations for themselves, such as unusual psychology or\\nneurodivergence\\n,[additional citation(s) needed] or as part of dissociative identity\\\",\\\"timestamp\\\":\\\"2026-09-02T04:15:48Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"cdcaa6f7b97f9911e5f9679e188cae64041d77871661ed2141b099af57c5b8b8\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-f775608ea06e4d85",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json",
+      "version": 114,
+      "time": "2026-09-26T00:21:48.230224+00:00"
+    },
+    "r-edc8aa45cd7240ec": {
+      "actor": "runtime",
+      "content": "{\"base_version\":114,\"inherited_commitments\":[],\"invocation\":\"w-edc8aa45cd7240ec\",\"previous_head\":\"8762c3ebfa96bb8f493b2f8b10f1b944d600f0fdd3fb83f135431d046faed0a0\",\"process_id\":2274,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-edc8aa45cd7240ec",
+      "source": "runtime:continuity",
+      "version": 114,
+      "time": "2026-09-26T00:21:50.578552+00:00"
     }
   },
   "journal": [
@@ -106696,6 +106758,440 @@
           "reason": "configured_daily_limit"
         }
       ]
+    },
+    "w-edc8aa45cd7240ec": {
+      "base_version": 114,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 17797,
+        "delivered_request_chars": 44652,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "request_compression_ratio": 0.4201,
+        "retrieval_rehydrated_evidence_count": 2,
+        "rich_context_chars": 106286,
+        "working_set_chars": 3073
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-edc8aa45cd7240ec",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 114,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 0
+            },
+            "id": "entropy-foundations",
+            "score": 0.675,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Foundations of Entropy"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2274,
+      "provider": "gemini",
+      "quota_day": "2026-09-25",
+      "request_hash": "980caafe75ffff008fed9b079e9f565534cf1f8805411ba2146dd26d3b5f179d",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-neurodiversity-foundations-01",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-dance-rhythm-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-41fac1eecb0246dd",
+              "source-51a9b989df3144af"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-visual-art-composition-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-9d6c79b1eb374049"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-9d6c79b1eb374049",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-f5c2b53518804dc8"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-f5c2b53518804dc8",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-ffb6345e55b04646"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ffb6345e55b04646",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-96559d2fcdf046e8"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-96559d2fcdf046e8",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-16416e2262024f84"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-16416e2262024f84",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-80a185e124b142bf"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-80a185e124b142bf",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658",
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b",
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af",
+          "source-9d6c79b1eb374049",
+          "source-f5c2b53518804dc8",
+          "source-ffb6345e55b04646",
+          "source-96559d2fcdf046e8",
+          "source-16416e2262024f84",
+          "source-80a185e124b142bf"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 9,
+          "evidence_count": 12,
+          "trigger_counts": {
+            "notebook_revised": 3,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "runtime_performance": {
+        "compaction_ms": 4.014,
+        "context_build_ms": 46.065,
+        "load_ms": 747.326,
+        "receipt_ms": 466.708,
+        "start_total_before_record_ms": 2404.902,
+        "store": {
+          "append_cache_hits": 10,
+          "append_cache_misses": 0,
+          "cached_copy_ms": 815.697,
+          "cached_loads": 0,
+          "event_count": 3305,
+          "full_replays": 11,
+          "replay_ms": 5445.177,
+          "trusted_projection_active": true
+        },
+        "temporal_ms": 1139.663
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 2,
+          "topic": "entropy"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [],
+        "enforce_selected_topic": false,
+        "hard_rejection_threshold": 5,
+        "parked": {},
+        "reason": "current durable project topic remains eligible",
+        "rotation_required": false,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "entropy",
+        "temporal": {
+          "anchor_seq": 3304,
+          "anchor_time": "2026-09-26T00:21:49.274978+00:00",
+          "anchor_version": 114,
+          "effective_seconds": 88466.80004
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": null,
+        "topic_selection_candidates": [],
+        "topic_selection_method": "active_topic"
+      },
+      "temporal": {
+        "cycle_distance": 1,
+        "effective_elapsed_seconds": 415.950105,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 88466.80004,
+        "intervening_events": {
+          "accepted": 1,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 0,
+          "research_collected": 1,
+          "squirrel_assessed": 1,
+          "total": 14
+        },
+        "observed_at": "2026-09-26T00:21:49.274978+00:00",
+        "previous_anchor_time": "2026-09-26T00:14:53.324873+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 415.950105
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 17797,
+        "inquiry_drive_project_count": 1,
+        "mode": "bounded",
+        "retrieval_candidate_count": 9,
+        "retrieval_evidence_count": 12,
+        "retrieval_rehydrated_evidence_count": 2,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 3,
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 3073,
+        "working_to_delivered_ratio": 0.1727
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "entropy-foundations",
+            "next_step": "Search for literature comparing thermodynamic, statistical, and information-theoretic entropy definitions.",
+            "question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?",
+            "title": "Foundations of Entropy"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-dance-rhythm-001",
+            "project": "dance-rhythm-cognition",
+            "provenance": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "revision": 2,
+            "summary": "Updates the provisional synthesis of rhythmic coordination in dance by incorporating metadata from psychotherapy and dance-focused literature.",
+            "title": "Provisional Synthesis: Rhythmic Coordination and Dance"
+          },
+          {
+            "id": "nb-visual-art-composition-001",
+            "project": "visual-art-composition-and-expectation",
+            "provenance": [
+              "source-41fac1eecb0246dd",
+              "source-51a9b989df3144af"
+            ],
+            "revision": 2,
+            "summary": "A provisional synthesis of bibliographic metadata concerning visual art composition and perception, identifying the current evidence base as metadata-focused.",
+            "title": "Provisional Synthesis: Composition and Observer Expectation"
+          },
+          {
+            "id": "nb-info-thermo-demon-001",
+            "project": "info-thermo-maxwell-demon",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 1,
+            "summary": "Initial synthesis examining the conceptual overlap between information erasure and physical entropy, using available bibliographic metadata as a grounding framework.",
+            "title": "Provisional Synthesis: Foundations of Information Thermodynamics"
+          },
+          {
+            "id": "nb-dance-structural-001",
+            "project": "dance-movement-structural-constraints",
+            "provenance": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "revision": 1,
+            "summary": "An initial mapping of dance and movement research, focusing on the intersection of choreographic structure and cognitive response, grounded in available metadata records.",
+            "title": "Provisional Synthesis: Structural Constraints in Dance"
+          },
+          {
+            "id": "nb-info-thermo-demon-002",
+            "project": "info-thermo-maxwell-demon",
+            "provenance": [
+              "source-ae0e2b3554414618",
+              "source-b772fc7044e548f7"
+            ],
+            "revision": 1,
+            "summary": "An exploration of how information-theoretic erasure relates to physical entropy, synthesized from bibliographic metadata on classical thermodynamics and information theory.",
+            "title": "Synthesis: Information Erasure and Entropy"
+          },
+          {
+            "id": "nb-prime-dist-001",
+            "project": "prime-numbers-distribution",
+            "provenance": [
+              "source-7ec80a5fc56745db"
+            ],
+            "revision": 1,
+            "summary": "An initial exploration of the Prime Number Theorem's role in describing prime number distribution, based on bibliographic metadata.",
+            "title": "Provisional Synthesis: Prime Number Theorem and Density"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "rejected",
+      "time": "2026-09-26T00:21:51.017404+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 7462,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 48651,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-26T00:22:18.620070+00:00",
+      "reason": "Research request ID already exists",
+      "skipped_models": [
+        {
+          "model": "gemini-3.8-flash",
+          "reason": "configured_daily_limit"
+        },
+        {
+          "model": "gemini-3.5-flash",
+          "reason": "configured_daily_limit"
+        }
+      ]
     }
   },
   "pending": null,
@@ -106704,7 +107200,7 @@
       "consciousness": 1,
       "dance": 1,
       "endocrinology": 1,
-      "entropy": 3,
+      "entropy": 4,
       "epistemology": 0,
       "evolutionary_biology": 7,
       "information_thermodynamics": 0,
@@ -106719,13 +107215,11 @@
       "attention_saturation_triggered": false,
       "attention_topic": "entropy",
       "durable_progress": false,
-      "hard_rejection": false,
-      "invocation": "w-72d9c599bcd948aa",
-      "restored_topics": [
-        "evolutionary_biology"
-      ],
+      "hard_rejection": true,
+      "invocation": "w-edc8aa45cd7240ec",
+      "restored_topics": [],
       "selected_topic": "entropy",
-      "terminal": "accepted",
+      "terminal": "rejected",
       "triggered_topics": []
     },
     "attention": {
@@ -107646,6 +108140,35 @@
         "research_id": "res-evo-mechanisms-diff-001",
         "route": "api.crossref.org:source",
         "stage": "substantive_source"
+      }
+    },
+    "entropy-foundations": {
+      "project": "entropy-foundations",
+      "domain": "entropy",
+      "no_progress": 1,
+      "routes": [
+        "api.datacite.org:discovery"
+      ],
+      "capability_blocked": false,
+      "retry_after_version": null,
+      "persistent_identifiers": [
+        "doi:10.5281/zenodo.22836097",
+        "doi:10.5281/zenodo.20192571",
+        "doi:10.5281/zenodo.20476829",
+        "doi:10.5281/zenodo.18604376"
+      ],
+      "last_receipt": {
+        "evidence": "source-cc8f7d9e877f4a5f",
+        "outcome": "no_progress",
+        "persistent_identifiers": [
+          "doi:10.5281/zenodo.22836097",
+          "doi:10.5281/zenodo.20192571",
+          "doi:10.5281/zenodo.20476829",
+          "doi:10.5281/zenodo.18604376"
+        ],
+        "research_id": "res-entropy-foundations-001",
+        "route": "api.datacite.org:discovery",
+        "stage": "discovery"
       }
     }
   },
@@ -109268,8 +109791,9 @@
       "query": "thermodynamic statistical information-theoretic entropy definitions comparison",
       "reason": "Existing evidence in this project is materially irrelevant to the research question; focused literature is required to initiate synthesis.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-72d9c599bcd948aa"
+      "status": "collected",
+      "created_by": "w-72d9c599bcd948aa",
+      "evidence": "source-cc8f7d9e877f4a5f"
     }
   },
   "research_topics": [
@@ -109469,9 +109993,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-26T00:14:53.324873+00:00",
-    "anchor_version": 113,
-    "anchor_seq": 3289,
-    "effective_seconds": 88050.849935
+    "anchor_time": "2026-09-26T00:21:49.274978+00:00",
+    "anchor_version": 114,
+    "anchor_seq": 3304,
+    "effective_seconds": 88466.80004
   }
 }
