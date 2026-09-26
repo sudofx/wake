@@ -15724,6 +15724,68 @@
       "source": "runtime:continuity",
       "version": 129,
       "time": "2026-09-26T03:22:24.459672+00:00"
+    },
+    "source-27b7f7f692804466": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works/10.1101%2F119578\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"institution\\\": [{\\\"name\\\": \\\"bioRxiv\\\"}], \\\"indexed\\\": {\\\"date-parts\\\": [[2026, 9, 14]], \\\"date-time\\\": \\\"2026-09-14T07:31:59Z\\\", \\\"timestamp\\\": 1789371119658, \\\"version\\\": \\\"build-2803163510\\\"}, \\\"posted\\\": {\\\"date-parts\\\": [[2017, 3, 22]]}, \\\"group-title\\\": \\\"Evolutionary Biology\\\", \\\"reference-count\\\": 72, \\\"publisher\\\": \\\"openRxiv\\\", \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [], \\\"accepted\\\": {\\\"date-parts\\\": [[2017, 9, 21]]}, \\\"abstract\\\": \\\"<jats:title>Abstract</jats:title>\\\\n                <jats:p>\\\\n                  Geographically separated populations can convergently adapt to the same selection pressure. Convergent evolution at the level of a gene may arise via three distinct modes. The selected alleles can (1) have multiple independent mutational origins, (2) be shared due to shared ancestral standing variation, or (3) spread throughout subpopulations via gene flow. We present a model-based, statistical approach that utilizes genomic data to detect cases of convergent adaptation at the genetic level, identify the loci involved and distinguish among these modes. To understand the impact of convergent positive selection on neutral diversity at linked loci, we make use of the fact that hitchhiking can be modeled as an increase in the variance in neutral allele frequencies around a selected site within a population. We build on coalescent theory to show how shared hitchhiking events between subpopulations act to increase covariance in allele frequencies between subpopulations at loci near the selected site, and extend this theory under different models of migration and selection on the same standing variation. We incorporate this hitchhiking effect into a multivariate normal model of allele frequencies that also accounts for population structure. Based on this theory, we present a composite-likelihood-based approach that utilizes genomic data to identify loci involved in convergence, and distinguishes among alternate modes of convergent adaptation. We illustrate our method on genome-wide polymorphism data from two distinct cases of convergent adaptation. First, we investigate the adaptation for copper toxicity tolerance in two populations of the common yellow monkey flower,\\\\n                  <jats:italic>Mimulus guttatus</jats:italic>\\\\n                  . We show that selection has occurred on an allele that has been standing in these populations prior to the onset of copper mining in this region. Lastly, we apply our method to data from four populations of the killifish,\\\\n                  <jats:italic>Fundulus heteroclitus</jats:italic>\\\\n                  , that show very rapid convergent adaptation for tolerance to industrial pollutants. Here, we identify a single locus at which both independent mutation events and selection on an allele shared via gene flow, either slightly before or during selection, play a role in adaptation across the species’ range.\\\\n                </jats:p>\\\", \\\"DOI\\\": \\\"10.1101/119578\\\", \\\"type\\\": \\\"posted-content\\\", \\\"created\\\": {\\\"date-parts\\\": [[2017, 3, 23]], \\\"date-time\\\": \\\"2017-03-23T01:10:27Z\\\", \\\"timestamp\\\": 1490231427000}, \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 2, \\\"title\\\": [\\\"Distinguishing among modes of convergent adaptation using population genomic data\\\"], \\\"prefix\\\": \\\"10.64898\\\", \\\"author\\\": [{\\\"given\\\": \\\"Kristin M.\\\", \\\"family\\\": \\\"Lee\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Graham\\\", \\\"family\\\": \\\"Coop\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"54368\\\", \\\"reference\\\": [{\\\"key\\\": \\\"2019071618250584000_119578v2.1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.tree.2007.09.011\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.2\\\", \\\"unstructured\\\": \\\"Aubury, L. E. (1902). The copper resources of California (No. 23). Superintendent State Printing.\\\"}, {\\\"issue\\\": \\\"1\\\", \\\"key\\\": \\\"2019071618250584000_119578v2.3\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"38\\\", \\\"DOI\\\": \\\"10.1016/j.tree.2007.09.008\\\", \\\"article-title\\\": \\\"Adaptation from standing genetic variation\\\", \\\"volume\\\": \\\"23\\\", \\\"year\\\": \\\"2008\\\", \\\"journal-title\\\": \\\"Trends in ecology & evolution\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.4\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1017/S0016672398003462\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.5\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/hdy.1986.135\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.6\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1534/genetics.115.178962\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.7\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1558-5646.2010.01050.x\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.8\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1093/czoolo/59.1.72\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.9\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1126/science.1182213\\\"}, {\\\"issue\\\": \\\"2\\\", \\\"key\\\": \\\"2019071618250584000_119578v2.10\\\", \\\"first-page\\\": \\\"155\\\", \\\"article-title\\\": \\\"The effects of local selection, balanced polymorphism and background selection on equilibrium patterns of genetic diversity in subdivided populations\\\", \\\"volume\\\": \\\"70\\\", \\\"year\\\": \\\"1997\\\", \\\"journal-title\\\": \\\"GenetRes\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.11\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1101/gr.100545.109\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.12\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1126/science.1107239\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.13\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1534/genetics.110.114819\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.14\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1371/journal.pgen.1004561\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.15\\\", \\\"first-page\\\": \\\"129\\\", \\\"volume\\\": \\\"66\\\", \\\"year\\\": \\\"2004\\\", \\\"journal-title\\\": \\\"Approximating selective sweeps\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.16\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1365-294X.2007.03648.x\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.17\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"unstructured\\\": \\\"Ewens, W. (2004). Mathematical Population Genetics 1: Theoretical Introduction . Interdisciplinary Applied Mathematics. Springer New York.\\\", \\\"DOI\\\": \\\"10.1007/978-0-387-21822-9_9\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.18\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"909\\\", \\\"DOI\\\": \\\"10.1093/genetics/155.2.909\\\", \\\"article-title\\\": \\\"Genetic drift in an infinite population. The pseudohitchhiking model\\\", \\\"volume\\\": \\\"155\\\", \\\"year\\\": \\\"2000\\\", \\\"journal-title\\\": \\\"Genetics\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.19\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1098/rstb.2011.0246\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.20\\\", \\\"unstructured\\\": \\\"Harvey, P. H. and M. D. Pagel (1991). The comparative method in evolutionary biology, Volume 239. Oxford university press Oxford.\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.21\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/mec.12415\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.22\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/nature11041\\\"}, {\\\"issue\\\": \\\"4\\\", \\\"key\\\": \\\"2019071618250584000_119578v2.23\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"1805\\\", \\\"DOI\\\": \\\"10.1093/genetics/159.4.1805\\\", \\\"article-title\\\": \\\"Two-locus sampling distributions and their application\\\", \\\"volume\\\": \\\"159\\\", \\\"year\\\": \\\"2001\\\", \\\"journal-title\\\": \\\"Genetics\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.24\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1093/bioinformatics/18.2.337\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.25\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1017/S0016672300029074\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.26\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/nature10944\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.27\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1017/S0016672300029074\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.28\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"887\\\", \\\"DOI\\\": \\\"10.1093/genetics/123.4.887\\\", \\\"article-title\\\": \\\"The “hitchhiking effect” revisited\\\", \\\"volume\\\": \\\"123\\\", \\\"year\\\": \\\"1989\\\", \\\"journal-title\\\": \\\"Genetics\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.29\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1006/jtbi.2000.2003\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.30\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1534/genetics.111.130203\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.31\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1534/genetics.103.025387\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.32\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"765\\\", \\\"DOI\\\": \\\"10.1093/genetics/160.2.765\\\", \\\"article-title\\\": \\\"Detecting a local signature of genetic hitchhiking along a recombining chromosome\\\", \\\"volume\\\": \\\"160\\\", \\\"year\\\": \\\"2002\\\", \\\"journal-title\\\": \\\"Genetics\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.33\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1371/journal.pbio.1000501\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.34\\\", \\\"unstructured\\\": \\\"Larribe, F. and P. Fearnhead (2011). On composite likelihoods in statistical genetics. Statistica Sinica, 43–69.\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.35\\\", \\\"unstructured\\\": \\\"Lee, Y. W. (2009). Genetics Analysis of Standing Variation for Floral Morphology and Fitness Components. Ph. D. thesis, Duke University.\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.36\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1093/molbev/mst099\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.37\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1558-5646.2011.01289.x\\\"}, {\\\"issue\\\": \\\"5\\\", \\\"key\\\": \\\"2019071618250584000_119578v2.38\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"445\\\", \\\"DOI\\\": \\\"10.1038/hdy.1993.162\\\", \\\"article-title\\\": \\\"Heritability and distribution of variation in degree of copper tolerance in mimulus guttatus at copperopolis, california\\\", \\\"volume\\\": \\\"71\\\", \\\"year\\\": \\\"1993\\\", \\\"journal-title\\\": \\\"Heredity\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.39\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/evo.12081\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.40\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/0022-5193(71)90058-0\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.41\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1017/S0016672300014634\\\"}, {\\\"key\\\": \\\"2019071618250584000_119578v2.42\\\", \\\"doi-asserted-by\\\":\", \"excerpt_truncated\": true, \"source_sha256\": \"20df1f9abda5451456f52870f93c753e8de1a82f063633af5a4b9d2a18bae685\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1101/119578\", \"doi:10.1016/j.tree.2007.09.011\", \"doi:10.1016/j.tree.2007.09.008\", \"doi:10.1017/s0016672398003462\", \"doi:10.1038/hdy.1986.135\", \"doi:10.1534/genetics.115.178962\", \"doi:10.1111/j.1558-5646.2010.01050.x\", \"doi:10.1093/czoolo/59.1.72\", \"doi:10.1126/science.1182213\", \"doi:10.1101/gr.100545.109\", \"doi:10.1126/science.1107239\", \"doi:10.1534/genetics.110.114819\"]}",
+      "id": "source-27b7f7f692804466",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works/10.1101%2F119578",
+      "version": 129,
+      "time": "2026-09-26T03:29:43.826937+00:00"
+    },
+    "source-8a009e8c1b854ef2": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.semanticscholar.org/graph/v1/paper/search?query=distinguishing+adaptation+byproduct+drift+constraint+evolutionary+biology+review&limit=4&fields=paperId%2Ctitle%2Cyear%2Cabstract%2Curl%2CexternalIds%2CopenAccessPdf\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+      "id": "source-8a009e8c1b854ef2",
+      "scope": "failed",
+      "source": "https://api.semanticscholar.org/graph/v1/paper/search?query=distinguishing+adaptation+byproduct+drift+constraint+evolutionary+biology+review&limit=4&fields=paperId%2Ctitle%2Cyear%2Cabstract%2Curl%2CexternalIds%2CopenAccessPdf",
+      "version": 129,
+      "time": "2026-09-26T03:29:45.282835+00:00"
+    },
+    "source-b645b01ba3c84982": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":149390,\\\"suggestion\\\":\\\"philosopher\\\",\\\"suggestionsnippet\\\":\\\"philosopher\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Philosophy\\\",\\\"pageid\\\":13692155,\\\"size\\\":202290,\\\"wordcount\\\":17543,\\\"snippet\\\":\\\"\\nPhilosophy\\n(from Ancient Greek philosoph\\\\u00eda, lit.\\\\u2009'love of wisdom') is a systematic study of general and fundamental questions concerning topics like existence\\\",\\\"timestamp\\\":\\\"2026-09-24T22:22:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Doctor of Philosophy\\\",\\\"pageid\\\":21031297,\\\"size\\\":152425,\\\"wordcount\\\":16312,\\\"snippet\\\":\\\"A Doctor of\\nPhilosophy\\n(PhD, DPhil; Latin: philosophiae doctor or doctor in philosophia) is a terminal degree that usually denotes the highest level of\\\",\\\"timestamp\\\":\\\"2026-09-22T15:35:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Epistemology is the branch of\\nphilosophy\\nthat examines the nature, origin, and limits of knowledge. Also called the theory of knowledge, it explores different\\\",\\\"timestamp\\\":\\\"2026-09-25T20:49:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Desert (philosophy)\\\",\\\"pageid\\\":10791397,\\\"size\\\":23606,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Desert (/d\\\\u026a\\\\u02c8z\\\\u025c\\\\u02d0rt/) in\\nphilosophy\\nis the condition of being deserving of something, whether good or bad. One type of this is moral desert. It is a concept\\\",\\\"timestamp\\\":\\\"2026-01-20T20:30:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Political philosophy\\\",\\\"pageid\\\":23040,\\\"size\\\":129861,\\\"wordcount\\\":13401,\\\"snippet\\\":\\\"Political\\nphilosophy\\n, also called political theory, is the study of the theoretical and conceptual foundations of politics. It examines the nature, scope\\\",\\\"timestamp\\\":\\\"2026-09-23T10:21:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fish! Philosophy\\\",\\\"pageid\\\":8770844,\\\"size\\\":8284,\\\"wordcount\\\":1071,\\\"snippet\\\":\\\"The Fish!\\nPhilosophy\\n(styled FISH!\\nPhilosophy\\n), modeled after the Pike Place Fish Market, is a business technique that is aimed at creating happy individuals\\\",\\\"timestamp\\\":\\\"2026-03-07T07:04:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cynicism (philosophy)\\\",\\\"pageid\\\":19187131,\\\"size\\\":40942,\\\"wordcount\\\":4715,\\\"snippet\\\":\\\"Cynicism (Ancient Greek: \\\\u03ba\\\\u03c5\\\\u03bd\\\\u03b9\\\\u03c3\\\\u03bc\\\\u03cc\\\\u03c2) is a school of thought in ancient Greek\\nphilosophy\\n, originating in the Classical period and extending into the Hellenistic\\\",\\\"timestamp\\\":\\\"2026-05-27T04:15:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"Aesthetics is the branch of\\nphilosophy\\nthat studies beauty, taste, and related phenomena. In a broad sense, it includes the\\nphilosophy\\nof art, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Western philosophy\\\",\\\"pageid\\\":13704154,\\\"size\\\":95945,\\\"wordcount\\\":11342,\\\"snippet\\\":\\\"Western\\nphilosophy\\nrefers to the philosophical thought, traditions, and works of the Western world. Historically, the term refers to the philosophical\\\",\\\"timestamp\\\":\\\"2026-09-25T09:29:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Phenomenology (philosophy)\\\",\\\"pageid\\\":76939,\\\"size\\\":54614,\\\"wordcount\\\":6018,\\\"snippet\\\":\\\"appeared in direct connection to Husserl's\\nphilosophy\\nin a 1907 article in The Philosophical Review. In\\nphilosophy\\n, \\\"phenomenology\\\" refers to the tradition\\\",\\\"timestamp\\\":\\\"2026-09-22T15:46:18Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"6272137f6af8c71b4d2f8971ca5428683ab643e913f093233391fc5d8d331aa9\", \"verification_required\": true, \"topic_domain\": \"philosophy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-b645b01ba3c84982",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json",
+      "version": 129,
+      "time": "2026-09-26T03:29:47.229404+00:00"
+    },
+    "source-e337f4d99b6d433c": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2767},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Self-organization\\\",\\\"pageid\\\":286947,\\\"size\\\":64814,\\\"wordcount\\\":6861,\\\"snippet\\\":\\\"justification for\\nself\\n-\\norganization\\nas a general principle of\\ncomplex\\nsystems\\n. In the field of multi-agent\\nsystems\\n, understanding how to engineer\\nsystems\\nthat are\\\",\\\"timestamp\\\":\\\"2026-08-20T00:23:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Emergence\\\",\\\"pageid\\\":37436,\\\"size\\\":60324,\\\"wordcount\\\":6551,\\\"snippet\\\":\\\"In philosophy,\\nsystems\\ntheory, science, and art,\\nemergence\\noccurs when a\\ncomplex\\nentity has properties or behaviors that its components do not have on\\\",\\\"timestamp\\\":\\\"2026-09-07T03:04:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems theory\\\",\\\"pageid\\\":29238,\\\"size\\\":56628,\\\"wordcount\\\":6135,\\\"snippet\\\":\\\"how well the\\nsystem\\nis engaged with its environment and other contexts influencing its\\norganization\\n. Some\\nsystems\\nsupport other\\nsystems\\n, maintaining the\\\",\\\"timestamp\\\":\\\"2026-07-18T16:09:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex system\\\",\\\"pageid\\\":37438,\\\"size\\\":47317,\\\"wordcount\\\":4876,\\\"snippet\\\":\\\"\\nsystem\\nand its environment.\\nSystems\\nthat are \\\"\\ncomplex\\n\\\" have distinct properties that arise from these relationships, such as nonlinearity,\\nemergence\\n,\\\",\\\"timestamp\\\":\\\"2026-09-25T18:37:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-assembly\\\",\\\"pageid\\\":351914,\\\"size\\\":40999,\\\"wordcount\\\":4440,\\\"snippet\\\":\\\"Although\\nself\\n-assembly typically occurs between weakly-interacting species, this\\norganization\\nmay be transferred into strongly-bound covalent\\nsystems\\n. An example\\\",\\\"timestamp\\\":\\\"2026-08-10T18:14:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex adaptive system\\\",\\\"pageid\\\":1428810,\\\"size\\\":35927,\\\"wordcount\\\":3790,\\\"snippet\\\":\\\"The\\nComplex\\nAdaptive\\nSystems\\napproach builds on replicator dynamics. The study of\\ncomplex\\nadaptive\\nsystems\\n, a subset of nonlinear dynamical\\nsystems\\n, is\\\",\\\"timestamp\\\":\\\"2026-04-06T14:02:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-regulation\\\",\\\"pageid\\\":1738695,\\\"size\\\":834,\\\"wordcount\\\":132,\\\"snippet\\\":\\\"standards\\nSelf\\n-regulatory\\norganization\\n, in business and finance Homeostasis, a state of steady internal conditions maintained by living things\\nEmergence\\n, the\\\",\\\"timestamp\\\":\\\"2023-05-02T13:34:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems thinking\\\",\\\"pageid\\\":227985,\\\"size\\\":20916,\\\"wordcount\\\":2126,\\\"snippet\\\":\\\"action in\\ncomplex\\ncontexts, enabling\\nsystems\\nchange.\\nSystems\\nthinking draws on and contributes to conceptual\\nsystems\\n,\\nsystems\\ntheory, and the\\nsystem\\nsciences\\\",\\\"timestamp\\\":\\\"2026-09-25T10:53:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complexity theory and organizations\\\",\\\"pageid\\\":5938019,\\\"size\\\":24442,\\\"wordcount\\\":2009,\\\"snippet\\\":\\\"differentiate it from other\\nself\\n-organizing\\nsystems\\n.\\nOrganizational\\nenvironments can be viewed as\\ncomplex\\nadaptive\\nsystems\\nwhere coevolution generally\\\",\\\"timestamp\\\":\\\"2026-05-25T04:34:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The purpose of a system is what it does\\\",\\\"pageid\\\":17404830,\\\"size\\\":6777,\\\"wordcount\\\":754,\\\"snippet\\\":\\\"applying POSIWID shows that the\\norganization's\\npractices contradict those values. From a cybernetic perspective,\\ncomplex\\nsystems\\nare not controllable by simple\\\",\\\"timestamp\\\":\\\"2026-09-22T17:25:20Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"45de0dcebe1aefb093cc3476a9b50f11b96ed57b1fbc906e7bfc9d69c1d7cda5\", \"verification_required\": true, \"topic_domain\": \"complex_systems\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-e337f4d99b6d433c",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json",
+      "version": 129,
+      "time": "2026-09-26T03:29:48.158335+00:00"
+    },
+    "source-a1fc46670fd4493c": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":393},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Art\\\",\\\"pageid\\\":752,\\\"size\\\":132424,\\\"wordcount\\\":14439,\\\"snippet\\\":\\\"spiritually, or philosophically motivated\\nart\\n; to create a sense of beauty (see\\naesthetics\\n); to explore the nature of\\nperception\\n; for pleasure; or to generate strong\\\",\\\"timestamp\\\":\\\"2026-09-09T08:09:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of art\\\",\\\"pageid\\\":8165347,\\\"size\\\":90900,\\\"wordcount\\\":11467,\\\"snippet\\\":\\\"The psychology of\\nart\\nis the scientific study of cognitive and emotional processes precipitated by the sensory\\nperception\\nof aesthetic artefacts, such\\\",\\\"timestamp\\\":\\\"2026-09-21T20:46:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"\\nAesthetics\\nis the branch of philosophy that studies beauty, taste, and related phenomena. In a broad sense, it includes the philosophy of\\nart\\n, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Tribal art\\\",\\\"pageid\\\":24811443,\\\"size\\\":11752,\\\"wordcount\\\":1204,\\\"snippet\\\":\\\"Tribal\\nart\\nis the\\nvisual\\narts and material culture of indigenous people. Also known as non-Western\\nart\\nor ethnographic\\nart\\n, or, controversially, primitive\\\",\\\"timestamp\\\":\\\"2025-12-21T03:03:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Rudolf Arnheim\\\",\\\"pageid\\\":467254,\\\"size\\\":17187,\\\"wordcount\\\":2040,\\\"snippet\\\":\\\"have included\\nVisual\\nThinking (1969), and The Power of the Center: A Study of\\nComposition\\nin the\\nVisual\\nArts (1982).\\nArt\\nand\\nVisual\\nPerception\\nwas revised\\\",\\\"timestamp\\\":\\\"2026-09-02T04:51:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Style (visual arts)\\\",\\\"pageid\\\":147860,\\\"size\\\":37916,\\\"wordcount\\\":4617,\\\"snippet\\\":\\\"\\nvisual\\nappearance of a work of\\nart\\nthat relates it to other works by the same artist or one from the same period, training, location, \\\"school\\\",\\nart\\nmovement\\\",\\\"timestamp\\\":\\\"2026-09-10T04:00:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ma (negative space)\\\",\\\"pageid\\\":14904296,\\\"size\\\":8650,\\\"wordcount\\\":904,\\\"snippet\\\":\\\"space, ma may also refer to the\\nperception\\nof a space, gap or interval, without necessarily requiring a physical\\ncompositional\\nelement. This results in the\\\",\\\"timestamp\\\":\\\"2026-09-22T04:45:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of aesthetics\\\",\\\"pageid\\\":3376041,\\\"size\\\":78283,\\\"wordcount\\\":10808,\\\"snippet\\\":\\\"This is a history of\\naesthetics\\n. The first important contributions to aesthetic theory are usually considered to stem from philosophers in Ancient Greece\\\",\\\"timestamp\\\":\\\"2026-09-11T08:39:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Visual thinking\\\",\\\"pageid\\\":144904,\\\"size\\\":21987,\\\"wordcount\\\":2316,\\\"snippet\\\":\\\"and the memory image, which causes\\nvisual\\nthinkers from not seeing the eidetic image but rather drawing upon\\nperception\\nand useful information.[citation\\\",\\\"timestamp\\\":\\\"2026-08-10T06:11:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychedelic art\\\",\\\"pageid\\\":1172710,\\\"size\\\":22057,\\\"wordcount\\\":2585,\\\"snippet\\\":\\\"Psychedelic\\nart\\n(also known as psychedelia) is\\nart\\n, graphics or\\nvisual\\ndisplays related to or inspired by psychedelic experiences and hallucinations known\\\",\\\"timestamp\\\":\\\"2026-09-25T18:14:30Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"370ea55c985e192e11468d082706d219d5e0447827f760b484145edd3c1243a9\", \"verification_required\": true, \"topic_domain\": \"visual_art\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-a1fc46670fd4493c",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json",
+      "version": 129,
+      "time": "2026-09-26T03:29:49.059521+00:00"
+    },
+    "source-a1836f2d485d4cb8": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Dance\\\",\\\"pageid\\\":7885,\\\"size\\\":73058,\\\"wordcount\\\":8358,\\\"snippet\\\":\\\"by\\ndance\\nthat emphasised dramatic mime. A broader concept of\\nrhythm\\nwas needed, that which Rudolf Laban terms the \\\"\\nrhythm\\nand shape\\\" of\\nmovement\\nthat\\\",\\\"timestamp\\\":\\\"2026-09-15T00:29:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"African-American culture\\\",\\\"pageid\\\":1142503,\\\"size\\\":186819,\\\"wordcount\\\":18525,\\\"snippet\\\":\\\"influenced modern popular\\nculture\\n. Spoken-word artists employ the same techniques as African-American preachers including\\nmovement\\n,\\nrhythm\\n, and audience participation\\\",\\\"timestamp\\\":\\\"2026-09-24T19:24:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"\\\\u00a0111. ISBN\\\\u00a0978-0-19-929845-7. Krumhansl, C. L. (2000). \\\"\\nRhythm\\nand pitch in music\\ncognition\\n\\\". Psychol. Bull. 126 (1): 159\\\\u2013179. doi:10.1037/0033-2909\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modernism\\\",\\\"pageid\\\":19547,\\\"size\\\":185952,\\\"wordcount\\\":20347,\\\"snippet\\\":\\\"modern\\ndance\\n, modernist architecture, and urban planning. Modernism took a critical stance towards the Enlightenment concept of rationalism. The\\nmovement\\nalso\\\",\\\"timestamp\\\":\\\"2026-09-23T15:47:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary musicology\\\",\\\"pageid\\\":4220231,\\\"size\\\":24796,\\\"wordcount\\\":2920,\\\"snippet\\\":\\\"well as several other universal elements of contemporary human\\nculture\\n, including\\ndance\\nand body painting) was part of a predator control system used by\\\",\\\"timestamp\\\":\\\"2026-05-08T03:37:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Irish stepdance\\\",\\\"pageid\\\":6188670,\\\"size\\\":45682,\\\"wordcount\\\":5651,\\\"snippet\\\":\\\"called Feiseanna (singular Feis). In Irish\\ndance\\nculture\\n, a Feis is a traditional Gaelic arts and\\nculture\\nfestival. Contemporarily, costumes are sometimes\\\",\\\"timestamp\\\":\\\"2026-06-22T02:12:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Synchronization\\\",\\\"pageid\\\":28738,\\\"size\\\":35356,\\\"wordcount\\\":3734,\\\"snippet\\\":\\\"\\\"Ensemble of coupling forms and networks among brain\\nrhythms\\nas function of states and\\ncognition\\n\\\". Communications Biology. 5 (1): 82. doi:10.1038/s42003-022-03017-4\\\",\\\"timestamp\\\":\\\"2026-09-07T05:18:58Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture of the United States\\\",\\\"pageid\\\":18985287,\\\"size\\\":156491,\\\"wordcount\\\":13473,\\\"snippet\\\":\\\"of\\ncultures\\nhas been a distinguishing feature of its society. Americans pioneered or made great strides in musical genres such as heavy metal,\\nrhythm\\nand\\\",\\\"timestamp\\\":\\\"2026-09-26T00:50:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cultural appropriation\\\",\\\"pageid\\\":1982394,\\\"size\\\":116014,\\\"wordcount\\\":10851,\\\"snippet\\\":\\\"in cultural outsiders' use of an oppressed\\nculture's\\nsymbols or other cultural elements, such as music,\\ndance\\n, spiritual ceremonies, modes of dress, speech\\\",\\\"timestamp\\\":\\\"2026-09-17T17:41:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Jor (music)\\\",\\\"pageid\\\":577500,\\\"size\\\":17239,\\\"wordcount\\\":2111,\\\"snippet\\\":\\\"These sections, especially Jor is described as not a beat nor a\\nrhythm\\nbut a\\nmovement\\nthat helps the Raga gain momentum in the beginning of the piece\\\",\\\"timestamp\\\":\\\"2026-08-16T18:18:03Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"c198b6aaf23d28cabc2a151b910a362d70cedb40d677978984d357fcdf31f5c8\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1037/0033-2909\", \"doi:10.1038/s42003-022-03017-4\"]}",
+      "id": "source-a1836f2d485d4cb8",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json",
+      "version": 129,
+      "time": "2026-09-26T03:29:49.997959+00:00"
+    },
+    "r-014aad21ab484df5": {
+      "actor": "runtime",
+      "content": "{\"base_version\":129,\"inherited_commitments\":[],\"invocation\":\"w-014aad21ab484df5\",\"previous_head\":\"aeef34afb651afe319f3ab147c9e74739cc3aa30dc8453e8d63e910499c0b810\",\"process_id\":2327,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-014aad21ab484df5",
+      "source": "runtime:continuity",
+      "version": 129,
+      "time": "2026-09-26T03:29:52.881200+00:00"
     }
   },
   "journal": [
@@ -121525,6 +121587,489 @@
           "reason": "configured_daily_limit"
         }
       ]
+    },
+    "w-014aad21ab484df5": {
+      "base_version": 129,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 16946,
+        "delivered_request_chars": 46000,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set",
+          "verbose recovery frames",
+          "extended bounded reflection history",
+          "redundant evidence payload text",
+          "low-priority bounded prose"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "request_compression_ratio": 0.353,
+        "retrieval_rehydrated_evidence_count": 2,
+        "rich_context_chars": 130318,
+        "working_set_chars": 3811
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-014aad21ab484df5",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 129,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "evolutionary-biology-foundations",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 2,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Foundations of Evolutionary Biology"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 1.0
+            },
+            "id": "neurology-metabolic-pathways",
+            "score": 0.825,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Neurological Impact of Metabolic Changes"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 0.5
+            },
+            "id": "religion-cross-cultural-practices",
+            "score": 0.75,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 3,
+              "queued_research": 0
+            },
+            "title": "Cross-Cultural Religious Practices"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2327,
+      "provider": "gemini",
+      "quota_day": "2026-09-25",
+      "request_hash": "f087c39ad5d962209331b2793278902085f89d5374e2b7798d95ae02a50d4da4",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-neurodiversity-foundations-01",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-dance-rhythm-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-41fac1eecb0246dd",
+              "source-51a9b989df3144af"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-visual-art-composition-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-41ca3c26b29a473a"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-41ca3c26b29a473a",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-284f83ce979a46ea"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-284f83ce979a46ea",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-fcbce7f68a354d10"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-fcbce7f68a354d10",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-480aa67d5ebe49ef"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-480aa67d5ebe49ef",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-1f19d52cd2f243ec"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-1f19d52cd2f243ec",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-27b7f7f692804466"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-27b7f7f692804466",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658",
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b",
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af",
+          "source-41ca3c26b29a473a",
+          "source-284f83ce979a46ea",
+          "source-fcbce7f68a354d10",
+          "source-480aa67d5ebe49ef",
+          "source-1f19d52cd2f243ec",
+          "source-27b7f7f692804466"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 9,
+          "evidence_count": 12,
+          "trigger_counts": {
+            "notebook_revised": 3,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "runtime_performance": {
+        "compaction_ms": 7.165,
+        "context_build_ms": 96.622,
+        "load_ms": 876.965,
+        "receipt_ms": 630.222,
+        "start_total_before_record_ms": 2997.935,
+        "store": {
+          "append_cache_hits": 11,
+          "append_cache_misses": 0,
+          "cached_copy_ms": 833.097,
+          "cached_loads": 0,
+          "event_count": 3695,
+          "full_replays": 11,
+          "replay_ms": 6505.278,
+          "trusted_projection_active": true
+        },
+        "temporal_ms": 1385.903
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 4,
+          "topic": "evolutionary_biology"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [],
+        "enforce_selected_topic": false,
+        "hard_rejection_threshold": 5,
+        "parked": {},
+        "reason": "current durable project topic remains eligible",
+        "rotation_required": false,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "evolutionary_biology",
+        "temporal": {
+          "anchor_seq": 3694,
+          "anchor_time": "2026-09-26T03:29:51.313372+00:00",
+          "anchor_version": 129,
+          "effective_seconds": 99748.838434
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": null,
+        "topic_selection_candidates": [],
+        "topic_selection_method": "active_topic"
+      },
+      "temporal": {
+        "cycle_distance": 0,
+        "effective_elapsed_seconds": 448.283601,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 99748.838434,
+        "intervening_events": {
+          "accepted": 0,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 1,
+          "research_collected": 1,
+          "squirrel_assessed": 1,
+          "total": 15
+        },
+        "observed_at": "2026-09-26T03:29:51.313372+00:00",
+        "previous_anchor_time": "2026-09-26T03:22:23.029771+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 448.283601
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 16946,
+        "inquiry_drive_project_count": 3,
+        "mode": "bounded",
+        "retrieval_candidate_count": 9,
+        "retrieval_evidence_count": 12,
+        "retrieval_rehydrated_evidence_count": 2,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 3,
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 3811,
+        "working_to_delivered_ratio": 0.2249
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "religion-cross-cultural-practices",
+            "next_step": "Search for academic reviews or theories regarding the convergence of religious rituals and practices.",
+            "question": "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?",
+            "title": "Cross-Cultural Religious Practices"
+          },
+          {
+            "id": "neurology-metabolic-pathways",
+            "next_step": "Initiate search for review articles linking systemic metabolic dysfunction to neurological disease pathways.",
+            "question": "How do metabolic, hormonal, and systemic physiological changes influence neurological function and neurological disease?",
+            "title": "Neurological Impact of Metabolic Changes"
+          },
+          {
+            "id": "evolutionary-biology-foundations",
+            "next_step": "Search for foundational reviews on distinguishing evolutionary mechanisms like exaptation, drift, and adaptation.",
+            "question": "How do evolutionary explanations distinguish adaptation, byproduct, drift, and constraint when explaining complex biological or behavioral traits?",
+            "title": "Foundations of Evolutionary Biology"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-prime-dist-001",
+            "project": "prime-numbers-distribution",
+            "provenance": [
+              "source-7ec80a5fc56745db"
+            ],
+            "revision": 1,
+            "summary": "An initial exploration of the Prime Number Theorem's role in describing prime number distribution, based on bibliographic metadata.",
+            "title": "Provisional Synthesis: Prime Number Theorem and Density"
+          },
+          {
+            "id": "nb-religion-cross-cultural-001",
+            "project": "religion-cross-cultural-practices",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 1,
+            "summary": "Initial status report indicating that the current evidence set consists of unrelated bibliographic metadata.",
+            "title": "Provisional Synthesis: Cross-Cultural Religious Practices"
+          },
+          {
+            "id": "nb-religion-002",
+            "project": "religion-cross-cultural-practices",
+            "provenance": [
+              "source-7bd43608b269427f",
+              "source-d56377b15875422a"
+            ],
+            "revision": 1,
+            "summary": "This notebook synthesizes available bibliographic metadata concerning cognitive and evolutionary approaches to religion, noting that while the sources provide a venue for such research, full content access is currently absent.",
+            "title": "Provisional Synthesis: Cross-Cultural Religious Practices"
+          },
+          {
+            "id": "nb-religion-ritual-psych-001",
+            "project": "religion-cross-cultural-practices",
+            "provenance": [
+              "source-0e0aa6aa238246cb"
+            ],
+            "revision": 1,
+            "summary": "This notebook synthesizes the 'process-based framework' from a 2017 integrative review of ritual psychology, noting the distinction between the ritual form and its psychological function.",
+            "title": "Synthesis: The Psychology of Rituals"
+          },
+          {
+            "id": "nb-neuro-metabolic-001",
+            "project": "neurology-metabolic-pathways",
+            "provenance": [
+              "source-8fb4038a7344498e",
+              "source-e41f8efd700544cf"
+            ],
+            "revision": 1,
+            "summary": "An initial assessment of the intersection between metabolic pathways and neurological health, based on bibliographic metadata.",
+            "title": "Provisional Synthesis: Metabolic Drivers in Neurological Function"
+          },
+          {
+            "id": "nb-evo-foundations-001",
+            "project": "evolutionary-biology-foundations",
+            "provenance": [
+              "source-2cd2684377c54051",
+              "source-e2e41e9bcb594def"
+            ],
+            "revision": 1,
+            "summary": "This notebook synthesizes available bibliographic metadata to frame future inquiry into how evolutionary biology distinguishes mechanisms such as adaptation, byproduct, drift, and constraint.",
+            "title": "Provisional Synthesis: Evolutionary Mechanisms"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "rejected",
+      "time": "2026-09-26T03:29:53.521381+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 10893,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 50053,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-26T03:30:28.227555+00:00",
+      "reason": "A blog action must be last so its research is already validated",
+      "skipped_models": [
+        {
+          "model": "gemini-3.8-flash",
+          "reason": "configured_daily_limit"
+        },
+        {
+          "model": "gemini-3.5-flash",
+          "reason": "configured_daily_limit"
+        }
+      ]
     }
   },
   "pending": null,
@@ -121535,7 +122080,7 @@
       "endocrinology": 1,
       "entropy": 5,
       "epistemology": 0,
-      "evolutionary_biology": 2,
+      "evolutionary_biology": 3,
       "information_thermodynamics": 0,
       "music": 3,
       "neurodivergence": 1,
@@ -121551,7 +122096,7 @@
       "attention_topic": "evolutionary_biology",
       "durable_progress": false,
       "hard_rejection": true,
-      "invocation": "w-53017b79ef994e1b",
+      "invocation": "w-014aad21ab484df5",
       "restored_topics": [],
       "selected_topic": "evolutionary_biology",
       "terminal": "rejected",
@@ -122610,35 +123155,25 @@
       "capability_blocked": false,
       "retry_after_version": null,
       "persistent_identifiers": [
-        "doi:10.1101/119578",
-        "doi:10.64898/2026.07.20.739646",
-        "doi:10.1101/2021.11.05.467433",
-        "doi:10.1016/j.respol.2019.103833",
-        "doi:10.1186/1745-6150-2-14",
-        "doi:10.4436/jass.89015",
-        "doi:10.1111/j.1365-2435.2010.01796.x",
-        "openalex:W2967254320",
-        "openalex:W2144820252",
-        "openalex:W29173571",
-        "openalex:W2109047372",
-        "arxiv:2435.2010"
+        "arxiv:2435.2010",
+        "doi:10.1016/j.tree.2007.09.011",
+        "doi:10.1016/j.tree.2007.09.008",
+        "doi:10.1017/s0016672398003462",
+        "doi:10.1038/hdy.1986.135",
+        "doi:10.1534/genetics.115.178962",
+        "doi:10.1111/j.1558-5646.2010.01050.x",
+        "doi:10.1093/czoolo/59.1.72",
+        "doi:10.1126/science.1182213",
+        "doi:10.1101/gr.100545.109",
+        "doi:10.1126/science.1107239",
+        "doi:10.1534/genetics.110.114819"
       ],
       "last_receipt": {
-        "evidence": "source-5fb34a14b01b4245",
-        "outcome": "no_progress",
-        "persistent_identifiers": [
-          "doi:10.1016/j.respol.2019.103833",
-          "doi:10.1186/1745-6150-2-14",
-          "doi:10.4436/jass.89015",
-          "doi:10.1111/j.1365-2435.2010.01796.x",
-          "openalex:W2967254320",
-          "openalex:W2144820252",
-          "openalex:W29173571",
-          "openalex:W2109047372",
-          "arxiv:2435.2010"
-        ],
-        "research_id": "res-evo-foundations-003",
-        "route": "api.openalex.org:discovery",
+        "evidence": "source-8a009e8c1b854ef2",
+        "outcome": "route_failure",
+        "persistent_identifiers": [],
+        "research_id": "res-evo-biology-001",
+        "route": "api.semanticscholar.org:discovery",
         "stage": "discovery"
       }
     }
@@ -124499,8 +125034,9 @@
       "query": "distinguishing adaptation byproduct drift constraint evolutionary biology review",
       "reason": "The current evidence payload lacks substantive content regarding the distinction between evolutionary mechanisms. This search aims to secure actionable literature to inform the evolutionary-biology-foundations notebook.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-35e7f38248c24337"
+      "status": "failed",
+      "created_by": "w-35e7f38248c24337",
+      "evidence": "source-8a009e8c1b854ef2"
     }
   },
   "research_topics": [
@@ -124700,9 +125236,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-26T03:22:23.029771+00:00",
+    "anchor_time": "2026-09-26T03:29:51.313372+00:00",
     "anchor_version": 129,
-    "anchor_seq": 3678,
-    "effective_seconds": 99300.554833
+    "anchor_seq": 3694,
+    "effective_seconds": 99748.838434
   }
 }
