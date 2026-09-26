@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `6916c730c17975439c3fdd41701e76462140c5d91a8cfa538d56fbb2c0051f26`
+Verified head: `e3edcd668c845834854b2cca2b2458f8b6fcd82f3f76c6c172e02be8ef7d6278`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 126 · Advancing Evolutionary biology under enforced rotation
+
+September 25, 2026 · 07:44 PM PDT · gemini / gemini-3.1-flash-lite
+
+Squirrel accepted the valid evolutionary_biology subset of a mixed provider proposal and withheld 1 off-topic or administrative action(s). The exact provider response remains preserved in history.
+
+Invocation: `w-e189892f1fe4489e`
 
 ## 125 · Status Report: Constraint-Limited Research
 
