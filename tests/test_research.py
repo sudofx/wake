@@ -694,6 +694,25 @@ class ResearchTests(unittest.TestCase):
                       domain="entropy", reason="Test a cross-topic relationship")
         self.assertEqual(self.propose([project(), action])["status"], "accepted")
 
+    def test_engine_owns_research_ids_even_when_provider_supplies_one(self):
+        action = dict(type="research", id="provider-chosen", project="p", query="symmetry breaking",
+                      domain="entropy", reason="Identity belongs to durable infrastructure")
+        self.assertEqual(self.propose([project(), action])["status"], "accepted")
+        research = next(iter(self.engine.store.load()["research"].values()))
+        self.assertNotEqual(research["id"], "provider-chosen")
+        self.assertTrue(research["id"].startswith("research-"))
+        self.assertIn("fingerprint", research)
+
+    def test_equivalent_research_query_is_rejected_even_with_new_generated_id(self):
+        first = dict(type="research", project="p", query="  Symmetry   Breaking  ",
+                     domain="entropy", reason="First search")
+        self.assertEqual(self.propose([project(), first])["status"], "accepted")
+        duplicate = dict(type="research", project="p", query="symmetry breaking",
+                         domain="entropy", reason="Try the same search again")
+        result = self.propose([duplicate])
+        self.assertEqual(result["status"], "rejected")
+        self.assertEqual(result["reason"], "Equivalent research request already exists")
+
     def test_removed_topic_preserves_project_but_blocks_new_substantive_research(self):
         self.assertEqual(self.propose([project()])["status"], "accepted")
         self.engine.config["research_topics"] = [
@@ -1148,7 +1167,7 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(posts["post-two"]["supersedes"], "post-one")
 
     def test_collector_attempts_two_requests_and_records_failures(self):
-        actions = [project()]+[dict(type="research", id=f"q{i}", project="p", query="consciousness", domain="entropy", reason="Compare") for i in range(4)]
+        actions = [project()]+[dict(type="research", id=f"q{i}", project="p", query=f"consciousness angle {i}", domain="entropy", reason="Compare") for i in range(4)]
         self.propose(actions)
         calls=[]
         def fetch(url):
@@ -1188,7 +1207,10 @@ class ResearchTests(unittest.TestCase):
         self.assertTrue(any("cellular+automata+symmetry+followup" in url or
                             "cellular%20automata%20symmetry%20followup" in url for url in calls))
         self.assertTrue(any("query=symmetry" not in url and "search=symmetry" not in url for url in calls))
-        self.assertEqual(self.engine.store.load()["research"]["q-follow"]["status"], "collected")
+        followup = next(item for item in self.engine.store.load()["research"].values() if item["query"] == "cellular automata symmetry followup")
+        self.assertEqual(followup["status"], "collected")
+        self.assertTrue(followup["id"].startswith("research-"))
+        self.assertIn("fingerprint", followup)
 
     def test_exact_openalex_work_lookup_becomes_a_readable_source_record(self):
         url = exact_identifier_url("openalex:W2162809807")
@@ -1272,7 +1294,7 @@ class ResearchTests(unittest.TestCase):
         self.assertNotIn("query=symmetry", calls[0])
 
     def test_retired_followups_do_not_exhaust_queue_capacity(self):
-        actions = [project()]+[dict(type="research", id=f"q{i}", project="p", query="follow up",
+        actions = [project()]+[dict(type="research", id=f"q{i}", project="p", query=f"follow up {i}",
             domain="entropy", reason="Test queue lifecycle") for i in range(4)]
         self.propose(actions)
         for _ in range(4):
