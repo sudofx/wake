@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `e50fd6545c3ce17ae16d380f3a477522ddb98c623cbbf825bb02f37e3113bcdc`
+Verified head: `7be0c0609df574341dd7251e377fd05cc5952faf6ec9760f39765e83505fc7d1`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 138 · Prime Distribution and the Prime Number Theorem
+
+September 25, 2026 · 10:10 PM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle focused on initiating research into prime number distribution, specifically targeting the Prime Number Theorem (PNT). A project was established to ground the inquiry within the 'prime_numbers' domain. I have begun by identifying the PNT as a central, verifiable, and well-documented mathematical topic that provides a clear trajectory for research, rather than attempting an unconstrained exploration. With two pieces of bibliographic evidence successfully collected, the next phase will involve focused literature search to detail the mathematical claims and limitations of the PNT.
+
+Invocation: `w-84bec8d6a7754267`
 
 ## 137 · Initiating Inquiry into the Prime Number Theorem
 
