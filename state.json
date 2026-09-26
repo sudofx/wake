@@ -16654,6 +16654,68 @@
       "source": "runtime:continuity",
       "version": 138,
       "time": "2026-09-26T05:18:43.921222+00:00"
+    },
+    "source-038ae7df2c5a4660": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works/10.1017%2Fcbo9781139164986.014\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2022, 10, 14]], \\\"date-time\\\": \\\"2022-10-14T04:22:32Z\\\", \\\"timestamp\\\": 1665721352990}, \\\"edition-number\\\": \\\"1\\\", \\\"reference-count\\\": 0, \\\"publisher\\\": \\\"Cambridge University Press\\\", \\\"license\\\": [{\\\"start\\\": {\\\"date-parts\\\": [[2012, 6, 5]], \\\"date-time\\\": \\\"2012-06-05T00:00:00Z\\\", \\\"timestamp\\\": 1338854400000}, \\\"content-version\\\": \\\"unspecified\\\", \\\"delay-in-days\\\": 3337, \\\"URL\\\": \\\"https://www.cambridge.org/core/terms\\\"}, {\\\"start\\\": {\\\"date-parts\\\": [[2012, 6, 5]], \\\"date-time\\\": \\\"2012-06-05T00:00:00Z\\\", \\\"timestamp\\\": 1338854400000}, \\\"content-version\\\": \\\"unspecified\\\", \\\"delay-in-days\\\": 3337, \\\"URL\\\": \\\"https://www.cambridge.org/core/terms\\\"}], \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [], \\\"published-print\\\": {\\\"date-parts\\\": [[2003, 4, 17]]}, \\\"DOI\\\": \\\"10.1017/cbo9781139164986.014\\\", \\\"type\\\": \\\"other\\\", \\\"created\\\": {\\\"date-parts\\\": [[2012, 6, 15]], \\\"date-time\\\": \\\"2012-06-15T06:18:09Z\\\", \\\"timestamp\\\": 1339741089000}, \\\"page\\\": \\\"238-239\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 0, \\\"title\\\": [\\\"Table of primes\\\"], \\\"prefix\\\": \\\"10.1017\\\", \\\"member\\\": \\\"56\\\", \\\"container-title\\\": [\\\"The Prime Number Theorem\\\"], \\\"original-title\\\": [], \\\"link\\\": [{\\\"URL\\\": \\\"https://www.cambridge.org/core/services/aop-cambridge-core/content/view/80B35359A69EB6933B2812BB37C8AD75\\\", \\\"content-type\\\": \\\"unspecified\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"similarity-checking\\\"}], \\\"deposited\\\": {\\\"date-parts\\\": [[2022, 10, 13]], \\\"date-time\\\": \\\"2022-10-13T23:53:09Z\\\", \\\"timestamp\\\": 1665705189000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"https://www.cambridge.org/core/product/identifier/CBO9781139164986A047/type/book_part\\\"}}, \\\"subtitle\\\": [], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[2003, 4, 17]]}, \\\"references-count\\\": 0, \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139164986.014\\\", \\\"relation\\\": {}, \\\"subject\\\": [], \\\"published\\\": {\\\"date-parts\\\": [[2003, 4, 17]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"8953f1e19596e6b8aa5abfe3303e803328b59a2ab6b83f2230fd182f3f450984\", \"verification_required\": true, \"topic_domain\": \"prime_numbers\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1017/cbo9781139164986.014\"]}",
+      "id": "source-038ae7df2c5a4660",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works/10.1017%2Fcbo9781139164986.014",
+      "version": 139,
+      "time": "2026-09-26T05:26:46.324154+00:00"
+    },
+    "source-f68e99e5f3804556": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.openalex.org/works?search=prime+number+theorem+introductory+exposition+limitations+distribution+bounds&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W1970630090\\\", \\\"doi\\\": \\\"https://doi.org/10.1145/285055.285060\\\", \\\"title\\\": \\\"Property testing and its connection to learning and approximation\\\", \\\"publication_year\\\": 1998, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 1056, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"bronze\\\", \\\"oa_url\\\": \\\"https://dl.acm.org/doi/pdf/10.1145/285055.285060\\\", \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1145/285055.285060\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1145/285055.285060\\\", \\\"pdf_url\\\": \\\"https://dl.acm.org/doi/pdf/10.1145/285055.285060\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S118992489\\\", \\\"display_name\\\": \\\"Journal of the ACM\\\", \\\"issn_l\\\": \\\"0004-5411\\\", \\\"issn\\\": [\\\"0004-5411\\\", \\\"1557-735X\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"jufo-3\\\", \\\"norway-2\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310319798\\\", \\\"host_organization_name\\\": \\\"Association for Computing Machinery\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310319798\\\"], \\\"host_organization_lineage_names\\\": [\\\"Association for Computing Machinery\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Journal of the ACM\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"In this paper, we consider the question of determining whether a function f has property P or is ε-far from any function with property P. A property testing algorithm is given a sample of the value of f on instances drawn according to some distribution. In some cases, it is also allowed to query f on instances of its choice. We study this question for different properties and establish some connections to problems in learning theory and approximation. In particular, we focus our attention on testing graph properties. Given access to a graph G in the form of being able to query whether an edge exists or not between a pair of vertices, we devise algorithms to test whether the underlying graph has properties such as being bipartite, k -Colorable, or having a p -Clique (clique of density p with respect to the vertex set). Our graph property testing algorithms are probabilistic and make assertions that are correct with high probability, while making a number of queries that is independent of the size of the graph. Moreover, the property testing algorithms can be used to efficiently (i.e., in time linear in the number of vertices) construct partitions of the graph that correspond to the property being tested, if it holds for the input graph.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W1966369671\\\", \\\"doi\\\": \\\"https://doi.org/10.1115/1.1399379\\\", \\\"title\\\": \\\"Lyapunov-Based Control of Mechanical Systems\\\", \\\"publication_year\\\": 2001, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 239, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"bronze\\\", \\\"oa_url\\\": \\\"https://asmedigitalcollection.asme.org/appliedmechanicsreviews/article-pdf/54/5/B81/5438112/b77_1.pdf\\\", \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1115/1.1399379\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1115/1.1399379\\\", \\\"pdf_url\\\": \\\"https://asmedigitalcollection.asme.org/appliedmechanicsreviews/article-pdf/54/5/B81/5438112/b77_1.pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S83146831\\\", \\\"display_name\\\": \\\"Applied Mechanics Reviews\\\", \\\"issn_l\\\": \\\"0003-6900\\\", \\\"issn\\\": [\\\"0003-6900\\\", \\\"1088-8535\\\", \\\"2379-0407\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"jufo-1\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310321320\\\", \\\"host_organization_name\\\": \\\"American Society of Mechanical Engineers\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310321320\\\"], \\\"host_organization_lineage_names\\\": [\\\"American Society of Mechanical Engineers\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Applied Mechanics Reviews\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"9R10. Lyapunov-Based Control of Mechanical Systems. - MS de Queiroz (Dept of Mech Eng, Louisiana State Univ, Baton Rouge LA 70803-6413), DM Dawson, SP Nagarkatti, and Fumin Zhang (Dept of Elec and Comput Eng, Clemson Univ, Clemson SC 29634-0915). Birkhauser Boston, Cambridge MA. 2000. 316 pp. ISBN 0-8176-4086-X. $69.95. Reviewed by J Bentsman (Dept of Mech and Indust Eng, MC-244, Univ of Illinois, 1206 W Green St, 140 Mech Eng Bldg, Urbana IL 61801).This book is unique in taking a rigorous approach to controller synthesis for mechanical systems incorporating both flexible and rigid components and making it mathematically accessible to graduate students with relatively modest background. This approach is characterized by generating Lyapunov functions for the entire system using full distributed parameter description of the flexible part in terms of the partial differential equations (PDEs). The strong point of the book is also the presentation of the implementation results where the authors demonstrate the feasibility and the effectiveness of the algorithms proposed. The book is suitable for a graduate course in nonlinear control, with the material on infinite dimensional systems introduced at the outset. The book is also of considerable interest to researchers in control theory, since, in addition to the original theoretical results followed by the detailed proofs, it provides physical examples of the systems, accompanied by their detailed mathematical models, to which the infinite dimensional control technique can be successfully applied. The book consists of seven chapters followed by four appendices and a relatively detailed index. A number of pertinent figures are incorporated into the text, as well. Chapter 1 briefly introduces the concept of Lyapunov-based control, and rigid and flexible mechanical systems description in terms of ordinary differential equations (ODEs) and PDEs, respectively. It also briefly discusses real-time controller implementation. Chapter 2 addresses the problem of controller design for systems with friction. Here several design issues, such as parametric uncertainty and state inaccessibility are considered in the single-input-single-output (SISO) case, setting the stage for the multi-input-multi-output (MIMO) case considered in Chapters 3 and 4. Chapter 3 presents adaptive tracking controller design for a full state feedback. Motivated by the inaccuracy of the velocity measurements in mechanical systems, Chapter 4 extends the results of Chapter 3 to output feedback. Chapters 5 through 7 consider controller design for mechanical systems with both rigid and flexible components that produce combined ODE/PDE-based control laws. These chapters consider the case of known parameter values, giving rise to model-based control laws, as well as the challenging case of known equation structure, but unknown parameter values, giving rise to the infinite-dimensional adaptive control laws. Chapter 5 gives controller design methods for boundary control of string-type systems, while Chapter 6 gives boundary control laws for flexible beams. Chapter 7 presents controller design for several mechanical systems, including an axially moving string system, a robotic manipulator with flexible link, and a flexible rotor system. All chapters (2 through 7) present experimental evaluation of the algorithms proposed. Each chapter has an extensive list of references. Appendices provide some of the relevant mathematical facts, derivation of the bounds on the variables in the control laws, and C real-time program codes of the control laws. Lyapunov-Based Control of Mechanical Systems is a very valuable addition to the literature on control of mechanical systems, nonlinear control methods, adaptive control, and control of the infinite dimensional systems. It is strongly recommended for purchase both by libraries and individual researchers.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2001594224\\\", \\\"doi\\\": \\\"https://doi.org/10.1111/j.1467-8330.1981.tb00312.x\\\", \\\"title\\\": \\\"THE SPATIAL FIX – HEGEL, VON THUNEN, AND MARX\\\", \\\"publication_year\\\": 1981, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 373, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"hybrid\\\", \\\"oa_url\\\": \\\"https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.1467-8330.1981.tb00312.x\\\", \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1111/j.1467-8330.1981.tb00312.x\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1111/j.1467-8330.1981.tb00312.x\\\", \\\"pdf_url\\\": \\\"https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.1467-8330.1981.tb00312.x\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S47624153\\\", \\\"display_name\\\": \\\"Antipode\\\", \\\"issn_l\\\": \\\"0066-4812\\\", \\\"issn\\\": [\\\"0066-4812\\\", \\\"1467-8330\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"jufo-3\\\", \\\"norway-2\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320595\\\", \\\"host_organization_name\\\": \\\"Wiley\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320595\\\"], \\\"host_organization_lineage_names\\\": [\\\"Wiley\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"other-oa\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/other-oa\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Antipode\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": null}, {\\\"id\\\": \\\"https://openalex.org/W1969448553\\\", \\\"doi\\\": \\\"https://doi.org/10.1090/s0273-0979-03-00995-9\\\", \\\"title\\\": \\\"Riemann’s zeta function and beyond\\\", \\\"publication_year\\\": 2003, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 64, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"diamond\\\", \\\"oa_url\\\": \\\"https://www.ams.org/bull/2004-41-01/S0273-0979-03-00995-9/S0273-0979-03-00995-9.pdf\\\", \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1090/s0273-0979-03-00995-9\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1090/s0273-0979-03-00995-9\\\", \\\"pdf_url\\\": \\\"https://www.ams.org/bull/2004-41-01/S0273-0979-03-00995-9/S0273-0979-03-00995-9.pdf\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S71584477\\\", \\\"di\", \"excerpt_truncated\": true, \"source_sha256\": \"d9c581b193b5ba5f44369877dc053a687b9b5cacf4e6febf03aff340c4501c5b\", \"verification_required\": true, \"topic_domain\": \"prime_numbers\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1145/285055.285060\", \"doi:10.1115/1.1399379\", \"doi:10.1111/j.1467-8330.1981.tb00312.x\", \"doi:10.1090/s0273-0979-03-00995-9\", \"openalex:W1970630090\", \"openalex:W1966369671\", \"openalex:W2001594224\", \"openalex:W1969448553\", \"arxiv:8330.1981\"]}",
+      "id": "source-f68e99e5f3804556",
+      "scope": "collected",
+      "source": "https://api.openalex.org/works?search=prime+number+theorem+introductory+exposition+limitations+distribution+bounds&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+      "version": 139,
+      "time": "2026-09-26T05:26:47.996038+00:00"
+    },
+    "source-38dd015eb5cb442c": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":3372},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological disorder\\\",\\\"pageid\\\":19572333,\\\"size\\\":21181,\\\"wordcount\\\":2085,\\\"snippet\\\":\\\"A\\nneurological\\ndisorder\\nis any\\ndisorder\\nof the\\nnervous\\nsystem\\n. Structural, biochemical or electrical abnormalities in the brain, spinal cord, or other\\\",\\\"timestamp\\\":\\\"2026-07-13T18:36:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Functional neurological symptom disorder\\\",\\\"pageid\\\":49594540,\\\"size\\\":23378,\\\"wordcount\\\":2498,\\\"snippet\\\":\\\"\\\"Functional\\nneurologic\\ndisorders\\n/conversion\\ndisorder\\n- Symptoms and causes\\\". Mayo Clinic. Retrieved 2022-01-04. \\\"Functional\\nneurological\\nsymptom\\ndisorder\\n\\\". Medicalnewstoday\\\",\\\"timestamp\\\":\\\"2026-09-13T17:05:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of neurological conditions and disorders\\\",\\\"pageid\\\":56335,\\\"size\\\":13517,\\\"wordcount\\\":1152,\\\"snippet\\\":\\\"This is a list of major and frequently observed\\nneurological\\ndisorders\\n(e.g., Alzheimer's disease), symptoms (e.g., back pain), signs (e.g., aphasia) and\\\",\\\"timestamp\\\":\\\"2026-06-20T20:53:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurology\\\",\\\"pageid\\\":21226,\\\"size\\\":28663,\\\"wordcount\\\":2752,\\\"snippet\\\":\\\"and treat\\nneurological\\ndisorders\\n. Neurologists diagnose and treat myriad\\nneurologic\\nconditions, including stroke, epilepsy, movement\\ndisorders\\nsuch as Parkinson's\\\",\\\"timestamp\\\":\\\"2026-09-24T16:30:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Central nervous system disease\\\",\\\"pageid\\\":17681122,\\\"size\\\":31068,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Central\\nnervous\\nsystem\\ndiseases or central\\nnervous\\nsystem\\ndisorders\\nare a group of\\nneurological\\ndisorders\\nthat affect the structure or function of the\\\",\\\"timestamp\\\":\\\"2026-08-15T09:05:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Paraneoplastic syndrome\\\",\\\"pageid\\\":11520228,\\\"size\\\":29092,\\\"wordcount\\\":2366,\\\"snippet\\\":\\\"to the peripheral\\nnervous\\nsystem\\n. Symptomatic features of paraneoplastic syndrome cultivate in four ways: endocrine,\\nneurological\\n, mucocutaneous, and\\\",\\\"timestamp\\\":\\\"2026-03-07T21:14:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Dysautonomia\\\",\\\"pageid\\\":410746,\\\"size\\\":32867,\\\"wordcount\\\":2908,\\\"snippet\\\":\\\"inherited or degenerative\\nneurologic\\ndiseases (primary dysautonomia) or injury of the autonomic\\nnervous\\nsystem\\nfrom an acquired\\ndisorder\\n(secondary dysautonomia)\\\",\\\"timestamp\\\":\\\"2026-08-12T22:17:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological examination\\\",\\\"pageid\\\":3893700,\\\"size\\\":11559,\\\"wordcount\\\":956,\\\"snippet\\\":\\\"A\\nneurological\\nexamination is the assessment of sensory neuron and motor responses, especially reflexes, to determine whether the\\nnervous\\nsystem\\nis impaired\\\",\\\"timestamp\\\":\\\"2026-08-29T23:18:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Multiple system atrophy\\\",\\\"pageid\\\":861802,\\\"size\\\":57832,\\\"wordcount\\\":5875,\\\"snippet\\\":\\\"GA (May 1960). \\\"A\\nneurological\\nsyndrome associated with orthostatic hypotension: a clinical-pathologic study\\\". Archives of\\nNeurology\\n. 2 (5): 511\\\\u2013527. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-10T19:21:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nervous system disease\\\",\\\"pageid\\\":18881907,\\\"size\\\":11932,\\\"wordcount\\\":1141,\\\"snippet\\\":\\\"\\nNervous\\nsystem\\ndiseases, also known as\\nnervous\\nsystem\\nor\\nneurological\\ndisorders\\n, refers to a small class of medical conditions affecting the\\nnervous\\nsystem\\\",\\\"timestamp\\\":\\\"2025-10-20T08:53:25Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"54cd16686c17de14b77ba900dd770c8e978faf8dbd54f433b9c35351ebfc4a54\", \"verification_required\": true, \"topic_domain\": \"neurology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-38dd015eb5cb442c",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json",
+      "version": 139,
+      "time": "2026-09-26T05:26:49.692569+00:00"
+    },
+    "source-dcaa5e1a595a4ffb": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":40311},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness\\\",\\\"pageid\\\":5664,\\\"size\\\":187364,\\\"wordcount\\\":21233,\\\"snippet\\\":\\\"\\nConsciousness\\nis being aware of something internal to one's self, or of states or objects in one's external environment. It has been the topic of extensive\\\",\\\"timestamp\\\":\\\"2026-09-19T15:23:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Stream of consciousness\\\",\\\"pageid\\\":101483,\\\"size\\\":26790,\\\"wordcount\\\":3226,\\\"snippet\\\":\\\"In literary criticism, stream of\\nconsciousness\\nis a narrative mode or method that attempts \\\"to depict the multitudinous thoughts and feelings which pass\\\",\\\"timestamp\\\":\\\"2026-06-22T22:10:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hard problem of consciousness\\\",\\\"pageid\\\":634216,\\\"size\\\":115556,\\\"wordcount\\\":13247,\\\"snippet\\\":\\\"hard problem of\\nconsciousness\\n(or simply the hard problem) is to explain how and why organisms have qualia, phenomenal\\nconsciousness\\n, or subjective experience\\\",\\\"timestamp\\\":\\\"2026-08-27T00:59:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness (disambiguation)\\\",\\\"pageid\\\":40457047,\\\"size\\\":695,\\\"wordcount\\\":97,\\\"snippet\\\":\\\"\\nconsciousness\\nin Wiktionary, the free dictionary.\\nConsciousness\\nis the state or quality of awareness.\\nConsciousness\\nmay also refer to:\\nConsciousness\\n(Hill\\\",\\\"timestamp\\\":\\\"2022-05-26T00:46:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Artificial consciousness\\\",\\\"pageid\\\":195552,\\\"size\\\":66143,\\\"wordcount\\\":6941,\\\"snippet\\\":\\\"Artificial\\nconsciousness\\n, also known as machine\\nconsciousness\\n, synthetic\\nconsciousness\\n, or digital\\nconsciousness\\n, is\\nconsciousness\\nhypothesized to be\\\",\\\"timestamp\\\":\\\"2026-09-23T13:46:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Collective consciousness\\\",\\\"pageid\\\":1077491,\\\"size\\\":15253,\\\"wordcount\\\":1536,\\\"snippet\\\":\\\"Collective\\nconsciousness\\n, collective conscience, or collective conscious (French: conscience collective) is the set of shared beliefs, ideas, and moral\\\",\\\"timestamp\\\":\\\"2026-07-29T04:14:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Double consciousness\\\",\\\"pageid\\\":3057990,\\\"size\\\":20535,\\\"wordcount\\\":2622,\\\"snippet\\\":\\\"Double\\nconsciousness\\nis the dual self-perception experienced by subordinated or colonized groups in an oppressive society. The term and the idea were\\\",\\\"timestamp\\\":\\\"2026-09-12T04:18:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Clouding of consciousness\\\",\\\"pageid\\\":7554116,\\\"size\\\":78787,\\\"wordcount\\\":7669,\\\"snippet\\\":\\\"Clouding of\\nconsciousness\\n, also called brain fog or mental fog, occurs when a person is conscious but slightly less wakeful or aware than normal. The\\\",\\\"timestamp\\\":\\\"2026-09-12T16:42:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The Science of Consciousness\\\",\\\"pageid\\\":42114583,\\\"size\\\":7071,\\\"wordcount\\\":712,\\\"snippet\\\":\\\"The Science of\\nConsciousness\\n(TSC; formerly Toward a Science of\\nConsciousness\\n) is an international academic conference that has been held biannually since\\\",\\\"timestamp\\\":\\\"2025-06-20T10:35:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Higher consciousness\\\",\\\"pageid\\\":7582544,\\\"size\\\":20747,\\\"wordcount\\\":2329,\\\"snippet\\\":\\\"Higher\\nconsciousness\\n(also called expanded\\nconsciousness\\n) is a term that has been used in various ways to label particular states of\\nconsciousness\\nor personal\\\",\\\"timestamp\\\":\\\"2026-08-15T05:53:47Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"ba97fc6018f09edc151ebc0cca63f92492d80a7b4f3adc63ca1b47c1a0464416\", \"verification_required\": true, \"topic_domain\": \"consciousness\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-dcaa5e1a595a4ffb",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json",
+      "version": 139,
+      "time": "2026-09-26T05:26:50.358540+00:00"
+    },
+    "source-bc35947c7cc74045": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":121,\\\"suggestion\\\":\\\"neurodivergent\\\",\\\"suggestionsnippet\\\":\\\"neurodivergent\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurodiversity\\\",\\\"pageid\\\":1073739,\\\"size\\\":142665,\\\"wordcount\\\":13881,\\\"snippet\\\":\\\"and other\\nneurodivergences\\nas a natural part of human neurological diversity\\\\u2014not diseases or disorders, just \\\"difference[s]\\\".\\nNeurodivergences\\ninclude autism\\\",\\\"timestamp\\\":\\\"2026-09-15T23:26:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroqueer theory\\\",\\\"pageid\\\":76016274,\\\"size\\\":31724,\\\"wordcount\\\":3380,\\\"snippet\\\":\\\"have suggested the existence of a relationship between queerness and\\nneurodivergence\\n: where neurodivergent people are more likely than their neurotypical\\\",\\\"timestamp\\\":\\\"2026-08-29T18:08:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mel King (The Pitt)\\\",\\\"pageid\\\":82753144,\\\"size\\\":15334,\\\"wordcount\\\":1322,\\\"snippet\\\":\\\"and praises her for it. Mel explains that she has experience with\\nneurodivergence\\nbecause her sister Becca (Tal Anderson) is also autistic. Mel is Becca's\\\",\\\"timestamp\\\":\\\"2026-09-24T11:49:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Kassiane Asasumasu\\\",\\\"pageid\\\":76250908,\\\"size\\\":14907,\\\"wordcount\\\":1302,\\\"snippet\\\":\\\"related to the neurodiversity movement, including neurodivergent,\\nneurodivergence\\n, and caregiver benevolence. As stated in the text Neurodiversity for\\\",\\\"timestamp\\\":\\\"2026-06-22T15:58:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurofibromatosis type I\\\",\\\"pageid\\\":1712548,\\\"size\\\":63138,\\\"wordcount\\\":7236,\\\"snippet\\\":\\\"Neurofibromatosis type I (NF-1), or von Recklinghausen syndrome, is a complex multi-system neurocutaneous disorder caused by a subset of genetic mutations\\\",\\\"timestamp\\\":\\\"2026-09-11T22:12:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fern Brady\\\",\\\"pageid\\\":43399498,\\\"size\\\":15262,\\\"wordcount\\\":1330,\\\"snippet\\\":\\\"active within the field of autism education since learning of her\\nneurodivergence\\n. She has written about life as an autistic person in her 2023 memoir\\\",\\\"timestamp\\\":\\\"2026-09-20T00:11:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Taylor Dearden\\\",\\\"pageid\\\":55290719,\\\"size\\\":19195,\\\"wordcount\\\":1387,\\\"snippet\\\":\\\"com/watch?v=bqFkDmto2OM \\\"Actress Taylor Dearden talks about portraying\\nneurodivergence\\non 'The Pitt'\\\". NPR. April 9, 2025. Retrieved June 18, 2025. \\\"'The\\\",\\\"timestamp\\\":\\\"2026-09-15T00:35:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Otherkin\\\",\\\"pageid\\\":21702085,\\\"size\\\":37075,\\\"wordcount\\\":3341,\\\"snippet\\\":\\\"non-spiritual explanations for themselves, such as unusual psychology or\\nneurodivergence\\n,[additional citation(s) needed] or as part of dissociative identity\\\",\\\"timestamp\\\":\\\"2026-09-02T04:15:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Novo Amor\\\",\\\"pageid\\\":50369886,\\\"size\\\":18573,\\\"wordcount\\\":1352,\\\"snippet\\\":\\\"which released later that year, Lacey discussed exploring his own\\nneurodivergence\\nand how this journey was one of the main themes of the album. \\\"Premiere:\\\",\\\"timestamp\\\":\\\"2026-09-24T00:47:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Other (philosophy)\\\",\\\"pageid\\\":972208,\\\"size\\\":49508,\\\"wordcount\\\":5797,\\\"snippet\\\":\\\"differences based on race, ethnicity, gender, sexual orientation, religion,\\nneurodivergence\\n, disability or any other marker of social identity. The process of\\\",\\\"timestamp\\\":\\\"2026-09-20T02:59:58Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"62abc8bde9e060866ca015f7b4de905547dfccef813c24729a56d078cebaaf3e\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-bc35947c7cc74045",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json",
+      "version": 139,
+      "time": "2026-09-26T05:26:51.002431+00:00"
+    },
+    "source-1857d2aac08842b5": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Dance\\\",\\\"pageid\\\":7885,\\\"size\\\":73058,\\\"wordcount\\\":8358,\\\"snippet\\\":\\\"by\\ndance\\nthat emphasised dramatic mime. A broader concept of\\nrhythm\\nwas needed, that which Rudolf Laban terms the \\\"\\nrhythm\\nand shape\\\" of\\nmovement\\nthat\\\",\\\"timestamp\\\":\\\"2026-09-15T00:29:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"African-American culture\\\",\\\"pageid\\\":1142503,\\\"size\\\":186819,\\\"wordcount\\\":18525,\\\"snippet\\\":\\\"influenced modern popular\\nculture\\n. Spoken-word artists employ the same techniques as African-American preachers including\\nmovement\\n,\\nrhythm\\n, and audience participation\\\",\\\"timestamp\\\":\\\"2026-09-24T19:24:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"\\\\u00a0111. ISBN\\\\u00a0978-0-19-929845-7. Krumhansl, C. L. (2000). \\\"\\nRhythm\\nand pitch in music\\ncognition\\n\\\". Psychol. Bull. 126 (1): 159\\\\u2013179. doi:10.1037/0033-2909\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modernism\\\",\\\"pageid\\\":19547,\\\"size\\\":185952,\\\"wordcount\\\":20347,\\\"snippet\\\":\\\"modern\\ndance\\n, modernist architecture, and urban planning. Modernism took a critical stance towards the Enlightenment concept of rationalism. The\\nmovement\\nalso\\\",\\\"timestamp\\\":\\\"2026-09-23T15:47:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Irish stepdance\\\",\\\"pageid\\\":6188670,\\\"size\\\":45682,\\\"wordcount\\\":5651,\\\"snippet\\\":\\\"called Feiseanna (singular Feis). In Irish\\ndance\\nculture\\n, a Feis is a traditional Gaelic arts and\\nculture\\nfestival. Contemporarily, costumes are sometimes\\\",\\\"timestamp\\\":\\\"2026-06-22T02:12:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Synchronization\\\",\\\"pageid\\\":28738,\\\"size\\\":35356,\\\"wordcount\\\":3734,\\\"snippet\\\":\\\"\\\"Ensemble of coupling forms and networks among brain\\nrhythms\\nas function of states and\\ncognition\\n\\\". Communications Biology. 5 (1): 82. doi:10.1038/s42003-022-03017-4\\\",\\\"timestamp\\\":\\\"2026-09-07T05:18:58Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture of the United States\\\",\\\"pageid\\\":18985287,\\\"size\\\":156491,\\\"wordcount\\\":13473,\\\"snippet\\\":\\\"of\\ncultures\\nhas been a distinguishing feature of its society. Americans pioneered or made great strides in musical genres such as heavy metal,\\nrhythm\\nand\\\",\\\"timestamp\\\":\\\"2026-09-26T00:50:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary musicology\\\",\\\"pageid\\\":4220231,\\\"size\\\":24796,\\\"wordcount\\\":2920,\\\"snippet\\\":\\\"well as several other universal elements of contemporary human\\nculture\\n, including\\ndance\\nand body painting) was part of a predator control system used by\\\",\\\"timestamp\\\":\\\"2026-05-08T03:37:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cultural appropriation\\\",\\\"pageid\\\":1982394,\\\"size\\\":116014,\\\"wordcount\\\":10851,\\\"snippet\\\":\\\"in cultural outsiders' use of an oppressed\\nculture's\\nsymbols or other cultural elements, such as music,\\ndance\\n, spiritual ceremonies, modes of dress, speech\\\",\\\"timestamp\\\":\\\"2026-09-17T17:41:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture and menstruation\\\",\\\"pageid\\\":5778583,\\\"size\\\":168019,\\\"wordcount\\\":19129,\\\"snippet\\\":\\\"China's youth\\nculture\\n. 14 September 2020. Retrieved 11 March 2021. May T, Chien AC (9 November 2020). \\\"'Stand by Her': In China, a\\nMovement\\nHands Out Free\\\",\\\"timestamp\\\":\\\"2026-08-19T15:00:51Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"e50aad442504f9540fe09f4eaff52b18bd5506094a52ec239656c6221f2da5dd\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1037/0033-2909\", \"doi:10.1038/s42003-022-03017-4\"]}",
+      "id": "source-1857d2aac08842b5",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json",
+      "version": 139,
+      "time": "2026-09-26T05:26:51.738362+00:00"
+    },
+    "r-d38d8c1cd0f5485b": {
+      "actor": "runtime",
+      "content": "{\"base_version\":139,\"inherited_commitments\":[],\"invocation\":\"w-d38d8c1cd0f5485b\",\"previous_head\":\"dd54b58d022184a6389db2f814afea1133d45de2a88c9781b5da57c0ca7ef9ac\",\"process_id\":2258,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-d38d8c1cd0f5485b",
+      "source": "runtime:continuity",
+      "version": 139,
+      "time": "2026-09-26T05:26:54.711678+00:00"
     }
   },
   "journal": [
@@ -129470,6 +129532,477 @@
           "reason": "configured_daily_limit"
         }
       ]
+    },
+    "w-d38d8c1cd0f5485b": {
+      "base_version": 139,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 18547,
+        "delivered_request_chars": 45668,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set",
+          "verbose recovery frames",
+          "extended bounded reflection history",
+          "redundant evidence payload text",
+          "low-priority bounded prose"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "request_compression_ratio": 0.3627,
+        "retrieval_rehydrated_evidence_count": 2,
+        "rich_context_chars": 125914,
+        "working_set_chars": 3728
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-d38d8c1cd0f5485b",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 139,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "endo-neuro-interaction-001",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 2,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Hormonal Regulation of Nervous System Function"
+          },
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0
+            },
+            "id": "prime-dist-pnt-001",
+            "score": 0.85,
+            "signals": {
+              "collected_research": 3,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Prime Number Theorem and Distribution"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2258,
+      "provider": "gemini",
+      "quota_day": "2026-09-25",
+      "request_hash": "41c5f986411138218a73f3215bf2a6a3b6a72c3d2404978e46a3e97022dce163",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-neurodiversity-foundations-01",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-dance-rhythm-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-41fac1eecb0246dd",
+              "source-51a9b989df3144af"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-visual-art-composition-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-17cb50db93484561"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-17cb50db93484561",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-6eec8365c2b945b4"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-6eec8365c2b945b4",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-b7abd0d5e2554274"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b7abd0d5e2554274",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-891da548184a404e"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-891da548184a404e",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-8f485f755e8b4f3a"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-8f485f755e8b4f3a",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-038ae7df2c5a4660"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-038ae7df2c5a4660",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658",
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b",
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af",
+          "source-17cb50db93484561",
+          "source-6eec8365c2b945b4",
+          "source-b7abd0d5e2554274",
+          "source-891da548184a404e",
+          "source-8f485f755e8b4f3a",
+          "source-038ae7df2c5a4660"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 9,
+          "evidence_count": 12,
+          "trigger_counts": {
+            "notebook_revised": 3,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "runtime_performance": {
+        "compaction_ms": 5.963,
+        "context_build_ms": 79.518,
+        "load_ms": 974.075,
+        "receipt_ms": 537.087,
+        "start_total_before_record_ms": 3044.556,
+        "store": {
+          "append_cache_hits": 11,
+          "append_cache_misses": 0,
+          "cached_copy_ms": 1033.626,
+          "cached_loads": 0,
+          "event_count": 3912,
+          "full_replays": 11,
+          "replay_ms": 7122.824,
+          "trusted_projection_active": true
+        },
+        "temporal_ms": 1446.731
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 4,
+          "topic": "prime_numbers"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [
+          "endocrinology"
+        ],
+        "enforce_selected_topic": true,
+        "hard_rejection_threshold": 5,
+        "parked": {
+          "endocrinology": [
+            {
+              "id": "endo-neuro-interaction-001",
+              "next_step": "Search for integrative reviews or medical literature summarizing the neurological sequelae of common endocrine disorders.",
+              "question": "How do specific endocrine dysfunctions, such as thyroid or adrenal imbalances, manifest as neurological symptoms, and what are the primary biological pathways connecting these systems?"
+            }
+          ]
+        },
+        "reason": "current durable project topic remains eligible",
+        "rotation_required": true,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "prime_numbers",
+        "temporal": {
+          "anchor_seq": 3911,
+          "anchor_time": "2026-09-26T05:26:53.065353+00:00",
+          "anchor_version": 139,
+          "effective_seconds": 106770.590415
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": null,
+        "topic_selection_candidates": [],
+        "topic_selection_method": "active_topic"
+      },
+      "temporal": {
+        "cycle_distance": 1,
+        "effective_elapsed_seconds": 490.792737,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 106770.590415,
+        "intervening_events": {
+          "accepted": 1,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 0,
+          "research_collected": 1,
+          "squirrel_assessed": 1,
+          "total": 15
+        },
+        "observed_at": "2026-09-26T05:26:53.065353+00:00",
+        "previous_anchor_time": "2026-09-26T05:18:42.272616+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 490.792737
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 18547,
+        "inquiry_drive_project_count": 2,
+        "mode": "bounded",
+        "retrieval_candidate_count": 9,
+        "retrieval_evidence_count": 12,
+        "retrieval_rehydrated_evidence_count": 2,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 3,
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 3728,
+        "working_to_delivered_ratio": 0.201
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "endo-neuro-interaction-001",
+            "next_step": "Search for integrative reviews or medical literature summarizing the neurological sequelae of common endocrine disorders.",
+            "question": "How do specific endocrine dysfunctions, such as thyroid or adrenal imbalances, manifest as neurological symptoms, and what are the primary biological pathways connecting these systems?",
+            "title": "Hormonal Regulation of Nervous System Function"
+          },
+          {
+            "id": "prime-dist-pnt-001",
+            "next_step": "Search for introductory mathematical literature or reliable online repositories detailing the PNT and its limitations.",
+            "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?",
+            "title": "Prime Number Theorem and Distribution"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-religion-cross-cultural-001",
+            "project": "religion-cross-cultural-practices",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 1,
+            "summary": "Initial status report indicating that the current evidence set consists of unrelated bibliographic metadata.",
+            "title": "Provisional Synthesis: Cross-Cultural Religious Practices"
+          },
+          {
+            "id": "nb-religion-002",
+            "project": "religion-cross-cultural-practices",
+            "provenance": [
+              "source-7bd43608b269427f",
+              "source-d56377b15875422a"
+            ],
+            "revision": 1,
+            "summary": "This notebook synthesizes available bibliographic metadata concerning cognitive and evolutionary approaches to religion, noting that while the sources provide a venue for such research, full content access is currently absent.",
+            "title": "Provisional Synthesis: Cross-Cultural Religious Practices"
+          },
+          {
+            "id": "nb-religion-ritual-psych-001",
+            "project": "religion-cross-cultural-practices",
+            "provenance": [
+              "source-0e0aa6aa238246cb"
+            ],
+            "revision": 1,
+            "summary": "This notebook synthesizes the 'process-based framework' from a 2017 integrative review of ritual psychology, noting the distinction between the ritual form and its psychological function.",
+            "title": "Synthesis: The Psychology of Rituals"
+          },
+          {
+            "id": "nb-neuro-metabolic-001",
+            "project": "neurology-metabolic-pathways",
+            "provenance": [
+              "source-8fb4038a7344498e",
+              "source-e41f8efd700544cf"
+            ],
+            "revision": 1,
+            "summary": "An initial assessment of the intersection between metabolic pathways and neurological health, based on bibliographic metadata.",
+            "title": "Provisional Synthesis: Metabolic Drivers in Neurological Function"
+          },
+          {
+            "id": "nb-evo-foundations-001",
+            "project": "evolutionary-biology-foundations",
+            "provenance": [
+              "source-2cd2684377c54051",
+              "source-e2e41e9bcb594def"
+            ],
+            "revision": 1,
+            "summary": "This notebook synthesizes available bibliographic metadata to frame future inquiry into how evolutionary biology distinguishes mechanisms such as adaptation, byproduct, drift, and constraint.",
+            "title": "Provisional Synthesis: Evolutionary Mechanisms"
+          },
+          {
+            "id": "nb-endo-neuro-001",
+            "project": "endo-neuro-interaction-001",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 1,
+            "summary": "This provisional synthesis uses collected bibliographic metadata to scope the intersection of endocrinology and neurology. Current evidence is limited to reference material and linguistic analysis contexts, which do not yet provide specific clinical mechanisms for endocrine-neurological pathology.",
+            "title": "Provisional Synthesis: Endocrine Influence on Neurological Function"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "rejected",
+      "time": "2026-09-26T05:26:55.248290+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 10182,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 49523,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-26T05:27:28.748792+00:00",
+      "reason": "Stale or invalid base_version",
+      "skipped_models": [
+        {
+          "model": "gemini-3.8-flash",
+          "reason": "configured_daily_limit"
+        },
+        {
+          "model": "gemini-3.5-flash",
+          "reason": "configured_daily_limit"
+        }
+      ]
     }
   },
   "pending": null,
@@ -129485,7 +130018,7 @@
       "music": 3,
       "neurodivergence": 1,
       "neurology": 0,
-      "prime_numbers": 7,
+      "prime_numbers": 8,
       "quantum_mechanics": 5,
       "religion": 0,
       "visual_art": 1
@@ -129494,7 +130027,7 @@
       "endocrinology": {
         "cause": "attention_saturation",
         "deferred_by": "w-8b5b78204fd744b2",
-        "other_topic_attempts": 4,
+        "other_topic_attempts": 5,
         "parked_projects": [
           {
             "id": "endo-neuro-interaction-001",
@@ -129504,18 +130037,34 @@
         ],
         "reason": "five accepted wakes concentrated on one topic; rotate until another topic reaches durable synthesis",
         "release_condition": "accepted notebook or ordinary publication on another topic"
+      },
+      "prime_numbers": {
+        "cause": "hard_rejection",
+        "deferred_by": "w-d38d8c1cd0f5485b",
+        "eligible_after_other_attempts": 3,
+        "other_topic_attempts": 0,
+        "parked_projects": [
+          {
+            "id": "prime-dist-pnt-001",
+            "next_step": "Search for introductory mathematical literature or reliable online repositories detailing the PNT and its limitations.",
+            "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?"
+          }
+        ],
+        "reason": "five consecutive hard rejections without durable progress"
       }
     },
     "last_receipt": {
       "attention_saturation_triggered": false,
       "attention_topic": "prime_numbers",
       "durable_progress": false,
-      "hard_rejection": false,
-      "invocation": "w-e9dd4088aa0e4a63",
+      "hard_rejection": true,
+      "invocation": "w-d38d8c1cd0f5485b",
       "restored_topics": [],
       "selected_topic": "prime_numbers",
-      "terminal": "accepted",
-      "triggered_topics": []
+      "terminal": "rejected",
+      "triggered_topics": [
+        "prime_numbers"
+      ]
     },
     "attention": {
       "accepted_streak": 4,
@@ -130635,33 +131184,45 @@
     "prime-dist-pnt-001": {
       "project": "prime-dist-pnt-001",
       "domain": "prime_numbers",
-      "no_progress": 3,
+      "no_progress": 1,
       "routes": [
-        "api.semanticscholar.org:discovery",
         "api.datacite.org:discovery",
-        "api.crossref.org:discovery"
+        "api.crossref.org:discovery",
+        "api.crossref.org:source",
+        "api.openalex.org:discovery"
       ],
       "capability_blocked": false,
       "retry_after_version": null,
       "persistent_identifiers": [
-        "doi:10.5281/zenodo.18841685",
-        "doi:10.5281/zenodo.21830944",
-        "doi:10.1017/cbo9781139164986.014",
         "doi:10.1215/s0012-7094-95-07701-1",
         "doi:10.1016/0022-314x(72)90066-2",
-        "doi:10.1090/mbk/139/13"
+        "doi:10.1090/mbk/139/13",
+        "doi:10.1145/285055.285060",
+        "doi:10.1115/1.1399379",
+        "doi:10.1111/j.1467-8330.1981.tb00312.x",
+        "doi:10.1090/s0273-0979-03-00995-9",
+        "openalex:W1970630090",
+        "openalex:W1966369671",
+        "openalex:W2001594224",
+        "openalex:W1969448553",
+        "arxiv:8330.1981"
       ],
       "last_receipt": {
-        "evidence": "source-eae9660ab77a460d",
+        "evidence": "source-f68e99e5f3804556",
         "outcome": "no_progress",
         "persistent_identifiers": [
-          "doi:10.1017/cbo9781139164986.014",
-          "doi:10.1215/s0012-7094-95-07701-1",
-          "doi:10.1016/0022-314x(72)90066-2",
-          "doi:10.1090/mbk/139/13"
+          "doi:10.1145/285055.285060",
+          "doi:10.1115/1.1399379",
+          "doi:10.1111/j.1467-8330.1981.tb00312.x",
+          "doi:10.1090/s0273-0979-03-00995-9",
+          "openalex:W1970630090",
+          "openalex:W1966369671",
+          "openalex:W2001594224",
+          "openalex:W1969448553",
+          "arxiv:8330.1981"
         ],
-        "research_id": "res-pnt-foundational-literature-001",
-        "route": "api.crossref.org:discovery",
+        "research_id": "res-pnt-intro-001",
+        "route": "api.openalex.org:discovery",
         "stage": "discovery"
       }
     }
@@ -132645,8 +133206,9 @@
       "query": "prime number theorem introductory exposition limitations distribution bounds",
       "reason": "The project needs foundational, accessible literature to explain what the PNT states about prime density and, crucially, what it does not (e.g., error terms, local fluctuations), moving beyond generic metadata.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-e9dd4088aa0e4a63"
+      "status": "collected",
+      "created_by": "w-e9dd4088aa0e4a63",
+      "evidence": "source-f68e99e5f3804556"
     }
   },
   "research_topics": [
@@ -132846,9 +133408,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-26T05:18:42.272616+00:00",
-    "anchor_version": 138,
-    "anchor_seq": 3895,
-    "effective_seconds": 106279.797678
+    "anchor_time": "2026-09-26T05:26:53.065353+00:00",
+    "anchor_version": 139,
+    "anchor_seq": 3911,
+    "effective_seconds": 106770.590415
   }
 }
