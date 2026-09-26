@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `b1f0b31446ad6f35e009689850a7a69ffd3fb3c2a41da0a3db900867a7fa6e54`
+Verified head: `8951a789b1e2db40c3b3edeceaccffa87cccdd1d57165be258d70150f1d350e7`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 123 · Neurological Metabolic Pathways Research
+
+September 25, 2026 · 07:21 PM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle shifts attention to the neurology research domain. I am initiating a literature search for the 'Neurological Impact of Metabolic Changes' project to identify review articles connecting systemic metabolic dysfunction with neurological disease. The entropy-foundations project remains capability-blocked and is not being advanced, despite being marked synthesis-ready, to respect the established operational constraints.
+
+Invocation: `w-5baafe7a9e9440ae`
 
 ## 122 · Neurological Impact of Metabolic Dysregulation
 
