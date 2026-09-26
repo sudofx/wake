@@ -32,10 +32,10 @@ on:
         default: ''
 
 concurrency:
-  # Read-only publication refreshes must never block Gemini work. Stateful
-  # research/reset runs still serialize on the one authoritative wake-state lane.
-  group: ${{ (github.event_name == 'push' || inputs.publish_only == true) && 'wake-publication' || 'wake-durable-state' }}
-  cancel-in-progress: ${{ github.event_name == 'push' || inputs.publish_only == true }}
+  # Ordinary code pushes are read-only publication refreshes and use a separate
+  # lane. Scheduled/manual wakes keep the one serialized durable-state writer.
+  group: ${{ github.event_name == 'push' && 'wake-publication' || 'wake-durable-state' }}
+  cancel-in-progress: ${{ github.event_name == 'push' }}
   queue: max
 
 permissions:
