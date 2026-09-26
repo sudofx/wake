@@ -112,7 +112,7 @@ class StateBranch:
                                             output=last.stdout, stderr=last.stderr)
 
 
-def main(publish_only=False, scheduled=False, reset=False):
+def main(publish_only=False, scheduled=False, reset=False, record_only=False):
     if os.environ.get("GITHUB_ACTIONS") != "true":
         raise SystemExit("This entry point runs in GitHub Actions. Use python -m wake for local work.")
     settings = config(ROOT / "wake.toml")
@@ -161,19 +161,30 @@ def main(publish_only=False, scheduled=False, reset=False):
             except Rejected as exc:
                 result = {"status": "paused", "reason": str(exc)}
             result["wake_status"] = wake_status(engine.store.load(), None if settings.get("model_daily_call_limits") else settings["daily_call_limit"])
-            if reset:
-                shutil.rmtree(ROOT / "site", ignore_errors=True)
-            export(engine.store, ROOT / "site", operation=result)
-            atomic_write(ROOT / "site/operation.json", json.dumps(result, indent=2))
-            atomic_write(ROOT / "site/.nojekyll", "")
-            # Persist an inspectable text export alongside the exact SQLite state.
-            for name in ("events.jsonl", "state.json", "head.txt"):
-                atomic_write(branch.checkout/name, (ROOT/"site"/name).read_text())
-            # This fallback stays readable through htmlpreview even before Pages is enabled.
-            shutil.rmtree(branch.checkout/"site", ignore_errors=True)
-            shutil.copytree(ROOT/"site", branch.checkout/"site")
-            branch.git("add", "events.jsonl", "state.json", "head.txt", "site", cwd=branch.checkout)
-            branch.checkpoint()
+            if record_only and not reset and not publish_only:
+                # Batch hot path: persist only the authoritative database plus a
+                # tiny machine-readable receipt. Static reports and flat exports
+                # are derived views and must not delay the next model invocation.
+                atomic_write(branch.checkout/"operation.json", json.dumps(result, indent=2))
+                atomic_write(branch.checkout/"head.txt", engine.store.head() + "\n")
+                branch.git("add", "operation.json", "head.txt", cwd=branch.checkout)
+                branch.checkpoint()
+                set_step_output("publication_skipped", "true")
+            else:
+                if reset:
+                    shutil.rmtree(ROOT / "site", ignore_errors=True)
+                export(engine.store, ROOT / "site", operation=result)
+                atomic_write(ROOT / "site/operation.json", json.dumps(result, indent=2))
+                atomic_write(ROOT / "site/.nojekyll", "")
+                # Persist an inspectable text export alongside the exact SQLite state.
+                for name in ("events.jsonl", "state.json", "head.txt"):
+                    atomic_write(branch.checkout/name, (ROOT/"site"/name).read_text())
+                atomic_write(branch.checkout/"operation.json", json.dumps(result, indent=2))
+                # This fallback stays readable through htmlpreview even before Pages is enabled.
+                shutil.rmtree(branch.checkout/"site", ignore_errors=True)
+                shutil.copytree(ROOT/"site", branch.checkout/"site")
+                branch.git("add", "events.jsonl", "state.json", "head.txt", "operation.json", "site", cwd=branch.checkout)
+                branch.checkpoint()
         finally:
             engine.store.close()
     print(json.dumps(result))
@@ -184,6 +195,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--publish-only", action="store_true", help="Publish the existing record without a model call")
     parser.add_argument("--scheduled", action="store_true", help="Skip duplicate cron events covered by a recent wake")
+    parser.add_argument("--record-only", action="store_true",
+                        help="Persist the durable wake and compact receipt without rebuilding derived reports")
     parser.add_argument("--reset", action="store_true",
                         help="Irreversibly reset durable cloud state to WAKE 0")
     parser.add_argument("--confirm-reset", action="store_true",
@@ -192,7 +205,7 @@ if __name__ == "__main__":
     if args.reset and not args.confirm_reset:
         raise SystemExit("--reset requires --confirm-reset")
     try:
-        sys.exit(main(publish_only=args.publish_only, scheduled=args.scheduled, reset=args.reset))
+        sys.exit(main(publish_only=args.publish_only, scheduled=args.scheduled, reset=args.reset, record_only=args.record_only))
     except subprocess.CalledProcessError as exc:
         detail = (exc.stderr or exc.stdout or "").strip()
         message = "Git state persistence failed. No force push or automatic model retry was attempted."
