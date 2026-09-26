@@ -1,0 +1,47 @@
+# WAKE✳︎ MAINTAINER NOTE
+# Keep the offline fixture visually and structurally aligned with the current
+# exporter without confusing it with live wake-state. This workflow runs only
+# deterministic zero-API fixtures and commits generated example artifacts.
+
+name: Refresh offline fixture
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - 'wake/assets/**'
+      - 'wake/report.py'
+      - 'wake/experiment.py'
+      - 'scripts/regenerate-offline-fixture.sh'
+      - '.github/workflows/refresh-offline-fixture.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: offline-fixture-refresh
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Regenerate deterministic example
+        run: bash scripts/regenerate-offline-fixture.sh
+      - name: Commit refreshed fixture
+        run: |
+          git add examples/offline-fixture-journal
+          if git diff --cached --quiet; then
+            echo "Offline fixture already matches the current exporter."
+            exit 0
+          fi
+          git -c user.name=wake-bot -c user.email=wake-bot@users.noreply.github.com             commit -m "Refresh offline fixture journal"
+          git push origin HEAD:master
