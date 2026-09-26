@@ -132,11 +132,14 @@ while true; do
   done
 
   echo "[wake $i] Watching GitHub run $run_id..."
-  completion_started=$SECONDS
+  execution_started=0
+  status_unreachable_started=0
   while true; do
     status="$(gh run view "$run_id" --repo "$REPO" --json status --jq '.status' 2>/dev/null || true)"
     if [[ -z "$status" ]]; then
-      if (( SECONDS - completion_started >= RUN_COMPLETION_TIMEOUT_SECONDS )); then
+      if (( status_unreachable_started == 0 )); then
+        status_unreachable_started=$SECONDS
+      elif (( SECONDS - status_unreachable_started >= RUN_COMPLETION_TIMEOUT_SECONDS )); then
         echo "WAKE✳︎ stopped: GitHub remained unreachable while watching run $run_id for 7 minutes." >&2
         exit 1
       fi
@@ -144,13 +147,27 @@ while true; do
       sleep "$RETRY_SECONDS"
       continue
     fi
+
+    status_unreachable_started=0
     [[ "$status" == "completed" ]] && break
-    if (( SECONDS - completion_started >= RUN_COMPLETION_TIMEOUT_SECONDS )); then
-      echo "WAKE✳︎ stopped: run $run_id did not complete within 7 minutes." >&2
-      exit 1
+
+    # queued/pending time belongs to GitHub's concurrency scheduler, not the
+    # wake itself. Start the no-progress watchdog only once execution begins.
+    if [[ "$status" == "in_progress" ]]; then
+      if (( execution_started == 0 )); then
+        execution_started=$SECONDS
+        echo "[wake $i] GitHub execution started; 7-minute no-progress guard is now active."
+      elif (( SECONDS - execution_started >= RUN_COMPLETION_TIMEOUT_SECONDS )); then
+        echo "WAKE✳︎ stopped: run $run_id did not complete within 7 minutes of starting execution." >&2
+        exit 1
+      fi
     fi
+
     sleep "$POLL_SECONDS"
   done
+
+  completion_started=${execution_started:-0}
+  (( completion_started > 0 )) || completion_started=$SECONDS
 
   conclusion=""
   while [[ -z "$conclusion" ]]; do
