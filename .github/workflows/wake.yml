@@ -32,8 +32,10 @@ on:
         default: ''
 
 concurrency:
-  group: wake-durable-state
-  cancel-in-progress: false
+  # Read-only publication refreshes must never block Gemini work. Stateful
+  # research/reset runs still serialize on the one authoritative wake-state lane.
+  group: ${{ (github.event_name == 'push' || inputs.publish_only == true) && 'wake-publication' || 'wake-durable-state' }}
+  cancel-in-progress: ${{ github.event_name == 'push' || inputs.publish_only == true }}
   queue: max
 
 permissions:
@@ -115,7 +117,7 @@ jobs:
     runs-on: ubuntu-latest
     concurrency:
       group: pages
-      cancel-in-progress: false
+      cancel-in-progress: true
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
