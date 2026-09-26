@@ -171,6 +171,24 @@ def _rotation_preflight(state, invocation, proposal):
     }
 
 
+def _assign_research_ids(proposal, invocation):
+    """Assign durable research identities inside WAKE✳︎, never in provider output.
+
+    The provider supplies research intent. WAKE✳︎ owns record identity so a
+    disposable model cannot collide with or overwrite an existing durable
+    request. Raw provider output remains preserved separately by finish().
+    """
+    if not isinstance(proposal, dict) or not isinstance(proposal.get("actions"), list):
+        return proposal
+    actions = []
+    for index, action in enumerate(proposal["actions"], start=1):
+        if isinstance(action, dict) and action.get("type") == "research":
+            action = {key: value for key, value in action.items() if key != "id"}
+            action["id"] = f"research-{invocation}-{index}"
+        actions.append(action)
+    return {**proposal, "actions": actions}
+
+
 INQUIRY_DRIVE_MIN_CYCLES = 20
 TOPIC_COLORS = (
     "#ff5bb9", "#b25dff", "#46b5ff", "#ffe574", "#93ff74", "#ff9e64",
@@ -1808,6 +1826,7 @@ class Engine:
             require(isinstance(raw, str) and len(raw) <= 64000, "Response exceeds 64,000 characters")
             proposal = json.loads(raw, parse_constant=lambda x: (_ for _ in ()).throw(ValueError("Nonfinite JSON")))
             proposal, rotation_filter = _rotation_preflight(state, invocation, proposal)
+            proposal = _assign_research_ids(proposal, invocation)
             editorial = None
             try:
                 result = transition(state, proposal, invocation)
