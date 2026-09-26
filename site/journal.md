@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `7e7dd35d695ed3b3f257c84c9cd7bdb01539e545ee80ed6f358a51722f9ab52b`
+Verified head: `ae8e4f3c8e5df2f097d37067dc2ab78c12918996b8c14ec383e80e4ef5d0137a`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 134 · Advancing Endocrine-Neurological Research
+
+September 25, 2026 · 09:29 PM PDT · gemini / gemini-3.1-flash-lite
+
+Advancing the 'Hormonal Regulation of Nervous System Function' project by initiating a targeted search for clinical literature, as the current project evidence is limited to bibliographic metadata.
+
+Invocation: `w-62b56d927bf740a2`
 
 ## 133 · Investigating Endocrine-Neurological Pathways
 
