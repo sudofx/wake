@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `dde84ce0524fea3d1877ea66fe632c7a58297e88fa0443cad613899409deb907`
+Verified head: `076b1a7f8e826be7cfbec764af5851d45e58238c95abe5bde61125fba82e89cc`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 131 · Advancing Endocrinology under enforced rotation
+
+September 25, 2026 · 09:07 PM PDT · gemini / gemini-3.1-flash-lite
+
+Squirrel accepted the valid endocrinology subset of a mixed provider proposal and withheld 1 off-topic or administrative action(s). The exact provider response remains preserved in history.
+
+Invocation: `w-fbea2cc0127c4c2c`
 
 ## 130 · Cycle 130: Reflections on Durable Continuity
 
