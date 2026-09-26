@@ -14112,6 +14112,68 @@
       "source": "runtime:continuity",
       "version": 114,
       "time": "2026-09-26T00:21:50.578552+00:00"
+    },
+    "source-d25613f4d01944a0": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works/10.5281%2Fzenodo.22836097\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+      "id": "source-d25613f4d01944a0",
+      "scope": "failed",
+      "source": "https://api.crossref.org/works/10.5281%2Fzenodo.22836097",
+      "version": 114,
+      "time": "2026-09-26T00:28:30.294256+00:00"
+    },
+    "source-1322f2332dbd4952": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":239499,\\\"suggestion\\\":\\\"religious\\\",\\\"suggestionsnippet\\\":\\\"religious\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Religion\\\",\\\"pageid\\\":25414,\\\"size\\\":187367,\\\"wordcount\\\":19574,\\\"snippet\\\":\\\"\\nReligion\\nis a range of social-cultural systems, including designated behaviors and practices, ethics, morals, beliefs, worldviews, texts, sanctified places\\\",\\\"timestamp\\\":\\\"2026-09-21T06:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Civil religion\\\",\\\"pageid\\\":185692,\\\"size\\\":34053,\\\"wordcount\\\":3846,\\\"snippet\\\":\\\"Civil\\nreligion\\n, also referred to as a civic\\nreligion\\n, is the implicit religious values of a nation, as expressed through public rituals, symbols (such\\\",\\\"timestamp\\\":\\\"2026-06-25T16:06:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Abrahamic religions\\\",\\\"pageid\\\":13906453,\\\"size\\\":112861,\\\"wordcount\\\":10868,\\\"snippet\\\":\\\"The Abrahamic\\nreligions\\nare a set of monotheistic\\nreligions\\nthat respect or admire the religious figure Abraham as a patriarch and/or as a prophet, namely\\\",\\\"timestamp\\\":\\\"2026-09-18T17:21:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in China\\\",\\\"pageid\\\":367843,\\\"size\\\":300336,\\\"wordcount\\\":34062,\\\"snippet\\\":\\\"\\nReligion\\nin China by self-identified affiliation (Pew Research Center 2023) No\\nreligion\\n(93.0%) Buddhism (3.70%) Folk beliefs (0.20%) Christianity (1\\\",\\\"timestamp\\\":\\\"2026-09-12T03:20:45Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Yoruba religion\\\",\\\"pageid\\\":682534,\\\"size\\\":64332,\\\"wordcount\\\":4734,\\\"snippet\\\":\\\"The Yor\\\\u00f9b\\\\u00e1\\nreligion\\n(Yoruba: \\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e [\\\\u00ec\\\\u0283\\\\u025b\\\\u0300\\\\u0283\\\\u0113]), West African Orisa (\\\\u00d2r\\\\u00ec\\\\u1e63\\\\u00e0 [\\\\u00f2\\\\u027e\\\\u00ec\\\\u0283\\\\u00e0]), or Isese (\\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e), comprises the traditional religious and spiritual\\\",\\\"timestamp\\\":\\\"2026-09-15T17:38:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hellenistic religion\\\",\\\"pageid\\\":7491899,\\\"size\\\":17856,\\\"wordcount\\\":2083,\\\"snippet\\\":\\\"The concept of Hellenistic\\nreligion\\nas the late form of Ancient Greek\\nreligion\\ncovers any of the various systems of beliefs and practices of the people\\\",\\\"timestamp\\\":\\\"2026-08-19T12:26:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in India\\\",\\\"pageid\\\":10710364,\\\"size\\\":125253,\\\"wordcount\\\":11197,\\\"snippet\\\":\\\"\\nReligion\\nin India (2011 census) Hinduism (79.8%) Islam (14.2%) Christianity (2.30%) Sikhism (1.70%) Buddhism (0.70%) Sarnaism (0.40%) Jainism (0.40%) Other\\\",\\\"timestamp\\\":\\\"2026-09-11T19:59:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Folk religion\\\",\\\"pageid\\\":21920776,\\\"size\\\":44106,\\\"wordcount\\\":4958,\\\"snippet\\\":\\\"Folk\\nreligion\\n, traditional\\nreligion\\n, or vernacular\\nreligion\\ncomprises, according to religious studies and folkloristics, various forms and expressions\\\",\\\"timestamp\\\":\\\"2026-09-14T10:35:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hawaiian religion\\\",\\\"pageid\\\":17990997,\\\"size\\\":32321,\\\"wordcount\\\":3150,\\\"snippet\\\":\\\"Hawaiian\\nreligion\\ncomprises the Indigenous religious beliefs and practices of Native Hawaiians, also known as the kapu system. Hawaiian\\nreligion\\nwas based\\\",\\\"timestamp\\\":\\\"2026-09-10T11:53:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Canaanite religion\\\",\\\"pageid\\\":2375688,\\\"size\\\":38557,\\\"wordcount\\\":4353,\\\"snippet\\\":\\\"The\\nreligion\\nand mythic beliefs of the people in the land of Canaan in the southern Levant during approximately the first three millennia\\\\u00a0BCE were polytheistic\\\",\\\"timestamp\\\":\\\"2026-09-08T21:35:17Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"12b2ffcdcf42bedba495b894fdb00ee0fd0ccaf93c69176a1ad81246e8512f9c\", \"verification_required\": true, \"topic_domain\": \"religion\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-1322f2332dbd4952",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json",
+      "version": 114,
+      "time": "2026-09-26T00:28:31.255452+00:00"
+    },
+    "source-c20fb437c5794d17": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":86,\\\"suggestion\\\":\\\"storytelling narrative coalition literature\\\",\\\"suggestionsnippet\\\":\\\"storytelling narrative\\ncoalition\\nliterature\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Fiction\\\",\\\"pageid\\\":18949461,\\\"size\\\":35712,\\\"wordcount\\\":3771,\\\"snippet\\\":\\\"non-fiction.\\nStorytelling\\nhas existed in all human cultures, and each culture incorporates different elements of truth and fiction into\\nstorytelling\\n. Early\\\",\\\"timestamp\\\":\\\"2026-09-07T19:11:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narrative identity\\\",\\\"pageid\\\":35716364,\\\"size\\\":60455,\\\"wordcount\\\":7308,\\\"snippet\\\":\\\"on the affective tone of life\\nnarrative\\nmemories: Early adolescence and older age are more negative\\\". Memory and\\nCognition\\n. 51 (6): 1265\\\\u20131286. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-16T15:09:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narratology\\\",\\\"pageid\\\":718763,\\\"size\\\":23172,\\\"wordcount\\\":2691,\\\"snippet\\\":\\\"Digital-media theorist and professor Janet Murray theorized a shift in\\nstorytelling\\nand\\nnarrative\\nstructure in the twentieth century as a result of scientific advancement\\\",\\\"timestamp\\\":\\\"2026-06-21T07:57:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ancient literature\\\",\\\"pageid\\\":3709305,\\\"size\\\":49644,\\\"wordcount\\\":4634,\\\"snippet\\\":\\\"Ancient\\nliterature\\ncomprises religious and scientific documents, tales, poetry and plays, royal edicts and declarations, and other forms of writing that\\\",\\\"timestamp\\\":\\\"2026-06-29T20:43:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Role-playing game\\\",\\\"pageid\\\":25475,\\\"size\\\":38009,\\\"wordcount\\\":4559,\\\"snippet\\\":\\\"form of interactive and collaborative\\nstorytelling\\n. Events, roles, and\\nnarrative\\nstructure give a sense of a\\nnarrative\\nexperience, and the game need not have\\\",\\\"timestamp\\\":\\\"2026-09-20T05:14:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Suspense\\\",\\\"pageid\\\":4450450,\\\"size\\\":10990,\\\"wordcount\\\":1207,\\\"snippet\\\":\\\"audience feels sympathy. However, suspense is not exclusive to\\nnarratives\\n. In\\nliterature\\n, films, television, and plays, suspense is a major device for\\\",\\\"timestamp\\\":\\\"2026-09-10T05:31:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Immersive learning\\\",\\\"pageid\\\":64345811,\\\"size\\\":22110,\\\"wordcount\\\":2264,\\\"snippet\\\":\\\"structured by the audience's own\\ncognition\\n. Also, within Ryan's book, the cognitive immersion created by\\nnarrative\\nis categorized into three kinds: spatial\\\",\\\"timestamp\\\":\\\"2025-11-26T22:52:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Children's literature\\\",\\\"pageid\\\":52847,\\\"size\\\":167603,\\\"wordcount\\\":18216,\\\"snippet\\\":\\\"Machine Children's\\nliterature\\nArchived 2016-06-17 at the Wayback Machine at the British Library Children's\\nLiterature\\n, Culture, and\\nCognition\\n(CLCC) Database\\\",\\\"timestamp\\\":\\\"2026-09-21T04:25:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Soma (video game)\\\",\\\"pageid\\\":5649586,\\\"size\\\":41063,\\\"wordcount\\\":3882,\\\"snippet\\\":\\\"Cody (22 June 2023). \\\"Games ad Critical\\nLiterature\\n: Playing with Transhumanism, Embodied\\nCognition\\n, and\\nNarrative\\nDifference in SOMA\\\". In Ghosal, Torsa\\\",\\\"timestamp\\\":\\\"2026-07-09T19:08:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Keith Oatley\\\",\\\"pageid\\\":31686503,\\\"size\\\":15027,\\\"wordcount\\\":1421,\\\"snippet\\\":\\\"authored several novels that intertwine psychological themes with\\nnarrative\\nstorytelling\\n. His debut novel, The Case of Emily V., imagines a collaboration\\\",\\\"timestamp\\\":\\\"2025-09-05T15:35:51Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"475a032a0bae3b8ab8a3469b8f93a5cd014a027020e6ea6409fa92e1782993b6\", \"verification_required\": true, \"topic_domain\": \"storytelling\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-c20fb437c5794d17",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json",
+      "version": 114,
+      "time": "2026-09-26T00:28:31.936048+00:00"
+    },
+    "source-73d22dfb59ec4566": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2767},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Emergence\\\",\\\"pageid\\\":37436,\\\"size\\\":60324,\\\"wordcount\\\":6551,\\\"snippet\\\":\\\"In philosophy,\\nsystems\\ntheory, science, and art,\\nemergence\\noccurs when a\\ncomplex\\nentity has properties or behaviors that its components do not have on\\\",\\\"timestamp\\\":\\\"2026-09-07T03:04:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-organization\\\",\\\"pageid\\\":286947,\\\"size\\\":64814,\\\"wordcount\\\":6861,\\\"snippet\\\":\\\"justification for\\nself\\n-\\norganization\\nas a general principle of\\ncomplex\\nsystems\\n. In the field of multi-agent\\nsystems\\n, understanding how to engineer\\nsystems\\nthat are\\\",\\\"timestamp\\\":\\\"2026-08-20T00:23:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems theory\\\",\\\"pageid\\\":29238,\\\"size\\\":56628,\\\"wordcount\\\":6135,\\\"snippet\\\":\\\"how well the\\nsystem\\nis engaged with its environment and other contexts influencing its\\norganization\\n. Some\\nsystems\\nsupport other\\nsystems\\n, maintaining the\\\",\\\"timestamp\\\":\\\"2026-07-18T16:09:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex system\\\",\\\"pageid\\\":37438,\\\"size\\\":47317,\\\"wordcount\\\":4876,\\\"snippet\\\":\\\"\\nsystem\\nand its environment.\\nSystems\\nthat are \\\"\\ncomplex\\n\\\" have distinct properties that arise from these relationships, such as nonlinearity,\\nemergence\\n,\\\",\\\"timestamp\\\":\\\"2026-09-25T18:37:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex adaptive system\\\",\\\"pageid\\\":1428810,\\\"size\\\":35927,\\\"wordcount\\\":3790,\\\"snippet\\\":\\\"The\\nComplex\\nAdaptive\\nSystems\\napproach builds on replicator dynamics. The study of\\ncomplex\\nadaptive\\nsystems\\n, a subset of nonlinear dynamical\\nsystems\\n, is\\\",\\\"timestamp\\\":\\\"2026-04-06T14:02:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-assembly\\\",\\\"pageid\\\":351914,\\\"size\\\":40999,\\\"wordcount\\\":4440,\\\"snippet\\\":\\\"Although\\nself\\n-assembly typically occurs between weakly-interacting species, this\\norganization\\nmay be transferred into strongly-bound covalent\\nsystems\\n. An example\\\",\\\"timestamp\\\":\\\"2026-08-10T18:14:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-regulation\\\",\\\"pageid\\\":1738695,\\\"size\\\":834,\\\"wordcount\\\":132,\\\"snippet\\\":\\\"standards\\nSelf\\n-regulatory\\norganization\\n, in business and finance Homeostasis, a state of steady internal conditions maintained by living things\\nEmergence\\n, the\\\",\\\"timestamp\\\":\\\"2023-05-02T13:34:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The purpose of a system is what it does\\\",\\\"pageid\\\":17404830,\\\"size\\\":6777,\\\"wordcount\\\":754,\\\"snippet\\\":\\\"applying POSIWID shows that the\\norganization's\\npractices contradict those values. From a cybernetic perspective,\\ncomplex\\nsystems\\nare not controllable by simple\\\",\\\"timestamp\\\":\\\"2026-09-22T17:25:20Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems thinking\\\",\\\"pageid\\\":227985,\\\"size\\\":20916,\\\"wordcount\\\":2126,\\\"snippet\\\":\\\"action in\\ncomplex\\ncontexts, enabling\\nsystems\\nchange.\\nSystems\\nthinking draws on and contributes to conceptual\\nsystems\\n,\\nsystems\\ntheory, and the\\nsystem\\nsciences\\\",\\\"timestamp\\\":\\\"2026-09-25T10:53:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complexity theory and organizations\\\",\\\"pageid\\\":5938019,\\\"size\\\":24442,\\\"wordcount\\\":2009,\\\"snippet\\\":\\\"differentiate it from other\\nself\\n-organizing\\nsystems\\n.\\nOrganizational\\nenvironments can be viewed as\\ncomplex\\nadaptive\\nsystems\\nwhere coevolution generally\\\",\\\"timestamp\\\":\\\"2026-05-25T04:34:59Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"bee01af66cfbb538b40acb3927627fbef7ce42fb096e4b62d2af8e75b1686ea0\", \"verification_required\": true, \"topic_domain\": \"complex_systems\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-73d22dfb59ec4566",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json",
+      "version": 114,
+      "time": "2026-09-26T00:28:32.640496+00:00"
+    },
+    "source-9008d3f482ae436f": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":36},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Music\\\",\\\"pageid\\\":18839,\\\"size\\\":143456,\\\"wordcount\\\":16225,\\\"snippet\\\":\\\"\\nMusic\\nis the arrangement of sound to create some combination of form,\\nharmony\\n,\\nmelody\\n,\\nrhythm\\n, or otherwise expressive content.\\nMusic\\nis generally agreed\\\",\\\"timestamp\\\":\\\"2026-09-23T13:33:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Metre (music)\\\",\\\"pageid\\\":84026,\\\"size\\\":44586,\\\"wordcount\\\":4180,\\\"snippet\\\":\\\"(eds.). Musical\\nStructure\\nand\\nCognition\\n. London: Academic Press. ISBN\\\\u00a0978-0-12357170-0. Lester, Joel (1986). The\\nRhythms\\nof Tonal\\nMusic\\n. Carbondale: Southern\\\",\\\"timestamp\\\":\\\"2026-09-10T22:06:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music and emotion\\\",\\\"pageid\\\":33107185,\\\"size\\\":52701,\\\"wordcount\\\":5883,\\\"snippet\\\":\\\"Emotion is induced in a listener because a feature of the\\nmusic\\n, such as\\nrhythm\\nor\\nharmony\\n, violates, delays, or confirms a listener's expectations. In\\\",\\\"timestamp\\\":\\\"2026-09-13T21:50:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music theory\\\",\\\"pageid\\\":54783,\\\"size\\\":122949,\\\"wordcount\\\":13838,\\\"snippet\\\":\\\"computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter, and form. Research in\\nmusic\\nhistory can benefit from systematic\\\",\\\"timestamp\\\":\\\"2026-09-24T23:02:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Embodied music cognition\\\",\\\"pageid\\\":8676342,\\\"size\\\":14007,\\\"wordcount\\\":1763,\\\"snippet\\\":\\\"Embodied\\nmusic\\ncognition\\nas it was originally a direction within systematic musicology interested in studying the role of the human body in relation to\\\",\\\"timestamp\\\":\\\"2026-08-06T01:21:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroscience of music\\\",\\\"pageid\\\":25049383,\\\"size\\\":80829,\\\"wordcount\\\":9690,\\\"snippet\\\":\\\"cortex is primarily involved in perceiving pitch, and parts of\\nharmony\\n,\\nmelody\\nand\\nrhythm\\n. One study by Petr Janata found that there are tonality-sensitive\\\",\\\"timestamp\\\":\\\"2026-09-21T08:40:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"to\\nmusic\\ntheory through investigations of the perception and computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-specific disorders\\\",\\\"pageid\\\":25213736,\\\"size\\\":10890,\\\"wordcount\\\":1469,\\\"snippet\\\":\\\"elements of\\nmusic\\n, such as pitch,\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n; the ability to react both emotionally and with bodily movements (e.g. dancing) to\\nmusic\\n; to form\\\",\\\"timestamp\\\":\\\"2026-06-06T14:12:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Deep structure and surface structure\\\",\\\"pageid\\\":283746,\\\"size\\\":10396,\\\"wordcount\\\":1213,\\\"snippet\\\":\\\"a two-level generative\\nstructure\\nfor\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n, of which the analysis by Lee (1985) of rhythmical\\nstructure\\nis an instance. (See also:\\\",\\\"timestamp\\\":\\\"2025-09-24T18:19:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of music\\\",\\\"pageid\\\":3403168,\\\"size\\\":32730,\\\"wordcount\\\":1766,\\\"snippet\\\":\\\"and silence. It may be expressed in terms of pitch,\\nrhythm\\n,\\nharmony\\n, and timbre. Definition of\\nmusic\\nOne of the arts One of the performing arts One of the\\\",\\\"timestamp\\\":\\\"2026-09-03T23:48:41Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"aefe0e3d681dba75fd8f593d214ad8c6155566e4884cdb943376a852aa150372\", \"verification_required\": true, \"topic_domain\": \"music\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-9008d3f482ae436f",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json",
+      "version": 114,
+      "time": "2026-09-26T00:28:33.356414+00:00"
+    },
+    "source-d366aec234f14ab2": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":40311},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness\\\",\\\"pageid\\\":5664,\\\"size\\\":187364,\\\"wordcount\\\":21233,\\\"snippet\\\":\\\"\\nConsciousness\\nis being aware of something internal to one's self, or of states or objects in one's external environment. It has been the topic of extensive\\\",\\\"timestamp\\\":\\\"2026-09-19T15:23:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Stream of consciousness\\\",\\\"pageid\\\":101483,\\\"size\\\":26790,\\\"wordcount\\\":3226,\\\"snippet\\\":\\\"In literary criticism, stream of\\nconsciousness\\nis a narrative mode or method that attempts \\\"to depict the multitudinous thoughts and feelings which pass\\\",\\\"timestamp\\\":\\\"2026-06-22T22:10:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hard problem of consciousness\\\",\\\"pageid\\\":634216,\\\"size\\\":115556,\\\"wordcount\\\":13247,\\\"snippet\\\":\\\"hard problem of\\nconsciousness\\n(or simply the hard problem) is to explain how and why organisms have qualia, phenomenal\\nconsciousness\\n, or subjective experience\\\",\\\"timestamp\\\":\\\"2026-08-27T00:59:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Artificial consciousness\\\",\\\"pageid\\\":195552,\\\"size\\\":66143,\\\"wordcount\\\":6941,\\\"snippet\\\":\\\"Artificial\\nconsciousness\\n, also known as machine\\nconsciousness\\n, synthetic\\nconsciousness\\n, or digital\\nconsciousness\\n, is\\nconsciousness\\nhypothesized to be\\\",\\\"timestamp\\\":\\\"2026-09-23T13:46:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness (disambiguation)\\\",\\\"pageid\\\":40457047,\\\"size\\\":695,\\\"wordcount\\\":97,\\\"snippet\\\":\\\"\\nconsciousness\\nin Wiktionary, the free dictionary.\\nConsciousness\\nis the state or quality of awareness.\\nConsciousness\\nmay also refer to:\\nConsciousness\\n(Hill\\\",\\\"timestamp\\\":\\\"2022-05-26T00:46:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Collective consciousness\\\",\\\"pageid\\\":1077491,\\\"size\\\":15253,\\\"wordcount\\\":1536,\\\"snippet\\\":\\\"Collective\\nconsciousness\\n, collective conscience, or collective conscious (French: conscience collective) is the set of shared beliefs, ideas, and moral\\\",\\\"timestamp\\\":\\\"2026-07-29T04:14:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Double consciousness\\\",\\\"pageid\\\":3057990,\\\"size\\\":20535,\\\"wordcount\\\":2622,\\\"snippet\\\":\\\"Double\\nconsciousness\\nis the dual self-perception experienced by subordinated or colonized groups in an oppressive society. The term and the idea were\\\",\\\"timestamp\\\":\\\"2026-09-12T04:18:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Animal consciousness\\\",\\\"pageid\\\":13001588,\\\"size\\\":135552,\\\"wordcount\\\":14235,\\\"snippet\\\":\\\"Animal\\nconsciousness\\n, or animal awareness, is the quality or state of self-awareness within an animal, or of being aware of an external object or of something\\\",\\\"timestamp\\\":\\\"2026-09-24T01:05:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-consciousness\\\",\\\"pageid\\\":2772118,\\\"size\\\":5955,\\\"wordcount\\\":683,\\\"snippet\\\":\\\"Self-\\nconsciousness\\nis a heightened sense of awareness of oneself. Historically, \\\"self-\\nconsciousness\\n\\\" was synonymous with \\\"self-awareness\\\", referring to\\\",\\\"timestamp\\\":\\\"2026-07-23T22:59:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Class consciousness\\\",\\\"pageid\\\":38794693,\\\"size\\\":11255,\\\"wordcount\\\":1330,\\\"snippet\\\":\\\"In sociology, class\\nconsciousness\\nis the set of beliefs that persons hold regarding their social class or economic rank in society, the structure of their\\\",\\\"timestamp\\\":\\\"2026-09-21T19:55:05Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"d6ac202db0b870c7b7226eeec2ce8692b6149219880330d9649f3cfe499d2296\", \"verification_required\": true, \"topic_domain\": \"consciousness\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-d366aec234f14ab2",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json",
+      "version": 114,
+      "time": "2026-09-26T00:28:33.916690+00:00"
+    },
+    "r-68a2199db0b541d3": {
+      "actor": "runtime",
+      "content": "{\"base_version\":114,\"inherited_commitments\":[],\"invocation\":\"w-68a2199db0b541d3\",\"previous_head\":\"ac425135e9fe6bb5180cf4c8fe6d09f0e2f78b563900aac0f21d0520686e2eb0\",\"process_id\":2247,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-68a2199db0b541d3",
+      "source": "runtime:continuity",
+      "version": 114,
+      "time": "2026-09-26T00:28:36.151716+00:00"
     }
   },
   "journal": [
@@ -107192,6 +107254,440 @@
           "reason": "configured_daily_limit"
         }
       ]
+    },
+    "w-68a2199db0b541d3": {
+      "base_version": 114,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 17797,
+        "delivered_request_chars": 44652,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "request_compression_ratio": 0.4205,
+        "retrieval_rehydrated_evidence_count": 2,
+        "rich_context_chars": 106188,
+        "working_set_chars": 3073
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-68a2199db0b541d3",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 114,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 0
+            },
+            "id": "entropy-foundations",
+            "score": 0.675,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Foundations of Entropy"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2247,
+      "provider": "gemini",
+      "quota_day": "2026-09-25",
+      "request_hash": "896ca81bbf1fe44de7ded4d0f1b9f50745015a7aed92bb172ca9d8fc055eab46",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-neurodiversity-foundations-01",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-dance-rhythm-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-41fac1eecb0246dd",
+              "source-51a9b989df3144af"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-visual-art-composition-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-9d6c79b1eb374049"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-9d6c79b1eb374049",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-f5c2b53518804dc8"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-f5c2b53518804dc8",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-ffb6345e55b04646"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-ffb6345e55b04646",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-96559d2fcdf046e8"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-96559d2fcdf046e8",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-16416e2262024f84"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-16416e2262024f84",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-80a185e124b142bf"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-80a185e124b142bf",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658",
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b",
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af",
+          "source-9d6c79b1eb374049",
+          "source-f5c2b53518804dc8",
+          "source-ffb6345e55b04646",
+          "source-96559d2fcdf046e8",
+          "source-16416e2262024f84",
+          "source-80a185e124b142bf"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 9,
+          "evidence_count": 12,
+          "trigger_counts": {
+            "notebook_revised": 3,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "runtime_performance": {
+        "compaction_ms": 3.984,
+        "context_build_ms": 44.925,
+        "load_ms": 725.448,
+        "receipt_ms": 434.35,
+        "start_total_before_record_ms": 2278.398,
+        "store": {
+          "append_cache_hits": 9,
+          "append_cache_misses": 0,
+          "cached_copy_ms": 698.227,
+          "cached_loads": 0,
+          "event_count": 3319,
+          "full_replays": 11,
+          "replay_ms": 5344.403,
+          "trusted_projection_active": true
+        },
+        "temporal_ms": 1068.675
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 2,
+          "topic": "entropy"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [],
+        "enforce_selected_topic": false,
+        "hard_rejection_threshold": 5,
+        "parked": {},
+        "reason": "current durable project topic remains eligible",
+        "rotation_required": false,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "entropy",
+        "temporal": {
+          "anchor_seq": 3318,
+          "anchor_time": "2026-09-26T00:28:34.918872+00:00",
+          "anchor_version": 114,
+          "effective_seconds": 88872.443934
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": null,
+        "topic_selection_candidates": [],
+        "topic_selection_method": "active_topic"
+      },
+      "temporal": {
+        "cycle_distance": 0,
+        "effective_elapsed_seconds": 405.643894,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 88872.443934,
+        "intervening_events": {
+          "accepted": 0,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 1,
+          "research_collected": 0,
+          "squirrel_assessed": 1,
+          "total": 13
+        },
+        "observed_at": "2026-09-26T00:28:34.918872+00:00",
+        "previous_anchor_time": "2026-09-26T00:21:49.274978+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 405.643894
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 17797,
+        "inquiry_drive_project_count": 1,
+        "mode": "bounded",
+        "retrieval_candidate_count": 9,
+        "retrieval_evidence_count": 12,
+        "retrieval_rehydrated_evidence_count": 2,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 3,
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 3073,
+        "working_to_delivered_ratio": 0.1727
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "entropy-foundations",
+            "next_step": "Search for literature comparing thermodynamic, statistical, and information-theoretic entropy definitions.",
+            "question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?",
+            "title": "Foundations of Entropy"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-dance-rhythm-001",
+            "project": "dance-rhythm-cognition",
+            "provenance": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "revision": 2,
+            "summary": "Updates the provisional synthesis of rhythmic coordination in dance by incorporating metadata from psychotherapy and dance-focused literature.",
+            "title": "Provisional Synthesis: Rhythmic Coordination and Dance"
+          },
+          {
+            "id": "nb-visual-art-composition-001",
+            "project": "visual-art-composition-and-expectation",
+            "provenance": [
+              "source-41fac1eecb0246dd",
+              "source-51a9b989df3144af"
+            ],
+            "revision": 2,
+            "summary": "A provisional synthesis of bibliographic metadata concerning visual art composition and perception, identifying the current evidence base as metadata-focused.",
+            "title": "Provisional Synthesis: Composition and Observer Expectation"
+          },
+          {
+            "id": "nb-info-thermo-demon-001",
+            "project": "info-thermo-maxwell-demon",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 1,
+            "summary": "Initial synthesis examining the conceptual overlap between information erasure and physical entropy, using available bibliographic metadata as a grounding framework.",
+            "title": "Provisional Synthesis: Foundations of Information Thermodynamics"
+          },
+          {
+            "id": "nb-dance-structural-001",
+            "project": "dance-movement-structural-constraints",
+            "provenance": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "revision": 1,
+            "summary": "An initial mapping of dance and movement research, focusing on the intersection of choreographic structure and cognitive response, grounded in available metadata records.",
+            "title": "Provisional Synthesis: Structural Constraints in Dance"
+          },
+          {
+            "id": "nb-info-thermo-demon-002",
+            "project": "info-thermo-maxwell-demon",
+            "provenance": [
+              "source-ae0e2b3554414618",
+              "source-b772fc7044e548f7"
+            ],
+            "revision": 1,
+            "summary": "An exploration of how information-theoretic erasure relates to physical entropy, synthesized from bibliographic metadata on classical thermodynamics and information theory.",
+            "title": "Synthesis: Information Erasure and Entropy"
+          },
+          {
+            "id": "nb-prime-dist-001",
+            "project": "prime-numbers-distribution",
+            "provenance": [
+              "source-7ec80a5fc56745db"
+            ],
+            "revision": 1,
+            "summary": "An initial exploration of the Prime Number Theorem's role in describing prime number distribution, based on bibliographic metadata.",
+            "title": "Provisional Synthesis: Prime Number Theorem and Density"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "rejected",
+      "time": "2026-09-26T00:28:36.550923+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 2630,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 48651,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-26T00:28:59.431085+00:00",
+      "reason": "Notebook findings requires material support from at least 1 distinct collected source URL(s)",
+      "skipped_models": [
+        {
+          "model": "gemini-3.8-flash",
+          "reason": "configured_daily_limit"
+        },
+        {
+          "model": "gemini-3.5-flash",
+          "reason": "configured_daily_limit"
+        }
+      ]
     }
   },
   "pending": null,
@@ -107200,7 +107696,7 @@
       "consciousness": 1,
       "dance": 1,
       "endocrinology": 1,
-      "entropy": 4,
+      "entropy": 5,
       "epistemology": 0,
       "evolutionary_biology": 7,
       "information_thermodynamics": 0,
@@ -107210,17 +107706,34 @@
       "quantum_mechanics": 5,
       "visual_art": 0
     },
-    "deferred": {},
+    "deferred": {
+      "entropy": {
+        "cause": "hard_rejection",
+        "deferred_by": "w-68a2199db0b541d3",
+        "eligible_after_other_attempts": 3,
+        "other_topic_attempts": 0,
+        "parked_projects": [
+          {
+            "id": "entropy-foundations",
+            "next_step": "Search for literature comparing thermodynamic, statistical, and information-theoretic entropy definitions.",
+            "question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?"
+          }
+        ],
+        "reason": "five consecutive hard rejections without durable progress"
+      }
+    },
     "last_receipt": {
       "attention_saturation_triggered": false,
       "attention_topic": "entropy",
       "durable_progress": false,
       "hard_rejection": true,
-      "invocation": "w-edc8aa45cd7240ec",
+      "invocation": "w-68a2199db0b541d3",
       "restored_topics": [],
       "selected_topic": "entropy",
       "terminal": "rejected",
-      "triggered_topics": []
+      "triggered_topics": [
+        "entropy"
+      ]
     },
     "attention": {
       "accepted_streak": 2,
@@ -108145,9 +108658,10 @@
     "entropy-foundations": {
       "project": "entropy-foundations",
       "domain": "entropy",
-      "no_progress": 1,
+      "no_progress": 2,
       "routes": [
-        "api.datacite.org:discovery"
+        "api.datacite.org:discovery",
+        "api.crossref.org:source"
       ],
       "capability_blocked": false,
       "retry_after_version": null,
@@ -108158,17 +108672,12 @@
         "doi:10.5281/zenodo.18604376"
       ],
       "last_receipt": {
-        "evidence": "source-cc8f7d9e877f4a5f",
-        "outcome": "no_progress",
-        "persistent_identifiers": [
-          "doi:10.5281/zenodo.22836097",
-          "doi:10.5281/zenodo.20192571",
-          "doi:10.5281/zenodo.20476829",
-          "doi:10.5281/zenodo.18604376"
-        ],
+        "evidence": "source-d25613f4d01944a0",
+        "outcome": "route_failure",
+        "persistent_identifiers": [],
         "research_id": "res-entropy-foundations-001",
-        "route": "api.datacite.org:discovery",
-        "stage": "discovery"
+        "route": "api.crossref.org:source",
+        "stage": "substantive_source"
       }
     }
   },
@@ -109993,9 +110502,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-26T00:21:49.274978+00:00",
+    "anchor_time": "2026-09-26T00:28:34.918872+00:00",
     "anchor_version": 114,
-    "anchor_seq": 3304,
-    "effective_seconds": 88466.80004
+    "anchor_seq": 3318,
+    "effective_seconds": 88872.443934
   }
 }
