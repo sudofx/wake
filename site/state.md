@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 124  
+**Version:** 125  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `7a53f829822ceaaa0b960f9ee8521ea20d009bd634c5eb85ec019fb9f296cf8e`
+**Verified head:** `6916c730c17975439c3fdd41701e76462140c5d91a8cfa538d56fbb2c0051f26`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -1689,31 +1689,34 @@ _None recorded._
 {
   "project": "neurology-metabolic-pathways",
   "domain": "neurology",
-  "no_progress": 2,
+  "no_progress": 1,
   "routes": [
-    "api.semanticscholar.org:discovery"
+    "api.semanticscholar.org:discovery",
+    "api.crossref.org:source",
+    "api.datacite.org:discovery"
   ],
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.1007/s10482-026-02296-9",
-    "doi:10.1007/s11884-026-00832-x",
-    "doi:10.1007/s11884-026-00832-x.pdf",
-    "doi:10.1016/bs.irn.2026.05.004",
-    "doi:10.1111/jne.70246"
+    "doi:10.1111/jne.70246",
+    "doi:10.1007/springer_crossmark_policy",
+    "doi:10.1007/s00018-018-2943-4",
+    "doi:10.3389/fmicb.2022.999001",
+    "doi:10.1165/rcmb.2017-0200tr",
+    "doi:10.1016/s0016-5085(15)32398-2",
+    "doi:10.3390/microorganisms4020020",
+    "doi:10.1186/s43045-024-00395-9",
+    "doi:10.5152/tud.2018.48742",
+    "doi:10.3390/cells12010054",
+    "doi:10.3390/microorganisms10122436",
+    "doi:10.1126/science.1224820"
   ],
   "last_receipt": {
-    "evidence": "source-380576f1b1d34823",
-    "outcome": "no_progress",
-    "persistent_identifiers": [
-      "doi:10.1007/s10482-026-02296-9",
-      "doi:10.1007/s11884-026-00832-x",
-      "doi:10.1007/s11884-026-00832-x.pdf",
-      "doi:10.1016/bs.irn.2026.05.004",
-      "doi:10.1111/jne.70246"
-    ],
-    "research_id": "res-neurology-metabolic-001",
-    "route": "api.semanticscholar.org:discovery",
+    "evidence": "source-6223e095835a4fff",
+    "outcome": "route_failure",
+    "persistent_identifiers": [],
+    "research_id": "res-neuro-metabolic-002",
+    "route": "api.datacite.org:discovery",
     "stage": "discovery"
   }
 }
@@ -1753,7 +1756,7 @@ _None recorded._
   "neurology": {
     "cause": "attention_saturation",
     "deferred_by": "w-a6eea847f8874612",
-    "other_topic_attempts": 0,
+    "other_topic_attempts": 1,
     "parked_projects": [
       {
         "id": "neurology-metabolic-pathways",
@@ -1771,17 +1774,15 @@ _None recorded._
 
 ```json
 {
-  "attention_saturation_triggered": true,
-  "attention_topic": "neurology",
+  "attention_saturation_triggered": false,
+  "attention_topic": "complex_systems",
   "durable_progress": false,
   "hard_rejection": false,
-  "invocation": "w-a6eea847f8874612",
+  "invocation": "w-9bc3870d398e40be",
   "restored_topics": [],
-  "selected_topic": "neurology",
+  "selected_topic": "complex_systems",
   "terminal": "accepted",
-  "triggered_topics": [
-    "neurology"
-  ]
+  "triggered_topics": []
 }
 ```
 
@@ -1789,8 +1790,8 @@ _None recorded._
 
 ```json
 {
-  "accepted_streak": 5,
-  "topic": "neurology"
+  "accepted_streak": 1,
+  "topic": "complex_systems"
 }
 ```
 
@@ -104850,6 +104851,520 @@ _None recorded._
 }
 ```
 
+### `w-9bc3870d398e40be`
+
+```json
+{
+  "base_version": 124,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 20990,
+    "delivered_request_chars": 45919,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "request_compression_ratio": 0.4373,
+    "retrieval_rehydrated_evidence_count": 2,
+    "rich_context_chars": 105008,
+    "working_set_chars": 3749
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-9bc3870d398e40be",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 124,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 1.0
+        },
+        "id": "neurology-metabolic-pathways",
+        "score": 0.825,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Neurological Impact of Metabolic Changes"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0.5
+        },
+        "id": "religion-cross-cultural-practices",
+        "score": 0.75,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 3,
+          "queued_research": 0
+        },
+        "title": "Cross-Cultural Religious Practices"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "entropy-foundations",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Foundations of Entropy"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2296,
+  "provider": "gemini",
+  "quota_day": "2026-09-25",
+  "request_hash": "aca1d6cdd3a7fdbb321fb1f4c99d077a229d5f325b7e82ba553b960a9edd06c7",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neurodiversity-foundations-01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-dance-rhythm-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-visual-art-composition-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-55ee34bc8e5142d6"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-55ee34bc8e5142d6",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-67cedb30d9bb4f2c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-67cedb30d9bb4f2c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-2cd2684377c54051"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-2cd2684377c54051",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-e2e41e9bcb594def"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-e2e41e9bcb594def",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-10bb76ac99dc4e25"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-10bb76ac99dc4e25",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-16a38b8a6e2346cf"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-16a38b8a6e2346cf",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0a7b2a5c06d44417",
+      "source-930f33f0d42a4658",
+      "source-f535f6171025430e",
+      "source-b4a60e211150449b",
+      "source-41fac1eecb0246dd",
+      "source-51a9b989df3144af",
+      "source-55ee34bc8e5142d6",
+      "source-67cedb30d9bb4f2c",
+      "source-2cd2684377c54051",
+      "source-e2e41e9bcb594def",
+      "source-10bb76ac99dc4e25",
+      "source-16a38b8a6e2346cf"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 12,
+      "trigger_counts": {
+        "notebook_revised": 3,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "runtime_performance": {
+    "compaction_ms": 4.1,
+    "context_build_ms": 93.916,
+    "load_ms": 820.478,
+    "receipt_ms": 486.054,
+    "start_total_before_record_ms": 2652.851,
+    "store": {
+      "append_cache_hits": 11,
+      "append_cache_misses": 0,
+      "cached_copy_ms": 931.758,
+      "cached_loads": 0,
+      "event_count": 3589,
+      "full_replays": 11,
+      "replay_ms": 6227.675,
+      "trusted_projection_active": true
+    },
+    "temporal_ms": 1247.116
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 5,
+      "topic": "neurology"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [
+      "entropy"
+    ],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [
+      "neurology"
+    ],
+    "enforce_selected_topic": true,
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "neurology": [
+        {
+          "id": "neurology-metabolic-pathways",
+          "next_step": "Initiate search for review articles linking systemic metabolic dysfunction to neurological disease pathways.",
+          "question": "How do metabolic, hormonal, and systemic physiological changes influence neurological function and neurological disease?"
+        }
+      ]
+    },
+    "reason": "alternate configured topic selected during Squirrel cooldown or capability block",
+    "rotation_required": true,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "complex_systems",
+    "temporal": {
+      "anchor_seq": 3588,
+      "anchor_time": "2026-09-26T02:37:16.114348+00:00",
+      "anchor_version": 124,
+      "effective_seconds": 96593.63941
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": "r-9bc3870d398e40be",
+    "topic_selection_candidates": [
+      "comedy",
+      "complex_systems",
+      "consciousness",
+      "dance",
+      "endocrinology",
+      "epistemology",
+      "evolutionary_biology",
+      "information_thermodynamics",
+      "music",
+      "neurodivergence",
+      "philosophy",
+      "prime_numbers",
+      "psychology",
+      "quantum_mechanics",
+      "religion",
+      "storytelling",
+      "visual_art"
+    ],
+    "topic_selection_method": "receipt_hash_uniform_index"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 493.393427,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 96593.63941,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 1,
+      "squirrel_assessed": 1,
+      "total": 15
+    },
+    "observed_at": "2026-09-26T02:37:16.114348+00:00",
+    "previous_anchor_time": "2026-09-26T02:29:02.720921+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 493.393427
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 20990,
+    "inquiry_drive_project_count": 3,
+    "mode": "bounded",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 12,
+    "retrieval_rehydrated_evidence_count": 2,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 3,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 3749,
+    "working_to_delivered_ratio": 0.1786
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "entropy-foundations",
+        "next_step": "Search for literature comparing thermodynamic, statistical, and information-theoretic entropy definitions.",
+        "question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?",
+        "title": "Foundations of Entropy"
+      },
+      {
+        "id": "religion-cross-cultural-practices",
+        "next_step": "Search for academic reviews or theories regarding the convergence of religious rituals and practices.",
+        "question": "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?",
+        "title": "Cross-Cultural Religious Practices"
+      },
+      {
+        "id": "neurology-metabolic-pathways",
+        "next_step": "Initiate search for review articles linking systemic metabolic dysfunction to neurological disease pathways.",
+        "question": "How do metabolic, hormonal, and systemic physiological changes influence neurological function and neurological disease?",
+        "title": "Neurological Impact of Metabolic Changes"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-info-thermo-demon-002",
+        "project": "info-thermo-maxwell-demon",
+        "provenance": [
+          "source-ae0e2b3554414618",
+          "source-b772fc7044e548f7"
+        ],
+        "revision": 1,
+        "summary": "An exploration of how information-theoretic erasure relates to physical entropy, synthesized from bibliographic metadata on classical thermodynamics and information theory.",
+        "title": "Synthesis: Information Erasure and Entropy"
+      },
+      {
+        "id": "nb-prime-dist-001",
+        "project": "prime-numbers-distribution",
+        "provenance": [
+          "source-7ec80a5fc56745db"
+        ],
+        "revision": 1,
+        "summary": "An initial exploration of the Prime Number Theorem's role in describing prime number distribution, based on bibliographic metadata.",
+        "title": "Provisional Synthesis: Prime Number Theorem and Density"
+      },
+      {
+        "id": "nb-religion-cross-cultural-001",
+        "project": "religion-cross-cultural-practices",
+        "provenance": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "revision": 1,
+        "summary": "Initial status report indicating that the current evidence set consists of unrelated bibliographic metadata.",
+        "title": "Provisional Synthesis: Cross-Cultural Religious Practices"
+      },
+      {
+        "id": "nb-religion-002",
+        "project": "religion-cross-cultural-practices",
+        "provenance": [
+          "source-7bd43608b269427f",
+          "source-d56377b15875422a"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes available bibliographic metadata concerning cognitive and evolutionary approaches to religion, noting that while the sources provide a venue for such research, full content access is currently absent.",
+        "title": "Provisional Synthesis: Cross-Cultural Religious Practices"
+      },
+      {
+        "id": "nb-religion-ritual-psych-001",
+        "project": "religion-cross-cultural-practices",
+        "provenance": [
+          "source-0e0aa6aa238246cb"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes the 'process-based framework' from a 2017 integrative review of ritual psychology, noting the distinction between the ritual form and its psychological function.",
+        "title": "Synthesis: The Psychology of Rituals"
+      },
+      {
+        "id": "nb-neuro-metabolic-001",
+        "project": "neurology-metabolic-pathways",
+        "provenance": [
+          "source-8fb4038a7344498e",
+          "source-e41f8efd700544cf"
+        ],
+        "revision": 1,
+        "summary": "An initial assessment of the intersection between metabolic pathways and neurological health, based on bibliographic metadata.",
+        "title": "Provisional Synthesis: Metabolic Drivers in Neurological Function"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-26T02:37:18.042922+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 12439,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 49691,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-26T02:37:51.666445+00:00",
+  "reason": "",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ]
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -128714,6 +129229,103 @@ _None recorded._
 }
 ```
 
+### `source-16a38b8a6e2346cf`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1007%2Fs10482-026-02296-9\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 8, 20]], \\\"date-time\\\": \\\"2026-08-20T14:31:10Z\\\", \\\"timestamp\\\": 1787236270883, \\\"version\\\": \\\"build-2736575974\\\"}, \\\"reference-count\\\": 350, \\\"publisher\\\": \\\"Springer Science and Business Media LLC\\\", \\\"issue\\\": \\\"5\\\", \\\"license\\\": [{\\\"start\\\": {\\\"date-parts\\\": [[2026, 4, 3]], \\\"date-time\\\": \\\"2026-04-03T00:00:00Z\\\", \\\"timestamp\\\": 1775174400000}, \\\"content-version\\\": \\\"tdm\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://www.springernature.com/gp/researchers/text-and-data-mining\\\"}, {\\\"start\\\": {\\\"date-parts\\\": [[2026, 4, 3]], \\\"date-time\\\": \\\"2026-04-03T00:00:00Z\\\", \\\"timestamp\\\": 1775174400000}, \\\"content-version\\\": \\\"vor\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://www.springernature.com/gp/researchers/text-and-data-mining\\\"}], \\\"content-domain\\\": {\\\"domain\\\": [\\\"link.springer.com\\\"], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"Antonie van Leeuwenhoek\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[2026, 5]]}, \\\"DOI\\\": \\\"10.1007/s10482-026-02296-9\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2026, 4, 3]], \\\"date-time\\\": \\\"2026-04-03T09:23:27Z\\\", \\\"timestamp\\\": 1775208207000}, \\\"update-policy\\\": \\\"https://doi.org/10.1007/springer_crossmark_policy\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 4, \\\"title\\\": [\\\"Microbiota-driven mechanisms in multisystem diseases: integrative evidence across cardiovascular, metabolic, neurological and autoimmune disorders\\\"], \\\"prefix\\\": \\\"10.1007\\\", \\\"volume\\\": \\\"119\\\", \\\"author\\\": [{\\\"given\\\": \\\"Sania\\\", \\\"family\\\": \\\"Ansari\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Ketan J.\\\", \\\"family\\\": \\\"Purohit\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"ORCID\\\": \\\"https://orcid.org/0000-0001-9908-7473\\\", \\\"authenticated-orcid\\\": false, \\\"given\\\": \\\"Ajay B.\\\", \\\"family\\\": \\\"Shelke\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Mahek\\\", \\\"family\\\": \\\"Shah\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Innocent Adamson\\\", \\\"family\\\": \\\"Nkhoma\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Archana M.\\\", \\\"family\\\": \\\"Navale\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Rutika\\\", \\\"family\\\": \\\"Wakchaure\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"297\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[2026, 4, 3]]}, \\\"reference\\\": [{\\\"issue\\\": \\\"3\\\", \\\"key\\\": \\\"2296_CR1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"473\\\", \\\"DOI\\\": \\\"10.1007/s00018-018-2943-4\\\", \\\"volume\\\": \\\"76\\\", \\\"author\\\": \\\"A Adak\\\", \\\"year\\\": \\\"2018\\\", \\\"unstructured\\\": \\\"Adak A, Khan MR (2018) An insight into gut microbiota and its functionalities. Cell Mol Life Sci 76(3):473–493\\\", \\\"journal-title\\\": \\\"Cell Mol Life Sci\\\"}, {\\\"key\\\": \\\"2296_CR3\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"13\\\", \\\"DOI\\\": \\\"10.3389/fmicb.2022.999001\\\", \\\"volume\\\": \\\"13\\\", \\\"author\\\": \\\"M Afzaal\\\", \\\"year\\\": \\\"2022\\\", \\\"unstructured\\\": \\\"Afzaal M, Saeed F, Shah YA, Hussain M, Rabail R, Socol CT et al (2022) Human gut microbiota in health and disease. Front Microbiol 13:13\\\", \\\"journal-title\\\": \\\"Front Microbiol\\\"}, {\\\"issue\\\": \\\"2\\\", \\\"key\\\": \\\"2296_CR4\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"157\\\", \\\"DOI\\\": \\\"10.1165/rcmb.2017-0200TR\\\", \\\"volume\\\": \\\"58\\\", \\\"author\\\": \\\"M Aghapour\\\", \\\"year\\\": \\\"2018\\\", \\\"unstructured\\\": \\\"Aghapour M, Raee P, Moghaddam SJ et al (2018) Airway epithelial barrier dysfunction in COPD: role of cigarette smoke exposure. Am J Respir Cell Mol Biol 58(2):157–169\\\", \\\"journal-title\\\": \\\"Am J Respir Cell Mol Biol\\\"}, {\\\"key\\\": \\\"2296_CR5\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"S706\\\", \\\"DOI\\\": \\\"10.1016/S0016-5085(15)32398-2\\\", \\\"volume\\\": \\\"148\\\", \\\"author\\\": \\\"A Agus\\\", \\\"year\\\": \\\"2015\\\", \\\"unstructured\\\": \\\"Agus A, Denizot J, Thevenot J, Massier S, Denis S, Bernalier-Donadille A (2015) Western diet reduces SCFA production and GPR43 expression. Gastroenterology 148:S706–S707\\\", \\\"journal-title\\\": \\\"Gastroenterology\\\"}, {\\\"key\\\": \\\"2296_CR6\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"1\\\", \\\"DOI\\\": \\\"10.3390/microorganisms4020020\\\", \\\"volume\\\": \\\"4\\\", \\\"author\\\": \\\"I Ahmed\\\", \\\"year\\\": \\\"2016\\\", \\\"unstructured\\\": \\\"Ahmed I, Roy BC, Khan SA, Septer S (2016) Microbiome, metabolome and inflammatory bowel disease. Microorganisms 4:1\\\", \\\"journal-title\\\": \\\"Microorganisms\\\"}, {\\\"key\\\": \\\"2296_CR7\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"2\\\", \\\"DOI\\\": \\\"10.1186/s43045-024-00395-9\\\", \\\"volume\\\": \\\"31\\\", \\\"author\\\": \\\"GK Ahmed\\\", \\\"year\\\": \\\"2024\\\", \\\"unstructured\\\": \\\"Ahmed GK, Ramadan HK, Elbeh-A A, Haridy K (2024) Associations between gut microbiota and psychiatric disorders. Middle East Current Psy 31:2\\\", \\\"journal-title\\\": \\\"Middle East Current Psy\\\"}, {\\\"issue\\\": \\\"5\\\", \\\"key\\\": \\\"2296_CR8\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"377\\\", \\\"DOI\\\": \\\"10.5152/tud.2018.48742\\\", \\\"volume\\\": \\\"44\\\", \\\"author\\\": \\\"T Akgül\\\", \\\"year\\\": \\\"2018\\\", \\\"unstructured\\\": \\\"Akgül T, Karakan T (2018) Role of probiotics in recurrent urinary tract infections. Turk J Urol 44(5):377–383\\\", \\\"journal-title\\\": \\\"Turk J Urol\\\"}, {\\\"issue\\\": \\\"1\\\", \\\"key\\\": \\\"2296_CR9\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.3390/cells12010054\\\", \\\"volume\\\": \\\"12\\\", \\\"author\\\": \\\"N Anand\\\", \\\"year\\\": \\\"2022\\\", \\\"unstructured\\\": \\\"Anand N, Gorantla VR, Chidambaram SB (2022) The role of gut dysbiosis in neuropsychiatric disorders. Cells 12(1):54\\\", \\\"journal-title\\\": \\\"Cells\\\"}, {\\\"issue\\\": \\\"12\\\", \\\"key\\\": \\\"2296_CR10\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"2436\\\", \\\"DOI\\\": \\\"10.3390/microorganisms10122436\\\", \\\"volume\\\": \\\"10\\\", \\\"author\\\": \\\"I-M Andrioaie\\\", \\\"year\\\": \\\"2022\\\", \\\"unstructured\\\": \\\"Andrioaie I-M, Duhaniuc A, Nastase EV, Iancu LS, Luncă C, Trofin F et al (2022) The role of the gut microbiome in psychiatric disorders. Microorganisms 10(12):2436\\\", \\\"journal-title\\\": \\\"Microorganisms\\\"}, {\\\"issue\\\": \\\"6103\\\", \\\"key\\\": \\\"2296_CR11\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"120\\\", \\\"DOI\\\": \\\"10.1126/science.1224820\\\", \\\"volume\\\": \\\"338\\\", \\\"author\\\": \\\"JC Arthur\\\", \\\"year\\\": \\\"2012\\\", \\\"unstructured\\\": \\\"Arthur JC, Perez-Chanona E, Mühlbauer M, Tomkovich S, Uronis JM, Fan T-J et al (2012) Intestinal inflammation targets cancer-inducing activity of the microbiota. Science 338(6103):120–123\\\", \\\"journal-title\\\": \\\"Science\\\"}, {\\\"key\\\": \\\"2296_CR12\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1128/mSphere.00092-18\\\", \\\"volume\\\": \\\"3\\\", \\\"author\\\": \\\"TA Auchtung\\\", \\\"year\\\": \\\"2018\\\", \\\"unstructured\\\": \\\"Auchtung TA, Fofanova TY, Stewart CJ (2018) Investigating colonization of the healthy adult gastrointestinal tract by fungi. mSphere 3:e00092-18\\\", \\\"journal-title\\\": \\\"mSphere\\\"}, {\\\"issue\\\": \\\"44\\\", \\\"key\\\": \\\"2296_CR13\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"15718\\\", \\\"DOI\\\": \\\"10.1073/pnas.0407076101\\\", \\\"volume\\\": \\\"101\\\", \\\"author\\\": \\\"F Bäckhed\\\", \\\"year\\\": \\\"2004\\\", \\\"unstructured\\\": \\\"Bäckhed F, Ding H, Wang T, Hooper LV, Koh GY, Nagy A et al (2004) The gut microbiota as an environmental factor that regulates fat storage. Proc Natl Acad Sci U S A 101(44):15718–15723\\\", \\\"journal-title\\\": \\\"Proc Natl Acad Sci U S A\\\"}, {\\\"issue\\\": \\\"5717\\\", \\\"key\\\": \\\"2296_CR14\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"1915\\\", \\\"DOI\\\": \\\"10.1126/science.1104816\\\", \\\"volume\\\": \\\"307\\\", \\\"author\\\": \\\"F Bäckhed\\\", \\\"year\\\": \\\"2005\\\", \\\"unstructured\\\": \\\"Bäckhed F, Ley RE, Sonnenburg JL, Peterson DA, Gordon JI (2005) Host–bacterial mutualism in the human intestine. Science 307(5717):1915–1920\\\", \\\"journal-title\\\": \\\"Science\\\"}, {\\\"key\\\": \\\"2296_CR15\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"1\\\", \\\"DOI\\\": \\\"10.1186/s13213-020-01608-2\\\", \\\"volume\\\": \\\"70\\\", \\\"author\\\": \\\"O Bajinka\\\", \\\"year\\\": \\\"2020\\\", \\\"unstructured\\\": \\\"Bajinka O, Darboe A, Tan Y, Abdelhalim KA, Cham LB (2020) Gut microbiota and human gut physiological changes. Annals of Microbiol 70:1\\\", \\\"journal-title\\\": \\\"Annals of Microbiol\\\"}, {\\\"issue\\\": \\\"4\\\", \\\"key\\\": \\\"2296_CR16\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"349\\\", \\\"DOI\\\": \\\"10.5056/jnm.2011.17.4.349\\\", \\\"volume\\\": \\\"17\\\", \\\"author\\\": \\\"G Barbara\\\", \\\"year\\\": \\\"2011\\\", \\\"unstructured\\\": \\\"Barbara G, Cremon C, Carini G, Bellacosa L, Zecchi L, De Giorgio R et al (2011) The immune system in irritable bowel syndrome. J Neurogastroenterol Motil 17(4):349–359\\\", \\\"journal-title\\\": \\\"J Neurogastroenterol Motil\\\"}, {\\\"issue\\\": \\\"7610\\\", \\\"key\\\": \\\"2296_CR17\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"85\\\", \\\"DOI\\\": \\\"10.1038/nature18849\\\", \\\"volume\\\": \\\"535\\\", \\\"author\\\": \\\"AJ Bäumler\\\", \\\"year\\\": \\\"2016\\\", \\\"unstructured\\\": \\\"Bäumler AJ, Sperandio V (2016) Interactions between the microbiota and pathogenic bacteria in the gut. Nature 535(7610):85–93\\\", \\\"journal-title\\\": \\\"Nature\\\"}, {\\\"issue\\\": \\\"2\\\", \\\"key\\\": \\\"2296_CR19\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"192\\\", \\\"DOI\\\": \\\"10.1093/ilar/ilv030\\\", \\\"volume\\\": \\\"56\\\", \\\"author\\\": \\\"C Becker\\\", \\\"year\\\": \\\"2015\\\", \\\"unstructured\\\": \\\"Becker C, Neurath MF, Wirtz S (2015) Intestinal microbiota in IBD. ILAR J 56(2):192–204\\\", \\\"journal-title\\\": \\\"ILAR J\\\"}, {\\\"issue\\\": \\\"1\\\", \\\"key\\\": \\\"2296_CR20\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"39\\\", \\\"DOI\\\": \\\"10.1186/s13073-017-0428-y\\\", \\\"volume\\\": \\\"9\\\", \\\"author\\\": \\\"JR Bedarf\\\", \\\"year\\\": \\\"2017\\\", \\\"unstructured\\\": \\\"Bedarf JR, Hildebrand F, Coelho LP, Sunagawa S, Bahram M, Goeser F et al (2017) Functional implications of microbial and viral gut metagenome changes in early stage L-DOPA-naïve Parkinson’s disease patients. Genome Medicine 9(1):39\\\", \\\"journal-title\\\": \\\"Genome Medicine\\\"}, {\\\"issue\\\": \\\"1\\\", \\\"key\\\": \\\"2296_CR21\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"2\\\", \\\"DOI\\\": \\\"10.1136/gut.42.1.2\\\", \\\"volume\\\": \\\"42\\\", \\\"author\\\": \\\"S Bengmark\\\", \\\"year\\\": \\\"1998\\\", \\\"unstructured\\\": \\\"Bengmark S (1998) Ecological control of the gastrointestinal tract: the role of probiotic flora. Gut 42(1):2–7\\\", \\\"journal-title\\\": \\\"Gut\\\"}, {\\\"issue\\\": \\\"4\\\", \\\"key\\\": \\\"2296_CR22\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"1239\\\", \\\"DOI\\\": \\\"10.1093/advances/nmaa181\\\", \\\"volume\\\": \\\"12\\\", \\\"author\\\": \\\"K Berding\\\", \\\"year\\\": \\\"2021\\\", \\\"unstructured\\\": \\\"Berding K, Vlckova K, Marx W, Schellekens H, Stanton C, Clarke G et al (2021) Diet and the microbiota-gut-brain axis: sowing the seeds of good mental health. Adv Nutr 12(4):1239–1285\\\", \\\"journal-\", \"excerpt_truncated\": true, \"source_sha256\": \"5d2f9cd70ed94e7a10979daea54a2187acdf28d7e2001a952893349998237bd3\", \"verification_required\": true, \"topic_domain\": \"neurology\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1007/s10482-026-02296-9\", \"doi:10.1007/springer_crossmark_policy\", \"doi:10.1007/s00018-018-2943-4\", \"doi:10.3389/fmicb.2022.999001\", \"doi:10.1165/rcmb.2017-0200tr\", \"doi:10.1016/s0016-5085(15)32398-2\", \"doi:10.3390/microorganisms4020020\", \"doi:10.1186/s43045-024-00395-9\", \"doi:10.5152/tud.2018.48742\", \"doi:10.3390/cells12010054\", \"doi:10.3390/microorganisms10122436\", \"doi:10.1126/science.1224820\"]}",
+  "id": "source-16a38b8a6e2346cf",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.1007%2Fs10482-026-02296-9",
+  "version": 124,
+  "time": "2026-09-26T02:37:06.944408+00:00"
+}
+```
+
+### `source-6223e095835a4fff`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.datacite.org/dois?query=systemic+metabolic+dysfunction+and+neurological+disease+pathways+review&page%5Bsize%5D=4\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-6223e095835a4fff",
+  "scope": "failed",
+  "source": "https://api.datacite.org/dois?query=systemic+metabolic+dysfunction+and+neurological+disease+pathways+review&page%5Bsize%5D=4",
+  "version": 124,
+  "time": "2026-09-26T02:37:11.167523+00:00"
+}
+```
+
+### `source-cdda7f8a0910454d`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Dance\\\",\\\"pageid\\\":7885,\\\"size\\\":73058,\\\"wordcount\\\":8358,\\\"snippet\\\":\\\"by\\ndance\\nthat emphasised dramatic mime. A broader concept of\\nrhythm\\nwas needed, that which Rudolf Laban terms the \\\"\\nrhythm\\nand shape\\\" of\\nmovement\\nthat\\\",\\\"timestamp\\\":\\\"2026-09-15T00:29:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"\\\\u00a0111. ISBN\\\\u00a0978-0-19-929845-7. Krumhansl, C. L. (2000). \\\"\\nRhythm\\nand pitch in music\\ncognition\\n\\\". Psychol. Bull. 126 (1): 159\\\\u2013179. doi:10.1037/0033-2909\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"African-American culture\\\",\\\"pageid\\\":1142503,\\\"size\\\":186819,\\\"wordcount\\\":18525,\\\"snippet\\\":\\\"influenced modern popular\\nculture\\n. Spoken-word artists employ the same techniques as African-American preachers including\\nmovement\\n,\\nrhythm\\n, and audience participation\\\",\\\"timestamp\\\":\\\"2026-09-24T19:24:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modernism\\\",\\\"pageid\\\":19547,\\\"size\\\":185952,\\\"wordcount\\\":20347,\\\"snippet\\\":\\\"modern\\ndance\\n, modernist architecture, and urban planning. Modernism took a critical stance towards the Enlightenment concept of rationalism. The\\nmovement\\nalso\\\",\\\"timestamp\\\":\\\"2026-09-23T15:47:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary musicology\\\",\\\"pageid\\\":4220231,\\\"size\\\":24796,\\\"wordcount\\\":2920,\\\"snippet\\\":\\\"well as several other universal elements of contemporary human\\nculture\\n, including\\ndance\\nand body painting) was part of a predator control system used by\\\",\\\"timestamp\\\":\\\"2026-05-08T03:37:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Irish stepdance\\\",\\\"pageid\\\":6188670,\\\"size\\\":45682,\\\"wordcount\\\":5651,\\\"snippet\\\":\\\"called Feiseanna (singular Feis). In Irish\\ndance\\nculture\\n, a Feis is a traditional Gaelic arts and\\nculture\\nfestival. Contemporarily, costumes are sometimes\\\",\\\"timestamp\\\":\\\"2026-06-22T02:12:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture of the United States\\\",\\\"pageid\\\":18985287,\\\"size\\\":156491,\\\"wordcount\\\":13473,\\\"snippet\\\":\\\"of\\ncultures\\nhas been a distinguishing feature of its society. Americans pioneered or made great strides in musical genres such as heavy metal,\\nrhythm\\nand\\\",\\\"timestamp\\\":\\\"2026-09-26T00:50:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cultural universal\\\",\\\"pageid\\\":7745490,\\\"size\\\":10277,\\\"wordcount\\\":1012,\\\"snippet\\\":\\\"Healing practices, medicine Childbirth customs Rites of passage Music,\\nrhythm\\n,\\ndance\\n, and to some degree associations between music and emotion Play Toys\\\",\\\"timestamp\\\":\\\"2026-05-03T15:57:58Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cultural retention\\\",\\\"pageid\\\":9216811,\\\"size\\\":4662,\\\"wordcount\\\":602,\\\"snippet\\\":\\\"Jamaican music, strong influences are noted of jazz,\\nrhythm\\nand blues and the Rastafari\\nmovement\\n, Reggae and Dancehall music are noted. In Jamaican creole\\\",\\\"timestamp\\\":\\\"2026-06-18T16:12:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cultural appropriation\\\",\\\"pageid\\\":1982394,\\\"size\\\":116014,\\\"wordcount\\\":10851,\\\"snippet\\\":\\\"in cultural outsiders' use of an oppressed\\nculture's\\nsymbols or other cultural elements, such as music,\\ndance\\n, spiritual ceremonies, modes of dress, speech\\\",\\\"timestamp\\\":\\\"2026-09-17T17:41:01Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"a6e08d2db844b1abe9d89f9c29690deb48aa5cb41e77f0f44d4b4d00fa7665e9\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1037/0033-2909\"]}",
+  "id": "source-cdda7f8a0910454d",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json",
+  "version": 124,
+  "time": "2026-09-26T02:37:12.791157+00:00"
+}
+```
+
+### `source-965c62f53252427a`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2,\\\"suggestion\\\":\\\"comedy humor coalition tiling incongruity\\\",\\\"suggestionsnippet\\\":\\\"comedy humor\\ncoalition tiling\\nincongruity\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Theories of humor\\\",\\\"pageid\\\":17909855,\\\"size\\\":59815,\\\"wordcount\\\":7880,\\\"snippet\\\":\\\"\\nincongruity\\nand superiority theories describe complementary mechanisms that together create\\nhumor\\n. Another such combinative view involves\\nincongruity\\n\\\",\\\"timestamp\\\":\\\"2026-09-08T03:49:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Joke\\\",\\\"pageid\\\":16267,\\\"size\\\":81952,\\\"wordcount\\\":10334,\\\"snippet\\\":\\\"in \\\"Semantic Mechanisms of\\nHumor\\n\\\", published 1985. While being a variant on the more general concepts of the\\nincongruity\\ntheory of humour, it is the\\\",\\\"timestamp\\\":\\\"2026-09-06T13:01:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"46bfaba96306fa561c3c9c2c87774a34475f738e2e231b0853e8b0347ad84283\", \"verification_required\": true, \"topic_domain\": \"comedy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-965c62f53252427a",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=comedy+humor+cognition+timing+incongruity&format=json",
+  "version": 124,
+  "time": "2026-09-26T02:37:13.462325+00:00"
+}
+```
+
+### `source-9e5806aa10cd4082`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":36},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Music\\\",\\\"pageid\\\":18839,\\\"size\\\":143456,\\\"wordcount\\\":16225,\\\"snippet\\\":\\\"\\nMusic\\nis the arrangement of sound to create some combination of form,\\nharmony\\n,\\nmelody\\n,\\nrhythm\\n, or otherwise expressive content.\\nMusic\\nis generally agreed\\\",\\\"timestamp\\\":\\\"2026-09-23T13:33:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Metre (music)\\\",\\\"pageid\\\":84026,\\\"size\\\":44586,\\\"wordcount\\\":4180,\\\"snippet\\\":\\\"(eds.). Musical\\nStructure\\nand\\nCognition\\n. London: Academic Press. ISBN\\\\u00a0978-0-12357170-0. Lester, Joel (1986). The\\nRhythms\\nof Tonal\\nMusic\\n. Carbondale: Southern\\\",\\\"timestamp\\\":\\\"2026-09-10T22:06:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music and emotion\\\",\\\"pageid\\\":33107185,\\\"size\\\":52701,\\\"wordcount\\\":5883,\\\"snippet\\\":\\\"Emotion is induced in a listener because a feature of the\\nmusic\\n, such as\\nrhythm\\nor\\nharmony\\n, violates, delays, or confirms a listener's expectations. In\\\",\\\"timestamp\\\":\\\"2026-09-13T21:50:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music theory\\\",\\\"pageid\\\":54783,\\\"size\\\":122949,\\\"wordcount\\\":13838,\\\"snippet\\\":\\\"computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter, and form. Research in\\nmusic\\nhistory can benefit from systematic\\\",\\\"timestamp\\\":\\\"2026-09-24T23:02:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Embodied music cognition\\\",\\\"pageid\\\":8676342,\\\"size\\\":14007,\\\"wordcount\\\":1763,\\\"snippet\\\":\\\"Embodied\\nmusic\\ncognition\\nas it was originally a direction within systematic musicology interested in studying the role of the human body in relation to\\\",\\\"timestamp\\\":\\\"2026-08-06T01:21:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroscience of music\\\",\\\"pageid\\\":25049383,\\\"size\\\":80829,\\\"wordcount\\\":9690,\\\"snippet\\\":\\\"cortex is primarily involved in perceiving pitch, and parts of\\nharmony\\n,\\nmelody\\nand\\nrhythm\\n. One study by Petr Janata found that there are tonality-sensitive\\\",\\\"timestamp\\\":\\\"2026-09-21T08:40:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"to\\nmusic\\ntheory through investigations of the perception and computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-specific disorders\\\",\\\"pageid\\\":25213736,\\\"size\\\":10890,\\\"wordcount\\\":1469,\\\"snippet\\\":\\\"elements of\\nmusic\\n, such as pitch,\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n; the ability to react both emotionally and with bodily movements (e.g. dancing) to\\nmusic\\n; to form\\\",\\\"timestamp\\\":\\\"2026-06-06T14:12:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Deep structure and surface structure\\\",\\\"pageid\\\":283746,\\\"size\\\":10396,\\\"wordcount\\\":1213,\\\"snippet\\\":\\\"a two-level generative\\nstructure\\nfor\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n, of which the analysis by Lee (1985) of rhythmical\\nstructure\\nis an instance. (See also:\\\",\\\"timestamp\\\":\\\"2025-09-24T18:19:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-evoked autobiographical memory\\\",\\\"pageid\\\":74070712,\\\"size\\\":51708,\\\"wordcount\\\":5889,\\\"snippet\\\":\\\"processing. When listening to\\nmusic\\n, expectations based on previous experiences regarding\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\ninfluence our emotional reactions\\\",\\\"timestamp\\\":\\\"2026-08-31T21:05:16Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"bccd2cc9dc924902cdc6f08c601a8b7065201495fc5225c534eefa62827b8188\", \"verification_required\": true, \"topic_domain\": \"music\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-9e5806aa10cd4082",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json",
+  "version": 124,
+  "time": "2026-09-26T02:37:14.314185+00:00"
+}
+```
+
+### `source-94f94b32ded9484f`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":912},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrinology\\\",\\\"pageid\\\":9311,\\\"size\\\":28626,\\\"wordcount\\\":3056,\\\"snippet\\\":\\\"hormone.\\nEndocrinology\\nis the study of the\\nendocrine\\nsystem in the human body. This is a system of glands which secrete\\nhormones\\n.\\nHormones\\nare chemicals\\\",\\\"timestamp\\\":\\\"2026-08-22T17:29:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine system\\\",\\\"pageid\\\":9312,\\\"size\\\":40983,\\\"wordcount\\\":4852,\\\"snippet\\\":\\\"endocrine system by secreting certain\\nhormones\\n. The study of the\\nendocrine\\nsystem and its\\ndisorders\\nis known as\\nendocrinology\\n. The thyroid secretes thyroxine\\\",\\\"timestamp\\\":\\\"2026-05-30T18:34:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine disease\\\",\\\"pageid\\\":8500076,\\\"size\\\":11397,\\\"wordcount\\\":862,\\\"snippet\\\":\\\"\\nEndocrine\\ndiseases are\\ndisorders\\nof the\\nendocrine\\nsystem. The branch of medicine associated with\\nendocrine\\ndisorders\\nis known as\\nendocrinology\\n. Broadly\\\",\\\"timestamp\\\":\\\"2025-12-04T06:52:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gender-affirming hormone therapy\\\",\\\"pageid\\\":36792950,\\\"size\\\":64335,\\\"wordcount\\\":5099,\\\"snippet\\\":\\\"transgender hormone therapy, is a form of hormone therapy in which sex\\nhormones\\nand other\\nhormonal\\nmedications are administered to transgender or gender nonconforming\\\",\\\"timestamp\\\":\\\"2026-09-16T03:30:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thyroid-stimulating hormone\\\",\\\"pageid\\\":330361,\\\"size\\\":29201,\\\"wordcount\\\":2790,\\\"snippet\\\":\\\"body. It is a glycoprotein\\nhormone\\nproduced by thyrotrope cells in the anterior pituitary gland, which regulates the\\nendocrine\\nfunction of the thyroid.\\\",\\\"timestamp\\\":\\\"2026-05-22T04:01:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormones (endocrinology journal)\\\",\\\"pageid\\\":76017572,\\\"size\\\":3457,\\\"wordcount\\\":234,\\\"snippet\\\":\\\"metabolic\\ndisorders\\n. It was established in 2002 as the official journal of the Hellenic\\nEndocrine\\nSociety, the Greek society of\\nendocrinology\\n, which published\\\",\\\"timestamp\\\":\\\"2025-10-20T08:31:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormone\\\",\\\"pageid\\\":13311,\\\"size\\\":42654,\\\"wordcount\\\":4370,\\\"snippet\\\":\\\"Cytokine\\nEndocrine\\ndisease\\nEndocrine\\nsystem\\nEndocrinology\\nEnvironmental\\nhormones\\nGrowth factor Hepatokine Intracrine List of human\\nhormones\\nList of investigational\\\",\\\"timestamp\\\":\\\"2026-09-08T05:55:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine gland\\\",\\\"pageid\\\":1223446,\\\"size\\\":18558,\\\"wordcount\\\":2107,\\\"snippet\\\":\\\"anterior pituitary\\nhormones\\nare tropic\\nhormones\\nthat regulate the function of other\\nendocrine\\norgans. Most anterior pituitary\\nhormones\\nexhibit a diurnal\\\",\\\"timestamp\\\":\\\"2026-01-25T17:12:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Multiple endocrine neoplasia type 1\\\",\\\"pageid\\\":2574340,\\\"size\\\":15344,\\\"wordcount\\\":1736,\\\"snippet\\\":\\\"Multiple\\nendocrine\\nneoplasia type 1 (MEN-1; also known as Wermer syndrome) is one of a group of\\ndisorders\\n, the multiple\\nendocrine\\nneoplasias, that affect\\\",\\\"timestamp\\\":\\\"2025-12-23T18:16:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Acromegaly\\\",\\\"pageid\\\":20936195,\\\"size\\\":41489,\\\"wordcount\\\":3937,\\\"snippet\\\":\\\"acromegaly: evolution of the techniques and outcomes\\\". Reviews in\\nEndocrine\\n& Metabolic\\nDisorders\\n. 9 (1): 67\\\\u201370. doi:10.1007/s11154-007-9064-y. PMID\\\\u00a018228147\\\",\\\"timestamp\\\":\\\"2026-08-09T11:28:10Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"b7e90a47b9635e76dc3b934340292e617f492e504dd9c1b72ef5bdb908956bb9\", \"verification_required\": true, \"topic_domain\": \"endocrinology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1007/s11154-007-9064-y\"]}",
+  "id": "source-94f94b32ded9484f",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json",
+  "version": 124,
+  "time": "2026-09-26T02:37:14.989472+00:00"
+}
+```
+
+### `r-9bc3870d398e40be`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":124,\"inherited_commitments\":[],\"invocation\":\"w-9bc3870d398e40be\",\"previous_head\":\"3ecb0fbc819d13fc31583698c6449d9e18d45a1c3de94115ad18df37b6bcd358\",\"process_id\":2296,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-9bc3870d398e40be",
+  "source": "runtime:continuity",
+  "version": 124,
+  "time": "2026-09-26T02:37:17.539510+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -130077,6 +130689,17 @@ _None recorded._
   "invocation": "w-a6eea847f8874612",
   "title": "Neurological pathways and metabolic inquiry",
   "summary": "Continued focus on the intersection of metabolic systems and neurological health. Current evidence in the project set consists of bibliographic metadata unrelated to the research question; focused research is now queued to acquire relevant peer-reviewed literature."
+}
+```
+
+### 125 · Status Report: Constraint-Limited Research
+
+```json
+{
+  "cycle": 125,
+  "invocation": "w-9bc3870d398e40be",
+  "title": "Status Report: Constraint-Limited Research",
+  "summary": "Current operational governance restricts the creation of new research projects to the existing 'entropy-foundations' identifier, while the Squirrel directive enforces a focus on 'complex_systems'. Because no existing projects align with the 'complex_systems' domain and creating a new project ID is schema-blocked, substantive research operations are paused for this cycle to maintain consistency with enforced constraints."
 }
 ```
 
@@ -131612,8 +132235,9 @@ _None recorded._
   "query": "systemic metabolic dysfunction and neurological disease pathways review",
   "reason": "Existing evidence for this project is bibliographic noise (anthropology/publishing policy). We require focused literature on metabolic drivers of neurological dysfunction to build a substantive notebook.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-a6eea847f8874612"
+  "status": "failed",
+  "created_by": "w-a6eea847f8874612",
+  "evidence": "source-6223e095835a4fff"
 }
 ```
 

@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `7a53f829822ceaaa0b960f9ee8521ea20d009bd634c5eb85ec019fb9f296cf8e`
+Verified head: `6916c730c17975439c3fdd41701e76462140c5d91a8cfa538d56fbb2c0051f26`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 125 · Status Report: Constraint-Limited Research
+
+September 25, 2026 · 07:37 PM PDT · gemini / gemini-3.1-flash-lite
+
+Current operational governance restricts the creation of new research projects to the existing 'entropy-foundations' identifier, while the Squirrel directive enforces a focus on 'complex_systems'. Because no existing projects align with the 'complex_systems' domain and creating a new project ID is schema-blocked, substantive research operations are paused for this cycle to maintain consistency with enforced constraints.
+
+Invocation: `w-9bc3870d398e40be`
 
 ## 124 · Neurological pathways and metabolic inquiry
 
