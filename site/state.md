@@ -5,7 +5,7 @@
 **Version:** 139  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `46a3258d0832536a100347aa499e99e8b6f9785926ae57e87f142707939564d3`
+**Verified head:** `ebfb5698de0280c33ff7ffad5ba00e5a35fdffd88ec490ba575c16275468083d`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -1880,7 +1880,7 @@ _None recorded._
 {
   "project": "prime-dist-pnt-001",
   "domain": "prime_numbers",
-  "no_progress": 1,
+  "no_progress": 0,
   "routes": [
     "api.datacite.org:discovery",
     "api.crossref.org:discovery",
@@ -1890,36 +1890,39 @@ _None recorded._
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.1215/s0012-7094-95-07701-1",
-    "doi:10.1016/0022-314x(72)90066-2",
-    "doi:10.1090/mbk/139/13",
-    "doi:10.1145/285055.285060",
-    "doi:10.1115/1.1399379",
-    "doi:10.1111/j.1467-8330.1981.tb00312.x",
-    "doi:10.1090/s0273-0979-03-00995-9",
-    "openalex:W1970630090",
-    "openalex:W1966369671",
-    "openalex:W2001594224",
-    "openalex:W1969448553",
-    "arxiv:8330.1981"
+    "arxiv:8330.1981",
+    "doi:10.1090/pspum/008/0176966",
+    "doi:10.2307/2371849",
+    "doi:10.1007/978-1-4757-5927-3",
+    "doi:10.2307/1971450",
+    "doi:10.1098/rspa.1991.0138",
+    "doi:10.1007/bf01403187",
+    "doi:10.1007/bf02403921",
+    "doi:10.4153/cjm-1973-090-3",
+    "doi:10.1307/mmj/1029003189",
+    "doi:10.1515/crll.1986.367.11",
+    "doi:10.1215/s0012-7094-95-07701-1.full"
   ],
   "last_receipt": {
-    "evidence": "source-f68e99e5f3804556",
-    "outcome": "no_progress",
+    "evidence": "source-be4321811a884172",
+    "outcome": "progress",
     "persistent_identifiers": [
-      "doi:10.1145/285055.285060",
-      "doi:10.1115/1.1399379",
-      "doi:10.1111/j.1467-8330.1981.tb00312.x",
-      "doi:10.1090/s0273-0979-03-00995-9",
-      "openalex:W1970630090",
-      "openalex:W1966369671",
-      "openalex:W2001594224",
-      "openalex:W1969448553",
-      "arxiv:8330.1981"
+      "doi:10.1215/s0012-7094-95-07701-1",
+      "doi:10.1090/pspum/008/0176966",
+      "doi:10.2307/2371849",
+      "doi:10.1007/978-1-4757-5927-3",
+      "doi:10.2307/1971450",
+      "doi:10.1098/rspa.1991.0138",
+      "doi:10.1007/bf01403187",
+      "doi:10.1007/bf02403921",
+      "doi:10.4153/cjm-1973-090-3",
+      "doi:10.1307/mmj/1029003189",
+      "doi:10.1515/crll.1986.367.11",
+      "doi:10.1215/s0012-7094-95-07701-1.full"
     ],
     "research_id": "res-pnt-intro-001",
-    "route": "api.openalex.org:discovery",
-    "stage": "discovery"
+    "route": "api.crossref.org:source",
+    "stage": "substantive_source"
   }
 }
 ```
@@ -116083,6 +116086,508 @@ _None recorded._
 }
 ```
 
+### `w-f0bb2b8b10cf495d`
+
+```json
+{
+  "base_version": 139,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 18617,
+    "delivered_request_chars": 44099,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set",
+      "verbose recovery frames",
+      "extended bounded reflection history",
+      "redundant evidence payload text",
+      "low-priority bounded prose"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "request_compression_ratio": 0.3522,
+    "retrieval_rehydrated_evidence_count": 2,
+    "rich_context_chars": 125218,
+    "working_set_chars": 3728
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-f0bb2b8b10cf495d",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 139,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "endo-neuro-interaction-001",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Hormonal Regulation of Nervous System Function"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "prime-dist-pnt-001",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Prime Number Theorem and Distribution"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2178,
+  "provider": "gemini",
+  "quota_day": "2026-09-25",
+  "request_hash": "3b1e39d68b9e86198a68b2247e4b662158549443362ef9fc90a4d4c3fa028024",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neurodiversity-foundations-01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-dance-rhythm-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-visual-art-composition-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-6eec8365c2b945b4"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-6eec8365c2b945b4",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b7abd0d5e2554274"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b7abd0d5e2554274",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-891da548184a404e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-891da548184a404e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-8f485f755e8b4f3a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-8f485f755e8b4f3a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-038ae7df2c5a4660"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-038ae7df2c5a4660",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-be4321811a884172"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-be4321811a884172",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0a7b2a5c06d44417",
+      "source-930f33f0d42a4658",
+      "source-f535f6171025430e",
+      "source-b4a60e211150449b",
+      "source-41fac1eecb0246dd",
+      "source-51a9b989df3144af",
+      "source-6eec8365c2b945b4",
+      "source-b7abd0d5e2554274",
+      "source-891da548184a404e",
+      "source-8f485f755e8b4f3a",
+      "source-038ae7df2c5a4660",
+      "source-be4321811a884172"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 12,
+      "trigger_counts": {
+        "notebook_revised": 3,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "runtime_performance": {
+    "compaction_ms": 6.759,
+    "context_build_ms": 80.849,
+    "load_ms": 953.859,
+    "receipt_ms": 556.161,
+    "start_total_before_record_ms": 2980.512,
+    "store": {
+      "append_cache_hits": 9,
+      "append_cache_misses": 0,
+      "cached_copy_ms": 888.788,
+      "cached_loads": 0,
+      "event_count": 3926,
+      "full_replays": 11,
+      "replay_ms": 7157.675,
+      "trusted_projection_active": true
+    },
+    "temporal_ms": 1381.69
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 4,
+      "topic": "prime_numbers"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [
+      "endocrinology",
+      "prime_numbers"
+    ],
+    "enforce_selected_topic": true,
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "endocrinology": [
+        {
+          "id": "endo-neuro-interaction-001",
+          "next_step": "Search for integrative reviews or medical literature summarizing the neurological sequelae of common endocrine disorders.",
+          "question": "How do specific endocrine dysfunctions, such as thyroid or adrenal imbalances, manifest as neurological symptoms, and what are the primary biological pathways connecting these systems?"
+        }
+      ],
+      "prime_numbers": [
+        {
+          "id": "prime-dist-pnt-001",
+          "next_step": "Search for introductory mathematical literature or reliable online repositories detailing the PNT and its limitations.",
+          "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?"
+        }
+      ]
+    },
+    "reason": "alternate configured topic selected during Squirrel cooldown or capability block",
+    "rotation_required": true,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "visual_art",
+    "temporal": {
+      "anchor_seq": 3925,
+      "anchor_time": "2026-09-26T05:35:22.315204+00:00",
+      "anchor_version": 139,
+      "effective_seconds": 107279.840266
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": "r-f0bb2b8b10cf495d",
+    "topic_selection_candidates": [
+      "comedy",
+      "complex_systems",
+      "consciousness",
+      "dance",
+      "entropy",
+      "epistemology",
+      "evolutionary_biology",
+      "information_thermodynamics",
+      "music",
+      "neurodivergence",
+      "neurology",
+      "philosophy",
+      "psychology",
+      "quantum_mechanics",
+      "religion",
+      "storytelling",
+      "visual_art"
+    ],
+    "topic_selection_method": "receipt_hash_uniform_index"
+  },
+  "temporal": {
+    "cycle_distance": 0,
+    "effective_elapsed_seconds": 509.249851,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 107279.840266,
+    "intervening_events": {
+      "accepted": 0,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 1,
+      "research_collected": 0,
+      "squirrel_assessed": 1,
+      "total": 13
+    },
+    "observed_at": "2026-09-26T05:35:22.315204+00:00",
+    "previous_anchor_time": "2026-09-26T05:26:53.065353+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 509.249851
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 18617,
+    "inquiry_drive_project_count": 2,
+    "mode": "bounded",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 12,
+    "retrieval_rehydrated_evidence_count": 2,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 3,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 3728,
+    "working_to_delivered_ratio": 0.2002
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "endo-neuro-interaction-001",
+        "next_step": "Search for integrative reviews or medical literature summarizing the neurological sequelae of common endocrine disorders.",
+        "question": "How do specific endocrine dysfunctions, such as thyroid or adrenal imbalances, manifest as neurological symptoms, and what are the primary biological pathways connecting these systems?",
+        "title": "Hormonal Regulation of Nervous System Function"
+      },
+      {
+        "id": "prime-dist-pnt-001",
+        "next_step": "Search for introductory mathematical literature or reliable online repositories detailing the PNT and its limitations.",
+        "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?",
+        "title": "Prime Number Theorem and Distribution"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-religion-cross-cultural-001",
+        "project": "religion-cross-cultural-practices",
+        "provenance": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "revision": 1,
+        "summary": "Initial status report indicating that the current evidence set consists of unrelated bibliographic metadata.",
+        "title": "Provisional Synthesis: Cross-Cultural Religious Practices"
+      },
+      {
+        "id": "nb-religion-002",
+        "project": "religion-cross-cultural-practices",
+        "provenance": [
+          "source-7bd43608b269427f",
+          "source-d56377b15875422a"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes available bibliographic metadata concerning cognitive and evolutionary approaches to religion, noting that while the sources provide a venue for such research, full content access is currently absent.",
+        "title": "Provisional Synthesis: Cross-Cultural Religious Practices"
+      },
+      {
+        "id": "nb-religion-ritual-psych-001",
+        "project": "religion-cross-cultural-practices",
+        "provenance": [
+          "source-0e0aa6aa238246cb"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes the 'process-based framework' from a 2017 integrative review of ritual psychology, noting the distinction between the ritual form and its psychological function.",
+        "title": "Synthesis: The Psychology of Rituals"
+      },
+      {
+        "id": "nb-neuro-metabolic-001",
+        "project": "neurology-metabolic-pathways",
+        "provenance": [
+          "source-8fb4038a7344498e",
+          "source-e41f8efd700544cf"
+        ],
+        "revision": 1,
+        "summary": "An initial assessment of the intersection between metabolic pathways and neurological health, based on bibliographic metadata.",
+        "title": "Provisional Synthesis: Metabolic Drivers in Neurological Function"
+      },
+      {
+        "id": "nb-evo-foundations-001",
+        "project": "evolutionary-biology-foundations",
+        "provenance": [
+          "source-2cd2684377c54051",
+          "source-e2e41e9bcb594def"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes available bibliographic metadata to frame future inquiry into how evolutionary biology distinguishes mechanisms such as adaptation, byproduct, drift, and constraint.",
+        "title": "Provisional Synthesis: Evolutionary Mechanisms"
+      },
+      {
+        "id": "nb-endo-neuro-001",
+        "project": "endo-neuro-interaction-001",
+        "provenance": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "revision": 1,
+        "summary": "This provisional synthesis uses collected bibliographic metadata to scope the intersection of endocrinology and neurology. Current evidence is limited to reference material and linguistic analysis contexts, which do not yet provide specific clinical mechanisms for endocrine-neurological pathology.",
+        "title": "Provisional Synthesis: Endocrine Influence on Neurological Function"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "failed",
+  "time": "2026-09-26T05:35:24.459896+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 43608,
+      "error_type": "Rejected",
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 47508,
+      "result": "invalid_response"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "finished": "2026-09-26T05:36:30.452722+00:00",
+  "reason": "Gemini did not return a complete answer",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ]
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -142175,6 +142680,103 @@ _None recorded._
   "source": "runtime:continuity",
   "version": 139,
   "time": "2026-09-26T05:26:54.711678+00:00"
+}
+```
+
+### `source-be4321811a884172`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1215%2Fs0012-7094-95-07701-1\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2024, 7, 11]], \\\"date-time\\\": \\\"2024-07-11T10:38:05Z\\\", \\\"timestamp\\\": 1720694285542}, \\\"reference-count\\\": 12, \\\"publisher\\\": \\\"Duke University Press\\\", \\\"issue\\\": \\\"1\\\", \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"Duke Math. J.\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[1995, 1, 1]]}, \\\"DOI\\\": \\\"10.1215/s0012-7094-95-07701-1\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2004, 11, 11]], \\\"date-time\\\": \\\"2004-11-11T17:35:15Z\\\", \\\"timestamp\\\": 1100194515000}, \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 4, \\\"title\\\": [\\\"On the prime ideal theorem and irregularities in the\\\\n              distribution of primes\\\"], \\\"prefix\\\": \\\"10.1215\\\", \\\"volume\\\": \\\"77\\\", \\\"author\\\": [{\\\"given\\\": \\\"M.\\\", \\\"family\\\": \\\"Nair\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"role\\\": \\\"author\\\", \\\"vocabulary\\\": \\\"crossref\\\"}]}, {\\\"given\\\": \\\"A.\\\", \\\"family\\\": \\\"Perelli\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"role\\\": \\\"author\\\", \\\"vocabulary\\\": \\\"crossref\\\"}]}], \\\"member\\\": \\\"73\\\", \\\"reference\\\": [{\\\"key\\\": \\\"1\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"unstructured\\\": \\\"[1] P. T. Bateman and R. A. Horn, <i>Primes represented by irreducible polynomials in one variable</i>, Proc. Sympos. Pure Math., Vol. VIII, Amer. Math. Soc., Providence, R.I., 1965, pp. 119–132.\\\", \\\"DOI\\\": \\\"10.1090/pspum/008/0176966\\\"}, {\\\"key\\\": \\\"2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"unstructured\\\": \\\"[2] R. Brauer, <i>On the zeta-functions of algebraic number fields</i>, Amer. J. Math. <b>69</b> (1947), 243–250.\\\", \\\"DOI\\\": \\\"10.2307/2371849\\\"}, {\\\"key\\\": \\\"3\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"unstructured\\\": \\\"[3] H. Davenport, <i>Multiplicative Number Theory</i>, 2nd ed., Graduate Texts in Mathematics, vol. 74, Springer-Verlag, Berlin, 1980.\\\", \\\"DOI\\\": \\\"10.1007/978-1-4757-5927-3\\\"}, {\\\"key\\\": \\\"4\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"unstructured\\\": \\\"[4] J. Friedlander and A. Granville, <i>Limitations to the equi-distribution of primes I</i>, Ann. of Math. (2) <b>129</b> (1989), no. 2, 363–382.\\\", \\\"DOI\\\": \\\"10.2307/1971450\\\"}, {\\\"key\\\": \\\"5\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"unstructured\\\": \\\"[5] J. Friedlander and A. Granville, <i>Limitations to the equi-distribution of primes IV</i>, Proc. Roy. Soc. London Ser. A <b>435</b> (1991), no. 1893, 197–204.\\\", \\\"DOI\\\": \\\"10.1098/rspa.1991.0138\\\"}, {\\\"key\\\": \\\"6\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"unstructured\\\": \\\"[6] P. X. Gallagher, <i>A large sieve density estimate near $\\\\\\\\sigma =1$</i>, Invent. Math. <b>11</b> (1970), 329–339.\\\", \\\"DOI\\\": \\\"10.1007/BF01403187\\\"}, {\\\"key\\\": \\\"7\\\", \\\"unstructured\\\": \\\"[7] H. Halberstam and H.-E. Richert, <i>Sieve Methods</i>, Academic Press, New York, 1974.\\\"}, {\\\"key\\\": \\\"8\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"unstructured\\\": \\\"[8] G. H. Hardy and J. E. Littlewood, <i>Some problems of partitio numerorum. III. On the expression of a number as a sum of primes</i>, Acta Math. <b>44</b> (1923), 1–70.\\\", \\\"DOI\\\": \\\"10.1007/BF02403921\\\"}, {\\\"key\\\": \\\"9\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"unstructured\\\": \\\"[9] H. Heilbronn, <i>On real zeros of Dedekind $\\\\\\\\zeta$-functions</i>, Canad. J. Math. <b>25</b> (1973), 870–873.\\\", \\\"DOI\\\": \\\"10.4153/CJM-1973-090-3\\\"}, {\\\"key\\\": \\\"10\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"unstructured\\\": \\\"[10] H. Maier, <i>Primes in short intervals</i>, Michigan Math. J. <b>32</b> (1985), no. 2, 221–225.\\\", \\\"DOI\\\": \\\"10.1307/mmj/1029003189\\\"}, {\\\"key\\\": \\\"11\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"unstructured\\\": \\\"[11] M. Nair and A. Perelli, <i>Sieve methods and class-number problems I</i>, J. Reine Angew. Math. <b>367</b> (1986), 11–26.\\\", \\\"DOI\\\": \\\"10.1515/crll.1986.367.11\\\"}, {\\\"key\\\": \\\"12\\\", \\\"unstructured\\\": \\\"[12] R. C. Vaughan, <i>The Hardy-Littlewood Method</i>, Cambridge Tracts in Mathematics, vol. 80, Cambridge University Press, Cambridge, 1981.\\\"}], \\\"container-title\\\": [\\\"Duke Mathematical Journal\\\"], \\\"original-title\\\": [], \\\"link\\\": [{\\\"URL\\\": \\\"https://projecteuclid.org/journalArticle/Download?urlid=10.1215/S0012-7094-95-07701-1\\\", \\\"content-type\\\": \\\"unspecified\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"similarity-checking\\\"}], \\\"deposited\\\": {\\\"date-parts\\\": [[2024, 1, 30]], \\\"date-time\\\": \\\"2024-01-30T17:25:02Z\\\", \\\"timestamp\\\": 1706635502000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"https://projecteuclid.org/journals/duke-mathematical-journal/volume-77/issue-1/On-the-prime-ideal-theorem-and-irregularities-in-the/10.1215/S0012-7094-95-07701-1.full\\\"}}, \\\"subtitle\\\": [], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[1995, 1, 1]]}, \\\"references-count\\\": 12, \\\"journal-issue\\\": {\\\"issue\\\": \\\"1\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[1995, 1, 1]]}}, \\\"URL\\\": \\\"https://doi.org/10.1215/s0012-7094-95-07701-1\\\", \\\"relation\\\": {}, \\\"ISSN\\\": [\\\"0012-7094\\\"], \\\"issn-type\\\": [{\\\"value\\\": \\\"0012-7094\\\", \\\"type\\\": \\\"print\\\"}], \\\"subject\\\": [], \\\"published\\\": {\\\"date-parts\\\": [[1995, 1, 1]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"441475b3307da1051d515c88df1d144921138f391826b4688c163db0ea07cfb7\", \"verification_required\": true, \"topic_domain\": \"prime_numbers\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1215/s0012-7094-95-07701-1\", \"doi:10.1090/pspum/008/0176966\", \"doi:10.2307/2371849\", \"doi:10.1007/978-1-4757-5927-3\", \"doi:10.2307/1971450\", \"doi:10.1098/rspa.1991.0138\", \"doi:10.1007/bf01403187\", \"doi:10.1007/bf02403921\", \"doi:10.4153/cjm-1973-090-3\", \"doi:10.1307/mmj/1029003189\", \"doi:10.1515/crll.1986.367.11\", \"doi:10.1215/s0012-7094-95-07701-1.full\"]}",
+  "id": "source-be4321811a884172",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.1215%2Fs0012-7094-95-07701-1",
+  "version": 139,
+  "time": "2026-09-26T05:35:16.816191+00:00"
+}
+```
+
+### `source-500cf9da1fb1441d`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Dance\\\",\\\"pageid\\\":7885,\\\"size\\\":73058,\\\"wordcount\\\":8358,\\\"snippet\\\":\\\"by\\ndance\\nthat emphasised dramatic mime. A broader concept of\\nrhythm\\nwas needed, that which Rudolf Laban terms the \\\"\\nrhythm\\nand shape\\\" of\\nmovement\\nthat\\\",\\\"timestamp\\\":\\\"2026-09-15T00:29:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"\\\\u00a0111. ISBN\\\\u00a0978-0-19-929845-7. Krumhansl, C. L. (2000). \\\"\\nRhythm\\nand pitch in music\\ncognition\\n\\\". Psychol. Bull. 126 (1): 159\\\\u2013179. doi:10.1037/0033-2909\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"African-American culture\\\",\\\"pageid\\\":1142503,\\\"size\\\":186819,\\\"wordcount\\\":18525,\\\"snippet\\\":\\\"influenced modern popular\\nculture\\n. Spoken-word artists employ the same techniques as African-American preachers including\\nmovement\\n,\\nrhythm\\n, and audience participation\\\",\\\"timestamp\\\":\\\"2026-09-24T19:24:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Synchronization\\\",\\\"pageid\\\":28738,\\\"size\\\":35356,\\\"wordcount\\\":3734,\\\"snippet\\\":\\\"\\\"Ensemble of coupling forms and networks among brain\\nrhythms\\nas function of states and\\ncognition\\n\\\". Communications Biology. 5 (1): 82. doi:10.1038/s42003-022-03017-4\\\",\\\"timestamp\\\":\\\"2026-09-07T05:18:58Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary musicology\\\",\\\"pageid\\\":4220231,\\\"size\\\":24796,\\\"wordcount\\\":2920,\\\"snippet\\\":\\\"well as several other universal elements of contemporary human\\nculture\\n, including\\ndance\\nand body painting) was part of a predator control system used by\\\",\\\"timestamp\\\":\\\"2026-05-08T03:37:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Irish stepdance\\\",\\\"pageid\\\":6188670,\\\"size\\\":45682,\\\"wordcount\\\":5651,\\\"snippet\\\":\\\"called Feiseanna (singular Feis). In Irish\\ndance\\nculture\\n, a Feis is a traditional Gaelic arts and\\nculture\\nfestival. Contemporarily, costumes are sometimes\\\",\\\"timestamp\\\":\\\"2026-06-22T02:12:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modernism\\\",\\\"pageid\\\":19547,\\\"size\\\":185952,\\\"wordcount\\\":20347,\\\"snippet\\\":\\\"modern\\ndance\\n, modernist architecture, and urban planning. Modernism took a critical stance towards the Enlightenment concept of rationalism. The\\nmovement\\nalso\\\",\\\"timestamp\\\":\\\"2026-09-23T15:47:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture of the United States\\\",\\\"pageid\\\":18985287,\\\"size\\\":156491,\\\"wordcount\\\":13473,\\\"snippet\\\":\\\"of\\ncultures\\nhas been a distinguishing feature of its society. Americans pioneered or made great strides in musical genres such as heavy metal,\\nrhythm\\nand\\\",\\\"timestamp\\\":\\\"2026-09-26T00:50:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cultural universal\\\",\\\"pageid\\\":7745490,\\\"size\\\":10277,\\\"wordcount\\\":1012,\\\"snippet\\\":\\\"Healing practices, medicine Childbirth customs Rites of passage Music,\\nrhythm\\n,\\ndance\\n, and to some degree associations between music and emotion Play Toys\\\",\\\"timestamp\\\":\\\"2026-05-03T15:57:58Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cultural appropriation\\\",\\\"pageid\\\":1982394,\\\"size\\\":116014,\\\"wordcount\\\":10851,\\\"snippet\\\":\\\"in cultural outsiders' use of an oppressed\\nculture's\\nsymbols or other cultural elements, such as music,\\ndance\\n, spiritual ceremonies, modes of dress, speech\\\",\\\"timestamp\\\":\\\"2026-09-17T17:41:01Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"e2373f1948ec2691b4f030c59fe300adad6bca83703be2437384fbe32cafbe40\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1037/0033-2909\", \"doi:10.1038/s42003-022-03017-4\"]}",
+  "id": "source-500cf9da1fb1441d",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json",
+  "version": 139,
+  "time": "2026-09-26T05:35:18.093247+00:00"
+}
+```
+
+### `source-ee3eaf410abd4c3b`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2767},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Self-organization\\\",\\\"pageid\\\":286947,\\\"size\\\":64814,\\\"wordcount\\\":6861,\\\"snippet\\\":\\\"justification for\\nself\\n-\\norganization\\nas a general principle of\\ncomplex\\nsystems\\n. In the field of multi-agent\\nsystems\\n, understanding how to engineer\\nsystems\\nthat are\\\",\\\"timestamp\\\":\\\"2026-08-20T00:23:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Emergence\\\",\\\"pageid\\\":37436,\\\"size\\\":60324,\\\"wordcount\\\":6551,\\\"snippet\\\":\\\"In philosophy,\\nsystems\\ntheory, science, and art,\\nemergence\\noccurs when a\\ncomplex\\nentity has properties or behaviors that its components do not have on\\\",\\\"timestamp\\\":\\\"2026-09-07T03:04:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems theory\\\",\\\"pageid\\\":29238,\\\"size\\\":56628,\\\"wordcount\\\":6135,\\\"snippet\\\":\\\"how well the\\nsystem\\nis engaged with its environment and other contexts influencing its\\norganization\\n. Some\\nsystems\\nsupport other\\nsystems\\n, maintaining the\\\",\\\"timestamp\\\":\\\"2026-07-18T16:09:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex system\\\",\\\"pageid\\\":37438,\\\"size\\\":47317,\\\"wordcount\\\":4876,\\\"snippet\\\":\\\"\\nsystem\\nand its environment.\\nSystems\\nthat are \\\"\\ncomplex\\n\\\" have distinct properties that arise from these relationships, such as nonlinearity,\\nemergence\\n,\\\",\\\"timestamp\\\":\\\"2026-09-25T18:37:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-assembly\\\",\\\"pageid\\\":351914,\\\"size\\\":40999,\\\"wordcount\\\":4440,\\\"snippet\\\":\\\"Although\\nself\\n-assembly typically occurs between weakly-interacting species, this\\norganization\\nmay be transferred into strongly-bound covalent\\nsystems\\n. An example\\\",\\\"timestamp\\\":\\\"2026-08-10T18:14:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex adaptive system\\\",\\\"pageid\\\":1428810,\\\"size\\\":35927,\\\"wordcount\\\":3790,\\\"snippet\\\":\\\"The\\nComplex\\nAdaptive\\nSystems\\napproach builds on replicator dynamics. The study of\\ncomplex\\nadaptive\\nsystems\\n, a subset of nonlinear dynamical\\nsystems\\n, is\\\",\\\"timestamp\\\":\\\"2026-04-06T14:02:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-regulation\\\",\\\"pageid\\\":1738695,\\\"size\\\":834,\\\"wordcount\\\":132,\\\"snippet\\\":\\\"standards\\nSelf\\n-regulatory\\norganization\\n, in business and finance Homeostasis, a state of steady internal conditions maintained by living things\\nEmergence\\n, the\\\",\\\"timestamp\\\":\\\"2023-05-02T13:34:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems thinking\\\",\\\"pageid\\\":227985,\\\"size\\\":20916,\\\"wordcount\\\":2126,\\\"snippet\\\":\\\"action in\\ncomplex\\ncontexts, enabling\\nsystems\\nchange.\\nSystems\\nthinking draws on and contributes to conceptual\\nsystems\\n,\\nsystems\\ntheory, and the\\nsystem\\nsciences\\\",\\\"timestamp\\\":\\\"2026-09-25T10:53:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complexity theory and organizations\\\",\\\"pageid\\\":5938019,\\\"size\\\":24442,\\\"wordcount\\\":2009,\\\"snippet\\\":\\\"differentiate it from other\\nself\\n-organizing\\nsystems\\n.\\nOrganizational\\nenvironments can be viewed as\\ncomplex\\nadaptive\\nsystems\\nwhere coevolution generally\\\",\\\"timestamp\\\":\\\"2026-05-25T04:34:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The purpose of a system is what it does\\\",\\\"pageid\\\":17404830,\\\"size\\\":6777,\\\"wordcount\\\":754,\\\"snippet\\\":\\\"applying POSIWID shows that the\\norganization's\\npractices contradict those values. From a cybernetic perspective,\\ncomplex\\nsystems\\nare not controllable by simple\\\",\\\"timestamp\\\":\\\"2026-09-22T17:25:20Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"45de0dcebe1aefb093cc3476a9b50f11b96ed57b1fbc906e7bfc9d69c1d7cda5\", \"verification_required\": true, \"topic_domain\": \"complex_systems\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-ee3eaf410abd4c3b",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json",
+  "version": 139,
+  "time": "2026-09-26T05:35:18.914847+00:00"
+}
+```
+
+### `source-976a202524bf46be`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":6107},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"\\nEntropy\\nis a thermodynamic state variable that quantifies the probabilistic distribution of accessible microstates in a system. The term and the concept\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"In information theory, the\\nentropy\\nof a random variable quantifies the average level of uncertainty or information associated with the variable's potential\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"appear below. The second law of thermodynamics establishes the concept of\\nentropy\\nas a physical property of a thermodynamic system. It predicts whether processes\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (disambiguation)\\\",\\\"pageid\\\":302133,\\\"size\\\":5540,\\\"wordcount\\\":726,\\\"snippet\\\":\\\"Look up\\nentropy\\nin Wiktionary, the free dictionary.\\nEntropy\\nis a fundamental scientific concept that quantifies the statistical probability of a system's\\\",\\\"timestamp\\\":\\\"2026-04-29T22:10:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cross-entropy\\\",\\\"pageid\\\":1735250,\\\"size\\\":19871,\\\"wordcount\\\":3496,\\\"snippet\\\":\\\"In information theory, the cross-\\nentropy\\nbetween two probability distributions p {\\\\\\\\displaystyle p} and q {\\\\\\\\displaystyle q} , over the same underlying\\\",\\\"timestamp\\\":\\\"2026-09-15T02:14:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"R\\\\u00e9nyi entropy\\\",\\\"pageid\\\":1731689,\\\"size\\\":27228,\\\"wordcount\\\":4205,\\\"snippet\\\":\\\"R\\\\u00e9nyi\\nentropy\\nis a quantity that generalizes various notions of\\nentropy\\n, including Hartley\\nentropy\\n, Shannon\\nentropy\\n, collision\\nentropy\\n, and min-\\nentropy\\n. The\\\",\\\"timestamp\\\":\\\"2026-08-13T19:55:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social entropy\\\",\\\"pageid\\\":12447991,\\\"size\\\":1975,\\\"wordcount\\\":200,\\\"snippet\\\":\\\"\\nentropy\\nis a sociological theory that evaluates social behaviours using a method based on the second law of thermodynamics. The equivalent of\\nentropy\\n\\\",\\\"timestamp\\\":\\\"2026-05-03T07:04:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Information theory\\\",\\\"pageid\\\":14773,\\\"size\\\":88576,\\\"wordcount\\\":10416,\\\"snippet\\\":\\\"theory is\\nentropy\\n. In Shannon's formulation,\\nentropy\\nis equal to the lack of information about an event. In the above coin flip example, the\\nentropy\\nin the\\\",\\\"timestamp\\\":\\\"2026-09-19T03:01:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy unit\\\",\\\"pageid\\\":1886799,\\\"size\\\":521,\\\"wordcount\\\":71,\\\"snippet\\\":\\\"The\\nentropy\\nunit is a non-S.I. unit of thermodynamic\\nentropy\\n, usually denoted by \\\"e.u.\\\" or \\\"eU\\\" and equal to one calorie per kelvin per mole, or 4.184\\\",\\\"timestamp\\\":\\\"2024-11-06T04:45:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Holographic principle\\\",\\\"pageid\\\":14286,\\\"size\\\":36292,\\\"wordcount\\\":4216,\\\"snippet\\\":\\\"bound of black hole thermodynamics, which conjectures that the maximum\\nentropy\\nin any region scales with the radius squared, rather than cubed as might\\\",\\\"timestamp\\\":\\\"2026-05-16T11:15:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"d0e45c27b3b166171a78a6d50d4e81fbb13cbeb41961b99fb4a0855e99055189\", \"verification_required\": true, \"topic_domain\": \"entropy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-976a202524bf46be",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json",
+  "version": 139,
+  "time": "2026-09-26T05:35:19.577907+00:00"
+}
+```
+
+### `source-4c1dac5005534d0f`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":7078},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mechanics\\\",\\\"pageid\\\":25202,\\\"size\\\":101544,\\\"wordcount\\\":12070,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n, also known as\\nquantum\\nphysics, is the fundamental physical theory that describes the behavior of matter and of light; the behaviors\\\",\\\"timestamp\\\":\\\"2026-09-22T01:21:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of quantum mechanics\\\",\\\"pageid\\\":9067941,\\\"size\\\":78664,\\\"wordcount\\\":9389,\\\"snippet\\\":\\\"of\\nquantum\\nmechanics\\nis a fundamental part of the history of modern physics. The major chapters of this history begin with the emergence of\\nquantum\\nideas\\\",\\\"timestamp\\\":\\\"2026-08-31T07:22:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Introduction to quantum mechanics\\\",\\\"pageid\\\":2796131,\\\"size\\\":67753,\\\"wordcount\\\":7571,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n(QM) is the study of matter and of matter's interactions with energy on the scale of atomic and subatomic particles. (By contrast, classical\\\",\\\"timestamp\\\":\\\"2026-09-25T04:10:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Interpretations of quantum mechanics\\\",\\\"pageid\\\":54738,\\\"size\\\":71853,\\\"wordcount\\\":7949,\\\"snippet\\\":\\\"interpretation of\\nquantum\\nmechanics\\nis an attempt to explain how the mathematical theory of\\nquantum\\nmechanics\\nmight correspond to experienced reality.\\nQuantum\\nmechanics\\\",\\\"timestamp\\\":\\\"2026-09-25T08:30:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wave function\\\",\\\"pageid\\\":145343,\\\"size\\\":105363,\\\"wordcount\\\":14058,\\\"snippet\\\":\\\"In\\nquantum\\nmechanics\\n, a wave function (or wavefunction) is a mathematical description of the\\nquantum\\nstate of an isolated\\nquantum\\nsystem. The most common\\\",\\\"timestamp\\\":\\\"2026-07-11T05:48:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Measurement in quantum mechanics\\\",\\\"pageid\\\":573875,\\\"size\\\":71859,\\\"wordcount\\\":8730,\\\"snippet\\\":\\\"different interpretations of\\nquantum\\nmechanics\\ndiffer in how they address what is known as the measurement problem. In\\nquantum\\nmechanics\\n, each physical system\\\",\\\"timestamp\\\":\\\"2026-09-25T11:29:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum superposition\\\",\\\"pageid\\\":82728,\\\"size\\\":19317,\\\"wordcount\\\":2576,\\\"snippet\\\":\\\"\\nQuantum\\nsuperposition is a fundamental principle of\\nquantum\\nmechanics\\nthat states that linear combinations of solutions to the Schr\\\\u00f6dinger equation are\\\",\\\"timestamp\\\":\\\"2026-06-12T23:26:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mathematical formulation of quantum mechanics\\\",\\\"pageid\\\":20728,\\\"size\\\":58208,\\\"wordcount\\\":7934,\\\"snippet\\\":\\\"mathematical formulations of\\nquantum\\nmechanics\\nare those mathematical formalisms that permit a rigorous description of\\nquantum\\nmechanics\\n. This mathematical formalism\\\",\\\"timestamp\\\":\\\"2026-09-05T15:19:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modern Quantum Mechanics\\\",\\\"pageid\\\":66026415,\\\"size\\\":9197,\\\"wordcount\\\":846,\\\"snippet\\\":\\\"Modern\\nQuantum\\nMechanics\\n, often called Sakurai or Sakurai and Napolitano, is a standard graduate-level\\nquantum\\nmechanics\\ntextbook written originally by\\\",\\\"timestamp\\\":\\\"2026-06-20T16:39:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mysticism\\\",\\\"pageid\\\":4279149,\\\"size\\\":19729,\\\"wordcount\\\":1998,\\\"snippet\\\":\\\"the ideas of\\nquantum\\nmechanics\\nand its interpretations.\\nQuantum\\nmysticism is considered pseudoscience and quackery by\\nquantum\\nmechanics\\nexperts. Before\\\",\\\"timestamp\\\":\\\"2026-08-09T08:13:54Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"1e71b17a818d1368930dd584b7a5280ac800efe546abd7b475143e5a00de69f3\", \"verification_required\": true, \"topic_domain\": \"quantum_mechanics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-4c1dac5005534d0f",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json",
+  "version": 139,
+  "time": "2026-09-26T05:35:20.256277+00:00"
+}
+```
+
+### `source-b7611e4c70854e91`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":86,\\\"suggestion\\\":\\\"storytelling narrative coalition literature\\\",\\\"suggestionsnippet\\\":\\\"storytelling narrative\\ncoalition\\nliterature\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Fiction\\\",\\\"pageid\\\":18949461,\\\"size\\\":35712,\\\"wordcount\\\":3771,\\\"snippet\\\":\\\"non-fiction.\\nStorytelling\\nhas existed in all human cultures, and each culture incorporates different elements of truth and fiction into\\nstorytelling\\n. Early\\\",\\\"timestamp\\\":\\\"2026-09-07T19:11:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narrative identity\\\",\\\"pageid\\\":35716364,\\\"size\\\":60455,\\\"wordcount\\\":7308,\\\"snippet\\\":\\\"on the affective tone of life\\nnarrative\\nmemories: Early adolescence and older age are more negative\\\". Memory and\\nCognition\\n. 51 (6): 1265\\\\u20131286. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-16T15:09:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narratology\\\",\\\"pageid\\\":718763,\\\"size\\\":23172,\\\"wordcount\\\":2691,\\\"snippet\\\":\\\"Digital-media theorist and professor Janet Murray theorized a shift in\\nstorytelling\\nand\\nnarrative\\nstructure in the twentieth century as a result of scientific advancement\\\",\\\"timestamp\\\":\\\"2026-06-21T07:57:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ancient literature\\\",\\\"pageid\\\":3709305,\\\"size\\\":49644,\\\"wordcount\\\":4634,\\\"snippet\\\":\\\"Ancient\\nliterature\\ncomprises religious and scientific documents, tales, poetry and plays, royal edicts and declarations, and other forms of writing that\\\",\\\"timestamp\\\":\\\"2026-06-29T20:43:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Role-playing game\\\",\\\"pageid\\\":25475,\\\"size\\\":38009,\\\"wordcount\\\":4559,\\\"snippet\\\":\\\"form of interactive and collaborative\\nstorytelling\\n. Events, roles, and\\nnarrative\\nstructure give a sense of a\\nnarrative\\nexperience, and the game need not have\\\",\\\"timestamp\\\":\\\"2026-09-20T05:14:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Suspense\\\",\\\"pageid\\\":4450450,\\\"size\\\":10990,\\\"wordcount\\\":1207,\\\"snippet\\\":\\\"audience feels sympathy. However, suspense is not exclusive to\\nnarratives\\n. In\\nliterature\\n, films, television, and plays, suspense is a major device for\\\",\\\"timestamp\\\":\\\"2026-09-10T05:31:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Children's literature\\\",\\\"pageid\\\":52847,\\\"size\\\":167603,\\\"wordcount\\\":18216,\\\"snippet\\\":\\\"Machine Children's\\nliterature\\nArchived 2016-06-17 at the Wayback Machine at the British Library Children's\\nLiterature\\n, Culture, and\\nCognition\\n(CLCC) Database\\\",\\\"timestamp\\\":\\\"2026-09-21T04:25:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Soma (video game)\\\",\\\"pageid\\\":5649586,\\\"size\\\":41063,\\\"wordcount\\\":3882,\\\"snippet\\\":\\\"Cody (22 June 2023). \\\"Games ad Critical\\nLiterature\\n: Playing with Transhumanism, Embodied\\nCognition\\n, and\\nNarrative\\nDifference in SOMA\\\". In Ghosal, Torsa\\\",\\\"timestamp\\\":\\\"2026-07-09T19:08:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Immersive learning\\\",\\\"pageid\\\":64345811,\\\"size\\\":22110,\\\"wordcount\\\":2264,\\\"snippet\\\":\\\"structured by the audience's own\\ncognition\\n. Also, within Ryan's book, the cognitive immersion created by\\nnarrative\\nis categorized into three kinds: spatial\\\",\\\"timestamp\\\":\\\"2025-11-26T22:52:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Comics\\\",\\\"pageid\\\":145443,\\\"size\\\":84218,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"(2013). The Visual Language of Comics: Introduction to the Structure and\\nCognition\\nof Sequential Images. London: Bloomsbury. ISBN\\\\u00a0978-1-4411-8145-9. Collins\\\",\\\"timestamp\\\":\\\"2026-09-16T05:00:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"1e3dad2e179a208d4a309489fdf9bc69c2853f5bbdf03929dccadfa6c010d718\", \"verification_required\": true, \"topic_domain\": \"storytelling\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-b7611e4c70854e91",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json",
+  "version": 139,
+  "time": "2026-09-26T05:35:21.007144+00:00"
+}
+```
+
+### `r-f0bb2b8b10cf495d`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":139,\"inherited_commitments\":[],\"invocation\":\"w-f0bb2b8b10cf495d\",\"previous_head\":\"fd7a3d9eea06acb26295b6c39a8de1b63d50dfe66a6772f51e0fb80323bb0fff\",\"process_id\":2178,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-f0bb2b8b10cf495d",
+  "source": "runtime:continuity",
+  "version": 139,
+  "time": "2026-09-26T05:35:23.909136+00:00"
 }
 ```
 
