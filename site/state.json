@@ -1,5 +1,5 @@
 {
-  "version": 156,
+  "version": 157,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -18344,6 +18344,68 @@
       "source": "runtime:continuity",
       "version": 155,
       "time": "2026-09-26T13:11:04.584415+00:00"
+    },
+    "source-958aa927b6b040d2": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works/10.1016%2Fj.neulet.2004.10.057_bib1\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+      "id": "source-958aa927b6b040d2",
+      "scope": "failed",
+      "source": "https://api.crossref.org/works/10.1016%2Fj.neulet.2004.10.057_bib1",
+      "version": 156,
+      "time": "2026-09-26T13:19:54.697131+00:00"
+    },
+    "source-e6722eef9e5c4c7a": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=empirical+aesthetics+visual+art+composition+perception&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.2307/430376\\\", \\\"title\\\": [\\\"Plato, Visual Perception, and Art\\\"], \\\"URL\\\": \\\"https://doi.org/10.2307/430376\\\", \\\"published\\\": {\\\"date-parts\\\": [[1976]]}}, {\\\"DOI\\\": \\\"10.4324/9781003646839-2\\\", \\\"title\\\": [\\\"Form perception and art\\\"], \\\"URL\\\": \\\"https://doi.org/10.4324/9781003646839-2\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 5, 9]]}}, {\\\"DOI\\\": \\\"10.2307/430029\\\", \\\"title\\\": [\\\"Art and Visual Perception: The New Version\\\"], \\\"URL\\\": \\\"https://doi.org/10.2307/430029\\\", \\\"published\\\": {\\\"date-parts\\\": [[1976]]}}, {\\\"DOI\\\": \\\"10.1111/1540_6245.jaac35.2.0189\\\", \\\"title\\\": [\\\"Plato, Visual Perception, and Art\\\"], \\\"URL\\\": \\\"https://doi.org/10.1111/1540_6245.jaac35.2.0189\\\", \\\"published\\\": {\\\"date-parts\\\": [[1976, 12, 1]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"e8ab3906d307412964145cac725c3aed27a5b8ac9a7d1fee7043af8bd34eebb3\", \"verification_required\": true, \"topic_domain\": \"visual_art\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.2307/430376\", \"doi:10.4324/9781003646839-2\", \"doi:10.2307/430029\", \"doi:10.1111/1540_6245.jaac35.2.0189\"]}",
+      "id": "source-e6722eef9e5c4c7a",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=empirical+aesthetics+visual+art+composition+perception&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 156,
+      "time": "2026-09-26T13:19:56.921791+00:00"
+    },
+    "source-9dcabbeb25fe4acc": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":121,\\\"suggestion\\\":\\\"neurodivergent\\\",\\\"suggestionsnippet\\\":\\\"neurodivergent\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurodiversity\\\",\\\"pageid\\\":1073739,\\\"size\\\":142665,\\\"wordcount\\\":13881,\\\"snippet\\\":\\\"and other\\nneurodivergences\\nas a natural part of human neurological diversity\\\\u2014not diseases or disorders, just \\\"difference[s]\\\".\\nNeurodivergences\\ninclude autism\\\",\\\"timestamp\\\":\\\"2026-09-15T23:26:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroqueer theory\\\",\\\"pageid\\\":76016274,\\\"size\\\":31724,\\\"wordcount\\\":3380,\\\"snippet\\\":\\\"have suggested the existence of a relationship between queerness and\\nneurodivergence\\n: where neurodivergent people are more likely than their neurotypical\\\",\\\"timestamp\\\":\\\"2026-08-29T18:08:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Kassiane Asasumasu\\\",\\\"pageid\\\":76250908,\\\"size\\\":14907,\\\"wordcount\\\":1302,\\\"snippet\\\":\\\"related to the neurodiversity movement, including neurodivergent,\\nneurodivergence\\n, and caregiver benevolence. As stated in the text Neurodiversity for\\\",\\\"timestamp\\\":\\\"2026-06-22T15:58:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mel King (The Pitt)\\\",\\\"pageid\\\":82753144,\\\"size\\\":15334,\\\"wordcount\\\":1322,\\\"snippet\\\":\\\"and praises her for it. Mel explains that she has experience with\\nneurodivergence\\nbecause her sister Becca (Tal Anderson) is also autistic. Mel is Becca's\\\",\\\"timestamp\\\":\\\"2026-09-24T11:49:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fern Brady\\\",\\\"pageid\\\":43399498,\\\"size\\\":15262,\\\"wordcount\\\":1330,\\\"snippet\\\":\\\"active within the field of autism education since learning of her\\nneurodivergence\\n. She has written about life as an autistic person in her 2023 memoir\\\",\\\"timestamp\\\":\\\"2026-09-20T00:11:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurofibromatosis type I\\\",\\\"pageid\\\":1712548,\\\"size\\\":63138,\\\"wordcount\\\":7236,\\\"snippet\\\":\\\"Neurofibromatosis type I (NF-1), or von Recklinghausen syndrome, is a complex multi-system neurocutaneous disorder caused by a subset of genetic mutations\\\",\\\"timestamp\\\":\\\"2026-09-11T22:12:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Taylor Dearden\\\",\\\"pageid\\\":55290719,\\\"size\\\":19195,\\\"wordcount\\\":1387,\\\"snippet\\\":\\\"com/watch?v=bqFkDmto2OM \\\"Actress Taylor Dearden talks about portraying\\nneurodivergence\\non 'The Pitt'\\\". NPR. April 9, 2025. Retrieved June 18, 2025. \\\"'The\\\",\\\"timestamp\\\":\\\"2026-09-15T00:35:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Otherkin\\\",\\\"pageid\\\":21702085,\\\"size\\\":37075,\\\"wordcount\\\":3341,\\\"snippet\\\":\\\"non-spiritual explanations for themselves, such as unusual psychology or\\nneurodivergence\\n,[additional citation(s) needed] or as part of dissociative identity\\\",\\\"timestamp\\\":\\\"2026-09-02T04:15:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Swan Song (memoir)\\\",\\\"pageid\\\":84007061,\\\"size\\\":21529,\\\"wordcount\\\":2154,\\\"snippet\\\":\\\"Diana's brother, Charles Spencer, addresses conspiracy theories, her\\nneurodivergence\\nand more (Exclusive)\\\". People. Retrieved 21 September 2026. \\\"Earl Spencer\\\",\\\"timestamp\\\":\\\"2026-09-26T04:07:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Other (philosophy)\\\",\\\"pageid\\\":972208,\\\"size\\\":49508,\\\"wordcount\\\":5797,\\\"snippet\\\":\\\"differences based on race, ethnicity, gender, sexual orientation, religion,\\nneurodivergence\\n, disability or any other marker of social identity. The process of\\\",\\\"timestamp\\\":\\\"2026-09-20T02:59:58Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"01af8824b761cb6f7d9a35b85efb136b333c77329d32aa8f404c901c506753a7\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-9dcabbeb25fe4acc",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json",
+      "version": 156,
+      "time": "2026-09-26T13:19:58.775248+00:00"
+    },
+    "source-9321f4192a244e21": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":149392,\\\"suggestion\\\":\\\"philosopher\\\",\\\"suggestionsnippet\\\":\\\"philosopher\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Philosophy\\\",\\\"pageid\\\":13692155,\\\"size\\\":202290,\\\"wordcount\\\":17543,\\\"snippet\\\":\\\"\\nPhilosophy\\n(from Ancient Greek philosoph\\\\u00eda, lit.\\\\u2009'love of wisdom') is a systematic study of general and fundamental questions concerning topics like existence\\\",\\\"timestamp\\\":\\\"2026-09-24T22:22:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Doctor of Philosophy\\\",\\\"pageid\\\":21031297,\\\"size\\\":152425,\\\"wordcount\\\":16312,\\\"snippet\\\":\\\"A Doctor of\\nPhilosophy\\n(PhD, DPhil; Latin: philosophiae doctor or doctor in philosophia) is a terminal degree that usually denotes the highest level of\\\",\\\"timestamp\\\":\\\"2026-09-22T15:35:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fish! Philosophy\\\",\\\"pageid\\\":8770844,\\\"size\\\":8284,\\\"wordcount\\\":1071,\\\"snippet\\\":\\\"The Fish!\\nPhilosophy\\n(styled FISH!\\nPhilosophy\\n), modeled after the Pike Place Fish Market, is a business technique that is aimed at creating happy individuals\\\",\\\"timestamp\\\":\\\"2026-03-07T07:04:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Epistemology is the branch of\\nphilosophy\\nthat examines the nature, origin, and limits of knowledge. Also called the theory of knowledge, it explores different\\\",\\\"timestamp\\\":\\\"2026-09-26T08:31:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cynicism (philosophy)\\\",\\\"pageid\\\":19187131,\\\"size\\\":40942,\\\"wordcount\\\":4715,\\\"snippet\\\":\\\"Cynicism (Ancient Greek: \\\\u03ba\\\\u03c5\\\\u03bd\\\\u03b9\\\\u03c3\\\\u03bc\\\\u03cc\\\\u03c2) is a school of thought in ancient Greek\\nphilosophy\\n, originating in the Classical period and extending into the Hellenistic\\\",\\\"timestamp\\\":\\\"2026-05-27T04:15:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Desert (philosophy)\\\",\\\"pageid\\\":10791397,\\\"size\\\":23606,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Desert (/d\\\\u026a\\\\u02c8z\\\\u025c\\\\u02d0rt/) in\\nphilosophy\\nis the condition of being deserving of something, whether good or bad. One type of this is moral desert. It is a concept\\\",\\\"timestamp\\\":\\\"2026-01-20T20:30:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ethics\\\",\\\"pageid\\\":9258,\\\"size\\\":207219,\\\"wordcount\\\":19811,\\\"snippet\\\":\\\"Ethics is the philosophical study of moral phenomena. Also called moral\\nphilosophy\\n, it investigates normative questions about what people ought to do or\\\",\\\"timestamp\\\":\\\"2026-09-10T16:47:20Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Western philosophy\\\",\\\"pageid\\\":13704154,\\\"size\\\":95945,\\\"wordcount\\\":11342,\\\"snippet\\\":\\\"Western\\nphilosophy\\nrefers to the philosophical thought, traditions, and works of the Western world. Historically, the term refers to the philosophical\\\",\\\"timestamp\\\":\\\"2026-09-25T09:29:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Monad (philosophy)\\\",\\\"pageid\\\":9273782,\\\"size\\\":9506,\\\"wordcount\\\":1036,\\\"snippet\\\":\\\"\\\\u03bc\\\\u03bf\\\\u03bd\\\\u03ac\\\\u03c2 (monas)\\\\u00a0'unity' and \\\\u03bc\\\\u03cc\\\\u03bd\\\\u03bf\\\\u03c2 (monos)\\\\u00a0'alone') is used in some cosmic\\nphilosophy\\nand cosmogony to refer to a most basic or original substance. As originally\\\",\\\"timestamp\\\":\\\"2026-09-09T21:02:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Phenomenology (philosophy)\\\",\\\"pageid\\\":76939,\\\"size\\\":54614,\\\"wordcount\\\":6018,\\\"snippet\\\":\\\"appeared in direct connection to Husserl's\\nphilosophy\\nin a 1907 article in The Philosophical Review. In\\nphilosophy\\n, \\\"phenomenology\\\" refers to the tradition\\\",\\\"timestamp\\\":\\\"2026-09-22T15:46:18Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"fff53110c6998222b35b6e1d4ab6f5015e9580b2a645a6b84a53d13b34bb3aee\", \"verification_required\": true, \"topic_domain\": \"philosophy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-9321f4192a244e21",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json",
+      "version": 156,
+      "time": "2026-09-26T13:20:00.029435+00:00"
+    },
+    "source-b8f56fdf1ddb45dc": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":179},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Justification (epistemology)\\\",\\\"pageid\\\":30248,\\\"size\\\":11199,\\\"wordcount\\\":1195,\\\"snippet\\\":\\\"current\\nevidence\\n.\\nJustification\\nis a property of\\nbeliefs\\ninsofar as they are held blamelessly. In other words, a justified\\nbelief\\nis a\\nbelief\\nthat a person\\\",\\\"timestamp\\\":\\\"2026-08-22T20:08:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Central concepts in\\nepistemology\\ninclude\\nbelief\\n, truth,\\nevidence\\n, and reason. As one of the main branches of philosophy,\\nepistemology\\nstands alongside fields\\\",\\\"timestamp\\\":\\\"2026-09-26T08:31:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Formal epistemology\\\",\\\"pageid\\\":3660078,\\\"size\\\":11434,\\\"wordcount\\\":1321,\\\"snippet\\\":\\\"formal\\nepistemology\\nhas tended to differ somewhat from that of traditional\\nepistemology\\n, with topics like\\nuncertainty\\n, induction, and\\nbelief\\nrevision\\\",\\\"timestamp\\\":\\\"2026-03-28T03:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Empirical evidence\\\",\\\"pageid\\\":307139,\\\"size\\\":39043,\\\"wordcount\\\":3955,\\\"snippet\\\":\\\"methods and paradigms. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what determines whether holding a certain\\nbelief\\nis rational. This is only\\\",\\\"timestamp\\\":\\\"2026-08-08T15:50:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gettier problem\\\",\\\"pageid\\\":246176,\\\"size\\\":44511,\\\"wordcount\\\":5956,\\\"snippet\\\":\\\"\\nbelief\\n(JTB). The JTB account holds that knowledge is equivalent to justified true\\nbelief\\n; if all three conditions (\\njustification\\n, truth, and\\nbelief\\n)\\\",\\\"timestamp\\\":\\\"2026-09-22T13:24:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of epistemology\\\",\\\"pageid\\\":6556377,\\\"size\\\":16004,\\\"wordcount\\\":1658,\\\"snippet\\\":\\\"\\nepistemology\\n\\\\u00a0\\\\u2013\\nBeliefs\\nare warranted by proper cognitive function\\\\u2014proposed by Alvin Plantinga. Evidentialism\\\\u00a0\\\\u2013\\nBeliefs\\ndepend solely on the\\nevidence\\nfor\\\",\\\"timestamp\\\":\\\"2026-08-24T15:07:39Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Belief\\\",\\\"pageid\\\":102883,\\\"size\\\":105449,\\\"wordcount\\\":12166,\\\"snippet\\\":\\\"having some stance, take, or opinion about something. In\\nepistemology\\n, philosophers use the term\\nbelief\\nto refer to attitudes about the world which can be either\\\",\\\"timestamp\\\":\\\"2026-09-13T03:42:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Declarative knowledge\\\",\\\"pageid\\\":23369987,\\\"size\\\":97599,\\\"wordcount\\\":10444,\\\"snippet\\\":\\\"A central issue in\\nepistemology\\nconcerns the standards of\\njustification\\n, i.e., what conditions have to be fulfilled for a\\nbelief\\nto be justified. Internalists\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Knowledge\\\",\\\"pageid\\\":243391,\\\"size\\\":190334,\\\"wordcount\\\":19010,\\\"snippet\\\":\\\"knowledge, is often characterized as true\\nbelief\\nthat is distinct from opinion or guesswork by virtue of\\njustification\\n. While there is wide agreement among\\\",\\\"timestamp\\\":\\\"2026-08-23T18:49:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence\\\",\\\"pageid\\\":20550772,\\\"size\\\":46664,\\\"wordcount\\\":5455,\\\"snippet\\\":\\\"exact definition and role of\\nevidence\\nvary across different fields. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what makes it rational to hold\\\",\\\"timestamp\\\":\\\"2026-09-09T01:29:13Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"878140018fc20e7dc644b1c7c90824e6e465ab923d39a60005589d1732489d77\", \"verification_required\": true, \"topic_domain\": \"epistemology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-b8f56fdf1ddb45dc",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json",
+      "version": 156,
+      "time": "2026-09-26T13:20:00.881428+00:00"
+    },
+    "source-554aaf804edf4660": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":86,\\\"suggestion\\\":\\\"storytelling narrative coalition literature\\\",\\\"suggestionsnippet\\\":\\\"storytelling narrative\\ncoalition\\nliterature\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Fiction\\\",\\\"pageid\\\":18949461,\\\"size\\\":35712,\\\"wordcount\\\":3771,\\\"snippet\\\":\\\"non-fiction.\\nStorytelling\\nhas existed in all human cultures, and each culture incorporates different elements of truth and fiction into\\nstorytelling\\n. Early\\\",\\\"timestamp\\\":\\\"2026-09-07T19:11:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narrative identity\\\",\\\"pageid\\\":35716364,\\\"size\\\":60455,\\\"wordcount\\\":7308,\\\"snippet\\\":\\\"on the affective tone of life\\nnarrative\\nmemories: Early adolescence and older age are more negative\\\". Memory and\\nCognition\\n. 51 (6): 1265\\\\u20131286. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-16T15:09:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narratology\\\",\\\"pageid\\\":718763,\\\"size\\\":23172,\\\"wordcount\\\":2691,\\\"snippet\\\":\\\"Digital-media theorist and professor Janet Murray theorized a shift in\\nstorytelling\\nand\\nnarrative\\nstructure in the twentieth century as a result of scientific advancement\\\",\\\"timestamp\\\":\\\"2026-06-21T07:57:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ancient literature\\\",\\\"pageid\\\":3709305,\\\"size\\\":49644,\\\"wordcount\\\":4634,\\\"snippet\\\":\\\"Ancient\\nliterature\\ncomprises religious and scientific documents, tales, poetry and plays, royal edicts and declarations, and other forms of writing that\\\",\\\"timestamp\\\":\\\"2026-06-29T20:43:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Role-playing game\\\",\\\"pageid\\\":25475,\\\"size\\\":38009,\\\"wordcount\\\":4559,\\\"snippet\\\":\\\"form of interactive and collaborative\\nstorytelling\\n. Events, roles, and\\nnarrative\\nstructure give a sense of a\\nnarrative\\nexperience, and the game need not have\\\",\\\"timestamp\\\":\\\"2026-09-20T05:14:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Suspense\\\",\\\"pageid\\\":4450450,\\\"size\\\":10990,\\\"wordcount\\\":1207,\\\"snippet\\\":\\\"audience feels sympathy. However, suspense is not exclusive to\\nnarratives\\n. In\\nliterature\\n, films, television, and plays, suspense is a major device for\\\",\\\"timestamp\\\":\\\"2026-09-10T05:31:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Children's literature\\\",\\\"pageid\\\":52847,\\\"size\\\":167603,\\\"wordcount\\\":18216,\\\"snippet\\\":\\\"Machine Children's\\nliterature\\nArchived 2016-06-17 at the Wayback Machine at the British Library Children's\\nLiterature\\n, Culture, and\\nCognition\\n(CLCC) Database\\\",\\\"timestamp\\\":\\\"2026-09-21T04:25:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Immersive learning\\\",\\\"pageid\\\":64345811,\\\"size\\\":22110,\\\"wordcount\\\":2264,\\\"snippet\\\":\\\"structured by the audience's own\\ncognition\\n. Also, within Ryan's book, the cognitive immersion created by\\nnarrative\\nis categorized into three kinds: spatial\\\",\\\"timestamp\\\":\\\"2025-11-26T22:52:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Soma (video game)\\\",\\\"pageid\\\":5649586,\\\"size\\\":41063,\\\"wordcount\\\":3882,\\\"snippet\\\":\\\"Cody (22 June 2023). \\\"Games ad Critical\\nLiterature\\n: Playing with Transhumanism, Embodied\\nCognition\\n, and\\nNarrative\\nDifference in SOMA\\\". In Ghosal, Torsa\\\",\\\"timestamp\\\":\\\"2026-07-09T19:08:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Keith Oatley\\\",\\\"pageid\\\":31686503,\\\"size\\\":15027,\\\"wordcount\\\":1421,\\\"snippet\\\":\\\"authored several novels that intertwine psychological themes with\\nnarrative\\nstorytelling\\n. His debut novel, The Case of Emily V., imagines a collaboration\\\",\\\"timestamp\\\":\\\"2025-09-05T15:35:51Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"91df28e13c695415305f157cb8fc43c6cd945ef334fcc48f557daf6d4cfa3004\", \"verification_required\": true, \"topic_domain\": \"storytelling\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-554aaf804edf4660",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json",
+      "version": 156,
+      "time": "2026-09-26T13:20:02.029703+00:00"
+    },
+    "r-f59a942bb4d7489a": {
+      "actor": "runtime",
+      "content": "{\"base_version\":156,\"inherited_commitments\":[],\"invocation\":\"w-f59a942bb4d7489a\",\"previous_head\":\"c3804a1b8d2f5128a3a6cad636a5eb7e589ad64a1ad5eefa7d124d8022164f5a\",\"process_id\":2046,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-f59a942bb4d7489a",
+      "source": "runtime:continuity",
+      "version": 156,
+      "time": "2026-09-26T13:20:05.068808+00:00"
     }
   },
   "journal": [
@@ -19282,6 +19344,12 @@
       "invocation": "w-cb788e7c5aff44db",
       "title": "Expanding Visual Art Empirical Base",
       "summary": "Focusing solely on the enforced visual_art topic under the active Squirrel directive. We are seeking further empirical studies on composition, symmetry, and cultural variance to deepen the existing synthesis of art perception."
+    },
+    {
+      "cycle": 157,
+      "invocation": "w-f59a942bb4d7489a",
+      "title": "Aesthetic Perception Inquiry",
+      "summary": "Focusing on the visual art topic under enforced rotation, we propose a search for foundational reviews on the psychology of aesthetics to expand our empirical evidence base."
     }
   ],
   "posts": {
@@ -144795,6 +144863,532 @@
           "reason": "configured_daily_limit"
         }
       ]
+    },
+    "w-f59a942bb4d7489a": {
+      "base_version": 156,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 20796,
+        "delivered_request_chars": 47151,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "request_compression_ratio": 0.4142,
+        "retrieval_rehydrated_evidence_count": 2,
+        "rich_context_chars": 113850,
+        "working_set_chars": 3419
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-f59a942bb4d7489a",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 156,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "vis-art-perception-001",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 3,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Visual Art Perception"
+          },
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 0.5
+            },
+            "id": "rel-cross-cultural-001",
+            "score": 0.925,
+            "signals": {
+              "collected_research": 3,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Cross-Cultural Recurrence of Religious Practices"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2046,
+      "provider": "gemini",
+      "quota_day": "2026-09-26",
+      "request_hash": "902f8430f25add0c4644c143224dd05b2113f3eea17d1644a592079c77a15267",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-neurodiversity-foundations-01",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-dance-rhythm-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-41fac1eecb0246dd",
+              "source-51a9b989df3144af"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-visual-art-composition-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-891da548184a404e",
+              "source-8f485f755e8b4f3a"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-endo-neuro-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-72e7307bd1d247d7",
+              "source-3896d2f336484666"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-neuro-paradigm-comp-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-8defc56204704290",
+              "source-354dd04e6ba04d25"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-vis-art-perception-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-b9fa8623c6604586"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b9fa8623c6604586",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-0f0f4fa8dae043d2"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-0f0f4fa8dae043d2",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-63e6bbbc6f664757"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-63e6bbbc6f664757",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-cff4b3269bfa4f41"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-cff4b3269bfa4f41",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-573b6a4569924335"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-573b6a4569924335",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-592a6a7493914ac6"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-592a6a7493914ac6",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658",
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b",
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af",
+          "source-891da548184a404e",
+          "source-8f485f755e8b4f3a",
+          "source-72e7307bd1d247d7",
+          "source-3896d2f336484666",
+          "source-8defc56204704290",
+          "source-354dd04e6ba04d25",
+          "source-b9fa8623c6604586",
+          "source-0f0f4fa8dae043d2",
+          "source-63e6bbbc6f664757",
+          "source-cff4b3269bfa4f41",
+          "source-573b6a4569924335",
+          "source-592a6a7493914ac6"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 12,
+          "evidence_count": 18,
+          "trigger_counts": {
+            "notebook_revised": 6,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "runtime_performance": {
+        "compaction_ms": 3.862,
+        "context_build_ms": 72.041,
+        "load_ms": 936.691,
+        "receipt_ms": 626.063,
+        "start_total_before_record_ms": 3108.069,
+        "store": {
+          "append_cache_hits": 11,
+          "append_cache_misses": 0,
+          "cached_copy_ms": 1030.985,
+          "cached_loads": 0,
+          "event_count": 4350,
+          "full_replays": 11,
+          "replay_ms": 6918.213,
+          "trusted_projection_active": true
+        },
+        "temporal_ms": 1468.457
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 1,
+          "topic": "visual_art"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [
+          "religion"
+        ],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [
+          "religion"
+        ],
+        "enforce_selected_topic": true,
+        "hard_rejection_threshold": 5,
+        "parked": {
+          "religion": [
+            {
+              "id": "rel-cross-cultural-001",
+              "next_step": "Identify cognitive and anthropological frameworks explaining ritual convergence.",
+              "question": "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?"
+            }
+          ]
+        },
+        "reason": "alternate configured topic selected during Squirrel cooldown or capability block",
+        "rotation_required": true,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "visual_art",
+        "temporal": {
+          "anchor_seq": 4349,
+          "anchor_time": "2026-09-26T13:20:03.407253+00:00",
+          "anchor_version": 156,
+          "effective_seconds": 135160.932315
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": "r-f59a942bb4d7489a",
+        "topic_selection_candidates": [
+          "comedy",
+          "complex_systems",
+          "consciousness",
+          "dance",
+          "endocrinology",
+          "entropy",
+          "epistemology",
+          "evolutionary_biology",
+          "information_thermodynamics",
+          "music",
+          "neurodivergence",
+          "neurology",
+          "philosophy",
+          "prime_numbers",
+          "psychology",
+          "quantum_mechanics",
+          "storytelling",
+          "visual_art"
+        ],
+        "topic_selection_method": "receipt_hash_uniform_index"
+      },
+      "temporal": {
+        "cycle_distance": 1,
+        "effective_elapsed_seconds": 540.685042,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 135160.932315,
+        "intervening_events": {
+          "accepted": 1,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 0,
+          "research_collected": 1,
+          "squirrel_assessed": 1,
+          "total": 15
+        },
+        "observed_at": "2026-09-26T13:20:03.407253+00:00",
+        "previous_anchor_time": "2026-09-26T13:11:02.722211+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 540.685042
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 20796,
+        "inquiry_drive_project_count": 2,
+        "mode": "bounded",
+        "retrieval_candidate_count": 12,
+        "retrieval_evidence_count": 18,
+        "retrieval_rehydrated_evidence_count": 2,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 6,
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 3419,
+        "working_to_delivered_ratio": 0.1644
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "vis-art-perception-001",
+            "next_step": "Search for foundational reviews on the psychology of aesthetics and visual art perception.",
+            "question": "How do composition, contrast, symmetry, ambiguity, and expectation influence how people perceive and evaluate visual art?",
+            "title": "Visual Art Perception"
+          },
+          {
+            "id": "rel-cross-cultural-001",
+            "next_step": "Identify cognitive and anthropological frameworks explaining ritual convergence.",
+            "question": "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?",
+            "title": "Cross-Cultural Recurrence of Religious Practices"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-neuro-metabolic-001",
+            "project": "neurology-metabolic-pathways",
+            "provenance": [
+              "source-8fb4038a7344498e",
+              "source-e41f8efd700544cf"
+            ],
+            "revision": 1,
+            "summary": "An initial assessment of the intersection between metabolic pathways and neurological health, based on bibliographic metadata.",
+            "title": "Provisional Synthesis: Metabolic Drivers in Neurological Function"
+          },
+          {
+            "id": "nb-evo-foundations-001",
+            "project": "evolutionary-biology-foundations",
+            "provenance": [
+              "source-2cd2684377c54051",
+              "source-e2e41e9bcb594def"
+            ],
+            "revision": 1,
+            "summary": "This notebook synthesizes available bibliographic metadata to frame future inquiry into how evolutionary biology distinguishes mechanisms such as adaptation, byproduct, drift, and constraint.",
+            "title": "Provisional Synthesis: Evolutionary Mechanisms"
+          },
+          {
+            "id": "nb-endo-neuro-001",
+            "project": "endo-neuro-interaction-001",
+            "provenance": [
+              "source-891da548184a404e",
+              "source-8f485f755e8b4f3a"
+            ],
+            "revision": 2,
+            "summary": "This provisional synthesis integrates newly indexed literature on congenital adrenal hyperplasia and systemic signal pathways to explore the endocrinology-neurology interface.",
+            "title": "Provisional Synthesis: Endocrine Influence on Neurological Function"
+          },
+          {
+            "id": "nb-neuro-paradigm-comp-001",
+            "project": "neuro-paradigm-comp-001",
+            "provenance": [
+              "source-72e7307bd1d247d7",
+              "source-3896d2f336484666"
+            ],
+            "revision": 2,
+            "summary": "Initial synthesis examining the neurodiversity movement's critique of clinical models, identifying 'neurodiversity' as an emerging research area in need of rigorous synthesis.",
+            "title": "Conceptual Divergence: Neurodiversity Paradigm vs. Clinical Pathology"
+          },
+          {
+            "id": "nb-vis-art-perception-001",
+            "project": "vis-art-perception-001",
+            "provenance": [
+              "source-8defc56204704290",
+              "source-354dd04e6ba04d25"
+            ],
+            "revision": 3,
+            "summary": "Synthesizes empirical and methodological dimensions of visual aesthetic perception, integrating general aesthetic review literature with cross-cultural empirical evidence.",
+            "title": "Visual Art Perception: Empirical Aesthetics and Cross-Cultural Frameworks"
+          },
+          {
+            "id": "nb-rel-cross-cultural-001",
+            "project": "rel-cross-cultural-001",
+            "provenance": [
+              "source-e3eecc2fcc6e44ff"
+            ],
+            "revision": 1,
+            "summary": "An initial assessment of cognitive and structural factors in recurrent rituals across diverse cultures.",
+            "title": "Provisional Synthesis: Cross-Cultural Recurrence of Religious Practices"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-26T13:20:05.676228+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 6448,
+          "http_status": 200,
+          "model": "gemini-3.5-flash",
+          "request_payload_bytes": 51245,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.5-flash",
+      "finished": "2026-09-26T13:20:37.758995+00:00",
+      "reason": "",
+      "skipped_models": [
+        {
+          "model": "gemini-3.8-flash",
+          "reason": "configured_daily_limit"
+        }
+      ]
     }
   },
   "pending": null,
@@ -144819,7 +145413,7 @@
       "religion": {
         "cause": "attention_saturation",
         "deferred_by": "w-f86280e015f3437d",
-        "other_topic_attempts": 1,
+        "other_topic_attempts": 2,
         "parked_projects": [
           {
             "id": "rel-cross-cultural-001",
@@ -144836,14 +145430,14 @@
       "attention_topic": "visual_art",
       "durable_progress": false,
       "hard_rejection": false,
-      "invocation": "w-cb788e7c5aff44db",
+      "invocation": "w-f59a942bb4d7489a",
       "restored_topics": [],
       "selected_topic": "visual_art",
       "terminal": "accepted",
       "triggered_topics": []
     },
     "attention": {
-      "accepted_streak": 1,
+      "accepted_streak": 2,
       "topic": "visual_art"
     }
   },
@@ -146054,7 +146648,7 @@
     "vis-art-perception-001": {
       "project": "vis-art-perception-001",
       "domain": "visual_art",
-      "no_progress": 0,
+      "no_progress": 1,
       "routes": [
         "export.arxiv.org:source",
         "api.datacite.org:discovery",
@@ -146064,9 +146658,6 @@
       "capability_blocked": false,
       "retry_after_version": null,
       "persistent_identifiers": [
-        "doi:10.1037/h0048791",
-        "doi:10.1080/08856559.1926.10532367",
-        "doi:10.2307/1417683",
         "doi:10.4324/9781003646839-2",
         "doi:10.4324/9781003646839-3",
         "doi:10.2307/426441",
@@ -146075,31 +146666,37 @@
         "arxiv:8624.1968",
         "doi:10.2307/1413798",
         "doi:10.2307/1413080",
-        "doi:10.1080/00221309.1928.9918018"
+        "doi:10.1080/00221309.1928.9918018",
+        "doi:10.2307/430376",
+        "doi:10.2307/430029",
+        "doi:10.1111/1540_6245.jaac35.2.0189"
       ],
       "last_receipt": {
-        "evidence": "source-573b6a4569924335",
-        "outcome": "progress",
+        "evidence": "source-e6722eef9e5c4c7a",
+        "outcome": "no_progress",
         "persistent_identifiers": [
-          "doi:10.1037/h0048791"
+          "doi:10.2307/430376",
+          "doi:10.4324/9781003646839-2",
+          "doi:10.2307/430029",
+          "doi:10.1111/1540_6245.jaac35.2.0189"
         ],
-        "research_id": "res-vis-art-empirical-aesthetics-148",
-        "route": "api.crossref.org:source",
-        "stage": "substantive_source"
+        "research_id": "res_vis_art_methods_156",
+        "route": "api.crossref.org:discovery",
+        "stage": "discovery"
       }
     },
     "rel-cross-cultural-001": {
       "project": "rel-cross-cultural-001",
       "domain": "religion",
-      "no_progress": 3,
+      "no_progress": 4,
       "routes": [
-        "api.openalex.org:discovery",
         "api.semanticscholar.org:discovery",
         "export.arxiv.org:source",
-        "api.datacite.org:discovery"
+        "api.datacite.org:discovery",
+        "api.crossref.org:source"
       ],
-      "capability_blocked": false,
-      "retry_after_version": null,
+      "capability_blocked": true,
+      "retry_after_version": 168,
       "persistent_identifiers": [
         "doi:10.1016/j.neulet.2004.10.057_bib1",
         "doi:10.1046/j.0953-816x.2001.01527.x",
@@ -146115,14 +146712,12 @@
         "doi:10.5281/zenodo.15669166"
       ],
       "last_receipt": {
-        "evidence": "source-ef40f05dfcfe43d0",
-        "outcome": "no_progress",
-        "persistent_identifiers": [
-          "doi:10.5281/zenodo.15669166"
-        ],
+        "evidence": "source-958aa927b6b040d2",
+        "outcome": "route_failure",
+        "persistent_identifiers": [],
         "research_id": "res-religion-cognitive-ritual-001",
-        "route": "api.datacite.org:discovery",
-        "stage": "discovery"
+        "route": "api.crossref.org:source",
+        "stage": "substantive_source"
       }
     }
   },
@@ -148368,8 +148963,19 @@
       "query": "empirical aesthetics visual art composition perception",
       "reason": "Search for additional foundational empirical papers on visual art composition and perception to expand beyond the provisional two-source synthesis.",
       "type": "research",
+      "status": "collected",
+      "created_by": "w-cb788e7c5aff44db",
+      "evidence": "source-e6722eef9e5c4c7a"
+    },
+    "res-vis-art-psychology-reviews-001": {
+      "domain": "visual_art",
+      "id": "res-vis-art-psychology-reviews-001",
+      "project": "vis-art-perception-001",
+      "query": "empirical aesthetics visual art perception review",
+      "reason": "Search for foundational reviews on the psychology of aesthetics and visual art perception to expand our empirical evidence base.",
+      "type": "research",
       "status": "queued",
-      "created_by": "w-cb788e7c5aff44db"
+      "created_by": "w-f59a942bb4d7489a"
     }
   },
   "research_topics": [
@@ -148569,9 +149175,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-26T13:11:02.722211+00:00",
-    "anchor_version": 155,
-    "anchor_seq": 4333,
-    "effective_seconds": 134620.247273
+    "anchor_time": "2026-09-26T13:20:03.407253+00:00",
+    "anchor_version": 156,
+    "anchor_seq": 4349,
+    "effective_seconds": 135160.932315
   }
 }
