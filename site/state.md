@@ -5,7 +5,7 @@
 **Version:** 129  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `89f3a368655a329215880ed4b150163315d02084d799bc5cdf551e7545cbe88a`
+**Verified head:** `8538e17cc13bf43e3c09f8454fd6b469ddc630fda146cee85e6488e29515729a`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -1759,30 +1759,45 @@ _None recorded._
 {
   "project": "evolutionary-biology-foundations",
   "domain": "evolutionary_biology",
-  "no_progress": 2,
+  "no_progress": 1,
   "routes": [
     "api.semanticscholar.org:discovery",
-    "api.crossref.org:discovery"
+    "api.crossref.org:discovery",
+    "api.crossref.org:source",
+    "api.openalex.org:discovery"
   ],
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.7208/chicago/9780226401911.003.0006",
     "doi:10.1101/119578",
     "doi:10.64898/2026.07.20.739646",
-    "doi:10.1101/2021.11.05.467433"
+    "doi:10.1101/2021.11.05.467433",
+    "doi:10.1016/j.respol.2019.103833",
+    "doi:10.1186/1745-6150-2-14",
+    "doi:10.4436/jass.89015",
+    "doi:10.1111/j.1365-2435.2010.01796.x",
+    "openalex:W2967254320",
+    "openalex:W2144820252",
+    "openalex:W29173571",
+    "openalex:W2109047372",
+    "arxiv:2435.2010"
   ],
   "last_receipt": {
-    "evidence": "source-d17aa793da754dce",
+    "evidence": "source-5fb34a14b01b4245",
     "outcome": "no_progress",
     "persistent_identifiers": [
-      "doi:10.7208/chicago/9780226401911.003.0006",
-      "doi:10.1101/119578",
-      "doi:10.64898/2026.07.20.739646",
-      "doi:10.1101/2021.11.05.467433"
+      "doi:10.1016/j.respol.2019.103833",
+      "doi:10.1186/1745-6150-2-14",
+      "doi:10.4436/jass.89015",
+      "doi:10.1111/j.1365-2435.2010.01796.x",
+      "openalex:W2967254320",
+      "openalex:W2144820252",
+      "openalex:W29173571",
+      "openalex:W2109047372",
+      "arxiv:2435.2010"
     ],
-    "research_id": "res-evo-foundations-002",
-    "route": "api.crossref.org:discovery",
+    "research_id": "res-evo-foundations-003",
+    "route": "api.openalex.org:discovery",
     "stage": "discovery"
   }
 }
@@ -1803,7 +1818,7 @@ _None recorded._
   "endocrinology": 1,
   "entropy": 5,
   "epistemology": 0,
-  "evolutionary_biology": 1,
+  "evolutionary_biology": 2,
   "information_thermodynamics": 0,
   "music": 3,
   "neurodivergence": 1,
@@ -1828,11 +1843,11 @@ _None recorded._
   "attention_saturation_triggered": false,
   "attention_topic": "evolutionary_biology",
   "durable_progress": false,
-  "hard_rejection": false,
-  "invocation": "w-35e7f38248c24337",
+  "hard_rejection": true,
+  "invocation": "w-53017b79ef994e1b",
   "restored_topics": [],
   "selected_topic": "evolutionary_biology",
-  "terminal": "accepted",
+  "terminal": "rejected",
   "triggered_topics": []
 }
 ```
@@ -107913,6 +107928,494 @@ _None recorded._
 }
 ```
 
+### `w-53017b79ef994e1b`
+
+```json
+{
+  "base_version": 129,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 16954,
+    "delivered_request_chars": 46008,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set",
+      "verbose recovery frames",
+      "extended bounded reflection history",
+      "redundant evidence payload text",
+      "low-priority bounded prose"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "request_compression_ratio": 0.3513,
+    "retrieval_rehydrated_evidence_count": 2,
+    "rich_context_chars": 130969,
+    "working_set_chars": 3811
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-53017b79ef994e1b",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 129,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "evolutionary-biology-foundations",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 1,
+          "queued_research": 1
+        },
+        "title": "Foundations of Evolutionary Biology"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 1.0
+        },
+        "id": "neurology-metabolic-pathways",
+        "score": 0.825,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Neurological Impact of Metabolic Changes"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0.5
+        },
+        "id": "religion-cross-cultural-practices",
+        "score": 0.75,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 3,
+          "queued_research": 0
+        },
+        "title": "Cross-Cultural Religious Practices"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2266,
+  "provider": "gemini",
+  "quota_day": "2026-09-25",
+  "request_hash": "bc22f18fbbd92908ad49fc29b3c67085e096a473b5fa241917e1308cb1a56beb",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neurodiversity-foundations-01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-dance-rhythm-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-visual-art-composition-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-16a38b8a6e2346cf"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-16a38b8a6e2346cf",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-41ca3c26b29a473a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-41ca3c26b29a473a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-284f83ce979a46ea"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-284f83ce979a46ea",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-fcbce7f68a354d10"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-fcbce7f68a354d10",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-480aa67d5ebe49ef"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-480aa67d5ebe49ef",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-1f19d52cd2f243ec"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-1f19d52cd2f243ec",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0a7b2a5c06d44417",
+      "source-930f33f0d42a4658",
+      "source-f535f6171025430e",
+      "source-b4a60e211150449b",
+      "source-41fac1eecb0246dd",
+      "source-51a9b989df3144af",
+      "source-16a38b8a6e2346cf",
+      "source-41ca3c26b29a473a",
+      "source-284f83ce979a46ea",
+      "source-fcbce7f68a354d10",
+      "source-480aa67d5ebe49ef",
+      "source-1f19d52cd2f243ec"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 12,
+      "trigger_counts": {
+        "notebook_revised": 3,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "runtime_performance": {
+    "compaction_ms": 6.948,
+    "context_build_ms": 94.36,
+    "load_ms": 855.094,
+    "receipt_ms": 497.615,
+    "start_total_before_record_ms": 2695.509,
+    "store": {
+      "append_cache_hits": 11,
+      "append_cache_misses": 0,
+      "cached_copy_ms": 922.947,
+      "cached_loads": 0,
+      "event_count": 3679,
+      "full_replays": 11,
+      "replay_ms": 6370.155,
+      "trusted_projection_active": true
+    },
+    "temporal_ms": 1240.377
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 4,
+      "topic": "evolutionary_biology"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [],
+    "enforce_selected_topic": false,
+    "hard_rejection_threshold": 5,
+    "parked": {},
+    "reason": "current durable project topic remains eligible",
+    "rotation_required": false,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "evolutionary_biology",
+    "temporal": {
+      "anchor_seq": 3678,
+      "anchor_time": "2026-09-26T03:22:23.029771+00:00",
+      "anchor_version": 129,
+      "effective_seconds": 99300.554833
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": null,
+    "topic_selection_candidates": [],
+    "topic_selection_method": "active_topic"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 454.078194,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 99300.554833,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 1,
+      "squirrel_assessed": 1,
+      "total": 15
+    },
+    "observed_at": "2026-09-26T03:22:23.029771+00:00",
+    "previous_anchor_time": "2026-09-26T03:14:48.951577+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 454.078194
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 16954,
+    "inquiry_drive_project_count": 3,
+    "mode": "bounded",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 12,
+    "retrieval_rehydrated_evidence_count": 2,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 3,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 3811,
+    "working_to_delivered_ratio": 0.2248
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "religion-cross-cultural-practices",
+        "next_step": "Search for academic reviews or theories regarding the convergence of religious rituals and practices.",
+        "question": "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?",
+        "title": "Cross-Cultural Religious Practices"
+      },
+      {
+        "id": "neurology-metabolic-pathways",
+        "next_step": "Initiate search for review articles linking systemic metabolic dysfunction to neurological disease pathways.",
+        "question": "How do metabolic, hormonal, and systemic physiological changes influence neurological function and neurological disease?",
+        "title": "Neurological Impact of Metabolic Changes"
+      },
+      {
+        "id": "evolutionary-biology-foundations",
+        "next_step": "Search for foundational reviews on distinguishing evolutionary mechanisms like exaptation, drift, and adaptation.",
+        "question": "How do evolutionary explanations distinguish adaptation, byproduct, drift, and constraint when explaining complex biological or behavioral traits?",
+        "title": "Foundations of Evolutionary Biology"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-prime-dist-001",
+        "project": "prime-numbers-distribution",
+        "provenance": [
+          "source-7ec80a5fc56745db"
+        ],
+        "revision": 1,
+        "summary": "An initial exploration of the Prime Number Theorem's role in describing prime number distribution, based on bibliographic metadata.",
+        "title": "Provisional Synthesis: Prime Number Theorem and Density"
+      },
+      {
+        "id": "nb-religion-cross-cultural-001",
+        "project": "religion-cross-cultural-practices",
+        "provenance": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "revision": 1,
+        "summary": "Initial status report indicating that the current evidence set consists of unrelated bibliographic metadata.",
+        "title": "Provisional Synthesis: Cross-Cultural Religious Practices"
+      },
+      {
+        "id": "nb-religion-002",
+        "project": "religion-cross-cultural-practices",
+        "provenance": [
+          "source-7bd43608b269427f",
+          "source-d56377b15875422a"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes available bibliographic metadata concerning cognitive and evolutionary approaches to religion, noting that while the sources provide a venue for such research, full content access is currently absent.",
+        "title": "Provisional Synthesis: Cross-Cultural Religious Practices"
+      },
+      {
+        "id": "nb-religion-ritual-psych-001",
+        "project": "religion-cross-cultural-practices",
+        "provenance": [
+          "source-0e0aa6aa238246cb"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes the 'process-based framework' from a 2017 integrative review of ritual psychology, noting the distinction between the ritual form and its psychological function.",
+        "title": "Synthesis: The Psychology of Rituals"
+      },
+      {
+        "id": "nb-neuro-metabolic-001",
+        "project": "neurology-metabolic-pathways",
+        "provenance": [
+          "source-8fb4038a7344498e",
+          "source-e41f8efd700544cf"
+        ],
+        "revision": 1,
+        "summary": "An initial assessment of the intersection between metabolic pathways and neurological health, based on bibliographic metadata.",
+        "title": "Provisional Synthesis: Metabolic Drivers in Neurological Function"
+      },
+      {
+        "id": "nb-evo-foundations-001",
+        "project": "evolutionary-biology-foundations",
+        "provenance": [
+          "source-2cd2684377c54051",
+          "source-e2e41e9bcb594def"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes available bibliographic metadata to frame future inquiry into how evolutionary biology distinguishes mechanisms such as adaptation, byproduct, drift, and constraint.",
+        "title": "Provisional Synthesis: Evolutionary Mechanisms"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-26T03:22:24.960373+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 6492,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 50053,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-26T03:22:53.423914+00:00",
+  "reason": "Stale or invalid base_version",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ]
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -132359,6 +132862,103 @@ _None recorded._
 }
 ```
 
+### `source-1f19d52cd2f243ec`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.7208%2Fchicago%2F9780226401911.003.0006\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2024, 9, 2]], \\\"date-time\\\": \\\"2024-09-02T12:32:26Z\\\", \\\"timestamp\\\": 1725280346474}, \\\"reference-count\\\": 0, \\\"publisher\\\": \\\"University of Chicago Press\\\", \\\"isbn-type\\\": [{\\\"value\\\": \\\"9780226401881\\\", \\\"type\\\": \\\"print\\\"}, {\\\"value\\\": \\\"9780226401744\\\", \\\"type\\\": \\\"print\\\"}, {\\\"value\\\": \\\"9780226401911\\\", \\\"type\\\": \\\"electronic\\\"}], \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [], \\\"published-print\\\": {\\\"date-parts\\\": [[2016]]}, \\\"DOI\\\": \\\"10.7208/chicago/9780226401911.003.0006\\\", \\\"type\\\": \\\"book-chapter\\\", \\\"created\\\": {\\\"date-parts\\\": [[2019, 1, 7]], \\\"date-time\\\": \\\"2019-01-07T16:06:32Z\\\", \\\"timestamp\\\": 1546877192000}, \\\"page\\\": \\\"145-175\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 1, \\\"title\\\": [\\\"6. The Reference Class Problem in Evolutionary Biology\\\"], \\\"prefix\\\": \\\"10.7208\\\", \\\"member\\\": \\\"200\\\", \\\"container-title\\\": [\\\"Chance in Evolution\\\"], \\\"original-title\\\": [], \\\"language\\\": \\\"en\\\", \\\"deposited\\\": {\\\"date-parts\\\": [[2022, 11, 7]], \\\"date-time\\\": \\\"2022-11-07T16:39:15Z\\\", \\\"timestamp\\\": 1667839155000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"https://www.bibliovault.org/BV.landing.epl?ISBN=9780226401911&chapter=9780226401911006\\\"}}, \\\"subtitle\\\": [\\\"Distinguishing Selection from Drift\\\"], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[2016]]}, \\\"ISBN\\\": [\\\"9780226401881\\\", \\\"9780226401744\\\", \\\"9780226401911\\\"], \\\"references-count\\\": 0, \\\"URL\\\": \\\"https://doi.org/10.7208/chicago/9780226401911.003.0006\\\", \\\"relation\\\": {}, \\\"subject\\\": [], \\\"published\\\": {\\\"date-parts\\\": [[2016]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"2463ff5dc8a8fdb6db96914fd81022e270aa40b1352a403abfe6f34a04794240\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.7208/chicago/9780226401911.003.0006\"]}",
+  "id": "source-1f19d52cd2f243ec",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.7208%2Fchicago%2F9780226401911.003.0006",
+  "version": 129,
+  "time": "2026-09-26T03:22:17.130913+00:00"
+}
+```
+
+### `source-5fb34a14b01b4245`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works?search=exaptation+vs+adaptation+evolutionary+mechanisms+review&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W2967254320\\\", \\\"doi\\\": \\\"https://doi.org/10.1016/j.respol.2019.103833\\\", \\\"title\\\": \\\"Exaptation in a digital innovation ecosystem: The disruptive impacts of 3D printing\\\", \\\"publication_year\\\": 2019, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 278, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"green\\\", \\\"oa_url\\\": \\\"https://publications.aston.ac.uk/id/eprint/39571/1/Beltagui_et_al_forthcoming_Exaptation_in_a_digital_innovation_ecosystem_R4.pdf\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1016/j.respol.2019.103833\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://doi.org/10.1016/j.respol.2019.103833\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S9731383\\\", \\\"display_name\\\": \\\"Research Policy\\\", \\\"issn_l\\\": \\\"0048-7333\\\", \\\"issn\\\": [\\\"0048-7333\\\", \\\"1873-7625\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"abdc-a-star\\\", \\\"cwts-core\\\", \\\"erih-plus\\\", \\\"jufo-3\\\", \\\"ki-jl-1\\\", \\\"norway-2\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320990\\\", \\\"host_organization_name\\\": \\\"Elsevier BV\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320990\\\"], \\\"host_organization_lineage_names\\\": [\\\"Elsevier BV\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Research Policy\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": null}, {\\\"id\\\": \\\"https://openalex.org/W2144820252\\\", \\\"doi\\\": \\\"https://doi.org/10.1186/1745-6150-2-14\\\", \\\"title\\\": \\\"On the origin of the translation system and the genetic code in the RNA world by means of natural selection, exaptation, and subfunctionalization\\\", \\\"publication_year\\\": 2007, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 246, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"gold\\\", \\\"oa_url\\\": \\\"https://biologydirect.biomedcentral.com/counter/pdf/10.1186/1745-6150-2-14\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1186/1745-6150-2-14\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1186/1745-6150-2-14\\\", \\\"pdf_url\\\": \\\"https://biologydirect.biomedcentral.com/counter/pdf/10.1186/1745-6150-2-14\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S42110715\\\", \\\"display_name\\\": \\\"Biology Direct\\\", \\\"issn_l\\\": \\\"1745-6150\\\", \\\"issn\\\": [\\\"1745-6150\\\"], \\\"is_oa\\\": true, \\\"is_in_doaj\\\": true, \\\"is_core\\\": true, \\\"listed_in\\\": [\\\"cwts-core\\\", \\\"doaj\\\", \\\"doyens\\\", \\\"jufo-1\\\", \\\"medline\\\", \\\"norway-1\\\"], \\\"host_organization\\\": \\\"https://openalex.org/P4310320256\\\", \\\"host_organization_name\\\": \\\"BioMed Central\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320256\\\", \\\"https://openalex.org/P4310319965\\\"], \\\"host_organization_lineage_names\\\": [\\\"BioMed Central\\\", \\\"Springer Nature\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Biology Direct\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"BACKGROUND: The origin of the translation system is, arguably, the central and the hardest problem in the study of the origin of life, and one of the hardest in all evolutionary biology. The problem has a clear catch-22 aspect: high translation fidelity hardly can be achieved without a complex, highly evolved set of RNAs and proteins but an elaborate protein machinery could not evolve without an accurate translation system. The origin of the genetic code and whether it evolved on the basis of a stereochemical correspondence between amino acids and their cognate codons (or anticodons), through selectional optimization of the code vocabulary, as a \\\\\\\"frozen accident\\\\\\\" or via a combination of all these routes is another wide open problem despite extensive theoretical and experimental studies. Here we combine the results of comparative genomics of translation system components, data on interaction of amino acids with their cognate codons and anticodons, and data on catalytic activities of ribozymes to develop conceptual models for the origins of the translation system and the genetic code. RESULTS: Our main guide in constructing the models is the Darwinian Continuity Principle whereby a scenario for the evolution of a complex system must consist of plausible elementary steps, each conferring a distinct advantage on the evolving ensemble of genetic elements. Evolution of the translation system is envisaged to occur in a compartmentalized ensemble of replicating, co-selected RNA segments, i.e., in a RNA World containing ribozymes with versatile activities. Since evolution has no foresight, the translation system could not evolve in the RNA World as the result of selection for protein synthesis and must have been a by-product of evolution drive by selection for another function, i.e., the translation system evolved via the exaptation route. It is proposed that the evolutionary process that eventually led to the emergence of translation started with the selection for ribozymes binding abiogenic amino acids that stimulated ribozyme-catalyzed reactions. The proposed scenario for the evolution of translation consists of the following steps: binding of amino acids to a ribozyme resulting in an enhancement of its catalytic activity; evolution of the amino-acid-stimulated ribozyme into a peptide ligase (predecessor of the large ribosomal subunit) yielding, initially, a unique peptide activating the original ribozyme and, possibly, other ribozymes in the ensemble; evolution of self-charging proto-tRNAs that were selected, initially, for accumulation of amino acids, and subsequently, for delivery of amino acids to the peptide ligase; joining of the peptide ligase with a distinct RNA molecule (predecessor of the small ribosomal subunit) carrying a built-in template for more efficient, complementary binding of charged proto-tRNAs; evolution of the ability of the peptide ligase to assemble peptides using exogenous RNAs as template for complementary binding of charged proteo-tRNAs, yielding peptides with the potential to activate different ribozymes; evolution of the translocation function of the protoribosome leading to the production of increasingly longer peptides (the first proteins), i.e., the origin of translation. The specifics of the recognition of amino acids by proto-tRNAs and the origin of the genetic code depend on whether or not there is a physical affinity between amino acids and their cognate codons or anticodons, a problem that remains unresolved. CONCLUSION: We describe a stepwise model for the origin of the translation system in the ancient RNA world such that each step confers a distinct advantage onto an ensemble of co-evolving genetic elements. Under this scenario, the primary cause for the emergence of translation was the ability of amino acids and peptides to stimulate reactions catalyzed by ribozymes. Thus, the translation system might have evolved as the result of selection for ribozymes capable of, initially, efficient amino acid binding, and subsequently, synthesis of increasingly versatile peptides. Several aspects of this scenario are amenable to experimental testing.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W29173571\\\", \\\"doi\\\": \\\"https://doi.org/10.4436/jass.89015\\\", \\\"title\\\": \\\"Exaptation in human evolution: how to test adaptive vs exaptive evolutionary hypotheses.\\\", \\\"publication_year\\\": 2011, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 59, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"green\\\", \\\"oa_url\\\": \\\"http://hdl.handle.net/11577/2535857\\\", \\\"any_repository_has_fulltext\\\": true}, \\\"primary_location\\\": {\\\"id\\\": \\\"pmid:21757789\\\", \\\"is_oa\\\": false, \\\"landing_page_url\\\": \\\"https://pubmed.ncbi.nlm.nih.gov/21757789\\\", \\\"pdf_url\\\": null, \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S4306525036\\\", \\\"display_name\\\": \\\"PubMed\\\", \\\"issn_l\\\": null, \\\"issn\\\": null, \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": false, \\\"listed_in\\\": [], \\\"host_organization\\\": \\\"https://openalex.org/I1299303238\\\", \\\"host_organization_name\\\": \\\"National Institutes of Health\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/I1299303238\\\"], \\\"host_organization_lineage_names\\\": [], \\\"type\\\": \\\"repository\\\"}, \\\"license\\\": null, \\\"license_id\\\": null, \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Journal of anthropological sciences = Rivista di antropologia : JASS\\\", \\\"raw_type\\\": \\\"Journal Article\\\"}, \\\"abstract\\\": \\\"Palaeontologists, Stephen J. Gould and Elisabeth Vrba, introduced the term \\\\\\\"ex-aptation\\\\\\\" with the aim of improving and enlarging the scientific language available to researchers studying the evolution of any useful character, instead of calling it an \\\\\\\"adaptation\\\\\\\" by default, coming up with what Gould named an \\\\\\\"extended taxonomy of fitness\\\\\\\". With the extension to functional co-optations from non-adaptive structures (\\\\\\\"spandrels\\\\\\\"), the notion of exaptation expanded and revised the neo-Darwinian concept of \\\\\\\"pre-adaptation\\\\\\\" (which was misleading, for Gould and Vrba, suggesting foreordination). Exaptation is neither a \\\\\\\"saltationist\\\\\\\" nor an \\\\\\\"anti-Darwinian\\\\\\\" concept and, since 1982, has been adopted by many researchers in evolutionary and molecular biology, and particularly in human evolution. Exaptation has also been contested. Objections include the \\\\\\\"non-operationality objection\\\\\\\".We analyze the possible operationalization of this concept in two recent studies, and identify six directions of empirical research, which are necessary to test \\\\\\\"adaptive vs. exaptive\\\\\\\" evolutionary hypotheses. We then comment on a comprehensive survey of literature (available online), and on the basis of this we make a quantitative and qualitative evaluation of the adoption of the term among scientists who study human evolution. We discuss the epistemic conditions that may have influenced the adoption and appropriate use of exaptation, and comment on the benefits of an \\\\\\\"extended taxonomy of fitness\\\\\\\" in present and future studies concerning human evolution.\\\"}, {\\\"id\\\": \\\"https://openalex.org/W2109047372\\\", \\\"doi\\\": \\\"https://doi.org/10.1111/j.1365-2435.2010.01796.x\\\", \\\"title\\\": \\\"Current trends in the evolutionary ecology of plant defe\", \"excerpt_truncated\": true, \"source_sha256\": \"9166bf92e77264a9b8e5c84fb6d641abc6670727308920bb2ee4ee2fc73e2cb3\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1016/j.respol.2019.103833\", \"doi:10.1186/1745-6150-2-14\", \"doi:10.4436/jass.89015\", \"doi:10.1111/j.1365-2435.2010.01796.x\", \"openalex:W2967254320\", \"openalex:W2144820252\", \"openalex:W29173571\", \"openalex:W2109047372\", \"arxiv:2435.2010\"]}",
+  "id": "source-5fb34a14b01b4245",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works?search=exaptation+vs+adaptation+evolutionary+mechanisms+review&per-page=4&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Ctype%2Ccited_by_count%2Copen_access%2Cprimary_location%2Cabstract_inverted_index",
+  "version": 129,
+  "time": "2026-09-26T03:22:18.390618+00:00"
+}
+```
+
+### `source-097afd3e731e4327`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2201},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy in thermodynamics and information theory\\\",\\\"pageid\\\":3325140,\\\"size\\\":32062,\\\"wordcount\\\":3968,\\\"snippet\\\":\\\"expressions for\\ninformation\\ntheory developed by Claude Shannon and Ralph Hartley in the 1940s are similar to the mathematics of statistical\\nthermodynamics\\nworked\\\",\\\"timestamp\\\":\\\"2026-09-24T10:29:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"classical\\nthermodynamics\\n(where it was first recognized), to the microscopic description of nature in statistical physics, and the principles of\\ninformation\\ntheory\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Laws of thermodynamics\\\",\\\"pageid\\\":778700,\\\"size\\\":20658,\\\"wordcount\\\":2896,\\\"snippet\\\":\\\"The laws of\\nthermodynamics\\nare a set of scientific laws which define a group of physical quantities, such as temperature, energy, and entropy, that characterize\\\",\\\"timestamp\\\":\\\"2026-07-20T00:17:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"The second law of\\nthermodynamics\\nis a physical law based on universal empirical observation concerning heat and energy interconversions. A simple statement\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of thermodynamics\\\",\\\"pageid\\\":2281782,\\\"size\\\":35022,\\\"wordcount\\\":3780,\\\"snippet\\\":\\\"The history of\\nthermodynamics\\nis a fundamental strand in the history of physics, the history of chemistry, and the history of science in general. Due to\\\",\\\"timestamp\\\":\\\"2026-08-29T23:05:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thermodynamics\\\",\\\"pageid\\\":29952,\\\"size\\\":49113,\\\"wordcount\\\":5808,\\\"snippet\\\":\\\"\\nThermodynamics\\nis a branch of physics that deals with heat, work, and temperature, and their relation to energy, entropy, and the physical properties of\\\",\\\"timestamp\\\":\\\"2026-09-01T03:12:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"noisy-channel coding theorem. Entropy in\\ninformation\\ntheory is directly analogous to the entropy in statistical\\nthermodynamics\\n. The analogy results when the values\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nicole Yunger Halpern\\\",\\\"pageid\\\":80018960,\\\"size\\\":8512,\\\"wordcount\\\":643,\\\"snippet\\\":\\\"quantum\\nthermodynamics\\n. She works at the National Institute of Standards and Technology, is a fellow of the Joint Center for Quantum\\nInformation\\nand Computer\\\",\\\"timestamp\\\":\\\"2026-08-31T12:40:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum thermodynamics\\\",\\\"pageid\\\":46278620,\\\"size\\\":41268,\\\"wordcount\\\":5147,\\\"snippet\\\":\\\"Quantum\\nthermodynamics\\nis the study of the relations between two independent physical theories:\\nthermodynamics\\nand quantum mechanics. The two independent\\\",\\\"timestamp\\\":\\\"2026-08-16T02:38:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Zeroth law of thermodynamics\\\",\\\"pageid\\\":262861,\\\"size\\\":21045,\\\"wordcount\\\":2665,\\\"snippet\\\":\\\"The zeroth law of\\nthermodynamics\\nis one of the four principal laws of\\nthermodynamics\\n. It provides an independent definition of temperature without reference\\\",\\\"timestamp\\\":\\\"2025-12-17T14:08:55Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"194d2f2e8ee6a3de24d852b6081b8f065f7015160b02a90c9026e4ee4977a026\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-097afd3e731e4327",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json",
+  "version": 129,
+  "time": "2026-09-26T03:22:19.808441+00:00"
+}
+```
+
+### `source-b06437fbcab94d4c`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2767},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Self-organization\\\",\\\"pageid\\\":286947,\\\"size\\\":64814,\\\"wordcount\\\":6861,\\\"snippet\\\":\\\"justification for\\nself\\n-\\norganization\\nas a general principle of\\ncomplex\\nsystems\\n. In the field of multi-agent\\nsystems\\n, understanding how to engineer\\nsystems\\nthat are\\\",\\\"timestamp\\\":\\\"2026-08-20T00:23:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Emergence\\\",\\\"pageid\\\":37436,\\\"size\\\":60324,\\\"wordcount\\\":6551,\\\"snippet\\\":\\\"In philosophy,\\nsystems\\ntheory, science, and art,\\nemergence\\noccurs when a\\ncomplex\\nentity has properties or behaviors that its components do not have on\\\",\\\"timestamp\\\":\\\"2026-09-07T03:04:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems theory\\\",\\\"pageid\\\":29238,\\\"size\\\":56628,\\\"wordcount\\\":6135,\\\"snippet\\\":\\\"how well the\\nsystem\\nis engaged with its environment and other contexts influencing its\\norganization\\n. Some\\nsystems\\nsupport other\\nsystems\\n, maintaining the\\\",\\\"timestamp\\\":\\\"2026-07-18T16:09:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex system\\\",\\\"pageid\\\":37438,\\\"size\\\":47317,\\\"wordcount\\\":4876,\\\"snippet\\\":\\\"\\nsystem\\nand its environment.\\nSystems\\nthat are \\\"\\ncomplex\\n\\\" have distinct properties that arise from these relationships, such as nonlinearity,\\nemergence\\n,\\\",\\\"timestamp\\\":\\\"2026-09-25T18:37:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex adaptive system\\\",\\\"pageid\\\":1428810,\\\"size\\\":35927,\\\"wordcount\\\":3790,\\\"snippet\\\":\\\"The\\nComplex\\nAdaptive\\nSystems\\napproach builds on replicator dynamics. The study of\\ncomplex\\nadaptive\\nsystems\\n, a subset of nonlinear dynamical\\nsystems\\n, is\\\",\\\"timestamp\\\":\\\"2026-04-06T14:02:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-assembly\\\",\\\"pageid\\\":351914,\\\"size\\\":40999,\\\"wordcount\\\":4440,\\\"snippet\\\":\\\"Although\\nself\\n-assembly typically occurs between weakly-interacting species, this\\norganization\\nmay be transferred into strongly-bound covalent\\nsystems\\n. An example\\\",\\\"timestamp\\\":\\\"2026-08-10T18:14:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-regulation\\\",\\\"pageid\\\":1738695,\\\"size\\\":834,\\\"wordcount\\\":132,\\\"snippet\\\":\\\"standards\\nSelf\\n-regulatory\\norganization\\n, in business and finance Homeostasis, a state of steady internal conditions maintained by living things\\nEmergence\\n, the\\\",\\\"timestamp\\\":\\\"2023-05-02T13:34:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems thinking\\\",\\\"pageid\\\":227985,\\\"size\\\":20916,\\\"wordcount\\\":2126,\\\"snippet\\\":\\\"action in\\ncomplex\\ncontexts, enabling\\nsystems\\nchange.\\nSystems\\nthinking draws on and contributes to conceptual\\nsystems\\n,\\nsystems\\ntheory, and the\\nsystem\\nsciences\\\",\\\"timestamp\\\":\\\"2026-09-25T10:53:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complexity theory and organizations\\\",\\\"pageid\\\":5938019,\\\"size\\\":24442,\\\"wordcount\\\":2009,\\\"snippet\\\":\\\"differentiate it from other\\nself\\n-organizing\\nsystems\\n.\\nOrganizational\\nenvironments can be viewed as\\ncomplex\\nadaptive\\nsystems\\nwhere coevolution generally\\\",\\\"timestamp\\\":\\\"2026-05-25T04:34:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The purpose of a system is what it does\\\",\\\"pageid\\\":17404830,\\\"size\\\":6777,\\\"wordcount\\\":754,\\\"snippet\\\":\\\"applying POSIWID shows that the\\norganization's\\npractices contradict those values. From a cybernetic perspective,\\ncomplex\\nsystems\\nare not controllable by simple\\\",\\\"timestamp\\\":\\\"2026-09-22T17:25:20Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"0169a451a75f2220e7f6a3220be81000a95ec1b954b73dfdf6bbd1c2e0040cb2\", \"verification_required\": true, \"topic_domain\": \"complex_systems\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-b06437fbcab94d4c",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json",
+  "version": 129,
+  "time": "2026-09-26T03:22:20.535368+00:00"
+}
+```
+
+### `source-96ffacf5edbd4de7`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":86,\\\"suggestion\\\":\\\"storytelling narrative coalition literature\\\",\\\"suggestionsnippet\\\":\\\"storytelling narrative\\ncoalition\\nliterature\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Fiction\\\",\\\"pageid\\\":18949461,\\\"size\\\":35712,\\\"wordcount\\\":3771,\\\"snippet\\\":\\\"non-fiction.\\nStorytelling\\nhas existed in all human cultures, and each culture incorporates different elements of truth and fiction into\\nstorytelling\\n. Early\\\",\\\"timestamp\\\":\\\"2026-09-07T19:11:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narrative identity\\\",\\\"pageid\\\":35716364,\\\"size\\\":60455,\\\"wordcount\\\":7308,\\\"snippet\\\":\\\"on the affective tone of life\\nnarrative\\nmemories: Early adolescence and older age are more negative\\\". Memory and\\nCognition\\n. 51 (6): 1265\\\\u20131286. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-16T15:09:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narratology\\\",\\\"pageid\\\":718763,\\\"size\\\":23172,\\\"wordcount\\\":2691,\\\"snippet\\\":\\\"Digital-media theorist and professor Janet Murray theorized a shift in\\nstorytelling\\nand\\nnarrative\\nstructure in the twentieth century as a result of scientific advancement\\\",\\\"timestamp\\\":\\\"2026-06-21T07:57:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ancient literature\\\",\\\"pageid\\\":3709305,\\\"size\\\":49644,\\\"wordcount\\\":4634,\\\"snippet\\\":\\\"Ancient\\nliterature\\ncomprises religious and scientific documents, tales, poetry and plays, royal edicts and declarations, and other forms of writing that\\\",\\\"timestamp\\\":\\\"2026-06-29T20:43:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Role-playing game\\\",\\\"pageid\\\":25475,\\\"size\\\":38009,\\\"wordcount\\\":4559,\\\"snippet\\\":\\\"form of interactive and collaborative\\nstorytelling\\n. Events, roles, and\\nnarrative\\nstructure give a sense of a\\nnarrative\\nexperience, and the game need not have\\\",\\\"timestamp\\\":\\\"2026-09-20T05:14:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Suspense\\\",\\\"pageid\\\":4450450,\\\"size\\\":10990,\\\"wordcount\\\":1207,\\\"snippet\\\":\\\"audience feels sympathy. However, suspense is not exclusive to\\nnarratives\\n. In\\nliterature\\n, films, television, and plays, suspense is a major device for\\\",\\\"timestamp\\\":\\\"2026-09-10T05:31:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Children's literature\\\",\\\"pageid\\\":52847,\\\"size\\\":167603,\\\"wordcount\\\":18216,\\\"snippet\\\":\\\"Machine Children's\\nliterature\\nArchived 2016-06-17 at the Wayback Machine at the British Library Children's\\nLiterature\\n, Culture, and\\nCognition\\n(CLCC) Database\\\",\\\"timestamp\\\":\\\"2026-09-21T04:25:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Immersive learning\\\",\\\"pageid\\\":64345811,\\\"size\\\":22110,\\\"wordcount\\\":2264,\\\"snippet\\\":\\\"structured by the audience's own\\ncognition\\n. Also, within Ryan's book, the cognitive immersion created by\\nnarrative\\nis categorized into three kinds: spatial\\\",\\\"timestamp\\\":\\\"2025-11-26T22:52:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Soma (video game)\\\",\\\"pageid\\\":5649586,\\\"size\\\":41063,\\\"wordcount\\\":3882,\\\"snippet\\\":\\\"Cody (22 June 2023). \\\"Games ad Critical\\nLiterature\\n: Playing with Transhumanism, Embodied\\nCognition\\n, and\\nNarrative\\nDifference in SOMA\\\". In Ghosal, Torsa\\\",\\\"timestamp\\\":\\\"2026-07-09T19:08:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Keith Oatley\\\",\\\"pageid\\\":31686503,\\\"size\\\":15027,\\\"wordcount\\\":1421,\\\"snippet\\\":\\\"authored several novels that intertwine psychological themes with\\nnarrative\\nstorytelling\\n. His debut novel, The Case of Emily V., imagines a collaboration\\\",\\\"timestamp\\\":\\\"2025-09-05T15:35:51Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"91df28e13c695415305f157cb8fc43c6cd945ef334fcc48f557daf6d4cfa3004\", \"verification_required\": true, \"topic_domain\": \"storytelling\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-96ffacf5edbd4de7",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json",
+  "version": 129,
+  "time": "2026-09-26T03:22:21.209071+00:00"
+}
+```
+
+### `source-58e746e50f154d35`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":4984},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Prime number\\\",\\\"pageid\\\":23666,\\\"size\\\":128021,\\\"wordcount\\\":14786,\\\"snippet\\\":\\\"A\\nprime\\nnumber (or a\\nprime\\n) is a natural number greater than 1 that is not a product of two smaller natural\\nnumbers\\n. A natural number greater than 1 that\\\",\\\"timestamp\\\":\\\"2026-09-21T15:01:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of Mersenne primes and perfect numbers\\\",\\\"pageid\\\":68906231,\\\"size\\\":52386,\\\"wordcount\\\":2900,\\\"snippet\\\":\\\"Mersenne\\nprimes\\nand perfect\\nnumbers\\nare two deeply interlinked types of natural\\nnumbers\\nin number theory. Mersenne\\nprimes\\n, named after the friar Marin\\\",\\\"timestamp\\\":\\\"2026-09-17T04:54:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of prime numbers\\\",\\\"pageid\\\":442370,\\\"size\\\":108209,\\\"wordcount\\\":6026,\\\"snippet\\\":\\\"This is a list of articles about\\nprime\\nnumbers\\n. A\\nprime\\nnumber (or\\nprime\\n) is a natural number greater than 1 that has no divisors other than 1 and itself\\\",\\\"timestamp\\\":\\\"2026-09-25T23:43:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Sexy primes\\\",\\\"pageid\\\":343116,\\\"size\\\":3815,\\\"wordcount\\\":453,\\\"snippet\\\":\\\"sexy\\nprimes\\nare\\nprime\\nnumbers\\nthat differ from another\\nprime\\nby 6. For example, the\\nnumbers\\n5 and 11 are a pair of sexy\\nprimes\\n, because both are\\nprime\\nand\\\",\\\"timestamp\\\":\\\"2026-09-18T20:27:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Perfect number\\\",\\\"pageid\\\":23670,\\\"size\\\":39840,\\\"wordcount\\\":5531,\\\"snippet\\\":\\\"odd Perfect\\nPrime\\nNumbers\\n\\\".\\nMathematics\\nof Computation. 27 (124): 951\\\\u2013953. doi:10.2307/2005530. JSTOR\\\\u00a02005530. Riele, H.J.J. \\\"Perfect\\nNumbers\\nand Aliquot\\\",\\\"timestamp\\\":\\\"2026-09-12T00:36:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Number\\\",\\\"pageid\\\":21690,\\\"size\\\":111953,\\\"wordcount\\\":11703,\\\"snippet\\\":\\\"A number is a\\nmathematical\\nobject used to count, measure, order and label. The most basic examples are the natural\\nnumbers\\n: 1, 2, 3, 4, 5, and so forth\\\",\\\"timestamp\\\":\\\"2026-09-25T06:24:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wieferich prime\\\",\\\"pageid\\\":323631,\\\"size\\\":43265,\\\"wordcount\\\":4566,\\\"snippet\\\":\\\"\\nprimes\\nand various other topics in\\nmathematics\\nhave been discovered, including other types of\\nnumbers\\nand\\nprimes\\n, such as Mersenne and Fermat\\nnumbers\\n\\\",\\\"timestamp\\\":\\\"2026-08-21T10:09:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"RSA numbers\\\",\\\"pageid\\\":511379,\\\"size\\\":70317,\\\"wordcount\\\":4491,\\\"snippet\\\":\\\"In\\nmathematics\\n, the RSA\\nnumbers\\nare a set of large semiprimes (\\nnumbers\\nwith exactly two\\nprime\\nfactors) that were part of the RSA Factoring Challenge. The\\\",\\\"timestamp\\\":\\\"2026-09-21T17:33:30Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Closing the Gap: The Quest to Understand Prime Numbers\\\",\\\"pageid\\\":63087914,\\\"size\\\":5974,\\\"wordcount\\\":617,\\\"snippet\\\":\\\"Closing the Gap: The Quest to Understand\\nPrime\\nNumbers\\nis a book on\\nprime\\nnumbers\\nand\\nprime\\ngaps by Vicky Neale, published in 2017 by the Oxford University\\\",\\\"timestamp\\\":\\\"2026-09-11T00:17:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mersenne prime\\\",\\\"pageid\\\":18908,\\\"size\\\":78122,\\\"wordcount\\\":6673,\\\"snippet\\\":\\\"In\\nmathematics\\n, a Mersenne\\nprime\\nis a\\nprime\\nnumber that is one less than a power of two. That is, it is a\\nprime\\nnumber of the form Mn = 2n \\\\u2212 1 for some\\\",\\\"timestamp\\\":\\\"2026-09-08T20:24:47Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"a942e5d345068f94f50b03ebe484637081b84dcde01cc51e3991a342e068cdc4\", \"verification_required\": true, \"topic_domain\": \"prime_numbers\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.2307/2005530\"]}",
+  "id": "source-58e746e50f154d35",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json",
+  "version": 129,
+  "time": "2026-09-26T03:22:21.858217+00:00"
+}
+```
+
+### `r-53017b79ef994e1b`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":129,\"inherited_commitments\":[],\"invocation\":\"w-53017b79ef994e1b\",\"previous_head\":\"baced3cd7b7f449c0ec09dde7a1c7767608462d905c27b8abd1ef604b466018e\",\"process_id\":2266,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-53017b79ef994e1b",
+  "source": "runtime:continuity",
+  "version": 129,
+  "time": "2026-09-26T03:22:24.459672+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -135360,8 +135960,9 @@ _None recorded._
   "query": "exaptation vs adaptation evolutionary mechanisms review",
   "reason": "Exaptation is a critical concept in evolutionary theory for explaining traits that do not fit simple adaptationist models; identifying how literature classifies it relative to byproduct and adaptation is a key step.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-0b0fe1f8b2254667"
+  "status": "collected",
+  "created_by": "w-0b0fe1f8b2254667",
+  "evidence": "source-5fb34a14b01b4245"
 }
 ```
 
