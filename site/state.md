@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 161  
+**Version:** 162  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `e52336798c27ea6ca00e2b272951373c9e6f1681c9c5a9ab72b9ace0e3c8b8e8`
+**Verified head:** `c19677548238be48548039e5a475e1a8d10567a3281f7ee63041c85f233a87de`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -2119,7 +2119,7 @@ _None recorded._
 {
   "project": "rel-cross-cultural-001",
   "domain": "religion",
-  "no_progress": 1,
+  "no_progress": 0,
   "routes": [
     "api.semanticscholar.org:discovery",
     "export.arxiv.org:source",
@@ -2143,9 +2143,11 @@ _None recorded._
     "doi:10.1097/00004647-199607000-00015"
   ],
   "last_receipt": {
-    "evidence": "source-7a43cd7ac40441df",
-    "outcome": "route_failure",
-    "persistent_identifiers": [],
+    "evidence": "source-d42d7776493e4fe7",
+    "outcome": "progress",
+    "persistent_identifiers": [
+      "doi:10.1002/crossmark_policy"
+    ],
     "research_id": "res-religion-cognitive-ritual-001",
     "route": "api.crossref.org:source",
     "stage": "substantive_source"
@@ -2217,22 +2219,39 @@ _None recorded._
 ### `deferred`
 
 ```json
-{}
+{
+  "music": {
+    "cause": "attention_saturation",
+    "deferred_by": "w-80e6a86bf8cf4ea9",
+    "other_topic_attempts": 0,
+    "parked_projects": [
+      {
+        "id": "music-cross-cultural-001",
+        "next_step": "Search for cross-cultural studies or reviews on universal structural features of music.",
+        "question": "Which structural features of music appear across cultures, and which are strongly shaped by learned musical traditions?"
+      }
+    ],
+    "reason": "five accepted wakes concentrated on one topic; rotate until another topic reaches durable synthesis",
+    "release_condition": "accepted notebook or ordinary publication on another topic"
+  }
+}
 ```
 
 ### `last_receipt`
 
 ```json
 {
-  "attention_saturation_triggered": false,
+  "attention_saturation_triggered": true,
   "attention_topic": "music",
-  "durable_progress": true,
+  "durable_progress": false,
   "hard_rejection": false,
-  "invocation": "w-9d13d86c2c144b8d",
+  "invocation": "w-80e6a86bf8cf4ea9",
   "restored_topics": [],
   "selected_topic": "music",
   "terminal": "accepted",
-  "triggered_topics": []
+  "triggered_topics": [
+    "music"
+  ]
 }
 ```
 
@@ -2240,7 +2259,7 @@ _None recorded._
 
 ```json
 {
-  "accepted_streak": 4,
+  "accepted_streak": 5,
   "topic": "music"
 }
 ```
@@ -132769,6 +132788,546 @@ _None recorded._
 }
 ```
 
+### `w-80e6a86bf8cf4ea9`
+
+```json
+{
+  "base_version": 161,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 19829,
+    "delivered_request_chars": 47996,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "request_compression_ratio": 0.3863,
+    "retrieval_rehydrated_evidence_count": 2,
+    "rich_context_chars": 124248,
+    "working_set_chars": 3763
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-80e6a86bf8cf4ea9",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 161,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "music-cross-cultural-001",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Cross-Cultural Musical Structure"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "vis-art-perception-001",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 4,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Visual Art Perception"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0.5
+        },
+        "id": "rel-cross-cultural-001",
+        "score": 0.925,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Cross-Cultural Recurrence of Religious Practices"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2228,
+  "provider": "gemini",
+  "quota_day": "2026-09-26",
+  "request_hash": "065c916b18a095590d31062885288ac40eed971c2a66859b0e2da675aa6f99fe",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neurodiversity-foundations-01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-dance-rhythm-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-visual-art-composition-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-891da548184a404e",
+          "source-8f485f755e8b4f3a"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-endo-neuro-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-72e7307bd1d247d7",
+          "source-3896d2f336484666"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neuro-paradigm-comp-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-8defc56204704290",
+          "source-354dd04e6ba04d25"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-vis-art-perception-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-695373c9b37544cd",
+          "source-8defc56204704290"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-music-cross-cultural-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-cff4b3269bfa4f41"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-cff4b3269bfa4f41",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-573b6a4569924335"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-573b6a4569924335",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-592a6a7493914ac6"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-592a6a7493914ac6",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-5daa49b2bec14eed"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-5daa49b2bec14eed",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-116a5941b4e54f19"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-116a5941b4e54f19",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-d42d7776493e4fe7"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d42d7776493e4fe7",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0a7b2a5c06d44417",
+      "source-930f33f0d42a4658",
+      "source-f535f6171025430e",
+      "source-b4a60e211150449b",
+      "source-41fac1eecb0246dd",
+      "source-51a9b989df3144af",
+      "source-891da548184a404e",
+      "source-8f485f755e8b4f3a",
+      "source-72e7307bd1d247d7",
+      "source-3896d2f336484666",
+      "source-8defc56204704290",
+      "source-354dd04e6ba04d25",
+      "source-695373c9b37544cd",
+      "source-cff4b3269bfa4f41",
+      "source-573b6a4569924335",
+      "source-592a6a7493914ac6",
+      "source-5daa49b2bec14eed",
+      "source-116a5941b4e54f19",
+      "source-d42d7776493e4fe7"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 13,
+      "evidence_count": 19,
+      "trigger_counts": {
+        "notebook_revised": 7,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "runtime_performance": {
+    "compaction_ms": 5.127,
+    "context_build_ms": 114.002,
+    "load_ms": 1101.025,
+    "receipt_ms": 598.35,
+    "start_total_before_record_ms": 3437.113,
+    "store": {
+      "append_cache_hits": 9,
+      "append_cache_misses": 0,
+      "cached_copy_ms": 969.111,
+      "cached_loads": 0,
+      "event_count": 4440,
+      "full_replays": 11,
+      "replay_ms": 8457.212,
+      "trusted_projection_active": true
+    },
+    "temporal_ms": 1617.473
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 4,
+      "topic": "music"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [],
+    "enforce_selected_topic": false,
+    "hard_rejection_threshold": 5,
+    "parked": {},
+    "reason": "current durable project topic remains eligible",
+    "rotation_required": false,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "music",
+    "temporal": {
+      "anchor_seq": 4439,
+      "anchor_time": "2026-09-26T14:58:44.871824+00:00",
+      "anchor_version": 161,
+      "effective_seconds": 141082.396886
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": null,
+    "topic_selection_candidates": [],
+    "topic_selection_method": "active_topic"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 570.678862,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 141082.396886,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 0,
+      "squirrel_assessed": 1,
+      "total": 13
+    },
+    "observed_at": "2026-09-26T14:58:44.871824+00:00",
+    "previous_anchor_time": "2026-09-26T14:49:14.192962+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 570.678862
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 19829,
+    "inquiry_drive_project_count": 3,
+    "mode": "bounded",
+    "retrieval_candidate_count": 13,
+    "retrieval_evidence_count": 19,
+    "retrieval_rehydrated_evidence_count": 2,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 7,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 3763,
+    "working_to_delivered_ratio": 0.1898
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "vis-art-perception-001",
+        "next_step": "Search for foundational reviews on the psychology of aesthetics and visual art perception.",
+        "question": "How do composition, contrast, symmetry, ambiguity, and expectation influence how people perceive and evaluate visual art?",
+        "title": "Visual Art Perception"
+      },
+      {
+        "id": "rel-cross-cultural-001",
+        "next_step": "Identify cognitive and anthropological frameworks explaining ritual convergence.",
+        "question": "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?",
+        "title": "Cross-Cultural Recurrence of Religious Practices"
+      },
+      {
+        "id": "music-cross-cultural-001",
+        "next_step": "Search for cross-cultural studies or reviews on universal structural features of music.",
+        "question": "Which structural features of music appear across cultures, and which are strongly shaped by learned musical traditions?",
+        "title": "Cross-Cultural Musical Structure"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-evo-foundations-001",
+        "project": "evolutionary-biology-foundations",
+        "provenance": [
+          "source-2cd2684377c54051",
+          "source-e2e41e9bcb594def"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes available bibliographic metadata to frame future inquiry into how evolutionary biology distinguishes mechanisms such as adaptation, byproduct, drift, and constraint.",
+        "title": "Provisional Synthesis: Evolutionary Mechanisms"
+      },
+      {
+        "id": "nb-endo-neuro-001",
+        "project": "endo-neuro-interaction-001",
+        "provenance": [
+          "source-891da548184a404e",
+          "source-8f485f755e8b4f3a"
+        ],
+        "revision": 2,
+        "summary": "This provisional synthesis integrates newly indexed literature on congenital adrenal hyperplasia and systemic signal pathways to explore the endocrinology-neurology interface.",
+        "title": "Provisional Synthesis: Endocrine Influence on Neurological Function"
+      },
+      {
+        "id": "nb-neuro-paradigm-comp-001",
+        "project": "neuro-paradigm-comp-001",
+        "provenance": [
+          "source-72e7307bd1d247d7",
+          "source-3896d2f336484666"
+        ],
+        "revision": 2,
+        "summary": "Initial synthesis examining the neurodiversity movement's critique of clinical models, identifying 'neurodiversity' as an emerging research area in need of rigorous synthesis.",
+        "title": "Conceptual Divergence: Neurodiversity Paradigm vs. Clinical Pathology"
+      },
+      {
+        "id": "nb-vis-art-perception-001",
+        "project": "vis-art-perception-001",
+        "provenance": [
+          "source-8defc56204704290",
+          "source-354dd04e6ba04d25"
+        ],
+        "revision": 3,
+        "summary": "Synthesizes empirical and methodological dimensions of visual aesthetic perception, integrating general aesthetic review literature with cross-cultural empirical evidence.",
+        "title": "Visual Art Perception: Empirical Aesthetics and Cross-Cultural Frameworks"
+      },
+      {
+        "id": "nb-rel-cross-cultural-001",
+        "project": "rel-cross-cultural-001",
+        "provenance": [
+          "source-e3eecc2fcc6e44ff"
+        ],
+        "revision": 1,
+        "summary": "An initial assessment of cognitive and structural factors in recurrent rituals across diverse cultures.",
+        "title": "Provisional Synthesis: Cross-Cultural Recurrence of Religious Practices"
+      },
+      {
+        "id": "nb-music-cross-cultural-001",
+        "project": "music-cross-cultural-001",
+        "provenance": [
+          "source-695373c9b37544cd",
+          "source-8defc56204704290"
+        ],
+        "revision": 2,
+        "summary": "A synthesis of cross-cultural perspectives on musical structure, contrasting potential universal communication features with culturally specific aesthetic preferences.",
+        "title": "Provisional Synthesis: Cross-Cultural Musical Structure"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-26T14:58:47.317262+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 5057,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 52416,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-26T14:59:17.453716+00:00",
+  "reason": "",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ]
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -161968,6 +162527,103 @@ _None recorded._
 }
 ```
 
+### `source-d42d7776493e4fe7`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1002%2Fcrossmark_policy\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2025, 10, 1]], \\\"date-time\\\": \\\"2025-10-01T16:27:20Z\\\", \\\"timestamp\\\": 1759336040130}, \\\"reference-count\\\": 0, \\\"publisher\\\": \\\"Wiley\\\", \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [], \\\"DOI\\\": \\\"10.1002/crossmark_policy\\\", \\\"type\\\": \\\"dataset\\\", \\\"created\\\": {\\\"date-parts\\\": [[2011, 12, 21]], \\\"date-time\\\": \\\"2011-12-21T13:54:10Z\\\", \\\"timestamp\\\": 1324475650000}, \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 32, \\\"title\\\": [], \\\"prefix\\\": \\\"10.1002\\\", \\\"member\\\": \\\"311\\\", \\\"container-title\\\": [\\\"John Wiley &amp; Sons, Inc. CrossMark Policy\\\"], \\\"original-title\\\": [], \\\"link\\\": [{\\\"URL\\\": \\\"https://onlinelibrary.wiley.com/doi/full/10.1002/crossmark_policy\\\", \\\"content-type\\\": \\\"unspecified\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"similarity-checking\\\"}], \\\"deposited\\\": {\\\"date-parts\\\": [[2018, 8, 3]], \\\"date-time\\\": \\\"2018-08-03T18:04:10Z\\\", \\\"timestamp\\\": 1533319450000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"http://doi.wiley.com/10.1002/crossmark_policy\\\"}}, \\\"subtitle\\\": [], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[null]]}, \\\"references-count\\\": 0, \\\"URL\\\": \\\"https://doi.org/10.1002/crossmark_policy\\\", \\\"relation\\\": {}, \\\"subject\\\": []}]\", \"excerpt_truncated\": false, \"source_sha256\": \"184799a4a1845ec03aaf052ced3d8751a9e0ed8678a1ad1d59298aa866e09b6c\", \"verification_required\": true, \"topic_domain\": \"religion\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1002/crossmark_policy\"]}",
+  "id": "source-d42d7776493e4fe7",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.1002%2Fcrossmark_policy",
+  "version": 161,
+  "time": "2026-09-26T14:58:39.206147+00:00"
+}
+```
+
+### `source-87a06be7da0f4151`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2201},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy in thermodynamics and information theory\\\",\\\"pageid\\\":3325140,\\\"size\\\":32062,\\\"wordcount\\\":3968,\\\"snippet\\\":\\\"expressions for\\ninformation\\ntheory developed by Claude Shannon and Ralph Hartley in the 1940s are similar to the mathematics of statistical\\nthermodynamics\\nworked\\\",\\\"timestamp\\\":\\\"2026-09-24T10:29:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"classical\\nthermodynamics\\n(where it was first recognized), to the microscopic description of nature in statistical physics, and the principles of\\ninformation\\ntheory\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Laws of thermodynamics\\\",\\\"pageid\\\":778700,\\\"size\\\":20658,\\\"wordcount\\\":2896,\\\"snippet\\\":\\\"The laws of\\nthermodynamics\\nare a set of scientific laws which define a group of physical quantities, such as temperature, energy, and entropy, that characterize\\\",\\\"timestamp\\\":\\\"2026-07-20T00:17:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"The second law of\\nthermodynamics\\nis a physical law based on universal empirical observation concerning heat and energy interconversions. A simple statement\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of thermodynamics\\\",\\\"pageid\\\":2281782,\\\"size\\\":35022,\\\"wordcount\\\":3780,\\\"snippet\\\":\\\"The history of\\nthermodynamics\\nis a fundamental strand in the history of physics, the history of chemistry, and the history of science in general. Due to\\\",\\\"timestamp\\\":\\\"2026-08-29T23:05:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thermodynamics\\\",\\\"pageid\\\":29952,\\\"size\\\":49113,\\\"wordcount\\\":5808,\\\"snippet\\\":\\\"\\nThermodynamics\\nis a branch of physics that deals with heat, work, and temperature, and their relation to energy, entropy, and the physical properties of\\\",\\\"timestamp\\\":\\\"2026-09-01T03:12:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nicole Yunger Halpern\\\",\\\"pageid\\\":80018960,\\\"size\\\":8512,\\\"wordcount\\\":643,\\\"snippet\\\":\\\"quantum\\nthermodynamics\\n. She works at the National Institute of Standards and Technology, is a fellow of the Joint Center for Quantum\\nInformation\\nand Computer\\\",\\\"timestamp\\\":\\\"2026-08-31T12:40:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"noisy-channel coding theorem. Entropy in\\ninformation\\ntheory is directly analogous to the entropy in statistical\\nthermodynamics\\n. The analogy results when the values\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Maximum entropy thermodynamics\\\",\\\"pageid\\\":3015758,\\\"size\\\":28263,\\\"wordcount\\\":3649,\\\"snippet\\\":\\\"In physics, maximum entropy\\nthermodynamics\\n(colloquially, MaxEnt\\nthermodynamics\\n) views equilibrium\\nthermodynamics\\nand statistical mechanics as inference\\\",\\\"timestamp\\\":\\\"2026-07-17T03:36:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Zeroth law of thermodynamics\\\",\\\"pageid\\\":262861,\\\"size\\\":21045,\\\"wordcount\\\":2665,\\\"snippet\\\":\\\"The zeroth law of\\nthermodynamics\\nis one of the four principal laws of\\nthermodynamics\\n. It provides an independent definition of temperature without reference\\\",\\\"timestamp\\\":\\\"2025-12-17T14:08:55Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"b86a268c6c5d47cfe81e675eb6bf46eb036d396420ed375aea2e4036d96ec942\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-87a06be7da0f4151",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json",
+  "version": 161,
+  "time": "2026-09-26T14:58:40.422613+00:00"
+}
+```
+
+### `source-ddbb36b4adf14e60`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":40316},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness\\\",\\\"pageid\\\":5664,\\\"size\\\":187364,\\\"wordcount\\\":21233,\\\"snippet\\\":\\\"\\nConsciousness\\nis being aware of something internal to one's self, or of states or objects in one's external environment. It has been the topic of extensive\\\",\\\"timestamp\\\":\\\"2026-09-19T15:23:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Stream of consciousness\\\",\\\"pageid\\\":101483,\\\"size\\\":26790,\\\"wordcount\\\":3226,\\\"snippet\\\":\\\"In literary criticism, stream of\\nconsciousness\\nis a narrative mode or method that attempts \\\"to depict the multitudinous thoughts and feelings which pass\\\",\\\"timestamp\\\":\\\"2026-06-22T22:10:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hard problem of consciousness\\\",\\\"pageid\\\":634216,\\\"size\\\":115556,\\\"wordcount\\\":13247,\\\"snippet\\\":\\\"hard problem of\\nconsciousness\\n(or simply the hard problem) is to explain how and why organisms have qualia, phenomenal\\nconsciousness\\n, or subjective experience\\\",\\\"timestamp\\\":\\\"2026-08-27T00:59:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Artificial consciousness\\\",\\\"pageid\\\":195552,\\\"size\\\":66143,\\\"wordcount\\\":6941,\\\"snippet\\\":\\\"Artificial\\nconsciousness\\n, also known as machine\\nconsciousness\\n, synthetic\\nconsciousness\\n, or digital\\nconsciousness\\n, is\\nconsciousness\\nhypothesized to be\\\",\\\"timestamp\\\":\\\"2026-09-23T13:46:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness (disambiguation)\\\",\\\"pageid\\\":40457047,\\\"size\\\":695,\\\"wordcount\\\":97,\\\"snippet\\\":\\\"\\nconsciousness\\nin Wiktionary, the free dictionary.\\nConsciousness\\nis the state or quality of awareness.\\nConsciousness\\nmay also refer to:\\nConsciousness\\n(Hill\\\",\\\"timestamp\\\":\\\"2022-05-26T00:46:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Double consciousness\\\",\\\"pageid\\\":3057990,\\\"size\\\":20535,\\\"wordcount\\\":2622,\\\"snippet\\\":\\\"Double\\nconsciousness\\nis the dual self-perception experienced by subordinated or colonized groups in an oppressive society. The term and the idea were\\\",\\\"timestamp\\\":\\\"2026-09-12T04:18:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Collective consciousness\\\",\\\"pageid\\\":1077491,\\\"size\\\":15253,\\\"wordcount\\\":1536,\\\"snippet\\\":\\\"Collective\\nconsciousness\\n, collective conscience, or collective conscious (French: conscience collective) is the set of shared beliefs, ideas, and moral\\\",\\\"timestamp\\\":\\\"2026-07-29T04:14:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Clouding of consciousness\\\",\\\"pageid\\\":7554116,\\\"size\\\":78787,\\\"wordcount\\\":7669,\\\"snippet\\\":\\\"Clouding of\\nconsciousness\\n, also called brain fog or mental fog, occurs when a person is conscious but slightly less wakeful or aware than normal. The\\\",\\\"timestamp\\\":\\\"2026-09-12T16:42:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Animal consciousness\\\",\\\"pageid\\\":13001588,\\\"size\\\":135552,\\\"wordcount\\\":14235,\\\"snippet\\\":\\\"Animal\\nconsciousness\\n, or animal awareness, is the quality or state of self-awareness within an animal, or of being aware of an external object or of something\\\",\\\"timestamp\\\":\\\"2026-09-24T01:05:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-consciousness\\\",\\\"pageid\\\":2772118,\\\"size\\\":5955,\\\"wordcount\\\":683,\\\"snippet\\\":\\\"Self-\\nconsciousness\\nis a heightened sense of awareness of oneself. Historically, \\\"self-\\nconsciousness\\n\\\" was synonymous with \\\"self-awareness\\\", referring to\\\",\\\"timestamp\\\":\\\"2026-07-23T22:59:29Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"52a53bcfa38aaaf959f39a7719997cf15a8990f12086bc33b3b473dc68f8cdf8\", \"verification_required\": true, \"topic_domain\": \"consciousness\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-ddbb36b4adf14e60",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json",
+  "version": 161,
+  "time": "2026-09-26T14:58:41.144572+00:00"
+}
+```
+
+### `source-fcebe1796f4c4cf3`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":912},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrinology\\\",\\\"pageid\\\":9311,\\\"size\\\":28626,\\\"wordcount\\\":3056,\\\"snippet\\\":\\\"hormone.\\nEndocrinology\\nis the study of the\\nendocrine\\nsystem in the human body. This is a system of glands which secrete\\nhormones\\n.\\nHormones\\nare chemicals\\\",\\\"timestamp\\\":\\\"2026-08-22T17:29:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine system\\\",\\\"pageid\\\":9312,\\\"size\\\":40983,\\\"wordcount\\\":4852,\\\"snippet\\\":\\\"endocrine system by secreting certain\\nhormones\\n. The study of the\\nendocrine\\nsystem and its\\ndisorders\\nis known as\\nendocrinology\\n. The thyroid secretes thyroxine\\\",\\\"timestamp\\\":\\\"2026-05-30T18:34:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine disease\\\",\\\"pageid\\\":8500076,\\\"size\\\":11397,\\\"wordcount\\\":862,\\\"snippet\\\":\\\"\\nEndocrine\\ndiseases are\\ndisorders\\nof the\\nendocrine\\nsystem. The branch of medicine associated with\\nendocrine\\ndisorders\\nis known as\\nendocrinology\\n. Broadly\\\",\\\"timestamp\\\":\\\"2025-12-04T06:52:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gender-affirming hormone therapy\\\",\\\"pageid\\\":36792950,\\\"size\\\":64335,\\\"wordcount\\\":5099,\\\"snippet\\\":\\\"transgender hormone therapy, is a form of hormone therapy in which sex\\nhormones\\nand other\\nhormonal\\nmedications are administered to transgender or gender nonconforming\\\",\\\"timestamp\\\":\\\"2026-09-16T03:30:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thyroid-stimulating hormone\\\",\\\"pageid\\\":330361,\\\"size\\\":29201,\\\"wordcount\\\":2790,\\\"snippet\\\":\\\"body. It is a glycoprotein\\nhormone\\nproduced by thyrotrope cells in the anterior pituitary gland, which regulates the\\nendocrine\\nfunction of the thyroid.\\\",\\\"timestamp\\\":\\\"2026-05-22T04:01:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormone\\\",\\\"pageid\\\":13311,\\\"size\\\":42654,\\\"wordcount\\\":4370,\\\"snippet\\\":\\\"Cytokine\\nEndocrine\\ndisease\\nEndocrine\\nsystem\\nEndocrinology\\nEnvironmental\\nhormones\\nGrowth factor Hepatokine Intracrine List of human\\nhormones\\nList of investigational\\\",\\\"timestamp\\\":\\\"2026-09-08T05:55:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormones (endocrinology journal)\\\",\\\"pageid\\\":76017572,\\\"size\\\":3457,\\\"wordcount\\\":234,\\\"snippet\\\":\\\"metabolic\\ndisorders\\n. It was established in 2002 as the official journal of the Hellenic\\nEndocrine\\nSociety, the Greek society of\\nendocrinology\\n, which published\\\",\\\"timestamp\\\":\\\"2025-10-20T08:31:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Acromegaly\\\",\\\"pageid\\\":20936195,\\\"size\\\":41489,\\\"wordcount\\\":3937,\\\"snippet\\\":\\\"acromegaly: evolution of the techniques and outcomes\\\". Reviews in\\nEndocrine\\n& Metabolic\\nDisorders\\n. 9 (1): 67\\\\u201370. doi:10.1007/s11154-007-9064-y. PMID\\\\u00a018228147\\\",\\\"timestamp\\\":\\\"2026-08-09T11:28:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine gland\\\",\\\"pageid\\\":1223446,\\\"size\\\":18558,\\\"wordcount\\\":2107,\\\"snippet\\\":\\\"anterior pituitary\\nhormones\\nare tropic\\nhormones\\nthat regulate the function of other\\nendocrine\\norgans. Most anterior pituitary\\nhormones\\nexhibit a diurnal\\\",\\\"timestamp\\\":\\\"2026-01-25T17:12:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gender dysphoria\\\",\\\"pageid\\\":43097,\\\"size\\\":120731,\\\"wordcount\\\":12393,\\\"snippet\\\":\\\"dissociative\\ndisorders\\n, thought\\ndisorders\\n, or obsessive or compulsive features should be evaluated and treated prior to proceeding with\\nhormone\\ntherapy or\\\",\\\"timestamp\\\":\\\"2026-08-23T17:33:21Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"5774da3cc14f24e81ad46fa70011c4b6c92949d28a7f49078ef851446a101ad2\", \"verification_required\": true, \"topic_domain\": \"endocrinology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1007/s11154-007-9064-y\"]}",
+  "id": "source-fcebe1796f4c4cf3",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json",
+  "version": 161,
+  "time": "2026-09-26T14:58:41.873989+00:00"
+}
+```
+
+### `source-0c6f91a9d3bf4422`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=psychology&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74340},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology\\\",\\\"pageid\\\":22921,\\\"size\\\":247095,\\\"wordcount\\\":26594,\\\"snippet\\\":\\\"\\nPsychology\\nis the scientific study of the mind and behavior. Its subject matter includes the behavior of humans and nonhumans, both conscious and unconscious\\\",\\\"timestamp\\\":\\\"2026-09-05T20:21:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social psychology\\\",\\\"pageid\\\":26990,\\\"size\\\":69606,\\\"wordcount\\\":7452,\\\"snippet\\\":\\\"Social\\npsychology\\nis the methodical study of how thoughts, feelings, and behaviors are influenced by the actual, imagined, or implied presence of others\\\",\\\"timestamp\\\":\\\"2026-09-10T09:14:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Filipino psychology\\\",\\\"pageid\\\":1465014,\\\"size\\\":20921,\\\"wordcount\\\":2815,\\\"snippet\\\":\\\"Filipino\\npsychology\\n, or Sikolohiyang Pilipino, in Filipino, is defined as the psychological and philosophical school rooted on the experience, ideas, and\\\",\\\"timestamp\\\":\\\"2026-04-25T13:24:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cognitive psychology\\\",\\\"pageid\\\":5961,\\\"size\\\":53010,\\\"wordcount\\\":6002,\\\"snippet\\\":\\\"Cognitive\\npsychology\\nis the scientific study of human mental processes such as attention, language use, memory, perception, problem solving, creativity\\\",\\\"timestamp\\\":\\\"2026-09-16T15:47:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gestalt psychology\\\",\\\"pageid\\\":70402,\\\"size\\\":56035,\\\"wordcount\\\":6227,\\\"snippet\\\":\\\"Gestalt\\npsychology\\n, gestaltism, or configurationism is a school of\\npsychology\\n, and a theory of perception, that emphasizes psychologically processing\\\",\\\"timestamp\\\":\\\"2026-09-06T02:55:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Association (psychology)\\\",\\\"pageid\\\":62176483,\\\"size\\\":18373,\\\"wordcount\\\":2485,\\\"snippet\\\":\\\"Association in\\npsychology\\nrefers to a mental connection between concepts, events, or mental states that usually stems from specific experiences. Associations\\\",\\\"timestamp\\\":\\\"2026-06-14T14:11:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Positive psychology\\\",\\\"pageid\\\":179948,\\\"size\\\":125828,\\\"wordcount\\\":13672,\\\"snippet\\\":\\\"Positive\\npsychology\\nis the scientific study of conditions and processes that contribute to positive psychological states (e.g., contentment, joy), well-being\\\",\\\"timestamp\\\":\\\"2026-09-13T19:18:26Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Shadow (psychology)\\\",\\\"pageid\\\":560394,\\\"size\\\":34954,\\\"wordcount\\\":4164,\\\"snippet\\\":\\\"In analytical\\npsychology\\n, the shadow (also known as ego-dystonic complex, repressed id, shadow aspect, or shadow archetype) is an unconscious aspect of\\\",\\\"timestamp\\\":\\\"2026-09-02T17:23:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Individual psychology\\\",\\\"pageid\\\":3959877,\\\"size\\\":15651,\\\"wordcount\\\":1631,\\\"snippet\\\":\\\"Individual\\npsychology\\n(German: Individualpsychologie) is a psychological method and school of thought founded by the Austrian psychiatrist Alfred Adler\\\",\\\"timestamp\\\":\\\"2026-05-04T05:18:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary psychology\\\",\\\"pageid\\\":9703,\\\"size\\\":177589,\\\"wordcount\\\":19341,\\\"snippet\\\":\\\"Evolutionary\\npsychology\\nis a theoretical approach in\\npsychology\\nthat examines cognition and behavior from a modern evolutionary perspective. It seeks to\\\",\\\"timestamp\\\":\\\"2026-09-14T00:20:33Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"f93be177e84a3a0bf6aaa4729d2a426c5f0c3c3ec934e78b197e39d3d583bb31\", \"verification_required\": true, \"topic_domain\": \"psychology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-0c6f91a9d3bf4422",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=psychology&format=json",
+  "version": 161,
+  "time": "2026-09-26T14:58:42.596340+00:00"
+}
+```
+
+### `source-e1f418e670144014`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":4982},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Prime number\\\",\\\"pageid\\\":23666,\\\"size\\\":128021,\\\"wordcount\\\":14786,\\\"snippet\\\":\\\"A\\nprime\\nnumber (or a\\nprime\\n) is a natural number greater than 1 that is not a product of two smaller natural\\nnumbers\\n. A natural number greater than 1 that\\\",\\\"timestamp\\\":\\\"2026-09-21T15:01:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of Mersenne primes and perfect numbers\\\",\\\"pageid\\\":68906231,\\\"size\\\":52386,\\\"wordcount\\\":2900,\\\"snippet\\\":\\\"Mersenne\\nprimes\\nand perfect\\nnumbers\\nare two deeply interlinked types of natural\\nnumbers\\nin number theory. Mersenne\\nprimes\\n, named after the friar Marin\\\",\\\"timestamp\\\":\\\"2026-09-17T04:54:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of prime numbers\\\",\\\"pageid\\\":442370,\\\"size\\\":108088,\\\"wordcount\\\":6019,\\\"snippet\\\":\\\"This is a list of articles about\\nprime\\nnumbers\\n. A\\nprime\\nnumber (or\\nprime\\n) is a natural number greater than 1 that has no divisors other than 1 and itself\\\",\\\"timestamp\\\":\\\"2026-09-26T10:53:20Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Sexy primes\\\",\\\"pageid\\\":343116,\\\"size\\\":3815,\\\"wordcount\\\":453,\\\"snippet\\\":\\\"sexy\\nprimes\\nare\\nprime\\nnumbers\\nthat differ from another\\nprime\\nby 6. For example, the\\nnumbers\\n5 and 11 are a pair of sexy\\nprimes\\n, because both are\\nprime\\nand\\\",\\\"timestamp\\\":\\\"2026-09-18T20:27:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Perfect number\\\",\\\"pageid\\\":23670,\\\"size\\\":39840,\\\"wordcount\\\":5531,\\\"snippet\\\":\\\"odd Perfect\\nPrime\\nNumbers\\n\\\".\\nMathematics\\nof Computation. 27 (124): 951\\\\u2013953. doi:10.2307/2005530. JSTOR\\\\u00a02005530. Riele, H.J.J. \\\"Perfect\\nNumbers\\nand Aliquot\\\",\\\"timestamp\\\":\\\"2026-09-12T00:36:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Number\\\",\\\"pageid\\\":21690,\\\"size\\\":111953,\\\"wordcount\\\":11703,\\\"snippet\\\":\\\"A number is a\\nmathematical\\nobject used to count, measure, order and label. The most basic examples are the natural\\nnumbers\\n: 1, 2, 3, 4, 5, and so forth\\\",\\\"timestamp\\\":\\\"2026-09-25T06:24:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"RSA numbers\\\",\\\"pageid\\\":511379,\\\"size\\\":70317,\\\"wordcount\\\":4491,\\\"snippet\\\":\\\"In\\nmathematics\\n, the RSA\\nnumbers\\nare a set of large semiprimes (\\nnumbers\\nwith exactly two\\nprime\\nfactors) that were part of the RSA Factoring Challenge. The\\\",\\\"timestamp\\\":\\\"2026-09-21T17:33:30Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Closing the Gap: The Quest to Understand Prime Numbers\\\",\\\"pageid\\\":63087914,\\\"size\\\":5974,\\\"wordcount\\\":617,\\\"snippet\\\":\\\"Closing the Gap: The Quest to Understand\\nPrime\\nNumbers\\nis a book on\\nprime\\nnumbers\\nand\\nprime\\ngaps by Vicky Neale, published in 2017 by the Oxford University\\\",\\\"timestamp\\\":\\\"2026-09-11T00:17:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wieferich prime\\\",\\\"pageid\\\":323631,\\\"size\\\":43265,\\\"wordcount\\\":4566,\\\"snippet\\\":\\\"\\nprimes\\nand various other topics in\\nmathematics\\nhave been discovered, including other types of\\nnumbers\\nand\\nprimes\\n, such as Mersenne and Fermat\\nnumbers\\n\\\",\\\"timestamp\\\":\\\"2026-08-21T10:09:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mersenne prime\\\",\\\"pageid\\\":18908,\\\"size\\\":78122,\\\"wordcount\\\":6673,\\\"snippet\\\":\\\"In\\nmathematics\\n, a Mersenne\\nprime\\nis a\\nprime\\nnumber that is one less than a power of two. That is, it is a\\nprime\\nnumber of the form Mn = 2n \\\\u2212 1 for some\\\",\\\"timestamp\\\":\\\"2026-09-08T20:24:47Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"f3a77b2e6f2792aa7f747504fb8cf5342e3a410d34450177d37c1143a3dcc3b6\", \"verification_required\": true, \"topic_domain\": \"prime_numbers\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.2307/2005530\"]}",
+  "id": "source-e1f418e670144014",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json",
+  "version": 161,
+  "time": "2026-09-26T14:58:43.373989+00:00"
+}
+```
+
+### `r-80e6a86bf8cf4ea9`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":161,\"inherited_commitments\":[],\"invocation\":\"w-80e6a86bf8cf4ea9\",\"previous_head\":\"33d5f192742d7eb3ff5fa4b7a55657b98e277ccc1fa48e43ee86e1d89ed1e594\",\"process_id\":2228,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-80e6a86bf8cf4ea9",
+  "source": "runtime:continuity",
+  "version": 161,
+  "time": "2026-09-26T14:58:46.704331+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -163738,6 +164394,17 @@ _None recorded._
   "invocation": "w-9d13d86c2c144b8d",
   "title": "Synthesizing Cross-Cultural Evidence for Musical Structure",
   "summary": "This cycle focuses on refining our understanding of musical structure by synthesizing cross-cultural evidence into the 'music-cross-cultural-001' notebook. We are leveraging the available literature to differentiate between potentially universal structural elements and learned traditions, grounding our inquiry in the specific sources currently validated in the project context."
+}
+```
+
+### 162 · Investigating Cross-Cultural Musical Universals
+
+```json
+{
+  "cycle": 162,
+  "invocation": "w-80e6a86bf8cf4ea9",
+  "title": "Investigating Cross-Cultural Musical Universals",
+  "summary": "Continued the investigation into cross-cultural musical structures. While the existing notebook synthesizes cross-cultural communication patterns, it currently relies on a source concerning visual aesthetics. I am initiating a search for more targeted literature on musical structure to refine the analysis and address the reliance on cross-domain evidence."
 }
 ```
 
@@ -165740,6 +166407,21 @@ _None recorded._
   "status": "collected",
   "created_by": "w-ad8949f88d274b01",
   "evidence": "source-ed2d55490b274985"
+}
+```
+
+### `res-music-univ-002`
+
+```json
+{
+  "domain": "music",
+  "id": "res-music-univ-002",
+  "project": "music-cross-cultural-001",
+  "query": "cross-cultural study musical rhythm melody harmony structural universals",
+  "reason": "The current notebook relies on a source primarily concerning visual aesthetics. Targeted research is required to obtain music-specific evidence regarding structural universals.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-80e6a86bf8cf4ea9"
 }
 ```
 
