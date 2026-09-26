@@ -1,24 +1,24 @@
-# Provisional Scoping: Visual Art Perception and Structural Attributes
+# Visual Art Perception: Empirical Aesthetics and Cross-Cultural Frameworks
 
-Synthesizes empirical and methodological distinctions between general aesthetic preference, perception of art, and philosophical aesthetics based on review literature.
+Synthesizes empirical and methodological dimensions of visual aesthetic perception, integrating general aesthetic review literature with cross-cultural empirical evidence.
 
-Evidence profile · 2 distinct source URLs · 1 cross-topic source URL
+Evidence profile · 2 distinct source URLs
 
 ## Findings
 
-Human aesthetic preference in the visual domain encompasses definitional, methodological, empirical, and theoretical dimensions [source-8defc56204704290]. Aesthetic science explicitly distinguishes empirical investigations of preference from both general art perception and philosophical treatments of aesthetics [source-8defc56204704290]. Prior reference literature indicates broad taxonomies of aesthetic response [source-0a7b2a5c06d44417], but experimental psychological reviews highlight the importance of isolating specific stimulus dimensions (such as spatial composition, contrast, and symmetry) when evaluating observer preference.
+Empirical investigation of visual art perception requires distinguishing between general visual preferences, cognitive evaluation of artworks, and philosophical aesthetics [source-8defc56204704290]. Structural attributes such as symmetry, balance, and composition operate within both early visual processing constraints and learned cultural frameworks [source-8defc56204704290]. Furthermore, cross-cultural comparative methodologies demonstrate that perceptual interpretation of pictorial material and geometric configurations varies with cultural exposure and schooling, indicating that aesthetic evaluation is not purely determined by hardwired sensory heuristics [source-354dd04e6ba04d25].
 
 ## Limitations and competing views
 
-Findings are based on journal abstract and reference-book metadata; full empirical details and specific effect sizes across diverse demographics or cross-cultural cohorts remain unexamined in the retrieved text.
+The current evidence base relies on bibliographic metadata and review abstracts [source-8defc56204704290, source-354dd04e6ba04d25]. Detailed experimental effect sizes, specific stimuli sets, and fine-grained neurological distinctions remain unexamined without full paper access.
 
 ## Next questions
 
-How do specific visual attributes like bilateral symmetry versus asymmetric balance quantitatively modulate gaze duration and affective evaluation in controlled experiments?
+How do specific low-level visual features (e.g., spatial frequency distributions) interact with cultural familiarity when judging visual complexity or harmony?
 
 ## Collected sources
 
 - [source-8defc56204704290](https://api.crossref.org/works/10.1146%2Fannurev-psych-120710-100504)
-- [source-0a7b2a5c06d44417](https://api.crossref.org/works/10.4135%2F9781483346175)
+- [source-354dd04e6ba04d25](https://api.crossref.org/works/10.1177%2F002202217300400201)
 
-Revision 2 · AI-authored research synthesis; see source scopes in the journal.
+Revision 3 · AI-authored research synthesis; see source scopes in the journal.
