@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated": "2026-09-09T20:35:21.308431+00:00",
+  "generated": "2026-09-26T17:12:04.482258+00:00",
   "mode": "deterministic fixture simulation",
   "api_calls": 0,
   "cycles": 100,
@@ -12,8 +12,10 @@
     },
     "commitment_handoff": {
       "passed": true,
-      "count": 99,
-      "detail": "Alternating fixture-a and fixture-b inherit obligations with no additional human reminder."
+      "count": 89,
+      "total_created": 90,
+      "open_count": 1,
+      "detail": "Fresh invocations inherit obligations without another human reminder; forced Squirrel shifts preserve them unchanged until an eligible later shift."
     },
     "evidence_lifecycle": {
       "passed": true,
@@ -32,7 +34,7 @@
     "invalid_transition": {
       "passed": true,
       "reason": "Action is not allowed: 'change_rules'",
-      "invocation": "w-f71619a78f3346db"
+      "invocation": "w-12d7d9350a8a44bb"
     },
     "recovery": {
       "passed": true,
@@ -40,7 +42,7 @@
     },
     "audit_reconstruction": {
       "passed": true,
-      "head": "4c5f205afe0060e30bf71b9b7e807c99001501dd21dbe16d1206995aa9cc1aad",
+      "head": "c8335fec8ed0108e5d1191c4a9eabf68fdf3823cd4442f76ac6a8319cb0117ba",
       "detail": "Observer reconstructs exact objective, beliefs, commitments, evidence, journal and invocations using JSONL alone."
     }
   },
