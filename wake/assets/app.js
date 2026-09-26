@@ -236,7 +236,7 @@
     const matrixCell=(count,total)=>count
       ? `<span class="matrix-value" style="--cell-fill:${Math.max(8,100*count/Math.max(1,total))}%"><b>${count}</b></span>`
       : '<span class="matrix-value zero">0</span>';
-    const matrixHeader=actionTypes.map(type=>`<span class="matrix-head">${esc(type)}</span>`).join('');
+    const matrixHeader=actionTypes.map((type,index)=>`<button type="button" class="matrix-sort" data-matrix-sort-index="${index+1}" data-matrix-sort-label="${esc(type)}" aria-label="Sort by ${esc(type)} count">${esc(type)}<span aria-hidden="true">↕</span></button>`).join('');
     const matrixRows=topicRows.map(t=>`<div class="matrix-row"><a class="matrix-topic" data-topic="${esc(t.id)}" style="--topic-color:${esc(topicColors[t.id]||'var(--cyan)')}" href="#projects/topic:${encodeURIComponent(t.id)}">${esc(t.label)}</a>${actionTypes.map(type=>matrixCell(t.actions[type]||0,t.total)).join('')}<strong class="matrix-total">${t.total}</strong></div>`).join('');
     const matrixTotals=actionTypes.map(type=>`<strong>${actionCounts[type]||0}</strong>`).join('');
     const systemMatrix=systemActions.total
@@ -310,7 +310,7 @@
     $('metrics-dashboard').innerHTML=`
       <section class="metrics-row-one">
         <section class="dashboard-grid">
-        <article class="dashboard-panel panel-action-matrix"><div class="panel-heading"><div><p class="eyebrow">ACCEPTED ACTION MATRIX</p><h2>Where accepted work goes — and what kind it is.</h2></div><div class="landscape-status"><span>ACCEPTED ACTIONS</span><strong>${actionTotal}</strong></div></div><p class="small">One population, two dimensions: rows are configured research topics; columns are accepted action types. Row totals and column totals reconcile to the same accepted-action record. Actions without a durable topic stay separate below the research matrix.</p><div class="action-matrix-desktop"><div class="action-matrix-scroll"><div class="action-matrix" style="--action-cols:${Math.max(1,actionTypes.length)}"><div class="matrix-header"><span>TOPIC</span>${matrixHeader}<strong>TOTAL</strong></div>${matrixRows||'<p class="empty">No topic-attributed accepted actions yet.</p>'}${systemMatrix}<div class="matrix-total-row"><span>ALL ACCEPTED</span>${matrixTotals}<strong>${actionTotal}</strong></div></div></div><p class="small matrix-note">${topicAttributedTotal} topic-attributed · ${systemActions.total} unattributed/system · ${actionTotal} total accepted actions.</p></div><div class="action-matrix-mobile">${mobileMatrix||'<p class="empty">No accepted actions yet.</p>'}<p class="small matrix-note">${topicAttributedTotal} topic-attributed · ${systemActions.total} unattributed/system · ${actionTotal} total.</p></div></article>
+        <article class="dashboard-panel panel-action-matrix"><div class="panel-heading"><div><p class="eyebrow">ACCEPTED ACTION MATRIX</p><h2>Where accepted work goes — and what kind it is.</h2></div><div class="landscape-status"><span>ACCEPTED ACTIONS</span><strong>${actionTotal}</strong></div></div><p class="small">One population, two dimensions: rows are configured research topics; columns are accepted action types. Row totals and column totals reconcile to the same accepted-action record. Actions without a durable topic stay separate below the research matrix.</p><div class="action-matrix-desktop"><div class="action-matrix-scroll"><div class="action-matrix" style="--action-cols:${Math.max(1,actionTypes.length)}"><div class="matrix-header"><button type="button" class="matrix-sort" data-matrix-sort-index="0" data-matrix-sort-label="topic" aria-label="Sort by topic">TOPIC<span aria-hidden="true">↕</span></button>${matrixHeader}<button type="button" class="matrix-sort is-sorted" data-matrix-sort-index="${actionTypes.length+1}" data-matrix-sort-label="total" data-matrix-sort-direction="desc" aria-label="Sort by total, currently descending">TOTAL<span aria-hidden="true">↓</span></button></div>${matrixRows||'<p class="empty">No topic-attributed accepted actions yet.</p>'}${systemMatrix}<div class="matrix-total-row"><span>ALL ACCEPTED</span>${matrixTotals}<strong>${actionTotal}</strong></div></div></div><p class="small matrix-note">${topicAttributedTotal} topic-attributed · ${systemActions.total} unattributed/system · ${actionTotal} total accepted actions.</p></div><div class="action-matrix-mobile">${mobileMatrix||'<p class="empty">No accepted actions yet.</p>'}<p class="small matrix-note">${topicAttributedTotal} topic-attributed · ${systemActions.total} unattributed/system · ${actionTotal} total.</p></div></article>
         <article class="dashboard-panel panel-correctability"><p class="eyebrow">EXPERIMENT / OUTCOME COMPOSITION</p><h2>What happened to completed wakes?</h2>${outcomePieHtml}<p class="metric-definition">Population: all completed wakes in the published durable record. Outcome is governance state, not research quality.</p><div class="metric-bars">${outcomeBars}</div><h3>Most common rejection families</h3><div class="reason-list">${reasons}</div><a class="text-link" href="#history/filter:rejected">Inspect rejected work →</a></article>
         <article class="dashboard-panel panel-continuity"><p class="eyebrow">EXPERIMENT / CONTINUITY</p><h2>Does work cross fresh sessions?</h2><div class="dashboard-stat"><strong>${inheritedFulfilled.length}</strong><span>obligations fulfilled by a later invocation</span></div><div class="dashboard-stat"><strong>${obligations.filter(c=>c.status==='open').length}</strong><span>open obligations still carried forward</span></div><div class="dashboard-stat"><strong>${recoveredCount}</strong><span>recovered calls with durable state retained</span></div><div class="dashboard-stat"><strong>${overdue}</strong><span>open obligations at or past due cycle</span></div></article>
         <article class="dashboard-panel panel-yield"><p class="eyebrow">EXPERIMENT / RESEARCH YIELD</p><h2>What survives as usable work?</h2><div class="dashboard-stat"><strong>${evidenceCount}</strong><span>evidence records</span></div><div class="dashboard-stat"><strong>${projects.length}</strong><span>research projects</span></div><div class="dashboard-stat"><strong>${notebooks.length}</strong><span>notebooks</span></div><div class="dashboard-stat"><strong>${Object.keys(s.posts||{}).length}</strong><span>published posts</span></div></article>
@@ -327,6 +327,41 @@
 <section class="dashboard-kpis">${card(s.version,'Durable cycles','Accepted state advances')}${card(acceptanceRate+'%','Acceptance rate',acceptedCount+' of '+completed.length+' completed wakes')}${card(handoffRate+'%','Obligation handoff',inheritedFulfilled.length+' cross-invocation fulfillments')}${card(requestsPerAccepted,'Requests / accepted','Recorded HTTP attempts ÷ accepted wakes')}${card(fallbackWakes,'Fallback wakes','More than one provider attempt')}${card(medianLatency===null?'—':medianLatency+'ms','Median provider latency','Known completed model attempts')}${card(revisedBeliefs,'Belief actions',activeBeliefs.length+' active · '+retractedBeliefs.length+' retracted')}${card(overdue,'Overdue obligations','Open commitments at or past due cycle')}</section></div>
       </section>
       <p class="dashboard-footnote">Derived view only. The durable state and event log remain authoritative. Derived action counts and hypotheses are explicitly descriptive; they never write back to the record.</p>`;
+
+    const matrix=$('metrics-dashboard').querySelector('.action-matrix');
+    if(matrix){
+      const sortButtons=[...matrix.querySelectorAll('.matrix-sort')];
+      const rows=[...matrix.querySelectorAll('.matrix-row')];
+      const anchor=matrix.querySelector('.matrix-system-row,.matrix-total-row');
+      const setSortState=(active,direction)=>{
+        sortButtons.forEach(button=>{
+          const indicator=button.querySelector('span');
+          const isActive=button===active;
+          button.classList.toggle('is-sorted',isActive);
+          button.dataset.matrixSortDirection=isActive?direction:'';
+          button.setAttribute('aria-label',isActive
+            ? `Sort by ${button.dataset.matrixSortLabel}, currently ${direction==='asc'?'ascending':'descending'}`
+            : `Sort by ${button.dataset.matrixSortLabel}`);
+          if(indicator)indicator.textContent=isActive?(direction==='asc'?'↑':'↓'):'↕';
+        });
+      };
+      sortButtons.forEach(button=>button.addEventListener('click',()=>{
+        const index=Number(button.dataset.matrixSortIndex);
+        const prior=button.dataset.matrixSortDirection;
+        const direction=prior==='desc'?'asc':prior==='asc'?'desc':(index===0?'asc':'desc');
+        const multiplier=direction==='asc'?1:-1;
+        rows.sort((a,b)=>{
+          if(index===0){
+            return multiplier*a.children[0].textContent.trim().localeCompare(b.children[0].textContent.trim(),undefined,{sensitivity:'base'});
+          }
+          const av=Number(a.children[index]?.textContent.trim()||0);
+          const bv=Number(b.children[index]?.textContent.trim()||0);
+          return multiplier*(av-bv)||a.children[0].textContent.trim().localeCompare(b.children[0].textContent.trim(),undefined,{sensitivity:'base'});
+        });
+        rows.forEach(row=>matrix.insertBefore(row,anchor));
+        setSortState(button,direction);
+      }));
+    }
   }
   function lab() {
     const exp=data.experiment;
