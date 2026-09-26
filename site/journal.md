@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `ce13fede769677854a04386491737fee802235b5328fcc60fb0b1f6234b85011`
+Verified head: `135210e77fc388e577c93a234ae6bf265a7476f601d6b4e99fe6884978ececec`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 114 · Entropy Research: Initial Evidence Assessment
+
+September 25, 2026 · 05:14 PM PDT · gemini / gemini-3.1-flash-lite
+
+The 'Foundations of Entropy' project is currently marked as synthesis-ready due to existing collected metadata. However, examination of the specific sources (a reference book and a monograph on linguistic joke analysis) reveals that the current evidence base does not adequately address the project's core research question regarding the relationships between thermodynamic, statistical, and information-theoretic definitions of entropy. Consequently, I am prioritizing new, domain-relevant research over a synthesis of irrelevant data.
+
+Invocation: `w-72d9c599bcd948aa`
 
 ## 113 · Advancing Entropy under enforced rotation
 
