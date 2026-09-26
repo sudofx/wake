@@ -245,10 +245,15 @@ class CloudWorkflowTests(unittest.TestCase):
     def test_workflow_publishes_generated_reports_even_after_provider_failure(self):
         root = Path(__file__).resolve().parents[1]
         workflow = (root/".github/workflows/wake.yml").read_text()
-        report = workflow.split("- name: Confirm report is ready", 1)[1].split("- name:", 1)[0]
-        self.assertIn("steps.cycle.outputs.skipped != 'true'", report)
-        self.assertNotIn("steps.cycle.outcome", report)
-        self.assertIn("test -f site/index.html", report)
+        wake_job = workflow.split("  wake:", 1)[1].split("  publish-refresh:", 1)[0]
+        wake_report = wake_job.split("- name: Confirm report is ready", 1)[1].split("- name:", 1)[0]
+        publication_job = workflow.split("  publication:", 1)[1].split("  wake:", 1)[0]
+        self.assertIn("steps.cycle.outputs.skipped != 'true'", wake_report)
+        self.assertNotIn("steps.cycle.outcome", wake_report)
+        self.assertIn("test -f site/index.html", wake_report)
+        self.assertIn("python scripts/github_wake.py --publish-only", publication_job)
+        self.assertIn("group: wake-publication", publication_job)
+        self.assertIn("group: wake-durable-state", wake_job)
         self.assertIn("needs.wake.outputs.report_ready == 'true'", workflow)
         self.assertIn("if: always() && steps.cycle.outcome == 'failure'", workflow)
         self.assertIn("Fail only when operator attention is required", workflow)
@@ -266,6 +271,17 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertNotIn("git push --force", workflow)
         self.assertFalse((root/".github/workflows/static.yml").exists())
         self.assertFalse((root/".github/workflows/jekyll-gh-pages.yml").exists())
+
+    def test_wordmark_navigation_is_deployment_portable(self):
+        root = Path(__file__).resolve().parents[1]
+        for relative in ("wake/assets/index.html", "wake/assets/map.html", "wake/assets/map3d.html"):
+            page = (root/relative).read_text()
+            self.assertNotIn('href="https://sudofx.github.io/wake/"', page)
+            self.assertIn('class="wordmark" href="index.html"', page)
+        report = (root/"wake/report.py").read_text()
+        self.assertNotIn('href=\\\"https://sudofx.github.io/wake/\\\"', report)
+        self.assertIn('class=\\\"wordmark\\\" href=\\\"index.html\\\"', report)
+        self.assertIn('class=\\\"wordmark\\\" href=\\\"../index.html\\\"', report)
 
     def test_transient_diagnostics_survive_cloud_export_and_redact_credentials(self):
         import io
