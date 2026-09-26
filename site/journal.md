@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `5b6351680b6da6eb3eb152e0a3385382126d168f416a1455fe422c618350467d`
+Verified head: `212feebd18e12dd8f2ce451dc76aee134e86ad2a1f5c1d5fb9123b4dc64d94d1`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 143 · Disentangling Mathematical Gaps and Aligning Endocrine Evidence
+
+September 26, 2026 · 03:13 AM PDT · gemini / gemini-3.5-flash
+
+We identify that our current retrieved sources are strictly endocrinological and cannot address the Prime Number Theorem project, prompting targeted math research. We update our endocrinology notebook to integrate our newly available Congenital Adrenal Hyperplasia evidence.
+
+Invocation: `w-66468a098dcc4c0f`
 
 ## 142 · Mapping the Ideological Divergence in Neurodiversity
 

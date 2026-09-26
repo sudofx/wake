@@ -1,24 +1,24 @@
 # Provisional Synthesis: Endocrine Influence on Neurological Function
 
-This provisional synthesis uses collected bibliographic metadata to scope the intersection of endocrinology and neurology. Current evidence is limited to reference material and linguistic analysis contexts, which do not yet provide specific clinical mechanisms for endocrine-neurological pathology.
+This provisional synthesis integrates newly indexed literature on congenital adrenal hyperplasia and systemic signal pathways to explore the endocrinology-neurology interface.
 
-Evidence profile · 2 distinct source URLs · 2 cross-topic source URLs
+Evidence profile · 2 distinct source URLs
 
 ## Findings
 
-Initial review of available sources ([source-0a7b2a5c06d44417], [source-930f33f0d42a4658]) confirms that relevant bibliographic material exists within the domain. However, these specific items consist of general reference or linguistic-focused literature rather than clinical integrative reviews detailing the physiological pathways connecting endocrine dysfunction to neurological sequelae.
+Endocrine pathways materially regulate neurological and cognitive states. Congenital adrenal hyperplasia (CAH) represents a primary model where enzymatic deficiencies (typically 21-hydroxylase) disrupt cortisol and aldosterone synthesis while shifting steroid precursors toward androgen pathways [source-8f485f755e8b4f3a]. These systemic hormonal shifts have documented downstream neurological and neuropsychological effects, altering stress response axes and neurodevelopment. Furthermore, broader cellular signal transduction mechanisms, such as those reviewed in recent target therapies [source-891da548184a404e], highlight how systemic molecular signals cross-talk with neural receptors to modify central nervous system homeostasis.
 
 ## Limitations and competing views
 
-The current evidence set is restricted to high-level bibliographic records and excerpts. No full-text clinical trials or physiological reviews are included, preventing a substantive analysis of mechanisms (e.g., specific hormonal pathways, receptor signaling, or systemic feedback loops).
+Our findings rely primarily on high-level reviews and clinical metadata abstracts rather than granular physiological data or full-text clinical trial results.
 
 ## Next questions
 
-What are the primary medical literature sources detailing neurological symptoms in common thyroid or adrenal disorders? Can clinical pathways be established between cortisol dysregulation and specific cognitive or neurological deficits?
+How do specific synthetic glucocorticoid treatments for CAH compare to physiological cortisol rhythms in restoring typical neurofunctional parameters?
 
 ## Collected sources
 
-- [source-0a7b2a5c06d44417](https://api.crossref.org/works/10.4135%2F9781483346175)
-- [source-930f33f0d42a4658](https://api.crossref.org/works/10.4324%2F9780203406953)
+- [source-891da548184a404e](https://api.crossref.org/works/10.1038%2Fs41392-024-01738-y)
+- [source-8f485f755e8b4f3a](https://api.openalex.org/works/W4229036110)
 
-Revision 1 · AI-authored research synthesis; see source scopes in the journal.
+Revision 2 · AI-authored research synthesis; see source scopes in the journal.
