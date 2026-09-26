@@ -1,5 +1,5 @@
 {
-  "version": 123,
+  "version": 124,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -15228,6 +15228,68 @@
       "source": "runtime:continuity",
       "version": 122,
       "time": "2026-09-26T02:21:50.914854+00:00"
+    },
+    "source-10bb76ac99dc4e25": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works/10.1016%2Fs0022-5371%2879%2990118-x\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 9, 25]], \\\"date-time\\\": \\\"2026-09-25T23:56:28Z\\\", \\\"timestamp\\\": 1790380588443, \\\"version\\\": \\\"4.1.0\\\"}, \\\"reference-count\\\": 23, \\\"publisher\\\": \\\"Elsevier BV\\\", \\\"issue\\\": \\\"2\\\", \\\"license\\\": [{\\\"start\\\": {\\\"date-parts\\\": [[1979, 4, 1]], \\\"date-time\\\": \\\"1979-04-01T00:00:00Z\\\", \\\"timestamp\\\": 291772800000}, \\\"content-version\\\": \\\"tdm\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://www.elsevier.com/tdm/userlicense/1.0/\\\"}], \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"Journal of Verbal Learning and Verbal Behavior\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[1979, 4]]}, \\\"DOI\\\": \\\"10.1016/s0022-5371(79)90118-x\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2004, 12, 15]], \\\"date-time\\\": \\\"2004-12-15T04:14:48Z\\\", \\\"timestamp\\\": 1103084088000}, \\\"page\\\": \\\"187-198\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 171, \\\"title\\\": [\\\"Point of view in narrative comprehension, memory, and production\\\"], \\\"prefix\\\": \\\"10.1016\\\", \\\"volume\\\": \\\"18\\\", \\\"author\\\": [{\\\"given\\\": \\\"John B.\\\", \\\"family\\\": \\\"Black\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Terrence J.\\\", \\\"family\\\": \\\"Turner\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Gordon H.\\\", \\\"family\\\": \\\"Bower\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"78\\\", \\\"reference\\\": [{\\\"key\\\": \\\"10.1016/S0022-5371(79)90118-X_bib1\\\", \\\"series-title\\\": \\\"Theoretical issues in natural language processing\\\", \\\"article-title\\\": \\\"Does a story understander need a point of view?\\\", \\\"author\\\": \\\"Abelson\\\", \\\"year\\\": \\\"1975\\\"}, {\\\"key\\\": \\\"10.1016/S0022-5371(79)90118-X_bib2\\\", \\\"series-title\\\": \\\"The rhetoric of fiction\\\", \\\"author\\\": \\\"Booth\\\", \\\"year\\\": \\\"1961\\\"}, {\\\"key\\\": \\\"10.1016/S0022-5371(79)90118-X_bib3\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"321\\\", \\\"DOI\\\": \\\"10.1016/S0022-5371(74)80069-1\\\", \\\"article-title\\\": \\\"Memory for deictic elements in sentences\\\", \\\"volume\\\": \\\"13\\\", \\\"author\\\": \\\"Brewer\\\", \\\"year\\\": \\\"1974\\\", \\\"journal-title\\\": \\\"Journal of Verbal Learning and Verbal Behavior\\\"}, {\\\"key\\\": \\\"10.1016/S0022-5371(79)90118-X_bib4\\\", \\\"series-title\\\": \\\"Modern rhetoric\\\", \\\"author\\\": \\\"Brooks\\\", \\\"year\\\": \\\"1972\\\"}, {\\\"key\\\": \\\"10.1016/S0022-5371(79)90118-X_bib5\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"316\\\", \\\"DOI\\\": \\\"10.2307/412440\\\", \\\"article-title\\\": \\\"Normal states and evaluative viewpoints\\\", \\\"volume\\\": \\\"50\\\", \\\"author\\\": \\\"Clark\\\", \\\"year\\\": \\\"1974\\\", \\\"journal-title\\\": \\\"Language\\\"}, {\\\"key\\\": \\\"10.1016/S0022-5371(79)90118-X_bib6\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"559\\\", \\\"DOI\\\": \\\"10.1016/S0022-5371(74)80009-5\\\", \\\"article-title\\\": \\\"Is he coming or going?\\\", \\\"volume\\\": \\\"13\\\", \\\"author\\\": \\\"Clark\\\", \\\"year\\\": \\\"1974\\\", \\\"journal-title\\\": \\\"Journal of Verbal Learning and Verbal Behavior\\\"}, {\\\"key\\\": \\\"10.1016/S0022-5371(79)90118-X_bib7\\\", \\\"series-title\\\": \\\"Perception and comprehension\\\", \\\"article-title\\\": \\\"Inferences in comprehension\\\", \\\"author\\\": \\\"Clark\\\", \\\"year\\\": \\\"1977\\\"}, {\\\"key\\\": \\\"10.1016/S0022-5371(79)90118-X_bib8\\\", \\\"series-title\\\": \\\"Explaining linguistic phenomenon\\\", \\\"article-title\\\": \\\"Psychological processes as linguistic explanation\\\", \\\"author\\\": \\\"Clark\\\", \\\"year\\\": \\\"1974\\\"}, {\\\"key\\\": \\\"10.1016/S0022-5371(79)90118-X_bib9\\\", \\\"article-title\\\": \\\"Pragmatics and the description of discourse\\\", \\\"volume\\\": \\\"Vol. I\\\", \\\"author\\\": \\\"Fillmore\\\", \\\"year\\\": \\\"1974\\\"}, {\\\"key\\\": \\\"10.1016/S0022-5371(79)90118-X_bib10\\\", \\\"series-title\\\": \\\"Santa Cruz lectures on deixis\\\", \\\"author\\\": \\\"Fillmore\\\", \\\"year\\\": \\\"1975\\\"}, {\\\"key\\\": \\\"10.1016/S0022-5371(79)90118-X_bib11\\\", \\\"series-title\\\": \\\"Cohesion in English\\\", \\\"author\\\": \\\"Halliday\\\", \\\"year\\\": \\\"1976\\\"}, {\\\"key\\\": \\\"10.1016/S0022-5371(79)90118-X_bib12\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"590\\\", \\\"DOI\\\": \\\"10.1016/S0022-5371(73)80038-6\\\", \\\"article-title\\\": \\\"Deixis in memory for verb tense\\\", \\\"volume\\\": \\\"12\\\", \\\"author\\\": \\\"Harris\\\", \\\"year\\\": \\\"1973\\\", \\\"journal-title\\\": \\\"Journal of Verbal Learning and Verbal Behavior\\\"}, {\\\"key\\\": \\\"10.1016/S0022-5371(79)90118-X_bib13\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"512\\\", \\\"DOI\\\": \\\"10.1016/S0022-5371(74)80003-4\\\", \\\"article-title\\\": \\\"What's new?\\\", \\\"volume\\\": \\\"13\\\", \\\"author\\\": \\\"Haviland\\\", \\\"year\\\": \\\"1974\\\", \\\"journal-title\\\": \\\"Journal of Verbal Learning and Verbal Behavior\\\"}, {\\\"key\\\": \\\"10.1016/S0022-5371(79)90118-X_bib14\\\", \\\"author\\\": \\\"Hodges\\\", \\\"year\\\": \\\"1972\\\"}, {\\\"key\\\": \\\"10.1016/S0022-5371(79)90118-X_bib15\\\", \\\"series-title\\\": \\\"The art of the novel: Critical prefaces\\\", \\\"author\\\": \\\"James\\\", \\\"year\\\": \\\"1934\\\"}, {\\\"key\\\": \\\"10.1016/S0022-5371(79)90118-X_bib16\\\", \\\"series-title\\\": \\\"Subject and topic\\\", \\\"article-title\\\": \\\"Subject, theme, and the speaker's empathy—A reexamination of relativization phenomena\\\", \\\"author\\\": \\\"Kuno\\\", \\\"year\\\": \\\"1976\\\"}, {\\\"key\\\": \\\"10.1016/S0022-5371(79)90118-X_bib17\\\", \\\"series-title\\\": \\\"Semantics of natural language\\\", \\\"article-title\\\": \\\"Linguistics and natural logic\\\", \\\"author\\\": \\\"Lakoff\\\", \\\"year\\\": \\\"1972\\\"}, {\\\"key\\\": \\\"10.1016/S0022-5371(79)90118-X_bib18\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"924\\\", \\\"DOI\\\": \\\"10.2307/412701\\\", \\\"article-title\\\": \\\"Spatial networks as a site for the study of language and thought\\\", \\\"volume\\\": \\\"51\\\", \\\"author\\\": \\\"Linde\\\", \\\"year\\\": \\\"1975\\\", \\\"journal-title\\\": \\\"Language\\\"}, {\\\"key\\\": \\\"10.1016/S0022-5371(79)90118-X_bib19\\\", \\\"series-title\\\": \\\"Introduction to theoretical linguistics\\\", \\\"author\\\": \\\"Lyons\\\", \\\"year\\\": \\\"1968\\\"}, {\\\"key\\\": \\\"10.1016/S0022-5371(79)90118-X_bib20\\\", \\\"series-title\\\": \\\"Points of view: An anthology of short stories\\\", \\\"year\\\": \\\"1966\\\"}, {\\\"key\\\": \\\"10.1016/S0022-5371(79)90118-X_bib21\\\", \\\"series-title\\\": \\\"Scripts, plans, goals and understanding\\\", \\\"author\\\": \\\"Schank\\\", \\\"year\\\": \\\"1977\\\"}, {\\\"key\\\": \\\"10.1016/S0022-5371(79)90118-X_bib22\\\", \\\"series-title\\\": \\\"The nature of narrative\\\", \\\"author\\\": \\\"Scholes\\\", \\\"year\\\": \\\"1966\\\"}, {\\\"key\\\": \\\"10.1016/S0022-5371(79)90118-X_bib23\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"436\\\", \\\"DOI\\\": \\\"10.1016/S0022-5371(76)90039-6\\\", \\\"article-title\\\": \\\"The role of inferences in discourse comprehension\\\", \\\"volume\\\": \\\"15\\\", \\\"author\\\": \\\"Thorndyke\\\", \\\"year\\\": \\\"1976\\\", \\\"journal-title\\\": \\\"Journal of Verbal Learning and Verbal Behavior\\\"}], \\\"container-title\\\": [\\\"Journal of Verbal Learning and Verbal Behavior\\\"], \\\"original-title\\\": [], \\\"language\\\": \\\"en\\\", \\\"link\\\": [{\\\"URL\\\": \\\"https://api.elsevier.com/content/article/PII:S002253717990118X?httpAccept=text/xml\\\", \\\"content-type\\\": \\\"text/xml\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"text-mining\\\"}, {\\\"URL\\\": \\\"https://api.elsevier.com/content/article/PII:S002253717990118X?httpAccept=text/plain\\\", \\\"content-type\\\": \\\"text/plain\\\", \\\"content-version\\\": \\\"vor\\\", \\\"intended-application\\\": \\\"text-mining\\\"}], \\\"deposited\\\": {\\\"date-parts\\\": [[2019, 1, 31]], \\\"date-time\\\": \\\"2019-01-31T07:29:58Z\\\", \\\"timestamp\\\": 1548919798000}, \\\"score\\\": 1, \\\"resource\\\": {\\\"primary\\\": {\\\"URL\\\": \\\"https://linkinghub.elsevier.com/retrieve/pii/S002253717990118X\\\"}}, \\\"subtitle\\\": [], \\\"short-title\\\": [], \\\"issued\\\": {\\\"date-parts\\\": [[1979, 4]]}, \\\"references-count\\\": 23, \\\"journal-issue\\\": {\\\"issue\\\": \\\"2\\\", \\\"published-print\\\": {\\\"date-parts\\\": [[1979, 4]]}}, \\\"alternative-id\\\": [\\\"S002253717990118X\\\"], \\\"URL\\\": \\\"https://doi.org/10.1016/s0022-5371(79)90118-x\\\", \\\"relation\\\": {}, \\\"ISSN\\\": [\\\"0022-5371\\\"], \\\"issn-type\\\": [{\\\"value\\\": \\\"0022-5371\\\", \\\"type\\\": \\\"print\\\"}], \\\"subject\\\": [], \\\"published\\\": {\\\"date-parts\\\": [[1979, 4]]}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"9db162f789c483bcc8f30ad04b3025970b4db622d2e798803838c77ddb457a8d\", \"verification_required\": true, \"topic_domain\": \"religion\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1016/s0022-5371(79)90118-x\", \"doi:10.1016/s0022-5371(79)90118-x_bib1\", \"doi:10.1016/s0022-5371(79)90118-x_bib2\", \"doi:10.1016/s0022-5371(79)90118-x_bib3\", \"doi:10.1016/s0022-5371(74)80069-1\", \"doi:10.1016/s0022-5371(79)90118-x_bib4\", \"doi:10.1016/s0022-5371(79)90118-x_bib5\", \"doi:10.2307/412440\", \"doi:10.1016/s0022-5371(79)90118-x_bib6\", \"doi:10.1016/s0022-5371(74)80009-5\", \"doi:10.1016/s0022-5371(79)90118-x_bib7\", \"doi:10.1016/s0022-5371(79)90118-x_bib8\"]}",
+      "id": "source-10bb76ac99dc4e25",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works/10.1016%2Fs0022-5371%2879%2990118-x",
+      "version": 123,
+      "time": "2026-09-26T02:28:55.775676+00:00"
+    },
+    "source-380576f1b1d34823": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.semanticscholar.org/graph/v1/paper/search?query=systemic+metabolic+dysfunction+neurological+disease+review&limit=4&fields=paperId%2Ctitle%2Cyear%2Cabstract%2Curl%2CexternalIds%2CopenAccessPdf\", \"scope\": \"Semantic Scholar scholarly metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"paperId\\\": \\\"2f14607215fb7ccac06b0c4994983c49790b1e87\\\", \\\"title\\\": \\\"Microbiota-driven mechanisms in multisystem diseases: integrative evidence across cardiovascular, metabolic, neurological and autoimmune disorders.\\\", \\\"year\\\": 2026, \\\"abstract\\\": null, \\\"url\\\": \\\"https://www.semanticscholar.org/paper/2f14607215fb7ccac06b0c4994983c49790b1e87\\\", \\\"externalIds\\\": {\\\"DOI\\\": \\\"10.1007/s10482-026-02296-9\\\", \\\"CorpusId\\\": 287187646, \\\"PubMed\\\": \\\"41931118\\\"}, \\\"openAccessPdf\\\": {\\\"url\\\": \\\"\\\", \\\"status\\\": null, \\\"license\\\": null, \\\"disclaimer\\\": \\\"Notice: The following paper fields have been elided by the publisher: {'abstract'}. Paper or abstract available at https://api.unpaywall.org/v2/10.1007/s10482-026-02296-9?email=<INSERT_YOUR_EMAIL> or https://doi.org/10.1007/s10482-026-02296-9, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.\\\"}}, {\\\"paperId\\\": \\\"8b4f880b9dd1c8b72afe12b14aa0a8f8dd64ed79\\\", \\\"title\\\": \\\"Analysis of Bladder Dysfunction Etiology and Comorbid Disease Processes\\\", \\\"year\\\": 2026, \\\"abstract\\\": \\\"Lower urinary tract symptoms (LUTS), encompassing both storage and voiding dysfunction, frequently coexist with systemic metabolic, cardiovascular, neurological, and functional comorbidities. This review analyzes the pathophysiology, clinical manifestations, and management of LUTS in the context of diabetes, heart failure and hypertension, obstructive sleep apnea, fibromyalgia, multiple sclerosis, and Parkinson’s disease. Diabetic bladder dysfunction progresses through compensated and decompensated phases driven by oxidative stress, autonomic neuropathy, and advanced glycation end-product accumulation. Cardiovascular conditions promote nocturia and detrusor instability through neurohormonal activation and fluid redistribution. Obstructive sleep apnea induces nocturnal polyuria via atrial natriuretic peptide secretion and hypoxia-mediated bladder oxidative stress. Fibromyalgia contributes to overactive bladder through central sensitization and neurogenic inflammation. Multiple sclerosis and Parkinson’s disease cause neurogenic bladder dysfunction through demyelination and loss of dopaminergic inhibition, respectively. LUTS reflect complex interactions between systemic disease and bladder dysfunction. Optimal management requires a multidisciplinary approach integrating systemic disease stabilization with targeted urological therapy.\\\", \\\"url\\\": \\\"https://www.semanticscholar.org/paper/8b4f880b9dd1c8b72afe12b14aa0a8f8dd64ed79\\\", \\\"externalIds\\\": {\\\"DOI\\\": \\\"10.1007/s11884-026-00832-x\\\", \\\"CorpusId\\\": 292037193}, \\\"openAccessPdf\\\": {\\\"url\\\": \\\"https://link.springer.com/content/pdf/10.1007/s11884-026-00832-x.pdf\\\", \\\"status\\\": \\\"HYBRID\\\", \\\"license\\\": \\\"CCBY\\\", \\\"disclaimer\\\": \\\"Notice: Paper or abstract available at https://api.unpaywall.org/v2/10.1007/s11884-026-00832-x?email=<INSERT_YOUR_EMAIL> or https://doi.org/10.1007/s11884-026-00832-x, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.\\\"}}, {\\\"paperId\\\": \\\"8fafea14d5ceba705588db031fb83a6200a0f671\\\", \\\"title\\\": \\\"Circadian rhythm, metabolic stress, and Alzheimer's disease.\\\", \\\"year\\\": 2026, \\\"abstract\\\": null, \\\"url\\\": \\\"https://www.semanticscholar.org/paper/8fafea14d5ceba705588db031fb83a6200a0f671\\\", \\\"externalIds\\\": {\\\"DOI\\\": \\\"10.1016/bs.irn.2026.05.004\\\", \\\"CorpusId\\\": 289190556, \\\"PubMed\\\": \\\"42276618\\\"}, \\\"openAccessPdf\\\": {\\\"url\\\": \\\"\\\", \\\"status\\\": null, \\\"license\\\": null, \\\"disclaimer\\\": \\\"Notice: The following paper fields have been elided by the publisher: {'abstract'}. Paper or abstract available at https://api.unpaywall.org/v2/10.1016/bs.irn.2026.05.004?email=<INSERT_YOUR_EMAIL> or https://doi.org/10.1016/bs.irn.2026.05.004, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.\\\"}}, {\\\"paperId\\\": \\\"547ce3cd3457cf855c753fdae57dd04cfff4d471\\\", \\\"title\\\": \\\"GLP‐1 receptor agonists, metabolic syndrome, and Alzheimer's disease: Lessons and opportunities from the EVOKE trials\\\", \\\"year\\\": 2026, \\\"abstract\\\": \\\"Metabolic syndrome and Alzheimer's disease (AD) are increasingly recognised as interconnected, sharing vascular, metabolic and inflammatory pathways that accelerate brain ageing and cognitive decline. This review critically examines the evidence that glucagon‐like peptide‐1 receptor agonists (GLP‐1RAs), initially developed for diabetes and obesity, may influence AD related pathways or reduce AD risk in metabolically vulnerable populations. Metabolic syndrome and AD related cognitive impairment share biological mechanisms including vascular damage, insulin resistance and chronic inflammation, suggesting that therapies targeting metabolic dysfunction could influence neurological outcomes. GLP‐1RAs are notable for combining systemic benefits, like weight loss, improved glycaemic control, and reduced cardiovascular risk, with possible but incompletely established central nervous system effects. Experimental studies suggest that some GLP‐1RAs may reduce amyloid and tau pathology, support mitochondrial function, and limit neuroinflammation, although recent preclinical studies and limited brain penetrance argue against a direct neuroprotective effect. Observational data suggest lower dementia rates among users compared with other antidiabetic treatments. However, the recent EVOKE and EVOKE + trials showed that oral semaglutide did not slow clinical progression in early symptomatic AD, despite positive biomarker effects. This highlights the challenge of translating biological plausibility into meaningful clinical benefit and refocuses attention on disease stage, target population, and mechanism. Beyond summarising evidence, this review advocates a more cautious and mechanism specific framework: preserving cognitive health may require addressing systemic metabolic dysfunction rather than targeting the brain alone. GLP‐1 RAs have failed to show an effect in symptomatic AD, but their effects on metabolism might still be beneficial at earlier stages, such as the preclinical phase of AD. Future studies should determine whether earlier intervention in metabolically enriched groups can alter AD related cognitive, vascular, and biomarker trajectories.\\\", \\\"url\\\": \\\"https://www.semanticscholar.org/paper/547ce3cd3457cf855c753fdae57dd04cfff4d471\\\", \\\"externalIds\\\": {\\\"PubMedCentral\\\": \\\"13461250\\\", \\\"DOI\\\": \\\"10.1111/jne.70246\\\", \\\"CorpusId\\\": 291036623, \\\"PubMed\\\": \\\"42580680\\\"}, \\\"openAccessPdf\\\": {\\\"url\\\": \\\"https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/jne.70246\\\", \\\"status\\\": \\\"HYBRID\\\", \\\"license\\\": \\\"CCBY\\\", \\\"disclaimer\\\": \\\"Notice: Paper or abstract available at https://pmc.ncbi.nlm.nih.gov/articles/PMC13461250, which is subject to the license by the author or copyright owner provided with this content. Please go to the source to verify the license and copyright information for your use.\\\"}}]\", \"excerpt_truncated\": false, \"source_sha256\": \"ed9680d5e2eb98b7f251e4916f5484c156fb873e815eecf75531b0ddae66cec6\", \"verification_required\": true, \"topic_domain\": \"neurology\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1007/s10482-026-02296-9\", \"doi:10.1007/s11884-026-00832-x\", \"doi:10.1007/s11884-026-00832-x.pdf\", \"doi:10.1016/bs.irn.2026.05.004\", \"doi:10.1111/jne.70246\"]}",
+      "id": "source-380576f1b1d34823",
+      "scope": "collected",
+      "source": "https://api.semanticscholar.org/graph/v1/paper/search?query=systemic+metabolic+dysfunction+neurological+disease+review&limit=4&fields=paperId%2Ctitle%2Cyear%2Cabstract%2Curl%2CexternalIds%2CopenAccessPdf",
+      "version": 123,
+      "time": "2026-09-26T02:28:57.999503+00:00"
+    },
+    "source-7a3055bd6a9e49b3": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":179},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Justification (epistemology)\\\",\\\"pageid\\\":30248,\\\"size\\\":11199,\\\"wordcount\\\":1195,\\\"snippet\\\":\\\"current\\nevidence\\n.\\nJustification\\nis a property of\\nbeliefs\\ninsofar as they are held blamelessly. In other words, a justified\\nbelief\\nis a\\nbelief\\nthat a person\\\",\\\"timestamp\\\":\\\"2026-08-22T20:08:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Central concepts in\\nepistemology\\ninclude\\nbelief\\n, truth,\\nevidence\\n, and reason. As one of the main branches of philosophy,\\nepistemology\\nstands alongside fields\\\",\\\"timestamp\\\":\\\"2026-09-25T20:49:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Formal epistemology\\\",\\\"pageid\\\":3660078,\\\"size\\\":11434,\\\"wordcount\\\":1321,\\\"snippet\\\":\\\"formal\\nepistemology\\nhas tended to differ somewhat from that of traditional\\nepistemology\\n, with topics like\\nuncertainty\\n, induction, and\\nbelief\\nrevision\\\",\\\"timestamp\\\":\\\"2026-03-28T03:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gettier problem\\\",\\\"pageid\\\":246176,\\\"size\\\":44511,\\\"wordcount\\\":5956,\\\"snippet\\\":\\\"\\nbelief\\n(JTB). The JTB account holds that knowledge is equivalent to justified true\\nbelief\\n; if all three conditions (\\njustification\\n, truth, and\\nbelief\\n)\\\",\\\"timestamp\\\":\\\"2026-09-22T13:24:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Empirical evidence\\\",\\\"pageid\\\":307139,\\\"size\\\":39043,\\\"wordcount\\\":3955,\\\"snippet\\\":\\\"methods and paradigms. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what determines whether holding a certain\\nbelief\\nis rational. This is only\\\",\\\"timestamp\\\":\\\"2026-08-08T15:50:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of epistemology\\\",\\\"pageid\\\":6556377,\\\"size\\\":16004,\\\"wordcount\\\":1658,\\\"snippet\\\":\\\"\\nepistemology\\n\\\\u00a0\\\\u2013\\nBeliefs\\nare warranted by proper cognitive function\\\\u2014proposed by Alvin Plantinga. Evidentialism\\\\u00a0\\\\u2013\\nBeliefs\\ndepend solely on the\\nevidence\\nfor\\\",\\\"timestamp\\\":\\\"2026-08-24T15:07:39Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Belief\\\",\\\"pageid\\\":102883,\\\"size\\\":105449,\\\"wordcount\\\":12166,\\\"snippet\\\":\\\"having some stance, take, or opinion about something. In\\nepistemology\\n, philosophers use the term\\nbelief\\nto refer to attitudes about the world which can be either\\\",\\\"timestamp\\\":\\\"2026-09-13T03:42:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Declarative knowledge\\\",\\\"pageid\\\":23369987,\\\"size\\\":97599,\\\"wordcount\\\":10444,\\\"snippet\\\":\\\"A central issue in\\nepistemology\\nconcerns the standards of\\njustification\\n, i.e., what conditions have to be fulfilled for a\\nbelief\\nto be justified. Internalists\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Bayesian probability\\\",\\\"pageid\\\":4890,\\\"size\\\":33893,\\\"wordcount\\\":3450,\\\"snippet\\\":\\\"expectation representing a state of knowledge or as quantification of a personal\\nbelief\\n. The Bayesian interpretation of probability can be seen as an extension\\\",\\\"timestamp\\\":\\\"2026-07-22T06:31:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence\\\",\\\"pageid\\\":20550772,\\\"size\\\":46664,\\\"wordcount\\\":5455,\\\"snippet\\\":\\\"exact definition and role of\\nevidence\\nvary across different fields. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what makes it rational to hold\\\",\\\"timestamp\\\":\\\"2026-09-09T01:29:13Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"38e8caf5772db3fe088245db14e7e7e832f437fcec6efe1c1f69c54790c60cf7\", \"verification_required\": true, \"topic_domain\": \"epistemology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-7a3055bd6a9e49b3",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json",
+      "version": 123,
+      "time": "2026-09-26T02:28:59.521504+00:00"
+    },
+    "source-785563f3fc6c45fa": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":121,\\\"suggestion\\\":\\\"neurodivergent\\\",\\\"suggestionsnippet\\\":\\\"neurodivergent\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurodiversity\\\",\\\"pageid\\\":1073739,\\\"size\\\":142665,\\\"wordcount\\\":13881,\\\"snippet\\\":\\\"and other\\nneurodivergences\\nas a natural part of human neurological diversity\\\\u2014not diseases or disorders, just \\\"difference[s]\\\".\\nNeurodivergences\\ninclude autism\\\",\\\"timestamp\\\":\\\"2026-09-15T23:26:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroqueer theory\\\",\\\"pageid\\\":76016274,\\\"size\\\":31724,\\\"wordcount\\\":3380,\\\"snippet\\\":\\\"have suggested the existence of a relationship between queerness and\\nneurodivergence\\n: where neurodivergent people are more likely than their neurotypical\\\",\\\"timestamp\\\":\\\"2026-08-29T18:08:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Kassiane Asasumasu\\\",\\\"pageid\\\":76250908,\\\"size\\\":14907,\\\"wordcount\\\":1302,\\\"snippet\\\":\\\"related to the neurodiversity movement, including neurodivergent,\\nneurodivergence\\n, and caregiver benevolence. As stated in the text Neurodiversity for\\\",\\\"timestamp\\\":\\\"2026-06-22T15:58:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mel King (The Pitt)\\\",\\\"pageid\\\":82753144,\\\"size\\\":15334,\\\"wordcount\\\":1322,\\\"snippet\\\":\\\"and praises her for it. Mel explains that she has experience with\\nneurodivergence\\nbecause her sister Becca (Tal Anderson) is also autistic. Mel is Becca's\\\",\\\"timestamp\\\":\\\"2026-09-24T11:49:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurofibromatosis type I\\\",\\\"pageid\\\":1712548,\\\"size\\\":63138,\\\"wordcount\\\":7236,\\\"snippet\\\":\\\"Neurofibromatosis type I (NF-1), or von Recklinghausen syndrome, is a complex multi-system neurocutaneous disorder caused by a subset of genetic mutations\\\",\\\"timestamp\\\":\\\"2026-09-11T22:12:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fern Brady\\\",\\\"pageid\\\":43399498,\\\"size\\\":15262,\\\"wordcount\\\":1330,\\\"snippet\\\":\\\"active within the field of autism education since learning of her\\nneurodivergence\\n. She has written about life as an autistic person in her 2023 memoir\\\",\\\"timestamp\\\":\\\"2026-09-20T00:11:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Taylor Dearden\\\",\\\"pageid\\\":55290719,\\\"size\\\":19195,\\\"wordcount\\\":1387,\\\"snippet\\\":\\\"com/watch?v=bqFkDmto2OM \\\"Actress Taylor Dearden talks about portraying\\nneurodivergence\\non 'The Pitt'\\\". NPR. April 9, 2025. Retrieved June 18, 2025. \\\"'The\\\",\\\"timestamp\\\":\\\"2026-09-15T00:35:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Otherkin\\\",\\\"pageid\\\":21702085,\\\"size\\\":37075,\\\"wordcount\\\":3341,\\\"snippet\\\":\\\"non-spiritual explanations for themselves, such as unusual psychology or\\nneurodivergence\\n,[additional citation(s) needed] or as part of dissociative identity\\\",\\\"timestamp\\\":\\\"2026-09-02T04:15:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nicki Minaj\\\",\\\"pageid\\\":22570683,\\\"size\\\":380021,\\\"wordcount\\\":31753,\\\"snippet\\\":\\\"Made My ADHD Into My Strength\\\": Understanding The Link Between Rap &\\nNeurodivergence\\n\\\". The Recording Academy. August 3, 2022. Retrieved March 18, 2026.\\\",\\\"timestamp\\\":\\\"2026-09-22T06:17:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Novo Amor\\\",\\\"pageid\\\":50369886,\\\"size\\\":18573,\\\"wordcount\\\":1352,\\\"snippet\\\":\\\"which released later that year, Lacey discussed exploring his own\\nneurodivergence\\nand how this journey was one of the main themes of the album. \\\"Premiere:\\\",\\\"timestamp\\\":\\\"2026-09-24T00:47:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"931cc8d26078cd7f5ea72b659a4ac7fe10f099e8f904137daa37ff847d22b590\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-785563f3fc6c45fa",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json",
+      "version": 123,
+      "time": "2026-09-26T02:29:00.145525+00:00"
+    },
+    "source-fb5cb85f477445bf": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":4984},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Prime number\\\",\\\"pageid\\\":23666,\\\"size\\\":128021,\\\"wordcount\\\":14786,\\\"snippet\\\":\\\"A\\nprime\\nnumber (or a\\nprime\\n) is a natural number greater than 1 that is not a product of two smaller natural\\nnumbers\\n. A natural number greater than 1 that\\\",\\\"timestamp\\\":\\\"2026-09-21T15:01:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of Mersenne primes and perfect numbers\\\",\\\"pageid\\\":68906231,\\\"size\\\":52386,\\\"wordcount\\\":2900,\\\"snippet\\\":\\\"Mersenne\\nprimes\\nand perfect\\nnumbers\\nare two deeply interlinked types of natural\\nnumbers\\nin number theory. Mersenne\\nprimes\\n, named after the friar Marin\\\",\\\"timestamp\\\":\\\"2026-09-17T04:54:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of prime numbers\\\",\\\"pageid\\\":442370,\\\"size\\\":108209,\\\"wordcount\\\":6026,\\\"snippet\\\":\\\"This is a list of articles about\\nprime\\nnumbers\\n. A\\nprime\\nnumber (or\\nprime\\n) is a natural number greater than 1 that has no divisors other than 1 and itself\\\",\\\"timestamp\\\":\\\"2026-09-25T23:43:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Perfect number\\\",\\\"pageid\\\":23670,\\\"size\\\":39840,\\\"wordcount\\\":5531,\\\"snippet\\\":\\\"odd Perfect\\nPrime\\nNumbers\\n\\\".\\nMathematics\\nof Computation. 27 (124): 951\\\\u2013953. doi:10.2307/2005530. JSTOR\\\\u00a02005530. Riele, H.J.J. \\\"Perfect\\nNumbers\\nand Aliquot\\\",\\\"timestamp\\\":\\\"2026-09-12T00:36:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Sexy primes\\\",\\\"pageid\\\":343116,\\\"size\\\":3815,\\\"wordcount\\\":453,\\\"snippet\\\":\\\"sexy\\nprimes\\nare\\nprime\\nnumbers\\nthat differ from another\\nprime\\nby 6. For example, the\\nnumbers\\n5 and 11 are a pair of sexy\\nprimes\\n, because both are\\nprime\\nand\\\",\\\"timestamp\\\":\\\"2026-09-18T20:27:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"RSA numbers\\\",\\\"pageid\\\":511379,\\\"size\\\":70317,\\\"wordcount\\\":4491,\\\"snippet\\\":\\\"In\\nmathematics\\n, the RSA\\nnumbers\\nare a set of large semiprimes (\\nnumbers\\nwith exactly two\\nprime\\nfactors) that were part of the RSA Factoring Challenge. The\\\",\\\"timestamp\\\":\\\"2026-09-21T17:33:30Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Number\\\",\\\"pageid\\\":21690,\\\"size\\\":111953,\\\"wordcount\\\":11703,\\\"snippet\\\":\\\"A number is a\\nmathematical\\nobject used to count, measure, order and label. The most basic examples are the natural\\nnumbers\\n: 1, 2, 3, 4, 5, and so forth\\\",\\\"timestamp\\\":\\\"2026-09-25T06:24:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wieferich prime\\\",\\\"pageid\\\":323631,\\\"size\\\":43265,\\\"wordcount\\\":4566,\\\"snippet\\\":\\\"\\nprimes\\nand various other topics in\\nmathematics\\nhave been discovered, including other types of\\nnumbers\\nand\\nprimes\\n, such as Mersenne and Fermat\\nnumbers\\n\\\",\\\"timestamp\\\":\\\"2026-08-21T10:09:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Closing the Gap: The Quest to Understand Prime Numbers\\\",\\\"pageid\\\":63087914,\\\"size\\\":5974,\\\"wordcount\\\":617,\\\"snippet\\\":\\\"Closing the Gap: The Quest to Understand\\nPrime\\nNumbers\\nis a book on\\nprime\\nnumbers\\nand\\nprime\\ngaps by Vicky Neale, published in 2017 by the Oxford University\\\",\\\"timestamp\\\":\\\"2026-09-11T00:17:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Formula for primes\\\",\\\"pageid\\\":509009,\\\"size\\\":30336,\\\"wordcount\\\":4689,\\\"snippet\\\":\\\"In number theory, a formula for\\nprimes\\nis a formula that outputs\\nprime\\nnumbers\\n. Such formulas for calculating\\nprimes\\ndo exist; however, they are computationally\\\",\\\"timestamp\\\":\\\"2026-07-05T18:19:14Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"d82bf9ede2f7ef97177c1b66a1eed7c48b8962cd69b4d9866a29b5d21966d55f\", \"verification_required\": true, \"topic_domain\": \"prime_numbers\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.2307/2005530\"]}",
+      "id": "source-fb5cb85f477445bf",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json",
+      "version": 123,
+      "time": "2026-09-26T02:29:00.829136+00:00"
+    },
+    "source-2bd0e04fad3a4469": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":36},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Music\\\",\\\"pageid\\\":18839,\\\"size\\\":143456,\\\"wordcount\\\":16225,\\\"snippet\\\":\\\"\\nMusic\\nis the arrangement of sound to create some combination of form,\\nharmony\\n,\\nmelody\\n,\\nrhythm\\n, or otherwise expressive content.\\nMusic\\nis generally agreed\\\",\\\"timestamp\\\":\\\"2026-09-23T13:33:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music and emotion\\\",\\\"pageid\\\":33107185,\\\"size\\\":52701,\\\"wordcount\\\":5883,\\\"snippet\\\":\\\"Emotion is induced in a listener because a feature of the\\nmusic\\n, such as\\nrhythm\\nor\\nharmony\\n, violates, delays, or confirms a listener's expectations. In\\\",\\\"timestamp\\\":\\\"2026-09-13T21:50:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Metre (music)\\\",\\\"pageid\\\":84026,\\\"size\\\":44586,\\\"wordcount\\\":4180,\\\"snippet\\\":\\\"(eds.). Musical\\nStructure\\nand\\nCognition\\n. London: Academic Press. ISBN\\\\u00a0978-0-12357170-0. Lester, Joel (1986). The\\nRhythms\\nof Tonal\\nMusic\\n. Carbondale: Southern\\\",\\\"timestamp\\\":\\\"2026-09-10T22:06:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroscience of music\\\",\\\"pageid\\\":25049383,\\\"size\\\":80829,\\\"wordcount\\\":9690,\\\"snippet\\\":\\\"cortex is primarily involved in perceiving pitch, and parts of\\nharmony\\n,\\nmelody\\nand\\nrhythm\\n. One study by Petr Janata found that there are tonality-sensitive\\\",\\\"timestamp\\\":\\\"2026-09-21T08:40:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-specific disorders\\\",\\\"pageid\\\":25213736,\\\"size\\\":10890,\\\"wordcount\\\":1469,\\\"snippet\\\":\\\"elements of\\nmusic\\n, such as pitch,\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n; the ability to react both emotionally and with bodily movements (e.g. dancing) to\\nmusic\\n; to form\\\",\\\"timestamp\\\":\\\"2026-06-06T14:12:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Embodied music cognition\\\",\\\"pageid\\\":8676342,\\\"size\\\":14007,\\\"wordcount\\\":1763,\\\"snippet\\\":\\\"Embodied\\nmusic\\ncognition\\nas it was originally a direction within systematic musicology interested in studying the role of the human body in relation to\\\",\\\"timestamp\\\":\\\"2026-08-06T01:21:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"to\\nmusic\\ntheory through investigations of the perception and computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Deep structure and surface structure\\\",\\\"pageid\\\":283746,\\\"size\\\":10396,\\\"wordcount\\\":1213,\\\"snippet\\\":\\\"a two-level generative\\nstructure\\nfor\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n, of which the analysis by Lee (1985) of rhythmical\\nstructure\\nis an instance. (See also:\\\",\\\"timestamp\\\":\\\"2025-09-24T18:19:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music theory\\\",\\\"pageid\\\":54783,\\\"size\\\":122949,\\\"wordcount\\\":13838,\\\"snippet\\\":\\\"computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter, and form. Research in\\nmusic\\nhistory can benefit from systematic\\\",\\\"timestamp\\\":\\\"2026-09-24T23:02:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of music\\\",\\\"pageid\\\":3403168,\\\"size\\\":32730,\\\"wordcount\\\":1766,\\\"snippet\\\":\\\"and silence. It may be expressed in terms of pitch,\\nrhythm\\n,\\nharmony\\n, and timbre. Definition of\\nmusic\\nOne of the arts One of the performing arts One of the\\\",\\\"timestamp\\\":\\\"2026-09-03T23:48:41Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"5d4645ea237e2e84f8d5105a4e69e6e53affb1da5ad7cba644746d6510739a9e\", \"verification_required\": true, \"topic_domain\": \"music\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-2bd0e04fad3a4469",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json",
+      "version": 123,
+      "time": "2026-09-26T02:29:01.584018+00:00"
+    },
+    "r-a6eea847f8874612": {
+      "actor": "runtime",
+      "content": "{\"base_version\":123,\"inherited_commitments\":[],\"invocation\":\"w-a6eea847f8874612\",\"previous_head\":\"82a8ad6d0f56d88fe11ed0d9c000953446f6a7ea688fbcd4690fe5a13e54ceb4\",\"process_id\":2276,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-a6eea847f8874612",
+      "source": "runtime:continuity",
+      "version": 123,
+      "time": "2026-09-26T02:29:04.161623+00:00"
     }
   },
   "journal": [
@@ -15968,6 +16030,12 @@
       "invocation": "w-5baafe7a9e9440ae",
       "title": "Neurological Metabolic Pathways Research",
       "summary": "This cycle shifts attention to the neurology research domain. I am initiating a literature search for the 'Neurological Impact of Metabolic Changes' project to identify review articles connecting systemic metabolic dysfunction with neurological disease. The entropy-foundations project remains capability-blocked and is not being advanced, despite being marked synthesis-ready, to respect the established operational constraints."
+    },
+    {
+      "cycle": 124,
+      "invocation": "w-a6eea847f8874612",
+      "title": "Neurological pathways and metabolic inquiry",
+      "summary": "Continued focus on the intersection of metabolic systems and neurological health. Current evidence in the project set consists of bibliographic metadata unrelated to the research question; focused research is now queued to acquire relevant peer-reviewed literature."
     }
   ],
   "posts": {
@@ -117073,6 +117141,487 @@
           "reason": "configured_daily_limit"
         }
       ]
+    },
+    "w-a6eea847f8874612": {
+      "base_version": 123,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 19806,
+        "delivered_request_chars": 47997,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "request_compression_ratio": 0.4179,
+        "retrieval_rehydrated_evidence_count": 2,
+        "rich_context_chars": 114846,
+        "working_set_chars": 3749
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-a6eea847f8874612",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 123,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 1.0
+            },
+            "id": "neurology-metabolic-pathways",
+            "score": 0.825,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Neurological Impact of Metabolic Changes"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 0.5
+            },
+            "id": "religion-cross-cultural-practices",
+            "score": 0.75,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 3,
+              "queued_research": 0
+            },
+            "title": "Cross-Cultural Religious Practices"
+          },
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 0
+            },
+            "id": "entropy-foundations",
+            "score": 0.675,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 0,
+              "queued_research": 0
+            },
+            "title": "Foundations of Entropy"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2276,
+      "provider": "gemini",
+      "quota_day": "2026-09-25",
+      "request_hash": "eac8e5a8cb7ada9bdeb050107f72bc01aec02710b3eb5cda0dc1c690e2939841",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-neurodiversity-foundations-01",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-dance-rhythm-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-41fac1eecb0246dd",
+              "source-51a9b989df3144af"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-visual-art-composition-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-95d0b6abf66f410a"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-95d0b6abf66f410a",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-55ee34bc8e5142d6"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-55ee34bc8e5142d6",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-67cedb30d9bb4f2c"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-67cedb30d9bb4f2c",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-2cd2684377c54051"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-2cd2684377c54051",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-e2e41e9bcb594def"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-e2e41e9bcb594def",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-10bb76ac99dc4e25"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-10bb76ac99dc4e25",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658",
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b",
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af",
+          "source-95d0b6abf66f410a",
+          "source-55ee34bc8e5142d6",
+          "source-67cedb30d9bb4f2c",
+          "source-2cd2684377c54051",
+          "source-e2e41e9bcb594def",
+          "source-10bb76ac99dc4e25"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 9,
+          "evidence_count": 12,
+          "trigger_counts": {
+            "notebook_revised": 3,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "runtime_performance": {
+        "compaction_ms": 4.395,
+        "context_build_ms": 94.629,
+        "load_ms": 826.802,
+        "receipt_ms": 485.382,
+        "start_total_before_record_ms": 2675.542,
+        "store": {
+          "append_cache_hits": 11,
+          "append_cache_misses": 0,
+          "cached_copy_ms": 971.661,
+          "cached_loads": 0,
+          "event_count": 3573,
+          "full_replays": 11,
+          "replay_ms": 6298.001,
+          "trusted_projection_active": true
+        },
+        "temporal_ms": 1263.176
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 4,
+          "topic": "neurology"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [
+          "entropy"
+        ],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [],
+        "enforce_selected_topic": false,
+        "hard_rejection_threshold": 5,
+        "parked": {},
+        "reason": "current durable project topic remains eligible",
+        "rotation_required": false,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "neurology",
+        "temporal": {
+          "anchor_seq": 3572,
+          "anchor_time": "2026-09-26T02:29:02.720921+00:00",
+          "anchor_version": 123,
+          "effective_seconds": 96100.245983
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": null,
+        "topic_selection_candidates": [],
+        "topic_selection_method": "active_topic"
+      },
+      "temporal": {
+        "cycle_distance": 1,
+        "effective_elapsed_seconds": 433.257238,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 96100.245983,
+        "intervening_events": {
+          "accepted": 1,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 0,
+          "research_collected": 1,
+          "squirrel_assessed": 1,
+          "total": 15
+        },
+        "observed_at": "2026-09-26T02:29:02.720921+00:00",
+        "previous_anchor_time": "2026-09-26T02:21:49.463683+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 433.257238
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 19806,
+        "inquiry_drive_project_count": 3,
+        "mode": "bounded",
+        "retrieval_candidate_count": 9,
+        "retrieval_evidence_count": 12,
+        "retrieval_rehydrated_evidence_count": 2,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 3,
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 3749,
+        "working_to_delivered_ratio": 0.1893
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "entropy-foundations",
+            "next_step": "Search for literature comparing thermodynamic, statistical, and information-theoretic entropy definitions.",
+            "question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?",
+            "title": "Foundations of Entropy"
+          },
+          {
+            "id": "religion-cross-cultural-practices",
+            "next_step": "Search for academic reviews or theories regarding the convergence of religious rituals and practices.",
+            "question": "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?",
+            "title": "Cross-Cultural Religious Practices"
+          },
+          {
+            "id": "neurology-metabolic-pathways",
+            "next_step": "Initiate search for review articles linking systemic metabolic dysfunction to neurological disease pathways.",
+            "question": "How do metabolic, hormonal, and systemic physiological changes influence neurological function and neurological disease?",
+            "title": "Neurological Impact of Metabolic Changes"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-info-thermo-demon-002",
+            "project": "info-thermo-maxwell-demon",
+            "provenance": [
+              "source-ae0e2b3554414618",
+              "source-b772fc7044e548f7"
+            ],
+            "revision": 1,
+            "summary": "An exploration of how information-theoretic erasure relates to physical entropy, synthesized from bibliographic metadata on classical thermodynamics and information theory.",
+            "title": "Synthesis: Information Erasure and Entropy"
+          },
+          {
+            "id": "nb-prime-dist-001",
+            "project": "prime-numbers-distribution",
+            "provenance": [
+              "source-7ec80a5fc56745db"
+            ],
+            "revision": 1,
+            "summary": "An initial exploration of the Prime Number Theorem's role in describing prime number distribution, based on bibliographic metadata.",
+            "title": "Provisional Synthesis: Prime Number Theorem and Density"
+          },
+          {
+            "id": "nb-religion-cross-cultural-001",
+            "project": "religion-cross-cultural-practices",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 1,
+            "summary": "Initial status report indicating that the current evidence set consists of unrelated bibliographic metadata.",
+            "title": "Provisional Synthesis: Cross-Cultural Religious Practices"
+          },
+          {
+            "id": "nb-religion-002",
+            "project": "religion-cross-cultural-practices",
+            "provenance": [
+              "source-7bd43608b269427f",
+              "source-d56377b15875422a"
+            ],
+            "revision": 1,
+            "summary": "This notebook synthesizes available bibliographic metadata concerning cognitive and evolutionary approaches to religion, noting that while the sources provide a venue for such research, full content access is currently absent.",
+            "title": "Provisional Synthesis: Cross-Cultural Religious Practices"
+          },
+          {
+            "id": "nb-religion-ritual-psych-001",
+            "project": "religion-cross-cultural-practices",
+            "provenance": [
+              "source-0e0aa6aa238246cb"
+            ],
+            "revision": 1,
+            "summary": "This notebook synthesizes the 'process-based framework' from a 2017 integrative review of ritual psychology, noting the distinction between the ritual form and its psychological function.",
+            "title": "Synthesis: The Psychology of Rituals"
+          },
+          {
+            "id": "nb-neuro-metabolic-001",
+            "project": "neurology-metabolic-pathways",
+            "provenance": [
+              "source-8fb4038a7344498e",
+              "source-e41f8efd700544cf"
+            ],
+            "revision": 1,
+            "summary": "An initial assessment of the intersection between metabolic pathways and neurological health, based on bibliographic metadata.",
+            "title": "Provisional Synthesis: Metabolic Drivers in Neurological Function"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-26T02:29:04.672715+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 4681,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 52522,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-26T02:29:30.727115+00:00",
+      "reason": "",
+      "skipped_models": [
+        {
+          "model": "gemini-3.8-flash",
+          "reason": "configured_daily_limit"
+        },
+        {
+          "model": "gemini-3.5-flash",
+          "reason": "configured_daily_limit"
+        }
+      ]
     }
   },
   "pending": null,
@@ -117093,20 +117642,37 @@
       "religion": 0,
       "visual_art": 1
     },
-    "deferred": {},
+    "deferred": {
+      "neurology": {
+        "cause": "attention_saturation",
+        "deferred_by": "w-a6eea847f8874612",
+        "other_topic_attempts": 0,
+        "parked_projects": [
+          {
+            "id": "neurology-metabolic-pathways",
+            "next_step": "Initiate search for review articles linking systemic metabolic dysfunction to neurological disease pathways.",
+            "question": "How do metabolic, hormonal, and systemic physiological changes influence neurological function and neurological disease?"
+          }
+        ],
+        "reason": "five accepted wakes concentrated on one topic; rotate until another topic reaches durable synthesis",
+        "release_condition": "accepted notebook or ordinary publication on another topic"
+      }
+    },
     "last_receipt": {
-      "attention_saturation_triggered": false,
+      "attention_saturation_triggered": true,
       "attention_topic": "neurology",
       "durable_progress": false,
       "hard_rejection": false,
-      "invocation": "w-5baafe7a9e9440ae",
+      "invocation": "w-a6eea847f8874612",
       "restored_topics": [],
       "selected_topic": "neurology",
       "terminal": "accepted",
-      "triggered_topics": []
+      "triggered_topics": [
+        "neurology"
+      ]
     },
     "attention": {
-      "accepted_streak": 4,
+      "accepted_streak": 5,
       "topic": "neurology"
     }
   },
@@ -118063,35 +118629,35 @@
       "capability_blocked": false,
       "retry_after_version": null,
       "persistent_identifiers": [
-        "doi:10.1016/s0022-5371(79)90118-x",
-        "doi:10.1006/jmla.2000.2752_rf1",
-        "doi:10.1111/1467-9280.00163",
-        "doi:10.1006/jmla.2000.2752_rf2",
-        "doi:10.1037/0022-0663.89.1.183",
-        "doi:10.1006/jmla.2000.2752_rf3",
-        "doi:10.1080/016909600750040571",
-        "doi:10.1006/jmla.2000.2752_rf4",
-        "doi:10.1207/s15327973rlsi2703_3",
-        "doi:10.1006/jmla.2000.2752_rf5",
-        "doi:10.1177/0146167295214010",
-        "doi:10.1006/jmla.2000.2752_rf6"
+        "doi:10.1006/jmla.2000.2752_rf6",
+        "doi:10.1016/s0022-5371(79)90118-x_bib1",
+        "doi:10.1016/s0022-5371(79)90118-x_bib2",
+        "doi:10.1016/s0022-5371(79)90118-x_bib3",
+        "doi:10.1016/s0022-5371(74)80069-1",
+        "doi:10.1016/s0022-5371(79)90118-x_bib4",
+        "doi:10.1016/s0022-5371(79)90118-x_bib5",
+        "doi:10.2307/412440",
+        "doi:10.1016/s0022-5371(79)90118-x_bib6",
+        "doi:10.1016/s0022-5371(74)80009-5",
+        "doi:10.1016/s0022-5371(79)90118-x_bib7",
+        "doi:10.1016/s0022-5371(79)90118-x_bib8"
       ],
       "last_receipt": {
-        "evidence": "source-e2e41e9bcb594def",
+        "evidence": "source-10bb76ac99dc4e25",
         "outcome": "progress",
         "persistent_identifiers": [
-          "doi:10.1006/jmla.2000.2752",
-          "doi:10.1006/jmla.2000.2752_rf1",
-          "doi:10.1111/1467-9280.00163",
-          "doi:10.1006/jmla.2000.2752_rf2",
-          "doi:10.1037/0022-0663.89.1.183",
-          "doi:10.1006/jmla.2000.2752_rf3",
-          "doi:10.1080/016909600750040571",
-          "doi:10.1006/jmla.2000.2752_rf4",
-          "doi:10.1207/s15327973rlsi2703_3",
-          "doi:10.1006/jmla.2000.2752_rf5",
-          "doi:10.1177/0146167295214010",
-          "doi:10.1006/jmla.2000.2752_rf6"
+          "doi:10.1016/s0022-5371(79)90118-x",
+          "doi:10.1016/s0022-5371(79)90118-x_bib1",
+          "doi:10.1016/s0022-5371(79)90118-x_bib2",
+          "doi:10.1016/s0022-5371(79)90118-x_bib3",
+          "doi:10.1016/s0022-5371(74)80069-1",
+          "doi:10.1016/s0022-5371(79)90118-x_bib4",
+          "doi:10.1016/s0022-5371(79)90118-x_bib5",
+          "doi:10.2307/412440",
+          "doi:10.1016/s0022-5371(79)90118-x_bib6",
+          "doi:10.1016/s0022-5371(74)80009-5",
+          "doi:10.1016/s0022-5371(79)90118-x_bib7",
+          "doi:10.1016/s0022-5371(79)90118-x_bib8"
         ],
         "research_id": "res-religion-practices-002",
         "route": "api.crossref.org:source",
@@ -118101,18 +118667,30 @@
     "neurology-metabolic-pathways": {
       "project": "neurology-metabolic-pathways",
       "domain": "neurology",
-      "no_progress": 1,
+      "no_progress": 2,
       "routes": [
         "api.semanticscholar.org:discovery"
       ],
       "capability_blocked": false,
       "retry_after_version": null,
-      "persistent_identifiers": [],
+      "persistent_identifiers": [
+        "doi:10.1007/s10482-026-02296-9",
+        "doi:10.1007/s11884-026-00832-x",
+        "doi:10.1007/s11884-026-00832-x.pdf",
+        "doi:10.1016/bs.irn.2026.05.004",
+        "doi:10.1111/jne.70246"
+      ],
       "last_receipt": {
-        "evidence": "source-b7fa227ff66e4753",
-        "outcome": "route_failure",
-        "persistent_identifiers": [],
-        "research_id": "res-neuro-metabolic-001",
+        "evidence": "source-380576f1b1d34823",
+        "outcome": "no_progress",
+        "persistent_identifiers": [
+          "doi:10.1007/s10482-026-02296-9",
+          "doi:10.1007/s11884-026-00832-x",
+          "doi:10.1007/s11884-026-00832-x.pdf",
+          "doi:10.1016/bs.irn.2026.05.004",
+          "doi:10.1111/jne.70246"
+        ],
+        "research_id": "res-neurology-metabolic-001",
         "route": "api.semanticscholar.org:discovery",
         "stage": "discovery"
       }
@@ -119886,8 +120464,19 @@
       "query": "systemic metabolic dysfunction neurological disease review",
       "reason": "To identify foundational review literature establishing the link between systemic metabolic changes and neurological pathologies.",
       "type": "research",
+      "status": "collected",
+      "created_by": "w-5baafe7a9e9440ae",
+      "evidence": "source-380576f1b1d34823"
+    },
+    "res-neuro-metabolic-002": {
+      "domain": "neurology",
+      "id": "res-neuro-metabolic-002",
+      "project": "neurology-metabolic-pathways",
+      "query": "systemic metabolic dysfunction and neurological disease pathways review",
+      "reason": "Existing evidence for this project is bibliographic noise (anthropology/publishing policy). We require focused literature on metabolic drivers of neurological dysfunction to build a substantive notebook.",
+      "type": "research",
       "status": "queued",
-      "created_by": "w-5baafe7a9e9440ae"
+      "created_by": "w-a6eea847f8874612"
     }
   },
   "research_topics": [
@@ -120087,9 +120676,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-26T02:21:49.463683+00:00",
-    "anchor_version": 122,
-    "anchor_seq": 3556,
-    "effective_seconds": 95666.988745
+    "anchor_time": "2026-09-26T02:29:02.720921+00:00",
+    "anchor_version": 123,
+    "anchor_seq": 3572,
+    "effective_seconds": 96100.245983
   }
 }
