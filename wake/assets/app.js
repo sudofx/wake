@@ -280,7 +280,7 @@
       ['Fallback rate',fallbackRate.toFixed(1)+'%',fallbackWakes+' multi-attempt wakes'],
       ['Actions / accepted',actionPerAccepted.toFixed(2),actionTotal+' durable actions'],
       ['Evidence / accepted',evidencePerAccepted.toFixed(2),evidenceCount+' evidence records'],
-      ['Topic coverage',topicActive+'/'+topicRows.length,'topics with recorded activity'],
+      ['Topic coverage',topicActive+'/'+configuredTopicCount,'topics with recorded activity'],
       ['Open obligations',openObligations,String(overdue)+' overdue'],
       ['Capability blocks',capabilityBlocks,'equivalent retrieval routes paused'],
       ['Problem frames',frames.length,'strategy hypotheses; not findings'],
