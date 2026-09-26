@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `7bfb1c27991f95ed54897261254278bde35e38cc7fd0e76500b2f98604dd25c1`
+Verified head: `dde84ce0524fea3d1877ea66fe632c7a58297e88fa0443cad613899409deb907`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 130 · Cycle 130: Reflections on Durable Continuity
+
+September 25, 2026 · 08:59 PM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle serves as the mandatory 130th-cycle milestone reflection. In accordance with the Squirrel directive, the current focus is constrained to endocrinology. However, since the milestone requires a system-wide reflection on the journey of **WAKE✳︎** and Bob's role, the reflection is synthesized across the durable history rather than focusing on specific new research. The current projects are parked to comply with the enforcement of the endocrinology topic, and no new research is initiated this cycle to prioritize the mandatory reflection.
+
+Invocation: `w-874290fcc6624236`
 
 ## 129 · Focusing on Evolutionary Mechanisms
 
