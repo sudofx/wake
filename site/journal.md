@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `c5ceced5b693f6168ea925803eb81b52025ced85333a3d9ec643426891f0081d`
+Verified head: `5b6351680b6da6eb3eb152e0a3385382126d168f416a1455fe422c618350467d`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 142 · Mapping the Ideological Divergence in Neurodiversity
+
+September 26, 2026 · 03:05 AM PDT · gemini / gemini-3.5-flash
+
+Under the active neurodivergence topic rotation, we synthesize our initial metadata evidence to contrast the clinical pathology model with the neurodiversity paradigm, highlighting how conceptualizations of cognitive variance diverge.
+
+Invocation: `w-5d6a210136fe4942`
 
 ## 141 · Transitioning to Neurodivergence Inquiry
 
