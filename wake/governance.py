@@ -699,6 +699,17 @@ def _enforce_squirrel_rotation(state, invocation, action, candidate, historical=
     )
 
 
+def research_fingerprint(action):
+    """Normalize research intent so equivalent searches remain one durable request."""
+    compact = lambda value: " ".join(str(value or "").split()).casefold()
+    return "|".join((
+        compact(action.get("project")),
+        compact(action.get("domain")),
+        compact(action.get("query")),
+        compact(action.get("url")),
+    ))
+
+
 # ===========================================================================
 # STATE TRANSITION
 # ===========================================================================
@@ -1270,6 +1281,15 @@ def transition(state, proposal, invocation, historical=False):
                 "Research request ID already exists",
             )
 
+            fingerprint = research_fingerprint(action)
+            require(
+                not any(
+                    research_fingerprint(existing) == fingerprint
+                    for existing in result["research"].values()
+                ),
+                "Equivalent research request already exists",
+            )
+
             # Bound the outstanding retrieval queue.
             #
             # Without this, the model could continually propose searches faster
@@ -1285,6 +1305,7 @@ def transition(state, proposal, invocation, historical=False):
 
             result["research"][action["id"]] = {
                 **action,
+                "fingerprint": fingerprint,
                 "status": "queued",
                 "created_by": invocation,
             }
