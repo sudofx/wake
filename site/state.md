@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 154  
+**Version:** 155  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `52d98acd6248f4e5a1728c041f64caa3da7b0400170912f651d61347330a3221`
+**Verified head:** `f75aeba5dafac94e16aec27ae8cdcd1284ba6909ce95c000a8f78f18a3ca0537`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -2105,41 +2105,31 @@ _None recorded._
   "routes": [
     "api.crossref.org:discovery",
     "api.crossref.org:source",
-    "api.openalex.org:discovery"
+    "api.openalex.org:discovery",
+    "api.semanticscholar.org:discovery"
   ],
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.1016/j.neulet.2004.10.057",
-    "doi:10.1163/15736121-12341306",
-    "doi:10.1016/j.tics.2003.11.002",
-    "doi:10.1037/0033-295x.112.4.744",
-    "doi:10.1086/678698",
-    "doi:10.3389/fnins.2017.00539",
-    "doi:10.3389/fnins.2017.00539/pdf",
-    "openalex:W2127192066",
-    "openalex:W2102836011",
-    "openalex:W847076072",
-    "openalex:W2760068487",
-    "arxiv:2017.00539"
+    "arxiv:2017.00539",
+    "doi:10.1016/j.neulet.2004.10.057_bib1",
+    "doi:10.1046/j.0953-816x.2001.01527.x",
+    "doi:10.1016/j.neulet.2004.10.057_bib2",
+    "doi:10.1016/s1364-6613(99)01419-9",
+    "doi:10.1016/j.neulet.2004.10.057_bib3",
+    "doi:10.1016/j.neulet.2004.10.057_bib4",
+    "doi:10.1016/j.neulet.2004.10.057_bib5",
+    "doi:10.1016/j.neulet.2004.10.057_bib6",
+    "doi:10.2466/pms.2001.92.2.447",
+    "doi:10.1016/j.neulet.2004.10.057_bib7",
+    "doi:10.1111/j.1467-9744.1993.tb01026.x"
   ],
   "last_receipt": {
-    "evidence": "source-262e855536e24316",
-    "outcome": "no_progress",
-    "persistent_identifiers": [
-      "doi:10.1016/j.tics.2003.11.002",
-      "doi:10.1037/0033-295x.112.4.744",
-      "doi:10.1086/678698",
-      "doi:10.3389/fnins.2017.00539",
-      "doi:10.3389/fnins.2017.00539/pdf",
-      "openalex:W2127192066",
-      "openalex:W2102836011",
-      "openalex:W847076072",
-      "openalex:W2760068487",
-      "arxiv:2017.00539"
-    ],
-    "research_id": "res-religion-ritual-convergence-001",
-    "route": "api.openalex.org:discovery",
+    "evidence": "source-127ad89ddce0419c",
+    "outcome": "route_failure",
+    "persistent_identifiers": [],
+    "research_id": "res-rel-cognitive-frameworks-001",
+    "route": "api.semanticscholar.org:discovery",
     "stage": "discovery"
   }
 }
@@ -2175,24 +2165,39 @@ _None recorded._
 ### `deferred`
 
 ```json
-{}
+{
+  "religion": {
+    "cause": "attention_saturation",
+    "deferred_by": "w-f86280e015f3437d",
+    "other_topic_attempts": 0,
+    "parked_projects": [
+      {
+        "id": "rel-cross-cultural-001",
+        "next_step": "Identify cognitive and anthropological frameworks explaining ritual convergence.",
+        "question": "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?"
+      }
+    ],
+    "reason": "five accepted wakes concentrated on one topic; rotate until another topic reaches durable synthesis",
+    "release_condition": "accepted notebook or ordinary publication on another topic"
+  }
+}
 ```
 
 ### `last_receipt`
 
 ```json
 {
-  "attention_saturation_triggered": false,
+  "attention_saturation_triggered": true,
   "attention_topic": "religion",
-  "durable_progress": true,
+  "durable_progress": false,
   "hard_rejection": false,
-  "invocation": "w-35ea88591e9942d9",
-  "restored_topics": [
-    "visual_art"
-  ],
+  "invocation": "w-f86280e015f3437d",
+  "restored_topics": [],
   "selected_topic": "religion",
   "terminal": "accepted",
-  "triggered_topics": []
+  "triggered_topics": [
+    "religion"
+  ]
 }
 ```
 
@@ -2200,7 +2205,7 @@ _None recorded._
 
 ```json
 {
-  "accepted_streak": 4,
+  "accepted_streak": 5,
   "topic": "religion"
 }
 ```
@@ -128480,6 +128485,506 @@ _None recorded._
 }
 ```
 
+### `w-f86280e015f3437d`
+
+```json
+{
+  "base_version": 154,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 19138,
+    "delivered_request_chars": 46650,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "request_compression_ratio": 0.3829,
+    "retrieval_rehydrated_evidence_count": 2,
+    "rich_context_chars": 121843,
+    "working_set_chars": 3419
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-f86280e015f3437d",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 154,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "vis-art-perception-001",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Visual Art Perception"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0.5
+        },
+        "id": "rel-cross-cultural-001",
+        "score": 0.925,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Cross-Cultural Recurrence of Religious Practices"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2297,
+  "provider": "gemini",
+  "quota_day": "2026-09-26",
+  "request_hash": "2a4d74b3fa730d5f751bebbb77e37c63c46d3c63b3316a771b42b1525ad37bf3",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neurodiversity-foundations-01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-dance-rhythm-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-visual-art-composition-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-891da548184a404e",
+          "source-8f485f755e8b4f3a"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-endo-neuro-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-72e7307bd1d247d7",
+          "source-3896d2f336484666"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neuro-paradigm-comp-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-8defc56204704290",
+          "source-354dd04e6ba04d25"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-vis-art-perception-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-b9fa8623c6604586"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b9fa8623c6604586",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-0f0f4fa8dae043d2"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-0f0f4fa8dae043d2",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-63e6bbbc6f664757"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-63e6bbbc6f664757",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-cff4b3269bfa4f41"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-cff4b3269bfa4f41",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-573b6a4569924335"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-573b6a4569924335",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-592a6a7493914ac6"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-592a6a7493914ac6",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0a7b2a5c06d44417",
+      "source-930f33f0d42a4658",
+      "source-f535f6171025430e",
+      "source-b4a60e211150449b",
+      "source-41fac1eecb0246dd",
+      "source-51a9b989df3144af",
+      "source-891da548184a404e",
+      "source-8f485f755e8b4f3a",
+      "source-72e7307bd1d247d7",
+      "source-3896d2f336484666",
+      "source-8defc56204704290",
+      "source-354dd04e6ba04d25",
+      "source-b9fa8623c6604586",
+      "source-0f0f4fa8dae043d2",
+      "source-63e6bbbc6f664757",
+      "source-cff4b3269bfa4f41",
+      "source-573b6a4569924335",
+      "source-592a6a7493914ac6"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 12,
+      "evidence_count": 18,
+      "trigger_counts": {
+        "notebook_revised": 6,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "runtime_performance": {
+    "compaction_ms": 5.083,
+    "context_build_ms": 89.871,
+    "load_ms": 1120.698,
+    "receipt_ms": 599.207,
+    "start_total_before_record_ms": 3396.795,
+    "store": {
+      "append_cache_hits": 11,
+      "append_cache_misses": 0,
+      "cached_copy_ms": 1145.085,
+      "cached_loads": 0,
+      "event_count": 4318,
+      "full_replays": 11,
+      "replay_ms": 8142.494,
+      "trusted_projection_active": true
+    },
+    "temporal_ms": 1580.824
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 4,
+      "topic": "religion"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [],
+    "enforce_selected_topic": false,
+    "hard_rejection_threshold": 5,
+    "parked": {},
+    "reason": "current durable project topic remains eligible",
+    "rotation_required": false,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "religion",
+    "temporal": {
+      "anchor_seq": 4317,
+      "anchor_time": "2026-09-26T13:01:44.593023+00:00",
+      "anchor_version": 154,
+      "effective_seconds": 134062.118085
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": null,
+    "topic_selection_candidates": [],
+    "topic_selection_method": "active_topic"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 538.825378,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 134062.118085,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 1,
+      "squirrel_assessed": 1,
+      "total": 15
+    },
+    "observed_at": "2026-09-26T13:01:44.593023+00:00",
+    "previous_anchor_time": "2026-09-26T12:52:45.767645+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 538.825378
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 19138,
+    "inquiry_drive_project_count": 2,
+    "mode": "bounded",
+    "retrieval_candidate_count": 12,
+    "retrieval_evidence_count": 18,
+    "retrieval_rehydrated_evidence_count": 2,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 6,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 3419,
+    "working_to_delivered_ratio": 0.1786
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "vis-art-perception-001",
+        "next_step": "Search for foundational reviews on the psychology of aesthetics and visual art perception.",
+        "question": "How do composition, contrast, symmetry, ambiguity, and expectation influence how people perceive and evaluate visual art?",
+        "title": "Visual Art Perception"
+      },
+      {
+        "id": "rel-cross-cultural-001",
+        "next_step": "Identify cognitive and anthropological frameworks explaining ritual convergence.",
+        "question": "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?",
+        "title": "Cross-Cultural Recurrence of Religious Practices"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-neuro-metabolic-001",
+        "project": "neurology-metabolic-pathways",
+        "provenance": [
+          "source-8fb4038a7344498e",
+          "source-e41f8efd700544cf"
+        ],
+        "revision": 1,
+        "summary": "An initial assessment of the intersection between metabolic pathways and neurological health, based on bibliographic metadata.",
+        "title": "Provisional Synthesis: Metabolic Drivers in Neurological Function"
+      },
+      {
+        "id": "nb-evo-foundations-001",
+        "project": "evolutionary-biology-foundations",
+        "provenance": [
+          "source-2cd2684377c54051",
+          "source-e2e41e9bcb594def"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes available bibliographic metadata to frame future inquiry into how evolutionary biology distinguishes mechanisms such as adaptation, byproduct, drift, and constraint.",
+        "title": "Provisional Synthesis: Evolutionary Mechanisms"
+      },
+      {
+        "id": "nb-endo-neuro-001",
+        "project": "endo-neuro-interaction-001",
+        "provenance": [
+          "source-891da548184a404e",
+          "source-8f485f755e8b4f3a"
+        ],
+        "revision": 2,
+        "summary": "This provisional synthesis integrates newly indexed literature on congenital adrenal hyperplasia and systemic signal pathways to explore the endocrinology-neurology interface.",
+        "title": "Provisional Synthesis: Endocrine Influence on Neurological Function"
+      },
+      {
+        "id": "nb-neuro-paradigm-comp-001",
+        "project": "neuro-paradigm-comp-001",
+        "provenance": [
+          "source-72e7307bd1d247d7",
+          "source-3896d2f336484666"
+        ],
+        "revision": 2,
+        "summary": "Initial synthesis examining the neurodiversity movement's critique of clinical models, identifying 'neurodiversity' as an emerging research area in need of rigorous synthesis.",
+        "title": "Conceptual Divergence: Neurodiversity Paradigm vs. Clinical Pathology"
+      },
+      {
+        "id": "nb-vis-art-perception-001",
+        "project": "vis-art-perception-001",
+        "provenance": [
+          "source-8defc56204704290",
+          "source-354dd04e6ba04d25"
+        ],
+        "revision": 3,
+        "summary": "Synthesizes empirical and methodological dimensions of visual aesthetic perception, integrating general aesthetic review literature with cross-cultural empirical evidence.",
+        "title": "Visual Art Perception: Empirical Aesthetics and Cross-Cultural Frameworks"
+      },
+      {
+        "id": "nb-rel-cross-cultural-001",
+        "project": "rel-cross-cultural-001",
+        "provenance": [
+          "source-e3eecc2fcc6e44ff"
+        ],
+        "revision": 1,
+        "summary": "An initial assessment of cognitive and structural factors in recurrent rituals across diverse cultures.",
+        "title": "Provisional Synthesis: Cross-Cultural Recurrence of Religious Practices"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-26T13:01:46.996591+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 3695,
+      "http_status": 200,
+      "model": "gemini-3.5-flash",
+      "request_payload_bytes": 50832,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.5-flash",
+  "finished": "2026-09-26T13:02:16.191746+00:00",
+  "reason": "",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    }
+  ]
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -156903,6 +157408,103 @@ _None recorded._
 }
 ```
 
+### `source-592a6a7493914ac6`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1016%2Fj.neulet.2004.10.057\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 9, 15]], \\\"date-time\\\": \\\"2026-09-15T20:28:44Z\\\", \\\"timestamp\\\": 1789504124320, \\\"version\\\": \\\"build-2803163510\\\"}, \\\"reference-count\\\": 32, \\\"publisher\\\": \\\"Elsevier BV\\\", \\\"issue\\\": \\\"1\\\", \\\"license\\\": [{\\\"start\\\": {\\\"date-parts\\\": [[2005, 4, 1]], \\\"date-time\\\": \\\"2005-04-01T00:00:00Z\\\", \\\"timestamp\\\": 1112313600000}, \\\"content-version\\\": \\\"tdm\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://www.elsevier.com/tdm/userlicense/1.0/\\\"}], \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"Neuroscience Letters\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[2005, 4]]}, \\\"DOI\\\": \\\"10.1016/j.neulet.2004.10.057\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2004, 12, 10]], \\\"date-time\\\": \\\"2004-12-10T14:36:13Z\\\", \\\"timestamp\\\": 1102689373000}, \\\"page\\\": \\\"1-6\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 81, \\\"title\\\": [\\\"Sensed presence and mystical experiences are predicted by suggestibility, not by the application of transcranial weak complex magnetic fields\\\"], \\\"prefix\\\": \\\"10.1016\\\", \\\"volume\\\": \\\"379\\\", \\\"author\\\": [{\\\"given\\\": \\\"Pehr\\\", \\\"family\\\": \\\"Granqvist\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Mats\\\", \\\"family\\\": \\\"Fredrikson\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Patrik\\\", \\\"family\\\": \\\"Unge\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Andrea\\\", \\\"family\\\": \\\"Hagenfeldt\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Sven\\\", \\\"family\\\": \\\"Valind\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Dan\\\", \\\"family\\\": \\\"Larhammar\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Marcus\\\", \\\"family\\\": \\\"Larsson\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"78\\\", \\\"reference\\\": [{\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_bib1\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"1649\\\", \\\"DOI\\\": \\\"10.1046/j.0953-816x.2001.01527.x\\\", \\\"article-title\\\": \\\"Neural correlates of religious experiences\\\", \\\"volume\\\": \\\"13\\\", \\\"author\\\": \\\"Azari\\\", \\\"year\\\": \\\"2001\\\", \\\"journal-title\\\": \\\"Eur. J. Neurosci.\\\"}, {\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_bib2\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"29\\\", \\\"DOI\\\": \\\"10.1016/S1364-6613(99)01419-9\\\", \\\"article-title\\\": \\\"Exploring the natural foundations of religion\\\", \\\"volume\\\": \\\"4\\\", \\\"author\\\": \\\"Barrett\\\", \\\"year\\\": \\\"2000\\\", \\\"journal-title\\\": \\\"Trends Cogn. Sci.\\\"}, {\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_bib3\\\", \\\"series-title\\\": \\\"Religion and the Individual: A Social Psychological Perspective\\\", \\\"author\\\": \\\"Batson\\\", \\\"year\\\": \\\"1993\\\"}, {\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_bib4\\\", \\\"unstructured\\\": \\\"J. Cohen, Statistical Power Analysis for the Behavioral Sciences, second ed., Erlbaum, NJ, 1988.\\\"}, {\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_bib5\\\", \\\"unstructured\\\": \\\"J. Cohen, P. Cohen, Applied Multiple Regression/correlation Analysis for the Behavioral Sciences, second ed., Erlbaum, NJ, 1983.\\\"}, {\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_bib6\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"447\\\", \\\"DOI\\\": \\\"10.2466/pms.2001.92.2.447\\\", \\\"article-title\\\": \\\"Geophysical variables and behavior: XCII. Experimental elicitation of the experience of a sentient being by right hemispheric, weak magnetic fields: Interaction with temporal lobe sensitivity\\\", \\\"volume\\\": \\\"92\\\", \\\"author\\\": \\\"Cook\\\", \\\"year\\\": \\\"2001\\\", \\\"journal-title\\\": \\\"Percept. Motor Skills\\\"}, {\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_bib7\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"177\\\", \\\"DOI\\\": \\\"10.1111/j.1467-9744.1993.tb01026.x\\\", \\\"article-title\\\": \\\"Religious and mystical states: a neuropsychological model\\\", \\\"volume\\\": \\\"28\\\", \\\"author\\\": \\\"d’Aquili\\\", \\\"year\\\": \\\"1993\\\", \\\"journal-title\\\": \\\"Zygon\\\"}, {\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_bib8\\\", \\\"unstructured\\\": \\\"M. Farias, G. Claridge, M. Lalljee, Personality and cognitive predictors of new age practices and beliefs, submitted for publication.\\\"}, {\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_bib9\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"833\\\", \\\"DOI\\\": \\\"10.1002/acp.913\\\", \\\"article-title\\\": \\\"Absorption and hallucinatory experience\\\", \\\"volume\\\": \\\"17\\\", \\\"author\\\": \\\"Glickson\\\", \\\"year\\\": \\\"2003\\\", \\\"journal-title\\\": \\\"Appl. Cogn. Psychol.\\\"}, {\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_bib10\\\", \\\"unstructured\\\": \\\"P. Granqvist, New age orientation and the adult attachment interview: adverse experiences and preoccupied and unresolved states of mind, in preparation.\\\"}, {\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_bib11\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"529\\\", \\\"DOI\\\": \\\"10.1111/0021-8294.00075\\\", \\\"article-title\\\": \\\"Seeking security in the new age: on attachment and emotional compensation\\\", \\\"volume\\\": \\\"40\\\", \\\"author\\\": \\\"Granqvist\\\", \\\"year\\\": \\\"2001\\\", \\\"journal-title\\\": \\\"J. Sci. Study Relig.\\\"}, {\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_bib12\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"1049\\\", \\\"DOI\\\": \\\"10.2466/pms.2003.97.3f.1049\\\", \\\"article-title\\\": \\\"Application of transcerebral, weak (1 microT) complex magnetic fields and mystical experiences: are they generated by field-induced dimethyltryptamine release from the pineal organ?\\\", \\\"volume\\\": \\\"97\\\", \\\"author\\\": \\\"Hill\\\", \\\"year\\\": \\\"2003\\\", \\\"journal-title\\\": \\\"Percept. Motor Skills\\\"}, {\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_bib13\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"268\\\", \\\"DOI\\\": \\\"10.2307/1385891\\\", \\\"article-title\\\": \\\"Mysticism and intense experiences\\\", \\\"volume\\\": \\\"21\\\", \\\"author\\\": \\\"Holm\\\", \\\"year\\\": \\\"1982\\\", \\\"journal-title\\\": \\\"J. Sci. Study Relig.\\\"}, {\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_bib14\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"29\\\", \\\"DOI\\\": \\\"10.2307/1384454\\\", \\\"article-title\\\": \\\"The construction and preliminary validation of a measure of reported mystical experience\\\", \\\"volume\\\": \\\"21\\\", \\\"author\\\": \\\"Hood\\\", \\\"year\\\": \\\"1975\\\", \\\"journal-title\\\": \\\"J. Sci. Study Relig.\\\"}, {\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_bib15\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"252\\\", \\\"DOI\\\": \\\"10.1006/jrpe.2001.2344\\\", \\\"article-title\\\": \\\"Absorption: construct explication by Q-sort assessments of personality\\\", \\\"volume\\\": \\\"36\\\", \\\"author\\\": \\\"Kremen\\\", \\\"year\\\": \\\"2002\\\", \\\"journal-title\\\": \\\"J. Res. Personality\\\"}, {\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_bib16\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"323\\\", \\\"DOI\\\": \\\"10.1016/0092-6566(90)90024-Z\\\", \\\"article-title\\\": \\\"Electroencephalographic validation of a temporal lobe signs inventory\\\", \\\"volume\\\": \\\"24\\\", \\\"author\\\": \\\"Makarec\\\", \\\"year\\\": \\\"1990\\\", \\\"journal-title\\\": \\\"J. Res. Personality\\\"}, {\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_bib17\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"282\\\", \\\"DOI\\\": \\\"10.1016/S0306-9877(03)00175-0\\\", \\\"article-title\\\": \\\"The neural basis of the complex mental task of meditation: Neurotransmitters and neurochemical considerations\\\", \\\"volume\\\": \\\"61\\\", \\\"author\\\": \\\"Newberg\\\", \\\"year\\\": \\\"2003\\\", \\\"journal-title\\\": \\\"Med. Hypotheses\\\"}, {\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_bib18\\\", \\\"unstructured\\\": \\\"M.A. Persinger, Keynote Address, International Symposium, Magnetic Fields: Recent Advances in Diagnosis and Therapy, Lawson Research Institute Conference, London, Ontario, Canada, 1997.\\\"}, {\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_bib19\\\", \\\"series-title\\\": \\\"Neurotheology\\\", \\\"first-page\\\": \\\"267\\\", \\\"article-title\\\": \\\"Experimental simulation of the God experience: implications for religious beliefs and the future of the human species\\\", \\\"author\\\": \\\"Persinger\\\", \\\"year\\\": \\\"2002\\\"}, {\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_bib20\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"673\\\", \\\"DOI\\\": \\\"10.2466/pms.2001.92.3.673\\\", \\\"article-title\\\": \\\"Geophysical variables and behavior: CIV. Power-frequency magnetic field transients (5 microtesla) and reports of haunt experiences within an electronically dense house\\\", \\\"volume\\\": \\\"92\\\", \\\"author\\\": \\\"Persinger\\\", \\\"year\\\": \\\"2001\\\", \\\"journal-title\\\": \\\"Percept. Motor Skills\\\"}, {\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_bib21\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"179\\\", \\\"DOI\\\": \\\"10.1080/00221309.1987.9711068\\\", \\\"article-title\\\": \\\"Temporal lobe epileptic signs and correlative behaviors displayed by normal populations\\\", \\\"volume\\\": \\\"114\\\", \\\"author\\\": \\\"Persinger\\\", \\\"year\\\": \\\"1987\\\", \\\"journal-title\\\": \\\"J. Gen. Psychol.\\\"}, {\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_bib22\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"33\\\", \\\"DOI\\\": \\\"10.1002/1097-4679(199301)49:1<33::AID-JCLP2270490106>3.0.CO;2-H\\\", \\\"article-title\\\": \\\"Complex partial epileptic signs as a continuum from normals to epileptics: normative data and clinical populations\\\", \\\"volume\\\": \\\"49\\\", \\\"author\\\": \\\"Persinger\\\", \\\"year\\\": \\\"1993\\\", \\\"journal-title\\\": \\\"J. Clin. Psychol.\\\"}, {\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_bib23\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"1571\\\", \\\"DOI\\\": \\\"10.2466/pms.1994.79.3f.1571\\\", \\\"article-title\\\": \\\"Quantitative electroencephalographic validation of left and right temporal lobe signs and indicators in normal people\\\", \\\"volume\\\": \\\"79\\\", \\\"author\\\": \\\"Persinger\\\", \\\"year\\\": \\\"1994\\\", \\\"journal-title\\\": \\\"Percept. Motor Skills\\\"}, {\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_bib24\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"659\\\", \\\"DOI\\\": \\\"10.2466/pms.2000.90.2.659\\\", \\\"article-title\\\": \\\"Experimental simulation of a haunt experience and elicitation of paroxysmal electroencephalographic activity by transcerebral complex magnetic fields: induction of a synthetic “ghost”?\\\", \\\"volume\\\": \\\"90\\\", \\\"author\\\": \\\"Persinger\\\", \\\"year\\\": \\\"2000\\\", \\\"journal-title\\\": \\\"Percept. Motor Skills\\\"}, {\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_bib25\\\", \\\"series-title\\\": \\\"Phantoms in the Brain\\\", \\\"author\\\": \\\"Ramachandran\\\", \\\"year\\\": \\\"1999\\\"}, {\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_bib26\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"667\\\", \\\"DOI\\\": \\\"10.2466/pms.1992.75.2.667\\\", \\\"article-title\\\": \\\"Experimental stimulation by burstfiring weak magnetic fields over the right temporal lobe may facilitate apprehension in women\\\", \\\"volume\\\": \\\"75\\\", \\\"author\\\": \\\"Richards\\\", \\\"year\\\": \\\"1992\\\", \\\"journal-title\\\": \\\"Percept. Motor Skills\\\"}, {\\\"key\\\": \\\"10.1016/j.neulet.2004.10.057_\", \"excerpt_truncated\": true, \"source_sha256\": \"7f8d80c4a12d8fd393b7ae149b56dc6902571c857acf32e476ab4bb70b26060c\", \"verification_required\": true, \"topic_domain\": \"religion\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1016/j.neulet.2004.10.057\", \"doi:10.1016/j.neulet.2004.10.057_bib1\", \"doi:10.1046/j.0953-816x.2001.01527.x\", \"doi:10.1016/j.neulet.2004.10.057_bib2\", \"doi:10.1016/s1364-6613(99)01419-9\", \"doi:10.1016/j.neulet.2004.10.057_bib3\", \"doi:10.1016/j.neulet.2004.10.057_bib4\", \"doi:10.1016/j.neulet.2004.10.057_bib5\", \"doi:10.1016/j.neulet.2004.10.057_bib6\", \"doi:10.2466/pms.2001.92.2.447\", \"doi:10.1016/j.neulet.2004.10.057_bib7\", \"doi:10.1111/j.1467-9744.1993.tb01026.x\"]}",
+  "id": "source-592a6a7493914ac6",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.1016%2Fj.neulet.2004.10.057",
+  "version": 154,
+  "time": "2026-09-26T13:01:37.932580+00:00"
+}
+```
+
+### `source-127ad89ddce0419c`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.semanticscholar.org/graph/v1/paper/search?query=cognitive+science+of+religion+ritual+recurrence+cross-cultural&limit=4&fields=paperId%2Ctitle%2Cyear%2Cabstract%2Curl%2CexternalIds%2CopenAccessPdf\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-127ad89ddce0419c",
+  "scope": "failed",
+  "source": "https://api.semanticscholar.org/graph/v1/paper/search?query=cognitive+science+of+religion+ritual+recurrence+cross-cultural&limit=4&fields=paperId%2Ctitle%2Cyear%2Cabstract%2Curl%2CexternalIds%2CopenAccessPdf",
+  "version": 154,
+  "time": "2026-09-26T13:01:39.062389+00:00"
+}
+```
+
+### `source-9b6278780dbc4540`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":121,\\\"suggestion\\\":\\\"neurodivergent\\\",\\\"suggestionsnippet\\\":\\\"neurodivergent\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurodiversity\\\",\\\"pageid\\\":1073739,\\\"size\\\":142665,\\\"wordcount\\\":13881,\\\"snippet\\\":\\\"and other\\nneurodivergences\\nas a natural part of human neurological diversity\\\\u2014not diseases or disorders, just \\\"difference[s]\\\".\\nNeurodivergences\\ninclude autism\\\",\\\"timestamp\\\":\\\"2026-09-15T23:26:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroqueer theory\\\",\\\"pageid\\\":76016274,\\\"size\\\":31724,\\\"wordcount\\\":3380,\\\"snippet\\\":\\\"have suggested the existence of a relationship between queerness and\\nneurodivergence\\n: where neurodivergent people are more likely than their neurotypical\\\",\\\"timestamp\\\":\\\"2026-08-29T18:08:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Kassiane Asasumasu\\\",\\\"pageid\\\":76250908,\\\"size\\\":14907,\\\"wordcount\\\":1302,\\\"snippet\\\":\\\"related to the neurodiversity movement, including neurodivergent,\\nneurodivergence\\n, and caregiver benevolence. As stated in the text Neurodiversity for\\\",\\\"timestamp\\\":\\\"2026-06-22T15:58:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fern Brady\\\",\\\"pageid\\\":43399498,\\\"size\\\":15262,\\\"wordcount\\\":1330,\\\"snippet\\\":\\\"active within the field of autism education since learning of her\\nneurodivergence\\n. She has written about life as an autistic person in her 2023 memoir\\\",\\\"timestamp\\\":\\\"2026-09-20T00:11:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mel King (The Pitt)\\\",\\\"pageid\\\":82753144,\\\"size\\\":15334,\\\"wordcount\\\":1322,\\\"snippet\\\":\\\"and praises her for it. Mel explains that she has experience with\\nneurodivergence\\nbecause her sister Becca (Tal Anderson) is also autistic. Mel is Becca's\\\",\\\"timestamp\\\":\\\"2026-09-24T11:49:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurofibromatosis type I\\\",\\\"pageid\\\":1712548,\\\"size\\\":63138,\\\"wordcount\\\":7236,\\\"snippet\\\":\\\"Neurofibromatosis type I (NF-1), or von Recklinghausen syndrome, is a complex multi-system neurocutaneous disorder caused by a subset of genetic mutations\\\",\\\"timestamp\\\":\\\"2026-09-11T22:12:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Taylor Dearden\\\",\\\"pageid\\\":55290719,\\\"size\\\":19195,\\\"wordcount\\\":1387,\\\"snippet\\\":\\\"com/watch?v=bqFkDmto2OM \\\"Actress Taylor Dearden talks about portraying\\nneurodivergence\\non 'The Pitt'\\\". NPR. April 9, 2025. Retrieved June 18, 2025. \\\"'The\\\",\\\"timestamp\\\":\\\"2026-09-15T00:35:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Otherkin\\\",\\\"pageid\\\":21702085,\\\"size\\\":37075,\\\"wordcount\\\":3341,\\\"snippet\\\":\\\"non-spiritual explanations for themselves, such as unusual psychology or\\nneurodivergence\\n,[additional citation(s) needed] or as part of dissociative identity\\\",\\\"timestamp\\\":\\\"2026-09-02T04:15:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Swan Song (memoir)\\\",\\\"pageid\\\":84007061,\\\"size\\\":21529,\\\"wordcount\\\":2154,\\\"snippet\\\":\\\"Diana's brother, Charles Spencer, addresses conspiracy theories, her\\nneurodivergence\\nand more (Exclusive)\\\". People. Retrieved 21 September 2026. \\\"Earl Spencer\\\",\\\"timestamp\\\":\\\"2026-09-26T04:07:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Novo Amor\\\",\\\"pageid\\\":50369886,\\\"size\\\":18573,\\\"wordcount\\\":1352,\\\"snippet\\\":\\\"which released later that year, Lacey discussed exploring his own\\nneurodivergence\\nand how this journey was one of the main themes of the album. \\\"Premiere:\\\",\\\"timestamp\\\":\\\"2026-09-24T00:47:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"d237278b212f7bceac02171de96a2aa08a3a17d6a608b0a780584350757d4582\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-9b6278780dbc4540",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurodivergence&format=json",
+  "version": 154,
+  "time": "2026-09-26T13:01:40.731442+00:00"
+}
+```
+
+### `source-33de1304c2694104`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":11,\\\"suggestion\\\":\\\"evolutionary biology adaptation byproduct draft constant\\\",\\\"suggestionsnippet\\\":\\\"evolutionary biology adaptation byproduct\\ndraft constant\\n\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Criticism of evolutionary psychology\\\",\\\"pageid\\\":12102147,\\\"size\\\":106794,\\\"wordcount\\\":12675,\\\"snippet\\\":\\\"genetic\\ndrift\\nor as a\\nbyproduct\\nof another trait. Hagen also argues that a way to distinguish spandrels from\\nadaptations\\nis that\\nadaptations\\nhave evidence\\\",\\\"timestamp\\\":\\\"2026-09-21T02:42:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Glossary of genetics and evolutionary biology\\\",\\\"pageid\\\":56807771,\\\"size\\\":153020,\\\"wordcount\\\":15946,\\\"snippet\\\":\\\"of\\nbiology\\nand Glossary of ecology. A B C D E F G H I J K L M N O P Q R S T U V W X Y Z See also References\\nadaptation\\n1.\\\\u00a0\\\\u00a0The dynamic\\nevolutionary\\nprocess\\\",\\\"timestamp\\\":\\\"2026-06-21T14:42:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of evolutionary thought\\\",\\\"pageid\\\":21501970,\\\"size\\\":146995,\\\"wordcount\\\":16660,\\\"snippet\\\":\\\"topics in\\nevolutionary\\nbiology\\nDarwinism Faith and rationality Gal\\\\u00e1pagos Islands Genetic\\ndrift\\nObjections to evolution Timeline of\\nevolutionary\\nhistory\\\",\\\"timestamp\\\":\\\"2026-09-08T16:46:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary medicine\\\",\\\"pageid\\\":1157333,\\\"size\\\":51578,\\\"wordcount\\\":4580,\\\"snippet\\\":\\\"vision. Other\\nconstraints\\noccur as the\\nbyproduct\\nof adaptive innovations. One\\nconstraint\\nupon selection is that different\\nadaptations\\ncan conflict, which\\\",\\\"timestamp\\\":\\\"2026-08-29T20:38:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence of common descent\\\",\\\"pageid\\\":2339577,\\\"size\\\":251597,\\\"wordcount\\\":27811,\\\"snippet\\\":\\\"\\\"reproductive isolation is a\\nbyproduct\\nof\\nevolutionary\\nchange in isolated populations, and thus can be considered an\\nevolutionary\\naccident\\\". Speciation occurs\\\",\\\"timestamp\\\":\\\"2026-08-18T19:52:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Alternatives to Darwinian evolution\\\",\\\"pageid\\\":53955838,\\\"size\\\":56086,\\\"wordcount\\\":5870,\\\"snippet\\\":\\\"Lewontin proposed biological \\\"spandrels\\\", features created as a\\nbyproduct\\nof the\\nadaptation\\nof nearby structures. Gerd M\\\\u00fcller and Stuart Newman argued that\\\",\\\"timestamp\\\":\\\"2026-09-22T05:33:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Methanogen\\\",\\\"pageid\\\":563456,\\\"size\\\":72781,\\\"wordcount\\\":8010,\\\"snippet\\\":\\\"Methanogens are anaerobic archaea that produce methane as a\\nbyproduct\\nof their energy metabolism, i.e., catabolism. Methane production, or methanogenesis\\\",\\\"timestamp\\\":\\\"2026-09-02T07:54:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Robustness (evolution)\\\",\\\"pageid\\\":31066305,\\\"size\\\":45795,\\\"wordcount\\\":4804,\\\"snippet\\\":\\\"In\\nevolutionary\\nbiology\\n, robustness of a biological system (also called biological or genetic robustness) is the persistence of a certain characteristic\\\",\\\"timestamp\\\":\\\"2026-09-21T12:32:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cephalopod\\\",\\\"pageid\\\":42726,\\\"size\\\":145252,\\\"wordcount\\\":15903,\\\"snippet\\\":\\\"evolved to facilitate social signaling, while camouflage is a useful\\nbyproduct\\n. Because camouflage is used for multiple adaptive purposes in cephalopods\\\",\\\"timestamp\\\":\\\"2026-09-20T05:53:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Boring Billion\\\",\\\"pageid\\\":26127259,\\\"size\\\":76571,\\\"wordcount\\\":8396,\\\"snippet\\\":\\\"sulfide (H2S) for carbon fixation instead of water and produces sulfur as a\\nbyproduct\\ninstead of oxygen. This is known as a Canfield ocean, and such composition\\\",\\\"timestamp\\\":\\\"2026-08-18T09:50:46Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"3e7be52bb8c535dd5194eeb4cf1df61d2164367f242ade46ba44cdea5e5a7e44\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-33de1304c2694104",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json",
+  "version": 154,
+  "time": "2026-09-26T13:01:41.554054+00:00"
+}
+```
+
+### `source-0af62f9c9a324319`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":912},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrinology\\\",\\\"pageid\\\":9311,\\\"size\\\":28626,\\\"wordcount\\\":3056,\\\"snippet\\\":\\\"hormone.\\nEndocrinology\\nis the study of the\\nendocrine\\nsystem in the human body. This is a system of glands which secrete\\nhormones\\n.\\nHormones\\nare chemicals\\\",\\\"timestamp\\\":\\\"2026-08-22T17:29:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine system\\\",\\\"pageid\\\":9312,\\\"size\\\":40983,\\\"wordcount\\\":4852,\\\"snippet\\\":\\\"endocrine system by secreting certain\\nhormones\\n. The study of the\\nendocrine\\nsystem and its\\ndisorders\\nis known as\\nendocrinology\\n. The thyroid secretes thyroxine\\\",\\\"timestamp\\\":\\\"2026-05-30T18:34:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine disease\\\",\\\"pageid\\\":8500076,\\\"size\\\":11397,\\\"wordcount\\\":862,\\\"snippet\\\":\\\"\\nEndocrine\\ndiseases are\\ndisorders\\nof the\\nendocrine\\nsystem. The branch of medicine associated with\\nendocrine\\ndisorders\\nis known as\\nendocrinology\\n. Broadly\\\",\\\"timestamp\\\":\\\"2025-12-04T06:52:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thyroid-stimulating hormone\\\",\\\"pageid\\\":330361,\\\"size\\\":29201,\\\"wordcount\\\":2790,\\\"snippet\\\":\\\"body. It is a glycoprotein\\nhormone\\nproduced by thyrotrope cells in the anterior pituitary gland, which regulates the\\nendocrine\\nfunction of the thyroid.\\\",\\\"timestamp\\\":\\\"2026-05-22T04:01:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gender-affirming hormone therapy\\\",\\\"pageid\\\":36792950,\\\"size\\\":64335,\\\"wordcount\\\":5099,\\\"snippet\\\":\\\"transgender hormone therapy, is a form of hormone therapy in which sex\\nhormones\\nand other\\nhormonal\\nmedications are administered to transgender or gender nonconforming\\\",\\\"timestamp\\\":\\\"2026-09-16T03:30:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormone\\\",\\\"pageid\\\":13311,\\\"size\\\":42654,\\\"wordcount\\\":4370,\\\"snippet\\\":\\\"Cytokine\\nEndocrine\\ndisease\\nEndocrine\\nsystem\\nEndocrinology\\nEnvironmental\\nhormones\\nGrowth factor Hepatokine Intracrine List of human\\nhormones\\nList of investigational\\\",\\\"timestamp\\\":\\\"2026-09-08T05:55:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hormones (endocrinology journal)\\\",\\\"pageid\\\":76017572,\\\"size\\\":3457,\\\"wordcount\\\":234,\\\"snippet\\\":\\\"metabolic\\ndisorders\\n. It was established in 2002 as the official journal of the Hellenic\\nEndocrine\\nSociety, the Greek society of\\nendocrinology\\n, which published\\\",\\\"timestamp\\\":\\\"2025-10-20T08:31:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Endocrine gland\\\",\\\"pageid\\\":1223446,\\\"size\\\":18558,\\\"wordcount\\\":2107,\\\"snippet\\\":\\\"anterior pituitary\\nhormones\\nare tropic\\nhormones\\nthat regulate the function of other\\nendocrine\\norgans. Most anterior pituitary\\nhormones\\nexhibit a diurnal\\\",\\\"timestamp\\\":\\\"2026-01-25T17:12:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Acromegaly\\\",\\\"pageid\\\":20936195,\\\"size\\\":41489,\\\"wordcount\\\":3937,\\\"snippet\\\":\\\"acromegaly: evolution of the techniques and outcomes\\\". Reviews in\\nEndocrine\\n& Metabolic\\nDisorders\\n. 9 (1): 67\\\\u201370. doi:10.1007/s11154-007-9064-y. PMID\\\\u00a018228147\\\",\\\"timestamp\\\":\\\"2026-08-09T11:28:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Multiple endocrine neoplasia type 1\\\",\\\"pageid\\\":2574340,\\\"size\\\":15344,\\\"wordcount\\\":1736,\\\"snippet\\\":\\\"Multiple\\nendocrine\\nneoplasia type 1 (MEN-1; also known as Wermer syndrome) is one of a group of\\ndisorders\\n, the multiple\\nendocrine\\nneoplasias, that affect\\\",\\\"timestamp\\\":\\\"2025-12-23T18:16:14Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"007509ac38ee658e8902c4c99e160ac29ec4c378030703865303416056d78a3a\", \"verification_required\": true, \"topic_domain\": \"endocrinology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1007/s11154-007-9064-y\"]}",
+  "id": "source-0af62f9c9a324319",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=endocrinology+hormones+endocrine+disorders&format=json",
+  "version": 154,
+  "time": "2026-09-26T13:01:42.330127+00:00"
+}
+```
+
+### `source-fa43d6df75f948a8`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":3372},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological disorder\\\",\\\"pageid\\\":19572333,\\\"size\\\":21181,\\\"wordcount\\\":2085,\\\"snippet\\\":\\\"A\\nneurological\\ndisorder\\nis any\\ndisorder\\nof the\\nnervous\\nsystem\\n. Structural, biochemical or electrical abnormalities in the brain, spinal cord, or other\\\",\\\"timestamp\\\":\\\"2026-07-13T18:36:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Functional neurological symptom disorder\\\",\\\"pageid\\\":49594540,\\\"size\\\":23378,\\\"wordcount\\\":2498,\\\"snippet\\\":\\\"\\\"Functional\\nneurologic\\ndisorders\\n/conversion\\ndisorder\\n- Symptoms and causes\\\". Mayo Clinic. Retrieved 2022-01-04. \\\"Functional\\nneurological\\nsymptom\\ndisorder\\n\\\". Medicalnewstoday\\\",\\\"timestamp\\\":\\\"2026-09-13T17:05:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of neurological conditions and disorders\\\",\\\"pageid\\\":56335,\\\"size\\\":13517,\\\"wordcount\\\":1152,\\\"snippet\\\":\\\"This is a list of major and frequently observed\\nneurological\\ndisorders\\n(e.g., Alzheimer's disease), symptoms (e.g., back pain), signs (e.g., aphasia) and\\\",\\\"timestamp\\\":\\\"2026-06-20T20:53:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurology\\\",\\\"pageid\\\":21226,\\\"size\\\":28663,\\\"wordcount\\\":2752,\\\"snippet\\\":\\\"and treat\\nneurological\\ndisorders\\n. Neurologists diagnose and treat myriad\\nneurologic\\nconditions, including stroke, epilepsy, movement\\ndisorders\\nsuch as Parkinson's\\\",\\\"timestamp\\\":\\\"2026-09-24T16:30:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Central nervous system disease\\\",\\\"pageid\\\":17681122,\\\"size\\\":31068,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Central\\nnervous\\nsystem\\ndiseases or central\\nnervous\\nsystem\\ndisorders\\nare a group of\\nneurological\\ndisorders\\nthat affect the structure or function of the\\\",\\\"timestamp\\\":\\\"2026-08-15T09:05:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Paraneoplastic syndrome\\\",\\\"pageid\\\":11520228,\\\"size\\\":29092,\\\"wordcount\\\":2366,\\\"snippet\\\":\\\"to the peripheral\\nnervous\\nsystem\\n. Symptomatic features of paraneoplastic syndrome cultivate in four ways: endocrine,\\nneurological\\n, mucocutaneous, and\\\",\\\"timestamp\\\":\\\"2026-03-07T21:14:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Dysautonomia\\\",\\\"pageid\\\":410746,\\\"size\\\":32867,\\\"wordcount\\\":2908,\\\"snippet\\\":\\\"inherited or degenerative\\nneurologic\\ndiseases (primary dysautonomia) or injury of the autonomic\\nnervous\\nsystem\\nfrom an acquired\\ndisorder\\n(secondary dysautonomia)\\\",\\\"timestamp\\\":\\\"2026-08-12T22:17:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological examination\\\",\\\"pageid\\\":3893700,\\\"size\\\":11559,\\\"wordcount\\\":956,\\\"snippet\\\":\\\"A\\nneurological\\nexamination is the assessment of sensory neuron and motor responses, especially reflexes, to determine whether the\\nnervous\\nsystem\\nis impaired\\\",\\\"timestamp\\\":\\\"2026-08-29T23:18:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Vitamin D and neurology\\\",\\\"pageid\\\":37130699,\\\"size\\\":21444,\\\"wordcount\\\":2646,\\\"snippet\\\":\\\"been associated with many other conditions, including both\\nneurological\\nand non\\nneurological\\nconditions. These include but are not limited to autism, diabetes\\\",\\\"timestamp\\\":\\\"2025-09-15T21:51:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nervous system disease\\\",\\\"pageid\\\":18881907,\\\"size\\\":11932,\\\"wordcount\\\":1141,\\\"snippet\\\":\\\"\\nNervous\\nsystem\\ndiseases, also known as\\nnervous\\nsystem\\nor\\nneurological\\ndisorders\\n, refers to a small class of medical conditions affecting the\\nnervous\\nsystem\\\",\\\"timestamp\\\":\\\"2025-10-20T08:53:25Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"4c60ef6829810099b03258a932a18c1e5438537368d90ae035886d86ec7f5ef6\", \"verification_required\": true, \"topic_domain\": \"neurology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-fa43d6df75f948a8",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json",
+  "version": 154,
+  "time": "2026-09-26T13:01:43.097191+00:00"
+}
+```
+
+### `r-f86280e015f3437d`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":154,\"inherited_commitments\":[],\"invocation\":\"w-f86280e015f3437d\",\"previous_head\":\"42e18a9ff5ff4d33599188652f0191c4b379a7384f90492fdf5e8550bab434bc\",\"process_id\":2297,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-f86280e015f3437d",
+  "source": "runtime:continuity",
+  "version": 154,
+  "time": "2026-09-26T13:01:46.403389+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -158596,6 +159198,17 @@ _None recorded._
   "invocation": "w-35ea88591e9942d9",
   "title": "Establishing a Provisional Synthesis on Cross-Cultural Ritual Recurrence",
   "summary": "We initiate a provisional synthesis of our religion research project, tracking structural and cognitive patterns in recurrent practices based on available bibliographic metadata while outlining further research routes."
+}
+```
+
+### 155 · Mapping Ritual Convergence and Cognitive Foundations in religion
+
+```json
+{
+  "cycle": 155,
+  "invocation": "w-f86280e015f3437d",
+  "title": "Mapping Ritual Convergence and Cognitive Foundations in religion",
+  "summary": "We are seeking to expand our understanding of cross-cultural religious patterns under the active religion project by requesting targeted cognitive and evolutionary anthropology research."
 }
 ```
 
@@ -160515,8 +161128,24 @@ _None recorded._
   "query": "cognitive science of religion ritual recurrence cross-cultural",
   "reason": "Search for foundational literature on cognitive and evolutionary anthropological frameworks explaining why similar ritual patterns arise independently in separate cultures.",
   "type": "research",
+  "status": "failed",
+  "created_by": "w-35ea88591e9942d9",
+  "evidence": "source-127ad89ddce0419c"
+}
+```
+
+### `res-religion-cognitive-ritual-001`
+
+```json
+{
+  "domain": "religion",
+  "id": "res-religion-cognitive-ritual-001",
+  "project": "rel-cross-cultural-001",
+  "query": "cognitive science of religion ritual recurrence convergence evolutionary psychology",
+  "reason": "Identify core cognitive mechanisms and evolutionary anthropology frameworks that explain recurrent ritual structures across different cultures.",
+  "type": "research",
   "status": "queued",
-  "created_by": "w-35ea88591e9942d9"
+  "created_by": "w-f86280e015f3437d"
 }
 ```
 

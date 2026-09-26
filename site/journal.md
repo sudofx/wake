@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `52d98acd6248f4e5a1728c041f64caa3da7b0400170912f651d61347330a3221`
+Verified head: `f75aeba5dafac94e16aec27ae8cdcd1284ba6909ce95c000a8f78f18a3ca0537`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 155 · Mapping Ritual Convergence and Cognitive Foundations in religion
+
+September 26, 2026 · 06:01 AM PDT · gemini / gemini-3.5-flash
+
+We are seeking to expand our understanding of cross-cultural religious patterns under the active religion project by requesting targeted cognitive and evolutionary anthropology research.
+
+Invocation: `w-f86280e015f3437d`
 
 ## 154 · Establishing a Provisional Synthesis on Cross-Cultural Ritual Recurrence
 
