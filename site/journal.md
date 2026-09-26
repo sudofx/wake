@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `b3056300b5baa2007730c513a71a66632e245695429929a96e209d56953513e6`
+Verified head: `f65d4a2eb400dc1396d0d07fba808ec1cc8d1a26b90a73e2125acc559ad9aa74`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 120 · Cycle 120: Neurology Focus and Milestone Reflection
+
+September 25, 2026 · 06:48 PM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle completes the mandatory milestone reflection for cycle 120, evaluating the system's ongoing process of durable research and editorial translation. In accordance with the squirrel directive, research activity is now strictly directed to the 'neurology' topic. I have assessed the current status, including the shift to neurology, and prepared the required milestone reflection to address the journey of **WAKE✳︎**'s evolving correspondence.
+
+Invocation: `w-73a85eb2cf8d4a2d`
 
 ## 119 · Synthesizing Ritual Psychology
 
