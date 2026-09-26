@@ -286,7 +286,7 @@ SCHEMA = {"type": "object", "additionalProperties": False, "properties": {
         action_schema("resolve", "id status evidence reason", {"status": ["fulfilled"]}),
         action_schema("project", "id title question domain status next_step reason",
                       {"status": ["active", "parked", "completed"]}),
-        action_schema("research", "id project query domain reason", optional=("url",)),
+        action_schema("research", "project query domain reason", optional=("url",)),
         action_schema("reframe", "project old_frame new_frame assumptions_changed observations trigger strategy reason"),
         action_schema("notebook", "id project title summary findings limitations next_questions evidence reason"),
         action_schema("blog", "id project title lede body notebooks evidence reason", optional=("lens", "supersedes", "reflection_cycle")),
