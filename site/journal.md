@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `a566da0499df69f84790fa9f5e9079abc32196c8ec25ad5f51f3312ddace8645`
+Verified head: `89f3a368655a329215880ed4b150163315d02084d799bc5cdf551e7545cbe88a`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 129 · Focusing on Evolutionary Mechanisms
+
+September 25, 2026 · 08:14 PM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle continues the research into foundational evolutionary mechanisms. Given the mandate to focus on the evolutionary_biology topic, I am initiating a targeted search to secure substantive, source-backed literature that addresses the distinction between adaptation, byproduct, drift, and constraint. The existing bibliographic metadata in the project context does not provide sufficient content for a robust synthesis.
+
+Invocation: `w-35e7f38248c24337`
 
 ## 128 · Evolutionary mechanisms: distinguishing adaptation from drift
 
