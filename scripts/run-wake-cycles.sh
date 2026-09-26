@@ -10,6 +10,7 @@ readonly RETRY_SECONDS=15
 readonly TRANSIENT_RETRY_SECONDS=5
 readonly DISPATCH_TIMEOUT_SECONDS=1800
 readonly RUN_DISCOVERY_TIMEOUT_SECONDS=600
+readonly RUN_QUEUE_TIMEOUT_SECONDS=1800
 readonly RUN_COMPLETION_TIMEOUT_SECONDS=420
 readonly RECEIPT_TIMEOUT_SECONDS=60
 
@@ -132,6 +133,7 @@ while true; do
   done
 
   echo "[wake $i] Watching GitHub run $run_id..."
+  queue_started=$SECONDS
   execution_started=0
   status_unreachable_started=0
   while true; do
@@ -161,6 +163,9 @@ while true; do
         echo "WAKE✳︎ stopped: run $run_id did not complete within 7 minutes of starting execution." >&2
         exit 1
       fi
+    elif (( execution_started == 0 && SECONDS - queue_started >= RUN_QUEUE_TIMEOUT_SECONDS )); then
+      echo "WAKE✳︎ stopped: run $run_id remained queued by GitHub for 30 minutes without starting." >&2
+      exit 1
     fi
 
     sleep "$POLL_SECONDS"
