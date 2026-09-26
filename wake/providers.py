@@ -102,15 +102,15 @@ Additional exact action shapes:
 {"type":"project","id":"id","title":"Short title","question":"Specific research question",
  "domain":"<configured-topic-id>","status":"active","next_step":"Concrete next step","reason":"Why useful"}
 Project status may be active, parked, or completed. Completion requires a published notebook.
-{"type":"research","id":"unique-id","project":"project-id","query":"focused search terms",
+{"type":"research","project":"project-id","query":"focused search terms",
  "domain":"<configured-topic-id>","reason":"What this search will resolve"}
 {"type":"reframe","project":"project-id","old_frame":"Current conceptual frame",
  "new_frame":"Materially different conceptual frame","assumptions_changed":"What assumptions changed",
  "observations":["existing-evidence-id"],"trigger":"Recorded reason to reframe",
  "strategy":"Genuinely different next approach","reason":"Why this representation is useful"}
 For reframe, observations MUST contain only exact IDs already present in context.evidence. Never write prose observations in that array and never invent an evidence ID.
-Research IDs are immutable durable identities: NEVER reuse an ID already present in supplied research,
-even for a retry or a similar query. Give every genuinely new search request a new ID.
+Research request IDs are assigned by WAKE✳︎ after generation. Do not invent or supply a research ID.
+Describe the research intent precisely; durable identity is infrastructure-owned.
 At most four model-proposed follow-up searches may be recorded as hypotheses. The trusted collector's
 randomized attention across configured topics is authoritative. The collector may spend one bounded slot on a queued
 follow-up while preserving another slot for neutral topic exposure, so active work can progress without monopolizing
