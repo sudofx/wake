@@ -691,6 +691,12 @@ body{background:var(--paper)}
   align-items:center;
 }
 .matrix-header{position:sticky;top:0;z-index:1;background:var(--surface);border-bottom:1px solid var(--line);color:var(--muted);font-size:8px;letter-spacing:.07em;text-transform:uppercase}
+.matrix-sort{width:100%;height:100%;min-height:38px;display:flex;align-items:center;justify-content:space-between;gap:6px;border:0;background:transparent;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit;text-align:left;padding:0}
+.matrix-sort span{flex:0 0 auto;color:var(--muted);font-size:10px}
+.matrix-sort.is-sorted{color:var(--cyan);font-weight:700}
+.matrix-sort.is-sorted span{color:var(--cyan)}
+@media(hover:hover) and (pointer:fine){.matrix-sort:hover{color:var(--hot);background:color-mix(in srgb,var(--hot) 5%,transparent)}}
+.matrix-sort:focus-visible{outline:2px solid var(--orange);outline-offset:-3px}
 .matrix-header>*,
 .matrix-row>*,
 .matrix-system-row>*,
