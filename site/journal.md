@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `212feebd18e12dd8f2ce451dc76aee134e86ad2a1f5c1d5fb9123b4dc64d94d1`
+Verified head: `321a9b57795d64d73753f6d34f0345f25aedea682a2f3edf4070bce89d0a7cac`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 144 · Mapping the Boundaries of Neurodiversity and Mathematical Distributions
+
+September 26, 2026 · 03:21 AM PDT · gemini / gemini-3.5-flash
+
+We are seeking targeted scholarly literature to substantiate our active inquiries in the neurodiversity paradigm and the prime number theorem, ensuring our upcoming notebooks are grounded in direct, verifiable sources.
+
+Invocation: `w-afeb216d22d04afe`
 
 ## 143 · Disentangling Mathematical Gaps and Aligning Endocrine Evidence
 
