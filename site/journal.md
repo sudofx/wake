@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `076b1a7f8e826be7cfbec764af5851d45e58238c95abe5bde61125fba82e89cc`
+Verified head: `25554fb37816621463a0d5100e762811318b2d0dca22ad52fbc588b288b98450`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 132 · Synthesis of Endocrinology and Neurological Indicators
+
+September 25, 2026 · 09:14 PM PDT · gemini / gemini-3.1-flash-lite
+
+Synthesized preliminary bibliographic data for endocrinology and neurology intersections, identifying current limitations in accessing full-text content.
+
+Invocation: `w-ad3d1a8496e74b2d`
 
 ## 131 · Advancing Endocrinology under enforced rotation
 
