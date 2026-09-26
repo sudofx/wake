@@ -7,11 +7,11 @@ readonly REPO="sudofx/wake"
 readonly WORKFLOW="wake.yml"
 readonly POLL_SECONDS=5
 readonly RETRY_SECONDS=15
-readonly TRANSIENT_RETRY_SECONDS=30
+readonly TRANSIENT_RETRY_SECONDS=5
 readonly DISPATCH_TIMEOUT_SECONDS=1800
 readonly RUN_DISCOVERY_TIMEOUT_SECONDS=600
-readonly RUN_COMPLETION_TIMEOUT_SECONDS=2700
-readonly RECEIPT_TIMEOUT_SECONDS=600
+readonly RUN_COMPLETION_TIMEOUT_SECONDS=420
+readonly RECEIPT_TIMEOUT_SECONDS=60
 
 prepare_workspace() {
   local root branch changes
@@ -71,8 +71,15 @@ command -v gh >/dev/null 2>&1 || { echo "Error: GitHub CLI (gh) is not installed
 gh auth status >/dev/null 2>&1 || { echo "Error: gh is not authenticated. Run: gh auth login" >&2; exit 77; }
 
 read_operation() {
-  gh api "repos/$REPO/contents/site/operation.json?ref=wake-state" --jq '.content' 2>/dev/null \
-    | tr -d '\n' | base64 --decode 2>/dev/null || true
+  # Batch wakes persist a compact root receipt so the operator loop never waits
+  # for static-site generation. Fall back to the legacy published receipt while
+  # older wake-state commits age out.
+  local encoded
+  encoded="$(gh api "repos/$REPO/contents/operation.json?ref=wake-state" --jq '.content' 2>/dev/null || true)"
+  if [[ -z "$encoded" ]]; then
+    encoded="$(gh api "repos/$REPO/contents/site/operation.json?ref=wake-state" --jq '.content' 2>/dev/null || true)"
+  fi
+  tr -d '\n' <<<"$encoded" | base64 --decode 2>/dev/null || true
 }
 
 if (( max_wakes > 0 )); then
@@ -130,7 +137,7 @@ while true; do
     status="$(gh run view "$run_id" --repo "$REPO" --json status --jq '.status' 2>/dev/null || true)"
     if [[ -z "$status" ]]; then
       if (( SECONDS - completion_started >= RUN_COMPLETION_TIMEOUT_SECONDS )); then
-        echo "WAKE✳︎ stopped: GitHub remained unreachable while watching run $run_id for 45 minutes." >&2
+        echo "WAKE✳︎ stopped: GitHub remained unreachable while watching run $run_id for 7 minutes." >&2
         exit 1
       fi
       echo "[wake $i] GitHub connection interrupted; retrying in $RETRY_SECONDS seconds..." >&2
@@ -139,7 +146,7 @@ while true; do
     fi
     [[ "$status" == "completed" ]] && break
     if (( SECONDS - completion_started >= RUN_COMPLETION_TIMEOUT_SECONDS )); then
-      echo "WAKE✳︎ stopped: run $run_id did not complete within 45 minutes." >&2
+      echo "WAKE✳︎ stopped: run $run_id did not complete within 7 minutes." >&2
       exit 1
     fi
     sleep "$POLL_SECONDS"
@@ -186,7 +193,7 @@ while true; do
     operation_status="$(jq -r '.status // empty' <<<"$operation" 2>/dev/null || true)"
     if [[ -z "$operation_status" ]]; then
       if (( SECONDS - receipt_started >= RECEIPT_TIMEOUT_SECONDS )); then
-        echo "WAKE✳︎ stopped: the durable operation receipt was unavailable for 10 minutes after run $run_id." >&2
+        echo "WAKE✳︎ stopped: the durable operation receipt was unavailable for 60 seconds after run $run_id." >&2
         exit 1
       fi
       sleep "$POLL_SECONDS"
@@ -213,7 +220,7 @@ while true; do
   if [[ "$operation_status" == "deferred" ]] && jq -e '.reason | startswith("Gemini temporarily unavailable")' >/dev/null 2>&1 <<<"$operation"; then
     transient_streak=$((transient_streak + 1))
     retry_delay=$(( TRANSIENT_RETRY_SECONDS * (1 << (transient_streak - 1)) ))
-    (( retry_delay > 300 )) && retry_delay=300
+    (( retry_delay > 30 )) && retry_delay=30
     echo "[wake $i] Temporary provider outage; cooldown ${retry_delay}s before retrying (streak: $transient_streak)."
     # A transient outage produced no research result. Do not let it consume
     # one of the operator-requested cycles before the next dispatch, but back
