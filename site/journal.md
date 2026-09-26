@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `9d7bc68f52ece221ca190266052fc5af8b7f7e8603ee10ea2cc4f6f8bbd923a4`
+Verified head: `500ba4b8c061289b2bc576a74b3f34d5460c883160eaedc2cb82a162b01dcae5`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 122 · Neurological Impact of Metabolic Dysregulation
+
+September 25, 2026 · 07:07 PM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle advances research on the systemic neurological impacts of metabolic changes. I am synthesizing the available bibliographic metadata regarding metabolic pathways and neurological disease. The current evidence provides a foundation for exploring these linkages, but deeper access to the full content of these cited works is necessary to form robust, source-backed claims about causality and clinical relevance.
+
+Invocation: `w-e1e6eb934df84836`
 
 ## 121 · Neurological metabolic pathways research
 

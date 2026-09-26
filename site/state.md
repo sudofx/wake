@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 121  
+**Version:** 122  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `9d7bc68f52ece221ca190266052fc5af8b7f7e8603ee10ea2cc4f6f8bbd923a4`
+**Verified head:** `500ba4b8c061289b2bc576a74b3f34d5460c883160eaedc2cb82a162b01dcae5`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -1646,33 +1646,35 @@ _None recorded._
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.1146/annurev.psych.59.103006.093639",
-    "doi:10.1080/17439760.2013.830764",
-    "doi:10.1002/crossmark_policy",
-    "doi:10.1016/0163-8343(82)90026-3",
-    "doi:10.1016/0163-8343(95)00025-m",
-    "doi:10.1023/a:1018700829825",
-    "doi:10.1111/j.1467-9744.2005.00674.x",
-    "doi:10.1037/0033-2909.119.3.448",
-    "doi:10.1016/0277-9536(87)90063-3",
-    "doi:10.1007/bf01533291",
-    "arxiv:2007.0675",
-    "arxiv:9744.2005"
+    "arxiv:9744.2005",
+    "doi:10.1006/jmla.2000.2752",
+    "doi:10.1017/s0140525x05000038",
+    "doi:10.1207/s15327957pspr1001_2",
+    "doi:10.1017/s0140525x99002149",
+    "doi:10.1080/01690960344000026",
+    "doi:10.1016/j.tics.2005.05.003",
+    "doi:10.1163/1568537054068624",
+    "doi:10.1007/s10339-007-0163-1",
+    "doi:10.1016/s0079-7421(03)01011-9",
+    "doi:10.1017/cbo9780511499968.007",
+    "doi:10.1016/s0022-5371(79)90118-x"
   ],
   "last_receipt": {
-    "evidence": "source-67cedb30d9bb4f2c",
+    "evidence": "source-2cd2684377c54051",
     "outcome": "progress",
     "persistent_identifiers": [
-      "doi:10.1089/acm.2007.0675",
-      "doi:10.1016/0163-8343(82)90026-3",
-      "doi:10.1016/0163-8343(95)00025-m",
-      "doi:10.1023/a:1018700829825",
-      "doi:10.1111/j.1467-9744.2005.00674.x",
-      "doi:10.1037/0033-2909.119.3.448",
-      "doi:10.1016/0277-9536(87)90063-3",
-      "doi:10.1007/bf01533291",
-      "arxiv:2007.0675",
-      "arxiv:9744.2005"
+      "doi:10.1146/annurev.psych.59.103006.093639",
+      "doi:10.1006/jmla.2000.2752",
+      "doi:10.1017/s0140525x05000038",
+      "doi:10.1207/s15327957pspr1001_2",
+      "doi:10.1017/s0140525x99002149",
+      "doi:10.1080/01690960344000026",
+      "doi:10.1016/j.tics.2005.05.003",
+      "doi:10.1163/1568537054068624",
+      "doi:10.1007/s10339-007-0163-1",
+      "doi:10.1016/s0079-7421(03)01011-9",
+      "doi:10.1017/cbo9780511499968.007",
+      "doi:10.1016/s0022-5371(79)90118-x"
     ],
     "research_id": "res-religion-practices-002",
     "route": "api.crossref.org:source",
@@ -1724,6 +1726,7 @@ _None recorded._
   "information_thermodynamics": 0,
   "music": 3,
   "neurodivergence": 1,
+  "neurology": 0,
   "prime_numbers": 7,
   "quantum_mechanics": 5,
   "religion": 0,
@@ -1734,22 +1737,7 @@ _None recorded._
 ### `deferred`
 
 ```json
-{
-  "religion": {
-    "cause": "attention_saturation",
-    "deferred_by": "w-68172dff6a19436b",
-    "other_topic_attempts": 4,
-    "parked_projects": [
-      {
-        "id": "religion-cross-cultural-practices",
-        "next_step": "Search for academic reviews or theories regarding the convergence of religious rituals and practices.",
-        "question": "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?"
-      }
-    ],
-    "reason": "five accepted wakes concentrated on one topic; rotate until another topic reaches durable synthesis",
-    "release_condition": "accepted notebook or ordinary publication on another topic"
-  }
-}
+{}
 ```
 
 ### `last_receipt`
@@ -1758,11 +1746,11 @@ _None recorded._
 {
   "attention_saturation_triggered": false,
   "attention_topic": "neurology",
-  "durable_progress": false,
+  "durable_progress": true,
   "hard_rejection": false,
-  "invocation": "w-1c03df4bba58467f",
+  "invocation": "w-e1e6eb934df84836",
   "restored_topics": [
-    "evolutionary_biology"
+    "religion"
   ],
   "selected_topic": "neurology",
   "terminal": "accepted",
@@ -1774,7 +1762,7 @@ _None recorded._
 
 ```json
 {
-  "accepted_streak": 2,
+  "accepted_streak": 3,
   "topic": "neurology"
 }
 ```
@@ -2198,6 +2186,31 @@ _None recorded._
   "updated_version": 119,
   "updated_by": "w-68172dff6a19436b",
   "domain": "religion"
+}
+```
+
+### `nb-neuro-metabolic-001` · Provisional Synthesis: Metabolic Drivers in Neurological Function
+
+```json
+{
+  "evidence": [
+    "source-8fb4038a7344498e",
+    "source-e41f8efd700544cf"
+  ],
+  "findings": "Existing bibliographic records suggest that metabolic dysfunction is increasingly recognized as a component of various neurological conditions. The available sources [source-8fb4038a7344498e], [source-e41f8efd700544cf] provide a starting point for investigating these pathways, though they currently offer descriptive metadata rather than full mechanistic detail.",
+  "id": "nb-neuro-metabolic-001",
+  "limitations": "This notebook is based solely on bibliographic metadata. It does not provide definitive evidence of specific causal pathways between metabolic disorders and neurological outcomes. The findings are provisional and require access to the full content of these papers.",
+  "next_questions": "What specific biochemical pathways are identified in the literature as common denominators between metabolic syndrome and neurodegeneration? Do longitudinal studies demonstrate that metabolic stabilization improves neurological outcomes?",
+  "project": "neurology-metabolic-pathways",
+  "reason": "This notebook synthesizes the existing evidence for the neurology project, addressing the synthesis_ready_projects requirement.",
+  "summary": "An initial assessment of the intersection between metabolic pathways and neurological health, based on bibliographic metadata.",
+  "title": "Provisional Synthesis: Metabolic Drivers in Neurological Function",
+  "type": "notebook",
+  "revision": 1,
+  "created_version": 122,
+  "updated_version": 122,
+  "updated_by": "w-e1e6eb934df84836",
+  "domain": "neurology"
 }
 ```
 
@@ -102809,6 +102822,502 @@ _None recorded._
 }
 ```
 
+### `w-e1e6eb934df84836`
+
+```json
+{
+  "base_version": 121,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 20754,
+    "delivered_request_chars": 47125,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "request_compression_ratio": 0.4408,
+    "retrieval_rehydrated_evidence_count": 2,
+    "rich_context_chars": 106904,
+    "working_set_chars": 3792
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-e1e6eb934df84836",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 121,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0.5
+        },
+        "id": "religion-cross-cultural-practices",
+        "score": 0.75,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 3,
+          "queued_research": 0
+        },
+        "title": "Cross-Cultural Religious Practices"
+      },
+      {
+        "components": {
+          "coherence": 0.5,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.5,
+          "self_correction": 0
+        },
+        "id": "entropy-foundations",
+        "score": 0.675,
+        "signals": {
+          "collected_research": 1,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Foundations of Entropy"
+      },
+      {
+        "components": {
+          "coherence": 0.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 0.0,
+          "self_correction": 0
+        },
+        "id": "neurology-metabolic-pathways",
+        "score": 0.5,
+        "signals": {
+          "collected_research": 0,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Neurological Impact of Metabolic Changes"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2233,
+  "provider": "gemini",
+  "quota_day": "2026-09-25",
+  "request_hash": "48999a65026be9bc8a42361448810f11d4baca93cc8d2476280a5c2654f079c3",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neurodiversity-foundations-01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-dance-rhythm-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-visual-art-composition-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-8fb4038a7344498e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-8fb4038a7344498e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-e41f8efd700544cf"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-e41f8efd700544cf",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-95d0b6abf66f410a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-95d0b6abf66f410a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-55ee34bc8e5142d6"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-55ee34bc8e5142d6",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-67cedb30d9bb4f2c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-67cedb30d9bb4f2c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-2cd2684377c54051"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-2cd2684377c54051",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0a7b2a5c06d44417",
+      "source-930f33f0d42a4658",
+      "source-f535f6171025430e",
+      "source-b4a60e211150449b",
+      "source-41fac1eecb0246dd",
+      "source-51a9b989df3144af",
+      "source-8fb4038a7344498e",
+      "source-e41f8efd700544cf",
+      "source-95d0b6abf66f410a",
+      "source-55ee34bc8e5142d6",
+      "source-67cedb30d9bb4f2c",
+      "source-2cd2684377c54051"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 12,
+      "trigger_counts": {
+        "notebook_revised": 3,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "runtime_performance": {
+    "compaction_ms": 4.279,
+    "context_build_ms": 90.315,
+    "load_ms": 802.119,
+    "receipt_ms": 485.889,
+    "start_total_before_record_ms": 2594.309,
+    "store": {
+      "append_cache_hits": 9,
+      "append_cache_misses": 0,
+      "cached_copy_ms": 764.273,
+      "cached_loads": 0,
+      "event_count": 3530,
+      "full_replays": 11,
+      "replay_ms": 5876.15,
+      "trusted_projection_active": true
+    },
+    "temporal_ms": 1210.553
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 2,
+      "topic": "neurology"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [
+      "entropy"
+    ],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [
+      "religion"
+    ],
+    "enforce_selected_topic": true,
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "religion": [
+        {
+          "id": "religion-cross-cultural-practices",
+          "next_step": "Search for academic reviews or theories regarding the convergence of religious rituals and practices.",
+          "question": "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?"
+        }
+      ]
+    },
+    "reason": "current durable project topic remains eligible",
+    "rotation_required": true,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "neurology",
+    "temporal": {
+      "anchor_seq": 3529,
+      "anchor_time": "2026-09-26T02:07:00.293682+00:00",
+      "anchor_version": 121,
+      "effective_seconds": 94777.818744
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": null,
+    "topic_selection_candidates": [],
+    "topic_selection_method": "active_topic"
+  },
+  "temporal": {
+    "cycle_distance": 0,
+    "effective_elapsed_seconds": 394.355351,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 94777.818744,
+    "intervening_events": {
+      "accepted": 0,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 0,
+      "squirrel_assessed": 0,
+      "total": 12
+    },
+    "observed_at": "2026-09-26T02:07:00.293682+00:00",
+    "previous_anchor_time": "2026-09-26T02:00:25.938331+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 394.355351
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 20754,
+    "inquiry_drive_project_count": 3,
+    "mode": "bounded",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 12,
+    "retrieval_rehydrated_evidence_count": 2,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 3,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 3792,
+    "working_to_delivered_ratio": 0.1827
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "entropy-foundations",
+        "next_step": "Search for literature comparing thermodynamic, statistical, and information-theoretic entropy definitions.",
+        "question": "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?",
+        "title": "Foundations of Entropy"
+      },
+      {
+        "id": "religion-cross-cultural-practices",
+        "next_step": "Search for academic reviews or theories regarding the convergence of religious rituals and practices.",
+        "question": "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?",
+        "title": "Cross-Cultural Religious Practices"
+      },
+      {
+        "id": "neurology-metabolic-pathways",
+        "next_step": "Initiate search for review articles linking systemic metabolic dysfunction to neurological disease pathways.",
+        "question": "How do metabolic, hormonal, and systemic physiological changes influence neurological function and neurological disease?",
+        "title": "Neurological Impact of Metabolic Changes"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-dance-structural-001",
+        "project": "dance-movement-structural-constraints",
+        "provenance": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "revision": 1,
+        "summary": "An initial mapping of dance and movement research, focusing on the intersection of choreographic structure and cognitive response, grounded in available metadata records.",
+        "title": "Provisional Synthesis: Structural Constraints in Dance"
+      },
+      {
+        "id": "nb-info-thermo-demon-002",
+        "project": "info-thermo-maxwell-demon",
+        "provenance": [
+          "source-ae0e2b3554414618",
+          "source-b772fc7044e548f7"
+        ],
+        "revision": 1,
+        "summary": "An exploration of how information-theoretic erasure relates to physical entropy, synthesized from bibliographic metadata on classical thermodynamics and information theory.",
+        "title": "Synthesis: Information Erasure and Entropy"
+      },
+      {
+        "id": "nb-prime-dist-001",
+        "project": "prime-numbers-distribution",
+        "provenance": [
+          "source-7ec80a5fc56745db"
+        ],
+        "revision": 1,
+        "summary": "An initial exploration of the Prime Number Theorem's role in describing prime number distribution, based on bibliographic metadata.",
+        "title": "Provisional Synthesis: Prime Number Theorem and Density"
+      },
+      {
+        "id": "nb-religion-cross-cultural-001",
+        "project": "religion-cross-cultural-practices",
+        "provenance": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "revision": 1,
+        "summary": "Initial status report indicating that the current evidence set consists of unrelated bibliographic metadata.",
+        "title": "Provisional Synthesis: Cross-Cultural Religious Practices"
+      },
+      {
+        "id": "nb-religion-002",
+        "project": "religion-cross-cultural-practices",
+        "provenance": [
+          "source-7bd43608b269427f",
+          "source-d56377b15875422a"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes available bibliographic metadata concerning cognitive and evolutionary approaches to religion, noting that while the sources provide a venue for such research, full content access is currently absent.",
+        "title": "Provisional Synthesis: Cross-Cultural Religious Practices"
+      },
+      {
+        "id": "nb-religion-ritual-psych-001",
+        "project": "religion-cross-cultural-practices",
+        "provenance": [
+          "source-0e0aa6aa238246cb"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes the 'process-based framework' from a 2017 integrative review of ritual psychology, noting the distinction between the ritual form and its psychological function.",
+        "title": "Synthesis: The Psychology of Rituals"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-26T02:07:02.175186+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 3245,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 51263,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-26T02:07:26.407287+00:00",
+  "reason": "",
+  "skipped_models": [
+    {
+      "model": "gemini-3.8-flash",
+      "reason": "configured_daily_limit"
+    },
+    {
+      "model": "gemini-3.5-flash",
+      "reason": "configured_daily_limit"
+    }
+  ]
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -126285,6 +126794,103 @@ _None recorded._
 }
 ```
 
+### `source-2cd2684377c54051`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1146%2Fannurev.psych.59.103006.093639\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 9, 25]], \\\"date-time\\\": \\\"2026-09-25T15:22:49Z\\\", \\\"timestamp\\\": 1790349769262, \\\"version\\\": \\\"4.1.0\\\"}, \\\"reference-count\\\": 243, \\\"publisher\\\": \\\"Annual Reviews\\\", \\\"issue\\\": \\\"1\\\", \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"Annu. Rev. Psychol.\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[2008, 1, 1]]}, \\\"abstract\\\": \\\"<jats:p>Grounded cognition rejects traditional views that cognition is computation on amodal symbols in a modular system, independent of the brain's modal systems for perception, action, and introspection. Instead, grounded cognition proposes that modal simulations, bodily states, and situated action underlie cognition. Accumulating behavioral and neural evidence supporting this view is reviewed from research on perception, memory, knowledge, language, thought, social cognition, and development. Theories of grounded cognition are also reviewed, as are origins of the area and common misperceptions of it. Theoretical, empirical, and methodological issues are raised whose future treatment is likely to affect the growth and impact of grounded cognition.</jats:p>\\\", \\\"DOI\\\": \\\"10.1146/annurev.psych.59.103006.093639\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2007, 8, 17]], \\\"date-time\\\": \\\"2007-08-17T12:00:41Z\\\", \\\"timestamp\\\": 1187352041000}, \\\"page\\\": \\\"617-645\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 5129, \\\"title\\\": [\\\"Grounded Cognition\\\"], \\\"prefix\\\": \\\"10.1146\\\", \\\"volume\\\": \\\"59\\\", \\\"author\\\": [{\\\"given\\\": \\\"Lawrence W.\\\", \\\"family\\\": \\\"Barsalou\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Department of Psychology, Emory University, Atlanta, Georgia 30322;\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"22\\\", \\\"reference\\\": [{\\\"key\\\": \\\"B1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1006/jmla.2000.2752\\\"}, {\\\"key\\\": \\\"B2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1017/S0140525X05000038\\\"}, {\\\"key\\\": \\\"B3\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1207/s15327957pspr1001_2\\\"}, {\\\"key\\\": \\\"B4\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1017/S0140525X99002149\\\"}, {\\\"key\\\": \\\"B5\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1080/01690960344000026\\\"}, {\\\"key\\\": \\\"B6\\\", \\\"first-page\\\": \\\"389\\\", \\\"volume-title\\\": \\\"Building Object Categories\\\", \\\"author\\\": \\\"Barsalou LW\\\", \\\"year\\\": \\\"2005\\\"}, {\\\"key\\\": \\\"B7\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.tics.2005.05.003\\\"}, {\\\"key\\\": \\\"B8\\\", \\\"volume-title\\\": \\\"Embodied Grounding: Social, Cognitive, Affective, and Neuroscientific approaches\\\", \\\"author\\\": \\\"Barsalou LW\\\", \\\"year\\\": \\\"2007\\\"}, {\\\"key\\\": \\\"B9\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1163/1568537054068624\\\"}, {\\\"key\\\": \\\"B10\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/s10339-007-0163-1\\\"}, {\\\"key\\\": \\\"B11\\\", \\\"first-page\\\": \\\"97\\\", \\\"volume-title\\\": \\\"Categories and Concepts: Theoretical Views and Inductive Data Analysis\\\", \\\"author\\\": \\\"Barsalou LW\\\", \\\"year\\\": \\\"1993\\\"}, {\\\"key\\\": \\\"B12\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0079-7421(03)01011-9\\\"}, {\\\"key\\\": \\\"B13\\\", \\\"volume-title\\\": \\\"Symbols, Embodiment, and Meaning\\\", \\\"author\\\": \\\"Barsalou LW\\\", \\\"year\\\": \\\"2007\\\"}, {\\\"key\\\": \\\"B14\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1017/CBO9780511499968.007\\\"}, {\\\"key\\\": \\\"B15\\\", \\\"first-page\\\": \\\"9\\\", \\\"volume-title\\\": \\\"Visualization in Mathematics\\\", \\\"author\\\": \\\"Barwise J\\\", \\\"year\\\": \\\"1991\\\"}, {\\\"key\\\": \\\"B16\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0022-5371(79)90118-X\\\"}, {\\\"key\\\": \\\"B17\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1371/journal.pbio.0040069\\\"}, {\\\"key\\\": \\\"B18\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.3758/BF03196865\\\"}, {\\\"key\\\": \\\"B19\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0010-0277(99)00073-6\\\"}, {\\\"key\\\": \\\"B20\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1006/cogp.2001.0748\\\"}, {\\\"key\\\": \\\"B21\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/1467-9280.00434\\\"}, {\\\"key\\\": \\\"B22\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/nn1535\\\"}, {\\\"key\\\": \\\"B23\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1126/science.2403694\\\"}, {\\\"key\\\": \\\"B24\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/B978-0-12-170150-5.50014-7\\\"}, {\\\"key\\\": \\\"B25\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"DOI\\\": \\\"10.7551/mitpress/2376.001.0001\\\", \\\"volume-title\\\": \\\"Designing Sociable Robots\\\", \\\"author\\\": \\\"Breazeal C\\\", \\\"year\\\": \\\"2002\\\"}, {\\\"key\\\": \\\"B26\\\", \\\"author\\\": \\\"Bub DN\\\", \\\"year\\\": \\\"2007\\\", \\\"journal-title\\\": \\\"Cognition\\\"}, {\\\"key\\\": \\\"B27\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.cogbrainres.2005.02.020\\\"}, {\\\"key\\\": \\\"B28\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/35090048\\\"}, {\\\"key\\\": \\\"B29\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037//0022-3514.65.1.5\\\"}, {\\\"key\\\": \\\"B30\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1093/cercor/bhi007\\\"}, {\\\"key\\\": \\\"B31\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1080/09540090050129763\\\"}, {\\\"key\\\": \\\"B32\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1207/s15516709cog0000_72\\\"}, {\\\"key\\\": \\\"B33\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1162/089892998563752\\\"}, {\\\"key\\\": \\\"B34\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1006/nimg.2000.0635\\\"}, {\\\"key\\\": \\\"B35\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/0010-0285(85)90014-3\\\"}, {\\\"key\\\": \\\"B36\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1515/9783112316009\\\"}, {\\\"key\\\": \\\"B37\\\", \\\"volume-title\\\": \\\"Being There: Putting Brain, Body, and World Together Again\\\", \\\"author\\\": \\\"Clark A\\\", \\\"year\\\": \\\"1997\\\"}, {\\\"key\\\": \\\"B38\\\", \\\"volume-title\\\": \\\"Autobiographical Memory: An Introduction\\\", \\\"author\\\": \\\"Conway MA\\\", \\\"year\\\": \\\"1990\\\"}, {\\\"key\\\": \\\"B39\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1093/acprof:oso/9780198508809.003.0004\\\"}, {\\\"key\\\": \\\"B40\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1017/CBO9780511551352\\\"}, {\\\"key\\\": \\\"B41\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/0096-3445.132.2.163\\\"}, {\\\"key\\\": \\\"B42\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/0010-0277(89)90005-X\\\"}, {\\\"key\\\": \\\"B43\\\", \\\"first-page\\\": \\\"61\\\", \\\"volume-title\\\": \\\"Large-Scale Neuronal Theories of the Brain\\\", \\\"author\\\": \\\"Damasio AR\\\", \\\"year\\\": \\\"1994\\\"}, {\\\"key\\\": \\\"B44\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.brainres.2005.12.115\\\"}, {\\\"key\\\": \\\"B45\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0065-2601(01)80003-4\\\"}, {\\\"key\\\": \\\"B46\\\", \\\"first-page\\\": \\\"72\\\", \\\"volume-title\\\": \\\"The Hellenistic Philosophers, Vol. 1\\\", \\\"author\\\": \\\"Epicurus (341–270 B.C.E.)\\\", \\\"year\\\": \\\"1987\\\"}, {\\\"key\\\": \\\"B47\\\", \\\"volume-title\\\": \\\"Mental Spaces\\\", \\\"author\\\": \\\"Fauconnier G\\\", \\\"year\\\": \\\"1985\\\"}, {\\\"key\\\": \\\"B48\\\", \\\"first-page\\\": \\\"222\\\", \\\"volume\\\": \\\"6\\\", \\\"author\\\": \\\"Fillmore CJ\\\", \\\"year\\\": \\\"1985\\\", \\\"journal-title\\\": \\\"Quad. di Semantica\\\"}, {\\\"key\\\": \\\"B49\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.3758/BF03194928\\\"}, {\\\"key\\\": \\\"B50\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1207/s15326950dp3703_2\\\"}, {\\\"key\\\": \\\"B51\\\", \\\"volume-title\\\": \\\"Principles of Mental Imagery\\\", \\\"author\\\": \\\"Finke RA\\\", \\\"year\\\": \\\"1989\\\"}, {\\\"key\\\": \\\"B52\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/0010-0277(88)90031-5\\\"}, {\\\"key\\\": \\\"B53\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/0096-3445.119.1.63\\\"}, {\\\"key\\\": \\\"B54\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/0033-295X.94.4.427\\\"}, {\\\"key\\\": \\\"B55\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.neubiorev.2005.11.001\\\"}, {\\\"key\\\": \\\"B56\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1080/09658219508253153\\\"}, {\\\"key\\\": \\\"B57\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1159/000072786\\\"}, {\\\"key\\\": \\\"B58\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.tics.2004.07.002\\\"}, {\\\"key\\\": \\\"B59\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.neucom.2006.10.076\\\"}, {\\\"key\\\": \\\"B60\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.neuropsychologia.2004.09.014\\\"}, {\\\"key\\\": \\\"B61\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/0278-7393.16.3.430\\\"}, {\\\"key\\\": \\\"B62\\\", \\\"volume-title\\\": \\\"The Poetics of Mind: Figurative Thought, Language, and Understanding\\\", \\\"author\\\": \\\"Gibbs RW Jr.\\\", \\\"year\\\": \\\"1994\\\"}, {\\\"key\\\": \\\"B63\\\", \\\"volume-title\\\": \\\"Embodiment and Cognitive Science\\\", \\\"author\\\": \\\"Gibbs RW Jr.\\\", \\\"year\\\": \\\"2006\\\"}, {\\\"key\\\": \\\"B64\\\", \\\"volume-title\\\": \\\"The Ecological Approach to Visual Perception\\\", \\\"author\\\": \\\"Gibson JJ\\\", \\\"year\\\": \\\"1979\\\"}, {\\\"key\\\": \\\"B65\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/0010-0277(92)90040-O\\\"}, {\\\"key\\\": \\\"B66\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1017/S0140525X97000010\\\"}, {\\\"key\\\": \\\"B67\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0079-7421(03)01012-0\\\"}, {\\\"key\\\": \\\"B68\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/0749-596X(87)90063-5\\\"}, {\\\"key\\\": \\\"B69\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.3758/BF03211385\\\"}, {\\\"key\\\": \\\"B70\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/s00221-003-1659-2\\\"}, {\\\"key\\\": \\\"B71\\\", \\\"volume-title\\\": \\\"Constructions. A Construction Grammar Approach to Argument Structure\\\", \\\"author\\\": \\\"Goldberg A\\\", \\\"year\\\": \\\"1995\\\"}, {\\\"key\\\": \\\"B72\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1523/JNEUROSCI.5389-05.2006\\\"}, {\\\"key\\\": \\\"B73\\\", \\\"volume-title\\\": \\\"Hearing Gesture: How Our Hands Help Us Think\\\", \\\"author\\\": \\\"Goldin-Meadow S\\\", \\\"year\\\": \\\"2003\\\"}, {\\\"key\\\": \\\"B74\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1093/0195138929.001.0001\\\"}, {\\\"key\\\": \\\"B75\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1371/journal.pone.0000333\\\"}, {\\\"key\\\": \\\"B76\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1467-9280.1995.tb00514.x\\\"}, {\\\"key\\\": \\\"B77\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.neuroimage.2006.03.037\\\"}, {\\\"key\\\": \\\"B78\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/0278-7393.16.4.617\\\"}, {\\\"key\\\": \\\"B79\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1002/1097-0193(200101)12:1<1::AID-HBM10>3.0.CO;2-V\\\"}, {\\\"key\\\": \\\"B80\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1017/S0140525X04000093\\\"}, {\\\"key\\\": \\\"B81\\\", \\\"volume-title\\\": \\\"The Psychology of Invention in the Mathematical Field\\\", \\\"author\\\": \\\"Hadamard J\\\", \\\"year\\\": \\\"1949\\\"}, {\\\"key\\\": \\\"B82\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.neuropsychologia.2003.12.017\\\"}, {\\\"key\\\": \\\"B83\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/nn1794\\\"}, {\\\"key\\\": \\\"B84\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/0167-2789(90)90087-6\\\"}, {\\\"key\\\": \\\"B85\\\", \\\"first-page\\\": \\\"561\\\", \\\"volume\\\": \\\"24\\\", \\\"author\\\": \\\"Harris CL\\\", \\\"year\\\": \\\"2003\\\", \\\"journal-title\\\": \\\"Appl. Linguistics\\\"}, {\\\"key\\\": \\\"B86\\\", \\\"first-page\\\": \\\"61\\\", \\\"volume-title\\\": \\\"Philosophy and Connectionist Theory\\\", \\\"author\\\"\", \"excerpt_truncated\": true, \"source_sha256\": \"8b786e44cc1dc25b846b60e4e459db1b0a1cc94aed41c533c43edc9f5ceeb278\", \"verification_required\": true, \"topic_domain\": \"religion\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1146/annurev.psych.59.103006.093639\", \"doi:10.1006/jmla.2000.2752\", \"doi:10.1017/s0140525x05000038\", \"doi:10.1207/s15327957pspr1001_2\", \"doi:10.1017/s0140525x99002149\", \"doi:10.1080/01690960344000026\", \"doi:10.1016/j.tics.2005.05.003\", \"doi:10.1163/1568537054068624\", \"doi:10.1007/s10339-007-0163-1\", \"doi:10.1016/s0079-7421(03)01011-9\", \"doi:10.1017/cbo9780511499968.007\", \"doi:10.1016/s0022-5371(79)90118-x\"]}",
+  "id": "source-2cd2684377c54051",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.1146%2Fannurev.psych.59.103006.093639",
+  "version": 121,
+  "time": "2026-09-26T02:06:55.582285+00:00"
+}
+```
+
+### `source-58a14a36b4604215`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":149388},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Philosophy\\\",\\\"pageid\\\":13692155,\\\"size\\\":202290,\\\"wordcount\\\":17543,\\\"snippet\\\":\\\"\\nPhilosophy\\n(from Ancient Greek philosoph\\\\u00eda, lit.\\\\u2009'love of wisdom') is a systematic study of general and fundamental questions concerning topics like existence\\\",\\\"timestamp\\\":\\\"2026-09-24T22:22:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Doctor of Philosophy\\\",\\\"pageid\\\":21031297,\\\"size\\\":152425,\\\"wordcount\\\":16312,\\\"snippet\\\":\\\"A Doctor of\\nPhilosophy\\n(PhD, DPhil; Latin: philosophiae doctor or doctor in philosophia) is a terminal degree that usually denotes the highest level of\\\",\\\"timestamp\\\":\\\"2026-09-22T15:35:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Desert (philosophy)\\\",\\\"pageid\\\":10791397,\\\"size\\\":23606,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Desert (/d\\\\u026a\\\\u02c8z\\\\u025c\\\\u02d0rt/) in\\nphilosophy\\nis the condition of being deserving of something, whether good or bad. One type of this is moral desert. It is a concept\\\",\\\"timestamp\\\":\\\"2026-01-20T20:30:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Epistemology is the branch of\\nphilosophy\\nthat examines the nature, origin, and limits of knowledge. Also called the theory of knowledge, it explores different\\\",\\\"timestamp\\\":\\\"2026-09-25T20:49:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fish! Philosophy\\\",\\\"pageid\\\":8770844,\\\"size\\\":8284,\\\"wordcount\\\":1071,\\\"snippet\\\":\\\"The Fish!\\nPhilosophy\\n(styled FISH!\\nPhilosophy\\n), modeled after the Pike Place Fish Market, is a business technique that is aimed at creating happy individuals\\\",\\\"timestamp\\\":\\\"2026-03-07T07:04:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cynicism (philosophy)\\\",\\\"pageid\\\":19187131,\\\"size\\\":40942,\\\"wordcount\\\":4715,\\\"snippet\\\":\\\"Cynicism (Ancient Greek: \\\\u03ba\\\\u03c5\\\\u03bd\\\\u03b9\\\\u03c3\\\\u03bc\\\\u03cc\\\\u03c2) is a school of thought in ancient Greek\\nphilosophy\\n, originating in the Classical period and extending into the Hellenistic\\\",\\\"timestamp\\\":\\\"2026-05-27T04:15:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"Aesthetics is the branch of\\nphilosophy\\nthat studies beauty, taste, and related phenomena. In a broad sense, it includes the\\nphilosophy\\nof art, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Political philosophy\\\",\\\"pageid\\\":23040,\\\"size\\\":129861,\\\"wordcount\\\":13401,\\\"snippet\\\":\\\"Political\\nphilosophy\\n, also called political theory, is the study of the theoretical and conceptual foundations of politics. It examines the nature, scope\\\",\\\"timestamp\\\":\\\"2026-09-23T10:21:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Identity (philosophy)\\\",\\\"pageid\\\":89532,\\\"size\\\":10355,\\\"wordcount\\\":1171,\\\"snippet\\\":\\\"true of x is true of y as well. Leibniz's ideas have taken root in the\\nphilosophy\\nof mathematics, where they have influenced the development of the predicate\\\",\\\"timestamp\\\":\\\"2026-06-23T16:17:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Western philosophy\\\",\\\"pageid\\\":13704154,\\\"size\\\":95945,\\\"wordcount\\\":11342,\\\"snippet\\\":\\\"Western\\nphilosophy\\nrefers to the philosophical thought, traditions, and works of the Western world. Historically, the term refers to the philosophical\\\",\\\"timestamp\\\":\\\"2026-09-25T09:29:16Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"ef09b4cd4064b138bbcd2b16a1569d67ee77a876eded5817d356c9d2628432d7\", \"verification_required\": true, \"topic_domain\": \"philosophy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-58a14a36b4604215",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json",
+  "version": 121,
+  "time": "2026-09-26T02:06:56.610809+00:00"
+}
+```
+
+### `source-25ca05f104e945fa`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=psychology&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74339},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology\\\",\\\"pageid\\\":22921,\\\"size\\\":247095,\\\"wordcount\\\":26594,\\\"snippet\\\":\\\"\\nPsychology\\nis the scientific study of the mind and behavior. Its subject matter includes the behavior of humans and nonhumans, both conscious and unconscious\\\",\\\"timestamp\\\":\\\"2026-09-05T20:21:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social psychology\\\",\\\"pageid\\\":26990,\\\"size\\\":69606,\\\"wordcount\\\":7452,\\\"snippet\\\":\\\"Social\\npsychology\\nis the methodical study of how thoughts, feelings, and behaviors are influenced by the actual, imagined, or implied presence of others\\\",\\\"timestamp\\\":\\\"2026-09-10T09:14:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gestalt psychology\\\",\\\"pageid\\\":70402,\\\"size\\\":56035,\\\"wordcount\\\":6227,\\\"snippet\\\":\\\"Gestalt\\npsychology\\n, gestaltism, or configurationism is a school of\\npsychology\\n, and a theory of perception, that emphasizes psychologically processing\\\",\\\"timestamp\\\":\\\"2026-09-06T02:55:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Filipino psychology\\\",\\\"pageid\\\":1465014,\\\"size\\\":20921,\\\"wordcount\\\":2815,\\\"snippet\\\":\\\"Filipino\\npsychology\\n, or Sikolohiyang Pilipino, in Filipino, is defined as the psychological and philosophical school rooted on the experience, ideas, and\\\",\\\"timestamp\\\":\\\"2026-04-25T13:24:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Association (psychology)\\\",\\\"pageid\\\":62176483,\\\"size\\\":18373,\\\"wordcount\\\":2485,\\\"snippet\\\":\\\"Association in\\npsychology\\nrefers to a mental connection between concepts, events, or mental states that usually stems from specific experiences. Associations\\\",\\\"timestamp\\\":\\\"2026-06-14T14:11:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cognitive psychology\\\",\\\"pageid\\\":5961,\\\"size\\\":53010,\\\"wordcount\\\":6002,\\\"snippet\\\":\\\"Cognitive\\npsychology\\nis the scientific study of human mental processes such as attention, language use, memory, perception, problem solving, creativity\\\",\\\"timestamp\\\":\\\"2026-09-16T15:47:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Individual psychology\\\",\\\"pageid\\\":3959877,\\\"size\\\":15651,\\\"wordcount\\\":1631,\\\"snippet\\\":\\\"Individual\\npsychology\\n(German: Individualpsychologie) is a psychological method and school of thought founded by the Austrian psychiatrist Alfred Adler\\\",\\\"timestamp\\\":\\\"2026-05-04T05:18:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Analytical psychology\\\",\\\"pageid\\\":448370,\\\"size\\\":106475,\\\"wordcount\\\":12874,\\\"snippet\\\":\\\"Analytical\\npsychology\\n(German: analytische Psychologie, sometimes translated as analytic\\npsychology\\n; also Jungian analysis) is a term referring to the\\\",\\\"timestamp\\\":\\\"2026-08-02T12:08:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Clinical psychology\\\",\\\"pageid\\\":492271,\\\"size\\\":86163,\\\"wordcount\\\":9645,\\\"snippet\\\":\\\"Clinical\\npsychology\\nis an integration of human science, behavioral science, theory, and clinical knowledge aimed at understanding, preventing, and relieving\\\",\\\"timestamp\\\":\\\"2026-08-30T16:15:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary psychology\\\",\\\"pageid\\\":9703,\\\"size\\\":177589,\\\"wordcount\\\":19341,\\\"snippet\\\":\\\"Evolutionary\\npsychology\\nis a theoretical approach in\\npsychology\\nthat examines cognition and behavior from a modern evolutionary perspective. It seeks to\\\",\\\"timestamp\\\":\\\"2026-09-14T00:20:33Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"854e28b2d0be50147d738eef29d2a2b266f037515fd56b3a091a147a649804b8\", \"verification_required\": true, \"topic_domain\": \"psychology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-25ca05f104e945fa",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=psychology&format=json",
+  "version": 121,
+  "time": "2026-09-26T02:06:57.187341+00:00"
+}
+```
+
+### `source-a62984e8503d4648`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2201},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy in thermodynamics and information theory\\\",\\\"pageid\\\":3325140,\\\"size\\\":32062,\\\"wordcount\\\":3968,\\\"snippet\\\":\\\"expressions for\\ninformation\\ntheory developed by Claude Shannon and Ralph Hartley in the 1940s are similar to the mathematics of statistical\\nthermodynamics\\nworked\\\",\\\"timestamp\\\":\\\"2026-09-24T10:29:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"classical\\nthermodynamics\\n(where it was first recognized), to the microscopic description of nature in statistical physics, and the principles of\\ninformation\\ntheory\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Laws of thermodynamics\\\",\\\"pageid\\\":778700,\\\"size\\\":20658,\\\"wordcount\\\":2896,\\\"snippet\\\":\\\"The laws of\\nthermodynamics\\nare a set of scientific laws which define a group of physical quantities, such as temperature, energy, and entropy, that characterize\\\",\\\"timestamp\\\":\\\"2026-07-20T00:17:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"The second law of\\nthermodynamics\\nis a physical law based on universal empirical observation concerning heat and energy interconversions. A simple statement\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of thermodynamics\\\",\\\"pageid\\\":2281782,\\\"size\\\":35022,\\\"wordcount\\\":3780,\\\"snippet\\\":\\\"The history of\\nthermodynamics\\nis a fundamental strand in the history of physics, the history of chemistry, and the history of science in general. Due to\\\",\\\"timestamp\\\":\\\"2026-08-29T23:05:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thermodynamics\\\",\\\"pageid\\\":29952,\\\"size\\\":49113,\\\"wordcount\\\":5808,\\\"snippet\\\":\\\"\\nThermodynamics\\nis a branch of physics that deals with heat, work, and temperature, and their relation to energy, entropy, and the physical properties of\\\",\\\"timestamp\\\":\\\"2026-09-01T03:12:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"noisy-channel coding theorem. Entropy in\\ninformation\\ntheory is directly analogous to the entropy in statistical\\nthermodynamics\\n. The analogy results when the values\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nicole Yunger Halpern\\\",\\\"pageid\\\":80018960,\\\"size\\\":8512,\\\"wordcount\\\":643,\\\"snippet\\\":\\\"quantum\\nthermodynamics\\n. She works at the National Institute of Standards and Technology, is a fellow of the Joint Center for Quantum\\nInformation\\nand Computer\\\",\\\"timestamp\\\":\\\"2026-08-31T12:40:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Maximum entropy thermodynamics\\\",\\\"pageid\\\":3015758,\\\"size\\\":28263,\\\"wordcount\\\":3649,\\\"snippet\\\":\\\"In physics, maximum entropy\\nthermodynamics\\n(colloquially, MaxEnt\\nthermodynamics\\n) views equilibrium\\nthermodynamics\\nand statistical mechanics as inference\\\",\\\"timestamp\\\":\\\"2026-07-17T03:36:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Zeroth law of thermodynamics\\\",\\\"pageid\\\":262861,\\\"size\\\":21045,\\\"wordcount\\\":2665,\\\"snippet\\\":\\\"The zeroth law of\\nthermodynamics\\nis one of the four principal laws of\\nthermodynamics\\n. It provides an independent definition of temperature without reference\\\",\\\"timestamp\\\":\\\"2025-12-17T14:08:55Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"e4bd934d13d5cf416454ac7397a08d1ef1357a4ceccbd0c52d3f984cf8531850\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-a62984e8503d4648",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json",
+  "version": 121,
+  "time": "2026-09-26T02:06:57.818186+00:00"
+}
+```
+
+### `source-d01f69fb5953448a`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2767},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Emergence\\\",\\\"pageid\\\":37436,\\\"size\\\":60324,\\\"wordcount\\\":6551,\\\"snippet\\\":\\\"In philosophy,\\nsystems\\ntheory, science, and art,\\nemergence\\noccurs when a\\ncomplex\\nentity has properties or behaviors that its components do not have on\\\",\\\"timestamp\\\":\\\"2026-09-07T03:04:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-organization\\\",\\\"pageid\\\":286947,\\\"size\\\":64814,\\\"wordcount\\\":6861,\\\"snippet\\\":\\\"justification for\\nself\\n-\\norganization\\nas a general principle of\\ncomplex\\nsystems\\n. In the field of multi-agent\\nsystems\\n, understanding how to engineer\\nsystems\\nthat are\\\",\\\"timestamp\\\":\\\"2026-08-20T00:23:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems theory\\\",\\\"pageid\\\":29238,\\\"size\\\":56628,\\\"wordcount\\\":6135,\\\"snippet\\\":\\\"how well the\\nsystem\\nis engaged with its environment and other contexts influencing its\\norganization\\n. Some\\nsystems\\nsupport other\\nsystems\\n, maintaining the\\\",\\\"timestamp\\\":\\\"2026-07-18T16:09:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex system\\\",\\\"pageid\\\":37438,\\\"size\\\":47317,\\\"wordcount\\\":4876,\\\"snippet\\\":\\\"\\nsystem\\nand its environment.\\nSystems\\nthat are \\\"\\ncomplex\\n\\\" have distinct properties that arise from these relationships, such as nonlinearity,\\nemergence\\n,\\\",\\\"timestamp\\\":\\\"2026-09-25T18:37:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex adaptive system\\\",\\\"pageid\\\":1428810,\\\"size\\\":35927,\\\"wordcount\\\":3790,\\\"snippet\\\":\\\"The\\nComplex\\nAdaptive\\nSystems\\napproach builds on replicator dynamics. The study of\\ncomplex\\nadaptive\\nsystems\\n, a subset of nonlinear dynamical\\nsystems\\n, is\\\",\\\"timestamp\\\":\\\"2026-04-06T14:02:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-assembly\\\",\\\"pageid\\\":351914,\\\"size\\\":40999,\\\"wordcount\\\":4440,\\\"snippet\\\":\\\"Although\\nself\\n-assembly typically occurs between weakly-interacting species, this\\norganization\\nmay be transferred into strongly-bound covalent\\nsystems\\n. An example\\\",\\\"timestamp\\\":\\\"2026-08-10T18:14:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-regulation\\\",\\\"pageid\\\":1738695,\\\"size\\\":834,\\\"wordcount\\\":132,\\\"snippet\\\":\\\"standards\\nSelf\\n-regulatory\\norganization\\n, in business and finance Homeostasis, a state of steady internal conditions maintained by living things\\nEmergence\\n, the\\\",\\\"timestamp\\\":\\\"2023-05-02T13:34:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems thinking\\\",\\\"pageid\\\":227985,\\\"size\\\":20916,\\\"wordcount\\\":2126,\\\"snippet\\\":\\\"action in\\ncomplex\\ncontexts, enabling\\nsystems\\nchange.\\nSystems\\nthinking draws on and contributes to conceptual\\nsystems\\n,\\nsystems\\ntheory, and the\\nsystem\\nsciences\\\",\\\"timestamp\\\":\\\"2026-09-25T10:53:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complexity theory and organizations\\\",\\\"pageid\\\":5938019,\\\"size\\\":24442,\\\"wordcount\\\":2009,\\\"snippet\\\":\\\"differentiate it from other\\nself\\n-organizing\\nsystems\\n.\\nOrganizational\\nenvironments can be viewed as\\ncomplex\\nadaptive\\nsystems\\nwhere coevolution generally\\\",\\\"timestamp\\\":\\\"2026-05-25T04:34:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The purpose of a system is what it does\\\",\\\"pageid\\\":17404830,\\\"size\\\":6777,\\\"wordcount\\\":754,\\\"snippet\\\":\\\"applying POSIWID shows that the\\norganization's\\npractices contradict those values. From a cybernetic perspective,\\ncomplex\\nsystems\\nare not controllable by simple\\\",\\\"timestamp\\\":\\\"2026-09-22T17:25:20Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"d1a39f76c15c166d2f718cd14df86a0c572cedebbdafa8ea06b13c64c02e0454\", \"verification_required\": true, \"topic_domain\": \"complex_systems\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-d01f69fb5953448a",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json",
+  "version": 121,
+  "time": "2026-09-26T02:06:58.475061+00:00"
+}
+```
+
+### `source-d9a6c40e882543b2`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":86,\\\"suggestion\\\":\\\"storytelling narrative coalition literature\\\",\\\"suggestionsnippet\\\":\\\"storytelling narrative\\ncoalition\\nliterature\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Fiction\\\",\\\"pageid\\\":18949461,\\\"size\\\":35712,\\\"wordcount\\\":3771,\\\"snippet\\\":\\\"non-fiction.\\nStorytelling\\nhas existed in all human cultures, and each culture incorporates different elements of truth and fiction into\\nstorytelling\\n. Early\\\",\\\"timestamp\\\":\\\"2026-09-07T19:11:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narrative identity\\\",\\\"pageid\\\":35716364,\\\"size\\\":60455,\\\"wordcount\\\":7308,\\\"snippet\\\":\\\"on the affective tone of life\\nnarrative\\nmemories: Early adolescence and older age are more negative\\\". Memory and\\nCognition\\n. 51 (6): 1265\\\\u20131286. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-16T15:09:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narratology\\\",\\\"pageid\\\":718763,\\\"size\\\":23172,\\\"wordcount\\\":2691,\\\"snippet\\\":\\\"Digital-media theorist and professor Janet Murray theorized a shift in\\nstorytelling\\nand\\nnarrative\\nstructure in the twentieth century as a result of scientific advancement\\\",\\\"timestamp\\\":\\\"2026-06-21T07:57:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ancient literature\\\",\\\"pageid\\\":3709305,\\\"size\\\":49644,\\\"wordcount\\\":4634,\\\"snippet\\\":\\\"Ancient\\nliterature\\ncomprises religious and scientific documents, tales, poetry and plays, royal edicts and declarations, and other forms of writing that\\\",\\\"timestamp\\\":\\\"2026-06-29T20:43:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Role-playing game\\\",\\\"pageid\\\":25475,\\\"size\\\":38009,\\\"wordcount\\\":4559,\\\"snippet\\\":\\\"form of interactive and collaborative\\nstorytelling\\n. Events, roles, and\\nnarrative\\nstructure give a sense of a\\nnarrative\\nexperience, and the game need not have\\\",\\\"timestamp\\\":\\\"2026-09-20T05:14:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Suspense\\\",\\\"pageid\\\":4450450,\\\"size\\\":10990,\\\"wordcount\\\":1207,\\\"snippet\\\":\\\"audience feels sympathy. However, suspense is not exclusive to\\nnarratives\\n. In\\nliterature\\n, films, television, and plays, suspense is a major device for\\\",\\\"timestamp\\\":\\\"2026-09-10T05:31:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Immersive learning\\\",\\\"pageid\\\":64345811,\\\"size\\\":22110,\\\"wordcount\\\":2264,\\\"snippet\\\":\\\"structured by the audience's own\\ncognition\\n. Also, within Ryan's book, the cognitive immersion created by\\nnarrative\\nis categorized into three kinds: spatial\\\",\\\"timestamp\\\":\\\"2025-11-26T22:52:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Children's literature\\\",\\\"pageid\\\":52847,\\\"size\\\":167603,\\\"wordcount\\\":18216,\\\"snippet\\\":\\\"Machine Children's\\nliterature\\nArchived 2016-06-17 at the Wayback Machine at the British Library Children's\\nLiterature\\n, Culture, and\\nCognition\\n(CLCC) Database\\\",\\\"timestamp\\\":\\\"2026-09-21T04:25:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Soma (video game)\\\",\\\"pageid\\\":5649586,\\\"size\\\":41063,\\\"wordcount\\\":3882,\\\"snippet\\\":\\\"Cody (22 June 2023). \\\"Games ad Critical\\nLiterature\\n: Playing with Transhumanism, Embodied\\nCognition\\n, and\\nNarrative\\nDifference in SOMA\\\". In Ghosal, Torsa\\\",\\\"timestamp\\\":\\\"2026-07-09T19:08:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Comics\\\",\\\"pageid\\\":145443,\\\"size\\\":84218,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"(2013). The Visual Language of Comics: Introduction to the Structure and\\nCognition\\nof Sequential Images. London: Bloomsbury. ISBN\\\\u00a0978-1-4411-8145-9. Collins\\\",\\\"timestamp\\\":\\\"2026-09-16T05:00:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"35255f9021cedcd7245f4147c09cb791a3964d93304117cd09220717030dba93\", \"verification_required\": true, \"topic_domain\": \"storytelling\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-d9a6c40e882543b2",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json",
+  "version": 121,
+  "time": "2026-09-26T02:06:59.184585+00:00"
+}
+```
+
+### `r-e1e6eb934df84836`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":121,\"inherited_commitments\":[],\"invocation\":\"w-e1e6eb934df84836\",\"previous_head\":\"516febabc87d112d62b5aaad06fc4a0b81a59cb5af0e9393c92350d22f7ecd69\",\"process_id\":2233,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-e1e6eb934df84836",
+  "source": "runtime:continuity",
+  "version": 121,
+  "time": "2026-09-26T02:07:01.690866+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -127615,6 +128221,17 @@ _None recorded._
   "invocation": "w-1c03df4bba58467f",
   "title": "Neurological metabolic pathways research",
   "summary": "Continuing the research project on neurological metabolic pathways. The current evidence associated with the project (metadata for unrelated topics) cannot address the research question, so I am initiating a search for relevant literature to establish a foundation."
+}
+```
+
+### 122 · Neurological Impact of Metabolic Dysregulation
+
+```json
+{
+  "cycle": 122,
+  "invocation": "w-e1e6eb934df84836",
+  "title": "Neurological Impact of Metabolic Dysregulation",
+  "summary": "This cycle advances research on the systemic neurological impacts of metabolic changes. I am synthesizing the available bibliographic metadata regarding metabolic pathways and neurological disease. The current evidence provides a foundation for exploring these linkages, but deeper access to the full content of these cited works is necessary to form robust, source-backed claims about causality and clinical relevance."
 }
 ```
 
