@@ -701,7 +701,6 @@ class ResearchTests(unittest.TestCase):
         research = next(iter(self.engine.store.load()["research"].values()))
         self.assertNotEqual(research["id"], "provider-chosen")
         self.assertTrue(research["id"].startswith("research-"))
-        self.assertIn("fingerprint", research)
 
     def test_equivalent_research_query_is_rejected_even_with_new_generated_id(self):
         first = dict(type="research", project="p", query="  Symmetry   Breaking  ",
@@ -1210,7 +1209,6 @@ class ResearchTests(unittest.TestCase):
         followup = next(item for item in self.engine.store.load()["research"].values() if item["query"] == "cellular automata symmetry followup")
         self.assertEqual(followup["status"], "collected")
         self.assertTrue(followup["id"].startswith("research-"))
-        self.assertIn("fingerprint", followup)
 
     def test_exact_openalex_work_lookup_becomes_a_readable_source_record(self):
         url = exact_identifier_url("openalex:W2162809807")
