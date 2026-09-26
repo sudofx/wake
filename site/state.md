@@ -5,7 +5,7 @@
 **Version:** 145  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `fa2e1c787aec3457727f2eaed6a096b38e849bbe0e4c8efabde7f0a22cb551df`
+**Verified head:** `ea062b5a0ad108624b4bdfe0891e7ce8f64a0eaced4cc6788889840b4a3c121e`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -1898,7 +1898,7 @@ _None recorded._
 {
   "project": "prime-dist-pnt-001",
   "domain": "prime_numbers",
-  "no_progress": 1,
+  "no_progress": 2,
   "routes": [
     "api.datacite.org:discovery",
     "api.crossref.org:discovery",
@@ -1908,7 +1908,6 @@ _None recorded._
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.2307/1971450",
     "doi:10.1098/rspa.1991.0138",
     "doi:10.1007/bf01403187",
     "doi:10.1007/bf02403921",
@@ -1919,19 +1918,17 @@ _None recorded._
     "doi:10.1090/mbk/154/34",
     "doi:10.2307/2371183",
     "doi:10.36227/techrxiv.171779152.25626266/v1",
-    "doi:10.2139/ssrn.4853751"
+    "doi:10.2139/ssrn.4853751",
+    "doi:10.5281/zenodo.18934501"
   ],
   "last_receipt": {
-    "evidence": "source-24606aed886846a0",
+    "evidence": "source-d2f328d47ec34492",
     "outcome": "no_progress",
     "persistent_identifiers": [
-      "doi:10.1090/mbk/154/34",
-      "doi:10.2307/2371183",
-      "doi:10.36227/techrxiv.171779152.25626266/v1",
-      "doi:10.2139/ssrn.4853751"
+      "doi:10.5281/zenodo.18934501"
     ],
-    "research_id": "res_pnt_limits_001",
-    "route": "api.crossref.org:discovery",
+    "research_id": "research-prime-pnt-intro",
+    "route": "api.datacite.org:discovery",
     "stage": "discovery"
   }
 }
@@ -1943,7 +1940,7 @@ _None recorded._
 {
   "project": "neuro-paradigm-comp-001",
   "domain": "neurodivergence",
-  "no_progress": 1,
+  "no_progress": 0,
   "routes": [
     "api.crossref.org:source",
     "api.datacite.org:discovery",
@@ -1953,7 +1950,6 @@ _None recorded._
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "openalex:W4400903319",
     "doi:10.1186/1471-244x-13-59",
     "doi:10.1176/appi.books.9780890425596",
     "doi:10.1001/journalofethics.2015.17.4.msoc1-1504",
@@ -1964,15 +1960,19 @@ _None recorded._
     "doi:10.1111/j.1744-6570.2009.01142.x",
     "doi:10.1089/aut.2020.0014",
     "doi:10.1108/mhsi-03-2014-0007",
-    "doi:10.1111/j.1754-9434.2010.01301.x"
+    "doi:10.1111/j.1754-9434.2010.01301.x",
+    "doi:10.1111/soc4.13249"
   ],
   "last_receipt": {
-    "evidence": "source-e7eae15b65a342ca",
-    "outcome": "route_failure",
-    "persistent_identifiers": [],
+    "evidence": "source-b58eab9fe45e4c0b",
+    "outcome": "progress",
+    "persistent_identifiers": [
+      "doi:10.1111/soc4.13249",
+      "openalex:W4400903319"
+    ],
     "research_id": "research-neurodiversity-models-001",
-    "route": "api.semanticscholar.org:discovery",
-    "stage": "discovery"
+    "route": "api.openalex.org:source",
+    "stage": "substantive_source"
   }
 }
 ```
@@ -1995,7 +1995,7 @@ _None recorded._
   "evolutionary_biology": 5,
   "information_thermodynamics": 0,
   "music": 3,
-  "neurodivergence": 0,
+  "neurodivergence": 1,
   "neurology": 0,
   "prime_numbers": 8,
   "quantum_mechanics": 5,
@@ -2016,12 +2016,12 @@ _None recorded._
 {
   "attention_saturation_triggered": false,
   "attention_topic": "neurodivergence",
-  "durable_progress": true,
-  "hard_rejection": false,
-  "invocation": "w-627469e8923341bc",
+  "durable_progress": false,
+  "hard_rejection": true,
+  "invocation": "w-98feca72075647e3",
   "restored_topics": [],
   "selected_topic": "neurodivergence",
-  "terminal": "accepted",
+  "terminal": "rejected",
   "triggered_topics": []
 }
 ```
@@ -120706,6 +120706,513 @@ _None recorded._
 }
 ```
 
+### `w-98feca72075647e3`
+
+```json
+{
+  "base_version": 145,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 12887,
+    "delivered_request_chars": 41052,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set",
+      "verbose recovery frames",
+      "extended bounded reflection history",
+      "redundant evidence payload text",
+      "low-priority bounded prose"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "request_compression_ratio": 0.3406,
+    "retrieval_rehydrated_evidence_count": 2,
+    "rich_context_chars": 120520,
+    "working_set_chars": 4089
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-98feca72075647e3",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 145,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "endo-neuro-interaction-001",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Hormonal Regulation of Nervous System Function"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "neuro-paradigm-comp-001",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Neurodiversity Paradigm vs. Clinical Pathology"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "prime-dist-pnt-001",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 5,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Prime Number Theorem and Distribution"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2292,
+  "provider": "gemini",
+  "quota_day": "2026-09-26",
+  "request_hash": "d3b726f54cd7e2ed5e9135524201194e6deddd4e7262579248f3e088ecb220fa",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neurodiversity-foundations-01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-dance-rhythm-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-visual-art-composition-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-891da548184a404e",
+          "source-8f485f755e8b4f3a"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-endo-neuro-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-72e7307bd1d247d7",
+          "source-3896d2f336484666"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neuro-paradigm-comp-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-14670c13f2b74102"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-14670c13f2b74102",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ebc2996fc6fc4c8c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ebc2996fc6fc4c8c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-9ebfbecec8084e7a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-9ebfbecec8084e7a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-c6fba17e9e2249bc"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-c6fba17e9e2249bc",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-d8e0116f2d8946dd"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d8e0116f2d8946dd",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-b58eab9fe45e4c0b"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-b58eab9fe45e4c0b",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0a7b2a5c06d44417",
+      "source-930f33f0d42a4658",
+      "source-f535f6171025430e",
+      "source-b4a60e211150449b",
+      "source-41fac1eecb0246dd",
+      "source-51a9b989df3144af",
+      "source-891da548184a404e",
+      "source-8f485f755e8b4f3a",
+      "source-72e7307bd1d247d7",
+      "source-3896d2f336484666",
+      "source-14670c13f2b74102",
+      "source-ebc2996fc6fc4c8c",
+      "source-9ebfbecec8084e7a",
+      "source-c6fba17e9e2249bc",
+      "source-d8e0116f2d8946dd",
+      "source-b58eab9fe45e4c0b"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 11,
+      "evidence_count": 16,
+      "trigger_counts": {
+        "notebook_revised": 5,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "runtime_performance": {
+    "compaction_ms": 6.419,
+    "context_build_ms": 106.55,
+    "load_ms": 1015.261,
+    "receipt_ms": 565.297,
+    "start_total_before_record_ms": 3128.263,
+    "store": {
+      "append_cache_hits": 11,
+      "append_cache_misses": 0,
+      "cached_copy_ms": 1090.52,
+      "cached_loads": 0,
+      "event_count": 4085,
+      "full_replays": 11,
+      "replay_ms": 7432.305,
+      "trusted_projection_active": true
+    },
+    "temporal_ms": 1433.741
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 1,
+      "topic": "neurodivergence"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [],
+    "enforce_selected_topic": false,
+    "hard_rejection_threshold": 5,
+    "parked": {},
+    "reason": "current durable project topic remains eligible",
+    "rotation_required": false,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "neurodivergence",
+    "temporal": {
+      "anchor_seq": 4084,
+      "anchor_time": "2026-09-26T10:48:58.213708+00:00",
+      "anchor_version": 145,
+      "effective_seconds": 126095.73877
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": null,
+    "topic_selection_candidates": [],
+    "topic_selection_method": "active_topic"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 565.843837,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 126095.73877,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 1,
+      "squirrel_assessed": 1,
+      "total": 19
+    },
+    "observed_at": "2026-09-26T10:48:58.213708+00:00",
+    "previous_anchor_time": "2026-09-26T10:39:32.369871+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 565.843837
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 12887,
+    "inquiry_drive_project_count": 3,
+    "mode": "bounded",
+    "retrieval_candidate_count": 11,
+    "retrieval_evidence_count": 16,
+    "retrieval_rehydrated_evidence_count": 2,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 5,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 4089,
+    "working_to_delivered_ratio": 0.3173
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "endo-neuro-interaction-001",
+        "next_step": "Search for integrative reviews or medical literature summarizing the neurological sequelae of common endocrine disorders.",
+        "question": "How do specific endocrine dysfunctions, such as thyroid or adrenal imbalances, manifest as neurological symptoms, and what are the primary biological pathways connecting these systems?",
+        "title": "Hormonal Regulation of Nervous System Function"
+      },
+      {
+        "id": "prime-dist-pnt-001",
+        "next_step": "Search for introductory mathematical literature or reliable online repositories detailing the PNT and its limitations.",
+        "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?",
+        "title": "Prime Number Theorem and Distribution"
+      },
+      {
+        "id": "neuro-paradigm-comp-001",
+        "next_step": "Search for comparative literature discussing the neurodiversity social model and the medical model of pathology.",
+        "question": "How do the neurodiversity paradigm and the clinical pathology model conceptualize neurodivergent traits, and where do they differ in their practical applications for support and diagnosis?",
+        "title": "Neurodiversity Paradigm vs. Clinical Pathology"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-religion-002",
+        "project": "religion-cross-cultural-practices",
+        "provenance": [
+          "source-7bd43608b269427f",
+          "source-d56377b15875422a"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes available bibliographic metadata concerning cognitive and evolutionary approaches to religion, noting that while the sources provide a venue for such research, full content access is currently absent.",
+        "title": "Provisional Synthesis: Cross-Cultural Religious Practices"
+      },
+      {
+        "id": "nb-religion-ritual-psych-001",
+        "project": "religion-cross-cultural-practices",
+        "provenance": [
+          "source-0e0aa6aa238246cb"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes the 'process-based framework' from a 2017 integrative review of ritual psychology, noting the distinction between the ritual form and its psychological function.",
+        "title": "Synthesis: The Psychology of Rituals"
+      },
+      {
+        "id": "nb-neuro-metabolic-001",
+        "project": "neurology-metabolic-pathways",
+        "provenance": [
+          "source-8fb4038a7344498e",
+          "source-e41f8efd700544cf"
+        ],
+        "revision": 1,
+        "summary": "An initial assessment of the intersection between metabolic pathways and neurological health, based on bibliographic metadata.",
+        "title": "Provisional Synthesis: Metabolic Drivers in Neurological Function"
+      },
+      {
+        "id": "nb-evo-foundations-001",
+        "project": "evolutionary-biology-foundations",
+        "provenance": [
+          "source-2cd2684377c54051",
+          "source-e2e41e9bcb594def"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes available bibliographic metadata to frame future inquiry into how evolutionary biology distinguishes mechanisms such as adaptation, byproduct, drift, and constraint.",
+        "title": "Provisional Synthesis: Evolutionary Mechanisms"
+      },
+      {
+        "id": "nb-endo-neuro-001",
+        "project": "endo-neuro-interaction-001",
+        "provenance": [
+          "source-891da548184a404e",
+          "source-8f485f755e8b4f3a"
+        ],
+        "revision": 2,
+        "summary": "This provisional synthesis integrates newly indexed literature on congenital adrenal hyperplasia and systemic signal pathways to explore the endocrinology-neurology interface.",
+        "title": "Provisional Synthesis: Endocrine Influence on Neurological Function"
+      },
+      {
+        "id": "nb-neuro-paradigm-comp-001",
+        "project": "neuro-paradigm-comp-001",
+        "provenance": [
+          "source-72e7307bd1d247d7",
+          "source-3896d2f336484666"
+        ],
+        "revision": 2,
+        "summary": "Initial synthesis examining the neurodiversity movement's critique of clinical models, identifying 'neurodiversity' as an emerging research area in need of rigorous synthesis.",
+        "title": "Conceptual Divergence: Neurodiversity Paradigm vs. Clinical Pathology"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "rejected",
+  "time": "2026-09-26T10:49:00.426717+00:00",
+  "provider_attempts": [
+    {
+      "elapsed_ms": 3208,
+      "http_status": 200,
+      "model": "gemini-3.8-flash",
+      "request_payload_bytes": 44508,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 1,
+  "successful_model": "gemini-3.8-flash",
+  "finished": "2026-09-26T10:49:28.126157+00:00",
+  "reason": "A revision needs changed findings and newly retrieved evidence"
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -147674,6 +148181,103 @@ _None recorded._
 }
 ```
 
+### `source-b58eab9fe45e4c0b`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.openalex.org/works/W4400903319\", \"scope\": \"OpenAlex scholarly metadata and reconstructed abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"https://openalex.org/W4400903319\\\", \\\"doi\\\": \\\"https://doi.org/10.1111/soc4.13249\\\", \\\"title\\\": \\\"Sociocultural perspectives on neurodiversity—An analysis, interpretation and synthesis of the basic terms, discourses and theoretical positions\\\", \\\"publication_year\\\": 2024, \\\"type\\\": \\\"article\\\", \\\"cited_by_count\\\": 17, \\\"open_access\\\": {\\\"is_oa\\\": true, \\\"oa_status\\\": \\\"hybrid\\\", \\\"oa_url\\\": \\\"https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/soc4.13249\\\", \\\"any_repository_has_fulltext\\\": false}, \\\"primary_location\\\": {\\\"id\\\": \\\"doi:10.1111/soc4.13249\\\", \\\"is_oa\\\": true, \\\"landing_page_url\\\": \\\"https://doi.org/10.1111/soc4.13249\\\", \\\"pdf_url\\\": \\\"https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/soc4.13249\\\", \\\"source\\\": {\\\"id\\\": \\\"https://openalex.org/S100176667\\\", \\\"display_name\\\": \\\"Sociology Compass\\\", \\\"issn_l\\\": \\\"1751-9020\\\", \\\"issn\\\": [\\\"1751-9020\\\"], \\\"is_oa\\\": false, \\\"is_in_doaj\\\": false, \\\"is_core\\\": true, \\\"host_organization\\\": \\\"https://openalex.org/P4310320595\\\", \\\"host_organization_name\\\": \\\"Wiley\\\", \\\"host_organization_lineage\\\": [\\\"https://openalex.org/P4310320595\\\"], \\\"host_organization_lineage_names\\\": [\\\"Wiley\\\"], \\\"type\\\": \\\"journal\\\"}, \\\"license\\\": \\\"cc-by-nc-nd\\\", \\\"license_id\\\": \\\"https://openalex.org/licenses/cc-by-nc-nd\\\", \\\"version\\\": \\\"publishedVersion\\\", \\\"is_accepted\\\": true, \\\"is_published\\\": true, \\\"raw_source_name\\\": \\\"Sociology Compass\\\", \\\"raw_type\\\": \\\"journal-article\\\"}, \\\"abstract\\\": \\\"Abstract The neurodiversity concept can now be found in many places. However, it is often misunderstood and many people are not aware of its complexity. The aim of this paper is to highlight the different facets of the term neurodiversity as well as the discourses around the neurodiversity movement in order to bring together the interconnections around identity politics, diversity and social disadvantage. This article is intended as a contribution to the advancement of neurodiversity studies, which could be understood as a branch of disability studies. Finally, it will be argued that neurodiversity can be understood (1) as a natural and equal diversity of neuronal structures, (2) as a concept of identity politics, (3) as social critique of hegemonic structures and practices, and (4) as a subject that can be examined systematically on the basis of a praxeological research methodology that integrates neurodiversity in the concept of performativity of embodied thought and action.\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"5dfecb2939b32644db79fa7256ae2c7b2c9d589c50d75c92dc89006e82fdd7da\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1111/soc4.13249\", \"openalex:W4400903319\"]}",
+  "id": "source-b58eab9fe45e4c0b",
+  "scope": "collected",
+  "source": "https://api.openalex.org/works/W4400903319",
+  "version": 145,
+  "time": "2026-09-26T10:48:49.831844+00:00"
+}
+```
+
+### `source-d2f328d47ec34492`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.datacite.org/dois?query=prime+number+theorem+distribution+error+terms+limit+Riemann+hypothesis+introduction&page%5Bsize%5D=4\", \"scope\": \"DataCite DOI metadata and descriptions where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"10.5281/zenodo.18934501\\\", \\\"doi\\\": \\\"10.5281/zenodo.18934501\\\", \\\"titles\\\": [{\\\"title\\\": \\\"Basis-Free Pattern Architecture: Public Papers, Formal Converters, and Computational Appendices\\\"}, {\\\"titleType\\\": \\\"Subtitle\\\", \\\"title\\\": \\\"After The Artificial Hypothesis (AH) Subsumes the Riemann Hypothesis (RH): A Grand Closure via Emergent Brane Dynamics and Phase Stagnation Signatures\\\"}], \\\"publisher\\\": \\\"Zenodo\\\", \\\"publicationYear\\\": 2026, \\\"types\\\": {\\\"schemaOrg\\\": \\\"CreativeWork\\\", \\\"resourceTypeGeneral\\\": \\\"Preprint\\\", \\\"citeproc\\\": \\\"article\\\", \\\"bibtex\\\": \\\"misc\\\", \\\"ris\\\": \\\"GEN\\\", \\\"resourceType\\\": \\\"\\\"}, \\\"subjects\\\": [{\\\"subject\\\": \\\"transformer interpretability\\\"}, {\\\"subject\\\": \\\"representation geometry\\\"}, {\\\"subject\\\": \\\"intrinsic dimensionality\\\"}, {\\\"subject\\\": \\\"phase stagnation\\\"}, {\\\"subject\\\": \\\"large language models\\\"}, {\\\"subject\\\": \\\"Artificial intelligence\\\", \\\"subjectScheme\\\": \\\"EuroSciVoc\\\"}, {\\\"subject\\\": \\\"Artificial Intelligence/classification\\\", \\\"subjectScheme\\\": \\\"MeSH\\\"}, {\\\"subject\\\": \\\"intrinsic-dimension\\\"}, {\\\"subject\\\": \\\"IRS-DCE\\\"}, {\\\"subject\\\": \\\"ai-cognitive-physics\\\"}, {\\\"subject\\\": \\\"ai-Boundary-Dissolution-Physics\\\"}, {\\\"subject\\\": \\\"resonance-resonance\\\"}, {\\\"subject\\\": \\\"Riemann Hypothesis\\\"}, {\\\"subject\\\": \\\"Artificial Cognitive Physics\\\"}, {\\\"subject\\\": \\\"Emergent Brane Dynamics\\\"}, {\\\"subject\\\": \\\"Topological Phase Transition\\\"}, {\\\"subject\\\": \\\"Large Language Models\\\"}, {\\\"subject\\\": \\\"Representation Geometry\\\"}, {\\\"subject\\\": \\\"Gauge-Gravity Duality\\\"}, {\\\"subject\\\": \\\"Topological Data Analysis\\\"}, {\\\"subject\\\": \\\"Intrinsic Dimension\\\"}, {\\\"subject\\\": \\\"Transformer Geometry\\\"}, {\\\"subject\\\": \\\"Topological Debt\\\"}], \\\"descriptions\\\": [{\\\"descriptionType\\\": \\\"Abstract\\\", \\\"description\\\": \\\" \\\\n\\\\nThe following are follow-up papers based on the formulas from [The Artificial Hypothesis (AH) Subsumes the Riemann Hypothesis (RH): A Grand Closure via Emergent Brane Dynamics and Phase Stagnation Signatures]\\\\n\\\\n \\\\n\\\\n**The progress of the related patent is as follows: [1-1-2026-0965311-18 2026.08.07 10-2026-0147234].**\\\\n\\\\nThis Zenodo record gathers public research papers and computational appendices developed around a basis-free pattern architecture.\\\\n\\\\nThe shared materials investigate how relational organization that is not initially available as a stable point, coordinate, or inherited basis may be described, bounded, and operationally utilized through declared anchors, projections, gauges, and converter contracts. The collection includes basis-free utilization work, phase-stagnation and irreducibility formulations, formal event-shape layers, converter-oriented measurement records, and executable computational consistency appendices.\\\\n\\\\nThe public materials distinguish between: (1) natural-philosophical and formal motivation, (2) declared mathematical or computational experiments, and (3) future physical-converter work. In particular, the exploratory (\\\\\\\\pi)-to-(c_{\\\\\\\\rm ref}) material is a computational consistency convention for examining closure, projection, and coordinate-response behavior. It is not a derivation of physical light speed, a measurement of superluminal propagation, or a demonstration of physical carrier, energy, signalling, or causal transport.\\\\n\\\\nThe conceptual and mathematical research directions originated from human-authored idea development. Automated assistants were used for quantitative organization, type and unit checking, numerical consistency review, and scope filtering. Several stronger physical interpretations were intentionally not adopted because they lacked a declared metric calibration path, an instrumented measurement bridge, or an adequate causal basis.\\\\n\\\\nPublic releases contain papers, formal definitions, selected aggregate records, synthetic examples, and standalone consistency scripts. Hidden-state acquisition paths, raw signatures, private selection filters, prompt variants, engine-transfer surfaces, and other implementation-sensitive materials remain excluded.\\\\n\\\\nThis record should be read as a public research and diagnostic layer for basis-free pattern utilization, not as a completed physical-device program(The reason is the absence of a direct objective, infrastructure, or resources required to conduct physical experiments.).\\\\n\\\\n \\\\n\\\\n[2026-09-25 Update]\\\\n\\\\nThe Geometry of IRS-DCE Boundary Dissolution v1.0 is now available in Korean and English.\\\\n\\\\nResolution-Dependent Component Decomposition and Dynamic Rearrangement\\\\n\\\\nThis release connects the existing IRS-DCE and BBRCM research to mathematical analysis and recorded geometric responses in Qwen and Gemma hidden states. The central question is how components are decomposed, reweighted and rearranged within a fixed representation space. The same ambient dimension, rank and norm can coexist with different alignments, component allocations, orthogonal residuals and downstream paths. IRS_DCE_Geometry_EN_v1_0\\\\n\\\\nThe study brings together 56 recorded forward passes: four fixed inputs and seven conditions for each model. The IRS-DCE candidate and noise controls start from the same artificially restricted rank-four baseline. The primary noise comparison matches both total Frobenius norm and realized perturbation magnitude. Mathematical identities, saved-tensor correspondence and subsequent model responses are reported as separate evidence layers. IRS_DCE_Geometry_EN_v1_0\\\\n\\\\nKey results\\\\n\\\\n\\\\n\\\\n\\\\n\\\\nRelational-subspace-preserving redistribution. The candidate’s exact-arithmetic operator preserves rank and the token-relation column space while changing component allocation. In stored outputs, centered squared norm increased by 4.94× in Qwen and 16.08× in Gemma, relative to the restricted baseline, while total norm remained nearly unchanged. Outside-subspace fractions were approximately 0.02961% and 0.001110%, compared with 51.97% and 78.32% for matched noise. These results identify where variation is activated, rather than treating rank growth as the objective. IRS_DCE_Geometry_EN_v1_0 IRS_DCE_Geometry_EN_v1_0\\\\n\\\\n\\\\n\\\\n\\\\nDifferent downstream geometric responses. In Qwen, the candidate retained higher original-relative relational similarity than matched noise across all four inputs. In Gemma, token directions were closer to the original while the centroid and principal subspace moved farther. Relational similarity and spatial displacement therefore appeared together, rather than forming a single better-or-worse ordering. IRS_DCE_BOUNDARY_GEOMETRY_REVIE…\\\\n\\\\n\\\\n\\\\n\\\\nDifferent residual allocations for the same output. Under two reference subspaces defined from pre-intervention inputs, the same IRS-DCE output had a residual fraction near zero under one reading and approximately 0.62–0.64 under the other. The reference spaces were not fitted to the intervention outputs. This makes the pattern/residual boundary explicit without equating a small observed residual with disappearance of the entire state. IRS_DCE_Geometry_EN_v1_0\\\\n\\\\n\\\\n\\\\nWhat the update clarifies\\\\n\\\\nResolution refinement, reference-frame changes and active intervention are distinct operations. Joint coordinate transport preserves the corresponding relationships; changing the reference subspace changes component allocation in the reading; active reweighting changes the tensor itself. The release also distinguishes near-preservation of normalized Gram shape from preservation of its absolute magnitude. IRS_DCE_BOUNDARY_GEOMETRY_REVIE… IRS_DCE_Geometry_EN_v1_0\\\\n\\\\nThis is a geometric-response study. Task accuracy, generation quality and speed remain a separate performance track, rather than prerequisites for the present mathematical and tensor-level results. IRS_DCE_Geometry_EN_v1_0\\\\n\\\\nRelease files\\\\n\\\\n\\\\n\\\\nIRS_DCE_Geometry_EN_v1_0.pdf\\\\n\\\\nIRS_DCE_Geometry_KO_v1_0.pdf\\\\n\\\\n\\\\nReading notice\\\\n\\\\nBBRCM-related materials must be brought together and read as a whole. Reading them in isolation rather than together can lead to entirely different interpretations, omissions, dilution, or reduction of the content. IRS_DCE_Geometry_EN_v1_0\\\\n\\\\n \\\\n\\\\n# [2026-09-22 Update]## MASK_BDP BBRCM: 조건부 운용의 통합 구조\\\\n\\\\n배경·경계·분기·관측·계량을 분해하고 다시 조립하면서, 무엇이 보존되고 어떤 조건에서 결과가 달라지는지 정리한 연구입니다. 상보성 쌍과 제타/RH 관련 변환뿐 아니라 BBRCM 자체에도 같은 변형·스트레스 테스트를 적용했습니다.\\\\n\\\\n주요 성과는 다음과 같습니다.\\\\n\\\\n- **R32:** 원래 함수공간과 정확한 직교사영 조건 아래에서 첫 셀의 잔차를 전체 극한 잔차와 연결했습니다. 임의의 대상을 한 좌표로 판정한다는 뜻은 아닙니다.- **변환과 실제 변화의 구분:** 공변 변환의 보존성, 분기 변경으로 만들어진 새 함수, 관측 채널에서 생기는 가짜 0을 구분했습니다.- **잔차의 분해와 제어:** 상보쌍·직교이탈·호지 분해를 연결하여 회수한 성분과 남은 성분을 함께 기록하고, 표시값 감소와 원래 오차 감소를 분리했습니다.- **조건부 극한 전이:** 선언된 누적 이득·오차·복귀 조건 아래에서 잔차 상계의 소멸을 증명했습니다. 원래 대상이 그 조건을 충족하는지는 별도로 남겼습니다.\\\\n\\\\n새로운 물리 장치의 실증을 보고하는 자료가 아닙니다. 성공·실패·정보 부족을 함께 남기면서, 주어진 조건에서 실제로 조작하고 활용할 수 있는 범위를 정리했습니다.\\\\n\\\\n이 자료는 **BDP_Conditional_Plasma_Computing_G5_G6_Public** 및 **Evidence-Gated Converter-First Framework for Heterogeneous Molecular Simulation Data** 관련 연구의 핵심 수식·컨버터·잔차 제어 도구를 대상으로 수행한 스트레스 테스트와 계산 실험 결과를 묶은 것입니다. 새로운 개념을 제안하는 데서 더 나아가, 프로젝트의 원천 수식과 변환 기술을 실행·검증·재사용 가능한 공학적 형태로 옮기는 작업에 가깝습니다.[MASK_BDP_BBRCM_Conditional_Operation_and_Residual_Control_Integrated_Public_v1_4_KO.pdf]\\\\n\\\\n \\\\n\\\\nResearch Update — September 21, 2026\\\\n\\\\nComplementary Pairs, Scale Retention, and Pointwise Departure\\\\n\\\\nFrom Aggregate Agreement to Preserved Information and Practical Use\\\\n\\\\nAn average can match exactly, a display can read 100.00%, and the fraction of exceptions can approach zero while individual departures remain.\\\\n\\\\nThis release goes beyond identifying that distinction. It shows what must be retained to preserve those departures and use them in actual decisions, connecting foundational identities, explicit counterexamples, finite computation, and previously reported implementation evidence.\\\\n\\\\nThe work does not replace or discard the earlier BDP foundation, IRS-DCE, or AH. It clarifies what their frames, averages, normalizations, and transformations preserve—and which distinctions become unavailable after information is reduced. In this way, it strengthens Grand Closure’s account of conditional engineering proof of utilization.\\\\n\\\\nThe three accompanying documents provide a detailed foundational treatment, a focused account of scale-retain\", \"excerpt_truncated\": true, \"source_sha256\": \"7743e7d81bf17a4fa2418c218478c1020d6284455b19ba389c58a2ea2b8c1b34\", \"verification_required\": true, \"topic_domain\": \"prime_numbers\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.5281/zenodo.18934501\"]}",
+  "id": "source-d2f328d47ec34492",
+  "scope": "collected",
+  "source": "https://api.datacite.org/dois?query=prime+number+theorem+distribution+error+terms+limit+Riemann+hypothesis+introduction&page%5Bsize%5D=4",
+  "version": 145,
+  "time": "2026-09-26T10:48:52.689825+00:00"
+}
+```
+
+### `source-a24718b496644113`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":40311},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness\\\",\\\"pageid\\\":5664,\\\"size\\\":187364,\\\"wordcount\\\":21233,\\\"snippet\\\":\\\"\\nConsciousness\\nis being aware of something internal to one's self, or of states or objects in one's external environment. It has been the topic of extensive\\\",\\\"timestamp\\\":\\\"2026-09-19T15:23:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Stream of consciousness\\\",\\\"pageid\\\":101483,\\\"size\\\":26790,\\\"wordcount\\\":3226,\\\"snippet\\\":\\\"In literary criticism, stream of\\nconsciousness\\nis a narrative mode or method that attempts \\\"to depict the multitudinous thoughts and feelings which pass\\\",\\\"timestamp\\\":\\\"2026-06-22T22:10:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hard problem of consciousness\\\",\\\"pageid\\\":634216,\\\"size\\\":115556,\\\"wordcount\\\":13247,\\\"snippet\\\":\\\"hard problem of\\nconsciousness\\n(or simply the hard problem) is to explain how and why organisms have qualia, phenomenal\\nconsciousness\\n, or subjective experience\\\",\\\"timestamp\\\":\\\"2026-08-27T00:59:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Artificial consciousness\\\",\\\"pageid\\\":195552,\\\"size\\\":66143,\\\"wordcount\\\":6941,\\\"snippet\\\":\\\"Artificial\\nconsciousness\\n, also known as machine\\nconsciousness\\n, synthetic\\nconsciousness\\n, or digital\\nconsciousness\\n, is\\nconsciousness\\nhypothesized to be\\\",\\\"timestamp\\\":\\\"2026-09-23T13:46:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness (disambiguation)\\\",\\\"pageid\\\":40457047,\\\"size\\\":695,\\\"wordcount\\\":97,\\\"snippet\\\":\\\"\\nconsciousness\\nin Wiktionary, the free dictionary.\\nConsciousness\\nis the state or quality of awareness.\\nConsciousness\\nmay also refer to:\\nConsciousness\\n(Hill\\\",\\\"timestamp\\\":\\\"2022-05-26T00:46:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Collective consciousness\\\",\\\"pageid\\\":1077491,\\\"size\\\":15253,\\\"wordcount\\\":1536,\\\"snippet\\\":\\\"Collective\\nconsciousness\\n, collective conscience, or collective conscious (French: conscience collective) is the set of shared beliefs, ideas, and moral\\\",\\\"timestamp\\\":\\\"2026-07-29T04:14:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Double consciousness\\\",\\\"pageid\\\":3057990,\\\"size\\\":20535,\\\"wordcount\\\":2622,\\\"snippet\\\":\\\"Double\\nconsciousness\\nis the dual self-perception experienced by subordinated or colonized groups in an oppressive society. The term and the idea were\\\",\\\"timestamp\\\":\\\"2026-09-12T04:18:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Clouding of consciousness\\\",\\\"pageid\\\":7554116,\\\"size\\\":78787,\\\"wordcount\\\":7669,\\\"snippet\\\":\\\"Clouding of\\nconsciousness\\n, also called brain fog or mental fog, occurs when a person is conscious but slightly less wakeful or aware than normal. The\\\",\\\"timestamp\\\":\\\"2026-09-12T16:42:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-consciousness\\\",\\\"pageid\\\":2772118,\\\"size\\\":5955,\\\"wordcount\\\":683,\\\"snippet\\\":\\\"Self-\\nconsciousness\\nis a heightened sense of awareness of oneself. Historically, \\\"self-\\nconsciousness\\n\\\" was synonymous with \\\"self-awareness\\\", referring to\\\",\\\"timestamp\\\":\\\"2026-07-23T22:59:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Higher consciousness\\\",\\\"pageid\\\":7582544,\\\"size\\\":20747,\\\"wordcount\\\":2329,\\\"snippet\\\":\\\"Higher\\nconsciousness\\n(also called expanded\\nconsciousness\\n) is a term that has been used in various ways to label particular states of\\nconsciousness\\nor personal\\\",\\\"timestamp\\\":\\\"2026-08-15T05:53:47Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"8bf8cb56e2bd02b1f75231a0611a2924908e41084c85d0eea7b4b7c9fe52aa91\", \"verification_required\": true, \"topic_domain\": \"consciousness\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-a24718b496644113",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json",
+  "version": 145,
+  "time": "2026-09-26T10:48:54.415126+00:00"
+}
+```
+
+### `source-af752b77817d4dc4`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2767},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Self-organization\\\",\\\"pageid\\\":286947,\\\"size\\\":64814,\\\"wordcount\\\":6861,\\\"snippet\\\":\\\"justification for\\nself\\n-\\norganization\\nas a general principle of\\ncomplex\\nsystems\\n. In the field of multi-agent\\nsystems\\n, understanding how to engineer\\nsystems\\nthat are\\\",\\\"timestamp\\\":\\\"2026-08-20T00:23:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Emergence\\\",\\\"pageid\\\":37436,\\\"size\\\":60324,\\\"wordcount\\\":6551,\\\"snippet\\\":\\\"In philosophy,\\nsystems\\ntheory, science, and art,\\nemergence\\noccurs when a\\ncomplex\\nentity has properties or behaviors that its components do not have on\\\",\\\"timestamp\\\":\\\"2026-09-07T03:04:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems theory\\\",\\\"pageid\\\":29238,\\\"size\\\":56628,\\\"wordcount\\\":6135,\\\"snippet\\\":\\\"how well the\\nsystem\\nis engaged with its environment and other contexts influencing its\\norganization\\n. Some\\nsystems\\nsupport other\\nsystems\\n, maintaining the\\\",\\\"timestamp\\\":\\\"2026-07-18T16:09:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex system\\\",\\\"pageid\\\":37438,\\\"size\\\":47317,\\\"wordcount\\\":4876,\\\"snippet\\\":\\\"\\nsystem\\nand its environment.\\nSystems\\nthat are \\\"\\ncomplex\\n\\\" have distinct properties that arise from these relationships, such as nonlinearity,\\nemergence\\n,\\\",\\\"timestamp\\\":\\\"2026-09-25T18:37:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex adaptive system\\\",\\\"pageid\\\":1428810,\\\"size\\\":35927,\\\"wordcount\\\":3790,\\\"snippet\\\":\\\"The\\nComplex\\nAdaptive\\nSystems\\napproach builds on replicator dynamics. The study of\\ncomplex\\nadaptive\\nsystems\\n, a subset of nonlinear dynamical\\nsystems\\n, is\\\",\\\"timestamp\\\":\\\"2026-04-06T14:02:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-regulation\\\",\\\"pageid\\\":1738695,\\\"size\\\":834,\\\"wordcount\\\":132,\\\"snippet\\\":\\\"standards\\nSelf\\n-regulatory\\norganization\\n, in business and finance Homeostasis, a state of steady internal conditions maintained by living things\\nEmergence\\n, the\\\",\\\"timestamp\\\":\\\"2023-05-02T13:34:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-assembly\\\",\\\"pageid\\\":351914,\\\"size\\\":40999,\\\"wordcount\\\":4440,\\\"snippet\\\":\\\"Although\\nself\\n-assembly typically occurs between weakly-interacting species, this\\norganization\\nmay be transferred into strongly-bound covalent\\nsystems\\n. An example\\\",\\\"timestamp\\\":\\\"2026-08-10T18:14:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complexity theory and organizations\\\",\\\"pageid\\\":5938019,\\\"size\\\":24442,\\\"wordcount\\\":2009,\\\"snippet\\\":\\\"differentiate it from other\\nself\\n-organizing\\nsystems\\n.\\nOrganizational\\nenvironments can be viewed as\\ncomplex\\nadaptive\\nsystems\\nwhere coevolution generally\\\",\\\"timestamp\\\":\\\"2026-05-25T04:34:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems thinking\\\",\\\"pageid\\\":227985,\\\"size\\\":20916,\\\"wordcount\\\":2126,\\\"snippet\\\":\\\"action in\\ncomplex\\ncontexts, enabling\\nsystems\\nchange.\\nSystems\\nthinking draws on and contributes to conceptual\\nsystems\\n,\\nsystems\\ntheory, and the\\nsystem\\nsciences\\\",\\\"timestamp\\\":\\\"2026-09-25T10:53:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The purpose of a system is what it does\\\",\\\"pageid\\\":17404830,\\\"size\\\":6777,\\\"wordcount\\\":754,\\\"snippet\\\":\\\"applying POSIWID shows that the\\norganization's\\npractices contradict those values. From a cybernetic perspective,\\ncomplex\\nsystems\\nare not controllable by simple\\\",\\\"timestamp\\\":\\\"2026-09-22T17:25:20Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"e3271cf78c3bab86f590faa09668b51d3d1365c746da91eafbd5fe4fb6c67ed6\", \"verification_required\": true, \"topic_domain\": \"complex_systems\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-af752b77817d4dc4",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json",
+  "version": 145,
+  "time": "2026-09-26T10:48:55.361893+00:00"
+}
+```
+
+### `source-e3e71b08cfe14bbf`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":149388,\\\"suggestion\\\":\\\"philosopher\\\",\\\"suggestionsnippet\\\":\\\"philosopher\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Philosophy\\\",\\\"pageid\\\":13692155,\\\"size\\\":202290,\\\"wordcount\\\":17543,\\\"snippet\\\":\\\"\\nPhilosophy\\n(from Ancient Greek philosoph\\\\u00eda, lit.\\\\u2009'love of wisdom') is a systematic study of general and fundamental questions concerning topics like existence\\\",\\\"timestamp\\\":\\\"2026-09-24T22:22:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Doctor of Philosophy\\\",\\\"pageid\\\":21031297,\\\"size\\\":152425,\\\"wordcount\\\":16312,\\\"snippet\\\":\\\"A Doctor of\\nPhilosophy\\n(PhD, DPhil; Latin: philosophiae doctor or doctor in philosophia) is a terminal degree that usually denotes the highest level of\\\",\\\"timestamp\\\":\\\"2026-09-22T15:35:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fish! Philosophy\\\",\\\"pageid\\\":8770844,\\\"size\\\":8284,\\\"wordcount\\\":1071,\\\"snippet\\\":\\\"The Fish!\\nPhilosophy\\n(styled FISH!\\nPhilosophy\\n), modeled after the Pike Place Fish Market, is a business technique that is aimed at creating happy individuals\\\",\\\"timestamp\\\":\\\"2026-03-07T07:04:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Epistemology is the branch of\\nphilosophy\\nthat examines the nature, origin, and limits of knowledge. Also called the theory of knowledge, it explores different\\\",\\\"timestamp\\\":\\\"2026-09-26T08:31:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Phenomenology (philosophy)\\\",\\\"pageid\\\":76939,\\\"size\\\":54614,\\\"wordcount\\\":6018,\\\"snippet\\\":\\\"appeared in direct connection to Husserl's\\nphilosophy\\nin a 1907 article in The Philosophical Review. In\\nphilosophy\\n, \\\"phenomenology\\\" refers to the tradition\\\",\\\"timestamp\\\":\\\"2026-09-22T15:46:18Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cynicism (philosophy)\\\",\\\"pageid\\\":19187131,\\\"size\\\":40942,\\\"wordcount\\\":4715,\\\"snippet\\\":\\\"Cynicism (Ancient Greek: \\\\u03ba\\\\u03c5\\\\u03bd\\\\u03b9\\\\u03c3\\\\u03bc\\\\u03cc\\\\u03c2) is a school of thought in ancient Greek\\nphilosophy\\n, originating in the Classical period and extending into the Hellenistic\\\",\\\"timestamp\\\":\\\"2026-05-27T04:15:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Political philosophy\\\",\\\"pageid\\\":23040,\\\"size\\\":129861,\\\"wordcount\\\":13401,\\\"snippet\\\":\\\"Political\\nphilosophy\\n, also called political theory, is the study of the theoretical and conceptual foundations of politics. It examines the nature, scope\\\",\\\"timestamp\\\":\\\"2026-09-23T10:21:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Desert (philosophy)\\\",\\\"pageid\\\":10791397,\\\"size\\\":23606,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Desert (/d\\\\u026a\\\\u02c8z\\\\u025c\\\\u02d0rt/) in\\nphilosophy\\nis the condition of being deserving of something, whether good or bad. One type of this is moral desert. It is a concept\\\",\\\"timestamp\\\":\\\"2026-01-20T20:30:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Western philosophy\\\",\\\"pageid\\\":13704154,\\\"size\\\":95945,\\\"wordcount\\\":11342,\\\"snippet\\\":\\\"Western\\nphilosophy\\nrefers to the philosophical thought, traditions, and works of the Western world. Historically, the term refers to the philosophical\\\",\\\"timestamp\\\":\\\"2026-09-25T09:29:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"Aesthetics is the branch of\\nphilosophy\\nthat studies beauty, taste, and related phenomena. In a broad sense, it includes the\\nphilosophy\\nof art, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"c24d78501518416ac8e46bb1fb27129ee54e3b4a368d515dc08f751ae620c90d\", \"verification_required\": true, \"topic_domain\": \"philosophy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-e3e71b08cfe14bbf",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json",
+  "version": 145,
+  "time": "2026-09-26T10:48:56.087929+00:00"
+}
+```
+
+### `source-2235ad85d3064de1`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":6108},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"\\nEntropy\\nis a thermodynamic state variable that quantifies the probabilistic distribution of accessible microstates in a system. The term and the concept\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"In information theory, the\\nentropy\\nof a random variable quantifies the average level of uncertainty or information associated with the variable's potential\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"appear below. The second law of thermodynamics establishes the concept of\\nentropy\\nas a physical property of a thermodynamic system. It predicts whether processes\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (disambiguation)\\\",\\\"pageid\\\":302133,\\\"size\\\":5540,\\\"wordcount\\\":726,\\\"snippet\\\":\\\"Look up\\nentropy\\nin Wiktionary, the free dictionary.\\nEntropy\\nis a fundamental scientific concept that quantifies the statistical probability of a system's\\\",\\\"timestamp\\\":\\\"2026-04-29T22:10:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cross-entropy\\\",\\\"pageid\\\":1735250,\\\"size\\\":19871,\\\"wordcount\\\":3496,\\\"snippet\\\":\\\"In information theory, the cross-\\nentropy\\nbetween two probability distributions p {\\\\\\\\displaystyle p} and q {\\\\\\\\displaystyle q} , over the same underlying\\\",\\\"timestamp\\\":\\\"2026-09-15T02:14:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"R\\\\u00e9nyi entropy\\\",\\\"pageid\\\":1731689,\\\"size\\\":27228,\\\"wordcount\\\":4205,\\\"snippet\\\":\\\"R\\\\u00e9nyi\\nentropy\\nis a quantity that generalizes various notions of\\nentropy\\n, including Hartley\\nentropy\\n, Shannon\\nentropy\\n, collision\\nentropy\\n, and min-\\nentropy\\n. The\\\",\\\"timestamp\\\":\\\"2026-08-13T19:55:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social entropy\\\",\\\"pageid\\\":12447991,\\\"size\\\":1975,\\\"wordcount\\\":200,\\\"snippet\\\":\\\"\\nentropy\\nis a sociological theory that evaluates social behaviours using a method based on the second law of thermodynamics. The equivalent of\\nentropy\\n\\\",\\\"timestamp\\\":\\\"2026-05-03T07:04:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Information theory\\\",\\\"pageid\\\":14773,\\\"size\\\":88580,\\\"wordcount\\\":10416,\\\"snippet\\\":\\\"theory is\\nentropy\\n. In Shannon's formulation,\\nentropy\\nis equal to the lack of information about an event. In the above coin flip example, the\\nentropy\\nin the\\\",\\\"timestamp\\\":\\\"2026-09-26T09:07:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy unit\\\",\\\"pageid\\\":1886799,\\\"size\\\":521,\\\"wordcount\\\":71,\\\"snippet\\\":\\\"The\\nentropy\\nunit is a non-S.I. unit of thermodynamic\\nentropy\\n, usually denoted by \\\"e.u.\\\" or \\\"eU\\\" and equal to one calorie per kelvin per mole, or 4.184\\\",\\\"timestamp\\\":\\\"2024-11-06T04:45:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Holographic principle\\\",\\\"pageid\\\":14286,\\\"size\\\":36292,\\\"wordcount\\\":4216,\\\"snippet\\\":\\\"bound of black hole thermodynamics, which conjectures that the maximum\\nentropy\\nin any region scales with the radius squared, rather than cubed as might\\\",\\\"timestamp\\\":\\\"2026-05-16T11:15:06Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"b292da7fd3ddecdb48f21255a19d26727a5e7dbc7c6049174579e480d082e917\", \"verification_required\": true, \"topic_domain\": \"entropy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-2235ad85d3064de1",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json",
+  "version": 145,
+  "time": "2026-09-26T10:48:56.832464+00:00"
+}
+```
+
+### `r-98feca72075647e3`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":145,\"inherited_commitments\":[],\"invocation\":\"w-98feca72075647e3\",\"previous_head\":\"ad3729d6179574cb859a4afe4937075b78939822eaf60af68b82ade2c9b0818b\",\"process_id\":2292,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-98feca72075647e3",
+  "source": "runtime:continuity",
+  "version": 145,
+  "time": "2026-09-26T10:48:59.861192+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -151075,8 +151679,9 @@ _None recorded._
   "query": "prime number theorem distribution error terms limit Riemann hypothesis introduction",
   "reason": "Collect foundational mathematical literature detailing the Prime Number Theorem and its exact boundary limitations.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-afeb216d22d04afe"
+  "status": "collected",
+  "created_by": "w-afeb216d22d04afe",
+  "evidence": "source-d2f328d47ec34492"
 }
 ```
 
