@@ -17842,6 +17842,68 @@
       "source": "runtime:continuity",
       "version": 148,
       "time": "2026-09-26T12:00:13.706012+00:00"
+    },
+    "source-354dd04e6ba04d25": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works/10.1177%2F002202217300400201\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 9, 25]], \\\"date-time\\\": \\\"2026-09-25T12:46:31Z\\\", \\\"timestamp\\\": 1790340391626, \\\"version\\\": \\\"4.1.0\\\"}, \\\"reference-count\\\": 90, \\\"publisher\\\": \\\"SAGE Publications\\\", \\\"issue\\\": \\\"2\\\", \\\"license\\\": [{\\\"start\\\": {\\\"date-parts\\\": [[1973, 6, 1]], \\\"date-time\\\": \\\"1973-06-01T00:00:00Z\\\", \\\"timestamp\\\": 107740800000}, \\\"content-version\\\": \\\"tdm\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://journals.sagepub.com/page/policies/text-and-data-mining-license\\\"}], \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"Journal of Cross-Cultural Psychology\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[1973, 6]]}, \\\"abstract\\\": \\\"<jats:p>Color data from the Osgood et al. 23-culture semantic differential study of affective meanings reveal cross-cultural similarities in feelings about colors. The concept RED is affectively quite salient. BLACK and GREY are bad, and WHITE, BLUE, and GREEN are good. YELLOW, WHITE, and GREY are weak; RED and BLACK are strong. BLACK and GREY are passive; RED is active. The color component Brightness, as determined by comparing data on WHITE, GREY, and BLACK, is strongly associated with positive Evaluation, but also with negative Potency. Eighty-nine previous studies of color and affect were analyzed. They generally support these findings, and, together with the fact that there are very few exceptions in our data or the literature, lead one to believe that there are strong universal trends in the attribution of affect in the color domain.</jats:p>\\\", \\\"DOI\\\": \\\"10.1177/002202217300400201\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2007, 3, 10]], \\\"date-time\\\": \\\"2007-03-10T23:29:47Z\\\", \\\"timestamp\\\": 1173569387000}, \\\"page\\\": \\\"135-156\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 445, \\\"title\\\": [\\\"A Cross-Cultural Study of the Affective Meanings of Color\\\"], \\\"prefix\\\": \\\"10.1177\\\", \\\"volume\\\": \\\"4\\\", \\\"author\\\": [{\\\"given\\\": \\\"Francis M.\\\", \\\"family\\\": \\\"Adams\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Charles E.\\\", \\\"family\\\": \\\"Osgood\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"University of Illinois\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"179\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[1973, 6, 1]]}, \\\"reference\\\": [{\\\"key\\\": \\\"atypb1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1080/00029157.1971.10402141\\\"}, {\\\"key\\\": \\\"atypb2\\\", \\\"first-page\\\": \\\"15\\\", \\\"volume\\\": \\\"2\\\", \\\"author\\\": \\\"AARONSON, B.\\\", \\\"year\\\": \\\"1970\\\", \\\"journal-title\\\": \\\"International J. of Symbology\\\"}, {\\\"key\\\": \\\"atypb3\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/1416516\\\"}, {\\\"key\\\": \\\"atypb4\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/427666\\\"}, {\\\"key\\\": \\\"atypb5\\\", \\\"volume-title\\\": \\\"Color Psychology and Color Therapy\\\", \\\"author\\\": \\\"BIRREN, F.\\\", \\\"year\\\": \\\"1950\\\"}, {\\\"key\\\": \\\"atypb6\\\", \\\"volume-title\\\": \\\"Light, Color and Environment: A Thorough Presentation of Facts on the Biological and Psychological Effects of Color\\\", \\\"author\\\": \\\"BIRREN, F.\\\", \\\"year\\\": \\\"1969\\\"}, {\\\"key\\\": \\\"atypb7\\\", \\\"volume-title\\\": \\\"Selling Color to People\\\", \\\"author\\\": \\\"BIRREN, F.\\\", \\\"year\\\": \\\"1956\\\"}, {\\\"key\\\": \\\"atypb8\\\", \\\"first-page\\\": \\\"111\\\", \\\"volume\\\": \\\"2\\\", \\\"author\\\": \\\"BULLOUGH, E.\\\", \\\"year\\\": \\\"1907\\\", \\\"journal-title\\\": \\\"British J. of Psych\\\"}, {\\\"key\\\": \\\"atypb9\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/h0048173\\\"}, {\\\"key\\\": \\\"atypb10\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/1127374\\\"}, {\\\"key\\\": \\\"atypb11\\\", \\\"first-page\\\": \\\"469\\\", \\\"volume\\\": \\\"4\\\", \\\"author\\\": \\\"CHILD, I. L.\\\", \\\"year\\\": \\\"1969\\\", \\\"journal-title\\\": \\\"Proceedings of the 77th Annual Convention of the American Psychological Association\\\"}, {\\\"key\\\": \\\"atypb12\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1080/00224545.1935.9919740\\\"}, {\\\"key\\\": \\\"atypb13\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2466/pms.1968.26.3c.1203\\\"}, {\\\"key\\\": \\\"atypb14\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1086/soutjanth.11.4.3628909\\\"}, {\\\"key\\\": \\\"atypb15\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/h0048791\\\"}, {\\\"key\\\": \\\"atypb16\\\", \\\"unstructured\\\": \\\"16. D'ANDRADE, R. and M. EGAN (1971) \\\\\\\"The color of emotion.\\\\\\\" (unpublished).\\\"}, {\\\"key\\\": \\\"atypb17\\\", \\\"unstructured\\\": \\\"17. DERIBERE, M. (1955) La Coulcur Dans les Activit6s Humaines. Paris:Dunod.\\\"}, {\\\"key\\\": \\\"atypb18\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1080/08856559.1926.10532367\\\"}, {\\\"key\\\": \\\"atypb19\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/1417683\\\"}, {\\\"key\\\": \\\"atypb20\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/1412862\\\"}, {\\\"key\\\": \\\"atypb21\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/h0071899\\\"}, {\\\"key\\\": \\\"atypb22\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1080/00224545.1931.9918981\\\"}, {\\\"key\\\": \\\"atypb23\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/1415704\\\"}, {\\\"key\\\": \\\"atypb24\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"297\\\", \\\"DOI\\\": \\\"10.1037/h0072520\\\", \\\"volume\\\": \\\"7\\\", \\\"author\\\": \\\"ASCHE, I.\\\", \\\"year\\\": \\\"1927\\\", \\\"journal-title\\\": \\\"J. of Comiparative Psych\\\"}, {\\\"key\\\": \\\"atypb25\\\", \\\"volume-title\\\": \\\"Goethe's Theory of Colours. (Charles Lock lastlake, trans.)\\\", \\\"author\\\": \\\"GOETHE, J. W. von\\\", \\\"year\\\": \\\"1967\\\"}, {\\\"key\\\": \\\"atypb26\\\", \\\"first-page\\\": \\\"147\\\", \\\"volume\\\": \\\"21\\\", \\\"author\\\": \\\"GOLDSTEIN, K.\\\", \\\"year\\\": \\\"1942\\\", \\\"journal-title\\\": \\\"Occupational Therapy and Rchabilitation\\\"}, {\\\"key\\\": \\\"atypb27\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1080/00221309.1955.9918340\\\"}, {\\\"key\\\": \\\"atypb28\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/h0071517\\\"}, {\\\"key\\\": \\\"atypb29\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/BF02287989\\\"}, {\\\"key\\\": \\\"atypb30\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/1419491\\\"}, {\\\"key\\\": \\\"atypb31\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2466/pms.1966.22.1.217\\\"}, {\\\"key\\\": \\\"atypb32\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1364/AO.9.001513\\\"}, {\\\"key\\\": \\\"atypb33\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/h0055538\\\"}, {\\\"key\\\": \\\"atypb34\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.4992/jjpsy.1.406\\\"}, {\\\"key\\\": \\\"atypb35\\\", \\\"volume-title\\\": \\\"Finfuehrung in die Sozial-psychologie\\\", \\\"author\\\": \\\"HOFSTAETTER, P.\\\", \\\"year\\\": \\\"1966\\\"}, {\\\"key\\\": \\\"atypb36\\\", \\\"unstructured\\\": \\\"36. HOFSTAETTER, P. and H. LUEBBERT (1958) \\\\\\\"Findrucksqualitaeten von Farben.\\\\\\\" Zeitschrift ffir Diagnostische Psychologic und Pers6nlichkeitsforschung 6: 211-227.\\\"}, {\\\"key\\\": \\\"atypb37\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1080/00221309.1957.9920366\\\"}, {\\\"key\\\": \\\"atypb38\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1080/00221309.1969.9711279\\\"}, {\\\"key\\\": \\\"atypb39\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/h0071129\\\"}, {\\\"key\\\": \\\"atypb40\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/453461\\\"}, {\\\"key\\\": \\\"atypb41\\\", \\\"first-page\\\": \\\"437\\\", \\\"volume\\\": \\\"3\\\", \\\"author\\\": \\\"KASTL, A. J.\\\", \\\"year\\\": \\\"1968\\\", \\\"journal-title\\\": \\\"Proceedings of the 76th Annual Convention of the American Psychological Association\\\"}, {\\\"key\\\": \\\"atypb42\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.4992/jjpsy.20.2_33\\\"}, {\\\"key\\\": \\\"atypb43\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/978-94-011-8906-4\\\"}, {\\\"key\\\": \\\"atypb44\\\", \\\"unstructured\\\": \\\"44. KUGELMASS, S. and E. DONCHIN (1959-1960) \\\\\\\"Tsevaim umatsavim emotsyonaliyim.\\\\\\\" Megamot 10: 271-281.\\\"}, {\\\"key\\\": \\\"atypb45\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1080/00223980.1938.9917592\\\"}, {\\\"key\\\": \\\"atypb46\\\", \\\"volume-title\\\": \\\"The Language of Color\\\", \\\"author\\\": \\\"LUCKIESH, M.\\\", \\\"year\\\": \\\"1918\\\"}, {\\\"key\\\": \\\"atypb47\\\", \\\"volume-title\\\": \\\"Light and Color in Advertising and Merchandising\\\", \\\"author\\\": \\\"LUCKIESH, M.\\\", \\\"year\\\": \\\"1923\\\"}, {\\\"key\\\": \\\"atypb48\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"first-page\\\": \\\"109\\\", \\\"DOI\\\": \\\"10.1037/h0072192\\\", \\\"volume\\\": \\\"5\\\", \\\"author\\\": \\\"MERCER, F. M.\\\", \\\"year\\\": \\\"1925\\\", \\\"journal-title\\\": \\\"J. of Comparative Psych\\\"}, {\\\"key\\\": \\\"atypb49\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/1413798\\\"}, {\\\"key\\\": \\\"atypb50\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/h0041425\\\"}, {\\\"key\\\": \\\"atypb51\\\", \\\"volume-title\\\": \\\"Colour in Theory and Practice\\\", \\\"author\\\": \\\"MURRAY, H. D.\\\", \\\"year\\\": \\\"1952\\\"}, {\\\"key\\\": \\\"atypb52\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/BF03393246\\\"}, {\\\"key\\\": \\\"atypb53\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1080/00221309.1952.9710652\\\"}, {\\\"key\\\": \\\"atypb54\\\", \\\"volume-title\\\": \\\"The Appearance Frequency of Color Responses to Each of the Stimulus Words in Different Groups of People\\\", \\\"author\\\": \\\"OBONA1, T.\\\"}, {\\\"key\\\": \\\"atypb55\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1080/00221309.1942.10544721\\\"}, {\\\"key\\\": \\\"atypb56\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1002/bs.3830050204\\\"}, {\\\"key\\\": \\\"atypb57\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1540-4560.1971.tb00678.x\\\"}, {\\\"key\\\": \\\"atypb58\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.4992/psycholres1954.2.13\\\"}, {\\\"key\\\": \\\"atypb59\\\", \\\"first-page\\\": \\\"164\\\", \\\"volume\\\": \\\"1\\\", \\\"author\\\": \\\"OYAMA, T.\\\", \\\"year\\\": \\\"1965\\\", \\\"journal-title\\\": \\\"Acta Chromatica\\\"}, {\\\"key\\\": \\\"atypb60\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.4992/psycholres1954.4.78\\\"}, {\\\"key\\\": \\\"atypb61\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.4992/jjpsy.34.109\\\"}, {\\\"key\\\": \\\"atypb62\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/1420330\\\"}, {\\\"key\\\": \\\"atypb63\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0022-5371(70)80023-8\\\"}, {\\\"key\\\": \\\"atypb64\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/BF03393215\\\"}, {\\\"key\\\": \\\"atypb65\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/1415705\\\"}, {\\\"key\\\": \\\"atypb66\\\", \\\"first-page\\\": \\\"512\\\", \\\"volume\\\": \\\"30\\\", \\\"author\\\": \\\"SCHAIE, K. W.\\\", \\\"year\\\": \\\"1966\\\", \\\"journal-title\\\": \\\"J. of Projective Techniques and Personality Assessment\\\"}, {\\\"key\\\": \\\"atypb67\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1080/08853126.1961.10381048\\\"}, {\\\"key\\\": \\\"atypb68\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/1419412\\\"}, {\\\"key\\\": \\\"atypb69\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1080/00224545.1937.9919999\\\"}, {\\\"key\\\": \\\"atypb70\\\", \\\"first-page\\\": \\\"77\\\", \\\"volume\\\": \\\"5\\\", \\\"author\\\": \\\"SHEPPARD, D.\\\", \\\"year\\\": \\\"1954\\\", \\\"journal-title\\\": \\\"Psych. Newsletter\\\"}, {\\\"key\\\": \\\"atypb71\\\", \\\"first-page\\\": \\\"75\\\", \\\"volume\\\": \\\"5\\\", \\\"author\\\": \\\"SINHA, T. C.\\\", \\\"year\\\": \\\"1951\\\", \\\"journal-title\\\": \\\"Samiksa\\\"}, {\\\"key\\\": \\\"atypb72\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0022-5371(63)80040-7\\\"}, {\\\"key\\\": \\\"atypb73\\\", \\\"first-page\\\": \\\"21\\\", \\\"volume\\\": \\\"5\\\", \\\"author\\\": \\\"TATIBANA, Y\", \"excerpt_truncated\": true, \"source_sha256\": \"5e424154d0cc9a41b93a5f44718ff33c15cf42a22c047e100f5341d46bd7bc73\", \"verification_required\": true, \"topic_domain\": \"visual_art\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1177/002202217300400201\", \"doi:10.1080/00029157.1971.10402141\", \"doi:10.2307/1416516\", \"doi:10.2307/427666\", \"doi:10.1037/h0048173\", \"doi:10.2307/1127374\", \"doi:10.1080/00224545.1935.9919740\", \"doi:10.2466/pms.1968.26.3c.1203\", \"doi:10.1086/soutjanth.11.4.3628909\", \"doi:10.1037/h0048791\", \"doi:10.1080/08856559.1926.10532367\", \"doi:10.2307/1417683\"]}",
+      "id": "source-354dd04e6ba04d25",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works/10.1177%2F002202217300400201",
+      "version": 149,
+      "time": "2026-09-26T12:09:41.088874+00:00"
+    },
+    "source-20ead991dd614d81": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works?query=psychology+of+visual+art+perception+empirical+aesthetics+symmetry+composition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"DOI\\\": \\\"10.4324/9781003646839-2\\\", \\\"title\\\": [\\\"Form perception and art\\\"], \\\"URL\\\": \\\"https://doi.org/10.4324/9781003646839-2\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 5, 9]]}}, {\\\"DOI\\\": \\\"10.4324/9781003646839-3\\\", \\\"title\\\": [\\\"Haptic perception and the art of the blind\\\"], \\\"URL\\\": \\\"https://doi.org/10.4324/9781003646839-3\\\", \\\"published\\\": {\\\"date-parts\\\": [[2025, 5, 9]]}}, {\\\"DOI\\\": \\\"10.2307/426441\\\", \\\"title\\\": [\\\"Art and Visual Perception, a Psychology of the Creative Eye\\\"], \\\"URL\\\": \\\"https://doi.org/10.2307/426441\\\", \\\"published\\\": {\\\"date-parts\\\": [[1955, 3]]}}, {\\\"DOI\\\": \\\"10.1017/cbo9781139030410.009\\\", \\\"title\\\": [\\\"Visual aesthetics and art\\\"], \\\"URL\\\": \\\"https://doi.org/10.1017/cbo9781139030410.009\\\"}]\", \"excerpt_truncated\": false, \"source_sha256\": \"424fc32f54dfb889d68577255b3ddfaf2441cee9a811d5e28bfebd20779ce4bd\", \"verification_required\": true, \"topic_domain\": \"visual_art\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.4324/9781003646839-2\", \"doi:10.4324/9781003646839-3\", \"doi:10.2307/426441\", \"doi:10.1017/cbo9781139030410.009\"]}",
+      "id": "source-20ead991dd614d81",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works?query=psychology+of+visual+art+perception+empirical+aesthetics+symmetry+composition&rows=4&select=DOI%2Ctitle%2Cabstract%2CURL%2Cpublished",
+      "version": 149,
+      "time": "2026-09-26T12:09:43.043725+00:00"
+    },
+    "source-5179112cc1044fcf": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":86,\\\"suggestion\\\":\\\"storytelling narrative coalition literature\\\",\\\"suggestionsnippet\\\":\\\"storytelling narrative\\ncoalition\\nliterature\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Fiction\\\",\\\"pageid\\\":18949461,\\\"size\\\":35712,\\\"wordcount\\\":3771,\\\"snippet\\\":\\\"non-fiction.\\nStorytelling\\nhas existed in all human cultures, and each culture incorporates different elements of truth and fiction into\\nstorytelling\\n. Early\\\",\\\"timestamp\\\":\\\"2026-09-07T19:11:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narrative identity\\\",\\\"pageid\\\":35716364,\\\"size\\\":60455,\\\"wordcount\\\":7308,\\\"snippet\\\":\\\"on the affective tone of life\\nnarrative\\nmemories: Early adolescence and older age are more negative\\\". Memory and\\nCognition\\n. 51 (6): 1265\\\\u20131286. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-16T15:09:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narratology\\\",\\\"pageid\\\":718763,\\\"size\\\":23172,\\\"wordcount\\\":2691,\\\"snippet\\\":\\\"Digital-media theorist and professor Janet Murray theorized a shift in\\nstorytelling\\nand\\nnarrative\\nstructure in the twentieth century as a result of scientific advancement\\\",\\\"timestamp\\\":\\\"2026-06-21T07:57:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ancient literature\\\",\\\"pageid\\\":3709305,\\\"size\\\":49644,\\\"wordcount\\\":4634,\\\"snippet\\\":\\\"Ancient\\nliterature\\ncomprises religious and scientific documents, tales, poetry and plays, royal edicts and declarations, and other forms of writing that\\\",\\\"timestamp\\\":\\\"2026-06-29T20:43:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Role-playing game\\\",\\\"pageid\\\":25475,\\\"size\\\":38009,\\\"wordcount\\\":4559,\\\"snippet\\\":\\\"form of interactive and collaborative\\nstorytelling\\n. Events, roles, and\\nnarrative\\nstructure give a sense of a\\nnarrative\\nexperience, and the game need not have\\\",\\\"timestamp\\\":\\\"2026-09-20T05:14:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Suspense\\\",\\\"pageid\\\":4450450,\\\"size\\\":10990,\\\"wordcount\\\":1207,\\\"snippet\\\":\\\"audience feels sympathy. However, suspense is not exclusive to\\nnarratives\\n. In\\nliterature\\n, films, television, and plays, suspense is a major device for\\\",\\\"timestamp\\\":\\\"2026-09-10T05:31:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Children's literature\\\",\\\"pageid\\\":52847,\\\"size\\\":167603,\\\"wordcount\\\":18216,\\\"snippet\\\":\\\"Machine Children's\\nliterature\\nArchived 2016-06-17 at the Wayback Machine at the British Library Children's\\nLiterature\\n, Culture, and\\nCognition\\n(CLCC) Database\\\",\\\"timestamp\\\":\\\"2026-09-21T04:25:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Immersive learning\\\",\\\"pageid\\\":64345811,\\\"size\\\":22110,\\\"wordcount\\\":2264,\\\"snippet\\\":\\\"structured by the audience's own\\ncognition\\n. Also, within Ryan's book, the cognitive immersion created by\\nnarrative\\nis categorized into three kinds: spatial\\\",\\\"timestamp\\\":\\\"2025-11-26T22:52:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Soma (video game)\\\",\\\"pageid\\\":5649586,\\\"size\\\":41063,\\\"wordcount\\\":3882,\\\"snippet\\\":\\\"Cody (22 June 2023). \\\"Games ad Critical\\nLiterature\\n: Playing with Transhumanism, Embodied\\nCognition\\n, and\\nNarrative\\nDifference in SOMA\\\". In Ghosal, Torsa\\\",\\\"timestamp\\\":\\\"2026-07-09T19:08:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Comics\\\",\\\"pageid\\\":145443,\\\"size\\\":84218,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"(2013). The Visual Language of Comics: Introduction to the Structure and\\nCognition\\nof Sequential Images. London: Bloomsbury. ISBN\\\\u00a0978-1-4411-8145-9. Collins\\\",\\\"timestamp\\\":\\\"2026-09-16T05:00:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"4a12febf70329e32d9a3bdb4cb1800741991a82b52c4cc28c6e195d8f7c956c2\", \"verification_required\": true, \"topic_domain\": \"storytelling\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-5179112cc1044fcf",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json",
+      "version": 149,
+      "time": "2026-09-26T12:09:44.757079+00:00"
+    },
+    "source-000bd55abd484205": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":7077},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mechanics\\\",\\\"pageid\\\":25202,\\\"size\\\":101544,\\\"wordcount\\\":12070,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n, also known as\\nquantum\\nphysics, is the fundamental physical theory that describes the behavior of matter and of light; the behaviors\\\",\\\"timestamp\\\":\\\"2026-09-22T01:21:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of quantum mechanics\\\",\\\"pageid\\\":9067941,\\\"size\\\":78664,\\\"wordcount\\\":9389,\\\"snippet\\\":\\\"of\\nquantum\\nmechanics\\nis a fundamental part of the history of modern physics. The major chapters of this history begin with the emergence of\\nquantum\\nideas\\\",\\\"timestamp\\\":\\\"2026-08-31T07:22:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Introduction to quantum mechanics\\\",\\\"pageid\\\":2796131,\\\"size\\\":67753,\\\"wordcount\\\":7571,\\\"snippet\\\":\\\"\\nQuantum\\nmechanics\\n(QM) is the study of matter and of matter's interactions with energy on the scale of atomic and subatomic particles. (By contrast, classical\\\",\\\"timestamp\\\":\\\"2026-09-25T04:10:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Interpretations of quantum mechanics\\\",\\\"pageid\\\":54738,\\\"size\\\":71853,\\\"wordcount\\\":7949,\\\"snippet\\\":\\\"interpretation of\\nquantum\\nmechanics\\nis an attempt to explain how the mathematical theory of\\nquantum\\nmechanics\\nmight correspond to experienced reality.\\nQuantum\\nmechanics\\\",\\\"timestamp\\\":\\\"2026-09-25T08:30:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum superposition\\\",\\\"pageid\\\":82728,\\\"size\\\":19317,\\\"wordcount\\\":2576,\\\"snippet\\\":\\\"\\nQuantum\\nsuperposition is a fundamental principle of\\nquantum\\nmechanics\\nthat states that linear combinations of solutions to the Schr\\\\u00f6dinger equation are\\\",\\\"timestamp\\\":\\\"2026-06-12T23:26:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Measurement in quantum mechanics\\\",\\\"pageid\\\":573875,\\\"size\\\":71859,\\\"wordcount\\\":8730,\\\"snippet\\\":\\\"different interpretations of\\nquantum\\nmechanics\\ndiffer in how they address what is known as the measurement problem. In\\nquantum\\nmechanics\\n, each physical system\\\",\\\"timestamp\\\":\\\"2026-09-25T11:29:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wave function\\\",\\\"pageid\\\":145343,\\\"size\\\":105363,\\\"wordcount\\\":14058,\\\"snippet\\\":\\\"In\\nquantum\\nmechanics\\n, a wave function (or wavefunction) is a mathematical description of the\\nquantum\\nstate of an isolated\\nquantum\\nsystem. The most common\\\",\\\"timestamp\\\":\\\"2026-07-11T05:48:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mathematical formulation of quantum mechanics\\\",\\\"pageid\\\":20728,\\\"size\\\":58208,\\\"wordcount\\\":7934,\\\"snippet\\\":\\\"mathematical formulations of\\nquantum\\nmechanics\\nare those mathematical formalisms that permit a rigorous description of\\nquantum\\nmechanics\\n. This mathematical formalism\\\",\\\"timestamp\\\":\\\"2026-09-05T15:19:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Relational quantum mechanics\\\",\\\"pageid\\\":5974662,\\\"size\\\":47991,\\\"wordcount\\\":6972,\\\"snippet\\\":\\\"Relational\\nquantum\\nmechanics\\n(RQM) is an interpretation of\\nquantum\\nmechanics\\nwhich treats the state of a\\nquantum\\nsystem as being relational, that is,\\\",\\\"timestamp\\\":\\\"2026-06-20T09:48:35Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Quantum mysticism\\\",\\\"pageid\\\":4279149,\\\"size\\\":19729,\\\"wordcount\\\":1998,\\\"snippet\\\":\\\"the ideas of\\nquantum\\nmechanics\\nand its interpretations.\\nQuantum\\nmysticism is considered pseudoscience and quackery by\\nquantum\\nmechanics\\nexperts. Before\\\",\\\"timestamp\\\":\\\"2026-08-09T08:13:54Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"1aa6f1152d7033a2da520ee7beb526774b21b31cc092596ffcc81a81060786fe\", \"verification_required\": true, \"topic_domain\": \"quantum_mechanics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-000bd55abd484205",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=quantum+mechanics&format=json",
+      "version": 149,
+      "time": "2026-09-26T12:09:45.433648+00:00"
+    },
+    "source-094b7d2ac86441fd": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":179},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Justification (epistemology)\\\",\\\"pageid\\\":30248,\\\"size\\\":11199,\\\"wordcount\\\":1195,\\\"snippet\\\":\\\"current\\nevidence\\n.\\nJustification\\nis a property of\\nbeliefs\\ninsofar as they are held blamelessly. In other words, a justified\\nbelief\\nis a\\nbelief\\nthat a person\\\",\\\"timestamp\\\":\\\"2026-08-22T20:08:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Central concepts in\\nepistemology\\ninclude\\nbelief\\n, truth,\\nevidence\\n, and reason. As one of the main branches of philosophy,\\nepistemology\\nstands alongside fields\\\",\\\"timestamp\\\":\\\"2026-09-26T08:31:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Formal epistemology\\\",\\\"pageid\\\":3660078,\\\"size\\\":11434,\\\"wordcount\\\":1321,\\\"snippet\\\":\\\"formal\\nepistemology\\nhas tended to differ somewhat from that of traditional\\nepistemology\\n, with topics like\\nuncertainty\\n, induction, and\\nbelief\\nrevision\\\",\\\"timestamp\\\":\\\"2026-03-28T03:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gettier problem\\\",\\\"pageid\\\":246176,\\\"size\\\":44511,\\\"wordcount\\\":5956,\\\"snippet\\\":\\\"\\nbelief\\n(JTB). The JTB account holds that knowledge is equivalent to justified true\\nbelief\\n; if all three conditions (\\njustification\\n, truth, and\\nbelief\\n)\\\",\\\"timestamp\\\":\\\"2026-09-22T13:24:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Empirical evidence\\\",\\\"pageid\\\":307139,\\\"size\\\":39043,\\\"wordcount\\\":3955,\\\"snippet\\\":\\\"methods and paradigms. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what determines whether holding a certain\\nbelief\\nis rational. This is only\\\",\\\"timestamp\\\":\\\"2026-08-08T15:50:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of epistemology\\\",\\\"pageid\\\":6556377,\\\"size\\\":16004,\\\"wordcount\\\":1658,\\\"snippet\\\":\\\"\\nepistemology\\n\\\\u00a0\\\\u2013\\nBeliefs\\nare warranted by proper cognitive function\\\\u2014proposed by Alvin Plantinga. Evidentialism\\\\u00a0\\\\u2013\\nBeliefs\\ndepend solely on the\\nevidence\\nfor\\\",\\\"timestamp\\\":\\\"2026-08-24T15:07:39Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Belief\\\",\\\"pageid\\\":102883,\\\"size\\\":105449,\\\"wordcount\\\":12166,\\\"snippet\\\":\\\"having some stance, take, or opinion about something. In\\nepistemology\\n, philosophers use the term\\nbelief\\nto refer to attitudes about the world which can be either\\\",\\\"timestamp\\\":\\\"2026-09-13T03:42:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Declarative knowledge\\\",\\\"pageid\\\":23369987,\\\"size\\\":97599,\\\"wordcount\\\":10444,\\\"snippet\\\":\\\"A central issue in\\nepistemology\\nconcerns the standards of\\njustification\\n, i.e., what conditions have to be fulfilled for a\\nbelief\\nto be justified. Internalists\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence\\\",\\\"pageid\\\":20550772,\\\"size\\\":46664,\\\"wordcount\\\":5455,\\\"snippet\\\":\\\"exact definition and role of\\nevidence\\nvary across different fields. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what makes it rational to hold\\\",\\\"timestamp\\\":\\\"2026-09-09T01:29:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Knowledge\\\",\\\"pageid\\\":243391,\\\"size\\\":190334,\\\"wordcount\\\":19010,\\\"snippet\\\":\\\"knowledge, is often characterized as true\\nbelief\\nthat is distinct from opinion or guesswork by virtue of\\njustification\\n. While there is wide agreement among\\\",\\\"timestamp\\\":\\\"2026-08-23T18:49:22Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"0802afa8cd4d291d7e31b9b1e7dcae46996b3a96684e03883e71f5b8f6e1dfd6\", \"verification_required\": true, \"topic_domain\": \"epistemology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-094b7d2ac86441fd",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json",
+      "version": 149,
+      "time": "2026-09-26T12:09:46.200930+00:00"
+    },
+    "source-baf36b0008904b8b": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":40313},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness\\\",\\\"pageid\\\":5664,\\\"size\\\":187364,\\\"wordcount\\\":21233,\\\"snippet\\\":\\\"\\nConsciousness\\nis being aware of something internal to one's self, or of states or objects in one's external environment. It has been the topic of extensive\\\",\\\"timestamp\\\":\\\"2026-09-19T15:23:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Stream of consciousness\\\",\\\"pageid\\\":101483,\\\"size\\\":26790,\\\"wordcount\\\":3226,\\\"snippet\\\":\\\"In literary criticism, stream of\\nconsciousness\\nis a narrative mode or method that attempts \\\"to depict the multitudinous thoughts and feelings which pass\\\",\\\"timestamp\\\":\\\"2026-06-22T22:10:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hard problem of consciousness\\\",\\\"pageid\\\":634216,\\\"size\\\":115556,\\\"wordcount\\\":13247,\\\"snippet\\\":\\\"hard problem of\\nconsciousness\\n(or simply the hard problem) is to explain how and why organisms have qualia, phenomenal\\nconsciousness\\n, or subjective experience\\\",\\\"timestamp\\\":\\\"2026-08-27T00:59:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Artificial consciousness\\\",\\\"pageid\\\":195552,\\\"size\\\":66143,\\\"wordcount\\\":6941,\\\"snippet\\\":\\\"Artificial\\nconsciousness\\n, also known as machine\\nconsciousness\\n, synthetic\\nconsciousness\\n, or digital\\nconsciousness\\n, is\\nconsciousness\\nhypothesized to be\\\",\\\"timestamp\\\":\\\"2026-09-23T13:46:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness (disambiguation)\\\",\\\"pageid\\\":40457047,\\\"size\\\":695,\\\"wordcount\\\":97,\\\"snippet\\\":\\\"\\nconsciousness\\nin Wiktionary, the free dictionary.\\nConsciousness\\nis the state or quality of awareness.\\nConsciousness\\nmay also refer to:\\nConsciousness\\n(Hill\\\",\\\"timestamp\\\":\\\"2022-05-26T00:46:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Collective consciousness\\\",\\\"pageid\\\":1077491,\\\"size\\\":15253,\\\"wordcount\\\":1536,\\\"snippet\\\":\\\"Collective\\nconsciousness\\n, collective conscience, or collective conscious (French: conscience collective) is the set of shared beliefs, ideas, and moral\\\",\\\"timestamp\\\":\\\"2026-07-29T04:14:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Clouding of consciousness\\\",\\\"pageid\\\":7554116,\\\"size\\\":78787,\\\"wordcount\\\":7669,\\\"snippet\\\":\\\"Clouding of\\nconsciousness\\n, also called brain fog or mental fog, occurs when a person is conscious but slightly less wakeful or aware than normal. The\\\",\\\"timestamp\\\":\\\"2026-09-12T16:42:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Double consciousness\\\",\\\"pageid\\\":3057990,\\\"size\\\":20535,\\\"wordcount\\\":2622,\\\"snippet\\\":\\\"Double\\nconsciousness\\nis the dual self-perception experienced by subordinated or colonized groups in an oppressive society. The term and the idea were\\\",\\\"timestamp\\\":\\\"2026-09-12T04:18:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-consciousness\\\",\\\"pageid\\\":2772118,\\\"size\\\":5955,\\\"wordcount\\\":683,\\\"snippet\\\":\\\"Self-\\nconsciousness\\nis a heightened sense of awareness of oneself. Historically, \\\"self-\\nconsciousness\\n\\\" was synonymous with \\\"self-awareness\\\", referring to\\\",\\\"timestamp\\\":\\\"2026-07-23T22:59:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Animal consciousness\\\",\\\"pageid\\\":13001588,\\\"size\\\":135552,\\\"wordcount\\\":14235,\\\"snippet\\\":\\\"Animal\\nconsciousness\\n, or animal awareness, is the quality or state of self-awareness within an animal, or of being aware of an external object or of something\\\",\\\"timestamp\\\":\\\"2026-09-24T01:05:51Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"77bff732a9fe1140b0785665328b298912519d508fcfd1c9570b0fa358da26a2\", \"verification_required\": true, \"topic_domain\": \"consciousness\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-baf36b0008904b8b",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json",
+      "version": 149,
+      "time": "2026-09-26T12:09:46.911405+00:00"
+    },
+    "r-99d0a832a8c5414f": {
+      "actor": "runtime",
+      "content": "{\"base_version\":149,\"inherited_commitments\":[\"commit-review-vis-art-sources-150\"],\"invocation\":\"w-99d0a832a8c5414f\",\"previous_head\":\"d31cdf43f9b4a68310a3830a5ced0204b7ec17b1decf0f8213156e6efeab1bf8\",\"process_id\":2275,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-99d0a832a8c5414f",
+      "source": "runtime:continuity",
+      "version": 149,
+      "time": "2026-09-26T12:09:50.133212+00:00"
     }
   },
   "journal": [
@@ -140218,6 +140280,507 @@
       "successful_model": "gemini-3.5-flash",
       "finished": "2026-09-26T12:01:08.441948+00:00",
       "reason": ""
+    },
+    "w-99d0a832a8c5414f": {
+      "base_version": 149,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 18252,
+        "delivered_request_chars": 46022,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set",
+          "verbose recovery frames",
+          "extended bounded reflection history",
+          "redundant evidence payload text",
+          "low-priority bounded prose"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "request_compression_ratio": 0.3468,
+        "retrieval_rehydrated_evidence_count": 2,
+        "rich_context_chars": 132700,
+        "working_set_chars": 3455
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-99d0a832a8c5414f",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 149,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 1.0,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 1.0,
+              "self_correction": 1.0
+            },
+            "id": "vis-art-perception-001",
+            "score": 1.0,
+            "signals": {
+              "collected_research": 2,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Visual Art Perception"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2275,
+      "provider": "gemini",
+      "quota_day": "2026-09-26",
+      "request_hash": "cdc29f8e293c5bfbdd787dc56a8ff318cacafeac345bd7eb4c47dd4468d5d1ff",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-neurodiversity-foundations-01",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-dance-rhythm-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-41fac1eecb0246dd",
+              "source-51a9b989df3144af"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-visual-art-composition-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-891da548184a404e",
+              "source-8f485f755e8b4f3a"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-endo-neuro-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-72e7307bd1d247d7",
+              "source-3896d2f336484666"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-neuro-paradigm-comp-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-8defc56204704290",
+              "source-0a7b2a5c06d44417"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-vis-art-perception-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [],
+            "reason": "An open commitment is approaching its due cycle.",
+            "record": {
+              "id": "commit-review-vis-art-sources-150",
+              "kind": "commitment"
+            },
+            "trigger": "commitment_near_due"
+          },
+          {
+            "evidence": [
+              "source-b58eab9fe45e4c0b"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b58eab9fe45e4c0b",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-21e1582f07cd4b16"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-21e1582f07cd4b16",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-1f8d6bebdc7640cf"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-1f8d6bebdc7640cf",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-1d578a272eed4a8e"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-1d578a272eed4a8e",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-b9fa8623c6604586"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b9fa8623c6604586",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-354dd04e6ba04d25"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-354dd04e6ba04d25",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658",
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b",
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af",
+          "source-891da548184a404e",
+          "source-8f485f755e8b4f3a",
+          "source-72e7307bd1d247d7",
+          "source-3896d2f336484666",
+          "source-8defc56204704290",
+          "source-b58eab9fe45e4c0b",
+          "source-21e1582f07cd4b16",
+          "source-1f8d6bebdc7640cf",
+          "source-1d578a272eed4a8e",
+          "source-b9fa8623c6604586",
+          "source-354dd04e6ba04d25"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 13,
+          "evidence_count": 17,
+          "trigger_counts": {
+            "commitment_near_due": 1,
+            "notebook_revised": 6,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "runtime_performance": {
+        "compaction_ms": 7.362,
+        "context_build_ms": 60.663,
+        "load_ms": 1057.529,
+        "receipt_ms": 599.287,
+        "start_total_before_record_ms": 3293.218,
+        "store": {
+          "append_cache_hits": 11,
+          "append_cache_misses": 0,
+          "cached_copy_ms": 1163.537,
+          "cached_loads": 0,
+          "event_count": 4226,
+          "full_replays": 11,
+          "replay_ms": 7946.555,
+          "trusted_projection_active": true
+        },
+        "temporal_ms": 1567.221
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 4,
+          "topic": "visual_art"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [],
+        "enforce_selected_topic": false,
+        "hard_rejection_threshold": 5,
+        "parked": {},
+        "reason": "current durable project topic remains eligible",
+        "rotation_required": false,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "visual_art",
+        "temporal": {
+          "anchor_seq": 4225,
+          "anchor_time": "2026-09-26T12:09:48.333185+00:00",
+          "anchor_version": 149,
+          "effective_seconds": 130945.858247
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": null,
+        "topic_selection_candidates": [],
+        "topic_selection_method": "active_topic"
+      },
+      "temporal": {
+        "cycle_distance": 1,
+        "effective_elapsed_seconds": 576.491822,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 130945.858247,
+        "intervening_events": {
+          "accepted": 1,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 0,
+          "research_collected": 1,
+          "squirrel_assessed": 1,
+          "total": 17
+        },
+        "observed_at": "2026-09-26T12:09:48.333185+00:00",
+        "previous_anchor_time": "2026-09-26T12:00:11.841363+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 576.491822
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 18252,
+        "inquiry_drive_project_count": 1,
+        "mode": "bounded",
+        "retrieval_candidate_count": 13,
+        "retrieval_evidence_count": 17,
+        "retrieval_rehydrated_evidence_count": 2,
+        "retrieval_trigger_counts": {
+          "commitment_near_due": 1,
+          "notebook_revised": 6,
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 3455,
+        "working_to_delivered_ratio": 0.1893
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "vis-art-perception-001",
+            "next_step": "Search for foundational reviews on the psychology of aesthetics and visual art perception.",
+            "question": "How do composition, contrast, symmetry, ambiguity, and expectation influence how people perceive and evaluate visual art?",
+            "title": "Visual Art Perception"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [
+          {
+            "due_cycle": 150,
+            "id": "commit-review-vis-art-sources-150",
+            "reason": "Ensure that the next cycle has a clear, bounded commitment to synthesize newly returned literature rather than leaving the research open-ended.",
+            "task": "integrate newly collected visual art perception research into notebook nb-vis-art-perception-001"
+          }
+        ],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-religion-ritual-psych-001",
+            "project": "religion-cross-cultural-practices",
+            "provenance": [
+              "source-0e0aa6aa238246cb"
+            ],
+            "revision": 1,
+            "summary": "This notebook synthesizes the 'process-based framework' from a 2017 integrative review of ritual psychology, noting the distinction between the ritual form and its psychological function.",
+            "title": "Synthesis: The Psychology of Rituals"
+          },
+          {
+            "id": "nb-neuro-metabolic-001",
+            "project": "neurology-metabolic-pathways",
+            "provenance": [
+              "source-8fb4038a7344498e",
+              "source-e41f8efd700544cf"
+            ],
+            "revision": 1,
+            "summary": "An initial assessment of the intersection between metabolic pathways and neurological health, based on bibliographic metadata.",
+            "title": "Provisional Synthesis: Metabolic Drivers in Neurological Function"
+          },
+          {
+            "id": "nb-evo-foundations-001",
+            "project": "evolutionary-biology-foundations",
+            "provenance": [
+              "source-2cd2684377c54051",
+              "source-e2e41e9bcb594def"
+            ],
+            "revision": 1,
+            "summary": "This notebook synthesizes available bibliographic metadata to frame future inquiry into how evolutionary biology distinguishes mechanisms such as adaptation, byproduct, drift, and constraint.",
+            "title": "Provisional Synthesis: Evolutionary Mechanisms"
+          },
+          {
+            "id": "nb-endo-neuro-001",
+            "project": "endo-neuro-interaction-001",
+            "provenance": [
+              "source-891da548184a404e",
+              "source-8f485f755e8b4f3a"
+            ],
+            "revision": 2,
+            "summary": "This provisional synthesis integrates newly indexed literature on congenital adrenal hyperplasia and systemic signal pathways to explore the endocrinology-neurology interface.",
+            "title": "Provisional Synthesis: Endocrine Influence on Neurological Function"
+          },
+          {
+            "id": "nb-neuro-paradigm-comp-001",
+            "project": "neuro-paradigm-comp-001",
+            "provenance": [
+              "source-72e7307bd1d247d7",
+              "source-3896d2f336484666"
+            ],
+            "revision": 2,
+            "summary": "Initial synthesis examining the neurodiversity movement's critique of clinical models, identifying 'neurodiversity' as an emerging research area in need of rigorous synthesis.",
+            "title": "Conceptual Divergence: Neurodiversity Paradigm vs. Clinical Pathology"
+          },
+          {
+            "id": "nb-vis-art-perception-001",
+            "project": "vis-art-perception-001",
+            "provenance": [
+              "source-8defc56204704290",
+              "source-0a7b2a5c06d44417"
+            ],
+            "revision": 2,
+            "summary": "Synthesizes empirical and methodological distinctions between general aesthetic preference, perception of art, and philosophical aesthetics based on review literature.",
+            "title": "Provisional Scoping: Visual Art Perception and Structural Attributes"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "rejected",
+      "time": "2026-09-26T12:09:50.678352+00:00",
+      "provider_attempts": [
+        {
+          "category": "server",
+          "elapsed_ms": 4339,
+          "http_status": 503,
+          "model": "gemini-3.8-flash",
+          "provider_error": {
+            "code": 503,
+            "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+            "status": "UNAVAILABLE"
+          },
+          "request_payload_bytes": 49938,
+          "response_bytes_captured": 198,
+          "result": "transient_failure"
+        },
+        {
+          "elapsed_ms": 14767,
+          "http_status": 200,
+          "model": "gemini-3.5-flash",
+          "request_payload_bytes": 49938,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 2,
+      "successful_model": "gemini-3.5-flash",
+      "finished": "2026-09-26T12:10:49.559199+00:00",
+      "reason": "Bob reflection for accepted wake 150 is mandatory before state may advance"
     }
   },
   "pending": null,
@@ -140236,18 +140799,18 @@
       "prime_numbers": 8,
       "quantum_mechanics": 5,
       "religion": 0,
-      "visual_art": 0
+      "visual_art": 1
     },
     "deferred": {},
     "last_receipt": {
       "attention_saturation_triggered": false,
       "attention_topic": "visual_art",
       "durable_progress": false,
-      "hard_rejection": false,
-      "invocation": "w-cbb91c230a3c4086",
+      "hard_rejection": true,
+      "invocation": "w-99d0a832a8c5414f",
       "restored_topics": [],
       "selected_topic": "visual_art",
-      "terminal": "accepted",
+      "terminal": "rejected",
       "triggered_topics": []
     },
     "attention": {
@@ -141462,35 +142025,40 @@
     "vis-art-perception-001": {
       "project": "vis-art-perception-001",
       "domain": "visual_art",
-      "no_progress": 3,
+      "no_progress": 1,
       "routes": [
-        "api.crossref.org:source",
         "api.semanticscholar.org:discovery",
         "export.arxiv.org:source",
-        "api.datacite.org:discovery"
+        "api.datacite.org:discovery",
+        "api.crossref.org:discovery"
       ],
       "capability_blocked": false,
       "retry_after_version": null,
       "persistent_identifiers": [
-        "arxiv:2017.00102",
-        "doi:10.1177/002202217300400201",
-        "doi:10.1016/0163-6383(87)90029-4",
-        "doi:10.1007/bf00444162",
-        "doi:10.1525/9780520351271",
-        "doi:10.2307/427666",
-        "doi:10.1111/j.1467-9280.2006.01759.x",
-        "doi:10.1037/h0041135",
-        "doi:10.1037/11164-000",
-        "doi:10.1080/1357650x.2010.508219",
-        "doi:10.4159/harvard.9780674734470",
-        "doi:10.1016/0022-0965(75)90070-3"
+        "doi:10.1037/h0048173",
+        "doi:10.2307/1127374",
+        "doi:10.1080/00224545.1935.9919740",
+        "doi:10.2466/pms.1968.26.3c.1203",
+        "doi:10.1086/soutjanth.11.4.3628909",
+        "doi:10.1037/h0048791",
+        "doi:10.1080/08856559.1926.10532367",
+        "doi:10.2307/1417683",
+        "doi:10.4324/9781003646839-2",
+        "doi:10.4324/9781003646839-3",
+        "doi:10.2307/426441",
+        "doi:10.1017/cbo9781139030410.009"
       ],
       "last_receipt": {
-        "evidence": "source-53701392c2c4482a",
-        "outcome": "route_failure",
-        "persistent_identifiers": [],
-        "research_id": "res-vis-art-symmetry-001",
-        "route": "api.datacite.org:discovery",
+        "evidence": "source-20ead991dd614d81",
+        "outcome": "no_progress",
+        "persistent_identifiers": [
+          "doi:10.4324/9781003646839-2",
+          "doi:10.4324/9781003646839-3",
+          "doi:10.2307/426441",
+          "doi:10.1017/cbo9781139030410.009"
+        ],
+        "research_id": "res-vis-art-empirical-aesthetics-148",
+        "route": "api.crossref.org:discovery",
         "stage": "discovery"
       }
     }
@@ -143650,8 +144218,9 @@
       "query": "psychology of visual art perception empirical aesthetics symmetry composition",
       "reason": "Identify additional empirical reviews and theoretical frameworks regarding visual composition and aesthetic preferences to expand our provisional scoping notebook.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-cbb91c230a3c4086"
+      "status": "collected",
+      "created_by": "w-cbb91c230a3c4086",
+      "evidence": "source-20ead991dd614d81"
     }
   },
   "research_topics": [
@@ -143851,9 +144420,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-26T12:00:11.841363+00:00",
-    "anchor_version": 148,
-    "anchor_seq": 4207,
-    "effective_seconds": 130369.366425
+    "anchor_time": "2026-09-26T12:09:48.333185+00:00",
+    "anchor_version": 149,
+    "anchor_seq": 4225,
+    "effective_seconds": 130945.858247
   }
 }
