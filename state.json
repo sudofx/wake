@@ -16282,6 +16282,68 @@
       "source": "runtime:continuity",
       "version": 133,
       "time": "2026-09-26T04:29:44.819610+00:00"
+    },
+    "source-7c9ff2e4453c4aa5": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.datacite.org/dois?query=neurological+symptoms+and+manifestations+of+thyroid+and+adrenal+dysfunction+integrative+review&page%5Bsize%5D=4\", \"scope\": \"DataCite DOI metadata and descriptions where supplied; not full papers\", \"excerpt\": \"[{\\\"id\\\": \\\"10.5281/zenodo.45634\\\", \\\"doi\\\": \\\"10.5281/zenodo.45634\\\", \\\"titles\\\": [{\\\"title\\\": \\\"Annual Reports Of Education, Health And Sport 9781329876262\\\"}], \\\"publisher\\\": \\\"Zenodo\\\", \\\"publicationYear\\\": 2013, \\\"types\\\": {\\\"schemaOrg\\\": \\\"Book\\\", \\\"resourceTypeGeneral\\\": \\\"Text\\\", \\\"citeproc\\\": \\\"book\\\", \\\"bibtex\\\": \\\"book\\\", \\\"ris\\\": \\\"BOOK\\\", \\\"resourceType\\\": \\\"Book\\\"}, \\\"subjects\\\": [{\\\"subject\\\": \\\"Annual Reports\\\"}, {\\\"subject\\\": \\\"Education\\\"}, {\\\"subject\\\": \\\"Health\\\"}, {\\\"subject\\\": \\\"Sport\\\"}, {\\\"subject\\\": \\\"9781329876262\\\"}], \\\"descriptions\\\": [{\\\"descriptionType\\\": \\\"Abstract\\\", \\\"description\\\": \\\"Radomska Szkoła Wyższa w Radomiu\\\\n\\\\nRadom University in Radom\\\\n\\\\nAnnual Reports of Education, Health and Sport 9781329876262\\\\n\\\\nEdited by\\\\n\\\\nIwona Czerwińska Pawluk Hanna Żukowska Wiesława Pilewska Mariusz Klimczyk Adam Szulc Walery Zuków\\\\n\\\\nhtti)://ois.ukw.edu.i)l/index.i)hi)/iohs/index\\\\n\\\\nhtti)://ioumal.rsw.edu.i)l\\\\n\\\\nhtti)s://i)bn.nauka.gov.i)l/search?search&amp;searchCategorv=WORK&amp;filter.inJoumal=49068\\\\n\\\\nhtti)s://i)bn.nauka.gov.i)l/search?search&amp;searchCategorv=WORK&amp;filter.inJoumal=36616\\\\n\\\\nhtti)://elibrarv.ru/contents.asi)?titleid=37467\\\\n\\\\nOpen Access\\\\n\\\\n \\\\n\\\\nRadomska Szkoła Wyższa w Radomiu\\\\n\\\\nRadom University in Radom\\\\n\\\\nAnnual Reports of Education, Health and Sport 9781329876262\\\\n\\\\nEdited by\\\\n\\\\nIwona Czerwińska Pawluk Hanna Żukowska Wiesława Pilewska Mariusz Klimczyk Adam Szulc Walery Zuków\\\\n\\\\nhtti)://ois.ukw.edu.i)l/index.i)hi)/iohs/index\\\\n\\\\nhtti)://ioumal.rsw.edu.i)l\\\\n\\\\nhtti)s://i)bn.nauka.gov.i)l/search?search&amp;searchCategorv=WORK&amp;filter.inJoumal=49068\\\\n\\\\nhtti)s://i)bn.nauka.gov.i)l/search?search&amp;searchCategorv=WORK&amp;filter.inJoumal=36616\\\\n\\\\nhtti)://elibrarv.ru/contents.asi)?titleid=37467\\\\n\\\\nOpen Access\\\\n\\\\n \\\\n\\\\nScientific Council\\\\n\\\\npcl rm Ah* ten / IWriUuilVkmdi pet л» Ah* mcd T сНсисЬгке a|&gt;»i»««hxia it bam о pot л* Л h* med V Ed*» ilbonc-. pt\\\\\\\\4 rm Ah* fee i l*&gt;mki ihdmdi yr«dC г* Ah* med A GwhaAotlboncl pit                                         VI     ¿rwdoMkyitibamet\\\\n\\\\npit м Abb I «Аур» ilbimei pet m AbbimdA GudpMiUnmcipitni Ah* med к OiJy* abmeipot /» Ah* itW W 1Ъри tfawi prt mAh* med V Mvn itbamci pot mAh* med ft S*d«lkn il Wmci pet mAh* era О C4od«»A.)t ilkranei. pit rm A h* eed t SmnanA il bm»c&lt; pot m Ah* med 1. Shatmilbumcipet m Ah* med I ttm*i»e&lt;ltnmctp&lt;t m=\\\\\\\"\\\\\\\" ah*=\\\\\\\"\\\\\\\" med=\\\\\\\"\\\\\\\" a=\\\\\\\"\\\\\\\" ЬтАгуill=\\\\\\\"\\\\\\\" mrai=\\\\\\\"\\\\\\\" pst=\\\\\\\"\\\\\\\" О=\\\\\\\"\\\\\\\" ХсАсАя=\\\\\\\"\\\\\\\" tlinnri=\\\\\\\"\\\\\\\" p.i=\\\\\\\"\\\\\\\" л»=\\\\\\\"\\\\\\\" y'=\\\\\\\"\\\\\\\" vetfai=\\\\\\\"\\\\\\\" it=\\\\\\\"\\\\\\\" irene-pot=\\\\\\\"\\\\\\\" s=\\\\\\\"\\\\\\\" mnoam,=\\\\\\\"\\\\\\\" liberal=\\\\\\\"\\\\\\\" pat=\\\\\\\"\\\\\\\" abb=\\\\\\\"\\\\\\\" tied=\\\\\\\"\\\\\\\" Л=\\\\\\\"\\\\\\\" aneoed=\\\\\\\"\\\\\\\" o.=\\\\\\\"\\\\\\\" ax=\\\\\\\"\\\\\\\" pkdtt=\\\\\\\"\\\\\\\" i=\\\\\\\"\\\\\\\" jena=\\\\\\\"\\\\\\\" lknd4i=\\\\\\\"\\\\\\\" %*=\\\\\\\"\\\\\\\" hd)=\\\\\\\"\\\\\\\" tsimihmipet=\\\\\\\"\\\\\\\" к=\\\\\\\"\\\\\\\" ihaaailndmds=\\\\\\\"\\\\\\\" К=\\\\\\\"\\\\\\\" ckvticmb(firmer.pit=\\\\\\\"\\\\\\\" h=\\\\\\\"\\\\\\\" kn^aifcdmdi=\\\\\\\"\\\\\\\" x=\\\\\\\"\\\\\\\" Мойки»=\\\\\\\"\\\\\\\" imml»,=\\\\\\\"\\\\\\\" pet=\\\\\\\"\\\\\\\" w=\\\\\\\"\\\\\\\" М)«1м*нР.р&lt;4=\\\\\\\"\\\\\\\" yt=\\\\\\\"\\\\\\\" n*waie»wmti=\\\\\\\"\\\\\\\" ГтаАо(riimti.pot=\\\\\\\"\\\\\\\" pfmd=\\\\\\\"\\\\\\\" tnmti=\\\\\\\"\\\\\\\" pb=\\\\\\\"\\\\\\\" h*=\\\\\\\"\\\\\\\" vi=\\\\\\\"\\\\\\\" 7«aattvandi=\\\\\\\"\\\\\\\" amed=\\\\\\\"\\\\\\\" 1=\\\\\\\"\\\\\\\" fksaauobines=\\\\\\\"\\\\\\\" ai=\\\\\\\"\\\\\\\" u=\\\\\\\"\\\\\\\" ibyi,=\\\\\\\"\\\\\\\" ilvtmis=\\\\\\\"\\\\\\\" rvnbtiaihdmdt=\\\\\\\"\\\\\\\" ЛттупАа-еЫа=\\\\\\\"\\\\\\\" ifaimdi=\\\\\\\"\\\\\\\" doc=\\\\\\\"\\\\\\\" a«=\\\\\\\"\\\\\\\" v=\\\\\\\"\\\\\\\" &lt;1mm&gt;ifbme».=\\\\\\\"\\\\\\\" amd=\\\\\\\"\\\\\\\" c&gt;wmailw*ds=\\\\\\\"\\\\\\\" c'nan&amp;t=\\\\\\\"\\\\\\\" hr*yd=\\\\\\\"\\\\\\\" slsdmdi=\\\\\\\"\\\\\\\" bod.=\\\\\\\"\\\\\\\" &amp;=\\\\\\\"\\\\\\\" delon*»=\\\\\\\"\\\\\\\" ilbaaacs=\\\\\\\"\\\\\\\" md=\\\\\\\"\\\\\\\" dtternmewnb=\\\\\\\"\\\\\\\" ihdmdi=\\\\\\\"\\\\\\\" ihpier-dcra*-*\\\\\\\"**=\\\\\\\"\\\\\\\" inmli,=\\\\\\\"\\\\\\\" baeqrwaa=\\\\\\\"\\\\\\\" ipdaoti=\\\\\\\"\\\\\\\" i'=\\\\\\\"\\\\\\\" k=\\\\\\\"\\\\\\\" umaua=\\\\\\\"\\\\\\\" immtii=\\\\\\\"\\\\\\\" Кка*=\\\\\\\"\\\\\\\" sprlmti=\\\\\\\"\\\\\\\" a1.=\\\\\\\"\\\\\\\" kwm*=\\\\\\\"\\\\\\\"\\\\n\\\\nA med II MinmuU slttmts Amed A Ndv* (Wrnds Amed X Nmdtor ilbmKi Amed k ХтжкаvIMmtt, A mid G IvM iPdm!. Amed Г JY.hi^er* iMmti Amed A l*einl i iPdedt, A med L hapndi thdmdc A De%n le* (XipoAhc .4 lnAa&gt; doc A A YLdn (Ibmti, AT. X* tlbami А П MedK»H/ iPdmdL A md L DeUtMmdi\\\\n\\\\nEditorial Board\\\\n\\\\nSt rim Admit* lYUobas Pmd iwid iSh»*uc По» fend km lleem; • IVdmdt Akdmmr/ ftAm llSdmdX Iomm FrrAmki iTVdmdi Aiili Gdmni i)h*«t*0 &gt; I** Or)*» I lb mm i lldm И«!»к*им»*| iTVdmdi IV-«11/d**. .Mmdi Sen. Immb* dbtmti TM&gt;mil«fm*&lt;»(tlb«mt AmehrduMlCmh Xqc*ki Ylminda kndboi tCjc* kqcdbc. ;«* kliwr                            IUcjc.* Юпжлк iMmdi Abcp kodenei* il'oimli Itrtitci Lmje л'«* ХерзЫх i Ihfucr Sladcedi tPdmdt ,'n M«Ad iMndui U»dmli Mdlodne\\\\n\\\\niCeeth Re»-diH с Inli M*,4■.Pcdmdi YdJo Hl.hrto ilbmxI Stmmdra Und tPtdradk Mvmb* *A«Ao«i* ifoteidc K*A&gt;lm \\\\\\\\W мл ifelmd! Лем Sdt/tk • |4d*d&gt;. Votl Ч*иЫ| iPtdmd&gt;.\\\\n\\\\n)ei) Nomci* iWda4&gt;. Pw* пЫпгачг &gt;PUmdt lAbAdsn Padcnh iMmdi *к*тч Pdmdj» ifcdmdc l**n ttod**« lOech ЯфеЫкk KmvM ftm* ilVdmdi kmwvdЫ&lt;имеЦi iMmdk AWum* 'deln ilbaocv Te*|m*                    tt kmnci lime SekcAnnkj tPcdmdV МкПЗ Ыипмс: iPidetdc K*ot Ugmmk iMmii Ahkiendp bdiihdmtdl Smdi Snndj &lt;%mi Mmien Ymt-Lckjrd thdmdc Meciq Smdkwdi iPcbndt\\\\n\\\\nIhcboi) ТегемЬА llbimeL INnny \\\\\\\\bf«mu ilb amr&gt;. Моем Zemde cPodmdt Temmu 7«Aera*)e ilbmmi Wdef&gt; Mm (bdmdl llmi Mm*a iPoimdi\\\\n\\\\nAd\\\\\\\\i&gt;or&gt; Board\\\\n\\\\ntfwmi hdotdkilsdnli Wn |in*m itbmiri LMrldtbiMh lhem)i kermmrr Dm* ilsbndx Ylrmdm DodiAdbimei Kool tkemr iM«»*u&gt;. Kwmet kathmmK/ tfldmiA, )ao koermc/ tiNdmdi Vmidm Komi* ilsdmdi Г We.mj Mnned tPtdendc Yfabdv S.*u&gt; ilbmx ■ )вл Роуя*-I'.iWi Fipmaer h)*pe (Ibmi Riferl S/*blt iMmdv JAr IWhme iCMh KpcAbi\\\\n\\\\nReviewers:\\\\n\\\\npod rm Ah* fra 7- H*«kdkiiMmdi km I'aedlY IbuHmdAoMk M«D » ilbmnecpit m Ah* med W thpw (Pctmdipet m Ah* med 1 KarmrKtmti pst m Ah* med M kmie* ilknme.. pit m Ah* mnl Y Lmamk^ itbemrt p&lt;t m=\\\\\\\"\\\\\\\" ah*=\\\\\\\"\\\\\\\" pn=\\\\\\\"\\\\\\\" a=\\\\\\\"\\\\\\\" urtukilknmrlpet=\\\\\\\"\\\\\\\" rm=\\\\\\\"\\\\\\\" mid=\\\\\\\"\\\\\\\" v=\\\\\\\"\\\\\\\" mwkilbarel=\\\\\\\"\\\\\\\" pet=\\\\\\\"\\\\\\\" ik=\\\\\\\"\\\\\\\" naekubeilbmki=\\\\\\\"\\\\\\\" pat=\\\\\\\"\\\\\\\" h*.=\\\\\\\"\\\\\\\" gn=\\\\\\\"\\\\\\\" 0=\\\\\\\"\\\\\\\" ohodm*p=\\\\\\\"\\\\\\\" ilknnei=\\\\\\\"\\\\\\\" mah*=\\\\\\\"\\\\\\\" med=\\\\\\\"\\\\\\\" i=\\\\\\\"\\\\\\\" sancm*=\\\\\\\"\\\\\\\" ilbmaci=\\\\\\\"\\\\\\\" »=\\\\\\\"\\\\\\\" h*=\\\\\\\"\\\\\\\" l=\\\\\\\"\\\\\\\" lt»tm=\\\\\\\"\\\\\\\" illrsmet=\\\\\\\"\\\\\\\" pit=\\\\\\\"\\\\\\\" 1=\\\\\\\"\\\\\\\" umdcvi=\\\\\\\"\\\\\\\" ilbmnci=\\\\\\\"\\\\\\\" pot=\\\\\\\"\\\\\\\" О=\\\\\\\"\\\\\\\" m«dm=\\\\\\\"\\\\\\\" «ixtmnl=\\\\\\\"\\\\\\\" sktm.=\\\\\\\"\\\\\\\" ilbiliei=\\\\\\\"\\\\\\\" s=\\\\\\\"\\\\\\\" y«m*i».=\\\\\\\"\\\\\\\" tlbwiet.=\\\\\\\"\\\\\\\" .uumrcin=\\\\\\\"\\\\\\\" К=\\\\\\\"\\\\\\\" ihaoclvdmdi=\\\\\\\"\\\\\\\" abb=\\\\\\\"\\\\\\\" r=\\\\\\\"\\\\\\\" ОшЫякл=\\\\\\\"\\\\\\\" ttbemet=\\\\\\\"\\\\\\\" h=\\\\\\\"\\\\\\\" km^d=\\\\\\\"\\\\\\\" ilvtmdi=\\\\\\\"\\\\\\\" put=\\\\\\\"\\\\\\\" ual=\\\\\\\"\\\\\\\" tlbsmei.=\\\\\\\"\\\\\\\" x=\\\\\\\"\\\\\\\" mmamcjifcdmdi=\\\\\\\"\\\\\\\" w=\\\\\\\"\\\\\\\" vtiiindjikdmtip&lt;t=\\\\\\\"\\\\\\\" seed.ifthmdlpet=\\\\\\\"\\\\\\\" ГпИмквihdmdlpet=\\\\\\\"\\\\\\\" к=\\\\\\\"\\\\\\\" dihkibdnlk=\\\\\\\"\\\\\\\" yf=\\\\\\\"\\\\\\\" 7melt=\\\\\\\"\\\\\\\" (ddadt=\\\\\\\"\\\\\\\" *=\\\\\\\"\\\\\\\" 7tktm=\\\\\\\"\\\\\\\" itvdmdi=\\\\\\\"\\\\\\\" ai=\\\\\\\"\\\\\\\" №nk=\\\\\\\"\\\\\\\" tjvdmdi=\\\\\\\"\\\\\\\" mnl=\\\\\\\"\\\\\\\" na*mi1biam\\\\\\\\de&lt;=\\\\\\\"\\\\\\\" an=\\\\\\\"\\\\\\\" cbcne=\\\\\\\"\\\\\\\" ilbmxt=\\\\\\\"\\\\\\\" d=\\\\\\\"\\\\\\\" ii=\\\\\\\"\\\\\\\" or*&lt;i*«mmdt=\\\\\\\"\\\\\\\" amid=\\\\\\\"\\\\\\\" on»m*j=\\\\\\\"\\\\\\\" prahd=\\\\\\\"\\\\\\\" il'rlmdt=\\\\\\\"\\\\\\\" ab*=\\\\\\\"\\\\\\\" %=\\\\\\\"\\\\\\\" momt*=\\\\\\\"\\\\\\\" ixbemt,=\\\\\\\"\\\\\\\"\\\\n\\\\nA md V Seod« (lb*K| dx A A Mub lUraxc A 7 Ybky &lt; t bmc. A ft Mmkmntr tbdmdl A med к Tick (Mmdl\\\\n\\\\nEditors-in-Chief\\\\n\\\\nAnatoliy Go/hcnko Walcn Zukow\\\\n\\\\nCo-editors\\\\n\\\\nRailodan Muukk-ta Maivk Napicrala\\\\n\\\\nAssociate Editors\\\\n\\\\nIwona C/.crwinska Pan In к Marius/ Klimcxyk Miroslaua Cicslicka Adam S/ulc\\\\n\\\\nSecretary\\\\n\\\\nBurtlomicj Nicspod/inski\\\\n\\\\n© The Author(s) 2012-2013.\\\\n\\\\nIWi elliiw ti p*Xd»d и* Орт Vr«w at Animal U^erli * I duration llrblh md Yfat ef Medomda VikateVlytan « Wadmdn Ihli tUdm t atmrdly b Wedmn Ptimd &lt; lpm Амет Ш« mthbo h thdiihbrd tmdw 0» torn» * the СехИотСтштт Withmfm Ymreemnold lioeno nboh psu*» mi nenremmmiełmr. dtmtkmlen. emiiopedmtienb my mrAimc pmldodlb\\\\n\\\\norlfhkkl mthcris» md mor ar* ordMad\\\\n\\\\ncc^ CD©®\\\\n\\\\nAMithmlrn Im mad ambbr tb ««k b lb maimn ifrdlad hj the hoIm m Итмг (be ml b mi nay Itml ommdt that Ihn owdai te ym m \\\\\\\\ma mraflhr nmii. Wmmwrild Immey net melhlawml lb r—niritd pefm#<sup>4</sup> Мт» A*» Ifym *trr trmvfonn. я bdld i^m rkf* nmk. son mat tMithpelhrimAbif wmt anti imd»« (bcamrer 4n*ai Imm te ltd« me.\\\\n\\\\nIlertar btm mlkra tpnai m dm. IWm «(Игра *H m dm at Ihr m*<sup>1</sup> f*h*tin IretMlomi tpm<sup>n</sup> I »•* * okorhmir laWInr). I dll a i hdrdn he It*» m*n mtm ot Ib mmąutm U Ulnar a ~papt *\\\\n\\\\n1лтт\\\\\\\\Ш If«* (1М*т j»d *|da ln«|| (&gt;r*w( «тми I ia* Marolnal tyobnMomrvofir Valy* *e*fi&gt;1i «amdaih W\\\\n\\\\nIbhlhhlnj; llnuw; Radomska Sokoli Wy km n Radomiu. Radom I nłtrrdty In Radean Sir /.uhr/y cilrfo 2 24 tM Rjdom lei; *4* W JW 46 tt? imd orra idu, ul I’rlnflnc llouw: Rjdomtiji SrLob Wyższa n Kadoentai. Radem I nhmth In Radem Mr. /abrryeilet* 2 24-441 Radom Irl: »O iH 38J 6d 05 net* вrm edaol\\\\n\\\\nISBN 9781329876262\\\\n\\\\nLiczba znaków: 716 000 (ze streszczeniami i okładką). liczba grafik: 84 x 1 000 znaków (ryczałt) = 84 000 znaków. Razem: Liczba znaków: 800 000 (ze streszczeniami, okładką i grafikami) = 20,0 arkuszy wydawniczych.\\\\n\\\\nNumber of characters: 716 000 (with abstracts). Number of images: 84 x 1000 characters (lump sum) = 84 000 characters. Total: Number of characters: 800 000 (with abstracts, summaries and graphics) = 20,0 sheet publications.\\\\n\\\\nDOI http://dx.doi.org/10.5281/zenodo.45634\\\\n\\\\n \\\\n\\\\nContent:\\\\n\\\\nIntroduction............................................................................................................................... 5\\\\n\\\\nMikołajewska Emilia. Incidence of neurogenic heterotopic ossifications in patients with neurological deficits = Występowanie neurogennych skostnień okołostawowych u pacjentów neurologicznych, [in] Czerwińska Pawluk Iwona Ed., Żukowska Hanna Ed., Pilewska Wiesława Ed., Klimczyk Mariusz Ed., Szulc Adam Ed., Zuków Walery Ed. Annual Reports of Education, Health and Sport 9781329876262. RSW. Radom 2013. 7-14. ISBN 9781329876262. 304 p. © The Author(s) 2013. This articles is published with Open Access at Annual Reports of Education, Health and Sport. RSW. Radom Poland.\\\\n\\\\nMikołajewska Emilia. Use of orthopedic equipment in post-stroke patients as the element of rehabilitation = Wykorzystanie zaopatrzenia ortopedycznego w ramach rehabilitacji u pacjentów po udarze mózgu, [in] Czerwińska Pawluk Iwona Ed., Żukowska Hanna Ed., Pilewska Wiesława Ed., Klimczyk Mariusz Ed., Szulc Adam Ed., Zuków Walery Ed. Annual Reports of Education, Health and Sport 9781329876262. RSW. Radom 2013.15-22. ISBN 9781329876002. 304 p. © The Author(s) 2013. This articles is published with Open Access at Annual Reports of Education, Health and Sport 9781329876002 of Kazimierz Wielki University in Bydgoszcz, Poland.\\\\n\\\\nMikołajewska Emilia. Neurorehabilitation in pediatric stroke = Udar mózgu u dzieci - postępowanie w rehabilitacji neurologicznej, [in] Czerwińska Pawluk Iwona Ed., Żukowska Hanna E\", \"excerpt_truncated\": true, \"source_sha256\": \"14d34c92835f170efbd24ef17c726cbf257db2502c2b27b4fdd81fa14cf424e1\", \"verification_required\": true, \"topic_domain\": \"endocrinology\", \"evidence_role\": \"discovery\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.5281/zenodo.45634\"]}",
+      "id": "source-7c9ff2e4453c4aa5",
+      "scope": "collected",
+      "source": "https://api.datacite.org/dois?query=neurological+symptoms+and+manifestations+of+thyroid+and+adrenal+dysfunction+integrative+review&page%5Bsize%5D=4",
+      "version": 134,
+      "time": "2026-09-26T04:37:38.907474+00:00"
+    },
+    "source-92f3c8421b9d4141": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":239497,\\\"suggestion\\\":\\\"religious\\\",\\\"suggestionsnippet\\\":\\\"religious\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Religion\\\",\\\"pageid\\\":25414,\\\"size\\\":187367,\\\"wordcount\\\":19574,\\\"snippet\\\":\\\"\\nReligion\\nis a range of social-cultural systems, including designated behaviors and practices, ethics, morals, beliefs, worldviews, texts, sanctified places\\\",\\\"timestamp\\\":\\\"2026-09-21T06:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Abrahamic religions\\\",\\\"pageid\\\":13906453,\\\"size\\\":112861,\\\"wordcount\\\":10868,\\\"snippet\\\":\\\"The Abrahamic\\nreligions\\nare a set of monotheistic\\nreligions\\nthat respect or admire the religious figure Abraham as a patriarch and/or as a prophet, namely\\\",\\\"timestamp\\\":\\\"2026-09-18T17:21:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Civil religion\\\",\\\"pageid\\\":185692,\\\"size\\\":34053,\\\"wordcount\\\":3846,\\\"snippet\\\":\\\"Civil\\nreligion\\n, also referred to as a civic\\nreligion\\n, is the implicit religious values of a nation, as expressed through public rituals, symbols (such\\\",\\\"timestamp\\\":\\\"2026-06-25T16:06:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Yoruba religion\\\",\\\"pageid\\\":682534,\\\"size\\\":64332,\\\"wordcount\\\":4734,\\\"snippet\\\":\\\"The Yor\\\\u00f9b\\\\u00e1\\nreligion\\n(Yoruba: \\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e [\\\\u00ec\\\\u0283\\\\u025b\\\\u0300\\\\u0283\\\\u0113]), West African Orisa (\\\\u00d2r\\\\u00ec\\\\u1e63\\\\u00e0 [\\\\u00f2\\\\u027e\\\\u00ec\\\\u0283\\\\u00e0]), or Isese (\\\\u00cc\\\\u1e63\\\\u1eb9\\\\u0300\\\\u1e63e), comprises the traditional religious and spiritual\\\",\\\"timestamp\\\":\\\"2026-09-15T17:38:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Folk religion\\\",\\\"pageid\\\":21920776,\\\"size\\\":44106,\\\"wordcount\\\":4958,\\\"snippet\\\":\\\"Folk\\nreligion\\n, traditional\\nreligion\\n, or vernacular\\nreligion\\ncomprises, according to religious studies and folkloristics, various forms and expressions\\\",\\\"timestamp\\\":\\\"2026-09-14T10:35:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in China\\\",\\\"pageid\\\":367843,\\\"size\\\":300336,\\\"wordcount\\\":34062,\\\"snippet\\\":\\\"\\nReligion\\nin China by self-identified affiliation (Pew Research Center 2023) No\\nreligion\\n(93.0%) Buddhism (3.70%) Folk beliefs (0.20%) Christianity (1\\\",\\\"timestamp\\\":\\\"2026-09-12T03:20:45Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hellenistic religion\\\",\\\"pageid\\\":7491899,\\\"size\\\":17856,\\\"wordcount\\\":2083,\\\"snippet\\\":\\\"The concept of Hellenistic\\nreligion\\nas the late form of Ancient Greek\\nreligion\\ncovers any of the various systems of beliefs and practices of the people\\\",\\\"timestamp\\\":\\\"2026-08-19T12:26:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Religion in India\\\",\\\"pageid\\\":10710364,\\\"size\\\":125253,\\\"wordcount\\\":11197,\\\"snippet\\\":\\\"\\nReligion\\nin India (2011 census) Hinduism (79.8%) Islam (14.2%) Christianity (2.30%) Sikhism (1.70%) Buddhism (0.70%) Sarnaism (0.40%) Jainism (0.40%) Other\\\",\\\"timestamp\\\":\\\"2026-09-11T19:59:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"State religion\\\",\\\"pageid\\\":292285,\\\"size\\\":161900,\\\"wordcount\\\":12907,\\\"snippet\\\":\\\"state\\nreligion\\n(also called official\\nreligion\\n) is a\\nreligion\\nor creed officially endorsed by a sovereign state. A state with an official\\nreligion\\n(also\\\",\\\"timestamp\\\":\\\"2026-09-20T01:30:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"No religion\\\",\\\"pageid\\\":8656279,\\\"size\\\":549,\\\"wordcount\\\":105,\\\"snippet\\\":\\\"No\\nreligion\\nmay refer to: Irreligion, absence of, or indifference towards\\nreligion\\nAtheism, the absence of belief of the existence of deities Agnosticism\\\",\\\"timestamp\\\":\\\"2026-02-05T03:10:03Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"acd0d53d12d6afd9cde04b32bb84a0ec3d494ce1add5674791a85cb420245c65\", \"verification_required\": true, \"topic_domain\": \"religion\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-92f3c8421b9d4141",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=religion&format=json",
+      "version": 134,
+      "time": "2026-09-26T04:37:40.514064+00:00"
+    },
+    "source-62caa1f7f1cc48a2": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":393},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Art\\\",\\\"pageid\\\":752,\\\"size\\\":132424,\\\"wordcount\\\":14439,\\\"snippet\\\":\\\"spiritually, or philosophically motivated\\nart\\n; to create a sense of beauty (see\\naesthetics\\n); to explore the nature of\\nperception\\n; for pleasure; or to generate strong\\\",\\\"timestamp\\\":\\\"2026-09-09T08:09:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of art\\\",\\\"pageid\\\":8165347,\\\"size\\\":90900,\\\"wordcount\\\":11467,\\\"snippet\\\":\\\"The psychology of\\nart\\nis the scientific study of cognitive and emotional processes precipitated by the sensory\\nperception\\nof aesthetic artefacts, such\\\",\\\"timestamp\\\":\\\"2026-09-21T20:46:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"\\nAesthetics\\nis the branch of philosophy that studies beauty, taste, and related phenomena. In a broad sense, it includes the philosophy of\\nart\\n, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Tribal art\\\",\\\"pageid\\\":24811443,\\\"size\\\":11752,\\\"wordcount\\\":1204,\\\"snippet\\\":\\\"Tribal\\nart\\nis the\\nvisual\\narts and material culture of indigenous people. Also known as non-Western\\nart\\nor ethnographic\\nart\\n, or, controversially, primitive\\\",\\\"timestamp\\\":\\\"2025-12-21T03:03:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Rudolf Arnheim\\\",\\\"pageid\\\":467254,\\\"size\\\":17187,\\\"wordcount\\\":2040,\\\"snippet\\\":\\\"have included\\nVisual\\nThinking (1969), and The Power of the Center: A Study of\\nComposition\\nin the\\nVisual\\nArts (1982).\\nArt\\nand\\nVisual\\nPerception\\nwas revised\\\",\\\"timestamp\\\":\\\"2026-09-02T04:51:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Style (visual arts)\\\",\\\"pageid\\\":147860,\\\"size\\\":37916,\\\"wordcount\\\":4617,\\\"snippet\\\":\\\"\\nvisual\\nappearance of a work of\\nart\\nthat relates it to other works by the same artist or one from the same period, training, location, \\\"school\\\",\\nart\\nmovement\\\",\\\"timestamp\\\":\\\"2026-09-10T04:00:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of aesthetics\\\",\\\"pageid\\\":3376041,\\\"size\\\":78283,\\\"wordcount\\\":10808,\\\"snippet\\\":\\\"This is a history of\\naesthetics\\n. The first important contributions to aesthetic theory are usually considered to stem from philosophers in Ancient Greece\\\",\\\"timestamp\\\":\\\"2026-09-11T08:39:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychedelic art\\\",\\\"pageid\\\":1172710,\\\"size\\\":22057,\\\"wordcount\\\":2585,\\\"snippet\\\":\\\"Psychedelic\\nart\\n(also known as psychedelia) is\\nart\\n, graphics or\\nvisual\\ndisplays related to or inspired by psychedelic experiences and hallucinations known\\\",\\\"timestamp\\\":\\\"2026-09-25T18:14:30Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ma (negative space)\\\",\\\"pageid\\\":14904296,\\\"size\\\":8650,\\\"wordcount\\\":904,\\\"snippet\\\":\\\"space, ma may also refer to the\\nperception\\nof a space, gap or interval, without necessarily requiring a physical\\ncompositional\\nelement. This results in the\\\",\\\"timestamp\\\":\\\"2026-09-22T04:45:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Visual thinking\\\",\\\"pageid\\\":144904,\\\"size\\\":21987,\\\"wordcount\\\":2316,\\\"snippet\\\":\\\"and the memory image, which causes\\nvisual\\nthinkers from not seeing the eidetic image but rather drawing upon\\nperception\\nand useful information.[citation\\\",\\\"timestamp\\\":\\\"2026-08-10T06:11:00Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"60f8595db369f21623b758959a9b20c9fceb7641fb5ab35be0e6176de6921092\", \"verification_required\": true, \"topic_domain\": \"visual_art\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-62caa1f7f1cc48a2",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json",
+      "version": 134,
+      "time": "2026-09-26T04:37:41.315658+00:00"
+    },
+    "source-1f61014d33894ea4": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":3372},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological disorder\\\",\\\"pageid\\\":19572333,\\\"size\\\":21181,\\\"wordcount\\\":2085,\\\"snippet\\\":\\\"A\\nneurological\\ndisorder\\nis any\\ndisorder\\nof the\\nnervous\\nsystem\\n. Structural, biochemical or electrical abnormalities in the brain, spinal cord, or other\\\",\\\"timestamp\\\":\\\"2026-07-13T18:36:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Functional neurological symptom disorder\\\",\\\"pageid\\\":49594540,\\\"size\\\":23378,\\\"wordcount\\\":2498,\\\"snippet\\\":\\\"\\\"Functional\\nneurologic\\ndisorders\\n/conversion\\ndisorder\\n- Symptoms and causes\\\". Mayo Clinic. Retrieved 2022-01-04. \\\"Functional\\nneurological\\nsymptom\\ndisorder\\n\\\". Medicalnewstoday\\\",\\\"timestamp\\\":\\\"2026-09-13T17:05:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of neurological conditions and disorders\\\",\\\"pageid\\\":56335,\\\"size\\\":13517,\\\"wordcount\\\":1152,\\\"snippet\\\":\\\"This is a list of major and frequently observed\\nneurological\\ndisorders\\n(e.g., Alzheimer's disease), symptoms (e.g., back pain), signs (e.g., aphasia) and\\\",\\\"timestamp\\\":\\\"2026-06-20T20:53:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurology\\\",\\\"pageid\\\":21226,\\\"size\\\":28663,\\\"wordcount\\\":2752,\\\"snippet\\\":\\\"and treat\\nneurological\\ndisorders\\n. Neurologists diagnose and treat myriad\\nneurologic\\nconditions, including stroke, epilepsy, movement\\ndisorders\\nsuch as Parkinson's\\\",\\\"timestamp\\\":\\\"2026-09-24T16:30:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Central nervous system disease\\\",\\\"pageid\\\":17681122,\\\"size\\\":31068,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Central\\nnervous\\nsystem\\ndiseases or central\\nnervous\\nsystem\\ndisorders\\nare a group of\\nneurological\\ndisorders\\nthat affect the structure or function of the\\\",\\\"timestamp\\\":\\\"2026-08-15T09:05:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Paraneoplastic syndrome\\\",\\\"pageid\\\":11520228,\\\"size\\\":29092,\\\"wordcount\\\":2366,\\\"snippet\\\":\\\"to the peripheral\\nnervous\\nsystem\\n. Symptomatic features of paraneoplastic syndrome cultivate in four ways: endocrine,\\nneurological\\n, mucocutaneous, and\\\",\\\"timestamp\\\":\\\"2026-03-07T21:14:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Dysautonomia\\\",\\\"pageid\\\":410746,\\\"size\\\":32867,\\\"wordcount\\\":2908,\\\"snippet\\\":\\\"inherited or degenerative\\nneurologic\\ndiseases (primary dysautonomia) or injury of the autonomic\\nnervous\\nsystem\\nfrom an acquired\\ndisorder\\n(secondary dysautonomia)\\\",\\\"timestamp\\\":\\\"2026-08-12T22:17:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neurological examination\\\",\\\"pageid\\\":3893700,\\\"size\\\":11559,\\\"wordcount\\\":956,\\\"snippet\\\":\\\"A\\nneurological\\nexamination is the assessment of sensory neuron and motor responses, especially reflexes, to determine whether the\\nnervous\\nsystem\\nis impaired\\\",\\\"timestamp\\\":\\\"2026-08-29T23:18:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Multiple system atrophy\\\",\\\"pageid\\\":861802,\\\"size\\\":57832,\\\"wordcount\\\":5875,\\\"snippet\\\":\\\"GA (May 1960). \\\"A\\nneurological\\nsyndrome associated with orthostatic hypotension: a clinical-pathologic study\\\". Archives of\\nNeurology\\n. 2 (5): 511\\\\u2013527. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-10T19:21:28Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nervous system disease\\\",\\\"pageid\\\":18881907,\\\"size\\\":11932,\\\"wordcount\\\":1141,\\\"snippet\\\":\\\"\\nNervous\\nsystem\\ndiseases, also known as\\nnervous\\nsystem\\nor\\nneurological\\ndisorders\\n, refers to a small class of medical conditions affecting the\\nnervous\\nsystem\\\",\\\"timestamp\\\":\\\"2025-10-20T08:53:25Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"54cd16686c17de14b77ba900dd770c8e978faf8dbd54f433b9c35351ebfc4a54\", \"verification_required\": true, \"topic_domain\": \"neurology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-1f61014d33894ea4",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=neurology+nervous+system+neurological+disorders&format=json",
+      "version": 134,
+      "time": "2026-09-26T04:37:42.108065+00:00"
+    },
+    "source-8827a80b512f4e7b": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":40311},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness\\\",\\\"pageid\\\":5664,\\\"size\\\":187364,\\\"wordcount\\\":21233,\\\"snippet\\\":\\\"\\nConsciousness\\nis being aware of something internal to one's self, or of states or objects in one's external environment. It has been the topic of extensive\\\",\\\"timestamp\\\":\\\"2026-09-19T15:23:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Stream of consciousness\\\",\\\"pageid\\\":101483,\\\"size\\\":26790,\\\"wordcount\\\":3226,\\\"snippet\\\":\\\"In literary criticism, stream of\\nconsciousness\\nis a narrative mode or method that attempts \\\"to depict the multitudinous thoughts and feelings which pass\\\",\\\"timestamp\\\":\\\"2026-06-22T22:10:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Hard problem of consciousness\\\",\\\"pageid\\\":634216,\\\"size\\\":115556,\\\"wordcount\\\":13247,\\\"snippet\\\":\\\"hard problem of\\nconsciousness\\n(or simply the hard problem) is to explain how and why organisms have qualia, phenomenal\\nconsciousness\\n, or subjective experience\\\",\\\"timestamp\\\":\\\"2026-08-27T00:59:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Consciousness (disambiguation)\\\",\\\"pageid\\\":40457047,\\\"size\\\":695,\\\"wordcount\\\":97,\\\"snippet\\\":\\\"\\nconsciousness\\nin Wiktionary, the free dictionary.\\nConsciousness\\nis the state or quality of awareness.\\nConsciousness\\nmay also refer to:\\nConsciousness\\n(Hill\\\",\\\"timestamp\\\":\\\"2022-05-26T00:46:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Artificial consciousness\\\",\\\"pageid\\\":195552,\\\"size\\\":66143,\\\"wordcount\\\":6941,\\\"snippet\\\":\\\"Artificial\\nconsciousness\\n, also known as machine\\nconsciousness\\n, synthetic\\nconsciousness\\n, or digital\\nconsciousness\\n, is\\nconsciousness\\nhypothesized to be\\\",\\\"timestamp\\\":\\\"2026-09-23T13:46:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Double consciousness\\\",\\\"pageid\\\":3057990,\\\"size\\\":20535,\\\"wordcount\\\":2622,\\\"snippet\\\":\\\"Double\\nconsciousness\\nis the dual self-perception experienced by subordinated or colonized groups in an oppressive society. The term and the idea were\\\",\\\"timestamp\\\":\\\"2026-09-12T04:18:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Clouding of consciousness\\\",\\\"pageid\\\":7554116,\\\"size\\\":78787,\\\"wordcount\\\":7669,\\\"snippet\\\":\\\"Clouding of\\nconsciousness\\n, also called brain fog or mental fog, occurs when a person is conscious but slightly less wakeful or aware than normal. The\\\",\\\"timestamp\\\":\\\"2026-09-12T16:42:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Collective consciousness\\\",\\\"pageid\\\":1077491,\\\"size\\\":15253,\\\"wordcount\\\":1536,\\\"snippet\\\":\\\"Collective\\nconsciousness\\n, collective conscience, or collective conscious (French: conscience collective) is the set of shared beliefs, ideas, and moral\\\",\\\"timestamp\\\":\\\"2026-07-29T04:14:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The Science of Consciousness\\\",\\\"pageid\\\":42114583,\\\"size\\\":7071,\\\"wordcount\\\":712,\\\"snippet\\\":\\\"The Science of\\nConsciousness\\n(TSC; formerly Toward a Science of\\nConsciousness\\n) is an international academic conference that has been held biannually since\\\",\\\"timestamp\\\":\\\"2025-06-20T10:35:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-consciousness\\\",\\\"pageid\\\":2772118,\\\"size\\\":5955,\\\"wordcount\\\":683,\\\"snippet\\\":\\\"Self-\\nconsciousness\\nis a heightened sense of awareness of oneself. Historically, \\\"self-\\nconsciousness\\n\\\" was synonymous with \\\"self-awareness\\\", referring to\\\",\\\"timestamp\\\":\\\"2026-07-23T22:59:29Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"c2629519f4a998ffecea0afb116dd868d0b3bc29e39db9892a869e91009e0e2d\", \"verification_required\": true, \"topic_domain\": \"consciousness\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-8827a80b512f4e7b",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=consciousness&format=json",
+      "version": 134,
+      "time": "2026-09-26T04:37:42.867991+00:00"
+    },
+    "source-38f1c16186a142ef": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":36},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Music\\\",\\\"pageid\\\":18839,\\\"size\\\":143456,\\\"wordcount\\\":16225,\\\"snippet\\\":\\\"\\nMusic\\nis the arrangement of sound to create some combination of form,\\nharmony\\n,\\nmelody\\n,\\nrhythm\\n, or otherwise expressive content.\\nMusic\\nis generally agreed\\\",\\\"timestamp\\\":\\\"2026-09-23T13:33:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Metre (music)\\\",\\\"pageid\\\":84026,\\\"size\\\":44586,\\\"wordcount\\\":4180,\\\"snippet\\\":\\\"(eds.). Musical\\nStructure\\nand\\nCognition\\n. London: Academic Press. ISBN\\\\u00a0978-0-12357170-0. Lester, Joel (1986). The\\nRhythms\\nof Tonal\\nMusic\\n. Carbondale: Southern\\\",\\\"timestamp\\\":\\\"2026-09-10T22:06:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music and emotion\\\",\\\"pageid\\\":33107185,\\\"size\\\":52701,\\\"wordcount\\\":5883,\\\"snippet\\\":\\\"Emotion is induced in a listener because a feature of the\\nmusic\\n, such as\\nrhythm\\nor\\nharmony\\n, violates, delays, or confirms a listener's expectations. In\\\",\\\"timestamp\\\":\\\"2026-09-13T21:50:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music theory\\\",\\\"pageid\\\":54783,\\\"size\\\":122949,\\\"wordcount\\\":13838,\\\"snippet\\\":\\\"computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter, and form. Research in\\nmusic\\nhistory can benefit from systematic\\\",\\\"timestamp\\\":\\\"2026-09-24T23:02:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroscience of music\\\",\\\"pageid\\\":25049383,\\\"size\\\":80829,\\\"wordcount\\\":9690,\\\"snippet\\\":\\\"cortex is primarily involved in perceiving pitch, and parts of\\nharmony\\n,\\nmelody\\nand\\nrhythm\\n. One study by Petr Janata found that there are tonality-sensitive\\\",\\\"timestamp\\\":\\\"2026-09-21T08:40:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Embodied music cognition\\\",\\\"pageid\\\":8676342,\\\"size\\\":14007,\\\"wordcount\\\":1763,\\\"snippet\\\":\\\"Embodied\\nmusic\\ncognition\\nas it was originally a direction within systematic musicology interested in studying the role of the human body in relation to\\\",\\\"timestamp\\\":\\\"2026-08-06T01:21:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-specific disorders\\\",\\\"pageid\\\":25213736,\\\"size\\\":10890,\\\"wordcount\\\":1469,\\\"snippet\\\":\\\"elements of\\nmusic\\n, such as pitch,\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n; the ability to react both emotionally and with bodily movements (e.g. dancing) to\\nmusic\\n; to form\\\",\\\"timestamp\\\":\\\"2026-06-06T14:12:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Deep structure and surface structure\\\",\\\"pageid\\\":283746,\\\"size\\\":10396,\\\"wordcount\\\":1213,\\\"snippet\\\":\\\"a two-level generative\\nstructure\\nfor\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n, of which the analysis by Lee (1985) of rhythmical\\nstructure\\nis an instance. (See also:\\\",\\\"timestamp\\\":\\\"2025-09-24T18:19:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"to\\nmusic\\ntheory through investigations of the perception and computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of music\\\",\\\"pageid\\\":3403168,\\\"size\\\":32730,\\\"wordcount\\\":1766,\\\"snippet\\\":\\\"and silence. It may be expressed in terms of pitch,\\nrhythm\\n,\\nharmony\\n, and timbre. Definition of\\nmusic\\nOne of the arts One of the performing arts One of the\\\",\\\"timestamp\\\":\\\"2026-09-03T23:48:41Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"a46d845d648cc1e33793135ecbcd50beb5cf0d62096561cf4f4e1024de4fb51b\", \"verification_required\": true, \"topic_domain\": \"music\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-38f1c16186a142ef",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json",
+      "version": 134,
+      "time": "2026-09-26T04:37:43.716959+00:00"
+    },
+    "r-e1f383615b444edc": {
+      "actor": "runtime",
+      "content": "{\"base_version\":134,\"inherited_commitments\":[],\"invocation\":\"w-e1f383615b444edc\",\"previous_head\":\"297d50fe9c1cd87d0ff7ef14215aa190c3222853170bfa1f8a837e34e7b90d82\",\"process_id\":2328,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-e1f383615b444edc",
+      "source": "runtime:continuity",
+      "version": 134,
+      "time": "2026-09-26T04:37:46.484987+00:00"
     }
   },
   "journal": [
@@ -126334,6 +126396,440 @@
           "reason": "configured_daily_limit"
         }
       ]
+    },
+    "w-e1f383615b444edc": {
+      "base_version": 134,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 18739,
+        "delivered_request_chars": 45608,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "request_compression_ratio": 0.4022,
+        "retrieval_rehydrated_evidence_count": 2,
+        "rich_context_chars": 113387,
+        "working_set_chars": 3366
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-e1f383615b444edc",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 134,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 1.0
+            },
+            "id": "endo-neuro-interaction-001",
+            "score": 0.825,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Hormonal Regulation of Nervous System Function"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2328,
+      "provider": "gemini",
+      "quota_day": "2026-09-25",
+      "request_hash": "2ac11de974c97691c01c14ec1172eb5711553955ab72e5cdb06236fbd4633757",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-neurodiversity-foundations-01",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-dance-rhythm-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-41fac1eecb0246dd",
+              "source-51a9b989df3144af"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-visual-art-composition-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-480aa67d5ebe49ef"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-480aa67d5ebe49ef",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-1f19d52cd2f243ec"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-1f19d52cd2f243ec",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-27b7f7f692804466"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-27b7f7f692804466",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-68721d9c8ff94d23"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-68721d9c8ff94d23",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-17cb50db93484561"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-17cb50db93484561",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-6eec8365c2b945b4"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-6eec8365c2b945b4",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658",
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b",
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af",
+          "source-480aa67d5ebe49ef",
+          "source-1f19d52cd2f243ec",
+          "source-27b7f7f692804466",
+          "source-68721d9c8ff94d23",
+          "source-17cb50db93484561",
+          "source-6eec8365c2b945b4"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 9,
+          "evidence_count": 12,
+          "trigger_counts": {
+            "notebook_revised": 3,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "runtime_performance": {
+        "compaction_ms": 3.908,
+        "context_build_ms": 50.882,
+        "load_ms": 916.267,
+        "receipt_ms": 513.134,
+        "start_total_before_record_ms": 2821.324,
+        "store": {
+          "append_cache_hits": 10,
+          "append_cache_misses": 0,
+          "cached_copy_ms": 900.873,
+          "cached_loads": 0,
+          "event_count": 3819,
+          "full_replays": 11,
+          "replay_ms": 6722.091,
+          "trusted_projection_active": true
+        },
+        "temporal_ms": 1335.981
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 4,
+          "topic": "endocrinology"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [],
+        "enforce_selected_topic": false,
+        "hard_rejection_threshold": 5,
+        "parked": {},
+        "reason": "current durable project topic remains eligible",
+        "rotation_required": false,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "endocrinology",
+        "temporal": {
+          "anchor_seq": 3818,
+          "anchor_time": "2026-09-26T04:37:44.957666+00:00",
+          "anchor_version": 134,
+          "effective_seconds": 103822.482728
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": null,
+        "topic_selection_candidates": [],
+        "topic_selection_method": "active_topic"
+      },
+      "temporal": {
+        "cycle_distance": 1,
+        "effective_elapsed_seconds": 481.650389,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 103822.482728,
+        "intervening_events": {
+          "accepted": 1,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 0,
+          "research_collected": 1,
+          "squirrel_assessed": 1,
+          "total": 14
+        },
+        "observed_at": "2026-09-26T04:37:44.957666+00:00",
+        "previous_anchor_time": "2026-09-26T04:29:43.307277+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 481.650389
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 18739,
+        "inquiry_drive_project_count": 1,
+        "mode": "bounded",
+        "retrieval_candidate_count": 9,
+        "retrieval_evidence_count": 12,
+        "retrieval_rehydrated_evidence_count": 2,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 3,
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 3366,
+        "working_to_delivered_ratio": 0.1796
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "endo-neuro-interaction-001",
+            "next_step": "Search for integrative reviews or medical literature summarizing the neurological sequelae of common endocrine disorders.",
+            "question": "How do specific endocrine dysfunctions, such as thyroid or adrenal imbalances, manifest as neurological symptoms, and what are the primary biological pathways connecting these systems?",
+            "title": "Hormonal Regulation of Nervous System Function"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-religion-cross-cultural-001",
+            "project": "religion-cross-cultural-practices",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 1,
+            "summary": "Initial status report indicating that the current evidence set consists of unrelated bibliographic metadata.",
+            "title": "Provisional Synthesis: Cross-Cultural Religious Practices"
+          },
+          {
+            "id": "nb-religion-002",
+            "project": "religion-cross-cultural-practices",
+            "provenance": [
+              "source-7bd43608b269427f",
+              "source-d56377b15875422a"
+            ],
+            "revision": 1,
+            "summary": "This notebook synthesizes available bibliographic metadata concerning cognitive and evolutionary approaches to religion, noting that while the sources provide a venue for such research, full content access is currently absent.",
+            "title": "Provisional Synthesis: Cross-Cultural Religious Practices"
+          },
+          {
+            "id": "nb-religion-ritual-psych-001",
+            "project": "religion-cross-cultural-practices",
+            "provenance": [
+              "source-0e0aa6aa238246cb"
+            ],
+            "revision": 1,
+            "summary": "This notebook synthesizes the 'process-based framework' from a 2017 integrative review of ritual psychology, noting the distinction between the ritual form and its psychological function.",
+            "title": "Synthesis: The Psychology of Rituals"
+          },
+          {
+            "id": "nb-neuro-metabolic-001",
+            "project": "neurology-metabolic-pathways",
+            "provenance": [
+              "source-8fb4038a7344498e",
+              "source-e41f8efd700544cf"
+            ],
+            "revision": 1,
+            "summary": "An initial assessment of the intersection between metabolic pathways and neurological health, based on bibliographic metadata.",
+            "title": "Provisional Synthesis: Metabolic Drivers in Neurological Function"
+          },
+          {
+            "id": "nb-evo-foundations-001",
+            "project": "evolutionary-biology-foundations",
+            "provenance": [
+              "source-2cd2684377c54051",
+              "source-e2e41e9bcb594def"
+            ],
+            "revision": 1,
+            "summary": "This notebook synthesizes available bibliographic metadata to frame future inquiry into how evolutionary biology distinguishes mechanisms such as adaptation, byproduct, drift, and constraint.",
+            "title": "Provisional Synthesis: Evolutionary Mechanisms"
+          },
+          {
+            "id": "nb-endo-neuro-001",
+            "project": "endo-neuro-interaction-001",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 1,
+            "summary": "This provisional synthesis uses collected bibliographic metadata to scope the intersection of endocrinology and neurology. Current evidence is limited to reference material and linguistic analysis contexts, which do not yet provide specific clinical mechanisms for endocrine-neurological pathology.",
+            "title": "Provisional Synthesis: Endocrine Influence on Neurological Function"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "rejected",
+      "time": "2026-09-26T04:37:46.967539+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 3473,
+          "http_status": 200,
+          "model": "gemini-3.1-flash-lite",
+          "request_payload_bytes": 49700,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.1-flash-lite",
+      "finished": "2026-09-26T04:38:12.954418+00:00",
+      "reason": "Research request ID already exists",
+      "skipped_models": [
+        {
+          "model": "gemini-3.8-flash",
+          "reason": "configured_daily_limit"
+        },
+        {
+          "model": "gemini-3.5-flash",
+          "reason": "configured_daily_limit"
+        }
+      ]
     }
   },
   "pending": null,
@@ -126341,7 +126837,7 @@
     "counters": {
       "consciousness": 1,
       "dance": 1,
-      "endocrinology": 0,
+      "endocrinology": 1,
       "entropy": 5,
       "epistemology": 0,
       "evolutionary_biology": 5,
@@ -126359,11 +126855,11 @@
       "attention_saturation_triggered": false,
       "attention_topic": "endocrinology",
       "durable_progress": false,
-      "hard_rejection": false,
-      "invocation": "w-62b56d927bf740a2",
+      "hard_rejection": true,
+      "invocation": "w-e1f383615b444edc",
       "restored_topics": [],
       "selected_topic": "endocrinology",
-      "terminal": "accepted",
+      "terminal": "rejected",
       "triggered_topics": []
     },
     "attention": {
@@ -127446,19 +127942,24 @@
     "endo-neuro-interaction-001": {
       "project": "endo-neuro-interaction-001",
       "domain": "endocrinology",
-      "no_progress": 1,
+      "no_progress": 2,
       "routes": [
-        "api.semanticscholar.org:discovery"
+        "api.semanticscholar.org:discovery",
+        "api.datacite.org:discovery"
       ],
       "capability_blocked": false,
       "retry_after_version": null,
-      "persistent_identifiers": [],
+      "persistent_identifiers": [
+        "doi:10.5281/zenodo.45634"
+      ],
       "last_receipt": {
-        "evidence": "source-5e8589e0a70e455c",
-        "outcome": "route_failure",
-        "persistent_identifiers": [],
-        "research_id": "res-endo-neuro-mechanism-search-001",
-        "route": "api.semanticscholar.org:discovery",
+        "evidence": "source-7c9ff2e4453c4aa5",
+        "outcome": "no_progress",
+        "persistent_identifiers": [
+          "doi:10.5281/zenodo.45634"
+        ],
+        "research_id": "res-endo-neuro-pathways-001",
+        "route": "api.datacite.org:discovery",
         "stage": "discovery"
       }
     }
@@ -129374,8 +129875,9 @@
       "query": "neurological symptoms and manifestations of thyroid and adrenal dysfunction integrative review",
       "reason": "The existing evidence for this project is bibliographic and provides no clinical or mechanistic detail; this search targets integrative medical reviews to address the project's question.",
       "type": "research",
-      "status": "queued",
-      "created_by": "w-62b56d927bf740a2"
+      "status": "collected",
+      "created_by": "w-62b56d927bf740a2",
+      "evidence": "source-7c9ff2e4453c4aa5"
     }
   },
   "research_topics": [
@@ -129575,9 +130077,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-26T04:29:43.307277+00:00",
-    "anchor_version": 133,
-    "anchor_seq": 3803,
-    "effective_seconds": 103340.832339
+    "anchor_time": "2026-09-26T04:37:44.957666+00:00",
+    "anchor_version": 134,
+    "anchor_seq": 3818,
+    "effective_seconds": 103822.482728
   }
 }
