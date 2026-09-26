@@ -273,19 +273,19 @@
     const capabilityBlocks=Object.values(s.acquisition||{}).filter(x=>x.capability_blocked).length;
     const parkedTopics=Object.keys(s.squirrel?.deferred||{}).length;
     const telemetry=[
-      ['Record span',recordHours>=24?(recordHours/24).toFixed(1)+'d':recordHours.toFixed(1)+'h','first → latest completed wake'],
-      ['Wake velocity',wakesPerHour.toFixed(2)+'/h',completed.length+' completed'],
-      ['Accepted velocity',acceptedPerHour.toFixed(2)+'/h',acceptedCount+' accepted'],
+      ['Wall-clock span',recordHours>=24?(recordHours/24).toFixed(1)+'d':recordHours.toFixed(1)+'h','first → latest completed wake · idle included'],
+      ['Completed / wall h',wakesPerHour.toFixed(2)+'/h',completed.length+' completed wakes across elapsed wall time'],
+      ['Accepted / wall h',acceptedPerHour.toFixed(2)+'/h',acceptedCount+' accepted wakes across elapsed wall time'],
       ['Rejection pressure',rejectionRate.toFixed(1)+'%',rejectedCount+' rejected'],
       ['Fallback rate',fallbackRate.toFixed(1)+'%',fallbackWakes+' multi-attempt wakes'],
       ['Actions / accepted',actionPerAccepted.toFixed(2),actionTotal+' durable actions'],
-      ['Evidence / accepted',evidencePerAccepted.toFixed(2),evidenceCount+' evidence records'],
-      ['Topic coverage',topicActive+'/'+configuredTopicCount,'topics with recorded activity'],
+      ['Evidence density',evidencePerAccepted.toFixed(2),evidenceCount+' current evidence records ÷ '+acceptedCount+' accepted wakes'],
+      ['Topic coverage',topicActive+'/'+configuredTopicCount,'configured topics with accepted-action activity'],
       ['Open obligations',openObligations,String(overdue)+' overdue'],
       ['Capability blocks',capabilityBlocks,'equivalent retrieval routes paused'],
       ['Problem frames',frames.length,'strategy hypotheses; not findings'],
       ['Squirrel parking',parkedTopics,'topics preserved while attention moves'],
-      ['Known attempts',knownAttempts.length,providerSuccesses+' success-labelled']
+      ['Known provider attempts',knownAttempts.length,providerSuccesses+' success-labelled']
     ];
     const telemetryHtml=telemetry.map(([label,value,note])=>`<article class="telemetry-cell"><span>${label}</span><strong>${value}</strong><small>${note}</small></article>`).join('');
     const card=(value,label,note)=>`<article class="metric-card"><strong>${value}</strong><span>${label}</span><small>${note}</small></article>`;
