@@ -47,10 +47,9 @@ jobs:
     # while preserving push refreshes and explicit workflow_dispatch batches.
     if: github.ref_name == github.event.repository.default_branch && (github.event_name != 'schedule' || vars.WAKE_SCHEDULE_PAUSED != 'true')
     runs-on: ubuntu-latest
-    # A wake is bounded, but final export/persistence grows with the durable record.
-    # Ten minutes could cancel a successfully rejected/accepted wake while its
-    # receipt was being published, turning a normal outcome into a false failure.
-    timeout-minutes: 30
+    # The model request itself is bounded by wake.toml. This outer ceiling only
+    # catches broken Python/GitHub state that fails to return control.
+    timeout-minutes: 5
     outputs:
       report_ready: ${{ steps.report.outputs.ready }}
       artifact_name: ${{ steps.report.outputs.artifact_name }}
@@ -76,12 +75,12 @@ jobs:
           elif [[ "${{ github.event_name }}" == "push" || "${{ inputs.publish_only }}" == "true" ]]; then
             python scripts/github_wake.py --publish-only
           else
-            python scripts/github_wake.py
+            python scripts/github_wake.py --record-only
           fi
       - name: Confirm report is ready
         id: report
         # A handled provider failure still produces a valid public report.
-        if: always() && steps.cycle.outputs.skipped != 'true'
+        if: always() && steps.cycle.outputs.skipped != 'true' && steps.cycle.outputs.publication_skipped != 'true'
         run: |
           test -f site/index.html
           echo 'ready=true' >> "$GITHUB_OUTPUT"
