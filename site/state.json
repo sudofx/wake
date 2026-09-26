@@ -1,5 +1,5 @@
 {
-  "version": 147,
+  "version": 148,
   "objective": "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.",
   "focus": "continuity",
   "beliefs": {},
@@ -17708,6 +17708,68 @@
       "source": "runtime:continuity",
       "version": 146,
       "time": "2026-09-26T11:42:34.513597+00:00"
+    },
+    "source-8defc56204704290": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.crossref.org/works/10.1146%2Fannurev-psych-120710-100504\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 9, 25]], \\\"date-time\\\": \\\"2026-09-25T22:13:17Z\\\", \\\"timestamp\\\": 1790374397992, \\\"version\\\": \\\"4.1.0\\\"}, \\\"reference-count\\\": 176, \\\"publisher\\\": \\\"Annual Reviews\\\", \\\"issue\\\": \\\"1\\\", \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"Annu. Rev. Psychol.\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[2013, 1, 3]]}, \\\"abstract\\\": \\\"<jats:p>Human aesthetic preference in the visual domain is reviewed from definitional, methodological, empirical, and theoretical perspectives. Aesthetic science is distinguished from the perception of art and from philosophical treatments of aesthetics. The strengths and weaknesses of important behavioral techniques are presented and discussed, including two-alternative forced-choice, rank order, subjective rating, production/adjustment, indirect, and other tasks. Major findings are reviewed about preferences for colors (single colors, color combinations, and color harmony), spatial structure (low-level spatial properties, shape properties, and spatial composition within a frame), and individual differences in both color and spatial structure. Major theoretical accounts of aesthetic response are outlined and evaluated, including explanations in terms of mere exposure effects, arousal dynamics, categorical prototypes, ecological factors, perceptual and conceptual fluency, and the interaction of multiple components. The results of the review support the conclusion that aesthetic response can be studied rigorously and meaningfully within the framework of scientific psychology.</jats:p>\\\", \\\"DOI\\\": \\\"10.1146/annurev-psych-120710-100504\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2011, 3, 1]], \\\"date-time\\\": \\\"2011-03-01T21:46:23Z\\\", \\\"timestamp\\\": 1299015983000}, \\\"page\\\": \\\"77-107\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 559, \\\"title\\\": [\\\"Visual Aesthetics and Human Preference\\\"], \\\"prefix\\\": \\\"10.1146\\\", \\\"volume\\\": \\\"64\\\", \\\"author\\\": [{\\\"given\\\": \\\"Stephen E.\\\", \\\"family\\\": \\\"Palmer\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Department of Psychology, University of California, Berkeley, California 94720;, ,\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Karen B.\\\", \\\"family\\\": \\\"Schloss\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Department of Psychology, University of California, Berkeley, California 94720;, ,\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Jonathan\\\", \\\"family\\\": \\\"Sammartino\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [{\\\"name\\\": \\\"Department of Psychology, University of California, Berkeley, California 94720;, ,\\\"}], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"22\\\", \\\"reference\\\": [{\\\"key\\\": \\\"B1\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1177/002202217300400201\\\"}, {\\\"key\\\": \\\"B2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/0163-6383(87)90029-4\\\"}, {\\\"key\\\": \\\"B3\\\", \\\"volume-title\\\": \\\"Interaction of Color\\\", \\\"author\\\": \\\"Albers J\\\", \\\"year\\\": \\\"1971\\\"}, {\\\"key\\\": \\\"B4\\\", \\\"volume-title\\\": \\\"The Nature of Order: An Essay on the Art of Building and the Nature of the Universe\\\", \\\"author\\\": \\\"Alexander C\\\", \\\"year\\\": \\\"2002\\\"}, {\\\"key\\\": \\\"B5\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/BF00444162\\\"}, {\\\"key\\\": \\\"B6\\\", \\\"first-page\\\": \\\"541\\\", \\\"volume\\\": \\\"4\\\", \\\"author\\\": \\\"Angier RP\\\", \\\"year\\\": \\\"1903\\\", \\\"journal-title\\\": \\\"Psychol. Rev. Monogr. Suppl.\\\"}, {\\\"key\\\": \\\"B7\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"DOI\\\": \\\"10.1525/9780520351271\\\", \\\"volume-title\\\": \\\"Art and Visual Perception: A Psychology of the Creative Eye\\\", \\\"author\\\": \\\"Arnheim R\\\", \\\"year\\\": \\\"1974\\\"}, {\\\"key\\\": \\\"B8\\\", \\\"volume-title\\\": \\\"The Power of the Center\\\", \\\"author\\\": \\\"Arnheim R\\\", \\\"year\\\": \\\"1988\\\"}, {\\\"key\\\": \\\"B9\\\", \\\"volume-title\\\": \\\"Math and the Mona Lisa: The Art and Science of Leonardo da Vinci\\\", \\\"author\\\": \\\"Atalay B\\\", \\\"year\\\": \\\"2004\\\"}, {\\\"key\\\": \\\"B10\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/427666\\\"}, {\\\"key\\\": \\\"B11\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1467-9280.2006.01759.x\\\"}, {\\\"key\\\": \\\"B12\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/h0041135\\\"}, {\\\"key\\\": \\\"B13\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/11164-000\\\"}, {\\\"key\\\": \\\"B14\\\", \\\"volume-title\\\": \\\"Aesthetics and Psychobiology\\\", \\\"author\\\": \\\"Berlyne DE\\\", \\\"year\\\": \\\"1971\\\"}, {\\\"key\\\": \\\"B15\\\", \\\"volume-title\\\": \\\"Studies in the New Experimental Aesthetics: Steps Toward an Objective Psychology of Aesthetic Appreciation.\\\", \\\"author\\\": \\\"Berlyne DE\\\", \\\"year\\\": \\\"1974\\\"}, {\\\"key\\\": \\\"B16\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1080/1357650X.2010.508219\\\"}, {\\\"key\\\": \\\"B17\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.4159/harvard.9780674734470\\\"}, {\\\"key\\\": \\\"B18\\\", \\\"volume-title\\\": \\\"Color Psychology and Color Therapy\\\", \\\"author\\\": \\\"Birren F\\\", \\\"year\\\": \\\"1961\\\"}, {\\\"key\\\": \\\"B19\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/0022-0965(75)90070-3\\\"}, {\\\"key\\\": \\\"B20\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/BF00309712\\\"}, {\\\"key\\\": \\\"B21\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/1422765\\\"}, {\\\"key\\\": \\\"B22\\\", \\\"first-page\\\": \\\"111\\\", \\\"volume\\\": \\\"2\\\", \\\"author\\\": \\\"Bullough E\\\", \\\"year\\\": \\\"1907\\\", \\\"journal-title\\\": \\\"Brit. J. Psychol.\\\"}, {\\\"key\\\": \\\"B23\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/h0074055\\\"}, {\\\"key\\\": \\\"B24\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1162/jocn.2010.21457\\\"}, {\\\"key\\\": \\\"B25\\\", \\\"volume-title\\\": \\\"The Principles of Harmony and Contrast of Colors\\\", \\\"author\\\": \\\"Chevreul ME\\\", \\\"year\\\": \\\"1839\\\"}, {\\\"key\\\": \\\"B26\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/1127374\\\"}, {\\\"key\\\": \\\"B27\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/s11199-006-9089-9\\\"}, {\\\"key\\\": \\\"B28\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2466/pms.1968.26.3c.1203\\\"}, {\\\"key\\\": \\\"B29\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1002/1520-6378(200102)26:1<29::AID-COL4>3.0.CO;2-B\\\"}, {\\\"key\\\": \\\"B30\\\", \\\"first-page\\\": \\\"562\\\", \\\"volume\\\": \\\"10\\\", \\\"author\\\": \\\"Cohn J\\\", \\\"year\\\": \\\"1884\\\", \\\"journal-title\\\": \\\"Philos. Stud.\\\"}, {\\\"key\\\": \\\"B31\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.3758/BF03196493\\\"}, {\\\"key\\\": \\\"B32\\\", \\\"first-page\\\": \\\"33\\\", \\\"volume-title\\\": \\\"New Directions in Aesthetics, Creativity, and the Psychology of Art\\\", \\\"author\\\": \\\"Cutting JE\\\", \\\"year\\\": \\\"2006\\\"}, {\\\"key\\\": \\\"B33\\\", \\\"volume-title\\\": \\\"Treatise on Painting\\\", \\\"author\\\": \\\"da Vinci L\\\", \\\"year\\\": \\\"1942\\\"}, {\\\"key\\\": \\\"B34\\\", \\\"volume-title\\\": \\\"Spatial Vision\\\", \\\"author\\\": \\\"De Valois RL\\\", \\\"year\\\": \\\"1990\\\"}, {\\\"key\\\": \\\"B35\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/2183429\\\"}, {\\\"key\\\": \\\"B36\\\", \\\"volume-title\\\": \\\"Introduction to Aesthetics: An Analytic Approach\\\", \\\"author\\\": \\\"Dickie G\\\", \\\"year\\\": \\\"1997\\\"}, {\\\"key\\\": \\\"B37\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1467-9280.2008.02051.x\\\"}, {\\\"key\\\": \\\"B38\\\", \\\"first-page\\\": \\\"94\\\", \\\"volume\\\": \\\"31\\\", \\\"author\\\": \\\"Eysenck HJ\\\", \\\"year\\\": \\\"1940\\\", \\\"journal-title\\\": \\\"Brit. J. Psychol. Gen.-Sect.\\\"}, {\\\"key\\\": \\\"B39\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/1417683\\\"}, {\\\"key\\\": \\\"B40\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/h0031469\\\"}, {\\\"key\\\": \\\"B41\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2190/UD7Y-GN8P-Q0EV-Q13J\\\"}, {\\\"key\\\": \\\"B42\\\", \\\"volume-title\\\": \\\"Zur experimentalen Aesthetik\\\", \\\"author\\\": \\\"Fechner GT\\\", \\\"year\\\": \\\"1871\\\"}, {\\\"key\\\": \\\"B43\\\", \\\"volume-title\\\": \\\"Vorschule der Aesthetik\\\", \\\"author\\\": \\\"Fechner GT\\\", \\\"year\\\": \\\"1876\\\"}, {\\\"key\\\": \\\"B44\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1068/p5814\\\"}, {\\\"key\\\": \\\"B45\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1111/j.1467-7687.2009.00884.x\\\"}, {\\\"key\\\": \\\"B46\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1348/026151007X256672\\\"}, {\\\"key\\\": \\\"B47\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0022-5371(63)80046-8\\\"}, {\\\"key\\\": \\\"B48\\\", \\\"volume-title\\\": \\\"Theory of Colours\\\", \\\"author\\\": \\\"Goethe JW\\\", \\\"year\\\": \\\"1810\\\"}, {\\\"key\\\": \\\"B49\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1163/156856807782753877\\\"}, {\\\"key\\\": \\\"B50\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.visres.2010.05.002\\\"}, {\\\"key\\\": \\\"B51\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1080/00221309.1955.9918341\\\"}, {\\\"key\\\": \\\"B52\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1080/00221309.1955.9918340\\\"}, {\\\"key\\\": \\\"B53\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1080/00221309.1955.9920240\\\"}, {\\\"key\\\": \\\"B54\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1068/p240937\\\"}, {\\\"key\\\": \\\"B55\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2307/1419491\\\"}, {\\\"key\\\": \\\"B56\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/h0076096\\\"}, {\\\"key\\\": \\\"B57\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1002/col.5080060303\\\"}, {\\\"key\\\": \\\"B58\\\", \\\"volume-title\\\": \\\"Physiological Optics\\\", \\\"author\\\": \\\"Helmholtz HV\\\", \\\"year\\\": \\\"1866\\\"}, {\\\"key\\\": \\\"B59\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1364/AO.9.001513\\\"}, {\\\"key\\\": \\\"B60\\\", \\\"first-page\\\": \\\"95\\\", \\\"volume-title\\\": \\\"Colour for Architecture\\\", \\\"author\\\": \\\"Humphrey N\\\", \\\"year\\\": \\\"1976\\\"}, {\\\"key\\\": \\\"B61\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/j.cub.2007.06.022\\\"}, {\\\"key\\\": \\\"B62\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1006/hbeh.2001.1670\\\"}, {\\\"key\\\": \\\"B63\\\", \\\"volume-title\\\": \\\"The Art of Color\\\", \\\"author\\\": \\\"Itten J\\\", \\\"year\\\": \\\"1973\\\"}, {\\\"key\\\": \\\"B64\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1162/leon.2006.39.2.155\\\"}, {\\\"key\\\": \\\"B65\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.2466/pms.2002.95.3.755\\\"}, {\\\"key\\\": \\\"B66\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1007/s10508-010-9618-z\\\"}, {\\\"key\\\": \\\"B67\\\", \\\"volume-title\\\": \\\"Human Color Vision\\\", \\\"author\\\": \\\"Kaiser PK\\\", \\\"year\\\": \\\"1996\\\"}, {\\\"key\\\": \\\"B68\\\", \\\"volume-title\\\": \\\"Critique of Judgment\\\", \\\"author\\\": \\\"Kant I\\\", \\\"year\\\": \\\"1892\\\"}, {\\\"key\\\": \\\"B69\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1016/S0042-6989(00)00205-4\\\"}, {\\\"key\\\": \\\"B70\\\", \\\"volume-title\\\": \\\"Color for the Sciences\\\", \\\"author\\\": \\\"Koenderink JJ\\\", \\\"year\\\": \\\"2010\\\"}, {\\\"key\\\": \\\"B71\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1080/10400419.2003.9651419\\\"}, {\\\"key\\\": \\\"B72\\\", \\\"first-page\\\": \\\"69\\\", \\\"volume\\\": \\\"27\\\", \\\"author\\\": \\\"Konecni VJ\\\", \\\"year\\\": \\\"2002\\\", \\\"journal-title\\\": \\\"Visual Arts Res.\\\"}, {\\\"key\\\": \\\"B73\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1037/a0020413\\\"}, {\\\"key\\\": \\\"B74\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/370644a0\\\"}, {\\\"key\\\": \\\"B75\\\", \\\"volume-title\\\": \\\"L'esthétique Expérimentale Contemporaine\\\", \\\"author\\\": \\\"Lalo C\\\", \\\"year\\\": \\\"1908\\\"}, {\\\"key\\\": \\\"B76\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1068/p2352\\\"}, {\\\"key\\\": \\\"B77\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \", \"excerpt_truncated\": true, \"source_sha256\": \"275c5f71e09220669ffade83b08eaac8b0db8b1ece9f0b674c6b79f082b2aaf8\", \"verification_required\": true, \"topic_domain\": \"visual_art\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1146/annurev-psych-120710-100504\", \"doi:10.1177/002202217300400201\", \"doi:10.1016/0163-6383(87)90029-4\", \"doi:10.1007/bf00444162\", \"doi:10.1525/9780520351271\", \"doi:10.2307/427666\", \"doi:10.1111/j.1467-9280.2006.01759.x\", \"doi:10.1037/h0041135\", \"doi:10.1037/11164-000\", \"doi:10.1080/1357650x.2010.508219\", \"doi:10.4159/harvard.9780674734470\", \"doi:10.1016/0022-0965(75)90070-3\"]}",
+      "id": "source-8defc56204704290",
+      "scope": "collected",
+      "source": "https://api.crossref.org/works/10.1146%2Fannurev-psych-120710-100504",
+      "version": 147,
+      "time": "2026-09-26T11:51:08.130859+00:00"
+    },
+    "source-8589a35296c04053": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://api.semanticscholar.org/graph/v1/paper/search?query=visual+balance+symmetry+composition+aesthetic+perception+empirical&limit=4&fields=paperId%2Ctitle%2Cyear%2Cabstract%2Curl%2CexternalIds%2CopenAccessPdf\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+      "id": "source-8589a35296c04053",
+      "scope": "failed",
+      "source": "https://api.semanticscholar.org/graph/v1/paper/search?query=visual+balance+symmetry+composition+aesthetic+perception+empirical&limit=4&fields=paperId%2Ctitle%2Cyear%2Cabstract%2Curl%2CexternalIds%2CopenAccessPdf",
+      "version": 147,
+      "time": "2026-09-26T11:51:09.291355+00:00"
+    },
+    "source-00fe51a2f8874ce5": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Dance\\\",\\\"pageid\\\":7885,\\\"size\\\":73058,\\\"wordcount\\\":8358,\\\"snippet\\\":\\\"by\\ndance\\nthat emphasised dramatic mime. A broader concept of\\nrhythm\\nwas needed, that which Rudolf Laban terms the \\\"\\nrhythm\\nand shape\\\" of\\nmovement\\nthat\\\",\\\"timestamp\\\":\\\"2026-09-15T00:29:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"\\\\u00a0111. ISBN\\\\u00a0978-0-19-929845-7. Krumhansl, C. L. (2000). \\\"\\nRhythm\\nand pitch in music\\ncognition\\n\\\". Psychol. Bull. 126 (1): 159\\\\u2013179. doi:10.1037/0033-2909\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"African-American culture\\\",\\\"pageid\\\":1142503,\\\"size\\\":186819,\\\"wordcount\\\":18525,\\\"snippet\\\":\\\"influenced modern popular\\nculture\\n. Spoken-word artists employ the same techniques as African-American preachers including\\nmovement\\n,\\nrhythm\\n, and audience participation\\\",\\\"timestamp\\\":\\\"2026-09-24T19:24:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Irish stepdance\\\",\\\"pageid\\\":6188670,\\\"size\\\":45682,\\\"wordcount\\\":5651,\\\"snippet\\\":\\\"called Feiseanna (singular Feis). In Irish\\ndance\\nculture\\n, a Feis is a traditional Gaelic arts and\\nculture\\nfestival. Contemporarily, costumes are sometimes\\\",\\\"timestamp\\\":\\\"2026-06-22T02:12:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modernism\\\",\\\"pageid\\\":19547,\\\"size\\\":185952,\\\"wordcount\\\":20347,\\\"snippet\\\":\\\"modern\\ndance\\n, modernist architecture, and urban planning. Modernism took a critical stance towards the Enlightenment concept of rationalism. The\\nmovement\\nalso\\\",\\\"timestamp\\\":\\\"2026-09-23T15:47:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture of the United States\\\",\\\"pageid\\\":18985287,\\\"size\\\":156491,\\\"wordcount\\\":13473,\\\"snippet\\\":\\\"of\\ncultures\\nhas been a distinguishing feature of its society. Americans pioneered or made great strides in musical genres such as heavy metal,\\nrhythm\\nand\\\",\\\"timestamp\\\":\\\"2026-09-26T00:50:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary musicology\\\",\\\"pageid\\\":4220231,\\\"size\\\":24796,\\\"wordcount\\\":2920,\\\"snippet\\\":\\\"well as several other universal elements of contemporary human\\nculture\\n, including\\ndance\\nand body painting) was part of a predator control system used by\\\",\\\"timestamp\\\":\\\"2026-05-08T03:37:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture and menstruation\\\",\\\"pageid\\\":5778583,\\\"size\\\":168019,\\\"wordcount\\\":19129,\\\"snippet\\\":\\\"China's youth\\nculture\\n. 14 September 2020. Retrieved 11 March 2021. May T, Chien AC (9 November 2020). \\\"'Stand by Her': In China, a\\nMovement\\nHands Out Free\\\",\\\"timestamp\\\":\\\"2026-08-19T15:00:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cultural universal\\\",\\\"pageid\\\":7745490,\\\"size\\\":10277,\\\"wordcount\\\":1012,\\\"snippet\\\":\\\"Healing practices, medicine Childbirth customs Rites of passage Music,\\nrhythm\\n,\\ndance\\n, and to some degree associations between music and emotion Play Toys\\\",\\\"timestamp\\\":\\\"2026-05-03T15:57:58Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Synchronization\\\",\\\"pageid\\\":28738,\\\"size\\\":35356,\\\"wordcount\\\":3734,\\\"snippet\\\":\\\"\\\"Ensemble of coupling forms and networks among brain\\nrhythms\\nas function of states and\\ncognition\\n\\\". Communications Biology. 5 (1): 82. doi:10.1038/s42003-022-03017-4\\\",\\\"timestamp\\\":\\\"2026-09-07T05:18:58Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"e4bc6cf8ad3a0b0aa56052f13046f6a1981cbb0bc8a04f54f1b76728050055fe\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1037/0033-2909\", \"doi:10.1038/s42003-022-03017-4\"]}",
+      "id": "source-00fe51a2f8874ce5",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json",
+      "version": 147,
+      "time": "2026-09-26T11:51:11.090087+00:00"
+    },
+    "source-bc7a65e2599b4025": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":4984},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Prime number\\\",\\\"pageid\\\":23666,\\\"size\\\":128021,\\\"wordcount\\\":14786,\\\"snippet\\\":\\\"A\\nprime\\nnumber (or a\\nprime\\n) is a natural number greater than 1 that is not a product of two smaller natural\\nnumbers\\n. A natural number greater than 1 that\\\",\\\"timestamp\\\":\\\"2026-09-21T15:01:53Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of Mersenne primes and perfect numbers\\\",\\\"pageid\\\":68906231,\\\"size\\\":52386,\\\"wordcount\\\":2900,\\\"snippet\\\":\\\"Mersenne\\nprimes\\nand perfect\\nnumbers\\nare two deeply interlinked types of natural\\nnumbers\\nin number theory. Mersenne\\nprimes\\n, named after the friar Marin\\\",\\\"timestamp\\\":\\\"2026-09-17T04:54:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"List of prime numbers\\\",\\\"pageid\\\":442370,\\\"size\\\":108088,\\\"wordcount\\\":6019,\\\"snippet\\\":\\\"This is a list of articles about\\nprime\\nnumbers\\n. A\\nprime\\nnumber (or\\nprime\\n) is a natural number greater than 1 that has no divisors other than 1 and itself\\\",\\\"timestamp\\\":\\\"2026-09-26T10:53:20Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Sexy primes\\\",\\\"pageid\\\":343116,\\\"size\\\":3815,\\\"wordcount\\\":453,\\\"snippet\\\":\\\"sexy\\nprimes\\nare\\nprime\\nnumbers\\nthat differ from another\\nprime\\nby 6. For example, the\\nnumbers\\n5 and 11 are a pair of sexy\\nprimes\\n, because both are\\nprime\\nand\\\",\\\"timestamp\\\":\\\"2026-09-18T20:27:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Perfect number\\\",\\\"pageid\\\":23670,\\\"size\\\":39840,\\\"wordcount\\\":5531,\\\"snippet\\\":\\\"odd Perfect\\nPrime\\nNumbers\\n\\\".\\nMathematics\\nof Computation. 27 (124): 951\\\\u2013953. doi:10.2307/2005530. JSTOR\\\\u00a02005530. Riele, H.J.J. \\\"Perfect\\nNumbers\\nand Aliquot\\\",\\\"timestamp\\\":\\\"2026-09-12T00:36:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Number\\\",\\\"pageid\\\":21690,\\\"size\\\":111953,\\\"wordcount\\\":11703,\\\"snippet\\\":\\\"A number is a\\nmathematical\\nobject used to count, measure, order and label. The most basic examples are the natural\\nnumbers\\n: 1, 2, 3, 4, 5, and so forth\\\",\\\"timestamp\\\":\\\"2026-09-25T06:24:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"RSA numbers\\\",\\\"pageid\\\":511379,\\\"size\\\":70317,\\\"wordcount\\\":4491,\\\"snippet\\\":\\\"In\\nmathematics\\n, the RSA\\nnumbers\\nare a set of large semiprimes (\\nnumbers\\nwith exactly two\\nprime\\nfactors) that were part of the RSA Factoring Challenge. The\\\",\\\"timestamp\\\":\\\"2026-09-21T17:33:30Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Wieferich prime\\\",\\\"pageid\\\":323631,\\\"size\\\":43265,\\\"wordcount\\\":4566,\\\"snippet\\\":\\\"\\nprimes\\nand various other topics in\\nmathematics\\nhave been discovered, including other types of\\nnumbers\\nand\\nprimes\\n, such as Mersenne and Fermat\\nnumbers\\n\\\",\\\"timestamp\\\":\\\"2026-08-21T10:09:34Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Closing the Gap: The Quest to Understand Prime Numbers\\\",\\\"pageid\\\":63087914,\\\"size\\\":5974,\\\"wordcount\\\":617,\\\"snippet\\\":\\\"Closing the Gap: The Quest to Understand\\nPrime\\nNumbers\\nis a book on\\nprime\\nnumbers\\nand\\nprime\\ngaps by Vicky Neale, published in 2017 by the Oxford University\\\",\\\"timestamp\\\":\\\"2026-09-11T00:17:48Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Mersenne prime\\\",\\\"pageid\\\":18908,\\\"size\\\":78122,\\\"wordcount\\\":6673,\\\"snippet\\\":\\\"In\\nmathematics\\n, a Mersenne\\nprime\\nis a\\nprime\\nnumber that is one less than a power of two. That is, it is a\\nprime\\nnumber of the form Mn = 2n \\\\u2212 1 for some\\\",\\\"timestamp\\\":\\\"2026-09-08T20:24:47Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"94a8d3b30b8775f3bfe9d52a26cb6623c4c236e8a5ee9cce8dfd8fd80c898930\", \"verification_required\": true, \"topic_domain\": \"prime_numbers\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.2307/2005530\"]}",
+      "id": "source-bc7a65e2599b4025",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=prime+numbers+mathematics&format=json",
+      "version": 147,
+      "time": "2026-09-26T11:51:11.838792+00:00"
+    },
+    "source-4421fc1efddb41f4": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2767},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Emergence\\\",\\\"pageid\\\":37436,\\\"size\\\":60324,\\\"wordcount\\\":6551,\\\"snippet\\\":\\\"In philosophy,\\nsystems\\ntheory, science, and art,\\nemergence\\noccurs when a\\ncomplex\\nentity has properties or behaviors that its components do not have on\\\",\\\"timestamp\\\":\\\"2026-09-07T03:04:12Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-organization\\\",\\\"pageid\\\":286947,\\\"size\\\":64814,\\\"wordcount\\\":6861,\\\"snippet\\\":\\\"justification for\\nself\\n-\\norganization\\nas a general principle of\\ncomplex\\nsystems\\n. In the field of multi-agent\\nsystems\\n, understanding how to engineer\\nsystems\\nthat are\\\",\\\"timestamp\\\":\\\"2026-08-20T00:23:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex system\\\",\\\"pageid\\\":37438,\\\"size\\\":47317,\\\"wordcount\\\":4876,\\\"snippet\\\":\\\"\\nsystem\\nand its environment.\\nSystems\\nthat are \\\"\\ncomplex\\n\\\" have distinct properties that arise from these relationships, such as nonlinearity,\\nemergence\\n,\\\",\\\"timestamp\\\":\\\"2026-09-25T18:37:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems theory\\\",\\\"pageid\\\":29238,\\\"size\\\":56628,\\\"wordcount\\\":6135,\\\"snippet\\\":\\\"how well the\\nsystem\\nis engaged with its environment and other contexts influencing its\\norganization\\n. Some\\nsystems\\nsupport other\\nsystems\\n, maintaining the\\\",\\\"timestamp\\\":\\\"2026-07-18T16:09:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complex adaptive system\\\",\\\"pageid\\\":1428810,\\\"size\\\":35927,\\\"wordcount\\\":3790,\\\"snippet\\\":\\\"The\\nComplex\\nAdaptive\\nSystems\\napproach builds on replicator dynamics. The study of\\ncomplex\\nadaptive\\nsystems\\n, a subset of nonlinear dynamical\\nsystems\\n, is\\\",\\\"timestamp\\\":\\\"2026-04-06T14:02:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-assembly\\\",\\\"pageid\\\":351914,\\\"size\\\":40999,\\\"wordcount\\\":4440,\\\"snippet\\\":\\\"Although\\nself\\n-assembly typically occurs between weakly-interacting species, this\\norganization\\nmay be transferred into strongly-bound covalent\\nsystems\\n. An example\\\",\\\"timestamp\\\":\\\"2026-08-10T18:14:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Self-regulation\\\",\\\"pageid\\\":1738695,\\\"size\\\":834,\\\"wordcount\\\":132,\\\"snippet\\\":\\\"standards\\nSelf\\n-regulatory\\norganization\\n, in business and finance Homeostasis, a state of steady internal conditions maintained by living things\\nEmergence\\n, the\\\",\\\"timestamp\\\":\\\"2023-05-02T13:34:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Systems thinking\\\",\\\"pageid\\\":227985,\\\"size\\\":20916,\\\"wordcount\\\":2126,\\\"snippet\\\":\\\"action in\\ncomplex\\ncontexts, enabling\\nsystems\\nchange.\\nSystems\\nthinking draws on and contributes to conceptual\\nsystems\\n,\\nsystems\\ntheory, and the\\nsystem\\nsciences\\\",\\\"timestamp\\\":\\\"2026-09-25T10:53:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Complexity theory and organizations\\\",\\\"pageid\\\":5938019,\\\"size\\\":24442,\\\"wordcount\\\":2009,\\\"snippet\\\":\\\"differentiate it from other\\nself\\n-organizing\\nsystems\\n.\\nOrganizational\\nenvironments can be viewed as\\ncomplex\\nadaptive\\nsystems\\nwhere coevolution generally\\\",\\\"timestamp\\\":\\\"2026-05-25T04:34:59Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"The purpose of a system is what it does\\\",\\\"pageid\\\":17404830,\\\"size\\\":6777,\\\"wordcount\\\":754,\\\"snippet\\\":\\\"applying POSIWID shows that the\\norganization's\\npractices contradict those values. From a cybernetic perspective,\\ncomplex\\nsystems\\nare not controllable by simple\\\",\\\"timestamp\\\":\\\"2026-09-22T17:25:20Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"5081f75ee3c32fa19e4587c901fb2a0abc5942922b0031cc64b6112352af93fc\", \"verification_required\": true, \"topic_domain\": \"complex_systems\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-4421fc1efddb41f4",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=complex+systems+emergence+self-organization&format=json",
+      "version": 147,
+      "time": "2026-09-26T11:51:12.750540+00:00"
+    },
+    "source-f052372c71fa4504": {
+      "actor": "collector",
+      "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":6109},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"\\nEntropy\\nis a thermodynamic state variable that quantifies the probabilistic distribution of accessible microstates in a system. The term and the concept\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"In information theory, the\\nentropy\\nof a random variable quantifies the average level of uncertainty or information associated with the variable's potential\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"appear below. The second law of thermodynamics establishes the concept of\\nentropy\\nas a physical property of a thermodynamic system. It predicts whether processes\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (disambiguation)\\\",\\\"pageid\\\":302133,\\\"size\\\":5540,\\\"wordcount\\\":726,\\\"snippet\\\":\\\"Look up\\nentropy\\nin Wiktionary, the free dictionary.\\nEntropy\\nis a fundamental scientific concept that quantifies the statistical probability of a system's\\\",\\\"timestamp\\\":\\\"2026-04-29T22:10:25Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"R\\\\u00e9nyi entropy\\\",\\\"pageid\\\":1731689,\\\"size\\\":27228,\\\"wordcount\\\":4205,\\\"snippet\\\":\\\"R\\\\u00e9nyi\\nentropy\\nis a quantity that generalizes various notions of\\nentropy\\n, including Hartley\\nentropy\\n, Shannon\\nentropy\\n, collision\\nentropy\\n, and min-\\nentropy\\n. The\\\",\\\"timestamp\\\":\\\"2026-08-13T19:55:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cross-entropy\\\",\\\"pageid\\\":1735250,\\\"size\\\":19871,\\\"wordcount\\\":3496,\\\"snippet\\\":\\\"In information theory, the cross-\\nentropy\\nbetween two probability distributions p {\\\\\\\\displaystyle p} and q {\\\\\\\\displaystyle q} , over the same underlying\\\",\\\"timestamp\\\":\\\"2026-09-15T02:14:33Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social entropy\\\",\\\"pageid\\\":12447991,\\\"size\\\":1975,\\\"wordcount\\\":200,\\\"snippet\\\":\\\"\\nentropy\\nis a sociological theory that evaluates social behaviours using a method based on the second law of thermodynamics. The equivalent of\\nentropy\\n\\\",\\\"timestamp\\\":\\\"2026-05-03T07:04:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Holographic principle\\\",\\\"pageid\\\":14286,\\\"size\\\":36292,\\\"wordcount\\\":4216,\\\"snippet\\\":\\\"bound of black hole thermodynamics, which conjectures that the maximum\\nentropy\\nin any region scales with the radius squared, rather than cubed as might\\\",\\\"timestamp\\\":\\\"2026-05-16T11:15:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Information theory\\\",\\\"pageid\\\":14773,\\\"size\\\":88580,\\\"wordcount\\\":10416,\\\"snippet\\\":\\\"theory is\\nentropy\\n. In Shannon's formulation,\\nentropy\\nis equal to the lack of information about an event. In the above coin flip example, the\\nentropy\\nin the\\\",\\\"timestamp\\\":\\\"2026-09-26T09:07:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy coding\\\",\\\"pageid\\\":46680,\\\"size\\\":8871,\\\"wordcount\\\":1049,\\\"snippet\\\":\\\"In information theory, an\\nentropy\\ncoding (or\\nentropy\\nencoding) is any lossless data compression method that attempts to approach the lower bound declared\\\",\\\"timestamp\\\":\\\"2026-07-17T16:38:12Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"acc0307b1ed3c96c5f020c961153675a3c561dcebc6cd7a177deed1cabbfcc67\", \"verification_required\": true, \"topic_domain\": \"entropy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+      "id": "source-f052372c71fa4504",
+      "scope": "collected",
+      "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=entropy&format=json",
+      "version": 147,
+      "time": "2026-09-26T11:51:13.387984+00:00"
+    },
+    "r-eb9b1e05baf045c6": {
+      "actor": "runtime",
+      "content": "{\"base_version\":147,\"inherited_commitments\":[],\"invocation\":\"w-eb9b1e05baf045c6\",\"previous_head\":\"ec6518ee962ac81519ac39aa470e3027900759705da1952d0117c2f6feee79e9\",\"process_id\":2249,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+      "id": "r-eb9b1e05baf045c6",
+      "source": "runtime:continuity",
+      "version": 147,
+      "time": "2026-09-26T11:51:16.518421+00:00"
     }
   },
   "journal": [
@@ -18592,6 +18654,12 @@
       "invocation": "w-54096df6e9f44d9c",
       "title": "Initial synthesis for visual art perception and targeted literature search",
       "summary": "Project vis-art-perception-001 is active under Squirrel's enforced topic visual_art. In accordance with the synthesis-ready directive, we create an initial provisional notebook drawing on the rehydrated cross-referenced literature records, noting the severe limitations of using general reference and linguistic monograph records for visual aesthetic questions. We then queue a targeted search query for empirical literature on visual balance and composition perception."
+    },
+    {
+      "cycle": 148,
+      "invocation": "w-eb9b1e05baf045c6",
+      "title": "Synthesizing Empirical Aesthetic Science in Visual Art Perception",
+      "summary": "We have new substantive evidence (source-8defc56204704290) from an Annual Review of Psychology examining human aesthetic preference in the visual domain across definitional, empirical, and methodological frameworks. We revise notebook nb-vis-art-perception-001 to incorporate this empirical baseline distinguishing aesthetic science from art perception and philosophical aesthetics, and queue focused follow-up work on symmetry and contrast."
     }
   ],
   "posts": {
@@ -139131,6 +139199,468 @@
       "successful_model": "gemini-3.8-flash",
       "finished": "2026-09-26T11:43:03.737492+00:00",
       "reason": ""
+    },
+    "w-eb9b1e05baf045c6": {
+      "base_version": 147,
+      "charged": true,
+      "context_delivery": {
+        "delivered_context_chars": 19448,
+        "delivered_request_chars": 45803,
+        "mode": "bounded",
+        "omitted_categories": [
+          "full durable evidence content",
+          "recent journal bodies",
+          "completed-project archive",
+          "full notebook bodies",
+          "research and blog history outside the bounded working set"
+        ],
+        "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+        "request_compression_ratio": 0.4147,
+        "retrieval_rehydrated_evidence_count": 2,
+        "rich_context_chars": 110459,
+        "working_set_chars": 3135
+      },
+      "experimental_regime": {
+        "actor": "operator",
+        "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+        "controls": {
+          "time_dilation": {
+            "affects": [
+              "telemetry",
+              "provider_context"
+            ],
+            "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+            "enabled": true,
+            "mode": "real",
+            "scale": 1.0
+          }
+        },
+        "effective_from_version": 0,
+        "effective_seconds": 0.0,
+        "event_seq": 3,
+        "id": "reg-df573bb03399f050",
+        "reason": "Initialize the default experimental instrument regime."
+      },
+      "id": "w-eb9b1e05baf045c6",
+      "inquiry_drive_shadow": {
+        "activation": {
+          "active": false,
+          "completed_scored_cycles": 147,
+          "minimum_completed_scored_cycles": 20,
+          "operator_enabled": false
+        },
+        "enabled": true,
+        "mode": "shadow",
+        "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+        "projects": [
+          {
+            "components": {
+              "coherence": 0.5,
+              "continuity": 1.0,
+              "generativity": 1.0,
+              "novelty": 0.5,
+              "self_correction": 1.0
+            },
+            "id": "vis-art-perception-001",
+            "score": 0.825,
+            "signals": {
+              "collected_research": 1,
+              "notebooks": 1,
+              "queued_research": 0
+            },
+            "title": "Visual Art Perception"
+          }
+        ],
+        "weights": {
+          "coherence": 0.2,
+          "continuity": 0.3,
+          "generativity": 0.2,
+          "novelty": 0.15,
+          "self_correction": 0.15
+        }
+      },
+      "model": "gemini-3.8-flash",
+      "process_id": 2249,
+      "provider": "gemini",
+      "quota_day": "2026-09-26",
+      "request_hash": "f405e6cdb6b8d1591a11d17536e63109e3c88fa6ffadfbfeaecfad7018dfb9c0",
+      "retrieval_shadow": {
+        "candidates": [
+          {
+            "evidence": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-neurodiversity-foundations-01",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-f535f6171025430e",
+              "source-b4a60e211150449b"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-dance-rhythm-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-41fac1eecb0246dd",
+              "source-51a9b989df3144af"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-visual-art-composition-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-891da548184a404e",
+              "source-8f485f755e8b4f3a"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-endo-neuro-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-72e7307bd1d247d7",
+              "source-3896d2f336484666"
+            ],
+            "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+            "record": {
+              "id": "nb-neuro-paradigm-comp-001",
+              "kind": "notebook"
+            },
+            "trigger": "notebook_revised"
+          },
+          {
+            "evidence": [
+              "source-b58eab9fe45e4c0b"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b58eab9fe45e4c0b",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-21e1582f07cd4b16"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-21e1582f07cd4b16",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-1f8d6bebdc7640cf"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-1f8d6bebdc7640cf",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-1d578a272eed4a8e"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-1d578a272eed4a8e",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-b9fa8623c6604586"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-b9fa8623c6604586",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          },
+          {
+            "evidence": [
+              "source-8defc56204704290"
+            ],
+            "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+            "record": {
+              "id": "source-8defc56204704290",
+              "kind": "evidence"
+            },
+            "trigger": "unincorporated_evidence"
+          }
+        ],
+        "evidence_ids": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658",
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b",
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af",
+          "source-891da548184a404e",
+          "source-8f485f755e8b4f3a",
+          "source-72e7307bd1d247d7",
+          "source-3896d2f336484666",
+          "source-b58eab9fe45e4c0b",
+          "source-21e1582f07cd4b16",
+          "source-1f8d6bebdc7640cf",
+          "source-1d578a272eed4a8e",
+          "source-b9fa8623c6604586",
+          "source-8defc56204704290"
+        ],
+        "limitations": [
+          "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+          "No evidence content is copied into the working set by this planner.",
+          "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+        ],
+        "metrics": {
+          "candidate_count": 11,
+          "evidence_count": 16,
+          "trigger_counts": {
+            "notebook_revised": 5,
+            "unincorporated_evidence": 6
+          }
+        },
+        "mode": "shadow",
+        "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+      },
+      "runtime_performance": {
+        "compaction_ms": 5.432,
+        "context_build_ms": 59.346,
+        "load_ms": 1035.778,
+        "receipt_ms": 586.455,
+        "start_total_before_record_ms": 3216.322,
+        "store": {
+          "append_cache_hits": 11,
+          "append_cache_misses": 0,
+          "cached_copy_ms": 1099.286,
+          "cached_loads": 0,
+          "event_count": 4192,
+          "full_replays": 11,
+          "replay_ms": 7636.086,
+          "trusted_projection_active": true
+        },
+        "temporal_ms": 1528.126
+      },
+      "squirrel": {
+        "active": true,
+        "attention": {
+          "accepted_streak": 2,
+          "topic": "visual_art"
+        },
+        "attention_saturation_threshold": 5,
+        "capability_blocked_topics": [],
+        "cooldown_other_attempts": 3,
+        "current_topic_unconfigured": false,
+        "deferred_topics": [
+          "neurodivergence"
+        ],
+        "enforce_selected_topic": true,
+        "hard_rejection_threshold": 5,
+        "parked": {
+          "neurodivergence": [
+            {
+              "id": "neuro-paradigm-comp-001",
+              "next_step": "Search for comparative literature discussing the neurodiversity social model and the medical model of pathology.",
+              "question": "How do the neurodiversity paradigm and the clinical pathology model conceptualize neurodivergent traits, and where do they differ in their practical applications for support and diagnosis?"
+            }
+          ]
+        },
+        "reason": "current durable project topic remains eligible",
+        "rotation_required": true,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "selected_topic": "visual_art",
+        "temporal": {
+          "anchor_seq": 4191,
+          "anchor_time": "2026-09-26T11:51:14.783048+00:00",
+          "anchor_version": 147,
+          "effective_seconds": 129832.30811
+        },
+        "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+        "topic_selection_basis": null,
+        "topic_selection_candidates": [],
+        "topic_selection_method": "active_topic"
+      },
+      "temporal": {
+        "cycle_distance": 1,
+        "effective_elapsed_seconds": 521.955483,
+        "effective_scale": 1.0,
+        "effective_seconds_total": 129832.30811,
+        "intervening_events": {
+          "accepted": 1,
+          "failed": 0,
+          "observation": 7,
+          "rejected": 0,
+          "research_collected": 1,
+          "squirrel_assessed": 1,
+          "total": 15
+        },
+        "observed_at": "2026-09-26T11:51:14.783048+00:00",
+        "previous_anchor_time": "2026-09-26T11:42:32.827565+00:00",
+        "regime_id": "reg-df573bb03399f050",
+        "wall_elapsed_seconds": 521.955483
+      },
+      "trust_compacts_shadow": {
+        "compacts": [],
+        "limitations": [
+          "Compacts are deterministic receipt annotations, not authoritative durable state.",
+          "They do not enter provider context in shadow mode.",
+          "A compact never deletes, replaces, or proves its underlying evidence."
+        ],
+        "metrics": {
+          "candidate_count": 0,
+          "challenged_count": 0,
+          "evidence_root_count": 0,
+          "provisional_count": 0,
+          "settled_count": 0,
+          "status_counts": {}
+        },
+        "mode": "shadow",
+        "principle": "Compress settled operational consequences without severing their evidence roots."
+      },
+      "working_set_metrics": {
+        "delivered_context_chars": 19448,
+        "inquiry_drive_project_count": 1,
+        "mode": "bounded",
+        "retrieval_candidate_count": 11,
+        "retrieval_evidence_count": 16,
+        "retrieval_rehydrated_evidence_count": 2,
+        "retrieval_trigger_counts": {
+          "notebook_revised": 5,
+          "unincorporated_evidence": 6
+        },
+        "trust_compact_candidate_count": 0,
+        "trust_compact_evidence_root_count": 0,
+        "trust_compact_settled_count": 0,
+        "working_set_chars": 3135,
+        "working_to_delivered_ratio": 0.1612
+      },
+      "working_set_shadow": {
+        "active_projects": [
+          {
+            "id": "vis-art-perception-001",
+            "next_step": "Search for foundational reviews on the psychology of aesthetics and visual art perception.",
+            "question": "How do composition, contrast, symmetry, ambiguity, and expectation influence how people perceive and evaluate visual art?",
+            "title": "Visual Art Perception"
+          }
+        ],
+        "beliefs": [],
+        "mode": "shadow",
+        "open_commitments": [],
+        "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+        "recent_notebooks": [
+          {
+            "id": "nb-religion-ritual-psych-001",
+            "project": "religion-cross-cultural-practices",
+            "provenance": [
+              "source-0e0aa6aa238246cb"
+            ],
+            "revision": 1,
+            "summary": "This notebook synthesizes the 'process-based framework' from a 2017 integrative review of ritual psychology, noting the distinction between the ritual form and its psychological function.",
+            "title": "Synthesis: The Psychology of Rituals"
+          },
+          {
+            "id": "nb-neuro-metabolic-001",
+            "project": "neurology-metabolic-pathways",
+            "provenance": [
+              "source-8fb4038a7344498e",
+              "source-e41f8efd700544cf"
+            ],
+            "revision": 1,
+            "summary": "An initial assessment of the intersection between metabolic pathways and neurological health, based on bibliographic metadata.",
+            "title": "Provisional Synthesis: Metabolic Drivers in Neurological Function"
+          },
+          {
+            "id": "nb-evo-foundations-001",
+            "project": "evolutionary-biology-foundations",
+            "provenance": [
+              "source-2cd2684377c54051",
+              "source-e2e41e9bcb594def"
+            ],
+            "revision": 1,
+            "summary": "This notebook synthesizes available bibliographic metadata to frame future inquiry into how evolutionary biology distinguishes mechanisms such as adaptation, byproduct, drift, and constraint.",
+            "title": "Provisional Synthesis: Evolutionary Mechanisms"
+          },
+          {
+            "id": "nb-endo-neuro-001",
+            "project": "endo-neuro-interaction-001",
+            "provenance": [
+              "source-891da548184a404e",
+              "source-8f485f755e8b4f3a"
+            ],
+            "revision": 2,
+            "summary": "This provisional synthesis integrates newly indexed literature on congenital adrenal hyperplasia and systemic signal pathways to explore the endocrinology-neurology interface.",
+            "title": "Provisional Synthesis: Endocrine Influence on Neurological Function"
+          },
+          {
+            "id": "nb-neuro-paradigm-comp-001",
+            "project": "neuro-paradigm-comp-001",
+            "provenance": [
+              "source-72e7307bd1d247d7",
+              "source-3896d2f336484666"
+            ],
+            "revision": 2,
+            "summary": "Initial synthesis examining the neurodiversity movement's critique of clinical models, identifying 'neurodiversity' as an emerging research area in need of rigorous synthesis.",
+            "title": "Conceptual Divergence: Neurodiversity Paradigm vs. Clinical Pathology"
+          },
+          {
+            "id": "nb-vis-art-perception-001",
+            "project": "vis-art-perception-001",
+            "provenance": [
+              "source-0a7b2a5c06d44417",
+              "source-930f33f0d42a4658"
+            ],
+            "revision": 1,
+            "summary": "Initial baseline scoping assessing the availability of source literature on how formal visual attributes (composition, symmetry, contrast) are evaluated by observers.",
+            "title": "Provisional Scoping: Visual Art Perception and Structural Attributes"
+          }
+        ],
+        "retrieval_triggers": [
+          "material belief revision or retraction",
+          "new contradiction or counterevidence",
+          "high-consequence decision",
+          "request for justification",
+          "sign that an excerpt may hide a material distinction"
+        ]
+      },
+      "status": "accepted",
+      "time": "2026-09-26T11:51:17.070402+00:00",
+      "provider_attempts": [
+        {
+          "elapsed_ms": 3079,
+          "http_status": 200,
+          "model": "gemini-3.8-flash",
+          "request_payload_bytes": 49737,
+          "result": "success"
+        }
+      ],
+      "provider_requests_sent": 1,
+      "successful_model": "gemini-3.8-flash",
+      "finished": "2026-09-26T11:51:44.957325+00:00",
+      "reason": ""
     }
   },
   "pending": null,
@@ -139151,35 +139681,22 @@
       "religion": 0,
       "visual_art": 0
     },
-    "deferred": {
-      "neurodivergence": {
-        "cause": "hard_rejection",
-        "deferred_by": "w-a3416fd92812407f",
-        "eligible_after_other_attempts": 3,
-        "other_topic_attempts": 2,
-        "parked_projects": [
-          {
-            "id": "neuro-paradigm-comp-001",
-            "next_step": "Search for comparative literature discussing the neurodiversity social model and the medical model of pathology.",
-            "question": "How do the neurodiversity paradigm and the clinical pathology model conceptualize neurodivergent traits, and where do they differ in their practical applications for support and diagnosis?"
-          }
-        ],
-        "reason": "five consecutive hard rejections without durable progress"
-      }
-    },
+    "deferred": {},
     "last_receipt": {
       "attention_saturation_triggered": false,
       "attention_topic": "visual_art",
       "durable_progress": true,
       "hard_rejection": false,
-      "invocation": "w-54096df6e9f44d9c",
-      "restored_topics": [],
+      "invocation": "w-eb9b1e05baf045c6",
+      "restored_topics": [
+        "neurodivergence"
+      ],
       "selected_topic": "visual_art",
       "terminal": "accepted",
       "triggered_topics": []
     },
     "attention": {
-      "accepted_streak": 2,
+      "accepted_streak": 3,
       "topic": "visual_art"
     }
   },
@@ -140392,37 +140909,32 @@
       "domain": "visual_art",
       "no_progress": 1,
       "routes": [
-        "api.openalex.org:discovery"
+        "api.openalex.org:discovery",
+        "api.crossref.org:source",
+        "api.semanticscholar.org:discovery"
       ],
       "capability_blocked": false,
       "retry_after_version": null,
       "persistent_identifiers": [
-        "doi:10.1146/annurev-psych-120710-100504",
-        "doi:10.1016/j.concog.2007.11.003",
-        "doi:10.3389/fncom.2017.00102",
-        "doi:10.3389/fncom.2017.00102/pdf",
-        "openalex:W2157899060",
-        "openalex:W2074082098",
-        "openalex:W2768304937",
-        "openalex:W2121691163",
-        "arxiv:2017.00102"
+        "arxiv:2017.00102",
+        "doi:10.1177/002202217300400201",
+        "doi:10.1016/0163-6383(87)90029-4",
+        "doi:10.1007/bf00444162",
+        "doi:10.1525/9780520351271",
+        "doi:10.2307/427666",
+        "doi:10.1111/j.1467-9280.2006.01759.x",
+        "doi:10.1037/h0041135",
+        "doi:10.1037/11164-000",
+        "doi:10.1080/1357650x.2010.508219",
+        "doi:10.4159/harvard.9780674734470",
+        "doi:10.1016/0022-0965(75)90070-3"
       ],
       "last_receipt": {
-        "evidence": "source-c5efb2aea0144780",
-        "outcome": "no_progress",
-        "persistent_identifiers": [
-          "doi:10.1146/annurev-psych-120710-100504",
-          "doi:10.1016/j.concog.2007.11.003",
-          "doi:10.3389/fncom.2017.00102",
-          "doi:10.3389/fncom.2017.00102/pdf",
-          "openalex:W2157899060",
-          "openalex:W2074082098",
-          "openalex:W2768304937",
-          "openalex:W2121691163",
-          "arxiv:2017.00102"
-        ],
-        "research_id": "res-vis-art-001",
-        "route": "api.openalex.org:discovery",
+        "evidence": "source-8589a35296c04053",
+        "outcome": "route_failure",
+        "persistent_identifiers": [],
+        "research_id": "res-vis-art-balance-001",
+        "route": "api.semanticscholar.org:discovery",
         "stage": "discovery"
       }
     }
@@ -141279,22 +141791,22 @@
     },
     "nb-vis-art-perception-001": {
       "evidence": [
-        "source-0a7b2a5c06d44417",
-        "source-930f33f0d42a4658"
+        "source-8defc56204704290",
+        "source-0a7b2a5c06d44417"
       ],
-      "findings": "Existing bibliographic records in the project allowlist ([source-0a7b2a5c06d44417], [source-930f33f0d42a4658]) represent broader cultural and linguistic reference texts (such as Routledge's monograph on linguistic humor analysis and SAGE reference materials) rather than empirical psychophysical studies directly measuring composition, contrast, or symmetry in visual art perception. While reference frameworks catalog cross-disciplinary aesthetic categorization, empirical determinations of perceptual salience, visual balance, and expectation violation require experimental aesthetic data.",
+      "findings": "Human aesthetic preference in the visual domain encompasses definitional, methodological, empirical, and theoretical dimensions [source-8defc56204704290]. Aesthetic science explicitly distinguishes empirical investigations of preference from both general art perception and philosophical treatments of aesthetics [source-8defc56204704290]. Prior reference literature indicates broad taxonomies of aesthetic response [source-0a7b2a5c06d44417], but experimental psychological reviews highlight the importance of isolating specific stimulus dimensions (such as spatial composition, contrast, and symmetry) when evaluating observer preference.",
       "id": "nb-vis-art-perception-001",
-      "limitations": "The available records provide bibliographic metadata without experimental data or perceptual test batteries on visual art. They serve only as a scoping boundary; direct empirical findings regarding composition, symmetry, and visual evaluation are not established by these sources.",
-      "next_questions": "What experimental psychophysical studies directly measure the effect of visual balance, symmetry, and compositional framing on aesthetic evaluation?",
+      "limitations": "Findings are based on journal abstract and reference-book metadata; full empirical details and specific effect sizes across diverse demographics or cross-cultural cohorts remain unexamined in the retrieved text.",
+      "next_questions": "How do specific visual attributes like bilateral symmetry versus asymmetric balance quantitatively modulate gaze duration and affective evaluation in controlled experiments?",
       "project": "vis-art-perception-001",
-      "reason": "Address synthesis-ready status for vis-art-perception-001 by establishing honest scoping and noting the gaps in current evidence.",
-      "summary": "Initial baseline scoping assessing the availability of source literature on how formal visual attributes (composition, symmetry, contrast) are evaluated by observers.",
+      "reason": "Incorporate newly retrieved Annual Review of Psychology source into the visual art perception notebook.",
+      "summary": "Synthesizes empirical and methodological distinctions between general aesthetic preference, perception of art, and philosophical aesthetics based on review literature.",
       "title": "Provisional Scoping: Visual Art Perception and Structural Attributes",
       "type": "notebook",
-      "revision": 1,
+      "revision": 2,
       "created_version": 147,
-      "updated_version": 147,
-      "updated_by": "w-54096df6e9f44d9c",
+      "updated_version": 148,
+      "updated_by": "w-eb9b1e05baf045c6",
       "domain": "visual_art"
     }
   },
@@ -142560,8 +143072,19 @@
       "query": "visual balance symmetry composition aesthetic perception empirical",
       "reason": "Identify peer-reviewed empirical studies and reviews evaluating how visual balance and symmetry influence perceptual preference in visual art.",
       "type": "research",
+      "status": "failed",
+      "created_by": "w-54096df6e9f44d9c",
+      "evidence": "source-8589a35296c04053"
+    },
+    "res-vis-art-symmetry-001": {
+      "domain": "visual_art",
+      "id": "res-vis-art-symmetry-001",
+      "project": "vis-art-perception-001",
+      "query": "visual art perception symmetry balance empirical psychology",
+      "reason": "Investigate how symmetry and balance influence visual evaluation and cognitive processing in art perception experiments.",
+      "type": "research",
       "status": "queued",
-      "created_by": "w-54096df6e9f44d9c"
+      "created_by": "w-eb9b1e05baf045c6"
     }
   },
   "research_topics": [
@@ -142761,9 +143284,9 @@
     "effective_seconds": 0.0
   },
   "temporal": {
-    "anchor_time": "2026-09-26T11:42:32.827565+00:00",
-    "anchor_version": 146,
-    "anchor_seq": 4175,
-    "effective_seconds": 129310.352627
+    "anchor_time": "2026-09-26T11:51:14.783048+00:00",
+    "anchor_version": 147,
+    "anchor_seq": 4191,
+    "effective_seconds": 129832.30811
   }
 }

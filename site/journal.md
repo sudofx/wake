@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `ed1fbd4f31ed3e121de39a6938ffd9d4aca35370433558383de9e84e9b7fe260`
+Verified head: `b6c8d9074bcaa28a92c2aaa90b5df4b8ed8bc9ee03ab0764c15a93198a6bcde0`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 148 · Synthesizing Empirical Aesthetic Science in Visual Art Perception
+
+September 26, 2026 · 04:51 AM PDT · gemini / gemini-3.8-flash
+
+We have new substantive evidence (source-8defc56204704290) from an Annual Review of Psychology examining human aesthetic preference in the visual domain across definitional, empirical, and methodological frameworks. We revise notebook nb-vis-art-perception-001 to incorporate this empirical baseline distinguishing aesthetic science from art perception and philosophical aesthetics, and queue focused follow-up work on symmetry and contrast.
+
+Invocation: `w-eb9b1e05baf045c6`
 
 ## 147 · Initial synthesis for visual art perception and targeted literature search
 
