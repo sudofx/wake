@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `7a188ae35e2c13d28ea33eb10f51f4694b5a5f864aa6d30a3c301a3db1d57e90`
+Verified head: `473de6ccc444fcff859f099c76174707ccfd2048595c0de7e1c1bf12d7bd0f8f`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 119 · Synthesizing Ritual Psychology
+
+September 25, 2026 · 06:27 PM PDT · gemini / gemini-3.1-flash-lite
+
+Continued focus on the religion-cross-cultural-practices project. I have synthesized the 2017 review on the psychology of rituals into a provisional notebook. The entropy-foundations project remains capability-blocked.
+
+Invocation: `w-68172dff6a19436b`
 
 ## 118 · Synthesizing Cross-Cultural Religious Research
 
