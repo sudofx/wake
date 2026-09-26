@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 144  
+**Version:** 145  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `17ee4a40699a066aeb11be4a5b34240965f21e09a80b0d1b026762475211b05c`
+**Verified head:** `fa2e1c787aec3457727f2eaed6a096b38e849bbe0e4c8efabde7f0a22cb551df`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -1945,44 +1945,33 @@ _None recorded._
   "domain": "neurodivergence",
   "no_progress": 1,
   "routes": [
-    "api.openalex.org:discovery",
     "api.crossref.org:source",
     "api.datacite.org:discovery",
-    "api.openalex.org:source"
+    "api.openalex.org:source",
+    "api.semanticscholar.org:discovery"
   ],
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.1108/edi-06-2020-0172",
-    "doi:10.1108/edi-06-2020-0172/full/pdf",
-    "doi:10.1111/jcpp.13534",
-    "doi:10.1007/s40617-023-00780-6",
-    "doi:10.1007/s40617-023-00780-6.pdf",
-    "doi:10.1007/s40489-025-00493-2",
-    "doi:10.1007/s40489-025-00493-2.pdf",
-    "doi:10.1111/soc4.13249",
-    "openalex:W3208557763",
-    "openalex:W4322766838",
-    "openalex:W4406993291",
-    "openalex:W4400903319"
+    "openalex:W4400903319",
+    "doi:10.1186/1471-244x-13-59",
+    "doi:10.1176/appi.books.9780890425596",
+    "doi:10.1001/journalofethics.2015.17.4.msoc1-1504",
+    "doi:10.1111/iops.12144",
+    "doi:10.1017/9781108235556.030",
+    "doi:10.1007/s10926-008-9121-8",
+    "doi:10.1111/dmcn.14132",
+    "doi:10.1111/j.1744-6570.2009.01142.x",
+    "doi:10.1089/aut.2020.0014",
+    "doi:10.1108/mhsi-03-2014-0007",
+    "doi:10.1111/j.1754-9434.2010.01301.x"
   ],
   "last_receipt": {
-    "evidence": "source-36d7c737157244bc",
-    "outcome": "no_progress",
-    "persistent_identifiers": [
-      "doi:10.1111/jcpp.13534",
-      "doi:10.1007/s40617-023-00780-6",
-      "doi:10.1007/s40617-023-00780-6.pdf",
-      "doi:10.1007/s40489-025-00493-2",
-      "doi:10.1007/s40489-025-00493-2.pdf",
-      "doi:10.1111/soc4.13249",
-      "openalex:W3208557763",
-      "openalex:W4322766838",
-      "openalex:W4406993291",
-      "openalex:W4400903319"
-    ],
-    "research_id": "res_neuro_paradigm_001",
-    "route": "api.openalex.org:discovery",
+    "evidence": "source-e7eae15b65a342ca",
+    "outcome": "route_failure",
+    "persistent_identifiers": [],
+    "research_id": "research-neurodiversity-models-001",
+    "route": "api.semanticscholar.org:discovery",
     "stage": "discovery"
   }
 }
@@ -2006,7 +1995,7 @@ _None recorded._
   "evolutionary_biology": 5,
   "information_thermodynamics": 0,
   "music": 3,
-  "neurodivergence": 1,
+  "neurodivergence": 0,
   "neurology": 0,
   "prime_numbers": 8,
   "quantum_mechanics": 5,
@@ -2027,12 +2016,12 @@ _None recorded._
 {
   "attention_saturation_triggered": false,
   "attention_topic": "neurodivergence",
-  "durable_progress": false,
-  "hard_rejection": true,
-  "invocation": "w-0da8058fe5074a8f",
+  "durable_progress": true,
+  "hard_rejection": false,
+  "invocation": "w-627469e8923341bc",
   "restored_topics": [],
   "selected_topic": "neurodivergence",
-  "terminal": "rejected",
+  "terminal": "accepted",
   "triggered_topics": []
 }
 ```
@@ -2042,7 +2031,7 @@ _None recorded._
 ```json
 {
   "accepted_streak": 1,
-  "topic": "prime_numbers"
+  "topic": "neurodivergence"
 }
 ```
 
@@ -2548,22 +2537,22 @@ _None recorded._
 ```json
 {
   "evidence": [
-    "source-c6fba17e9e2249bc",
-    "source-038ae7df2c5a4660"
+    "source-72e7307bd1d247d7",
+    "source-3896d2f336484666"
   ],
-  "findings": "The intellectual framing of neurological differences has historically been dominated by a clinical pathology model, which views variances in cognitive, sensory, and behavioral processing as deficits or dysfunctions requiring normalization. Conversely, the neurodiversity paradigm [source-c6fba17e9e2249bc] conceptualizes these variations as natural and valuable forms of human diversity. In social philosophy, this transition challenges the assumption that there is a single 'normal' or 'healthy' brain type, advocating instead for structural accommodations and the recognition of neurodivergent perspectives as valid modalities of existence rather than pathologized deficits. Under this social model, many challenges faced by neurodivergent individuals are reframed as mismatches between their processing styles and societal expectations, rather than intrinsic individual failings [source-038ae7df2c5a4660].",
+  "findings": "The academic literature, such as [source-72e7307bd1d247d7], suggests that research into 'neurodiversity' often constitutes an 'empty review,' indicating a lack of comprehensive, synthesized academic literature bridging the gap between social models and clinical pathology frameworks. The primary contention lies in whether neurodivergent traits are inherently pathological conditions to be treated/cured or natural variations of human cognitive diversity [source-72e7307bd1d247d7].",
   "id": "nb-neuro-paradigm-comp-001",
-  "limitations": "Our findings are strictly constrained by the metadata level of the collected sources [source-c6fba17e9e2249bc] [source-038ae7df2c5a4660]. The full arguments, empirical parameters, and detailed case applications remain inaccessible without retrieving the full text of these publications.",
-  "next_questions": "What specific criteria do clinical models use to distinguish benign cognitive variation from pathological dysfunction, and how do social philosophers propose validating subjective neurodivergent reports in scientific literature?",
+  "limitations": "This notebook relies on a single metadata/review source which identifies a gap in existing literature rather than providing the primary experimental outcomes themselves. Further comparative literature is required to delineate specific practical applications in clinical vs. community support settings [source-72e7307bd1d247d7].",
+  "next_questions": "What specific operational definitions differentiate the 'medical model' from 'neurodiversity-affirming' practices? How do clinicians integrate these models in real-world settings?",
   "project": "neuro-paradigm-comp-001",
-  "reason": "To synthesize the initial metadata findings on the neurodiversity paradigm and clinical pathology models, establishing a baseline for the active neurodivergence project.",
-  "summary": "This provisional synthesis outlines the conceptual division between the neurodiversity paradigm and the clinical pathology model, drawing from philosophical and academic metadata.",
+  "reason": "This notebook formalizes the synthesis of the first project evidence, providing a baseline for comparative analysis.",
+  "summary": "Initial synthesis examining the neurodiversity movement's critique of clinical models, identifying 'neurodiversity' as an emerging research area in need of rigorous synthesis.",
   "title": "Conceptual Divergence: Neurodiversity Paradigm vs. Clinical Pathology",
   "type": "notebook",
-  "revision": 1,
+  "revision": 2,
   "created_version": 142,
-  "updated_version": 142,
-  "updated_by": "w-5d6a210136fe4942",
+  "updated_version": 145,
+  "updated_by": "w-627469e8923341bc",
   "domain": "neurodivergence"
 }
 ```
@@ -120196,6 +120185,527 @@ _None recorded._
 }
 ```
 
+### `w-627469e8923341bc`
+
+```json
+{
+  "base_version": 144,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 12891,
+    "delivered_request_chars": 41056,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set",
+      "verbose recovery frames",
+      "extended bounded reflection history",
+      "redundant evidence payload text",
+      "low-priority bounded prose"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "request_compression_ratio": 0.34,
+    "retrieval_rehydrated_evidence_count": 2,
+    "rich_context_chars": 120750,
+    "working_set_chars": 4093
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-627469e8923341bc",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 144,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "endo-neuro-interaction-001",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Hormonal Regulation of Nervous System Function"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "neuro-paradigm-comp-001",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Neurodiversity Paradigm vs. Clinical Pathology"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "prime-dist-pnt-001",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 4,
+          "notebooks": 0,
+          "queued_research": 1
+        },
+        "title": "Prime Number Theorem and Distribution"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2267,
+  "provider": "gemini",
+  "quota_day": "2026-09-26",
+  "request_hash": "9952ee811fef3d9f8a3cad621ca011be4686dd5a6875aade7758ea0eaab0e41d",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neurodiversity-foundations-01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-dance-rhythm-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-visual-art-composition-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-891da548184a404e",
+          "source-8f485f755e8b4f3a"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-endo-neuro-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-14670c13f2b74102"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-14670c13f2b74102",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ebc2996fc6fc4c8c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ebc2996fc6fc4c8c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-9ebfbecec8084e7a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-9ebfbecec8084e7a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-d8e0116f2d8946dd"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-d8e0116f2d8946dd",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-72e7307bd1d247d7"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-72e7307bd1d247d7",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-3896d2f336484666"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-3896d2f336484666",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0a7b2a5c06d44417",
+      "source-930f33f0d42a4658",
+      "source-f535f6171025430e",
+      "source-b4a60e211150449b",
+      "source-41fac1eecb0246dd",
+      "source-51a9b989df3144af",
+      "source-891da548184a404e",
+      "source-8f485f755e8b4f3a",
+      "source-14670c13f2b74102",
+      "source-ebc2996fc6fc4c8c",
+      "source-9ebfbecec8084e7a",
+      "source-d8e0116f2d8946dd",
+      "source-72e7307bd1d247d7",
+      "source-3896d2f336484666"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 10,
+      "evidence_count": 14,
+      "trigger_counts": {
+        "notebook_revised": 4,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "runtime_performance": {
+    "compaction_ms": 6.357,
+    "context_build_ms": 106.839,
+    "load_ms": 980.068,
+    "receipt_ms": 575.474,
+    "start_total_before_record_ms": 3122.198,
+    "store": {
+      "append_cache_hits": 11,
+      "append_cache_misses": 0,
+      "cached_copy_ms": 1097.581,
+      "cached_loads": 0,
+      "event_count": 4065,
+      "full_replays": 11,
+      "replay_ms": 7442.827,
+      "trusted_projection_active": true
+    },
+    "temporal_ms": 1452.461
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 1,
+      "topic": "prime_numbers"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [],
+    "enforce_selected_topic": false,
+    "hard_rejection_threshold": 5,
+    "parked": {},
+    "reason": "current durable project topic remains eligible",
+    "rotation_required": false,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "neurodivergence",
+    "temporal": {
+      "anchor_seq": 4064,
+      "anchor_time": "2026-09-26T10:39:32.369871+00:00",
+      "anchor_version": 144,
+      "effective_seconds": 125529.894933
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": null,
+    "topic_selection_candidates": [],
+    "topic_selection_method": "active_topic"
+  },
+  "temporal": {
+    "cycle_distance": 0,
+    "effective_elapsed_seconds": 492.736285,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 125529.894933,
+    "intervening_events": {
+      "accepted": 0,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 1,
+      "research_collected": 1,
+      "squirrel_assessed": 1,
+      "total": 15
+    },
+    "observed_at": "2026-09-26T10:39:32.369871+00:00",
+    "previous_anchor_time": "2026-09-26T10:31:19.633586+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 492.736285
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 12891,
+    "inquiry_drive_project_count": 3,
+    "mode": "bounded",
+    "retrieval_candidate_count": 10,
+    "retrieval_evidence_count": 14,
+    "retrieval_rehydrated_evidence_count": 2,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 4,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 4093,
+    "working_to_delivered_ratio": 0.3175
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "endo-neuro-interaction-001",
+        "next_step": "Search for integrative reviews or medical literature summarizing the neurological sequelae of common endocrine disorders.",
+        "question": "How do specific endocrine dysfunctions, such as thyroid or adrenal imbalances, manifest as neurological symptoms, and what are the primary biological pathways connecting these systems?",
+        "title": "Hormonal Regulation of Nervous System Function"
+      },
+      {
+        "id": "prime-dist-pnt-001",
+        "next_step": "Search for introductory mathematical literature or reliable online repositories detailing the PNT and its limitations.",
+        "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?",
+        "title": "Prime Number Theorem and Distribution"
+      },
+      {
+        "id": "neuro-paradigm-comp-001",
+        "next_step": "Search for comparative literature discussing the neurodiversity social model and the medical model of pathology.",
+        "question": "How do the neurodiversity paradigm and the clinical pathology model conceptualize neurodivergent traits, and where do they differ in their practical applications for support and diagnosis?",
+        "title": "Neurodiversity Paradigm vs. Clinical Pathology"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-religion-002",
+        "project": "religion-cross-cultural-practices",
+        "provenance": [
+          "source-7bd43608b269427f",
+          "source-d56377b15875422a"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes available bibliographic metadata concerning cognitive and evolutionary approaches to religion, noting that while the sources provide a venue for such research, full content access is currently absent.",
+        "title": "Provisional Synthesis: Cross-Cultural Religious Practices"
+      },
+      {
+        "id": "nb-religion-ritual-psych-001",
+        "project": "religion-cross-cultural-practices",
+        "provenance": [
+          "source-0e0aa6aa238246cb"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes the 'process-based framework' from a 2017 integrative review of ritual psychology, noting the distinction between the ritual form and its psychological function.",
+        "title": "Synthesis: The Psychology of Rituals"
+      },
+      {
+        "id": "nb-neuro-metabolic-001",
+        "project": "neurology-metabolic-pathways",
+        "provenance": [
+          "source-8fb4038a7344498e",
+          "source-e41f8efd700544cf"
+        ],
+        "revision": 1,
+        "summary": "An initial assessment of the intersection between metabolic pathways and neurological health, based on bibliographic metadata.",
+        "title": "Provisional Synthesis: Metabolic Drivers in Neurological Function"
+      },
+      {
+        "id": "nb-evo-foundations-001",
+        "project": "evolutionary-biology-foundations",
+        "provenance": [
+          "source-2cd2684377c54051",
+          "source-e2e41e9bcb594def"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes available bibliographic metadata to frame future inquiry into how evolutionary biology distinguishes mechanisms such as adaptation, byproduct, drift, and constraint.",
+        "title": "Provisional Synthesis: Evolutionary Mechanisms"
+      },
+      {
+        "id": "nb-endo-neuro-001",
+        "project": "endo-neuro-interaction-001",
+        "provenance": [
+          "source-891da548184a404e",
+          "source-8f485f755e8b4f3a"
+        ],
+        "revision": 2,
+        "summary": "This provisional synthesis integrates newly indexed literature on congenital adrenal hyperplasia and systemic signal pathways to explore the endocrinology-neurology interface.",
+        "title": "Provisional Synthesis: Endocrine Influence on Neurological Function"
+      },
+      {
+        "id": "nb-neuro-paradigm-comp-001",
+        "project": "neuro-paradigm-comp-001",
+        "provenance": [
+          "source-c6fba17e9e2249bc",
+          "source-038ae7df2c5a4660"
+        ],
+        "revision": 1,
+        "summary": "This provisional synthesis outlines the conceptual division between the neurodiversity paradigm and the clinical pathology model, drawing from philosophical and academic metadata.",
+        "title": "Conceptual Divergence: Neurodiversity Paradigm vs. Clinical Pathology"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-26T10:39:34.620945+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 2869,
+      "http_status": 503,
+      "model": "gemini-3.8-flash",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 44512,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    },
+    {
+      "category": "server",
+      "elapsed_ms": 2639,
+      "http_status": 503,
+      "model": "gemini-3.5-flash",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 44512,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    },
+    {
+      "elapsed_ms": 12285,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 44512,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 3,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-26T10:40:46.117795+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -147067,6 +147577,103 @@ _None recorded._
 }
 ```
 
+### `source-3896d2f336484666`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1108%2Fedi-06-2020-0172\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 9, 15]], \\\"date-time\\\": \\\"2026-09-15T13:39:22Z\\\", \\\"timestamp\\\": 1789479562392, \\\"version\\\": \\\"build-2803163510\\\"}, \\\"reference-count\\\": 144, \\\"publisher\\\": \\\"Emerald\\\", \\\"issue\\\": \\\"3\\\", \\\"license\\\": [{\\\"start\\\": {\\\"date-parts\\\": [[2021, 5, 25]], \\\"date-time\\\": \\\"2021-05-25T00:00:00Z\\\", \\\"timestamp\\\": 1621900800000}, \\\"content-version\\\": \\\"tdm\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://www.emerald.com/insight/site-policies\\\"}], \\\"content-domain\\\": {\\\"domain\\\": [], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"EDI\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[2022, 4, 20]]}, \\\"abstract\\\": \\\"<jats:sec><jats:title content-type=\\\\\\\"abstract-subheading\\\\\\\">Purpose</jats:title><jats:p>The aims of the paper were to highlight the dearth of applied practitioner research concerning the expression of neurodiversity at work and develop an epistemological framework for a future research agenda.</jats:p></jats:sec><jats:sec><jats:title content-type=\\\\\\\"abstract-subheading\\\\\\\">Design/methodology/approach</jats:title><jats:p>A systematic empty review protocol was employed, with three<jats:italic>a priori</jats:italic>research questions, inquiring as to the extent of neurodiversity research within mainstream work psychology, psychology in general and lastly within cross-disciplinary academic research. The results of the final search were quality checked and categorized to illustrate where studies relevant to practice are currently located.</jats:p></jats:sec><jats:sec><jats:title content-type=\\\\\\\"abstract-subheading\\\\\\\">Findings</jats:title><jats:p>The academic literature was found to be lacking in contextualized, practical advice for employers or employees. The location and foci of extracted studies highlighted a growing science-practitioner gap.</jats:p></jats:sec><jats:sec><jats:title content-type=\\\\\\\"abstract-subheading\\\\\\\">Research limitations/implications</jats:title><jats:p>The research focused on common neurominority conditions such as autism and dyslexia; it is acknowledged that the neurodiversity definition itself is broader and more anthropological in nature. A need for a comprehensive research agenda is articulated, and research questions and frameworks are proposed.</jats:p></jats:sec><jats:sec><jats:title content-type=\\\\\\\"abstract-subheading\\\\\\\">Practical implications</jats:title><jats:p>Guidance is given on applying disability accommodation to both individual and organizational targets.</jats:p></jats:sec><jats:sec><jats:title content-type=\\\\\\\"abstract-subheading\\\\\\\">Social implications</jats:title><jats:p>The disability employment gap is unchanged since legislation was introduced. The neurodiversity concept is no longer new, and it is time for multi-disciplinary collaborations across science and practice to address the questions raised in this paper.</jats:p></jats:sec><jats:sec><jats:title content-type=\\\\\\\"abstract-subheading\\\\\\\">Originality/value</jats:title><jats:p>This paper offers an original analysis of the neurodiversity paradox, combining systematic inquiry with a narrative synthesis of the extant literature. The conceptual clarification offers clear directions for researchers and practitioners.</jats:p></jats:sec>\\\", \\\"DOI\\\": \\\"10.1108/edi-06-2020-0172\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2021, 5, 21]], \\\"date-time\\\": \\\"2021-05-21T23:31:11Z\\\", \\\"timestamp\\\": 1621639871000}, \\\"page\\\": \\\"352-382\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 115, \\\"title\\\": [\\\"Diamond in the rough? An “empty review” of research into “neurodiversity” and a road map for developing the inclusion agenda\\\"], \\\"prefix\\\": \\\"10.1108\\\", \\\"volume\\\": \\\"41\\\", \\\"author\\\": [{\\\"ORCID\\\": \\\"https://orcid.org/0000-0001-5848-4093\\\", \\\"authenticated-orcid\\\": false, \\\"given\\\": \\\"Nancy\\\", \\\"family\\\": \\\"Doyle\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Almuth\\\", \\\"family\\\": \\\"McDowall\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"140\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[2021, 5, 25]]}, \\\"reference\\\": [{\\\"key\\\": \\\"key2022041901024673100_ref001\\\", \\\"volume-title\\\": \\\"Reasonable Adjustments in the Workplace\\\", \\\"author\\\": \\\"ACAS\\\", \\\"year\\\": \\\"2016\\\"}, {\\\"key\\\": \\\"key2022041901024673100_ref002\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"59\\\", \\\"DOI\\\": \\\"10.1186/1471-244X-13-59\\\", \\\"article-title\\\": \\\"Occupational issues of adults with ADHD\\\", \\\"volume\\\": \\\"13\\\", \\\"year\\\": \\\"2013\\\", \\\"journal-title\\\": \\\"BMC Psychiatry\\\"}, {\\\"key\\\": \\\"key2022041901024673100_ref003\\\", \\\"article-title\\\": \\\"Man confronts fear of disclosing his autism to potential employers: it ‘can be a positive asset’\\\", \\\"year\\\": \\\"2019\\\", \\\"journal-title\\\": \\\"People\\\"}, {\\\"key\\\": \\\"key2022041901024673100_ref004\\\", \\\"volume-title\\\": \\\"Access to Work: Qualitative Research with Applicants, Employers and Delivery Staff (Issue November)\\\", \\\"year\\\": \\\"2018\\\"}, {\\\"key\\\": \\\"key2022041901024673100_ref005\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"DOI\\\": \\\"10.1176/appi.books.9780890425596\\\", \\\"volume-title\\\": \\\"Diagnostic and Statistical Manual of Mental Disorders\\\", \\\"author\\\": \\\"American Psychiatric Association\\\", \\\"year\\\": \\\"2013\\\", \\\"edition\\\": \\\"5th ed.\\\"}, {\\\"key\\\": \\\"key2022041901024673100_ref501\\\", \\\"volume-title\\\": \\\"Americans With Disabilities Act, Pub. L. No. PL 110-325 (S 3406)\\\", \\\"author\\\": \\\"Americans With Disabilities Act\\\", \\\"year\\\": \\\"2008\\\"}, {\\\"key\\\": \\\"key2022041901024673100_ref006\\\", \\\"volume-title\\\": \\\"The Power of Neurodiversity\\\", \\\"year\\\": \\\"2010\\\"}, {\\\"issue\\\": \\\"4\\\", \\\"key\\\": \\\"key2022041901024673100_ref007\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"348\\\", \\\"DOI\\\": \\\"10.1001/journalofethics.2015.17.4.msoc1-1504\\\", \\\"article-title\\\": \\\"The myth of the normal brain: embracing neurodiversity\\\", \\\"volume\\\": \\\"17\\\", \\\"year\\\": \\\"2015\\\", \\\"journal-title\\\": \\\"AMA Journal of Ethics\\\"}, {\\\"issue\\\": \\\"2\\\", \\\"key\\\": \\\"key2022041901024673100_ref008\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"256\\\", \\\"DOI\\\": \\\"10.1111/iops.12144\\\", \\\"article-title\\\": \\\"Invisible disabilities and employment testing\\\", \\\"volume\\\": \\\"7\\\", \\\"year\\\": \\\"2014\\\", \\\"journal-title\\\": \\\"Industrial and Organizational Psychology\\\"}, {\\\"key\\\": \\\"key2022041901024673100_ref009\\\", \\\"first-page\\\": \\\"96\\\", \\\"article-title\\\": \\\"Neurodiversity as a competitive advantage\\\", \\\"volume\\\": \\\"95\\\", \\\"year\\\": \\\"2017\\\", \\\"journal-title\\\": \\\"Harvard Business Review\\\"}, {\\\"key\\\": \\\"key2022041901024673100_ref010\\\", \\\"volume-title\\\": \\\"The Concept of Neurodiversity Is Dividing the Autism Community\\\", \\\"year\\\": \\\"2019\\\"}, {\\\"key\\\": \\\"key2022041901024673100_ref011\\\", \\\"doi-asserted-by\\\": \\\"crossref\\\", \\\"unstructured\\\": \\\"Beauregard, T.A., Basile, K.A. and Thompson, C.A. (2018), “Organizational culture in the context of national culture”, in Johnson, R., Shen, W. and Shockley, K.M. (Eds), The Cambridge Handbook of the Global Work-Family Interface, Cambridge University Press, Cambridge, pp. 555-569.\\\", \\\"DOI\\\": \\\"10.1017/9781108235556.030\\\"}, {\\\"key\\\": \\\"key2022041901024673100_ref012\\\", \\\"article-title\\\": \\\"Effective autism (neurodiversity) employment\\\", \\\"year\\\": \\\"2019\\\", \\\"journal-title\\\": \\\"Forbes\\\"}, {\\\"key\\\": \\\"key2022041901024673100_ref013\\\", \\\"volume-title\\\": \\\"Neurodiversity at Work\\\", \\\"year\\\": \\\"2016\\\"}, {\\\"issue\\\": \\\"1\\\", \\\"key\\\": \\\"key2022041901024673100_ref014\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"27\\\", \\\"DOI\\\": \\\"10.1007/s10926-008-9121-8\\\", \\\"article-title\\\": \\\"A systematic review of the factors which predict return to work for people suffering episodes of poor mental health\\\", \\\"volume\\\": \\\"18\\\", \\\"year\\\": \\\"2008\\\", \\\"journal-title\\\": \\\"Journal of Occupational Rehabilitation\\\"}, {\\\"key\\\": \\\"key2022041901024673100_ref015\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"242\\\", \\\"DOI\\\": \\\"10.1111/dmcn.14132\\\", \\\"article-title\\\": \\\"International clinical practice recommendations on the definition, diagnosis, assessment, intervention, and psychosocial aspects of developmental coordination disorder\\\", \\\"volume\\\": \\\"61\\\", \\\"year\\\": \\\"2019\\\", \\\"journal-title\\\": \\\"Developmental Medicince and Child Neurology\\\"}, {\\\"issue\\\": \\\"2\\\", \\\"key\\\": \\\"key2022041901024673100_ref016\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"361\\\", \\\"DOI\\\": \\\"10.1111/j.1744-6570.2009.01142.x\\\", \\\"article-title\\\": \\\"A survey of executive coaching practices\\\", \\\"volume\\\": \\\"62\\\", \\\"year\\\": \\\"2009\\\", \\\"journal-title\\\": \\\"Personnel Psychology\\\"}, {\\\"key\\\": \\\"key2022041901024673100_ref017\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"1\\\", \\\"DOI\\\": \\\"10.1089/aut.2020.0014\\\", \\\"article-title\\\": \\\"Avoiding ableist language : suggestions for autism researchers\\\", \\\"year\\\": \\\"2020\\\", \\\"journal-title\\\": \\\"Autism in Adulthood\\\"}, {\\\"issue\\\": \\\"1\\\", \\\"key\\\": \\\"key2022041901024673100_ref018\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"29\\\", \\\"DOI\\\": \\\"10.1108/MHSI-03-2014-0007\\\", \\\"article-title\\\": \\\"Creating a culture of employability in mental health\\\", \\\"volume\\\": \\\"18\\\", \\\"year\\\": \\\"2014\\\", \\\"journal-title\\\": \\\"Mental Health and Social Inclusion\\\"}, {\\\"issue\\\": \\\"1\\\", \\\"key\\\": \\\"key2022041901024673100_ref019\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"76\\\", \\\"DOI\\\": \\\"10.1111/j.1754-9434.2010.01301.x\\\", \\\"article-title\\\": \\\"L1 evidence-based I – O psychology: not there yet but now a little nearer ?\\\", \\\"volume\\\": \\\"4\\\", \\\"year\\\": \\\"2011\\\", \\\"journal-title\\\": \\\"Industrial and Organizational Psychology\\\"}, {\\\"key\\\": \\\"key2022041901024673100_ref020\\\", \\\"volume-title\\\": \\\"The Ecology of Human Development: Experiments by Nature and Design\\\", \\\"year\\\": \\\"1979\\\"}, {\\\"issue\\\": \\\"1\\\", \\\"key\\\": \\\"key2022041901024673100_ref021\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"50\\\", \\\"DOI\\\": \\\"10.1177/1044207311414680\\\", \\\"article-title\\\": \\\"Predictors of postschool employment outcomes for Young adults with severe disabilities\\\", \\\"volume\\\": \\\"23\\\", \\\"year\\\": \\\"2012\\\", \\\"journal-title\\\": \\\"Journal of Disability Policy Studies\\\"}, {\\\"issue\\\": \\\"7\\\", \\\"key\\\": \\\"key2022041901024673100_ref022\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1371/journal.pone.0180355\\\", \\\"article-title\\\": \\\"The pharmacological and non-pharmacological treatment of attention deficit hyperactivity disorder in children and adolescents: a systematic review with network meta-analyses of randomised trials\\\", \\\"volume\\\": \\\"12\\\", \\\"year\\\": \\\"2017\\\", \\\"journal-title\\\": \\\"PloS One\\\"}, {\\\"issue\\\": \\\"21\\\", \\\"key\\\": \\\"key2022041901024673100_ref023\\\", \\\"first-page\\\": \\\"581\\\", \\\"article-title\\\": \\\"Morbidity and mortality weekly report\\\", \\\"volume\\\": \\\"58\\\", \\\"author\\\": \\\"CDC\\\", \\\"year\\\":\", \"excerpt_truncated\": true, \"source_sha256\": \"9fee0c6f9e2bda7282cb7469da65a5b35131eeaf1d2b8137f8ce8e1df53e086b\", \"verification_required\": true, \"topic_domain\": \"neurodivergence\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.1108/edi-06-2020-0172\", \"doi:10.1186/1471-244x-13-59\", \"doi:10.1176/appi.books.9780890425596\", \"doi:10.1001/journalofethics.2015.17.4.msoc1-1504\", \"doi:10.1111/iops.12144\", \"doi:10.1017/9781108235556.030\", \"doi:10.1007/s10926-008-9121-8\", \"doi:10.1111/dmcn.14132\", \"doi:10.1111/j.1744-6570.2009.01142.x\", \"doi:10.1089/aut.2020.0014\", \"doi:10.1108/mhsi-03-2014-0007\", \"doi:10.1111/j.1754-9434.2010.01301.x\"]}",
+  "id": "source-3896d2f336484666",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.1108%2Fedi-06-2020-0172",
+  "version": 144,
+  "time": "2026-09-26T10:39:26.186134+00:00"
+}
+```
+
+### `source-e7eae15b65a342ca`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.semanticscholar.org/graph/v1/paper/search?query=neurodiversity+paradigm+social+model+clinical+pathology+medical+model+comparison&limit=4&fields=paperId%2Ctitle%2Cyear%2Cabstract%2Curl%2CexternalIds%2CopenAccessPdf\", \"error\": \"HTTPError\", \"scope\": \"fetch failed; no evidence obtained\"}",
+  "id": "source-e7eae15b65a342ca",
+  "scope": "failed",
+  "source": "https://api.semanticscholar.org/graph/v1/paper/search?query=neurodiversity+paradigm+social+model+clinical+pathology+medical+model+comparison&limit=4&fields=paperId%2Ctitle%2Cyear%2Cabstract%2Curl%2CexternalIds%2CopenAccessPdf",
+  "version": 144,
+  "time": "2026-09-26T10:39:27.282811+00:00"
+}
+```
+
+### `source-1d91dd7651ba4435`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":2201},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy in thermodynamics and information theory\\\",\\\"pageid\\\":3325140,\\\"size\\\":32062,\\\"wordcount\\\":3968,\\\"snippet\\\":\\\"expressions for\\ninformation\\ntheory developed by Claude Shannon and Ralph Hartley in the 1940s are similar to the mathematics of statistical\\nthermodynamics\\nworked\\\",\\\"timestamp\\\":\\\"2026-09-24T10:29:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy\\\",\\\"pageid\\\":9891,\\\"size\\\":115933,\\\"wordcount\\\":14396,\\\"snippet\\\":\\\"classical\\nthermodynamics\\n(where it was first recognized), to the microscopic description of nature in statistical physics, and the principles of\\ninformation\\ntheory\\\",\\\"timestamp\\\":\\\"2026-09-21T14:49:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Laws of thermodynamics\\\",\\\"pageid\\\":778700,\\\"size\\\":20658,\\\"wordcount\\\":2896,\\\"snippet\\\":\\\"The laws of\\nthermodynamics\\nare a set of scientific laws which define a group of physical quantities, such as temperature, energy, and entropy, that characterize\\\",\\\"timestamp\\\":\\\"2026-07-20T00:17:43Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Second law of thermodynamics\\\",\\\"pageid\\\":133017,\\\"size\\\":119048,\\\"wordcount\\\":16416,\\\"snippet\\\":\\\"The second law of\\nthermodynamics\\nis a physical law based on universal empirical observation concerning heat and energy interconversions. A simple statement\\\",\\\"timestamp\\\":\\\"2026-09-22T12:26:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of thermodynamics\\\",\\\"pageid\\\":2281782,\\\"size\\\":35022,\\\"wordcount\\\":3780,\\\"snippet\\\":\\\"The history of\\nthermodynamics\\nis a fundamental strand in the history of physics, the history of chemistry, and the history of science in general. Due to\\\",\\\"timestamp\\\":\\\"2026-08-29T23:05:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Entropy (information theory)\\\",\\\"pageid\\\":15445,\\\"size\\\":72351,\\\"wordcount\\\":10078,\\\"snippet\\\":\\\"noisy-channel coding theorem. Entropy in\\ninformation\\ntheory is directly analogous to the entropy in statistical\\nthermodynamics\\n. The analogy results when the values\\\",\\\"timestamp\\\":\\\"2026-08-01T11:28:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Thermodynamics\\\",\\\"pageid\\\":29952,\\\"size\\\":49113,\\\"wordcount\\\":5808,\\\"snippet\\\":\\\"\\nThermodynamics\\nis a branch of physics that deals with heat, work, and temperature, and their relation to energy, entropy, and the physical properties of\\\",\\\"timestamp\\\":\\\"2026-09-01T03:12:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Nicole Yunger Halpern\\\",\\\"pageid\\\":80018960,\\\"size\\\":8512,\\\"wordcount\\\":643,\\\"snippet\\\":\\\"quantum\\nthermodynamics\\n. She works at the National Institute of Standards and Technology, is a fellow of the Joint Center for Quantum\\nInformation\\nand Computer\\\",\\\"timestamp\\\":\\\"2026-08-31T12:40:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Zeroth law of thermodynamics\\\",\\\"pageid\\\":262861,\\\"size\\\":21045,\\\"wordcount\\\":2665,\\\"snippet\\\":\\\"The zeroth law of\\nthermodynamics\\nis one of the four principal laws of\\nthermodynamics\\n. It provides an independent definition of temperature without reference\\\",\\\"timestamp\\\":\\\"2025-12-17T14:08:55Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Maximum entropy thermodynamics\\\",\\\"pageid\\\":3015758,\\\"size\\\":28263,\\\"wordcount\\\":3649,\\\"snippet\\\":\\\"In physics, maximum entropy\\nthermodynamics\\n(colloquially, MaxEnt\\nthermodynamics\\n) views equilibrium\\nthermodynamics\\nand statistical mechanics as inference\\\",\\\"timestamp\\\":\\\"2026-07-17T03:36:51Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"35dba10eabf8eaaa73b67816742dda9fafbe620555ad541dd87af7abd9070f9e\", \"verification_required\": true, \"topic_domain\": \"information_thermodynamics\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-1d91dd7651ba4435",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=information+thermodynamics&format=json",
+  "version": 144,
+  "time": "2026-09-26T10:39:28.862300+00:00"
+}
+```
+
+### `source-f547df5a406648eb`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":149389,\\\"suggestion\\\":\\\"philosopher\\\",\\\"suggestionsnippet\\\":\\\"philosopher\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Philosophy\\\",\\\"pageid\\\":13692155,\\\"size\\\":202290,\\\"wordcount\\\":17543,\\\"snippet\\\":\\\"\\nPhilosophy\\n(from Ancient Greek philosoph\\\\u00eda, lit.\\\\u2009'love of wisdom') is a systematic study of general and fundamental questions concerning topics like existence\\\",\\\"timestamp\\\":\\\"2026-09-24T22:22:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Doctor of Philosophy\\\",\\\"pageid\\\":21031297,\\\"size\\\":152425,\\\"wordcount\\\":16312,\\\"snippet\\\":\\\"A Doctor of\\nPhilosophy\\n(PhD, DPhil; Latin: philosophiae doctor or doctor in philosophia) is a terminal degree that usually denotes the highest level of\\\",\\\"timestamp\\\":\\\"2026-09-22T15:35:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Fish! Philosophy\\\",\\\"pageid\\\":8770844,\\\"size\\\":8284,\\\"wordcount\\\":1071,\\\"snippet\\\":\\\"The Fish!\\nPhilosophy\\n(styled FISH!\\nPhilosophy\\n), modeled after the Pike Place Fish Market, is a business technique that is aimed at creating happy individuals\\\",\\\"timestamp\\\":\\\"2026-03-07T07:04:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Epistemology is the branch of\\nphilosophy\\nthat examines the nature, origin, and limits of knowledge. Also called the theory of knowledge, it explores different\\\",\\\"timestamp\\\":\\\"2026-09-26T08:31:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Desert (philosophy)\\\",\\\"pageid\\\":10791397,\\\"size\\\":23606,\\\"wordcount\\\":3102,\\\"snippet\\\":\\\"Desert (/d\\\\u026a\\\\u02c8z\\\\u025c\\\\u02d0rt/) in\\nphilosophy\\nis the condition of being deserving of something, whether good or bad. One type of this is moral desert. It is a concept\\\",\\\"timestamp\\\":\\\"2026-01-20T20:30:37Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cynicism (philosophy)\\\",\\\"pageid\\\":19187131,\\\"size\\\":40942,\\\"wordcount\\\":4715,\\\"snippet\\\":\\\"Cynicism (Ancient Greek: \\\\u03ba\\\\u03c5\\\\u03bd\\\\u03b9\\\\u03c3\\\\u03bc\\\\u03cc\\\\u03c2) is a school of thought in ancient Greek\\nphilosophy\\n, originating in the Classical period and extending into the Hellenistic\\\",\\\"timestamp\\\":\\\"2026-05-27T04:15:40Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"Aesthetics is the branch of\\nphilosophy\\nthat studies beauty, taste, and related phenomena. In a broad sense, it includes the\\nphilosophy\\nof art, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"German philosophy\\\",\\\"pageid\\\":176051,\\\"size\\\":164558,\\\"wordcount\\\":18385,\\\"snippet\\\":\\\"German\\nphilosophy\\nis\\nphilosophy\\nin Germany, by German people, and in the German language, a part of German culture. German philosophers are central to\\\",\\\"timestamp\\\":\\\"2026-09-26T06:36:00Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Political philosophy\\\",\\\"pageid\\\":23040,\\\"size\\\":129861,\\\"wordcount\\\":13401,\\\"snippet\\\":\\\"Political\\nphilosophy\\n, also called political theory, is the study of the theoretical and conceptual foundations of politics. It examines the nature, scope\\\",\\\"timestamp\\\":\\\"2026-09-23T10:21:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Tamas (philosophy)\\\",\\\"pageid\\\":476372,\\\"size\\\":5461,\\\"wordcount\\\":606,\\\"snippet\\\":\\\"philosophical and psychological concept developed by the Samkhya school of Hindu\\nphilosophy\\n. The other two qualities are rajas (passion and activity) and sattva (purity\\\",\\\"timestamp\\\":\\\"2026-07-16T17:00:46Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"df933d8c264d84b91964e262aa7f4cd6bc99a9076b6ae792ebe2a22d80fe54bb\", \"verification_required\": true, \"topic_domain\": \"philosophy\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-f547df5a406648eb",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=philosophy&format=json",
+  "version": 144,
+  "time": "2026-09-26T10:39:29.559429+00:00"
+}
+```
+
+### `source-1fdd630995204d51`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":393},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Art\\\",\\\"pageid\\\":752,\\\"size\\\":132424,\\\"wordcount\\\":14439,\\\"snippet\\\":\\\"spiritually, or philosophically motivated\\nart\\n; to create a sense of beauty (see\\naesthetics\\n); to explore the nature of\\nperception\\n; for pleasure; or to generate strong\\\",\\\"timestamp\\\":\\\"2026-09-09T08:09:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of art\\\",\\\"pageid\\\":8165347,\\\"size\\\":90900,\\\"wordcount\\\":11467,\\\"snippet\\\":\\\"The psychology of\\nart\\nis the scientific study of cognitive and emotional processes precipitated by the sensory\\nperception\\nof aesthetic artefacts, such\\\",\\\"timestamp\\\":\\\"2026-09-21T20:46:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Aesthetics\\\",\\\"pageid\\\":2130,\\\"size\\\":149323,\\\"wordcount\\\":16275,\\\"snippet\\\":\\\"\\nAesthetics\\nis the branch of philosophy that studies beauty, taste, and related phenomena. In a broad sense, it includes the philosophy of\\nart\\n, which examines\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Tribal art\\\",\\\"pageid\\\":24811443,\\\"size\\\":11752,\\\"wordcount\\\":1204,\\\"snippet\\\":\\\"Tribal\\nart\\nis the\\nvisual\\narts and material culture of indigenous people. Also known as non-Western\\nart\\nor ethnographic\\nart\\n, or, controversially, primitive\\\",\\\"timestamp\\\":\\\"2025-12-21T03:03:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Rudolf Arnheim\\\",\\\"pageid\\\":467254,\\\"size\\\":17187,\\\"wordcount\\\":2040,\\\"snippet\\\":\\\"have included\\nVisual\\nThinking (1969), and The Power of the Center: A Study of\\nComposition\\nin the\\nVisual\\nArts (1982).\\nArt\\nand\\nVisual\\nPerception\\nwas revised\\\",\\\"timestamp\\\":\\\"2026-09-02T04:51:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Style (visual arts)\\\",\\\"pageid\\\":147860,\\\"size\\\":37916,\\\"wordcount\\\":4617,\\\"snippet\\\":\\\"\\nvisual\\nappearance of a work of\\nart\\nthat relates it to other works by the same artist or one from the same period, training, location, \\\"school\\\",\\nart\\nmovement\\\",\\\"timestamp\\\":\\\"2026-09-10T04:00:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ma (negative space)\\\",\\\"pageid\\\":14904296,\\\"size\\\":8650,\\\"wordcount\\\":904,\\\"snippet\\\":\\\"space, ma may also refer to the\\nperception\\nof a space, gap or interval, without necessarily requiring a physical\\ncompositional\\nelement. This results in the\\\",\\\"timestamp\\\":\\\"2026-09-22T04:45:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of aesthetics\\\",\\\"pageid\\\":3376041,\\\"size\\\":78283,\\\"wordcount\\\":10808,\\\"snippet\\\":\\\"This is a history of\\naesthetics\\n. The first important contributions to aesthetic theory are usually considered to stem from philosophers in Ancient Greece\\\",\\\"timestamp\\\":\\\"2026-09-11T08:39:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Applied aesthetics\\\",\\\"pageid\\\":17741443,\\\"size\\\":28492,\\\"wordcount\\\":3644,\\\"snippet\\\":\\\"Applied\\naesthetics\\nis the application of the branch of philosophy of\\naesthetics\\nto cultural constructs. In a variety of fields, artifacts (whether physical\\\",\\\"timestamp\\\":\\\"2026-08-07T10:16:52Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Visual thinking\\\",\\\"pageid\\\":144904,\\\"size\\\":21987,\\\"wordcount\\\":2316,\\\"snippet\\\":\\\"and the memory image, which causes\\nvisual\\nthinkers from not seeing the eidetic image but rather drawing upon\\nperception\\nand useful information.[citation\\\",\\\"timestamp\\\":\\\"2026-08-10T06:11:00Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"e197b27059dea300c114497beb2497207424973acce9c6a02f55c7e72b865e31\", \"verification_required\": true, \"topic_domain\": \"visual_art\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-1fdd630995204d51",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=visual+art+perception+aesthetics+composition&format=json",
+  "version": 144,
+  "time": "2026-09-26T10:39:30.277386+00:00"
+}
+```
+
+### `source-506cbb9af7d94551`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Dance\\\",\\\"pageid\\\":7885,\\\"size\\\":73058,\\\"wordcount\\\":8358,\\\"snippet\\\":\\\"by\\ndance\\nthat emphasised dramatic mime. A broader concept of\\nrhythm\\nwas needed, that which Rudolf Laban terms the \\\"\\nrhythm\\nand shape\\\" of\\nmovement\\nthat\\\",\\\"timestamp\\\":\\\"2026-09-15T00:29:49Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"\\\\u00a0111. ISBN\\\\u00a0978-0-19-929845-7. Krumhansl, C. L. (2000). \\\"\\nRhythm\\nand pitch in music\\ncognition\\n\\\". Psychol. Bull. 126 (1): 159\\\\u2013179. doi:10.1037/0033-2909\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"African-American culture\\\",\\\"pageid\\\":1142503,\\\"size\\\":186819,\\\"wordcount\\\":18525,\\\"snippet\\\":\\\"influenced modern popular\\nculture\\n. Spoken-word artists employ the same techniques as African-American preachers including\\nmovement\\n,\\nrhythm\\n, and audience participation\\\",\\\"timestamp\\\":\\\"2026-09-24T19:24:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Irish stepdance\\\",\\\"pageid\\\":6188670,\\\"size\\\":45682,\\\"wordcount\\\":5651,\\\"snippet\\\":\\\"called Feiseanna (singular Feis). In Irish\\ndance\\nculture\\n, a Feis is a traditional Gaelic arts and\\nculture\\nfestival. Contemporarily, costumes are sometimes\\\",\\\"timestamp\\\":\\\"2026-06-22T02:12:29Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Modernism\\\",\\\"pageid\\\":19547,\\\"size\\\":185952,\\\"wordcount\\\":20347,\\\"snippet\\\":\\\"modern\\ndance\\n, modernist architecture, and urban planning. Modernism took a critical stance towards the Enlightenment concept of rationalism. The\\nmovement\\nalso\\\",\\\"timestamp\\\":\\\"2026-09-23T15:47:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture of the United States\\\",\\\"pageid\\\":18985287,\\\"size\\\":156491,\\\"wordcount\\\":13473,\\\"snippet\\\":\\\"of\\ncultures\\nhas been a distinguishing feature of its society. Americans pioneered or made great strides in musical genres such as heavy metal,\\nrhythm\\nand\\\",\\\"timestamp\\\":\\\"2026-09-26T00:50:15Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary musicology\\\",\\\"pageid\\\":4220231,\\\"size\\\":24796,\\\"wordcount\\\":2920,\\\"snippet\\\":\\\"well as several other universal elements of contemporary human\\nculture\\n, including\\ndance\\nand body painting) was part of a predator control system used by\\\",\\\"timestamp\\\":\\\"2026-05-08T03:37:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music and emotion\\\",\\\"pageid\\\":33107185,\\\"size\\\":52701,\\\"wordcount\\\":5883,\\\"snippet\\\":\\\"process theory) assumes the existence of a mutual dependence between\\ncognition\\nand elicitation of emotion. Robinson argues that the process of emotional\\\",\\\"timestamp\\\":\\\"2026-09-13T21:50:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Culture and menstruation\\\",\\\"pageid\\\":5778583,\\\"size\\\":168019,\\\"wordcount\\\":19129,\\\"snippet\\\":\\\"China's youth\\nculture\\n. 14 September 2020. Retrieved 11 March 2021. May T, Chien AC (9 November 2020). \\\"'Stand by Her': In China, a\\nMovement\\nHands Out Free\\\",\\\"timestamp\\\":\\\"2026-08-19T15:00:51Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Jor (music)\\\",\\\"pageid\\\":577500,\\\"size\\\":17239,\\\"wordcount\\\":2111,\\\"snippet\\\":\\\"These sections, especially Jor is described as not a beat nor a\\nrhythm\\nbut a\\nmovement\\nthat helps the Raga gain momentum in the beginning of the piece\\\",\\\"timestamp\\\":\\\"2026-08-16T18:18:03Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"ceeb1bbb1df07163c573cbd1d924a338fcf69f422c1c5c5df8c2c4d0d106f6c4\", \"verification_required\": true, \"topic_domain\": \"dance\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": [\"doi:10.1037/0033-2909\"]}",
+  "id": "source-506cbb9af7d94551",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=dance+rhythm+movement+cognition+culture&format=json",
+  "version": 144,
+  "time": "2026-09-26T10:39:31.038601+00:00"
+}
+```
+
+### `r-627469e8923341bc`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":144,\"inherited_commitments\":[],\"invocation\":\"w-627469e8923341bc\",\"previous_head\":\"c98a01411672bfaba5ac543e629758d054f1306721a2c811345a1eedd48af23d\",\"process_id\":2267,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-627469e8923341bc",
+  "source": "runtime:continuity",
+  "version": 144,
+  "time": "2026-09-26T10:39:34.040389+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -148650,6 +149257,17 @@ _None recorded._
   "invocation": "w-afeb216d22d04afe",
   "title": "Mapping the Boundaries of Neurodiversity and Mathematical Distributions",
   "summary": "We are seeking targeted scholarly literature to substantiate our active inquiries in the neurodiversity paradigm and the prime number theorem, ensuring our upcoming notebooks are grounded in direct, verifiable sources."
+}
+```
+
+### 145 · Synthesis of Neurodiversity Paradigms and Pathology Models
+
+```json
+{
+  "cycle": 145,
+  "invocation": "w-627469e8923341bc",
+  "title": "Synthesis of Neurodiversity Paradigms and Pathology Models",
+  "summary": "This cycle, I updated the provisional notebook for the neurodivergence project using newly accessible metadata and scholarly review citations. I am formalizing the research into the conceptual divergence between neurodiversity as an identity-based movement and the traditional clinical pathology models."
 }
 ```
 
@@ -150441,8 +151059,9 @@ _None recorded._
   "query": "neurodiversity paradigm social model clinical pathology medical model comparison",
   "reason": "Retrieve comparative academic literature examining the philosophical and clinical divergences between the neurodiversity paradigm and the medical model.",
   "type": "research",
-  "status": "queued",
-  "created_by": "w-afeb216d22d04afe"
+  "status": "failed",
+  "created_by": "w-afeb216d22d04afe",
+  "evidence": "source-e7eae15b65a342ca"
 }
 ```
 

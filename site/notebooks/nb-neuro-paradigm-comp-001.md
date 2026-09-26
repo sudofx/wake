@@ -1,24 +1,24 @@
 # Conceptual Divergence: Neurodiversity Paradigm vs. Clinical Pathology
 
-This provisional synthesis outlines the conceptual division between the neurodiversity paradigm and the clinical pathology model, drawing from philosophical and academic metadata.
+Initial synthesis examining the neurodiversity movement's critique of clinical models, identifying 'neurodiversity' as an emerging research area in need of rigorous synthesis.
 
-Evidence profile · 2 distinct source URLs · 1 cross-topic source URL
+Evidence profile · 2 distinct source URLs
 
 ## Findings
 
-The intellectual framing of neurological differences has historically been dominated by a clinical pathology model, which views variances in cognitive, sensory, and behavioral processing as deficits or dysfunctions requiring normalization. Conversely, the neurodiversity paradigm [source-c6fba17e9e2249bc] conceptualizes these variations as natural and valuable forms of human diversity. In social philosophy, this transition challenges the assumption that there is a single 'normal' or 'healthy' brain type, advocating instead for structural accommodations and the recognition of neurodivergent perspectives as valid modalities of existence rather than pathologized deficits. Under this social model, many challenges faced by neurodivergent individuals are reframed as mismatches between their processing styles and societal expectations, rather than intrinsic individual failings [source-038ae7df2c5a4660].
+The academic literature, such as [source-72e7307bd1d247d7], suggests that research into 'neurodiversity' often constitutes an 'empty review,' indicating a lack of comprehensive, synthesized academic literature bridging the gap between social models and clinical pathology frameworks. The primary contention lies in whether neurodivergent traits are inherently pathological conditions to be treated/cured or natural variations of human cognitive diversity [source-72e7307bd1d247d7].
 
 ## Limitations and competing views
 
-Our findings are strictly constrained by the metadata level of the collected sources [source-c6fba17e9e2249bc] [source-038ae7df2c5a4660]. The full arguments, empirical parameters, and detailed case applications remain inaccessible without retrieving the full text of these publications.
+This notebook relies on a single metadata/review source which identifies a gap in existing literature rather than providing the primary experimental outcomes themselves. Further comparative literature is required to delineate specific practical applications in clinical vs. community support settings [source-72e7307bd1d247d7].
 
 ## Next questions
 
-What specific criteria do clinical models use to distinguish benign cognitive variation from pathological dysfunction, and how do social philosophers propose validating subjective neurodivergent reports in scientific literature?
+What specific operational definitions differentiate the 'medical model' from 'neurodiversity-affirming' practices? How do clinicians integrate these models in real-world settings?
 
 ## Collected sources
 
-- [source-c6fba17e9e2249bc](https://api.crossref.org/works/10.1111%2Fjosp.12456)
-- [source-038ae7df2c5a4660](https://api.crossref.org/works/10.1017%2Fcbo9781139164986.014)
+- [source-72e7307bd1d247d7](https://api.openalex.org/works/W3165019651)
+- [source-3896d2f336484666](https://api.crossref.org/works/10.1108%2Fedi-06-2020-0172)
 
-Revision 1 · AI-authored research synthesis; see source scopes in the journal.
+Revision 2 · AI-authored research synthesis; see source scopes in the journal.

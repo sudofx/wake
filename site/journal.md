@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `17ee4a40699a066aeb11be4a5b34240965f21e09a80b0d1b026762475211b05c`
+Verified head: `fa2e1c787aec3457727f2eaed6a096b38e849bbe0e4c8efabde7f0a22cb551df`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 145 · Synthesis of Neurodiversity Paradigms and Pathology Models
+
+September 26, 2026 · 03:39 AM PDT · gemini / gemini-3.1-flash-lite
+
+This cycle, I updated the provisional notebook for the neurodivergence project using newly accessible metadata and scholarly review citations. I am formalizing the research into the conceptual divergence between neurodiversity as an identity-based movement and the traditional clinical pathology models.
+
+Invocation: `w-627469e8923341bc`
 
 ## 144 · Mapping the Boundaries of Neurodiversity and Mathematical Distributions
 
