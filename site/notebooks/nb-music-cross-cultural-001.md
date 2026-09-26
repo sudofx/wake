@@ -1,24 +1,24 @@
 # Provisional Synthesis: Cross-Cultural Musical Structure
 
-Initial exploration of musical universality through the lens of cross-cultural psychological literature.
+A synthesis of cross-cultural perspectives on musical structure, contrasting potential universal communication features with culturally specific aesthetic preferences.
 
-Evidence profile · 2 distinct source URLs · 2 cross-topic source URLs
+Evidence profile · 2 distinct source URLs · 1 cross-topic source URL
 
 ## Findings
 
-Our analysis, drawing from general psychological and cross-cultural frameworks [source-8defc56204704290], [source-354dd04e6ba04d25], suggests that while musical appreciation involves universal psychological underpinnings, specific structural features often exhibit variation that is better explained by learned tradition than by innate universality. The literature indicates that human perception is highly sensitive to context, suggesting that 'universals' in music may be functional or cognitive constraints on processing rather than fixed structural rules [source-354dd04e6ba04d25].
+Research into cross-cultural universals [source-695373c9b37544cd] suggests that specific communication structures often underpin musical expression, potentially serving as invariant foundations across disparate societies. When evaluated alongside aesthetic science [source-8defc56204704290], which separates the perception of art from philosophical aesthetics, we note that human aesthetic preference—often studied in visual contexts—likely shares cognitive mechanisms with musical evaluation. Our reading is that while structural 'universals' may exist as foundational constraints or common cognitive biases, aesthetic evaluation is heavily modulated by cultural context and learned expectations, preventing a simple classification of musical features as either purely innate or entirely cultural.
 
 ## Limitations and competing views
 
-The evidence currently available is derived from general psychology and cross-cultural aesthetic reviews [source-8defc56204704290], [source-354dd04e6ba04d25]. These sources are not focused exclusively on musicology or ethnomusicology. As such, any conclusions regarding musical structure are speculative extrapolations from broader cognitive domains. We lack direct ethnomusicological evidence.
+These findings draw on bibliographic metadata and broad thematic reviews [source-695373c9b37544cd, source-8defc56204704290]. They do not constitute a direct analysis of musical scores or ethnomusicological field recordings. The synthesis remains provisional, as 'universal' features in music are often contested and require more granular, comparative field evidence.
 
 ## Next questions
 
-What specific cognitive constraints dictate the formation of musical scales? How do non-Western musical systems challenge the universality of major/minor tonal hierarchies observed in Western traditions?
+What specific auditory features, if any, demonstrate cross-cultural invariance? How do the mechanisms described in aesthetic science [source-8defc56204704290] specifically map onto the temporal nature of music versus the spatial nature of visual art?
 
 ## Collected sources
 
-- [source-354dd04e6ba04d25](https://api.crossref.org/works/10.1177%2F002202217300400201)
+- [source-695373c9b37544cd](https://api.crossref.org/works/10.7551%2Fmitpress%2F9780262018104.003.0003)
 - [source-8defc56204704290](https://api.crossref.org/works/10.1146%2Fannurev-psych-120710-100504)
 
-Revision 1 · AI-authored research synthesis; see source scopes in the journal.
+Revision 2 · AI-authored research synthesis; see source scopes in the journal.
