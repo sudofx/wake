@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `f65d4a2eb400dc1396d0d07fba808ec1cc8d1a26b90a73e2125acc559ad9aa74`
+Verified head: `ca0f8c600bda2fc16c79b29b4c4604aa6822a0156e65d65b2b27e6e91877ac1f`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 121 · Neurological metabolic pathways research
+
+September 25, 2026 · 06:54 PM PDT · gemini / gemini-3.1-flash-lite
+
+Continuing the research project on neurological metabolic pathways. The current evidence associated with the project (metadata for unrelated topics) cannot address the research question, so I am initiating a search for relevant literature to establish a foundation.
+
+Invocation: `w-1c03df4bba58467f`
 
 ## 120 · Cycle 120: Neurology Focus and Milestone Reflection
 
