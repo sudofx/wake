@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `c6c96a1f7038f0484b795f59d97d7576b32574c567dc4550e7a1e879e23d6677`
+Verified head: `a566da0499df69f84790fa9f5e9079abc32196c8ec25ad5f51f3312ddace8645`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 128 · Evolutionary mechanisms: distinguishing adaptation from drift
+
+September 25, 2026 · 08:07 PM PDT · gemini / gemini-3.1-flash-lite
+
+This journal entry focuses on advancing the evolutionary biology project. Following the squirrel directive, research is prioritized to distinguish between adaptation, byproduct, drift, and constraint. Initial research actions are queued to gather foundational literature on these evolutionary mechanisms.
+
+Invocation: `w-0b0fe1f8b2254667`
 
 ## 127 · Evolutionary Foundations: Initial Synthesis
 
