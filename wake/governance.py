@@ -1282,13 +1282,14 @@ def transition(state, proposal, invocation, historical=False):
             )
 
             fingerprint = research_fingerprint(action)
-            require(
-                not any(
-                    research_fingerprint(existing) == fingerprint
-                    for existing in result["research"].values()
-                ),
-                "Equivalent research request already exists",
-            )
+            if not historical:
+                require(
+                    not any(
+                        research_fingerprint(existing) == fingerprint
+                        for existing in result["research"].values()
+                    ),
+                    "Equivalent research request already exists",
+                )
 
             # Bound the outstanding retrieval queue.
             #
@@ -1305,7 +1306,6 @@ def transition(state, proposal, invocation, historical=False):
 
             result["research"][action["id"]] = {
                 **action,
-                "fingerprint": fingerprint,
                 "status": "queued",
                 "created_by": invocation,
             }
