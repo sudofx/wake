@@ -1,16 +1,22 @@
 #!/usr/bin/env bash
 # WAKE✳︎ MAINTAINER NOTE
 #
-# Synchronizes cloud durable state with local files. Treat conflicts conservatively because continuity matters more than convenience.
+# Synchronizes the authoritative cloud record with local files. Routine sync is
+# deliberately narrow: the SQLite record is durable authority; site/ and the
+# large JSON exports are derived views and need not be recopied before a batch.
 #
-# Comments document operational intent and failure boundaries so maintenance does not accidentally weaken the experiment.
+# Use --full only when a complete local mirror of the published cloud state is
+# actually needed.
 
 set -euo pipefail
 
-if (( $# != 0 )); then
-  echo "Error: sync-cloud-state.sh does not run WAKE✳︎ cycles or accept a cycle count." >&2
-  echo "To run cycles: ./scripts/run-wake-cycles.sh [N]  (omit N to run until quota)" >&2
-  echo "To sync cloud state afterward: ./scripts/sync-cloud-state.sh" >&2
+FULL=0
+if (( $# == 1 )) && [[ "$1" == "--full" ]]; then
+  FULL=1
+elif (( $# != 0 )); then
+  echo "Usage: ./scripts/sync-cloud-state.sh [--full]" >&2
+  echo "  default  Sync the authoritative SQLite record + head only." >&2
+  echo "  --full   Also sync derived state/events exports and the generated site." >&2
   exit 64
 fi
 
@@ -22,17 +28,30 @@ trap 'rm -rf "$STAGE"' EXIT
 cd "$ROOT"
 
 echo "→ Fetching wake-state..."
-git fetch origin +refs/heads/wake-state:refs/remotes/origin/wake-state
+# Fetch only the branch tip we need. Git transfers objects incrementally; no tags
+# or unrelated branch history are requested here.
+git fetch --no-tags origin +refs/heads/wake-state:refs/remotes/origin/wake-state
 
-echo "→ Exporting complete cloud record..."
-git archive "$REF" | tar -x -C "$STAGE"
+# A matching durable head means the local authoritative record is already
+# current. Avoid re-archiving and rewriting a 50+ MB SQLite file in that case.
+remote_head="$(git show "$REF:head.txt")"
+if [[ -f "$ROOT/head.txt" ]] && [[ "$(cat "$ROOT/head.txt")" == "$remote_head" ]] && (( ! FULL )); then
+  echo "✓ Durable cloud state already current; nothing to copy."
+  echo "Cloud head: $remote_head"
+  exit 0
+fi
+
+if (( FULL )); then
+  echo "→ Exporting complete cloud mirror..."
+  git archive "$REF" data/wake.sqlite3 state.json events.jsonl head.txt site | tar -x -C "$STAGE"
+else
+  echo "→ Exporting authoritative cloud record..."
+  git archive "$REF" data/wake.sqlite3 head.txt | tar -x -C "$STAGE"
+fi
 
 echo "→ Verifying required state..."
 test -f "$STAGE/data/wake.sqlite3"
-test -f "$STAGE/state.json"
-test -f "$STAGE/events.jsonl"
 test -f "$STAGE/head.txt"
-test -d "$STAGE/site"
 
 python3 - "$STAGE/data/wake.sqlite3" <<'PY'
 import sqlite3, sys
@@ -44,15 +63,18 @@ if result != "ok":
 print("  SQLite: ok")
 PY
 
-echo "→ Replacing local cloud-state copy..."
+echo "→ Replacing local authoritative record..."
+mkdir -p "$ROOT/data"
+mv "$STAGE/data/wake.sqlite3" "$ROOT/data/wake.sqlite3"
+cp "$STAGE/head.txt" "$ROOT/head.txt"
 
-rm -rf "$ROOT/data" "$ROOT/site"
-mv "$STAGE/data" "$ROOT/data"
-mv "$STAGE/site" "$ROOT/site"
-
-cp "$STAGE/state.json"   "$ROOT/state.json"
-cp "$STAGE/events.jsonl" "$ROOT/events.jsonl"
-cp "$STAGE/head.txt"     "$ROOT/head.txt"
+if (( FULL )); then
+  echo "→ Replacing derived exports and generated site..."
+  rm -rf "$ROOT/site"
+  mv "$STAGE/site" "$ROOT/site"
+  cp "$STAGE/state.json"   "$ROOT/state.json"
+  cp "$STAGE/events.jsonl" "$ROOT/events.jsonl"
+fi
 
 # Keep cloud-state root files out of local git status without changing .gitignore.
 for f in /state.json /events.jsonl /head.txt; do
@@ -61,11 +83,18 @@ for f in /state.json /events.jsonl /head.txt; do
 done
 
 echo
-echo "✓ Full wake-state synced locally"
-echo "  data/"
-echo "  site/"
-echo "  state.json"
-echo "  events.jsonl"
-echo "  head.txt"
+if (( FULL )); then
+  echo "✓ Full wake-state mirror synced locally"
+  echo "  data/wake.sqlite3"
+  echo "  site/"
+  echo "  state.json"
+  echo "  events.jsonl"
+  echo "  head.txt"
+else
+  echo "✓ Authoritative wake-state synced locally"
+  echo "  data/wake.sqlite3"
+  echo "  head.txt"
+  echo "  (derived site/state/events skipped; use --full when needed)"
+fi
 echo
-echo "Cloud head: $(cat "$ROOT/head.txt")"
+echo "Cloud head: $remote_head"
