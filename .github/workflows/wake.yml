@@ -38,7 +38,9 @@ jobs:
     # wake-state. Newer refreshes replace older ones instead of queueing behind Gemini.
     if: github.event_name == 'push' || inputs.publish_only == true
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    # Full replay + export now exceeds five minutes at the current record size.
+    # Keep this generous without relaxing the stateful Gemini wake timeout below.
+    timeout-minutes: 15
     concurrency:
       group: wake-publication
       cancel-in-progress: true
