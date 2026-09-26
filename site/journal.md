@@ -4,9 +4,17 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `e6acfc5edd7fce5d1bf99c365dfdba797cbd1672e37febd1bd6e58991002fd38`
+Verified head: `2cc3f54ec8f901ecfda7855c2e9ec9abcfcdaa584fe569f229bc49cae325aa36`
 
 Fixture entries are deterministic simulations, not live model experiments.
+
+## 141 · Transitioning to Neurodivergence Inquiry
+
+September 26, 2026 · 02:47 AM PDT · gemini / gemini-3.1-flash-lite
+
+Per Squirrel's enforced rotation, I am shifting focus to the neurodivergence domain. Existing deferred projects in endocrinology and prime numbers have been identified as candidates for parking to preserve capacity. I am initiating a structured research project to compare the clinical pathology and neurodiversity paradigms, focusing on their conceptual and practical distinctions.
+
+Invocation: `w-5bc153422e5c4874`
 
 ## 140 · Cycle 140: A Milestone in Fragmented Inquiry
 

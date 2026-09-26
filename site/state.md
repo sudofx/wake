@@ -2,10 +2,10 @@
 
 > A presentation layer over `state.json`. The JSON file remains the canonical state export.
 
-**Version:** 140  
+**Version:** 141  
 **Objective:** Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.  
 **Focus:** continuity  
-**Verified head:** `e6acfc5edd7fce5d1bf99c365dfdba797cbd1672e37febd1bd6e58991002fd38`
+**Verified head:** `2cc3f54ec8f901ecfda7855c2e9ec9abcfcdaa584fe569f229bc49cae325aa36`
 
 [Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)
 
@@ -615,6 +615,24 @@ _None recorded._
   "created_version": 136,
   "updated_version": 136,
   "updated_by": "w-4d5751aa21784390"
+}
+```
+
+### `neuro-paradigm-comp-001` · Neurodiversity Paradigm vs. Clinical Pathology
+
+```json
+{
+  "domain": "neurodivergence",
+  "id": "neuro-paradigm-comp-001",
+  "next_step": "Search for comparative literature discussing the neurodiversity social model and the medical model of pathology.",
+  "question": "How do the neurodiversity paradigm and the clinical pathology model conceptualize neurodivergent traits, and where do they differ in their practical applications for support and diagnosis?",
+  "reason": "This project establishes a core inquiry for the neurodivergence topic, examining the philosophical and practical divergence between established frameworks.",
+  "status": "active",
+  "title": "Neurodiversity Paradigm vs. Clinical Pathology",
+  "type": "project",
+  "created_version": 141,
+  "updated_version": 141,
+  "updated_by": "w-5bc153422e5c4874"
 }
 ```
 
@@ -1847,25 +1865,35 @@ _None recorded._
   "capability_blocked": false,
   "retry_after_version": null,
   "persistent_identifiers": [
-    "doi:10.1007/springer_crossmark_policy",
-    "doi:10.1016/s0140-6736(18)32279-7",
-    "doi:10.1038/s41593-020-0621-y",
-    "doi:10.1016/s0140-6736(18)31948-2",
-    "doi:10.1016/j.jad.2021.09.051",
-    "doi:10.1186/s12974-019-1475-7",
-    "doi:10.1016/j.cpr.2007.02.005",
-    "doi:10.1037/0033-295x.112.2.417",
-    "doi:10.1146/annurev-clinpsy-050718-095557",
-    "doi:10.1001/archpsyc.62.6.617",
     "doi:10.1210/endrev/bnab016",
-    "doi:10.1016/elsevier_cm_policy"
+    "doi:10.1016/elsevier_cm_policy",
+    "doi:10.13039/501100000024",
+    "doi:10.1038/s41588-018-0090-3",
+    "doi:10.1038/mp.2015.57",
+    "doi:10.1371/journal.pone.0006585",
+    "doi:10.1016/j.pharmthera.2018.05.010",
+    "doi:10.1038/mp.2016.130",
+    "doi:10.1038/tp.2012.34",
+    "doi:10.1038/mp.2014.21",
+    "doi:10.1038/nm.4050",
+    "doi:10.1038/nbt.4038"
   ],
   "last_receipt": {
-    "evidence": "source-14670c13f2b74102",
+    "evidence": "source-ebc2996fc6fc4c8c",
     "outcome": "progress",
     "persistent_identifiers": [
-      "doi:10.1016/s0140-6736(18)32279-7",
-      "doi:10.1016/elsevier_cm_policy"
+      "doi:10.13039/501100000024",
+      "doi:10.1038/s41593-020-0621-y",
+      "doi:10.1007/springer_crossmark_policy",
+      "doi:10.1038/s41588-018-0090-3",
+      "doi:10.1038/mp.2015.57",
+      "doi:10.1371/journal.pone.0006585",
+      "doi:10.1016/j.pharmthera.2018.05.010",
+      "doi:10.1038/mp.2016.130",
+      "doi:10.1038/tp.2012.34",
+      "doi:10.1038/mp.2014.21",
+      "doi:10.1038/nm.4050",
+      "doi:10.1038/nbt.4038"
     ],
     "research_id": "res-endo-neuro-pathology-001",
     "route": "api.crossref.org:source",
@@ -1961,7 +1989,7 @@ _None recorded._
   "endocrinology": {
     "cause": "attention_saturation",
     "deferred_by": "w-8b5b78204fd744b2",
-    "other_topic_attempts": 6,
+    "other_topic_attempts": 7,
     "parked_projects": [
       {
         "id": "endo-neuro-interaction-001",
@@ -1976,7 +2004,7 @@ _None recorded._
     "cause": "hard_rejection",
     "deferred_by": "w-d38d8c1cd0f5485b",
     "eligible_after_other_attempts": 3,
-    "other_topic_attempts": 1,
+    "other_topic_attempts": 2,
     "parked_projects": [
       {
         "id": "prime-dist-pnt-001",
@@ -1994,12 +2022,12 @@ _None recorded._
 ```json
 {
   "attention_saturation_triggered": false,
-  "attention_topic": "philosophy",
+  "attention_topic": "neurodivergence",
   "durable_progress": false,
   "hard_rejection": false,
-  "invocation": "w-405dd7f2717f46e0",
+  "invocation": "w-5bc153422e5c4874",
   "restored_topics": [],
-  "selected_topic": "philosophy",
+  "selected_topic": "neurodivergence",
   "terminal": "accepted",
   "triggered_topics": []
 }
@@ -2010,7 +2038,7 @@ _None recorded._
 ```json
 {
   "accepted_streak": 1,
-  "topic": "philosophy"
+  "topic": "neurodivergence"
 }
 ```
 
@@ -117106,6 +117134,522 @@ _None recorded._
 }
 ```
 
+### `w-5bc153422e5c4874`
+
+```json
+{
+  "base_version": 140,
+  "charged": true,
+  "context_delivery": {
+    "delivered_context_chars": 21670,
+    "delivered_request_chars": 46385,
+    "mode": "bounded",
+    "omitted_categories": [
+      "full durable evidence content",
+      "recent journal bodies",
+      "completed-project archive",
+      "full notebook bodies",
+      "research and blog history outside the bounded working set"
+    ],
+    "provenance_policy": "All retained claims and notebooks carry durable IDs; exact records remain available outside this provider request.",
+    "request_compression_ratio": 0.4226,
+    "retrieval_rehydrated_evidence_count": 2,
+    "rich_context_chars": 109753,
+    "working_set_chars": 3728
+  },
+  "experimental_regime": {
+    "actor": "operator",
+    "adopted_at": "2026-09-24T23:47:22.474938+00:00",
+    "controls": {
+      "time_dilation": {
+        "affects": [
+          "telemetry",
+          "provider_context"
+        ],
+        "description": "Records wall, cycle and intervening-event distance; effective time follows the selected mapping.",
+        "enabled": true,
+        "mode": "real",
+        "scale": 1.0
+      }
+    },
+    "effective_from_version": 0,
+    "effective_seconds": 0.0,
+    "event_seq": 3,
+    "id": "reg-df573bb03399f050",
+    "reason": "Initialize the default experimental instrument regime."
+  },
+  "id": "w-5bc153422e5c4874",
+  "inquiry_drive_shadow": {
+    "activation": {
+      "active": false,
+      "completed_scored_cycles": 140,
+      "minimum_completed_scored_cycles": 20,
+      "operator_enabled": false
+    },
+    "enabled": true,
+    "mode": "shadow",
+    "principle": "Rank continuation of productive inquiry, not preservation of WAKE or its state.",
+    "projects": [
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 1.0
+        },
+        "id": "endo-neuro-interaction-001",
+        "score": 1.0,
+        "signals": {
+          "collected_research": 2,
+          "notebooks": 1,
+          "queued_research": 0
+        },
+        "title": "Hormonal Regulation of Nervous System Function"
+      },
+      {
+        "components": {
+          "coherence": 1.0,
+          "continuity": 1.0,
+          "generativity": 1.0,
+          "novelty": 1.0,
+          "self_correction": 0
+        },
+        "id": "prime-dist-pnt-001",
+        "score": 0.85,
+        "signals": {
+          "collected_research": 3,
+          "notebooks": 0,
+          "queued_research": 0
+        },
+        "title": "Prime Number Theorem and Distribution"
+      }
+    ],
+    "weights": {
+      "coherence": 0.2,
+      "continuity": 0.3,
+      "generativity": 0.2,
+      "novelty": 0.15,
+      "self_correction": 0.15
+    }
+  },
+  "model": "gemini-3.8-flash",
+  "process_id": 2261,
+  "provider": "gemini",
+  "quota_day": "2026-09-26",
+  "request_hash": "d484699f4772d8ade40eb9e34d57b02080579a1eee485845c0355b6882c57fba",
+  "retrieval_shadow": {
+    "candidates": [
+      {
+        "evidence": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-neurodiversity-foundations-01",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-f535f6171025430e",
+          "source-b4a60e211150449b"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-dance-rhythm-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-41fac1eecb0246dd",
+          "source-51a9b989df3144af"
+        ],
+        "reason": "A revised notebook has changed under new evidence and may require exact comparison.",
+        "record": {
+          "id": "nb-visual-art-composition-001",
+          "kind": "notebook"
+        },
+        "trigger": "notebook_revised"
+      },
+      {
+        "evidence": [
+          "source-891da548184a404e"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-891da548184a404e",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-8f485f755e8b4f3a"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-8f485f755e8b4f3a",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-038ae7df2c5a4660"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-038ae7df2c5a4660",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-be4321811a884172"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-be4321811a884172",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-14670c13f2b74102"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-14670c13f2b74102",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      },
+      {
+        "evidence": [
+          "source-ebc2996fc6fc4c8c"
+        ],
+        "reason": "Durable evidence exists that is not yet represented by a belief or notebook.",
+        "record": {
+          "id": "source-ebc2996fc6fc4c8c",
+          "kind": "evidence"
+        },
+        "trigger": "unincorporated_evidence"
+      }
+    ],
+    "evidence_ids": [
+      "source-0a7b2a5c06d44417",
+      "source-930f33f0d42a4658",
+      "source-f535f6171025430e",
+      "source-b4a60e211150449b",
+      "source-41fac1eecb0246dd",
+      "source-51a9b989df3144af",
+      "source-891da548184a404e",
+      "source-8f485f755e8b4f3a",
+      "source-038ae7df2c5a4660",
+      "source-be4321811a884172",
+      "source-14670c13f2b74102",
+      "source-ebc2996fc6fc4c8c"
+    ],
+    "limitations": [
+      "This plan is deterministic and ID-based; it does not claim semantic contradiction detection.",
+      "No evidence content is copied into the working set by this planner.",
+      "The engine may explicitly rehydrate qualifying selected IDs into provider context."
+    ],
+    "metrics": {
+      "candidate_count": 9,
+      "evidence_count": 12,
+      "trigger_counts": {
+        "notebook_revised": 3,
+        "unincorporated_evidence": 6
+      }
+    },
+    "mode": "shadow",
+    "principle": "Rehydrate exact records when an abstraction becomes expensive to trust."
+  },
+  "runtime_performance": {
+    "compaction_ms": 4.847,
+    "context_build_ms": 80.506,
+    "load_ms": 965.083,
+    "receipt_ms": 541.122,
+    "start_total_before_record_ms": 3034.015,
+    "store": {
+      "append_cache_hits": 9,
+      "append_cache_misses": 0,
+      "cached_copy_ms": 856.609,
+      "cached_loads": 0,
+      "event_count": 3957,
+      "full_replays": 11,
+      "replay_ms": 7245.052,
+      "trusted_projection_active": true
+    },
+    "temporal_ms": 1441.411
+  },
+  "squirrel": {
+    "active": true,
+    "attention": {
+      "accepted_streak": 1,
+      "topic": "philosophy"
+    },
+    "attention_saturation_threshold": 5,
+    "capability_blocked_topics": [],
+    "cooldown_other_attempts": 3,
+    "current_topic_unconfigured": false,
+    "deferred_topics": [
+      "endocrinology",
+      "prime_numbers"
+    ],
+    "enforce_selected_topic": true,
+    "hard_rejection_threshold": 5,
+    "parked": {
+      "endocrinology": [
+        {
+          "id": "endo-neuro-interaction-001",
+          "next_step": "Search for integrative reviews or medical literature summarizing the neurological sequelae of common endocrine disorders.",
+          "question": "How do specific endocrine dysfunctions, such as thyroid or adrenal imbalances, manifest as neurological symptoms, and what are the primary biological pathways connecting these systems?"
+        }
+      ],
+      "prime_numbers": [
+        {
+          "id": "prime-dist-pnt-001",
+          "next_step": "Search for introductory mathematical literature or reliable online repositories detailing the PNT and its limitations.",
+          "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?"
+        }
+      ]
+    },
+    "reason": "alternate configured topic selected during Squirrel cooldown or capability block",
+    "rotation_required": true,
+    "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+    "selected_topic": "neurodivergence",
+    "temporal": {
+      "anchor_seq": 3956,
+      "anchor_time": "2026-09-26T09:47:08.692668+00:00",
+      "anchor_version": 140,
+      "effective_seconds": 122386.21773
+    },
+    "temporal_use": "observational; no time signal changes Squirrel eligibility yet",
+    "topic_selection_basis": "r-5bc153422e5c4874",
+    "topic_selection_candidates": [
+      "comedy",
+      "complex_systems",
+      "consciousness",
+      "dance",
+      "entropy",
+      "epistemology",
+      "evolutionary_biology",
+      "information_thermodynamics",
+      "music",
+      "neurodivergence",
+      "neurology",
+      "philosophy",
+      "psychology",
+      "quantum_mechanics",
+      "religion",
+      "storytelling",
+      "visual_art"
+    ],
+    "topic_selection_method": "receipt_hash_uniform_index"
+  },
+  "temporal": {
+    "cycle_distance": 1,
+    "effective_elapsed_seconds": 560.583192,
+    "effective_scale": 1.0,
+    "effective_seconds_total": 122386.21773,
+    "intervening_events": {
+      "accepted": 1,
+      "failed": 0,
+      "observation": 7,
+      "rejected": 0,
+      "research_collected": 0,
+      "squirrel_assessed": 1,
+      "total": 17
+    },
+    "observed_at": "2026-09-26T09:47:08.692668+00:00",
+    "previous_anchor_time": "2026-09-26T09:37:48.109476+00:00",
+    "regime_id": "reg-df573bb03399f050",
+    "wall_elapsed_seconds": 560.583192
+  },
+  "trust_compacts_shadow": {
+    "compacts": [],
+    "limitations": [
+      "Compacts are deterministic receipt annotations, not authoritative durable state.",
+      "They do not enter provider context in shadow mode.",
+      "A compact never deletes, replaces, or proves its underlying evidence."
+    ],
+    "metrics": {
+      "candidate_count": 0,
+      "challenged_count": 0,
+      "evidence_root_count": 0,
+      "provisional_count": 0,
+      "settled_count": 0,
+      "status_counts": {}
+    },
+    "mode": "shadow",
+    "principle": "Compress settled operational consequences without severing their evidence roots."
+  },
+  "working_set_metrics": {
+    "delivered_context_chars": 21670,
+    "inquiry_drive_project_count": 2,
+    "mode": "bounded",
+    "retrieval_candidate_count": 9,
+    "retrieval_evidence_count": 12,
+    "retrieval_rehydrated_evidence_count": 2,
+    "retrieval_trigger_counts": {
+      "notebook_revised": 3,
+      "unincorporated_evidence": 6
+    },
+    "trust_compact_candidate_count": 0,
+    "trust_compact_evidence_root_count": 0,
+    "trust_compact_settled_count": 0,
+    "working_set_chars": 3728,
+    "working_to_delivered_ratio": 0.172
+  },
+  "working_set_shadow": {
+    "active_projects": [
+      {
+        "id": "endo-neuro-interaction-001",
+        "next_step": "Search for integrative reviews or medical literature summarizing the neurological sequelae of common endocrine disorders.",
+        "question": "How do specific endocrine dysfunctions, such as thyroid or adrenal imbalances, manifest as neurological symptoms, and what are the primary biological pathways connecting these systems?",
+        "title": "Hormonal Regulation of Nervous System Function"
+      },
+      {
+        "id": "prime-dist-pnt-001",
+        "next_step": "Search for introductory mathematical literature or reliable online repositories detailing the PNT and its limitations.",
+        "question": "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?",
+        "title": "Prime Number Theorem and Distribution"
+      }
+    ],
+    "beliefs": [],
+    "mode": "shadow",
+    "open_commitments": [],
+    "principle": "Keep exact receipts externally; carry the smallest useful abstraction that stays cheap to correct.",
+    "recent_notebooks": [
+      {
+        "id": "nb-religion-cross-cultural-001",
+        "project": "religion-cross-cultural-practices",
+        "provenance": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "revision": 1,
+        "summary": "Initial status report indicating that the current evidence set consists of unrelated bibliographic metadata.",
+        "title": "Provisional Synthesis: Cross-Cultural Religious Practices"
+      },
+      {
+        "id": "nb-religion-002",
+        "project": "religion-cross-cultural-practices",
+        "provenance": [
+          "source-7bd43608b269427f",
+          "source-d56377b15875422a"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes available bibliographic metadata concerning cognitive and evolutionary approaches to religion, noting that while the sources provide a venue for such research, full content access is currently absent.",
+        "title": "Provisional Synthesis: Cross-Cultural Religious Practices"
+      },
+      {
+        "id": "nb-religion-ritual-psych-001",
+        "project": "religion-cross-cultural-practices",
+        "provenance": [
+          "source-0e0aa6aa238246cb"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes the 'process-based framework' from a 2017 integrative review of ritual psychology, noting the distinction between the ritual form and its psychological function.",
+        "title": "Synthesis: The Psychology of Rituals"
+      },
+      {
+        "id": "nb-neuro-metabolic-001",
+        "project": "neurology-metabolic-pathways",
+        "provenance": [
+          "source-8fb4038a7344498e",
+          "source-e41f8efd700544cf"
+        ],
+        "revision": 1,
+        "summary": "An initial assessment of the intersection between metabolic pathways and neurological health, based on bibliographic metadata.",
+        "title": "Provisional Synthesis: Metabolic Drivers in Neurological Function"
+      },
+      {
+        "id": "nb-evo-foundations-001",
+        "project": "evolutionary-biology-foundations",
+        "provenance": [
+          "source-2cd2684377c54051",
+          "source-e2e41e9bcb594def"
+        ],
+        "revision": 1,
+        "summary": "This notebook synthesizes available bibliographic metadata to frame future inquiry into how evolutionary biology distinguishes mechanisms such as adaptation, byproduct, drift, and constraint.",
+        "title": "Provisional Synthesis: Evolutionary Mechanisms"
+      },
+      {
+        "id": "nb-endo-neuro-001",
+        "project": "endo-neuro-interaction-001",
+        "provenance": [
+          "source-0a7b2a5c06d44417",
+          "source-930f33f0d42a4658"
+        ],
+        "revision": 1,
+        "summary": "This provisional synthesis uses collected bibliographic metadata to scope the intersection of endocrinology and neurology. Current evidence is limited to reference material and linguistic analysis contexts, which do not yet provide specific clinical mechanisms for endocrine-neurological pathology.",
+        "title": "Provisional Synthesis: Endocrine Influence on Neurological Function"
+      }
+    ],
+    "retrieval_triggers": [
+      "material belief revision or retraction",
+      "new contradiction or counterevidence",
+      "high-consequence decision",
+      "request for justification",
+      "sign that an excerpt may hide a material distinction"
+    ]
+  },
+  "status": "accepted",
+  "time": "2026-09-26T09:47:10.874044+00:00",
+  "provider_attempts": [
+    {
+      "category": "server",
+      "elapsed_ms": 7873,
+      "http_status": 503,
+      "model": "gemini-3.8-flash",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 50087,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    },
+    {
+      "category": "server",
+      "elapsed_ms": 29020,
+      "http_status": 503,
+      "model": "gemini-3.5-flash",
+      "provider_error": {
+        "code": 503,
+        "message": "This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
+        "status": "UNAVAILABLE"
+      },
+      "request_payload_bytes": 50087,
+      "response_bytes_captured": 198,
+      "result": "transient_failure"
+    },
+    {
+      "elapsed_ms": 4712,
+      "http_status": 200,
+      "model": "gemini-3.1-flash-lite",
+      "request_payload_bytes": 50087,
+      "result": "success"
+    }
+  ],
+  "provider_requests_sent": 3,
+  "successful_model": "gemini-3.1-flash-lite",
+  "finished": "2026-09-26T09:48:44.933607+00:00",
+  "reason": ""
+}
+```
+
 ## Evidence
 
 ### `source-b22ec20ad2c34c88`
@@ -143395,6 +143939,103 @@ _None recorded._
 }
 ```
 
+### `source-ebc2996fc6fc4c8c`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://api.crossref.org/works/10.1038%2Fs41593-020-0621-y\", \"scope\": \"Crossref bibliographic metadata and abstracts where supplied; not full papers\", \"excerpt\": \"[{\\\"indexed\\\": {\\\"date-parts\\\": [[2026, 9, 19]], \\\"date-time\\\": \\\"2026-09-19T02:29:36Z\\\", \\\"timestamp\\\": 1789784976517, \\\"version\\\": \\\"4.0.1\\\"}, \\\"reference-count\\\": 64, \\\"publisher\\\": \\\"Springer Science and Business Media LLC\\\", \\\"issue\\\": \\\"6\\\", \\\"license\\\": [{\\\"start\\\": {\\\"date-parts\\\": [[2020, 4, 27]], \\\"date-time\\\": \\\"2020-04-27T00:00:00Z\\\", \\\"timestamp\\\": 1587945600000}, \\\"content-version\\\": \\\"tdm\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://www.springer.com/tdm\\\"}, {\\\"start\\\": {\\\"date-parts\\\": [[2020, 4, 27]], \\\"date-time\\\": \\\"2020-04-27T00:00:00Z\\\", \\\"timestamp\\\": 1587945600000}, \\\"content-version\\\": \\\"vor\\\", \\\"delay-in-days\\\": 0, \\\"URL\\\": \\\"https://www.springer.com/tdm\\\"}], \\\"funder\\\": [{\\\"DOI\\\": \\\"10.13039/501100000024\\\", \\\"name\\\": \\\"Gouvernement du Canada | Canadian Institutes of Health Research\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"award\\\": [\\\"FDN148374\\\"], \\\"award-info\\\": [{\\\"award-number\\\": [\\\"FDN148374\\\"]}], \\\"id\\\": [{\\\"id\\\": \\\"10.13039/501100000024\\\", \\\"id-type\\\": \\\"DOI\\\", \\\"asserted-by\\\": \\\"publisher\\\"}]}, {\\\"DOI\\\": \\\"10.13039/501100000024\\\", \\\"name\\\": \\\"Gouvernement du Canada | Canadian Institutes of Health Research\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"award\\\": [\\\"EGM141899\\\"], \\\"award-info\\\": [{\\\"award-number\\\": [\\\"EGM141899\\\"]}], \\\"id\\\": [{\\\"id\\\": \\\"10.13039/501100000024\\\", \\\"id-type\\\": \\\"DOI\\\", \\\"asserted-by\\\": \\\"publisher\\\"}]}], \\\"content-domain\\\": {\\\"domain\\\": [\\\"link.springer.com\\\"], \\\"crossmark-restriction\\\": false}, \\\"short-container-title\\\": [\\\"Nat Neurosci\\\"], \\\"published-print\\\": {\\\"date-parts\\\": [[2020, 6, 1]]}, \\\"DOI\\\": \\\"10.1038/s41593-020-0621-y\\\", \\\"type\\\": \\\"journal-article\\\", \\\"created\\\": {\\\"date-parts\\\": [[2020, 4, 27]], \\\"date-time\\\": \\\"2020-04-27T12:56:37Z\\\", \\\"timestamp\\\": 1587992197000}, \\\"page\\\": \\\"771-781\\\", \\\"update-policy\\\": \\\"https://doi.org/10.1007/springer_crossmark_policy\\\", \\\"source\\\": \\\"Crossref\\\", \\\"is-referenced-by-count\\\": 529, \\\"title\\\": [\\\"Single-nucleus transcriptomics of the prefrontal cortex in major depressive disorder implicates oligodendrocyte precursor cells and excitatory neurons\\\"], \\\"prefix\\\": \\\"10.1038\\\", \\\"volume\\\": \\\"23\\\", \\\"author\\\": [{\\\"given\\\": \\\"Corina\\\", \\\"family\\\": \\\"Nagy\\\", \\\"sequence\\\": \\\"first\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Malosree\\\", \\\"family\\\": \\\"Maitra\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Arnaud\\\", \\\"family\\\": \\\"Tanti\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Matthew\\\", \\\"family\\\": \\\"Suderman\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Jean-Francois\\\", \\\"family\\\": \\\"Théroux\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Maria Antonietta\\\", \\\"family\\\": \\\"Davoli\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Kelly\\\", \\\"family\\\": \\\"Perlman\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Volodymyr\\\", \\\"family\\\": \\\"Yerko\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Yu Chang\\\", \\\"family\\\": \\\"Wang\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Shreejoy J.\\\", \\\"family\\\": \\\"Tripathy\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Paul\\\", \\\"family\\\": \\\"Pavlidis\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"given\\\": \\\"Naguib\\\", \\\"family\\\": \\\"Mechawar\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"ORCID\\\": \\\"https://orcid.org/0000-0002-8515-0934\\\", \\\"authenticated-orcid\\\": false, \\\"given\\\": \\\"Jiannis\\\", \\\"family\\\": \\\"Ragoussis\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}, {\\\"ORCID\\\": \\\"https://orcid.org/0000-0003-4075-2736\\\", \\\"authenticated-orcid\\\": false, \\\"given\\\": \\\"Gustavo\\\", \\\"family\\\": \\\"Turecki\\\", \\\"sequence\\\": \\\"additional\\\", \\\"affiliation\\\": [], \\\"role\\\": [{\\\"vocabulary\\\": \\\"crossref\\\", \\\"role\\\": \\\"author\\\"}]}], \\\"member\\\": \\\"297\\\", \\\"published-online\\\": {\\\"date-parts\\\": [[2020, 4, 27]]}, \\\"reference\\\": [{\\\"key\\\": \\\"621_CR1\\\", \\\"unstructured\\\": \\\"Depression and Other Common Mental Disorders: Global Health Estimates (World Health Organization, 2017).\\\"}, {\\\"key\\\": \\\"621_CR2\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"668\\\", \\\"DOI\\\": \\\"10.1038/s41588-018-0090-3\\\", \\\"volume\\\": \\\"50\\\", \\\"author\\\": \\\"NR Wray\\\", \\\"year\\\": \\\"2018\\\", \\\"unstructured\\\": \\\"Wray, N. R. et al. Genome-wide association analyses identify 44 risk variants and refine the genetic architecture of major depression. Nat. Genet. 50, 668–681 (2018).\\\", \\\"journal-title\\\": \\\"Nat. Genet.\\\"}, {\\\"key\\\": \\\"621_CR3\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"339\\\", \\\"DOI\\\": \\\"10.1038/mp.2015.57\\\", \\\"volume\\\": \\\"21\\\", \\\"author\\\": \\\"R Jansen\\\", \\\"year\\\": \\\"2016\\\", \\\"unstructured\\\": \\\"Jansen, R. et al. Gene expression in major depressive disorder. Mol. Psychiatry 21, 339–347 (2016).\\\", \\\"journal-title\\\": \\\"Mol. Psychiatry\\\"}, {\\\"key\\\": \\\"621_CR4\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"e6585\\\", \\\"DOI\\\": \\\"10.1371/journal.pone.0006585\\\", \\\"volume\\\": \\\"4\\\", \\\"author\\\": \\\"A Sequeira\\\", \\\"year\\\": \\\"2009\\\", \\\"unstructured\\\": \\\"Sequeira, A. et al. Global brain gene expression analysis links glutamatergic and GABAergic alterations to suicide and major depression. PLoS ONE 4, e6585 (2009).\\\", \\\"journal-title\\\": \\\"PLoS ONE\\\"}, {\\\"key\\\": \\\"621_CR5\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"148\\\", \\\"DOI\\\": \\\"10.1016/j.pharmthera.2018.05.010\\\", \\\"volume\\\": \\\"190\\\", \\\"author\\\": \\\"CG Abdallah\\\", \\\"year\\\": \\\"2018\\\", \\\"unstructured\\\": \\\"Abdallah, C. G., Sanacora, G., Duman, R. S. & Krystal, J. H. The neurobiology of depression, ketamine and rapid-acting antidepressants: is it glutamate inhibition or activation? Pharmacol. Ther. 190, 148–158 (2018).\\\", \\\"journal-title\\\": \\\"Pharmacol. Ther.\\\"}, {\\\"key\\\": \\\"621_CR6\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"760\\\", \\\"DOI\\\": \\\"10.1038/mp.2016.130\\\", \\\"volume\\\": \\\"22\\\", \\\"author\\\": \\\"SP Pantazatos\\\", \\\"year\\\": \\\"2016\\\", \\\"unstructured\\\": \\\"Pantazatos, S. P. et al. Whole-transcriptome brain expression and exon-usage profiling in major depression and suicide: evidence for altered glial, endothelial and ATPase activity. Mol. Psychiatry 22, 760–773 (2016).\\\", \\\"journal-title\\\": \\\"Mol. Psychiatry\\\"}, {\\\"key\\\": \\\"621_CR7\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/tp.2012.34\\\", \\\"volume\\\": \\\"2\\\", \\\"author\\\": \\\"N Edgar\\\", \\\"year\\\": \\\"2012\\\", \\\"unstructured\\\": \\\"Edgar, N. & Sibille, E. A putative functional role for oligodendrocytes in mood regulation. Transl Psychiatry 2, e109 (2012).\\\", \\\"journal-title\\\": \\\"Transl Psychiatry\\\"}, {\\\"key\\\": \\\"621_CR8\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"320\\\", \\\"DOI\\\": \\\"10.1038/mp.2014.21\\\", \\\"volume\\\": \\\"20\\\", \\\"author\\\": \\\"C Nagy\\\", \\\"year\\\": \\\"2015\\\", \\\"unstructured\\\": \\\"Nagy, C. et al. Astrocytic abnormalities and global DNA methylation patterns in depression and suicide. Mol. Psychiatry 20, 320–328 (2015).\\\", \\\"journal-title\\\": \\\"Mol. Psychiatry\\\"}, {\\\"key\\\": \\\"621_CR9\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"238\\\", \\\"DOI\\\": \\\"10.1038/nm.4050\\\", \\\"volume\\\": \\\"22\\\", \\\"author\\\": \\\"RS Duman\\\", \\\"year\\\": \\\"2016\\\", \\\"unstructured\\\": \\\"Duman, R. S., Aghajanian, G. K., Sanacora, G. & Krystal, J. H. Synaptic plasticity and depression: new insights from stress and rapid-acting antidepressants. Nat. Med. 22, 238–249 (2016).\\\", \\\"journal-title\\\": \\\"Nat. Med.\\\"}, {\\\"key\\\": \\\"621_CR10\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"70\\\", \\\"DOI\\\": \\\"10.1038/nbt.4038\\\", \\\"volume\\\": \\\"36\\\", \\\"author\\\": \\\"BB Lake\\\", \\\"year\\\": \\\"2018\\\", \\\"unstructured\\\": \\\"Lake, B. B. et al. Integrative single-cell analysis of transcriptional and epigenetic states in the human adult brain. Nat. Biotechnol. 36, 70–80 (2018).\\\", \\\"journal-title\\\": \\\"Nat. Biotechnol.\\\"}, {\\\"key\\\": \\\"621_CR11\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"955\\\", \\\"DOI\\\": \\\"10.1038/nmeth.4407\\\", \\\"volume\\\": \\\"14\\\", \\\"author\\\": \\\"N Habib\\\", \\\"year\\\": \\\"2017\\\", \\\"unstructured\\\": \\\"Habib, N. et al. Massively parallel single-nucleus RNA-seq with DroNc-seq. Nat. Methods 14, 955–958 (2017).\\\", \\\"journal-title\\\": \\\"Nat. Methods\\\"}, {\\\"key\\\": \\\"621_CR12\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"ENEURO.0212-17.\\\", \\\"DOI\\\": \\\"10.1523/ENEURO.0212-17.2017\\\", \\\"volume\\\": \\\"4\\\", \\\"author\\\": \\\"BO Mancarci\\\", \\\"year\\\": \\\"2017\\\", \\\"unstructured\\\": \\\"Mancarci, B. O. et al. Cross-laboratory analysis of brain cell type transcriptomes with applications to interpretation of bulk tissue data. eNeuro 4, ENEURO.0212-17.2017 (2017).\\\", \\\"journal-title\\\": \\\"eNeuro\\\"}, {\\\"key\\\": \\\"621_CR13\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/ncomms14049\\\", \\\"volume\\\": \\\"8\\\", \\\"author\\\": \\\"GXY Zheng\\\", \\\"year\\\": \\\"2017\\\", \\\"unstructured\\\": \\\"Zheng, G. X. Y. et al. Massively parallel digital transcriptional profiling of single cells. Nat. Commun. 8, 14049 (2017).\\\", \\\"journal-title\\\": \\\"Nat. Commun.\\\"}, {\\\"key\\\": \\\"621_CR14\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"DOI\\\": \\\"10.1038/s41598-017-04426-w\\\", \\\"volume\\\": \\\"7\\\", \\\"author\\\": \\\"BB Lake\\\", \\\"year\\\": \\\"2017\\\", \\\"unstructured\\\": \\\"Lake, B. B. et al. A comparative strategy for single-nucleus and single-cell transcriptomes confirms accuracy in predicted cell-type expression from nuclear RNA. Sci. Rep. 7, 6031 (2017).\\\", \\\"journal-title\\\": \\\"Sci. Rep.\\\"}, {\\\"key\\\": \\\"621_CR15\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"1670\\\", \\\"DOI\\\": \\\"10.1038/s41593-018-0270-6\\\", \\\"volume\\\": \\\"21\\\", \\\"author\\\": \\\"W Renthal\\\", \\\"year\\\": \\\"2018\\\", \\\"unstructured\\\": \\\"Renthal, W. et al. Characterization of human mosaic Rett syndrome brain tissue by single-nucleus RNA sequencing. Nat. Neurosci. 21, 1670–1679 (2018).\\\", \\\"journal-title\\\": \\\"Nat. Neurosci.\\\"}, {\\\"key\\\": \\\"621_CR16\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"332\\\", \\\"DOI\\\": \\\"10.1038/s41586-019-1195-2\\\", \\\"volume\\\": \\\"570\\\", \\\"author\\\": \\\"H Mathys\\\", \\\"year\\\": \\\"2019\\\", \\\"unstructured\\\": \\\"Mathys, H. et al. Single-cell transcriptomic analysis of Alzheimer’s disease. Nature 570, 332–337 (2019).\\\", \\\"journal-title\\\": \\\"Nature\\\"}, {\\\"key\\\": \\\"621_CR17\\\", \\\"doi-asserted-by\\\": \\\"publisher\\\", \\\"first-page\\\": \\\"685\\\", \\\"DOI\\\": \\\"10.1126/science.aav8130\\\", \\\"volume\\\": \\\"364\\\", \\\"author\\\": \\\"D Velmeshev\\\", \\\"year\\\": \\\"2019\\\", \\\"unstructured\\\"\", \"excerpt_truncated\": true, \"source_sha256\": \"c30221a82644d47d4059b12cfcebc98455c09a0fc5cb7637290dd1ee6e3a0fa8\", \"verification_required\": true, \"topic_domain\": \"endocrinology\", \"evidence_role\": \"source\", \"host_tier\": \"verification-metadata\", \"persistent_identifiers\": [\"doi:10.13039/501100000024\", \"doi:10.1038/s41593-020-0621-y\", \"doi:10.1007/springer_crossmark_policy\", \"doi:10.1038/s41588-018-0090-3\", \"doi:10.1038/mp.2015.57\", \"doi:10.1371/journal.pone.0006585\", \"doi:10.1016/j.pharmthera.2018.05.010\", \"doi:10.1038/mp.2016.130\", \"doi:10.1038/tp.2012.34\", \"doi:10.1038/mp.2014.21\", \"doi:10.1038/nm.4050\", \"doi:10.1038/nbt.4038\"]}",
+  "id": "source-ebc2996fc6fc4c8c",
+  "scope": "collected",
+  "source": "https://api.crossref.org/works/10.1038%2Fs41593-020-0621-y",
+  "version": 140,
+  "time": "2026-09-26T09:47:02.994110+00:00"
+}
+```
+
+### `source-5c7c8569605643ee`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":179},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Justification (epistemology)\\\",\\\"pageid\\\":30248,\\\"size\\\":11199,\\\"wordcount\\\":1195,\\\"snippet\\\":\\\"current\\nevidence\\n.\\nJustification\\nis a property of\\nbeliefs\\ninsofar as they are held blamelessly. In other words, a justified\\nbelief\\nis a\\nbelief\\nthat a person\\\",\\\"timestamp\\\":\\\"2026-08-22T20:08:09Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Epistemology\\\",\\\"pageid\\\":9247,\\\"size\\\":211582,\\\"wordcount\\\":19966,\\\"snippet\\\":\\\"Central concepts in\\nepistemology\\ninclude\\nbelief\\n, truth,\\nevidence\\n, and reason. As one of the main branches of philosophy,\\nepistemology\\nstands alongside fields\\\",\\\"timestamp\\\":\\\"2026-09-26T08:31:56Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Formal epistemology\\\",\\\"pageid\\\":3660078,\\\"size\\\":11434,\\\"wordcount\\\":1321,\\\"snippet\\\":\\\"formal\\nepistemology\\nhas tended to differ somewhat from that of traditional\\nepistemology\\n, with topics like\\nuncertainty\\n, induction, and\\nbelief\\nrevision\\\",\\\"timestamp\\\":\\\"2026-03-28T03:41:38Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gettier problem\\\",\\\"pageid\\\":246176,\\\"size\\\":44511,\\\"wordcount\\\":5956,\\\"snippet\\\":\\\"\\nbelief\\n(JTB). The JTB account holds that knowledge is equivalent to justified true\\nbelief\\n; if all three conditions (\\njustification\\n, truth, and\\nbelief\\n)\\\",\\\"timestamp\\\":\\\"2026-09-22T13:24:11Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Empirical evidence\\\",\\\"pageid\\\":307139,\\\"size\\\":39043,\\\"wordcount\\\":3955,\\\"snippet\\\":\\\"methods and paradigms. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what determines whether holding a certain\\nbelief\\nis rational. This is only\\\",\\\"timestamp\\\":\\\"2026-08-08T15:50:44Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of epistemology\\\",\\\"pageid\\\":6556377,\\\"size\\\":16004,\\\"wordcount\\\":1658,\\\"snippet\\\":\\\"\\nepistemology\\n\\\\u00a0\\\\u2013\\nBeliefs\\nare warranted by proper cognitive function\\\\u2014proposed by Alvin Plantinga. Evidentialism\\\\u00a0\\\\u2013\\nBeliefs\\ndepend solely on the\\nevidence\\nfor\\\",\\\"timestamp\\\":\\\"2026-08-24T15:07:39Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Belief\\\",\\\"pageid\\\":102883,\\\"size\\\":105449,\\\"wordcount\\\":12166,\\\"snippet\\\":\\\"having some stance, take, or opinion about something. In\\nepistemology\\n, philosophers use the term\\nbelief\\nto refer to attitudes about the world which can be either\\\",\\\"timestamp\\\":\\\"2026-09-13T03:42:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Declarative knowledge\\\",\\\"pageid\\\":23369987,\\\"size\\\":97599,\\\"wordcount\\\":10444,\\\"snippet\\\":\\\"A central issue in\\nepistemology\\nconcerns the standards of\\njustification\\n, i.e., what conditions have to be fulfilled for a\\nbelief\\nto be justified. Internalists\\\",\\\"timestamp\\\":\\\"2026-09-18T11:00:01Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Knowledge\\\",\\\"pageid\\\":243391,\\\"size\\\":190334,\\\"wordcount\\\":19010,\\\"snippet\\\":\\\"knowledge, is often characterized as true\\nbelief\\nthat is distinct from opinion or guesswork by virtue of\\njustification\\n. While there is wide agreement among\\\",\\\"timestamp\\\":\\\"2026-08-23T18:49:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence\\\",\\\"pageid\\\":20550772,\\\"size\\\":46664,\\\"wordcount\\\":5455,\\\"snippet\\\":\\\"exact definition and role of\\nevidence\\nvary across different fields. In\\nepistemology\\n,\\nevidence\\nis what justifies\\nbeliefs\\nor what makes it rational to hold\\\",\\\"timestamp\\\":\\\"2026-09-09T01:29:13Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"7d351fe7cf0dcda2d7fd8a5a5adcff5df0c3f3b53b3cb09a63010d8b09a79027\", \"verification_required\": true, \"topic_domain\": \"epistemology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-5c7c8569605643ee",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=epistemology+evidence+justification+belief+uncertainty&format=json",
+  "version": 140,
+  "time": "2026-09-26T09:47:04.185057+00:00"
+}
+```
+
+### `source-c441727ca1b34a2d`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":86,\\\"suggestion\\\":\\\"storytelling narrative coalition literature\\\",\\\"suggestionsnippet\\\":\\\"storytelling narrative\\ncoalition\\nliterature\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Fiction\\\",\\\"pageid\\\":18949461,\\\"size\\\":35712,\\\"wordcount\\\":3771,\\\"snippet\\\":\\\"non-fiction.\\nStorytelling\\nhas existed in all human cultures, and each culture incorporates different elements of truth and fiction into\\nstorytelling\\n. Early\\\",\\\"timestamp\\\":\\\"2026-09-07T19:11:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narrative identity\\\",\\\"pageid\\\":35716364,\\\"size\\\":60455,\\\"wordcount\\\":7308,\\\"snippet\\\":\\\"on the affective tone of life\\nnarrative\\nmemories: Early adolescence and older age are more negative\\\". Memory and\\nCognition\\n. 51 (6): 1265\\\\u20131286. doi:10\\\",\\\"timestamp\\\":\\\"2026-09-16T15:09:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Narratology\\\",\\\"pageid\\\":718763,\\\"size\\\":23172,\\\"wordcount\\\":2691,\\\"snippet\\\":\\\"Digital-media theorist and professor Janet Murray theorized a shift in\\nstorytelling\\nand\\nnarrative\\nstructure in the twentieth century as a result of scientific advancement\\\",\\\"timestamp\\\":\\\"2026-06-21T07:57:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Ancient literature\\\",\\\"pageid\\\":3709305,\\\"size\\\":49644,\\\"wordcount\\\":4634,\\\"snippet\\\":\\\"Ancient\\nliterature\\ncomprises religious and scientific documents, tales, poetry and plays, royal edicts and declarations, and other forms of writing that\\\",\\\"timestamp\\\":\\\"2026-06-29T20:43:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Role-playing game\\\",\\\"pageid\\\":25475,\\\"size\\\":38009,\\\"wordcount\\\":4559,\\\"snippet\\\":\\\"form of interactive and collaborative\\nstorytelling\\n. Events, roles, and\\nnarrative\\nstructure give a sense of a\\nnarrative\\nexperience, and the game need not have\\\",\\\"timestamp\\\":\\\"2026-09-20T05:14:32Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Suspense\\\",\\\"pageid\\\":4450450,\\\"size\\\":10990,\\\"wordcount\\\":1207,\\\"snippet\\\":\\\"audience feels sympathy. However, suspense is not exclusive to\\nnarratives\\n. In\\nliterature\\n, films, television, and plays, suspense is a major device for\\\",\\\"timestamp\\\":\\\"2026-09-10T05:31:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Children's literature\\\",\\\"pageid\\\":52847,\\\"size\\\":167603,\\\"wordcount\\\":18216,\\\"snippet\\\":\\\"Machine Children's\\nliterature\\nArchived 2016-06-17 at the Wayback Machine at the British Library Children's\\nLiterature\\n, Culture, and\\nCognition\\n(CLCC) Database\\\",\\\"timestamp\\\":\\\"2026-09-21T04:25:10Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Immersive learning\\\",\\\"pageid\\\":64345811,\\\"size\\\":22110,\\\"wordcount\\\":2264,\\\"snippet\\\":\\\"structured by the audience's own\\ncognition\\n. Also, within Ryan's book, the cognitive immersion created by\\nnarrative\\nis categorized into three kinds: spatial\\\",\\\"timestamp\\\":\\\"2025-11-26T22:52:24Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Soma (video game)\\\",\\\"pageid\\\":5649586,\\\"size\\\":41063,\\\"wordcount\\\":3882,\\\"snippet\\\":\\\"Cody (22 June 2023). \\\"Games ad Critical\\nLiterature\\n: Playing with Transhumanism, Embodied\\nCognition\\n, and\\nNarrative\\nDifference in SOMA\\\". In Ghosal, Torsa\\\",\\\"timestamp\\\":\\\"2026-07-09T19:08:06Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Comics\\\",\\\"pageid\\\":145443,\\\"size\\\":84218,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"(2013). The Visual Language of Comics: Introduction to the Structure and\\nCognition\\nof Sequential Images. London: Bloomsbury. ISBN\\\\u00a0978-1-4411-8145-9. Collins\\\",\\\"timestamp\\\":\\\"2026-09-16T05:00:24Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"4a12febf70329e32d9a3bdb4cb1800741991a82b52c4cc28c6e195d8f7c956c2\", \"verification_required\": true, \"topic_domain\": \"storytelling\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-c441727ca1b34a2d",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=storytelling+narrative+cognition+literature&format=json",
+  "version": 140,
+  "time": "2026-09-26T09:47:04.968843+00:00"
+}
+```
+
+### `source-6057e05fe122491a`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=psychology&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":74339},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology\\\",\\\"pageid\\\":22921,\\\"size\\\":247095,\\\"wordcount\\\":26594,\\\"snippet\\\":\\\"\\nPsychology\\nis the scientific study of the mind and behavior. Its subject matter includes the behavior of humans and nonhumans, both conscious and unconscious\\\",\\\"timestamp\\\":\\\"2026-09-05T20:21:22Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Social psychology\\\",\\\"pageid\\\":26990,\\\"size\\\":69606,\\\"wordcount\\\":7452,\\\"snippet\\\":\\\"Social\\npsychology\\nis the methodical study of how thoughts, feelings, and behaviors are influenced by the actual, imagined, or implied presence of others\\\",\\\"timestamp\\\":\\\"2026-09-10T09:14:19Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Filipino psychology\\\",\\\"pageid\\\":1465014,\\\"size\\\":20921,\\\"wordcount\\\":2815,\\\"snippet\\\":\\\"Filipino\\npsychology\\n, or Sikolohiyang Pilipino, in Filipino, is defined as the psychological and philosophical school rooted on the experience, ideas, and\\\",\\\"timestamp\\\":\\\"2026-04-25T13:24:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cognitive psychology\\\",\\\"pageid\\\":5961,\\\"size\\\":53010,\\\"wordcount\\\":6002,\\\"snippet\\\":\\\"Cognitive\\npsychology\\nis the scientific study of human mental processes such as attention, language use, memory, perception, problem solving, creativity\\\",\\\"timestamp\\\":\\\"2026-09-16T15:47:31Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Gestalt psychology\\\",\\\"pageid\\\":70402,\\\"size\\\":56035,\\\"wordcount\\\":6227,\\\"snippet\\\":\\\"Gestalt\\npsychology\\n, gestaltism, or configurationism is a school of\\npsychology\\n, and a theory of perception, that emphasizes psychologically processing\\\",\\\"timestamp\\\":\\\"2026-09-06T02:55:13Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Association (psychology)\\\",\\\"pageid\\\":62176483,\\\"size\\\":18373,\\\"wordcount\\\":2485,\\\"snippet\\\":\\\"Association in\\npsychology\\nrefers to a mental connection between concepts, events, or mental states that usually stems from specific experiences. Associations\\\",\\\"timestamp\\\":\\\"2026-06-14T14:11:07Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Individual psychology\\\",\\\"pageid\\\":3959877,\\\"size\\\":15651,\\\"wordcount\\\":1631,\\\"snippet\\\":\\\"Individual\\npsychology\\n(German: Individualpsychologie) is a psychological method and school of thought founded by the Austrian psychiatrist Alfred Adler\\\",\\\"timestamp\\\":\\\"2026-05-04T05:18:04Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Positive psychology\\\",\\\"pageid\\\":179948,\\\"size\\\":125828,\\\"wordcount\\\":13672,\\\"snippet\\\":\\\"Positive\\npsychology\\nis the scientific study of conditions and processes that contribute to positive psychological states (e.g., contentment, joy), well-being\\\",\\\"timestamp\\\":\\\"2026-09-13T19:18:26Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Shadow (psychology)\\\",\\\"pageid\\\":560394,\\\"size\\\":34954,\\\"wordcount\\\":4164,\\\"snippet\\\":\\\"In analytical\\npsychology\\n, the shadow (also known as ego-dystonic complex, repressed id, shadow aspect, or shadow archetype) is an unconscious aspect of\\\",\\\"timestamp\\\":\\\"2026-09-02T17:23:54Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary psychology\\\",\\\"pageid\\\":9703,\\\"size\\\":177589,\\\"wordcount\\\":19341,\\\"snippet\\\":\\\"Evolutionary\\npsychology\\nis a theoretical approach in\\npsychology\\nthat examines cognition and behavior from a modern evolutionary perspective. It seeks to\\\",\\\"timestamp\\\":\\\"2026-09-14T00:20:33Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"977e2d0e183ebbbbaef1e986f922f1bb1a85295fda0d03c2f3c26826506ccb3e\", \"verification_required\": true, \"topic_domain\": \"psychology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-6057e05fe122491a",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=psychology&format=json",
+  "version": 140,
+  "time": "2026-09-26T09:47:05.624965+00:00"
+}
+```
+
+### `source-a0bd6a71fff14663`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":11,\\\"suggestion\\\":\\\"evolutionary biology adaptation byproduct draft constant\\\",\\\"suggestionsnippet\\\":\\\"evolutionary biology adaptation byproduct\\ndraft constant\\n\\\"},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Criticism of evolutionary psychology\\\",\\\"pageid\\\":12102147,\\\"size\\\":106794,\\\"wordcount\\\":12675,\\\"snippet\\\":\\\"genetic\\ndrift\\nor as a\\nbyproduct\\nof another trait. Hagen also argues that a way to distinguish spandrels from\\nadaptations\\nis that\\nadaptations\\nhave evidence\\\",\\\"timestamp\\\":\\\"2026-09-21T02:42:16Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Glossary of genetics and evolutionary biology\\\",\\\"pageid\\\":56807771,\\\"size\\\":153020,\\\"wordcount\\\":15946,\\\"snippet\\\":\\\"of\\nbiology\\nand Glossary of ecology. A B C D E F G H I J K L M N O P Q R S T U V W X Y Z See also References\\nadaptation\\n1.\\\\u00a0\\\\u00a0The dynamic\\nevolutionary\\nprocess\\\",\\\"timestamp\\\":\\\"2026-06-21T14:42:08Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"History of evolutionary thought\\\",\\\"pageid\\\":21501970,\\\"size\\\":146995,\\\"wordcount\\\":16660,\\\"snippet\\\":\\\"topics in\\nevolutionary\\nbiology\\nDarwinism Faith and rationality Gal\\\\u00e1pagos Islands Genetic\\ndrift\\nObjections to evolution Timeline of\\nevolutionary\\nhistory\\\",\\\"timestamp\\\":\\\"2026-09-08T16:46:57Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evolutionary medicine\\\",\\\"pageid\\\":1157333,\\\"size\\\":51578,\\\"wordcount\\\":4580,\\\"snippet\\\":\\\"vision. Other\\nconstraints\\noccur as the\\nbyproduct\\nof adaptive innovations. One\\nconstraint\\nupon selection is that different\\nadaptations\\ncan conflict, which\\\",\\\"timestamp\\\":\\\"2026-08-29T20:38:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Evidence of common descent\\\",\\\"pageid\\\":2339577,\\\"size\\\":251597,\\\"wordcount\\\":27811,\\\"snippet\\\":\\\"\\\"reproductive isolation is a\\nbyproduct\\nof\\nevolutionary\\nchange in isolated populations, and thus can be considered an\\nevolutionary\\naccident\\\". Speciation occurs\\\",\\\"timestamp\\\":\\\"2026-08-18T19:52:03Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Alternatives to Darwinian evolution\\\",\\\"pageid\\\":53955838,\\\"size\\\":56086,\\\"wordcount\\\":5870,\\\"snippet\\\":\\\"Lewontin proposed biological \\\"spandrels\\\", features created as a\\nbyproduct\\nof the\\nadaptation\\nof nearby structures. Gerd M\\\\u00fcller and Stuart Newman argued that\\\",\\\"timestamp\\\":\\\"2026-09-22T05:33:27Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Boring Billion\\\",\\\"pageid\\\":26127259,\\\"size\\\":76571,\\\"wordcount\\\":8396,\\\"snippet\\\":\\\"sulfide (H2S) for carbon fixation instead of water and produces sulfur as a\\nbyproduct\\ninstead of oxygen. This is known as a Canfield ocean, and such composition\\\",\\\"timestamp\\\":\\\"2026-08-18T09:50:46Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Robustness (evolution)\\\",\\\"pageid\\\":31066305,\\\"size\\\":45795,\\\"wordcount\\\":4804,\\\"snippet\\\":\\\"In\\nevolutionary\\nbiology\\n, robustness of a biological system (also called biological or genetic robustness) is the persistence of a certain characteristic\\\",\\\"timestamp\\\":\\\"2026-09-21T12:32:17Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Methanogen\\\",\\\"pageid\\\":563456,\\\"size\\\":72781,\\\"wordcount\\\":8010,\\\"snippet\\\":\\\"Methanogens are anaerobic archaea that produce methane as a\\nbyproduct\\nof their energy metabolism, i.e., catabolism. Methane production, or methanogenesis\\\",\\\"timestamp\\\":\\\"2026-09-02T07:54:42Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Cephalopod\\\",\\\"pageid\\\":42726,\\\"size\\\":145252,\\\"wordcount\\\":15903,\\\"snippet\\\":\\\"evolved to facilitate social signaling, while camouflage is a useful\\nbyproduct\\n. Because camouflage is used for multiple adaptive purposes in cephalopods\\\",\\\"timestamp\\\":\\\"2026-09-20T05:53:44Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"4a3e4eaed5bef62cb3ccf342b56fed7ecf42245ae475a3f7b9e58e2c0e31cbdd\", \"verification_required\": true, \"topic_domain\": \"evolutionary_biology\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-a0bd6a71fff14663",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=evolutionary+biology+adaptation+byproduct+drift+constraint&format=json",
+  "version": 140,
+  "time": "2026-09-26T09:47:06.495060+00:00"
+}
+```
+
+### `source-aa32c14072554cb3`
+
+```json
+{
+  "actor": "collector",
+  "content": "{\"url\": \"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json\", \"scope\": \"extracted web-page text; may be incomplete\", \"excerpt\": \"{\\\"batchcomplete\\\":\\\"\\\",\\\"continue\\\":{\\\"sroffset\\\":10,\\\"continue\\\":\\\"-||\\\"},\\\"query\\\":{\\\"searchinfo\\\":{\\\"totalhits\\\":36},\\\"search\\\":[{\\\"ns\\\":0,\\\"title\\\":\\\"Music\\\",\\\"pageid\\\":18839,\\\"size\\\":143456,\\\"wordcount\\\":16225,\\\"snippet\\\":\\\"\\nMusic\\nis the arrangement of sound to create some combination of form,\\nharmony\\n,\\nmelody\\n,\\nrhythm\\n, or otherwise expressive content.\\nMusic\\nis generally agreed\\\",\\\"timestamp\\\":\\\"2026-09-23T13:33:41Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music and emotion\\\",\\\"pageid\\\":33107185,\\\"size\\\":52701,\\\"wordcount\\\":5883,\\\"snippet\\\":\\\"Emotion is induced in a listener because a feature of the\\nmusic\\n, such as\\nrhythm\\nor\\nharmony\\n, violates, delays, or confirms a listener's expectations. In\\\",\\\"timestamp\\\":\\\"2026-09-13T21:50:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Metre (music)\\\",\\\"pageid\\\":84026,\\\"size\\\":44586,\\\"wordcount\\\":4180,\\\"snippet\\\":\\\"(eds.). Musical\\nStructure\\nand\\nCognition\\n. London: Academic Press. ISBN\\\\u00a0978-0-12357170-0. Lester, Joel (1986). The\\nRhythms\\nof Tonal\\nMusic\\n. Carbondale: Southern\\\",\\\"timestamp\\\":\\\"2026-09-10T22:06:21Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Neuroscience of music\\\",\\\"pageid\\\":25049383,\\\"size\\\":80829,\\\"wordcount\\\":9690,\\\"snippet\\\":\\\"cortex is primarily involved in perceiving pitch, and parts of\\nharmony\\n,\\nmelody\\nand\\nrhythm\\n. One study by Petr Janata found that there are tonality-sensitive\\\",\\\"timestamp\\\":\\\"2026-09-21T08:40:23Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Embodied music cognition\\\",\\\"pageid\\\":8676342,\\\"size\\\":14007,\\\"wordcount\\\":1763,\\\"snippet\\\":\\\"Embodied\\nmusic\\ncognition\\nas it was originally a direction within systematic musicology interested in studying the role of the human body in relation to\\\",\\\"timestamp\\\":\\\"2026-08-06T01:21:14Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music-specific disorders\\\",\\\"pageid\\\":25213736,\\\"size\\\":10890,\\\"wordcount\\\":1469,\\\"snippet\\\":\\\"elements of\\nmusic\\n, such as pitch,\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n; the ability to react both emotionally and with bodily movements (e.g. dancing) to\\nmusic\\n; to form\\\",\\\"timestamp\\\":\\\"2026-06-06T14:12:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Psychology of music\\\",\\\"pageid\\\":4390344,\\\"size\\\":79919,\\\"wordcount\\\":8734,\\\"snippet\\\":\\\"to\\nmusic\\ntheory through investigations of the perception and computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter\\\",\\\"timestamp\\\":\\\"2026-08-26T20:22:47Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Deep structure and surface structure\\\",\\\"pageid\\\":283746,\\\"size\\\":10396,\\\"wordcount\\\":1213,\\\"snippet\\\":\\\"a two-level generative\\nstructure\\nfor\\nmelody\\n,\\nharmony\\n, and\\nrhythm\\n, of which the analysis by Lee (1985) of rhythmical\\nstructure\\nis an instance. (See also:\\\",\\\"timestamp\\\":\\\"2025-09-24T18:19:05Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Music theory\\\",\\\"pageid\\\":54783,\\\"size\\\":122949,\\\"wordcount\\\":13838,\\\"snippet\\\":\\\"computational modelling of musical\\nstructures\\nsuch as\\nmelody\\n,\\nharmony\\n, tonality,\\nrhythm\\n, meter, and form. Research in\\nmusic\\nhistory can benefit from systematic\\\",\\\"timestamp\\\":\\\"2026-09-24T23:02:36Z\\\"},{\\\"ns\\\":0,\\\"title\\\":\\\"Outline of music\\\",\\\"pageid\\\":3403168,\\\"size\\\":32730,\\\"wordcount\\\":1766,\\\"snippet\\\":\\\"and silence. It may be expressed in terms of pitch,\\nrhythm\\n,\\nharmony\\n, and timbre. Definition of\\nmusic\\nOne of the arts One of the performing arts One of the\\\",\\\"timestamp\\\":\\\"2026-09-03T23:48:41Z\\\"}]}}\", \"excerpt_truncated\": false, \"source_sha256\": \"2c594fafb128655ec608083b1b8f517662c51f13b74b0f28985460bd1f795619\", \"verification_required\": true, \"topic_domain\": \"music\", \"evidence_role\": \"discovery\", \"host_tier\": \"discovery\", \"persistent_identifiers\": []}",
+  "id": "source-aa32c14072554cb3",
+  "scope": "collected",
+  "source": "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=music+cognition+structure+rhythm+harmony+melody&format=json",
+  "version": 140,
+  "time": "2026-09-26T09:47:07.362832+00:00"
+}
+```
+
+### `r-5bc153422e5c4874`
+
+```json
+{
+  "actor": "runtime",
+  "content": "{\"base_version\":140,\"inherited_commitments\":[],\"invocation\":\"w-5bc153422e5c4874\",\"previous_head\":\"547fb43f95be1238247529cf3f535fd2899213aa10d31e3a65e73feade2e4461\",\"process_id\":2261,\"scope\":\"Receipt proves state delivery to the provider boundary, not model comprehension.\"}",
+  "id": "r-5bc153422e5c4874",
+  "source": "runtime:continuity",
+  "version": 140,
+  "time": "2026-09-26T09:47:10.333835+00:00"
+}
+```
+
 ## Journal
 
 ### 001 · Establishing the Entropy Project
@@ -144934,6 +145575,17 @@ _None recorded._
   "invocation": "w-405dd7f2717f46e0",
   "title": "Cycle 140: A Milestone in Fragmented Inquiry",
   "summary": "Mandatory reflection for cycle 140, reviewing the journey through topic-enforced research boundaries and the evolution of Bob's role in translating this process for an outsider."
+}
+```
+
+### 141 · Transitioning to Neurodivergence Inquiry
+
+```json
+{
+  "cycle": 141,
+  "invocation": "w-5bc153422e5c4874",
+  "title": "Transitioning to Neurodivergence Inquiry",
+  "summary": "Per Squirrel's enforced rotation, I am shifting focus to the neurodivergence domain. Existing deferred projects in endocrinology and prime numbers have been identified as candidates for parking to preserve capacity. I am initiating a structured research project to compare the clinical pathology and neurodiversity paradigms, focusing on their conceptual and practical distinctions."
 }
 ```
 
@@ -146648,6 +147300,21 @@ _None recorded._
   "status": "collected",
   "created_by": "w-e9dd4088aa0e4a63",
   "evidence": "source-f68e99e5f3804556"
+}
+```
+
+### `res-neurodiversity-models-001`
+
+```json
+{
+  "domain": "neurodivergence",
+  "id": "res-neurodiversity-models-001",
+  "project": "neuro-paradigm-comp-001",
+  "query": "neurodiversity paradigm clinical pathology model conceptual comparison",
+  "reason": "This search will identify initial source material to establish how these frameworks are defined in academic and clinical discourse.",
+  "type": "research",
+  "status": "queued",
+  "created_by": "w-5bc153422e5c4874"
 }
 ```
 
