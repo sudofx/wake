@@ -95,6 +95,7 @@ jobs:
     concurrency:
       group: wake-durable-state
       cancel-in-progress: false
+      queue: max
     outputs:
       report_ready: ${{ steps.report.outputs.ready }}
       artifact_name: ${{ steps.report.outputs.artifact_name }}
