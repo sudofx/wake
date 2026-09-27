@@ -674,7 +674,7 @@ def _flat_browser_shell(title, eyebrow, heading, description, kind, source):
 
 
 
-def export(store, destination="site", experiment=None, operation=None):
+def export(store, destination="site", experiment=None, operation=None, browser_only=False):
     with store.lock():
         # Publication consumes one verified record snapshot. Replaying again for
         # state, events, and head made publish cost scale unnecessarily with the
@@ -715,6 +715,47 @@ def export(store, destination="site", experiment=None, operation=None):
         page = page.replace('<a href="state.json">State →</a><a href="events.jsonl">History →</a><a href="journal.md">Markdown →</a>',
                             '<a href="state.html">State →</a><a href="events.html">History →</a><a href="journal.md">Journal source ↓</a>')
         page = page.replace("'.md'>Markdown ↓</a>", "'.html'>Standalone HTML →</a> · <a class=\"subtle\" href=\"blog/'+encodeURIComponent(post.id)+'.md\">Markdown source ↓</a>")
+        if browser_only:
+            # Fast Pages projection: publish one application shell plus current flat
+            # record exports. Historical presentation is rendered by the browser;
+            # publication cost therefore no longer grows with every journal entry.
+            atomic_write(target / "index.html", page)
+            atomic_write(target / "state.json", json.dumps(state, indent=2, ensure_ascii=False))
+            atomic_write(target / "events.jsonl", "".join(canonical(event) + "\\n" for event in events))
+            atomic_write(target / "head.txt", head + "\\n")
+            for name in ("nav.js", "map.js", "map3d.js"):
+                atomic_write(target / name, (assets / name).read_text())
+
+            # The map shells already fetch their data at browser load. Keep the
+            # URLs stable while moving record projection out of GitHub Actions.
+            from .provenance import build_map, build_map3d_projection, map3d_shard_filename
+            graph = build_map(state, events, head)
+            graph_json = json.dumps(graph, ensure_ascii=False)
+            atomic_write(target / "map-data.json", graph_json)
+            map_page = (assets / "map.html").read_text().replace("WAKE_CYCLE_COUNT", str(state["version"]))
+            atomic_write(target / "map.html", map_page)
+            graph3d_shell, graph3d_shards = build_map3d_projection(graph)
+            atomic_write(target / "map3d-data.json", json.dumps(graph3d_shell, ensure_ascii=False))
+            shard_dir = target / "map3d"
+            shard_dir.mkdir(parents=True, exist_ok=True)
+            for parent, shard in graph3d_shards.items():
+                atomic_write(shard_dir / map3d_shard_filename(parent), json.dumps(shard, ensure_ascii=False))
+            map3d_page = (assets / "map3d.html").read_text().replace("WAKE_CYCLE_COUNT", str(state["version"]))
+            atomic_write(target / "map3d.html", map3d_page)
+
+            # Preserve the long-standing readable URLs, but make them thin data
+            # clients instead of regenerating the entire historical document.
+            def data_reader(title, source, mode="json"):
+                render = ("JSON.stringify(JSON.parse(text),null,2)" if mode == "json" else "text")
+                return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title} / WAKE✳︎</title><link rel="stylesheet" href="theme.css"><link rel="stylesheet" href="style.css"></head><body><main style="max-width:1100px;margin:auto;padding:2rem"><p><a href="index.html">← WAKE✳︎</a></p><h1>{title}</h1><p>Browser-rendered from <a href="{source}">{source}</a>.</p><pre id="record">Loading current record…</pre></main><script>fetch('{source}',{{cache:'no-store'}}).then(r=>{{if(!r.ok)throw Error('HTTP '+r.status);return r.text()}}).then(text=>record.textContent={render}).catch(e=>record.textContent='Could not load current record: '+e.message)</script></body></html>"""
+            atomic_write(target / "state.html", data_reader("Durable state", "state.json"))
+            atomic_write(target / "events.html", data_reader("Event history", "events.jsonl", "text"))
+            atomic_write(target / "rejected.html", '<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=index.html#history/filter:rejected"><script>location.replace("index.html#history/filter:rejected"+location.hash)</script>')
+
+            # Old standalone artifact URLs remain useful bookmarks. GitHub Pages
+            # falls through here and routes them to the equivalent live SPA view.
+            atomic_write(target / "404.html", """<!doctype html><meta charset="utf-8"><script>(()=>{const p=location.pathname;let h='home';let m;if((m=p.match(/\\/blog\\/([^/]+)\\.(?:html|md)$/)))h='blog/'+decodeURIComponent(m[1]);else if((m=p.match(/\\/journal\\/([^/]+)\\.html$/)))h='history/'+decodeURIComponent(m[1]);else if((m=p.match(/\\/notebooks\\/([^/]+)\\.(?:html|md)$/)))h='projects/notebook:'+decodeURIComponent(m[1]);location.replace(new URL('index.html#'+h,location.href))})()</script>""")
+            return {"path": str((target / "index.html").resolve()), "cycles": state["version"], "head": head}
         lines = ["# **WAKE✳︎** — The journal", "", "> Disposable models. Durable state. Receipts for everything.", "",
                  f"Objective: {_md_text(state['objective'])}", "", f"Verified head: `{head}`", "",
                  "Fixture entries are deterministic simulations, not live model experiments.", ""]
