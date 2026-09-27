@@ -29,7 +29,7 @@ def git(*args, cwd=ROOT, check=True):
 
 def publish(directory):
     source = Path(directory).resolve()
-    names = ["index.html", "journal.md", "state.json", "events.jsonl", "head.txt"]
+    names = ["index.html", "wake-data.json", "journal.md", "state.json", "events.jsonl", "head.txt"]
     if not all((source / name).is_file() for name in names):
         raise SystemExit("Export the journal first.")
     # Newer exports include human-readable companions. Keep older fixture exports publishable.
@@ -94,10 +94,15 @@ def publish(directory):
         names.extend((f"notebooks/{item['id']}.md", f"notebooks/{item['id']}.html"))
     for item in reconstructed.get("posts", {}).values():
         names.extend((f"blog/{item['id']}.md", f"blog/{item['id']}.html"))
+    try:
+        browser_data = json.loads((source / "wake-data.json").read_text())
+    except (OSError, ValueError) as exc:
+        raise SystemExit("Invalid browser data export; export again before publishing.") from exc
+    if browser_data.get("head") != head or canonical(browser_data.get("state")) != canonical(reconstructed):
+        raise SystemExit("Browser data does not match the verified export; export again before publishing.")
     page = (source / "index.html").read_text()
-    embedded = json.loads(page.split('<script id="wake-data" type="application/json">', 1)[1].split('</script>', 1)[0])
-    if embedded["head"] != head or canonical(embedded["state"]) != canonical(reconstructed):
-        raise SystemExit("HTML does not match the verified export; export again before publishing.")
+    if 'id="wake-data"' in page or "WAKE_DATA" in page:
+        raise SystemExit("Homepage still embeds durable browser data; export again before publishing.")
     remote = git("remote", "get-url", "origin").stdout.strip()
     with tempfile.TemporaryDirectory(prefix="wake-publish-") as folder:
         target = Path(folder)
