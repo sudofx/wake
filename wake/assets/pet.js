@@ -6,7 +6,7 @@
  * Comments should preserve the boundary between presentation and the canonical durable record.
  */
 
-(async () => {
+window.WakePetReady=(async () => {
   'use strict';
   const d=await window.WakeData,s=d.state;
   if(s.charter){document.querySelector('.footer-mark').href='#home';}
@@ -117,4 +117,5 @@
     `;
   }
   window.WakePet={render};
+  return window.WakePet;
 })();
