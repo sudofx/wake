@@ -1076,9 +1076,7 @@ html,body{max-width:100%;overflow-x:clip}
 /* Public/operator information boundary.
    Public visitors get the readable research surface; authenticated operators
    regain the full audit, provider, history, metrics, and raw-record controls. */
-.public-only{display:none!important}
 .public-view .operator-only{display:none!important}
-.public-view .public-only{display:initial!important}
 .public-view .entry .record-panel-meta,
 .public-view .entry .entry-bottom,
 .public-view .entry .lab-notes,
@@ -1092,5 +1090,4 @@ html,body{max-width:100%;overflow-x:clip}
 .public-view #evidence,
 .public-view #history{display:none!important}
 .public-view footer>div{margin-left:auto}
-.operator-view .operator-only{display:revert}
 .operator-view .public-only{display:none!important}
