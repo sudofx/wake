@@ -55,6 +55,12 @@ class PublishingTests(unittest.TestCase):
                 page = (project/"site/index.html").read_text()
                 self.assertIn('href="events.html">Readable history', page)
                 self.assertIn('href="state.html">State', page)
+                self.assertNotIn('id="wake-data"', page)
+                self.assertIn("fetch('wake-data.json'", page)
+                browser_data = json.loads((project/"site/wake-data.json").read_text())
+                self.assertEqual(browser_data["state"]["version"], 1)
+                self.assertIn("route();", page)
+                self.assertNotIn("journal();route();", page)
 
                 # MAP navigation should expose the same metrics destination as
                 # the main site. The 3-D floating card is deliberately hover-only:
@@ -104,7 +110,7 @@ class PublishingTests(unittest.TestCase):
                 self.assertEqual(count, "2")
                 files = subprocess.check_output(["git", "--git-dir", str(remote), "ls-tree", "--name-only", "journal-pages"],text=True).splitlines()
                 self.assertEqual(set(files), {
-                    ".nojekyll", "index.html", "journal.md", "style.css", "nav.css", "map.css", "map3d.css", "theme.css",
+                    ".nojekyll", "index.html", "wake-data.json", "journal.md", "style.css", "nav.css", "map.css", "map3d.css", "theme.css",
                     "state.json", "state.md", "state.html",
                     "events.jsonl", "events.md", "events.html",
                     "head.txt", "map.html", "map-data.json", "map3d.html", "map3d-data.json", "map3d", "blog.xml", "journal.xml", "journal",
