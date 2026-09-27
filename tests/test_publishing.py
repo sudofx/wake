@@ -46,7 +46,10 @@ class PublishingTests(unittest.TestCase):
             engine = Engine(project/"data")
             try:
                 engine.run(Fixture())
+                before_replays = engine.store.performance_snapshot()["full_replays"]
                 export(engine.store, project/"site")
+                after_replays = engine.store.performance_snapshot()["full_replays"]
+                self.assertEqual(after_replays - before_replays, 1)
                 for name in ("events.md", "events.html", "state.md", "state.html"):
                     self.assertTrue((project/"site"/name).is_file())
                 page = (project/"site/index.html").read_text()
