@@ -26,6 +26,10 @@ on:
         type: string
         required: false
         default: ''
+      publish_after:
+        description: Publish the fresh durable state after this wake
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -56,6 +60,8 @@ jobs:
           python-version: '3.12'
       - name: Render current durable record
         id: cycle
+        env:
+          WAKE_CONTROL_URL: ${{ vars.WAKE_CONTROL_URL }}
         run: python scripts/github_wake.py --publish-only
       - name: Confirm report is ready
         id: report
@@ -107,11 +113,14 @@ jobs:
         continue-on-error: true
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          WAKE_CONTROL_URL: ${{ vars.WAKE_CONTROL_URL }}
         run: |
           if [[ "${{ inputs.reset }}" == "true" ]]; then
             python scripts/github_wake.py --reset --confirm-reset
           elif [[ "${{ github.event_name }}" == "schedule" ]]; then
             python scripts/github_wake.py --scheduled
+          elif [[ "${{ inputs.publish_after }}" == "true" ]]; then
+            python scripts/github_wake.py
           else
             python scripts/github_wake.py --record-only
           fi
