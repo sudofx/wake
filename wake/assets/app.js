@@ -65,15 +65,19 @@
     });
   }
   const fmt = time => new Date(time).toLocaleString('en-US', {timeZone:data.timezone,month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
-  const invocations = Object.values(s.invocations);
-  const posts = Object.values(s.posts || {}).sort((a,b)=>b.created_version-a.created_version);
-  const accepted = data.events.filter(e => e.kind === 'accepted');
-  const decisions = Object.fromEntries(accepted.map(e => [e.payload.id, e]));
-  const live = invocations.filter(i => i.provider === 'gemini' && i.status === 'accepted').length;
-  const fixtures = invocations.filter(i => i.provider === 'fixture' && i.status === 'accepted').length;
-  const rejected = invocations.filter(i => i.status === 'rejected').length;
-  const inherited = Object.values(s.commitments).filter(c => c.status === 'fulfilled' && c.created_by !== c.resolved_by).length;
-  const open = Object.values(s.commitments).filter(c => c.status === 'open');
+  let invocations, posts, accepted, decisions, live, fixtures, rejected, inherited, open;
+  function refreshDerived() {
+    invocations = Object.values(s.invocations || {});
+    posts = Object.values(s.posts || {}).sort((a,b)=>b.created_version-a.created_version);
+    accepted = (data.events || []).filter(e => e.kind === 'accepted');
+    decisions = Object.fromEntries(accepted.map(e => [e.payload.id, e]));
+    live = invocations.filter(i => i.provider === 'gemini' && i.status === 'accepted').length;
+    fixtures = invocations.filter(i => i.provider === 'fixture' && i.status === 'accepted').length;
+    rejected = invocations.filter(i => i.status === 'rejected').length;
+    inherited = Object.values(s.commitments || {}).filter(c => c.status === 'fulfilled' && c.created_by !== c.resolved_by).length;
+    open = Object.values(s.commitments || {}).filter(c => c.status === 'open');
+  }
+  refreshDerived();
   let journalLimit = 8, historyLimit = 35;
   const refs = ids => (ids || []).map(id => `<a href="#evidence/${encodeURIComponent(id)}">${esc(id)} →</a>`).join(' ');
   const badge = (value, label) => `<span class="badge ${esc(value)}">${esc(label || value)}</span>`;
@@ -121,12 +125,15 @@
     evidence_lifecycle:'Evidence revision and retraction', recovery:'Crash and projection recovery',
     audit_reconstruction:'Independent audit reconstruction', longitudinal:'100+ fresh invocation cycles'
   };
-  $('metrics').innerHTML = [
-    [s.version,'Recorded cycles',`${fixtures} simulated · ${live} live Gemini`,'#history'],
-    [inherited,'Obligations inherited','Across fresh invocations','#history/filter:inherited'],
-    [rejected,'Proposals rejected','Read the drafts and recorded reasons','#history/filter:rejected'],
-    [invocations.filter(i=>i.status==='recovered').length,'Calls recovered','Last valid state retained','#history/filter:recovered']
-  ].map(([value,label,note,href])=>`<a class="metric" href="${href}"><strong>${value}</strong><span>${label}<small>${note}</small></span></a>`).join('');
+  function renderMetricStrip() {
+    $('metrics').innerHTML = [
+      [s.version,'Recorded cycles',`${fixtures} simulated · ${live} live Gemini`,'#history'],
+      [inherited,'Obligations inherited','Across fresh invocations','#history/filter:inherited'],
+      [rejected,'Proposals rejected','Read the drafts and recorded reasons','#history/filter:rejected'],
+      [invocations.filter(i=>i.status==='recovered').length,'Calls recovered','Last valid state retained','#history/filter:recovered']
+    ].map(([value,label,note,href])=>`<a class="metric" href="${href}"><strong>${value}</strong><span>${label}<small>${note}</small></span></a>`).join('');
+  }
+  renderMetricStrip();
   const providerSelect = $('provider-filter');
   [...new Set(invocations.map(i=>i.provider))].sort().forEach(provider => {
     const option = document.createElement('option'); option.value=provider; option.textContent=provider; providerSelect.append(option);
@@ -449,6 +456,36 @@
   $('history-more').addEventListener('click',()=>{historyLimit+=35;route();});
   const resetPageScroll=()=>requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo(0,0)));
   window.addEventListener('hashchange',()=>{historyLimit=35;$('evidence-search').value='';$('history-search').value='';$('event-filter').value='all';route();resetPageScroll();});
-  $('generated').textContent=`Exported ${fmt(data.generated)}.`;
+  $('generated').textContent=`Live projection ${fmt(data.generated)}.`;
+
+  window.WakeApplyLive = next => {
+    if(!next || !next.state || next.authoritative === true) return;
+    const nextState=next.state;
+    for(const key of Object.keys(s)) delete s[key];
+    Object.assign(s,nextState);
+    data.events=Array.isArray(next.events)?next.events:[];
+    data.head=next.head||data.head;
+    data.generated=next.generated||data.generated;
+    data.operation=next.operation||null;
+    data.wake_status=next.wake_status||{};
+    refreshDerived();
+    renderMetricStrip();
+    document.querySelectorAll('.cycle-count').forEach(node=>node.textContent=String(s.version??'—'));
+    for(const provider of [...new Set(invocations.map(i=>i.provider).filter(Boolean))].sort()){
+      if(![...providerSelect.options].some(option=>option.value===provider)){
+        const option=document.createElement('option');option.value=provider;option.textContent=provider;providerSelect.append(option);
+      }
+    }
+    for(const kind of [...new Set(data.events.map(event=>event.kind))].sort()){
+      if(![...eventSelect.options].some(option=>option.value===kind)){
+        const option=document.createElement('option');option.value=kind;option.textContent=kind;eventSelect.append(option);
+      }
+    }
+    $('generated').textContent=`Live projection ${fmt(data.generated)}.`;
+    journalLimit=8;historyLimit=35;
+    route();
+  };
+
+  document.querySelectorAll('.cycle-count').forEach(node=>node.textContent=String(s.version??'—'));
   route();
 })();
