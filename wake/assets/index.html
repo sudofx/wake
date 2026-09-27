@@ -142,7 +142,6 @@ window.WakeData=fetch('wake-data.json',{cache:'no-store'})
     sessionStorage.removeItem(sessionKey);
   }catch{}
 
-  setAccessMode(false);
   if(controlUrl && location.hash.startsWith(fragment)){
     try{
       localStorage.setItem(sessionKey,decodeURIComponent(location.hash.slice(fragment.length)));
@@ -158,6 +157,7 @@ window.WakeData=fetch('wake-data.json',{cache:'no-store'})
       window.dispatchEvent(new HashChangeEvent('hashchange'));
     }
   };
+  setAccessMode(false);
   const setOwnerMenu=(open)=>{
     ownerControls.hidden=!open;
     ownerMenuToggle?.setAttribute('aria-expanded',String(open));
