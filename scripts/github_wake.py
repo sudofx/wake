@@ -141,10 +141,7 @@ def main(publish_only=False, scheduled=False, reset=False, record_only=False):
                 # Reuse the previous published artifact as a cache of immutable
                 # presentation files. export() overwrites current shells/data but
                 # can leave already-converted historical route shells untouched.
-                previous_site = branch.checkout / "site"
-                if previous_site.exists():
-                    shutil.rmtree(ROOT / "site", ignore_errors=True)
-                    shutil.copytree(previous_site, ROOT / "site")
+                shutil.rmtree(ROOT / "site", ignore_errors=True)
                 export(
                     engine.store, ROOT / "site", operation=result, browser_only=True,
                     record_snapshot=(state, verified_head, verified_events),
@@ -196,16 +193,11 @@ def main(publish_only=False, scheduled=False, reset=False, record_only=False):
                 branch.checkpoint()
                 set_step_output("publication_skipped", "true")
             else:
-                if reset:
-                    shutil.rmtree(ROOT / "site", ignore_errors=True)
-                else:
-                    # Seed publication from the last durable artifact so unchanged
-                    # compatibility shells and static assets do not need rebuilding.
-                    previous_site = branch.checkout / "site"
-                    if previous_site.exists():
-                        shutil.rmtree(ROOT / "site", ignore_errors=True)
-                        shutil.copytree(previous_site, ROOT / "site")
-                export(engine.store, ROOT / "site", operation=result)
+                shutil.rmtree(ROOT / "site", ignore_errors=True)
+                # Normal published wakes use the same lightweight Pages projection.
+                # Reset keeps the full zero-state export for compatibility tests and
+                # explicit operator recovery workflows.
+                export(engine.store, ROOT / "site", operation=result, browser_only=not reset)
                 atomic_write(ROOT / "site/operation.json", json.dumps(result, indent=2))
                 atomic_write(ROOT / "site/.nojekyll", "")
                 # Persist an inspectable text export alongside the exact SQLite state.
