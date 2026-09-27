@@ -674,12 +674,12 @@ def _flat_browser_shell(title, eyebrow, heading, description, kind, source):
 
 
 
-def export(store, destination="site", experiment=None, operation=None, browser_only=False):
+def export(store, destination="site", experiment=None, operation=None, browser_only=False, record_snapshot=None):
     with store.lock():
         # Publication consumes one verified record snapshot. Replaying again for
         # state, events, and head made publish cost scale unnecessarily with the
         # entire accumulated history.
-        state, head, events = store.replay_record()
+        state, head, events = record_snapshot if record_snapshot is not None else store.replay_record()
         if experiment is None:
             evidence_file = store.directory / "experiment.json"
             experiment = json.loads(evidence_file.read_text()) if evidence_file.exists() else None
