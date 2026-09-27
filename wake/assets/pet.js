@@ -6,9 +6,9 @@
  * Comments should preserve the boundary between presentation and the canonical durable record.
  */
 
-(() => {
+(async () => {
   'use strict';
-  const d=JSON.parse(document.getElementById('wake-data').textContent),s=d.state;
+  const d=await window.WakeData,s=d.state;
   if(s.charter){document.querySelector('.footer-mark').href='#home';}
   const help=key=>window.WakeHelp.button(key);
   const blogNav=document.querySelector('[data-nav="blog"]');if(blogNav)blogNav.hidden=!Object.keys(s.posts||{}).length;
