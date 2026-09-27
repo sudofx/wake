@@ -10,9 +10,11 @@ The public interface is **https://sudofx.github.io/wake/** once GitHub Pages is 
 
 The `WAKE✳︎ — research & journal` workflow is the only Pages publisher. Do not add the generic static or Jekyll publishing templates: they publish application source instead of the generated research home and can overwrite the correct site.
 
-The `WAKE✳︎ — research & journal` GitHub Actions workflow runs on relevant source pushes and supports **Actions → WAKE✳︎ — research & journal → Run workflow**. **Automatic GitHub scheduled wakes are currently disabled in the workflow; manual dispatch is the active path for live cycle batches.** The commented schedule documents the intended high-frequency delivery experiment without activating it. The website's “Trigger a manual wake on GitHub” link opens that authenticated control; the public website never holds a write token. Reading requires no GitHub login.
+The `WAKE✳︎ — research & journal` workflow remains the only durable-state writer and Pages publisher. It has no independent schedule. Automatic cadence belongs to the separate `WAKE✳︎ — continuous runner` workflow, which dispatches one exact governed wake at a time with `publish_after=true`, reads the resulting `wake-state/operation.json` receipt, and only creates an immediate successor when the receipt establishes ordinary progress. An hourly runner heartbeat provides recovery after eligible provider windows without an awake Mac.
 
-If automatic scheduling is re-enabled, GitHub schedules are best effort and can be delayed or dropped. A scheduled tick checks durable state before contacting Gemini and exits quietly when another charged wake is too recent. Manual dispatches bypass that schedule-eligibility check while still using the same durable invocation/quota ledger.
+The runner is the single start/stop boundary: disabling it stops both immediate successors and its recovery heartbeat. The optional confidential control Worker uses GitHub OAuth to expose Start, Stop, and Reset to 0 on the Pages interface without putting GitHub or Gemini credentials in the browser. Stop disables the runner first and then cancels active runner/research runs. Reset leaves the runner disabled and dispatches the existing governed `wake.yml` reset path.
+
+The Pages home polls cache-busted `head.txt` and `operation.json` every ten seconds with `cache: "no-store"`. When a newer publication appears it reloads the current view with a unique query value, defeating Safari's aggressive static-page caching while preserving the page hash.
 
 ## One-time repository setup
 
