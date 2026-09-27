@@ -41,16 +41,22 @@ Keep presentation subordinate to the canonical durable record.
   </nav>
   <div class="header-tools">
     <span class="status"><i></i> STATE PERSISTS</span>
-    <div class="owner-access" data-owner-access hidden>
-      <a class="owner-login" data-owner-login href="#">Operator sign in</a>
-      <div class="owner-controls" data-owner-controls hidden>
-        <span data-owner-control-status>Checking…</span>
+    <label class="data-switch theme-switch"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><b class="theme-icon" aria-hidden="true">◐</b><span class="data-switch-track" aria-hidden="true"><i></i></span></label>
+  </div>
+  <div class="owner-access" data-owner-access hidden>
+    <a class="owner-login" data-owner-login href="#">Operator sign in</a>
+    <button class="owner-menu-toggle" data-owner-menu-toggle type="button" aria-expanded="false" aria-haspopup="true" hidden>
+      <i aria-hidden="true"></i><span data-owner-menu-label>Operator</span>
+    </button>
+    <div class="owner-controls" data-owner-controls hidden>
+      <div class="owner-control-heading"><strong>Operator controls</strong><span data-owner-control-status>Checking…</span></div>
+      <div class="owner-control-actions">
         <button type="button" data-owner-start>Start</button>
         <button type="button" data-owner-stop>Stop</button>
         <button type="button" data-owner-reset>Reset to 0</button>
       </div>
+      <button class="owner-signout" type="button" data-owner-signout>Sign out</button>
     </div>
-    <label class="data-switch theme-switch"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><b class="theme-icon" aria-hidden="true">◐</b><span class="data-switch-track" aria-hidden="true"><i></i></span></label>
   </div>
 </header>
 <main id="main" tabindex="-1">
@@ -106,9 +112,12 @@ Keep presentation subordinate to the canonical durable record.
   const ownerLogin=document.querySelector('[data-owner-login]');
   const ownerControls=document.querySelector('[data-owner-controls]');
   const ownerStatus=document.querySelector('[data-owner-control-status]');
+  const ownerMenuToggle=document.querySelector('[data-owner-menu-toggle]');
+  const ownerMenuLabel=document.querySelector('[data-owner-menu-label]');
   const ownerStart=document.querySelector('[data-owner-start]');
   const ownerStop=document.querySelector('[data-owner-stop]');
   const ownerReset=document.querySelector('[data-owner-reset]');
+  const ownerSignout=document.querySelector('[data-owner-signout]');
   const sessionKey='wake-owner-session';
   const fragment='#wake-control=';
 
@@ -119,8 +128,13 @@ Keep presentation subordinate to the canonical durable record.
     }catch{}
   }
   const session=()=>{try{return sessionStorage.getItem(sessionKey)||''}catch{return ''}};
+  const setOwnerMenu=(open)=>{
+    ownerControls.hidden=!open;
+    ownerMenuToggle?.setAttribute('aria-expanded',String(open));
+  };
   const showSignedOut=(message='')=>{
-    ownerControls.hidden=true;
+    setOwnerMenu(false);
+    if(ownerMenuToggle)ownerMenuToggle.hidden=true;
     ownerLogin.hidden=false;
     ownerLogin.textContent=message?`Operator sign in · ${message}`:'Operator sign in';
     ownerLogin.setAttribute('aria-label',message?`Operator sign in. Last error: ${message}`:'Operator sign in');
@@ -142,9 +156,13 @@ Keep presentation subordinate to the canonical durable record.
     if(!session()){showSignedOut();return}
     try{
       const state=await request('/api/session');
-      ownerLogin.hidden=true; ownerControls.hidden=false;
+      ownerLogin.hidden=true;
+      if(ownerMenuToggle)ownerMenuToggle.hidden=false;
       const active=(state.activeRunnerRuns?.length||0)+(state.activeWakeRuns?.length||0);
+      const status=state.enabled?(active?'Running now':'Enabled'):'Stopped';
       ownerStatus.textContent=state.enabled?(active?'Running now':'Enabled · starting/eligible'):'Stopped';
+      if(ownerMenuLabel)ownerMenuLabel.textContent=`Operator · ${status}`;
+      ownerMenuToggle?.classList.toggle('is-active',Boolean(state.enabled));
       ownerStart.disabled=state.enabled;
       ownerStop.disabled=!state.enabled;
       ownerReset.disabled=state.enabled||active>0;
@@ -165,10 +183,21 @@ Keep presentation subordinate to the canonical durable record.
       await refreshControls();
     }
   };
+  ownerMenuToggle?.addEventListener('click',event=>{
+    event.stopPropagation();
+    setOwnerMenu(ownerControls.hidden);
+  });
+  ownerControls?.addEventListener('click',event=>event.stopPropagation());
+  document.addEventListener('click',()=>setOwnerMenu(false));
+  document.addEventListener('keydown',event=>{if(event.key==='Escape')setOwnerMenu(false)});
   ownerStart?.addEventListener('click',()=>operate('/api/start'));
   ownerStop?.addEventListener('click',()=>operate('/api/stop'));
   ownerReset?.addEventListener('click',()=>{
     if(confirm('Reset WAKE✳︎ durable research/history to cycle 0? Continuous operation will remain stopped.')) operate('/api/reset');
+  });
+  ownerSignout?.addEventListener('click',()=>{
+    try{sessionStorage.removeItem(sessionKey)}catch{}
+    showSignedOut();
   });
   refreshControls();
   setInterval(refreshControls,15000);
