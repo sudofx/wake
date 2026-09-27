@@ -659,6 +659,21 @@ def _write_browser_route_shell(path, route, prefix="../"):
     atomic_write(path, _browser_route_shell(route, prefix=prefix))
 
 
+def _flat_browser_shell(title, eyebrow, heading, description, kind, source):
+    """Stable standalone shell whose facts are fetched from flat exports in-browser."""
+    return f'''<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{html.escape(title)} / WAKE✳︎</title>
+<script>try{{const saved=localStorage.getItem('wake-theme');const dark=saved?saved==='dark':matchMedia('(prefers-color-scheme:dark)').matches;if(dark)document.documentElement.dataset.theme='dark'}}catch{{}}</script>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="nav.css"><link rel="stylesheet" href="theme.css"></head>
+<body data-flat-kind="{html.escape(kind)}" data-flat-source="{html.escape(source)}">
+<header class="masthead"><a class="wordmark" href="index.html">WAKE<span class="asterisk">✳︎</span></a>
+<nav class="compact-nav" aria-label="Main navigation"><a href="index.html#home">Explore</a><a href="index.html#journal">Journal</a><a href="index.html#history">History</a><a href="index.html#metrics">Metrics</a><a href="map.html">Map</a></nav></header>
+<main><div class="page-heading"><p class="eyebrow">{html.escape(eyebrow)}</p><h1>{html.escape(heading)}</h1><p>{html.escape(description)}</p></div><div id="flat-content"></div></main>
+<script src="flat-view.js"></script><script src="nav.js"></script></body></html>'''
+
+
+
 def export(store, destination="site", experiment=None, operation=None):
     with store.lock():
         # Publication consumes one verified record snapshot. Replaying again for
@@ -683,7 +698,7 @@ def export(store, destination="site", experiment=None, operation=None):
         # Publish source styles alongside every HTML view: Pages and exports share
         # the same theme file rather than receiving copied inline palettes.
         for name in ("style.css", "nav.css", "map.css", "map3d.css", "theme.css",
-                     "nav.js", "map.js", "map3d.js"):
+                     "nav.js", "map.js", "map3d.js", "flat-view.js"):
             atomic_write(target / name, (assets / name).read_text())
         browser_data = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
         atomic_write(target / "wake-data.json", browser_data)
@@ -737,9 +752,11 @@ def export(store, destination="site", experiment=None, operation=None):
         atomic_write(target / "state.json", json.dumps(state, indent=2, ensure_ascii=False))
         atomic_write(target / "events.jsonl", "".join(canonical(event) + "\n" for event in events))
         atomic_write(target / "state.md", _human_state_markdown(state, head))
-        atomic_write(target / "state.html", _human_state_html(state, head))
+        atomic_write(target / "state.html", _flat_browser_shell(
+            "State", "THE CURRENT DURABLE STATE", "Current state.", "Loaded from state.json when this page opens.", "state", "state.json"))
         atomic_write(target / "events.md", _human_events_markdown(events, head))
-        atomic_write(target / "events.html", _human_events_html(events, head))
+        atomic_write(target / "events.html", _flat_browser_shell(
+            "History", "THE APPEND-ONLY RECORD", "Exact history.", "Loaded from events.jsonl when this page opens.", "events", "events.jsonl"))
         atomic_write(target / "head.txt", head + "\n")
         for notebook in state.get("notebooks", {}).values():
             sources = "\n".join(f"- [{eid}]({state['evidence'][eid]['source']})" for eid in notebook["evidence"])
@@ -786,9 +803,10 @@ def export(store, destination="site", experiment=None, operation=None):
         else:
             (target / "experiment.json").unlink(missing_ok=True)
         from .rejected import rejected_html
-        atomic_write(target / "rejected.html", _human_page(
-            "Rejected & withheld drafts", "What was proposed, why it stopped, and what was preserved.",
-            rejected_html(state, events), head, "events.jsonl", "events.md"))
+        atomic_write(target / "rejected.html", _flat_browser_shell(
+            "Rejected & withheld drafts", "GOVERNANCE / STOPPED PROPOSALS",
+            "Rejected & withheld drafts.", "Loaded from the current published record when this page opens.",
+            "rejected", "wake-data.json"))
         from .provenance import build_map, build_map3d_projection, map3d_shard_filename
         graph = build_map(state, events, head)
         graph_json = json.dumps(graph, ensure_ascii=False)
