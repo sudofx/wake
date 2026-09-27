@@ -854,6 +854,13 @@ class ResearchTests(unittest.TestCase):
         blog = next(a for a in choices if a["properties"]["type"]["enum"] == ["blog"])
         self.assertEqual(blog["properties"]["evidence"]["minItems"], PUBLICATION_MIN_SOURCES)
         self.assertEqual(set(blog["properties"]["evidence"]["items"]["enum"]), {"s1", "s2"})
+        self.assertNotIn("reflection_cycle", blog["required"])
+
+    def test_bob_ordinary_publication_is_event_driven_not_tenth_cycle_only(self):
+        self.assertIn("Make an editorial", RESEARCH_SYSTEM)
+        self.assertIn("event-driven, not cadence-driven", RESEARCH_SYSTEM)
+        self.assertIn("Do not wait for a", RESEARCH_SYSTEM)
+        self.assertIn("mandatory tenth-wake reflection", RESEARCH_SYSTEM)
 
     def test_revision_requires_changed_findings_and_new_evidence(self):
         self.source("s1")
