@@ -101,8 +101,10 @@ Keep presentation subordinate to the canonical durable record.
 </main>
 <footer><a class="footer-mark" href="#home">WAKE✳︎</a><span>DISPOSABLE MODELS. DURABLE ACCOUNTABILITY.</span><div><a href="#about">About →</a><a href="state.html">State →</a><a href="events.html">History →</a><a href="journal.md">Journal source ↓</a></div><div class="data-visibility"><label class="data-switch"><input id="data-visibility-toggle" type="checkbox" role="switch" aria-label="Hide current WAKE data"><span class="data-switch-track" aria-hidden="true"><i></i></span><b>HIDE CURRENT DATA</b></label><span id="data-visibility-note">CURRENT DATA VISIBLE</span></div><p>Made of evidence, not vibes. <span id="generated"></span></p></footer>
 <script>
-window.WakeData=fetch('wake-data.json',{cache:'no-store'})
-  .then(response=>{if(!response.ok)throw new Error('Published WAKE data could not be loaded');return response.json()})
+window.WakeLiveUrl='https://raw.githubusercontent.com/sudofx/wake/wake-live/live.json';
+window.WakeData=fetch(window.WakeLiveUrl+'?wake='+Date.now(),{cache:'no-store'})
+  .then(response=>{if(!response.ok)throw new Error('Live WAKE projection could not be loaded');return response.json()})
+  .catch(()=>fetch('wake-data.json',{cache:'no-store'}).then(response=>{if(!response.ok)throw new Error('Published WAKE fallback could not be loaded');return response.json()}))
   .then(data=>{
     let hidden=false;
     try{hidden=localStorage.getItem('wake-hide-current-data')==='1'}catch{}
@@ -223,30 +225,22 @@ window.WakeData=fetch('wake-data.json',{cache:'no-store'})
   refreshControls();
   setInterval(refreshControls,15000);
 
-  // Safari aggressively reuses static Pages assets. Poll cache-busted durable
-  // markers and force a cache-busted reload only when published data changes.
-  let marker=null;
-  const refreshPublishedState=async()=>{
+  // Cycles update a replaceable projection outside Pages. Poll it directly
+  // and update the current UI in place; a new wake never requires a page reload.
+  let liveMarker=null;
+  window.WakeData.then(data=>{liveMarker=data?.head||null}).catch(()=>{});
+  const refreshLiveState=async()=>{
     try{
-      const stamp=Date.now();
-      const [headResponse,operationResponse]=await Promise.all([
-        fetch('head.txt?wake='+stamp,{cache:'no-store',headers:{'Cache-Control':'no-cache'}}),
-        fetch('operation.json?wake='+stamp,{cache:'no-store',headers:{'Cache-Control':'no-cache'}}),
-      ]);
-      if(!headResponse.ok||!operationResponse.ok)return;
-      const head=(await headResponse.text()).trim();
-      const operation=await operationResponse.text();
-      const next=head+'|'+operation;
-      if(marker===null){marker=next;return}
-      if(next!==marker){
-        const url=new URL(location.href);
-        url.searchParams.set('wake_refresh',String(Date.now()));
-        location.replace(url.toString());
-      }
+      const response=await fetch(window.WakeLiveUrl+'?wake='+Date.now(),{cache:'no-store'});
+      if(!response.ok)return;
+      const next=await response.json();
+      const marker=next?.head||'';
+      if(!marker||marker===liveMarker)return;
+      liveMarker=marker;
+      window.WakeApplyLive?.(next);
     }catch{}
   };
-  refreshPublishedState();
-  setInterval(refreshPublishedState,10000);
+  setInterval(refreshLiveState,10000);
 })();
 </script>
 </body></html>
