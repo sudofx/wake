@@ -857,7 +857,7 @@ class ResearchTests(unittest.TestCase):
         self.assertNotIn("reflection_cycle", blog["required"])
 
     def test_bob_ordinary_publication_is_event_driven_not_tenth_cycle_only(self):
-        self.assertIn("Make an editorial", RESEARCH_SYSTEM)
+        self.assertIn("make an editorial judgment", RESEARCH_SYSTEM)
         self.assertIn("event-driven, not cadence-driven", RESEARCH_SYSTEM)
         self.assertIn("Do not wait for a", RESEARCH_SYSTEM)
         self.assertIn("mandatory tenth-wake reflection", RESEARCH_SYSTEM)
