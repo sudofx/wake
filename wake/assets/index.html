@@ -133,6 +133,13 @@ window.WakeData=fetch('wake-data.json',{cache:'no-store'})
   const ownerSignout=document.querySelector('[data-owner-signout]');
   const sessionKey='wake-owner-session';
   const fragment='#wake-control=';
+  try{
+    if(!localStorage.getItem(sessionKey)){
+      const legacy=sessionStorage.getItem(sessionKey);
+      if(legacy)localStorage.setItem(sessionKey,legacy);
+    }
+    sessionStorage.removeItem(sessionKey);
+  }catch{}
 
   if(controlUrl && location.hash.startsWith(fragment)){
     try{
