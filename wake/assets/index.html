@@ -119,11 +119,17 @@ Keep presentation subordinate to the canonical durable record.
     }catch{}
   }
   const session=()=>{try{return sessionStorage.getItem(sessionKey)||''}catch{return ''}};
+  const showSignedOut=(message='')=>{
+    ownerControls.hidden=true;
+    ownerLogin.hidden=false;
+    ownerLogin.textContent=message?`Operator sign in · ${message}`:'Operator sign in';
+    ownerLogin.setAttribute('aria-label',message?`Operator sign in. Last error: ${message}`:'Operator sign in');
+  };
   const request=async(path,method='GET')=>{
     const response=await fetch(controlUrl+path,{
       method,
       cache:'no-store',
-      headers:{Authorization:'Bearer '+session(),'Cache-Control':'no-cache'}
+      headers:{Authorization:'Bearer '+session()}
     });
     const body=await response.json().catch(()=>({}));
     if(!response.ok)throw new Error(body.error||'Operator control request failed');
@@ -133,7 +139,7 @@ Keep presentation subordinate to the canonical durable record.
     if(!controlUrl||!ownerAccess)return;
     ownerAccess.hidden=false;
     ownerLogin.href=controlUrl+'/auth/login';
-    if(!session()){ownerLogin.hidden=false;ownerControls.hidden=true;return}
+    if(!session()){showSignedOut();return}
     try{
       const state=await request('/api/session');
       ownerLogin.hidden=true; ownerControls.hidden=false;
@@ -142,9 +148,9 @@ Keep presentation subordinate to the canonical durable record.
       ownerStart.disabled=state.enabled;
       ownerStop.disabled=!state.enabled;
       ownerReset.disabled=state.enabled||active>0;
-    }catch{
+    }catch(error){
       try{sessionStorage.removeItem(sessionKey)}catch{}
-      ownerControls.hidden=true; ownerLogin.hidden=false;
+      showSignedOut(error instanceof Error?error.message:'Session check failed');
     }
   };
   const operate=async(path)=>{
