@@ -111,6 +111,10 @@ def publish(directory):
     with tempfile.TemporaryDirectory(prefix="wake-publish-") as folder:
         target = Path(folder)
         git("init", "--quiet", cwd=target)
+        # Ephemeral publication clones must not spawn background maintenance:
+        # CI deletes this directory immediately after the push.
+        git("config", "gc.auto", "0", cwd=target)
+        git("config", "maintenance.auto", "false", cwd=target)
         git("remote", "add", "origin", remote, cwd=target)
         exists = git("ls-remote", "--exit-code", "--heads", "origin", BRANCH, cwd=target, check=False)
         if exists.returncode == 0:
