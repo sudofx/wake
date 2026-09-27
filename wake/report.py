@@ -744,10 +744,10 @@ def export(store, destination="site", experiment=None, operation=None):
                     + ('<p class="note">Deterministic simulation, not a live model result.</p>'
                        if invocation["provider"] == "fixture" else "")
                     + f'<p><a href="../index.html#history/{html.escape(entry["invocation"])}">Exact wake and decision →</a></p>')
-            _write_browser_route_shell(
-                target / "journal" / (entry["invocation"] + ".html"),
-                "#journal/cycle:" + str(entry["cycle"]),
-            )
+            journal_path = target / "journal" / (entry["invocation"] + ".html")
+            if not journal_path.exists():
+                atomic_write(journal_path,
+                             _reading_page(entry["title"], "WAKE✳︎ / JOURNAL", body, "../journal.md", meta_html=meta))
         atomic_write(target / "journal.md", "\n".join(lines))
         atomic_write(target / "state.json", json.dumps(state, indent=2, ensure_ascii=False))
         atomic_write(target / "events.jsonl", "".join(canonical(event) + "\n" for event in events))
@@ -773,10 +773,7 @@ def export(store, destination="site", experiment=None, operation=None):
                         f"## Next questions\n\n{_md_text(notebook['next_questions'])}\n\n## Collected sources\n\n{sources}\n\n"
                         f"Revision {notebook['revision']} · AI-authored research synthesis; see source scopes in the journal.\n")
             atomic_write(target / "notebooks" / (notebook["id"] + ".md"), markdown)
-            _write_browser_route_shell(
-                target / "notebooks" / (notebook["id"] + ".html"),
-                "#projects/notebook:" + str(notebook["id"]),
-            )
+            atomic_write(target / "notebooks" / (notebook["id"] + ".html"), _notebook_html(notebook, state))
         for post in state.get("posts", {}).values():
             newline = chr(10)
             notebook_links = newline.join(
@@ -794,10 +791,7 @@ def export(store, destination="site", experiment=None, operation=None):
                       f"[Exact wake and decision](../index.html#history/{post['created_by']})", "",
                       "AI-authored from **WAKE✳︎**'s durable research record. Research claims link to evidence; philosophical reflections are reflections.", ""]
             atomic_write(target / "blog" / (post["id"] + ".md"), newline.join(parts))
-            _write_browser_route_shell(
-                target / "blog" / (post["id"] + ".html"),
-                "#blog/" + str(post["id"]),
-            )
+            atomic_write(target / "blog" / (post["id"] + ".html"), _blog_html(post, state))
         if experiment:
             atomic_write(target / "experiment.json", json.dumps(experiment, indent=2))
         else:
