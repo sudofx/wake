@@ -473,8 +473,10 @@ class SystemTests(unittest.TestCase):
             self.engine.observe('</script><script>alert("xss")</script>', "human:test")
         export(self.engine.store, self.root/"site")
         page = (self.root/"site/index.html").read_text()
+        browser_data = json.loads((self.root/"site/wake-data.json").read_text())
         self.assertNotIn('</script><script>alert', page)
-        self.assertIn('\\u003c/script>', page)
+        evidence_text = json.dumps(browser_data["state"]["evidence"], ensure_ascii=False)
+        self.assertIn('</script><script>alert("xss")</script>', evidence_text)
 
     def test_live_provider_requires_explicit_free_tier_setting(self):
         with self.assertRaisesRegex(Rejected, "free_tier_confirmed"):
