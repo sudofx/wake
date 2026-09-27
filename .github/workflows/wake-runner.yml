@@ -1,11 +1,9 @@
 name: WAKE✳︎ — continuous runner
-
 run-name: "WAKE✳︎ continuous · ${{ inputs.dispatch_token || github.run_id }}"
 
-# One bootstrap starts a long-lived sequential runner. An hourly schedule is a
-# recovery heartbeat so quota windows can reopen without an awake Mac. The
-# runner never dispatches another copy of itself while holding its concurrency
-# lock; that avoids stranding the next run in GitHub's pending queue.
+# This workflow is only a bootstrap/recovery controller. One Start pins
+# wake-runtime to the current implementation. Individual cycles chain themselves
+# without waiting for this runner and never touch Pages.
 on:
   schedule:
     - cron: '17 * * * *'
@@ -16,140 +14,57 @@ on:
         type: string
         required: false
         default: ''
+      runtime_ref:
+        description: Optional immutable commit to pin for this experiment chain
+        type: string
+        required: false
+        default: ''
 
 permissions:
   actions: write
-  contents: read
+  contents: write
 
 concurrency:
-  group: wake-continuous-runner-v2
-  cancel-in-progress: false
+  group: wake-runner-bootstrap
+  cancel-in-progress: true
 
 jobs:
-  cycle:
+  bootstrap:
     runs-on: ubuntu-latest
-    # Keep one runner alive for several hours. Hourly recovery dispatches collapse
-    # to GitHub's single pending concurrency slot and take over after this run exits.
-    timeout-minutes: 330
+    timeout-minutes: 5
     steps:
-      - name: Decide whether a scheduled recovery wake is due
-        id: preflight
+      - name: Pin or recover the experiment implementation
+        id: runtime
         env:
           GH_TOKEN: ${{ github.token }}
           EVENT_NAME: ${{ github.event_name }}
+          REQUESTED_REF: ${{ inputs.runtime_ref }}
+          START_SHA: ${{ github.sha }}
         run: |
           set -euo pipefail
-          if [[ "$EVENT_NAME" != "schedule" ]]; then
-            echo "run=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          encoded="$(gh api "repos/$GITHUB_REPOSITORY/contents/operation.json?ref=wake-state" --jq '.content' 2>/dev/null || true)"
-          if [[ -z "$encoded" ]]; then
-            echo "run=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          operation="$(tr -d '\n' <<<"$encoded" | base64 --decode 2>/dev/null || true)"
-          status="$(jq -r '.status // empty' <<<"$operation" 2>/dev/null || true)"
-          reason="$(jq -r '.reason // ""' <<<"$operation" 2>/dev/null || true)"
-          next="$(jq -r '.wake_status.next_eligible // empty' <<<"$operation" 2>/dev/null || true)"
-          if [[ "$status" == "paused" && "$reason" != *"Daily call ceiling"* && "$reason" != *"daily quota"* ]]; then
-            echo "run=false" >> "$GITHUB_OUTPUT"
-            echo "Scheduled recovery suppressed by operator-attention pause: $reason"
-            exit 0
-          fi
-          if [[ -n "$next" ]]; then
-            if ! python3 -c 'import datetime,sys; target=datetime.datetime.fromisoformat(sys.argv[1].replace("Z","+00:00")); now=datetime.datetime.now(datetime.timezone.utc); raise SystemExit(0 if now >= target else 1)' "$next"; then
-              echo "run=false" >> "$GITHUB_OUTPUT"
-              echo "Scheduled recovery is early; next eligible: $next"
-              exit 0
+          if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
+            runtime_ref="${REQUESTED_REF:-$START_SHA}"
+            ref_json="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" 2>/dev/null || true)"
+            if [[ -n "$ref_json" ]]; then
+              gh api --method PATCH "repos/$GITHUB_REPOSITORY/git/refs/heads/wake-runtime" -f "sha=$runtime_ref" -F force=true >/dev/null
+            else
+              gh api --method POST "repos/$GITHUB_REPOSITORY/git/refs" -f ref='refs/heads/wake-runtime' -f "sha=$runtime_ref" >/dev/null
+            fi
+          else
+            runtime_ref="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha' 2>/dev/null || true)"
+            if [[ -z "$runtime_ref" ]]; then
+              runtime_ref="$START_SHA"
+              gh api --method POST "repos/$GITHUB_REPOSITORY/git/refs" -f ref='refs/heads/wake-runtime' -f "sha=$runtime_ref" >/dev/null
             fi
           fi
-          echo "run=true" >> "$GITHUB_OUTPUT"
+          echo "runtime_ref=$runtime_ref" >> "$GITHUB_OUTPUT"
 
-      - name: Run governed wakes sequentially
-        if: steps.preflight.outputs.run == 'true'
+      - name: Dispatch one pinned authoritative cycle
         env:
           GH_TOKEN: ${{ github.token }}
+          RUNTIME_REF: ${{ steps.runtime.outputs.runtime_ref }}
+          EVENT_NAME: ${{ github.event_name }}
         run: |
-          set -euo pipefail
-          cycle_number=0
-
-          while true; do
-            # The website stop control disables this workflow. Honor that state
-            # before dispatching another wake even if this job has not been cancelled yet.
-            workflow_state="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml" --jq '.state' 2>/dev/null || true)"
-            if [[ -n "$workflow_state" && "$workflow_state" != "active" ]]; then
-              echo "Continuous runner is $workflow_state; stopping before the next wake."
-              break
-            fi
-
-            cycle_number=$((cycle_number + 1))
-            TOKEN="continuous-${GITHUB_RUN_ID}-${cycle_number}"
-
-            gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref master \
-              -f "dispatch_token=$TOKEN" -f "publish_after=true"
-
-            title="WAKE✳︎ $TOKEN"
-            run_id=""
-            for _ in $(seq 1 120); do
-              run_id="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow wake.yml --event workflow_dispatch --branch master --limit 100 --json databaseId,displayTitle --jq ".[] | select(.displayTitle == \"$title\") | .databaseId" | head -n 1 || true)"
-              [[ -n "$run_id" ]] && break
-              sleep 5
-            done
-            [[ -n "$run_id" ]] || { echo "Dispatched wake was not discoverable." >&2; exit 1; }
-
-            conclusion=""
-            for _ in $(seq 1 360); do
-              status="$(gh run view "$run_id" --repo "$GITHUB_REPOSITORY" --json status --jq '.status' 2>/dev/null || true)"
-              if [[ "$status" == "completed" ]]; then
-                conclusion="$(gh run view "$run_id" --repo "$GITHUB_REPOSITORY" --json conclusion --jq '.conclusion' 2>/dev/null || true)"
-                break
-              fi
-              sleep 5
-            done
-            [[ "$conclusion" == "success" ]] || {
-              echo "Governed wake $run_id ended with: ${conclusion:-unknown}" >&2
-              exit 1
-            }
-
-            # Read durable continuation receipt after each governed wake before
-            # deciding whether this same runner may dispatch another cycle.
-            encoded=""
-            for _ in $(seq 1 24); do
-              encoded="$(gh api "repos/$GITHUB_REPOSITORY/contents/operation.json?ref=wake-state" --jq '.content' 2>/dev/null || true)"
-              [[ -n "$encoded" ]] && break
-              sleep 5
-            done
-            [[ -n "$encoded" ]] || { echo "Durable operation receipt unavailable." >&2; exit 1; }
-
-            operation="$(tr -d '\n' <<<"$encoded" | base64 --decode)"
-            status="$(jq -r '.status // empty' <<<"$operation")"
-            reason="$(jq -r '.reason // ""' <<<"$operation")"
-            quota="$(jq -r '.quota_exhausted // empty' <<<"$operation")"
-
-            continue_now=false
-            case "$status" in
-              accepted|rejected)
-                continue_now=true
-                ;;
-              deferred)
-                if [[ "$reason" == Gemini\ temporarily\ unavailable* ]]; then
-                  sleep 15
-                  continue_now=true
-                fi
-                ;;
-            esac
-
-            if [[ "$quota" == "free_tier_daily" || "$quota" == "configured_daily_limit" ]]; then
-              continue_now=false
-            fi
-            if [[ "$status" == "paused" || "$status" == "waiting" || "$status" == "failed" ]]; then
-              continue_now=false
-            fi
-
-            echo "WAKE receipt: status=$status · reason=$reason · continue_now=$continue_now"
-
-            if [[ "$continue_now" != "true" ]]; then
-              break
-            fi
-          done
+          scheduled=false
+          [[ "$EVENT_NAME" == "schedule" ]] && scheduled=true
+          gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime             -f "dispatch_token=bootstrap-$GITHUB_RUN_ID"             -f "runtime_ref=$RUNTIME_REF"             -f "scheduled=$scheduled"
