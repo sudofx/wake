@@ -824,6 +824,5 @@ def export(store, destination="site", experiment=None, operation=None):
                 stale.unlink()
         for parent, shard in graph3d_shards.items():
             atomic_write(shard_dir / map3d_shard_filename(parent), json.dumps(shard, ensure_ascii=False))
-        atomic_write(target / "map3d.html", map3d_page)
         atomic_write(target / "index.html", page)
         return {"path": str((target / "index.html").resolve()), "cycles": state["version"], "head": head}
