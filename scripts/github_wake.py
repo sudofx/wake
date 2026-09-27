@@ -209,11 +209,13 @@ def main(publish_only=False, scheduled=False, reset=False, record_only=False):
             # durable events and must checkpoint before any provider request.
             with engine.store.lock():
                 if reset:
+                    # Reset means exactly cycle/version zero. Do not immediately
+                    # re-seed initialization events; the next deliberate cycle
+                    # adopts current configuration and records that transition.
                     engine.store.reset()
-                engine.initialize()
-                engine.recover(explicit=True)
-                # A reset is committed only after its fresh export is ready.
-                if not reset:
+                else:
+                    engine.initialize()
+                    engine.recover(explicit=True)
                     branch.checkpoint()
             if scheduled and not reset:
                 due, next_eligible = scheduled_wake_due(engine.store.load())
