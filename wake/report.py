@@ -682,7 +682,8 @@ def export(store, destination="site", experiment=None, operation=None):
         template = template.replace("WAKE_CONTROL_URL", json.dumps(control_url))
         # Publish source styles alongside every HTML view: Pages and exports share
         # the same theme file rather than receiving copied inline palettes.
-        for name in ("style.css", "nav.css", "map.css", "map3d.css", "theme.css"):
+        for name in ("style.css", "nav.css", "map.css", "map3d.css", "theme.css",
+                     "nav.js", "map.js", "map3d.js"):
             atomic_write(target / name, (assets / name).read_text())
         browser_data = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
         atomic_write(target / "wake-data.json", browser_data)
@@ -793,19 +794,12 @@ def export(store, destination="site", experiment=None, operation=None):
         graph_json = json.dumps(graph, ensure_ascii=False)
         graph3d_shell, graph3d_shards = build_map3d_projection(graph)
         graph3d_json = json.dumps(graph3d_shell, ensure_ascii=False)
-        map_page = (assets / "map.html").read_text().replace("WAKE_CYCLE_COUNT", str(state["version"]))
-        map_page = map_page.replace("/* MAP_STYLE */", "").replace("/* NAV_STYLE */", "")
-        map_page = map_page.replace("/* NAV_SCRIPT */", (assets / "nav.js").read_text())
-        map_page = map_page.replace("/* MAP_SCRIPT */", (assets / "map.js").read_text())
-        map_page = map_page.replace("MAP_DATA", graph_json.replace("<", "\\u003c").replace("\u2028", "\\u2028").replace("\u2029", "\\u2029"))
+        # MAP and 3D MAP are static application shells. Only their flat JSON
+        # projections change; the browser loads current data at view time.
         atomic_write(target / "map-data.json", graph_json)
-        atomic_write(target / "map.html", map_page)
-        map3d_page = (assets / "map3d.html").read_text().replace("WAKE_CYCLE_COUNT", str(state["version"]))
-        map3d_page = map3d_page.replace("/* MAP_STYLE */", "").replace("/* NAV_STYLE */", "")
-        map3d_page = map3d_page.replace("/* NAV_SCRIPT */", (assets / "nav.js").read_text())
-        map3d_page = map3d_page.replace("/* MAP3D_SCRIPT */", (assets / "map3d.js").read_text())
-        map3d_page = map3d_page.replace("MAP_DATA", graph3d_json.replace("<", "\\u003c").replace("\u2028", "\\u2028").replace("\u2029", "\\u2029"))
+        atomic_write(target / "map.html", (assets / "map.html").read_text())
         atomic_write(target / "map3d-data.json", graph3d_json)
+        atomic_write(target / "map3d.html", (assets / "map3d.html").read_text())
         shard_dir = target / "map3d"
         if shard_dir.exists():
             for stale in shard_dir.glob("*.json"):
