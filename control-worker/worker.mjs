@@ -60,7 +60,7 @@ function pagesOrigin(env) { return new URL(env.PAGES_URL).origin; }
 function cors(env) {
   return {
     "Access-Control-Allow-Origin": pagesOrigin(env),
-    "Access-Control-Allow-Headers": "Authorization, Content-Type",
+    "Access-Control-Allow-Headers": "Authorization, Content-Type, Cache-Control",
     "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
     "Cache-Control": "no-store",
     Vary: "Origin",
