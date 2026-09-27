@@ -104,7 +104,11 @@ Keep presentation subordinate to the canonical durable record.
 window.WakeLiveUrl='https://raw.githubusercontent.com/sudofx/wake/wake-live/live.json';
 window.WakeData=fetch(window.WakeLiveUrl+'?wake='+Date.now(),{cache:'no-store'})
   .then(response=>{if(!response.ok)throw new Error('Live WAKE projection could not be loaded');return response.json()})
-  .catch(()=>fetch('wake-data.json',{cache:'no-store'}).then(response=>{if(!response.ok)throw new Error('Published WAKE fallback could not be loaded');return response.json()}))
+  .catch(()=>({
+    projection_schema:1,projection_kind:'disposable-live-view',authoritative:false,
+    state:{version:0,objective:'',focus:'',beliefs:{},commitments:{},projects:{},notebooks:{},invocations:{},evidence:{},journal:[],research:{},posts:{},research_topics:[],topic_colors:{},acquisition:{},representations:{},squirrel:{}},
+    events:[],head:'',generated:new Date().toISOString(),timezone:'America/Los_Angeles',operation:null,wake_status:{}
+  }))
   .then(data=>{
     let hidden=false;
     try{hidden=localStorage.getItem('wake-hide-current-data')==='1'}catch{}
