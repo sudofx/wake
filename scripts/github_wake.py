@@ -138,6 +138,13 @@ def main(publish_only=False, scheduled=False, reset=False, record_only=False):
                     state,
                     None if settings.get("model_daily_call_limits") else settings["daily_call_limit"],
                 )
+                # Reuse the previous published artifact as a cache of immutable
+                # presentation files. export() overwrites current shells/data but
+                # can leave already-converted historical route shells untouched.
+                previous_site = branch.checkout / "site"
+                if previous_site.exists():
+                    shutil.rmtree(ROOT / "site", ignore_errors=True)
+                    shutil.copytree(previous_site, ROOT / "site")
                 export(engine.store, ROOT / "site", operation=result)
                 atomic_write(ROOT / "site/operation.json", json.dumps(result, indent=2))
                 atomic_write(ROOT / "site/.nojekyll", "")
@@ -188,6 +195,13 @@ def main(publish_only=False, scheduled=False, reset=False, record_only=False):
             else:
                 if reset:
                     shutil.rmtree(ROOT / "site", ignore_errors=True)
+                else:
+                    # Seed publication from the last durable artifact so unchanged
+                    # compatibility shells and static assets do not need rebuilding.
+                    previous_site = branch.checkout / "site"
+                    if previous_site.exists():
+                        shutil.rmtree(ROOT / "site", ignore_errors=True)
+                        shutil.copytree(previous_site, ROOT / "site")
                 export(engine.store, ROOT / "site", operation=result)
                 atomic_write(ROOT / "site/operation.json", json.dumps(result, indent=2))
                 atomic_write(ROOT / "site/.nojekyll", "")
