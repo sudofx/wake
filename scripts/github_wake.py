@@ -27,6 +27,7 @@ from wake.governance import Rejected
 from wake.providers import Gemini, is_free_tier_daily_quota
 from wake.research import collect
 from wake.report import export, atomic_write
+from wake.live import build_live_projection
 
 
 from wake.scheduling import (
@@ -87,6 +88,11 @@ class StateBranch:
             raise Rejected("Cannot read remote state; no model call will be made")
 
     def checkpoint(self):
+        # wake-state is authority, not a publication cache. Retire legacy
+        # JSON/HTML projections from the current tree; SQLite is the sole
+        # accumulating operational record.
+        self.git("rm", "-r", "--ignore-unmatch", "events.jsonl", "state.json", "head.txt",
+                 "operation.json", "site", cwd=self.checkout, check=False)
         self.git("add", "--force", "data/wake.sqlite3", cwd=self.checkout)
         if self.git("diff", "--cached", "--quiet", cwd=self.checkout, check=False).returncode == 0:
             return
@@ -110,6 +116,54 @@ class StateBranch:
                 time.sleep(2 ** (attempt - 1))
         raise subprocess.CalledProcessError(last.returncode, last.args,
                                             output=last.stdout, stderr=last.stderr)
+
+
+class LiveProjectionBranch:
+    """Replace one public-safe projection without creating a history chain."""
+
+    def __init__(self, repository, branch="wake-live"):
+        self.repository = Path(repository)
+        self.branch = branch
+
+    def publish(self, payload):
+        with tempfile.TemporaryDirectory(prefix="wake-live-") as folder:
+            checkout = Path(folder) / "live"
+            subprocess.run(["git", "worktree", "add", "--detach", str(checkout), "HEAD"],
+                           cwd=self.repository, check=True, capture_output=True, text=True)
+            try:
+                subprocess.run(["git", "checkout", "--orphan", self.branch], cwd=checkout,
+                               check=True, capture_output=True, text=True)
+                subprocess.run(["git", "rm", "-rf", "--ignore-unmatch", "."], cwd=checkout,
+                               check=False, capture_output=True, text=True)
+                (checkout / "live.json").write_text(
+                    json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n",
+                    encoding="utf-8",
+                )
+                subprocess.run(["git", "add", "live.json"], cwd=checkout, check=True)
+                subprocess.run([
+                    "git", "-c", "user.name=wake-bot",
+                    "-c", "user.email=wake-bot@users.noreply.github.com",
+                    "commit", "-m", "Refresh disposable WAKE live projection",
+                ], cwd=checkout, check=True, capture_output=True, text=True)
+                subprocess.run(["git", "push", "--force", "origin", f"HEAD:refs/heads/{self.branch}"],
+                               cwd=checkout, check=True, capture_output=True, text=True)
+            finally:
+                subprocess.run(["git", "worktree", "remove", "--force", str(checkout)],
+                               cwd=self.repository, check=False, capture_output=True, text=True)
+
+
+def continuation_outputs(result):
+    """Expose chain control from the authoritative result, never from live projection."""
+    status = result.get("status")
+    reason = str(result.get("reason", ""))
+    continue_now = status in ("accepted", "rejected")
+    retry_after = 0
+    if status == "deferred" and reason.startswith("Gemini temporarily unavailable"):
+        continue_now = True
+        retry_after = 15
+    set_step_output("status", status or "unknown")
+    set_step_output("continue_now", "true" if continue_now else "false")
+    set_step_output("retry_after", str(retry_after))
 
 
 def main(publish_only=False, scheduled=False, reset=False, record_only=False):
@@ -168,6 +222,7 @@ def main(publish_only=False, scheduled=False, reset=False, record_only=False):
                               "reason": "A recent wake or provider quota window suppresses this call.",
                               "next_eligible": next_eligible.isoformat()}
                     set_step_output("skipped", "true")
+                    continuation_outputs(result)
                     print(json.dumps(result))
                     return 0
             try:
@@ -183,32 +238,23 @@ def main(publish_only=False, scheduled=False, reset=False, record_only=False):
             except Rejected as exc:
                 result = {"status": "paused", "reason": str(exc)}
             result["wake_status"] = wake_status(engine.store.load(), None if settings.get("model_daily_call_limits") else settings["daily_call_limit"])
-            if record_only and not reset and not publish_only:
-                # Batch hot path: persist only the authoritative database plus a
-                # tiny machine-readable receipt. Static reports and flat exports
-                # are derived views and must not delay the next model invocation.
-                atomic_write(branch.checkout/"operation.json", json.dumps(result, indent=2))
-                atomic_write(branch.checkout/"head.txt", engine.store.head() + "\n")
-                branch.git("add", "operation.json", "head.txt", cwd=branch.checkout)
+            if not publish_only:
+                # Authority is durable before any disposable browser projection.
+                # This checkpoint also removes legacy generated files from the
+                # current wake-state tree so SQLite remains the only state product.
                 branch.checkpoint()
+                runtime_ref = os.environ.get("WAKE_RUNTIME_REF", "")
+                try:
+                    payload = build_live_projection(engine.store, operation=result, runtime_ref=runtime_ref)
+                    LiveProjectionBranch(ROOT).publish(payload)
+                    set_step_output("live_projection_updated", "true")
+                except Exception as exc:
+                    # Projection failure cannot roll back or invalidate SQLite,
+                    # and it must not prevent the authoritative chain continuing.
+                    set_step_output("live_projection_updated", "false")
+                    print(json.dumps({"live_projection_updated": False, "error": str(exc)}), file=sys.stderr)
+                continuation_outputs(result)
                 set_step_output("publication_skipped", "true")
-            else:
-                shutil.rmtree(ROOT / "site", ignore_errors=True)
-                # Normal published wakes use the same lightweight Pages projection.
-                # Reset keeps the full zero-state export for compatibility tests and
-                # explicit operator recovery workflows.
-                export(engine.store, ROOT / "site", operation=result, browser_only=not reset)
-                atomic_write(ROOT / "site/operation.json", json.dumps(result, indent=2))
-                atomic_write(ROOT / "site/.nojekyll", "")
-                # Persist an inspectable text export alongside the exact SQLite state.
-                for name in ("events.jsonl", "state.json", "head.txt"):
-                    atomic_write(branch.checkout/name, (ROOT/"site"/name).read_text())
-                atomic_write(branch.checkout/"operation.json", json.dumps(result, indent=2))
-                # This fallback stays readable through htmlpreview even before Pages is enabled.
-                shutil.rmtree(branch.checkout/"site", ignore_errors=True)
-                shutil.copytree(ROOT/"site", branch.checkout/"site")
-                branch.git("add", "events.jsonl", "state.json", "head.txt", "operation.json", "site", cwd=branch.checkout)
-                branch.checkpoint()
         finally:
             engine.store.close()
     print(json.dumps(result))
