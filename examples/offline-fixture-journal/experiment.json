@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated": "2026-09-27T17:25:51.212883+00:00",
+  "generated": "2026-09-27T18:14:34.077523+00:00",
   "mode": "deterministic fixture simulation",
   "api_calls": 0,
   "cycles": 100,
@@ -34,7 +34,7 @@
     "invalid_transition": {
       "passed": true,
       "reason": "Action is not allowed: 'change_rules'",
-      "invocation": "w-72915c123b8845d4"
+      "invocation": "w-235153c684c94151"
     },
     "recovery": {
       "passed": true,
@@ -42,7 +42,7 @@
     },
     "audit_reconstruction": {
       "passed": true,
-      "head": "69f184ecb82b40f94377330d20e75c2d3cd189b1a603cbafc556989d422228e6",
+      "head": "ce11e2937c4299bd98877a3e53864e3fba8139e47b9a0669ca9f2fa3b348cb5d",
       "detail": "Observer reconstructs exact objective, beliefs, commitments, evidence, journal and invocations using JSONL alone."
     }
   },
