@@ -9,8 +9,6 @@ on:
   push:
     branches: [master]
     paths: ['wake/**', 'scripts/github_wake.py', 'wake.toml', 'research-topics.toml', '.github/workflows/wake.yml']
-  schedule:
-    - cron: '2-57/5 * * * *'
   workflow_dispatch:
     inputs:
       publish_only:
@@ -88,7 +86,7 @@ jobs:
   wake:
     # Only this lane may mutate the durable record. Keeping one writer preserves
     # append-only ordering while publication no longer consumes this queue.
-    if: github.ref_name == github.event.repository.default_branch && github.event_name != 'push' && inputs.publish_only != true && (github.event_name != 'schedule' || vars.WAKE_SCHEDULE_PAUSED != 'true')
+    if: github.ref_name == github.event.repository.default_branch && github.event_name != 'push' && inputs.publish_only != true
     runs-on: ubuntu-latest
     # A wake may spend up to ~5 minutes honoring the durable next_eligible cadence
     # before research begins. Give that governed wait enough headroom to finish
@@ -117,8 +115,6 @@ jobs:
         run: |
           if [[ "${{ inputs.reset }}" == "true" ]]; then
             python scripts/github_wake.py --reset --confirm-reset
-          elif [[ "${{ github.event_name }}" == "schedule" ]]; then
-            python scripts/github_wake.py --scheduled
           elif [[ "${{ inputs.publish_after }}" == "true" ]]; then
             python scripts/github_wake.py
           else
