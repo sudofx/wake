@@ -9,6 +9,7 @@
 (async () => {
   'use strict';
   const data = await window.WakeData;
+  if (window.WakePetReady) await window.WakePetReady;
   const s = data.state;
   const $ = id => document.getElementById(id);
   const themeToggle = $('theme-toggle');
