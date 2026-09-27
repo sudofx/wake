@@ -645,6 +645,11 @@ def export(store, destination="site", experiment=None, operation=None):
         target.mkdir(parents=True, exist_ok=True)
         assets = Path(__file__).parent / "assets"
         template = (assets / "index.html").read_text().replace("WAKE_CYCLE_COUNT", str(state["version"]))
+        # Public configuration only. OAuth credentials and GitHub tokens remain
+        # inside the confidential control Worker; absent configuration hides the
+        # operator controls entirely.
+        control_url = os.environ.get("WAKE_CONTROL_URL", "").rstrip("/")
+        template = template.replace("WAKE_CONTROL_URL", json.dumps(control_url))
         # Publish source styles alongside every HTML view: Pages and exports share
         # the same theme file rather than receiving copied inline palettes.
         for name in ("style.css", "nav.css", "map.css", "map3d.css", "theme.css"):
