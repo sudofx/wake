@@ -29,7 +29,7 @@ def _compact_invocation(item):
     allowed = (
         "id", "time", "finished", "status", "reason", "provider", "model",
         "successful_model", "provider_attempts", "provider_requests_sent",
-        "quota_day", "inquiry_drive_shadow",
+        "quota_day", "inquiry_drive_shadow", "provider_error", "charged",
     )
     return {key: deepcopy(item[key]) for key in allowed if key in item}
 
