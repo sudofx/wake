@@ -22,7 +22,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: wake-continuous-runner
+  group: wake-continuous-runner-v2
   cancel-in-progress: false
 
 jobs:
