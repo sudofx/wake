@@ -1,30 +1,31 @@
-# WAKE✳︎ MAINTAINER NOTE
-# Stateful research authority only. Pages publication is deliberately owned by
-# pages.yml so model work, durable state mutation, and website deployment do not
-# queue behind or cancel one another.
+# WAKE✳︎ authoritative cycle lane.
+# SQLite on wake-state is the only operational authority. No Pages work belongs here.
 
-name: WAKE✳︎ — research & journal
+name: WAKE✳︎ — cycle
 run-name: "WAKE✳︎ ${{ inputs.dispatch_token || github.run_id }}"
 
 on:
   workflow_dispatch:
     inputs:
-      publish_only:
-        description: Deprecated compatibility input; use the Pages workflow directly
-        type: boolean
-        default: false
-      reset:
-        description: Irreversibly reset durable research/history to WAKE 0 and republish
-        type: boolean
-        default: false
       dispatch_token:
-        description: Correlation token used by multi-operator batch dispatchers
+        description: Correlation token for a continuous chain
         type: string
         required: false
         default: ''
-      publish_after:
-        description: Request an independent Pages refresh after this wake
+      runtime_ref:
+        description: Immutable implementation commit selected when Start was pressed
+        type: string
+        required: false
+        default: ''
+      scheduled:
+        description: Apply authoritative next-eligible suppression before a provider call
         type: boolean
+        required: false
+        default: false
+      reset:
+        description: Irreversibly reset durable research/history to WAKE 0
+        type: boolean
+        required: false
         default: false
 
 permissions:
@@ -32,22 +33,23 @@ permissions:
   actions: write
 
 concurrency:
-  group: wake-durable-state
+  group: wake-authority
   cancel-in-progress: false
   queue: max
 
 jobs:
   wake:
-    if: github.ref_name == github.event.repository.default_branch && inputs.publish_only != true
     runs-on: ubuntu-latest
     timeout-minutes: 10
     outputs:
-      skipped: ${{ steps.cycle.outputs.skipped }}
-      publication_skipped: ${{ steps.cycle.outputs.publication_skipped }}
+      continue_now: ${{ steps.cycle.outputs.continue_now }}
+      retry_after: ${{ steps.cycle.outputs.retry_after }}
+      status: ${{ steps.cycle.outputs.status }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
+          ref: ${{ inputs.runtime_ref || github.sha }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -57,38 +59,37 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           WAKE_CONTROL_URL: ${{ vars.WAKE_CONTROL_URL }}
+          WAKE_RUNTIME_REF: ${{ inputs.runtime_ref || github.sha }}
         run: |
-          if [[ "${{ inputs.reset }}" == "true" ]]; then
-            python scripts/github_wake.py --reset --confirm-reset
-          else
-            # Research writes only the durable record. Publication is an
-            # independent read-only consumer dispatched after this job.
-            python scripts/github_wake.py --record-only
-          fi
+          args=(--record-only)
+          if [[ "${{ inputs.scheduled }}" == "true" ]]; then args+=(--scheduled); fi
+          if [[ "${{ inputs.reset }}" == "true" ]]; then args=(--reset --confirm-reset --record-only); fi
+          python scripts/github_wake.py "${args[@]}"
       - name: Record run summary
         if: always()
         run: |
-          if test -f site/operation.json; then
-            cat site/operation.json >> "$GITHUB_STEP_SUMMARY"
-          elif test -f operation.json; then
-            cat operation.json >> "$GITHUB_STEP_SUMMARY"
-          fi
+          echo "runtime_ref=${{ inputs.runtime_ref || github.sha }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "status=${{ steps.cycle.outputs.status }}" >> "$GITHUB_STEP_SUMMARY"
       - name: Fail only when operator attention is required
         if: always() && steps.cycle.outcome == 'failure'
         run: exit 1
 
-  request-publication:
+  continue-again:
     needs: wake
-    if: |
-      always() &&
-      needs.wake.result == 'success' &&
-      needs.wake.outputs.skipped != 'true' &&
-      (inputs.publish_after == true || inputs.reset == true)
+    if: needs.wake.result == 'success' && needs.wake.outputs.continue_now == 'true' && inputs.reset != true
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
-      - name: Request latest Pages publication
+      - name: Keep the experiment on its starting implementation
         env:
           GH_TOKEN: ${{ github.token }}
-          SOURCE_RUN_ID: ${{ github.run_id }}
-        run: gh workflow run pages.yml --repo "$GITHUB_REPOSITORY" --ref master -f "source_run_id=$SOURCE_RUN_ID"
+          RUNTIME_REF: ${{ inputs.runtime_ref || github.sha }}
+          RETRY_AFTER: ${{ needs.wake.outputs.retry_after }}
+          PREVIOUS_RUN_ID: ${{ github.run_id }}
+        run: |
+          state="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml" --jq '.state' 2>/dev/null || true)"
+          if [[ "$state" != "active" ]]; then
+            echo "Continuous runner is disabled; no successor will be dispatched."
+            exit 0
+          fi
+          if [[ -n "$RETRY_AFTER" && "$RETRY_AFTER" != "0" ]]; then sleep "$RETRY_AFTER"; fi
+          gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime             -f "dispatch_token=continuous-$PREVIOUS_RUN_ID"             -f "runtime_ref=$RUNTIME_REF"
