@@ -537,7 +537,8 @@ class Store:
     # until the next boundary validates or records them. Callers may rely on this contract.
     # ---------------------------------------------------------------------------
 
-    def replay(self):
+    def replay_record(self):
+        """Verify history once and return the reconstructed state, head, and verified events."""
         started = perf_counter()
         state, head = empty(), ZERO
         try:
@@ -556,6 +557,10 @@ class Store:
         self._performance["full_replays"] += 1
         self._performance["replay_ms"] += (perf_counter() - started) * 1000
         self._remember(state, head, len(events))
+        return state, head, events
+
+    def replay(self):
+        state, head, _ = self.replay_record()
         return state, head
 
     # ---------------------------------------------------------------------------
