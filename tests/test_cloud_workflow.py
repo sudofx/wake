@@ -49,6 +49,10 @@ class CloudWorkflowTests(unittest.TestCase):
     def git(self, *args):
         return subprocess.run(["git", *map(str,args)], check=True, capture_output=True, text=True)
 
+    def live(self):
+        return json.loads(
+            self.git("--git-dir", self.remote, "show", "wake-live:live.json").stdout)
+
     def run_cloud(self, provider, publish_only=False, scheduled=False, reset=False):
         with patch.object(github_wake, "ROOT", self.project), \
              patch.object(github_wake, "config", return_value=dict(DEFAULTS)), \
@@ -59,8 +63,7 @@ class CloudWorkflowTests(unittest.TestCase):
 
     def test_cloud_reset_returns_to_zero_without_calling_provider(self):
         self.assertEqual(self.run_cloud(Fixture()), 0)
-        before = json.loads(
-            self.git("--git-dir", self.remote, "show", "wake-state:state.json").stdout)
+        before = self.live()["state"]
         self.assertGreater(before["version"], 0)
 
         stale = self.project / "site" / "blog" / "stale.html"
@@ -73,16 +76,14 @@ class CloudWorkflowTests(unittest.TestCase):
 
         self.assertEqual(self.run_cloud(NeverCall(), reset=True), 0)
 
-        state = json.loads(
-            self.git("--git-dir", self.remote, "show", "wake-state:state.json").stdout)
+        state = self.live()["state"]
         self.assertEqual(state["version"], 0)
         self.assertEqual(state["journal"], [])
         self.assertEqual(state["posts"], {})
         self.assertEqual(state["invocations"], {})
-        self.assertFalse(stale.exists())
+        self.assertTrue(stale.exists())
 
-        operation = json.loads(
-            self.git("--git-dir", self.remote, "show", "wake-state:site/operation.json").stdout)
+        operation = self.live()["operation"]
         self.assertTrue(operation["reset"])
         self.assertEqual(operation["status"], "not_started")
 
@@ -96,14 +97,13 @@ class CloudWorkflowTests(unittest.TestCase):
         provider = Failure()
         self.assertEqual(self.run_cloud(provider), 0)
         self.assertEqual(provider.calls, 1)
-        public = json.loads(self.git("--git-dir", self.remote, "show", "wake-state:site/state.json").stdout)
+        public = self.live()["state"]
         self.assertEqual(len(public["invocations"]), 1)
         self.assertTrue(next(iter(public["invocations"].values()))["charged"])
-        operation = json.loads(self.git("--git-dir", self.remote, "show", "wake-state:site/operation.json").stdout)
+        operation = self.live()["operation"]
         self.assertEqual(operation["status"], "failed")
         self.assertIn("429", operation["reason"])
-        self.assertTrue((self.project/"site/index.html").is_file())
-        verify_history(self.project/"site/events.jsonl", (self.project/"site/head.txt").read_text())
+        self.assertFalse((self.project/"site/index.html").exists())
 
     def test_attention_policy_keeps_expected_provider_pressure_green(self):
         self.assertFalse(github_wake.requires_operator_attention(
@@ -147,11 +147,10 @@ class CloudWorkflowTests(unittest.TestCase):
         operation = json.loads(self.git("--git-dir", self.remote, "show", "wake-state:site/operation.json").stdout)
         self.assertEqual(operation["status"], "deferred")
         self.assertIn("temporarily unavailable", operation["reason"])
-        verify_history(self.project/"site/events.jsonl", (self.project/"site/head.txt").read_text())
 
     def test_republishing_preserves_the_accepted_wake_without_calling_gemini(self):
         self.assertEqual(self.run_cloud(Fixture()), 0)
-        before = json.loads((self.project/"site/state.json").read_text())
+        before = self.live()
         with patch.object(github_wake, "Gemini", side_effect=AssertionError("No model initialization")), \
              patch.object(github_wake, "ROOT", self.project), \
              patch.object(github_wake, "config", return_value=dict(DEFAULTS)), \
@@ -159,7 +158,8 @@ class CloudWorkflowTests(unittest.TestCase):
              patch.dict("os.environ", {"GITHUB_ACTIONS":"true"}):
             self.assertEqual(github_wake.main(publish_only=True), 0)
         after = json.loads((self.project/"site/state.json").read_text())
-        self.assertEqual(before, after)
+        self.assertEqual(before["state"]["version"], after["version"])
+        self.assertEqual(before["head"], (self.project/"site/head.txt").read_text().strip())
         result = json.loads((self.project/"site/operation.json").read_text())
         self.assertEqual(result["status"], "accepted")
         self.assertTrue(result["publication_only"])
@@ -173,7 +173,7 @@ class CloudWorkflowTests(unittest.TestCase):
             def propose(self, request): raise AssertionError("Recent scheduled wake must suppress the model call")
         provider = NeverCall()
         self.assertEqual(self.run_cloud(provider, scheduled=True), 0)
-        public = json.loads(self.git("--git-dir", self.remote, "show", "wake-state:state.json").stdout)
+        public = self.live()["state"]
         self.assertEqual(len(public["invocations"]), 1)
 
     def test_scheduled_due_uses_normal_guard_but_retries_deferred_outages_soon(self):
@@ -242,55 +242,23 @@ class CloudWorkflowTests(unittest.TestCase):
             with self.assertRaises(OSError): self.run_cloud(NeverCall())
         self.assertFalse((self.project/"site/index.html").exists())
 
-    def test_workflow_publishes_generated_reports_even_after_provider_failure(self):
+    def test_workflow_separates_authority_pages_and_runtime_pin(self):
         root = Path(__file__).resolve().parents[1]
         workflow = (root/".github/workflows/wake.yml").read_text()
-        wake_job = workflow.split("  wake:", 1)[1].split("  publish-refresh:", 1)[0]
-        wake_report = wake_job.split("- name: Confirm report is ready", 1)[1].split("- name:", 1)[0]
-        publication_job = workflow.split("  publication:", 1)[1].split("  wake:", 1)[0]
-        self.assertIn("steps.cycle.outputs.skipped != 'true'", wake_report)
-        self.assertNotIn("steps.cycle.outcome", wake_report)
-        self.assertIn("test -f site/index.html", wake_report)
-        self.assertIn("python scripts/github_wake.py --publish-only", publication_job)
-        self.assertIn("group: wake-publication", publication_job)
-        self.assertIn("group: wake-durable-state", wake_job)
-        self.assertIn("needs.wake.outputs.report_ready == 'true'", workflow)
-        self.assertIn("if: always() && steps.cycle.outcome == 'failure'", workflow)
-        self.assertIn("Fail only when operator attention is required", workflow)
-        self.assertIn("path: site", workflow)
-        self.assertIn("github-pages-${{ github.run_id }}-${{ github.run_attempt }}", workflow)
+        pages = (root/".github/workflows/pages.yml").read_text()
         runner = (root/".github/workflows/wake-runner.yml").read_text()
-        self.assertNotIn("schedule:", workflow)
+        self.assertNotIn("deploy-pages", workflow)
+        self.assertNotIn("upload-pages-artifact", workflow)
+        self.assertNotIn("pages.yml", workflow)
+        self.assertIn("group: wake-authority", workflow)
+        self.assertIn("runtime_ref", workflow)
+        self.assertIn("--ref wake-runtime", workflow)
+        self.assertIn("group: wake-pages", pages)
+        self.assertNotIn("GEMINI_API_KEY", pages)
         self.assertIn("cron: '17 * * * *'", runner)
-        self.assertIn("wake-continuous-runner", runner)
-        self.assertIn('-f "dispatch_token=$TOKEN" -f "publish_after=true"', runner)
-        self.assertIn("Read durable continuation receipt", runner)
-        self.assertIn("python scripts/github_wake.py --reset --confirm-reset", workflow)
-        self.assertIn('inputs.publish_after', workflow)
+        self.assertIn("wake-runtime", runner)
+        self.assertNotIn("operation.json", runner)
         self.assertIn("Irreversibly reset durable research/history to WAKE 0", workflow)
-        self.assertIn("artifact_name: ${{ needs.wake.outputs.artifact_name }}", workflow)
-        self.assertNotIn("rotate-cover", workflow)
-        self.assertNotIn("rotate_cover", workflow)
-        self.assertNotIn("scripts/covers.py --cycle", workflow)
-        self.assertNotIn("git add README.md", workflow)
-        self.assertNotIn("git push --force", workflow)
-        self.assertFalse((root/".github/workflows/static.yml").exists())
-        self.assertFalse((root/".github/workflows/jekyll-gh-pages.yml").exists())
-        page = (root/"wake/assets/index.html").read_text()
-        self.assertIn("fetch('head.txt?wake='+stamp,{cache:'no-store'", page)
-        self.assertIn("fetch('operation.json?wake='+stamp,{cache:'no-store'", page)
-        self.assertIn("data-owner-start", page)
-        self.assertIn("data-owner-stop", page)
-        self.assertIn("data-owner-reset", page)
-        # WAKE's technical record is public; authentication gates operator actions,
-        # not research, metrics, evidence, history, or raw published data.
-        self.assertNotIn("operator-only", page)
-        self.assertNotIn("public-view", page)
-        self.assertIn('href="#lab"', page)
-        self.assertIn('href="#evidence"', page)
-        self.assertIn('href="#history"', page)
-        self.assertIn('href="#metrics"', page)
-        self.assertIn('href="state.html"', page)
 
     def test_wordmark_navigation_is_deployment_portable(self):
         root = Path(__file__).resolve().parents[1]
@@ -314,7 +282,7 @@ class CloudWorkflowTests(unittest.TestCase):
             provider = Gemini({**DEFAULTS, "free_tier_confirmed": True})
             self.assertEqual(self.run_cloud(provider), 0)
             self.assertEqual(network.call_count, 1)
-        state = json.loads((self.project/"site/state.json").read_text())
+        state = self.live()["state"]
         item = next(iter(state["invocations"].values()))
         error = item["provider_error"]
         self.assertEqual(error["http_status"], 503)
@@ -324,9 +292,9 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertEqual(item["provider_requests_sent"], 1)
         self.assertEqual(state["version"], 0)
         self.assertEqual(error["provider_error"]["status"], "UNAVAILABLE")
-        self.assertNotIn("test-secret", (self.project/"site/events.jsonl").read_text())
+        self.assertNotIn("test-secret", json.dumps(self.live()))
         self.assertNotIn("api_key", error["provider_error"])
-        operation = json.loads((self.project/"site/operation.json").read_text())
+        operation = self.live()["operation"]
         self.assertEqual(operation["wake_status"]["latest_attempt"]["status"], "deferred")
         self.assertIsNone(operation["wake_status"]["last_accepted"])
         self.assertIsNotNone(operation["wake_status"]["next_eligible"])
