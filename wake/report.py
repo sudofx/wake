@@ -632,9 +632,10 @@ def _blog_html(post, state):
 
 def export(store, destination="site", experiment=None, operation=None):
     with store.lock():
-        state = store.load()
-        events = store.events()
-        _, head = store.replay()
+        # Publication consumes one verified record snapshot. Replaying again for
+        # state, events, and head made publish cost scale unnecessarily with the
+        # entire accumulated history.
+        state, head, events = store.replay_record()
         if experiment is None:
             evidence_file = store.directory / "experiment.json"
             experiment = json.loads(evidence_file.read_text()) if evidence_file.exists() else None
