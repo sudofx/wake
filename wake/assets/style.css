@@ -1078,7 +1078,7 @@ html,body{max-width:100%;overflow-x:clip}
    regain the full audit, provider, history, metrics, and raw-record controls. */
 .public-only{display:none!important}
 .public-view .operator-only{display:none!important}
-.operator-view .public-only{display:initial!important}
+.public-view .public-only{display:initial!important}
 .public-view .entry .record-panel-meta,
 .public-view .entry .entry-bottom,
 .public-view .entry .lab-notes,
