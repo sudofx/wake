@@ -112,6 +112,8 @@ jobs:
               exit 1
             }
 
+            # Read durable continuation receipt after each governed wake before
+            # deciding whether this same runner may dispatch another cycle.
             encoded=""
             for _ in $(seq 1 24); do
               encoded="$(gh api "repos/$GITHUB_REPOSITORY/contents/operation.json?ref=wake-state" --jq '.content' 2>/dev/null || true)"
