@@ -1,6 +1,8 @@
 /* Progressive, data-bound constellation. Spatial placement is a reading aid, not causal distance. */
-(()=>{'use strict';
-const data=JSON.parse(document.getElementById('map-data').textContent);
+(async()=>{'use strict';
+const response=await fetch('map3d-data.json',{cache:'no-store'});
+if(!response.ok)throw new Error('Published WAKE 3D map data could not be loaded');
+const data=await response.json();
 const nodes=new Map(),loadedChildren=new Map([['root:wake',data.root_children||[]]]),loading=new Map(),loadErrors=new Map();
 const stage=document.getElementById('constellation-stage'),svg=document.getElementById('constellation-svg');
 const details=document.getElementById('details'),popover=document.getElementById('node-popover');
@@ -100,5 +102,6 @@ stage.addEventListener('pointerup',endPointer);stage.addEventListener('pointerca
 let resizeFrame=null;window.addEventListener('resize',()=>{if(resizeFrame)cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{resizeFrame=null;render()})});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){if(frame){cancelAnimationFrame(frame);frame=null}if(layoutFrame){cancelAnimationFrame(layoutFrame);layoutFrame=null}layoutMotion=null}else render()});
 document.getElementById('counts').textContent=`${counts.journal||0} journal entries · ${counts.blog||0} blog posts · ${counts.relationships||0} recorded relationships · version ${data.meta?.version??'—'}`;document.getElementById('constellation-empty').hidden=(counts.journal||counts.blog||counts.project||counts.evidence||counts.research||0)>0;const initialRecord=recordFromHash();if(initialRecord)choose(initialRecord);else{render();startDrift()}
+document.querySelectorAll('.cycle-count').forEach(node=>node.textContent=data.meta?.version??'—');
 const theme=document.getElementById('theme-toggle'),icon=document.querySelector('.theme-icon');function sync(){const dark=document.documentElement.dataset.theme==='dark';theme.checked=dark;if(icon)icon.textContent=dark?'◑':'☼'}sync();theme.addEventListener('change',()=>{if(theme.checked)document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;try{localStorage.setItem('wake-theme',theme.checked?'dark':'light')}catch{}sync();render()});
-})();
+})().catch(error=>{console.error(error);const counts=document.getElementById('counts');if(counts)counts.textContent='3D map data unavailable';});
