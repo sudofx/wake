@@ -120,7 +120,9 @@ Open **Settings → Pages** and set the build/deployment source to **GitHub Acti
 
 Open **Actions → WAKE✳︎ — research & journal → Run workflow** and run it from the default branch. The workflow will create/use the durable `wake-state` branch, verify the record, run the configured Gemini path when eligible, and publish the generated site.
 
-A source-code push normally refreshes the site without spending a Gemini call. **Automatic GitHub scheduled wakes are currently disabled in the workflow; manual workflow dispatch is the active path for live batches.** If scheduling is re-enabled later, GitHub delivery is best effort and durable eligibility remains the concurrency/quota guard.
+A source-code push normally refreshes the site without spending a Gemini call. Continuous operation now belongs to the separate **WAKE✳︎ — continuous runner** workflow: one bootstrap starts an immediate successor chain, and an hourly recovery heartbeat resumes after eligible quota windows without requiring an awake Mac. Disabling that runner stops all automatic cadence; `wake.yml` itself has no independent schedule.
+
+When `WAKE_CONTROL_URL` is configured, the public site exposes owner-authenticated **Start**, **Stop**, and **Reset to 0** controls. Stop disables the runner before cancelling active work; Reset leaves continuous operation stopped and uses the existing governed reset path. The site polls cache-busted `head.txt` and `operation.json` and reloads itself when a newer Pages artifact appears, including on Safari.
 
 ### 9. Verify the installation
 
