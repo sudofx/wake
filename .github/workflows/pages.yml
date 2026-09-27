@@ -1,0 +1,75 @@
+# WAKE✳︎ MAINTAINER NOTE
+# Read-only publication boundary. This workflow never calls a model or mutates
+# wake-state. Newer publication requests cancel stale ones without touching the
+# serialized research authority lane.
+
+name: WAKE✳︎ — publish Pages
+run-name: "WAKE✳︎ Pages ${{ inputs.source_run_id || github.event_name }}"
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: Optional run that requested this publication
+        type: string
+        required: false
+        default: ''
+  push:
+    branches: [master]
+    paths:
+      - 'wake/assets/**'
+      - 'wake/report.py'
+      - 'wake/provenance.py'
+      - 'wake/rejected.py'
+      - 'wake/feeds.py'
+      - 'scripts/github_wake.py'
+      - '.github/workflows/pages.yml'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: wake-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      WAKE_CONTROL_URL: ${{ vars.WAKE_CONTROL_URL }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Render current durable record
+        run: python scripts/github_wake.py --publish-only
+      - name: Confirm report is ready
+        run: test -f site/index.html
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish interface
+        id: deployment
+        uses: actions/deploy-pages@v4

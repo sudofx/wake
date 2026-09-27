@@ -1,18 +1,16 @@
 # WAKE✳︎ MAINTAINER NOTE
-# Cloud execution separates read-only publication from authoritative state mutation.
-# Publication may run independently; research/reset remains one serialized writer.
+# Stateful research authority only. Pages publication is deliberately owned by
+# pages.yml so model work, durable state mutation, and website deployment do not
+# queue behind or cancel one another.
 
 name: WAKE✳︎ — research & journal
-run-name: "WAKE✳︎ ${{ inputs.dispatch_token || github.event_name }}"
+run-name: "WAKE✳︎ ${{ inputs.dispatch_token || github.run_id }}"
 
 on:
-  push:
-    branches: [master]
-    paths: ['wake/**', 'scripts/github_wake.py', 'wake.toml', 'research-topics.toml', '.github/workflows/wake.yml']
   workflow_dispatch:
     inputs:
       publish_only:
-        description: Refresh the website without calling Gemini
+        description: Deprecated compatibility input; use the Pages workflow directly
         type: boolean
         default: false
       reset:
@@ -25,80 +23,27 @@ on:
         required: false
         default: ''
       publish_after:
-        description: Publish the fresh durable state after this wake
+        description: Request an independent Pages refresh after this wake
         type: boolean
         default: false
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
+  actions: write
+
+concurrency:
+  group: wake-durable-state
+  cancel-in-progress: false
+  queue: max
 
 jobs:
-  publication:
-    # Code pushes and explicit publish-only dispatches are read-only consumers of
-    # wake-state. Newer refreshes replace older ones instead of queueing behind Gemini.
-    if: github.event_name == 'push' || inputs.publish_only == true
-    runs-on: ubuntu-latest
-    # Full replay + export now exceeds five minutes at the current record size.
-    # Keep this generous without relaxing the stateful Gemini wake timeout below.
-    timeout-minutes: 15
-    concurrency:
-      group: wake-publication-v2
-      cancel-in-progress: true
-    outputs:
-      report_ready: ${{ steps.report.outputs.ready }}
-      artifact_name: ${{ steps.report.outputs.artifact_name }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Render current durable record
-        id: cycle
-        env:
-          WAKE_CONTROL_URL: ${{ vars.WAKE_CONTROL_URL }}
-        run: python scripts/github_wake.py --publish-only
-      - name: Confirm report is ready
-        id: report
-        run: |
-          test -f site/index.html
-          echo 'ready=true' >> "$GITHUB_OUTPUT"
-          echo 'artifact_name=github-pages-${{ github.run_id }}-${{ github.run_attempt }}' >> "$GITHUB_OUTPUT"
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
-      - name: Save the phone journal
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: site
-          name: ${{ steps.report.outputs.artifact_name }}
-      - name: Record run summary
-        if: always()
-        run: |
-          if test -f site/operation.json; then
-            cat site/operation.json >> "$GITHUB_STEP_SUMMARY"
-          fi
-
   wake:
-    # Only this lane may mutate the durable record. Keeping one writer preserves
-    # append-only ordering while publication no longer consumes this queue.
-    if: github.ref_name == github.event.repository.default_branch && github.event_name != 'push' && inputs.publish_only != true
+    if: github.ref_name == github.event.repository.default_branch && inputs.publish_only != true
     runs-on: ubuntu-latest
-    # A wake may spend up to ~5 minutes honoring the durable next_eligible cadence
-    # before research begins. Give that governed wait enough headroom to finish
-    # without GitHub cancelling healthy work at the timeout boundary.
     timeout-minutes: 10
-    concurrency:
-      group: wake-durable-state
-      cancel-in-progress: false
-      queue: max
     outputs:
-      report_ready: ${{ steps.report.outputs.ready }}
-      artifact_name: ${{ steps.report.outputs.artifact_name }}
+      skipped: ${{ steps.cycle.outputs.skipped }}
+      publication_skipped: ${{ steps.cycle.outputs.publication_skipped }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -115,69 +60,35 @@ jobs:
         run: |
           if [[ "${{ inputs.reset }}" == "true" ]]; then
             python scripts/github_wake.py --reset --confirm-reset
-          elif [[ "${{ inputs.publish_after }}" == "true" ]]; then
-            python scripts/github_wake.py
           else
+            # Research writes only the durable record. Publication is an
+            # independent read-only consumer dispatched after this job.
             python scripts/github_wake.py --record-only
           fi
-      - name: Confirm report is ready
-        id: report
-        if: always() && steps.cycle.outputs.skipped != 'true' && steps.cycle.outputs.publication_skipped != 'true'
-        run: |
-          test -f site/index.html
-          echo 'ready=true' >> "$GITHUB_OUTPUT"
-          echo 'artifact_name=github-pages-${{ github.run_id }}-${{ github.run_attempt }}' >> "$GITHUB_OUTPUT"
-      - name: Configure Pages
-        if: always() && steps.report.outcome == 'success'
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
-      - name: Save the phone journal
-        if: always() && steps.report.outcome == 'success'
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: site
-          name: ${{ steps.report.outputs.artifact_name }}
       - name: Record run summary
         if: always()
         run: |
           if test -f site/operation.json; then
             cat site/operation.json >> "$GITHUB_STEP_SUMMARY"
+          elif test -f operation.json; then
+            cat operation.json >> "$GITHUB_STEP_SUMMARY"
           fi
       - name: Fail only when operator attention is required
         if: always() && steps.cycle.outcome == 'failure'
         run: exit 1
 
-  publish-refresh:
-    needs: publication
-    if: needs.publication.outputs.report_ready == 'true' && !cancelled()
-    runs-on: ubuntu-latest
-    concurrency:
-      group: pages
-      cancel-in-progress: true
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Publish latest journal
-        id: deployment
-        uses: actions/deploy-pages@v4
-        with:
-          artifact_name: ${{ needs.publication.outputs.artifact_name }}
-
-  publish-wake:
+  request-publication:
     needs: wake
-    if: needs.wake.outputs.report_ready == 'true' && !cancelled()
+    if: |
+      always() &&
+      needs.wake.result == 'success' &&
+      needs.wake.outputs.skipped != 'true' &&
+      (inputs.publish_after == true || inputs.reset == true)
     runs-on: ubuntu-latest
-    concurrency:
-      group: pages
-      cancel-in-progress: true
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    continue-on-error: true
     steps:
-      - name: Publish latest journal
-        id: deployment
-        uses: actions/deploy-pages@v4
-        with:
-          artifact_name: ${{ needs.wake.outputs.artifact_name }}
+      - name: Request latest Pages publication
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN_ID: ${{ github.run_id }}
+        run: gh workflow run pages.yml --repo "$GITHUB_REPOSITORY" --ref master -f "source_run_id=$SOURCE_RUN_ID"
