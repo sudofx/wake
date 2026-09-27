@@ -84,7 +84,10 @@ jobs:
     # append-only ordering while publication no longer consumes this queue.
     if: github.ref_name == github.event.repository.default_branch && github.event_name != 'push' && inputs.publish_only != true && (github.event_name != 'schedule' || vars.WAKE_SCHEDULE_PAUSED != 'true')
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    # A wake may spend up to ~5 minutes honoring the durable next_eligible cadence
+    # before research begins. Give that governed wait enough headroom to finish
+    # without GitHub cancelling healthy work at the timeout boundary.
+    timeout-minutes: 10
     concurrency:
       group: wake-durable-state
       cancel-in-progress: false
