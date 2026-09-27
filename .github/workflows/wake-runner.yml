@@ -33,10 +33,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
       - name: Pin or recover the experiment implementation
         id: runtime
         env:
-          GH_TOKEN: ${{ github.token }}
           EVENT_NAME: ${{ github.event_name }}
           REQUESTED_REF: ${{ inputs.runtime_ref }}
           START_SHA: ${{ github.sha }}
@@ -44,17 +46,14 @@ jobs:
           set -euo pipefail
           if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
             runtime_ref="${REQUESTED_REF:-$START_SHA}"
-            ref_json="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" 2>/dev/null || true)"
-            if [[ -n "$ref_json" ]]; then
-              gh api --method PATCH "repos/$GITHUB_REPOSITORY/git/refs/heads/wake-runtime" -f "sha=$runtime_ref" -F force=true >/dev/null
-            else
-              gh api --method POST "repos/$GITHUB_REPOSITORY/git/refs" -f ref='refs/heads/wake-runtime' -f "sha=$runtime_ref" >/dev/null
-            fi
+            git cat-file -e "$runtime_ref^{commit}" 2>/dev/null || git fetch --depth=1 origin "$runtime_ref"
+            # A deliberate Start is the adoption boundary: move the runtime pin.
+            git push --force origin "$runtime_ref:refs/heads/wake-runtime"
           else
-            runtime_ref="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha' 2>/dev/null || true)"
+            runtime_ref="$(git ls-remote origin refs/heads/wake-runtime | awk '{print $1}')"
             if [[ -z "$runtime_ref" ]]; then
               runtime_ref="$START_SHA"
-              gh api --method POST "repos/$GITHUB_REPOSITORY/git/refs" -f ref='refs/heads/wake-runtime' -f "sha=$runtime_ref" >/dev/null
+              git push origin "$runtime_ref:refs/heads/wake-runtime"
             fi
           fi
           echo "runtime_ref=$runtime_ref" >> "$GITHUB_OUTPUT"
