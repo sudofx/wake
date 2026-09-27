@@ -92,7 +92,7 @@ class PublishingTests(unittest.TestCase):
                 self.assertNotIn('stageHovered', map3d_js)
                 self.assertNotIn('hoverPausedMs', map3d_js)
                 self.assertNotIn('const orbit=', map3d_js)
-                self.assertIn('Every record remains selectable here.', map3d_page)
+                self.assertIn('Every record remains selectable here.', map3d_js)
                 map3d_css = (project/"site/map3d.css").read_text()
                 self.assertNotIn("fill:#080b13", map3d_css)
                 self.assertNotIn("stroke:#11182d", map3d_css)
