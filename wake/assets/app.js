@@ -6,9 +6,9 @@
  * Comments should preserve the boundary between presentation and the canonical durable record.
  */
 
-(() => {
+(async () => {
   'use strict';
-  const data = JSON.parse(document.getElementById('wake-data').textContent);
+  const data = await window.WakeData;
   const s = data.state;
   const $ = id => document.getElementById(id);
   const themeToggle = $('theme-toggle');
@@ -449,5 +449,5 @@
   const resetPageScroll=()=>requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo(0,0)));
   window.addEventListener('hashchange',()=>{historyLimit=35;$('evidence-search').value='';$('history-search').value='';$('event-filter').value='all';route();resetPageScroll();});
   $('generated').textContent=`Exported ${fmt(data.generated)}.`;
-  journal();route();
+  route();
 })();
