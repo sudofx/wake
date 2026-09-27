@@ -19,6 +19,7 @@ import sys
 import tempfile
 import shutil
 import time
+import uuid
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -131,7 +132,8 @@ class LiveProjectionBranch:
             subprocess.run(["git", "worktree", "add", "--detach", str(checkout), "HEAD"],
                            cwd=self.repository, check=True, capture_output=True, text=True)
             try:
-                subprocess.run(["git", "checkout", "--orphan", self.branch], cwd=checkout,
+                local_branch = f"{self.branch}-refresh-{uuid.uuid4().hex}"
+                subprocess.run(["git", "checkout", "--orphan", local_branch], cwd=checkout,
                                check=True, capture_output=True, text=True)
                 subprocess.run(["git", "rm", "-rf", "--ignore-unmatch", "."], cwd=checkout,
                                check=False, capture_output=True, text=True)
