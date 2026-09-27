@@ -57,14 +57,7 @@ jobs:
             exit 0
           fi
           if [[ -n "$next" ]]; then
-            if ! python3 - "$next" <<'PY'
-          import datetime, sys
-          value=sys.argv[1].replace("Z","+00:00")
-          target=datetime.datetime.fromisoformat(value)
-          now=datetime.datetime.now(datetime.timezone.utc)
-          raise SystemExit(0 if now >= target else 1)
-          PY
-            then
+            if ! python3 -c 'import datetime,sys; target=datetime.datetime.fromisoformat(sys.argv[1].replace("Z","+00:00")); now=datetime.datetime.now(datetime.timezone.utc); raise SystemExit(0 if now >= target else 1)' "$next"; then
               echo "run=false" >> "$GITHUB_OUTPUT"
               echo "Scheduled recovery is early; next eligible: $next"
               exit 0
