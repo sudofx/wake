@@ -34,7 +34,7 @@ def publish(directory):
         raise SystemExit("Export the journal first.")
     # Newer exports include human-readable companions. Keep older fixture exports publishable.
     for name in ("state.md", "state.html", "events.md", "events.html", "map.html", "map-data.json", "map3d.html", "map3d-data.json", "blog.xml", "journal.xml",
-                 "style.css", "nav.css", "map.css", "map3d.css", "theme.css"):
+                 "style.css", "nav.css", "map.css", "map3d.css", "theme.css", "nav.js", "map.js", "map3d.js", "flat-view.js"):
         if (source / name).is_file():
             names.append(name)
     if (source / "experiment.json").exists():
@@ -52,11 +52,13 @@ def publish(directory):
         try:
             map_data = json.loads(map_files[1].read_text())
             map_page = map_files[0].read_text()
-            embedded_map = json.loads(map_page.split('<script id="map-data" type="application/json">', 1)[1].split('</script>', 1)[0])
-        except (ValueError, IndexError) as exc:
+            map_script = (source / "map.js").read_text()
+        except (OSError, ValueError) as exc:
             raise SystemExit("Invalid map export; export again before publishing.") from exc
-        if canonical(map_data) != canonical(expected_map) or canonical(embedded_map) != canonical(expected_map):
+        if canonical(map_data) != canonical(expected_map):
             raise SystemExit("Map does not match the verified export; export again before publishing.")
+        if 'src="map.js"' not in map_page or "fetch('map-data.json'" not in map_script:
+            raise SystemExit("Map shell is not bound to the published flat data; export again before publishing.")
     map3d_files = [source / "map3d.html", source / "map3d-data.json"]
     if any(path.exists() for path in map3d_files):
         if not all(path.is_file() for path in map3d_files):
@@ -64,12 +66,14 @@ def publish(directory):
         try:
             map3d_data = json.loads(map3d_files[1].read_text())
             map3d_page = map3d_files[0].read_text()
-            embedded_map3d = json.loads(map3d_page.split('<script id="map-data" type="application/json">', 1)[1].split('</script>', 1)[0])
-        except (ValueError, IndexError) as exc:
+            map3d_script = (source / "map3d.js").read_text()
+        except (OSError, ValueError) as exc:
             raise SystemExit("Invalid 3D map export; export again before publishing.") from exc
         expected_map3d, expected_shards = build_map3d_projection(expected_map)
-        if canonical(map3d_data) != canonical(expected_map3d) or canonical(embedded_map3d) != canonical(expected_map3d):
+        if canonical(map3d_data) != canonical(expected_map3d):
             raise SystemExit("3D map does not match the verified lazy shell; export again before publishing.")
+        if 'src="map3d.js"' not in map3d_page or "fetch('map3d-data.json'" not in map3d_script:
+            raise SystemExit("3D map shell is not bound to the published flat data; export again before publishing.")
         shard_dir = source / "map3d"
         if not shard_dir.is_dir():
             raise SystemExit("Incomplete 3D map branch export; export again before publishing.")
