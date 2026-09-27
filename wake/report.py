@@ -655,13 +655,14 @@ def export(store, destination="site", experiment=None, operation=None):
         # the same theme file rather than receiving copied inline palettes.
         for name in ("style.css", "nav.css", "map.css", "map3d.css", "theme.css"):
             atomic_write(target / name, (assets / name).read_text())
-        embedded = json.dumps(data, ensure_ascii=False).replace("<", "\\u003c").replace("\u2028", "\\u2028").replace("\u2029", "\\u2029")
+        browser_data = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
+        atomic_write(target / "wake-data.json", browser_data)
         page = template.replace("/* WAKE_STYLE */", "").replace("/* NAV_STYLE */", "")
         page = page.replace("/* NAV_SCRIPT */", (assets / "nav.js").read_text())
         page = page.replace("/* WAKE_SCRIPT */", (assets / "app.js").read_text())
         page = page.replace("/* HELP_SCRIPT */", (assets / "help.js").read_text())
         page = page.replace("/* DATA_VIEW_SCRIPT */", (assets / "data-view.js").read_text())
-        page = page.replace("/* PET_SCRIPT */", (assets / "pet.js").read_text()).replace("WAKE_DATA", embedded)
+        page = page.replace("/* PET_SCRIPT */", (assets / "pet.js").read_text())
         # Browser UX is HTML-first. Markdown remains available as a flat source artifact.
         page = page.replace('href="journal.md">Markdown ↓</a>', 'href="events.html">Readable history →</a>')
         page = page.replace('Read the complete <a href="journal.md">Markdown journal</a> or download <a href="state.json">the durable state</a>.',
