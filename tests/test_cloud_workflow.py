@@ -140,11 +140,11 @@ class CloudWorkflowTests(unittest.TestCase):
         provider = Busy()
         self.assertEqual(self.run_cloud(provider), 0)
         self.assertEqual(provider.calls, 1)
-        public = json.loads(self.git("--git-dir", self.remote, "show", "wake-state:site/state.json").stdout)
+        public = self.live()["state"]
         invocation = next(iter(public["invocations"].values()))
         self.assertEqual(invocation["status"], "deferred")
         self.assertIsNone(public["pending"])
-        operation = json.loads(self.git("--git-dir", self.remote, "show", "wake-state:site/operation.json").stdout)
+        operation = self.live()["operation"]
         self.assertEqual(operation["status"], "deferred")
         self.assertIn("temporarily unavailable", operation["reason"])
 
