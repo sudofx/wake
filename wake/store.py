@@ -520,6 +520,27 @@ class Store:
             return cached[1]
         return self.replay()[1]
 
+    def projection(self):
+        """Return current verified state/head, reusing the trusted hot snapshot when possible."""
+        cached = self._cached_base()
+        if cached is not None:
+            return cached
+        return self.replay()
+
+    def tail_events_all(self, limit):
+        """Return the newest bounded event suffix in chronological order."""
+        if limit <= 0:
+            return []
+        rows = self.db.execute(
+            "SELECT seq,time,kind,payload,prev_hash,hash FROM events ORDER BY seq DESC LIMIT ?",
+            (limit,),
+        ).fetchall()
+        return [
+            {"seq": row[0], "time": row[1], "kind": row[2], "payload": json.loads(row[3]),
+             "prev_hash": row[4], "hash": row[5]}
+            for row in reversed(rows)
+        ]
+
     def performance_snapshot(self):
         return {
             **{key: (round(value, 3) if isinstance(value, float) else value)
