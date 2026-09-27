@@ -6,8 +6,10 @@
  * Comments should preserve the boundary between presentation and the canonical durable record.
  */
 
-(()=>{'use strict';
-const data=JSON.parse(document.getElementById('map-data').textContent), nodes=new Map(data.nodes.map(n=>[n.id,n])), topicColors=data.meta?.topic_colors||{}, topicLabels=data.meta?.topic_labels||{};
+(async()=>{'use strict';
+const response=await fetch('map-data.json',{cache:'no-store'});
+if(!response.ok)throw new Error('Published WAKE map data could not be loaded');
+const data=await response.json(), nodes=new Map(data.nodes.map(n=>[n.id,n])), topicColors=data.meta?.topic_colors||{}, topicLabels=data.meta?.topic_labels||{};
 const topicLabel=id=>topicLabels[id]||String(id||'').replaceAll('_',' ');
 const timeline=document.getElementById('timeline'), constellation=document.getElementById('constellation'), details=document.getElementById('details'), clearButton=document.getElementById('clear');
 const emptyConstellation=constellation.innerHTML, emptyDetails=details.innerHTML;
@@ -88,5 +90,6 @@ writeRecordHash(id);
 function clear(){selected=null;context=null;constellation.innerHTML=emptyConstellation;details.innerHTML=emptyDetails;details.classList.remove('active');clearButton.disabled=true;emphasis();writeRecordHash('');if(lastFocus?.isConnected)lastFocus.focus({preventScroll:true});else timeline.querySelector('button')?.focus({preventScroll:true})}
 clearButton.addEventListener('click',clear);document.addEventListener('keydown',e=>{if(e.key==='Escape')clear()});document.getElementById('map-field').addEventListener('click',e=>{if(e.target.id==='map-field'||e.target.classList.contains('spatial')||e.target.id==='timeline'||e.target.id==='constellation')clear()});
 const theme=document.getElementById('theme-toggle'),themeIcon=document.querySelector('.theme-icon');function savedTheme(){try{return localStorage.getItem('wake-theme')}catch{return null}}function syncTheme(){const dark=document.documentElement.dataset.theme==='dark',manual=Boolean(savedTheme());theme.checked=dark;theme.setAttribute('aria-label',dark?'Use light theme':'Use dark theme');document.documentElement.dataset.themeMode=manual?'manual':'system';if(themeIcon)themeIcon.textContent=manual?(dark?'◑':'☼'):'◐';theme.closest('.theme-switch')?.setAttribute('title',manual?`Manual ${dark?'dark':'light'} theme`:`Following system ${dark?'dark':'light'} theme`)}syncTheme();theme.addEventListener('change',()=>{const dark=theme.checked;if(dark)document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;try{localStorage.setItem('wake-theme',dark?'dark':'light')}catch{}syncTheme()});try{const systemTheme=matchMedia('(prefers-color-scheme:dark)');systemTheme.addEventListener('change',event=>{if(savedTheme())return;if(event.matches)document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;syncTheme()})}catch{}
+document.querySelectorAll('.cycle-count').forEach(node=>node.textContent=data.meta?.version??'—');
 const initialRecord=recordFromHash();if(initialRecord&&nodes.has(initialRecord))select(initialRecord);
-})();
+})().catch(error=>{console.error(error);const counts=document.getElementById('counts');if(counts)counts.textContent='Map data unavailable';});
