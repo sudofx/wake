@@ -1,19 +1,7 @@
-# WAKE✳︎ MAINTAINER NOTE
-# Read-only publication boundary. This workflow never calls a model or mutates
-# wake-state. Newer publication requests cancel stale ones without touching the
-# serialized research authority lane.
-
 name: WAKE✳︎ — publish Pages
-run-name: "WAKE✳︎ Pages ${{ inputs.source_run_id || github.event_name }}"
 
+# Static application-shell publication only. Cycles never dispatch this workflow.
 on:
-  workflow_dispatch:
-    inputs:
-      source_run_id:
-        description: Optional run that requested this publication
-        type: string
-        required: false
-        default: ''
   push:
     branches: [master]
     paths:
@@ -22,7 +10,6 @@ on:
       - 'wake/provenance.py'
       - 'wake/rejected.py'
       - 'wake/feeds.py'
-      - 'scripts/github_wake.py'
       - '.github/workflows/pages.yml'
 
 permissions:
@@ -47,7 +34,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Render current durable record
+      - name: Render static application shell from the current verified snapshot
         run: python scripts/github_wake.py --publish-only
       - name: Confirm report is ready
         run: test -f site/index.html
