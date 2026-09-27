@@ -39,7 +39,19 @@ Keep presentation subordinate to the canonical durable record.
     </div></details>
     <a href="#about" data-nav="about">About</a>
   </nav>
-  <div class="header-tools"><span class="status"><i></i> STATE PERSISTS</span><label class="data-switch theme-switch"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><b class="theme-icon" aria-hidden="true">◐</b><span class="data-switch-track" aria-hidden="true"><i></i></span></label></div>
+  <div class="header-tools">
+    <span class="status"><i></i> STATE PERSISTS</span>
+    <div class="owner-access" data-owner-access hidden>
+      <a class="owner-login" data-owner-login href="#">Operator sign in</a>
+      <div class="owner-controls" data-owner-controls hidden>
+        <span data-owner-control-status>Checking…</span>
+        <button type="button" data-owner-start>Start</button>
+        <button type="button" data-owner-stop>Stop</button>
+        <button type="button" data-owner-reset>Reset to 0</button>
+      </div>
+    </div>
+    <label class="data-switch theme-switch"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><b class="theme-icon" aria-hidden="true">◐</b><span class="data-switch-track" aria-hidden="true"><i></i></span></label>
+  </div>
 </header>
 <main id="main" tabindex="-1">
 <section id="home" class="view" hidden><div id="pet-home"></div></section>
@@ -87,4 +99,98 @@ Keep presentation subordinate to the canonical durable record.
 <script>/* PET_SCRIPT */</script>
 <script>/* WAKE_SCRIPT */</script>
 <script>/* NAV_SCRIPT */</script>
+<script>
+(() => {
+  const controlUrl=WAKE_CONTROL_URL;
+  const ownerAccess=document.querySelector('[data-owner-access]');
+  const ownerLogin=document.querySelector('[data-owner-login]');
+  const ownerControls=document.querySelector('[data-owner-controls]');
+  const ownerStatus=document.querySelector('[data-owner-control-status]');
+  const ownerStart=document.querySelector('[data-owner-start]');
+  const ownerStop=document.querySelector('[data-owner-stop]');
+  const ownerReset=document.querySelector('[data-owner-reset]');
+  const sessionKey='wake-owner-session';
+  const fragment='#wake-control=';
+
+  if(controlUrl && location.hash.startsWith(fragment)){
+    try{
+      sessionStorage.setItem(sessionKey,decodeURIComponent(location.hash.slice(fragment.length)));
+      history.replaceState(null,'',location.pathname+location.search);
+    }catch{}
+  }
+  const session=()=>{try{return sessionStorage.getItem(sessionKey)||''}catch{return ''}};
+  const request=async(path,method='GET')=>{
+    const response=await fetch(controlUrl+path,{
+      method,
+      cache:'no-store',
+      headers:{Authorization:'Bearer '+session(),'Cache-Control':'no-cache'}
+    });
+    const body=await response.json().catch(()=>({}));
+    if(!response.ok)throw new Error(body.error||'Operator control request failed');
+    return body;
+  };
+  const refreshControls=async()=>{
+    if(!controlUrl||!ownerAccess)return;
+    ownerAccess.hidden=false;
+    ownerLogin.href=controlUrl+'/auth/login';
+    if(!session()){ownerLogin.hidden=false;ownerControls.hidden=true;return}
+    try{
+      const state=await request('/api/session');
+      ownerLogin.hidden=true; ownerControls.hidden=false;
+      const active=(state.activeRunnerRuns?.length||0)+(state.activeWakeRuns?.length||0);
+      ownerStatus.textContent=state.enabled?(active?'Running now':'Enabled · starting/eligible'):'Stopped';
+      ownerStart.disabled=state.enabled;
+      ownerStop.disabled=!state.enabled;
+      ownerReset.disabled=state.enabled||active>0;
+    }catch{
+      try{sessionStorage.removeItem(sessionKey)}catch{}
+      ownerControls.hidden=true; ownerLogin.hidden=false;
+    }
+  };
+  const operate=async(path)=>{
+    ownerStart.disabled=ownerStop.disabled=ownerReset.disabled=true;
+    ownerStatus.textContent='Updating…';
+    try{
+      const result=await request(path,'POST');
+      ownerStatus.textContent=result.message||'Updated';
+      await refreshControls();
+    }catch(error){
+      ownerStatus.textContent=error.message;
+      await refreshControls();
+    }
+  };
+  ownerStart?.addEventListener('click',()=>operate('/api/start'));
+  ownerStop?.addEventListener('click',()=>operate('/api/stop'));
+  ownerReset?.addEventListener('click',()=>{
+    if(confirm('Reset WAKE✳︎ durable research/history to cycle 0? Continuous operation will remain stopped.')) operate('/api/reset');
+  });
+  refreshControls();
+  setInterval(refreshControls,15000);
+
+  // Safari aggressively reuses static Pages assets. Poll cache-busted durable
+  // markers and force a cache-busted reload only when published data changes.
+  let marker=null;
+  const refreshPublishedState=async()=>{
+    try{
+      const stamp=Date.now();
+      const [headResponse,operationResponse]=await Promise.all([
+        fetch('head.txt?wake='+stamp,{cache:'no-store',headers:{'Cache-Control':'no-cache'}}),
+        fetch('operation.json?wake='+stamp,{cache:'no-store',headers:{'Cache-Control':'no-cache'}}),
+      ]);
+      if(!headResponse.ok||!operationResponse.ok)return;
+      const head=(await headResponse.text()).trim();
+      const operation=await operationResponse.text();
+      const next=head+'|'+operation;
+      if(marker===null){marker=next;return}
+      if(next!==marker){
+        const url=new URL(location.href);
+        url.searchParams.set('wake_refresh',String(Date.now()));
+        location.replace(url.toString());
+      }
+    }catch{}
+  };
+  refreshPublishedState();
+  setInterval(refreshPublishedState,10000);
+})();
+</script>
 </body></html>
