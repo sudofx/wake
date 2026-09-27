@@ -282,6 +282,15 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertIn("data-owner-start", page)
         self.assertIn("data-owner-stop", page)
         self.assertIn("data-owner-reset", page)
+        # WAKE's technical record is public; authentication gates operator actions,
+        # not research, metrics, evidence, history, or raw published data.
+        self.assertNotIn("operator-only", page)
+        self.assertNotIn("public-view", page)
+        self.assertIn('href="#lab"', page)
+        self.assertIn('href="#evidence"', page)
+        self.assertIn('href="#history"', page)
+        self.assertIn('href="#metrics"', page)
+        self.assertIn('href="state.html"', page)
 
     def test_wordmark_navigation_is_deployment_portable(self):
         root = Path(__file__).resolve().parents[1]
