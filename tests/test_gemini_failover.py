@@ -116,9 +116,11 @@ class FailoverTests(unittest.TestCase):
         self.assertEqual(status["latest_attempt"]["provider_requests_sent"], 2)
         export(self.engine.store, Path(self.temp.name) / "site")
         page = (Path(self.temp.name) / "site" / "index.html").read_text()
+        browser_data = json.loads((Path(self.temp.name) / "site" / "wake-data.json").read_text())
         self.assertIn("Which version answers?", page)
-        self.assertIn("gemini-3.8-flash", page)
-        self.assertIn("gemini-3.5-flash", page)
+        browser_invocation = browser_data["state"]["invocations"][result["id"]]
+        self.assertEqual(browser_invocation["model"], "gemini-3.8-flash")
+        self.assertEqual(browser_invocation["successful_model"], "gemini-3.5-flash")
 
     def test_all_unavailable_deduplicates_and_defers_without_research(self):
         self.settings["gemini_fallback_models"] += [self.settings["model"], "gemini-3.5-flash"]
