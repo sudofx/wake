@@ -27,6 +27,11 @@ on:
         type: boolean
         required: false
         default: false
+      publish_after:
+        description: Deprecated compatibility input; cycles never publish Pages
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: write
