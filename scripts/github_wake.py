@@ -145,7 +145,7 @@ def main(publish_only=False, scheduled=False, reset=False, record_only=False):
                 if previous_site.exists():
                     shutil.rmtree(ROOT / "site", ignore_errors=True)
                     shutil.copytree(previous_site, ROOT / "site")
-                export(engine.store, ROOT / "site", operation=result)
+                export(engine.store, ROOT / "site", operation=result, browser_only=True)
                 atomic_write(ROOT / "site/operation.json", json.dumps(result, indent=2))
                 atomic_write(ROOT / "site/.nojekyll", "")
                 print(json.dumps(result))
