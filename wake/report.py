@@ -721,8 +721,8 @@ def export(store, destination="site", experiment=None, operation=None, browser_o
             # publication cost therefore no longer grows with every journal entry.
             atomic_write(target / "index.html", page)
             atomic_write(target / "state.json", json.dumps(state, indent=2, ensure_ascii=False))
-            atomic_write(target / "events.jsonl", "".join(canonical(event) + "\\n" for event in events))
-            atomic_write(target / "head.txt", head + "\\n")
+            atomic_write(target / "events.jsonl", "".join(canonical(event) + "\n" for event in events))
+            atomic_write(target / "head.txt", head + "\n")
             for name in ("nav.js", "map.js", "map3d.js"):
                 atomic_write(target / name, (assets / name).read_text())
 
@@ -743,17 +743,21 @@ def export(store, destination="site", experiment=None, operation=None, browser_o
             map3d_page = (assets / "map3d.html").read_text().replace("WAKE_CYCLE_COUNT", str(state["version"]))
             atomic_write(target / "map3d.html", map3d_page)
 
-            # Preserve the long-standing readable URLs, but make them thin data
-            # clients instead of regenerating the entire historical document.
-            def data_reader(title, source, mode="json"):
-                render = ("JSON.stringify(JSON.parse(text),null,2)" if mode == "json" else "text")
-                return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title} / WAKE✳︎</title><link rel="stylesheet" href="theme.css"><link rel="stylesheet" href="style.css"></head><body><main style="max-width:1100px;margin:auto;padding:2rem"><p><a href="index.html">← WAKE✳︎</a></p><h1>{title}</h1><p>Browser-rendered from <a href="{source}">{source}</a>.</p><pre id="record">Loading current record…</pre></main><script>fetch('{source}',{{cache:'no-store'}}).then(r=>{{if(!r.ok)throw Error('HTTP '+r.status);return r.text()}}).then(text=>record.textContent={render}).catch(e=>record.textContent='Could not load current record: '+e.message)</script></body></html>"""
-            atomic_write(target / "state.html", data_reader("Durable state", "state.json"))
-            atomic_write(target / "events.html", data_reader("Event history", "events.jsonl", "text"))
-            atomic_write(target / "rejected.html", '<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=index.html#history/filter:rejected"><script>location.replace("index.html#history/filter:rejected"+location.hash)</script>')
+            # Preserve long-standing readable URLs as stable browser shells.
+            # Their content comes from the current flat exports at page load.
+            atomic_write(target / "state.html", _flat_browser_shell(
+                "State", "THE CURRENT DURABLE STATE", "Current state.",
+                "Loaded from state.json when this page opens.", "state", "state.json"))
+            atomic_write(target / "events.html", _flat_browser_shell(
+                "History", "THE APPEND-ONLY RECORD", "Exact history.",
+                "Loaded from events.jsonl when this page opens.", "events", "events.jsonl"))
+            atomic_write(target / "rejected.html", _flat_browser_shell(
+                "Rejected & withheld drafts", "GOVERNANCE / STOPPED PROPOSALS",
+                "Rejected & withheld drafts.", "Loaded from the current published record when this page opens.",
+                "rejected", "wake-data.json"))
 
-            # Old standalone artifact URLs remain useful bookmarks. GitHub Pages
-            # falls through here and routes them to the equivalent live SPA view.
+            # Old standalone artifact URLs remain useful bookmarks. Route missing
+            # historical presentation files back into the live browser projection.
             atomic_write(target / "404.html", """<!doctype html><meta charset="utf-8"><script>(()=>{const p=location.pathname;let h='home';let m;if((m=p.match(/\\/blog\\/([^/]+)\\.(?:html|md)$/)))h='blog/'+decodeURIComponent(m[1]);else if((m=p.match(/\\/journal\\/([^/]+)\\.html$/)))h='history/'+decodeURIComponent(m[1]);else if((m=p.match(/\\/notebooks\\/([^/]+)\\.(?:html|md)$/)))h='projects/notebook:'+decodeURIComponent(m[1]);location.replace(new URL('index.html#'+h,location.href))})()</script>""")
             return {"path": str((target / "index.html").resolve()), "cycles": state["version"], "head": head}
         lines = ["# **WAKE✳︎** — The journal", "", "> Disposable models. Durable state. Receipts for everything.", "",
