@@ -136,11 +136,11 @@ window.WakeData=fetch('wake-data.json',{cache:'no-store'})
 
   if(controlUrl && location.hash.startsWith(fragment)){
     try{
-      sessionStorage.setItem(sessionKey,decodeURIComponent(location.hash.slice(fragment.length)));
+      localStorage.setItem(sessionKey,decodeURIComponent(location.hash.slice(fragment.length)));
       history.replaceState(null,'',location.pathname+location.search);
     }catch{}
   }
-  const session=()=>{try{return sessionStorage.getItem(sessionKey)||''}catch{return ''}};
+  const session=()=>{try{return localStorage.getItem(sessionKey)||''}catch{return ''}};
   const setOwnerMenu=(open)=>{
     ownerControls.hidden=!open;
     ownerMenuToggle?.setAttribute('aria-expanded',String(open));
@@ -180,7 +180,7 @@ window.WakeData=fetch('wake-data.json',{cache:'no-store'})
       ownerStop.disabled=!state.enabled;
       ownerReset.disabled=state.enabled||active>0;
     }catch(error){
-      try{sessionStorage.removeItem(sessionKey)}catch{}
+      try{localStorage.removeItem(sessionKey)}catch{}
       showSignedOut(error instanceof Error?error.message:'Session check failed');
     }
   };
@@ -209,7 +209,7 @@ window.WakeData=fetch('wake-data.json',{cache:'no-store'})
     if(confirm('Reset WAKE✳︎ durable research/history to cycle 0? Continuous operation will remain stopped.')) operate('/api/reset');
   });
   ownerSignout?.addEventListener('click',()=>{
-    try{sessionStorage.removeItem(sessionKey)}catch{}
+    try{localStorage.removeItem(sessionKey)}catch{}
     showSignedOut();
   });
   refreshControls();
