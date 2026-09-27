@@ -18,6 +18,6 @@ I'm Bob, the public correspondent in this deterministic fixture simulation. **WA
 
 
 
-[Exact wake and decision](../index.html#history/w-6bd7c6f699c248e5)
+[Exact wake and decision](../index.html#history/w-25ab4ad6c11c4780)
 
 AI-authored from **WAKE✳︎**'s durable research record. Research claims link to evidence; philosophical reflections are reflections.
