@@ -630,6 +630,35 @@ def _blog_html(post, state):
 # ---------------------------------------------------------------------------
 
 
+
+def _browser_route_shell(route, prefix="../"):
+    """Tiny compatibility page: preserve old URLs while rendering from current browser data."""
+    target = prefix + "index.html" + route
+    safe = json.dumps(target)
+    return (
+        '<!doctype html><html lang="en"><head><meta charset="utf-8">'
+        '<meta name="viewport" content="width=device-width,initial-scale=1">'
+        '<meta name="robots" content="noindex">'
+        '<title>WAKE✳︎</title></head><body data-wake-route-shell>'
+        '<p>Opening the current WAKE✳︎ record…</p>'
+        f'<script>location.replace({safe});</script>'
+        f'<noscript><a href="{html.escape(target)}">Open the current WAKE✳︎ record</a></noscript>'
+        '</body></html>'
+    )
+
+
+def _write_browser_route_shell(path, route, prefix="../"):
+    """Write a route shell once; later publications reuse it unchanged."""
+    path = Path(path)
+    if path.exists():
+        try:
+            if "data-wake-route-shell" in path.read_text(encoding="utf-8"):
+                return
+        except (OSError, UnicodeDecodeError):
+            pass
+    atomic_write(path, _browser_route_shell(route, prefix=prefix))
+
+
 def export(store, destination="site", experiment=None, operation=None):
     with store.lock():
         # Publication consumes one verified record snapshot. Replaying again for
@@ -699,8 +728,10 @@ def export(store, destination="site", experiment=None, operation=None):
                     + ('<p class="note">Deterministic simulation, not a live model result.</p>'
                        if invocation["provider"] == "fixture" else "")
                     + f'<p><a href="../index.html#history/{html.escape(entry["invocation"])}">Exact wake and decision →</a></p>')
-            atomic_write(target / "journal" / (entry["invocation"] + ".html"),
-                         _reading_page(entry["title"], "WAKE✳︎ / JOURNAL", body, "../journal.md", meta_html=meta))
+            _write_browser_route_shell(
+                target / "journal" / (entry["invocation"] + ".html"),
+                "#journal/cycle:" + str(entry["cycle"]),
+            )
         atomic_write(target / "journal.md", "\n".join(lines))
         atomic_write(target / "state.json", json.dumps(state, indent=2, ensure_ascii=False))
         atomic_write(target / "events.jsonl", "".join(canonical(event) + "\n" for event in events))
@@ -724,7 +755,10 @@ def export(store, destination="site", experiment=None, operation=None):
                         f"## Next questions\n\n{_md_text(notebook['next_questions'])}\n\n## Collected sources\n\n{sources}\n\n"
                         f"Revision {notebook['revision']} · AI-authored research synthesis; see source scopes in the journal.\n")
             atomic_write(target / "notebooks" / (notebook["id"] + ".md"), markdown)
-            atomic_write(target / "notebooks" / (notebook["id"] + ".html"), _notebook_html(notebook, state))
+            _write_browser_route_shell(
+                target / "notebooks" / (notebook["id"] + ".html"),
+                "#projects/notebook:" + str(notebook["id"]),
+            )
         for post in state.get("posts", {}).values():
             newline = chr(10)
             notebook_links = newline.join(
@@ -742,7 +776,10 @@ def export(store, destination="site", experiment=None, operation=None):
                       f"[Exact wake and decision](../index.html#history/{post['created_by']})", "",
                       "AI-authored from **WAKE✳︎**'s durable research record. Research claims link to evidence; philosophical reflections are reflections.", ""]
             atomic_write(target / "blog" / (post["id"] + ".md"), newline.join(parts))
-            atomic_write(target / "blog" / (post["id"] + ".html"), _blog_html(post, state))
+            _write_browser_route_shell(
+                target / "blog" / (post["id"] + ".html"),
+                "#blog/" + str(post["id"]),
+            )
         if experiment:
             atomic_write(target / "experiment.json", json.dumps(experiment, indent=2))
         else:
