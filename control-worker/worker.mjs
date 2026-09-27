@@ -209,7 +209,7 @@ async function reset(env, session, githubFetch) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ref: "master",
-        inputs: { reset: true, publish_after: true, dispatch_token: `reset-${Date.now()}` },
+        inputs: { reset: "true", publish_after: "true", dispatch_token: `reset-${Date.now()}` },
       }),
     }, githubFetch);
   return { enabled: false, message: "WAKE✳︎ reset to cycle zero has been requested; continuous operation remains stopped." };
