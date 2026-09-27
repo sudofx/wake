@@ -1040,3 +1040,17 @@ html,body{max-width:100%;overflow-x:clip}
 .motion-numbers div:nth-child(1) strong{color:var(--success)}
 .motion-numbers div:nth-child(2) strong{color:var(--danger)}
 .motion-numbers div:nth-child(3) strong{color:var(--warning)}
+
+
+/* Authenticated WAKE✳︎ operator controls. Hidden entirely until a control
+   endpoint is configured; compact enough to stay inside the mobile header. */
+.owner-access{font:10px var(--mono);display:flex;align-items:center;gap:8px}
+.owner-access[hidden],.owner-controls[hidden]{display:none!important}
+.owner-login{color:var(--muted);white-space:nowrap}
+.owner-controls{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.owner-controls span{color:var(--muted);white-space:nowrap}
+.owner-controls button{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:6px 8px;font:800 10px var(--mono);cursor:pointer;border-radius:4px}
+.owner-controls [data-owner-start]{border-color:var(--green);color:var(--green)}
+.owner-controls [data-owner-stop],.owner-controls [data-owner-reset]{border-color:var(--hot);color:var(--hot)}
+.owner-controls button:disabled{opacity:.42;cursor:default}
+@media(max-width:760px){.owner-controls span{display:none}.owner-controls button{padding:5px 7px}.header-tools{gap:7px}}
