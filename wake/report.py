@@ -723,7 +723,18 @@ def export(store, destination="site", experiment=None, operation=None, browser_o
             atomic_write(target / "state.json", json.dumps(state, indent=2, ensure_ascii=False))
             atomic_write(target / "events.jsonl", "".join(canonical(event) + "\n" for event in events))
             atomic_write(target / "head.txt", head + "\n")
-            for name in ("nav.js", "map.js", "map3d.js"):
+            atomic_write(target / "journal.md",
+                         "# **WAKE✳︎** — Live journal\n\nThis lightweight Pages view is rendered from the current durable record in the browser.\n\n[Open the journal](index.html#journal) · [Exact event history](events.html)\n")
+            atomic_write(target / "state.md",
+                         "# **WAKE✳︎** — Durable state\n\n[Open the current state](state.html) · [Raw state JSON](state.json)\n")
+            atomic_write(target / "events.md",
+                         "# **WAKE✳︎** — Event history\n\n[Open the current history](events.html) · [Raw event JSONL](events.jsonl)\n")
+            from .feeds import build_feeds
+            for filename, content in build_feeds(state).items():
+                atomic_write(target / filename, content)
+            if experiment:
+                atomic_write(target / "experiment.json", json.dumps(experiment, indent=2))
+            for name in ("nav.js", "map.js", "map3d.js", "flat-view.js"):
                 atomic_write(target / name, (assets / name).read_text())
 
             # The map shells already fetch their data at browser load. Keep the
