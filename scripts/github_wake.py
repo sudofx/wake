@@ -127,7 +127,7 @@ def main(publish_only=False, scheduled=False, reset=False, record_only=False):
             # recover, append, repair, checkpoint, or push wake-state. Configuration
             # adoption therefore remains part of the next serialized stateful wake.
             if publish_only and not reset:
-                state = engine.store.load()
+                state, verified_head, verified_events = engine.store.replay_record()
                 latest = next(reversed(state["invocations"].values()), None)
                 result = ({"status": latest["status"], "id": latest["id"], "reason": latest.get("reason", "")}
                           if latest else {"status": "not_started", "reason": "Waiting for the first research wake"})
@@ -145,7 +145,10 @@ def main(publish_only=False, scheduled=False, reset=False, record_only=False):
                 if previous_site.exists():
                     shutil.rmtree(ROOT / "site", ignore_errors=True)
                     shutil.copytree(previous_site, ROOT / "site")
-                export(engine.store, ROOT / "site", operation=result, browser_only=True)
+                export(
+                    engine.store, ROOT / "site", operation=result, browser_only=True,
+                    record_snapshot=(state, verified_head, verified_events),
+                )
                 atomic_write(ROOT / "site/operation.json", json.dumps(result, indent=2))
                 atomic_write(ROOT / "site/.nojekyll", "")
                 print(json.dumps(result))
