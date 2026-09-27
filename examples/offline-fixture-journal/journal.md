@@ -4,806 +4,806 @@
 
 Objective: Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process.
 
-Verified head: `1a1eb8f95b683b7b39a3255e61767bd3469046e53caf651861cf7282f9c86c71`
+Verified head: `c439eaecda56261d2db232006d28413cc5a8a60b4df91708863dd08c1183a85d`
 
 Fixture entries are deterministic simulations, not live model experiments.
 
-## 100 · Advancing Comedy under enforced rotation
+## 100 · Advancing Information thermodynamics under enforced rotation
 
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-b
-
-Squirrel accepted the valid comedy subset of a mixed provider proposal and withheld 2 off-topic or administrative action(s). The exact provider response remains preserved in history.
-
-Invocation: `w-9e158b149791415b`
-
-## 099 · Trust is nice. Evidence is better.
-
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-a
-
-Fresh process, cycle 99. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-fb07a53cdcaa4ad2`
-
-## 098 · Still here. Still accountable.
-
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-b
-
-Fresh process, cycle 98. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-cdc21cc7dfdd426b`
-
-## 097 · The receipts survived.
-
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-a
-
-Fresh process, cycle 97. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-7df2b74b82f94cd4`
-
-## 096 · Same tape. Fresh deck.
-
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-b
-
-Fresh process, cycle 96. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-8dbea7fcf539456c`
-
-## 095 · Rewind. Review. Carry on.
-
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-a
-
-Fresh process, cycle 95. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-242d6effd0744ace`
-
-## 094 · Trust is nice. Evidence is better.
-
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-b
-
-Fresh process, cycle 94. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-daa13b4584b4434f`
-
-## 093 · Still here. Still accountable.
-
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-a
-
-Fresh process, cycle 93. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-c896ed0cf2c34566`
-
-## 092 · The receipts survived.
-
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-b
-
-Fresh process, cycle 92. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-69a7cc41642e436a`
-
-## 091 · Same tape. Fresh deck.
-
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-a
-
-Fresh process, cycle 91. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-b85c63676f214b6a`
-
-## 090 · Advancing Complex systems under enforced rotation
-
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-b
-
-Squirrel accepted the valid complex_systems subset of a mixed provider proposal and withheld 2 off-topic or administrative action(s). The exact provider response remains preserved in history.
-
-Invocation: `w-37a2761cd1734d61`
-
-## 089 · Trust is nice. Evidence is better.
-
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-a
-
-Fresh process, cycle 89. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-02457f4ca7db4b91`
-
-## 088 · Still here. Still accountable.
-
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-b
-
-Fresh process, cycle 88. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-97e8957e009b4566`
-
-## 087 · The receipts survived.
-
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-a
-
-Fresh process, cycle 87. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-36c933358b7a4ce7`
-
-## 086 · Same tape. Fresh deck.
-
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-b
-
-Fresh process, cycle 86. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-c48c48a28c6e4d0b`
-
-## 085 · Rewind. Review. Carry on.
-
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-a
-
-Fresh process, cycle 85. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-a22174be91d44ab9`
-
-## 084 · Trust is nice. Evidence is better.
-
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-b
-
-Fresh process, cycle 84. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-983d9b47a72d41c9`
-
-## 083 · Still here. Still accountable.
-
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-a
-
-Fresh process, cycle 83. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-ecf269de586d4f17`
-
-## 082 · The receipts survived.
-
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-b
-
-Fresh process, cycle 82. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-fb45602d8cc845c9`
-
-## 081 · Same tape. Fresh deck.
-
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-a
-
-Fresh process, cycle 81. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-34087dfadf584d10`
-
-## 080 · Advancing Information thermodynamics under enforced rotation
-
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-b
+September 27, 2026 · 09:49 AM PDT · fixture / fixture-b
 
 Squirrel accepted the valid information_thermodynamics subset of a mixed provider proposal and withheld 2 off-topic or administrative action(s). The exact provider response remains preserved in history.
 
-Invocation: `w-4bba330699cc44c4`
+Invocation: `w-e4945256493a4b8f`
 
-## 079 · Trust is nice. Evidence is better.
+## 099 · Trust is nice. Evidence is better.
 
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-a
+September 27, 2026 · 09:49 AM PDT · fixture / fixture-a
 
-Fresh process, cycle 79. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+Fresh process, cycle 99. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-afcecbf86e814e8d`
+Invocation: `w-83e93e6739344b1b`
 
-## 078 · Still here. Still accountable.
+## 098 · Still here. Still accountable.
 
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-b
+September 27, 2026 · 09:49 AM PDT · fixture / fixture-b
 
-Fresh process, cycle 78. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+Fresh process, cycle 98. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-9d378089e64c425d`
+Invocation: `w-5d96dd615c6b4778`
 
-## 077 · The receipts survived.
+## 097 · The receipts survived.
 
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-a
+September 27, 2026 · 09:49 AM PDT · fixture / fixture-a
 
-Fresh process, cycle 77. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+Fresh process, cycle 97. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-684a2d8a55eb4803`
+Invocation: `w-7d0a21ba58bc42c2`
 
-## 076 · Same tape. Fresh deck.
+## 096 · Same tape. Fresh deck.
 
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-b
+September 27, 2026 · 09:49 AM PDT · fixture / fixture-b
 
-Fresh process, cycle 76. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+Fresh process, cycle 96. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-4db018574b7041f2`
+Invocation: `w-e695dbfa56224770`
 
-## 075 · Rewind. Review. Carry on.
+## 095 · Rewind. Review. Carry on.
 
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-a
+September 27, 2026 · 09:49 AM PDT · fixture / fixture-a
 
-Fresh process, cycle 75. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+Fresh process, cycle 95. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-aa686d5bdcfc4ebf`
+Invocation: `w-4a610107e21e4f11`
 
-## 074 · Trust is nice. Evidence is better.
+## 094 · Trust is nice. Evidence is better.
 
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-b
+September 27, 2026 · 09:49 AM PDT · fixture / fixture-b
 
-Fresh process, cycle 74. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+Fresh process, cycle 94. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-639cd2427d264fd2`
+Invocation: `w-801c5ae05da24bef`
 
-## 073 · Still here. Still accountable.
+## 093 · Still here. Still accountable.
 
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-a
+September 27, 2026 · 09:49 AM PDT · fixture / fixture-a
 
-Fresh process, cycle 73. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+Fresh process, cycle 93. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-b09ba0f58ec14d37`
+Invocation: `w-9adea26269114329`
 
-## 072 · The receipts survived.
+## 092 · The receipts survived.
 
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-b
+September 27, 2026 · 09:49 AM PDT · fixture / fixture-b
 
-Fresh process, cycle 72. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+Fresh process, cycle 92. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-8f7cf219ddd4476f`
+Invocation: `w-be16fd688a4f4740`
 
-## 071 · Same tape. Fresh deck.
+## 091 · Same tape. Fresh deck.
 
-September 27, 2026 · 09:36 AM PDT · fixture / fixture-a
+September 27, 2026 · 09:49 AM PDT · fixture / fixture-a
 
-Fresh process, cycle 71. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+Fresh process, cycle 91. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-1cb67ddab06644b6`
+Invocation: `w-94bdefff16bf46f1`
 
-## 070 · Advancing Neurodivergence under enforced rotation
+## 090 · Advancing Endocrinology under enforced rotation
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
-
-Squirrel accepted the valid neurodivergence subset of a mixed provider proposal and withheld 2 off-topic or administrative action(s). The exact provider response remains preserved in history.
-
-Invocation: `w-739de641465e4088`
-
-## 069 · Trust is nice. Evidence is better.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
-
-Fresh process, cycle 69. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-87fa4e89885c4ec1`
-
-## 068 · Still here. Still accountable.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
-
-Fresh process, cycle 68. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-c5401deecbee4b18`
-
-## 067 · The receipts survived.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
-
-Fresh process, cycle 67. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-f3e89ff893e84e77`
-
-## 066 · Same tape. Fresh deck.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
-
-Fresh process, cycle 66. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-00332a97332f4b3e`
-
-## 065 · Rewind. Review. Carry on.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
-
-Fresh process, cycle 65. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-99da7c41e6f14cad`
-
-## 064 · Trust is nice. Evidence is better.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
-
-Fresh process, cycle 64. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-dfa37d5b5e3e4b3d`
-
-## 063 · Still here. Still accountable.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
-
-Fresh process, cycle 63. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-ee8d8576abec4061`
-
-## 062 · The receipts survived.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
-
-Fresh process, cycle 62. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-0a104d715ac34fc7`
-
-## 061 · Same tape. Fresh deck.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
-
-Fresh process, cycle 61. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-cc7422a8e2d64231`
-
-## 060 · Advancing Quantum mechanics under enforced rotation
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
-
-Squirrel accepted the valid quantum_mechanics subset of a mixed provider proposal and withheld 2 off-topic or administrative action(s). The exact provider response remains preserved in history.
-
-Invocation: `w-1e4c383bb7b84c38`
-
-## 059 · Trust is nice. Evidence is better.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
-
-Fresh process, cycle 59. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-bdba58552fa04ebd`
-
-## 058 · Still here. Still accountable.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
-
-Fresh process, cycle 58. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-82a00d40489347e9`
-
-## 057 · The receipts survived.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
-
-Fresh process, cycle 57. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-aaa98ce0fad549ef`
-
-## 056 · Same tape. Fresh deck.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
-
-Fresh process, cycle 56. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-1eb5a556318f4b45`
-
-## 055 · Rewind. Review. Carry on.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
-
-Fresh process, cycle 55. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-637a060c486a4b17`
-
-## 054 · Trust is nice. Evidence is better.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
-
-Fresh process, cycle 54. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-84dc2a17c2cc41f8`
-
-## 053 · Still here. Still accountable.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
-
-Fresh process, cycle 53. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-46b1f38572e343b3`
-
-## 052 · The receipts survived.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
-
-Fresh process, cycle 52. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-12b0dc5ecb974167`
-
-## 051 · Same tape. Fresh deck.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
-
-Fresh process, cycle 51. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-68f398f2ad6c4c45`
-
-## 050 · Advancing Music under enforced rotation
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
-
-Squirrel accepted the valid music subset of a mixed provider proposal and withheld 2 off-topic or administrative action(s). The exact provider response remains preserved in history.
-
-Invocation: `w-fbcbcae40c6e461f`
-
-## 049 · Trust is nice. Evidence is better.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
-
-Fresh process, cycle 49. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-3ffecc3e9ea54c1b`
-
-## 048 · Still here. Still accountable.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
-
-Fresh process, cycle 48. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-8f3fbd5d5f924ca8`
-
-## 047 · The receipts survived.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
-
-Fresh process, cycle 47. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-a7703377f6cd4089`
-
-## 046 · Same tape. Fresh deck.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
-
-Fresh process, cycle 46. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-d3daa81ea4ab4015`
-
-## 045 · Rewind. Review. Carry on.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
-
-Fresh process, cycle 45. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-a3b68a66f1ca4b5e`
-
-## 044 · Trust is nice. Evidence is better.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
-
-Fresh process, cycle 44. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-a58c499d5b8d4a30`
-
-## 043 · Still here. Still accountable.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
-
-Fresh process, cycle 43. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-1680e7cb842947c6`
-
-## 042 · The receipts survived.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
-
-Fresh process, cycle 42. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-ef9af268f1214a38`
-
-## 041 · Same tape. Fresh deck.
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
-
-Fresh process, cycle 41. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
-
-Invocation: `w-4fdb90ca54524e88`
-
-## 040 · Advancing Endocrinology under enforced rotation
-
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
+September 27, 2026 · 09:49 AM PDT · fixture / fixture-b
 
 Squirrel accepted the valid endocrinology subset of a mixed provider proposal and withheld 2 off-topic or administrative action(s). The exact provider response remains preserved in history.
 
-Invocation: `w-25ab4ad6c11c4780`
+Invocation: `w-040cc52d372240f2`
+
+## 089 · Trust is nice. Evidence is better.
+
+September 27, 2026 · 09:49 AM PDT · fixture / fixture-a
+
+Fresh process, cycle 89. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-5e4ad808fbfd424c`
+
+## 088 · Still here. Still accountable.
+
+September 27, 2026 · 09:49 AM PDT · fixture / fixture-b
+
+Fresh process, cycle 88. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-aa2c95eb1af14775`
+
+## 087 · The receipts survived.
+
+September 27, 2026 · 09:49 AM PDT · fixture / fixture-a
+
+Fresh process, cycle 87. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-09e5b28ba21b4fad`
+
+## 086 · Same tape. Fresh deck.
+
+September 27, 2026 · 09:49 AM PDT · fixture / fixture-b
+
+Fresh process, cycle 86. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-dfd9d2c3959147e9`
+
+## 085 · Rewind. Review. Carry on.
+
+September 27, 2026 · 09:49 AM PDT · fixture / fixture-a
+
+Fresh process, cycle 85. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-e1188d5728ac4a30`
+
+## 084 · Trust is nice. Evidence is better.
+
+September 27, 2026 · 09:49 AM PDT · fixture / fixture-b
+
+Fresh process, cycle 84. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-9d6fb880a7ae4f56`
+
+## 083 · Still here. Still accountable.
+
+September 27, 2026 · 09:49 AM PDT · fixture / fixture-a
+
+Fresh process, cycle 83. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-ea5f746fcccd4827`
+
+## 082 · The receipts survived.
+
+September 27, 2026 · 09:49 AM PDT · fixture / fixture-b
+
+Fresh process, cycle 82. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-bde9f4aeddc14568`
+
+## 081 · Same tape. Fresh deck.
+
+September 27, 2026 · 09:49 AM PDT · fixture / fixture-a
+
+Fresh process, cycle 81. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-31fd11e9127246f5`
+
+## 080 · Advancing Epistemology under enforced rotation
+
+September 27, 2026 · 09:49 AM PDT · fixture / fixture-b
+
+Squirrel accepted the valid epistemology subset of a mixed provider proposal and withheld 2 off-topic or administrative action(s). The exact provider response remains preserved in history.
+
+Invocation: `w-a0b3ab12942946d0`
+
+## 079 · Trust is nice. Evidence is better.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
+
+Fresh process, cycle 79. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-585fdc2a078d42dc`
+
+## 078 · Still here. Still accountable.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
+
+Fresh process, cycle 78. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-e0cc68077b424e64`
+
+## 077 · The receipts survived.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
+
+Fresh process, cycle 77. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-b3676efb71b84042`
+
+## 076 · Same tape. Fresh deck.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
+
+Fresh process, cycle 76. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-efafa31cfddd4cd7`
+
+## 075 · Rewind. Review. Carry on.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
+
+Fresh process, cycle 75. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-851d7a402cf047c3`
+
+## 074 · Trust is nice. Evidence is better.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
+
+Fresh process, cycle 74. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-43f5c9c57b6c4ccc`
+
+## 073 · Still here. Still accountable.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
+
+Fresh process, cycle 73. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-7ba9cac83d644abe`
+
+## 072 · The receipts survived.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
+
+Fresh process, cycle 72. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-ecc24d8f47ec4b1d`
+
+## 071 · Same tape. Fresh deck.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
+
+Fresh process, cycle 71. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-39b164567ba94462`
+
+## 070 · Advancing Religion under enforced rotation
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
+
+Squirrel accepted the valid religion subset of a mixed provider proposal and withheld 2 off-topic or administrative action(s). The exact provider response remains preserved in history.
+
+Invocation: `w-aa2e37f7f737458f`
+
+## 069 · Trust is nice. Evidence is better.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
+
+Fresh process, cycle 69. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-593c15ca3e804541`
+
+## 068 · Still here. Still accountable.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
+
+Fresh process, cycle 68. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-53baa1917a4549d9`
+
+## 067 · The receipts survived.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
+
+Fresh process, cycle 67. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-bb55010bc55946b0`
+
+## 066 · Same tape. Fresh deck.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
+
+Fresh process, cycle 66. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-3269021d611d421f`
+
+## 065 · Rewind. Review. Carry on.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
+
+Fresh process, cycle 65. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-fd8c87f6c7cd41e1`
+
+## 064 · Trust is nice. Evidence is better.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
+
+Fresh process, cycle 64. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-95f415ae62204481`
+
+## 063 · Still here. Still accountable.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
+
+Fresh process, cycle 63. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-bd7d7852adfb4cd4`
+
+## 062 · The receipts survived.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
+
+Fresh process, cycle 62. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-cb84c33048d84b15`
+
+## 061 · Same tape. Fresh deck.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
+
+Fresh process, cycle 61. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-16886e3de29a40e7`
+
+## 060 · Advancing Quantum mechanics under enforced rotation
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
+
+Squirrel accepted the valid quantum_mechanics subset of a mixed provider proposal and withheld 2 off-topic or administrative action(s). The exact provider response remains preserved in history.
+
+Invocation: `w-c738d29177b74bd4`
+
+## 059 · Trust is nice. Evidence is better.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
+
+Fresh process, cycle 59. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-a002771fde8b4f67`
+
+## 058 · Still here. Still accountable.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
+
+Fresh process, cycle 58. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-0408ddf542e74683`
+
+## 057 · The receipts survived.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
+
+Fresh process, cycle 57. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-fcf0594f924b40c8`
+
+## 056 · Same tape. Fresh deck.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
+
+Fresh process, cycle 56. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-3b7c3e3b63e64713`
+
+## 055 · Rewind. Review. Carry on.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
+
+Fresh process, cycle 55. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-e36ce84df76a4bb9`
+
+## 054 · Trust is nice. Evidence is better.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
+
+Fresh process, cycle 54. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-53b01fd9e8d94b49`
+
+## 053 · Still here. Still accountable.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
+
+Fresh process, cycle 53. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-71f32b72620f42d5`
+
+## 052 · The receipts survived.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
+
+Fresh process, cycle 52. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-a7cd3485226c4faf`
+
+## 051 · Same tape. Fresh deck.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
+
+Fresh process, cycle 51. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-5ad090f67d564055`
+
+## 050 · Advancing Storytelling under enforced rotation
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
+
+Squirrel accepted the valid storytelling subset of a mixed provider proposal and withheld 2 off-topic or administrative action(s). The exact provider response remains preserved in history.
+
+Invocation: `w-fd41f3d509124a8b`
+
+## 049 · Trust is nice. Evidence is better.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
+
+Fresh process, cycle 49. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-cdda0c6e975d42dc`
+
+## 048 · Still here. Still accountable.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
+
+Fresh process, cycle 48. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-f69933cf84344975`
+
+## 047 · The receipts survived.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
+
+Fresh process, cycle 47. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-82bed17acfd849ee`
+
+## 046 · Same tape. Fresh deck.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
+
+Fresh process, cycle 46. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-4845f8f3fb964079`
+
+## 045 · Rewind. Review. Carry on.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
+
+Fresh process, cycle 45. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-57aa90f545cf4335`
+
+## 044 · Trust is nice. Evidence is better.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
+
+Fresh process, cycle 44. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-22b8f801c7674cda`
+
+## 043 · Still here. Still accountable.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
+
+Fresh process, cycle 43. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-465cffedf852410e`
+
+## 042 · The receipts survived.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
+
+Fresh process, cycle 42. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-858c8b4efb6f4f5b`
+
+## 041 · Same tape. Fresh deck.
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
+
+Fresh process, cycle 41. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
+
+Invocation: `w-4fbc9a4b5d7a4aa4`
+
+## 040 · Advancing Consciousness under enforced rotation
+
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
+
+Squirrel accepted the valid consciousness subset of a mixed provider proposal and withheld 2 off-topic or administrative action(s). The exact provider response remains preserved in history.
+
+Invocation: `w-6f1f46f8276e41d7`
 
 ## 039 · Trust is nice. Evidence is better.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
 
 Fresh process, cycle 39. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-b66033b2d7744c1c`
+Invocation: `w-d6cd25d4b38d4f42`
 
 ## 038 · Still here. Still accountable.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
 
 Fresh process, cycle 38. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-583e2af6478940e4`
+Invocation: `w-f2a36e31c389449f`
 
 ## 037 · The receipts survived.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
 
 Fresh process, cycle 37. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-9d37079dccb843b6`
+Invocation: `w-b9a7197efcd84109`
 
 ## 036 · Same tape. Fresh deck.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
 
 Fresh process, cycle 36. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-9b720b7eaccd44ee`
+Invocation: `w-0fff949bef654992`
 
 ## 035 · Rewind. Review. Carry on.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
 
 Fresh process, cycle 35. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-c5b98fd28ce64bef`
+Invocation: `w-d88c338ad864468e`
 
 ## 034 · Trust is nice. Evidence is better.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
 
 Fresh process, cycle 34. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-d1b9ee54f50d4fa2`
+Invocation: `w-c8c22e81edbb41f3`
 
 ## 033 · Still here. Still accountable.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
 
 Fresh process, cycle 33. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-fe6cb087e5fd444b`
+Invocation: `w-a1b7ea5f6abe42a7`
 
 ## 032 · The receipts survived.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
 
 Fresh process, cycle 32. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-47b7bdf962f74206`
+Invocation: `w-0f2895c7ddde40c1`
 
 ## 031 · Same tape. Fresh deck.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
 
 Fresh process, cycle 31. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-8b13031da72d49a6`
+Invocation: `w-eccac9e897764d35`
 
-## 030 · Advancing Evolutionary biology under enforced rotation
+## 030 · Advancing Psychology under enforced rotation
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
 
-Squirrel accepted the valid evolutionary_biology subset of a mixed provider proposal and withheld 2 off-topic or administrative action(s). The exact provider response remains preserved in history.
+Squirrel accepted the valid psychology subset of a mixed provider proposal and withheld 2 off-topic or administrative action(s). The exact provider response remains preserved in history.
 
-Invocation: `w-b1d982dd5b9e44d7`
+Invocation: `w-352ed681f9d34e8c`
 
 ## 029 · Trust is nice. Evidence is better.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
 
 Fresh process, cycle 29. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-cb19673bb70c4d69`
+Invocation: `w-3943549a09e9454c`
 
 ## 028 · Still here. Still accountable.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
 
 Fresh process, cycle 28. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-04fa64dba6a44ede`
+Invocation: `w-4f2d5e444ee2461e`
 
 ## 027 · The receipts survived.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
 
 Fresh process, cycle 27. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-d76be9ac54f64614`
+Invocation: `w-0263b9dee3f64d55`
 
 ## 026 · Same tape. Fresh deck.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
 
 Fresh process, cycle 26. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-b303dd9c31464e11`
+Invocation: `w-a3e5b91284f54296`
 
 ## 025 · Rewind. Review. Carry on.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
 
 Fresh process, cycle 25. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-6d6be54759de4cb3`
+Invocation: `w-a5bc180150474941`
 
 ## 024 · Trust is nice. Evidence is better.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
 
 Fresh process, cycle 24. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-0b11bc15673b4c7b`
+Invocation: `w-b4e5bd129e8e4185`
 
 ## 023 · Still here. Still accountable.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
 
 Fresh process, cycle 23. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-fd81f26aef274e58`
+Invocation: `w-82d9c05ff6bd453f`
 
 ## 022 · The receipts survived.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
 
 Fresh process, cycle 22. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-fd080679d6f3403e`
+Invocation: `w-07c9fc1548c14b47`
 
 ## 021 · Same tape. Fresh deck.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
 
 Fresh process, cycle 21. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-e4507d00a65b4207`
+Invocation: `w-1584a20bf95a4d3a`
 
-## 020 · Advancing Prime numbers under enforced rotation
+## 020 · Advancing Comedy under enforced rotation
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
 
-Squirrel accepted the valid prime_numbers subset of a mixed provider proposal and withheld 2 off-topic or administrative action(s). The exact provider response remains preserved in history.
+Squirrel accepted the valid comedy subset of a mixed provider proposal and withheld 2 off-topic or administrative action(s). The exact provider response remains preserved in history.
 
-Invocation: `w-726655a9198846dc`
+Invocation: `w-7fd850134ff94b5b`
 
 ## 019 · Trust is nice. Evidence is better.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
 
 Fresh process, cycle 19. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-2f302850c0e84fe6`
+Invocation: `w-7c82ff638a354824`
 
 ## 018 · Still here. Still accountable.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
 
 Fresh process, cycle 18. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-acf27a1be0214f61`
+Invocation: `w-a90e643e2c94445c`
 
 ## 017 · The receipts survived.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
 
 Fresh process, cycle 17. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-17a458b558104ab5`
+Invocation: `w-0597f980314d487c`
 
 ## 016 · Same tape. Fresh deck.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
 
 Fresh process, cycle 16. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-ae226074e9f44e79`
+Invocation: `w-530887a65c0a49c6`
 
 ## 015 · Rewind. Review. Carry on.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
 
 Fresh process, cycle 15. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-da98f9c7268d43d9`
+Invocation: `w-0e0e5697cf9a4974`
 
 ## 014 · Trust is nice. Evidence is better.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
 
 Fresh process, cycle 14. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-18fd7dd688864648`
+Invocation: `w-5e51a8db42a343f6`
 
 ## 013 · Still here. Still accountable.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
 
 Fresh process, cycle 13. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-2c26b0806db24409`
+Invocation: `w-05aa3458453a4bc9`
 
 ## 012 · The receipts survived.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
 
 Fresh process, cycle 12. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-50541a606da14f35`
+Invocation: `w-6c82cca57b02432c`
 
 ## 011 · Same tape. Fresh deck.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
 
 Fresh process, cycle 11. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result. The simulated sensor produced a counterexample, so its claim is retracted. No sweeping it under the rug.
 
-Invocation: `w-36d24c679f604d2d`
+Invocation: `w-580f017dd08e4677`
 
-## 010 · Advancing Visual art under enforced rotation
+## 010 · Advancing Neurodivergence under enforced rotation
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
 
-Squirrel accepted the valid visual_art subset of a mixed provider proposal and withheld 3 off-topic or administrative action(s). The exact provider response remains preserved in history.
+Squirrel accepted the valid neurodivergence subset of a mixed provider proposal and withheld 3 off-topic or administrative action(s). The exact provider response remains preserved in history.
 
-Invocation: `w-8e074398e0cb4e52`
+Invocation: `w-fa5a569776ac49c7`
 
 ## 009 · Trust is nice. Evidence is better.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
 
 Fresh process, cycle 9. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-fd84d924ad814105`
+Invocation: `w-948c5eef9b10494e`
 
 ## 008 · Still here. Still accountable.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-b
 
 Fresh process, cycle 8. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-f08f8d6ce0dc4450`
+Invocation: `w-9210752363a84880`
 
 ## 007 · The receipts survived.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
+September 27, 2026 · 09:48 AM PDT · fixture / fixture-a
 
 Fresh process, cycle 7. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-772908d1542341a0`
+Invocation: `w-bf30e23428a34bc1`
 
 ## 006 · Same tape. Fresh deck.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
+September 27, 2026 · 09:47 AM PDT · fixture / fixture-b
 
 Fresh process, cycle 6. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-069688018e5c42e9`
+Invocation: `w-c7860e02ab104169`
 
 ## 005 · Rewind. Review. Carry on.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
+September 27, 2026 · 09:47 AM PDT · fixture / fixture-a
 
 Fresh process, cycle 5. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-6b536971f7354d81`
+Invocation: `w-48cb1bcec44c4f8c`
 
 ## 004 · Trust is nice. Evidence is better.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
+September 27, 2026 · 09:47 AM PDT · fixture / fixture-b
 
 Fresh process, cycle 4. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-f2b36aa63e454134`
+Invocation: `w-1ea50032b91b4dcf`
 
 ## 003 · Still here. Still accountable.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
+September 27, 2026 · 09:47 AM PDT · fixture / fixture-a
 
 Fresh process, cycle 3. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-2fa1281101014726`
+Invocation: `w-2f4be09a61f64b11`
 
 ## 002 · The receipts survived.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-b
+September 27, 2026 · 09:47 AM PDT · fixture / fixture-b
 
 Fresh process, cycle 2. I received 1 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-de55f774eec24da1`
+Invocation: `w-625279065b8f48c3`
 
 ## 001 · Same tape. Fresh deck.
 
-September 27, 2026 · 09:35 AM PDT · fixture / fixture-a
+September 27, 2026 · 09:47 AM PDT · fixture / fixture-a
 
 Fresh process, cycle 1. I received 0 open obligation(s) from durable state and reviewed the runtime receipt. Today's focus: continuity. This is a deterministic rehearsal, not a live model result.
 
-Invocation: `w-131e8443cfe84e42`
+Invocation: `w-b078241125704f90`
