@@ -68,6 +68,11 @@ class ResearchTests(unittest.TestCase):
         payload = {"scope":source_scope, "excerpt":"Only a fixture"}
         if verified:
             payload.update({
+                "excerpt": (
+                    "A bounded comparison supports a provisional reading. "
+                    "Changed findings require new material. Entropy comparison "
+                    "and underlying work are discussed in this readable fixture."
+                ),
                 "verification_required": True,
                 "topic_domain": "entropy",
                 "evidence_role": "source",
@@ -727,10 +732,14 @@ class ResearchTests(unittest.TestCase):
             engine.store.close()
 
     def test_new_projects_are_bounded_and_rejection_is_atomic(self):
-        result = self.propose([project(str(i)) for i in range(4)])
+        def distinct(identifier):
+            item = project(identifier)
+            item["question"] = f"What distinguishes explanation {identifier}?"
+            return item
+        result = self.propose([distinct(str(i)) for i in range(4)])
         self.assertEqual(result["status"], "rejected")
         self.assertEqual(self.engine.store.load()["projects"], {})
-        self.assertEqual(self.propose([project(str(i)) for i in range(3)])["status"], "accepted")
+        self.assertEqual(self.propose([distinct(str(i)) for i in range(3)])["status"], "accepted")
 
     def test_project_can_queue_research_in_another_configured_topic(self):
         action = dict(type="research", id="q", project="p", query="symmetry breaking",
@@ -784,7 +793,7 @@ class ResearchTests(unittest.TestCase):
     def test_completion_rejects_one_source_provisional_notebook(self):
         self.source("s1", verified=True)
         self.assertEqual(
-            self.propose([project(), notebook(["s1"], "Provisional reading [s1].")])["status"],
+            self.propose([project(), notebook(["s1"], "A provisional reading supports a bounded comparison [s1].")])["status"],
             "accepted",
         )
         result = self.propose([project(status="completed")])
@@ -930,12 +939,12 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(self.propose([project(), notebook(["s1", "s2"])])["status"], "accepted")
         self.assertEqual(self.propose([notebook(["s1", "s2"], "Changed")])["status"], "rejected")
         self.source("s3", verified=True)
-        self.assertEqual(self.propose([notebook(["s1", "s3"], "Changed with evidence [s3]."), project(status="completed")])["status"], "accepted")
+        self.assertEqual(self.propose([notebook(["s1", "s3"], "Changed findings add new material to the bounded comparison [s3]."), project(status="completed")])["status"], "accepted")
         export(self.engine.store, self.root/"site")
         reconstructed, _ = verify_history(self.root/"site/events.jsonl", (self.root/"site/head.txt").read_text())
         self.assertEqual(reconstructed, self.engine.store.load())
         self.assertEqual(reconstructed["notebooks"]["n"]["revision"], 2)
-        self.assertIn("Changed with evidence", (self.root/"site/notebooks/n.md").read_text())
+        self.assertIn("Changed findings add new material", (self.root/"site/notebooks/n.md").read_text())
 
     def test_sources_and_notebook_text_cannot_inject_scripts(self):
         self.source("s1")
@@ -1448,8 +1457,8 @@ class ResearchTests(unittest.TestCase):
                         "excerpt": "entropy comparison same underlying work",
                     }),
                     actor="collector", scope="collected"))
-        self.assertEqual(self.propose([notebook(["s1"], findings="First reading [s1].")])["status"], "accepted")
-        revised = notebook(["s1", "s2"], findings="Revised reading of the same underlying work [s1] [s2].")
+        self.assertEqual(self.propose([notebook(["s1"], findings="Entropy comparison discusses the underlying work [s1].")])["status"], "accepted")
+        revised = notebook(["s1", "s2"], findings="Revised entropy comparison of the same underlying work [s1] [s2].")
         result = self.propose([revised])
         self.assertEqual(result["status"], "rejected")
         self.assertIn("distinct underlying source work", result["reason"])
