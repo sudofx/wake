@@ -505,24 +505,30 @@ def _notebook_evidence_profile(notebook, state):
     report therefore exposes source depth so progressive acceptance cannot be
     mistaken for corroboration.
     """
-    urls = set()
-    cross_topic_urls = set()
+    source_roots = set()
+    cross_topic_roots = set()
     project_domain = notebook.get("domain") or state.get("projects", {}).get(
         notebook.get("project"), {}
     ).get("domain")
     for evidence_id in notebook.get("evidence", []):
         evidence = state.get("evidence", {}).get(evidence_id, {})
         source = evidence.get("source")
-        if source:
-            urls.add(source)
         try:
             payload = json.loads(evidence.get("content", ""))
         except (ValueError, TypeError):
             payload = {}
-        topic = payload.get("topic_domain")
+        identifiers = payload.get("persistent_identifiers") or [] if isinstance(payload, dict) else []
+        normalized = [str(value).strip().lower() for value in identifiers if str(value).strip()] if isinstance(identifiers, list) else []
+        root = next((value for prefix in ("doi:", "arxiv:", "openalex:")
+                     for value in normalized if value.startswith(prefix)), None)
+        if root is None:
+            root = normalized[0] if normalized else "url:" + str(source or "").strip().lower()
+        if source:
+            source_roots.add(root)
+        topic = payload.get("topic_domain") if isinstance(payload, dict) else None
         if source and topic and project_domain and topic != project_domain:
-            cross_topic_urls.add(source)
-    return len(urls), len(cross_topic_urls)
+            cross_topic_roots.add(root)
+    return len(source_roots), len(cross_topic_roots)
 
 
 def _notebook_html(notebook, state):
@@ -531,9 +537,9 @@ def _notebook_html(notebook, state):
         evidence = state["evidence"][eid]
         source_items.append(f'<li><a href="{html.escape(str(evidence["source"]))}">{html.escape(eid)}</a></li>')
     source_count, cross_topic_count = _notebook_evidence_profile(notebook, state)
-    source_word = "URL" if source_count == 1 else "URLs"
+    source_word = "work" if source_count == 1 else "works"
     cross_note = (
-        f" · {cross_topic_count} cross-topic source URL"
+        f" · {cross_topic_count} cross-topic source work"
         + ("" if cross_topic_count == 1 else "s")
         if cross_topic_count else ""
     )
