@@ -84,7 +84,7 @@ def candidate_source_urls(observation, current_url=""):
         "api.crossref.org", "api.openalex.org", "api.semanticscholar.org",
         "api.datacite.org",
     }
-    for raw in re.findall(r"https://[^\\s\\\"'<>]+", text):
+    for raw in re.findall(r"https://[^\s\"'<>]+", text):
         url = raw.rstrip(".,;:)]}")
         parsed = urllib.parse.urlsplit(url)
         if not parsed.hostname or parsed.hostname in metadata_hosts:
