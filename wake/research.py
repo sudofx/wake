@@ -873,15 +873,26 @@ def collect(engine, fetcher=fetch_source):
                 or item.get("identifier")
                 or route_source_identity(url)
             )
-            source_candidates_for_observation = candidate_source_urls(observation, current_url=url)
+            observation_role = (
+                "discovery" if item.get("discovery_only") else evidence_role(url)
+            )
+            # Only routing layers may automatically expand the acquisition
+            # graph. A substantive article's bibliography/links are not
+            # automatically relevant to the project's question.
+            routing_layer = observation_role in ("discovery", "metadata")
+            persistent_leads = persistent_identifiers(observation) if routing_layer else []
+            source_candidates_for_observation = (
+                candidate_source_urls(observation, current_url=url)
+                if routing_layer else []
+            )
             observation = {
                 **observation,
                 "verification_required": True,
                 "topic_domain": item["domain"],
-                "evidence_role": "discovery" if item.get("discovery_only") else evidence_role(url),
+                "evidence_role": observation_role,
                 "host_tier": host_tier(url, item.get("discovery_only", False)),
                 "source_identity": source_identity,
-                "persistent_identifiers": persistent_identifiers(observation),
+                "persistent_identifiers": persistent_leads,
                 "source_candidates": source_candidates_for_observation,
                 "source_candidate_identities": {
                     candidate: source_identity
