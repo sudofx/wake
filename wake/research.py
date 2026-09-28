@@ -118,7 +118,9 @@ def candidate_source_urls(observation, current_url=""):
     Metadata indexes are useful routing infrastructure, but they are not the
     research object itself. This helper deterministically promotes only HTTPS
     URLs already present in collected metadata and already accepted by the
-    collector allowlist. PDF links are skipped until WAKE has a bounded parser.
+    collector allowlist. HTTPS PDF links may qualify as candidates when their host already passes the
+    collector allowlist; bounded parsing still decides whether readable evidence
+    was actually obtained.
     """
     text = json.dumps(observation, ensure_ascii=False) if isinstance(observation, dict) else str(observation)
     candidates = []
@@ -550,8 +552,14 @@ def query_url(query, domain, topic=None):
 # until the next boundary validates or records them. Callers may rely on this contract.
 # ---------------------------------------------------------------------------
 
-def research_urls(query, domain, attempts=0, topic=None):
-    """Return bounded routes for a neutral topic or a queued follow-up query."""
+def research_urls(query, domain, attempts=0, topic=None, *, targeted=False):
+    """Return bounded scholarly routes.
+
+    Targeted project maturation favors article indexes. DataCite remains in the
+    broader exploration pool where repository/data-object discovery is useful,
+    but it should not consume scarce depth slots for an already-defined paper
+    question.
+    """
     if topic and topic.get("source_kind") == "repository":
         primary = query_url(query, domain, topic)
         # A WAKE✳︎ follow-up gets two distinct repository views when the fixed
@@ -579,7 +587,11 @@ def research_urls(query, domain, attempts=0, topic=None):
     # as the whole scholarly world. Search responses remain discovery leads;
     # exact records or approved publisher/full-text pages are required for
     # qualifying evidence.
-    indexes = [crossref, openalex, semantic_scholar, datacite]
+    indexes = (
+        [crossref, openalex, semantic_scholar]
+        if targeted
+        else [crossref, openalex, semantic_scholar, datacite]
+    )
     start = attempts % len(indexes)
     return indexes[start:] + indexes[:start]
 
@@ -783,7 +795,10 @@ def collect(engine, fetcher=fetch_source):
     for followup in sorted(queued, key=lambda item: (item["project"], item["id"])):
         if len(pending) >= maturation_slots:
             break
-        routes = research_urls(followup["query"], followup["domain"], attempts, topic_by_id.get(followup["domain"]))
+        routes = research_urls(
+            followup["query"], followup["domain"], attempts,
+            topic_by_id.get(followup["domain"]), targeted=True
+        )
         url = followup.get("url") or routes[0]
         if url in used_urls:
             continue
@@ -800,7 +815,10 @@ def collect(engine, fetcher=fetch_source):
         if len(pending) >= maturation_slots:
             break
         query = project.get("question") or project.get("title") or project.get("next_step")
-        routes = research_urls(query, project["domain"], attempts + len(pending), topic_by_id.get(project["domain"]))
+        routes = research_urls(
+            query, project["domain"], attempts + len(pending),
+            topic_by_id.get(project["domain"]), targeted=True
+        )
         for url in routes:
             if len(pending) >= maturation_slots:
                 break
