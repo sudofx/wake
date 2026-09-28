@@ -28,7 +28,7 @@ from wake.governance import PUBLICATION_MIN_SOURCES, Rejected, _blog_language
 from wake.providers import Fixture, RESEARCH_SYSTEM, schema_for_context
 from wake.research import (
     allowed_url, collect, discovery_urls, evidence_role, exact_identifier_url, fetch_source, host_tier,
-    repository_sources, research_urls,
+    persistent_identifiers, repository_sources, research_urls,
 )
 from wake.report import export
 from support import charter_settings
@@ -1252,6 +1252,21 @@ class ResearchTests(unittest.TestCase):
         followup = next(item for item in self.engine.store.load()["research"].values() if item["query"] == "cellular automata symmetry followup")
         self.assertEqual(followup["status"], "collected")
         self.assertTrue(followup["id"].startswith("research-"))
+
+    def test_pubmed_identifiers_promote_to_ncbi_open_fulltext_route(self):
+        ids = persistent_identifiers({
+            "externalIds": {"PubMed": "17299597", "PubMedCentral": "PMC1790863"}
+        })
+        self.assertIn("pmid:17299597", ids)
+        self.assertIn("pmc:PMC1790863", ids)
+        self.assertEqual(
+            exact_identifier_url("pmc:PMC1790863"),
+            "https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_json/PMC1790863/unicode",
+        )
+        self.assertEqual(
+            exact_identifier_url("pmid:17299597"),
+            "https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_json/17299597/unicode",
+        )
 
     def test_exact_openalex_work_lookup_becomes_a_readable_source_record(self):
         url = exact_identifier_url("openalex:W2162809807")
