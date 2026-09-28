@@ -135,14 +135,14 @@ class LiveProjectionBranch:
             try:
                 local_branch = f"{self.branch}-refresh-{uuid.uuid4().hex}"
                 subprocess.run(["git", "checkout", "--orphan", local_branch], cwd=checkout,
-                               check=True, capture_output=True, text=True)
+                               check=True, capture_output=True, text=True, timeout=GIT_OPERATION_TIMEOUT_SECONDS)
                 subprocess.run(["git", "rm", "-rf", "--ignore-unmatch", "."], cwd=checkout,
-                               check=False, capture_output=True, text=True)
+                               check=False, capture_output=True, text=True, timeout=GIT_OPERATION_TIMEOUT_SECONDS)
                 (checkout / "live.json").write_text(
                     json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n",
                     encoding="utf-8",
                 )
-                subprocess.run(["git", "add", "live.json"], cwd=checkout, check=True)
+                subprocess.run(["git", "add", "live.json"], cwd=checkout, check=True, timeout=GIT_OPERATION_TIMEOUT_SECONDS)
                 subprocess.run([
                     "git", "-c", "user.name=wake-bot",
                     "-c", "user.email=wake-bot@users.noreply.github.com",
