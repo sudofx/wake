@@ -727,7 +727,7 @@ def collect(engine, fetcher=fetch_source):
     for project in sorted(active_projects, key=lambda item: item["id"]):
         if len(pending) >= maturation_slots:
             break
-        query = project.get("next_step") or project.get("question") or project.get("title")
+        query = project.get("question") or project.get("title") or project.get("next_step")
         routes = research_urls(query, project["domain"], attempts + len(pending), topic_by_id.get(project["domain"]))
         for url in routes:
             if len(pending) >= maturation_slots:
