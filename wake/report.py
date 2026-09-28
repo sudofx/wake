@@ -683,9 +683,11 @@ def export(store, destination="site", experiment=None, operation=None, browser_o
         if experiment is None:
             evidence_file = store.directory / "experiment.json"
             experiment = json.loads(evidence_file.read_text()) if evidence_file.exists() else None
+        from .live import _full_history_metrics
         data = {"state": state, "events": events, "head": head, "generated": now(),
                 "experiment": experiment, "timezone": "America/Los_Angeles", "operation": operation,
-                "wake_status": (operation or {}).get("wake_status") or wake_status(state)}
+                "wake_status": (operation or {}).get("wake_status") or wake_status(state),
+                "metrics": _full_history_metrics(store, state)}
         target = Path(destination)
         target.mkdir(parents=True, exist_ok=True)
         assets = Path(__file__).parent / "assets"
