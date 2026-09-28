@@ -179,6 +179,24 @@ class AcquisitionTests(unittest.TestCase):
         self.assertEqual(payload["source_candidates"], [])
         self.assertNotIn("doi:10.9999/unrelated", state["acquisition"]["p"]["persistent_identifiers"])
 
+    def test_collection_wall_budget_stops_additional_fetches(self):
+        calls = []
+        ticks = iter([0, 0, 11, 11, 11])
+        self.engine.config["research_collection_wall_seconds"] = 10
+
+        def fetcher(url):
+            calls.append(url)
+            return {
+                "url": url,
+                "scope": "bounded fixture source",
+                "excerpt": "substantive bounded source material " * 20,
+            }
+
+        with self.engine.store.lock():
+            collect(self.engine, fetcher=fetcher, monotonic=lambda: next(ticks))
+
+        self.assertEqual(len(calls), 1)
+
     def test_capability_block_can_record_a_distinct_frame_without_claiming_evidence(self):
         with self.engine.store.lock():
             self.engine.store.append("observation", {"id": "literal", "source": "https://example.org/literal",
