@@ -786,6 +786,9 @@ class Gemini:
             body["generationConfig"]["thinkingConfig"] = {"thinkingLevel": "low"}
         payload = json.dumps(body).encode()
         attempted = 0
+        provider_wall_seconds = max(1, int(self.config.get("provider_wall_seconds", self.config["timeout_seconds"])))
+        provider_deadline = time.monotonic() + provider_wall_seconds
+        error = TransientProviderError("Gemini provider wall budget exhausted; wake deferred")
         for model in self.models:
             if attempted >= self.request_limit:
                 break
@@ -794,6 +797,9 @@ class Gemini:
                 # provider-attempt receipts for the current Pacific quota day.
                 # Never probe it again before the reset boundary.
                 continue
+            remaining_seconds = provider_deadline - time.monotonic()
+            if remaining_seconds <= 0:
+                break
             attempted += 1
             req = urllib.request.Request(
                 f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
@@ -807,7 +813,8 @@ class Gemini:
             self.provider_requests_sent += 1
             error = None
             try:
-                with urllib.request.urlopen(req, timeout=self.config["timeout_seconds"]) as response:
+                request_timeout = max(1, min(float(self.config["timeout_seconds"]), remaining_seconds))
+                with urllib.request.urlopen(req, timeout=request_timeout) as response:
                     attempt["http_status"] = getattr(response, "status", 200)
                     data = json.loads(response.read(1_000_001))
                 candidates = data.get("candidates", [])
