@@ -1278,19 +1278,44 @@ def transition(state, proposal, invocation, historical=False):
                     "Finish or park work before starting a fourth active project",
                 )
 
-            # "Completed" must mean something mechanically observable.
-            #
-            # A project cannot declare itself complete without having produced
-            # at least one research notebook.
+            # "Completed" is a stronger state than "has notes". A current
+            # project may finish only after a notebook is backed by at least two
+            # substantive, distinct underlying source works. Historical replay
+            # preserves the rules that were authoritative when older work landed.
 
             if action["status"] == "completed":
+                project_notebooks = [
+                    notebook for notebook in result["notebooks"].values()
+                    if notebook["project"] == action["id"]
+                ]
                 require(
-                    any(
-                        notebook["project"] == action["id"]
-                        for notebook in result["notebooks"].values()
-                    ),
+                    project_notebooks,
                     "Completed projects need a published research notebook",
                 )
+                if not historical:
+                    latest_notebook = max(
+                        project_notebooks,
+                        key=lambda item: (
+                            int(item.get("revision") or 0),
+                            int(item.get("updated_version") or item.get("created_version") or 0),
+                        ),
+                    )
+                    cited = [
+                        result["evidence"][evidence_id]
+                        for evidence_id in latest_notebook.get("evidence", [])
+                        if evidence_id in result["evidence"]
+                    ]
+                    verification = _verification_evidence(
+                        cited,
+                        action["domain"],
+                        "Project completion",
+                        minimum_sources=PUBLICATION_MIN_SOURCES,
+                    )
+                    require(
+                        bool(verification),
+                        "Completed projects require corroborated substantive "
+                        "collector evidence from at least two distinct source works",
+                    )
 
             result["projects"][action["id"]] = {
                 **action,
