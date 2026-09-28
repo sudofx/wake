@@ -125,7 +125,7 @@ class AcquisitionTests(unittest.TestCase):
             "doi:10.1000/example.1",
         )
 
-    def test_candidate_source_urls_reject_metadata_and_pdf_routes(self):
+    def test_candidate_source_urls_keep_allowlisted_https_pdf_routes(self):
         urls = candidate_source_urls({
             "excerpt": (
                 "https://api.crossref.org/works/10.1000/example "
@@ -133,7 +133,10 @@ class AcquisitionTests(unittest.TestCase):
                 "https://www.frontiersin.org/articles/example/file.pdf"
             )
         })
-        self.assertEqual(urls, ["https://www.frontiersin.org/articles/example/full"])
+        self.assertEqual(urls, [
+            "https://www.frontiersin.org/articles/example/full",
+            "https://www.frontiersin.org/articles/example/file.pdf",
+        ])
 
     def test_capability_block_can_record_a_distinct_frame_without_claiming_evidence(self):
         with self.engine.store.lock():
