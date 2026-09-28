@@ -234,6 +234,7 @@ def reduce_event(state, event, historical=False):
             "capability_blocked": blocked,
             "retry_after_version": state["version"] + 12 if blocked else None,
             "persistent_identifiers": list(dict.fromkeys(prior.get("persistent_identifiers", []) + p.get("persistent_identifiers", [])))[-12:],
+            "source_candidates": list(dict.fromkeys(prior.get("source_candidates", []) + p.get("source_candidates", [])))[-12:],
             "last_receipt": {k: v for k, v in p.items() if k not in ("project", "domain")}}
     elif kind == "observation":
         require(p["id"] not in state["evidence"], "Duplicate evidence ID")
