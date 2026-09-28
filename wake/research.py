@@ -75,8 +75,8 @@ def _source_deadline(seconds):
         raise TimeoutError("Source processing exceeded its wall-clock deadline")
 
     previous_handler = signal.getsignal(signal.SIGALRM)
-    previous_timer = signal.setitimer(signal.ITIMER_REAL, seconds)
     signal.signal(signal.SIGALRM, expired)
+    previous_timer = signal.setitimer(signal.ITIMER_REAL, seconds)
     try:
         yield
     finally:
