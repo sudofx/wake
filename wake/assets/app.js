@@ -207,16 +207,24 @@
     const outcomeBars=statuses.map(([name,value])=>`<div class="metric-bar-row"><span>${esc(name)}</span><div><i class="metric-bar ${esc(name)}" style="width:${Math.max(value?3:0,100*value/maxStatus)}%"></i></div><strong>${value}</strong></div>`).join('');
     const models={}; completed.forEach(i=>{const key=i.successful_model||i.model||i.provider||'unknown';models[key]??={attempts:0,accepted:0,requests:0};models[key].attempts++;models[key].accepted+=i.status==='accepted'?1:0;models[key].requests+=i.provider_requests_sent||0;});
     const modelRows=Object.entries(models).sort((a,b)=>b[1].attempts-a[1].attempts).map(([name,m])=>`<div class="model-metric-row"><strong>${esc(name)}</strong><span>${m.attempts} wakes</span><span>${m.accepted} accepted</span><span>${m.requests} HTTP requests</span></div>`).join('');
-    const rejectionReasons=data.events.filter(e=>e.kind==='rejected').map(e=>String(e.payload.reason||'Unspecified rejection')), reasonCounts={};
-    rejectionReasons.forEach(reason=>{const key=reason.split(':')[0].slice(0,90);reasonCounts[key]=(reasonCounts[key]||0)+1;});
+    const fullMetrics=data.metrics||{};
+    const reasonCounts={...(fullMetrics.rejection_reasons||{})};
+    if(!Object.keys(reasonCounts).length){
+      data.events.filter(e=>e.kind==='rejected').forEach(e=>{
+        const key=String(e.payload.reason||'Unspecified rejection').split(':')[0].slice(0,90);
+        reasonCounts[key]=(reasonCounts[key]||0)+1;
+      });
+    }
     const reasons=Object.entries(reasonCounts).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([reason,n])=>`<div class="reason-row"><strong>${n}</strong><span>${esc(reason)}</span></div>`).join()||'<p class="empty">No rejected proposals in this record.</p>';
 
+    const fullActions=fullMetrics.accepted_actions;
     const actionEvents=accepted.map(e=>({cycle:e.payload.proposal?.base_version+1||0,actions:e.payload.proposal?.actions||[]}));
     const acceptedActions=actionEvents.flatMap(row=>row.actions.map(action=>({cycle:row.cycle,action})));
-    const actionCounts={}; acceptedActions.forEach(({action})=>actionCounts[action.type]=(actionCounts[action.type]||0)+1);
+    const actionCounts=fullActions?.by_type?{...fullActions.by_type}:{};
+    if(!fullActions) acceptedActions.forEach(({action})=>actionCounts[action.type]=(actionCounts[action.type]||0)+1);
     const sortedActionCounts=Object.entries(actionCounts).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));
     const actionTypes=sortedActionCounts.map(([type])=>type);
-    const actionTotal=acceptedActions.length;
+    const actionTotal=fullActions?.total??acceptedActions.length;
 
     // One canonical population powers this entire matrix: accepted proposal actions.
     // Topic attribution remains conservative. A topic is used only when the action
@@ -229,12 +237,23 @@
     };
     const topicStats=Object.fromEntries((s.research_topics||[]).map(t=>[t.id,{label:t.label,actions:{},total:0}]));
     const systemActions={actions:{},total:0};
-    acceptedActions.forEach(({action})=>{
-      const topicId=actionTopic(action);
-      const target=topicId&&topicStats[topicId]?topicStats[topicId]:systemActions;
-      target.actions[action.type]=(target.actions[action.type]||0)+1;
-      target.total++;
-    });
+    if(fullActions){
+      Object.entries(fullActions.by_topic||{}).forEach(([topicId,row])=>{
+        if(topicStats[topicId]){
+          topicStats[topicId].actions={...(row.by_type||{})};
+          topicStats[topicId].total=row.total||0;
+        }
+      });
+      systemActions.actions={...(fullActions.unattributed?.by_type||{})};
+      systemActions.total=fullActions.unattributed?.total||0;
+    }else{
+      acceptedActions.forEach(({action})=>{
+        const topicId=actionTopic(action);
+        const target=topicId&&topicStats[topicId]?topicStats[topicId]:systemActions;
+        target.actions[action.type]=(target.actions[action.type]||0)+1;
+        target.total++;
+      });
+    }
     const topicRows=Object.entries(topicStats)
       .map(([id,t])=>({id,...t}))
       .filter(t=>t.total>0)
@@ -256,7 +275,7 @@
     const trend=windows.map(w=>`<div class="trend-col" title="Wakes ${w.label}: ${w.a} accepted, ${w.r} rejected, ${w.d} deferred"><div class="trend-stack"><i class="accepted" style="height:${100*w.a/w.total}%"></i><i class="rejected" style="height:${100*w.r/w.total}%"></i><i class="deferred" style="height:${100*w.d/w.total}%"></i></div><span>${w.label}</span></div>`).join('');
 
     const beliefs=Object.values(s.beliefs||{}), activeBeliefs=beliefs.filter(b=>b.status==='active'), retractedBeliefs=beliefs.filter(b=>b.status==='retracted');
-    const revisedBeliefs=actionEvents.flatMap(x=>x.actions).filter(a=>a.type==='belief').length;
+    const revisedBeliefs=fullActions?.belief_actions??actionEvents.flatMap(x=>x.actions).filter(a=>a.type==='belief').length;
     const overdue=obligations.filter(c=>c.status==='open'&&s.version>=c.due_cycle).length;
     const fallbackWakes=completed.filter(i=>(i.provider_attempts||[]).length>1).length;
     const knownAttempts=completed.flatMap(i=>i.provider_attempts||[]).filter(a=>a.result!=='unknown');
