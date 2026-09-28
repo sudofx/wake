@@ -90,7 +90,10 @@ class AcquisitionTests(unittest.TestCase):
             exact_identifier_url("openalex:W12345"),
             "https://api.openalex.org/works/W12345",
         )
-        self.assertIn("id_list=2512.02221", exact_identifier_url("arxiv:2512.02221"))
+        self.assertEqual(
+            exact_identifier_url("arxiv:2512.02221"),
+            "https://arxiv.org/pdf/2512.02221.pdf",
+        )
         self.assertIn("/BioC_json/PMC1790863/unicode", exact_identifier_url("pmc:PMC1790863"))
         self.assertIn("/BioC_json/17299597/unicode", exact_identifier_url("pmid:17299597"))
         self.assertIsNone(exact_identifier_url("unknown:value"))
@@ -145,6 +148,36 @@ class AcquisitionTests(unittest.TestCase):
             "https://www.frontiersin.org/articles/example/full",
             "https://www.frontiersin.org/articles/example/file.pdf",
         ])
+
+    def test_substantive_source_does_not_auto_queue_its_bibliography(self):
+        readable = "https://www.frontiersin.org/articles/10.3389/example/full"
+        with self.engine.store.lock():
+            receipt = self.receipt("crossref:metadata", "routing_progress")
+            receipt["source_candidates"] = [readable]
+            receipt["source_candidate_identities"] = {
+                readable: "doi:10.3389/example"
+            }
+            self.engine.store.append("acquisition_assessed", receipt)
+            collect(
+                self.engine,
+                fetcher=lambda url: {
+                    "url": url,
+                    "scope": "readable publisher article",
+                    "excerpt": (
+                        "Substantive entropy analysis and methods. "
+                        "Bibliography mentions DOI 10.9999/unrelated and "
+                        "https://www.frontiersin.org/articles/unrelated/full "
+                    ) * 10,
+                },
+            )
+
+        state = self.engine.store.load()
+        evidence = next(e for e in state["evidence"].values() if e.get("source") == readable)
+        payload = json.loads(evidence["content"])
+        self.assertEqual(payload["evidence_role"], "source")
+        self.assertEqual(payload["persistent_identifiers"], [])
+        self.assertEqual(payload["source_candidates"], [])
+        self.assertNotIn("doi:10.9999/unrelated", state["acquisition"]["p"]["persistent_identifiers"])
 
     def test_capability_block_can_record_a_distinct_frame_without_claiming_evidence(self):
         with self.engine.store.lock():
