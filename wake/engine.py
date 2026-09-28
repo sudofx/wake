@@ -1312,7 +1312,22 @@ class Engine:
                 "started": sum(topic["id"] in project_domains and bool(topic.get("seed_question")) for topic in topics),
                 "boundary": "Derived from audited topic configuration and durable project domains; seeds do not count as evidence."
             }
-            context["projects"] = [p for p in projects if p["status"] == "active"] + [p for p in projects if p["status"] != "active"][-8:]
+            # Keep project context bounded, but spend the parked-project budget
+            # on the topic WAKE is actually being asked to work on. Otherwise old
+            # unfinished work falls out of view and a fresh model can reinvent it
+            # under a new ID instead of resuming the durable project.
+            active_projects = [p for p in projects if p["status"] == "active"]
+            nonactive_projects = [p for p in projects if p["status"] != "active"]
+            selected_topic = context.get("squirrel", {}).get("selected_topic")
+            selected_nonactive = [
+                p for p in nonactive_projects
+                if selected_topic and p.get("domain") == selected_topic
+                and p.get("status") != "completed"
+            ]
+            selected_ids = {p["id"] for p in selected_nonactive}
+            other_nonactive = [p for p in nonactive_projects if p["id"] not in selected_ids]
+            visible_nonactive = (selected_nonactive + other_nonactive[-8:])[-8:]
+            context["projects"] = active_projects + visible_nonactive
             context["notebooks"] = [{k:n[k] for k in ("id", "project", "title", "summary", "revision", "evidence")}
                                     for n in list(state["notebooks"].values())[-8:]]
             # Give editorial actions a canonical project -> notebook map. This is
