@@ -606,7 +606,7 @@ def collect(engine, fetcher=fetch_source):
     active_projects = [p for p in state.get("projects", {}).values()
                        if p.get("status") == "active"]
     active_domains = {p["domain"] for p in active_projects}
-    active_work = bool(active_projects or queued or state.get("acquisition"))
+    active_work = bool(active_projects or queued)
     exploration_slots = 1 if active_work and discovery_count > 1 else discovery_count
     maturation_slots = discovery_count - exploration_slots
     alternatives = [topic for topic in topics if topic["id"] not in active_domains]
@@ -692,6 +692,27 @@ def collect(engine, fetcher=fetch_source):
                         "queued_followup": True})
         used_urls.add(url)
         used_queue_ids.add(followup["id"])
+
+    # If a project has no explicit follow-up yet, use its own durable question
+    # to spend remaining maturation slots on targeted scholarly discovery rather
+    # than random unrelated topics.
+    for project in sorted(active_projects, key=lambda item: item["id"]):
+        if len(pending) >= maturation_slots:
+            break
+        query = project.get("next_step") or project.get("question") or project.get("title")
+        routes = research_urls(query, project["domain"], attempts + len(pending), topic_by_id.get(project["domain"]))
+        for url in routes:
+            if len(pending) >= maturation_slots:
+                break
+            if url in used_urls:
+                continue
+            pending.append({
+                "id": f"collector-{project['id']}-{attempts}-{len(pending)}",
+                "project": project["id"], "url": url, "domain": project["domain"],
+                "queued_followup": False, "acquisition_followup": True,
+                "targeted_discovery": True,
+            })
+            used_urls.add(url)
 
     remaining_slots = min(exploration_slots, discovery_count - len(pending))
     if remaining_slots:
