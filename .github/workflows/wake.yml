@@ -60,6 +60,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install WAKE runtime dependencies
+        run: python -m pip install --disable-pip-version-check -e .
       - name: Continue independent research
         id: cycle
         continue-on-error: true
