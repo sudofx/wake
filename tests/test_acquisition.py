@@ -40,9 +40,12 @@ class AcquisitionTests(unittest.TestCase):
         self.assertEqual(self.engine.store.load()["acquisition"]["p"]["no_progress"], 0)
 
     def test_discovery_identifiers_are_structured_for_later_retrieval(self):
-        ids = persistent_identifiers({"excerpt": "DOI 10.1000/example.1; https://openalex.org/W12345"})
+        ids = persistent_identifiers({"excerpt": "DOI 10.1000/example.1; https://openalex.org/W12345; PMC1790863",
+                                      "externalIds": {"PubMed": "17299597"}})
         self.assertIn("doi:10.1000/example.1", ids)
         self.assertIn("openalex:W12345", ids)
+        self.assertIn("pmc:PMC1790863", ids)
+        self.assertIn("pmid:17299597", ids)
 
     def test_persistent_identifiers_map_to_exact_approved_records(self):
         self.assertEqual(
@@ -54,6 +57,8 @@ class AcquisitionTests(unittest.TestCase):
             "https://api.openalex.org/works/W12345",
         )
         self.assertIn("id_list=2512.02221", exact_identifier_url("arxiv:2512.02221"))
+        self.assertIn("/BioC_json/PMC1790863/unicode", exact_identifier_url("pmc:PMC1790863"))
+        self.assertIn("/BioC_json/17299597/unicode", exact_identifier_url("pmid:17299597"))
         self.assertIsNone(exact_identifier_url("unknown:value"))
 
     def test_collector_promotes_metadata_lead_to_readable_source_without_model_translation(self):
