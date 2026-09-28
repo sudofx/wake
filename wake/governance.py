@@ -265,6 +265,9 @@ def _source_identity(item):
     should not satisfy corroboration merely because their URLs differ.
     """
     payload = _evidence_payload(item)
+    explicit = str(payload.get("source_identity") or "").strip().lower()
+    if explicit:
+        return explicit
     identifiers = payload.get("persistent_identifiers") or []
     if isinstance(identifiers, list):
         normalized = [str(value).strip().lower() for value in identifiers if str(value).strip()]
