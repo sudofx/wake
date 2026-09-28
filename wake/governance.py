@@ -306,10 +306,11 @@ def _verification_evidence(evidence, project_domain, label, minimum_sources=1):
     require(
         all(
             _evidence_payload(item).get("evidence_role", "source") == "source"
+            and _evidence_payload(item).get("host_tier") != "verification-metadata"
             for item in marked
         ),
-        f"{label} cannot use broad search-result lists as qualifying evidence; "
-        "retrieve specific source records first",
+        f"{label} requires substantive readable sources; discovery lists and "
+        "metadata-only records are retrieval leads, not qualifying evidence",
     )
 
     require(
