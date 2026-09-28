@@ -1119,15 +1119,9 @@ class Engine:
         explicit = str(payload.get("source_identity") or "").strip().lower() if isinstance(payload, dict) else ""
         if explicit:
             return explicit
-        identifiers = payload.get("persistent_identifiers") or [] if isinstance(payload, dict) else []
-        if isinstance(identifiers, list):
-            normalized = [str(value).strip().lower() for value in identifiers if str(value).strip()]
-            for prefix in ("doi:", "arxiv:", "openalex:"):
-                match = next((value for value in normalized if value.startswith(prefix)), None)
-                if match:
-                    return match
-            if normalized:
-                return normalized[0]
+        # IDs discovered inside article text are retrieval leads, not
+        # authoritative work identity. Explicit collector provenance is required
+        # to collapse mirrors; historical records otherwise remain URL-distinct.
         return "url:" + str(evidence.get("source") or "").strip().lower()
 
     def commitment_resolution_evidence_ids(self, state, evidence_ids, commitment):
