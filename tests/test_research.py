@@ -1537,6 +1537,7 @@ class ResearchTests(unittest.TestCase):
                         "topic_domain": "entropy",
                         "evidence_role": "source",
                         "host_tier": "verification-fulltext",
+                        "source_identity": "doi:10.1000/same-work",
                         "persistent_identifiers": ["doi:10.1000/same-work"],
                         "excerpt": "entropy comparison same underlying work",
                     }),
@@ -1547,6 +1548,39 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(result["status"], "rejected")
         self.assertIn("distinct underlying source work", result["reason"])
 
+
+    def test_explicit_source_identity_overrides_bibliography_identifier_noise(self):
+        self.assertEqual(self.propose([project()])["status"], "accepted")
+        with self.engine.store.lock():
+            for identifier, source, work in (
+                ("s1", "https://www.frontiersin.org/articles/one/full", "doi:10.1000/work-one"),
+                ("s2", "https://www.pnas.org/doi/two", "doi:10.1000/work-two"),
+            ):
+                self.engine.store.append("observation", dict(
+                    id=identifier, source=source,
+                    content=json.dumps({
+                        "scope": "readable source fixture",
+                        "verification_required": True,
+                        "topic_domain": "entropy",
+                        "evidence_role": "source",
+                        "host_tier": "verification-fulltext",
+                        "source_identity": work,
+                        # Both article texts mention the same cited DOI first.
+                        # That bibliography noise must not collapse the papers.
+                        "persistent_identifiers": [
+                            "doi:10.1000/shared-reference",
+                            work,
+                        ],
+                        "excerpt": "entropy comparison substantive readable material",
+                    }),
+                    actor="collector", scope="collected"))
+        result = self.propose([
+            notebook(
+                ["s1", "s2"],
+                findings="Entropy comparison uses two distinct retrieved works [s1] [s2].",
+            )
+        ])
+        self.assertEqual(result["status"], "accepted")
 
     def test_attention_nudge_avoids_active_project_domain_every_fourth_invocation(self):
         self.propose([project()])
