@@ -336,6 +336,15 @@ def _verification_evidence(evidence, project_domain, label, minimum_sources=1):
     )
 
     require(
+        all(
+            isinstance(_evidence_payload(item).get("topic_domain"), str)
+            and _evidence_payload(item).get("topic_domain").strip()
+            for item in marked
+        ),
+        f"{label} requires collector-stamped topic provenance",
+    )
+
+    require(
         len({_source_identity(item) for item in marked}) >= minimum_sources,
         f"{label} requires at least {minimum_sources} distinct underlying "
         "source work(s); mirrors of the same persistent work count once",
