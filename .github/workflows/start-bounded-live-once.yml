@@ -1,0 +1,26 @@
+name: WAKE✳︎ — start bounded live cycle
+
+on:
+  push:
+    paths:
+      - '.github/workflows/start-bounded-live-once.yml'
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  start:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enable continuous runner
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow enable wake-runner.yml --repo "$GITHUB_REPOSITORY"
+      - name: Start bounded live experiment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run wake-runner.yml --repo "$GITHUB_REPOSITORY" --ref master \
+            -f "dispatch_token=bounded-live-${GITHUB_RUN_ID}" \
+            -f "runtime_ref=052cedf0efd6a1c96f04a0d3d4372843efb0e35b"
