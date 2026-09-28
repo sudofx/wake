@@ -20,4 +20,4 @@ jobs:
       - name: Cancel stale pinned cycle
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh run cancel 36498149448 --repo "$GITHUB_REPOSITORY" || true
+        run: gh run cancel 36498896570 --repo "$GITHUB_REPOSITORY" || true
