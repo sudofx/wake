@@ -717,8 +717,14 @@ class Engine:
         Preserve IDs, active project frames, Squirrel routing, milestone identity, and
         provenance roots while dropping duplicated prose and oversized recovery detail.
         """
+        from .providers import BOUNDED_RESEARCH_SYSTEM
+
         context = request["context"]
         limit = self.config["max_context_chars"]
+        # The rich research prompt explains every rule at human-documentation depth.
+        # Under overflow, keep the same model-facing contract in compressed form;
+        # deterministic governance remains the authority after generation.
+        request["system"] = SYSTEM + BOUNDED_RESEARCH_SYSTEM
 
         def excerpt(value, size):
             value = str(value or "")
