@@ -715,6 +715,14 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(result["status"], "rejected")
         self.assertEqual(result["reason"], "Equivalent research request already exists")
 
+    def test_duplicate_project_question_is_rejected_even_with_new_id(self):
+        self.assertEqual(self.propose([project("p-one")])["status"], "accepted")
+        duplicate = project("p-two")
+        duplicate["question"] = "  WHAT distinguishes the explanations?!  "
+        result = self.propose([duplicate])
+        self.assertEqual(result["status"], "rejected")
+        self.assertIn("already owns this research question", result["reason"])
+
     def test_removed_topic_preserves_project_but_blocks_new_substantive_research(self):
         self.assertEqual(self.propose([project()])["status"], "accepted")
         self.engine.config["research_topics"] = [
