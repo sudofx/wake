@@ -227,7 +227,13 @@ def reduce_event(state, event, historical=False):
         summaries = state.setdefault("acquisition", {})
         prior = summaries.get(p["project"], {"no_progress": 0, "routes": []})
         routes = list(dict.fromkeys((prior.get("routes", []) + [p["route"]])))[-4:]
-        no_progress = 0 if p["outcome"] == "progress" else prior.get("no_progress", 0) + 1
+        if p["outcome"] in ("progress", "routing_progress"):
+            # A readable source is substantive progress. A new identifier or
+            # readable-source candidate is routing progress: it proves the
+            # acquisition path is advancing without pretending research matured.
+            no_progress = 0
+        else:
+            no_progress = prior.get("no_progress", 0) + 1
         blocked = no_progress >= 4 and len(routes) >= 2
         summaries[p["project"]] = {"project": p["project"], "domain": p["domain"],
             "no_progress": no_progress, "routes": routes,
