@@ -96,7 +96,7 @@ You cannot browse directly. You may record focused follow-up searches as durable
 When context.observation_mode.active is true, prefer recording concrete candidate questions, search leads, limitations, and failed approaches over waiting for a polished result. This does not relax evidence, provenance, commitment, or publication rules.
 When context.acquisition marks a project capability_blocked, preserve its commitments and stop issuing materially equivalent searches. Treat the recorded blocker as settled operational context for this shift: do not spend actions or journal reasoning re-establishing that the same route is still blocked. Move to another eligible configured topic and do tractable work there. Return to the blocked project only when context contains a materially new supported retrieval route, new relevant evidence, or a genuinely different conceptual frame that implies a different next action. Persistent identifiers there are leads only: they may justify an exact retrieval from an approved verification host, never acceptance by themselves.
 When context.representation_recovery contains a parked or capability-blocked project, you may propose a reframe only when it changes the conceptual frame—not merely wording or a query. A frame is a strategy hypothesis, not evidence or a completed result; preserve its exact observations and pair it with a genuinely new next action. In a reframe action, observations is an array of EXISTING evidence IDs from context.evidence, never prose sentences, summaries, inferred observations, or newly invented labels. Put explanatory prose in old_frame, new_frame, assumptions_changed, trigger, strategy, or reason instead.
-For a resolve, cite evidence recorded at or after that commitment's creation. Do not cite only older evidence in resolve.
+For a resolve, cite evidence recorded at or after that commitment's creation. Research commitments are project-scoped: use only qualifying evidence from that commitment's project topic. Do not cite only older or unrelated evidence in resolve.
 When an overdue commitment already has qualifying evidence, completing that work takes priority over starting another search: synthesize it into the relevant notebook and resolve the commitment. Do not treat "more sources would be nice" as a sufficient gap.
 Additional exact action shapes:
 {"type":"project","id":"id","title":"Short title","question":"Specific research question",
@@ -263,7 +263,7 @@ Project status: active, parked, completed. Completion requires a notebook backed
 Research actions request a focused query for an existing project; WAKE assigns research IDs.
 Notebook evidence must use exact IDs from context.project_evidence[project-id]. One qualifying source may support a provisional notebook; revisions require changed findings plus new evidence. State limitations and uncertainty. Never invent bibliographic facts or citations.
 Reframes are strategy hypotheses, not evidence; observations must be exact existing evidence IDs.
-Resolve actions require eligible evidence recorded after commitment creation.
+Research commit actions require an existing project ID. Resolve actions require eligible evidence recorded after commitment creation and from that commitment's project topic.
 
 Ordinary blog publication is optional, event-driven, last in actions, and must trace through context.blog_notebooks with at least two qualifying distinct source works. Omit it when nothing is worth publishing. If context.bob_reflection_due is true, emit the required final reflection using exactly context.bob_reflection_cycle; reflection is editorial, not research evidence.
 Distinguish source report, WAKE synthesis, speculation, analogy, and reflection. Do not infer causation from correlation or strengthen claims beyond supplied evidence.
@@ -305,7 +305,7 @@ SCHEMA = {"type": "object", "additionalProperties": False, "properties": {
     "base_version": {"type": "integer"}, "title": {"type": "string"}, "summary": {"type": "string"},
     "actions": {"type": "array", "maxItems": 12, "items": {"anyOf": [
         action_schema("belief", "id statement confidence status evidence reason", {"status": ["active", "retracted"]}),
-        action_schema("commit", "id task due_cycle reason"),
+        action_schema("commit", "id task due_cycle reason", optional=("project",)),
         action_schema("resolve", "id status evidence reason", {"status": ["fulfilled"]}),
         action_schema("project", "id title question domain status next_step reason",
                       {"status": ["active", "parked", "completed"]}),
@@ -340,6 +340,25 @@ def schema_for_context(context):
         entries = [(project, notebook) for project, notebook in entries
                    if project_domains.get(project) == enforced_topic]
     choices = schema["properties"]["actions"]["items"]["anyOf"]
+
+    # In research mode, new commitments belong to one existing durable project.
+    # The base non-research kernel keeps generic commitments available.
+    commit_action = next(a for a in choices if a["properties"]["type"]["enum"] == ["commit"])
+    if context.get("mission") is not None:
+        project_ids_for_commit = sorted({
+            project["id"] for project in context.get("projects", [])
+            if project.get("id")
+            and (not enforced_topic or project.get("domain") == enforced_topic)
+        })
+        if project_ids_for_commit:
+            commit_action["properties"]["project"] = {
+                "type": "string", "enum": project_ids_for_commit
+            }
+            if "project" not in commit_action["required"]:
+                commit_action["required"].append("project")
+        else:
+            choices.remove(commit_action)
+
     domains = list(dict.fromkeys([topic["id"] for topic in context.get("research_topics", [])]
                                  + [project["domain"] for project in context.get("projects", [])]))
     if domains:
