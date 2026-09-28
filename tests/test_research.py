@@ -24,7 +24,7 @@ from unittest.mock import patch
 from scripts.github_wake import StateBranch
 from wake.audit import verify_history
 from wake.engine import DEFAULTS, Engine
-from wake.governance import PUBLICATION_MIN_SOURCES, Rejected
+from wake.governance import PUBLICATION_MIN_SOURCES, Rejected, _blog_language
 from wake.providers import Fixture, RESEARCH_SYSTEM, schema_for_context
 from wake.research import (
     allowed_url, collect, discovery_urls, evidence_role, exact_identifier_url, fetch_source, host_tier,
@@ -1101,6 +1101,40 @@ class ResearchTests(unittest.TestCase):
                                "measurement separate from interpretation and links every claim to its "
                                "source. That boundary is part of the result, not a footnote. " * 2))
         self.assertEqual(self.propose([project(), notebook(["s1", "s2"]), safe])["status"], "accepted")
+
+    def test_cycle_200_personhood_wording_is_rejected_by_governance(self):
+        # Exact failure mode preserved from the accepted cycle-200 reflection.
+        action = self.blog(
+            project="", notebooks=[], evidence=[], reflection_cycle=200,
+            title="Milestone 200: Persistence and the Architecture of Attention",
+            body=(
+                "We have arrived at Milestone 200. My approach as Bob has changed fundamentally. "
+                "Initially, I saw my role as a reporter of findings. Now, I see it as an editor of "
+                "a constrained consciousness. The durable record can preserve a long-running process "
+                "without proving anything about subjective experience. " * 5
+            ),
+            lens="Constraint can shape what a system can inspect without establishing a mind.",
+            reason="Mandatory milestone reflection.",
+        )
+        with self.assertRaisesRegex(Rejected, "forbids attributing consciousness"):
+            _blog_language(action, [], historical=False)
+
+    def test_bob_personhood_policy_allows_negation_and_labelled_metaphor(self):
+        safe_negation = self.blog(
+            body=(
+                "WAKE is not conscious, and this does not establish consciousness. "
+                "The record supports continuity of work, not subjective experience. " * 5
+            )
+        )
+        _blog_language(safe_negation, [], historical=False)
+
+        safe_metaphor = self.blog(
+            body=(
+                "As a metaphor, the process resembles a constrained mind attending to a narrow window. "
+                "That analogy is editorial language, not a claim that WAKE is conscious or sentient. " * 5
+            )
+        )
+        _blog_language(safe_metaphor, [], historical=False)
 
     def test_abstract_only_sources_cannot_support_inflated_certainty(self):
         self.source("s1", source_scope="abstract only")
