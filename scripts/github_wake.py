@@ -161,8 +161,11 @@ class LiveProjectionBranch:
                 subprocess.run(["git", "push", "--force", "origin", f"HEAD:refs/heads/{self.branch}"],
                                cwd=checkout, check=True, capture_output=True, text=True, timeout=_projection_timeout(deadline))
             finally:
-                subprocess.run(["git", "worktree", "remove", "--force", str(checkout)],
-                               cwd=self.repository, check=False, capture_output=True, text=True, timeout=_projection_timeout(deadline))
+                try:
+                    subprocess.run(["git", "worktree", "remove", "--force", str(checkout)],
+                                   cwd=self.repository, check=False, capture_output=True, text=True, timeout=5)
+                except Exception:
+                    pass
 
 
 def continuation_outputs(result):
