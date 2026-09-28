@@ -1297,6 +1297,41 @@ class ResearchTests(unittest.TestCase):
         self.assertIn("The Cognitive Neuroscience of Working Memory", observation["excerpt"])
         self.assertIn("Working memory coordinates active information", observation["excerpt"])
 
+    def test_ncbi_bioc_open_access_route_extracts_readable_article_text(self):
+        url = "https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_json/PMC1790863/unicode"
+        payload = [{
+            "passages": [
+                {"text": "Working memory coordinates active information across multiple cognitive operations."},
+                {"text": "The article compares mechanisms, limitations, and experimental observations in detail."},
+            ]
+        }]
+        raw = json.dumps(payload).encode()
+
+        class Response:
+            def __init__(self):
+                self.url = url
+                self.headers = {"Content-Type": "application/json"}
+            def read(self, _limit):
+                return raw
+            def __enter__(self):
+                return self
+            def __exit__(self, *_args):
+                return False
+
+        class Opener:
+            def open(self, _request, timeout=None):
+                self.timeout = timeout
+                return Response()
+
+        with patch("wake.research.urllib.request.build_opener", return_value=Opener()):
+            observation = fetch_source(url)
+
+        self.assertIn("Working memory coordinates", observation["excerpt"])
+        self.assertIn("experimental observations", observation["excerpt"])
+        self.assertIn("PMC open-access article text", observation["scope"])
+        self.assertEqual(evidence_role(url), "source")
+        self.assertEqual(host_tier(url), "verification-fulltext")
+
     def test_queued_exact_source_url_is_not_replaced_by_another_search(self):
         exact = "https://api.crossref.org/works/10.1016%2Fj.example.2026.01.001"
         self.propose([project(), dict(type="research", id="q-exact", project="p",
