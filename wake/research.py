@@ -162,7 +162,13 @@ def exact_identifier_url(identifier):
         return ("https://api.openalex.org/works/" + urllib.parse.quote(work, safe="")) if re.fullmatch(r"[Ww]\d+", work) else None
     if identifier.startswith("arxiv:"):
         arxiv_id = identifier.split(":", 1)[1].strip()
-        return ("https://export.arxiv.org/api/query?" + urllib.parse.urlencode({"id_list": arxiv_id})) if re.fullmatch(r"\d{4}\.\d{4,5}(?:v\d+)?", arxiv_id) else None
+        # With bounded PDF extraction available, retrieve the preprint itself
+        # rather than promoting an abstract-only Atom record to source evidence.
+        return (
+            "https://arxiv.org/pdf/" + urllib.parse.quote(arxiv_id, safe="") + ".pdf"
+            if re.fullmatch(r"\d{4}\.\d{4,5}(?:v\d+)?", arxiv_id)
+            else None
+        )
     if identifier.startswith("pmc:"):
         pmc_id = identifier.split(":", 1)[1].strip().upper()
         return ("https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_json/"
@@ -614,6 +620,8 @@ def evidence_role(url):
         return "discovery"
     if parsed.hostname == "api.datacite.org" and parsed.path == "/dois" and "query" in query:
         return "discovery"
+    if parsed.hostname == "export.arxiv.org" and parsed.path.startswith("/api/"):
+        return "metadata"
     if parsed.hostname in {"api.crossref.org", "api.openalex.org",
                            "api.semanticscholar.org", "api.datacite.org"}:
         return "metadata"
@@ -629,10 +637,10 @@ def host_tier(url, discovery_only=False):
     if discovery_only:
         return "discovery"
     host = urllib.parse.urlsplit(url).hostname
-    if host in {"arxiv.org", "export.arxiv.org", "rss.arxiv.org", "osf.io",
+    if host in {"arxiv.org", "rss.arxiv.org", "osf.io",
                 "psyarxiv.com", "www.psyarxiv.com"}:
         return "preprint"
-    if host in {"api.crossref.org", "api.openalex.org", "api.semanticscholar.org",
+    if host in {"export.arxiv.org", "api.crossref.org", "api.openalex.org", "api.semanticscholar.org",
                 "api.datacite.org", "pubmed.ncbi.nlm.nih.gov", "europepmc.org",
                 "api.core.ac.uk", "doaj.org", "eric.ed.gov"}:
         return "verification-metadata"
