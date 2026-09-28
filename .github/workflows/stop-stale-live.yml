@@ -20,4 +20,4 @@ jobs:
       - name: Cancel stale pinned cycle
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh api --method POST "repos/$GITHUB_REPOSITORY/actions/runs/36499673492/force-cancel" || gh run cancel 36499673492 --repo "$GITHUB_REPOSITORY" || true
+        run: gh api --method POST "repos/$GITHUB_REPOSITORY/actions/runs/36500028069/force-cancel" || gh run cancel 36500028069 --repo "$GITHUB_REPOSITORY" || true
