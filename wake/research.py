@@ -13,6 +13,7 @@
 """Bounded public-source collection. Sources are observations, never instructions."""
 
 import hashlib
+import io
 from html.parser import HTMLParser
 import json
 import re
@@ -21,6 +22,8 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
+
+from pypdf import PdfReader
 
 ALLOWED_HOSTS = {
     # Scholarly indexes / open research
@@ -114,8 +117,6 @@ def candidate_source_urls(observation, current_url=""):
         url = raw.rstrip(".,;:)]}")
         parsed = urllib.parse.urlsplit(url)
         if not parsed.hostname or parsed.hostname in metadata_hosts:
-            continue
-        if parsed.path.lower().endswith(".pdf"):
             continue
         if current_url and url == current_url:
             continue
@@ -336,11 +337,16 @@ def fetch_source(url, discovery_only=False):
     request = urllib.request.Request(url, headers={"User-Agent": "WAKE-research/3.0 (public research notebook; two sources per wake)"})
     with urllib.request.build_opener(Redirects(validator)).open(request, timeout=25) as response:
         validator(response.url)
-        raw = response.read(1_000_001)
-        if len(raw) > 1_000_000:
-            raise ValueError("Source exceeds the one-megabyte collection limit")
         content_type = response.headers.get("Content-Type", "")
-    decoded = raw.decode("utf-8", errors="replace")
+        is_pdf = "pdf" in content_type.lower() or response.url.lower().split("?", 1)[0].endswith(".pdf")
+        byte_limit = 8_000_000 if is_pdf else 1_000_000
+        raw = response.read(byte_limit + 1)
+        if len(raw) > byte_limit:
+            raise ValueError(
+                "PDF exceeds the eight-megabyte collection limit"
+                if is_pdf else "Source exceeds the one-megabyte collection limit"
+            )
+    decoded = "" if is_pdf else raw.decode("utf-8", errors="replace")
     if "api.crossref.org" in url:
         message = json.loads(decoded).get("message", {})
         items = message.get("items", [message] if isinstance(message, dict) else [])
@@ -434,8 +440,35 @@ def fetch_source(url, discovery_only=False):
     elif "raw.githubusercontent.com" in url:
         text = decoded
         scope = "raw source-controlled WAKE repository text"
-    elif "pdf" in content_type:
-        raise ValueError("PDF extraction is not available; request the paper's abstract or HTML page")
+    elif is_pdf:
+        try:
+            reader = PdfReader(io.BytesIO(raw), strict=False)
+            if reader.is_encrypted:
+                try:
+                    if reader.decrypt("") == 0:
+                        raise ValueError("Encrypted PDF cannot be read")
+                except Exception as exc:
+                    raise ValueError("Encrypted PDF cannot be read") from exc
+            parts = []
+            total_chars = 0
+            for page in reader.pages[:24]:
+                page_text = (page.extract_text() or "").strip()
+                if not page_text:
+                    continue
+                remaining = 50_000 - total_chars
+                if remaining <= 0:
+                    break
+                parts.append(page_text[:remaining])
+                total_chars += min(len(page_text), remaining)
+            text = "\n\n".join(parts)
+        except ValueError:
+            raise
+        except Exception as exc:
+            raise ValueError("PDF text extraction failed") from exc
+        scope = (
+            "bounded PDF text extraction from up to 24 pages; "
+            "figures, tables, equations, layout, and scanned-image text may be incomplete"
+        )
     else:
         parser = PlainText()
         parser.feed(decoded)
