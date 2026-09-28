@@ -11,7 +11,7 @@ name = "wake"
 version = "0.21.0"
 description = "Disposable models. Durable state. Receipts for everything."
 requires-python = ">=3.11"
-dependencies = []
+dependencies = ["pypdf==6.19.0"]
 
 [project.scripts]
 wake = "wake.__main__:main"
