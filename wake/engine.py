@@ -209,7 +209,7 @@ DEFAULTS = {"timezone": "America/Los_Angeles", "objective": "Test durable contin
             "max_context_chars": 48000, "max_output_tokens": 4096, "timeout_seconds": 60,
             "free_tier_confirmed": False, "gemini_fallback_models": [],
             "inquiry_drive_enabled": False, "research_topics_file": "research-topics.toml",
-            "observation_mode": False, "research_collection_budget": 2}
+            "observation_mode": False, "research_collection_budget": 2, "research_collection_wall_seconds": 45}
 # ---------------------------------------------------------------------------
 # STEP: _topics
 #
@@ -293,6 +293,8 @@ def config(path="wake.toml"):
             "observation_mode must be true or false")
     require(type(result["research_collection_budget"]) is int and 2 <= result["research_collection_budget"] <= 8,
             "research_collection_budget must be between 2 and 8")
+    require(type(result["research_collection_wall_seconds"]) is int and 10 <= result["research_collection_wall_seconds"] <= 120,
+            "research_collection_wall_seconds must be between 10 and 120")
     text(result["objective"], "Objective", 2000)
     if result.get("mission"):
         text(result["mission"], "Research mission", 3000)
