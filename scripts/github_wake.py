@@ -80,7 +80,7 @@ class StateBranch:
     def open(self):
         result = self.git("ls-remote", "--exit-code", "--heads", "origin", f"refs/heads/{self.branch}", check=False)
         if result.returncode == 0:
-            self.git("fetch", "--no-tags", "origin", f"refs/heads/{self.branch}")
+            self.git("fetch", "--depth=1", "--no-tags", "origin", f"refs/heads/{self.branch}")
             self.git("worktree", "add", "--detach", str(self.checkout), "FETCH_HEAD")
             if not (self.checkout / "data/wake.sqlite3").exists():
                 raise Rejected("Existing wake-state branch is missing its database; refusing to reset it")
