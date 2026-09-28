@@ -525,12 +525,14 @@ def _notebook_evidence_profile(notebook, state):
         ):
             nonqualifying += 1
             continue
-        identifiers = payload.get("persistent_identifiers") or [] if isinstance(payload, dict) else []
-        normalized = [str(value).strip().lower() for value in identifiers if str(value).strip()] if isinstance(identifiers, list) else []
-        root = next((value for prefix in ("doi:", "arxiv:", "openalex:")
-                     for value in normalized if value.startswith(prefix)), None)
-        if root is None:
-            root = normalized[0] if normalized else "url:" + str(source or "").strip().lower()
+        explicit_identity = (
+            str(payload.get("source_identity") or "").strip().lower()
+            if isinstance(payload, dict) else ""
+        )
+        # IDs found inside source text are retrieval leads, not the identity of
+        # the retrieved work. Only the collector-stamped route identity may
+        # collapse mirrors; legacy records fall back conservatively to URL.
+        root = explicit_identity or "url:" + str(source or "").strip().lower()
         if source:
             source_roots.add(root)
         topic = payload.get("topic_domain") if isinstance(payload, dict) else None
