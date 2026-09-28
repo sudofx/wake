@@ -18,6 +18,7 @@ from html.parser import HTMLParser
 import json
 import re
 import secrets
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -356,7 +357,7 @@ def fetch_source(url, discovery_only=False):
     validator = allowed_discovery_url if discovery_only else allowed_url
     validator(url)
     request = urllib.request.Request(url, headers={"User-Agent": "WAKE-research/3.0 (public research notebook; two sources per wake)"})
-    with urllib.request.build_opener(Redirects(validator)).open(request, timeout=25) as response:
+    with urllib.request.build_opener(Redirects(validator)).open(request, timeout=10) as response:
         validator(response.url)
         content_type = response.headers.get("Content-Type", "")
         is_pdf = "pdf" in content_type.lower() or response.url.lower().split("?", 1)[0].endswith(".pdf")
@@ -698,7 +699,7 @@ def discovery_url(topic):
 # until the next boundary validates or records them. Callers may rely on this contract.
 # ---------------------------------------------------------------------------
 
-def collect(engine, fetcher=fetch_source):
+def collect(engine, fetcher=fetch_source, monotonic=time.monotonic):
     """Called under the wake lock before inference; at most two unauthenticated requests."""
     state = engine.store.load()
     if not state.get("charter"):
@@ -719,6 +720,8 @@ def collect(engine, fetcher=fetch_source):
     # source candidates. With no active work, the whole budget remains available
     # for neutral topic discovery.
     budget = engine.config["research_collection_budget"] if engine.config.get("observation_mode") else 2
+    wall_limit = int(engine.config.get("research_collection_wall_seconds", 45))
+    collection_started = monotonic()
     discovery_count = min(budget, len(topics))
     rng = secrets.SystemRandom()
     active_projects = [p for p in state.get("projects", {}).values()
@@ -868,6 +871,8 @@ def collect(engine, fetcher=fetch_source):
     # letters; later cycles can service them without exceeding network budget.
 
     for item in pending:
+        if monotonic() - collection_started >= wall_limit:
+            break
         url = item.get("url") or query_url(item["query"], item["domain"])
         try:
             topic = topic_by_id.get(item["domain"], {})
