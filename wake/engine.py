@@ -1066,6 +1066,24 @@ class Engine:
             return None
         return payload
 
+    def durable_source_identity(self, state, evidence_id):
+        """Return work-level identity for corroboration, falling back to URL."""
+        evidence = state.get("evidence", {}).get(evidence_id, {})
+        try:
+            payload = json.loads(evidence.get("content", ""))
+        except (ValueError, TypeError):
+            payload = {}
+        identifiers = payload.get("persistent_identifiers") or [] if isinstance(payload, dict) else []
+        if isinstance(identifiers, list):
+            normalized = [str(value).strip().lower() for value in identifiers if str(value).strip()]
+            for prefix in ("doi:", "arxiv:", "openalex:"):
+                match = next((value for value in normalized if value.startswith(prefix)), None)
+                if match:
+                    return match
+            if normalized:
+                return normalized[0]
+        return "url:" + str(evidence.get("source") or "").strip().lower()
+
     def project_notebook_evidence_ids(self, state, evidence_ids, project, *, same_domain=False):
         """Filter evidence IDs using authoritative durable metadata.
 
@@ -1125,15 +1143,15 @@ class Engine:
             ]
             latest = notebooks[-1] if notebooks else None
 
-            def distinct_urls(notebook):
+            def distinct_sources(notebook):
                 return {
-                    state["evidence"][evidence_id].get("source")
+                    self.durable_source_identity(state, evidence_id)
                     for evidence_id in notebook.get("evidence", [])
                     if evidence_id in state.get("evidence", {})
                     and state["evidence"][evidence_id].get("source")
                 }
 
-            corroborated = [item for item in notebooks if len(distinct_urls(item)) >= 2]
+            corroborated = [item for item in notebooks if len(distinct_sources(item)) >= 2]
             if not latest:
                 if same_domain:
                     stage = "needs_synthesis"
@@ -1143,7 +1161,7 @@ class Engine:
                     stage = "needs_evidence"
                     missing = "first qualifying source"
                     priority = 1
-            elif len(distinct_urls(latest)) < 2:
+            elif len(distinct_sources(latest)) < 2:
                 stage = "needs_corroboration"
                 missing = "targeted corroborating source"
                 priority = 3
