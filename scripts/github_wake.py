@@ -24,6 +24,7 @@ import uuid
 ROOT = Path(__file__).resolve().parents[1]
 STATE_GIT_OPERATION_TIMEOUT_SECONDS = 90
 LIVE_GIT_OPERATION_TIMEOUT_SECONDS = 20
+LIVE_PROJECTION_WALL_SECONDS = 30
 sys.path.insert(0, str(ROOT))
 from wake.engine import Engine, config
 from wake.governance import Rejected
@@ -121,6 +122,13 @@ class StateBranch:
                                             output=last.stdout, stderr=last.stderr)
 
 
+def _projection_timeout(deadline):
+    remaining = deadline - time.monotonic()
+    if remaining <= 0:
+        raise TimeoutError("Live projection exceeded its wall-clock budget")
+    return max(1, min(LIVE_GIT_OPERATION_TIMEOUT_SECONDS, remaining))
+
+
 class LiveProjectionBranch:
     """Replace one public-safe projection without creating a history chain."""
 
@@ -129,31 +137,32 @@ class LiveProjectionBranch:
         self.branch = branch
 
     def publish(self, payload):
+        deadline = time.monotonic() + LIVE_PROJECTION_WALL_SECONDS
         with tempfile.TemporaryDirectory(prefix="wake-live-") as folder:
             checkout = Path(folder) / "live"
             subprocess.run(["git", "worktree", "add", "--detach", str(checkout), "HEAD"],
-                           cwd=self.repository, check=True, capture_output=True, text=True, timeout=LIVE_GIT_OPERATION_TIMEOUT_SECONDS)
+                           cwd=self.repository, check=True, capture_output=True, text=True, timeout=_projection_timeout(deadline))
             try:
                 local_branch = f"{self.branch}-refresh-{uuid.uuid4().hex}"
                 subprocess.run(["git", "checkout", "--orphan", local_branch], cwd=checkout,
-                               check=True, capture_output=True, text=True, timeout=LIVE_GIT_OPERATION_TIMEOUT_SECONDS)
+                               check=True, capture_output=True, text=True, timeout=_projection_timeout(deadline))
                 subprocess.run(["git", "rm", "-rf", "--ignore-unmatch", "."], cwd=checkout,
-                               check=False, capture_output=True, text=True, timeout=LIVE_GIT_OPERATION_TIMEOUT_SECONDS)
+                               check=False, capture_output=True, text=True, timeout=_projection_timeout(deadline))
                 (checkout / "live.json").write_text(
                     json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n",
                     encoding="utf-8",
                 )
-                subprocess.run(["git", "add", "live.json"], cwd=checkout, check=True, timeout=LIVE_GIT_OPERATION_TIMEOUT_SECONDS)
+                subprocess.run(["git", "add", "live.json"], cwd=checkout, check=True, timeout=_projection_timeout(deadline))
                 subprocess.run([
                     "git", "-c", "user.name=wake-bot",
                     "-c", "user.email=wake-bot@users.noreply.github.com",
                     "commit", "-m", "Refresh disposable WAKE live projection",
-                ], cwd=checkout, check=True, capture_output=True, text=True, timeout=LIVE_GIT_OPERATION_TIMEOUT_SECONDS)
+                ], cwd=checkout, check=True, capture_output=True, text=True, timeout=_projection_timeout(deadline))
                 subprocess.run(["git", "push", "--force", "origin", f"HEAD:refs/heads/{self.branch}"],
-                               cwd=checkout, check=True, capture_output=True, text=True, timeout=LIVE_GIT_OPERATION_TIMEOUT_SECONDS)
+                               cwd=checkout, check=True, capture_output=True, text=True, timeout=_projection_timeout(deadline))
             finally:
                 subprocess.run(["git", "worktree", "remove", "--force", str(checkout)],
-                               cwd=self.repository, check=False, capture_output=True, text=True, timeout=LIVE_GIT_OPERATION_TIMEOUT_SECONDS)
+                               cwd=self.repository, check=False, capture_output=True, text=True, timeout=_projection_timeout(deadline))
 
 
 def continuation_outputs(result):
