@@ -13,6 +13,12 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertNotIn('upload-pages-artifact', workflow)
         self.assertNotIn('pages.yml', workflow)
         self.assertIn('group: wake-authority', workflow)
+        self.assertIn('timeout-minutes: 30', workflow)
+
+    def test_completed_wake_is_not_recheckpointed_before_live_projection(self):
+        cloud = self.read('scripts/github_wake.py')
+        self.assertIn('result_checkpointed = True', cloud)
+        self.assertIn('if not result_checkpointed:', cloud)
 
     def test_pages_lane_has_no_model_execution(self):
         workflow = self.read('.github/workflows/pages.yml')
