@@ -23,4 +23,4 @@ jobs:
         run: |
           gh workflow run wake-runner.yml --repo "$GITHUB_REPOSITORY" --ref master \
             -f "dispatch_token=bounded-live-${GITHUB_RUN_ID}" \
-            -f "runtime_ref=052cedf0efd6a1c96f04a0d3d4372843efb0e35b"
+            -f "runtime_ref=69cbf5528de5f9c5a509ee79029903a835ec43c9"
