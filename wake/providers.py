@@ -787,7 +787,7 @@ class Gemini:
         payload = json.dumps(body).encode()
         attempted = 0
         provider_wall_seconds = max(1, int(self.config.get("provider_wall_seconds", self.config["timeout_seconds"])))
-        provider_deadline = time.monotonic() + provider_wall_seconds
+        provider_deadline = time.time() + provider_wall_seconds
         error = TransientProviderError("Gemini provider wall budget exhausted; wake deferred")
         for model in self.models:
             if attempted >= self.request_limit:
@@ -797,7 +797,7 @@ class Gemini:
                 # provider-attempt receipts for the current Pacific quota day.
                 # Never probe it again before the reset boundary.
                 continue
-            remaining_seconds = provider_deadline - time.monotonic()
+            remaining_seconds = provider_deadline - time.time()
             if remaining_seconds <= 0:
                 break
             attempted += 1
