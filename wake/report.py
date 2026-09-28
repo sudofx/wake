@@ -501,12 +501,14 @@ h2 a{{color:var(--cyan, var(--green))}}h2 a:hover,h2 a:active{{color:var(--green
 def _notebook_evidence_profile(notebook, state):
     """Derive visible evidence-depth telemetry without mutating durable state.
 
-    One qualifying source may now support a provisional notebook. The public
-    report therefore exposes source depth so progressive acceptance cannot be
-    mistaken for corroboration.
+    Public reporting must use the same substantive-evidence distinction as
+    governance. Metadata/discovery records may remain in historical notebooks,
+    but they are retrieval leads and must not be displayed as qualifying source
+    works under the current contract.
     """
     source_roots = set()
     cross_topic_roots = set()
+    nonqualifying = 0
     project_domain = notebook.get("domain") or state.get("projects", {}).get(
         notebook.get("project"), {}
     ).get("domain")
@@ -517,6 +519,12 @@ def _notebook_evidence_profile(notebook, state):
             payload = json.loads(evidence.get("content", ""))
         except (ValueError, TypeError):
             payload = {}
+        if isinstance(payload, dict) and (
+            payload.get("evidence_role") in ("discovery", "metadata")
+            or payload.get("host_tier") == "verification-metadata"
+        ):
+            nonqualifying += 1
+            continue
         identifiers = payload.get("persistent_identifiers") or [] if isinstance(payload, dict) else []
         normalized = [str(value).strip().lower() for value in identifiers if str(value).strip()] if isinstance(identifiers, list) else []
         root = next((value for prefix in ("doi:", "arxiv:", "openalex:")
@@ -528,7 +536,7 @@ def _notebook_evidence_profile(notebook, state):
         topic = payload.get("topic_domain") if isinstance(payload, dict) else None
         if source and topic and project_domain and topic != project_domain:
             cross_topic_roots.add(root)
-    return len(source_roots), len(cross_topic_roots)
+    return len(source_roots), len(cross_topic_roots), nonqualifying
 
 
 def _notebook_html(notebook, state):
@@ -536,16 +544,22 @@ def _notebook_html(notebook, state):
     for eid in notebook["evidence"]:
         evidence = state["evidence"][eid]
         source_items.append(f'<li><a href="{html.escape(str(evidence["source"]))}">{html.escape(eid)}</a></li>')
-    source_count, cross_topic_count = _notebook_evidence_profile(notebook, state)
+    source_count, cross_topic_count, nonqualifying_count = _notebook_evidence_profile(notebook, state)
     source_word = "work" if source_count == 1 else "works"
     cross_note = (
         f" · {cross_topic_count} cross-topic source work"
         + ("" if cross_topic_count == 1 else "s")
         if cross_topic_count else ""
     )
+    nonqualifying_note = (
+        f" · {nonqualifying_count} metadata/discovery record"
+        + ("" if nonqualifying_count == 1 else "s")
+        + " not counted"
+        if nonqualifying_count else ""
+    )
     body = (
         f'<p class="lede">{_html_text(notebook["summary"])}</p>'
-        f'<p class="meta">Evidence profile · {source_count} distinct source {source_word}{cross_note}</p>'
+        f'<p class="meta">Evidence profile · {source_count} distinct qualifying source {source_word}{cross_note}{nonqualifying_note}</p>'
         f'<h2>Findings</h2><p>{_html_text(notebook["findings"])}</p>'
         f'<h2>Limitations and competing views</h2><p>{_html_text(notebook["limitations"])}</p>'
         f'<h2>Next questions</h2><p>{_html_text(notebook["next_questions"])}</p>'
@@ -824,14 +838,20 @@ def export(store, destination="site", experiment=None, operation=None, browser_o
         atomic_write(target / "head.txt", head + "\n")
         for notebook in state.get("notebooks", {}).values():
             sources = "\n".join(f"- [{eid}]({state['evidence'][eid]['source']})" for eid in notebook["evidence"])
-            source_count, cross_topic_count = _notebook_evidence_profile(notebook, state)
+            source_count, cross_topic_count, nonqualifying_count = _notebook_evidence_profile(notebook, state)
             source_word = "work" if source_count == 1 else "works"
             cross_note = (
                 f" · {cross_topic_count} cross-topic source work"
                 + ("" if cross_topic_count == 1 else "s")
                 if cross_topic_count else ""
             )
-            profile = f"Evidence profile · {source_count} distinct source {source_word}{cross_note}"
+            nonqualifying_note = (
+                f" · {nonqualifying_count} metadata/discovery record"
+                + ("" if nonqualifying_count == 1 else "s")
+                + " not counted"
+                if nonqualifying_count else ""
+            )
+            profile = f"Evidence profile · {source_count} distinct qualifying source {source_word}{cross_note}{nonqualifying_note}"
             markdown = (f"# {_md_text(notebook['title'])}\n\n{_md_text(notebook['summary'])}\n\n{profile}\n\n## Findings\n\n{_md_text(notebook['findings'])}\n\n"
                         f"## Limitations and competing views\n\n{_md_text(notebook['limitations'])}\n\n"
                         f"## Next questions\n\n{_md_text(notebook['next_questions'])}\n\n## Collected sources\n\n{sources}\n\n"
