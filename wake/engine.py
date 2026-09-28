@@ -1087,11 +1087,27 @@ class Engine:
             return None
         if payload.get("evidence_role") in ("discovery", "metadata"):
             return None
-        if payload.get("verification_required") is True and payload.get("evidence_role", "source") != "source":
-            return None
+        if payload.get("verification_required") is True:
+            if payload.get("evidence_role", "source") != "source":
+                return None
+            topic_domain = payload.get("topic_domain")
+            if not isinstance(topic_domain, str) or not topic_domain.strip():
+                return None
         if payload.get("host_tier") == "verification-metadata":
             return None
         return payload
+
+    def notebook_qualifying_evidence_ids(self, state, notebook):
+        """Return notebook citations that still qualify under current source rules.
+
+        Historical notebooks remain durable even when their old evidence contract
+        is no longer strong enough. Current maturation/provider context must not
+        mistake those artifacts for valid present-day synthesis.
+        """
+        return [
+            evidence_id for evidence_id in notebook.get("evidence", [])
+            if self.durable_notebook_source_payload(state, evidence_id) is not None
+        ]
 
     def durable_source_identity(self, state, evidence_id):
         """Return work-level identity for corroboration, falling back to URL."""
@@ -1195,16 +1211,20 @@ class Engine:
             same_domain = self.project_notebook_evidence_ids(
                 state, evidence_ids, project, same_domain=True
             )
-            notebooks = [
+            historical_notebooks = [
                 item for item in state.get("notebooks", {}).values()
                 if item.get("project") == project.get("id")
+            ]
+            notebooks = [
+                item for item in historical_notebooks
+                if self.notebook_qualifying_evidence_ids(state, item)
             ]
             latest = notebooks[-1] if notebooks else None
 
             def distinct_sources(notebook):
                 return {
                     self.durable_source_identity(state, evidence_id)
-                    for evidence_id in notebook.get("evidence", [])
+                    for evidence_id in self.notebook_qualifying_evidence_ids(state, notebook)
                     if evidence_id in state.get("evidence", {})
                     and state["evidence"][evidence_id].get("source")
                 }
@@ -1268,6 +1288,7 @@ class Engine:
                     if state["evidence"][item].get("source")
                 }),
                 "notebook_count": len(notebooks),
+                "historical_notebook_count": len(historical_notebooks),
                 "notebook_source_urls": len(distinct_sources(latest)) if latest else 0,
                 "missing_requirement": missing,
             })
@@ -1392,17 +1413,26 @@ class Engine:
             )
             visible_nonactive = selected_visible + recent_other_visible
             context["projects"] = active_projects + visible_nonactive
-            context["notebooks"] = [{k:n[k] for k in ("id", "project", "title", "summary", "revision", "evidence")}
-                                    for n in list(state["notebooks"].values())[-8:]]
-            # Give editorial actions a canonical project -> notebook map. This is
-            # intentionally metadata-only: Bob can select real durable IDs without
-            # guessing relationships or needing full notebook bodies in context.
+            usable_notebooks = [
+                notebook for notebook in state["notebooks"].values()
+                if self.notebook_qualifying_evidence_ids(state, notebook)
+            ]
+            context["notebooks"] = [
+                {k:n[k] for k in ("id", "project", "title", "summary", "revision", "evidence")}
+                for n in usable_notebooks[-8:]
+            ]
+            # Only notebooks that still satisfy the current substantive-source
+            # contract may drive new publication or working synthesis. Historical
+            # invalid notebooks remain in the durable/public audit.
             context["blog_notebooks"] = {}
-            for notebook in state["notebooks"].values():
+            for notebook in usable_notebooks:
                 context["blog_notebooks"].setdefault(notebook["project"], []).append(
                     {k:notebook[k] for k in ("id", "title", "revision", "evidence")}
                 )
-            working = [n for n in state["notebooks"].values() if state["projects"][n["project"]]["status"] == "active"]
+            working = [
+                n for n in usable_notebooks
+                if state["projects"][n["project"]]["status"] == "active"
+            ]
             context["working_notebook"] = ({**working[-1], "findings": working[-1]["findings"][:3000],
                                            "context_excerpt": True} if working else None)
             context["research"] = list(state["research"].values())[-8:]
@@ -1483,7 +1513,10 @@ class Engine:
                 context["project_evidence"][project["id"]] = self.project_notebook_evidence_ids(
                     state, visible_evidence_ids, project
                 )
-            notebook_projects = {n.get("project") for n in state.get("notebooks", {}).values()}
+            notebook_projects = {
+                n.get("project") for n in state.get("notebooks", {}).values()
+                if self.notebook_qualifying_evidence_ids(state, n)
+            }
             context["synthesis_ready_projects"] = [
                 project["id"] for project in context["projects"]
                 if project.get("status") == "active"
