@@ -9,6 +9,18 @@
 (async () => {
   'use strict';
   const data = await window.WakeData;
+  // Compatibility bridge for an experiment chain pinned before full-history
+  // metrics were added to wake-live. Prefer live metrics when present; otherwise
+  // borrow only the bounded aggregate block from the current Pages snapshot.
+  if(!data.metrics){
+    try{
+      const response=await fetch('wake-data.json?wake_metrics='+Date.now(),{cache:'no-store'});
+      if(response.ok){
+        const fallback=await response.json();
+        if(fallback.metrics)data.metrics=fallback.metrics;
+      }
+    }catch{}
+  }
   if (window.WakePetReady) await window.WakePetReady;
   const s = data.state;
   const $ = id => document.getElementById(id);
