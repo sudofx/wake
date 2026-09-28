@@ -1,10 +1,12 @@
 import json
 from pathlib import Path
 import tempfile
+import time
 import unittest
+from unittest.mock import patch
 
 from wake.engine import DEFAULTS, Engine
-from wake.research import collect, exact_identifier_url, persistent_identifiers, candidate_source_urls, route_source_identity
+from wake.research import collect, exact_identifier_url, persistent_identifiers, candidate_source_urls, route_source_identity, fetch_source
 from support import charter_settings
 
 
@@ -178,6 +180,12 @@ class AcquisitionTests(unittest.TestCase):
         self.assertEqual(payload["persistent_identifiers"], [])
         self.assertEqual(payload["source_candidates"], [])
         self.assertNotIn("doi:10.9999/unrelated", state["acquisition"]["p"]["persistent_identifiers"])
+
+    def test_source_processing_deadline_bounds_pdf_parse_path(self):
+        with patch("wake.research.SOURCE_PROCESSING_TIMEOUT_SECONDS", 0.02), \
+             patch("wake.research._fetch_source_unbounded", side_effect=lambda *_args, **_kwargs: time.sleep(0.2)):
+            with self.assertRaises(TimeoutError):
+                fetch_source("https://www.frontiersin.org/articles/example/file.pdf")
 
     def test_collection_wall_budget_stops_additional_fetches(self):
         calls = []
