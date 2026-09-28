@@ -752,12 +752,18 @@ def collect(engine, fetcher=fetch_source):
         if item.get("queued_followup") or item.get("acquisition_followup"):
             payload = json.loads(content)
             role = payload.get("evidence_role", evidence_role(url))
-            outcome = "progress" if status == "collected" and role == "source" else (
+            tier = payload.get("host_tier", host_tier(url))
+            # Exact bibliographic metadata is acquisition progress, not research
+            # progress. A project advances only after WAKE retrieves readable
+            # source material (or source-controlled repository text).
+            substantive = status == "collected" and role == "source" and tier != "verification-metadata"
+            outcome = "progress" if substantive else (
                 "route_failure" if status == "failed" else "no_progress")
             engine.store.append("acquisition_assessed", {"project": item["project"],
                 "domain": item["domain"], "research_id": item["id"],
                 "route": urllib.parse.urlsplit(url).hostname + ":" + role,
-                "stage": "substantive_source" if role == "source" else "discovery",
+                "stage": "substantive_source" if substantive else (
+                    "metadata_verification" if tier == "verification-metadata" else "discovery"),
                 "outcome": outcome, "evidence": evidence_id,
                 "persistent_identifiers": payload.get("persistent_identifiers", []),
                 "source_candidates": payload.get("source_candidates", [])})
