@@ -1050,11 +1050,30 @@ def transition(state, proposal, invocation, historical=False):
 
         elif kind == "commit":
 
-            keys(
-                action,
-                "type id task due_cycle reason",
-                "Commitment",
-            )
+            # Research-charter commitments created under current governance are
+            # project-scoped. Historical/base commitments without a project
+            # remain replayable so the append-only record needs no migration.
+            if "project" in action:
+                keys(
+                    action,
+                    "type id project task due_cycle reason",
+                    "Commitment",
+                )
+                identifier(action["project"])
+                require(
+                    action["project"] in result.get("projects", {}),
+                    "Research commitment must reference an existing project",
+                )
+            else:
+                keys(
+                    action,
+                    "type id task due_cycle reason",
+                    "Commitment",
+                )
+                require(
+                    historical or not state.get("charter"),
+                    "Current research commitments must reference a project",
+                )
 
             identifier(action["id"])
             text(action["task"], "Task")
@@ -1154,6 +1173,38 @@ def transition(state, proposal, invocation, historical=False):
                 ),
                 "Resolution requires evidence recorded after the commitment",
             )
+
+            # Forward research commitments are tied to one durable project.
+            # Fresh evidence from an unrelated topic cannot satisfy the promise.
+            commitment_project = old.get("project")
+            if commitment_project and not historical:
+                project = result.get("projects", {}).get(commitment_project)
+                require(
+                    project is not None,
+                    "Research commitment project no longer exists",
+                )
+                project_domain = project.get("domain")
+                project_evidence = []
+                for evidence_id in action["evidence"]:
+                    evidence = result["evidence"][evidence_id]
+                    payload = _evidence_payload(evidence)
+                    if (
+                        evidence.get("actor") == "collector"
+                        and evidence.get("scope") == "collected"
+                        and payload.get("topic_domain") == project_domain
+                    ):
+                        project_evidence.append(evidence)
+                require(
+                    project_evidence,
+                    "Research commitment resolution requires collected evidence "
+                    "from the commitment's project topic",
+                )
+                _verification_evidence(
+                    project_evidence,
+                    project_domain,
+                    "Research commitment resolution",
+                    minimum_sources=1,
+                )
 
             result["commitments"][action["id"]] = {
                 **old,
