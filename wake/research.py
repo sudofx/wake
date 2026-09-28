@@ -67,6 +67,8 @@ def persistent_identifiers(observation):
                for item in re.findall(r"10\.\d{4,9}/[-._;()/:a-zA-Z0-9]+", text)]
     values += ["openalex:" + item.rsplit("/", 1)[-1] for item in re.findall(r"https?://openalex\.org/[Ww]\d+", text)]
     values += ["arxiv:" + item for item in re.findall(r"\b\d{4}\.\d{4,5}(?:v\d+)?\b", text)]
+    values += ["pmc:" + item.upper() for item in re.findall(r"\bPMC\d+\b", text, re.I)]
+    values += ["pmid:" + item for item in re.findall(r'"(?:PubMed|PMID)"\s*:\s*"?(\d{5,10})', text, re.I)]
     return list(dict.fromkeys(values))[:12]
 
 
@@ -121,6 +123,14 @@ def exact_identifier_url(identifier):
     if identifier.startswith("arxiv:"):
         arxiv_id = identifier.split(":", 1)[1].strip()
         return ("https://export.arxiv.org/api/query?" + urllib.parse.urlencode({"id_list": arxiv_id})) if re.fullmatch(r"\d{4}\.\d{4,5}(?:v\d+)?", arxiv_id) else None
+    if identifier.startswith("pmc:"):
+        pmc_id = identifier.split(":", 1)[1].strip().upper()
+        return ("https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_json/"
+                + urllib.parse.quote(pmc_id, safe="") + "/unicode") if re.fullmatch(r"PMC\d+", pmc_id) else None
+    if identifier.startswith("pmid:"):
+        pmid = identifier.split(":", 1)[1].strip()
+        return ("https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_json/"
+                + urllib.parse.quote(pmid, safe="") + "/unicode") if re.fullmatch(r"\d{5,10}", pmid) else None
     return None
 # Repository-analysis topics may inspect source-controlled implementation,
 # not merely prose documentation. The capability is generic; activation and
