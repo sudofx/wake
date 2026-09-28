@@ -4,7 +4,7 @@ import tempfile
 import unittest
 
 from wake.engine import DEFAULTS, Engine
-from wake.research import collect, exact_identifier_url, persistent_identifiers
+from wake.research import collect, exact_identifier_url, persistent_identifiers, candidate_source_urls
 from support import charter_settings
 
 
@@ -56,27 +56,47 @@ class AcquisitionTests(unittest.TestCase):
         self.assertIn("id_list=2512.02221", exact_identifier_url("arxiv:2512.02221"))
         self.assertIsNone(exact_identifier_url("unknown:value"))
 
-    def test_collector_promotes_discovery_identifier_without_model_translation(self):
+    def test_collector_promotes_metadata_lead_to_readable_source_without_model_translation(self):
         calls = []
+        exact = "https://api.crossref.org/works/10.1000%2Fexample.1"
+        readable = "https://www.frontiersin.org/articles/10.3389/example/full"
         def fetcher(url):
             calls.append(url)
-            return {"url": url, "scope": "test fixture", "excerpt": "usable source material " * 20}
+            if url == exact:
+                return {"url": url, "scope": "Crossref bibliographic metadata",
+                        "excerpt": f"publisher landing page {readable} DOI 10.1000/example.1"}
+            return {"url": url, "scope": "readable publisher article",
+                    "excerpt": "substantive readable source material " * 20}
 
         with self.engine.store.lock():
             receipt = self.receipt("crossref:discovery", "no_progress")
             receipt["persistent_identifiers"] = ["doi:10.1000/example.1"]
             self.engine.store.append("acquisition_assessed", receipt)
             collect(self.engine, fetcher=fetcher)
+            state = self.engine.store.load()
+            self.assertIn(readable, state["acquisition"]["p"]["source_candidates"])
+            self.assertGreater(state["acquisition"]["p"]["no_progress"], 0)
+            collect(self.engine, fetcher=fetcher)
 
-        exact = "https://api.crossref.org/works/10.1000%2Fexample.1"
         self.assertIn(exact, calls)
+        self.assertIn(readable, calls)
         state = self.engine.store.load()
         self.assertEqual(state["acquisition"]["p"]["no_progress"], 0)
-        promoted = [e for e in state["evidence"].values() if e.get("source") == exact]
+        promoted = [e for e in state["evidence"].values() if e.get("source") == readable]
         self.assertEqual(len(promoted), 1)
         payload = json.loads(promoted[0]["content"])
         self.assertEqual(payload["evidence_role"], "source")
         self.assertEqual(payload["topic_domain"], "entropy")
+
+    def test_candidate_source_urls_reject_metadata_and_pdf_routes(self):
+        urls = candidate_source_urls({
+            "excerpt": (
+                "https://api.crossref.org/works/10.1000/example "
+                "https://www.frontiersin.org/articles/example/full "
+                "https://www.frontiersin.org/articles/example/file.pdf"
+            )
+        })
+        self.assertEqual(urls, ["https://www.frontiersin.org/articles/example/full"])
 
     def test_capability_block_can_record_a_distinct_frame_without_claiming_evidence(self):
         with self.engine.store.lock():
