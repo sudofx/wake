@@ -1100,6 +1100,9 @@ class Engine:
             payload = json.loads(evidence.get("content", ""))
         except (ValueError, TypeError):
             payload = {}
+        explicit = str(payload.get("source_identity") or "").strip().lower() if isinstance(payload, dict) else ""
+        if explicit:
+            return explicit
         identifiers = payload.get("persistent_identifiers") or [] if isinstance(payload, dict) else []
         if isinstance(identifiers, list):
             normalized = [str(value).strip().lower() for value in identifiers if str(value).strip()]
