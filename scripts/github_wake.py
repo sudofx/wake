@@ -229,6 +229,7 @@ def main(publish_only=False, scheduled=False, reset=False, record_only=False):
                     continuation_outputs(result)
                     print(json.dumps(result))
                     return 0
+            result_checkpointed = False
             try:
                 if reset:
                     state = engine.store.load()
@@ -239,14 +240,17 @@ def main(publish_only=False, scheduled=False, reset=False, record_only=False):
                 else:
                     provider = Gemini(settings)
                     result = engine.run(provider, checkpoint=branch.checkpoint, collector=collect)
+                    # Engine.run checkpoints every terminal provider/governance result.
+                    # Do not immediately re-stage/re-hash the growing SQLite blob again.
+                    result_checkpointed = True
             except Rejected as exc:
                 result = {"status": "paused", "reason": str(exc)}
             result["wake_status"] = wake_status(engine.store.load(), None if settings.get("model_daily_call_limits") else settings["daily_call_limit"])
             if not publish_only:
-                # Authority is durable before any disposable browser projection.
-                # This checkpoint also removes legacy generated files from the
-                # current wake-state tree so SQLite remains the only state product.
-                branch.checkpoint()
+                # Engine.run already made ordinary terminal results durable. Reset
+                # and exceptional paused paths still need an explicit checkpoint.
+                if not result_checkpointed:
+                    branch.checkpoint()
                 runtime_ref = os.environ.get("WAKE_RUNTIME_REF", "")
                 try:
                     payload = build_live_projection(engine.store, operation=result, runtime_ref=runtime_ref)
