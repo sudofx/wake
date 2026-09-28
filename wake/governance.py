@@ -258,6 +258,25 @@ def _evidence_payload(item):
     return payload if isinstance(payload, dict) else {}
 
 
+def _source_identity(item):
+    """Return a conservative work-level identity when collector metadata provides one.
+
+    Mirrors and alternate landing pages for the same DOI/arXiv/OpenAlex work
+    should not satisfy corroboration merely because their URLs differ.
+    """
+    payload = _evidence_payload(item)
+    identifiers = payload.get("persistent_identifiers") or []
+    if isinstance(identifiers, list):
+        normalized = [str(value).strip().lower() for value in identifiers if str(value).strip()]
+        for prefix in ("doi:", "arxiv:", "openalex:"):
+            match = next((value for value in normalized if value.startswith(prefix)), None)
+            if match:
+                return match
+        if normalized:
+            return normalized[0]
+    return "url:" + str(item.get("source") or "").strip().lower()
+
+
 def _verification_evidence(evidence, project_domain, label, minimum_sources=1):
     """
     Apply the newer verification contract when evidence says that contract is
@@ -314,9 +333,9 @@ def _verification_evidence(evidence, project_domain, label, minimum_sources=1):
     )
 
     require(
-        len({item.get("source") for item in marked}) >= minimum_sources,
-        f"{label} requires at least {minimum_sources} distinct "
-        "independently retrieved source URL(s)",
+        len({_source_identity(item) for item in marked}) >= minimum_sources,
+        f"{label} requires at least {minimum_sources} distinct underlying "
+        "source work(s); mirrors of the same persistent work count once",
     )
 
     return marked
