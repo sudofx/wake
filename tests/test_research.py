@@ -1945,6 +1945,9 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(host_tier("https://www.frontiersin.org/articles/example"), "verification-fulltext")
         self.assertEqual(host_tier("https://api.datacite.org/dois/10.1234/example"), "verification-metadata")
         self.assertEqual(host_tier("https://arxiv.org/abs/1234.56789"), "preprint")
+        self.assertEqual(host_tier("https://export.arxiv.org/api/query?id_list=1234.56789"), "verification-metadata")
+        self.assertEqual(evidence_role("https://export.arxiv.org/api/query?id_list=1234.56789"), "metadata")
+        self.assertEqual(evidence_role("https://arxiv.org/pdf/1234.56789.pdf"), "source")
         self.assertEqual(host_tier("https://academic.oup.com/example"), "verification-publisher")
 
     def test_failed_remote_checkpoint_prevents_model_request(self):
