@@ -1484,6 +1484,81 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(evidence_role(url), "source")
         self.assertEqual(host_tier(url), "verification-fulltext")
 
+    def test_pdf_route_extracts_bounded_readable_text(self):
+        url = "https://academic.oup.com/example/article-pdf/1/1/1/123/example.pdf"
+        raw = b"%PDF-1.7 synthetic fixture bytes"
+
+        class Response:
+            def __init__(self):
+                self.url = url
+                self.headers = {"Content-Type": "application/pdf"}
+            def read(self, limit):
+                self.limit = limit
+                return raw
+            def __enter__(self):
+                return self
+            def __exit__(self, *_args):
+                return False
+
+        class Opener:
+            def open(self, _request, timeout=None):
+                self.timeout = timeout
+                return Response()
+
+        class Page:
+            def __init__(self, text):
+                self.text = text
+            def extract_text(self):
+                return self.text
+
+        class Reader:
+            is_encrypted = False
+            pages = [
+                Page("Entropy production and non-equilibrium systems are compared using explicit thermodynamic measures."),
+                Page("The paper discusses assumptions, limitations, methods, and observed consequences in enough detail."),
+            ]
+
+        with patch("wake.research.urllib.request.build_opener", return_value=Opener()), \
+             patch("wake.research.PdfReader", return_value=Reader()):
+            observation = fetch_source(url)
+
+        self.assertIn("Entropy production", observation["excerpt"])
+        self.assertIn("bounded PDF text extraction", observation["scope"])
+        self.assertEqual(evidence_role(url), "source")
+        self.assertNotIn("PDF extraction is not available", observation["scope"])
+
+    def test_pdf_route_fails_closed_when_no_readable_text_exists(self):
+        url = "https://academic.oup.com/example/article-pdf/1/1/1/123/scanned.pdf"
+        raw = b"%PDF-1.7 scanned fixture bytes"
+
+        class Response:
+            def __init__(self):
+                self.url = url
+                self.headers = {"Content-Type": "application/pdf"}
+            def read(self, _limit):
+                return raw
+            def __enter__(self):
+                return self
+            def __exit__(self, *_args):
+                return False
+
+        class Opener:
+            def open(self, _request, timeout=None):
+                return Response()
+
+        class Page:
+            def extract_text(self):
+                return ""
+
+        class Reader:
+            is_encrypted = False
+            pages = [Page()]
+
+        with patch("wake.research.urllib.request.build_opener", return_value=Opener()), \
+             patch("wake.research.PdfReader", return_value=Reader()):
+            with self.assertRaisesRegex(ValueError, "enough readable content"):
+                fetch_source(url)
+
     def test_queued_exact_source_url_is_not_replaced_by_another_search(self):
         exact = "https://api.crossref.org/works/10.1016%2Fj.example.2026.01.001"
         self.propose([project(), dict(type="research", id="q-exact", project="p",
