@@ -1058,9 +1058,11 @@ class Engine:
             return None
         if not isinstance(payload, dict):
             return None
-        if payload.get("evidence_role") == "discovery":
+        if payload.get("evidence_role") in ("discovery", "metadata"):
             return None
         if payload.get("verification_required") is True and payload.get("evidence_role", "source") != "source":
+            return None
+        if payload.get("host_tier") == "verification-metadata":
             return None
         return payload
 
