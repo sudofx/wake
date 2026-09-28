@@ -806,8 +806,16 @@ def collect(engine, fetcher=fetch_source):
             # material. Exact index records are useful verification metadata and
             # identifier bridges, but they must not make a project look researched.
             substantive = role == "source" and tier != "verification-metadata"
-            outcome = "progress" if status == "collected" and substantive else (
-                "route_failure" if status == "failed" else "no_progress")
+            routing_progress = bool(
+                status == "collected"
+                and (payload.get("persistent_identifiers") or payload.get("source_candidates"))
+            )
+            outcome = (
+                "progress" if substantive
+                else "routing_progress" if routing_progress
+                else "route_failure" if status == "failed"
+                else "no_progress"
+            )
             engine.store.append("acquisition_assessed", {"project": item["project"],
                 "domain": item["domain"], "research_id": item["id"],
                 "route": urllib.parse.urlsplit(url).hostname + ":" + role,
