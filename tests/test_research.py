@@ -623,27 +623,91 @@ class ResearchTests(unittest.TestCase):
         self.assertIn("p", recovered["synthesis_ready_projects"])
         self.assertEqual(len(recovered["retrieval_rehydration"]["evidence_ids"]), 1)
 
-    def test_context_exposes_nonruntime_post_commitment_resolution_evidence(self):
-        with self.engine.store.lock():
+    def test_context_exposes_only_same_project_post_commitment_resolution_evidence(self):
+        def collected(identifier, topic):
             self.engine.store.append("observation", {
-                "id": "pre", "source": "fixture:pre", "content": "old", "actor": "human"
+                "id": identifier,
+                "source": f"https://www.frontiersin.org/articles/{identifier}/full",
+                "content": json.dumps({
+                    "verification_required": True,
+                    "topic_domain": topic,
+                    "evidence_role": "source",
+                    "host_tier": "verification-fulltext",
+                    "persistent_identifiers": [f"doi:10.1000/{identifier}"],
+                    "excerpt": f"{topic} substantive readable evidence",
+                }),
+                "actor": "collector",
+                "scope": "collected",
             })
+
+        with self.engine.store.lock():
+            self.engine.store.append("project_adopted", {
+                "id": "p", "title": "Entropy project",
+                "question": "How should entropy evidence be compared?", "domain": "entropy",
+                "status": "active", "next_step": "Compare readable sources.",
+                "reason": "Test commitment scoping.", "actor": "operator",
+            })
+            collected("pre", "entropy")
             invocation, request = self.engine.start("fixture", "commit-seed")
             proposal = json.loads(Fixture().propose(request)[0])
             proposal["actions"] = [{
-                "type": "commit", "id": "c", "task": "Review new evidence",
-                "due_cycle": request["context"]["version"] + 2, "reason": "Test temporal gate"
+                "type": "commit", "id": "c", "project": "p",
+                "task": "Review new entropy evidence",
+                "due_cycle": request["context"]["version"] + 2,
+                "reason": "Test temporal and project gate",
             }]
             self.engine.finish(invocation, json.dumps(proposal))
-            self.engine.store.append("observation", {
-                "id": "post", "source": "fixture:post", "content": "new", "actor": "human"
-            })
+            collected("post-good", "entropy")
+            collected("post-wrong", "psychology")
             second, second_request = self.engine.start("fixture", "commit-check")
             self.engine.store.append("recovered", {"id": second, "reason": "Test cleanup"})
 
         commitment = next(item for item in second_request["context"]["commitments"] if item["id"] == "c")
-        self.assertIn("post", commitment["resolution_evidence"])
+        self.assertEqual(commitment["project"], "p")
+        self.assertIn("post-good", commitment["resolution_evidence"])
         self.assertNotIn("pre", commitment["resolution_evidence"])
+        self.assertNotIn("post-wrong", commitment["resolution_evidence"])
+
+    def test_project_scoped_commitment_rejects_wrong_topic_resolution(self):
+        commit = {
+            "type": "commit", "id": "c", "project": "p",
+            "task": "Synthesize entropy evidence", "due_cycle": 2,
+            "reason": "Keep the obligation tied to its research project",
+        }
+        self.assertEqual(self.propose([project(), commit])["status"], "accepted")
+        with self.engine.store.lock():
+            self.engine.store.append("observation", {
+                "id": "wrong-topic",
+                "source": "https://www.frontiersin.org/articles/wrong/full",
+                "content": json.dumps({
+                    "verification_required": True,
+                    "topic_domain": "psychology",
+                    "evidence_role": "source",
+                    "host_tier": "verification-fulltext",
+                    "persistent_identifiers": ["doi:10.1000/wrong"],
+                    "excerpt": "psychology working memory evidence",
+                }),
+                "actor": "collector", "scope": "collected",
+            })
+        rejected = self.propose([{
+            "type": "resolve", "id": "c", "status": "fulfilled",
+            "evidence": ["wrong-topic"], "reason": "Fresh but unrelated evidence",
+        }])
+        self.assertEqual(rejected["status"], "rejected")
+        self.assertIn("commitment's project topic", rejected["reason"])
+
+    def test_research_commitment_schema_requires_existing_project(self):
+        context = {
+            "mission": "Research",
+            "research_topics": [{"id": "entropy"}],
+            "projects": [{"id": "p", "domain": "entropy", "status": "active"}],
+            "blog_notebooks": {},
+            "commitments": [],
+        }
+        choices = schema_for_context(context)["properties"]["actions"]["items"]["anyOf"]
+        commit = next(item for item in choices if item["properties"]["type"]["enum"] == ["commit"])
+        self.assertIn("project", commit["required"])
+        self.assertEqual(commit["properties"]["project"]["enum"], ["p"])
 
     def test_schema_constrains_resolve_to_eligible_commitment_evidence(self):
         context = {
