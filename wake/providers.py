@@ -101,7 +101,7 @@ When an overdue commitment already has qualifying evidence, completing that work
 Additional exact action shapes:
 {"type":"project","id":"id","title":"Short title","question":"Specific research question",
  "domain":"<configured-topic-id>","status":"active","next_step":"Concrete next step","reason":"Why useful"}
-Project status may be active, parked, or completed. Completion requires a published notebook.
+Project status may be active, parked, or completed. Completion requires a notebook backed by at least two substantive, distinct underlying source works; a one-source provisional notebook is not completion-ready.
 {"type":"research","project":"project-id","query":"focused search terms",
  "domain":"<configured-topic-id>","reason":"What this search will resolve"}
 {"type":"reframe","project":"project-id","old_frame":"Current conceptual frame",
@@ -149,7 +149,7 @@ qualify, omit it. The story need not originate in this wake. Do not blog merely 
 research can be accepted while an invalid final blog action is withheld with an editorial receipt.
 Routine collection, queue changes, receipts, cron success, and generic reflection are not stories.
 Ordinary Bob publication is a stronger promotion boundary than a working notebook: it requires at least
-two distinct qualifying collected source URLs traceable through the selected notebooks, and current
+two distinct qualifying collected source works traceable through the selected notebooks, and current
 verification-required public claims must materially match at least two distinct URLs. A provisional
 one-source notebook may remain durable research without being publishable. All provenance, notebook
 traceability, evidence-role, claim-support, and editorial rules remain.
