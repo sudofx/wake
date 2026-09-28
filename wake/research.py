@@ -72,6 +72,30 @@ def persistent_identifiers(observation):
     return list(dict.fromkeys(values))[:12]
 
 
+def route_source_identity(url):
+    """Return the persistent work identity encoded by a deterministic retrieval route."""
+    if not isinstance(url, str):
+        return None
+    parsed = urllib.parse.urlsplit(url)
+    if parsed.hostname == "api.crossref.org" and parsed.path.startswith("/works/"):
+        doi = urllib.parse.unquote(parsed.path[len("/works/"):]).strip()
+        return "doi:" + doi.lower() if doi else None
+    if parsed.hostname == "api.openalex.org" and parsed.path.startswith("/works/"):
+        work = urllib.parse.unquote(parsed.path[len("/works/"):]).strip()
+        return "openalex:" + work if re.fullmatch(r"[Ww]\d+", work) else None
+    if parsed.hostname == "export.arxiv.org":
+        arxiv_id = urllib.parse.parse_qs(parsed.query).get("id_list", [""])[0].strip()
+        return "arxiv:" + arxiv_id if re.fullmatch(r"\d{4}\.\d{4,5}(?:v\d+)?", arxiv_id) else None
+    marker = "/research/bionlp/RESTful/pmcoa.cgi/BioC_json/"
+    if parsed.hostname == "www.ncbi.nlm.nih.gov" and marker in parsed.path:
+        value = urllib.parse.unquote(parsed.path.split(marker, 1)[1].split("/", 1)[0]).strip()
+        if re.fullmatch(r"PMC\d+", value, re.I):
+            return "pmc:" + value.upper()
+        if re.fullmatch(r"\d{5,10}", value):
+            return "pmid:" + value
+    return None
+
+
 def candidate_source_urls(observation, current_url=""):
     """Extract approved readable-source leads from trusted collector output.
 
@@ -653,6 +677,7 @@ def collect(engine, fetcher=fetch_source):
         project = projects.get(project_id, {})
         if project.get("status") != "active":
             continue
+        candidate_identities = summary.get("source_candidate_identities", {})
         for url in summary.get("source_candidates", []):
             if url and url not in existing_sources:
                 source_candidates.append({
@@ -661,6 +686,7 @@ def collect(engine, fetcher=fetch_source):
                     "domain": project.get("domain") or summary.get("domain"),
                     "queued_followup": False, "acquisition_followup": True,
                     "source_candidate": True,
+                    "source_identity": candidate_identities.get(url),
                     "blocked": bool(summary.get("capability_blocked")),
                     "no_progress": int(summary.get("no_progress", 0)),
                 })
@@ -778,14 +804,26 @@ def collect(engine, fetcher=fetch_source):
                            else fetcher(url))
             # Trusted collector metadata activates forward-only verification and
             # binds evidence to the neutral topic that caused the retrieval.
+            source_identity = (
+                item.get("source_identity")
+                or item.get("identifier")
+                or route_source_identity(url)
+            )
+            source_candidates_for_observation = candidate_source_urls(observation, current_url=url)
             observation = {
                 **observation,
                 "verification_required": True,
                 "topic_domain": item["domain"],
                 "evidence_role": "discovery" if item.get("discovery_only") else evidence_role(url),
                 "host_tier": host_tier(url, item.get("discovery_only", False)),
+                "source_identity": source_identity,
                 "persistent_identifiers": persistent_identifiers(observation),
-                "source_candidates": candidate_source_urls(observation, current_url=url),
+                "source_candidates": source_candidates_for_observation,
+                "source_candidate_identities": {
+                    candidate: source_identity
+                    for candidate in source_candidates_for_observation
+                    if source_identity
+                },
             }
             content = json.dumps(observation, ensure_ascii=False)
             status = "collected"
@@ -822,4 +860,5 @@ def collect(engine, fetcher=fetch_source):
                 "stage": "substantive_source" if role == "source" else "discovery",
                 "outcome": outcome, "evidence": evidence_id,
                 "persistent_identifiers": payload.get("persistent_identifiers", []),
-                "source_candidates": payload.get("source_candidates", [])})
+                "source_candidates": payload.get("source_candidates", []),
+                "source_candidate_identities": payload.get("source_candidate_identities", {})})
