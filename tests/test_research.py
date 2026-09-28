@@ -30,7 +30,7 @@ from wake.research import (
     allowed_url, collect, discovery_urls, evidence_role, exact_identifier_url, fetch_source, host_tier,
     repository_sources, research_urls,
 )
-from wake.report import export
+from wake.report import export, _notebook_evidence_profile
 from support import charter_settings
 
 
@@ -886,7 +886,27 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(result["status"], "accepted")
         export(self.engine.store, self.root/"site")
         rendered = (self.root/"site/notebooks/n.md").read_text()
-        self.assertIn("Evidence profile · 1 distinct source work", rendered)
+        self.assertIn("Evidence profile · 1 distinct qualifying source work", rendered)
+
+    def test_report_does_not_count_metadata_as_qualifying_research(self):
+        state = {
+            "projects": {"p": {"id": "p", "domain": "entropy"}},
+            "evidence": {
+                "m": {
+                    "actor": "collector", "scope": "collected",
+                    "source": "https://api.crossref.org/works/10.1000/example",
+                    "content": json.dumps({
+                        "verification_required": True,
+                        "topic_domain": "entropy",
+                        "evidence_role": "metadata",
+                        "host_tier": "verification-metadata",
+                        "persistent_identifiers": ["doi:10.1000/example"],
+                    }),
+                }
+            },
+        }
+        notebook_state = {"id": "n", "project": "p", "domain": "entropy", "evidence": ["m"]}
+        self.assertEqual(_notebook_evidence_profile(notebook_state, state), (0, 0, 1))
 
     def test_publication_requires_two_sources_even_when_notebook_is_provisional(self):
         self.assertEqual(PUBLICATION_MIN_SOURCES, 2)
