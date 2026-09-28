@@ -268,15 +268,9 @@ def _source_identity(item):
     explicit = str(payload.get("source_identity") or "").strip().lower()
     if explicit:
         return explicit
-    identifiers = payload.get("persistent_identifiers") or []
-    if isinstance(identifiers, list):
-        normalized = [str(value).strip().lower() for value in identifiers if str(value).strip()]
-        for prefix in ("doi:", "arxiv:", "openalex:"):
-            match = next((value for value in normalized if value.startswith(prefix)), None)
-            if match:
-                return match
-        if normalized:
-            return normalized[0]
+    # Persistent identifiers found inside source text are retrieval leads,
+    # not authoritative identity. Only a collector-stamped source_identity may
+    # collapse mirrors; legacy records fall back conservatively to their URL.
     return "url:" + str(item.get("source") or "").strip().lower()
 
 
