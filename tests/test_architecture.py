@@ -60,6 +60,15 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('git("rm", "-r", "--ignore-unmatch"', cloud)
         self.assertNotIn('branch.checkout/"operation.json"', cloud)
 
+    def test_metrics_use_full_history_aggregates_not_event_tail(self):
+        live = self.read('wake/live.py')
+        app = self.read('wake/assets/app.js')
+        self.assertIn('_full_history_metrics', live)
+        self.assertIn("SELECT kind,payload FROM events WHERE kind IN ('accepted','rejected')", live)
+        self.assertIn('"metrics": _full_history_metrics(store, state)', live)
+        self.assertIn('fullMetrics.accepted_actions', app)
+        self.assertIn('fullMetrics.rejection_reasons', app)
+
     def test_operator_control_does_not_own_pages(self):
         worker = self.read('control-worker/worker.mjs')
         self.assertNotIn('pages.yml', worker)
