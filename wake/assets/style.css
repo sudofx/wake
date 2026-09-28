@@ -1073,3 +1073,41 @@ html,body{max-width:100%;overflow-x:clip}
 }
 
 
+
+
+/* Compact masthead controls: one plain theme switch plus one settings entry.
+   Operator state lives in the popover; the masthead remains presentation-only. */
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.header-tools{display:flex;align-items:center;gap:10px;flex:0 0 auto}
+.theme-switch{padding:0;background:transparent;box-shadow:none!important}
+.theme-switch .data-switch-track{margin:0}
+.owner-access{position:relative;top:auto;right:auto;z-index:2000;font:10px var(--mono);display:flex;align-items:center}
+.owner-access[hidden],.owner-controls[hidden],.owner-menu-toggle[hidden],.owner-login[hidden]{display:none!important}
+.owner-login,.owner-menu-toggle{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;padding:0;border:0;background:transparent;color:var(--muted);line-height:1}
+.owner-menu-toggle{gap:0;font:inherit;letter-spacing:0}
+.owner-menu-toggle i{display:none!important}
+.settings-glyph{display:block;font:22px/1 var(--sans);font-variant-emoji:text}
+.owner-login:hover,.owner-login:focus-visible,.owner-menu-toggle:hover,.owner-menu-toggle:focus-visible{color:var(--ink);text-shadow:none}
+.owner-controls{top:calc(100% + 8px);right:0}
+.masthead>.status,.header-tools>.status{display:none!important}
+
+@media(max-width:760px){
+  .masthead{display:flex;flex-wrap:wrap;align-items:flex-start;gap:12px 14px;padding:18px 16px 16px}
+  .wordmark{font-size:clamp(30px,9vw,34px);min-width:0;flex:1 1 auto}
+  .wordmark small{font-size:clamp(6px,1.8vw,8px);letter-spacing:.8px;margin-top:8px;white-space:nowrap}
+  .header-tools{position:static!important;transform:none!important;margin-left:auto;align-self:flex-start;flex-direction:row!important;gap:8px}
+  .masthead nav.compact-nav{order:3;flex:1 0 100%;width:100%;margin:0;overflow-x:auto;justify-content:flex-start;gap:8px 14px;padding-bottom:2px;scrollbar-width:thin}
+  .masthead nav.compact-nav>a,.masthead nav.compact-nav>details>summary{min-width:max-content}
+  .owner-access{position:relative;top:auto;right:auto}
+  .owner-controls{position:fixed;top:52px;right:16px;left:auto;width:min(320px,calc(100vw - 32px));padding:16px;gap:10px;box-shadow:0 18px 46px #0005}
+}
+@media(max-width:390px){
+  .masthead{gap:10px 12px;padding-left:14px;padding-right:14px}
+  .wordmark{font-size:30px;letter-spacing:-2px}
+  .wordmark small{font-size:6px;letter-spacing:.55px}
+  .header-tools{gap:6px}
+  .owner-login,.owner-menu-toggle{width:28px;height:28px}
+  .settings-glyph{font-size:20px}
+  .data-switch-track{width:32px;height:18px;flex-basis:32px}
+  .data-switch input:checked+.data-switch-track i{transform:translateX(14px)}
+}
