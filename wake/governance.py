@@ -479,60 +479,69 @@ def _enforce_bob_personhood_policy(claim_text):
     """
     Enforce Bob's public personhood/experience boundary mechanically.
 
-    Provider instructions are guidance; this function is authority. Discussion
-    of consciousness remains allowed as a research subject, as does explicit
-    negation and clearly labelled metaphor. What cannot pass is prose that
-    attributes consciousness, sentience, subjective experience, self-awareness,
-    or persistent-mindedness to Bob, WAKE, the model, or the running process.
+    Discussion of consciousness remains allowed as a research subject, as do
+    explicit negation and clearly labelled metaphor. What cannot pass is prose
+    that attributes consciousness, sentience, subjective experience,
+    self-awareness, or persistent-mindedness to Bob, WAKE, the model, or the
+    running process.
     """
-    text_value = str(claim_text or "").lower()
-
-    # Explicitly labelled metaphor/analogy is permitted. Keep this narrow:
-    # only the sentence carrying the label is exempted.
-    sentences = re.split(r"(?<=[.!?])\s+", text_value)
-    text_value = " ".join(
-        "" if (
-            re.search(r"\b(metaphor|metaphorical|analogy|analog(?:ous|ically)|figurative)\b", sentence)
-            and re.search(r"\b(conscious(?:ness)?|sentien(?:t|ce)|self-aware|mind|experience|feels?|thinks?)\b", sentence)
-        ) else sentence
-        for sentence in sentences
+    subject = (
+        r"(?:\bbob\b|\bwake\b(?:✳︎|✳|\*)?|\bthe\s+(?:system|process|model)\b|"
+        r"\bthis\s+(?:system|process|model)\b|\bi\b|\bwe\b|\bmy\b|\bour\b)"
     )
-
-    subject = r"(?:bob|wake(?:✳︎|✳|\*)?|the\s+(?:system|process|model)|this\s+(?:system|process|model)|i|we|my|our)"
     property_term = (
         r"(?:conscious(?:ness)?|sentien(?:t|ce)|self-aware(?:ness)?|"
         r"subjective\s+experience|persistent\s+mind|experienc(?:e|es|ing)|"
         r"feels?|thinking\s+subject|mind)"
     )
 
-    # Remove explicit negations such as "WAKE is not conscious", "I do not
-    # experience", and "this does not establish consciousness".
-    text_value = re.sub(
-        subject + r".{0,45}\b(?:is|are|am|has|have|does|do)\s+"
-        r"(?:not|n't|never)\b.{0,35}" + property_term,
-        "",
-        text_value,
-    )
-    text_value = re.sub(
-        r"\b(?:does|do|is|are|has|have|cannot|can't)\s+(?:not\s+)?"
-        r"(?:establish|prove|demonstrate|confirm|imply)\b.{0,45}"
-        r"\b(?:consciousness|sentience|self-awareness|subjective experience)\b",
-        "",
-        text_value,
-    )
+    for sentence in re.split(r"(?<=[.!?])\s+", str(claim_text or "").lower()):
+        if not sentence.strip():
+            continue
 
-    attribution = re.search(
-        subject + r".{0,90}\b" + property_term + r"\b"
-        r"|\b" + property_term + r"\b.{0,90}" + subject,
-        text_value,
-    )
-    require(
-        not attribution,
-        "Bob publication policy forbids attributing consciousness, sentience, "
-        "subjective experience, self-awareness, or persistent-mindedness to "
-        "Bob, WAKE, the model, or the process; explicit negation and clearly "
-        "labelled metaphor remain allowed",
-    )
+        # A sentence that explicitly identifies its mind-like language as
+        # metaphor/analogy is editorially legible rather than an attribution.
+        if (
+            re.search(r"\b(metaphor|metaphorical|analogy|analog(?:ous|ically)|figurative)\b", sentence)
+            and re.search(r"\b(conscious(?:ness)?|sentien(?:t|ce)|self-aware|mind|experience|feels?|thinks?)\b", sentence)
+        ):
+            continue
+
+        calibrated = sentence
+
+        # Remove narrow explicit denials before testing what remains.
+        calibrated = re.sub(
+            subject + r".{0,35}\b(?:is|are|am|has|have|does|do)\s+"
+            r"(?:not|never)\b.{0,25}" + property_term,
+            "",
+            calibrated,
+        )
+        calibrated = re.sub(
+            r"\b(?:does|do|cannot|can't)\s+(?:not\s+)?"
+            r"(?:establish|prove|demonstrate|confirm|imply)\b.{0,45}"
+            r"\b(?:consciousness|sentience|self-awareness|subjective experience)\b",
+            "",
+            calibrated,
+        )
+        calibrated = re.sub(
+            r"\bnot\s+(?:a\s+)?claim\s+of\s+"
+            r"(?:consciousness|sentience|self-awareness|subjective experience)\b",
+            "",
+            calibrated,
+        )
+
+        attribution = re.search(
+            subject + r".{0,90}\b" + property_term + r"\b"
+            r"|\b" + property_term + r"\b.{0,90}" + subject,
+            calibrated,
+        )
+        require(
+            not attribution,
+            "Bob publication policy forbids attributing consciousness, sentience, "
+            "subjective experience, self-awareness, or persistent-mindedness to "
+            "Bob, WAKE, the model, or the process; explicit negation and clearly "
+            "labelled metaphor remain allowed",
+        )
 
 
 def _blog_language(action, evidence, historical=False, prior_post=None):
