@@ -41,22 +41,23 @@ Keep presentation subordinate to the canonical durable record.
     <a href="#about" data-nav="about">About</a>
   </nav>
   <div class="header-tools">
-    <span class="status"><i></i> STATE PERSISTS</span>
-    <label class="data-switch theme-switch"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><b class="theme-icon" aria-hidden="true">◐</b><span class="data-switch-track" aria-hidden="true"><i></i></span></label>
-  </div>
-  <div class="owner-access" data-owner-access hidden>
-    <a class="owner-login" data-owner-login href="#">Operator sign in</a>
-    <button class="owner-menu-toggle" data-owner-menu-toggle type="button" aria-expanded="false" aria-haspopup="true" hidden>
-      <i aria-hidden="true"></i><span data-owner-menu-label>Operator</span>
-    </button>
-    <div class="owner-controls" data-owner-controls hidden>
-      <div class="owner-control-heading"><strong>Operator controls</strong><span data-owner-control-status>Checking…</span></div>
-      <div class="owner-control-actions">
-        <button type="button" data-owner-start>Start</button>
-        <button type="button" data-owner-stop>Stop</button>
-        <button type="button" data-owner-reset>Reset to 0</button>
+    <label class="data-switch theme-switch" title="Follow system theme"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><span class="data-switch-track" aria-hidden="true"><i></i></span></label>
+    <div class="owner-access" data-owner-access hidden>
+      <a class="owner-login" data-owner-login href="#" aria-label="Open Settings" title="Settings">
+        <span class="settings-glyph" aria-hidden="true">⚙︎</span><span class="sr-only">Settings</span>
+      </a>
+      <button class="owner-menu-toggle" data-owner-menu-toggle type="button" aria-label="Open Settings" title="Settings" aria-expanded="false" aria-haspopup="true" hidden>
+        <span class="settings-glyph" aria-hidden="true">⚙︎</span><span class="sr-only" data-owner-menu-label>Settings</span>
+      </button>
+      <div class="owner-controls" data-owner-controls hidden aria-live="polite">
+        <div class="owner-control-heading"><strong>Settings</strong><span data-owner-identity></span><span data-owner-control-status>Checking controls…</span></div>
+        <div class="owner-control-actions">
+          <button type="button" data-owner-start>Start</button>
+          <button type="button" data-owner-stop>Stop</button>
+          <button type="button" data-owner-reset>Reset to 0</button>
+        </div>
+        <button class="owner-signout" type="button" data-owner-signout>Sign out</button>
       </div>
-      <button class="owner-signout" type="button" data-owner-signout>Sign out</button>
     </div>
   </div>
 </header>
@@ -131,6 +132,7 @@ window.WakeData=fetch(window.WakeLiveUrl+'?wake='+Date.now(),{cache:'no-store'})
   const ownerStatus=document.querySelector('[data-owner-control-status]');
   const ownerMenuToggle=document.querySelector('[data-owner-menu-toggle]');
   const ownerMenuLabel=document.querySelector('[data-owner-menu-label]');
+  const ownerIdentity=document.querySelector('[data-owner-identity]');
   const ownerStart=document.querySelector('[data-owner-start]');
   const ownerStop=document.querySelector('[data-owner-stop]');
   const ownerReset=document.querySelector('[data-owner-reset]');
@@ -160,8 +162,9 @@ window.WakeData=fetch(window.WakeLiveUrl+'?wake='+Date.now(),{cache:'no-store'})
     setOwnerMenu(false);
     if(ownerMenuToggle)ownerMenuToggle.hidden=true;
     ownerLogin.hidden=false;
-    ownerLogin.textContent=message?`Operator sign in · ${message}`:'Operator sign in';
-    ownerLogin.setAttribute('aria-label',message?`Operator sign in. Last error: ${message}`:'Operator sign in');
+    ownerLogin.setAttribute('aria-label',message?`Open Settings. Last error: ${message}`:'Open Settings');
+    ownerLogin.setAttribute('title','Settings');
+    if(ownerIdentity)ownerIdentity.textContent='Signed out';
   };
   const request=async(path,method='GET')=>{
     const response=await fetch(controlUrl+path,{
@@ -184,9 +187,9 @@ window.WakeData=fetch(window.WakeLiveUrl+'?wake='+Date.now(),{cache:'no-store'})
       if(ownerMenuToggle)ownerMenuToggle.hidden=false;
       const active=(state.activeRunnerRuns?.length||0)+(state.activeWakeRuns?.length||0);
       const status=state.enabled?(active?'Running now':'Enabled'):'Stopped';
-      ownerStatus.textContent=state.enabled?(active?'Running now':'Enabled · starting/eligible'):'Stopped';
-      if(ownerMenuLabel)ownerMenuLabel.textContent=`Operator · ${status}`;
-      ownerMenuToggle?.classList.toggle('is-active',Boolean(state.enabled));
+      ownerStatus.textContent=status;
+      if(ownerIdentity)ownerIdentity.textContent=state.login?`Signed in as ${state.login}`:'Signed in';
+      if(ownerMenuLabel)ownerMenuLabel.textContent='Settings';
       ownerStart.disabled=state.enabled;
       ownerStop.disabled=!state.enabled;
       ownerReset.disabled=state.enabled||active>0;
