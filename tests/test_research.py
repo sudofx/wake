@@ -170,6 +170,36 @@ class ResearchTests(unittest.TestCase):
         self.assertGreaterEqual(after["seed_question_metrics"]["started"], 1)
         self.assertEqual(topic["id"], "entropy")
 
+    def test_selected_topic_parked_projects_survive_recent_project_window(self):
+        other_domains = [
+            topic["id"] for topic in self.engine.config["research_topics"]
+            if topic.get("enabled", True) and topic["id"] != "entropy"
+        ][:8]
+        with self.engine.store.lock():
+            self.engine.store.append("project_adopted", {
+                "id": "active-entropy", "title": "Active entropy",
+                "question": "What distinguishes current entropy definitions?", "domain": "entropy",
+                "status": "active", "next_step": "Continue source acquisition.",
+                "reason": "Keep entropy selected.", "actor": "operator",
+            })
+            self.engine.store.append("project_adopted", {
+                "id": "parked-entropy-old", "title": "Older entropy question",
+                "question": "How does entropy behave far from equilibrium?", "domain": "entropy",
+                "status": "parked", "next_step": "Resume when entropy is selected.",
+                "reason": "Preserve unfinished work.", "actor": "operator",
+            })
+            for index, domain in enumerate(other_domains):
+                self.engine.store.append("project_adopted", {
+                    "id": f"recent-{index}", "title": f"Recent {domain}",
+                    "question": f"Question for {domain}", "domain": domain,
+                    "status": "parked", "next_step": "Later.",
+                    "reason": "Fill the recent-project window.", "actor": "operator",
+                })
+            context = self.engine.context(self.engine.store.load(), "selected-project-window")
+        visible = {item["id"] for item in context["projects"]}
+        self.assertIn("active-entropy", visible)
+        self.assertIn("parked-entropy-old", visible)
+
     def test_bob_reflection_is_due_on_each_tenth_accepted_wake(self):
         state = self.engine.store.load()
 
