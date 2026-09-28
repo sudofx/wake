@@ -1622,7 +1622,12 @@ def transition(state, proposal, invocation, historical=False):
                     minimum_sources=notebook_min_sources,
                 )
 
-                if verification:
+                # First-draft notebooks are provisional working artifacts:
+                # provenance and source qualification are enforced, but strict
+                # deterministic lexical corroboration begins on revision. That
+                # keeps one-source synthesis possible without weakening the
+                # stronger revision/completion/publication gates.
+                if verification and old:
                     _verify_claim_support(
                         action["findings"],
                         verification,
