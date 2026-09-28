@@ -1309,6 +1309,21 @@ class ResearchTests(unittest.TestCase):
         evidence = next(e for e in self.engine.store.load()["evidence"].values() if e["source"] == exact)
         self.assertEqual(json.loads(evidence["content"])["evidence_role"], "source")
 
+    def test_exact_metadata_record_is_acquisition_lead_not_research_progress(self):
+        exact = "https://api.crossref.org/works/10.1016%2Fj.example.2026.01.001"
+        self.propose([project(), dict(type="research", id="q-meta", project="p",
+            query="entropy sensory processing", domain="entropy", url=exact,
+            reason="Resolve a bibliographic lead")])
+        with self.engine.store.lock():
+            collect(self.engine, fetcher=lambda url: {
+                "url": url, "scope": "Crossref bibliographic metadata and abstracts where supplied; not full papers",
+                "excerpt": "A sufficiently long bibliographic metadata record for acquisition routing.",
+            })
+        acquisition = self.engine.store.load()["acquisition"]["p"]
+        self.assertEqual(acquisition["last_receipt"]["stage"], "metadata_verification")
+        self.assertEqual(acquisition["last_receipt"]["outcome"], "no_progress")
+        self.assertGreaterEqual(acquisition["no_progress"], 1)
+
     def test_discovery_results_cannot_qualify_a_notebook(self):
         with self.engine.store.lock():
             for identifier in ("s1", "s2"):
