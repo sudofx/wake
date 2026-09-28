@@ -825,9 +825,9 @@ def export(store, destination="site", experiment=None, operation=None, browser_o
         for notebook in state.get("notebooks", {}).values():
             sources = "\n".join(f"- [{eid}]({state['evidence'][eid]['source']})" for eid in notebook["evidence"])
             source_count, cross_topic_count = _notebook_evidence_profile(notebook, state)
-            source_word = "URL" if source_count == 1 else "URLs"
+            source_word = "work" if source_count == 1 else "works"
             cross_note = (
-                f" · {cross_topic_count} cross-topic source URL"
+                f" · {cross_topic_count} cross-topic source work"
                 + ("" if cross_topic_count == 1 else "s")
                 if cross_topic_count else ""
             )
