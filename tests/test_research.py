@@ -1335,6 +1335,32 @@ class ResearchTests(unittest.TestCase):
                     actor="collector", scope="collected"))
         self.assertEqual(self.propose([project(), notebook(["m1", "m2"])])["status"], "rejected")
 
+    def test_two_mirrors_of_same_doi_do_not_count_as_corroboration(self):
+        self.assertEqual(self.propose([project()])["status"], "accepted")
+        with self.engine.store.lock():
+            for identifier, source in (
+                ("s1", "https://www.frontiersin.org/articles/example/full"),
+                ("s2", "https://www.pnas.org/doi/example"),
+            ):
+                self.engine.store.append("observation", dict(
+                    id=identifier, source=source,
+                    content=json.dumps({
+                        "scope": "readable source fixture",
+                        "verification_required": True,
+                        "topic_domain": "entropy",
+                        "evidence_role": "source",
+                        "host_tier": "verification-fulltext",
+                        "persistent_identifiers": ["doi:10.1000/same-work"],
+                        "excerpt": "entropy comparison same underlying work",
+                    }),
+                    actor="collector", scope="collected"))
+        self.assertEqual(self.propose([notebook(["s1"], findings="First reading [s1].")])["status"], "accepted")
+        revised = notebook(["s1", "s2"], findings="Revised reading of the same underlying work [s1] [s2].")
+        result = self.propose([revised])
+        self.assertEqual(result["status"], "rejected")
+        self.assertIn("distinct underlying source work", result["reason"])
+
+
     def test_attention_nudge_avoids_active_project_domain_every_fourth_invocation(self):
         self.propose([project()])
         # Four completed invocations trigger the attention nudge on collection.
