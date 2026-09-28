@@ -45,7 +45,9 @@ concurrency:
 jobs:
   wake:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    # wake-state is a growing SQLite authority; allow state transfer headroom.
+    # Individual Git/provider operations remain bounded by their own behavior.
+    timeout-minutes: 30
     outputs:
       continue_now: ${{ steps.cycle.outputs.continue_now }}
       retry_after: ${{ steps.cycle.outputs.retry_after }}
