@@ -1210,7 +1210,7 @@ class Engine:
                     if state["evidence"][item].get("source")
                 }),
                 "notebook_count": len(notebooks),
-                "notebook_source_urls": len(distinct_urls(latest)) if latest else 0,
+                "notebook_source_urls": len(distinct_sources(latest)) if latest else 0,
                 "missing_requirement": missing,
             })
 
