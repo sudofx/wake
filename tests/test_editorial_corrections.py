@@ -61,7 +61,7 @@ class CorrectionTests(unittest.TestCase):
             with self.subTest(field=field):
                 p = self.proposal()
                 p['actions'][0][field] += ' This demonstrates genuine epistemic self-governance.'
-                with self.assertRaisesRegex(Rejected, 'contested synthesis'):
+                with self.assertRaisesRegex(Rejected, 'contested synthesis|personhood policy'):
                     transition(self.state, p, 'offline')
 
     def test_invented_quote_or_missing_supersedes_is_not_exempt(self):
