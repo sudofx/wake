@@ -1304,16 +1304,17 @@ def transition(state, proposal, invocation, historical=False):
                 # question in the same configured topic. Historical duplicates
                 # remain auditable; forward work should continue the durable
                 # project that already owns that question.
-                question_key = re.sub(r"[^a-z0-9]+", " ", action["question"].casefold()).strip()
-                require(
-                    not any(
-                        project.get("domain") == action["domain"]
-                        and re.sub(r"[^a-z0-9]+", " ", str(project.get("question") or "").casefold()).strip()
-                        == question_key
-                        for project in result["projects"].values()
-                    ),
-                    "An existing project already owns this research question; reuse that project",
-                )
+                if not historical:
+                    question_key = re.sub(r"[^a-z0-9]+", " ", action["question"].casefold()).strip()
+                    require(
+                        not any(
+                            project.get("domain") == action["domain"]
+                            and re.sub(r"[^a-z0-9]+", " ", str(project.get("question") or "").casefold()).strip()
+                            == question_key
+                            for project in result["projects"].values()
+                        ),
+                        "An existing project already owns this research question; reuse that project",
+                    )
             else:
                 # A project ID names one durable research question. Allowing a
                 # later invocation to silently replace that question would let
