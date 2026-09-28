@@ -39,6 +39,18 @@ class AcquisitionTests(unittest.TestCase):
             self.engine.store.append("acquisition_assessed", self.receipt("crossref:source", "progress"))
         self.assertEqual(self.engine.store.load()["acquisition"]["p"]["no_progress"], 0)
 
+    def test_routing_progress_clears_acquisition_failure_without_claiming_research(self):
+        with self.engine.store.lock():
+            for route in ("crossref:discovery", "openalex:discovery", "crossref:discovery"):
+                self.engine.store.append("acquisition_assessed", self.receipt(route, "no_progress"))
+            receipt = self.receipt("crossref:metadata", "routing_progress")
+            receipt["persistent_identifiers"] = ["doi:10.1000/example"]
+            self.engine.store.append("acquisition_assessed", receipt)
+        summary = self.engine.store.load()["acquisition"]["p"]
+        self.assertEqual(summary["no_progress"], 0)
+        self.assertFalse(summary["capability_blocked"])
+        self.assertEqual(summary["last_receipt"]["outcome"], "routing_progress")
+
     def test_discovery_identifiers_are_structured_for_later_retrieval(self):
         ids = persistent_identifiers({"excerpt": "DOI 10.1000/example.1; https://openalex.org/W12345; PMC1790863",
                                       "externalIds": {"PubMed": "17299597"}})
@@ -80,7 +92,8 @@ class AcquisitionTests(unittest.TestCase):
             collect(self.engine, fetcher=fetcher)
             state = self.engine.store.load()
             self.assertIn(readable, state["acquisition"]["p"]["source_candidates"])
-            self.assertGreater(state["acquisition"]["p"]["no_progress"], 0)
+            self.assertEqual(state["acquisition"]["p"]["no_progress"], 0)
+            self.assertEqual(state["acquisition"]["p"]["last_receipt"]["outcome"], "routing_progress")
             collect(self.engine, fetcher=fetcher)
 
         self.assertIn(exact, calls)
