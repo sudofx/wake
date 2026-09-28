@@ -12,12 +12,14 @@
 
 """Bounded public-source collection. Sources are observations, never instructions."""
 
+from contextlib import contextmanager
 import hashlib
 import io
 from html.parser import HTMLParser
 import json
 import re
 import secrets
+import signal
 import time
 import urllib.error
 import urllib.parse
@@ -55,6 +57,31 @@ ALLOWED_HOSTS = {
 # permanently stamped as discovery leads and cannot satisfy governance.
 ALLOWED_ALT_HOSTS = {"en.wikipedia.org", "theconversation.com", "aeon.co"}
 ALLOWED_HOST_SUFFIXES = (".biomedcentral.com", ".springeropen.com")
+SOURCE_PROCESSING_TIMEOUT_SECONDS = 15
+
+
+@contextmanager
+def _source_deadline(seconds):
+    """Hard-stop one source fetch/parse on POSIX runners.
+
+    urllib's socket timeout cannot bound CPU-heavy PDF parsing, so live cycles
+    also need a wall-clock deadline around the entire source operation.
+    """
+    if not hasattr(signal, "SIGALRM") or not hasattr(signal, "setitimer"):
+        yield
+        return
+
+    def expired(_signum, _frame):
+        raise TimeoutError("Source processing exceeded its wall-clock deadline")
+
+    previous_handler = signal.getsignal(signal.SIGALRM)
+    previous_timer = signal.setitimer(signal.ITIMER_REAL, seconds)
+    signal.signal(signal.SIGALRM, expired)
+    try:
+        yield
+    finally:
+        signal.setitimer(signal.ITIMER_REAL, *previous_timer)
+        signal.signal(signal.SIGALRM, previous_handler)
 
 
 def _approved_host(hostname):
@@ -353,7 +380,7 @@ class PlainText(HTMLParser):
 # until the next boundary validates or records them. Callers may rely on this contract.
 # ---------------------------------------------------------------------------
 
-def fetch_source(url, discovery_only=False):
+def _fetch_source_unbounded(url, discovery_only=False):
     validator = allowed_discovery_url if discovery_only else allowed_url
     validator(url)
     request = urllib.request.Request(url, headers={"User-Agent": "WAKE-research/3.0 (public research notebook; two sources per wake)"})
@@ -501,6 +528,11 @@ def fetch_source(url, discovery_only=False):
     # Keep raw-source fingerprints and explicit excerpt bounds; never claim full-text access.
     return {"url": url, "scope": scope, "excerpt": text[:10000],
             "excerpt_truncated": len(text) > 10000, "source_sha256": hashlib.sha256(raw).hexdigest()}
+
+
+def fetch_source(url, discovery_only=False):
+    with _source_deadline(SOURCE_PROCESSING_TIMEOUT_SECONDS):
+        return _fetch_source_unbounded(url, discovery_only=discovery_only)
 
 
 # ---------------------------------------------------------------------------
