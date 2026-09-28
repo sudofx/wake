@@ -804,7 +804,27 @@ class Engine:
             for item in context.get("evidence", [])[-6:]
         ]
 
-        # Active-project capacity is already bounded by governance. Trim prose, not identity.
+        # Preserve active work and unfinished work on the selected topic even
+        # under emergency compaction. Pure recency can erase the exact project a
+        # fresh model is supposed to resume.
+        project_candidates = context.get("projects", [])
+        selected_topic = context.get("squirrel", {}).get("selected_topic")
+        active_candidates = [p for p in project_candidates if p.get("status") == "active"]
+        active_ids = {p.get("id") for p in active_candidates}
+        selected_candidates = [
+            p for p in project_candidates
+            if p.get("id") not in active_ids
+            and selected_topic
+            and p.get("domain") == selected_topic
+            and p.get("status") != "completed"
+        ]
+        priority_candidates = active_candidates + selected_candidates
+        priority_ids = {p.get("id") for p in priority_candidates}
+        other_candidates = [p for p in project_candidates if p.get("id") not in priority_ids]
+        compact_projects = priority_candidates[:5]
+        remaining_compact_slots = max(0, 5 - len(compact_projects))
+        if remaining_compact_slots:
+            compact_projects += other_candidates[-remaining_compact_slots:]
         context["projects"] = [
             {
                 **{key: value for key, value in item.items()
@@ -815,7 +835,7 @@ class Engine:
                 "reason": excerpt(item.get("reason"), 120),
                 "context_excerpt": True,
             }
-            for item in context.get("projects", [])[-3:]
+            for item in compact_projects
         ]
 
         context["notebooks"] = [
@@ -1326,7 +1346,13 @@ class Engine:
             ]
             selected_ids = {p["id"] for p in selected_nonactive}
             other_nonactive = [p for p in nonactive_projects if p["id"] not in selected_ids]
-            visible_nonactive = (selected_nonactive + other_nonactive[-8:])[-8:]
+            selected_visible = selected_nonactive[-8:]
+            remaining_project_slots = max(0, 8 - len(selected_visible))
+            recent_other_visible = (
+                other_nonactive[-remaining_project_slots:]
+                if remaining_project_slots else []
+            )
+            visible_nonactive = selected_visible + recent_other_visible
             context["projects"] = active_projects + visible_nonactive
             context["notebooks"] = [{k:n[k] for k in ("id", "project", "title", "summary", "revision", "evidence")}
                                     for n in list(state["notebooks"].values())[-8:]]
