@@ -388,6 +388,65 @@ class ResearchTests(unittest.TestCase):
             final["metrics"]["transition_cycles"]["first_notebook_to_corroboration"], [2]
         )
 
+    def test_legacy_metadata_notebook_does_not_block_valid_resynthesis(self):
+        state = self.engine.store.load()
+        state["projects"] = {
+            "p": {
+                "id": "p", "title": "Entropy project",
+                "question": "How should entropy evidence be compared?",
+                "domain": "entropy", "status": "active",
+                "next_step": "Synthesize substantive evidence.",
+                "reason": "Test legacy notebook migration.",
+                "created_version": 1,
+            }
+        }
+        state["evidence"] = {
+            "legacy-meta": {
+                "id": "legacy-meta",
+                "source": "https://api.crossref.org/works/10.1000/legacy",
+                "actor": "collector", "scope": "collected", "version": 2,
+                "content": json.dumps({
+                    "verification_required": True,
+                    "topic_domain": "entropy",
+                    "evidence_role": "metadata",
+                    "host_tier": "verification-metadata",
+                }),
+            },
+            "real-source": {
+                "id": "real-source",
+                "source": "https://www.frontiersin.org/articles/example/full",
+                "actor": "collector", "scope": "collected", "version": 4,
+                "content": json.dumps({
+                    "verification_required": True,
+                    "topic_domain": "entropy",
+                    "evidence_role": "source",
+                    "host_tier": "verification-fulltext",
+                    "source_identity": "doi:10.1000/real",
+                    "excerpt": "entropy evidence compares thermodynamic and statistical definitions in detail",
+                }),
+            },
+        }
+        state["notebooks"] = {
+            "legacy-notebook": {
+                "id": "legacy-notebook", "project": "p", "title": "Old metadata notebook",
+                "summary": "Historical metadata synthesis", "findings": "Metadata only",
+                "limitations": "No readable source", "next_questions": "Retrieve source",
+                "reason": "Historical", "revision": 1,
+                "evidence": ["legacy-meta"], "created_version": 3, "updated_version": 3,
+            }
+        }
+
+        maturation = self.engine.research_maturation(state)
+        project_state = maturation["projects"][0]
+        self.assertEqual(project_state["stage"], "needs_synthesis")
+        self.assertEqual(project_state["notebook_count"], 0)
+        self.assertEqual(project_state["historical_notebook_count"], 1)
+
+        context = self.engine.context(state, "legacy-notebook-migration")
+        self.assertNotIn("legacy-notebook", {n["id"] for n in context["notebooks"]})
+        self.assertIn("real-source", context["project_evidence"]["p"])
+        self.assertIn("p", context["synthesis_ready_projects"])
+
     def test_research_prompt_prioritizes_maturation_and_targeted_corroboration(self):
         self.assertIn("research_maturation.priority_order", RESEARCH_SYSTEM)
         self.assertIn("corroboration gaps", RESEARCH_SYSTEM)
