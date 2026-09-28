@@ -645,7 +645,8 @@ class Engine:
                 "context_excerpt": True,
             } for item in working_set["beliefs"]],
             "commitments": [{
-                "id": item["id"], "task": item["task"], "due_cycle": item["due_cycle"],
+                "id": item["id"], "project": state["commitments"][item["id"]].get("project"),
+                "task": item["task"], "due_cycle": item["due_cycle"],
                 "reason": item["reason"], "status": "open",
                 "created_version": state["commitments"][item["id"]].get("created_version"),
                 "resolution_evidence": [], "context_excerpt": True,
@@ -775,7 +776,7 @@ class Engine:
         context["commitments"] = [
             {
                 **{key: item.get(key) for key in (
-                    "id", "due_cycle", "status", "created_version",
+                    "id", "project", "due_cycle", "status", "created_version",
                 )},
                 "task": excerpt(item.get("task"), 220),
                 "reason": excerpt(item.get("reason"), 160),
@@ -1110,6 +1111,34 @@ class Engine:
                 return normalized[0]
         return "url:" + str(evidence.get("source") or "").strip().lower()
 
+    def commitment_resolution_evidence_ids(self, state, evidence_ids, commitment):
+        """Return visible evidence eligible to fulfill one durable commitment.
+
+        Legacy generic commitments retain the historical temporal gate. New
+        research commitments carry a project ID and may resolve only from
+        substantive collected evidence stamped to that project's topic.
+        """
+        created_version = commitment.get("created_version", 0)
+        project_id = commitment.get("project")
+        if not project_id:
+            return [
+                evidence_id for evidence_id in evidence_ids
+                if evidence_id in state.get("evidence", {})
+                and state["evidence"][evidence_id].get("actor") != "runtime"
+                and state["evidence"][evidence_id].get("version", -1) >= created_version
+            ]
+        project = state.get("projects", {}).get(project_id)
+        if not project:
+            return []
+        eligible = set(self.project_notebook_evidence_ids(
+            state, evidence_ids, project, same_domain=True
+        ))
+        return [
+            evidence_id for evidence_id in evidence_ids
+            if evidence_id in eligible
+            and state["evidence"][evidence_id].get("version", -1) >= created_version
+        ]
+
     def project_notebook_evidence_ids(self, state, evidence_ids, project, *, same_domain=False):
         """Filter evidence IDs using authoritative durable metadata.
 
@@ -1433,11 +1462,9 @@ class Engine:
             context["commitments"] = [
                 {
                     **commitment,
-                    "resolution_evidence": [
-                        evidence_id for evidence_id, evidence in visible_evidence.items()
-                        if evidence.get("actor") != "runtime"
-                        and evidence.get("version", -1) >= commitment["created_version"]
-                    ],
+                    "resolution_evidence": self.commitment_resolution_evidence_ids(
+                        state, list(visible_evidence), commitment
+                    ),
                 }
                 for commitment in context["commitments"]
             ]
@@ -1616,11 +1643,9 @@ class Engine:
         context["commitments"] = [
             {
                 **commitment,
-                "resolution_evidence": [
-                    evidence_id for evidence_id, evidence in visible_evidence.items()
-                    if evidence.get("actor") != "runtime"
-                    and evidence.get("version", -1) >= commitment.get("created_version", 0)
-                ],
+                "resolution_evidence": self.commitment_resolution_evidence_ids(
+                    state, list(visible_evidence), commitment
+                ),
             }
             for commitment in context.get("commitments", [])
         ]
