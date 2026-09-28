@@ -773,7 +773,12 @@ def collect(engine, fetcher=fetch_source):
         if item.get("queued_followup") or item.get("acquisition_followup"):
             payload = json.loads(content)
             role = payload.get("evidence_role", evidence_role(url))
-            outcome = "progress" if status == "collected" and role == "source" else (
+            tier = payload.get("host_tier", host_tier(url))
+            # Acquisition progress means the project gained substantive readable
+            # material. Exact index records are useful verification metadata and
+            # identifier bridges, but they must not make a project look researched.
+            substantive = role == "source" and tier != "verification-metadata"
+            outcome = "progress" if status == "collected" and substantive else (
                 "route_failure" if status == "failed" else "no_progress")
             engine.store.append("acquisition_assessed", {"project": item["project"],
                 "domain": item["domain"], "research_id": item["id"],
