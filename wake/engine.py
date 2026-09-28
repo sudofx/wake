@@ -1774,11 +1774,32 @@ class Engine:
             # the entire project archive into every future invocation.
             projects = request["context"]["projects"]
             active_projects = [p for p in projects if p["status"] == "active"]
-            completed_projects = [p for p in projects if p["status"] != "active"][-4:]
-            request["context"]["projects"] = [{**p, "reason": p["reason"][:120], "question": p["question"][:300],
-                                               "next_step": p["next_step"][:300], "title": p["title"][:120],
-                                               "context_excerpt": True}
-                                              for p in active_projects + completed_projects]
+            active_ids = {p["id"] for p in active_projects}
+            selected_topic = request["context"].get("squirrel", {}).get("selected_topic")
+            selected_unfinished = [
+                p for p in projects
+                if p["id"] not in active_ids
+                and selected_topic
+                and p.get("domain") == selected_topic
+                and p.get("status") != "completed"
+            ]
+            priority_ids = active_ids | {p["id"] for p in selected_unfinished}
+            other_projects = [p for p in projects if p["id"] not in priority_ids]
+            compact_projects = (active_projects + selected_unfinished)[:8]
+            remaining_slots = max(0, 8 - len(compact_projects))
+            if remaining_slots:
+                compact_projects += other_projects[-remaining_slots:]
+            request["context"]["projects"] = [
+                {
+                    **p,
+                    "reason": p["reason"][:120],
+                    "question": p["question"][:300],
+                    "next_step": p["next_step"][:300],
+                    "title": p["title"][:120],
+                    "context_excerpt": True,
+                }
+                for p in compact_projects
+            ]
 
             # blog_notebooks used to grow monotonically because it contained every
             # notebook ever written. Keep mappings only for projects the model can
