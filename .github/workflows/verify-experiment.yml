@@ -1,5 +1,8 @@
 name: WAKE✳︎ — 100-cycle verification
 
+# Final verification lane: changing this workflow deliberately reruns the
+# full synthetic experiment on the exact current implementation commit.
+
 on:
   workflow_dispatch:
   push:
