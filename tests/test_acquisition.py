@@ -52,10 +52,18 @@ class AcquisitionTests(unittest.TestCase):
         self.assertEqual(summary["last_receipt"]["outcome"], "routing_progress")
 
     def test_discovery_identifiers_are_structured_for_later_retrieval(self):
-        ids = persistent_identifiers({"excerpt": "DOI 10.1000/example.1; https://openalex.org/W12345; PMC1790863",
-                                      "externalIds": {"PubMed": "17299597"}})
+        ids = persistent_identifiers({
+            "excerpt": (
+                "DOI 10.1000/example.1; DOI 10.1098/rspa.1991.0138; "
+                "https://openalex.org/W12345; https://arxiv.org/abs/2512.02221; PMC1790863"
+            ),
+            "externalIds": {"PubMed": "17299597"},
+        })
         self.assertIn("doi:10.1000/example.1", ids)
+        self.assertIn("doi:10.1098/rspa.1991.0138", ids)
         self.assertIn("openalex:W12345", ids)
+        self.assertIn("arxiv:2512.02221", ids)
+        self.assertNotIn("arxiv:1991.0138", ids)
         self.assertIn("pmc:PMC1790863", ids)
         self.assertIn("pmid:17299597", ids)
 
