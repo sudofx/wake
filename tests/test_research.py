@@ -63,10 +63,20 @@ class ResearchTests(unittest.TestCase):
             return self.engine.finish(invocation, json.dumps(dict(base_version=request["context"]["version"],
                 title="Research fixture", summary="Offline boundary test", actions=actions)))
 
-    def source(self, identifier, url=None, status="collected", source_scope="synthetic test fixture"):
+    def source(self, identifier, url=None, status="collected", source_scope="synthetic test fixture",
+               verified=False, persistent_id=None):
+        payload = {"scope":source_scope, "excerpt":"Only a fixture"}
+        if verified:
+            payload.update({
+                "verification_required": True,
+                "topic_domain": "entropy",
+                "evidence_role": "source",
+                "host_tier": "verification-fulltext",
+                "persistent_identifiers": [persistent_id or f"doi:10.1000/{identifier}"],
+            })
         with self.engine.store.lock():
             self.engine.store.append("observation", dict(id=identifier, source=url or "https://plato.stanford.edu/entries/"+identifier,
-                content=json.dumps({"scope":source_scope, "excerpt":"Only a fixture"}), actor="collector", scope=status))
+                content=json.dumps(payload), actor="collector", scope=status))
 
     def test_existing_pet_name_is_migrated_through_an_audited_event(self):
         legacy = Engine(self.root/"legacy", charter_settings("Explore big ideas.", pet_name="Wake"))
@@ -741,6 +751,17 @@ class ResearchTests(unittest.TestCase):
         self.propose([project()])
         self.assertEqual(self.propose([project(status="completed")])["status"], "rejected")
 
+    def test_completion_rejects_one_source_provisional_notebook(self):
+        self.source("s1", verified=True)
+        self.assertEqual(
+            self.propose([project(), notebook(["s1"], "Provisional reading [s1].")])["status"],
+            "accepted",
+        )
+        result = self.propose([project(status="completed")])
+        self.assertEqual(result["status"], "rejected")
+        self.assertIn("at least 2 distinct underlying source work", result["reason"])
+
+
     def test_notebooks_reject_receipts_and_failed_sources(self):
         self.propose([project()])
         self.source("s1")
@@ -826,7 +847,7 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(result["status"], "accepted")
         export(self.engine.store, self.root/"site")
         rendered = (self.root/"site/notebooks/n.md").read_text()
-        self.assertIn("Evidence profile · 1 distinct source URL", rendered)
+        self.assertIn("Evidence profile · 1 distinct source work", rendered)
 
     def test_publication_requires_two_sources_even_when_notebook_is_provisional(self):
         self.assertEqual(PUBLICATION_MIN_SOURCES, 2)
@@ -848,7 +869,7 @@ class ResearchTests(unittest.TestCase):
         self.assertIn("post-one", self.engine.store.load()["posts"])
 
     def test_provider_prompt_matches_two_source_publication_contract(self):
-        self.assertIn("requires at least\ntwo distinct qualifying collected source URLs", RESEARCH_SYSTEM)
+        self.assertIn("requires at least\ntwo distinct qualifying collected source works", RESEARCH_SYSTEM)
         self.assertNotIn("TEMPORARY DEBUG MODE", RESEARCH_SYSTEM)
 
     def test_publication_threshold_is_exposed_in_provider_schema(self):
@@ -874,11 +895,11 @@ class ResearchTests(unittest.TestCase):
         self.assertIn("mandatory tenth-wake reflection", RESEARCH_SYSTEM)
 
     def test_revision_requires_changed_findings_and_new_evidence(self):
-        self.source("s1")
-        self.source("s2")
+        self.source("s1", verified=True)
+        self.source("s2", verified=True)
         self.assertEqual(self.propose([project(), notebook(["s1", "s2"])])["status"], "accepted")
         self.assertEqual(self.propose([notebook(["s1", "s2"], "Changed")])["status"], "rejected")
-        self.source("s3")
+        self.source("s3", verified=True)
         self.assertEqual(self.propose([notebook(["s1", "s3"], "Changed with evidence [s3]."), project(status="completed")])["status"], "accepted")
         export(self.engine.store, self.root/"site")
         reconstructed, _ = verify_history(self.root/"site/events.jsonl", (self.root/"site/head.txt").read_text())
