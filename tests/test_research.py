@@ -24,7 +24,7 @@ from unittest.mock import patch
 from scripts.github_wake import StateBranch
 from wake.audit import verify_history
 from wake.engine import DEFAULTS, Engine
-from wake.governance import PUBLICATION_MIN_SOURCES, Rejected, _blog_language
+from wake.governance import PUBLICATION_MIN_SOURCES, Rejected, _blog_language, transition
 from wake.providers import Fixture, RESEARCH_SYSTEM, schema_for_context
 from wake.research import (
     allowed_url, collect, discovery_urls, evidence_role, exact_identifier_url, fetch_source, host_tier,
@@ -894,6 +894,19 @@ class ResearchTests(unittest.TestCase):
         result = self.propose([duplicate])
         self.assertEqual(result["status"], "rejected")
         self.assertIn("already owns this research question", result["reason"])
+
+    def test_historical_replay_preserves_preexisting_duplicate_projects(self):
+        self.assertEqual(self.propose([project("p-one")])["status"], "accepted")
+        state = self.engine.store.load()
+        duplicate = project("p-two")
+        historical = {
+            "base_version": state["version"],
+            "title": "Historical duplicate",
+            "summary": "Replay accepted work exactly as recorded.",
+            "actions": [duplicate],
+        }
+        replayed = transition(state, historical, "historical-duplicate", historical=True)
+        self.assertIn("p-two", replayed["projects"])
 
     def test_removed_topic_preserves_project_but_blocks_new_substantive_research(self):
         self.assertEqual(self.propose([project()])["status"], "accepted")
