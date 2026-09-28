@@ -69,7 +69,20 @@ def persistent_identifiers(observation):
     values += ["doi:" + item.rstrip(".,;:)]}").lower()
                for item in re.findall(r"10\.\d{4,9}/[-._;()/:a-zA-Z0-9]+", text)]
     values += ["openalex:" + item.rsplit("/", 1)[-1] for item in re.findall(r"https?://openalex\.org/[Ww]\d+", text)]
-    values += ["arxiv:" + item for item in re.findall(r"\b\d{4}\.\d{4,5}(?:v\d+)?\b", text)]
+    # Bare YYYY.NNNN patterns also occur inside DOI suffixes. Treat a value as
+    # arXiv only when the collector output explicitly labels it or carries an
+    # arxiv.org URL; otherwise DOI fragments become fake retrieval leads.
+    arxiv_ids = re.findall(
+        r"https?://(?:export\.)?arxiv\.org/(?:abs|pdf)/(\d{4}\.\d{4,5}(?:v\d+)?)(?:\.pdf)?",
+        text,
+        re.I,
+    )
+    arxiv_ids += re.findall(
+        r"\barxiv\s*[:=]\s*[\"']?(\d{4}\.\d{4,5}(?:v\d+)?)",
+        text,
+        re.I,
+    )
+    values += ["arxiv:" + item.lower() for item in arxiv_ids]
     values += ["pmc:" + item.upper() for item in re.findall(r"\bPMC\d+\b", text, re.I)]
     values += ["pmid:" + item for item in re.findall(r'"(?:PubMed|PMID)"\s*:\s*"?(\d{5,10})', text, re.I)]
     return list(dict.fromkeys(values))[:12]
