@@ -4,7 +4,7 @@ import tempfile
 import unittest
 
 from wake.engine import DEFAULTS, Engine
-from wake.research import collect, exact_identifier_url, persistent_identifiers, candidate_source_urls
+from wake.research import collect, exact_identifier_url, persistent_identifiers, candidate_source_urls, route_source_identity
 from support import charter_settings
 
 
@@ -59,6 +59,20 @@ class AcquisitionTests(unittest.TestCase):
         self.assertIn("pmc:PMC1790863", ids)
         self.assertIn("pmid:17299597", ids)
 
+    def test_retrieval_routes_encode_primary_work_identity(self):
+        self.assertEqual(
+            route_source_identity("https://api.crossref.org/works/10.1000%2Fexample.1"),
+            "doi:10.1000/example.1",
+        )
+        self.assertEqual(
+            route_source_identity("https://api.openalex.org/works/W12345"),
+            "openalex:W12345",
+        )
+        self.assertEqual(
+            route_source_identity("https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_json/PMC1790863/unicode"),
+            "pmc:PMC1790863",
+        )
+
     def test_persistent_identifiers_map_to_exact_approved_records(self):
         self.assertEqual(
             exact_identifier_url("doi:10.1000/example.1"),
@@ -105,6 +119,11 @@ class AcquisitionTests(unittest.TestCase):
         payload = json.loads(promoted[0]["content"])
         self.assertEqual(payload["evidence_role"], "source")
         self.assertEqual(payload["topic_domain"], "entropy")
+        self.assertEqual(payload["source_identity"], "doi:10.1000/example.1")
+        self.assertEqual(
+            state["acquisition"]["p"]["source_candidate_identities"][readable],
+            "doi:10.1000/example.1",
+        )
 
     def test_candidate_source_urls_reject_metadata_and_pdf_routes(self):
         urls = candidate_source_urls({
