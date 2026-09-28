@@ -70,6 +70,38 @@ def persistent_identifiers(observation):
     return list(dict.fromkeys(values))[:12]
 
 
+def candidate_source_urls(observation, current_url=""):
+    """Extract approved readable-source leads from trusted collector output.
+
+    Metadata indexes are useful routing infrastructure, but they are not the
+    research object itself. This helper deterministically promotes only HTTPS
+    URLs already present in collected metadata and already accepted by the
+    collector allowlist. PDF links are skipped until WAKE has a bounded parser.
+    """
+    text = json.dumps(observation, ensure_ascii=False) if isinstance(observation, dict) else str(observation)
+    candidates = []
+    metadata_hosts = {
+        "api.crossref.org", "api.openalex.org", "api.semanticscholar.org",
+        "api.datacite.org",
+    }
+    for raw in re.findall(r"https://[^\\s\\\"'<>]+", text):
+        url = raw.rstrip(".,;:)]}")
+        parsed = urllib.parse.urlsplit(url)
+        if not parsed.hostname or parsed.hostname in metadata_hosts:
+            continue
+        if parsed.path.lower().endswith(".pdf"):
+            continue
+        if current_url and url == current_url:
+            continue
+        try:
+            allowed_url(url)
+        except ValueError:
+            continue
+        if url not in candidates:
+            candidates.append(url)
+    return candidates[:8]
+
+
 def exact_identifier_url(identifier):
     """Convert a collector-discovered persistent ID into one exact approved record URL.
 
@@ -455,12 +487,12 @@ def research_urls(query, domain, attempts=0, topic=None):
 
 
 def evidence_role(url):
-    """Classify an observation without asking the model to trust its own search.
+    """Classify collection depth without mistaking bibliographic metadata for research.
 
-    A Crossref/OpenAlex search response is a lead list: it can name papers, but
-    it is not itself a paper selected for a project's question.  A later
-    follow-up may request one exact API record (or an approved page), which is
-    eligible for the stricter notebook gate.
+    Broad index queries are discovery. Exact index records are metadata: useful
+    for identifiers, abstracts, and routing, but insufficient by themselves for
+    notebook maturation. Only readable publisher/full-text/source-controlled
+    material is a qualifying source.
     """
     parsed = urllib.parse.urlsplit(url)
     query = urllib.parse.parse_qs(parsed.query)
@@ -472,6 +504,9 @@ def evidence_role(url):
         return "discovery"
     if parsed.hostname == "api.datacite.org" and parsed.path == "/dois" and "query" in query:
         return "discovery"
+    if parsed.hostname in {"api.crossref.org", "api.openalex.org",
+                           "api.semanticscholar.org", "api.datacite.org"}:
+        return "metadata"
     return "source"
 
 
@@ -560,18 +595,20 @@ def collect(engine, fetcher=fetch_source):
 
     queued = [r for r in state.get("research", {}).values()
               if r["status"] == "queued" and not awaiting_capability_retry(r)]
-    # Preserve two distinct forces inside the fixed two-request budget:
-    # one continuation slot for model-authored follow-up work when available,
-    # and one neutral discovery slot away from active project domains. This lets
-    # projects actually progress without allowing them to monopolize attention.
-    # Observation mode is a bounded, explicitly configured wider sample. It
-    # changes collection volume only; every collected item still receives the
-    # same topic and evidence-role provenance stamp.
+    # Research mode spends the bounded network budget on maturation first.
+    # When active work exists, reserve only one slot for broad exploration and
+    # use the rest to advance queued retrievals, metadata leads, and readable
+    # source candidates. With no active work, the whole budget remains available
+    # for neutral topic discovery.
     budget = engine.config["research_collection_budget"] if engine.config.get("observation_mode") else 2
     discovery_count = min(budget, len(topics))
     rng = secrets.SystemRandom()
-    active_domains = {p["domain"] for p in state.get("projects", {}).values()
-                      if p.get("status") == "active"}
+    active_projects = [p for p in state.get("projects", {}).values()
+                       if p.get("status") == "active"]
+    active_domains = {p["domain"] for p in active_projects}
+    active_work = bool(active_projects or queued or state.get("acquisition"))
+    exploration_slots = 1 if active_work and discovery_count > 1 else discovery_count
+    maturation_slots = discovery_count - exploration_slots
     alternatives = [topic for topic in topics if topic["id"] not in active_domains]
     pending = []
     used_urls = set()
@@ -583,6 +620,31 @@ def collect(engine, fetcher=fetch_source):
     # manually translate it. This is retrieval plumbing, not research judgment.
     existing_sources = {e.get("source") for e in state.get("evidence", {}).values() if e.get("source")}
     projects = state.get("projects", {})
+    source_candidates = []
+    for project_id, summary in state.get("acquisition", {}).items():
+        project = projects.get(project_id, {})
+        if project.get("status") != "active":
+            continue
+        for url in summary.get("source_candidates", []):
+            if url and url not in existing_sources:
+                source_candidates.append({
+                    "id": summary.get("last_receipt", {}).get("research_id") or f"collector-{project_id}",
+                    "project": project_id, "url": url,
+                    "domain": project.get("domain") or summary.get("domain"),
+                    "queued_followup": False, "acquisition_followup": True,
+                    "source_candidate": True,
+                    "blocked": bool(summary.get("capability_blocked")),
+                    "no_progress": int(summary.get("no_progress", 0)),
+                })
+    source_candidates.sort(key=lambda item: (
+        0 if item["blocked"] else 1, -item["no_progress"], item["project"], item["url"]
+    ))
+    for item in source_candidates:
+        if len(pending) >= maturation_slots:
+            break
+        pending.append(item)
+        used_urls.add(item["url"])
+
     identifier_candidates = []
     for project_id, summary in state.get("acquisition", {}).items():
         project = projects.get(project_id, {})
@@ -609,25 +671,29 @@ def collect(engine, fetcher=fetch_source):
     identifier_candidates.sort(key=lambda item: (
         0 if item["blocked"] else 1, -item["no_progress"], item["project"], item["identifier"]
     ))
-    if identifier_candidates and discovery_count:
-        exact = identifier_candidates[0]
+    for exact in identifier_candidates:
+        if len(pending) >= maturation_slots:
+            break
+        if exact["url"] in used_urls:
+            continue
         pending.append(exact)
         used_urls.add(exact["url"])
 
-    if queued and len(pending) < discovery_count:
-        followup = rng.choice(queued)
+    # Service durable project follow-ups deterministically before broad discovery.
+    for followup in sorted(queued, key=lambda item: (item["project"], item["id"])):
+        if len(pending) >= maturation_slots:
+            break
         routes = research_urls(followup["query"], followup["domain"], attempts, topic_by_id.get(followup["domain"]))
-        # A model may still request a specific approved record URL. Preserve it;
-        # otherwise use the next bounded discovery route.
         url = followup.get("url") or routes[0]
-        if url not in used_urls:
-            pending.append({"id": followup["id"], "project": followup["project"],
-                            "url": url, "domain": followup["domain"],
-                            "queued_followup": True})
-            used_urls.add(url)
-            used_queue_ids.add(followup["id"])
+        if url in used_urls:
+            continue
+        pending.append({"id": followup["id"], "project": followup["project"],
+                        "url": url, "domain": followup["domain"],
+                        "queued_followup": True})
+        used_urls.add(url)
+        used_queue_ids.add(followup["id"])
 
-    remaining_slots = discovery_count - len(pending)
+    remaining_slots = min(exploration_slots, discovery_count - len(pending))
     if remaining_slots:
         pool = [topic for topic in alternatives
                 if not pending or topic["id"] != pending[0]["domain"]]
@@ -670,6 +736,7 @@ def collect(engine, fetcher=fetch_source):
                 "evidence_role": "discovery" if item.get("discovery_only") else evidence_role(url),
                 "host_tier": host_tier(url, item.get("discovery_only", False)),
                 "persistent_identifiers": persistent_identifiers(observation),
+                "source_candidates": candidate_source_urls(observation, current_url=url),
             }
             content = json.dumps(observation, ensure_ascii=False)
             status = "collected"
@@ -692,4 +759,5 @@ def collect(engine, fetcher=fetch_source):
                 "route": urllib.parse.urlsplit(url).hostname + ":" + role,
                 "stage": "substantive_source" if role == "source" else "discovery",
                 "outcome": outcome, "evidence": evidence_id,
-                "persistent_identifiers": payload.get("persistent_identifiers", [])})
+                "persistent_identifiers": payload.get("persistent_identifiers", []),
+                "source_candidates": payload.get("source_candidates", [])})
