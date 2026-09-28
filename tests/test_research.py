@@ -1863,6 +1863,19 @@ class ResearchTests(unittest.TestCase):
         ])
         self.assertTrue(all(len(routes) == 4 for routes in (routes0, routes1, routes2, routes3)))
 
+    def test_targeted_project_maturation_excludes_datacite_rotation(self):
+        routes = research_urls(
+            "Landauer principle experimental information erasure",
+            "information_thermodynamics",
+            attempts=0,
+            targeted=True,
+        )
+        self.assertEqual(len(routes), 3)
+        self.assertTrue(any("api.crossref.org" in url for url in routes))
+        self.assertTrue(any("api.openalex.org" in url for url in routes))
+        self.assertTrue(any("api.semanticscholar.org" in url for url in routes))
+        self.assertFalse(any("api.datacite.org" in url for url in routes))
+
     def test_broad_index_searches_remain_discovery_only(self):
         urls = research_urls("working memory", "psychology", attempts=0)
         self.assertTrue(all(evidence_role(url) == "discovery" for url in urls))
