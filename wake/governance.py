@@ -1068,14 +1068,15 @@ def transition(state, proposal, invocation, historical=False):
                     "Research commitment must reference an existing project",
                 )
             else:
+                # Generic commitments are a kernel capability. Research-mode
+                # provider/schema policy requires a project for newly generated
+                # research obligations, but governance must not redefine the
+                # kernel or invalidate other callers that use generic durable
+                # commitments.
                 keys(
                     action,
                     "type id task due_cycle reason",
                     "Commitment",
-                )
-                require(
-                    historical or not state.get("charter"),
-                    "Current research commitments must reference a project",
                 )
 
             identifier(action["id"])
