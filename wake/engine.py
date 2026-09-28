@@ -821,8 +821,8 @@ class Engine:
         priority_candidates = active_candidates + selected_candidates
         priority_ids = {p.get("id") for p in priority_candidates}
         other_candidates = [p for p in project_candidates if p.get("id") not in priority_ids]
-        compact_projects = priority_candidates[:5]
-        remaining_compact_slots = max(0, 5 - len(compact_projects))
+        compact_projects = priority_candidates[:3]
+        remaining_compact_slots = max(0, 3 - len(compact_projects))
         if remaining_compact_slots:
             compact_projects += other_candidates[-remaining_compact_slots:]
         context["projects"] = [
