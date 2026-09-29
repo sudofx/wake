@@ -525,6 +525,10 @@
     data.generated=next.generated||data.generated;
     data.operation=next.operation||null;
     data.wake_status=next.wake_status||{};
+    // Live telemetry evolves independently of the static Pages shell. Keep the
+    // metrics block synchronized with the same projection as state/events so
+    // newly published storage counters appear without a Pages redeploy.
+    data.metrics=next.metrics||data.metrics||{};
     refreshDerived();
     renderMetricStrip();
     document.querySelectorAll('.cycle-count').forEach(node=>node.textContent=String(s.version??'—'));
