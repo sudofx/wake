@@ -282,7 +282,9 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertLess(worker.index("await disableRunner(env, session, githubFetch);"),
                         worker.index("const cancelledRuns = await cancelRuns(env, session, githubFetch);"))
         self.assertIn("Stop WAKE✳︎ and wait for active runtime work to finish before resetting", worker)
-        self.assertIn("RUNNER_WORKFLOW}/dispatches", worker)
+        self.assertIn("WAKE_WORKFLOW}/dispatches", worker)
+        self.assertIn("const executing = activeWakeRuns.length > 0", worker)
+        self.assertNotIn("const runs = [...status.activeRunnerRuns, ...status.activeWakeRuns]", worker)
 
         # Promotion is the only explicit runtime adoption boundary and refuses
         # to move the runtime branch while a real runtime cycle is active.
