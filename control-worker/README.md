@@ -8,10 +8,10 @@ Authority is narrow:
 
 - GitHub OAuth proves the configured owner identity.
 - The browser receives only a short-lived encrypted session envelope.
-- Start enables and bootstraps `wake-runner.yml`.
-- Stop disables the runner first, then cancels active runner/research runs.
-- Reset disables continuous operation, cancels active runs, then dispatches the
-  existing governed reset path in `wake.yml`. It does not edit SQLite directly.
+- Start dispatches `wake.yml` on the dedicated `wake-runtime` branch. It never adopts `master`.
+- Status and Stop consider only non-completed `wake.yml` runs whose branch is `wake-runtime`; development/CI debris on `master` is ignored.
+- Reset cancels active runtime cycles, then dispatches the governed reset path from `wake-runtime`. It does not edit SQLite directly.
+- Runtime promotion is outside the Worker and is handled only by the explicit verified promotion workflow.
 - The Worker never receives `GEMINI_API_KEY`.
 
 Required encrypted Worker secrets:
