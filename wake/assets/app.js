@@ -50,6 +50,19 @@
   const WAKE_TEXT='WAKE\u2733\uFE0E';
   const display = value => String(value ?? '').replaceAll('WAKE✳️','WAKE✳').replaceAll('WAKE✳︎','WAKE✳').replaceAll('WAKE✳','WAKE✳︎');
   const esc = value => display(value).replace(/[&<>"']/g, x => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
+  const INLINE_BLOG_SOURCE_LINKS_FROM_VERSION=203;
+  const blogText=(value,post)=>{
+    let rendered=esc(value);
+    if(Number(post?.created_version||0)<INLINE_BLOG_SOURCE_LINKS_FROM_VERSION)return rendered;
+    const evidence=new Set(post?.evidence||[]);
+    [...evidence].sort((a,b)=>String(b).length-String(a).length).forEach(id=>{
+      const source=s.evidence?.[id]?.source;
+      if(!source)return;
+      const token=esc('['+id+']');
+      rendered=rendered.split(token).join('<a class="inline-source-citation" href="'+esc(source)+'">'+token+'</a>');
+    });
+    return rendered;
+  };
   function emphasizeWake(root=document) {
     const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
     const targets=[];
@@ -423,7 +436,7 @@
       const post=posts.find(item=>item.id===selected);
       if(!post){$('blog-content').innerHTML='<p class="empty">That post is not in this record.</p>';return;}
       const invocation=s.invocations[post.created_by];
-      const body=String(post.body).split(/\n\s*\n/).map(part=>'<p>'+esc(part)+'</p>').join('');
+      const body=String(post.body).split(/\n\s*\n/).map(part=>'<p>'+blogText(part,post)+'</p>').join('');
       const notebooks=(post.notebooks||[]).map(id=>s.notebooks?.[id]?'<a class="text-link" href="#projects/notebook:'+encodeURIComponent(id)+'">'+esc(s.notebooks[id].title)+' →</a>':'').join('');
       const sources=(post.evidence||[]).map(id=>'<a href="#evidence/'+encodeURIComponent(id)+'">'+esc(id)+' →</a>').join(' ');
       const project=post.project?s.projects?.[post.project]:null;
