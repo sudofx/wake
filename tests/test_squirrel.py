@@ -70,6 +70,8 @@ class SquirrelTests(unittest.TestCase):
         self.assertIn("temporary attention directive", RESEARCH_SYSTEM)
         self.assertIn("do not cancel, weaken, or reinterpret", RESEARCH_SYSTEM)
         self.assertIn("not permission to bypass", RESEARCH_SYSTEM)
+        self.assertIn("reactivate that exact project", RESEARCH_SYSTEM)
+        self.assertIn("do not create a replacement project", RESEARCH_SYSTEM)
 
     def test_durable_project_advancement_resets_a_topic_counter(self):
         state = {
