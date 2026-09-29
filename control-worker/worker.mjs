@@ -104,7 +104,9 @@ async function workflowStatus(env, token, githubFetch) {
   //
   // Never infer "running" from workflow enablement alone. An enabled workflow
   // with no active runtime work is merely stopped and ready to start.
-  const [runnerWorkflowResponse, runnerResponse, wakeResponse] = await Promise.all([
+  const [runtimeRefResponse, runnerWorkflowResponse, runnerResponse, wakeResponse] = await Promise.all([
+    github(`/repos/${env.REPOSITORY}/git/ref/heads/${encodeURIComponent(RUNNER_REF)}`,
+      token, {}, githubFetch),
     github(`/repos/${env.REPOSITORY}/actions/workflows/${RUNNER_WORKFLOW}`,
       token, {}, githubFetch),
     github(
@@ -116,11 +118,21 @@ async function workflowStatus(env, token, githubFetch) {
       token, {}, githubFetch,
     ),
   ]);
+  const runtimeRef = await runtimeRefResponse.json();
+  const runtimeSha = runtimeRef?.object?.sha || "";
   const runnerWorkflow = await runnerWorkflowResponse.json();
   const runnerRuns = (await runnerResponse.json()).workflow_runs || [];
   const wakeRuns = (await wakeResponse.json()).workflow_runs || [];
+  // A queued run attached to an older promoted runtime can linger in GitHub's
+  // Actions listing even after GitHub refuses cancellation as already completed.
+  // Such an orphan must not hold the operator UI in "draining" forever. Promotion
+  // itself refuses to move wake-runtime while real runtime work is active, so the
+  // exact current runtime SHA is the correct execution boundary here.
   const active = (runs) => runs
-    .filter((run) => run.head_branch === RUNNER_REF && run.status !== "completed")
+    .filter((run) =>
+      run.head_branch === RUNNER_REF &&
+      run.head_sha === runtimeSha &&
+      run.status !== "completed")
     .map((run) => ({
       id: run.id,
       status: run.status,
@@ -136,6 +148,7 @@ async function workflowStatus(env, token, githubFetch) {
     : (enabled ? "stopped" : "disabled");
   return {
     enabled,
+    runtimeSha,
     mode,
     controls: {
       start: !executing,
