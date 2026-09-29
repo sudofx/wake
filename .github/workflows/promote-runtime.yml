@@ -53,7 +53,7 @@ jobs:
       - name: Verify replayable experiment boundary
         run: |
           rm -rf /tmp/wake-promote /tmp/wake-promote-site
-          python -m wake --data /tmp/wake-promote experiment --cycles 20 --output /tmp/wake-promote-site
+          python -m wake --data /tmp/wake-promote experiment --cycles 100 --output /tmp/wake-promote-site
           python -m wake audit --events /tmp/wake-promote-site/events.jsonl --head /tmp/wake-promote-site/head.txt
 
       - name: Recheck runtime is still stopped
