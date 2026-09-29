@@ -5,8 +5,6 @@ run-name: "WAKE✳︎ continuous · ${{ inputs.dispatch_token || github.run_id }
 # wake-runtime to the current implementation. Individual cycles chain themselves
 # without waiting for this runner and never touch Pages.
 on:
-  schedule:
-    - cron: '17 * * * *'
   workflow_dispatch:
     inputs:
       dispatch_token:
@@ -39,13 +37,12 @@ jobs:
       - name: Pin or recover the experiment implementation
         id: runtime
         env:
-          EVENT_NAME: ${{ github.event_name }}
           REQUESTED_REF: ${{ inputs.runtime_ref }}
           START_SHA: ${{ github.sha }}
         run: |
           set -euo pipefail
           carrier_ref="$(git ls-remote origin refs/heads/wake-runtime | awk '{print $1}')"
-          if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
+          if true; then
             requested_ref="${REQUESTED_REF:-$START_SHA}"
             git cat-file -e "$requested_ref^{commit}" 2>/dev/null || git fetch --depth=1 origin "$requested_ref"
             if [[ -z "$carrier_ref" ]]; then
@@ -78,8 +75,5 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           RUNTIME_REF: ${{ steps.runtime.outputs.runtime_ref }}
-          EVENT_NAME: ${{ github.event_name }}
         run: |
-          scheduled=false
-          [[ "$EVENT_NAME" == "schedule" ]] && scheduled=true
-          gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime             -f "dispatch_token=bootstrap-$GITHUB_RUN_ID"             -f "runtime_ref=$RUNTIME_REF"             -f "scheduled=$scheduled"
+          gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime             -f "dispatch_token=bootstrap-$GITHUB_RUN_ID"             -f "runtime_ref=$RUNTIME_REF"             -f "scheduled=false"
