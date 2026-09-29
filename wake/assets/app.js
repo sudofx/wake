@@ -231,6 +231,19 @@
     const models={}; completed.forEach(i=>{const key=i.successful_model||i.model||i.provider||'unknown';models[key]??={attempts:0,accepted:0,requests:0};models[key].attempts++;models[key].accepted+=i.status==='accepted'?1:0;models[key].requests+=i.provider_requests_sent||0;});
     const modelRows=Object.entries(models).sort((a,b)=>b[1].attempts-a[1].attempts).map(([name,m])=>`<div class="model-metric-row"><strong>${esc(name)}</strong><span>${m.attempts} wakes</span><span>${m.accepted} accepted</span><span>${m.requests} HTTP requests</span></div>`).join('');
     const fullMetrics=data.metrics||{};
+    const storageMetrics=fullMetrics.storage||{};
+    const sqliteBytes=Number(storageMetrics.sqlite_bytes);
+    const durableEventCount=Number(storageMetrics.event_count);
+    const formatBytes=value=>{
+      if(!Number.isFinite(value))return '—';
+      if(value<1024)return value+' B';
+      const units=['KB','MB','GB','TB'];
+      let size=value/1024,index=0;
+      while(size>=1024&&index<units.length-1){size/=1024;index++;}
+      return (size>=100?size.toFixed(0):size>=10?size.toFixed(1):size.toFixed(2))+' '+units[index];
+    };
+    const sqliteSize=formatBytes(sqliteBytes);
+    const eventRecordCount=Number.isFinite(durableEventCount)?durableEventCount:'—';
     const reasonCounts={...(fullMetrics.rejection_reasons||{})};
     if(!Object.keys(reasonCounts).length){
       data.events.filter(e=>e.kind==='rejected').forEach(e=>{
@@ -335,7 +348,9 @@
       ['Capability blocks',capabilityBlocks,'equivalent retrieval routes paused',capabilityBlocks?'warning':'neutral'],
       ['Problem frames',frames.length,'strategy hypotheses; not findings','neutral'],
       ['Squirrel parking',parkedTopics,'topics preserved while attention moves','neutral'],
-      ['Known provider attempts',knownAttempts.length,providerSuccesses+' success-labelled','neutral']
+      ['Known provider attempts',knownAttempts.length,providerSuccesses+' success-labelled','neutral'],
+      ['SQLite database',sqliteSize,Number.isFinite(sqliteBytes)?sqliteBytes.toLocaleString()+' bytes on wake-state':'Waiting for promoted runtime metric','info'],
+      ['Durable events',eventRecordCount,Number.isFinite(durableEventCount)?'append-only event rows in SQLite':'Waiting for promoted runtime metric','info']
     ];
     const telemetryHtml=telemetry.map(([label,value,note,tone])=>`<article class="telemetry-cell ${tone||'neutral'}"><span>${label}</span><strong>${value}</strong><small>${note}</small></article>`).join('');
     const card=(value,label,note)=>`<article class="metric-card"><strong>${value}</strong><span>${label}</span><small>${note}</small></article>`;
@@ -374,7 +389,7 @@
         <div class="metrics-row-two-left"><article class="dashboard-section dashboard-feature"><div class="dashboard-heading"><div><p class="eyebrow">OUTCOME TREND / 10-WAKE WINDOWS</p><h2>Are the conditions changing?</h2></div><p>Each column is a consecutive ten-wake window. Height is share of outcomes.</p></div><div class="trend-chart">${trend||'<span class="empty">No completed wakes yet.</span>'}</div></article><article class="dashboard-section dashboard-feature"><div class="dashboard-heading"><div><p class="eyebrow">LAST ${attempts.length} COMPLETED WAKES</p><h2>The pulse of the experiment.</h2></div><p>One cell per wake. Color is outcome—not quality. Tap any cell for its receipt.</p></div><div class="wake-timeline" role="group" aria-label="Recent wake outcomes">${timeline||'<span class="empty">No completed wakes yet.</span>'}</div><div class="timeline-legend">${statuses.map(([name])=>`<span><i class="${name}"></i>${name}</span>`).join('')}</div></article></div>
         <div class="metrics-row-two-right"><section class="command-strip"><div><p class="eyebrow">LIVE RECORD TELEMETRY</p><strong>CYCLE ${s.version}</strong></div><div><span>COMPLETED</span><b>${completed.length}</b></div><div class="status-accepted"><span>ACCEPTED</span><b>${acceptedCount}</b></div><div class="status-rejected"><span>REJECTED</span><b>${rejectedCount}</b></div><div class="status-deferred"><span>DEFERRED</span><b>${deferredCount}</b></div><div class="status-fallback"><span>FALLBACK</span><b>${fallbackWakes}</b></div><div><span>OPEN WORK</span><b>${openObligations}</b></div><div><span>TOPICS ACTIVE</span><b>${topicActive}/${configuredTopicCount}</b></div></section>
 <section class="telemetry-grid">${telemetryHtml}</section>
-<section class="dashboard-kpis">${card(s.version,'Durable cycles','Accepted state advances')}${card(acceptanceRate+'%','Acceptance rate',acceptedCount+' of '+completed.length+' completed wakes')}${card(handoffRate+'%','Obligation handoff',inheritedFulfilled.length+' cross-invocation fulfillments')}${card(requestsPerAccepted,'Requests / accepted','Recorded HTTP attempts ÷ accepted wakes')}${card(fallbackWakes,'Fallback wakes','More than one provider attempt')}${card(medianLatency===null?'—':medianLatency+'ms','Median provider latency','Known completed model attempts')}${card(revisedBeliefs,'Belief actions',activeBeliefs.length+' active · '+retractedBeliefs.length+' retracted')}${card(overdue,'Overdue obligations','Open commitments at or past due cycle')}</section></div>
+<section class="dashboard-kpis">${card(s.version,'Durable cycles','Accepted state advances')}${card(acceptanceRate+'%','Acceptance rate',acceptedCount+' of '+completed.length+' completed wakes')}${card(handoffRate+'%','Obligation handoff',inheritedFulfilled.length+' cross-invocation fulfillments')}${card(requestsPerAccepted,'Requests / accepted','Recorded HTTP attempts ÷ accepted wakes')}${card(fallbackWakes,'Fallback wakes','More than one provider attempt')}${card(medianLatency===null?'—':medianLatency+'ms','Median provider latency','Known completed model attempts')}${card(revisedBeliefs,'Belief actions',activeBeliefs.length+' active · '+retractedBeliefs.length+' retracted')}${card(overdue,'Overdue obligations','Open commitments at or past due cycle')}${card(sqliteSize,'SQLite database','Durable record file size')}${card(eventRecordCount,'Durable events','Append-only event rows')}</section></div>
       </section>
       <p class="dashboard-footnote">Derived view only. The durable state and event log remain authoritative. Derived action counts and hypotheses are explicitly descriptive; they never write back to the record.</p>`;
 
