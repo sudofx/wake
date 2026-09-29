@@ -152,7 +152,30 @@ class LiveProjectionBranch:
                     json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n",
                     encoding="utf-8",
                 )
-                subprocess.run(["git", "add", "live.json"], cwd=checkout, check=True, timeout=_projection_timeout(deadline))
+
+                # MAP and 3D MAP are disposable projections of the same public
+                # snapshot. Publish them atomically with live.json so Reset and
+                # every accepted cycle have one visible version across all views.
+                from wake.provenance import build_map, build_map3d_projection, map3d_shard_filename
+                graph = build_map(payload["state"], payload.get("events", []), payload["head"], replay_history=False)
+                (checkout / "map-data.json").write_text(
+                    json.dumps(graph, ensure_ascii=False, separators=(",", ":")) + "\n",
+                    encoding="utf-8",
+                )
+                graph3d_shell, graph3d_shards = build_map3d_projection(graph)
+                (checkout / "map3d-data.json").write_text(
+                    json.dumps(graph3d_shell, ensure_ascii=False, separators=(",", ":")) + "\n",
+                    encoding="utf-8",
+                )
+                shard_dir = checkout / "map3d"
+                shard_dir.mkdir(parents=True, exist_ok=True)
+                for parent, shard in graph3d_shards.items():
+                    (shard_dir / map3d_shard_filename(parent)).write_text(
+                        json.dumps(shard, ensure_ascii=False, separators=(",", ":")) + "\n",
+                        encoding="utf-8",
+                    )
+                subprocess.run(["git", "add", "live.json", "map-data.json", "map3d-data.json", "map3d"],
+                               cwd=checkout, check=True, timeout=_projection_timeout(deadline))
                 subprocess.run([
                     "git", "-c", "user.name=wake-bot",
                     "-c", "user.email=wake-bot@users.noreply.github.com",
