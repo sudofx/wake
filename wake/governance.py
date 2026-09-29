@@ -1636,8 +1636,12 @@ def transition(state, proposal, invocation, historical=False):
                 # enough to avoid rejecting legitimate terminology differences.
                 # Legacy evidence keeps its historical acceptance semantics.
                 if verification:
+                    project_frame = " ".join(
+                        str(project.get(field, ""))
+                        for field in ("title", "question", "domain")
+                    )
                     _verify_claim_support(
-                        project["question"],
+                        project_frame,
                         verification,
                         "Notebook project relevance",
                         minimum_sources=1,
