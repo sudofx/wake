@@ -205,7 +205,7 @@ def _topic_colors(topics):
 DEFAULTS = {"timezone": "America/Los_Angeles", "objective": "Test durable continuity under mechanical governance.",
             "provider": "gemini", "model": "gemini-2.5-flash", "daily_call_limit": 20, "model_daily_call_limits": {},
             "max_context_chars": 48000, "max_output_tokens": 4096, "timeout_seconds": 60,
-            "free_tier_confirmed": False, "gemini_fallback_models": [],
+            "free_tier_confirmed": False, "gemini_fallback_models": [], "gemini_fallback_requires_primary_daily_quota": False,
             "inquiry_drive_enabled": False, "research_topics_file": "research-topics.toml",
             "observation_mode": False, "research_collection_budget": 2, "research_collection_wall_seconds": 45}
 # ---------------------------------------------------------------------------
@@ -289,6 +289,8 @@ def config(path="wake.toml"):
             "inquiry_drive_enabled must be true or false")
     require(type(result["observation_mode"]) is bool,
             "observation_mode must be true or false")
+    require(type(result["gemini_fallback_requires_primary_daily_quota"]) is bool,
+            "gemini_fallback_requires_primary_daily_quota must be true or false")
     require(type(result["research_collection_budget"]) is int and 2 <= result["research_collection_budget"] <= 8,
             "research_collection_budget must be between 2 and 8")
     require(type(result["research_collection_wall_seconds"]) is int and 10 <= result["research_collection_wall_seconds"] <= 120,
