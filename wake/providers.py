@@ -407,18 +407,52 @@ def schema_for_context(context):
                 choices.remove(research_action)
             else:
                 project_action["properties"]["domain"]["enum"] = [enforced_topic]
-                if not selected_project_ids:
-                    project_action["properties"]["status"]["enum"] = ["active"]
-                choices.append(project_action)
-                research_action["properties"]["domain"]["enum"] = [enforced_topic]
-                if selected_project_ids:
-                    research_action["properties"]["project"]["enum"] = selected_project_ids
-                else:
-                    # New projects need one accepted state transition before a
-                    # research request can reference them. This prevents a model
-                    # from inventing a same-response project ID that later fails
-                    # another mechanical constraint.
+                selected_active = [
+                    p for p in selected_projects if p.get("status") == "active"
+                ]
+                selected_parked = [
+                    p for p in selected_projects if p.get("status") == "parked"
+                ]
+                if selected_parked and not selected_active:
+                    # A forced rotation resumes durable unfinished work before
+                    # allowing a fresh model to paraphrase the same inquiry under
+                    # a new project ID. Reactivation is a distinct accepted shift;
+                    # research follows once the durable project is active again.
+                    for project in selected_parked:
+                        constrained = deepcopy(project_action)
+                        constrained["properties"]["id"] = {
+                            "type": "string", "enum": [project["id"]]
+                        }
+                        constrained["properties"]["title"] = {
+                            "type": "string", "enum": [project["title"]]
+                        }
+                        constrained["properties"]["question"] = {
+                            "type": "string", "enum": [project["question"]]
+                        }
+                        constrained["properties"]["domain"] = {
+                            "type": "string", "enum": [project["domain"]]
+                        }
+                        constrained["properties"]["status"] = {
+                            "type": "string", "enum": ["active"]
+                        }
+                        choices.append(constrained)
                     choices.remove(research_action)
+                else:
+                    if not selected_project_ids:
+                        project_action["properties"]["status"]["enum"] = ["active"]
+                    choices.append(project_action)
+                    research_action["properties"]["domain"]["enum"] = [enforced_topic]
+                    active_selected_ids = sorted(p["id"] for p in selected_active)
+                    if active_selected_ids:
+                        research_action["properties"]["project"]["enum"] = active_selected_ids
+                    elif selected_project_ids:
+                        choices.remove(research_action)
+                    else:
+                        # New projects need one accepted state transition before a
+                        # research request can reference them. This prevents a model
+                        # from inventing a same-response project ID that later fails
+                        # another mechanical constraint.
+                        choices.remove(research_action)
         else:
             project_action["properties"]["domain"]["enum"] = domains
             research_action["properties"]["domain"]["enum"] = domains
