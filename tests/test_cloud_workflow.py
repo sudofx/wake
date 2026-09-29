@@ -259,7 +259,10 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertNotIn("python scripts/github_wake.py --publish-only", pages)
         self.assertNotIn("'wake/store.py'", pages)
         self.assertNotIn("'wake/governance.py'", pages)
-        self.assertIn("cron: '17 * * * *'", runner)
+        # Continuous operation is explicitly operator-dispatched. A scheduled
+        # bootstrap would make Stop non-durable and force workflow-toggle permissions.
+        self.assertNotIn("cron:", runner)
+        self.assertIn("workflow_dispatch:", runner)
         self.assertIn("wake-runtime", runner)
         self.assertNotIn("operation.json", runner)
         self.assertIn("Irreversibly reset durable research/history to WAKE 0", workflow)
