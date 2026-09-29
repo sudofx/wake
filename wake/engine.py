@@ -42,8 +42,8 @@ def _rotation_preflight(state, invocation, proposal):
     Gemini sometimes returns valid work for the enforced topic *plus* stale
     actions for deferred/unconfigured topics. Rejecting the whole response
     wastes the selected-topic work. During an enforced rotation, admit only
-    substantive actions on the selected topic, mandatory milestone reflection,
-    and project parking needed to recover capacity. Preserve the exact raw
+    substantive actions on the selected topic and project parking needed to recover
+    capacity. Preserve the exact raw
     provider response separately so nothing is hidden or rewritten in history.
     """
     if not isinstance(proposal, dict) or not isinstance(proposal.get("actions"), list):
@@ -78,9 +78,7 @@ def _rotation_preflight(state, invocation, proposal):
         elif kind in ("notebook", "reframe"):
             keep = project_domains.get(action.get("project")) == selected
         elif kind == "blog":
-            keep = bool(action.get("reflection_cycle")) or (
-                project_domains.get(action.get("project")) == selected
-            )
+            keep = project_domains.get(action.get("project")) == selected
         elif kind in ("belief", "commit", "resolve"):
             # Administrative mutations are intentionally deferred during a
             # forced research rotation. They have repeatedly poisoned otherwise
