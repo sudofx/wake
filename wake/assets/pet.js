@@ -21,6 +21,24 @@ window.WakePetReady=(async () => {
   const topicName=id=>names[id]||String(id||'Unconfigured topic').replaceAll('_',' ');
   const topicTag=(id)=>`<a class="topic-tag" data-topic="${esc(id)}" style="--topic-color:${esc(topicColors[id]||'var(--cyan)')}" href="#projects/topic:${encodeURIComponent(id)}">${esc(topicName(id).toLowerCase())}</a>`;
   const projects=Object.values(s.projects||{}),books=Object.values(s.notebooks||{}).sort((a,b)=>b.updated_version-a.updated_version);
+  const blogPosts=Object.values(s.posts||{});
+  const topicActivityRows=()=> (s.research_topics||[]).map(topic=>{
+    const ps=projects.filter(p=>p.domain===topic.id);
+    const ns=books.filter(n=>n.domain===topic.id);
+    const bs=blogPosts.filter(post=>s.projects?.[post.project]?.domain===topic.id);
+    const publications=ns.length+bs.length;
+    return {
+      topic, ps, ns, bs,
+      activeCount:ps.filter(p=>p.status==='active').length,
+      publications,
+      score:ps.length+publications
+    };
+  }).sort((a,b)=>
+    b.score-a.score ||
+    b.publications-a.publications ||
+    b.ps.length-a.ps.length ||
+    a.topic.label.localeCompare(b.topic.label)
+  );
   const active=projects.filter(p=>p.status==='active');
   const invocations=Object.values(s.invocations),last=invocations.at(-1);
   const format=t=>new Date(t).toLocaleString('en-US',{timeZone:'America/Los_Angeles',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
@@ -65,10 +83,9 @@ window.WakePetReady=(async () => {
     document.getElementById('discoveries-content').innerHTML=published.length?`<div class="discovery-intro"><p><strong>${published.length}</strong> published notebook${published.length===1?'':'s'} currently form the discovery layer. A discovery here means a recorded research finding—not settled truth.</p></div><div class="discovery-list">${published.map(discoveryCard).join('')}</div>`:'<p class="empty">No research finding has reached the notebook layer yet.</p>';
   }
   function topics(){
-    const cards=(s.research_topics||[]).map(topic=>{
-      const ps=projects.filter(p=>p.domain===topic.id), ns=books.filter(n=>n.domain===topic.id), open=ps.filter(p=>p.status==='active');
-      const latest=ns[0];
-      return `<article class="topic-hub" style="--topic-color:${esc(topicColors[topic.id]||'var(--cyan)')}"><div class="topic-hub-head"><span>RESEARCH TOPIC</span><h2>${esc(topic.label)}</h2><p>${open.length} active project${open.length===1?'':'s'} · ${ns.length} published notebook${ns.length===1?'':'s'}</p></div>${open[0]?`<div><strong>QUESTION IN MOTION</strong><p>${esc(open[0].question)}</p></div>`:''}${latest?`<div><strong>LATEST FINDING</strong><p>${esc(latest.summary)}</p></div>`:''}<div class="topic-hub-actions"><a class="text-link" href="#projects/topic:${encodeURIComponent(topic.id)}">Explore this topic →</a><a class="subtle" href="#topics">Journal activity →</a></div></article>`;
+    const cards=topicActivityRows().map(({topic,ps,ns,bs,activeCount})=>{
+      const open=ps.filter(p=>p.status==='active'), latest=ns[0];
+      return `<article class="topic-hub" style="--topic-color:${esc(topicColors[topic.id]||'var(--cyan)')}"><div class="topic-hub-head"><span>RESEARCH TOPIC</span><h2>${esc(topic.label)}</h2><p>${activeCount} active project${activeCount===1?'':'s'} · ${ns.length} published notebook${ns.length===1?'':'s'} · ${bs.length} blog post${bs.length===1?'':'s'}</p></div>${open[0]?`<div><strong>QUESTION IN MOTION</strong><p>${esc(open[0].question)}</p></div>`:''}${latest?`<div><strong>LATEST FINDING</strong><p>${esc(latest.summary)}</p></div>`:''}<div class="topic-hub-actions"><a class="text-link" href="#projects/topic:${encodeURIComponent(topic.id)}">Explore this topic →</a><a class="subtle" href="#topics">Journal activity →</a></div></article>`;
     }).join('');
     document.getElementById('topics-content').innerHTML=`<div class="topic-hubs">${cards||'<p class="empty">No research topics are configured.</p>'}</div>`;
   }
@@ -91,7 +108,7 @@ window.WakePetReady=(async () => {
     const wakeCells=recentWakes.map(i=>`<a class="home-wake-cell ${esc(i.status||'unknown')}" href="#history/${encodeURIComponent(i.id)}" title="${esc(i.status||'unknown')} · ${esc(i.id)}"></a>`).join('');
     const outcomeCounts={};recentWakes.forEach(i=>outcomeCounts[i.status]=(outcomeCounts[i.status]||0)+1);
     const acceptedRecent=outcomeCounts.accepted||0,rejectedRecent=outcomeCounts.rejected||0,deferredRecent=outcomeCounts.deferred||0;
-    const topicActivity=(s.research_topics||[]).map(topic=>{const ps=projects.filter(p=>p.domain===topic.id),ns=books.filter(n=>n.domain===topic.id),activeCount=ps.filter(p=>p.status==='active').length;return {topic,ps,ns,activeCount,score:ps.length+ns.length};});
+    const topicActivity=topicActivityRows();
     const maxTopic=Math.max(1,...topicActivity.map(x=>x.score));
     const topicObservatory=topicActivity.map(({topic,ps,ns,activeCount,score})=>{const latest=ns[0],question=ps.find(p=>p.status==='active')?.question||ps[0]?.question||'No active project has been recorded for this topic yet.';return `<a class="observatory-topic" style="--topic-color:${esc(topicColors[topic.id]||'var(--cyan)')};--activity:${Math.max(4,100*score/maxTopic)}%" href="#projects/topic:${encodeURIComponent(topic.id)}"><div><span>${activeCount?'ACTIVE':'TOPIC'}</span><h3>${esc(topic.label)}</h3></div><p>${esc(question)}</p><div class="topic-signal"><i></i><b>${ns.length}</b><small>notebooks</small></div>${latest?`<small class="topic-latest">LATEST / ${esc(latest.title)}</small>`:''}</a>`;}).join('');
     const leadTitle=latestBook?.title||journal?.title||'The record is still building its first research finding.';
