@@ -24,12 +24,31 @@ import tempfile
 import unittest
 
 from wake.engine import Engine
+from wake.live import build_live_projection
 from wake.providers import Fixture
 from wake.provenance import map3d_shard_filename
 from wake.report import export
 
 
 class PublishingTests(unittest.TestCase):
+    def test_browser_shell_can_render_from_disposable_projection_without_store_replay(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            engine = Engine(root/"data")
+            try:
+                engine.run(Fixture())
+                payload = build_live_projection(engine.store, operation={"status": "accepted"}, runtime_ref="test-runtime")
+                before_replays = engine.store.performance_snapshot()["full_replays"]
+                export(None, root/"site", browser_only=True, projection=payload)
+                after_replays = engine.store.performance_snapshot()["full_replays"]
+                self.assertEqual(after_replays, before_replays)
+                self.assertTrue((root/"site/index.html").is_file())
+                rendered = json.loads((root/"site/wake-data.json").read_text())
+                self.assertEqual(rendered["head"], payload["head"])
+                self.assertEqual(rendered["state"]["version"], payload["state"]["version"])
+            finally:
+                engine.store.close()
+
     def test_publish_is_isolated_and_repeatable(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
