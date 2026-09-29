@@ -765,6 +765,9 @@ class Gemini:
                                   and set(self.models) <= low_thinking_models),
                 "Gemini fallback chain requires verified low-thinking request compatibility")
         self.request_limit = len(self.models)
+        self.fallback_requires_primary_daily_quota = bool(
+            config.get("gemini_fallback_requires_primary_daily_quota", False)
+        )
         self.model_request_limits = None
         # Models whose durable Pacific-day allowance is already exhausted are
         # skipped before transport. Keep the skip visible in diagnostics so an
@@ -812,6 +815,7 @@ class Gemini:
         provider_wall_seconds = max(1, int(self.config.get("provider_wall_seconds", self.config["timeout_seconds"])))
         provider_deadline = time.time() + provider_wall_seconds
         error = TransientProviderError("Gemini provider wall budget exhausted; wake deferred")
+        primary_daily_quota_exhausted = False
         for model in self.models:
             if attempted >= self.request_limit:
                 break
@@ -858,6 +862,8 @@ class Gemini:
                     error = TransientProviderError("Gemini temporarily unavailable; wake deferred")
                 elif exc.code == 429 and is_free_tier_daily_quota(attempt):
                     attempt["result"] = "daily_quota"
+                    if model == self.model:
+                        primary_daily_quota_exhausted = True
                     remaining = self.models[self.models.index(model) + 1:]
                     if any(self.model_request_limits is None or self.model_request_limits.get(next_model, 1) > 0 for next_model in remaining):
                         error = TransientProviderError("Gemini model daily quota exhausted; trying fallback")
@@ -895,6 +901,15 @@ class Gemini:
                              "model_version": data.get("modelVersion", model)}
             if isinstance(error, (ProviderRequestError, TransientProviderError)):
                 error.details = {**attempt, **self.diagnostics()}
+            # In quota-gated mode the primary model owns normal operation.
+            # Availability errors on the primary defer the wake instead of
+            # consuming newer-model requests. Only Google's exact primary-model
+            # daily free-tier quota signal unlocks the configured fallback chain.
+            if (isinstance(error, TransientProviderError)
+                    and self.fallback_requires_primary_daily_quota
+                    and model == self.model
+                    and not primary_daily_quota_exhausted):
+                raise error
             if not isinstance(error, TransientProviderError):
                 raise error
         raise error
