@@ -46,6 +46,11 @@ class PublishingTests(unittest.TestCase):
                 rendered = json.loads((root/"site/wake-data.json").read_text())
                 self.assertEqual(rendered["head"], payload["head"])
                 self.assertEqual(rendered["state"]["version"], payload["state"]["version"])
+                self.assertEqual(rendered["metrics"]["storage"]["event_count"],
+                                 engine.store.performance_snapshot()["event_count"])
+                self.assertEqual(rendered["metrics"]["storage"]["sqlite_bytes"],
+                                 engine.store.path.stat().st_size)
+                self.assertGreater(rendered["metrics"]["storage"]["sqlite_bytes"], 0)
             finally:
                 engine.store.close()
 
@@ -81,6 +86,9 @@ class PublishingTests(unittest.TestCase):
                 self.assertIn("localStorage.getItem(sessionKey", page)
                 self.assertIn("const legacy=sessionStorage.getItem(sessionKey)", page)
                 self.assertIn("sessionStorage.removeItem(sessionKey)", page)
+                self.assertIn("'SQLite database'", page)
+                self.assertIn("'Durable events'", page)
+                self.assertIn("storageMetrics.sqlite_bytes", page)
                 browser_data = json.loads((project/"site/wake-data.json").read_text())
                 self.assertEqual(browser_data["state"]["version"], 1)
                 self.assertIn("route();", page)
