@@ -35,7 +35,8 @@ from support import charter_settings
 
 
 def project(identifier="p", status="active"):
-    return dict(type="project", id=identifier, title="Comparing explanations", question="What distinguishes the explanations?",
+    return dict(type="project", id=identifier, title="Comparing explanations",
+                question="What distinguishes entropy comparison explanations?",
                 domain="entropy", status=status, next_step="Compare collected sources", reason="A tractable question")
 
 
@@ -65,7 +66,7 @@ class ResearchTests(unittest.TestCase):
 
     def source(self, identifier, url=None, status="collected", source_scope="synthetic test fixture",
                verified=False, persistent_id=None):
-        payload = {"scope":source_scope, "excerpt":"Only a fixture"}
+        payload = {"scope":source_scope, "excerpt":"Entropy comparison explanations in a synthetic fixture."}
         if verified:
             payload.update({
                 "excerpt": (
@@ -1650,6 +1651,29 @@ class ResearchTests(unittest.TestCase):
                     actor="collector", scope="collected"))
         proposal = [project(), notebook(["s1", "s2"], "Volcanic aerosols measurably cool global surface temperatures.")]
         self.assertEqual(self.propose(proposal)["status"], "rejected")
+
+    def test_first_notebook_rejects_structurally_valid_but_irrelevant_evidence(self):
+        self.propose([project()])
+        with self.engine.store.lock():
+            self.engine.store.append("observation", dict(
+                id="irrelevant", source="https://example.org/repository-index",
+                content=json.dumps({
+                    "scope":"repository file index",
+                    "title":"Recursive repository structure",
+                    "excerpt":"A recursive file listing of source-controlled paths and filenames.",
+                    "verification_required":True,
+                    "topic_domain":"entropy",
+                    "evidence_role":"source",
+                    "host_tier":"verification-fulltext",
+                }),
+                actor="collector", scope="collected"))
+        draft = notebook(
+            ["irrelevant"],
+            "The repository index exists, but it does not answer the research question [irrelevant].",
+        )
+        result = self.propose([draft])
+        self.assertEqual(result["status"], "rejected")
+        self.assertIn("Notebook project relevance", result["reason"])
 
     def test_verified_notebook_accepts_single_same_topic_source(self):
         with self.engine.store.lock():
