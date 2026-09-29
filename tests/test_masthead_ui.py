@@ -46,6 +46,18 @@ class MastheadPresentationTests(unittest.TestCase):
         self.assertNotIn("ownerMenuToggle?.classList.toggle('is-active'", self.html)
         self.assertIn("ownerMenuLabel.textContent='Settings'", self.html)
 
+    def test_operator_controls_follow_runtime_state_machine(self):
+        self.assertIn("const mode=state.mode||", self.html)
+        self.assertIn("state.enabled===false?'disabled':'stopped'", self.html)
+        self.assertIn("const controls=state.controls||fallbackControls", self.html)
+        self.assertIn("ownerStart.disabled=controls.start!==true", self.html)
+        self.assertIn("ownerStop.disabled=controls.stop!==true", self.html)
+        self.assertIn("ownerReset.disabled=controls.reset!==true", self.html)
+        self.assertIn("running:'Running now'", self.html)
+        self.assertIn("draining:'Stopping…'", self.html)
+        self.assertIn("stopped:'Stopped'", self.html)
+        self.assertIn("disabled:'Disabled'", self.html)
+
 
 if __name__ == "__main__":
     unittest.main()
