@@ -192,7 +192,7 @@ window.WakeData=fetch(window.WakeLiveUrl+'?wake='+Date.now(),{cache:'no-store'})
       if(ownerMenuLabel)ownerMenuLabel.textContent='Settings';
       ownerStart.disabled=state.enabled;
       ownerStop.disabled=!state.enabled;
-      ownerReset.disabled=state.enabled||active>0;
+      // Reset owns cancellation of queued/running WAKE jobs server-side. A stale\n      // queued run must not strand the operator when continuous operation is stopped.\n      ownerReset.disabled=state.enabled;
     }catch(error){
       try{localStorage.removeItem(sessionKey)}catch{}
       showSignedOut(error instanceof Error?error.message:'Session check failed');
