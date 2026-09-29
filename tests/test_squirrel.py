@@ -341,6 +341,28 @@ class SquirrelTests(unittest.TestCase):
         self.assertFalse(any(a["properties"]["type"]["enum"] == ["research"] for a in choices))
         self.assertFalse(any(a["properties"]["type"]["enum"] == ["notebook"] for a in choices))
 
+    def test_rotation_reactivates_parked_selected_project_before_new_project(self):
+        context = {
+            "research_topics": [{"id": "consciousness"}, {"id": "entropy"}],
+            "projects": [
+                {"id": "old-consciousness", "title": "Scientific Theories of Consciousness",
+                 "question": "What observations do major theories of consciousness explain?",
+                 "domain": "consciousness", "status": "parked", "next_step": "Compare theories"},
+                {"id": "entropy-active", "title": "Entropy", "question": "q",
+                 "domain": "entropy", "status": "active", "next_step": "n"},
+            ],
+            "commitments": [],
+            "evidence": [],
+            "blog_notebooks": {},
+            "squirrel": {"selected_topic": "consciousness", "enforce_selected_topic": True},
+        }
+        choices = schema_for_context(context)["properties"]["actions"]["items"]["anyOf"]
+        projects = [a for a in choices if a["properties"]["type"]["enum"] == ["project"]]
+        self.assertEqual(len(projects), 1)
+        self.assertEqual(projects[0]["properties"]["id"]["enum"], ["old-consciousness"])
+        self.assertEqual(projects[0]["properties"]["status"]["enum"], ["active"])
+        self.assertFalse(any(a["properties"]["type"]["enum"] == ["research"] for a in choices))
+
     def test_rotation_without_selected_project_waits_before_research(self):
         context = {
             "research_topics": [{"id": "quantum_mechanics"}],
