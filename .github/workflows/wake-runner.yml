@@ -12,6 +12,11 @@ on:
         type: string
         required: false
         default: ''
+      runtime_ref:
+        description: Deprecated compatibility input; ignored. Runtime always comes from wake-runtime.
+        type: string
+        required: false
+        default: ''
 
 permissions:
   actions: write
