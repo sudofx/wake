@@ -1,8 +1,21 @@
 /* Progressive, data-bound constellation. Spatial placement is a reading aid, not causal distance. */
 (async()=>{'use strict';
-const response=await fetch('map3d-data.json',{cache:'no-store'});
-if(!response.ok)throw new Error('Published WAKE 3D map data could not be loaded');
-const data=await response.json();
+const LIVE_BASE='https://raw.githubusercontent.com/sudofx/wake/wake-live/';
+let liveMap3d=false;
+async function loadMap3dData(){
+  const live=await fetch(LIVE_BASE+'map3d-data.json?wake='+Date.now(),{cache:'no-store'}).catch(()=>null);
+  if(live?.ok){liveMap3d=true;return live.json();}
+  const stateResponse=await fetch(LIVE_BASE+'live.json?wake='+Date.now(),{cache:'no-store'}).catch(()=>null);
+  if(stateResponse?.ok){
+    const snapshot=await stateResponse.json();
+    if(Number(snapshot?.state?.version||0)===0)return {root_children:[],meta:{version:0,counts:{},topic_colors:{},topic_labels:{},schema_version:2}};
+  }
+  const fallback=await fetch('map3d-data.json?wake='+Date.now(),{cache:'no-store'});
+  if(!fallback.ok)throw new Error('Live WAKE 3D map data could not be loaded');
+  return fallback.json();
+}
+const data=await loadMap3dData();
+window.WakeOperatorSyncPublic?.({meta:data.meta});
 const nodes=new Map(),loadedChildren=new Map([['root:wake',data.root_children||[]]]),loading=new Map(),loadErrors=new Map();
 const stage=document.getElementById('constellation-stage'),svg=document.getElementById('constellation-svg');
 const details=document.getElementById('details'),popover=document.getElementById('node-popover');
@@ -21,12 +34,12 @@ const get=id=>nodes.get(id)||roots.get(id);
 const children=id=>loadedChildren.get(id)||[];
 const visualChildren=(id,nextPathId=null)=>{const all=children(id);if(id==='root:wake'||id==='root:topics'||all.length<=VISUAL_BRANCH_LIMIT)return all;const shown=all.slice(0,VISUAL_BRANCH_LIMIT);if(nextPathId&&all.includes(nextPathId)&&!shown.includes(nextPathId))shown.push(nextPathId);return shown};
 const branchFile=id=>encodeURIComponent(id).replaceAll('%','_')+'.json';
-const branchUrl=id=>`map3d/${branchFile(id)}`;
+const branchUrl=id=>liveMap3d?`${LIVE_BASE}map3d/${branchFile(id)}?wake=${Date.now()}`:`map3d/${branchFile(id)}?wake=${Date.now()}`;
 async function ensureBranch(id){
  if(loadedChildren.has(id))return true;
  if(loading.has(id))return loading.get(id);
  stage.setAttribute('aria-busy','true');
- const request=fetch(branchUrl(id),{cache:'force-cache'}).then(response=>{
+ const request=fetch(branchUrl(id),{cache:'no-store'}).then(response=>{
    if(!response.ok)throw new Error(`HTTP ${response.status}`);
    return response.json();
  }).then(shard=>{
