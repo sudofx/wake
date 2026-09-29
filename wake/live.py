@@ -78,6 +78,10 @@ def _full_history_metrics(store, state):
         topic_summary[topic] = {"total": sum(counts.values()), "by_type": counts}
 
     return {
+        "storage": {
+            "sqlite_bytes": store.path.stat().st_size,
+            "event_count": store.db.execute("SELECT COUNT(*) FROM events").fetchone()[0],
+        },
         "accepted_events": accepted_events,
         "accepted_actions": {
             "total": sum(action_counts.values()),
