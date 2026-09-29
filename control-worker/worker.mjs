@@ -199,13 +199,27 @@ async function callback(request, env, githubFetch) {
   destination.hash = `wake-control=${encodeURIComponent(envelope)}`;
   return Response.redirect(destination.toString(), 302);
 }
+async function githubControl(operation, path, session, env, githubFetch, init = {}) {
+  try {
+    return await github(path, session.accessToken, init, githubFetch);
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : "GitHub request failed";
+    throw new Error(`${operation} failed: ${detail}`);
+  }
+}
 async function enableRunner(env, session, githubFetch) {
-  await github(`/repos/${env.REPOSITORY}/actions/workflows/${RUNNER_WORKFLOW}/enable`,
-    session.accessToken, { method: "PUT" }, githubFetch);
+  await githubControl(
+    "Enable continuous runner",
+    `/repos/${env.REPOSITORY}/actions/workflows/${RUNNER_WORKFLOW}/enable`,
+    session, env, githubFetch, { method: "PUT" },
+  );
 }
 async function disableRunner(env, session, githubFetch) {
-  await github(`/repos/${env.REPOSITORY}/actions/workflows/${RUNNER_WORKFLOW}/disable`,
-    session.accessToken, { method: "PUT" }, githubFetch);
+  await githubControl(
+    "Disable continuous runner",
+    `/repos/${env.REPOSITORY}/actions/workflows/${RUNNER_WORKFLOW}/disable`,
+    session, env, githubFetch, { method: "PUT" },
+  );
 }
 async function cancelRuns(env, session, githubFetch) {
   const status = await workflowStatus(env, session.accessToken, githubFetch);
@@ -223,16 +237,21 @@ async function start(env, session, githubFetch) {
 
   // Start opens the continuation latch, then bootstraps exactly the promoted
   // wake-runtime. It never adopts master.
-  await enableRunner(env, session, githubFetch);
-  await github(`/repos/${env.REPOSITORY}/actions/workflows/${RUNNER_WORKFLOW}/dispatches`,
-    session.accessToken, {
+  // GitHub rejects redundant workflow state transitions. Only enable the
+  // continuation latch when it is actually disabled.
+  if (!before.enabled) await enableRunner(env, session, githubFetch);
+  await githubControl(
+    "Dispatch continuous runner",
+    `/repos/${env.REPOSITORY}/actions/workflows/${RUNNER_WORKFLOW}/dispatches`,
+    session, env, githubFetch, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ref: RUNNER_REF,
         inputs: { dispatch_token: `owner-${Date.now()}` },
       }),
-    }, githubFetch);
+    },
+  );
   return { enabled: true, mode: "running", message: "Continuous WAKE✳︎ runtime is starting." };
 }
 async function stop(env, session, githubFetch) {
@@ -257,16 +276,21 @@ async function reset(env, session, githubFetch) {
 
   // Reset is destructive state work. Keep the continuation latch closed so the
   // reset cannot accidentally turn into a research chain.
-  await disableRunner(env, session, githubFetch);
-  await github(`/repos/${env.REPOSITORY}/actions/workflows/${WAKE_WORKFLOW}/dispatches`,
-    session.accessToken, {
+  // Reset is also valid when the latch is already disabled. GitHub returns
+  // 403 for a redundant disable, so do not issue that state transition.
+  if (before.enabled) await disableRunner(env, session, githubFetch);
+  await githubControl(
+    "Dispatch reset",
+    `/repos/${env.REPOSITORY}/actions/workflows/${WAKE_WORKFLOW}/dispatches`,
+    session, env, githubFetch, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ref: RUNNER_REF,
         inputs: { reset: true, dispatch_token: `reset-${Date.now()}` },
       }),
-    }, githubFetch);
+    },
+  );
   return { enabled: false, mode: "draining", message: "WAKE✳︎ reset to cycle zero has been requested; continuous operation remains disabled." };
 }
 
