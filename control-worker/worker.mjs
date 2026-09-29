@@ -208,8 +208,11 @@ async function reset(env, session, githubFetch) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        ref: "master",
-        inputs: { reset: "true", publish_after: "true", dispatch_token: `reset-${Date.now()}` },
+        // Reset must execute on the same pinned implementation carrier as
+        // ordinary cycles. Dispatching master bypasses the runtime adoption
+        // boundary and can reset state with code different from the active run.
+        ref: "wake-runtime",
+        inputs: { reset: "true", dispatch_token: `reset-${Date.now()}` },
       }),
     }, githubFetch);
   return { enabled: false, message: "WAKE✳︎ reset to cycle zero has been requested; continuous operation remains stopped." };
