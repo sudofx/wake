@@ -666,6 +666,22 @@ def _blog_language(action, evidence, historical=False, prior_post=None):
         # boundary here before any narrower overclaim heuristics.
         _enforce_bob_personhood_policy(claim_text)
 
+        # Public architecture claims must not invert the durable-record boundary.
+        # SQLite contains WAKE's durable event record; only the snapshot projection
+        # inside that database is disposable/cacheable. Replay of the hash-linked
+        # events reconstructs authoritative state.
+        architecture_text = claim_text.lower()
+        sqlite_as_cache = (
+            re.search(r"\bsqlite\b[^.!?]{0,180}\b(?:merely|only|just)\s+(?:a\s+)?cache\b", architecture_text)
+            or re.search(r"\bsqlite\b[^.!?]{0,180}\b(?:is|was)\s+not\s+(?:the\s+)?authorit", architecture_text)
+        )
+        if sqlite_as_cache:
+            raise Rejected(
+                "Bob architecture policy: SQLite contains the durable event record; "
+                "the snapshot projection inside SQLite is the cache. Verified replay "
+                "of the hash-linked events reconstructs authoritative state."
+            )
+
         # These phrases are intentionally treated as warning signs for
         # unjustifiably strong synthesis.
         #
