@@ -8,6 +8,7 @@
 
 const API_VERSION = "2026-03-10";
 const RUNNER_WORKFLOW = "wake-runner.yml";
+const RUNNER_REF = "wake-runtime";
 const WAKE_WORKFLOW = "wake.yml";
 const SESSION_SECONDS = 60 * 60 * 7;
 const OAUTH_SECONDS = 60 * 10;
@@ -179,7 +180,7 @@ async function start(env, session, githubFetch) {
     session.accessToken, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ref: "master", inputs: { dispatch_token: `owner-${Date.now()}` } }),
+      body: JSON.stringify({ ref: RUNNER_REF, inputs: { dispatch_token: `owner-${Date.now()}`, runtime_ref: "master" } }),
     }, githubFetch);
   return { enabled: true, message: "Continuous WAKE✳︎ operation is starting." };
 }
