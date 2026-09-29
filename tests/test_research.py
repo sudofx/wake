@@ -35,8 +35,7 @@ from support import charter_settings
 
 
 def project(identifier="p", status="active"):
-    return dict(type="project", id=identifier, title="Comparing explanations",
-                question="What distinguishes entropy comparison explanations?",
+    return dict(type="project", id=identifier, title="Comparing explanations", question="What distinguishes the explanations?",
                 domain="entropy", status=status, next_step="Compare collected sources", reason="A tractable question")
 
 
@@ -66,7 +65,7 @@ class ResearchTests(unittest.TestCase):
 
     def source(self, identifier, url=None, status="collected", source_scope="synthetic test fixture",
                verified=False, persistent_id=None):
-        payload = {"scope":source_scope, "excerpt":"Entropy comparison explanations in a synthetic fixture."}
+        payload = {"scope":source_scope, "excerpt":"Only a fixture"}
         if verified:
             payload.update({
                 "excerpt": (
@@ -1653,7 +1652,14 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(self.propose(proposal)["status"], "rejected")
 
     def test_first_notebook_rejects_structurally_valid_but_irrelevant_evidence(self):
-        self.propose([project()])
+        philosophy_project = dict(
+            type="project", id="p", title="Verificationism",
+            question="What primary texts define verificationism?",
+            domain="entropy", status="active",
+            next_step="Retrieve primary philosophical texts",
+            reason="Test gross evidence mismatch",
+        )
+        self.propose([philosophy_project])
         with self.engine.store.lock():
             self.engine.store.append("observation", dict(
                 id="irrelevant", source="https://example.org/repository-index",
