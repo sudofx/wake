@@ -784,7 +784,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             # The map shells already fetch their data at browser load. Keep the
             # URLs stable while moving record projection out of GitHub Actions.
             from .provenance import build_map, build_map3d_projection, map3d_shard_filename
-            graph = build_map(state, events, head)
+            graph = build_map(state, events, head, replay_history=projection is None)
             graph_json = json.dumps(graph, ensure_ascii=False)
             atomic_write(target / "map-data.json", graph_json)
             map_page = (assets / "map.html").read_text().replace("WAKE_CYCLE_COUNT", str(state["version"]))
