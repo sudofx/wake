@@ -382,7 +382,7 @@ def _claim_tokens(value):
     }
 
 
-def _verify_claim_support(claim, evidence, label, minimum_sources=2):
+def _verify_claim_support(claim, evidence, label, minimum_sources=2, minimum_overlap_tokens=2):
     """
     Require a caller-selected number of collected sources to materially overlap the claim.
 
@@ -435,7 +435,7 @@ def _verify_claim_support(claim, evidence, label, minimum_sources=2):
 
         overlap = claim_tokens & _claim_tokens(material)
 
-        if len(overlap) >= 2:
+        if len(overlap) >= minimum_overlap_tokens:
             supporting.append(item.get("source"))
 
     require(
@@ -1630,29 +1630,27 @@ def transition(state, proposal, invocation, historical=False):
                     "Notebook evidence",
                     minimum_sources=notebook_min_sources,
                 )
-                relevance_evidence = verification or cited
+                # New verification-grade evidence must at least appear to
+                # address the project's actual question. This is a coarse mismatch
+                # detector, not semantic entailment: one meaningful shared token is
+                # enough to avoid rejecting legitimate terminology differences.
+                # Legacy evidence keeps its historical acceptance semantics.
+                if verification:
+                    _verify_claim_support(
+                        project["question"],
+                        verification,
+                        "Notebook project relevance",
+                        minimum_sources=1,
+                        minimum_overlap_tokens=1,
+                    )
 
-                # A notebook is a research synthesis, not a place to memorialize
-                # failed retrieval. Even a provisional first draft must be backed
-                # by source material that appears to address the project's actual
-                # question. Structurally valid but unrelated evidence should cause
-                # another retrieval step, not publication.
-                _verify_claim_support(
-                    project["question"],
-                    relevance_evidence,
-                    "Notebook project relevance",
-                    minimum_sources=1,
-                )
-
-                # Findings themselves must also remain anchored to the selected
-                # material. First drafts need one supporting source; revisions use
-                # the stronger corroboration threshold already required above.
-                _verify_claim_support(
-                    action["findings"],
-                    relevance_evidence,
-                    "Notebook findings",
-                    minimum_sources=notebook_min_sources,
-                )
+                    # Findings remain under the stronger existing overlap rule.
+                    _verify_claim_support(
+                        action["findings"],
+                        verification,
+                        "Notebook findings",
+                        minimum_sources=notebook_min_sources,
+                    )
 
             # Repository-analysis is a configured topic capability, not a
             # special hardcoded topic identity. When enabled, its notebooks
