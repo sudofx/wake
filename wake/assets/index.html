@@ -186,20 +186,28 @@ window.WakeData=fetch(window.WakeLiveUrl+'?wake='+Date.now(),{cache:'no-store'})
       ownerLogin.hidden=true;
       if(ownerMenuToggle)ownerMenuToggle.hidden=false;
       const active=(state.activeRunnerRuns?.length||0)+(state.activeWakeRuns?.length||0);
-      const running=active>0;
-      ownerStatus.textContent=running?'Running now':'Stopped';
+      // New Workers return an authoritative mode + allowed controls. The
+      // fallback preserves correct behavior while an older Worker deployment
+      // is still serving sessions.
+      const mode=state.mode||(active>0?(state.enabled===false?'draining':'running'):(state.enabled===false?'disabled':'stopped'));
+      const fallbackControls={
+        start:active===0,
+        stop:mode==='running',
+        reset:active===0
+      };
+      const controls=state.controls||fallbackControls;
+      const labels={
+        running:'Running now',
+        draining:'Stopping…',
+        stopped:'Stopped',
+        disabled:'Disabled'
+      };
+      ownerStatus.textContent=labels[mode]||'Checking controls…';
       if(ownerIdentity)ownerIdentity.textContent=state.login?`Signed in as ${state.login}`:'Signed in';
       if(ownerMenuLabel)ownerMenuLabel.textContent='Settings';
-      // Button state follows concrete active runs, not a persisted/derived
-      // workflow-enabled flag. Start must recover immediately after reset.
-      // Start is an explicit idempotent operator command. Never let a stale
-      // status snapshot strand the operator after reset; GitHub is authoritative
-      // about the dispatch itself.
-      ownerStart.disabled=false;
-      ownerStop.disabled=!running;
-      // Reset owns cancellation server-side, so it remains available even if
-      // GitHub is still draining a queued/running job.
-      ownerReset.disabled=false;
+      ownerStart.disabled=controls.start!==true;
+      ownerStop.disabled=controls.stop!==true;
+      ownerReset.disabled=controls.reset!==true;
     }catch(error){
       try{localStorage.removeItem(sessionKey)}catch{}
       showSignedOut(error instanceof Error?error.message:'Session check failed');
