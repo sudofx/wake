@@ -98,17 +98,51 @@ async function authorizedSession(request, env) {
   return session;
 }
 async function workflowStatus(env, token, githubFetch) {
-  const wakeResponse = await github(
-    `/repos/${env.REPOSITORY}/actions/workflows/${WAKE_WORKFLOW}/runs?branch=${encodeURIComponent(RUNNER_REF)}&per_page=30`,
-    token, {}, githubFetch,
-  );
+  // GitHub owns both parts of the operator state:
+  //   1. wake-runner.yml enabled/disabled is the durable continuation latch.
+  //   2. non-completed runs on wake-runtime are the execution truth.
+  //
+  // Never infer "running" from workflow enablement alone. An enabled workflow
+  // with no active runtime work is merely stopped and ready to start.
+  const [runnerWorkflowResponse, runnerResponse, wakeResponse] = await Promise.all([
+    github(`/repos/${env.REPOSITORY}/actions/workflows/${RUNNER_WORKFLOW}`,
+      token, {}, githubFetch),
+    github(
+      `/repos/${env.REPOSITORY}/actions/workflows/${RUNNER_WORKFLOW}/runs?branch=${encodeURIComponent(RUNNER_REF)}&per_page=30`,
+      token, {}, githubFetch,
+    ),
+    github(
+      `/repos/${env.REPOSITORY}/actions/workflows/${WAKE_WORKFLOW}/runs?branch=${encodeURIComponent(RUNNER_REF)}&per_page=30`,
+      token, {}, githubFetch,
+    ),
+  ]);
+  const runnerWorkflow = await runnerWorkflowResponse.json();
+  const runnerRuns = (await runnerResponse.json()).workflow_runs || [];
   const wakeRuns = (await wakeResponse.json()).workflow_runs || [];
-  const activeWakeRuns = wakeRuns
+  const active = (runs) => runs
     .filter((run) => run.head_branch === RUNNER_REF && run.status !== "completed")
-    .map((run) => ({ id: run.id, status: run.status, url: run.html_url, head_sha: run.head_sha }));
+    .map((run) => ({
+      id: run.id,
+      status: run.status,
+      url: run.html_url,
+      head_sha: run.head_sha,
+    }));
+  const activeRunnerRuns = active(runnerRuns);
+  const activeWakeRuns = active(wakeRuns);
+  const enabled = runnerWorkflow.state === "active";
+  const executing = activeRunnerRuns.length + activeWakeRuns.length > 0;
+  const mode = executing
+    ? (enabled ? "running" : "draining")
+    : (enabled ? "stopped" : "disabled");
   return {
-    enabled: activeWakeRuns.length > 0,
-    activeRunnerRuns: [],
+    enabled,
+    mode,
+    controls: {
+      start: !executing,
+      stop: mode === "running",
+      reset: !executing,
+    },
+    activeRunnerRuns,
     activeWakeRuns,
   };
 }
@@ -165,6 +199,14 @@ async function callback(request, env, githubFetch) {
   destination.hash = `wake-control=${encodeURIComponent(envelope)}`;
   return Response.redirect(destination.toString(), 302);
 }
+async function enableRunner(env, session, githubFetch) {
+  await github(`/repos/${env.REPOSITORY}/actions/workflows/${RUNNER_WORKFLOW}/enable`,
+    session.accessToken, { method: "PUT" }, githubFetch);
+}
+async function disableRunner(env, session, githubFetch) {
+  await github(`/repos/${env.REPOSITORY}/actions/workflows/${RUNNER_WORKFLOW}/disable`,
+    session.accessToken, { method: "PUT" }, githubFetch);
+}
 async function cancelRuns(env, session, githubFetch) {
   const status = await workflowStatus(env, session.accessToken, githubFetch);
   const runs = [...status.activeRunnerRuns, ...status.activeWakeRuns];
@@ -174,35 +216,58 @@ async function cancelRuns(env, session, githubFetch) {
   return runs.length;
 }
 async function start(env, session, githubFetch) {
-  // Start never adopts master. The runtime branch is the executable contract.
-  await github(`/repos/${env.REPOSITORY}/actions/workflows/${WAKE_WORKFLOW}/dispatches`,
+  const before = await workflowStatus(env, session.accessToken, githubFetch);
+  if (before.activeRunnerRuns.length || before.activeWakeRuns.length) {
+    return { ...before, message: "WAKE✳︎ is already running." };
+  }
+
+  // Start opens the continuation latch, then bootstraps exactly the promoted
+  // wake-runtime. It never adopts master.
+  await enableRunner(env, session, githubFetch);
+  await github(`/repos/${env.REPOSITORY}/actions/workflows/${RUNNER_WORKFLOW}/dispatches`,
     session.accessToken, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ref: RUNNER_REF,
-        inputs: { dispatch_token: `owner-${Date.now()}`, scheduled: false },
+        inputs: { dispatch_token: `owner-${Date.now()}` },
       }),
     }, githubFetch);
-  return { enabled: true, message: "Continuous WAKE✳︎ runtime is starting." };
+  return { enabled: true, mode: "running", message: "Continuous WAKE✳︎ runtime is starting." };
 }
 async function stop(env, session, githubFetch) {
+  // Close the continuation latch BEFORE cancelling work so a finishing cycle
+  // cannot race the operator and dispatch a successor.
+  await disableRunner(env, session, githubFetch);
   const cancelledRuns = await cancelRuns(env, session, githubFetch);
-  return { enabled: false, cancelledRuns, message: "Continuous WAKE✳︎ operation is stopped." };
+  return {
+    enabled: false,
+    mode: cancelledRuns ? "draining" : "disabled",
+    cancelledRuns,
+    message: cancelledRuns
+      ? "WAKE✳︎ is stopping; active runtime work is being cancelled."
+      : "Continuous WAKE✳︎ operation is stopped.",
+  };
 }
 async function reset(env, session, githubFetch) {
-  await cancelRuns(env, session, githubFetch);
+  const before = await workflowStatus(env, session.accessToken, githubFetch);
+  if (before.activeRunnerRuns.length || before.activeWakeRuns.length) {
+    throw new Error("Stop WAKE✳︎ and wait for active runtime work to finish before resetting");
+  }
+
+  // Reset is destructive state work. Keep the continuation latch closed so the
+  // reset cannot accidentally turn into a research chain.
+  await disableRunner(env, session, githubFetch);
   await github(`/repos/${env.REPOSITORY}/actions/workflows/${WAKE_WORKFLOW}/dispatches`,
     session.accessToken, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        // State actions use the same verified runtime as ordinary cycles.
         ref: RUNNER_REF,
         inputs: { reset: true, dispatch_token: `reset-${Date.now()}` },
       }),
     }, githubFetch);
-  return { enabled: false, message: "WAKE✳︎ reset to cycle zero has been requested; continuous operation remains stopped." };
+  return { enabled: false, mode: "draining", message: "WAKE✳︎ reset to cycle zero has been requested; continuous operation remains disabled." };
 }
 
 export async function handleRequest(request, env, githubFetch = fetch) {
