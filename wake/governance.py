@@ -1623,25 +1623,36 @@ def transition(state, proposal, invocation, historical=False):
 
             if not historical:
 
+                project = result["projects"][action["project"]]
                 verification = _verification_evidence(
                     cited,
-                    result["projects"][action["project"]]["domain"],
+                    project["domain"],
+                    "Notebook evidence",
+                    minimum_sources=notebook_min_sources,
+                )
+                relevance_evidence = verification or cited
+
+                # A notebook is a research synthesis, not a place to memorialize
+                # failed retrieval. Even a provisional first draft must be backed
+                # by source material that appears to address the project's actual
+                # question. Structurally valid but unrelated evidence should cause
+                # another retrieval step, not publication.
+                _verify_claim_support(
+                    project["question"],
+                    relevance_evidence,
+                    "Notebook project relevance",
+                    minimum_sources=1,
+                )
+
+                # Findings themselves must also remain anchored to the selected
+                # material. First drafts need one supporting source; revisions use
+                # the stronger corroboration threshold already required above.
+                _verify_claim_support(
+                    action["findings"],
+                    relevance_evidence,
                     "Notebook findings",
                     minimum_sources=notebook_min_sources,
                 )
-
-                # First-draft notebooks are provisional working artifacts:
-                # provenance and source qualification are enforced, but strict
-                # deterministic lexical corroboration begins on revision. That
-                # keeps one-source synthesis possible without weakening the
-                # stronger revision/completion/publication gates.
-                if verification and old:
-                    _verify_claim_support(
-                        action["findings"],
-                        verification,
-                        "Notebook findings",
-                        minimum_sources=notebook_min_sources,
-                    )
 
             # Repository-analysis is a configured topic capability, not a
             # special hardcoded topic identity. When enabled, its notebooks
