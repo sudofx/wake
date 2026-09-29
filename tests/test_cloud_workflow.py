@@ -267,6 +267,22 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertNotIn('runtime_ref: "master"', worker)
         self.assertIn("ref: RUNNER_REF", worker)
 
+        # Operator state is derived from two GitHub truths: the runner workflow
+        # is the durable continuation latch, and only non-completed
+        # wake-runtime runs count as execution. Stop closes the latch before
+        # cancellation, reset refuses active work, and Start reopens the latch.
+        self.assertIn('runnerWorkflow.state === "active"', worker)
+        self.assertIn('run.head_branch === RUNNER_REF', worker)
+        self.assertIn('run.status !== "completed"', worker)
+        self.assertIn('"running" : "draining"', worker)
+        self.assertIn('"stopped" : "disabled"', worker)
+        self.assertIn('/enable', worker)
+        self.assertIn('/disable', worker)
+        self.assertLess(worker.index("await disableRunner(env, session, githubFetch);"),
+                        worker.index("const cancelledRuns = await cancelRuns(env, session, githubFetch);"))
+        self.assertIn("Stop WAKE✳︎ and wait for active runtime work to finish before resetting", worker)
+        self.assertIn("RUNNER_WORKFLOW}/dispatches", worker)
+
         # Promotion is the only explicit runtime adoption boundary and refuses
         # to move the runtime branch while a real runtime cycle is active.
         self.assertIn("promote runtime", promotion.lower())
