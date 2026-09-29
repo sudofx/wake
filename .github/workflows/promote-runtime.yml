@@ -73,6 +73,12 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
+          active="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50" \
+            --jq '[.workflow_runs[] | select(.head_branch=="wake-runtime" and .status!="completed")] | length')"
+          if [[ "$active" != "0" ]]; then
+            echo "::error::wake-runtime became active before promotion. Stop WAKE✳︎ and retry."
+            exit 1
+          fi
           candidate_sha="$(git rev-parse HEAD)"
           gh api -X PATCH "repos/$GITHUB_REPOSITORY/git/refs/heads/wake-runtime" \
             -f sha="$candidate_sha" -F force=true >/dev/null
