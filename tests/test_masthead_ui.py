@@ -58,10 +58,12 @@ class MastheadPresentationTests(unittest.TestCase):
         self.assertIn('data.public_cycle=Number(data.state?.version||0)', self.html)
         self.assertIn('syncPublicLight(next)', self.html)
 
-    def test_status_track_matches_theme_switch_geometry(self):
+    def test_status_track_reuses_toggle_styling_with_a_circular_border(self):
         self.assertIn('.data-switch-track,.owner-status-track{width:34px;height:18px', self.css)
+        self.assertIn('.owner-status-track{width:18px}', self.css)
         self.assertIn('.data-switch-track i,.owner-status-light{display:block;width:12px;height:12px', self.css)
         self.assertIn('.theme-switch .data-switch-track,.owner-status-track{width:42px;height:24px', self.css)
+        self.assertIn('.owner-status-track{width:24px;flex-basis:24px}', self.css)
         self.assertIn('.theme-switch .data-switch-track i,.owner-status-light{width:16px;height:16px', self.css)
 
     def test_operator_controls_follow_runtime_state_machine(self):

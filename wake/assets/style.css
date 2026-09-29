@@ -230,6 +230,7 @@ footer{margin-top:48px}
 /* Optional zero-cycle presentation: hide current record data without altering durable state. */
 .data-visibility{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:18px 0 4px;font:10px var(--mono);letter-spacing:.06em;color:var(--muted)}
 .data-switch{display:inline-flex;align-items:center;gap:9px;cursor:pointer}.data-switch input{position:absolute;opacity:0;pointer-events:none}.data-switch-track,.owner-status-track{width:34px;height:18px;border:1px solid var(--line);border-radius:20px;background:var(--surface);padding:2px;display:inline-flex;align-items:center}.data-switch-track i,.owner-status-light{display:block;width:12px;height:12px;border-radius:50%;background:var(--muted);transition:transform .15s ease,background .15s ease}.data-switch input:checked+.data-switch-track i{transform:translateX(16px);background:var(--green)}.data-switch input:focus-visible+.data-switch-track{outline:2px solid var(--green);outline-offset:2px}.data-switch b{font:inherit;color:var(--ink)}
+.owner-status-track{width:18px}
 .theme-switch{font:10px var(--mono);letter-spacing:.06em;color:var(--muted);white-space:nowrap}.theme-switch b{font:inherit;color:var(--ink)}
 @media(max-width:700px){.data-visibility{align-items:flex-start;flex-direction:column;gap:7px;margin-top:16px}}
 
@@ -669,7 +670,7 @@ body{background:var(--paper)}
 .data-switch{position:relative;min-height:18px;line-height:1}
 .data-switch-track,.owner-status-track{position:relative;box-sizing:border-box;flex:0 0 34px}
 .data-switch-track{justify-content:flex-start}
-.owner-status-track{justify-content:center}
+.owner-status-track{flex-basis:18px;justify-content:center}
 .data-switch-track i,.owner-status-light{box-sizing:border-box;flex:0 0 12px}
 @media(max-width:700px){
   .masthead{position:relative}
@@ -1125,6 +1126,7 @@ html,body{max-width:100%;overflow-x:clip}
   .owner-login,.owner-menu-toggle{width:44px;height:38px;min-width:44px;min-height:38px}
   .theme-switch{min-width:44px;min-height:38px;display:inline-flex;align-items:center;justify-content:center}
   .theme-switch .data-switch-track,.owner-status-track{width:42px;height:24px;flex-basis:42px;padding:3px}
+  .owner-status-track{width:24px;flex-basis:24px}
   .theme-switch .data-switch-track i,.owner-status-light{width:16px;height:16px;flex-basis:16px}
   .theme-switch .data-switch input:checked+.data-switch-track i{transform:translateX(18px)}
 }
@@ -1136,6 +1138,7 @@ html,body{max-width:100%;overflow-x:clip}
   .owner-login,.owner-menu-toggle{width:42px;height:38px;min-width:42px}
   .theme-switch{min-width:42px;min-height:38px}
   .theme-switch .data-switch-track,.owner-status-track{width:40px;height:23px;flex-basis:40px}
+  .owner-status-track{width:23px;flex-basis:23px}
   .theme-switch .data-switch-track i,.owner-status-light{width:15px;height:15px;flex-basis:15px}
   .theme-switch .data-switch input:checked+.data-switch-track i{transform:translateX(17px)}
 }
