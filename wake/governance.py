@@ -1644,13 +1644,17 @@ def transition(state, proposal, invocation, historical=False):
                         minimum_overlap_tokens=1,
                     )
 
-                    # Findings remain under the stronger existing overlap rule.
-                    _verify_claim_support(
-                        action["findings"],
-                        verification,
-                        "Notebook findings",
-                        minimum_sources=notebook_min_sources,
-                    )
+                    # Preserve the established progressive-synthesis contract:
+                    # first drafts may remain provisional, while revisions must
+                    # materially support their changed findings with the stronger
+                    # corroboration rule.
+                    if old:
+                        _verify_claim_support(
+                            action["findings"],
+                            verification,
+                            "Notebook findings",
+                            minimum_sources=notebook_min_sources,
+                        )
 
             # Repository-analysis is a configured topic capability, not a
             # special hardcoded topic identity. When enabled, its notebooks
