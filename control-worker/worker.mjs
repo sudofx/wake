@@ -97,11 +97,6 @@ async function authorizedSession(request, env) {
   return session;
 }
 async function workflowStatus(env, token, githubFetch) {
-  const workflowResponse = await github(
-    `/repos/${env.REPOSITORY}/actions/workflows/${RUNNER_WORKFLOW}`,
-    token, {}, githubFetch,
-  );
-  const workflow = await workflowResponse.json();
   const [runnerResponse, wakeResponse] = await Promise.all([
     github(`/repos/${env.REPOSITORY}/actions/workflows/${RUNNER_WORKFLOW}/runs?per_page=20`, token, {}, githubFetch),
     github(`/repos/${env.REPOSITORY}/actions/workflows/${WAKE_WORKFLOW}/runs?per_page=20`, token, {}, githubFetch),
@@ -111,7 +106,7 @@ async function workflowStatus(env, token, githubFetch) {
   const active = (runs) => runs.filter((run) => run.status !== "completed")
     .map((run) => ({ id: run.id, status: run.status, url: run.html_url }));
   return {
-    enabled: workflow.state === "active",
+    enabled: active(runnerRuns).length + active(wakeRuns).length > 0,
     activeRunnerRuns: active(runnerRuns),
     activeWakeRuns: active(wakeRuns),
   };
@@ -169,14 +164,6 @@ async function callback(request, env, githubFetch) {
   destination.hash = `wake-control=${encodeURIComponent(envelope)}`;
   return Response.redirect(destination.toString(), 302);
 }
-async function enableWorkflow(env, session, githubFetch) {
-  await github(`/repos/${env.REPOSITORY}/actions/workflows/${RUNNER_WORKFLOW}/enable`,
-    session.accessToken, { method: "PUT" }, githubFetch);
-}
-async function disableWorkflow(env, session, githubFetch) {
-  await github(`/repos/${env.REPOSITORY}/actions/workflows/${RUNNER_WORKFLOW}/disable`,
-    session.accessToken, { method: "PUT" }, githubFetch);
-}
 async function cancelRuns(env, session, githubFetch) {
   const status = await workflowStatus(env, session.accessToken, githubFetch);
   const runs = [...status.activeRunnerRuns, ...status.activeWakeRuns];
@@ -186,7 +173,6 @@ async function cancelRuns(env, session, githubFetch) {
   return runs.length;
 }
 async function start(env, session, githubFetch) {
-  await enableWorkflow(env, session, githubFetch);
   await github(`/repos/${env.REPOSITORY}/actions/workflows/${RUNNER_WORKFLOW}/dispatches`,
     session.accessToken, {
       method: "POST",
@@ -196,12 +182,10 @@ async function start(env, session, githubFetch) {
   return { enabled: true, message: "Continuous WAKE✳︎ operation is starting." };
 }
 async function stop(env, session, githubFetch) {
-  await disableWorkflow(env, session, githubFetch);
   const cancelledRuns = await cancelRuns(env, session, githubFetch);
   return { enabled: false, cancelledRuns, message: "Continuous WAKE✳︎ operation is stopped." };
 }
 async function reset(env, session, githubFetch) {
-  await disableWorkflow(env, session, githubFetch);
   await cancelRuns(env, session, githubFetch);
   await github(`/repos/${env.REPOSITORY}/actions/workflows/${WAKE_WORKFLOW}/dispatches`,
     session.accessToken, {
