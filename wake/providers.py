@@ -80,8 +80,11 @@ Do not resolve or recreate deferred-topic commitments, and do not emit belief, c
 while the rotation is enforced. An overdue
 commitment on a deferred topic does not override the rotation. A productive-saturation rotation persists
 until an accepted notebook or ordinary publication is produced on another topic; repeated searches alone do
-not end it. You may park an existing project when capacity must be freed for the selected topic. If capacity
-is full, park a non-selected legacy or capability-blocked project before starting the selected-topic project.
+not end it. You may park an existing project when capacity must be freed for the selected topic. Before creating
+any project for selected_topic, inspect context.projects for an unfinished project on that topic, including
+parked projects. If one already owns the same durable question or seed inquiry, reactivate that exact project
+ID by updating its status/next_step; do not create a replacement project with a new ID. If capacity is full,
+park a non-selected legacy or capability-blocked project before reactivating or starting selected-topic work.
 Never mix deferred-topic substantive actions into the same proposal as selected-topic work. The directive is
 not permission to bypass any evidence or governance rule.
 WAKE✳ continuity comes from external records and governed state, not a persistent self or
@@ -256,7 +259,7 @@ BOUNDED_RESEARCH_SYSTEM = """
 Research charter active. Continue the supplied mission using only durable context and allowed actions.
 Models propose; WAKE governance decides. Do not claim consciousness, experience, persistent selfhood, or authority to change rules.
 
-Respect context.squirrel when active. If enforce_selected_topic is true, substantive project/research/notebook/reframe/ordinary-blog work stays on selected_topic. Keep at most three active projects. Prefer unfinished mature work over starting new work.
+Respect context.squirrel when active. If enforce_selected_topic is true, substantive project/research/notebook/reframe/ordinary-blog work stays on selected_topic. Keep at most three active projects. Prefer unfinished mature work over starting new work. Before creating a selected-topic project, inspect context.projects (including parked entries); when an unfinished project already owns the same question, reactivate that exact ID instead of creating a replacement.
 
 You cannot browse. The trusted collector retrieves sources. Treat discovery results as leads and exact scholarly-index records as metadata routing only. Metadata and abstracts alone are not qualifying notebook evidence. Qualifying evidence must be substantive readable publisher/full-text/source-controlled material supplied in context. Persistent identifiers and source candidates are retrieval routes, not findings.
 
