@@ -32,7 +32,7 @@ ACTIONS = {"belief": "belief", "commit": "commitment", "resolve": "commitment",
 # ---------------------------------------------------------------------------
 
 
-def build_map(state, events, head):
+def build_map(state, events, head, replay_history=True):
     nodes, edges, journals, blogs = {}, {}, [], []
     by_invocation = {j["invocation"]: f"journal:{j['invocation']}" for j in state["journal"]}
     # ---------------------------------------------------------------------------
@@ -148,50 +148,62 @@ def build_map(state, events, head):
                 edge(key, f"invocation:{item[field]}", field.replace("_", " "), f"{COLLECTIONS[kind]}.{identifier}.{field} at cycle {cycle}")
         return key
 
-    starts = {e["payload"]["id"]: e for e in events if e["kind"] == "invocation_started"}
-    replayed = empty()
-    for event in events:
-        before = replayed
-        replayed = reduce_event(deepcopy(replayed), event, historical=True)
-        if event["kind"] != "accepted":
-            continue
-        p = event["payload"]
-        jid = by_invocation.get(p["id"])
-        if not jid:
-            continue
-        expanded = {f"invocation:{p['id']}"}
-        cycle = replayed["version"]
-        for action in p["proposal"]["actions"]:
-            kind = ACTIONS.get(action.get("type"))
-            if not kind:
+    if replay_history:
+        starts = {e["payload"]["id"]: e for e in events if e["kind"] == "invocation_started"}
+        replayed = empty()
+        for event in events:
+            before = replayed
+            replayed = reduce_event(deepcopy(replayed), event, historical=True)
+            if event["kind"] != "accepted":
                 continue
-            aid = action["id"]
-            key = artifact(kind, aid, replayed, cycle, expanded)
-            if key:
-                change = ("resolved" if action["type"] == "resolve" else "retracted" if action.get("status") == "retracted"
-                          else "revised" if aid in before.get(COLLECTIONS[kind], {}) else "created")
-                record = f"event {event['seq']} · {event['hash']}"
-                edge(jid, key, change, record)
-                if kind == "blog" and action.get("supersedes"):
-                    edge(jid, f"blog:{action['supersedes']}", "superseded", record)
-                nodes[jid]["detail"]["changes"].append(f"{change.capitalize()} {kind}: {aid}")
-        # Receipt IDs come from the recorded request, never an ID naming convention.
-        start = starts.get(p["id"])
-        if start:
-            receipt = start["payload"].get("request", {}).get("context", {}).get("receipt")
-            if receipt:
-                artifact("evidence", receipt, replayed, cycle, expanded)
-        editorial = p.get("editorial")
-        if editorial:
-            key = node(f"editorial:{p['id']}", "editorial", editorial, "Blog withheld" if editorial["status"] == "withheld" else "Editorial decision")
-            expanded.add(key)
-            edge(jid, key, "editorial decision", f"event {event['seq']} · {event['hash']}")
-        elif any(a.get("type") == "blog" for a in p["proposal"]["actions"]):
-            key = node(f"editorial:{p['id']}", "editorial", {"status": "accepted", "reason": "Blog action accepted by governance."}, "Blog accepted")
-            expanded.add(key)
-            edge(jid, key, "editorial decision", f"event {event['seq']} · {event['hash']}")
-        nodes[jid]["expands"] = sorted(expanded)
-        nodes[jid]["detail"]["exact_record"] = f"Event {event['seq']} · {event['hash']}"
+            p = event["payload"]
+            jid = by_invocation.get(p["id"])
+            if not jid:
+                continue
+            expanded = {f"invocation:{p['id']}"}
+            cycle = replayed["version"]
+            for action in p["proposal"]["actions"]:
+                kind = ACTIONS.get(action.get("type"))
+                if not kind:
+                    continue
+                aid = action["id"]
+                key = artifact(kind, aid, replayed, cycle, expanded)
+                if key:
+                    change = ("resolved" if action["type"] == "resolve" else "retracted" if action.get("status") == "retracted"
+                              else "revised" if aid in before.get(COLLECTIONS[kind], {}) else "created")
+                    record = f"event {event['seq']} · {event['hash']}"
+                    edge(jid, key, change, record)
+                    if kind == "blog" and action.get("supersedes"):
+                        edge(jid, f"blog:{action['supersedes']}", "superseded", record)
+                    nodes[jid]["detail"]["changes"].append(f"{change.capitalize()} {kind}: {aid}")
+            # Receipt IDs come from the recorded request, never an ID naming convention.
+            start = starts.get(p["id"])
+            if start:
+                receipt = start["payload"].get("request", {}).get("context", {}).get("receipt")
+                if receipt:
+                    artifact("evidence", receipt, replayed, cycle, expanded)
+            editorial = p.get("editorial")
+            if editorial:
+                key = node(f"editorial:{p['id']}", "editorial", editorial, "Blog withheld" if editorial["status"] == "withheld" else "Editorial decision")
+                expanded.add(key)
+                edge(jid, key, "editorial decision", f"event {event['seq']} · {event['hash']}")
+            elif any(a.get("type") == "blog" for a in p["proposal"]["actions"]):
+                key = node(f"editorial:{p['id']}", "editorial", {"status": "accepted", "reason": "Blog action accepted by governance."}, "Blog accepted")
+                expanded.add(key)
+                edge(jid, key, "editorial decision", f"event {event['seq']} · {event['hash']}")
+            nodes[jid]["expands"] = sorted(expanded)
+            nodes[jid]["detail"]["exact_record"] = f"Event {event['seq']} · {event['hash']}"
+    
+    else:
+        # The wake-live projection intentionally carries only a bounded event tail.
+        # Build the public map from current durable objects and their explicit IDs
+        # instead of pretending that tail can replay history from cycle zero.
+        expanded = set()
+        for kind, collection in COLLECTIONS.items():
+            for identifier in state.get(collection, {}):
+                artifact(kind, identifier, state, state["version"], expanded)
+        for journal_key in journals:
+            nodes[journal_key]["detail"]["exact_record"] = "Current projected durable state"
     # Legacy posts without an accepted-event link remain visible; their explicit
     # references use the current export and are labelled accordingly.
     for pid, post in state.get("posts", {}).items():
