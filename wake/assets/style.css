@@ -1111,3 +1111,30 @@ html,body{max-width:100%;overflow-x:clip}
   .data-switch-track{width:32px;height:18px;flex-basis:32px}
   .data-switch input:checked+.data-switch-track i{transform:translateX(14px)}
 }
+
+
+/* Mobile masthead legibility — iPhone 12 mini and similarly narrow screens. */
+@media(max-width:760px){
+  .wordmark{font-size:clamp(40px,11vw,46px);letter-spacing:-2.6px;line-height:.96}
+  .wordmark small{font-size:clamp(10px,2.8vw,12px);letter-spacing:1px;margin-top:11px;line-height:1.35;white-space:nowrap}
+  .wordmark .cycle-count{font-size:1.18em;font-weight:800;color:var(--green);letter-spacing:.04em}
+  .header-tools{gap:10px}
+  .owner-login,.owner-menu-toggle{width:38px;height:38px;min-width:38px;min-height:38px}
+  .settings-glyph{font-size:25px}
+  .theme-switch{min-width:44px;min-height:38px;display:inline-flex;align-items:center;justify-content:center}
+  .theme-switch .data-switch-track{width:42px;height:24px;flex-basis:42px;padding:3px}
+  .theme-switch .data-switch-track i{width:16px;height:16px;flex-basis:16px}
+  .theme-switch .data-switch input:checked+.data-switch-track i{transform:translateX(18px)}
+}
+@media(max-width:390px){
+  .masthead{gap:12px 10px;padding:18px 14px 15px}
+  .wordmark{font-size:clamp(40px,11.2vw,44px);letter-spacing:-2.4px;flex:1 1 210px}
+  .wordmark small{font-size:clamp(10px,2.7vw,11px);letter-spacing:.9px;margin-top:10px}
+  .header-tools{gap:8px}
+  .owner-login,.owner-menu-toggle{width:38px;height:38px}
+  .settings-glyph{font-size:24px}
+  .theme-switch{min-width:42px;min-height:38px}
+  .theme-switch .data-switch-track{width:40px;height:23px;flex-basis:40px}
+  .theme-switch .data-switch-track i{width:15px;height:15px;flex-basis:15px}
+  .theme-switch .data-switch input:checked+.data-switch-track i{transform:translateX(17px)}
+}
