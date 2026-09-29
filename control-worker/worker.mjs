@@ -173,6 +173,8 @@ async function cancelRuns(env, session, githubFetch) {
   return runs.length;
 }
 async function start(env, session, githubFetch) {
+  // Start is safe to request explicitly even if a prior status read was stale.
+  // The runner/workflow concurrency boundary remains authoritative.
   await github(`/repos/${env.REPOSITORY}/actions/workflows/${RUNNER_WORKFLOW}/dispatches`,
     session.accessToken, {
       method: "POST",
