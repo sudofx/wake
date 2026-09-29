@@ -32,12 +32,12 @@ label = "Epistemology"
 query = "epistemology evidence justification belief uncertainty"
 seed_question = "What makes a belief justified when evidence is incomplete, conflicting, or filtered through imperfect observers?"
 
-[[topics]]
-enabled = true
-id = "entropy"
-label = "Entropy"
-query = "entropy"
-seed_question = "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?"
+# [[topics]]
+# enabled = true
+# id = "entropy"
+# label = "Entropy"
+# query = "entropy"
+# seed_question = "How do thermodynamic, statistical-mechanical, and information-theoretic definitions of entropy differ, and where are they mathematically related?"
 
 [[topics]]
 enabled = true
@@ -81,26 +81,26 @@ label = "Religion"
 query = "religion"
 seed_question = "What explanations have researchers proposed for the recurrence of similar religious practices across otherwise different human societies?"
 
-[[topics]]
-enabled = true
-id = "prime_numbers"
-label = "Prime numbers"
-query = "prime numbers mathematics"
-seed_question = "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?"
+# [[topics]]
+# enabled = true
+# id = "prime_numbers"
+# label = "Prime numbers"
+# query = "prime numbers mathematics"
+# seed_question = "What does the prime number theorem tell us about how prime numbers become distributed as numbers grow larger, and what does it not tell us?"
 
-[[topics]]
-enabled = true
-id = "neurology"
-label = "Neurology"
-query = "neurology nervous system neurological disorders"
-seed_question = "How do metabolic, hormonal, and systemic physiological changes influence neurological function and neurological disease?"
+# [[topics]]
+# enabled = true
+# id = "neurology"
+# label = "Neurology"
+# query = "neurology nervous system neurological disorders"
+# seed_question = "How do metabolic, hormonal, and systemic physiological changes influence neurological function and neurological disease?"
 
-[[topics]]
-enabled = true
-id = "endocrinology"
-label = "Endocrinology"
-query = "endocrinology hormones endocrine disorders"
-seed_question = "How do endocrine disorders and hormonal signaling affect the nervous system, and which neurological findings can arise from endocrine dysfunction?"
+# [[topics]]
+# enabled = true
+# id = "endocrinology"
+# label = "Endocrinology"
+# query = "endocrinology hormones endocrine disorders"
+# seed_question = "How do endocrine disorders and hormonal signaling affect the nervous system, and which neurological findings can arise from endocrine dysfunction?"
 
 [[topics]]
 enabled = true
@@ -116,12 +116,12 @@ label = "Evolutionary biology"
 query = "evolutionary biology adaptation byproduct drift constraint"
 seed_question = "How do evolutionary explanations distinguish adaptation, byproduct, drift, and constraint when explaining complex biological or behavioral traits?"
 
-[[topics]]
-enabled = true
-id = "information_thermodynamics"
-label = "Information thermodynamics"
-query = "information thermodynamics"
-seed_question = "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?"
+# [[topics]]
+# enabled = true
+# id = "information_thermodynamics"
+# label = "Information thermodynamics"
+# query = "information thermodynamics"
+# seed_question = "What does Landauer's principle claim about the physical cost of erasing information, and what evidence supports its interpretation?"
 
 [[topics]]
 enabled = true
@@ -151,9 +151,9 @@ label = "Storytelling"
 query = "storytelling narrative cognition literature"
 seed_question = "What features make narratives memorable, emotionally engaging, and coherent across different cultures and artistic traditions?"
 
-[[topics]]
-enabled = true
-id = "dance"
-label = "Dance"
-query = "dance rhythm movement cognition culture"
-seed_question = "How do rhythm, coordinated movement, imitation, and social context shape the perception and meaning of dance?"
+# [[topics]]
+# enabled = true
+# id = "dance"
+# label = "Dance"
+# query = "dance rhythm movement cognition culture"
+# seed_question = "How do rhythm, coordinated movement, imitation, and social context shape the perception and meaning of dance?"
