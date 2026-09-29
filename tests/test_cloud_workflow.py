@@ -273,6 +273,7 @@ class CloudWorkflowTests(unittest.TestCase):
         # cancellation, reset refuses active work, and Start reopens the latch.
         self.assertIn('runnerWorkflow.state === "active"', worker)
         self.assertIn('run.head_branch === RUNNER_REF', worker)
+        self.assertIn('run.head_sha === runtimeSha', worker)
         self.assertIn('run.status !== "completed"', worker)
         self.assertIn('"running" : "draining"', worker)
         self.assertIn('"stopped" : "disabled"', worker)
