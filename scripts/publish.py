@@ -34,7 +34,7 @@ def publish(directory):
         raise SystemExit("Export the journal first.")
     # Newer exports include human-readable companions. Keep older fixture exports publishable.
     for name in ("state.md", "state.html", "events.md", "events.html", "map.html", "map-data.json", "map3d.html", "map3d-data.json", "blog.xml", "journal.xml",
-                 "style.css", "nav.css", "map.css", "map3d.css", "theme.css", "nav.js", "map.js", "map3d.js", "flat-view.js"):
+                 "style.css", "nav.css", "map.css", "map3d.css", "theme.css", "nav.js", "control.js", "map.js", "map3d.js", "flat-view.js"):
         if (source / name).is_file():
             names.append(name)
     if (source / "experiment.json").exists():
@@ -57,7 +57,7 @@ def publish(directory):
             raise SystemExit("Invalid map export; export again before publishing.") from exc
         if canonical(map_data) != canonical(expected_map):
             raise SystemExit("Map does not match the verified export; export again before publishing.")
-        if 'src="map.js"' not in map_page or "fetch('map-data.json'" not in map_script:
+        if 'src="map.js"' not in map_page or "wake-live/" not in map_script or "map-data.json?wake=" not in map_script:
             raise SystemExit("Map shell is not bound to the published flat data; export again before publishing.")
     map3d_files = [source / "map3d.html", source / "map3d-data.json"]
     if any(path.exists() for path in map3d_files):
@@ -72,7 +72,7 @@ def publish(directory):
         expected_map3d, expected_shards = build_map3d_projection(expected_map)
         if canonical(map3d_data) != canonical(expected_map3d):
             raise SystemExit("3D map does not match the verified lazy shell; export again before publishing.")
-        if 'src="map3d.js"' not in map3d_page or "fetch('map3d-data.json'" not in map3d_script:
+        if 'src="map3d.js"' not in map3d_page or "map3d-data.json?wake=" not in map3d_script:
             raise SystemExit("3D map shell is not bound to the published flat data; export again before publishing.")
         shard_dir = source / "map3d"
         if not shard_dir.is_dir():
