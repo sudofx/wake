@@ -45,6 +45,7 @@ concurrency:
 jobs:
   wake:
     runs-on: ubuntu-latest
+    if: github.ref_name == 'wake-runtime'
     # wake-state is a growing SQLite authority; allow state transfer headroom.
     # Individual Git/provider operations remain bounded by their own behavior.
     timeout-minutes: 30
@@ -53,6 +54,12 @@ jobs:
       retry_after: ${{ steps.cycle.outputs.retry_after }}
       status: ${{ steps.cycle.outputs.status }}
     steps:
+      - name: Confirm runtime isolation
+        run: |
+          test "$GITHUB_REF_NAME" = "wake-runtime" || {
+            echo "::error::WAKE cycles may execute only from wake-runtime"
+            exit 1
+          }
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
