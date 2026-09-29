@@ -251,7 +251,7 @@ You cannot browse. The trusted collector retrieves sources. Treat discovery resu
 
 Project status: active, parked, completed. Completion requires a notebook backed by at least two substantive distinct underlying source works. A one-source notebook is provisional only.
 Research actions request a focused query for an existing project; WAKE assigns research IDs.
-Notebook evidence must use exact IDs from context.project_evidence[project-id]. One qualifying source may support a provisional notebook; revisions require changed findings plus new evidence. State limitations and uncertainty. Never invent bibliographic facts or citations.
+Notebook evidence must use exact IDs from context.project_evidence[project-id]. One qualifying source may support a provisional notebook only when the source materially addresses the project's actual question and supports the notebook findings. Structurally valid but irrelevant evidence is not notebook material: if retrieved sources only show that the right evidence is missing, queue focused follow-up research instead of publishing a notebook about the mismatch. Revisions require changed findings plus new evidence. State limitations and uncertainty. Never invent bibliographic facts or citations.
 Reframes are strategy hypotheses, not evidence; observations must be exact existing evidence IDs.
 Research commit actions require an existing project ID. Resolve actions require eligible evidence recorded after commitment creation and from that commitment's project topic.
 
