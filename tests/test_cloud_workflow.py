@@ -242,30 +242,36 @@ class CloudWorkflowTests(unittest.TestCase):
             with self.assertRaises(OSError): self.run_cloud(NeverCall())
         self.assertFalse((self.project/"site/index.html").exists())
 
-    def test_workflow_separates_authority_pages_and_runtime_pin(self):
+    def test_runtime_isolation_contract(self):
         root = Path(__file__).resolve().parents[1]
         workflow = (root/".github/workflows/wake.yml").read_text()
         pages = (root/".github/workflows/pages.yml").read_text()
         runner = (root/".github/workflows/wake-runner.yml").read_text()
+        promotion = (root/".github/workflows/promote-runtime.yml").read_text()
+        worker = (root/"control-worker/worker.mjs").read_text()
+
+        # Research execution is isolated from development and Pages.
+        self.assertIn("github.ref_name == 'wake-runtime'", workflow)
+        self.assertIn("group: wake-authority", workflow)
+        self.assertIn("--ref wake-runtime", workflow)
         self.assertNotIn("deploy-pages", workflow)
         self.assertNotIn("upload-pages-artifact", workflow)
-        self.assertNotIn("pages.yml", workflow)
-        self.assertIn("group: wake-authority", workflow)
-        self.assertIn("runtime_ref", workflow)
-        self.assertIn("--ref wake-runtime", workflow)
         self.assertIn("group: wake-pages", pages)
         self.assertNotIn("GEMINI_API_KEY", pages)
-        self.assertIn("python scripts/publish_pages.py", pages)
-        self.assertNotIn("python scripts/github_wake.py --publish-only", pages)
-        self.assertNotIn("'wake/store.py'", pages)
-        self.assertNotIn("'wake/governance.py'", pages)
-        # Continuous operation is explicitly operator-dispatched. A scheduled
-        # bootstrap would make Stop non-durable and force workflow-toggle permissions.
-        self.assertNotIn("cron:", runner)
-        self.assertIn("workflow_dispatch:", runner)
-        self.assertIn("wake-runtime", runner)
-        self.assertNotIn("operation.json", runner)
-        self.assertIn("Irreversibly reset durable research/history to WAKE 0", workflow)
+
+        # Bootstrap and operator actions never adopt master as executable runtime.
+        self.assertIn("never mutates wake-runtime", runner)
+        self.assertNotIn("git push --force", runner)
+        self.assertNotIn('runtime_ref: "master"', worker)
+        self.assertIn("ref: RUNNER_REF", worker)
+
+        # Promotion is the only explicit runtime adoption boundary and refuses
+        # to move the runtime branch while a real runtime cycle is active.
+        self.assertIn("promote runtime", promotion.lower())
+        self.assertIn('branch=wake-runtime', promotion)
+        self.assertIn('.status!="completed"', promotion)
+        self.assertIn("python -m unittest discover", promotion)
+        self.assertIn("git/refs/heads/wake-runtime", promotion)
 
     def test_wordmark_navigation_is_deployment_portable(self):
         root = Path(__file__).resolve().parents[1]
