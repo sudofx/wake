@@ -142,7 +142,11 @@ async function workflowStatus(env, token, githubFetch) {
   const activeRunnerRuns = active(runnerRuns);
   const activeWakeRuns = active(wakeRuns);
   const enabled = runnerWorkflow.state === "active";
-  const executing = activeRunnerRuns.length + activeWakeRuns.length > 0;
+  // wake-runner.yml is now only the durable continuation latch. Execution truth
+  // comes from wake.yml itself. GitHub can leave cancelled/disabled bootstrap
+  // dispatches visible as queued with zero jobs; those must never hold the
+  // operator state machine in running/draining.
+  const executing = activeWakeRuns.length > 0;
   const mode = executing
     ? (enabled ? "running" : "draining")
     : (enabled ? "stopped" : "disabled");
@@ -236,7 +240,7 @@ async function disableRunner(env, session, githubFetch) {
 }
 async function cancelRuns(env, session, githubFetch) {
   const status = await workflowStatus(env, session.accessToken, githubFetch);
-  const runs = [...status.activeRunnerRuns, ...status.activeWakeRuns];
+  const runs = [...status.activeWakeRuns];
   await Promise.all(runs.map((run) =>
     github(`/repos/${env.REPOSITORY}/actions/runs/${run.id}/cancel`,
       session.accessToken, { method: "POST" }, githubFetch).catch(() => null)));
@@ -244,24 +248,28 @@ async function cancelRuns(env, session, githubFetch) {
 }
 async function start(env, session, githubFetch) {
   const before = await workflowStatus(env, session.accessToken, githubFetch);
-  if (before.activeRunnerRuns.length || before.activeWakeRuns.length) {
+  if (before.activeWakeRuns.length) {
     return { ...before, message: "WAKE✳︎ is already running." };
   }
 
-  // Start opens the continuation latch, then bootstraps exactly the promoted
-  // wake-runtime. It never adopts master.
-  // GitHub rejects redundant workflow state transitions. Only enable the
-  // continuation latch when it is actually disabled.
+  // Start opens the continuation latch, then dispatches the first authoritative
+  // cycle directly. wake-runner.yml remains a durable latch only; avoiding a
+  // bootstrap dispatch removes GitHub's disabled→enabled queue race that can
+  // leave a zero-job run stuck as "queued".
   if (!before.enabled) await enableRunner(env, session, githubFetch);
   await githubControl(
-    "Dispatch continuous runner",
-    `/repos/${env.REPOSITORY}/actions/workflows/${RUNNER_WORKFLOW}/dispatches`,
+    "Dispatch first WAKE cycle",
+    `/repos/${env.REPOSITORY}/actions/workflows/${WAKE_WORKFLOW}/dispatches`,
     session, env, githubFetch, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ref: RUNNER_REF,
-        inputs: { dispatch_token: `owner-${Date.now()}` },
+        inputs: {
+          dispatch_token: `owner-${Date.now()}`,
+          runtime_ref: before.runtimeSha,
+          scheduled: false,
+        },
       }),
     },
   );
@@ -283,7 +291,7 @@ async function stop(env, session, githubFetch) {
 }
 async function reset(env, session, githubFetch) {
   const before = await workflowStatus(env, session.accessToken, githubFetch);
-  if (before.activeRunnerRuns.length || before.activeWakeRuns.length) {
+  if (before.activeWakeRuns.length) {
     throw new Error("Stop WAKE✳︎ and wait for active runtime work to finish before resetting");
   }
 
