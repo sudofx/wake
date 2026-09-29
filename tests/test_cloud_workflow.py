@@ -252,6 +252,8 @@ class CloudWorkflowTests(unittest.TestCase):
 
         # Research execution is isolated from development and Pages.
         self.assertIn("github.ref_name == 'wake-runtime'", workflow)
+        self.assertIn("REQUESTED_RUNTIME_REF", workflow)
+        self.assertIn('REQUESTED_RUNTIME_REF" != "$GITHUB_SHA', workflow)
         self.assertIn("group: wake-authority", workflow)
         self.assertIn("--ref wake-runtime", workflow)
         self.assertNotIn("deploy-pages", workflow)
