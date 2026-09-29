@@ -98,18 +98,18 @@ async function authorizedSession(request, env) {
   return session;
 }
 async function workflowStatus(env, token, githubFetch) {
-  const [runnerResponse, wakeResponse] = await Promise.all([
-    github(`/repos/${env.REPOSITORY}/actions/workflows/${RUNNER_WORKFLOW}/runs?per_page=20`, token, {}, githubFetch),
-    github(`/repos/${env.REPOSITORY}/actions/workflows/${WAKE_WORKFLOW}/runs?per_page=20`, token, {}, githubFetch),
-  ]);
-  const runnerRuns = (await runnerResponse.json()).workflow_runs || [];
+  const wakeResponse = await github(
+    `/repos/${env.REPOSITORY}/actions/workflows/${WAKE_WORKFLOW}/runs?branch=${encodeURIComponent(RUNNER_REF)}&per_page=30`,
+    token, {}, githubFetch,
+  );
   const wakeRuns = (await wakeResponse.json()).workflow_runs || [];
-  const active = (runs) => runs.filter((run) => run.status !== "completed")
-    .map((run) => ({ id: run.id, status: run.status, url: run.html_url }));
+  const activeWakeRuns = wakeRuns
+    .filter((run) => run.head_branch === RUNNER_REF && run.status !== "completed")
+    .map((run) => ({ id: run.id, status: run.status, url: run.html_url, head_sha: run.head_sha }));
   return {
-    enabled: active(runnerRuns).length + active(wakeRuns).length > 0,
-    activeRunnerRuns: active(runnerRuns),
-    activeWakeRuns: active(wakeRuns),
+    enabled: activeWakeRuns.length > 0,
+    activeRunnerRuns: [],
+    activeWakeRuns,
   };
 }
 async function login(request, env) {
@@ -174,15 +174,17 @@ async function cancelRuns(env, session, githubFetch) {
   return runs.length;
 }
 async function start(env, session, githubFetch) {
-  // Start is safe to request explicitly even if a prior status read was stale.
-  // The runner/workflow concurrency boundary remains authoritative.
-  await github(`/repos/${env.REPOSITORY}/actions/workflows/${RUNNER_WORKFLOW}/dispatches`,
+  // Start never adopts master. The runtime branch is the executable contract.
+  await github(`/repos/${env.REPOSITORY}/actions/workflows/${WAKE_WORKFLOW}/dispatches`,
     session.accessToken, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ref: RUNNER_REF, inputs: { dispatch_token: `owner-${Date.now()}`, runtime_ref: "master" } }),
+      body: JSON.stringify({
+        ref: RUNNER_REF,
+        inputs: { dispatch_token: `owner-${Date.now()}`, scheduled: false },
+      }),
     }, githubFetch);
-  return { enabled: true, message: "Continuous WAKE✳︎ operation is starting." };
+  return { enabled: true, message: "Continuous WAKE✳︎ runtime is starting." };
 }
 async function stop(env, session, githubFetch) {
   const cancelledRuns = await cancelRuns(env, session, githubFetch);
@@ -195,10 +197,8 @@ async function reset(env, session, githubFetch) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        // Reset is maintenance, not a continuation cycle. Run the current
-        // verified implementation; the next deliberate Start pins a fresh
-        // wake-runtime for ordinary cycles.
-        ref: "master",
+        // State actions use the same verified runtime as ordinary cycles.
+        ref: RUNNER_REF,
         inputs: { reset: true, dispatch_token: `reset-${Date.now()}` },
       }),
     }, githubFetch);
