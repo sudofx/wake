@@ -186,13 +186,17 @@ window.WakeData=fetch(window.WakeLiveUrl+'?wake='+Date.now(),{cache:'no-store'})
       ownerLogin.hidden=true;
       if(ownerMenuToggle)ownerMenuToggle.hidden=false;
       const active=(state.activeRunnerRuns?.length||0)+(state.activeWakeRuns?.length||0);
-      const status=state.enabled?(active?'Running now':'Enabled'):'Stopped';
-      ownerStatus.textContent=status;
+      const running=active>0;
+      ownerStatus.textContent=running?'Running now':'Stopped';
       if(ownerIdentity)ownerIdentity.textContent=state.login?`Signed in as ${state.login}`:'Signed in';
       if(ownerMenuLabel)ownerMenuLabel.textContent='Settings';
-      ownerStart.disabled=state.enabled;
-      ownerStop.disabled=!state.enabled;
-      // Reset owns cancellation of queued/running WAKE jobs server-side. A stale\n      // queued run must not strand the operator when continuous operation is stopped.\n      ownerReset.disabled=state.enabled;
+      // Button state follows concrete active runs, not a persisted/derived
+      // workflow-enabled flag. Start must recover immediately after reset.
+      ownerStart.disabled=running;
+      ownerStop.disabled=!running;
+      // Reset owns cancellation server-side, so it remains available even if
+      // GitHub is still draining a queued/running job.
+      ownerReset.disabled=false;
     }catch(error){
       try{localStorage.removeItem(sessionKey)}catch{}
       showSignedOut(error instanceof Error?error.message:'Session check failed');
