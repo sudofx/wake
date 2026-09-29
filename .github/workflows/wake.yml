@@ -55,11 +55,18 @@ jobs:
       status: ${{ steps.cycle.outputs.status }}
     steps:
       - name: Confirm runtime isolation
+        env:
+          REQUESTED_RUNTIME_REF: ${{ inputs.runtime_ref }}
         run: |
+          set -euo pipefail
           test "$GITHUB_REF_NAME" = "wake-runtime" || {
             echo "::error::WAKE cycles may execute only from wake-runtime"
             exit 1
           }
+          if [[ -n "$REQUESTED_RUNTIME_REF" && "$REQUESTED_RUNTIME_REF" != "$GITHUB_SHA" ]]; then
+            echo "::error::Pinned runtime $REQUESTED_RUNTIME_REF does not match dispatched wake-runtime head $GITHUB_SHA"
+            exit 1
+          fi
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
