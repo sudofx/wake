@@ -82,6 +82,7 @@ class PublishingTests(unittest.TestCase):
                 self.assertNotIn('id="wake-data"', page)
                 self.assertIn("wake-live/live.json", page)
                 self.assertIn("window.WakeApplyLive", page)
+                self.assertIn("data.metrics=next.metrics||data.metrics||{}", page)
                 self.assertIn("localStorage.setItem(sessionKey", page)
                 self.assertIn("localStorage.getItem(sessionKey", page)
                 self.assertIn("const legacy=sessionStorage.getItem(sessionKey)", page)
