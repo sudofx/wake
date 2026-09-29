@@ -42,33 +42,25 @@ jobs:
         run: |
           set -euo pipefail
           carrier_ref="$(git ls-remote origin refs/heads/wake-runtime | awk '{print $1}')"
-          if true; then
-            requested_ref="${REQUESTED_REF:-$START_SHA}"
-            git cat-file -e "$requested_ref^{commit}" 2>/dev/null || git fetch --depth=1 origin "$requested_ref"
-            if [[ -z "$carrier_ref" ]]; then
+          requested_ref="${REQUESTED_REF:-$START_SHA}"
+          git cat-file -e "$requested_ref^{commit}" 2>/dev/null || git fetch --depth=1 origin "$requested_ref"
+          if [[ -z "$carrier_ref" ]]; then
               echo "::error::wake-runtime carrier branch is missing"
               exit 1
-            fi
-            git fetch --depth=1 origin "$carrier_ref"
-            # A deliberate Start is the adoption boundary. Build a runtime snapshot
+          fi
+          git fetch --depth=1 origin "$carrier_ref"
+          # A deliberate Start is the adoption boundary. Build a runtime snapshot
             # from the requested code, but preserve the carrier branch's workflow
             # files so GitHub's Actions token never needs workflow-write permission.
-            git checkout --detach "$requested_ref"
-            rm -rf .github/workflows
-            git checkout "$carrier_ref" -- .github/workflows
-            git add -A .github/workflows
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            tree_ref="$(git write-tree)"
-            runtime_ref="$(printf 'Pin WAKE runtime to %s\n' "$requested_ref" | git commit-tree "$tree_ref" -p "$carrier_ref")"
-            git push --force origin "$runtime_ref:refs/heads/wake-runtime"
-          else
-            runtime_ref="$carrier_ref"
-            if [[ -z "$runtime_ref" ]]; then
-              echo "::error::wake-runtime carrier branch is missing"
-              exit 1
-            fi
-          fi
+          git checkout --detach "$requested_ref"
+          rm -rf .github/workflows
+          git checkout "$carrier_ref" -- .github/workflows
+          git add -A .github/workflows
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          tree_ref="$(git write-tree)"
+          runtime_ref="$(printf 'Pin WAKE runtime to %s\n' "$requested_ref" | git commit-tree "$tree_ref" -p "$carrier_ref")"
+          git push --force origin "$runtime_ref:refs/heads/wake-runtime"
           echo "runtime_ref=$runtime_ref" >> "$GITHUB_OUTPUT"
 
       - name: Dispatch one pinned authoritative cycle
