@@ -727,23 +727,7 @@ def _blog_language(action, evidence, historical=False, prior_post=None):
 
 
 def bob_reflection_due_cycle(state):
-    """Return the earliest ten-cycle Bob reflection milestone still owed."""
-    next_cycle = int(state.get("version", 0)) + 1
-    fulfilled = set()
-    for post in state.get("posts", {}).values():
-        declared = post.get("reflection_cycle")
-        if type(declared) is int and declared > 0:
-            fulfilled.add(declared)
-            continue
-        # Backwards compatibility: before reflection_cycle was recorded
-        # explicitly, a post created exactly on a ten-cycle boundary was the
-        # durable signal that the milestone had been fulfilled.
-        created = post.get("created_version")
-        if type(created) is int and created > 0 and created % 10 == 0:
-            fulfilled.add(created)
-    for milestone in range(10, next_cycle + 1, 10):
-        if milestone not in fulfilled:
-            return milestone
+    """Milestone reflections are disabled; retained for historical replay compatibility."""
     return None
 
 
@@ -918,7 +902,7 @@ def transition(state, proposal, invocation, historical=False):
     # a provider instruction. If an older runtime missed a milestone, the
     # earliest unfulfilled ten-cycle reflection remains due until a valid Bob
     # post records that exact milestone.
-    required_reflection_cycle = None if historical else bob_reflection_due_cycle(state)
+    required_reflection_cycle = None
 
     # -----------------------------------------------------------------------
     # ACTION LOOP
