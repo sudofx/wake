@@ -10,11 +10,10 @@ on:
       - 'wake/provenance.py'
       - 'wake/rejected.py'
       - 'wake/feeds.py'
-      - 'wake/governance.py'
-      - 'wake/store.py'
       - 'pyproject.toml'
       - 'requirements.txt'
-      - 'scripts/github_wake.py'
+      - 'wake/live.py'
+      - 'scripts/publish_pages.py'
       - '.github/workflows/pages.yml'
 
 permissions:
@@ -29,7 +28,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 3
     env:
       WAKE_CONTROL_URL: ${{ vars.WAKE_CONTROL_URL }}
     steps:
@@ -41,8 +40,8 @@ jobs:
           python-version: '3.12'
       - name: Install WAKE runtime dependencies
         run: python -m pip install --disable-pip-version-check -e .
-      - name: Render static application shell from the current verified snapshot
-        run: python scripts/github_wake.py --publish-only
+      - name: Render static application shell from wake-live
+        run: python scripts/publish_pages.py
       - name: Confirm report is ready
         run: test -f site/index.html
       - name: Configure Pages
