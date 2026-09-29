@@ -94,14 +94,19 @@ class PublishingTests(unittest.TestCase):
                 self.assertIn('href="index.html#metrics">Metrics</a>', map_page)
                 self.assertIn('href="index.html#metrics">Metrics</a>', map3d_page)
                 self.assertIn('Hover for preview · click for right-side details', map3d_page)
+                self.assertIn('src="control.js"', map_page)
+                self.assertIn('src="control.js"', map3d_page)
+                self.assertIn('data-owner-access', map_page)
+                self.assertIn('data-owner-access', map3d_page)
                 self.assertIn('src="map.js"', map_page)
                 self.assertIn('src="map3d.js"', map3d_page)
                 self.assertNotIn('id="map-data"', map_page)
                 self.assertNotIn('id="map-data"', map3d_page)
                 map_js = (project/"site/map.js").read_text()
                 map3d_js = (project/"site/map3d.js").read_text()
-                self.assertIn("fetch('map-data.json'", map_js)
-                self.assertIn("fetch('map3d-data.json'", map3d_js)
+                self.assertIn("wake-live/'", map_js)
+                self.assertIn("map-data.json?wake=", map_js)
+                self.assertIn("map3d-data.json?wake=", map3d_js)
                 self.assertIn('showPopover(hovered)', map3d_js)
                 self.assertNotIn('showPopover(current()||hovered)', map3d_js)
                 # Performance contract: exact branch data stays navigable in the detail panel,
@@ -142,7 +147,7 @@ class PublishingTests(unittest.TestCase):
                 self.assertEqual(count, "2")
                 files = subprocess.check_output(["git", "--git-dir", str(remote), "ls-tree", "--name-only", "journal-pages"],text=True).splitlines()
                 self.assertEqual(set(files), {
-                    ".nojekyll", "index.html", "wake-data.json", "journal.md", "style.css", "nav.css", "map.css", "map3d.css", "theme.css", "nav.js", "map.js", "map3d.js", "flat-view.js",
+                    ".nojekyll", "index.html", "wake-data.json", "journal.md", "style.css", "nav.css", "map.css", "map3d.css", "theme.css", "nav.js", "control.js", "map.js", "map3d.js", "flat-view.js",
                     "state.json", "state.md", "state.html",
                     "events.jsonl", "events.md", "events.html",
                     "head.txt", "map.html", "map-data.json", "map3d.html", "map3d-data.json", "map3d", "blog.xml", "journal.xml", "journal",
