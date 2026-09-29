@@ -12,6 +12,7 @@
 
 """Portable static journal. No CDN, build pipeline, tracking, or API-key exposure."""
 
+from contextlib import nullcontext
 from datetime import datetime
 import html
 import json
@@ -696,20 +697,39 @@ def _flat_browser_shell(title, eyebrow, heading, description, kind, source):
 
 
 
-def export(store, destination="site", experiment=None, operation=None, browser_only=False, record_snapshot=None):
-    with store.lock():
-        # Publication consumes one verified record snapshot. Replaying again for
-        # state, events, and head made publish cost scale unnecessarily with the
-        # entire accumulated history.
-        state, head, events = record_snapshot if record_snapshot is not None else store.replay_record()
-        if experiment is None:
-            evidence_file = store.directory / "experiment.json"
-            experiment = json.loads(evidence_file.read_text()) if evidence_file.exists() else None
-        from .live import _full_history_metrics
-        data = {"state": state, "events": events, "head": head, "generated": now(),
-                "experiment": experiment, "timezone": "America/Los_Angeles", "operation": operation,
-                "wake_status": (operation or {}).get("wake_status") or wake_status(state),
-                "metrics": _full_history_metrics(store, state)}
+def export(store=None, destination="site", experiment=None, operation=None, browser_only=False,
+           record_snapshot=None, projection=None):
+    lock = store.lock() if store is not None else nullcontext()
+    with lock:
+        # Pages may consume the disposable wake-live projection directly. It must
+        # never reopen/replay the growing authoritative SQLite record merely to
+        # render a browser shell.
+        if projection is not None:
+            state = projection["state"]
+            head = projection["head"]
+            events = projection.get("events", [])
+            if experiment is None:
+                experiment = projection.get("experiment")
+            if operation is None:
+                operation = projection.get("operation")
+            data = {"state": state, "events": events, "head": head,
+                    "generated": projection.get("generated") or now(),
+                    "experiment": experiment,
+                    "timezone": projection.get("timezone") or "America/Los_Angeles",
+                    "operation": operation,
+                    "wake_status": projection.get("wake_status") or (operation or {}).get("wake_status") or wake_status(state),
+                    "metrics": projection.get("metrics", {})}
+        else:
+            # Full exports still consume one verified authoritative snapshot.
+            state, head, events = record_snapshot if record_snapshot is not None else store.replay_record()
+            if experiment is None:
+                evidence_file = store.directory / "experiment.json"
+                experiment = json.loads(evidence_file.read_text()) if evidence_file.exists() else None
+            from .live import _full_history_metrics
+            data = {"state": state, "events": events, "head": head, "generated": now(),
+                    "experiment": experiment, "timezone": "America/Los_Angeles", "operation": operation,
+                    "wake_status": (operation or {}).get("wake_status") or wake_status(state),
+                    "metrics": _full_history_metrics(store, state)}
         target = Path(destination)
         target.mkdir(parents=True, exist_ok=True)
         assets = Path(__file__).parent / "assets"
