@@ -192,7 +192,10 @@ window.WakeData=fetch(window.WakeLiveUrl+'?wake='+Date.now(),{cache:'no-store'})
       if(ownerMenuLabel)ownerMenuLabel.textContent='Settings';
       // Button state follows concrete active runs, not a persisted/derived
       // workflow-enabled flag. Start must recover immediately after reset.
-      ownerStart.disabled=running;
+      // Start is an explicit idempotent operator command. Never let a stale
+      // status snapshot strand the operator after reset; GitHub is authoritative
+      // about the dispatch itself.
+      ownerStart.disabled=false;
       ownerStop.disabled=!running;
       // Reset owns cancellation server-side, so it remains available even if
       // GitHub is still draining a queued/running job.
