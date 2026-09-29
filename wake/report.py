@@ -604,8 +604,42 @@ def _blog_display_title(post):
     return f"Cycle {milestone} Reflection: {remainder or title}"
 
 
+INLINE_BLOG_SOURCE_LINKS_FROM_VERSION = 203
+
+
+def _blog_html_text(value, post, state):
+    """Render future inline [source-id] citations as links without rewriting older posts."""
+    rendered = _html_text(value)
+    if int(post.get("created_version") or 0) < INLINE_BLOG_SOURCE_LINKS_FROM_VERSION:
+        return rendered
+    allowed = set(post.get("evidence", []))
+    for evidence_id in sorted(allowed, key=len, reverse=True):
+        evidence = state.get("evidence", {}).get(evidence_id, {})
+        source = str(evidence.get("source") or "").strip()
+        if not source:
+            continue
+        token = html.escape(f"[{evidence_id}]")
+        link = f'<a class="inline-source-citation" href="{html.escape(source)}">{token}</a>'
+        rendered = rendered.replace(token, link)
+    return rendered
+
+
+def _blog_md_text(value, post, state):
+    """Markdown companion for forward-only inline source links."""
+    rendered = _md_text(value)
+    if int(post.get("created_version") or 0) < INLINE_BLOG_SOURCE_LINKS_FROM_VERSION:
+        return rendered
+    allowed = set(post.get("evidence", []))
+    for evidence_id in sorted(allowed, key=len, reverse=True):
+        evidence = state.get("evidence", {}).get(evidence_id, {})
+        source = str(evidence.get("source") or "").strip()
+        if source:
+            rendered = rendered.replace(f"[{evidence_id}]", f"[{evidence_id}]({source})")
+    return rendered
+
+
 def _blog_html(post, state):
-    paragraphs = "".join(f"<p>{_html_text(part)}</p>" for part in str(post["body"]).split("\n\n") if part.strip())
+    paragraphs = "".join(f"<p>{_blog_html_text(part, post, state)}</p>" for part in str(post["body"]).split("\n\n") if part.strip())
     lens = f'<div class="note"><div class="eyebrow">BOB’S LENS / PHILOSOPHICAL REFLECTION</div><p>{_html_text(post["lens"])}</p></div>' if post.get("lens") else ""
     notebooks = "".join(
         f'<li><a href="../notebooks/{html.escape(nid)}.html">{html.escape(state["notebooks"][nid]["title"])}</a> <small>· <a href="../notebooks/{html.escape(nid)}.md">Markdown source</a></small></li>'
@@ -626,7 +660,7 @@ def _blog_html(post, state):
     elif post.get("reflection_cycle"):
         research_receipts = '<p class="meta">System-wide reflection · no project-specific research receipts attached.</p>'
     body = (
-        f'<p class="lede">{_html_text(post["lede"])}</p>{correction}{paragraphs}{lens}'
+        f'<p class="lede">{_blog_html_text(post["lede"], post, state)}</p>{correction}{paragraphs}{lens}'
         f'{research_receipts}'
         f'<p><a href="../index.html#history/{html.escape(post["created_by"])}">Exact wake and decision →</a></p>'
         '<hr><p class="meta">AI-authored from WAKE✳︎’s durable research record. Research claims link to evidence; philosophical reflections are reflections.</p>'
@@ -887,7 +921,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
                 for item in post["notebooks"])
             source_links = newline.join(
                 f"- [{item}]({state['evidence'][item]['source']})" for item in post["evidence"])
-            parts = [f"# {_md_text(_blog_display_title(post))}", "", _md_text(post["lede"]), "", _md_text(post["body"])]
+            parts = [f"# {_md_text(_blog_display_title(post))}", "", _blog_md_text(post["lede"], post, state), "", _blog_md_text(post["body"], post, state)]
             if post.get("lens"):
                 parts += ["", "> **Bob's Lens — philosophical reflection**", "", f"> {_md_text(post['lens'])}"]
             if post.get("superseded_by"):
