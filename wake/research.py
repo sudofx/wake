@@ -764,11 +764,18 @@ def collect(engine, fetcher=fetch_source, monotonic=time.monotonic):
     active_domains = {p["domain"] for p in active_projects}
     active_work = bool(active_projects or queued)
     active_project_ids = {p["id"] for p in active_projects}
+    existing_sources = {
+        e.get("source") for e in state.get("evidence", {}).values() if e.get("source")
+    }
     maturation_backlog = bool(queued) or any(
         project_id in active_project_ids and (
-            summary.get("source_candidates")
-            or summary.get("persistent_identifiers")
-            or int(summary.get("no_progress", 0)) > 0
+            any(url and url not in existing_sources
+                for url in summary.get("source_candidates", []))
+            or any(
+                (exact_identifier_url(identifier) not in existing_sources)
+                for identifier in summary.get("persistent_identifiers", [])
+                if exact_identifier_url(identifier)
+            )
         )
         for project_id, summary in state.get("acquisition", {}).items()
     )
@@ -791,7 +798,6 @@ def collect(engine, fetcher=fetch_source, monotonic=time.monotonic):
     # one continuation slot promoting the strongest untried lead to an exact
     # verification record before asking a disposable model to rediscover or
     # manually translate it. This is retrieval plumbing, not research judgment.
-    existing_sources = {e.get("source") for e in state.get("evidence", {}).values() if e.get("source")}
     projects = state.get("projects", {})
     source_candidates = []
     for project_id, summary in state.get("acquisition", {}).items():
