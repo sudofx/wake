@@ -77,10 +77,12 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('"metrics": _full_history_metrics(store, state)', self.read('wake/report.py'))
         self.assertIn("if(!data.metrics)", app)
 
-    def test_operator_control_does_not_own_pages(self):
-        worker = self.read('control-worker/worker.mjs')
-        self.assertNotIn('pages.yml', worker)
-        self.assertNotIn('deploy-pages', worker)
+    def test_site_operator_link_goes_directly_to_github_actions(self):
+        page = self.read('wake/assets/index.html')
+        self.assertIn('href="https://github.com/sudofx/wake/actions"', page)
+        self.assertNotIn('WAKE_CONTROL_URL', page)
+        self.assertNotIn('control.js', page)
+        self.assertFalse((ROOT / 'control-worker').exists())
 
 if __name__ == '__main__':
     unittest.main()
