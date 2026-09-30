@@ -1,7 +1,7 @@
 # WAKE✳︎ authoritative cycle lane.
 # SQLite on wake-state is the only operational authority. No Pages work belongs here.
 
-name: WAKE✳︎ — INTERNAL · RUN ONE RESEARCH CYCLE
+name: WAKE✳︎ — Internal: run one research cycle
 run-name: "WAKE✳︎ ${{ inputs.dispatch_token || github.run_id }}"
 
 on:
