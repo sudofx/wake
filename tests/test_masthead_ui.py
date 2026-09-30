@@ -1,4 +1,4 @@
-"""Regression checks for the public masthead/operator presentation boundary."""
+"""Regression checks for the public masthead and GitHub Actions link."""
 
 from pathlib import Path
 import unittest
@@ -16,22 +16,21 @@ class MastheadPresentationTests(unittest.TestCase):
         self.assertEqual(self.html.count('id="theme-toggle"'), 1)
         self.assertEqual(self.html.count('class="data-switch theme-switch"'), 1)
 
-    def test_operator_entry_is_only_a_github_actions_link(self):
+    def test_actions_entry_is_only_a_green_light_link(self):
         header = self.html.split('<header class="masthead">', 1)[1].split('</header>', 1)[0]
         self.assertIn('href="https://github.com/sudofx/wake/actions"', header)
-        self.assertIn('>Operator</span>', header)
-        self.assertIn('class="operator-status-track"', header)
-        self.assertIn('class="operator-status-dot"', header)
-        for forbidden in ('owner-', 'WAKE_CONTROL_URL', 'wake-owner-session',
+        self.assertIn('class="actions-light"', header)
+        self.assertNotIn('Operator', header)
+        for forbidden in ('owner-', 'operator-status', 'operator-actions-link',
+                          'WAKE_CONTROL_URL', 'wake-owner-session',
                           'data-owner-start', 'data-owner-stop', 'data-owner-reset'):
             self.assertNotIn(forbidden, header)
 
-    def test_operator_link_is_phone_safe_without_runtime_state_css(self):
-        self.assertIn('.operator-actions-link{display:inline-flex', self.css)
-        self.assertIn('.operator-status-track{', self.css)
-        self.assertIn('.operator-status-dot{', self.css)
+    def test_actions_light_is_phone_safe_without_runtime_state_css(self):
+        self.assertIn('.actions-light{box-sizing:border-box', self.css)
+        self.assertIn('@keyframes actions-light-pulse', self.css)
         self.assertNotIn('.owner-', self.css)
-        self.assertNotIn('owner-light-', self.css)
+        self.assertNotIn('operator-status', self.css)
 
     def test_debug_zero_cycle_view_is_gone(self):
         self.assertNotIn('data-visibility-toggle', self.html)
