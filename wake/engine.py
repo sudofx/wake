@@ -78,7 +78,12 @@ def _rotation_preflight(state, invocation, proposal):
         elif kind in ("notebook", "reframe"):
             keep = project_domains.get(action.get("project")) == selected
         elif kind == "blog":
-            keep = project_domains.get(action.get("project")) == selected
+            due_cycle = bob_reflection_due_cycle(state)
+            keep = (
+                action.get("reflection_cycle") == due_cycle
+                if due_cycle is not None
+                else project_domains.get(action.get("project")) == selected
+            )
         elif kind in ("belief", "commit", "resolve"):
             # Administrative mutations are intentionally deferred during a
             # forced research rotation. They have repeatedly poisoned otherwise
