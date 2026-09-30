@@ -1,29 +1,29 @@
 # WAKE✳︎ authoritative cycle lane.
 # SQLite on wake-state is the only operational authority. No Pages work belongs here.
 
-name: WAKE✳︎ — cycle
+name: WAKE✳︎ — INTERNAL · RUN ONE RESEARCH CYCLE
 run-name: "WAKE✳︎ ${{ inputs.dispatch_token || github.run_id }}"
 
 on:
   workflow_dispatch:
     inputs:
       dispatch_token:
-        description: Correlation token for a continuous chain
+        description: Internal chain ID. Usually leave this alone.
         type: string
         required: false
         default: ''
       runtime_ref:
-        description: Immutable implementation commit selected when Start was pressed
+        description: Internal pinned live-code commit. Usually leave this alone.
         type: string
         required: false
         default: ''
       scheduled:
-        description: Apply authoritative next-eligible suppression before a provider call
+        description: Internal scheduling guard. Usually leave this alone.
         type: boolean
         required: false
         default: false
       reset:
-        description: Irreversibly reset durable research/history to WAKE 0
+        description: INTERNAL reset switch. Prefer the clearly named RESET workflow.
         type: boolean
         required: false
         default: false
@@ -76,12 +76,11 @@ jobs:
           python-version: '3.12'
       - name: Install WAKE runtime dependencies
         run: python -m pip install --disable-pip-version-check -e .
-      - name: Continue independent research
+      - name: Run one governed research cycle
         id: cycle
         continue-on-error: true
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          WAKE_CONTROL_URL: ${{ vars.WAKE_CONTROL_URL }}
           WAKE_RUNTIME_REF: ${{ inputs.runtime_ref || github.sha }}
         run: |
           args=(--record-only)
@@ -93,7 +92,7 @@ jobs:
         run: |
           echo "runtime_ref=${{ inputs.runtime_ref || github.sha }}" >> "$GITHUB_STEP_SUMMARY"
           echo "status=${{ steps.cycle.outputs.status }}" >> "$GITHUB_STEP_SUMMARY"
-      - name: Fail only when operator attention is required
+      - name: Stop only for a real operator-attention failure
         if: always() && steps.cycle.outcome == 'failure'
         run: exit 1
 
