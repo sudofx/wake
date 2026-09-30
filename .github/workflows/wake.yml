@@ -73,8 +73,8 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           WAKE_RUNTIME_REF: ${{ inputs.runtime_ref || github.sha }}
         run: |
-          args=(--record-only)
-          if [[ "${{ inputs.reset }}" == "true" ]]; then args=(--reset --confirm-reset --record-only); fi
+          args=()
+          if [[ "${{ inputs.reset }}" == "true" ]]; then args=(--reset --confirm-reset); fi
           python scripts/github_wake.py "${args[@]}"
       - name: Record run summary
         if: always()
