@@ -959,7 +959,14 @@ def transition(state, proposal, invocation, historical=False):
     # a provider instruction. The first accepted wake establishes Bob publicly;
     # later publication remains event-driven until the deterministic 15–20 wake
     # silence window makes a longitudinal reflection due.
-    required_reflection_cycle = None if historical else bob_reflection_due_cycle(state)
+    due_reflection_cycle = None if historical else bob_reflection_due_cycle(state)
+    invocation_charged = bool(state.get("invocations", {}).get(invocation, {}).get("charged"))
+    required_reflection_cycle = (
+        due_reflection_cycle
+        if due_reflection_cycle is not None
+        and (state.get("posts") or invocation_charged)
+        else None
+    )
 
     # -----------------------------------------------------------------------
     # ACTION LOOP
