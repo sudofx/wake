@@ -823,6 +823,8 @@ def collect(engine, fetcher=fetch_source, monotonic=time.monotonic):
     for item in source_candidates:
         if len(pending) >= maturation_slots:
             break
+        if any(existing.get("project") == item["project"] for existing in pending):
+            continue
         pending.append(item)
         used_urls.add(item["url"])
 
@@ -856,6 +858,8 @@ def collect(engine, fetcher=fetch_source, monotonic=time.monotonic):
         if len(pending) >= maturation_slots:
             break
         if exact["url"] in used_urls:
+            continue
+        if any(existing.get("project") == exact["project"] for existing in pending):
             continue
         pending.append(exact)
         used_urls.add(exact["url"])
