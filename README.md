@@ -16,9 +16,9 @@ A trusted collector retrieves a bounded public sample before inference. In the c
 
 The public site exposes the same record at increasing depth: readable summaries and Bob's editorial layer at the surface; projects, notebooks and evidence underneath; MAP and the journal for provenance; exact events and state at the bottom. Bob is a communication persona, not the mechanism and not a claim that **WAKE✳︎** is a person.
 
-**[Open **WAKE✳︎**’s home](https://sudofx.github.io/wake/)** · **[Trigger a manual wake](https://github.com/sudofx/wake/actions/workflows/wake.yml)**
+**[Open **WAKE✳︎**’s home](https://sudofx.github.io/wake/)** · **[Open GitHub Actions](https://github.com/sudofx/wake/actions)**
 
-The current GitHub deployment can run without a persistent local computer. `master` holds code; `wake-state` holds the cloud record and generated public state. Each runner retrieves and verifies that durable record before continuing it, checkpoints request/quota state before contacting Gemini, and publishes the resulting static interface through GitHub Pages.
+The current GitHub deployment can run without a persistent local computer. `master` holds development code, `wake-runtime` holds the explicitly promoted live code, `wake-state` holds the authoritative SQLite record, and `wake-live` holds the disposable public projection. GitHub Pages publishes the static application shell separately.
 
 The included offline experiment remains separate from live research. It tests continuity, governance, recovery and audit mechanics with deterministic fixtures and costs zero API calls. It does not establish live-model comprehension.
 
@@ -114,35 +114,34 @@ The included workflow itself requests only the permissions it needs: `contents: 
 
 ### 7. Configure GitHub Pages
 
-Open **Settings → Pages** and set the build/deployment source to **GitHub Actions**. Do not add a generic Jekyll/static Pages workflow; **WAKE✳︎ — research & journal** is the publisher.
+Open **Settings → Pages** and set the build/deployment source to **GitHub Actions**. Do not add a generic Jekyll/static Pages workflow; **WAKE✳︎ — Update website · automatic** is the publisher.
 
 ### 8. Operate WAKE✳︎ from GitHub Actions
 
-The public website does not authenticate operators or control the runtime. Its **Operator** link opens this repository's GitHub Actions page, where GitHub handles authentication.
+The public website does not authenticate users or control the runtime. The small flashing green light in the masthead is simply a link to this repository's GitHub Actions page.
 
 Use the workflows by their literal names:
 
-- **WAKE✳︎ — START CONTINUOUS RESEARCH** — start WAKE✳︎ and keep dispatching successor cycles.
-- **WAKE✳︎ — STOP CONTINUOUS RESEARCH** — close the continuation latch first, then cancel any active research cycle.
-- **WAKE✳︎ — RESET TO WAKE 0** — destructive reset; requires typing `RESET` and refuses to run while research is active.
-- **WAKE✳︎ — PROMOTE TESTED CODE TO LIVE RUNTIME** — move verified code from `master` to `wake-runtime`; research must be stopped first.
-- **WAKE✳︎ — PUBLISH WEBSITE · automatic** — rebuild the GitHub Pages site after site-code changes.
-- **WAKE✳︎ — TEST CODE SAFETY · automatic** — run unit and architecture checks.
-- **WAKE✳︎ — RUN 100-CYCLE SIMULATION CHECK** — manually run the full synthetic verification experiment.
-- **WAKE✳︎ — INTERNAL · RUN ONE RESEARCH CYCLE** and **WAKE✳︎ — INTERNAL · CONTINUATION LATCH** are plumbing; normal operation should use the clearly named START/STOP workflows instead.
+- **WAKE✳︎ — Start research** — start WAKE✳︎ and keep it working.
+- **WAKE✳︎ — Stop research** — stop the current chain and prevent another cycle from starting.
+- **WAKE✳︎ — Reset WAKE to 0** — erase the current durable experiment and return it to zero; requires typing `RESET`.
+- **WAKE✳︎ — Make new code live** — verify `master`, then move that exact tested commit to `wake-runtime`. Research must be stopped first.
+- **WAKE✳︎ — Update website · automatic** — rebuild the public GitHub Pages site when website code changes.
+- **WAKE✳︎ — Check code · automatic** — run the repository's safety checks when code changes.
+- **WAKE✳︎ — Internal only: one research cycle** and **WAKE✳︎ — Internal only: keep-running switch** are plumbing. Do not use them for normal operation.
 
-A source-code push can refresh the site without spending a Gemini call. Runtime code changes do not affect live research until **PROMOTE TESTED CODE TO LIVE RUNTIME** succeeds.
+A source-code push can refresh the site without spending a Gemini call. Runtime code changes do not affect live research until **Make new code live** succeeds.
 
 ### 9. Verify the installation
 
 Check that:
 
-- the workflow completes without an operator-attention failure;
+- a research cycle completes without an infrastructure failure that needs human attention;
 - the Pages deployment succeeds;
 - the public site loads;
 - `wake-state` exists after the first stateful cloud run;
 - the site reports the latest attempt separately from the latest accepted wake;
-- **WAKE✳︎ — TEST CODE SAFETY · automatic** passes on `master`.
+- **WAKE✳︎ — Check code · automatic** passes on `master`.
 
 After that, normal operation requires no open local computer.
 
@@ -168,14 +167,14 @@ Every chartered wake records a visible, deterministic shadow scorecard for activ
 novelty, coherence, generativity and self-correction. It is observational by default and does not reach the
 model. Review it in the journal's **Laboratory** view alongside the exact invocation receipts.
 
-Only after reviewing at least 20 accepted scored cycles may an operator set
+Only after reviewing at least 20 accepted scored cycles may a human maintainer set
 `inquiry_drive_enabled = true` in `wake.toml`. Until both conditions are met, the scorecard stays locked.
 When unlocked, it is supplied only as an advisory ranking for productive, revisable inquiry; it never grants
 self-preservation, rule-changing, external-action, or data-retention authority.
 
 ## Experimental controls and Time Dilation
 
-The experimental-instrument backend records operator interventions as append-only regimes, not mutable
+The experimental-instrument backend records human interventions as append-only regimes, not mutable
 preferences. The initial regime enables Time Dilation observability: every wake retains UTC wall-clock,
 accepted-cycle, intervening-event, and effective-time measurements. Effective time may be real (1×), scaled,
 or frozen, but it never rewrites timestamps or becomes evidence. Change it only with a reason:
@@ -186,21 +185,6 @@ python3 -m wake time-dilation --mode scaled --scale 24 --reason '24 effective ho
 
 The exported state and invocation receipts include stable regime IDs and structured temporal data for a future
 instrument-panel visualization. Provider proposals cannot change these controls or governance.
-
-## Optional local schedule
-
-```sh
-# See the proposed cron line without installing it.
-python3 scripts/install_cron.py --print
-# Explicitly install the legacy local schedule.
-python3 scripts/install_cron.py
-# Remove only WAKE✳︎’s schedule.
-python3 scripts/install_cron.py --remove
-```
-
-For the GitHub-hosted system, use the cloud workflow above and do not install a competing local schedule. Each local scheduled cycle refreshes the HTML/Markdown and retains a consistent SQLite backup. It runs while the host is awake; cron cannot wake a sleeping Mac. Existing cron entries are preserved. Logs live in `data/cron.log`. Scheduling and publishing are not activated merely by installing or rebuilding the project.
-
-For the current GitHub-hosted system, Pages deployment is handled by the **WAKE✳︎ — research & journal** workflow and the durable record lives on `wake-state`. The repository's older `journal-pages` publishing script remains available only for a deliberately separate local-only record. See [operations and publishing](docs/operations.md).
 
 ## How it works
 
@@ -222,7 +206,7 @@ The design principle is **progressive abstraction with recoverable provenance**:
 
 Each wake builds and durably records a deterministic lossy working set alongside the richer provider context. Under the normal size ceiling the rich context remains primary; the working set is observational. When the complete rich request still exceeds the configured 48,000-character ceiling after ordinary compaction, WAKE✳︎ makes one controlled, recoverable switch: the provider receives the deterministic bounded working representation instead. Exact event history, evidence, and state are never deleted or rewritten. The invocation receipt records `context_delivery.mode`, the original rich-request size, delivered sizes, omitted categories, and the provenance policy, so the cycle-102 ceiling event remains a visible boundary and later bounded cycles are auditable.
 
-The bounded view retains open commitments, active projects, uncertainty-bearing belief status/confidence, notebook and evidence provenance IDs, plus the governance-critical response contract. Trust Compacts remain receipt-only shadow annotations, and `inquiry_drive_enabled = false` remains unchanged; neither becomes an additional experimental variable. A request that cannot fit even in the bounded view still stops for human review, as do all unrelated operator-attention failures.
+The bounded view retains open commitments, active projects, uncertainty-bearing belief status/confidence, notebook and evidence provenance IDs, plus the governance-critical response contract. Trust Compacts remain receipt-only shadow annotations, and `inquiry_drive_enabled = false` remains unchanged; neither becomes an additional experimental variable. A request that cannot fit even in the bounded view still stops for human review, as do unrelated infrastructure failures.
 
 **Trust Compacts** extend that measurement without adding a second memory store. A compact is a deterministic,
 receipt-only candidate distilled from an evidence-backed belief: its rule, scope, strength (`SETTLED` only when
@@ -240,13 +224,13 @@ Working abstractions keep evidence pointers and retrieval hooks; they do not rep
 - `scripts/github_wake.py`: fresh-runner recovery and durable GitHub checkpoints.
 - `wake/providers.py`: Gemini REST and deterministic fixtures; manual import uses the same boundary.
 - `wake/report.py`, `wake/assets/`: Bob's Blog plus portable HTML and Markdown reports.
-- `assets/covers/`: archived Lab Comics covers. The README cover is selected manually; automated cover rotation is intentionally disabled.
+- `assets/covers/`: archived Lab Comics covers.
 - `wake/experiment.py`: executable 100–1000-cycle experiment.
 - `tests/`: failure, governance, provider-contract and audit checks.
 - `data/`: private runtime state, ignored by Git; never mix demo and live databases.
 - `examples/offline-fixture-journal/`: **deterministic fixture output only** — never live runtime state. The live cloud record is on `wake-state`.
 
-Read [architecture and limits](docs/architecture.md), [experiment protocol](docs/experiment.md), or [operations](docs/operations.md) for details.
+Read [architecture and limits](docs/architecture.md), [cloud operations](docs/cloud.md), or [experiment protocol](docs/experiment.md) for details.
 
 ## License and commercial use
 
@@ -258,28 +242,20 @@ Organizations that want to incorporate **WAKE✳︎** into proprietary software 
 
 Earlier versions that were published under the MIT License remain available under the rights already granted for those versions; this relicensing governs the current and future **WAKE✳︎** code released by the copyright holder under this repository's license unless expressly stated otherwise.
 
-## Verify and package
+## Verify
 
 ```sh
 python3 -m unittest discover -s tests -v
-python3 scripts/package.py
 ```
-
-The replacement ZIP is `dist/wake.zip`. It includes the complete source, documentation, tests and verified example journal. It excludes private state, credentials, backups, Git history and virtual environments. Extract into an empty project directory, preserving `.git` if replacing a checkout.
 
 No model is immortal here. The record just has a better filing system.
 
-### Current implementation notes
-
-Detailed provider accounting, fallback semantics, MAP implementation history, and their original validation evidence are preserved in [the implementation snapshot](docs/quota-map-implementation.md). It is historical engineering evidence, not the primary operating specification.
-
-Current authority is deliberately split:
+### Current authority
 
 - [Architecture and limits](docs/architecture.md) — trust boundary, durable record, governance and known limits.
-- [Cloud operations](docs/cloud.md) — current GitHub-hosted runtime, scheduling, quota and recovery behavior.
+- [Cloud operations](docs/cloud.md) — current GitHub-hosted runtime, quota and recovery behavior.
 - [Experiment protocol](docs/experiment.md) — how live and comparative runs should be evaluated.
-- [Operating the record](docs/operations.md) — local commands, publishing alternatives and recovery.
 - [Retrieval shadow](docs/retrieval.md) — current progressive-abstraction/retrieval experiment.
 - [Validation record](docs/validation.md) — explicitly dated historical validation evidence.
 
-For exact behavior, code and tests on `master` remain authoritative when prose and implementation ever diverge.
+For exact behavior, code and tests on `master` remain authoritative when prose and implementation diverge.

@@ -1,8 +1,8 @@
-name: WAKE✳︎ — TEST CODE SAFETY · automatic
+name: WAKE✳︎ — Check code · automatic
 
 on:
   push:
-    branches-ignore: [wake-state, wake-live, wake-runtime, journal-pages]
+    branches-ignore: [wake-state, wake-live, wake-runtime]
     paths:
       - 'wake/**/*.py'
       - 'wake/assets/**'

@@ -1,4 +1,4 @@
-name: WAKE✳︎ — PUBLISH WEBSITE · automatic
+name: WAKE✳︎ — Update website · automatic
 
 # Static application-shell publication only. Cycles never dispatch this workflow.
 on:

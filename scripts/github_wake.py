@@ -9,15 +9,12 @@
 """One cloud wake. Persist the call reservation remotely before sending to Gemini."""
 
 import argparse
-from datetime import datetime, timedelta, timezone
-from zoneinfo import ZoneInfo
 import json
 import os
 from pathlib import Path
 import subprocess
 import sys
 import tempfile
-import shutil
 import time
 import uuid
 
@@ -28,16 +25,12 @@ LIVE_PROJECTION_WALL_SECONDS = 30
 sys.path.insert(0, str(ROOT))
 from wake.engine import Engine, config
 from wake.governance import Rejected
-from wake.providers import Gemini, is_free_tier_daily_quota
+from wake.providers import Gemini
 from wake.research import collect
-from wake.report import export, atomic_write
 from wake.live import build_live_projection
 
 
-from wake.scheduling import (
-    SCHEDULED_WAKE_INTERVAL, SCHEDULED_TRANSIENT_RETRY_INTERVAL,
-    daily_quota_next_eligible, transient_provider_deferred, scheduled_wake_due, wake_status,
-)
+from wake.scheduling import TRANSIENT_RETRY_DELAY, wake_status
 
 
 def set_step_output(name, value):
@@ -199,13 +192,13 @@ def continuation_outputs(result):
     retry_after = 0
     if status == "deferred" and reason.startswith("Gemini temporarily unavailable"):
         continue_now = True
-        retry_after = 15
+        retry_after = int(TRANSIENT_RETRY_DELAY.total_seconds())
     set_step_output("status", status or "unknown")
     set_step_output("continue_now", "true" if continue_now else "false")
     set_step_output("retry_after", str(retry_after))
 
 
-def main(publish_only=False, scheduled=False, reset=False, record_only=False):
+def main(reset=False):
     if os.environ.get("GITHUB_ACTIONS") != "true":
         raise SystemExit("This entry point runs in GitHub Actions. Use python -m wake for local work.")
     settings = config(ROOT / "wake.toml")
@@ -215,36 +208,7 @@ def main(publish_only=False, scheduled=False, reset=False, record_only=False):
         branch.open()
         engine = Engine(branch.checkout/"data", settings)
         try:
-            # Publication refreshes are read-only consumers of the durable record.
-            # They may run concurrently with research because they never initialize,
-            # recover, append, repair, checkpoint, or push wake-state. Configuration
-            # adoption therefore remains part of the next serialized stateful wake.
-            if publish_only and not reset:
-                state, verified_head, verified_events = engine.store.replay_record()
-                latest = next(reversed(state["invocations"].values()), None)
-                result = ({"status": latest["status"], "id": latest["id"], "reason": latest.get("reason", "")}
-                          if latest else {"status": "not_started", "reason": "Waiting for the first research wake"})
-                if latest and latest["status"] == "accepted":
-                    result["cycle"] = state["version"]
-                result["publication_only"] = True
-                result["wake_status"] = wake_status(
-                    state,
-                    None if settings.get("model_daily_call_limits") else settings["daily_call_limit"],
-                )
-                # Reuse the previous published artifact as a cache of immutable
-                # presentation files. export() overwrites current shells/data but
-                # can leave already-converted historical route shells untouched.
-                shutil.rmtree(ROOT / "site", ignore_errors=True)
-                export(
-                    engine.store, ROOT / "site", operation=result, browser_only=True,
-                    record_snapshot=(state, verified_head, verified_events),
-                )
-                atomic_write(ROOT / "site/operation.json", json.dumps(result, indent=2))
-                atomic_write(ROOT / "site/.nojekyll", "")
-                print(json.dumps(result))
-                return 0
-
-            # Stateful wakes remain serialized: initialize/recover may append
+            # Stateful wakes are serialized: initialize/recover may append
             # durable events and must checkpoint before any provider request.
             with engine.store.lock():
                 if reset:
@@ -256,16 +220,7 @@ def main(publish_only=False, scheduled=False, reset=False, record_only=False):
                     engine.initialize()
                     engine.recover(explicit=True)
                     branch.checkpoint()
-            if scheduled and not reset:
-                due, next_eligible = scheduled_wake_due(engine.store.load())
-                if not due:
-                    result = {"status": "waiting",
-                              "reason": "A recent wake or provider quota window suppresses this call.",
-                              "next_eligible": next_eligible.isoformat()}
-                    set_step_output("skipped", "true")
-                    continuation_outputs(result)
-                    print(json.dumps(result))
-                    return 0
+
             result_checkpointed = False
             try:
                 if reset:
@@ -282,36 +237,38 @@ def main(publish_only=False, scheduled=False, reset=False, record_only=False):
                     result_checkpointed = True
             except Rejected as exc:
                 result = {"status": "paused", "reason": str(exc)}
-            result["wake_status"] = wake_status(engine.store.load(), None if settings.get("model_daily_call_limits") else settings["daily_call_limit"])
-            if not publish_only:
-                # Engine.run already made ordinary terminal results durable. Reset
-                # and exceptional paused paths still need an explicit checkpoint.
-                if not result_checkpointed:
-                    branch.checkpoint()
-                runtime_ref = os.environ.get("WAKE_RUNTIME_REF", "")
-                try:
-                    payload = build_live_projection(engine.store, operation=result, runtime_ref=runtime_ref)
-                    LiveProjectionBranch(ROOT).publish(payload)
-                    set_step_output("live_projection_updated", "true")
-                except Exception as exc:
-                    # Projection failure cannot roll back or invalidate SQLite,
-                    # and it must not prevent the authoritative chain continuing.
-                    set_step_output("live_projection_updated", "false")
-                    print(json.dumps({"live_projection_updated": False, "error": str(exc)}), file=sys.stderr)
-                continuation_outputs(result)
-                set_step_output("publication_skipped", "true")
+
+            result["wake_status"] = wake_status(
+                engine.store.load(),
+                None if settings.get("model_daily_call_limits") else settings["daily_call_limit"],
+            )
+
+            # Engine.run already made ordinary terminal results durable. Reset
+            # and exceptional paused paths still need an explicit checkpoint.
+            if not result_checkpointed:
+                branch.checkpoint()
+
+            runtime_ref = os.environ.get("WAKE_RUNTIME_REF", "")
+            try:
+                payload = build_live_projection(engine.store, operation=result, runtime_ref=runtime_ref)
+                LiveProjectionBranch(ROOT).publish(payload)
+                set_step_output("live_projection_updated", "true")
+            except Exception as exc:
+                # Projection failure cannot roll back or invalidate SQLite,
+                # and it must not prevent the authoritative chain continuing.
+                set_step_output("live_projection_updated", "false")
+                print(json.dumps({"live_projection_updated": False, "error": str(exc)}), file=sys.stderr)
+
+            continuation_outputs(result)
         finally:
             engine.store.close()
+
     print(json.dumps(result))
-    return 0 if publish_only or not requires_operator_attention(result) else 2
+    return 0 if not requires_operator_attention(result) else 2
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--publish-only", action="store_true", help="Publish the existing record without a model call")
-    parser.add_argument("--scheduled", action="store_true", help="Skip duplicate cron events covered by a recent wake")
-    parser.add_argument("--record-only", action="store_true",
-                        help="Persist the durable wake and compact receipt without rebuilding derived reports")
     parser.add_argument("--reset", action="store_true",
                         help="Irreversibly reset durable cloud state to WAKE 0")
     parser.add_argument("--confirm-reset", action="store_true",
@@ -320,7 +277,7 @@ if __name__ == "__main__":
     if args.reset and not args.confirm_reset:
         raise SystemExit("--reset requires --confirm-reset")
     try:
-        sys.exit(main(publish_only=args.publish_only, scheduled=args.scheduled, reset=args.reset, record_only=args.record_only))
+        sys.exit(main(reset=args.reset))
     except subprocess.CalledProcessError as exc:
         detail = (exc.stderr or exc.stdout or "").strip()
         message = "Git state persistence failed. No force push or automatic model retry was attempted."

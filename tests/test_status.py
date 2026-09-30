@@ -18,7 +18,7 @@ import unittest
 from wake.scheduling import wake_status
 
 class StatusTests(unittest.TestCase):
-    def test_latest_failure_does_not_replace_last_accepted_and_backoff_is_visible(self):
+    def test_latest_failure_does_not_replace_last_accepted_and_quota_reset_is_visible(self):
         accepted = dict(id="a", time="2026-09-14T08:00:00+00:00", status="accepted", charged=True, quota_day="2026-09-14")
         deferred = dict(id="b", time="2026-09-14T09:00:00+00:00", status="deferred", charged=True, quota_day="2026-09-14", reason="Gemini temporarily unavailable")
         state = dict(version=1, invocations={"a":accepted,"b":deferred}, pending=None)
@@ -26,7 +26,10 @@ class StatusTests(unittest.TestCase):
         result = wake_status(state, now=now)
         self.assertEqual(result["last_accepted"]["id"], "a")
         self.assertEqual(result["latest_attempt"]["id"], "b")
-        self.assertEqual(result["next_eligible"], "2026-09-14T09:05:00+00:00")
+        self.assertEqual(
+            datetime.fromisoformat(result["next_eligible"]),
+            datetime(2026,9,14,9,0,15,tzinfo=timezone.utc),
+        )
         limited = wake_status(state, daily_call_limit=2, now=now)
         self.assertEqual(datetime.fromisoformat(limited["next_eligible"]).astimezone(timezone.utc), datetime(2026,9,15,7,tzinfo=timezone.utc))
         state["pending"] = "b"

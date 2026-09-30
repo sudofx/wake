@@ -1,6 +1,6 @@
 # Architecture and limits
 
-> **Current specification.** This document explains why the present system is shaped this way: its trust boundary, durable record, governance model and known limits. Operational procedures belong in `cloud.md` and `operations.md`; dated implementation history belongs in archival snapshots.
+> **Current specification.** This document explains why the present system is shaped this way: its trust boundary, durable record, governance model and known limits. Operational procedures belong in `cloud.md`; dated validation history belongs in `validation.md`.
 
 **WAKE✳︎** is designed around continuity of accountable work, not continuity of a model instance. Models, vendors and eventually human operators may change; the durable record, authority boundary, provenance and correction mechanisms are what carry the work forward.
 
@@ -31,7 +31,7 @@ The record includes the objective, focus, all observations, belief revisions, co
 6. Persist `invocation_started`, its exact request, provider identity and quota reservation.
 7. Make a provider request, or leave a durable manual request for the operator. An eligible transient Gemini failure may advance to the next configured model; the same model is never retried within that wake.
 8. Validate the reply. Research actions remain atomic. If a single optional final blog action fails validation, independently validate the preceding research and commit it with a withheld-blog receipt, the exact raw response, and an explicit journal note. Invalid research, invalid proposal envelopes, multiple or misplaced blogs, and invalid blog-only proposals still reject the whole reply. Historical accepted events replay unchanged. Eligible transient server and narrowly classified network failures retain per-attempt diagnostics and may advance through the configured model chain; exhaustion defers the wake.
-9. The scheduled wrapper generates reports and a consistent backup.
+9. Checkpoint the authoritative SQLite record, then refresh the disposable `wake-live` public projection. The static GitHub Pages shell is deployed independently from research cycles.
 
 A runtime receipt attests delivery of durable state to the provider boundary. It does **not** attest that the remote model understood it. Prose in a journal is the provider's narrative; accepted means governance checks passed, not that every sentence is true.
 
@@ -152,7 +152,7 @@ An interrupted transaction rolls back. An interrupted invocation is closed as re
 
 A hash chain detects modifications relative to a trusted head. An administrator can rewrite the whole database and recompute hashes. A deleted suffix can also be a valid prefix. Retain `head.txt` independently, for example in a reviewed Git commit or separate backup, and pass it to the standalone audit verifier. Hashes alone do not prove identity, prevent censorship, or establish an external timestamp.
 
-The journal export verifies state before rendering. Files are replaced individually, with self-contained `index.html` written last. Its embedded snapshot is internally consistent. Download links can momentarily see different export generations if a local reader downloads during a refresh; verify raw exports against the matching `head.txt`. Public branch publishing commits a complete export at once.
+Full local exports verify state before rendering and remain useful for audit and offline fixtures. The hosted site no longer republishes a growing report tree on every wake: GitHub Pages serves a static shell, while `wake-live` is a replaceable projection derived from the verified SQLite record. The projection is disposable and never outranks `wake-state`.
 
 Replay favors transparency over throughput. It rechecks all history; long records will need indexed checkpoints verified against an independently retained head. The included 100–1000-cycle experiment is the intended initial scale, not a claim of an unbounded production event store.
 

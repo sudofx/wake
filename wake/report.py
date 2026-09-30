@@ -779,7 +779,6 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         page = page.replace("/* NAV_SCRIPT */", (assets / "nav.js").read_text())
         page = page.replace("/* WAKE_SCRIPT */", (assets / "app.js").read_text())
         page = page.replace("/* HELP_SCRIPT */", (assets / "help.js").read_text())
-        page = page.replace("/* DATA_VIEW_SCRIPT */", (assets / "data-view.js").read_text())
         page = page.replace("/* PET_SCRIPT */", (assets / "pet.js").read_text())
         # Browser UX is HTML-first. Markdown remains available as a flat source artifact.
         page = page.replace('href="journal.md">Markdown ↓</a>', 'href="events.html">Readable history →</a>')

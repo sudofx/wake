@@ -1,7 +1,7 @@
 # WAKE✳︎ authoritative cycle lane.
 # SQLite on wake-state is the only operational authority. No Pages work belongs here.
 
-name: WAKE✳︎ — INTERNAL · RUN ONE RESEARCH CYCLE
+name: "WAKE✳︎ — Internal only: one research cycle"
 run-name: "WAKE✳︎ ${{ inputs.dispatch_token || github.run_id }}"
 
 on:
@@ -17,18 +17,8 @@ on:
         type: string
         required: false
         default: ''
-      scheduled:
-        description: Internal scheduling guard. Usually leave this alone.
-        type: boolean
-        required: false
-        default: false
       reset:
         description: INTERNAL reset switch. Prefer the clearly named RESET workflow.
-        type: boolean
-        required: false
-        default: false
-      publish_after:
-        description: Deprecated compatibility input; cycles never publish Pages
         type: boolean
         required: false
         default: false
@@ -83,9 +73,8 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           WAKE_RUNTIME_REF: ${{ inputs.runtime_ref || github.sha }}
         run: |
-          args=(--record-only)
-          if [[ "${{ inputs.scheduled }}" == "true" ]]; then args+=(--scheduled); fi
-          if [[ "${{ inputs.reset }}" == "true" ]]; then args=(--reset --confirm-reset --record-only); fi
+          args=()
+          if [[ "${{ inputs.reset }}" == "true" ]]; then args=(--reset --confirm-reset); fi
           python scripts/github_wake.py "${args[@]}"
       - name: Record run summary
         if: always()

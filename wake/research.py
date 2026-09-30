@@ -235,7 +235,6 @@ REPOSITORY_SOURCE_PATHS = {
     "topics": "research-topics.toml",
     "workflow": ".github/workflows/wake.yml",
     "github_runner": "scripts/github_wake.py",
-    "cycle_runner": "scripts/run-wake-cycles.sh",
     "site_app": "wake/assets/app.js",
     "site_map": "wake/assets/map.js",
 }
@@ -629,7 +628,7 @@ def query_url(query, domain, topic=None):
             (("topic", "attention space"), "topics"),
             (("workflow", "action", "github"), "workflow"),
             (("runner", "cloud"), "github_runner"),
-            (("batch", "100 cycle", "terminal"), "cycle_runner"),
+            (("batch", "100 cycle", "terminal"), "experiment_code"),
             (("site", "browser", "frontend", "ui"), "site_app"),
             (("map", "visual"), "site_map"),
         ]
