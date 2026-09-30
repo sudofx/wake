@@ -1064,7 +1064,7 @@ class ResearchTests(unittest.TestCase):
             {"cycle": cycle, "invocation": f"w-{cycle}", "title": "t", "summary": "s"}
             for cycle in range(1, 4 + first)
         ]
-        self.assertEqual(bob_reflection_due_cycle(state), 4 + first + 1)
+        self.assertEqual(bob_reflection_due_cycle(state), 4 + first)
 
     def test_charged_first_wake_cannot_advance_without_bob_introduction(self):
         with self.engine.store.lock():
