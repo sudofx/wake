@@ -52,5 +52,5 @@ jobs:
         run: |
           set -euo pipefail
           runtime_ref="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha')"
-          gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime             -f "dispatch_token=reset-$GITHUB_RUN_ID"             -f "runtime_ref=$runtime_ref"             -f "reset=true"             -f "scheduled=false"
+          gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime             -f "dispatch_token=reset-$GITHUB_RUN_ID"             -f "runtime_ref=$runtime_ref"             -f "reset=true"
           echo "Reset requested. Continuous research remains stopped." >> "$GITHUB_STEP_SUMMARY"
