@@ -114,7 +114,7 @@ The included workflow itself requests only the permissions it needs: `contents: 
 
 ### 7. Configure GitHub Pages
 
-Open **Settings → Pages** and set the build/deployment source to **GitHub Actions**. Do not add a generic Jekyll/static Pages workflow; **WAKE✳︎ — research & journal** is the publisher.
+Open **Settings → Pages** and set the build/deployment source to **GitHub Actions**. Do not add a generic Jekyll/static Pages workflow; **WAKE✳︎ — PUBLISH WEBSITE · automatic** is the publisher.
 
 ### 8. Operate WAKE✳︎ from GitHub Actions
 
@@ -128,7 +128,6 @@ Use the workflows by their literal names:
 - **WAKE✳︎ — PROMOTE TESTED CODE TO LIVE RUNTIME** — move verified code from `master` to `wake-runtime`; research must be stopped first.
 - **WAKE✳︎ — PUBLISH WEBSITE · automatic** — rebuild the GitHub Pages site after site-code changes.
 - **WAKE✳︎ — TEST CODE SAFETY · automatic** — run unit and architecture checks.
-- **WAKE✳︎ — RUN 100-CYCLE SIMULATION CHECK** — manually run the full synthetic verification experiment.
 - **WAKE✳︎ — INTERNAL · RUN ONE RESEARCH CYCLE** and **WAKE✳︎ — INTERNAL · CONTINUATION LATCH** are plumbing; normal operation should use the clearly named START/STOP workflows instead.
 
 A source-code push can refresh the site without spending a Gemini call. Runtime code changes do not affect live research until **PROMOTE TESTED CODE TO LIVE RUNTIME** succeeds.
@@ -187,21 +186,6 @@ python3 -m wake time-dilation --mode scaled --scale 24 --reason '24 effective ho
 The exported state and invocation receipts include stable regime IDs and structured temporal data for a future
 instrument-panel visualization. Provider proposals cannot change these controls or governance.
 
-## Optional local schedule
-
-```sh
-# See the proposed cron line without installing it.
-python3 scripts/install_cron.py --print
-# Explicitly install the legacy local schedule.
-python3 scripts/install_cron.py
-# Remove only WAKE✳︎’s schedule.
-python3 scripts/install_cron.py --remove
-```
-
-For the GitHub-hosted system, use the cloud workflow above and do not install a competing local schedule. Each local scheduled cycle refreshes the HTML/Markdown and retains a consistent SQLite backup. It runs while the host is awake; cron cannot wake a sleeping Mac. Existing cron entries are preserved. Logs live in `data/cron.log`. Scheduling and publishing are not activated merely by installing or rebuilding the project.
-
-For the current GitHub-hosted system, Pages deployment is handled by the **WAKE✳︎ — research & journal** workflow and the durable record lives on `wake-state`. The repository's older `journal-pages` publishing script remains available only for a deliberately separate local-only record. See [operations and publishing](docs/operations.md).
-
 ## How it works
 
 ```text
@@ -246,7 +230,7 @@ Working abstractions keep evidence pointers and retrieval hooks; they do not rep
 - `data/`: private runtime state, ignored by Git; never mix demo and live databases.
 - `examples/offline-fixture-journal/`: **deterministic fixture output only** — never live runtime state. The live cloud record is on `wake-state`.
 
-Read [architecture and limits](docs/architecture.md), [experiment protocol](docs/experiment.md), or [operations](docs/operations.md) for details.
+Read [architecture and limits](docs/architecture.md), [cloud operations](docs/cloud.md), or [experiment protocol](docs/experiment.md) for details.
 
 ## License and commercial use
 
@@ -269,17 +253,12 @@ The replacement ZIP is `dist/wake.zip`. It includes the complete source, documen
 
 No model is immortal here. The record just has a better filing system.
 
-### Current implementation notes
-
-Detailed provider accounting, fallback semantics, MAP implementation history, and their original validation evidence are preserved in [the implementation snapshot](docs/quota-map-implementation.md). It is historical engineering evidence, not the primary operating specification.
-
-Current authority is deliberately split:
+### Current authority
 
 - [Architecture and limits](docs/architecture.md) — trust boundary, durable record, governance and known limits.
-- [Cloud operations](docs/cloud.md) — current GitHub-hosted runtime, scheduling, quota and recovery behavior.
+- [Cloud operations](docs/cloud.md) — current GitHub-hosted runtime, quota and recovery behavior.
 - [Experiment protocol](docs/experiment.md) — how live and comparative runs should be evaluated.
-- [Operating the record](docs/operations.md) — local commands, publishing alternatives and recovery.
 - [Retrieval shadow](docs/retrieval.md) — current progressive-abstraction/retrieval experiment.
 - [Validation record](docs/validation.md) — explicitly dated historical validation evidence.
 
-For exact behavior, code and tests on `master` remain authoritative when prose and implementation ever diverge.
+For exact behavior, code and tests on `master` remain authoritative when prose and implementation diverge.
