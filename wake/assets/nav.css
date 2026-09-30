@@ -94,10 +94,11 @@ nav.compact-nav{display:flex;align-items:center;justify-content:center;gap:22px;
 .actions-light-track{position:relative;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;flex:0 0 18px;padding:2px;border:1px solid var(--line);border-radius:20px;background:var(--surface)}
 .actions-light-track i{display:block;box-sizing:border-box;width:12px;height:12px;flex:0 0 12px;border-radius:50%;background:#e7c35a;animation:none;opacity:1}
 .actions-light[data-state="running"] .actions-light-track i{background:#307444;animation:actions-light-pulse 3.2s ease-in-out infinite}
-.actions-light[data-state="stopped"] .actions-light-track i{background:#d65e6c;animation:none;opacity:1}
+.actions-light[data-state="stopped"] .actions-light-track i{background:#d65e6c;animation:actions-light-blink 2.4s step-end infinite}
 .actions-light:focus-visible{outline:2px solid var(--cyan,var(--green));outline-offset:3px;border-radius:4px}
 @keyframes actions-light-pulse{0%,100%{opacity:.3}50%{opacity:1}}
-@media(prefers-reduced-motion:reduce){.actions-light-track i{animation:none;opacity:1}}
+@keyframes actions-light-blink{0%,49%{opacity:1}50%,100%{opacity:.18}}
+@media(prefers-reduced-motion:reduce){.actions-light-track i{animation:none!important;opacity:1!important}}
 .masthead>.status,.header-tools>.status{display:none!important}
 .wordmark .cycle-count{color:var(--cyan,var(--green));font-weight:700}
 @media(max-width:760px){
@@ -105,7 +106,7 @@ nav.compact-nav{display:flex;align-items:center;justify-content:center;gap:22px;
   .wordmark{font-size:clamp(40px,11vw,46px)!important;letter-spacing:-2.6px!important;line-height:.96!important;min-width:0;flex:1 1 auto}
   .wordmark small{font-size:clamp(10px,2.8vw,12px)!important;letter-spacing:1px!important;margin-top:11px!important;line-height:1.35!important;white-space:nowrap}
   .wordmark .cycle-count{font-size:1.18em;font-weight:800;color:var(--green);letter-spacing:.04em}
-  .header-tools{position:static!important;transform:none!important;margin-left:auto;align-self:flex-start;flex-direction:row!important;gap:8px;flex:0 0 auto}
+  .header-tools{position:static!important;transform:none!important;margin-left:auto;align-self:flex-start;flex-direction:row!important;gap:10px;flex:0 0 auto}
   .actions-light{width:44px;height:38px;flex-basis:44px}
   .actions-light-track{width:24px;height:24px;flex-basis:24px;padding:3px}
   .actions-light-track i{width:16px;height:16px;flex-basis:16px}
