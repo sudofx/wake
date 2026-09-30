@@ -1457,6 +1457,40 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(evidence_role(url), "source")
         self.assertEqual(host_tier(url), "verification-fulltext")
 
+    def test_long_source_excerpt_preserves_results_and_conclusion(self):
+        url = "https://www.frontiersin.org/articles/example/full"
+        html = (
+            "<html><body><h1>Long paper</h1><p>" + ("Background material. " * 900) + "</p>"
+            "<h2>Results</h2><p>Critical corroborating result survives beyond the old prefix-only cutoff.</p>"
+            "<p>" + ("Intermediate discussion. " * 500) + "</p>"
+            "<h2>Conclusion</h2><p>Independent source support is visible to the model.</p>"
+            "</body></html>"
+        ).encode()
+
+        class Response:
+            def __init__(self):
+                self.url = url
+                self.headers = {"Content-Type": "text/html; charset=utf-8"}
+            def read(self, _limit):
+                return html
+            def __enter__(self):
+                return self
+            def __exit__(self, *_args):
+                return False
+
+        class Opener:
+            def open(self, _request, timeout=None):
+                self.timeout = timeout
+                return Response()
+
+        with patch("wake.research.urllib.request.build_opener", return_value=Opener()):
+            observation = fetch_source(url)
+
+        self.assertTrue(observation["excerpt_truncated"])
+        self.assertLessEqual(len(observation["excerpt"]), 10_000)
+        self.assertIn("Critical corroborating result survives", observation["excerpt"])
+        self.assertIn("Independent source support is visible", observation["excerpt"])
+
     def test_pdf_route_extracts_bounded_readable_text(self):
         url = "https://academic.oup.com/example/article-pdf/1/1/1/123/example.pdf"
         raw = b"%PDF-1.7 synthetic fixture bytes"
