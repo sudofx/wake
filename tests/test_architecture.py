@@ -60,6 +60,35 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('--ref wake-runtime', cycle)
         self.assertIn('runtime_ref=$RUNTIME_REF', cycle)
 
+    def test_wake_zero_topics_are_the_operator_selected_ten(self):
+        topics = self.read('research-topics.toml')
+        self.assertEqual(topics.count('[[topics]]'), 10)
+        for seed in (
+            'What Is an Observer?',
+            "How Do We Know We're Wrong?",
+            'What Makes You You?',
+            'Why Does Music Feel Like Something?',
+            'Why Are Things Funny?',
+            'How Does Information Survive?',
+            'When Does Simple Become Smart?',
+            'Can Two Honest Observers Disagree?',
+            'What Actually Matters to Us?',
+            'Can Curiosity Be Built?',
+        ):
+            self.assertIn(seed, topics)
+
+    def test_bob_is_eli25_scientific_interpreter_without_a_quota(self):
+        provider = self.read('wake/providers.py')
+        self.assertIn('ELI25 audience', provider)
+        self.assertIn('scientific method', provider)
+        self.assertIn('No quota and no filler', provider)
+        self.assertIn('what remains unknown', provider)
+
+    def test_notebook_shelf_promotes_to_home_only_after_a_notebook_exists(self):
+        pet = self.read('wake/assets/pet.js')
+        self.assertIn("const notebookShelf=books.length?", pet)
+        self.assertLess(pet.index("${notebookShelf}"), pet.index('<section class="observatory-hero">'))
+
     def test_state_branch_current_tree_contract_is_sqlite_only(self):
         cloud = self.read('scripts/github_wake.py')
         self.assertIn('data/wake.sqlite3', cloud)
