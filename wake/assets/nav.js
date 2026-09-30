@@ -36,3 +36,18 @@
   });
   window.addEventListener('hashchange', () => close());
 })();
+
+const actionsLight=document.querySelector('.actions-light');
+if(actionsLight){
+  fetch('https://api.github.com/repos/sudofx/wake/actions/workflows/wake-runner.yml',{cache:'no-store'})
+    .then(response=>response.ok?response.json():Promise.reject())
+    .then(workflow=>{
+      const running=workflow.state==='active';
+      actionsLight.dataset.state=running?'running':'stopped';
+      actionsLight.title=running?'Running':'Stopped';
+    })
+    .catch(()=>{
+      actionsLight.removeAttribute('data-state');
+      actionsLight.title='GitHub Actions';
+    });
+}
