@@ -20,6 +20,7 @@ class MastheadPresentationTests(unittest.TestCase):
         header = self.html.split('<header class="masthead">', 1)[1].split('</header>', 1)[0]
         self.assertIn('href="https://github.com/sudofx/wake/actions"', header)
         self.assertIn('class="actions-light"', header)
+        self.assertIn('title="Running"', header)
         self.assertNotIn('Operator', header)
         for forbidden in ('owner-', 'operator-status', 'operator-actions-link',
                           'WAKE_CONTROL_URL', 'wake-owner-session',
