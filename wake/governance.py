@@ -964,7 +964,11 @@ def transition(state, proposal, invocation, historical=False):
     # silence-window reflections. Keeping the first post outside this value made
     # the provider correctly emit reflection_cycle while blog validation treated
     # that field as reserved, breaking the deterministic promotion experiment.
-    required_reflection_cycle = due_reflection_cycle
+    required_reflection_cycle = (
+        due_reflection_cycle
+        if state.get("charter")
+        else None
+    )
 
     # -----------------------------------------------------------------------
     # ACTION LOOP
