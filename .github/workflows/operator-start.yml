@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: wake-operator-start
+  group: wake-operator-control
   cancel-in-progress: false
 
 jobs:

@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: wake-operator-reset
+  group: wake-operator-control
   cancel-in-progress: false
 
 jobs:
