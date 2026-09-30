@@ -30,6 +30,7 @@ This gives WAKE✳︎ an important property:
 """
 
 from copy import deepcopy
+import hashlib
 import json
 import math
 import re
@@ -742,9 +743,49 @@ def _blog_language(action, evidence, historical=False, prior_post=None):
         )
 
 
+BOB_QUIET_MIN_CYCLES = 15
+BOB_QUIET_MAX_CYCLES = 20
+
+
+def _bob_quiet_window(post):
+    """Return a stable 15–20 wake silence window derived from the last public post.
+
+    The jitter is deterministic so replay reaches the same governance decision.
+    It avoids a rigid every-N publication rhythm without giving the model authority
+    to postpone a due editorial checkpoint indefinitely.
+    """
+    seed = f"{post.get('id', '')}:{post.get('created_version', 0)}".encode("utf-8")
+    span = BOB_QUIET_MAX_CYCLES - BOB_QUIET_MIN_CYCLES + 1
+    return BOB_QUIET_MIN_CYCLES + (hashlib.sha256(seed).digest()[0] % span)
+
+
 def bob_reflection_due_cycle(state):
-    """Milestone reflections are disabled; retained for historical replay compatibility."""
-    return None
+    """Return the accepted wake that requires Bob to publish, or None.
+
+    The first accepted wake always establishes Bob's public role. After that,
+    ordinary posts remain event-driven and may happen at any time. If nothing
+    worth publishing has appeared for a stable jittered 15–20 accepted wakes,
+    governance requires a longitudinal Bob reflection before state advances.
+    """
+    journal = state.get("journal", [])
+    next_cycle = (journal[-1].get("cycle", len(journal)) if journal else 0) + 1
+    posts = list(state.get("posts", {}).values())
+
+    if not posts:
+        return next_cycle
+
+    last_post = max(
+        posts,
+        key=lambda post: (
+            int(post.get("created_version") or 0),
+            str(post.get("id") or ""),
+        ),
+    )
+    last_cycle = int(last_post.get("created_version") or 0)
+    if last_cycle <= 0:
+        return None
+
+    return next_cycle if next_cycle - last_cycle >= _bob_quiet_window(last_post) else None
 
 
 def _enforce_attention_rotation(state, invocation, action, candidate, historical=False):
@@ -914,11 +955,11 @@ def transition(state, proposal, invocation, historical=False):
         for collection in ("projects", "notebooks", "research"):
             result[collection] = deepcopy(state.get(collection, {}))
 
-    # Bob's reflection cadence is a durable governance obligation, not merely
-    # a provider instruction. If an older runtime missed a milestone, the
-    # earliest unfulfilled ten-cycle reflection remains due until a valid Bob
-    # post records that exact milestone.
-    required_reflection_cycle = None
+    # Bob's editorial backstop is a durable governance obligation, not merely
+    # a provider instruction. The first accepted wake establishes Bob publicly;
+    # later publication remains event-driven until the deterministic 15–20 wake
+    # silence window makes a longitudinal reflection due.
+    required_reflection_cycle = None if historical else bob_reflection_due_cycle(state)
 
     # -----------------------------------------------------------------------
     # ACTION LOOP
@@ -1802,7 +1843,7 @@ def transition(state, proposal, invocation, historical=False):
                 else:
                     require(
                         "reflection_cycle" not in action,
-                        "reflection_cycle is reserved for a due Bob reflection milestone",
+                        "reflection_cycle is reserved for a due Bob editorial checkpoint",
                     )
 
             require(
@@ -1845,11 +1886,11 @@ def transition(state, proposal, invocation, historical=False):
             if reflection_due and not historical:
                 require(
                     len(action["body"].strip()) >= 900,
-                    "Bob milestone reflections must contain at least 900 characters",
+                    "Due Bob reflections must contain at least 900 characters",
                 )
                 require(
                     "lens" in action,
-                    "Bob milestone reflections require Bob's Lens",
+                    "Due Bob reflections require Bob's Lens",
                 )
 
             if "lens" in action:
@@ -1861,7 +1902,7 @@ def transition(state, proposal, invocation, historical=False):
 
             # Ordinary Bob posts require 1–3 notebooks.
             #
-            # Every tenth accepted cycle is different.
+            # A due Bob editorial checkpoint is different.
             #
             # The milestone reflection is about:
             #
@@ -1882,7 +1923,7 @@ def transition(state, proposal, invocation, historical=False):
                     else 1 <= len(action["notebooks"]) <= 3
                 ),
                 "Blog posts must reference 1–3 distinct notebooks, "
-                "except ten-cycle reflections may use none",
+                "except due Bob reflections may use none",
             )
 
             notebooks = [
@@ -1925,7 +1966,7 @@ def transition(state, proposal, invocation, historical=False):
             #
             # Research-oriented posts require strong traceability.
             #
-            # Ten-cycle reflections intentionally bypass these particular
+            # Due Bob reflections intentionally bypass these particular
             # research-source requirements because they are reflections on the
             # durable journey rather than ordinary research publications.
 
