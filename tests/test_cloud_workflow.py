@@ -189,7 +189,7 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertIn("wake-runner.yml/disable", stop)
         self.assertIn("/cancel", stop)
         self.assertIn("name: WAKE✳︎ — Reset WAKE to 0", reset)
-        self.assertIn('confirm_reset', reset)
+        self.assertNotIn('confirm_reset', reset)
         self.assertIn("wake-runner.yml/disable", reset)
         self.assertIn('reset=true', reset)
         self.assertIn('name: "WAKE✳︎ — Internal only: keep-running switch"', runner)
