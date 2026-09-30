@@ -15,6 +15,7 @@ from .providers import is_free_tier_daily_quota
 
 
 PACIFIC = ZoneInfo("America/Los_Angeles")
+TRANSIENT_RETRY_DELAY = timedelta(seconds=15)
 
 
 def charged_request_slots(item):
@@ -63,6 +64,14 @@ def wake_status(state, daily_call_limit=20, now=None):
         for reset in (daily_quota_next_eligible(i) for i in charged_today)
         if reset is not None
     ]
+    if (
+        latest
+        and latest.get("status") == "deferred"
+        and str(latest.get("reason", "")).startswith("Gemini temporarily unavailable")
+    ):
+        base = latest.get("finished") or latest.get("time")
+        if base:
+            resets.append(datetime.fromisoformat(base) + TRANSIENT_RETRY_DELAY)
     request_slots_today = sum(charged_request_slots(i) for i in charged_today)
 
     if daily_call_limit is not None and request_slots_today >= daily_call_limit:
