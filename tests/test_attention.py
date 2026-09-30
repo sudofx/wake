@@ -36,6 +36,38 @@ class AttentionTests(unittest.TestCase):
         self.assertEqual(replayed["attention"]["counters"]["entropy"], 1)
         self.assertNotIn("squirrel", replayed)
 
+    def test_attention_preflight_preserves_due_system_wide_bob_post(self):
+        state = {
+            "journal": [],
+            "posts": {},
+            "projects": {},
+            "research_topics": [{"id": "entropy", "enabled": True}],
+            "acquisition": {},
+            "invocations": {
+                "w": {
+                    "attention": {
+                        "enforce_selected_topic": True,
+                        "selected_topic": "entropy",
+                    }
+                }
+            },
+        }
+        blog = {
+            "type": "blog",
+            "id": "bob-introduction",
+            "project": "",
+            "reflection_cycle": 1,
+        }
+        proposal = {
+            "base_version": 0,
+            "title": "Bob says hello",
+            "summary": "Establish the public correspondent.",
+            "actions": [blog],
+        }
+        normalized, withheld = _rotation_preflight(state, "w", proposal)
+        self.assertEqual(normalized["actions"], [blog])
+        self.assertIsNone(withheld)
+
 
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
