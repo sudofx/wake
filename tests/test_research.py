@@ -24,7 +24,10 @@ from unittest.mock import patch
 from scripts.github_wake import StateBranch
 from wake.audit import verify_history
 from wake.engine import DEFAULTS, Engine
-from wake.governance import PUBLICATION_MIN_SOURCES, Rejected, _blog_language, transition
+from wake.governance import (
+    PUBLICATION_MIN_SOURCES, Rejected, _blog_language, _bob_quiet_window,
+    bob_reflection_due_cycle, transition,
+)
 from wake.providers import Fixture, RESEARCH_SYSTEM, schema_for_context
 from wake.research import (
     allowed_url, collect, discovery_urls, evidence_role, exact_identifier_url, fetch_source, host_tier,
@@ -1035,10 +1038,48 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(set(blog["properties"]["evidence"]["items"]["enum"]), {"s1", "s2"})
         self.assertNotIn("reflection_cycle", blog["required"])
 
-    def test_bob_ordinary_publication_is_event_driven_not_tenth_cycle_only(self):
+    def test_bob_publication_is_event_driven_with_a_quiet_window_backstop(self):
         self.assertIn("make an editorial judgment", RESEARCH_SYSTEM)
-        self.assertIn("event-driven, not cadence-driven", RESEARCH_SYSTEM)
-        self.assertIn("There is no numbered-cycle publication requirement", RESEARCH_SYSTEM)
+        self.assertIn("Ordinary publication\nis event-driven", RESEARCH_SYSTEM)
+        self.assertIn("roughly\n15–20 accepted wakes without publication", RESEARCH_SYSTEM)
+        self.assertIn("bob_reflection_due", RESEARCH_SYSTEM)
+
+    def test_bob_first_public_post_is_due_on_cycle_one(self):
+        state = self.engine.store.load()
+        self.assertEqual(state["journal"], [])
+        self.assertEqual(state["posts"], {})
+        self.assertEqual(bob_reflection_due_cycle(state), 1)
+
+    def test_bob_quiet_window_is_stable_and_between_fifteen_and_twenty(self):
+        post = {"id": "post-one", "created_version": 4}
+        first = _bob_quiet_window(post)
+        second = _bob_quiet_window(dict(post))
+        self.assertEqual(first, second)
+        self.assertGreaterEqual(first, 15)
+        self.assertLessEqual(first, 20)
+
+        state = self.engine.store.load()
+        state["posts"] = {"post-one": post}
+        state["journal"] = [
+            {"cycle": cycle, "invocation": f"w-{cycle}", "title": "t", "summary": "s"}
+            for cycle in range(1, 4 + first)
+        ]
+        self.assertEqual(bob_reflection_due_cycle(state), 4 + first + 1)
+
+    def test_charged_first_wake_cannot_advance_without_bob_introduction(self):
+        with self.engine.store.lock():
+            invocation, request = self.engine.start("gemini", "test", charged=True)
+            result = self.engine.finish(
+                invocation,
+                json.dumps({
+                    "base_version": request["context"]["version"],
+                    "title": "Research fixture",
+                    "summary": "Offline boundary test",
+                    "actions": [project()],
+                }),
+            )
+        self.assertEqual(result["status"], "rejected")
+        self.assertIn("Bob reflection", result["reason"])
 
     def test_revision_requires_changed_findings_and_new_evidence(self):
         self.source("s1", verified=True)
