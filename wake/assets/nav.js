@@ -39,10 +39,10 @@
 
 const actionsLight=document.querySelector('.actions-light');
 if(actionsLight){
-  fetch('https://api.github.com/repos/sudofx/wake/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=10',{cache:'no-store'})
+  fetch('https://api.github.com/repos/sudofx/wake/actions/workflows/wake-runner.yml',{cache:'no-store'})
     .then(response=>response.ok?response.json():Promise.reject())
-    .then(payload=>{
-      const running=(payload.workflow_runs||[]).some(run=>run.status!=='completed');
+    .then(workflow=>{
+      const running=workflow.state==='active';
       actionsLight.dataset.state=running?'running':'stopped';
       actionsLight.title=running?'Running':'Stopped';
     })
