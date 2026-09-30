@@ -177,17 +177,17 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertNotIn("WAKE_CONTROL_URL", workflow)
 
         # GitHub Actions is the complete operator boundary.
-        self.assertIn("START CONTINUOUS RESEARCH", start)
+        self.assertIn("name: WAKE✳︎ — Start research", start)
         self.assertIn("wake-runner.yml/enable", start)
         self.assertIn("gh workflow run wake.yml", start)
-        self.assertIn("STOP CONTINUOUS RESEARCH", stop)
+        self.assertIn("name: WAKE✳︎ — Stop research", stop)
         self.assertIn("wake-runner.yml/disable", stop)
         self.assertIn("/cancel", stop)
-        self.assertIn("RESET TO WAKE 0", reset)
+        self.assertIn("name: WAKE✳︎ — Reset WAKE to 0", reset)
         self.assertIn('confirm_reset', reset)
         self.assertIn("wake-runner.yml/disable", reset)
         self.assertIn('reset=true', reset)
-        self.assertIn("INTERNAL · CONTINUATION LATCH", runner)
+        self.assertIn("name: WAKE✳︎ — Internal: keep-running switch", runner)
         self.assertNotIn("gh workflow run wake.yml", runner)
         self.assertIn("Running this workflow manually does not start research", runner)
         self.assertNotIn("scheduled:", workflow)
@@ -199,7 +199,7 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertNotIn("--record-only", runtime_source)
 
         # Promotion remains the only explicit runtime adoption boundary.
-        self.assertIn("PROMOTE TESTED CODE TO LIVE RUNTIME", promotion)
+        self.assertIn("name: WAKE✳︎ — Make new code live", promotion)
         self.assertIn('branch=wake-runtime', promotion)
         self.assertIn('.status!="completed"', promotion)
         self.assertIn("python -m unittest discover", promotion)
