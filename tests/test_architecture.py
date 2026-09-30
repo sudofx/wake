@@ -84,10 +84,18 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('No quota and no filler', provider)
         self.assertIn('what remains unknown', provider)
 
-    def test_notebook_shelf_promotes_to_home_only_after_a_notebook_exists(self):
+    def test_research_page_keeps_revised_notebooks_ahead_of_research_notes(self):
         pet = self.read('wake/assets/pet.js')
-        self.assertIn("const notebookShelf=books.length?", pet)
-        self.assertLess(pet.index("${notebookShelf}"), pet.index('<section class="observatory-hero">'))
+        self.assertNotIn("const notebookShelf=books.length?", pet)
+        research_default = pet[pet.index('else output=`<h2 class="shelf-title">The notebook shelf'):]
+        self.assertLess(
+            research_default.index("The notebook shelf"),
+            research_default.index("Research notes"),
+        )
+        self.assertIn(
+            "Object.values(s.notebooks||{}).sort((a,b)=>b.updated_version-a.updated_version)",
+            pet,
+        )
 
     def test_reset_auto_promotes_master_only_when_runtime_differs(self):
         reset = self.read('.github/workflows/operator-reset.yml')
