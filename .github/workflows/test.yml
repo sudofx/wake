@@ -1,4 +1,4 @@
-name: WAKE✳︎ — TEST CODE SAFETY · automatic
+name: WAKE✳︎ — Check code · automatic
 
 on:
   push:
