@@ -16,16 +16,14 @@
 
 """A failed inference is publishable; a failed state checkpoint is not."""
 
-from datetime import datetime, timedelta, timezone
 import json
 from pathlib import Path
 import subprocess
 import tempfile
 import unittest
-from unittest.mock import call, patch
+from unittest.mock import patch
 
 from scripts import github_wake
-from wake.audit import verify_history
 from wake.engine import DEFAULTS
 from wake.governance import Rejected
 from wake.providers import Fixture, Gemini
@@ -53,13 +51,13 @@ class CloudWorkflowTests(unittest.TestCase):
         return json.loads(
             self.git("--git-dir", self.remote, "show", "wake-live:live.json").stdout)
 
-    def run_cloud(self, provider, publish_only=False, scheduled=False, reset=False):
+    def run_cloud(self, provider, reset=False):
         with patch.object(github_wake, "ROOT", self.project), \
              patch.object(github_wake, "config", return_value=dict(DEFAULTS)), \
              patch.object(github_wake, "Gemini", return_value=provider), \
              patch.object(github_wake, "collect", lambda engine: None), \
              patch.dict("os.environ", {"GITHUB_ACTIONS": "true"}):
-            return github_wake.main(publish_only=publish_only, scheduled=scheduled, reset=reset)
+            return github_wake.main(reset=reset)
 
     def test_cloud_reset_returns_to_zero_without_calling_provider(self):
         self.assertEqual(self.run_cloud(Fixture()), 0)
@@ -148,93 +146,6 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertEqual(operation["status"], "deferred")
         self.assertIn("temporarily unavailable", operation["reason"])
 
-    def test_republishing_preserves_the_accepted_wake_without_calling_gemini(self):
-        self.assertEqual(self.run_cloud(Fixture()), 0)
-        before = self.live()
-        with patch.object(github_wake, "Gemini", side_effect=AssertionError("No model initialization")), \
-             patch.object(github_wake, "ROOT", self.project), \
-             patch.object(github_wake, "config", return_value=dict(DEFAULTS)), \
-             patch.object(github_wake, "collect", side_effect=AssertionError("No collection")), \
-             patch.dict("os.environ", {"GITHUB_ACTIONS":"true"}):
-            self.assertEqual(github_wake.main(publish_only=True), 0)
-        after = json.loads((self.project/"site/state.json").read_text())
-        self.assertEqual(before["state"]["version"], after["version"])
-        self.assertEqual(before["head"], (self.project/"site/head.txt").read_text().strip())
-        result = json.loads((self.project/"site/operation.json").read_text())
-        self.assertEqual(result["status"], "accepted")
-        self.assertTrue(result["publication_only"])
-
-    def test_backup_schedule_skips_a_recent_wake_without_calling_provider(self):
-        class ChargedFixture(Fixture):
-            charged = True
-        self.assertEqual(self.run_cloud(ChargedFixture()), 0)
-        class NeverCall(Fixture):
-            charged = True
-            def propose(self, request): raise AssertionError("Recent scheduled wake must suppress the model call")
-        provider = NeverCall()
-        self.assertEqual(self.run_cloud(provider, scheduled=True), 0)
-        public = self.live()["state"]
-        self.assertEqual(len(public["invocations"]), 1)
-
-    def test_scheduled_due_uses_normal_guard_but_retries_deferred_outages_soon(self):
-        now = datetime.now(timezone.utc)
-        state = {"invocations": {"wake": {
-            "charged": True, "status": "accepted",
-            "time": (now - timedelta(minutes=56)).isoformat(), "reason": ""
-        }}}
-        due, _ = github_wake.scheduled_wake_due(state, now=now)
-        self.assertTrue(due)
-
-        state["invocations"]["wake"].update(status="accepted", time=now.isoformat(), reason="")
-        due, next_eligible = github_wake.scheduled_wake_due(state, now=now)
-        self.assertFalse(due)
-        self.assertEqual(next_eligible, now + timedelta(minutes=5))
-
-        state["invocations"]["wake"].update(
-            status="deferred",
-            reason="Gemini temporarily unavailable; wake deferred",
-            time=(now - timedelta(minutes=11)).isoformat())
-        due, _ = github_wake.scheduled_wake_due(state, now=now)
-        self.assertTrue(due)
-
-        state["invocations"]["wake"]["time"] = (now - timedelta(minutes=4)).isoformat()
-        due, next_eligible = github_wake.scheduled_wake_due(state, now=now)
-        self.assertFalse(due)
-        self.assertEqual(next_eligible, now + timedelta(minutes=1))
-
-    def test_scheduled_daily_quota_waits_until_pacific_midnight(self):
-        # 2026-09-14 06:50 UTC is 2026-09-13 23:50 Pacific.
-        item = {
-            "charged": True,
-            "provider": "gemini",
-            "model": "gemini-3.8-flash",
-            "status": "failed",
-            "quota_day": "2026-09-13",
-            "time": datetime(2026, 9, 14, 6, 50, tzinfo=timezone.utc).isoformat(),
-            "reason": "Gemini HTTP 429; wake attempt counted",
-            "provider_error": {
-                "http_status": 429,
-                "provider_error": {
-                    "details": [{"violations": [{
-                        "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier",
-                        "quotaValue": "20",
-                    }]}],
-                },
-            },
-        }
-        state = {"invocations": {"wake": item}}
-        before = datetime(2026, 9, 14, 6, 55, tzinfo=timezone.utc)
-        due, next_eligible = github_wake.scheduled_wake_due(state, now=before)
-        self.assertFalse(due)
-        self.assertEqual(next_eligible, datetime(2026, 9, 14, 7, 0, tzinfo=timezone.utc))
-
-        # Once Pacific midnight passes, the quota guard releases immediately rather
-        # than imposing the ordinary 55-minute wake spacing.
-        after = datetime(2026, 9, 14, 7, 1, tzinfo=timezone.utc)
-        due, next_eligible = github_wake.scheduled_wake_due(state, now=after)
-        self.assertTrue(due)
-        self.assertEqual(next_eligible, datetime(2026, 9, 14, 7, 0, tzinfo=timezone.utc))
-
     def test_failed_checkpoint_never_exports_or_calls_provider(self):
         class NeverCall(Fixture):
             def propose(self, request): raise AssertionError("Provider must not be called")
@@ -277,6 +188,15 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertIn("wake-runner.yml/disable", reset)
         self.assertIn('reset=true', reset)
         self.assertIn("INTERNAL · CONTINUATION LATCH", runner)
+        self.assertNotIn("gh workflow run wake.yml", runner)
+        self.assertIn("Running this workflow manually does not start research", runner)
+        self.assertNotIn("scheduled:", workflow)
+        self.assertNotIn("publish_after:", workflow)
+        self.assertNotIn("publish_only", github_wake.__dict__)
+        runtime_source = (root/"scripts/github_wake.py").read_text()
+        self.assertNotIn("--publish-only", runtime_source)
+        self.assertNotIn("--scheduled", runtime_source)
+        self.assertNotIn("--record-only", runtime_source)
 
         # Promotion remains the only explicit runtime adoption boundary.
         self.assertIn("PROMOTE TESTED CODE TO LIVE RUNTIME", promotion)
