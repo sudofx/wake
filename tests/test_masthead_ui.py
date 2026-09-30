@@ -20,7 +20,7 @@ class MastheadPresentationTests(unittest.TestCase):
         header = self.html.split('<header class="masthead">', 1)[1].split('</header>', 1)[0]
         self.assertIn('href="https://github.com/sudofx/wake/actions"', header)
         self.assertIn('class="actions-light"', header)
-        self.assertIn('title="Running"', header)
+        self.assertIn('title="Checking…"', header)
         self.assertNotIn('Operator', header)
         for forbidden in ('owner-', 'operator-status', 'operator-actions-link',
                           'WAKE_CONTROL_URL', 'wake-owner-session',
@@ -32,6 +32,8 @@ class MastheadPresentationTests(unittest.TestCase):
         self.assertIn('.actions-light{box-sizing:border-box', self.css)
         self.assertIn('cursor:default', self.css)
         self.assertIn('@keyframes actions-light-pulse', self.css)
+        nav = (ASSETS / "nav.js").read_text()
+        self.assertIn("actionsLight.title=running?'Running':'Stopped'", nav)
         self.assertIn('actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=10', nav)
         self.assertIn("actionsLight.title=running?'Running':'Stopped'", nav)
         self.assertNotIn('.owner-', self.css)
