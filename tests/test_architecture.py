@@ -89,6 +89,21 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn("const notebookShelf=books.length?", pet)
         self.assertLess(pet.index("${notebookShelf}"), pet.index('<section class="observatory-hero">'))
 
+    def test_reset_auto_promotes_master_only_when_runtime_differs(self):
+        reset = self.read('.github/workflows/operator-reset.yml')
+        self.assertIn('Check whether runtime promotion is needed', reset)
+        self.assertIn('master_sha="$(git rev-parse HEAD)"', reset)
+        self.assertIn('runtime_sha="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime"', reset)
+        self.assertIn("if: steps.promotion.outputs.needed == 'true'", reset)
+        self.assertIn('python -m unittest discover -s tests -v', reset)
+        self.assertIn('python -m wake --data /tmp/wake-reset-promote experiment --cycles 100', reset)
+        self.assertIn('Promote verified master only when needed', reset)
+        self.assertIn('-f "runtime_ref=$runtime_ref"', reset)
+        self.assertLess(
+            reset.index('Promote verified master only when needed'),
+            reset.index('Dispatch the governed archive-first reset'),
+        )
+
     def test_state_branch_current_tree_contract_is_sqlite_only(self):
         cloud = self.read('scripts/github_wake.py')
         self.assertIn('data/wake.sqlite3', cloud)
