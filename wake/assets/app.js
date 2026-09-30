@@ -104,6 +104,10 @@
   let journalLimit = 8, historyLimit = 35;
   const refs = ids => (ids || []).map(id => `<a href="#evidence/${encodeURIComponent(id)}">${esc(id)} →</a>`).join(' ');
   const badge = (value, label) => `<span class="badge ${esc(value)}">${esc(label || value)}</span>`;
+  // Preserve immutable legacy event bytes in storage, but never expose the old
+  // development nickname as current public terminology.
+  const displayEventKind = kind => kind === 'squirrel_assessed' ? 'attention_assessed' : kind;
+  const displayEvent = event => event?.kind === 'squirrel_assessed' ? {...event, kind:'attention_assessed'} : event;
   const raw = value => `<pre>${esc(JSON.stringify(value,null,2))}</pre>`;
   function expandRecordDetails(root=document) {
     root.querySelectorAll('details.record-panel').forEach(disclosure=>{
@@ -164,7 +168,7 @@
   // Event kinds evolve with the durable record. Build this selector from the
   // exported history so a newly introduced receipt never becomes invisible.
   const eventSelect = $('event-filter');
-  [...new Set(data.events.map(event=>event.kind))].sort().forEach(kind => {
+  [...new Set(data.events.map(event=>displayEventKind(event.kind)))].sort().forEach(kind => {
     const option = document.createElement('option'); option.value=kind; option.textContent=kind; eventSelect.append(option);
   });
   function journal() {
@@ -475,7 +479,7 @@
       const excerpt=content.excerpt?`<details class="evidence-excerpt"><summary>Excerpt${content.excerpt_truncated?' / TRUNCATED':''}</summary><p>${esc(valueText(content.excerpt))}</p></details>`:'';
       return `<dl class="evidence-summary">${fields.map(([key,value])=>`<div><dt>${esc(key.replaceAll('_',' '))}</dt><dd>${esc(valueText(value))}</dd></div>`).join('')}</dl>${excerpt}`;
     };
-    $('evidence-content').innerHTML=(selected?'<p><a class="text-link" href="#evidence">← All evidence</a></p>':'')+rows.map(e=>`<article class="data-card evidence-card"><h3>${esc(e.id)}</h3><span class="source">${esc(e.source)} / ${esc(e.actor)} / ${esc(fmt(e.time))}</span>${readable(e)}<details><summary>Raw observation</summary>${raw(e)}</details></article>`).join('')+(rows.length?'':'<p class="empty">No observations match.</p>');
+    $('evidence-content').innerHTML=(selected?'<p><a class="text-link" href="#evidence">← All evidence</a></p>':'')+rows.map(e=>`<article class="data-card evidence-card"><h3>${esc(e.id)}</h3><span class="source">${esc(e.source)} / ${esc(e.actor)} / ${esc(fmt(e.time))}</span>${readable(e)}<details><summary>Raw observation</summary>${raw(displayEvent(e))}</details></article>`).join('')+(rows.length?'':'<p class="empty">No observations match.</p>');
   }
   function history(selected='') {
     const query=$('history-search').value.toLowerCase(), filter=selected.startsWith('filter:')?selected.slice(7):'', kind=filter==='rejected'?'rejected':$('event-filter').value;
@@ -484,8 +488,8 @@
     const recoveredIds=new Set(invocations.filter(i=>i.status==='recovered').map(i=>i.id));
     const matchesFilter=e=>!filter||(filter==='rejected'?e.kind==='rejected':filter==='recovered'?recoveredIds.has(e.payload.id):filter==='inherited'?inheritedIds.has(e.payload.id):true);
     const exact=selected&&!filter?selected:'';
-    const events=[...data.events].reverse().filter(e=>(!exact||e.payload.id===exact)&&matchesFilter(e)&&(kind==='all'||e.kind===kind)&&JSON.stringify(e).toLowerCase().includes(query));
-    $('history-content').innerHTML=((selected)?'<p><a class="text-link" href="#history">← All events</a></p>':'')+events.slice(0,historyLimit).map(e=>`<details class="audit-row"><summary><span>#${String(e.seq).padStart(4,'0')}</span>${badge(e.kind)}<time datetime="${esc(e.time)}">${esc(fmt(e.time))}</time><span class="event-id">${esc(e.payload.id||'system')}</span></summary>${e.payload.reason?`<p>${esc(e.payload.reason)}</p>`:''}${(e.kind==='rejected'||e.payload.editorial)?`<p><a class="text-link" href="rejected.html#${encodeURIComponent(e.payload.id)}">Read the draft and explanation →</a></p>`:''}${raw(e)}</details>`).join('')+(events.length?'':'<p class="empty">No events match.</p>');
+    const events=[...data.events].reverse().filter(e=>(!exact||e.payload.id===exact)&&matchesFilter(e)&&(kind==='all'||displayEventKind(e.kind)===kind)&&JSON.stringify(displayEvent(e)).toLowerCase().includes(query));
+    $('history-content').innerHTML=((selected)?'<p><a class="text-link" href="#history">← All events</a></p>':'')+events.slice(0,historyLimit).map(e=>`<details class="audit-row"><summary><span>#${String(e.seq).padStart(4,'0')}</span>${badge(displayEventKind(e.kind))}<time datetime="${esc(e.time)}">${esc(fmt(e.time))}</time><span class="event-id">${esc(e.payload.id||'system')}</span></summary>${e.payload.reason?`<p>${esc(e.payload.reason)}</p>`:''}${(e.kind==='rejected'||e.payload.editorial)?`<p><a class="text-link" href="rejected.html#${encodeURIComponent(e.payload.id)}">Read the draft and explanation →</a></p>`:''}${raw(e)}</details>`).join('')+(events.length?'':'<p class="empty">No events match.</p>');
     $('history-more').hidden=events.length<=historyLimit;
   }
   function route() {
@@ -537,7 +541,7 @@
         const option=document.createElement('option');option.value=provider;option.textContent=provider;providerSelect.append(option);
       }
     }
-    for(const kind of [...new Set(data.events.map(event=>event.kind))].sort()){
+    for(const kind of [...new Set(data.events.map(event=>displayEventKind(event.kind)))].sort()){
       if(![...eventSelect.options].some(option=>option.value===kind)){
         const option=document.createElement('option');option.value=kind;option.textContent=kind;eventSelect.append(option);
       }
