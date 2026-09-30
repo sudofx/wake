@@ -1082,6 +1082,21 @@ class ResearchTests(unittest.TestCase):
         )
         self.assertIn("reflection_cycle", blog["required"])
 
+    def test_live_charged_research_cannot_skip_bob_opening_post(self):
+        with self.engine.store.lock():
+            invocation, request = self.engine.start("gemini", "test", charged=True)
+            result = self.engine.finish(
+                invocation,
+                json.dumps({
+                    "base_version": request["context"]["version"],
+                    "title": "Research fixture",
+                    "summary": "Attempt to skip the opening correspondent post.",
+                    "actions": [project()],
+                }),
+            )
+        self.assertEqual(result["status"], "rejected")
+        self.assertIn("Bob opening post", result["reason"])
+
     def test_revision_requires_changed_findings_and_new_evidence(self):
         self.source("s1", verified=True)
         self.source("s2", verified=True)
