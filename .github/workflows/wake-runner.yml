@@ -1,52 +1,19 @@
 name: WAKE✳︎ — INTERNAL · CONTINUATION LATCH
-run-name: "WAKE✳︎ runtime bootstrap · ${{ inputs.dispatch_token || github.run_id }}"
+run-name: "WAKE✳︎ continuation latch"
 
-# Internal continuation latch. Operator-facing start/stop workflows control this.
-# This workflow never promotes code and never mutates wake-runtime.
-# Runtime promotion is owned exclusively by promote-runtime.yml.
+# This workflow exists only because GitHub gives workflows a durable enabled/disabled state.
+# START enables it. STOP disables it. wake.yml reads that state before dispatching a successor.
+# Running this workflow manually does not start research.
 on:
   workflow_dispatch:
-    inputs:
-      dispatch_token:
-        description: Internal bootstrap ID. Use START CONTINUOUS RESEARCH instead.
-        type: string
-        required: false
-        default: ''
-      runtime_ref:
-        description: Internal compatibility input. Use START CONTINUOUS RESEARCH instead.
-        type: string
-        required: false
-        default: ''
 
 permissions:
-  actions: write
   contents: read
 
-concurrency:
-  group: wake-runner-bootstrap
-  cancel-in-progress: true
-
 jobs:
-  bootstrap:
+  explain:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
-    if: github.ref_name == 'wake-runtime'
+    timeout-minutes: 2
     steps:
-      - name: Resolve the pinned runtime
-        id: runtime
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          set -euo pipefail
-          runtime_ref="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha')"
-          test -n "$runtime_ref"
-          echo "runtime_ref=$runtime_ref" >> "$GITHUB_OUTPUT"
-      - name: Dispatch one authoritative runtime cycle
-        env:
-          GH_TOKEN: ${{ github.token }}
-          RUNTIME_REF: ${{ steps.runtime.outputs.runtime_ref }}
-        run: |
-          gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime \
-            -f "dispatch_token=bootstrap-$GITHUB_RUN_ID" \
-            -f "runtime_ref=$RUNTIME_REF" \
-            -f "scheduled=false"
+      - name: Explain this internal latch
+        run: echo "This workflow is only the continuous-research on/off latch. Use START CONTINUOUS RESEARCH to run WAKE✳︎."
