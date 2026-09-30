@@ -23,15 +23,6 @@ from .governance import require
 from .providers import Fixture
 from .report import atomic_write, export
 from .store import canonical, now
-# ---------------------------------------------------------------------------
-# STEP: run_experiment
-#
-# Keep this function explicit because it marks a testable boundary in the
-# chain from operator/provider input to durable/public output.  Do not fold it
-# into a neighboring layer if doing so would hide validation, provenance,
-# failure handling, or the distinction between accepted state and a derived view.
-# ---------------------------------------------------------------------------
-
 
 def run_experiment(directory, cycles=100, output="site"):
     root = Path(directory).resolve()
@@ -39,15 +30,6 @@ def run_experiment(directory, cycles=100, output="site"):
     require(not (root / "wake.sqlite3").exists(), "Experiment requires a new data directory; existing state is never erased")
     root.mkdir(parents=True, exist_ok=True)
     calls = []
-    # ---------------------------------------------------------------------------
-    # STEP: cli
-    #
-    # Keep this function explicit because it marks a testable boundary in the
-    # chain from operator/provider input to durable/public output.  Do not fold it
-    # into a neighboring layer if doing so would hide validation, provenance,
-    # failure handling, or the distinction between accepted state and a derived view.
-    # ---------------------------------------------------------------------------
-
     def cli(*args, expected=0, data_dir=root):
         result = subprocess.run([sys.executable, "-m", "wake", "--data", str(data_dir), *args],
                                 capture_output=True, text=True, timeout=90)

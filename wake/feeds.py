@@ -22,40 +22,13 @@ HOME = "https://sudofx.github.io/wake/"
 LIMIT = 100
 ATOM = "http://www.w3.org/2005/Atom"
 ET.register_namespace("atom", ATOM)
-# ---------------------------------------------------------------------------
-# STEP: clean
-#
-# Keep this function explicit because it marks a testable boundary in the
-# chain from operator/provider input to durable/public output.  Do not fold it
-# into a neighboring layer if doing so would hide validation, provenance,
-# failure handling, or the distinction between accepted state and a derived view.
-# ---------------------------------------------------------------------------
-
 
 def clean(value):
     text = str(value).replace("WAKE✳︎", "WAKE✳").replace("WAKE✳", "WAKE✳︎")
     return re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f\ud800-\udfff\ufffe\uffff]", "", text)
-# ---------------------------------------------------------------------------
-# STEP: paragraphs
-#
-# Keep this function explicit because it marks a testable boundary in the
-# chain from operator/provider input to durable/public output.  Do not fold it
-# into a neighboring layer if doing so would hide validation, provenance,
-# failure handling, or the distinction between accepted state and a derived view.
-# ---------------------------------------------------------------------------
-
 
 def paragraphs(text):
     return "".join(f"<p>{html.escape(clean(part))}</p>" for part in str(text).split("\n\n") if part.strip())
-# ---------------------------------------------------------------------------
-# STEP: published
-#
-# Keep this function explicit because it marks a testable boundary in the
-# chain from operator/provider input to durable/public output.  Do not fold it
-# into a neighboring layer if doing so would hide validation, provenance,
-# failure handling, or the distinction between accepted state and a derived view.
-# ---------------------------------------------------------------------------
-
 
 def published(invocation):
     # Use the durable acceptance time, never the current export time.
@@ -74,15 +47,6 @@ def blog_title(entry):
     remainder = re.sub(r"^\s*(?:cycle\s*\d+\s*[:—–-]?\s*)?(?:reflection\s*[:—–-]?\s*)?", "", title, flags=re.IGNORECASE)
     remainder = re.sub(r"\b(?:first|inaugural)\s+reflection\b", "Reflection", remainder, flags=re.IGNORECASE).strip()
     return f"Cycle {milestone} Reflection: {remainder or title}"
-# ---------------------------------------------------------------------------
-# STEP: build_feeds
-#
-# Keep this function explicit because it marks a testable boundary in the
-# chain from operator/provider input to durable/public output.  Do not fold it
-# into a neighboring layer if doing so would hide validation, provenance,
-# failure handling, or the distinction between accepted state and a derived view.
-# ---------------------------------------------------------------------------
-
 
 def build_feeds(state):
     feeds = {}
@@ -92,15 +56,6 @@ def build_feeds(state):
     ):
         root = ET.Element("rss", version="2.0")
         channel = ET.SubElement(root, "channel")
-        # ---------------------------------------------------------------------------
-        # STEP: add
-        #
-        # Keep this function explicit because it marks a testable boundary in the
-        # chain from operator/provider input to durable/public output.  Do not fold it
-        # into a neighboring layer if doing so would hide validation, provenance,
-        # failure handling, or the distinction between accepted state and a derived view.
-        # ---------------------------------------------------------------------------
-
         def add(parent, tag, text, **attributes):
             element = ET.SubElement(parent, tag, attributes)
             element.text = clean(text)
