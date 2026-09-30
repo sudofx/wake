@@ -1044,6 +1044,12 @@ class ResearchTests(unittest.TestCase):
         self.assertIn("roughly\n15–20 accepted wakes without publication", RESEARCH_SYSTEM)
         self.assertIn("bob_reflection_due", RESEARCH_SYSTEM)
 
+    def test_bob_prompt_aligns_opening_post_with_personhood_gate(self):
+        self.assertIn("Bob is an editorial role/public correspondent, not a persistent person or mind", RESEARCH_SYSTEM)
+        self.assertIn("mandatory opening introduction", RESEARCH_SYSTEM)
+        self.assertIn("without personhood\nlanguage", RESEARCH_SYSTEM)
+        self.assertIn("First-person editorial voice is allowed", RESEARCH_SYSTEM)
+
     def test_bob_first_public_post_is_due_on_cycle_one(self):
         state = self.engine.store.load()
         self.assertEqual(state["journal"], [])
