@@ -7,7 +7,8 @@ class HistoryFilterTests(unittest.TestCase):
         page = (Path(__file__).parents[1] / "wake/assets/index.html").read_text()
         script = (Path(__file__).parents[1] / "wake/assets/app.js").read_text()
         self.assertIn('id="event-filter"', page)
-        self.assertIn('data.events.map(event=>displayEventKind(event.kind))', script)\n        self.assertIn("kind === 'squirrel_assessed' ? 'attention_assessed' : kind", script)
+        self.assertIn('data.events.map(event=>displayEventKind(event.kind))', script)
+        self.assertIn("kind === 'squirrel_assessed' ? 'attention_assessed' : kind", script)
         self.assertIn('eventSelect.append(option)', script)
 
 
