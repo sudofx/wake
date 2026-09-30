@@ -10,7 +10,7 @@ The public interface is **https://sudofx.github.io/wake/** once GitHub Pages is 
 
 The `WAKE✳︎ — Update website · automatic` workflow is the only Pages publisher. Do not add generic static or Jekyll publishing templates: they publish application source instead of the generated research home and can overwrite the correct site.
 
-`WAKE✳︎ — Internal: run one research cycle` is the only research execution lane. It may execute only when the workflow dispatch ref is `wake-runtime`; each accepted/rejected cycle can dispatch its successor from that same runtime branch and carries the exact runtime commit forward. `WAKE✳︎ — Internal: keep-running switch` is only the durable on/off latch used by **Start research** and **Stop research**; running it manually does not start research.
+`WAKE✳︎ — Internal only: one research cycle` is the only research execution lane. It may execute only when the workflow dispatch ref is `wake-runtime`; each accepted/rejected cycle can dispatch its successor from that same runtime branch and carries the exact runtime commit forward. `WAKE✳︎ — Internal only: keep-running switch` is only the durable on/off latch used by **Start research** and **Stop research**; running it manually does not start research.
 
 Runtime control lives entirely in GitHub Actions. The website's flashing green light opens the repository Actions page; there is no site authentication or control backend. **Start research** opens the keep-running switch and dispatches the first `wake.yml` cycle on `wake-runtime`. **Stop research** closes that switch before cancelling active cycles. **Reset WAKE to 0** requires an explicit `RESET` confirmation and refuses active research.
 
