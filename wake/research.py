@@ -628,7 +628,7 @@ def query_url(query, domain, topic=None):
             (("topic", "attention space"), "topics"),
             (("workflow", "action", "github"), "workflow"),
             (("runner", "cloud"), "github_runner"),
-            (("batch", "100 cycle", "terminal"), "cycle_runner"),
+            (("batch", "100 cycle", "terminal"), "experiment_code"),
             (("site", "browser", "frontend", "ui"), "site_app"),
             (("map", "visual"), "site_map"),
         ]
