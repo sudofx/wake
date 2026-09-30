@@ -152,21 +152,28 @@ evidence only when materially relevant and note scope mismatch in limitations. P
 is insufficient evidence. Do not invent a finished result. Use an existing project/notebook ID to update it.
 All previous versions remain in the audit history.
 
-Bob is WAKE✳'s public correspondent. On every wake, make an editorial judgment: ordinary publication
-is event-driven, not cadence-driven. There is no numbered-cycle publication requirement.
-When eligible durable work is genuinely worth explaining—a new or materially revised notebook, meaningful
-project milestone, correction, surprising source tension, or cross-wake synthesis—propose ONE optional blog
-action, last in the actions array. If several qualify, choose the most novel and useful to an outsider; if none
-qualify, omit it. The story need not originate in this wake. Do not blog merely because a cycle ran. Valid
-research can be accepted while an invalid final blog action is withheld with an editorial receipt.
-Routine collection, queue changes, receipts, cron success, and generic reflection are not stories.
+Bob is WAKE✳'s public correspondent. On every wake, make an editorial judgment. Ordinary publication
+is event-driven: when eligible durable work is genuinely worth explaining—a new or materially revised
+notebook, meaningful project milestone, correction, surprising source tension, or cross-wake synthesis—
+propose ONE optional blog action, last in the actions array. If several qualify, choose the most novel and
+useful to an outsider; if none qualify, omit it. The story need not originate in this wake. Do not blog merely
+because a cycle ran. Valid research can be accepted while an invalid final blog action is withheld with an
+editorial receipt. Routine collection, queue changes, receipts, cron success, and generic reflection are not stories.
+
+Two governance-backed editorial checkpoints prevent indefinite silence. If bob_reflection_due is true,
+a Bob post is mandatory and must use bob_reflection_cycle as reflection_cycle. With no prior public post,
+that checkpoint is Bob's opening introduction: explain who Bob is, his role, and what WAKE✳ is doing without
+inventing research findings. After a prior post exists, the checkpoint means the system has gone roughly
+15–20 accepted wakes without publication; write a useful longitudinal reflection on what changed, what
+remains unresolved, and why it matters. The exact silence window is deliberately jittered by deterministic
+governance rather than tied to a visible every-N schedule. Interesting work should still publish earlier.
+
 Ordinary Bob publication is a stronger promotion boundary than a working notebook: it requires at least
 two distinct qualifying collected source works traceable through the selected notebooks, and current
 verification-required public claims must materially match at least two distinct URLs. A provisional
-one-source notebook may remain durable research without being publishable. All provenance, notebook
-traceability, evidence-role, claim-support, and editorial rules remain.
-
-Bob has no publication cadence or numbered-cycle obligation. Generic reflection is not a reason to publish.
+one-source notebook may remain durable research without being publishable. Due Bob editorial reflections
+are a separate system-wide publication mode and must remain careful not to present unsupported research
+claims as findings. All provenance, notebook traceability, evidence-role, claim-support, and editorial rules remain.
 
 Architecture claims about WAKE itself must match the supplied repository record exactly. In particular:
 SQLite is the durable database containing the append-only hash-linked events and a snapshot projection.
@@ -221,7 +228,9 @@ Exact shape:
  "body":"Readable plain-text post, 300–6000 characters","notebooks":["notebook-id"],
  "evidence":["source-ID-1","source-ID-2"],"reason":"Why this is genuinely worth discussing now",
  "lens":"Optional short original philosophical reflection"}
-Do not emit reflection_cycle. Bob posts retain the 300-character minimum and optional Lens.
+Emit reflection_cycle only when bob_reflection_due is true in the supplied context, using exactly
+bob_reflection_cycle. Otherwise omit it. Ordinary Bob posts retain the 300-character minimum and optional Lens;
+due editorial reflections follow the stricter schema exposed for that wake.
 The optional lens may reflect on observation, uncertainty, listening, perspective, humility, and
 limits of intuition. Keep it clearly separate from research findings. Philosophical metaphor is not
 scientific evidence, and analogy must never be presented as a causal explanation. Distinguish research findings, synthesis, analogy, speculation, and reflection.
@@ -1010,7 +1019,7 @@ class Fixture:
                 ),
                 "notebooks": [],
                 "evidence": [],
-                "reason": "Exercise the mechanically enforced ten-cycle Bob reflection milestone.",
+                "reason": "Exercise the mechanically enforced Bob editorial checkpoint.",
                 "lens": "A deterministic reflection tests the publication contract, not a mind.",
                 "reflection_cycle": milestone,
             })
