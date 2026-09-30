@@ -374,6 +374,63 @@ class PlainText(HTMLParser):
             self.parts.append(data.strip())
 
 
+EVIDENCE_EXCERPT_CHARS = 10_000
+EVIDENCE_SECTION_HEADINGS = (
+    "abstract", "summary", "results", "result", "findings", "finding",
+    "discussion", "conclusions", "conclusion", "limitations", "limitation",
+)
+
+
+def _bounded_research_excerpt(text, limit=EVIDENCE_EXCERPT_CHARS):
+    """Keep a bounded but research-useful view of long source text.
+
+    A blind prefix disproportionately keeps introductions and can discard the
+    results/discussion/conclusion material needed to judge whether a source
+    actually supports a project. Preserve the beginning for title/context, then
+    allocate bounded windows around common evidence-bearing section headings,
+    and always retain the ending. The full source remains fingerprinted by
+    source_sha256; this function only controls the provider-facing excerpt.
+    """
+    text = (text or "").strip()
+    if len(text) <= limit:
+        return text, False
+
+    separator = "\n\n[... bounded source excerpt ...]\n\n"
+    lead_budget = min(2_500, max(1_000, limit // 4))
+    tail_budget = min(2_500, max(1_000, limit // 4))
+    middle_budget = max(0, limit - lead_budget - tail_budget - len(separator) * 6)
+
+    starts = []
+    for heading in EVIDENCE_SECTION_HEADINGS:
+        match = re.search(
+            rf"(?im)^(?:\d+(?:\.\d+)*[.)]?\s*)?{re.escape(heading)}\b[^\n]*",
+            text,
+        )
+        if match and match.start() not in starts:
+            starts.append(match.start())
+
+    # Prefer distinct sections in document order. A few compact windows are
+    # more useful than spending the whole budget on the first matched section.
+    starts = sorted(starts)[:6]
+    per_section = middle_budget // len(starts) if starts else 0
+
+    ranges = [(0, lead_budget)]
+    if per_section:
+        for start in starts:
+            ranges.append((max(0, start - 120), min(len(text), start + per_section)))
+    ranges.append((max(0, len(text) - tail_budget), len(text)))
+
+    merged = []
+    for start, end in sorted(ranges):
+        if merged and start <= merged[-1][1]:
+            merged[-1] = (merged[-1][0], max(merged[-1][1], end))
+        else:
+            merged.append((start, end))
+
+    excerpt = separator.join(text[start:end].strip() for start, end in merged if end > start)
+    return excerpt[:limit], True
+
+
 # ---------------------------------------------------------------------------
 # STEP: fetch_source
 #
@@ -529,8 +586,9 @@ def _fetch_source_unbounded(url, discovery_only=False):
     if len(text.strip()) < 80:
         raise ValueError("Source did not provide enough readable content")
     # Keep raw-source fingerprints and explicit excerpt bounds; never claim full-text access.
-    return {"url": url, "scope": scope, "excerpt": text[:10000],
-            "excerpt_truncated": len(text) > 10000, "source_sha256": hashlib.sha256(raw).hexdigest()}
+    excerpt, excerpt_truncated = _bounded_research_excerpt(text)
+    return {"url": url, "scope": scope, "excerpt": excerpt,
+            "excerpt_truncated": excerpt_truncated, "source_sha256": hashlib.sha256(raw).hexdigest()}
 
 
 def fetch_source(url, discovery_only=False):
