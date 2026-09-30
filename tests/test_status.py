@@ -26,7 +26,10 @@ class StatusTests(unittest.TestCase):
         result = wake_status(state, now=now)
         self.assertEqual(result["last_accepted"]["id"], "a")
         self.assertEqual(result["latest_attempt"]["id"], "b")
-        self.assertIsNone(result["next_eligible"])
+        self.assertEqual(
+            datetime.fromisoformat(result["next_eligible"]),
+            datetime(2026,9,14,9,0,15,tzinfo=timezone.utc),
+        )
         limited = wake_status(state, daily_call_limit=2, now=now)
         self.assertEqual(datetime.fromisoformat(limited["next_eligible"]).astimezone(timezone.utc), datetime(2026,9,15,7,tzinfo=timezone.utc))
         state["pending"] = "b"
