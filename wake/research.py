@@ -911,7 +911,15 @@ def collect(engine, fetcher=fetch_source, monotonic=time.monotonic):
             pending_projects.add(project["id"])
             break
 
-    remaining_slots = min(exploration_slots, discovery_count - len(pending))
+    # If actionable maturation work cannot fill its reserved capacity, give
+    # the unused slots back to neutral exploration rather than wasting the
+    # bounded collector budget. Exploration receipts are not project acquisition
+    # receipts, so they cannot overwrite a project's concrete routing progress.
+    unused_maturation_slots = max(0, maturation_slots - len(pending))
+    remaining_slots = min(
+        exploration_slots + unused_maturation_slots,
+        discovery_count - len(pending),
+    )
     if remaining_slots:
         pool = [topic for topic in alternatives
                 if not pending or topic["id"] != pending[0]["domain"]]
