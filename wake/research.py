@@ -877,12 +877,20 @@ def collect(engine, fetcher=fetch_source, monotonic=time.monotonic):
         used_urls.add(url)
         used_queue_ids.add(followup["id"])
 
-    # If a project has no explicit follow-up yet, use its own durable question
-    # to spend remaining maturation slots on targeted scholarly discovery rather
-    # than random unrelated topics.
+    # If a project has no explicit follow-up or actionable acquisition trail
+    # already selected in this pass, use its durable question for targeted
+    # scholarly discovery. Do not mix a known exact/source-candidate hop with a
+    # fresh broad search for the same project in one collection pass: that can
+    # overwrite a real routing-progress receipt with unrelated no-progress noise
+    # and can seed irrelevant identifiers before the known trail is exhausted.
+    pending_projects = {
+        item.get("project") for item in pending if item.get("project")
+    }
     for project in sorted(active_projects, key=lambda item: item["id"]):
         if len(pending) >= maturation_slots:
             break
+        if project["id"] in pending_projects:
+            continue
         query = project.get("question") or project.get("title") or project.get("next_step")
         routes = research_urls(
             query, project["domain"], attempts + len(pending),
@@ -900,6 +908,8 @@ def collect(engine, fetcher=fetch_source, monotonic=time.monotonic):
                 "targeted_discovery": True,
             })
             used_urls.add(url)
+            pending_projects.add(project["id"])
+            break
 
     remaining_slots = min(exploration_slots, discovery_count - len(pending))
     if remaining_slots:
