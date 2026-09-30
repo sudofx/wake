@@ -1,8 +1,8 @@
 name: WAKE✳︎ — Reset WAKE to 0
 run-name: "Reset WAKE✳︎ to 0"
 
-# ELI5: Press Run workflow to archive the current durable WAKE history,
-# then start a new active experiment at zero. The button is the confirmation.
+# ELI5: Press Run workflow. Reset stops WAKE✳︎ if needed, archives the current
+# durable history, then starts a new active experiment at zero.
 on:
   workflow_dispatch:
 
@@ -19,27 +19,45 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Refuse to reset while research is running
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          set -euo pipefail
-          active="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50"             --jq '[.workflow_runs[] | select(.head_branch=="wake-runtime" and .status!="completed")] | length')"
-          if [[ "$active" != "0" ]]; then
-            echo "::error::WAKE✳︎ is still running. Run Stop research first, then run this reset again."
-            exit 1
-          fi
-
-      - name: Keep continuous research stopped
+      - name: Stop continuous research
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh api --method PUT "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml/disable" >/dev/null || true
 
-      - name: Dispatch the governed reset
+      - name: Cancel any active research cycle
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mapfile -t runs < <(
+            gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50"               --jq '.workflow_runs[] | select(.head_branch=="wake-runtime" and .status!="completed") | .id'
+          )
+          for run_id in "${runs[@]}"; do
+            gh api --method POST "repos/$GITHUB_REPOSITORY/actions/runs/$run_id/cancel" >/dev/null || true
+          done
+          echo "Asked GitHub to cancel ${#runs[@]} active WAKE cycle(s)." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Wait until research is fully stopped
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          for attempt in {1..30}; do
+            active="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50"               --jq '[.workflow_runs[] | select(.head_branch=="wake-runtime" and .status!="completed")] | length')"
+            if [[ "$active" == "0" ]]; then
+              echo "WAKE✳︎ is fully stopped." >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "::error::WAKE✳︎ did not fully stop before the reset safety timeout."
+          exit 1
+
+      - name: Dispatch the governed archive-first reset
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           runtime_ref="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha')"
           gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime             -f "dispatch_token=reset-$GITHUB_RUN_ID"             -f "runtime_ref=$runtime_ref"             -f "reset=true"
-          echo "Reset requested. Continuous research remains stopped." >> "$GITHUB_STEP_SUMMARY"
+          echo "Wake Zero reset requested. Continuous research remains stopped." >> "$GITHUB_STEP_SUMMARY"
