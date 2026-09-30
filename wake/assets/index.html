@@ -42,8 +42,8 @@ Keep presentation subordinate to the canonical durable record.
   </nav>
   <div class="header-tools">
     <label class="data-switch theme-switch" title="Follow system theme"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><span class="data-switch-track" aria-hidden="true"><i></i></span></label>
-    <a class="owner-login operator-actions-link" href="https://github.com/sudofx/wake/actions" aria-label="Open WAKE GitHub Actions" title="Operator · GitHub Actions">
-      <span class="owner-status-track" aria-hidden="true"><i class="owner-status-light"></i></span><span>Operator</span>
+    <a class="operator-actions-link" href="https://github.com/sudofx/wake/actions" aria-label="Open WAKE GitHub Actions" title="Operator · GitHub Actions">
+      <span class="operator-status-track" aria-hidden="true"><i class="operator-status-dot"></i></span><span>Operator</span>
     </a>
   </div>
 </header>
@@ -86,7 +86,7 @@ Keep presentation subordinate to the canonical durable record.
 </div>
 <noscript><p>This interactive journal needs JavaScript. Read the <a href="events.html">human-readable history</a> or <a href="state.html">human-readable durable state</a>.</p></noscript>
 </main>
-<footer><a class="footer-mark" href="#home">WAKE✳︎</a><span>DISPOSABLE MODELS. DURABLE ACCOUNTABILITY.</span><div><a href="#about">About →</a><a href="state.html">State →</a><a href="events.html">History →</a><a href="journal.md">Journal source ↓</a></div><div class="data-visibility"><label class="data-switch"><input id="data-visibility-toggle" type="checkbox" role="switch" aria-label="Hide current WAKE data"><span class="data-switch-track" aria-hidden="true"><i></i></span><b>HIDE CURRENT DATA</b></label><span id="data-visibility-note">CURRENT DATA VISIBLE</span></div><p>Made of evidence, not vibes. <span id="generated"></span></p></footer>
+<footer><a class="footer-mark" href="#home">WAKE✳︎</a><span>DISPOSABLE MODELS. DURABLE ACCOUNTABILITY.</span><div><a href="#about">About →</a><a href="state.html">State →</a><a href="events.html">History →</a><a href="journal.md">Journal source ↓</a></div><p>Made of evidence, not vibes. <span id="generated"></span></p></footer>
 <script>
 window.WakeLiveUrl='https://raw.githubusercontent.com/sudofx/wake/wake-live/live.json';
 window.WakeData=fetch(window.WakeLiveUrl+'?wake='+Date.now(),{cache:'no-store'})
@@ -95,17 +95,9 @@ window.WakeData=fetch(window.WakeLiveUrl+'?wake='+Date.now(),{cache:'no-store'})
     .then(response=>{if(!response.ok)throw new Error('Published WAKE fallback could not be loaded');return response.json()}))
   .then(data=>{
     data.public_cycle=Number(data.state?.version||0);
-    let hidden=false;
-    try{hidden=localStorage.getItem('wake-hide-current-data')==='1'}catch{}
-    if(hidden){
-      const state=data.state||{};
-      Object.assign(state,{version:0,beliefs:{},commitments:{},projects:{},notebooks:{},invocations:{},evidence:{},journal:[],research:{},posts:{}});
-      data.events=[];data.wake_status={};data.operation=null;
-    }
     return data;
   });
 </script>
-<script>/* DATA_VIEW_SCRIPT */</script>
 <script>/* HELP_SCRIPT */</script>
 <script>/* PET_SCRIPT */</script>
 <script>/* WAKE_SCRIPT */</script>
