@@ -49,11 +49,13 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertNotIn('location.replace(url.toString())', page)
         self.assertIn('window.WakeApplyLive = next =>', app)
 
-    def test_runtime_pin_survives_successor_dispatch(self):
+    def test_runtime_pin_survives_start_and_successor_dispatch(self):
+        start = self.read('.github/workflows/operator-start.yml')
         runner = self.read('.github/workflows/wake-runner.yml')
         cycle = self.read('.github/workflows/wake.yml')
-        self.assertIn('wake-runtime', runner)
-        self.assertIn('runtime_ref=$RUNTIME_REF', runner)
+        self.assertIn('git/ref/heads/wake-runtime', start)
+        self.assertIn('-f "runtime_ref=$runtime_ref"', start)
+        self.assertNotIn('gh workflow run wake.yml', runner)
         self.assertIn('ref: ${{ inputs.runtime_ref || github.sha }}', cycle)
         self.assertIn('--ref wake-runtime', cycle)
         self.assertIn('runtime_ref=$RUNTIME_REF', cycle)
