@@ -1,14 +1,10 @@
 name: WAKE✳︎ — Reset WAKE to 0
 run-name: "Reset WAKE✳︎ to 0"
 
-# ELI5: This archives the current durable WAKE history, then starts a new active experiment at zero.
+# ELI5: Press Run workflow to archive the current durable WAKE history,
+# then start a new active experiment at zero. The button is the confirmation.
 on:
   workflow_dispatch:
-    inputs:
-      confirm_reset:
-        description: Type RESET exactly to archive current history and start Wake Zero
-        type: string
-        required: true
 
 permissions:
   actions: write
@@ -23,13 +19,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Require the word RESET
-        run: |
-          test "${{ inputs.confirm_reset }}" = "RESET" || {
-            echo "::error::Reset cancelled. Type RESET exactly."
-            exit 1
-          }
-
       - name: Refuse to reset while research is running
         env:
           GH_TOKEN: ${{ github.token }}
@@ -37,7 +26,7 @@ jobs:
           set -euo pipefail
           active="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50"             --jq '[.workflow_runs[] | select(.head_branch=="wake-runtime" and .status!="completed")] | length')"
           if [[ "$active" != "0" ]]; then
-            echo "::error::WAKE✳︎ is still running. Run Stop research first, then retry RESET."
+            echo "::error::WAKE✳︎ is still running. Run Stop research first, then run this reset again."
             exit 1
           fi
 
