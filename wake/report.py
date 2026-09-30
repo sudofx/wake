@@ -41,17 +41,6 @@ def _with_shared_theme_switch(render):
     return wrapped
 
 
-# ---------------------------------------------------------------------------
-# STEP: atomic_write
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Callers may rely on this contract.
-
-
-# ---------------------------------------------------------------------------
-
 
 def atomic_write(path, content):
     path = Path(path)
@@ -64,32 +53,10 @@ def atomic_write(path, content):
     temporary.replace(path)
 
 
-# ---------------------------------------------------------------------------
-# STEP: _pretty
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-
-
-# ---------------------------------------------------------------------------
-
 
 def _pretty(value):
     return json.dumps(value, indent=2, ensure_ascii=False, sort_keys=False)
 
-
-# ---------------------------------------------------------------------------
-# STEP: _display_text
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-
-
-# ---------------------------------------------------------------------------
 
 
 def _display_text(value):
@@ -98,50 +65,17 @@ def _display_text(value):
     return text.replace("WAKE✳", "WAKE\u2733\uFE0E")
 
 
-# ---------------------------------------------------------------------------
-# STEP: _md_text
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-
-
-# ---------------------------------------------------------------------------
-
 
 def _md_text(value):
     text = _display_text(value).replace("**WAKE✳︎**", "WAKE✳︎")
     return text.replace("WAKE✳︎", "**WAKE✳︎**")
 
 
-# ---------------------------------------------------------------------------
-# STEP: _html_text
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-
-
-# ---------------------------------------------------------------------------
-
 
 def _html_text(value):
     escaped = html.escape(_display_text(value))
     return escaped.replace("WAKE✳︎", '<strong class="wake-mark">WAKE✳︎</strong>')
 
-
-# ---------------------------------------------------------------------------
-# STEP: _md_code
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-
-
-# ---------------------------------------------------------------------------
 
 
 def _md_code(value, language="json"):
@@ -153,17 +87,6 @@ def _md_code(value, language="json"):
     return f"{fence}{language}\n{text}\n{fence}"
 
 
-# ---------------------------------------------------------------------------
-# STEP: _html_pre
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-
-
-# ---------------------------------------------------------------------------
-
 
 def _html_pre(value):
     text = value if isinstance(value, str) else _pretty(value)
@@ -172,17 +95,6 @@ def _html_pre(value):
     text = _display_text(text)
     return f"<pre>{html.escape(text)}</pre>"
 
-
-# ---------------------------------------------------------------------------
-# STEP: _human_events_markdown
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-
-
-# ---------------------------------------------------------------------------
 
 
 def _human_events_markdown(events, head):
@@ -257,17 +169,6 @@ def _human_events_markdown(events, head):
     return "\n".join(lines).rstrip() + "\n"
 
 
-# ---------------------------------------------------------------------------
-# STEP: _human_state_markdown
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-
-
-# ---------------------------------------------------------------------------
-
 
 def _human_state_markdown(state, head):
     lines = [
@@ -314,17 +215,6 @@ def _human_state_markdown(state, head):
                 lines += [heading, "", _md_code(item), ""]
     return "\n".join(lines).rstrip() + "\n"
 
-
-# ---------------------------------------------------------------------------
-# STEP: _human_page
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-
-
-# ---------------------------------------------------------------------------
 
 
 @_with_shared_theme_switch
@@ -398,17 +288,6 @@ def _human_events_html(events, head):
     return _human_page("Human-readable event history", "Every recorded event, including exact model requests and replies, without changing the canonical JSONL.", body, head, "events.jsonl", "events.md")
 
 
-# ---------------------------------------------------------------------------
-# STEP: _human_state_html
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-
-
-# ---------------------------------------------------------------------------
-
 
 def _human_state_html(state, head):
     sections = [
@@ -431,17 +310,6 @@ def _human_state_html(state, head):
             chunks.append(f"<details><summary>{html.escape(str(summary))}</summary><div class=\"inside\">{_html_pre(item)}</div></details>")
     return _human_page("Human-readable durable state", "The current projected state, reorganized for reading without changing the canonical JSON.", "".join(chunks), head, "state.json", "state.md")
 
-
-# ---------------------------------------------------------------------------
-# STEP: _reading_page
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-
-
-# ---------------------------------------------------------------------------
 
 
 def _reading_time(value):
@@ -576,17 +444,6 @@ def _notebook_html(notebook, state):
     return _reading_page(notebook["title"], "WAKE✳︎ / RESEARCH NOTEBOOK", body, notebook["id"] + ".md", meta_html=meta)
 
 
-# ---------------------------------------------------------------------------
-# STEP: _blog_html
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-
-
-# ---------------------------------------------------------------------------
-
 
 def _blog_display_title(post):
     """Keep scheduled Bob reflections recognisable in every public export."""
@@ -674,17 +531,6 @@ def _blog_html(post, state):
     meta = _reading_meta("REFLECTION" if is_reflection else "BLOG", status, _topic_meta(state, domain, "blog"), invocation.get("time"), post.get("status") or "published")
     return _reading_page(_blog_display_title(post), "BOB / WAKE✳︎ BLOG", body, post["id"] + ".md", meta_html=meta)
 
-
-# ---------------------------------------------------------------------------
-# STEP: export
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Callers may rely on this contract.
-
-
-# ---------------------------------------------------------------------------
 
 
 
