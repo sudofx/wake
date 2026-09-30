@@ -111,16 +111,20 @@ nav.compact-nav{display:flex;align-items:center;justify-content:center;gap:22px;
   .actions-light-track{width:24px;height:24px;flex-basis:24px;padding:3px}
   .actions-light-track i{width:16px;height:16px;flex-basis:16px}
   .theme-switch{min-width:44px;min-height:38px;display:inline-flex;align-items:center;justify-content:center}
+  .theme-switch .data-switch-track{width:42px;height:24px;flex-basis:42px;padding:3px}
+  .theme-switch .data-switch-track i{width:16px;height:16px;flex-basis:16px}
   .theme-switch input:checked+.data-switch-track i{transform:translateX(18px)}
 }
 @media(max-width:390px){
-  .masthead{gap:12px 8px;padding:18px 14px 15px}
-  .wordmark{font-size:clamp(38px,10.8vw,43px)!important;letter-spacing:-2.4px!important;flex:1 1 0}
-  .wordmark small{font-size:clamp(9px,2.6vw,11px)!important;letter-spacing:.8px!important;margin-top:10px!important}
-  .header-tools{gap:6px}
+  .masthead{gap:12px 10px;padding:18px 14px 15px}
+  .wordmark{font-size:clamp(40px,11.2vw,44px)!important;letter-spacing:-2.4px!important;flex:1 1 210px}
+  .wordmark small{font-size:clamp(10px,2.7vw,11px)!important;letter-spacing:.9px!important;margin-top:10px!important}
+  .header-tools{gap:8px}
   .actions-light{width:42px;height:38px;flex-basis:42px}
   .actions-light-track{width:23px;height:23px;flex-basis:23px}
   .actions-light-track i{width:15px;height:15px;flex-basis:15px}
-  .theme-switch{min-width:40px;min-height:38px}
+  .theme-switch{min-width:42px;min-height:38px}
+  .theme-switch .data-switch-track{width:40px;height:23px;flex-basis:40px}
+  .theme-switch .data-switch-track i{width:15px;height:15px;flex-basis:15px}
   .theme-switch input:checked+.data-switch-track i{transform:translateX(17px)}
 }
