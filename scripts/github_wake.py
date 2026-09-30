@@ -30,7 +30,7 @@ from wake.research import collect
 from wake.live import build_live_projection
 
 
-from wake.scheduling import wake_status
+from wake.scheduling import TRANSIENT_RETRY_DELAY, wake_status
 
 
 def set_step_output(name, value):
@@ -192,7 +192,7 @@ def continuation_outputs(result):
     retry_after = 0
     if status == "deferred" and reason.startswith("Gemini temporarily unavailable"):
         continue_now = True
-        retry_after = 15
+        retry_after = int(TRANSIENT_RETRY_DELAY.total_seconds())
     set_step_output("status", status or "unknown")
     set_step_output("continue_now", "true" if continue_now else "false")
     set_step_output("retry_after", str(retry_after))
