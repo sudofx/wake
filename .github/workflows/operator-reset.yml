@@ -1,0 +1,56 @@
+name: WAKE✳︎ — RESET TO WAKE 0
+run-name: "RESET WAKE✳︎ durable record to 0"
+
+# ELI5: This erases the current durable WAKE research/history and starts the experiment over at zero.
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_reset:
+        description: Type RESET exactly to confirm the destructive reset
+        type: string
+        required: true
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: wake-operator-reset
+  cancel-in-progress: false
+
+jobs:
+  reset:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Require the word RESET
+        run: |
+          test "${{ inputs.confirm_reset }}" = "RESET" || {
+            echo "::error::Reset cancelled. Type RESET exactly."
+            exit 1
+          }
+
+      - name: Refuse to reset while research is running
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          active="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50"             --jq '[.workflow_runs[] | select(.head_branch=="wake-runtime" and .status!="completed")] | length')"
+          if [[ "$active" != "0" ]]; then
+            echo "::error::WAKE✳︎ is still running. Run STOP CONTINUOUS RESEARCH first, then retry RESET."
+            exit 1
+          fi
+
+      - name: Keep continuous research stopped
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method PUT "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml/disable" >/dev/null || true
+
+      - name: Dispatch the governed reset
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          runtime_ref="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha')"
+          gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime             -f "dispatch_token=reset-$GITHUB_RUN_ID"             -f "runtime_ref=$runtime_ref"             -f "reset=true"             -f "scheduled=false"
+          echo "Reset requested. Continuous research remains stopped." >> "$GITHUB_STEP_SUMMARY"

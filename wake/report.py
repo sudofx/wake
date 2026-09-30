@@ -768,15 +768,10 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         target.mkdir(parents=True, exist_ok=True)
         assets = Path(__file__).parent / "assets"
         template = (assets / "index.html").read_text().replace("WAKE_CYCLE_COUNT", str(state["version"]))
-        # Public configuration only. OAuth credentials and GitHub tokens remain
-        # inside the confidential control Worker; absent configuration hides the
-        # operator controls entirely.
-        control_url = os.environ.get("WAKE_CONTROL_URL", "").rstrip("/")
-        template = template.replace("WAKE_CONTROL_URL", json.dumps(control_url))
         # Publish source styles alongside every HTML view: Pages and exports share
         # the same theme file rather than receiving copied inline palettes.
         for name in ("style.css", "nav.css", "map.css", "map3d.css", "theme.css",
-                     "nav.js", "control.js", "map.js", "map3d.js", "flat-view.js"):
+                     "nav.js", "map.js", "map3d.js", "flat-view.js"):
             atomic_write(target / name, (assets / name).read_text())
         browser_data = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
         atomic_write(target / "wake-data.json", browser_data)
@@ -812,7 +807,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
                 atomic_write(target / filename, content)
             if experiment:
                 atomic_write(target / "experiment.json", json.dumps(experiment, indent=2))
-            for name in ("nav.js", "control.js", "map.js", "map3d.js", "flat-view.js"):
+            for name in ("nav.js", "map.js", "map3d.js", "flat-view.js"):
                 atomic_write(target / name, (assets / name).read_text())
 
             # The map shells already fetch their data at browser load. Keep the
@@ -822,7 +817,6 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             graph_json = json.dumps(graph, ensure_ascii=False)
             atomic_write(target / "map-data.json", graph_json)
             map_page = (assets / "map.html").read_text().replace("WAKE_CYCLE_COUNT", str(state["version"]))
-            map_page = map_page.replace("WAKE_CONTROL_URL", json.dumps(control_url))
             atomic_write(target / "map.html", map_page)
             graph3d_shell, graph3d_shards = build_map3d_projection(graph)
             atomic_write(target / "map3d-data.json", json.dumps(graph3d_shell, ensure_ascii=False))
@@ -831,7 +825,6 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             for parent, shard in graph3d_shards.items():
                 atomic_write(shard_dir / map3d_shard_filename(parent), json.dumps(shard, ensure_ascii=False))
             map3d_page = (assets / "map3d.html").read_text().replace("WAKE_CYCLE_COUNT", str(state["version"]))
-            map3d_page = map3d_page.replace("WAKE_CONTROL_URL", json.dumps(control_url))
             atomic_write(target / "map3d.html", map3d_page)
 
             # Preserve long-standing readable URLs as stable browser shells.
@@ -952,11 +945,9 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         # projections change; the browser loads current data at view time.
         atomic_write(target / "map-data.json", graph_json)
         map_page = (assets / "map.html").read_text().replace("WAKE_CYCLE_COUNT", str(state["version"]))
-        map_page = map_page.replace("WAKE_CONTROL_URL", json.dumps(control_url))
         atomic_write(target / "map.html", map_page)
         atomic_write(target / "map3d-data.json", graph3d_json)
         map3d_page = (assets / "map3d.html").read_text().replace("WAKE_CYCLE_COUNT", str(state["version"]))
-        map3d_page = map3d_page.replace("WAKE_CONTROL_URL", json.dumps(control_url))
         atomic_write(target / "map3d.html", map3d_page)
         shard_dir = target / "map3d"
         if shard_dir.exists():

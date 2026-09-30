@@ -1,4 +1,4 @@
-name: Verify the record
+name: WAKE✳︎ — TEST CODE SAFETY · automatic
 
 on:
   push:
@@ -11,7 +11,6 @@ on:
       - 'wake.toml'
       - 'research-topics.toml'
       - '.github/workflows/**'
-      - 'control-worker/**'
   pull_request:
   workflow_dispatch:
 
@@ -35,12 +34,12 @@ jobs:
           python-version: ${{ matrix.python }}
       - name: Install WAKE runtime dependencies
         run: python -m pip install --disable-pip-version-check -e .
-      - name: Run fast unit and architecture tests
+      - name: Check that code and architecture rules still work
         run: python -m unittest discover -s tests -v
-      - name: Run 100-cycle verification experiment
+      - name: Simulate 100 WAKE cycles
         if: github.event_name != 'push'
         run: python -m wake --data /tmp/wake-experiment experiment --cycles 100 --output site
-      - name: Audit verification experiment
+      - name: Verify the simulated durable record
         if: github.event_name != 'push'
         run: python -m wake audit --events site/events.jsonl --head site/head.txt
       - name: Upload verified journal

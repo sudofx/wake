@@ -34,7 +34,7 @@ def publish(directory):
         raise SystemExit("Export the journal first.")
     # Newer exports include human-readable companions. Keep older fixture exports publishable.
     for name in ("state.md", "state.html", "events.md", "events.html", "map.html", "map-data.json", "map3d.html", "map3d-data.json", "blog.xml", "journal.xml",
-                 "style.css", "nav.css", "map.css", "map3d.css", "theme.css", "nav.js", "control.js", "map.js", "map3d.js", "flat-view.js"):
+                 "style.css", "nav.css", "map.css", "map3d.css", "theme.css", "nav.js", "map.js", "map3d.js", "flat-view.js"):
         if (source / name).is_file():
             names.append(name)
     if (source / "experiment.json").exists():

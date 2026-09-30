@@ -248,7 +248,9 @@ class CloudWorkflowTests(unittest.TestCase):
         pages = (root/".github/workflows/pages.yml").read_text()
         runner = (root/".github/workflows/wake-runner.yml").read_text()
         promotion = (root/".github/workflows/promote-runtime.yml").read_text()
-        worker = (root/"control-worker/worker.mjs").read_text()
+        start = (root/".github/workflows/operator-start.yml").read_text()
+        stop = (root/".github/workflows/operator-stop.yml").read_text()
+        reset = (root/".github/workflows/operator-reset.yml").read_text()
 
         # Research execution is isolated from development and Pages.
         self.assertIn("github.ref_name == 'wake-runtime'", workflow)
@@ -260,35 +262,24 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertNotIn("upload-pages-artifact", workflow)
         self.assertIn("group: wake-pages", pages)
         self.assertNotIn("GEMINI_API_KEY", pages)
+        self.assertNotIn("WAKE_CONTROL_URL", pages)
+        self.assertNotIn("WAKE_CONTROL_URL", workflow)
 
-        # Bootstrap and operator actions never adopt master as executable runtime.
-        self.assertIn("never mutates wake-runtime", runner)
-        self.assertNotIn("git push --force", runner)
-        self.assertNotIn('runtime_ref: "master"', worker)
-        self.assertIn("ref: RUNNER_REF", worker)
+        # GitHub Actions is the complete operator boundary.
+        self.assertIn("START CONTINUOUS RESEARCH", start)
+        self.assertIn("wake-runner.yml/enable", start)
+        self.assertIn("gh workflow run wake.yml", start)
+        self.assertIn("STOP CONTINUOUS RESEARCH", stop)
+        self.assertIn("wake-runner.yml/disable", stop)
+        self.assertIn("/cancel", stop)
+        self.assertIn("RESET TO WAKE 0", reset)
+        self.assertIn('confirm_reset', reset)
+        self.assertIn("wake-runner.yml/disable", reset)
+        self.assertIn('reset=true', reset)
+        self.assertIn("INTERNAL · CONTINUATION LATCH", runner)
 
-        # Operator state is derived from two GitHub truths: the runner workflow
-        # is the durable continuation latch, and only non-completed
-        # wake-runtime runs count as execution. Stop closes the latch before
-        # cancellation, reset refuses active work, and Start reopens the latch.
-        self.assertIn('runnerWorkflow.state === "active"', worker)
-        self.assertIn('run.head_branch === RUNNER_REF', worker)
-        self.assertIn('run.head_sha === runtimeSha', worker)
-        self.assertIn('run.status !== "completed"', worker)
-        self.assertIn('"running" : "draining"', worker)
-        self.assertIn('"stopped" : "disabled"', worker)
-        self.assertIn('/enable', worker)
-        self.assertIn('/disable', worker)
-        self.assertLess(worker.index("await disableRunner(env, session, githubFetch);"),
-                        worker.index("const cancelledRuns = await cancelRuns(env, session, githubFetch);"))
-        self.assertIn("Stop WAKE✳︎ and wait for active runtime work to finish before resetting", worker)
-        self.assertIn("WAKE_WORKFLOW}/dispatches", worker)
-        self.assertIn("const executing = activeWakeRuns.length > 0", worker)
-        self.assertNotIn("const runs = [...status.activeRunnerRuns, ...status.activeWakeRuns]", worker)
-
-        # Promotion is the only explicit runtime adoption boundary and refuses
-        # to move the runtime branch while a real runtime cycle is active.
-        self.assertIn("promote runtime", promotion.lower())
+        # Promotion remains the only explicit runtime adoption boundary.
+        self.assertIn("PROMOTE TESTED CODE TO LIVE RUNTIME", promotion)
         self.assertIn('branch=wake-runtime', promotion)
         self.assertIn('.status!="completed"', promotion)
         self.assertIn("python -m unittest discover", promotion)

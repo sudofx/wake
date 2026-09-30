@@ -1,4 +1,4 @@
-name: WAKE✳︎ — publish Pages
+name: WAKE✳︎ — PUBLISH WEBSITE · automatic
 
 # Static application-shell publication only. Cycles never dispatch this workflow.
 on:
@@ -29,8 +29,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 3
-    env:
-      WAKE_CONTROL_URL: ${{ vars.WAKE_CONTROL_URL }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -40,7 +38,7 @@ jobs:
           python-version: '3.12'
       - name: Install WAKE runtime dependencies
         run: python -m pip install --disable-pip-version-check -e .
-      - name: Render static application shell from wake-live
+      - name: Build the public website from WAKE data
         run: python scripts/publish_pages.py
       - name: Confirm report is ready
         run: test -f site/index.html
@@ -63,6 +61,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Publish interface
+      - name: Put the website live
         id: deployment
         uses: actions/deploy-pages@v4

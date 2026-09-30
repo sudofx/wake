@@ -1,19 +1,19 @@
-name: WAKE✳︎ — continuous runner
+name: WAKE✳︎ — INTERNAL · CONTINUATION LATCH
 run-name: "WAKE✳︎ runtime bootstrap · ${{ inputs.dispatch_token || github.run_id }}"
 
-# Compatibility/operator bootstrap only.
+# Internal continuation latch. Operator-facing start/stop workflows control this.
 # This workflow never promotes code and never mutates wake-runtime.
 # Runtime promotion is owned exclusively by promote-runtime.yml.
 on:
   workflow_dispatch:
     inputs:
       dispatch_token:
-        description: Optional operator correlation token
+        description: Internal bootstrap ID. Use START CONTINUOUS RESEARCH instead.
         type: string
         required: false
         default: ''
       runtime_ref:
-        description: Deprecated compatibility input; ignored. Runtime always comes from wake-runtime.
+        description: Internal compatibility input. Use START CONTINUOUS RESEARCH instead.
         type: string
         required: false
         default: ''
