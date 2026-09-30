@@ -224,7 +224,7 @@ Working abstractions keep evidence pointers and retrieval hooks; they do not rep
 - `scripts/github_wake.py`: fresh-runner recovery and durable GitHub checkpoints.
 - `wake/providers.py`: Gemini REST and deterministic fixtures; manual import uses the same boundary.
 - `wake/report.py`, `wake/assets/`: Bob's Blog plus portable HTML and Markdown reports.
-- `assets/covers/`: archived Lab Comics covers. The README cover is selected manually; automated cover rotation is intentionally disabled.
+- `assets/covers/`: archived Lab Comics covers.
 - `wake/experiment.py`: executable 100–1000-cycle experiment.
 - `tests/`: failure, governance, provider-contract and audit checks.
 - `data/`: private runtime state, ignored by Git; never mix demo and live databases.
@@ -242,14 +242,11 @@ Organizations that want to incorporate **WAKE✳︎** into proprietary software 
 
 Earlier versions that were published under the MIT License remain available under the rights already granted for those versions; this relicensing governs the current and future **WAKE✳︎** code released by the copyright holder under this repository's license unless expressly stated otherwise.
 
-## Verify and package
+## Verify
 
 ```sh
 python3 -m unittest discover -s tests -v
-python3 scripts/package.py
 ```
-
-The replacement ZIP is `dist/wake.zip`. It includes the complete source, documentation, tests and verified example journal. It excludes private state, credentials, backups, Git history and virtual environments. Extract into an empty project directory, preserving `.git` if replacing a checkout.
 
 No model is immortal here. The record just has a better filing system.
 
