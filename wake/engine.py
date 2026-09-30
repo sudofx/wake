@@ -192,6 +192,29 @@ def _assign_research_ids(proposal, invocation):
     return {**proposal, "actions": actions}
 
 
+def _enforce_bob_opening_checkpoint(state, invocation, proposal):
+    """Keep Bob's first-post obligation at the research application boundary.
+
+    The durable kernel should not need to know who Bob is. The research workload
+    does: its first charged accepted wake must establish the public correspondent.
+    """
+    if not state.get("charter") or state.get("posts"):
+        return
+    invocation_state = state.get("invocations", {}).get(invocation, {})
+    if not invocation_state.get("charged"):
+        return
+    due_cycle = bob_reflection_due_cycle(state)
+    actions = proposal.get("actions") if isinstance(proposal, dict) else None
+    require(
+        isinstance(actions, list)
+        and bool(actions)
+        and isinstance(actions[-1], dict)
+        and actions[-1].get("type") == "blog"
+        and actions[-1].get("reflection_cycle") == due_cycle,
+        f"Bob opening post for accepted wake {due_cycle} is mandatory before live research may advance",
+    )
+
+
 INQUIRY_DRIVE_MIN_CYCLES = 20
 TOPIC_COLORS = (
     "#ff5bb9", "#b25dff", "#46b5ff", "#ffe574", "#93ff74", "#ff9e64",
@@ -1977,6 +2000,7 @@ class Engine:
             proposal = json.loads(raw, parse_constant=lambda x: (_ for _ in ()).throw(ValueError("Nonfinite JSON")))
             proposal, rotation_filter = _rotation_preflight(state, invocation, proposal)
             proposal = _assign_research_ids(proposal, invocation)
+            _enforce_bob_opening_checkpoint(state, invocation, proposal)
             editorial = None
             try:
                 result = transition(state, proposal, invocation)
