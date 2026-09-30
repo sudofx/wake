@@ -1066,20 +1066,21 @@ class ResearchTests(unittest.TestCase):
         ]
         self.assertEqual(bob_reflection_due_cycle(state), 4 + first)
 
-    def test_charged_first_wake_cannot_advance_without_bob_introduction(self):
+    def test_fresh_research_schema_forces_bob_introduction(self):
         with self.engine.store.lock():
-            invocation, request = self.engine.start("gemini", "test", charged=True)
-            result = self.engine.finish(
-                invocation,
-                json.dumps({
-                    "base_version": request["context"]["version"],
-                    "title": "Research fixture",
-                    "summary": "Offline boundary test",
-                    "actions": [project()],
-                }),
-            )
-        self.assertEqual(result["status"], "rejected")
-        self.assertIn("Bob reflection", result["reason"])
+            invocation, request = self.engine.start("fixture", "research-test")
+        actions = request["response_schema"]["properties"]["actions"]
+        self.assertEqual(actions["minItems"], 1)
+        self.assertEqual(actions["maxItems"], 1)
+        choices = actions["items"]["anyOf"]
+        self.assertEqual(len(choices), 1)
+        blog = choices[0]
+        self.assertEqual(blog["properties"]["type"]["enum"], ["blog"])
+        self.assertEqual(
+            blog["properties"]["reflection_cycle"]["enum"],
+            [request["context"]["bob_reflection_cycle"]],
+        )
+        self.assertIn("reflection_cycle", blog["required"])
 
     def test_revision_requires_changed_findings_and_new_evidence(self):
         self.source("s1", verified=True)
