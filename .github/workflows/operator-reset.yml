@@ -1,5 +1,5 @@
-name: WAKE✳︎ — Reset WAKE to 0
-run-name: "Reset WAKE✳︎ to 0"
+name: WAKE✳︎ - Reset
+run-name: "Reset WAKE✳︎"
 
 # ELI5: Press Run workflow. Reset stops WAKE✳︎ if needed, makes the latest
 # master code live only when needed, archives the current durable history,
