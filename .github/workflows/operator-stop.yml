@@ -1,5 +1,5 @@
-name: WAKE✳︎ — Stop research
-run-name: "Stop WAKE✳︎ research"
+name: WAKE✳︎ - Stop
+run-name: "Stop WAKE✳︎"
 
 # ELI5: Press this when you want WAKE✳︎ to stop making new research cycles.
 on:
