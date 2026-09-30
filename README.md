@@ -114,23 +114,23 @@ The included workflow itself requests only the permissions it needs: `contents: 
 
 ### 7. Configure GitHub Pages
 
-Open **Settings → Pages** and set the build/deployment source to **GitHub Actions**. Do not add a generic Jekyll/static Pages workflow; **WAKE✳︎ — PUBLISH WEBSITE · automatic** is the publisher.
+Open **Settings → Pages** and set the build/deployment source to **GitHub Actions**. Do not add a generic Jekyll/static Pages workflow; **WAKE✳︎ — Update website · automatic** is the publisher.
 
 ### 8. Operate WAKE✳︎ from GitHub Actions
 
-The public website does not authenticate operators or control the runtime. Its **Operator** link opens this repository's GitHub Actions page, where GitHub handles authentication.
+The public website does not authenticate operators or control the runtime. The flashing green light in the masthead opens this repository's GitHub Actions page, where GitHub handles authentication.
 
 Use the workflows by their literal names:
 
-- **WAKE✳︎ — START CONTINUOUS RESEARCH** — start WAKE✳︎ and keep dispatching successor cycles.
-- **WAKE✳︎ — STOP CONTINUOUS RESEARCH** — close the continuation latch first, then cancel any active research cycle.
-- **WAKE✳︎ — RESET TO WAKE 0** — destructive reset; requires typing `RESET` and refuses to run while research is active.
-- **WAKE✳︎ — PROMOTE TESTED CODE TO LIVE RUNTIME** — move verified code from `master` to `wake-runtime`; research must be stopped first.
-- **WAKE✳︎ — PUBLISH WEBSITE · automatic** — rebuild the GitHub Pages site after site-code changes.
-- **WAKE✳︎ — TEST CODE SAFETY · automatic** — run unit and architecture checks.
-- **WAKE✳︎ — INTERNAL · RUN ONE RESEARCH CYCLE** and **WAKE✳︎ — INTERNAL · CONTINUATION LATCH** are plumbing; normal operation should use the clearly named START/STOP workflows instead.
+- **WAKE✳︎ — Start research** — start WAKE✳︎ and keep it working.
+- **WAKE✳︎ — Stop research** — stop the current chain and prevent another cycle from starting.
+- **WAKE✳︎ — Reset WAKE to 0** — erase the current durable experiment and return it to zero; requires typing `RESET`.
+- **WAKE✳︎ — Make new code live** — verify `master`, then move that exact tested commit to `wake-runtime`. Research must be stopped first.
+- **WAKE✳︎ — Update website · automatic** — rebuild the public GitHub Pages site when website code changes.
+- **WAKE✳︎ — Check code · automatic** — run the repository's safety checks when code changes.
+- **WAKE✳︎ — Internal: run one research cycle** and **WAKE✳︎ — Internal: keep-running switch** are plumbing. Normal operation does not require opening them.
 
-A source-code push can refresh the site without spending a Gemini call. Runtime code changes do not affect live research until **PROMOTE TESTED CODE TO LIVE RUNTIME** succeeds.
+A source-code push can refresh the site without spending a Gemini call. Runtime code changes do not affect live research until **Make new code live** succeeds.
 
 ### 9. Verify the installation
 
@@ -141,7 +141,7 @@ Check that:
 - the public site loads;
 - `wake-state` exists after the first stateful cloud run;
 - the site reports the latest attempt separately from the latest accepted wake;
-- **WAKE✳︎ — TEST CODE SAFETY · automatic** passes on `master`.
+- **WAKE✳︎ — Check code · automatic** passes on `master`.
 
 After that, normal operation requires no open local computer.
 
