@@ -182,13 +182,13 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertNotIn("WAKE_CONTROL_URL", workflow)
 
         # GitHub Actions is the complete operator boundary.
-        self.assertIn("name: WAKE✳︎ — Start research", start)
+        self.assertIn("name: WAKE✳︎ - Start", start)
         self.assertIn("wake-runner.yml/enable", start)
         self.assertIn("gh workflow run wake.yml", start)
-        self.assertIn("name: WAKE✳︎ — Stop research", stop)
+        self.assertIn("name: WAKE✳︎ - Stop", stop)
         self.assertIn("wake-runner.yml/disable", stop)
         self.assertIn("/cancel", stop)
-        self.assertIn("name: WAKE✳︎ — Reset WAKE to 0", reset)
+        self.assertIn("name: WAKE✳︎ - Reset", reset)
         self.assertNotIn('confirm_reset', reset)
         self.assertIn("wake-runner.yml/disable", reset)
         self.assertIn('reset=true', reset)
