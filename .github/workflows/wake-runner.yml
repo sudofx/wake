@@ -1,4 +1,4 @@
-name: WAKE✳︎ — Internal only: keep-running switch
+name: "WAKE✳︎ — Internal only: keep-running switch"
 run-name: "WAKE✳︎ continuation latch"
 
 # This workflow exists only because GitHub gives workflows a durable enabled/disabled state.
