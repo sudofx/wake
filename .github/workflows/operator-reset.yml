@@ -1,12 +1,12 @@
 name: WAKE✳︎ — Reset WAKE to 0
 run-name: "Reset WAKE✳︎ to 0"
 
-# ELI5: This erases the current durable WAKE research/history and starts the experiment over at zero.
+# ELI5: This archives the current durable WAKE history, then starts a new active experiment at zero.
 on:
   workflow_dispatch:
     inputs:
       confirm_reset:
-        description: Type RESET exactly to confirm the destructive reset
+        description: Type RESET exactly to archive current history and start Wake Zero
         type: string
         required: true
 

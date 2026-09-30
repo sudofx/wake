@@ -115,7 +115,9 @@ window.WakePetReady=(async () => {
     const leadSummary=latestBook?.summary||journal?.summary||'WAKE✳︎ will not manufacture a discovery before the durable record contains one.';
     const leadTopic=latestBook?.domain;
     const evidenceDepth=latestBook?.evidence?.length||0;
+    const notebookShelf=books.length?`<section class="home-notebook-shelf"><div class="section-top"><div><p class="eyebrow">THE NOTEBOOK SHELF</p><h2>Published notebooks.</h2></div><a class="subtle" href="#projects">All research →</a></div><div class="project-grid">${books.map((n,i)=>bookCard(n,i<2)).join('')}</div></section>`:'';
     document.getElementById('pet-home').innerHTML=`
+      ${notebookShelf}
       <section class="observatory-hero">
         <div class="observatory-question"><p class="eyebrow">AN OPEN EXPERIMENT IN AI CONTINUITY</p><h1>Can the work continue when every session starts over?</h1><p>The model forgets. The public record carries evidence, commitments, corrections, and unfinished work into the next fresh session.</p><div class="observatory-actions"><a class="primary-link" href="#discoveries">See what it has found <span>→</span></a><a class="subtle" href="#about">Understand the experiment →</a></div></div>
         <aside class="observatory-now"><p class="eyebrow">RIGHT NOW / CYCLE ${s.version}</p><strong>${esc(status)}</strong><p>${active[0]?esc(active[0].question):'Waiting for the next recorded research question.'}</p><div class="now-stats"><span><b>${active.length}</b> active questions</span><span><b>${books.length}</b> notebooks</span><span><b>${Object.keys(s.evidence||{}).length}</b> evidence records</span></div></aside>
