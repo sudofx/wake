@@ -84,6 +84,11 @@ class CloudWorkflowTests(unittest.TestCase):
         operation = self.live()["operation"]
         self.assertTrue(operation["reset"])
         self.assertEqual(operation["status"], "not_started")
+        archive_branch = operation["archive_branch"]
+        self.assertTrue(archive_branch.startswith("wake-archive-"))
+        archived_refs = self.git("--git-dir", self.remote, "for-each-ref",
+                                 "refs/heads/wake-archive-*", "--format=%(refname:short)").stdout.splitlines()
+        self.assertIn(archive_branch, archived_refs)
 
     def test_access_limit_failure_is_counted_exported_visible_but_not_action_failure(self):
         class Failure(Fixture):
