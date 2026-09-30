@@ -960,6 +960,10 @@ def transition(state, proposal, invocation, historical=False):
     # later publication remains event-driven until the deterministic 15–20 wake
     # silence window makes a longitudinal reflection due.
     due_reflection_cycle = None if historical else bob_reflection_due_cycle(state)
+    # The same checkpoint identity governs both Bob's opening post and later
+    # silence-window reflections. Keeping the first post outside this value made
+    # the provider correctly emit reflection_cycle while blog validation treated
+    # that field as reserved, breaking the deterministic promotion experiment.
     required_reflection_cycle = (
         due_reflection_cycle
         if due_reflection_cycle is not None and state.get("posts")
@@ -1846,8 +1850,17 @@ def transition(state, proposal, invocation, historical=False):
                         f"Bob reflection for accepted wake {required_reflection_cycle} is mandatory and must be the final blog action",
                     )
                 else:
+                    opening_checkpoint = (
+                        bool(state.get("charter"))
+                        and not state.get("posts")
+                        and due_reflection_cycle is not None
+                    )
                     require(
-                        "reflection_cycle" not in action,
+                        "reflection_cycle" not in action
+                        or (
+                            opening_checkpoint
+                            and declared_reflection_cycle == due_reflection_cycle
+                        ),
                         "reflection_cycle is reserved for a due Bob editorial checkpoint",
                     )
 
