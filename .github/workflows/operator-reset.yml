@@ -23,7 +23,13 @@ jobs:
       - name: Stop continuous research
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh api --method PUT "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml/disable" >/dev/null
+        run: |
+          set -euo pipefail
+          state="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml" --jq '.state')"
+          if [[ "$state" == "active" ]]; then
+            gh api --method PUT "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml/disable" >/dev/null
+          fi
+          echo "Continuation latch is closed (previous state: $state)." >> "$GITHUB_STEP_SUMMARY"
 
       - name: Cancel any active research cycle
         env:
