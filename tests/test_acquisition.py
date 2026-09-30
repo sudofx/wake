@@ -142,6 +142,29 @@ class AcquisitionTests(unittest.TestCase):
             "doi:10.1000/example.1",
         )
 
+    def test_collector_uses_only_one_acquisition_hop_per_project_per_pass(self):
+        exact = "https://api.crossref.org/works/10.1000%2Fexample.1"
+        readable = "https://www.frontiersin.org/articles/10.3389/example/full"
+        with self.engine.store.lock():
+            receipt = self.receipt("crossref:metadata", "routing_progress")
+            receipt["persistent_identifiers"] = ["doi:10.1000/example.1"]
+            receipt["source_candidates"] = [readable]
+            receipt["source_candidate_identities"] = {
+                readable: "doi:10.1000/example.1"
+            }
+            self.engine.store.append("acquisition_assessed", receipt)
+            calls = []
+            collect(
+                self.engine,
+                fetcher=lambda url: calls.append(url) or {
+                    "url": url,
+                    "scope": "readable publisher article",
+                    "excerpt": "substantive readable source material " * 20,
+                },
+            )
+        project_calls = [url for url in calls if url in {exact, readable}]
+        self.assertEqual(len(project_calls), 1)
+
     def test_candidate_source_urls_keep_allowlisted_https_pdf_routes(self):
         urls = candidate_source_urls({
             "excerpt": (
