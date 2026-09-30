@@ -1,14 +1,15 @@
 name: WAKE✳︎ — Reset WAKE to 0
 run-name: "Reset WAKE✳︎ to 0"
 
-# ELI5: Press Run workflow. Reset stops WAKE✳︎ if needed, archives the current
-# durable history, then starts a new active experiment at zero.
+# ELI5: Press Run workflow. Reset stops WAKE✳︎ if needed, makes the latest
+# master code live only when needed, archives the current durable history,
+# then starts a new active experiment at zero.
 on:
   workflow_dispatch:
 
 permissions:
   actions: write
-  contents: read
+  contents: write
 
 concurrency:
   group: wake-operator-reset
@@ -17,7 +18,7 @@ concurrency:
 jobs:
   reset:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 20
     steps:
       - name: Stop continuous research
         env:
@@ -53,6 +54,67 @@ jobs:
           echo "::error::WAKE✳︎ did not fully stop before the reset safety timeout."
           exit 1
 
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 1
+
+      - name: Check whether runtime promotion is needed
+        id: promotion
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          master_sha="$(git rev-parse HEAD)"
+          runtime_sha="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha')"
+          echo "master_sha=$master_sha" >> "$GITHUB_OUTPUT"
+          echo "runtime_sha=$runtime_sha" >> "$GITHUB_OUTPUT"
+          if [[ "$master_sha" == "$runtime_sha" ]]; then
+            echo "needed=false" >> "$GITHUB_OUTPUT"
+            echo "wake-runtime already matches master; promotion skipped." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "needed=true" >> "$GITHUB_OUTPUT"
+            echo "wake-runtime differs from master; verification and promotion required." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - uses: actions/setup-python@v5
+        if: steps.promotion.outputs.needed == 'true'
+        with:
+          python-version: '3.12'
+
+      - name: Install candidate
+        if: steps.promotion.outputs.needed == 'true'
+        run: python -m pip install --disable-pip-version-check -e .
+
+      - name: Verify durable contracts
+        if: steps.promotion.outputs.needed == 'true'
+        run: python -m unittest discover -s tests -v
+
+      - name: Verify replayable experiment boundary
+        if: steps.promotion.outputs.needed == 'true'
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/wake-reset-promote /tmp/wake-reset-promote-site
+          python -m wake --data /tmp/wake-reset-promote experiment --cycles 100 --output /tmp/wake-reset-promote-site
+          python -m wake audit --events /tmp/wake-reset-promote-site/events.jsonl --head /tmp/wake-reset-promote-site/head.txt
+
+      - name: Promote verified master only when needed
+        if: steps.promotion.outputs.needed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          MASTER_SHA: ${{ steps.promotion.outputs.master_sha }}
+        run: |
+          set -euo pipefail
+          active="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50"             --jq '[.workflow_runs[] | select(.head_branch=="wake-runtime" and .status!="completed")] | length')"
+          test "$active" = "0" || {
+            echo "::error::wake-runtime became active during reset verification."
+            exit 1
+          }
+          gh api -X PATCH "repos/$GITHUB_REPOSITORY/git/refs/heads/wake-runtime"             -f sha="$MASTER_SHA" -F force=true >/dev/null
+          promoted="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha')"
+          test "$promoted" = "$MASTER_SHA"
+          echo "Promoted wake-runtime to verified master $promoted." >> "$GITHUB_STEP_SUMMARY"
+
       - name: Dispatch the governed archive-first reset
         env:
           GH_TOKEN: ${{ github.token }}
@@ -60,4 +122,4 @@ jobs:
           set -euo pipefail
           runtime_ref="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha')"
           gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime             -f "dispatch_token=reset-$GITHUB_RUN_ID"             -f "runtime_ref=$runtime_ref"             -f "reset=true"
-          echo "Wake Zero reset requested. Continuous research remains stopped." >> "$GITHUB_STEP_SUMMARY"
+          echo "Wake Zero reset requested from runtime $runtime_ref. Continuous research remains stopped." >> "$GITHUB_STEP_SUMMARY"
