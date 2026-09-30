@@ -551,14 +551,10 @@ def schema_for_context(context):
         props["notebooks"]["items"]["enum"] = sorted({n["id"] for _, n in entries})
         props["evidence"]["items"]["enum"] = evidence
 
-        # The research application owns Bob's opening post. On a fresh public
-        # record, constrain the provider to exactly one due Bob introduction so
-        # the first accepted research wake establishes the public correspondent
-        # before ordinary project work begins. Governance remains generic.
-        if reflection_due and not context.get("recent_blog"):
-            schema["properties"]["actions"]["minItems"] = 1
-            schema["properties"]["actions"]["maxItems"] = 1
-            schema["properties"]["actions"]["items"]["anyOf"] = [blog]
+        # The research application owns Bob's opening post. Keep the ordinary
+        # research actions available so the first accepted wake can both do
+        # useful work and establish Bob publicly. Engine.finish() enforces that
+        # the final action is the due Bob introduction before the wake advances.
     return schema
 # ---------------------------------------------------------------------------
 # STEP: retractable_quotes
