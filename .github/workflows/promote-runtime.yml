@@ -1,5 +1,5 @@
-name: WAKE✳︎ — PROMOTE TESTED CODE TO LIVE RUNTIME
-run-name: "Promote runtime · ${{ inputs.candidate_ref }}"
+name: WAKE✳︎ — Make new code live
+run-name: "Make ${{ inputs.candidate_ref }} live"
 
 on:
   workflow_dispatch:
@@ -85,4 +85,4 @@ jobs:
           promoted="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha')"
           test "$promoted" = "$candidate_sha"
           echo "Promoted wake-runtime to $promoted" >> "$GITHUB_STEP_SUMMARY"
-          echo "Runtime remains stopped. Restart with the START CONTINUOUS RESEARCH workflow." >> "$GITHUB_STEP_SUMMARY"
+          echo "Runtime remains stopped. Restart with the Start research workflow." >> "$GITHUB_STEP_SUMMARY"
