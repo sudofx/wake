@@ -43,6 +43,7 @@ jobs:
       continue_now: ${{ steps.cycle.outputs.continue_now }}
       retry_after: ${{ steps.cycle.outputs.retry_after }}
       status: ${{ steps.cycle.outputs.status }}
+      live_projection_updated: ${{ steps.cycle.outputs.live_projection_updated }}
     steps:
       - name: Confirm runtime isolation
         env:
@@ -81,6 +82,10 @@ jobs:
         run: |
           echo "runtime_ref=${{ inputs.runtime_ref || github.sha }}" >> "$GITHUB_STEP_SUMMARY"
           echo "status=${{ steps.cycle.outputs.status }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "live_projection_updated=${{ steps.cycle.outputs.live_projection_updated }}" >> "$GITHUB_STEP_SUMMARY"
+          if [[ "${{ steps.cycle.outputs.live_projection_updated }}" == "false" ]]; then
+            echo "::warning::Durable WAKE state was recorded, but the public live projection did not update."
+          fi
       - name: Stop only for a real operator-attention failure
         if: always() && steps.cycle.outcome == 'failure'
         run: exit 1

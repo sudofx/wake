@@ -173,6 +173,8 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertIn("REQUESTED_RUNTIME_REF", workflow)
         self.assertIn('REQUESTED_RUNTIME_REF" != "$GITHUB_SHA', workflow)
         self.assertIn("group: wake-authority", workflow)
+        self.assertIn("live_projection_updated: ${{ steps.cycle.outputs.live_projection_updated }}", workflow)
+        self.assertIn("public live projection did not update", workflow)
         self.assertIn("--ref wake-runtime", workflow)
         self.assertNotIn("deploy-pages", workflow)
         self.assertNotIn("upload-pages-artifact", workflow)
