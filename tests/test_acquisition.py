@@ -79,6 +79,10 @@ class AcquisitionTests(unittest.TestCase):
             "openalex:W12345",
         )
         self.assertEqual(
+            route_source_identity("https://doi.org/10.1000/example.1"),
+            "doi:10.1000/example.1",
+        )
+        self.assertEqual(
             route_source_identity("https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi/BioC_json/PMC1790863/unicode"),
             "pmc:PMC1790863",
         )
