@@ -12,6 +12,7 @@ import argparse
 import json
 import os
 from pathlib import Path
+from datetime import datetime, timezone
 import subprocess
 import sys
 import tempfile
@@ -83,6 +84,20 @@ class StateBranch:
             self.git("switch", "--orphan", self.branch, cwd=self.checkout)
         else:
             raise Rejected("Cannot read remote state; no model call will be made")
+
+    def archive_before_reset(self):
+        """Preserve the exact pre-reset authority on a named remote branch.
+
+        This is cheaper and safer than copying the SQLite blob into the new run:
+        the archived branch points at the already-existing wake-state commit.
+        """
+        stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+        archive_branch = f"wake-archive-{stamp}"
+        head = self.git("rev-parse", "HEAD", cwd=self.checkout).stdout.strip()
+        if not head:
+            raise Rejected("Cannot identify current wake-state head for archival reset")
+        self.git("push", "origin", f"{head}:refs/heads/{archive_branch}", cwd=self.checkout)
+        return archive_branch
 
     def checkpoint(self):
         # wake-state is authority, not a publication cache. Retire legacy
@@ -212,6 +227,10 @@ def main(reset=False):
             # durable events and must checkpoint before any provider request.
             with engine.store.lock():
                 if reset:
+                    # Preserve the exact old authority before creating Wake Zero.
+                    # The archive is a separate branch, so old history cannot
+                    # silently feed the new active run.
+                    archive_branch = branch.archive_before_reset()
                     # Reset means exactly cycle/version zero. Do not immediately
                     # re-seed initialization events; the next deliberate cycle
                     # adopts current configuration and records that transition.
@@ -228,6 +247,7 @@ def main(reset=False):
                     result = {"status": "not_started",
                               "reason": "WAKE reset to zero",
                               "reset": True,
+                              "archive_branch": archive_branch,
                               "cycle": state["version"]}
                 else:
                     provider = Gemini(settings)
@@ -270,7 +290,7 @@ def main(reset=False):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--reset", action="store_true",
-                        help="Irreversibly reset durable cloud state to WAKE 0")
+                        help="Archive current durable state, then reset active cloud state to WAKE 0")
     parser.add_argument("--confirm-reset", action="store_true",
                         help="Required confirmation for --reset")
     args = parser.parse_args()
