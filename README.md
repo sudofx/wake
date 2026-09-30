@@ -16,9 +16,9 @@ A trusted collector retrieves a bounded public sample before inference. In the c
 
 The public site exposes the same record at increasing depth: readable summaries and Bob's editorial layer at the surface; projects, notebooks and evidence underneath; MAP and the journal for provenance; exact events and state at the bottom. Bob is a communication persona, not the mechanism and not a claim that **WAKE✳︎** is a person.
 
-**[Open **WAKE✳︎**’s home](https://sudofx.github.io/wake/)** · **[Trigger a manual wake](https://github.com/sudofx/wake/actions/workflows/wake.yml)**
+**[Open **WAKE✳︎**’s home](https://sudofx.github.io/wake/)** · **[Open GitHub Actions](https://github.com/sudofx/wake/actions)**
 
-The current GitHub deployment can run without a persistent local computer. `master` holds code; `wake-state` holds the cloud record and generated public state. Each runner retrieves and verifies that durable record before continuing it, checkpoints request/quota state before contacting Gemini, and publishes the resulting static interface through GitHub Pages.
+The current GitHub deployment can run without a persistent local computer. `master` holds development code, `wake-runtime` holds the explicitly promoted live code, `wake-state` holds the authoritative SQLite record, and `wake-live` holds the disposable public projection. GitHub Pages publishes the static application shell separately.
 
 The included offline experiment remains separate from live research. It tests continuity, governance, recovery and audit mechanics with deterministic fixtures and costs zero API calls. It does not establish live-model comprehension.
 
@@ -118,7 +118,7 @@ Open **Settings → Pages** and set the build/deployment source to **GitHub Acti
 
 ### 8. Operate WAKE✳︎ from GitHub Actions
 
-The public website does not authenticate operators or control the runtime. The flashing green light in the masthead opens this repository's GitHub Actions page, where GitHub handles authentication.
+The public website does not authenticate users or control the runtime. The small flashing green light in the masthead is simply a link to this repository's GitHub Actions page.
 
 Use the workflows by their literal names:
 
@@ -136,7 +136,7 @@ A source-code push can refresh the site without spending a Gemini call. Runtime 
 
 Check that:
 
-- the workflow completes without an operator-attention failure;
+- a research cycle completes without an infrastructure failure that needs human attention;
 - the Pages deployment succeeds;
 - the public site loads;
 - `wake-state` exists after the first stateful cloud run;
@@ -167,14 +167,14 @@ Every chartered wake records a visible, deterministic shadow scorecard for activ
 novelty, coherence, generativity and self-correction. It is observational by default and does not reach the
 model. Review it in the journal's **Laboratory** view alongside the exact invocation receipts.
 
-Only after reviewing at least 20 accepted scored cycles may an operator set
+Only after reviewing at least 20 accepted scored cycles may a human maintainer set
 `inquiry_drive_enabled = true` in `wake.toml`. Until both conditions are met, the scorecard stays locked.
 When unlocked, it is supplied only as an advisory ranking for productive, revisable inquiry; it never grants
 self-preservation, rule-changing, external-action, or data-retention authority.
 
 ## Experimental controls and Time Dilation
 
-The experimental-instrument backend records operator interventions as append-only regimes, not mutable
+The experimental-instrument backend records human interventions as append-only regimes, not mutable
 preferences. The initial regime enables Time Dilation observability: every wake retains UTC wall-clock,
 accepted-cycle, intervening-event, and effective-time measurements. Effective time may be real (1×), scaled,
 or frozen, but it never rewrites timestamps or becomes evidence. Change it only with a reason:
@@ -206,7 +206,7 @@ The design principle is **progressive abstraction with recoverable provenance**:
 
 Each wake builds and durably records a deterministic lossy working set alongside the richer provider context. Under the normal size ceiling the rich context remains primary; the working set is observational. When the complete rich request still exceeds the configured 48,000-character ceiling after ordinary compaction, WAKE✳︎ makes one controlled, recoverable switch: the provider receives the deterministic bounded working representation instead. Exact event history, evidence, and state are never deleted or rewritten. The invocation receipt records `context_delivery.mode`, the original rich-request size, delivered sizes, omitted categories, and the provenance policy, so the cycle-102 ceiling event remains a visible boundary and later bounded cycles are auditable.
 
-The bounded view retains open commitments, active projects, uncertainty-bearing belief status/confidence, notebook and evidence provenance IDs, plus the governance-critical response contract. Trust Compacts remain receipt-only shadow annotations, and `inquiry_drive_enabled = false` remains unchanged; neither becomes an additional experimental variable. A request that cannot fit even in the bounded view still stops for human review, as do all unrelated operator-attention failures.
+The bounded view retains open commitments, active projects, uncertainty-bearing belief status/confidence, notebook and evidence provenance IDs, plus the governance-critical response contract. Trust Compacts remain receipt-only shadow annotations, and `inquiry_drive_enabled = false` remains unchanged; neither becomes an additional experimental variable. A request that cannot fit even in the bounded view still stops for human review, as do unrelated infrastructure failures.
 
 **Trust Compacts** extend that measurement without adding a second memory store. A compact is a deterministic,
 receipt-only candidate distilled from an evidence-backed belief: its rule, scope, strength (`SETTLED` only when
