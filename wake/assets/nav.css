@@ -90,7 +90,7 @@ nav.compact-nav{display:flex;align-items:center;justify-content:center;gap:22px;
 .theme-switch input{position:absolute;opacity:0;pointer-events:none}
 .theme-switch input:checked+.data-switch-track i{transform:translateX(16px);background:var(--cyan,var(--green))}
 .theme-switch input:focus-visible+.data-switch-track{outline:2px solid var(--cyan,var(--green));outline-offset:2px}
-.actions-light{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;width:38px;height:30px;flex:0 0 38px;padding:0;border:0;background:transparent;text-decoration:none}
+.actions-light{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;width:38px;height:30px;flex:0 0 38px;padding:0;border:0;background:transparent;text-decoration:none;cursor:default}
 .actions-light-track{position:relative;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;flex:0 0 18px;padding:2px;border:1px solid var(--line);border-radius:20px;background:var(--surface)}
 .actions-light-track i{display:block;box-sizing:border-box;width:12px;height:12px;flex:0 0 12px;border-radius:50%;background:var(--green);animation:actions-light-pulse 3.2s ease-in-out infinite}
 .actions-light:focus-visible{outline:2px solid var(--cyan,var(--green));outline-offset:3px;border-radius:4px}
