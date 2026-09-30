@@ -1066,16 +1066,18 @@ class ResearchTests(unittest.TestCase):
         ]
         self.assertEqual(bob_reflection_due_cycle(state), 4 + first)
 
-    def test_fresh_research_schema_forces_bob_introduction(self):
+    def test_fresh_research_schema_exposes_due_bob_introduction_without_pruning_work(self):
         with self.engine.store.lock():
             invocation, request = self.engine.start("fixture", "research-test")
-        actions = request["response_schema"]["properties"]["actions"]
-        self.assertEqual(actions["minItems"], 1)
-        self.assertEqual(actions["maxItems"], 1)
-        choices = actions["items"]["anyOf"]
-        self.assertEqual(len(choices), 1)
-        blog = choices[0]
-        self.assertEqual(blog["properties"]["type"]["enum"], ["blog"])
+        choices = request["response_schema"]["properties"]["actions"]["items"]["anyOf"]
+        self.assertTrue(any(
+            item["properties"]["type"]["enum"] == ["project"]
+            for item in choices
+        ))
+        blog = next(
+            item for item in choices
+            if item["properties"]["type"]["enum"] == ["blog"]
+        )
         self.assertEqual(
             blog["properties"]["reflection_cycle"]["enum"],
             [request["context"]["bob_reflection_cycle"]],
