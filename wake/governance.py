@@ -966,7 +966,7 @@ def transition(state, proposal, invocation, historical=False):
     # that field as reserved, breaking the deterministic promotion experiment.
     required_reflection_cycle = (
         due_reflection_cycle
-        if state.get("charter")
+        if due_reflection_cycle is not None and state.get("posts")
         else None
     )
 
@@ -1850,8 +1850,17 @@ def transition(state, proposal, invocation, historical=False):
                         f"Bob reflection for accepted wake {required_reflection_cycle} is mandatory and must be the final blog action",
                     )
                 else:
+                    opening_checkpoint = (
+                        bool(state.get("charter"))
+                        and not state.get("posts")
+                        and due_reflection_cycle is not None
+                    )
                     require(
-                        "reflection_cycle" not in action,
+                        "reflection_cycle" not in action
+                        or (
+                            opening_checkpoint
+                            and declared_reflection_cycle == due_reflection_cycle
+                        ),
                         "reflection_cycle is reserved for a due Bob editorial checkpoint",
                     )
 
