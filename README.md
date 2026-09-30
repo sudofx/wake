@@ -128,7 +128,7 @@ Use the workflows by their literal names:
 - **WAKE✳︎ — Make new code live** — verify `master`, then move that exact tested commit to `wake-runtime`. Research must be stopped first.
 - **WAKE✳︎ — Update website · automatic** — rebuild the public GitHub Pages site when website code changes.
 - **WAKE✳︎ — Check code · automatic** — run the repository's safety checks when code changes.
-- **WAKE✳︎ — Internal: run one research cycle** and **WAKE✳︎ — Internal: keep-running switch** are plumbing. Normal operation does not require opening them.
+- **WAKE✳︎ — Internal only: one research cycle** and **WAKE✳︎ — Internal only: keep-running switch** are plumbing. Do not use them for normal operation.
 
 A source-code push can refresh the site without spending a Gemini call. Runtime code changes do not affect live research until **Make new code live** succeeds.
 
