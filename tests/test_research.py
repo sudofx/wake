@@ -83,6 +83,23 @@ class ResearchTests(unittest.TestCase):
             self.engine.store.append("observation", dict(id=identifier, source=url or "https://plato.stanford.edu/entries/"+identifier,
                 content=json.dumps(payload), actor="collector", scope=status))
 
+    def test_model_research_schema_keeps_network_route_collector_owned(self):
+        context = {
+            "research_topics": [{"id": "entropy"}],
+            "projects": [{"id": "p", "domain": "entropy", "status": "active"}],
+            "blog_notebooks": {},
+        }
+        schema = schema_for_context(context)
+        research_action = next(
+            action for action in schema["properties"]["actions"]["items"]["anyOf"]
+            if action["properties"]["type"]["enum"] == ["research"]
+        )
+        self.assertNotIn("url", research_action["properties"])
+        self.assertEqual(
+            set(research_action["required"]),
+            {"type", "project", "query", "domain", "reason"},
+        )
+
     def test_existing_pet_name_is_migrated_through_an_audited_event(self):
         legacy = Engine(self.root/"legacy", charter_settings("Explore big ideas.", pet_name="Wake"))
         try:
