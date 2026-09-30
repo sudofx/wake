@@ -59,7 +59,7 @@ class ExperimentalRegimeTests(unittest.TestCase):
 
     def test_temporal_receipt_is_delivered_but_cannot_change_governance(self):
         self.engine.store.close()
-        self.engine = Engine(Path(self.temp.name) / "charter", charter_settings("Test temporal Squirrel observation."))
+        self.engine = Engine(Path(self.temp.name) / "charter", charter_settings("Test temporal Attention observation."))
         with self.engine.store.lock():
             self.engine.initialize()
         with self.engine.store.lock():
@@ -67,8 +67,8 @@ class ExperimentalRegimeTests(unittest.TestCase):
             self.engine.store.append("recovered", {"id": invocation, "reason": "test cleanup"})
         self.assertIn("experimental_regime", request["context"])
         self.assertIn("temporal", request["context"])
-        self.assertEqual(request["context"]["squirrel"]["temporal_use"],
-                         "observational; no time signal changes Squirrel eligibility yet")
+        self.assertEqual(request["context"]["attention"]["temporal_use"],
+                         "observational; no time signal changes Attention eligibility yet")
         self.assertNotIn("time_dilation", json.dumps(request["response_schema"]))
         item = self.engine.store.load()["invocations"][invocation]
         self.assertEqual(item["temporal"]["regime_id"], item["experimental_regime"]["id"])

@@ -190,7 +190,7 @@ def _human_state_markdown(state, head):
         ("Projects", state.get("projects", {})),
         ("Acquisition capability", state.get("acquisition", {})),
         ("Problem representations", state.get("representations", {})),
-        ("Squirrel attention receipts", state.get("squirrel", {})),
+        ("Attention attention receipts", state.get("attention", {})),
         ("Notebooks", state.get("notebooks", {})),
         ("Invocations", state.get("invocations", {})),
         ("Evidence", state.get("evidence", {})),

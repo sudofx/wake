@@ -334,7 +334,7 @@
     // it describes interventions without treating them as research success.
     const frames=Object.values(s.representations||{}).flat();
     const capabilityBlocks=Object.values(s.acquisition||{}).filter(x=>x.capability_blocked).length;
-    const parkedTopics=Object.keys(s.squirrel?.deferred||{}).length;
+    const parkedTopics=Object.keys(s.attention?.deferred||{}).length;
     const telemetry=[
       ['Wall-clock span',recordHours>=24?(recordHours/24).toFixed(1)+'d':recordHours.toFixed(1)+'h','first → latest completed wake · idle included','neutral'],
       ['Completed / wall h',wakesPerHour.toFixed(2)+'/h',completed.length+' completed wakes across elapsed wall time','neutral'],
@@ -347,7 +347,7 @@
       ['Open obligations',openObligations,String(overdue)+' overdue',openObligations?'warning':'success'],
       ['Capability blocks',capabilityBlocks,'equivalent retrieval routes paused',capabilityBlocks?'warning':'neutral'],
       ['Problem frames',frames.length,'strategy hypotheses; not findings','neutral'],
-      ['Squirrel parking',parkedTopics,'topics preserved while attention moves','neutral'],
+      ['Attention parking',parkedTopics,'topics preserved while attention moves','neutral'],
       ['Known provider attempts',knownAttempts.length,providerSuccesses+' success-labelled','neutral'],
       ['SQLite database',sqliteSize,Number.isFinite(sqliteBytes)?sqliteBytes.toLocaleString()+' bytes on wake-state':'Waiting for promoted runtime metric','info'],
       ['Durable events',eventRecordCount,Number.isFinite(durableEventCount)?'append-only event rows in SQLite':'Waiting for promoted runtime metric','info']

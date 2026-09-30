@@ -33,11 +33,11 @@ from .retrieval import build_retrieval_shadow
 from .store import Store, canonical, digest, now
 from .experimental import adoption_payload, defaults as experimental_defaults, temporal_snapshot, validate as validate_controls
 from .trust import build_trust_compacts_shadow
-from .squirrel import assessment as squirrel_assessment, plan as squirrel_plan
+from .attention import assessment as attention_assessment, plan as attention_plan
 
 
 def _rotation_preflight(state, invocation, proposal):
-    """Salvage the selected-topic subset of a mixed Squirrel proposal.
+    """Salvage the selected-topic subset of a mixed Attention proposal.
 
     Gemini sometimes returns valid work for the enforced topic *plus* stale
     actions for deferred/unconfigured topics. Rejecting the whole response
@@ -48,7 +48,7 @@ def _rotation_preflight(state, invocation, proposal):
     """
     if not isinstance(proposal, dict) or not isinstance(proposal.get("actions"), list):
         return proposal, None
-    directive = state.get("invocations", {}).get(invocation, {}).get("squirrel", {})
+    directive = state.get("invocations", {}).get(invocation, {}).get("attention", {})
     if not directive.get("enforce_selected_topic") or not directive.get("selected_topic"):
         return proposal, None
 
@@ -129,7 +129,7 @@ def _rotation_preflight(state, invocation, proposal):
                 "status": "parked",
                 "next_step": old["next_step"],
                 "reason": (
-                    f"Deterministic Squirrel capacity recovery: park this "
+                    f"Deterministic Attention capacity recovery: park this "
                     f"non-selected project so {selected} work can proceed."
                 ),
             })
@@ -150,7 +150,7 @@ def _rotation_preflight(state, invocation, proposal):
         **proposal,
         "title": f"Advancing {label} under enforced rotation",
         "summary": (
-            f"Squirrel accepted the valid {selected} subset of a mixed provider "
+            f"Attention accepted the valid {selected} subset of a mixed provider "
             f"proposal and withheld {len(withheld)} off-topic or administrative "
             f"action(s). The exact provider response remains preserved in history."
         ),
@@ -658,7 +658,7 @@ class Engine:
             "recent_journal": [],
         }
         if state.get("charter"):
-            context["squirrel"] = squirrel_plan(state)
+            context["attention"] = attention_plan(state)
         if state.get("charter"):
             active = working_set.get("active_projects", [])
             # Overflow must not erase recovery conditions. Keep only compact
@@ -668,7 +668,7 @@ class Engine:
                 if summary.get("capability_blocked"):
                     recovery.append({"project": project_id, "capability": summary,
                                      "frames": state.get("representations", {}).get(project_id, [])[-3:]})
-            for parked in state.get("squirrel", {}).get("deferred", {}).values():
+            for parked in state.get("attention", {}).get("deferred", {}).values():
                 for project in parked.get("parked_projects", []):
                     if not any(item["project"] == project["id"] for item in recovery):
                         recovery.append({"project": project["id"], "parked": project,
@@ -717,7 +717,7 @@ class Engine:
         """Deterministically shrink an already-bounded provider request below the hard ceiling.
 
         This is an emergency delivery adaptation only. Exact durable state is untouched.
-        Preserve IDs, active project frames, Squirrel routing, milestone identity, and
+        Preserve IDs, active project frames, Attention routing, milestone identity, and
         provenance roots while dropping duplicated prose and oversized recovery detail.
         """
         from .providers import BOUNDED_RESEARCH_SYSTEM
@@ -746,16 +746,16 @@ class Engine:
         bounded["omitted_categories"] = omitted
         bounded["emergency_compaction"] = True
 
-        # Preserve the routing decision Squirrel needs, not its full diagnostic payload.
-        squirrel = context.get("squirrel") or {}
-        context["squirrel"] = {
-            key: squirrel.get(key)
+        # Preserve the routing decision Attention needs, not its full diagnostic payload.
+        attention = context.get("attention") or {}
+        context["attention"] = {
+            key: attention.get(key)
             for key in (
                 "active", "selected_topic", "enforce_selected_topic",
                 "rotation_required", "capability_blocked_topics",
                 "deferred_topics", "reason",
             )
-            if key in squirrel
+            if key in attention
         }
 
         # Recovery detail is durable elsewhere; IDs are enough to signal its existence.
@@ -817,7 +817,7 @@ class Engine:
         # under emergency compaction. Pure recency can erase the exact project a
         # fresh model is supposed to resume.
         project_candidates = context.get("projects", [])
-        selected_topic = context.get("squirrel", {}).get("selected_topic")
+        selected_topic = context.get("attention", {}).get("selected_topic")
         active_candidates = [p for p in project_candidates if p.get("status") == "active"]
         active_ids = {p.get("id") for p in active_candidates}
         selected_candidates = [
@@ -1343,12 +1343,12 @@ class Engine:
                                  "intervening_experience": [e["id"] for e in list(state.get("evidence", {}).values())[-8:]
                                                             if e.get("actor") == "collector"]})
             context["representation_recovery"] = recovery
-            for topic, parked in state.get("squirrel", {}).get("deferred", {}).items():
+            for topic, parked in state.get("attention", {}).get("deferred", {}).items():
                 for item in parked.get("parked_projects", []):
                     if any(entry["project"] == item["id"] for entry in recovery):
                         continue
                     recovery.append({"project": item["id"], "question": item.get("question", ""),
-                                     "blocker": {"kind": "squirrel_deferral", "reason": parked.get("reason")},
+                                     "blocker": {"kind": "attention_deferral", "reason": parked.get("reason")},
                                      "frames": state.get("representations", {}).get(item["id"], [])[-3:],
                                      "open_commitments": [c["id"] for c in state.get("commitments", {}).values()
                                                           if c.get("status") == "open"],
@@ -1358,8 +1358,8 @@ class Engine:
                 "active": self.config["observation_mode"],
                 "boundary": "This is an overnight data-gathering profile. Record promising leads and failed approaches freely, but governance still decides what qualifies as evidence or a completed obligation.",
             }
-            context["squirrel"] = {**squirrel_plan(state), "temporal": state.get("temporal", {}),
-                                   "temporal_use": "observational; no time signal changes Squirrel eligibility yet"}
+            context["attention"] = {**attention_plan(state), "temporal": state.get("temporal", {}),
+                                   "temporal_use": "observational; no time signal changes Attention eligibility yet"}
             context["pet_name"] = state["pet_name"]
             context["project_name"] = state["pet_name"]
             topics = state.get("research_topics") or self.config.get("research_topics", [])
@@ -1393,7 +1393,7 @@ class Engine:
             # under a new ID instead of resuming the durable project.
             active_projects = [p for p in projects if p["status"] == "active"]
             nonactive_projects = [p for p in projects if p["status"] != "active"]
-            selected_topic = context.get("squirrel", {}).get("selected_topic")
+            selected_topic = context.get("attention", {}).get("selected_topic")
             selected_nonactive = [
                 p for p in nonactive_projects
                 if selected_topic and p.get("domain") == selected_topic
@@ -1585,7 +1585,7 @@ class Engine:
 
         # Prefer sources from domains that are absent for active projects while
         # preserving deterministic retrieval order inside each priority class.
-        selected_topic = (context.get("squirrel") or {}).get("selected_topic")
+        selected_topic = (context.get("attention") or {}).get("selected_topic")
         requested = sorted(
             requested,
             key=lambda evidence_id: (
@@ -1753,7 +1753,7 @@ class Engine:
         )
         temporal_counts = self.store.event_counts_since(
             temporal_anchor,
-            ("accepted", "rejected", "failed", "observation", "research_collected", "squirrel_assessed"),
+            ("accepted", "rejected", "failed", "observation", "research_collected", "attention_assessed"),
         )
         temporal = temporal_snapshot(state, temporal_counts, now())
         self.store.append("temporal_observed", temporal)
@@ -1807,7 +1807,7 @@ class Engine:
             projects = request["context"]["projects"]
             active_projects = [p for p in projects if p["status"] == "active"]
             active_ids = {p["id"] for p in active_projects}
-            selected_topic = request["context"].get("squirrel", {}).get("selected_topic")
+            selected_topic = request["context"].get("attention", {}).get("selected_topic")
             selected_unfinished = [
                 p for p in projects
                 if p["id"] not in active_ids
@@ -1926,7 +1926,7 @@ class Engine:
             "trust_compacts_shadow": trust_compacts_shadow,
             "retrieval_shadow": retrieval_shadow,
             "inquiry_drive_shadow": inquiry_drive_shadow,
-            "squirrel": delivered_context.get("squirrel", {"active": False}),
+            "attention": delivered_context.get("attention", {"active": False}),
             "experimental_regime": state["experimental"], "temporal": temporal,
             "runtime_performance": runtime_performance,
             "context_delivery": {
@@ -2001,7 +2001,7 @@ class Engine:
                                           **({"provider_requests_sent": metadata["provider_requests_sent"]}
                                              if metadata and "provider_requests_sent" in metadata else {})})
             if state.get("charter"):
-                self.store.append("squirrel_assessed", squirrel_assessment(
+                self.store.append("attention_assessed", attention_assessment(
                     self.store.load(), invocation, "rejected"))
             return {"status": "rejected", "id": invocation, "reason": reason}
         fields = ["version", "beliefs", "commitments", "journal"]
@@ -2015,7 +2015,7 @@ class Engine:
                                        **({"editorial": editorial} if editorial else {}),
                                        **({"rotation_filter": rotation_filter} if rotation_filter else {})}, crash=crash)
         if state.get("charter"):
-            self.store.append("squirrel_assessed", squirrel_assessment(
+            self.store.append("attention_assessed", attention_assessment(
                 state, invocation, "accepted", proposal))
         return {"status": "accepted", "id": invocation, "cycle": result["version"],
                 **({"editorial": {k: v for k, v in editorial.items() if k != "action"}} if editorial else {}),

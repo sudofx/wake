@@ -1,6 +1,6 @@
 """Deterministic, durable attention recovery for the research charter.
 
-Squirrel does not alter projects or governance. It tracks two independent forms
+Attention does not alter projects or governance. It tracks two independent forms
 of fixation: repeated hard rejection without progress, and productive saturation
 when accepted attention stays on one topic for too many accepted wakes. Either
 condition temporarily defers that topic while preserving its durable work.
@@ -20,7 +20,7 @@ def _active_topic(state):
     active = [p for p in state.get("projects", {}).values() if p.get("status") == "active"]
     if active:
         return sorted(active, key=lambda p: (-p.get("updated_version", 0), p["id"]))[0]["domain"]
-    return state.get("squirrel", {}).get("last_receipt", {}).get("selected_topic")
+    return state.get("attention", {}).get("last_receipt", {}).get("selected_topic")
 
 
 def _selection_basis(state):
@@ -93,7 +93,7 @@ def _proposal_milestone_topics(state, proposal):
 def _proposal_attention_topic(state, selected, proposal):
     """Infer the topic actually advanced by an accepted proposal.
 
-    The selected Squirrel topic remains authoritative for rejected attempts, but
+    The selected Attention topic remains authoritative for rejected attempts, but
     accepted work may legitimately contain durable actions on another configured
     topic. Saturation should follow what was actually advanced, not merely what
     the temporary directive requested.
@@ -135,8 +135,8 @@ def plan(state):
     """Return the deterministic attention directive for the next provider request."""
     if not state.get("charter"):
         return {"active": False}
-    squirrel = state.get("squirrel", {})
-    deferred = squirrel.get("deferred", {})
+    attention = state.get("attention", {})
+    deferred = attention.get("deferred", {})
     topics = [t["id"] for t in state.get("research_topics", []) if t.get("enabled", True)]
     current = _active_topic(state)
     blocked = _capability_blocked_topics(state)
@@ -172,7 +172,7 @@ def plan(state):
         "parked": {topic: deferred[topic].get("parked_projects", []) for topic in sorted(deferred)},
         "hard_rejection_threshold": HARD_REJECTION_THRESHOLD,
         "attention_saturation_threshold": ATTENTION_SATURATION_THRESHOLD,
-        "attention": squirrel.get("attention", {}),
+        "attention": attention.get("attention", {}),
         "cooldown_other_attempts": COOLDOWN_OTHER_ATTEMPTS,
         "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
         "reason": (
@@ -180,7 +180,7 @@ def plan(state):
             if current is None and selected else
             "active project topic is no longer configured; rotate to configured topic"
             if current_unconfigured else
-            "alternate configured topic selected during Squirrel cooldown or capability block"
+            "alternate configured topic selected during Attention cooldown or capability block"
             if selected != current else
             "current durable project topic remains eligible"
         ),
@@ -189,10 +189,10 @@ def plan(state):
 
 def assessment(state, invocation, terminal, proposal=None):
     """Build a replayable receipt after an invocation reaches a terminal state."""
-    prior = state.get("squirrel", {})
+    prior = state.get("attention", {})
     counters = dict(prior.get("counters", {}))
     deferred = {key: dict(value) for key, value in prior.get("deferred", {}).items()}
-    selected = state["invocations"][invocation].get("squirrel", {}).get("selected_topic")
+    selected = state["invocations"][invocation].get("attention", {}).get("selected_topic")
     attention_topic = _proposal_attention_topic(state, selected, proposal) if terminal == "accepted" else selected
     attempt_topic = attention_topic or selected
     restored = []

@@ -72,8 +72,8 @@ A topic may carry seed_question only while that topic has no durable project. Tr
 coordinate for the first project, not an answer, conclusion, permanent mission, or instruction to keep
 repeating the same frame. Once a project exists, its durable question and subsequent evidence take over;
 follow-up questions may depart from, challenge, or later re-represent the seed.
-When context.squirrel is active, its selected_topic is a trusted, temporary attention directive.
-When context.squirrel.enforce_selected_topic is true, substantive project, research, notebook, reframe,
+When context.attention is active, its selected_topic is a trusted, temporary attention directive.
+When context.attention.enforce_selected_topic is true, substantive project, research, notebook, reframe,
 and ordinary publication work MUST stay on selected_topic for this shift. Preserve commitments and evidence
 from deferred topics unchanged; do not cancel, weaken, or reinterpret them during the forced rotation.
 Do not resolve or recreate deferred-topic commitments, and do not emit belief, commit, or resolve actions
@@ -101,7 +101,7 @@ hypothesis, test or comparison, result, revision, next question. Separate observ
 and speculation. If the record does not support an answer, say that it is unknown rather than completing the
 story by invention. The persona must never be presented as the mechanism, mind, identity, or experiencing
 subject of WAKE✳.
-Keep at most three projects active. Within Squirrel's selected topic, follow
+Keep at most three projects active. Within Attention's selected topic, follow
 context.research_maturation.priority_order: synthesize before searching, target distinct-source
 corroboration gaps, and never force completion.
 You cannot browse directly. You may record focused follow-up searches as durable hypotheses; the trusted collector independently follows the configured neutral topic rotation. Some neutral routes use a discovery-only idea pool: those results are permanently leads, never qualifying notebook evidence. When discovery identifies a promising work, treat index/search results and exact bibliographic records as retrieval leads only. WAKE's trusted collector will deterministically promote persistent identifiers into exact metadata records and then follow approved readable publisher/full-text URLs exposed by those records. Do not treat metadata or an abstract index record as notebook evidence.
@@ -253,7 +253,7 @@ BOUNDED_RESEARCH_SYSTEM = """
 Research charter active. Continue the supplied mission using only durable context and allowed actions.
 Models propose; WAKE governance decides. Do not claim consciousness, experience, persistent selfhood, or authority to change rules.
 
-Respect context.squirrel when active. If enforce_selected_topic is true, substantive project/research/notebook/reframe/ordinary-blog work stays on selected_topic. Keep at most three active projects. Prefer unfinished mature work over starting new work. Before creating a selected-topic project, inspect context.projects (including parked entries); when an unfinished project already owns the same question, reactivate that exact ID instead of creating a replacement.
+Respect context.attention when active. If enforce_selected_topic is true, substantive project/research/notebook/reframe/ordinary-blog work stays on selected_topic. Keep at most three active projects. Prefer unfinished mature work over starting new work. Before creating a selected-topic project, inspect context.projects (including parked entries); when an unfinished project already owns the same question, reactivate that exact ID instead of creating a replacement.
 
 You cannot browse. The trusted collector retrieves sources. Treat discovery results as leads and exact scholarly-index records as metadata routing only. Metadata and abstracts alone are not qualifying notebook evidence. Qualifying evidence must be substantive readable publisher/full-text/source-controlled material supplied in context. Persistent identifiers and source candidates are retrieval routes, not findings.
 
@@ -329,7 +329,7 @@ def schema_for_context(context):
     No evidence is added, substituted, or silently repaired after generation.
     """
     schema = deepcopy(SCHEMA)
-    directive = context.get("squirrel", {})
+    directive = context.get("attention", {})
     enforced_topic = directive.get("selected_topic") if directive.get("enforce_selected_topic") else None
     entries = [(project, notebook) for project, notebooks in context.get("blog_notebooks", {}).items()
                for notebook in notebooks]

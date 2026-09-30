@@ -4,16 +4,39 @@ import tempfile
 import unittest
 
 from wake.engine import DEFAULTS, Engine, _rotation_preflight
-from wake.governance import Rejected, _enforce_squirrel_rotation
+from wake.governance import Rejected, _enforce_attention_rotation
 from wake.providers import RESEARCH_SYSTEM, schema_for_context
-from wake.squirrel import (
+from wake.attention import (
     ATTENTION_SATURATION_THRESHOLD, COOLDOWN_OTHER_ATTEMPTS,
     HARD_REJECTION_THRESHOLD, assessment, plan,
 )
 from support import charter_settings
 
 
-class SquirrelTests(unittest.TestCase):
+class AttentionTests(unittest.TestCase):
+    def test_legacy_squirrel_event_replays_into_attention_state(self):
+        from wake.store import reduce_event
+        state = {
+            "version": 0, "objective": "test", "focus": "continuity",
+            "beliefs": {}, "commitments": {}, "evidence": {}, "journal": [], "posts": {},
+            "invocations": {"w": {"status": "accepted"}}, "pending": None,
+            "attention": {"counters": {}, "deferred": {}},
+            "projects": {}, "notebooks": {}, "research": {}, "charter": "test",
+            "acquisition": {}, "representations": {},
+        }
+        event = {
+            "seq": 1, "time": "2026-01-01T00:00:00+00:00", "kind": "squirrel_assessed",
+            "payload": {
+                "invocation": "w", "terminal": "accepted",
+                "counters": {"entropy": 1}, "deferred": {},
+                "attention": {"topic": "entropy", "accepted_streak": 1},
+            },
+        }
+        replayed = reduce_event(state, event, historical=True)
+        self.assertEqual(replayed["attention"]["counters"]["entropy"], 1)
+        self.assertNotIn("squirrel", replayed)
+
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.engine = Engine(Path(self.temp.name) / "data", charter_settings("Test deterministic attention recovery."))
@@ -35,38 +58,38 @@ class SquirrelTests(unittest.TestCase):
         for _ in range(HARD_REJECTION_THRESHOLD):
             request = self.reject()
         state = self.engine.store.load()
-        topic = request["context"]["squirrel"]["selected_topic"]
-        self.assertIn(topic, state["squirrel"]["deferred"])
-        self.assertEqual(state["squirrel"]["counters"][topic], HARD_REJECTION_THRESHOLD)
+        topic = request["context"]["attention"]["selected_topic"]
+        self.assertIn(topic, state["attention"]["deferred"])
+        self.assertEqual(state["attention"]["counters"][topic], HARD_REJECTION_THRESHOLD)
         self.assertEqual(state["commitments"], {})
         self.assertTrue(all(item["actor"] == "runtime" for item in state["evidence"].values()))
-        receipt = state["squirrel"]["last_receipt"]
+        receipt = state["attention"]["last_receipt"]
         self.assertEqual(receipt["triggered_topics"], [topic])
 
     def test_alternate_topic_is_selected_then_cooldown_restores_original(self):
         for _ in range(HARD_REJECTION_THRESHOLD):
             self.reject()
-        original = self.engine.store.load()["squirrel"]["last_receipt"]["selected_topic"]
+        original = self.engine.store.load()["attention"]["last_receipt"]["selected_topic"]
         for _ in range(COOLDOWN_OTHER_ATTEMPTS):
             request = self.reject()
-            self.assertNotEqual(request["context"]["squirrel"]["selected_topic"], original)
+            self.assertNotEqual(request["context"]["attention"]["selected_topic"], original)
         state = self.engine.store.load()
-        self.assertNotIn(original, state["squirrel"]["deferred"])
-        self.assertIn(original, state["squirrel"]["last_receipt"]["restored_topics"])
+        self.assertNotIn(original, state["attention"]["deferred"])
+        self.assertIn(original, state["attention"]["last_receipt"]["restored_topics"])
 
-    def test_bounded_context_keeps_squirrel_directive(self):
+    def test_bounded_context_keeps_attention_directive(self):
         original_context = self.engine.context
         self.engine.context = lambda state, receipt: {**original_context(state, receipt), "noise": "x" * 60000}
         with self.engine.store.lock():
             invocation, request = self.engine.start("fixture", "test")
             self.engine.store.append("recovered", {"id": invocation, "reason": "cleanup"})
         self.assertEqual(request["context"]["context_mode"], "bounded")
-        self.assertTrue(request["context"]["squirrel"]["active"])
+        self.assertTrue(request["context"]["attention"]["active"])
 
-    def test_reset_is_a_fresh_empty_squirrel_runtime(self):
-        self.assertEqual(self.engine.store.load()["squirrel"], {"counters": {}, "deferred": {}})
+    def test_reset_is_a_fresh_empty_attention_runtime(self):
+        self.assertEqual(self.engine.store.load()["attention"], {"counters": {}, "deferred": {}})
 
-    def test_provider_instruction_cannot_turn_squirrel_into_a_governance_exception(self):
+    def test_provider_instruction_cannot_turn_attention_into_a_governance_exception(self):
         self.assertIn("temporary attention directive", RESEARCH_SYSTEM)
         self.assertIn("do not cancel, weaken, or reinterpret", RESEARCH_SYSTEM)
         self.assertIn("not permission to bypass", RESEARCH_SYSTEM)
@@ -75,9 +98,9 @@ class SquirrelTests(unittest.TestCase):
 
     def test_durable_project_advancement_resets_a_topic_counter(self):
         state = {
-            "charter": "test", "squirrel": {"counters": {"entropy": 4}, "deferred": {}},
+            "charter": "test", "attention": {"counters": {"entropy": 4}, "deferred": {}},
             "projects": {"p": {"id": "p", "domain": "entropy", "next_step": "Old step"}},
-            "invocations": {"w": {"squirrel": {"selected_topic": "entropy"}}},
+            "invocations": {"w": {"attention": {"selected_topic": "entropy"}}},
         }
         receipt = assessment(state, "w", "accepted", {
             "actions": [{"type": "project", "id": "p", "next_step": "A different step"}],
@@ -89,8 +112,8 @@ class SquirrelTests(unittest.TestCase):
         state = {
             "charter": "test", "research_topics": [{"id": "entropy"}, {"id": "comedy"}],
             "projects": {"p": {"id": "p", "domain": "entropy", "status": "active", "updated_version": 1}},
-            "invocations": {"old": {"base_version": 1}, "w": {"squirrel": {"selected_topic": "entropy"}}},
-            "squirrel": {"counters": {"entropy": 5}, "deferred": {"entropy": {"deferred_by": "old", "other_topic_attempts": 0}}},
+            "invocations": {"old": {"base_version": 1}, "w": {"attention": {"selected_topic": "entropy"}}},
+            "attention": {"counters": {"entropy": 5}, "deferred": {"entropy": {"deferred_by": "old", "other_topic_attempts": 0}}},
             "evidence": {"new": {"actor": "collector", "scope": "collected", "version": 2,
                                     "content": json.dumps({"topic_domain": "entropy"})}},
         }
@@ -106,16 +129,16 @@ class SquirrelTests(unittest.TestCase):
                       "updated_version": 1, "question": "q", "next_step": "n"}
             },
             "invocations": {},
-            "squirrel": {"counters": {}, "deferred": {}},
+            "attention": {"counters": {}, "deferred": {}},
             "evidence": {},
         }
         for index in range(ATTENTION_SATURATION_THRESHOLD):
             invocation = f"w-{index}"
-            state["invocations"][invocation] = {"squirrel": {"selected_topic": "entropy"}}
+            state["invocations"][invocation] = {"attention": {"selected_topic": "entropy"}}
             receipt = assessment(state, invocation, "accepted", {
                 "actions": [{"type": "notebook", "project": "p"}],
             })
-            state["squirrel"] = {
+            state["attention"] = {
                 "counters": receipt["counters"],
                 "deferred": receipt["deferred"],
                 "attention": receipt["attention"],
@@ -133,7 +156,7 @@ class SquirrelTests(unittest.TestCase):
             "research_topics": [{"id": "entropy"}, {"id": "comedy"}],
             "projects": {"p": {"id": "p", "domain": "entropy", "status": "active", "updated_version": 1}},
             "invocations": {"old": {"base_version": 5}},
-            "squirrel": {
+            "attention": {
                 "counters": {},
                 "deferred": {
                     "entropy": {
@@ -162,7 +185,7 @@ class SquirrelTests(unittest.TestCase):
                 "c": {"id": "c", "domain": "comedy", "status": "active", "updated_version": 6},
             },
             "invocations": {},
-            "squirrel": {
+            "attention": {
                 "counters": {},
                 "deferred": {
                     "entropy": {
@@ -177,19 +200,19 @@ class SquirrelTests(unittest.TestCase):
         }
         for index in range(COOLDOWN_OTHER_ATTEMPTS):
             invocation = f"other-{index}"
-            state["invocations"][invocation] = {"squirrel": {"selected_topic": "comedy"}}
+            state["invocations"][invocation] = {"attention": {"selected_topic": "comedy"}}
             receipt = assessment(state, invocation, "accepted", {
                 "actions": [{"type": "research", "id": f"r-{index}", "project": "c",
                              "query": "q", "domain": "comedy", "reason": "r"}],
             })
-            state["squirrel"] = {
+            state["attention"] = {
                 "counters": receipt["counters"],
                 "deferred": receipt["deferred"],
                 "attention": receipt["attention"],
             }
 
-        self.assertIn("entropy", state["squirrel"]["deferred"])
-        self.assertEqual(state["squirrel"]["deferred"]["entropy"]["other_topic_attempts"],
+        self.assertIn("entropy", state["attention"]["deferred"])
+        self.assertEqual(state["attention"]["deferred"]["entropy"]["other_topic_attempts"],
                          COOLDOWN_OTHER_ATTEMPTS)
         self.assertEqual(plan(state)["selected_topic"], "comedy")
 
@@ -202,9 +225,9 @@ class SquirrelTests(unittest.TestCase):
                 "c": {"id": "c", "domain": "comedy", "status": "active", "updated_version": 6},
             },
             "invocations": {
-                "w": {"squirrel": {"selected_topic": "comedy"}},
+                "w": {"attention": {"selected_topic": "comedy"}},
             },
-            "squirrel": {
+            "attention": {
                 "counters": {},
                 "deferred": {
                     "entropy": {
@@ -239,7 +262,7 @@ class SquirrelTests(unittest.TestCase):
             "acquisition": {"landauer": {"capability_blocked": True}},
             "evidence": {},
             "invocations": {},
-            "squirrel": {
+            "attention": {
                 "counters": {},
                 "deferred": {
                     "wake_analysis": {
@@ -259,7 +282,7 @@ class SquirrelTests(unittest.TestCase):
         state = {
             "charter": "test",
             "invocations": {
-                "w": {"squirrel": {"selected_topic": "entropy", "enforce_selected_topic": True}}
+                "w": {"attention": {"selected_topic": "entropy", "enforce_selected_topic": True}}
             },
         }
         candidate = {
@@ -267,8 +290,8 @@ class SquirrelTests(unittest.TestCase):
                 "wake": {"id": "wake", "domain": "wake_analysis", "status": "active"}
             }
         }
-        with self.assertRaisesRegex(Rejected, "Squirrel rotation requires substantive work on entropy"):
-            _enforce_squirrel_rotation(
+        with self.assertRaisesRegex(Rejected, "Attention rotation requires substantive work on entropy"):
+            _enforce_attention_rotation(
                 state, "w",
                 {"type": "research", "id": "r", "project": "wake",
                  "query": "q", "domain": "wake_analysis", "reason": "r"},
@@ -279,7 +302,7 @@ class SquirrelTests(unittest.TestCase):
         state = {
             "charter": "test",
             "invocations": {
-                "w": {"squirrel": {"selected_topic": "entropy", "enforce_selected_topic": True}}
+                "w": {"attention": {"selected_topic": "entropy", "enforce_selected_topic": True}}
             },
         }
         candidate = {
@@ -287,7 +310,7 @@ class SquirrelTests(unittest.TestCase):
                 "wake": {"id": "wake", "domain": "wake_analysis", "status": "active"}
             }
         }
-        _enforce_squirrel_rotation(
+        _enforce_attention_rotation(
             state, "w",
             {"type": "project", "id": "wake", "title": "Wake", "question": "q",
              "domain": "wake_analysis", "status": "parked", "next_step": "later", "reason": "rotate"},
@@ -304,7 +327,7 @@ class SquirrelTests(unittest.TestCase):
             "commitments": [],
             "evidence": [],
             "blog_notebooks": {},
-            "squirrel": {"selected_topic": "entropy", "enforce_selected_topic": True},
+            "attention": {"selected_topic": "entropy", "enforce_selected_topic": True},
         }
         schema = schema_for_context(context)
         choices = schema["properties"]["actions"]["items"]["anyOf"]
@@ -331,7 +354,7 @@ class SquirrelTests(unittest.TestCase):
             "commitments": [],
             "evidence": [],
             "blog_notebooks": {},
-            "squirrel": {"selected_topic": "quantum_mechanics", "enforce_selected_topic": True},
+            "attention": {"selected_topic": "quantum_mechanics", "enforce_selected_topic": True},
         }
         choices = schema_for_context(context)["properties"]["actions"]["items"]["anyOf"]
         projects = [a for a in choices if a["properties"]["type"]["enum"] == ["project"]]
@@ -354,7 +377,7 @@ class SquirrelTests(unittest.TestCase):
             "commitments": [],
             "evidence": [],
             "blog_notebooks": {},
-            "squirrel": {"selected_topic": "consciousness", "enforce_selected_topic": True},
+            "attention": {"selected_topic": "consciousness", "enforce_selected_topic": True},
         }
         choices = schema_for_context(context)["properties"]["actions"]["items"]["anyOf"]
         projects = [a for a in choices if a["properties"]["type"]["enum"] == ["project"]]
@@ -370,7 +393,7 @@ class SquirrelTests(unittest.TestCase):
             "commitments": [],
             "evidence": [],
             "blog_notebooks": {},
-            "squirrel": {"selected_topic": "quantum_mechanics", "enforce_selected_topic": True},
+            "attention": {"selected_topic": "quantum_mechanics", "enforce_selected_topic": True},
         }
         choices = schema_for_context(context)["properties"]["actions"]["items"]["anyOf"]
         project_action = next(a for a in choices if a["properties"]["type"]["enum"] == ["project"])
@@ -397,7 +420,7 @@ class SquirrelTests(unittest.TestCase):
             "acquisition": {},
             "evidence": {},
             "invocations": {},
-            "squirrel": {"counters": {}, "deferred": {}},
+            "attention": {"counters": {}, "deferred": {}},
         }
         directive = plan(state)
         self.assertIn(directive["selected_topic"], {"entropy", "comedy"})
@@ -416,7 +439,7 @@ class SquirrelTests(unittest.TestCase):
         ]
         base = {
             "charter": "test", "version": 0, "projects": {}, "acquisition": {},
-            "invocations": {}, "squirrel": {"counters": {}, "deferred": {}},
+            "invocations": {}, "attention": {"counters": {}, "deferred": {}},
         }
         state_a = {**base, "research_topics": topics, "evidence": {
             "receipt": {"id": "r-randomized", "actor": "runtime", "source": "runtime:continuity"}
@@ -455,7 +478,7 @@ class SquirrelTests(unittest.TestCase):
                 },
             },
             "invocations": {
-                "w": {"squirrel": {
+                "w": {"attention": {
                     "selected_topic": "entropy",
                     "enforce_selected_topic": True,
                     "capability_blocked_topics": ["information_thermodynamics"],
@@ -504,7 +527,7 @@ class SquirrelTests(unittest.TestCase):
                 },
             },
             "invocations": {
-                "w": {"squirrel": {
+                "w": {"attention": {
                     "selected_topic": "entropy",
                     "enforce_selected_topic": True,
                     "capability_blocked_topics": ["information_thermodynamics"],

@@ -68,7 +68,7 @@ def run_experiment(directory, cycles=100, output="site"):
         "open_count": len(open_handoffs),
         "detail": (
             "Fresh invocations inherit obligations without another human reminder; "
-            "forced Squirrel shifts preserve them unchanged until an eligible later shift."
+            "forced Attention shifts preserve them unchanged until an eligible later shift."
         ),
     }
     beliefs = [e["payload"]["proposal"]["actions"] for e in engine.store.events() if e["kind"] == "accepted"]

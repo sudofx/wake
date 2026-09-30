@@ -747,8 +747,8 @@ def bob_reflection_due_cycle(state):
     return None
 
 
-def _enforce_squirrel_rotation(state, invocation, action, candidate, historical=False):
-    """Make a Squirrel cooldown an authority-bound attention constraint.
+def _enforce_attention_rotation(state, invocation, action, candidate, historical=False):
+    """Make a Attention cooldown an authority-bound attention constraint.
 
     Durable obligations from a deferred topic remain intact. During an enforced
     rotation the model may still park or complete an existing project to free
@@ -758,7 +758,7 @@ def _enforce_squirrel_rotation(state, invocation, action, candidate, historical=
     """
     if historical or not state.get("charter"):
         return
-    directive = state.get("invocations", {}).get(invocation, {}).get("squirrel", {})
+    directive = state.get("invocations", {}).get(invocation, {}).get("attention", {})
     if not directive.get("enforce_selected_topic"):
         return
     selected = directive.get("selected_topic")
@@ -793,7 +793,7 @@ def _enforce_squirrel_rotation(state, invocation, action, candidate, historical=
 
     require(
         domain == selected,
-        f"Squirrel rotation requires substantive work on {selected}; "
+        f"Attention rotation requires substantive work on {selected}; "
         f"{domain or 'unknown'} remains deferred for this shift",
     )
 
@@ -945,7 +945,7 @@ def transition(state, proposal, invocation, historical=False):
 
         kind = action.get("type")
 
-        _enforce_squirrel_rotation(state, invocation, action, result, historical)
+        _enforce_attention_rotation(state, invocation, action, result, historical)
 
         # ===================================================================
         # BELIEF
@@ -1527,9 +1527,9 @@ def transition(state, proposal, invocation, historical=False):
                     "A re-representation must materially change the frame")
             project = result["projects"][action["project"]]
             capability = state.get("acquisition", {}).get(action["project"], {})
-            deferred = state.get("squirrel", {}).get("deferred", {}).get(project["domain"])
+            deferred = state.get("attention", {}).get("deferred", {}).get(project["domain"])
             require(capability.get("capability_blocked") or deferred,
-                    "Re-representation requires a recorded capability block or Squirrel deferral")
+                    "Re-representation requires a recorded capability block or Attention deferral")
             frames = result["representations"].setdefault(action["project"], [])
             require(len(frames) < 3, "Repeated unsuccessful reframes are bounded; preserve and revisit later")
             require(all(frame["new_frame"].casefold().strip() != action["new_frame"].casefold().strip()

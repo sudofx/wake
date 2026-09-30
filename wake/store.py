@@ -137,10 +137,24 @@ def now():
 # ---------------------------------------------------------------------------
 
 
+def _normalize_legacy_attention_state(state):
+    """Map retired attention field spellings into the current derived projection."""
+    if "attention" not in state and "squirrel" in state:
+        state["attention"] = state.pop("squirrel")
+    else:
+        state.pop("squirrel", None)
+    for invocation in state.get("invocations", {}).values():
+        if "attention" not in invocation and "squirrel" in invocation:
+            invocation["attention"] = invocation.pop("squirrel")
+        else:
+            invocation.pop("squirrel", None)
+    return state
+
+
 def empty():
     return {"version": 0, "objective": "", "focus": "continuity", "beliefs": {},
             "commitments": {}, "evidence": {}, "journal": [], "posts": {},
-            "invocations": {}, "pending": None, "squirrel": {"counters": {}, "deferred": {}},
+            "invocations": {}, "pending": None, "attention": {"counters": {}, "deferred": {}},
             "acquisition": {}, "representations": {}}
 
 
@@ -258,17 +272,18 @@ def reduce_event(state, event, historical=False):
         state["evidence"][p["id"]] = {**p, "version": state["version"], "time": event["time"]}
     elif kind == "focus_changed":
         state["focus"] = p["focus"]
-    elif kind == "squirrel_assessed":
-        require(state.get("charter"), "Squirrel requires the research charter")
-        require(p["invocation"] in state["invocations"], "Unknown Squirrel invocation")
+    elif kind in ("attention_assessed", "squirrel_assessed"):
+        # Legacy event spelling is accepted only to replay existing hash-linked history.
+        require(state.get("charter"), "Attention requires the research charter")
+        require(p["invocation"] in state["invocations"], "Unknown Attention invocation")
         require(state["invocations"][p["invocation"]].get("status") == p["terminal"],
-                "Squirrel receipt must follow its terminal invocation")
-        attention = p.get("attention", state.get("squirrel", {}).get("attention"))
-        state["squirrel"] = {"counters": p["counters"], "deferred": p["deferred"],
+                "Attention receipt must follow its terminal invocation")
+        attention = p.get("attention", state.get("attention", {}).get("attention"))
+        state["attention"] = {"counters": p["counters"], "deferred": p["deferred"],
                              "last_receipt": {k: v for k, v in p.items()
                                               if k not in ("counters", "deferred", "attention")}}
         if attention:
-            state["squirrel"]["attention"] = attention
+            state["attention"]["attention"] = attention
     elif kind == "commitment_cancelled":
         item = state["commitments"].get(p["id"])
         require(item is not None and item["status"] == "open", "Only open commitments can be cancelled")
@@ -278,6 +293,9 @@ def reduce_event(state, event, historical=False):
         require(p["base_version"] == state["version"], "Start version mismatch")
         state["pending"] = p["id"]
         state["invocations"][p["id"]] = {k: v for k, v in p.items() if k != "request"}
+        if "attention" not in state["invocations"][p["id"]] and "squirrel" in p:
+            state["invocations"][p["id"]]["attention"] = p["squirrel"]
+            state["invocations"][p["id"]].pop("squirrel", None)
         state["invocations"][p["id"]].update(status="pending", time=event["time"])
     elif kind == "provider_attempt_started":
         require(state["pending"] == p["id"], "Invocation is not pending")
@@ -618,9 +636,19 @@ class Store:
         state, head = self.replay()
         encoded = canonical(state)
         row = self.db.execute("SELECT head, state FROM snapshot WHERE id=1").fetchone()
-        if row != (head, encoded):
+        normalized_row = row
+        if row is not None:
+            try:
+                normalized_row = (row[0], canonical(_normalize_legacy_attention_state(json.loads(row[1]))))
+            except (TypeError, ValueError):
+                normalized_row = row
+        if normalized_row != (head, encoded):
             if not repair:
                 raise IntegrityError("Projection differs from valid history; run `python -m wake recover`")
+            with self.db:
+                self.db.execute("INSERT OR REPLACE INTO snapshot VALUES(1,?,?)", (head, encoded))
+            self._remember(state, head, self.db.execute("SELECT COUNT(*) FROM events").fetchone()[0])
+        elif row != normalized_row:
             with self.db:
                 self.db.execute("INSERT OR REPLACE INTO snapshot VALUES(1,?,?)", (head, encoded))
             self._remember(state, head, self.db.execute("SELECT COUNT(*) FROM events").fetchone()[0])

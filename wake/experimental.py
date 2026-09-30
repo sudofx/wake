@@ -66,7 +66,7 @@ def temporal_snapshot(state, events, at):
         "anchor_seq": experimental["event_seq"], "effective_seconds": 0.0,
     }
     wall = _seconds(previous["anchor_time"], at)
-    tracked = ("accepted", "rejected", "failed", "observation", "research_collected", "squirrel_assessed")
+    tracked = ("accepted", "rejected", "failed", "observation", "research_collected", "attention_assessed", "squirrel_assessed")
     if isinstance(events, dict) and "total" in events and "kinds" in events:
         since_total = events["total"]
         kinds = {kind: events["kinds"].get(kind, 0) for kind in tracked}

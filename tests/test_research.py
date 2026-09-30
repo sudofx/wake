@@ -871,7 +871,7 @@ class ResearchTests(unittest.TestCase):
                       domain="entropy", reason="Continue the existing investigation")
         result = self.propose([action])
         self.assertEqual(result["status"], "rejected")
-        self.assertIn("Squirrel rotation requires substantive work on", result["reason"])
+        self.assertIn("Attention rotation requires substantive work on", result["reason"])
         self.assertIn("p", self.engine.store.load()["projects"])
 
     def test_completion_requires_a_notebook(self):
