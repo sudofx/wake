@@ -9,8 +9,6 @@
 """One cloud wake. Persist the call reservation remotely before sending to Gemini."""
 
 import argparse
-from datetime import datetime, timedelta, timezone
-from zoneinfo import ZoneInfo
 import json
 import os
 from pathlib import Path
@@ -27,7 +25,7 @@ LIVE_PROJECTION_WALL_SECONDS = 30
 sys.path.insert(0, str(ROOT))
 from wake.engine import Engine, config
 from wake.governance import Rejected
-from wake.providers import Gemini, is_free_tier_daily_quota
+from wake.providers import Gemini
 from wake.research import collect
 from wake.live import build_live_projection
 
