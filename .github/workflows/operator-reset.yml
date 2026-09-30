@@ -1,5 +1,5 @@
-name: WAKE✳︎ — RESET TO WAKE 0
-run-name: "RESET WAKE✳︎ durable record to 0"
+name: WAKE✳︎ — Reset WAKE to 0
+run-name: "Reset WAKE✳︎ to 0"
 
 # ELI5: This erases the current durable WAKE research/history and starts the experiment over at zero.
 on:
@@ -37,7 +37,7 @@ jobs:
           set -euo pipefail
           active="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50"             --jq '[.workflow_runs[] | select(.head_branch=="wake-runtime" and .status!="completed")] | length')"
           if [[ "$active" != "0" ]]; then
-            echo "::error::WAKE✳︎ is still running. Run STOP CONTINUOUS RESEARCH first, then retry RESET."
+            echo "::error::WAKE✳︎ is still running. Run Stop research first, then retry RESET."
             exit 1
           fi
 
