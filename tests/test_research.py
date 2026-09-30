@@ -1356,7 +1356,8 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(len(collected_domains), 1)  # first fetch failed; second succeeded
         statuses = [r["status"] for r in state["research"].values()]
         self.assertEqual(statuses.count("failed"), 1)
-        self.assertEqual(statuses.count("queued"), 3)
+        self.assertEqual(statuses.count("collected"), 1)
+        self.assertEqual(statuses.count("queued"), 2)
         collected = [e for e in state["evidence"].values() if e.get("scope") == "collected" and e.get("actor") == "collector"]
         payload = json.loads(collected[-1]["content"])
         self.assertIs(payload["verification_required"], True)
