@@ -768,15 +768,10 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         target.mkdir(parents=True, exist_ok=True)
         assets = Path(__file__).parent / "assets"
         template = (assets / "index.html").read_text().replace("WAKE_CYCLE_COUNT", str(state["version"]))
-        # Public configuration only. OAuth credentials and GitHub tokens remain
-        # inside the confidential control Worker; absent configuration hides the
-        # operator controls entirely.
-        control_url = os.environ.get("WAKE_CONTROL_URL", "").rstrip("/")
-        template = template.replace("WAKE_CONTROL_URL", json.dumps(control_url))
         # Publish source styles alongside every HTML view: Pages and exports share
         # the same theme file rather than receiving copied inline palettes.
         for name in ("style.css", "nav.css", "map.css", "map3d.css", "theme.css",
-                     "nav.js", "control.js", "map.js", "map3d.js", "flat-view.js"):
+                     "nav.js", "map.js", "map3d.js", "flat-view.js"):
             atomic_write(target / name, (assets / name).read_text())
         browser_data = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
         atomic_write(target / "wake-data.json", browser_data)
