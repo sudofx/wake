@@ -26,9 +26,13 @@ class MastheadPresentationTests(unittest.TestCase):
                           'data-owner-start', 'data-owner-stop', 'data-owner-reset'):
             self.assertNotIn(forbidden, header)
 
-    def test_actions_light_is_phone_safe_without_runtime_state_css(self):
+    def test_actions_light_is_phone_safe_and_read_only(self):
+        nav = (ASSETS / "nav.js").read_text()
         self.assertIn('.actions-light{box-sizing:border-box', self.css)
+        self.assertIn('cursor:default', self.css)
         self.assertIn('@keyframes actions-light-pulse', self.css)
+        self.assertIn('actions/workflows/wake-runner.yml', nav)
+        self.assertIn("actionsLight.title=running?'Running':'Stopped'", nav)
         self.assertNotIn('.owner-', self.css)
         self.assertNotIn('operator-status', self.css)
 
