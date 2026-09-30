@@ -34,5 +34,21 @@ jobs:
           done
           echo "Cancelled ${#runs[@]} active WAKE cycle(s)." >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Wait until research is fully stopped
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          for attempt in {1..30}; do
+            active="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50" --jq '[.workflow_runs[] | select(.head_branch=="wake-runtime" and .status!="completed")] | length')"
+            if [[ "$active" == "0" ]]; then
+              echo "WAKE✳︎ is fully stopped." >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "::error::WAKE✳︎ did not fully stop before the stop safety timeout."
+          exit 1
+
       - name: Explain the result
         run: echo "WAKE✳︎ is stopped. No successor cycle will be dispatched until Start research is run." >> "$GITHUB_STEP_SUMMARY"

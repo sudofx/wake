@@ -102,7 +102,7 @@ jobs:
           RETRY_AFTER: ${{ needs.wake.outputs.retry_after }}
           PREVIOUS_RUN_ID: ${{ github.run_id }}
         run: |
-          state="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml" --jq '.state' 2>/dev/null || true)"
+          state="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml" --jq '.state')"
           if [[ "$state" != "active" ]]; then
             echo "Continuous runner is disabled; no successor will be dispatched."
             exit 0

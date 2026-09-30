@@ -23,7 +23,7 @@ jobs:
       - name: Stop continuous research
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh api --method PUT "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml/disable" >/dev/null || true
+        run: gh api --method PUT "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml/disable" >/dev/null
 
       - name: Cancel any active research cycle
         env:
