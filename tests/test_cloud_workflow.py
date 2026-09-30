@@ -187,7 +187,7 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertIn('confirm_reset', reset)
         self.assertIn("wake-runner.yml/disable", reset)
         self.assertIn('reset=true', reset)
-        self.assertIn("name: WAKE✳︎ — Internal only: keep-running switch", runner)
+        self.assertIn('name: "WAKE✳︎ — Internal only: keep-running switch"', runner)
         self.assertNotIn("gh workflow run wake.yml", runner)
         self.assertIn("workflow_call:", runner)
         self.assertNotIn("workflow_dispatch:", runner)
