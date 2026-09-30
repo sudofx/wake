@@ -12,11 +12,11 @@ The `WAKE✳︎ — Update website · automatic` workflow is the only Pages publ
 
 `WAKE✳︎ — Internal only: one research cycle` is the only research execution lane. It may execute only when the workflow dispatch ref is `wake-runtime`; each accepted/rejected cycle can dispatch its successor from that same runtime branch and carries the exact runtime commit forward. `WAKE✳︎ — Internal only: keep-running switch` is only the durable on/off latch used by **Start research** and **Stop research**; running it manually does not start research.
 
-Runtime control lives entirely in GitHub Actions. The website's flashing green light opens the repository Actions page; there is no site authentication or control backend. **Start research** opens the keep-running switch and dispatches the first `wake.yml` cycle on `wake-runtime`. **Stop research** closes that switch before cancelling active cycles. **Reset WAKE to 0** requires an explicit `RESET` confirmation and refuses active research.
+Runtime control lives entirely in GitHub Actions. The website's small status light opens the repository Actions page; it flashes green only while a real `wake.yml` run is queued or in progress, and is red when no research run is active. There is no site authentication or control backend. **Start research** opens the keep-running switch and dispatches the first `wake.yml` cycle on `wake-runtime`. **Stop research** closes that switch before cancelling active cycles. **Reset WAKE to 0** requires an explicit `RESET` confirmation and refuses active research.
 
 Runtime adoption is explicit. **WAKE✳︎ — Make new code live** verifies a candidate, rechecks that no real `wake-runtime` cycle is queued or running, and only then moves the runtime branch to that exact verified commit. It refuses while research is active: **Stop research → Make new code live → Start research**. CI on `master` is development feedback only; failures there never stop or redefine an already-running research chain.
 
-The Pages home polls cache-busted `head.txt` and `operation.json` every ten seconds with `cache: "no-store"`. When a newer publication appears it reloads the current view with a unique query value, defeating Safari's aggressive static-page caching while preserving the page hash.
+The Pages shell loads the disposable `wake-live/live.json` projection with `cache: "no-store"` and checks it every ten seconds. New state is applied in place; live research no longer waits for or triggers a Pages deployment.
 
 ## One-time repository setup
 
@@ -46,7 +46,7 @@ These are AI-authored research syntheses: comparisons, explanations and open que
 
 Before contacting Gemini, the workflow commits and pushes the request and quota reservation. If that push fails, the model is not called. It checkpoints again after the response. A lost runner can waste an attempt, but the next runner recovers the unfinished invocation without refunding it. Non-fast-forward pushes fail; no force pushes are used. Workflow concurrency serializes automatic and manual runs.
 
-Archived Lab Comics covers remain under `assets/covers/`, but automated README cover rotation is disabled. The README cover is selected manually, so ordinary accepted wakes and Pages deployments do not create presentation-only commits on `master`.
+Archived Lab Comics covers remain under `assets/covers/`. They are static assets; runtime research and Pages publication do not modify them.
 
 Each completed cycle refreshes the disposable `wake-live` projection after the authoritative SQLite state is checkpointed. Governance rejection and handled provider deferral can therefore update the public record without advancing accepted research. GitHub Pages is independent: it republishes only when website code changes. If the live projection refresh fails, the durable record remains authoritative and the previous public projection stays in place. Eligible transient HTTP 500/502/503/504 and narrowly classified network failures may advance once to each next configured Gemini model; there are no sleeps or same-model retries. Every provider attempt is durably reserved and recorded. Exhausting the eligible model chain defers the wake without advancing research. Expected provider pressure leaves the workflow green; this means the outcome was handled, not that research was accepted. The homepage separately shows the last accepted wake, latest attempt, provider-request accounting, and any known quota reset time.
 
