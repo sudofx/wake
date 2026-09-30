@@ -31,7 +31,7 @@ from pypdf import PdfReader
 ALLOWED_HOSTS = {
     # Scholarly indexes / open research
     "api.crossref.org", "api.openalex.org", "api.semanticscholar.org",
-    "api.datacite.org", "arxiv.org", "export.arxiv.org", "rss.arxiv.org",
+    "api.datacite.org", "doi.org", "arxiv.org", "export.arxiv.org", "rss.arxiv.org",
     "pubmed.ncbi.nlm.nih.gov", "pmc.ncbi.nlm.nih.gov", "www.ncbi.nlm.nih.gov",
     "europepmc.org", "api.core.ac.uk", "doaj.org", "eric.ed.gov",
     # Universities / public knowledge institutions
@@ -124,6 +124,9 @@ def route_source_identity(url):
     if parsed.hostname == "api.crossref.org" and parsed.path.startswith("/works/"):
         doi = urllib.parse.unquote(parsed.path[len("/works/"):]).strip()
         return "doi:" + doi.lower() if doi else None
+    if parsed.hostname == "doi.org":
+        doi = urllib.parse.unquote(parsed.path.lstrip("/")).strip()
+        return "doi:" + doi.lower() if doi.startswith("10.") else None
     if parsed.hostname == "api.openalex.org" and parsed.path.startswith("/works/"):
         work = urllib.parse.unquote(parsed.path[len("/works/"):]).strip()
         return "openalex:" + work if re.fullmatch(r"[Ww]\d+", work) else None
@@ -760,7 +763,31 @@ def collect(engine, fetcher=fetch_source, monotonic=time.monotonic):
                        if p.get("status") == "active"]
     active_domains = {p["domain"] for p in active_projects}
     active_work = bool(active_projects or queued)
-    exploration_slots = 1 if active_work and discovery_count > 1 else discovery_count
+    active_project_ids = {p["id"] for p in active_projects}
+    existing_sources = {
+        e.get("source") for e in state.get("evidence", {}).values() if e.get("source")
+    }
+    maturation_backlog = bool(queued) or any(
+        project_id in active_project_ids and (
+            any(url and url not in existing_sources
+                for url in summary.get("source_candidates", []))
+            or any(
+                (exact_identifier_url(identifier) not in existing_sources)
+                for identifier in summary.get("persistent_identifiers", [])
+                if exact_identifier_url(identifier)
+            )
+        )
+        for project_id, summary in state.get("acquisition", {}).items()
+    )
+    # Once an active project has a concrete acquisition trail, finish that trail
+    # before spending another slot on unrelated broad discovery. This keeps the
+    # collector from repeatedly observing new topics while known projects stall
+    # one routing hop short of readable evidence.
+    exploration_slots = (
+        0 if active_work and maturation_backlog
+        else 1 if active_work and discovery_count > 1
+        else discovery_count
+    )
     maturation_slots = discovery_count - exploration_slots
     alternatives = [topic for topic in topics if topic["id"] not in active_domains]
     pending = []
@@ -771,7 +798,6 @@ def collect(engine, fetcher=fetch_source, monotonic=time.monotonic):
     # one continuation slot promoting the strongest untried lead to an exact
     # verification record before asking a disposable model to rediscover or
     # manually translate it. This is retrieval plumbing, not research judgment.
-    existing_sources = {e.get("source") for e in state.get("evidence", {}).values() if e.get("source")}
     projects = state.get("projects", {})
     source_candidates = []
     for project_id, summary in state.get("acquisition", {}).items():
@@ -792,7 +818,7 @@ def collect(engine, fetcher=fetch_source, monotonic=time.monotonic):
                     "no_progress": int(summary.get("no_progress", 0)),
                 })
     source_candidates.sort(key=lambda item: (
-        0 if item["blocked"] else 1, -item["no_progress"], item["project"], item["url"]
+        0 if not item["blocked"] else 1, -item["no_progress"], item["project"], item["url"]
     ))
     for item in source_candidates:
         if len(pending) >= maturation_slots:
@@ -824,7 +850,7 @@ def collect(engine, fetcher=fetch_source, monotonic=time.monotonic):
                 })
                 break
     identifier_candidates.sort(key=lambda item: (
-        0 if item["blocked"] else 1, -item["no_progress"], item["project"], item["identifier"]
+        0 if not item["blocked"] else 1, -item["no_progress"], item["project"], item["identifier"]
     ))
     for exact in identifier_candidates:
         if len(pending) >= maturation_slots:

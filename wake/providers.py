@@ -119,8 +119,7 @@ At most four model-proposed follow-up searches may be recorded as hypotheses. Th
 randomized attention across configured topics is authoritative. The collector may spend one bounded slot on a queued
 follow-up while preserving another slot for neutral topic exposure, so active work can progress without monopolizing
 attention. Model-proposed searches never control the entire network collection budget. Follow useful evidence where it leads rather than forcing a connection.
-Optionally add a url field to read a specific HTTPS HTML/abstract page or one exact approved API record instead of searching.
-Specific URLs must use HTTPS and pass the collector's current application allowlist; if uncertain, omit the url and record the research question only. Follow promising abstracts to full HTML sources when available before making substantive claims.
+Do not supply a url field in a research action. The trusted collector owns network-route selection and will translate focused queries into approved discovery, metadata, and readable-source routes. Put the retrieval target in query/reason; never guess a publisher URL.
 {"type":"notebook","id":"id","project":"project-id","title":"Title","summary":"Short useful takeaway",
  "findings":"Substantive source-backed analysis, with [source-ID] citations at individual claims",
  "limitations":"Competing interpretations, missing evidence, and where the sources are only abstracts",
@@ -299,7 +298,7 @@ SCHEMA = {"type": "object", "additionalProperties": False, "properties": {
         action_schema("resolve", "id status evidence reason", {"status": ["fulfilled"]}),
         action_schema("project", "id title question domain status next_step reason",
                       {"status": ["active", "parked", "completed"]}),
-        action_schema("research", "project query domain reason", optional=("url",)),
+        action_schema("research", "project query domain reason"),
         action_schema("reframe", "project old_frame new_frame assumptions_changed observations trigger strategy reason"),
         action_schema("notebook", "id project title summary findings limitations next_questions evidence reason"),
         action_schema("blog", "id project title lede body notebooks evidence reason", optional=("lens", "supersedes", "reflection_cycle")),
