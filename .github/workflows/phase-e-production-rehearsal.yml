@@ -1,13 +1,27 @@
-name: WAKE✳︎ — Phase E production migration rehearsal
+name: WAKE✳︎ — Phase E authority rehearsal
 
 on:
   push:
     branches: [master]
     paths:
       - '.github/workflows/phase-e-production-rehearsal.yml'
+      - 'pyproject.toml'
+      - 'wake/authority.py'
+      - 'wake/sudofx_store.py'
+      - 'wake/sudofx_application.py'
+      - 'wake/application_policy.py'
+      - 'wake/history.py'
+      - 'scripts/github_wake.py'
+      - 'tests/test_authority_cutover.py'
+      - 'tests/test_sudofx_migration.py'
+  workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: wake-phase-e-authority-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   rehearse:
@@ -23,59 +37,72 @@ jobs:
       - name: Fetch current WAKE authority
         run: |
           git fetch --depth=1 origin wake-state
-          mkdir -p /tmp/wake-legacy/data /tmp/wake-migrated/data
-          git show FETCH_HEAD:data/wake.sqlite3 > /tmp/wake-legacy/data/wake.sqlite3
-      - name: Rehearse exact migration without provider access
+          mkdir -p /tmp/wake-authority/data
+          if git cat-file -e FETCH_HEAD:data/sudofx.sqlite 2>/dev/null; then
+            git show FETCH_HEAD:data/sudofx.sqlite > /tmp/wake-authority/data/sudofx.sqlite
+            echo "source_format=sudofx" >> "$GITHUB_ENV"
+          elif git cat-file -e FETCH_HEAD:data/wake.sqlite3 2>/dev/null; then
+            git show FETCH_HEAD:data/wake.sqlite3 > /tmp/wake-authority/data/wake.sqlite3
+            echo "source_format=legacy" >> "$GITHUB_ENV"
+          else
+            echo "wake-state contains neither supported authority database" >&2
+            exit 1
+          fi
+      - name: Reopen or migrate exact authority without provider access
         run: |
           python - <<'PY'
           import json, os, time
           from pathlib import Path
-          from wake.store import Store
-          from wake.sudofx_store import SudofxStore
+          from wake.authority import open_authoritative_store
 
-          legacy_dir = Path("/tmp/wake-legacy/data")
-          migrated_dir = Path("/tmp/wake-migrated/data")
-          legacy_bytes = (legacy_dir / "wake.sqlite3").stat().st_size
-          legacy = Store(legacy_dir)
+          data_dir = Path("/tmp/wake-authority/data")
+          source_format = os.environ["source_format"]
+          source_path = data_dir / ("sudofx.sqlite" if source_format == "sudofx" else "wake.sqlite3")
+          source_bytes = source_path.stat().st_size
+
           started = time.monotonic()
-          try:
-              store = SudofxStore(migrated_dir, legacy_store=legacy)
-          finally:
-              legacy.close()
-          migration_seconds = time.monotonic() - started
+          store = open_authoritative_store(data_dir)
+          operation_seconds = time.monotonic() - started
           try:
               state = store.load()
               event_count = len(store.events())
               head = store.head()
               revision = store.kernel.context().revision
-              migration = store._envelope()["migration"]
+              health = store.record.health()
           finally:
               store.close()
 
-          reopened = SudofxStore(migrated_dir)
+          reopened = open_authoritative_store(data_dir)
           try:
               assert reopened.head() == head
               assert len(reopened.events()) == event_count
               assert reopened.load() == state
+              assert reopened.kernel.context().revision == revision
           finally:
               reopened.close()
 
-          sudofx_bytes = (migrated_dir / "sudofx.sqlite").stat().st_size
+          sudofx_path = data_dir / "sudofx.sqlite"
+          legacy_path = data_dir / "wake.sqlite3"
+          assert sudofx_path.exists()
+          assert not legacy_path.exists()
+
+          sudofx_bytes = sudofx_path.stat().st_size
           result = {
-              "legacy_bytes": legacy_bytes,
+              "source_format": source_format,
+              "source_bytes": source_bytes,
               "sudofx_bytes": sudofx_bytes,
-              "growth_ratio": round(sudofx_bytes / max(legacy_bytes, 1), 4),
-              "migration_seconds": round(migration_seconds, 3),
+              "operation_seconds": round(operation_seconds, 3),
               "event_count": event_count,
-              "sudofx_revision": revision,
-              "archive_complete": migration.get("archive_complete"),
+              "accepted_revision": revision,
+              "record_health_revision": health["revision"],
+              "single_authority_database": True,
               "github_100mb_safe": sudofx_bytes < 100 * 1024 * 1024,
           }
           print(json.dumps(result, sort_keys=True))
           with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as out:
-              out.write("## Phase E migration rehearsal\n\n")
+              out.write("## Phase E authority rehearsal\n\n")
               for key, value in result.items():
                   out.write(f"- **{key}**: {value}\n")
           if not result["github_100mb_safe"]:
-              raise SystemExit("Migrated sudofx.sqlite exceeds GitHub's 100 MiB safety ceiling")
+              raise SystemExit("sudofx.sqlite exceeds GitHub's 100 MiB safety ceiling")
           PY
