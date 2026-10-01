@@ -10,6 +10,7 @@ WAKE-compatible events reconstructed from sudofx application action inputs.
 from __future__ import annotations
 
 import fcntl
+import os
 import uuid
 from contextlib import contextmanager
 from pathlib import Path
@@ -26,6 +27,35 @@ from .history import history_metrics, merge_history_metrics
 from .sudofx_application import WAKE_APPLICATION, verified_legacy_snapshot
 
 
+class _CrashInjectableRecordStore:
+    """Wrap the public sudofx storage contract with a fixture-only pre-commit failpoint."""
+
+    def __init__(self, record):
+        self.record = record
+        self.crash_next_write = False
+
+    def read_transaction(self):
+        return self.record.read_transaction()
+
+    @contextmanager
+    def write_transaction(self):
+        armed = self.crash_next_write
+        self.crash_next_write = False
+        with self.record.write_transaction() as transaction:
+            yield transaction
+            if armed:
+                # Exit while the delegated transaction is still open. SQLite (or
+                # any future compliant backend) must publish none of the staged
+                # mutation when the process disappears before context success.
+                os._exit(86)
+
+    def history(self):
+        return self.record.history()
+
+    def projection_snapshot(self, history_limit=50):
+        return self.record.projection_snapshot(history_limit)
+
+
 class SudofxStore:
     """Present the narrow WAKE Store protocol while sudofx owns new durability."""
 
@@ -34,8 +64,9 @@ class SudofxStore:
         self.directory.mkdir(parents=True, exist_ok=True)
         self.path = self.directory / "sudofx.sqlite"
         self.record = Record(self.path)
+        self._kernel_store = _CrashInjectableRecordStore(self.record)
         self.registry = ApplicationRegistry((WAKE_APPLICATION,))
-        self.kernel = Kernel(self.record, Governance(application_registry=self.registry))
+        self.kernel = Kernel(self._kernel_store, Governance(application_registry=self.registry))
         self.host = ApplicationHost(self.kernel, self.registry, "wake")
         self.legacy_store = legacy_store
         if self.host.context().state is None:
@@ -220,7 +251,7 @@ class SudofxStore:
 
     def append(self, kind, payload, crash=False):
         if crash:
-            raise RuntimeError("Crash injection is not supported by the transitional sudofx store")
+            self._kernel_store.crash_next_write = True
         revision = self.kernel.context().revision
         receipt = self.host.submit(
             ApplicationIntent(
