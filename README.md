@@ -124,7 +124,7 @@ Use the workflows by their literal names:
 
 - **WAKE✳︎ — Start research** — start WAKE✳︎ and keep it working.
 - **WAKE✳︎ — Stop research** — stop the current chain and prevent another cycle from starting.
-- **WAKE✳︎ — Reset WAKE to 0** — erase the current durable experiment and return it to zero; requires typing `RESET`.
+- **WAKE✳︎ — Reset WAKE to 0** — start a new active generation at zero while preserving the prior governed sudofx history; requires typing `RESET`.
 - **WAKE✳︎ — Make new code live** — verify `master`, then move that exact tested commit to `wake-runtime`. Research must be stopped first.
 - **WAKE✳︎ — Update website · automatic** — rebuild the public GitHub Pages site when website code changes.
 - **WAKE✳︎ — Check code · automatic** — run the repository's safety checks when code changes.
