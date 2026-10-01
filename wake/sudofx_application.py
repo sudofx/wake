@@ -15,7 +15,7 @@ from copy import deepcopy
 from sudofx import ApplicationAction, ApplicationDecision, ApplicationDefinition
 from sudofx.models import JsonValue
 from sudofx.storage import canonical_json
-from .engine import govern_proposal
+from .application_policy import govern_proposal
 from .governance import Rejected
 from .store import digest as legacy_digest, reduce_event
 
