@@ -10,6 +10,7 @@ and importing does not delete or rewrite the legacy record.
 from __future__ import annotations
 
 import hashlib
+import json
 from copy import deepcopy
 
 from sudofx import ApplicationAction, ApplicationDecision, ApplicationDefinition
@@ -141,9 +142,29 @@ def _append_legacy_event(current: JsonValue, payload: JsonValue) -> ApplicationD
         invocation = event_payload.get("id")
         if not isinstance(proposal, dict) or not isinstance(invocation, str):
             return ApplicationDecision(False, reasons=("accepted WAKE event requires id and proposal",))
+
+        # WAKE stores the normalized proposal plus the exact raw provider response.
+        # Re-run policy from that raw response so normalization receipts such as the
+        # Attention rotation filter are independently reproducible. Re-running policy
+        # on the already-normalized proposal would erase the evidence of withheld
+        # actions and incorrectly reject a valid accepted event.
+        raw_response = event_payload.get("raw_response")
+        policy_input = proposal
+        if isinstance(raw_response, str):
+            try:
+                decoded = json.loads(
+                    raw_response,
+                    parse_constant=lambda value: (_ for _ in ()).throw(ValueError("Nonfinite JSON")),
+                )
+            except (ValueError, TypeError) as error:
+                return ApplicationDecision(False, reasons=(f"accepted WAKE raw response is invalid: {error}",))
+            if not isinstance(decoded, dict):
+                return ApplicationDecision(False, reasons=("accepted WAKE raw response must decode to an object",))
+            policy_input = decoded
+
         try:
             normalized, governed_state, editorial, rotation_filter = govern_proposal(
-                state, invocation, proposal
+                state, invocation, policy_input
             )
         except (Rejected, ValueError, TypeError, KeyError) as error:
             return ApplicationDecision(False, reasons=(str(error)[:1000],))
