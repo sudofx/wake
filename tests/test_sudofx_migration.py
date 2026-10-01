@@ -412,22 +412,47 @@ class SudofxMigrationTests(unittest.TestCase):
             self.assertEqual(legacy_export_head, legacy_before_head)
             self.assertEqual(len(legacy_export_events), legacy_count)
 
-            fresh = SudofxStore(
-                self.root / "sudofx-authority",
-                legacy_store=self.engine.store,
-            )
+            fresh = SudofxStore(self.root / "sudofx-authority")
             try:
                 self.assertEqual(fresh.load(), migrated_state)
                 self.assertEqual(fresh.head(), store.head())
                 self.assertEqual(
+                    fresh.events()[:legacy_count],
+                    legacy_before_events,
+                )
+                self.assertEqual(
                     len(fresh.events()),
                     fresh._envelope()["migration"]["legacy_event_count"],
                 )
+                self.assertTrue(fresh._envelope()["migration"]["archive_complete"])
             finally:
                 fresh.close()
         finally:
             store.close()
 
+
+    def test_legacy_event_archive_rejects_a_tampered_chunk(self) -> None:
+        """Exact imported history must remain hash-linked evidence, not an unchecked copy."""
+        payload = verified_legacy_snapshot(self.engine.store)
+        _, host = self._sudofx_host()
+        imported = host.submit(
+            ApplicationIntent("wake-archive-import", 0, "import_legacy_snapshot", payload)
+        )
+        self.assertEqual(imported.status, "accepted")
+        events = self.engine.store.events()
+        self.assertTrue(events)
+        bad = [dict(events[0])]
+        bad[0]["hash"] = "f" * 64
+        receipt = host.submit(
+            ApplicationIntent(
+                "wake-archive-tampered",
+                1,
+                "import_legacy_event_chunk",
+                {"events": bad},
+            )
+        )
+        self.assertEqual(receipt.status, "rejected")
+        self.assertIn("hash is invalid", " ".join(receipt.reasons))
 
     def test_detached_legacy_database_can_reopen_run_and_publish(self) -> None:
         """After verified import, WAKE runtime must no longer depend on the legacy SQLite file."""
