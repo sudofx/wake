@@ -60,7 +60,7 @@ jobs:
           echo "::error::WAKE✳︎ did not fully stop before the reset safety timeout."
           exit 1
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: master
           fetch-depth: 1
@@ -83,7 +83,7 @@ jobs:
             echo "wake-runtime differs from master; verification and promotion required." >> "$GITHUB_STEP_SUMMARY"
           fi
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         if: steps.promotion.outputs.needed == 'true'
         with:
           python-version: '3.12'
