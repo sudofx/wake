@@ -84,6 +84,50 @@ def _import_legacy_snapshot(current: JsonValue, payload: JsonValue) -> Applicati
     )
 
 
+def _state_for_legacy_event(state: dict, kind: str, payload: dict) -> dict:
+    """Copy only WAKE branches that reduce_event may mutate for this event."""
+    result = dict(state)
+    if kind == "accepted":
+        # transition() owns proposal atomicity and does not mutate its input.
+        return result
+    if kind == "research_collected":
+        research = dict(state.get("research", {}))
+        item_id = payload.get("id")
+        if item_id in research and isinstance(research[item_id], dict):
+            research[item_id] = dict(research[item_id])
+        result["research"] = research
+    elif kind == "project_adopted":
+        result["projects"] = dict(state.get("projects", {}))
+    elif kind == "acquisition_assessed":
+        result["acquisition"] = dict(state.get("acquisition", {}))
+    elif kind == "observation":
+        result["evidence"] = dict(state.get("evidence", {}))
+    elif kind == "commitment_cancelled":
+        commitments = dict(state.get("commitments", {}))
+        item_id = payload.get("id")
+        if item_id in commitments and isinstance(commitments[item_id], dict):
+            commitments[item_id] = dict(commitments[item_id])
+        result["commitments"] = commitments
+    elif kind in {
+        "invocation_started",
+        "provider_attempt_started",
+        "provider_attempt_finished",
+        "rejected",
+        "failed",
+        "deferred",
+        "recovered",
+    }:
+        invocations = dict(state.get("invocations", {}))
+        invocation_id = payload.get("id")
+        if invocation_id in invocations and isinstance(invocations[invocation_id], dict):
+            item = dict(invocations[invocation_id])
+            if kind in {"provider_attempt_started", "provider_attempt_finished"}:
+                item["provider_attempts"] = list(item.get("provider_attempts", []))
+            invocations[invocation_id] = item
+        result["invocations"] = invocations
+    return result
+
+
 def _apply_governed_proposal(current: JsonValue, payload: JsonValue) -> ApplicationDecision:
     """Run existing WAKE domain governance while sudofx remains durable authority."""
     if not isinstance(current, dict) or not isinstance(current.get("state"), dict):
@@ -136,7 +180,7 @@ def _append_legacy_event(current: JsonValue, payload: JsonValue) -> ApplicationD
     if isinstance(prior_count, bool) or not isinstance(prior_count, int) or prior_count < 0:
         return ApplicationDecision(False, reasons=("current WAKE compatibility event count is invalid",))
 
-    state = deepcopy(current["state"])
+    state = _state_for_legacy_event(current["state"], kind, event_payload)
     if kind == "accepted":
         proposal = event_payload.get("proposal")
         invocation = event_payload.get("id")
