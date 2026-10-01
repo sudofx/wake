@@ -212,5 +212,116 @@ class SudofxMigrationTests(unittest.TestCase):
         self.assertEqual(host.context().state["state"], payload["legacy_state"])
 
 
+    def test_sudofx_authoritative_event_path_matches_legacy_invocation_transition(self) -> None:
+        """A WAKE invocation can advance through sudofx without writing the legacy Store."""
+        payload = verified_legacy_snapshot(self.engine.store)
+        _, host = self._sudofx_host()
+        imported = host.submit(
+            ApplicationIntent("wake-event-import", 0, "import_legacy_snapshot", payload)
+        )
+        self.assertEqual(imported.status, "accepted")
+
+        invocation = "phase-e-native-event"
+        start_payload = {
+            "id": invocation,
+            "provider": "fixture",
+            "model": "fixture",
+            "charged": False,
+            "quota_day": "2026-10-01",
+            "base_version": payload["legacy_state"]["version"],
+            "request": {"bounded": True},
+        }
+        started = host.submit(
+            ApplicationIntent(
+                "wake-event-start",
+                1,
+                "append_legacy_event",
+                {
+                    "kind": "invocation_started",
+                    "payload": start_payload,
+                    "time": "2026-10-01T19:20:00+00:00",
+                },
+            )
+        )
+        self.assertEqual(started.status, "accepted")
+        started_envelope = host.context().state
+        started_state = started_envelope["state"]
+        self.assertEqual(started_state["pending"], invocation)
+        self.assertEqual(started_state["invocations"][invocation]["status"], "pending")
+
+        proposal = {
+            "base_version": started_state["version"],
+            "title": "Advance under sudofx authority",
+            "summary": "Exercise WAKE policy while sudofx owns the durable event.",
+            "actions": [
+                {
+                    "type": "commit",
+                    "id": "phase-e-native-authority",
+                    "task": "Preserve the migration boundary evidence.",
+                    "due_cycle": started_state["version"] + 3,
+                    "reason": "Prove the compatibility path before live cutover.",
+                }
+            ],
+        }
+        normalized, governed_state, editorial, rotation_filter = govern_proposal(
+            started_state, invocation, proposal
+        )
+        self.assertIsNone(editorial)
+        self.assertIsNone(rotation_filter)
+        fields = ["version", "beliefs", "commitments", "journal"]
+        accepted_payload = {
+            "id": invocation,
+            "proposal": normalized,
+            "raw_response": "fixture",
+            "metadata": {},
+            "result_hash": digest({key: governed_state[key] for key in fields}),
+            "hash_fields": fields,
+        }
+
+        accepted = host.submit(
+            ApplicationIntent(
+                "wake-event-accepted",
+                2,
+                "append_legacy_event",
+                {
+                    "kind": "accepted",
+                    "payload": accepted_payload,
+                    "time": "2026-10-01T19:20:01+00:00",
+                },
+            )
+        )
+        self.assertEqual(accepted.status, "accepted")
+        final_envelope = host.context().state
+
+        expected_event = {
+            "seq": started_envelope["migration"]["legacy_event_count"] + 1,
+            "time": "2026-10-01T19:20:01+00:00",
+            "kind": "accepted",
+            "payload": accepted_payload,
+            "prev_hash": started_envelope["migration"]["legacy_head"],
+        }
+        expected_event["hash"] = digest(expected_event)
+        expected_state = reduce_event(started_state, expected_event)
+
+        self.assertEqual(final_envelope["state"], expected_state)
+        self.assertEqual(final_envelope["state"]["pending"], None)
+        self.assertEqual(
+            final_envelope["state"]["invocations"][invocation]["status"],
+            "accepted",
+        )
+        self.assertEqual(
+            final_envelope["state"]["commitments"]["phase-e-native-authority"]["task"],
+            "Preserve the migration boundary evidence.",
+        )
+        self.assertEqual(
+            final_envelope["migration"]["legacy_head"],
+            expected_event["hash"],
+        )
+        self.assertEqual(
+            final_envelope["migration"]["legacy_event_count"],
+            payload["legacy_event_count"] + 2,
+        )
+
+
 if __name__ == "__main__":
     unittest.main()
