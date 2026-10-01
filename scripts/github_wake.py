@@ -29,8 +29,7 @@ from wake.governance import Rejected
 from wake.providers import Gemini
 from wake.research import collect
 from wake.live import build_live_projection
-from wake.store import Store
-from wake.sudofx_store import SudofxStore
+from wake.authority import open_authoritative_store
 
 
 from wake.scheduling import TRANSIENT_RETRY_DELAY, wake_status
@@ -244,31 +243,6 @@ def continuation_outputs(result):
     set_step_output("status", status or "unknown")
     set_step_output("continue_now", "true" if continue_now else "false")
     set_step_output("retry_after", str(retry_after))
-
-
-def open_authoritative_store(data_directory):
-    """Open sudofx authority, performing the one-time verified WAKE migration when needed."""
-    data_directory = Path(data_directory)
-    sudofx_path = data_directory / "sudofx.sqlite"
-    if sudofx_path.exists():
-        return SudofxStore(data_directory)
-
-    legacy_path = data_directory / "wake.sqlite3"
-    if legacy_path.exists():
-        legacy = Store(data_directory)
-        try:
-            return SudofxStore(data_directory, legacy_store=legacy)
-        finally:
-            legacy.close()
-
-    # A brand-new experiment has no legacy history to import. Bootstrap the
-    # ordinary legacy Store only long enough to create WAKE's deterministic
-    # empty/initial history, then immediately migrate it into sudofx.
-    legacy = Store(data_directory)
-    try:
-        return SudofxStore(data_directory, legacy_store=legacy)
-    finally:
-        legacy.close()
 
 
 def main(reset=False):
