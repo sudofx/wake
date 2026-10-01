@@ -24,7 +24,7 @@ from time import perf_counter
 from zoneinfo import ZoneInfo
 
 from .application_policy import govern_proposal
-from .governance import Rejected, require, text
+from .governance import Rejected, bob_reflection_due_cycle, require, text
 from .providers import (
     SYSTEM, ConfiguredDailyLimitReached, DailyQuotaExceeded, ProviderRequestError, TransientProviderError,
     is_free_tier_daily_quota, retractable_quotes, schema_for_context,
