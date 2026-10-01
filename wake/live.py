@@ -36,67 +36,23 @@ def _compact_invocation(item):
 
 
 def _full_history_metrics(store, state):
-    """Return tiny aggregates derived from the full authoritative event record."""
-    action_counts = {}
-    topic_counts = {}
-    system_counts = {}
-    rejection_reasons = {}
-    accepted_events = 0
+    """Return tiny aggregates from the store contract, never a concrete SQLite schema."""
+    if hasattr(store, "history_metrics"):
+        summary = store.history_metrics()
+    else:
+        from .history import history_metrics
+        summary = history_metrics(store.events(), state)
 
-    topics = {item.get("id") for item in state.get("research_topics", []) if item.get("id")}
-    projects = state.get("projects", {})
-
-    def topic_for(action):
-        topic = action.get("domain")
-        if topic in topics:
-            return topic
-        project_id = action.get("project") or (action.get("id") if action.get("type") == "project" else None)
-        project_topic = projects.get(project_id, {}).get("domain") if project_id else None
-        return project_topic if project_topic in topics else None
-
-    events = store.events()
-    for event in events:
-        kind = event.get("kind")
-        if kind not in {"accepted", "rejected"}:
-            continue
-        payload = event.get("payload", {})
-        if kind == "rejected":
-            reason = str(payload.get("reason") or "Unspecified rejection").split(":")[0][:90]
-            rejection_reasons[reason] = rejection_reasons.get(reason, 0) + 1
-            continue
-
-        accepted_events += 1
-        for action in payload.get("proposal", {}).get("actions", []):
-            action_type = action.get("type") or "unknown"
-            action_counts[action_type] = action_counts.get(action_type, 0) + 1
-            topic = topic_for(action)
-            target = topic_counts.setdefault(topic, {}) if topic else system_counts
-            target[action_type] = target.get(action_type, 0) + 1
-
-    topic_summary = {}
-    for topic, counts in topic_counts.items():
-        topic_summary[topic] = {"total": sum(counts.values()), "by_type": counts}
-
+    performance = store.performance_snapshot()
     return {
         "storage": {
-            "sqlite_bytes": store.performance_snapshot().get(
+            "sqlite_bytes": performance.get(
                 "sudofx_database_bytes",
                 store.path.stat().st_size if store.path.exists() else 0,
             ),
-            "event_count": len(events),
+            "event_count": performance.get("event_count", len(store.events())),
         },
-        "accepted_events": accepted_events,
-        "accepted_actions": {
-            "total": sum(action_counts.values()),
-            "by_type": action_counts,
-            "by_topic": topic_summary,
-            "unattributed": {
-                "total": sum(system_counts.values()),
-                "by_type": system_counts,
-            },
-            "belief_actions": action_counts.get("belief", 0),
-        },
-        "rejection_reasons": rejection_reasons,
+        **summary,
     }
 
 def build_live_projection(store, operation=None, runtime_ref=""):
