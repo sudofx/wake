@@ -191,6 +191,7 @@ WAKE_APPLICATION = ApplicationDefinition(
         ApplicationAction("apply_governed_proposal", _apply_governed_proposal),
         ApplicationAction("append_legacy_event", _append_legacy_event),
     ),
+    state_storage="event_log",
 )
 
 
