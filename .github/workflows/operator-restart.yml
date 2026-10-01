@@ -1,0 +1,141 @@
+name: WAKE✳︎ - Restart
+run-name: "Restart WAKE✳︎ with latest verified code"
+
+# ELI5: One safe maintenance button: stop research, verify master, make it live, then start research again.
+on:
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: write
+
+concurrency:
+  group: wake-operator-control
+  cancel-in-progress: false
+
+jobs:
+  restart:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Pin the exact master candidate
+        id: candidate
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          candidate_sha="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/master" --jq '.object.sha')"
+          echo "sha=$candidate_sha" >> "$GITHUB_OUTPUT"
+          echo "Restart candidate: $candidate_sha" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Require successful automatic CI for candidate
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CANDIDATE_SHA: ${{ steps.candidate.outputs.sha }}
+        run: |
+          set -euo pipefail
+          for attempt in {1..30}; do
+            result="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/test.yml/runs?head_sha=$CANDIDATE_SHA&event=push&per_page=20"               --jq '[.workflow_runs[] | select(.head_sha==env.CANDIDATE_SHA)] | sort_by(.created_at) | reverse | .[0] // {}')"
+            status="$(jq -r '.status // "missing"' <<<"$result")"
+            conclusion="$(jq -r '.conclusion // ""' <<<"$result")"
+            if [[ "$status" == "completed" && "$conclusion" == "success" ]]; then
+              echo "Automatic CI passed for $CANDIDATE_SHA." >> "$GITHUB_STEP_SUMMARY"
+              break
+            fi
+            if [[ "$status" == "completed" && "$conclusion" != "success" ]]; then
+              echo "::error::Automatic CI did not pass for $CANDIDATE_SHA (conclusion: $conclusion)."
+              exit 1
+            fi
+            if [[ "$attempt" == "30" ]]; then
+              echo "::error::No successful automatic CI result became available for $CANDIDATE_SHA."
+              exit 1
+            fi
+            sleep 5
+          done
+
+      - name: Close continuation latch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          state="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml" --jq '.state')"
+          if [[ "$state" == "active" ]]; then
+            gh api --method PUT "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml/disable" >/dev/null
+          fi
+          echo "Continuation latch closed (previous state: $state)." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Cancel active research cycles
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mapfile -t runs < <(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50"             --jq '.workflow_runs[] | select(.head_branch=="wake-runtime" and .status!="completed") | .id')
+          for run_id in "${runs[@]}"; do
+            gh api --method POST "repos/$GITHUB_REPOSITORY/actions/runs/$run_id/cancel" >/dev/null || true
+          done
+          for attempt in {1..30}; do
+            active="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50"               --jq '[.workflow_runs[] | select(.head_branch=="wake-runtime" and .status!="completed")] | length')"
+            [[ "$active" == "0" ]] && break
+            [[ "$attempt" == "30" ]] && { echo "::error::Research did not stop before timeout."; exit 1; }
+            sleep 2
+          done
+          echo "Research is fully stopped." >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ steps.candidate.outputs.sha }}
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+
+      - name: Verify exact candidate before promotion
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check -e .
+          python -m unittest discover -s tests -v
+          rm -rf /tmp/wake-restart /tmp/wake-restart-site
+          python -m wake --data /tmp/wake-restart experiment --cycles 100 --output /tmp/wake-restart-site
+          python -m wake audit --events /tmp/wake-restart-site/events.jsonl --head /tmp/wake-restart-site/head.txt
+
+      - name: Promote exact verified candidate
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CANDIDATE_SHA: ${{ steps.candidate.outputs.sha }}
+        run: |
+          set -euo pipefail
+          active="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50"             --jq '[.workflow_runs[] | select(.head_branch=="wake-runtime" and .status!="completed")] | length')"
+          [[ "$active" == "0" ]] || { echo "::error::wake-runtime became active during verification."; exit 1; }
+          gh api -X PATCH "repos/$GITHUB_REPOSITORY/git/refs/heads/wake-runtime"             -f sha="$CANDIDATE_SHA" -F force=true >/dev/null
+          promoted="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha')"
+          [[ "$promoted" == "$CANDIDATE_SHA" ]] || { echo "::error::Promotion verification failed."; exit 1; }
+          echo "Promoted wake-runtime to $promoted." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Reopen continuation latch and start research
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CANDIDATE_SHA: ${{ steps.candidate.outputs.sha }}
+        run: |
+          set -euo pipefail
+          gh api --method PUT "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml/enable" >/dev/null
+          gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime             -f "dispatch_token=restart-$GITHUB_RUN_ID"             -f "runtime_ref=$CANDIDATE_SHA"
+          echo "Continuation latch reopened and first cycle dispatched." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Verify restarted cycle appears
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CANDIDATE_SHA: ${{ steps.candidate.outputs.sha }}
+        run: |
+          set -euo pipefail
+          for attempt in {1..30}; do
+            run="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=20"               --jq '[.workflow_runs[] | select(.head_sha==env.CANDIDATE_SHA and .status!="completed")] | sort_by(.created_at) | reverse | .[0] // {}')"
+            run_id="$(jq -r '.id // empty' <<<"$run")"
+            if [[ -n "$run_id" ]]; then
+              echo "Restart verified: WAKE✳︎ cycle $run_id is queued or running on $CANDIDATE_SHA." >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "::error::Promotion succeeded, but no restarted WAKE✳︎ cycle appeared. Continuation latch remains open; inspect Actions before retrying."
+          exit 1
