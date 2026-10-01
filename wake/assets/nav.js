@@ -39,15 +39,21 @@
 
 const actionsLight=document.querySelector('.actions-light');
 if(actionsLight){
-  fetch('https://api.github.com/repos/sudofx/wake/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=10',{cache:'no-store'})
-    .then(response=>response.ok?response.json():Promise.reject())
-    .then(payload=>{
-      const running=(payload.workflow_runs||[]).some(run=>run.status!=='completed');
-      actionsLight.dataset.state=running?'running':'stopped';
-      actionsLight.title=running?'Running':'Stopped';
-    })
-    .catch(()=>{
-      actionsLight.removeAttribute('data-state');
-      actionsLight.title='GitHub Actions';
-    });
+  const refreshActionsLight=()=>{
+    const url='https://api.github.com/repos/sudofx/wake/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=10&_='+Date.now();
+    fetch(url,{cache:'no-store'})
+      .then(response=>response.ok?response.json():Promise.reject())
+      .then(payload=>{
+        const running=(payload.workflow_runs||[]).some(run=>run.status!=='completed');
+        actionsLight.dataset.state=running?'running':'stopped';
+        actionsLight.title=running?'Running':'Stopped';
+      })
+      .catch(()=>{
+        actionsLight.removeAttribute('data-state');
+        actionsLight.title='GitHub Actions';
+      });
+  };
+  refreshActionsLight();
+  setInterval(refreshActionsLight,15000);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshActionsLight();});
 }
