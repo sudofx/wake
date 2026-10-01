@@ -54,12 +54,12 @@ def _full_history_metrics(store, state):
         project_topic = projects.get(project_id, {}).get("domain") if project_id else None
         return project_topic if project_topic in topics else None
 
-    rows = store.db.execute(
-        "SELECT kind,payload FROM events WHERE kind IN ('accepted','rejected') ORDER BY seq"
-    )
-    for kind, payload_text in rows:
-        import json
-        payload = json.loads(payload_text)
+    events = store.events()
+    for event in events:
+        kind = event.get("kind")
+        if kind not in {"accepted", "rejected"}:
+            continue
+        payload = event.get("payload", {})
         if kind == "rejected":
             reason = str(payload.get("reason") or "Unspecified rejection").split(":")[0][:90]
             rejection_reasons[reason] = rejection_reasons.get(reason, 0) + 1
@@ -79,8 +79,11 @@ def _full_history_metrics(store, state):
 
     return {
         "storage": {
-            "sqlite_bytes": store.path.stat().st_size,
-            "event_count": store.db.execute("SELECT COUNT(*) FROM events").fetchone()[0],
+            "sqlite_bytes": store.performance_snapshot().get(
+                "sudofx_database_bytes",
+                store.path.stat().st_size if store.path.exists() else 0,
+            ),
+            "event_count": len(events),
         },
         "accepted_events": accepted_events,
         "accepted_actions": {
@@ -113,17 +116,25 @@ def build_live_projection(store, operation=None, runtime_ref=""):
     # travel on every cycle. The authoritative database retains the full record.
     public_state["journal"] = list(state.get("journal", []))[-160:]
 
+    performance = store.performance_snapshot()
+    source = {
+        "authority": "SQLite",
+        "branch": "wake-state",
+        "database": "data/wake.sqlite3",
+        "head": head,
+        "runtime_ref": runtime_ref,
+    }
+    if performance.get("authority") == "sudofx":
+        source.update(
+            authority="sudofx SQLite",
+            database="sudofx.sqlite",
+        )
+
     return {
         "projection_schema": LIVE_SCHEMA,
         "projection_kind": "disposable-live-view",
         "authoritative": False,
-        "source": {
-            "authority": "SQLite",
-            "branch": "wake-state",
-            "database": "data/wake.sqlite3",
-            "head": head,
-            "runtime_ref": runtime_ref,
-        },
+        "source": source,
         "state": public_state,
         "events": store.tail_events_all(MAX_EVENTS),
         "head": head,
