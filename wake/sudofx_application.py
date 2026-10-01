@@ -23,6 +23,7 @@ from .store import digest as legacy_digest, empty, reduce_event
 
 APPLICATION_ID = "wake"
 APPLICATION_VERSION = "legacy-import-v1"
+LEGACY_ARCHIVE_CHUNK_SIZE = 1000
 
 
 def _valid_hash(value: object) -> bool:
@@ -203,8 +204,11 @@ def _import_legacy_event_chunk(current: JsonValue, payload: JsonValue) -> Applic
     if not isinstance(payload, dict):
         return ApplicationDecision(False, reasons=("legacy event archive chunk requires an object",))
     events = payload.get("events")
-    if not isinstance(events, list) or not events or len(events) > 50:
-        return ApplicationDecision(False, reasons=("legacy event archive chunk must contain 1-50 events",))
+    if not isinstance(events, list) or not events or len(events) > LEGACY_ARCHIVE_CHUNK_SIZE:
+        return ApplicationDecision(
+            False,
+            reasons=(f"legacy event archive chunk must contain 1-{LEGACY_ARCHIVE_CHUNK_SIZE} events",),
+        )
 
     count = migration.get("archive_event_count", 0)
     head = migration.get("archive_head", "0" * 64)
