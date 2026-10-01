@@ -496,7 +496,12 @@ class SystemTests(unittest.TestCase):
             self.assertEqual(network.call_count, 1)
             request = network.call_args.args[0]
             self.assertNotIn("test-key", request.full_url)
-            self.assertEqual(json.loads(request.data)["generationConfig"]["responseMimeType"], "application/json")
+            generation = json.loads(request.data)["generationConfig"]
+            self.assertEqual(generation["responseMimeType"], "application/json")
+            self.assertIn("responseJsonSchema", generation)
+            self.assertEqual(generation["responseJsonSchema"]["required"],
+                             ["base_version", "title", "summary", "actions"])
+            self.assertTrue(generation["responseJsonSchema"]["properties"]["actions"]["items"]["anyOf"])
 
 
     def test_gemini_sends_one_request_for_each_transient_http_failure(self):
