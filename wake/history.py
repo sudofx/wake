@@ -127,7 +127,6 @@ def migration_baseline(events, state):
         if isinstance(kind, str):
             counts[kind] = counts.get(kind, 0) + 1
     return {
-        "recent_events": deepcopy(events[-MAX_COMPATIBILITY_EVENTS:]),
         "temporal_anchor_seq": anchor,
         "temporal_suffix": {
             "total": len(suffix),
