@@ -9,6 +9,7 @@ on:
       - 'scripts/**/*.py'
       - 'tests/**'
       - 'wake.toml'
+      - 'pyproject.toml'
       - 'research-topics.toml'
       - '.github/workflows/**'
   pull_request:
