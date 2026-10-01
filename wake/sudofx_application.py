@@ -73,6 +73,9 @@ def _import_legacy_snapshot(current: JsonValue, payload: JsonValue) -> Applicati
                 "legacy_state_digest": state_digest,
                 "legacy_version": payload.get("legacy_version"),
                 "history_baseline": deepcopy(history_baseline),
+                "archive_event_count": 0,
+                "archive_head": "0" * 64,
+                "archive_complete": event_count == 0,
             },
             "state": legacy_state,
         },
@@ -190,12 +193,71 @@ def _append_legacy_event(current: JsonValue, payload: JsonValue) -> ApplicationD
     return ApplicationDecision(True, {"migration": next_migration, "state": next_state})
 
 
+def _import_legacy_event_chunk(current: JsonValue, payload: JsonValue) -> ApplicationDecision:
+    """Persist one verified suffix of the pre-sudofx WAKE event chain."""
+    if not isinstance(current, dict) or not isinstance(current.get("state"), dict):
+        return ApplicationDecision(False, reasons=("WAKE legacy state must be imported first",))
+    migration = current.get("migration")
+    if not isinstance(migration, dict):
+        return ApplicationDecision(False, reasons=("WAKE migration metadata is missing",))
+    if not isinstance(payload, dict):
+        return ApplicationDecision(False, reasons=("legacy event archive chunk requires an object",))
+    events = payload.get("events")
+    if not isinstance(events, list) or not events or len(events) > 50:
+        return ApplicationDecision(False, reasons=("legacy event archive chunk must contain 1-50 events",))
+
+    count = migration.get("archive_event_count", 0)
+    head = migration.get("archive_head", "0" * 64)
+    target_count = migration.get("import_legacy_event_count")
+    target_head = migration.get("import_legacy_head")
+    if isinstance(count, bool) or not isinstance(count, int) or count < 0:
+        return ApplicationDecision(False, reasons=("legacy archive event count is invalid",))
+    if not _valid_hash(head) or not _valid_hash(target_head):
+        return ApplicationDecision(False, reasons=("legacy archive head is invalid",))
+    if isinstance(target_count, bool) or not isinstance(target_count, int) or target_count < 0:
+        return ApplicationDecision(False, reasons=("legacy archive target count is invalid",))
+    if count + len(events) > target_count:
+        return ApplicationDecision(False, reasons=("legacy archive chunk exceeds imported history",))
+
+    expected_seq = count + 1
+    expected_head = head
+    for event in events:
+        if not isinstance(event, dict):
+            return ApplicationDecision(False, reasons=("legacy archive event must be an object",))
+        if event.get("seq") != expected_seq:
+            return ApplicationDecision(False, reasons=("legacy archive event sequence is not contiguous",))
+        if event.get("prev_hash") != expected_head:
+            return ApplicationDecision(False, reasons=("legacy archive event does not descend from prior head",))
+        body = {key: value for key, value in event.items() if key != "hash"}
+        if legacy_digest(body) != event.get("hash"):
+            return ApplicationDecision(False, reasons=("legacy archive event hash is invalid",))
+        expected_seq += 1
+        expected_head = event["hash"]
+
+    next_count = count + len(events)
+    complete = next_count == target_count
+    if complete and expected_head != target_head:
+        return ApplicationDecision(False, reasons=("legacy archive final head does not match imported history",))
+
+    next_migration = dict(migration)
+    next_migration.update(
+        archive_event_count=next_count,
+        archive_head=expected_head,
+        archive_complete=complete,
+    )
+    return ApplicationDecision(
+        True,
+        {"migration": next_migration, "state": current["state"]},
+    )
+
+
 WAKE_APPLICATION = ApplicationDefinition(
     APPLICATION_ID,
     APPLICATION_VERSION,
     (
         ApplicationAction("import_legacy_snapshot", _import_legacy_snapshot),
         ApplicationAction("apply_governed_proposal", _apply_governed_proposal),
+        ApplicationAction("import_legacy_event_chunk", _import_legacy_event_chunk),
         ApplicationAction("append_legacy_event", _append_legacy_event),
     ),
     state_storage="event_log",
