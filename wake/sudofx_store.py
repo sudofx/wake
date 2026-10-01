@@ -102,6 +102,11 @@ class SudofxStore:
         envelope = self._envelope()
         return envelope["state"], envelope["migration"]["legacy_head"]
 
+    def replay_record(self):
+        """Return verified WAKE-compatible state, head, and event history."""
+        state, head = self.replay()
+        return state, head, self.events()
+
     def projection(self):
         return self.replay()
 
