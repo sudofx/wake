@@ -10,9 +10,10 @@ from sudofx import ApplicationHost, ApplicationIntent, ApplicationRegistry, Kern
 from sudofx.governance import Governance
 from sudofx.record import Record
 
-from wake.engine import DEFAULTS, Engine
+from wake.engine import DEFAULTS, Engine, govern_proposal
 from wake.governance import Rejected, transition
 from wake.sudofx_application import WAKE_APPLICATION, verified_legacy_snapshot
+from support import charter_settings
 
 
 class SudofxMigrationTests(unittest.TestCase):
@@ -118,6 +119,71 @@ class SudofxMigrationTests(unittest.TestCase):
             host.context().state["state"]["commitments"]["phase-e-equivalence"]["task"],
             "Continue the migration with behavioral equivalence evidence.",
         )
+
+    def test_sudofx_app_reuses_full_wake_policy_including_research_id_assignment(self):
+        """Policy outside raw transition must remain identical during migration."""
+        research_engine = Engine(
+            self.root / "wake-research",
+            charter_settings("Exercise full WAKE application policy through sudofx."),
+        )
+        try:
+            with research_engine.store.lock():
+                research_engine.initialize()
+            payload = verified_legacy_snapshot(research_engine.store)
+            _, host = self._sudofx_host()
+            imported = host.submit(
+                ApplicationIntent("wake-import-full-policy", 0, "import_legacy_snapshot", payload)
+            )
+            self.assertEqual(imported.status, "accepted")
+
+            proposal = {
+                "base_version": payload["legacy_state"]["version"],
+                "title": "Open one bounded research request",
+                "summary": "Prove WAKE-owned normalization remains above the sudofx kernel.",
+                "actions": [
+                    {
+                        "type": "project",
+                        "id": "phase-e-project",
+                        "title": "Entropy comparison",
+                        "question": "What distinguishes major entropy definitions?",
+                        "domain": "entropy",
+                        "status": "active",
+                        "next_step": "Collect one bounded source set",
+                        "reason": "Exercise the existing WAKE research policy.",
+                    },
+                    {
+                        "type": "research",
+                        "project": "phase-e-project",
+                        "query": "major entropy definitions comparison",
+                        "domain": "entropy",
+                        "reason": "Gather evidence for the bounded comparison.",
+                    },
+                ],
+            }
+            normalized, expected, _, _ = govern_proposal(
+                payload["legacy_state"], "app-policy", proposal
+            )
+            expected_research_id = "research-app-policy-2"
+            self.assertEqual(normalized["actions"][1]["id"], expected_research_id)
+
+            receipt = host.submit(
+                ApplicationIntent(
+                    "wake-full-policy-equivalence",
+                    1,
+                    "apply_governed_proposal",
+                    {"invocation": "app-policy", "proposal": proposal},
+                )
+            )
+            self.assertEqual(receipt.status, "accepted")
+            migrated_state = host.context().state["state"]
+            self.assertEqual(migrated_state, expected)
+            self.assertIn(expected_research_id, migrated_state["research"])
+            self.assertEqual(
+                migrated_state["research"][expected_research_id]["project"],
+                "phase-e-project",
+            )
+        finally:
+            research_engine.store.close()
 
     def test_governed_proposal_rejects_exact_legacy_stale_write(self):
         """A legacy WAKE rejection must stay a rejection at the sudofx authority boundary."""
