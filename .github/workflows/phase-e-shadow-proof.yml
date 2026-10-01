@@ -1,0 +1,26 @@
+name: WAKE✳︎ — Phase E shadow migration proof
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - '.github/workflows/phase-e-shadow-proof.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  prove:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Install WAKE and pinned sudofx
+        run: python -m pip install --disable-pip-version-check -e .
+      - name: Run read-only live-state equivalence proof
+        run: python scripts/sudofx_shadow_migration.py
