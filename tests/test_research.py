@@ -86,6 +86,16 @@ class ResearchTests(unittest.TestCase):
             self.engine.store.append("observation", dict(id=identifier, source=url or "https://plato.stanford.edu/entries/"+identifier,
                 content=json.dumps(payload), actor="collector", scope=status))
 
+    def test_provider_schema_pins_base_version_to_durable_context(self):
+        context = {
+            "version": 76,
+            "research_topics": [{"id": "entropy"}],
+            "projects": [],
+            "blog_notebooks": {},
+        }
+        schema = schema_for_context(context)
+        self.assertEqual(schema["properties"]["base_version"]["enum"], [76])
+
     def test_model_research_schema_keeps_network_route_collector_owned(self):
         context = {
             "research_topics": [{"id": "entropy"}],
