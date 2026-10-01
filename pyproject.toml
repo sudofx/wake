@@ -13,7 +13,7 @@ description = "Disposable models. Durable state. Receipts for everything."
 requires-python = ">=3.11"
 dependencies = [
   "pypdf==6.19.0",
-  "sudofx @ git+https://github.com/sudofx/sudofx.git@a480d7b37ce73e6e2fbab94e01b07b255bb9eca6",
+  "sudofx @ git+https://github.com/sudofx/sudofx.git@6dd2a6870df46bb3d5ca9d756b1b65b562501886",
 ]
 
 [project.scripts]
