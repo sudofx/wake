@@ -432,6 +432,28 @@ class SudofxMigrationTests(unittest.TestCase):
             store.close()
 
 
+    def test_sudofx_fixture_revises_belief_from_new_sensor_evidence(self) -> None:
+        """Fresh observations must remain visible across sudofx-backed fixture cycles."""
+        store = SudofxStore(self.root / "sudofx-evidence", legacy_store=self.engine.store)
+        migrated = Engine(self.root / "unused-evidence-path", dict(DEFAULTS), store=store)
+        try:
+            with store.lock():
+                migrated.observe("Synthetic measurement within range", "fixture:sensor")
+            self.assertEqual(migrated.run(Fixture())["status"], "accepted")
+            with store.lock():
+                migrated.observe("Synthetic second measurement within range", "fixture:sensor")
+            self.assertEqual(migrated.run(Fixture())["status"], "accepted")
+            with store.lock():
+                migrated.observe("Synthetic counterexample outside range", "fixture:sensor")
+            self.assertEqual(migrated.run(Fixture())["status"], "accepted")
+            belief = store.load()["beliefs"]["sensor"]
+            self.assertEqual(belief["status"], "retracted")
+            self.assertEqual(len(belief["evidence"]), 3)
+            self.assertEqual(belief["confidence"], 0)
+        finally:
+            store.close()
+
+
     def test_legacy_event_archive_rejects_a_tampered_chunk(self) -> None:
         """Exact imported history must remain hash-linked evidence, not an unchecked copy."""
         payload = verified_legacy_snapshot(self.engine.store)
