@@ -117,6 +117,14 @@ class StateBranch:
             if (self.checkout / "data/sudofx.sqlite").exists()
             else "data/wake.sqlite3"
         )
+        if authority == "data/sudofx.sqlite":
+            # The verified legacy chain has already been copied into sudofx.
+            # Remove the old database from the active authority branch so there
+            # is exactly one durable operational database after cutover.
+            self.git(
+                "rm", "--ignore-unmatch", "data/wake.sqlite3",
+                cwd=self.checkout, check=False,
+            )
         self.git("add", "--force", authority, cwd=self.checkout)
         if self.git("diff", "--cached", "--quiet", cwd=self.checkout, check=False).returncode == 0:
             return
