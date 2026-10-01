@@ -12,6 +12,7 @@ from sudofx.record import Record
 
 from wake.engine import DEFAULTS, Engine, govern_proposal
 from wake.governance import Rejected, transition
+from wake.store import digest, reduce_event
 from wake.sudofx_application import WAKE_APPLICATION, verified_legacy_snapshot
 from support import charter_settings
 
@@ -56,9 +57,25 @@ class SudofxMigrationTests(unittest.TestCase):
         self.assertEqual(imported["migration"]["legacy_version"], legacy_state["version"])
 
         # Removing WAKE application code must not break generic sudofx replay.
+        # Compact mode preserves the action envelope without pretending the
+        # domain state can be interpreted when WAKE code is absent.
         replayed = Kernel(Record(self.root / "sudofx.sqlite")).context().state["app:wake"]
-        self.assertEqual(replayed["state"]["state"], legacy_state)
-        self.assertEqual(replayed["state"]["migration"]["legacy_head"], legacy_head)
+        self.assertEqual(replayed["storage"], "event_log")
+        self.assertEqual(len(replayed["events"]), 1)
+        self.assertNotIn("state", replayed)
+
+        registry = ApplicationRegistry((WAKE_APPLICATION,))
+        reinstalled_kernel = Kernel(
+            Record(self.root / "sudofx.sqlite"),
+            Governance(application_registry=registry),
+        )
+        reinstalled = ApplicationHost(
+            reinstalled_kernel,
+            registry,
+            "wake",
+        ).context().state
+        self.assertEqual(reinstalled["state"], legacy_state)
+        self.assertEqual(reinstalled["migration"]["legacy_head"], legacy_head)
 
         duplicate = host.submit(
             ApplicationIntent("wake-import-again", 1, "import_legacy_snapshot", payload)
@@ -115,6 +132,12 @@ class SudofxMigrationTests(unittest.TestCase):
         )
         self.assertEqual(receipt.status, "accepted")
         self.assertEqual(host.context().state["state"], expected)
+        durable = host.kernel.context().state["app:wake"]
+        self.assertEqual(durable["storage"], "event_log")
+        self.assertEqual(len(durable["events"]), 2)
+        value = host.kernel.record.history()[-1]["proposal"]["operations"][0]["value"]
+        self.assertNotIn("next_state", value)
+        self.assertEqual(len(value["result_digest"]), 64)
         self.assertEqual(
             host.context().state["state"]["commitments"]["phase-e-equivalence"]["task"],
             "Continue the migration with behavioral equivalence evidence.",
