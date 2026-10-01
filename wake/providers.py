@@ -457,8 +457,19 @@ def schema_for_context(context):
                     choices.remove(research_action)
                 else:
                     if not selected_project_ids:
+                        # No durable project owns this selected topic yet, so a
+                        # new active project is the only valid project transition.
                         project_action["properties"]["status"]["enum"] = ["active"]
-                    choices.append(project_action)
+                        choices.append(project_action)
+                    else:
+                        # Once this topic already has durable work, do not put the
+                        # unconstrained create/update project action back into the
+                        # provider schema. It lets a disposable model paraphrase an
+                        # existing question under a fresh ID, only for governance to
+                        # reject the duplicate. Existing active work should advance
+                        # through research/notebook actions; parked work is handled
+                        # by the explicit reactivation branch above.
+                        pass
                     research_action["properties"]["domain"]["enum"] = [enforced_topic]
                     active_selected_ids = sorted(p["id"] for p in selected_active)
                     if active_selected_ids:
