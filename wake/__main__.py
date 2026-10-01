@@ -21,6 +21,7 @@ import sys
 import shutil
 
 from .audit import verify_history
+from .authority import open_authoritative_store
 from .engine import Engine, config
 from .governance import Rejected, require, text
 from .providers import Fixture, Gemini, SCHEMA
@@ -105,7 +106,7 @@ def execute(args):
         from .experiment import run_experiment
         result = run_experiment(args.data, args.cycles, args.output)
         return {k: v for k, v in result.items() if k != "commands"}
-    engine = Engine(args.data, settings)
+    engine = Engine(args.data, settings, store=open_authoritative_store(args.data))
     try:
         if args.command == "wake":
             name = args.provider or settings["provider"]
