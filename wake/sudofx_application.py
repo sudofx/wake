@@ -14,7 +14,8 @@ import hashlib
 from sudofx import ApplicationAction, ApplicationDecision, ApplicationDefinition
 from sudofx.models import JsonValue
 from sudofx.storage import canonical_json
-from .governance import Rejected, transition
+from .engine import govern_proposal
+from .governance import Rejected
 
 
 APPLICATION_ID = "wake"
@@ -82,7 +83,9 @@ def _apply_governed_proposal(current: JsonValue, payload: JsonValue) -> Applicat
     if not isinstance(proposal, dict):
         return ApplicationDecision(False, reasons=("WAKE proposal must be an object",))
     try:
-        next_legacy_state = transition(current["state"], proposal, invocation)
+        _, next_legacy_state, _, _ = govern_proposal(
+            current["state"], invocation, proposal
+        )
     except (Rejected, ValueError, TypeError, KeyError) as error:
         return ApplicationDecision(False, reasons=(str(error)[:1000],))
     return ApplicationDecision(
