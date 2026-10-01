@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -299,7 +300,7 @@ class SudofxMigrationTests(unittest.TestCase):
         accepted_payload = {
             "id": invocation,
             "proposal": normalized,
-            "raw_response": "fixture",
+            "raw_response": json.dumps(proposal),
             "metadata": {},
             "result_hash": digest({key: governed_state[key] for key in fields}),
             "hash_fields": fields,
