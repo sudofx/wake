@@ -87,8 +87,15 @@ def run_experiment(directory, cycles=100, output="site"):
     }
     beliefs = [e["payload"]["proposal"]["actions"] for e in engine.store.events() if e["kind"] == "accepted"]
     lifecycle = [a for actions in beliefs for a in actions if a["type"] == "belief"]
-    checks["evidence_lifecycle"] = {"passed": [a["status"] for a in lifecycle] == ["active", "active", "retracted"] and len(s["beliefs"]["sensor"]["evidence"]) == 3,
-                                    "detail": "Baseline claim, new supporting measurement, then counterexample and retraction; all citations retained."}
+    lifecycle_statuses = [a["status"] for a in lifecycle]
+    retained_evidence = list(s["beliefs"]["sensor"]["evidence"])
+    checks["evidence_lifecycle"] = {
+        "passed": lifecycle_statuses == ["active", "active", "retracted"] and len(retained_evidence) == 3,
+        "statuses": lifecycle_statuses,
+        "retained_evidence_count": len(retained_evidence),
+        "retained_evidence": retained_evidence,
+        "detail": "Baseline claim, new supporting measurement, then counterexample and retraction; all citations retained.",
+    }
     checks["longitudinal"] = {"passed": s["version"] == cycles, "accepted_cycles": s["version"]}
 
     # Controlled intervention: identical backed-up state, a single human focus change.
