@@ -279,7 +279,10 @@ Notebook evidence must use exact IDs from context.project_evidence[project-id]. 
 Reframes are strategy hypotheses, not evidence; observations must be exact existing evidence IDs.
 Research commit actions require an existing project ID. Resolve actions require eligible evidence recorded after commitment creation and from that commitment's project topic.
 
-Ordinary blog publication is optional, event-driven, last in actions, and must trace through context.blog_notebooks with at least two qualifying distinct source works. Omit it when nothing is worth publishing. There is no numbered-cycle or mandatory reflection publication.
+Ordinary blog publication is optional, event-driven, last in actions, and must trace through context.blog_notebooks with at least two qualifying distinct source works. Omit it when nothing is worth publishing.
+
+If context.bob_reflection_due is true, this is not an ordinary optional blog decision: a Bob editorial checkpoint is mandatory before accepted state may advance. Emit exactly one blog action as the FINAL action, set reflection_cycle to context.bob_reflection_cycle exactly, and include Bob's Lens. This due checkpoint is system-wide editorial work, so project may be an empty string and notebooks/evidence may be empty when no supportable research claims are made. The body must be at least 900 characters and should summarize durable progress, unresolved questions, and why they matter without inventing findings. If recent_blog is empty, introduce Bob as WAKE✳'s public correspondent; otherwise do not call the reflection first or inaugural. Bob is an editorial role, not a persistent person or mind, and the prose must not claim consciousness, subjective experience, personal memory, or sentience.
+
 Distinguish source report, WAKE synthesis, speculation, analogy, and reflection. Do not infer causation from correlation or strengthen claims beyond supplied evidence.
 Return only the requested JSON shape.
 """
