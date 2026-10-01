@@ -15,6 +15,7 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+import time
 
 from .audit import verify_history
 from .authority import open_authoritative_store
@@ -32,10 +33,13 @@ def run_experiment(directory, cycles=100, output="site"):
     root.mkdir(parents=True, exist_ok=True)
     calls = []
     def cli(*args, expected=0, data_dir=root):
+        started = time.perf_counter()
         result = subprocess.run([sys.executable, "-m", "wake", "--data", str(data_dir), *args],
                                 capture_output=True, text=True, timeout=90)
+        elapsed = time.perf_counter() - started
         require(result.returncode == expected, f"Experiment command {args} failed: {result.stderr or result.stdout}")
-        calls.append({"arguments": list(args), "exit_code": result.returncode})
+        calls.append({"arguments": list(args), "exit_code": result.returncode,
+                      "elapsed_seconds": round(elapsed, 3)})
         return json.loads(result.stdout) if result.stdout.strip() else None
 
     cli("init")
@@ -47,7 +51,16 @@ def run_experiment(directory, cycles=100, output="site"):
             cli("observe", "--source", "fixture:sensor", "--text", "Synthetic counterexample: sensor reading 17, outside tolerance 9–11.")
         cli("wake", "--provider", "fixture", "--model", "fixture-a" if n % 2 else "fixture-b")
         if n % 25 == 0:
-            print(f"Experiment: {n}/{cycles} fresh cycles committed.", file=sys.stderr, flush=True)
+            wake_timings = [call["elapsed_seconds"] for call in calls if call["arguments"][0] == "wake"]
+            recent = wake_timings[-25:]
+            print(
+                f"Experiment: {n}/{cycles} fresh cycles committed; "
+                f"latest={wake_timings[-1]:.3f}s "
+                f"recent25_avg={sum(recent) / len(recent):.3f}s "
+                f"all_avg={sum(wake_timings) / len(wake_timings):.3f}s.",
+                file=sys.stderr,
+                flush=True,
+            )
 
     engine = Engine(root, store=open_authoritative_store(root))
     s = engine.store.load()
