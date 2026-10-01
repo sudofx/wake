@@ -64,22 +64,32 @@ jobs:
           fi
           echo "Continuation latch closed (previous state: $state)." >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Cancel active research cycles
+      - name: Drain active research cycles
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          mapfile -t runs < <(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50"             --jq '.workflow_runs[] | select(.head_branch=="wake-runtime" and .status!="completed") | .id')
-          for run_id in "${runs[@]}"; do
-            gh api --method POST "repos/$GITHUB_REPOSITORY/actions/runs/$run_id/cancel" >/dev/null || true
-          done
-          for attempt in {1..30}; do
-            active="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50"               --jq '[.workflow_runs[] | select(.head_branch=="wake-runtime" and .status!="completed")] | length')"
-            [[ "$active" == "0" ]] && break
-            [[ "$attempt" == "30" ]] && { echo "::error::Research did not stop before timeout."; exit 1; }
+          # An in-flight cycle can dispatch one last successor while the latch closes.
+          # Re-scan and cancel until two consecutive checks are empty.
+          empty_checks=0
+          for attempt in {1..60}; do
+            mapfile -t runs < <(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50" --jq '.workflow_runs[] | select(.head_branch=="wake-runtime" and .status!="completed") | .id')
+            if (( ${#runs[@]} == 0 )); then
+              empty_checks=$((empty_checks + 1))
+              if (( empty_checks >= 2 )); then
+                echo "Research is fully stopped." >> "$GITHUB_STEP_SUMMARY"
+                exit 0
+              fi
+            else
+              empty_checks=0
+              for run_id in "${runs[@]}"; do
+                gh api --method POST "repos/$GITHUB_REPOSITORY/actions/runs/$run_id/cancel" >/dev/null || true
+              done
+            fi
             sleep 2
           done
-          echo "Research is fully stopped." >> "$GITHUB_STEP_SUMMARY"
+          echo "::error::Research did not fully drain before timeout."
+          exit 1
 
       - uses: actions/checkout@v7
         with:
