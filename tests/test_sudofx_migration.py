@@ -511,5 +511,39 @@ class SudofxMigrationTests(unittest.TestCase):
             detached.close()
 
 
+    def test_sudofx_reset_starts_new_generation_and_survives_restart(self) -> None:
+        """Operator reset must preserve old sudofx history while active WAKE returns to zero."""
+        authority = self.root / "reset-authority"
+        store = SudofxStore(authority, legacy_store=self.engine.store)
+        try:
+            before_revision = store.kernel.context().revision
+            before_archive_count = store._envelope()["migration"]["archive_event_count"]
+            reset_state = store.reset()
+            self.assertEqual(reset_state["version"], 0)
+            self.assertEqual(reset_state["objective"], "")
+            self.assertEqual(store.events(), [])
+            self.assertEqual(store.head(), "0" * 64)
+            migration = store._envelope()["migration"]
+            self.assertEqual(migration["active_generation"], 1)
+            self.assertEqual(migration["legacy_event_count"], 0)
+            self.assertEqual(migration["archive_event_count"], before_archive_count)
+            self.assertGreater(store.kernel.context().revision, before_revision)
+        finally:
+            store.close()
+
+        reopened = SudofxStore(authority)
+        engine = Engine(self.root / "unused-reset-path", dict(DEFAULTS), store=reopened)
+        try:
+            self.assertEqual(reopened.load()["version"], 0)
+            self.assertEqual(reopened.events(), [])
+            result = engine.run(Fixture("phase-e-post-reset"))
+            self.assertEqual(result["status"], "accepted")
+            self.assertEqual(reopened.load()["version"], 1)
+            self.assertGreater(len(reopened.events()), 0)
+            self.assertEqual(reopened.events()[0]["seq"], 1)
+        finally:
+            reopened.close()
+
+
 if __name__ == "__main__":
     unittest.main()
