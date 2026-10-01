@@ -208,6 +208,19 @@ def continuation_outputs(result):
     if status == "deferred" and reason.startswith("Gemini temporarily unavailable"):
         continue_now = True
         retry_after = int(TRANSIENT_RETRY_DELAY.total_seconds())
+    elif status == "deferred" and (
+        reason.startswith("Configured daily request limits reached")
+        or reason.startswith("Gemini free-tier daily quota exhausted")
+        or reason.startswith("Daily call ceiling reached")
+    ):
+        next_eligible = result.get("wake_status", {}).get("next_eligible")
+        if next_eligible:
+            try:
+                eligible_at = datetime.fromisoformat(str(next_eligible).replace("Z", "+00:00"))
+                retry_after = max(0, int((eligible_at - datetime.now(timezone.utc)).total_seconds()))
+                continue_now = True
+            except (TypeError, ValueError):
+                pass
     set_step_output("status", status or "unknown")
     set_step_output("continue_now", "true" if continue_now else "false")
     set_step_output("retry_after", str(retry_after))
