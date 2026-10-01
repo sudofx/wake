@@ -59,6 +59,17 @@ class CloudWorkflowTests(unittest.TestCase):
              patch.dict("os.environ", {"GITHUB_ACTIONS": "true"}):
             return github_wake.main(reset=reset)
 
+    def test_cloud_cycle_persists_sudofx_as_authoritative_state(self):
+        """The GitHub execution path must checkpoint sudofx, not a competing WAKE engine store."""
+        self.assertEqual(self.run_cloud(Fixture("cloud-sudofx-authority")), 0)
+        tree = self.git(
+            "--git-dir", self.remote, "ls-tree", "-r", "--name-only", "wake-state"
+        ).stdout.splitlines()
+        self.assertIn("data/sudofx.sqlite", tree)
+        live = self.live()
+        self.assertEqual(live["source"]["authority"], "sudofx SQLite")
+        self.assertEqual(live["source"]["database"], "sudofx.sqlite")
+
     def test_cloud_reset_returns_to_zero_without_calling_provider(self):
         self.assertEqual(self.run_cloud(Fixture()), 0)
         before = self.live()["state"]
