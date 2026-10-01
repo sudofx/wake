@@ -14,6 +14,7 @@ import hashlib
 from sudofx import ApplicationAction, ApplicationDecision, ApplicationDefinition
 from sudofx.models import JsonValue
 from sudofx.storage import canonical_json
+from .governance import Rejected, transition
 
 
 APPLICATION_ID = "wake"
@@ -68,10 +69,37 @@ def _import_legacy_snapshot(current: JsonValue, payload: JsonValue) -> Applicati
     )
 
 
+def _apply_governed_proposal(current: JsonValue, payload: JsonValue) -> ApplicationDecision:
+    """Run existing WAKE domain governance while sudofx remains durable authority."""
+    if not isinstance(current, dict) or not isinstance(current.get("state"), dict):
+        return ApplicationDecision(False, reasons=("WAKE legacy state must be imported first",))
+    if not isinstance(payload, dict):
+        return ApplicationDecision(False, reasons=("WAKE proposal application requires an object",))
+    invocation = payload.get("invocation")
+    proposal = payload.get("proposal")
+    if not isinstance(invocation, str) or not invocation.strip():
+        return ApplicationDecision(False, reasons=("WAKE invocation must be non-empty text",))
+    if not isinstance(proposal, dict):
+        return ApplicationDecision(False, reasons=("WAKE proposal must be an object",))
+    try:
+        next_legacy_state = transition(current["state"], proposal, invocation)
+    except (Rejected, ValueError, TypeError, KeyError) as error:
+        return ApplicationDecision(False, reasons=(str(error)[:1000],))
+    return ApplicationDecision(
+        True,
+        {
+            "migration": current.get("migration"),
+            "state": next_legacy_state,
+        },
+    )
+
 WAKE_APPLICATION = ApplicationDefinition(
     APPLICATION_ID,
     APPLICATION_VERSION,
-    (ApplicationAction("import_legacy_snapshot", _import_legacy_snapshot),),
+    (
+        ApplicationAction("import_legacy_snapshot", _import_legacy_snapshot),
+        ApplicationAction("apply_governed_proposal", _apply_governed_proposal),
+    ),
 )
 
 
