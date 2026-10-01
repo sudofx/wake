@@ -66,6 +66,7 @@ class CloudWorkflowTests(unittest.TestCase):
             "--git-dir", self.remote, "ls-tree", "-r", "--name-only", "wake-state"
         ).stdout.splitlines()
         self.assertIn("data/sudofx.sqlite", tree)
+        self.assertNotIn("data/wake.sqlite3", tree)
         live = self.live()
         self.assertEqual(live["source"]["authority"], "sudofx SQLite")
         self.assertEqual(live["source"]["database"], "sudofx.sqlite")
