@@ -851,10 +851,16 @@ class Gemini:
                 {"models": list(self.models), "quota_source": "configured_model_daily_limits",
                  "skipped_models": list(self.skipped_models)},
             )
-        system = request["system"] + "\nResponse contract (JSON Schema):\n" + json.dumps(request.get("response_schema", SCHEMA))
+        response_schema = request.get("response_schema", SCHEMA)
+        system = request["system"] + "\nResponse contract (JSON Schema):\n" + json.dumps(response_schema)
         body = {"systemInstruction": {"parts": [{"text": system}]},
                 "contents": [{"role": "user", "parts": [{"text": json.dumps(request["context"])}]}],
                 "generationConfig": {"responseMimeType": "application/json",
+                                     # Enforce the same dynamic contract at the provider boundary.
+                                     # Prompt text explains the rules; structured output prevents
+                                     # the model from emitting action shapes the current durable
+                                     # context has already made impossible.
+                                     "responseJsonSchema": response_schema,
                                      "maxOutputTokens": self.config["max_output_tokens"]}}
         if len(self.models) > 1 or self.model in ("gemini-3.7-flash", "gemini-3.8-flash"):
             body["generationConfig"]["thinkingConfig"] = {"thinkingLevel": "low"}
