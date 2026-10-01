@@ -440,11 +440,33 @@ class SudofxMigrationTests(unittest.TestCase):
             with store.lock():
                 migrated.observe("Synthetic measurement within range", "fixture:sensor")
             self.assertEqual(migrated.run(Fixture())["status"], "accepted")
+            first = store.load()
+            self.assertEqual(len(first["beliefs"]["sensor"]["evidence"]), 1)
             with store.lock():
-                migrated.observe("Synthetic second measurement within range", "fixture:sensor")
+                second_observation = migrated.observe("Synthetic second measurement within range", "fixture:sensor")
+            second_state = store.load()
+            self.assertIn(second_observation, second_state["evidence"])
+            second_context = migrated.context(second_state, "fixture-receipt")
+            self.assertIn(second_observation, [item["id"] for item in second_context["evidence"]])
+            second_proposal = json.loads(Fixture().propose({"context": second_context})[0])
+            self.assertTrue(any(
+                action.get("type") == "belief" and second_observation in action.get("evidence", [])
+                for action in second_proposal["actions"]
+            ))
             self.assertEqual(migrated.run(Fixture())["status"], "accepted")
+            second_belief = store.load()["beliefs"]["sensor"]
+            self.assertEqual(len(second_belief["evidence"]), 2)
             with store.lock():
-                migrated.observe("Synthetic counterexample outside range", "fixture:sensor")
+                counterexample = migrated.observe("Synthetic counterexample outside range", "fixture:sensor")
+            counter_state = store.load()
+            self.assertIn(counterexample, counter_state["evidence"])
+            counter_context = migrated.context(counter_state, "fixture-receipt")
+            self.assertIn(counterexample, [item["id"] for item in counter_context["evidence"]])
+            counter_proposal = json.loads(Fixture().propose({"context": counter_context})[0])
+            self.assertTrue(any(
+                action.get("type") == "belief" and action.get("status") == "retracted"
+                for action in counter_proposal["actions"]
+            ))
             self.assertEqual(migrated.run(Fixture())["status"], "accepted")
             belief = store.load()["beliefs"]["sensor"]
             self.assertEqual(belief["status"], "retracted")
