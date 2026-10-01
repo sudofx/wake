@@ -64,6 +64,8 @@ def _import_legacy_snapshot(current: JsonValue, payload: JsonValue) -> Applicati
                 "source": "wake-legacy-sqlite",
                 "legacy_head": legacy_head,
                 "legacy_event_count": event_count,
+                "import_legacy_head": legacy_head,
+                "import_legacy_event_count": event_count,
                 "legacy_state_digest": state_digest,
                 "legacy_version": payload.get("legacy_version"),
             },
