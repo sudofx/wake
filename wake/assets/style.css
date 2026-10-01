@@ -206,9 +206,9 @@ footer{margin-top:48px}
 }
 
 
-/* Milestone reflections use the ordinary blog-card design. The top rule is the
-   only visual distinction: WAKE✳︎ cyan instead of the theme's normal card accent.
-   app.js applies this class only to the every-10th reflection post. */
+/* Due Bob editorial reflections use the ordinary blog-card design. The top rule is
+   the only visual distinction: WAKE✳︎ cyan instead of the theme's normal card accent.
+   Scheduling is event-driven with the governance quiet-window backstop; it is not every-N. */
 .blog-grid .blog-card.blog-card-reflection{border-top-color:color-mix(in srgb,var(--cyan) 72%,var(--line))}
 
 
