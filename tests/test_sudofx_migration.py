@@ -429,5 +429,62 @@ class SudofxMigrationTests(unittest.TestCase):
             store.close()
 
 
+    def test_detached_legacy_database_can_reopen_run_and_publish(self) -> None:
+        """After verified import, WAKE runtime must no longer depend on the legacy SQLite file."""
+        authority = self.root / "detached-authority"
+        initial = SudofxStore(authority, legacy_store=self.engine.store)
+        try:
+            imported_state = initial.load()
+            import_count = initial._envelope()["migration"]["import_legacy_event_count"]
+        finally:
+            initial.close()
+
+        detached = SudofxStore(authority)
+        migrated = Engine(
+            self.root / "unused-detached-legacy-path",
+            dict(DEFAULTS),
+            store=detached,
+        )
+        try:
+            self.assertEqual(detached.load(), imported_state)
+            self.assertEqual(
+                detached.performance_snapshot()["event_count"],
+                import_count,
+            )
+
+            result = migrated.run(Fixture("phase-e-detached-runtime"))
+            self.assertEqual(result["status"], "accepted")
+            self.assertGreater(detached.load()["version"], imported_state["version"])
+
+            projection = build_live_projection(
+                detached,
+                operation={"status": result["status"]},
+                runtime_ref="phase-e-detached-test",
+            )
+            self.assertEqual(projection["source"]["authority"], "sudofx SQLite")
+            self.assertEqual(
+                projection["metrics"]["storage"]["event_count"],
+                detached.performance_snapshot()["event_count"],
+            )
+            self.assertLessEqual(len(projection["events"]), 400)
+
+            export(detached, self.root / "detached-site")
+            self.assertTrue((self.root / "detached-site" / "index.html").is_file())
+            self.assertTrue((self.root / "detached-site" / "events.md").is_file())
+
+            reopened = SudofxStore(authority)
+            try:
+                self.assertEqual(reopened.load(), detached.load())
+                self.assertEqual(reopened.head(), detached.head())
+                self.assertEqual(
+                    reopened.performance_snapshot()["event_count"],
+                    detached.performance_snapshot()["event_count"],
+                )
+            finally:
+                reopened.close()
+        finally:
+            detached.close()
+
+
 if __name__ == "__main__":
     unittest.main()
