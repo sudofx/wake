@@ -279,7 +279,7 @@ class CloudWorkflowTests(unittest.TestCase):
         with patch.dict("os.environ", {"GEMINI_API_KEY":"test-key"}), patch("urllib.request.urlopen", return_value=Response()) as network:
             Gemini({**DEFAULTS, "free_tier_confirmed":True}).propose({"system":"rules", "context":{}})
         body = json.loads(network.call_args.args[0].data)
-        self.assertNotIn("responseJsonSchema", body["generationConfig"])
+        self.assertIn("responseJsonSchema", body["generationConfig"])
         schema = json.loads(body["systemInstruction"]["parts"][0]["text"].split("Response contract (JSON Schema):\n")[1])
         variants = {s["properties"]["type"]["enum"][0]:s for s in schema["properties"]["actions"]["items"]["anyOf"]}
         project = variants["project"]
