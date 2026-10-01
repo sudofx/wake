@@ -30,8 +30,14 @@ def open_authoritative_store(data_directory):
         legacy.close()
 
     # SudofxStore's constructor verifies and archives the complete legacy chain
-    # before returning. Only after that succeeds is the duplicate database
-    # removed, leaving one authoritative operational database on disk.
+    # before returning. Reclaim migration-only free pages only after that complete
+    # verification succeeds, while the legacy database still exists as fallback
+    # evidence if compaction itself fails.
+    migrated.record.compact()
+
+    # Only after verified migration and verified compaction succeed is the
+    # duplicate legacy database removed, leaving one authoritative operational
+    # database on disk.
     if legacy_path.exists():
         legacy_path.unlink()
     return migrated
