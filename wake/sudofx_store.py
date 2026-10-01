@@ -22,6 +22,7 @@ from sudofx.governance import Governance
 from sudofx.record import Record
 
 from .store import IntegrityError, digest, now
+from .history import history_metrics, merge_history_metrics
 from .sudofx_application import WAKE_APPLICATION, verified_legacy_snapshot
 
 
@@ -68,8 +69,9 @@ class SudofxStore:
         count = migration.get("import_legacy_event_count")
         head = migration.get("import_legacy_head")
         if self.legacy_store is None:
-            if count:
-                raise IntegrityError("Legacy WAKE history source is required for compatibility queries")
+            baseline = migration.get("history_baseline")
+            if count and not isinstance(baseline, dict):
+                raise IntegrityError("Imported WAKE history baseline is required when legacy SQLite is detached")
             return
         events = self.legacy_store.events()
         if not isinstance(count, int) or count < 0 or count > len(events):
@@ -170,10 +172,18 @@ class SudofxStore:
             raise IntegrityError("sudofx WAKE compatibility event projection does not match durable migration head")
         return result
 
+    def _baseline(self):
+        baseline = self._envelope()["migration"].get("history_baseline")
+        return baseline if isinstance(baseline, dict) else {}
+
     def events(self):
+        """Return full history while legacy SQLite is attached, otherwise the bounded compatibility tail."""
         migration = self._envelope()["migration"]
         count = migration["import_legacy_event_count"]
-        prefix = [] if self.legacy_store is None else self.legacy_store.events()[:count]
+        if self.legacy_store is not None:
+            prefix = self.legacy_store.events()[:count]
+        else:
+            prefix = list(self._baseline().get("recent_events", []))
         return [*prefix, *self._post_migration_events()]
 
     def tail_events_all(self, limit):
@@ -186,12 +196,47 @@ class SudofxStore:
         return [event for event in self.events() if event["kind"] in allowed][-limit:]
 
     def event_counts_since(self, seq, kinds):
-        selected = [event for event in self.events() if event["seq"] > seq]
+        migration = self._envelope()["migration"]
+        imported = migration["import_legacy_event_count"]
+        post = self._post_migration_events()
+        if self.legacy_store is not None:
+            selected = [
+                event for event in [*self.legacy_store.events()[:imported], *post]
+                if event["seq"] > seq
+            ]
+        elif seq >= imported:
+            selected = [event for event in post if event["seq"] > seq]
+        else:
+            baseline = self._baseline()
+            anchor = baseline.get("temporal_anchor_seq")
+            suffix = baseline.get("temporal_suffix")
+            if seq != anchor or not isinstance(suffix, dict):
+                raise IntegrityError(
+                    "Detached legacy history only supports the persisted temporal anchor or post-migration sequence queries"
+                )
+            post_selected = [event for event in post if event["seq"] > imported]
+            base_kinds = suffix.get("kinds", {})
+            counts = {kind: int(base_kinds.get(kind, 0)) for kind in kinds}
+            for event in post_selected:
+                if event["kind"] in counts:
+                    counts[event["kind"]] += 1
+            return {"total": int(suffix.get("total", 0)) + len(post_selected), "kinds": counts}
         counts = {kind: 0 for kind in kinds}
         for event in selected:
             if event["kind"] in counts:
                 counts[event["kind"]] += 1
         return {"total": len(selected), "kinds": counts}
+
+    def history_metrics(self):
+        """Return complete aggregate metrics without requiring the legacy database at runtime."""
+        post = self._post_migration_events()
+        if self.legacy_store is not None:
+            return history_metrics(
+                [*self.legacy_store.events()[: self._envelope()["migration"]["import_legacy_event_count"]], *post],
+                self.load(),
+            )
+        base = self._baseline().get("history_metrics", {})
+        return merge_history_metrics(base, history_metrics(post, self.load()))
 
     def performance_snapshot(self):
         health = self.record.health()
