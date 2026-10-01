@@ -17,6 +17,7 @@ from sudofx.models import JsonValue
 from sudofx.storage import canonical_json
 from .application_policy import govern_proposal
 from .governance import Rejected
+from .history import migration_baseline
 from .store import digest as legacy_digest, reduce_event
 
 
@@ -56,6 +57,9 @@ def _import_legacy_snapshot(current: JsonValue, payload: JsonValue) -> Applicati
         return ApplicationDecision(False, reasons=("legacy_state_digest does not match legacy_state",))
     if legacy_state.get("version") != payload.get("legacy_version"):
         return ApplicationDecision(False, reasons=("legacy_version does not match replayed WAKE state",))
+    history_baseline = payload.get("history_baseline")
+    if not isinstance(history_baseline, dict):
+        return ApplicationDecision(False, reasons=("history_baseline must be an object",))
 
     return ApplicationDecision(
         True,
@@ -68,6 +72,7 @@ def _import_legacy_snapshot(current: JsonValue, payload: JsonValue) -> Applicati
                 "import_legacy_event_count": event_count,
                 "legacy_state_digest": state_digest,
                 "legacy_version": payload.get("legacy_version"),
+                "history_baseline": deepcopy(history_baseline),
             },
             "state": legacy_state,
         },
@@ -206,4 +211,5 @@ def verified_legacy_snapshot(store) -> dict[str, JsonValue]:
         "legacy_event_count": len(events),
         "legacy_state_digest": hashlib.sha256(canonical_json(state).encode()).hexdigest(),
         "legacy_version": state.get("version"),
+        "history_baseline": migration_baseline(events, state),
     }
