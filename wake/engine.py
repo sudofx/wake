@@ -178,7 +178,7 @@ class Engine:
     # Inputs should already belong to the layer named above; outputs remain data
     # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
     # ---------------------------------------------------------------------------
-    def __init__(self, directory="data", settings=None):
+    def __init__(self, directory="data", settings=None, *, store=None):
         self.config = settings or config()
         if self.config.get("mission"):
             if not self.config.get("research_topics"):
@@ -189,7 +189,7 @@ class Engine:
                 self.config["research_topics"] = _topics(self.config, Path("wake.toml"))
             else:
                 self.config["research_topics"] = _topics(self.config)
-        self.store = Store(directory)
+        self.store = store if store is not None else Store(directory)
     # ---------------------------------------------------------------------------
     # STEP: initialize
     #
