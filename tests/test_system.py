@@ -28,6 +28,7 @@ import urllib.error
 from zoneinfo import ZoneInfo
 
 from wake.audit import verify_history
+from wake.authority import open_authoritative_store
 from wake.engine import DEFAULTS, Engine
 from wake.governance import Rejected
 from wake.providers import Fixture, Gemini
@@ -317,13 +318,32 @@ class SystemTests(unittest.TestCase):
         self.assertEqual(self.engine.store.load()["version"], 0)
 
     def test_real_process_death_during_commit_rolls_back(self):
-        self.engine.run(Fixture())
-        result = subprocess.run([sys.executable,"-m","wake","--data",str(self.root/"data"),"wake","--provider","fixture","--crash-at","during-commit"], capture_output=True)
+        # Exercise the production authority path, not the legacy fixture Store.
+        # The child must die after sudofx stages the accepted event but before
+        # the authoritative transaction commits it.
+        data = self.root / "authoritative-crash-data"
+        engine = Engine(data, dict(DEFAULTS), store=open_authoritative_store(data))
+        try:
+            engine.run(Fixture())
+        finally:
+            engine.store.close()
+
+        result = subprocess.run([
+            sys.executable, "-m", "wake", "--data", str(data), "wake",
+            "--provider", "fixture", "--crash-at", "during-commit",
+        ], capture_output=True)
         self.assertEqual(result.returncode, 86)
-        with self.engine.store.lock():
-            state = self.engine.recover()
-        self.assertEqual(state["version"], 1)
-        self.assertEqual(sum(i["status"]=="recovered" for i in state["invocations"].values()), 1)
+
+        reopened = Engine(data, dict(DEFAULTS), store=open_authoritative_store(data))
+        try:
+            with reopened.store.lock():
+                state = reopened.recover()
+            self.assertEqual(state["version"], 1)
+            self.assertEqual(
+                sum(i["status"] == "recovered" for i in state["invocations"].values()), 1
+            )
+        finally:
+            reopened.store.close()
 
     def test_audit_can_reconstruct_without_database(self):
         self.engine.run(Fixture())
