@@ -1050,6 +1050,16 @@ class ResearchTests(unittest.TestCase):
         self.assertIn("without personhood\nlanguage", RESEARCH_SYSTEM)
         self.assertIn("First-person editorial voice is allowed", RESEARCH_SYSTEM)
 
+    def test_bounded_prompt_preserves_due_bob_checkpoint_contract(self):
+        from wake.providers import BOUNDED_RESEARCH_SYSTEM
+        self.assertIn("context.bob_reflection_due is true", BOUNDED_RESEARCH_SYSTEM)
+        self.assertIn("mandatory before accepted state may advance", BOUNDED_RESEARCH_SYSTEM)
+        self.assertIn("reflection_cycle to context.bob_reflection_cycle exactly", BOUNDED_RESEARCH_SYSTEM)
+        self.assertIn("FINAL action", BOUNDED_RESEARCH_SYSTEM)
+        self.assertIn("body must be at least 900 characters", BOUNDED_RESEARCH_SYSTEM)
+        self.assertNotIn("There is no numbered-cycle or mandatory reflection publication", BOUNDED_RESEARCH_SYSTEM)
+
+
     def test_bob_first_public_post_is_due_on_cycle_one(self):
         state = self.engine.store.load()
         self.assertEqual(state["journal"], [])
