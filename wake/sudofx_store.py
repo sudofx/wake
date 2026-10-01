@@ -56,6 +56,8 @@ class SudofxStore:
             )
             if receipt.status != "accepted":
                 raise IntegrityError("sudofx rejected verified WAKE migration: " + "; ".join(receipt.reasons))
+        if legacy_store is not None:
+            self._archive_legacy_history(legacy_store.events())
         self._verify_legacy_prefix()
 
     def _envelope(self):
@@ -64,21 +66,96 @@ class SudofxStore:
             raise IntegrityError("WAKE application state is unavailable")
         return value
 
+    def _archive_legacy_history(self, events):
+        """Copy the verified pre-migration event chain into the sudofx event log once."""
+        migration = self._envelope()["migration"]
+        target_count = migration["import_legacy_event_count"]
+        target_head = migration["import_legacy_head"]
+        if len(events) != target_count:
+            raise IntegrityError("Legacy WAKE history length changed after verified migration")
+        observed_head = events[-1]["hash"] if events else "0" * 64
+        if observed_head != target_head:
+            raise IntegrityError("Legacy WAKE history head changed after verified migration")
+
+        archived = int(migration.get("archive_event_count", 0))
+        while archived < target_count:
+            chunk = events[archived : min(target_count, archived + 50)]
+            revision = self.kernel.context().revision
+            receipt = self.host.submit(
+                ApplicationIntent(
+                    f"wake-legacy-archive-{archived + 1}-{archived + len(chunk)}",
+                    revision,
+                    "import_legacy_event_chunk",
+                    {"events": chunk},
+                    rationale="Move verified legacy WAKE history into the single sudofx database",
+                ),
+                provenance=SubmissionProvenance(
+                    "application", "wake-sudofx-store", "verified-legacy-history-archive"
+                ),
+            )
+            if receipt.status != "accepted":
+                raise IntegrityError(
+                    "sudofx rejected verified WAKE history archive: " + "; ".join(receipt.reasons)
+                )
+            archived += len(chunk)
+
+    def _archived_legacy_events(self):
+        """Reconstruct the exact imported legacy prefix from sudofx action inputs."""
+        migration = self._envelope()["migration"]
+        target_count = migration.get("import_legacy_event_count")
+        target_head = migration.get("import_legacy_head")
+        if not migration.get("archive_complete"):
+            raise IntegrityError("Legacy WAKE history archive is incomplete")
+
+        result = []
+        head = "0" * 64
+        expected_seq = 1
+        for receipt in self.record.history():
+            if receipt["status"] != "accepted":
+                continue
+            operations = receipt["proposal"].get("operations", [])
+            if len(operations) != 1:
+                continue
+            operation = operations[0]
+            if operation.get("action") != "apply_application" or operation.get("key") != "wake":
+                continue
+            value = operation.get("value", {})
+            if value.get("action") != "import_legacy_event_chunk":
+                continue
+            item = value.get("input", {})
+            events = item.get("events") if isinstance(item, dict) else None
+            if not isinstance(events, list):
+                raise IntegrityError("Archived WAKE event chunk is malformed")
+            for event in events:
+                if not isinstance(event, dict):
+                    raise IntegrityError("Archived WAKE event is malformed")
+                if event.get("seq") != expected_seq or event.get("prev_hash") != head:
+                    raise IntegrityError("Archived WAKE event chain is not contiguous")
+                body = {key: item for key, item in event.items() if key != "hash"}
+                if digest(body) != event.get("hash"):
+                    raise IntegrityError("Archived WAKE event hash is invalid")
+                result.append(event)
+                expected_seq += 1
+                head = event["hash"]
+
+        if len(result) != target_count or head != target_head:
+            raise IntegrityError("Archived WAKE history does not match imported migration boundary")
+        return result
+
     def _verify_legacy_prefix(self):
         migration = self._envelope()["migration"]
         count = migration.get("import_legacy_event_count")
         head = migration.get("import_legacy_head")
-        if self.legacy_store is None:
-            baseline = migration.get("history_baseline")
-            if count and not isinstance(baseline, dict):
-                raise IntegrityError("Imported WAKE history baseline is required when legacy SQLite is detached")
-            return
-        events = self.legacy_store.events()
-        if not isinstance(count, int) or count < 0 or count > len(events):
-            raise IntegrityError("Imported WAKE event count does not match legacy history")
-        observed = events[count - 1]["hash"] if count else "0" * 64
-        if observed != head:
-            raise IntegrityError("Imported WAKE head does not match legacy history prefix")
+        if migration.get("archive_event_count") != count or migration.get("archive_head") != head:
+            raise IntegrityError("Imported WAKE history has not been fully archived into sudofx")
+        self._archived_legacy_events()
+        if self.legacy_store is not None:
+            events = self.legacy_store.events()
+            if not isinstance(count, int) or count < 0 or count > len(events):
+                raise IntegrityError("Imported WAKE event count does not match legacy history")
+            observed = events[count - 1]["hash"] if count else "0" * 64
+            if observed != head:
+                raise IntegrityError("Imported WAKE head does not match legacy history prefix")
 
     def close(self):
         """No persistent connection is retained by sudofx Record."""
@@ -177,14 +254,8 @@ class SudofxStore:
         return baseline if isinstance(baseline, dict) else {}
 
     def events(self):
-        """Return full history while legacy SQLite is attached, otherwise the bounded compatibility tail."""
-        migration = self._envelope()["migration"]
-        count = migration["import_legacy_event_count"]
-        if self.legacy_store is not None:
-            prefix = self.legacy_store.events()[:count]
-        else:
-            prefix = list(self._baseline().get("recent_events", []))
-        return [*prefix, *self._post_migration_events()]
+        """Return complete WAKE-compatible history from the single sudofx database."""
+        return [*self._archived_legacy_events(), *self._post_migration_events()]
 
     def tail_events_all(self, limit):
         return self.events()[-max(0, limit):] if limit > 0 else []
@@ -196,31 +267,7 @@ class SudofxStore:
         return [event for event in self.events() if event["kind"] in allowed][-limit:]
 
     def event_counts_since(self, seq, kinds):
-        migration = self._envelope()["migration"]
-        imported = migration["import_legacy_event_count"]
-        post = self._post_migration_events()
-        if self.legacy_store is not None:
-            selected = [
-                event for event in [*self.legacy_store.events()[:imported], *post]
-                if event["seq"] > seq
-            ]
-        elif seq >= imported:
-            selected = [event for event in post if event["seq"] > seq]
-        else:
-            baseline = self._baseline()
-            anchor = baseline.get("temporal_anchor_seq")
-            suffix = baseline.get("temporal_suffix")
-            if seq != anchor or not isinstance(suffix, dict):
-                raise IntegrityError(
-                    "Detached legacy history only supports the persisted temporal anchor or post-migration sequence queries"
-                )
-            post_selected = [event for event in post if event["seq"] > imported]
-            base_kinds = suffix.get("kinds", {})
-            counts = {kind: int(base_kinds.get(kind, 0)) for kind in kinds}
-            for event in post_selected:
-                if event["kind"] in counts:
-                    counts[event["kind"]] += 1
-            return {"total": int(suffix.get("total", 0)) + len(post_selected), "kinds": counts}
+        selected = [event for event in self.events() if event["seq"] > seq]
         counts = {kind: 0 for kind in kinds}
         for event in selected:
             if event["kind"] in counts:
@@ -228,15 +275,8 @@ class SudofxStore:
         return {"total": len(selected), "kinds": counts}
 
     def history_metrics(self):
-        """Return complete aggregate metrics without requiring the legacy database at runtime."""
-        post = self._post_migration_events()
-        if self.legacy_store is not None:
-            return history_metrics(
-                [*self.legacy_store.events()[: self._envelope()["migration"]["import_legacy_event_count"]], *post],
-                self.load(),
-            )
-        base = self._baseline().get("history_metrics", {})
-        return merge_history_metrics(base, history_metrics(post, self.load()))
+        """Derive complete metrics from exact history stored in the sudofx database."""
+        return history_metrics(self.events(), self.load())
 
     def performance_snapshot(self):
         health = self.record.health()
