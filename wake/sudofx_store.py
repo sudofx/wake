@@ -192,6 +192,29 @@ class SudofxStore:
     def head(self):
         return self._envelope()["migration"]["legacy_head"]
 
+    def reset(self):
+        """Start WAKE Zero through the governed application boundary."""
+        revision = self.kernel.context().revision
+        receipt = self.host.submit(
+            ApplicationIntent(
+                f"wake-reset-{revision + 1}-{uuid.uuid4().hex[:12]}",
+                revision,
+                "reset_to_zero",
+                {
+                    "actor": "operator",
+                    "reason": "Operator requested WAKE reset to cycle zero.",
+                },
+                rationale="Create a new active WAKE generation without deleting prior sudofx history",
+            ),
+            provenance=SubmissionProvenance(
+                "human", "wake-operator", "explicit-reset"
+            ),
+        )
+        if receipt.status != "accepted":
+            from .governance import Rejected
+            raise Rejected("; ".join(receipt.reasons) or "sudofx rejected WAKE reset")
+        return self.load()
+
     def append(self, kind, payload, crash=False):
         if crash:
             raise RuntimeError("Crash injection is not supported by the transitional sudofx store")
@@ -216,9 +239,17 @@ class SudofxStore:
     def _post_migration_events(self):
         envelope = self._envelope()
         migration = envelope["migration"]
-        seq = migration["import_legacy_event_count"]
-        head = migration["import_legacy_head"]
+        generation = migration.get("active_generation", 0)
+        if generation:
+            seq = 0
+            head = "0" * 64
+        else:
+            seq = migration["import_legacy_event_count"]
+            head = migration["import_legacy_head"]
+
         result = []
+        active = generation == 0
+        current_generation = 0
         for receipt in self.record.history():
             if receipt["status"] != "accepted":
                 continue
@@ -229,7 +260,16 @@ class SudofxStore:
             if operation.get("action") != "apply_application" or operation.get("key") != "wake":
                 continue
             value = operation.get("value", {})
-            if value.get("action") != "append_legacy_event":
+            action = value.get("action")
+            if action == "reset_to_zero":
+                current_generation += 1
+                active = current_generation == generation
+                if active:
+                    seq = 0
+                    head = "0" * 64
+                    result = []
+                continue
+            if action != "append_legacy_event" or not active:
                 continue
             item = value.get("input")
             if not isinstance(item, dict):
@@ -246,7 +286,9 @@ class SudofxStore:
             head = event["hash"]
             result.append(event)
         if head != migration["legacy_head"] or seq != migration["legacy_event_count"]:
-            raise IntegrityError("sudofx WAKE compatibility event projection does not match durable migration head")
+            raise IntegrityError(
+                "sudofx WAKE active event projection does not match durable generation head"
+            )
         return result
 
     def _baseline(self):
@@ -254,7 +296,10 @@ class SudofxStore:
         return baseline if isinstance(baseline, dict) else {}
 
     def events(self):
-        """Return complete WAKE-compatible history from the single sudofx database."""
+        """Return the complete event history for the active WAKE generation."""
+        migration = self._envelope()["migration"]
+        if migration.get("active_generation", 0):
+            return self._post_migration_events()
         return [*self._archived_legacy_events(), *self._post_migration_events()]
 
     def tail_events_all(self, limit):
