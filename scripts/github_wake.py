@@ -29,6 +29,8 @@ from wake.governance import Rejected
 from wake.providers import Gemini
 from wake.research import collect
 from wake.live import build_live_projection
+from wake.store import Store
+from wake.sudofx_store import SudofxStore
 
 
 from wake.scheduling import TRANSIENT_RETRY_DELAY, wake_status
@@ -77,8 +79,12 @@ class StateBranch:
         if result.returncode == 0:
             self.git("fetch", "--depth=1", "--no-tags", "origin", f"refs/heads/{self.branch}")
             self.git("worktree", "add", "--detach", str(self.checkout), "FETCH_HEAD")
-            if not (self.checkout / "data/wake.sqlite3").exists():
-                raise Rejected("Existing wake-state branch is missing its database; refusing to reset it")
+            legacy = self.checkout / "data/wake.sqlite3"
+            sudofx = self.checkout / "data/sudofx.sqlite"
+            if not legacy.exists() and not sudofx.exists():
+                raise Rejected(
+                    "Existing wake-state branch is missing both legacy and sudofx databases; refusing to continue"
+                )
         elif result.returncode == 2:
             self.git("worktree", "add", "--detach", str(self.checkout), "HEAD")
             self.git("switch", "--orphan", self.branch, cwd=self.checkout)
@@ -101,11 +107,17 @@ class StateBranch:
 
     def checkpoint(self):
         # wake-state is authority, not a publication cache. Retire legacy
-        # JSON/HTML projections from the current tree; SQLite is the sole
-        # accumulating operational record.
+        # JSON/HTML projections from the current tree. After migration,
+        # data/sudofx.sqlite is the sole accumulating operational record;
+        # data/wake.sqlite3 remains frozen migration evidence only.
         self.git("rm", "-r", "--ignore-unmatch", "events.jsonl", "state.json", "head.txt",
                  "operation.json", "site", cwd=self.checkout, check=False)
-        self.git("add", "--force", "data/wake.sqlite3", cwd=self.checkout)
+        authority = (
+            "data/sudofx.sqlite"
+            if (self.checkout / "data/sudofx.sqlite").exists()
+            else "data/wake.sqlite3"
+        )
+        self.git("add", "--force", authority, cwd=self.checkout)
         if self.git("diff", "--cached", "--quiet", cwd=self.checkout, check=False).returncode == 0:
             return
         self.git("-c", "user.name=wake-bot", "-c", "user.email=wake-bot@users.noreply.github.com",
@@ -226,6 +238,31 @@ def continuation_outputs(result):
     set_step_output("retry_after", str(retry_after))
 
 
+def open_authoritative_store(data_directory):
+    """Open sudofx authority, performing the one-time verified WAKE migration when needed."""
+    data_directory = Path(data_directory)
+    sudofx_path = data_directory / "sudofx.sqlite"
+    if sudofx_path.exists():
+        return SudofxStore(data_directory)
+
+    legacy_path = data_directory / "wake.sqlite3"
+    if legacy_path.exists():
+        legacy = Store(data_directory)
+        try:
+            return SudofxStore(data_directory, legacy_store=legacy)
+        finally:
+            legacy.close()
+
+    # A brand-new experiment has no legacy history to import. Bootstrap the
+    # ordinary legacy Store only long enough to create WAKE's deterministic
+    # empty/initial history, then immediately migrate it into sudofx.
+    legacy = Store(data_directory)
+    try:
+        return SudofxStore(data_directory, legacy_store=legacy)
+    finally:
+        legacy.close()
+
+
 def main(reset=False):
     if os.environ.get("GITHUB_ACTIONS") != "true":
         raise SystemExit("This entry point runs in GitHub Actions. Use python -m wake for local work.")
@@ -234,15 +271,16 @@ def main(reset=False):
     with tempfile.TemporaryDirectory(prefix="wake-cloud-") as folder:
         branch = StateBranch(ROOT, Path(folder)/"state")
         branch.open()
-        engine = Engine(branch.checkout/"data", settings)
+        authority_store = open_authoritative_store(branch.checkout / "data")
+        engine = Engine(branch.checkout/"data", settings, store=authority_store)
         try:
             # Stateful wakes are serialized: initialize/recover may append
             # durable events and must checkpoint before any provider request.
             with engine.store.lock():
                 if reset:
-                    # Preserve the exact old authority before creating Wake Zero.
-                    # The archive is a separate branch, so old history cannot
-                    # silently feed the new active run.
+                    # Preserve the exact pre-reset Git state as a convenience
+                    # archive. sudofx itself also retains the prior governed
+                    # generation, while active WAKE semantics restart at zero.
                     archive_branch = branch.archive_before_reset()
                     # Reset means exactly cycle/version zero. Do not immediately
                     # re-seed initialization events; the next deliberate cycle
