@@ -13,6 +13,8 @@ from sudofx.record import Record
 from wake.engine import DEFAULTS, Engine, govern_proposal
 from wake.governance import Rejected, transition
 from wake.store import digest, reduce_event
+from wake.sudofx_store import SudofxStore
+from wake.providers import Fixture
 from wake.sudofx_application import WAKE_APPLICATION, verified_legacy_snapshot
 from support import charter_settings
 
@@ -344,6 +346,61 @@ class SudofxMigrationTests(unittest.TestCase):
             final_envelope["migration"]["legacy_event_count"],
             payload["legacy_event_count"] + 2,
         )
+
+
+    def test_full_wake_fixture_cycle_writes_only_to_sudofx_after_migration(self) -> None:
+        """Normal WAKE orchestration can advance while the legacy database stays frozen."""
+        legacy_before_state, legacy_before_head, legacy_before_events = self.engine.store.replay_record()
+        legacy_count = len(legacy_before_events)
+
+        store = SudofxStore(
+            self.root / "sudofx-authority",
+            legacy_store=self.engine.store,
+        )
+        migrated = Engine(
+            self.root / "unused-legacy-path",
+            dict(DEFAULTS),
+            store=store,
+        )
+        try:
+            result = migrated.run(Fixture("phase-e-sudofx-authority"))
+            self.assertEqual(result["status"], "accepted")
+
+            legacy_after_state, legacy_after_head, legacy_after_events = self.engine.store.replay_record()
+            self.assertEqual(len(legacy_after_events), legacy_count)
+            self.assertEqual(legacy_after_head, legacy_before_head)
+            self.assertEqual(legacy_after_state, legacy_before_state)
+
+            migrated_state = store.load()
+            self.assertEqual(migrated_state["version"], legacy_before_state["version"] + 1)
+            self.assertIsNone(migrated_state["pending"])
+            self.assertTrue(
+                any(
+                    item.get("status") == "accepted"
+                    for item in migrated_state["invocations"].values()
+                )
+            )
+            self.assertGreater(
+                store._envelope()["migration"]["legacy_event_count"],
+                legacy_count,
+            )
+            self.assertGreater(store.kernel.context().revision, 1)
+
+            fresh = SudofxStore(
+                self.root / "sudofx-authority",
+                legacy_store=self.engine.store,
+            )
+            try:
+                self.assertEqual(fresh.load(), migrated_state)
+                self.assertEqual(fresh.head(), store.head())
+                self.assertEqual(
+                    len(fresh.events()),
+                    fresh._envelope()["migration"]["legacy_event_count"],
+                )
+            finally:
+                fresh.close()
+        finally:
+            store.close()
 
 
 if __name__ == "__main__":
