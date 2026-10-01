@@ -144,17 +144,20 @@ class SudofxStore:
 
     def _verify_legacy_prefix(self):
         migration = self._envelope()["migration"]
-        count = migration.get("import_legacy_event_count")
-        head = migration.get("import_legacy_head")
-        if migration.get("archive_event_count") != count or migration.get("archive_head") != head:
+        import_count = migration.get("import_legacy_event_count")
+        import_head = migration.get("import_legacy_head")
+        if (
+            migration.get("archive_event_count") != import_count
+            or migration.get("archive_head") != import_head
+        ):
             raise IntegrityError("Imported WAKE history has not been fully archived into sudofx")
         self._archived_legacy_events()
         if self.legacy_store is not None:
             events = self.legacy_store.events()
-            if not isinstance(count, int) or count < 0 or count > len(events):
+            if not isinstance(import_count, int) or import_count < 0 or import_count > len(events):
                 raise IntegrityError("Imported WAKE event count does not match legacy history")
-            observed = events[count - 1]["hash"] if count else "0" * 64
-            if observed != head:
+            observed = events[import_count - 1]["hash"] if import_count else "0" * 64
+            if observed != import_head:
                 raise IntegrityError("Imported WAKE head does not match legacy history prefix")
 
     def close(self):
