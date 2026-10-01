@@ -24,7 +24,7 @@ from sudofx.record import Record
 
 from .store import IntegrityError, digest, now
 from .history import history_metrics, merge_history_metrics
-from .sudofx_application import WAKE_APPLICATION, verified_legacy_snapshot
+from .sudofx_application import LEGACY_ARCHIVE_CHUNK_SIZE, WAKE_APPLICATION, verified_legacy_snapshot
 
 
 class _CrashInjectableRecordStore:
@@ -110,7 +110,7 @@ class SudofxStore:
 
         archived = int(migration.get("archive_event_count", 0))
         while archived < target_count:
-            chunk = events[archived : min(target_count, archived + 50)]
+            chunk = events[archived : min(target_count, archived + LEGACY_ARCHIVE_CHUNK_SIZE)]
             revision = self.kernel.context().revision
             receipt = self.host.submit(
                 ApplicationIntent(
