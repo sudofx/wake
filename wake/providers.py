@@ -348,6 +348,11 @@ def schema_for_context(context):
     No evidence is added, substituted, or silently repaired after generation.
     """
     schema = deepcopy(SCHEMA)
+    # The model is proposing against one exact durable snapshot. Expose that
+    # concurrency guard before generation instead of accepting any integer and
+    # relying on governance to reject stale guesses afterward.
+    if isinstance(context.get("version"), int):
+        schema["properties"]["base_version"]["enum"] = [context["version"]]
     directive = context.get("attention", {})
     enforced_topic = directive.get("selected_topic") if directive.get("enforce_selected_topic") else None
     entries = [(project, notebook) for project, notebooks in context.get("blog_notebooks", {}).items()
