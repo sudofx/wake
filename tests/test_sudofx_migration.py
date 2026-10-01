@@ -11,6 +11,7 @@ from sudofx.governance import Governance
 from sudofx.record import Record
 
 from wake.engine import DEFAULTS, Engine
+from wake.governance import Rejected, transition
 from wake.sudofx_application import WAKE_APPLICATION, verified_legacy_snapshot
 
 
@@ -74,6 +75,75 @@ class SudofxMigrationTests(unittest.TestCase):
         )
         self.assertEqual(receipt.status, "rejected")
         self.assertIn("digest does not match", " ".join(receipt.reasons))
+
+    def test_governed_proposal_matches_legacy_transition_exactly(self):
+        """WAKE policy stays above the kernel while sudofx owns the accepted state."""
+        payload = verified_legacy_snapshot(self.engine.store)
+        _, host = self._sudofx_host()
+        imported = host.submit(
+            ApplicationIntent("wake-import-equivalence", 0, "import_legacy_snapshot", payload)
+        )
+        self.assertEqual(imported.status, "accepted")
+        legacy_state = payload["legacy_state"]
+        proposal = {
+            "base_version": legacy_state["version"],
+            "title": "Preserve a governed obligation",
+            "summary": "Exercise existing WAKE commitment governance through the sudofx app seam.",
+            "actions": [
+                {
+                    "type": "commit",
+                    "id": "phase-e-equivalence",
+                    "task": "Continue the migration with behavioral equivalence evidence.",
+                    "due_cycle": legacy_state["version"] + 3,
+                    "reason": "Keep the next migration step durable across process replacement.",
+                }
+            ],
+        }
+        expected = transition(legacy_state, proposal, "phase-e-equivalence")
+
+        receipt = host.submit(
+            ApplicationIntent(
+                "wake-governed-equivalence",
+                1,
+                "apply_governed_proposal",
+                {"invocation": "phase-e-equivalence", "proposal": proposal},
+            ),
+            provenance=SubmissionProvenance(
+                "application", "wake-migration", "behavioral-equivalence"
+            ),
+        )
+        self.assertEqual(receipt.status, "accepted")
+        self.assertEqual(host.context().state["state"], expected)
+        self.assertEqual(
+            host.context().state["state"]["commitments"]["phase-e-equivalence"]["task"],
+            "Continue the migration with behavioral equivalence evidence.",
+        )
+
+    def test_governed_proposal_rejects_exact_legacy_stale_write(self):
+        """A legacy WAKE rejection must stay a rejection at the sudofx authority boundary."""
+        payload = verified_legacy_snapshot(self.engine.store)
+        _, host = self._sudofx_host()
+        host.submit(ApplicationIntent("wake-import-stale", 0, "import_legacy_snapshot", payload))
+        stale = {
+            "base_version": payload["legacy_state"]["version"] - 1,
+            "title": "Stale proposal",
+            "summary": "This must fail the same WAKE optimistic-concurrency rule.",
+            "actions": [],
+        }
+        with self.assertRaisesRegex(Rejected, "Stale or invalid base_version"):
+            transition(payload["legacy_state"], stale, "stale-legacy")
+
+        receipt = host.submit(
+            ApplicationIntent(
+                "wake-governed-stale",
+                1,
+                "apply_governed_proposal",
+                {"invocation": "stale-app", "proposal": stale},
+            )
+        )
+        self.assertEqual(receipt.status, "rejected")
+        self.assertIn("Stale or invalid base_version", " ".join(receipt.reasons))
+        self.assertEqual(host.context().state["state"], payload["legacy_state"])
 
 
 if __name__ == "__main__":
