@@ -367,6 +367,33 @@ class AttentionTests(unittest.TestCase):
         self.assertEqual(research["properties"]["domain"]["enum"], ["entropy"])
         self.assertEqual(research["properties"]["project"]["enum"], ["e"])
 
+    def test_active_selected_topic_does_not_offer_duplicate_project_creation(self):
+        context = {
+            "research_topics": [{"id": "entropy"}],
+            "projects": [
+                {"id": "entropy-existing", "title": "Entropy",
+                 "question": "What constrains entropy production?",
+                 "domain": "entropy", "status": "active", "next_step": "Collect evidence"},
+            ],
+            "commitments": [],
+            "evidence": [],
+            "blog_notebooks": {},
+            "attention": {"selected_topic": "entropy", "enforce_selected_topic": True},
+        }
+        choices = schema_for_context(context)["properties"]["actions"]["items"]["anyOf"]
+        self.assertFalse(any(
+            action["properties"]["type"]["enum"] == ["project"]
+            for action in choices
+        ))
+        research = next(
+            action for action in choices
+            if action["properties"]["type"]["enum"] == ["research"]
+        )
+        self.assertEqual(
+            research["properties"]["project"]["enum"],
+            ["entropy-existing"],
+        )
+
     def test_full_capacity_rotation_schema_requires_parking_first(self):
         context = {
             "research_topics": [
