@@ -215,6 +215,43 @@ def _enforce_bob_opening_checkpoint(state, invocation, proposal):
     )
 
 
+def govern_proposal(state, invocation, proposal):
+    """Apply the complete WAKE domain-policy path without committing storage."""
+    proposal, rotation_filter = _rotation_preflight(state, invocation, proposal)
+    proposal = _assign_research_ids(proposal, invocation)
+    _enforce_bob_opening_checkpoint(state, invocation, proposal)
+    editorial = None
+    try:
+        result = transition(state, proposal, invocation)
+    except Rejected as exc:
+        actions = proposal.get("actions") if isinstance(proposal, dict) else None
+        # Only the single optional final blog may be withheld. The research
+        # proposal itself must still cross the complete WAKE governance path.
+        if not (
+            state.get("charter")
+            and isinstance(actions, list)
+            and 2 <= len(actions) <= 12
+            and all(isinstance(action, dict) and action.get("type") != "blog" for action in actions[:-1])
+            and isinstance(actions[-1], dict)
+            and actions[-1].get("type") == "blog"
+        ):
+            raise
+        accepted_proposal = {**proposal, "actions": actions[:-1]}
+        transition(state, accepted_proposal, invocation)
+        editorial = {
+            "status": "withheld",
+            "reason": str(exc)[:1000],
+            "action": actions[-1],
+        }
+        accepted_proposal["summary"] = (
+            proposal["summary"][:2100]
+            + "\n\nEditorial note: the proposed blog post was withheld. "
+            + str(exc)[:180]
+        )
+        proposal = accepted_proposal
+        result = transition(state, proposal, invocation)
+    return proposal, result, editorial, rotation_filter
+
 INQUIRY_DRIVE_MIN_CYCLES = 20
 TOPIC_COLORS = (
     "#ff5bb9", "#b25dff", "#46b5ff", "#ffe574", "#93ff74", "#ff9e64",
@@ -1998,27 +2035,9 @@ class Engine:
         try:
             require(isinstance(raw, str) and len(raw) <= 64000, "Response exceeds 64,000 characters")
             proposal = json.loads(raw, parse_constant=lambda x: (_ for _ in ()).throw(ValueError("Nonfinite JSON")))
-            proposal, rotation_filter = _rotation_preflight(state, invocation, proposal)
-            proposal = _assign_research_ids(proposal, invocation)
-            _enforce_bob_opening_checkpoint(state, invocation, proposal)
-            editorial = None
-            try:
-                result = transition(state, proposal, invocation)
-            except Rejected as exc:
-                actions = proposal.get("actions") if isinstance(proposal, dict) else None
-                # Only the single optional final blog can be withheld. Research and
-                # the original proposal envelope still cross the full governance boundary.
-                if not (state.get("charter") and isinstance(actions, list) and 2 <= len(actions) <= 12
-                        and all(isinstance(a, dict) and a.get("type") != "blog" for a in actions[:-1])
-                        and isinstance(actions[-1], dict) and actions[-1].get("type") == "blog"):
-                    raise
-                accepted_proposal = {**proposal, "actions": actions[:-1]}
-                transition(state, accepted_proposal, invocation)  # Research must validate independently.
-                editorial = {"status": "withheld", "reason": str(exc)[:1000], "action": actions[-1]}
-                accepted_proposal["summary"] = (proposal["summary"][:2100] +
-                    "\n\nEditorial note: the proposed blog post was withheld. " + str(exc)[:180])
-                proposal = accepted_proposal
-                result = transition(state, proposal, invocation)
+            proposal, result, editorial, rotation_filter = govern_proposal(
+                state, invocation, proposal
+            )
         except (ValueError, TypeError, KeyError, Rejected) as exc:
             reason = str(exc)[:1000]
             self.store.append("rejected", {"id": invocation, "reason": reason,
