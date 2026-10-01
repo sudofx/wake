@@ -18,7 +18,7 @@ from sudofx.storage import canonical_json
 from .application_policy import govern_proposal
 from .governance import Rejected
 from .history import migration_baseline
-from .store import digest as legacy_digest, reduce_event
+from .store import digest as legacy_digest, empty, reduce_event
 
 
 APPLICATION_ID = "wake"
@@ -251,6 +251,44 @@ def _import_legacy_event_chunk(current: JsonValue, payload: JsonValue) -> Applic
     )
 
 
+def _reset_to_zero(current: JsonValue, payload: JsonValue) -> ApplicationDecision:
+    """Start a new active WAKE generation while retaining prior sudofx history."""
+    if not isinstance(current, dict) or not isinstance(current.get("state"), dict):
+        return ApplicationDecision(False, reasons=("WAKE state must exist before reset",))
+    if not isinstance(payload, dict) or payload.get("actor") != "operator":
+        return ApplicationDecision(False, reasons=("WAKE reset requires explicit operator provenance",))
+    reason = payload.get("reason")
+    if not isinstance(reason, str) or not reason.strip():
+        return ApplicationDecision(False, reasons=("WAKE reset reason is required",))
+    migration = current.get("migration")
+    if not isinstance(migration, dict):
+        return ApplicationDecision(False, reasons=("WAKE migration metadata is missing",))
+
+    generation = migration.get("active_generation", 0)
+    if isinstance(generation, bool) or not isinstance(generation, int) or generation < 0:
+        return ApplicationDecision(False, reasons=("WAKE active generation is invalid",))
+    reset_history = list(migration.get("reset_history", []))
+    reset_history.append(
+        {
+            "generation": generation,
+            "head": migration.get("legacy_head"),
+            "event_count": migration.get("legacy_event_count"),
+            "reason": reason.strip(),
+        }
+    )
+    next_migration = dict(migration)
+    next_migration.update(
+        {
+            "source": "sudofx-authoritative-wake-reset",
+            "active_generation": generation + 1,
+            "legacy_head": "0" * 64,
+            "legacy_event_count": 0,
+            "reset_history": reset_history,
+        }
+    )
+    return ApplicationDecision(True, {"migration": next_migration, "state": empty()})
+
+
 WAKE_APPLICATION = ApplicationDefinition(
     APPLICATION_ID,
     APPLICATION_VERSION,
@@ -259,6 +297,7 @@ WAKE_APPLICATION = ApplicationDefinition(
         ApplicationAction("apply_governed_proposal", _apply_governed_proposal),
         ApplicationAction("import_legacy_event_chunk", _import_legacy_event_chunk),
         ApplicationAction("append_legacy_event", _append_legacy_event),
+        ApplicationAction("reset_to_zero", _reset_to_zero),
     ),
     state_storage="event_log",
 )
