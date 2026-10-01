@@ -1,6 +1,6 @@
 """Disposable public projection for the WAKE✳︎ browser.
 
-SQLite on wake-state is authoritative. This module deliberately produces a
+sudofx SQLite on wake-state is authoritative. This module deliberately produces a
 bounded, replaceable view for the public UI; nothing here is read back into
 governance, recovery, or provider context.
 """
