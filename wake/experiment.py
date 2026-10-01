@@ -13,11 +13,11 @@
 
 import json
 from pathlib import Path
-import sqlite3
 import subprocess
 import sys
 
 from .audit import verify_history
+from .authority import open_authoritative_store
 from .engine import Engine
 from .governance import require
 from .providers import Fixture
@@ -27,7 +27,8 @@ from .store import canonical, now
 def run_experiment(directory, cycles=100, output="site"):
     root = Path(directory).resolve()
     require(cycles >= 100 and cycles <= 1000, "Use 100–1000 cycles for the longitudinal experiment")
-    require(not (root / "wake.sqlite3").exists(), "Experiment requires a new data directory; existing state is never erased")
+    require(not (root / "sudofx.sqlite").exists() and not (root / "wake.sqlite3").exists(),
+            "Experiment requires a new data directory; existing state is never erased")
     root.mkdir(parents=True, exist_ok=True)
     calls = []
     def cli(*args, expected=0, data_dir=root):
@@ -48,7 +49,7 @@ def run_experiment(directory, cycles=100, output="site"):
         if n % 25 == 0:
             print(f"Experiment: {n}/{cycles} fresh cycles committed.", file=sys.stderr, flush=True)
 
-    engine = Engine(root)
+    engine = Engine(root, store=open_authoritative_store(root))
     s = engine.store.load()
     checks = {}
     starts = [e for e in engine.store.events() if e["kind"] == "invocation_started"]
@@ -79,15 +80,15 @@ def run_experiment(directory, cycles=100, output="site"):
 
     # Controlled intervention: identical backed-up state, a single human focus change.
     branch = root / "causal-branch"
-    engine.store.backup(branch / "wake.sqlite3")
+    engine.store.backup(branch / "sudofx.sqlite")
     cli("focus", "evidence quality", "--reason", "Controlled intervention; change persisted focus only.", data_dir=branch)
     cli("wake", "--provider", "fixture", "--model", "fixture-a", data_dir=branch)
-    branch_engine = Engine(branch)
+    branch_engine = Engine(branch, store=open_authoritative_store(branch))
     after = branch_engine.store.load()["journal"][-1]["summary"]
     control = root / "causal-control"
-    engine.store.backup(control / "wake.sqlite3")
+    engine.store.backup(control / "sudofx.sqlite")
     cli("wake", "--provider", "fixture", "--model", "fixture-a", data_dir=control)
-    control_engine = Engine(control)
+    control_engine = Engine(control, store=open_authoritative_store(control))
     control_summary = control_engine.store.load()["journal"][-1]["summary"]
     checks["causal_state"] = {"passed": "evidence quality" in after and "evidence quality" not in control_summary and after != control_summary,
                               "control": control_summary, "intervention": after,
@@ -108,18 +109,17 @@ def run_experiment(directory, cycles=100, output="site"):
     engine.store.close()
 
     # SIGKILL-equivalent immediate exits at two distinct durable boundaries.
+    # Sudofx reconstructs from its governed event log directly, so there is no
+    # second mutable projection cache to corrupt or repair in this experiment.
     cli("wake", "--provider", "fixture", "--crash-at", "after-start", expected=85)
     cli("recover")
     cli("wake", "--provider", "fixture", "--crash-at", "during-commit", expected=86)
     cli("recover")
-    with sqlite3.connect(root / "wake.sqlite3") as db:
-        db.execute("UPDATE snapshot SET state='corrupt projection' WHERE id=1")
-    cli("recover")
-    engine = Engine(root)
+    engine = Engine(root, store=open_authoritative_store(root))
     recovered = engine.store.load()
     checks["recovery"] = {"passed": recovered["version"] == cycles and recovered["beliefs"] == s["beliefs"] and recovered["commitments"] == s["commitments"] and
                           sum(i["status"] == "recovered" for i in recovered["invocations"].values()) == 2,
-                          "detail": "After-start death, uncommitted transaction death, and corrupted projection recover without changing accepted state."}
+                          "detail": "After-start death and pre-commit process death recover from sudofx authority without changing accepted WAKE state."}
     export(engine.store, output)
     replayed, head = verify_history(Path(output) / "events.jsonl", (Path(output) / "head.txt").read_text())
     checks["audit_reconstruction"] = {"passed": canonical(replayed) == canonical(recovered), "head": head,
