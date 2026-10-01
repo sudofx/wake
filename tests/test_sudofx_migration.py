@@ -445,12 +445,12 @@ class SudofxMigrationTests(unittest.TestCase):
             with store.lock():
                 second_observation = migrated.observe("Synthetic second measurement within range", "fixture:sensor")
             second_state = store.load()
-            self.assertIn(second_observation, second_state["evidence"])
+            self.assertIn(second_observation["id"], second_state["evidence"])
             second_context = migrated.context(second_state, "fixture-receipt")
-            self.assertIn(second_observation, [item["id"] for item in second_context["evidence"]])
+            self.assertIn(second_observation["id"], [item["id"] for item in second_context["evidence"]])
             second_proposal = json.loads(Fixture().propose({"context": second_context})[0])
             self.assertTrue(any(
-                action.get("type") == "belief" and second_observation in action.get("evidence", [])
+                action.get("type") == "belief" and second_observation["id"] in action.get("evidence", [])
                 for action in second_proposal["actions"]
             ))
             self.assertEqual(migrated.run(Fixture())["status"], "accepted")
@@ -459,9 +459,9 @@ class SudofxMigrationTests(unittest.TestCase):
             with store.lock():
                 counterexample = migrated.observe("Synthetic counterexample outside range", "fixture:sensor")
             counter_state = store.load()
-            self.assertIn(counterexample, counter_state["evidence"])
+            self.assertIn(counterexample["id"], counter_state["evidence"])
             counter_context = migrated.context(counter_state, "fixture-receipt")
-            self.assertIn(counterexample, [item["id"] for item in counter_context["evidence"]])
+            self.assertIn(counterexample["id"], [item["id"] for item in counter_context["evidence"]])
             counter_proposal = json.loads(Fixture().propose({"context": counter_context})[0])
             self.assertTrue(any(
                 action.get("type") == "belief" and action.get("status") == "retracted"
