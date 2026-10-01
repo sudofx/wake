@@ -1,5 +1,5 @@
 # WAKE✳︎ authoritative cycle lane.
-# SQLite on wake-state is the only operational authority. No Pages work belongs here.
+# sudofx SQLite on wake-state is the only operational authority. Legacy WAKE SQLite is migration evidence only. No Pages work belongs here.
 
 name: "WAKE✳︎ — Internal only: one research cycle"
 run-name: "WAKE✳︎ ${{ inputs.dispatch_token || github.run_id }}"
@@ -36,7 +36,7 @@ jobs:
   wake:
     runs-on: ubuntu-latest
     if: github.ref_name == 'wake-runtime'
-    # wake-state is a growing SQLite authority; allow state transfer headroom.
+    # wake-state carries the growing sudofx SQLite authority; allow state transfer headroom.
     # Individual Git/provider operations remain bounded by their own behavior.
     timeout-minutes: 30
     outputs:
