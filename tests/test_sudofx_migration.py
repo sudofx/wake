@@ -15,6 +15,8 @@ from wake.governance import Rejected, transition
 from wake.store import digest, reduce_event
 from wake.sudofx_store import SudofxStore
 from wake.providers import Fixture
+from wake.live import build_live_projection
+from wake.report import export
 from wake.sudofx_application import WAKE_APPLICATION, verified_legacy_snapshot
 from support import charter_settings
 
@@ -385,6 +387,30 @@ class SudofxMigrationTests(unittest.TestCase):
                 legacy_count,
             )
             self.assertGreater(store.kernel.context().revision, 1)
+
+            projection = build_live_projection(
+                store,
+                operation={"status": result["status"]},
+                runtime_ref="phase-e-sudofx-test",
+            )
+            self.assertEqual(projection["source"]["authority"], "sudofx SQLite")
+            self.assertEqual(projection["source"]["database"], "sudofx.sqlite")
+            self.assertEqual(projection["state"]["version"], migrated_state["version"])
+            self.assertEqual(
+                projection["metrics"]["storage"]["event_count"],
+                len(store.events()),
+            )
+
+            export(store, self.root / "sudofx-site")
+            self.assertTrue((self.root / "sudofx-site" / "index.html").is_file())
+            self.assertTrue((self.root / "sudofx-site" / "events.md").is_file())
+
+            legacy_export_state, legacy_export_head, legacy_export_events = (
+                self.engine.store.replay_record()
+            )
+            self.assertEqual(legacy_export_state, legacy_before_state)
+            self.assertEqual(legacy_export_head, legacy_before_head)
+            self.assertEqual(len(legacy_export_events), legacy_count)
 
             fresh = SudofxStore(
                 self.root / "sudofx-authority",
