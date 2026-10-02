@@ -106,9 +106,10 @@ class FailoverTests(unittest.TestCase):
         self.assertEqual(generation["responseMimeType"], "application/json")
         self.assertEqual(generation["maxOutputTokens"], 4096)
         self.assertEqual(generation["thinkingConfig"], {"thinkingLevel": "low"})
-        self.assertIn("responseJsonSchema", generation)
-        self.assertEqual(generation["responseJsonSchema"]["required"],
-                         ["base_version", "title", "summary", "actions"])
+        self.assertNotIn("responseJsonSchema", generation)
+        system = json.loads(self.requests[1].data)["systemInstruction"]["parts"][0]["text"]
+        self.assertIn("Response contract (JSON Schema):", system)
+        self.assertIn('"required": ["base_version", "title", "summary", "actions"]', system)
         for a in item["provider_attempts"]:
             self.assertGreaterEqual(a["elapsed_ms"], 0)
             self.assertEqual(a["request_payload_bytes"], len(self.requests[0].data))
