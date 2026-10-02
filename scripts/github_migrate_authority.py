@@ -10,7 +10,7 @@ import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 
-from scripts.github_wake import StateBranch
+from github_wake import StateBranch
 from wake.authority import open_authoritative_store
 
 
