@@ -518,10 +518,11 @@ class SystemTests(unittest.TestCase):
             self.assertNotIn("test-key", request.full_url)
             generation = json.loads(request.data)["generationConfig"]
             self.assertEqual(generation["responseMimeType"], "application/json")
-            self.assertIn("responseJsonSchema", generation)
-            self.assertEqual(generation["responseJsonSchema"]["required"],
-                             ["base_version", "title", "summary", "actions"])
-            self.assertTrue(generation["responseJsonSchema"]["properties"]["actions"]["items"]["anyOf"])
+            self.assertNotIn("responseJsonSchema", generation)
+            system = json.loads(request.data)["systemInstruction"]["parts"][0]["text"]
+            schema = json.loads(system.split("Response contract (JSON Schema):\n")[1])
+            self.assertEqual(schema["required"], ["base_version", "title", "summary", "actions"])
+            self.assertTrue(schema["properties"]["actions"]["items"]["anyOf"])
 
 
     def test_gemini_sends_one_request_for_each_transient_http_failure(self):
