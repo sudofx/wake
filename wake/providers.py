@@ -868,14 +868,17 @@ class Gemini:
             )
         response_schema = request.get("response_schema", SCHEMA)
         system = request["system"] + "\nResponse contract (JSON Schema):\n" + json.dumps(response_schema)
+        # Keep Gemini responsible only for returning syntactically valid JSON.
+        # The full dynamic contract remains visible in the system prompt, while
+        # deterministic WAKE governance independently validates every returned
+        # proposal before durable state can change. Sending the large, deeply
+        # dynamic schema through responseJsonSchema makes Google's schema
+        # compiler an unnecessary availability dependency: Gemini may reject a
+        # valid JSON Schema with HTTP 400 before generation. Authority never
+        # belonged there, so keep transport JSON-only and governance authoritative.
         body = {"systemInstruction": {"parts": [{"text": system}]},
                 "contents": [{"role": "user", "parts": [{"text": json.dumps(request["context"])}]}],
                 "generationConfig": {"responseMimeType": "application/json",
-                                     # Enforce the same dynamic contract at the provider boundary.
-                                     # Prompt text explains the rules; structured output prevents
-                                     # the model from emitting action shapes the current durable
-                                     # context has already made impossible.
-                                     "responseJsonSchema": response_schema,
                                      "maxOutputTokens": self.config["max_output_tokens"]}}
         if len(self.models) > 1 or self.model in ("gemini-3.7-flash", "gemini-3.8-flash"):
             body["generationConfig"]["thinkingConfig"] = {"thinkingLevel": "low"}
