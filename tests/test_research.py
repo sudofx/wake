@@ -96,6 +96,39 @@ class ResearchTests(unittest.TestCase):
         schema = schema_for_context(context)
         self.assertEqual(schema["properties"]["base_version"]["enum"], [76])
 
+    def test_reflection_schema_never_emits_empty_enums(self):
+        context = {
+            "version": 0,
+            "mission": "Research",
+            "research_topics": [{"id": "entropy"}],
+            "projects": [],
+            "evidence": [],
+            "blog_notebooks": {},
+            "commitments": [],
+            "bob_reflection_due": True,
+            "bob_reflection_cycle": 1,
+        }
+        schema = schema_for_context(context)
+        choices = schema["properties"]["actions"]["items"]["anyOf"]
+        blog = next(
+            action for action in choices
+            if action["properties"]["type"]["enum"] == ["blog"]
+        )
+        self.assertEqual(blog["properties"]["notebooks"]["minItems"], 0)
+        self.assertEqual(blog["properties"]["evidence"]["minItems"], 0)
+
+        def assert_no_empty_enum(node):
+            if isinstance(node, dict):
+                if "enum" in node:
+                    self.assertTrue(node["enum"])
+                for value in node.values():
+                    assert_no_empty_enum(value)
+            elif isinstance(node, list):
+                for value in node:
+                    assert_no_empty_enum(value)
+
+        assert_no_empty_enum(schema)
+
     def test_model_research_schema_keeps_network_route_collector_owned(self):
         context = {
             "research_topics": [{"id": "entropy"}],
