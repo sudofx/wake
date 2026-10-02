@@ -574,8 +574,23 @@ def schema_for_context(context):
         if reflection_due and "" not in project_choices:
             project_choices.append("")
         props["project"]["enum"] = project_choices
-        props["notebooks"]["items"]["enum"] = sorted({n["id"] for _, n in entries})
-        props["evidence"]["items"]["enum"] = evidence
+        notebook_choices = sorted({n["id"] for _, n in entries})
+        if notebook_choices:
+            props["notebooks"]["items"]["enum"] = notebook_choices
+        else:
+            # A reflection may legitimately require zero notebooks. JSON Schema
+            # enum arrays must not be empty, so require the only valid choice:
+            # an empty array. Deterministic governance still owns publication.
+            props["notebooks"]["items"].pop("enum", None)
+            props["notebooks"]["maxItems"] = 0
+        if evidence:
+            props["evidence"]["items"]["enum"] = evidence
+        else:
+            # The first/reflection post may also have zero evidence. Avoid an
+            # unsatisfiable enum while requiring the provider to return none.
+            # Governance continues to enforce the exact reflection exception.
+            props["evidence"]["items"].pop("enum", None)
+            props["evidence"]["maxItems"] = 0
 
         # The research application owns Bob's opening post. Keep the ordinary
         # research actions available so the first accepted wake can both do
