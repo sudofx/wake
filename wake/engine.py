@@ -1158,7 +1158,14 @@ class Engine:
     def context(self, state, receipt):
         # Recent receipts and the newest supporting evidence for every belief stay visible.
         # All citation IDs remain in beliefs; full evidence is always in the durable export.
-        wanted = set(list(state["evidence"])[-6:])
+        # Persistence canonicalizes object keys, so dictionary iteration order is
+        # not chronology after a fresh process reload. Select recent evidence by
+        # durable observation metadata instead of random evidence IDs.
+        recent_evidence = sorted(
+            state["evidence"].items(),
+            key=lambda item: (item[1].get("version", -1), item[1].get("time", ""), item[0]),
+        )[-6:]
+        wanted = {evidence_id for evidence_id, _ in recent_evidence}
         for belief in state["beliefs"].values():
             wanted.update(belief["evidence"][-3:])
         context = {"version": state["version"], "objective": state["objective"], "focus": state["focus"],
