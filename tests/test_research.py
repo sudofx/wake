@@ -115,7 +115,9 @@ class ResearchTests(unittest.TestCase):
             if action["properties"]["type"]["enum"] == ["blog"]
         )
         self.assertEqual(blog["properties"]["notebooks"]["minItems"], 0)
+        self.assertEqual(blog["properties"]["notebooks"]["maxItems"], 0)
         self.assertEqual(blog["properties"]["evidence"]["minItems"], 0)
+        self.assertEqual(blog["properties"]["evidence"]["maxItems"], 0)
 
         def assert_no_empty_enum(node):
             if isinstance(node, dict):
