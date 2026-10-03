@@ -979,20 +979,10 @@ def transition(state, proposal, invocation, historical=False):
         for collection in ("projects", "notebooks", "research"):
             result[collection] = deepcopy(state.get(collection, {}))
 
-    # Bob's editorial backstop is a durable governance obligation, not merely
-    # a provider instruction. The first accepted wake establishes Bob publicly;
-    # later publication remains event-driven until the deterministic 15–20 wake
-    # silence window makes a longitudinal reflection due.
+    # Bob is an editorial projection, never a gate on WAKE✳︎ research.
+    # A due cycle is only an opportunity marker for a blog action. Research may
+    # advance whether or not Bob publishes.
     due_reflection_cycle = None if historical else bob_reflection_due_cycle(state)
-    # The same checkpoint identity governs both Bob's opening post and later
-    # silence-window reflections. Keeping the first post outside this value made
-    # the provider correctly emit reflection_cycle while blog validation treated
-    # that field as reserved, breaking the deterministic promotion experiment.
-    required_reflection_cycle = (
-        due_reflection_cycle
-        if due_reflection_cycle is not None and state.get("posts")
-        else None
-    )
 
     # -----------------------------------------------------------------------
     # ACTION LOOP
@@ -1886,26 +1876,12 @@ def transition(state, proposal, invocation, historical=False):
             reflection_cycle = declared_reflection_cycle or legacy_reflection_cycle
             reflection_due = reflection_cycle is not None
 
-            if not historical:
-                if required_reflection_cycle is not None:
-                    require(
-                        declared_reflection_cycle == required_reflection_cycle,
-                        f"Bob reflection for accepted wake {required_reflection_cycle} is mandatory and must be the final blog action",
-                    )
-                else:
-                    opening_checkpoint = (
-                        bool(state.get("charter"))
-                        and not state.get("posts")
-                        and due_reflection_cycle is not None
-                    )
-                    require(
-                        "reflection_cycle" not in action
-                        or (
-                            opening_checkpoint
-                            and declared_reflection_cycle == due_reflection_cycle
-                        ),
-                        "reflection_cycle is reserved for a due Bob editorial checkpoint",
-                    )
+            if not historical and "reflection_cycle" in action:
+                require(
+                    due_reflection_cycle is not None
+                    and declared_reflection_cycle == due_reflection_cycle,
+                    "reflection_cycle is reserved for the currently due Bob editorial opportunity",
+                )
 
             require(
                 action["project"] in result["projects"]
@@ -2182,17 +2158,6 @@ def transition(state, proposal, invocation, historical=False):
             raise Rejected(
                 f"Action is not allowed: {kind!r}"
             )
-
-    if not historical and required_reflection_cycle is not None:
-        require(
-            any(
-                isinstance(action, dict)
-                and action.get("type") == "blog"
-                and action.get("reflection_cycle") == required_reflection_cycle
-                for action in proposal["actions"]
-            ),
-            f"Bob reflection for accepted wake {required_reflection_cycle} is mandatory before state may advance",
-        )
 
     # =======================================================================
     # ACCEPTANCE
