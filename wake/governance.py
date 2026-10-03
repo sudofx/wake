@@ -575,7 +575,7 @@ def _enforce_bob_personhood_policy(claim_text):
 
 def _has_final_summary(body):
     """Return whether Bob's body ends with a final plain-language Summary section."""
-    return bool(re.search(r"(?:^|\n\n)Summary\n+\S[\s\S]*\Z", str(body).strip()))
+    return bool(re.search(r"(?:^|\n\n)Summary:?\n+\S[\s\S]*\Z", str(body).strip()))
 
 
 def _blog_language(action, evidence, historical=False, prior_post=None):
