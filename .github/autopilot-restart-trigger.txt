@@ -1,1 +1,1 @@
-WAKE autopilot final restart after duplicate-project and zero-job-orphan hardening.
+WAKE autopilot controlled restart for MAP relationship repair and detail-topic layout.
