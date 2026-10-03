@@ -291,67 +291,24 @@ class Redirects(urllib.request.HTTPRedirectHandler):
     def __init__(self, validator=allowed_url):
         super().__init__()
         self.validator = validator
-    # ---------------------------------------------------------------------------
-    # STEP: redirect_request
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Callers may rely on this contract.
-    # ---------------------------------------------------------------------------
     def redirect_request(self, req, fp, code, msg, headers, newurl):
         self.validator(newurl)
         return super().redirect_request(req, fp, code, msg, headers, newurl)
 
 
 class PlainText(HTMLParser):
-    # ---------------------------------------------------------------------------
-    # STEP: __init__
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-    # ---------------------------------------------------------------------------
     def __init__(self):
         super().__init__()
         self.skip = 0
         self.parts = []
 
-    # ---------------------------------------------------------------------------
-    # STEP: handle_starttag
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Callers may rely on this contract.
-    # ---------------------------------------------------------------------------
-
     def handle_starttag(self, tag, attrs):
         if tag in ("script", "style", "nav", "header", "footer"):
             self.skip += 1
 
-    # ---------------------------------------------------------------------------
-    # STEP: handle_endtag
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Callers may rely on this contract.
-    # ---------------------------------------------------------------------------
-
     def handle_endtag(self, tag):
         if tag in ("script", "style", "nav", "header", "footer"):
             self.skip = max(0, self.skip - 1)
-
-    # ---------------------------------------------------------------------------
-    # STEP: handle_data
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Callers may rely on this contract.
-    # ---------------------------------------------------------------------------
 
     def handle_data(self, data):
         if not self.skip and data.strip():
