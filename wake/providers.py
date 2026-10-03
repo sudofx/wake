@@ -96,8 +96,7 @@ from deferred topics unchanged; do not cancel, weaken, or reinterpret them durin
 Do not resolve or recreate deferred-topic commitments, and do not emit belief, commit, or resolve actions
 while the rotation is enforced. An overdue
 commitment on a deferred topic does not override the rotation. A productive-saturation rotation persists
-until an accepted notebook or ordinary publication is produced on another topic; repeated searches alone do
-not end it. You may park an existing project when capacity must be freed for the selected topic. Before creating
+until an accepted notebook is produced on another topic; repeated searches and Bob publication do not end it. You may park an existing project when capacity must be freed for the selected topic. Before creating
 any project for selected_topic, inspect context.projects for an unfinished project on that topic, including
 parked projects. If one already owns the same durable question or seed inquiry, reactivate that exact project
 ID by updating its status/next_step; do not create a replacement project with a new ID. If capacity is full,
