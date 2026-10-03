@@ -1,0 +1,2 @@
+# Runtime dependencies are declared explicitly for reproducible GitHub runners.
+pypdf==6.19.0

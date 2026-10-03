@@ -1,0 +1,147 @@
+# WAKE✳︎ authoritative cycle lane.
+# sudofx SQLite on wake-state is the only operational authority. Legacy WAKE SQLite is migration evidence only. No Pages work belongs here.
+
+name: "WAKE✳︎ — Internal only: one research cycle"
+run-name: "WAKE✳︎ ${{ inputs.dispatch_token || github.run_id }}"
+
+on:
+  workflow_dispatch:
+    inputs:
+      dispatch_token:
+        description: Internal chain ID. Usually leave this alone.
+        type: string
+        required: false
+        default: ''
+      runtime_ref:
+        description: Internal pinned live-code commit. Usually leave this alone.
+        type: string
+        required: false
+        default: ''
+      reset:
+        description: INTERNAL reset switch. Prefer the clearly named RESET workflow.
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: wake-authority
+  cancel-in-progress: false
+  queue: max
+
+jobs:
+  wake:
+    runs-on: ubuntu-latest
+    if: github.ref_name == 'wake-runtime'
+    # wake-state carries the growing sudofx SQLite authority; allow state transfer headroom.
+    # Individual Git/provider operations remain bounded by their own behavior.
+    timeout-minutes: 30
+    outputs:
+      continue_now: ${{ steps.cycle.outputs.continue_now }}
+      retry_after: ${{ steps.cycle.outputs.retry_after }}
+      status: ${{ steps.cycle.outputs.status }}
+      live_projection_updated: ${{ steps.cycle.outputs.live_projection_updated }}
+    steps:
+      - name: Confirm runtime isolation
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REQUESTED_RUNTIME_REF: ${{ inputs.runtime_ref }}
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF_NAME" = "wake-runtime" || {
+            echo "::error::WAKE cycles may execute only from wake-runtime"
+            exit 1
+          }
+          if [[ -n "$REQUESTED_RUNTIME_REF" && "$REQUESTED_RUNTIME_REF" != "$GITHUB_SHA" ]]; then
+            echo "::error::Pinned runtime $REQUESTED_RUNTIME_REF does not match dispatched wake-runtime head $GITHUB_SHA"
+            exit 1
+          fi
+          promoted_sha="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha')"
+          if [[ "$promoted_sha" != "$GITHUB_SHA" ]]; then
+            echo "::error::Superseded WAKE runtime $GITHUB_SHA is no longer promoted (current: $promoted_sha). No state or provider work will run."
+            exit 1
+          fi
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
+          ref: ${{ inputs.runtime_ref || github.sha }}
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Install WAKE runtime dependencies
+        run: python -m pip install --disable-pip-version-check -e .
+      - name: Enforce sudofx global application access
+        run: |
+          set -euo pipefail
+          control_db="$(mktemp -t sudofx-control-XXXXXX.sqlite)"
+          trap 'rm -f "$control_db"' EXIT
+          curl --fail --silent --show-error --location \
+            "https://raw.githubusercontent.com/sudofx/sudofx/sudofx-state/sudofx.sqlite?ts=${GITHUB_RUN_ID}" \
+            --output "$control_db"
+          python - "$control_db" <<'PY'
+          import sqlite3, sys
+          path = sys.argv[1]
+          with sqlite3.connect(path) as db:
+              quick = db.execute("PRAGMA quick_check").fetchone()[0]
+              if quick != "ok":
+                  raise SystemExit("sudofx global access authority failed SQLite quick_check")
+              try:
+                  row = db.execute(
+                      "SELECT enabled, generation FROM application_access WHERE singleton = 1"
+                  ).fetchone()
+              except sqlite3.OperationalError:
+                  # Legacy central state predating the latch is the rollout baseline:
+                  # enabled until the operator first records STOP/RESTORE in schema v10.
+                  row = (1, 0)
+              if row is None:
+                  raise SystemExit("sudofx global application access latch is missing")
+              enabled, generation = int(row[0]), int(row[1])
+              print(f"sudofx application access generation={generation} enabled={enabled}")
+              if enabled != 1:
+                  raise SystemExit("SUDOFX_EXTERNAL_ACCESS_DISABLED")
+          PY
+      - name: Run one governed research cycle
+        id: cycle
+        continue-on-error: true
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          WAKE_RUNTIME_REF: ${{ inputs.runtime_ref || github.sha }}
+        run: |
+          args=()
+          if [[ "${{ inputs.reset }}" == "true" ]]; then args=(--reset --confirm-reset); fi
+          python scripts/github_wake.py "${args[@]}"
+      - name: Record run summary
+        if: always()
+        run: |
+          echo "runtime_ref=${{ inputs.runtime_ref || github.sha }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "status=${{ steps.cycle.outputs.status }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "live_projection_updated=${{ steps.cycle.outputs.live_projection_updated }}" >> "$GITHUB_STEP_SUMMARY"
+          if [[ "${{ steps.cycle.outputs.live_projection_updated }}" == "false" ]]; then
+            echo "::warning::Durable WAKE state was recorded, but the public live projection did not update."
+          fi
+      - name: Stop only for a real operator-attention failure
+        if: always() && steps.cycle.outcome == 'failure'
+        run: exit 1
+
+  continue-again:
+    needs: wake
+    if: needs.wake.result == 'success' && needs.wake.outputs.continue_now == 'true' && inputs.reset != true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Keep the experiment on its starting implementation
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUNTIME_REF: ${{ inputs.runtime_ref || github.sha }}
+          RETRY_AFTER: ${{ needs.wake.outputs.retry_after }}
+          PREVIOUS_RUN_ID: ${{ github.run_id }}
+        run: |
+          state="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml" --jq '.state')"
+          if [[ "$state" != "active" ]]; then
+            echo "Continuous runner is disabled; no successor will be dispatched."
+            exit 0
+          fi
+          if [[ -n "$RETRY_AFTER" && "$RETRY_AFTER" != "0" ]]; then sleep "$RETRY_AFTER"; fi
+          gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime             -f "dispatch_token=continuous-$PREVIOUS_RUN_ID"             -f "runtime_ref=$RUNTIME_REF"

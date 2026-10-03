@@ -1,0 +1,19 @@
+name: "WAKE✳︎ — Internal only: keep-running switch"
+run-name: "WAKE✳︎ continuation latch"
+
+# This workflow exists only because GitHub gives workflows a durable enabled/disabled state.
+# Start research enables it. Stop research disables it. wake.yml reads that state before dispatching a successor.
+# This workflow is not an operator control. Use Start research or Stop research.
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  explain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Explain this internal latch
+        run: echo "This workflow is only the continuous-research on/off latch. Use Start research to run WAKE✳︎."

@@ -1,0 +1,51 @@
+name: WAKE✳︎ — Check code · automatic
+
+on:
+  push:
+    branches-ignore: [wake-state, wake-live, wake-runtime]
+    paths:
+      - 'wake/**/*.py'
+      - 'wake/assets/**'
+      - 'scripts/**/*.py'
+      - 'tests/**'
+      - 'wake.toml'
+      - 'pyproject.toml'
+      - 'research-topics.toml'
+      - '.github/workflows/**'
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: wake-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.11', '3.13']
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install WAKE runtime dependencies
+        run: python -m pip install --disable-pip-version-check -e .
+      - name: Check that code and architecture rules still work
+        run: python -m unittest discover -s tests -v
+      - name: Simulate 100 WAKE cycles
+        if: github.event_name != 'push'
+        run: python -m wake --data /tmp/wake-experiment experiment --cycles 100 --output site
+      - name: Verify the simulated durable record
+        if: github.event_name != 'push'
+        run: python -m wake audit --events site/events.jsonl --head site/head.txt
+      - name: Upload verified journal
+        if: github.event_name != 'push'
+        uses: actions/upload-artifact@v4
+        with:
+          name: verified-journal-python-${{ matrix.python }}
+          path: site/

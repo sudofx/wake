@@ -1,0 +1,178 @@
+/*
+ * WAKE✳︎ THEME — the sole source of truth for shared colour and type tokens.
+ * Every published HTML view loads this after its page-layout stylesheet.
+ * The palette takes its cue from the metrics dashboard and the dark VS Code
+ * workspace: clear cyan, violet, blue, coral, and mint signals on quiet ink.
+ */
+:root{
+  color-scheme:light;
+  --paper:#f3f5fc !important; --surface:#ffffff !important; --surface-strong:#eef2ff !important;
+  --ink:#252a41 !important; --muted:#5f6b91 !important; --line:#d7def3 !important;
+  --pink:#d93d9b !important; --purple:#7e42c7 !important; --cyan:#147fbe !important; --yellow:#b98500 !important; --lime:#568a2b !important; --wake-core:#187e6f !important;
+  --green:#3FB950 !important; --accent:#7e42c7 !important; --orange:#d93d9b !important; --hot:#147fbe !important;
+  --pale:#e9eeff !important; --glow:transparent !important;
+  --chart-0:#147fbe !important; --chart-1:#7e42c7 !important; --chart-2:#d93d9b !important;
+  --chart-3:#568a2b !important; --chart-4:#b98500 !important; --chart-5:#7a84aa !important;
+  --success:#3FB950 !important; --danger:#c84c5a !important; --failure:#6b7280 !important; --warning:#b98500 !important; --info:#147fbe !important;
+  --topic-name:#3FB950 !important;
+  --mono:ui-monospace,SFMono-Regular,Consolas,monospace !important;
+  --sans:Arial,Helvetica,sans-serif !important; --serif:Georgia,'Times New Roman',serif !important;
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#1b2036 !important; --surface:#252a41 !important; --surface-strong:#2b314d !important;
+  --ink:#c9d2ff !important; --muted:#9ea9d5 !important; --line:#3a4262 !important;
+  --pink:#ff5bb9 !important; --purple:#b25dff !important; --cyan:#46b5ff !important; --yellow:#ffe574 !important; --lime:#93ff74 !important; --wake-core:#42d6a4 !important;
+  --green:#3FB950 !important; --accent:#b25dff !important; --orange:#ff5bb9 !important; --hot:#46b5ff !important;
+  --pale:#2b314d !important; --glow:transparent !important;
+  --chart-0:#46b5ff !important; --chart-1:#b25dff !important; --chart-2:#ff5bb9 !important;
+  --chart-3:#93ff74 !important; --chart-4:#ffe574 !important; --chart-5:#a9b1d6 !important;
+  --success:#3FB950 !important; --danger:#ff6b78 !important; --failure:#7f8ca8 !important; --warning:#e7c35a !important; --info:#46b5ff !important;
+  --topic-name:#3FB950 !important;
+}
+
+/* Shared signal language: journal, MAP, and dashboard use the same semantics. */
+.wake-cell.accepted,.timeline-legend i.accepted,.metric-bar.accepted,.trend-stack .accepted{background:var(--success) !important}
+.wake-cell.rejected,.timeline-legend i.rejected,.metric-bar.rejected,.trend-stack .rejected{background:var(--danger) !important}
+.wake-cell.deferred,.timeline-legend i.deferred,.metric-bar.deferred,.trend-stack .deferred{background:var(--warning) !important}
+.wake-cell.failed,.timeline-legend i.failed,.metric-bar.failed{background:var(--failure) !important}
+.wake-cell.recovered,.timeline-legend i.recovered,.metric-bar.recovered{background:var(--info) !important}
+.badge.accepted,.model-cell.good{background:color-mix(in srgb,var(--success) 16%,var(--surface));color:var(--success);border-color:color-mix(in srgb,var(--success) 46%,var(--line))}
+.badge.rejected,.badge.failed,.model-cell.bad{background:color-mix(in srgb,var(--danger) 15%,var(--surface));color:var(--danger);border-color:color-mix(in srgb,var(--danger) 45%,var(--line))}
+.badge.failed{background:color-mix(in srgb,var(--failure) 72%,var(--surface));color:var(--ink);border-color:color-mix(in srgb,var(--failure) 72%,var(--line))}
+.badge.deferred,.model-cell.mixed{background:color-mix(in srgb,var(--warning) 15%,var(--surface));color:var(--warning);border-color:color-mix(in srgb,var(--warning) 45%,var(--line))}
+.badge.provider_attempt_started,.badge.provider_attempt_finished,.badge.invocation_started{background:color-mix(in srgb,var(--info) 14%,var(--surface));color:var(--info);border-color:color-mix(in srgb,var(--info) 42%,var(--line))}
+.badge.observation,.badge.research_collected,.badge.recovered{background:color-mix(in srgb,var(--accent) 14%,var(--surface));color:var(--accent);border-color:color-mix(in srgb,var(--accent) 42%,var(--line))}
+.badge.squirrel_assessed{background:color-mix(in srgb,var(--green) 16%,var(--surface));color:var(--green);border-color:color-mix(in srgb,var(--green) 46%,var(--line))}
+.topic-tag,#timeline .node small.topic-tag{background:color-mix(in srgb,var(--green) 12%,var(--surface));color:var(--green);border-color:color-mix(in srgb,var(--green) 36%,var(--line))}
+.model-cell{color:var(--ink)}.model-cell small{color:var(--muted)}
+#timeline .node small.status-tag.accepted{background:color-mix(in srgb,var(--success) 16%,var(--surface));color:var(--success);border-color:color-mix(in srgb,var(--success) 46%,var(--line))}
+#timeline .node small.status-tag.rejected,#timeline .node small.status-tag.failed{background:color-mix(in srgb,var(--danger) 15%,var(--surface));color:var(--danger);border-color:color-mix(in srgb,var(--danger) 45%,var(--line))}
+#timeline .node small.status-tag.failed{background:color-mix(in srgb,var(--failure) 72%,var(--surface));color:var(--ink);border-color:color-mix(in srgb,var(--failure) 72%,var(--line))}
+#timeline .node small.status-tag.deferred{background:color-mix(in srgb,var(--warning) 15%,var(--surface));color:var(--warning);border-color:color-mix(in srgb,var(--warning) 45%,var(--line))}
+#timeline .node small.status-tag.provider_attempt_started,#timeline .node small.status-tag.provider_attempt_finished,#timeline .node small.status-tag.invocation_started{background:color-mix(in srgb,var(--info) 14%,var(--surface));color:var(--info);border-color:color-mix(in srgb,var(--info) 42%,var(--line))}
+#timeline .node small.status-tag.observation,#timeline .node small.status-tag.research_collected,#timeline .node small.status-tag.recovered{background:color-mix(in srgb,var(--accent) 14%,var(--surface));color:var(--accent);border-color:color-mix(in srgb,var(--accent) 42%,var(--line))}
+.dashboard-panel,.record-card,.project-card,.notebook-card,.blog-card,.panel,.note-card,.about-contract,.topic-card,#map-field,#details{box-shadow:none}
+
+/* The current-record card keeps its signal line deliberate, not decorative. */
+.record-card{border-top-width:2px}
+.record-card{border-top-color:#b25dff !important}
+
+/* One quiet box treatment across the site: no inset rails, no simulated depth. */
+.record-card,.project-card,.notebook-card,.blog-card,.panel,.note-card,.about-contract,.topic-card,.dashboard-panel,.search,#map-field,#details{border-radius:9px;box-shadow:none}
+.about-contract,.research-note,.decision{border-left:1px solid var(--line)}
+.eyebrow,.topic-state,.text-link,.research-links a{color:var(--cyan)}
+.note{border-left:0 !important;padding-left:0 !important}
+
+/* Topic identity is durable data, so tags, cards, MAP, and metrics always agree. */
+.topic-tag,.topic-card h3,.topic-metric-name{color:var(--topic-color,var(--cyan)) !important}
+.topic-tag,#timeline .node small.topic-tag{
+  background:color-mix(in srgb,var(--topic-color,var(--cyan)) 16%,var(--surface)) !important;
+  border-color:color-mix(in srgb,var(--topic-color,var(--cyan)) 48%,var(--line)) !important;
+}
+
+/* Topic cards are a compact directory, not display headlines. */
+.topic-card h3{font-size:12px !important;letter-spacing:.075em !important;text-transform:uppercase}
+
+/* A quote should recede from its post title while still carrying WAKE's cyan cue. */
+.blog-card blockquote,.blog-reading blockquote{
+  color:color-mix(in srgb,var(--ink) 78%,var(--cyan)) !important;
+  border-color:color-mix(in srgb,var(--cyan) 52%,var(--line)) !important;
+}
+
+/* One calm interaction model: color may change, but cards never jump. */
+@media(hover:hover){
+  .project-card:hover,.notebook-card:hover,.blog-card:hover,.topic-card:hover,.wake-cell:hover{
+    transform:none !important;
+    box-shadow:none !important;
+  }
+}
+
+/* Default surfaces and controls share the same deliberately small corner. */
+button,.more,.theme-toggle,.search,select,.panel,.flow span,.blog-receipts{border-radius:9px}
+.theme-switch{gap:7px}.data-switch .theme-icon{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;font:18px/18px var(--sans);color:var(--cyan);letter-spacing:0}
+.data-switch input:checked~.data-switch-track i{transform:translateX(16px);background:var(--cyan)}
+
+/* The topic count belongs to the distribution it describes. */
+.panel-heading{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:14px}
+.panel-heading .eyebrow{margin-bottom:4px}
+.panel-heading h2{margin:0}
+
+/* Cyan is the site's one interactive signal. Pink remains reserved for status,
+   not for navigation or calls to action. */
+@media(hover:hover) and (pointer:fine){
+  a:hover,.compact-nav summary:hover,.compact-nav .nav-dropdown a:hover{
+    color:var(--cyan) !important;
+    border-color:var(--cyan) !important;
+    text-shadow:0 0 10px color-mix(in srgb,var(--cyan) 42%,transparent) !important;
+  }
+  .primary-link:hover,.primary-link:focus-visible{
+    background:var(--cyan) !important;
+    border-color:var(--cyan) !important;
+    color:var(--paper) !important;
+  }
+}
+a:focus-visible,.compact-nav summary:focus-visible,.compact-nav a:focus-visible{outline-color:var(--cyan) !important}
+.masthead nav a[aria-current=page],.compact-nav .nav-group:has([aria-current=page])>summary,.compact-nav a[aria-current=page]{color:var(--cyan) !important;border-color:var(--cyan) !important}
+.metric:hover strong,.record-card>a:not(.subtle):hover strong,.record-card>a:not(.subtle):focus-visible strong{color:var(--cyan) !important}
+
+/* Dropdown selection uses one straight underline, never rounded end caps. */
+.compact-nav .nav-dropdown a{border-radius:0 !important}
+.compact-nav .nav-dropdown a[aria-current=page]{border-bottom:2px solid var(--cyan) !important}
+:root[data-theme="dark"] body{background:#1b2036 !important}
+
+/* The MAP detail inspector is an independent reading pane.  Keep its rounded
+   shell, but let long selected records scroll inside it. */
+#details{overflow-x:hidden !important;overflow-y:auto !important;overscroll-behavior:contain;scrollbar-gutter:stable}
+
+/* Content headers carry their stream's identity without changing reflection posts. */
+#journal .record-panel h3{color:var(--cyan)}
+.blog-card:not(.blog-card-reflection) h2,.blog-reading:not(.blog-reading-reflection)>h2{color:var(--purple)}
+
+/* H3s are compact interface headings; the serif remains reserved for H1/H2. */
+h3{font-family:var(--sans) !important}
+
+/* The WAKE wordmark is always sans, including when it appears inside a serif heading. */
+.wake-mark{font-family:var(--sans) !important;font-style:normal}
+
+/* The header reports accepted wakes (state.version), not total completed wake attempts. */
+.wordmark .cycle-count{color:var(--cyan);font-weight:700}
+
+
+/* --------------------------------------------------------------------------
+   RECORD HEADER SYSTEM
+   One metadata grammar across journal, blog, project, notebook, MAP, exports,
+   and generated reading pages:
+   TYPE / STATUS → TOPIC → TIMESTAMP → TITLE.
+   Keep structural changes here synchronized with app.js, pet.js, report.py,
+   map.js, map3d.js, and rejected.py.
+   -------------------------------------------------------------------------- */
+.record-panel-meta{display:grid !important;grid-template-columns:max-content max-content minmax(0,1fr) max-content;align-items:center;gap:7px 9px;margin:0 0 10px !important;min-width:0}
+.record-type{color:var(--cyan);font:700 10px/1.25 var(--mono);letter-spacing:.09em;text-transform:uppercase;white-space:nowrap}
+.record-status{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.record-topics{display:flex;align-items:center;gap:6px;min-width:0;flex-wrap:wrap}
+.record-panel-meta time{justify-self:end;margin:0 !important;color:var(--muted);font:10px/1.25 var(--mono);letter-spacing:.035em;white-space:nowrap}
+.record-panel-meta .topic-tag,.record-panel-meta .badge{margin:0 !important}
+.badge{display:inline-flex;align-items:center;min-height:19px;padding:4px 7px;border:1px solid color-mix(in srgb,var(--cyan) 35%,var(--line));background:color-mix(in srgb,var(--cyan) 10%,var(--surface));color:var(--cyan);font:700 9px/1.1 var(--mono);letter-spacing:.06em;text-transform:uppercase;box-sizing:border-box}
+.badge.active,.badge.published,.badge.revision,.badge.parked{background:color-mix(in srgb,var(--accent) 12%,var(--surface));color:var(--accent);border-color:color-mix(in srgb,var(--accent) 40%,var(--line))}
+.badge.parked{color:var(--muted);border-color:var(--line);background:var(--pale)}
+.reading-meta{margin-top:22px !important}
+.rejected-card{padding:4px 0 8px}
+.rejected-card>.record-panel-meta{margin-top:26px !important}
+.event-meta{padding:13px 0 !important;margin:0 !important}
+.event-meta .record-key{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted)}
+.map3d-meta{margin:0 0 8px !important}
+.map-detail-meta{margin:4px 0 10px !important}
+#node-popover .record-panel-meta{display:flex !important;gap:5px;margin:0 0 6px !important}
+#node-popover .record-panel-meta .record-type{font-size:8px}
+#node-popover .record-panel-meta .badge,#node-popover .record-panel-meta .topic-tag{min-height:0;padding:2px 4px;font-size:7px}
+#node-popover .record-panel-meta time{margin-left:auto !important;font-size:7px}
+/* Mobile reads chronology first: timestamp gets its own first row, then
+   TYPE / STATUS → TOPIC beneath it. Desktop keeps the compact single-row order. */
+@media(max-width:700px){
+  .record-panel-meta{display:flex !important;align-items:center;gap:6px;flex-wrap:wrap}
+  .record-panel-meta time{order:-1;flex:0 0 100%;width:100%;margin-left:0 !important;justify-self:start;text-align:left;font-size:9px}
+  .record-type{font-size:9px}
+  .record-topics{display:flex}
+  #node-popover .record-panel-meta time{order:-1;flex-basis:100%;width:100%;margin-left:0 !important;text-align:left}
+}

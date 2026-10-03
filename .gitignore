@@ -1,0 +1,12 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+data/
+site/
+analysis/
+dist/
+*.sqlite*
+*.lock
+.wrangler/

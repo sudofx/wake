@@ -1,0 +1,27 @@
+# WAKE✳︎ MAINTAINER NOTE
+# Python package and test metadata. Keep build/environment behavior explicit and reproducible.
+# Comments here document operational intent so future maintainers do not mistake configuration for experimental evidence.
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wake"
+version = "0.21.0"
+description = "Disposable models. Durable state. Receipts for everything."
+requires-python = ">=3.11"
+dependencies = [
+  "pypdf==6.19.0",
+  "sudofx @ git+https://github.com/sudofx/sudofx.git@720278f50973e013d7365425f74f38b82e10f446",
+]
+
+[project.scripts]
+wake = "wake.__main__:main"
+
+[tool.setuptools]
+packages = ["wake"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+wake = ["assets/*"]

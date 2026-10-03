@@ -1,0 +1,151 @@
+name: WAKE✳︎ — Make new code live
+run-name: "Make ${{ inputs.candidate_ref }} live"
+
+on:
+  workflow_dispatch:
+    inputs:
+      candidate_ref:
+        description: Code to make live. Usually leave this as master.
+        type: string
+        required: true
+        default: master
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: wake-operator-control
+  cancel-in-progress: false
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Refuse promotion while runtime work is active
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          latch_state="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml" --jq '.state')"
+          if [[ "$latch_state" == "active" ]]; then
+            echo "::error::The WAKE continuation latch is open. Stop WAKE✳︎ before promotion."
+            exit 1
+          fi
+          runtime_sha="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha')"
+          now_epoch="$(date -u +%s)"
+          mapfile -t candidates < <(
+            gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50" \
+              --jq ".workflow_runs[] | select(.head_branch==\"wake-runtime\" and .head_sha==\"$runtime_sha\" and .status!=\"completed\") | [.id,.created_at,.status] | @tsv"
+          )
+          real_runs=()
+          for row in "${candidates[@]}"; do
+            IFS=$'\t' read -r run_id created_at run_status <<<"$row"
+            job_count="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id/jobs?per_page=1" --jq '.total_count' 2>/dev/null || echo 1)"
+            created_epoch="$(date -u -d "$created_at" +%s)"
+            age_seconds=$((now_epoch - created_epoch))
+            if [[ "$run_status" == "queued" && "$job_count" == "0" && "$age_seconds" -ge 120 ]]; then
+              echo "Ignoring stale queued zero-job WAKE run $run_id; it is not active research." >> "$GITHUB_STEP_SUMMARY"
+              continue
+            fi
+            real_runs+=("$run_id")
+          done
+          if (( ${#real_runs[@]} != 0 )); then
+            echo "::error::wake-runtime has real active work. Stop WAKE✳︎, promote, then restart."
+            exit 1
+          fi
+
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.candidate_ref }}
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+
+      - name: Install candidate
+        run: python -m pip install --disable-pip-version-check -e .
+
+      - name: Verify durable contracts
+        run: python -m unittest discover -s tests -v
+
+      - name: Verify replayable experiment boundary
+        run: |
+          rm -rf /tmp/wake-promote /tmp/wake-promote-site
+          python -m wake --data /tmp/wake-promote experiment --cycles 100 --output /tmp/wake-promote-site
+          python -m wake audit --events /tmp/wake-promote-site/events.jsonl --head /tmp/wake-promote-site/head.txt
+
+      - name: Recheck runtime is still stopped
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          latch_state="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml" --jq '.state')"
+          if [[ "$latch_state" == "active" ]]; then
+            echo "::error::The WAKE continuation latch is open. Stop WAKE✳︎ before promotion."
+            exit 1
+          fi
+          runtime_sha="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha')"
+          now_epoch="$(date -u +%s)"
+          mapfile -t candidates < <(
+            gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50" \
+              --jq ".workflow_runs[] | select(.head_branch==\"wake-runtime\" and .head_sha==\"$runtime_sha\" and .status!=\"completed\") | [.id,.created_at,.status] | @tsv"
+          )
+          real_runs=()
+          for row in "${candidates[@]}"; do
+            IFS=$'\t' read -r run_id created_at run_status <<<"$row"
+            job_count="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id/jobs?per_page=1" --jq '.total_count' 2>/dev/null || echo 1)"
+            created_epoch="$(date -u -d "$created_at" +%s)"
+            age_seconds=$((now_epoch - created_epoch))
+            if [[ "$run_status" == "queued" && "$job_count" == "0" && "$age_seconds" -ge 120 ]]; then
+              echo "Ignoring stale queued zero-job WAKE run $run_id; it is not active research." >> "$GITHUB_STEP_SUMMARY"
+              continue
+            fi
+            real_runs+=("$run_id")
+          done
+          if (( ${#real_runs[@]} != 0 )); then
+            echo "::error::wake-runtime has real active work. Stop WAKE✳︎, promote, then restart."
+            exit 1
+          fi
+
+      - name: Promote exact verified commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          latch_state="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml" --jq '.state')"
+          if [[ "$latch_state" == "active" ]]; then
+            echo "::error::The WAKE continuation latch is open. Stop WAKE✳︎ before promotion."
+            exit 1
+          fi
+          runtime_sha="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha')"
+          now_epoch="$(date -u +%s)"
+          mapfile -t candidates < <(
+            gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50" \
+              --jq ".workflow_runs[] | select(.head_branch==\"wake-runtime\" and .head_sha==\"$runtime_sha\" and .status!=\"completed\") | [.id,.created_at,.status] | @tsv"
+          )
+          real_runs=()
+          for row in "${candidates[@]}"; do
+            IFS=$'\t' read -r run_id created_at run_status <<<"$row"
+            job_count="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id/jobs?per_page=1" --jq '.total_count' 2>/dev/null || echo 1)"
+            created_epoch="$(date -u -d "$created_at" +%s)"
+            age_seconds=$((now_epoch - created_epoch))
+            if [[ "$run_status" == "queued" && "$job_count" == "0" && "$age_seconds" -ge 120 ]]; then
+              echo "Ignoring stale queued zero-job WAKE run $run_id; it is not active research." >> "$GITHUB_STEP_SUMMARY"
+              continue
+            fi
+            real_runs+=("$run_id")
+          done
+          if (( ${#real_runs[@]} != 0 )); then
+            echo "::error::wake-runtime has real active work. Stop WAKE✳︎, promote, then restart."
+            exit 1
+          fi
+          candidate_sha="$(git rev-parse HEAD)"
+          gh api -X PATCH "repos/$GITHUB_REPOSITORY/git/refs/heads/wake-runtime" \
+            -f sha="$candidate_sha" -F force=true >/dev/null
+          promoted="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha')"
+          test "$promoted" = "$candidate_sha"
+          echo "Promoted wake-runtime to $promoted" >> "$GITHUB_STEP_SUMMARY"
+          echo "Runtime remains stopped. Restart with the Start research workflow." >> "$GITHUB_STEP_SUMMARY"

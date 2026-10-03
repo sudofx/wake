@@ -1,0 +1,287 @@
+"""Deterministic, durable attention recovery for the research charter.
+
+Attention does not alter projects or governance. It tracks two independent forms
+of fixation: repeated hard rejection without progress, and productive saturation
+when accepted attention stays on one topic for too many accepted wakes. Either
+condition temporarily defers that topic while preserving its durable work.
+"""
+
+import hashlib
+import json
+
+
+HARD_REJECTION_THRESHOLD = 5
+ATTENTION_SATURATION_THRESHOLD = 5
+COOLDOWN_OTHER_ATTEMPTS = 3
+
+
+def _active_topic(state):
+    """Select current attention from durable projects or the last recorded choice."""
+    active = [p for p in state.get("projects", {}).values() if p.get("status") == "active"]
+    if active:
+        return sorted(active, key=lambda p: (-p.get("updated_version", 0), p["id"]))[0]["domain"]
+    return state.get("attention", {}).get("last_receipt", {}).get("selected_topic")
+
+
+def _selection_basis(state):
+    """Return durable per-invocation entropy when the runtime has recorded it."""
+    for evidence in reversed(list(state.get("evidence", {}).values())):
+        if evidence.get("actor") == "runtime" and evidence.get("source") == "runtime:continuity":
+            return evidence.get("id") or evidence.get("content")
+    return f'version:{state.get("version", 0)}'
+
+
+def _choose_topic(state, candidates):
+    """Choose without TOML-order bias while remaining replayable from the receipt."""
+    ordered = sorted(set(candidates))
+    if not ordered:
+        return None, "none", None
+    if len(ordered) == 1:
+        return ordered[0], "only_eligible", _selection_basis(state)
+    basis = _selection_basis(state)
+    payload = f'{basis}|{"|".join(ordered)}'.encode("utf-8")
+    index = int.from_bytes(hashlib.sha256(payload).digest()[:8], "big") % len(ordered)
+    return ordered[index], "receipt_hash_uniform_index", basis
+
+
+def _has_new_topic_evidence(state, topic, item):
+    """Only blocker/rejection cooldowns may end early when new evidence arrives."""
+    # Productive saturation is an attention intervention, not an evidence
+    # shortage. Fresh evidence must not immediately pull attention back to the
+    # same fertile topic; saturation always earns the full other-topic cooldown.
+    if item.get("cause") == "attention_saturation":
+        return False
+    deferred_version = state.get("invocations", {}).get(item.get("deferred_by"), {}).get("base_version", -1)
+    for evidence in state.get("evidence", {}).values():
+        if evidence.get("actor") != "collector" or evidence.get("scope") != "collected":
+            continue
+        if evidence.get("version", -1) <= deferred_version:
+            continue
+        try:
+            if json.loads(evidence.get("content", "{}")).get("topic_domain") == topic:
+                return True
+        except (TypeError, ValueError):
+            pass
+    return False
+
+
+def _proposal_project_domains(state, proposal):
+    """Resolve project domains visible in the current state or created in this proposal."""
+    domains = {pid: project.get("domain") for pid, project in state.get("projects", {}).items()}
+    for action in (proposal or {}).get("actions", []):
+        if action.get("type") == "project" and action.get("id") and action.get("domain"):
+            domains[action["id"]] = action["domain"]
+    return domains
+
+
+def _proposal_milestone_topics(state, proposal):
+    """Return domains that reached a durable synthesis/publication milestone."""
+    domains = _proposal_project_domains(state, proposal)
+    milestone_topics = set()
+    for action in (proposal or {}).get("actions", []):
+        if action.get("type") == "notebook":
+            topic = domains.get(action.get("project"))
+            if topic:
+                milestone_topics.add(topic)
+        elif action.get("type") == "blog" and action.get("project"):
+            topic = domains.get(action.get("project"))
+            if topic:
+                milestone_topics.add(topic)
+    return milestone_topics
+
+
+def _proposal_attention_topic(state, selected, proposal):
+    """Infer the topic actually advanced by an accepted proposal.
+
+    The selected Attention topic remains authoritative for rejected attempts, but
+    accepted work may legitimately contain durable actions on another configured
+    topic. Saturation should follow what was actually advanced, not merely what
+    the temporary directive requested.
+    """
+    topics = []
+    for action in (proposal or {}).get("actions", []):
+        domain = action.get("domain")
+        if domain:
+            topics.append(domain)
+        project_id = action.get("project")
+        project = state.get("projects", {}).get(project_id)
+        if project and project.get("domain"):
+            topics.append(project["domain"])
+    return topics[-1] if topics else selected
+
+
+def _parked_projects(state, topic):
+    return [{"id": p["id"], "question": p["question"], "next_step": p["next_step"]}
+            for p in state.get("projects", {}).values()
+            if p.get("domain") == topic and p.get("status") == "active"]
+
+
+def _capability_blocked_topics(state):
+    """Return domains whose active projects are all currently acquisition-blocked."""
+    by_topic = {}
+    for project in state.get("projects", {}).values():
+        if project.get("status") != "active":
+            continue
+        by_topic.setdefault(project.get("domain"), []).append(project["id"])
+    blocked = set()
+    acquisition = state.get("acquisition", {})
+    for topic, project_ids in by_topic.items():
+        if project_ids and all(acquisition.get(pid, {}).get("capability_blocked") for pid in project_ids):
+            blocked.add(topic)
+    return blocked
+
+
+def plan(state):
+    """Return the deterministic attention directive for the next provider request."""
+    if not state.get("charter"):
+        return {"active": False}
+    attention = state.get("attention", {})
+    deferred = attention.get("deferred", {})
+    topics = [t["id"] for t in state.get("research_topics", []) if t.get("enabled", True)]
+    current = _active_topic(state)
+    blocked = _capability_blocked_topics(state)
+    eligible = [topic for topic in topics
+                if (topic not in deferred or _has_new_topic_evidence(state, topic, deferred[topic]))
+                and topic not in blocked]
+    # A capability block is itself a reason to leave the current attractor.
+    # Prefer the current topic only while it is both eligible and productive.
+    # Whenever WAKE must actually choose, remove TOML-order bias. The continuity
+    # receipt is UUID-backed and durable, so separate invocations vary while a
+    # replay (or a bounded-context rebuild in the same invocation) chooses the
+    # same topic again.
+    if current in eligible:
+        selected, selection_method, selection_basis = current, "active_topic", None
+    elif eligible:
+        selected, selection_method, selection_basis = _choose_topic(state, eligible)
+    else:
+        selected, selection_method, selection_basis = current, "fallback_current", None
+    current_unconfigured = bool(current) and current not in topics
+    selection_required = current not in eligible and bool(selected)
+    rotation_required = bool(deferred) or current in blocked or current_unconfigured
+    return {
+        "active": True,
+        "selected_topic": selected,
+        "topic_selection_method": selection_method,
+        "topic_selection_basis": selection_basis,
+        "topic_selection_candidates": sorted(eligible) if selection_required else [],
+        "deferred_topics": sorted(deferred),
+        "capability_blocked_topics": sorted(blocked),
+        "current_topic_unconfigured": current_unconfigured,
+        "rotation_required": rotation_required,
+        "enforce_selected_topic": rotation_required and bool(selected),
+        "parked": {topic: deferred[topic].get("parked_projects", []) for topic in sorted(deferred)},
+        "hard_rejection_threshold": HARD_REJECTION_THRESHOLD,
+        "attention_saturation_threshold": ATTENTION_SATURATION_THRESHOLD,
+        "attention": attention.get("attention", {}),
+        "cooldown_other_attempts": COOLDOWN_OTHER_ATTEMPTS,
+        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "reason": (
+            "no durable active topic exists; choose from configured eligible topics"
+            if current is None and selected else
+            "active project topic is no longer configured; rotate to configured topic"
+            if current_unconfigured else
+            "alternate configured topic selected during Attention cooldown or capability block"
+            if selected != current else
+            "current durable project topic remains eligible"
+        ),
+    }
+
+
+def assessment(state, invocation, terminal, proposal=None):
+    """Build a replayable receipt after an invocation reaches a terminal state."""
+    prior = state.get("attention", {})
+    counters = dict(prior.get("counters", {}))
+    deferred = {key: dict(value) for key, value in prior.get("deferred", {}).items()}
+    selected = state["invocations"][invocation].get("attention", {}).get("selected_topic")
+    attention_topic = _proposal_attention_topic(state, selected, proposal) if terminal == "accepted" else selected
+    attempt_topic = attention_topic or selected
+    restored = []
+
+    milestone_topics = (
+        _proposal_milestone_topics(state, proposal)
+        if terminal == "accepted" and proposal else set()
+    )
+
+    # Failure-based deferrals remain short recovery cooldowns. Productive
+    # saturation is different: the old topic stays deferred until another
+    # topic reaches a durable synthesis milestone. Mere attempts, queue churn,
+    # and discovery do not earn the saturated attractor back.
+    for topic, item in list(deferred.items()):
+        if attempt_topic and attempt_topic != topic:
+            item["other_topic_attempts"] = item.get("other_topic_attempts", 0) + 1
+        early_evidence = _has_new_topic_evidence(state, topic, item)
+        if item.get("cause") == "attention_saturation":
+            external_milestones = sorted(t for t in milestone_topics if t != topic)
+            if external_milestones:
+                item["milestone_topics"] = external_milestones
+                restored.append(topic)
+                del deferred[topic]
+        elif item.get("other_topic_attempts", 0) >= COOLDOWN_OTHER_ATTEMPTS or early_evidence:
+            restored.append(topic)
+            del deferred[topic]
+
+    progress = False
+    if terminal == "accepted" and selected and proposal:
+        for action in proposal.get("actions", []):
+            # A notebook or fulfilled obligation is durable advancement. A
+            # project update advances only when it changes its next step.
+            if action.get("type") == "notebook":
+                project = state.get("projects", {}).get(action.get("project"), {})
+                progress |= project.get("domain") == selected
+            elif action.get("type") == "resolve":
+                progress = True
+            elif action.get("type") == "project":
+                old = state.get("projects", {}).get(action.get("id"), {})
+                progress |= old.get("domain") == selected and old.get("next_step") != action.get("next_step")
+
+    hard_rejection = terminal == "rejected" and bool(selected)
+    hard_rejection_triggered = False
+    if selected and progress:
+        # Progress clears only the failure counter. It does not erase how long
+        # attention has remained on one productive topic.
+        counters[selected] = 0
+    elif selected and hard_rejection:
+        counters[selected] = counters.get(selected, 0) + 1
+        if counters[selected] >= HARD_REJECTION_THRESHOLD and selected not in deferred:
+            deferred[selected] = {
+                "deferred_by": invocation,
+                "cause": "hard_rejection",
+                "reason": "five consecutive hard rejections without durable progress",
+                "other_topic_attempts": 0,
+                "eligible_after_other_attempts": COOLDOWN_OTHER_ATTEMPTS,
+                "parked_projects": _parked_projects(state, selected),
+            }
+            hard_rejection_triggered = True
+
+    prior_attention = prior.get("attention", {})
+    attention = dict(prior_attention)
+    saturation_triggered = False
+    if terminal == "accepted" and attention_topic:
+        streak = (prior_attention.get("accepted_streak", 0) + 1
+                  if prior_attention.get("topic") == attention_topic else 1)
+        attention = {"topic": attention_topic, "accepted_streak": streak}
+        if streak >= ATTENTION_SATURATION_THRESHOLD and attention_topic not in deferred:
+            deferred[attention_topic] = {
+                "deferred_by": invocation,
+                "cause": "attention_saturation",
+                "reason": "five accepted wakes concentrated on one topic; rotate until another topic reaches durable synthesis",
+                "other_topic_attempts": 0,
+                "release_condition": "accepted notebook or ordinary publication on another topic",
+                "parked_projects": _parked_projects(state, attention_topic),
+            }
+            saturation_triggered = True
+
+    triggered = []
+    if hard_rejection_triggered and selected:
+        triggered.append(selected)
+    if saturation_triggered and attention_topic and attention_topic not in triggered:
+        triggered.append(attention_topic)
+
+    return {
+        "invocation": invocation, "terminal": terminal, "selected_topic": selected,
+        "attention_topic": attention_topic, "hard_rejection": hard_rejection,
+        "durable_progress": progress, "attention": attention,
+        "attention_saturation_triggered": saturation_triggered,
+        "counters": counters, "deferred": deferred, "restored_topics": restored,
+        "triggered_topics": triggered,
+    }

@@ -1,0 +1,75 @@
+name: WAKE✳︎ - Start
+run-name: "Start WAKE✳︎"
+
+# ELI5: Press this when you want WAKE✳︎ to start working and keep going.
+on:
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: wake-operator-control
+  cancel-in-progress: false
+
+jobs:
+  start:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Make sure WAKE✳︎ is not already running
+        id: status
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          runtime_sha="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha')"
+          now_epoch="$(date -u +%s)"
+          mapfile -t candidates < <(
+            gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50" \
+              --jq ".workflow_runs[] | select(.head_branch==\"wake-runtime\" and .head_sha==\"$runtime_sha\" and .status!=\"completed\") | [.id,.created_at,.status] | @tsv"
+          )
+          real_runs=()
+          for row in "${candidates[@]}"; do
+            IFS=$'\t' read -r run_id created_at run_status <<<"$row"
+            job_count="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id/jobs?per_page=1" --jq '.total_count' 2>/dev/null || echo 1)"
+            created_epoch="$(date -u -d "$created_at" +%s)"
+            age_seconds=$((now_epoch - created_epoch))
+            if [[ "$run_status" == "queued" && "$job_count" == "0" && "$age_seconds" -ge 120 ]]; then
+              echo "Ignoring stale queued zero-job WAKE run $run_id; it is not active research." >> "$GITHUB_STEP_SUMMARY"
+              continue
+            fi
+            real_runs+=("$run_id")
+          done
+          echo "active=${#real_runs[@]}" >> "$GITHUB_OUTPUT"
+
+      - name: Open the continuation latch
+        if: steps.status.outputs.active == '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          state="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml" --jq '.state')"
+          if [[ "$state" != "active" ]]; then
+            gh api --method PUT "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml/enable" >/dev/null
+          fi
+          echo "Continuation latch is open (previous state: $state)." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Start the first research cycle
+        if: steps.status.outputs.active == '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          runtime_ref="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha')"
+          gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime             -f "dispatch_token=start-$GITHUB_RUN_ID"             -f "runtime_ref=$runtime_ref"
+
+      - name: Explain the result
+        if: always()
+        run: |
+          if [[ "${{ steps.status.outputs.active }}" == "0" ]]; then
+            echo "WAKE✳︎ was told to start. The first research cycle was dispatched and the continuation latch is open." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "WAKE✳︎ was already running, so nothing was duplicated." >> "$GITHUB_STEP_SUMMARY"
+          fi

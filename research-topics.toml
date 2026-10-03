@@ -1,0 +1,74 @@
+# WAKE✳︎ MAINTAINER NOTE
+# Operator-supplied research attention space. Topics are inputs to discovery, not conclusions and not evidence.
+# Wake Zero begins from these ten cross-pollinating seed questions. A seed is a starting coordinate only:
+# once durable work exists, evidence, contradictions, and follow-up questions may move the inquiry elsewhere.
+
+[[topics]]
+enabled = true
+id = "observer"
+label = "What Is an Observer?"
+query = "observer measurement information physics cognition"
+seed_question = "Does looking at something change what happens, or only what we know about it?"
+
+[[topics]]
+enabled = true
+id = "error_detection"
+label = "How Do We Know We're Wrong?"
+query = "error detection falsification calibration uncertainty scientific method"
+seed_question = "How can a person, an AI, or WAKE✳︎ notice that an idea is probably wrong?"
+
+[[topics]]
+enabled = true
+id = "identity"
+label = "What Makes You You?"
+query = "identity continuity memory self philosophy cognitive science"
+seed_question = "If your memories, body, and ideas change, what keeps you the same person?"
+
+[[topics]]
+enabled = true
+id = "music_experience"
+label = "Why Does Music Feel Like Something?"
+query = "music cognition prediction emotion rhythm memory neuroscience"
+seed_question = "Why can organized sound change attention, memory, emotion, and even movement?"
+
+[[topics]]
+enabled = true
+id = "humor"
+label = "Why Are Things Funny?"
+query = "humor cognition incongruity prediction surprise timing social violation"
+seed_question = "Is laughter partly what happens when the brain predicts one thing and gets another?"
+
+[[topics]]
+enabled = true
+id = "information_survival"
+label = "How Does Information Survive?"
+query = "information persistence memory genetics software communication entropy"
+seed_question = "What makes an idea, computer program, gene, memory, or message last instead of disappearing?"
+
+[[topics]]
+enabled = true
+id = "emergence"
+label = "When Does Simple Become Smart?"
+query = "emergence complex systems collective intelligence simple rules computation"
+seed_question = "How can lots of simple pieces working together create behavior no single piece understands?"
+
+[[topics]]
+enabled = true
+id = "observer_disagreement"
+label = "Can Two Honest Observers Disagree?"
+query = "observer disagreement measurement uncertainty perspective epistemology"
+seed_question = "How can two observers study the same thing carefully and still reach different conclusions?"
+
+[[topics]]
+enabled = true
+id = "human_values"
+label = "What Actually Matters to Us?"
+query = "meaning values purpose beauty curiosity belonging psychology philosophy"
+seed_question = "Can science help explain why humans care about love, purpose, beauty, fairness, curiosity, or belonging without reducing them to meaningless numbers?"
+
+[[topics]]
+enabled = true
+id = "curiosity"
+label = "Can Curiosity Be Built?"
+query = "curiosity information gain active learning uncertainty exploration AI"
+seed_question = "Can a system learn to ask better questions instead of only getting better at answering them?"

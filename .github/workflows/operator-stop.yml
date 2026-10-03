@@ -1,0 +1,103 @@
+name: WAKE✳︎ - Stop
+run-name: "Stop WAKE✳︎"
+
+# ELI5: Press this when you want WAKE✳︎ to stop making new research cycles.
+on:
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: wake-operator-control
+  cancel-in-progress: false
+
+jobs:
+  stop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Close the continuation latch first
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          state="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml" --jq '.state')"
+          if [[ "$state" == "active" ]]; then
+            gh api --method PUT "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml/disable" >/dev/null
+          fi
+          echo "Continuation latch is closed (previous state: $state)." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Cancel any active research cycle
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          runtime_sha="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha')"
+          now_epoch="$(date -u +%s)"
+          mapfile -t candidates < <(
+            gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50" \
+              --jq ".workflow_runs[] | select(.head_branch==\"wake-runtime\" and .head_sha==\"$runtime_sha\" and .status!=\"completed\") | [.id,.created_at,.status] | @tsv"
+          )
+          real_runs=()
+          for row in "${candidates[@]}"; do
+            IFS=$'\t' read -r run_id created_at run_status <<<"$row"
+            job_count="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id/jobs?per_page=1" --jq '.total_count' 2>/dev/null || echo 1)"
+            created_epoch="$(date -u -d "$created_at" +%s)"
+            age_seconds=$((now_epoch - created_epoch))
+            if [[ "$run_status" == "queued" && "$job_count" == "0" && "$age_seconds" -ge 120 ]]; then
+              echo "Ignoring stale queued zero-job WAKE run $run_id; it is not active research." >> "$GITHUB_STEP_SUMMARY"
+              continue
+            fi
+            real_runs+=("$run_id")
+          done
+          for run_id in "${real_runs[@]}"; do
+            gh api --method POST "repos/$GITHUB_REPOSITORY/actions/runs/$run_id/cancel" >/dev/null || true
+          done
+          echo "Cancelled ${#real_runs[@]} real WAKE cycle(s)." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Wait until research is fully stopped
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          for attempt in {1..30}; do
+          runtime_sha="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha')"
+          now_epoch="$(date -u +%s)"
+          mapfile -t candidates < <(
+            gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50" \
+              --jq ".workflow_runs[] | select(.head_branch==\"wake-runtime\" and .head_sha==\"$runtime_sha\" and .status!=\"completed\") | [.id,.created_at,.status] | @tsv"
+          )
+          real_runs=()
+          for row in "${candidates[@]}"; do
+            IFS=$'\t' read -r run_id created_at run_status <<<"$row"
+            job_count="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id/jobs?per_page=1" --jq '.total_count' 2>/dev/null || echo 1)"
+            created_epoch="$(date -u -d "$created_at" +%s)"
+            age_seconds=$((now_epoch - created_epoch))
+            if [[ "$run_status" == "queued" && "$job_count" == "0" && "$age_seconds" -ge 120 ]]; then
+              echo "Ignoring stale queued zero-job WAKE run $run_id; it is not active research." >> "$GITHUB_STEP_SUMMARY"
+              continue
+            fi
+            real_runs+=("$run_id")
+          done
+            if (( ${#real_runs[@]} == 0 )); then
+              echo "WAKE✳︎ is fully stopped." >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            for run_id in "${real_runs[@]}"; do
+              gh api --method POST "repos/$GITHUB_REPOSITORY/actions/runs/$run_id/cancel" >/dev/null || true
+            done
+            if [[ "$attempt" == "10" ]]; then
+              echo "Normal cancellation did not retire ${#real_runs[@]} real run(s); force-cancelling current-runtime work." >> "$GITHUB_STEP_SUMMARY"
+              for run_id in "${real_runs[@]}"; do
+                gh api --method POST "repos/$GITHUB_REPOSITORY/actions/runs/$run_id/force-cancel" >/dev/null || true
+              done
+            fi
+            sleep 2
+          done
+          echo "::error::WAKE✳︎ did not fully stop even after force-cancel fallback; stale zero-job ghosts were ignored and real work was force-cancelled."
+          exit 1
+
+      - name: Explain the result
+        run: echo "WAKE✳︎ is stopped. No successor cycle will be dispatched until Start research is run." >> "$GITHUB_STEP_SUMMARY"

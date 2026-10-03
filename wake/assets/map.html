@@ -1,0 +1,43 @@
+<!--
+WAKE✳︎ MAINTAINER NOTE
+Static provenance-map shell populated at publish time. The shell provides interaction structure, not provenance claims.
+Keep presentation subordinate to the canonical durable record.
+-->
+
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MAP / WAKE✳︎</title><script>try{const saved=localStorage.getItem('wake-theme');const dark=saved?saved==='dark':matchMedia('(prefers-color-scheme:dark)').matches;if(dark)document.documentElement.dataset.theme='dark'}catch{}</script>
+<style>/* MAP_STYLE */
+/* NAV_STYLE */</style><!-- Local-template fallback: the exporter inlines these styles for Pages. -->
+<link rel="stylesheet" href="map.css"><link rel="stylesheet" href="nav.css"><link rel="stylesheet" href="theme.css">
+</head><body>
+<a class="skip" href="#map-field">Skip to map</a>
+<header class="masthead">
+  <a class="wordmark" href="index.html" aria-label="Reload WAKE✳︎ from the site root">WAKE<span class="asterisk">✳︎</span><small>EST. 2026 / <span class="cycle-count">WAKE_CYCLE_COUNT</span> ACCEPTED WAKE</small></a>
+  <nav class="compact-nav" aria-label="Main navigation">
+    <a href="index.html#home">Explore</a><a href="index.html#discoveries">Discoveries</a><a href="index.html#topics">Topics</a>
+    <details class="nav-group"><summary>Read</summary><div class="nav-dropdown">
+      <a href="index.html#blog">Bob’s Blog</a><a href="index.html#journal">Journal</a>
+    </div></details>
+    <details class="nav-group"><summary>Research</summary><div class="nav-dropdown">
+      <a href="index.html#projects">Projects</a><a href="index.html#lab">Lab</a>
+      <a href="index.html#evidence">Evidence</a><a href="index.html#history">History</a><a href="index.html#metrics">Metrics</a>
+      <a class="nav-external" href="map.html" aria-current="page">MAP</a><a class="nav-external" href="map3d.html">3D MAP</a>
+      <a class="nav-external" href="https://github.com/sudofx/wake">GitHub</a>
+    </div></details>
+    <a href="index.html#about">About</a>
+  </nav>
+  <div class="header-tools">
+    <label class="data-switch theme-switch" title="Follow system theme"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><span class="data-switch-track" aria-hidden="true"><i></i></span></label>
+    <a class="actions-light" href="https://github.com/sudofx/wake/actions" aria-label="Open WAKE GitHub Actions" title="Checking…">
+      <span class="actions-light-track" aria-hidden="true"><i></i></span>
+    </a>
+  </div>
+</header>
+<main><div class="intro"><p class="eyebrow">THE DURABLE RECORD / MAP</p><h1>Follow the thread<span>.</span></h1><p>From a public post to the wake that produced it. From a wake to its evidence.</p></div>
+<div class="toolbar"><p id="counts" role="status"></p><button id="clear" disabled>Clear selection · Esc</button></div>
+<div class="workspace"><section id="map-field" tabindex="-1" aria-label="Provenance map"><div class="field-head"><span>○ JOURNAL &nbsp; ▣ BLOG</span><span>EXPLICIT RELATIONSHIPS ONLY</span></div><div class="spatial"><div id="timeline" aria-label="Chronological journal and blog posts"></div><section id="constellation" aria-label="Selected wake artifacts"><div class="empty"><p class="eyebrow">SELECT A WAKE</p><h2>A small view.<br>A recoverable record.</h2><p>Select a journal entry or blog post to reveal its recorded relationships.</p><p>Beliefs · Notebooks · Sources<br>Projects · Commitments · Receipts</p></div></section></div></section>
+<aside id="details" aria-label="Record details"><div class="empty"><p class="eyebrow">READ THE RECORD</p><h2>What actually happened?</h2><p>Select any node to read its contents, relationships, and exact record identifiers.</p><p>The record is auditable.<br>The record is not thereby proven correct.</p></div></aside></div>
+<footer><strong>WAKE✳︎</strong><p>WAKE✳︎ has demonstrated durable continuity of research state, not yet durable correctness of research reasoning.</p><a href="map-data.json">Map data ↓</a> · <a href="events.html">Exact history →</a></footer></main>
+<noscript><p>This map requires JavaScript. Read the <a href="events.html">human-readable history</a> or <a href="state.html">durable state</a>.</p></noscript>
+<script src="map.js"></script><script src="nav.js"></script></body></html>
