@@ -989,8 +989,13 @@ class ResearchTests(unittest.TestCase):
             "research_topics": [],
             "projects": [],
             "blog_notebooks": {},
+            "evidence": [
+                {"id": "new-1", "version": 7},
+                {"id": "new-2", "version": 8},
+            ],
             "commitments": [{
                 "id": "c1",
+                "created_version": 6,
                 "resolution_evidence": ["new-1", "new-2"],
             }],
         }
