@@ -133,7 +133,7 @@ class FeedTests(unittest.TestCase):
                 item = ET.parse(root / "site/journal.xml").find("channel/item")
                 target = root / "site" / item.findtext("link").removeprefix(HOME)
                 self.assertTrue(target.is_file())
-                self.assertIn("deterministic rehearsal", target.read_text())
+                self.assertIn("Recorded commitment handoff-1", target.read_text())
                 self.assertIn("Deterministic simulation", item.findtext("description"))
                 # Feeds remain generated and directly addressable, but the public UI does not advertise them.
                 self.assertTrue((root / "site/blog.xml").is_file())
