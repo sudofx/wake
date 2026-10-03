@@ -263,15 +263,6 @@ def repository_sources(repository):
         for key, path in REPOSITORY_SOURCE_PATHS.items()
     }
 
-# ---------------------------------------------------------------------------
-# STEP: allowed_url
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Callers may rely on this contract.
-# ---------------------------------------------------------------------------
-
 def allowed_url(url, repository="sudofx/wake"):
     if not isinstance(url, str) or len(url) > 2000:
         raise ValueError("Source URL must be text, at most 2000 characters")
@@ -296,15 +287,6 @@ def allowed_discovery_url(url):
     return url
 
 
-# ---------------------------------------------------------------------------
-# OBJECT: Redirects
-#
-# This object groups state/behavior exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Callers may rely on this contract.
-# ---------------------------------------------------------------------------
-
 class Redirects(urllib.request.HTTPRedirectHandler):
     def __init__(self, validator=allowed_url):
         super().__init__()
@@ -321,15 +303,6 @@ class Redirects(urllib.request.HTTPRedirectHandler):
         self.validator(newurl)
         return super().redirect_request(req, fp, code, msg, headers, newurl)
 
-
-# ---------------------------------------------------------------------------
-# OBJECT: PlainText
-#
-# This object groups state/behavior exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Callers may rely on this contract.
-# ---------------------------------------------------------------------------
 
 class PlainText(HTMLParser):
     # ---------------------------------------------------------------------------
@@ -441,15 +414,6 @@ def _bounded_research_excerpt(text, limit=EVIDENCE_EXCERPT_CHARS):
     excerpt = separator.join(text[start:end].strip() for start, end in merged if end > start)
     return excerpt[:limit], True
 
-
-# ---------------------------------------------------------------------------
-# STEP: fetch_source
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Callers may rely on this contract.
-# ---------------------------------------------------------------------------
 
 def _fetch_source_unbounded(url, discovery_only=False):
     validator = allowed_discovery_url if discovery_only else allowed_url
@@ -607,15 +571,6 @@ def fetch_source(url, discovery_only=False):
         return _fetch_source_unbounded(url, discovery_only=discovery_only)
 
 
-# ---------------------------------------------------------------------------
-# STEP: query_url
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Callers may rely on this contract.
-# ---------------------------------------------------------------------------
-
 def query_url(query, domain, topic=None):
     if topic and topic.get("source_kind") == "repository":
         q = query.lower()
@@ -653,15 +608,6 @@ def query_url(query, domain, topic=None):
         return sources["tree"]
     return "https://api.crossref.org/works?" + urllib.parse.urlencode({"query": query, "rows": 4, "select": "DOI,title,abstract,URL,published"})
 
-
-# ---------------------------------------------------------------------------
-# STEP: research_urls
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Callers may rely on this contract.
-# ---------------------------------------------------------------------------
 
 def research_urls(query, domain, attempts=0, topic=None, *, targeted=False):
     """Return bounded scholarly routes.
@@ -790,15 +736,6 @@ def host_tier(url, discovery_only=False):
     return "verification-publisher"
 
 
-# ---------------------------------------------------------------------------
-# STEP: discovery_urls
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Callers may rely on this contract.
-# ---------------------------------------------------------------------------
-
 def discovery_urls(topic, attempts=0):
     """Begin neutral discovery in the explicitly non-evidentiary idea pool."""
     # Self-analysis is a special, source-controlled domain: its repository tree
@@ -811,27 +748,9 @@ def discovery_urls(topic, attempts=0):
             research_urls(topic["query"], topic["id"], attempts, topic)[0]]
 
 
-# ---------------------------------------------------------------------------
-# STEP: discovery_url
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Callers may rely on this contract.
-# ---------------------------------------------------------------------------
-
 def discovery_url(topic):
     """Compatibility helper for callers that need one neutral discovery URL."""
     return discovery_urls(topic)[0]
-
-# ---------------------------------------------------------------------------
-# STEP: collect
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Callers may rely on this contract.
-# ---------------------------------------------------------------------------
 
 def collect(engine, fetcher=fetch_source, monotonic=time.monotonic):
     """Called under the wake lock before inference; at most two unauthenticated requests."""
