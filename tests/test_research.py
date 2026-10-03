@@ -1456,10 +1456,12 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(set(blog["properties"]["evidence"]["items"]["enum"]), {"s1", "s2"})
         self.assertNotIn("reflection_cycle", blog["required"])
 
-    def test_bob_publication_is_event_driven_with_a_quiet_window_backstop(self):
+    def test_bob_publication_is_event_driven_with_non_blocking_editorial_opportunities(self):
         self.assertIn("make an editorial judgment", RESEARCH_SYSTEM)
         self.assertIn("Ordinary publication\nis event-driven", RESEARCH_SYSTEM)
-        self.assertIn("roughly\n15–20 accepted wakes without publication", RESEARCH_SYSTEM)
+        self.assertIn("Bob never gates WAKE✳︎ research", RESEARCH_SYSTEM)
+        self.assertIn("Research may advance whether Bob publishes or not", RESEARCH_SYSTEM)
+        self.assertIn("No quota and no filler", RESEARCH_SYSTEM)
         self.assertIn("bob_reflection_due", RESEARCH_SYSTEM)
 
     def test_bob_prompt_aligns_opening_post_with_personhood_gate(self):
