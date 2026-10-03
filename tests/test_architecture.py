@@ -119,9 +119,10 @@ class ArchitectureSeparationTests(unittest.TestCase):
         ):
             self.assertIn(seed, topics)
 
-    def test_bob_is_eli25_scientific_interpreter_without_a_quota(self):
+    def test_bob_is_plain_language_scientific_interpreter_without_a_quota(self):
         provider = self.read('wake/providers.py')
-        self.assertIn('ELI25 audience', provider)
+        self.assertIn('Bob exists only inside a blog action', provider)
+        self.assertIn('intelligent adult reader', provider)
         self.assertIn('scientific method', provider)
         self.assertIn('No quota and no filler', provider)
         self.assertIn('what remains unknown', provider)
@@ -130,6 +131,7 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('strongest conflicting evidence', provider)
         self.assertIn('never repeat the first-post introduction', provider)
         self.assertIn('falsifier', provider)
+        self.assertNotIn('ELI25 audience', provider)
 
     def test_research_page_keeps_revised_notebooks_ahead_of_research_notes(self):
         pet = self.read('wake/assets/pet.js')
