@@ -171,10 +171,25 @@ Replay favors transparency over throughput. It rechecks all history; long record
 
 ## Public interpretation layer
 
-Bob's Blog is the readable front desk of **WAKE✳︎**. Bob is intentionally a persona and translation layer, not
-**WAKE✳︎**'s mind, self, identity, consciousness, or mechanism. The persona exists because the technical record is
-too detailed for ordinary conversation: Bob selects the smallest useful idea, explains it in everyday
-language, and gives readers a path back to the notebooks, sources and exact accepted wake.
+**WAKE✳︎** is the research institution. It owns the journal, projects, notebooks, evidence, decisions,
+commitments, technical record and institutional research voice. WAKE✳︎ may use ordinary institutional
+first-person grammar such as I, we, me, us and our, but that grammar does not imply a person, persona,
+identity, consciousness, feelings, or subjective experience.
+
+Bob's Blog is a separate reader-facing translation layer. Bob is intentionally a persona/byline, not
+**WAKE✳︎**'s mind, self, identity, consciousness, mechanism, collaborator or research participant. Bob does
+not converse with WAKE✳︎, steer it, advise it, or write its journal. Bob observes the durable research record
+after the fact and translates what WAKE✳︎ is doing, what changed, what it found, what remains uncertain, and
+the who/what/where/when/why/how a nontechnical reader needs. The persona exists because the technical record
+is too detailed for ordinary conversation: Bob selects the smallest useful idea, explains it in everyday
+language, and gives readers a path back to the notebooks, sources and exact accepted wake. Every Bob post
+ends with a section headed `Summary` whose content is deliberately simpler than the main post, without
+labelling that simplification with child-oriented or ELI terminology.
+
+The journal/blog boundary is mechanical, not merely stylistic. If one provider response contains both research
+actions and a Bob blog action, the journal entry is constructed only from the non-blog research actions. Bob's
+blog prose, title, lede, lens, publication status and editorial withholding reason never become the journal's
+voice or summary.
 
 The blog appears above the journal without replacing it. Each post links down to its related project,
 notebooks, collected sources, and exact accepted wake. Corrections append a new post and retain the earlier
