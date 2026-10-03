@@ -808,7 +808,7 @@ def _enforce_attention_rotation(state, invocation, action, candidate, historical
 
     Durable obligations from a deferred topic remain intact. During an enforced
     rotation the model may still park or complete an existing project to free
-    capacity, and a mandatory system-wide Bob reflection remains possible, but
+    capacity, and an optional system-wide Bob reflection remains possible, but
     new substantive project/research/notebook/reframe/blog work must target the
     selected topic. Historical replay never applies a rule retroactively.
     """
