@@ -221,6 +221,7 @@ class StateBranch:
         # to initialize empty authority; an existing branch must contain one of
         # the supported database formats or fail closed.
         self.existed = None
+        self.remote_head = None
 
     def git(self, *args, cwd=None, check=True):
         return subprocess.run(["git", *args], cwd=cwd or self.repository, capture_output=True, text=True, check=check, timeout=STATE_GIT_OPERATION_TIMEOUT_SECONDS)
@@ -231,6 +232,7 @@ class StateBranch:
             self.existed = True
             self.git("fetch", "--depth=1", "--no-tags", "origin", f"refs/heads/{self.branch}")
             self.git("worktree", "add", "--detach", str(self.checkout), "FETCH_HEAD")
+            self.remote_head = self.git("rev-parse", "HEAD", cwd=self.checkout).stdout.strip()
             legacy = self.checkout / "data/wake.sqlite3"
             sudofx = self.checkout / "data/sudofx.sqlite"
             archive = self.checkout / "data" / STATE_ARCHIVE_NAME
@@ -304,18 +306,48 @@ class StateBranch:
             return
         self.git("-c", "user.name=wake-bot", "-c", "user.email=wake-bot@users.noreply.github.com",
                  "commit", "-m", "Record durable wake state", cwd=self.checkout)
+        # Git is checkpoint transport, not the authority ledger. The hash-linked
+        # SQLite record already contains the complete append-only history; retaining
+        # every compressed database version in Git makes each cycle add hundreds of
+        # MiB that cannot delta-compress effectively. Publish the exact committed
+        # tree as a parentless snapshot so fresh clones fetch only current authority.
+        tree = self.git("rev-parse", "HEAD^{tree}", cwd=self.checkout).stdout.strip()
+        snapshot = self.git(
+            "-c", "user.name=wake-bot", "-c", "user.email=wake-bot@users.noreply.github.com",
+            "commit-tree", tree,
+            cwd=self.checkout,
+        ).stdout.strip()
+        expected = self.remote_head or ""
+        lease = f"--force-with-lease=refs/heads/{self.branch}:{expected}"
         # A state push can fail transiently after the model call has already completed.
-        # Retry only the exact same Git ref update: this is idempotent if GitHub accepted
-        # the first push but the runner lost the response, and it never force-pushes,
-        # rebases, or replays the model call. Persistent conflicts still page the operator.
+        # Retry only the exact same leased ref update. If GitHub accepted the first
+        # push but the runner lost the response, read-after-write recognizes the
+        # published snapshot. A different remote head is a real conflict and fails
+        # closed instead of overwriting another writer.
         last = None
         for attempt in range(1, 4):
-            last = self.git("push", "origin", f"HEAD:refs/heads/{self.branch}",
+            last = self.git("push", lease, "origin", f"{snapshot}:refs/heads/{self.branch}",
                             cwd=self.checkout, check=False)
             if last.returncode == 0:
+                self.remote_head = snapshot
+                self.git("reset", "--soft", snapshot, cwd=self.checkout)
                 if attempt > 1:
                     print(f"Durable state push succeeded on attempt {attempt}.")
                 return
+            observed = self.git(
+                "ls-remote", "--heads", "origin", f"refs/heads/{self.branch}",
+                cwd=self.checkout, check=False,
+            ).stdout.split()
+            observed_head = observed[0] if observed else ""
+            if observed_head == snapshot:
+                self.remote_head = snapshot
+                self.git("reset", "--soft", snapshot, cwd=self.checkout)
+                print("Durable state push was already accepted by GitHub.")
+                return
+            if observed_head != expected:
+                raise Rejected(
+                    f"Remote {self.branch} changed during checkpoint; refusing to overwrite it"
+                )
             detail = (last.stderr or last.stdout or "").strip()
             print(f"Durable state push attempt {attempt}/3 failed: {detail}", file=sys.stderr)
             if attempt < 3:

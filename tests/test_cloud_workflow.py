@@ -163,6 +163,44 @@ class CloudWorkflowTests(unittest.TestCase):
         finally:
             self.git("-C", self.project, "worktree", "remove", "--force", checkout)
 
+    def test_state_checkpoints_replace_git_transport_history(self):
+        """SQLite keeps the ledger; Git exposes only the latest parentless package."""
+        self.assertEqual(self.run_cloud(Fixture("first-checkpoint")), 0)
+        first = self.git(
+            "--git-dir", self.remote, "rev-parse", "wake-state"
+        ).stdout.strip()
+        self.assertEqual(
+            self.git("--git-dir", self.remote, "rev-list", "--count", "wake-state").stdout.strip(),
+            "1",
+        )
+
+        self.assertEqual(self.run_cloud(Fixture("second-checkpoint")), 0)
+        second = self.git(
+            "--git-dir", self.remote, "rev-parse", "wake-state"
+        ).stdout.strip()
+        self.assertNotEqual(first, second)
+        self.assertEqual(
+            self.git("--git-dir", self.remote, "rev-list", "--count", "wake-state").stdout.strip(),
+            "1",
+        )
+        self.assertEqual(
+            self.git("--git-dir", self.remote, "show", "-s", "--format=%P", second).stdout.strip(),
+            "",
+        )
+
+        checkout = self.root / "latest-state"
+        branch = github_wake.StateBranch(self.project, checkout)
+        branch.open()
+        try:
+            record = Record(checkout / "data/sudofx.sqlite")
+            revision, state = record.full_replay()
+            events = record.history()
+            self.assertGreater(revision, 0)
+            self.assertIsInstance(state, dict)
+            self.assertGreater(len(events), 0)
+        finally:
+            self.git("-C", self.project, "worktree", "remove", "--force", checkout)
+
     def test_cloud_reset_returns_to_zero_without_calling_provider(self):
         self.assertEqual(self.run_cloud(Fixture()), 0)
         before = self.live()["state"]
