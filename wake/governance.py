@@ -573,6 +573,11 @@ def _enforce_bob_personhood_policy(claim_text):
         )
 
 
+def _has_final_summary(body):
+    """Return whether Bob's body ends with a final plain-language Summary section."""
+    return bool(re.search(r"(?:^|\n\n)Summary\n+\S[\s\S]*\Z", str(body).strip()))
+
+
 def _blog_language(action, evidence, historical=False, prior_post=None):
     """
     Apply editorial safety/calibration rules to public-facing Bob prose.
@@ -1933,7 +1938,7 @@ def transition(state, proposal, invocation, historical=False):
                 and state.get("invocations", {}).get(invocation, {}).get("provider") != "fixture"
             ):
                 require(
-                    bool(re.search(r"(?:^|\n\n)Summary\n+\S[\s\S]*\Z", action["body"].strip())),
+                    _has_final_summary(action["body"]),
                     "Bob posts must end with a final Summary section in plain language",
                 )
             # Rich milestone requirements govern new proposals only.
