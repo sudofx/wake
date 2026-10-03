@@ -777,10 +777,10 @@ def _bob_quiet_window(post):
 def bob_reflection_due_cycle(state):
     """Return the accepted wake that requires Bob to publish, or None.
 
-    The first accepted wake always establishes Bob's public role. After that,
-    ordinary posts remain event-driven and may happen at any time. If nothing
-    worth publishing has appeared for a stable jittered 15–20 accepted wakes,
-    governance requires a longitudinal Bob reflection before state advances.
+    The first accepted wake exposes an editorial opportunity for Bob's public role.
+    After that, ordinary posts remain event-driven and may happen at any time. If
+    nothing has been published for a stable jittered 15–20 accepted wakes, this
+    returns another editorial opportunity. It never blocks WAKE✳︎ state advancement.
     """
     journal = state.get("journal", [])
     next_cycle = (journal[-1].get("cycle", len(journal)) if journal else 0) + 1
