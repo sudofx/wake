@@ -24,6 +24,100 @@ def _blog_title_key(value):
     return " ".join(str(value or "").split()).casefold()
 
 
+def _journal_action_sentence(action):
+    """Render one accepted non-blog action in WAKE✳︎'s institutional journal voice."""
+    kind = action.get("type")
+    if kind == "project":
+        title = str(action.get("title") or action.get("id") or "project").strip()
+        status = str(action.get("status") or "updated").strip()
+        next_step = str(action.get("next_step") or "").strip()
+        return (
+            f'Project "{title}" is {status}.'
+            + (f" Next step: {next_step}." if next_step else "")
+        )
+    if kind == "research":
+        project = str(action.get("project") or "unscoped").strip()
+        query = str(action.get("query") or "").strip()
+        return f"Queued research for project {project}" + (f": {query}." if query else ".")
+    if kind == "notebook":
+        title = str(action.get("title") or action.get("id") or "notebook").strip()
+        project = str(action.get("project") or "unscoped").strip()
+        return f'Updated notebook "{title}" for project {project}.'
+    if kind == "reframe":
+        project = str(action.get("project") or "unscoped").strip()
+        return f"Updated the research frame for project {project}."
+    if kind == "belief":
+        identifier = str(action.get("id") or "belief").strip()
+        status = str(action.get("status") or "updated").strip()
+        return f"Belief {identifier} is {status}."
+    if kind == "commit":
+        identifier = str(action.get("id") or "commitment").strip()
+        task = str(action.get("task") or "").strip()
+        return f"Recorded commitment {identifier}" + (f": {task}." if task else ".")
+    if kind == "resolve":
+        identifier = str(action.get("id") or "commitment").strip()
+        return f"Resolved commitment {identifier} with governed evidence."
+    return f"Accepted {kind or 'research'} action."
+
+
+def separate_blog_from_journal_preflight(proposal):
+    """Keep Bob's publication persona mechanically outside WAKE✳︎'s journal.
+
+    A provider turn may propose research actions and one Bob blog action together.
+    The blog action is a separate public translation artifact. It must never supply
+    the journal title/summary for the institutional research record.
+    """
+    if not isinstance(proposal, dict) or not isinstance(proposal.get("actions"), list):
+        return proposal, None
+    actions = proposal["actions"]
+    if not any(isinstance(action, dict) and action.get("type") == "blog" for action in actions):
+        return proposal, None
+
+    research_actions = [
+        action for action in actions
+        if isinstance(action, dict) and action.get("type") != "blog"
+    ]
+    if research_actions:
+        priority = ("notebook", "reframe", "research", "project", "belief", "resolve", "commit")
+        primary = next(
+            (action for kind in priority for action in research_actions if action.get("type") == kind),
+            research_actions[0],
+        )
+        kind = primary.get("type")
+        if kind == "notebook":
+            title = f'Notebook updated · {primary.get("title") or primary.get("id") or "research"}'
+        elif kind == "project":
+            title = f'Project updated · {primary.get("title") or primary.get("id") or "research"}'
+        elif kind == "research":
+            title = f'Research queued · {primary.get("project") or "project"}'
+        elif kind == "reframe":
+            title = f'Research frame updated · {primary.get("project") or "project"}'
+        elif kind == "belief":
+            title = f'Belief updated · {primary.get("id") or "research"}'
+        elif kind == "resolve":
+            title = f'Commitment resolved · {primary.get("id") or "research"}'
+        elif kind == "commit":
+            title = f'Commitment recorded · {primary.get("id") or "research"}'
+        else:
+            title = "Research cycle accepted"
+        summary = " ".join(_journal_action_sentence(action) for action in research_actions)
+    else:
+        title = "Research cycle checkpoint"
+        summary = "No research actions changed the institutional research state in this cycle."
+
+    normalized = {
+        **proposal,
+        "title": " ".join(str(title).split())[:120],
+        "summary": " ".join(str(summary).split())[:2400],
+    }
+    return normalized, {
+        "journal_blog_boundary": {
+            "applied": True,
+            "research_action_count": len(research_actions),
+        }
+    }
+
+
 def freshen_duplicate_blog_titles_preflight(state, proposal):
     """Repair duplicate standalone Bob titles without blocking valid research.
 
@@ -385,7 +479,8 @@ def govern_proposal(state, invocation, proposal):
     proposal, reuse_filter = reuse_owned_project_preflight(state, proposal)
     proposal, rotation_filter = rotation_preflight(state, invocation, proposal)
     proposal, title_filter = freshen_duplicate_blog_titles_preflight(state, proposal)
-    if reuse_filter or title_filter:
+    proposal, journal_filter = separate_blog_from_journal_preflight(proposal)
+    if reuse_filter or title_filter or journal_filter:
         if rotation_filter is None:
             directive = state.get("invocations", {}).get(invocation, {}).get("attention", {})
             rotation_filter = {
@@ -398,6 +493,8 @@ def govern_proposal(state, invocation, proposal):
             rotation_filter = {**rotation_filter, **reuse_filter}
         if title_filter:
             rotation_filter = {**rotation_filter, **title_filter}
+        if journal_filter:
+            rotation_filter = {**rotation_filter, **journal_filter}
     proposal = assign_research_ids(proposal, invocation)
     enforce_synthesis_checkpoint(state, invocation, proposal)
     enforce_bob_opening_checkpoint(state, invocation, proposal)
@@ -425,11 +522,8 @@ def govern_proposal(state, invocation, proposal):
             "reason": str(exc)[:1000],
             "action": actions[-1],
         }
-        accepted_proposal["summary"] = (
-            proposal["summary"][:2100]
-            + "\n\nEditorial note: the proposed blog post was withheld. "
-            + str(exc)[:180]
-        )
+        # Editorial withholding is recorded in the accepted event receipt.
+        # It must not leak Bob's publication lifecycle into WAKE✳︎'s journal.
         proposal = accepted_proposal
         result = transition(state, proposal, invocation)
     return proposal, result, editorial, rotation_filter
