@@ -339,15 +339,6 @@ Distinguish source report, WAKE synthesis, speculation, analogy, and reflection.
 Return only the requested JSON shape.
 """
 
-# ---------------------------------------------------------------------------
-# STEP: action_schema
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Callers may rely on this contract.
-# ---------------------------------------------------------------------------
-
 
 def action_schema(kind, fields, enums=None, optional=()):
     """Keep each action's shape distinct, matching mechanical governance exactly."""
@@ -383,15 +374,6 @@ SCHEMA = {"type": "object", "additionalProperties": False, "properties": {
         action_schema("notebook", "id project title summary findings limitations next_questions evidence reason"),
         action_schema("blog", "id project title lede body notebooks evidence reason", optional=("lens", "supersedes", "reflection_cycle")),
     ]}}}, "required": ["base_version", "title", "summary", "actions"]}
-# ---------------------------------------------------------------------------
-# STEP: schema_for_context
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Callers may rely on this contract.
-# ---------------------------------------------------------------------------
-
 
 def schema_for_context(context):
     """Put the durable blog citation allowlist in the model's JSON contract.
@@ -711,15 +693,6 @@ def schema_for_context(context):
         # Bob is optional editorial output. Keep ordinary research choices available;
         # a due editorial opportunity may coexist with them but never gates advancement.
     return schema
-# ---------------------------------------------------------------------------
-# STEP: retractable_quotes
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Callers may rely on this contract.
-# ---------------------------------------------------------------------------
-
 
 def retractable_quotes(post):
     """Short exact phrases from the original post, not fabricated model quotations."""
@@ -729,15 +702,6 @@ def retractable_quotes(post):
         r"|\b(?:clean|clear|sharp)\s+(?:functional\s+)?(?:fault\s+lines?|boundar(?:y|ies)|demarcation)\b"
         r"|\b(?:cleanly|sharply)\s+(?:separates?|demarcates?|distinguishes?)\b"
         r"|\b(?:proves?|demonstrates?|establishes?|confirms?)\s+that\b", prose, re.I)))
-# ---------------------------------------------------------------------------
-# STEP: load_env
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Callers may rely on this contract.
-# ---------------------------------------------------------------------------
-
 
 def load_env(path=Path(".env")):
     if path.is_file():
@@ -745,15 +709,6 @@ def load_env(path=Path(".env")):
             key, sep, value = line.strip().partition("=")
             if sep and key == "GEMINI_API_KEY" and key not in os.environ:
                 os.environ[key] = value.strip().strip("\"'")
-# ---------------------------------------------------------------------------
-# OBJECT: TransientProviderError
-#
-# This object groups state/behavior exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Callers may rely on this contract.
-# ---------------------------------------------------------------------------
-
 
 class TransientProviderError(RuntimeError):
     "Temporary provider/network outage; the wake should be retried later."
@@ -768,15 +723,6 @@ class TransientProviderError(RuntimeError):
     def __init__(self, message, details=None):
         super().__init__(message)
         self.details = details or {}
-# ---------------------------------------------------------------------------
-# OBJECT: ProviderRequestError
-#
-# This object groups state/behavior exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Callers may rely on this contract.
-# ---------------------------------------------------------------------------
-
 
 class ProviderRequestError(Rejected):
     """Provider rejected a request; safe structured diagnostics may be persisted."""
@@ -786,15 +732,6 @@ class ProviderRequestError(Rejected):
 
 
 FREE_TIER_DAILY_QUOTA_ID = "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
-# ---------------------------------------------------------------------------
-# OBJECT: DailyQuotaExceeded
-#
-# This object groups state/behavior exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Callers may rely on this contract.
-# ---------------------------------------------------------------------------
-
 
 class DailyQuotaExceeded(ProviderRequestError):
     """Gemini reported the exact per-day free-tier project/model quota."""
@@ -802,15 +739,6 @@ class DailyQuotaExceeded(ProviderRequestError):
 
 class ConfiguredDailyLimitReached(ProviderRequestError):
     """Every configured model request allowance has been used for the current day."""
-# ---------------------------------------------------------------------------
-# STEP: _quota_ids
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-# ---------------------------------------------------------------------------
-
 
 def _quota_ids(value):
     if isinstance(value, dict):
@@ -821,28 +749,10 @@ def _quota_ids(value):
     elif isinstance(value, list):
         for item in value:
             yield from _quota_ids(item)
-# ---------------------------------------------------------------------------
-# STEP: is_free_tier_daily_quota
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Callers may rely on this contract.
-# ---------------------------------------------------------------------------
-
 
 def is_free_tier_daily_quota(details):
     """Classify only Google's exact free-tier daily quota identifier."""
     return FREE_TIER_DAILY_QUOTA_ID in set(_quota_ids(details or {}))
-# ---------------------------------------------------------------------------
-# STEP: _safe_provider_value
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-# ---------------------------------------------------------------------------
-
 
 def _safe_provider_value(value, depth=0):
     """Bound provider error JSON and drop fields that could plausibly contain credentials."""
@@ -869,15 +779,6 @@ def _safe_provider_value(value, depth=0):
     if value is None or isinstance(value, (bool, int, float)):
         return value
     return str(value)[:500]
-# ---------------------------------------------------------------------------
-# STEP: _http_error_details
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-# ---------------------------------------------------------------------------
-
 
 def _http_error_details(exc, elapsed_ms, payload_bytes):
     """Extract only bounded, non-secret diagnostics from a provider HTTP error."""
@@ -903,15 +804,6 @@ def _http_error_details(exc, elapsed_ms, payload_bytes):
             error = parsed.get("error", parsed) if isinstance(parsed, dict) else parsed
             details["provider_error"] = _safe_provider_value(error)
     return details
-# ---------------------------------------------------------------------------
-# OBJECT: Gemini
-#
-# This object groups state/behavior exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Callers may rely on this contract.
-# ---------------------------------------------------------------------------
-
 
 class Gemini:
     name = "gemini"
@@ -1185,15 +1077,6 @@ class Gemini:
                 else {}
             ),
         }
-
-# ---------------------------------------------------------------------------
-# OBJECT: Fixture
-#
-# This object groups state/behavior exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Callers may rely on this contract.
-# ---------------------------------------------------------------------------
 
 
 class Fixture:
