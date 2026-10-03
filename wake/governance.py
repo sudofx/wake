@@ -561,15 +561,15 @@ def _enforce_bob_personhood_policy(claim_text):
 
         attribution = re.search(
             subject
-            + r".{0,35}\\b(?:is|are|am|has|have|possess(?:es)?|"
-            r"feel(?:s)?|experienc(?:e|es|ing)|think(?:s)?)\\b.{0,35}"
+            + r".{0,35}\b(?:is|are|am|has|have|possess(?:es)?|"
+            r"feel(?:s)?|experienc(?:e|es|ing)|think(?:s)?)\b.{0,35}"
             + property_term
-            + r"\\b"
-            r"|\\b(?:see|sees|describe|describes|regard|regards|present|presents|portray|portrays)\\b"
-            r".{0,24}\\b(?:my|our|bob|wake|itself|the system|the process|the model|it)\\b"
-            r".{0,24}\\bas\\b.{0,35}"
+            + r"\b"
+            r"|\b(?:see|sees|describe|describes|regard|regards|present|presents|portray|portrays)\b"
+            r".{0,24}\b(?:my|our|bob|wake|itself|the system|the process|the model|it)\b"
+            r".{0,24}\bas\b.{0,35}"
             + property_term
-            + r"\\b",
+            + r"\b",
             calibrated,
         )
         require(
