@@ -552,8 +552,25 @@ def schema_for_context(context):
     commitments = context.get("commitments", [])
     if commitments:
         choices.remove(resolve)
+        visible_evidence = {
+            item.get("id"): item
+            for item in context.get("evidence", [])
+            if isinstance(item, dict) and item.get("id")
+        }
         for commitment in commitments:
-            allowed = sorted(commitment.get("resolution_evidence", []))
+            created_version = commitment.get("created_version")
+            allowed = sorted({
+                evidence_id
+                for evidence_id in commitment.get("resolution_evidence", [])
+                if evidence_id in visible_evidence
+                and (
+                    not isinstance(created_version, int)
+                    or (
+                        isinstance(visible_evidence[evidence_id].get("version"), int)
+                        and visible_evidence[evidence_id]["version"] >= created_version
+                    )
+                )
+            })
             if not allowed:
                 continue
             constrained = deepcopy(resolve)
