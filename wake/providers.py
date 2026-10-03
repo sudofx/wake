@@ -712,14 +712,6 @@ def load_env(path=Path(".env")):
 
 class TransientProviderError(RuntimeError):
     "Temporary provider/network outage; the wake should be retried later."
-    # ---------------------------------------------------------------------------
-    # STEP: __init__
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-    # ---------------------------------------------------------------------------
     def __init__(self, message, details=None):
         super().__init__(message)
         self.details = details or {}
