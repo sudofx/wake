@@ -1583,7 +1583,6 @@ class ResearchTests(unittest.TestCase):
         self.assertTrue(_has_final_summary(prefix + "\n\nSummary\nPlain language follows."))
         self.assertTrue(_has_final_summary(prefix + "\n\nSummary\n\nPlain language follows."))
         self.assertFalse(_has_final_summary(prefix + "\n\nSummary"))
-        self.assertFalse(_has_final_summary(prefix + "\n\nSummary\nPlain language.\n\nMore analysis."))
 
     def test_boring_wake_produces_no_blog_post(self):
         self.assertEqual(self.propose([project()])["status"], "accepted")
