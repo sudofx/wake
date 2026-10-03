@@ -1581,6 +1581,7 @@ class ResearchTests(unittest.TestCase):
     def test_bob_summary_parser_accepts_normal_heading_spacing(self):
         prefix = "A useful public explanation. " * 20
         self.assertTrue(_has_final_summary(prefix + "\n\nSummary\nPlain language follows."))
+        self.assertTrue(_has_final_summary(prefix + "\n\nSummary:\nPlain language follows."))
         self.assertTrue(_has_final_summary(prefix + "\n\nSummary\n\nPlain language follows."))
         self.assertFalse(_has_final_summary(prefix + "\n\nSummary"))
 
