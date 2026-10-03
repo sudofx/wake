@@ -27,7 +27,7 @@ from wake.engine import DEFAULTS, Engine
 from wake.store import Store
 from wake.governance import (
     PUBLICATION_MIN_SOURCES, Rejected, _blog_language, _bob_quiet_window,
-    bob_reflection_due_cycle, transition,
+    _has_final_summary, bob_reflection_due_cycle, transition,
 )
 from wake.providers import Fixture, RESEARCH_SYSTEM, schema_for_context
 from wake.application_policy import enforce_synthesis_checkpoint
@@ -1577,6 +1577,13 @@ class ResearchTests(unittest.TestCase):
 
     def test_bob_fixture_posts_include_plain_language_summary(self):
         self.assertIn("\n\nSummary\n\n", self.blog()["body"])
+
+    def test_bob_summary_parser_accepts_normal_heading_spacing(self):
+        prefix = "A useful public explanation. " * 20
+        self.assertTrue(_has_final_summary(prefix + "\n\nSummary\nPlain language follows."))
+        self.assertTrue(_has_final_summary(prefix + "\n\nSummary\n\nPlain language follows."))
+        self.assertFalse(_has_final_summary(prefix + "\n\nSummary"))
+        self.assertFalse(_has_final_summary(prefix + "\n\nSummary\nPlain language.\n\nMore analysis."))
 
     def test_boring_wake_produces_no_blog_post(self):
         self.assertEqual(self.propose([project()])["status"], "accepted")
