@@ -1464,18 +1464,19 @@ class ResearchTests(unittest.TestCase):
 
     def test_bob_prompt_aligns_opening_post_with_personhood_gate(self):
         self.assertIn("Bob is an editorial role/public correspondent, not a persistent person or mind", RESEARCH_SYSTEM)
-        self.assertIn("mandatory opening introduction", RESEARCH_SYSTEM)
+        self.assertIn("Bob's first published introduction", RESEARCH_SYSTEM)
         self.assertIn("without personhood\nlanguage", RESEARCH_SYSTEM)
         self.assertIn("First-person editorial voice is allowed", RESEARCH_SYSTEM)
 
-    def test_bounded_prompt_preserves_due_bob_checkpoint_contract(self):
+    def test_bounded_prompt_keeps_due_bob_opportunity_non_blocking(self):
         from wake.providers import BOUNDED_RESEARCH_SYSTEM
         self.assertIn("context.bob_reflection_due is true", BOUNDED_RESEARCH_SYSTEM)
-        self.assertIn("mandatory before accepted state may advance", BOUNDED_RESEARCH_SYSTEM)
+        self.assertIn("optional editorial opportunity", BOUNDED_RESEARCH_SYSTEM)
+        self.assertIn("Research may advance without a blog action", BOUNDED_RESEARCH_SYSTEM)
         self.assertIn("reflection_cycle to context.bob_reflection_cycle exactly", BOUNDED_RESEARCH_SYSTEM)
         self.assertIn("FINAL action", BOUNDED_RESEARCH_SYSTEM)
         self.assertIn("body must be at least 900 characters", BOUNDED_RESEARCH_SYSTEM)
-        self.assertNotIn("There is no numbered-cycle or mandatory reflection publication", BOUNDED_RESEARCH_SYSTEM)
+        self.assertNotIn("mandatory before accepted state may advance", BOUNDED_RESEARCH_SYSTEM)
 
 
     def test_bob_first_public_post_is_due_on_cycle_one(self):
@@ -1518,7 +1519,7 @@ class ResearchTests(unittest.TestCase):
         )
         self.assertIn("reflection_cycle", blog["required"])
 
-    def test_live_charged_research_cannot_skip_bob_opening_post(self):
+    def test_live_charged_research_can_advance_without_bob_opening_post(self):
         with self.engine.store.lock():
             invocation, request = self.engine.start("gemini", "test", charged=True)
             result = self.engine.finish(
@@ -1526,12 +1527,14 @@ class ResearchTests(unittest.TestCase):
                 json.dumps({
                     "base_version": request["context"]["version"],
                     "title": "Research fixture",
-                    "summary": "Attempt to skip the opening correspondent post.",
+                    "summary": "WAKE advances its research record without requiring editorial publication.",
                     "actions": [project()],
                 }),
             )
-        self.assertEqual(result["status"], "rejected")
-        self.assertIn("Bob opening post", result["reason"])
+        self.assertEqual(result["status"], "accepted")
+        state = self.engine.store.load()
+        self.assertEqual(state["posts"], {})
+        self.assertEqual(state["journal"][-1]["title"], "Research fixture")
 
     def test_revision_requires_changed_findings_and_new_evidence(self):
         self.source("s1", verified=True)
