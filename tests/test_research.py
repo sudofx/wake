@@ -984,6 +984,66 @@ class ResearchTests(unittest.TestCase):
         self.assertIn("project", commit["required"])
         self.assertEqual(commit["properties"]["project"]["enum"], ["p"])
 
+    def test_schema_omits_notebook_revision_without_new_project_evidence(self):
+        context = {
+            "research_topics": [{"id": "entropy"}],
+            "projects": [{
+                "id": "p", "domain": "entropy", "status": "active",
+            }],
+            "evidence": [{
+                "id": "source-old", "actor": "collector",
+            }],
+            "project_evidence": {"p": ["source-old"]},
+            "notebooks": [{
+                "id": "n1", "project": "p", "revision": 1,
+                "evidence": ["source-old"],
+            }],
+            "blog_notebooks": {"p": [{
+                "id": "n1", "title": "Existing", "revision": 1,
+                "evidence": ["source-old"],
+            }]},
+            "commitments": [],
+        }
+        schema = schema_for_context(context)
+        choices = schema["properties"]["actions"]["items"]["anyOf"]
+        self.assertFalse(any(
+            item["properties"]["type"]["enum"] == ["notebook"]
+            for item in choices
+        ))
+
+    def test_schema_allows_notebook_revision_when_new_project_evidence_exists(self):
+        context = {
+            "research_topics": [{"id": "entropy"}],
+            "projects": [{
+                "id": "p", "domain": "entropy", "status": "active",
+            }],
+            "evidence": [
+                {"id": "source-old", "actor": "collector"},
+                {"id": "source-new", "actor": "collector"},
+            ],
+            "project_evidence": {"p": ["source-old", "source-new"]},
+            "notebooks": [{
+                "id": "n1", "project": "p", "revision": 1,
+                "evidence": ["source-old"],
+            }],
+            "blog_notebooks": {"p": [{
+                "id": "n1", "title": "Existing", "revision": 1,
+                "evidence": ["source-old"],
+            }]},
+            "commitments": [],
+        }
+        schema = schema_for_context(context)
+        choices = schema["properties"]["actions"]["items"]["anyOf"]
+        notebook = next(
+            item for item in choices
+            if item["properties"]["type"]["enum"] == ["notebook"]
+        )
+        self.assertEqual(notebook["properties"]["project"]["enum"], ["p"])
+        self.assertEqual(
+            notebook["properties"]["evidence"]["items"]["enum"],
+            ["source-new", "source-old"],
+        )
+
     def test_schema_constrains_resolve_to_eligible_commitment_evidence(self):
         context = {
             "research_topics": [],
