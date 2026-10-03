@@ -146,14 +146,6 @@ def config(path="wake.toml"):
     return result
 
 class Engine:
-    # ---------------------------------------------------------------------------
-    # STEP: __init__
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-    # ---------------------------------------------------------------------------
     def __init__(self, directory="data", settings=None, *, store=None, store_factory=None):
         self.config = settings or config()
         if self.config.get("mission"):
@@ -176,15 +168,6 @@ class Engine:
                 )
             store = store_factory(directory)
         self.store = store
-    # ---------------------------------------------------------------------------
-    # STEP: initialize
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Callers may rely on this contract.
-    # ---------------------------------------------------------------------------
-
     def initialize(self):
         state, _ = self.store.replay()
         if not state["objective"]:
@@ -234,15 +217,6 @@ class Engine:
         events = self.store.events()
         return self.store.append("experimental_regime_adopted", adoption_payload(
             state, events, controls, "operator", reason, now(), len(events) + 1))
-    # ---------------------------------------------------------------------------
-    # STEP: recover
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Callers may rely on this contract.
-    # ---------------------------------------------------------------------------
-
     def recover(self, explicit=False):
         # During Phase E both the WAKE-compatible projection and the generic
         # sudofx invocation journal describe the same provider boundary. Close
@@ -257,15 +231,6 @@ class Engine:
             state = self.store.append("recovered", {"id": state["pending"],
                                        "reason": "Previous invocation ended without a committed decision; resumed last valid state."})
         return state
-    # ---------------------------------------------------------------------------
-    # STEP: observe
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Callers may rely on this contract.
-    # ---------------------------------------------------------------------------
-
     def observe(self, content, source, evidence_id=None):
         text(content, "Observation", 8000)
         text(source, "Source", 1000)
@@ -273,15 +238,6 @@ class Engine:
         require(state["pending"] is None, "Finish or recover the pending invocation before adding evidence")
         return self.store.append("observation", {"id": evidence_id or "e-" + uuid.uuid4().hex[:16],
                                                  "source": source, "content": content, "actor": "human"})
-    # ---------------------------------------------------------------------------
-    # STEP: working_set
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Callers may rely on this contract.
-    # ---------------------------------------------------------------------------
-
     def working_set(self, state):
         """Build a deliberately lossy, traceable shadow of the durable state.
 
@@ -289,14 +245,6 @@ class Engine:
         what a purpose-conditioned working representation would look like without
         changing live-model behavior before a controlled comparison exists.
         """
-        # ---------------------------------------------------------------------------
-        # STEP: excerpt
-        #
-        # This step exists as an explicit seam so its behavior can be
-        # inspected, tested, and replaced without giving a model hidden authority.
-        # Inputs should already belong to the layer named above; outputs remain data
-        # until the next boundary validates or records them. Callers may rely on this contract.
-        # ---------------------------------------------------------------------------
         def excerpt(value, limit):
             value = str(value)
             return value if len(value) <= limit else value[:limit - 1] + "…"
@@ -921,15 +869,6 @@ class Engine:
             }
             request["response_schema"] = schema_for_context(context)
 
-    # ---------------------------------------------------------------------------
-    # STEP: inquiry_drive_shadow
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Callers may rely on this contract.
-    # ---------------------------------------------------------------------------
-
     def inquiry_drive_shadow(self, state):
         """Score durable research work without granting it any decision authority.
 
@@ -995,15 +934,6 @@ class Engine:
             "activation": activation,
             "projects": projects,
         }
-    # ---------------------------------------------------------------------------
-    # STEP: context
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Callers may rely on this contract.
-    # ---------------------------------------------------------------------------
-
     def topic_definition(self, state, domain):
         return next((topic for topic in state.get("research_topics", []) if topic.get("id") == domain), None)
 
@@ -1667,15 +1597,6 @@ class Engine:
         ]
 
         return context
-    # ---------------------------------------------------------------------------
-    # STEP: start
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Callers may rely on this contract.
-    # ---------------------------------------------------------------------------
-
     def start(self, provider, model, charged=False):
         started_at = perf_counter()
         phase_at = started_at
@@ -1912,15 +1833,6 @@ class Engine:
                 "inquiry_drive_project_count": len(inquiry_drive_shadow["projects"]),
             }})
         return invocation, request
-    # ---------------------------------------------------------------------------
-    # STEP: finish
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Callers may rely on this contract.
-    # ---------------------------------------------------------------------------
-
     def finish(self, invocation, raw, metadata=None, crash=False):
         state = self.store.load()
         require(state["pending"] == invocation, "Response does not match the pending invocation")
@@ -1966,14 +1878,6 @@ class Engine:
                 }} if rotation_filter else {})}
 
     @staticmethod
-    # ---------------------------------------------------------------------------
-    # STEP: _request_count
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-    # ---------------------------------------------------------------------------
     def _request_count(provider):
         if hasattr(provider, "provider_attempts"):
             return provider.diagnostics()
@@ -2003,15 +1907,6 @@ class Engine:
             effect_barrier=checkpoint,
             classify_error=Engine._invocation_failure_outcome,
         )
-
-    # ---------------------------------------------------------------------------
-    # STEP: run
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Callers may rely on this contract.
-    # ---------------------------------------------------------------------------
 
     def run(self, provider, crash_at=None, checkpoint=None, collector=None):
         with self.store.lock():
@@ -2051,15 +1946,6 @@ class Engine:
                 else:
                     used = sum(charged_request_slots(i) for i in state["invocations"].values() if i["id"] != invocation and i["charged"] and i["quota_day"] == day)
                     provider.request_limit = min(len(provider.models), self.config["daily_call_limit"] - used)
-                # ---------------------------------------------------------------------------
-                # STEP: record_attempt
-                #
-                # This step exists as an explicit seam so its behavior can be
-                # inspected, tested, and replaced without giving a model hidden authority.
-                # Inputs should already belong to the layer named above; outputs remain data
-                # until the next boundary validates or records them. Callers may rely on this contract.
-                # ---------------------------------------------------------------------------
-
                 def record_attempt(phase, attempt):
                     self.store.append("provider_attempt_" + phase, {"id": invocation, "attempt": attempt})
                     if checkpoint:
