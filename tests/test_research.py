@@ -1004,14 +1004,18 @@ class ResearchTests(unittest.TestCase):
             ["new-1", "new-2"],
         )
 
-    def test_schema_constrains_reframe_observations_to_visible_evidence_ids(self):
+    def test_schema_constrains_reframe_to_recovery_projects_and_visible_evidence(self):
         context = {
             "research_topics": [],
-            "projects": [{"id": "p", "domain": "entropy"}],
+            "projects": [
+                {"id": "eligible", "domain": "entropy"},
+                {"id": "ordinary", "domain": "entropy"},
+            ],
             "evidence": [
                 {"id": "source-a", "actor": "collector"},
                 {"id": "runtime-b", "actor": "runtime"},
             ],
+            "representation_recovery": [{"project": "eligible", "capability": {"capability_blocked": True}}],
             "blog_notebooks": {},
             "commitments": [],
         }
@@ -1022,13 +1026,30 @@ class ResearchTests(unittest.TestCase):
             reframe["properties"]["observations"]["items"]["enum"],
             ["runtime-b", "source-a"],
         )
-        self.assertEqual(reframe["properties"]["project"]["enum"], ["p"])
+        self.assertEqual(reframe["properties"]["project"]["enum"], ["eligible"])
+
+    def test_schema_omits_reframe_without_recovery_eligibility(self):
+        context = {
+            "research_topics": [],
+            "projects": [{"id": "p", "domain": "entropy"}],
+            "evidence": [{"id": "source-a", "actor": "collector"}],
+            "representation_recovery": [],
+            "blog_notebooks": {},
+            "commitments": [],
+        }
+        schema = schema_for_context(context)
+        choices = schema["properties"]["actions"]["items"]["anyOf"]
+        self.assertFalse(any(
+            item["properties"]["type"]["enum"] == ["reframe"]
+            for item in choices
+        ))
 
     def test_schema_omits_reframe_when_no_visible_evidence_exists(self):
         context = {
             "research_topics": [],
             "projects": [{"id": "p", "domain": "entropy"}],
             "evidence": [],
+            "representation_recovery": [{"project": "p", "capability": {"capability_blocked": True}}],
             "blog_notebooks": {},
             "commitments": [],
         }
