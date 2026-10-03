@@ -1570,6 +1570,12 @@ class ResearchTests(unittest.TestCase):
         action.update(changes)
         return action
 
+    def test_provider_contract_separates_wake_journal_from_bob_blog(self):
+        self.assertIn("Title and summary belong to WAKE✳︎'s institutional journal, never Bob's Blog", RESEARCH_SYSTEM)
+        self.assertIn("Bob exists only inside a blog action", RESEARCH_SYSTEM)
+        self.assertIn("Bob is not a participant in WAKE✳︎'s research process", RESEARCH_SYSTEM)
+        self.assertIn('section headed exactly "Summary"', RESEARCH_SYSTEM)
+
     def test_bob_prompt_requires_plain_language_summary(self):
         self.assertIn('final section headed exactly "Summary"', RESEARCH_SYSTEM)
         self.assertIn("no assumed background", RESEARCH_SYSTEM)
@@ -1631,6 +1637,33 @@ class ResearchTests(unittest.TestCase):
         self.assertIn("**WAKE✳︎**.", markdown)
         self.assertIn("replaceAll('WAKE✳︎','WAKE✳').replaceAll('WAKE✳','WAKE✳︎')", index)
 
+    def test_bob_blog_cannot_write_wake_journal_voice(self):
+        self.source("s1")
+        self.source("s2")
+        with self.engine.store.lock():
+            invocation, request = self.engine.start("fixture", "research-test")
+            result = self.engine.finish(invocation, json.dumps({
+                "base_version": request["context"]["version"],
+                "title": "I'm Bob and this is my blog update",
+                "summary": "As WAKE's public correspondent, here's what I want readers to know.",
+                "actions": [project(), notebook(["s1", "s2"]), self.blog()],
+            }))
+        self.assertEqual(result["status"], "accepted")
+        state = self.engine.store.load()
+        entry = state["journal"][-1]
+        self.assertEqual(entry["title"], "Notebook updated · A comparison")
+        self.assertNotRegex(entry["title"], r"(?i)\\bbob\\b|\\bblog\\b|public correspondent")
+        self.assertNotRegex(entry["summary"], r"(?i)\\bbob\\b|\\bblog\\b|public correspondent")
+        self.assertIn("Updated notebook", entry["summary"])
+        self.assertIn("post-one", state["posts"])
+        receipt = next(
+            event["payload"] for event in reversed(self.engine.store.events())
+            if event["kind"] == "accepted"
+        )
+        raw = json.loads(receipt["raw_response"])
+        self.assertIn("I'm Bob", raw["title"])
+        self.assertEqual(receipt["proposal"]["title"], entry["title"])
+
     def test_invalid_blog_is_withheld_while_research_is_accepted_and_replayable(self):
         self.source("s1")
         self.source("s2")
@@ -1646,7 +1679,8 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(receipt["editorial"]["action"], bad)
         self.assertEqual(len(receipt["proposal"]["actions"]), 2)
         self.assertEqual(len(json.loads(receipt["raw_response"])["actions"]), 3)
-        self.assertIn("withheld", state["journal"][-1]["summary"])
+        self.assertNotIn("withheld", state["journal"][-1]["summary"].lower())
+        self.assertEqual(state["journal"][-1]["title"], "Notebook updated · A comparison")
         export(self.engine.store, self.root/"site")
         reconstructed, _ = verify_history(self.root/"site/events.jsonl", (self.root/"site/head.txt").read_text())
         self.assertEqual(reconstructed, state)
