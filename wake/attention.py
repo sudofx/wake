@@ -83,10 +83,6 @@ def _proposal_milestone_topics(state, proposal):
             topic = domains.get(action.get("project"))
             if topic:
                 milestone_topics.add(topic)
-        elif action.get("type") == "blog" and action.get("project"):
-            topic = domains.get(action.get("project"))
-            if topic:
-                milestone_topics.add(topic)
     return milestone_topics
 
 
@@ -100,6 +96,10 @@ def _proposal_attention_topic(state, selected, proposal):
     """
     topics = []
     for action in (proposal or {}).get("actions", []):
+        # Bob is a reader-facing editorial projection, never a research signal.
+        # Blog actions must not move Attention, end saturation, or claim topic progress.
+        if action.get("type") == "blog":
+            continue
         domain = action.get("domain")
         if domain:
             topics.append(domain)
