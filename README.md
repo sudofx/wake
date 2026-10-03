@@ -36,21 +36,11 @@ The migration code is explicit:
 
 The current GitHub deployment can run without a persistent local computer. `master` holds development code, `wake-runtime` holds the explicitly promoted live code, `wake-state` holds authoritative sudofx SQLite state, and `wake-live` holds replaceable presentation data. GitHub Pages publishes the static application shell separately. Missing authority is treated as data loss: only an explicit `init` or first-ever cloud bootstrap may create an empty record. Fresh initialization creates `sudofx.sqlite` directly; it does not create a temporary legacy `wake.sqlite3`. Before a state checkpoint, SQLite is verified and compacted automatically once the file reaches 90 MiB so the authoritative blob stays below GitHub's 100 MiB single-file limit.
 
-The included offline experiment remains separate from live research. It still exercises the historical WAKE record/replay design with deterministic fixtures and costs zero API calls. It is valuable validation evidence, but it is not the live cloud authority model and does not establish live-model comprehension.
-
 ## Start here — no account, no API calls
 
 Requires **Python 3.11 or later on macOS or Linux**. WAKE now has Python runtime dependencies, including `pypdf` and a pinned sudofx revision. Node and a separate database server are not required. Install the project before running commands.
 
-```sh
-# Read the included, fully executed 100-cycle experiment.
-python3 -m wake serve --directory examples/offline-fixture-journal
-# Open http://127.0.0.1:8000
-```
-
-The [included Markdown journal](examples/offline-fixture-journal/journal.md) and [experiment results](examples/offline-fixture-journal/experiment.json) are readable without running anything. The HTML is self-contained, responsive, and works as a local file. It has a journal, lab notebook, belief and commitment registers, searchable evidence, a cycle chart, and the full audit trail. Every simulated entry is labeled.
-
-To reproduce the experiment from scratch:
+To run the deterministic experiment locally from scratch:
 
 ```sh
 python3 -m wake --data data/rehearsal experiment --cycles 100 --output site
@@ -252,7 +242,6 @@ Working abstractions keep evidence pointers and retrieval hooks; they do not rep
 - `wake/experiment.py`: executable 100–1000-cycle experiment.
 - `tests/`: failure, governance, provider-contract and audit checks.
 - `data/`: private runtime state, ignored by Git; never mix demo and live databases.
-- `examples/offline-fixture-journal/`: **deterministic fixture output only** — never live runtime state. The live cloud record is on `wake-state`.
 
 Read [architecture and limits](docs/architecture.md), [cloud operations](docs/cloud.md), or [experiment protocol](docs/experiment.md) for details.
 
