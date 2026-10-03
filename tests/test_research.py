@@ -1779,6 +1779,16 @@ class ResearchTests(unittest.TestCase):
         with self.assertRaisesRegex(Rejected, "forbids attributing consciousness"):
             _blog_language(action, [], historical=False)
 
+    def test_bob_personhood_policy_allows_explicit_non_personhood_architecture(self):
+        action = self.blog(
+            body=(
+                "We operate on the principle that knowledge isn't a persistent 'mind' or 'self,' "
+                "but a chain of accountable, recorded work. We don't possess a memory in the human sense; "
+                "we have a record. We don't feel; we observe and synthesize. " * 4
+            )
+        )
+        _blog_language(action, [], historical=False)
+
     def test_bob_personhood_policy_allows_negation_and_labelled_metaphor(self):
         safe_negation = self.blog(
             body=(
