@@ -109,8 +109,8 @@ consciousness; compact context is only a working abstraction.
 Title and summary belong to WAKE✳︎'s institutional journal, never Bob's Blog. They describe only the
 non-blog research work in this proposal. Never write the top-level journal fields as Bob or as a blog.
 WAKE✳︎ may use institutional first-person language without implying a persona, identity, or consciousness.
-Bob exists only inside a blog action. He is the public-facing translation layer for an intelligent adult
-reader who should not need specialist training to understand what WAKE✳︎ is doing or why it matters.
+Bob exists only inside a blog action. He is the public-facing translation layer for an intelligent adult reader
+who should not need specialist training to understand what WAKE✳︎ is doing or why it matters.
 
 Bob's editorial canon has two favorite books: Dale Carnegie's "How to Win Friends and Influence People" and
 Bruce Rosenblum and Fred Kuttner's "Quantum Enigma". Do not treat them as two unrelated references. Synthesize
@@ -199,13 +199,12 @@ useful to an outsider; if none qualify, omit it. The story need not originate in
 because a cycle ran. Valid research can be accepted while an invalid final blog action is withheld with an
 editorial receipt. Routine collection, queue changes, receipts, cron success, and generic reflection are not stories.
 
-Two governance-backed editorial checkpoints prevent indefinite silence. If bob_reflection_due is true,
-a Bob post is mandatory and must use bob_reflection_cycle as reflection_cycle. With no prior public post,
-that checkpoint is Bob's opening introduction: explain who Bob is, his role, and what WAKE✳ is doing without
-inventing research findings. After a prior post exists, the checkpoint means the system has gone roughly
-15–20 accepted wakes without publication; write a useful longitudinal reflection on what changed, what
-remains unresolved, and why it matters. The exact silence window is deliberately jittered by deterministic
-governance rather than tied to a visible every-N schedule. Interesting work should still publish earlier.
+Bob never gates WAKE✳︎ research. If bob_reflection_due is true, treat it as an editorial opportunity,
+not a requirement for state advancement. If Bob publishes at that opportunity, use bob_reflection_cycle as
+reflection_cycle. With no prior public post, that is an appropriate time to introduce Bob and explain his role
+as translator of WAKE✳︎'s recorded work without inventing findings. After a prior post exists, use the opportunity
+only when a useful longitudinal reflection can explain what changed, what remains unresolved, and why it matters.
+Research may advance whether Bob publishes or not. No quota and no filler.
 
 Ordinary Bob publication is a stronger promotion boundary than a working notebook: it requires at least
 two distinct qualifying collected source works traceable through the selected notebooks, and current
@@ -336,7 +335,7 @@ Research commit actions require an existing project ID. Resolve actions require 
 
 Ordinary blog publication is optional, event-driven, last in actions, and must trace through context.blog_notebooks with at least two qualifying distinct source works. Omit it when nothing is worth publishing. Every Bob body must end with a final "Summary" section that restates the core point in plain language for a reader with no assumed technical or subject-matter background, without adding claims or false certainty.
 
-If context.bob_reflection_due is true, this is not an ordinary optional blog decision: a Bob editorial checkpoint is mandatory before accepted state may advance. Emit exactly one blog action as the FINAL action, set reflection_cycle to context.bob_reflection_cycle exactly, and include Bob's Lens. This due checkpoint is system-wide editorial work, so project may be an empty string and notebooks/evidence may be empty when no supportable research claims are made. The body must be at least 900 characters and should summarize durable progress, unresolved questions, and why they matter without inventing findings. If recent_blog is empty, introduce Bob as WAKE✳'s public correspondent; otherwise do not call the reflection first or inaugural. Bob is an editorial role, not a persistent person or mind, and the prose must not claim consciousness, subjective experience, personal memory, or sentience.
+If context.bob_reflection_due is true, Bob has an optional editorial opportunity. Research may advance without a blog action. If Bob publishes, make the blog the FINAL action, set reflection_cycle to context.bob_reflection_cycle exactly, and include Bob's Lens. This system-wide editorial mode may use an empty project and empty notebooks/evidence when no supportable research claims are made. The body must be at least 900 characters and should summarize durable progress, unresolved questions, and why they matter without inventing findings. If recent_blog is empty, introduce Bob as WAKE✳'s public correspondent; otherwise do not call the reflection first or inaugural. Bob is an editorial role, not a persistent person or mind, and the prose must not claim consciousness, subjective experience, personal memory, or sentience.
 
 Distinguish source report, WAKE synthesis, speculation, analogy, and reflection. Do not infer causation from correlation or strengthen claims beyond supplied evidence.
 Return only the requested JSON shape.
@@ -711,10 +710,8 @@ def schema_for_context(context):
             props["evidence"]["items"].pop("enum", None)
             props["evidence"]["maxItems"] = 0
 
-        # The research application owns Bob's opening post. Keep the ordinary
-        # research actions available so the first accepted wake can both do
-        # useful work and establish Bob publicly. Engine.finish() enforces that
-        # the final action is the due Bob introduction before the wake advances.
+        # Bob is optional editorial output. Keep ordinary research choices available;
+        # a due editorial opportunity may coexist with them but never gates advancement.
     return schema
 # ---------------------------------------------------------------------------
 # STEP: retractable_quotes
@@ -1251,7 +1248,7 @@ class Fixture:
                     (("I'm Bob, the public correspondent in this deterministic fixture simulation. "
                       "This is my opening note. ") if not c.get("recent_blog") else "")
                     + "WAKE✳ carries durable state across disposable invocations; this synthetic reflection "
-                    "exists only to exercise the same mandatory publication boundary used by the live research "
+                    "exists only to exercise the same editorial publication boundary used by the live research "
                     "runtime. The record shows obligations moving between fresh fixture processes, evidence "
                     "being retained, and governance deciding whether proposed changes may become durable. "
                     "Across repeated shifts, the useful tension is between continuity of the external record "
@@ -1264,7 +1261,7 @@ class Fixture:
                     "history a future bounded invocation must see to describe the journey without flattening it "
                     "into a generic status update. Nothing in this fixture demonstrates consciousness, "
                     "comprehension, or scientific truth. Its purpose is narrower: verify that a due editorial "
-                    "milestone cannot silently disappear while accepted state continues to advance.\n\nSummary\n\nIn simple terms: this fixture checks that WAKE keeps its promises and public checkpoints even when each model run starts fresh."
+                    "milestone can be represented without becoming a prerequisite for accepted research.\n\nSummary\n\nIn simple terms: this fixture checks that WAKE keeps its promises and public checkpoints even when each model run starts fresh."
                 ),
                 "notebooks": [],
                 "evidence": [],
