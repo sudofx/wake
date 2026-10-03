@@ -1004,6 +1004,46 @@ class ResearchTests(unittest.TestCase):
             ["new-1", "new-2"],
         )
 
+    def test_schema_drops_stale_resolution_evidence_even_if_allowlist_contains_it(self):
+        context = {
+            "research_topics": [],
+            "projects": [],
+            "blog_notebooks": {},
+            "evidence": [
+                {"id": "old", "version": 4},
+                {"id": "new", "version": 7},
+            ],
+            "commitments": [{
+                "id": "c1",
+                "created_version": 6,
+                "resolution_evidence": ["old", "new"],
+            }],
+        }
+        schema = schema_for_context(context)
+        choices = schema["properties"]["actions"]["items"]["anyOf"]
+        resolves = [item for item in choices if item["properties"]["type"]["enum"] == ["resolve"]]
+        self.assertEqual(len(resolves), 1)
+        self.assertEqual(resolves[0]["properties"]["evidence"]["items"]["enum"], ["new"])
+
+    def test_schema_omits_resolve_when_only_stale_resolution_evidence_is_visible(self):
+        context = {
+            "research_topics": [],
+            "projects": [],
+            "blog_notebooks": {},
+            "evidence": [{"id": "old", "version": 4}],
+            "commitments": [{
+                "id": "c1",
+                "created_version": 6,
+                "resolution_evidence": ["old"],
+            }],
+        }
+        schema = schema_for_context(context)
+        choices = schema["properties"]["actions"]["items"]["anyOf"]
+        self.assertFalse(any(
+            item["properties"]["type"]["enum"] == ["resolve"]
+            for item in choices
+        ))
+
     def test_schema_constrains_reframe_to_recovery_projects_and_visible_evidence(self):
         context = {
             "research_topics": [],
