@@ -198,12 +198,58 @@ def build_map(state, events, head, replay_history=True):
         # The wake-live projection intentionally carries only a bounded event tail.
         # Build the public map from current durable objects and their explicit IDs
         # instead of pretending that tail can replay history from cycle zero.
+        #
+        # Keep each journal's visible constellation connected using durable
+        # lifecycle pointers (created_by / updated_by / resolved_by).  This is a
+        # current-state projection, not historical replay: versioned artifacts
+        # therefore describe their current durable form while the edge records
+        # the exact pointer that ties that object back to a wake.
         expanded = set()
         for kind, collection in COLLECTIONS.items():
             for identifier in state.get(collection, {}):
                 artifact(kind, identifier, state, state["version"], expanded)
-        for journal_key in journals:
-            nodes[journal_key]["detail"]["exact_record"] = "Current projected durable state"
+
+        journal_expands = {
+            jid: {f"invocation:{iid}"}
+            for iid, jid in by_invocation.items()
+        }
+        for kind, collection in COLLECTIONS.items():
+            for identifier, item in state.get(collection, {}).items():
+                lifecycle = []
+                created_by = item.get("created_by")
+                updated_by = item.get("updated_by")
+                resolved_by = item.get("resolved_by")
+                if created_by:
+                    lifecycle.append((created_by, "created", "created_by"))
+                if updated_by and updated_by != created_by:
+                    lifecycle.append((updated_by, "revised", "updated_by"))
+                if resolved_by and resolved_by not in (created_by, updated_by):
+                    lifecycle.append((resolved_by, "resolved", "resolved_by"))
+                for iid, relation, field in lifecycle:
+                    jid = by_invocation.get(iid)
+                    if not jid:
+                        continue
+                    local_expanded = set()
+                    key = artifact(kind, identifier, state, state["version"], local_expanded)
+                    if not key:
+                        continue
+                    journal_expands[jid].update(local_expanded)
+                    edge(jid, key, relation, f"{collection}.{identifier}.{field}")
+
+        accepted_by_invocation = {
+            event.get("payload", {}).get("id"): event
+            for event in events
+            if event.get("kind") == "accepted"
+        }
+        for iid, jid in by_invocation.items():
+            nodes[jid]["expands"] = sorted(journal_expands.get(jid, {f"invocation:{iid}"}))
+            accepted = accepted_by_invocation.get(iid)
+            if accepted:
+                nodes[jid]["detail"]["exact_record"] = (
+                    f"Event {accepted['seq']} · {accepted['hash']}"
+                )
+            else:
+                nodes[jid]["detail"]["exact_record"] = "Current projected durable state"
     # Legacy posts without an accepted-event link remain visible; their explicit
     # references use the current export and are labelled accordingly.
     for pid, post in state.get("posts", {}).items():
