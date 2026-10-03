@@ -455,25 +455,6 @@ def enforce_synthesis_checkpoint(state, invocation, proposal):
     )
 
 
-def enforce_bob_opening_checkpoint(state, invocation, proposal):
-    """Keep Bob's first-post obligation at the WAKE application boundary."""
-    if not state.get("charter") or state.get("posts"):
-        return
-    invocation_state = state.get("invocations", {}).get(invocation, {})
-    if not invocation_state.get("charged"):
-        return
-    due_cycle = bob_reflection_due_cycle(state)
-    actions = proposal.get("actions") if isinstance(proposal, dict) else None
-    require(
-        isinstance(actions, list)
-        and bool(actions)
-        and isinstance(actions[-1], dict)
-        and actions[-1].get("type") == "blog"
-        and actions[-1].get("reflection_cycle") == due_cycle,
-        f"Bob opening post for accepted wake {due_cycle} is mandatory before live research may advance",
-    )
-
-
 def govern_proposal(state, invocation, proposal):
     """Apply the complete WAKE domain-policy path without committing storage."""
     proposal, reuse_filter = reuse_owned_project_preflight(state, proposal)
@@ -497,7 +478,6 @@ def govern_proposal(state, invocation, proposal):
             rotation_filter = {**rotation_filter, **journal_filter}
     proposal = assign_research_ids(proposal, invocation)
     enforce_synthesis_checkpoint(state, invocation, proposal)
-    enforce_bob_opening_checkpoint(state, invocation, proposal)
     editorial = None
     try:
         result = transition(state, proposal, invocation)
