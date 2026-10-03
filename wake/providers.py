@@ -561,26 +561,31 @@ def schema_for_context(context):
             constrained["properties"]["evidence"]["items"] = {"type": "string", "enum": allowed}
             choices.append(constrained)
 
-    # Reframes reference durable observations by ID. Constrain the provider to
-    # evidence that is actually visible in this invocation so prose cannot be
-    # mistaken for an evidence reference and invented IDs cannot pass preflight.
+    # Reframes are recovery actions, not general research actions. Governance
+    # permits them only for projects with a recorded capability block or an
+    # Attention deferral, exposed to the provider as representation_recovery.
+    # Keep the schema aligned with that durable eligibility so the model cannot
+    # spend a provider turn on a proposal governance is guaranteed to reject.
     reframe = next(a for a in choices if a["properties"]["type"]["enum"] == ["reframe"])
     visible_evidence_ids = sorted({
         item["id"] for item in context.get("evidence", [])
         if isinstance(item, dict) and item.get("id")
     })
-    if visible_evidence_ids:
+    recovery_project_ids = {
+        item.get("project")
+        for item in context.get("representation_recovery", [])
+        if isinstance(item, dict) and item.get("project")
+    }
+    project_ids = sorted({
+        project["id"] for project in context.get("projects", [])
+        if project.get("id") in recovery_project_ids
+        and (not enforced_topic or project.get("domain") == enforced_topic)
+    })
+    if visible_evidence_ids and project_ids:
         reframe["properties"]["observations"]["items"] = {
             "type": "string", "enum": visible_evidence_ids
         }
-        project_ids = sorted({
-            project["id"] for project in context.get("projects", [])
-            if not enforced_topic or project.get("domain") == enforced_topic
-        })
-        if project_ids:
-            reframe["properties"]["project"]["enum"] = project_ids
-        elif enforced_topic:
-            choices.remove(reframe)
+        reframe["properties"]["project"]["enum"] = project_ids
     else:
         choices.remove(reframe)
 
