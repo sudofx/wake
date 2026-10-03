@@ -127,7 +127,7 @@ class ProvenanceTests(unittest.TestCase):
 
         self.assertIn("project:p@2", nodes[f"journal:{first}"]["expands"])
         self.assertIn("notebook:n@2", nodes[f"journal:{second}"]["expands"])
-        self.assertIn((f"journal:{first}", "project:p@2", "created"), triples)
+        self.assertIn((f"journal:{first}", "project:p@2", "revised"), triples)
         self.assertIn((f"journal:{second}", "notebook:n@2", "revised"), triples)
         self.assertTrue(nodes[f"journal:{first}"]["detail"]["exact_record"].startswith("Event "))
 
