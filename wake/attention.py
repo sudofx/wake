@@ -75,7 +75,7 @@ def _proposal_project_domains(state, proposal):
 
 
 def _proposal_milestone_topics(state, proposal):
-    """Return domains that reached a durable synthesis/publication milestone."""
+    """Return domains that reached a durable research-synthesis milestone."""
     domains = _proposal_project_domains(state, proposal)
     milestone_topics = set()
     for action in (proposal or {}).get("actions", []):
@@ -174,7 +174,7 @@ def plan(state):
         "attention_saturation_threshold": ATTENTION_SATURATION_THRESHOLD,
         "attention": attention.get("attention", {}),
         "cooldown_other_attempts": COOLDOWN_OTHER_ATTEMPTS,
-        "saturation_release_condition": "accepted notebook or ordinary publication on another topic",
+        "saturation_release_condition": "accepted notebook on another topic",
         "reason": (
             "no durable active topic exists; choose from configured eligible topics"
             if current is None and selected else
@@ -266,7 +266,7 @@ def assessment(state, invocation, terminal, proposal=None):
                 "cause": "attention_saturation",
                 "reason": "five accepted wakes concentrated on one topic; rotate until another topic reaches durable synthesis",
                 "other_topic_attempts": 0,
-                "release_condition": "accepted notebook or ordinary publication on another topic",
+                "release_condition": "accepted notebook on another topic",
                 "parked_projects": _parked_projects(state, attention_topic),
             }
             saturation_triggered = True
