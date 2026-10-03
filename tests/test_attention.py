@@ -10,12 +10,33 @@ from wake.governance import Rejected, _enforce_attention_rotation
 from wake.providers import RESEARCH_SYSTEM, schema_for_context
 from wake.attention import (
     ATTENTION_SATURATION_THRESHOLD, COOLDOWN_OTHER_ATTEMPTS,
-    HARD_REJECTION_THRESHOLD, assessment, plan,
+    HARD_REJECTION_THRESHOLD, _proposal_attention_topic,
+    _proposal_milestone_topics, assessment, plan,
 )
 from support import charter_settings
 
 
 class AttentionTests(unittest.TestCase):
+    def test_bob_blog_does_not_count_as_research_progress_or_move_attention(self):
+        state = {
+            "projects": {
+                "research-project": {"id": "research-project", "domain": "entropy"},
+                "blog-project": {"id": "blog-project", "domain": "observer"},
+            }
+        }
+        proposal = {
+            "actions": [
+                {"type": "notebook", "project": "research-project"},
+                {"type": "blog", "project": "blog-project"},
+            ]
+        }
+        self.assertEqual(_proposal_milestone_topics(state, proposal), {"entropy"})
+        self.assertEqual(_proposal_attention_topic(state, "entropy", proposal), "entropy")
+
+        blog_only = {"actions": [{"type": "blog", "project": "blog-project"}]}
+        self.assertEqual(_proposal_milestone_topics(state, blog_only), set())
+        self.assertEqual(_proposal_attention_topic(state, "entropy", blog_only), "entropy")
+
     def test_legacy_squirrel_event_replays_into_attention_state(self):
         from wake.store import reduce_event
         state = {
