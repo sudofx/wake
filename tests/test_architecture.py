@@ -121,17 +121,19 @@ class ArchitectureSeparationTests(unittest.TestCase):
 
     def test_bob_is_plain_language_scientific_interpreter_without_a_quota(self):
         provider = self.read('wake/providers.py')
-        self.assertIn('Bob exists only inside a blog action', provider)
-        self.assertIn('intelligent adult reader', provider)
-        self.assertIn('scientific method', provider)
-        self.assertIn('No quota and no filler', provider)
-        self.assertIn('what remains unknown', provider)
-        self.assertIn('"How to Win Friends and Influence People"', provider)
-        self.assertIn('"Quantum Enigma"', provider)
-        self.assertIn('strongest conflicting evidence', provider)
-        self.assertIn('never repeat the first-post introduction', provider)
-        self.assertIn('falsifier', provider)
-        self.assertNotIn('ELI25 audience', provider)
+        prompts = self.read('wake/prompts.py')
+        contract = provider + "\n" + prompts
+        self.assertIn('Bob exists only inside a blog action', contract)
+        self.assertIn('intelligent adult reader', contract)
+        self.assertIn('scientific method', contract)
+        self.assertIn('No quota and no filler', contract)
+        self.assertIn('what remains unknown', contract)
+        self.assertIn('"How to Win Friends and Influence People"', contract)
+        self.assertIn('"Quantum Enigma"', contract)
+        self.assertIn('strongest conflicting evidence', contract)
+        self.assertIn('never repeat the first-post introduction', contract)
+        self.assertIn('falsifier', contract)
+        self.assertNotIn('ELI25 audience', contract)
 
     def test_research_page_keeps_revised_notebooks_ahead_of_research_notes(self):
         pet = self.read('wake/assets/pet.js')
