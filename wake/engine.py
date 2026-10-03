@@ -1422,8 +1422,8 @@ class Engine:
                  "retractable_quotes": retractable_quotes(post)}
                 for post in list(state.get("posts", {}).values())[-4:]
             ]
-            # Bob reflects on the whole durable journey every tenth accepted wake.
-            # state.version is the accepted-cycle count before the pending wake.
+            # Bob receives a non-blocking editorial opportunity after the opening
+            # cycle and again after a stable quiet window. Research never depends on it.
             context["bob_reflection_cycle"] = bob_reflection_due_cycle(state)
             context["bob_reflection_due"] = context["bob_reflection_cycle"] is not None
             context["reflection_history"] = (
