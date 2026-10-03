@@ -116,6 +116,21 @@ class ProvenanceTests(unittest.TestCase):
         self.assertFalse(any(e['source']=='blog:post' and e['relation']=='originating wake' for e in graph['edges']))
         self.assertIn('blog:post', graph['blogs'])
 
+    def test_live_projection_keeps_journal_artifact_relationships(self):
+        first = self.propose([project(), notebook(["s1", "s2"]), blog()])
+        second = self.propose([notebook(["s2", "s3"], "Changed findings"),
+                               blog("correction", supersedes="post", evidence=["s2", "s3"])])
+        state = self.engine.store.load()
+        graph = build_map(state, self.engine.store.events(), self.engine.store.replay()[1], replay_history=False)
+        nodes = {item["id"]: item for item in graph["nodes"]}
+        triples = {(e["source"], e["target"], e["relation"]) for e in graph["edges"]}
+
+        self.assertIn("project:p@2", nodes[f"journal:{first}"]["expands"])
+        self.assertIn("notebook:n@2", nodes[f"journal:{second}"]["expands"])
+        self.assertIn((f"journal:{first}", "project:p@2", "created"), triples)
+        self.assertIn((f"journal:{second}", "notebook:n@2", "revised"), triples)
+        self.assertTrue(nodes[f"journal:{first}"]["detail"]["exact_record"].startswith("Event "))
+
     def test_export_is_static_safe_and_reproducible(self):
         self.propose([project(), notebook(["s1", "s2"], '</script><script>alert("no")</script>'), blog()])
         export(self.engine.store, self.root/'site')
@@ -127,6 +142,9 @@ class ProvenanceTests(unittest.TestCase):
         self.assertIn("map-data.json?wake=", map_js)
         self.assertIn("topicLabels=data.meta?.topic_labels||{}", map_js)
         self.assertIn("topicLabel(topic).toLowerCase()", map_js)
+        self.assertIn("map-detail-topic", map_js)
+        self.assertIn("detail-label','Topic'", map_js)
+        self.assertIn(".map-detail-topic", (Path(__file__).resolve().parents[1]/"wake/assets/map.css").read_text())
         map3d_page = (self.root/'site/map3d.html').read_text()
         map3d_js = (self.root/'site/map3d.js').read_text()
         map3d_shell = json.loads((self.root/'site/map3d-data.json').read_text())
