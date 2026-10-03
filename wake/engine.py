@@ -61,15 +61,6 @@ DEFAULTS = {"timezone": "America/Los_Angeles", "objective": "Test durable contin
             "free_tier_confirmed": False, "gemini_fallback_models": [], "gemini_fallback_requires_primary_daily_quota": False,
             "inquiry_drive_enabled": False, "research_topics_file": "research-topics.toml",
             "observation_mode": False, "research_collection_budget": 2, "research_collection_wall_seconds": 45}
-# ---------------------------------------------------------------------------
-# STEP: _topics
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-# ---------------------------------------------------------------------------
-
 
 def _topics(settings, config_path=None):
     topics = settings.get("research_topics") if config_path is None else None
@@ -115,15 +106,6 @@ def _topics(settings, config_path=None):
     require(len({item["id"] for item in normalized}) == len(normalized), "Research topic IDs must be unique")
     require(any(item["enabled"] for item in normalized), "At least one research topic must be enabled")
     return normalized
-# ---------------------------------------------------------------------------
-# STEP: config
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Callers may rely on this contract.
-# ---------------------------------------------------------------------------
-
 
 def config(path="wake.toml"):
     config_path = Path(path)
@@ -162,15 +144,6 @@ def config(path="wake.toml"):
         require(result.get("research_topics_file"), "research_topics_file is required when mission is configured")
         result["research_topics"] = _topics(result, config_path)
     return result
-# ---------------------------------------------------------------------------
-# OBJECT: Engine
-#
-# This object groups state/behavior exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Callers may rely on this contract.
-# ---------------------------------------------------------------------------
-
 
 class Engine:
     # ---------------------------------------------------------------------------
