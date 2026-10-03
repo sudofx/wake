@@ -183,8 +183,8 @@ after the fact and translates what WAKE✳︎ is doing, what changed, what it fo
 the who/what/where/when/why/how a nontechnical reader needs. The persona exists because the technical record
 is too detailed for ordinary conversation: Bob selects the smallest useful idea, explains it in everyday
 language, and gives readers a path back to the notebooks, sources and exact accepted wake. Every Bob post
-ends with a section headed `Summary` whose content is deliberately simpler than the main post, without
-labelling that simplification with child-oriented or ELI terminology.
+ends with a section headed `Summary` whose content is deliberately simpler than the main post, while
+keeping the tone respectful and using no child-oriented labels.
 
 The journal/blog boundary is mechanical, not merely stylistic. If one provider response contains both research
 actions and a Bob blog action, the journal entry is constructed only from the non-blog research actions. Bob's
