@@ -1,9 +1,9 @@
 name: WAKE✳︎ - Reset
 run-name: "Reset WAKE✳︎"
 
-# ELI5: Press Run workflow. Reset stops WAKE✳︎ if needed, makes the latest
-# master code live only when needed, archives the current durable history,
-# then starts a new active experiment at zero.
+# Reset stops WAKE✳︎ if needed, promotes verified master when required,
+# archives the current durable history, resets authority to cycle zero,
+# then automatically starts the fresh experiment.
 on:
   workflow_dispatch:
 
@@ -122,10 +122,68 @@ jobs:
           echo "Promoted wake-runtime to verified master $promoted." >> "$GITHUB_STEP_SUMMARY"
 
       - name: Dispatch the governed archive-first reset
+        id: reset_dispatch
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           runtime_ref="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha')"
-          gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime             -f "dispatch_token=reset-$GITHUB_RUN_ID"             -f "runtime_ref=$runtime_ref"             -f "reset=true"
-          echo "Wake Zero reset requested from runtime $runtime_ref. Continuous research remains stopped." >> "$GITHUB_STEP_SUMMARY"
+          token="reset-$GITHUB_RUN_ID"
+          echo "runtime_ref=$runtime_ref" >> "$GITHUB_OUTPUT"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+          gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime \
+            -f "dispatch_token=$token" \
+            -f "runtime_ref=$runtime_ref" \
+            -f "reset=true"
+          echo "Wake Zero reset requested from runtime $runtime_ref." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Wait for cycle-zero reset to complete
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RESET_TOKEN: ${{ steps.reset_dispatch.outputs.token }}
+        run: |
+          set -euo pipefail
+          run_id=""
+          for attempt in {1..60}; do
+            run_id="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50" \
+              --jq ".workflow_runs[] | select(.name == \"WAKE✳︎ $RESET_TOKEN\") | .id" | head -n1)"
+            if [[ -n "$run_id" ]]; then
+              break
+            fi
+            sleep 2
+          done
+          test -n "$run_id" || {
+            echo "::error::Could not find governed reset run for $RESET_TOKEN."
+            exit 1
+          }
+
+          for attempt in {1..300}; do
+            status="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id" --jq '.status')"
+            if [[ "$status" == "completed" ]]; then
+              conclusion="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id" --jq '.conclusion')"
+              test "$conclusion" = "success" || {
+                echo "::error::Governed reset run $run_id finished with $conclusion."
+                exit 1
+              }
+              echo "Governed reset completed successfully in run $run_id." >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "::error::Governed reset did not finish before the safety timeout."
+          exit 1
+
+      - name: Restart fresh continuous research
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUNTIME_REF: ${{ steps.reset_dispatch.outputs.runtime_ref }}
+        run: |
+          set -euo pipefail
+          state="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml" --jq '.state')"
+          if [[ "$state" != "active" ]]; then
+            gh api --method PUT "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml/enable" >/dev/null
+          fi
+          gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime \
+            -f "dispatch_token=restart-after-reset-$GITHUB_RUN_ID" \
+            -f "runtime_ref=$RUNTIME_REF"
+          echo "Reset complete; fresh continuous research restarted from $RUNTIME_REF." >> "$GITHUB_STEP_SUMMARY"
