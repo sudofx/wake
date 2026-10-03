@@ -618,6 +618,11 @@ def schema_for_context(context):
     if notebook and (enforced_topic or (projects and collector_evidence)):
         choices.remove(notebook)
         project_evidence = context.get("project_evidence", {})
+        existing_notebooks = {}
+        for item in context.get("notebooks", []):
+            if not isinstance(item, dict) or not item.get("project") or not item.get("id"):
+                continue
+            existing_notebooks.setdefault(item["project"], []).append(item)
         for project in projects:
             if enforced_topic and project.get("domain") != enforced_topic:
                 continue
@@ -625,6 +630,21 @@ def schema_for_context(context):
             allowed = sorted(allowed if allowed is not None else collector_evidence)
             if not allowed:
                 continue
+
+            # Notebook revisions must add genuinely new retrieved evidence.
+            # If every currently eligible source is already cited by the visible
+            # notebook history for this project, there is no schema-valid revision
+            # that governance can accept, so do not offer one to the provider.
+            prior_evidence = {
+                evidence_id
+                for item in existing_notebooks.get(project["id"], [])
+                for evidence_id in item.get("evidence", [])
+            }
+            if existing_notebooks.get(project["id"]) and not any(
+                evidence_id not in prior_evidence for evidence_id in allowed
+            ):
+                continue
+
             constrained = deepcopy(notebook)
             constrained["properties"]["project"] = {"type": "string", "enum": [project["id"]]}
             constrained["properties"]["evidence"]["items"] = {"type": "string", "enum": allowed}
