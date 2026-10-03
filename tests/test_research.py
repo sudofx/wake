@@ -1582,7 +1582,8 @@ class ResearchTests(unittest.TestCase):
     def test_bob_prompt_requires_plain_language_summary(self):
         self.assertIn('final section headed exactly "Summary"', RESEARCH_SYSTEM)
         self.assertIn("no assumed background", RESEARCH_SYSTEM)
-        self.assertIn("Do not call this section \"Explain it like I'm five\"", RESEARCH_SYSTEM)
+        self.assertIn("never label the Summary with child-oriented shorthand or language", RESEARCH_SYSTEM)
+        self.assertNotIn("Explain it like", RESEARCH_SYSTEM)
 
     def test_bob_fixture_posts_include_plain_language_summary(self):
         self.assertIn("\n\nSummary\n\n", self.blog()["body"])
