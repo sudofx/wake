@@ -1933,7 +1933,7 @@ def transition(state, proposal, invocation, historical=False):
                 and state.get("invocations", {}).get(invocation, {}).get("provider") != "fixture"
             ):
                 require(
-                    bool(re.search(r"(?:^|\n\n)Summary\n\n\S[\s\S]*\Z", action["body"].strip())),
+                    bool(re.search(r"(?:^|\n\n)Summary\n+\S[\s\S]*\Z", action["body"].strip())),
                     "Bob posts must end with a final Summary section in plain language",
                 )
             # Rich milestone requirements govern new proposals only.
