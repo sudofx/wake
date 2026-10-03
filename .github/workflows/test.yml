@@ -12,6 +12,9 @@ on:
       - 'pyproject.toml'
       - 'research-topics.toml'
       - '.github/workflows/**'
+      - 'README.md'
+      - 'AGENTS.md'
+      - 'docs/**'
   pull_request:
   workflow_dispatch:
 
