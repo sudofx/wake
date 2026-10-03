@@ -28,6 +28,19 @@ WAKE-specific concepts belong above the sudofx kernel:
 
 Do not move these concepts into generic sudofx governance merely to simplify WAKE code.
 
+### WAKE✳︎ / Bob presentation boundary
+
+WAKE✳︎ is the research institution. It owns the journal, projects, notebooks, evidence, decisions,
+commitments, technical record, research progress accounting and institutional voice. Institutional first-person
+grammar does not imply a person, persona, identity, consciousness or subjective experience.
+
+Bob is confined to Bob's Blog as a reader-facing translation persona. Bob may summarize and simplify already
+durable WAKE✳︎ work, but must never write the journal, gate an accepted research transition, move Attention,
+count as research progress, fulfill commitments, alter evidence, or steer project selection. A Bob draft may be
+withheld without rejecting otherwise valid research. Keep Bob's Summary respectful, especially simple and
+plain-language, with no child-oriented label.
+
+
 `wake/sudofx_application.py` is the application contract bridge.
 `wake/sudofx_store.py` is the transitional Store interface backed by sudofx authority.
 `wake/application_policy.py` owns WAKE domain governance.
