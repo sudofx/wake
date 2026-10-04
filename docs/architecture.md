@@ -173,10 +173,11 @@ Replay favors transparency over throughput. It rechecks all history; long record
 
 ## Public interpretation layer
 
-**WAKE✳︎** is the research institution. It owns the journal, projects, notebooks, evidence, decisions,
-commitments, technical record and institutional research voice. WAKE✳︎ may use ordinary institutional
-first-person grammar such as I, we, me, us and our, but that grammar does not imply a person, persona,
-identity, consciousness, feelings, or subjective experience.
+The current **WAKE✳︎ research application** owns the journal, projects, notebooks, evidence, decisions,
+commitments, technical record and institutional research voice. Those are application-layer responsibilities
+running on WAKE✳︎'s durable-work infrastructure, not properties of the kernel itself. The application may use
+ordinary institutional first-person grammar such as I, we, me, us and our, but that grammar does not imply a
+person, persona, identity, consciousness, feelings, or subjective experience.
 
 Bob's Blog is a separate reader-facing translation layer. Bob is intentionally a persona/byline, not
 **WAKE✳︎**'s mind, self, identity, consciousness, mechanism, collaborator or research participant. Bob does
