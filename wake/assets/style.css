@@ -2047,6 +2047,7 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
 /* Final device-shape tuning for the operator's real screens. */
 @media(max-width:430px){
   body.metrics-ops-active #metrics.view{min-width:0}
+  .ops-provenance-jump a small,.ops-audit-steps small,.ops-history-legend span,.ops-present-endpoint small{font-size:7px}
   .ops-storyline{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(138px,48vw)}
   .ops-storyline a{min-height:44px;border-bottom:0;border-right:1px solid var(--ops-line-soft)}
   .ops-storyline a:last-child{border-right:0}
