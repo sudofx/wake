@@ -2445,3 +2445,132 @@ body>.masthead .powered-by{
 .nebula-explore-console i{
   display:none!important;
 }
+
+
+/* CONTEXTUAL HELP POPOVERS — 2026-10-04 */
+/* Help belongs beside its trigger. Do not blur or dim the entire page behind it. */
+.help-layer{
+  position:fixed!important;
+  inset:0!important;
+  display:block!important;
+  padding:0!important;
+  background:transparent!important;
+  pointer-events:none!important;
+  z-index:12000!important;
+}
+.help-layer[hidden]{display:none!important}
+.help-panel{
+  position:fixed!important;
+  left:var(--help-left,auto)!important;
+  top:var(--help-top,86px)!important;
+  right:auto!important;
+  bottom:auto!important;
+  width:min(420px,calc(100vw - 36px))!important;
+  max-height:min(470px,calc(100dvh - 110px))!important;
+  margin:0!important;
+  padding:20px 22px 22px!important;
+  overflow:auto!important;
+  border:1px solid rgba(86,122,171,.72)!important;
+  border-top:1px solid rgba(86,122,171,.72)!important;
+  border-radius:14px!important;
+  background:rgba(5,14,31,.76)!important;
+  box-shadow:0 24px 70px rgba(0,0,18,.42),inset 0 1px rgba(255,255,255,.035)!important;
+  backdrop-filter:blur(24px) saturate(118%)!important;
+  -webkit-backdrop-filter:blur(24px) saturate(118%)!important;
+  pointer-events:auto!important;
+}
+.help-panel .eyebrow{
+  margin:0 34px 8px 0!important;
+  color:#35dfe9!important;
+  font-size:9px!important;
+  letter-spacing:.13em!important;
+}
+.help-panel #help-title{
+  margin:0 34px 16px 0!important;
+  color:#f4f6ff!important;
+  font:760 26px/1.05 -apple-system,BlinkMacSystemFont,"SF Pro Display",Inter,"Segoe UI",Arial,sans-serif!important;
+  letter-spacing:-.035em!important;
+}
+.help-copy{
+  display:grid!important;
+  grid-template-columns:110px minmax(0,1fr)!important;
+  gap:12px 16px!important;
+  padding-top:14px!important;
+  border-top:1px solid rgba(80,107,150,.55)!important;
+}
+.help-copy h3{
+  margin:0!important;
+  color:#c968ff!important;
+  font:700 10px/1.35 ui-monospace,SFMono-Regular,Consolas,monospace!important;
+  letter-spacing:.05em!important;
+  text-transform:uppercase!important;
+}
+.help-copy p{
+  margin:0!important;
+  color:#c9d2e8!important;
+  font-size:13px!important;
+  line-height:1.48!important;
+}
+.help-close{
+  position:absolute!important;
+  top:10px!important;
+  right:10px!important;
+  width:30px!important;
+  height:30px!important;
+  min-height:30px!important;
+  padding:0!important;
+  border:1px solid rgba(83,111,154,.55)!important;
+  border-radius:8px!important;
+  background:rgba(8,20,41,.72)!important;
+  color:#d9e0f3!important;
+  font-size:19px!important;
+  line-height:1!important;
+}
+.help-trigger{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:20px!important;
+  height:20px!important;
+  min-height:20px!important;
+  margin-left:7px!important;
+  padding:0!important;
+  border:1px solid rgba(79,119,166,.72)!important;
+  border-radius:50%!important;
+  background:rgba(5,17,36,.65)!important;
+  color:#9fb4d8!important;
+  font:700 11px/1 ui-monospace,SFMono-Regular,Consolas,monospace!important;
+  vertical-align:middle!important;
+}
+.help-trigger:hover,
+.help-trigger:focus-visible{
+  color:#2ce2ea!important;
+  border-color:#2ce2ea!important;
+  background:rgba(8,29,50,.82)!important;
+}
+body.help-open{
+  overflow:auto!important;
+}
+@media(max-width:720px){
+  .help-layer{
+    display:flex!important;
+    align-items:flex-end!important;
+    justify-content:center!important;
+    padding:0 8px 8px!important;
+  }
+  .help-layer[hidden]{display:none!important}
+  .help-panel{
+    position:relative!important;
+    left:auto!important;
+    top:auto!important;
+    width:100%!important;
+    max-height:58dvh!important;
+    border-radius:14px!important;
+    padding:18px 18px 20px!important;
+  }
+  .help-copy{
+    grid-template-columns:1fr!important;
+    gap:5px 0!important;
+  }
+  .help-copy p{margin-bottom:10px!important}
+}
