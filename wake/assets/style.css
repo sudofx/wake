@@ -1617,3 +1617,38 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
 @media(max-width:1000px){.ops-trajectory-list{grid-template-columns:1fr}.ops-trajectory-row{border-right:0}.ops-trajectory-row:last-child{border-bottom:0}}
 @media(max-width:700px){.ops-trajectory-head{display:block}.ops-trajectory-head small{display:block;text-align:left;margin-top:5px;max-width:none}.ops-trajectory-row{grid-template-columns:1fr;gap:10px}.ops-trajectory-stages{padding-top:2px}}
 @media(max-width:430px){.ops-trajectory-row{padding:10px}.ops-trajectory-stage i{width:14px;height:14px}.ops-trajectory-stage b{font-size:6px}.ops-trajectory-stage small{font-size:6px}}
+
+
+/* Final device-shape tuning for the operator's real screens. */
+@media(max-width:430px){
+  body.metrics-ops-active #metrics.view{min-width:0}
+  .ops-storyline a{min-height:44px}
+  .ops-reading-key{scroll-snap-type:x proximity}
+  .ops-reading-key span{scroll-snap-align:start}
+}
+@media(min-width:700px) and (max-width:1100px){
+  .ops-storyline a{min-height:46px}
+  .ops-console{margin-top:16px}
+}
+@media(min-width:1500px) and (max-aspect-ratio:1.99/1){
+  body.metrics-ops-active main{width:calc(100vw - 56px);max-width:none}
+  body.metrics-ops-active #metrics.view{width:100%;max-width:none}
+  .ops-console-grid{grid-template-columns:minmax(0,1fr) 310px}
+}
+@media(min-width:1450px) and (min-aspect-ratio:2/1){
+  body.metrics-ops-active main{width:calc(100vw - 40px);max-width:none}
+  body.metrics-ops-active .masthead,body.metrics-ops-active footer{width:calc(100vw - 40px);max-width:none}
+  body.metrics-ops-active #metrics.view{width:100%;max-width:none}
+  .ops-console-grid{grid-template-columns:minmax(0,1fr) 320px}
+  .ops-secondary-grid{grid-template-columns:minmax(0,.85fr) minmax(0,1.05fr) minmax(0,1.1fr);border-top:1px solid var(--ops-line)}
+  .ops-secondary-grid>.ops-provider-trace,.ops-secondary-grid>.ops-pressure-board,.ops-secondary-grid>.ops-time{border-top:0;min-width:0}
+  .ops-secondary-grid>.ops-pressure-board,.ops-secondary-grid>.ops-time{border-left:1px solid var(--ops-line)}
+  .ops-secondary-grid .ops-pressure-board{grid-template-columns:1fr}
+  .ops-secondary-grid .ops-pressure-board>section+section{border-left:0;border-top:1px solid var(--ops-line-soft)}
+  .ops-secondary-grid .ops-time-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .ops-secondary-grid .ops-time-grid>div:nth-child(3n){border-right:0}
+  .ops-tertiary-grid{grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--ops-line)}
+  .ops-tertiary-grid>*{min-width:0}
+  .ops-source-rail{grid-template-columns:1.5fr .8fr .8fr .7fr}
+  .ops-pulse-cells{grid-template-columns:repeat(50,minmax(4px,1fr))}
+}
