@@ -607,7 +607,12 @@
         <a href="#metrics" data-story-target="ops-beliefs"><b>05</b><span>BELIEF</span><strong>${opsActiveBeliefs.length} active</strong></a>
         <a href="#metrics" data-story-target="ops-horizon"><b>06</b><span>FRONTIER</span><strong>${openObligations} open</strong></a>
         <a href="#metrics" data-story-target="ops-matrix"><b>07</b><span>SPACE</span><strong>${matrixPct}% mapped</strong></a>
-      </nav>     <section class="ops-console" id="ops-now" aria-label="WAKE operational research console">
+      </nav>
+      <div class="ops-story-lede" aria-label="Current record summary">
+        <span>WHAT THE RECORD SAYS NOW</span>
+        <p>Cycle <strong>${s.version}</strong> · <strong>${completed.length}</strong> completed wakes · <strong>${acceptedCount}</strong> accepted · <strong>${rejectedCount}</strong> rejected · <strong>${openObligations}</strong> open commitments · <strong>${qualifyingEvidence}</strong> substantive source observations · <strong>${opsActiveBeliefs.length}</strong> active beliefs · <strong>${matrixPct}%</strong> of continuity@1 covered.</p>
+      </div>
+      <section class="ops-console" id="ops-now" aria-label="WAKE operational research console">
         <header class="ops-console-head">
           <div><p class="eyebrow">WAKE✳︎ / RESEARCH OPERATIONS</p><h2>Live governed research field.</h2></div>
           <div class="ops-console-actions">
