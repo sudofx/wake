@@ -969,6 +969,15 @@
       const y=(50+34*Math.sin(angle)).toFixed(2);
       return `<a class="ops-topic-node" href="#projects/topic:${encodeURIComponent(topic.id)}" style="--node-size:${size}px;--node-color:${esc(topicColors[topic.id]||'var(--ops-cyan)')};--node-x:${x}%;--node-y:${y}%"><span>${esc(topic.label)}</span><b>${topic.total}</b></a>`;
     }).join('');
+    const commandPulseSource=[...completed]
+      .sort((a,b)=>new Date(a.time||0)-new Date(b.time||0))
+      .slice(-48);
+    const commandPulse=commandPulseSource.map((item,index)=>{
+      const tone=['accepted','rejected','deferred','failed','recovered'].includes(item.status)?item.status:'other';
+      const stamp=item.time?fmt(item.time):'time unavailable';
+      const label=`${item.id||'wake'} · ${String(item.status||'unknown').toUpperCase()} · ${stamp}`;
+      return `<a class="ops-command-pulse-cell ${tone}" href="#history/${encodeURIComponent(item.id||'')}" title="${esc(label)}" aria-label="Recent wake ${index+1}: ${esc(label)}"></a>`;
+    }).join('');
     $('metrics-dashboard').innerHTML=`
       <section class="ops-command-deck" aria-label="WAKE control room overview">
         <header>
@@ -982,6 +991,10 @@
           <a href="#metrics/ops-matrix" data-instrument="continuity"><span>CONTINUITY@1</span><strong>${matrixPct===null?'NOT ENABLED':matrixPct+'%'}</strong><b>${matrixCompleted}/${matrixTotal} coordinates</b><i class="ops-command-meter ${matrixPct===null?'unavailable':''}" style="--meter:${matrixPct===null?0:matrixPct}%" aria-hidden="true"></i><small>deterministic test-space coverage · not research quality</small></a>
           <a href="map3d.html#record=root%3Awake" data-instrument="provenance"><span>RESEARCH FIELD</span><strong>${topicActive}/${configuredTopicCount||'—'}</strong><b>ACTIVE TOPIC LANES</b><i class="ops-command-meter ${topicCoveragePct===null?'unavailable':''}" style="--meter:${topicCoveragePct===null?0:Math.max(0,Math.min(100,topicCoveragePct)).toFixed(2)}%" aria-hidden="true"></i><small>${topicAttributedTotal} topic-attributed accepted actions · open 3D provenance</small></a>
           <a href="events.html" data-tone="${recordReplayOk&&sqliteQuickOk?'ok':'warning'}"><span>DURABLE RECORD</span><strong>${recordReplayOk&&sqliteQuickOk?'VERIFIED':'CHECK'}</strong><b>${recordIntegrity?.sudofx_event_count??'—'} events</b><div class="ops-command-lamps" aria-label="Durable record integrity checks"><span class="${recordReplayOk?'ok':'warn'}"><i aria-hidden="true"></i>REPLAY</span><span class="${sqliteQuickOk?'ok':'warn'}"><i aria-hidden="true"></i>SQLITE</span></div><small>head ${esc(shortHead)} · local replay + SQLite integrity evidence</small></a>
+        </div>
+        <div class="ops-command-pulse" aria-label="Recent completed wake receipts">
+          <header><span>RECENT WAKE PULSE</span><strong>${commandPulseSource.length} COMPLETED RECEIPTS</strong><small>oldest → newest · each cell is a recorded outcome</small></header>
+          <div class="ops-command-pulse-track">${commandPulse||'<span class="ops-command-pulse-empty">no completed wake receipts</span>'}</div>
         </div>
       </section>
       <nav class="ops-storyline" aria-label="WAKE data story">
