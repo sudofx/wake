@@ -138,3 +138,10 @@ body[data-motion=off] *{animation:none!important}.floating .wake-tabs{margin:8px
     margin-top:10px!important;
   }
 }
+
+/* Shared control order in Console: theme first, GitHub Actions status second. */
+.research-header .header-tools{display:flex!important;align-items:center!important;gap:10px!important}
+.research-header .theme-switch{order:1!important}
+.research-header .actions-light{order:2!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;width:auto!important;min-width:100px!important;padding:0 11px!important;border:1px solid var(--line)!important;border-radius:999px!important}
+.research-header .actions-github{display:block;width:18px;height:18px;flex:0 0 18px;color:currentColor}
+.research-header .actions-light-label{display:inline-block;font-size:12px;font-weight:700}

@@ -887,3 +887,25 @@ body::before,body::after{display:none!important}
   .header-tools .theme-switch{min-width:auto!important}
   .header-tools .theme-switch .theme-glyph{font-size:15px}
 }
+
+/* Header control order: theme first, then one GitHub Actions status control. */
+.header-tools{display:flex!important;align-items:center!important;gap:10px!important}
+.header-tools .theme-switch{order:1!important}
+.header-tools .actions-light{order:2!important}
+.header-tools .theme-glyph,.repo-link{display:none!important}
+.actions-light{min-width:104px!important;justify-content:center!important}
+.actions-github{display:block;width:20px;height:20px;flex:0 0 20px;color:#fff}
+.actions-light-label{display:inline-block}
+body{
+  background-color:#05091f!important;
+  background-image:linear-gradient(rgba(3,7,22,.08),rgba(3,7,22,.22)),url("nebula-bg.webp?v=20261004-2")!important;
+  background-position:center top!important;
+  background-size:cover!important;
+  background-repeat:no-repeat!important;
+  background-attachment:fixed!important;
+}
+@media(max-width:700px){
+  body{background-position:58% top!important;background-attachment:scroll!important}
+  .actions-light{min-width:94px!important}
+  .actions-github{width:18px;height:18px;flex-basis:18px}
+}
