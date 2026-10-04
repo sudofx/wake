@@ -583,6 +583,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
                     "metrics": projection.get("metrics", {}),
                     "application_observability": projection.get("application_observability"),
                     "application_access": projection.get("application_access"),
+                    "record_integrity": projection.get("record_integrity"),
                     "matrix_progress": projection.get("matrix_progress")}
         else:
             # Full exports still consume one verified authoritative snapshot.
@@ -590,7 +591,12 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             if experiment is None:
                 evidence_file = store.directory / "experiment.json"
                 experiment = json.loads(evidence_file.read_text()) if evidence_file.exists() else None
-            from .live import _application_access_metrics, _full_history_metrics, _matrix_metrics
+            from .live import (
+                _application_access_metrics,
+                _full_history_metrics,
+                _matrix_metrics,
+                _record_integrity_metrics,
+            )
             from sudofx.observability import build_application_observability
             data = {"state": state, "events": events, "head": head, "generated": now(),
                     "experiment": experiment, "timezone": "America/Los_Angeles", "operation": operation,
@@ -598,6 +604,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
                     "metrics": _full_history_metrics(store, state),
                     "application_observability": build_application_observability(store.record) if hasattr(store, "record") else None,
                     "application_access": _application_access_metrics(store),
+                    "record_integrity": _record_integrity_metrics(store, head),
                     "matrix_progress": _matrix_metrics(store)}
         target = Path(destination)
         target.mkdir(parents=True, exist_ok=True)
