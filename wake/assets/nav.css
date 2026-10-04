@@ -267,3 +267,14 @@ nav.compact-nav{display:flex;align-items:center;justify-content:center;gap:22px;
   -webkit-text-fill-color:var(--muted)!important;
   background:none!important;
 }
+
+
+/* CLEAN READ LABEL — 2026-10-04 */
+/* The Read label stands on its own; the dropdown remains clickable without a chevron/caret. */
+.compact-nav summary::after{
+  content:none!important;
+  display:none!important;
+}
+.compact-nav summary{
+  gap:0!important;
+}
