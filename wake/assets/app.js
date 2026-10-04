@@ -415,12 +415,13 @@
     const sinceReflectionHtml=hasReflectionBaseline
       ? `<div class="ops-since-reflection"><header><div><span>SINCE LAST REFLECTION RECEIPT</span><strong>record version ${reflectionRecordVersion} → ${Number(s.version||0)}</strong></div><a href="#blog/${encodeURIComponent(latestReflection.post.id)}">OPEN REFLECTION →</a></header><div class="ops-since-grid"><div><strong>${sinceReflection.evidence}</strong><span>evidence added</span></div><div><strong>${sinceReflection.beliefs}</strong><span>beliefs revised</span></div><div><strong>${sinceReflection.projects}</strong><span>projects changed</span></div><div><strong>${sinceReflection.notebooks}</strong><span>notebooks revised</span></div><div><strong>${sinceReflection.commitments}</strong><span>commitments created</span></div></div><small>Versioned record deltas only. Counts show durable changes after the reflection receipt; they do not measure importance or causal impact.</small></div>`
       : '<div class="ops-since-reflection unavailable"><header><div><span>SINCE LAST REFLECTION RECEIPT</span><strong>baseline unavailable</strong></div></header><small>No versioned reflection receipt is available, so WAKE does not infer a comparison window.</small></div>';
-    const latestAcceptedInvocation=[...invocations].reverse().find(item=>item?.status==='accepted')||null;
-    const latestAcceptedId=String(latestAcceptedInvocation?.id||'');
+    const latestAcceptedJournal=(s.journal||[]).at(-1)||null;
+    const latestAcceptedInvocationFallback=[...invocations].reverse().find(item=>item?.status==='accepted')||null;
+    const latestAcceptedId=String(latestAcceptedJournal?.invocation||latestAcceptedInvocationFallback?.id||'');
+    const latestAcceptedInvocation=latestAcceptedId?s.invocations?.[latestAcceptedId]||latestAcceptedInvocationFallback:null;
     const latestAcceptedEvent=latestAcceptedId?[...accepted].reverse().find(event=>String(event?.payload?.id||'')===latestAcceptedId)||null:null;
     const latestAcceptedProposal=latestAcceptedEvent?.payload?.proposal||null;
     const latestAcceptedActions=Array.isArray(latestAcceptedProposal?.actions)?latestAcceptedProposal.actions:null;
-    const latestAcceptedJournal=[...(s.journal||[])].reverse().find(item=>item?.invocation===latestAcceptedId)||null;
     const latestAcceptedTypes=latestAcceptedActions?[...new Set(latestAcceptedActions.map(action=>String(action?.type||'change').toUpperCase()))]:[];
     const latestAcceptedActionRows=latestAcceptedActions?latestAcceptedActions.slice(0,4).map(action=>{
       const type=String(action?.type||'change').toUpperCase();
