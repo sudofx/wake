@@ -151,16 +151,23 @@
     });
     return [...new Set(ids.filter(Boolean))];
   };
-  // Every tenth accepted cycle is a governed Bob reflection, regardless of
-  // whether an older model happened to include the word in its raw title.
+  // Prefer the explicit durable reflection_cycle contract. Historical records
+  // created under the older cycle-10 rule remain classified as legacy reflections.
   const postResearchTopic=post=>s.projects?.[post.project]?.domain;
-  const postTopic=post=>Number(post.created_version)%10===0?'reflection':postResearchTopic(post);
+  const postReflectionCycle=post=>{
+    const declared=Number(post?.reflection_cycle||0);
+    if(declared>0)return declared;
+    const created=Number(post?.created_version||0);
+    return created>0&&created%10===0?created:0;
+  };
+  const postTopic=post=>postReflectionCycle(post)>0?'reflection':postResearchTopic(post);
   const postMeta=(post,invocation)=>{const reflection=postTopic(post)==='reflection',topic=postResearchTopic(post),status=String(post.status||'published');return `<div class="record-panel-meta blog-meta"><span class="record-type">${reflection?'REFLECTION':'BLOG'}</span><span class="record-status">${badge(status,status.toUpperCase())}</span><span class="record-topics">${topic?topicTag(topic,'blog'):''}</span><time datetime="${esc(invocation.time)}">${esc(fmt(invocation.time))}</time></div>`;};
   const postTitle=post=>{
     const title=String(post.title||'').trim();
-    if(!(Number(post.created_version)%10===0))return title;
+    const reflectionCycle=postReflectionCycle(post);
+    if(!reflectionCycle)return title;
     const remainder=title.replace(/^\s*(?:cycle\s*\d+\s*[:—–-]?\s*)?(?:reflection\s*[:—–-]?\s*)?/i,'').replace(/\b(?:first|inaugural)\s+reflection\b/ig,'Reflection').trim();
-    return `Cycle ${post.created_version} Reflection: ${remainder||title}`;
+    return `Cycle ${reflectionCycle} Reflection: ${remainder||title}`;
   };
   const proofNames = {
     fresh_sessions:'Fresh-session continuity', causal_state:'Causal state intervention',
