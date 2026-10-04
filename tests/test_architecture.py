@@ -837,6 +837,23 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-decision-cells{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))', css)
         self.assertIn('.ops-decision-flow>header{display:block;padding:9px 10px 8px}', css)
 
+    def test_memory_to_evidence_handoff_keeps_receipt_and_state_scopes_distinct(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('const contextRetrievalEvidence=Number.isFinite(Number(contextMetrics.retrieval_evidence_count))', app)
+        self.assertIn('const contextRehydratedEvidence=Number.isFinite(Number(contextMetrics.retrieval_rehydrated_evidence_count))', app)
+        self.assertIn('const contextTrustRoots=Number.isFinite(Number(contextMetrics.trust_compact_evidence_root_count))', app)
+        self.assertIn('MEMORY → EVIDENCE / LATEST CONTEXT RECEIPT', app)
+        self.assertIn('Recovery scope beside governed evidence state.', app)
+        self.assertIn('These populations have different scopes. They are shown side by side, not as a conservation funnel.', app)
+        self.assertIn('CURRENT GOVERNED EVIDENCE', app)
+        self.assertIn('RETRIEVAL ROOTS SELECTED', app)
+        self.assertIn('EXACT EVIDENCE REHYDRATED', app)
+        self.assertIn('COMPACT TRUST ROOTS', app)
+        self.assertIn('.ops-memory-evidence-bridge{border-top:1px solid var(--ops-line)', css)
+        self.assertIn('.ops-memory-evidence-steps{display:grid;grid-template-columns:minmax(150px,1.15fr)', css)
+        self.assertIn('.ops-memory-evidence-steps{grid-template-columns:repeat(2,minmax(0,1fr))}', css)
+
     def test_metrics_story_links_only_explicit_3d_provenance_branches(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
