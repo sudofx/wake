@@ -755,6 +755,9 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-command-badges>span.ok{', css)
         self.assertIn('.ops-command-badges>span.warn{', css)
         self.assertIn('.ops-command-badges>span.unknown{border-style:dashed}', css)
+        self.assertIn('.ops-command-badges{grid-template-columns:repeat(2,minmax(0,1fr))}', css)
+        self.assertIn('.ops-command-badges>span:first-child{grid-column:1/-1}', css)
+        self.assertIn('.ops-command-badges>span:first-child strong{overflow:visible;text-overflow:clip}', css)
 
     def test_control_room_recent_receipt_pulse_is_bounded_linked_and_phone_safe(self):
         app = self.read('wake/assets/app.js')
