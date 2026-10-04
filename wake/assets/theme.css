@@ -952,6 +952,7 @@ body{
 .site-backdrop{
   background-color:#05091f;
   background-image:
+    linear-gradient(rgba(0,0,0,.20),rgba(0,0,0,.20)),
     linear-gradient(180deg,rgba(3,7,22,.04) 0%,rgba(3,7,22,.10) 46%,rgba(3,7,22,.28) 100%),
     url("backgrounds/nebula-desktop-1680x1050.webp?v=20261004-4");
   background-position:center top;
@@ -961,6 +962,7 @@ body{
 @media (min-aspect-ratio:2/1){
   .site-backdrop{
     background-image:
+      linear-gradient(rgba(0,0,0,.20),rgba(0,0,0,.20)),
       linear-gradient(180deg,rgba(3,7,22,.04) 0%,rgba(3,7,22,.10) 46%,rgba(3,7,22,.28) 100%),
       url("backgrounds/nebula-ultrawide-3440x1440.webp?v=20261004-4");
     background-position:center top;
@@ -969,6 +971,7 @@ body{
 @media (min-width:701px) and (max-aspect-ratio:3/2){
   .site-backdrop{
     background-image:
+      linear-gradient(rgba(0,0,0,.20),rgba(0,0,0,.20)),
       linear-gradient(180deg,rgba(3,7,22,.04) 0%,rgba(3,7,22,.10) 46%,rgba(3,7,22,.28) 100%),
       url("backgrounds/nebula-ipad-landscape-2360x1640.webp?v=20261004-4");
     background-position:center center;
@@ -977,6 +980,7 @@ body{
 @media (max-width:700px){
   .site-backdrop{
     background-image:
+      linear-gradient(rgba(0,0,0,.20),rgba(0,0,0,.20)),
       linear-gradient(180deg,rgba(3,7,22,.03) 0%,rgba(3,7,22,.09) 48%,rgba(3,7,22,.24) 100%),
       url("backgrounds/nebula-iphone12mini-1080x2340.webp?v=20261004-4");
     background-position:center top;
@@ -986,6 +990,7 @@ body{
 @media (max-width:900px) and (max-height:500px){
   .site-backdrop{
     background-image:
+      linear-gradient(rgba(0,0,0,.20),rgba(0,0,0,.20)),
       linear-gradient(180deg,rgba(3,7,22,.04) 0%,rgba(3,7,22,.10) 46%,rgba(3,7,22,.28) 100%),
       url("backgrounds/nebula-desktop-1680x1050.webp?v=20261004-4");
     background-position:center center;
