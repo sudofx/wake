@@ -98,6 +98,21 @@ class WakeMatrixIntegrationTests(unittest.TestCase):
             finally:
                 store.close()
 
+    def test_public_matrix_geometry_matches_shared_row_major_contract(self) -> None:
+        matrix = continuity_matrix()
+        self.assertEqual(matrix.coordinate("reconstruction", "rich", "clean").ordinal, 1)
+        self.assertEqual(matrix.coordinate("reconstruction", "rich", "stale-frontier").ordinal, 2)
+        self.assertEqual(matrix.coordinate("reconstruction", "milestones-only", "clean").ordinal, 8)
+        self.assertEqual(matrix.coordinate("milestone-dropout", "rich", "clean").ordinal, 50)
+        self.assertEqual(
+            matrix.coordinate(
+                "adversarial-integrity",
+                "digests-without-counts",
+                "compound-adversarial",
+            ).ordinal,
+            343,
+        )
+
     def test_matrix_coordinate_version_is_validated_by_shared_contract(self) -> None:
         matrix = continuity_matrix()
         with tempfile.TemporaryDirectory() as tempdir:
