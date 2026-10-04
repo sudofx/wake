@@ -949,3 +949,21 @@ html,body{max-width:100%;overflow-x:clip}
 
 
 
+
+
+/* CARD CONTAINMENT — 2026-10-04
+   Keep long governed metadata inside its card at tablet/mobile widths. */
+.blog-card,.record-panel,.record-panel-head,.record-panel-meta,.record-topics{min-width:0;max-width:100%}
+.blog-card .record-panel-meta .record-topics{flex:1 1 140px;overflow:hidden}
+.blog-card .record-panel-meta .topic-tag{
+  max-width:100%;
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.blog-card .record-panel-meta time{flex:0 0 auto}
+@media(max-width:700px){
+  .blog-card .record-panel-meta .record-topics{flex:1 1 100%;width:100%}
+  .blog-card .record-panel-meta time{margin-left:0}
+}
