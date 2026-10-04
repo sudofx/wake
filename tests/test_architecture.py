@@ -270,6 +270,20 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-frontier-list', css)
         self.assertIn('.ops-frontier-item.overdue', css)
 
+    def test_matrix_story_reconciles_axis_marginals_to_same_cells(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('COVERAGE MARGINALS / THREE AXES', app)
+        self.assertIn('const matrixCoverageSummary=statuses=>', app)
+        self.assertIn('const matrixSemanticMarginals=', app)
+        self.assertIn('const matrixExposureMarginals=', app)
+        self.assertIn('const matrixPressureMarginals=', app)
+        self.assertIn("status==='completed'", app)
+        self.assertIn("status==='failed'", app)
+        self.assertIn("status==='deferred'", app)
+        self.assertIn('Each row reconciles to the same continuity@1 cells above.', app)
+        self.assertIn('.ops-matrix-marginal-grid', css)
+
     def test_belief_lineage_uses_only_stored_evidence_ids(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
