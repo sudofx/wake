@@ -1,5 +1,5 @@
-name: WAKE✳︎ - Reset
-run-name: "Reset WAKE✳︎"
+name: WAKE✳︎ - [RESET]
+run-name: "[RESET] WAKE✳︎"
 
 # Reset stops WAKE✳︎ if needed, promotes verified master when required,
 # archives the current durable history, resets authority to cycle zero,
