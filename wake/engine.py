@@ -1,5 +1,5 @@
 # =============================================================================
-# ENGINE — the orchestration layer. A wake is one disposable shift: reconstruct durable state, select bounded context, reserve/record the invocation, call a provider, then ask governance whether the proposal may become history. The engine coordinates these steps but never substitutes its own judgment for governance.
+# ENGINE — the orchestration layer. A wake is one governed work transition: reconstruct durable state, select bounded context, reserve/record the invocation, call a provider, then ask governance whether the proposal may become history. The engine coordinates these steps but never substitutes its own judgment for governance.
 #
 # MAINTENANCE PRINCIPLE
 # ---------------------
