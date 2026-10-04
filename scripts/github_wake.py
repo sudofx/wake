@@ -177,6 +177,7 @@ from wake.providers import Gemini
 from wake.research import collect
 from wake.live import build_live_projection
 from wake.authority import open_authoritative_store
+from wake.matrix_campaign import run_continuity_matrix_probe
 from sudofx.record import Record
 
 
@@ -530,8 +531,24 @@ def main(reset=False, enable_continuity_matrix=False):
                 else:
                     provider = Gemini(settings)
                     result = engine.run(provider, checkpoint=guarded_checkpoint, collector=collect)
-                    # Engine.run checkpoints every terminal provider/governance result.
-                    # Do not immediately re-stage/re-hash the growing SQLite blob again.
+                    # A continuity campaign is an isolated shadow experiment. It
+                    # gets its own provider call and governed result, never a
+                    # second research mutation. Run it only after a provider
+                    # response was successfully obtained for the ordinary wake;
+                    # quota/outage deferrals keep research priority.
+                    if (
+                        result.get("status") in ("accepted", "rejected")
+                        and engine.store.continuity_matrix_progress() is not None
+                    ):
+                        result["continuity_matrix_probe"] = run_continuity_matrix_probe(
+                            engine.store,
+                            Gemini(settings),
+                            settings,
+                            checkpoint=guarded_checkpoint,
+                        )
+                    # Engine.run and the matrix probe checkpoint every terminal
+                    # provider/governance result. Do not immediately re-stage
+                    # the growing SQLite blob again.
                     result_checkpointed = True
             except Rejected as exc:
                 result = {"status": "paused", "reason": str(exc)}
