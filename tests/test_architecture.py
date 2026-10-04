@@ -284,6 +284,19 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('Each row reconciles to the same continuity@1 cells above.', app)
         self.assertIn('.ops-matrix-marginal-grid', css)
 
+    def test_matrix_story_names_exact_next_uncovered_coordinate(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('const nextMatrixOrdinal=Number(matrixProgress?.next_ordinal||0)', app)
+        self.assertIn('const nextMatrixSemanticIndex=', app)
+        self.assertIn('const nextMatrixExposureIndex=', app)
+        self.assertIn('const nextMatrixPressureIndex=', app)
+        self.assertIn('NEXT UNCOVERED · #', app)
+        self.assertIn('Failed or deferred coordinates remain uncovered until completed.', app)
+        self.assertIn("matrix-plane ${isCurrentPlane?'current':''}", app)
+        self.assertIn('.ops-matrix-frontier', css)
+        self.assertIn('.matrix-plane.current', css)
+
     def test_belief_lineage_uses_only_stored_evidence_ids(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
