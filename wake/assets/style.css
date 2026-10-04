@@ -1120,6 +1120,7 @@ body.metrics-ops-active .reading-key strong{color:var(--ops-orange)}
 .continuity-cell.completed{background:var(--ops-cyan);border-color:var(--ops-cyan);box-shadow:0 0 4px #63e8ee66}
 .continuity-cell.failed{background:var(--ops-red);border-color:var(--ops-red)}
 .continuity-cell.deferred{background:var(--ops-amber);border-color:var(--ops-amber)}
+.continuity-cell.next{outline:1px solid var(--ops-orange);outline-offset:1px;box-shadow:0 0 8px color-mix(in srgb,var(--ops-orange) 70%,transparent)}
 .ops-matrix-stat{text-align:right}.ops-matrix-stat strong{display:block;font:500 34px/1 var(--mono);color:var(--ops-cyan)}.ops-matrix-stat span,.ops-matrix-stat small{display:block;font:8px var(--mono);letter-spacing:.1em;color:var(--ops-muted);margin-top:5px}
 
 body.metrics-ops-active .dashboard-panel,
