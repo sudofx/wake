@@ -216,6 +216,9 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertEqual(positions, sorted(positions))
         self.assertIn("WHAT THE RECORD SAYS NOW", app)
         self.assertIn("<b>SPACE</b> where continuity has been tested", app)
+        self.assertIn("do not certify the truth of its research claims", app)
+        self.assertIn("DEEP METRICS / VERIFY THE STORY", app)
+        self.assertIn("the story can be checked rather than merely believed", app)
         self.assertNotIn("what is true", app)
 
     def test_live_projection_keeps_receipt_telemetry_without_provider_bodies(self):
