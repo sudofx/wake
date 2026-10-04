@@ -62,9 +62,10 @@ def _full_history_metrics(store, state):
 
 def _application_access_metrics(store):
     """Expose only the public-safe state of the global application access latch."""
-    if not hasattr(store, "application_access_state"):
+    source = store if hasattr(store, "application_access_state") else getattr(store, "record", None)
+    if source is None or not hasattr(source, "application_access_state"):
         return None
-    state = store.application_access_state()
+    state = source.application_access_state()
     return {
         "enabled": bool(state.enabled),
         "generation": int(state.generation),
