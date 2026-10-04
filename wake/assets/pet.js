@@ -136,8 +136,8 @@ window.WakePetReady=(async () => {
       </section>
 
       <section class="nebula-pillars" aria-label="WAKE principles">
-        <article><span class="nebula-icon nebula-record">◎</span><div><h2>Record</h2><p>Append-only history with verifiable provenance.</p></div></article>
-        <article><span class="nebula-icon nebula-govern">◇</span><div><h2>Govern</h2><p>Deterministic policy and accountability.</p></div></article>
+        <article><span class="nebula-icon nebula-record"><svg viewBox="0 0 64 64" aria-hidden="true"><ellipse cx="32" cy="15" rx="19" ry="8"/><path d="M13 15v13c0 4.5 8.5 8 19 8s19-3.5 19-8V15"/><path d="M13 28v13c0 4.5 8.5 8 19 8s19-3.5 19-8V28"/></svg></span><div><h2>Record</h2><p>Append-only history with verifiable provenance.</p></div></article>
+        <article><span class="nebula-icon nebula-govern"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 7 49 14v14c0 11-6.5 21-17 28-10.5-7-17-17-17-28V14L32 7Z"/><path d="M32 20v16M24 28h16"/></svg></span><div><h2>Govern</h2><p>Deterministic policy and accountability.</p></div></article>
         <article><span class="nebula-icon nebula-evolve">✣</span><div><h2>Evolve</h2><p>Designed to outlast models, platforms, and people.</p></div></article>
       </section>
 
