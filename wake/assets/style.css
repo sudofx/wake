@@ -1790,7 +1790,6 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
 /* Data-story spine: orientation first, then detail. */
 .ops-storyline{position:sticky;top:0;z-index:15;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border:1px solid var(--ops-line);border-bottom:0;background:#050b0ff2;backdrop-filter:blur(12px);box-shadow:0 8px 24px #0005}
 #ops-now,#ops-pressure,#ops-context,#ops-evidence,#ops-beliefs,#ops-horizon,#ops-matrix{scroll-margin-top:72px}
-#verify-actions,#verify-outcomes,#verify-continuity,#verify-yield,#verify-belief,#verify-frontier,#verify-space,#verify-provider,#verify-telemetry{scroll-margin-top:72px}
 .ops-storyline a{position:relative;display:grid;grid-template-columns:auto 1fr;column-gap:7px;align-items:center;min-width:0;padding:9px 11px;border-right:1px solid var(--ops-line-soft);color:inherit;text-decoration:none;transition:background .16s ease,opacity .16s ease}
 .ops-storyline a:last-child{border-right:0}
 .ops-storyline a:hover,.ops-storyline a:focus-visible{background:#08151b;outline:0}
