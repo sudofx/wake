@@ -423,6 +423,18 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertNotIn('BELIEF REVISION LEDGER / CURRENT GOVERNED STATE', app)
         self.assertNotIn('.ops-belief-ledger-list', css)
 
+    def test_belief_action_history_is_bounded_to_published_accepted_receipts(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('RECENT BELIEF ACTIONS / PUBLISHED EVENT WINDOW', app)
+        self.assertIn("accepted.forEach(event=>", app)
+        self.assertIn("actions.filter(action=>action?.type==='belief')", app)
+        self.assertIn('visibleBeliefConfidence', app)
+        self.assertIn('This panel does not claim to contain revisions outside the published event window.', app)
+        self.assertIn('href="#history/', app)
+        self.assertIn('.ops-belief-history-list', css)
+        self.assertIn('.ops-belief-action.retracted', css)
+
     def test_record_spine_links_use_receipt_ids_not_sequence_numbers(self):
         app = self.read('wake/assets/app.js')
         self.assertIn("const receiptId=String(event.payload?.id||'')", app)
