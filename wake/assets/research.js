@@ -232,15 +232,8 @@
     $('live-story').textContent=`Snapshot state ${count(data.version)}. Completed wakes are historical receipts; the status light separately reports execution now. Refresh checks every minute.`;
   }
   function controls() {
-    const theme=(value,remember=false)=>{
-      const dark=value==='dark';document.documentElement.dataset.theme=value;
-      $('theme-toggle').checked=dark;$('theme-toggle').setAttribute('aria-label',dark?'Use light theme':'Use dark theme');
-      let manual=remember;try{if(remember)localStorage.setItem('wake-theme',value);manual=Boolean(localStorage.getItem('wake-theme'));}catch{}
-      document.documentElement.dataset.themeMode=manual?'manual':'system';
-      $('theme-toggle').closest('.theme-switch').title=manual?`Manual ${value} theme`:`Following system ${value} theme`;
-    };theme(document.documentElement.dataset.theme||'dark');
-    $('theme-toggle').addEventListener('change',()=>theme($('theme-toggle').checked?'dark':'light',true));
-    matchMedia('(prefers-color-scheme:dark)').addEventListener('change',event=>{try{if(localStorage.getItem('wake-theme'))return;}catch{}theme(event.matches?'dark':'light');});
+    document.documentElement.dataset.theme='dark';
+    try{localStorage.setItem('wake-theme','dark')}catch{}
     const setMotion=()=>{cube.setMotion(motion);contextMap.setMotion(motion);document.body.dataset.motion=motion?'on':'off';$('motion-toggle').setAttribute('aria-pressed',String(motion));$('motion-toggle').textContent=motion?'Pause motion':'Resume motion';};setMotion();$('motion-toggle').onclick=()=>{motion=!motion;setMotion();};
     $('cube-left').onclick=()=>cube.rotate(-.3);$('cube-right').onclick=()=>cube.rotate(.3);$('cube-reset').onclick=()=>cube.reset();
     $('matrix-cube').addEventListener('wake-cube-select',e=>{matrixCell=e.detail;renderCell();});
