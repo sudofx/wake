@@ -34,7 +34,7 @@ def _compact_invocation(item):
         "id", "time", "finished", "status", "reason", "provider", "model",
         "successful_model", "provider_attempts", "provider_requests_sent",
         "quota_day", "inquiry_drive_shadow", "provider_error", "charged",
-        "temporal", "context_delivery", "working_set_metrics",
+        "temporal", "context_delivery", "working_set_metrics", "runtime_performance",
     )
     return {key: deepcopy(item[key]) for key in allowed if key in item}
 
