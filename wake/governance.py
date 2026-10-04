@@ -53,9 +53,9 @@ class Rejected(ValueError):
 
     Rejection is not necessarily a software error.
 
-    In WAKE✳︎, rejected proposals are useful experimental artifacts. They show
-    where a disposable model attempted something the durable system refused
-    to accept.
+    In the current WAKE✳︎ research application, rejected proposals are useful
+    experimental artifacts. They show where a replaceable intelligence proposed
+    something the durable system refused to accept.
 
     The caller can preserve the rejected proposal and reason in the event log
     while leaving the accepted state unchanged.
@@ -597,8 +597,8 @@ def _blog_language(action, evidence, historical=False, prior_post=None):
     the evidence.
 
     This matters because Bob's writing is public-facing and persuasive prose.
-    A research system that preserves continuity can still construct a coherent
-    story that is stronger than its evidence.
+    A research application running on durable-work infrastructure can still
+    construct a coherent story that is stronger than its evidence.
 
     Governance therefore puts mechanical limits on certain forms of overclaim.
     """
