@@ -120,10 +120,21 @@ class FrontendHygieneTests(unittest.TestCase):
         script = (ASSETS / "map3d.js").read_text()
 
         self.assertIn("const recordFromHash=()=>", script)
-        self.assertIn("const initialRecord=recordFromHash();if(initialRecord)choose(initialRecord)", script)
+        self.assertIn("const initialRecord=recordFromHash();if(initialRecord)restoreInitialRecord(initialRecord)", script)
         self.assertIn("id.startsWith('root:')?['root:wake',id]", script)
         self.assertIn("await ensureBranch(id)", script)
         self.assertIn("writeRecordHash(current())", script)
+
+    def test_exact_invocation_deep_link_restores_only_verified_relationship_path(self):
+        script = (ASSETS / "map3d.js").read_text()
+
+        self.assertIn("async function restoreInitialRecord(id)", script)
+        self.assertIn("if(!id.startsWith('invocation:'))return choose(id)", script)
+        self.assertIn("await ensureBranch('root:journal')", script)
+        self.assertIn("if(!children('root:journal').includes(journalId))return choose(id)", script)
+        self.assertIn("await ensureBranch(journalId)", script)
+        self.assertIn("if(!children(journalId).includes(id))return choose(id)", script)
+        self.assertIn("path=['root:wake','root:journal',journalId,id]", script)
 
     def test_3d_map_uses_side_inspector_on_macbook_widths(self):
         css = (ASSETS / "map3d.css").read_text()
