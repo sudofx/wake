@@ -1023,7 +1023,7 @@
           </section>
         </div>
         <div class="ops-rejection-ledger" aria-label="Recent governance rejections">
-          <div class="ops-rejection-head"><div><span>REJECTION LEDGER / EXACT RECENT RESISTANCE</span><strong>${rejectedEvents.length} rejected receipts in published history</strong></div><small>Family bars summarize pressure; these rows expose the latest recorded reasons and exact receipts.</small></div>
+          <div class="ops-rejection-head"><div><span>REJECTION LEDGER / EXACT RECENT RESISTANCE</span><strong>${rejectedEvents.length} rejected receipts in published event window</strong></div><small>Family bars may use full-history metrics; these rows are bounded to the public event window and expose the latest recorded reasons and exact receipts.</small></div>
           <div class="ops-rejection-list">${recentRejectedRows||'<p class="empty">No rejected proposal receipts are present in the published event window.</p>'}</div>
         </div>
         <div class="ops-time" aria-label="Time Dilation telemetry">
