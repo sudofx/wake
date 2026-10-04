@@ -1,4 +1,5 @@
 from pathlib import Path
+import re
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -565,6 +566,24 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertEqual(page.count('id="metrics"'), 1)
         self.assertIn('id="journal-metrics"', page)
         self.assertIn("$('journal-metrics').innerHTML", app)
+
+    def test_metrics_story_literal_ids_and_scroll_targets_stay_coherent(self):
+        page = self.read('wake/assets/index.html')
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        markup = page + app
+        literal_ids = re.findall(r'\\bid="([^"]+)"', markup)
+        duplicates = sorted({item for item in literal_ids if literal_ids.count(item) > 1})
+        self.assertEqual(duplicates, [])
+        targets = (
+            re.findall(r'data-story-target="([^"]+)"', app)
+            + re.findall(r'data-verify-target="([^"]+)"', app)
+        )
+        self.assertTrue(targets)
+        for target in targets:
+            self.assertEqual(literal_ids.count(target), 1, target)
+        self.assertNotRegex(css, r'\\d+(?:px|em|rem|fr|%)\\.[A-Za-z_-][\\w-]*\\{')
+        self.assertNotRegex(css, r'repeat\\([^{}]+\\)\\.[A-Za-z_-]')
 
     def test_site_operator_link_goes_directly_to_github_actions(self):
         page = self.read('wake/assets/index.html')
