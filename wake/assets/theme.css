@@ -1604,3 +1604,134 @@ body>header.masthead{
   .nebula-explore-visual{height:140px!important}
   .nebula-explore-copy p{min-height:0!important}
 }
+
+
+/* NEBULA MOBILE / GLASS FIDELITY PASS — 2026-10-04 */
+/* User-approved refinement: brighter artwork, wider phone layout, clickable card actions,
+   and stronger translucent-glass readability without changing record semantics. */
+
+/* Background art should read almost at source brightness: only a ~5% dark veil. */
+.site-backdrop{filter:none!important}
+.site-backdrop::after{
+  background:rgba(2,6,20,.05)!important;
+}
+
+/* Any translucent site panel gets real backdrop blur instead of relying on darkness. */
+body>header.masthead,
+.compact-nav .nav-dropdown,
+.panel,.record-card,.project-card,.notebook-card,.blog-card,.topic-card,.topic-hub,.discovery-card,
+.note-card,.about-contract,.dashboard-panel,.home-lead-story,.motion-pulse,.motion-numbers,
+.observatory-topic,.home-depth nav a,#map-field,#details,.constellation-shell,
+.nebula-pillars article,.nebula-explore-card,.nebula-topic-panel,.metric-strip,
+.help-panel,.decision,.research-note,.blog-receipts{
+  backdrop-filter:blur(18px) saturate(118%)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(118%)!important;
+}
+
+/* Keep cards transparent enough for the Nebula artwork to remain part of the composition. */
+.nebula-pillars article{
+  background:linear-gradient(180deg,rgba(5,12,34,.66),rgba(5,11,30,.58))!important;
+}
+.nebula-explore-card{
+  position:relative!important;
+  isolation:isolate;
+  background:rgba(3,16,35,.68)!important;
+}
+.nebula-explore::before{
+  background:linear-gradient(180deg,rgba(2,17,37,.72),rgba(2,14,31,.78))!important;
+}
+.nebula-topic-panel{background:rgba(5,12,31,.64)!important}
+
+/* Explicit interaction layer: every shortcut inside third-row cards is tappable. */
+.nebula-explore-card a,
+.nebula-explore-tags,
+.nebula-explore-tags a{
+  position:relative;
+  z-index:5;
+  pointer-events:auto!important;
+  touch-action:manipulation;
+}
+.nebula-explore-tags a{
+  min-height:34px!important;
+  padding:6px 13px!important;
+}
+
+/* Bring composition closer to the approved mockup. */
+.nebula-home-hero{padding-top:52px!important}
+.nebula-pillars{gap:12px!important}
+.nebula-explore{margin-top:16px!important}
+.nebula-explore-grid{gap:14px!important}
+.nebula-explore-card{border-color:#396d98!important}
+.nebula-explore-visual{height:126px!important}
+.nebula-explore-copy{padding:15px 17px 16px!important}
+.nebula-explore-copy h3{font-size:20px!important}
+.nebula-explore-copy p{color:#c6cee5!important}
+
+/* iPhone: use the viewport rather than leaving tablet-sized side gutters. */
+@media(max-width:700px){
+  body>header.masthead{
+    width:calc(100% - 12px)!important;
+    margin:8px auto 0!important;
+    padding:12px 10px!important;
+  }
+  main{
+    padding-left:8px!important;
+    padding-right:8px!important;
+  }
+  footer{
+    margin-left:8px!important;
+    margin-right:8px!important;
+  }
+  .nebula-home-hero{
+    padding:34px 4px 24px!important;
+  }
+  .nebula-hero-copy h1{
+    font-size:clamp(44px,13.4vw,60px)!important;
+    max-width:10.5ch!important;
+  }
+  .nebula-pillars{
+    margin-left:0!important;
+    margin-right:0!important;
+    gap:8px!important;
+  }
+  .nebula-pillars article{
+    padding:18px 18px!important;
+    border-radius:9px!important;
+  }
+  .nebula-explore{
+    padding-left:0!important;
+    padding-right:0!important;
+  }
+  .nebula-explore-heading{
+    margin-left:4px!important;
+    margin-right:4px!important;
+    gap:10px!important;
+  }
+  .nebula-explore-heading h2{font-size:30px!important}
+  .nebula-explore-heading>a{font-size:12px!important}
+  .nebula-explore-grid{gap:10px!important}
+  .nebula-explore-card{
+    width:100%!important;
+    border-radius:10px!important;
+  }
+  .nebula-explore-visual{height:152px!important}
+  .nebula-explore-copy{padding:16px 16px 17px!important}
+  .nebula-explore-copy h3{font-size:21px!important}
+  .nebula-explore-copy p{font-size:14px!important;line-height:1.45!important}
+  .nebula-explore-tags{gap:8px!important}
+  .nebula-explore-tags a{
+    min-height:38px!important;
+    padding:7px 14px!important;
+    font-size:11px!important;
+  }
+  .page-heading,
+  .about-intro,
+  .journal-layout,
+  .lab-grid,
+  .project-grid,
+  .discovery-list,
+  .topic-hubs{
+    width:100%!important;
+    max-width:none!important;
+  }
+}
