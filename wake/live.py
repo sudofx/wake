@@ -10,6 +10,8 @@ from datetime import datetime, timezone
 
 from sudofx.observability import build_application_observability
 
+from .matrix import MATRIX
+
 
 LIVE_SCHEMA = 1
 MAX_EVENTS = 400
@@ -65,11 +67,33 @@ def _matrix_metrics(store):
     progress = store.continuity_matrix_progress()
     if not isinstance(progress, dict):
         return None
+
+    results = progress.get("results") or {}
     counts = {"completed": 0, "failed": 0, "deferred": 0}
-    for result in (progress.get("results") or {}).values():
+    status_by_coordinate = {}
+    for coordinate_id, result in results.items():
         status = result.get("status") if isinstance(result, dict) else None
         if status in counts:
             counts[status] += 1
+            status_by_coordinate[coordinate_id] = status
+
+    axes = [
+        {
+            "key": axis.key,
+            "label": axis.label,
+            "values": [{"key": value.key, "label": value.label} for value in axis.values],
+        }
+        for axis in MATRIX.axes
+    ]
+    cells = [
+        {
+            "ordinal": coordinate.ordinal,
+            "coordinate_id": coordinate.coordinate_id,
+            "values": list(coordinate.value_keys),
+            "status": status_by_coordinate.get(coordinate.coordinate_id, "open"),
+        }
+        for coordinate in MATRIX.coordinates()
+    ]
     return {
         "matrix": progress.get("matrix"),
         "definition_digest": progress.get("definition_digest"),
@@ -77,6 +101,8 @@ def _matrix_metrics(store):
         "completed_count": progress.get("completed_count"),
         "next_coordinate_id": progress.get("next_coordinate_id"),
         "status_counts": counts,
+        "axes": axes,
+        "cells": cells,
     }
 
 def build_live_projection(store, operation=None, runtime_ref=""):
