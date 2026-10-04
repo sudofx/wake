@@ -922,7 +922,7 @@
         <span><b>SPACE</b> where continuity has been tested</span>
       </div>
       <section class="ops-history-arc" aria-label="Longitudinal durable reflection record">
-        <header><div><p class="eyebrow">LONGITUDINAL RECORD / DURABLE REFLECTIONS</p><h3>${opsReflections.length} recorded milestones across ${s.version} cycles</h3></div><small>Declared reflection_cycle receipts and legacy cycle-10 reflections preserved by historical governance are labeled separately. Gaps remain gaps.</small></header>
+        <header><div><p class="eyebrow">LONGITUDINAL RECORD / DURABLE REFLECTIONS</p><h3>${opsReflections.length} recorded milestones across ${s.version} cycles</h3></div><div class="ops-history-provenance"><small>Declared reflection_cycle receipts and legacy cycle-10 reflections preserved by historical governance are labeled separately. Gaps remain gaps.</small><div class="ops-history-legend" aria-label="Reflection provenance legend"><span class="declared"><i></i>DECLARED RECEIPT</span><span class="legacy"><i></i>LEGACY REPLAY CLASSIFICATION</span></div></div></header>
         <div class="ops-history-body">
           <div class="ops-history-axis">
             <span class="ops-history-start">0</span>
