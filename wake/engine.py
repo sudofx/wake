@@ -28,7 +28,7 @@ from sudofx import InvocationBarrierError
 from .application_policy import _rotation_preflight, govern_proposal
 from .governance import Rejected, bob_reflection_due_cycle, require, text
 from .providers import (
-    SYSTEM, ConfiguredDailyLimitReached, DailyQuotaExceeded, ProviderRequestError, TransientProviderError,
+    SCHEMA, SYSTEM, ConfiguredDailyLimitReached, DailyQuotaExceeded, ProviderRequestError, TransientProviderError,
     is_free_tier_daily_quota, retractable_quotes, schema_for_context,
 )
 from .scheduling import charged_request_slots
@@ -38,7 +38,14 @@ from .event_format import canonical, digest, now
 from .experimental import adoption_payload, defaults as experimental_defaults, temporal_snapshot, validate as validate_controls
 from .trust import build_trust_compacts_shadow
 from .attention import assessment as attention_assessment, plan as attention_plan
-from .matrix_campaign import continuity_provider_usage
+from .matrix_campaign import (
+    MATRIX_SIDECAR_SYSTEM,
+    add_continuity_response_schema,
+    build_continuity_probe,
+    continuity_result_record,
+    evaluate_continuity_probe_response,
+    failed_continuity_probe_evaluation,
+)
 
 
 INQUIRY_DRIVE_MIN_CYCLES = 20
@@ -54,6 +61,15 @@ def _topic_colors(topics):
     """Assign a fresh, recorded color to each configured topic."""
     require(len(topics) <= len(TOPIC_COLORS), "Too many topics for unique topic colors")
     return dict(zip((topic["id"] for topic in topics), secrets.SystemRandom().sample(TOPIC_COLORS, len(topics))))
+
+
+def _provider_response_schema(context, research):
+    """Build the ordinary proposal contract plus an enabled continuity sidecar."""
+    base = schema_for_context(context) if research else SCHEMA
+    probe = context.get("continuity_probe")
+    if isinstance(probe, dict):
+        return add_continuity_response_schema(base, probe)
+    return base
 
 
 DEFAULTS = {"timezone": "America/Los_Angeles", "objective": "Test durable continuity under mechanical governance.",
@@ -1622,12 +1638,6 @@ class Engine:
             )
         used = sum(charged_request_slots(i) for i in state["invocations"].values()
                    if i["charged"] and i["quota_day"] == day)
-        matrix_progress = (
-            self.store.continuity_matrix_progress()
-            if hasattr(self.store, "continuity_matrix_progress")
-            else None
-        )
-        used += continuity_provider_usage(matrix_progress, day)["total"]
         if charged and not self.config.get("model_daily_call_limits"):
             require(used < self.config["daily_call_limit"], "Daily call ceiling reached; no request sent")
         # Capture the temporal environment before the next model boundary. This
@@ -1933,14 +1943,8 @@ class Engine:
                 state = self.store.load()
                 day = state["invocations"][invocation]["quota_day"]
                 if self.config.get("model_daily_call_limits"):
-                    matrix_progress = (
-                        self.store.continuity_matrix_progress()
-                        if hasattr(self.store, "continuity_matrix_progress")
-                        else None
-                    )
-                    matrix_usage = continuity_provider_usage(matrix_progress, day)
-                    used_by_model = dict(matrix_usage["by_model"])
-                    exhausted_models = set(matrix_usage["daily_quota_models"])
+                    used_by_model = {}
+                    exhausted_models = set()
                     for item in state["invocations"].values():
                         if item["id"] == invocation or not item["charged"] or item["quota_day"] != day:
                             continue
@@ -1958,12 +1962,6 @@ class Engine:
                         provider.model_request_limits[model] = 0
                 else:
                     used = sum(charged_request_slots(i) for i in state["invocations"].values() if i["id"] != invocation and i["charged"] and i["quota_day"] == day)
-                    matrix_progress = (
-                        self.store.continuity_matrix_progress()
-                        if hasattr(self.store, "continuity_matrix_progress")
-                        else None
-                    )
-                    used += continuity_provider_usage(matrix_progress, day)["total"]
                     provider.request_limit = min(len(provider.models), self.config["daily_call_limit"] - used)
                 def record_attempt(phase, attempt):
                     self.store.append("provider_attempt_" + phase, {"id": invocation, "attempt": attempt})
