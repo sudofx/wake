@@ -757,6 +757,21 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-command-pulse-track{display:flex;gap:4px;overflow-x:auto', css)
         self.assertIn('.ops-command-pulse-cell{flex:0 0 28px;height:44px}', css)
 
+    def test_frontier_to_space_keeps_application_work_separate_from_test_geometry(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('FRONTIER → SPACE / DOMAIN BOUNDARY', app)
+        self.assertIn('Application work beside deterministic test geometry.', app)
+        self.assertIn('No mapping is implied. Open commitments are WAKE application state; continuity@1 coordinates are reusable continuity-test coverage.', app)
+        self.assertIn('OPEN COMMITMENTS', app)
+        self.assertIn('CONTINUITY COVERAGE', app)
+        self.assertIn('NEXT UNCOVERED', app)
+        self.assertIn('OPEN SPACE CHAPTER →', app)
+        self.assertIn('.ops-frontier-space-bridge{border-top:1px solid var(--ops-line)', css)
+        self.assertIn('.ops-frontier-space-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr)) 28px repeat(2,minmax(0,1fr)) auto', css)
+        self.assertIn('.ops-frontier-space-grid{grid-template-columns:repeat(2,minmax(0,1fr))}', css)
+        self.assertIn('.ops-frontier-space-grid>a{grid-column:1/-1;min-height:44px}', css)
+
     def test_belief_to_frontier_is_population_boundary_not_causal_edge(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
