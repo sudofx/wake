@@ -687,9 +687,27 @@
     const exposureAxis=matrixAxes[1]?.values||[];
     const pressureAxis=matrixAxes[2]?.values||[];
     const matrixStatuses=Array.isArray(matrixProgress?.cells)?matrixProgress.cells:[];
+    const nextMatrixOrdinal=Number(matrixProgress?.next_ordinal||0);
+    const nextMatrixIndex=nextMatrixOrdinal>0?nextMatrixOrdinal-1:-1;
+    const nextMatrixSemanticIndex=nextMatrixIndex>=0?Math.floor(nextMatrixIndex/49):-1;
+    const nextMatrixLocalIndex=nextMatrixIndex>=0?nextMatrixIndex%49:-1;
+    const nextMatrixExposureIndex=nextMatrixLocalIndex>=0?Math.floor(nextMatrixLocalIndex/7):-1;
+    const nextMatrixPressureIndex=nextMatrixLocalIndex>=0?nextMatrixLocalIndex%7:-1;
+    const nextMatrixCoordinate=matrixEnabled&&nextMatrixIndex>=0?{
+      ordinal:nextMatrixOrdinal,
+      semantic:semanticAxis[nextMatrixSemanticIndex]?.label||'semantic lens unavailable',
+      exposure:exposureAxis[nextMatrixExposureIndex]?.label||'exposure unavailable',
+      pressure:pressureAxis[nextMatrixPressureIndex]?.label||'pressure unavailable'
+    }:null;
+    const matrixFrontier=matrixEnabled
+      ? nextMatrixCoordinate
+        ? `<div class="ops-matrix-frontier"><span>NEXT UNCOVERED · #${nextMatrixCoordinate.ordinal}</span><strong>${esc(nextMatrixCoordinate.semantic)}</strong><div><b>EXPOSURE</b><em>${esc(nextMatrixCoordinate.exposure)}</em></div><i aria-hidden="true">×</i><div><b>PRESSURE</b><em>${esc(nextMatrixCoordinate.pressure)}</em></div><small>Deterministic continuity@1 traversal. Failed or deferred coordinates remain uncovered until completed.</small></div>`
+        : '<div class="ops-matrix-frontier complete"><span>TRAVERSAL FRONTIER</span><strong>ALL COORDINATES COVERED</strong><small>No next uncovered coordinate is recorded.</small></div>'
+      : '<div class="ops-matrix-frontier disabled"><span>TRAVERSAL FRONTIER</span><strong>NOT ENABLED</strong><small>The canonical geometry is visible, but this WAKE generation has not opted into the campaign.</small></div>';
     const matrixPlanes=semanticAxis.map((semantic,semanticIndex)=>{
       const offset=semanticIndex*49;
       const cells=matrixStatuses.slice(offset,offset+49);
+      const isCurrentPlane=nextMatrixSemanticIndex===semanticIndex;
       const cellHtml=cells.map((status,localIndex)=>{
         const exposure=exposureAxis[Math.floor(localIndex/7)]?.label||'Exposure';
         const pressure=pressureAxis[localIndex%7]?.label||'Pressure';
@@ -697,7 +715,7 @@
         const isNext=ordinal===Number(matrixProgress?.next_ordinal||0);
         return `<i class="continuity-cell ${esc(status||'open')} ${isNext?'next':''}" title="${esc(semantic.label)} · ${esc(exposure)} · ${esc(pressure)}" aria-label="${esc(semantic.label)}, ${esc(exposure)}, ${esc(pressure)}: ${esc(status||'open')}${isNext?', next coordinate':''}"></i>`;
       }).join('');
-      return `<section class="matrix-plane"><header><span>${esc(semantic.label)}</span><b>${cells.filter(status=>status==='completed').length}/49</b></header><div class="matrix-plane-grid" role="group" aria-label="${esc(semantic.label)} continuity plane">${cellHtml}</div></section>`;
+      return `<section class="matrix-plane ${isCurrentPlane?'current':''}"><header><span>${esc(semantic.label)}</span><b>${cells.filter(status=>status==='completed').length}/49</b></header><div class="matrix-plane-grid" role="group" aria-label="${esc(semantic.label)} continuity plane">${cellHtml}</div></section>`;
     }).join('');
     const matrixCoverageSummary=statuses=>({
       completed:statuses.filter(status=>status==='completed').length,
@@ -975,7 +993,7 @@
           <div class="ops-trajectory-list">${opsProjectTrajectories}</div>
         </div>
         <div class="ops-matrix-block" id="ops-matrix">
-          <div class="ops-matrix-copy"><p class="eyebrow">CONTINUITY@1 / 7×7×7</p><h3>${matrixEnabled?'Coverage of the governed continuity space.':'Canonical continuity space · not yet enabled for this WAKE generation.'}</h3><p>${matrixEnabled?matrixCompleted+' of '+matrixTotal+' coordinates completed · next '+(matrixProgress.next_ordinal?'#'+matrixProgress.next_ordinal:'complete'):'343 deterministic coordinates are visible as definition geometry only.'}</p><small>Seven semantic planes. Within each plane, columns follow pressure order and rows follow exposure order from the shared continuity@1 definition.</small></div>
+          <div class="ops-matrix-copy"><p class="eyebrow">CONTINUITY@1 / 7×7×7</p><h3>${matrixEnabled?'Coverage of the governed continuity space.':'Canonical continuity space · not yet enabled for this WAKE generation.'}</h3><p>${matrixEnabled?matrixCompleted+' of '+matrixTotal+' coordinates completed · next '+(matrixProgress.next_ordinal?'#'+matrixProgress.next_ordinal:'complete'):'343 deterministic coordinates are visible as definition geometry only.'}</p><small>Seven semantic planes. Within each plane, columns follow pressure order and rows follow exposure order from the shared continuity@1 definition.</small>${matrixFrontier}</div>
           <div class="continuity-matrix-view" aria-label="Continuity matrix coverage: ${matrixCompleted} of ${matrixTotal} coordinates completed">
             <div class="matrix-axis-note"><span>columns / pressure: ${esc(pressureAxis.map(v=>v.label).join(' · '))}</span><span>rows / exposure: ${esc(exposureAxis.map(v=>v.label).join(' · '))}</span></div>
             <div class="matrix-plane-stack">${matrixPlanes}</div>
