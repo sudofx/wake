@@ -612,6 +612,19 @@
         <span>WHAT THE RECORD SAYS NOW</span>
         <p>Cycle <strong>${s.version}</strong> · <strong>${completed.length}</strong> completed wakes · <strong>${acceptedCount}</strong> accepted · <strong>${rejectedCount}</strong> rejected · <strong>${openObligations}</strong> open commitments · <strong>${qualifyingEvidence}</strong> substantive source observations · <strong>${opsActiveBeliefs.length}</strong> active beliefs · <strong>${matrixPct}%</strong> of continuity@1 covered.</p>
       </div>
+      <div class="ops-reading-key" aria-label="How to read this data story">
+        <span><b>RECORD</b> what happened</span>
+        <i>→</i>
+        <span><b>PRESSURE</b> what resisted</span>
+        <i>→</i>
+        <span><b>MEMORY</b> what survived compression</span>
+        <i>→</i>
+        <span><b>EVIDENCE</b> what was observed</span>
+        <i>→</i>
+        <span><b>BELIEF</b> what is carried</span>
+        <i>→</i>
+        <span><b>FRONTIER</b> what remains</span>
+      </div>
       <section class="ops-console" id="ops-now" aria-label="WAKE operational research console">
         <header class="ops-console-head">
           <div><p class="eyebrow">WAKE✳︎ / RESEARCH OPERATIONS</p><h2>Live governed research field.</h2></div>
