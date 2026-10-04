@@ -60,6 +60,18 @@ def _full_history_metrics(store, state):
     }
 
 
+def _application_access_metrics(store):
+    """Expose only the public-safe state of the global application access latch."""
+    if not hasattr(store, "application_access_state"):
+        return None
+    state = store.application_access_state()
+    return {
+        "enabled": bool(state.enabled),
+        "generation": int(state.generation),
+        "changed_at": state.changed_at,
+    }
+
+
 def _matrix_metrics(store):
     """Return bounded public matrix telemetry without result bodies."""
     if not hasattr(store, "continuity_matrix_progress"):
@@ -155,5 +167,6 @@ def build_live_projection(store, operation=None, runtime_ref=""):
         "wake_status": deepcopy((operation or {}).get("wake_status", {})),
         "metrics": _full_history_metrics(store, state),
         "application_observability": build_application_observability(store.record) if hasattr(store, "record") else None,
+        "application_access": _application_access_metrics(store),
         "matrix_progress": _matrix_metrics(store),
     }
