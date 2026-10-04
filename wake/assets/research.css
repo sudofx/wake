@@ -91,6 +91,7 @@ body[data-motion=off] *{animation:none!important}.floating .wake-tabs{margin:8px
 /* Reuse the shared masthead switch and Actions lamp; only their colors vary. */
 .research-header .actions-light-track i{background:var(--orange)}
 .research-header .actions-light[data-state=running] .actions-light-track i{background:var(--green)}
+.research-header .actions-light[data-state=campaign] .actions-light-track i{background:var(--purple)}
 .research-header .actions-light[data-state=stopped] .actions-light-track i{background:var(--red)}
 .research-header .theme-switch input{min-height:0;padding:0;border:0;width:1px;height:1px}
 .research-header .theme-switch{cursor:pointer}
