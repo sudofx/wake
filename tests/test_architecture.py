@@ -465,6 +465,12 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-handoff-list', css)
         self.assertIn('.ops-handoff-path', css)
 
+    def test_handoff_rate_is_unavailable_without_fulfilled_obligations(self):
+        app = self.read('wake/assets/app.js')
+        self.assertIn("const handoffRate=fulfilled.length?Math.round(100*inheritedFulfilled.length/fulfilled.length):null", app)
+        self.assertIn("handoffRate===null?'—':handoffRate+'%'", app)
+        self.assertIn("'No fulfilled obligations yet'", app)
+
     def test_belief_story_links_recorded_evidence_and_update_receipts(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
