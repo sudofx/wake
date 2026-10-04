@@ -600,12 +600,12 @@
     }).join('');
     $('metrics-dashboard').innerHTML=`
       <nav class="ops-storyline" aria-label="WAKE data story">
-        <a href="#ops-now"><b>01</b><span>NOW</span><strong>cycle ${s.version}</strong></a>
-        <a href="#ops-pressure"><b>02</b><span>PRESSURE</span><strong>${rejectedCount} rejected</strong></a>
-        <a href="#ops-continuity"><b>03</b><span>CONTINUITY</span><strong>${openObligations} open</strong></a>
-        <a href="#ops-evidence"><b>04</b><span>EVIDENCE</span><strong>${qualifyingEvidence} substantive</strong></a>
-        <a href="#ops-beliefs"><b>05</b><span>BELIEF</span><strong>${opsActiveBeliefs.length} active</strong></a>
-        <a href="#ops-matrix"><b>06</b><span>SPACE</span><strong>${matrixPct}% mapped</strong></a>
+        <a href="#metrics" data-story-target="ops-now"><b>01</b><span>NOW</span><strong>cycle ${s.version}</strong></a>
+        <a href="#metrics" data-story-target="ops-pressure"><b>02</b><span>PRESSURE</span><strong>${rejectedCount} rejected</strong></a>
+        <a href="#metrics" data-story-target="ops-continuity"><b>03</b><span>CONTINUITY</span><strong>${openObligations} open</strong></a>
+        <a href="#metrics" data-story-target="ops-evidence"><b>04</b><span>EVIDENCE</span><strong>${qualifyingEvidence} substantive</strong></a>
+        <a href="#metrics" data-story-target="ops-beliefs"><b>05</b><span>BELIEF</span><strong>${opsActiveBeliefs.length} active</strong></a>
+        <a href="#metrics" data-story-target="ops-matrix"><b>06</b><span>SPACE</span><strong>${matrixPct}% mapped</strong></a>
       </nav>
       <section class="ops-console" id="ops-now" aria-label="WAKE operational research console">
         <header class="ops-console-head">
@@ -948,6 +948,13 @@
   $('event-filter').addEventListener('change',()=>{historyLimit=35;route();});
   $('history-more').addEventListener('click',()=>{historyLimit+=35;route();});
   const resetPageScroll=()=>requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo(0,0)));
+  document.addEventListener('click',event=>{
+    const storyLink=event.target.closest('[data-story-target]');
+    if(!storyLink)return;
+    event.preventDefault();
+    const target=document.getElementById(storyLink.dataset.storyTarget);
+    if(target)target.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+  });
   window.addEventListener('hashchange',()=>{historyLimit=35;$('evidence-search').value='';$('history-search').value='';$('event-filter').value='all';route();resetPageScroll();});
   $('generated').textContent=`Live projection ${fmt(data.generated)}.`;
 
