@@ -991,8 +991,15 @@
     $('metrics-dashboard').innerHTML=`
       <section class="ops-command-deck" aria-label="WAKE control room overview">
         <header>
-          <div><span>CONTROL ROOM / CURRENT PUBLISHED PROJECTION</span><strong>Cycle ${s.version} · ${esc(currentStatus)}</strong></div>
-          <small>Fast orientation only. Open a cell for the underlying story, provenance, or record evidence.</small>
+          <div class="ops-command-title"><span>CONTROL ROOM / CURRENT PUBLISHED PROJECTION</span><strong>Cycle ${s.version} · ${esc(currentStatus)}</strong></div>
+          <div class="ops-command-head-side">
+            <div class="ops-command-badges" aria-label="Projection source status">
+              <span><b>PROJECTED</b><strong>${esc(fmt(data.generated))}</strong></span>
+              <span><b>AUTHORITY</b><strong title="${esc(sourceAuthority)}">${esc(sourceAuthority)}</strong></span>
+              <span class="${accessEnabled===true?'ok':accessEnabled===false?'warn':'unknown'}"><b>ACCESS</b><strong>${accessEnabled===true?'ENABLED':accessEnabled===false?'DISABLED':'UNKNOWN'}</strong></span>
+            </div>
+            <small>Fast orientation only. Open a cell for the underlying story, provenance, or record evidence.</small>
+          </div>
         </header>
         <div class="ops-command-grid">
           <a href="#metrics/ops-now" data-tone="${currentStatus.toLowerCase()}"><span>WAKE STATUS</span><strong>${esc(currentStatus)}</strong><b>CYCLE ${s.version}</b><i class="ops-command-meter acceptance ${acceptanceRate===null?'unavailable':''}" style="--meter:${acceptanceRate===null?0:acceptanceRate}%" aria-hidden="true"></i><small>${completed.length} completed wakes · ${acceptanceRate===null?'acceptance unavailable':acceptanceRate+'% accepted'}</small></a>
