@@ -17,18 +17,22 @@
 </head>
 <body class="research-page">
 <a class="skip-link" href="#main">Skip to research</a>
-<header class="research-header">
-<a class="research-wordmark" href="index.html">WAKE<span>✳︎</span><small>THE RESEARCH RECORD</small></a>
-<nav aria-label="Main navigation">
-<a href="index.html#home">Home</a>
-<a href="index.html#discoveries">Research</a>
-<a href="console.html" aria-current="page">Console</a>
-<a href="index.html#about">About</a>
-</nav>
-<div class="header-tools">
-<label class="data-switch theme-switch" title="Switch theme"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><span class="data-switch-track" aria-hidden="true"><i></i></span></label>
-<a id="execution-state" class="actions-light" href="https://github.com/sudofx/wake/actions" aria-label="Open WAKE GitHub Actions" title="Checking…"><span class="actions-light-track" aria-hidden="true"><i id="execution-dot"></i></span></a>
-</div>
+<header class="research-header masthead">
+  <a class="wordmark" href="index.html" aria-label="Reload WAKE✳︎ from the site root">WAKE<span class="asterisk">✳︎</span><small>THE RESEARCH RECORD</small></a>
+  <nav class="compact-nav" aria-label="Main navigation">
+    <a href="index.html#home">Home</a>
+    <a href="index.html#discoveries">Research</a>
+    <details class="nav-group"><summary>Read</summary><div class="nav-dropdown">
+      <a href="index.html#journal">Journal</a>
+      <a href="console.html?tool=projects">Projects</a>
+      <a href="index.html#blog">Bob’s Blog</a>
+    </div></details>
+    <a href="console.html" aria-current="page">Console</a>
+    <a href="index.html#about">About</a>
+  </nav>
+  <div class="header-tools">
+    <a id="execution-state" class="actions-light" href="https://github.com/sudofx/wake/actions" aria-label="Open WAKE GitHub Actions" title="Checking…"><span class="actions-light-track" aria-hidden="true"><i id="execution-dot"></i></span></a>
+  </div>
 </header>
 <main id="main" tabindex="-1">
 <div class="page-intro"><div><p class="eyebrow">RESEARCH / DIAGNOSTIC CONSOLE</p><h1>Console</h1><p class="lede">Explore the research. Inspect each wake. Trace the decisions.</p></div><div class="snapshot"><p id="freshness" role="status">Loading the research record…</p><button id="refresh" type="button">Refresh record ↻</button></div></div>
