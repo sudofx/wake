@@ -8,6 +8,7 @@ from sudofx import continuity_matrix
 from sudofx.storage import ApplicationAccessError
 
 from wake.governance import Rejected
+from wake.live import build_live_projection
 from wake.sudofx_store import SudofxStore
 
 
@@ -53,6 +54,25 @@ class WakeMatrixIntegrationTests(unittest.TestCase):
                 )
             finally:
                 rebuilt.close()
+
+    def test_live_projection_exposes_matrix_progress_as_derived_data(self) -> None:
+        matrix = continuity_matrix()
+        with tempfile.TemporaryDirectory() as tempdir:
+            store = SudofxStore(Path(tempdir), initialize_empty=True)
+            try:
+                self.assertIsNone(build_live_projection(store)["matrix_progress"])
+                store.enable_continuity_matrix()
+                first = matrix.coordinate("reconstruction", "rich", "clean")
+                store.record_continuity_matrix_result(
+                    first.coordinate_id,
+                    {"status": "completed", "score": 1.0},
+                )
+                projection = build_live_projection(store)
+                self.assertFalse(projection["authoritative"])
+                self.assertEqual(projection["matrix_progress"]["completed_count"], 1)
+                self.assertEqual(projection["matrix_progress"]["cell_count"], 343)
+            finally:
+                store.close()
 
     def test_matrix_coordinate_version_is_validated_by_shared_contract(self) -> None:
         matrix = continuity_matrix()
