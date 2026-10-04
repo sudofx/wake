@@ -898,6 +898,22 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-memory-evidence-steps{display:grid;grid-template-columns:minmax(150px,1.15fr)', css)
         self.assertIn('.ops-memory-evidence-steps{grid-template-columns:repeat(2,minmax(0,1fr))}', css)
 
+    def test_evidence_to_belief_boundary_uses_only_stored_citation_linkage(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('const beliefsWithEvidence=opsBeliefs.filter', app)
+        self.assertIn('const citedEvidenceIds=[...new Set(opsBeliefs.flatMap', app)
+        self.assertIn('const presentCitedEvidenceIds=citedEvidenceIds.filter(id=>Boolean(evidenceById[id])).length', app)
+        self.assertIn('const missingCitedEvidenceIds=Math.max(0,citedEvidenceIds.length-presentCitedEvidenceIds)', app)
+        self.assertIn('EVIDENCE → BELIEF / STORED CITATION BOUNDARY', app)
+        self.assertIn('Stored linkage only. Citation presence does not prove truth, sufficiency, or causation.', app)
+        self.assertIn('UNIQUE CITED EVIDENCE IDS', app)
+        self.assertIn('STORED CITATION EDGES', app)
+        self.assertIn('BELIEFS WITH CITATIONS', app)
+        self.assertIn('.ops-evidence-belief-bridge{border-top:1px solid var(--ops-line)', css)
+        self.assertIn('.ops-evidence-belief-grid{display:grid;grid-template-columns:minmax(150px,1.05fr)', css)
+        self.assertIn('.ops-evidence-belief-grid{grid-template-columns:repeat(2,minmax(0,1fr))}', css)
+
     def test_metrics_story_links_only_explicit_3d_provenance_branches(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
