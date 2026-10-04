@@ -1058,6 +1058,11 @@ body.metrics-ops-active .reading-key strong{color:var(--ops-orange)}
 .ops-state[data-status="pending"] i{background:var(--ops-cyan);box-shadow:0 0 15px color-mix(in srgb,var(--ops-cyan) 75%,transparent)}
 .ops-state[data-status="waiting"] i{background:var(--ops-amber);box-shadow:0 0 15px color-mix(in srgb,var(--ops-amber) 75%,transparent)}
 .ops-state strong{grid-column:1/-1;margin-top:5px;color:var(--ops-cyan);font:700 11px var(--mono)}
+.ops-source-rail{display:grid;grid-template-columns:1.35fr .85fr .85fr .8fr;border-bottom:1px solid var(--ops-line);background:#050b0f}
+.ops-source-rail div{padding:10px 14px;border-right:1px solid var(--ops-line-soft);min-width:0}
+.ops-source-rail div:last-child{border-right:0}
+.ops-source-rail span{display:block;font:7px var(--mono);letter-spacing:.14em;color:var(--ops-muted)}
+.ops-source-rail strong{display:block;margin-top:4px;font:500 9px/1.35 var(--mono);color:var(--ops-cyan);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ops-console-grid{display:grid;grid-template-columns:minmax(0,1fr) 245px;min-height:430px}
 .ops-viewport{position:relative;overflow:hidden;min-height:430px;border-right:1px solid var(--ops-line);background:
   radial-gradient(circle at 50% 48%,rgba(99,232,238,.09),transparent 22rem),
@@ -1126,6 +1131,7 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
   body.metrics-ops-active main,body.metrics-ops-active footer{margin-left:12px;margin-right:12px;max-width:calc(100% - 24px)}
   body.metrics-ops-active .metrics-heading{padding-top:24px}
   .ops-console-head{align-items:flex-start;padding:15px}.ops-console-head h2{font-size:27px}.ops-state{justify-items:end}
+  .ops-source-rail{grid-template-columns:1fr 1fr}.ops-source-rail div:nth-child(2){border-right:0}.ops-source-rail div:nth-child(-n+2){border-bottom:1px solid var(--ops-line-soft)}
   .ops-viewport{min-height:430px}.ops-topic-field{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(5,1fr);inset:6% 9% 13%}.ops-topic-node span{width:125px;font-size:7px}
   .ops-inspector{grid-template-columns:1fr 1fr}.ops-readout{border-right:1px solid var(--ops-line-soft);border-bottom:1px solid var(--ops-line-soft);min-height:100px;padding:12px}.ops-readout strong{font-size:22px}.ops-readout:nth-child(even){border-right:0}
   .ops-matrix-block{padding:15px;gap:16px}.continuity-lattice{grid-template-columns:repeat(21,1fr);gap:2px}.ops-matrix-stat strong{font-size:30px}
