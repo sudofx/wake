@@ -603,14 +603,14 @@
         <a href="#metrics" data-story-target="ops-now"><b>01</b><span>NOW</span><strong>cycle ${s.version}</strong></a>
         <a href="#metrics" data-story-target="ops-pressure"><b>02</b><span>PRESSURE</span><strong>${rejectedCount} rejected</strong></a>
         <a href="#metrics" data-story-target="ops-context"><b>03</b><span>MEMORY</span><strong>${contextDelivery?esc(String(contextDelivery.mode||'rich').toUpperCase()):'no receipt'}</strong></a>
-        <a href="#metrics" data-story-target="ops-evidence"><b>04</b><span>EVIDENCE</span><strong>${qualifyingEvidence} substantive</strong></a>
+        <a href="#metrics" data-story-target="ops-evidence"><b>04</b><span>EVIDENCE</span><strong>${evidenceCount} records</strong></a>
         <a href="#metrics" data-story-target="ops-beliefs"><b>05</b><span>BELIEF</span><strong>${opsActiveBeliefs.length} active</strong></a>
         <a href="#metrics" data-story-target="ops-horizon"><b>06</b><span>FRONTIER</span><strong>${openObligations} open</strong></a>
-        <a href="#metrics" data-story-target="ops-matrix"><b>07</b><span>SPACE</span><strong>${matrixPct}% mapped</strong></a>
+        <a href="#metrics" data-story-target="ops-matrix"><b>07</b><span>SPACE</span><strong>${matrixPct}% tested</strong></a>
       </nav>
       <div class="ops-story-lede" aria-label="Current record summary">
         <span>WHAT THE RECORD SAYS NOW</span>
-        <p>Cycle <strong>${s.version}</strong> · <strong>${completed.length}</strong> completed wakes · <strong>${acceptedCount}</strong> accepted · <strong>${rejectedCount}</strong> rejected · <strong>${openObligations}</strong> open commitments · <strong>${qualifyingEvidence}</strong> substantive source observations · <strong>${opsActiveBeliefs.length}</strong> active beliefs · <strong>${matrixPct}%</strong> of continuity@1 covered.</p>
+        <p>Cycle <strong>${s.version}</strong> · <strong>${completed.length}</strong> completed wakes · <strong>${acceptedCount}</strong> accepted · <strong>${rejectedCount}</strong> rejected · <strong>${openObligations}</strong> open commitments · <strong>${evidenceCount}</strong> evidence records · <strong>${opsActiveBeliefs.length}</strong> active beliefs · <strong>${matrixPct}%</strong> of continuity@1 tested.</p>
         <small>Counts are derived from durable receipts and current governed state. They describe WAKE's recorded history; they do not certify the truth of its research claims.</small>
       </div>
       <div class="ops-reading-key" aria-label="How to read this data story">
