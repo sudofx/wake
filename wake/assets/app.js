@@ -486,6 +486,7 @@
           <div class="ops-pulse-cells" role="group" aria-label="Recent completed wake outcomes">${timeline||'<span class="empty">No completed wakes yet.</span>'}</div>
           <div class="ops-pulse-legend">${statuses.map(([name,value])=>`<span class="${esc(name)}"><i></i><b>${value}</b>${esc(name)}</span>`).join('')}</div>
         </div>
+        <div class="ops-secondary-grid">
         <div class="ops-pressure-board" aria-label="Operational pressure">
           <section>
             <header><span>GOVERNANCE PRESSURE</span><strong>${sortedReasons.length} rejection families</strong></header>
@@ -510,6 +511,7 @@
             <div><span>INTERVENING EVENTS</span><strong>${latestTemporal?.intervening_events?.total??'—'}</strong><small>between temporal anchors</small></div>
             <div><span>REGIME</span><strong>${esc(String(latestTemporal?.regime_id||experimental?.id||'—').replace(/^reg-/,''))}</strong><small>${timeControl?.enabled===false?'disabled':timeControl?'operator-recorded':'unavailable'}</small></div>
           </div>
+        </div>
         </div>
         <div class="ops-signal-band" aria-label="Derived operating signals">
           <div class="ops-signal" style="--signal:${acceptanceRate}%"><span>ACCEPTANCE</span><strong>${acceptanceRate}%</strong><i></i></div>
