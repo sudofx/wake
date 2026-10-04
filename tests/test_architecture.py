@@ -866,6 +866,16 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('data-instrument="continuity"', app)
         self.assertIn('data-instrument="provenance"', app)
 
+    def test_wide_control_room_pairs_time_with_receipt_order_without_mobile_reorder(self):
+        css = self.read('wake/assets/style.css')
+        self.assertIn('.ops-command-deck{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(340px,.7fr)}', css)
+        self.assertIn('.ops-command-deck>header,.ops-command-zones,.ops-command-grid{grid-column:1/-1}', css)
+        self.assertIn('.ops-command-activity{grid-column:1;grid-template-columns:minmax(170px,.45fr) minmax(0,1fr);border-right:1px solid var(--ops-line-soft)}', css)
+        self.assertIn('.ops-command-pulse{grid-column:2;grid-template-columns:1fr;align-content:stretch;gap:6px}', css)
+        self.assertIn('.ops-command-pulse-track{height:48px}', css)
+        self.assertIn('.ops-command-activity{grid-template-columns:1fr;gap:7px;padding:9px 10px}', css)
+        self.assertIn('.ops-command-pulse{grid-template-columns:1fr;gap:7px;padding:9px 10px}', css)
+
     def test_control_room_24h_activity_is_projection_anchored_and_bounded(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
