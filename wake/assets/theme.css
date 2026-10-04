@@ -2423,3 +2423,25 @@ body>.masthead .powered-by{
     border-radius:10px;
   }
 }
+
+
+/* CONSOLE + DOCS CARD ART SWAP — 2026-10-04 */
+/* User-provided artwork: cube for Console, previous globe for Documentation. */
+.nebula-explore-console{
+  background:
+    linear-gradient(180deg,rgba(3,8,24,.03),rgba(3,8,24,.10)),
+    url("backgrounds/console-cube.png?v=20261004-1") center center/cover no-repeat!important;
+}
+.nebula-explore-docs{
+  background-image:
+    linear-gradient(180deg,rgba(3,8,24,.03),rgba(3,8,24,.12)),
+    url("backgrounds/console-globe.png?v=20261004-2")!important;
+  background-position:center center!important;
+  background-size:cover!important;
+  background-repeat:no-repeat!important;
+}
+.nebula-explore-console::before,
+.nebula-explore-console::after,
+.nebula-explore-console i{
+  display:none!important;
+}
