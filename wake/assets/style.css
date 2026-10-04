@@ -2116,6 +2116,10 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
 /* Final device-shape tuning for the operator's real screens. */
 @media(max-width:430px){
   body.metrics-ops-active #metrics.view{min-width:0}
+  .ops-command-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-flow:row;grid-auto-columns:auto;overflow:visible;scroll-snap-type:none}
+  .ops-command-grid>a,.ops-command-grid>a:nth-child(3n){min-height:96px;border-right:1px solid var(--ops-line-soft);border-bottom:1px solid var(--ops-line-soft);scroll-snap-align:none}
+  .ops-command-grid>a:nth-child(2n){border-right:0}
+  .ops-command-grid>a:nth-last-child(-n+2){border-bottom:0}
   .ops-provenance-jump a small,.ops-audit-steps small,.ops-history-legend span,.ops-present-endpoint small{font-size:7px}
   .ops-storyline{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(138px,48vw)}
   .ops-storyline a{min-height:44px;border-bottom:0;border-right:1px solid var(--ops-line-soft)}
