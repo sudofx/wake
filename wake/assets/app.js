@@ -486,6 +486,33 @@
         const updateReceipt=updatedBy?`<a href="#history/${encodeURIComponent(updatedBy)}">UPDATED BY ${esc(updatedBy.slice(-10))}</a>`:'<span>UPDATE RECEIPT UNAVAILABLE</span>';
         return `<article class="ops-lineage-row"><div class="ops-lineage-roots">${rootLinks}</div><i class="ops-lineage-arrow" aria-hidden="true">→</i><div class="ops-lineage-belief ${esc(status)}"><span>GOVERNED BELIEF · ${esc(status.toUpperCase())}</span><strong>${esc(statement)}</strong><small>${esc(belief?.id||'belief')} · confidence ${Number.isFinite(confidence)?confidence.toFixed(2):'unavailable'} · rev ${Number.isFinite(updatedVersion)?updatedVersion:'—'}</small><div class="ops-lineage-belief-meta">${updateReceipt}<span class="${hasFalsifier?'has-falsifier':'no-falsifier'}">${hasFalsifier?'FALSIFIER RECORDED':'NO FALSIFIER'}</span></div></div></article>`;
       }).join('')||'<p class="empty">No governed belief citation lineage in the current state.</p>';
+    const beliefActionHistory=[];
+    const visibleBeliefConfidence=new Map();
+    accepted.forEach(event=>{
+      const proposal=event?.payload?.proposal||{};
+      const actions=Array.isArray(proposal?.actions)?proposal.actions:[];
+      const cycle=Number(proposal?.base_version)+1;
+      actions.filter(action=>action?.type==='belief').forEach(action=>{
+        const id=String(action?.id||'belief');
+        const confidence=Number(action?.confidence);
+        const prior=visibleBeliefConfidence.has(id)?visibleBeliefConfidence.get(id):null;
+        const delta=Number.isFinite(confidence)&&Number.isFinite(prior)?confidence-prior:null;
+        beliefActionHistory.push({event,action,cycle,confidence,delta});
+        if(Number.isFinite(confidence))visibleBeliefConfidence.set(id,confidence);
+      });
+    });
+    const beliefActionRows=beliefActionHistory
+      .slice(-12)
+      .reverse()
+      .map(({event,action,cycle,confidence,delta})=>{
+        const id=String(action?.id||'belief');
+        const status=String(action?.status||'unknown').toLowerCase();
+        const receiptId=String(event?.payload?.id||'');
+        const evidenceCount=Array.isArray(action?.evidence)?action.evidence.length:0;
+        const hasFalsifier=Boolean(String(action?.falsifier||'').trim());
+        const deltaLabel=Number.isFinite(delta)?`${delta>0?'+':''}${delta.toFixed(2)}`:'—';
+        return `<article class="ops-belief-action ${esc(status)}"><header><span>CYCLE ${Number.isFinite(cycle)?cycle:'—'} · ${esc(status.toUpperCase())}</span><strong>CONF ${Number.isFinite(confidence)?confidence.toFixed(2):'—'}</strong></header><p>${esc(action?.statement||id)}</p><div class="ops-belief-action-meta"><span>${esc(id)}</span><span>Δ ${esc(deltaLabel)}</span><span>${evidenceCount} EVIDENCE ROOT${evidenceCount===1?'':'S'}</span><span class="${hasFalsifier?'has-falsifier':'no-falsifier'}">${hasFalsifier?'FALSIFIER':'NO FALSIFIER'}</span>${receiptId?`<a href="#history/${encodeURIComponent(receiptId)}">RECEIPT ${esc(receiptId.slice(-10))}</a>`:'<span>RECEIPT UNAVAILABLE</span>'}</div></article>`;
+      }).join('');
     const providerRequests=completed.reduce((n,i)=>n+(i.provider_requests_sent||0),0);
     const requestsPerAccepted=acceptedCount?(providerRequests/acceptedCount).toFixed(2):'—';
     const wakeStatus=data.wake_status||{};
@@ -1048,6 +1075,10 @@
           <div class="ops-lineage">
             <div class="ops-lineage-head"><div><span>EVIDENCE → BELIEF / CURRENT GOVERNED LINEAGE</span><strong>${lineageEvidenceRoots} recorded citation edges across ${opsBeliefs.length} current beliefs</strong></div><small>Active and retracted beliefs remain visible here. Edges come only from stored evidence IDs; earlier belief versions remain in exact receipts.</small></div>
             <div class="ops-lineage-list">${beliefLineage}</div>
+          </div>
+          <div class="ops-belief-history">
+            <div class="ops-belief-history-head"><div><span>RECENT BELIEF ACTIONS / PUBLISHED EVENT WINDOW</span><strong>${beliefActionHistory.length} visible governed belief action${beliefActionHistory.length===1?'':'s'}</strong></div><small>Chronological deltas are computed only against earlier visible actions for the same belief. This panel does not claim to contain revisions outside the published event window.</small></div>
+            <div class="ops-belief-history-list">${beliefActionRows||'<p class="empty">No belief actions are visible in the published event window.</p>'}</div>
           </div>
         </div>
         </div>
