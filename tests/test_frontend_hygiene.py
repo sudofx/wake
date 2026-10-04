@@ -108,6 +108,11 @@ class FrontendHygieneTests(unittest.TestCase):
         self.assertIn("active.offsetLeft-(list.clientWidth-active.offsetWidth)/2", script)
         self.assertIn("centerCurrentRelationshipTrail()", script)
 
+    def test_3d_up_navigation_keeps_shareable_record_url_in_sync(self):
+        script = (ASSETS / "map3d.js").read_text()
+        self.assertIn("function goUp(){if(path.length<2)return release();", script)
+        self.assertIn("frameSelection(current());writeRecordHash(current())", script)
+
     def test_every_style_class_has_a_current_caller(self):
         css = (ASSETS / "style.css").read_text()
         callers = "\n".join(
