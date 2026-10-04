@@ -141,7 +141,7 @@ Use the workflows by their literal names:
 - **WAKE✳︎ - Reset** — safely stop as needed, preserve/archive prior governed history, and start a new active generation at zero; requires the workflow's explicit reset confirmation.
 - **WAKE✳︎ — Make new code live** — verify the selected candidate (normally `master`), then move that exact tested commit to `wake-runtime`. Research must be stopped first.
 - **WAKE✳︎ - Restart** — safe maintenance shortcut: stop, verify current `master`, promote it, then start again.
-- **WAKE✳︎ - Enable continuity campaign** — provider-free explicit opt-in to the governed `continuity@1` 343-cell campaign; safely serializes the state change and restores the prior running/stopped state.
+- **WAKE✳︎ - Enable continuity campaign** — provider-free explicit opt-in to the governed `continuity@1` 343-cell campaign; immediately stops/drains WAKE, safely serializes the state change, then starts WAKE again whether enablement succeeds or fails.
 - **WAKE✳︎ - Migrate authority to sudofx** — provider-free authority cutover/migration workflow; it does not start research or call Gemini.
 - **WAKE✳︎ — Phase E authority rehearsal** — automatic migration/replay rehearsal used to validate the sudofx cutover path.
 - **WAKE✳︎ — Update website · automatic** — rebuild the public GitHub Pages site when website code changes.
