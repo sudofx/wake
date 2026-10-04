@@ -580,18 +580,20 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
                     "timezone": projection.get("timezone") or "America/Los_Angeles",
                     "operation": operation,
                     "wake_status": projection.get("wake_status") or (operation or {}).get("wake_status") or wake_status(state),
-                    "metrics": projection.get("metrics", {})}
+                    "metrics": projection.get("metrics", {}),
+                    "matrix_progress": projection.get("matrix_progress")}
         else:
             # Full exports still consume one verified authoritative snapshot.
             state, head, events = record_snapshot if record_snapshot is not None else store.replay_record()
             if experiment is None:
                 evidence_file = store.directory / "experiment.json"
                 experiment = json.loads(evidence_file.read_text()) if evidence_file.exists() else None
-            from .live import _full_history_metrics
+            from .live import _full_history_metrics, _matrix_metrics
             data = {"state": state, "events": events, "head": head, "generated": now(),
                     "experiment": experiment, "timezone": "America/Los_Angeles", "operation": operation,
                     "wake_status": (operation or {}).get("wake_status") or wake_status(state),
-                    "metrics": _full_history_metrics(store, state)}
+                    "metrics": _full_history_metrics(store, state),
+                    "matrix_progress": _matrix_metrics(store)}
         target = Path(destination)
         target.mkdir(parents=True, exist_ok=True)
         assets = Path(__file__).parent / "assets"
