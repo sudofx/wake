@@ -1199,6 +1199,24 @@ body.metrics-ops-active .reading-key strong{color:var(--ops-orange)}
 .ops-horizon-bucket.danger>strong{color:var(--ops-red)}.ops-horizon-bucket.danger i{background:var(--ops-red);border-color:var(--ops-red)}
 .ops-horizon-bucket.warning>strong{color:var(--ops-amber)}.ops-horizon-bucket.warning i{background:var(--ops-amber);border-color:var(--ops-amber)}
 .ops-horizon-bucket.info i{background:var(--ops-cyan-dim);border-color:var(--ops-cyan-dim)}
+.ops-frontier-queue{border-top:1px solid var(--ops-line-soft);background:#04090d}
+.ops-frontier-head{display:flex;justify-content:space-between;gap:18px;align-items:end;padding:12px 14px;border-bottom:1px solid var(--ops-line-soft)}
+.ops-frontier-head span{display:block;font:7px var(--mono);letter-spacing:.12em;color:var(--ops-orange)}
+.ops-frontier-head strong{display:block;margin-top:4px;font:500 15px/1.2 var(--sans);color:#edf8fa}
+.ops-frontier-head small{max-width:520px;text-align:right;font:7px/1.45 var(--mono);color:var(--ops-muted)}
+.ops-frontier-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.ops-frontier-item{min-width:0;padding:12px 14px;border-right:1px solid var(--ops-line-soft);border-bottom:1px solid var(--ops-line-soft);background:linear-gradient(180deg,#061016,#050b0f)}
+.ops-frontier-item:nth-child(2n){border-right:0}
+.ops-frontier-item>header{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.ops-frontier-item>header span{font:7px var(--mono);letter-spacing:.08em;color:var(--ops-muted)}
+.ops-frontier-item>header strong{font:500 9px/1 var(--mono);color:var(--ops-cyan)}
+.ops-frontier-item.overdue>header span,.ops-frontier-item.overdue>header strong{color:var(--ops-red)}
+.ops-frontier-item.due>header span,.ops-frontier-item.due>header strong,.ops-frontier-item.soon>header span{color:var(--ops-amber)}
+.ops-frontier-item>p{margin:9px 0 10px;font:9px/1.5 var(--mono);color:#a7bdc2;overflow-wrap:anywhere}
+.ops-frontier-meta{display:flex;flex-wrap:wrap;gap:5px 10px;padding-top:8px;border-top:1px solid #102128}
+.ops-frontier-meta>a,.ops-frontier-meta>span{font:6px/1.25 var(--mono);letter-spacing:.05em;color:#4d6d74}
+.ops-frontier-meta>a{color:var(--ops-cyan-dim)}
+.ops-frontier-meta>a:hover,.ops-frontier-meta>a:focus-visible{color:#e9f7f8;outline:0;text-decoration:underline}
 .ops-tertiary-grid{display:grid;grid-template-columns:1fr;background:#050b0f}
 .ops-tertiary-grid>.ops-context,.ops-tertiary-grid>.ops-lifecycle{min-width:0}
 .ops-signal-band{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border-top:1px solid var(--ops-line);border-bottom:1px solid var(--ops-line);background:#050c11}
@@ -1483,6 +1501,7 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
   .ops-matrix-block{grid-template-columns:minmax(320px,.9fr) minmax(640px,2.2fr) 160px;padding:20px 24px}
 }
 @media(min-width:2200px){
+  .ops-frontier-list{grid-template-columns:repeat(4,minmax(0,1fr))}.ops-frontier-item:nth-child(2n){border-right:1px solid var(--ops-line-soft)}.ops-frontier-item:nth-child(4n){border-right:0}
   .ops-handoff-list{grid-template-columns:repeat(4,minmax(0,1fr))}.ops-handoff-row:nth-child(2n){border-right:1px solid var(--ops-line-soft)}.ops-handoff-row:nth-child(4n){border-right:0}
   body.metrics-ops-active main{width:calc(100vw - 96px)}
   .ops-tertiary-grid{grid-template-columns:minmax(0,1.45fr) minmax(560px,.55fr)}
@@ -1644,6 +1663,7 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
 .ops-storyline a.is-active span{color:#afc5cb}
 .ops-storyline a.is-active strong{color:#effbfc}
 @media(max-width:700px){
+  .ops-frontier-head{display:block}.ops-frontier-head small{display:block;margin-top:5px;text-align:left}.ops-frontier-list{grid-template-columns:1fr}.ops-frontier-item{border-right:0}
   .ops-handoff-head{display:block}.ops-handoff-head small{display:block;margin-top:5px;text-align:left}.ops-handoff-list{grid-template-columns:1fr}.ops-handoff-row{border-right:0}.ops-handoff-path{grid-template-columns:minmax(0,1fr) 18px minmax(0,1fr)}
   .ops-storyline{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(142px,44vw);overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .ops-storyline::-webkit-scrollbar{display:none}
