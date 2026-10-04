@@ -476,6 +476,25 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-matrix-frontier', css)
         self.assertIn('.matrix-plane.current', css)
 
+    def test_matrix_cells_are_explorable_without_public_result_bodies(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('data-matrix-cell', app)
+        self.assertIn('COORDINATE INSPECTOR / PUBLIC TELEMETRY', app)
+        self.assertIn('data-matrix-inspector="ordinal"', app)
+        self.assertIn('data-matrix-inspector="status"', app)
+        self.assertIn('data-matrix-inspector="semantic"', app)
+        self.assertIn('data-matrix-inspector="exposure"', app)
+        self.assertIn('data-matrix-inspector="pressure"', app)
+        self.assertIn("event.key==='ArrowLeft'", app)
+        self.assertIn("event.key==='ArrowRight'", app)
+        self.assertIn("event.key==='ArrowUp'", app)
+        self.assertIn("event.key==='ArrowDown'", app)
+        self.assertIn('result summaries and scores remain outside this projection', app)
+        self.assertNotIn('matrixProgress?.results', app)
+        self.assertIn('.ops-matrix-explorer', css)
+        self.assertIn('.continuity-cell[aria-pressed="true"]', css)
+
     def test_belief_lineage_uses_only_stored_evidence_ids(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
