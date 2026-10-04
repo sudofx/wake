@@ -11,7 +11,14 @@
 .map-instrument-rail>a span{font:600 10px/1.2 var(--sans);color:var(--ink)}
 .map-instrument-rail>a.current{background:color-mix(in srgb,var(--cyan) 9%,var(--surface));box-shadow:inset 0 -2px 0 var(--cyan)}
 .map-instrument-rail>a.current b{color:var(--cyan)}
+.map-instrument-rail>a[data-instrument="provenance"]{background:color-mix(in srgb,var(--lime) 5%,var(--surface))}
+.map-instrument-rail>a[data-instrument="provenance"].current{background:color-mix(in srgb,var(--lime) 10%,var(--surface));box-shadow:inset 0 -2px 0 var(--lime)}
+.map-instrument-rail>a[data-instrument="provenance"] b{color:var(--lime)}
+.map-instrument-rail>a[data-instrument="continuity"]{background:color-mix(in srgb,var(--yellow) 5%,var(--surface))}
+.map-instrument-rail>a[data-instrument="continuity"] b{color:var(--yellow)}
 .map-instrument-rail>a:hover,.map-instrument-rail>a:focus-visible{background:color-mix(in srgb,var(--cyan) 12%,var(--surface));outline:0}
+.map-instrument-rail>a[data-instrument="provenance"]:hover,.map-instrument-rail>a[data-instrument="provenance"]:focus-visible{background:color-mix(in srgb,var(--lime) 14%,var(--surface))}
+.map-instrument-rail>a[data-instrument="continuity"]:hover,.map-instrument-rail>a[data-instrument="continuity"]:focus-visible{background:color-mix(in srgb,var(--yellow) 12%,var(--surface))}
 .constellation-shell{display:block;position:relative;overflow:hidden;border:1px solid var(--line);border-radius:12px;background:var(--surface);box-shadow:var(--shadow)}
 .constellation-shell>.field-head{display:flex;justify-content:space-between;gap:16px;padding:14px 20px;font:10px var(--mono);letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--line)}
 #constellation-stage{position:relative;min-height:900px;overflow:hidden;isolation:isolate;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;outline:none;background:radial-gradient(circle at 14% 17%,rgba(102,194,255,.42) 0 1px,transparent 1.8px),radial-gradient(circle at 28% 28%,rgba(180,115,255,.32) 0 1px,transparent 1.7px),radial-gradient(circle at 43% 11%,rgba(102,194,255,.38) 0 1px,transparent 1.8px),radial-gradient(circle at 63% 25%,rgba(180,115,255,.34) 0 1px,transparent 1.7px),radial-gradient(circle at 80% 14%,rgba(102,194,255,.42) 0 1px,transparent 1.8px),radial-gradient(circle at 92% 32%,rgba(180,115,255,.3) 0 1px,transparent 1.7px),radial-gradient(ellipse 72% 38% at 50% 38%,rgba(34,75,123,.17),transparent 72%),linear-gradient(180deg,#11182d 0%,#151c33 41.9%,#172037 42%,#18233b 100%)}
