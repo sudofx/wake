@@ -229,6 +229,10 @@
     const providerRequests=completed.reduce((n,i)=>n+(i.provider_requests_sent||0),0);
     const requestsPerAccepted=acceptedCount?(providerRequests/acceptedCount).toFixed(2):'—';
     const wakeStatus=data.wake_status||{};
+    const sourceMeta=data.source||{};
+    const shortHead=String(data.head||sourceMeta.head||'').slice(0,12)||'—';
+    const runtimeRef=String(sourceMeta.runtime_ref||'').slice(0,12)||'—';
+    const sourceAuthority=sourceMeta.authority||'derived projection';
     const matrixProgress=data.matrix_progress||null;
     const matrixCompleted=Number(matrixProgress?.completed_count||0);
     const matrixTotal=Number(matrixProgress?.cell_count||343);
@@ -403,6 +407,12 @@
           <div><p class="eyebrow">WAKE✳︎ / RESEARCH OPERATIONS</p><h2>Live governed research field.</h2></div>
           <div class="ops-state" data-status="${currentStatus.toLowerCase()}"><i></i><span>${currentStatus}</span><strong>CYCLE ${s.version}</strong></div>
         </header>
+        <div class="ops-source-rail" aria-label="Projection provenance">
+          <div><span>AUTHORITY</span><strong>${esc(sourceAuthority)}</strong></div>
+          <div><span>RECORD HEAD</span><strong>${esc(shortHead)}</strong></div>
+          <div><span>RUNTIME</span><strong>${esc(runtimeRef)}</strong></div>
+          <div><span>VIEW</span><strong>DERIVED / LIVE</strong></div>
+        </div>
         <div class="ops-console-grid">
           <article class="ops-viewport">
             <div class="ops-grid-lines" aria-hidden="true"></div>
@@ -572,6 +582,7 @@
     Object.assign(s,nextState);
     data.events=Array.isArray(next.events)?next.events:[];
     data.head=next.head||data.head;
+    data.source=next.source||data.source||{};
     data.generated=next.generated||data.generated;
     data.operation=next.operation||null;
     data.wake_status=next.wake_status||{};
