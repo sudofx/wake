@@ -73,9 +73,15 @@ class WakeMatrixIntegrationTests(unittest.TestCase):
                 public = _matrix_metrics(store)
                 self.assertEqual(public["completed_count"], 1)
                 self.assertEqual(public["status_counts"]["completed"], 1)
+                self.assertEqual([axis["key"] for axis in public["axes"]], ["semantic_lens", "exposure", "pressure"])
+                self.assertEqual(len(public["cells"]), 343)
+                first_public = next(cell for cell in public["cells"] if cell["coordinate_id"] == first.coordinate_id)
+                self.assertEqual(first_public["values"], list(first.value_keys))
+                self.assertEqual(first_public["status"], "completed")
                 self.assertNotIn("results", public)
                 self.assertNotIn("completed_coordinate_ids", public)
                 self.assertNotIn("summary", str(public))
+                self.assertNotIn("score", str(public))
             finally:
                 store.close()
 
