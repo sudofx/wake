@@ -580,7 +580,7 @@ class ArchitectureSeparationTests(unittest.TestCase):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
         markup = page + app
-        literal_ids = re.findall(r'\\bid="([^"]+)"', markup)
+        literal_ids = re.findall(r'\bid="([^"]+)"', markup)
         duplicates = sorted({item for item in literal_ids if literal_ids.count(item) > 1})
         self.assertEqual(duplicates, [])
         targets = (
@@ -590,8 +590,8 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertTrue(targets)
         for target in targets:
             self.assertEqual(literal_ids.count(target), 1, target)
-        self.assertNotRegex(css, r'\\d+(?:px|em|rem|fr|%)\\.[A-Za-z_-][\\w-]*\\{')
-        self.assertNotRegex(css, r'repeat\\([^{}]+\\)\\.[A-Za-z_-]')
+        self.assertNotRegex(css, r'\d+(?:px|em|rem|fr|%)\.[A-Za-z_-][\w-]*\{')
+        self.assertNotRegex(css, r'repeat\([^{}]+\)\.[A-Za-z_-]')
 
     def test_site_operator_link_goes_directly_to_github_actions(self):
         page = self.read('wake/assets/index.html')
