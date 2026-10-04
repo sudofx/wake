@@ -40,7 +40,21 @@
         label='record '+wanted;
       }
       if(!seqMatch&&!eventMatch)return;
-      if(status){status.hidden=false;status.textContent=target?'Located '+label+' in the append-only export.':'Requested '+label+' was not found in this published export.'}
+      if(status){
+        status.hidden=false;
+        if(target){
+          const seq=Number(target.dataset.eventSeq||0);
+          const ordered=[...events].sort((a,b)=>Number(a.seq||0)-Number(b.seq||0));
+          const index=ordered.findIndex(event=>Number(event.seq||0)===seq);
+          const previous=index>0?ordered[index-1]:null;
+          const next=index>=0&&index<ordered.length-1?ordered[index+1]:null;
+          status.innerHTML='<span>Located '+esc(label)+' in the append-only export.</span><nav aria-label="Adjacent receipts">'+
+            (previous?'<a href="#seq='+esc(previous.seq)+'">← EVENT '+esc(previous.seq)+'</a>':'<span>← RECORD START</span>')+
+            '<strong>EVENT '+esc(seq)+'</strong>'+
+            (next?'<a href="#seq='+esc(next.seq)+'">EVENT '+esc(next.seq)+' →</a>':'<span>RECORD HEAD →</span>')+
+            '</nav>';
+        }else status.textContent='Requested '+label+' was not found in this published export.';
+      }
       if(target){
         target.classList.add('flat-target');
         requestAnimationFrame(()=>target.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'}));
