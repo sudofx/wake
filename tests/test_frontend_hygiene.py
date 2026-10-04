@@ -50,7 +50,7 @@ class FrontendHygieneTests(unittest.TestCase):
 
         self.assertIn("function durableRecordDestination(node)", script)
         self.assertIn("EXACT WAKE RECEIPT", script)
-        self.assertIn("detail.exact_record||'journal invocation ID'", script)
+        self.assertIn("detail.exact_record||'full history · journal invocation ID'", script)
         self.assertIn("EXACT INVOCATION RECEIPT", script)
         self.assertIn("DURABLE PUBLICATION", script)
         self.assertIn("EVIDENCE RECORD", script)
@@ -62,6 +62,22 @@ class FrontendHygieneTests(unittest.TestCase):
         self.assertIn(".detail-context-links{display:grid", css)
         self.assertIn(".detail-record-link", css)
         self.assertIn(".detail-context-links{grid-template-columns:1fr}", css)
+
+    def test_full_history_supports_exact_receipt_deep_links(self):
+        map_script = (ASSETS / "map3d.js").read_text()
+        flat_script = (ASSETS / "flat-view.js").read_text()
+        css = (ASSETS / "style.css").read_text()
+
+        self.assertIn("events.html#seq=${exactSeq}", map_script)
+        self.assertIn("events.html#event=${encodeURIComponent(invocationId)}", map_script)
+        self.assertIn("events.html#event=${encodeURIComponent(lifecycleId)}", map_script)
+        self.assertIn("data-event-seq=", flat_script)
+        self.assertIn("data-event-id=", flat_script)
+        self.assertIn("location.hash.match(/^#seq=(\\d+)$/)", flat_script)
+        self.assertIn("location.hash.match(/^#event=(.+)$/)", flat_script)
+        self.assertIn("target.classList.add('flat-target')", flat_script)
+        self.assertIn(".flat-target-status", css)
+        self.assertIn(".entry.flat-target", css)
 
     def test_3d_map_uses_side_inspector_on_macbook_widths(self):
         css = (ASSETS / "map3d.css").read_text()
