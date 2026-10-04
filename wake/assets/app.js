@@ -1014,6 +1014,9 @@
             <small>Fast orientation only. Open a cell for the underlying story, provenance, or record evidence.</small>
           </div>
         </header>
+        <div class="ops-command-zones" aria-hidden="true">
+          <span>OPERATIONS</span><span>SCIENTIFIC INSTRUMENTS</span><span>AUDIT</span>
+        </div>
         <div class="ops-command-grid">
           <a href="#metrics/ops-now" data-tone="${currentStatus.toLowerCase()}" data-route="STORY 01 / NOW"><span>WAKE STATUS</span><strong>${esc(currentStatus)}</strong><b>CYCLE ${s.version}</b><i class="ops-command-meter acceptance ${acceptanceRate===null?'unavailable':''}" style="--meter:${acceptanceRate===null?0:acceptanceRate}%" aria-hidden="true"></i><small>${completed.length} completed wakes · ${acceptanceRate===null?'acceptance unavailable':acceptanceRate+'% accepted'}</small></a>
           <a href="#metrics/ops-pressure" data-route="STORY 02 / PRESSURE"><span>PROVIDER</span><strong>${esc(latestModel)}</strong><b>${wakeStatus.provider_requests_today??0} requests today</b><div class="ops-command-micro provider" aria-hidden="true">${commandProviderBars||'<i style="--micro:0%"></i>'}</div><i class="ops-command-meter ${providerQuotaPct===null?'unavailable':''}" style="--meter:${providerQuotaPct===null?0:providerQuotaPct.toFixed(2)}%" aria-hidden="true"></i><small>bars = recent attempt latency · ${providerQuotaPct===null?'quota limit unavailable':providerSlotsToday+'/'+providerDailyLimit+' charged request slots'} · ${providerSuccesses}/${knownAttempts.length} success-labelled</small></a>
