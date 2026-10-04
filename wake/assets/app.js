@@ -416,7 +416,16 @@
     const acceptedPerHour=recordHours?acceptedCount/recordHours:0;
     const actionPerAccepted=acceptedCount?(actionTotal/acceptedCount):0;
     const evidencePerAccepted=acceptedCount?(evidenceCount/acceptedCount):0;
-    const openObligations=obligations.filter(c=>c.status==='open').length;
+    const openCommitments=obligations.filter(c=>c.status==='open');
+    const openObligations=openCommitments.length;
+    const obligationBuckets=[
+      ['OVERDUE',openCommitments.filter(item=>Number(item.due_cycle)<Number(s.version)).length,'danger'],
+      ['DUE NOW',openCommitments.filter(item=>Number(item.due_cycle)===Number(s.version)).length,'warning'],
+      ['NEXT 1–3',openCommitments.filter(item=>Number(item.due_cycle)>Number(s.version)&&Number(item.due_cycle)<=Number(s.version)+3).length,'info'],
+      ['NEXT 4–10',openCommitments.filter(item=>Number(item.due_cycle)>Number(s.version)+3&&Number(item.due_cycle)<=Number(s.version)+10).length,'info'],
+      ['LATER',openCommitments.filter(item=>Number(item.due_cycle)>Number(s.version)+10).length,'neutral']
+    ];
+    const obligationHorizon=obligationBuckets.map(([label,count,tone])=>`<div class="ops-horizon-bucket ${tone}"><span>${label}</span><strong>${count}</strong><div>${Array.from({length:Math.min(count,18)},()=>'<i></i>').join('')}</div></div>`).join('');
     const providerSuccesses=knownAttempts.filter(a=>['success','accepted','ok'].includes(String(a.result||'').toLowerCase())).length;
     const fallbackRate=completed.length?100*fallbackWakes/completed.length:0;
     const rejectionRate=completed.length?100*rejectedCount/completed.length:0;
@@ -562,6 +571,10 @@
           <div class="ops-signal warning" style="--signal:${Math.min(100,fallbackRate)}%"><span>FALLBACK LOAD</span><strong>${fallbackRate.toFixed(1)}%</strong><i></i></div>
           <div class="ops-signal info" style="--signal:${Math.min(100,configuredTopicCount?100*topicActive/configuredTopicCount:0)}%"><span>TOPIC COVERAGE</span><strong>${topicActive}/${configuredTopicCount}</strong><i></i></div>
           <div class="ops-signal info" style="--signal:${Math.min(100,matrixPct)}%"><span>MATRIX COVERAGE</span><strong>${matrixPct}%</strong><i></i></div>
+        </div>
+        <div class="ops-horizon" aria-label="Open commitment horizon">
+          <div class="ops-horizon-head"><div><p class="eyebrow">OPEN COMMITMENT HORIZON</p><h3>${openObligations} obligations carried forward</h3></div><small>bucketed by due cycle relative to cycle ${s.version}</small></div>
+          <div class="ops-horizon-grid">${obligationHorizon}</div>
         </div>
         <div class="ops-context" aria-label="Context delivery telemetry">
           <div class="ops-context-head">
