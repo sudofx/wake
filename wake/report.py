@@ -745,7 +745,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             atomic_write(target / "404.html", """<!doctype html><meta charset="utf-8"><script>(()=>{const p=location.pathname;let h='home';let m;if((m=p.match(/\\/blog\\/([^/]+)\\.(?:html|md)$/)))h='blog/'+decodeURIComponent(m[1]);else if((m=p.match(/\\/journal\\/([^/]+)\\.html$/)))h='history/'+decodeURIComponent(m[1]);else if((m=p.match(/\\/notebooks\\/([^/]+)\\.(?:html|md)$/)))h='projects/notebook:'+decodeURIComponent(m[1]);location.replace(new URL('index.html#'+h,location.href))})()</script>""")
             _export_console_components(target)
             return {"path": str((target / "index.html").resolve()), "cycles": state["version"], "head": head}
-        lines = ["# **WAKE✳︎** — The journal", "", "> Disposable models. Durable state. Receipts for everything.", "",
+        lines = ["# **WAKE✳︎** — The journal", "", "> Durable work. Replaceable intelligence. Receipts for every governed transition.", "",
                  f"Objective: {_md_text(state['objective'])}", "", f"Verified head: `{head}`", "",
                  "Fixture entries are deterministic simulations, not live model experiments.", ""]
         for item in reversed(state["journal"]):
