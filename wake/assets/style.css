@@ -1253,6 +1253,21 @@ body.metrics-ops-active .reading-key strong{color:var(--ops-orange)}
 .ops-provenance-row>div{height:5px;background:#102128;border:1px solid #143640}
 .ops-provenance-row i{display:block;height:100%;background:linear-gradient(90deg,var(--ops-green),var(--ops-cyan-dim))}
 .ops-provenance-row strong{text-align:right;font:8px var(--mono);color:var(--ops-text)}
+.ops-beliefs{border-top:1px solid var(--ops-line);background:#061016}
+.ops-beliefs-head{display:flex;justify-content:space-between;gap:16px;align-items:end;padding:13px 16px;border-bottom:1px solid var(--ops-line-soft)}
+.ops-beliefs-head .eyebrow{margin:0 0 4px;color:var(--ops-orange)}
+.ops-beliefs-head h3{margin:0;font:500 18px/1.15 var(--sans);color:#edf8fa}
+.ops-beliefs-head small{max-width:390px;text-align:right;font:7px/1.4 var(--mono);color:var(--ops-muted)}
+.ops-beliefs-grid{display:grid;grid-template-columns:minmax(420px,1fr) minmax(300px,.9fr)}
+.ops-belief-kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-right:1px solid var(--ops-line-soft)}
+.ops-belief-kpis>div{padding:12px 13px;border-right:1px solid var(--ops-line-soft);min-width:0}.ops-belief-kpis>div:last-child{border-right:0}
+.ops-belief-kpis span{display:block;font:7px var(--mono);letter-spacing:.11em;color:var(--ops-muted)}
+.ops-belief-kpis strong{display:block;margin:5px 0 3px;font:500 20px/1 var(--mono);color:var(--ops-orange);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ops-belief-kpis small{font:8px/1.35 var(--mono);color:#4d6d74}
+.ops-belief-distribution{padding:12px 14px}.ops-belief-distribution header{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:8px}
+.ops-belief-distribution header span{font:7px var(--mono);letter-spacing:.12em;color:var(--ops-muted)}.ops-belief-distribution header strong{font:8px var(--mono);font-weight:500;color:var(--ops-orange)}
+.ops-belief-band{display:grid;grid-template-columns:42px minmax(90px,1fr) 22px;gap:8px;align-items:center;margin-top:6px}
+.ops-belief-band>span{font:8px var(--mono);color:var(--ops-muted)}.ops-belief-band>div{height:6px;background:#102128;border:1px solid #143640}.ops-belief-band i{display:block;height:100%;background:linear-gradient(90deg,var(--ops-orange),var(--ops-cyan-dim))}.ops-belief-band strong{text-align:right;font:8px var(--mono);color:var(--ops-text)}
 .ops-lifecycle{border-top:1px solid var(--ops-line);background:#061016}
 .ops-trace{border-top:1px solid var(--ops-line-soft);padding:11px 14px 13px;background:#050c11}
 .ops-trace-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:8px}
@@ -1339,6 +1354,7 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
   .ops-pulse-ribbon{grid-template-columns:150px minmax(0,1fr)}.ops-pulse-legend{grid-column:1/-1;justify-content:flex-start;max-width:none}.ops-pulse-cells{grid-template-columns:repeat(25,minmax(3px,1fr))}
   .ops-time-grid{grid-template-columns:repeat(3,1fr)}.ops-time-grid>div:nth-child(3n){border-right:0}.ops-time-grid>div:nth-child(-n+3){border-bottom:1px solid var(--ops-line-soft)}
   .ops-provenance-grid{grid-template-columns:1fr}.ops-provenance-kpis{border-right:0;border-bottom:1px solid var(--ops-line-soft)}
+  .ops-beliefs-grid{grid-template-columns:1fr}.ops-belief-kpis{border-right:0;border-bottom:1px solid var(--ops-line-soft)}
   .ops-lifecycle-grid{grid-template-columns:repeat(3,1fr)}.ops-lifecycle-grid>div:nth-child(3n){border-right:0}.ops-lifecycle-grid>div:nth-child(-n+3){border-bottom:1px solid var(--ops-line-soft)}
   .ops-matrix-block{grid-template-columns:1fr}.ops-matrix-stat{text-align:left}.matrix-plane-stack{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
@@ -1423,6 +1439,7 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
   .ops-viewport{min-height:520px}.ops-topic-field{inset:6% 8% 13%;border-radius:16px;display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(5,1fr);place-items:center;gap:8px;padding:28px 8px}.ops-topic-field:before,.ops-topic-field:after,.ops-field-core{display:none}.ops-topic-node{position:relative;left:auto;top:auto;transform:none;width:max(44px,var(--node-size));height:max(44px,var(--node-size));min-width:44px;min-height:44px}.ops-topic-node:hover,.ops-topic-node:focus-visible{transform:scale(1.08)}.ops-topic-node span{width:125px;font-size:7px}
   .ops-inspector{grid-template-columns:1fr 1fr}.ops-readout{border-right:1px solid var(--ops-line-soft);border-bottom:1px solid var(--ops-line-soft);min-height:100px;padding:12px}.ops-readout strong{font-size:22px}.ops-readout:nth-child(even){border-right:0}
   .ops-provenance-head{display:block}.ops-provenance-head small{display:block;text-align:left;margin-top:5px;max-width:none}.ops-provenance-kpis{grid-template-columns:1fr 1fr}.ops-provenance-row{grid-template-columns:minmax(90px,1fr) minmax(70px,1.4fr) 22px}
+  .ops-beliefs-head{display:block}.ops-beliefs-head small{display:block;text-align:left;margin-top:5px;max-width:none}.ops-belief-kpis{grid-template-columns:1fr 1fr}.ops-belief-kpis>div{border-bottom:1px solid var(--ops-line-soft)}.ops-belief-kpis>div:nth-child(2n){border-right:0}
   .ops-time-head{align-items:flex-start}.ops-time-scale strong{font-size:24px}
   .ops-time-grid{grid-template-columns:1fr 1fr}.ops-time-grid>div{border-right:1px solid var(--ops-line-soft);border-bottom:1px solid var(--ops-line-soft)}.ops-time-grid>div:nth-child(2n){border-right:0}
   .ops-context-head{align-items:flex-start}.ops-context-ratio strong{font-size:24px}
@@ -1451,6 +1468,7 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
   .ops-readout{min-height:92px;padding:10px}
   .ops-readout strong{font-size:20px}
   .ops-provenance-kpis{grid-template-columns:1fr}.ops-provenance-kpis>div{border-right:0;border-bottom:1px solid var(--ops-line-soft)}.ops-provenance-kpis>div:nth-last-child(-n+2){border-bottom:1px solid var(--ops-line-soft)}.ops-provenance-kpis>div:last-child{border-bottom:0}
+  .ops-belief-kpis{grid-template-columns:1fr}.ops-belief-kpis>div{border-right:0;border-bottom:1px solid var(--ops-line-soft)}.ops-belief-kpis>div:last-child{border-bottom:0}
   .ops-time-head{padding:12px}.ops-time-head h3{font-size:18px}.ops-time-grid>div{padding:11px 10px}.ops-time-grid strong{font-size:18px}
   .ops-context-head{padding:12px}.ops-context-head h3{font-size:18px}.ops-context-grid>div{padding:11px 10px}.ops-context-grid strong{font-size:18px}
   .ops-viewport-caption{left:10px;right:10px;font-size:7px}
