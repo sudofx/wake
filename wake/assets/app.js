@@ -971,7 +971,7 @@
           </div>
           <div class="ops-evidence-matrix">
             <div class="ops-evidence-matrix-head"><div><span>TOPIC × PROVENANCE TIER / OBSERVED EVIDENCE</span><strong>${evidenceTopicIds.length} topic lanes across ${evidenceTierKeys.length} observed tiers</strong></div><small>Counts are current evidence records grouped by recorded topic_domain and host_tier. This shows collection shape, not source quality or truth.</small></div>
-            <div class="ops-evidence-matrix-scroll">
+            <div class="ops-evidence-matrix-scroll" style="--evidence-tier-count:${Math.max(1,evidenceTierKeys.length)}">
               <div class="ops-evidence-matrix-header"><span>TOPIC</span>${evidenceTopicTierHeader}<b>TOTAL</b></div>
               <div class="ops-evidence-matrix-body">${evidenceTopicTierRows||'<p class="empty">No topic-attributed evidence telemetry is available.</p>'}</div>
             </div>
