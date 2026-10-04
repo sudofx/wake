@@ -39,26 +39,30 @@
 
 const actionsLight=document.querySelector('.actions-light');
 if(actionsLight){
+  const CACHE_KEY='wake-actions-light-state';
+  const applyActionsState=(state,title)=>{
+    if(state==='running'||state==='stopped')actionsLight.dataset.state=state;
+    else actionsLight.removeAttribute('data-state');
+    actionsLight.title=title||'GitHub Actions';
+  };
+  try{
+    const cached=JSON.parse(localStorage.getItem(CACHE_KEY)||'null');
+    if(cached&&['running','stopped'].includes(cached.state))applyActionsState(cached.state,cached.state==='running'?'Running · last verified':'Stopped · last verified');
+  }catch{}
   const refreshActionsLight=()=>{
-    const bust='?_='+Date.now();
-    const latchUrl='https://api.github.com/repos/sudofx/wake/actions/workflows/wake-runner.yml'+bust;
-    const runsUrl='https://api.github.com/repos/sudofx/wake/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=10&_='+Date.now();
-    Promise.all([
-      fetch(latchUrl,{cache:'no-store'}).then(response=>response.ok?response.json():Promise.reject()),
-      fetch(runsUrl,{cache:'no-store'}).then(response=>response.ok?response.json():Promise.reject()),
-    ])
-      .then(([latch,runs])=>{
-        const enabled=latch.state==='active';
-        const activeCycle=(runs.workflow_runs||[]).some(run=>run.status!=='completed');
-        actionsLight.dataset.state=enabled?'running':'stopped';
-        actionsLight.title=enabled?(activeCycle?'Running':'Running · between cycles'):'Stopped';
+    const latchUrl='https://api.github.com/repos/sudofx/wake/actions/workflows/wake-runner.yml?_='+Date.now();
+    fetch(latchUrl,{cache:'no-store'})
+      .then(response=>response.ok?response.json():Promise.reject(new Error('GitHub status unavailable')))
+      .then(latch=>{
+        const state=latch.state==='active'?'running':'stopped';
+        applyActionsState(state,state==='running'?'Running':'Stopped');
+        try{localStorage.setItem(CACHE_KEY,JSON.stringify({state,verified_at:Date.now()}));}catch{}
       })
       .catch(()=>{
-        actionsLight.removeAttribute('data-state');
-        actionsLight.title='GitHub Actions';
+        if(!actionsLight.dataset.state)applyActionsState(null,'GitHub Actions status unavailable');
       });
   };
   refreshActionsLight();
-  setInterval(refreshActionsLight,15000);
+  setInterval(refreshActionsLight,120000);
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshActionsLight();});
 }
