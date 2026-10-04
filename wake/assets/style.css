@@ -1581,7 +1581,7 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
 .ops-trajectory-row{display:grid;grid-template-columns:minmax(180px,.8fr) minmax(320px,1.2fr);gap:18px;align-items:center;padding:12px 14px;border-right:1px solid var(--ops-line-soft);border-bottom:1px solid var(--ops-line-soft);color:inherit;text-decoration:none;min-width:0}
 .ops-trajectory-row:nth-child(2n){border-right:0}.ops-trajectory-row:hover,.ops-trajectory-row:focus-visible{background:#08151b;outline:0}
 .ops-trajectory-copy{min-width:0}.ops-trajectory-copy strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:500 12px/1.25 var(--sans);color:#e7f5f6}.ops-trajectory-copy span{display:block;margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:7px var(--mono);letter-spacing:.04em;color:var(--ops-muted)}
-.ops-trajectory-row.status-completed .ops-trajectory-copy strong{color:var(--ops-green)}.ops-trajectory-row.status-parked .ops-trajectory-copy strong{color:var(--ops-amber)}
+.ops-trajectory-row[data-project-status="completed"] .ops-trajectory-copy strong{color:var(--ops-green)}.ops-trajectory-row[data-project-status="parked"] .ops-trajectory-copy strong{color:var(--ops-amber)}
 .ops-trajectory-stages{display:grid;grid-template-columns:repeat(4,1fr);position:relative;min-width:0}
 .ops-trajectory-stages:before{content:"";position:absolute;left:8%;right:8%;top:8px;height:1px;background:var(--ops-line-soft)}
 .ops-trajectory-stage{position:relative;z-index:1;display:grid;justify-items:center;text-align:center;min-width:0}
