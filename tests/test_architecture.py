@@ -199,6 +199,15 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertNotIn('enable_continuity_matrix(', app)
         self.assertNotIn('set_time_dilation(', app)
 
+    def test_operations_console_declares_mobile_and_wide_screen_breakpoints(self):
+        css = self.read('wake/assets/style.css')
+        self.assertIn('@media(max-width:430px)', css)
+        self.assertIn('@media(max-width:700px)', css)
+        self.assertIn('@media(min-width:1600px)', css)
+        self.assertIn('@media(min-width:2200px)', css)
+        self.assertIn('.ops-tertiary-grid', css)
+        self.assertIn('body.metrics-ops-active #metrics.view{width:100%;max-width:none', css)
+
     def test_external_visual_reference_names_never_enter_repository_text(self):
         blocked = ("de" + "los", "west" + "world")
         roots = (ROOT / "wake", ROOT / "docs", ROOT / "tests")
