@@ -1,0 +1,38 @@
+name: WAKE UI review artifact
+
+on:
+  push:
+    branches: [ops-console-story-v2]
+    paths:
+      - 'wake/assets/**'
+      - 'wake/report.py'
+      - 'wake/live.py'
+      - 'wake/sudofx_store.py'
+      - 'scripts/publish_pages.py'
+      - '.github/workflows/ui-review-artifact.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  build-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Install WAKE dependencies
+        run: python -m pip install --disable-pip-version-check -e .
+      - name: Build review site
+        run: python scripts/publish_pages.py
+      - name: Confirm review entrypoint
+        run: test -f site/index.html
+      - name: Upload review site
+        uses: actions/upload-artifact@v4
+        with:
+          name: wake-ui-review
+          path: site
+          retention-days: 3
+          if-no-files-found: error
