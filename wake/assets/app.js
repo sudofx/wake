@@ -234,6 +234,10 @@
     const runtimeRef=String(sourceMeta.runtime_ref||'').slice(0,12)||'—';
     const sourceAuthority=sourceMeta.authority||'derived projection';
     const matrixProgress=data.matrix_progress||null;
+    const appObservability=data.application_observability||null;
+    const wakeApp=(appObservability?.applications||[]).find(app=>app?.id==='wake')||null;
+    const appActions=wakeApp?.actions||{};
+    const appInvocations=wakeApp?.invocations||{};
     const matrixCompleted=Number(matrixProgress?.completed_count||0);
     const matrixTotal=Number(matrixProgress?.cell_count||343);
     const matrixPct=matrixTotal?Math.round(100*matrixCompleted/matrixTotal):0;
@@ -440,6 +444,17 @@
             <div class="ops-readout"><span>PROVIDER FALLBACK</span><strong>${fallbackWakes}</strong><small>${fallbackRate.toFixed(1)}% of completed wakes</small></div>
           </aside>
         </div>
+        <div class="ops-lifecycle" aria-label="Application lifecycle observability">
+          <div class="ops-lifecycle-head"><p class="eyebrow">APPLICATION LIFECYCLE / GENERIC SUDOFX EVIDENCE</p><span>${appObservability?`record revision ${esc(appObservability.record_revision)}`:`not available`}</span></div>
+          <div class="ops-lifecycle-grid">
+            <div><span>GOVERNED ACTIONS</span><strong>${Number(appActions.accepted||0)}</strong><small>${Number(appActions.rejected||0)} rejected</small></div>
+            <div><span>INVOCATIONS</span><strong>${Number(appInvocations.total||0)}</strong><small>${Number(appInvocations.attempts||0)} provider attempts</small></div>
+            <div><span>COMPLETED</span><strong>${Number(appInvocations.completed||0)}</strong><small>${Number(appInvocations.failed||0)} failed</small></div>
+            <div><span>QUOTA</span><strong>${Number(appInvocations.quota_exhausted||0)}</strong><small>exhaustion outcomes</small></div>
+            <div><span>TEMPORARY</span><strong>${Number(appInvocations.temporary_failures||0)}</strong><small>provider waits</small></div>
+            <div><span>EFFECT BARRIER</span><strong>${Number(appInvocations.effect_barrier_failures||0)}</strong><small>blocked before effect</small></div>
+          </div>
+        </div>
         <div class="ops-matrix-block">
           <div class="ops-matrix-copy"><p class="eyebrow">CONTINUITY@1 / 7×7×7</p><h3>${matrixProgress?'Coverage of the governed continuity space.':'Matrix is available but not enabled for this WAKE generation.'}</h3><p>${matrixProgress?matrixCompleted+' of '+matrixTotal+' coordinates completed · next '+esc(matrixProgress.next_coordinate_id||'complete'):'Enablement remains an explicit governed application action.'}</p><small>Coverage cells show count only; cell position is not a coordinate map.</small></div>
           <div class="continuity-matrix-view" aria-label="Continuity matrix coverage: ${matrixCompleted} of ${matrixTotal} coordinates completed">
@@ -604,6 +619,7 @@
     data.operation=next.operation||null;
     data.wake_status=next.wake_status||{};
     data.matrix_progress=next.matrix_progress||null;
+    data.application_observability=next.application_observability||null;
     // Live telemetry evolves independently of the static Pages shell. Keep the
     // metrics block synchronized with the same projection as state/events so
     // newly published storage counters appear without a Pages redeploy.
