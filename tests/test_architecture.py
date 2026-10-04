@@ -683,6 +683,20 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-command-grid>a[data-tone="ok"]:before,.ops-command-grid>a[data-tone="running"]:before', css)
         self.assertIn('@media(min-width:1800px)', css)
 
+    def test_control_room_source_badges_report_projection_authority_and_access(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('class="ops-command-badges" aria-label="Projection source status"', app)
+        self.assertIn('<b>PROJECTED</b>', app)
+        self.assertIn('<b>AUTHORITY</b>', app)
+        self.assertIn('<b>ACCESS</b>', app)
+        self.assertIn('${esc(sourceAuthority)}', app)
+        self.assertIn("accessEnabled===true?'ENABLED':accessEnabled===false?'DISABLED':'UNKNOWN'", app)
+        self.assertIn('.ops-command-deck>header .ops-command-badges{display:flex', css)
+        self.assertIn('.ops-command-badges>span.ok{', css)
+        self.assertIn('.ops-command-badges>span.warn{', css)
+        self.assertIn('.ops-command-badges>span.unknown{border-style:dashed}', css)
+
     def test_control_room_recent_receipt_pulse_is_bounded_linked_and_phone_safe(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
