@@ -2,8 +2,8 @@ name: WAKE✳︎ - Enable continuity campaign
 run-name: "Enable WAKE✳︎ continuity campaign"
 
 # Explicit operator opt-in for the continuity@1 7×7×7 campaign.
-# This safely drains research, promotes verified master, records enablement
-# through WAKE's ordinary sudofx application boundary, then restores prior run state.
+# This immediately stops/drains research, promotes verified master, records enablement
+# through WAKE's ordinary sudofx application boundary, then always starts WAKE again.
 on:
   workflow_dispatch:
 
@@ -20,45 +20,15 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Pin candidate and remember run state
+      - name: Pin candidate
         id: state
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           candidate_sha="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/master" --jq '.object.sha')"
-          latch="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml" --jq '.state')"
           echo "candidate_sha=$candidate_sha" >> "$GITHUB_OUTPUT"
-          if [[ "$latch" == "active" ]]; then
-            echo "was_running=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "was_running=false" >> "$GITHUB_OUTPUT"
-          fi
           echo "Candidate: $candidate_sha" >> "$GITHUB_STEP_SUMMARY"
-          echo "Continuation latch before enablement: $latch" >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Require successful automatic CI for candidate
-        env:
-          GH_TOKEN: ${{ github.token }}
-          CANDIDATE_SHA: ${{ steps.state.outputs.candidate_sha }}
-        run: |
-          set -euo pipefail
-          for attempt in {1..30}; do
-            result="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/test.yml/runs?head_sha=$CANDIDATE_SHA&event=push&per_page=20"               --jq '[.workflow_runs[] | select(.head_sha==env.CANDIDATE_SHA)] | sort_by(.created_at) | reverse | .[0] // {}')"
-            status="$(jq -r '.status // "missing"' <<<"$result")"
-            conclusion="$(jq -r '.conclusion // ""' <<<"$result")"
-            if [[ "$status" == "completed" && "$conclusion" == "success" ]]; then
-              echo "Automatic CI passed for $CANDIDATE_SHA." >> "$GITHUB_STEP_SUMMARY"
-              exit 0
-            fi
-            if [[ "$status" == "completed" && "$conclusion" != "success" ]]; then
-              echo "::error::Automatic CI did not pass for $CANDIDATE_SHA (conclusion: $conclusion)."
-              exit 1
-            fi
-            sleep 5
-          done
-          echo "::error::No successful automatic CI result became available for $CANDIDATE_SHA."
-          exit 1
 
       - name: Close continuation latch
         env:
@@ -115,6 +85,29 @@ jobs:
             sleep 2
           done
           echo "::error::Research did not fully drain before continuity enablement."
+          exit 1
+
+      - name: Require successful automatic CI for candidate
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CANDIDATE_SHA: ${{ steps.state.outputs.candidate_sha }}
+        run: |
+          set -euo pipefail
+          for attempt in {1..30}; do
+            result="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/test.yml/runs?head_sha=$CANDIDATE_SHA&event=push&per_page=20"               --jq '[.workflow_runs[] | select(.head_sha==env.CANDIDATE_SHA)] | sort_by(.created_at) | reverse | .[0] // {}')"
+            status="$(jq -r '.status // "missing"' <<<"$result")"
+            conclusion="$(jq -r '.conclusion // ""' <<<"$result")"
+            if [[ "$status" == "completed" && "$conclusion" == "success" ]]; then
+              echo "Automatic CI passed for $CANDIDATE_SHA." >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            if [[ "$status" == "completed" && "$conclusion" != "success" ]]; then
+              echo "::error::Automatic CI did not pass for $CANDIDATE_SHA (conclusion: $conclusion)."
+              exit 1
+            fi
+            sleep 5
+          done
+          echo "::error::No successful automatic CI result became available for $CANDIDATE_SHA."
           exit 1
 
       - uses: actions/checkout@v7
@@ -204,17 +197,61 @@ jobs:
           echo "::error::Continuity enablement did not finish before the safety timeout."
           exit 1
 
-      - name: Restore prior continuous-run state
-        if: steps.state.outputs.was_running == 'true'
+  restart:
+    name: Always restart WAKE✳︎
+    needs: enable
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Open continuation latch and ensure research is running
         env:
           GH_TOKEN: ${{ github.token }}
-          CANDIDATE_SHA: ${{ steps.state.outputs.candidate_sha }}
         run: |
           set -euo pipefail
-          gh api --method PUT "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml/enable" >/dev/null
-          gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime             -f "dispatch_token=resume-after-continuity-$GITHUB_RUN_ID"             -f "runtime_ref=$CANDIDATE_SHA"
-          echo "Research was running before enablement, so continuous research was resumed." >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Preserve stopped state
-        if: steps.state.outputs.was_running != 'true'
-        run: echo "Research was stopped before enablement and remains stopped." >> "$GITHUB_STEP_SUMMARY"
+          latch="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml" --jq '.state')"
+          if [[ "$latch" != "active" ]]; then
+            gh api --method PUT "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml/enable" >/dev/null
+          fi
+
+          runtime_sha="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha')"
+          campaign_title="WAKE✳︎ continuity-enable-$GITHUB_RUN_ID"
+          now_epoch="$(date -u +%s)"
+          mapfile -t candidates < <(
+            gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50" \
+              --jq ".workflow_runs[] | select(.head_branch==\"wake-runtime\" and .head_sha==\"$runtime_sha\" and .status!=\"completed\") | [.id,.created_at,.status,.display_title] | @tsv"
+          )
+
+          regular_runs=()
+          campaign_runs=()
+          for row in "${candidates[@]}"; do
+            IFS=$'\t' read -r run_id created_at run_status display_title <<<"$row"
+            job_count="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id/jobs?per_page=1" --jq '.total_count' 2>/dev/null || echo 1)"
+            created_epoch="$(date -u -d "$created_at" +%s)"
+            age_seconds=$((now_epoch - created_epoch))
+            if [[ "$run_status" == "queued" && "$job_count" == "0" && "$age_seconds" -ge 120 ]]; then
+              echo "Ignoring stale queued zero-job WAKE run $run_id." >> "$GITHUB_STEP_SUMMARY"
+              continue
+            fi
+            if [[ "$display_title" == "$campaign_title" ]]; then
+              campaign_runs+=("$run_id")
+            else
+              regular_runs+=("$run_id")
+            fi
+          done
+
+          if (( ${#regular_runs[@]} > 0 )); then
+            echo "WAKE✳︎ is already running on the current runtime; continuation latch is open and no duplicate cycle was dispatched." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime \
+            -f "dispatch_token=resume-after-continuity-$GITHUB_RUN_ID" \
+            -f "runtime_ref=$runtime_sha"
+
+          if (( ${#campaign_runs[@]} > 0 )); then
+            echo "A continuity control run is still settling; the research restart was queued behind it on the authoritative lane." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "WAKE✳︎ was started on runtime $runtime_sha after the continuity campaign attempt." >> "$GITHUB_STEP_SUMMARY"
+          fi
