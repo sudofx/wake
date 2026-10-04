@@ -65,7 +65,7 @@ class WakeMatrixIntegrationTests(unittest.TestCase):
                 self.assertEqual(public["cell_count"], 343)
                 self.assertEqual(len(public["cells"]), 343)
                 self.assertEqual(public["completed_count"], 0)
-                self.assertTrue(all(cell["status"] == "open" for cell in public["cells"]))
+                self.assertTrue(all(status == "open" for status in public["cells"]))
             finally:
                 store.close()
 
@@ -89,9 +89,8 @@ class WakeMatrixIntegrationTests(unittest.TestCase):
                 self.assertEqual(public["status_counts"]["completed"], 1)
                 self.assertEqual([axis["key"] for axis in public["axes"]], ["semantic_lens", "exposure", "pressure"])
                 self.assertEqual(len(public["cells"]), 343)
-                first_public = next(cell for cell in public["cells"] if cell["coordinate_id"] == first.coordinate_id)
-                self.assertEqual(first_public["values"], list(first.value_keys))
-                self.assertEqual(first_public["status"], "completed")
+                self.assertEqual(public["cells"][first.ordinal - 1], "completed")
+                self.assertEqual(public["next_ordinal"], 2)
                 self.assertNotIn("results", public)
                 self.assertNotIn("completed_coordinate_ids", public)
                 self.assertNotIn("summary", str(public))
