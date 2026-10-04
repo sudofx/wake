@@ -149,8 +149,8 @@ window.WakePetReady=(async () => {
         <article>
           <span class="nebula-icon nebula-explore-glyph" aria-hidden="true">
             <svg viewBox="0 0 64 64">
-              <path d="M32 15v13M18 25l10 6M46 25l-10 6M21 46l8-10M43 46l-8-10M32 36v12"/>
-              <circle cx="32" cy="11" r="5"/><circle cx="16" cy="24" r="5"/><circle cx="48" cy="24" r="5"/><circle cx="32" cy="32" r="5"/><circle cx="20" cy="49" r="5"/><circle cx="44" cy="49" r="5"/><circle cx="32" cy="53" r="5"/>
+              <path d="M32 31 32 13M32 31 16 22M32 31 48 22M32 31 20 48M32 31 44 48"/>
+              <circle cx="32" cy="31" r="5"/><circle cx="32" cy="11" r="5"/><circle cx="14" cy="21" r="5"/><circle cx="50" cy="21" r="5"/><circle cx="18" cy="50" r="5"/><circle cx="46" cy="50" r="5"/>
             </svg>
           </span>
           <div><h2>Explore</h2><p>Research in<br>the open.</p></div>
