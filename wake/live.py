@@ -206,7 +206,7 @@ def build_live_projection(store, operation=None, runtime_ref=""):
         "timezone": "America/Los_Angeles",
         "operation": deepcopy(operation),
         "wake_status": deepcopy((operation or {}).get("wake_status", {})),
-        "metrics": _full_history_metrics(store, state),
+        "metrics": _full_history_metrics(store, state, performance),
         "record_integrity": _record_integrity_metrics(performance, head),
         "application_observability": build_application_observability(store.record) if hasattr(store, "record") else None,
         "application_access": _application_access_metrics(store),
