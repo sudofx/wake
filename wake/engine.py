@@ -38,6 +38,7 @@ from .event_format import canonical, digest, now
 from .experimental import adoption_payload, defaults as experimental_defaults, temporal_snapshot, validate as validate_controls
 from .trust import build_trust_compacts_shadow
 from .attention import assessment as attention_assessment, plan as attention_plan
+from .matrix_campaign import continuity_provider_usage
 
 
 INQUIRY_DRIVE_MIN_CYCLES = 20
@@ -1621,6 +1622,12 @@ class Engine:
             )
         used = sum(charged_request_slots(i) for i in state["invocations"].values()
                    if i["charged"] and i["quota_day"] == day)
+        matrix_progress = (
+            self.store.continuity_matrix_progress()
+            if hasattr(self.store, "continuity_matrix_progress")
+            else None
+        )
+        used += continuity_provider_usage(matrix_progress, day)["total"]
         if charged and not self.config.get("model_daily_call_limits"):
             require(used < self.config["daily_call_limit"], "Daily call ceiling reached; no request sent")
         # Capture the temporal environment before the next model boundary. This
@@ -1926,8 +1933,14 @@ class Engine:
                 state = self.store.load()
                 day = state["invocations"][invocation]["quota_day"]
                 if self.config.get("model_daily_call_limits"):
-                    used_by_model = {}
-                    exhausted_models = set()
+                    matrix_progress = (
+                        self.store.continuity_matrix_progress()
+                        if hasattr(self.store, "continuity_matrix_progress")
+                        else None
+                    )
+                    matrix_usage = continuity_provider_usage(matrix_progress, day)
+                    used_by_model = dict(matrix_usage["by_model"])
+                    exhausted_models = set(matrix_usage["daily_quota_models"])
                     for item in state["invocations"].values():
                         if item["id"] == invocation or not item["charged"] or item["quota_day"] != day:
                             continue
@@ -1945,6 +1958,12 @@ class Engine:
                         provider.model_request_limits[model] = 0
                 else:
                     used = sum(charged_request_slots(i) for i in state["invocations"].values() if i["id"] != invocation and i["charged"] and i["quota_day"] == day)
+                    matrix_progress = (
+                        self.store.continuity_matrix_progress()
+                        if hasattr(self.store, "continuity_matrix_progress")
+                        else None
+                    )
+                    used += continuity_provider_usage(matrix_progress, day)["total"]
                     provider.request_limit = min(len(provider.models), self.config["daily_call_limit"] - used)
                 def record_attempt(phase, attempt):
                     self.store.append("provider_attempt_" + phase, {"id": invocation, "attempt": attempt})
