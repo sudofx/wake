@@ -1859,39 +1859,6 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
 }
 
 /* Data-story spine: orientation first, then detail. */
-.ops-command-deck{border:1px solid var(--ops-line);background:linear-gradient(180deg,#061016,#04090d)}
-.ops-command-deck>header{display:flex;align-items:end;justify-content:space-between;gap:18px;padding:11px 14px;border-bottom:1px solid var(--ops-line-soft)}
-.ops-command-deck>header>div{display:grid;gap:4px}
-.ops-command-deck>header span{font:7px/1 var(--mono);letter-spacing:.13em;color:var(--ops-green)}
-.ops-command-deck>header strong{font:500 15px/1.1 var(--sans);letter-spacing:-.015em;color:#edf9fa}
-.ops-command-deck>header small{max-width:520px;text-align:right;font:7px/1.45 var(--mono);color:var(--ops-muted)}
-.ops-command-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
-.ops-command-grid a{position:relative;display:grid;grid-template-rows:auto auto auto 1fr;gap:4px;min-width:0;min-height:94px;padding:11px 12px;border-right:1px solid var(--ops-line-soft);border-bottom:1px solid var(--ops-line-soft);color:inherit;text-decoration:none;background:#050b0f}
-.ops-command-grid a:nth-child(3n){border-right:0}
-.ops-command-grid a:nth-last-child(-n+3){border-bottom:0}
-.ops-command-grid a:before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--ops-cyan);opacity:.6}
-.ops-command-grid a:hover,.ops-command-grid a:focus-visible{background:#09171d;outline:1px solid var(--ops-cyan);outline-offset:-1px}
-.ops-command-grid span{font:7px/1 var(--mono);letter-spacing:.12em;color:var(--ops-muted)}
-.ops-command-grid strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:500 18px/1.05 var(--sans);letter-spacing:-.02em;color:#effbfc}
-.ops-command-grid b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:500 8px/1.2 var(--mono);letter-spacing:.04em;color:var(--ops-cyan)}
-.ops-command-grid small{align-self:end;font:7px/1.35 var(--mono);color:#55747b}
-.ops-command-grid a[data-tone="ok"]:before,.ops-command-grid a[data-tone="running"]:before{background:var(--ops-green);opacity:1}
-.ops-command-grid a[data-tone="ok"] strong,.ops-command-grid a[data-tone="running"] strong{color:var(--ops-green)}
-.ops-command-grid a[data-tone="warning"]:before,.ops-command-grid a[data-tone="stopped"]:before{background:var(--ops-orange);opacity:1}
-.ops-command-grid a[data-tone="warning"] strong,.ops-command-grid a[data-tone="stopped"] strong{color:var(--ops-orange)}
-@media(min-width:1300px){
-  .ops-command-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
-  .ops-command-grid a{border-bottom:0}
-  .ops-command-grid a:nth-child(3n){border-right:1px solid var(--ops-line-soft)}
-  .ops-command-grid a:last-child{border-right:0}
-}
-@media(max-width:700px){
-  .ops-command-deck>header{display:block}.ops-command-deck>header small{display:block;margin-top:6px;text-align:left;max-width:none}
-  .ops-command-grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(190px,68vw);overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-  .ops-command-grid::-webkit-scrollbar{display:none}
-  .ops-command-grid a,.ops-command-grid a:nth-child(3n),.ops-command-grid a:nth-last-child(-n+3){min-height:100px;border-right:1px solid var(--ops-line-soft);border-bottom:0;scroll-snap-align:start}
-  .ops-command-grid a:last-child{border-right:0}
-}
 .ops-storyline{position:sticky;top:0;z-index:15;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border:1px solid var(--ops-line);border-bottom:0;background:#050b0ff2;backdrop-filter:blur(12px);box-shadow:0 8px 24px #0005}
 #ops-now,#ops-pressure,#ops-context,#ops-evidence,#ops-beliefs,#ops-horizon,#ops-matrix{scroll-margin-top:72px}
 .ops-storyline a{position:relative;display:grid;grid-template-columns:auto 1fr;column-gap:7px;align-items:center;min-width:0;padding:9px 11px;border-right:1px solid var(--ops-line-soft);color:inherit;text-decoration:none;transition:background .16s ease,opacity .16s ease}
