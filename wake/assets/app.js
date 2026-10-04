@@ -511,6 +511,14 @@
             <div><span>REGIME</span><strong>${esc(String(latestTemporal?.regime_id||experimental?.id||'—').replace(/^reg-/,''))}</strong><small>${timeControl?.enabled===false?'disabled':timeControl?'operator-recorded':'unavailable'}</small></div>
           </div>
         </div>
+        <div class="ops-signal-band" aria-label="Derived operating signals">
+          <div class="ops-signal" style="--signal:${acceptanceRate}%"><span>ACCEPTANCE</span><strong>${acceptanceRate}%</strong><i></i></div>
+          <div class="ops-signal danger" style="--signal:${Math.min(100,rejectionRate)}%"><span>GOVERNANCE PRESSURE</span><strong>${rejectionRate.toFixed(1)}%</strong><i></i></div>
+          <div class="ops-signal" style="--signal:${Math.min(100,handoffRate)}%"><span>HANDOFF CONTINUITY</span><strong>${handoffRate}%</strong><i></i></div>
+          <div class="ops-signal warning" style="--signal:${Math.min(100,fallbackRate)}%"><span>FALLBACK LOAD</span><strong>${fallbackRate.toFixed(1)}%</strong><i></i></div>
+          <div class="ops-signal info" style="--signal:${Math.min(100,configuredTopicCount?100*topicActive/configuredTopicCount:0)}%"><span>TOPIC COVERAGE</span><strong>${topicActive}/${configuredTopicCount}</strong><i></i></div>
+          <div class="ops-signal info" style="--signal:${Math.min(100,matrixPct)}%"><span>MATRIX COVERAGE</span><strong>${matrixPct}%</strong><i></i></div>
+        </div>
         <div class="ops-lifecycle" aria-label="Application lifecycle observability">
           <div class="ops-lifecycle-head"><p class="eyebrow">APPLICATION LIFECYCLE / GENERIC SUDOFX EVIDENCE</p><span>${appObservability?`record revision ${esc(appObservability.record_revision)}`:`not available`}</span></div>
           <div class="ops-lifecycle-grid">
@@ -523,9 +531,9 @@
           </div>
         </div>
         <div class="ops-matrix-block">
-          <div class="ops-matrix-copy"><p class="eyebrow">CONTINUITY@1 / 7×7×7</p><h3>${matrixEnabled?'Coverage of the governed continuity space.':'Canonical continuity space · not yet enabled for this WAKE generation.'}</h3><p>${matrixEnabled?matrixCompleted+' of '+matrixTotal+' coordinates completed · next '+(matrixProgress.next_ordinal?'#'+matrixProgress.next_ordinal:'complete'):'343 deterministic coordinates are visible as definition geometry only.'}</p><small>Seven semantic planes. Within each plane, columns follow exposure order and rows follow pressure order from the shared continuity@1 definition.</small></div>
+          <div class="ops-matrix-copy"><p class="eyebrow">CONTINUITY@1 / 7×7×7</p><h3>${matrixEnabled?'Coverage of the governed continuity space.':'Canonical continuity space · not yet enabled for this WAKE generation.'}</h3><p>${matrixEnabled?matrixCompleted+' of '+matrixTotal+' coordinates completed · next '+(matrixProgress.next_ordinal?'#'+matrixProgress.next_ordinal:'complete'):'343 deterministic coordinates are visible as definition geometry only.'}</p><small>Seven semantic planes. Within each plane, columns follow pressure order and rows follow exposure order from the shared continuity@1 definition.</small></div>
           <div class="continuity-matrix-view" aria-label="Continuity matrix coverage: ${matrixCompleted} of ${matrixTotal} coordinates completed">
-            <div class="matrix-axis-note"><span>columns: ${esc(exposureAxis.map(v=>v.label).join(' · '))}</span><span>rows: ${esc(pressureAxis.map(v=>v.label).join(' · '))}</span></div>
+            <div class="matrix-axis-note"><span>columns / pressure: ${esc(pressureAxis.map(v=>v.label).join(' · '))}</span><span>rows / exposure: ${esc(exposureAxis.map(v=>v.label).join(' · '))}</span></div>
             <div class="matrix-plane-stack">${matrixPlanes}</div>
           </div>
           <div class="ops-matrix-stat"><strong>${matrixPct}%</strong><span>covered</span><small>${matrixFailed} failed · ${matrixDeferred} deferred</small></div>
