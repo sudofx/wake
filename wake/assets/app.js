@@ -262,6 +262,9 @@
     const applicationAccess=data.application_access||null;
     const accessEnabled=typeof applicationAccess?.enabled==='boolean'?applicationAccess.enabled:null;
     const sourceMeta=data.source||{};
+    const recordIntegrity=data.record_integrity||null;
+    const recordReplayOk=recordIntegrity?.semantic_replay_verified===true;
+    const sqliteQuickOk=recordIntegrity?.sqlite_quick_check==='ok';
     const shortHead=String(data.head||sourceMeta.head||'').slice(0,12)||'—';
     const runtimeRef=String(sourceMeta.runtime_ref||'').slice(0,12)||'—';
     const sourceAuthority=sourceMeta.authority||'derived projection';
@@ -520,6 +523,14 @@
       }).join('');
       return `<section class="matrix-plane"><header><span>${esc(semantic.label)}</span><b>${cells.filter(status=>status==='completed').length}/49</b></header><div class="matrix-plane-grid" role="group" aria-label="${esc(semantic.label)} continuity plane">${cellHtml}</div></section>`;
     }).join('');
+    const recordTail=(data.events||[]).slice(-64);
+    const recordSpine=recordTail.map(event=>{
+      const tone=event.kind==='accepted'?'accepted':event.kind==='rejected'?'rejected':event.kind==='deferred'?'deferred':'other';
+      const label=`#${event.seq??'—'} · ${displayEventKind(event.kind||'event')} · ${String(event.hash||'').slice(0,12)}`;
+      return `<a class="ops-record-node ${tone}" href="#history/${encodeURIComponent(event.seq??'')}" title="${esc(label)}" aria-label="${esc(label)}"></a>`;
+    }).join('');
+    const databaseMB=recordIntegrity?.database_bytes?Number(recordIntegrity.database_bytes)/(1024*1024):null;
+    const freePct=recordIntegrity?.database_bytes?100*Number(recordIntegrity.free_bytes||0)/Number(recordIntegrity.database_bytes):null;
     const opsTopicMax=Math.max(1,...topicRows.map(topic=>topic.total));
     const visibleTopics=topicRows.slice(0,10);
     const topicNodes=visibleTopics.map((topic,index)=>{
@@ -544,6 +555,21 @@
           <div><span>RECORD HEAD</span><strong>${esc(shortHead)}</strong></div>
           <div><span>RUNTIME</span><strong>${esc(runtimeRef)}</strong></div>
           <div class="ops-access ${accessEnabled===true?'enabled':accessEnabled===false?'disabled':'unknown'}"><span>GLOBAL ACCESS</span><strong>${accessEnabled===true?'ENABLED':accessEnabled===false?'DISABLED':'UNKNOWN'}</strong><small>DERIVED / LIVE · ${applicationAccess?'generation '+applicationAccess.generation:'state unavailable'}</small></div>
+        </div>
+        <div class="ops-record-spine" aria-label="Durable record integrity evidence">
+          <div class="ops-record-summary">
+            <span>DURABLE RECORD</span>
+            <strong class="${recordReplayOk&&sqliteQuickOk?'ok':'warning'}">${recordReplayOk&&sqliteQuickOk?'REPLAY + SQLITE OK':'CHECK EVIDENCE'}</strong>
+            <small>local integrity evidence · not authorship or external notarization</small>
+          </div>
+          <div class="ops-record-track" role="group" aria-label="Recent WAKE generation events">${recordSpine||'<span class="empty">No recent generation events.</span>'}</div>
+          <div class="ops-record-meta">
+            <span>REV <b>${recordIntegrity?.sudofx_revision??'—'}</b></span>
+            <span>EVENTS <b>${recordIntegrity?.sudofx_event_count??'—'}</b></span>
+            <span>REPLAY <b>${recordIntegrity?.replay_ms??'—'} ms</b></span>
+            <span>DB <b>${databaseMB===null?'—':databaseMB.toFixed(1)+' MB'}</b></span>
+            <span>FREE <b>${freePct===null?'—':freePct.toFixed(1)+'%'}</b></span>
+          </div>
         </div>
         <div class="ops-console-grid">
           <article class="ops-viewport">
@@ -828,6 +854,7 @@
     data.matrix_progress=next.matrix_progress||null;
     data.application_observability=next.application_observability||null;
     data.application_access=next.application_access||null;
+    data.record_integrity=next.record_integrity||null;
     // Live telemetry evolves independently of the static Pages shell. Keep the
     // metrics block synchronized with the same projection as state/events so
     // newly published storage counters appear without a Pages redeploy.
