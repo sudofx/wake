@@ -10,6 +10,20 @@ ASSETS = ROOT / "wake" / "assets"
 
 
 class FrontendHygieneTests(unittest.TestCase):
+    def test_3d_map_relationship_trail_is_explicitly_navigational(self):
+        script = (ASSETS / "map3d.js").read_text()
+        css = (ASSETS / "map3d.css").read_text()
+
+        self.assertIn("function relationshipTrail()", script)
+        self.assertIn("RECORDED RELATIONSHIP PATH", script)
+        self.assertIn("path.map((id,index)", script)
+        self.assertIn("data-trail-node=", script)
+        self.assertIn("choose(button.dataset.trailNode)", script)
+        self.assertIn("Every hop is an exported parent → child relationship", script)
+        self.assertIn("The path is navigational, not causal distance or evidentiary strength.", script)
+        self.assertIn(".detail-trail-list", css)
+        self.assertIn('button[aria-current="location"]', css)
+
     def test_every_style_class_has_a_current_caller(self):
         css = (ASSETS / "style.css").read_text()
         callers = "\n".join(
