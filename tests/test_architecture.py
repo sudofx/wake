@@ -211,6 +211,10 @@ class ArchitectureSeparationTests(unittest.TestCase):
             self.assertEqual(app.count(f'id="{anchor}"'), 1)
         self.assertIn('href="#metrics" data-story-target=', app)
         self.assertNotIn('ops-story-rail', app)
+        ordered = ("ops-now", "ops-pressure", "ops-context", "ops-evidence", "ops-beliefs", "ops-horizon", "ops-matrix")
+        positions = [app.index(f'id="{anchor}"') for anchor in ordered]
+        self.assertEqual(positions, sorted(positions))
+        self.assertIn("WHAT THE RECORD SAYS NOW", app)
         self.assertNotIn("what is true", app)
 
     def test_live_projection_keeps_receipt_telemetry_without_provider_bodies(self):
