@@ -9,11 +9,11 @@
 <title>Console / WAKE✳︎</title>
 <link rel="stylesheet" href="nav.css">
 <link rel="stylesheet" href="research.css">
-<script>document.documentElement.dataset.theme='dark';try{localStorage.setItem('wake-theme','dark')}catch{}</script>
+<script>document.documentElement.dataset.theme='dark';try{localStorage.setItem('wake-theme','dark')}catch{};(()=>{const w=new URL(location.href).searchParams.get('workspace');if(w==='detached')document.documentElement.classList.add('console-detached');if(w==='tool')document.documentElement.classList.add('console-tool-window')})()</script>
 <script src="research-scene.js" defer></script>
 <script src="research-instruments.js" defer></script>
 <script src="console-tools.js" defer></script>
-<script src="research.js" defer></script>
+<script src="research.js" defer></script>\n<script src="console-layout.js" defer></script>
 </head>
 <body class="research-page">
 <a class="skip-link" href="#main">Skip to research</a>
