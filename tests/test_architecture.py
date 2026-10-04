@@ -384,7 +384,9 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn("event?.payload?.reason", app)
         self.assertIn("event?.payload?.proposal?.title", app)
         self.assertIn('href="#history/', app)
-        self.assertIn('Family bars summarize pressure; these rows expose the latest recorded reasons and exact receipts.', app)
+        self.assertIn('rejected receipts in published event window', app)
+        self.assertIn('Family bars may use full-history metrics; these rows are bounded to the public event window', app)
+        self.assertNotIn('rejected receipts in published history', app)
         self.assertIn('.ops-rejection-list', css)
         self.assertIn('.ops-rejection-row', css)
 
