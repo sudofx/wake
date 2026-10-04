@@ -2594,3 +2594,23 @@ body.help-open{
   background-size:cover!important;
   background-repeat:no-repeat!important;
 }
+
+
+/* ABOUT + DOCUMENTATION CARD ART — 2026-10-04 */
+/* User-provided graph artwork for the final two Explore WAKE✳︎ cards. */
+.nebula-explore-about{
+  background-image:
+    linear-gradient(180deg,rgba(3,8,24,.03),rgba(3,8,24,.12)),
+    url("backgrounds/console-graph.png?v=20261004-1")!important;
+  background-position:center center!important;
+  background-size:cover!important;
+  background-repeat:no-repeat!important;
+}
+.nebula-explore-docs{
+  background-image:
+    linear-gradient(180deg,rgba(3,8,24,.03),rgba(3,8,24,.12)),
+    url("backgrounds/console-graph-alt.png?v=20261004-1")!important;
+  background-position:center center!important;
+  background-size:cover!important;
+  background-repeat:no-repeat!important;
+}
