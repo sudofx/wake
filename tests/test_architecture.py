@@ -258,6 +258,17 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('Each row is a commitment whose recorded creator and resolver are different invocations.', app)
         self.assertIn('No cross-invocation fulfillments recorded yet.', app)
 
+    def test_belief_lineage_uses_only_stored_evidence_ids(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('EVIDENCE → BELIEF / EXPLICIT CITATION LINEAGE', app)
+        self.assertIn('Array.isArray(belief?.evidence)?belief.evidence:[]', app)
+        self.assertIn('Boolean(evidenceById[id])', app)
+        self.assertIn('missing from current state', app)
+        self.assertIn('Presence proves linkage in the record, not that the cited evidence is true or sufficient.', app)
+        self.assertIn('.ops-lineage-row', css)
+        self.assertIn('.ops-lineage-root.missing', css)
+
     def test_record_spine_links_use_receipt_ids_not_sequence_numbers(self):
         app = self.read('wake/assets/app.js')
         self.assertIn("const receiptId=String(event.payload?.id||'')", app)
