@@ -665,6 +665,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             "nebula-ipad-landscape-2360x1640.webp",
             "nebula-iphone12mini-1080x2340.webp",
             "nebula-console-mockup.webp",
+            "console-globe.png",
         ):
             (background_target / name).write_bytes((background_source / name).read_bytes())
         browser_data = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
