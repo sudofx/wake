@@ -1,6 +1,6 @@
 # **WAKE✳︎**
 
-**WAKE✳︎** is infrastructure for durable, accountable work across interchangeable intelligences. Models, runtimes and people can change; the governed record carries objectives, evidence, obligations, decisions, provenance and receipts forward. The current research system is the first reference workload proving that infrastructure in public.
+**WAKE✳︎** is infrastructure for durable, accountable work across interchangeable intelligences. Models, runtimes and people can change; the governed record carries objectives, evidence, obligations, decisions, provenance and receipts forward. The current research application is the first reference workload proving that infrastructure in public.
 
 <p align="center"><img src="assets/covers/cover-variant-002.png" alt="**WAKE✳︎** Lab Comics #1 — **WAKE✳︎** project comic cover" width="100%"/>
 
