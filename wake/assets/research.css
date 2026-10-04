@@ -1022,3 +1022,171 @@ html.console-tool-window #console-tool-frame{
     flex-basis:100%!important;
   }
 }
+
+
+/* MOBILE CONSOLE VIEWPORT LOCK — 2026-10-04 */
+/* Match the public mobile masthead and prevent normal Console from widening the iPhone viewport. */
+@media(max-width:760px){
+  html:not(.console-detached):not(.console-tool-window){
+    width:100%!important;
+    max-width:100%!important;
+    overflow-x:hidden!important;
+  }
+  html:not(.console-detached):not(.console-tool-window) body.research-page{
+    width:100%!important;
+    max-width:100vw!important;
+    min-width:0!important;
+    overflow-x:hidden!important;
+    overscroll-behavior-x:none;
+  }
+  .research-page>.research-header.masthead{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) auto!important;
+    grid-template-rows:auto auto!important;
+    align-items:center!important;
+    gap:10px 12px!important;
+    width:calc(100% - 12px)!important;
+    min-height:0!important;
+    height:auto!important;
+    margin:10px auto 0!important;
+    padding:14px 14px 12px!important;
+  }
+  .research-page>.research-header.masthead .brand-lockup{
+    grid-column:1!important;
+    grid-row:1!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:flex-start!important;
+    justify-content:flex-start!important;
+    align-self:center!important;
+    min-width:0!important;
+    min-height:0!important;
+    height:auto!important;
+    margin:0!important;
+    padding:0!important;
+    gap:4px!important;
+    flex:none!important;
+  }
+  .research-page>.research-header.masthead .wordmark{
+    flex:none!important;
+    width:auto!important;
+    min-width:0!important;
+    margin:0!important;
+    font-size:30px!important;
+    line-height:1!important;
+  }
+  .research-page>.research-header.masthead .powered-by{
+    display:block!important;
+    position:static!important;
+    margin:0!important;
+    padding:0!important;
+    font-size:8px!important;
+    line-height:1.2!important;
+  }
+  .research-page>.research-header.masthead .header-tools{
+    grid-column:2!important;
+    grid-row:1!important;
+    position:static!important;
+    align-self:center!important;
+    justify-self:end!important;
+    width:auto!important;
+    min-width:0!important;
+    margin:0!important;
+    padding:0!important;
+    flex-direction:row!important;
+    gap:8px!important;
+  }
+  .research-page>.research-header.masthead nav.compact-nav{
+    grid-column:1 / -1!important;
+    grid-row:2!important;
+    display:grid!important;
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    width:100%!important;
+    min-width:0!important;
+    margin:0!important;
+    padding:9px 0 0!important;
+    gap:0!important;
+    border-top:1px solid #22375d!important;
+    overflow:visible!important;
+    flex-basis:auto!important;
+  }
+  .research-page>.research-header.masthead nav.compact-nav>a,
+  .research-page>.research-header.masthead nav.compact-nav .nav-group>summary{
+    width:100%!important;
+    min-width:0!important;
+    min-height:36px!important;
+    margin:0!important;
+    padding:7px 2px!important;
+    justify-content:center!important;
+    text-align:center!important;
+    font-size:12px!important;
+    white-space:nowrap!important;
+  }
+  .research-page>.research-header.masthead .nav-group{
+    min-width:0!important;
+    width:100%!important;
+  }
+  .research-page>.research-header.masthead .repo-link{
+    width:34px!important;
+    height:34px!important;
+    flex:0 0 34px!important;
+  }
+  .research-page>.research-header.masthead .repo-link svg{
+    width:21px!important;
+    height:21px!important;
+  }
+  .research-page>.research-header.masthead .actions-light{
+    width:auto!important;
+    min-width:94px!important;
+    height:36px!important;
+    flex:0 0 auto!important;
+    padding:0 9px!important;
+  }
+
+  html:not(.console-detached):not(.console-tool-window) .research-page main{
+    box-sizing:border-box!important;
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    margin:0!important;
+    padding:16px 8px 22px!important;
+    overflow-x:clip!important;
+  }
+  html:not(.console-detached):not(.console-tool-window) .research-page main > *,
+  html:not(.console-detached):not(.console-tool-window) .research-page .panel,
+  html:not(.console-detached):not(.console-tool-window) .research-page .status-band,
+  html:not(.console-detached):not(.console-tool-window) .research-page .story-grid,
+  html:not(.console-detached):not(.console-tool-window) .research-page .instruments-grid,
+  html:not(.console-detached):not(.console-tool-window) .research-page .telemetry-grid,
+  html:not(.console-detached):not(.console-tool-window) .research-page .research-workspace{
+    max-width:100%!important;
+    min-width:0!important;
+  }
+  html:not(.console-detached):not(.console-tool-window) .research-page .map-stage,
+  html:not(.console-detached):not(.console-tool-window) .research-page .instrument-body,
+  html:not(.console-detached):not(.console-tool-window) .research-page #wake-detail{
+    max-width:100%!important;
+  }
+}
+@media(max-width:390px){
+  .research-page>.research-header.masthead{
+    padding-left:11px!important;
+    padding-right:11px!important;
+    gap:9px 8px!important;
+  }
+  .research-page>.research-header.masthead .wordmark{font-size:28px!important}
+  .research-page>.research-header.masthead nav.compact-nav>a,
+  .research-page>.research-header.masthead nav.compact-nav .nav-group>summary{
+    font-size:11px!important;
+    padding-inline:0!important;
+  }
+  .research-page>.research-header.masthead .repo-link{
+    width:31px!important;
+    height:34px!important;
+    flex-basis:31px!important;
+  }
+  .research-page>.research-header.masthead .actions-light{
+    min-width:88px!important;
+    padding-inline:7px!important;
+  }
+}
