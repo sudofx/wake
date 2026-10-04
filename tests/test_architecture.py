@@ -225,6 +225,14 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn("the story can be checked rather than merely believed", app)
         self.assertNotIn("what is true", app)
 
+    def test_longitudinal_story_uses_recorded_reflection_receipts(self):
+        app = self.read('wake/assets/app.js')
+        self.assertIn('LONGITUDINAL RECORD / DURABLE REFLECTIONS', app)
+        self.assertIn('post?.reflection_cycle', app)
+        self.assertIn("created%10===0", app)
+        self.assertIn('Gaps remain gaps.', app)
+        self.assertNotIn('inferred era', app.lower())
+
     def test_live_projection_keeps_receipt_telemetry_without_provider_bodies(self):
         live = self.read('wake/live.py')
         self.assertIn('"temporal", "context_delivery", "working_set_metrics", "runtime_performance"', live)
