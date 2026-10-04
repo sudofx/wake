@@ -397,9 +397,13 @@
       return `<i class="continuity-cell ${intensity}" aria-hidden="true"></i>`;
     }).join('');
     const opsTopicMax=Math.max(1,...topicRows.map(topic=>topic.total));
-    const topicNodes=topicRows.slice(0,10).map(topic=>{
-      const size=Math.max(10,Math.min(30,10+Math.round(24*topic.total/opsTopicMax)));
-      return `<a class="ops-topic-node" href="#projects/topic:${encodeURIComponent(topic.id)}" style="--node-size:${size}px;--node-color:${esc(topicColors[topic.id]||'var(--ops-cyan)')}"><span>${esc(topic.label)}</span><b>${topic.total}</b></a>`;
+    const visibleTopics=topicRows.slice(0,10);
+    const topicNodes=visibleTopics.map((topic,index)=>{
+      const size=Math.max(10,Math.min(32,10+Math.round(24*topic.total/opsTopicMax)));
+      const angle=(-Math.PI/2)+(2*Math.PI*index/Math.max(1,visibleTopics.length));
+      const x=(50+36*Math.cos(angle)).toFixed(2);
+      const y=(50+34*Math.sin(angle)).toFixed(2);
+      return `<a class="ops-topic-node" href="#projects/topic:${encodeURIComponent(topic.id)}" style="--node-size:${size}px;--node-color:${esc(topicColors[topic.id]||'var(--ops-cyan)')};--node-x:${x}%;--node-y:${y}%"><span>${esc(topic.label)}</span><b>${topic.total}</b></a>`;
     }).join('');
     $('metrics-dashboard').innerHTML=`
       <section class="ops-console" aria-label="WAKE operational research console">
@@ -416,8 +420,8 @@
         <div class="ops-console-grid">
           <article class="ops-viewport">
             <div class="ops-grid-lines" aria-hidden="true"></div>
-            <div class="ops-topic-field">${topicNodes||'<span class="empty">No topic activity yet.</span>'}</div>
-            <div class="ops-viewport-caption"><span>ACCEPTED RESEARCH ACTIVITY</span><b>${topicAttributedTotal} topic-attributed actions</b></div>
+            <div class="ops-topic-field">${topicNodes||'<span class="empty">No topic activity yet.</span>'}<div class="ops-field-core"><strong>${s.version}</strong><span>WAKE CYCLE</span><small>${topicActive}/${configuredTopicCount} active topics</small></div></div>
+            <div class="ops-viewport-caption"><span>ACCEPTED RESEARCH ACTIVITY · NODE SIZE = ACCEPTED ACTION COUNT</span><b>${topicAttributedTotal} topic-attributed actions</b></div>
           </article>
           <aside class="ops-inspector">
             <div class="ops-readout"><span>LAST ATTEMPT</span><strong>${esc(latestAttemptStatus.toUpperCase())}</strong><small>${esc(latestModel)}</small></div>
