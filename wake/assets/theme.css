@@ -991,3 +991,220 @@ body{
     background-position:center center;
   }
 }
+
+
+/* Gold-standard Nebula landing composition — 2026-10-04 */
+/* The approved mockup is the home-page reference. Dim artwork first; content stays crisp. */
+.site-backdrop{
+  filter:brightness(.56) saturate(.84) contrast(1.06);
+}
+#home{
+  padding-bottom:46px!important;
+}
+.nebula-home-hero{
+  min-height:420px!important;
+  display:block!important;
+  padding:58px 0 26px!important;
+}
+.nebula-hero-copy{
+  max-width:680px!important;
+}
+.nebula-hero-copy h1{
+  max-width:none!important;
+  width:max-content;
+  max-width:100%;
+  font-size:clamp(54px,5.3vw,76px)!important;
+  line-height:.96!important;
+  margin-bottom:20px!important;
+}
+.nebula-hero-copy>p:not(.eyebrow){
+  max-width:590px!important;
+  font-size:clamp(16px,1.25vw,19px)!important;
+  line-height:1.48!important;
+}
+.nebula-hero-actions{margin-top:24px!important}
+.nebula-hero-actions .primary-link,
+.nebula-secondary{
+  min-height:46px!important;
+  padding:0 22px!important;
+}
+.nebula-pillars{
+  margin-top:0!important;
+  background:rgba(5,11,30,.78)!important;
+}
+.nebula-pillars article{
+  min-height:132px!important;
+  padding:20px 24px!important;
+  gap:18px!important;
+}
+.nebula-pillars h2{
+  font-size:20px!important;
+  margin-top:3px!important;
+}
+.nebula-pillars p{
+  font-size:13px!important;
+  line-height:1.45!important;
+}
+.nebula-icon{
+  width:42px!important;
+  height:42px!important;
+  flex-basis:42px!important;
+}
+.nebula-icon svg{width:40px!important;height:40px!important}
+
+.nebula-explore{
+  margin-top:20px;
+  padding:20px 0 0;
+}
+.nebula-explore-heading{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:24px;
+  margin:0 8px 16px;
+}
+.nebula-explore-heading h2{
+  margin:0!important;
+  color:#f7f8ff!important;
+  font:700 27px/1.1 var(--sans)!important;
+  letter-spacing:-.02em;
+}
+.nebula-explore-heading p{
+  margin:5px 0 0;
+  color:#aeb9d8!important;
+  font-size:14px;
+}
+.nebula-explore-heading>a{
+  color:#24e2eb!important;
+  font-size:12px;
+  white-space:nowrap;
+}
+.nebula-explore-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
+}
+.nebula-explore-card{
+  min-width:0;
+  overflow:hidden;
+  border:1px solid #3f527f;
+  border-radius:12px;
+  background:linear-gradient(180deg,rgba(5,13,33,.9),rgba(4,10,27,.88));
+  box-shadow:0 16px 38px rgba(0,0,18,.24),inset 0 1px rgba(255,255,255,.025);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+.nebula-explore-visual{
+  position:relative;
+  display:block;
+  height:118px;
+  border-bottom:1px solid #33466f;
+  overflow:hidden;
+}
+.nebula-explore-research,
+.nebula-explore-about,
+.nebula-explore-docs{
+  background-image:
+    linear-gradient(180deg,rgba(4,8,23,.02),rgba(4,8,23,.22)),
+    url("backgrounds/nebula-desktop-1680x1050.webp?v=20261004-5");
+  background-size:cover;
+}
+.nebula-explore-research{background-position:center 58%}
+.nebula-explore-about{background-position:72% 21%}
+.nebula-explore-docs{background-position:42% 67%}
+.nebula-explore-console{
+  background:
+    radial-gradient(circle at 50% 50%,rgba(36,229,238,.10),transparent 44%),
+    linear-gradient(180deg,#08132f,#06102a);
+}
+.nebula-explore-console::before,
+.nebula-explore-console::after{
+  content:"";
+  position:absolute;
+  left:50%;top:53%;
+  width:124px;height:124px;
+  border:1px solid rgba(48,216,255,.5);
+  border-radius:50%;
+  transform:translate(-50%,-50%) rotate(26deg) scaleY(.42);
+}
+.nebula-explore-console::after{
+  transform:translate(-50%,-50%) rotate(-38deg) scaleY(.58);
+  border-color:rgba(210,77,255,.5);
+}
+.nebula-explore-console i{
+  position:absolute;
+  z-index:1;
+  width:7px;height:7px;border-radius:50%;
+  background:#28e5ee;
+  box-shadow:0 0 12px currentColor;
+}
+.nebula-explore-console i:nth-child(1){left:34%;top:44%}
+.nebula-explore-console i:nth-child(2){left:44%;top:29%;background:#668dff}
+.nebula-explore-console i:nth-child(3){left:58%;top:35%;background:#d34cff}
+.nebula-explore-console i:nth-child(4){left:65%;top:56%;background:#ff744d}
+.nebula-explore-console i:nth-child(5){left:48%;top:68%}
+.nebula-explore-console i:nth-child(6){left:51%;top:48%;background:#d64fff}
+.nebula-explore-copy{
+  padding:14px 16px 15px;
+}
+.nebula-explore-label{
+  display:block;
+  margin-bottom:10px;
+  color:#cfbdf7;
+  font:10px var(--mono);
+  letter-spacing:.09em;
+}
+.nebula-explore-copy h3{
+  margin:0 0 5px!important;
+  font:700 18px/1.2 var(--sans)!important;
+}
+.nebula-explore-copy h3 a{color:#fff!important}
+.nebula-explore-copy p{
+  min-height:40px;
+  margin:0!important;
+  color:#aeb8d4!important;
+  font-size:12px!important;
+  line-height:1.4!important;
+}
+.nebula-explore-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:13px;
+}
+.nebula-explore-tags span{
+  padding:4px 10px;
+  border:1px solid #35517c;
+  border-radius:999px;
+  color:#cbd4ee;
+  background:rgba(6,16,38,.72);
+  font-size:10px;
+}
+.nebula-explore-card:first-child .nebula-explore-tags span:first-child,
+.nebula-explore-card:nth-child(2) .nebula-explore-tags span:first-child{
+  border-color:#087f9a;
+  color:#29e5ed;
+  background:rgba(0,209,227,.09);
+}
+
+@media(max-width:1100px){
+  .nebula-explore-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .nebula-home-hero{min-height:390px!important}
+}
+@media(max-width:700px){
+  .site-backdrop{filter:brightness(.50) saturate(.8) contrast(1.07)}
+  .nebula-home-hero{min-height:auto!important;padding:42px 0 26px!important}
+  .nebula-hero-copy h1{
+    width:auto;
+    font-size:clamp(44px,12vw,58px)!important;
+    max-width:10ch!important;
+  }
+  .nebula-hero-copy>p:not(.eyebrow){font-size:16px!important}
+  .nebula-pillars{grid-template-columns:1fr!important}
+  .nebula-pillars article{min-height:0!important}
+  .nebula-explore-heading{align-items:flex-start}
+  .nebula-explore-heading p{font-size:12px}
+  .nebula-explore-grid{grid-template-columns:1fr}
+  .nebula-explore-visual{height:142px}
+  .nebula-explore-copy p{min-height:0}
+}

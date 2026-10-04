@@ -141,37 +141,53 @@ window.WakePetReady=(async () => {
         <article><span class="nebula-icon nebula-evolve">✣</span><div><h2>Evolve</h2><p>Designed to outlast models, platforms, and people.</p></div></article>
       </section>
 
-      <section class="nebula-home-grid">
-        <article class="nebula-home-card nebula-latest">
-          <header><div><span class="nebula-card-icon">▤</span><h2>Latest research</h2></div><a href="#discoveries">View all →</a></header>
-          <div>${latestResearchRows||'<p class="empty">No published notebooks yet.</p>'}</div>
-        </article>
-        <article class="nebula-home-card nebula-system">
-          <header><div><span class="nebula-card-icon">◈</span><h2>System map</h2></div><a href="console.html?tool=map3d">Open map →</a></header>
-          <a class="nebula-orb" href="console.html?tool=map3d" aria-label="Open recorded system map"><i></i><i></i><i></i><i></i><i></i><i></i></a>
-          <div class="nebula-system-stats">
-            <span><b>${s.version}</b><small>Accepted wakes</small></span>
-            <span><b>${books.length}</b><small>Notebooks</small></span>
-            <span><b>${Object.keys(s.evidence||{}).length}</b><small>Evidence</small></span>
+      <section class="nebula-explore" aria-labelledby="nebula-explore-title">
+        <div class="nebula-explore-heading">
+          <div>
+            <h2 id="nebula-explore-title">Explore WAKE✳︎</h2>
+            <p>Different views into the same system. From research to documentation.</p>
           </div>
-        </article>
-        <article class="nebula-home-card nebula-status-card">
-          <header><div><span class="nebula-card-icon">▥</span><h2>Current status</h2></div><a href="#metrics">View metrics →</a></header>
-          <p>${attempt?esc(labels[attempt.status]||attempt.status):'Waiting for the first recorded wake.'}</p>
-          <div class="nebula-bars" aria-hidden="true">${recentWakes.slice(-18).map((i,index)=>`<i class="${esc(i.status||'unknown')}" style="--h:${32+(index%7)*8}px"></i>`).join('')}</div>
-          <div class="nebula-status-stats">
-            <span><b>${s.version}</b><small>Accepted wakes</small></span>
-            <span><b>${active.length}</b><small>Active questions</small></span>
-            <span><b>${books.length}</b><small>Works</small></span>
-          </div>
-        </article>
-      </section>
-
-      <section class="nebula-topic-panel">
-        <div class="section-top"><div><p class="eyebrow">RESEARCH LANDSCAPE</p><h2>Questions in motion.</h2></div><a class="subtle" href="#topics">View all topics →</a></div>
-        <div class="nebula-topic-list">${topTopics||'<p class="empty">No configured topics yet.</p>'}</div>
-      </section>
-    `;  }
+          <a href="#topics">View all topics →</a>
+        </div>
+        <div class="nebula-explore-grid">
+          <article class="nebula-explore-card">
+            <a class="nebula-explore-visual nebula-explore-research" href="#discoveries" aria-label="Open research"></a>
+            <div class="nebula-explore-copy">
+              <span class="nebula-explore-label">RESEARCH</span>
+              <h3><a href="#discoveries">Research</a></h3>
+              <p>Exploring how intelligence systems can work together accountably.</p>
+              <div class="nebula-explore-tags"><span>Topics</span><span>Map</span><span>Metrics</span></div>
+            </div>
+          </article>
+          <article class="nebula-explore-card">
+            <a class="nebula-explore-visual nebula-explore-console" href="console.html" aria-label="Open Live Console"><i></i><i></i><i></i><i></i><i></i><i></i></a>
+            <div class="nebula-explore-copy">
+              <span class="nebula-explore-label">CONSOLE</span>
+              <h3><a href="console.html">Live Console</a></h3>
+              <p>Interactive tools, visualizations and the current state.</p>
+              <div class="nebula-explore-tags"><span>3D Map</span><span>Timeline</span><span>Records</span></div>
+            </div>
+          </article>
+          <article class="nebula-explore-card">
+            <a class="nebula-explore-visual nebula-explore-about" href="#about" aria-label="About WAKE"></a>
+            <div class="nebula-explore-copy">
+              <span class="nebula-explore-label">ABOUT</span>
+              <h3><a href="#about">About WAKE✳︎</a></h3>
+              <p>A long-horizon project for durable, accountable work.</p>
+              <div class="nebula-explore-tags"><span>The vision</span><span>How it works</span><span>Contributing</span></div>
+            </div>
+          </article>
+          <article class="nebula-explore-card">
+            <a class="nebula-explore-visual nebula-explore-docs" href="https://github.com/sudofx/wake/tree/master/docs" aria-label="Open documentation"></a>
+            <div class="nebula-explore-copy">
+              <span class="nebula-explore-label">DOCUMENTATION</span>
+              <h3><a href="https://github.com/sudofx/wake/tree/master/docs">Documentation</a></h3>
+              <p>Guides, references and architecture details.</p>
+              <div class="nebula-explore-tags"><span>Getting started</span><span>Architecture</span><span>Data model</span></div>
+            </div>
+          </article>
+        </div>
+      </section>   `;  }
   window.WakePet={render};
   return window.WakePet;
 })();
