@@ -22,6 +22,11 @@ on:
         type: boolean
         required: false
         default: false
+      enable_continuity_matrix:
+        description: INTERNAL governed continuity campaign switch.
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: write
@@ -112,6 +117,7 @@ jobs:
         run: |
           args=()
           if [[ "${{ inputs.reset }}" == "true" ]]; then args=(--reset --confirm-reset); fi
+          if [[ "${{ inputs.enable_continuity_matrix }}" == "true" ]]; then args=(--enable-continuity-matrix); fi
           python scripts/github_wake.py "${args[@]}"
       - name: Record run summary
         if: always()
@@ -128,7 +134,7 @@ jobs:
 
   continue-again:
     needs: wake
-    if: needs.wake.result == 'success' && needs.wake.outputs.continue_now == 'true' && inputs.reset != true
+    if: needs.wake.result == 'success' && needs.wake.outputs.continue_now == 'true' && inputs.reset != true && inputs.enable_continuity_matrix != true
     runs-on: ubuntu-latest
     steps:
       - name: Keep the experiment on its starting implementation
