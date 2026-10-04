@@ -424,6 +424,18 @@
       const outcome=item.outcome||item.latest_stage||'unknown';
       return `<a class="ops-trace-row" href="#history/${encodeURIComponent(item.invocation_id||'')}" title="${esc(item.invocation_id||'invocation')} · ${esc(outcome)}"><span>${esc(String(item.invocation_id||'').slice(-10)||'—')}</span><div>${dots}</div><strong>${esc(String(outcome).replaceAll('_',' '))}</strong></a>`;
     }).join('')||'<p class="empty">No recent invocation lifecycle receipts.</p>';
+    const lifecycleRevisions=lifecycleRecent.map(item=>Number(item.source_revision)).filter(Number.isFinite);
+    const lifecycleRevisionSpan=lifecycleRevisions.length?`${Math.min(...lifecycleRevisions)} → ${Math.max(...lifecycleRevisions)}`:'revision unavailable';
+    const lifecycleContinuity=lifecycleRecent.map(item=>{
+      const revision=Number(item.source_revision);
+      const context=item.context||{};
+      const payloadBytes=Number(context.payload_bytes);
+      const payloadLabel=Number.isFinite(payloadBytes)?(payloadBytes/1024).toFixed(1)+' KB':'—';
+      const outcome=String(item.outcome||item.latest_stage||'unknown');
+      const policy=String(context.policy_version||'context policy unavailable');
+      const hasDelivered=(Array.isArray(item.stages)?item.stages:[]).includes('context_delivered');
+      return `<a class="ops-continuity-node ${hasDelivered?'delivered':'missing'}" href="#history/${encodeURIComponent(item.invocation_id||'')}" title="${esc(item.invocation_id||'invocation')} · source revision ${Number.isFinite(revision)?revision:'unknown'} · ${esc(payloadLabel)} · ${esc(outcome)}"><span>REV ${Number.isFinite(revision)?revision:'—'}</span><i aria-hidden="true"></i><strong>${esc(payloadLabel)}</strong><small>${esc(policy)} · ${esc(outcome.replaceAll('_',' '))}</small></a>`;
+    }).join('')||'<p class="empty">No recent lifecycle context receipts.</p>';
     const matrixCompleted=Number(matrixProgress?.completed_count||0);
     const matrixTotal=Number(matrixProgress?.cell_count||343);
     const matrixPct=matrixTotal?Math.round(100*matrixCompleted/matrixTotal):0;
@@ -811,6 +823,10 @@
           <div class="ops-context-trace">
             <div class="ops-context-trace-head"><span>CONTEXT PRESSURE / LAST ${contextTraceSource.length}</span><small>height = rich request · inner fill = delivered share · orange = bounded mode</small></div>
             <div class="ops-context-track" role="group" aria-label="Recent context delivery receipts">${contextTrace||'<span class="empty">No context receipts yet.</span>'}</div>
+          </div>
+          <div class="ops-continuity-thread">
+            <div class="ops-continuity-head"><div><span>DURABLE CONTINUITY THREAD / RECENT INVOCATIONS</span><strong>${lifecycleRecent.length} lifecycle receipts</strong></div><small>observed record revision span ${esc(lifecycleRevisionSpan)} · source revision → governed context → recorded outcome</small></div>
+            <div class="ops-continuity-track" role="group" aria-label="Recent invocation context continuity">${lifecycleContinuity}</div>
           </div>
         </div>
         <div class="ops-provenance" id="ops-evidence" aria-label="Evidence provenance telemetry">
