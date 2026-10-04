@@ -1173,6 +1173,7 @@ body.metrics-ops-active .reading-key strong{color:var(--ops-orange)}
 .ops-horizon-bucket.danger>strong{color:var(--ops-red)}.ops-horizon-bucket.danger i{background:var(--ops-red);border-color:var(--ops-red)}
 .ops-horizon-bucket.warning>strong{color:var(--ops-amber)}.ops-horizon-bucket.warning i{background:var(--ops-amber);border-color:var(--ops-amber)}
 .ops-horizon-bucket.info i{background:var(--ops-cyan-dim);border-color:var(--ops-cyan-dim)}
+.ops-tertiary-grid{display:grid;grid-template-columns:1fr}
 .ops-context{border-top:1px solid var(--ops-line);background:#061016}
 .ops-context-head{display:flex;justify-content:space-between;gap:18px;align-items:end;padding:14px 16px;border-bottom:1px solid var(--ops-line-soft)}
 .ops-context-head .eyebrow{margin:0 0 5px;color:var(--ops-cyan)}
@@ -1321,6 +1322,12 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
 }
 @media(min-width:1600px){
   body.metrics-ops-active main{width:calc(100vw - 72px)}
+  .ops-tertiary-grid{grid-template-columns:minmax(0,1.28fr) minmax(460px,.72fr);border-top:1px solid var(--ops-line)}
+  .ops-tertiary-grid>.ops-context,.ops-tertiary-grid>.ops-lifecycle{border-top:0;min-width:0}
+  .ops-tertiary-grid>.ops-lifecycle{border-left:1px solid var(--ops-line)}
+  .ops-tertiary-grid .ops-lifecycle-grid{grid-template-columns:repeat(3,1fr)}
+  .ops-tertiary-grid .ops-lifecycle-grid>div:nth-child(3n){border-right:0}
+  .ops-tertiary-grid .ops-lifecycle-grid>div:nth-child(-n+3){border-bottom:1px solid var(--ops-line-soft)}
   .ops-secondary-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);border-top:1px solid var(--ops-line)}
   .ops-secondary-grid>.ops-pressure-board,.ops-secondary-grid>.ops-time{border-top:0}
   .ops-secondary-grid>.ops-time{border-left:1px solid var(--ops-line)}
@@ -1340,6 +1347,9 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
 }
 @media(min-width:2200px){
   body.metrics-ops-active main{width:calc(100vw - 96px)}
+  .ops-tertiary-grid{grid-template-columns:minmax(0,1.45fr) minmax(560px,.55fr)}
+  .ops-tertiary-grid .ops-context-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .ops-tertiary-grid .ops-lifecycle-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
   .ops-secondary-grid{grid-template-columns:minmax(680px,1.1fr) minmax(720px,.9fr)}
   .ops-secondary-grid .ops-pressure-board{grid-template-columns:minmax(0,1.2fr) minmax(260px,.8fr)}
   .ops-secondary-grid .ops-pressure-board>section+section{border-top:0;border-left:1px solid var(--ops-line-soft)}
