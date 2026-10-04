@@ -997,21 +997,6 @@
             <div class="ops-lineage-list">${beliefLineage}</div>
           </div>
         </div>
-        <div class="ops-lifecycle" aria-label="Application lifecycle observability">
-          <div class="ops-lifecycle-head"><p class="eyebrow">APPLICATION LIFECYCLE / GENERIC SUDOFX EVIDENCE</p><span>${appObservability?`record revision ${esc(appObservability.record_revision)}`:`not available`}</span></div>
-          <div class="ops-lifecycle-grid">
-            <div><span>GOVERNED ACTIONS</span><strong>${Number(appActions.accepted||0)}</strong><small>${Number(appActions.rejected||0)} rejected</small></div>
-            <div><span>INVOCATIONS</span><strong>${Number(appInvocations.total||0)}</strong><small>${Number(appInvocations.attempts||0)} provider attempts</small></div>
-            <div><span>COMPLETED</span><strong>${Number(appInvocations.completed||0)}</strong><small>${Number(appInvocations.failed||0)} failed</small></div>
-            <div><span>QUOTA</span><strong>${Number(appInvocations.quota_exhausted||0)}</strong><small>exhaustion outcomes</small></div>
-            <div><span>TEMPORARY</span><strong>${Number(appInvocations.temporary_failures||0)}</strong><small>provider waits</small></div>
-            <div><span>EFFECT BARRIER</span><strong>${Number(appInvocations.effect_barrier_failures||0)}</strong><small>blocked before effect</small></div>
-          </div>
-          <div class="ops-trace">
-            <div class="ops-trace-head"><span>RECENT INVOCATION TRACE</span><small>bounded sudofx lifecycle receipts · newest at bottom</small></div>
-            <div class="ops-trace-list">${lifecycleTraces}</div>
-          </div>
-        </div>
         </div>
         <div class="ops-horizon" id="ops-horizon" aria-label="Open commitment horizon">
           <div class="ops-horizon-head"><div><p class="eyebrow">OPEN COMMITMENT HORIZON</p><h3>${openObligations} obligations carried forward</h3></div><small>bucketed by due cycle relative to cycle ${s.version}</small></div>
@@ -1064,6 +1049,21 @@
         <h2>Exact counts, reconciliations, and lower-level distributions.</h2>
         <p>The narrative above is a derived reading layer. The panels below expose the underlying populations and definitions so the story can be checked rather than merely believed.</p>
       </div>
+        <div class="ops-lifecycle" aria-label="Application lifecycle observability">
+          <div class="ops-lifecycle-head"><p class="eyebrow">APPLICATION LIFECYCLE / GENERIC SUDOFX EVIDENCE</p><span>${appObservability?`record revision ${esc(appObservability.record_revision)}`:`not available`}</span></div>
+          <div class="ops-lifecycle-grid">
+            <div><span>GOVERNED ACTIONS</span><strong>${Number(appActions.accepted||0)}</strong><small>${Number(appActions.rejected||0)} rejected</small></div>
+            <div><span>INVOCATIONS</span><strong>${Number(appInvocations.total||0)}</strong><small>${Number(appInvocations.attempts||0)} provider attempts</small></div>
+            <div><span>COMPLETED</span><strong>${Number(appInvocations.completed||0)}</strong><small>${Number(appInvocations.failed||0)} failed</small></div>
+            <div><span>QUOTA</span><strong>${Number(appInvocations.quota_exhausted||0)}</strong><small>exhaustion outcomes</small></div>
+            <div><span>TEMPORARY</span><strong>${Number(appInvocations.temporary_failures||0)}</strong><small>provider waits</small></div>
+            <div><span>EFFECT BARRIER</span><strong>${Number(appInvocations.effect_barrier_failures||0)}</strong><small>blocked before effect</small></div>
+          </div>
+          <div class="ops-trace">
+            <div class="ops-trace-head"><span>RECENT INVOCATION TRACE</span><small>bounded sudofx lifecycle receipts · newest at bottom</small></div>
+            <div class="ops-trace-list">${lifecycleTraces}</div>
+          </div>
+        </div>
       <section class="metrics-row-one">
         <section class="dashboard-grid">
         <article class="dashboard-panel panel-action-matrix"><div class="panel-heading"><div><p class="eyebrow">ACCEPTED ACTION MATRIX</p><h2>Where accepted work goes — and what kind it is.</h2></div><div class="landscape-status"><span>ACCEPTED ACTIONS</span><strong>${actionTotal}</strong></div></div><p class="small">One population, two dimensions: rows are configured research topics; columns are accepted action types. Row totals and column totals reconcile to the same accepted-action record. Actions without a durable topic stay separate below the research matrix.</p><div class="action-matrix-desktop"><div class="action-matrix-scroll"><div class="action-matrix" style="--action-cols:${Math.max(1,actionTypes.length)}"><div class="matrix-header"><button type="button" class="matrix-sort" data-matrix-sort-index="0" data-matrix-sort-label="topic" aria-label="Sort by topic">TOPIC<span aria-hidden="true">↕</span></button>${matrixHeader}<button type="button" class="matrix-sort is-sorted" data-matrix-sort-index="${actionTypes.length+1}" data-matrix-sort-label="total" data-matrix-sort-direction="desc" aria-label="Sort by total, currently descending">TOTAL<span aria-hidden="true">↓</span></button></div>${matrixRows||'<p class="empty">No topic-attributed accepted actions yet.</p>'}${systemMatrix}<div class="matrix-total-row"><span>ALL ACCEPTED</span>${matrixTotals}<strong>${actionTotal}</strong></div></div></div><p class="small matrix-note">${topicAttributedTotal} topic-attributed · ${systemActions.total} unattributed/system · ${actionTotal} total accepted actions.</p></div><div class="action-matrix-mobile">${mobileMatrix||'<p class="empty">No accepted actions yet.</p>'}<p class="small matrix-note">${topicAttributedTotal} topic-attributed · ${systemActions.total} unattributed/system · ${actionTotal} total.</p></div></article>
