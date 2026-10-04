@@ -989,6 +989,19 @@
         <i>→</i>
         <span><b>SPACE</b> where continuity has been tested</span>
       </div>
+      <div class="ops-audit-ladder" aria-label="Audit path from data story to durable record">
+        <div class="ops-audit-copy">
+          <span>READING DEPTH / FOLLOW THE RECEIPTS</span>
+          <strong>Story → verification → record.</strong>
+          <small>Each layer removes interpretation and exposes more of the underlying durable evidence.</small>
+        </div>
+        <div class="ops-audit-steps">
+          <a href="#metrics" data-story-target="ops-now"><b>01</b><span>STORY</span><strong>derived reading</strong><small>orientation + relationships</small></a>
+          <a href="#metrics" data-verify-target="verify-actions"><b>02</b><span>VERIFY</span><strong>counts + definitions</strong><small>reconcile the narrative</small></a>
+          <a href="#history"><b>03</b><span>RECORD</span><strong>recent receipt window</strong><small>inspect exact published events</small></a>
+          <a class="ops-audit-export" href="events.html"><b>↗</b><span>FULL EXPORT</span><strong>append-only events</strong><small>leave the reading layer</small></a>
+        </div>
+      </div>
       <section class="ops-history-arc" aria-label="Longitudinal durable reflection record">
         <header><div><p class="eyebrow">LONGITUDINAL RECORD / DURABLE REFLECTIONS</p><h3>${opsReflections.length} recorded milestones across ${s.version} cycles</h3></div><div class="ops-history-provenance"><small>Declared reflection_cycle receipts and legacy cycle-10 reflections preserved by historical governance are labeled separately. Gaps remain gaps.</small><div class="ops-history-legend" aria-label="Reflection provenance legend"><span class="declared"><i></i>DECLARED RECEIPT</span><span class="legacy"><i></i>LEGACY REPLAY CLASSIFICATION</span></div></div></header>
         <div class="ops-history-body">
@@ -1245,6 +1258,7 @@
         <p class="eyebrow">DEEP METRICS / VERIFY THE STORY</p>
         <h2>Exact counts, reconciliations, and lower-level distributions.</h2>
         <p>The narrative above is a derived reading layer. The panels below expose the underlying populations and definitions so the story can be checked rather than merely believed.</p>
+        <div class="ops-verify-depth"><span>LAYER 02 / VERIFY</span><a href="#history">LAYER 03 · RECENT EVENT WINDOW →</a><a href="events.html">FULL EXPORTED EVENTS ↗</a></div>
         <nav class="ops-verify-index" aria-label="Deep metric verification routes">
           <a href="#metrics" data-verify-target="verify-actions"><span>NOW</span><strong>accepted work</strong></a>
           <a href="#metrics" data-verify-target="verify-outcomes"><span>PRESSURE</span><strong>outcome composition</strong></a>
