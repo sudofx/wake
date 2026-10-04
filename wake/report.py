@@ -605,7 +605,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         template = (assets / "index.html").read_text().replace("WAKE_CYCLE_COUNT", str(state["version"]))
         # Publish source styles alongside every HTML view: Pages and exports share
         # the same theme file rather than receiving copied inline palettes.
-        for name in ("style.css", "nav.css", "map.css", "map3d.css", "theme.css",
+        for name in ("style.css", "ops.css", "nav.css", "map.css", "map3d.css", "theme.css",
                      "nav.js", "map.js", "map3d.js", "flat-view.js"):
             atomic_write(target / name, (assets / name).read_text())
         browser_data = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
