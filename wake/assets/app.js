@@ -411,16 +411,16 @@
     const semanticAxis=matrixAxes[0]?.values||[];
     const exposureAxis=matrixAxes[1]?.values||[];
     const pressureAxis=matrixAxes[2]?.values||[];
-    const matrixCellStatuses=Array.isArray(matrixProgress?.cells)?matrixProgress.cells:[];
+    const matrixStatuses=Array.isArray(matrixProgress?.cells)?matrixProgress.cells:[];
     const matrixPlanes=semanticAxis.map((semantic,semanticIndex)=>{
-      const cells=matrixCellStatuses.slice(semanticIndex*49,(semanticIndex+1)*49);
-      const cellHtml=cells.map((status,cellIndex)=>{
-        const ordinal=semanticIndex*49+cellIndex+1;
-        const exposure=exposureAxis[cellIndex%7]?.label||'';
-        const pressure=pressureAxis[Math.floor(cellIndex/7)]?.label||'';
-        const isNext=ordinal===matrixProgress?.next_ordinal;
-        const description=[semantic.label,exposure,pressure].filter(Boolean).join(' · ');
-        return `<i class="continuity-cell ${esc(status||'open')} ${isNext?'next':''}" title="${esc(description)}" aria-label="${esc(description)}: ${esc(status||'open')}${isNext?', next coordinate':''}"></i>`;
+      const offset=semanticIndex*49;
+      const cells=matrixStatuses.slice(offset,offset+49);
+      const cellHtml=cells.map((status,localIndex)=>{
+        const exposure=exposureAxis[Math.floor(localIndex/7)]?.label||'Exposure';
+        const pressure=pressureAxis[localIndex%7]?.label||'Pressure';
+        const ordinal=offset+localIndex+1;
+        const isNext=ordinal===Number(matrixProgress?.next_ordinal||0);
+        return `<i class="continuity-cell ${esc(status||'open')} ${isNext?'next':''}" title="${esc(semantic.label)} · ${esc(exposure)} · ${esc(pressure)}" aria-label="${esc(semantic.label)}, ${esc(exposure)}, ${esc(pressure)}: ${esc(status||'open')}${isNext?', next coordinate':''}"></i>`;
       }).join('');
       return `<section class="matrix-plane"><header><span>${esc(semantic.label)}</span><b>${cells.filter(status=>status==='completed').length}/49</b></header><div class="matrix-plane-grid" role="group" aria-label="${esc(semantic.label)} continuity plane">${cellHtml}</div></section>`;
     }).join('');
