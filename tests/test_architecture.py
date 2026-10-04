@@ -202,6 +202,19 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertNotIn('enable_continuity_matrix(', app)
         self.assertNotIn('set_time_dilation(', app)
 
+    def test_now_story_leads_with_latest_accepted_wake_receipt(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('LATEST ACCEPTED WAKE', app)
+        self.assertIn('const latestAcceptedEvent=accepted.at(-1)||null', app)
+        self.assertIn('item?.invocation===latestAcceptedId', app)
+        self.assertIn('latestAcceptedProposal?.actions', app)
+        self.assertIn('EXACT RECEIPT →', app)
+        self.assertIn('href="#history/${encodeURIComponent(latestAcceptedId)}"', app)
+        self.assertIn('No durable journal summary is attached to the latest accepted wake.', app)
+        self.assertIn('.ops-latest-wake', css)
+        self.assertIn('.ops-latest-wake-meta', css)
+
     def test_operations_console_story_chapters_remain_evidence_scoped(self):
         app = self.read('wake/assets/app.js')
         for label in ("NOW", "PRESSURE", "MEMORY", "EVIDENCE", "BELIEF", "FRONTIER", "SPACE"):
