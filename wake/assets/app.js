@@ -498,7 +498,7 @@
     // Journal remains a depth layer, never the default landing view.
     const page=['home','discoveries','topics','blog','projects','journal','lab','metrics','evidence','history','about'].includes(part)?part:'home';
     document.querySelectorAll('.view').forEach(el=>el.hidden=el.id!==page);
-    document.querySelectorAll('[data-nav]').forEach(el=>{if(el.dataset.nav===page||(el.dataset.navSection==='research'&&['projects','lab','metrics','evidence','history'].includes(page)))el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
+    document.querySelectorAll('[data-nav]').forEach(el=>{if(el.dataset.nav===page||(el.dataset.navSection==='research'&&['discoveries','topics','journal','blog','projects','lab','metrics','evidence','history'].includes(page)))el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
     let selected='';try{selected=decodeURIComponent(id||'');}catch{}
     if(page==='blog')blog(selected);
     if(page==='journal')journal();

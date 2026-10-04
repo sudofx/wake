@@ -124,7 +124,6 @@ window.WakePetReady=(async () => {
     document.getElementById('pet-home').innerHTML=`
       <section class="nebula-home-hero">
         <div class="nebula-hero-copy">
-          <p class="eyebrow">WAKE✳︎ / DURABLE ACCOUNTABLE WORK</p>
           <h1>A more durable<br><span>intelligence future.</span></h1>
           <p>WAKE✳︎ is infrastructure for accountable work across interchangeable intelligences — preserving how we reach conclusions, not just what they are.</p>
           <div class="nebula-hero-actions">
@@ -132,13 +131,30 @@ window.WakePetReady=(async () => {
             <a class="nebula-secondary" href="console.html">Open Console</a>
           </div>
         </div>
-        <div class="nebula-planet" aria-hidden="true"><i></i></div>
       </section>
 
       <section class="nebula-pillars" aria-label="WAKE principles">
-        <article><span class="nebula-icon nebula-record"><svg viewBox="0 0 64 64" aria-hidden="true"><ellipse cx="32" cy="15" rx="19" ry="8"/><path d="M13 15v13c0 4.5 8.5 8 19 8s19-3.5 19-8V15"/><path d="M13 28v13c0 4.5 8.5 8 19 8s19-3.5 19-8V28"/></svg></span><div><h2>Record</h2><p>Append-only history with verifiable provenance.</p></div></article>
-        <article><span class="nebula-icon nebula-govern"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 7 49 14v14c0 11-6.5 21-17 28-10.5-7-17-17-17-28V14L32 7Z"/><path d="M32 20v16M24 28h16"/></svg></span><div><h2>Govern</h2><p>Deterministic policy and accountability.</p></div></article>
-        <article><span class="nebula-icon nebula-evolve">✣</span><div><h2>Evolve</h2><p>Designed to outlast models, platforms, and people.</p></div></article>
+        <article>
+          <span class="nebula-icon nebula-record" aria-hidden="true">
+            <svg viewBox="0 0 64 64"><ellipse cx="32" cy="14" rx="19" ry="8"/><path d="M13 14v13c0 4.5 8.5 8 19 8s19-3.5 19-8V14"/><path d="M13 27v13c0 4.5 8.5 8 19 8s19-3.5 19-8V27"/><path d="M13 40v9c0 4.5 8.5 8 19 8s19-3.5 19-8v-9"/></svg>
+          </span>
+          <div><h2>Record</h2><p>Append-only history<br>with verifiable provenance.</p></div>
+        </article>
+        <article>
+          <span class="nebula-icon nebula-govern" aria-hidden="true">
+            <svg viewBox="0 0 64 64"><path d="M32 7 49 14v14c0 11-6.5 21-17 28-10.5-7-17-17-17-28V14L32 7Z"/><path class="shield-flame" d="M32 22c3.6 4.5 5.5 7.9 5.5 11a5.5 5.5 0 0 1-11 0c0-3.1 1.9-6.5 5.5-11Z"/></svg>
+          </span>
+          <div><h2>Govern</h2><p>Deterministic policy<br>and accountability.</p></div>
+        </article>
+        <article>
+          <span class="nebula-icon nebula-explore-glyph" aria-hidden="true">
+            <svg viewBox="0 0 64 64">
+              <path d="M32 15v13M18 25l10 6M46 25l-10 6M21 46l8-10M43 46l-8-10M32 36v12"/>
+              <circle cx="32" cy="11" r="5"/><circle cx="16" cy="24" r="5"/><circle cx="48" cy="24" r="5"/><circle cx="32" cy="32" r="5"/><circle cx="20" cy="49" r="5"/><circle cx="44" cy="49" r="5"/><circle cx="32" cy="53" r="5"/>
+            </svg>
+          </span>
+          <div><h2>Explore</h2><p>Research in<br>the open.</p></div>
+        </article>
       </section>
 
       <section class="nebula-explore" aria-labelledby="nebula-explore-title">
@@ -151,39 +167,43 @@ window.WakePetReady=(async () => {
         </div>
         <div class="nebula-explore-grid">
           <article class="nebula-explore-card">
-            <a class="nebula-explore-visual nebula-explore-research" href="#discoveries" aria-label="Open research"></a>
+            <a class="nebula-explore-visual nebula-explore-research" href="#discoveries" aria-label="Open research"><span>RESEARCH</span></a>
             <div class="nebula-explore-copy">
-              <span class="nebula-explore-label">RESEARCH</span>
               <h3><a href="#discoveries">Research</a></h3>
               <p>Exploring how intelligence systems can work together accountably.</p>
-              <div class="nebula-explore-tags"><span>Topics</span><span>Map</span><span>Metrics</span></div>
+              <nav class="nebula-explore-tags" aria-label="Research shortcuts">
+                <a href="#topics">Topics</a><a href="map.html">Map</a><a href="#metrics">Metrics</a>
+              </nav>
             </div>
           </article>
           <article class="nebula-explore-card">
-            <a class="nebula-explore-visual nebula-explore-console" href="console.html" aria-label="Open Live Console"><i></i><i></i><i></i><i></i><i></i><i></i></a>
+            <a class="nebula-explore-visual nebula-explore-console" href="console.html" aria-label="Open Live Console"><span>CONSOLE</span><i></i><i></i><i></i><i></i><i></i><i></i></a>
             <div class="nebula-explore-copy">
-              <span class="nebula-explore-label">CONSOLE</span>
               <h3><a href="console.html">Live Console</a></h3>
               <p>Interactive tools, visualizations and the current state.</p>
-              <div class="nebula-explore-tags"><span>3D Map</span><span>Timeline</span><span>Records</span></div>
+              <nav class="nebula-explore-tags" aria-label="Console shortcuts">
+                <a href="console.html?tool=map3d">3D Map</a><a href="console.html?tool=history">Timeline</a><a href="console.html?tool=records">Records</a>
+              </nav>
             </div>
           </article>
           <article class="nebula-explore-card">
-            <a class="nebula-explore-visual nebula-explore-about" href="#about" aria-label="About WAKE"></a>
+            <a class="nebula-explore-visual nebula-explore-about" href="#about" aria-label="About WAKE"><span>ABOUT</span></a>
             <div class="nebula-explore-copy">
-              <span class="nebula-explore-label">ABOUT</span>
               <h3><a href="#about">About WAKE✳︎</a></h3>
               <p>A long-horizon project for durable, accountable work.</p>
-              <div class="nebula-explore-tags"><span>The vision</span><span>How it works</span><span>Contributing</span></div>
+              <nav class="nebula-explore-tags" aria-label="About shortcuts">
+                <a href="#about">The vision</a><a href="#lab">How it works</a><a href="https://github.com/sudofx/wake">Contributing</a>
+              </nav>
             </div>
           </article>
           <article class="nebula-explore-card">
-            <a class="nebula-explore-visual nebula-explore-docs" href="https://github.com/sudofx/wake/tree/master/docs" aria-label="Open documentation"></a>
+            <a class="nebula-explore-visual nebula-explore-docs" href="https://github.com/sudofx/wake/tree/master/docs" aria-label="Open documentation"><span>DOCUMENTATION</span></a>
             <div class="nebula-explore-copy">
-              <span class="nebula-explore-label">DOCUMENTATION</span>
               <h3><a href="https://github.com/sudofx/wake/tree/master/docs">Documentation</a></h3>
               <p>Guides, references and architecture details.</p>
-              <div class="nebula-explore-tags"><span>Getting started</span><span>Architecture</span><span>Data model</span></div>
+              <nav class="nebula-explore-tags" aria-label="Documentation shortcuts">
+                <a href="https://github.com/sudofx/wake#start-here--no-account-no-api-calls">Getting started</a><a href="https://github.com/sudofx/wake/blob/master/docs/architecture.md">Architecture</a><a href="https://github.com/sudofx/wake/blob/master/docs/architecture.md#durable-record">Data model</a>
+              </nav>
             </div>
           </article>
         </div>

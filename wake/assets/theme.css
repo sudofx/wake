@@ -1208,3 +1208,399 @@ body{
   .nebula-explore-visual{height:142px}
   .nebula-explore-copy p{min-height:0}
 }
+
+
+/* FINAL MOCKUP FIDELITY — approved gold standard 2026-10-04 */
+body>header.masthead{
+  width:min(1304px,calc(100% - 48px))!important;
+  max-width:1304px!important;
+  min-height:64px!important;
+  margin:18px auto 0!important;
+  padding:12px 20px!important;
+  border-color:#27476c!important;
+  border-radius:12px!important;
+  background:rgba(3,12,31,.78)!important;
+  box-shadow:0 18px 52px rgba(0,0,18,.22)!important;
+}
+.wordmark,.masthead .wordmark{
+  font-size:34px!important;
+  line-height:1!important;
+  letter-spacing:-1.7px!important;
+}
+.wordmark small{display:none!important}
+.masthead nav.compact-nav{
+  justify-content:flex-start!important;
+  gap:40px!important;
+  margin-left:44px!important;
+  margin-right:auto!important;
+}
+.masthead nav.compact-nav>a{
+  min-height:42px!important;
+  padding:10px 0 8px!important;
+  color:#f1f3ff!important;
+  font-size:15px!important;
+  font-weight:500!important;
+}
+.masthead nav.compact-nav>a[aria-current=page]{
+  color:#fff!important;
+  border-bottom:2px solid #21dfea!important;
+}
+.header-tools{
+  gap:12px!important;
+  align-items:center!important;
+}
+.header-tools .theme-switch{
+  min-height:30px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+}
+.header-tools .theme-switch .data-switch-track{
+  width:40px!important;
+  height:22px!important;
+  flex-basis:40px!important;
+  padding:3px!important;
+}
+.header-tools .theme-switch .data-switch-track i{
+  width:14px!important;
+  height:14px!important;
+  flex-basis:14px!important;
+}
+.header-tools .theme-switch input:checked+.data-switch-track i{transform:translateX(18px)!important}
+.actions-light{
+  width:44px!important;
+  min-width:44px!important;
+  height:30px!important;
+  flex-basis:44px!important;
+  padding:0!important;
+  gap:8px!important;
+  border:0!important;
+  border-radius:8px!important;
+  background:transparent!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+.actions-light-label{display:none!important}
+.actions-github{
+  width:14px!important;
+  height:14px!important;
+  flex:0 0 14px!important;
+}
+.actions-light-track{
+  width:14px!important;
+  height:14px!important;
+  flex:0 0 14px!important;
+  padding:2px!important;
+  border:1px solid #46637d!important;
+  background:#07172d!important;
+}
+.actions-light-track i{
+  width:8px!important;
+  height:8px!important;
+  flex-basis:8px!important;
+}
+
+/* Preserve the new mockup-matched source artwork, then darken only where text needs it. */
+.site-backdrop{
+  filter:none!important;
+}
+.site-backdrop::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(2,7,22,.34) 0%,rgba(2,7,22,.22) 34%,rgba(2,7,22,.08) 62%,rgba(2,7,22,.11) 100%),
+    linear-gradient(180deg,rgba(2,6,20,.08) 0%,rgba(2,6,20,.05) 45%,rgba(2,6,20,.30) 100%);
+}
+
+/* Hero: same density, line breaks and scale as the approved mockup. */
+#home{
+  padding-bottom:0!important;
+}
+.nebula-home-hero{
+  min-height:406px!important;
+  padding:58px 20px 24px!important;
+  display:block!important;
+}
+.nebula-hero-copy{
+  max-width:650px!important;
+}
+.nebula-hero-copy h1{
+  width:auto!important;
+  max-width:11.5ch!important;
+  margin:0 0 22px!important;
+  font-size:clamp(54px,5.35vw,74px)!important;
+  line-height:.96!important;
+  letter-spacing:-.05em!important;
+}
+.nebula-hero-copy>p{
+  max-width:590px!important;
+  margin:0!important;
+  color:#d2d7eb!important;
+  font-size:17px!important;
+  line-height:1.52!important;
+}
+.nebula-hero-actions{
+  gap:16px!important;
+  margin-top:28px!important;
+}
+.nebula-hero-actions .primary-link{
+  min-height:48px!important;
+  padding:0 26px!important;
+}
+.nebula-secondary{
+  min-width:188px!important;
+  min-height:48px!important;
+  padding:0 26px!important;
+  border-color:#7f6bd7!important;
+  background:rgba(4,10,29,.46)!important;
+}
+
+/* Three independent feature cards — never one segmented slab. */
+.nebula-pillars{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:10px!important;
+  margin:0 0 0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  overflow:visible!important;
+  background:transparent!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+.nebula-pillars article{
+  min-height:132px!important;
+  padding:22px 28px!important;
+  gap:20px!important;
+  align-items:flex-start!important;
+  border:1px solid #46578a!important;
+  border-radius:10px!important;
+  background:linear-gradient(180deg,rgba(5,12,34,.88),rgba(5,11,30,.80))!important;
+  box-shadow:0 12px 34px rgba(0,0,18,.19),inset 0 1px rgba(255,255,255,.02)!important;
+  backdrop-filter:blur(12px)!important;
+  -webkit-backdrop-filter:blur(12px)!important;
+}
+.nebula-pillars article:last-child{border-right:1px solid #46578a!important}
+.nebula-pillars h2{
+  margin:0 0 8px!important;
+  color:#fff!important;
+  font-size:20px!important;
+  line-height:1.1!important;
+}
+.nebula-pillars p{
+  margin:0!important;
+  color:#c1c8e1!important;
+  font-size:14px!important;
+  line-height:1.45!important;
+}
+.nebula-icon{
+  width:48px!important;
+  height:48px!important;
+  flex:0 0 48px!important;
+}
+.nebula-icon svg{
+  width:46px!important;
+  height:46px!important;
+  fill:none!important;
+  stroke:currentColor!important;
+  stroke-width:4!important;
+  stroke-linecap:round!important;
+  stroke-linejoin:round!important;
+}
+.nebula-record{color:#bd27ff!important}
+.nebula-govern{color:#ff484d!important}
+.nebula-govern .shield-flame{
+  fill:currentColor!important;
+  stroke:none!important;
+}
+.nebula-explore-glyph{color:#ff5a45!important}
+.nebula-explore-glyph svg circle{
+  fill:currentColor!important;
+  stroke:none!important;
+}
+
+/* Full-width dark band and exact 4-card mockup row. */
+.nebula-explore{
+  position:relative!important;
+  margin-top:18px!important;
+  padding:18px 0 40px!important;
+  isolation:isolate;
+}
+.nebula-explore::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  top:-18px;
+  bottom:0;
+  left:50%;
+  width:100vw;
+  transform:translateX(-50%);
+  background:linear-gradient(180deg,rgba(2,17,37,.96),rgba(2,14,31,.98));
+  border-top:1px solid rgba(31,95,126,.28);
+}
+.nebula-explore-heading{
+  margin:0 8px 15px!important;
+  align-items:end!important;
+}
+.nebula-explore-heading h2{
+  font-size:27px!important;
+  line-height:1.05!important;
+}
+.nebula-explore-heading p{
+  margin-top:5px!important;
+  font-size:14px!important;
+}
+.nebula-explore-grid{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:12px!important;
+}
+.nebula-explore-card{
+  border:1px solid #28638c!important;
+  border-radius:10px!important;
+  background:rgba(3,16,35,.94)!important;
+  box-shadow:none!important;
+}
+.nebula-explore-visual{
+  height:122px!important;
+  border-bottom:1px solid #27577d!important;
+}
+.nebula-explore-visual>span{
+  position:absolute;
+  z-index:3;
+  left:16px;
+  top:14px;
+  color:#eee8ff;
+  font:700 11px/1 var(--sans);
+  letter-spacing:.025em;
+  text-shadow:0 2px 8px rgba(0,0,0,.55);
+}
+.nebula-explore-research,
+.nebula-explore-about,
+.nebula-explore-docs{
+  background-image:
+    linear-gradient(180deg,rgba(3,7,22,.04),rgba(3,7,22,.20)),
+    url("backgrounds/nebula-desktop-1680x1050.webp?v=20261004-6")!important;
+  background-size:cover!important;
+}
+.nebula-explore-research{background-position:center 62%!important}
+.nebula-explore-about{background-position:76% 24%!important}
+.nebula-explore-docs{background-position:42% 63%!important}
+.nebula-explore-console{
+  background:
+    radial-gradient(circle at 52% 58%,rgba(34,217,244,.14),transparent 42%),
+    linear-gradient(180deg,#06102b,#071632)!important;
+}
+.nebula-explore-console::before,
+.nebula-explore-console::after{
+  width:134px!important;
+  height:134px!important;
+  top:61%!important;
+}
+.nebula-explore-console i{width:7px!important;height:7px!important}
+.nebula-explore-copy{
+  padding:14px 16px 14px!important;
+}
+.nebula-explore-copy h3{
+  margin:0 0 6px!important;
+  font-size:19px!important;
+}
+.nebula-explore-copy p{
+  min-height:44px!important;
+  color:#bcc6df!important;
+  font-size:13px!important;
+  line-height:1.42!important;
+}
+.nebula-explore-tags{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:7px!important;
+  margin-top:13px!important;
+}
+.nebula-explore-tags a{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-height:29px!important;
+  padding:4px 12px!important;
+  border:1px solid #2c618c!important;
+  border-radius:999px!important;
+  background:rgba(4,16,36,.92)!important;
+  color:#e0e7fb!important;
+  font-size:10px!important;
+  text-decoration:none!important;
+  cursor:pointer!important;
+  pointer-events:auto!important;
+}
+.nebula-explore-tags a:hover,
+.nebula-explore-tags a:focus-visible{
+  border-color:#23dfea!important;
+  color:#23dfea!important;
+  text-shadow:none!important;
+}
+.nebula-explore-card:first-child .nebula-explore-tags a:first-child,
+.nebula-explore-card:nth-child(2) .nebula-explore-tags a:first-child{
+  border-color:#0789a8!important;
+  color:#29e5ed!important;
+  background:rgba(0,209,227,.11)!important;
+}
+
+@media(max-width:1100px){
+  .masthead nav.compact-nav{gap:26px!important;margin-left:28px!important}
+  .nebula-explore-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:760px){
+  body>header.masthead{
+    width:calc(100% - 24px)!important;
+    padding:14px 16px!important;
+  }
+  .wordmark,.masthead .wordmark{font-size:30px!important}
+  .masthead nav.compact-nav{
+    order:3!important;
+    flex-basis:100%!important;
+    display:grid!important;
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    gap:8px!important;
+    margin:8px 0 0!important;
+    padding-top:8px!important;
+    border-top:1px solid #22375d!important;
+  }
+  .masthead nav.compact-nav>a{
+    justify-content:center!important;
+    font-size:12px!important;
+  }
+  .actions-light{
+    width:46px!important;
+    min-width:46px!important;
+    height:38px!important;
+    flex-basis:46px!important;
+  }
+  .actions-github{
+    width:16px!important;
+    height:16px!important;
+    flex-basis:16px!important;
+  }
+  .actions-light-track{
+    width:16px!important;
+    height:16px!important;
+    flex-basis:16px!important;
+  }
+  .nebula-home-hero{
+    padding:42px 0 28px!important;
+    min-height:auto!important;
+  }
+  .nebula-hero-copy h1{
+    max-width:9.5ch!important;
+    font-size:clamp(44px,12.5vw,60px)!important;
+  }
+  .nebula-hero-copy>p{font-size:16px!important}
+  .nebula-hero-actions{flex-direction:column!important}
+  .nebula-hero-actions .primary-link,.nebula-secondary{width:100%!important}
+  .nebula-pillars{grid-template-columns:1fr!important;gap:9px!important}
+  .nebula-pillars article{min-height:0!important}
+  .nebula-explore-heading{align-items:flex-start!important}
+  .nebula-explore-grid{grid-template-columns:1fr!important}
+  .nebula-explore-visual{height:140px!important}
+  .nebula-explore-copy p{min-height:0!important}
+}

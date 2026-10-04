@@ -189,3 +189,49 @@ body[data-motion=off] *{animation:none!important}.floating .wake-tabs{margin:8px
     z-index:auto!important;
   }
 }
+
+
+/* MOCKUP HEADER CONTROL ALIGNMENT — 2026-10-04 */
+.research-header .actions-light{
+  width:44px!important;
+  min-width:44px!important;
+  height:30px!important;
+  padding:0!important;
+  gap:8px!important;
+  border:0!important;
+  border-radius:8px!important;
+  background:transparent!important;
+}
+.research-header .actions-light-label{display:none!important}
+.research-header .actions-github{
+  width:14px!important;
+  height:14px!important;
+  flex:0 0 14px!important;
+}
+.research-header .actions-light-track{
+  width:14px!important;
+  height:14px!important;
+  flex:0 0 14px!important;
+  padding:2px!important;
+}
+.research-header .actions-light-track i{
+  width:8px!important;
+  height:8px!important;
+}
+@media(max-width:760px){
+  .research-header .actions-light{
+    width:46px!important;
+    min-width:46px!important;
+    height:38px!important;
+  }
+  .research-header .actions-github{
+    width:16px!important;
+    height:16px!important;
+    flex-basis:16px!important;
+  }
+  .research-header .actions-light-track{
+    width:16px!important;
+    height:16px!important;
+    flex-basis:16px!important;
+  }
+}
