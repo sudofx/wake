@@ -757,6 +757,21 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-command-pulse-track{display:flex;gap:4px;overflow-x:auto', css)
         self.assertIn('.ops-command-pulse-cell{flex:0 0 28px;height:44px}', css)
 
+    def test_pressure_to_memory_handoff_uses_only_explicit_context_delivery_receipt(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('PRESSURE → MEMORY / LATEST RECORDED CONTEXT BOUNDARY', app)
+        self.assertIn('Story transition only. This does not claim pressure caused compression', app)
+        self.assertIn('const contextRichChars=Number(contextDelivery?.rich_context_chars||0)', app)
+        self.assertIn('const contextDeliveredChars=Number(contextDelivery?.delivered_request_chars||contextDelivery?.delivered_context_chars||0)', app)
+        self.assertIn('const contextDeliveredPct=contextDelivery&&contextRichChars>0?', app)
+        self.assertIn('const contextOmittedCount=Array.isArray(contextDelivery?.omitted_categories)?', app)
+        self.assertIn('OPEN CONTEXT RECEIPT →', app)
+        self.assertIn('.ops-memory-flow{border-top:1px solid var(--ops-line)', css)
+        self.assertIn('.ops-memory-flow-grid{display:grid;grid-template-columns:minmax(100px,.75fr)', css)
+        self.assertIn('.ops-memory-flow-grid{grid-template-columns:repeat(2,minmax(0,1fr))}', css)
+        self.assertIn('.ops-memory-flow-grid>a,.ops-memory-flow-unavailable{grid-column:1/-1;min-height:44px', css)
+
     def test_control_room_hands_off_explicitly_to_evidence_story(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
