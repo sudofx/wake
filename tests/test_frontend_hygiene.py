@@ -81,6 +81,15 @@ class FrontendHygieneTests(unittest.TestCase):
         self.assertIn(".flat-target-status", css)
         self.assertIn(".entry.flat-target", css)
 
+    def test_3d_map_first_load_record_hash_opens_requested_branch(self):
+        script = (ASSETS / "map3d.js").read_text()
+
+        self.assertIn("const recordFromHash=()=>", script)
+        self.assertIn("const initialRecord=recordFromHash();if(initialRecord)choose(initialRecord)", script)
+        self.assertIn("id.startsWith('root:')?['root:wake',id]", script)
+        self.assertIn("await ensureBranch(id)", script)
+        self.assertIn("writeRecordHash(current())", script)
+
     def test_3d_map_uses_side_inspector_on_macbook_widths(self):
         css = (ASSETS / "map3d.css").read_text()
 
