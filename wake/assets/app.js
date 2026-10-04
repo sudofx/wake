@@ -275,7 +275,7 @@
     const completed=invocations.filter(i=>['accepted','rejected','deferred','failed','recovered'].includes(i.status));
     const count=status=>completed.filter(i=>i.status===status).length;
     const acceptedCount=count('accepted'), rejectedCount=count('rejected'), deferredCount=count('deferred'), failedCount=count('failed'), recoveredCount=count('recovered');
-    const acceptanceRate=completed.length?Math.round(100*acceptedCount/completed.length):0;
+    const acceptanceRate=completed.length?Math.round(100*acceptedCount/completed.length):null;
     const obligations=Object.values(s.commitments||{}), fulfilled=obligations.filter(c=>c.status==='fulfilled');
     const inheritedFulfilled=fulfilled.filter(c=>c.created_by&&c.resolved_by&&c.created_by!==c.resolved_by);
     const handoffRate=fulfilled.length?Math.round(100*inheritedFulfilled.length/fulfilled.length):null;
@@ -729,8 +729,8 @@
     const recordHours=firstTime&&lastTime?Math.max(0,(new Date(lastTime)-new Date(firstTime))/36e5):0;
     const wakesPerHour=recordHours?completed.length/recordHours:0;
     const acceptedPerHour=recordHours?acceptedCount/recordHours:0;
-    const actionPerAccepted=acceptedCount?(actionTotal/acceptedCount):0;
-    const evidencePerAccepted=acceptedCount?(evidenceCount/acceptedCount):0;
+    const actionPerAccepted=acceptedCount?(actionTotal/acceptedCount):null;
+    const evidencePerAccepted=acceptedCount?(evidenceCount/acceptedCount):null;
     const openCommitments=obligations.filter(c=>c.status==='open');
     const openObligations=openCommitments.length;
     const obligationBuckets=[
@@ -754,8 +754,8 @@
         return `<article class="ops-frontier-item ${tone}"><header><span>${esc(dueLabel)}</span><strong>CYCLE ${Number.isFinite(due)?due:'—'}</strong></header><p>${esc(item?.task||item?.id||'Recorded obligation')}</p><div class="ops-frontier-meta"><span>CREATED / CYCLE ${Number.isFinite(Number(item?.created_version))?Number(item.created_version):'—'}</span>${project?`<a href="#projects/${encodeURIComponent(item.project)}">${esc(project.title||item.project)}</a>`:item?.project?`<span>PROJECT ${esc(item.project)}</span>`:'<span>GENERIC COMMITMENT</span>'}${creator?`<a href="#history/${encodeURIComponent(creator)}">RECEIPT ${esc(creator.slice(-10))}</a>`:'<span>CREATOR RECEIPT UNAVAILABLE</span>'}</div></article>`;
       }).join('');
     const providerSuccesses=knownAttempts.filter(a=>['success','accepted','ok'].includes(String(a.result||'').toLowerCase())).length;
-    const fallbackRate=completed.length?100*fallbackWakes/completed.length:0;
-    const rejectionRate=completed.length?100*rejectedCount/completed.length:0;
+    const fallbackRate=completed.length?100*fallbackWakes/completed.length:null;
+    const rejectionRate=completed.length?100*rejectedCount/completed.length:null;
     const topicActive=topicRows.length;
     // Recovery telemetry is derived from durable receipts and frame records;
     // it describes interventions without treating them as research success.
@@ -766,10 +766,10 @@
       ['Wall-clock span',recordHours>=24?(recordHours/24).toFixed(1)+'d':recordHours.toFixed(1)+'h','first → latest completed wake · idle included','neutral'],
       ['Completed / wall h',wakesPerHour.toFixed(2)+'/h',completed.length+' completed wakes across elapsed wall time','neutral'],
       ['Accepted / wall h',acceptedPerHour.toFixed(2)+'/h',acceptedCount+' accepted wakes across elapsed wall time','success'],
-      ['Rejection pressure',rejectionRate.toFixed(1)+'%',rejectedCount+' rejected','danger'],
-      ['Fallback rate',fallbackRate.toFixed(1)+'%',fallbackWakes+' multi-attempt wakes','warning'],
-      ['Actions / accepted',actionPerAccepted.toFixed(2),actionTotal+' durable actions','neutral'],
-      ['Evidence density',evidencePerAccepted.toFixed(2),evidenceCount+' current evidence records ÷ '+acceptedCount+' accepted wakes','info'],
+      ['Rejection pressure',rejectionRate===null?'—':rejectionRate.toFixed(1)+'%',completed.length?rejectedCount+' rejected':'No completed wakes yet','danger'],
+      ['Fallback rate',fallbackRate===null?'—':fallbackRate.toFixed(1)+'%',completed.length?fallbackWakes+' multi-attempt wakes':'No completed wakes yet','warning'],
+      ['Actions / accepted',actionPerAccepted===null?'—':actionPerAccepted.toFixed(2),acceptedCount?actionTotal+' durable actions':'No accepted wakes yet','neutral'],
+      ['Evidence density',evidencePerAccepted===null?'—':evidencePerAccepted.toFixed(2),acceptedCount?evidenceCount+' current evidence records ÷ '+acceptedCount+' accepted wakes':'No accepted wakes yet','info'],
       ['Topic coverage',topicActive+'/'+configuredTopicCount,'configured topics with accepted-action activity','info'],
       ['Open obligations',openObligations,String(overdue)+' overdue',openObligations?'warning':'success'],
       ['Capability blocks',capabilityBlocks,'equivalent retrieval routes paused',capabilityBlocks?'warning':'neutral'],
@@ -951,7 +951,7 @@
             <div class="ops-readout"><span>LAST ATTEMPT</span><strong>${esc(latestAttemptStatus.toUpperCase())}</strong><small>${esc(latestModel)}</small></div>
             <div class="ops-readout"><span>REQUESTS TODAY</span><strong>${wakeStatus.provider_requests_today??0}</strong><small>limit ${wakeStatus.daily_call_limit??'—'}</small></div>
             <div class="ops-readout"><span>OPEN WORK</span><strong>${openObligations}</strong><small>${overdue} overdue</small></div>
-            <div class="ops-readout"><span>PROVIDER FALLBACK</span><strong>${fallbackWakes}</strong><small>${fallbackRate.toFixed(1)}% of completed wakes</small></div>
+            <div class="ops-readout"><span>PROVIDER FALLBACK</span><strong>${fallbackWakes}</strong><small>${fallbackRate===null?'not measurable yet':fallbackRate.toFixed(1)+'% of completed wakes'}</small></div>
           </aside>
         </div>
         <div class="ops-pulse-ribbon" aria-label="Recent wake pulse">
@@ -1001,10 +1001,10 @@
         </div>
         </div>
         <div class="ops-signal-band" aria-label="Derived operating signals">
-          <div class="ops-signal" style="--signal:${acceptanceRate}%"><span>ACCEPTANCE</span><strong>${acceptanceRate}%</strong><i></i></div>
-          <div class="ops-signal danger" style="--signal:${Math.min(100,rejectionRate)}%"><span>GOVERNANCE PRESSURE</span><strong>${rejectionRate.toFixed(1)}%</strong><i></i></div>
+          <div class="ops-signal" style="--signal:${acceptanceRate===null?0:acceptanceRate}%" title="${completed.length?'Share of completed wakes accepted':'No completed wakes yet'}"><span>ACCEPTANCE</span><strong>${acceptanceRate===null?'—':acceptanceRate+'%'}</strong><i></i></div>
+          <div class="ops-signal danger" style="--signal:${rejectionRate===null?0:Math.min(100,rejectionRate)}%" title="${completed.length?'Share of completed wakes rejected':'No completed wakes yet'}"><span>GOVERNANCE PRESSURE</span><strong>${rejectionRate===null?'—':rejectionRate.toFixed(1)+'%'}</strong><i></i></div>
           <div class="ops-signal" style="--signal:${handoffRate===null?0:Math.min(100,handoffRate)}%" title="${fulfilled.length?'Share of fulfilled obligations resolved by a different invocation':'No fulfilled obligations yet'}"><span>HANDOFF CONTINUITY</span><strong>${handoffRate===null?'—':handoffRate+'%'}</strong><i></i></div>
-          <div class="ops-signal warning" style="--signal:${Math.min(100,fallbackRate)}%"><span>FALLBACK LOAD</span><strong>${fallbackRate.toFixed(1)}%</strong><i></i></div>
+          <div class="ops-signal warning" style="--signal:${fallbackRate===null?0:Math.min(100,fallbackRate)}%" title="${completed.length?'Share of completed wakes using provider fallback':'No completed wakes yet'}"><span>FALLBACK LOAD</span><strong>${fallbackRate===null?'—':fallbackRate.toFixed(1)+'%'}</strong><i></i></div>
           <div class="ops-signal info" style="--signal:${Math.min(100,configuredTopicCount?100*topicActive/configuredTopicCount:0)}%"><span>TOPIC COVERAGE</span><strong>${topicActive}/${configuredTopicCount}</strong><i></i></div>
           <div class="ops-signal info" style="--signal:${matrixPct===null?0:Math.min(100,matrixPct)}%"><span>MATRIX COVERAGE</span><strong>${matrixPct===null?'—':matrixPct+'%'}</strong><i></i></div>
         </div>
@@ -1181,7 +1181,7 @@
         <div class="metrics-row-two-left"><article class="dashboard-section dashboard-feature"><div class="dashboard-heading"><div><p class="eyebrow">OUTCOME TREND / 10-WAKE WINDOWS</p><h2>Are the conditions changing?</h2></div><p>Each column is a consecutive ten-wake window. Height is share of outcomes.</p></div><div class="trend-chart">${trend||'<span class="empty">No completed wakes yet.</span>'}</div></article><article class="dashboard-section dashboard-feature"><div class="dashboard-heading"><div><p class="eyebrow">LAST ${attempts.length} COMPLETED WAKES</p><h2>The pulse of the experiment.</h2></div><p>One cell per wake. Color is outcome—not quality. Tap any cell for its receipt.</p></div><div class="wake-timeline" role="group" aria-label="Recent wake outcomes">${timeline||'<span class="empty">No completed wakes yet.</span>'}</div><div class="timeline-legend">${statuses.map(([name])=>`<span><i class="${name}"></i>${name}</span>`).join('')}</div></article></div>
         <div class="metrics-row-two-right"><section class="command-strip" id="verify-telemetry"><div><p class="eyebrow">LIVE RECORD TELEMETRY</p><strong>CYCLE ${s.version}</strong></div><div><span>COMPLETED</span><b>${completed.length}</b></div><div class="status-accepted"><span>ACCEPTED</span><b>${acceptedCount}</b></div><div class="status-rejected"><span>REJECTED</span><b>${rejectedCount}</b></div><div class="status-deferred"><span>DEFERRED</span><b>${deferredCount}</b></div><div class="status-fallback"><span>FALLBACK</span><b>${fallbackWakes}</b></div><div><span>OPEN WORK</span><b>${openObligations}</b></div><div><span>TOPICS ACTIVE</span><b>${topicActive}/${configuredTopicCount}</b></div></section>
 <section class="telemetry-grid">${telemetryHtml}</section>
-<section class="dashboard-kpis">${card(s.version,'Durable cycles','Accepted state advances')}${card(acceptanceRate+'%','Acceptance rate',acceptedCount+' of '+completed.length+' completed wakes')}${card(handoffRate===null?'—':handoffRate+'%','Obligation handoff',fulfilled.length?inheritedFulfilled.length+' cross-invocation fulfillments':'No fulfilled obligations yet')}${card(requestsPerAccepted,'Requests / accepted','Recorded HTTP attempts ÷ accepted wakes')}${card(fallbackWakes,'Fallback wakes','More than one provider attempt')}${card(medianLatency===null?'—':medianLatency+'ms','Median provider latency','Known completed model attempts')}${card(revisedBeliefs,'Belief actions',activeBeliefs.length+' active · '+retractedBeliefs.length+' retracted')}${card(overdue,'Overdue obligations','Open commitments at or past due cycle')}${card(sqliteSize,'SQLite database','Durable record file size')}${card(eventRecordCount,'Durable events','Append-only event rows')}</section></div>
+<section class="dashboard-kpis">${card(s.version,'Durable cycles','Accepted state advances')}${card(acceptanceRate===null?'—':acceptanceRate+'%','Acceptance rate',completed.length?acceptedCount+' of '+completed.length+' completed wakes':'No completed wakes yet')}${card(handoffRate===null?'—':handoffRate+'%','Obligation handoff',fulfilled.length?inheritedFulfilled.length+' cross-invocation fulfillments':'No fulfilled obligations yet')}${card(requestsPerAccepted,'Requests / accepted','Recorded HTTP attempts ÷ accepted wakes')}${card(fallbackWakes,'Fallback wakes','More than one provider attempt')}${card(medianLatency===null?'—':medianLatency+'ms','Median provider latency','Known completed model attempts')}${card(revisedBeliefs,'Belief actions',activeBeliefs.length+' active · '+retractedBeliefs.length+' retracted')}${card(overdue,'Overdue obligations','Open commitments at or past due cycle')}${card(sqliteSize,'SQLite database','Durable record file size')}${card(eventRecordCount,'Durable events','Append-only event rows')}</section></div>
       </section>
       <p class="dashboard-footnote">Derived view only. The durable state and event log remain authoritative. Derived action counts and hypotheses are explicitly descriptive; they never write back to the record.</p>`;
 
