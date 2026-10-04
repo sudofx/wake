@@ -114,6 +114,13 @@ class FrontendHygieneTests(unittest.TestCase):
         self.assertIn("function goUp(){if(path.length<2)return release();", script)
         self.assertIn("frameSelection(current());writeRecordHash(current())", script)
 
+    def test_3d_details_are_copyable_and_phone_controls_stay_reachable(self):
+        css = (ASSETS / "map3d.css").read_text()
+        self.assertIn(".constellation-shell>#details{user-select:text;-webkit-user-select:text}", css)
+        self.assertIn(".detail-heading-actions button,.detail-trail-list button,.detail-artifacts button{user-select:none", css)
+        self.assertIn("@media(max-width:700px){.detail-heading{position:sticky;top:-20px", css)
+        self.assertIn(".detail-heading-actions button{min-height:44px}", css)
+
     def test_every_style_class_has_a_current_caller(self):
         css = (ASSETS / "style.css").read_text()
         callers = "\n".join(
