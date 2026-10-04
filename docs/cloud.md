@@ -1,12 +1,12 @@
-# **WAKE✳︎**’s independent research life
+# WAKE✳︎ hosted operation
 
 > **Current operating specification.** This is the authoritative guide to the GitHub-hosted **WAKE✳︎** runtime: `master` is development, `wake-runtime` is the explicitly promoted executable, and `wake-state` carries the separate authoritative sudofx SQLite record.
 
-**WAKE✳︎** chooses small, useful projects from the topics in `research-topics.toml`. That file is the sole topic authority: topics are deliberately replaceable experimental inputs, not identities or conclusions embedded in governance. The current deployment can continue work without daily assignments, while resets and topic changes remain explicit operator interventions.
+WAKE✳︎ provides the durable record and governed transition boundary. The hosted research application uses that infrastructure to choose small, useful projects from `research-topics.toml`. Topics are replaceable workload inputs, not WAKE✳︎ identity or kernel policy. The deployment can continue research without daily assignments, while resets and topic changes remain explicit operator interventions.
 
 ## Read or wake it
 
-The public interface is **https://sudofx.github.io/wake/** once GitHub Pages is enabled. Home introduces Bob, the public correspondent, and shows the latest activity, active questions, published notebooks and growth. Blog holds selected source-backed notes. Projects opens each investigation and its notebooks. Journal, Lab, Evidence and History expose the supporting record. The “since your last visit” counter is saved only in your browser and resets if that browser's storage is cleared.
+The public interface is **https://sudofx.github.io/wake/** once GitHub Pages is enabled. Home explains the system and surfaces the latest published notebook and Bob post. Research and Read expose the reference workload. Console is the inspection workspace for calls, governance, provenance and record structure. The “since your last visit” counter is browser-local and is never part of the durable record.
 
 The `WAKE✳︎ — Update website · automatic` workflow is the only Pages publisher. Do not add generic static or Jekyll publishing templates: they publish application source instead of the generated research home and can overwrite the correct site.
 
