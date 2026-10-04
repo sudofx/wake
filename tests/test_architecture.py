@@ -803,6 +803,20 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('data-instrument="continuity"', app)
         self.assertIn('data-instrument="provenance"', app)
 
+    def test_control_room_24h_activity_is_projection_anchored_and_bounded(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn("const projectionMs=Date.parse(data.generated||'')", app)
+        self.assertIn("const commandActivityBuckets=Array.from({length:24}", app)
+        self.assertIn("const ageHours=Math.floor((projectionMs-timeMs)/36e5)", app)
+        self.assertIn("if(ageHours<0||ageHours>=24)return", app)
+        self.assertIn("commandActivityBuckets[23-ageHours][status]+=1", app)
+        self.assertIn('24H WAKE ACTIVITY', app)
+        self.assertIn('hourly bins by projection timestamp · spacing represents time, not receipt order', app)
+        self.assertIn('.ops-command-activity{display:grid', css)
+        self.assertIn('.ops-command-activity-track{display:grid;grid-template-columns:repeat(24', css)
+        self.assertIn('.ops-command-activity{grid-template-columns:1fr', css)
+
     def test_control_room_recent_wake_pulse_is_receipt_backed_and_device_aware(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
