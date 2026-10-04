@@ -218,6 +218,8 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn("role:payload?.evidence_role||'source'", app)
         self.assertIn("!['discovery','metadata'].includes(item.role)", app)
         self.assertIn("<b>SPACE</b> where continuity has been tested", app)
+        self.assertIn("<strong>${evidenceCount} records</strong>", app)
+        self.assertIn("<strong>${matrixPct}% tested</strong>", app)
         self.assertIn("do not certify the truth of its research claims", app)
         self.assertIn("DEEP METRICS / VERIFY THE STORY", app)
         self.assertIn("the story can be checked rather than merely believed", app)
