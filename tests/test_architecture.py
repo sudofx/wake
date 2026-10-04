@@ -290,6 +290,7 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('function bindStoryNavigation()', app)
         self.assertIn("link.classList.toggle('is-active',active)", app)
         self.assertIn("link.setAttribute('aria-current','step')", app)
+        self.assertIn("if(id===activeId)return", app)
         self.assertIn("window.addEventListener('scroll',storyScrollHandler,{passive:true})", app)
         self.assertIn('.ops-storyline{position:sticky', css)
         self.assertIn('scroll-snap-type:x proximity', css)
