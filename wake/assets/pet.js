@@ -175,7 +175,7 @@ window.WakePetReady=(async () => {
         </div>
         <div class="nebula-explore-grid">
           <article class="nebula-explore-card">
-            <a class="nebula-explore-visual nebula-explore-research" href="#discoveries" aria-label="Open research"><span>RESEARCH</span></a>
+            <a class="nebula-explore-visual nebula-explore-research" href="#discoveries" aria-label="Open research"></a>
             <div class="nebula-explore-copy">
               <h3><a href="#discoveries">Research</a></h3>
               <p>Exploring how intelligence systems can work together accountably.</p>
@@ -185,7 +185,7 @@ window.WakePetReady=(async () => {
             </div>
           </article>
           <article class="nebula-explore-card">
-            <a class="nebula-explore-visual nebula-explore-console" href="console.html" aria-label="Open Live Console"><span>CONSOLE</span><i></i><i></i><i></i><i></i><i></i><i></i></a>
+            <a class="nebula-explore-visual nebula-explore-console" href="console.html" aria-label="Open Live Console"><i></i><i></i><i></i><i></i><i></i><i></i></a>
             <div class="nebula-explore-copy">
               <h3><a href="console.html">Live Console</a></h3>
               <p>Interactive tools, visualizations and the current state.</p>
@@ -195,7 +195,7 @@ window.WakePetReady=(async () => {
             </div>
           </article>
           <article class="nebula-explore-card">
-            <a class="nebula-explore-visual nebula-explore-about" href="#about" aria-label="About WAKE"><span>ABOUT</span></a>
+            <a class="nebula-explore-visual nebula-explore-about" href="#about" aria-label="About WAKE"></a>
             <div class="nebula-explore-copy">
               <h3><a href="#about">About WAKE✳︎</a></h3>
               <p>A long-horizon project for durable, accountable work.</p>
@@ -205,7 +205,7 @@ window.WakePetReady=(async () => {
             </div>
           </article>
           <article class="nebula-explore-card">
-            <a class="nebula-explore-visual nebula-explore-docs" href="https://github.com/sudofx/wake/tree/master/docs" aria-label="Open documentation"><span>DOCUMENTATION</span></a>
+            <a class="nebula-explore-visual nebula-explore-docs" href="https://github.com/sudofx/wake/tree/master/docs" aria-label="Open documentation"></a>
             <div class="nebula-explore-copy">
               <h3><a href="https://github.com/sudofx/wake/tree/master/docs">Documentation</a></h3>
               <p>Guides, references and architecture details.</p>
