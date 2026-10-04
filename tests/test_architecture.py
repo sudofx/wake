@@ -248,6 +248,9 @@ class ArchitectureSeparationTests(unittest.TestCase):
             "verify-outcomes",
             "verify-continuity",
             "verify-yield",
+            "verify-belief",
+            "verify-frontier",
+            "verify-space",
             "verify-provider",
             "verify-telemetry",
         ):
@@ -256,7 +259,10 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn("event.target.closest('[data-story-target],[data-verify-target]')", app)
         self.assertIn("scrollLink.dataset.storyTarget||scrollLink.dataset.verifyTarget", app)
         self.assertIn('.ops-verify-index', css)
-        self.assertIn('#verify-actions,#verify-outcomes,#verify-continuity,#verify-yield,#verify-provider,#verify-telemetry{scroll-margin-top:72px}', css)
+        self.assertIn('#verify-actions,#verify-outcomes,#verify-continuity,#verify-yield,#verify-belief,#verify-frontier,#verify-space,#verify-provider,#verify-telemetry{scroll-margin-top:72px}', css)
+        self.assertIn('.ops-verify-index{display:grid;grid-template-columns:repeat(9,minmax(0,1fr))', css)
+        self.assertIn('@media(min-width:701px) and (max-width:1000px){.ops-verify-index{grid-template-columns:repeat(3,minmax(0,1fr))}', css)
+        self.assertIn('grid-auto-columns:minmax(126px,42vw)', css)
         self.assertIn('.ops-deep-dive-heading>p:not(.eyebrow)', css)
 
     def test_longitudinal_story_uses_recorded_reflection_receipts(self):
