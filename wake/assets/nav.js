@@ -40,9 +40,16 @@
 const actionsLight=document.querySelector('.actions-light');
 if(actionsLight){
   const CACHE_KEY='wake-actions-light-state';
+  const CACHE_FRESH_MS=90000;
+  const REFRESH_MS=180000;
   const CAMPAIGN_ACTIVE=new Set(['queued','in_progress','waiting','requested','pending']);
+  const validState=state=>['running','stopped','campaign'].includes(state);
+  const stateTitle=(state,suffix='')=>{
+    const base=state==='campaign'?'Continuity campaign':state==='running'?'Running':state==='stopped'?'Stopped':'Status unavailable';
+    return suffix?`${base} · ${suffix}`:base;
+  };
   const applyActionsState=(state,title)=>{
-    if(['running','stopped','campaign'].includes(state))actionsLight.dataset.state=state;
+    if(validState(state))actionsLight.dataset.state=state;
     else actionsLight.removeAttribute('data-state');
     const message=title||'Status unavailable';
     actionsLight.title=message;
@@ -50,43 +57,65 @@ if(actionsLight){
     const label=actionsLight.querySelector('.actions-light-label');
     if(label)label.textContent=state==='campaign'?'Campaign':state==='running'?'Running':state==='stopped'?'Stopped':'Status';
   };
-  try{
-    const cached=JSON.parse(localStorage.getItem(CACHE_KEY)||'null');
-    if(cached&&['running','stopped','campaign'].includes(cached.state)){
-      const title=cached.state==='campaign'?'Continuity campaign · last verified':cached.state==='running'?'Running · last verified':'Stopped · last verified';
-      applyActionsState(cached.state,title);
-    }
-  }catch{}
-  const remember=(state)=>{
-    try{localStorage.setItem(CACHE_KEY,JSON.stringify({state,verified_at:Date.now()}));}catch{}
+  const readCached=()=>{
+    try{
+      const cached=JSON.parse(localStorage.getItem(CACHE_KEY)||'null');
+      return cached&&validState(cached.state)&&Number.isFinite(Number(cached.verified_at))?cached:null;
+    }catch{return null;}
   };
-  const refreshActionsLight=()=>{
+  const applyCached=(cached,suffix='last verified')=>{
+    if(!cached)return false;
+    applyActionsState(cached.state,stateTitle(cached.state,suffix));
+    return true;
+  };
+  const initial=readCached();
+  if(initial)applyCached(initial);
+  const remember=(state)=>{
+    const cached={state,verified_at:Date.now()};
+    applyActionsState(state,stateTitle(state));
+    try{localStorage.setItem(CACHE_KEY,JSON.stringify(cached));}catch{}
+  };
+  const fetchJson=url=>fetch(url,{cache:'no-store'}).then(response=>response.ok?response.json():Promise.reject(new Error('GitHub status unavailable')));
+  const refreshActionsLight=(force=false)=>{
+    if(document.hidden&&!force)return;
+    const cached=readCached();
+    if(!force&&cached&&Date.now()-Number(cached.verified_at)<CACHE_FRESH_MS){
+      applyCached(cached);
+      return;
+    }
     const stamp=Date.now();
-    const campaignUrl='https://api.github.com/repos/sudofx/wake/actions/workflows/operator-enable-continuity.yml/runs?per_page=10&_='+stamp;
     const latchUrl='https://api.github.com/repos/sudofx/wake/actions/workflows/wake-runner.yml?_='+stamp;
-    Promise.allSettled([
-      fetch(campaignUrl,{cache:'no-store'}).then(response=>response.ok?response.json():Promise.reject(new Error('Campaign status unavailable'))),
-      fetch(latchUrl,{cache:'no-store'}).then(response=>response.ok?response.json():Promise.reject(new Error('Runner status unavailable')))
-    ]).then(([campaignResult,latchResult])=>{
-      if(campaignResult.status==='fulfilled'){
-        const active=(campaignResult.value.workflow_runs||[]).some(run=>CAMPAIGN_ACTIVE.has(run.status));
-        if(active){
-          applyActionsState('campaign','Continuity campaign running');
-          remember('campaign');
-          return;
+    const campaignUrl='https://api.github.com/repos/sudofx/wake/actions/workflows/operator-enable-continuity.yml/runs?per_page=10&_='+stamp;
+    fetchJson(latchUrl)
+      .then(latch=>{
+        if(latch.state==='active'){
+          remember('running');
+          return null;
         }
-      }
-      if(latchResult.status==='fulfilled'){
-        const state=latchResult.value.state==='active'?'running':'stopped';
-        applyActionsState(state,state==='running'?'Running':'Stopped');
-        remember(state);
-        return;
-      }
-      if(!actionsLight.dataset.state)applyActionsState(null,'GitHub Actions status unavailable');
-    });
+        return fetchJson(campaignUrl).then(campaign=>{
+          const active=(campaign.workflow_runs||[]).some(run=>CAMPAIGN_ACTIVE.has(run.status));
+          remember(active?'campaign':'stopped');
+          return null;
+        });
+      })
+      .catch(()=>{
+        // A transport/rate-limit failure must not contradict a state already
+        // verified by another WAKE page. Yellow is reserved for "never verified".
+        const fallback=readCached();
+        if(!applyCached(fallback,'last verified · refresh unavailable')){
+          applyActionsState(null,'GitHub Actions status unavailable');
+        }
+      });
   };
   refreshActionsLight();
-  setInterval(refreshActionsLight,120000);
+  setInterval(refreshActionsLight,REFRESH_MS);
+  window.addEventListener('storage',event=>{
+    if(event.key!==CACHE_KEY||!event.newValue)return;
+    try{
+      const cached=JSON.parse(event.newValue);
+      if(cached&&validState(cached.state))applyCached(cached);
+    }catch{}
+  });
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshActionsLight();});
 }
 
