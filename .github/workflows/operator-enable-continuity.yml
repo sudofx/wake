@@ -142,68 +142,12 @@ jobs:
           runtime_sha="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha')"
           now_epoch="$(date -u +%s)"
           mapfile -t candidates < <(
-            gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50" --jq ".workflow_runs[] | select(.head_branch==\"wake-runtime\" and .head_sha==\"$runtime_sha\" and .status!=\"completed\") | [.id,.created_at,.status] | @tsv"
+            gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50" \
+              --jq ".workflow_runs[] | select(.head_branch==\"wake-runtime\" and .head_sha==\"$runtime_sha\" and .status!=\"completed\") | [.id,.created_at,.status] | @tsv"
           )
           real_runs=()
           for row in "${candidates[@]}"; do
-            IFS=
-          promoted="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha')"
-          test "$promoted" = "$CANDIDATE_SHA"
-          echo "Promoted wake-runtime to $promoted." >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Dispatch governed continuity enablement
-        id: dispatch
-        env:
-          GH_TOKEN: ${{ github.token }}
-          CANDIDATE_SHA: ${{ steps.state.outputs.candidate_sha }}
-        run: |
-          set -euo pipefail
-          token="continuity-enable-$GITHUB_RUN_ID"
-          echo "token=$token" >> "$GITHUB_OUTPUT"
-          gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime             -f "dispatch_token=$token"             -f "runtime_ref=$CANDIDATE_SHA"             -f "enable_continuity_matrix=true"
-          echo "Governed continuity campaign enablement dispatched." >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Verify continuity campaign was enabled
-        env:
-          GH_TOKEN: ${{ github.token }}
-          TOKEN: ${{ steps.dispatch.outputs.token }}
-        run: |
-          set -euo pipefail
-          run_id=""
-          for attempt in {1..60}; do
-            run_id="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50"               --jq ".workflow_runs[] | select(.name == \"WAKE✳︎ $TOKEN\") | .id" | head -n1)"
-            [[ -n "$run_id" ]] && break
-            sleep 2
-          done
-          test -n "$run_id" || { echo "::error::Could not find continuity enablement run."; exit 1; }
-          for attempt in {1..300}; do
-            status="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id" --jq '.status')"
-            if [[ "$status" == "completed" ]]; then
-              conclusion="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id" --jq '.conclusion')"
-              test "$conclusion" = "success" || { echo "::error::Continuity enablement run finished with $conclusion."; exit 1; }
-              echo "continuity@1 campaign enablement is durable." >> "$GITHUB_STEP_SUMMARY"
-              exit 0
-            fi
-            sleep 2
-          done
-          echo "::error::Continuity enablement did not finish before the safety timeout."
-          exit 1
-
-      - name: Restore prior continuous-run state
-        if: steps.state.outputs.was_running == 'true'
-        env:
-          GH_TOKEN: ${{ github.token }}
-          CANDIDATE_SHA: ${{ steps.state.outputs.candidate_sha }}
-        run: |
-          set -euo pipefail
-          gh api --method PUT "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml/enable" >/dev/null
-          gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime             -f "dispatch_token=resume-after-continuity-$GITHUB_RUN_ID"             -f "runtime_ref=$CANDIDATE_SHA"
-          echo "Research was running before enablement, so continuous research was resumed." >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Preserve stopped state
-        if: steps.state.outputs.was_running != 'true'
-        run: echo "Research was stopped before enablement and remains stopped." >> "$GITHUB_STEP_SUMMARY"
-\t' read -r run_id created_at run_status <<<"$row"
+            IFS=$'\t' read -r run_id created_at run_status <<<"$row"
             job_count="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id/jobs?per_page=1" --jq '.total_count' 2>/dev/null || echo 1)"
             created_epoch="$(date -u -d "$created_at" +%s)"
             age_seconds=$((now_epoch - created_epoch))
@@ -214,9 +158,10 @@ jobs:
             real_runs+=("$run_id")
           done
           [[ "${#real_runs[@]}" == "0" ]] || { echo "::error::wake-runtime became active during verification."; exit 1; }
-          gh api -X PATCH "repos/$GITHUB_REPOSITORY/git/refs/heads/wake-runtime" -f sha="$CANDIDATE_SHA" -F force=true >/dev/null
+          gh api -X PATCH "repos/$GITHUB_REPOSITORY/git/refs/heads/wake-runtime" \
+            -f sha="$CANDIDATE_SHA" -F force=true >/dev/null
           promoted="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha')"
-          test "$promoted" = "$CANDIDATE_SHA"
+          [[ "$promoted" == "$CANDIDATE_SHA" ]] || { echo "::error::Promotion verification failed."; exit 1; }
           echo "Promoted wake-runtime to $promoted." >> "$GITHUB_STEP_SUMMARY"
 
       - name: Dispatch governed continuity enablement
@@ -228,7 +173,10 @@ jobs:
           set -euo pipefail
           token="continuity-enable-$GITHUB_RUN_ID"
           echo "token=$token" >> "$GITHUB_OUTPUT"
-          gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime             -f "dispatch_token=$token"             -f "runtime_ref=$CANDIDATE_SHA"             -f "enable_continuity_matrix=true"
+          gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime \
+            -f "dispatch_token=$token" \
+            -f "runtime_ref=$CANDIDATE_SHA" \
+            -f "enable_continuity_matrix=true"
           echo "Governed continuity campaign enablement dispatched." >> "$GITHUB_STEP_SUMMARY"
 
       - name: Verify continuity campaign was enabled
@@ -239,16 +187,17 @@ jobs:
           set -euo pipefail
           run_id=""
           for attempt in {1..60}; do
-            run_id="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50"               --jq ".workflow_runs[] | select(.name == \"WAKE✳︎ $TOKEN\") | .id" | head -n1)"
+            run_id="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50" \
+              --jq ".workflow_runs[] | select(.name == \"WAKE✳︎ $TOKEN\") | .id" | head -n1)"
             [[ -n "$run_id" ]] && break
             sleep 2
           done
-          test -n "$run_id" || { echo "::error::Could not find continuity enablement run."; exit 1; }
+          [[ -n "$run_id" ]] || { echo "::error::Could not find continuity enablement run."; exit 1; }
           for attempt in {1..300}; do
             status="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id" --jq '.status')"
             if [[ "$status" == "completed" ]]; then
               conclusion="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id" --jq '.conclusion')"
-              test "$conclusion" = "success" || { echo "::error::Continuity enablement run finished with $conclusion."; exit 1; }
+              [[ "$conclusion" == "success" ]] || { echo "::error::Continuity enablement run finished with $conclusion."; exit 1; }
               echo "continuity@1 campaign enablement is durable." >> "$GITHUB_STEP_SUMMARY"
               exit 0
             fi
@@ -265,7 +214,9 @@ jobs:
         run: |
           set -euo pipefail
           gh api --method PUT "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml/enable" >/dev/null
-          gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime             -f "dispatch_token=resume-after-continuity-$GITHUB_RUN_ID"             -f "runtime_ref=$CANDIDATE_SHA"
+          gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime \
+            -f "dispatch_token=resume-after-continuity-$GITHUB_RUN_ID" \
+            -f "runtime_ref=$CANDIDATE_SHA"
           echo "Research was running before enablement, so continuous research was resumed." >> "$GITHUB_STEP_SUMMARY"
 
       - name: Preserve stopped state
