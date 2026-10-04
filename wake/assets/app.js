@@ -1311,6 +1311,8 @@
       const statusField=matrixInspectorField('status');
       if(statusField)statusField.dataset.status=cell.dataset.matrixStatus||'open';
       $('metrics-dashboard').querySelectorAll('[data-matrix-cell][aria-pressed="true"]').forEach(item=>item.setAttribute('aria-pressed','false'));
+      const plane=cell.closest('.matrix-plane-grid');
+      if(plane)plane.querySelectorAll('[data-matrix-cell]').forEach(item=>item.tabIndex=item===cell?0:-1);
       cell.setAttribute('aria-pressed','true');
     };
     $('metrics-dashboard').querySelectorAll('.matrix-plane-grid').forEach(grid=>{
