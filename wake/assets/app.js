@@ -248,7 +248,9 @@
     const experimental=s.experimental||null;
     const timeControl=experimental?.controls?.time_dilation||null;
     const temporalState=s.temporal||null;
-    const temporalInvocations=invocations.filter(item=>item?.temporal&&Number.isFinite(Number(item.temporal.wall_elapsed_seconds)));
+    const temporalInvocations=invocations
+      .filter(item=>item?.temporal&&Number.isFinite(Number(item.temporal.wall_elapsed_seconds)))
+      .sort((a,b)=>new Date(a.temporal.observed_at||a.time||0)-new Date(b.temporal.observed_at||b.time||0));
     const latestTemporal=temporalInvocations.at(-1)?.temporal||null;
     const formatDuration=value=>{
       const seconds=Number(value);
@@ -258,6 +260,17 @@
       if(seconds<86400)return (seconds/3600).toFixed(seconds<36000?1:0)+'h';
       return (seconds/86400).toFixed(seconds<864000?1:0)+'d';
     };
+    const temporalTraceSource=temporalInvocations.slice(-48);
+    const temporalWallMax=Math.max(1,...temporalTraceSource.map(item=>Number(item.temporal.wall_elapsed_seconds)||0));
+    const temporalTrace=temporalTraceSource.map((item,index)=>{
+      const temporal=item.temporal;
+      const wall=Number(temporal.wall_elapsed_seconds)||0;
+      const effective=Number(temporal.effective_elapsed_seconds)||0;
+      const height=Math.max(5,Math.min(100,100*Math.sqrt(wall/temporalWallMax)));
+      const ratio=wall>0?effective/wall:0;
+      const tone=ratio===0?'frozen':ratio>1.001?'scaled':'real';
+      return `<a class="ops-time-tick ${tone}" href="#history/${encodeURIComponent(item.id)}" style="--tick-height:${height.toFixed(1)}%" title="${esc(item.id)} · wall ${formatDuration(wall)} · effective ${formatDuration(effective)} · ${Number(temporal.cycle_distance||0)} cycles · ${Number(temporal.intervening_events?.total||0)} events" aria-label="Temporal receipt ${index+1}: wall ${formatDuration(wall)}, effective ${formatDuration(effective)}"></a>`;
+    }).join('');
     const appObservability=data.application_observability||null;
     const wakeApp=(appObservability?.applications||[]).find(app=>app?.id==='wake')||null;
     const appActions=wakeApp?.actions||{};
@@ -510,6 +523,11 @@
             <div><span>CYCLE DISTANCE</span><strong>${latestTemporal?.cycle_distance??'—'}</strong><small>accepted-cycle distance in last receipt</small></div>
             <div><span>INTERVENING EVENTS</span><strong>${latestTemporal?.intervening_events?.total??'—'}</strong><small>between temporal anchors</small></div>
             <div><span>REGIME</span><strong>${esc(String(latestTemporal?.regime_id||experimental?.id||'—').replace(/^reg-/,''))}</strong><small>${timeControl?.enabled===false?'disabled':timeControl?'operator-recorded':'unavailable'}</small></div>
+          </div>
+          <div class="ops-time-trace">
+            <div class="ops-time-trace-head"><span>TEMPORAL RECEIPTS / LAST ${temporalTraceSource.length}</span><small>height = wall interval · color = effective mapping · tap for receipt</small></div>
+            <div class="ops-time-track" role="group" aria-label="Recent temporal receipts">${temporalTrace||'<span class="empty">No temporal receipts yet.</span>'}</div>
+            <div class="ops-time-legend"><span class="real"><i></i>real</span><span class="scaled"><i></i>scaled</span><span class="frozen"><i></i>frozen</span></div>
           </div>
         </div>
         </div>
