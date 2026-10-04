@@ -24,28 +24,8 @@
   if (window.WakePetReady) await window.WakePetReady;
   const s = data.state;
   const $ = id => document.getElementById(id);
-  const themeToggle = $('theme-toggle');
-  function savedTheme() { try { return localStorage.getItem('wake-theme'); } catch { return null; } }
-  function setTheme(theme, remember=false) {
-    const dark=theme==='dark';
-    if(dark) document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;
-    const manual=remember||Boolean(savedTheme());
-    document.documentElement.dataset.themeMode=manual?'manual':'system';
-    themeToggle.setAttribute('aria-label',dark?'Use light theme':'Use dark theme');
-    themeToggle.checked=dark;
-    if(remember)try{localStorage.setItem('wake-theme',dark?'dark':'light')}catch{}
-    themeToggle.closest('.theme-switch')?.setAttribute('title',manual?`Manual ${dark?'dark':'light'} theme`:`Following system ${dark?'dark':'light'} theme`);
-  }
-  const storedTheme=savedTheme();
-  setTheme(storedTheme==='dark'||(!storedTheme&&document.documentElement.dataset.theme==='dark')?'dark':'light');
-  themeToggle.addEventListener('change',()=>setTheme(themeToggle.checked?'dark':'light',true));
-  try {
-    const systemTheme=matchMedia('(prefers-color-scheme:dark)');
-    systemTheme.addEventListener('change',event=>{
-      if(localStorage.getItem('wake-theme')) return;
-      setTheme(event.matches?'dark':'light');
-    });
-  } catch {}
+  document.documentElement.dataset.theme='dark';
+  try{localStorage.setItem('wake-theme','dark')}catch{}
   const help = key => window.WakeHelp.button(key);
   const WAKE_TEXT='WAKE\u2733\uFE0E';
   const display = value => String(value ?? '').replaceAll('WAKE✳️','WAKE✳').replaceAll('WAKE✳︎','WAKE✳').replaceAll('WAKE✳','WAKE✳︎');
