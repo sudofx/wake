@@ -964,6 +964,20 @@
       return `<a class="ops-topic-node" href="#projects/topic:${encodeURIComponent(topic.id)}" style="--node-size:${size}px;--node-color:${esc(topicColors[topic.id]||'var(--ops-cyan)')};--node-x:${x}%;--node-y:${y}%"><span>${esc(topic.label)}</span><b>${topic.total}</b></a>`;
     }).join('');
     $('metrics-dashboard').innerHTML=`
+      <section class="ops-command-deck" aria-label="WAKE control room overview">
+        <header>
+          <div><span>CONTROL ROOM / CURRENT PUBLISHED PROJECTION</span><strong>Cycle ${s.version} · ${esc(currentStatus)}</strong></div>
+          <small>Fast orientation only. Open a cell for the underlying story, provenance, or record evidence.</small>
+        </header>
+        <div class="ops-command-grid">
+          <a href="#metrics/ops-now" data-tone="${currentStatus.toLowerCase()}"><span>WAKE STATUS</span><strong>${esc(currentStatus)}</strong><b>CYCLE ${s.version}</b><small>${completed.length} completed wakes · ${acceptanceRate===null?'acceptance unavailable':acceptanceRate+'% accepted'}</small></a>
+          <a href="#metrics/ops-pressure"><span>PROVIDER</span><strong>${esc(latestModel)}</strong><b>${wakeStatus.provider_requests_today??0} requests today</b><small>${providerSuccesses}/${knownAttempts.length} known attempts success-labelled</small></a>
+          <a href="#metrics/ops-horizon" data-tone="${overdue?'warning':'ok'}"><span>FRONTIER</span><strong>${openObligations}</strong><b>OPEN COMMITMENTS</b><small>${overdue} overdue · durable governed obligations</small></a>
+          <a href="#metrics/ops-matrix"><span>CONTINUITY@1</span><strong>${matrixPct===null?'NOT ENABLED':matrixPct+'%'}</strong><b>${matrixCompleted}/${matrixTotal} coordinates</b><small>deterministic test-space coverage · not research quality</small></a>
+          <a href="map3d.html#record=root%3Awake"><span>RESEARCH FIELD</span><strong>${topicActive}/${configuredTopicCount||'—'}</strong><b>ACTIVE TOPIC LANES</b><small>${topicAttributedTotal} topic-attributed accepted actions · open 3D provenance</small></a>
+          <a href="events.html" data-tone="${recordReplayOk&&sqliteQuickOk?'ok':'warning'}"><span>DURABLE RECORD</span><strong>${recordReplayOk&&sqliteQuickOk?'VERIFIED':'CHECK'}</strong><b>${recordIntegrity?.sudofx_event_count??'—'} events</b><small>head ${esc(shortHead)} · local replay + SQLite integrity evidence</small></a>
+        </div>
+      </section>
       <nav class="ops-storyline" aria-label="WAKE data story">
         <a href="#metrics" data-story-target="ops-now"><b>01</b><span>NOW</span><strong>cycle ${s.version}</strong></a>
         <a href="#metrics" data-story-target="ops-pressure"><b>02</b><span>PRESSURE</span><strong>${rejectedCount} rejected</strong></a>
