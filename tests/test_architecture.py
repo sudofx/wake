@@ -253,6 +253,17 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-tertiary-grid', css)
         self.assertIn('body.metrics-ops-active #metrics.view{width:100%;max-width:none', css)
 
+    def test_data_story_navigator_tracks_scroll_position(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('function bindStoryNavigation()', app)
+        self.assertIn("link.classList.toggle('is-active',active)", app)
+        self.assertIn("link.setAttribute('aria-current','step')", app)
+        self.assertIn("window.addEventListener('scroll',storyScrollHandler,{passive:true})", app)
+        self.assertIn('.ops-storyline{position:sticky', css)
+        self.assertIn('scroll-snap-type:x proximity', css)
+        self.assertIn('.ops-storyline a.is-active:after', css)
+
     def test_metrics_route_anchor_is_unique(self):
         page = self.read('wake/assets/index.html')
         app = self.read('wake/assets/app.js')
