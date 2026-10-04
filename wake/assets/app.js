@@ -300,7 +300,7 @@
           ['PUBLISHED',postsForProject.length]
         ];
         const stages=stageValues.map(([label,value],index)=>`<span class="ops-trajectory-stage ${value?'lit':''}" title="${label}: ${value}"><i></i><b>${label}</b><small>${index===0?'recorded':value}</small></span>`).join('');
-        return `<a class="ops-trajectory-row status-${esc(project.status||'active')}" href="#projects/${encodeURIComponent(project.id)}"><div class="ops-trajectory-copy"><strong>${esc(project.title||project.id)}</strong><span>${esc(String(project.status||'active').toUpperCase())} · ${research.length} research receipts · ${failed} failed</span></div><div class="ops-trajectory-stages">${stages}</div></a>`;
+        return `<a class="ops-trajectory-row" data-project-status="${esc(project.status||'active')}" href="#projects/${encodeURIComponent(project.id)}"><div class="ops-trajectory-copy"><strong>${esc(project.title||project.id)}</strong><span>${esc(String(project.status||'active').toUpperCase())} · ${research.length} research receipts · ${failed} failed</span></div><div class="ops-trajectory-stages">${stages}</div></a>`;
       }).join('')||'<p class="empty">No research projects in the current durable state.</p>';
     const opsBeliefs=Object.values(s.beliefs||{});
     const opsActiveBeliefs=opsBeliefs.filter(item=>item?.status==='active');
