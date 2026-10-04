@@ -415,19 +415,20 @@
     const sinceReflectionHtml=hasReflectionBaseline
       ? `<div class="ops-since-reflection"><header><div><span>SINCE LAST REFLECTION RECEIPT</span><strong>record version ${reflectionRecordVersion} → ${Number(s.version||0)}</strong></div><a href="#blog/${encodeURIComponent(latestReflection.post.id)}">OPEN REFLECTION →</a></header><div class="ops-since-grid"><div><strong>${sinceReflection.evidence}</strong><span>evidence added</span></div><div><strong>${sinceReflection.beliefs}</strong><span>beliefs revised</span></div><div><strong>${sinceReflection.projects}</strong><span>projects changed</span></div><div><strong>${sinceReflection.notebooks}</strong><span>notebooks revised</span></div><div><strong>${sinceReflection.commitments}</strong><span>commitments created</span></div></div><small>Versioned record deltas only. Counts show durable changes after the reflection receipt; they do not measure importance or causal impact.</small></div>`
       : '<div class="ops-since-reflection unavailable"><header><div><span>SINCE LAST REFLECTION RECEIPT</span><strong>baseline unavailable</strong></div></header><small>No versioned reflection receipt is available, so WAKE does not infer a comparison window.</small></div>';
-    const latestAcceptedEvent=accepted.at(-1)||null;
-    const latestAcceptedId=String(latestAcceptedEvent?.payload?.id||'');
-    const latestAcceptedProposal=latestAcceptedEvent?.payload?.proposal||{};
-    const latestAcceptedActions=Array.isArray(latestAcceptedProposal?.actions)?latestAcceptedProposal.actions:[];
+    const latestAcceptedInvocation=[...invocations].reverse().find(item=>item?.status==='accepted')||null;
+    const latestAcceptedId=String(latestAcceptedInvocation?.id||'');
+    const latestAcceptedEvent=latestAcceptedId?[...accepted].reverse().find(event=>String(event?.payload?.id||'')===latestAcceptedId)||null:null;
+    const latestAcceptedProposal=latestAcceptedEvent?.payload?.proposal||null;
+    const latestAcceptedActions=Array.isArray(latestAcceptedProposal?.actions)?latestAcceptedProposal.actions:null;
     const latestAcceptedJournal=[...(s.journal||[])].reverse().find(item=>item?.invocation===latestAcceptedId)||null;
-    const latestAcceptedTypes=[...new Set(latestAcceptedActions.map(action=>String(action?.type||'change').toUpperCase()))];
-    const latestAcceptedActionRows=latestAcceptedActions.slice(0,4).map(action=>{
+    const latestAcceptedTypes=latestAcceptedActions?[...new Set(latestAcceptedActions.map(action=>String(action?.type||'change').toUpperCase()))]:[];
+    const latestAcceptedActionRows=latestAcceptedActions?latestAcceptedActions.slice(0,4).map(action=>{
       const type=String(action?.type||'change').toUpperCase();
       const id=String(action?.id||'');
       const detail=String(action?.statement||action?.task||action?.title||action?.status||action?.reason||'Accepted governed action');
       return `<div class="ops-latest-action"><span>${esc(type)}</span><strong>${esc(detail)}</strong><small>${esc(id||'no action id')}</small></div>`;
-    }).join('');
-    const latestAcceptedHiddenActions=Math.max(0,latestAcceptedActions.length-4);
+    }).join(''):'';
+    const latestAcceptedHiddenActions=latestAcceptedActions?Math.max(0,latestAcceptedActions.length-4):0;
     const latestAcceptedTitle=String(latestAcceptedJournal?.title||latestAcceptedProposal?.title||latestAcceptedId||'No accepted wake recorded');
     const latestAcceptedSummary=String(latestAcceptedJournal?.summary||latestAcceptedProposal?.summary||'No durable journal summary is attached to the latest accepted wake.');
     const latestAcceptedCycle=Number(latestAcceptedJournal?.cycle||0);
@@ -437,7 +438,7 @@
     const latestAcceptedBaseVersion=Number(latestAcceptedStartEvent?.payload?.base_version);
     const latestAcceptedResultHash=String(latestAcceptedEvent?.payload?.result_hash||'');
     const latestAcceptedHashFields=Array.isArray(latestAcceptedEvent?.payload?.hash_fields)?latestAcceptedEvent.payload.hash_fields:[];
-    const latestAcceptedTypeCounts=latestAcceptedActions.reduce((counts,action)=>{
+    const latestAcceptedTypeCounts=(latestAcceptedActions||[]).reduce((counts,action)=>{
       const type=String(action?.type||'change').toUpperCase();
       counts[type]=(counts[type]||0)+1;
       return counts;
@@ -449,9 +450,20 @@
     const latestAcceptedBaseLabel=Number.isFinite(latestAcceptedBaseVersion)?String(latestAcceptedBaseVersion):'—';
     const latestAcceptedCycleLabel=latestAcceptedCycle?String(latestAcceptedCycle):'—';
     const latestAcceptedHashLabel=latestAcceptedResultHash?latestAcceptedResultHash.slice(0,16):'—';
+    const latestAcceptedReceiptLink=latestAcceptedEvent
+      ? `<a href="#history/${encodeURIComponent(latestAcceptedId)}">EXACT RECEIPT →</a>`
+      : latestAcceptedCycle
+        ? `<a href="#journal/cycle:${latestAcceptedCycle}">JOURNAL ENTRY →</a>`
+        : '<span>EVENT OUTSIDE PUBLISHED WINDOW</span>';
+    const latestAcceptedDetail=latestAcceptedActions
+      ? `${latestAcceptedActionRows||'<div class="ops-latest-action empty"><strong>No governed actions recorded on this accepted wake.</strong></div>'}${latestAcceptedHiddenActions?`<div class="ops-latest-action more"><span>+${latestAcceptedHiddenActions}</span><strong>additional accepted action${latestAcceptedHiddenActions===1?'':'s'}</strong><small>open exact receipt for full proposal</small></div>`:''}`
+      : '<div class="ops-latest-action empty bounded"><strong>Proposal detail is outside the published event window.</strong><small>The accepted status comes from durable invocation state; no action count is inferred.</small></div>';
+    const latestAcceptedMetaCount=latestAcceptedActions
+      ? `<b>${latestAcceptedActions.length}</b> governed change${latestAcceptedActions.length===1?'':'s'}`
+      : 'governed change count unavailable in event window';
     const latestWakeStory=latestAcceptedId
-      ? `<article class="ops-latest-wake"><div class="ops-latest-wake-kicker"><span>LATEST ACCEPTED WAKE${latestAcceptedCycle?' · CYCLE '+latestAcceptedCycle:''}</span><a href="#history/${encodeURIComponent(latestAcceptedId)}">EXACT RECEIPT →</a></div><h3>${esc(latestAcceptedTitle)}</h3><p>${esc(latestAcceptedSummary)}</p><div class="ops-latest-transition" aria-label="Latest accepted state transition"><div><span>BASE REVISION</span><strong>${latestAcceptedBaseLabel}</strong><small>${Number.isFinite(latestAcceptedBaseVersion)?'from matching invocation_started receipt':'start receipt unavailable in published event window'}</small></div><i aria-hidden="true">→</i><div><span>ACCEPTED REVISION</span><strong>${latestAcceptedCycleLabel}</strong><small>${latestAcceptedCycle?'durable journal cycle':'accepted revision unavailable'}</small></div><div class="ops-latest-hash"><span>RESULT HASH</span><strong>${esc(latestAcceptedHashLabel)}</strong><small>${latestAcceptedHashFields.length?latestAcceptedHashFields.length+' hashed state field'+(latestAcceptedHashFields.length===1?'':'s'):'hash field list unavailable'}</small></div></div>${latestAcceptedEffectStrip?`<div class="ops-latest-effect-strip" aria-label="Latest accepted action type counts">${latestAcceptedEffectStrip}</div>`:''}<div class="ops-latest-action-list">${latestAcceptedActionRows||'<div class="ops-latest-action empty"><strong>No governed actions recorded on this accepted wake.</strong></div>'}${latestAcceptedHiddenActions?`<div class="ops-latest-action more"><span>+${latestAcceptedHiddenActions}</span><strong>additional accepted action${latestAcceptedHiddenActions===1?'':'s'}</strong><small>open exact receipt for full proposal</small></div>`:''}</div><div class="ops-latest-wake-meta"><span><b>${latestAcceptedActions.length}</b> governed change${latestAcceptedActions.length===1?'':'s'}</span><span>${latestAcceptedTypes.length?esc(latestAcceptedTypes.join(' · ')):'NO ACTION TYPES RECORDED'}</span><span>${esc(latestAcceptedId.slice(-14))}</span></div></article>`
-      : '<article class="ops-latest-wake empty"><div class="ops-latest-wake-kicker"><span>LATEST ACCEPTED WAKE</span></div><h3>No accepted wake is present in the published record.</h3></article>';
+      ? `<article class="ops-latest-wake"><div class="ops-latest-wake-kicker"><span>LATEST ACCEPTED WAKE${latestAcceptedCycle?' · CYCLE '+latestAcceptedCycle:''}</span>${latestAcceptedReceiptLink}</div><h3>${esc(latestAcceptedTitle)}</h3><p>${esc(latestAcceptedSummary)}</p><div class="ops-latest-transition" aria-label="Latest accepted state transition"><div><span>BASE REVISION</span><strong>${latestAcceptedBaseLabel}</strong><small>${Number.isFinite(latestAcceptedBaseVersion)?'from matching invocation_started receipt':'start receipt unavailable in published event window'}</small></div><i aria-hidden="true">→</i><div><span>ACCEPTED REVISION</span><strong>${latestAcceptedCycleLabel}</strong><small>${latestAcceptedCycle?'durable journal cycle':'accepted revision unavailable'}</small></div><div class="ops-latest-hash"><span>RESULT HASH</span><strong>${esc(latestAcceptedHashLabel)}</strong><small>${latestAcceptedHashFields.length?latestAcceptedHashFields.length+' hashed state field'+(latestAcceptedHashFields.length===1?'':'s'):'hash field list unavailable in published event window'}</small></div></div>${latestAcceptedEffectStrip?`<div class="ops-latest-effect-strip" aria-label="Latest accepted action type counts">${latestAcceptedEffectStrip}</div>`:''}<div class="ops-latest-action-list">${latestAcceptedDetail}</div><div class="ops-latest-wake-meta"><span>${latestAcceptedMetaCount}</span><span>${latestAcceptedTypes.length?esc(latestAcceptedTypes.join(' · ')):'ACTION TYPES UNAVAILABLE IN EVENT WINDOW'}</span><span>${esc(latestAcceptedId.slice(-14))}</span></div></article>`
+      : '<article class="ops-latest-wake empty"><div class="ops-latest-wake-kicker"><span>LATEST ACCEPTED WAKE</span></div><h3>No accepted invocation is present in current durable state.</h3></article>';
 
     const groupByProject=items=>items.reduce((index,item)=>{
       const project=item?.project;
