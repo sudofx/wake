@@ -130,9 +130,13 @@ class ProvenanceTests(unittest.TestCase):
         self.assertIn((f"journal:{first}", "project:p@2", "revised"), triples)
         self.assertIn((f"journal:{second}", "notebook:n@2", "revised"), triples)
         self.assertTrue(nodes[f"journal:{first}"]["detail"]["exact_record"].startswith("Event "))
+        self.assertEqual(
+            nodes[f"invocation:{first}"]["detail"]["exact_record"],
+            nodes[f"journal:{first}"]["detail"]["exact_record"],
+        )
 
     def test_export_is_static_safe_and_reproducible(self):
-        self.propose([project(), notebook(["s1", "s2"], '</script><script>alert("no")</script>'), blog()])
+        iid = self.propose([project(), notebook(["s1", "s2"], '</script><script>alert("no")</script>'), blog()])
         export(self.engine.store, self.root/'site')
         page = (self.root/'site/map.html').read_text()
         graph = json.loads((self.root/'site/map-data.json').read_text())
@@ -157,6 +161,9 @@ class ProvenanceTests(unittest.TestCase):
         journal_shard = json.loads((self.root/'site/map3d'/map3d_shard_filename('root:journal')).read_text())
         self.assertTrue(journal_shard["children"])
         self.assertTrue(journal_shard["children"][0]["detail"]["exact_record"].startswith("Event "))
+        wake_shard = json.loads((self.root/'site/map3d'/map3d_shard_filename(f'journal:{iid}')).read_text())
+        invocation = next(item for item in wake_shard["children"] if item["id"] == f"invocation:{iid}")
+        self.assertEqual(invocation["detail"]["exact_record"], journal_shard["children"][0]["detail"]["exact_record"])
         self.assertIn("function timeFor(n)", map_js)
         self.assertIn("node-time", map_js)
         self.assertNotIn('</script><script>alert("no")</script>', page)
