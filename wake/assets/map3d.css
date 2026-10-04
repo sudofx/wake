@@ -47,6 +47,25 @@
 
 /* The canvas is sized to the usable page viewport, not an arbitrary device height. */
 .constellation-workspace{position:relative}.constellation-workspace #constellation-stage{height:clamp(660px,calc(100svh - 100px),1100px);min-height:660px}.constellation-workspace #constellation-svg{height:100%}.constellation-workspace>#details[hidden]{display:none}.constellation-workspace>#details.active{position:absolute;z-index:3;right:16px;top:64px;width:min(360px,calc(100% - 32px));max-height:calc(100% - 82px);overflow:auto;padding:20px;border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);background:var(--surface)}
+@media (min-width:1400px) and (max-width:1920px){
+  .constellation-workspace:has(>#details.active){
+    display:grid;
+    grid-template-columns:minmax(0,1fr) clamp(320px,22vw,380px);
+    gap:16px;
+    align-items:start;
+  }
+  .constellation-workspace>#details.active{
+    position:sticky;
+    top:74px;
+    right:auto;
+    width:auto;
+    max-height:calc(100svh - 92px);
+    overflow:auto;
+    align-self:start;
+  }
+  .detail-trail-list{flex-wrap:wrap;overflow:visible}
+  .detail-trail-list button{max-width:100%;flex:1 1 132px}
+}
 @media (min-width:1921px){.detail-trail-list{flex-wrap:wrap;overflow:visible}.detail-trail-list button{max-width:100%;flex:1 1 140px}.constellation-workspace{display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:24px;align-items:start}.constellation-workspace>#details.active{position:static;width:auto;max-height:calc(100svh - 160px);min-height:360px;margin-top:64px}.constellation-key{margin-right:414px}}
 @media (max-width:700px){.constellation-workspace #constellation-stage{height:clamp(420px,calc(100svh - 230px),510px);min-height:0}.constellation-workspace>#details.active{right:10px;left:10px;top:auto;bottom:10px;width:auto;max-height:45%;border-radius:10px}}
 
