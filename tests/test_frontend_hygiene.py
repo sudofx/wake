@@ -52,6 +52,7 @@ class FrontendHygieneTests(unittest.TestCase):
         self.assertIn("EXACT WAKE RECEIPT", script)
         self.assertIn("detail.exact_record||'full history · journal invocation ID'", script)
         self.assertIn("EXACT INVOCATION RECEIPT", script)
+        self.assertIn("basis:detail.exact_record||'full append-only history · invocation ID'", script)
         self.assertIn("DURABLE PUBLICATION", script)
         self.assertIn("EVIDENCE RECORD", script)
         self.assertIn("PROJECT RECORD", script)
