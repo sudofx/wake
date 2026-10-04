@@ -26,6 +26,7 @@ from .errors import IntegrityError
 from .event_format import digest, now
 from .history import history_metrics, merge_history_metrics
 from .sudofx_application import LEGACY_ARCHIVE_CHUNK_SIZE, WAKE_APPLICATION, verified_legacy_snapshot
+from .matrix import MATRIX_KEY, continuity_matrix_progress
 
 
 class _CrashInjectableRecordStore:
@@ -309,6 +310,50 @@ class SudofxStore:
             from .governance import Rejected
             raise Rejected("; ".join(receipt.reasons) or "sudofx rejected WAKE reset")
         return self.load()
+
+    def enable_continuity_matrix(self):
+        """Explicitly opt WAKE into the shared continuity@1 matrix grammar."""
+        revision = self.kernel.context().revision
+        receipt = self.host.submit(
+            ApplicationIntent(
+                f"wake-matrix-enable-{revision + 1}-{uuid.uuid4().hex[:12]}",
+                revision,
+                "enable_continuity_matrix",
+                {"matrix": MATRIX_KEY},
+                rationale="Enable WAKE-owned continuity matrix campaign state",
+            ),
+            provenance=SubmissionProvenance(
+                "application", "wake-matrix", "explicit-opt-in"
+            ),
+        )
+        if receipt.status != "accepted":
+            from .governance import Rejected
+            raise Rejected("; ".join(receipt.reasons) or "sudofx rejected WAKE matrix enablement")
+        return self.continuity_matrix_progress()
+
+    def record_continuity_matrix_result(self, coordinate_id, result):
+        """Commit one WAKE-owned matrix result through normal application governance."""
+        revision = self.kernel.context().revision
+        receipt = self.host.submit(
+            ApplicationIntent(
+                f"wake-matrix-result-{revision + 1}-{uuid.uuid4().hex[:12]}",
+                revision,
+                "record_continuity_matrix_result",
+                {"coordinate_id": coordinate_id, "result": result},
+                rationale="Persist WAKE matrix progress in authoritative sudofx SQLite state",
+            ),
+            provenance=SubmissionProvenance(
+                "application", "wake-matrix", "governed-result"
+            ),
+        )
+        if receipt.status != "accepted":
+            from .governance import Rejected
+            raise Rejected("; ".join(receipt.reasons) or "sudofx rejected WAKE matrix result")
+        return self.continuity_matrix_progress()
+
+    def continuity_matrix_progress(self):
+        """Return derived matrix progress, or None until WAKE explicitly opts in."""
+        return continuity_matrix_progress(self._envelope())
 
     def append(self, kind, payload, crash=False):
         if crash:
