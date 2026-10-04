@@ -561,6 +561,14 @@
             <div class="ops-state" data-status="${currentStatus.toLowerCase()}"><i></i><span>${currentStatus}</span><strong>CYCLE ${s.version}</strong></div>
           </div>
         </header>
+        <nav class="ops-story-rail" aria-label="Data story chapters">
+          <a href="#ops-field"><b>01</b><span>ACTIVITY</span><small>what WAKE is doing</small></a>
+          <a href="#ops-pressure"><b>02</b><span>PRESSURE</span><small>where resistance appears</small></a>
+          <a href="#ops-context"><b>03</b><span>MEMORY</span><small>what survives the boundary</small></a>
+          <a href="#ops-beliefs"><b>04</b><span>BELIEFS</span><small>what the system currently carries</small></a>
+          <a href="#ops-horizon"><b>05</b><span>FRONTIER</span><small>what remains unresolved</small></a>
+          <a href="#ops-matrix"><b>06</b><span>CONTINUITY</span><small>where the experiment has tested</small></a>
+        </nav>
         <div class="ops-source-rail" aria-label="Projection provenance">
           <div><span>AUTHORITY</span><strong>${esc(sourceAuthority)}</strong></div>
           <div><span>RECORD HEAD</span><strong>${esc(shortHead)}</strong></div>
@@ -582,7 +590,7 @@
             <span>FREE <b>${freePct===null?'—':freePct.toFixed(1)+'%'}</b></span>
           </div>
         </div>
-        <div class="ops-console-grid">
+        <div class="ops-console-grid" id="ops-field">
           <article class="ops-viewport">
             <div class="ops-grid-lines" aria-hidden="true"></div>
             <div class="ops-topic-field">${topicNodes||'<span class="empty">No topic activity yet.</span>'}<div class="ops-field-core"><strong>${s.version}</strong><span>WAKE CYCLE</span><small>${topicActive}/${configuredTopicCount} active topics</small></div></div>
@@ -600,7 +608,7 @@
           <div class="ops-pulse-cells" role="group" aria-label="Recent completed wake outcomes">${timeline||'<span class="empty">No completed wakes yet.</span>'}</div>
           <div class="ops-pulse-legend">${statuses.map(([name,value])=>`<span class="${esc(name)}"><i></i><b>${value}</b>${esc(name)}</span>`).join('')}</div>
         </div>
-        <div class="ops-secondary-grid">
+        <div class="ops-secondary-grid" id="ops-pressure">
         <div class="ops-provider-trace" aria-label="Recent provider attempt trace">
           <div class="ops-provider-head"><div><span>PROVIDER ATTEMPT TRACE</span><strong>LAST ${providerTraceSource.length} KNOWN ATTEMPTS</strong></div><small>height = latency · color = recorded outcome</small></div>
           <div class="ops-provider-track" role="group" aria-label="Recent provider attempt outcomes">${providerTrace||'<span class="empty">No known provider attempts yet.</span>'}</div>
@@ -645,12 +653,12 @@
           <div class="ops-signal info" style="--signal:${Math.min(100,configuredTopicCount?100*topicActive/configuredTopicCount:0)}%"><span>TOPIC COVERAGE</span><strong>${topicActive}/${configuredTopicCount}</strong><i></i></div>
           <div class="ops-signal info" style="--signal:${Math.min(100,matrixPct)}%"><span>MATRIX COVERAGE</span><strong>${matrixPct}%</strong><i></i></div>
         </div>
-        <div class="ops-horizon" aria-label="Open commitment horizon">
+        <div class="ops-horizon" id="ops-horizon" aria-label="Open commitment horizon">
           <div class="ops-horizon-head"><div><p class="eyebrow">OPEN COMMITMENT HORIZON</p><h3>${openObligations} obligations carried forward</h3></div><small>bucketed by due cycle relative to cycle ${s.version}</small></div>
           <div class="ops-horizon-grid">${obligationHorizon}</div>
         </div>
         <div class="ops-tertiary-grid">
-        <div class="ops-context" aria-label="Context delivery telemetry">
+        <div class="ops-context" id="ops-context" aria-label="Context delivery telemetry">
           <div class="ops-context-head">
             <div><p class="eyebrow">CONTEXT DELIVERY / RECOVERABLE COMPRESSION</p><h3>${contextDelivery?esc(String(contextDelivery.mode||'rich').toUpperCase()):'NO RECEIPT'}</h3></div>
             <div class="ops-context-ratio"><strong>${contextDelivery&&Number.isFinite(Number(contextDelivery.request_compression_ratio))?(100*Number(contextDelivery.request_compression_ratio)).toFixed(1)+'%':'—'}</strong><span>REQUEST COMPRESSION</span></div>
@@ -683,7 +691,7 @@
             <div class="ops-provenance-tiers"><header><span>HOST / RETRIEVAL TIERS</span><strong>${evidenceTierRows.length} observed classes</strong></header><div>${evidenceTierBars}</div></div>
           </div>
         </div>
-        <div class="ops-beliefs" aria-label="Governed belief telemetry">
+        <div class="ops-beliefs" id="ops-beliefs" aria-label="Governed belief telemetry">
           <div class="ops-beliefs-head">
             <div><p class="eyebrow">EPISTEMIC FIELD / GOVERNED BELIEF STATE</p><h3>${activeBeliefs.length} active · ${retractedBeliefs.length} retracted</h3></div>
             <small>confidence is recorded model state, not an empirical probability of truth</small>
@@ -715,7 +723,7 @@
           </div>
         </div>
         </div>
-        <div class="ops-matrix-block">
+        <div class="ops-matrix-block" id="ops-matrix">
           <div class="ops-matrix-copy"><p class="eyebrow">CONTINUITY@1 / 7×7×7</p><h3>${matrixEnabled?'Coverage of the governed continuity space.':'Canonical continuity space · not yet enabled for this WAKE generation.'}</h3><p>${matrixEnabled?matrixCompleted+' of '+matrixTotal+' coordinates completed · next '+(matrixProgress.next_ordinal?'#'+matrixProgress.next_ordinal:'complete'):'343 deterministic coordinates are visible as definition geometry only.'}</p><small>Seven semantic planes. Within each plane, columns follow pressure order and rows follow exposure order from the shared continuity@1 definition.</small></div>
           <div class="continuity-matrix-view" aria-label="Continuity matrix coverage: ${matrixCompleted} of ${matrixTotal} coordinates completed">
             <div class="matrix-axis-note"><span>columns / pressure: ${esc(pressureAxis.map(v=>v.label).join(' · '))}</span><span>rows / exposure: ${esc(exposureAxis.map(v=>v.label).join(' · '))}</span></div>
