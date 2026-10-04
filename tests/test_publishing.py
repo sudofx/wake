@@ -51,6 +51,8 @@ class PublishingTests(unittest.TestCase):
                 self.assertIn("matrix_progress", rendered)
                 self.assertIn("application_observability", rendered)
                 self.assertIn("application_access", rendered)
+                self.assertIn("record_integrity", rendered)
+                self.assertIsNone(rendered["record_integrity"])
             finally:
                 engine.store.close()
 
