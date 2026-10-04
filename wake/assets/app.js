@@ -462,6 +462,11 @@
             <div class="ops-readout"><span>PROVIDER FALLBACK</span><strong>${fallbackWakes}</strong><small>${fallbackRate.toFixed(1)}% of completed wakes</small></div>
           </aside>
         </div>
+        <div class="ops-pulse-ribbon" aria-label="Recent wake pulse">
+          <div class="ops-pulse-copy"><span>RECENT WAKE PULSE</span><strong>LAST ${attempts.length}</strong><small>one cell per completed wake · tap for receipt</small></div>
+          <div class="ops-pulse-cells" role="group" aria-label="Recent completed wake outcomes">${timeline||'<span class="empty">No completed wakes yet.</span>'}</div>
+          <div class="ops-pulse-legend">${statuses.map(([name,value])=>`<span class="${esc(name)}"><i></i><b>${value}</b>${esc(name)}</span>`).join('')}</div>
+        </div>
         <div class="ops-lifecycle" aria-label="Application lifecycle observability">
           <div class="ops-lifecycle-head"><p class="eyebrow">APPLICATION LIFECYCLE / GENERIC SUDOFX EVIDENCE</p><span>${appObservability?`record revision ${esc(appObservability.record_revision)}`:`not available`}</span></div>
           <div class="ops-lifecycle-grid">
