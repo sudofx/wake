@@ -911,7 +911,8 @@
         const pressure=pressureAxis[localIndex%7]?.label||'Pressure';
         const ordinal=offset+localIndex+1;
         const isNext=ordinal===Number(matrixProgress?.next_ordinal||0);
-        return `<i class="continuity-cell ${esc(status||'open')} ${isNext?'next':''}" title="${esc(semantic.label)} · ${esc(exposure)} · ${esc(pressure)}" aria-label="${esc(semantic.label)}, ${esc(exposure)}, ${esc(pressure)}: ${esc(status||'open')}${isNext?', next coordinate':''}"></i>`;
+        const tabStop=isNext||(!isCurrentPlane&&localIndex===0)||(isCurrentPlane&&nextMatrixLocalIndex<0&&localIndex===0);
+        return `<button type="button" class="continuity-cell ${esc(status||'open')} ${isNext?'next':''}" data-matrix-cell data-matrix-ordinal="${ordinal}" data-matrix-semantic="${esc(semantic.label)}" data-matrix-exposure="${esc(exposure)}" data-matrix-pressure="${esc(pressure)}" data-matrix-status="${esc(status||'open')}" data-matrix-local-index="${localIndex}" tabindex="${tabStop?'0':'-1'}" aria-pressed="false" title="${esc(semantic.label)} · ${esc(exposure)} · ${esc(pressure)}" aria-label="Coordinate ${ordinal}: ${esc(semantic.label)}, ${esc(exposure)}, ${esc(pressure)}: ${esc(status||'open')}${isNext?', next coordinate':''}"></button>`;
       }).join('');
       return `<section class="matrix-plane ${isCurrentPlane?'current':''}"><header><span>${esc(semantic.label)}</span><b>${cells.filter(status=>status==='completed').length}/49</b></header><div class="matrix-plane-grid" role="group" aria-label="${esc(semantic.label)} continuity plane">${cellHtml}</div></section>`;
     }).join('');
@@ -929,6 +930,16 @@
     const matrixSemanticMarginals=matrixMarginalRows(semanticAxis,index=>matrixStatuses.slice(index*49,index*49+49));
     const matrixExposureMarginals=matrixMarginalRows(exposureAxis,index=>semanticAxis.flatMap((_,semanticIndex)=>matrixStatuses.slice(semanticIndex*49+index*7,semanticIndex*49+index*7+7)));
     const matrixPressureMarginals=matrixMarginalRows(pressureAxis,index=>semanticAxis.flatMap((_,semanticIndex)=>exposureAxis.map((__,exposureIndex)=>matrixStatuses[semanticIndex*49+exposureIndex*7+index])));
+    const matrixInspectorIndex=nextMatrixIndex>=0?nextMatrixIndex:(matrixStatuses.length?0:-1);
+    const matrixInspectorSemanticIndex=matrixInspectorIndex>=0?Math.floor(matrixInspectorIndex/49):-1;
+    const matrixInspectorLocalIndex=matrixInspectorIndex>=0?matrixInspectorIndex%49:-1;
+    const matrixInspectorExposureIndex=matrixInspectorLocalIndex>=0?Math.floor(matrixInspectorLocalIndex/7):-1;
+    const matrixInspectorPressureIndex=matrixInspectorLocalIndex>=0?matrixInspectorLocalIndex%7:-1;
+    const matrixInspectorOrdinal=matrixInspectorIndex>=0?matrixInspectorIndex+1:null;
+    const matrixInspectorStatus=matrixInspectorIndex>=0?(matrixStatuses[matrixInspectorIndex]||'open'):'unavailable';
+    const matrixInspectorSemantic=matrixInspectorSemanticIndex>=0?(semanticAxis[matrixInspectorSemanticIndex]?.label||'semantic lens unavailable'):'semantic lens unavailable';
+    const matrixInspectorExposure=matrixInspectorExposureIndex>=0?(exposureAxis[matrixInspectorExposureIndex]?.label||'exposure unavailable'):'exposure unavailable';
+    const matrixInspectorPressure=matrixInspectorPressureIndex>=0?(pressureAxis[matrixInspectorPressureIndex]?.label||'pressure unavailable'):'pressure unavailable';
     const recordTail=(data.events||[]).slice(-64);
     const recordSpine=recordTail.map(event=>{
       const tone=event.kind==='accepted'?'accepted':event.kind==='rejected'?'rejected':event.kind==='deferred'?'deferred':'other';
@@ -1210,6 +1221,17 @@
           </div>
           <div class="ops-matrix-stat"><strong>${matrixPct===null?'—':matrixPct+'%'}</strong><span>${matrixPct===null?'not enabled':'covered'}</span><small>${matrixPct===null?'canonical geometry only':matrixFailed+' failed · '+matrixDeferred+' deferred'}</small></div>
         </div>
+        <div class="ops-matrix-explorer" aria-live="polite">
+          <div class="ops-matrix-explorer-head"><span>COORDINATE INSPECTOR / PUBLIC TELEMETRY</span><strong>tap a cell · arrow keys move within a plane</strong></div>
+          <div class="ops-matrix-explorer-grid">
+            <div><span>ORDINAL</span><strong data-matrix-inspector="ordinal">${matrixInspectorOrdinal===null?'—':'#'+matrixInspectorOrdinal}</strong></div>
+            <div><span>STATUS</span><strong data-matrix-inspector="status" data-status="${esc(matrixInspectorStatus)}">${esc(String(matrixInspectorStatus).toUpperCase())}</strong></div>
+            <div><span>SEMANTIC LENS</span><strong data-matrix-inspector="semantic">${esc(matrixInspectorSemantic)}</strong></div>
+            <div><span>EXPOSURE</span><strong data-matrix-inspector="exposure">${esc(matrixInspectorExposure)}</strong></div>
+            <div><span>PRESSURE</span><strong data-matrix-inspector="pressure">${esc(matrixInspectorPressure)}</strong></div>
+          </div>
+          <small>Bounded public matrix telemetry intentionally exposes coordinate geometry and status only. WAKE result summaries and scores remain outside this projection.</small>
+        </div>
         <div class="ops-matrix-marginals" aria-label="Continuity matrix axis coverage">
           <div class="ops-matrix-marginal-head"><div><span>COVERAGE MARGINALS / THREE AXES</span><strong>Where completed coordinates are accumulating.</strong></div><small>Each row reconciles to the same continuity@1 cells above. Bars show completed share; failed and deferred results remain explicit.</small></div>
           <div class="ops-matrix-marginal-grid">
@@ -1273,6 +1295,48 @@
       <p class="dashboard-footnote">Derived view only. The durable state and event log remain authoritative. Derived action counts and hypotheses are explicitly descriptive; they never write back to the record.</p>`;
 
     bindStoryNavigation();
+
+    const matrixExplorer=$('metrics-dashboard').querySelector('.ops-matrix-explorer');
+    const matrixInspectorField=name=>matrixExplorer?.querySelector(`[data-matrix-inspector="${name}"]`);
+    const updateMatrixInspector=cell=>{
+      if(!matrixExplorer||!cell)return;
+      const fields={
+        ordinal:'#'+cell.dataset.matrixOrdinal,
+        status:String(cell.dataset.matrixStatus||'open').toUpperCase(),
+        semantic:cell.dataset.matrixSemantic||'semantic lens unavailable',
+        exposure:cell.dataset.matrixExposure||'exposure unavailable',
+        pressure:cell.dataset.matrixPressure||'pressure unavailable'
+      };
+      Object.entries(fields).forEach(([name,value])=>{const field=matrixInspectorField(name);if(field)field.textContent=value;});
+      const statusField=matrixInspectorField('status');
+      if(statusField)statusField.dataset.status=cell.dataset.matrixStatus||'open';
+      $('metrics-dashboard').querySelectorAll('[data-matrix-cell][aria-pressed="true"]').forEach(item=>item.setAttribute('aria-pressed','false'));
+      cell.setAttribute('aria-pressed','true');
+    };
+    $('metrics-dashboard').querySelectorAll('.matrix-plane-grid').forEach(grid=>{
+      const cells=[...grid.querySelectorAll('[data-matrix-cell]')];
+      cells.forEach(cell=>{
+        cell.addEventListener('click',()=>updateMatrixInspector(cell));
+        cell.addEventListener('focus',()=>updateMatrixInspector(cell));
+        cell.addEventListener('keydown',event=>{
+          const index=Number(cell.dataset.matrixLocalIndex);
+          let next=index;
+          if(event.key==='ArrowLeft'&&index%7>0)next=index-1;
+          else if(event.key==='ArrowRight'&&index%7<6)next=index+1;
+          else if(event.key==='ArrowUp'&&index>=7)next=index-7;
+          else if(event.key==='ArrowDown'&&index<42)next=index+7;
+          else return;
+          event.preventDefault();
+          const target=cells[next];
+          if(!target)return;
+          cells.forEach(item=>item.tabIndex=-1);
+          target.tabIndex=0;
+          target.focus();
+        });
+      });
+    });
+    const initialMatrixCell=$('metrics-dashboard').querySelector('.continuity-cell.next')||$('metrics-dashboard').querySelector('[data-matrix-cell]');
+    if(initialMatrixCell)updateMatrixInspector(initialMatrixCell);
 
     const matrix=$('metrics-dashboard').querySelector('.action-matrix');
     if(matrix){
