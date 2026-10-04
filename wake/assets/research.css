@@ -988,3 +988,37 @@ html.console-tool-window #console-tool-frame{
     height:390px!important;
   }
 }
+
+
+/* CONSOLE MASTHEAD PLACEMENT FIX — 2026-10-04 */
+/* Keep Console header ordering identical to the public masthead at tablet/desktop widths. */
+.research-page>.research-header.masthead{
+  margin-top:26px!important;
+}
+.research-page>.research-header.masthead .brand-lockup{
+  order:1!important;
+}
+.research-page>.research-header.masthead nav.compact-nav{
+  order:2!important;
+  flex-basis:auto!important;
+}
+.research-page>.research-header.masthead .header-tools{
+  order:3!important;
+  margin-left:auto!important;
+}
+.research-page>.research-header.masthead .compact-nav summary::after,
+.research-page>.research-header.masthead summary:after{
+  content:none!important;
+  display:none!important;
+}
+@media(max-width:760px){
+  .research-page>.research-header.masthead{
+    margin-top:12px!important;
+  }
+  .research-page>.research-header.masthead .brand-lockup{order:1!important}
+  .research-page>.research-header.masthead .header-tools{order:2!important}
+  .research-page>.research-header.masthead nav.compact-nav{
+    order:3!important;
+    flex-basis:100%!important;
+  }
+}
