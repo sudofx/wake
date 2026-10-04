@@ -431,7 +431,7 @@
           <div><span>AUTHORITY</span><strong>${esc(sourceAuthority)}</strong></div>
           <div><span>RECORD HEAD</span><strong>${esc(shortHead)}</strong></div>
           <div><span>RUNTIME</span><strong>${esc(runtimeRef)}</strong></div>
-          <div class="ops-access ${accessEnabled?'enabled':'disabled'}"><span>GLOBAL ACCESS</span><strong>${accessEnabled?'ENABLED':'DISABLED'}</strong><small>${applicationAccess?'generation '+applicationAccess.generation:'state unavailable'}</small></div>
+          <div class="ops-access ${accessEnabled?'enabled':'disabled'}"><span>GLOBAL ACCESS</span><strong>${accessEnabled?'ENABLED':'DISABLED'}</strong><small>DERIVED / LIVE · ${applicationAccess?'generation '+applicationAccess.generation:'state unavailable'}</small></div>
         </div>
         <div class="ops-console-grid">
           <article class="ops-viewport">
