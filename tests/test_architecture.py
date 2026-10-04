@@ -598,6 +598,23 @@ class ArchitectureSeparationTests(unittest.TestCase):
         css = self.read('wake/assets/style.css')
         self.assertIn('.ops-verify-index span{font-size:8px}.ops-verify-index strong{font-size:9px}', css)
 
+    def test_data_story_exposes_story_verify_record_audit_path(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('READING DEPTH / FOLLOW THE RECEIPTS', app)
+        self.assertIn('Story → verification → record.', app)
+        self.assertIn('data-story-target="ops-now"', app)
+        self.assertIn('data-verify-target="verify-actions"', app)
+        self.assertIn('<a href="#history"><b>03</b><span>RECORD</span>', app)
+        self.assertIn('class="ops-audit-export" href="events.html"', app)
+        self.assertIn('LAYER 02 / VERIFY', app)
+        self.assertIn('LAYER 03 · RECENT EVENT WINDOW →', app)
+        self.assertIn('FULL EXPORTED EVENTS ↗', app)
+        self.assertIn('.ops-audit-ladder{display:grid', css)
+        self.assertIn('.ops-audit-steps{display:grid', css)
+        self.assertIn('.ops-verify-depth{display:flex', css)
+        self.assertIn('.ops-audit-steps{grid-template-columns:none;grid-auto-flow:column', css)
+
     def test_data_story_navigator_tracks_scroll_position(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
