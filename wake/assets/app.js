@@ -315,7 +315,7 @@
     const lifecycleRecent=Array.isArray(appInvocations.recent)?appInvocations.recent.slice(-8):[];
     const lifecycleTraces=lifecycleRecent.map(item=>{
       const stages=Array.isArray(item.stages)?item.stages:[];
-      const dots=stages.map(stage=>`<i class="trace-stage stage-${esc(stage||'unknown')}" title="${esc(stage||'unknown')}"></i>`).join('');
+      const dots=stages.map(stage=>`<i class="trace-stage" data-stage="${esc(stage||'unknown')}" title="${esc(stage||'unknown')}"></i>`).join('');
       const outcome=item.outcome||item.latest_stage||'unknown';
       return `<a class="ops-trace-row" href="#history/${encodeURIComponent(item.invocation_id||'')}" title="${esc(item.invocation_id||'invocation')} · ${esc(outcome)}"><span>${esc(String(item.invocation_id||'').slice(-10)||'—')}</span><div>${dots}</div><strong>${esc(String(outcome).replaceAll('_',' '))}</strong></a>`;
     }).join('')||'<p class="empty">No recent invocation lifecycle receipts.</p>';
@@ -450,7 +450,7 @@
       const height=Math.max(6,Math.min(100,100*Math.sqrt(ms/providerLatencyMax)));
       const result=String(attempt.result||'unknown').toLowerCase().replace(/[^a-z0-9_-]+/g,'-');
       const model=attempt.model||attempt.provider||'provider';
-      return `<a class="ops-provider-tick result-${esc(result)}" href="#history/${encodeURIComponent(attempt._wake||'')}" style="--provider-height:${height.toFixed(1)}%" title="${esc(model)} · ${esc(attempt.result||'unknown')} · ${ms.toLocaleString()} ms · attempt ${attempt._attempt}" aria-label="${esc(model)}, ${esc(attempt.result||'unknown')}, ${ms} milliseconds"></a>`;
+      return `<a class="ops-provider-tick" data-result="${esc(result)}" href="#history/${encodeURIComponent(attempt._wake||'')}" style="--provider-height:${height.toFixed(1)}%" title="${esc(model)} · ${esc(attempt.result||'unknown')} · ${ms.toLocaleString()} ms · attempt ${attempt._attempt}" aria-label="${esc(model)}, ${esc(attempt.result||'unknown')}, ${ms} milliseconds"></a>`;
     }).join('');
     const trueMedian=values=>{if(!values.length)return null;const m=Math.floor(values.length/2);return values.length%2?values[m]:(values[m-1]+values[m])/2;};
     const medianLatency=latency.length?Math.round(trueMedian(latency)):null;
