@@ -2024,3 +2024,65 @@ body>.masthead .powered-by{
   body>.masthead .actions-light-track{width:24px!important;height:24px!important;flex-basis:24px!important;padding:3px!important}
   body>.masthead .actions-light-track i{width:16px!important;height:16px!important;flex-basis:16px!important}
 }
+
+
+/* FROSTED READING SURFACES — 2026-10-04 */
+/* Long-form content sits on a restrained glass reading plane so the Nebula art
+   stays visible without competing with prose. */
+.entry,
+.notebook-reading,
+.blog-reading,
+.reading-panel,
+.article-reading,
+.longform-panel{
+  background:rgba(4,15,34,.68)!important;
+  border:1px solid rgba(74,111,158,.62)!important;
+  border-radius:12px!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.035),
+    0 18px 48px rgba(0,0,18,.18)!important;
+  backdrop-filter:blur(20px) saturate(116%)!important;
+  -webkit-backdrop-filter:blur(20px) saturate(116%)!important;
+}
+.entry{
+  padding:24px 26px!important;
+  margin:0 0 14px!important;
+}
+.notebook-reading,
+.blog-reading,
+.article-reading,
+.longform-panel{
+  max-width:860px!important;
+  padding:30px 34px 38px!important;
+}
+.notebook-reading>.eyebrow,
+.blog-reading>.eyebrow{margin-top:0!important}
+.notebook-reading p,
+.blog-reading p,
+.entry p{
+  color:#c9d1e6!important;
+}
+.notebook-reading h2,
+.notebook-reading h3,
+.blog-reading h2,
+.blog-reading h3,
+.entry h3{
+  color:#f4f7ff!important;
+}
+.blog-receipts,
+.research-note,
+.decision{
+  background:rgba(10,24,48,.62)!important;
+  backdrop-filter:blur(14px)!important;
+  -webkit-backdrop-filter:blur(14px)!important;
+}
+@media(max-width:700px){
+  .entry{padding:18px 17px!important}
+  .notebook-reading,
+  .blog-reading,
+  .article-reading,
+  .longform-panel{
+    padding:22px 18px 28px!important;
+    border-radius:10px!important;
+  }
+}
