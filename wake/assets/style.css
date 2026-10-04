@@ -1115,6 +1115,22 @@ body.metrics-ops-active .reading-key strong{color:var(--ops-orange)}
 .ops-pulse-legend i{width:6px;height:6px;background:var(--ops-muted)}
 .ops-pulse-legend .accepted i{background:var(--ops-green)}.ops-pulse-legend .rejected i{background:var(--ops-red)}.ops-pulse-legend .deferred i{background:var(--ops-amber)}.ops-pulse-legend .failed i{background:#8e5a67}.ops-pulse-legend .recovered i{background:var(--ops-cyan)}
 .ops-pulse-legend b{font-weight:500;color:var(--ops-text)}
+.ops-pressure-board{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);border-top:1px solid var(--ops-line);background:#071117}
+.ops-pressure-board>section{padding:13px 16px;min-width:0}
+.ops-pressure-board>section+section{border-left:1px solid var(--ops-line-soft)}
+.ops-pressure-board header{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:9px}
+.ops-pressure-board header span{font:7px var(--mono);letter-spacing:.12em;color:var(--ops-muted)}
+.ops-pressure-board header strong{font:8px var(--mono);font-weight:500;color:var(--ops-cyan-dim)}
+.ops-pressure-list{display:grid;gap:5px}
+.ops-pressure-row{display:grid;grid-template-columns:minmax(120px,1.2fr) minmax(120px,2fr) 24px;gap:8px;align-items:center}
+.ops-pressure-row>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:8px var(--mono);color:var(--ops-muted)}
+.ops-pressure-row>div{height:5px;background:#102128;border:1px solid #143640}
+.ops-pressure-row i{display:block;height:100%;background:linear-gradient(90deg,var(--ops-orange),var(--ops-red))}
+.ops-pressure-row strong{text-align:right;font:8px var(--mono);color:var(--ops-text)}
+.ops-quota-gauge{height:12px;border:1px solid var(--ops-line);background:#0b1b21;overflow:hidden}
+.ops-quota-gauge i{display:block;height:100%;background:linear-gradient(90deg,var(--ops-cyan),var(--ops-amber) 70%,var(--ops-red))}
+.ops-quota-meta{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:8px}
+.ops-quota-meta span{font:7px var(--mono);color:var(--ops-muted)}
 .ops-lifecycle{border-top:1px solid var(--ops-line);background:#061016}
 .ops-lifecycle-head{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:11px 16px;border-bottom:1px solid var(--ops-line-soft)}
 .ops-lifecycle-head .eyebrow{margin:0;color:var(--ops-cyan-dim)}
@@ -1177,6 +1193,7 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
 
 @media(max-width:1000px){
   .ops-console-grid{grid-template-columns:1fr}.ops-viewport{border-right:0;border-bottom:1px solid var(--ops-line);min-height:380px}.ops-inspector{grid-template-columns:repeat(4,1fr);grid-template-rows:1fr}.ops-readout{border-bottom:0;border-right:1px solid var(--ops-line-soft)}.ops-readout:last-child{border-right:0}
+  .ops-pressure-board{grid-template-columns:1fr}.ops-pressure-board>section+section{border-left:0;border-top:1px solid var(--ops-line-soft)}
   .ops-pulse-ribbon{grid-template-columns:150px minmax(0,1fr)}.ops-pulse-legend{grid-column:1/-1;justify-content:flex-start;max-width:none}.ops-pulse-cells{grid-template-columns:repeat(25,minmax(3px,1fr))}
   .ops-lifecycle-grid{grid-template-columns:repeat(3,1fr)}.ops-lifecycle-grid>div:nth-child(3n){border-right:0}.ops-lifecycle-grid>div:nth-child(-n+3){border-bottom:1px solid var(--ops-line-soft)}
   .ops-matrix-block{grid-template-columns:1fr}.ops-matrix-stat{text-align:left}.matrix-plane-stack{grid-template-columns:repeat(4,minmax(0,1fr))}
@@ -1225,6 +1242,7 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
 }
 @media(max-width:430px){
   body.metrics-ops-active main,body.metrics-ops-active footer{margin-left:8px;margin-right:8px;max-width:calc(100% - 16px)}
+  .ops-pressure-board>section{padding:10px 12px}.ops-pressure-board header{align-items:flex-start}.ops-pressure-board header strong{text-align:right}.ops-pressure-row{grid-template-columns:minmax(90px,1.2fr) minmax(70px,1.8fr) 20px;gap:6px}.ops-pressure-row>span{font-size:7px}
   .ops-console{margin-top:12px}
   .ops-console-head{display:grid;grid-template-columns:1fr;gap:12px;padding:12px}
   .ops-console-actions{justify-content:flex-start;align-items:center}
