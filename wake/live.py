@@ -75,13 +75,12 @@ def _application_access_metrics(store):
 
 def _matrix_metrics(store):
     """Return bounded public matrix telemetry without result bodies."""
-    if not hasattr(store, "continuity_matrix_progress"):
-        return None
-    progress = store.continuity_matrix_progress()
-    if not isinstance(progress, dict):
-        return None
-
-    results = progress.get("results") or {}
+    progress = (
+        store.continuity_matrix_progress()
+        if hasattr(store, "continuity_matrix_progress")
+        else None
+    )
+    results = progress.get("results") or {} if isinstance(progress, dict) else {}
     counts = {"completed": 0, "failed": 0, "deferred": 0}
     status_by_coordinate = {}
     for coordinate_id, result in results.items():
@@ -108,11 +107,28 @@ def _matrix_metrics(store):
         for coordinate in MATRIX.coordinates()
     ]
     return {
-        "matrix": progress.get("matrix"),
-        "definition_digest": progress.get("definition_digest"),
-        "cell_count": progress.get("cell_count"),
-        "completed_count": progress.get("completed_count"),
-        "next_coordinate_id": progress.get("next_coordinate_id"),
+        "enabled": isinstance(progress, dict),
+        "matrix": progress.get("matrix") if isinstance(progress, dict) else f"{MATRIX.matrix_id}@{MATRIX.version}",
+        "definition_digest": (
+            progress.get("definition_digest")
+            if isinstance(progress, dict)
+            else MATRIX.definition_digest
+        ),
+        "cell_count": (
+            progress.get("cell_count")
+            if isinstance(progress, dict)
+            else MATRIX.cell_count
+        ),
+        "completed_count": (
+            progress.get("completed_count")
+            if isinstance(progress, dict)
+            else 0
+        ),
+        "next_coordinate_id": (
+            progress.get("next_coordinate_id")
+            if isinstance(progress, dict)
+            else None
+        ),
         "status_counts": counts,
         "axes": axes,
         "cells": cells,
