@@ -287,12 +287,18 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('grid-auto-columns:minmax(126px,42vw)', css)
         self.assertIn('.ops-deep-dive-heading>p:not(.eyebrow)', css)
 
-    def test_longitudinal_story_uses_recorded_reflection_receipts(self):
+    def test_longitudinal_story_distinguishes_declared_and_legacy_reflections(self):
         app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
         self.assertIn('LONGITUDINAL RECORD / DURABLE REFLECTIONS', app)
         self.assertIn('post?.reflection_cycle', app)
-        self.assertIn("created%10===0", app)
+        self.assertIn("const legacyClassified=!declared&&created>0&&created%10===0", app)
+        self.assertIn("origin:declared?'declared':'legacy'", app)
+        self.assertIn('legacy cycle-10 reflections preserved by historical governance', app)
+        self.assertIn("item.origin==='declared'?'DECLARED':'LEGACY'", app)
+        self.assertIn('.ops-history-dot.legacy i', css)
         self.assertIn('Gaps remain gaps.', app)
+        self.assertNotIn('Only explicit reflection receipts are plotted.', app)
         self.assertNotIn('inferred era', app.lower())
 
     def test_reflection_delta_story_uses_only_versioned_record_fields(self):
