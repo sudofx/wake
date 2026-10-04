@@ -405,8 +405,17 @@
     const revisedBeliefs=fullActions?.belief_actions??actionEvents.flatMap(x=>x.actions).filter(a=>a.type==='belief').length;
     const overdue=obligations.filter(c=>c.status==='open'&&s.version>=c.due_cycle).length;
     const fallbackWakes=completed.filter(i=>(i.provider_attempts||[]).length>1).length;
-    const knownAttempts=completed.flatMap(i=>i.provider_attempts||[]).filter(a=>a.result!=='unknown');
+    const knownAttempts=completed.flatMap(i=>(i.provider_attempts||[]).map((attempt,index)=>({...attempt,_wake:i.id,_attempt:index+1}))).filter(a=>a.result!=='unknown');
     const latency=knownAttempts.map(a=>a.elapsed_ms).filter(Number.isFinite).sort((a,b)=>a-b);
+    const providerTraceSource=knownAttempts.slice(-64);
+    const providerLatencyMax=Math.max(1,...providerTraceSource.map(a=>Number(a.elapsed_ms)||0));
+    const providerTrace=providerTraceSource.map(attempt=>{
+      const ms=Number(attempt.elapsed_ms)||0;
+      const height=Math.max(6,Math.min(100,100*Math.sqrt(ms/providerLatencyMax)));
+      const result=String(attempt.result||'unknown').toLowerCase().replace(/[^a-z0-9_-]+/g,'-');
+      const model=attempt.model||attempt.provider||'provider';
+      return `<a class="ops-provider-tick result-${esc(result)}" href="#history/${encodeURIComponent(attempt._wake||'')}" style="--provider-height:${height.toFixed(1)}%" title="${esc(model)} · ${esc(attempt.result||'unknown')} · ${ms.toLocaleString()} ms · attempt ${attempt._attempt}" aria-label="${esc(model)}, ${esc(attempt.result||'unknown')}, ${ms} milliseconds"></a>`;
+    }).join('');
     const trueMedian=values=>{if(!values.length)return null;const m=Math.floor(values.length/2);return values.length%2?values[m]:(values[m-1]+values[m])/2;};
     const medianLatency=latency.length?Math.round(trueMedian(latency)):null;
     const sortedCompleted=[...completed].sort((a,b)=>new Date(a.time)-new Date(b.time));
@@ -533,6 +542,11 @@
           <div class="ops-pulse-legend">${statuses.map(([name,value])=>`<span class="${esc(name)}"><i></i><b>${value}</b>${esc(name)}</span>`).join('')}</div>
         </div>
         <div class="ops-secondary-grid">
+        <div class="ops-provider-trace" aria-label="Recent provider attempt trace">
+          <div class="ops-provider-head"><div><span>PROVIDER ATTEMPT TRACE</span><strong>LAST ${providerTraceSource.length} KNOWN ATTEMPTS</strong></div><small>height = latency · color = recorded outcome</small></div>
+          <div class="ops-provider-track" role="group" aria-label="Recent provider attempt outcomes">${providerTrace||'<span class="empty">No known provider attempts yet.</span>'}</div>
+          <div class="ops-provider-meta"><span>median ${medianLatency===null?'—':medianLatency+' ms'}</span><span>${providerSuccesses} success-labelled</span><span>${fallbackWakes} fallback wakes</span></div>
+        </div>
         <div class="ops-pressure-board" aria-label="Operational pressure">
           <section>
             <header><span>GOVERNANCE PRESSURE</span><strong>${sortedReasons.length} rejection families</strong></header>
