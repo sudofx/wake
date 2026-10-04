@@ -238,7 +238,10 @@
     const links=[...nav.querySelectorAll('[data-story-target]')];
     const targets=links.map(link=>document.getElementById(link.dataset.storyTarget)).filter(Boolean);
     if(!targets.length)return;
+    let activeId='';
     const setActive=id=>{
+      if(id===activeId)return;
+      activeId=id;
       let activeLink=null;
       links.forEach(link=>{
         const active=link.dataset.storyTarget===id;
