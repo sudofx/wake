@@ -537,6 +537,10 @@
     const confidenceBandMax=Math.max(1,...confidenceBands.map(([,count])=>count));
     const confidenceBars=confidenceBands.map(([label,count])=>`<div class="ops-belief-band"><span>${label}</span><div><i style="width:${Math.max(count?5:0,100*count/confidenceBandMax)}%"></i></div><strong>${count}</strong></div>`).join('');
     const lineageEvidenceRoots=opsBeliefs.reduce((sum,item)=>sum+(Array.isArray(item?.evidence)?item.evidence.length:0),0);
+    const beliefsWithEvidence=opsBeliefs.filter(item=>Array.isArray(item?.evidence)&&item.evidence.length).length;
+    const citedEvidenceIds=[...new Set(opsBeliefs.flatMap(item=>Array.isArray(item?.evidence)?item.evidence:[]).map(String))];
+    const presentCitedEvidenceIds=citedEvidenceIds.filter(id=>Boolean(evidenceById[id])).length;
+    const missingCitedEvidenceIds=Math.max(0,citedEvidenceIds.length-presentCitedEvidenceIds);
     const beliefLineage=opsBeliefs
       .slice()
       .sort((a,b)=>Number(b?.updated_version||0)-Number(a?.updated_version||0)||String(a?.id||'').localeCompare(String(b?.id||'')))
@@ -1333,6 +1337,18 @@
               <div class="ops-evidence-matrix-header"><span>TOPIC</span>${evidenceTopicTierHeader}<b>TOTAL</b></div>
               <div class="ops-evidence-matrix-body">${evidenceTopicTierRows||'<p class="empty">No topic-attributed evidence telemetry is available.</p>'}</div>
             </div>
+          </div>
+        </div>
+        <div class="ops-evidence-belief-bridge" aria-label="Evidence to belief stored citation boundary">
+          <header><div><span>EVIDENCE → BELIEF / STORED CITATION BOUNDARY</span><strong>${lineageEvidenceRoots} citation edges across ${opsBeliefs.length} current beliefs.</strong></div><small>Stored linkage only. Citation presence does not prove truth, sufficiency, or causation.</small></header>
+          <div class="ops-evidence-belief-grid">
+            <div><span>CURRENT EVIDENCE RECORDS</span><strong>${evidenceCount}</strong><small>all evidence in current governed state</small></div>
+            <i aria-hidden="true">≠</i>
+            <div><span>UNIQUE CITED EVIDENCE IDS</span><strong>${citedEvidenceIds.length}</strong><small>${presentCitedEvidenceIds} present · ${missingCitedEvidenceIds} missing now</small></div>
+            <i aria-hidden="true">↔</i>
+            <div><span>STORED CITATION EDGES</span><strong>${lineageEvidenceRoots}</strong><small>references carried by current beliefs</small></div>
+            <i aria-hidden="true">↔</i>
+            <div><span>BELIEFS WITH CITATIONS</span><strong>${beliefsWithEvidence}/${opsBeliefs.length}</strong><small>active + retracted current belief state</small></div>
           </div>
         </div>
         <div class="ops-beliefs ops-story-chapter" id="ops-beliefs" data-story-chapter="05" data-story-name="BELIEF" aria-label="Governed belief telemetry">
