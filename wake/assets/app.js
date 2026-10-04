@@ -395,11 +395,18 @@
     const latestAcceptedActions=Array.isArray(latestAcceptedProposal?.actions)?latestAcceptedProposal.actions:[];
     const latestAcceptedJournal=[...(s.journal||[])].reverse().find(item=>item?.invocation===latestAcceptedId)||null;
     const latestAcceptedTypes=[...new Set(latestAcceptedActions.map(action=>String(action?.type||'change').toUpperCase()))];
+    const latestAcceptedActionRows=latestAcceptedActions.slice(0,4).map(action=>{
+      const type=String(action?.type||'change').toUpperCase();
+      const id=String(action?.id||'');
+      const detail=String(action?.statement||action?.task||action?.title||action?.status||action?.reason||'Accepted governed action');
+      return `<div class="ops-latest-action"><span>${esc(type)}</span><strong>${esc(detail)}</strong><small>${esc(id||'no action id')}</small></div>`;
+    }).join('');
+    const latestAcceptedHiddenActions=Math.max(0,latestAcceptedActions.length-4);
     const latestAcceptedTitle=String(latestAcceptedJournal?.title||latestAcceptedProposal?.title||latestAcceptedId||'No accepted wake recorded');
     const latestAcceptedSummary=String(latestAcceptedJournal?.summary||latestAcceptedProposal?.summary||'No durable journal summary is attached to the latest accepted wake.');
     const latestAcceptedCycle=Number(latestAcceptedJournal?.cycle||0);
     const latestWakeStory=latestAcceptedId
-      ? `<article class="ops-latest-wake"><div class="ops-latest-wake-kicker"><span>LATEST ACCEPTED WAKE${latestAcceptedCycle?' · CYCLE '+latestAcceptedCycle:''}</span><a href="#history/${encodeURIComponent(latestAcceptedId)}">EXACT RECEIPT →</a></div><h3>${esc(latestAcceptedTitle)}</h3><p>${esc(latestAcceptedSummary)}</p><div class="ops-latest-wake-meta"><span><b>${latestAcceptedActions.length}</b> governed change${latestAcceptedActions.length===1?'':'s'}</span><span>${latestAcceptedTypes.length?esc(latestAcceptedTypes.join(' · ')):'NO ACTION TYPES RECORDED'}</span><span>${esc(latestAcceptedId.slice(-14))}</span></div></article>`
+      ? `<article class="ops-latest-wake"><div class="ops-latest-wake-kicker"><span>LATEST ACCEPTED WAKE${latestAcceptedCycle?' · CYCLE '+latestAcceptedCycle:''}</span><a href="#history/${encodeURIComponent(latestAcceptedId)}">EXACT RECEIPT →</a></div><h3>${esc(latestAcceptedTitle)}</h3><p>${esc(latestAcceptedSummary)}</p><div class="ops-latest-action-list">${latestAcceptedActionRows||'<div class="ops-latest-action empty"><strong>No governed actions recorded on this accepted wake.</strong></div>'}${latestAcceptedHiddenActions?`<div class="ops-latest-action more"><span>+${latestAcceptedHiddenActions}</span><strong>additional accepted action${latestAcceptedHiddenActions===1?'':'s'}</strong><small>open exact receipt for full proposal</small></div>`:''}</div><div class="ops-latest-wake-meta"><span><b>${latestAcceptedActions.length}</b> governed change${latestAcceptedActions.length===1?'':'s'}</span><span>${latestAcceptedTypes.length?esc(latestAcceptedTypes.join(' · ')):'NO ACTION TYPES RECORDED'}</span><span>${esc(latestAcceptedId.slice(-14))}</span></div></article>`
       : '<article class="ops-latest-wake empty"><div class="ops-latest-wake-kicker"><span>LATEST ACCEPTED WAKE</span></div><h3>No accepted wake is present in the published record.</h3></article>';
 
     const opsProjectTrajectories=projects
