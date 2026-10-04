@@ -86,6 +86,11 @@ class FrontendHygieneTests(unittest.TestCase):
         self.assertIn("← EVENT '+esc(previous.seq)", flat_script)
         self.assertIn("EVENT '+esc(next.seq)+' →", flat_script)
         self.assertIn(".flat-target-status>nav{display:grid", css)
+        self.assertIn("RETURN TO EXACT 3D INVOCATION ↗", flat_script)
+        self.assertIn("map3d.html#record=invocation%3A", flat_script)
+        self.assertIn("currentEvent?.kind==='accepted'", flat_script)
+        self.assertIn(".flat-target-map{display:inline-flex", css)
+        self.assertIn(".flat-target-map{min-height:44px;font-size:9px", css)
 
     def test_full_history_filters_without_hiding_deep_linked_receipts(self):
         flat_script = (ASSETS / "flat-view.js").read_text()
