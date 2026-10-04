@@ -530,3 +530,38 @@ body[data-motion=off] *{animation:none!important}.floating .wake-tabs{margin:8px
   -webkit-text-fill-color:var(--muted)!important;
   background:none!important;
 }
+
+
+/* FROSTED WORKSPACE PANEL — 2026-10-04 */
+/* Tool workspaces float as a framed glass surface instead of reading as a full-page takeover. */
+.console-tools{
+  inset:96px 28px 28px!important;
+  border:1px solid rgba(78,126,160,.72)!important;
+  border-radius:16px!important;
+  overflow:hidden!important;
+  background:rgba(3,15,29,.76)!important;
+  box-shadow:0 24px 80px rgba(0,0,12,.46),inset 0 1px rgba(255,255,255,.035)!important;
+  backdrop-filter:blur(22px) saturate(116%)!important;
+  -webkit-backdrop-filter:blur(22px) saturate(116%)!important;
+}
+.console-tools-heading,
+.console-tool-tabs,
+.console-tools-note{
+  background:rgba(4,18,33,.50)!important;
+  backdrop-filter:blur(18px) saturate(112%)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(112%)!important;
+}
+#console-tool-frame{
+  background:transparent!important;
+}
+@media(min-width:1500px){
+  .console-tools{
+    inset:104px 4vw 36px!important;
+  }
+}
+@media(max-width:700px){
+  .console-tools{
+    inset:92px 10px 10px!important;
+    border-radius:13px!important;
+  }
+}
