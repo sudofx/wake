@@ -22,7 +22,7 @@ The **Console** (`console.html`) is the inspection workspace for that record. It
 
 ## Optional continuity matrix extension
 
-WAKE can explicitly opt into sudofx's versioned `continuity@1` 7×7×7 matrix without copying the matrix definition into this repository. sudofx owns the immutable grammar, coordinate IDs, traversal, validation, and definition digest; WAKE owns when the campaign is enabled, how coordinates are scheduled and prompted, how results are interpreted/scored, and which results count as completed. Matrix progress is committed through the existing WAKE `ApplicationHost` state in `sudofx.sqlite`; no JSON/Markdown progress store is authoritative. Existing research behavior is unchanged until matrix enablement is explicitly submitted.
+WAKE can explicitly opt into sudofx's versioned `continuity@1` 7×7×7 matrix without copying the matrix definition into this repository. sudofx owns the immutable grammar, coordinate IDs, traversal, validation, and definition digest; WAKE owns when the campaign is enabled, how coordinates are scheduled and prompted, how results are interpreted/scored, and which results count as completed. Matrix progress is committed through the existing WAKE `ApplicationHost` state in `sudofx.sqlite`; no JSON/Markdown progress store is authoritative. Existing research behavior is unchanged until matrix enablement is explicitly submitted. The **WAKE✳︎ - Enable continuity campaign** operator workflow performs that explicit opt-in through the serialized authority lane without calling a provider, and the Console links to it only when the durable projection explicitly reports the campaign disabled. Enablement creates the governed campaign state; automatic coordinate prompting, scoring, and completion scheduling are not yet wired into the ordinary research loop, so enabling alone does not advance `0/343`.
 
 
 ## Current architecture — October 2, 2026
@@ -141,6 +141,7 @@ Use the workflows by their literal names:
 - **WAKE✳︎ - Reset** — safely stop as needed, preserve/archive prior governed history, and start a new active generation at zero; requires the workflow's explicit reset confirmation.
 - **WAKE✳︎ — Make new code live** — verify the selected candidate (normally `master`), then move that exact tested commit to `wake-runtime`. Research must be stopped first.
 - **WAKE✳︎ - Restart** — safe maintenance shortcut: stop, verify current `master`, promote it, then start again.
+- **WAKE✳︎ - Enable continuity campaign** — provider-free explicit opt-in to the governed `continuity@1` 343-cell campaign; safely serializes the state change and restores the prior running/stopped state.
 - **WAKE✳︎ - Migrate authority to sudofx** — provider-free authority cutover/migration workflow; it does not start research or call Gemini.
 - **WAKE✳︎ — Phase E authority rehearsal** — automatic migration/replay rehearsal used to validate the sudofx cutover path.
 - **WAKE✳︎ — Update website · automatic** — rebuild the public GitHub Pages site when website code changes.
