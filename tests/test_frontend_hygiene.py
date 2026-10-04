@@ -44,6 +44,24 @@ class FrontendHygieneTests(unittest.TestCase):
         self.assertIn("DATA STORY · ${route.chapter} / ${route.name}", script)
         self.assertIn(".detail-story-link", css)
 
+    def test_3d_map_pairs_story_context_with_durable_record_routes(self):
+        script = (ASSETS / "map3d.js").read_text()
+        css = (ASSETS / "map3d.css").read_text()
+
+        self.assertIn("function durableRecordDestination(node)", script)
+        self.assertIn("EXACT WAKE RECEIPT", script)
+        self.assertIn("EXACT INVOCATION RECEIPT", script)
+        self.assertIn("DURABLE PUBLICATION", script)
+        self.assertIn("EVIDENCE RECORD", script)
+        self.assertIn("PROJECT RECORD", script)
+        self.assertIn("NOTEBOOK RECORD", script)
+        self.assertIn("LIFECYCLE RECEIPT", script)
+        self.assertIn("function detailContextLinks(node)", script)
+        self.assertIn("detail-record-link", script)
+        self.assertIn(".detail-context-links{display:grid", css)
+        self.assertIn(".detail-record-link", css)
+        self.assertIn(".detail-context-links{grid-template-columns:1fr}", css)
+
     def test_every_style_class_has_a_current_caller(self):
         css = (ASSETS / "style.css").read_text()
         callers = "\n".join(
