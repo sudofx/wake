@@ -490,6 +490,14 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn("matrixEnabled?matrixFailed:'—'", app)
         self.assertIn("WAKE has not recorded an enabled campaign in this generation.", app)
 
+    def test_story_marks_disabled_matrix_campaign_as_unmeasured(self):
+        app = self.read('wake/assets/app.js')
+        self.assertIn("const matrixPct=matrixEnabled&&matrixTotal?Math.round(100*matrixCompleted/matrixTotal):null", app)
+        self.assertIn("matrixPct===null?'not enabled':matrixPct+'% tested'", app)
+        self.assertIn("matrixPct===null?'continuity@1 not enabled':matrixPct+'% of continuity@1 tested'", app)
+        self.assertIn("matrixPct===null?'—':matrixPct+'%'", app)
+        self.assertIn("matrixPct===null?'not enabled':'covered'", app)
+
     def test_belief_story_links_recorded_evidence_and_update_receipts(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
