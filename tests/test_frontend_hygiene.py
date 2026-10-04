@@ -62,6 +62,16 @@ class FrontendHygieneTests(unittest.TestCase):
         self.assertIn(".detail-record-link", css)
         self.assertIn(".detail-context-links{grid-template-columns:1fr}", css)
 
+    def test_3d_map_uses_side_inspector_on_macbook_widths(self):
+        css = (ASSETS / "map3d.css").read_text()
+
+        self.assertIn("@media (min-width:1400px) and (max-width:1920px)", css)
+        self.assertIn(".constellation-workspace:has(>#details.active)", css)
+        self.assertIn("grid-template-columns:minmax(0,1fr) clamp(320px,22vw,380px)", css)
+        self.assertIn(".constellation-workspace>#details.active{", css)
+        self.assertIn("position:sticky", css)
+        self.assertIn("max-height:calc(100svh - 92px)", css)
+
     def test_every_style_class_has_a_current_caller(self):
         css = (ASSETS / "style.css").read_text()
         callers = "\n".join(
