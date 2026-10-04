@@ -215,7 +215,7 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertNotIn('"request", "response"', live)
 
     def test_operations_console_declares_mobile_and_wide_screen_breakpoints(self):
-        css = self.read('wake/assets/style.css')
+        css = self.read('wake/assets/ops.css')
         self.assertIn('@media(max-width:430px)', css)
         self.assertIn('@media(max-width:700px)', css)
         self.assertIn('@media(min-width:1600px)', css)
