@@ -61,6 +61,27 @@ def _full_history_metrics(store, state, performance=None):
     }
 
 
+
+def _record_integrity_metrics(store, head, performance=None):
+    """Expose bounded local integrity evidence without claiming external attestation."""
+    performance = performance or store.performance_snapshot()
+    if performance.get("authority") != "sudofx":
+        return None
+    return {
+        "trusted_projection_active": performance.get("trusted_projection_active") is True,
+        "sqlite_quick_check": performance.get("sudofx_quick_check"),
+        "sudofx_revision": performance.get("sudofx_revision"),
+        "sudofx_event_count": performance.get("sudofx_event_count"),
+        "invocation_event_count": performance.get("sudofx_invocation_event_count"),
+        "application_access_event_count": performance.get("sudofx_application_access_event_count"),
+        "schema_version": performance.get("sudofx_schema_version"),
+        "replay_ms": performance.get("sudofx_replay_ms"),
+        "database_bytes": performance.get("sudofx_database_bytes"),
+        "free_bytes": performance.get("sudofx_free_bytes"),
+        "wake_generation_head": head,
+        "scope": "Local hash-chain and SQLite integrity evidence; not authorship or external notarization.",
+    }
+
 def _application_access_metrics(store):
     """Expose only the public-safe state of the global application access latch."""
     source = store if hasattr(store, "application_access_state") else getattr(store, "record", None)
@@ -187,20 +208,7 @@ def build_live_projection(store, operation=None, runtime_ref=""):
         "operation": deepcopy(operation),
         "wake_status": deepcopy((operation or {}).get("wake_status", {})),
         "metrics": _full_history_metrics(store, state, performance),
-        "record_integrity": {
-            "trusted_projection_active": performance.get("trusted_projection_active") is True,
-            "sqlite_quick_check": performance.get("sudofx_quick_check"),
-            "sudofx_revision": performance.get("sudofx_revision"),
-            "sudofx_event_count": performance.get("sudofx_event_count"),
-            "invocation_event_count": performance.get("sudofx_invocation_event_count"),
-            "application_access_event_count": performance.get("sudofx_application_access_event_count"),
-            "schema_version": performance.get("sudofx_schema_version"),
-            "replay_ms": performance.get("sudofx_replay_ms"),
-            "database_bytes": performance.get("sudofx_database_bytes"),
-            "free_bytes": performance.get("sudofx_free_bytes"),
-            "wake_generation_head": head,
-            "scope": "Local hash-chain and SQLite integrity evidence; not authorship or external notarization.",
-        } if performance.get("authority") == "sudofx" else None,
+        "record_integrity": _record_integrity_metrics(store, head, performance),
         "application_observability": build_application_observability(store.record) if hasattr(store, "record") else None,
         "application_access": _application_access_metrics(store),
         "matrix_progress": _matrix_metrics(store),
