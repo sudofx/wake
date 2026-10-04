@@ -612,6 +612,10 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-frontier-pair{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);border-top:1px solid var(--ops-line)}', css)
         self.assertIn('.ops-frontier-pair>.ops-drive{border-left:1px solid var(--ops-line)}', css)
 
+    def test_phone_story_microtype_keeps_meaningful_labels_legible(self):
+        css = self.read('wake/assets/style.css')
+        self.assertIn('.ops-provenance-jump a small,.ops-audit-steps small,.ops-history-legend span,.ops-present-endpoint small{font-size:7px}', css)
+
     def test_phone_verification_rail_raises_microtype(self):
         css = self.read('wake/assets/style.css')
         self.assertIn('.ops-verify-index span{font-size:8px}.ops-verify-index strong{font-size:9px}', css)
