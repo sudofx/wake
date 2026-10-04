@@ -298,6 +298,16 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('"temporal", "context_delivery", "working_set_metrics", "runtime_performance"', live)
         self.assertNotIn('"request", "response"', live)
 
+    def test_memory_omission_profile_uses_only_explicit_receipts(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('OMISSION PROFILE / RECENT CONTEXT DELIVERY', app)
+        self.assertIn('item?.context_delivery?.omitted_categories', app)
+        self.assertIn('Counts come only from explicit omitted_categories receipts.', app)
+        self.assertIn('No omission is inferred from payload size or compression ratio.', app)
+        self.assertIn('.ops-omission-profile', css)
+        self.assertIn('.ops-omission-row', css)
+
     def test_metrics_show_context_continuity_without_inventing_handoffs(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
