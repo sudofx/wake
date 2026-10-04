@@ -244,3 +244,26 @@ nav.compact-nav{display:flex;align-items:center;justify-content:center;gap:22px;
   .actions-light{min-width:94px!important;padding:0 8px!important;gap:7px!important}
   .actions-light-label{font-size:10px}
 }
+
+
+/* WAKE WORDMARK GRADIENT — 2026-10-04 */
+.masthead .wordmark,
+.brand-lockup .wordmark{
+  color:transparent!important;
+  background:linear-gradient(90deg,#20e2ed 0%,#5aa5ff 48%,#d84dff 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.masthead .wordmark .asterisk,
+.brand-lockup .wordmark .asterisk{
+  color:inherit!important;
+  -webkit-text-fill-color:transparent!important;
+  text-shadow:none!important;
+}
+.masthead .wordmark small,
+.brand-lockup .wordmark small{
+  color:var(--muted)!important;
+  -webkit-text-fill-color:var(--muted)!important;
+  background:none!important;
+}
