@@ -692,6 +692,7 @@
       .filter(t=>t.total>0)
       .sort((a,b)=>b.total-a.total||a.label.localeCompare(b.label));
     const configuredTopicCount=(s.research_topics||[]).length;
+    const topicCoveragePct=configuredTopicCount?100*topicActive/configuredTopicCount:null;
     const topicAttributedTotal=topicRows.reduce((n,t)=>n+t.total,0);
     const matrixCell=(count,total)=>count
       ? `<span class="matrix-value" style="--cell-fill:${Math.max(8,100*count/Math.max(1,total))}%"><b>${count}</b></span>`
@@ -770,7 +771,7 @@
       ['Fallback rate',fallbackRate===null?'—':fallbackRate.toFixed(1)+'%',completed.length?fallbackWakes+' multi-attempt wakes':'No completed wakes yet','warning'],
       ['Actions / accepted',actionPerAccepted===null?'—':actionPerAccepted.toFixed(2),acceptedCount?actionTotal+' durable actions':'No accepted wakes yet','neutral'],
       ['Evidence density',evidencePerAccepted===null?'—':evidencePerAccepted.toFixed(2),acceptedCount?evidenceCount+' current evidence records ÷ '+acceptedCount+' accepted wakes':'No accepted wakes yet','info'],
-      ['Topic coverage',topicActive+'/'+configuredTopicCount,'configured topics with accepted-action activity','info'],
+      ['Topic coverage',configuredTopicCount?topicActive+'/'+configuredTopicCount:'—',configuredTopicCount?'configured topics with accepted-action activity':'No configured research topics','info'],
       ['Open obligations',openObligations,String(overdue)+' overdue',openObligations?'warning':'success'],
       ['Capability blocks',capabilityBlocks,'equivalent retrieval routes paused',capabilityBlocks?'warning':'neutral'],
       ['Problem frames',frames.length,'strategy hypotheses; not findings','neutral'],
@@ -1005,7 +1006,7 @@
           <div class="ops-signal danger" style="--signal:${rejectionRate===null?0:Math.min(100,rejectionRate)}%" title="${completed.length?'Share of completed wakes rejected':'No completed wakes yet'}"><span>GOVERNANCE PRESSURE</span><strong>${rejectionRate===null?'—':rejectionRate.toFixed(1)+'%'}</strong><i></i></div>
           <div class="ops-signal" style="--signal:${handoffRate===null?0:Math.min(100,handoffRate)}%" title="${fulfilled.length?'Share of fulfilled obligations resolved by a different invocation':'No fulfilled obligations yet'}"><span>HANDOFF CONTINUITY</span><strong>${handoffRate===null?'—':handoffRate+'%'}</strong><i></i></div>
           <div class="ops-signal warning" style="--signal:${fallbackRate===null?0:Math.min(100,fallbackRate)}%" title="${completed.length?'Share of completed wakes using provider fallback':'No completed wakes yet'}"><span>FALLBACK LOAD</span><strong>${fallbackRate===null?'—':fallbackRate.toFixed(1)+'%'}</strong><i></i></div>
-          <div class="ops-signal info" style="--signal:${Math.min(100,configuredTopicCount?100*topicActive/configuredTopicCount:0)}%"><span>TOPIC COVERAGE</span><strong>${topicActive}/${configuredTopicCount}</strong><i></i></div>
+          <div class="ops-signal info" style="--signal:${topicCoveragePct===null?0:Math.min(100,topicCoveragePct)}%" title="${configuredTopicCount?'Configured topics with accepted-action activity':'No configured research topics'}"><span>TOPIC COVERAGE</span><strong>${configuredTopicCount?topicActive+'/'+configuredTopicCount:'—'}</strong><i></i></div>
           <div class="ops-signal info" style="--signal:${matrixPct===null?0:Math.min(100,matrixPct)}%"><span>MATRIX COVERAGE</span><strong>${matrixPct===null?'—':matrixPct+'%'}</strong><i></i></div>
         </div>
         <div class="ops-tertiary-grid">
