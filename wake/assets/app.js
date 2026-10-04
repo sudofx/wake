@@ -672,6 +672,9 @@
     const contextDeliveredChars=Number(contextDelivery?.delivered_request_chars||contextDelivery?.delivered_context_chars||0);
     const contextDeliveredPct=contextDelivery&&contextRichChars>0?Math.max(0,Math.min(100,100*contextDeliveredChars/contextRichChars)):null;
     const contextOmittedCount=Array.isArray(contextDelivery?.omitted_categories)?contextDelivery.omitted_categories.length:null;
+    const contextRetrievalEvidence=Number.isFinite(Number(contextMetrics.retrieval_evidence_count))?Number(contextMetrics.retrieval_evidence_count):null;
+    const contextRehydratedEvidence=Number.isFinite(Number(contextMetrics.retrieval_rehydrated_evidence_count))?Number(contextMetrics.retrieval_rehydrated_evidence_count):null;
+    const contextTrustRoots=Number.isFinite(Number(contextMetrics.trust_compact_evidence_root_count))?Number(contextMetrics.trust_compact_evidence_root_count):null;
     const contextTraceSource=contextInvocations.slice(-48);
     const contextRichMax=Math.max(1,...contextTraceSource.map(item=>Number(item.context_delivery.rich_context_chars)||0));
     const contextTrace=contextTraceSource.map(item=>{
@@ -1277,9 +1280,9 @@
             <div><span>RICH REQUEST</span><strong>${contextDelivery?Number(contextDelivery.rich_context_chars||0).toLocaleString():'—'}</strong><small>characters before delivery fallback</small></div>
             <div><span>DELIVERED REQUEST</span><strong>${contextDelivery?Number(contextDelivery.delivered_request_chars||0).toLocaleString():'—'}</strong><small>characters crossing model boundary</small></div>
             <div><span>OMITTED CATEGORIES</span><strong>${Array.isArray(contextDelivery?.omitted_categories)?contextDelivery.omitted_categories.length:'—'}</strong><small>explicitly receipt-tracked omissions</small></div>
-            <div><span>REHYDRATED EVIDENCE</span><strong>${Number.isFinite(Number(contextMetrics.retrieval_rehydrated_evidence_count))?Number(contextMetrics.retrieval_rehydrated_evidence_count):'—'}</strong><small>exact evidence restored from retrieval plan</small></div>
-            <div><span>RETRIEVAL EVIDENCE</span><strong>${Number.isFinite(Number(contextMetrics.retrieval_evidence_count))?Number(contextMetrics.retrieval_evidence_count):'—'}</strong><small>evidence roots selected for recovery</small></div>
-            <div><span>TRUST ROOTS</span><strong>${Number.isFinite(Number(contextMetrics.trust_compact_evidence_root_count))?Number(contextMetrics.trust_compact_evidence_root_count):'—'}</strong><small>receipt-side compact provenance roots</small></div>
+            <div><span>REHYDRATED EVIDENCE</span><strong>${contextRehydratedEvidence===null?'—':contextRehydratedEvidence}</strong><small>exact evidence restored from retrieval plan</small></div>
+            <div><span>RETRIEVAL EVIDENCE</span><strong>${contextRetrievalEvidence===null?'—':contextRetrievalEvidence}</strong><small>evidence roots selected for recovery</small></div>
+            <div><span>TRUST ROOTS</span><strong>${contextTrustRoots===null?'—':contextTrustRoots}</strong><small>receipt-side compact provenance roots</small></div>
           </div>
           <div class="ops-context-trace">
             <div class="ops-context-trace-head"><span>CONTEXT PRESSURE / LAST ${contextTraceSource.length}</span><small>height = rich request · inner fill = delivered share · orange = bounded mode</small></div>
@@ -1296,6 +1299,18 @@
           <div class="ops-continuity-thread">
             <div class="ops-continuity-head"><div><span>DURABLE CONTINUITY THREAD / RECENT INVOCATIONS</span><strong>${lifecycleRecent.length} lifecycle receipts</strong></div><small>observed record revision span ${esc(lifecycleRevisionSpan)} · source revision → governed context → recorded outcome</small></div>
             <div class="ops-continuity-track" role="group" aria-label="Recent invocation context continuity">${lifecycleContinuity}</div>
+          </div>
+        </div>
+        <div class="ops-memory-evidence-bridge" aria-label="Memory to evidence scope comparison">
+          <header><div><span>MEMORY → EVIDENCE / LATEST CONTEXT RECEIPT</span><strong>Recovery scope beside governed evidence state.</strong></div><small>These populations have different scopes. They are shown side by side, not as a conservation funnel.</small></header>
+          <div class="ops-memory-evidence-steps">
+            <div><span>CURRENT GOVERNED EVIDENCE</span><strong>${evidenceCount}</strong><small>all evidence records in current state</small></div>
+            <i aria-hidden="true">≠</i>
+            <div><span>RETRIEVAL ROOTS SELECTED</span><strong>${contextRetrievalEvidence===null?'—':contextRetrievalEvidence}</strong><small>latest context receipt only</small></div>
+            <i aria-hidden="true">→</i>
+            <div><span>EXACT EVIDENCE REHYDRATED</span><strong>${contextRehydratedEvidence===null?'—':contextRehydratedEvidence}</strong><small>latest context receipt only</small></div>
+            <i aria-hidden="true">+</i>
+            <div><span>COMPACT TRUST ROOTS</span><strong>${contextTrustRoots===null?'—':contextTrustRoots}</strong><small>latest context receipt only</small></div>
           </div>
         </div>
         <div class="ops-provenance ops-story-chapter" id="ops-evidence" data-story-chapter="04" data-story-name="EVIDENCE" aria-label="Evidence provenance telemetry">
