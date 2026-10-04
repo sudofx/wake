@@ -40,13 +40,18 @@
 const actionsLight=document.querySelector('.actions-light');
 if(actionsLight){
   const refreshActionsLight=()=>{
-    const url='https://api.github.com/repos/sudofx/wake/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=10&_='+Date.now();
-    fetch(url,{cache:'no-store'})
-      .then(response=>response.ok?response.json():Promise.reject())
-      .then(payload=>{
-        const running=(payload.workflow_runs||[]).some(run=>run.status!=='completed');
-        actionsLight.dataset.state=running?'running':'stopped';
-        actionsLight.title=running?'Running':'Stopped';
+    const bust='?_='+Date.now();
+    const latchUrl='https://api.github.com/repos/sudofx/wake/actions/workflows/wake-runner.yml'+bust;
+    const runsUrl='https://api.github.com/repos/sudofx/wake/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=10&_='+Date.now();
+    Promise.all([
+      fetch(latchUrl,{cache:'no-store'}).then(response=>response.ok?response.json():Promise.reject()),
+      fetch(runsUrl,{cache:'no-store'}).then(response=>response.ok?response.json():Promise.reject()),
+    ])
+      .then(([latch,runs])=>{
+        const enabled=latch.state==='active';
+        const activeCycle=(runs.workflow_runs||[]).some(run=>run.status!=='completed');
+        actionsLight.dataset.state=enabled?'running':'stopped';
+        actionsLight.title=enabled?(activeCycle?'Running':'Running · between cycles'):'Stopped';
       })
       .catch(()=>{
         actionsLight.removeAttribute('data-state');
