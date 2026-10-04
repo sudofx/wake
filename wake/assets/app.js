@@ -233,9 +233,9 @@
     const matrixCompleted=Number(matrixProgress?.completed_count||0);
     const matrixTotal=Number(matrixProgress?.cell_count||343);
     const matrixPct=matrixTotal?Math.round(100*matrixCompleted/matrixTotal):0;
-    const matrixResults=Object.values(matrixProgress?.results||{});
-    const matrixFailed=matrixResults.filter(item=>item?.status==='failed').length;
-    const matrixDeferred=matrixResults.filter(item=>item?.status==='deferred').length;
+    const matrixStatusCounts=matrixProgress?.status_counts||{};
+    const matrixFailed=Number(matrixStatusCounts.failed||0);
+    const matrixDeferred=Number(matrixStatusCounts.deferred||0);
     const currentStatus=wakeStatus.pending?'PENDING':wakeStatus.next_eligible?'WAITING':'IDLE';
     const latestAttempt=wakeStatus.latest_attempt||null;
     const latestAttemptStatus=latestAttempt?.status||'none';
