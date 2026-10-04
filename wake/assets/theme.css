@@ -2162,7 +2162,7 @@ body>.masthead .powered-by{
 /* HOME RESEARCH + LATEST PUBLICATIONS — 2026-10-04 */
 /* Back the Nebula artwork down another ~5% from the current presentation. */
 .site-backdrop{filter:none!important}
-.site-backdrop::after{background:rgba(2,6,20,.10)!important}
+.site-backdrop::after{background:rgba(2,6,20,.20)!important}
 
 .home-research-section,
 .home-latest-card{
