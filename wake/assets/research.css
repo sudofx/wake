@@ -304,3 +304,7 @@ body[data-motion=off] *{animation:none!important}.floating .wake-tabs{margin:8px
     margin-right:0!important;
   }
 }
+
+
+/* DARK-ONLY CONSOLE THEME — 2026-10-04 */
+.research-header .theme-switch,.theme-switch{display:none!important}
