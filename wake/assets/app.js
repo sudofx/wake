@@ -256,13 +256,13 @@
     const evidenceTierRows=Object.entries(evidenceTiers).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));
     const evidenceTierMax=Math.max(1,...evidenceTierRows.map(([,count])=>count));
     const evidenceTierBars=evidenceTierRows.slice(0,7).map(([tier,count])=>`<div class="ops-provenance-row"><span>${esc(String(tier).replaceAll('-',' '))}</span><div><i style="width:${Math.max(4,100*count/evidenceTierMax)}%"></i></div><strong>${count}</strong></div>`).join('')||'<p class="empty">No evidence provenance recorded.</p>';
-    const beliefs=Object.values(s.beliefs||{});
-    const activeBeliefs=beliefs.filter(item=>item?.status==='active');
-    const retractedBeliefs=beliefs.filter(item=>item?.status==='retracted');
-    const activeConfidences=activeBeliefs.map(item=>Number(item.confidence)).filter(Number.isFinite).sort((a,b)=>a-b);
+    const opsBeliefs=Object.values(s.beliefs||{});
+    const opsActiveBeliefs=opsBeliefs.filter(item=>item?.status==='active');
+    const opsRetractedBeliefs=opsBeliefs.filter(item=>item?.status==='retracted');
+    const activeConfidences=opsActiveBeliefs.map(item=>Number(item.confidence)).filter(Number.isFinite).sort((a,b)=>a-b);
     const medianConfidence=activeConfidences.length?activeConfidences[Math.floor((activeConfidences.length-1)/2)]:null;
-    const falsifierCount=activeBeliefs.filter(item=>String(item?.falsifier||'').trim()).length;
-    const beliefEvidenceRoots=activeBeliefs.reduce((sum,item)=>sum+(Array.isArray(item?.evidence)?item.evidence.length:0),0);
+    const falsifierCount=opsActiveBeliefs.filter(item=>String(item?.falsifier||'').trim()).length;
+    const beliefEvidenceRoots=opsActiveBeliefs.reduce((sum,item)=>sum+(Array.isArray(item?.evidence)?item.evidence.length:0),0);
     const confidenceBands=[
       ['0–.2',0,.2],['.2–.4',.2,.4],['.4–.6',.4,.6],['.6–.8',.6,.8],['.8–1',.8,1.000001]
     ].map(([label,low,high])=>[label,activeConfidences.filter(value=>value>=low&&value<high).length]);
@@ -438,6 +438,7 @@
     const windows=[]; for(let i=0;i<completed.length;i+=10){const group=completed.slice(i,i+10),a=group.filter(x=>x.status==='accepted').length,r=group.filter(x=>x.status==='rejected').length,d=group.filter(x=>x.status==='deferred').length;windows.push({label:`${i+1}–${i+group.length}`,a,r,d,total:group.length});}
     const trend=windows.map(w=>`<div class="trend-col" title="Wakes ${w.label}: ${w.a} accepted, ${w.r} rejected, ${w.d} deferred"><div class="trend-stack"><i class="accepted" style="height:${100*w.a/w.total}%"></i><i class="rejected" style="height:${100*w.r/w.total}%"></i><i class="deferred" style="height:${100*w.d/w.total}%"></i></div><span>${w.label}</span></div>`).join('');
 
+    const beliefs=Object.values(s.beliefs||{}), activeBeliefs=beliefs.filter(b=>b.status==='active'), retractedBeliefs=beliefs.filter(b=>b.status==='retracted');
     const revisedBeliefs=fullActions?.belief_actions??actionEvents.flatMap(x=>x.actions).filter(a=>a.type==='belief').length;
     const overdue=obligations.filter(c=>c.status==='open'&&s.version>=c.due_cycle).length;
     const fallbackWakes=completed.filter(i=>(i.provider_attempts||[]).length>1).length;
@@ -693,15 +694,15 @@
         </div>
         <div class="ops-beliefs" id="ops-beliefs" aria-label="Governed belief telemetry">
           <div class="ops-beliefs-head">
-            <div><p class="eyebrow">EPISTEMIC FIELD / GOVERNED BELIEF STATE</p><h3>${activeBeliefs.length} active · ${retractedBeliefs.length} retracted</h3></div>
+            <div><p class="eyebrow">EPISTEMIC FIELD / GOVERNED BELIEF STATE</p><h3>${opsActiveBeliefs.length} active · ${opsRetractedBeliefs.length} retracted</h3></div>
             <small>confidence is recorded model state, not an empirical probability of truth</small>
           </div>
           <div class="ops-beliefs-grid">
             <div class="ops-belief-kpis">
-              <div><span>ACTIVE</span><strong>${activeBeliefs.length}</strong><small>currently carried beliefs</small></div>
-              <div><span>RETRACTED</span><strong>${retractedBeliefs.length}</strong><small>kept visible in history</small></div>
+              <div><span>ACTIVE</span><strong>${opsActiveBeliefs.length}</strong><small>currently carried beliefs</small></div>
+              <div><span>RETRACTED</span><strong>${opsRetractedBeliefs.length}</strong><small>kept visible in history</small></div>
               <div><span>MEDIAN CONFIDENCE</span><strong>${medianConfidence===null?'—':medianConfidence.toFixed(2)}</strong><small>active beliefs only</small></div>
-              <div><span>FALSIFIERS</span><strong>${falsifierCount}/${activeBeliefs.length}</strong><small>active beliefs with explicit reopen condition</small></div>
+              <div><span>FALSIFIERS</span><strong>${falsifierCount}/${opsActiveBeliefs.length}</strong><small>active beliefs with explicit reopen condition</small></div>
               <div><span>EVIDENCE ROOTS</span><strong>${beliefEvidenceRoots}</strong><small>citations carried by active beliefs</small></div>
             </div>
             <div class="ops-belief-distribution"><header><span>ACTIVE CONFIDENCE DISTRIBUTION</span><strong>${activeConfidences.length} measured</strong></header><div>${confidenceBars}</div></div>
