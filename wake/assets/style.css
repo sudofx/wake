@@ -1510,3 +1510,50 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
   .ops-signal{padding:14px 18px 15px}
   .ops-signal strong{font-size:23px}
 }
+
+
+/* Inquiry-drive shadow instrument: deterministic observation, never authority. */
+.ops-drive{border-top:1px solid var(--ops-line);background:#061016}
+.ops-drive-head{display:flex;justify-content:space-between;gap:18px;align-items:end;padding:13px 16px;border-bottom:1px solid var(--ops-line-soft)}
+.ops-drive-head .eyebrow{margin:0 0 4px;color:var(--ops-orange)}
+.ops-drive-head h3{margin:0;font:500 18px/1.15 var(--sans);color:#edf8fa}
+.ops-drive-gate{text-align:right}
+.ops-drive-gate strong{font:500 27px/1 var(--mono);color:var(--ops-orange)}
+.ops-drive-gate>span{font:7px var(--mono);letter-spacing:.1em;color:var(--ops-muted)}
+.ops-drive-gate small{display:block;margin-top:4px;font:7px/1.35 var(--mono);color:#4d6d74}
+.ops-drive-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr)}
+.ops-drive-ranking{min-width:0;border-right:1px solid var(--ops-line-soft)}
+.ops-drive-row{display:grid;grid-template-columns:28px minmax(150px,1.3fr) minmax(210px,1fr) 52px;gap:10px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--ops-line-soft)}
+.ops-drive-row:last-child{border-bottom:0}
+.ops-drive-row>em{font:500 16px/1 var(--mono);font-style:normal;color:var(--ops-muted)}
+.ops-drive-copy{min-width:0}.ops-drive-copy strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:500 12px/1.3 var(--sans);color:#e6f5f7}.ops-drive-copy small{display:block;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:7px var(--mono);color:#4d6d74}
+.ops-drive-components{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
+.ops-drive-components>span{display:grid;grid-template-columns:10px 1fr;gap:4px;align-items:center}
+.ops-drive-components b{font:7px var(--mono);font-weight:500;color:var(--ops-muted)}
+.ops-drive-components i{display:block;height:5px;background:linear-gradient(90deg,var(--ops-cyan-dim) 0 var(--drive-component),#102128 var(--drive-component) 100%);border:1px solid #143640}
+.ops-drive-score{width:44px;height:44px;border-radius:50%;display:flex;align-items:baseline;justify-content:center;padding-top:14px;background:conic-gradient(var(--ops-orange) 0 var(--drive-score),#102128 var(--drive-score) 100%);position:relative}
+.ops-drive-score:before{content:"";position:absolute;inset:4px;border-radius:50%;background:#061016}
+.ops-drive-score b,.ops-drive-score span{position:relative;z-index:1}.ops-drive-score b{font:500 12px var(--mono);color:#eef}.ops-drive-score span{font:6px var(--mono);color:var(--ops-muted)}
+.ops-drive-history{padding:12px 14px;min-width:0}
+.ops-drive-history header{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:8px}.ops-drive-history header span{font:7px var(--mono);letter-spacing:.1em;color:var(--ops-muted)}.ops-drive-history header strong{font:8px var(--mono);font-weight:500;color:var(--ops-orange)}
+.ops-drive-track{height:78px;display:grid;grid-template-columns:repeat(40,minmax(2px,1fr));gap:2px;align-items:end;border-bottom:1px solid var(--ops-line-soft);background:linear-gradient(180deg,rgba(229,147,43,.025),transparent)}
+.ops-drive-tick{display:block;height:var(--drive-height);min-height:4px;background:var(--ops-cyan-dim);opacity:.65}
+.ops-drive-tick.advisory{background:var(--ops-orange);box-shadow:0 0 7px #e5932b44;opacity:.9}
+.ops-drive-tick:hover,.ops-drive-tick:focus-visible{opacity:1;outline:1px solid #eff;outline-offset:1px}
+.ops-drive-history p{margin:7px 0 0;font:7px/1.45 var(--mono);color:#4d6d74}
+
+@media(max-width:1000px){
+  .ops-drive-grid{grid-template-columns:1fr}.ops-drive-ranking{border-right:0;border-bottom:1px solid var(--ops-line-soft)}
+  .ops-drive-track{grid-template-columns:repeat(40,minmax(2px,1fr))}
+}
+@media(max-width:700px){
+  .ops-drive-head{align-items:flex-start}.ops-drive-gate strong{font-size:23px}
+  .ops-drive-row{grid-template-columns:24px minmax(0,1fr) 46px;gap:8px}
+  .ops-drive-components{grid-column:2/-1;grid-template-columns:repeat(5,1fr)}
+  .ops-drive-track{grid-template-columns:repeat(40,minmax(1px,1fr));gap:1px;height:68px}
+}
+@media(max-width:430px){
+  .ops-drive-head{display:block}.ops-drive-gate{text-align:left;margin-top:8px}
+  .ops-drive-row{padding:9px 10px}.ops-drive-copy strong{font-size:11px}
+  .ops-drive-history{padding:10px}.ops-drive-history header{display:block}.ops-drive-history header strong{display:block;margin-top:4px}
+}
