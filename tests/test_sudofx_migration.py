@@ -431,6 +431,13 @@ class SudofxMigrationTests(unittest.TestCase):
                 projection["metrics"]["storage"]["event_count"],
                 len(store.events()),
             )
+            integrity = projection["record_integrity"]
+            self.assertTrue(integrity["semantic_replay_verified"])
+            self.assertEqual(integrity["sqlite_quick_check"], "ok")
+            self.assertEqual(integrity["sudofx_revision"], store.kernel.context().revision)
+            self.assertGreaterEqual(integrity["sudofx_event_count"], 1)
+            self.assertGreaterEqual(integrity["database_bytes"], 1)
+            self.assertIn("not authorship or external notarization", integrity["scope"])
 
             export(store, self.root / "sudofx-site")
             self.assertTrue((self.root / "sudofx-site" / "index.html").is_file())
