@@ -1069,6 +1069,7 @@ body.metrics-ops-active .reading-key strong{color:var(--ops-orange)}
 .ops-source-rail .ops-access.enabled strong{color:var(--ops-green)}
 .ops-source-rail .ops-access.disabled{background:color-mix(in srgb,var(--ops-red) 9%,transparent)}
 .ops-source-rail .ops-access.disabled strong{color:var(--ops-red)}
+.ops-source-rail .ops-access.unknown strong{color:var(--ops-amber)}
 .ops-console-grid{display:grid;grid-template-columns:minmax(0,1fr) 245px;min-height:430px}
 .ops-viewport{position:relative;overflow:hidden;min-height:430px;border-right:1px solid var(--ops-line);background:
   radial-gradient(circle at 50% 48%,rgba(99,232,238,.09),transparent 22rem),
