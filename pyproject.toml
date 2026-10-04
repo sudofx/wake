@@ -9,7 +9,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "wake"
 version = "0.21.0"
-description = "Disposable models. Durable state. Receipts for everything."
+description = "Infrastructure for durable, accountable work across interchangeable intelligences."
 requires-python = ">=3.11"
 dependencies = [
   "pypdf==6.19.0",
