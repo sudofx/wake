@@ -2157,3 +2157,212 @@ body>.masthead .powered-by{
     height:74px!important;
   }
 }
+
+
+/* HOME RESEARCH + LATEST PUBLICATIONS — 2026-10-04 */
+/* Back the Nebula artwork down another ~5% from the current presentation. */
+.site-backdrop{filter:none!important}
+.site-backdrop::after{background:rgba(2,6,20,.10)!important}
+
+.home-research-section,
+.home-latest-card{
+  background:rgba(4,15,34,.66);
+  border:1px solid rgba(74,111,158,.60);
+  border-radius:12px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 18px 48px rgba(0,0,18,.16);
+  backdrop-filter:blur(20px) saturate(116%);
+  -webkit-backdrop-filter:blur(20px) saturate(116%);
+}
+.home-research-section{
+  margin-top:18px;
+  padding:24px;
+}
+.home-section-heading{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:24px;
+  margin-bottom:18px;
+}
+.home-section-heading>div{max-width:760px}
+.home-section-heading .eyebrow{margin:0 0 5px}
+.home-section-heading h2{
+  margin:0;
+  color:#f6f8ff;
+  font:760 clamp(28px,3vw,38px)/1.05 -apple-system,BlinkMacSystemFont,"SF Pro Display",Inter,"Segoe UI",Arial,sans-serif;
+  letter-spacing:-.04em;
+}
+.home-section-heading p:last-child{
+  margin:8px 0 0;
+  color:#aeb8d4;
+  font-size:14px;
+}
+.home-section-heading>a{
+  flex:0 0 auto;
+  color:#28e2eb;
+  font-size:13px;
+  white-space:nowrap;
+}
+.home-topic-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.home-topic-card{
+  min-width:0;
+  padding:17px 18px 16px;
+  border:1px solid rgba(71,103,151,.52);
+  border-radius:10px;
+  background:rgba(4,16,35,.55);
+  backdrop-filter:blur(14px) saturate(112%);
+  -webkit-backdrop-filter:blur(14px) saturate(112%);
+}
+.home-topic-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:14px;
+}
+.home-topic-head span{
+  display:block;
+  color:var(--topic-color,#25e6ee);
+  font:9px/1.2 var(--mono);
+  letter-spacing:.11em;
+}
+.home-topic-head h3{
+  margin:4px 0 0;
+  color:#f5f7ff;
+  font:700 18px/1.2 var(--sans);
+}
+.home-topic-head>a{
+  color:#26e1ea;
+  font-size:12px;
+  white-space:nowrap;
+}
+.home-topic-card>p{
+  min-height:42px;
+  margin:12px 0 13px;
+  color:#b8c2dc!important;
+  font-size:13px;
+  line-height:1.45;
+}
+.home-topic-progress{
+  height:4px;
+  overflow:hidden;
+  border-radius:999px;
+  background:#172846;
+}
+.home-topic-progress i{
+  display:block;
+  width:var(--topic-progress,8%);
+  height:100%;
+  border-radius:inherit;
+  background:linear-gradient(90deg,var(--topic-color,#25e6ee),#b34bff);
+}
+.home-topic-metrics{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:8px;
+  margin-top:13px;
+}
+.home-topic-metrics b{
+  display:block;
+  color:#eef2ff;
+  font-size:17px;
+  line-height:1;
+}
+.home-topic-metrics small{
+  display:block;
+  margin-top:3px;
+  color:#7f8eae;
+  font-size:9px;
+}
+.home-topic-latest{
+  display:block;
+  margin-top:13px;
+  overflow:hidden;
+  color:#cbd4e9!important;
+  font-size:11px;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+.home-latest-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+  margin-top:16px;
+}
+.home-latest-card{
+  min-width:0;
+  padding:24px;
+}
+.home-latest-meta{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  color:#8393b5;
+  font:9px/1.2 var(--mono);
+  letter-spacing:.09em;
+}
+.home-latest-meta>span{color:#27e1ea}
+.home-latest-meta time{
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+.home-latest-card h2{
+  margin:16px 0 10px;
+  color:#f7f8ff;
+  font:740 clamp(24px,2.5vw,34px)/1.08 -apple-system,BlinkMacSystemFont,"SF Pro Display",Inter,"Segoe UI",Arial,sans-serif;
+  letter-spacing:-.035em;
+}
+.home-latest-card h2 a{color:inherit!important}
+.home-latest-card>p{
+  margin:0;
+  color:#bbc5de!important;
+  font-size:14px;
+  line-height:1.55;
+}
+.home-latest-stats{
+  display:flex;
+  flex-wrap:wrap;
+  gap:24px;
+  margin-top:18px;
+  padding-top:15px;
+  border-top:1px solid rgba(66,89,127,.55);
+}
+.home-latest-stats b{
+  display:block;
+  max-width:180px;
+  overflow:hidden;
+  color:#f0f4ff;
+  font-size:15px;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+.home-latest-stats small{
+  display:block;
+  margin-top:3px;
+  color:#8190ad;
+  font-size:9px;
+}
+.home-latest-actions{
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+  margin-top:20px;
+  font-size:12px;
+}
+@media(max-width:900px){
+  .home-topic-grid{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  .home-research-section{padding:17px;margin-top:12px}
+  .home-section-heading{align-items:flex-start;flex-direction:column;gap:10px}
+  .home-topic-card{padding:16px}
+  .home-topic-card>p{min-height:0}
+  .home-latest-grid{grid-template-columns:1fr;gap:10px;margin-top:10px}
+  .home-latest-card{padding:18px}
+  .home-latest-card h2{font-size:26px}
+}
