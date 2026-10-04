@@ -374,7 +374,7 @@ class ArchitectureSeparationTests(unittest.TestCase):
     def test_belief_lineage_uses_only_stored_evidence_ids(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
-        self.assertIn('EVIDENCE → BELIEF / EXPLICIT CITATION LINEAGE', app)
+        self.assertIn('EVIDENCE → BELIEF / CURRENT GOVERNED LINEAGE', app)
         self.assertIn('Array.isArray(belief?.evidence)?belief.evidence:[]', app)
         self.assertIn('Boolean(evidenceById[id])', app)
         self.assertIn('missing from current state', app)
@@ -382,17 +382,18 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-lineage-row', css)
         self.assertIn('.ops-lineage-root.missing', css)
 
-    def test_belief_revision_ledger_keeps_current_retractions_visible(self):
+    def test_belief_lineage_keeps_current_retractions_visible_without_duplicate_ledger(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
-        self.assertIn('BELIEF REVISION LEDGER / CURRENT GOVERNED STATE', app)
+        self.assertIn('EVIDENCE → BELIEF / CURRENT GOVERNED LINEAGE', app)
         self.assertIn("Number(b?.updated_version||0)-Number(a?.updated_version||0)", app)
         self.assertIn("String(belief?.status||'unknown').toLowerCase()", app)
         self.assertIn("String(belief?.updated_by||'')", app)
         self.assertIn("Array.isArray(belief?.evidence)?belief.evidence:[]", app)
-        self.assertIn('Retractions remain visible; earlier versions remain in exact receipts.', app)
-        self.assertIn('.ops-belief-revision.retracted', css)
-        self.assertIn('.ops-belief-ledger-list', css)
+        self.assertIn('Active and retracted beliefs remain visible here.', app)
+        self.assertIn('.ops-lineage-belief.retracted', css)
+        self.assertNotIn('BELIEF REVISION LEDGER / CURRENT GOVERNED STATE', app)
+        self.assertNotIn('.ops-belief-ledger-list', css)
 
     def test_record_spine_links_use_receipt_ids_not_sequence_numbers(self):
         app = self.read('wake/assets/app.js')
