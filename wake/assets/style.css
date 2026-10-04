@@ -2046,6 +2046,7 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
 .ops-command-pulse-cell.deferred{background:#53666b;border-color:#62777d}
 .ops-command-pulse-cell.failed{background:var(--ops-red);border-color:var(--ops-red)}
 .ops-command-pulse-cell:hover,.ops-command-pulse-cell:focus-visible{opacity:1;transform:scaleY(1.14);outline:1px solid #eff;outline-offset:1px}
+@media(prefers-reduced-motion:reduce){.ops-command-pulse-cell{transition:none}.ops-command-pulse-cell:hover,.ops-command-pulse-cell:focus-visible{transform:none}}
 .ops-command-pulse-empty{align-self:center;font:7px/1 var(--mono);color:var(--ops-muted)}
 @media(max-width:1200px){
   .ops-command-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
