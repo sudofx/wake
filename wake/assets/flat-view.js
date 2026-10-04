@@ -74,12 +74,15 @@
           const ordered=[...events].sort((a,b)=>Number(a.seq||0)-Number(b.seq||0));
           const index=ordered.findIndex(event=>Number(event.seq||0)===seq);
           const previous=index>0?ordered[index-1]:null;
+          const currentEvent=index>=0?ordered[index]:null;
           const next=index>=0&&index<ordered.length-1?ordered[index+1]:null;
+          const invocationId=currentEvent?.kind==='accepted'?String(currentEvent?.payload?.id||''):'';
           status.innerHTML='<span>Located '+esc(label)+' in the append-only export.</span><nav aria-label="Adjacent receipts">'+
             (previous?'<a href="#seq='+esc(previous.seq)+'">← EVENT '+esc(previous.seq)+'</a>':'<span>← RECORD START</span>')+
             '<strong>EVENT '+esc(seq)+'</strong>'+
             (next?'<a href="#seq='+esc(next.seq)+'">EVENT '+esc(next.seq)+' →</a>':'<span>RECORD HEAD →</span>')+
-            '</nav>';
+            '</nav>'+
+            (invocationId?'<a class="flat-target-map" href="map3d.html#record=invocation%3A'+encodeURIComponent(invocationId)+'">RETURN TO EXACT 3D INVOCATION ↗</a>':'');
         }else status.textContent='Requested '+label+' was not found in this published export.';
       }
       if(target){
