@@ -505,6 +505,14 @@ class ArchitectureSeparationTests(unittest.TestCase):
         css = self.read('wake/assets/style.css')
         self.assertIn('.ops-verify-index a{position:relative;display:grid;gap:3px;min-width:0;min-height:44px;align-content:center', css)
 
+    def test_ultrawide_pairs_frontier_and_inquiry_drive_only(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('<div class="ops-frontier-pair">', app)
+        self.assertIn('.ops-frontier-pair{display:grid;grid-template-columns:1fr}', css)
+        self.assertIn('.ops-frontier-pair{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);border-top:1px solid var(--ops-line)}', css)
+        self.assertIn('.ops-frontier-pair>.ops-drive{border-left:1px solid var(--ops-line)}', css)
+
     def test_phone_verification_rail_raises_microtype(self):
         css = self.read('wake/assets/style.css')
         self.assertIn('.ops-verify-index span{font-size:8px}.ops-verify-index strong{font-size:9px}', css)
