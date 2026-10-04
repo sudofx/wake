@@ -1014,7 +1014,7 @@
         </div>
         ${sinceReflectionHtml}
       </section>
-      <section class="ops-console" id="ops-now" aria-label="WAKE operational research console">
+      <section class="ops-console ops-story-chapter" id="ops-now" data-story-chapter="01" data-story-name="NOW" aria-label="WAKE operational research console">
         <header class="ops-console-head">
           <div><p class="eyebrow">WAKE✳︎ / RESEARCH OPERATIONS</p><h2>Live governed research field.</h2></div>
           <div class="ops-console-actions">
@@ -1064,7 +1064,7 @@
           <div class="ops-pulse-cells" role="group" aria-label="Recent completed wake outcomes">${timeline||'<span class="empty">No completed wakes yet.</span>'}</div>
           <div class="ops-pulse-legend">${statuses.map(([name,value])=>`<span class="${esc(name)}"><i></i><b>${value}</b>${esc(name)}</span>`).join('')}</div>
         </div>
-        <div class="ops-secondary-grid" id="ops-pressure">
+        <div class="ops-secondary-grid ops-story-chapter" id="ops-pressure" data-story-chapter="02" data-story-name="PRESSURE">
         <div class="ops-provider-trace" aria-label="Recent provider attempt trace">
           <div class="ops-provider-head"><div><span>PROVIDER ATTEMPT TRACE</span><strong>LAST ${providerTraceSource.length} KNOWN ATTEMPTS</strong></div><small>height = latency · color = recorded outcome</small></div>
           <div class="ops-provider-track" role="group" aria-label="Recent provider attempt outcomes">${providerTrace||'<span class="empty">No known provider attempts yet.</span>'}</div>
@@ -1114,7 +1114,7 @@
           <div class="ops-signal info" style="--signal:${matrixPct===null?0:Math.min(100,matrixPct)}%"><span>MATRIX COVERAGE</span><strong>${matrixPct===null?'—':matrixPct+'%'}</strong><i></i></div>
         </div>
         <div class="ops-tertiary-grid">
-        <div class="ops-context" id="ops-context" aria-label="Context delivery telemetry">
+        <div class="ops-context ops-story-chapter" id="ops-context" data-story-chapter="03" data-story-name="MEMORY" aria-label="Context delivery telemetry">
           <div class="ops-context-head">
             <div><p class="eyebrow">CONTEXT DELIVERY / RECOVERABLE COMPRESSION</p><h3>${contextDelivery?esc(String(contextDelivery.mode||'rich').toUpperCase()):'NO RECEIPT'}</h3></div>
             <div class="ops-context-ratio"><strong>${contextDelivery&&Number.isFinite(Number(contextDelivery.request_compression_ratio))?(100*Number(contextDelivery.request_compression_ratio)).toFixed(1)+'%':'—'}</strong><span>REQUEST COMPRESSION</span></div>
@@ -1144,7 +1144,7 @@
             <div class="ops-continuity-track" role="group" aria-label="Recent invocation context continuity">${lifecycleContinuity}</div>
           </div>
         </div>
-        <div class="ops-provenance" id="ops-evidence" aria-label="Evidence provenance telemetry">
+        <div class="ops-provenance ops-story-chapter" id="ops-evidence" data-story-chapter="04" data-story-name="EVIDENCE" aria-label="Evidence provenance telemetry">
           <div class="ops-provenance-head">
             <div><p class="eyebrow">EVIDENCE PROVENANCE / COLLECTION DEPTH</p><h3>${qualifyingEvidence} substantive source observations</h3></div>
             <small>provenance labels describe retrieval depth; they are not truth scores</small>
@@ -1166,7 +1166,7 @@
             </div>
           </div>
         </div>
-        <div class="ops-beliefs" id="ops-beliefs" aria-label="Governed belief telemetry">
+        <div class="ops-beliefs ops-story-chapter" id="ops-beliefs" data-story-chapter="05" data-story-name="BELIEF" aria-label="Governed belief telemetry">
           <div class="ops-beliefs-head">
             <div><p class="eyebrow">EPISTEMIC FIELD / GOVERNED BELIEF STATE</p><h3>${opsActiveBeliefs.length} active · ${opsRetractedBeliefs.length} retracted</h3></div>
             <small>confidence is recorded model state, not an empirical probability of truth</small>
@@ -1192,7 +1192,7 @@
         </div>
         </div>
         <div class="ops-frontier-pair">
-        <div class="ops-horizon" id="ops-horizon" aria-label="Open commitment horizon">
+        <div class="ops-horizon ops-story-chapter" id="ops-horizon" data-story-chapter="06" data-story-name="FRONTIER" aria-label="Open commitment horizon">
           <div class="ops-horizon-head"><div><p class="eyebrow">OPEN COMMITMENT HORIZON</p><h3>${openObligations} obligations carried forward</h3></div><small>bucketed by due cycle relative to cycle ${s.version}</small></div>
           <div class="ops-horizon-grid">${obligationHorizon}</div>
           <div class="ops-frontier-queue">
@@ -1226,7 +1226,7 @@
           <div class="ops-publication-head"><div><span>PUBLICATION LINEAGE / AUDITABLE ARTIFACT CHAIN</span><strong>${publicationLineageSource.length} recent research publication${publicationLineageSource.length===1?'':'s'}</strong></div><small>Edges are the notebook and evidence IDs stored on each publication. Reflections without research-project lineage are intentionally excluded.</small></div>
           <div class="ops-publication-list">${publicationLineageRows||'<p class="empty">No research publications with project lineage are present.</p>'}</div>
         </div>
-        <div class="ops-matrix-block" id="ops-matrix">
+        <div class="ops-matrix-block ops-story-chapter" id="ops-matrix" data-story-chapter="07" data-story-name="SPACE">
           <div class="ops-matrix-copy"><p class="eyebrow">CONTINUITY@1 / 7×7×7</p><h3>${matrixEnabled?'Coverage of the governed continuity space.':'Canonical continuity space · not yet enabled for this WAKE generation.'}</h3><p>${matrixEnabled?matrixCompleted+' of '+matrixTotal+' coordinates completed · next '+(matrixProgress.next_ordinal?'#'+matrixProgress.next_ordinal:'complete'):'343 deterministic coordinates are visible as definition geometry only.'}</p><small>Seven semantic planes. Within each plane, columns follow pressure order and rows follow exposure order from the shared continuity@1 definition.</small>${matrixFrontier}</div>
           <div class="continuity-matrix-view" aria-label="Continuity matrix coverage: ${matrixCompleted} of ${matrixTotal} coordinates completed">
             <div class="matrix-axis-note"><span>columns / pressure: ${esc(pressureAxis.map(v=>v.label).join(' · '))}</span><span>rows / exposure: ${esc(exposureAxis.map(v=>v.label).join(' · '))}</span></div>
