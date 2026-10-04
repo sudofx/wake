@@ -5,6 +5,7 @@ from pathlib import Path
 import unittest
 
 from sudofx import continuity_matrix
+from sudofx.storage import ApplicationAccessError
 
 from wake.governance import Rejected
 from wake.sudofx_store import SudofxStore
@@ -70,6 +71,22 @@ class WakeMatrixIntegrationTests(unittest.TestCase):
                     store.continuity_matrix_progress()["completed_count"],
                     0,
                 )
+            finally:
+                store.close()
+
+    def test_matrix_actions_honor_global_sudofx_kill_switch(self) -> None:
+        with tempfile.TemporaryDirectory() as tempdir:
+            store = SudofxStore(Path(tempdir), initialize_empty=True)
+            try:
+                stopped = store.record.set_application_access(
+                    False,
+                    actor="operator",
+                    reason="matrix boundary regression test",
+                )
+                self.assertFalse(stopped.enabled)
+                with self.assertRaises(ApplicationAccessError):
+                    store.enable_continuity_matrix()
+                self.assertIsNone(store.continuity_matrix_progress())
             finally:
                 store.close()
 
