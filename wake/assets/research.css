@@ -727,3 +727,56 @@ html.console-tool-window #console-tool-frame{
   .console-workspace-controls{margin-inline:0}
   html.console-tool-window .console-tools{inset:8px!important;border-radius:12px!important}
 }
+
+
+/* DETACHED CONSOLE FLOW FIX — 2026-10-04 */
+/* Neutralize layout rules inherited from the fixed Console composition once a panel
+   is promoted into the user-arrangeable detached grid. */
+.console-module-grid{
+  grid-auto-flow:row dense!important;
+  grid-auto-rows:auto!important;
+}
+.console-module-grid > .console-module{
+  position:relative!important;
+  inset:auto!important;
+  top:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  left:auto!important;
+  float:none!important;
+  clear:none!important;
+  width:auto!important;
+  max-width:none!important;
+  min-width:0!important;
+  height:auto!important;
+  margin:0!important;
+  transform:none!important;
+  grid-row:auto!important;
+  align-self:start!important;
+  justify-self:stretch!important;
+  overflow:visible!important;
+}
+.console-module-grid > .console-module[data-span="4"]{grid-column:span 4!important}
+.console-module-grid > .console-module[data-span="6"]{grid-column:span 6!important}
+.console-module-grid > .console-module[data-span="8"]{grid-column:span 8!important}
+.console-module-grid > .console-module[data-span="12"]{grid-column:1/-1!important}
+.console-module-grid > .console-module.detail-panel,
+.console-module-grid > .console-module.timeline-panel,
+.console-module-grid > .console-module.frontier-panel,
+.console-module-grid > .console-module.notebook-panel{
+  position:relative!important;
+  inset:auto!important;
+}
+.console-module-grid .panel-heading{
+  position:relative!important;
+  z-index:2!important;
+}
+.console-module-grid canvas,
+.console-module-grid svg{
+  max-width:100%;
+}
+@media(max-width:760px){
+  .console-module-grid > .console-module[data-span]{
+    grid-column:1!important;
+  }
+}
