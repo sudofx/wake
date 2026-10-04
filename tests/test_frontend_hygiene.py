@@ -110,6 +110,8 @@ class FrontendHygieneTests(unittest.TestCase):
         self.assertIn(".flat-history-tools{position:sticky", css)
         self.assertIn(".flat-history-tools input,.flat-history-tools select{", css)
         self.assertIn("@media(max-width:700px){.flat-history-tools{position:static", css)
+        self.assertIn(".flat-target-status{position:sticky;top:76px", css)
+        self.assertIn("@media(max-width:700px){.flat-target-status{top:8px}.flat-history-tools{position:static", css)
         self.assertIn('#flat-content [data-event-kind="accepted"]', css)
         self.assertIn('#flat-content [data-event-kind="rejected"]', css)
         self.assertIn('#flat-content [data-event-kind="failed"]', css)
