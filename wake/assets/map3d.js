@@ -90,7 +90,7 @@ function durableRecordDestination(node){
  const detail=node?.detail||{};
  const stableId=String(detail.id||'');
  const lifecycleId=String(detail.resolved_by||detail.updated_by||detail.created_by||'');
- if(node?.kind==='journal')return {href:`index.html#history/${encodeURIComponent(String(node.id||'').replace(/^journal:/,''))}`,label:'EXACT WAKE RECEIPT',basis:'journal invocation ID'};
+ if(node?.kind==='journal')return {href:`index.html#history/${encodeURIComponent(String(node.id||'').replace(/^journal:/,''))}`,label:'EXACT WAKE RECEIPT',basis:detail.exact_record||'journal invocation ID'};
  if(node?.kind==='invocation')return {href:`index.html#history/${encodeURIComponent(String(node.id||'').replace(/^invocation:/,''))}`,label:'EXACT INVOCATION RECEIPT',basis:'invocation ID'};
  if(node?.kind==='blog'&&stableId)return {href:`index.html#blog/${encodeURIComponent(stableId)}`,label:'DURABLE PUBLICATION',basis:'stored post ID'};
  if(node?.kind==='evidence'&&stableId)return {href:`index.html#evidence/${encodeURIComponent(stableId)}`,label:'EVIDENCE RECORD',basis:'stored evidence ID'};
