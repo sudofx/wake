@@ -704,6 +704,24 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('data-instrument="continuity"', app)
         self.assertIn('data-instrument="provenance"', app)
 
+    def test_control_room_recent_wake_pulse_is_receipt_backed_and_device_aware(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('const commandPulseSource=[...completed]', app)
+        self.assertIn('.slice(-48)', app)
+        self.assertIn('class="ops-command-pulse" aria-label="Recent completed wake receipts"', app)
+        self.assertIn('RECENT WAKE PULSE', app)
+        self.assertIn('each cell is a recorded outcome', app)
+        self.assertIn('href="#history/${encodeURIComponent(item.id||\'\')}"', app)
+        self.assertIn('.ops-command-pulse{display:grid;grid-template-columns:minmax(190px,.55fr) minmax(0,1.45fr)', css)
+        self.assertIn('.ops-command-pulse-track{display:flex;align-items:stretch;gap:2px', css)
+        self.assertIn('.ops-command-pulse-cell.accepted,.ops-command-pulse-cell.recovered', css)
+        self.assertIn('.ops-command-pulse-cell.rejected', css)
+        self.assertIn('.ops-command-pulse-cell.deferred', css)
+        self.assertIn('.ops-command-pulse-cell.failed', css)
+        self.assertIn('.ops-command-pulse>header{display:grid;grid-template-columns:1fr auto', css)
+        self.assertIn('.ops-command-pulse-cell{flex:0 0 28px;height:44px}', css)
+
     def test_metrics_story_links_only_explicit_3d_provenance_branches(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
