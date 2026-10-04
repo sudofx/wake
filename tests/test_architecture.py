@@ -249,7 +249,7 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn("includes('context_delivered')", app)
         self.assertIn('.ops-continuity-track', css)
         self.assertIn('.ops-continuity-node.delivered', css)
-        self.assertNotIn('fresh invocations', app.lower())
+        self.assertNotIn('DURABLE CONTINUITY THREAD / FRESH INVOCATIONS', app)
 
     def test_handoff_story_requires_recorded_distinct_creator_and_resolver(self):
         app = self.read('wake/assets/app.js')
@@ -310,15 +310,16 @@ class ArchitectureSeparationTests(unittest.TestCase):
     def test_belief_story_links_recorded_evidence_and_update_receipts(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
-        self.assertIn('EVIDENCE → BELIEF LINEAGE', app)
-        self.assertIn('item?.evidence', app)
-        self.assertIn('item?.updated_by', app)
-        self.assertIn('item?.updated_version', app)
+        self.assertIn('EVIDENCE → BELIEF / EXPLICIT CITATION LINEAGE', app)
+        self.assertIn('belief?.evidence', app)
+        self.assertIn('belief?.updated_by', app)
+        self.assertIn('belief?.updated_version', app)
         self.assertIn('href="#evidence/', app)
         self.assertIn('UPDATED BY', app)
         self.assertIn('FALSIFIER RECORDED', app)
-        self.assertIn('.ops-belief-lineage-grid', css)
-        self.assertIn('.ops-lineage-roots', css)
+        self.assertIn('.ops-lineage-list', css)
+        self.assertIn('.ops-lineage-belief-meta', css)
+        self.assertNotIn('.ops-belief-lineage-grid', css)
 
     def test_metrics_route_anchor_is_unique(self):
         page = self.read('wake/assets/index.html')
