@@ -1360,6 +1360,20 @@
           </div>
         </div>
         </div>
+        <div class="ops-belief-frontier-bridge" aria-label="Belief to frontier governed population boundary">
+          <header>
+            <div><span>BELIEF → FRONTIER / STORY BOUNDARY</span><strong>${opsActiveBeliefs.length} active beliefs · ${openObligations} open commitments</strong></div>
+            <small>Adjacent governed populations only. No causal edge from belief state to commitment state is asserted here.</small>
+          </header>
+          <div class="ops-belief-frontier-grid">
+            <div><span>ACTIVE BELIEFS</span><strong>${opsActiveBeliefs.length}</strong><small>current carried belief state</small></div>
+            <div><span>RETRACTED BELIEFS</span><strong>${opsRetractedBeliefs.length}</strong><small>current retracted state retained visibly</small></div>
+            <i aria-hidden="true">≠</i>
+            <div><span>OPEN COMMITMENTS</span><strong>${openObligations}</strong><small>current durable obligation state</small></div>
+            <div><span>OVERDUE</span><strong>${overdue}</strong><small>open commitments past due cycle</small></div>
+            <a href="#metrics/ops-horizon">OPEN FRONTIER CHAPTER →</a>
+          </div>
+        </div>
         <div class="ops-frontier-pair">
         <div class="ops-horizon ops-story-chapter" id="ops-horizon" data-story-chapter="06" data-story-name="FRONTIER" aria-label="Open commitment horizon">
           <div class="ops-horizon-head"><div><p class="eyebrow">OPEN COMMITMENT HORIZON</p><h3>${openObligations} obligations carried forward</h3></div><small>bucketed by due cycle relative to cycle ${s.version}</small></div>
