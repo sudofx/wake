@@ -180,7 +180,7 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('"metrics": _full_history_metrics(store, state, performance)', live)
         self.assertIn('fullMetrics.accepted_actions', app)
         self.assertIn('fullMetrics.rejection_reasons', app)
-        self.assertIn('"metrics": _full_history_metrics(store, state)', self.read('wake/report.py'))
+        self.assertIn('"metrics": _full_history_metrics(store, state, performance)', self.read('wake/report.py'))
         self.assertIn("if(!data.metrics)", app)
 
     def test_research_operations_console_is_derived_only(self):
