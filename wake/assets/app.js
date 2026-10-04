@@ -275,6 +275,13 @@
     const wakeApp=(appObservability?.applications||[]).find(app=>app?.id==='wake')||null;
     const appActions=wakeApp?.actions||{};
     const appInvocations=wakeApp?.invocations||{};
+    const lifecycleRecent=Array.isArray(appInvocations.recent)?appInvocations.recent.slice(-8):[];
+    const lifecycleTraces=lifecycleRecent.map(item=>{
+      const stages=Array.isArray(item.stages)?item.stages:[];
+      const dots=stages.map(stage=>`<i class="trace-stage stage-${esc(stage||'unknown')}" title="${esc(stage||'unknown')}"></i>`).join('');
+      const outcome=item.outcome||item.latest_stage||'unknown';
+      return `<a class="ops-trace-row" href="#history/${encodeURIComponent(item.invocation_id||'')}" title="${esc(item.invocation_id||'invocation')} · ${esc(outcome)}"><span>${esc(String(item.invocation_id||'').slice(-10)||'—')}</span><div>${dots}</div><strong>${esc(String(outcome).replaceAll('_',' '))}</strong></a>`;
+    }).join('')||'<p class="empty">No recent invocation lifecycle receipts.</p>';
     const matrixCompleted=Number(matrixProgress?.completed_count||0);
     const matrixTotal=Number(matrixProgress?.cell_count||343);
     const matrixPct=matrixTotal?Math.round(100*matrixCompleted/matrixTotal):0;
@@ -548,6 +555,10 @@
             <div><span>QUOTA</span><strong>${Number(appInvocations.quota_exhausted||0)}</strong><small>exhaustion outcomes</small></div>
             <div><span>TEMPORARY</span><strong>${Number(appInvocations.temporary_failures||0)}</strong><small>provider waits</small></div>
             <div><span>EFFECT BARRIER</span><strong>${Number(appInvocations.effect_barrier_failures||0)}</strong><small>blocked before effect</small></div>
+          </div>
+          <div class="ops-trace">
+            <div class="ops-trace-head"><span>RECENT INVOCATION TRACE</span><small>bounded sudofx lifecycle receipts · newest at bottom</small></div>
+            <div class="ops-trace-list">${lifecycleTraces}</div>
           </div>
         </div>
         <div class="ops-matrix-block">
