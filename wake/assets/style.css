@@ -1001,3 +1001,60 @@ html,body{max-width:100%;overflow-x:clip}
   #about .about-body{gap:14px;padding:24px 0}
   #about .about-body>section{padding:24px 22px}
 }
+
+
+/* RECORD TAG LAYOUT — 2026-10-04
+   Metadata has variable-length governed topic labels. Keep identity/status/date
+   stable and move topics onto their own row instead of squeezing or escaping. */
+.journal-meta,
+.blog-meta,
+.project-meta,
+.notebook-meta,
+.notebook-reading-meta{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:7px 10px;
+  min-width:0;
+}
+.journal-meta .record-topics,
+.blog-meta .record-topics,
+.project-meta .record-topics,
+.notebook-meta .record-topics,
+.notebook-reading-meta .record-topics{
+  order:3;
+  flex:1 0 100%;
+  width:100%;
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  min-width:0;
+  overflow:visible;
+}
+.journal-meta time,
+.blog-meta time,
+.project-meta time,
+.notebook-meta time,
+.notebook-reading-meta time{
+  order:2;
+  margin-left:auto;
+}
+.journal-meta .record-type,.journal-meta .record-status,
+.blog-meta .record-type,.blog-meta .record-status,
+.project-meta .record-type,.project-meta .record-status,
+.notebook-meta .record-type,.notebook-meta .record-status,
+.notebook-reading-meta .record-type,.notebook-reading-meta .record-status{order:1}
+.record-panel-meta .record-topics .topic-tag{
+  max-width:100%;
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  margin:0;
+}
+@media(max-width:700px){
+  .journal-meta time,.blog-meta time,.project-meta time,.notebook-meta time,.notebook-reading-meta time{
+    flex:1 0 100%;
+    margin-left:0;
+  }
+}
