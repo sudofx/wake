@@ -392,7 +392,7 @@
 
     const hypotheses=[];
     if(completed.length>=20){const recent=completed.slice(-20),prior=completed.slice(-40,-20);if(prior.length>=10){const rr=recent.filter(i=>i.status==='accepted').length/recent.length,pr=prior.filter(i=>i.status==='accepted').length/prior.length;if(Math.abs(rr-pr)>=.1)hypotheses.push({title:'Outcome regime may be shifting',text:`Acceptance moved from ${Math.round(pr*100)}% in the prior window to ${Math.round(rr*100)}% in the latest 20 wakes. This is an observed association, not a causal explanation.`});}}
-    if(topicRows.length>=2&&topicRows[0].activity>Math.max(2,topicRows.at(-1).activity*2))hypotheses.push({title:'Research attention is uneven',text:`${topicRows[0].label} currently has ${topicRows[0].activity} recorded activity units versus ${topicRows.at(-1).activity} for ${topicRows.at(-1).label}. The record supports an attention-skew hypothesis; it does not establish topic value.`});
+    if(topicRows.length>=2&&topicRows[0].total>Math.max(2,topicRows.at(-1).total*2))hypotheses.push({title:'Research attention is uneven',text:`${topicRows[0].label} currently has ${topicRows[0].total} accepted actions versus ${topicRows.at(-1).total} for ${topicRows.at(-1).label}. The record supports an attention-skew hypothesis; it does not establish topic value.`});
     if(fallbackWakes)hypotheses.push({title:'Provider fallback is part of observed continuity',text:`${fallbackWakes} completed wakes required more than one model attempt. Compare their outcomes with single-attempt wakes before attributing any quality effect to fallback.`});
     if(rejectedCount)hypotheses.push({title:'Rejection is measurable governance work',text:`${rejectedCount} completed wakes were rejected while durable state advanced ${s.version} cycles. Rejections are observable resistance in the process, not automatically failure or success.`});
     if(!hypotheses.length)hypotheses.push({title:'Not enough separation yet',text:'The current record does not show a strong simple pattern worth elevating. Keep collecting data rather than manufacturing a story.'});
@@ -437,7 +437,11 @@
       <section class="ops-console" aria-label="WAKE operational research console">
         <header class="ops-console-head">
           <div><p class="eyebrow">WAKE✳︎ / RESEARCH OPERATIONS</p><h2>Live governed research field.</h2></div>
-          <div class="ops-state" data-status="${currentStatus.toLowerCase()}"><i></i><span>${currentStatus}</span><strong>CYCLE ${s.version}</strong></div>
+          <div class="ops-console-actions">
+            <a href="map3d.html">3D RECORD MAP ↗</a>
+            <a href="#history">EXACT HISTORY →</a>
+            <div class="ops-state" data-status="${currentStatus.toLowerCase()}"><i></i><span>${currentStatus}</span><strong>CYCLE ${s.version}</strong></div>
+          </div>
         </header>
         <div class="ops-source-rail" aria-label="Projection provenance">
           <div><span>AUTHORITY</span><strong>${esc(sourceAuthority)}</strong></div>
