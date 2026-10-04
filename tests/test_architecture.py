@@ -713,6 +713,16 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-command-pulse-track{display:flex;gap:4px;overflow-x:auto', css)
         self.assertIn('.ops-command-pulse-cell{flex:0 0 28px;height:44px}', css)
 
+    def test_control_room_hands_off_explicitly_to_evidence_story(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('FROM GLANCE TO EVIDENCE', app)
+        self.assertIn('Read the record in sequence.', app)
+        self.assertIn('The control room compresses current signals.', app)
+        self.assertIn('what happened, what resisted, what survived, what was observed, what is carried, what remains, and where continuity has been tested', app)
+        self.assertIn('.ops-story-gate{display:grid;grid-template-columns:auto auto minmax(0,1fr)', css)
+        self.assertIn('.ops-story-gate{grid-template-columns:1fr;gap:4px;padding:9px 10px}', css)
+
     def test_phone_control_room_is_glance_grid_while_story_stays_swipeable(self):
         css = self.read('wake/assets/style.css')
         self.assertIn('.ops-command-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-flow:row;grid-auto-columns:auto;overflow:visible;scroll-snap-type:none}', css)
