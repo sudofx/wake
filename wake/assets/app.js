@@ -604,9 +604,10 @@
         <a href="#metrics" data-story-target="ops-pressure"><b>02</b><span>PRESSURE</span><strong>${rejectedCount} rejected</strong></a>
         <a href="#metrics" data-story-target="ops-context"><b>03</b><span>MEMORY</span><strong>${contextDelivery?esc(String(contextDelivery.mode||'rich').toUpperCase()):'no receipt'}</strong></a>
         <a href="#metrics" data-story-target="ops-evidence"><b>04</b><span>EVIDENCE</span><strong>${qualifyingEvidence} substantive</strong></a>
-        <a href="#metrics" data-story-target="ops-beliefs"><b>05</b><span>BELIEF</span><strong>${opsActiveBeliefs.length} active</strong></a>
-        <a href="#metrics" data-story-target="ops-frontier"><b>06</b><span>FRONTIER</span><strong>${openObligations} open</strong></a>
-        <a href="#metrics" data-story-target="ops-matrix"><b>07</b><span>CONTINUITY</span><strong>${matrixPct}% mapped</strong></a>
+        <a href="#metrics" data-story-target="ops-trajectory"><b>05</b><span>TRAJECTORY</span><strong>${projects.length} projects</strong></a>
+        <a href="#metrics" data-story-target="ops-beliefs"><b>06</b><span>BELIEF</span><strong>${opsActiveBeliefs.length} active</strong></a>
+        <a href="#metrics" data-story-target="ops-frontier"><b>07</b><span>FRONTIER</span><strong>${openObligations} open</strong></a>
+        <a href="#metrics" data-story-target="ops-matrix"><b>08</b><span>CONTINUITY</span><strong>${matrixPct}% mapped</strong></a>
       </nav>
       <section class="ops-console" id="ops-now" aria-label="WAKE operational research console">
         <header class="ops-console-head">
