@@ -70,3 +70,31 @@ if(actionsLight){
   setInterval(refreshActionsLight,120000);
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshActionsLight();});
 }
+
+
+/* DETACHABLE CONSOLE LINKS — 2026-10-04 */
+(() => {
+  if (location.pathname.endsWith('/console.html')) return;
+  let consoleWindow=null;
+  const openConsole=(href)=>{
+    const url=new URL(href,location.href);
+    url.searchParams.set('workspace','detached');
+    const width=Math.max(980,Math.min(1560,(screen.availWidth||1440)-80));
+    const height=Math.max(720,Math.min(1100,(screen.availHeight||900)-80));
+    const left=Math.max(0,Math.round(((screen.availWidth||width)-width)/2));
+    const top=Math.max(0,Math.round(((screen.availHeight||height)-height)/2));
+    const features=`popup=yes,width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`;
+    consoleWindow=window.open(url.href,'wake-console',features);
+    if(consoleWindow)consoleWindow.focus();
+    else location.href=url.href;
+  };
+  document.addEventListener('click',event=>{
+    if(event.defaultPrevented||event.button>0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+    const link=event.target.closest('a[href]');
+    if(!link)return;
+    let url;try{url=new URL(link.href,location.href);}catch{return;}
+    if(url.origin!==location.origin||!url.pathname.endsWith('/console.html'))return;
+    event.preventDefault();
+    openConsole(url.href);
+  },true);
+})();
