@@ -363,6 +363,20 @@
       return `<a class="ops-history-dot" href="#blog/${encodeURIComponent(item.post.id)}" style="--history-position:${position.toFixed(2)}%" title="Cycle ${item.cycle} · ${esc(postTitle(item.post))}" aria-label="Cycle ${item.cycle} reflection: ${esc(postTitle(item.post))}"><i></i><b>${item.cycle}</b></a>`;
     }).join('');
     const latestReflections=opsReflections.slice(-3).reverse().map(item=>`<a href="#blog/${encodeURIComponent(item.post.id)}"><span>CYCLE ${item.cycle}</span><strong>${esc(postTitle(item.post))}</strong></a>`).join('')||'<p class="empty">No durable reflection milestones yet.</p>';
+    const latestReflection=opsReflections.at(-1)||null;
+    const reflectionRecordVersion=Number(latestReflection?.post?.created_version);
+    const hasReflectionBaseline=Number.isFinite(reflectionRecordVersion)&&reflectionRecordVersion>0;
+    const versionAfterReflection=itemVersion=>hasReflectionBaseline&&Number.isFinite(Number(itemVersion))&&Number(itemVersion)>reflectionRecordVersion;
+    const sinceReflection={
+      evidence:evidenceRecords.filter(item=>versionAfterReflection(item?.version)).length,
+      beliefs:opsBeliefs.filter(item=>versionAfterReflection(item?.updated_version)).length,
+      projects:projects.filter(item=>versionAfterReflection(Math.max(Number(item?.created_version)||0,Number(item?.updated_version)||0))).length,
+      notebooks:opsNotebooks.filter(item=>versionAfterReflection(Math.max(Number(item?.created_version)||0,Number(item?.updated_version)||0))).length,
+      commitments:obligations.filter(item=>versionAfterReflection(item?.created_version)).length
+    };
+    const sinceReflectionHtml=hasReflectionBaseline
+      ? `<div class="ops-since-reflection"><header><div><span>SINCE LAST REFLECTION RECEIPT</span><strong>record version ${reflectionRecordVersion} → ${Number(s.version||0)}</strong></div><a href="#blog/${encodeURIComponent(latestReflection.post.id)}">OPEN REFLECTION →</a></header><div class="ops-since-grid"><div><strong>${sinceReflection.evidence}</strong><span>evidence added</span></div><div><strong>${sinceReflection.beliefs}</strong><span>beliefs revised</span></div><div><strong>${sinceReflection.projects}</strong><span>projects changed</span></div><div><strong>${sinceReflection.notebooks}</strong><span>notebooks revised</span></div><div><strong>${sinceReflection.commitments}</strong><span>commitments created</span></div></div><small>Versioned record deltas only. Counts show durable changes after the reflection receipt; they do not measure importance or causal impact.</small></div>`
+      : '<div class="ops-since-reflection unavailable"><header><div><span>SINCE LAST REFLECTION RECEIPT</span><strong>baseline unavailable</strong></div></header><small>No versioned reflection receipt is available, so WAKE does not infer a comparison window.</small></div>';
     const opsProjectTrajectories=projects
       .slice()
       .sort((a,b)=>String(a.status||'active').localeCompare(String(b.status||'active'))||Number(b.updated_version||b.created_version||0)-Number(a.updated_version||a.created_version||0))
@@ -802,6 +816,7 @@
           </div>
           <div class="ops-history-latest"><span>LATEST REFLECTIONS</span>${latestReflections}</div>
         </div>
+        ${sinceReflectionHtml}
       </section>
       <section class="ops-console" id="ops-now" aria-label="WAKE operational research console">
         <header class="ops-console-head">
