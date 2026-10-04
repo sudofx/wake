@@ -199,6 +199,15 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertNotIn('enable_continuity_matrix(', app)
         self.assertNotIn('set_time_dilation(', app)
 
+    def test_operations_console_story_chapters_remain_evidence_scoped(self):
+        app = self.read('wake/assets/app.js')
+        for label in ("ACTIVITY", "PRESSURE", "MEMORY", "BELIEFS", "FRONTIER", "CONTINUITY"):
+            self.assertIn(label, app)
+        for anchor in ("ops-field", "ops-pressure", "ops-context", "ops-beliefs", "ops-horizon", "ops-matrix"):
+            self.assertIn(anchor, app)
+        self.assertIn("what the system currently carries", app)
+        self.assertNotIn("what is true", app)
+
     def test_live_projection_keeps_receipt_telemetry_without_provider_bodies(self):
         live = self.read('wake/live.py')
         self.assertIn('"temporal", "context_delivery", "working_set_metrics", "runtime_performance"', live)
