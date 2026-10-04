@@ -709,6 +709,22 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-command-grid>a[data-tone="ok"]:before,.ops-command-grid>a[data-tone="running"]:before', css)
         self.assertIn('@media(min-width:1800px)', css)
 
+    def test_wide_control_room_groups_zones_and_labels_destinations(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('class="ops-command-zones" aria-hidden="true"', app)
+        self.assertIn('<span>OPERATIONS</span><span>SCIENTIFIC INSTRUMENTS</span><span>AUDIT</span>', app)
+        self.assertIn('data-route="STORY 01 / NOW"', app)
+        self.assertIn('data-route="STORY 02 / PRESSURE"', app)
+        self.assertIn('data-route="STORY 06 / FRONTIER"', app)
+        self.assertIn('data-route="STORY 07 / SPACE"', app)
+        self.assertIn('data-route="3D / PROVENANCE"', app)
+        self.assertIn('data-route="RECORD / FULL HISTORY"', app)
+        self.assertIn('.ops-command-zones{display:none}', css)
+        self.assertIn('.ops-command-grid>a[data-route]:after{content:attr(data-route)', css)
+        self.assertIn('.ops-command-zones{display:grid;grid-template-columns:3fr 4fr 1fr', css)
+        self.assertIn('.ops-command-grid>a[data-instrument]{grid-column:span 2;min-height:110px', css)
+
     def test_control_room_source_badges_report_projection_authority_and_access(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
