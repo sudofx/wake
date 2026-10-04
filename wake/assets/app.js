@@ -1068,12 +1068,12 @@
         <h2>Exact counts, reconciliations, and lower-level distributions.</h2>
         <p>The narrative above is a derived reading layer. The panels below expose the underlying populations and definitions so the story can be checked rather than merely believed.</p>
         <nav class="ops-verify-index" aria-label="Deep metric verification routes">
-          <a href="#verify-actions"><span>NOW</span><strong>accepted work</strong></a>
-          <a href="#verify-outcomes"><span>PRESSURE</span><strong>outcome composition</strong></a>
-          <a href="#verify-continuity"><span>MEMORY</span><strong>handoff counts</strong></a>
-          <a href="#verify-yield"><span>EVIDENCE</span><strong>research yield</strong></a>
-          <a href="#verify-provider"><span>APPARATUS</span><strong>provider cost</strong></a>
-          <a href="#verify-telemetry"><span>RECORD</span><strong>live telemetry</strong></a>
+          <a href="#metrics" data-verify-target="verify-actions"><span>NOW</span><strong>accepted work</strong></a>
+          <a href="#metrics" data-verify-target="verify-outcomes"><span>PRESSURE</span><strong>outcome composition</strong></a>
+          <a href="#metrics" data-verify-target="verify-continuity"><span>MEMORY</span><strong>handoff counts</strong></a>
+          <a href="#metrics" data-verify-target="verify-yield"><span>EVIDENCE</span><strong>research yield</strong></a>
+          <a href="#metrics" data-verify-target="verify-provider"><span>APPARATUS</span><strong>provider cost</strong></a>
+          <a href="#metrics" data-verify-target="verify-telemetry"><span>RECORD</span><strong>live telemetry</strong></a>
         </nav>
       </div>
         <div class="ops-lifecycle" aria-label="Application lifecycle observability">
@@ -1233,10 +1233,11 @@
   $('history-more').addEventListener('click',()=>{historyLimit+=35;route();});
   const resetPageScroll=()=>requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo(0,0)));
   document.addEventListener('click',event=>{
-    const storyLink=event.target.closest('[data-story-target]');
-    if(!storyLink)return;
+    const scrollLink=event.target.closest('[data-story-target],[data-verify-target]');
+    if(!scrollLink)return;
     event.preventDefault();
-    const target=document.getElementById(storyLink.dataset.storyTarget);
+    const targetId=scrollLink.dataset.storyTarget||scrollLink.dataset.verifyTarget;
+    const target=document.getElementById(targetId);
     if(target)target.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
   });
   window.addEventListener('hashchange',()=>{historyLimit=35;$('evidence-search').value='';$('history-search').value='';$('event-filter').value='all';route();resetPageScroll();});
