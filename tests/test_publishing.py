@@ -23,6 +23,12 @@ class PublishingTests(unittest.TestCase):
                 payload = build_live_projection(
                     engine.store, operation={"status": "accepted"}, runtime_ref="test-runtime"
                 )
+                public_invocation = next(iter(payload["state"]["invocations"].values()))
+                self.assertIn("temporal", public_invocation)
+                self.assertIn("context_delivery", public_invocation)
+                self.assertIn("working_set_metrics", public_invocation)
+                self.assertNotIn("working_set_shadow", public_invocation)
+                self.assertNotIn("retrieval_shadow", public_invocation)
                 self.assertEqual(payload["source"]["authority"], "legacy WAKE SQLite")
                 self.assertEqual(payload["source"]["database"], "wake.sqlite3")
                 self.assertIsNone(payload["source"]["branch"])
