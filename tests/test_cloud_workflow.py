@@ -349,6 +349,7 @@ class CloudWorkflowTests(unittest.TestCase):
         stop = (root/".github/workflows/operator-stop.yml").read_text()
         reset = (root/".github/workflows/operator-reset.yml").read_text()
         restart = (root/".github/workflows/operator-restart.yml").read_text()
+        continuity = (root/".github/workflows/operator-enable-continuity.yml").read_text()
         migrate = (root/".github/workflows/operator-migrate-authority.yml").read_text()
         migrate_source = (root/"scripts/github_migrate_authority.py").read_text()
 
@@ -389,10 +390,18 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertIn("git/ref/heads/wake-runtime", restart)
         self.assertIn('.head_sha==\\\"$runtime_sha\\\"', restart)
         self.assertIn("/force-cancel", restart)
+        self.assertIn("name: WAKE✳︎ - Enable continuity campaign", continuity)
+        self.assertIn("group: wake-operator-control", continuity)
+        self.assertIn("wake-runner.yml/disable", continuity)
+        self.assertIn("enable_continuity_matrix=true", continuity)
+        self.assertIn("python -m unittest discover", continuity)
+        self.assertIn("git/refs/heads/wake-runtime", continuity)
+        self.assertIn("enable_continuity_matrix:", workflow)
+        self.assertIn("--enable-continuity-matrix", workflow)
         # GitHub can retain queued workflow ghosts that never acquired a job.
         # Operator controls must ignore only old zero-job ghosts while still
         # treating fresh queued work and every run with jobs as active.
-        for control in (start, stop, restart, promotion):
+        for control in (start, stop, restart, promotion, continuity):
             self.assertIn("job_count", control)
             self.assertIn("age_seconds", control)
             self.assertIn('"queued"', control)
