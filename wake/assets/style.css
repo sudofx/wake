@@ -1829,6 +1829,11 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
 .ops-command-grid>a[data-tone="ok"]:before,.ops-command-grid>a[data-tone="running"]:before{background:var(--ops-green);opacity:.85}
 .ops-command-grid>a[data-tone="warning"]:before{background:var(--ops-amber);opacity:.9}
 .ops-command-grid>a[data-tone="stopped"]:before{background:var(--ops-red);opacity:.9}
+.ops-command-grid>a[data-instrument]{box-shadow:inset 0 -1px 0 #ffffff08}
+.ops-command-grid>a[data-instrument="continuity"] span{color:var(--ops-orange)}
+.ops-command-grid>a[data-instrument="continuity"] b{color:#d7a96b}
+.ops-command-grid>a[data-instrument="provenance"] span{color:var(--ops-green)}
+.ops-command-grid>a[data-instrument="provenance"] b{color:#94c9b0}
 .ops-command-grid>a:hover,.ops-command-grid>a:focus-visible{background:#091820;outline:1px solid var(--ops-cyan);outline-offset:-1px}
 .ops-command-grid span{font:7px/1 var(--mono);letter-spacing:.12em;color:var(--ops-muted)}
 .ops-command-grid strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:500 clamp(17px,1.35vw,23px)/1 var(--mono);color:var(--ops-cyan)}
