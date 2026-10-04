@@ -199,6 +199,11 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertNotIn('enable_continuity_matrix(', app)
         self.assertNotIn('set_time_dilation(', app)
 
+    def test_live_projection_keeps_receipt_telemetry_without_provider_bodies(self):
+        live = self.read('wake/live.py')
+        self.assertIn('"temporal", "context_delivery", "working_set_metrics", "runtime_performance"', live)
+        self.assertNotIn('"request", "response"', live)
+
     def test_operations_console_declares_mobile_and_wide_screen_breakpoints(self):
         css = self.read('wake/assets/style.css')
         self.assertIn('@media(max-width:430px)', css)
