@@ -244,6 +244,7 @@
     const runtimeRef=String(sourceMeta.runtime_ref||'').slice(0,12)||'—';
     const sourceAuthority=sourceMeta.authority||'derived projection';
     const matrixProgress=data.matrix_progress||null;
+    const matrixEnabled=matrixProgress?.enabled===true;
     const appObservability=data.application_observability||null;
     const wakeApp=(appObservability?.applications||[]).find(app=>app?.id==='wake')||null;
     const appActions=wakeApp?.actions||{};
@@ -417,7 +418,7 @@
     },{});
     const matrixPlanes=semanticAxis.map(semantic=>{
       const cells=(matrixCellsBySemantic[semantic.key]||[]).sort((a,b)=>a.ordinal-b.ordinal);
-      const cellHtml=cells.map(cell=>`<i class="continuity-cell ${esc(cell.status||'open')}" title="${esc((cell.values||[]).join(' · '))}" aria-label="${esc((cell.values||[]).join(', '))}: ${esc(cell.status||'open')}"></i>`).join('');
+      const cellHtml=cells.map(cell=>{const isNext=cell.coordinate_id===matrixProgress?.next_coordinate_id;return `<i class="continuity-cell ${esc(cell.status||'open')} ${isNext?'next':''}" title="${esc((cell.values||[]).join(' · '))}" aria-label="${esc((cell.values||[]).join(', '))}: ${esc(cell.status||'open')}${isNext?', next coordinate':''}"></i>`;}).join('');
       return `<section class="matrix-plane"><header><span>${esc(semantic.label)}</span><b>${cells.filter(cell=>cell.status==='completed').length}/49</b></header><div class="matrix-plane-grid" role="group" aria-label="${esc(semantic.label)} continuity plane">${cellHtml}</div></section>`;
     }).join('');
     const opsTopicMax=Math.max(1,...topicRows.map(topic=>topic.total));
@@ -466,7 +467,7 @@
           </div>
         </div>
         <div class="ops-matrix-block">
-          <div class="ops-matrix-copy"><p class="eyebrow">CONTINUITY@1 / 7×7×7</p><h3>${matrixProgress?'Coverage of the governed continuity space.':'Matrix is available but not enabled for this WAKE generation.'}</h3><p>${matrixProgress?matrixCompleted+' of '+matrixTotal+' coordinates completed · next '+esc(matrixProgress.next_coordinate_id||'complete'):'Enablement remains an explicit governed application action.'}</p><small>Seven semantic planes. Within each plane, columns follow exposure order and rows follow pressure order from the shared continuity@1 definition.</small></div>
+          <div class="ops-matrix-copy"><p class="eyebrow">CONTINUITY@1 / 7×7×7</p><h3>${matrixEnabled?'Coverage of the governed continuity space.':'Canonical continuity space · not yet enabled for this WAKE generation.'}</h3><p>${matrixEnabled?matrixCompleted+' of '+matrixTotal+' coordinates completed · next '+esc(matrixProgress.next_coordinate_id||'complete'):'343 deterministic coordinates are visible as definition geometry only.'}</p><small>Seven semantic planes. Within each plane, columns follow exposure order and rows follow pressure order from the shared continuity@1 definition.</small></div>
           <div class="continuity-matrix-view" aria-label="Continuity matrix coverage: ${matrixCompleted} of ${matrixTotal} coordinates completed">
             <div class="matrix-axis-note"><span>columns: ${esc(exposureAxis.map(v=>v.label).join(' · '))}</span><span>rows: ${esc(pressureAxis.map(v=>v.label).join(' · '))}</span></div>
             <div class="matrix-plane-stack">${matrixPlanes}</div>
