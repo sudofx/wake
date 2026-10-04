@@ -620,6 +620,25 @@ class ArchitectureSeparationTests(unittest.TestCase):
         css = self.read('wake/assets/style.css')
         self.assertIn('.ops-verify-index span{font-size:8px}.ops-verify-index strong{font-size:9px}', css)
 
+    def test_metrics_opens_with_compact_control_room_overview(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('CONTROL ROOM / CURRENT PUBLISHED PROJECTION', app)
+        self.assertIn('Fast orientation only. Open a cell for the underlying story, provenance, or record evidence.', app)
+        self.assertIn('href="#metrics/ops-now"', app)
+        self.assertIn('href="#metrics/ops-pressure"', app)
+        self.assertIn('href="#metrics/ops-horizon"', app)
+        self.assertIn('href="#metrics/ops-matrix"', app)
+        self.assertIn('href="map3d.html#record=root%3Awake"', app)
+        self.assertIn('href="events.html"', app)
+        self.assertIn('success-labelled', app)
+        self.assertIn('deterministic test-space coverage · not research quality', app)
+        self.assertIn('local replay + SQLite integrity evidence', app)
+        self.assertIn('.ops-command-deck{margin:0 0 10px', css)
+        self.assertIn('.ops-command-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr))}', css)
+        self.assertIn('.ops-command-grid{grid-template-columns:none;grid-auto-flow:column', css)
+        self.assertIn('@media(min-width:1800px)', css)
+
     def test_metrics_story_links_only_explicit_3d_provenance_branches(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
