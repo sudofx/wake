@@ -962,6 +962,16 @@
     const freePct=recordIntegrity?.database_bytes?100*Number(recordIntegrity.free_bytes||0)/Number(recordIntegrity.database_bytes):null;
     const opsTopicMax=Math.max(1,...topicRows.map(topic=>topic.total));
     const visibleTopics=topicRows.slice(0,10);
+    const commandMatrixBars=semanticAxis.map((semantic,index)=>{
+      const cells=matrixStatuses.slice(index*49,index*49+49);
+      const completed=cells.filter(status=>status==='completed').length;
+      const pct=cells.length?100*completed/cells.length:0;
+      return `<i style="--micro:${pct.toFixed(2)}%" title="${esc(semantic.label||'semantic plane')}: ${completed}/${cells.length||49} completed"></i>`;
+    }).join('');
+    const commandTopicBars=visibleTopics.slice(0,7).map(topic=>{
+      const pct=100*topic.total/opsTopicMax;
+      return `<i style="--micro:${pct.toFixed(2)}%" title="${esc(topic.label)}: ${topic.total} accepted actions"></i>`;
+    }).join('');
     const topicNodes=visibleTopics.map((topic,index)=>{
       const size=Math.max(10,Math.min(32,10+Math.round(24*topic.total/opsTopicMax)));
       const angle=(-Math.PI/2)+(2*Math.PI*index/Math.max(1,visibleTopics.length));
@@ -988,8 +998,8 @@
           <a href="#metrics/ops-now" data-tone="${currentStatus.toLowerCase()}"><span>WAKE STATUS</span><strong>${esc(currentStatus)}</strong><b>CYCLE ${s.version}</b><i class="ops-command-meter acceptance ${acceptanceRate===null?'unavailable':''}" style="--meter:${acceptanceRate===null?0:acceptanceRate}%" aria-hidden="true"></i><small>${completed.length} completed wakes · ${acceptanceRate===null?'acceptance unavailable':acceptanceRate+'% accepted'}</small></a>
           <a href="#metrics/ops-pressure"><span>PROVIDER</span><strong>${esc(latestModel)}</strong><b>${wakeStatus.provider_requests_today??0} requests today</b><i class="ops-command-meter ${providerQuotaPct===null?'unavailable':''}" style="--meter:${providerQuotaPct===null?0:providerQuotaPct.toFixed(2)}%" aria-hidden="true"></i><small>${providerQuotaPct===null?'quota limit unavailable':providerSlotsToday+'/'+providerDailyLimit+' charged request slots'} · ${providerSuccesses}/${knownAttempts.length} known attempts success-labelled</small></a>
           <a href="#metrics/ops-horizon" data-tone="${overdue?'warning':'ok'}"><span>FRONTIER</span><strong>${openObligations}</strong><b>OPEN COMMITMENTS</b><i class="ops-command-meter pressure" style="--meter:${frontierOverduePct.toFixed(2)}%" aria-hidden="true"></i><small>${overdue} overdue · ${openObligations?Math.round(frontierOverduePct)+'% of open commitments overdue':'no open commitments'}</small></a>
-          <a href="#metrics/ops-matrix" data-instrument="continuity"><span>CONTINUITY@1</span><strong>${matrixPct===null?'NOT ENABLED':matrixPct+'%'}</strong><b>${matrixCompleted}/${matrixTotal} coordinates</b><i class="ops-command-meter ${matrixPct===null?'unavailable':''}" style="--meter:${matrixPct===null?0:matrixPct}%" aria-hidden="true"></i><small>deterministic test-space coverage · not research quality</small></a>
-          <a href="map3d.html#record=root%3Awake" data-instrument="provenance"><span>RESEARCH FIELD</span><strong>${topicActive}/${configuredTopicCount||'—'}</strong><b>ACTIVE TOPIC LANES</b><i class="ops-command-meter ${topicCoveragePct===null?'unavailable':''}" style="--meter:${topicCoveragePct===null?0:Math.max(0,Math.min(100,topicCoveragePct)).toFixed(2)}%" aria-hidden="true"></i><small>${topicAttributedTotal} topic-attributed accepted actions · open 3D provenance</small></a>
+          <a href="#metrics/ops-matrix" data-instrument="continuity"><span>CONTINUITY@1</span><strong>${matrixPct===null?'NOT ENABLED':matrixPct+'%'}</strong><b>${matrixCompleted}/${matrixTotal} coordinates</b><div class="ops-command-micro" aria-hidden="true">${commandMatrixBars||'<i style="--micro:0%"></i>'}</div><i class="ops-command-meter ${matrixPct===null?'unavailable':''}" style="--meter:${matrixPct===null?0:matrixPct}%" aria-hidden="true"></i><small>seven bars = semantic-plane completion · deterministic test space, not research quality</small></a>
+          <a href="map3d.html#record=root%3Awake" data-instrument="provenance"><span>RESEARCH FIELD</span><strong>${topicActive}/${configuredTopicCount||'—'}</strong><b>ACTIVE TOPIC LANES</b><div class="ops-command-micro" aria-hidden="true">${commandTopicBars||'<i style="--micro:0%"></i>'}</div><i class="ops-command-meter ${topicCoveragePct===null?'unavailable':''}" style="--meter:${topicCoveragePct===null?0:Math.max(0,Math.min(100,topicCoveragePct)).toFixed(2)}%" aria-hidden="true"></i><small>bars = relative accepted-action weight of top topic lanes · open 3D provenance</small></a>
           <a href="events.html" data-tone="${recordReplayOk&&sqliteQuickOk?'ok':'warning'}"><span>DURABLE RECORD</span><strong>${recordReplayOk&&sqliteQuickOk?'VERIFIED':'CHECK'}</strong><b>${recordIntegrity?.sudofx_event_count??'—'} events</b><div class="ops-command-lamps" aria-label="Durable record integrity checks"><span class="${recordReplayOk?'ok':'warn'}"><i aria-hidden="true"></i>REPLAY</span><span class="${sqliteQuickOk?'ok':'warn'}"><i aria-hidden="true"></i>SQLITE</span></div><small>head ${esc(shortHead)} · local replay + SQLite integrity evidence</small></a>
         </div>
         <div class="ops-command-pulse" aria-label="Recent completed wake receipts">
