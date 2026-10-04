@@ -1495,6 +1495,30 @@ body.metrics-ops-active .reading-key strong{color:var(--ops-orange)}
   .ops-evidence-matrix-scroll{padding-left:10px;padding-right:10px}
   .ops-evidence-matrix-header,.ops-evidence-matrix-row{grid-template-columns:minmax(126px,1.2fr) repeat(var(--evidence-tier-count),minmax(54px,1fr)) 38px;min-width:max(690px,100%)}
 }
+.ops-evidence-belief-bridge{border-top:1px solid var(--ops-line);border-bottom:1px solid var(--ops-line);background:linear-gradient(90deg,#050c11,#0c100b 58%,#0f0c08)}
+.ops-evidence-belief-bridge>header{display:flex;justify-content:space-between;gap:18px;align-items:end;padding:10px 14px 9px}
+.ops-evidence-belief-bridge>header>div{display:grid;gap:3px;min-width:0}
+.ops-evidence-belief-bridge>header span{font:7px/1 var(--mono);letter-spacing:.12em;color:var(--ops-green)}
+.ops-evidence-belief-bridge>header strong{font:500 11px/1.2 var(--mono);color:#edf5ee}
+.ops-evidence-belief-bridge>header small{max-width:700px;text-align:right;font:7px/1.4 var(--mono);color:var(--ops-muted)}
+.ops-evidence-belief-grid{display:grid;grid-template-columns:minmax(150px,1.05fr) 28px minmax(155px,1fr) 28px minmax(145px,1fr) 28px minmax(155px,1fr);border-top:1px solid var(--ops-line-soft)}
+.ops-evidence-belief-grid>div{min-width:0;padding:9px 11px;border-right:1px solid var(--ops-line-soft)}
+.ops-evidence-belief-grid>div:last-child{border-right:0}
+.ops-evidence-belief-grid span{display:block;font:7px/1 var(--mono);letter-spacing:.09em;color:var(--ops-muted)}
+.ops-evidence-belief-grid strong{display:block;margin-top:4px;font:500 15px/1 var(--mono);color:#edf4ef}
+.ops-evidence-belief-grid small{display:block;margin-top:3px;font:7px/1.25 var(--mono);color:#645f50}
+.ops-evidence-belief-grid>div:first-child span,.ops-evidence-belief-grid>div:nth-of-type(2) span{color:var(--ops-green)}
+.ops-evidence-belief-grid>div:nth-of-type(3) span,.ops-evidence-belief-grid>div:nth-of-type(4) span{color:var(--ops-orange)}
+.ops-evidence-belief-grid>i{display:grid;place-items:center;border-right:1px solid var(--ops-line-soft);font:500 12px/1 var(--mono);font-style:normal;color:#75888c}
+@media(max-width:700px){
+  .ops-evidence-belief-bridge>header{display:block;padding:9px 10px}
+  .ops-evidence-belief-bridge>header small{display:block;margin-top:5px;max-width:none;text-align:left}
+  .ops-evidence-belief-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ops-evidence-belief-grid>div{padding:9px 10px;border-bottom:1px solid var(--ops-line-soft)}
+  .ops-evidence-belief-grid>div:nth-of-type(2n){border-right:0}
+  .ops-evidence-belief-grid>i{display:none}
+  .ops-evidence-belief-grid span,.ops-evidence-belief-grid small{font-size:7px}
+}
 .ops-beliefs{border-top:1px solid var(--ops-line);background:#061016}
 .ops-beliefs-head{display:flex;justify-content:space-between;gap:16px;align-items:end;padding:13px 16px;border-bottom:1px solid var(--ops-line-soft)}
 .ops-beliefs-head .eyebrow{margin:0 0 4px;color:var(--ops-orange)}
