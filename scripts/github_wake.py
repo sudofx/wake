@@ -466,7 +466,7 @@ def continuation_outputs(result):
     set_step_output("retry_after", str(retry_after))
 
 
-def main(reset=False):
+def main(reset=False, enable_continuity_matrix=False):
     if os.environ.get("GITHUB_ACTIONS") != "true":
         raise SystemExit("This entry point runs in GitHub Actions. Use python -m wake for local work.")
     settings = config(ROOT / "wake.toml")
@@ -505,6 +505,8 @@ def main(reset=False):
                 else:
                     engine.initialize()
                     engine.recover(explicit=True)
+                    if enable_continuity_matrix:
+                        engine.store.enable_continuity_matrix()
                     guarded_checkpoint()
 
             result_checkpointed = False
@@ -516,6 +518,15 @@ def main(reset=False):
                               "reset": True,
                               "archive_branch": archive_branch,
                               "cycle": state["version"]}
+                elif enable_continuity_matrix:
+                    progress = engine.store.continuity_matrix_progress()
+                    result = {
+                        "status": "not_started",
+                        "reason": "Continuity campaign enabled",
+                        "continuity_matrix_enabled": True,
+                        "matrix": progress,
+                        "cycle": engine.store.load()["version"],
+                    }
                 else:
                     provider = Gemini(settings)
                     result = engine.run(provider, checkpoint=guarded_checkpoint, collector=collect)
@@ -560,11 +571,18 @@ if __name__ == "__main__":
                         help="Archive current durable state, then reset active cloud state to WAKE 0")
     parser.add_argument("--confirm-reset", action="store_true",
                         help="Required confirmation for --reset")
+    parser.add_argument("--enable-continuity-matrix", action="store_true",
+                        help="Explicitly enable WAKE's continuity@1 campaign without calling a provider")
     args = parser.parse_args()
     if args.reset and not args.confirm_reset:
         raise SystemExit("--reset requires --confirm-reset")
+    if args.reset and args.enable_continuity_matrix:
+        raise SystemExit("--reset and --enable-continuity-matrix are mutually exclusive")
     try:
-        sys.exit(main(reset=args.reset))
+        sys.exit(main(
+            reset=args.reset,
+            enable_continuity_matrix=args.enable_continuity_matrix,
+        ))
     except subprocess.CalledProcessError as exc:
         detail = (exc.stderr or exc.stdout or "").strip()
         message = "Git state persistence failed. No force push or automatic model retry was attempted."
