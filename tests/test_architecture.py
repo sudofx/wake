@@ -690,6 +690,20 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-command-grid>a:nth-last-child(-n+2){border-bottom:0}', css)
         self.assertIn('.ops-storyline{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(138px,48vw)}', css)
 
+    def test_primary_control_room_microvisuals_are_data_driven(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('const commandMatrixBars=semanticAxis.map((semantic,index)=>{', app)
+        self.assertIn("const cells=matrixStatuses.slice(index*49,index*49+49)", app)
+        self.assertIn("cells.filter(status=>status==='completed').length", app)
+        self.assertIn('seven bars = semantic-plane completion', app)
+        self.assertIn('const commandTopicBars=visibleTopics.slice(0,7).map(topic=>{', app)
+        self.assertIn('const pct=100*topic.total/opsTopicMax', app)
+        self.assertIn('bars = relative accepted-action weight of top topic lanes', app)
+        self.assertIn('.ops-command-micro{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))', css)
+        self.assertIn('data-instrument="continuity"', app)
+        self.assertIn('data-instrument="provenance"', app)
+
     def test_metrics_story_links_only_explicit_3d_provenance_branches(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
