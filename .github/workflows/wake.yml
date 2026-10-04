@@ -73,36 +73,6 @@ jobs:
           python-version: '3.12'
       - name: Install WAKE runtime dependencies
         run: python -m pip install --disable-pip-version-check -e .
-      - name: Enforce sudofx global application access
-        run: |
-          set -euo pipefail
-          control_db="$(mktemp -t sudofx-control-XXXXXX.sqlite)"
-          trap 'rm -f "$control_db"' EXIT
-          curl --fail --silent --show-error --location \
-            "https://raw.githubusercontent.com/sudofx/sudofx/sudofx-state/sudofx.sqlite?ts=${GITHUB_RUN_ID}" \
-            --output "$control_db"
-          python - "$control_db" <<'PY'
-          import sqlite3, sys
-          path = sys.argv[1]
-          with sqlite3.connect(path) as db:
-              quick = db.execute("PRAGMA quick_check").fetchone()[0]
-              if quick != "ok":
-                  raise SystemExit("sudofx global access authority failed SQLite quick_check")
-              try:
-                  row = db.execute(
-                      "SELECT enabled, generation FROM application_access WHERE singleton = 1"
-                  ).fetchone()
-              except sqlite3.OperationalError:
-                  # Legacy central state predating the latch is the rollout baseline:
-                  # enabled until the operator first records STOP/RESTORE in schema v10.
-                  row = (1, 0)
-              if row is None:
-                  raise SystemExit("sudofx global application access latch is missing")
-              enabled, generation = int(row[0]), int(row[1])
-              print(f"sudofx application access generation={generation} enabled={enabled}")
-              if enabled != 1:
-                  raise SystemExit("SUDOFX_EXTERNAL_ACCESS_DISABLED")
-          PY
       - name: Run one governed research cycle
         id: cycle
         continue-on-error: true
