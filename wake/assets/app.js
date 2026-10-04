@@ -823,6 +823,7 @@
     const evidencePerAccepted=acceptedCount?(evidenceCount/acceptedCount):null;
     const openCommitments=obligations.filter(c=>c.status==='open');
     const openObligations=openCommitments.length;
+    const frontierOverduePct=openObligations?Math.max(0,Math.min(100,100*overdue/openObligations)):0;
     const obligationBuckets=[
       ['OVERDUE',openCommitments.filter(item=>Number(item.due_cycle)<Number(s.version)).length,'danger'],
       ['DUE NOW',openCommitments.filter(item=>Number(item.due_cycle)===Number(s.version)).length,'warning'],
@@ -975,12 +976,12 @@
           <small>Fast orientation only. Open a cell for the underlying story, provenance, or record evidence.</small>
         </header>
         <div class="ops-command-grid">
-          <a href="#metrics/ops-now" data-tone="${currentStatus.toLowerCase()}"><span>WAKE STATUS</span><strong>${esc(currentStatus)}</strong><b>CYCLE ${s.version}</b><small>${completed.length} completed wakes · ${acceptanceRate===null?'acceptance unavailable':acceptanceRate+'% accepted'}</small></a>
+          <a href="#metrics/ops-now" data-tone="${currentStatus.toLowerCase()}"><span>WAKE STATUS</span><strong>${esc(currentStatus)}</strong><b>CYCLE ${s.version}</b><i class="ops-command-meter acceptance ${acceptanceRate===null?'unavailable':''}" style="--meter:${acceptanceRate===null?0:acceptanceRate}%" aria-hidden="true"></i><small>${completed.length} completed wakes · ${acceptanceRate===null?'acceptance unavailable':acceptanceRate+'% accepted'}</small></a>
           <a href="#metrics/ops-pressure"><span>PROVIDER</span><strong>${esc(latestModel)}</strong><b>${wakeStatus.provider_requests_today??0} requests today</b><i class="ops-command-meter ${providerQuotaPct===null?'unavailable':''}" style="--meter:${providerQuotaPct===null?0:providerQuotaPct.toFixed(2)}%" aria-hidden="true"></i><small>${providerQuotaPct===null?'quota limit unavailable':providerSlotsToday+'/'+providerDailyLimit+' charged request slots'} · ${providerSuccesses}/${knownAttempts.length} known attempts success-labelled</small></a>
-          <a href="#metrics/ops-horizon" data-tone="${overdue?'warning':'ok'}"><span>FRONTIER</span><strong>${openObligations}</strong><b>OPEN COMMITMENTS</b><small>${overdue} overdue · durable governed obligations</small></a>
+          <a href="#metrics/ops-horizon" data-tone="${overdue?'warning':'ok'}"><span>FRONTIER</span><strong>${openObligations}</strong><b>OPEN COMMITMENTS</b><i class="ops-command-meter pressure" style="--meter:${frontierOverduePct.toFixed(2)}%" aria-hidden="true"></i><small>${overdue} overdue · ${openObligations?Math.round(frontierOverduePct)+'% of open commitments overdue':'no open commitments'}</small></a>
           <a href="#metrics/ops-matrix" data-instrument="continuity"><span>CONTINUITY@1</span><strong>${matrixPct===null?'NOT ENABLED':matrixPct+'%'}</strong><b>${matrixCompleted}/${matrixTotal} coordinates</b><i class="ops-command-meter ${matrixPct===null?'unavailable':''}" style="--meter:${matrixPct===null?0:matrixPct}%" aria-hidden="true"></i><small>deterministic test-space coverage · not research quality</small></a>
           <a href="map3d.html#record=root%3Awake" data-instrument="provenance"><span>RESEARCH FIELD</span><strong>${topicActive}/${configuredTopicCount||'—'}</strong><b>ACTIVE TOPIC LANES</b><i class="ops-command-meter ${topicCoveragePct===null?'unavailable':''}" style="--meter:${topicCoveragePct===null?0:Math.max(0,Math.min(100,topicCoveragePct)).toFixed(2)}%" aria-hidden="true"></i><small>${topicAttributedTotal} topic-attributed accepted actions · open 3D provenance</small></a>
-          <a href="events.html" data-tone="${recordReplayOk&&sqliteQuickOk?'ok':'warning'}"><span>DURABLE RECORD</span><strong>${recordReplayOk&&sqliteQuickOk?'VERIFIED':'CHECK'}</strong><b>${recordIntegrity?.sudofx_event_count??'—'} events</b><small>head ${esc(shortHead)} · local replay + SQLite integrity evidence</small></a>
+          <a href="events.html" data-tone="${recordReplayOk&&sqliteQuickOk?'ok':'warning'}"><span>DURABLE RECORD</span><strong>${recordReplayOk&&sqliteQuickOk?'VERIFIED':'CHECK'}</strong><b>${recordIntegrity?.sudofx_event_count??'—'} events</b><div class="ops-command-lamps" aria-label="Durable record integrity checks"><span class="${recordReplayOk?'ok':'warn'}"><i aria-hidden="true"></i>REPLAY</span><span class="${sqliteQuickOk?'ok':'warn'}"><i aria-hidden="true"></i>SQLITE</span></div><small>head ${esc(shortHead)} · local replay + SQLite integrity evidence</small></a>
         </div>
       </section>
       <nav class="ops-storyline" aria-label="WAKE data story">
