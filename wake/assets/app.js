@@ -390,6 +390,18 @@
     ].map(([label,low,high])=>[label,activeConfidences.filter(value=>value>=low&&value<high).length]);
     const confidenceBandMax=Math.max(1,...confidenceBands.map(([,count])=>count));
     const confidenceBars=confidenceBands.map(([label,count])=>`<div class="ops-belief-band"><span>${label}</span><div><i style="width:${Math.max(count?5:0,100*count/confidenceBandMax)}%"></i></div><strong>${count}</strong></div>`).join('');
+    const beliefLineageRows=opsActiveBeliefs
+      .slice()
+      .sort((a,b)=>Number(b.updated_version||0)-Number(a.updated_version||0)||String(a.id||'').localeCompare(String(b.id||'')))
+      .slice(0,8)
+      .map(item=>{
+        const evidenceIds=Array.isArray(item?.evidence)?item.evidence:[];
+        const evidenceLinks=evidenceIds.slice(-6).map(id=>`<a href="#evidence/${encodeURIComponent(id)}" title="Open evidence ${esc(id)}">${esc(String(id).slice(-12))}</a>`).join('');
+        const hiddenEvidence=Math.max(0,evidenceIds.length-6);
+        const updatedBy=String(item?.updated_by||'');
+        const confidence=Number(item?.confidence);
+        return `<article class="ops-lineage-card"><header><span>REV ${Number.isFinite(Number(item?.updated_version))?Number(item.updated_version):'—'}</span><strong>${Number.isFinite(confidence)?confidence.toFixed(2):'—'}</strong></header><p>${esc(item?.statement||item?.id||'Recorded belief')}</p><div class="ops-lineage-roots"><span>EVIDENCE ROOTS</span><div>${evidenceLinks||'<em>none recorded</em>'}${hiddenEvidence?`<em>+${hiddenEvidence} more</em>`:''}</div></div><div class="ops-lineage-meta">${updatedBy?`<a href="#history/${encodeURIComponent(updatedBy)}">UPDATED BY ${esc(updatedBy.slice(-10))}</a>`:'<span>UPDATE RECEIPT UNAVAILABLE</span>'}<span class="${String(item?.falsifier||'').trim()?'has-falsifier':'no-falsifier'}">${String(item?.falsifier||'').trim()?'FALSIFIER RECORDED':'NO FALSIFIER'}</span></div></article>`;
+      }).join('');
     const evidenceById=Object.fromEntries(evidenceRecords.map(item=>[item?.id,item]));
     const beliefLineage=opsActiveBeliefs.slice(0,8).map(belief=>{
       const roots=Array.isArray(belief?.evidence)?belief.evidence:[];
@@ -890,6 +902,10 @@
               <div><span>EVIDENCE ROOTS</span><strong>${beliefEvidenceRoots}</strong><small>citations carried by active beliefs</small></div>
             </div>
             <div class="ops-belief-distribution"><header><span>ACTIVE CONFIDENCE DISTRIBUTION</span><strong>${activeConfidences.length} measured</strong></header><div>${confidenceBars}</div></div>
+          </div>
+          <div class="ops-belief-lineage">
+            <div class="ops-belief-lineage-head"><div><span>EVIDENCE → BELIEF LINEAGE</span><strong>Current carried beliefs with their recorded roots.</strong></div><small>Sorted by durable update version. Links expose the exact evidence and invocation receipts recorded in state.</small></div>
+            <div class="ops-belief-lineage-grid">${beliefLineageRows||'<p class="empty">No active beliefs are currently carried.</p>'}</div>
           </div>
           <div class="ops-lineage">
             <div class="ops-lineage-head"><div><span>EVIDENCE → BELIEF / EXPLICIT CITATION LINEAGE</span><strong>${beliefEvidenceRoots} recorded citation edges across ${opsActiveBeliefs.length} active beliefs</strong></div><small>Edges come only from each governed belief's stored evidence IDs. Presence proves linkage in the record, not that the cited evidence is true or sufficient.</small></div>
