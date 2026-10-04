@@ -8,7 +8,7 @@ from sudofx import continuity_matrix
 from sudofx.storage import ApplicationAccessError
 
 from wake.governance import Rejected
-from wake.live import _matrix_metrics
+from wake.live import _application_access_metrics, _matrix_metrics
 from wake.sudofx_store import SudofxStore
 
 
@@ -102,6 +102,26 @@ class WakeMatrixIntegrationTests(unittest.TestCase):
                     store.continuity_matrix_progress()["completed_count"],
                     0,
                 )
+            finally:
+                store.close()
+
+    def test_public_application_access_metrics_follow_global_latch(self) -> None:
+        with tempfile.TemporaryDirectory() as tempdir:
+            store = SudofxStore(Path(tempdir), initialize_empty=True)
+            try:
+                initial = _application_access_metrics(store)
+                self.assertTrue(initial["enabled"])
+                stopped = store.record.set_application_access(
+                    False,
+                    actor="operator",
+                    reason="public projection test",
+                )
+                projected = _application_access_metrics(store)
+                self.assertFalse(projected["enabled"])
+                self.assertEqual(projected["generation"], stopped.generation)
+                self.assertEqual(projected["changed_at"], stopped.changed_at)
+                self.assertNotIn("actor", projected)
+                self.assertNotIn("reason", projected)
             finally:
                 store.close()
 
