@@ -578,7 +578,15 @@
       return `<a class="ops-topic-node" href="#projects/topic:${encodeURIComponent(topic.id)}" style="--node-size:${size}px;--node-color:${esc(topicColors[topic.id]||'var(--ops-cyan)')};--node-x:${x}%;--node-y:${y}%"><span>${esc(topic.label)}</span><b>${topic.total}</b></a>`;
     }).join('');
     $('metrics-dashboard').innerHTML=`
-      <section class="ops-console" aria-label="WAKE operational research console">
+      <nav class="ops-storyline" aria-label="WAKE data story">
+        <a href="#ops-now"><b>01</b><span>NOW</span><strong>cycle ${s.version}</strong></a>
+        <a href="#ops-pressure"><b>02</b><span>PRESSURE</span><strong>${rejectedCount} rejected</strong></a>
+        <a href="#ops-continuity"><b>03</b><span>CONTINUITY</span><strong>${openObligations} open</strong></a>
+        <a href="#ops-evidence"><b>04</b><span>EVIDENCE</span><strong>${qualifyingEvidence} substantive</strong></a>
+        <a href="#ops-beliefs"><b>05</b><span>BELIEF</span><strong>${opsActiveBeliefs.length} active</strong></a>
+        <a href="#ops-matrix"><b>06</b><span>SPACE</span><strong>${matrixPct}% mapped</strong></a>
+      </nav>
+      <section class="ops-console" id="ops-now" aria-label="WAKE operational research console">
         <header class="ops-console-head">
           <div><p class="eyebrow">WAKE✳︎ / RESEARCH OPERATIONS</p><h2>Live governed research field.</h2></div>
           <div class="ops-console-actions">
@@ -640,7 +648,7 @@
           <div class="ops-provider-track" role="group" aria-label="Recent provider attempt outcomes">${providerTrace||'<span class="empty">No known provider attempts yet.</span>'}</div>
           <div class="ops-provider-meta"><span>median ${medianLatency===null?'—':medianLatency+' ms'}</span><span>${providerSuccesses} success-labelled</span><span>${fallbackWakes} fallback wakes</span></div>
         </div>
-        <div class="ops-pressure-board" aria-label="Operational pressure">
+        <div class="ops-pressure-board" id="ops-pressure" aria-label="Operational pressure">
           <section>
             <header><span>GOVERNANCE PRESSURE</span><strong>${sortedReasons.length} rejection families</strong></header>
             <div class="ops-pressure-list">${pressureBars}</div>
@@ -679,7 +687,7 @@
           <div class="ops-signal info" style="--signal:${Math.min(100,configuredTopicCount?100*topicActive/configuredTopicCount:0)}%"><span>TOPIC COVERAGE</span><strong>${topicActive}/${configuredTopicCount}</strong><i></i></div>
           <div class="ops-signal info" style="--signal:${Math.min(100,matrixPct)}%"><span>MATRIX COVERAGE</span><strong>${matrixPct}%</strong><i></i></div>
         </div>
-        <div class="ops-horizon" id="ops-horizon" aria-label="Open commitment horizon">
+        <div class="ops-horizon" id="ops-continuity" aria-label="Open commitment horizon">
           <div class="ops-horizon-head"><div><p class="eyebrow">OPEN COMMITMENT HORIZON</p><h3>${openObligations} obligations carried forward</h3></div><small>bucketed by due cycle relative to cycle ${s.version}</small></div>
           <div class="ops-horizon-grid">${obligationHorizon}</div>
         </div>
@@ -716,7 +724,7 @@
             <div class="ops-context-track" role="group" aria-label="Recent context delivery receipts">${contextTrace||'<span class="empty">No context receipts yet.</span>'}</div>
           </div>
         </div>
-        <div class="ops-provenance" aria-label="Evidence provenance telemetry">
+        <div class="ops-provenance" id="ops-evidence" aria-label="Evidence provenance telemetry">
           <div class="ops-provenance-head">
             <div><p class="eyebrow">EVIDENCE PROVENANCE / COLLECTION DEPTH</p><h3>${qualifyingEvidence} substantive source observations</h3></div>
             <small>provenance labels describe retrieval depth; they are not truth scores</small>
