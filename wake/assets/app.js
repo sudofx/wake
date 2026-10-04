@@ -256,6 +256,31 @@
     const evidenceTierRows=Object.entries(evidenceTiers).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));
     const evidenceTierMax=Math.max(1,...evidenceTierRows.map(([,count])=>count));
     const evidenceTierBars=evidenceTierRows.slice(0,7).map(([tier,count])=>`<div class="ops-provenance-row"><span>${esc(String(tier).replaceAll('-',' '))}</span><div><i style="width:${Math.max(4,100*count/evidenceTierMax)}%"></i></div><strong>${count}</strong></div>`).join('')||'<p class="empty">No evidence provenance recorded.</p>';
+    const opsDriveScored=invocations.filter(item=>item?.inquiry_drive_shadow&&item.status==='accepted');
+    const opsDrive=opsDriveScored.at(-1)?.inquiry_drive_shadow||null;
+    const opsDriveGate=opsDrive?.activation||null;
+    const opsDriveProjects=Array.isArray(opsDrive?.projects)?opsDrive.projects:[];
+    const opsDriveStatus=!opsDrive?'WAITING':opsDriveGate?.active?'ACTIVE / ADVISORY':opsDriveGate?.operator_enabled?'LOCKED / OBSERVING':'SHADOW ONLY';
+    const opsDriveRows=opsDriveProjects.map((project,index)=>{
+      const components=project.components||{};
+      const dims=[
+        ['C','continuity'],['N','novelty'],['H','coherence'],['G','generativity'],['S','self_correction']
+      ].map(([short,key])=>{
+        const value=Math.max(0,Math.min(1,Number(components[key])||0));
+        return `<span title="${esc(key.replaceAll('_',' '))}: ${Math.round(value*100)}%"><b>${short}</b><i style="--drive-component:${(value*100).toFixed(0)}%"></i></span>`;
+      }).join('');
+      const score=Math.max(0,Math.min(1,Number(project.score)||0));
+      return `<div class="ops-drive-row"><em>${index+1}</em><div class="ops-drive-copy"><strong>${esc(project.title||project.id||'Untitled project')}</strong><small>${esc(project.id||'')}</small></div><div class="ops-drive-components">${components?dims:''}</div><div class="ops-drive-score" style="--drive-score:${(score*100).toFixed(0)}%"><b>${Math.round(score*100)}</b><span>%</span></div></div>`;
+    }).join('')||'<p class="empty">No active research projects were scored in the latest accepted wake.</p>';
+    const opsDriveTraceSource=opsDriveScored.slice(-40);
+    const opsDriveTrace=opsDriveTraceSource.map(item=>{
+      const shadow=item.inquiry_drive_shadow||{};
+      const projects=Array.isArray(shadow.projects)?shadow.projects:[];
+      const leader=projects.reduce((best,current)=>!best||Number(current.score)>Number(best.score)?current:best,null);
+      const score=Math.max(0,Math.min(1,Number(leader?.score)||0));
+      const active=shadow.activation?.active===true;
+      return `<a class="ops-drive-tick ${active?'advisory':'shadow'}" href="#history/${encodeURIComponent(item.id)}" style="--drive-height:${Math.max(5,score*100).toFixed(0)}%" title="${esc(item.id)} · leader ${esc(leader?.title||'none')} · ${Math.round(score*100)}% · ${active?'advisory':'shadow'}"></a>`;
+    }).join('');
     const opsBeliefs=Object.values(s.beliefs||{});
     const opsActiveBeliefs=opsBeliefs.filter(item=>item?.status==='active');
     const opsRetractedBeliefs=opsBeliefs.filter(item=>item?.status==='retracted');
@@ -657,6 +682,20 @@
         <div class="ops-horizon" id="ops-horizon" aria-label="Open commitment horizon">
           <div class="ops-horizon-head"><div><p class="eyebrow">OPEN COMMITMENT HORIZON</p><h3>${openObligations} obligations carried forward</h3></div><small>bucketed by due cycle relative to cycle ${s.version}</small></div>
           <div class="ops-horizon-grid">${obligationHorizon}</div>
+        </div>
+        <div class="ops-drive" id="ops-drive" aria-label="Inquiry drive shadow telemetry">
+          <div class="ops-drive-head">
+            <div><p class="eyebrow">INQUIRY-DRIVE SHADOW / WHAT WORK WOULD PERSIST?</p><h3>${opsDriveStatus}</h3></div>
+            <div class="ops-drive-gate"><strong>${opsDriveGate?Number(opsDriveGate.completed_scored_cycles||0):0}</strong><span>/ ${opsDriveGate?Number(opsDriveGate.minimum_completed_scored_cycles||0):0} SCORED CYCLES</span><small>deterministic observation · no decision authority</small></div>
+          </div>
+          <div class="ops-drive-grid">
+            <div class="ops-drive-ranking">${opsDriveRows}</div>
+            <div class="ops-drive-history">
+              <header><span>LEADING PROJECT SCORE / LAST ${opsDriveTraceSource.length}</span><strong>${opsDriveProjects.length} ranked now</strong></header>
+              <div class="ops-drive-track" role="group" aria-label="Recent inquiry-drive shadow scores">${opsDriveTrace||'<span class="empty">No inquiry-drive receipts yet.</span>'}</div>
+              <p>C continuity · N novelty · H coherence · G generativity · S self-correction</p>
+            </div>
+          </div>
         </div>
         <div class="ops-tertiary-grid">
         <div class="ops-context" id="ops-context" aria-label="Context delivery telemetry">
