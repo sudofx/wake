@@ -118,6 +118,22 @@ class FrontendHygieneTests(unittest.TestCase):
         self.assertIn('#flat-content [data-event-kind="observation"]', css)
         self.assertIn('#flat-content [data-event-kind="invocation_started"]', css)
 
+    def test_3d_map_instrument_context_rail_preserves_semantic_boundaries(self):
+        html = (ASSETS / "map3d.html").read_text()
+        css = (ASSETS / "map3d.css").read_text()
+
+        self.assertIn('class="map-instrument-rail" aria-label="WAKE instrument context"', html)
+        self.assertIn('INSTRUMENT / 3D PROVENANCE', html)
+        self.assertIn('This is record topology, not continuity@1 test-space geometry.', html)
+        self.assertIn('href="index.html#metrics"', html)
+        self.assertIn('href="map3d.html" aria-current="page"', html)
+        self.assertIn('href="index.html#metrics/ops-matrix"', html)
+        self.assertIn('href="events.html"', html)
+        self.assertIn('.map-instrument-rail{display:grid', css)
+        self.assertIn('.map-instrument-rail>a.current', css)
+        self.assertIn('.map-instrument-rail{grid-template-columns:repeat(2,minmax(0,1fr))', css)
+        self.assertIn('.map-instrument-rail>a{min-height:48px', css)
+
     def test_3d_map_first_load_record_hash_opens_requested_branch(self):
         script = (ASSETS / "map3d.js").read_text()
 
