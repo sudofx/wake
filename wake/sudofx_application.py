@@ -260,6 +260,10 @@ def _append_legacy_event(current: JsonValue, payload: JsonValue) -> ApplicationD
                 return ApplicationDecision(False, reasons=(f"accepted WAKE raw response is invalid: {error}",))
             if not isinstance(decoded, dict):
                 return ApplicationDecision(False, reasons=("accepted WAKE raw response must decode to an object",))
+            invocation_state = state.get("invocations", {}).get(invocation, {})
+            if isinstance(invocation_state.get("continuity_probe_shadow"), dict):
+                decoded = dict(decoded)
+                decoded.pop("continuity_probe", None)
             policy_input = decoded
 
         try:
