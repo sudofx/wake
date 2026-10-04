@@ -40,7 +40,7 @@ def _compact_invocation(item):
 
 
 
-def _full_history_metrics(store, state):
+def _full_history_metrics(store, state, performance=None):
     """Return tiny aggregates from the store contract, never a concrete SQLite schema."""
     if hasattr(store, "history_metrics"):
         summary = store.history_metrics()
@@ -48,7 +48,7 @@ def _full_history_metrics(store, state):
         from .history import history_metrics
         summary = history_metrics(store.events(), state)
 
-    performance = store.performance_snapshot()
+    performance = performance or store.performance_snapshot()
     return {
         "storage": {
             "sqlite_bytes": performance.get(
@@ -186,7 +186,21 @@ def build_live_projection(store, operation=None, runtime_ref=""):
         "timezone": "America/Los_Angeles",
         "operation": deepcopy(operation),
         "wake_status": deepcopy((operation or {}).get("wake_status", {})),
-        "metrics": _full_history_metrics(store, state),
+        "metrics": _full_history_metrics(store, state, performance),
+        "record_integrity": {
+            "semantic_replay_verified": performance.get("authority") == "sudofx",
+            "sqlite_quick_check": performance.get("sudofx_quick_check"),
+            "sudofx_revision": performance.get("sudofx_revision"),
+            "sudofx_event_count": performance.get("sudofx_event_count"),
+            "invocation_event_count": performance.get("sudofx_invocation_event_count"),
+            "application_access_event_count": performance.get("sudofx_application_access_event_count"),
+            "schema_version": performance.get("sudofx_schema_version"),
+            "replay_ms": performance.get("sudofx_replay_ms"),
+            "database_bytes": performance.get("sudofx_database_bytes"),
+            "free_bytes": performance.get("sudofx_free_bytes"),
+            "wake_generation_head": head,
+            "scope": "Local hash-chain and SQLite integrity evidence; not authorship or external notarization.",
+        } if performance.get("authority") == "sudofx" else None,
         "application_observability": build_application_observability(store.record) if hasattr(store, "record") else None,
         "application_access": _application_access_metrics(store),
         "matrix_progress": _matrix_metrics(store),
