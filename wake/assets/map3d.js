@@ -80,7 +80,8 @@ function blendLayout(){if(!layoutMotion)return;const progress=Math.min(1,(perfor
 function render(){
  if(pathStatus){
   const nodes=path.length, hops=Math.max(0,nodes-1);
-  pathStatus.textContent=nodes?`PATH ${nodes} NODE${nodes===1?'':'S'} · ${hops} HOP${hops===1?'':'S'} · EXPLICIT RELATIONSHIPS ONLY`:'ROOT VIEW · EXPLICIT RELATIONSHIPS ONLY';
+  const nextPathStatus=nodes?`PATH ${nodes} NODE${nodes===1?'':'S'} · ${hops} HOP${hops===1?'':'S'} · EXPLICIT RELATIONSHIPS ONLY`:'ROOT VIEW · EXPLICIT RELATIONSHIPS ONLY';
+  if(pathStatus.textContent!==nextPathStatus)pathStatus.textContent=nextPathStatus;
  }
  const {w,h}=layout(),previewPath=preview?(preview==='root:wake'?['root:wake']:['root:wake',preview]):['root:wake'],activePath=path.length?path:previewPath,engaged=Boolean(path.length||preview),groups=activePath.map((parent,pathIndex)=>{const nextPathId=path.length&&pathIndex<path.length-1?path[pathIndex+1]:null;let ids=visualChildren(parent,nextPathId).filter(id=>get(id));if(path.length&&parent==='root:wake'&&path[1])ids=ids.filter(id=>id===path[1]);if(parent!=='root:wake')arrange(parent,ids,nextPathId);return[parent,ids]}),shown=new Set(['root:wake',...(path.length&&path[1]?[path[1]]:rootChildren),...activePath]),focus=current()||preview||null,trailPath=path.length?path:activePath,trail=new Set(trailPath),choices=new Set(focus?visualChildren(focus):[]),trailEdges=new Set(trailPath.slice(1).map((id,index)=>`${trailPath[index]}→${id}`)),wake=get('root:wake'),wakePoint=pos.get('root:wake'),wakeScale=path.length?1+(view.k-1)*.18:1;
  groups.forEach(([,ids])=>ids.forEach(id=>shown.add(id)));
