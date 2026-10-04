@@ -237,7 +237,7 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn("!['discovery','metadata'].includes(item.role)", app)
         self.assertIn("<b>SPACE</b> where continuity has been tested", app)
         self.assertIn("<strong>${evidenceCount} records</strong>", app)
-        self.assertIn("<strong>${matrixPct}% tested</strong>", app)
+        self.assertIn("matrixPct===null?'not enabled':matrixPct+'% tested'", app)
         self.assertIn("do not certify the truth of its research claims", app)
         self.assertIn("DEEP METRICS / VERIFY THE STORY", app)
         self.assertIn("the story can be checked rather than merely believed", app)
@@ -547,7 +547,7 @@ class ArchitectureSeparationTests(unittest.TestCase):
     def test_belief_story_links_recorded_evidence_and_update_receipts(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
-        self.assertIn('EVIDENCE → BELIEF / EXPLICIT CITATION LINEAGE', app)
+        self.assertIn('EVIDENCE → BELIEF / CURRENT GOVERNED LINEAGE', app)
         self.assertIn('belief?.evidence', app)
         self.assertIn('belief?.updated_by', app)
         self.assertIn('belief?.updated_version', app)
