@@ -420,6 +420,7 @@
         const stages=stageValues.map(([label,value],index)=>`<span class="ops-trajectory-stage ${value?'lit':''}" title="${label}: ${value}"><i></i><b>${label}</b><small>${index===0?'recorded':value}</small></span>`).join('');
         return `<a class="ops-trajectory-row" data-project-status="${esc(project.status||'active')}" href="#projects/${encodeURIComponent(project.id)}"><div class="ops-trajectory-copy"><strong>${esc(project.title||project.id)}</strong><span>${esc(String(project.status||'active').toUpperCase())} · ${research.length} research receipts · ${failed} failed</span></div><div class="ops-trajectory-stages">${stages}</div></a>`;
       }).join('')||'<p class="empty">No research projects in the current durable state.</p>';
+    const evidenceById=Object.fromEntries(evidenceRecords.map(item=>[item?.id,item]));
     const publicationLineageSource=opsPosts
       .filter(post=>post?.project&&post?.status!=='superseded')
       .slice()
@@ -434,7 +435,12 @@
           ? `<a href="#projects/notebook:${encodeURIComponent(id)}" title="${esc(notebook.title||id)}"><span>NOTEBOOK</span><strong>${esc(notebook.title||id)}</strong><small>${esc(id)}</small></a>`
           : `<span class="missing"><span>NOTEBOOK</span><strong>${esc(id)}</strong><small>not in current state</small></span>`;
       }).join('')||'<span class="missing"><span>NOTEBOOK</span><strong>none recorded</strong><small>publication lineage has no notebook edge</small></span>';
-      const evidenceLinks=evidenceIds.slice(0,6).map(id=>`<a href="#evidence/${encodeURIComponent(id)}" title="Open evidence ${esc(id)}"><span>EVIDENCE</span><strong>${esc(String(id).slice(-14))}</strong></a>`).join('');
+      const evidenceLinks=evidenceIds.slice(0,6).map(id=>{
+        const exists=Boolean(evidenceById[id]);
+        return exists
+          ? `<a href="#evidence/${encodeURIComponent(id)}" title="Open evidence ${esc(id)}"><span>EVIDENCE</span><strong>${esc(String(id).slice(-14))}</strong><small>record present</small></a>`
+          : `<span class="missing"><span>EVIDENCE</span><strong>${esc(String(id).slice(-14))}</strong><small>not in current state</small></span>`;
+      }).join('');
       const hiddenEvidence=Math.max(0,evidenceIds.length-6);
       const project=s.projects?.[post.project];
       const creator=String(post?.created_by||'');
@@ -453,7 +459,6 @@
     ].map(([label,low,high])=>[label,activeConfidences.filter(value=>value>=low&&value<high).length]);
     const confidenceBandMax=Math.max(1,...confidenceBands.map(([,count])=>count));
     const confidenceBars=confidenceBands.map(([label,count])=>`<div class="ops-belief-band"><span>${label}</span><div><i style="width:${Math.max(count?5:0,100*count/confidenceBandMax)}%"></i></div><strong>${count}</strong></div>`).join('');
-    const evidenceById=Object.fromEntries(evidenceRecords.map(item=>[item?.id,item]));
     const lineageEvidenceRoots=opsBeliefs.reduce((sum,item)=>sum+(Array.isArray(item?.evidence)?item.evidence.length:0),0);
     const beliefLineage=opsBeliefs
       .slice()
