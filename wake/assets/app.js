@@ -1117,6 +1117,7 @@
           </div>
         </div>
         </div>
+        <div class="ops-frontier-pair">
         <div class="ops-horizon" id="ops-horizon" aria-label="Open commitment horizon">
           <div class="ops-horizon-head"><div><p class="eyebrow">OPEN COMMITMENT HORIZON</p><h3>${openObligations} obligations carried forward</h3></div><small>bucketed by due cycle relative to cycle ${s.version}</small></div>
           <div class="ops-horizon-grid">${obligationHorizon}</div>
@@ -1138,6 +1139,7 @@
               <p>C continuity · N novelty · H coherence · G generativity · S self-correction</p>
             </div>
           </div>
+        </div>
         </div>
         <div class="ops-trajectory" id="ops-trajectory" aria-label="Research project trajectories">
           <div class="ops-trajectory-head">
