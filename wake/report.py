@@ -26,13 +26,10 @@ from .scheduling import wake_status
 
 
 def _shared_theme_switch(page):
-    """Normalize theme controls on generated standalone pages."""
-    switch = ('<label class="data-switch theme-switch"><input id="theme-toggle" type="checkbox" role="switch" '
-              'aria-label="Use dark theme"><b class="theme-icon" aria-hidden="true">◐</b>'
-              '<span class="data-switch-track" aria-hidden="true"><i></i></span></label>')
-    script = ("<script>(()=>{const b=document.getElementById('theme-toggle');if(!b)return;const icon=document.querySelector('.theme-icon');const saved=()=>{try{return localStorage.getItem('wake-theme')}catch{return null}};const sync=()=>{const d=document.documentElement.dataset.theme==='dark',manual=Boolean(saved());b.checked=d;b.setAttribute('aria-label',d?'Use light theme':'Use dark theme');if(icon)icon.textContent=manual?(d?'◑':'☼'):'◐';b.closest('.theme-switch')?.setAttribute('title',manual?`Manual ${d?'dark':'light'} theme`:`Following system ${d?'dark':'light'} theme`)};sync();b.addEventListener('change',()=>{const d=b.checked;if(d)document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;try{localStorage.setItem('wake-theme',d?'dark':'light')}catch{}sync()});try{const media=matchMedia('(prefers-color-scheme:dark)');media.addEventListener('change',event=>{if(saved())return;if(event.matches)document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;sync()})}catch{}})()</script>")
-    page = re.sub(r'<button id="theme-toggle"[^>]*>.*?</button>', switch, page, count=1)
-    return page.replace('</body>', script + '</body>', 1)
+    """Force generated standalone pages to the single supported dark theme."""
+    page = re.sub(r'<label class="data-switch theme-switch"[\\s\\S]*?</label>', '', page, count=1)
+    script = "<script>document.documentElement.dataset.theme='dark';try{localStorage.setItem('wake-theme','dark')}catch{}</script>"
+    return page.replace('</head>', script + '</head>', 1)
 
 
 def _with_shared_theme_switch(render):
