@@ -2574,3 +2574,23 @@ body.help-open{
   }
   .help-copy p{margin-bottom:10px!important}
 }
+
+
+/* RESEARCH CARD GLOBE ART — 2026-10-04 */
+/* Move the user-provided globe artwork from Documentation to the first Research card. */
+.nebula-explore-research{
+  background-image:
+    linear-gradient(180deg,rgba(3,8,24,.03),rgba(3,8,24,.12)),
+    url("backgrounds/console-globe.png?v=20261004-3")!important;
+  background-position:center center!important;
+  background-size:cover!important;
+  background-repeat:no-repeat!important;
+}
+.nebula-explore-docs{
+  background-image:
+    linear-gradient(180deg,rgba(3,7,22,.04),rgba(3,7,22,.20)),
+    url("backgrounds/nebula-desktop-1680x1050.webp?v=20261004-7")!important;
+  background-position:42% 63%!important;
+  background-size:cover!important;
+  background-repeat:no-repeat!important;
+}
