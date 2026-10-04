@@ -1843,6 +1843,9 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
 .ops-history-line:before{content:"";position:absolute;left:0;right:0;top:28px;height:1px;background:linear-gradient(90deg,#17363d,var(--ops-cyan-dim),#17363d)}
 .ops-history-dot{position:absolute;left:var(--history-position);top:28px;transform:translate(-50%,-50%);display:grid;justify-items:center;text-decoration:none;color:inherit}
 .ops-history-dot i{width:8px;height:8px;border:1px solid var(--ops-green);border-radius:50%;background:#071117;box-shadow:0 0 8px #79d9a133}
+.ops-history-dot.legacy i{border-style:dashed;border-color:var(--ops-amber);box-shadow:0 0 8px #e5932b22}
+.ops-history-dot.legacy b{color:var(--ops-amber)}
+.ops-history-dot.declared i{border-color:var(--ops-green)}
 .ops-history-dot b{position:absolute;top:12px;font:7px var(--mono);font-weight:500;color:var(--ops-muted)}
 .ops-history-dot:hover i,.ops-history-dot:focus-visible i{background:var(--ops-green);box-shadow:0 0 12px #79d9a177}
 .ops-history-dot:focus-visible{outline:0}
