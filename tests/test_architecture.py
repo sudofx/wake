@@ -330,6 +330,19 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-evidence-matrix-row', css)
         self.assertIn('var(--evidence-tier-count)', css)
 
+    def test_publication_story_uses_stored_notebook_and_evidence_edges(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('PUBLICATION LINEAGE / AUDITABLE ARTIFACT CHAIN', app)
+        self.assertIn("Array.isArray(post?.notebooks)?post.notebooks:[]", app)
+        self.assertIn("Array.isArray(post?.evidence)?post.evidence:[]", app)
+        self.assertIn("filter(post=>post?.project&&post?.status!=='superseded')", app)
+        self.assertIn('Reflections without research-project lineage are intentionally excluded.', app)
+        self.assertIn('href="#projects/notebook:', app)
+        self.assertIn('href="#evidence/', app)
+        self.assertIn('href="#blog/', app)
+        self.assertIn('.ops-publication-row', css)
+
     def test_matrix_story_reconciles_axis_marginals_to_same_cells(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
