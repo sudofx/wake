@@ -211,6 +211,14 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn("invocationTime(a)-invocationTime(b)", app)
         self.assertIn("String(a?.id||'').localeCompare(String(b?.id||''))", app)
 
+    def test_journal_survives_when_accepted_receipt_ages_out_of_event_window(self):
+        app = self.read('wake/assets/app.js')
+        self.assertIn("const i=s.invocations[j.invocation]||{}, event=decisions[j.invocation]||null", app)
+        self.assertIn("Array.isArray(event?.payload?.proposal?.actions)?event.payload.proposal.actions:null", app)
+        self.assertIn('proposal detail outside published event window', app)
+        self.assertIn('accepted proposal receipt is outside this bounded event window', app)
+        self.assertNotIn('event=decisions[j.invocation], actions=event.payload.proposal.actions', app)
+
     def test_now_story_leads_with_latest_accepted_wake_receipt(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
