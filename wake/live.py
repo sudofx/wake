@@ -186,7 +186,7 @@ def build_live_projection(store, operation=None, runtime_ref=""):
         "timezone": "America/Los_Angeles",
         "operation": deepcopy(operation),
         "wake_status": deepcopy((operation or {}).get("wake_status", {})),
-        "metrics": _full_history_metrics(store, state, performance),
+        "metrics": _full_history_metrics(store, state),
         "record_integrity": {
             "semantic_replay_verified": performance.get("authority") == "sudofx",
             "sqlite_quick_check": performance.get("sudofx_quick_check"),
