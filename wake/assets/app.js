@@ -178,7 +178,7 @@
   function renderMetricStrip() {
     $('journal-metrics').innerHTML = [
       [s.version,'Recorded cycles',`${fixtures} simulated · ${live} live Gemini`,'#history'],
-      [inherited,'Obligations inherited','Across fresh invocations','#history/filter:inherited'],
+      [inherited,'Obligations inherited','Across distinct invocations','#history/filter:inherited'],
       [rejected,'Proposals rejected','Read the drafts and recorded reasons','#history/filter:rejected'],
       [invocations.filter(i=>i.status==='recovered').length,'Calls recovered','Last valid state retained','#history/filter:recovered']
     ].map(([value,label,note,href])=>`<a class="metric" href="${href}"><strong>${value}</strong><span>${label}<small>${note}</small></span></a>`).join('');
