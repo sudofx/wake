@@ -600,12 +600,13 @@
     }).join('');
     $('metrics-dashboard').innerHTML=`
       <nav class="ops-storyline" aria-label="WAKE data story">
-        <a href="#metrics" data-story-target="ops-now"><b>01</b><span>NOW</span><strong>cycle ${s.version}</strong></a>
+        <a href="#metrics" data-story-target="ops-now"><b>01</b><span>ACTIVITY</span><strong>cycle ${s.version}</strong></a>
         <a href="#metrics" data-story-target="ops-pressure"><b>02</b><span>PRESSURE</span><strong>${rejectedCount} rejected</strong></a>
-        <a href="#metrics" data-story-target="ops-continuity"><b>03</b><span>CONTINUITY</span><strong>${openObligations} open</strong></a>
+        <a href="#metrics" data-story-target="ops-context"><b>03</b><span>MEMORY</span><strong>${contextDelivery?esc(String(contextDelivery.mode||'rich').toUpperCase()):'no receipt'}</strong></a>
         <a href="#metrics" data-story-target="ops-evidence"><b>04</b><span>EVIDENCE</span><strong>${qualifyingEvidence} substantive</strong></a>
         <a href="#metrics" data-story-target="ops-beliefs"><b>05</b><span>BELIEF</span><strong>${opsActiveBeliefs.length} active</strong></a>
-        <a href="#metrics" data-story-target="ops-matrix"><b>06</b><span>SPACE</span><strong>${matrixPct}% mapped</strong></a>
+        <a href="#metrics" data-story-target="ops-frontier"><b>06</b><span>FRONTIER</span><strong>${openObligations} open</strong></a>
+        <a href="#metrics" data-story-target="ops-matrix"><b>07</b><span>CONTINUITY</span><strong>${matrixPct}% mapped</strong></a>
       </nav>
       <section class="ops-console" id="ops-now" aria-label="WAKE operational research console">
         <header class="ops-console-head">
@@ -616,14 +617,6 @@
             <div class="ops-state" data-status="${currentStatus.toLowerCase()}"><i></i><span>${currentStatus}</span><strong>CYCLE ${s.version}</strong></div>
           </div>
         </header>
-        <nav class="ops-story-rail" aria-label="Data story chapters">
-          <a href="#ops-field"><b>01</b><span>ACTIVITY</span><small>what WAKE is doing</small></a>
-          <a href="#ops-pressure"><b>02</b><span>PRESSURE</span><small>where resistance appears</small></a>
-          <a href="#ops-context"><b>03</b><span>MEMORY</span><small>what survives the boundary</small></a>
-          <a href="#ops-beliefs"><b>04</b><span>BELIEFS</span><small>what the system currently carries</small></a>
-          <a href="#ops-horizon"><b>05</b><span>FRONTIER</span><small>what remains unresolved</small></a>
-          <a href="#ops-matrix"><b>06</b><span>CONTINUITY</span><small>where the experiment has tested</small></a>
-        </nav>
         <div class="ops-source-rail" aria-label="Projection provenance">
           <div><span>AUTHORITY</span><strong>${esc(sourceAuthority)}</strong></div>
           <div><span>RECORD HEAD</span><strong>${esc(shortHead)}</strong></div>
@@ -669,7 +662,7 @@
           <div class="ops-provider-track" role="group" aria-label="Recent provider attempt outcomes">${providerTrace||'<span class="empty">No known provider attempts yet.</span>'}</div>
           <div class="ops-provider-meta"><span>median ${medianLatency===null?'—':medianLatency+' ms'}</span><span>${providerSuccesses} success-labelled</span><span>${fallbackWakes} fallback wakes</span></div>
         </div>
-        <div class="ops-pressure-board" id="ops-pressure" aria-label="Operational pressure">
+        <div class="ops-pressure-board" aria-label="Operational pressure">
           <section>
             <header><span>GOVERNANCE PRESSURE</span><strong>${sortedReasons.length} rejection families</strong></header>
             <div class="ops-pressure-list">${pressureBars}</div>
@@ -708,7 +701,7 @@
           <div class="ops-signal info" style="--signal:${Math.min(100,configuredTopicCount?100*topicActive/configuredTopicCount:0)}%"><span>TOPIC COVERAGE</span><strong>${topicActive}/${configuredTopicCount}</strong><i></i></div>
           <div class="ops-signal info" style="--signal:${Math.min(100,matrixPct)}%"><span>MATRIX COVERAGE</span><strong>${matrixPct}%</strong><i></i></div>
         </div>
-        <div class="ops-horizon" id="ops-continuity" aria-label="Open commitment horizon">
+        <div class="ops-horizon" id="ops-frontier" aria-label="Open commitment horizon">
           <div class="ops-horizon-head"><div><p class="eyebrow">OPEN COMMITMENT HORIZON</p><h3>${openObligations} obligations carried forward</h3></div><small>bucketed by due cycle relative to cycle ${s.version}</small></div>
           <div class="ops-horizon-grid">${obligationHorizon}</div>
         </div>
