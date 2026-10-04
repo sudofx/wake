@@ -2112,3 +2112,48 @@ body>.masthead .powered-by{
   -webkit-text-fill-color:var(--muted)!important;
   background:none!important;
 }
+
+
+/* MAIN PILLAR GLYPH SCALE — 2026-10-04 */
+/* The three principle glyphs should carry the visual weight of the approved mockup. */
+.nebula-pillars article{
+  align-items:center!important;
+}
+.nebula-pillars .nebula-icon{
+  flex:0 0 92px!important;
+  width:92px!important;
+  height:92px!important;
+  min-width:92px!important;
+}
+.nebula-pillars .nebula-icon svg{
+  display:block;
+  width:88px!important;
+  height:88px!important;
+  max-width:none!important;
+  overflow:visible;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:3.3;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.nebula-pillars .nebula-icon svg circle{
+  fill:currentColor;
+  stroke:none;
+}
+.nebula-pillars .nebula-icon .shield-flame{
+  fill:currentColor;
+  stroke:none;
+}
+@media(max-width:700px){
+  .nebula-pillars .nebula-icon{
+    flex-basis:78px!important;
+    width:78px!important;
+    height:78px!important;
+    min-width:78px!important;
+  }
+  .nebula-pillars .nebula-icon svg{
+    width:74px!important;
+    height:74px!important;
+  }
+}
