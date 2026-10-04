@@ -235,3 +235,72 @@ body[data-motion=off] *{animation:none!important}.floating .wake-tabs{margin:8px
     flex-basis:16px!important;
   }
 }
+
+
+/* CONSOLE GLASS / MOBILE WIDTH PASS — 2026-10-04 */
+/* Match the site-wide glass language while preserving Console density and semantics. */
+.research-page{
+  background:
+    linear-gradient(rgba(2,12,18,.18),rgba(2,12,18,.18)),
+    var(--bg)!important;
+}
+.research-header,
+.status-band,
+.panel,
+.console-tools,
+.data-inspector,
+.detail-panel,
+#wake-detail.floating,
+.research-header .dropdown,
+.notice{
+  backdrop-filter:blur(18px) saturate(118%)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(118%)!important;
+}
+.research-header{
+  background:color-mix(in srgb,var(--surface) 78%,transparent)!important;
+}
+.status-band,
+.panel,
+.console-tools,
+.data-inspector,
+.detail-panel,
+#wake-detail.floating{
+  background:color-mix(in srgb,var(--surface) 76%,transparent)!important;
+}
+.research-header .dropdown,
+.notice{
+  background:color-mix(in srgb,var(--surface-raised) 82%,transparent)!important;
+}
+
+/* Interactive content always sits above glass decoration. */
+.panel>*,
+.status-band>*,
+.console-tools>*,
+.data-inspector>*,
+.detail-panel>*{
+  position:relative;
+  z-index:1;
+}
+
+/* Phone Console uses more of the viewport without touching the screen edges. */
+@media(max-width:700px){
+  .research-header{padding:10px 8px!important}
+  .research-page main{padding:14px 8px 20px!important}
+  .story-grid,
+  .instruments-grid,
+  .telemetry-grid,
+  .research-workspace{
+    gap:8px!important;
+  }
+  .panel-heading{padding:14px 12px!important}
+  .instrument-body{padding:10px 10px!important}
+  .status-cell{padding:11px!important}
+  .console-tools{inset:78px 5px 5px!important}
+  .data-inspector,
+  #wake-detail.floating,
+  .detail-panel.reader-floating{
+    width:100%!important;
+    margin-left:0!important;
+    margin-right:0!important;
+  }
+}
