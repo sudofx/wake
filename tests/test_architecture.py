@@ -191,8 +191,10 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('"application_observability": build_application_observability', live)
         self.assertIn('RESEARCH OPERATIONS', app)
         self.assertIn('DERIVED / LIVE', app)
+        self.assertIn('TIME DILATION / EXPERIMENTAL REGIME', app)
         self.assertNotIn('record_continuity_matrix_result(', app)
         self.assertNotIn('enable_continuity_matrix(', app)
+        self.assertNotIn('set_time_dilation(', app)
 
     def test_external_visual_reference_names_never_enter_repository_text(self):
         blocked = ("de" + "los", "west" + "world")
