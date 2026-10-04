@@ -557,3 +557,291 @@ footer strong,.footer-mark{color:#16e0e9!important}
 @media(prefers-reduced-motion:reduce){
   .primary-link:hover{transform:none}
 }
+
+
+/* NEBULA HOME COMPOSITION — approved mockup */
+#home{padding-bottom:52px}
+.nebula-home-hero{
+  position:relative;
+  min-height:540px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(300px,.72fr);
+  align-items:center;
+  gap:36px;
+  padding:66px 0 30px;
+}
+.nebula-home-hero::before{
+  content:"";
+  position:absolute;
+  left:-28px;right:-28px;top:0;bottom:-90px;
+  z-index:-1;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse at 62% 32%,rgba(234,55,245,.19),transparent 28%),
+    radial-gradient(ellipse at 50% 51%,rgba(255,100,76,.17),transparent 30%);
+}
+.nebula-hero-copy{position:relative;z-index:2;max-width:720px}
+.nebula-hero-copy .eyebrow{margin-bottom:18px}
+.nebula-hero-copy h1{
+  margin:0 0 24px;
+  max-width:12ch;
+  font:750 clamp(58px,7vw,92px)/.98 var(--sans)!important;
+  letter-spacing:-.055em!important;
+  color:#fff!important;
+}
+.nebula-hero-copy h1 span{
+  background:linear-gradient(90deg,#20e2ed 0%,#5aa5ff 44%,#d84dff 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.nebula-hero-copy>p:not(.eyebrow){
+  max-width:640px;
+  margin:0;
+  color:#c7cde5!important;
+  font-size:clamp(18px,1.8vw,24px);
+  line-height:1.5;
+}
+.nebula-hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px}
+.nebula-secondary{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:50px;
+  padding:0 24px;
+  border:1px solid #986ddd;
+  border-radius:999px;
+  background:rgba(9,14,38,.34);
+  color:#fff!important;
+  box-shadow:inset 0 0 18px rgba(180,60,255,.05);
+}
+.nebula-secondary:hover{border-color:#22e2eb!important;color:#fff!important;text-shadow:none!important}
+.nebula-planet{
+  position:relative;
+  justify-self:end;
+  align-self:start;
+  margin-top:22px;
+  width:min(30vw,330px);
+  aspect-ratio:1;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 32% 28%,rgba(255,107,121,.42),transparent 16%),
+    radial-gradient(circle at 70% 70%,rgba(20,39,92,.96) 0 46%,rgba(6,12,35,.98) 70%),
+    linear-gradient(135deg,#d847f1,#f77a63 18%,#142454 45%,#050a20 78%);
+  box-shadow:
+    -20px -8px 36px rgba(255,92,180,.26),
+    0 0 0 1px rgba(219,105,255,.38),
+    0 0 80px rgba(113,49,255,.22);
+}
+.nebula-planet::before{
+  content:"";
+  position:absolute;
+  inset:-11%;
+  border-radius:50%;
+  background:radial-gradient(circle,transparent 56%,rgba(203,61,255,.18) 70%,transparent 74%);
+}
+.nebula-planet::after{
+  content:"";
+  position:absolute;
+  inset:13% 10% 12% 17%;
+  border-radius:50%;
+  opacity:.42;
+  background:
+    radial-gradient(ellipse at 35% 33%,rgba(255,255,255,.08),transparent 16%),
+    repeating-radial-gradient(ellipse at 55% 48%,rgba(132,110,223,.08) 0 3%,transparent 4% 9%);
+}
+.nebula-pillars{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  border:1px solid #405080;
+  border-radius:12px;
+  overflow:hidden;
+  background:rgba(5,12,31,.7);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+.nebula-pillars article{
+  min-height:156px;
+  display:flex;
+  align-items:flex-start;
+  gap:20px;
+  padding:24px 28px;
+  border-right:1px solid #34436d;
+}
+.nebula-pillars article:last-child{border-right:0}
+.nebula-icon{
+  flex:0 0 48px;
+  width:48px;height:48px;
+  display:grid;
+  place-items:center;
+  font-size:34px;
+  line-height:1;
+}
+.nebula-record{color:#c43cff;text-shadow:0 0 18px rgba(196,60,255,.42)}
+.nebula-govern{color:#ff5d56;text-shadow:0 0 18px rgba(255,93,86,.35)}
+.nebula-evolve{color:#ff5a3d;text-shadow:0 0 18px rgba(255,90,61,.32)}
+.nebula-pillars h2{font:700 24px/1.1 var(--sans)!important;margin:5px 0 8px;color:#fff}
+.nebula-pillars p{margin:0;color:#b8c0dd!important;font-size:15px;line-height:1.55}
+.nebula-home-grid{
+  display:grid;
+  grid-template-columns:1.1fr 1.1fr 1fr;
+  gap:18px;
+  margin-top:20px;
+}
+.nebula-home-card{
+  min-height:330px;
+  padding:20px 20px 18px;
+  background:linear-gradient(180deg,rgba(6,14,36,.9),rgba(5,11,29,.82));
+  border:1px solid #405181;
+  border-radius:12px;
+  box-shadow:0 20px 50px rgba(0,0,20,.24),inset 0 1px rgba(255,255,255,.025);
+  backdrop-filter:blur(14px);
+}
+.nebula-home-card>header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding-bottom:14px;
+  border-bottom:1px solid #26365f;
+}
+.nebula-home-card>header>div{display:flex;align-items:center;gap:10px}
+.nebula-home-card h2{font:700 19px/1.2 var(--sans)!important;margin:0;color:#fff!important}
+.nebula-home-card header a{font-size:12px;color:#25e6ee}
+.nebula-card-icon{font-size:24px;color:#23e3ed}
+.nebula-research-row{
+  display:grid;
+  grid-template-columns:46px minmax(0,1fr) 14px;
+  align-items:center;
+  gap:12px;
+  min-height:76px;
+  padding:12px 0;
+  border-bottom:1px solid #26365f;
+  color:#f3f5ff!important;
+}
+.nebula-research-row:last-child{border-bottom:0}
+.nebula-research-row>span:nth-child(2){min-width:0}
+.nebula-research-row strong{
+  display:block;
+  color:#eef2ff;
+  font-size:13px;
+  line-height:1.35;
+  white-space:normal;
+}
+.nebula-research-row small{display:block;margin-top:5px;color:#8290b5;font:10px var(--mono)}
+.nebula-research-row>b{font-size:22px;color:#8da5cf}
+.nebula-thumb{
+  width:46px;height:46px;border-radius:6px;
+  background:
+    linear-gradient(160deg,transparent 0 42%,rgba(6,13,34,.95) 43%),
+    linear-gradient(135deg,var(--topic-color,#25e6ee),#d24aff 56%,#ff744f);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);
+}
+.nebula-system{position:relative}
+.nebula-orb{
+  position:relative;
+  display:block;
+  width:166px;
+  aspect-ratio:1;
+  margin:26px auto 14px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 38% 42%,rgba(37,230,238,.3),transparent 4%),
+    radial-gradient(circle at 62% 58%,rgba(217,68,255,.32),transparent 4%),
+    radial-gradient(circle,#0b1a42 0 58%,#07102b 59%);
+  border:1px solid #3477b3;
+  box-shadow:0 0 32px rgba(55,105,255,.22),inset 0 0 32px rgba(35,227,237,.08);
+}
+.nebula-orb::before,.nebula-orb::after{
+  content:"";
+  position:absolute;inset:14%;
+  border:1px solid rgba(59,208,255,.54);
+  border-radius:50%;
+  transform:rotate(24deg) scaleY(.46);
+}
+.nebula-orb::after{transform:rotate(-41deg) scaleY(.58);border-color:rgba(211,72,255,.5)}
+.nebula-orb i{
+  position:absolute;width:8px;height:8px;border-radius:50%;background:#25e6ee;
+  box-shadow:0 0 12px currentColor;
+}
+.nebula-orb i:nth-child(1){left:18%;top:46%}.nebula-orb i:nth-child(2){left:33%;top:21%;background:#6c93ff}
+.nebula-orb i:nth-child(3){right:21%;top:31%;background:#cc4cff}.nebula-orb i:nth-child(4){right:18%;bottom:35%;background:#ff7a4d}
+.nebula-orb i:nth-child(5){left:39%;bottom:15%}.nebula-orb i:nth-child(6){left:50%;top:49%;background:#d94fff}
+.nebula-system-stats,.nebula-status-stats{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+}
+.nebula-system-stats span,.nebula-status-stats span{min-width:0}
+.nebula-system-stats b,.nebula-status-stats b{
+  display:block;color:#2be7ef;font-size:22px;line-height:1.1
+}
+.nebula-system-stats small,.nebula-status-stats small{display:block;color:#8d99ba;font-size:10px;margin-top:4px}
+.nebula-status-card>p{color:#c2c9e3!important;font-size:14px;min-height:44px}
+.nebula-bars{
+  min-height:112px;
+  display:flex;
+  align-items:flex-end;
+  gap:4px;
+  padding:12px 4px 14px;
+  border-bottom:1px solid #2a3962;
+}
+.nebula-bars i{
+  flex:1;
+  height:var(--h);
+  min-width:4px;
+  max-width:14px;
+  background:linear-gradient(180deg,#2be5ed,#2586dc);
+  box-shadow:0 0 12px rgba(43,229,237,.15);
+}
+.nebula-bars i.rejected,.nebula-bars i.failed{background:linear-gradient(180deg,#ff6d72,#bd3756)}
+.nebula-bars i.deferred{background:linear-gradient(180deg,#b54eff,#7c4dff)}
+.nebula-status-stats{margin-top:18px}
+.nebula-topic-panel{
+  margin:20px 0 0;
+  padding:22px;
+  border:1px solid #3b4b79;
+  border-radius:12px;
+  background:rgba(5,12,31,.72);
+}
+.nebula-topic-panel .section-top{margin-bottom:8px}
+.nebula-topic-panel h2{font:700 24px/1.2 var(--sans)!important;color:#fff!important}
+.nebula-topic-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 22px}
+.nebula-topic-row{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding:14px 0;
+  border-bottom:1px solid #29385f;
+  color:#dce2f7!important;
+}
+.nebula-topic-row b{color:#29e3eb;font-family:var(--mono)}
+@media(max-width:1050px){
+  .nebula-home-grid{grid-template-columns:1fr 1fr}
+  .nebula-status-card{grid-column:1/-1}
+  .nebula-status-card{min-height:260px}
+  .nebula-bars{min-height:88px}
+}
+@media(max-width:850px){
+  .nebula-home-hero{grid-template-columns:1fr;min-height:auto;padding-top:48px}
+  .nebula-planet{position:absolute;right:-8%;top:16px;width:210px;opacity:.55;z-index:0}
+  .nebula-hero-copy{max-width:640px}
+  .nebula-pillars{grid-template-columns:1fr}
+  .nebula-pillars article{border-right:0;border-bottom:1px solid #34436d;min-height:0}
+  .nebula-pillars article:last-child{border-bottom:0}
+}
+@media(max-width:700px){
+  #home{padding-bottom:28px}
+  .nebula-home-hero{padding:42px 0 28px}
+  .nebula-hero-copy h1{font-size:clamp(46px,14vw,64px)!important;max-width:9ch}
+  .nebula-hero-copy>p:not(.eyebrow){font-size:17px}
+  .nebula-planet{width:165px;right:-18%;top:8px;opacity:.5}
+  .nebula-hero-actions{flex-direction:column}
+  .nebula-hero-actions .primary-link,.nebula-secondary{width:100%;justify-content:center}
+  .nebula-pillars article{padding:18px}
+  .nebula-home-grid{grid-template-columns:1fr}
+  .nebula-status-card{grid-column:auto}
+  .nebula-home-card{min-height:0}
+  .nebula-topic-list{grid-template-columns:1fr}
+  .nebula-topic-panel{padding:18px}
+}
