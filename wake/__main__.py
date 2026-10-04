@@ -29,7 +29,7 @@ from .report import atomic_write, export
 from .errors import IntegrityError
 
 def parser():
-    p = argparse.ArgumentParser(prog="python -m wake", description="Disposable models. Durable state. Receipts for everything.")
+    p = argparse.ArgumentParser(prog="python -m wake", description="Infrastructure for durable, accountable work across interchangeable intelligences.")
     p.add_argument("--data", default="data", help="Durable state directory (default: data)")
     p.add_argument("--config", default="wake.toml")
     sub = p.add_subparsers(dest="command", required=True)
