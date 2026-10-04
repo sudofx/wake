@@ -15,7 +15,7 @@
   const hasField=key=>Object.prototype.hasOwnProperty.call(data,key);
   let fallbackNeeded=false;
   if(!data.metrics)fallbackNeeded=true;
-  if(!hasField('matrix_progress')||!hasField('application_observability')||!hasField('application_access')||!data.source)fallbackNeeded=true;
+  if(!hasField('matrix_progress')||!hasField('application_observability')||!hasField('application_access')||!hasField('record_integrity')||!data.source)fallbackNeeded=true;
   if(fallbackNeeded){
     try{
       const response=await fetch('wake-data.json?wake_metrics='+Date.now(),{cache:'no-store'});
@@ -25,6 +25,7 @@
         if(!hasField('matrix_progress')&&Object.prototype.hasOwnProperty.call(fallback,'matrix_progress'))data.matrix_progress=fallback.matrix_progress;
         if(!hasField('application_observability')&&Object.prototype.hasOwnProperty.call(fallback,'application_observability'))data.application_observability=fallback.application_observability;
         if(!hasField('application_access')&&Object.prototype.hasOwnProperty.call(fallback,'application_access'))data.application_access=fallback.application_access;
+        if(!hasField('record_integrity')&&Object.prototype.hasOwnProperty.call(fallback,'record_integrity'))data.record_integrity=fallback.record_integrity;
         if(!data.source&&fallback.source)data.source=fallback.source;
       }
     }catch{}
