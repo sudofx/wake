@@ -293,7 +293,8 @@
     const completed=invocations.filter(i=>['accepted','rejected','deferred','failed','recovered'].includes(i.status));
     const completedCounts=completed.reduce((counts,item)=>(counts[item.status]=(counts[item.status]||0)+1,counts),{});
     const acceptedCount=completedCounts.accepted||0, rejectedCount=completedCounts.rejected||0, deferredCount=completedCounts.deferred||0, failedCount=completedCounts.failed||0, recoveredCount=completedCounts.recovered||0;
-    const acceptanceRate=completed.length?Math.round(100*acceptedCount/completed.length):null;
+    const statusShare=count=>completed.length?100*count/completed.length:0;
+    const acceptanceRate=completed.length?Math.round(statusShare(acceptedCount)):null;
     const obligations=Object.values(s.commitments||{}), fulfilled=obligations.filter(c=>c.status==='fulfilled');
     const inheritedFulfilled=fulfilled.filter(c=>c.created_by&&c.resolved_by&&c.created_by!==c.resolved_by);
     const handoffRate=fulfilled.length?Math.round(100*inheritedFulfilled.length/fulfilled.length):null;
@@ -1152,6 +1153,23 @@
           <div class="ops-pulse-copy"><span>RECENT WAKE PULSE</span><strong>LAST ${attempts.length}</strong><small>one cell per completed wake · tap for receipt</small></div>
           <div class="ops-pulse-cells" role="group" aria-label="Recent completed wake outcomes">${timeline||'<span class="empty">No completed wakes yet.</span>'}</div>
           <div class="ops-pulse-legend">${statuses.map(([name,value])=>`<span class="${esc(name)}"><i></i><b>${value}</b>${esc(name)}</span>`).join('')}</div>
+        </div>
+        <div class="ops-decision-flow" aria-label="Completed wake terminal status distribution">
+          <header><div><span>NOW → PRESSURE / TERMINAL STATUS DISTRIBUTION</span><strong>${completed.length} completed wake receipts</strong></div><small>Durable invocation statuses only. Widths show share of completed wakes; they do not rank research quality.</small></header>
+          <div class="ops-decision-track" aria-hidden="true">
+            <i class="accepted" style="--share:${statusShare(acceptedCount).toFixed(2)}%"></i>
+            <i class="rejected" style="--share:${statusShare(rejectedCount).toFixed(2)}%"></i>
+            <i class="deferred" style="--share:${statusShare(deferredCount).toFixed(2)}%"></i>
+            <i class="failed" style="--share:${statusShare(failedCount).toFixed(2)}%"></i>
+            <i class="recovered" style="--share:${statusShare(recoveredCount).toFixed(2)}%"></i>
+          </div>
+          <div class="ops-decision-cells">
+            <div class="accepted"><span>ACCEPTED</span><strong>${acceptedCount}</strong><small>${statusShare(acceptedCount).toFixed(1)}%</small></div>
+            <div class="rejected"><span>REJECTED</span><strong>${rejectedCount}</strong><small>${statusShare(rejectedCount).toFixed(1)}%</small></div>
+            <div class="deferred"><span>DEFERRED</span><strong>${deferredCount}</strong><small>${statusShare(deferredCount).toFixed(1)}%</small></div>
+            <div class="failed"><span>FAILED</span><strong>${failedCount}</strong><small>${statusShare(failedCount).toFixed(1)}%</small></div>
+            <div class="recovered"><span>RECOVERED</span><strong>${recoveredCount}</strong><small>${statusShare(recoveredCount).toFixed(1)}%</small></div>
+          </div>
         </div>
         <div class="ops-secondary-grid ops-story-chapter" id="ops-pressure" data-story-chapter="02" data-story-name="PRESSURE">
         <div class="ops-provider-trace" aria-label="Recent provider attempt trace">
