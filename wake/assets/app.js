@@ -456,7 +456,7 @@
           </div>
         </div>
         <div class="ops-matrix-block">
-          <div class="ops-matrix-copy"><p class="eyebrow">CONTINUITY@1 / 7×7×7</p><h3>${matrixProgress?'Coverage of the governed continuity space.':'Matrix is available but not enabled for this WAKE generation.'}</h3><p>${matrixProgress?matrixCompleted+' of '+matrixTotal+' coordinates completed · next '+esc(matrixProgress.next_coordinate_id||'complete'):'Enablement remains an explicit governed application action.'}</p><small>Coverage cells show count only; cell position is not a coordinate map.</small></div>
+          <div class="ops-matrix-copy"><p class="eyebrow">CONTINUITY@1 / 7×7×7</p><h3>${matrixProgress?'Coverage of the governed continuity space.':'Matrix is available but not enabled for this WAKE generation.'}</h3><p>${matrixProgress?matrixCompleted+' of '+matrixTotal+' coordinates completed · next '+esc(matrixProgress.next_coordinate_id||'complete'):'Enablement remains an explicit governed application action.'}</p><small>Seven semantic planes. Within each plane, columns follow exposure order and rows follow pressure order from the shared continuity@1 definition.</small></div>
           <div class="continuity-matrix-view" aria-label="Continuity matrix coverage: ${matrixCompleted} of ${matrixTotal} coordinates completed">
             <div class="matrix-axis-note"><span>columns: ${esc(exposureAxis.map(v=>v.label).join(' · '))}</span><span>rows: ${esc(pressureAxis.map(v=>v.label).join(' · '))}</span></div>
             <div class="matrix-plane-stack">${matrixPlanes}</div>
