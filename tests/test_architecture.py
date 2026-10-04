@@ -225,6 +225,25 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn("the story can be checked rather than merely believed", app)
         self.assertNotIn("what is true", app)
 
+    def test_deep_metric_verification_routes_are_direct_and_unique(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('DEEP METRICS / VERIFY THE STORY', app)
+        self.assertIn('class="ops-verify-index"', app)
+        for target in (
+            "verify-actions",
+            "verify-outcomes",
+            "verify-continuity",
+            "verify-yield",
+            "verify-provider",
+            "verify-telemetry",
+        ):
+            self.assertEqual(app.count(f'id="{target}"'), 1)
+            self.assertIn(f'href="#{target}"', app)
+        self.assertIn('.ops-verify-index', css)
+        self.assertIn('#verify-actions,#verify-outcomes,#verify-continuity,#verify-yield,#verify-provider,#verify-telemetry{scroll-margin-top:72px}', css)
+        self.assertIn('.ops-deep-dive-heading>p:not(.eyebrow)', css)
+
     def test_longitudinal_story_uses_recorded_reflection_receipts(self):
         app = self.read('wake/assets/app.js')
         self.assertIn('LONGITUDINAL RECORD / DURABLE REFLECTIONS', app)
