@@ -77,7 +77,16 @@
       light.dataset.state=enabled?'running':'stopped';
       light.title=enabled?(active?'Running':'Running · between cycles'):'Stopped';
       light.setAttribute('aria-label',`Open WAKE GitHub Actions · ${light.title}`);
-    } catch {const light=$('execution-state');delete light.dataset.state;light.title='GitHub Actions · status unavailable';light.setAttribute('aria-label','Open WAKE GitHub Actions · status unavailable');}
+      const label=light.querySelector('.actions-light-label');
+      if(label)label.textContent=enabled?'Running':'Stopped';
+    } catch {
+      const light=$('execution-state');
+      delete light.dataset.state;
+      light.title='GitHub Actions · status unavailable';
+      light.setAttribute('aria-label','Open WAKE GitHub Actions · status unavailable');
+      const label=light.querySelector('.actions-light-label');
+      if(label)label.textContent='Status';
+    }
   }
   function visibleRecord(x) {return topic==='all'||x.domain===topic||data.records.projects.find(p=>p.id===x.project)?.domain===topic;}
   function render() {
