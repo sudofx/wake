@@ -228,6 +228,18 @@
     const evidenceCount=Object.keys(s.evidence||{}).length, projects=Object.values(s.projects||{}), notebooks=Object.values(s.notebooks||{});
     const providerRequests=completed.reduce((n,i)=>n+(i.provider_requests_sent||0),0);
     const requestsPerAccepted=acceptedCount?(providerRequests/acceptedCount).toFixed(2):'—';
+    const wakeStatus=data.wake_status||{};
+    const matrixProgress=data.matrix_progress||null;
+    const matrixCompleted=Number(matrixProgress?.completed_count||0);
+    const matrixTotal=Number(matrixProgress?.cell_count||343);
+    const matrixPct=matrixTotal?Math.round(100*matrixCompleted/matrixTotal):0;
+    const matrixResults=Object.values(matrixProgress?.results||{});
+    const matrixFailed=matrixResults.filter(item=>item?.status==='failed').length;
+    const matrixDeferred=matrixResults.filter(item=>item?.status==='deferred').length;
+    const currentStatus=wakeStatus.pending?'ACTIVE':wakeStatus.next_eligible?'WAITING':'READY';
+    const latestAttempt=wakeStatus.latest_attempt||null;
+    const latestAttemptStatus=latestAttempt?.status||'none';
+    const latestModel=latestAttempt?.successful_model||latestAttempt?.provider_attempts?.at?.(-1)?.model||'—';
     const attempts=[...completed].sort((a,b)=>new Date(a.time)-new Date(b.time)).slice(-100);
     const timeline=attempts.map((i,index)=>`<a class="wake-cell ${esc(i.status||'unknown')}" href="#history/${encodeURIComponent(i.id)}" title="${esc(i.id)} · ${esc((i.status||'unknown').toUpperCase())} · ${esc(i.successful_model||i.model||i.provider||'')}" aria-label="Attempt ${index+1}: ${esc(i.status||'unknown')}"></a>`).join('');
     const statuses=[['accepted',acceptedCount],['rejected',rejectedCount],['deferred',deferredCount],['failed',failedCount],['recovered',recoveredCount]], maxStatus=Math.max(1,...statuses.map(x=>x[1]));
@@ -376,7 +388,40 @@
     const topicBars=topicRows.map(t=>`<a class="topic-bar-row" href="#projects/topic:${encodeURIComponent(t.id)}" style="--topic-color:${esc(topicColors[t.id]||'var(--cyan)')}"><span>${esc(t.label)}</span><div><i style="width:${100*t.total/topicMax}%"></i></div><strong>${t.total}</strong></a>`).join('');
     const hypothesisHtml=hypotheses.map(h=>`<article class="hypothesis-card"><p class="eyebrow">DATA-DERIVED HYPOTHESIS</p><h3>${esc(h.title)}</h3><p>${esc(h.text)}</p></article>`).join('');
 
+    const matrixCells=Array.from({length:Math.min(matrixTotal,343)},(_,index)=>{
+      const intensity=index<matrixCompleted?'done':index<matrixCompleted+matrixFailed?'failed':index<matrixCompleted+matrixFailed+matrixDeferred?'deferred':'open';
+      return `<i class="continuity-cell ${intensity}" aria-hidden="true"></i>`;
+    }).join('');
+    const topicNodes=topicRows.slice(0,10).map((topic,index)=>{
+      const size=Math.max(10,Math.min(30,10+Math.round(24*topic.total/Math.max(1,topicMax))));
+      return `<a class="ops-topic-node" href="#projects/topic:${encodeURIComponent(topic.id)}" style="--node-size:${size}px;--node-color:${esc(topicColors[topic.id]||'var(--ops-cyan)');}"><span>${esc(topic.label)}</span><b>${topic.total}</b></a>`;
+    }).join('');
     $('metrics-dashboard').innerHTML=`
+      <section class="ops-console" aria-label="WAKE operational research console">
+        <header class="ops-console-head">
+          <div><p class="eyebrow">WAKE✳︎ / RESEARCH OPERATIONS</p><h2>Live governed research field.</h2></div>
+          <div class="ops-state ${currentStatus.toLowerCase()}"><i></i><span>${currentStatus}</span><strong>CYCLE ${s.version}</strong></div>
+        </header>
+        <div class="ops-console-grid">
+          <article class="ops-viewport">
+            <div class="ops-grid-lines" aria-hidden="true"></div>
+            <div class="ops-orbit" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="ops-topic-field">${topicNodes||'<span class="empty">No topic activity yet.</span>'}</div>
+            <div class="ops-viewport-caption"><span>ACCEPTED RESEARCH ACTIVITY</span><b>${topicAttributedTotal} topic-attributed actions</b></div>
+          </article>
+          <aside class="ops-inspector">
+            <div class="ops-readout"><span>LAST ATTEMPT</span><strong>${esc(latestAttemptStatus.toUpperCase())}</strong><small>${esc(latestModel)}</small></div>
+            <div class="ops-readout"><span>REQUESTS TODAY</span><strong>${wakeStatus.provider_requests_today??0}</strong><small>limit ${wakeStatus.daily_call_limit??'—'}</small></div>
+            <div class="ops-readout"><span>OPEN WORK</span><strong>${openObligations}</strong><small>${overdue} overdue</small></div>
+            <div class="ops-readout"><span>PROVIDER FALLBACK</span><strong>${fallbackWakes}</strong><small>${fallbackRate.toFixed(1)}% of completed wakes</small></div>
+          </aside>
+        </div>
+        <div class="ops-matrix-block">
+          <div class="ops-matrix-copy"><p class="eyebrow">CONTINUITY@1 / 7×7×7</p><h3>${matrixProgress?'Coverage of the governed continuity space.':'Matrix is available but not enabled for this WAKE generation.'}</h3><p>${matrixProgress?matrixCompleted+' of '+matrixTotal+' coordinates completed · next '+esc(matrixProgress.next_coordinate_id||'complete'):'Enablement remains an explicit governed application action.'}</p></div>
+          <div class="continuity-lattice" role="img" aria-label="Continuity matrix coverage: ${matrixCompleted} of ${matrixTotal} coordinates completed">${matrixCells}</div>
+          <div class="ops-matrix-stat"><strong>${matrixPct}%</strong><span>covered</span><small>${matrixFailed} failed · ${matrixDeferred} deferred</small></div>
+        </div>
+      </section>
       <section class="metrics-row-one">
         <section class="dashboard-grid">
         <article class="dashboard-panel panel-action-matrix"><div class="panel-heading"><div><p class="eyebrow">ACCEPTED ACTION MATRIX</p><h2>Where accepted work goes — and what kind it is.</h2></div><div class="landscape-status"><span>ACCEPTED ACTIONS</span><strong>${actionTotal}</strong></div></div><p class="small">One population, two dimensions: rows are configured research topics; columns are accepted action types. Row totals and column totals reconcile to the same accepted-action record. Actions without a durable topic stay separate below the research matrix.</p><div class="action-matrix-desktop"><div class="action-matrix-scroll"><div class="action-matrix" style="--action-cols:${Math.max(1,actionTypes.length)}"><div class="matrix-header"><button type="button" class="matrix-sort" data-matrix-sort-index="0" data-matrix-sort-label="topic" aria-label="Sort by topic">TOPIC<span aria-hidden="true">↕</span></button>${matrixHeader}<button type="button" class="matrix-sort is-sorted" data-matrix-sort-index="${actionTypes.length+1}" data-matrix-sort-label="total" data-matrix-sort-direction="desc" aria-label="Sort by total, currently descending">TOTAL<span aria-hidden="true">↓</span></button></div>${matrixRows||'<p class="empty">No topic-attributed accepted actions yet.</p>'}${systemMatrix}<div class="matrix-total-row"><span>ALL ACCEPTED</span>${matrixTotals}<strong>${actionTotal}</strong></div></div></div><p class="small matrix-note">${topicAttributedTotal} topic-attributed · ${systemActions.total} unattributed/system · ${actionTotal} total accepted actions.</p></div><div class="action-matrix-mobile">${mobileMatrix||'<p class="empty">No accepted actions yet.</p>'}<p class="small matrix-note">${topicAttributedTotal} topic-attributed · ${systemActions.total} unattributed/system · ${actionTotal} total.</p></div></article>
@@ -498,6 +543,7 @@
     // Journal remains a depth layer, never the default landing view.
     const page=['home','discoveries','topics','blog','projects','journal','lab','metrics','evidence','history','about'].includes(part)?part:'home';
     document.querySelectorAll('.view').forEach(el=>el.hidden=el.id!==page);
+    document.body.classList.toggle('metrics-ops-active',page==='metrics');
     document.querySelectorAll('[data-nav]').forEach(el=>{if(el.dataset.nav===page||(el.dataset.navSection==='research'&&['projects','lab','metrics','evidence','history'].includes(page)))el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
     let selected='';try{selected=decodeURIComponent(id||'');}catch{}
     if(page==='blog')blog(selected);
@@ -529,6 +575,7 @@
     data.generated=next.generated||data.generated;
     data.operation=next.operation||null;
     data.wake_status=next.wake_status||{};
+    data.matrix_progress=next.matrix_progress||null;
     // Live telemetry evolves independently of the static Pages shell. Keep the
     // metrics block synchronized with the same projection as state/events so
     // newly published storage counters appear without a Pages redeploy.
