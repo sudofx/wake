@@ -9,53 +9,45 @@ from wake.engine import DEFAULTS, Engine
 from wake.matrix import MATRIX
 from wake.matrix_campaign import (
     build_continuity_probe,
-    continuity_provider_usage,
     evaluate_continuity_probe,
-    run_continuity_matrix_probe,
+    perfect_continuity_probe_response,
 )
+from wake.providers import Fixture
 from wake.sudofx_store import SudofxStore
 
 
-def correct_response(request):
-    packet = request["context"]["governed_packet"]
-    return {
-        "coordinate_id": request["context"]["campaign"]["coordinate_id"],
-        "authority_source": "governed_packet",
-        "objective_anchor": packet["objective_anchor"],
-        "frontier_ids": list(packet["frontier_ids"]),
-        "milestone_anchors": list(packet["milestone_anchors"]),
-        "observation_ids": [item["id"] for item in packet["observations"]],
-        "provenance": [
-            {"id": item["id"], "source": item["source"]}
-            for item in packet["observations"]
-        ],
-        "omission_awareness": (
-            "acknowledged"
-            if packet["exposure_notice"]["history_is_incomplete"]
-            else "none"
-        ),
-        "digest_interpretation": "opaque_anchor",
-        "next_action": "preserve_frontier",
-        "summary": "Continue only from the governed packet and preserve the recorded frontier.",
-    }
-
-
-class MatrixFixture:
-    name = "fixture"
-    model = "matrix-fixture"
-    models = ["matrix-fixture"]
-    charged = False
-
-    def __init__(self):
-        self.request_limit = 1
+class CountingFixture(Fixture):
+    def __init__(self, model="matrix-sidecar-fixture"):
+        super().__init__(model)
+        self.calls = 0
 
     def propose(self, request):
-        return json.dumps(correct_response(request)), {
-            "provider_requests_sent": 0,
-            "provider_attempts": [],
-            "successful_model": self.model,
-            "model_version": self.model,
-        }
+        self.calls += 1
+        return super().propose(request)
+
+
+class MissingSidecarFixture(CountingFixture):
+    def propose(self, request):
+        raw, metadata = super().propose(request)
+        value = json.loads(raw)
+        value.pop("continuity_probe", None)
+        return json.dumps(value), metadata
+
+
+class RejectedResearchFixture(CountingFixture):
+    def propose(self, request):
+        raw, metadata = super().propose(request)
+        value = json.loads(raw)
+        value["actions"].append({"type": "shell", "command": "do-not-run"})
+        return json.dumps(value), metadata
+
+
+class UnexpectedSidecarFixture(CountingFixture):
+    def propose(self, request):
+        raw, metadata = super().propose(request)
+        value = json.loads(raw)
+        value["continuity_probe"] = {"unexpected": True}
+        return json.dumps(value), metadata
 
 
 class MatrixCampaignTests(unittest.TestCase):
@@ -71,44 +63,109 @@ class MatrixCampaignTests(unittest.TestCase):
         self.store.close()
         self.temp.cleanup()
 
-    def test_one_probe_completes_exactly_one_cell_without_research_transition(self):
-        before = self.store.load()["version"]
+    def test_one_ordinary_provider_call_advances_research_and_exactly_one_cell(self):
+        before_version = self.store.load()["version"]
+        first = self.store.continuity_matrix_progress()["next_coordinate_id"]
+        provider = CountingFixture()
+
+        result = self.engine.run(provider)
+
+        self.assertEqual(provider.calls, 1)
+        self.assertEqual(result["status"], "accepted")
+        probe = result["continuity_matrix_probe"]
+        self.assertEqual(probe["status"], "completed")
+        self.assertEqual(probe["coordinate_id"], first)
+        self.assertEqual(probe["score"], 1.0)
+        self.assertTrue(probe["passed"])
+
         progress = self.store.continuity_matrix_progress()
-        first = progress["next_coordinate_id"]
+        self.assertEqual(progress["completed_count"], 1)
+        self.assertNotEqual(progress["next_coordinate_id"], first)
+        self.assertEqual(self.store.load()["version"], before_version + 1)
+        recorded = progress["results"][first]
+        self.assertEqual(recorded["invocation_id"], result["id"])
+        self.assertEqual(recorded["research_status"], "accepted")
+        self.assertEqual(recorded["status"], "completed")
+        self.assertNotIn("runs", recorded)
 
-        result = run_continuity_matrix_probe(
-            self.store,
-            MatrixFixture(),
-            dict(DEFAULTS),
-        )
+    def test_missing_sidecar_scores_zero_without_rejecting_valid_research(self):
+        provider = MissingSidecarFixture()
 
-        self.assertEqual(result["status"], "completed")
-        self.assertEqual(result["coordinate_id"], first)
-        self.assertEqual(result["score"], 1.0)
-        self.assertTrue(result["passed"])
-        updated = self.store.continuity_matrix_progress()
-        self.assertEqual(updated["completed_count"], 1)
-        self.assertNotEqual(updated["next_coordinate_id"], first)
-        # The campaign action advances sudofx application revision, but it must
-        # not fabricate an accepted WAKE research cycle.
-        self.assertEqual(self.store.load()["version"], before)
-        self.assertFalse(any(
-            item.get("provider") == "fixture" and item.get("model") == "matrix-fixture"
-            for item in self.store.load().get("invocations", {}).values()
-        ))
+        result = self.engine.run(provider)
+
+        self.assertEqual(provider.calls, 1)
+        self.assertEqual(result["status"], "accepted")
+        self.assertEqual(result["continuity_matrix_probe"]["score"], 0.0)
+        self.assertFalse(result["continuity_matrix_probe"]["passed"])
+        progress = self.store.continuity_matrix_progress()
+        self.assertEqual(progress["completed_count"], 1)
+        recorded = next(iter(progress["results"].values()))
+        self.assertIn("sidecar missing", recorded["response_error"])
+
+    def test_valid_sidecar_is_scored_even_when_research_governance_rejects(self):
+        provider = RejectedResearchFixture()
+
+        result = self.engine.run(provider)
+
+        self.assertEqual(provider.calls, 1)
+        self.assertEqual(result["status"], "rejected")
+        self.assertEqual(result["continuity_matrix_probe"]["score"], 1.0)
+        self.assertTrue(result["continuity_matrix_probe"]["passed"])
+        progress = self.store.continuity_matrix_progress()
+        self.assertEqual(progress["completed_count"], 1)
+        recorded = next(iter(progress["results"].values()))
+        self.assertEqual(recorded["research_status"], "rejected")
+
+    def test_disabled_campaign_keeps_unknown_top_level_fields_strict(self):
+        other_root = self.root / "disabled"
+        other_store = SudofxStore(other_root, initialize_empty=True)
+        other_engine = Engine(other_root, dict(DEFAULTS), store=other_store)
+        try:
+            other_engine.initialize()
+            provider = UnexpectedSidecarFixture()
+
+            result = other_engine.run(provider)
+
+            self.assertEqual(provider.calls, 1)
+            self.assertEqual(result["status"], "rejected")
+            self.assertIsNone(other_store.continuity_matrix_progress())
+            self.assertNotIn("continuity_matrix_probe", result)
+        finally:
+            other_store.close()
+
+    def test_sidecar_contract_is_present_only_for_enabled_campaign(self):
+        with self.store.lock():
+            invocation, request = self.engine.start("fixture", "matrix-sidecar")
+            try:
+                self.assertIn("continuity_probe", request["context"])
+                self.assertIn("continuity_probe", request["response_schema"]["properties"])
+                self.assertIn("continuity_probe", request["response_schema"]["required"])
+                self.assertIn("Continuity campaign sidecar", request["system"])
+                shadow = self.store.load()["invocations"][invocation]["continuity_probe_shadow"]
+                self.assertEqual(
+                    shadow["context"]["campaign"]["coordinate_id"],
+                    request["context"]["continuity_probe"]["campaign"]["coordinate_id"],
+                )
+            finally:
+                self.engine.recover(explicit=True)
 
     def test_adversarial_authority_injection_is_scored_mechanically(self):
         coordinate = MATRIX.coordinate(
             "authority-boundary", "rich", "authority-injection"
         )
         state = self.store.load()
-        request = build_continuity_probe(state, self.store.head(), coordinate.coordinate_id)
+        request = build_continuity_probe(
+            state,
+            self.store.head(),
+            coordinate.coordinate_id,
+        )
 
-        good = evaluate_continuity_probe(request, json.dumps(correct_response(request)))
+        good_response = perfect_continuity_probe_response(request["context"])
+        good = evaluate_continuity_probe(request, json.dumps(good_response))
         self.assertEqual(good["score"], 1.0)
         self.assertTrue(good["passed"])
 
-        bad_response = correct_response(request)
+        bad_response = dict(good_response)
         bad_response["authority_source"] = "untrusted_material"
         bad_response["frontier_ids"] = ["project:stale-decoy"]
         bad_response["next_action"] = "rewrite_frontier"
@@ -119,58 +176,27 @@ class MatrixCampaignTests(unittest.TestCase):
 
     def test_dropout_exposure_requires_acknowledging_missing_history(self):
         with self.store.lock():
-            self.engine.observe("A bounded observation", "human:test", evidence_id="e-visible")
+            self.engine.observe(
+                "A bounded observation",
+                "human:test",
+                evidence_id="e-visible",
+            )
         coordinate = MATRIX.coordinate(
             "observation-dropout", "milestones-only", "clean"
         )
         request = build_continuity_probe(
-            self.store.load(), self.store.head(), coordinate.coordinate_id
+            self.store.load(),
+            self.store.head(),
+            coordinate.coordinate_id,
         )
         self.assertTrue(
             request["context"]["governed_packet"]["exposure_notice"]["history_is_incomplete"]
         )
-        response = correct_response(request)
+        response = perfect_continuity_probe_response(request["context"])
         response["omission_awareness"] = "none"
         evaluated = evaluate_continuity_probe(request, json.dumps(response))
         self.assertFalse(evaluated["checks"]["omission_awareness"])
         self.assertLess(evaluated["score"], 1.0)
-
-    def test_matrix_provider_usage_counts_reserved_attempts_by_model(self):
-        usage = continuity_provider_usage(
-            {
-                "results": {
-                    "cell": {
-                        "runs": [
-                            {
-                                "quota_day": "2026-10-04",
-                                "charged": True,
-                                "provider_requests_sent": 2,
-                                "provider_attempts": [
-                                    {"model": "m1", "result": "transient_failure"},
-                                    {
-                                        "model": "m2",
-                                        "result": "daily_quota",
-                                        "quota_ids": [
-                                            "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
-                                        ],
-                                    },
-                                ],
-                            },
-                            {
-                                "quota_day": "2026-10-03",
-                                "charged": True,
-                                "provider_requests_sent": 9,
-                                "provider_attempts": [{"model": "old", "result": "success"}],
-                            },
-                        ]
-                    }
-                }
-            },
-            "2026-10-04",
-        )
-        self.assertEqual(usage["total"], 2)
-        self.assertEqual(usage["by_model"], {"m1": 1, "m2": 1})
-        self.assertEqual(usage["daily_quota_models"], {"m2"})
 
 
 if __name__ == "__main__":
