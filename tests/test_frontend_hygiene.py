@@ -81,6 +81,11 @@ class FrontendHygieneTests(unittest.TestCase):
         self.assertIn("eventHtml||'<p class=\"empty\">No recorded events.</p>'", flat_script)
         self.assertIn(".flat-target-status", css)
         self.assertIn(".entry.flat-target", css)
+        self.assertIn("Adjacent receipts", flat_script)
+        self.assertIn("ordered=[...events].sort", flat_script)
+        self.assertIn("← EVENT '+esc(previous.seq)", flat_script)
+        self.assertIn("EVENT '+esc(next.seq)+' →", flat_script)
+        self.assertIn(".flat-target-status>nav{display:grid", css)
 
     def test_3d_map_first_load_record_hash_opens_requested_branch(self):
         script = (ASSETS / "map3d.js").read_text()
