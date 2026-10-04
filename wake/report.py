@@ -598,13 +598,14 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
                 _record_integrity_metrics,
             )
             from sudofx.observability import build_application_observability
+            performance = store.performance_snapshot()
             data = {"state": state, "events": events, "head": head, "generated": now(),
                     "experiment": experiment, "timezone": "America/Los_Angeles", "operation": operation,
                     "wake_status": (operation or {}).get("wake_status") or wake_status(state),
-                    "metrics": _full_history_metrics(store, state),
+                    "metrics": _full_history_metrics(store, state, performance),
                     "application_observability": build_application_observability(store.record) if hasattr(store, "record") else None,
                     "application_access": _application_access_metrics(store),
-                    "record_integrity": _record_integrity_metrics(store, head),
+                    "record_integrity": _record_integrity_metrics(store, head, performance),
                     "matrix_progress": _matrix_metrics(store)}
         target = Path(destination)
         target.mkdir(parents=True, exist_ok=True)
