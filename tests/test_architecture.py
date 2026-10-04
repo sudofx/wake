@@ -229,6 +229,21 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-latest-action', css)
         self.assertIn('.ops-latest-wake-meta', css)
 
+    def test_latest_wake_transition_is_derived_from_published_receipts(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn("event?.kind==='invocation_started'", app)
+        self.assertIn("event?.payload?.id||''", app)
+        self.assertIn('latestAcceptedStartEvent?.payload?.base_version', app)
+        self.assertIn('latestAcceptedEvent?.payload?.result_hash', app)
+        self.assertIn('latestAcceptedEvent?.payload?.hash_fields', app)
+        self.assertIn('start receipt unavailable in published event window', app)
+        self.assertIn('BASE REVISION', app)
+        self.assertIn('ACCEPTED REVISION', app)
+        self.assertIn('RESULT HASH', app)
+        self.assertIn('.ops-latest-transition', css)
+        self.assertIn('.ops-latest-effect-strip', css)
+
     def test_operations_console_story_chapters_remain_evidence_scoped(self):
         app = self.read('wake/assets/app.js')
         for label in ("NOW", "PRESSURE", "MEMORY", "EVIDENCE", "BELIEF", "FRONTIER", "SPACE"):
