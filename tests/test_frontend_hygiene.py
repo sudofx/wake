@@ -121,6 +121,10 @@ class FrontendHygieneTests(unittest.TestCase):
         self.assertIn("@media(max-width:700px){.detail-heading{position:sticky;top:-20px", css)
         self.assertIn(".detail-heading-actions button{min-height:44px}", css)
 
+    def test_second_click_releases_selected_3d_record(self):
+        script = (ASSETS / "map3d.js").read_text()
+        self.assertIn("if(id===current())return release();", script)
+
     def test_every_style_class_has_a_current_caller(self):
         css = (ASSETS / "style.css").read_text()
         callers = "\n".join(
