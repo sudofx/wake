@@ -43,7 +43,11 @@ if(actionsLight){
   const applyActionsState=(state,title)=>{
     if(state==='running'||state==='stopped')actionsLight.dataset.state=state;
     else actionsLight.removeAttribute('data-state');
-    actionsLight.title=title||'GitHub Actions';
+    const message=title||'Status unavailable';
+    actionsLight.title=message;
+    actionsLight.setAttribute('aria-label',`Open WAKE GitHub Actions · ${message}`);
+    const label=actionsLight.querySelector('.actions-light-label');
+    if(label)label.textContent=state==='running'?'Running':state==='stopped'?'Stopped':'Status';
   };
   try{
     const cached=JSON.parse(localStorage.getItem(CACHE_KEY)||'null');
