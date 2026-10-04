@@ -145,3 +145,47 @@ body[data-motion=off] *{animation:none!important}.floating .wake-tabs{margin:8px
 .research-header .actions-light{order:2!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;width:auto!important;min-width:100px!important;padding:0 11px!important;border:1px solid var(--line)!important;border-radius:999px!important}
 .research-header .actions-github{display:block;width:18px;height:18px;flex:0 0 18px;color:currentColor}
 .research-header .actions-light-label{display:inline-block;font-size:12px;font-weight:700}
+
+/* Inspector placement: use the dedicated right-hand column whenever it exists.
+   Collapse into document flow before it can cover the visual that launched it. */
+@media(min-width:1201px){
+  .research-workspace .detail-panel.has-selection{
+    position:relative!important;
+    inset:auto!important;
+    grid-column:3!important;
+    grid-row:1!important;
+    width:auto!important;
+    max-width:none!important;
+    max-height:none!important;
+    margin:0!important;
+    overflow:auto!important;
+    z-index:auto!important;
+  }
+}
+@media(min-width:701px) and (max-width:1200px){
+  .research-workspace .detail-panel.has-selection{
+    position:relative!important;
+    inset:auto!important;
+    grid-column:2!important;
+    grid-row:2!important;
+    width:auto!important;
+    max-width:none!important;
+    max-height:none!important;
+    margin:14px 0 0!important;
+    overflow:auto!important;
+    z-index:auto!important;
+  }
+}
+@media(max-width:700px){
+  .research-workspace .detail-panel.has-selection{
+    position:relative!important;
+    inset:auto!important;
+    order:3!important;
+    width:100%!important;
+    max-width:none!important;
+    max-height:none!important;
+    margin:10px 0 0!important;
+    overflow:visible!important;
+    z-index:auto!important;
+  }
+}
