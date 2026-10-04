@@ -87,6 +87,23 @@ class FrontendHygieneTests(unittest.TestCase):
         self.assertIn("EVENT '+esc(next.seq)+' →", flat_script)
         self.assertIn(".flat-target-status>nav{display:grid", css)
 
+    def test_full_history_filters_without_hiding_deep_linked_receipts(self):
+        flat_script = (ASSETS / "flat-view.js").read_text()
+        css = (ASSETS / "style.css").read_text()
+
+        self.assertIn("const eventKinds=[...new Set(events.map", flat_script)
+        self.assertIn('class="flat-history-tools"', flat_script)
+        self.assertIn("data-event-kind=", flat_script)
+        self.assertIn("const filterEvents=()=>", flat_script)
+        self.assertIn("card.hidden=!(matchesKind&&matchesQuery)", flat_script)
+        self.assertIn("if(target?.hidden)", flat_script)
+        self.assertIn("if(search)search.value=''", flat_script)
+        self.assertIn("if(kindFilter)kindFilter.value='all'", flat_script)
+        self.assertIn("No receipts match the current history filter.", flat_script)
+        self.assertIn(".flat-history-tools{position:sticky", css)
+        self.assertIn(".flat-history-tools input,.flat-history-tools select{", css)
+        self.assertIn("@media(max-width:700px){.flat-history-tools{position:static", css)
+
     def test_3d_map_first_load_record_hash_opens_requested_branch(self):
         script = (ASSETS / "map3d.js").read_text()
 
