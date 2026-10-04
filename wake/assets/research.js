@@ -200,10 +200,12 @@
 
   function renderCube() {
     const m=data.matrix;
-    if(!m){$('matrix-state').textContent='Matrix progress is not reported in this snapshot.';return;}
+    if(!m){$('matrix-state').textContent='Matrix progress is not reported in this snapshot.';const enable=$('matrix-enable');if(enable)enable.hidden=true;return;}
     matrixCell=cube.update(m) || m.cells[0]?.id;
     $('matrix-state').textContent=m.reported?(m.enabled?'Continuity campaign recorded':'Campaign not enabled'):'Campaign progress not reported';
     $('matrix-coverage').textContent=m.reported?`${count(m.completed)} / ${count(m.cells.length)}`:`— / ${count(m.cells.length)}`;
+    const enable=$('matrix-enable');
+    if(enable)enable.hidden=!(m.reported && m.enabled===false);
     $('cube-selectors').innerHTML=m.axes.map((a,i)=>`<label>${esc(a.label)}<select data-cube-axis="${i}" aria-label="${esc(a.label)}">${a.values.map((v,j)=>`<option value="${j}">${esc(v.label)}</option>`).join('')}</select></label>`).join('');
     renderCell();
   }
