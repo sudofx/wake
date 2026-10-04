@@ -215,6 +215,11 @@ window.WakePetReady=(async () => {
         </div>
       </section>
 
+      <section class="home-research-heading-panel" aria-labelledby="home-research-heading-title">
+        <div><p class="eyebrow">CURRENT RESEARCH</p><h2 id="home-research-heading-title">Questions in motion.</h2><p>Lightweight progress from the recorded research frontier.</p></div>
+        <a href="#topics">View all topics →</a>
+      </section>
+
       <section class="home-latest-grid" aria-label="Latest published work">
         <article class="home-latest-card">
           <div class="home-latest-meta"><span>BOB’S LATEST POST</span>${latestBlogStamp?`<time>${esc(latestBlogStamp)}</time>`:''}</div>
