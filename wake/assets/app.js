@@ -229,6 +229,8 @@
     const providerRequests=completed.reduce((n,i)=>n+(i.provider_requests_sent||0),0);
     const requestsPerAccepted=acceptedCount?(providerRequests/acceptedCount).toFixed(2):'—';
     const wakeStatus=data.wake_status||{};
+    const applicationAccess=data.application_access||null;
+    const accessEnabled=applicationAccess?.enabled!==false;
     const sourceMeta=data.source||{};
     const shortHead=String(data.head||sourceMeta.head||'').slice(0,12)||'—';
     const runtimeRef=String(sourceMeta.runtime_ref||'').slice(0,12)||'—';
@@ -244,7 +246,7 @@
     const matrixStatusCounts=matrixProgress?.status_counts||{};
     const matrixFailed=Number(matrixStatusCounts.failed||0);
     const matrixDeferred=Number(matrixStatusCounts.deferred||0);
-    const currentStatus=wakeStatus.pending?'PENDING':wakeStatus.next_eligible?'WAITING':'IDLE';
+    const currentStatus=!accessEnabled?'STOPPED':wakeStatus.pending?'PENDING':wakeStatus.next_eligible?'WAITING':'IDLE';
     const latestAttempt=wakeStatus.latest_attempt||null;
     const latestAttemptStatus=latestAttempt?.status||'none';
     const latestModel=latestAttempt?.successful_model||latestAttempt?.provider_attempts?.at?.(-1)?.model||'—';
@@ -429,7 +431,7 @@
           <div><span>AUTHORITY</span><strong>${esc(sourceAuthority)}</strong></div>
           <div><span>RECORD HEAD</span><strong>${esc(shortHead)}</strong></div>
           <div><span>RUNTIME</span><strong>${esc(runtimeRef)}</strong></div>
-          <div><span>VIEW</span><strong>DERIVED / LIVE</strong></div>
+          <div class="ops-access ${accessEnabled?'enabled':'disabled'}"><span>GLOBAL ACCESS</span><strong>${accessEnabled?'ENABLED':'DISABLED'}</strong><small>${applicationAccess?'generation '+applicationAccess.generation:'state unavailable'}</small></div>
         </div>
         <div class="ops-console-grid">
           <article class="ops-viewport">
@@ -620,6 +622,7 @@
     data.wake_status=next.wake_status||{};
     data.matrix_progress=next.matrix_progress||null;
     data.application_observability=next.application_observability||null;
+    data.application_access=next.application_access||null;
     // Live telemetry evolves independently of the static Pages shell. Keep the
     // metrics block synchronized with the same projection as state/events so
     // newly published storage counters appear without a Pages redeploy.
