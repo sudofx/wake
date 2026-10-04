@@ -203,6 +203,14 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertNotIn('enable_continuity_matrix(', app)
         self.assertNotIn('set_time_dilation(', app)
 
+    def test_recent_invocation_views_use_explicit_recorded_time_order(self):
+        app = self.read('wake/assets/app.js')
+        self.assertIn("const invocationTime=item=>", app)
+        self.assertIn("Date.parse(item?.time||item?.finished||'')", app)
+        self.assertIn("Object.values(s.invocations || {}).sort(", app)
+        self.assertIn("invocationTime(a)-invocationTime(b)", app)
+        self.assertIn("String(a?.id||'').localeCompare(String(b?.id||''))", app)
+
     def test_now_story_leads_with_latest_accepted_wake_receipt(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
