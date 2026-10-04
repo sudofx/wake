@@ -2366,3 +2366,15 @@ body>.masthead .powered-by{
   .home-latest-card{padding:18px}
   .home-latest-card h2{font-size:26px}
 }
+
+
+/* HOMEPAGE FOURTH ROW ONLY — 2026-10-04 */
+/* Current-topic block removed by design; keep only the two-card latest-work row. */
+.home-research-section,
+.home-topic-grid,
+.home-topic-card{
+  display:none!important;
+}
+.home-latest-grid{
+  margin-top:18px!important;
+}
