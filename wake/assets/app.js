@@ -236,7 +236,7 @@
     const matrixResults=Object.values(matrixProgress?.results||{});
     const matrixFailed=matrixResults.filter(item=>item?.status==='failed').length;
     const matrixDeferred=matrixResults.filter(item=>item?.status==='deferred').length;
-    const currentStatus=wakeStatus.pending?'ACTIVE':wakeStatus.next_eligible?'WAITING':'READY';
+    const currentStatus=wakeStatus.pending?'PENDING':wakeStatus.next_eligible?'WAITING':'IDLE';
     const latestAttempt=wakeStatus.latest_attempt||null;
     const latestAttemptStatus=latestAttempt?.status||'none';
     const latestModel=latestAttempt?.successful_model||latestAttempt?.provider_attempts?.at?.(-1)?.model||'—';
@@ -406,7 +406,6 @@
         <div class="ops-console-grid">
           <article class="ops-viewport">
             <div class="ops-grid-lines" aria-hidden="true"></div>
-            <div class="ops-orbit" aria-hidden="true"><i></i><i></i><i></i></div>
             <div class="ops-topic-field">${topicNodes||'<span class="empty">No topic activity yet.</span>'}</div>
             <div class="ops-viewport-caption"><span>ACCEPTED RESEARCH ACTIVITY</span><b>${topicAttributedTotal} topic-attributed actions</b></div>
           </article>
@@ -418,7 +417,7 @@
           </aside>
         </div>
         <div class="ops-matrix-block">
-          <div class="ops-matrix-copy"><p class="eyebrow">CONTINUITY@1 / 7×7×7</p><h3>${matrixProgress?'Coverage of the governed continuity space.':'Matrix is available but not enabled for this WAKE generation.'}</h3><p>${matrixProgress?matrixCompleted+' of '+matrixTotal+' coordinates completed · next '+esc(matrixProgress.next_coordinate_id||'complete'):'Enablement remains an explicit governed application action.'}</p></div>
+          <div class="ops-matrix-copy"><p class="eyebrow">CONTINUITY@1 / 7×7×7</p><h3>${matrixProgress?'Coverage of the governed continuity space.':'Matrix is available but not enabled for this WAKE generation.'}</h3><p>${matrixProgress?matrixCompleted+' of '+matrixTotal+' coordinates completed · next '+esc(matrixProgress.next_coordinate_id||'complete'):'Enablement remains an explicit governed application action.'}</p><small>Coverage cells show count only; cell position is not a coordinate map.</small></div>
           <div class="continuity-lattice" role="img" aria-label="Continuity matrix coverage: ${matrixCompleted} of ${matrixTotal} coordinates completed">${matrixCells}</div>
           <div class="ops-matrix-stat"><strong>${matrixPct}%</strong><span>covered</span><small>${matrixFailed} failed · ${matrixDeferred} deferred</small></div>
         </div>
