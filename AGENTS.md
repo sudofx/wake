@@ -1,6 +1,6 @@
 # WAKE✳︎ implementation guidance
 
-WAKE✳︎ is now a sudofx application migration, not an independent engine that should continue accumulating new authority mechanisms.
+WAKE✳︎ is infrastructure for durable, accountable work across interchangeable intelligences. In this repository, that infrastructure is currently realized as a WAKE research application running on the sudofx kernel; it must not grow a competing authority engine.
 
 ## Current authority model
 
@@ -30,9 +30,10 @@ Do not move these concepts into generic sudofx governance merely to simplify WAK
 
 ### WAKE✳︎ / Bob presentation boundary
 
-WAKE✳︎ is the research institution. It owns the journal, projects, notebooks, evidence, decisions,
-commitments, technical record, research progress accounting and institutional voice. Institutional first-person
-grammar does not imply a person, persona, identity, consciousness or subjective experience.
+The current WAKE✳︎ research application owns the journal, projects, notebooks, evidence, decisions,
+commitments, technical record, research progress accounting and institutional voice. These are application
+concerns layered on WAKE✳︎'s durable-work infrastructure, not the identity of the kernel itself. Institutional
+first-person grammar does not imply a person, persona, identity, consciousness or subjective experience.
 
 Bob is confined to Bob's Blog as a reader-facing translation persona. Bob may summarize and simplify already
 durable WAKE✳︎ work, but must never write the journal, gate an accepted research transition, move Attention,
