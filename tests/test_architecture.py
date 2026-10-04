@@ -342,6 +342,7 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('href="#evidence/', app)
         self.assertIn('href="#blog/', app)
         self.assertIn('.ops-publication-row', css)
+        self.assertEqual(css.count('.ops-publication-lineage{'), 1)
 
     def test_matrix_story_reconciles_axis_marginals_to_same_cells(self):
         app = self.read('wake/assets/app.js')
