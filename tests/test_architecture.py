@@ -501,6 +501,10 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-tertiary-grid', css)
         self.assertIn('body.metrics-ops-active #metrics.view{width:100%;max-width:none', css)
 
+    def test_verification_rail_keeps_thumb_sized_targets(self):
+        css = self.read('wake/assets/style.css')
+        self.assertIn('.ops-verify-index a{position:relative;display:grid;gap:3px;min-width:0;min-height:44px;align-content:center', css)
+
     def test_data_story_navigator_tracks_scroll_position(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
