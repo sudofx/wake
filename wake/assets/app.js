@@ -389,7 +389,7 @@
     const versionAfterReflection=itemVersion=>hasReflectionBaseline&&Number.isFinite(Number(itemVersion))&&Number(itemVersion)>reflectionRecordVersion;
     const sinceReflection={
       evidence:evidenceRecords.filter(item=>versionAfterReflection(item?.version)).length,
-      beliefs:opsBeliefs.filter(item=>versionAfterReflection(item?.updated_version)).length,
+      beliefs:Object.values(s.beliefs||{}).filter(item=>versionAfterReflection(item?.updated_version)).length,
       projects:projects.filter(item=>versionAfterReflection(Math.max(Number(item?.created_version)||0,Number(item?.updated_version)||0))).length,
       notebooks:opsNotebooks.filter(item=>versionAfterReflection(Math.max(Number(item?.created_version)||0,Number(item?.updated_version)||0))).length,
       commitments:obligations.filter(item=>versionAfterReflection(item?.created_version)).length
