@@ -624,6 +624,18 @@
       ['LATER',openCommitments.filter(item=>Number(item.due_cycle)>Number(s.version)+10).length,'neutral']
     ];
     const obligationHorizon=obligationBuckets.map(([label,count,tone])=>`<div class="ops-horizon-bucket ${tone}"><span>${label}</span><strong>${count}</strong><div>${Array.from({length:Math.min(count,18)},()=>'<i></i>').join('')}</div></div>`).join('');
+    const frontierQueue=openCommitments
+      .slice()
+      .sort((a,b)=>Number(a.due_cycle||Infinity)-Number(b.due_cycle||Infinity)||Number(a.created_version||0)-Number(b.created_version||0)||String(a.id||'').localeCompare(String(b.id||'')))
+      .map(item=>{
+        const due=Number(item?.due_cycle);
+        const delta=Number.isFinite(due)?due-Number(s.version):null;
+        const tone=delta===null?'unknown':delta<0?'overdue':delta===0?'due':delta<=3?'soon':'later';
+        const project=item?.project&&s.projects?.[item.project]?s.projects[item.project]:null;
+        const creator=String(item?.created_by||'');
+        const dueLabel=delta===null?'DUE UNKNOWN':delta<0?`${Math.abs(delta)} CYCLE${Math.abs(delta)===1?'':'S'} OVERDUE`:delta===0?'DUE THIS CYCLE':`DUE IN ${delta} CYCLE${delta===1?'':'S'}`;
+        return `<article class="ops-frontier-item ${tone}"><header><span>${esc(dueLabel)}</span><strong>CYCLE ${Number.isFinite(due)?due:'—'}</strong></header><p>${esc(item?.task||item?.id||'Recorded obligation')}</p><div class="ops-frontier-meta"><span>CREATED / CYCLE ${Number.isFinite(Number(item?.created_version))?Number(item.created_version):'—'}</span>${project?`<a href="#projects/${encodeURIComponent(item.project)}">${esc(project.title||item.project)}</a>`:item?.project?`<span>PROJECT ${esc(item.project)}</span>`:'<span>GENERIC COMMITMENT</span>'}${creator?`<a href="#history/${encodeURIComponent(creator)}">RECEIPT ${esc(creator.slice(-10))}</a>`:'<span>CREATOR RECEIPT UNAVAILABLE</span>'}</div></article>`;
+      }).join('');
     const providerSuccesses=knownAttempts.filter(a=>['success','accepted','ok'].includes(String(a.result||'').toLowerCase())).length;
     const fallbackRate=completed.length?100*fallbackWakes/completed.length:0;
     const rejectionRate=completed.length?100*rejectedCount/completed.length:0;
@@ -922,6 +934,10 @@
         <div class="ops-horizon" id="ops-horizon" aria-label="Open commitment horizon">
           <div class="ops-horizon-head"><div><p class="eyebrow">OPEN COMMITMENT HORIZON</p><h3>${openObligations} obligations carried forward</h3></div><small>bucketed by due cycle relative to cycle ${s.version}</small></div>
           <div class="ops-horizon-grid">${obligationHorizon}</div>
+          <div class="ops-frontier-queue">
+            <div class="ops-frontier-head"><div><span>FRONTIER QUEUE / EXACT OPEN WORK</span><strong>${openObligations} durable obligation${openObligations===1?'':'s'}</strong></div><small>Sorted by due cycle. Every item comes directly from current governed commitment state.</small></div>
+            <div class="ops-frontier-list">${frontierQueue||'<p class="empty">No open commitments. The durable frontier is clear.</p>'}</div>
+          </div>
         </div>
         <div class="ops-drive" id="ops-drive" aria-label="Inquiry drive shadow telemetry">
           <div class="ops-drive-head">
