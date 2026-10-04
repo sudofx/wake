@@ -1312,28 +1312,6 @@ body.metrics-ops-active .reading-key strong{color:var(--ops-orange)}
 .ops-belief-distribution header span{font:7px var(--mono);letter-spacing:.12em;color:var(--ops-muted)}.ops-belief-distribution header strong{font:8px var(--mono);font-weight:500;color:var(--ops-orange)}
 .ops-belief-band{display:grid;grid-template-columns:42px minmax(90px,1fr) 22px;gap:8px;align-items:center;margin-top:6px}
 .ops-belief-band>span{font:8px var(--mono);color:var(--ops-muted)}.ops-belief-band>div{height:6px;background:#102128;border:1px solid #143640}.ops-belief-band i{display:block;height:100%;background:linear-gradient(90deg,var(--ops-orange),var(--ops-cyan-dim))}.ops-belief-band strong{text-align:right;font:8px var(--mono);color:var(--ops-text)}
-.ops-belief-lineage{border-top:1px solid var(--ops-line-soft);background:#040a0e}
-.ops-belief-lineage-head{display:flex;justify-content:space-between;gap:18px;align-items:end;padding:12px 14px;border-bottom:1px solid var(--ops-line-soft)}
-.ops-belief-lineage-head span{display:block;font:7px var(--mono);letter-spacing:.12em;color:var(--ops-orange)}
-.ops-belief-lineage-head strong{display:block;margin-top:4px;font:500 15px/1.2 var(--sans);color:#edf8fa}
-.ops-belief-lineage-head small{max-width:480px;text-align:right;font:7px/1.45 var(--mono);color:var(--ops-muted)}
-.ops-belief-lineage-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
-.ops-lineage-card{min-width:0;padding:12px 14px;border-right:1px solid var(--ops-line-soft);border-bottom:1px solid var(--ops-line-soft);background:linear-gradient(180deg,#061016,#050b0f)}
-.ops-lineage-card:nth-child(2n){border-right:0}
-.ops-lineage-card>header{display:flex;justify-content:space-between;gap:10px;align-items:center}
-.ops-lineage-card>header span{font:7px var(--mono);letter-spacing:.1em;color:var(--ops-muted)}
-.ops-lineage-card>header strong{font:500 16px/1 var(--mono);color:var(--ops-orange)}
-.ops-lineage-card>p{min-height:40px;margin:9px 0 10px;font:9px/1.5 var(--mono);color:#a7bdc2;overflow-wrap:anywhere}
-.ops-lineage-roots>span{display:block;margin-bottom:6px;font:6px var(--mono);letter-spacing:.12em;color:#4d6d74}
-.ops-lineage-roots>div{display:flex;flex-wrap:wrap;gap:4px}
-.ops-lineage-roots a,.ops-lineage-roots em{display:inline-block;max-width:100%;padding:4px 6px;border:1px solid #153640;background:#07141a;font:6px/1.2 var(--mono);font-style:normal;color:var(--ops-cyan-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ops-lineage-roots a:hover,.ops-lineage-roots a:focus-visible{border-color:var(--ops-cyan);color:#e9f7f8;outline:0}
-.ops-lineage-roots em{border-style:dashed;color:var(--ops-muted)}
-.ops-lineage-meta{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-top:10px;padding-top:8px;border-top:1px solid #102128}
-.ops-lineage-meta>a,.ops-lineage-meta>span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:6px var(--mono);letter-spacing:.04em;color:#4d6d74}
-.ops-lineage-meta>a{color:var(--ops-cyan-dim)}
-.ops-lineage-meta .has-falsifier{color:var(--ops-green)}
-.ops-lineage-meta .no-falsifier{color:var(--ops-amber)}
 .ops-lineage{border-top:1px solid var(--ops-line-soft);background:#040a0e}
 .ops-lineage-head{display:flex;justify-content:space-between;gap:18px;align-items:end;padding:12px 14px;border-bottom:1px solid var(--ops-line-soft)}
 .ops-lineage-head>div{display:grid;gap:3px}
@@ -1356,6 +1334,11 @@ body.metrics-ops-active .reading-key strong{color:var(--ops-orange)}
 .ops-lineage-belief span{display:block;font:6px var(--mono);letter-spacing:.12em;color:var(--ops-orange)}
 .ops-lineage-belief strong{display:block;margin-top:5px;font:500 11px/1.45 var(--sans);color:#edf8fa}
 .ops-lineage-belief small{display:block;margin-top:5px;font:7px/1.35 var(--mono);color:var(--ops-muted);overflow-wrap:anywhere}
+.ops-lineage-belief-meta{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-top:9px;padding-top:8px;border-top:1px solid #2a251c}
+.ops-lineage-belief-meta>a,.ops-lineage-belief-meta>span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:6px var(--mono);letter-spacing:.04em;color:#5f7479}
+.ops-lineage-belief-meta>a{color:var(--ops-cyan-dim)}
+.ops-lineage-belief-meta .has-falsifier{color:var(--ops-green)}
+.ops-lineage-belief-meta .no-falsifier{color:var(--ops-amber)}
 @media(max-width:700px){
   .ops-lineage-head{display:grid;gap:5px}.ops-lineage-head small{text-align:left}
   .ops-lineage-row{grid-template-columns:1fr;gap:7px}
@@ -1500,7 +1483,6 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
   .ops-matrix-block{grid-template-columns:minmax(320px,.9fr) minmax(640px,2.2fr) 160px;padding:20px 24px}
 }
 @media(min-width:2200px){
-  .ops-belief-lineage-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.ops-lineage-card:nth-child(2n){border-right:1px solid var(--ops-line-soft)}.ops-lineage-card:nth-child(4n){border-right:0}
   .ops-handoff-list{grid-template-columns:repeat(4,minmax(0,1fr))}.ops-handoff-row:nth-child(2n){border-right:1px solid var(--ops-line-soft)}.ops-handoff-row:nth-child(4n){border-right:0}
   body.metrics-ops-active main{width:calc(100vw - 96px)}
   .ops-tertiary-grid{grid-template-columns:minmax(0,1.45fr) minmax(560px,.55fr)}
@@ -1662,7 +1644,6 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
 .ops-storyline a.is-active span{color:#afc5cb}
 .ops-storyline a.is-active strong{color:#effbfc}
 @media(max-width:700px){
-  .ops-belief-lineage-head{display:block}.ops-belief-lineage-head small{display:block;margin-top:5px;text-align:left}.ops-belief-lineage-grid{grid-template-columns:1fr}.ops-lineage-card{border-right:0}.ops-lineage-card>p{min-height:0}
   .ops-handoff-head{display:block}.ops-handoff-head small{display:block;margin-top:5px;text-align:left}.ops-handoff-list{grid-template-columns:1fr}.ops-handoff-row{border-right:0}.ops-handoff-path{grid-template-columns:minmax(0,1fr) 18px minmax(0,1fr)}
   .ops-storyline{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(142px,44vw);overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .ops-storyline::-webkit-scrollbar{display:none}
