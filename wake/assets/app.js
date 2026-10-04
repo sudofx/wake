@@ -699,6 +699,20 @@
       }).join('');
       return `<section class="matrix-plane"><header><span>${esc(semantic.label)}</span><b>${cells.filter(status=>status==='completed').length}/49</b></header><div class="matrix-plane-grid" role="group" aria-label="${esc(semantic.label)} continuity plane">${cellHtml}</div></section>`;
     }).join('');
+    const matrixCoverageSummary=statuses=>({
+      completed:statuses.filter(status=>status==='completed').length,
+      failed:statuses.filter(status=>status==='failed').length,
+      deferred:statuses.filter(status=>status==='deferred').length,
+      total:statuses.length
+    });
+    const matrixMarginalRows=(values,groups)=>values.map((value,index)=>{
+      const summary=matrixCoverageSummary(groups(index));
+      const completedPct=summary.total?100*summary.completed/summary.total:0;
+      return `<div class="ops-matrix-marginal-row"><span>${esc(value.label||value.key||String(index+1))}</span><div><i style="width:${completedPct.toFixed(2)}%"></i></div><strong>${summary.completed}/${summary.total||49}</strong><small>${summary.failed} failed · ${summary.deferred} deferred</small></div>`;
+    }).join('');
+    const matrixSemanticMarginals=matrixMarginalRows(semanticAxis,index=>matrixStatuses.slice(index*49,index*49+49));
+    const matrixExposureMarginals=matrixMarginalRows(exposureAxis,index=>semanticAxis.flatMap((_,semanticIndex)=>matrixStatuses.slice(semanticIndex*49+index*7,semanticIndex*49+index*7+7)));
+    const matrixPressureMarginals=matrixMarginalRows(pressureAxis,index=>semanticAxis.flatMap((_,semanticIndex)=>exposureAxis.map((__,exposureIndex)=>matrixStatuses[semanticIndex*49+exposureIndex*7+index])));
     const recordTail=(data.events||[]).slice(-64);
     const recordSpine=recordTail.map(event=>{
       const tone=event.kind==='accepted'?'accepted':event.kind==='rejected'?'rejected':event.kind==='deferred'?'deferred':'other';
@@ -967,6 +981,14 @@
             <div class="matrix-plane-stack">${matrixPlanes}</div>
           </div>
           <div class="ops-matrix-stat"><strong>${matrixPct}%</strong><span>covered</span><small>${matrixFailed} failed · ${matrixDeferred} deferred</small></div>
+        </div>
+        <div class="ops-matrix-marginals" aria-label="Continuity matrix axis coverage">
+          <div class="ops-matrix-marginal-head"><div><span>COVERAGE MARGINALS / THREE AXES</span><strong>Where completed coordinates are accumulating.</strong></div><small>Each row reconciles to the same continuity@1 cells above. Bars show completed share; failed and deferred results remain explicit.</small></div>
+          <div class="ops-matrix-marginal-grid">
+            <section><header>SEMANTIC LENS</header>${matrixSemanticMarginals||'<p class="empty">No semantic axis data.</p>'}</section>
+            <section><header>EXPOSURE</header>${matrixExposureMarginals||'<p class="empty">No exposure axis data.</p>'}</section>
+            <section><header>PRESSURE</header>${matrixPressureMarginals||'<p class="empty">No pressure axis data.</p>'}</section>
+          </div>
         </div>
       </section>
       <div class="ops-deep-dive-heading">
