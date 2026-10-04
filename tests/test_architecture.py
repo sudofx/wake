@@ -931,6 +931,22 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-verify-depth{display:flex', css)
         self.assertIn('.ops-audit-steps{grid-template-columns:none;grid-auto-flow:column', css)
 
+    def test_data_story_transition_sequence_is_complete_and_ordered(self):
+        app = self.read('wake/assets/app.js')
+        labels = [
+            'NOW → PRESSURE',
+            'PRESSURE → MEMORY',
+            'MEMORY → EVIDENCE',
+            'EVIDENCE → BELIEF',
+            'BELIEF → FRONTIER',
+            'FRONTIER → SPACE',
+        ]
+        positions = []
+        for label in labels:
+            self.assertIn(label, app)
+            positions.append(app.index(label))
+        self.assertEqual(positions, sorted(positions))
+
     def test_wide_screen_story_chapters_are_explicit_without_changing_mobile_order(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
