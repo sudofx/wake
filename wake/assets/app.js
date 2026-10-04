@@ -9,15 +9,20 @@
 (async () => {
   'use strict';
   const data = await window.WakeData;
-  // Compatibility bridge for an experiment chain pinned before full-history
-  // metrics were added to wake-live. Prefer live metrics when present; otherwise
-  // borrow only the bounded aggregate block from the current Pages snapshot.
-  if(!data.metrics){
+  // Compatibility bridge for an experiment chain pinned before newer
+  // presentation projections reached wake-live. Prefer live fields when present;
+  // borrow only missing derived/public-safe fields from the current Pages snapshot.
+  const hasField=key=>Object.prototype.hasOwnProperty.call(data,key);
+  if(!data.metrics || !hasField('matrix_progress') || !hasField('application_observability') || !hasField('application_access') || !data.source){
     try{
       const response=await fetch('wake-data.json?wake_metrics='+Date.now(),{cache:'no-store'});
       if(response.ok){
         const fallback=await response.json();
-        if(fallback.metrics)data.metrics=fallback.metrics;
+        if(!data.metrics&&fallback.metrics)data.metrics=fallback.metrics;
+        if(!hasField('matrix_progress')&&Object.prototype.hasOwnProperty.call(fallback,'matrix_progress'))data.matrix_progress=fallback.matrix_progress;
+        if(!hasField('application_observability')&&Object.prototype.hasOwnProperty.call(fallback,'application_observability'))data.application_observability=fallback.application_observability;
+        if(!hasField('application_access')&&Object.prototype.hasOwnProperty.call(fallback,'application_access'))data.application_access=fallback.application_access;
+        if(!data.source&&fallback.source)data.source=fallback.source;
       }
     }catch{}
   }
@@ -230,7 +235,7 @@
     const requestsPerAccepted=acceptedCount?(providerRequests/acceptedCount).toFixed(2):'—';
     const wakeStatus=data.wake_status||{};
     const applicationAccess=data.application_access||null;
-    const accessEnabled=applicationAccess?.enabled!==false;
+    const accessEnabled=typeof applicationAccess?.enabled==='boolean'?applicationAccess.enabled:null;
     const sourceMeta=data.source||{};
     const shortHead=String(data.head||sourceMeta.head||'').slice(0,12)||'—';
     const runtimeRef=String(sourceMeta.runtime_ref||'').slice(0,12)||'—';
@@ -246,7 +251,7 @@
     const matrixStatusCounts=matrixProgress?.status_counts||{};
     const matrixFailed=Number(matrixStatusCounts.failed||0);
     const matrixDeferred=Number(matrixStatusCounts.deferred||0);
-    const currentStatus=!accessEnabled?'STOPPED':wakeStatus.pending?'PENDING':wakeStatus.next_eligible?'WAITING':'IDLE';
+    const currentStatus=accessEnabled===false?'STOPPED':wakeStatus.pending?'PENDING':wakeStatus.next_eligible?'WAITING':'IDLE';
     const latestAttempt=wakeStatus.latest_attempt||null;
     const latestAttemptStatus=latestAttempt?.status||'none';
     const latestModel=latestAttempt?.successful_model||latestAttempt?.provider_attempts?.at?.(-1)?.model||'—';
@@ -431,7 +436,7 @@
           <div><span>AUTHORITY</span><strong>${esc(sourceAuthority)}</strong></div>
           <div><span>RECORD HEAD</span><strong>${esc(shortHead)}</strong></div>
           <div><span>RUNTIME</span><strong>${esc(runtimeRef)}</strong></div>
-          <div class="ops-access ${accessEnabled?'enabled':'disabled'}"><span>GLOBAL ACCESS</span><strong>${accessEnabled?'ENABLED':'DISABLED'}</strong><small>DERIVED / LIVE · ${applicationAccess?'generation '+applicationAccess.generation:'state unavailable'}</small></div>
+          <div class="ops-access ${accessEnabled===true?'enabled':accessEnabled===false?'disabled':'unknown'}"><span>GLOBAL ACCESS</span><strong>${accessEnabled===true?'ENABLED':accessEnabled===false?'DISABLED':'UNKNOWN'}</strong><small>DERIVED / LIVE · ${applicationAccess?'generation '+applicationAccess.generation:'state unavailable'}</small></div>
         </div>
         <div class="ops-console-grid">
           <article class="ops-viewport">
