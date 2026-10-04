@@ -18,7 +18,7 @@ const data=await loadMap3dData();
 window.WakeOperatorSyncPublic?.({meta:data.meta});
 const nodes=new Map(),loadedChildren=new Map([['root:wake',data.root_children||[]]]),loading=new Map(),loadErrors=new Map();
 const stage=document.getElementById('constellation-stage'),svg=document.getElementById('constellation-svg');
-const details=document.getElementById('details'),popover=document.getElementById('node-popover');
+const details=document.getElementById('details'),popover=document.getElementById('node-popover'),pathStatus=document.getElementById('path-status');
 const roots=new Map([['root:wake',{id:'root:wake',kind:'root',title:'WAKE✳︎'}],['root:journal',{id:'root:journal',kind:'root',title:'Journal'}],['root:blog',{id:'root:blog',kind:'root',title:'Blog'}],['root:topics',{id:'root:topics',kind:'root',title:'Topics'}],['root:projects',{id:'root:projects',kind:'root',title:'Projects'}],['root:commitments',{id:'root:commitments',kind:'root',title:'Commitments'}],['root:evidence',{id:'root:evidence',kind:'root',title:'Evidence'}],['root:research',{id:'root:research',kind:'root',title:'Research'}]]);
 const pos=new Map(),topicColors=data.meta?.topic_colors||{},topicLabels=data.meta?.topic_labels||{},counts=data.meta?.counts||{};
 const topicLabel=domain=>topicLabels[domain]||String(domain||'').replaceAll('_',' ');
@@ -78,6 +78,10 @@ function arrange(parentId,ids,nextPathId=null){const parent=pos.get(parentId)||{
 function beginLayoutMotion(){if(reduced)return;if(layoutFrame){cancelAnimationFrame(layoutFrame);layoutFrame=null}layoutMotion={from:new Map([...pos].map(([id,p])=>[id,{...p}])),started:performance.now(),duration:680};const tick=()=>{render();if(layoutMotion&&performance.now()-layoutMotion.started<layoutMotion.duration)layoutFrame=requestAnimationFrame(tick);else{layoutMotion=null;layoutFrame=null;render()}};layoutFrame=requestAnimationFrame(tick)}
 function blendLayout(){if(!layoutMotion)return;const progress=Math.min(1,(performance.now()-layoutMotion.started)/layoutMotion.duration),ease=progress<.5?4*progress*progress*progress:1-Math.pow(-2*progress+2,3)/2;for(const[id,target]of pos){let from=layoutMotion.from.get(id);if(!from){const parentId=path.slice(0,-1).reverse().find(pid=>children(pid).includes(id)),parent=parentId&&(layoutMotion.from.get(parentId)||pos.get(parentId));from=parent?{x:parent.x,y:parent.y,r:Math.max(5,parent.r*.2)}:target}pos.set(id,{x:from.x+(target.x-from.x)*ease,y:from.y+(target.y-from.y)*ease,r:from.r+(target.r-from.r)*ease})}}
 function render(){
+ if(pathStatus){
+  const nodes=path.length, hops=Math.max(0,nodes-1);
+  pathStatus.textContent=nodes?`PATH ${nodes} NODE${nodes===1?'':'S'} · ${hops} HOP${hops===1?'':'S'} · EXPLICIT RELATIONSHIPS ONLY`:'ROOT VIEW · EXPLICIT RELATIONSHIPS ONLY';
+ }
  const {w,h}=layout(),previewPath=preview?(preview==='root:wake'?['root:wake']:['root:wake',preview]):['root:wake'],activePath=path.length?path:previewPath,engaged=Boolean(path.length||preview),groups=activePath.map((parent,pathIndex)=>{const nextPathId=path.length&&pathIndex<path.length-1?path[pathIndex+1]:null;let ids=visualChildren(parent,nextPathId).filter(id=>get(id));if(path.length&&parent==='root:wake'&&path[1])ids=ids.filter(id=>id===path[1]);if(parent!=='root:wake')arrange(parent,ids,nextPathId);return[parent,ids]}),shown=new Set(['root:wake',...(path.length&&path[1]?[path[1]]:rootChildren),...activePath]),focus=current()||preview||null,trailPath=path.length?path:activePath,trail=new Set(trailPath),choices=new Set(focus?visualChildren(focus):[]),trailEdges=new Set(trailPath.slice(1).map((id,index)=>`${trailPath[index]}→${id}`)),wake=get('root:wake'),wakePoint=pos.get('root:wake'),wakeScale=path.length?1+(view.k-1)*.18:1;
  groups.forEach(([,ids])=>ids.forEach(id=>shown.add(id)));
  const folded=new Set();if(path.length>2)path.slice(1,-1).forEach((parent,index)=>visualChildren(parent,path[index+2]).filter(id=>id!==path[index+2]).forEach(id=>folded.add(id)));blendLayout();
