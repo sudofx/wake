@@ -1145,6 +1145,15 @@ body.metrics-ops-active .reading-key strong{color:var(--ops-orange)}
 .ops-time-grid span{display:block;font:7px var(--mono);letter-spacing:.11em;color:var(--ops-muted)}
 .ops-time-grid strong{display:block;margin:5px 0 3px;font:500 20px/1 var(--mono);color:#dff6f8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ops-time-grid small{display:block;font:8px/1.35 var(--mono);color:#4d6d74}
+.ops-signal-band{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border-top:1px solid var(--ops-line);border-bottom:1px solid var(--ops-line);background:#050c11}
+.ops-signal{position:relative;padding:12px 14px 13px;border-right:1px solid var(--ops-line-soft);min-width:0;overflow:hidden}
+.ops-signal:last-child{border-right:0}
+.ops-signal span{display:block;font:7px var(--mono);letter-spacing:.1em;color:var(--ops-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ops-signal strong{display:block;margin:5px 0 9px;font:500 19px/1 var(--mono);color:var(--ops-cyan)}
+.ops-signal i{display:block;height:3px;background:linear-gradient(90deg,var(--ops-cyan) 0 var(--signal),#102128 var(--signal) 100%);box-shadow:0 0 10px #63e8ee22}
+.ops-signal.danger strong{color:var(--ops-red)}.ops-signal.danger i{background:linear-gradient(90deg,var(--ops-red) 0 var(--signal),#102128 var(--signal) 100%)}
+.ops-signal.warning strong{color:var(--ops-amber)}.ops-signal.warning i{background:linear-gradient(90deg,var(--ops-amber) 0 var(--signal),#102128 var(--signal) 100%)}
+.ops-signal.info strong{color:var(--ops-cyan-dim)}
 .ops-lifecycle{border-top:1px solid var(--ops-line);background:#061016}
 .ops-lifecycle-head{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:11px 16px;border-bottom:1px solid var(--ops-line-soft)}
 .ops-lifecycle-head .eyebrow{margin:0;color:var(--ops-cyan-dim)}
@@ -1291,3 +1300,13 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
   .ops-lifecycle-grid strong{font-size:26px}
 }
 @media(prefers-reduced-motion:reduce){.ops-topic-node{transition:none}}
+
+@media(max-width:700px){
+  .ops-signal-band{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ops-signal{border-bottom:1px solid var(--ops-line-soft)}
+  .ops-signal:nth-child(even){border-right:0}
+}
+@media(min-width:1600px){
+  .ops-signal{padding:14px 18px 15px}
+  .ops-signal strong{font-size:23px}
+}
