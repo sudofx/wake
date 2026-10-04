@@ -1870,7 +1870,7 @@ body>header.masthead{border-radius:11px!important}
 .nebula-explore-console{
   background:
     linear-gradient(180deg,rgba(3,8,24,.03),rgba(3,8,24,.08)),
-    url("backgrounds/nebula-console-mockup.webp?v=20261004-1") center center/cover no-repeat!important;
+    url("backgrounds/console-globe.png?v=20261004-1") center center/cover no-repeat!important;
 }
 .nebula-explore-console::before,
 .nebula-explore-console::after,
