@@ -107,4 +107,5 @@ def build_live_projection(store, operation=None, runtime_ref=""):
         "wake_status": deepcopy((operation or {}).get("wake_status", {})),
         "metrics": _full_history_metrics(store, state),
         "application_observability": build_application_observability(store.record) if hasattr(store, "record") else None,
+        "matrix_progress": store.continuity_matrix_progress() if hasattr(store, "continuity_matrix_progress") else None,
     }
