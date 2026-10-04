@@ -1216,6 +1216,7 @@ body.metrics-ops-active .reading-key strong{color:var(--ops-orange)}
 .ops-time-tick.real{background:var(--ops-cyan-dim)}
 .ops-time-tick.scaled{background:var(--ops-orange);box-shadow:0 0 7px #e5932b55}
 .ops-time-tick.frozen{background:var(--ops-muted);opacity:.42}
+.ops-time-tick.unknown{background:#284047;opacity:.48}
 .ops-time-tick:hover,.ops-time-tick:focus-visible{opacity:1;outline:1px solid #eff;outline-offset:1px}
 .ops-time-legend{display:flex;gap:12px;justify-content:flex-end;margin-top:7px;font:7px var(--mono);letter-spacing:.08em;color:var(--ops-muted)}
 .ops-time-legend span{display:inline-flex;gap:5px;align-items:center}.ops-time-legend i{width:6px;height:6px;background:var(--ops-cyan-dim)}.ops-time-legend .scaled i{background:var(--ops-orange)}.ops-time-legend .frozen i{background:var(--ops-muted)}
