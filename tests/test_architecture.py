@@ -251,6 +251,13 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-continuity-node.delivered', css)
         self.assertNotIn('fresh invocations', app.lower())
 
+    def test_handoff_story_requires_recorded_distinct_creator_and_resolver(self):
+        app = self.read('wake/assets/app.js')
+        self.assertIn("c.status==='fulfilled'", app)
+        self.assertIn('c.created_by&&c.resolved_by&&c.created_by!==c.resolved_by', app)
+        self.assertIn('Each row is a commitment whose recorded creator and resolver are different invocations.', app)
+        self.assertIn('No cross-invocation fulfillments recorded yet.', app)
+
     def test_record_spine_links_use_receipt_ids_not_sequence_numbers(self):
         app = self.read('wake/assets/app.js')
         self.assertIn("const receiptId=String(event.payload?.id||'')", app)
