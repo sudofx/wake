@@ -670,6 +670,8 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             "nebula-console-mockup.webp",
             "console-globe.png",
             "console-cube.png",
+            "console-graph.png",
+            "console-graph-alt.png",
         ):
             (background_target / name).write_bytes((background_source / name).read_bytes())
         browser_data = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
