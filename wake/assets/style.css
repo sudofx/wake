@@ -1953,6 +1953,7 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
   .ops-storyline a{min-height:44px;border-bottom:0;border-right:1px solid var(--ops-line-soft)}
   .ops-storyline a:last-child{border-right:0}
   .ops-storyline span,.ops-story-lede>span,.ops-reading-key span{font-size:8px}
+  .ops-verify-index span{font-size:8px}.ops-verify-index strong{font-size:9px}
   .ops-reading-key{scroll-snap-type:x proximity}
   .ops-reading-key span{scroll-snap-align:start}
   .ops-lineage-root span,.ops-lineage-root small,.ops-lineage-belief span,
