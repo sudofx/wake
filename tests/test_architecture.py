@@ -353,8 +353,12 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('Reflections without research-project lineage are intentionally excluded.', app)
         self.assertIn('href="#projects/notebook:', app)
         self.assertIn('href="#evidence/', app)
+        self.assertIn("const exists=Boolean(evidenceById[id])", app)
+        self.assertIn('not in current state', app)
+        self.assertIn('record present', app)
         self.assertIn('href="#blog/', app)
         self.assertIn('.ops-publication-row', css)
+        self.assertIn('.ops-publication-sources small,.ops-publication-notebooks small', css)
         self.assertEqual(css.count('.ops-publication-lineage{'), 1)
 
     def test_matrix_story_reconciles_axis_marginals_to_same_cells(self):
