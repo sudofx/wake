@@ -647,7 +647,10 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             raise ValueError("Research projection does not match the exported record")
         atomic_write(target / "research-data.json", json.dumps(research, ensure_ascii=False, separators=(",", ":")))
         for name in ("console.html", "research.css", "research.js", "research-scene.js", "research-instruments.js", "console-layout.js"):
-            atomic_write(target / name, (assets / name).read_text())
+            content = (assets / name).read_text()
+            if name == "console.html":
+                content = content.replace("WAKE_CYCLE_COUNT", str(state["version"]))
+            atomic_write(target / name, content)
         template = (assets / "index.html").read_text().replace("WAKE_CYCLE_COUNT", str(state["version"]))
         # Publish source styles alongside every HTML view: Pages and exports share
         # the same theme file rather than receiving copied inline palettes.
