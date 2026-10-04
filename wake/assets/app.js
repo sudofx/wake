@@ -241,7 +241,7 @@
       return {
         id:item?.id||'',
         actor:item?.actor||'unknown',
-        role:payload?.evidence_role||'unspecified',
+        role:payload?.evidence_role||'source',
         tier:payload?.host_tier||'unspecified',
         topic:payload?.topic_domain||'unattributed',
         source:item?.source||'',
@@ -250,7 +250,7 @@
     });
     const evidenceRoles=evidenceTelemetry.reduce((acc,item)=>(acc[item.role]=(acc[item.role]||0)+1,acc),{});
     const evidenceTiers=evidenceTelemetry.reduce((acc,item)=>(acc[item.tier]=(acc[item.tier]||0)+1,acc),{});
-    const qualifyingEvidence=evidenceTelemetry.filter(item=>item.role==='source'&&item.tier!=='verification-metadata').length;
+    const qualifyingEvidence=evidenceTelemetry.filter(item=>!['discovery','metadata'].includes(item.role)&&item.tier!=='verification-metadata').length;
     const discoveryEvidence=Number(evidenceRoles.discovery||0);
     const metadataEvidence=Number(evidenceRoles.metadata||0);
     const evidenceTierRows=Object.entries(evidenceTiers).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));
