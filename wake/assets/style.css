@@ -1042,6 +1042,7 @@ body.metrics-ops-active .masthead nav a[aria-current=page]{color:var(--ops-orang
 body.metrics-ops-active .asterisk{color:var(--ops-orange)}
 body.metrics-ops-active main{max-width:1600px}
 body.metrics-ops-active #metrics{padding-bottom:32px}
+body.metrics-ops-active #metrics.view{width:100%;max-width:none;left:auto;transform:none}
 body.metrics-ops-active .metrics-heading{padding:34px 0 20px;border-bottom:1px solid var(--ops-line)}
 body.metrics-ops-active .metrics-heading h1{font:500 clamp(34px,4vw,62px)/.98 var(--sans);letter-spacing:-.04em;color:#edf8fa;margin-bottom:12px}
 body.metrics-ops-active .metrics-heading>p{max-width:860px;color:var(--ops-muted)}
@@ -1162,12 +1163,14 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
 }
 @media(min-width:1200px){
   body.metrics-ops-active main{width:calc(100vw - 64px);max-width:none}
+  body.metrics-ops-active #metrics.view{width:100%;max-width:none}
   body.metrics-ops-active footer{width:calc(100vw - 64px);max-width:none}
   .ops-console-grid{grid-template-columns:minmax(0,1fr) 280px}
   .ops-viewport{min-height:500px}
 }
 @media(min-width:1600px){
   body.metrics-ops-active main{width:calc(100vw - 72px)}
+  body.metrics-ops-active #metrics.view{width:100%}
   body.metrics-ops-active footer{width:calc(100vw - 72px)}
   .ops-console-grid{grid-template-columns:minmax(0,1fr) 330px;min-height:560px}
   .ops-viewport{min-height:560px}
@@ -1178,6 +1181,7 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
 }
 @media(min-width:2200px){
   body.metrics-ops-active main{width:calc(100vw - 96px)}
+  body.metrics-ops-active #metrics.view{width:100%}
   body.metrics-ops-active footer{width:calc(100vw - 96px)}
   .ops-console-grid{grid-template-columns:minmax(0,1fr) 380px;min-height:640px}
   .ops-viewport{min-height:640px}
