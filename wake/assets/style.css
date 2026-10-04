@@ -1834,6 +1834,9 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
 .ops-command-grid strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:500 clamp(17px,1.35vw,23px)/1 var(--mono);color:var(--ops-cyan)}
 .ops-command-grid b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:500 8px/1.2 var(--mono);letter-spacing:.05em;color:#a7c0c5}
 .ops-command-grid small{font:6px/1.35 var(--mono);color:#55747b}
+.ops-command-meter{position:relative;display:block;height:3px;margin:2px 0 1px;background:#102128;overflow:hidden}
+.ops-command-meter:after{content:"";position:absolute;inset:0 auto 0 0;width:var(--meter);background:linear-gradient(90deg,var(--ops-cyan-dim),var(--ops-cyan));box-shadow:0 0 8px #63e8ee44}
+.ops-command-meter.unavailable:after{display:none}
 @media(max-width:1200px){
   .ops-command-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
   .ops-command-grid>a{border-bottom:1px solid var(--ops-line-soft)}
