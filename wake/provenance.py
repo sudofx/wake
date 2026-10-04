@@ -192,7 +192,11 @@ def build_map(state, events, head, replay_history=True):
                 expanded.add(key)
                 edge(jid, key, "editorial decision", f"event {event['seq']} · {event['hash']}")
             nodes[jid]["expands"] = sorted(expanded)
-            nodes[jid]["detail"]["exact_record"] = f"Event {event['seq']} · {event['hash']}"
+            exact_record = f"Event {event['seq']} · {event['hash']}"
+            nodes[jid]["detail"]["exact_record"] = exact_record
+            invocation_key = f"invocation:{p['id']}"
+            if invocation_key in nodes:
+                nodes[invocation_key]["detail"]["exact_record"] = exact_record
     
     else:
         # The wake-live projection intentionally carries only a bounded event tail.
@@ -245,9 +249,11 @@ def build_map(state, events, head, replay_history=True):
             nodes[jid]["expands"] = sorted(journal_expands.get(jid, {f"invocation:{iid}"}))
             accepted = accepted_by_invocation.get(iid)
             if accepted:
-                nodes[jid]["detail"]["exact_record"] = (
-                    f"Event {accepted['seq']} · {accepted['hash']}"
-                )
+                exact_record = f"Event {accepted['seq']} · {accepted['hash']}"
+                nodes[jid]["detail"]["exact_record"] = exact_record
+                invocation_key = f"invocation:{iid}"
+                if invocation_key in nodes:
+                    nodes[invocation_key]["detail"]["exact_record"] = exact_record
             else:
                 nodes[jid]["detail"]["exact_record"] = "Current projected durable state"
     # Legacy posts without an accepted-event link remain visible; their explicit
