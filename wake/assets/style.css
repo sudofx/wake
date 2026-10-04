@@ -967,3 +967,37 @@ html,body{max-width:100%;overflow-x:clip}
   .blog-card .record-panel-meta .record-topics{flex:1 1 100%;width:100%}
   .blog-card .record-panel-meta time{margin-left:0}
 }
+
+
+/* ABOUT LEGIBILITY — 2026-10-04
+   Frost only the text-bearing surfaces so the nebula remains visible. */
+#about .about-intro,
+#about .about-principles article,
+#about .about-body>section,
+#about .about-contract{
+  background:rgb(10 14 38 / .58);
+  -webkit-backdrop-filter:blur(16px) saturate(120%);
+  backdrop-filter:blur(16px) saturate(120%);
+  border:1px solid rgb(160 190 255 / .22);
+  box-shadow:0 12px 32px rgb(0 0 0 / .18);
+}
+#about .about-intro{max-width:920px;padding:clamp(30px,5vw,54px);border-radius:18px;margin-top:42px}
+#about .about-principles{border:0;gap:14px;margin-top:22px}
+#about .about-principles article,
+#about .about-principles article:first-child,
+#about .about-principles article:last-child{padding:26px;border-radius:15px}
+#about .about-body{gap:22px}
+#about .about-body>section{padding:30px;border-radius:15px}
+#about .about-contract{background:rgb(10 14 38 / .64)}
+#about .about-intro>p:last-child,
+#about .about-principles p,
+#about .about-body p:not(.eyebrow){color:color-mix(in srgb,var(--ink) 88%,white)}
+@media(max-width:700px){
+  #about .about-intro{margin-top:24px;padding:26px 22px}
+  #about .about-principles{gap:12px}
+  #about .about-principles article,
+  #about .about-principles article:first-child,
+  #about .about-principles article:last-child{padding:22px}
+  #about .about-body{gap:14px;padding:24px 0}
+  #about .about-body>section{padding:24px 22px}
+}
