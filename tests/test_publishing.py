@@ -27,7 +27,9 @@ class PublishingTests(unittest.TestCase):
                 self.assertEqual(payload["source"]["database"], "wake.sqlite3")
                 self.assertIsNone(payload["source"]["branch"])
                 self.assertIn("matrix_progress", payload)
-                self.assertIsNone(payload["matrix_progress"])
+                self.assertFalse(payload["matrix_progress"]["enabled"])
+                self.assertEqual(payload["matrix_progress"]["cell_count"], 343)
+                self.assertEqual(len(payload["matrix_progress"]["cells"]), 343)
                 self.assertIn("application_access", payload)
                 self.assertIsNone(payload["application_access"])
                 before = engine.store.performance_snapshot()["full_replays"]
