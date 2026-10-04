@@ -674,6 +674,13 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-command-grid>a[data-tone="ok"]:before,.ops-command-grid>a[data-tone="running"]:before', css)
         self.assertIn('@media(min-width:1800px)', css)
 
+    def test_phone_control_room_is_glance_grid_while_story_stays_swipeable(self):
+        css = self.read('wake/assets/style.css')
+        self.assertIn('.ops-command-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-flow:row;grid-auto-columns:auto;overflow:visible;scroll-snap-type:none}', css)
+        self.assertIn('.ops-command-grid>a:nth-child(2n){border-right:0}', css)
+        self.assertIn('.ops-command-grid>a:nth-last-child(-n+2){border-bottom:0}', css)
+        self.assertIn('.ops-storyline{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(138px,48vw)}', css)
+
     def test_metrics_story_links_only_explicit_3d_provenance_branches(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
