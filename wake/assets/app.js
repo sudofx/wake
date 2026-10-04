@@ -401,7 +401,7 @@
       <section class="ops-console" aria-label="WAKE operational research console">
         <header class="ops-console-head">
           <div><p class="eyebrow">WAKE✳︎ / RESEARCH OPERATIONS</p><h2>Live governed research field.</h2></div>
-          <div class="ops-state ${currentStatus.toLowerCase()}"><i></i><span>${currentStatus}</span><strong>CYCLE ${s.version}</strong></div>
+          <div class="ops-state" data-status="${currentStatus.toLowerCase()}"><i></i><span>${currentStatus}</span><strong>CYCLE ${s.version}</strong></div>
         </header>
         <div class="ops-console-grid">
           <article class="ops-viewport">
