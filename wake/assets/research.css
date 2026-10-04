@@ -308,3 +308,121 @@ body[data-motion=off] *{animation:none!important}.floating .wake-tabs{margin:8px
 
 /* DARK-ONLY CONSOLE THEME — 2026-10-04 */
 .research-header .theme-switch,.theme-switch{display:none!important}
+
+
+/* SHARED MASTHEAD / STATUS FIX — 2026-10-04 */
+.research-header.masthead{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:24px!important;
+  padding:18px 24px!important;
+  overflow:visible!important;
+  position:relative!important;
+  z-index:5000!important;
+  background:var(--surface)!important;
+  border-bottom:1px solid var(--line)!important;
+}
+.research-header.masthead .wordmark{
+  font-size:34px!important;
+  font-weight:900!important;
+  letter-spacing:-1.7px!important;
+  line-height:1!important;
+  color:var(--cyan)!important;
+}
+.research-header.masthead .wordmark small{
+  display:block!important;
+  margin-top:8px!important;
+  color:var(--muted)!important;
+  font:9px/1.4 ui-monospace,monospace!important;
+  letter-spacing:.16em!important;
+}
+.research-header.masthead nav.compact-nav{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:26px!important;
+  flex:1!important;
+  margin:0!important;
+  overflow:visible!important;
+  position:relative!important;
+  z-index:5100!important;
+}
+.research-header.masthead nav.compact-nav>a,
+.research-header.masthead nav.compact-nav summary{
+  color:var(--muted)!important;
+  min-height:42px!important;
+  padding:10px 0 8px!important;
+  font-size:14px!important;
+}
+.research-header.masthead nav.compact-nav>a[aria-current=page]{
+  color:var(--cyan)!important;
+  border-bottom:2px solid var(--cyan)!important;
+}
+.research-header.masthead .nav-group[open]{z-index:9000!important}
+.research-header.masthead .nav-dropdown{z-index:9999!important;pointer-events:auto!important}
+.research-header.masthead .header-tools{
+  display:flex!important;
+  align-items:center!important;
+  margin-left:auto!important;
+  gap:0!important;
+}
+.research-header.masthead .theme-switch{display:none!important}
+.research-header.masthead .actions-light{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:34px!important;
+  min-width:34px!important;
+  height:30px!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+}
+.research-header.masthead .actions-light-track{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:18px!important;
+  height:18px!important;
+  flex:0 0 18px!important;
+  padding:2px!important;
+  border:1px solid var(--line)!important;
+  border-radius:50%!important;
+  background:var(--surface-raised)!important;
+}
+.research-header.masthead .actions-light-track i{
+  display:block!important;
+  width:12px!important;
+  height:12px!important;
+  flex:0 0 12px!important;
+  border-radius:50%!important;
+  background:var(--orange)!important;
+  box-shadow:none!important;
+}
+.research-header.masthead .actions-light[data-state=running] .actions-light-track i{background:var(--green)!important}
+.research-header.masthead .actions-light[data-state=stopped] .actions-light-track i{background:var(--red)!important}
+@media(max-width:760px){
+  .research-header.masthead{flex-wrap:wrap!important;padding:12px 10px!important;gap:10px 12px!important}
+  .research-header.masthead .wordmark{font-size:30px!important;flex:1 1 auto!important}
+  .research-header.masthead nav.compact-nav{
+    order:3!important;
+    flex-basis:100%!important;
+    display:grid!important;
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    gap:6px!important;
+    padding-top:8px!important;
+    border-top:1px solid var(--line)!important;
+  }
+  .research-header.masthead nav.compact-nav>a,
+  .research-header.masthead nav.compact-nav summary{
+    justify-content:center!important;
+    min-height:38px!important;
+    padding:7px 0!important;
+    font-size:11px!important;
+  }
+  .research-header.masthead .actions-light{width:40px!important;min-width:40px!important;height:38px!important}
+  .research-header.masthead .actions-light-track{width:22px!important;height:22px!important;flex-basis:22px!important;padding:3px!important}
+  .research-header.masthead .actions-light-track i{width:14px!important;height:14px!important;flex-basis:14px!important}
+}
