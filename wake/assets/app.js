@@ -604,6 +604,18 @@
       const bounded=delivery.mode==='bounded';
       return `<a class="ops-context-tick ${bounded?'bounded':'rich'}" href="#history/${encodeURIComponent(item.id)}" style="--context-height:${outer.toFixed(1)}%;--context-fill:${inner.toFixed(1)}%" title="${esc(item.id)} · ${esc(delivery.mode||'rich')} · rich ${rich.toLocaleString()} chars · delivered ${delivered.toLocaleString()} chars" aria-label="${esc(item.id)} context: ${esc(delivery.mode||'rich')}, ${Math.round(inner)} percent delivered"></a>`;
     }).join('');
+    const omissionCounts={};
+    contextTraceSource.forEach(item=>{
+      const omitted=Array.isArray(item?.context_delivery?.omitted_categories)?item.context_delivery.omitted_categories:[];
+      omitted.forEach(category=>{
+        const key=String(category||'unspecified').trim()||'unspecified';
+        omissionCounts[key]=(omissionCounts[key]||0)+1;
+      });
+    });
+    const omissionEntries=Object.entries(omissionCounts).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));
+    const omissionMax=Math.max(1,...omissionEntries.map(([,count])=>count));
+    const omissionRows=omissionEntries.map(([category,count])=>`<div class="ops-omission-row"><span>${esc(category)}</span><div><i style="width:${Math.max(4,100*count/omissionMax)}%"></i></div><strong>${count}</strong></div>`).join('');
+    const omissionReceipts=contextTraceSource.filter(item=>Array.isArray(item?.context_delivery?.omitted_categories)&&item.context_delivery.omitted_categories.length).length;
     const timeline=attempts.map((i,index)=>`<a class="wake-cell ${esc(i.status||'unknown')}" href="#history/${encodeURIComponent(i.id)}" title="${esc(i.id)} · ${esc((i.status||'unknown').toUpperCase())} · ${esc(i.successful_model||i.model||i.provider||'')}" aria-label="Attempt ${index+1}: ${esc(i.status||'unknown')}"></a>`).join('');
     const statuses=[['accepted',acceptedCount],['rejected',rejectedCount],['deferred',deferredCount],['failed',failedCount],['recovered',recoveredCount]], maxStatus=Math.max(1,...statuses.map(x=>x[1]));
     const outcomeBars=statuses.map(([name,value])=>`<div class="metric-bar-row"><span>${esc(name)}</span><div><i class="metric-bar ${esc(name)}" style="width:${Math.max(value?3:0,100*value/maxStatus)}%"></i></div><strong>${value}</strong></div>`).join('');
@@ -1026,6 +1038,10 @@
           <div class="ops-context-trace">
             <div class="ops-context-trace-head"><span>CONTEXT PRESSURE / LAST ${contextTraceSource.length}</span><small>height = rich request · inner fill = delivered share · orange = bounded mode</small></div>
             <div class="ops-context-track" role="group" aria-label="Recent context delivery receipts">${contextTrace||'<span class="empty">No context receipts yet.</span>'}</div>
+          </div>
+          <div class="ops-omission-profile">
+            <div class="ops-omission-head"><div><span>OMISSION PROFILE / RECENT CONTEXT DELIVERY</span><strong>${omissionEntries.length} recorded categories across ${omissionReceipts} receipt${omissionReceipts===1?'':'s'}</strong></div><small>Counts come only from explicit omitted_categories receipts. No omission is inferred from payload size or compression ratio.</small></div>
+            <div class="ops-omission-list">${omissionRows||'<p class="empty">No explicit omitted categories in the recent context-delivery window.</p>'}</div>
           </div>
           <div class="ops-handoff" aria-label="Cross-invocation commitment handoffs">
             <div class="ops-handoff-head"><div><span>CROSS-INVOCATION HANDOFF / DURABLE OBLIGATIONS</span><strong>${inheritedFulfilled.length} fulfilled by a later invocation</strong></div><small>Each row is a commitment whose recorded creator and resolver are different invocations.</small></div>
