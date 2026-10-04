@@ -247,6 +247,13 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-tertiary-grid', css)
         self.assertIn('body.metrics-ops-active #metrics.view{width:100%;max-width:none', css)
 
+    def test_metrics_route_anchor_is_unique(self):
+        page = self.read('wake/assets/index.html')
+        app = self.read('wake/assets/app.js')
+        self.assertEqual(page.count('id="metrics"'), 1)
+        self.assertIn('id="journal-metrics"', page)
+        self.assertIn("$('journal-metrics').innerHTML", app)
+
     def test_site_operator_link_goes_directly_to_github_actions(self):
         page = self.read('wake/assets/index.html')
         self.assertIn('href="https://github.com/sudofx/wake/actions"', page)
