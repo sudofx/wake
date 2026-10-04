@@ -997,6 +997,29 @@
       const y=(50+34*Math.sin(angle)).toFixed(2);
       return `<a class="ops-topic-node" href="#projects/topic:${encodeURIComponent(topic.id)}" style="--node-size:${size}px;--node-color:${esc(topicColors[topic.id]||'var(--ops-cyan)')};--node-x:${x}%;--node-y:${y}%"><span>${esc(topic.label)}</span><b>${topic.total}</b></a>`;
     }).join('');
+    const projectionMs=Date.parse(data.generated||'');
+    const commandActivityBuckets=Array.from({length:24},()=>({accepted:0,rejected:0,deferred:0,failed:0,recovered:0}));
+    if(Number.isFinite(projectionMs)){
+      completed.forEach(item=>{
+        const timeMs=Date.parse(item.time||'');
+        if(!Number.isFinite(timeMs))return;
+        const ageHours=Math.floor((projectionMs-timeMs)/36e5);
+        if(ageHours<0||ageHours>=24)return;
+        const status=['accepted','rejected','deferred','failed','recovered'].includes(item.status)?item.status:null;
+        if(status)commandActivityBuckets[23-ageHours][status]+=1;
+      });
+    }
+    const commandActivityMax=Math.max(1,...commandActivityBuckets.map(bucket=>Object.values(bucket).reduce((sum,value)=>sum+value,0)));
+    const commandActivityTotals=commandActivityBuckets.reduce((totals,bucket)=>{
+      Object.keys(totals).forEach(key=>totals[key]+=bucket[key]||0);
+      return totals;
+    },{accepted:0,rejected:0,deferred:0,failed:0,recovered:0});
+    const commandActivity=commandActivityBuckets.map((bucket,index)=>{
+      const hourOffset=index-23;
+      const total=Object.values(bucket).reduce((sum,value)=>sum+value,0);
+      const label=(hourOffset===0?'current hour':Math.abs(hourOffset)+'h ago')+' · '+total+' completed wake'+(total===1?'':'s')+' · '+Object.entries(bucket).filter(([,value])=>value).map(([key,value])=>key+' '+value).join(' · ');
+      return `<div class="ops-command-hour" title="${esc(label)}" aria-label="${esc(label)}">${['accepted','rejected','deferred','failed','recovered'].map(status=>`<i class="${status}" style="--hour-share:${(100*(bucket[status]||0)/commandActivityMax).toFixed(2)}%"></i>`).join('')}</div>`;
+    }).join('');
     const commandPulseSource=[...completed]
       .sort((a,b)=>new Date(a.time||0)-new Date(b.time||0))
       .slice(-48);
@@ -1029,6 +1052,11 @@
           <a href="#metrics/ops-matrix" data-instrument="continuity" data-route="STORY 07 / SPACE"><span>CONTINUITY@1</span><strong>${matrixPct===null?'NOT ENABLED':matrixPct+'%'}</strong><b>${matrixCompleted}/${matrixTotal} coordinates</b><div class="ops-command-micro" aria-hidden="true">${commandMatrixBars||'<i style="--micro:0%"></i>'}</div><i class="ops-command-meter ${matrixPct===null?'unavailable':''}" style="--meter:${matrixPct===null?0:matrixPct}%" aria-hidden="true"></i><small>seven bars = semantic-plane completion · deterministic test space, not research quality</small></a>
           <a href="map3d.html#record=root%3Awake" data-instrument="provenance" data-route="3D / PROVENANCE"><span>RESEARCH FIELD</span><strong>${topicActive}/${configuredTopicCount||'—'}</strong><b>ACTIVE TOPIC LANES</b><div class="ops-command-micro" aria-hidden="true">${commandTopicBars||'<i style="--micro:0%"></i>'}</div><i class="ops-command-meter ${topicCoveragePct===null?'unavailable':''}" style="--meter:${topicCoveragePct===null?0:Math.max(0,Math.min(100,topicCoveragePct)).toFixed(2)}%" aria-hidden="true"></i><small>bars = relative accepted-action weight of top topic lanes · open 3D provenance</small></a>
           <a href="events.html" data-tone="${recordReplayOk&&sqliteQuickOk?'ok':'warning'}" data-route="RECORD / FULL HISTORY"><span>DURABLE RECORD</span><strong>${recordReplayOk&&sqliteQuickOk?'VERIFIED':'CHECK'}</strong><b>${recordIntegrity?.sudofx_event_count??'—'} events</b><div class="ops-command-lamps" aria-label="Durable record integrity checks"><span class="${recordReplayOk?'ok':'warn'}"><i aria-hidden="true"></i>REPLAY</span><span class="${sqliteQuickOk?'ok':'warn'}"><i aria-hidden="true"></i>SQLITE</span></div><small>head ${esc(shortHead)} · local replay + SQLite integrity evidence</small></a>
+        </div>
+        <div class="ops-command-activity" aria-label="Completed wake activity during the last 24 hours">
+          <header><span>24H WAKE ACTIVITY</span><strong>${Object.values(commandActivityTotals).reduce((sum,value)=>sum+value,0)} COMPLETED</strong><small>hourly bins by projection timestamp · spacing represents time, not receipt order</small></header>
+          <div class="ops-command-activity-track" role="group" aria-label="Hourly completed wake activity">${commandActivity}</div>
+          <div class="ops-command-activity-legend"><span class="accepted"><i></i>${commandActivityTotals.accepted} accepted</span><span class="rejected"><i></i>${commandActivityTotals.rejected} rejected</span><span class="deferred"><i></i>${commandActivityTotals.deferred} deferred</span><span class="failed"><i></i>${commandActivityTotals.failed} failed</span><span class="recovered"><i></i>${commandActivityTotals.recovered} recovered</span></div>
         </div>
         <div class="ops-command-pulse" aria-label="Recent completed wake receipts">
           <header><span>RECENT WAKE PULSE</span><strong>${commandPulseSource.length} COMPLETED RECEIPTS</strong><small>oldest → newest · each cell is a recorded outcome</small></header>
