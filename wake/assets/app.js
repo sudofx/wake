@@ -13,7 +13,10 @@
   // presentation projections reached wake-live. Prefer live fields when present;
   // borrow only missing derived/public-safe fields from the current Pages snapshot.
   const hasField=key=>Object.prototype.hasOwnProperty.call(data,key);
-  if(!data.metrics || !hasField('matrix_progress') || !hasField('application_observability') || !hasField('application_access') || !data.source){
+  let fallbackNeeded=false;
+  if(!data.metrics)fallbackNeeded=true;
+  if(!hasField('matrix_progress')||!hasField('application_observability')||!hasField('application_access')||!data.source)fallbackNeeded=true;
+  if(fallbackNeeded){
     try{
       const response=await fetch('wake-data.json?wake_metrics='+Date.now(),{cache:'no-store'});
       if(response.ok){
