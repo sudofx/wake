@@ -239,7 +239,9 @@ class ArchitectureSeparationTests(unittest.TestCase):
             "verify-telemetry",
         ):
             self.assertEqual(app.count(f'id="{target}"'), 1)
-            self.assertIn(f'href="#{target}"', app)
+            self.assertIn(f'href="#metrics" data-verify-target="{target}"', app)
+        self.assertIn("event.target.closest('[data-story-target],[data-verify-target]')", app)
+        self.assertIn("scrollLink.dataset.storyTarget||scrollLink.dataset.verifyTarget", app)
         self.assertIn('.ops-verify-index', css)
         self.assertIn('#verify-actions,#verify-outcomes,#verify-continuity,#verify-yield,#verify-provider,#verify-telemetry{scroll-margin-top:72px}', css)
         self.assertIn('.ops-deep-dive-heading>p:not(.eyebrow)', css)
