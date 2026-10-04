@@ -245,6 +245,19 @@
     const sourceAuthority=sourceMeta.authority||'derived projection';
     const matrixProgress=data.matrix_progress||null;
     const matrixEnabled=matrixProgress?.enabled===true;
+    const experimental=s.experimental||null;
+    const timeControl=experimental?.controls?.time_dilation||null;
+    const temporalState=s.temporal||null;
+    const temporalInvocations=invocations.filter(item=>item?.temporal&&Number.isFinite(Number(item.temporal.wall_elapsed_seconds)));
+    const latestTemporal=temporalInvocations.at(-1)?.temporal||null;
+    const formatDuration=value=>{
+      const seconds=Number(value);
+      if(!Number.isFinite(seconds))return '—';
+      if(seconds<60)return seconds.toFixed(seconds<10?1:0)+'s';
+      if(seconds<3600)return (seconds/60).toFixed(seconds<600?1:0)+'m';
+      if(seconds<86400)return (seconds/3600).toFixed(seconds<36000?1:0)+'h';
+      return (seconds/86400).toFixed(seconds<864000?1:0)+'d';
+    };
     const appObservability=data.application_observability||null;
     const wakeApp=(appObservability?.applications||[]).find(app=>app?.id==='wake')||null;
     const appActions=wakeApp?.actions||{};
@@ -483,6 +496,20 @@
             <div class="ops-quota-gauge" aria-label="Provider quota usage ${quotaPct.toFixed(0)} percent"><i style="width:${quotaPct}%"></i></div>
             <div class="ops-quota-meta"><span>${wakeStatus.attempts_today??0} charged attempts</span><span>${wakeStatus.provider_requests_today??0} HTTP requests</span><span>${wakeStatus.provider_request_counts_incomplete?'counts incomplete':'counts complete'}</span></div>
           </section>
+        </div>
+        <div class="ops-time" aria-label="Time Dilation telemetry">
+          <div class="ops-time-head">
+            <div><p class="eyebrow">TIME DILATION / EXPERIMENTAL REGIME</p><h3>${timeControl?esc(String(timeControl.mode||'real').toUpperCase()):'NOT INITIALIZED'}</h3></div>
+            <div class="ops-time-scale"><strong>${timeControl?Number(timeControl.mode==='frozen'?0:timeControl.mode==='scaled'?timeControl.scale||1:1).toFixed(timeControl.mode==='scaled'?1:0):'—'}×</strong><span>EFFECTIVE SCALE</span></div>
+          </div>
+          <div class="ops-time-grid">
+            <div><span>WALL / LAST INTERVAL</span><strong>${formatDuration(latestTemporal?.wall_elapsed_seconds)}</strong><small>raw UTC elapsed time</small></div>
+            <div><span>EFFECTIVE / LAST INTERVAL</span><strong>${formatDuration(latestTemporal?.effective_elapsed_seconds)}</strong><small>under active mapping</small></div>
+            <div><span>EFFECTIVE / TOTAL</span><strong>${formatDuration(latestTemporal?.effective_seconds_total??temporalState?.effective_seconds)}</strong><small>durable accumulated experimental time</small></div>
+            <div><span>CYCLE DISTANCE</span><strong>${latestTemporal?.cycle_distance??'—'}</strong><small>accepted-cycle distance in last receipt</small></div>
+            <div><span>INTERVENING EVENTS</span><strong>${latestTemporal?.intervening_events?.total??'—'}</strong><small>between temporal anchors</small></div>
+            <div><span>REGIME</span><strong>${esc(String(latestTemporal?.regime_id||experimental?.id||'—').replace(/^reg-/,''))}</strong><small>${timeControl?.enabled===false?'disabled':timeControl?'operator-recorded':'unavailable'}</small></div>
+          </div>
         </div>
         <div class="ops-lifecycle" aria-label="Application lifecycle observability">
           <div class="ops-lifecycle-head"><p class="eyebrow">APPLICATION LIFECYCLE / GENERIC SUDOFX EVIDENCE</p><span>${appObservability?`record revision ${esc(appObservability.record_revision)}`:`not available`}</span></div>
