@@ -74,7 +74,7 @@ def _application_access_metrics(store):
 
 
 def _matrix_metrics(store):
-    """Return bounded public matrix telemetry without result bodies."""
+    """Return compact public matrix telemetry without result bodies."""
     progress = (
         store.continuity_matrix_progress()
         if hasattr(store, "continuity_matrix_progress")
@@ -98,14 +98,21 @@ def _matrix_metrics(store):
         for axis in MATRIX.axes
     ]
     cells = [
-        {
-            "ordinal": coordinate.ordinal,
-            "coordinate_id": coordinate.coordinate_id,
-            "values": list(coordinate.value_keys),
-            "status": status_by_coordinate.get(coordinate.coordinate_id, "open"),
-        }
+        status_by_coordinate.get(coordinate.coordinate_id, "open")
         for coordinate in MATRIX.coordinates()
     ]
+    next_coordinate_id = (
+        progress.get("next_coordinate_id")
+        if isinstance(progress, dict)
+        else None
+    )
+    next_ordinal = None
+    if isinstance(next_coordinate_id, str):
+        try:
+            next_ordinal = MATRIX.coordinate_by_id(next_coordinate_id).ordinal
+        except ValueError:
+            next_ordinal = None
+
     return {
         "enabled": isinstance(progress, dict),
         "matrix": progress.get("matrix") if isinstance(progress, dict) else f"{MATRIX.matrix_id}@{MATRIX.version}",
@@ -124,11 +131,7 @@ def _matrix_metrics(store):
             if isinstance(progress, dict)
             else 0
         ),
-        "next_coordinate_id": (
-            progress.get("next_coordinate_id")
-            if isinstance(progress, dict)
-            else None
-        ),
+        "next_ordinal": next_ordinal,
         "status_counts": counts,
         "axes": axes,
         "cells": cells,
