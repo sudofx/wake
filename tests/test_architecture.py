@@ -183,6 +183,17 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('"metrics": _full_history_metrics(store, state)', self.read('wake/report.py'))
         self.assertIn("if(!data.metrics)", app)
 
+    def test_research_operations_console_is_derived_only(self):
+        live = self.read('wake/live.py')
+        app = self.read('wake/assets/app.js')
+        self.assertIn('"authoritative": False', live)
+        self.assertIn('"matrix_progress": _matrix_metrics(store)', live)
+        self.assertIn('"application_observability": build_application_observability', live)
+        self.assertIn('RESEARCH OPERATIONS', app)
+        self.assertIn('DERIVED / LIVE', app)
+        self.assertNotIn('record_continuity_matrix_result(', app)
+        self.assertNotIn('enable_continuity_matrix(', app)
+
     def test_site_operator_link_goes_directly_to_github_actions(self):
         page = self.read('wake/assets/index.html')
         self.assertIn('href="https://github.com/sudofx/wake/actions"', page)
