@@ -616,6 +616,22 @@ class ArchitectureSeparationTests(unittest.TestCase):
         css = self.read('wake/assets/style.css')
         self.assertIn('.ops-verify-index span{font-size:8px}.ops-verify-index strong{font-size:9px}', css)
 
+    def test_metrics_story_links_only_explicit_3d_provenance_branches(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('3D PROVENANCE / EXPLICIT EXPORTED BRANCHES', app)
+        self.assertIn('Recorded parent → child relationships only. This view is separate from continuity@1 test geometry.', app)
+        self.assertIn('map3d.html#record=root%3Awake', app)
+        self.assertIn('map3d.html#record=root%3Aprojects', app)
+        self.assertIn('map3d.html#record=root%3Aevidence', app)
+        self.assertIn('map3d.html#record=root%3Acommitments', app)
+        self.assertIn('map3d.html#record=root%3Aresearch', app)
+        self.assertNotIn('map3d.html#record=root%3Abeliefs', app)
+        self.assertNotIn('map3d.html#record=root%3Amatrix', app)
+        self.assertIn('.ops-provenance-jump{display:grid', css)
+        self.assertIn('.ops-provenance-jump nav{display:grid', css)
+        self.assertIn('.ops-provenance-jump nav{grid-template-columns:none;grid-auto-flow:column', css)
+
     def test_data_story_exposes_story_verify_record_audit_path(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
