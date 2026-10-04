@@ -278,7 +278,7 @@ MAP3D_DETAIL_FIELDS = (
     "id", "title", "summary", "lede", "statement", "question", "reason",
     "status", "domain", "time", "updated_version", "created_version",
     "as_of_cycle", "updated_by", "created_by", "resolved_by", "cycle",
-    "version", "provider", "model",
+    "version", "provider", "model", "exact_record",
 )
 MAP3D_ROOTS = (
     "root:journal", "root:blog", "root:topics", "root:projects",
