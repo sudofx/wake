@@ -618,6 +618,28 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-verify-depth{display:flex', css)
         self.assertIn('.ops-audit-steps{grid-template-columns:none;grid-auto-flow:column', css)
 
+    def test_wide_screen_story_chapters_are_explicit_without_changing_mobile_order(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        expected = [
+            ('ops-now', '01', 'NOW'),
+            ('ops-pressure', '02', 'PRESSURE'),
+            ('ops-context', '03', 'MEMORY'),
+            ('ops-evidence', '04', 'EVIDENCE'),
+            ('ops-beliefs', '05', 'BELIEF'),
+            ('ops-horizon', '06', 'FRONTIER'),
+            ('ops-matrix', '07', 'SPACE'),
+        ]
+        positions = []
+        for target, chapter, name in expected:
+            marker = f'id="{target}" data-story-chapter="{chapter}" data-story-name="{name}"'
+            self.assertIn(marker, app)
+            positions.append(app.index(marker))
+        self.assertEqual(positions, sorted(positions))
+        self.assertIn('.ops-story-chapter{position:relative}', css)
+        self.assertIn('@media(min-width:1600px){', css)
+        self.assertIn('content:attr(data-story-chapter) " · " attr(data-story-name)', css)
+
     def test_data_story_navigator_tracks_scroll_position(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
