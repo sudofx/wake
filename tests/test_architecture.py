@@ -187,6 +187,25 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('"metrics": _full_history_metrics(store, state, performance)', report)
         self.assertIn("if(!data.metrics)", app)
 
+    def test_in_app_history_discloses_bounded_window_and_links_full_export(self):
+        page = self.read('wake/assets/index.html')
+        app = self.read('wake/assets/app.js')
+        help_js = self.read('wake/assets/help.js')
+        live = self.read('wake/live.py')
+        report = self.read('wake/report.py')
+        self.assertIn('MAX_EVENTS = 400', live)
+        self.assertIn('"events": store.tail_events_all(MAX_EVENTS)', live)
+        self.assertIn('RECENT EVENT WINDOW / AUDIT TRAIL', page)
+        self.assertIn('bounded recent event window', page)
+        self.assertIn('href="events.html">Standalone full history →</a>', page)
+        self.assertIn('All visible events', page)
+        self.assertIn('More visible events ↓', page)
+        self.assertIn('← All visible events', app)
+        self.assertIn('The in-app History panel carries a bounded recent event window', help_js)
+        self.assertNotIn('History lists every saved event', help_js)
+        self.assertIn('"History", "THE APPEND-ONLY RECORD", "Exact history."', report)
+        self.assertIn('"events", "events.jsonl"', report)
+
     def test_research_operations_console_is_derived_only(self):
         live = self.read('wake/live.py')
         app = self.read('wake/assets/app.js')
