@@ -993,6 +993,19 @@
         <i>→</i>
         <span><b>SPACE</b> where continuity has been tested</span>
       </div>
+      <div class="ops-provenance-jump" aria-label="Related 3D provenance branches">
+        <div class="ops-provenance-jump-copy">
+          <span>3D PROVENANCE / EXPLICIT EXPORTED BRANCHES</span>
+          <small>Recorded parent → child relationships only. This view is separate from continuity@1 test geometry.</small>
+        </div>
+        <nav aria-label="Open explicit branches in the 3D record map">
+          <a href="map3d.html#record=root%3Awake"><b>NOW</b><strong>WAKE root</strong><small>whole exported field</small></a>
+          <a href="map3d.html#record=root%3Aprojects"><b>PROJECTS</b><strong>research paths</strong><small>explicit project branch</small></a>
+          <a href="map3d.html#record=root%3Aevidence"><b>EVIDENCE</b><strong>source records</strong><small>explicit evidence branch</small></a>
+          <a href="map3d.html#record=root%3Acommitments"><b>FRONTIER</b><strong>open obligations</strong><small>explicit commitment branch</small></a>
+          <a href="map3d.html#record=root%3Aresearch"><b>RESEARCH</b><strong>research records</strong><small>explicit research branch</small></a>
+        </nav>
+      </div>
       <div class="ops-audit-ladder" aria-label="Audit path from data story to durable record">
         <div class="ops-audit-copy">
           <span>READING DEPTH / FOLLOW THE RECEIPTS</span>
