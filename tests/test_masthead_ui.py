@@ -12,15 +12,19 @@ class MastheadPresentationTests(unittest.TestCase):
         self.html = (ASSETS / "index.html").read_text()
         self.css = (ASSETS / "nav.css").read_text()
 
-    def test_masthead_has_one_theme_switch(self):
-        self.assertEqual(self.html.count('id="theme-toggle"'), 1)
-        self.assertEqual(self.html.count('class="data-switch theme-switch"'), 1)
+    def test_masthead_is_dark_only_and_has_no_theme_switch(self):
+        self.assertNotIn('id="theme-toggle"', self.html)
+        self.assertNotIn('class="data-switch theme-switch"', self.html)
 
-    def test_actions_entry_is_only_a_green_light_link(self):
+    def test_actions_entry_has_repo_link_and_labeled_status(self):
         header = self.html.split('<header class="masthead">', 1)[1].split('</header>', 1)[0]
+        self.assertIn('href="https://github.com/sudofx/wake"', header)
+        self.assertIn('class="repo-link"', header)
         self.assertIn('href="https://github.com/sudofx/wake/actions"', header)
         self.assertIn('class="actions-light"', header)
+        self.assertIn('class="actions-light-label"', header)
         self.assertIn('title="Checking…"', header)
+        self.assertIn('Powered by sudofx', header)
         self.assertNotIn('Operator', header)
         for forbidden in ('owner-', 'operator-status', 'operator-actions-link',
                           'WAKE_CONTROL_URL', 'wake-owner-session',
@@ -30,7 +34,7 @@ class MastheadPresentationTests(unittest.TestCase):
     def test_actions_light_is_phone_safe_and_read_only(self):
         nav = (ASSETS / "nav.js").read_text()
         self.assertIn('.actions-light{box-sizing:border-box', self.css)
-        self.assertIn('cursor:default', self.css)
+        self.assertIn('cursor:pointer', self.css)
         self.assertIn('@keyframes actions-light-pulse', self.css)
         self.assertIn('actions/workflows/wake-runner.yml', nav)
         self.assertNotIn('actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=10', nav)
