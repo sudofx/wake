@@ -3,3 +3,54 @@
 :root[data-theme=light]{--paper:#edf5f8!important;--surface:#fff!important;--surface-strong:#e0eff4!important;--ink:#102f40!important;--muted:#426579!important;--line:#97bccb!important;--cyan:#006d87!important;--orange:#995000!important;--accent:#006d87!important;--danger:#ae302f!important;--warning:#995000!important;--purple:#7251bf!important;color-scheme:light}
 body>header,body>footer,body>.skip{display:none!important}main{max-width:none!important;padding:18px!important;margin:0!important}.page-heading h1{font-size:30px}.view>.page-heading{margin-top:0}.record-card,.project-card,.notebook-card,.blog-card,.panel,.dashboard-panel,.data-card,#map-field,#details{border-radius:0!important}.research-links{flex-wrap:wrap}body{background:var(--paper)!important}.filter-row{flex-wrap:wrap}
 .console-component-stamp{color:var(--muted);font:11px/1.6 ui-monospace,monospace;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:18px;overflow-wrap:anywhere}
+
+
+/* FROSTED CONSOLE COMPONENTS — 2026-10-04 */
+/* Embedded history/timeline and record views remain readable over the Nebula surface. */
+html,body{
+  background:transparent!important;
+}
+body{
+  min-height:100vh;
+}
+main{
+  background:rgba(3,15,29,.64)!important;
+  border:1px solid rgba(74,111,158,.50)!important;
+  border-radius:12px!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.025)!important;
+  backdrop-filter:blur(20px) saturate(114%)!important;
+  -webkit-backdrop-filter:blur(20px) saturate(114%)!important;
+}
+.view,
+.entry,
+.record-card,
+.project-card,
+.notebook-card,
+.blog-card,
+.panel,
+.dashboard-panel,
+.data-card,
+#map-field,
+#details{
+  background:rgba(4,18,34,.58)!important;
+  backdrop-filter:blur(16px) saturate(112%)!important;
+  -webkit-backdrop-filter:blur(16px) saturate(112%)!important;
+}
+.entry,
+.record-card,
+.project-card,
+.notebook-card,
+.blog-card,
+.panel,
+.dashboard-panel,
+.data-card,
+#map-field,
+#details{
+  border-radius:10px!important;
+}
+@media(max-width:700px){
+  main{
+    border-radius:9px!important;
+    padding:12px!important;
+  }
+}
