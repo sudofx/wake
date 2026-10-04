@@ -90,14 +90,21 @@ function durableRecordDestination(node){
  const detail=node?.detail||{};
  const stableId=String(detail.id||'');
  const lifecycleId=String(detail.resolved_by||detail.updated_by||detail.created_by||'');
- if(node?.kind==='journal')return {href:`index.html#history/${encodeURIComponent(String(node.id||'').replace(/^journal:/,''))}`,label:'EXACT WAKE RECEIPT',basis:detail.exact_record||'journal invocation ID'};
- if(node?.kind==='invocation')return {href:`index.html#history/${encodeURIComponent(String(node.id||'').replace(/^invocation:/,''))}`,label:'EXACT INVOCATION RECEIPT',basis:'invocation ID'};
+ const exactSeq=(String(detail.exact_record||'').match(/^Event\s+(\d+)\b/)||[])[1]||'';
+ if(node?.kind==='journal'){
+   const invocationId=String(node.id||'').replace(/^journal:/,'');
+   return {href:exactSeq?`events.html#seq=${exactSeq}`:`events.html#event=${encodeURIComponent(invocationId)}`,label:'EXACT WAKE RECEIPT',basis:detail.exact_record||'full history · journal invocation ID'};
+ }
+ if(node?.kind==='invocation'){
+   const invocationId=String(node.id||'').replace(/^invocation:/,'');
+   return {href:`events.html#event=${encodeURIComponent(invocationId)}`,label:'EXACT INVOCATION RECEIPT',basis:'full append-only history · invocation ID'};
+ }
  if(node?.kind==='blog'&&stableId)return {href:`index.html#blog/${encodeURIComponent(stableId)}`,label:'DURABLE PUBLICATION',basis:'stored post ID'};
  if(node?.kind==='evidence'&&stableId)return {href:`index.html#evidence/${encodeURIComponent(stableId)}`,label:'EVIDENCE RECORD',basis:'stored evidence ID'};
  if(node?.kind==='project'&&stableId)return {href:`index.html#projects/${encodeURIComponent(stableId)}`,label:'PROJECT RECORD',basis:'stored project ID'};
  if(node?.kind==='notebook'&&stableId)return {href:`index.html#projects/notebook:${encodeURIComponent(stableId)}`,label:'NOTEBOOK RECORD',basis:'stored notebook ID'};
  if(node?.kind==='topic'&&node.domain)return {href:`index.html#projects/topic:${encodeURIComponent(node.domain)}`,label:'TOPIC RECORDS',basis:'configured topic ID'};
- if(lifecycleId)return {href:`index.html#history/${encodeURIComponent(lifecycleId)}`,label:'LIFECYCLE RECEIPT',basis:'recorded created/updated/resolved invocation'};
+ if(lifecycleId)return {href:`events.html#event=${encodeURIComponent(lifecycleId)}`,label:'LIFECYCLE RECEIPT',basis:'full append-only history · recorded lifecycle invocation'};
  return null;
 }
 function detailContextLinks(node){
