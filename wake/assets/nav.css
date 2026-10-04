@@ -94,6 +94,7 @@ nav.compact-nav{display:flex;align-items:center;justify-content:center;gap:22px;
 .actions-light-track{position:relative;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;flex:0 0 18px;padding:2px;border:1px solid var(--line);border-radius:20px;background:var(--surface)}
 .actions-light-track i{display:block;box-sizing:border-box;width:12px;height:12px;flex:0 0 12px;border-radius:50%;background:#e7c35a;animation:none;opacity:1}
 .actions-light[data-state="running"] .actions-light-track i{background:#307444;animation:actions-light-pulse 3.2s ease-in-out infinite}
+.actions-light[data-state="campaign"] .actions-light-track i{background:var(--purple);animation:actions-light-pulse 1.8s ease-in-out infinite}
 .actions-light[data-state="stopped"] .actions-light-track i{background:#d65e6c;animation:actions-light-blink 2.4s step-end infinite}
 .actions-light:focus-visible{outline:2px solid var(--cyan,var(--green));outline-offset:3px;border-radius:4px}
 @keyframes actions-light-pulse{0%,100%{opacity:.3}50%{opacity:1}}
@@ -212,6 +213,7 @@ nav.compact-nav{display:flex;align-items:center;justify-content:center;gap:22px;
   white-space:nowrap;
 }
 .actions-light[data-state="running"] .actions-light-label{color:var(--green)}
+.actions-light[data-state="campaign"] .actions-light-label{color:var(--purple)}
 .actions-light[data-state="stopped"] .actions-light-label{color:#d65e6c}
 @media(max-width:760px){
   .brand-lockup{flex:1 1 205px}
