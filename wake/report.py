@@ -580,7 +580,7 @@ def _flat_browser_shell(title, eyebrow, heading, description, kind, source):
 <link rel="stylesheet" href="style.css"><link rel="stylesheet" href="nav.css"><link rel="stylesheet" href="theme.css"></head>
 <body data-flat-kind="{html.escape(kind)}" data-flat-source="{html.escape(source)}">
 <header class="masthead"><a class="wordmark" href="index.html">WAKE<span class="asterisk">✳︎</span></a>
-<nav class="compact-nav" aria-label="Main navigation"><a href="index.html#home">Explore</a><a href="index.html#journal">Journal</a><a href="index.html#history">History</a><a href="index.html#metrics">Metrics</a><a href="map.html">Map</a></nav></header>
+<nav class="compact-nav" aria-label="Main navigation"><a href="index.html#home">Home</a><a href="index.html#discoveries">Research</a><details class="nav-group"><summary>Read</summary><div class="nav-dropdown"><a href="index.html#journal">Journal</a><a href="console.html?tool=projects">Projects</a><a href="index.html#blog">Bob’s Blog</a></div></details><a href="console.html">Console</a><a href="index.html#about">About</a></nav><div class="header-tools"><a class="actions-light" href="https://github.com/sudofx/wake/actions" aria-label="Open WAKE GitHub Actions" title="Checking…"><span class="actions-light-track" aria-hidden="true"><i></i></span></a></div></header>
 <main><div class="page-heading"><p class="eyebrow">{html.escape(eyebrow)}</p><h1>{html.escape(heading)}</h1><p>{html.escape(description)}</p></div><div id="flat-content"></div></main>
 <script src="flat-view.js"></script><script src="nav.js"></script></body></html>'''
 
