@@ -2085,9 +2085,12 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
   .ops-command-pulse-track{height:48px}
   .ops-command-zones{display:grid;grid-template-columns:3fr 4fr 1fr;border-bottom:1px solid var(--ops-line-soft);background:#050c10}
   .ops-command-zones span{padding:5px 10px;border-right:1px solid var(--ops-line-soft);font:7px/1 var(--mono);letter-spacing:.13em;color:#5f7f86}
-  .ops-command-zones span:nth-child(2){color:var(--ops-cyan)}
-  .ops-command-zones span:last-child{border-right:0;text-align:center;color:var(--ops-green)}
+  .ops-command-zones span:first-child{background:linear-gradient(90deg,#071117,#061016)}
+  .ops-command-zones span:nth-child(2){color:var(--ops-cyan);background:linear-gradient(90deg,#120d06,#07140f)}
+  .ops-command-zones span:last-child{border-right:0;text-align:center;color:var(--ops-green);background:#06130d}
   .ops-command-grid{grid-template-columns:repeat(8,minmax(0,1fr))}
+  .ops-command-grid>a:nth-child(4){border-left:2px solid color-mix(in srgb,var(--ops-orange) 55%,var(--ops-line))}
+  .ops-command-grid>a:last-child{border-left:2px solid color-mix(in srgb,var(--ops-green) 55%,var(--ops-line))}
   .ops-command-grid>a[data-instrument]{grid-column:span 2;min-height:110px;background:radial-gradient(circle at 50% 115%,#0b3038 0,#07151b 38%,#050b0f 72%)}
   .ops-command-grid>a[data-route]:after{font-size:7px}
   .ops-command-grid>a[data-instrument]:before{height:3px;opacity:.85}
