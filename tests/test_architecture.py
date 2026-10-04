@@ -471,6 +471,14 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn("handoffRate===null?'—':handoffRate+'%'", app)
         self.assertIn("'No fulfilled obligations yet'", app)
 
+    def test_verification_panels_mark_unmeasured_populations(self):
+        app = self.read('wake/assets/app.js')
+        self.assertIn("fulfilled.length?inheritedFulfilled.length:'—'", app)
+        self.assertIn("fulfilled.length?'obligations fulfilled by a later invocation':'no fulfilled obligations yet'", app)
+        self.assertIn("matrixEnabled?matrixCompleted+'/'+matrixTotal:'NOT ENABLED'", app)
+        self.assertIn("matrixEnabled?matrixFailed:'—'", app)
+        self.assertIn("WAKE has not recorded an enabled campaign in this generation.", app)
+
     def test_belief_story_links_recorded_evidence_and_update_receipts(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
