@@ -418,7 +418,6 @@
     const latestAcceptedJournal=(s.journal||[]).at(-1)||null;
     const latestAcceptedInvocationFallback=[...invocations].reverse().find(item=>item?.status==='accepted')||null;
     const latestAcceptedId=String(latestAcceptedJournal?.invocation||latestAcceptedInvocationFallback?.id||'');
-    const latestAcceptedInvocation=latestAcceptedId?s.invocations?.[latestAcceptedId]||latestAcceptedInvocationFallback:null;
     const latestAcceptedEvent=latestAcceptedId?[...accepted].reverse().find(event=>String(event?.payload?.id||'')===latestAcceptedId)||null:null;
     const latestAcceptedProposal=latestAcceptedEvent?.payload?.proposal||null;
     const latestAcceptedActions=Array.isArray(latestAcceptedProposal?.actions)?latestAcceptedProposal.actions:null;
