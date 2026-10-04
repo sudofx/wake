@@ -286,7 +286,13 @@
         reasonCounts[key]=(reasonCounts[key]||0)+1;
       });
     }
-    const reasons=Object.entries(reasonCounts).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([reason,n])=>`<div class="reason-row"><strong>${n}</strong><span>${esc(reason)}</span></div>`).join()||'<p class="empty">No rejected proposals in this record.</p>';
+    const sortedReasons=Object.entries(reasonCounts).sort((a,b)=>b[1]-a[1]);
+    const reasons=sortedReasons.slice(0,8).map(([reason,n])=>`<div class="reason-row"><strong>${n}</strong><span>${esc(reason)}</span></div>`).join()||'<p class="empty">No rejected proposals in this record.</p>';
+    const pressureMax=Math.max(1,...sortedReasons.slice(0,5).map(([,n])=>n));
+    const pressureBars=sortedReasons.slice(0,5).map(([reason,n])=>`<div class="ops-pressure-row"><span>${esc(reason)}</span><div><i style="width:${Math.max(4,100*n/pressureMax)}%"></i></div><strong>${n}</strong></div>`).join('')||'<p class="empty">No rejection pressure recorded.</p>';
+    const dailyLimit=Number(wakeStatus.daily_call_limit);
+    const requestSlots=Number(wakeStatus.provider_request_slots_today||0);
+    const quotaPct=Number.isFinite(dailyLimit)&&dailyLimit>0?Math.max(0,Math.min(100,100*requestSlots/dailyLimit)):0;
 
     const fullActions=fullMetrics.accepted_actions;
     const actionEvents=accepted.map(e=>({cycle:e.payload.proposal?.base_version+1||0,actions:e.payload.proposal?.actions||[]}));
@@ -466,6 +472,17 @@
           <div class="ops-pulse-copy"><span>RECENT WAKE PULSE</span><strong>LAST ${attempts.length}</strong><small>one cell per completed wake · tap for receipt</small></div>
           <div class="ops-pulse-cells" role="group" aria-label="Recent completed wake outcomes">${timeline||'<span class="empty">No completed wakes yet.</span>'}</div>
           <div class="ops-pulse-legend">${statuses.map(([name,value])=>`<span class="${esc(name)}"><i></i><b>${value}</b>${esc(name)}</span>`).join('')}</div>
+        </div>
+        <div class="ops-pressure-board" aria-label="Operational pressure">
+          <section>
+            <header><span>GOVERNANCE PRESSURE</span><strong>${sortedReasons.length} rejection families</strong></header>
+            <div class="ops-pressure-list">${pressureBars}</div>
+          </section>
+          <section class="ops-quota">
+            <header><span>PROVIDER QUOTA PRESSURE</span><strong>${Number.isFinite(dailyLimit)?requestSlots+'/'+dailyLimit:'limit unavailable'}</strong></header>
+            <div class="ops-quota-gauge" aria-label="Provider quota usage ${quotaPct.toFixed(0)} percent"><i style="width:${quotaPct}%"></i></div>
+            <div class="ops-quota-meta"><span>${wakeStatus.attempts_today??0} charged attempts</span><span>${wakeStatus.provider_requests_today??0} HTTP requests</span><span>${wakeStatus.provider_request_counts_incomplete?'counts incomplete':'counts complete'}</span></div>
+          </section>
         </div>
         <div class="ops-lifecycle" aria-label="Application lifecycle observability">
           <div class="ops-lifecycle-head"><p class="eyebrow">APPLICATION LIFECYCLE / GENERIC SUDOFX EVIDENCE</p><span>${appObservability?`record revision ${esc(appObservability.record_revision)}`:`not available`}</span></div>
