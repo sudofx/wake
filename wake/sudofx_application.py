@@ -22,6 +22,7 @@ from .governance import Rejected
 from .history import migration_baseline
 from .event_format import digest as legacy_digest
 from .domain_events import empty, reduce_event
+from .matrix import enable_continuity_matrix, record_continuity_matrix_result
 
 
 APPLICATION_ID = "wake"
@@ -32,6 +33,16 @@ APPLICATION_ID = "wake"
 # rather than silently reinterpreting durable application events.
 APPLICATION_VERSION = "legacy-import-v1"
 LEGACY_ARCHIVE_CHUNK_SIZE = 1000
+
+
+def _updated_envelope(current: JsonValue, *, state=None, migration=None) -> dict:
+    """Replace WAKE core branches while preserving opt-in application extensions."""
+    result = deepcopy(current) if isinstance(current, dict) else {}
+    if migration is not None:
+        result["migration"] = migration
+    if state is not None:
+        result["state"] = state
+    return result
 
 
 def _valid_hash(value: object) -> bool:
@@ -192,10 +203,11 @@ def _apply_governed_proposal(current: JsonValue, payload: JsonValue) -> Applicat
         return ApplicationDecision(False, reasons=(str(error)[:1000],))
     return ApplicationDecision(
         True,
-        {
-            "migration": current.get("migration"),
-            "state": next_legacy_state,
-        },
+        _updated_envelope(
+            current,
+            migration=current.get("migration"),
+            state=next_legacy_state,
+        ),
     )
 
 def _append_legacy_event(current: JsonValue, payload: JsonValue) -> ApplicationDecision:
@@ -300,7 +312,10 @@ def _append_legacy_event(current: JsonValue, payload: JsonValue) -> ApplicationD
             "legacy_version": next_state.get("version"),
         }
     )
-    return ApplicationDecision(True, {"migration": next_migration, "state": next_state})
+    return ApplicationDecision(
+        True,
+        _updated_envelope(current, migration=next_migration, state=next_state),
+    )
 
 
 def _import_legacy_event_chunk(current: JsonValue, payload: JsonValue) -> ApplicationDecision:
@@ -360,7 +375,7 @@ def _import_legacy_event_chunk(current: JsonValue, payload: JsonValue) -> Applic
     )
     return ApplicationDecision(
         True,
-        {"migration": next_migration, "state": current["state"]},
+        _updated_envelope(current, migration=next_migration, state=current["state"]),
     )
 
 
@@ -399,7 +414,10 @@ def _reset_to_zero(current: JsonValue, payload: JsonValue) -> ApplicationDecisio
             "reset_history": reset_history,
         }
     )
-    return ApplicationDecision(True, {"migration": next_migration, "state": empty()})
+    return ApplicationDecision(
+        True,
+        _updated_envelope(current, migration=next_migration, state=empty()),
+    )
 
 
 WAKE_APPLICATION = ApplicationDefinition(
@@ -411,6 +429,8 @@ WAKE_APPLICATION = ApplicationDefinition(
         ApplicationAction("apply_governed_proposal", _apply_governed_proposal),
         ApplicationAction("import_legacy_event_chunk", _import_legacy_event_chunk),
         ApplicationAction("append_legacy_event", _append_legacy_event),
+        ApplicationAction("enable_continuity_matrix", enable_continuity_matrix),
+        ApplicationAction("record_continuity_matrix_result", record_continuity_matrix_result),
         ApplicationAction("reset_to_zero", _reset_to_zero),
     ),
     state_storage="event_log",
