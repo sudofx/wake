@@ -65,10 +65,11 @@ class PublishingTests(unittest.TestCase):
                 self.assertEqual(engine.store.performance_snapshot()["full_replays"] - before, 1)
 
                 for name in ("index.html", "events.md", "events.html", "state.md", "state.html",
-                             "map.html", "map3d.html", "wake-data.json"):
+                             "map.html", "map3d.html", "wake-data.json", "ops.css"):
                     self.assertTrue((root / "site" / name).is_file())
 
                 page = (root / "site/index.html").read_text()
+                self.assertIn('href="ops.css"', page)
                 self.assertIn("wake-live/live.json", page)
                 self.assertIn("window.WakeApplyLive", page)
                 self.assertIn('href="https://github.com/sudofx/wake/actions"', page)
