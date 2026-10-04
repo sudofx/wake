@@ -1078,7 +1078,7 @@ class ArchitectureSeparationTests(unittest.TestCase):
 
     def test_empty_performance_denominators_are_unavailable(self):
         app = self.read('wake/assets/app.js')
-        self.assertIn("const acceptanceRate=completed.length?Math.round(100*acceptedCount/completed.length):null", app)
+        self.assertIn("const acceptanceRate=completed.length?Math.round(statusShare(acceptedCount)):null", app)
         self.assertIn("const fallbackRate=completed.length?100*fallbackWakes/completed.length:null", app)
         self.assertIn("const rejectionRate=completed.length?100*rejectedCount/completed.length:null", app)
         self.assertIn("const actionPerAccepted=acceptedCount?(actionTotal/acceptedCount):null", app)
