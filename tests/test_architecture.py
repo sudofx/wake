@@ -307,6 +307,19 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-handoff-list', css)
         self.assertIn('.ops-handoff-path', css)
 
+    def test_belief_story_links_recorded_evidence_and_update_receipts(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('EVIDENCE → BELIEF LINEAGE', app)
+        self.assertIn('item?.evidence', app)
+        self.assertIn('item?.updated_by', app)
+        self.assertIn('item?.updated_version', app)
+        self.assertIn('href="#evidence/', app)
+        self.assertIn('UPDATED BY', app)
+        self.assertIn('FALSIFIER RECORDED', app)
+        self.assertIn('.ops-belief-lineage-grid', css)
+        self.assertIn('.ops-lineage-roots', css)
+
     def test_metrics_route_anchor_is_unique(self):
         page = self.read('wake/assets/index.html')
         app = self.read('wake/assets/app.js')
