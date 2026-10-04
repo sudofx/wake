@@ -576,6 +576,7 @@
           <div class="ops-horizon-head"><div><p class="eyebrow">OPEN COMMITMENT HORIZON</p><h3>${openObligations} obligations carried forward</h3></div><small>bucketed by due cycle relative to cycle ${s.version}</small></div>
           <div class="ops-horizon-grid">${obligationHorizon}</div>
         </div>
+        <div class="ops-tertiary-grid">
         <div class="ops-context" aria-label="Context delivery telemetry">
           <div class="ops-context-head">
             <div><p class="eyebrow">CONTEXT DELIVERY / RECOVERABLE COMPRESSION</p><h3>${contextDelivery?esc(String(contextDelivery.mode||'rich').toUpperCase()):'NO RECEIPT'}</h3></div>
@@ -608,6 +609,7 @@
             <div class="ops-trace-head"><span>RECENT INVOCATION TRACE</span><small>bounded sudofx lifecycle receipts · newest at bottom</small></div>
             <div class="ops-trace-list">${lifecycleTraces}</div>
           </div>
+        </div>
         </div>
         <div class="ops-matrix-block">
           <div class="ops-matrix-copy"><p class="eyebrow">CONTINUITY@1 / 7×7×7</p><h3>${matrixEnabled?'Coverage of the governed continuity space.':'Canonical continuity space · not yet enabled for this WAKE generation.'}</h3><p>${matrixEnabled?matrixCompleted+' of '+matrixTotal+' coordinates completed · next '+(matrixProgress.next_ordinal?'#'+matrixProgress.next_ordinal:'complete'):'343 deterministic coordinates are visible as definition geometry only.'}</p><small>Seven semantic planes. Within each plane, columns follow pressure order and rows follow exposure order from the shared continuity@1 definition.</small></div>
