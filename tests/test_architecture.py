@@ -776,6 +776,7 @@ class ArchitectureSeparationTests(unittest.TestCase):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
         self.assertIn('FRONTIER → SPACE / DOMAIN BOUNDARY', app)
+        self.assertEqual(app.count('class="ops-frontier-space-bridge"'), 1)
         self.assertIn('Application work beside deterministic test geometry.', app)
         self.assertIn('No mapping is implied. Open commitments are WAKE application state; continuity@1 coordinates are reusable continuity-test coverage.', app)
         self.assertIn('OPEN COMMITMENTS', app)
