@@ -683,6 +683,22 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-command-grid>a[data-tone="ok"]:before,.ops-command-grid>a[data-tone="running"]:before', css)
         self.assertIn('@media(min-width:1800px)', css)
 
+    def test_control_room_recent_receipt_pulse_is_bounded_linked_and_phone_safe(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn("const commandPulseSource=[...completed]", app)
+        self.assertIn(".slice(-48)", app)
+        self.assertIn("['accepted','rejected','deferred','failed','recovered'].includes(item.status)", app)
+        self.assertIn('class="ops-command-pulse" aria-label="Recent completed wake receipts"', app)
+        self.assertIn('RECENT WAKE PULSE', app)
+        self.assertIn('href="#history/${encodeURIComponent(item.id||\'\')}"', app)
+        self.assertIn('.ops-command-pulse{display:grid;grid-template-columns:minmax(190px,.55fr) minmax(0,1.45fr)', css)
+        self.assertIn('.ops-command-pulse-cell.accepted,.ops-command-pulse-cell.recovered{background:var(--ops-green)', css)
+        self.assertIn('.ops-command-pulse-cell.rejected{background:var(--ops-orange)', css)
+        self.assertIn('.ops-command-pulse-cell.failed{background:var(--ops-red)', css)
+        self.assertIn('.ops-command-pulse-track{display:flex;gap:4px;overflow-x:auto', css)
+        self.assertIn('.ops-command-pulse-cell{flex:0 0 28px;height:44px}', css)
+
     def test_phone_control_room_is_glance_grid_while_story_stays_swipeable(self):
         css = self.read('wake/assets/style.css')
         self.assertIn('.ops-command-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-flow:row;grid-auto-columns:auto;overflow:visible;scroll-snap-type:none}', css)
