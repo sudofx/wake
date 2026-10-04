@@ -8,6 +8,7 @@ from sudofx import continuity_matrix
 from sudofx.storage import ApplicationAccessError
 
 from wake.governance import Rejected
+from wake.live import _matrix_metrics
 from wake.sudofx_store import SudofxStore
 
 
@@ -53,6 +54,30 @@ class WakeMatrixIntegrationTests(unittest.TestCase):
                 )
             finally:
                 rebuilt.close()
+
+    def test_public_matrix_metrics_are_bounded(self) -> None:
+        matrix = continuity_matrix()
+        with tempfile.TemporaryDirectory() as tempdir:
+            store = SudofxStore(Path(tempdir), initialize_empty=True)
+            try:
+                store.enable_continuity_matrix()
+                first = matrix.coordinate("reconstruction", "rich", "clean")
+                store.record_continuity_matrix_result(
+                    first.coordinate_id,
+                    {
+                        "status": "completed",
+                        "score": 1.0,
+                        "summary": "This result body should not enter public telemetry.",
+                    },
+                )
+                public = _matrix_metrics(store)
+                self.assertEqual(public["completed_count"], 1)
+                self.assertEqual(public["status_counts"]["completed"], 1)
+                self.assertNotIn("results", public)
+                self.assertNotIn("completed_coordinate_ids", public)
+                self.assertNotIn("summary", str(public))
+            finally:
+                store.close()
 
     def test_matrix_coordinate_version_is_validated_by_shared_contract(self) -> None:
         matrix = continuity_matrix()
