@@ -2009,6 +2009,7 @@ body>.masthead .actions-light-label{
   white-space:nowrap!important;
 }
 body>.masthead .actions-light[data-state="running"] .actions-light-label{color:#72e09b!important}
+body>.masthead .actions-light[data-state="campaign"] .actions-light-label{color:var(--purple)!important}
 body>.masthead .actions-light[data-state="stopped"] .actions-light-label{color:#ff7d87!important}
 body>.masthead .powered-by{
   display:inline-block!important;
