@@ -95,3 +95,46 @@ body[data-motion=off] *{animation:none!important}.floating .wake-tabs{margin:8px
 .research-header .theme-switch input{min-height:0;padding:0;border:0;width:1px;height:1px}
 .research-header .theme-switch{cursor:pointer}
 @media(pointer:coarse){.research-header .theme-switch,.research-header .actions-light{min-width:44px;min-height:44px}}
+
+
+/* Inspector safety: never cover the visual that opened a panel. */
+#lake-detail,
+#wake-detail.floating,
+.detail-panel.has-selection,
+.detail-panel.reader-floating,
+.data-inspector{
+  position:relative!important;
+  inset:auto!important;
+  top:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  left:auto!important;
+  width:100%!important;
+  max-width:none!important;
+  max-height:min(62vh,720px)!important;
+  margin:14px 0 0!important;
+  overflow:auto!important;
+  z-index:auto!important;
+  box-shadow:0 12px 34px #0006!important;
+}
+#wake-detail.floating,
+.detail-panel.has-selection,
+.detail-panel.reader-floating{
+  grid-column:1/-1!important;
+}
+.detail-panel.has-selection,
+.detail-panel.reader-floating{display:block!important}
+#close-inspector,
+.detail-panel.reader-floating #close-inspector{display:block!important}
+.data-inspector{
+  border-top:2px solid var(--cyan)!important;
+}
+@media(max-width:700px){
+  #wake-detail.floating,
+  .detail-panel.has-selection,
+  .detail-panel.reader-floating,
+  .data-inspector{
+    max-height:none!important;
+    margin-top:10px!important;
+  }
+}
