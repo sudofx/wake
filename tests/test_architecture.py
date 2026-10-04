@@ -491,6 +491,8 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn("event.key==='ArrowRight'", app)
         self.assertIn("event.key==='ArrowUp'", app)
         self.assertIn("event.key==='ArrowDown'", app)
+        self.assertIn("cell.closest('.matrix-plane-grid')", app)
+        self.assertIn("item.tabIndex=item===cell?0:-1", app)
         self.assertIn('result summaries and scores remain outside this projection', app)
         self.assertNotIn('matrixProgress?.results', app)
         self.assertIn('.ops-matrix-explorer', css)
