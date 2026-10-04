@@ -19,11 +19,33 @@
   if(kind==='events'){
     const text=await response.text();
     const events=text.split(/\n+/).filter(Boolean).map(line=>JSON.parse(line)).reverse();
+    const eventKinds=[...new Set(events.map(event=>String(event.kind||'unknown')))].sort();
+    const toolsHtml=events.length?'<div class="flat-history-tools" aria-label="Filter append-only history"><label><span>SEARCH RECORD</span><input id="flat-event-search" type="search" inputmode="search" autocomplete="off" placeholder="event, ID, hash, payload…"></label><label><span>EVENT KIND</span><select id="flat-event-kind"><option value="all">ALL KINDS</option>'+eventKinds.map(value=>'<option value="'+esc(value)+'">'+esc(value.toUpperCase())+'</option>').join('')+'</select></label><div><span>VISIBLE RECEIPTS</span><strong id="flat-event-count">'+events.length+' / '+events.length+'</strong></div></div>':'';
     const eventHtml=events.map(event=>{
       const payload=event.payload||{},id=payload.id||'system',seq=String(event.seq??'');
-      return '<article class="entry record-panel" id="event-'+esc(seq)+'" data-event-seq="'+esc(seq)+'" data-event-id="'+esc(id)+'"><div class="record-panel-head"><div class="record-panel-meta"><span class="record-type">'+esc(event.kind)+'</span><span class="record-seq">EVENT '+esc(seq)+'</span><time>'+esc(event.time)+'</time></div><h3>'+esc(id)+'</h3></div><div class="record-panel-body"><pre>'+esc(JSON.stringify(payload,null,2))+'</pre><p class="subtle">Hash '+esc(event.hash)+'</p></div></article>';
+      return '<article class="entry record-panel" id="event-'+esc(seq)+'" data-event-seq="'+esc(seq)+'" data-event-id="'+esc(id)+'" data-event-kind="'+esc(event.kind||'unknown')+'"><div class="record-panel-head"><div class="record-panel-meta"><span class="record-type">'+esc(event.kind)+'</span><span class="record-seq">EVENT '+esc(seq)+'</span><time>'+esc(event.time)+'</time></div><h3>'+esc(id)+'</h3></div><div class="record-panel-body"><pre>'+esc(JSON.stringify(payload,null,2))+'</pre><p class="subtle">Hash '+esc(event.hash)+'</p></div></article>';
     }).join('');
-    root.innerHTML='<div id="flat-target-status" class="flat-target-status" role="status" hidden></div>'+(eventHtml||'<p class="empty">No recorded events.</p>');
+    root.innerHTML=toolsHtml+'<div id="flat-target-status" class="flat-target-status" role="status" hidden></div>'+(eventHtml||'<p class="empty">No recorded events.</p>')+'<p id="flat-event-empty" class="empty" hidden>No receipts match the current history filter.</p>';
+    const search=document.getElementById('flat-event-search');
+    const kindFilter=document.getElementById('flat-event-kind');
+    const count=document.getElementById('flat-event-count');
+    const empty=document.getElementById('flat-event-empty');
+    const cards=[...root.querySelectorAll('[data-event-seq]')];
+    const filterEvents=()=>{
+      const query=String(search?.value||'').trim().toLowerCase();
+      const selected=String(kindFilter?.value||'all');
+      let visible=0;
+      cards.forEach(card=>{
+        const matchesKind=selected==='all'||card.dataset.eventKind===selected;
+        const matchesQuery=!query||card.textContent.toLowerCase().includes(query);
+        card.hidden=!(matchesKind&&matchesQuery);
+        if(!card.hidden)visible++;
+      });
+      if(count)count.textContent=visible+' / '+events.length;
+      if(empty)empty.hidden=visible!==0||events.length===0;
+    };
+    search?.addEventListener('input',filterEvents);
+    kindFilter?.addEventListener('change',filterEvents);
     const focusTarget=()=>{
       root.querySelectorAll('.flat-target').forEach(node=>node.classList.remove('flat-target'));
       const status=document.getElementById('flat-target-status');
@@ -40,6 +62,11 @@
         label='record '+wanted;
       }
       if(!seqMatch&&!eventMatch)return;
+      if(target?.hidden){
+        if(search)search.value='';
+        if(kindFilter)kindFilter.value='all';
+        filterEvents();
+      }
       if(status){
         status.hidden=false;
         if(target){
@@ -60,6 +87,7 @@
         requestAnimationFrame(()=>target.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'}));
       }
     };
+    filterEvents();
     focusTarget();
     window.addEventListener('hashchange',focusTarget);
     return;
