@@ -30,6 +30,20 @@ class FrontendHygieneTests(unittest.TestCase):
         self.assertIn(".constellation-node .path-step", css)
         self.assertIn('button[aria-current="location"]', css)
 
+    def test_3d_map_links_explicit_record_types_into_data_story(self):
+        script = (ASSETS / "map3d.js").read_text()
+        css = (ASSETS / "map3d.css").read_text()
+
+        self.assertIn("function storyDestination(node)", script)
+        self.assertIn("status==='rejected'", script)
+        self.assertIn("node?.kind==='belief'", script)
+        self.assertIn("node?.kind==='commitment'||branch==='root:commitments'", script)
+        self.assertIn("['evidence','research','project','notebook'].includes(node?.kind)", script)
+        self.assertIn("default record view; no semantic inference", script)
+        self.assertIn('href="index.html#metrics/${route.target}"', script)
+        self.assertIn("DATA STORY · ${route.chapter} / ${route.name}", script)
+        self.assertIn(".detail-story-link", css)
+
     def test_every_style_class_has_a_current_caller(self):
         css = (ASSETS / "style.css").read_text()
         callers = "\n".join(
