@@ -909,3 +909,36 @@ body{
   .actions-light{min-width:94px!important}
   .actions-github{width:18px;height:18px;flex-basis:18px}
 }
+
+/* Nebula backdrop layer: real visual content behind the site, not a body paint. */
+.site-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background-color:#05091f;
+  background-image:
+    linear-gradient(180deg,rgba(3,7,22,.04) 0%,rgba(3,7,22,.10) 46%,rgba(3,7,22,.28) 100%),
+    url("nebula-bg.webp?v=20261004-3");
+  background-position:center top;
+  background-size:cover;
+  background-repeat:no-repeat;
+}
+body{
+  background:#05091f!important;
+  position:relative;
+}
+body>.masthead,
+body>main,
+body>footer,
+body>.skip{
+  position:relative;
+  z-index:1;
+}
+@media(max-width:700px){
+  .site-backdrop{
+    position:absolute;
+    min-height:100svh;
+    background-position:58% top;
+  }
+}
