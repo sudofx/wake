@@ -6,6 +6,8 @@ The working hypothesis is externalized continuity: many fresh model invocations 
 
 This project is deliberately exploratory before it is explanatory. Early runs generate an observational history; repeated patterns can motivate narrower, falsifiable experiments later. A pattern in the record and a proposed mechanism for that pattern are different claims and should be reported separately. Rejected work, failed calls, corrections and negative results are part of the dataset rather than noise to be cleaned away.
 
+Console reports completed invocation outcomes separately from provider success and accepted research actions. Editorial actions are excluded from its research-action summary. Activity bins describe completed invocations per real wall-clock hour, retain empty hours, and show their time range. Current evidence counts include runtime receipts, discovery leads and metadata; readable source-ready material and distinct collector-stamped works are shown separately. None of these counts establish scientific quality, corroboration, or publication eligibility. Missing or clipped classification metadata remains visibly unclassified. The dashboard is presentation and does not change the experimental regime.
+
 The experiment does not attempt to establish consciousness or an enduring internal self.
 
 ## Interpretation boundary
@@ -94,3 +96,7 @@ Start a separate live database using `python3 -m wake init`, or use the GitHub-h
 Report both structural pass rates and human-assessed coherence. Useful behavioral measures include evidence relevance, whether claims overstate observations, overdue obligations, revisability after contradiction, and consistency of plans over time. The shipped dashboard reports actual counts and fixture test coverage; it does not fabricate a real-model coherence score.
 
 Real-model interchangeability and long-term behavioral coherence remain unproved until those live observations exist. Treat that as the experiment's open question.
+
+Console separates the continuity experiment space from the research landscape. Cube rotation, ring motion and relationship tracing are view animation; neither activity nor coverage is inferred from movement. Outcome rings use completed invocation counts, and retrieval-depth rings use evidence-record counts. Distinct source works retain a separate denominator; missing classification remains unknown.
+
+Console narrates the selected topic, supplied context, observed provider attempts, terminal governance outcome and accepted transition status. This is an inspectable execution record, not a reconstruction of hidden model reasoning. Context-evolution curves show serialized field allocation; compression, activity and latency do not establish research quality.

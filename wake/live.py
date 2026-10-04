@@ -92,6 +92,15 @@ def build_live_projection(store, operation=None, runtime_ref=""):
             "runtime_ref": runtime_ref,
         }
 
+    metrics = _full_history_metrics(store, state)
+    from .research_projection import build_research_projection
+    generated = datetime.now(timezone.utc).isoformat()
+    research = build_research_projection(
+        state, store.tail_events_all(MAX_EVENTS), head, metrics=metrics,
+        operation=operation, source=source, generated=generated,
+        matrix_reported=hasattr(store, "continuity_matrix_progress"),
+        matrix_progress=store.continuity_matrix_progress() if hasattr(store, "continuity_matrix_progress") else None,
+    )
     return {
         "projection_schema": LIVE_SCHEMA,
         "projection_kind": "disposable-live-view",
@@ -100,11 +109,12 @@ def build_live_projection(store, operation=None, runtime_ref=""):
         "state": public_state,
         "events": store.tail_events_all(MAX_EVENTS),
         "head": head,
-        "generated": datetime.now(timezone.utc).isoformat(),
+        "generated": generated,
         "experiment": None,
         "timezone": "America/Los_Angeles",
         "operation": deepcopy(operation),
         "wake_status": deepcopy((operation or {}).get("wake_status", {})),
-        "metrics": _full_history_metrics(store, state),
+        "metrics": metrics,
+        "research": research,
         "application_observability": build_application_observability(store.record) if hasattr(store, "record") else None,
     }

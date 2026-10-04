@@ -167,6 +167,8 @@ A hash chain detects modifications relative to a trusted head. An administrator 
 
 Full local exports verify state before rendering and remain useful for audit and offline fixtures. The hosted site no longer republishes a growing report tree on every wake: GitHub Pages serves a static shell, while `wake-live` is a replaceable projection derived from the verified SQLite record. The projection is disposable and never outranks `wake-state`.
 
+Console is an isolated static page with page-scoped CSS and JavaScript. `wake/research_projection.py` derives a bounded presentation from verified state and existing provenance edges; it never opens storage or participates in provider context, scheduling, or governance. Live construction classifies evidence before content clipping, separates runtime receipts and discovery/metadata from readable source material, and preserves collector work identities. Source readiness is not claim support or publication eligibility. The compact overview excludes editorial records; graph positions are layout only. `research-data.json` is published in the same `wake-live` commit as the existing projections, and the browser reads all dashboard data from that single self-contained snapshot with its recorded head and version.
+
 Replay favors transparency over throughput. It rechecks all history; long records will need indexed checkpoints verified against an independently retained head. The included 100–1000-cycle experiment is the intended initial scale, not a claim of an unbounded production event store.
 
 ## Public interpretation layer
@@ -206,3 +208,11 @@ The optional `continuity@1` matrix is consumed from sudofx as a reusable determi
 
 Matrix actions remain ordinary application actions: they do not bypass global application-access enforcement, WAKE governance, or provider lifecycle controls. Provider prompting, scheduling, scoring, research interpretation, and progress semantics remain WAKE concerns above the shared matrix grammar.
 
+
+The Console cube uses the frozen native `continuity@1` coordinate grammar and reported campaign results; it never infers coordinates from research clusters or enables a campaign. A disabled campaign and unreported progress are distinct. Wake traces expose bounded start/terminal events and recorded provider attempts, with explicit gaps when events are outside the projection. Record selection stays in the view; links and inspectors cannot mutate research.
+
+Console instrument views share the same bounded provenance graph and wake traces. Sphere, plane and 3D rack placement are visual layouts; only recorded edges convey relationships. Topic totals exclude editorial actions. Context-delivery ratios use recorded `context_delivery` numerators and denominators, rather than a guessed full-state size. Provider-latency and token aggregates identify their bounded measured-attempt population separately from the full-record outcome timeline.
+
+The Console is a touch-friendly diagnostic surface for research state, supplied context, proposals and recorded decisions. Its controls manipulate views and selections. Operational commands remain in the existing operator workflow; possible future Console controls require separate scoped authorization and the same durability and governance boundaries. Cyan, orange and violet cube leader wires mark the three positive outer axis faces, whose highlights are view guides; a highlighted coordinate does not imply a recorded experiment result.
+
+Console deep tools reuse the canonical existing record, map and flat-view renderers through generated `console-*` component shells. They are embedded on demand within `console.html`, share its theme, and route research links through the parent workspace. The overview is bounded; deeper tools retain their original search, filters, event paging, nested project/notebook views, provenance inspection, raw views and map interaction. Console components do not depend on the retired Research-menu HTML filenames. Flat export tools identify their own published snapshot; live tools retain their existing public data loading and scope.

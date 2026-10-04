@@ -4,6 +4,8 @@
 
 **WAKE✳︎** records a deliberately lossy working-set representation beside each invocation and a deterministic plan for which exact durable records become important when an abstraction is expensive to trust. Under the normal context ceiling, the provider still receives the richer context and these structures remain observational. If the rich request remains above the configured ceiling after ordinary compaction, the engine can make one explicit, receipt-bearing switch to the bounded working representation rather than silently dropping durable obligations or evidence.
 
+Console’s browser overview is a separate disposable presentation projection. Its bounded graph and record excerpts are never read back into provider context or retrieval decisions. IDs, explicit relationship pointers and record-head provenance support deeper inspection through Console’s complete record workspace; missing overview records do not imply missing authoritative records.
+
 ## Why this exists
 
 Progressive abstraction only stays epistemically safe if compression remains correctable.
@@ -72,3 +74,9 @@ A deliberately weakened condition that removes provenance or uncertainty cues.
 The primary question is whether B preserves correction while reducing active context.
 
 > Exact underneath. Approximate on purpose. Correctable always.
+
+Console wake inspection includes bounded delivered-context field names, the full observed system instructions and recorded request, request identity, provider-attempt metadata and terminal receipt identity. It does not reconstruct absent start events or treat context receipt presence as proof that a proposal was accepted. Source-depth drilldowns show cited records in the bounded graph; overall evidence counts may exceed that displayed population.
+
+Console carries recorded context-delivery measurements alongside complete observed requests. Compression plots use the reported retained-request ratio. Allocation plots group selected delivered fields as objectives, constraints, frontier and results; excluded fields and the bounded event population are explicitly described.
+
+Console also exposes the exact provider-response text retained by terminal events. Rejected responses remain unaccepted output; parsed proposal summaries are views of that output and never replayed as accepted actions. The UI labels missing response events and any recording-time bounding.

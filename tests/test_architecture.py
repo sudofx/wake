@@ -177,7 +177,7 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('_full_history_metrics', live)
         self.assertIn('store.history_metrics()', live)
         self.assertNotIn('store.db.execute', live)
-        self.assertIn('"metrics": _full_history_metrics(store, state)', live)
+        self.assertIn('metrics = _full_history_metrics(store, state)', live)
         self.assertIn('fullMetrics.accepted_actions', app)
         self.assertIn('fullMetrics.rejection_reasons', app)
         self.assertIn('"metrics": _full_history_metrics(store, state)', self.read('wake/report.py'))

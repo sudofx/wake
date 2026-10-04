@@ -386,6 +386,20 @@ class LiveProjectionBranch:
                     json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n",
                     encoding="utf-8",
                 )
+                # Research✳︎ is published from the same verified snapshot,
+                # including source classification performed before text clipping.
+                from wake.research_projection import build_research_projection
+                research = payload.get("research") or build_research_projection(
+                    payload["state"], payload.get("events", []), payload["head"],
+                    generated=payload.get("generated"), metrics=payload.get("metrics"),
+                    operation=payload.get("operation"), source=payload.get("source"),
+                )
+                if research.get("head") != payload["head"] or research.get("version") != payload["state"]["version"]:
+                    raise ValueError("Research projection does not match the live record")
+                (checkout / "research-data.json").write_text(
+                    json.dumps(research, ensure_ascii=False, separators=(",", ":")) + "\n",
+                    encoding="utf-8",
+                )
 
                 # MAP and 3D MAP are disposable projections of the same public
                 # snapshot. Publish them atomically with live.json so Reset and
@@ -408,7 +422,7 @@ class LiveProjectionBranch:
                         json.dumps(shard, ensure_ascii=False, separators=(",", ":")) + "\n",
                         encoding="utf-8",
                     )
-                subprocess.run(["git", "add", "live.json", "map-data.json", "map3d-data.json", "map3d"],
+                subprocess.run(["git", "add", "live.json", "research-data.json", "map-data.json", "map3d-data.json", "map3d"],
                                cwd=checkout, check=True, timeout=_projection_timeout(deadline))
                 subprocess.run([
                     "git", "-c", "user.name=wake-bot",

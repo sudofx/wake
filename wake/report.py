@@ -45,6 +45,9 @@ def _with_shared_theme_switch(render):
 def atomic_write(path, content):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
+    if path.suffix == ".html" and "</body>" in content and "<script>/* Every off-site destination opens separately;" not in content:
+        external = (Path(__file__).parent / "assets" / "external-links.js").read_text()
+        content = content.replace("</body>", "<script>" + external + "</script></body>", 1)
     temporary = path.with_suffix(path.suffix + ".tmp")
     with temporary.open("w", encoding="utf-8") as stream:
         stream.write(content)
@@ -52,6 +55,33 @@ def atomic_write(path, content):
         os.fsync(stream.fileno())
     temporary.replace(path)
 
+
+
+def _export_console_components(target):
+    """Reuse canonical renderers inside Console without retired HTML dependencies."""
+    assets = Path(__file__).parent / "assets"
+    for name in ("console-tools.js", "console-component.js", "console-component.css"):
+        atomic_write(target / name, (assets / name).read_text())
+    pages = {"index.html": "console-records.html", "map.html": "console-map.html",
+             "map3d.html": "console-map3d.html", "events.html": "console-events.html",
+             "state.html": "console-state.html", "rejected.html": "console-rejected.html"}
+    for source, destination in pages.items():
+        content = (target / source).read_text()
+        for script in ("map.js", "map3d.js", "nav.js", "flat-view.js"):
+            content = content.replace(f'<script src="{script}"></script>', "<script>" + (assets / script).read_text() + "</script>")
+        for old, new in pages.items():
+            content = content.replace(old, new)
+        if source in ("events.html", "state.html", "rejected.html"):
+            snapshot = json.loads((target / "wake-data.json").read_text())
+            stamp = html.escape(str(snapshot.get("generated", "unknown")))
+            record_head = html.escape(str(snapshot.get("head", "unknown")))
+            version = snapshot.get("state", {}).get("version", "unknown")
+            content = content.replace("<main>", f'<main><p class="console-component-stamp">Published snapshot · state {version} · {stamp}<br>Head {record_head}</p>', 1)
+        content = content.replace("<head>", '<head><meta name="darkreader-lock">', 1)
+        content = content.replace("</head>", '<link rel="stylesheet" href="console-component.css"></head>', 1)
+        content = content.replace("</body>", '<script src="console-component.js"></script></body>', 1)
+        atomic_write(target / destination, content)
+    atomic_write(target / "research.html", '<!doctype html><meta charset="utf-8"><title>Console / WAKE✳︎</title><script>location.replace("console.html"+location.search+location.hash)</script><a href="console.html">Open Console</a>')
 
 
 def _pretty(value):
@@ -595,6 +625,18 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         target = Path(destination)
         target.mkdir(parents=True, exist_ok=True)
         assets = Path(__file__).parent / "assets"
+        from .research_projection import build_research_projection
+        research = (projection or {}).get("research") or build_research_projection(
+            state, events, head, generated=data["generated"], metrics=data["metrics"],
+            operation=operation, source=(projection or {}).get("source"),
+            matrix_reported=projection is None and hasattr(store, "continuity_matrix_progress"),
+            matrix_progress=store.continuity_matrix_progress() if projection is None and hasattr(store, "continuity_matrix_progress") else None,
+        )
+        if research.get("head") != head or research.get("version") != state["version"]:
+            raise ValueError("Research projection does not match the exported record")
+        atomic_write(target / "research-data.json", json.dumps(research, ensure_ascii=False, separators=(",", ":")))
+        for name in ("console.html", "research.css", "research.js", "research-scene.js", "research-instruments.js"):
+            atomic_write(target / name, (assets / name).read_text())
         template = (assets / "index.html").read_text().replace("WAKE_CYCLE_COUNT", str(state["version"]))
         # Publish source styles alongside every HTML view: Pages and exports share
         # the same theme file rather than receiving copied inline palettes.
@@ -670,6 +712,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             # Old standalone artifact URLs remain useful bookmarks. Route missing
             # historical presentation files back into the live browser projection.
             atomic_write(target / "404.html", """<!doctype html><meta charset="utf-8"><script>(()=>{const p=location.pathname;let h='home';let m;if((m=p.match(/\\/blog\\/([^/]+)\\.(?:html|md)$/)))h='blog/'+decodeURIComponent(m[1]);else if((m=p.match(/\\/journal\\/([^/]+)\\.html$/)))h='history/'+decodeURIComponent(m[1]);else if((m=p.match(/\\/notebooks\\/([^/]+)\\.(?:html|md)$/)))h='projects/notebook:'+decodeURIComponent(m[1]);location.replace(new URL('index.html#'+h,location.href))})()</script>""")
+            _export_console_components(target)
             return {"path": str((target / "index.html").resolve()), "cycles": state["version"], "head": head}
         lines = ["# **WAKE✳︎** — The journal", "", "> Disposable models. Durable state. Receipts for everything.", "",
                  f"Objective: {_md_text(state['objective'])}", "", f"Verified head: `{head}`", "",
@@ -783,4 +826,5 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         for parent, shard in graph3d_shards.items():
             atomic_write(shard_dir / map3d_shard_filename(parent), json.dumps(shard, ensure_ascii=False))
         atomic_write(target / "index.html", page)
+        _export_console_components(target)
         return {"path": str((target / "index.html").resolve()), "cycles": state["version"], "head": head}

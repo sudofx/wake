@@ -46,7 +46,9 @@ class PublishingTests(unittest.TestCase):
                 self.assertEqual(engine.store.performance_snapshot()["full_replays"] - before, 1)
 
                 for name in ("index.html", "events.md", "events.html", "state.md", "state.html",
-                             "map.html", "map3d.html", "wake-data.json"):
+                             "map.html", "map3d.html", "wake-data.json", "console.html",
+                             "console-records.html", "console-map.html", "console-map3d.html",
+                             "console-events.html", "console-state.html", "console-rejected.html"):
                     self.assertTrue((root / "site" / name).is_file())
 
                 page = (root / "site/index.html").read_text()
@@ -59,8 +61,8 @@ class PublishingTests(unittest.TestCase):
 
                 map_page = (root / "site/map.html").read_text()
                 map3d_page = (root / "site/map3d.html").read_text()
-                self.assertIn('href="index.html#metrics">Metrics</a>', map_page)
-                self.assertIn('href="index.html#metrics">Metrics</a>', map3d_page)
+                self.assertIn('href="console.html">Console</a>', map_page)
+                self.assertIn('href="console.html">Console</a>', map3d_page)
                 self.assertIn('href="https://github.com/sudofx/wake/actions"', map_page)
                 self.assertIn('href="https://github.com/sudofx/wake/actions"', map3d_page)
                 self.assertNotIn("control.js", map_page)
