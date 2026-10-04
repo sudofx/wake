@@ -1837,6 +1837,9 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
 .ops-command-grid>a{position:relative;display:grid;align-content:center;gap:4px;min-width:0;min-height:92px;padding:11px 12px;border-right:1px solid var(--ops-line-soft);color:inherit;text-decoration:none;background:linear-gradient(180deg,#071117,#050b0f)}
 .ops-command-grid>a:last-child{border-right:0}
 .ops-command-grid>a:before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--ops-cyan-dim);opacity:.5}
+.ops-command-grid>a[data-route]{padding-top:20px}
+.ops-command-grid>a[data-route]:after{content:attr(data-route);position:absolute;top:7px;right:8px;max-width:72%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:6px/1 var(--mono);letter-spacing:.08em;color:#486a72}
+.ops-command-grid>a[data-route]:hover:after,.ops-command-grid>a[data-route]:focus-visible:after{color:#9fc0c6}
 .ops-command-grid>a[data-tone="ok"]:before,.ops-command-grid>a[data-tone="running"]:before{background:var(--ops-green);opacity:.85}
 .ops-command-grid>a[data-tone="warning"]:before{background:var(--ops-amber);opacity:.9}
 .ops-command-grid>a[data-tone="stopped"]:before{background:var(--ops-red);opacity:.9}
@@ -1905,6 +1908,8 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
   .ops-command-grid>a{min-height:88px;border-right:1px solid var(--ops-line-soft);border-bottom:0;scroll-snap-align:start}
   .ops-command-grid>a:nth-child(3n){border-right:1px solid var(--ops-line-soft)}
   .ops-command-grid>a:last-child{border-right:0}
+  .ops-command-grid>a[data-route]{padding-top:21px}
+  .ops-command-grid>a[data-route]:after{top:7px;right:9px;font-size:7px;max-width:78%}
   .ops-command-grid strong{font-size:18px}
   .ops-command-grid small{font-size:7px}
   .ops-command-lamps span{font-size:7px}
@@ -1912,6 +1917,7 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
 @media(min-width:1500px){
   .ops-command-grid{grid-template-columns:repeat(8,minmax(0,1fr))}
   .ops-command-grid>a[data-instrument]{grid-column:span 2;min-height:110px;background:radial-gradient(circle at 50% 115%,#0b3038 0,#07151b 38%,#050b0f 72%)}
+  .ops-command-grid>a[data-route]:after{font-size:7px}
   .ops-command-grid>a[data-instrument]:before{height:3px;opacity:.85}
   .ops-command-grid>a[data-instrument] strong{font-size:clamp(22px,1.65vw,29px)}
   .ops-command-grid>a[data-instrument] b{color:#d6eef1}
