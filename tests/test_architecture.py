@@ -201,11 +201,12 @@ class ArchitectureSeparationTests(unittest.TestCase):
 
     def test_operations_console_story_chapters_remain_evidence_scoped(self):
         app = self.read('wake/assets/app.js')
-        for label in ("ACTIVITY", "PRESSURE", "MEMORY", "BELIEFS", "FRONTIER", "CONTINUITY"):
+        for label in ("ACTIVITY", "PRESSURE", "MEMORY", "EVIDENCE", "BELIEF", "FRONTIER", "CONTINUITY"):
             self.assertIn(label, app)
-        for anchor in ("ops-field", "ops-pressure", "ops-context", "ops-beliefs", "ops-horizon", "ops-matrix"):
+        for anchor in ("ops-now", "ops-pressure", "ops-context", "ops-evidence", "ops-beliefs", "ops-frontier", "ops-matrix"):
             self.assertIn(anchor, app)
-        self.assertIn("what the system currently carries", app)
+        self.assertIn("provenance labels describe retrieval depth; they are not truth scores", app)
+        self.assertIn("deterministic observation · no decision authority", app)
         self.assertNotIn("what is true", app)
 
     def test_live_projection_keeps_receipt_telemetry_without_provider_bodies(self):
