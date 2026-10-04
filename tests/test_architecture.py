@@ -190,5 +190,14 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertNotIn('control.js', page)
         self.assertFalse((ROOT / 'control-worker').exists())
 
+    def test_console_continuity_enablement_stays_outside_browser_authority(self):
+        console = self.read('wake/assets/console.html')
+        research = self.read('wake/assets/research.js')
+        self.assertIn('id="matrix-enable"', console)
+        self.assertIn('actions/workflows/operator-enable-continuity.yml', console)
+        self.assertIn('m.reported && m.enabled===false', research)
+        self.assertNotIn('enable_continuity_matrix', research)
+        self.assertNotIn('WAKE_CONTROL_URL', console)
+
 if __name__ == '__main__':
     unittest.main()
