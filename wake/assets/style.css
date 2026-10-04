@@ -1915,6 +1915,16 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
   .ops-command-grid small{font-size:7px}
 }
 
+.ops-story-gate{display:grid;grid-template-columns:auto auto minmax(0,1fr);align-items:center;gap:8px 14px;padding:8px 12px;border:1px solid var(--ops-line);border-top:0;border-bottom:0;background:linear-gradient(90deg,#050b0f,#071117 50%,#050b0f)}
+.ops-story-gate span{font:7px/1 var(--mono);letter-spacing:.13em;color:var(--ops-orange)}
+.ops-story-gate strong{font:500 9px/1.2 var(--mono);color:#e3f3f5}
+.ops-story-gate small{min-width:0;font:7px/1.4 var(--mono);color:var(--ops-muted)}
+@media(max-width:700px){
+  .ops-story-gate{grid-template-columns:1fr;gap:4px;padding:9px 10px}
+  .ops-story-gate strong{font-size:10px}
+  .ops-story-gate small{font-size:7px}
+}
+
 /* Data-story spine: orientation first, then detail. */
 .ops-storyline{position:sticky;top:0;z-index:15;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border:1px solid var(--ops-line);border-bottom:0;background:#050b0ff2;backdrop-filter:blur(12px);box-shadow:0 8px 24px #0005}
 #ops-now,#ops-pressure,#ops-context,#ops-evidence,#ops-beliefs,#ops-horizon,#ops-matrix{scroll-margin-top:72px}
