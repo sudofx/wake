@@ -394,6 +394,11 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('Each row is a commitment whose recorded creator and resolver are different invocations.', app)
         self.assertIn('No cross-invocation fulfillments recorded yet.', app)
 
+    def test_journal_handoff_metric_does_not_claim_process_freshness(self):
+        app = self.read('wake/assets/app.js')
+        self.assertIn("'Across distinct invocations'", app)
+        self.assertNotIn("'Across fresh invocations'", app)
+
     def test_frontier_queue_is_exact_open_commitment_state(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
