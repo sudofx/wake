@@ -630,6 +630,8 @@ class Engine:
         # Under overflow, keep the same model-facing contract in compressed form;
         # deterministic governance remains the authority after generation.
         request["system"] = SYSTEM + BOUNDED_RESEARCH_SYSTEM
+        if isinstance(context.get("continuity_probe"), dict):
+            request["system"] += MATRIX_SIDECAR_SYSTEM
 
         def excerpt(value, size):
             value = str(value or "")
@@ -831,7 +833,7 @@ class Engine:
 
         # Rebuild dependent allowlists after trimming. If still oversized, strip
         # nonessential prose one final time while retaining action identities.
-        request["response_schema"] = schema_for_context(context)
+        request["response_schema"] = _provider_response_schema(context, True)
         if len(canonical(request)) > limit:
             context["beliefs"] = []
             context["representation_recovery"] = []
@@ -839,14 +841,14 @@ class Engine:
                 context["reflection_history"]["research"] = []
                 context["reflection_history"]["notebooks"] = []
                 context["reflection_history"]["acquisition_friction"] = []
-            request["response_schema"] = schema_for_context(context)
+            request["response_schema"] = _provider_response_schema(context, True)
 
         # Before degrading the only readable source, collapse competing
         # working-set material around one synthesis-ready project. Without this
         # step, a runtime that lives near the context ceiling can repeatedly hit
         # the final safety valve and starve notebook creation forever.
         if len(canonical(request)) > limit and self.focus_synthesis_delivery(context):
-            request["response_schema"] = schema_for_context(context)
+            request["response_schema"] = _provider_response_schema(context, True)
 
         # Very small configured ceilings (including compaction tests) may not
         # have room for the normal 500-character synthesis excerpts. Degrade
@@ -856,7 +858,7 @@ class Engine:
                 if item.get("content"):
                     item["content"] = excerpt(item["content"], 160)
                     item["context_excerpt"] = True
-            request["response_schema"] = schema_for_context(context)
+            request["response_schema"] = _provider_response_schema(context, True)
 
         # Absolute safety valve: if even the focused single-project handoff plus
         # tiny readable excerpts cannot fit, preserve provenance roots and suppress
@@ -884,7 +886,7 @@ class Engine:
                     "excerpts; exact records remain durable for a later invocation."
                 ),
             }
-            request["response_schema"] = schema_for_context(context)
+            request["response_schema"] = _provider_response_schema(context, True)
 
     def inquiry_drive_shadow(self, state):
         """Score durable research work without granting it any decision authority.
@@ -1664,7 +1666,7 @@ class Engine:
                 "inherited_commitments": [k for k, v in state["commitments"].items() if v["status"] == "open"],
                 "scope": "Receipt proves state delivery to the provider boundary, not model comprehension."})})
         receipt_ms = (perf_counter() - phase_at) * 1000
-        from .providers import RESEARCH_SYSTEM, SCHEMA
+        from .providers import RESEARCH_SYSTEM
         phase_at = perf_counter()
         delivered_context = self.context(state, receipt)
         working_set_shadow = self.working_set(state)
@@ -1673,6 +1675,20 @@ class Engine:
         delivered_context = self.rehydrate_retrieval_context(
             state, delivered_context, retrieval_shadow
         )
+        continuity_probe_context = None
+        matrix_progress = (
+            self.store.continuity_matrix_progress()
+            if hasattr(self.store, "continuity_matrix_progress")
+            else None
+        )
+        if matrix_progress and matrix_progress.get("next_coordinate_id"):
+            probe_request = build_continuity_probe(
+                state,
+                self.store.head(),
+                matrix_progress["next_coordinate_id"],
+            )
+            continuity_probe_context = probe_request["context"]
+            delivered_context["continuity_probe"] = continuity_probe_context
         inquiry_drive_shadow = self.inquiry_drive_shadow(state)
         if inquiry_drive_shadow["activation"]["active"]:
             delivered_context["inquiry_drive"] = {
@@ -1680,9 +1696,17 @@ class Engine:
                 "boundary": "Favor productive, correctable inquiry only. This does not authorize self-preservation, rule changes, or work outside existing governance.",
                 "projects": inquiry_drive_shadow["projects"],
             }
-        request = {"system": SYSTEM + (RESEARCH_SYSTEM if state.get("charter") else ""),
-                   "context": delivered_context,
-                   "response_schema": schema_for_context(delivered_context) if state.get("charter") else SCHEMA}
+        provider_system = SYSTEM + (RESEARCH_SYSTEM if state.get("charter") else "")
+        if continuity_probe_context is not None:
+            provider_system += MATRIX_SIDECAR_SYSTEM
+        request = {
+            "system": provider_system,
+            "context": delivered_context,
+            "response_schema": _provider_response_schema(
+                delivered_context,
+                bool(state.get("charter")),
+            ),
+        }
         rich_context_chars = len(canonical(request))
         context_build_ms = (perf_counter() - phase_at) * 1000
         phase_at = perf_counter()
@@ -1764,7 +1788,7 @@ class Engine:
             # after shrinking the working view; otherwise stale project/notebook/
             # evidence alternatives from the pre-compaction context can keep the
             # request over the ceiling even though the delivered context is bounded.
-            request["response_schema"] = schema_for_context(request["context"])
+            request["response_schema"] = _provider_response_schema(request["context"], True)
 
             # resolution_evidence exists primarily to construct the
             # constrained response schema, so that duplicate list can be dropped
@@ -1784,6 +1808,8 @@ class Engine:
             request["context"] = self.bounded_context(
                 state, receipt, working_set_shadow, rich_context_chars
             )
+            if continuity_probe_context is not None:
+                request["context"]["continuity_probe"] = continuity_probe_context
             # Bounded delivery must not erase the handoff from collection
             # to synthesis. Rehydrate a tiny, project-prioritized set of exact
             # collector records whenever retrieval found qualifying evidence.
@@ -1794,7 +1820,7 @@ class Engine:
                     state, request["context"], retrieval_shadow,
                     content_limit=900, max_records=2,
                 )
-            request["response_schema"] = schema_for_context(request["context"])
+            request["response_schema"] = _provider_response_schema(request["context"], True)
             context_mode = "bounded"
             if len(canonical(request)) > self.config["max_context_chars"]:
                 self.fit_bounded_request(request)
@@ -1821,6 +1847,10 @@ class Engine:
             "trust_compacts_shadow": trust_compacts_shadow,
             "retrieval_shadow": retrieval_shadow,
             "inquiry_drive_shadow": inquiry_drive_shadow,
+            **(
+                {"continuity_probe_shadow": {"context": continuity_probe_context}}
+                if continuity_probe_context is not None else {}
+            ),
             "attention": delivered_context.get("attention", {"active": False}),
             "experimental_regime": state["experimental"], "temporal": temporal,
             "runtime_performance": runtime_performance,
