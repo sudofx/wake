@@ -19,10 +19,34 @@
   if(kind==='events'){
     const text=await response.text();
     const events=text.split(/\n+/).filter(Boolean).map(line=>JSON.parse(line)).reverse();
-    root.innerHTML=events.map(event=>{
-      const payload=event.payload||{},id=payload.id||'system';
-      return '<article class="entry record-panel"><div class="record-panel-head"><div class="record-panel-meta"><span class="record-type">'+esc(event.kind)+'</span><time>'+esc(event.time)+'</time></div><h3>'+esc(id)+'</h3></div><div class="record-panel-body"><pre>'+esc(JSON.stringify(payload,null,2))+'</pre><p class="subtle">Hash '+esc(event.hash)+'</p></div></article>';
+    root.innerHTML='<div id="flat-target-status" class="flat-target-status" role="status" hidden></div>'+events.map(event=>{
+      const payload=event.payload||{},id=payload.id||'system',seq=String(event.seq??'');
+      return '<article class="entry record-panel" id="event-'+esc(seq)+'" data-event-seq="'+esc(seq)+'" data-event-id="'+esc(id)+'"><div class="record-panel-head"><div class="record-panel-meta"><span class="record-type">'+esc(event.kind)+'</span><span class="record-seq">EVENT '+esc(seq)+'</span><time>'+esc(event.time)+'</time></div><h3>'+esc(id)+'</h3></div><div class="record-panel-body"><pre>'+esc(JSON.stringify(payload,null,2))+'</pre><p class="subtle">Hash '+esc(event.hash)+'</p></div></article>';
     }).join('')||'<p class="empty">No recorded events.</p>';
+    const focusTarget=()=>{
+      root.querySelectorAll('.flat-target').forEach(node=>node.classList.remove('flat-target'));
+      const status=document.getElementById('flat-target-status');
+      if(status)status.hidden=true;
+      let target=null,label='';
+      const seqMatch=location.hash.match(/^#seq=(\d+)$/);
+      const eventMatch=location.hash.match(/^#event=(.+)$/);
+      if(seqMatch){
+        target=root.querySelector('[data-event-seq="'+seqMatch[1]+'"]');
+        label='event '+seqMatch[1];
+      }else if(eventMatch){
+        let wanted='';try{wanted=decodeURIComponent(eventMatch[1])}catch{wanted=eventMatch[1]}
+        target=[...root.querySelectorAll('[data-event-id]')].find(node=>node.dataset.eventId===wanted)||null;
+        label='record '+wanted;
+      }
+      if(!seqMatch&&!eventMatch)return;
+      if(status){status.hidden=false;status.textContent=target?'Located '+label+' in the append-only export.':'Requested '+label+' was not found in this published export.'}
+      if(target){
+        target.classList.add('flat-target');
+        requestAnimationFrame(()=>target.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'}));
+      }
+    };
+    focusTarget();
+    window.addEventListener('hashchange',focusTarget);
     return;
   }
   const data=await response.json();
