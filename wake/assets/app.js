@@ -668,6 +668,10 @@
     const latestContext=contextInvocations.at(-1)||null;
     const contextDelivery=latestContext?.context_delivery||null;
     const contextMetrics=latestContext?.working_set_metrics||{};
+    const contextRichChars=Number(contextDelivery?.rich_context_chars||0);
+    const contextDeliveredChars=Number(contextDelivery?.delivered_request_chars||contextDelivery?.delivered_context_chars||0);
+    const contextDeliveredPct=contextDelivery&&contextRichChars>0?Math.max(0,Math.min(100,100*contextDeliveredChars/contextRichChars)):null;
+    const contextOmittedCount=Array.isArray(contextDelivery?.omitted_categories)?contextDelivery.omitted_categories.length:null;
     const contextTraceSource=contextInvocations.slice(-48);
     const contextRichMax=Math.max(1,...contextTraceSource.map(item=>Number(item.context_delivery.rich_context_chars)||0));
     const contextTrace=contextTraceSource.map(item=>{
@@ -1211,6 +1215,21 @@
             <div class="ops-time-legend"><span class="real"><i></i>real</span><span class="scaled"><i></i>scaled</span><span class="frozen"><i></i>frozen</span></div>
           </div>
         </div>
+        </div>
+        <div class="ops-memory-flow" aria-label="Pressure to memory story handoff from latest recorded context delivery">
+          <header>
+            <div><span>PRESSURE → MEMORY / LATEST RECORDED CONTEXT BOUNDARY</span><strong>${latestContext?'receipt '+esc(String(latestContext.id||'').slice(-12)):'no context-delivery receipt'}</strong></div>
+            <small>Story transition only. This does not claim pressure caused compression; values below come from the latest explicit context_delivery receipt.</small>
+          </header>
+          <div class="ops-memory-flow-grid">
+            <div><span>MODE</span><strong>${contextDelivery?esc(String(contextDelivery.mode||'rich').toUpperCase()):'—'}</strong></div>
+            <div><span>RICH REQUEST</span><strong>${contextDelivery?contextRichChars.toLocaleString():'—'}</strong><small>chars</small></div>
+            <i aria-hidden="true">→</i>
+            <div><span>DELIVERED</span><strong>${contextDelivery?contextDeliveredChars.toLocaleString():'—'}</strong><small>chars</small></div>
+            <div><span>DELIVERED SHARE</span><strong>${contextDeliveredPct===null?'—':contextDeliveredPct.toFixed(1)+'%'}</strong></div>
+            <div><span>EXPLICIT OMISSIONS</span><strong>${contextOmittedCount===null?'—':contextOmittedCount}</strong></div>
+            ${latestContext?`<a href="#history/${encodeURIComponent(latestContext.id||'')}">OPEN CONTEXT RECEIPT →</a>`:'<span class="ops-memory-flow-unavailable">receipt unavailable</span>'}
+          </div>
         </div>
         <div class="ops-signal-band" aria-label="Derived operating signals">
           <div class="ops-signal" style="--signal:${acceptanceRate===null?0:acceptanceRate}%" title="${completed.length?'Share of completed wakes accepted':'No completed wakes yet'}"><span>ACCEPTANCE</span><strong>${acceptanceRate===null?'—':acceptanceRate+'%'}</strong><i></i></div>
