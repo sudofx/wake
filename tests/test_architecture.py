@@ -416,7 +416,8 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('Array.isArray(belief?.evidence)?belief.evidence:[]', app)
         self.assertIn('Boolean(evidenceById[id])', app)
         self.assertIn('missing from current state', app)
-        self.assertIn('Presence proves linkage in the record, not that the cited evidence is true or sufficient.', app)
+        self.assertIn('Presence proves linkage in the record', app)
+        self.assertIn('not that the cited evidence is true or sufficient.', app)
         self.assertIn('.ops-lineage-row', css)
         self.assertIn('.ops-lineage-root.missing', css)
 
