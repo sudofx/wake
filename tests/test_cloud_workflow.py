@@ -52,14 +52,17 @@ class CloudWorkflowTests(unittest.TestCase):
         return json.loads(
             self.git("--git-dir", self.remote, "show", "wake-live:live.json").stdout)
 
-    def run_cloud(self, provider, reset=False):
+    def run_cloud(self, provider, reset=False, enable_continuity_matrix=False):
         with patch.object(github_wake, "ROOT", self.project), \
              patch.object(github_wake, "config", return_value=dict(DEFAULTS)), \
              patch.object(github_wake, "Gemini", return_value=provider), \
              patch.object(github_wake, "collect", lambda engine: None), \
              patch.object(github_wake, "assert_sudofx_application_access", return_value=0), \
              patch.dict("os.environ", {"GITHUB_ACTIONS": "true"}):
-            return github_wake.main(reset=reset)
+            return github_wake.main(
+                reset=reset,
+                enable_continuity_matrix=enable_continuity_matrix,
+            )
 
     def test_global_sudofx_access_gate_accepts_enabled_and_rejects_stop(self):
         """WAKE's central gate must read real SQLite latch state, not provider mocks."""
@@ -160,6 +163,42 @@ class CloudWorkflowTests(unittest.TestCase):
             self.assertTrue((checkout / "data/sudofx.sqlite").exists())
             self.assertTrue((checkout / "data/sudofx.sqlite.gz").exists())
             Record(checkout / "data/sudofx.sqlite").full_replay()
+        finally:
+            self.git("-C", self.project, "worktree", "remove", "--force", checkout)
+
+    def test_continuity_enablement_is_governed_provider_free_and_durable(self):
+        """Operator opt-in must use the authority lane without spending a provider request."""
+        self.assertEqual(self.run_cloud(Fixture("matrix-seed")), 0)
+
+        class NeverCall(Fixture):
+            def propose(self, request):
+                raise AssertionError("Continuity enablement must not call a provider")
+
+        self.assertEqual(
+            self.run_cloud(NeverCall("matrix-never"), enable_continuity_matrix=True),
+            0,
+        )
+        live = self.live()
+        self.assertEqual(live["operation"]["reason"], "Continuity campaign enabled")
+        self.assertTrue(live["operation"]["continuity_matrix_enabled"])
+        matrix = live["research"]["matrix"]
+        self.assertTrue(matrix["reported"])
+        self.assertTrue(matrix["enabled"])
+        self.assertEqual(matrix["completed"], 0)
+        self.assertEqual(len(matrix["cells"]), 343)
+
+        checkout = self.root / "matrix-restored-state"
+        branch = github_wake.StateBranch(self.project, checkout)
+        branch.open()
+        try:
+            store = github_wake.open_authoritative_store(checkout / "data")
+            try:
+                progress = store.continuity_matrix_progress()
+                self.assertEqual(progress["matrix"], "continuity@1")
+                self.assertEqual(progress["completed_count"], 0)
+                self.assertEqual(progress["cell_count"], 343)
+            finally:
+                store.close()
         finally:
             self.git("-C", self.project, "worktree", "remove", "--force", checkout)
 
