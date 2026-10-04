@@ -494,6 +494,19 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn("handoffRate===null?'—':handoffRate+'%'", app)
         self.assertIn("'No fulfilled obligations yet'", app)
 
+    def test_empty_performance_denominators_are_unavailable(self):
+        app = self.read('wake/assets/app.js')
+        self.assertIn("const acceptanceRate=completed.length?Math.round(100*acceptedCount/completed.length):null", app)
+        self.assertIn("const fallbackRate=completed.length?100*fallbackWakes/completed.length:null", app)
+        self.assertIn("const rejectionRate=completed.length?100*rejectedCount/completed.length:null", app)
+        self.assertIn("const actionPerAccepted=acceptedCount?(actionTotal/acceptedCount):null", app)
+        self.assertIn("const evidencePerAccepted=acceptedCount?(evidenceCount/acceptedCount):null", app)
+        self.assertIn("acceptanceRate===null?'—':acceptanceRate+'%'", app)
+        self.assertIn("fallbackRate===null?'—':fallbackRate.toFixed(1)+'%'", app)
+        self.assertIn("rejectionRate===null?'—':rejectionRate.toFixed(1)+'%'", app)
+        self.assertIn("actionPerAccepted===null?'—':actionPerAccepted.toFixed(2)", app)
+        self.assertIn("evidencePerAccepted===null?'—':evidencePerAccepted.toFixed(2)", app)
+
     def test_verification_panels_mark_unmeasured_populations(self):
         app = self.read('wake/assets/app.js')
         self.assertIn("fulfilled.length?inheritedFulfilled.length:'—'", app)
