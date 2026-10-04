@@ -507,6 +507,10 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn("actionPerAccepted===null?'—':actionPerAccepted.toFixed(2)", app)
         self.assertIn("evidencePerAccepted===null?'—':evidencePerAccepted.toFixed(2)", app)
 
+        self.assertIn("const topicCoveragePct=configuredTopicCount?100*topicActive/configuredTopicCount:null", app)
+        self.assertIn("configuredTopicCount?topicActive+'/'+configuredTopicCount:'—'", app)
+        self.assertIn("'No configured research topics'", app)
+
     def test_verification_panels_mark_unmeasured_populations(self):
         app = self.read('wake/assets/app.js')
         self.assertIn("fulfilled.length?inheritedFulfilled.length:'—'", app)
