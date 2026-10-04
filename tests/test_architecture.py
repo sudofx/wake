@@ -390,6 +390,16 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('scroll-snap-type:x proximity', css)
         self.assertIn('.ops-storyline a.is-active:after', css)
 
+    def test_story_keeps_generic_lifecycle_in_verification_layer(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        deep = app.index('DEEP METRICS / VERIFY THE STORY')
+        lifecycle = app.index('APPLICATION LIFECYCLE / GENERIC SUDOFX EVIDENCE')
+        self.assertGreater(lifecycle, deep)
+        self.assertIn('.ops-tertiary-grid>.ops-beliefs{grid-column:1/-1}', css)
+        self.assertIn('.ops-tertiary-grid>.ops-context,.ops-tertiary-grid>.ops-provenance{border-top:0}', css)
+        self.assertNotIn('.ops-tertiary-grid>.ops-lifecycle{border-left', css)
+
     def test_memory_story_exposes_exact_cross_invocation_handoffs(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
