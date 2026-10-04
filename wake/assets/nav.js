@@ -91,12 +91,16 @@ if(actionsLight){
     if(opened)opened.focus();
     else location.href=url.href;
   };
+  const desktopPointer=()=>window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   document.addEventListener('click',event=>{
     if(event.defaultPrevented||event.button>0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
     const link=event.target.closest('a[href]');
     if(!link)return;
     let url;try{url=new URL(link.href,location.href);}catch{return;}
     if(url.origin!==location.origin||!url.pathname.endsWith('/console.html'))return;
+    // Pop the console out only for a desktop-style mouse/trackpad UI.
+    // Touch/coarse-pointer devices follow the normal link in the same window.
+    if(!desktopPointer())return;
     event.preventDefault();
     openConsole(url.href);
   },true);
