@@ -1953,3 +1953,7 @@ body>header.masthead{border-radius:11px!important}
   .nebula-hero-copy h1 br{display:block!important}
   .nebula-hero-copy h1 span{white-space:nowrap}
 }
+
+
+/* DARK-ONLY THEME — 2026-10-04 */
+.theme-switch{display:none!important}
