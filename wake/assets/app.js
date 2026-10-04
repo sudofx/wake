@@ -233,7 +233,29 @@
     const obligations=Object.values(s.commitments||{}), fulfilled=obligations.filter(c=>c.status==='fulfilled');
     const inheritedFulfilled=fulfilled.filter(c=>c.created_by&&c.resolved_by&&c.created_by!==c.resolved_by);
     const handoffRate=fulfilled.length?Math.round(100*inheritedFulfilled.length/fulfilled.length):0;
-    const evidenceCount=Object.keys(s.evidence||{}).length, projects=Object.values(s.projects||{}), notebooks=Object.values(s.notebooks||{});
+    const evidenceRecords=Object.values(s.evidence||{});
+    const evidenceCount=evidenceRecords.length, projects=Object.values(s.projects||{}), notebooks=Object.values(s.notebooks||{});
+    const evidenceTelemetry=evidenceRecords.map(item=>{
+      let payload={};
+      try{payload=JSON.parse(item?.content||'{}')}catch{}
+      return {
+        id:item?.id||'',
+        actor:item?.actor||'unknown',
+        role:payload?.evidence_role||'unspecified',
+        tier:payload?.host_tier||'unspecified',
+        topic:payload?.topic_domain||'unattributed',
+        source:item?.source||'',
+        persistent:Array.isArray(payload?.persistent_identifiers)?payload.persistent_identifiers:[]
+      };
+    });
+    const evidenceRoles=evidenceTelemetry.reduce((acc,item)=>(acc[item.role]=(acc[item.role]||0)+1,acc),{});
+    const evidenceTiers=evidenceTelemetry.reduce((acc,item)=>(acc[item.tier]=(acc[item.tier]||0)+1,acc),{});
+    const qualifyingEvidence=evidenceTelemetry.filter(item=>item.role==='source'&&item.tier!=='verification-metadata').length;
+    const discoveryEvidence=Number(evidenceRoles.discovery||0);
+    const metadataEvidence=Number(evidenceRoles.metadata||0);
+    const evidenceTierRows=Object.entries(evidenceTiers).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));
+    const evidenceTierMax=Math.max(1,...evidenceTierRows.map(([,count])=>count));
+    const evidenceTierBars=evidenceTierRows.slice(0,7).map(([tier,count])=>`<div class="ops-provenance-row"><span>${esc(String(tier).replaceAll('-',' '))}</span><div><i style="width:${Math.max(4,100*count/evidenceTierMax)}%"></i></div><strong>${count}</strong></div>`).join('')||'<p class="empty">No evidence provenance recorded.</p>';
     const providerRequests=completed.reduce((n,i)=>n+(i.provider_requests_sent||0),0);
     const requestsPerAccepted=acceptedCount?(providerRequests/acceptedCount).toFixed(2):'—';
     const wakeStatus=data.wake_status||{};
@@ -607,6 +629,21 @@
           <div class="ops-context-trace">
             <div class="ops-context-trace-head"><span>CONTEXT PRESSURE / LAST ${contextTraceSource.length}</span><small>height = rich request · inner fill = delivered share · orange = bounded mode</small></div>
             <div class="ops-context-track" role="group" aria-label="Recent context delivery receipts">${contextTrace||'<span class="empty">No context receipts yet.</span>'}</div>
+          </div>
+        </div>
+        <div class="ops-provenance" aria-label="Evidence provenance telemetry">
+          <div class="ops-provenance-head">
+            <div><p class="eyebrow">EVIDENCE PROVENANCE / COLLECTION DEPTH</p><h3>${qualifyingEvidence} substantive source observations</h3></div>
+            <small>provenance labels describe retrieval depth; they are not truth scores</small>
+          </div>
+          <div class="ops-provenance-grid">
+            <div class="ops-provenance-kpis">
+              <div><span>ALL EVIDENCE</span><strong>${evidenceCount}</strong><small>current evidence records</small></div>
+              <div><span>QUALIFYING SOURCES</span><strong>${qualifyingEvidence}</strong><small>source role excluding metadata-only tiers</small></div>
+              <div><span>DISCOVERY LEADS</span><strong>${discoveryEvidence}</strong><small>routing material, not substantive evidence</small></div>
+              <div><span>METADATA ROUTES</span><strong>${metadataEvidence}</strong><small>bibliographic routing receipts</small></div>
+            </div>
+            <div class="ops-provenance-tiers"><header><span>HOST / RETRIEVAL TIERS</span><strong>${evidenceTierRows.length} observed classes</strong></header><div>${evidenceTierBars}</div></div>
           </div>
         </div>
         <div class="ops-lifecycle" aria-label="Application lifecycle observability">
