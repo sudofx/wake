@@ -99,7 +99,13 @@
   const fmt = time => new Date(time).toLocaleString('en-US', {timeZone:data.timezone,month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'});
   let invocations, posts, accepted, decisions, live, fixtures, rejected, inherited, open;
   function refreshDerived() {
-    invocations = Object.values(s.invocations || {});
+    const invocationTime=item=>{
+      const value=Date.parse(item?.time||item?.finished||'');
+      return Number.isFinite(value)?value:0;
+    };
+    invocations = Object.values(s.invocations || {}).sort(
+      (a,b)=>invocationTime(a)-invocationTime(b)||String(a?.id||'').localeCompare(String(b?.id||''))
+    );
     posts = Object.values(s.posts || {}).sort((a,b)=>b.created_version-a.created_version);
     accepted = (data.events || []).filter(e => e.kind === 'accepted');
     decisions = Object.fromEntries(accepted.map(e => [e.payload.id, e]));
