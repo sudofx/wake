@@ -3,3 +3,4 @@ Retry after restoring the autopilot-status branch.
 Retry 2 after autopilot-status recovery.
 Retry 3 after provenance test correction.
 Restart after decoupling WAKE runtime from sudofx kill switch and stabilizing the public status light.
+restore-kill-switch-2026-10-03
