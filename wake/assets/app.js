@@ -578,7 +578,7 @@
     }).join('')||'<p class="empty">No recent lifecycle context receipts.</p>';
     const matrixCompleted=Number(matrixProgress?.completed_count||0);
     const matrixTotal=Number(matrixProgress?.cell_count||343);
-    const matrixPct=matrixTotal?Math.round(100*matrixCompleted/matrixTotal):0;
+    const matrixPct=matrixEnabled&&matrixTotal?Math.round(100*matrixCompleted/matrixTotal):null;
     const matrixStatusCounts=matrixProgress?.status_counts||{};
     const matrixFailed=Number(matrixStatusCounts.failed||0);
     const matrixDeferred=Number(matrixStatusCounts.deferred||0);
@@ -875,11 +875,11 @@
         <a href="#metrics" data-story-target="ops-evidence"><b>04</b><span>EVIDENCE</span><strong>${evidenceCount} records</strong></a>
         <a href="#metrics" data-story-target="ops-beliefs"><b>05</b><span>BELIEF</span><strong>${opsActiveBeliefs.length} active</strong></a>
         <a href="#metrics" data-story-target="ops-horizon"><b>06</b><span>FRONTIER</span><strong>${openObligations} open</strong></a>
-        <a href="#metrics" data-story-target="ops-matrix"><b>07</b><span>SPACE</span><strong>${matrixPct}% tested</strong></a>
+        <a href="#metrics" data-story-target="ops-matrix"><b>07</b><span>SPACE</span><strong>${matrixPct===null?'not enabled':matrixPct+'% tested'}</strong></a>
       </nav>
       <div class="ops-story-lede" aria-label="Current record summary">
         <span>WHAT THE RECORD SAYS NOW</span>
-        <p>Cycle <strong>${s.version}</strong> · <strong>${completed.length}</strong> completed wakes · <strong>${acceptedCount}</strong> accepted · <strong>${rejectedCount}</strong> rejected · <strong>${openObligations}</strong> open commitments · <strong>${evidenceCount}</strong> evidence records · <strong>${opsActiveBeliefs.length}</strong> active beliefs · <strong>${matrixPct}%</strong> of continuity@1 tested.</p>
+        <p>Cycle <strong>${s.version}</strong> · <strong>${completed.length}</strong> completed wakes · <strong>${acceptedCount}</strong> accepted · <strong>${rejectedCount}</strong> rejected · <strong>${openObligations}</strong> open commitments · <strong>${evidenceCount}</strong> evidence records · <strong>${opsActiveBeliefs.length}</strong> active beliefs · <strong>${matrixPct===null?'continuity@1 not enabled':matrixPct+'% of continuity@1 tested'}</strong>.</p>
         <small>Counts are derived from durable receipts and current governed state. They describe WAKE's recorded history; they do not certify the truth of its research claims.</small>
       </div>
       <div class="ops-reading-key" aria-label="How to read this data story">
@@ -1006,7 +1006,7 @@
           <div class="ops-signal" style="--signal:${handoffRate===null?0:Math.min(100,handoffRate)}%" title="${fulfilled.length?'Share of fulfilled obligations resolved by a different invocation':'No fulfilled obligations yet'}"><span>HANDOFF CONTINUITY</span><strong>${handoffRate===null?'—':handoffRate+'%'}</strong><i></i></div>
           <div class="ops-signal warning" style="--signal:${Math.min(100,fallbackRate)}%"><span>FALLBACK LOAD</span><strong>${fallbackRate.toFixed(1)}%</strong><i></i></div>
           <div class="ops-signal info" style="--signal:${Math.min(100,configuredTopicCount?100*topicActive/configuredTopicCount:0)}%"><span>TOPIC COVERAGE</span><strong>${topicActive}/${configuredTopicCount}</strong><i></i></div>
-          <div class="ops-signal info" style="--signal:${Math.min(100,matrixPct)}%"><span>MATRIX COVERAGE</span><strong>${matrixPct}%</strong><i></i></div>
+          <div class="ops-signal info" style="--signal:${matrixPct===null?0:Math.min(100,matrixPct)}%"><span>MATRIX COVERAGE</span><strong>${matrixPct===null?'—':matrixPct+'%'}</strong><i></i></div>
         </div>
         <div class="ops-tertiary-grid">
         <div class="ops-context" id="ops-context" aria-label="Context delivery telemetry">
@@ -1121,7 +1121,7 @@
             <div class="matrix-axis-note"><span>columns / pressure: ${esc(pressureAxis.map(v=>v.label).join(' · '))}</span><span>rows / exposure: ${esc(exposureAxis.map(v=>v.label).join(' · '))}</span></div>
             <div class="matrix-plane-stack">${matrixPlanes}</div>
           </div>
-          <div class="ops-matrix-stat"><strong>${matrixPct}%</strong><span>covered</span><small>${matrixFailed} failed · ${matrixDeferred} deferred</small></div>
+          <div class="ops-matrix-stat"><strong>${matrixPct===null?'—':matrixPct+'%'}</strong><span>${matrixPct===null?'not enabled':'covered'}</span><small>${matrixPct===null?'canonical geometry only':matrixFailed+' failed · '+matrixDeferred+' deferred'}</small></div>
         </div>
         <div class="ops-matrix-marginals" aria-label="Continuity matrix axis coverage">
           <div class="ops-matrix-marginal-head"><div><span>COVERAGE MARGINALS / THREE AXES</span><strong>Where completed coordinates are accumulating.</strong></div><small>Each row reconciles to the same continuity@1 cells above. Bars show completed share; failed and deferred results remain explicit.</small></div>
