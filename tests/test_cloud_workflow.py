@@ -363,7 +363,7 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertIn("group: wake-operator-control", promotion)
         self.assertIn("wake-runner.yml", promotion)
         self.assertIn("continuation latch is open", promotion.lower())
-        self.assertIn("name: WAKE✳︎ - Reset", reset)
+        self.assertIn("name: WAKE✳︎ - [RESET]", reset)
         self.assertNotIn('confirm_reset', reset)
         self.assertIn("wake-runner.yml/disable", reset)
         self.assertIn('reset=true', reset)
