@@ -441,35 +441,26 @@
     const confidenceBandMax=Math.max(1,...confidenceBands.map(([,count])=>count));
     const confidenceBars=confidenceBands.map(([label,count])=>`<div class="ops-belief-band"><span>${label}</span><div><i style="width:${Math.max(count?5:0,100*count/confidenceBandMax)}%"></i></div><strong>${count}</strong></div>`).join('');
     const evidenceById=Object.fromEntries(evidenceRecords.map(item=>[item?.id,item]));
-    const beliefLineage=opsActiveBeliefs.slice(0,8).map(belief=>{
-      const roots=Array.isArray(belief?.evidence)?belief.evidence:[];
-      const rootLinks=roots.map(id=>{
-        const exists=Boolean(evidenceById[id]);
-        return `<a class="ops-lineage-root ${exists?'resolved':'missing'}" href="#evidence/${encodeURIComponent(id)}"><span>EVIDENCE</span><strong>${esc(id)}</strong><small>${exists?'record present':'missing from current state'}</small></a>`;
-      }).join('')||'<span class="ops-lineage-root missing"><span>EVIDENCE</span><strong>none recorded</strong><small>no citation edge on this belief</small></span>';
-      const confidence=Number(belief?.confidence);
-      const statement=String(belief?.statement||belief?.claim||belief?.id||'Recorded belief');
-      const updatedVersion=Number(belief?.updated_version);
-      const updatedBy=String(belief?.updated_by||'');
-      const hasFalsifier=Boolean(String(belief?.falsifier||'').trim());
-      const updateReceipt=updatedBy?`<a href="#history/${encodeURIComponent(updatedBy)}">UPDATED BY ${esc(updatedBy.slice(-10))}</a>`:'<span>UPDATE RECEIPT UNAVAILABLE</span>';
-      return `<article class="ops-lineage-row"><div class="ops-lineage-roots">${rootLinks}</div><i class="ops-lineage-arrow" aria-hidden="true">→</i><div class="ops-lineage-belief"><span>GOVERNED BELIEF · ${esc(String(belief?.status||'active').toUpperCase())}</span><strong>${esc(statement)}</strong><small>${esc(belief?.id||'belief')} · confidence ${Number.isFinite(confidence)?confidence.toFixed(2):'unavailable'} · rev ${Number.isFinite(updatedVersion)?updatedVersion:'—'}</small><div class="ops-lineage-belief-meta">${updateReceipt}<span class="${hasFalsifier?'has-falsifier':'no-falsifier'}">${hasFalsifier?'FALSIFIER RECORDED':'NO FALSIFIER'}</span></div></div></article>`;
-    }).join('')||'<p class="empty">No active belief citation lineage in the current governed state.</p>';
-    const beliefRevisionSource=opsBeliefs
+    const lineageEvidenceRoots=opsBeliefs.reduce((sum,item)=>sum+(Array.isArray(item?.evidence)?item.evidence.length:0),0);
+    const beliefLineage=opsBeliefs
       .slice()
       .sort((a,b)=>Number(b?.updated_version||0)-Number(a?.updated_version||0)||String(a?.id||'').localeCompare(String(b?.id||'')))
-      .slice(0,12);
-    const beliefRevisionRows=beliefRevisionSource.map(belief=>{
-      const status=String(belief?.status||'unknown').toLowerCase();
-      const confidence=Number(belief?.confidence);
-      const updatedVersion=Number(belief?.updated_version);
-      const updatedBy=String(belief?.updated_by||'');
-      const roots=Array.isArray(belief?.evidence)?belief.evidence:[];
-      const hasFalsifier=Boolean(String(belief?.falsifier||'').trim());
-      const statement=String(belief?.statement||belief?.claim||belief?.id||'Recorded belief');
-      const receipt=updatedBy?`<a href="#history/${encodeURIComponent(updatedBy)}">RECEIPT ${esc(updatedBy.slice(-10))}</a>`:'<span>RECEIPT UNAVAILABLE</span>';
-      return `<article class="ops-belief-revision ${esc(status)}"><header><span>${esc(status.toUpperCase())}</span><strong>REV ${Number.isFinite(updatedVersion)?updatedVersion:'—'}</strong></header><p>${esc(statement)}</p><div class="ops-belief-revision-meta"><span>CONF ${Number.isFinite(confidence)?confidence.toFixed(2):'—'}</span><span>${roots.length} EVIDENCE ROOT${roots.length===1?'':'S'}</span><span class="${hasFalsifier?'has-falsifier':'no-falsifier'}">${hasFalsifier?'FALSIFIER':'NO FALSIFIER'}</span>${receipt}</div></article>`;
-    }).join('')||'<p class="empty">No governed belief revisions are available.</p>';
+      .slice(0,8)
+      .map(belief=>{
+        const roots=Array.isArray(belief?.evidence)?belief.evidence:[];
+        const rootLinks=roots.map(id=>{
+          const exists=Boolean(evidenceById[id]);
+          return `<a class="ops-lineage-root ${exists?'resolved':'missing'}" href="#evidence/${encodeURIComponent(id)}"><span>EVIDENCE</span><strong>${esc(id)}</strong><small>${exists?'record present':'missing from current state'}</small></a>`;
+        }).join('')||'<span class="ops-lineage-root missing"><span>EVIDENCE</span><strong>none recorded</strong><small>no citation edge on this belief</small></span>';
+        const status=String(belief?.status||'unknown').toLowerCase();
+        const confidence=Number(belief?.confidence);
+        const statement=String(belief?.statement||belief?.claim||belief?.id||'Recorded belief');
+        const updatedVersion=Number(belief?.updated_version);
+        const updatedBy=String(belief?.updated_by||'');
+        const hasFalsifier=Boolean(String(belief?.falsifier||'').trim());
+        const updateReceipt=updatedBy?`<a href="#history/${encodeURIComponent(updatedBy)}">UPDATED BY ${esc(updatedBy.slice(-10))}</a>`:'<span>UPDATE RECEIPT UNAVAILABLE</span>';
+        return `<article class="ops-lineage-row"><div class="ops-lineage-roots">${rootLinks}</div><i class="ops-lineage-arrow" aria-hidden="true">→</i><div class="ops-lineage-belief ${esc(status)}"><span>GOVERNED BELIEF · ${esc(status.toUpperCase())}</span><strong>${esc(statement)}</strong><small>${esc(belief?.id||'belief')} · confidence ${Number.isFinite(confidence)?confidence.toFixed(2):'unavailable'} · rev ${Number.isFinite(updatedVersion)?updatedVersion:'—'}</small><div class="ops-lineage-belief-meta">${updateReceipt}<span class="${hasFalsifier?'has-falsifier':'no-falsifier'}">${hasFalsifier?'FALSIFIER RECORDED':'NO FALSIFIER'}</span></div></div></article>`;
+      }).join('')||'<p class="empty">No governed belief citation lineage in the current state.</p>';
     const providerRequests=completed.reduce((n,i)=>n+(i.provider_requests_sent||0),0);
     const requestsPerAccepted=acceptedCount?(providerRequests/acceptedCount).toFixed(2):'—';
     const wakeStatus=data.wake_status||{};
@@ -1029,12 +1020,8 @@
             <div class="ops-belief-distribution"><header><span>ACTIVE CONFIDENCE DISTRIBUTION</span><strong>${activeConfidences.length} measured</strong></header><div>${confidenceBars}</div></div>
           </div>
           <div class="ops-lineage">
-            <div class="ops-lineage-head"><div><span>EVIDENCE → BELIEF / EXPLICIT CITATION LINEAGE</span><strong>${beliefEvidenceRoots} recorded citation edges across ${opsActiveBeliefs.length} active beliefs</strong></div><small>Edges come only from each governed belief's stored evidence IDs. Presence proves linkage in the record, not that the cited evidence is true or sufficient.</small></div>
+            <div class="ops-lineage-head"><div><span>EVIDENCE → BELIEF / CURRENT GOVERNED LINEAGE</span><strong>${lineageEvidenceRoots} recorded citation edges across ${opsBeliefs.length} current beliefs</strong></div><small>Active and retracted beliefs remain visible here. Edges come only from stored evidence IDs; earlier belief versions remain in exact receipts.</small></div>
             <div class="ops-lineage-list">${beliefLineage}</div>
-          </div>
-          <div class="ops-belief-ledger">
-            <div class="ops-belief-ledger-head"><div><span>BELIEF REVISION LEDGER / CURRENT GOVERNED STATE</span><strong>${beliefRevisionSource.length} most recently updated of ${opsBeliefs.length} current beliefs</strong></div><small>One row per current belief, latest stored revision only. Retractions remain visible; earlier versions remain in exact receipts.</small></div>
-            <div class="ops-belief-ledger-list">${beliefRevisionRows}</div>
           </div>
         </div>
         </div>
