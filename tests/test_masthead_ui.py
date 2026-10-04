@@ -33,9 +33,10 @@ class MastheadPresentationTests(unittest.TestCase):
         self.assertIn('cursor:default', self.css)
         self.assertIn('@keyframes actions-light-pulse', self.css)
         self.assertIn('actions/workflows/wake-runner.yml', nav)
-        self.assertIn('actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=10', nav)
-        self.assertIn("actionsLight.dataset.state=enabled?'running':'stopped'", nav)
-        self.assertIn("'Running · between cycles'", nav)
+        self.assertNotIn('actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=10', nav)
+        self.assertIn("const state=latch.state==='active'?'running':'stopped'", nav)
+        self.assertIn("CACHE_KEY='wake-actions-light-state'", nav)
+        self.assertIn('setInterval(refreshActionsLight,120000)', nav)
         self.assertNotIn('.owner-', self.css)
         self.assertNotIn('operator-status', self.css)
 
