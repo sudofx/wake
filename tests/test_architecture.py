@@ -252,6 +252,14 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn("the story can be checked rather than merely believed", app)
         self.assertNotIn("what is true", app)
 
+    def test_deep_metrics_disclose_full_history_vs_event_window_fallbacks(self):
+        app = self.read('wake/assets/app.js')
+        self.assertIn("hasFullRejectionMetrics=Object.prototype.hasOwnProperty.call(fullMetrics,'rejection_reasons')", app)
+        self.assertIn("FULL-HISTORY METRICS", app)
+        self.assertIn("PUBLISHED EVENT WINDOW FALLBACK", app)
+        self.assertIn("const acceptedActionMetricSource=fullActions?", app)
+        self.assertIn("A fallback is explicitly bounded to the published event window", app)
+
     def test_deep_metric_verification_routes_are_direct_and_unique(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
