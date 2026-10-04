@@ -544,6 +544,21 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-matrix-explorer', css)
         self.assertIn('.continuity-cell[aria-pressed="true"]', css)
 
+    def test_evidence_to_belief_bridge_uses_only_stored_citation_state(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('EVIDENCE → BELIEF / STORED CITATION BOUNDARY', app)
+        self.assertIn('Stored linkage only. Citation presence does not prove truth, sufficiency, or causation.', app)
+        self.assertIn('CURRENT EVIDENCE RECORDS', app)
+        self.assertIn('UNIQUE CITED EVIDENCE IDS', app)
+        self.assertIn('STORED CITATION EDGES', app)
+        self.assertIn('BELIEFS WITH CITATIONS', app)
+        self.assertIn('present · ${missingCitedEvidenceIds} missing now', app)
+        self.assertIn('.ops-evidence-belief-bridge{border-top:1px solid var(--ops-line)', css)
+        self.assertIn('.ops-evidence-belief-grid{display:grid;grid-template-columns:minmax(150px,1.05fr)', css)
+        self.assertIn('.ops-evidence-belief-grid{grid-template-columns:repeat(2,minmax(0,1fr))}', css)
+        self.assertIn('.ops-evidence-belief-grid>i{display:none}', css)
+
     def test_belief_lineage_uses_only_stored_evidence_ids(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
