@@ -91,6 +91,14 @@ class FrontendHygieneTests(unittest.TestCase):
         self.assertIn("position:sticky", css)
         self.assertIn("max-height:calc(100svh - 92px)", css)
 
+    def test_3d_relationship_trail_keeps_current_node_visible(self):
+        script = (ASSETS / "map3d.js").read_text()
+        self.assertIn("function centerCurrentRelationshipTrail()", script)
+        self.assertIn("[data-trail-node][aria-current=\"location\"]", script)
+        self.assertIn("list.scrollWidth<=list.clientWidth", script)
+        self.assertIn("active.offsetLeft-(list.clientWidth-active.offsetWidth)/2", script)
+        self.assertIn("centerCurrentRelationshipTrail()", script)
+
     def test_every_style_class_has_a_current_caller(self):
         css = (ASSETS / "style.css").read_text()
         callers = "\n".join(
