@@ -21,7 +21,10 @@ class FrontendHygieneTests(unittest.TestCase):
         self.assertIn("choose(button.dataset.trailNode)", script)
         self.assertIn("Every hop is an exported parent → child relationship", script)
         self.assertIn("The path is navigational, not causal distance or evidentiary strength.", script)
+        self.assertIn("pathStatus.textContent!==nextPathStatus", script)
+        self.assertIn("EXPLICIT RELATIONSHIPS ONLY", script)
         self.assertIn(".detail-trail-list", css)
+        self.assertIn(".constellation-shell>.field-head #path-status", css)
         self.assertIn('button[aria-current="location"]', css)
 
     def test_every_style_class_has_a_current_caller(self):
