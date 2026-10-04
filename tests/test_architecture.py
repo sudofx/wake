@@ -215,6 +215,7 @@ class ArchitectureSeparationTests(unittest.TestCase):
         positions = [app.index(f'id="{anchor}"') for anchor in ordered]
         self.assertEqual(positions, sorted(positions))
         self.assertIn("WHAT THE RECORD SAYS NOW", app)
+        self.assertIn("<b>SPACE</b> where continuity has been tested", app)
         self.assertNotIn("what is true", app)
 
     def test_live_projection_keeps_receipt_telemetry_without_provider_bodies(self):
