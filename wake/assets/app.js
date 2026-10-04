@@ -276,6 +276,23 @@
     const obligations=Object.values(s.commitments||{}), fulfilled=obligations.filter(c=>c.status==='fulfilled');
     const inheritedFulfilled=fulfilled.filter(c=>c.created_by&&c.resolved_by&&c.created_by!==c.resolved_by);
     const handoffRate=fulfilled.length?Math.round(100*inheritedFulfilled.length/fulfilled.length):0;
+    const handoffRows=inheritedFulfilled
+      .map(commitment=>{
+        const created=s.invocations?.[commitment.created_by]||{};
+        const resolved=s.invocations?.[commitment.resolved_by]||{};
+        const resolvedAt=new Date(resolved.finished||resolved.time||0).getTime();
+        return {commitment,created,resolved,resolvedAt:Number.isFinite(resolvedAt)?resolvedAt:0};
+      })
+      .sort((a,b)=>b.resolvedAt-a.resolvedAt)
+      .slice(0,8)
+      .map(({commitment,created,resolved})=>{
+        const task=String(commitment.task||commitment.id||'Recorded obligation');
+        const createdId=String(commitment.created_by||'');
+        const resolvedId=String(commitment.resolved_by||'');
+        const createdStamp=created.time?fmt(created.time):'time unavailable';
+        const resolvedStamp=(resolved.finished||resolved.time)?fmt(resolved.finished||resolved.time):'time unavailable';
+        return `<article class="ops-handoff-row"><p>${esc(task)}</p><div class="ops-handoff-path"><a href="#history/${encodeURIComponent(createdId)}"><span>CREATED</span><strong>${esc(createdId.slice(-10)||'—')}</strong><small>${esc(createdStamp)}</small></a><i aria-hidden="true">→</i><a href="#history/${encodeURIComponent(resolvedId)}"><span>FULFILLED</span><strong>${esc(resolvedId.slice(-10)||'—')}</strong><small>${esc(resolvedStamp)}</small></a></div></article>`;
+      }).join('');
     const evidenceRecords=Object.values(s.evidence||{});
     const evidenceCount=evidenceRecords.length, projects=Object.values(s.projects||{}), notebooks=Object.values(s.notebooks||{});
     const evidenceTelemetry=evidenceRecords.map(item=>{
@@ -823,6 +840,10 @@
           <div class="ops-context-trace">
             <div class="ops-context-trace-head"><span>CONTEXT PRESSURE / LAST ${contextTraceSource.length}</span><small>height = rich request · inner fill = delivered share · orange = bounded mode</small></div>
             <div class="ops-context-track" role="group" aria-label="Recent context delivery receipts">${contextTrace||'<span class="empty">No context receipts yet.</span>'}</div>
+          </div>
+          <div class="ops-handoff" aria-label="Cross-invocation commitment handoffs">
+            <div class="ops-handoff-head"><div><span>CROSS-INVOCATION HANDOFF / DURABLE OBLIGATIONS</span><strong>${inheritedFulfilled.length} fulfilled by a later invocation</strong></div><small>Each row is a commitment whose recorded creator and resolver are different invocations.</small></div>
+            <div class="ops-handoff-list">${handoffRows||'<p class="empty">No cross-invocation fulfillments recorded yet.</p>'}</div>
           </div>
           <div class="ops-continuity-thread">
             <div class="ops-continuity-head"><div><span>DURABLE CONTINUITY THREAD / RECENT INVOCATIONS</span><strong>${lifecycleRecent.length} lifecycle receipts</strong></div><small>observed record revision span ${esc(lifecycleRevisionSpan)} · source revision → governed context → recorded outcome</small></div>
