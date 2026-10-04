@@ -432,7 +432,7 @@ class SudofxMigrationTests(unittest.TestCase):
                 len(store.events()),
             )
             integrity = projection["record_integrity"]
-            self.assertTrue(integrity["semantic_replay_verified"])
+            self.assertTrue(integrity["trusted_projection_active"])
             self.assertEqual(integrity["sqlite_quick_check"], "ok")
             self.assertEqual(integrity["sudofx_revision"], store.kernel.context().revision)
             self.assertGreaterEqual(integrity["sudofx_event_count"], 1)
