@@ -1058,3 +1058,39 @@ html,body{max-width:100%;overflow-x:clip}
     margin-left:0;
   }
 }
+
+
+/* ABOUT GLASS OVERRIDE — 2026-10-04
+   Stronger frosted surfaces: the previous translucent treatment was too weak
+   over the high-contrast nebula image on iPad/mobile Safari. */
+#about .about-intro,
+#about .about-principles article,
+#about .about-body>section,
+#about .about-contract{
+  background:rgb(7 11 34 / .82) !important;
+  -webkit-backdrop-filter:blur(28px) saturate(115%) !important;
+  backdrop-filter:blur(28px) saturate(115%) !important;
+  border:1px solid rgb(154 190 255 / .30) !important;
+  box-shadow:0 16px 42px rgb(0 0 0 / .30) !important;
+}
+#about .about-intro{
+  max-width:none;
+  margin:26px 0 22px;
+  padding:clamp(28px,4vw,48px);
+}
+#about .about-principles{
+  border:0 !important;
+  gap:16px;
+}
+#about .about-principles article{
+  border-radius:16px;
+}
+#about .about-body>section,
+#about .about-contract{
+  border-radius:16px;
+}
+@media(max-width:900px){
+  #about .about-intro{margin:18px 0 16px}
+  #about .about-principles{gap:12px}
+  #about .about-body{gap:14px}
+}
