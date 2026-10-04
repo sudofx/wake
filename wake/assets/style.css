@@ -1312,6 +1312,16 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
   .ops-console-grid{grid-template-columns:minmax(0,1fr) 280px}
   .ops-viewport{min-height:500px}
 }
+@media (min-width:1450px) and (min-aspect-ratio:2/1){
+  body.metrics-ops-active main{width:calc(100vw - 48px);max-width:none}
+  body.metrics-ops-active .masthead,body.metrics-ops-active footer{width:calc(100vw - 48px);max-width:none}
+  body.metrics-ops-active #metrics.view{width:100%;max-width:none}
+  .ops-console-grid{grid-template-columns:minmax(0,1fr) 320px}
+  .ops-secondary-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}
+  .ops-tertiary-grid{grid-template-columns:minmax(0,1.18fr) minmax(440px,.82fr)}
+  .ops-source-rail{grid-template-columns:1.5fr .8fr .8fr .7fr}
+  .ops-pulse-cells{grid-template-columns:repeat(50,minmax(4px,1fr))}
+}
 @media(min-width:1600px){
   body.metrics-ops-active main{width:calc(100vw - 72px)}
   .ops-tertiary-grid{grid-template-columns:minmax(0,1.28fr) minmax(460px,.72fr);border-top:1px solid var(--ops-line)}
