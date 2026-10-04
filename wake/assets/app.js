@@ -407,6 +407,27 @@
         const stages=stageValues.map(([label,value],index)=>`<span class="ops-trajectory-stage ${value?'lit':''}" title="${label}: ${value}"><i></i><b>${label}</b><small>${index===0?'recorded':value}</small></span>`).join('');
         return `<a class="ops-trajectory-row" data-project-status="${esc(project.status||'active')}" href="#projects/${encodeURIComponent(project.id)}"><div class="ops-trajectory-copy"><strong>${esc(project.title||project.id)}</strong><span>${esc(String(project.status||'active').toUpperCase())} · ${research.length} research receipts · ${failed} failed</span></div><div class="ops-trajectory-stages">${stages}</div></a>`;
       }).join('')||'<p class="empty">No research projects in the current durable state.</p>';
+    const publicationLineageSource=opsPosts
+      .filter(post=>post?.project&&post?.status!=='superseded')
+      .slice()
+      .sort((a,b)=>Number(b?.created_version||0)-Number(a?.created_version||0))
+      .slice(0,8);
+    const publicationLineageRows=publicationLineageSource.map(post=>{
+      const notebookIds=Array.isArray(post?.notebooks)?post.notebooks:[];
+      const evidenceIds=Array.isArray(post?.evidence)?post.evidence:[];
+      const notebookLinks=notebookIds.map(id=>{
+        const notebook=s.notebooks?.[id];
+        return notebook
+          ? `<a href="#projects/notebook:${encodeURIComponent(id)}" title="${esc(notebook.title||id)}"><span>NOTEBOOK</span><strong>${esc(notebook.title||id)}</strong><small>${esc(id)}</small></a>`
+          : `<span class="missing"><span>NOTEBOOK</span><strong>${esc(id)}</strong><small>not in current state</small></span>`;
+      }).join('')||'<span class="missing"><span>NOTEBOOK</span><strong>none recorded</strong><small>publication lineage has no notebook edge</small></span>';
+      const evidenceLinks=evidenceIds.slice(0,6).map(id=>`<a href="#evidence/${encodeURIComponent(id)}" title="Open evidence ${esc(id)}"><span>EVIDENCE</span><strong>${esc(String(id).slice(-14))}</strong></a>`).join('');
+      const hiddenEvidence=Math.max(0,evidenceIds.length-6);
+      const project=s.projects?.[post.project];
+      const creator=String(post?.created_by||'');
+      const projectLink=project?`<a href="#projects/${encodeURIComponent(post.project)}">${esc(project.title||post.project)}</a>`:`<span>${esc(post.project)}</span>`;
+      return `<article class="ops-publication-row"><div class="ops-publication-sources"><header><span>SOURCE ROOTS</span><strong>${evidenceIds.length}</strong></header><div>${evidenceLinks||'<span class="missing"><span>EVIDENCE</span><strong>none recorded</strong></span>'}${hiddenEvidence?`<span class="more">+${hiddenEvidence} more</span>`:''}</div></div><i aria-hidden="true">→</i><div class="ops-publication-notebooks"><header><span>NOTEBOOKS</span><strong>${notebookIds.length}</strong></header><div>${notebookLinks}</div></div><i aria-hidden="true">→</i><div class="ops-publication-post"><span>PUBLICATION · REV ${Number.isFinite(Number(post?.created_version))?Number(post.created_version):'—'}</span><strong><a href="#blog/${encodeURIComponent(post.id)}">${esc(postTitle(post))}</a></strong><small>${projectLink}${creator?` · <a href="#history/${encodeURIComponent(creator)}">receipt ${esc(creator.slice(-10))}</a>`:''}</small></div></article>`;
+    }).join('');
     const opsBeliefs=Object.values(s.beliefs||{});
     const opsActiveBeliefs=opsBeliefs.filter(item=>item?.status==='active');
     const opsRetractedBeliefs=opsBeliefs.filter(item=>item?.status==='retracted');
@@ -1045,6 +1066,10 @@
             <small>stages show recorded artifacts only · absence is visible, not inferred</small>
           </div>
           <div class="ops-trajectory-list">${opsProjectTrajectories}</div>
+        </div>
+        <div class="ops-publication-lineage" aria-label="Publication artifact lineage">
+          <div class="ops-publication-head"><div><span>PUBLICATION LINEAGE / AUDITABLE ARTIFACT CHAIN</span><strong>${publicationLineageSource.length} recent research publication${publicationLineageSource.length===1?'':'s'}</strong></div><small>Edges are the notebook and evidence IDs stored on each publication. Reflections without research-project lineage are intentionally excluded.</small></div>
+          <div class="ops-publication-list">${publicationLineageRows||'<p class="empty">No research publications with project lineage are present.</p>'}</div>
         </div>
         <div class="ops-matrix-block" id="ops-matrix">
           <div class="ops-matrix-copy"><p class="eyebrow">CONTINUITY@1 / 7×7×7</p><h3>${matrixEnabled?'Coverage of the governed continuity space.':'Canonical continuity space · not yet enabled for this WAKE generation.'}</h3><p>${matrixEnabled?matrixCompleted+' of '+matrixTotal+' coordinates completed · next '+(matrixProgress.next_ordinal?'#'+matrixProgress.next_ordinal:'complete'):'343 deterministic coordinates are visible as definition geometry only.'}</p><small>Seven semantic planes. Within each plane, columns follow pressure order and rows follow exposure order from the shared continuity@1 definition.</small>${matrixFrontier}</div>
