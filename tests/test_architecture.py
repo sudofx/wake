@@ -297,6 +297,18 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-rejection-list', css)
         self.assertIn('.ops-rejection-row', css)
 
+    def test_evidence_story_maps_recorded_topics_to_recorded_tiers(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('TOPIC × PROVENANCE TIER / OBSERVED EVIDENCE', app)
+        self.assertIn("topic:payload?.topic_domain||'unattributed'", app)
+        self.assertIn("tier:payload?.host_tier||'unspecified'", app)
+        self.assertIn('evidenceTopicTierCounts', app)
+        self.assertIn('This shows collection shape, not source quality or truth.', app)
+        self.assertIn('--evidence-tier-count', app)
+        self.assertIn('.ops-evidence-matrix-row', css)
+        self.assertIn('var(--evidence-tier-count)', css)
+
     def test_matrix_story_reconciles_axis_marginals_to_same_cells(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
