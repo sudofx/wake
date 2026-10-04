@@ -57,6 +57,28 @@ def _full_history_metrics(store, state):
         **summary,
     }
 
+
+def _matrix_metrics(store):
+    """Return bounded public matrix telemetry without result bodies."""
+    if not hasattr(store, "continuity_matrix_progress"):
+        return None
+    progress = store.continuity_matrix_progress()
+    if not isinstance(progress, dict):
+        return None
+    counts = {"completed": 0, "failed": 0, "deferred": 0}
+    for result in (progress.get("results") or {}).values():
+        status = result.get("status") if isinstance(result, dict) else None
+        if status in counts:
+            counts[status] += 1
+    return {
+        "matrix": progress.get("matrix"),
+        "definition_digest": progress.get("definition_digest"),
+        "cell_count": progress.get("cell_count"),
+        "completed_count": progress.get("completed_count"),
+        "next_coordinate_id": progress.get("next_coordinate_id"),
+        "status_counts": counts,
+    }
+
 def build_live_projection(store, operation=None, runtime_ref=""):
     """Build one bounded public-safe snapshot from already-verified SQLite state."""
     state, head = store.projection()
@@ -107,5 +129,5 @@ def build_live_projection(store, operation=None, runtime_ref=""):
         "wake_status": deepcopy((operation or {}).get("wake_status", {})),
         "metrics": _full_history_metrics(store, state),
         "application_observability": build_application_observability(store.record) if hasattr(store, "record") else None,
-        "matrix_progress": store.continuity_matrix_progress() if hasattr(store, "continuity_matrix_progress") else None,
+        "matrix_progress": _matrix_metrics(store),
     }
