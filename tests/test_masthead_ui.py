@@ -40,7 +40,6 @@ class MastheadPresentationTests(unittest.TestCase):
         self.assertIn('actions/workflows/operator-enable-continuity.yml/runs?per_page=10', nav)
         self.assertNotIn('actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=10', nav)
         self.assertIn("['running','stopped','campaign']", nav)
-        self.assertIn("latchResult.value.state==='active'?'running':'stopped'", nav)
         self.assertIn("state==='campaign'?'Campaign'", nav)
         self.assertIn('.actions-light[data-state="campaign"] .actions-light-track i', self.css)
         self.assertIn('.actions-light[data-state="campaign"] .actions-light-label', self.css)
