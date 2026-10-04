@@ -127,18 +127,6 @@ window.WakePetReady=(async () => {
     const latestBlogInvocation=latestBlog?.created_by?s.invocations?.[latestBlog.created_by]:null;
     const latestBlogStamp=latestBlogInvocation?.time?format(latestBlogInvocation.time):'';
     const latestBookStamp=latestPublishedBook?panelTime(latestPublishedBook):'';
-    const topicCards=topicActivity.slice(0,6).map(({topic,ps,ns,bs,activeCount,score})=>{
-      const latest=ns[0],evidenceCount=ns.reduce((sum,n)=>sum+(n.evidence?.length||0),0);
-      const question=ps.find(p=>p.status==='active')?.question||ps[0]?.question||'No active question is recorded for this topic.';
-      const progress=Math.max(8,Math.min(100,Math.round(100*score/Math.max(1,maxTopic))));
-      return `<article class="home-topic-card" style="--topic-color:${esc(topicColors[topic.id]||'var(--cyan)')};--topic-progress:${progress}%">
-        <div class="home-topic-head"><div><span>${activeCount?'ACTIVE RESEARCH':'RESEARCH TOPIC'}</span><h3>${esc(topic.label)}</h3></div><a href="#projects/topic:${encodeURIComponent(topic.id)}">Open →</a></div>
-        <p>${esc(question)}</p>
-        <div class="home-topic-progress"><i></i></div>
-        <div class="home-topic-metrics"><span><b>${activeCount}</b><small>active</small></span><span><b>${ns.length}</b><small>notebooks</small></span><span><b>${evidenceCount}</b><small>evidence</small></span><span><b>${bs.length}</b><small>posts</small></span></div>
-        ${latest?`<a class="home-topic-latest" href="#projects/notebook:${encodeURIComponent(latest.id)}">Latest notebook · ${esc(latest.title)} →</a>`:''}
-      </article>`;
-    }).join('');
     document.getElementById('pet-home').innerHTML=`
       <section class="nebula-home-hero">
         <div class="nebula-hero-copy">
@@ -225,14 +213,6 @@ window.WakePetReady=(async () => {
             </div>
           </article>
         </div>
-      </section>
-
-      <section class="home-research-section" aria-labelledby="home-research-title">
-        <div class="home-section-heading">
-          <div><p class="eyebrow">CURRENT RESEARCH</p><h2 id="home-research-title">Questions in motion.</h2><p>Lightweight progress from the recorded research frontier. Counts are descriptive, not quality scores.</p></div>
-          <a href="#topics">View all topics →</a>
-        </div>
-        <div class="home-topic-grid">${topicCards||'<p class="empty">No research topics are configured yet.</p>'}</div>
       </section>
 
       <section class="home-latest-grid" aria-label="Latest published work">
