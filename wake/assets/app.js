@@ -426,8 +426,26 @@
     const latestAcceptedTitle=String(latestAcceptedJournal?.title||latestAcceptedProposal?.title||latestAcceptedId||'No accepted wake recorded');
     const latestAcceptedSummary=String(latestAcceptedJournal?.summary||latestAcceptedProposal?.summary||'No durable journal summary is attached to the latest accepted wake.');
     const latestAcceptedCycle=Number(latestAcceptedJournal?.cycle||0);
+    const latestAcceptedStartEvent=[...(data.events||[])].reverse().find(event=>
+      event?.kind==='invocation_started'&&String(event?.payload?.id||'')===latestAcceptedId
+    )||null;
+    const latestAcceptedBaseVersion=Number(latestAcceptedStartEvent?.payload?.base_version);
+    const latestAcceptedResultHash=String(latestAcceptedEvent?.payload?.result_hash||'');
+    const latestAcceptedHashFields=Array.isArray(latestAcceptedEvent?.payload?.hash_fields)?latestAcceptedEvent.payload.hash_fields:[];
+    const latestAcceptedTypeCounts=latestAcceptedActions.reduce((counts,action)=>{
+      const type=String(action?.type||'change').toUpperCase();
+      counts[type]=(counts[type]||0)+1;
+      return counts;
+    },{});
+    const latestAcceptedEffectStrip=Object.entries(latestAcceptedTypeCounts)
+      .sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]))
+      .map(([type,count])=>`<span><b>${count}</b>${esc(type)}</span>`)
+      .join('');
+    const latestAcceptedBaseLabel=Number.isFinite(latestAcceptedBaseVersion)?String(latestAcceptedBaseVersion):'—';
+    const latestAcceptedCycleLabel=latestAcceptedCycle?String(latestAcceptedCycle):'—';
+    const latestAcceptedHashLabel=latestAcceptedResultHash?latestAcceptedResultHash.slice(0,16):'—';
     const latestWakeStory=latestAcceptedId
-      ? `<article class="ops-latest-wake"><div class="ops-latest-wake-kicker"><span>LATEST ACCEPTED WAKE${latestAcceptedCycle?' · CYCLE '+latestAcceptedCycle:''}</span><a href="#history/${encodeURIComponent(latestAcceptedId)}">EXACT RECEIPT →</a></div><h3>${esc(latestAcceptedTitle)}</h3><p>${esc(latestAcceptedSummary)}</p><div class="ops-latest-action-list">${latestAcceptedActionRows||'<div class="ops-latest-action empty"><strong>No governed actions recorded on this accepted wake.</strong></div>'}${latestAcceptedHiddenActions?`<div class="ops-latest-action more"><span>+${latestAcceptedHiddenActions}</span><strong>additional accepted action${latestAcceptedHiddenActions===1?'':'s'}</strong><small>open exact receipt for full proposal</small></div>`:''}</div><div class="ops-latest-wake-meta"><span><b>${latestAcceptedActions.length}</b> governed change${latestAcceptedActions.length===1?'':'s'}</span><span>${latestAcceptedTypes.length?esc(latestAcceptedTypes.join(' · ')):'NO ACTION TYPES RECORDED'}</span><span>${esc(latestAcceptedId.slice(-14))}</span></div></article>`
+      ? `<article class="ops-latest-wake"><div class="ops-latest-wake-kicker"><span>LATEST ACCEPTED WAKE${latestAcceptedCycle?' · CYCLE '+latestAcceptedCycle:''}</span><a href="#history/${encodeURIComponent(latestAcceptedId)}">EXACT RECEIPT →</a></div><h3>${esc(latestAcceptedTitle)}</h3><p>${esc(latestAcceptedSummary)}</p><div class="ops-latest-transition" aria-label="Latest accepted state transition"><div><span>BASE REVISION</span><strong>${latestAcceptedBaseLabel}</strong><small>${Number.isFinite(latestAcceptedBaseVersion)?'from matching invocation_started receipt':'start receipt unavailable in published event window'}</small></div><i aria-hidden="true">→</i><div><span>ACCEPTED REVISION</span><strong>${latestAcceptedCycleLabel}</strong><small>${latestAcceptedCycle?'durable journal cycle':'accepted revision unavailable'}</small></div><div class="ops-latest-hash"><span>RESULT HASH</span><strong>${esc(latestAcceptedHashLabel)}</strong><small>${latestAcceptedHashFields.length?latestAcceptedHashFields.length+' hashed state field'+(latestAcceptedHashFields.length===1?'':'s'):'hash field list unavailable'}</small></div></div>${latestAcceptedEffectStrip?`<div class="ops-latest-effect-strip" aria-label="Latest accepted action type counts">${latestAcceptedEffectStrip}</div>`:''}<div class="ops-latest-action-list">${latestAcceptedActionRows||'<div class="ops-latest-action empty"><strong>No governed actions recorded on this accepted wake.</strong></div>'}${latestAcceptedHiddenActions?`<div class="ops-latest-action more"><span>+${latestAcceptedHiddenActions}</span><strong>additional accepted action${latestAcceptedHiddenActions===1?'':'s'}</strong><small>open exact receipt for full proposal</small></div>`:''}</div><div class="ops-latest-wake-meta"><span><b>${latestAcceptedActions.length}</b> governed change${latestAcceptedActions.length===1?'':'s'}</span><span>${latestAcceptedTypes.length?esc(latestAcceptedTypes.join(' · ')):'NO ACTION TYPES RECORDED'}</span><span>${esc(latestAcceptedId.slice(-14))}</span></div></article>`
       : '<article class="ops-latest-wake empty"><div class="ops-latest-wake-kicker"><span>LATEST ACCEPTED WAKE</span></div><h3>No accepted wake is present in the published record.</h3></article>';
 
     const groupByProject=items=>items.reduce((index,item)=>{
