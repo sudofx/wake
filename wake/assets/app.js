@@ -389,6 +389,19 @@
     const sinceReflectionHtml=hasReflectionBaseline
       ? `<div class="ops-since-reflection"><header><div><span>SINCE LAST REFLECTION RECEIPT</span><strong>record version ${reflectionRecordVersion} → ${Number(s.version||0)}</strong></div><a href="#blog/${encodeURIComponent(latestReflection.post.id)}">OPEN REFLECTION →</a></header><div class="ops-since-grid"><div><strong>${sinceReflection.evidence}</strong><span>evidence added</span></div><div><strong>${sinceReflection.beliefs}</strong><span>beliefs revised</span></div><div><strong>${sinceReflection.projects}</strong><span>projects changed</span></div><div><strong>${sinceReflection.notebooks}</strong><span>notebooks revised</span></div><div><strong>${sinceReflection.commitments}</strong><span>commitments created</span></div></div><small>Versioned record deltas only. Counts show durable changes after the reflection receipt; they do not measure importance or causal impact.</small></div>`
       : '<div class="ops-since-reflection unavailable"><header><div><span>SINCE LAST REFLECTION RECEIPT</span><strong>baseline unavailable</strong></div></header><small>No versioned reflection receipt is available, so WAKE does not infer a comparison window.</small></div>';
+    const latestAcceptedEvent=accepted.at(-1)||null;
+    const latestAcceptedId=String(latestAcceptedEvent?.payload?.id||'');
+    const latestAcceptedProposal=latestAcceptedEvent?.payload?.proposal||{};
+    const latestAcceptedActions=Array.isArray(latestAcceptedProposal?.actions)?latestAcceptedProposal.actions:[];
+    const latestAcceptedJournal=[...(s.journal||[])].reverse().find(item=>item?.invocation===latestAcceptedId)||null;
+    const latestAcceptedTypes=[...new Set(latestAcceptedActions.map(action=>String(action?.type||'change').toUpperCase()))];
+    const latestAcceptedTitle=String(latestAcceptedJournal?.title||latestAcceptedProposal?.title||latestAcceptedId||'No accepted wake recorded');
+    const latestAcceptedSummary=String(latestAcceptedJournal?.summary||latestAcceptedProposal?.summary||'No durable journal summary is attached to the latest accepted wake.');
+    const latestAcceptedCycle=Number(latestAcceptedJournal?.cycle||0);
+    const latestWakeStory=latestAcceptedId
+      ? `<article class="ops-latest-wake"><div class="ops-latest-wake-kicker"><span>LATEST ACCEPTED WAKE${latestAcceptedCycle?' · CYCLE '+latestAcceptedCycle:''}</span><a href="#history/${encodeURIComponent(latestAcceptedId)}">EXACT RECEIPT →</a></div><h3>${esc(latestAcceptedTitle)}</h3><p>${esc(latestAcceptedSummary)}</p><div class="ops-latest-wake-meta"><span><b>${latestAcceptedActions.length}</b> governed change${latestAcceptedActions.length===1?'':'s'}</span><span>${latestAcceptedTypes.length?esc(latestAcceptedTypes.join(' · ')):'NO ACTION TYPES RECORDED'}</span><span>${esc(latestAcceptedId.slice(-14))}</span></div></article>`
+      : '<article class="ops-latest-wake empty"><div class="ops-latest-wake-kicker"><span>LATEST ACCEPTED WAKE</span></div><h3>No accepted wake is present in the published record.</h3></article>';
+
     const opsProjectTrajectories=projects
       .slice()
       .sort((a,b)=>String(a.status||'active').localeCompare(String(b.status||'active'))||Number(b.updated_version||b.created_version||0)-Number(a.updated_version||a.created_version||0))
@@ -867,6 +880,7 @@
           </div>
         </header>
 
+        ${latestWakeStory}
         <div class="ops-source-rail" aria-label="Projection provenance">
           <div><span>AUTHORITY</span><strong>${esc(sourceAuthority)}</strong></div>
           <div><span>RECORD HEAD</span><strong>${esc(shortHead)}</strong></div>
