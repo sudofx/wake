@@ -605,14 +605,15 @@
     }).join('');
     $('metrics-dashboard').innerHTML=`
       <nav class="ops-storyline" aria-label="WAKE data story">
-        <a href="#metrics" data-story-target="ops-now"><b>01</b><span>ACTIVITY</span><strong>cycle ${s.version}</strong></a>
-        <a href="#metrics" data-story-target="ops-pressure"><b>02</b><span>PRESSURE</span><strong>${rejectedCount} rejected</strong></a>
-        <a href="#metrics" data-story-target="ops-context"><b>03</b><span>MEMORY</span><strong>${contextDelivery?esc(String(contextDelivery.mode||'rich').toUpperCase()):'no receipt'}</strong></a>
-        <a href="#metrics" data-story-target="ops-evidence"><b>04</b><span>EVIDENCE</span><strong>${qualifyingEvidence} substantive</strong></a>
-        <a href="#metrics" data-story-target="ops-trajectory"><b>05</b><span>TRAJECTORY</span><strong>${projects.length} projects</strong></a>
-        <a href="#metrics" data-story-target="ops-beliefs"><b>06</b><span>BELIEF</span><strong>${opsActiveBeliefs.length} active</strong></a>
-        <a href="#metrics" data-story-target="ops-frontier"><b>07</b><span>FRONTIER</span><strong>${openObligations} open</strong></a>
-        <a href="#metrics" data-story-target="ops-matrix"><b>08</b><span>CONTINUITY</span><strong>${matrixPct}% mapped</strong></a>
+        <a href="#metrics" data-story-target="ops-record"><b>01</b><span>RECORD</span><strong>${trustedProjectionOk&&sqliteQuickOk?'local checks ok':'inspect evidence'}</strong></a>
+        <a href="#metrics" data-story-target="ops-now"><b>02</b><span>ACTIVITY</span><strong>cycle ${s.version}</strong></a>
+        <a href="#metrics" data-story-target="ops-pressure"><b>03</b><span>PRESSURE</span><strong>${rejectedCount} rejected</strong></a>
+        <a href="#metrics" data-story-target="ops-context"><b>04</b><span>MEMORY</span><strong>${contextDelivery?esc(String(contextDelivery.mode||'rich').toUpperCase()):'no receipt'}</strong></a>
+        <a href="#metrics" data-story-target="ops-evidence"><b>05</b><span>EVIDENCE</span><strong>${qualifyingEvidence} substantive</strong></a>
+        <a href="#metrics" data-story-target="ops-trajectory"><b>06</b><span>TRAJECTORY</span><strong>${projects.length} projects</strong></a>
+        <a href="#metrics" data-story-target="ops-beliefs"><b>07</b><span>BELIEF</span><strong>${opsActiveBeliefs.length} active</strong></a>
+        <a href="#metrics" data-story-target="ops-frontier"><b>08</b><span>FRONTIER</span><strong>${openObligations} open</strong></a>
+        <a href="#metrics" data-story-target="ops-matrix"><b>09</b><span>CONTINUITY</span><strong>${matrixPct}% mapped</strong></a>
       </nav>
       <section class="ops-console" id="ops-now" aria-label="WAKE operational research console">
         <header class="ops-console-head">
@@ -629,7 +630,7 @@
           <div><span>RUNTIME</span><strong>${esc(runtimeRef)}</strong></div>
           <div class="ops-access ${accessEnabled===true?'enabled':accessEnabled===false?'disabled':'unknown'}"><span>GLOBAL ACCESS</span><strong>${accessEnabled===true?'ENABLED':accessEnabled===false?'DISABLED':'UNKNOWN'}</strong><small>DERIVED / LIVE · ${applicationAccess?'generation '+applicationAccess.generation:'state unavailable'}</small></div>
         </div>
-        <div class="ops-record-spine" aria-label="Durable record integrity evidence">
+        <div class="ops-record-spine" id="ops-record" aria-label="Durable record integrity evidence">
           <div class="ops-record-summary">
             <span>DURABLE RECORD</span>
             <strong class="${trustedProjectionOk&&sqliteQuickOk?'ok':'warning'}">${trustedProjectionOk&&sqliteQuickOk?'TRUSTED PROJECTION + SQLITE OK':'CHECK EVIDENCE'}</strong>
