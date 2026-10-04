@@ -2076,6 +2076,12 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
   .ops-command-lamps span{font-size:7px}
 }
 @media(min-width:1500px){
+  .ops-command-deck{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(340px,.7fr)}
+  .ops-command-deck>header,.ops-command-zones,.ops-command-grid{grid-column:1/-1}
+  .ops-command-activity{grid-column:1;grid-template-columns:minmax(170px,.45fr) minmax(0,1fr);border-right:1px solid var(--ops-line-soft)}
+  .ops-command-activity-legend{grid-column:1/-1;justify-content:flex-start}
+  .ops-command-pulse{grid-column:2;grid-template-columns:1fr;align-content:stretch;gap:6px}
+  .ops-command-pulse-track{height:48px}
   .ops-command-zones{display:grid;grid-template-columns:3fr 4fr 1fr;border-bottom:1px solid var(--ops-line-soft);background:#050c10}
   .ops-command-zones span{padding:5px 10px;border-right:1px solid var(--ops-line-soft);font:7px/1 var(--mono);letter-spacing:.13em;color:#5f7f86}
   .ops-command-zones span:nth-child(2){color:var(--ops-cyan)}
