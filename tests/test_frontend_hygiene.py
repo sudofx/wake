@@ -76,6 +76,8 @@ class FrontendHygieneTests(unittest.TestCase):
         self.assertIn("location.hash.match(/^#seq=(\\d+)$/)", flat_script)
         self.assertIn("location.hash.match(/^#event=(.+)$/)", flat_script)
         self.assertIn("target.classList.add('flat-target')", flat_script)
+        self.assertIn("const eventHtml=events.map(event=>", flat_script)
+        self.assertIn("eventHtml||'<p class=\"empty\">No recorded events.</p>'", flat_script)
         self.assertIn(".flat-target-status", css)
         self.assertIn(".entry.flat-target", css)
 
