@@ -194,6 +194,22 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertNotIn('record_continuity_matrix_result(', app)
         self.assertNotIn('enable_continuity_matrix(', app)
 
+    def test_external_visual_reference_names_never_enter_repository_text(self):
+        blocked = ("de" + "los", "west" + "world")
+        roots = (ROOT / "wake", ROOT / "docs", ROOT / "tests")
+        suffixes = {".py", ".js", ".css", ".html", ".md", ".toml", ".yml", ".yaml"}
+        offenders = []
+        for root in roots:
+            if not root.exists():
+                continue
+            for path in root.rglob("*"):
+                if not path.is_file() or path.suffix.lower() not in suffixes:
+                    continue
+                text = path.read_text(errors="ignore").lower()
+                if any(term in text for term in blocked):
+                    offenders.append(str(path.relative_to(ROOT)))
+        self.assertEqual(offenders, [])
+
     def test_site_operator_link_goes_directly_to_github_actions(self):
         page = self.read('wake/assets/index.html')
         self.assertIn('href="https://github.com/sudofx/wake/actions"', page)
