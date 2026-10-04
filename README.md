@@ -18,6 +18,11 @@ The public site exposes the same record at increasing depth: readable summaries 
 
 **[Open **WAKE✳︎**’s home](https://sudofx.github.io/wake/)** · **[Open GitHub Actions](https://github.com/sudofx/wake/actions)**
 
+## Optional continuity matrix extension
+
+WAKE can explicitly opt into sudofx's versioned `continuity@1` 7×7×7 matrix without copying the matrix definition into this repository. sudofx owns the immutable grammar, coordinate IDs, traversal, validation, and definition digest; WAKE owns when the campaign is enabled, how coordinates are scheduled and prompted, how results are interpreted/scored, and which results count as completed. Matrix progress is committed through the existing WAKE `ApplicationHost` state in `sudofx.sqlite`; no JSON/Markdown progress store is authoritative. Existing research behavior is unchanged until matrix enablement is explicitly submitted.
+
+
 ## Current architecture — October 2, 2026
 
 WAKE✳︎ has now satisfied the **Phase E architectural exit condition on `master`**: it runs as a sudofx application rather than maintaining a competing operational engine. The explicitly promoted `wake-runtime` branch may lag `master` while research is running; promotion remains a separate maintenance operation that must first stop and drain active research.
