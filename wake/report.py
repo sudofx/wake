@@ -643,6 +643,9 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         for name in ("style.css", "nav.css", "map.css", "map3d.css", "theme.css",
                      "nav.js", "map.js", "map3d.js", "flat-view.js"):
             atomic_write(target / name, (assets / name).read_text())
+        # Static Nebula artwork is presentation-only; publish the exact approved
+        # asset alongside the generated shell without routing it through text IO.
+        (target / "nebula-bg.webp").write_bytes((assets / "nebula-bg.webp").read_bytes())
         browser_data = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
         atomic_write(target / "wake-data.json", browser_data)
         page = template.replace("/* WAKE_STYLE */", "").replace("/* NAV_STYLE */", "")
