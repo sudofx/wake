@@ -357,6 +357,21 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertNotIn('Only explicit reflection receipts are plotted.', app)
         self.assertNotIn('inferred era', app.lower())
 
+    def test_longitudinal_record_hands_off_to_current_state_without_inference(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('const reflectionVersionSpan=hasReflectionBaseline?', app)
+        self.assertIn('Transition from durable reflection history to current governed state', app)
+        self.assertIn('LAST REFLECTION RECEIPT', app)
+        self.assertIn('CURRENT GOVERNED STATE', app)
+        self.assertIn('version span ${reflectionVersionSpan}', app)
+        self.assertIn('no baseline inferred', app)
+        self.assertIn('${historyToNowHtml}', app)
+        self.assertIn('.ops-present-bridge{display:grid', css)
+        self.assertIn('.ops-present-line i{position:absolute', css)
+        self.assertIn('@media(min-width:1600px){', css)
+        self.assertIn('@media(max-width:430px){.ops-present-bridge{grid-template-columns:minmax(0,1fr) 34px minmax(0,1fr)}', css)
+
     def test_reflection_delta_story_uses_only_versioned_record_fields(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
