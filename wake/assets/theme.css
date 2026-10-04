@@ -2378,3 +2378,48 @@ body>.masthead .powered-by{
 .home-latest-grid{
   margin-top:18px!important;
 }
+
+
+/* CURRENT RESEARCH HEADING GLASS — 2026-10-04 */
+.home-research-heading-panel{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:24px;
+  margin-top:18px;
+  padding:20px 22px;
+  border:1px solid rgba(74,111,158,.62);
+  border-radius:12px;
+  background:rgba(4,15,34,.62);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 16px 44px rgba(0,0,18,.15);
+  backdrop-filter:blur(22px) saturate(118%);
+  -webkit-backdrop-filter:blur(22px) saturate(118%);
+}
+.home-research-heading-panel>div{max-width:760px}
+.home-research-heading-panel .eyebrow{margin:0 0 5px}
+.home-research-heading-panel h2{
+  margin:0;
+  color:#f6f8ff;
+  font:760 clamp(28px,3vw,38px)/1.05 -apple-system,BlinkMacSystemFont,"SF Pro Display",Inter,"Segoe UI",Arial,sans-serif;
+  letter-spacing:-.04em;
+}
+.home-research-heading-panel p:last-child{
+  margin:8px 0 0;
+  color:#b9c3db;
+  font-size:14px;
+}
+.home-research-heading-panel>a{
+  flex:0 0 auto;
+  color:#28e2eb;
+  font-size:13px;
+  white-space:nowrap;
+}
+@media(max-width:700px){
+  .home-research-heading-panel{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:10px;
+    padding:17px 18px;
+    border-radius:10px;
+  }
+}
