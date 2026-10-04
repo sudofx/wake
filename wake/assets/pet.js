@@ -115,24 +115,63 @@ window.WakePetReady=(async () => {
     const leadSummary=latestBook?.summary||journal?.summary||'WAKE✳︎ will not manufacture a discovery before the durable record contains one.';
     const leadTopic=latestBook?.domain;
     const evidenceDepth=latestBook?.evidence?.length||0;
+    const latestResearch=books.slice(0,3);
+    const latestResearchRows=latestResearch.map(n=>{
+      const stamp=panelTime(n);
+      return `<a class="nebula-research-row" href="#projects/notebook:${encodeURIComponent(n.id)}"><span class="nebula-thumb" style="--topic-color:${esc(topicColors[n.domain]||'var(--cyan)')}"></span><span><strong>${esc(n.title)}</strong><small>${stamp?esc(stamp):'Recorded notebook'}</small></span><b aria-hidden="true">›</b></a>`;
+    }).join('');
+    const topTopics=topicActivity.slice(0,4).map(({topic,score})=>`<a class="nebula-topic-row" href="#projects/topic:${encodeURIComponent(topic.id)}"><span>${esc(topic.label)}</span><b>${score}</b></a>`).join('');
     document.getElementById('pet-home').innerHTML=`
-      <section class="observatory-hero">
-        <div class="observatory-question"><p class="eyebrow">AN OPEN EXPERIMENT IN AI CONTINUITY</p><h1>Can the work continue when every session starts over?</h1><p>The model forgets. The public record carries evidence, commitments, corrections, and unfinished work into the next fresh session.</p><div class="observatory-actions"><a class="primary-link" href="#discoveries">See what it has found <span>→</span></a><a class="subtle" href="#about">Understand the experiment →</a></div></div>
-        <aside class="observatory-now"><p class="eyebrow">RIGHT NOW / CYCLE ${s.version}</p><strong>${esc(status)}</strong><p>${active[0]?esc(active[0].question):'Waiting for the next recorded research question.'}</p><div class="now-stats"><span><b>${active.length}</b> active questions</span><span><b>${books.length}</b> notebooks</span><span><b>${Object.keys(s.evidence||{}).length}</b> evidence records</span></div></aside>
+      <section class="nebula-home-hero">
+        <div class="nebula-hero-copy">
+          <p class="eyebrow">WAKE✳︎ / DURABLE ACCOUNTABLE WORK</p>
+          <h1>A more durable<br><span>intelligence future.</span></h1>
+          <p>WAKE✳︎ is infrastructure for accountable work across interchangeable intelligences — preserving how we reach conclusions, not just what they are.</p>
+          <div class="nebula-hero-actions">
+            <a class="primary-link" href="#discoveries">Explore Research <span>→</span></a>
+            <a class="nebula-secondary" href="console.html">Open Console</a>
+          </div>
+        </div>
+        <div class="nebula-planet" aria-hidden="true"><i></i></div>
       </section>
-      <section class="home-lead-story" style="--topic-color:${esc(topicColors[leadTopic]||'var(--cyan)')}">
-        <div class="lead-story-label"><p class="eyebrow">LATEST RESEARCH SIGNAL</p>${leadTopic?topicTag(leadTopic):''}</div>
-        <div class="lead-story-copy"><h2>${esc(leadTitle)}</h2><p>${esc(leadSummary)}</p>${leadProject?`<div class="lead-question"><span>QUESTION BEHIND IT</span><p>${esc(leadProject.question)}</p></div>`:''}</div>
-        <div class="lead-story-depth"><div><strong>${evidenceDepth}</strong><span>evidence records in this notebook</span></div><a class="text-link" href="${latestBook?`#projects/notebook:${encodeURIComponent(latestBook.id)}`:noteLink}">Understand it →</a><a class="subtle" href="#evidence">See the evidence →</a>${latestBook?.updated_by?`<a class="subtle" href="#history/${encodeURIComponent(latestBook.updated_by)}">Inspect the receipt →</a>`:''}</div>
+
+      <section class="nebula-pillars" aria-label="WAKE principles">
+        <article><span class="nebula-icon nebula-record">◎</span><div><h2>Record</h2><p>Append-only history with verifiable provenance.</p></div></article>
+        <article><span class="nebula-icon nebula-govern">◇</span><div><h2>Govern</h2><p>Deterministic policy and accountability.</p></div></article>
+        <article><span class="nebula-icon nebula-evolve">✣</span><div><h2>Evolve</h2><p>Designed to outlast models, platforms, and people.</p></div></article>
       </section>
-      <section class="home-motion">
-        <div class="section-top"><div><p class="eyebrow">THE EXPERIMENT IS MOVING</p><h2>The shape of the last ${recentWakes.length} completed wakes.</h2></div><a class="subtle" href="#metrics">Open the instrument panel →</a></div>
-        <div class="motion-grid"><div class="motion-pulse"><div class="home-wake-timeline">${wakeCells||'<span class="empty">No completed wakes yet.</span>'}</div><p>Each cell is a completed wake. Outcome is governance state—not a quality score.</p></div><div class="motion-numbers"><div><strong>${acceptedRecent}</strong><span>accepted</span></div><div><strong>${rejectedRecent}</strong><span>rejected</span></div><div><strong>${deferredRecent}</strong><span>deferred</span></div></div></div>
+
+      <section class="nebula-home-grid">
+        <article class="nebula-home-card nebula-latest">
+          <header><div><span class="nebula-card-icon">▤</span><h2>Latest research</h2></div><a href="#discoveries">View all →</a></header>
+          <div>${latestResearchRows||'<p class="empty">No published notebooks yet.</p>'}</div>
+        </article>
+        <article class="nebula-home-card nebula-system">
+          <header><div><span class="nebula-card-icon">◈</span><h2>System map</h2></div><a href="console.html?tool=map3d">Open map →</a></header>
+          <a class="nebula-orb" href="console.html?tool=map3d" aria-label="Open recorded system map"><i></i><i></i><i></i><i></i><i></i><i></i></a>
+          <div class="nebula-system-stats">
+            <span><b>${s.version}</b><small>Accepted wakes</small></span>
+            <span><b>${books.length}</b><small>Notebooks</small></span>
+            <span><b>${Object.keys(s.evidence||{}).length}</b><small>Evidence</small></span>
+          </div>
+        </article>
+        <article class="nebula-home-card nebula-status-card">
+          <header><div><span class="nebula-card-icon">▥</span><h2>Current status</h2></div><a href="#metrics">View metrics →</a></header>
+          <p>${attempt?esc(labels[attempt.status]||attempt.status):'Waiting for the first recorded wake.'}</p>
+          <div class="nebula-bars" aria-hidden="true">${recentWakes.slice(-18).map((i,index)=>`<i class="${esc(i.status||'unknown')}" style="--h:${32+(index%7)*8}px"></i>`).join('')}</div>
+          <div class="nebula-status-stats">
+            <span><b>${s.version}</b><small>Accepted wakes</small></span>
+            <span><b>${active.length}</b><small>Active questions</small></span>
+            <span><b>${books.length}</b><small>Works</small></span>
+          </div>
+        </article>
       </section>
-      <section class="home-landscape"><div class="section-top"><div><p class="eyebrow">WHAT IS <span class="wake-mark">WAKE✳︎</span> THINKING ABOUT?</p><h2>Enter through a question you care about.</h2></div><a class="subtle" href="#topics">Full research landscape →</a></div><div class="observatory-topics">${topicObservatory}</div></section>
-      <section class="home-depth"><div><p class="eyebrow">HOW DEEP DO YOU WANT TO GO?</p><h2>Same record. Different depth.</h2><p>Start with the story, inspect the research, or reconstruct the exact durable event.</p></div><nav aria-label="Research depth"><a href="#discoveries"><span>01 / STORY</span><strong>What did it find?</strong><small>Plain-language findings and why they matter.</small></a><a href="#projects"><span>02 / RESEARCH</span><strong>How does it know?</strong><small>Questions, notebooks, limitations, and evidence.</small></a><a href="#history"><span>03 / RECORD</span><strong>What exactly happened?</strong><small>Proposals, outcomes, identifiers, and provenance.</small></a></nav></section>
-    `;
-  }
+
+      <section class="nebula-topic-panel">
+        <div class="section-top"><div><p class="eyebrow">RESEARCH LANDSCAPE</p><h2>Questions in motion.</h2></div><a class="subtle" href="#topics">View all topics →</a></div>
+        <div class="nebula-topic-list">${topTopics||'<p class="empty">No configured topics yet.</p>'}</div>
+      </section>
+    `;  }
   window.WakePet={render};
   return window.WakePet;
 })();
