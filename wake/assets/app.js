@@ -585,6 +585,11 @@
     const providerRequests=completed.reduce((n,i)=>n+(i.provider_requests_sent||0),0);
     const requestsPerAccepted=acceptedCount?(providerRequests/acceptedCount).toFixed(2):'—';
     const wakeStatus=data.wake_status||{};
+    const providerDailyLimit=Number(wakeStatus.daily_call_limit);
+    const providerSlotsToday=Number(wakeStatus.provider_request_slots_today||0);
+    const providerQuotaPct=Number.isFinite(providerDailyLimit)&&providerDailyLimit>0
+      ? Math.max(0,Math.min(100,100*providerSlotsToday/providerDailyLimit))
+      : null;
     const applicationAccess=data.application_access||null;
     const accessEnabled=typeof applicationAccess?.enabled==='boolean'?applicationAccess.enabled:null;
     const sourceMeta=data.source||{};
@@ -971,10 +976,10 @@
         </header>
         <div class="ops-command-grid">
           <a href="#metrics/ops-now" data-tone="${currentStatus.toLowerCase()}"><span>WAKE STATUS</span><strong>${esc(currentStatus)}</strong><b>CYCLE ${s.version}</b><small>${completed.length} completed wakes · ${acceptanceRate===null?'acceptance unavailable':acceptanceRate+'% accepted'}</small></a>
-          <a href="#metrics/ops-pressure"><span>PROVIDER</span><strong>${esc(latestModel)}</strong><b>${wakeStatus.provider_requests_today??0} requests today</b><small>${providerSuccesses}/${knownAttempts.length} known attempts success-labelled</small></a>
+          <a href="#metrics/ops-pressure"><span>PROVIDER</span><strong>${esc(latestModel)}</strong><b>${wakeStatus.provider_requests_today??0} requests today</b><i class="ops-command-meter ${providerQuotaPct===null?'unavailable':''}" style="--meter:${providerQuotaPct===null?0:providerQuotaPct.toFixed(2)}%" aria-hidden="true"></i><small>${providerQuotaPct===null?'quota limit unavailable':providerSlotsToday+'/'+providerDailyLimit+' charged request slots'} · ${providerSuccesses}/${knownAttempts.length} known attempts success-labelled</small></a>
           <a href="#metrics/ops-horizon" data-tone="${overdue?'warning':'ok'}"><span>FRONTIER</span><strong>${openObligations}</strong><b>OPEN COMMITMENTS</b><small>${overdue} overdue · durable governed obligations</small></a>
-          <a href="#metrics/ops-matrix"><span>CONTINUITY@1</span><strong>${matrixPct===null?'NOT ENABLED':matrixPct+'%'}</strong><b>${matrixCompleted}/${matrixTotal} coordinates</b><small>deterministic test-space coverage · not research quality</small></a>
-          <a href="map3d.html#record=root%3Awake"><span>RESEARCH FIELD</span><strong>${topicActive}/${configuredTopicCount||'—'}</strong><b>ACTIVE TOPIC LANES</b><small>${topicAttributedTotal} topic-attributed accepted actions · open 3D provenance</small></a>
+          <a href="#metrics/ops-matrix"><span>CONTINUITY@1</span><strong>${matrixPct===null?'NOT ENABLED':matrixPct+'%'}</strong><b>${matrixCompleted}/${matrixTotal} coordinates</b><i class="ops-command-meter ${matrixPct===null?'unavailable':''}" style="--meter:${matrixPct===null?0:matrixPct}%" aria-hidden="true"></i><small>deterministic test-space coverage · not research quality</small></a>
+          <a href="map3d.html#record=root%3Awake"><span>RESEARCH FIELD</span><strong>${topicActive}/${configuredTopicCount||'—'}</strong><b>ACTIVE TOPIC LANES</b><i class="ops-command-meter ${topicCoveragePct===null?'unavailable':''}" style="--meter:${topicCoveragePct===null?0:Math.max(0,Math.min(100,topicCoveragePct)).toFixed(2)}%" aria-hidden="true"></i><small>${topicAttributedTotal} topic-attributed accepted actions · open 3D provenance</small></a>
           <a href="events.html" data-tone="${recordReplayOk&&sqliteQuickOk?'ok':'warning'}"><span>DURABLE RECORD</span><strong>${recordReplayOk&&sqliteQuickOk?'VERIFIED':'CHECK'}</strong><b>${recordIntegrity?.sudofx_event_count??'—'} events</b><small>head ${esc(shortHead)} · local replay + SQLite integrity evidence</small></a>
         </div>
       </section>
