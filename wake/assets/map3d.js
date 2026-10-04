@@ -64,6 +64,20 @@ async function ensureNode(id){
  await ensureBranch(id);
  return Boolean(get(id));
 }
+async function restoreInitialRecord(id){
+ if(!id.startsWith('invocation:'))return choose(id);
+ const invocationId=id.slice('invocation:'.length);
+ const journalId='journal:'+invocationId;
+ await ensureBranch('root:journal');
+ if(!children('root:journal').includes(journalId))return choose(id);
+ await ensureBranch(journalId);
+ if(!children(journalId).includes(id))return choose(id);
+ freeze();
+ await ensureBranch(id);
+ path=['root:wake','root:journal',journalId,id];
+ preview=null;hovered=null;
+ render();showDetail();frameSelection(id);writeRecordHash(id);
+}
 const reflection=node=>node.kind==='blog'&&Number(node.detail?.created_version)%10===0&&/reflection/i.test(`${node.id} ${node.title}`);
 const nodeTime=node=>node.detail?.time||'';
 const timeLabel=value=>{if(!value||Number.isNaN(Date.parse(value)))return '';return new Intl.DateTimeFormat('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZone:'America/Los_Angeles'}).format(new Date(value))};
@@ -169,7 +183,7 @@ const endPointer=event=>{if(event.pointerType==='touch'){const wasPinching=Boole
 stage.addEventListener('pointerup',endPointer);stage.addEventListener('pointercancel',endPointer);stage.addEventListener('keydown',event=>{if(event.key==='Escape')release();if(event.key==='+')zoom(.13);if(event.key==='-')zoom(-.13)});
 let resizeFrame=null;window.addEventListener('resize',()=>{if(resizeFrame)cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{resizeFrame=null;render()})});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){if(frame){cancelAnimationFrame(frame);frame=null}if(layoutFrame){cancelAnimationFrame(layoutFrame);layoutFrame=null}layoutMotion=null}else render()});
-document.getElementById('counts').textContent=`${counts.journal||0} journal entries · ${counts.blog||0} blog posts · ${counts.relationships||0} recorded relationships · version ${data.meta?.version??'—'}`;document.getElementById('constellation-empty').hidden=(counts.journal||counts.blog||counts.project||counts.evidence||counts.research||0)>0;const initialRecord=recordFromHash();if(initialRecord)choose(initialRecord);else{render();startDrift()}
+document.getElementById('counts').textContent=`${counts.journal||0} journal entries · ${counts.blog||0} blog posts · ${counts.relationships||0} recorded relationships · version ${data.meta?.version??'—'}`;document.getElementById('constellation-empty').hidden=(counts.journal||counts.blog||counts.project||counts.evidence||counts.research||0)>0;const initialRecord=recordFromHash();if(initialRecord)restoreInitialRecord(initialRecord);else{render();startDrift()}
 document.querySelectorAll('.cycle-count').forEach(node=>node.textContent=data.meta?.version??'—');
 const theme=document.getElementById('theme-toggle'),icon=document.querySelector('.theme-icon');function sync(){const dark=document.documentElement.dataset.theme==='dark';theme.checked=dark;if(icon)icon.textContent=dark?'◑':'☼'}sync();theme.addEventListener('change',()=>{if(theme.checked)document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;try{localStorage.setItem('wake-theme',theme.checked?'dark':'light')}catch{}sync();render()});
 })().catch(error=>{console.error(error);const counts=document.getElementById('counts');if(counts)counts.textContent='3D map data unavailable';});
