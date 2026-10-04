@@ -281,6 +281,27 @@
       const active=shadow.activation?.active===true;
       return `<a class="ops-drive-tick ${active?'advisory':'shadow'}" href="#history/${encodeURIComponent(item.id)}" style="--drive-height:${Math.max(5,score*100).toFixed(0)}%" title="${esc(item.id)} · leader ${esc(leader?.title||'none')} · ${Math.round(score*100)}% · ${active?'advisory':'shadow'}"></a>`;
     }).join('');
+    const opsResearch=Object.values(s.research||{});
+    const opsNotebooks=Object.values(s.notebooks||{});
+    const opsPosts=Object.values(s.posts||{});
+    const opsProjectTrajectories=projects
+      .slice()
+      .sort((a,b)=>String(a.status||'active').localeCompare(String(b.status||'active'))||Number(b.updated_version||b.created_version||0)-Number(a.updated_version||a.created_version||0))
+      .map(project=>{
+        const research=opsResearch.filter(item=>item?.project===project.id);
+        const collected=research.filter(item=>item?.status==='collected').length;
+        const failed=research.filter(item=>item?.status==='failed').length;
+        const notebooksForProject=opsNotebooks.filter(item=>item?.project===project.id);
+        const postsForProject=opsPosts.filter(item=>item?.project===project.id&&item?.status!=='superseded');
+        const stageValues=[
+          ['QUESTION',1],
+          ['SOURCES',collected],
+          ['NOTEBOOK',notebooksForProject.length],
+          ['PUBLISHED',postsForProject.length]
+        ];
+        const stages=stageValues.map(([label,value],index)=>`<span class="ops-trajectory-stage ${value?'lit':''}" title="${label}: ${value}"><i></i><b>${label}</b><small>${index===0?'recorded':value}</small></span>`).join('');
+        return `<a class="ops-trajectory-row status-${esc(project.status||'active')}" href="#projects/${encodeURIComponent(project.id)}"><div class="ops-trajectory-copy"><strong>${esc(project.title||project.id)}</strong><span>${esc(String(project.status||'active').toUpperCase())} · ${research.length} research receipts · ${failed} failed</span></div><div class="ops-trajectory-stages">${stages}</div></a>`;
+      }).join('')||'<p class="empty">No research projects in the current durable state.</p>';
     const opsBeliefs=Object.values(s.beliefs||{});
     const opsActiveBeliefs=opsBeliefs.filter(item=>item?.status==='active');
     const opsRetractedBeliefs=opsBeliefs.filter(item=>item?.status==='retracted');
@@ -704,6 +725,13 @@
               <p>C continuity · N novelty · H coherence · G generativity · S self-correction</p>
             </div>
           </div>
+        </div>
+        <div class="ops-trajectory" id="ops-trajectory" aria-label="Research project trajectories">
+          <div class="ops-trajectory-head">
+            <div><p class="eyebrow">RESEARCH TRAJECTORY / FROM QUESTION TO PUBLICATION</p><h3>${projects.length} durable project paths</h3></div>
+            <small>stages show recorded artifacts only · absence is visible, not inferred</small>
+          </div>
+          <div class="ops-trajectory-list">${opsProjectTrajectories}</div>
         </div>
         <div class="ops-tertiary-grid">
         <div class="ops-context" id="ops-context" aria-label="Context delivery telemetry">
