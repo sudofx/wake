@@ -19,6 +19,7 @@ from zoneinfo import ZoneInfo
 from .event_format import canonical, digest
 from .matrix import MATRIX
 from .providers import (
+    FREE_TIER_DAILY_QUOTA_ID,
     ConfiguredDailyLimitReached,
     DailyQuotaExceeded,
     ProviderRequestError,
@@ -446,7 +447,15 @@ def continuity_provider_usage(progress, quota_day):
                 model = attempt.get("model")
                 if model:
                     by_model[model] = by_model.get(model, 0) + 1
-                    if attempt.get("result") == "daily_quota" and is_free_tier_daily_quota(attempt):
+                    quota_ids = attempt.get("quota_ids", [])
+                    exact_daily_quota = (
+                        is_free_tier_daily_quota(attempt)
+                        or (
+                            isinstance(quota_ids, list)
+                            and FREE_TIER_DAILY_QUOTA_ID in quota_ids
+                        )
+                    )
+                    if attempt.get("result") == "daily_quota" and exact_daily_quota:
                         daily_quota_models.add(model)
     return {
         "total": total,
