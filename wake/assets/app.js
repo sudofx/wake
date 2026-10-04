@@ -293,6 +293,23 @@
     const latestAttemptStatus=latestAttempt?.status||'none';
     const latestModel=latestAttempt?.successful_model||latestAttempt?.provider_attempts?.at?.(-1)?.model||'—';
     const attempts=[...completed].sort((a,b)=>new Date(a.time)-new Date(b.time)).slice(-100);
+    const contextInvocations=invocations
+      .filter(item=>item?.context_delivery&&Number.isFinite(Number(item.context_delivery.rich_context_chars)))
+      .sort((a,b)=>new Date(a.time||0)-new Date(b.time||0));
+    const latestContext=contextInvocations.at(-1)||null;
+    const contextDelivery=latestContext?.context_delivery||null;
+    const contextMetrics=latestContext?.working_set_metrics||{};
+    const contextTraceSource=contextInvocations.slice(-48);
+    const contextRichMax=Math.max(1,...contextTraceSource.map(item=>Number(item.context_delivery.rich_context_chars)||0));
+    const contextTrace=contextTraceSource.map(item=>{
+      const delivery=item.context_delivery||{};
+      const rich=Number(delivery.rich_context_chars)||0;
+      const delivered=Number(delivery.delivered_request_chars||delivery.delivered_context_chars)||0;
+      const outer=Math.max(5,Math.min(100,100*Math.sqrt(rich/contextRichMax)));
+      const inner=rich>0?Math.max(2,Math.min(100,100*delivered/rich)):0;
+      const bounded=delivery.mode==='bounded';
+      return `<a class="ops-context-tick ${bounded?'bounded':'rich'}" href="#history/${encodeURIComponent(item.id)}" style="--context-height:${outer.toFixed(1)}%;--context-fill:${inner.toFixed(1)}%" title="${esc(item.id)} · ${esc(delivery.mode||'rich')} · rich ${rich.toLocaleString()} chars · delivered ${delivered.toLocaleString()} chars" aria-label="${esc(item.id)} context: ${esc(delivery.mode||'rich')}, ${Math.round(inner)} percent delivered"></a>`;
+    }).join('');
     const timeline=attempts.map((i,index)=>`<a class="wake-cell ${esc(i.status||'unknown')}" href="#history/${encodeURIComponent(i.id)}" title="${esc(i.id)} · ${esc((i.status||'unknown').toUpperCase())} · ${esc(i.successful_model||i.model||i.provider||'')}" aria-label="Attempt ${index+1}: ${esc(i.status||'unknown')}"></a>`).join('');
     const statuses=[['accepted',acceptedCount],['rejected',rejectedCount],['deferred',deferredCount],['failed',failedCount],['recovered',recoveredCount]], maxStatus=Math.max(1,...statuses.map(x=>x[1]));
     const outcomeBars=statuses.map(([name,value])=>`<div class="metric-bar-row"><span>${esc(name)}</span><div><i class="metric-bar ${esc(name)}" style="width:${Math.max(value?3:0,100*value/maxStatus)}%"></i></div><strong>${value}</strong></div>`).join('');
@@ -545,6 +562,24 @@
           <div class="ops-signal warning" style="--signal:${Math.min(100,fallbackRate)}%"><span>FALLBACK LOAD</span><strong>${fallbackRate.toFixed(1)}%</strong><i></i></div>
           <div class="ops-signal info" style="--signal:${Math.min(100,configuredTopicCount?100*topicActive/configuredTopicCount:0)}%"><span>TOPIC COVERAGE</span><strong>${topicActive}/${configuredTopicCount}</strong><i></i></div>
           <div class="ops-signal info" style="--signal:${Math.min(100,matrixPct)}%"><span>MATRIX COVERAGE</span><strong>${matrixPct}%</strong><i></i></div>
+        </div>
+        <div class="ops-context" aria-label="Context delivery telemetry">
+          <div class="ops-context-head">
+            <div><p class="eyebrow">CONTEXT DELIVERY / RECOVERABLE COMPRESSION</p><h3>${contextDelivery?esc(String(contextDelivery.mode||'rich').toUpperCase()):'NO RECEIPT'}</h3></div>
+            <div class="ops-context-ratio"><strong>${contextDelivery&&Number.isFinite(Number(contextDelivery.request_compression_ratio))?(100*Number(contextDelivery.request_compression_ratio)).toFixed(1)+'%':'—'}</strong><span>REQUEST COMPRESSION</span></div>
+          </div>
+          <div class="ops-context-grid">
+            <div><span>RICH REQUEST</span><strong>${contextDelivery?Number(contextDelivery.rich_context_chars||0).toLocaleString():'—'}</strong><small>characters before delivery fallback</small></div>
+            <div><span>DELIVERED REQUEST</span><strong>${contextDelivery?Number(contextDelivery.delivered_request_chars||0).toLocaleString():'—'}</strong><small>characters crossing model boundary</small></div>
+            <div><span>OMITTED CATEGORIES</span><strong>${Array.isArray(contextDelivery?.omitted_categories)?contextDelivery.omitted_categories.length:'—'}</strong><small>explicitly receipt-tracked omissions</small></div>
+            <div><span>REHYDRATED EVIDENCE</span><strong>${Number.isFinite(Number(contextMetrics.retrieval_rehydrated_evidence_count))?Number(contextMetrics.retrieval_rehydrated_evidence_count):'—'}</strong><small>exact evidence restored from retrieval plan</small></div>
+            <div><span>RETRIEVAL EVIDENCE</span><strong>${Number.isFinite(Number(contextMetrics.retrieval_evidence_count))?Number(contextMetrics.retrieval_evidence_count):'—'}</strong><small>evidence roots selected for recovery</small></div>
+            <div><span>TRUST ROOTS</span><strong>${Number.isFinite(Number(contextMetrics.trust_compact_evidence_root_count))?Number(contextMetrics.trust_compact_evidence_root_count):'—'}</strong><small>receipt-side compact provenance roots</small></div>
+          </div>
+          <div class="ops-context-trace">
+            <div class="ops-context-trace-head"><span>CONTEXT PRESSURE / LAST ${contextTraceSource.length}</span><small>height = rich request · inner fill = delivered share · orange = bounded mode</small></div>
+            <div class="ops-context-track" role="group" aria-label="Recent context delivery receipts">${contextTrace||'<span class="empty">No context receipts yet.</span>'}</div>
+          </div>
         </div>
         <div class="ops-lifecycle" aria-label="Application lifecycle observability">
           <div class="ops-lifecycle-head"><p class="eyebrow">APPLICATION LIFECYCLE / GENERIC SUDOFX EVIDENCE</p><span>${appObservability?`record revision ${esc(appObservability.record_revision)}`:`not available`}</span></div>
