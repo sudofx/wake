@@ -1090,7 +1090,7 @@
             <div class="ops-belief-distribution"><header><span>ACTIVE CONFIDENCE DISTRIBUTION</span><strong>${activeConfidences.length} measured</strong></header><div>${confidenceBars}</div></div>
           </div>
           <div class="ops-lineage">
-            <div class="ops-lineage-head"><div><span>EVIDENCE → BELIEF / CURRENT GOVERNED LINEAGE</span><strong>${lineageEvidenceRoots} recorded citation edges across ${opsBeliefs.length} current beliefs</strong></div><small>Active and retracted beliefs remain visible here. Edges come only from stored evidence IDs; earlier belief versions remain in exact receipts.</small></div>
+            <div class="ops-lineage-head"><div><span>EVIDENCE → BELIEF / CURRENT GOVERNED LINEAGE</span><strong>${lineageEvidenceRoots} recorded citation edges across ${opsBeliefs.length} current beliefs</strong></div><small>Active and retracted beliefs remain visible here. Edges come only from stored evidence IDs; earlier belief versions remain in exact receipts. Presence proves linkage in the record, not that the cited evidence is true or sufficient.</small></div>
             <div class="ops-lineage-list">${beliefLineage}</div>
           </div>
           <div class="ops-belief-history">
