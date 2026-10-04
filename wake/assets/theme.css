@@ -2086,3 +2086,29 @@ body>.masthead .powered-by{
     border-radius:10px!important;
   }
 }
+
+
+/* FINAL WAKE WORDMARK GRADIENT — 2026-10-04 */
+.masthead .wordmark,
+.research-header.masthead .wordmark,
+.brand-lockup .wordmark{
+  color:transparent!important;
+  background:linear-gradient(90deg,#20e2ed 0%,#5aa5ff 48%,#d84dff 100%)!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;
+}
+.masthead .wordmark .asterisk,
+.research-header.masthead .wordmark .asterisk,
+.brand-lockup .wordmark .asterisk{
+  color:inherit!important;
+  -webkit-text-fill-color:transparent!important;
+  text-shadow:none!important;
+}
+.masthead .wordmark small,
+.research-header.masthead .wordmark small,
+.brand-lockup .wordmark small{
+  color:var(--muted)!important;
+  -webkit-text-fill-color:var(--muted)!important;
+  background:none!important;
+}
