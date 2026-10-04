@@ -771,6 +771,7 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-command-pulse-cell.failed{background:var(--ops-red)', css)
         self.assertIn('.ops-command-pulse-track{display:flex;gap:4px;overflow-x:auto', css)
         self.assertIn('.ops-command-pulse-cell{flex:0 0 28px;height:44px}', css)
+        self.assertIn('@media(prefers-reduced-motion:reduce){.ops-command-pulse-cell{transition:none}', css)
 
     def test_frontier_to_space_keeps_application_work_separate_from_test_geometry(self):
         app = self.read('wake/assets/app.js')
