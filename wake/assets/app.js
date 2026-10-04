@@ -286,8 +286,8 @@
 
   function metricsDashboard() {
     const completed=invocations.filter(i=>['accepted','rejected','deferred','failed','recovered'].includes(i.status));
-    const count=status=>completed.filter(i=>i.status===status).length;
-    const acceptedCount=count('accepted'), rejectedCount=count('rejected'), deferredCount=count('deferred'), failedCount=count('failed'), recoveredCount=count('recovered');
+    const completedCounts=completed.reduce((counts,item)=>(counts[item.status]=(counts[item.status]||0)+1,counts),{});
+    const acceptedCount=completedCounts.accepted||0, rejectedCount=completedCounts.rejected||0, deferredCount=completedCounts.deferred||0, failedCount=completedCounts.failed||0, recoveredCount=completedCounts.recovered||0;
     const acceptanceRate=completed.length?Math.round(100*acceptedCount/completed.length):null;
     const obligations=Object.values(s.commitments||{}), fulfilled=obligations.filter(c=>c.status==='fulfilled');
     const inheritedFulfilled=fulfilled.filter(c=>c.created_by&&c.resolved_by&&c.created_by!==c.resolved_by);
@@ -334,12 +334,18 @@
     const evidenceTierBars=evidenceTierRows.slice(0,7).map(([tier,count])=>`<div class="ops-provenance-row"><span>${esc(String(tier).replaceAll('-',' '))}</span><div><i style="width:${Math.max(4,100*count/evidenceTierMax)}%"></i></div><strong>${count}</strong></div>`).join('')||'<p class="empty">No evidence provenance recorded.</p>';
     const evidenceTierKeys=evidenceTierRows.slice(0,7).map(([tier])=>tier);
     const configuredTopicLabels=Object.fromEntries((s.research_topics||[]).map(topic=>[topic.id,topic.label||topic.id]));
-    const evidenceTopicIds=[...new Set(evidenceTelemetry.map(item=>item.topic||'unattributed'))]
+    const evidenceTopicIndex=evidenceTelemetry.reduce((index,item)=>{
+      const topic=item.topic||'unattributed';
+      const entry=index[topic]||(index[topic]={total:0,tiers:{}});
+      entry.total++;
+      entry.tiers[item.tier]=(entry.tiers[item.tier]||0)+1;
+      return index;
+    },{});
+    const evidenceTopicIds=Object.keys(evidenceTopicIndex)
       .sort((a,b)=>String(configuredTopicLabels[a]||a).localeCompare(String(configuredTopicLabels[b]||b)));
     const evidenceTopicTierCounts=evidenceTopicIds.map(topic=>{
-      const records=evidenceTelemetry.filter(item=>(item.topic||'unattributed')===topic);
-      const cells=evidenceTierKeys.map(tier=>records.filter(item=>item.tier===tier).length);
-      return {topic,label:configuredTopicLabels[topic]||topic,cells,total:records.length};
+      const entry=evidenceTopicIndex[topic];
+      return {topic,label:configuredTopicLabels[topic]||topic,cells:evidenceTierKeys.map(tier=>entry.tiers[tier]||0),total:entry.total};
     });
     const evidenceTopicTierMax=Math.max(1,...evidenceTopicTierCounts.flatMap(row=>row.cells));
     const evidenceTopicTierHeader=evidenceTierKeys.map(tier=>`<span title="${esc(tier)}">${esc(String(tier).replaceAll('-',' '))}</span>`).join('');
@@ -424,15 +430,24 @@
       ? `<article class="ops-latest-wake"><div class="ops-latest-wake-kicker"><span>LATEST ACCEPTED WAKE${latestAcceptedCycle?' · CYCLE '+latestAcceptedCycle:''}</span><a href="#history/${encodeURIComponent(latestAcceptedId)}">EXACT RECEIPT →</a></div><h3>${esc(latestAcceptedTitle)}</h3><p>${esc(latestAcceptedSummary)}</p><div class="ops-latest-action-list">${latestAcceptedActionRows||'<div class="ops-latest-action empty"><strong>No governed actions recorded on this accepted wake.</strong></div>'}${latestAcceptedHiddenActions?`<div class="ops-latest-action more"><span>+${latestAcceptedHiddenActions}</span><strong>additional accepted action${latestAcceptedHiddenActions===1?'':'s'}</strong><small>open exact receipt for full proposal</small></div>`:''}</div><div class="ops-latest-wake-meta"><span><b>${latestAcceptedActions.length}</b> governed change${latestAcceptedActions.length===1?'':'s'}</span><span>${latestAcceptedTypes.length?esc(latestAcceptedTypes.join(' · ')):'NO ACTION TYPES RECORDED'}</span><span>${esc(latestAcceptedId.slice(-14))}</span></div></article>`
       : '<article class="ops-latest-wake empty"><div class="ops-latest-wake-kicker"><span>LATEST ACCEPTED WAKE</span></div><h3>No accepted wake is present in the published record.</h3></article>';
 
+    const groupByProject=items=>items.reduce((index,item)=>{
+      const project=item?.project;
+      if(project)(index[project]||(index[project]=[])).push(item);
+      return index;
+    },{});
+    const opsResearchByProject=groupByProject(opsResearch);
+    const opsNotebooksByProject=groupByProject(opsNotebooks);
+    const opsPostsByProject=groupByProject(opsPosts.filter(item=>item?.status!=='superseded'));
     const opsProjectTrajectories=projects
       .slice()
       .sort((a,b)=>String(a.status||'active').localeCompare(String(b.status||'active'))||Number(b.updated_version||b.created_version||0)-Number(a.updated_version||a.created_version||0))
       .map(project=>{
-        const research=opsResearch.filter(item=>item?.project===project.id);
-        const collected=research.filter(item=>item?.status==='collected').length;
-        const failed=research.filter(item=>item?.status==='failed').length;
-        const notebooksForProject=opsNotebooks.filter(item=>item?.project===project.id);
-        const postsForProject=opsPosts.filter(item=>item?.project===project.id&&item?.status!=='superseded');
+        const research=opsResearchByProject[project.id]||[];
+        const researchCounts=research.reduce((counts,item)=>(counts[item?.status]=(counts[item?.status]||0)+1,counts),{});
+        const collected=researchCounts.collected||0;
+        const failed=researchCounts.failed||0;
+        const notebooksForProject=opsNotebooksByProject[project.id]||[];
+        const postsForProject=opsPostsByProject[project.id]||[];
         const stageValues=[
           ['QUESTION',1],
           ['SOURCES',collected],
