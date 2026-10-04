@@ -215,6 +215,8 @@ class ArchitectureSeparationTests(unittest.TestCase):
         positions = [app.index(f'id="{anchor}"') for anchor in ordered]
         self.assertEqual(positions, sorted(positions))
         self.assertIn("WHAT THE RECORD SAYS NOW", app)
+        self.assertIn("role:payload?.evidence_role||'source'", app)
+        self.assertIn("!['discovery','metadata'].includes(item.role)", app)
         self.assertIn("<b>SPACE</b> where continuity has been tested", app)
         self.assertIn("do not certify the truth of its research claims", app)
         self.assertIn("DEEP METRICS / VERIFY THE STORY", app)
