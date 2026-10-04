@@ -839,5 +839,15 @@ class Fixture:
                 "lens": "A deterministic reflection tests the publication contract, not a mind.",
                 "reflection_cycle": milestone,
             })
-        return json.dumps({"base_version": c["version"], "title": titles[(n - 1) % len(titles)],
-                           "summary": summary, "actions": actions}), {"simulated": True}
+        proposal = {
+            "base_version": c["version"],
+            "title": titles[(n - 1) % len(titles)],
+            "summary": summary,
+            "actions": actions,
+        }
+        if isinstance(c.get("continuity_probe"), dict):
+            from .matrix_campaign import perfect_continuity_probe_response
+            proposal["continuity_probe"] = perfect_continuity_probe_response(
+                c["continuity_probe"]
+            )
+        return json.dumps(proposal), {"simulated": True}
