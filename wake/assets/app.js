@@ -602,7 +602,9 @@
     const recordSpine=recordTail.map(event=>{
       const tone=event.kind==='accepted'?'accepted':event.kind==='rejected'?'rejected':event.kind==='deferred'?'deferred':'other';
       const label=`#${event.seq??'—'} · ${displayEventKind(event.kind||'event')} · ${String(event.hash||'').slice(0,12)}`;
-      return `<a class="ops-record-node ${tone}" href="#history/${encodeURIComponent(event.seq??'')}" title="${esc(label)}" aria-label="${esc(label)}"></a>`;
+      const receiptId=String(event.payload?.id||'');
+      const href=receiptId?`#history/${encodeURIComponent(receiptId)}`:'#history';
+      return `<a class="ops-record-node ${tone}" href="${href}" title="${esc(label)}" aria-label="${esc(label)}"></a>`;
     }).join('');
     const databaseMB=recordIntegrity?.database_bytes?Number(recordIntegrity.database_bytes)/(1024*1024):null;
     const freePct=recordIntegrity?.database_bytes?100*Number(recordIntegrity.free_bytes||0)/Number(recordIntegrity.database_bytes):null;
