@@ -986,7 +986,12 @@
     }
     $('generated').textContent=`Live projection ${fmt(data.generated)}.`;
     journalLimit=8;historyLimit=35;
+    const preserveMetricsScroll=location.hash.slice(1).split('/')[0]==='metrics';
+    const priorScrollY=preserveMetricsScroll?window.scrollY:null;
     route();
+    if(priorScrollY!==null){
+      requestAnimationFrame(()=>window.scrollTo(0,priorScrollY));
+    }
   };
 
   document.querySelectorAll('.cycle-count').forEach(node=>node.textContent=String(s.version??'—'));
