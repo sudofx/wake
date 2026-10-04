@@ -655,6 +655,14 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('@media(min-width:1600px){', css)
         self.assertIn('content:attr(data-story-chapter) " · " attr(data-story-name)', css)
 
+    def test_metrics_story_chapters_support_direct_routes_from_other_views(self):
+        app = self.read('wake/assets/app.js')
+        self.assertIn("if(page==='metrics'){", app)
+        self.assertIn("document.getElementById(selected)", app)
+        self.assertIn("scrollIntoView({behavior:'auto',block:'start'})", app)
+        self.assertIn("const targetedMetrics=/^#metrics\\/[^/]+/.test(location.hash)", app)
+        self.assertIn("if(!targetedMetrics)resetPageScroll()", app)
+
     def test_data_story_navigator_tracks_scroll_position(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
