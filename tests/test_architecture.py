@@ -238,6 +238,12 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('"temporal", "context_delivery", "working_set_metrics", "runtime_performance"', live)
         self.assertNotIn('"request", "response"', live)
 
+    def test_record_spine_links_use_receipt_ids_not_sequence_numbers(self):
+        app = self.read('wake/assets/app.js')
+        self.assertIn("const receiptId=String(event.payload?.id||'')", app)
+        self.assertIn("const href=receiptId?", app)
+        self.assertNotIn('href="#history/${encodeURIComponent(event.seq', app)
+
     def test_operations_console_declares_mobile_and_wide_screen_breakpoints(self):
         css = self.read('wake/assets/style.css')
         self.assertIn('@media(max-width:430px)', css)
