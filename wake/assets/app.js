@@ -549,8 +549,8 @@
       const wall=Number(temporal.wall_elapsed_seconds)||0;
       const effective=Number(temporal.effective_elapsed_seconds)||0;
       const height=Math.max(5,Math.min(100,100*Math.sqrt(wall/temporalWallMax)));
-      const ratio=wall>0?effective/wall:0;
-      const tone=ratio===0?'frozen':ratio>1.001?'scaled':'real';
+      const ratio=wall>0?effective/wall:null;
+      const tone=ratio===null?'unknown':ratio===0?'frozen':ratio>1.001?'scaled':'real';
       return `<a class="ops-time-tick ${tone}" href="#history/${encodeURIComponent(item.id)}" style="--tick-height:${height.toFixed(1)}%" title="${esc(item.id)} · wall ${formatDuration(wall)} · effective ${formatDuration(effective)} · ${Number(temporal.cycle_distance||0)} cycles · ${Number(temporal.intervening_events?.total||0)} events" aria-label="Temporal receipt ${index+1}: wall ${formatDuration(wall)}, effective ${formatDuration(effective)}"></a>`;
     }).join('');
     const appObservability=data.application_observability||null;
@@ -728,8 +728,8 @@
     const sortedCompleted=[...completed].sort((a,b)=>new Date(a.time)-new Date(b.time));
     const firstTime=sortedCompleted[0]?.time, lastTime=sortedCompleted.at(-1)?.time;
     const recordHours=firstTime&&lastTime?Math.max(0,(new Date(lastTime)-new Date(firstTime))/36e5):0;
-    const wakesPerHour=recordHours?completed.length/recordHours:0;
-    const acceptedPerHour=recordHours?acceptedCount/recordHours:0;
+    const wakesPerHour=recordHours>0?completed.length/recordHours:null;
+    const acceptedPerHour=recordHours>0?acceptedCount/recordHours:null;
     const actionPerAccepted=acceptedCount?(actionTotal/acceptedCount):null;
     const evidencePerAccepted=acceptedCount?(evidenceCount/acceptedCount):null;
     const openCommitments=obligations.filter(c=>c.status==='open');
@@ -765,8 +765,8 @@
     const parkedTopics=Object.keys(s.attention?.deferred||{}).length;
     const telemetry=[
       ['Wall-clock span',recordHours>=24?(recordHours/24).toFixed(1)+'d':recordHours.toFixed(1)+'h','first → latest completed wake · idle included','neutral'],
-      ['Completed / wall h',wakesPerHour.toFixed(2)+'/h',completed.length+' completed wakes across elapsed wall time','neutral'],
-      ['Accepted / wall h',acceptedPerHour.toFixed(2)+'/h',acceptedCount+' accepted wakes across elapsed wall time','success'],
+      ['Completed / wall h',wakesPerHour===null?'—':wakesPerHour.toFixed(2)+'/h',wakesPerHour===null?'No measurable elapsed wall-time span yet':completed.length+' completed wakes across elapsed wall time','neutral'],
+      ['Accepted / wall h',acceptedPerHour===null?'—':acceptedPerHour.toFixed(2)+'/h',acceptedPerHour===null?'No measurable elapsed wall-time span yet':acceptedCount+' accepted wakes across elapsed wall time','success'],
       ['Rejection pressure',rejectionRate===null?'—':rejectionRate.toFixed(1)+'%',completed.length?rejectedCount+' rejected':'No completed wakes yet','danger'],
       ['Fallback rate',fallbackRate===null?'—':fallbackRate.toFixed(1)+'%',completed.length?fallbackWakes+' multi-attempt wakes':'No completed wakes yet','warning'],
       ['Actions / accepted',actionPerAccepted===null?'—':actionPerAccepted.toFixed(2),acceptedCount?actionTotal+' durable actions':'No accepted wakes yet','neutral'],
