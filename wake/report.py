@@ -581,6 +581,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
                     "operation": operation,
                     "wake_status": projection.get("wake_status") or (operation or {}).get("wake_status") or wake_status(state),
                     "metrics": projection.get("metrics", {}),
+                    "record_integrity": projection.get("record_integrity"),
                     "application_observability": projection.get("application_observability"),
                     "application_access": projection.get("application_access"),
                     "matrix_progress": projection.get("matrix_progress")}
@@ -590,12 +591,14 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             if experiment is None:
                 evidence_file = store.directory / "experiment.json"
                 experiment = json.loads(evidence_file.read_text()) if evidence_file.exists() else None
-            from .live import _application_access_metrics, _full_history_metrics, _matrix_metrics
+            from .live import _application_access_metrics, _full_history_metrics, _matrix_metrics, _record_integrity_metrics
             from sudofx.observability import build_application_observability
+            performance = store.performance_snapshot()
             data = {"state": state, "events": events, "head": head, "generated": now(),
                     "experiment": experiment, "timezone": "America/Los_Angeles", "operation": operation,
                     "wake_status": (operation or {}).get("wake_status") or wake_status(state),
-                    "metrics": _full_history_metrics(store, state),
+                    "metrics": _full_history_metrics(store, state, performance),
+                    "record_integrity": _record_integrity_metrics(performance, head),
                     "application_observability": build_application_observability(store.record) if hasattr(store, "record") else None,
                     "application_access": _application_access_metrics(store),
                     "matrix_progress": _matrix_metrics(store)}
