@@ -162,7 +162,7 @@
     audit_reconstruction:'Independent audit reconstruction', longitudinal:'100+ fresh invocation cycles'
   };
   function renderMetricStrip() {
-    $('metrics').innerHTML = [
+    $('journal-metrics').innerHTML = [
       [s.version,'Recorded cycles',`${fixtures} simulated · ${live} live Gemini`,'#history'],
       [inherited,'Obligations inherited','Across fresh invocations','#history/filter:inherited'],
       [rejected,'Proposals rejected','Read the drafts and recorded reasons','#history/filter:rejected'],
