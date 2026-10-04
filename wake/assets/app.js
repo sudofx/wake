@@ -392,9 +392,19 @@
     const topicBars=topicRows.map(t=>`<a class="topic-bar-row" href="#projects/topic:${encodeURIComponent(t.id)}" style="--topic-color:${esc(topicColors[t.id]||'var(--cyan)')}"><span>${esc(t.label)}</span><div><i style="width:${100*t.total/topicMax}%"></i></div><strong>${t.total}</strong></a>`).join('');
     const hypothesisHtml=hypotheses.map(h=>`<article class="hypothesis-card"><p class="eyebrow">DATA-DERIVED HYPOTHESIS</p><h3>${esc(h.title)}</h3><p>${esc(h.text)}</p></article>`).join('');
 
-    const matrixCells=Array.from({length:Math.min(matrixTotal,343)},(_,index)=>{
-      const intensity=index<matrixCompleted?'done':index<matrixCompleted+matrixFailed?'failed':index<matrixCompleted+matrixFailed+matrixDeferred?'deferred':'open';
-      return `<i class="continuity-cell ${intensity}" aria-hidden="true"></i>`;
+    const matrixAxes=matrixProgress?.axes||[];
+    const semanticAxis=matrixAxes[0]?.values||[];
+    const exposureAxis=matrixAxes[1]?.values||[];
+    const pressureAxis=matrixAxes[2]?.values||[];
+    const matrixCellsBySemantic=(matrixProgress?.cells||[]).reduce((acc,cell)=>{
+      const semantic=cell?.values?.[0]||'unknown';
+      (acc[semantic]||(acc[semantic]=[])).push(cell);
+      return acc;
+    },{});
+    const matrixPlanes=semanticAxis.map(semantic=>{
+      const cells=(matrixCellsBySemantic[semantic.key]||[]).sort((a,b)=>a.ordinal-b.ordinal);
+      const cellHtml=cells.map(cell=>`<i class="continuity-cell ${esc(cell.status||'open')}" title="${esc((cell.values||[]).join(' · '))}" aria-label="${esc((cell.values||[]).join(', '))}: ${esc(cell.status||'open')}"></i>`).join('');
+      return `<section class="matrix-plane"><header><span>${esc(semantic.label)}</span><b>${cells.filter(cell=>cell.status==='completed').length}/49</b></header><div class="matrix-plane-grid" role="group" aria-label="${esc(semantic.label)} continuity plane">${cellHtml}</div></section>`;
     }).join('');
     const opsTopicMax=Math.max(1,...topicRows.map(topic=>topic.total));
     const visibleTopics=topicRows.slice(0,10);
@@ -432,7 +442,10 @@
         </div>
         <div class="ops-matrix-block">
           <div class="ops-matrix-copy"><p class="eyebrow">CONTINUITY@1 / 7×7×7</p><h3>${matrixProgress?'Coverage of the governed continuity space.':'Matrix is available but not enabled for this WAKE generation.'}</h3><p>${matrixProgress?matrixCompleted+' of '+matrixTotal+' coordinates completed · next '+esc(matrixProgress.next_coordinate_id||'complete'):'Enablement remains an explicit governed application action.'}</p><small>Coverage cells show count only; cell position is not a coordinate map.</small></div>
-          <div class="continuity-lattice" role="img" aria-label="Continuity matrix coverage: ${matrixCompleted} of ${matrixTotal} coordinates completed">${matrixCells}</div>
+          <div class="continuity-matrix-view" aria-label="Continuity matrix coverage: ${matrixCompleted} of ${matrixTotal} coordinates completed">
+            <div class="matrix-axis-note"><span>columns: ${esc(exposureAxis.map(v=>v.label).join(' · '))}</span><span>rows: ${esc(pressureAxis.map(v=>v.label).join(' · '))}</span></div>
+            <div class="matrix-plane-stack">${matrixPlanes}</div>
+          </div>
           <div class="ops-matrix-stat"><strong>${matrixPct}%</strong><span>covered</span><small>${matrixFailed} failed · ${matrixDeferred} deferred</small></div>
         </div>
       </section>
