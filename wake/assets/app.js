@@ -1409,6 +1409,20 @@
           <div class="ops-publication-head"><div><span>PUBLICATION LINEAGE / AUDITABLE ARTIFACT CHAIN</span><strong>${publicationLineageSource.length} recent research publication${publicationLineageSource.length===1?'':'s'}</strong></div><small>Edges are the notebook and evidence IDs stored on each publication. Reflections without research-project lineage are intentionally excluded.</small></div>
           <div class="ops-publication-list">${publicationLineageRows||'<p class="empty">No research publications with project lineage are present.</p>'}</div>
         </div>
+        <div class="ops-frontier-space-bridge" aria-label="Frontier to continuity space domain boundary">
+          <header>
+            <div><span>FRONTIER → SPACE / DOMAIN BOUNDARY</span><strong>Application work beside deterministic test geometry.</strong></div>
+            <small>No mapping is implied. Open commitments are WAKE application state; continuity@1 coordinates are reusable continuity-test coverage.</small>
+          </header>
+          <div class="ops-frontier-space-grid">
+            <div><span>OPEN COMMITMENTS</span><strong>${openObligations}</strong><small>current durable application obligations</small></div>
+            <div><span>OVERDUE</span><strong>${overdue}</strong><small>open commitments past due cycle</small></div>
+            <i aria-hidden="true">≠</i>
+            <div><span>CONTINUITY COVERAGE</span><strong>${matrixPct===null?'—':matrixPct+'%'}</strong><small>${matrixCompleted}/${matrixTotal} deterministic coordinates</small></div>
+            <div><span>NEXT UNCOVERED</span><strong>${matrixEnabled&&matrixProgress?.next_ordinal?'#'+matrixProgress.next_ordinal:'—'}</strong><small>${matrixEnabled?matrixFailed+' failed · '+matrixDeferred+' deferred':'campaign not enabled'}</small></div>
+            <a href="#metrics/ops-matrix">OPEN SPACE CHAPTER →</a>
+          </div>
+        </div>
         <div class="ops-matrix-block ops-story-chapter" id="ops-matrix" data-story-chapter="07" data-story-name="SPACE">
           <div class="ops-matrix-copy"><p class="eyebrow">CONTINUITY@1 / 7×7×7</p><h3>${matrixEnabled?'Coverage of the governed continuity space.':'Canonical continuity space · not yet enabled for this WAKE generation.'}</h3><p>${matrixEnabled?matrixCompleted+' of '+matrixTotal+' coordinates completed · next '+(matrixProgress.next_ordinal?'#'+matrixProgress.next_ordinal:'complete'):'343 deterministic coordinates are visible as definition geometry only.'}</p><small>Seven semantic planes. Within each plane, columns follow pressure order and rows follow exposure order from the shared continuity@1 definition.</small>${matrixFrontier}</div>
           <div class="continuity-matrix-view" aria-label="Continuity matrix coverage: ${matrixCompleted} of ${matrixTotal} coordinates completed">
