@@ -277,6 +277,18 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('scroll-snap-type:x proximity', css)
         self.assertIn('.ops-storyline a.is-active:after', css)
 
+    def test_memory_story_exposes_exact_cross_invocation_handoffs(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('CROSS-INVOCATION HANDOFF / DURABLE OBLIGATIONS', app)
+        self.assertIn('commitment.created_by', app)
+        self.assertIn('commitment.resolved_by', app)
+        self.assertIn('created_by&&c.resolved_by&&c.created_by!==c.resolved_by', app)
+        self.assertIn('href="#history/${encodeURIComponent(createdId)}"', app)
+        self.assertIn('href="#history/${encodeURIComponent(resolvedId)}"', app)
+        self.assertIn('.ops-handoff-list', css)
+        self.assertIn('.ops-handoff-path', css)
+
     def test_metrics_route_anchor_is_unique(self):
         page = self.read('wake/assets/index.html')
         app = self.read('wake/assets/app.js')
