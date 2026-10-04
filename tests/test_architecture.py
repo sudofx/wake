@@ -209,10 +209,15 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('const latestAcceptedEvent=accepted.at(-1)||null', app)
         self.assertIn('item?.invocation===latestAcceptedId', app)
         self.assertIn('latestAcceptedProposal?.actions', app)
+        self.assertIn('latestAcceptedActions.slice(0,4)', app)
+        self.assertIn("action?.statement||action?.task||action?.title||action?.status||action?.reason", app)
+        self.assertIn('open exact receipt for full proposal', app)
         self.assertIn('EXACT RECEIPT →', app)
         self.assertIn('href="#history/${encodeURIComponent(latestAcceptedId)}"', app)
         self.assertIn('No durable journal summary is attached to the latest accepted wake.', app)
         self.assertIn('.ops-latest-wake', css)
+        self.assertIn('.ops-latest-action-list', css)
+        self.assertIn('.ops-latest-action', css)
         self.assertIn('.ops-latest-wake-meta', css)
 
     def test_operations_console_story_chapters_remain_evidence_scoped(self):
