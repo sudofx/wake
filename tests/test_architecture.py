@@ -270,6 +270,18 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-frontier-list', css)
         self.assertIn('.ops-frontier-item.overdue', css)
 
+    def test_pressure_story_links_recent_rejections_to_exact_receipts(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('REJECTION LEDGER / EXACT RECENT RESISTANCE', app)
+        self.assertIn("filter(event=>event?.kind==='rejected')", app)
+        self.assertIn("event?.payload?.reason", app)
+        self.assertIn("event?.payload?.proposal?.title", app)
+        self.assertIn('href="#history/', app)
+        self.assertIn('Family bars summarize pressure; these rows expose the latest recorded reasons and exact receipts.', app)
+        self.assertIn('.ops-rejection-list', css)
+        self.assertIn('.ops-rejection-row', css)
+
     def test_matrix_story_reconciles_axis_marginals_to_same_cells(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
