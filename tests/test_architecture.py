@@ -233,6 +233,21 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('Gaps remain gaps.', app)
         self.assertNotIn('inferred era', app.lower())
 
+    def test_reflection_delta_story_uses_only_versioned_record_fields(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('SINCE LAST REFLECTION RECEIPT', app)
+        self.assertIn('latestReflection?.post?.created_version', app)
+        self.assertIn('item?.version', app)
+        self.assertIn('item?.updated_version', app)
+        self.assertIn('item?.created_version', app)
+        self.assertIn('Versioned record deltas only.', app)
+        self.assertIn('WAKE does not infer a comparison window.', app)
+        self.assertIn('.ops-since-reflection', css)
+        self.assertIn('.ops-since-grid', css)
+        self.assertNotIn('12px.ops-since-reflection', css)
+        self.assertNotIn('repeat(4,1fr).ops-since-grid', css)
+
     def test_live_projection_keeps_receipt_telemetry_without_provider_bodies(self):
         live = self.read('wake/live.py')
         self.assertIn('"temporal", "context_delivery", "working_set_metrics", "runtime_performance"', live)
