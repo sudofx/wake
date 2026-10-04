@@ -9,6 +9,6 @@
 # what failure means, and which tempting shortcuts would weaken accountability.
 # =============================================================================
 
-"""WAKE✳︎: disposable models, durable accountability."""
+"""WAKE✳︎: infrastructure for durable, accountable work across interchangeable intelligences."""
 
 __version__ = "0.21.0"
