@@ -55,6 +55,20 @@ class WakeMatrixIntegrationTests(unittest.TestCase):
             finally:
                 rebuilt.close()
 
+    def test_public_matrix_metrics_expose_definition_before_enablement(self) -> None:
+        with tempfile.TemporaryDirectory() as tempdir:
+            store = SudofxStore(Path(tempdir), initialize_empty=True)
+            try:
+                public = _matrix_metrics(store)
+                self.assertFalse(public["enabled"])
+                self.assertEqual(public["matrix"], "continuity@1")
+                self.assertEqual(public["cell_count"], 343)
+                self.assertEqual(len(public["cells"]), 343)
+                self.assertEqual(public["completed_count"], 0)
+                self.assertTrue(all(cell["status"] == "open" for cell in public["cells"]))
+            finally:
+                store.close()
+
     def test_public_matrix_metrics_are_bounded(self) -> None:
         matrix = continuity_matrix()
         with tempfile.TemporaryDirectory() as tempdir:
