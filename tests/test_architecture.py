@@ -507,6 +507,13 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn("actionPerAccepted===null?'—':actionPerAccepted.toFixed(2)", app)
         self.assertIn("evidencePerAccepted===null?'—':evidencePerAccepted.toFixed(2)", app)
 
+        self.assertIn("const wakesPerHour=recordHours>0?completed.length/recordHours:null", app)
+        self.assertIn("const acceptedPerHour=recordHours>0?acceptedCount/recordHours:null", app)
+        self.assertIn("wakesPerHour===null?'—':wakesPerHour.toFixed(2)+'/h'", app)
+        self.assertIn("acceptedPerHour===null?'—':acceptedPerHour.toFixed(2)+'/h'", app)
+        self.assertIn("const ratio=wall>0?effective/wall:null", app)
+        self.assertIn("const tone=ratio===null?'unknown':ratio===0?'frozen'", app)
+
         self.assertIn("const topicCoveragePct=configuredTopicCount?100*topicActive/configuredTopicCount:null", app)
         self.assertIn("configuredTopicCount?topicActive+'/'+configuredTopicCount:'—'", app)
         self.assertIn("'No configured research topics'", app)
