@@ -316,6 +316,15 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertNotIn('12px.ops-since-reflection', css)
         self.assertNotIn('repeat(4,1fr).ops-since-grid', css)
 
+    def test_reflection_delta_does_not_read_belief_const_before_initialization(self):
+        app = self.read('wake/assets/app.js')
+        delta = app.index('const sinceReflection={')
+        beliefs = app.index('const opsBeliefs=')
+        self.assertGreaterEqual(delta, 0)
+        self.assertGreater(beliefs, delta)
+        self.assertIn("beliefs:Object.values(s.beliefs||{}).filter", app[delta:beliefs])
+        self.assertNotIn('beliefs:opsBeliefs.filter', app[delta:beliefs])
+
     def test_live_projection_keeps_receipt_telemetry_without_provider_bodies(self):
         live = self.read('wake/live.py')
         self.assertIn('"temporal", "context_delivery", "working_set_metrics", "runtime_performance"', live)
