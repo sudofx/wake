@@ -529,6 +529,18 @@
     const reasons=sortedReasons.slice(0,8).map(([reason,n])=>`<div class="reason-row"><strong>${n}</strong><span>${esc(reason)}</span></div>`).join()||'<p class="empty">No rejected proposals in this record.</p>';
     const pressureMax=Math.max(1,...sortedReasons.slice(0,5).map(([,n])=>n));
     const pressureBars=sortedReasons.slice(0,5).map(([reason,n])=>`<div class="ops-pressure-row"><span>${esc(reason)}</span><div><i style="width:${Math.max(4,100*n/pressureMax)}%"></i></div><strong>${n}</strong></div>`).join('')||'<p class="empty">No rejection pressure recorded.</p>';
+    const rejectedEvents=(data.events||[]).filter(event=>event?.kind==='rejected');
+    const recentRejectedRows=rejectedEvents
+      .slice(-8)
+      .reverse()
+      .map(event=>{
+        const id=String(event?.payload?.id||'');
+        const reason=String(event?.payload?.reason||'Unspecified rejection');
+        const family=reason.split(':')[0].slice(0,90);
+        const title=String(event?.payload?.proposal?.title||event?.payload?.title||'Rejected proposal');
+        const when=event?.time?fmt(event.time):'time unavailable';
+        return `<article class="ops-rejection-row"><header><span>${esc(family)}</span><strong>${esc(when)}</strong></header><p>${esc(title)}</p><small>${esc(reason)}</small><div>${id?`<a href="#history/${encodeURIComponent(id)}">EXACT RECEIPT ${esc(id.slice(-10))}</a>`:'<span>RECEIPT ID UNAVAILABLE</span>'}</div></article>`;
+      }).join('');
     const dailyLimit=Number(wakeStatus.daily_call_limit);
     const requestSlots=Number(wakeStatus.provider_request_slots_today||0);
     const quotaPct=Number.isFinite(dailyLimit)&&dailyLimit>0?Math.max(0,Math.min(100,100*requestSlots/dailyLimit)):0;
@@ -856,6 +868,10 @@
             <div class="ops-quota-gauge" aria-label="Provider quota usage ${quotaPct.toFixed(0)} percent"><i style="width:${quotaPct}%"></i></div>
             <div class="ops-quota-meta"><span>${wakeStatus.attempts_today??0} charged attempts</span><span>${wakeStatus.provider_requests_today??0} HTTP requests</span><span>${wakeStatus.provider_request_counts_incomplete?'counts incomplete':'counts complete'}</span></div>
           </section>
+        </div>
+        <div class="ops-rejection-ledger" aria-label="Recent governance rejections">
+          <div class="ops-rejection-head"><div><span>REJECTION LEDGER / EXACT RECENT RESISTANCE</span><strong>${rejectedEvents.length} rejected receipts in published history</strong></div><small>Family bars summarize pressure; these rows expose the latest recorded reasons and exact receipts.</small></div>
+          <div class="ops-rejection-list">${recentRejectedRows||'<p class="empty">No rejected proposal receipts are present in the published event window.</p>'}</div>
         </div>
         <div class="ops-time" aria-label="Time Dilation telemetry">
           <div class="ops-time-head">
