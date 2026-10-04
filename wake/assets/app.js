@@ -111,6 +111,7 @@
   }
   refreshDerived();
   let journalLimit = 8, historyLimit = 35;
+  let storyScrollHandler=null;
   const refs = ids => (ids || []).map(id => `<a href="#evidence/${encodeURIComponent(id)}">${esc(id)} →</a>`).join(' ');
   const badge = (value, label) => `<span class="badge ${esc(value)}">${esc(label || value)}</span>`;
   // Preserve immutable legacy event bytes in storage, but never expose the old
@@ -226,6 +227,47 @@
     }).join('');
     return `<div class="panel model-panel"><p class="eyebrow">GEMINI MODEL RESPONSES / PACIFIC TIME</p><h2>Which version answers?</h2><p>Each cell is HTTP 200 responses divided by completed attempts for that model and day. A 200 measures availability, not research quality. “?” marks a reserved request whose outcome was never durably recorded.</p><div class="model-scroll"><div class="model-matrix" style="--model-days:${days.length}"><div class="model-row model-head"><strong>MODEL</strong>${days.map(day=>`<span>${esc(day.slice(5))}</span>`).join('')}<span>ALL</span></div>${rows}</div></div><div class="model-legend"><span><i class="good"></i>all 200</span><span><i class="mixed"></i>mixed</span><span><i class="bad"></i>no 200</span></div></div>`;
   }
+  function bindStoryNavigation() {
+    if(storyScrollHandler){
+      window.removeEventListener('scroll',storyScrollHandler);
+      storyScrollHandler=null;
+    }
+    const dashboard=$('metrics-dashboard');
+    const nav=dashboard?.querySelector('.ops-storyline');
+    if(!nav)return;
+    const links=[...nav.querySelectorAll('[data-story-target]')];
+    const targets=links.map(link=>document.getElementById(link.dataset.storyTarget)).filter(Boolean);
+    if(!targets.length)return;
+    const setActive=id=>{
+      let activeLink=null;
+      links.forEach(link=>{
+        const active=link.dataset.storyTarget===id;
+        link.classList.toggle('is-active',active);
+        if(active){
+          link.setAttribute('aria-current','step');
+          activeLink=link;
+        }else link.removeAttribute('aria-current');
+      });
+      if(activeLink&&nav.scrollWidth>nav.clientWidth){
+        nav.scrollTo({left:Math.max(0,activeLink.offsetLeft-(nav.clientWidth-activeLink.offsetWidth)/2),behavior:'auto'});
+      }
+    };
+    const update=()=>{
+      const marker=Math.max(96,window.innerHeight*.24);
+      let active=targets[0];
+      targets.forEach(target=>{if(target.getBoundingClientRect().top<=marker)active=target;});
+      setActive(active.id);
+    };
+    let ticking=false;
+    storyScrollHandler=()=>{
+      if(ticking)return;
+      ticking=true;
+      requestAnimationFrame(()=>{update();ticking=false;});
+    };
+    window.addEventListener('scroll',storyScrollHandler,{passive:true});
+    update();
+  }
+
   function metricsDashboard() {
     const completed=invocations.filter(i=>['accepted','rejected','deferred','failed','recovered'].includes(i.status));
     const count=status=>completed.filter(i=>i.status===status).length;
@@ -875,6 +917,8 @@
 <section class="dashboard-kpis">${card(s.version,'Durable cycles','Accepted state advances')}${card(acceptanceRate+'%','Acceptance rate',acceptedCount+' of '+completed.length+' completed wakes')}${card(handoffRate+'%','Obligation handoff',inheritedFulfilled.length+' cross-invocation fulfillments')}${card(requestsPerAccepted,'Requests / accepted','Recorded HTTP attempts ÷ accepted wakes')}${card(fallbackWakes,'Fallback wakes','More than one provider attempt')}${card(medianLatency===null?'—':medianLatency+'ms','Median provider latency','Known completed model attempts')}${card(revisedBeliefs,'Belief actions',activeBeliefs.length+' active · '+retractedBeliefs.length+' retracted')}${card(overdue,'Overdue obligations','Open commitments at or past due cycle')}${card(sqliteSize,'SQLite database','Durable record file size')}${card(eventRecordCount,'Durable events','Append-only event rows')}</section></div>
       </section>
       <p class="dashboard-footnote">Derived view only. The durable state and event log remain authoritative. Derived action counts and hypotheses are explicitly descriptive; they never write back to the record.</p>`;
+
+    bindStoryNavigation();
 
     const matrix=$('metrics-dashboard').querySelector('.action-matrix');
     if(matrix){
