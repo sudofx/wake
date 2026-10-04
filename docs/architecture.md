@@ -199,3 +199,10 @@ counterevidence, source limitations, or the distinction between source report, W
 philosophical reflection.
 
 Philosophical reflection may help Bob ask better questions about observation, uncertainty, perspective and the limits of intuition, but reflection remains explicitly separate from evidence. Analogy cannot be promoted into scientific support for a factual claim.
+
+## Shared continuity matrix
+
+The optional `continuity@1` matrix is consumed from sudofx as a reusable deterministic extension. WAKE does not fork its axes or coordinate meanings. WAKE application policy adds explicit enablement and governed result-recording actions, and stores the resulting campaign state inside the same sudofx application envelope as the rest of WAKE authority. Existing WAKE transitions preserve that extension state. A fresh `Record` / `Kernel` / `ApplicationHost` reconstruction therefore restores matrix progress from `sudofx.sqlite` alone.
+
+Matrix actions remain ordinary application actions: they do not bypass global application-access enforcement, WAKE governance, or provider lifecycle controls. Provider prompting, scheduling, scoring, research interpretation, and progress semantics remain WAKE concerns above the shared matrix grammar.
+
