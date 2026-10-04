@@ -256,6 +256,18 @@
     const evidenceTierRows=Object.entries(evidenceTiers).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));
     const evidenceTierMax=Math.max(1,...evidenceTierRows.map(([,count])=>count));
     const evidenceTierBars=evidenceTierRows.slice(0,7).map(([tier,count])=>`<div class="ops-provenance-row"><span>${esc(String(tier).replaceAll('-',' '))}</span><div><i style="width:${Math.max(4,100*count/evidenceTierMax)}%"></i></div><strong>${count}</strong></div>`).join('')||'<p class="empty">No evidence provenance recorded.</p>';
+    const beliefs=Object.values(s.beliefs||{});
+    const activeBeliefs=beliefs.filter(item=>item?.status==='active');
+    const retractedBeliefs=beliefs.filter(item=>item?.status==='retracted');
+    const activeConfidences=activeBeliefs.map(item=>Number(item.confidence)).filter(Number.isFinite).sort((a,b)=>a-b);
+    const medianConfidence=activeConfidences.length?activeConfidences[Math.floor((activeConfidences.length-1)/2)]:null;
+    const falsifierCount=activeBeliefs.filter(item=>String(item?.falsifier||'').trim()).length;
+    const beliefEvidenceRoots=activeBeliefs.reduce((sum,item)=>sum+(Array.isArray(item?.evidence)?item.evidence.length:0),0);
+    const confidenceBands=[
+      ['0–.2',0,.2],['.2–.4',.2,.4],['.4–.6',.4,.6],['.6–.8',.6,.8],['.8–1',.8,1.000001]
+    ].map(([label,low,high])=>[label,activeConfidences.filter(value=>value>=low&&value<high).length]);
+    const confidenceBandMax=Math.max(1,...confidenceBands.map(([,count])=>count));
+    const confidenceBars=confidenceBands.map(([label,count])=>`<div class="ops-belief-band"><span>${label}</span><div><i style="width:${Math.max(count?5:0,100*count/confidenceBandMax)}%"></i></div><strong>${count}</strong></div>`).join('');
     const providerRequests=completed.reduce((n,i)=>n+(i.provider_requests_sent||0),0);
     const requestsPerAccepted=acceptedCount?(providerRequests/acceptedCount).toFixed(2):'—';
     const wakeStatus=data.wake_status||{};
@@ -670,6 +682,22 @@
               <div><span>METADATA ROUTES</span><strong>${metadataEvidence}</strong><small>bibliographic routing receipts</small></div>
             </div>
             <div class="ops-provenance-tiers"><header><span>HOST / RETRIEVAL TIERS</span><strong>${evidenceTierRows.length} observed classes</strong></header><div>${evidenceTierBars}</div></div>
+          </div>
+        </div>
+        <div class="ops-beliefs" aria-label="Governed belief telemetry">
+          <div class="ops-beliefs-head">
+            <div><p class="eyebrow">EPISTEMIC FIELD / GOVERNED BELIEF STATE</p><h3>${activeBeliefs.length} active · ${retractedBeliefs.length} retracted</h3></div>
+            <small>confidence is recorded model state, not an empirical probability of truth</small>
+          </div>
+          <div class="ops-beliefs-grid">
+            <div class="ops-belief-kpis">
+              <div><span>ACTIVE</span><strong>${activeBeliefs.length}</strong><small>currently carried beliefs</small></div>
+              <div><span>RETRACTED</span><strong>${retractedBeliefs.length}</strong><small>kept visible in history</small></div>
+              <div><span>MEDIAN CONFIDENCE</span><strong>${medianConfidence===null?'—':medianConfidence.toFixed(2)}</strong><small>active beliefs only</small></div>
+              <div><span>FALSIFIERS</span><strong>${falsifierCount}/${activeBeliefs.length}</strong><small>active beliefs with explicit reopen condition</small></div>
+              <div><span>EVIDENCE ROOTS</span><strong>${beliefEvidenceRoots}</strong><small>citations carried by active beliefs</small></div>
+            </div>
+            <div class="ops-belief-distribution"><header><span>ACTIVE CONFIDENCE DISTRIBUTION</span><strong>${activeConfidences.length} measured</strong></header><div>${confidenceBars}</div></div>
           </div>
         </div>
         <div class="ops-lifecycle" aria-label="Application lifecycle observability">
