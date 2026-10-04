@@ -321,7 +321,7 @@
     const accessEnabled=typeof applicationAccess?.enabled==='boolean'?applicationAccess.enabled:null;
     const sourceMeta=data.source||{};
     const recordIntegrity=data.record_integrity||null;
-    const recordReplayOk=recordIntegrity?.semantic_replay_verified===true;
+    const trustedProjectionOk=recordIntegrity?.trusted_projection_active===true;
     const sqliteQuickOk=recordIntegrity?.sqlite_quick_check==='ok';
     const shortHead=String(data.head||sourceMeta.head||'').slice(0,12)||'—';
     const runtimeRef=String(sourceMeta.runtime_ref||'').slice(0,12)||'—';
@@ -626,7 +626,7 @@
         <div class="ops-record-spine" aria-label="Durable record integrity evidence">
           <div class="ops-record-summary">
             <span>DURABLE RECORD</span>
-            <strong class="${recordReplayOk&&sqliteQuickOk?'ok':'warning'}">${recordReplayOk&&sqliteQuickOk?'REPLAY + SQLITE OK':'CHECK EVIDENCE'}</strong>
+            <strong class="${trustedProjectionOk&&sqliteQuickOk?'ok':'warning'}">${trustedProjectionOk&&sqliteQuickOk?'TRUSTED PROJECTION + SQLITE OK':'CHECK EVIDENCE'}</strong>
             <small>local integrity evidence · not authorship or external notarization</small>
           </div>
           <div class="ops-record-track" role="group" aria-label="Recent WAKE generation events">${recordSpine||'<span class="empty">No recent generation events.</span>'}</div>
