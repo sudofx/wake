@@ -392,9 +392,10 @@
       const intensity=index<matrixCompleted?'done':index<matrixCompleted+matrixFailed?'failed':index<matrixCompleted+matrixFailed+matrixDeferred?'deferred':'open';
       return `<i class="continuity-cell ${intensity}" aria-hidden="true"></i>`;
     }).join('');
-    const topicNodes=topicRows.slice(0,10).map((topic,index)=>{
-      const size=Math.max(10,Math.min(30,10+Math.round(24*topic.total/Math.max(1,topicMax))));
-      return `<a class="ops-topic-node" href="#projects/topic:${encodeURIComponent(topic.id)}" style="--node-size:${size}px;--node-color:${esc(topicColors[topic.id]||'var(--ops-cyan)');}"><span>${esc(topic.label)}</span><b>${topic.total}</b></a>`;
+    const opsTopicMax=Math.max(1,...topicRows.map(topic=>topic.total));
+    const topicNodes=topicRows.slice(0,10).map(topic=>{
+      const size=Math.max(10,Math.min(30,10+Math.round(24*topic.total/opsTopicMax)));
+      return `<a class="ops-topic-node" href="#projects/topic:${encodeURIComponent(topic.id)}" style="--node-size:${size}px;--node-color:${esc(topicColors[topic.id]||'var(--ops-cyan)')}"><span>${esc(topic.label)}</span><b>${topic.total}</b></a>`;
     }).join('');
     $('metrics-dashboard').innerHTML=`
       <section class="ops-console" aria-label="WAKE operational research console">
