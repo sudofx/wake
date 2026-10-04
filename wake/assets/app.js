@@ -611,6 +611,7 @@
       <div class="ops-story-lede" aria-label="Current record summary">
         <span>WHAT THE RECORD SAYS NOW</span>
         <p>Cycle <strong>${s.version}</strong> · <strong>${completed.length}</strong> completed wakes · <strong>${acceptedCount}</strong> accepted · <strong>${rejectedCount}</strong> rejected · <strong>${openObligations}</strong> open commitments · <strong>${qualifyingEvidence}</strong> substantive source observations · <strong>${opsActiveBeliefs.length}</strong> active beliefs · <strong>${matrixPct}%</strong> of continuity@1 covered.</p>
+        <small>Counts are derived from durable receipts and current governed state. They describe WAKE's recorded history; they do not certify the truth of its research claims.</small>
       </div>
       <div class="ops-reading-key" aria-label="How to read this data story">
         <span><b>NOW</b> what happened</span>
