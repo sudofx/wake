@@ -30,6 +30,8 @@ class PublishingTests(unittest.TestCase):
                 self.assertFalse(payload["matrix_progress"]["enabled"])
                 self.assertEqual(payload["matrix_progress"]["cell_count"], 343)
                 self.assertEqual(len(payload["matrix_progress"]["cells"]), 343)
+                self.assertIn("application_observability", payload)
+                self.assertIsNone(payload["application_observability"])
                 self.assertIn("application_access", payload)
                 self.assertIsNone(payload["application_access"])
                 before = engine.store.performance_snapshot()["full_replays"]
@@ -39,6 +41,7 @@ class PublishingTests(unittest.TestCase):
                 self.assertEqual(rendered["head"], payload["head"])
                 self.assertEqual(rendered["state"]["version"], payload["state"]["version"])
                 self.assertIn("matrix_progress", rendered)
+                self.assertIn("application_observability", rendered)
                 self.assertIn("application_access", rendered)
             finally:
                 engine.store.close()
