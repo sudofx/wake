@@ -1880,12 +1880,56 @@ class Engine:
                 "inquiry_drive_project_count": len(inquiry_drive_shadow["projects"]),
             }})
         return invocation, request
+
+    def _record_continuity_sidecar(self, state, invocation, response, research_status):
+        """Score one answered sidecar independently from normal research governance."""
+        shadow = state["invocations"][invocation].get("continuity_probe_shadow")
+        if not isinstance(shadow, dict) or not isinstance(shadow.get("context"), dict):
+            return None
+        probe_context = shadow["context"]
+        try:
+            if response is None:
+                raise ValueError("continuity_probe sidecar missing or response was not parseable")
+            evaluation = evaluate_continuity_probe_response(probe_context, response)
+        except (ValueError, TypeError, KeyError) as error:
+            evaluation = failed_continuity_probe_evaluation(probe_context, error)
+
+        record = continuity_result_record(
+            probe_context,
+            evaluation,
+            invocation,
+            research_status,
+            response=response,
+        )
+        progress = self.store.record_continuity_matrix_result(
+            probe_context["campaign"]["coordinate_id"],
+            record,
+        )
+        return {
+            "status": "completed",
+            "coordinate_id": probe_context["campaign"]["coordinate_id"],
+            "score": record["score"],
+            "passed": record["passed"],
+            "completed": progress["completed_count"],
+            "total": progress["cell_count"],
+            "next_coordinate_id": progress["next_coordinate_id"],
+        }
+
     def finish(self, invocation, raw, metadata=None, crash=False):
         state = self.store.load()
         require(state["pending"] == invocation, "Response does not match the pending invocation")
+        probe_response = None
         try:
             require(isinstance(raw, str) and len(raw) <= 64000, "Response exceeds 64,000 characters")
             proposal = json.loads(raw, parse_constant=lambda x: (_ for _ in ()).throw(ValueError("Nonfinite JSON")))
+            if (
+                isinstance(proposal, dict)
+                and isinstance(
+                    state["invocations"][invocation].get("continuity_probe_shadow"),
+                    dict,
+                )
+            ):
+                probe_response = proposal.pop("continuity_probe", None)
             proposal, result, editorial, rotation_filter = govern_proposal(
                 state, invocation, proposal
             )
@@ -1902,7 +1946,21 @@ class Engine:
             if state.get("charter"):
                 self.store.append("attention_assessed", attention_assessment(
                     self.store.load(), invocation, "rejected"))
-            return {"status": "rejected", "id": invocation, "reason": reason}
+            probe_result = self._record_continuity_sidecar(
+                state,
+                invocation,
+                probe_response,
+                "rejected",
+            )
+            return {
+                "status": "rejected",
+                "id": invocation,
+                "reason": reason,
+                **(
+                    {"continuity_matrix_probe": probe_result}
+                    if probe_result is not None else {}
+                ),
+            }
         fields = ["version", "beliefs", "commitments", "journal"]
         if state.get("charter"):
             fields += ["projects", "notebooks", "research", "posts"]
@@ -1916,13 +1974,23 @@ class Engine:
         if state.get("charter"):
             self.store.append("attention_assessed", attention_assessment(
                 state, invocation, "accepted", proposal))
+        probe_result = self._record_continuity_sidecar(
+            state,
+            invocation,
+            probe_response,
+            "accepted",
+        )
         return {"status": "accepted", "id": invocation, "cycle": result["version"],
                 **({"editorial": {k: v for k, v in editorial.items() if k != "action"}} if editorial else {}),
                 **({"rotation_filter": {
                     "selected_topic": rotation_filter["selected_topic"],
                     "withheld_count": rotation_filter["withheld_count"],
                     "inserted_capacity_park": rotation_filter["inserted_capacity_park"],
-                }} if rotation_filter else {})}
+                }} if rotation_filter else {}),
+                **(
+                    {"continuity_matrix_probe": probe_result}
+                    if probe_result is not None else {}
+                )}
 
     @staticmethod
     def _request_count(provider):
