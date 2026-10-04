@@ -91,7 +91,9 @@ class FrontendHygieneTests(unittest.TestCase):
         flat_script = (ASSETS / "flat-view.js").read_text()
         css = (ASSETS / "style.css").read_text()
 
-        self.assertIn("const eventKinds=[...new Set(events.map", flat_script)
+        self.assertIn("const eventKindCounts=events.reduce", flat_script)
+        self.assertIn("const eventKinds=Object.keys(eventKindCounts).sort()", flat_script)
+        self.assertIn("ALL KINDS · '+events.length", flat_script)
         self.assertIn('class="flat-history-tools"', flat_script)
         self.assertIn("data-event-kind=", flat_script)
         self.assertIn("const filterEvents=()=>", flat_script)
@@ -103,6 +105,11 @@ class FrontendHygieneTests(unittest.TestCase):
         self.assertIn(".flat-history-tools{position:sticky", css)
         self.assertIn(".flat-history-tools input,.flat-history-tools select{", css)
         self.assertIn("@media(max-width:700px){.flat-history-tools{position:static", css)
+        self.assertIn('#flat-content [data-event-kind="accepted"]', css)
+        self.assertIn('#flat-content [data-event-kind="rejected"]', css)
+        self.assertIn('#flat-content [data-event-kind="failed"]', css)
+        self.assertIn('#flat-content [data-event-kind="observation"]', css)
+        self.assertIn('#flat-content [data-event-kind="invocation_started"]', css)
 
     def test_3d_map_first_load_record_hash_opens_requested_branch(self):
         script = (ASSETS / "map3d.js").read_text()
