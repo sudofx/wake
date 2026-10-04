@@ -1014,6 +1014,11 @@
           <div class="ops-command-pulse-track">${commandPulse||'<span class="ops-command-pulse-empty">no completed wake receipts</span>'}</div>
         </div>
       </section>
+      <div class="ops-story-gate" aria-label="Transition from control-room overview to evidence story">
+        <span>FROM GLANCE TO EVIDENCE</span>
+        <strong>Read the record in sequence.</strong>
+        <small>The control room compresses current signals. The chapters below unpack what happened, what resisted, what survived, what was observed, what is carried, what remains, and where continuity has been tested.</small>
+      </div>
       <nav class="ops-storyline" aria-label="WAKE data story">
         <a href="#metrics" data-story-target="ops-now"><b>01</b><span>NOW</span><strong>cycle ${s.version}</strong></a>
         <a href="#metrics" data-story-target="ops-pressure"><b>02</b><span>PRESSURE</span><strong>${rejectedCount} rejected</strong></a>
