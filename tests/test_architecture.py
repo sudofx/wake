@@ -238,6 +238,19 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('"temporal", "context_delivery", "working_set_metrics", "runtime_performance"', live)
         self.assertNotIn('"request", "response"', live)
 
+    def test_metrics_show_context_continuity_without_inventing_handoffs(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('DURABLE CONTINUITY THREAD / RECENT INVOCATIONS', app)
+        self.assertIn('observed record revision span', app)
+        self.assertIn('source revision → governed context → recorded outcome', app)
+        self.assertIn('item.source_revision', app)
+        self.assertIn('context.payload_bytes', app)
+        self.assertIn("includes('context_delivered')", app)
+        self.assertIn('.ops-continuity-track', css)
+        self.assertIn('.ops-continuity-node.delivered', css)
+        self.assertNotIn('fresh invocations', app.lower())
+
     def test_record_spine_links_use_receipt_ids_not_sequence_numbers(self):
         app = self.read('wake/assets/app.js')
         self.assertIn("const receiptId=String(event.payload?.id||'')", app)
