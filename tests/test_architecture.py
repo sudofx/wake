@@ -258,6 +258,18 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('Each row is a commitment whose recorded creator and resolver are different invocations.', app)
         self.assertIn('No cross-invocation fulfillments recorded yet.', app)
 
+    def test_frontier_queue_is_exact_open_commitment_state(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('FRONTIER QUEUE / EXACT OPEN WORK', app)
+        self.assertIn("const openCommitments=obligations.filter(c=>c.status==='open')", app)
+        self.assertIn('item?.due_cycle', app)
+        self.assertIn('item?.created_version', app)
+        self.assertIn('item?.created_by', app)
+        self.assertIn('Every item comes directly from current governed commitment state.', app)
+        self.assertIn('.ops-frontier-list', css)
+        self.assertIn('.ops-frontier-item.overdue', css)
+
     def test_belief_lineage_uses_only_stored_evidence_ids(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
