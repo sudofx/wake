@@ -97,7 +97,7 @@ function durableRecordDestination(node){
  }
  if(node?.kind==='invocation'){
    const invocationId=String(node.id||'').replace(/^invocation:/,'');
-   return {href:`events.html#event=${encodeURIComponent(invocationId)}`,label:'EXACT INVOCATION RECEIPT',basis:'full append-only history · invocation ID'};
+   return {href:exactSeq?`events.html#seq=${exactSeq}`:`events.html#event=${encodeURIComponent(invocationId)}`,label:'EXACT INVOCATION RECEIPT',basis:detail.exact_record||'full append-only history · invocation ID'};
  }
  if(node?.kind==='blog'&&stableId)return {href:`index.html#blog/${encodeURIComponent(stableId)}`,label:'DURABLE PUBLICATION',basis:'stored post ID'};
  if(node?.kind==='evidence'&&stableId)return {href:`index.html#evidence/${encodeURIComponent(stableId)}`,label:'EVIDENCE RECORD',basis:'stored evidence ID'};
