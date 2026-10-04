@@ -370,17 +370,19 @@
       .map(post=>{
         const created=Number(post?.created_version||0);
         const declared=Number(post?.reflection_cycle||0);
-        const cycle=declared||(created>0&&created%10===0?created:0);
-        return cycle>0?{post,cycle}:null;
+        const legacyClassified=!declared&&created>0&&created%10===0;
+        const cycle=declared||(legacyClassified?created:0);
+        return cycle>0?{post,cycle,origin:declared?'declared':'legacy'}:null;
       })
       .filter(Boolean)
       .sort((a,b)=>a.cycle-b.cycle);
     const reflectionScale=Math.max(1,Number(s.version||0),...opsReflections.map(item=>item.cycle));
     const reflectionDots=opsReflections.map((item,index)=>{
       const position=Math.max(0,Math.min(100,100*item.cycle/reflectionScale));
-      return `<a class="ops-history-dot" href="#blog/${encodeURIComponent(item.post.id)}" style="--history-position:${position.toFixed(2)}%" title="Cycle ${item.cycle} · ${esc(postTitle(item.post))}" aria-label="Cycle ${item.cycle} reflection: ${esc(postTitle(item.post))}"><i></i><b>${item.cycle}</b></a>`;
+      const originLabel=item.origin==='declared'?'declared reflection_cycle':'legacy cycle-10 classification';
+      return `<a class="ops-history-dot ${item.origin}" href="#blog/${encodeURIComponent(item.post.id)}" style="--history-position:${position.toFixed(2)}%" title="Cycle ${item.cycle} · ${originLabel} · ${esc(postTitle(item.post))}" aria-label="Cycle ${item.cycle} ${originLabel}: ${esc(postTitle(item.post))}"><i></i><b>${item.cycle}</b></a>`;
     }).join('');
-    const latestReflections=opsReflections.slice(-3).reverse().map(item=>`<a href="#blog/${encodeURIComponent(item.post.id)}"><span>CYCLE ${item.cycle}</span><strong>${esc(postTitle(item.post))}</strong></a>`).join('')||'<p class="empty">No durable reflection milestones yet.</p>';
+    const latestReflections=opsReflections.slice(-3).reverse().map(item=>`<a href="#blog/${encodeURIComponent(item.post.id)}"><span>CYCLE ${item.cycle} · ${item.origin==='declared'?'DECLARED':'LEGACY'}</span><strong>${esc(postTitle(item.post))}</strong></a>`).join('')||'<p class="empty">No durable reflection milestones yet.</p>';
     const latestReflection=opsReflections.at(-1)||null;
     const reflectionRecordVersion=Number(latestReflection?.post?.created_version);
     const hasReflectionBaseline=Number.isFinite(reflectionRecordVersion)&&reflectionRecordVersion>0;
@@ -920,7 +922,7 @@
         <span><b>SPACE</b> where continuity has been tested</span>
       </div>
       <section class="ops-history-arc" aria-label="Longitudinal durable reflection record">
-        <header><div><p class="eyebrow">LONGITUDINAL RECORD / DURABLE REFLECTIONS</p><h3>${opsReflections.length} recorded milestones across ${s.version} cycles</h3></div><small>Only explicit reflection receipts are plotted. Gaps remain gaps.</small></header>
+        <header><div><p class="eyebrow">LONGITUDINAL RECORD / DURABLE REFLECTIONS</p><h3>${opsReflections.length} recorded milestones across ${s.version} cycles</h3></div><small>Declared reflection_cycle receipts and legacy cycle-10 reflections preserved by historical governance are labeled separately. Gaps remain gaps.</small></header>
         <div class="ops-history-body">
           <div class="ops-history-axis">
             <span class="ops-history-start">0</span>
