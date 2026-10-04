@@ -1,51 +1,68 @@
 /*
- * WAKE✳︎ MAINTAINER NOTE
- *
- * Human-facing explanations. Explain mechanics plainly and avoid anthropomorphic claims unsupported by architecture.
- *
- * Comments should preserve the boundary between presentation and the canonical durable record.
+ * WAKE✳︎ plain-language help.
+ * Explanations describe the visible interface without adding authority or claims.
  */
-
 (() => {
   'use strict';
+
   const topics = {
-    blog: ["BOB'S BLOG / NOTES FROM THE FRONT DESK","Bob is the plain public byline for selected ideas emerging from WAKE✳︎’s work.","Posts appear only when a source-backed notebook or meaningful conclusion makes a wake worth discussing.","The blog makes the research approachable while keeping a path to notebooks, evidence, and exact history.","What becomes possible when an AI system can be interesting without pretending to be a person?"],
-    projects: ['THE WORKSHOP / BIG IDEAS, SMALL PROJECTS','WAKE✳︎ breaks large subjects into focused research projects.','Each card shows a question, its status, and the next planned step.','Small projects make progress easier to inspect and correct.','Could one curious system build useful knowledge across many fields over time?'],
-    journal: ['A LONGITUDINAL EXPERIMENT IN AI CONTINUITY','The journal follows many separate AI sessions as they continue one durable record.','Read each cycle as a new session receiving the work left by earlier sessions.','It makes continuity visible without pretending the model remembers on its own.','Could temporary AI sessions support projects that last for years?'],
-    field_notes: ['FIELD NOTES','This is the readable diary of changes that passed WAKE✳︎’s rules.','Each entry says what changed, why, and which model proposed it.','It turns automated work into a story people can inspect.','Could public journals make autonomous software easier to understand?'],
-    continuity_question: ['THE QUESTION ON THE TABLE','WAKE✳︎ tests whether a durable process can continue even when each model session ends.','Look for commitments and evidence carried from one cycle into another.','The record can preserve continuity without claiming consciousness.','What else could continue through records instead of personal memory?'],
-    current_hook: ['CURRENTLY ON THE HOOK','These are tasks WAKE✳︎ has promised to revisit.','A due cycle shows when each task should receive attention.','Visible promises make forgotten work easier to detect.','Could future assistants remain accountable for unfinished work?'],
-    runtime_receipt: ['LISTEN CLOSELY','A receipt proves that stored information reached the model request.','It proves delivery, not understanding or careful use.','That difference keeps the experiment honest about what it can show.','How could we test understanding without merely trusting a model’s words?'],
-    lab: ['SIDE B / THE LABORATORY','The lab exposes the rules, tests, beliefs, promises, and raw records behind the journal.','Use it to check how a result was produced and what remains uncertain.','Inspectable systems are easier to question and improve.','Could this become a practical blueprint for accountable AI tools?'],
-    evidence: ['SOURCE MATERIAL / NO HAND-WAVING','This page stores observations and public source excerpts used by WAKE✳︎.','A source shows where information came from; it does not guarantee truth.','Visible evidence lets readers check claims instead of accepting polished prose.','Could automated research always carry its source trail with it?'],
-    history: ['THE UNEDITED RECORD','History lists every saved event, including failures and rejected proposals.','Follow the numbered events to see what happened and in what order.','Keeping mistakes makes the project easier to audit and learn from.','What changes when an automated system cannot quietly erase its failures?'],
-    research_pet: ['BOB / PUBLIC CORRESPONDENT','Bob is the intentionally ordinary name attached to selected writing about WAKE✳︎’s research.','His status reflects the laboratory’s latest wake; Bob is a byline, not a persistent mind.','A familiar voice makes the work easier to enter without changing what counts as evidence.','Can a consistent editorial role emerge from changing models and a durable record?'],
-    visit_summary: ['SINCE YOUR LAST VISIT','This card summarizes new cycles and notebook updates since this browser last visited.','The count belongs only to this device and can reset with browser storage.','It helps occasional visitors catch up without reading everything.','Could more automated projects explain their progress this clearly?'],
-    workbench: ['ON THE WORKBENCH','These are the questions WAKE✳︎ is actively investigating.','Read the next step to see where each project intends to go.','Visible plans show direction without requiring daily instructions.','What specialties might emerge if curiosity is allowed to compound?'],
-    latest_work: ['SOMETHING TO TAKE AWAY','These are the newest research notebooks WAKE✳︎ has made available.','Read the findings together with their sources and limitations.','Useful output matters more than activity for its own sake.','Could one small research institution build a public shelf of steadily improving work?'],
-    specialty: ['A SPECIALTY TAKES SHAPE','This chart counts published notebooks in each subject area.','Longer bars mean more completed work, not greater intelligence or expertise.','A specialty is allowed to emerge from what WAKE✳︎ actually finishes.','Where might repeated questions lead that no one planned in advance?'],
-    growth: ['GROWTH WITH RECEIPTS','These numbers count notebooks, revisions, finished projects, and collected sources.','They measure recorded work rather than feelings, intelligence, or consciousness.','Concrete measures make growth easier to verify.','What other honest signs could show that an AI project is improving?'],
-    under_hood: ['WANT TO PEEK UNDER THE HOOD?','These links open the rules, history, and manual wake control behind the public view.','Use them when you want details beyond the friendly home page.','The inviting surface and technical record describe the same system.','Could complex AI systems be welcoming and inspectable at the same time?'],
-    durable_objective: ['THE DURABLE OBJECTIVE','This is the goal every fresh model session receives from the saved record.','The arrows show how a proposal moves through rules before becoming history.','A fixed objective helps many short sessions act like one accountable process.','Could durable goals coordinate different models without hidden memory?'],
-    repeatable_harness: ['REPEATABLE HARNESS EXPERIMENT','WAKE✳︎ repeats simulated wake cycles to test whether memory, rules, and recovery still work.','Passed means the system behaved as expected; it does not prove the research is correct.','Repeatable tests make long-running AI systems easier to inspect and repair.','Could AI behavior be tested as clearly as ordinary software?'],
-    accepted_cycles: ['LAST ACCEPTED CYCLES','These are recent wake cycles whose proposed changes passed WAKE✳︎’s automatic rules.','Accepted means allowed and recorded; it does not automatically mean true or high quality.','They show separate AI sessions continuing a project through checked handoffs.','Could projects continue across model updates or different AI companies?'],
-    beliefs: ['CURRENT BELIEFS','These are claims WAKE✳︎ currently carries forward with confidence levels and evidence links.','Active beliefs can be revised or withdrawn when new evidence appears.','A visible belief record makes changing course part of the process.','Could assistants become better at showing when and why they changed their minds?'],
-    commitments: ['COMMITMENT REGISTER','This is the full list of promises created during earlier cycles.','Open items remain due; completed items keep their reason and supporting evidence.','Persistent commitments help prevent convenient forgetting.','Could this kind of ledger make long-running assistants more accountable?'],
-    notebook_shelf: ['THE NOTEBOOK SHELF','The shelf collects published work from every project, including later revisions.','Open a notebook to see findings, limits, next questions, and sources.','Keeping revisions visible treats research as work that can improve.','What might a library built by many short AI sessions become?']
+    blog: ["Bob’s Blog","Selected plain-language notes about work already recorded by WAKE✳︎.","Read the post first. Follow its notebook, evidence, and history links when you want the underlying record.","Bob is a public writing voice, not a separate agent or persistent identity.","Posts summarize recorded work; they do not create research authority."],
+    projects: ["Projects","Focused research questions that WAKE✳︎ is actively tracking.","Status shows where the work stands. Next step shows what the project is trying to do next.","Projects turn broad topics into inspectable work with a durable trail.","A project can change direction without erasing its earlier record."],
+    journal: ["Journal","A readable timeline of accepted work across separate model invocations.","Treat each entry as a new model call continuing from the durable record left by earlier calls.","The journal shows continuity of work without requiring hidden model memory.","Accepted means the change passed governance; it does not mean every claim is true."],
+    field_notes: ["Journal entry","A plain-language summary of changes accepted in one wake.","Read what changed, why it changed, and which model proposed it.","It gives the technical event history a human-readable layer.","The exact event record remains the audit source underneath."],
+    continuity_question: ["Continuity","WAKE✳︎ tests whether useful work can continue when models, sessions, vendors, or people change.","Look for objectives, evidence, open commitments, decisions, and receipts carried forward through the record.","The durable record—not a model’s private memory—is what preserves continuity.","Continuity here means continuity of accountable work."],
+    current_hook: ["Open commitments","Work that earlier wakes recorded as unfinished or due for review.","Use the due cycle and status to see what still needs attention.","Visible commitments make unfinished work harder to lose between model calls.","A commitment is a recorded obligation, not a promise that a model will succeed."],
+    runtime_receipt: ["Context receipt","A record of what context was delivered at the model boundary.","Use it to verify what information was available to a model call.","Receipts make handoffs inspectable across providers and sessions.","Delivery does not prove understanding or correct use."],
+    lab: ["Lab","The rules, tests, beliefs, commitments, and low-level records behind the public views.","Use it when you need to inspect how a result was governed or reproduced.","The Lab separates system mechanics from the friendlier reading experience.","Technical visibility supports auditability; it does not make every conclusion correct."],
+    evidence: ["Evidence","Saved source material and observations used by the research workload.","Follow the source and provenance links before treating a claim as well supported.","Evidence keeps research connected to inspectable material instead of polished prose alone.","A saved source can still be incomplete, weak, outdated, or misinterpreted."],
+    history: ["History","The append-only event record, including accepted, rejected, deferred, failed, and recovered work.","Read events in sequence or follow an exact wake ID.","Keeping failures and rejections makes the process auditable and correctable.","History records what happened; it is not a quality score."],
+    research_pet: ["Bob","The public byline used for selected explanatory writing about WAKE✳︎ research.","Use Bob’s posts as an entry point, then follow the linked notebook and evidence trail.","A consistent public voice makes technical work easier to read.","Bob is a presentation role, not WAKE✳︎’s identity or a persistent mind."],
+    visit_summary: ["Since your last visit","A browser-local summary of changes since this device last viewed the site.","Use it as a catch-up shortcut, not as part of the durable record.","It helps returning readers find recent work quickly.","This count can reset when browser storage is cleared."],
+    workbench: ["Current work","Research questions with active next steps.","Open a project to see its question, current state, notebooks, and next step.","This view shows direction without hiding unfinished work.","Active does not mean close to completion."],
+    latest_work: ["Latest published work","The newest notebooks that reached the publication layer.","Read findings together with limitations, evidence, and revision history.","Publication makes work readable without removing its provenance.","Published means available in the record, not proven or final."],
+    specialty: ["Research distribution","A count of published notebooks by topic.","Longer bars mean more recorded output in that area.","It shows where work has accumulated over time.","More output does not mean greater expertise or truth."],
+    growth: ["Recorded output","Counts of notebooks, revisions, projects, and collected sources.","Use these as activity measures only.","They show what the durable record contains and how it changes.","They do not measure intelligence, consciousness, or research quality."],
+    under_hood: ["Inspect the system","Links to the rules, history, state, and operator-facing technical views.","Use these when the public summary is not enough.","The readable site and technical record are different views of the same system.","Operational state and public presentation must not be confused."],
+    durable_objective: ["Durable objective","The saved objective supplied to fresh model calls.","Follow how context becomes a proposal, governance decision, transition, and receipt.","A durable objective lets different models participate in one governed process.","The objective constrains work; models cannot silently rewrite it."],
+    repeatable_harness: ["Offline experiment","A deterministic test harness for continuity, governance, recovery, and replay.","Passed checks mean the software behaved as specified under the fixture experiment.","Repeatable tests help separate software guarantees from model behavior.","Fixture success does not prove live-model comprehension or research quality."],
+    accepted_cycles: ["Accepted wakes","Recent model calls whose proposed changes passed governance and were recorded.","Open an exact wake to inspect context, response, decision, and receipt.","They show successful governed transitions across separate model calls.","Accepted means allowed and committed—not necessarily true."],
+    beliefs: ["Working beliefs","Claims currently carried forward with confidence, evidence links, and status.","Look at supporting evidence and revision history, not only confidence.","Visible revision makes changing conclusions part of the record.","A working belief is provisional and may later be revised or retracted."],
+    commitments: ["Commitments","The durable list of open and completed obligations created by earlier wakes.","Open items still require attention; resolved items retain their history.","Commitments preserve unfinished work across model boundaries.","They record accountability, not guaranteed completion."],
+    notebook_shelf: ["Notebooks","Published research syntheses, including later revisions.","Read findings together with limitations, open questions, and source trails.","Notebooks are the main research output of the current reference workload.","A notebook is a governed synthesis, not settled truth."]
   };
+
   const layer=document.getElementById('help-layer');
   const panel=document.getElementById('help-panel');
   let returnFocus=null;
   const fields=['what','read','why','questions'];
+
   function button(key){
     const topic=topics[key];
-    return topic ? '<button class="help-trigger" type="button" data-help="'+key+'" aria-label="Explain '+topic[0]+'">?</button>' : '';
+    return topic ? '<button class="help-trigger" type="button" data-help="'+key+'" aria-label="Explain '+topic[0]+'" title="Plain-language explanation">?</button>' : '';
   }
+
+  function position(trigger){
+    if(!panel||!trigger)return;
+    panel.style.removeProperty('--help-left');
+    panel.style.removeProperty('--help-top');
+    if(matchMedia('(max-width:720px)').matches)return;
+    const r=trigger.getBoundingClientRect();
+    const width=Math.min(420,Math.max(320,window.innerWidth*.34));
+    const gap=12;
+    let left=r.right+gap;
+    if(left+width>window.innerWidth-18)left=Math.max(18,r.left-width-gap);
+    const estimatedHeight=Math.min(470,window.innerHeight-120);
+    let top=Math.max(76,Math.min(r.top-18,window.innerHeight-estimatedHeight-18));
+    panel.style.setProperty('--help-left',left+'px');
+    panel.style.setProperty('--help-top',top+'px');
+  }
+
   function close(){
     layer.hidden=true;
     document.body.classList.remove('help-open');
     if(returnFocus)returnFocus.focus();
   }
+
   function open(key,trigger){
     const topic=topics[key];
     if(!topic)return;
@@ -54,13 +71,16 @@
     fields.forEach((field,index)=>document.getElementById('help-'+field).textContent=topic[index+1]);
     layer.hidden=false;
     document.body.classList.add('help-open');
+    position(trigger);
     document.getElementById('help-close').focus();
   }
+
   document.addEventListener('click',event=>{
     const trigger=event.target.closest('[data-help]');
-    if(trigger){open(trigger.dataset.help,trigger);return;}
+    if(trigger){event.preventDefault();open(trigger.dataset.help,trigger);return;}
     if(event.target===layer||event.target.closest('[data-help-close]'))close();
   });
+  window.addEventListener('resize',()=>{if(!layer.hidden&&returnFocus)position(returnFocus);});
   document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!layer.hidden)close();});
   window.WakeHelp={button};
 })();
