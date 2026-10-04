@@ -505,6 +505,10 @@ class ArchitectureSeparationTests(unittest.TestCase):
         css = self.read('wake/assets/style.css')
         self.assertIn('.ops-verify-index a{position:relative;display:grid;gap:3px;min-width:0;min-height:44px;align-content:center', css)
 
+    def test_phone_verification_rail_raises_microtype(self):
+        css = self.read('wake/assets/style.css')
+        self.assertIn('.ops-verify-index span{font-size:8px}.ops-verify-index strong{font-size:9px}', css)
+
     def test_data_story_navigator_tracks_scroll_position(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
