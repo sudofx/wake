@@ -26,12 +26,15 @@ class PublishingTests(unittest.TestCase):
                 self.assertEqual(payload["source"]["authority"], "legacy WAKE SQLite")
                 self.assertEqual(payload["source"]["database"], "wake.sqlite3")
                 self.assertIsNone(payload["source"]["branch"])
+                self.assertIn("matrix_progress", payload)
+                self.assertIsNone(payload["matrix_progress"])
                 before = engine.store.performance_snapshot()["full_replays"]
                 export(None, root / "site", browser_only=True, projection=payload)
                 self.assertEqual(engine.store.performance_snapshot()["full_replays"], before)
                 rendered = json.loads((root / "site/wake-data.json").read_text())
                 self.assertEqual(rendered["head"], payload["head"])
                 self.assertEqual(rendered["state"]["version"], payload["state"]["version"])
+                self.assertIn("matrix_progress", rendered)
             finally:
                 engine.store.close()
 
