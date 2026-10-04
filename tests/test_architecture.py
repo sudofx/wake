@@ -757,6 +757,21 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-command-pulse-track{display:flex;gap:4px;overflow-x:auto', css)
         self.assertIn('.ops-command-pulse-cell{flex:0 0 28px;height:44px}', css)
 
+    def test_belief_to_frontier_is_population_boundary_not_causal_edge(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn('BELIEF → FRONTIER / STORY BOUNDARY', app)
+        self.assertIn('Adjacent governed populations only. No causal edge from belief state to commitment state is asserted here.', app)
+        self.assertIn('ACTIVE BELIEFS', app)
+        self.assertIn('RETRACTED BELIEFS', app)
+        self.assertIn('OPEN COMMITMENTS', app)
+        self.assertIn('OVERDUE', app)
+        self.assertIn('OPEN FRONTIER CHAPTER →', app)
+        self.assertIn('.ops-belief-frontier-bridge{border-top:1px solid var(--ops-line)', css)
+        self.assertIn('.ops-belief-frontier-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr)) 28px repeat(2,minmax(0,1fr)) auto', css)
+        self.assertIn('.ops-belief-frontier-grid{grid-template-columns:repeat(2,minmax(0,1fr))}', css)
+        self.assertIn('.ops-belief-frontier-grid>a{grid-column:1/-1;min-height:44px}', css)
+
     def test_pressure_to_memory_handoff_uses_only_explicit_context_delivery_receipt(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
