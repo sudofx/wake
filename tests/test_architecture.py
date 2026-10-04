@@ -637,6 +637,7 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-command-deck{margin:0 0 10px', css)
         self.assertIn('.ops-command-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr))}', css)
         self.assertIn('.ops-command-grid{grid-template-columns:none;grid-auto-flow:column', css)
+        self.assertIn('.ops-command-grid>a[data-tone="ok"]:before,.ops-command-grid>a[data-tone="running"]:before', css)
         self.assertIn('@media(min-width:1800px)', css)
 
     def test_metrics_story_links_only_explicit_3d_provenance_branches(self):
