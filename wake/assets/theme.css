@@ -1941,3 +1941,15 @@ body>header.masthead{border-radius:11px!important}
     flex-basis:14px!important;
   }
 }
+
+
+/* HERO TWO-LINE LOCK — 2026-10-04 */
+@media(min-width:701px){
+  .nebula-hero-copy{max-width:820px!important}
+  .nebula-hero-copy h1{
+    max-width:820px!important;
+    width:820px!important;
+  }
+  .nebula-hero-copy h1 br{display:block!important}
+  .nebula-hero-copy h1 span{white-space:nowrap}
+}
