@@ -705,6 +705,7 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('<b>ACCESS</b>', app)
         self.assertIn('${esc(sourceAuthority)}', app)
         self.assertIn("accessEnabled===true?'ENABLED':accessEnabled===false?'DISABLED':'UNKNOWN'", app)
+        self.assertIn("const currentStatus=accessEnabled===false?'STOPPED':wakeStatus.pending?'PENDING':wakeStatus.next_eligible?'WAITING':'IDLE';", app)
         self.assertIn('.ops-command-badges{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))', css)
         self.assertNotIn('ops-command-head-side{display:grid!important', css)
         self.assertIn('.ops-command-badges>span.ok{', css)
