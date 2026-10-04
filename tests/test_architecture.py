@@ -806,6 +806,22 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('.ops-command-pulse>header{display:grid;grid-template-columns:1fr auto', css)
         self.assertIn('.ops-command-pulse-cell{flex:0 0 28px;height:44px}', css)
 
+    def test_now_to_pressure_flow_uses_only_terminal_invocation_statuses(self):
+        app = self.read('wake/assets/app.js')
+        css = self.read('wake/assets/style.css')
+        self.assertIn("const completed=invocations.filter(i=>['accepted','rejected','deferred','failed','recovered'].includes(i.status))", app)
+        self.assertIn('const statusShare=count=>completed.length?100*count/completed.length:0', app)
+        self.assertIn('NOW → PRESSURE / TERMINAL STATUS DISTRIBUTION', app)
+        self.assertIn('Durable invocation statuses only.', app)
+        self.assertIn('style="--share:${statusShare(acceptedCount).toFixed(2)}%"', app)
+        self.assertIn('style="--share:${statusShare(rejectedCount).toFixed(2)}%"', app)
+        self.assertIn('style="--share:${statusShare(deferredCount).toFixed(2)}%"', app)
+        self.assertIn('style="--share:${statusShare(failedCount).toFixed(2)}%"', app)
+        self.assertIn('style="--share:${statusShare(recoveredCount).toFixed(2)}%"', app)
+        self.assertIn('.ops-decision-flow{border-top:1px solid var(--ops-line)', css)
+        self.assertIn('.ops-decision-cells{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))', css)
+        self.assertIn('.ops-decision-flow>header{display:block;padding:9px 10px 8px}', css)
+
     def test_metrics_story_links_only_explicit_3d_provenance_branches(self):
         app = self.read('wake/assets/app.js')
         css = self.read('wake/assets/style.css')
