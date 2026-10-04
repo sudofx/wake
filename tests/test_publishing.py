@@ -28,6 +28,8 @@ class PublishingTests(unittest.TestCase):
                 self.assertIsNone(payload["source"]["branch"])
                 self.assertIn("matrix_progress", payload)
                 self.assertIsNone(payload["matrix_progress"])
+                self.assertIn("application_access", payload)
+                self.assertIsNone(payload["application_access"])
                 before = engine.store.performance_snapshot()["full_replays"]
                 export(None, root / "site", browser_only=True, projection=payload)
                 self.assertEqual(engine.store.performance_snapshot()["full_replays"], before)
@@ -35,6 +37,7 @@ class PublishingTests(unittest.TestCase):
                 self.assertEqual(rendered["head"], payload["head"])
                 self.assertEqual(rendered["state"]["version"], payload["state"]["version"])
                 self.assertIn("matrix_progress", rendered)
+                self.assertIn("application_access", rendered)
             finally:
                 engine.store.close()
 
