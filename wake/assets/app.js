@@ -1317,24 +1317,34 @@
     };
     $('metrics-dashboard').querySelectorAll('.matrix-plane-grid').forEach(grid=>{
       const cells=[...grid.querySelectorAll('[data-matrix-cell]')];
-      cells.forEach(cell=>{
-        cell.addEventListener('click',()=>updateMatrixInspector(cell));
-        cell.addEventListener('focus',()=>updateMatrixInspector(cell));
-        cell.addEventListener('keydown',event=>{
-          const index=Number(cell.dataset.matrixLocalIndex);
-          let next=index;
-          if(event.key==='ArrowLeft'&&index%7>0)next=index-1;
-          else if(event.key==='ArrowRight'&&index%7<6)next=index+1;
-          else if(event.key==='ArrowUp'&&index>=7)next=index-7;
-          else if(event.key==='ArrowDown'&&index<42)next=index+7;
-          else return;
-          event.preventDefault();
-          const target=cells[next];
-          if(!target)return;
-          cells.forEach(item=>item.tabIndex=-1);
-          target.tabIndex=0;
-          target.focus();
-        });
+      const eventCell=event=>{
+        const cell=event.target.closest?.('[data-matrix-cell]');
+        return cell&&grid.contains(cell)?cell:null;
+      };
+      grid.addEventListener('click',event=>{
+        const cell=eventCell(event);
+        if(cell)updateMatrixInspector(cell);
+      });
+      grid.addEventListener('focusin',event=>{
+        const cell=eventCell(event);
+        if(cell)updateMatrixInspector(cell);
+      });
+      grid.addEventListener('keydown',event=>{
+        const cell=eventCell(event);
+        if(!cell)return;
+        const index=Number(cell.dataset.matrixLocalIndex);
+        let next=index;
+        if(event.key==='ArrowLeft'&&index%7>0)next=index-1;
+        else if(event.key==='ArrowRight'&&index%7<6)next=index+1;
+        else if(event.key==='ArrowUp'&&index>=7)next=index-7;
+        else if(event.key==='ArrowDown'&&index<42)next=index+7;
+        else return;
+        event.preventDefault();
+        const target=cells[next];
+        if(!target)return;
+        cells.forEach(item=>item.tabIndex=-1);
+        target.tabIndex=0;
+        target.focus();
       });
     });
     const initialMatrixCell=$('metrics-dashboard').querySelector('.continuity-cell.next')||$('metrics-dashboard').querySelector('[data-matrix-cell]');
