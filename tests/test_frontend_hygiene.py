@@ -155,6 +155,14 @@ class FrontendHygieneTests(unittest.TestCase):
         self.assertIn('.touch-help{display:none}', css)
         self.assertIn('@media(pointer:coarse){.pointer-help{display:none}.touch-help{display:inline}}', css)
 
+    def test_3d_keyboard_selection_preserves_focus_and_pressed_state(self):
+        script = (ASSETS / "map3d.js").read_text()
+        self.assertIn('aria-pressed="${focused?\'true\':\'false\'}"', script)
+        self.assertIn('aria-pressed="${selected?\'true\':\'false\'}"', script)
+        self.assertIn("const restoreKeyboardFocus=()=>requestAnimationFrame", script)
+        self.assertIn("target?.focus({preventScroll:true})", script)
+        self.assertIn("choose(node.dataset.node).then(restoreKeyboardFocus)", script)
+
     def test_every_style_class_has_a_current_caller(self):
         css = (ASSETS / "style.css").read_text()
         callers = "\n".join(
