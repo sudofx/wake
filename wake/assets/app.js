@@ -319,6 +319,18 @@
     const evidenceTierRows=Object.entries(evidenceTiers).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));
     const evidenceTierMax=Math.max(1,...evidenceTierRows.map(([,count])=>count));
     const evidenceTierBars=evidenceTierRows.slice(0,7).map(([tier,count])=>`<div class="ops-provenance-row"><span>${esc(String(tier).replaceAll('-',' '))}</span><div><i style="width:${Math.max(4,100*count/evidenceTierMax)}%"></i></div><strong>${count}</strong></div>`).join('')||'<p class="empty">No evidence provenance recorded.</p>';
+    const evidenceTierKeys=evidenceTierRows.slice(0,7).map(([tier])=>tier);
+    const configuredTopicLabels=Object.fromEntries((s.research_topics||[]).map(topic=>[topic.id,topic.label||topic.id]));
+    const evidenceTopicIds=[...new Set(evidenceTelemetry.map(item=>item.topic||'unattributed'))]
+      .sort((a,b)=>String(configuredTopicLabels[a]||a).localeCompare(String(configuredTopicLabels[b]||b)));
+    const evidenceTopicTierCounts=evidenceTopicIds.map(topic=>{
+      const records=evidenceTelemetry.filter(item=>(item.topic||'unattributed')===topic);
+      const cells=evidenceTierKeys.map(tier=>records.filter(item=>item.tier===tier).length);
+      return {topic,label:configuredTopicLabels[topic]||topic,cells,total:records.length};
+    });
+    const evidenceTopicTierMax=Math.max(1,...evidenceTopicTierCounts.flatMap(row=>row.cells));
+    const evidenceTopicTierHeader=evidenceTierKeys.map(tier=>`<span title="${esc(tier)}">${esc(String(tier).replaceAll('-',' '))}</span>`).join('');
+    const evidenceTopicTierRows=evidenceTopicTierCounts.map(row=>`<div class="ops-evidence-matrix-row"><strong title="${esc(row.topic)}">${esc(row.label)}</strong>${row.cells.map(count=>`<i style="--evidence-cell:${Math.max(count?12:0,100*count/evidenceTopicTierMax)}%" title="${count} evidence record${count===1?'':'s'}"><b>${count||''}</b></i>`).join('')}<em>${row.total}</em></div>`).join('');
     const opsDriveScored=invocations.filter(item=>item?.inquiry_drive_shadow&&item.status==='accepted');
     const opsDrive=opsDriveScored.at(-1)?.inquiry_drive_shadow||null;
     const opsDriveGate=opsDrive?.activation||null;
@@ -956,6 +968,13 @@
               <div><span>METADATA ROUTES</span><strong>${metadataEvidence}</strong><small>bibliographic routing receipts</small></div>
             </div>
             <div class="ops-provenance-tiers"><header><span>HOST / RETRIEVAL TIERS</span><strong>${evidenceTierRows.length} observed classes</strong></header><div>${evidenceTierBars}</div></div>
+          </div>
+          <div class="ops-evidence-matrix">
+            <div class="ops-evidence-matrix-head"><div><span>TOPIC × PROVENANCE TIER / OBSERVED EVIDENCE</span><strong>${evidenceTopicIds.length} topic lanes across ${evidenceTierKeys.length} observed tiers</strong></div><small>Counts are current evidence records grouped by recorded topic_domain and host_tier. This shows collection shape, not source quality or truth.</small></div>
+            <div class="ops-evidence-matrix-scroll">
+              <div class="ops-evidence-matrix-header"><span>TOPIC</span>${evidenceTopicTierHeader}<b>TOTAL</b></div>
+              <div class="ops-evidence-matrix-body">${evidenceTopicTierRows||'<p class="empty">No topic-attributed evidence telemetry is available.</p>'}</div>
+            </div>
           </div>
         </div>
         <div class="ops-beliefs" id="ops-beliefs" aria-label="Governed belief telemetry">
