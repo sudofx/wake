@@ -125,6 +125,14 @@ class FrontendHygieneTests(unittest.TestCase):
         script = (ASSETS / "map3d.js").read_text()
         self.assertIn("if(id===current())return release();", script)
 
+    def test_3d_help_copy_matches_pointer_type(self):
+        html = (ASSETS / "map3d.html").read_text()
+        css = (ASSETS / "map3d.css").read_text()
+        self.assertIn('class="pointer-help">Hover for preview · click for details · click again to release · drag to pan', html)
+        self.assertIn('class="touch-help">Tap a sphere for details · tap again to release · drag to pan · pinch to zoom', html)
+        self.assertIn('.touch-help{display:none}', css)
+        self.assertIn('@media(pointer:coarse){.pointer-help{display:none}.touch-help{display:inline}}', css)
+
     def test_every_style_class_has_a_current_caller(self):
         css = (ASSETS / "style.css").read_text()
         callers = "\n".join(
