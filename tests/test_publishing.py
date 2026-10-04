@@ -40,6 +40,8 @@ class PublishingTests(unittest.TestCase):
                 self.assertIsNone(payload["application_observability"])
                 self.assertIn("application_access", payload)
                 self.assertIsNone(payload["application_access"])
+                self.assertIn("record_integrity", payload)
+                self.assertIsNone(payload["record_integrity"])
                 before = engine.store.performance_snapshot()["full_replays"]
                 export(None, root / "site", browser_only=True, projection=payload)
                 self.assertEqual(engine.store.performance_snapshot()["full_replays"], before)
