@@ -75,17 +75,20 @@ if(actionsLight){
 /* DETACHABLE CONSOLE LINKS — 2026-10-04 */
 (() => {
   if (location.pathname.endsWith('/console.html')) return;
-  let consoleWindow=null;
+  let consoleWindow=null,workspaceWindow=null;
   const openConsole=(href)=>{
     const url=new URL(href,location.href);
-    url.searchParams.set('workspace','detached');
-    const width=Math.max(980,Math.min(1560,(screen.availWidth||1440)-80));
-    const height=Math.max(720,Math.min(1100,(screen.availHeight||900)-80));
-    const left=Math.max(0,Math.round(((screen.availWidth||width)-width)/2));
-    const top=Math.max(0,Math.round(((screen.availHeight||height)-height)/2));
+    const isWorkspace=url.searchParams.has('tool');
+    url.searchParams.set('workspace',isWorkspace?'tool':'detached');
+    const width=Math.max(isWorkspace?900:980,Math.min(isWorkspace?1480:1560,(screen.availWidth||1440)-(isWorkspace?110:80)));
+    const height=Math.max(isWorkspace?680:720,Math.min(isWorkspace?1040:1100,(screen.availHeight||900)-(isWorkspace?110:80)));
+    const left=Math.max(0,Math.round(((screen.availWidth||width)-width)/2)+(isWorkspace?24:0));
+    const top=Math.max(0,Math.round(((screen.availHeight||height)-height)/2)+(isWorkspace?24:0));
     const features=`popup=yes,width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`;
-    consoleWindow=window.open(url.href,'wake-console',features);
-    if(consoleWindow)consoleWindow.focus();
+    const name=isWorkspace?'wake-console-workspace':'wake-console';
+    const opened=window.open(url.href,name,features);
+    if(isWorkspace)workspaceWindow=opened;else consoleWindow=opened;
+    if(opened)opened.focus();
     else location.href=url.href;
   };
   document.addEventListener('click',event=>{
