@@ -131,3 +131,12 @@
 
 /* Large durable branches stay fully navigable in the detail panel while the canvas renders a bounded window. */
 .map3d-window-note{margin:.65rem 0 .8rem;color:var(--muted);font-size:.82rem;line-height:1.45}
+
+
+/* Relationship-path orientation stays readable without competing with the constellation. */
+.constellation-shell>.field-head>span{min-width:0}
+.constellation-shell>.field-head #path-status{text-align:right}
+@media(max-width:700px){
+  .constellation-shell>.field-head{display:grid;gap:5px;padding:10px 12px}
+  .constellation-shell>.field-head #path-status{text-align:left;line-height:1.35}
+}
