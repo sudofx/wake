@@ -546,6 +546,14 @@ def _write_browser_route_shell(path, route, prefix="../"):
 
 def _flat_browser_shell(title, eyebrow, heading, description, kind, source):
     """Stable standalone shell whose facts are fetched from flat exports in-browser."""
+    notes = {
+        "events": ("FULL RECORD", "events.jsonl remains the append-only audit export.", "index.html#history"),
+        "state": ("CURRENT STATE", "state.json remains the current durable-state export.", "index.html#home"),
+        "rejected": ("DERIVED VIEW", "This governance view is rendered from the current published projection.", "index.html#metrics/ops-pressure"),
+    }
+    layer, authority_note, return_href = notes.get(
+        kind, ("STANDALONE VIEW", "Presentation loaded from the published source file.", "index.html#home")
+    )
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(title)} / WAKE✳︎</title>
@@ -554,7 +562,9 @@ def _flat_browser_shell(title, eyebrow, heading, description, kind, source):
 <body data-flat-kind="{html.escape(kind)}" data-flat-source="{html.escape(source)}">
 <header class="masthead"><a class="wordmark" href="index.html">WAKE<span class="asterisk">✳︎</span></a>
 <nav class="compact-nav" aria-label="Main navigation"><a href="index.html#home">Explore</a><a href="index.html#journal">Journal</a><a href="index.html#history">History</a><a href="index.html#metrics">Metrics</a><a href="map.html">Map</a></nav></header>
-<main><div class="page-heading"><p class="eyebrow">{html.escape(eyebrow)}</p><h1>{html.escape(heading)}</h1><p>{html.escape(description)}</p></div><div id="flat-content"></div></main>
+<main><div class="page-heading"><p class="eyebrow">{html.escape(eyebrow)}</p><h1>{html.escape(heading)}</h1><p>{html.escape(description)}</p></div>
+<div class="flat-context-rail" aria-label="Standalone record context"><div><span>{html.escape(layer)}</span><strong>{html.escape(authority_note)}</strong><small>Loaded from {html.escape(source)} at page open.</small></div><nav><a href="{html.escape(return_href)}">RETURN TO LIVE VIEW →</a><a href="map3d.html#record=root%3Awake">3D RECORD MAP ↗</a><a href="{html.escape(source)}">RAW SOURCE ↓</a></nav></div>
+<div id="flat-content"></div></main>
 <script src="flat-view.js"></script><script src="nav.js"></script></body></html>'''
 
 
