@@ -121,8 +121,10 @@ window.WakePetReady=(async () => {
       return `<a class="nebula-research-row" href="#projects/notebook:${encodeURIComponent(n.id)}"><span class="nebula-thumb" style="--topic-color:${esc(topicColors[n.domain]||'var(--cyan)')}"></span><span><strong>${esc(n.title)}</strong><small>${stamp?esc(stamp):'Recorded notebook'}</small></span><b aria-hidden="true">›</b></a>`;
     }).join('');
     const topTopics=topicActivity.slice(0,4).map(({topic,score})=>`<a class="nebula-topic-row" href="#projects/topic:${encodeURIComponent(topic.id)}"><span>${esc(topic.label)}</span><b>${score}</b></a>`).join('');
-    const publishedBlogPosts=[...blogPosts].filter(post=>String(post.status||'published')==='published').sort((a,b)=>Number(b.created_version||0)-Number(a.created_version||0));
-    const latestBlog=publishedBlogPosts[0];
+    const publishedBlogPosts=[...blogPosts]
+      .filter(post=>String(post.status||'current')!=='superseded')
+      .sort((a,b)=>Number(b.created_version||0)-Number(a.created_version||0));
+    const latestBlog=publishedBlogPosts[0]||[...blogPosts].sort((a,b)=>Number(b.created_version||0)-Number(a.created_version||0))[0];
     const latestPublishedBook=books.find(n=>n.findings&&n.summary)||books[0];
     const latestBlogInvocation=latestBlog?.created_by?s.invocations?.[latestBlog.created_by]:null;
     const latestBlogStamp=latestBlogInvocation?.time?format(latestBlogInvocation.time):'';
