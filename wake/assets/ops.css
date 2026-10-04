@@ -546,7 +546,7 @@ body.metrics-ops-active .text-link{border-color:var(--ops-cyan-dim);color:var(--
 .ops-storyline span{font:7px/1 var(--mono);letter-spacing:.13em;color:var(--ops-muted)}
 .ops-storyline strong{margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:500 9px/1.2 var(--mono);color:var(--ops-cyan)}
 @media(max-width:1000px){.ops-storyline{grid-template-columns:repeat(4,1fr)}.ops-storyline a:nth-child(4n){border-right:0}.ops-storyline a:nth-child(-n+4){border-bottom:1px solid var(--ops-line-soft)}}
-@media(max-width:430px){.ops-storyline{grid-template-columns:repeat(2,1fr)}.ops-storyline a{padding:8px 9px}.ops-storyline a:nth-child(odd){border-right:1px solid var(--ops-line-soft)}.ops-storyline a:nth-child(even){border-right:0}.ops-storyline a:nth-child(-n+6){border-bottom:1px solid var(--ops-line-soft)}.ops-storyline b{font-size:12px}}
+@media(max-width:430px){.ops-storyline{grid-template-columns:repeat(2,1fr)}.ops-storyline a{padding:8px 9px;min-height:48px}.ops-storyline a:nth-child(odd){border-right:1px solid var(--ops-line-soft)}.ops-storyline a:nth-child(even){border-right:0}.ops-storyline a:nth-child(-n+6){border-bottom:1px solid var(--ops-line-soft)}.ops-storyline b{font-size:12px}.ops-console-actions>a{display:inline-flex;align-items:center;min-height:44px;padding:0 4px}}
 
 
 /* Research trajectory: recorded movement from question to public artifact. */
