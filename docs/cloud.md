@@ -18,13 +18,9 @@ Runtime adoption is explicit. **WAKE✳︎ — Make new code live** verifies a c
 
 The Pages shell loads the disposable `wake-live/live.json` projection with `cache: "no-store"` and checks it every ten seconds. New state is applied in place; live research no longer waits for or triggers a Pages deployment.
 
-## Phase E migration controls
+## Authority maintenance
 
-The migration-specific operator workflows are intentionally separate from normal research control:
-
-- **WAKE✳︎ - Migrate authority to sudofx** performs the provider-free authority cutover and stops. It does not call Gemini or start the continuation chain.
-- **WAKE✳︎ — Phase E authority rehearsal** automatically exercises import/archive/replay behavior against development changes before live adoption.
-- **WAKE✳︎ - Restart** is the normal maintenance shortcut once authority is already on sudofx: stop, verify `master`, promote the verified commit, then start again.
+**WAKE✳︎ - Restart** is the normal maintenance shortcut for the current sudofx-backed runtime: stop, verify `master`, promote the verified commit, then start again.
 
 Do not use migration/rehearsal workflows as substitutes for ordinary Start/Stop control.
 
