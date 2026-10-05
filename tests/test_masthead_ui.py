@@ -58,6 +58,27 @@ class MastheadPresentationTests(unittest.TestCase):
         self.assertIn('.console-link svg{width:27px;height:27px;display:block}', self.css)
         self.assertIn('.console-link{width:36px;height:36px;flex:0 0 36px}', self.css)
 
+    def test_primary_masthead_menu_is_research_journal_blog(self):
+        pages = {
+            "index": (ASSETS / "index.html").read_text(),
+            "map": (ASSETS / "map.html").read_text(),
+            "map3d": (ASSETS / "map3d.html").read_text(),
+            "console": (ASSETS / "console.html").read_text(),
+        }
+        for name, page in pages.items():
+            with self.subTest(page=name):
+                nav = page.split('<nav class="compact-nav"', 1)[1].split('</nav>', 1)[0]
+                visible = nav.split('<!-- Read menu temporarily retired.', 1)[0]
+                self.assertNotIn('>Home</a>', visible)
+                self.assertNotIn('<summary>Read</summary>', visible)
+                self.assertIn('<!-- Read menu temporarily retired.', nav)
+                self.assertIn('<summary>Read</summary>', nav)
+                research = visible.index('>Research</a>')
+                journal = visible.index('>Journal</a>')
+                blog = visible.index('>Bob’s Blog</a>')
+                self.assertLess(research, journal)
+                self.assertLess(journal, blog)
+
     def test_actions_light_is_phone_safe_and_read_only(self):
         nav = (ASSETS / "nav.js").read_text()
         self.assertIn('.actions-light{box-sizing:border-box', self.css)
