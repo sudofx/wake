@@ -19,7 +19,8 @@
   const raw = 'https://raw.githubusercontent.com/sudofx/wake/';
   let data, loading=false, fallback=false, loadedCommit='', selected='', topic='all', query='', mode=matchMedia('(max-width:700px)').matches?'list':'graph';
   let nodeById=new Map(), selectedWake='', wakeTab='summary', followLatest=true, focusedKinds=[];
-  // Expensive view motion is opt-in. Idle Console should stay effectively idle.\n  let motion=false;
+  // Expensive view motion is opt-in. Idle Console should stay effectively idle.
+  let motion=false;
   const tools=window.WakeConsoleTools();
   const cube=window.WakeResearchCube($('matrix-cube'));
   const contextMap=window.WakeContextMap($('context-map-canvas'));
