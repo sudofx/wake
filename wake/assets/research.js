@@ -95,7 +95,7 @@
     const cells=[['Accepted cycles',count(s.accepted_cycles),'Accepted transitions, not a quality score',''],['Latest outcome',latest.status || 'No attempts',latest.model || 'No recorded model',latest.status],['Active projects',count(s.active_projects),`${count(data.record_totals.projects)} projects in the record`,''],['Open commitments',count(s.open_commitments),'Outstanding recorded obligations',''],['Research focus',s.attention_topic?label(s.attention_topic):'Unassigned',s.regime?.enabled?`Time Dilation: ${s.regime.mode} · ×${s.regime.scale}`:'No recorded Time Dilation regime','']];
     $('status-band').innerHTML=cells.map(([name,value,note,status],i)=>`<div class="status-cell"><span class="label">${esc(name)}</span><button type="button" class="status-value ${i===1||i===4?'latest-label ':''}${esc(status)}" data-metric="${['accepted','latest','projects','commitments','attention'][i]}">${esc(value)}</button><small>${esc(note)}</small></div>`).join('');
     $('topic').innerHTML='<option value="all">All topics</option>'+data.topics.map(t=>`<option value="${esc(t.id)}">${esc(t.label)}</option>`).join('');$('topic').value=topic;$('search').value=query;
-    renderFrontier();renderMap();renderDetail();renderMetrics();renderSynthesis();renderCube();renderWake();renderInstruments();
+    renderFrontier();renderMap();renderDetail();renderMetrics();renderSynthesis();renderCube();if(selected&&!syncCubeToRecord(selected) && selectedWake&&!followLatest)syncCubeToWake(selectedWake);else if(!selected&&selectedWake&&!followLatest)syncCubeToWake(selectedWake);renderWake();renderInstruments();
     $('provenance').innerHTML=`<p>Snapshot: ${esc(stamp(data.generated,true))} PT · accepted state ${count(data.version)}</p><p>Authority: ${esc(data.source.authority || 'Verified export')} / ${esc(data.source.database || 'record')}</p><p>Record head: <code>${esc(data.head)}</code></p>${loadedCommit?`<p>Projection commit: <code>${esc(loadedCommit)}</code></p>`:''}<p><a href="research-data.json">Published JSON snapshot</a> · <a href="https://github.com/sudofx/wake/tree/wake-state">Authority checkpoint ↗</a></p>`;
   }
   function renderFrontier() {
@@ -215,7 +215,18 @@
     document.querySelectorAll('[data-cube-axis]').forEach(el=>el.value=c.position[Number(el.dataset.cubeAxis)]);
     $('cube-cell').innerHTML=`${esc(c.id)}<br><strong style="color:var(--orange)">${esc(c.status.replaceAll('_',' '))}</strong>${c.score!==null&&c.score!==undefined?` · recorded score ${esc(c.score)}`:''}<br>${m.axes.map((a,i)=>esc(a.values[c.position[i]].description)).join('<br>')}<br>${c.status==='not_recorded'?'Coordinate definition only; no result is recorded for this cell.':'Recorded campaign result for this coordinate.'}`;
   }
-  function chooseWake(id, floating=false) {selectedWake=id;followLatest=false;writeUrl();renderWake();$('wake-detail').classList.toggle('floating',floating);if(floating)$('wake-inspector-title')?.focus({preventScroll:true});}
+  function matrixCellForWake(id) {
+    return data?.matrix?.cells.find(c=>c.invocation_id===id) || null;
+  }
+  function syncCubeToWake(id) {
+    const c=matrixCellForWake(id);if(!c)return false;
+    matrixCell=c.id;cube.select(c.id);renderCell();return true;
+  }
+  function syncCubeToRecord(id) {
+    const n=nodeById.get(id),d=n?.detail||{};
+    return syncCubeToWake(d.updated_by||d.created_by||d.resolved_by||'');
+  }
+  function chooseWake(id, floating=false) {selectedWake=id;followLatest=false;writeUrl();syncCubeToWake(id);renderWake();$('wake-detail').classList.toggle('floating',floating);if(floating)$('wake-inspector-title')?.focus({preventScroll:true});}
   function renderWake() {
     const wakes=data.wakes || [], w=followLatest?wakes[0]:wakes.find(w=>w.id===selectedWake);
     document.querySelectorAll('[data-wake-tab]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.wakeTab===wakeTab)));
@@ -248,7 +259,7 @@
     document.addEventListener('click',e=>{const t=e.target.closest('[data-story-topic]');if(t){topic=t.dataset.storyTopic;selected='';query='';writeUrl();render();inspectRecords(label(topic),scopedNodes(),'Recorded research in this topic.');}});
     $('close-data-inspector').onclick=()=>{$('data-inspector').hidden=true;};
     $('close-inspector').onclick=()=>{document.querySelector('.detail-panel').classList.remove('reader-floating');selected='';writeUrl();renderMap();renderDetail();};
-    $('latest-wake').onclick=()=>{followLatest=true;selectedWake='';wakeTab='summary';writeUrl();renderWake();};
+    $('latest-wake').onclick=()=>{followLatest=true;selectedWake='';wakeTab='summary';const id=data?.wakes?.[0]?.id||'';syncCubeToWake(id);writeUrl();renderWake();};
     $('show-latest-receipt').onclick=()=>{wakeTab='receipt';chooseWake(data?.wakes?.[0]?.id||'',true);};
     $('show-projects').onclick=()=>inspectRecords('Research projects',data.graph.nodes.filter(n=>n.kind==='project'),'Current projects in the bounded overview. Select one to inspect its contents and relationships.');
     document.addEventListener('click',e=>{const outcome=e.target.closest('[data-outcome]'),evidence=e.target.closest('[data-evidence-class]');if(outcome)inspectWakes(`${outcome.dataset.outcome} invocations`,(data.wakes||[]).filter(w=>w.status===outcome.dataset.outcome),`${count(data.metrics.outcomes[outcome.dataset.outcome])} across the durable record; traces are limited to the latest ${count(data.wakes?.length)} invocations.`);if(evidence){const classes={'Source-ready records':'source','Discovery leads':'discovery','Metadata records':'metadata','Runtime receipts':'receipt','Unreadable material':'unreadable','Unclassified records':'unclassified'};inspectRecords(evidence.dataset.evidenceClass,data.graph.nodes.filter(n=>n.kind==='evidence'&&n.detail.evidence_class===classes[evidence.dataset.evidenceClass]),'These are cited records in the bounded research graph; the count includes the full evidence population.');}const metric=e.target.closest('[data-metric]'),kind=e.target.closest('[data-kind]'),hour=e.target.closest('[data-hour]');if(metric)inspectMetric(metric.dataset.metric);if(kind){focusedKinds=kind.dataset.kind.split(',');const list=scopedNodes().filter(n=>focusedKinds.includes(n.kind));const i=list.findIndex(n=>n.id===selected);if(list.length)choose(list[(i+1)%list.length].id);else{renderMap();inspectRecords('No records in this category',[]);}}if(hour)inspectHour(hour.dataset.hour,true);const w=e.target.closest('[data-wake]'),tab=e.target.closest('[data-wake-tab]');if(w&&w.dataset.wake&&!w.hasAttribute('data-hour')){$('data-inspector').hidden=true;wakeTab='summary';chooseWake(w.dataset.wake,true);}if(tab){wakeTab=tab.dataset.wakeTab;writeUrl(false);renderWake();}if(e.target.closest('#expand-context')){$('wake-detail').classList.add('floating');$('wake-inspector-title')?.focus({preventScroll:true});}if(e.target.closest('.close-wake'))$('wake-detail').classList.remove('floating');});
@@ -323,7 +334,7 @@
     renderFrontierTable();
   }
 
-  function choose(id,floating=false) {document.querySelector('.detail-panel').classList.toggle('reader-floating',floating);$('data-inspector').hidden=true;selected=id;writeUrl();renderMap();renderDetail();$('detail-title').focus({preventScroll:true});}
+  function choose(id,floating=false) {document.querySelector('.detail-panel').classList.toggle('reader-floating',floating);$('data-inspector').hidden=true;selected=id;writeUrl();syncCubeToRecord(id);renderMap();renderDetail();$('detail-title').focus({preventScroll:true});}
   document.addEventListener('click',event=>{const target=event.target.closest('[data-record]');if(target)choose(target.dataset.record,Boolean(target.closest('#data-inspector')));});
   document.querySelector('#outcomes').addEventListener('keydown',e=>{if(['Enter',' '].includes(e.key)&&e.target.matches('[data-outcome]')){e.preventDefault();e.target.dispatchEvent(new MouseEvent('click',{bubbles:true}));}});
   $('research-map').addEventListener('keydown',event=>{if(['Enter',' '].includes(event.key)){const target=event.target.closest('[data-record]');if(target){event.preventDefault();choose(target.dataset.record);}}});
