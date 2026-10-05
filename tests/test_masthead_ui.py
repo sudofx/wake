@@ -136,7 +136,7 @@ class MastheadPresentationTests(unittest.TestCase):
         console = (ASSETS / "console.html").read_text()
         research = (ASSETS / "research.js").read_text()
         self.assertIn('src="nav.js?v=20261004-11"', console)
-        self.assertIn('src="research.js?v=20261005-2"', console)
+        self.assertIn('src="research.js?v=20261005-3"', console)
         self.assertNotIn("function execution()", research)
         self.assertNotIn("actions/workflows/wake.yml/runs?branch=wake-runtime", research)
         self.assertNotIn("GitHub Actions · status unavailable", research)
