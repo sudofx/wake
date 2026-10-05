@@ -13,7 +13,7 @@ The fixed objective is written at initialization. Models cannot alter it or the 
 
 ## Durable record
 
-**Phase E status:** the architectural exit condition is satisfied on `master`. WAKE's operational authority, generic runtime lifecycle, effect boundary, recovery, and provider-neutral accounting are sudofx-owned; WAKE retains domain/research policy. `wake-runtime` is promoted separately and may intentionally lag while continuous research is active.
+WAKE's operational authority, generic runtime lifecycle, effect boundary, recovery, and provider-neutral accounting are sudofx-owned; WAKE retains domain/research policy. `wake-runtime` is promoted separately and may intentionally lag while continuous research is active.
 
 WAKE now runs as a sudofx application. `data/sudofx.sqlite` is the active operational authority on `wake-state`. WAKE-specific research policy remains above the reusable sudofx kernel; models still propose, WAKE policy still validates domain meaning, and sudofx records the governed result, provenance and replay contract.
 
