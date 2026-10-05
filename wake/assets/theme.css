@@ -119,7 +119,6 @@ a:focus-visible,.compact-nav summary:focus-visible,.compact-nav a:focus-visible{
 /* Dropdown selection uses one straight underline, never rounded end caps. */
 .compact-nav .nav-dropdown a{border-radius:0 !important}
 .compact-nav .nav-dropdown a[aria-current=page]{border-bottom:2px solid var(--cyan) !important}
-:root[data-theme="dark"] body{background:#1b2036 !important}
 
 /* The MAP detail inspector is an independent reading pane.  Keep its rounded
    shell, but let long selected records scroll inside it. */
@@ -206,7 +205,12 @@ h3{font-family:var(--sans) !important}
   --shadow:0 18px 48px rgba(0,0,18,.36);
   --serif:var(--sans);
 }
-html{background:#040817}
+html{
+  min-height:100%;
+  background:
+    linear-gradient(180deg,#111a35 0%,#091027 18%,#040817 48%,#01030b 78%,#000 100%);
+  background-color:#000;
+}
 body{
   min-height:100vh;
   color:var(--ink)!important;
