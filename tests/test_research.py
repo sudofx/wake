@@ -1394,7 +1394,7 @@ class ResearchTests(unittest.TestCase):
         result = self.propose([notebook(["s1"], "A bounded comparison follows the collected source [s1].")])
         self.assertEqual(result["status"], "accepted")
         export(self.engine.store, self.root/"site")
-        rendered = (self.root/"site/notebooks/n.md").read_text()
+        rendered = (self.root/"site/notebooks/n.html").read_text()
         self.assertIn("Evidence profile · 1 distinct qualifying source work", rendered)
 
     def test_report_does_not_count_metadata_as_qualifying_research(self):
@@ -1549,7 +1549,7 @@ class ResearchTests(unittest.TestCase):
         reconstructed, _ = verify_history(self.root/"site/events.jsonl", (self.root/"site/head.txt").read_text())
         self.assertEqual(reconstructed, self.engine.store.load())
         self.assertEqual(reconstructed["notebooks"]["n"]["revision"], 2)
-        self.assertIn("Changed findings add new material", (self.root/"site/notebooks/n.md").read_text())
+        self.assertIn("Changed findings add new material", (self.root/"site/notebooks/n.html").read_text())
 
     def test_sources_and_notebook_text_cannot_inject_scripts(self):
         self.source("s1")
@@ -1611,12 +1611,12 @@ class ResearchTests(unittest.TestCase):
         reconstructed, _ = self.engine.store.replay()
         self.assertEqual(reconstructed["posts"], state["posts"])
         export(self.engine.store, self.root/"site")
-        markdown = (self.root/"site/blog/post-one.md").read_text()
+        standalone_markdown_legacy = (self.root/"site/blog/post-one.html").read_text()
         html = (self.root/"site/index.html").read_text()
         browser_data = json.loads((self.root/"site/wake-data.json").read_text())
         standalone = (self.root/"site/blog/post-one.html").read_text()
-        self.assertIn("Bob's Lens — philosophical reflection", markdown)
-        self.assertIn("Exact wake and decision", markdown)
+        self.assertIn("Bob's Lens — philosophical reflection", standalone_markdown_legacy)
+        self.assertIn("Exact wake and decision", standalone_markdown_legacy)
         self.assertNotIn("The useful disagreement", html)
         self.assertEqual(browser_data["state"]["posts"]["post-one"]["title"], "The useful disagreement")
         self.assertIn("font-variant-emoji:text", (Path(__file__).resolve().parents[1]/"wake/assets/style.css").read_text())
@@ -1637,10 +1637,10 @@ class ResearchTests(unittest.TestCase):
         self.assertIn("WAKE✳.", state["posts"]["post-one"]["body"])
         export(self.engine.store, self.root/"site")
         standalone = (self.root/"site/blog/post-one.html").read_text()
-        markdown = (self.root/"site/blog/post-one.md").read_text()
+        standalone_markdown_legacy = (self.root/"site/blog/post-one.html").read_text()
         index = (self.root/"site/index.html").read_text()
         self.assertIn('<strong class="wake-mark">WAKE✳︎</strong>.', standalone)
-        self.assertIn("**WAKE✳︎**.", markdown)
+        self.assertIn("**WAKE✳︎**.", standalone_markdown_legacy)
         self.assertIn("replaceAll('WAKE✳︎','WAKE✳').replaceAll('WAKE✳','WAKE✳︎')", index)
 
     def test_bob_blog_cannot_write_wake_journal_voice(self):
