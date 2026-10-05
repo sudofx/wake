@@ -138,14 +138,14 @@ Use the workflows by their literal names:
 - **WAKE✳︎ - Start** — start WAKE✳︎ and keep it working.
 - **WAKE✳︎ - Stop** — stop the current chain and prevent another cycle from starting.
 - **WAKE✳︎ - Reset** — safely stop as needed, preserve/archive prior governed history, and start a new active generation at zero; requires the workflow's explicit reset confirmation.
-- **WAKE✳︎ — Make new code live** — verify the selected candidate (normally `master`), then move that exact tested commit to `wake-runtime`. Research must be stopped first.
+- **WAKE✳︎ - promote** — verify the selected candidate (normally `master`), then move that exact tested commit to `wake-runtime`. Research must be stopped first.
 - **WAKE✳︎ - Restart** — safe maintenance shortcut: stop, verify current `master`, promote it, then start again.
 - **WAKE✳︎ - Enable continuity campaign** — provider-free explicit opt-in to the governed `continuity@1` 343-cell campaign; immediately stops/drains WAKE, safely serializes the state change, then starts WAKE again whether enablement succeeds or fails.
 - **WAKE✳︎ — Update website · automatic** — rebuild the public GitHub Pages site when website code changes.
 - **WAKE✳︎ — Check code · automatic** — run the repository's safety checks when code changes.
 - **WAKE✳︎ — Internal only: one research cycle** and **WAKE✳︎ — Internal only: keep-running switch** are plumbing. Do not use them for normal operation.
 
-A source-code push can refresh the site without spending a Gemini call. Runtime code changes do not affect live research until **Make new code live** succeeds.
+A source-code push can refresh the site without spending a Gemini call. Runtime code changes do not affect live research until **WAKE✳︎ - promote** succeeds.
 
 ### 9. Verify the installation
 
