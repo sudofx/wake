@@ -245,7 +245,7 @@ Working abstractions keep evidence pointers and retrieval hooks; they do not rep
 - `research-topics.toml`: editable topic names and neutral discovery queries; changes are adopted as audited events.
 - `scripts/github_wake.py`: fresh-runner recovery and durable GitHub checkpoints.
 - `wake/providers.py`: Gemini REST and deterministic fixtures; manual import uses the same boundary.
-- `wake/report.py`, `wake/assets/`: Bob's Blog plus portable HTML and Markdown reports.
+- `wake/report.py`, `wake/assets/`: Bob's Blog plus portable HTML reports and record projections.
 - `assets/covers/`: archived Lab Comics covers.
 - `wake/experiment.py`: executable 100–1000-cycle experiment.
 - `tests/`: failure, governance, provider-contract and audit checks.
