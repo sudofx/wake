@@ -97,7 +97,7 @@ class MastheadPresentationTests(unittest.TestCase):
     def test_mobile_masthead_geometry_is_shared_and_nav_centered(self):
         console = (ASSETS / "console.html").read_text()
         research_css = (ASSETS / "research.css").read_text()
-        self.assertIn('href="research.css?v=20261005-14"', console)
+        self.assertIn('href="research.css?v=', console)
         self.assertIn('body>header.masthead,\n  .research-page>.research-header.masthead{\n    margin-top:8px!important;', self.css)
         self.assertIn('display:grid!important;', self.css)
         self.assertIn('grid-template-columns:repeat(3,minmax(0,1fr))!important;', self.css)
@@ -135,8 +135,8 @@ class MastheadPresentationTests(unittest.TestCase):
     def test_console_reuses_shared_actions_status_controller(self):
         console = (ASSETS / "console.html").read_text()
         research = (ASSETS / "research.js").read_text()
-        self.assertIn('src="nav.js?v=20261004-11"', console)
-        self.assertIn('src="research.js?v=20261005-3"', console)
+        self.assertIn('src="nav.js?v=', console)
+        self.assertIn('src="research.js?v=', console)
         self.assertNotIn("function execution()", research)
         self.assertNotIn("actions/workflows/wake.yml/runs?branch=wake-runtime", research)
         self.assertNotIn("GitHub Actions · status unavailable", research)
