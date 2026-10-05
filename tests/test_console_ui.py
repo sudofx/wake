@@ -1,4 +1,4 @@
-"""Regression checks for Console navigation, workspace pop-outs, and 3D atmosphere."""
+"""Regression checks for Console navigation, full-page tools, and 3D atmosphere."""
 
 from pathlib import Path
 import unittest
@@ -38,11 +38,11 @@ class ConsolePresentationTests(unittest.TestCase):
         component = (ASSETS / "console-component.js").read_text()
         self.assertIn("if(parent===window)return", component)
 
-    def test_workspace_window_cannot_be_covered_by_console_masthead(self):
-        self.assertIn("html.console-tool-window body>.research-header.masthead", self.css)
-        self.assertIn("display:none!important", self.css)
-        self.assertIn("html.console-tool-window #main>.console-tools", self.css)
-        self.assertIn("inset:0!important", self.css)
+    def test_console_has_no_embedded_tool_workspace(self):
+        self.assertNotIn('id="console-tool-frame"', self.html)
+        self.assertNotIn('id="close-console-tools"', self.html)
+        self.assertNotIn('<iframe', self.html)
+        self.assertIn("Complete research tools open as full browser pages.", self.html)
 
     def test_3d_map_uses_dark_nebula_behind_transparent_floor(self):
         self.assertIn("NEBULA CONSTELLATION BACKDROP", self.map3d_css)
