@@ -2,7 +2,7 @@
 (() => {
   const routes={'console-records.html':'records','console-map.html':'map','console-map3d.html':'map3d','console-events.html':'events','console-state.html':'state','console-rejected.html':'rejected','console.html':'overview'};
   const send=(tool,route='')=>{if(parent!==window)parent.postMessage({type:'wake-console-route',tool,route},location.origin);};
-  document.addEventListener('click',event=>{const link=event.target.closest('a[href]');if(!link)return;let url;try{url=new URL(link.href,location.href);}catch{return;}if(url.origin!==location.origin)return;const file=url.pathname.split('/').at(-1),tool=file==='console.html'&&url.searchParams.has('tool')?url.searchParams.get('tool'):routes[file];if(!tool)return;
+  document.addEventListener('click',event=>{if(parent===window)return;const link=event.target.closest('a[href]');if(!link)return;let url;try{url=new URL(link.href,location.href);}catch{return;}if(url.origin!==location.origin)return;const file=url.pathname.split('/').at(-1),tool=file==='console.html'&&url.searchParams.has('tool')?url.searchParams.get('tool'):routes[file];if(!tool)return;
     // Same-component hash navigation retains the original record renderer.
     if(file===location.pathname.split('/').at(-1)&&url.hash&&tool==='records')return;
     event.preventDefault();const part=url.hash.slice(1).split('/')[0];send(tool==='records'&&['projects','lab','evidence','history','metrics','journal','blog'].includes(part)?part:tool,url.hash);
