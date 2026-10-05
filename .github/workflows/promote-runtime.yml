@@ -1,5 +1,5 @@
-name: WAKE✳︎ — Make new code live
-run-name: "Make ${{ inputs.candidate_ref }} live"
+name: WAKE✳︎ - promote
+run-name: "Promote ${{ inputs.candidate_ref }} to wake-runtime"
 
 on:
   workflow_dispatch:
