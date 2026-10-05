@@ -1,7 +1,7 @@
 """
 WAKE✳︎ → sudofx application boundary.
 
-Phase E has moved live WAKE authority onto sudofx. This module defines the
+Live WAKE authority now resides on sudofx. This module defines the
 versioned WAKE application contract, verifies the one-time legacy import, and
 governs post-migration WAKE-compatible events without moving research-specific
 policy into the generic sudofx kernel. Provider output cannot call migration
@@ -27,7 +27,7 @@ from .matrix import enable_continuity_matrix, record_continuity_matrix_result
 
 APPLICATION_ID = "wake"
 # This version string is already durable in the live sudofx record. Its historical
-# name reflects the first Phase E cutover, not the only supported initialization
+# name reflects the first authority cutover, not the only supported initialization
 # path. Do not rename it merely for terminology: changing an application version
 # requires an explicit governed migration so existing authority fails closed
 # rather than silently reinterpreting durable application events.
