@@ -775,6 +775,22 @@ html.console-tool-window #console-tool-frame{
   position:relative!important;
   inset:auto!important;
 }
+/* Follow a record is a normal grid module here, not a floating inspector.
+   Let its box grow with the complete record so content never escapes the panel. */
+.console-module-grid > .console-module.detail-panel{
+  max-height:none!important;
+  height:auto!important;
+  overflow:hidden!important;
+}
+.console-module-grid > .console-module.detail-panel #record-detail{
+  position:static!important;
+  width:auto!important;
+  max-width:100%!important;
+  max-height:none!important;
+  min-width:0!important;
+  height:auto!important;
+  overflow:visible!important;
+}
 .console-module-grid .panel-heading{
   position:relative!important;
   z-index:2!important;
