@@ -16,7 +16,7 @@ async function loadMap3dData(){
 }
 const data=await loadMap3dData();
 window.WakeOperatorSyncPublic?.({meta:data.meta});
-const nodes=new Map(),loadedChildren=new Map([['root:wake',data.root_children||[]]]),loading=new Map(),loadErrors=new Map();
+const nodes=new Map(),loadedChildren=new Map([['root:wake',data.root_children||[]]]),loading=new Map(),loadErrors=new Map(),pathHints=new Map([['root:wake',['root:wake']]]);
 const stage=document.getElementById('constellation-stage'),svg=document.getElementById('constellation-svg');
 const details=document.getElementById('details'),popover=document.getElementById('node-popover');
 const roots=new Map([['root:wake',{id:'root:wake',kind:'root',title:'WAKE✳︎'}],['root:journal',{id:'root:journal',kind:'root',title:'Journal'}],['root:blog',{id:'root:blog',kind:'root',title:'Blog'}],['root:topics',{id:'root:topics',kind:'root',title:'Topics'}],['root:projects',{id:'root:projects',kind:'root',title:'Projects'}],['root:commitments',{id:'root:commitments',kind:'root',title:'Commitments'}],['root:evidence',{id:'root:evidence',kind:'root',title:'Evidence'}],['root:research',{id:'root:research',kind:'root',title:'Research'}]]);
@@ -45,6 +45,7 @@ async function ensureBranch(id){
  }).then(shard=>{
    if(shard.self)nodes.set(shard.self.id,shard.self);
    for(const item of shard.children||[])nodes.set(item.id,item);
+   if(Array.isArray(shard.path)&&shard.path.length)pathHints.set(id,shard.path);
    loadedChildren.set(id,Array.isArray(shard.child_ids)?shard.child_ids:[]);
    loadErrors.delete(id);
    return true;
@@ -63,6 +64,13 @@ async function ensureNode(id){
  if(get(id))return true;
  await ensureBranch(id);
  return Boolean(get(id));
+}
+async function ensureDisplayPath(id){
+ await ensureBranch(id);
+ const hint=pathHints.get(id);
+ if(!Array.isArray(hint)||hint[0]!=='root:wake'||hint.at(-1)!==id)return null;
+ for(const ancestor of hint.slice(1,-1))await ensureBranch(ancestor);
+ return hint;
 }
 const reflection=node=>node.kind==='blog'&&Number(node.detail?.created_version)%10===0&&/reflection/i.test(`${node.id} ${node.title}`);
 const nodeTime=node=>node.detail?.time||'';
@@ -97,7 +105,7 @@ function showDetail(){const id=current(),node=get(id);if(!node)return;const arti
 function freeze(){frozenAt=performance.now();if(frame){cancelAnimationFrame(frame);frame=null}}
 function frameSelection(id){if(id==='root:wake')return;const point=pos.get(id),rect=stage.getBoundingClientRect();if(!point)return;const k=.58;let focusX=rect.width/2;if(!details.hidden&&details.classList.contains('active')&&matchMedia('(min-width:701px) and (max-width:1920px)').matches){const panel=details.getBoundingClientRect(),panelLeft=Math.max(0,panel.left-rect.left),gutter=28;focusX=Math.max(rect.width*.22,(panelLeft-gutter)/2)}animateView({k,x:focusX-point.x*k,y:rect.height/2-point.y*k})}
 function animateView(target){if(reduced){view=target;render();return}if(frame){cancelAnimationFrame(frame);frame=null}const from={...view},started=performance.now(),duration=560;const tick=now=>{const progress=Math.min(1,(now-started)/duration),ease=1-Math.pow(1-progress,4);view={k:from.k+(target.k-from.k)*ease,x:from.x+(target.x-from.x)*ease,y:from.y+(target.y-from.y)*ease};render();if(progress<1)frame=requestAnimationFrame(tick);else{frame=null;startDrift()}};frame=requestAnimationFrame(tick)}
-async function choose(id){if(!get(id)){await ensureNode(id);if(!get(id))return}if(id===current())return;const parent=current(),isDirectChild=Boolean(parent&&children(parent).includes(id));freeze();await ensureBranch(id);beginLayoutMotion();if(!path.length)path=id==='root:wake'?[id]:id.startsWith('root:')?['root:wake',id]:[id];else if(path.includes(id)){const index=path.indexOf(id);if(index===path.length-1){if(path.length===1)return release();path=path.slice(0,-1)}else path=path.slice(0,index+1)}else if(id.startsWith('root:'))path=id==='root:wake'?[id]:['root:wake',id];else{let ancestor=-1;for(let index=path.length-1;index>=0;index--)if(children(path[index]).includes(id)){ancestor=index;break}path=ancestor<0?[id]:[...path.slice(0,ancestor+1),id]}preview=null;hovered=null;render();showDetail();if(!isDirectChild)frameSelection(current());writeRecordHash(current())}
+async function choose(id){let openingPath=null;if(!path.length&&id!=='root:wake'&&!id.startsWith('root:'))openingPath=await ensureDisplayPath(id);if(!get(id)){await ensureNode(id);if(!get(id))return}if(id===current())return;const parent=current(),isDirectChild=Boolean(parent&&children(parent).includes(id));freeze();await ensureBranch(id);beginLayoutMotion();if(!path.length)path=openingPath|| (id==='root:wake'?[id]:id.startsWith('root:')?['root:wake',id]:[id]);else if(path.includes(id)){const index=path.indexOf(id);if(index===path.length-1){if(path.length===1)return release();path=path.slice(0,-1)}else path=path.slice(0,index+1)}else if(id.startsWith('root:'))path=id==='root:wake'?[id]:['root:wake',id];else{let ancestor=-1;for(let index=path.length-1;index>=0;index--)if(children(path[index]).includes(id)){ancestor=index;break}path=ancestor<0?[id]:[...path.slice(0,ancestor+1),id]}preview=null;hovered=null;render();showDetail();if(!isDirectChild)frameSelection(current());writeRecordHash(current())}
 function goUp(){if(path.length<2)return release();beginLayoutMotion();path=path.slice(0,-1);preview=null;hovered=null;render();showDetail();frameSelection(current())}
 function release(resetView=false){beginLayoutMotion();nodeOffsets.clear();nodeDrag=null;path=[];preview=null;hovered=null;details.hidden=true;details.classList.remove('active');popover.hidden=true;if(resetView)view={x:0,y:0,k:1};render();startDrift();writeRecordHash('')}
 // Auto-orbit is intentionally disabled. Nodes move only in response to explicit interaction.
