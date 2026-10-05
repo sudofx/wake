@@ -78,7 +78,6 @@ def _export_console_components(target):
         content = content.replace("</head>", '<link rel="stylesheet" href="console-component.css"></head>', 1)
         content = content.replace("</body>", '<script src="console-component.js"></script></body>', 1)
         atomic_write(target / destination, content)
-    atomic_write(target / "research.html", '<!doctype html><meta charset="utf-8"><title>Console / WAKE✳︎</title><script>location.replace("console.html"+location.search+location.hash)</script><a href="console.html">Open Console</a>')
 
 
 def _pretty(value):
@@ -694,12 +693,6 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             atomic_write(target / "index.html", page)
             atomic_write(target / "state.json", json.dumps(state, indent=2, ensure_ascii=False))
             atomic_write(target / "events.jsonl", "".join(canonical(event) + "\n" for event in events))
-            atomic_write(target / "head.txt", head + "\n")
-            from .feeds import build_feeds
-            for filename, content in build_feeds(state).items():
-                atomic_write(target / filename, content)
-            if experiment:
-                atomic_write(target / "experiment.json", json.dumps(experiment, indent=2))
             for name in ("nav.js", "map.js", "map3d.js", "flat-view.js"):
                 atomic_write(target / name, (assets / name).read_text())
 
