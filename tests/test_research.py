@@ -1597,6 +1597,14 @@ class ResearchTests(unittest.TestCase):
         self.assertTrue(_has_final_summary(prefix + "\n\nSummary\n\nPlain language follows."))
         self.assertFalse(_has_final_summary(prefix + "\n\nSummary"))
 
+    def test_bob_summary_accepts_explicit_inline_marker_without_accepting_mentions(self):
+        prefix = "A useful public explanation."
+        self.assertTrue(_has_final_summary(prefix + " Summary: Plain language follows."))
+        self.assertTrue(_has_final_summary(prefix + "\nSummary: Plain language follows."))
+        self.assertFalse(_has_final_summary(prefix + " Summary:   "))
+        self.assertFalse(_has_final_summary(prefix + " The Summary: is discussed here."))
+        self.assertFalse(_has_final_summary(prefix + " Summary of the research follows."))
+
     def test_boring_wake_produces_no_blog_post(self):
         self.assertEqual(self.propose([project()])["status"], "accepted")
         self.assertEqual(self.engine.store.load()["posts"], {})
