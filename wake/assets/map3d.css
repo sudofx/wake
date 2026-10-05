@@ -163,3 +163,58 @@
   }
 }
 
+
+/* Dedicated viewport workspace. Details occupy their own column in every state. */
+body.map3d-window{overflow:hidden}
+body.map3d-window>.masthead,
+body.map3d-window main>.constellation-intro,
+body.map3d-window main>.constellation-key,
+body.map3d-window main>footer,
+body.map3d-window .console-component-stamp{display:none!important}
+body.map3d-window .constellation-workspace{
+ position:fixed!important;inset:0;z-index:20;display:grid!important;
+ grid-template-columns:minmax(0,1fr) clamp(280px,26vw,420px);
+ gap:0!important;width:100%;height:100vh;height:100dvh;
+ padding:0;margin:0;align-items:stretch!important;background:var(--surface);
+}
+body.map3d-window .constellation-shell{
+ display:flex;flex-direction:column;min-width:0;min-height:0;border-radius:0;
+}
+body.map3d-window .constellation-shell>.field-head{
+ flex:none;align-items:center;flex-wrap:wrap;padding:10px 14px;gap:8px;
+}
+.map3d-window-actions{display:flex;align-items:center;gap:12px}
+.map3d-window-actions a,.map3d-window-actions button{font:10px var(--mono)}
+.map3d-window-actions button{min-height:32px;padding:5px 8px}
+body.map3d-window .constellation-workspace #constellation-stage{
+ flex:1;min-width:0;min-height:0!important;height:auto!important;max-height:none;
+}
+body.map3d-window #constellation-svg{width:100%;height:100%}
+body.map3d-window .constellation-workspace>#details,
+body.map3d-window .constellation-workspace>#details.active{
+ display:block;position:relative!important;inset:auto!important;z-index:3;
+ width:auto!important;min-width:0;min-height:0!important;height:100%;
+ max-height:100%!important;margin:0!important;padding:20px;
+ align-self:stretch;overflow:auto;overscroll-behavior:contain;
+ border:1px solid var(--line);border-radius:0!important;box-sizing:border-box;
+}
+body.map3d-window #details h2{font-size:25px}
+body.map3d-window #details .constellation-key{margin:24px 0 0;padding:0;border:0}
+body.map3d-window #details .detail-heading{flex-wrap:wrap}
+body.map3d-window .constellation-help{max-width:calc(100% - 24px)}
+@media(max-width:700px){
+ body.map3d-window .constellation-workspace{grid-template-columns:minmax(0,1fr) clamp(132px,38vw,240px)}
+ body.map3d-window .constellation-workspace>#details,
+ body.map3d-window .constellation-workspace>#details.active{padding:10px}
+ body.map3d-window #details h2{font-size:18px;overflow-wrap:anywhere}
+ body.map3d-window #details p{font-size:12px}
+ body.map3d-window .constellation-help{display:none}
+}
+
+/* Console skins use backdrop filters on main, which otherwise contain fixed children. */
+body.map3d-window main{
+ position:static!important;width:100%!important;max-width:none!important;
+ height:100vh;height:100dvh;min-height:0!important;margin:0!important;padding:0!important;
+ border:0!important;border-radius:0!important;transform:none!important;
+ filter:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
