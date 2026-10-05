@@ -173,7 +173,7 @@ class SudofxMigrationTests(unittest.TestCase):
                 "actions": [
                     {
                         "type": "project",
-                        "id": "phase-e-project",
+                        "id": "authority-project",
                         "title": "Entropy comparison",
                         "question": "What distinguishes major entropy definitions?",
                         "domain": "entropy",
@@ -183,7 +183,7 @@ class SudofxMigrationTests(unittest.TestCase):
                     },
                     {
                         "type": "research",
-                        "project": "phase-e-project",
+                        "project": "authority-project",
                         "query": "major entropy definitions comparison",
                         "domain": "entropy",
                         "reason": "Gather evidence for the bounded comparison.",
@@ -210,7 +210,7 @@ class SudofxMigrationTests(unittest.TestCase):
             self.assertIn(expected_research_id, migrated_state["research"])
             self.assertEqual(
                 migrated_state["research"][expected_research_id]["project"],
-                "phase-e-project",
+                "authority-project",
             )
         finally:
             research_engine.store.close()
@@ -251,7 +251,7 @@ class SudofxMigrationTests(unittest.TestCase):
         )
         self.assertEqual(imported.status, "accepted")
 
-        invocation = "phase-e-native-event"
+        invocation = "authority-native-event"
         start_payload = {
             "id": invocation,
             "provider": "fixture",
@@ -368,7 +368,7 @@ class SudofxMigrationTests(unittest.TestCase):
             store=store,
         )
         try:
-            result = migrated.run(Fixture("phase-e-sudofx-authority"))
+            result = migrated.run(Fixture("authority-sudofx-authority"))
             self.assertEqual(result["status"], "accepted")
 
             legacy_after_state, legacy_after_head, legacy_after_events = self.engine.store.replay_record()
@@ -422,7 +422,7 @@ class SudofxMigrationTests(unittest.TestCase):
             projection = build_live_projection(
                 store,
                 operation={"status": result["status"]},
-                runtime_ref="phase-e-sudofx-test",
+                runtime_ref="authority-sudofx-test",
             )
             self.assertEqual(projection["source"]["authority"], "sudofx SQLite")
             self.assertEqual(projection["source"]["database"], "sudofx.sqlite")
@@ -472,7 +472,7 @@ class SudofxMigrationTests(unittest.TestCase):
             first = store.load()
             self.assertEqual(len(first["beliefs"]["sensor"]["evidence"]), 1)
             with store.lock():
-                second_observation = "phase-e-sensor-2"
+                second_observation = "authority-sensor-2"
                 migrated.observe("Synthetic second measurement within range", "fixture:sensor", evidence_id=second_observation)
             second_state = store.load()
             self.assertIn(second_observation, second_state["evidence"])
@@ -487,7 +487,7 @@ class SudofxMigrationTests(unittest.TestCase):
             second_belief = store.load()["beliefs"]["sensor"]
             self.assertEqual(len(second_belief["evidence"]), 2)
             with store.lock():
-                counterexample = "phase-e-sensor-3"
+                counterexample = "authority-sensor-3"
                 migrated.observe("Synthetic counterexample outside range", "fixture:sensor", evidence_id=counterexample)
             counter_state = store.load()
             self.assertIn(counterexample, counter_state["evidence"])
@@ -553,14 +553,14 @@ class SudofxMigrationTests(unittest.TestCase):
                 import_count,
             )
 
-            result = migrated.run(Fixture("phase-e-detached-runtime"))
+            result = migrated.run(Fixture("authority-detached-runtime"))
             self.assertEqual(result["status"], "accepted")
             self.assertGreater(detached.load()["version"], imported_state["version"])
 
             projection = build_live_projection(
                 detached,
                 operation={"status": result["status"]},
-                runtime_ref="phase-e-detached-test",
+                runtime_ref="authority-detached-test",
             )
             self.assertEqual(projection["source"]["authority"], "sudofx SQLite")
             self.assertEqual(
