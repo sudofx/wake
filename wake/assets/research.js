@@ -187,7 +187,7 @@
 
   function ring(values,total,title) {
     let offset=0;
-    const colors={accepted:'var(--green)',rejected:'var(--red)',deferred:'var(--orange)',failed:'var(--muted)'};
+    const colors={accepted:'var(--cyan)',rejected:'var(--red)',deferred:'var(--orange)',failed:'var(--violet)'};
     const segments=Object.entries(values).filter(([k])=>k in colors).map(([k,v])=>{const size=total?100*v/total:0;const mark=`<circle tabindex="0" role="button" data-outcome="${esc(k)}" aria-label="Inspect ${esc(k)} invocations: ${count(v)}" r="44" cx="60" cy="60" pathLength="100" fill="none" stroke="${colors[k]}" stroke-width="10" stroke-dasharray="${size} ${100-size}" stroke-dashoffset="${-offset}"/>`;offset+=size;return mark;}).join('');
     return `<div class="ring-readout"><svg viewBox="0 0 120 120" role="img" aria-label="${esc(title)}: ${count(total)}; ${esc(Object.entries(values).map(([k,v])=>`${k} ${v}`).join(', '))}"><circle r="53" cx="60" cy="60" class="ring-orbit" fill="none"/><circle r="44" cx="60" cy="60" fill="none" stroke="var(--line)" stroke-width="10"/><g transform="rotate(-90 60 60)">${segments}</g><text x="60" y="61" text-anchor="middle">${count(total)}</text><text class="ring-label" x="60" y="77" text-anchor="middle">INVOCATIONS</text></svg><div><strong>${total?Math.round(100*(values.accepted||0)/total):0}%</strong><p>accepted of completed</p><p class="caption">${count(values.accepted)} accepted / ${count(total)} completed</p></div></div>`;
   }
@@ -282,7 +282,7 @@
 
 
   function lineChart(series,names,unit='count',scrollable=false) {
-    const palette={accepted:'var(--cyan)',rejected:'var(--red)',deferred:'var(--orange)',failed:'var(--red)',objectives:'var(--cyan)',constraints:'var(--green)',frontier:'var(--orange)',results:'var(--red)'};
+    const palette={accepted:'var(--cyan)',rejected:'var(--red)',deferred:'var(--orange)',failed:'var(--violet)',objectives:'var(--cyan)',constraints:'var(--green)',frontier:'var(--orange)',results:'var(--red)'};
     const colors=names.map(k=>palette[k]||'var(--cyan)');
     if(!series.length)return '<p class="empty">No recorded measurements in this snapshot.</p>';
     const chartWidth=scrollable?Math.max(960,series.length*52+60):570;
