@@ -31,6 +31,28 @@ class MastheadPresentationTests(unittest.TestCase):
                           'data-owner-start', 'data-owner-stop', 'data-owner-reset'):
             self.assertNotIn(forbidden, header)
 
+    def test_console_is_an_instrument_glyph_beside_github_everywhere(self):
+        pages = {
+            "index": (ASSETS / "index.html").read_text(),
+            "map": (ASSETS / "map.html").read_text(),
+            "map3d": (ASSETS / "map3d.html").read_text(),
+            "console": (ASSETS / "console.html").read_text(),
+        }
+        for name, page in pages.items():
+            with self.subTest(page=name):
+                nav = page.split('<nav class="compact-nav"', 1)[1].split('</nav>', 1)[0]
+                header_tools = page.split('class="header-tools"', 1)[1].split('</div>', 1)[0]
+                self.assertNotIn('>Console</a>', nav)
+                self.assertIn('class="console-link"', header_tools)
+                self.assertIn('aria-label="Open WAKE Console"', header_tools)
+                self.assertIn('title="Console"', header_tools)
+                self.assertLess(header_tools.index('class="console-link"'),
+                                header_tools.index('class="repo-link"'))
+                self.assertIn('href="nav.css?v=20261004-12"', page)
+        self.assertIn('class="console-link" href="console.html" aria-current="page"', pages["console"])
+        self.assertIn('.repo-link,.console-link{', self.css)
+        self.assertIn('.console-link[aria-current="page"]', self.css)
+
     def test_actions_light_is_phone_safe_and_read_only(self):
         nav = (ASSETS / "nav.js").read_text()
         self.assertIn('.actions-light{box-sizing:border-box', self.css)
