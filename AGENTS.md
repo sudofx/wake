@@ -51,7 +51,7 @@ plain-language, with no child-oriented label.
 
 ## Migration discipline
 
-Every Phase E change must preserve replayable meaning.
+Every authority-boundary change must preserve replayable meaning.
 
 When replacing a legacy path:
 
