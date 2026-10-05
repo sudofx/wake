@@ -393,7 +393,7 @@ main{{position:relative;z-index:1;max-width:900px;margin:auto;padding:34px 22px 
   <nav class=\"compact-nav\" aria-label=\"Main navigation\"><a href=\"../index.html#discoveries\">Research</a><a href=\"../index.html#journal\">Journal</a><a href=\"../index.html#blog\">Bob’s Blog</a><!-- Read menu temporarily retired. <details class=\"nav-group\"><summary>Read</summary><div class=\"nav-dropdown\"><a href=\"../index.html#journal\">Journal</a><a href=\"../console.html?tool=projects\">Projects</a><a href=\"../index.html#blog\">Bob’s Blog</a></div></details> --></nav>
   <div class=\"header-tools\"><a class=\"repo-link\" href=\"https://github.com/sudofx/wake\" aria-label=\"Open WAKE repository\" title=\"WAKE repository\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M12 .7a11.3 11.3 0 0 0-3.57 22c.57.1.77-.25.77-.55v-2.17c-3.14.68-3.8-1.33-3.8-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.03-.7.08-.69.08-.69 1.13.08 1.73 1.16 1.73 1.16 1.01 1.73 2.65 1.23 3.3.94.1-.73.39-1.23.72-1.51-2.51-.29-5.15-1.26-5.15-5.59 0-1.24.44-2.25 1.16-3.04-.12-.29-.5-1.44.11-3 0 0 .95-.3 3.11 1.16a10.8 10.8 0 0 1 5.66 0C17.03 5 17.98 5.3 17.98 5.3c.61 1.56.23 2.71.11 3 .72.79 1.16 1.8 1.16 3.04 0 4.34-2.65 5.3-5.17 5.58.41.35.77 1.04.77 2.1v3.13c0 .3.2.66.78.55A11.3 11.3 0 0 0 12 .7Z\"/></svg></a><a class=\"console-link\" href=\"../console.html\" aria-label=\"Open WAKE Console\" title=\"Console\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4.2 16.8a8.8 8.8 0 1 1 15.6 0\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/><path d=\"M6.8 14.3l-1.7-.8M8.2 9.8 7 8.5M12 8V6.2M15.8 9.8 17 8.5M17.2 14.3l1.7-.8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\"/><path d=\"M12 16l3.8-4.4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><circle cx=\"12\" cy=\"16\" r=\"1.35\" fill=\"currentColor\"/></svg></a><a class=\"actions-light\" href=\"https://github.com/sudofx/wake/actions\" aria-label=\"Open WAKE GitHub Actions\" title=\"Checking…\"><span class=\"actions-light-track\" aria-hidden=\"true\"><i></i></span><span class=\"actions-light-label\">Checking…</span></a></div>
 </header>
-<main><article class=\"reading-panel\"><div class=\"eyebrow\">{html.escape(eyebrow)}</div>{meta_html}<h1>{html.escape(title)}</h1><nav class=\"reading-links\"><a href=\"{html.escape(back_href)}\">WAKE site</a><a href=\"../map.html\">MAP</a><a href=\"{html.escape(source_href)}\">Live record</a></nav>{body}</article></main><div class=\"footer-powered-wrap\"><a class=\"footer-powered\" href=\"https://sudofx.github.io/sudofx/\" target=\"_blank\" rel=\"noopener\">Powered by sudofx</a></div><script src=\"../nav.js\"></script></body></html>"""
+<main><article class=\"reading-panel\"><div class=\"eyebrow\">{html.escape(eyebrow)}</div>{meta_html}<h1>{html.escape(title)}</h1><nav class=\"reading-links\"><a href=\"{html.escape(back_href)}\">WAKE site</a><a href=\"../map.html\">MAP</a><a href=\"{html.escape(source_href)}\">Markdown source</a></nav>{body}</article></main><div class=\"footer-powered-wrap\"><a class=\"footer-powered\" href=\"https://sudofx.github.io/sudofx/\" target=\"_blank\" rel=\"noopener\">Powered by sudofx</a></div><script src=\"../nav.js\"></script></body></html>"""
 
 
 def _notebook_evidence_profile(notebook, state):
@@ -695,6 +695,98 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             atomic_write(target / "state.json", json.dumps(state, indent=2, ensure_ascii=False))
             atomic_write(target / "events.jsonl", "".join(canonical(event) + "\n" for event in events))
             atomic_write(target / "head.txt", head + "\n")
+            from .feeds import build_feeds
+            for filename, content in build_feeds(state).items():
+                atomic_write(target / filename, content)
+            if experiment:
+                atomic_write(target / "experiment.json", json.dumps(experiment, indent=2))
+            for name in ("nav.js", "map.js", "map3d.js", "flat-view.js"):
+                atomic_write(target / name, (assets / name).read_text())
+
+            # The map shells already fetch their data at browser load. Keep the
+            # URLs stable while moving record projection out of GitHub Actions.
+            from .provenance import build_map, build_map3d_projection, map3d_shard_filename
+            graph = build_map(state, events, head, replay_history=projection is None)
+            graph_json = json.dumps(graph, ensure_ascii=False)
+            atomic_write(target / "map-data.json", graph_json)
+            map_page = (assets / "map.html").read_text().replace("WAKE_CYCLE_COUNT", str(state["version"]))
+            atomic_write(target / "map.html", map_page)
+            graph3d_shell, graph3d_shards = build_map3d_projection(graph)
+            atomic_write(target / "map3d-data.json", json.dumps(graph3d_shell, ensure_ascii=False))
+            shard_dir = target / "map3d"
+            shard_dir.mkdir(parents=True, exist_ok=True)
+            for parent, shard in graph3d_shards.items():
+                atomic_write(shard_dir / map3d_shard_filename(parent), json.dumps(shard, ensure_ascii=False))
+            map3d_page = (assets / "map3d.html").read_text().replace("WAKE_CYCLE_COUNT", str(state["version"]))
+            atomic_write(target / "map3d.html", map3d_page)
+
+            # Preserve long-standing readable URLs as stable browser shells.
+            # Their content comes from the current flat exports at page load.
+            atomic_write(target / "state.html", _flat_browser_shell(
+                "State", "THE CURRENT DURABLE STATE", "Current state.",
+                "Loaded from state.json when this page opens.", "state", "state.json"))
+            atomic_write(target / "events.html", _flat_browser_shell(
+                "History", "THE APPEND-ONLY RECORD", "Exact history.",
+                "Loaded from events.jsonl when this page opens.", "events", "events.jsonl"))
+            atomic_write(target / "rejected.html", _flat_browser_shell(
+                "Rejected & withheld drafts", "GOVERNANCE / STOPPED PROPOSALS",
+                "Rejected & withheld drafts.", "Loaded from the current published record when this page opens.",
+                "rejected", "wake-data.json"))
+
+            # Old standalone artifact URLs remain useful bookmarks. Route missing
+            # historical presentation files back into the live browser projection.
+            atomic_write(target / "404.html", """<!doctype html><meta charset="utf-8"><script>(()=>{const p=location.pathname;let h='home';let m;if((m=p.match(/\\/blog\\/([^/]+)\\.(?:html|md)$/)))h='blog/'+decodeURIComponent(m[1]);else if((m=p.match(/\\/journal\\/([^/]+)\\.html$/)))h='history/'+decodeURIComponent(m[1]);else if((m=p.match(/\\/notebooks\\/([^/]+)\\.(?:html|md)$/)))h='projects/notebook:'+decodeURIComponent(m[1]);location.replace(new URL('index.html#'+h,location.href))})()</script>""")
+            _export_console_components(target)
+            return {"path": str((target / "index.html").resolve()), "cycles": state["version"], "head": head}
+        lines = ["# **WAKE✳︎** — The journal", "", "> Durable work. Replaceable intelligence. Receipts for every governed transition.", "",
+                 f"Objective: {_md_text(state['objective'])}", "", f"Verified head: `{head}`", "",
+                 "Fixture entries are deterministic simulations, not live model experiments.", ""]
+        for item in reversed(state["journal"]):
+            invocation = state["invocations"][item["invocation"]]
+            date = datetime.fromisoformat(invocation["time"]).astimezone(ZoneInfo("America/Los_Angeles"))
+            lines += [f"## {item['cycle']:03d} · {_md_text(item['title'])}", "",
+                      f"{date:%B %d, %Y · %I:%M %p %Z} · {invocation['provider']} / {invocation.get('successful_model') or invocation['model']}", "",
+                      _md_text(item["summary"]), "", f"Invocation: `{item['invocation']}`", ""]
+        from .feeds import build_feeds
+        for filename, content in build_feeds(state).items():
+            atomic_write(target / filename, content)
+        accepted_by_invocation = {event.get("payload", {}).get("id"): event for event in events if event.get("kind") == "accepted"}
+        for entry in state["journal"]:
+            invocation = state["invocations"][entry["invocation"]]
+            event = accepted_by_invocation.get(entry["invocation"], {})
+            domains = []
+            for action in event.get("payload", {}).get("proposal", {}).get("actions", []):
+                domain = action.get("domain") or state.get("projects", {}).get(action.get("project"), {}).get("domain")
+                if domain and domain not in domains:
+                    domains.append(domain)
+            topics = "".join(_topic_meta(state, domain, "journal") for domain in domains)
+            status = "SIMULATED" if invocation.get("provider") == "fixture" else str(invocation.get("status") or "accepted").upper()
+            meta = _reading_meta(f"JOURNAL · WAKE✳︎ {int(entry['cycle']):03d}", status, topics, invocation.get("time"), "simulated" if invocation.get("provider") == "fixture" else invocation.get("status") or "accepted")
+            body = (f'<p class="meta">{_html_text(invocation["provider"])} / {_html_text(invocation.get("successful_model") or invocation["model"])}</p>'
+                    + "".join(f"<p>{_html_text(part)}</p>" for part in entry["summary"].split("\n\n") if part.strip())
+                    + ('<p class="note">Deterministic simulation, not a live model result.</p>'
+                       if invocation["provider"] == "fixture" else "")
+                    + f'<p><a href="../index.html#history/{html.escape(entry["invocation"])}">Exact wake and decision →</a></p>')
+            journal_path = target / "journal" / (entry["invocation"] + ".html")
+            if not journal_path.exists():
+                atomic_write(journal_path,
+                             _reading_page(entry["title"], "WAKE✳︎ / JOURNAL", body, "../index.html#journal", meta_html=meta))
+        atomic_write(target / "state.json", json.dumps(state, indent=2, ensure_ascii=False))
+        atomic_write(target / "events.jsonl", "".join(canonical(event) + "\n" for event in events))
+        atomic_write(target / "state.html", _flat_browser_shell(
+            "State", "THE CURRENT DURABLE STATE", "Current state.", "Loaded from state.json when this page opens.", "state", "state.json"))
+        atomic_write(target / "events.html", _flat_browser_shell(
+            "History", "THE APPEND-ONLY RECORD", "Exact history.", "Loaded from events.jsonl when this page opens.", "events", "events.jsonl"))
+        atomic_write(target / "head.txt", head + "\n")
+        for notebook in state.get("notebooks", {}).values():
+            sources = "\n".join(f"- [{eid}]({state['evidence'][eid]['source']})" for eid in notebook["evidence"])
+            source_count, cross_topic_count, nonqualifying_count = _notebook_evidence_profile(notebook, state)
+            source_word = "work" if source_count == 1 else "works"
+            cross_note = (
+                f" · {cross_topic_count} cross-topic source work"
+                + ("" if cross_topic_count == 1 else "s")
+                if cross_topic_count else ""
+            )
             nonqualifying_note = (
                 f" · {nonqualifying_count} metadata/discovery record"
                 + ("" if nonqualifying_count == 1 else "s")
@@ -702,8 +794,27 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
                 if nonqualifying_count else ""
             )
             profile = f"Evidence profile · {source_count} distinct qualifying source {source_word}{cross_note}{nonqualifying_note}"
+            markdown = (f"# {_md_text(notebook['title'])}\n\n{_md_text(notebook['summary'])}\n\n{profile}\n\n## Findings\n\n{_md_text(notebook['findings'])}\n\n"
+                        f"## Limitations and competing views\n\n{_md_text(notebook['limitations'])}\n\n"
+                        f"## Next questions\n\n{_md_text(notebook['next_questions'])}\n\n## Collected sources\n\n{sources}\n\n"
+                        f"Revision {notebook['revision']} · AI-authored research synthesis; see source scopes in the journal.\n")
             atomic_write(target / "notebooks" / (notebook["id"] + ".html"), _notebook_html(notebook, state))
         for post in state.get("posts", {}).values():
+            newline = chr(10)
+            notebook_links = newline.join(
+                f"- [{state['notebooks'][item]['title']}](../index.html#projects/notebook:{item})"
+                for item in post["notebooks"])
+            source_links = newline.join(
+                f"- [{item}]({state['evidence'][item]['source']})" for item in post["evidence"])
+            parts = [f"# {_md_text(_blog_display_title(post))}", "", _blog_md_text(post["lede"], post, state), "", _blog_md_text(post["body"], post, state)]
+            if post.get("lens"):
+                parts += ["", "> **Bob's Lens — philosophical reflection**", "", f"> {_md_text(post['lens'])}"]
+            if post.get("superseded_by"):
+                parts += ["", f"This post was superseded by [{post['superseded_by']}](../index.html#blog/{post['superseded_by']})."]
+            parts += ["", "## Follow the receipts", "", "### Research notebooks", "", notebook_links, "",
+                      "### Collected sources", "", source_links, "",
+                      f"[Exact wake and decision](../index.html#history/{post['created_by']})", "",
+                      "AI-authored from **WAKE✳︎**'s durable research record. Research claims link to evidence; philosophical reflections are reflections.", ""]
             atomic_write(target / "blog" / (post["id"] + ".html"), _blog_html(post, state))
         if experiment:
             atomic_write(target / "experiment.json", json.dumps(experiment, indent=2))
