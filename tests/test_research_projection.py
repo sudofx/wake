@@ -104,11 +104,14 @@ class ResearchProjectionTests(unittest.TestCase):
         self.assertEqual(disabled['completed'], 0)
         coordinate = next(iter(MATRIX.coordinates())).coordinate_id
         progress = {'matrix': MATRIX_KEY, 'definition_digest': MATRIX.definition_digest,
-                    'completed_count': 1, 'results': {coordinate: {'status': 'failed', 'score': 0.25}}}
+                    'completed_count': 1, 'results': {coordinate: {'status': 'failed', 'score': 0.25,
+                                                                  'invocation_id': 'b', 'research_status': 'rejected'}}}
         recorded = build_research_projection(self.state(), [], 'head', matrix_reported=True, matrix_progress=progress)['matrix']
         self.assertTrue(recorded['enabled'])
         self.assertEqual(recorded['cells'][0]['status'], 'failed')
         self.assertEqual(recorded['cells'][0]['score'], 0.25)
+        self.assertEqual(recorded['cells'][0]['invocation_id'], 'b')
+        self.assertEqual(recorded['cells'][0]['research_status'], 'rejected')
         with self.assertRaisesRegex(ValueError, 'definition'):
             build_research_projection(self.state(), [], 'head', matrix_progress={'matrix': 'wrong'})
 
