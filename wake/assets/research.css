@@ -596,6 +596,15 @@ html.console-detached body{
   min-height:32px;
   padding:6px 10px;
 }
+.console-workspace-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-left:auto;
+}
+#popout-console{
+  white-space:nowrap;
+}
 .console-module-grid{
   display:grid;
   grid-template-columns:repeat(12,minmax(0,1fr));
@@ -680,6 +689,10 @@ html.console-detached body{
 .console-layout-source-empty:empty,
 .console-layout-source-empty:not(:has(.panel,.workspace-toolbar)){
   display:none!important;
+}
+
+@media(pointer:coarse){
+  #popout-console{display:none!important}
 }
 
 /* A deep-inspection workspace gets its own dedicated pop-out window. */
