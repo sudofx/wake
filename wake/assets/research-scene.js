@@ -20,7 +20,7 @@ window.WakeResearchCube = canvas => {
     const style=getComputedStyle(document.body),cyan=style.getPropertyValue('--cyan').trim(),muted=style.getPropertyValue('--muted').trim(),line=style.getPropertyValue('--line').trim(),red=style.getPropertyValue('--red').trim(),orange=style.getPropertyValue('--orange').trim(),scale=Math.min(w,h)*.145*zoom,axisColors=[cyan,orange,style.getPropertyValue('--violet').trim()];
     [[0,1,2],[1,0,2],[2,0,1]].forEach(([axis,a,b],i)=>{
       const face=[[-1,-1],[1,-1],[1,1],[-1,1]].map(([u,v])=>{const p=[0,0,0];p[axis]=3.26;p[a]=u*3.26;p[b]=v*3.26;return project(p,w,h,scale);});
-      context.beginPath();face.forEach((p,j)=>j?context.lineTo(p.x,p.y):context.moveTo(p.x,p.y));context.closePath();context.fillStyle=axisColors[i];context.globalAlpha=.06;context.fill();context.strokeStyle=axisColors[i];context.globalAlpha=.65;context.lineWidth=1;context.stroke();context.globalAlpha=1;
+      context.beginPath();face.forEach((p,j)=>j?context.lineTo(p.x,p.y):context.moveTo(p.x,p.y));context.closePath();context.fillStyle=axisColors[i];context.globalAlpha=.18;context.fill();context.strokeStyle=axisColors[i];context.globalAlpha=.9;context.lineWidth=1.6;context.stroke();context.globalAlpha=1;
     });
     canvas.dataset.axisTargets='positive-outer-faces';
     points=matrix.cells.map(cell=>({...cell,screen:project(cell.position.map(x=>x-3),w,h,scale)})).sort((a,b)=>a.screen.z-b.screen.z);
