@@ -213,7 +213,7 @@
   function renderCell() {
     const m=data?.matrix,c=m?.cells.find(c=>c.id===matrixCell);if(!c)return;
     document.querySelectorAll('[data-cube-axis]').forEach(el=>el.value=c.position[Number(el.dataset.cubeAxis)]);
-    $('cube-cell').innerHTML=`${esc(c.id)}<br><strong style="color:var(--orange)">${esc(c.status.replaceAll('_',' '))}</strong>${c.score!==null&&c.score!==undefined?` · recorded score ${esc(c.score)}`:''}<br>${m.axes.map((a,i)=>esc(a.values[c.position[i]].description)).join('<br>')}<br>${c.status==='not_recorded'?'Coordinate definition only; no result is recorded for this cell.':'Recorded campaign result for this coordinate.'}`;
+    $('cube-cell').innerHTML=`${esc(c.id)}<br><strong style="color:var(--orange)">${esc(c.status.replaceAll('_',' '))}</strong>${c.score!==null&&c.score!==undefined?` · recorded score ${esc(c.score)}`:''}<br>${m.axes.map((a,i)=>`${esc(a.label)}: ${esc(a.values[c.position[i]].label)}`).join('<br>')}`;
   }
   function matrixCellForWake(id) {
     return data?.matrix?.cells.find(c=>c.invocation_id===id) || null;
