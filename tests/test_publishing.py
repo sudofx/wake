@@ -73,10 +73,10 @@ class PublishingTests(unittest.TestCase):
                 self.assertLess(map3d_page.index('class="repo-link"'), map3d_page.index('class="console-link"'))
                 self.assertIn('href="https://github.com/sudofx/wake/actions"', map_page)
                 self.assertIn('href="https://github.com/sudofx/wake/actions"', map3d_page)
-                self.assertIn('href="theme.css?v=20261004-14"', map_page)
-                self.assertIn('href="theme.css?v=20261004-14"', map3d_page)
-                self.assertIn('name="theme-color" content="#05091f"', map_page)
-                self.assertIn('name="theme-color" content="#05091f"', map3d_page)
+                self.assertIn('href="theme.css?v=20261004-15"', map_page)
+                self.assertIn('href="theme.css?v=20261004-15"', map3d_page)
+                self.assertIn('name="theme-color" content="#000000"', map_page)
+                self.assertIn('name="theme-color" content="#000000"', map3d_page)
                 for rendered_page in (map_page, map3d_page):
                     nav = rendered_page.split('<nav class="compact-nav"', 1)[1].split('</nav>', 1)[0]
                     visible = nav.split('<!-- Read menu temporarily retired.', 1)[0]
@@ -87,6 +87,10 @@ class PublishingTests(unittest.TestCase):
                     self.assertLess(visible.index('>Journal</a>'), visible.index('>Bob’s Blog</a>'))
                 self.assertNotIn("control.js", map_page)
                 self.assertNotIn("control.js", map3d_page)
+                self.assertNotIn('class="powered-by"', map_page)
+                self.assertNotIn('class="powered-by"', map3d_page)
+                self.assertIn('class="footer-powered"', map_page)
+                self.assertIn('class="footer-powered"', map3d_page)
 
                 full_graph = json.loads((root / "site/map-data.json").read_text())
                 lazy_shell = json.loads((root / "site/map3d-data.json").read_text())
