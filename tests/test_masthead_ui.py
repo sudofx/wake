@@ -46,12 +46,17 @@ class MastheadPresentationTests(unittest.TestCase):
                 self.assertIn('class="console-link"', header_tools)
                 self.assertIn('aria-label="Open WAKE Console"', header_tools)
                 self.assertIn('title="Console"', header_tools)
+                self.assertIn('M4.2 16.8a8.8 8.8 0 1 1 15.6 0', header_tools)
+                self.assertIn('M12 16l3.8-4.4', header_tools)
+                self.assertNotIn('>About</a>', nav)
                 self.assertLess(header_tools.index('class="console-link"'),
                                 header_tools.index('class="repo-link"'))
-                self.assertIn('href="nav.css?v=20261004-12"', page)
+                self.assertIn('href="nav.css?v=20261004-13"', page)
         self.assertIn('class="console-link" href="console.html" aria-current="page"', pages["console"])
         self.assertIn('.repo-link,.console-link{', self.css)
         self.assertIn('.console-link[aria-current="page"]', self.css)
+        self.assertIn('.console-link svg{width:27px;height:27px;display:block}', self.css)
+        self.assertIn('.console-link{width:36px;height:36px;flex:0 0 36px}', self.css)
 
     def test_actions_light_is_phone_safe_and_read_only(self):
         nav = (ASSETS / "nav.js").read_text()
