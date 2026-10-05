@@ -56,7 +56,7 @@ class MastheadPresentationTests(unittest.TestCase):
                                 header_tools.index('class="console-link"'))
                 self.assertLess(header_tools.index('class="console-link"'),
                                 header_tools.index('class="actions-light"'))
-                self.assertIn('href="nav.css?v=20261004-15"', page)
+                self.assertIn('href="nav.css?v=20261004-16"', page)
         self.assertIn('class="console-link" href="console.html" aria-current="page"', pages["console"])
         self.assertIn('.repo-link,.console-link{', self.css)
         self.assertIn('.console-link[aria-current="page"]', self.css)
@@ -99,6 +99,7 @@ class MastheadPresentationTests(unittest.TestCase):
         research_css = (ASSETS / "research.css").read_text()
         self.assertIn('href="research.css?v=20261004-12"', console)
         self.assertIn('body>header.masthead,\n  .research-page>.research-header.masthead{\n    margin-top:8px!important;', self.css)
+        self.assertIn('display:grid!important;', self.css)
         self.assertIn('grid-template-columns:repeat(3,minmax(0,1fr))!important;', self.css)
         self.assertIn('justify-items:center!important;', self.css)
         self.assertIn('font-size:13px!important;', self.css)
