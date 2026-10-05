@@ -15,6 +15,7 @@ class ConsolePresentationTests(unittest.TestCase):
         self.css = (ASSETS / "research.css").read_text()
         self.map3d_css = (ASSETS / "map3d.css").read_text()
         self.html = (ASSETS / "console.html").read_text()
+        self.research = (ASSETS / "research.js").read_text()
 
     def test_console_navigation_stays_in_page(self):
         self.assertNotIn("window.open(", self.nav)
@@ -60,6 +61,13 @@ class ConsolePresentationTests(unittest.TestCase):
     def test_wake_detail_tabs_stay_on_one_row_on_phones(self):
         self.assertIn(".wake-tabs{flex-wrap:nowrap;gap:3px;margin:10px 12px}", self.css)
         self.assertIn(".wake-tabs button{flex:1 1 0;min-width:0;min-height:32px;padding:5px 4px;font-size:9px;white-space:nowrap}", self.css)
+
+    def test_cube_tracks_recorded_wake_and_record_selections(self):
+        self.assertIn("function matrixCellForWake(id)", self.research)
+        self.assertIn("function syncCubeToWake(id)", self.research)
+        self.assertIn("function syncCubeToRecord(id)", self.research)
+        self.assertIn("syncCubeToWake(id);renderWake()", self.research)
+        self.assertIn("syncCubeToRecord(id);renderMap()", self.research)
 
     def test_console_loads_the_layout_controller(self):
         self.assertIn('<script src="console-layout.js" defer></script>', self.html)
