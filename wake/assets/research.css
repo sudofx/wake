@@ -1291,7 +1291,7 @@ html.console-tool-window #console-tool-frame{
 }
 
 
-/* IPHONE MODE CONTROL ROW — compact, equal-width controls across Console. */
+/* IPHONE MODE CONTROL ROW — equal-width controls across the narrow Console layout. */
 @media(max-width:760px){
   .research-page .map-heading{
     flex-direction:column!important;
@@ -1305,6 +1305,10 @@ html.console-tool-window #console-tool-frame{
     grid-auto-columns:minmax(0,1fr)!important;
     gap:3px!important;
   }
+}
+
+/* COMPACT CONSOLE BUTTONS — use the smaller control size through iPad Air landscape. */
+@media(max-width:1180px){
   .research-page .mode-control button{
     width:100%!important;
     min-width:0!important;
