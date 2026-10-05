@@ -56,6 +56,15 @@ class MastheadPresentationTests(unittest.TestCase):
         self.assertNotIn('.owner-', self.css)
         self.assertNotIn('operator-status', self.css)
 
+    def test_console_reuses_shared_actions_status_controller(self):
+        console = (ASSETS / "console.html").read_text()
+        research = (ASSETS / "research.js").read_text()
+        self.assertIn('src="nav.js?v=20261004-11"', console)
+        self.assertIn('src="research.js?v=20261004-11"', console)
+        self.assertNotIn("function execution()", research)
+        self.assertNotIn("actions/workflows/wake.yml/runs?branch=wake-runtime", research)
+        self.assertNotIn("GitHub Actions · status unavailable", research)
+
     def test_debug_zero_cycle_view_is_gone(self):
         self.assertNotIn('data-visibility-toggle', self.html)
         self.assertNotIn('wake-hide-current-data', self.html)
