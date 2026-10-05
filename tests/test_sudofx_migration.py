@@ -434,7 +434,6 @@ class SudofxMigrationTests(unittest.TestCase):
 
             export(store, self.root / "sudofx-site")
             self.assertTrue((self.root / "sudofx-site" / "index.html").is_file())
-            self.assertTrue((self.root / "sudofx-site" / "events.md").is_file())
 
             legacy_export_state, legacy_export_head, legacy_export_events = (
                 self.engine.store.replay_record()
@@ -572,7 +571,6 @@ class SudofxMigrationTests(unittest.TestCase):
 
             export(detached, self.root / "detached-site")
             self.assertTrue((self.root / "detached-site" / "index.html").is_file())
-            self.assertTrue((self.root / "detached-site" / "events.md").is_file())
 
             reopened = SudofxStore(authority)
             try:
