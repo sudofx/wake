@@ -1157,7 +1157,7 @@ html.console-tool-window #console-tool-frame{
     max-width:100%!important;
     min-width:0!important;
     margin:0!important;
-    padding:16px 8px 22px!important;
+    padding:16px 6px 22px!important;
     overflow-x:clip!important;
   }
   html:not(.console-detached):not(.console-tool-window) .research-page main > *,
