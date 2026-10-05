@@ -57,6 +57,10 @@ class ConsolePresentationTests(unittest.TestCase):
         map3d_html = (ASSETS / "map3d.html").read_text()
         self.assertIn('href="map3d.css?v=20261004-9"', map3d_html)
 
+    def test_wake_detail_tabs_stay_on_one_row_on_phones(self):
+        self.assertIn(".wake-tabs{flex-wrap:nowrap;gap:3px;margin:10px 12px}", self.css)
+        self.assertIn(".wake-tabs button{flex:1 1 0;min-width:0;min-height:32px;padding:5px 4px;font-size:9px;white-space:nowrap}", self.css)
+
     def test_console_loads_the_layout_controller(self):
         self.assertIn('<script src="console-layout.js" defer></script>', self.html)
 
