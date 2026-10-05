@@ -75,6 +75,20 @@
       else { notice('The research record could not be loaded. Retry, or inspect the complete record tools.');$('status-band').innerHTML='<p class="empty">Record unavailable · <button type="button" data-tool="lab">Open the Lab →</button></p>'; }
     } finally {loading=false;$('refresh').disabled=false;$('refresh').textContent='Refresh record ↻';}
   }
+  async function bootstrap() {
+    // Paint the same-origin published snapshot first so Console never waits on the remote live branch to become usable.
+    if(!local&&!data){
+      try {
+        const next=validate(await json('research-data.json'));
+        data=next;fallback=true;loadedCommit='';nodeById=new Map(data.graph.nodes.map(n=>[n.id,n]));
+        if(topic!=='all'&&!data.topics.some(t=>t.id===topic))topic='all';
+        notice(next.preview_transport_error?'Public snapshot refresh failed. The last dated snapshot remains visible.':'');
+        render();writeUrl(false);freshness();
+      } catch {}
+    }
+    await refresh();
+    if(!data)setTimeout(()=>refresh(),1500);
+  }
   function visibleRecord(x) {return topic==='all'||x.domain===topic||data.records.projects.find(p=>p.id===x.project)?.domain===topic;}
   function render() {
     const s=data.status,latest=s.latest || {};
@@ -321,7 +335,7 @@
   document.querySelectorAll('.research-header details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)document.querySelectorAll('.research-header details').forEach(other=>{if(other!==d)other.open=false;});}));
   document.addEventListener('click',event=>{if(!event.target.closest('.research-header details'))document.querySelectorAll('.research-header details').forEach(d=>d.open=false);});
   let resizeFrame;window.addEventListener('resize',()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{if(data)renderMap();});});
-  controls();readUrl();refresh();
+  controls();readUrl();bootstrap();
   setInterval(()=>{if(!document.hidden)refresh();},60000);
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh();});
 })();
