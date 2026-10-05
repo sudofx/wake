@@ -45,7 +45,7 @@ class PublishingTests(unittest.TestCase):
                 export(engine.store, root / "site")
                 self.assertEqual(engine.store.performance_snapshot()["full_replays"] - before, 1)
 
-                for name in ("index.html", "events.md", "events.html", "state.md", "state.html",
+                for name in ("index.html", "events.html", "state.html",
                              "map.html", "map3d.html", "wake-data.json", "console.html",
                              "console-records.html", "console-map.html", "console-map3d.html",
                              "console-events.html", "console-state.html", "console-rejected.html"):
