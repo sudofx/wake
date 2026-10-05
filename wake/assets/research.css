@@ -1260,3 +1260,21 @@ html.console-tool-window #console-tool-frame{
   }
 }
 
+
+
+/* TELEMETRY METER INSET + COMPACTION — 2026-10-04 */
+.evidence-panel .source-total{
+  padding-top:12px;
+  padding-left:12px;
+  padding-right:12px;
+}
+.evidence-panel .meter-row,
+.outcomes-panel .meter-row{
+  padding:7px 12px 6px;
+  column-gap:8px;
+  row-gap:1px;
+}
+.evidence-panel .meter-track,
+.outcomes-panel .meter-track{
+  margin-top:0;
+}
