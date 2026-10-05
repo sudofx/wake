@@ -25,7 +25,9 @@ class MastheadPresentationTests(unittest.TestCase):
         self.assertIn('class="actions-light"', header)
         self.assertIn('class="actions-light-label"', header)
         self.assertIn('title="Checking…"', header)
-        self.assertIn('Powered by sudofx', header)
+        self.assertNotIn('Powered by sudofx', header)
+        self.assertIn('class="footer-powered"', self.html)
+        self.assertIn('Powered by sudofx', self.html)
         self.assertNotIn('Operator', header)
         for forbidden in ('owner-', 'operator-status', 'operator-actions-link',
                           'WAKE_CONTROL_URL', 'wake-owner-session',
@@ -54,18 +56,22 @@ class MastheadPresentationTests(unittest.TestCase):
                                 header_tools.index('class="console-link"'))
                 self.assertLess(header_tools.index('class="console-link"'),
                                 header_tools.index('class="actions-light"'))
-                self.assertIn('href="nav.css?v=20261004-13"', page)
+                self.assertIn('href="nav.css?v=20261004-14"', page)
         self.assertIn('class="console-link" href="console.html" aria-current="page"', pages["console"])
         self.assertIn('.repo-link,.console-link{', self.css)
         self.assertIn('.console-link[aria-current="page"]', self.css)
         self.assertIn('.console-link svg{width:27px;height:27px;display:block}', self.css)
         self.assertIn('.console-link{width:36px;height:36px;flex:0 0 36px}', self.css)
 
-    def test_page_chrome_blends_into_nebula_background(self):
-        self.assertIn('linear-gradient(180deg,#111a35 0%,#091027 18%,#040817 48%,#01030b 78%,#000 100%)', self.theme)
-        self.assertNotIn(':root[data-theme="dark"] body{background:#1b2036 !important}', self.theme)
-        self.assertIn('content="#05091f"', self.html)
-        self.assertIn('href="theme.css?v=20261004-14"', self.html)
+    def test_iphone_page_chrome_is_black_with_top_anchored_nebula(self):
+        self.assertIn('html,\n  body{\n    background:#000!important;', self.theme)
+        self.assertIn('background-position:center top!important;', self.theme)
+        self.assertIn('position:fixed!important;', self.theme)
+        self.assertIn('content="#000000"', self.html)
+        self.assertIn('href="theme.css?v=20261004-15"', self.html)
+        self.assertIn('html{font-size:101.5%}', self.css)
+        self.assertIn('padding-left:6px!important;', self.theme)
+        self.assertIn('padding-right:6px!important;', self.theme)
 
     def test_primary_masthead_menu_is_research_journal_blog(self):
         pages = {
