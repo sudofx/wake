@@ -17,7 +17,7 @@ window.WakeConsoleTools = () => {
     const isMap=tool==='map3d';
     if(isMap)url.searchParams.set('popout','1');
     const opened=isMap
-      ?window.open(url.href,'wake-map3d','popup=yes,width='+Math.max(320,screen.availWidth)+',height='+Math.max(320,screen.availHeight))
+      ?window.open(url.href,'wake-map3d','popup=yes,width='+Math.min(1500,Math.max(320,screen.availWidth-80))+',height='+Math.min(1000,Math.max(320,screen.availHeight-80)))
       :window.open(url.href,'wake-console-workspace');
     if(opened)opened.focus();
     else location.assign(url.href);

@@ -5,7 +5,7 @@
  control.addEventListener('click',()=>{
   const url=new URL(location.href);
   url.searchParams.set('popout','1');
-  const opened=window.open(url.href,'wake-map3d','popup=yes,width='+Math.max(320,screen.availWidth)+',height='+Math.max(320,screen.availHeight));
+  const opened=window.open(url.href,'wake-map3d','popup=yes,width='+Math.min(1500,Math.max(320,screen.availWidth-80))+',height='+Math.min(1000,Math.max(320,screen.availHeight-80)));
   if(opened)opened.focus();else location.assign(url.href);
  });
  if(new URL(location.href).searchParams.has('popout'))control.hidden=true;
