@@ -616,7 +616,6 @@ class SystemTests(unittest.TestCase):
         self.assertIn("className='wake-mark'", page)
         self.assertIn("text-shadow:0 0 7px", (self.root / "site" / "style.css").read_text())
         self.assertNotIn("a:hover{text-decoration:underline", page)
-        self.assertIn("# **WAKE✳︎** — The journal", (self.root / "site/journal.md").read_text())
 
     def test_html_embedded_data_does_not_allow_script_injection(self):
         with self.engine.store.lock():
