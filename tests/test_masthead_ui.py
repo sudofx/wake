@@ -97,7 +97,7 @@ class MastheadPresentationTests(unittest.TestCase):
     def test_mobile_masthead_geometry_is_shared_and_nav_centered(self):
         console = (ASSETS / "console.html").read_text()
         research_css = (ASSETS / "research.css").read_text()
-        self.assertIn('href="research.css?v=20261004-12"', console)
+        self.assertIn('href="research.css?v=20261004-13"', console)
         self.assertIn('body>header.masthead,\n  .research-page>.research-header.masthead{\n    margin-top:8px!important;', self.css)
         self.assertIn('display:grid!important;', self.css)
         self.assertIn('grid-template-columns:repeat(3,minmax(0,1fr))!important;', self.css)
