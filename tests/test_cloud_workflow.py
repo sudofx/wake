@@ -428,7 +428,7 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertNotIn("--record-only", runtime_source)
 
         # Promotion remains the only explicit runtime adoption boundary.
-        self.assertIn("WAKE✳︎ — Make new code live", promotion)
+        self.assertIn("WAKE✳︎ - promote", promotion)
         self.assertIn('branch=wake-runtime', promotion)
         self.assertIn('.status!=\\\"completed\\\"', promotion)
         self.assertIn("python -m unittest discover", promotion)
