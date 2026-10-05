@@ -92,245 +92,9 @@ def _display_text(value):
 
 
 
-def _md_text(value):
-    text = _display_text(value).replace("**WAKE✳︎**", "WAKE✳︎")
-    return text.replace("WAKE✳︎", "**WAKE✳︎**")
-
-
-
 def _html_text(value):
     escaped = html.escape(_display_text(value))
     return escaped.replace("WAKE✳︎", '<strong class="wake-mark">WAKE✳︎</strong>')
-
-
-
-def _md_code(value, language="json"):
-    text = value if isinstance(value, str) else _pretty(value)
-    text = _display_text(text)
-    fence = "```"
-    while fence in text:
-        fence += "`"
-    return f"{fence}{language}\n{text}\n{fence}"
-
-
-
-def _html_pre(value):
-    text = value if isinstance(value, str) else _pretty(value)
-    # Presentation-only normalization: keep canonical JSON untouched while forcing
-    # the text-style asterisk in readable exports, including historical prompts.
-    text = _display_text(text)
-    return f"<pre>{html.escape(text)}</pre>"
-
-
-
-def _human_events_markdown(events, head):
-    lines = [
-        "# **WAKE✳︎** — Human-readable event history",
-        "",
-        "> A presentation layer over `events.jsonl`. The JSONL file remains the canonical audit export.",
-        "",
-        f"Verified head: `{head}`",
-        "",
-        "[Open the HTML version](events.html) · [Raw JSONL](events.jsonl) · [Readable state](state.md)",
-        "",
-    ]
-    for event in reversed(events):
-        payload = event.get("payload", {})
-        event_id = payload.get("id", "system")
-        lines += [
-            f"## Event {event['seq']:04d} · `{event['kind']}`",
-            "",
-            f"**Time:** {event['time']}  ",
-            f"**ID:** `{event_id}`  ",
-            f"**Hash:** `{event['hash']}`  ",
-            f"**Previous hash:** `{event['prev_hash']}`",
-            "",
-        ]
-        kind = event["kind"]
-        if kind == "invocation_started":
-            request = payload.get("request", {})
-            lines += [
-                f"**Provider / model:** `{payload.get('provider', '')}` / `{payload.get('model', '')}`  ",
-                f"**Base version:** {payload.get('base_version', '')}  ",
-                f"**Request hash:** `{payload.get('request_hash', '')}`",
-                "",
-                "### System prompt",
-                "",
-                _md_code(request.get("system", ""), "text"),
-                "",
-                "### Context sent to the model",
-                "",
-                _md_code(request.get("context", {})),
-                "",
-                "### Response schema",
-                "",
-                _md_code(request.get("response_schema", {})),
-                "",
-            ]
-        elif kind == "accepted":
-            if payload.get("editorial"):
-                lines += ["### Withheld blog post", "", _md_code(payload["editorial"]), ""]
-            lines += ["### Accepted proposal", "", _md_code(payload.get("proposal", {})), ""]
-            if payload.get("raw_response") is not None:
-                lines += ["### Raw model response", "", _md_code(payload["raw_response"], "json"), ""]
-            if payload.get("result_hash"):
-                lines += [f"**Result hash:** `{payload['result_hash']}`", ""]
-        elif kind == "rejected":
-            if payload.get("reason"):
-                lines += [f"**Reason:** {payload['reason']}", ""]
-            if payload.get("raw_response") is not None:
-                lines += ["### Raw rejected response", "", _md_code(payload["raw_response"], "text"), ""]
-        elif kind == "failed":
-            lines += [f"**Reason:** {payload.get('reason', '')}", ""]
-        elif kind == "observation":
-            lines += [
-                f"**Source:** `{payload.get('source', '')}`  ",
-                f"**Actor:** `{payload.get('actor', '')}`",
-                "",
-                payload.get("content", ""),
-                "",
-            ]
-        else:
-            lines += ["### Payload", "", _md_code(payload), ""]
-    return "\n".join(lines).rstrip() + "\n"
-
-
-
-def _human_state_markdown(state, head):
-    lines = [
-        "# **WAKE✳︎** — Human-readable durable state",
-        "",
-        "> A presentation layer over `state.json`. The JSON file remains the canonical state export.",
-        "",
-        f"**Version:** {state.get('version', 0)}  ",
-        f"**Objective:** {state.get('objective', '')}  ",
-        f"**Focus:** {state.get('focus', '')}  ",
-        f"**Verified head:** `{head}`",
-        "",
-        "[Open the HTML version](state.html) · [Raw JSON](state.json) · [Readable history](events.md)",
-        "",
-    ]
-    sections = [
-        ("Beliefs", state.get("beliefs", {})),
-        ("Commitments", state.get("commitments", {})),
-        ("Projects", state.get("projects", {})),
-        ("Acquisition capability", state.get("acquisition", {})),
-        ("Problem representations", state.get("representations", {})),
-        ("Attention attention receipts", state.get("attention", {})),
-        ("Notebooks", state.get("notebooks", {})),
-        ("Invocations", state.get("invocations", {})),
-        ("Evidence", state.get("evidence", {})),
-        ("Journal", state.get("journal", [])),
-        ("Research", state.get("research", {})),
-        ("Blog posts", state.get("posts", {})),
-    ]
-    for title, collection in sections:
-        lines += [f"## {title}", ""]
-        if not collection:
-            lines += ["_None recorded._", ""]
-            continue
-        if isinstance(collection, dict):
-            for key, item in collection.items():
-                label = item.get("title") if isinstance(item, dict) else None
-                heading = f"### `{key}`" + (f" · {label}" if label else "")
-                lines += [heading, "", _md_code(item), ""]
-        else:
-            for index, item in enumerate(collection, 1):
-                label = item.get("title") if isinstance(item, dict) else None
-                heading = f"### {index:03d}" + (f" · {label}" if label else "")
-                lines += [heading, "", _md_code(item), ""]
-    return "\n".join(lines).rstrip() + "\n"
-
-
-
-@_with_shared_theme_switch
-def _human_page(title, subtitle, body, head, raw_href, markdown_href):
-    favicon = "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2712%27 fill=%27%23f7f3ea%27/%3E%3Cpath d=%27M32 9v46M9 32h46M15.7 15.7l32.6 32.6M48.3 15.7L15.7 48.3%27 stroke=%27%23286d72%27 stroke-width=%276%27 stroke-linecap=%27round%27/%3E%3C/svg%3E"
-    return f"""<!doctype html>
-<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">
-<meta name=\"theme-color\" media=\"(prefers-color-scheme: light)\" content=\"#f4f5fb\"><meta name=\"theme-color\" media=\"(prefers-color-scheme: dark)\" content=\"#000000\">
-<link rel=\"icon\" href=\"{favicon}\"><title>{html.escape(title)} · WAKE✳︎</title>
-<script>try{{const saved=localStorage.getItem('wake-theme');const dark=saved?saved==='dark':matchMedia('(prefers-color-scheme:dark)').matches;if(dark)document.documentElement.dataset.theme='dark'}}catch{{}}</script>
-<style>
-@import url("theme.css");
-h2 a{{color:var(--cyan, var(--green))}}h2 a:hover,h2 a:active{{color:var(--green)}}
-:root{{--paper:#f4f5fb;--surface:#ffffff;--ink:#24283b;--muted:#626b8a;--line:#d9ddeb;--green:#3FB950;--accent:#7658b3;--hot:#c52f9b;--pale:#ffffff;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--sans:Arial,Helvetica,sans-serif;--serif:var(--sans)}}
-:root[data-theme=dark]{{--paper:#24283b;--surface:#1f2335;--ink:#c0caf5;--muted:#a9b1d6;--line:#3b4261;--green:#3FB950;--cyan:#7dcfff;--accent:#bb9af7;--hot:#7aa2f7;--pale:#1f2335}}
-*{{box-sizing:border-box}}html{{scroll-behavior:smooth}}body{{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);font-variant-emoji:text}}a{{color:inherit;text-decoration:none}}.wake-mark{{font-weight:900}}@media(hover:hover) and (pointer:fine){{a:hover{{color:var(--hot);text-decoration:none;text-shadow:0 0 7px var(--hot),0 0 15px var(--accent)}}}}button,summary{{font:inherit;color:inherit}}button{{cursor:pointer}}main{{max-width:1120px;margin:auto;padding:32px 28px 90px}}header{{border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:30px}}.topline{{display:flex;align-items:center;justify-content:space-between;gap:18px}}.wordmark{{font-size:30px;font-weight:900;letter-spacing:-1.7px}}.wordmark b{{color:var(--green);font-family:var(--serif);font-variant-emoji:text}}.theme-toggle{{border:1px solid var(--line);background:var(--surface);padding:8px 10px;font:10px var(--mono);letter-spacing:.08em}}.eyebrow{{font:10px var(--mono);letter-spacing:1.5px;color:var(--green);margin:26px 0 10px}}h1{{font:400 clamp(2.4rem,6vw,4.8rem)/1.03 var(--serif);letter-spacing:-.035em;margin:.1em 0 .3em}}h2{{font:400 1.7rem/1.2 var(--serif);margin:38px 0 14px}}h3{{font-size:14px;margin:24px 0 10px}}nav{{display:flex;gap:20px;flex-wrap:wrap;margin-top:18px;font:12px var(--mono);color:var(--muted)}}.meta{{color:var(--muted);font:12px/1.6 var(--mono)}}details{{background:var(--surface);border:1px solid var(--line);margin:12px 0;padding:0 16px}}summary{{cursor:pointer;padding:15px 0;font:12px var(--mono);color:var(--green)}}.inside{{border-top:1px solid var(--line);padding:14px 0 18px}}pre{{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--pale);padding:16px;font:11px/1.7 var(--mono);max-height:560px;overflow:auto}}code{{font-family:var(--mono);overflow-wrap:anywhere}}.tag,.event-kind{{display:inline-block;border:1px solid var(--line);padding:2px 8px;font-size:.78rem;margin-right:8px}}.tag{{color:var(--accent)}}.event-kind{{text-transform:uppercase;letter-spacing:.06em}}.event-kind.accepted{{background:#dcebdd;color:#35623d;border-color:#bad2bd}}.event-kind.rejected,.event-kind.failed{{background:#f0dbd2;color:#9b3c28;border-color:#e0b8a6}}.event-kind.provider_attempt_started,.event-kind.provider_attempt_finished{{background:#dce8f1;color:#315f7b;border-color:#b9cfdf}}.event-kind.invocation_started{{background:#e4e0ef;color:#5c4c7b;border-color:#c9c0dd}}.event-kind.observation,.event-kind.research_collected{{background:#ede3cf;color:#7e6030;border-color:#dfcda7}}.event-kind.recovered{{background:#e5e2ed;color:#635178;border-color:#cec4d9}}.event-kind.deferred{{background:#e7e8e5;color:#59605a;border-color:#cfd2cc}}.event-links{{font-size:.9rem;color:var(--muted)}}hr{{border:0;border-top:1px solid var(--line);margin:28px 0}}@media(max-width:680px){{main{{padding:24px 18px 70px}}h1{{font-size:2.7rem}}.topline{{align-items:flex-start}}nav{{gap:14px;font-size:12px}}.meta,summary{{font-size:12px}}}}
-</style></head><body><div class="site-backdrop" aria-hidden="true"></div><main><header><div class=\"topline\"><a class=\"wordmark\" href=\"index.html\">WAKE<b>✳︎</b></a><button id=\"theme-toggle\" class=\"theme-toggle\" type=\"button\" aria-pressed=\"false\" aria-label=\"Use dark theme\">DARK</button></div><div class=\"eyebrow\">READABLE EXPORT</div><h1>{html.escape(title)}</h1><p>{html.escape(subtitle)}</p><p class=\"meta\">Verified head: <code>{html.escape(head)}</code></p><nav><a href=\"index.html\">Main journal</a><a href=\"map.html\">MAP</a><a href=\"{html.escape(raw_href)}\">Raw data</a></nav></header>{body}</main><script>(()=>{{const b=document.getElementById('theme-toggle');const sync=()=>{{const d=document.documentElement.dataset.theme==='dark';b.textContent=d?'LIGHT':'DARK';b.setAttribute('aria-label',d?'Use light theme':'Use dark theme');b.setAttribute('aria-pressed',String(d))}};sync();b.addEventListener('click',()=>{{const d=document.documentElement.dataset.theme==='dark';if(d)delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme='dark';try{{localStorage.setItem('wake-theme',d?'light':'dark')}}catch{{}}sync()}})}})();</script></body></html>"""
-
-def _human_events_html(events, head):
-    cards = []
-    for event in reversed(events):
-        payload = event.get("payload", {})
-        event_id = payload.get("id", "system")
-        blocks = [
-            f"<p class=\"meta\">Hash: <code>{html.escape(event['hash'])}</code><br>Previous hash: <code>{html.escape(event['prev_hash'])}</code></p>"
-        ]
-        kind = event["kind"]
-        if kind == "invocation_started":
-            request = payload.get("request", {})
-            blocks += [
-                f"<p><strong>Provider / model:</strong> <code>{html.escape(str(payload.get('provider','')))}</code> / <code>{html.escape(str(payload.get('model','')))}</code><br><strong>Base version:</strong> {html.escape(str(payload.get('base_version','')))}<br><strong>Request hash:</strong> <code>{html.escape(str(payload.get('request_hash','')))}</code></p>",
-                "<h3>System prompt</h3>" + _html_pre(request.get("system", "")),
-                "<h3>Context sent to the model</h3>" + _html_pre(request.get("context", {})),
-                "<h3>Response schema</h3>" + _html_pre(request.get("response_schema", {})),
-            ]
-        elif kind == "accepted":
-            if payload.get("editorial"):
-                blocks += ["<h3>Withheld blog post</h3>" + _html_pre(payload["editorial"])]
-            blocks += ["<h3>Accepted proposal</h3>" + _html_pre(payload.get("proposal", {}))]
-            if payload.get("raw_response") is not None:
-                blocks += ["<h3>Raw model response</h3>" + _html_pre(payload["raw_response"])]
-            if payload.get("result_hash"):
-                blocks += [f"<p><strong>Result hash:</strong> <code>{html.escape(payload['result_hash'])}</code></p>"]
-        elif kind == "rejected":
-            if payload.get("reason"):
-                blocks += [f"<p><strong>Reason:</strong> {html.escape(str(payload['reason']))}</p>"]
-            if payload.get("raw_response") is not None:
-                blocks += ["<h3>Raw rejected response</h3>" + _html_pre(payload["raw_response"])]
-        elif kind == "failed":
-            blocks += [f"<p><strong>Reason:</strong> {html.escape(str(payload.get('reason','')))}</p>"]
-        elif kind == "observation":
-            blocks += [
-                f"<p><strong>Source:</strong> <code>{html.escape(str(payload.get('source','')))}</code><br><strong>Actor:</strong> <code>{html.escape(str(payload.get('actor','')))}</code></p>",
-                f"<p>{html.escape(str(payload.get('content','')))}</p>",
-            ]
-        else:
-            blocks += ["<h3>Payload</h3>" + _html_pre(payload)]
-        cards.append(
-            f"<details id=\"event-{event['seq']}\"><summary class=\"record-panel-meta event-meta\"><span class=\"record-type\">EVENT #{event['seq']:04d}</span><span class=\"record-status\"><span class=\"badge {html.escape(kind)}\">{html.escape(kind)}</span></span><span class=\"record-key\">{html.escape(str(event_id))}</span><time>{html.escape(_reading_time(event['time']))}</time></summary><div class=\"inside\">{''.join(blocks)}</div></details>"
-        )
-    collapse_script = """<script>
-const closeEventHistory=()=>document.querySelectorAll('details[id^="event-"]').forEach(item=>{item.open=false});
-closeEventHistory();
-window.addEventListener('pageshow', closeEventHistory);
-</script>"""
-    body = "<p class=\"event-links\">Newest event first. Use your browser’s Find command to search prompts, evidence IDs, invocation IDs, or hashes.</p>" + "".join(cards) + collapse_script
-    return _human_page("Human-readable event history", "Every recorded event, including exact model requests and replies, without changing the canonical JSONL.", body, head, "events.jsonl", "events.md")
-
-
-
-def _human_state_html(state, head):
-    sections = [
-        ("Beliefs", state.get("beliefs", {})), ("Commitments", state.get("commitments", {})),
-        ("Projects", state.get("projects", {})), ("Notebooks", state.get("notebooks", {})),
-        ("Invocations", state.get("invocations", {})), ("Evidence", state.get("evidence", {})),
-        ("Journal", state.get("journal", [])), ("Research", state.get("research", {})),
-        ("Blog posts", state.get("posts", {})),
-    ]
-    chunks = [f"<p><strong>Version:</strong> {html.escape(str(state.get('version',0)))}<br><strong>Objective:</strong> {html.escape(str(state.get('objective','')))}<br><strong>Focus:</strong> {html.escape(str(state.get('focus','')))}</p>"]
-    for title, collection in sections:
-        chunks.append(f"<h2>{html.escape(title)}</h2>")
-        if not collection:
-            chunks.append("<p class=\"meta\">None recorded.</p>")
-            continue
-        items = collection.items() if isinstance(collection, dict) else enumerate(collection, 1)
-        for key, item in items:
-            label = item.get("title") if isinstance(item, dict) else None
-            summary = f"{key}" + (f" · {label}" if label else "")
-            chunks.append(f"<details><summary>{html.escape(str(summary))}</summary><div class=\"inside\">{_html_pre(item)}</div></details>")
-    return _human_page("Human-readable durable state", "The current projected state, reorganized for reading without changing the canonical JSON.", "".join(chunks), head, "state.json", "state.md")
 
 
 
@@ -506,20 +270,6 @@ def _blog_html_text(value, post, state):
         token = html.escape(f"[{evidence_id}]")
         link = f'<a class="inline-source-citation" href="{html.escape(source)}">{token}</a>'
         rendered = rendered.replace(token, link)
-    return rendered
-
-
-def _blog_md_text(value, post, state):
-    """Markdown companion for forward-only inline source links."""
-    rendered = _md_text(value)
-    if int(post.get("created_version") or 0) < INLINE_BLOG_SOURCE_LINKS_FROM_VERSION:
-        return rendered
-    allowed = set(post.get("evidence", []))
-    for evidence_id in sorted(allowed, key=len, reverse=True):
-        evidence = state.get("evidence", {}).get(evidence_id, {})
-        source = str(evidence.get("source") or "").strip()
-        if source:
-            rendered = rendered.replace(f"[{evidence_id}]", f"[{evidence_id}]({source})")
     return rendered
 
 
@@ -731,15 +481,6 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             atomic_write(target / "404.html", """<!doctype html><meta charset="utf-8"><script>(()=>{const p=location.pathname;let h='home';let m;if((m=p.match(/\\/blog\\/([^/]+)\\.(?:html|md)$/)))h='blog/'+decodeURIComponent(m[1]);else if((m=p.match(/\\/journal\\/([^/]+)\\.html$/)))h='history/'+decodeURIComponent(m[1]);else if((m=p.match(/\\/notebooks\\/([^/]+)\\.(?:html|md)$/)))h='projects/notebook:'+decodeURIComponent(m[1]);location.replace(new URL('index.html#'+h,location.href))})()</script>""")
             _export_console_components(target)
             return {"path": str((target / "index.html").resolve()), "cycles": state["version"], "head": head}
-        lines = ["# **WAKE✳︎** — The journal", "", "> Durable work. Replaceable intelligence. Receipts for every governed transition.", "",
-                 f"Objective: {_md_text(state['objective'])}", "", f"Verified head: `{head}`", "",
-                 "Fixture entries are deterministic simulations, not live model experiments.", ""]
-        for item in reversed(state["journal"]):
-            invocation = state["invocations"][item["invocation"]]
-            date = datetime.fromisoformat(invocation["time"]).astimezone(ZoneInfo("America/Los_Angeles"))
-            lines += [f"## {item['cycle']:03d} · {_md_text(item['title'])}", "",
-                      f"{date:%B %d, %Y · %I:%M %p %Z} · {invocation['provider']} / {invocation.get('successful_model') or invocation['model']}", "",
-                      _md_text(item["summary"]), "", f"Invocation: `{item['invocation']}`", ""]
         from .feeds import build_feeds
         for filename, content in build_feeds(state).items():
             atomic_write(target / filename, content)
@@ -772,42 +513,8 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             "History", "THE APPEND-ONLY RECORD", "Exact history.", "Loaded from events.jsonl when this page opens.", "events", "events.jsonl"))
         atomic_write(target / "head.txt", head + "\n")
         for notebook in state.get("notebooks", {}).values():
-            sources = "\n".join(f"- [{eid}]({state['evidence'][eid]['source']})" for eid in notebook["evidence"])
-            source_count, cross_topic_count, nonqualifying_count = _notebook_evidence_profile(notebook, state)
-            source_word = "work" if source_count == 1 else "works"
-            cross_note = (
-                f" · {cross_topic_count} cross-topic source work"
-                + ("" if cross_topic_count == 1 else "s")
-                if cross_topic_count else ""
-            )
-            nonqualifying_note = (
-                f" · {nonqualifying_count} metadata/discovery record"
-                + ("" if nonqualifying_count == 1 else "s")
-                + " not counted"
-                if nonqualifying_count else ""
-            )
-            profile = f"Evidence profile · {source_count} distinct qualifying source {source_word}{cross_note}{nonqualifying_note}"
-            markdown = (f"# {_md_text(notebook['title'])}\n\n{_md_text(notebook['summary'])}\n\n{profile}\n\n## Findings\n\n{_md_text(notebook['findings'])}\n\n"
-                        f"## Limitations and competing views\n\n{_md_text(notebook['limitations'])}\n\n"
-                        f"## Next questions\n\n{_md_text(notebook['next_questions'])}\n\n## Collected sources\n\n{sources}\n\n"
-                        f"Revision {notebook['revision']} · AI-authored research synthesis; see source scopes in the journal.\n")
             atomic_write(target / "notebooks" / (notebook["id"] + ".html"), _notebook_html(notebook, state))
         for post in state.get("posts", {}).values():
-            newline = chr(10)
-            notebook_links = newline.join(
-                f"- [{state['notebooks'][item]['title']}](../index.html#projects/notebook:{item})"
-                for item in post["notebooks"])
-            source_links = newline.join(
-                f"- [{item}]({state['evidence'][item]['source']})" for item in post["evidence"])
-            parts = [f"# {_md_text(_blog_display_title(post))}", "", _blog_md_text(post["lede"], post, state), "", _blog_md_text(post["body"], post, state)]
-            if post.get("lens"):
-                parts += ["", "> **Bob's Lens — philosophical reflection**", "", f"> {_md_text(post['lens'])}"]
-            if post.get("superseded_by"):
-                parts += ["", f"This post was superseded by [{post['superseded_by']}](../index.html#blog/{post['superseded_by']})."]
-            parts += ["", "## Follow the receipts", "", "### Research notebooks", "", notebook_links, "",
-                      "### Collected sources", "", source_links, "",
-                      f"[Exact wake and decision](../index.html#history/{post['created_by']})", "",
-                      "AI-authored from **WAKE✳︎**'s durable research record. Research claims link to evidence; philosophical reflections are reflections.", ""]
             atomic_write(target / "blog" / (post["id"] + ".html"), _blog_html(post, state))
         if experiment:
             atomic_write(target / "experiment.json", json.dumps(experiment, indent=2))
