@@ -329,6 +329,7 @@ nav.compact-nav{display:flex;align-items:center;justify-content:center;gap:22px;
   .research-page>.research-header.masthead nav.compact-nav,
   .masthead nav.compact-nav,
   nav.compact-nav{
+    display:grid!important;
     grid-template-columns:repeat(3,minmax(0,1fr))!important;
     column-gap:10px!important;
     justify-items:center!important;
