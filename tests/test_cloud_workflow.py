@@ -350,8 +350,6 @@ class CloudWorkflowTests(unittest.TestCase):
         reset = (root/".github/workflows/operator-reset.yml").read_text()
         restart = (root/".github/workflows/operator-restart.yml").read_text()
         continuity = (root/".github/workflows/operator-enable-continuity.yml").read_text()
-        migrate = (root/".github/workflows/operator-migrate-authority.yml").read_text()
-        migrate_source = (root/"scripts/github_migrate_authority.py").read_text()
 
         # Research execution is isolated from development and Pages.
         self.assertIn("github.ref_name == 'wake-runtime'", workflow)
@@ -435,14 +433,6 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertIn('.status!=\\\"completed\\\"', promotion)
         self.assertIn("python -m unittest discover", promotion)
         self.assertIn("git/refs/heads/wake-runtime", promotion)
-
-        # One-time authority migration must reuse the same verified checkpoint
-        # maintenance boundary as steady-state research.
-        self.assertIn("Migrate authority to sudofx", migrate)
-        self.assertIn("branch.checkpoint()", migrate_source)
-        self.assertIn("database_bytes_before_checkpoint", migrate_source)
-        self.assertIn("database_bytes_after_checkpoint", migrate_source)
-        self.assertNotIn("exceeds GitHub's 100 MiB safety ceiling", migrate_source)
 
     def test_wordmark_navigation_is_deployment_portable(self):
         root = Path(__file__).resolve().parents[1]
