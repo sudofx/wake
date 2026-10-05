@@ -1,9 +1,9 @@
 """
-WAKE application policy above the reusable sudofx kernel.
+WAKE application policy above the reusable wake kernel.
 
 This module owns WAKE-specific proposal normalization and deterministic domain
 policy that must be identical whether a deliberate legacy compatibility
-fixture or the sudofx ApplicationHost is driving a turn. It performs no durable writes.
+fixture or the wake ApplicationHost is driving a turn. It performs no durable writes.
 """
 
 from __future__ import annotations

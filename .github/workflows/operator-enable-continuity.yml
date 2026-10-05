@@ -3,7 +3,7 @@ run-name: "Enable WAKE✳︎ continuity campaign"
 
 # Explicit operator opt-in for the continuity@1 7×7×7 campaign.
 # This immediately stops/drains research, promotes verified master, records enablement
-# through WAKE's ordinary sudofx application boundary, then always starts WAKE again.
+# through WAKE's ordinary wake application boundary, then always starts WAKE again.
 on:
   workflow_dispatch:
 

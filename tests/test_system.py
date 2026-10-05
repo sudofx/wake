@@ -338,8 +338,8 @@ class SystemTests(unittest.TestCase):
         self.assertIn("Another wake owns", result.stderr)
         self.assertEqual(self.engine.store.load()["version"], 0)
 
-    def test_sudofx_authority_records_generic_provider_lifecycle(self):
-        """Live WAKE provider execution also leaves generic sudofx lifecycle evidence."""
+    def test_wake_authority_records_generic_provider_lifecycle(self):
+        """Live WAKE provider execution also leaves generic wake lifecycle evidence."""
         data = self.root / "generic-lifecycle-data"
         engine = Engine(
             data,
@@ -370,7 +370,7 @@ class SystemTests(unittest.TestCase):
         finally:
             engine.store.close()
 
-    def test_sudofx_lifecycle_barrier_failure_prevents_provider_call(self):
+    def test_wake_lifecycle_barrier_failure_prevents_provider_call(self):
         """Remote durability failure must stop before the provider boundary."""
         data = self.root / "generic-lifecycle-barrier"
         engine = Engine(
@@ -403,8 +403,8 @@ class SystemTests(unittest.TestCase):
         finally:
             engine.store.close()
 
-    def test_sudofx_lifecycle_classifies_temporary_provider_failure(self):
-        """WAKE-specific provider errors map into generic sudofx outcomes once."""
+    def test_wake_lifecycle_classifies_temporary_provider_failure(self):
+        """WAKE-specific provider errors map into generic wake outcomes once."""
         from wake.providers import TransientProviderError
 
         data = self.root / "generic-lifecycle-temporary"
@@ -437,7 +437,7 @@ class SystemTests(unittest.TestCase):
 
     def test_real_process_death_during_commit_rolls_back(self):
         # Exercise the production authority path, not the legacy fixture Store.
-        # The child must die after sudofx stages the accepted event but before
+        # The child must die after wake stages the accepted event but before
         # the authoritative transaction commits it.
         data = self.root / "authoritative-crash-data"
         engine = Engine(data, dict(DEFAULTS), store=open_authoritative_store(data, allow_initialize=True))

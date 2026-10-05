@@ -1,4 +1,4 @@
-"""Stable WAKE event-format primitives shared by legacy replay and sudofx-backed runtime.
+"""Stable WAKE event-format primitives shared by legacy replay and wake-backed runtime.
 
 These functions define byte/identity semantics, not storage authority. Keep their
 output stable so historical WAKE event hashes remain replayable across the authority transition.

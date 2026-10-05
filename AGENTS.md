@@ -1,12 +1,12 @@
 # WAKE✳︎ implementation guidance
 
-WAKE✳︎ is infrastructure for durable, accountable work across interchangeable intelligences. In this repository, that infrastructure is currently realized as a WAKE research application running on the sudofx kernel; it must not grow a competing authority engine.
+WAKE✳︎ is infrastructure for durable, accountable work across interchangeable intelligences. In this repository, that infrastructure is currently realized as a standalone WAKE research application running on its owned kernel in `wake/kernel/`; it must not grow a competing authority engine.
 
 ## Current authority model
 
-The live hosted record is `data/sudofx.sqlite` on `wake-state`.
+The live hosted record is `data/wake.sqlite` on `wake-state`.
 
-The legacy `data/wake.sqlite3` chain is migration evidence only. It may be verified, imported, archived, and used by offline compatibility tests, but new operational truth must not be split between the legacy store and sudofx.
+The legacy `data/wake.sqlite3` chain is migration evidence only. It may be verified, imported, archived, and used by offline compatibility tests, but new operational truth must not be split between the legacy store and wake.
 
 Principle:
 
@@ -14,7 +14,7 @@ Principle:
 
 ## Domain boundary
 
-WAKE-specific concepts belong above the sudofx kernel:
+WAKE-specific concepts belong above the WAKE kernel:
 
 - research topics and seed questions
 - research projects and notebooks
@@ -26,7 +26,7 @@ WAKE-specific concepts belong above the sudofx kernel:
 - scientific-source qualification
 - experimental regimes and Time Dilation
 
-Do not move these concepts into generic sudofx governance merely to simplify WAKE code.
+Do not move these concepts into generic wake governance merely to simplify WAKE code.
 
 ### WAKE✳︎ / Bob presentation boundary
 
@@ -42,8 +42,8 @@ withheld without rejecting otherwise valid research. Keep Bob's Summary respectf
 plain-language, with no child-oriented label.
 
 
-`wake/sudofx_application.py` is the application contract bridge.
-`wake/sudofx_store.py` is the transitional Store interface backed by sudofx authority.
+`wake/application.py` is the application contract bridge.
+`wake/record_store.py` is the transitional Store interface backed by WAKE authority.
 `wake/application_policy.py` owns WAKE domain governance.
 `wake/event_format.py` owns stable WAKE event identity bytes and hashes.
 `wake/domain_events.py` owns deterministic WAKE event reduction without storage authority.
@@ -57,7 +57,7 @@ When replacing a legacy path:
 
 1. verify the legacy event/state source before importing it;
 2. preserve the exact migration provenance and historical head;
-3. route post-migration mutations through sudofx application actions;
+3. route post-migration mutations through WAKE application actions;
 4. keep legacy code read-only where it remains necessary for migration verification;
 5. prove behavioral or replay equivalence before deleting compatibility machinery;
 6. never maintain two writable authoritative stores.
@@ -68,7 +68,7 @@ A migration convenience is not sufficient reason to weaken governance, provenanc
 
 - `master` — development source and documentation
 - `wake-runtime` — explicitly promoted live executable
-- `wake-state` — authoritative sudofx SQLite checkpoint
+- `wake-state` — authoritative WAKE SQLite checkpoint
 - `wake-live` — disposable public projection
 
 Research must be stopped before promoting new runtime code.
@@ -81,7 +81,7 @@ Providers receive bounded context and return untrusted proposals.
 
 Provider failures, quota pressure, deferrals, malformed output, and rejections must remain visible and must not fabricate accepted research.
 
-Generic provider-attempt lifecycle, context-delivery evidence, interruption recovery, durability-barrier-before-effect ordering, and provider-neutral invocation accounting belong to sudofx runtime primitives. WAKE may classify its provider-specific exceptions and apply Gemini/fallback quota policy, but it must not reimplement the generic execution boundary in parallel.
+Generic provider-attempt lifecycle, context-delivery evidence, interruption recovery, durability-barrier-before-effect ordering, and provider-neutral invocation accounting belong to WAKE runtime primitives. WAKE may classify its provider-specific exceptions and apply Gemini/fallback quota policy, but it must not reimplement the generic execution boundary in parallel.
 
 No model/provider receives arbitrary filesystem, database, governance, or policy authority through WAKE.
 
@@ -116,4 +116,8 @@ Operational code injects the store returned by `open_authoritative_store(...)`.
 Legacy compatibility tests may pass `store_factory=Store` explicitly. `Engine` itself must not import or construct the legacy Store.
 Do not restore an implicit `Store(directory)` fallback: forgetting store injection must fail rather than silently creating a second `wake.sqlite3`.
 
-Fresh initialization is native sudofx initialization. The legacy Store is opened only when an actual pre-migration `wake.sqlite3` exists and must be verified/imported.
+Fresh initialization is native wake initialization. The legacy Store is opened only when an actual pre-migration `wake.sqlite3` exists and must be verified/imported.
+
+## Standalone ownership
+
+All active runtime code is owned here. Do not add another project's dependency, service, or access-control database. Preserve historical V1 format bytes and exact provenance when changing ownership or checkpoint filenames. Existing V1 authority is adopted by verified format discovery; ambiguity fails closed. The hosted transport is `data/wake.sqlite.gz`, restored as `data/wake.sqlite`. Research continues through WAKE-local governance and operator controls. Other repositories may be read for comparison, but never modified without explicit authorization.

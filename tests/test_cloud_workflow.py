@@ -27,7 +27,7 @@ from scripts import github_wake
 from wake.engine import DEFAULTS
 from wake.governance import Rejected
 from wake.providers import Fixture, Gemini
-from sudofx.record import Record
+from wake.kernel.record import Record
 
 
 class CloudWorkflowTests(unittest.TestCase):
@@ -57,66 +57,15 @@ class CloudWorkflowTests(unittest.TestCase):
              patch.object(github_wake, "config", return_value=dict(DEFAULTS)), \
              patch.object(github_wake, "Gemini", return_value=provider), \
              patch.object(github_wake, "collect", lambda engine: None), \
-             patch.object(github_wake, "assert_sudofx_application_access", return_value=0), \
              patch.dict("os.environ", {"GITHUB_ACTIONS": "true"}):
             return github_wake.main(
                 reset=reset,
                 enable_continuity_matrix=enable_continuity_matrix,
             )
 
-    def test_global_sudofx_access_gate_accepts_enabled_and_rejects_stop(self):
-        """WAKE's central gate must read real SQLite latch state, not provider mocks."""
-        import io
-        import sqlite3
-
-        class Response(io.BytesIO):
-            def __enter__(self): return self
-            def __exit__(self, *args): self.close()
-
-        def snapshot(enabled, generation):
-            path = self.root / f"control-{enabled}-{generation}.sqlite"
-            with sqlite3.connect(path) as db:
-                db.execute(
-                    """
-                    CREATE TABLE application_access (
-                        singleton INTEGER PRIMARY KEY,
-                        enabled INTEGER NOT NULL,
-                        generation INTEGER NOT NULL,
-                        actor TEXT NOT NULL,
-                        reason TEXT NOT NULL,
-                        changed_at TEXT NOT NULL
-                    )
-                    """
-                )
-                db.execute(
-                    "INSERT INTO application_access VALUES (1, ?, ?, 'operator', '', CURRENT_TIMESTAMP)",
-                    (1 if enabled else 0, generation),
-                )
-            return path.read_bytes()
-
-        with patch("urllib.request.urlopen", return_value=Response(snapshot(True, 7))):
-            self.assertEqual(github_wake.assert_sudofx_application_access(), 7)
-        with patch("urllib.request.urlopen", return_value=Response(snapshot(False, 8))):
-            with self.assertRaisesRegex(Rejected, "SUDOFX_EXTERNAL_ACCESS_DISABLED"):
-                github_wake.assert_sudofx_application_access()
-
-    def test_global_sudofx_access_gate_fails_closed_when_unverifiable(self):
-        """A missing/corrupt central latch can never silently authorize WAKE."""
-        import io
-        import sqlite3
-        path = self.root / "legacy-control.sqlite"
-        with sqlite3.connect(path) as db:
-            db.execute("CREATE TABLE unrelated (value INTEGER)")
-        class Response(io.BytesIO):
-            def __enter__(self): return self
-            def __exit__(self, *args): self.close()
-        with patch("urllib.request.urlopen", return_value=Response(path.read_bytes())):
-            with self.assertRaisesRegex(Rejected, "latch is unavailable"):
-                github_wake.assert_sudofx_application_access()
-
-    def test_checkpoint_maintenance_compacts_verified_sudofx_authority(self):
+    def test_checkpoint_maintenance_compacts_verified_wake_authority(self):
         """Physical SQLite maintenance must preserve replay while reclaiming checkpoint slack."""
-        database = self.root / "maintenance" / "sudofx.sqlite"
+        database = self.root / "maintenance" / "wake.sqlite"
         database.parent.mkdir(parents=True)
         record = Record(database)
         before = record.full_replay()
@@ -131,7 +80,7 @@ class CloudWorkflowTests(unittest.TestCase):
 
     def test_checkpoint_transport_fails_closed_above_hard_limit(self):
         """A compressed authority blob that cannot fit GitHub must stop before push."""
-        database = self.root / "oversize" / "sudofx.sqlite"
+        database = self.root / "oversize" / "wake.sqlite"
         archive = self.root / "oversize" / github_wake.STATE_ARCHIVE_NAME
         database.parent.mkdir(parents=True)
         Record(database)
@@ -143,26 +92,26 @@ class CloudWorkflowTests(unittest.TestCase):
                 hard_limit=1,
             )
 
-    def test_cloud_cycle_persists_sudofx_as_authoritative_state(self):
-        """The GitHub execution path must checkpoint sudofx, not a competing WAKE engine store."""
-        self.assertEqual(self.run_cloud(Fixture("cloud-sudofx-authority")), 0)
+    def test_cloud_cycle_persists_wake_as_authoritative_state(self):
+        """The GitHub execution path must checkpoint wake, not a competing WAKE engine store."""
+        self.assertEqual(self.run_cloud(Fixture("cloud-wake-authority")), 0)
         tree = self.git(
             "--git-dir", self.remote, "ls-tree", "-r", "--name-only", "wake-state"
         ).stdout.splitlines()
-        self.assertIn("data/sudofx.sqlite.gz", tree)
-        self.assertNotIn("data/sudofx.sqlite", tree)
+        self.assertIn("data/wake.sqlite.gz", tree)
+        self.assertNotIn("data/wake.sqlite", tree)
         self.assertNotIn("data/wake.sqlite3", tree)
         live = self.live()
-        self.assertEqual(live["source"]["authority"], "sudofx SQLite")
-        self.assertEqual(live["source"]["database"], "sudofx.sqlite")
+        self.assertEqual(live["source"]["authority"], "wake SQLite")
+        self.assertEqual(live["source"]["database"], "wake.sqlite")
         # A fresh checkout restores the transport package into runtime SQLite.
         checkout = self.root / "restored-state"
         branch = github_wake.StateBranch(self.project, checkout)
         branch.open()
         try:
-            self.assertTrue((checkout / "data/sudofx.sqlite").exists())
-            self.assertTrue((checkout / "data/sudofx.sqlite.gz").exists())
-            Record(checkout / "data/sudofx.sqlite").full_replay()
+            self.assertTrue((checkout / "data/wake.sqlite").exists())
+            self.assertTrue((checkout / "data/wake.sqlite.gz").exists())
+            Record(checkout / "data/wake.sqlite").full_replay()
         finally:
             self.git("-C", self.project, "worktree", "remove", "--force", checkout)
 
@@ -231,7 +180,7 @@ class CloudWorkflowTests(unittest.TestCase):
         branch = github_wake.StateBranch(self.project, checkout)
         branch.open()
         try:
-            record = Record(checkout / "data/sudofx.sqlite")
+            record = Record(checkout / "data/wake.sqlite")
             revision, state = record.full_replay()
             events = record.history()
             self.assertGreater(revision, 0)

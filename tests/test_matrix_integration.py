@@ -4,11 +4,11 @@ import tempfile
 from pathlib import Path
 import unittest
 
-from sudofx import continuity_matrix
-from sudofx.storage import ApplicationAccessError
+from wake.kernel import continuity_matrix
+from wake.kernel.storage import ApplicationAccessError
 
 from wake.governance import Rejected
-from wake.sudofx_store import SudofxStore
+from wake.record_store import RecordStore
 
 
 class WakeMatrixIntegrationTests(unittest.TestCase):
@@ -16,7 +16,7 @@ class WakeMatrixIntegrationTests(unittest.TestCase):
         matrix = continuity_matrix()
         with tempfile.TemporaryDirectory() as tempdir:
             root = Path(tempdir)
-            store = SudofxStore(root, initialize_empty=True)
+            store = RecordStore(root, initialize_empty=True)
             self.assertIsNone(store.continuity_matrix_progress())
 
             enabled = store.enable_continuity_matrix()
@@ -42,7 +42,7 @@ class WakeMatrixIntegrationTests(unittest.TestCase):
             before_revision = store.kernel.context().revision
             store.close()
 
-            rebuilt = SudofxStore(root)
+            rebuilt = RecordStore(root)
             try:
                 restored = rebuilt.continuity_matrix_progress()
                 self.assertEqual(restored, progressed)
@@ -57,7 +57,7 @@ class WakeMatrixIntegrationTests(unittest.TestCase):
     def test_matrix_coordinate_version_is_validated_by_shared_contract(self) -> None:
         matrix = continuity_matrix()
         with tempfile.TemporaryDirectory() as tempdir:
-            store = SudofxStore(Path(tempdir), initialize_empty=True)
+            store = RecordStore(Path(tempdir), initialize_empty=True)
             try:
                 store.enable_continuity_matrix()
                 first = matrix.coordinate("reconstruction", "rich", "clean")
@@ -74,9 +74,9 @@ class WakeMatrixIntegrationTests(unittest.TestCase):
             finally:
                 store.close()
 
-    def test_matrix_actions_honor_global_sudofx_kill_switch(self) -> None:
+    def test_matrix_actions_honor_global_wake_kill_switch(self) -> None:
         with tempfile.TemporaryDirectory() as tempdir:
-            store = SudofxStore(Path(tempdir), initialize_empty=True)
+            store = RecordStore(Path(tempdir), initialize_empty=True)
             try:
                 stopped = store.record.set_application_access(
                     False,
@@ -93,7 +93,7 @@ class WakeMatrixIntegrationTests(unittest.TestCase):
     def test_existing_wake_reset_preserves_opted_in_matrix_state(self) -> None:
         matrix = continuity_matrix()
         with tempfile.TemporaryDirectory() as tempdir:
-            store = SudofxStore(Path(tempdir), initialize_empty=True)
+            store = RecordStore(Path(tempdir), initialize_empty=True)
             try:
                 store.enable_continuity_matrix()
                 first = matrix.coordinate("reconstruction", "rich", "clean")

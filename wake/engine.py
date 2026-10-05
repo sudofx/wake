@@ -23,7 +23,7 @@ import uuid
 from time import perf_counter
 from zoneinfo import ZoneInfo
 
-from sudofx import InvocationBarrierError
+from wake.kernel import InvocationBarrierError
 
 from .application_policy import _rotation_preflight, govern_proposal
 from .governance import Rejected, bob_reflection_due_cycle, require, text
@@ -236,7 +236,7 @@ class Engine:
             state, events, controls, "operator", reason, now(), len(events) + 1))
     def recover(self, explicit=False):
         # Both the WAKE-compatible projection and the generic
-        # sudofx invocation journal describe the same provider boundary. Close
+        # WAKE kernel invocation journal describe the same provider boundary. Close
         # abandoned generic lifecycles first so process recovery cannot leave a
         # second, apparently-live attempt behind after WAKE resumes.
         if hasattr(self.store, "recover_invocation_lifecycles"):
@@ -2000,7 +2000,7 @@ class Engine:
         return {"provider_requests_sent": count} if count is not None else {}
     @staticmethod
     def _invocation_failure_outcome(error):
-        """Map WAKE/provider-specific exceptions onto sudofx generic outcomes."""
+        """Map WAKE/provider-specific exceptions onto kernel outcomes."""
         if isinstance(error, TransientProviderError):
             return "temporary_failure"
         if isinstance(error, (DailyQuotaExceeded, ConfiguredDailyLimitReached)):
@@ -2009,7 +2009,7 @@ class Engine:
 
     @staticmethod
     def _invoke_external_effect(lifecycle, effect, checkpoint):
-        """Delegate effect ordering to sudofx while keeping barrier failure distinct."""
+        """Delegate effect ordering to the WAKE kernel while keeping barrier failure distinct."""
         if lifecycle is None:
             if checkpoint:
                 try:

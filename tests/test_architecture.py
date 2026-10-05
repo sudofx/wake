@@ -8,13 +8,13 @@ class ArchitectureSeparationTests(unittest.TestCase):
         return (ROOT / path).read_text(encoding='utf-8')
 
     def test_legacy_import_is_explicit_migration_only(self):
-        """Normal sudofx store construction must not expose legacy import as runtime mode."""
-        source = self.read('wake/sudofx_store.py')
+        """Normal wake store construction must not expose legacy import as runtime mode."""
+        source = self.read('wake/record_store.py')
         self.assertIn('def migrate_legacy(cls, directory, legacy_store)', source)
         constructor = source.split('def __init__', 1)[1].split('def migrate_legacy', 1)[0]
         self.assertNotIn('legacy_store=', constructor)
         authority = self.read('wake/authority.py')
-        self.assertIn('SudofxStore.migrate_legacy(data_directory, legacy)', authority)
+        self.assertIn('RecordStore.migrate_legacy(data_directory, legacy)', authority)
 
     def test_live_runtime_does_not_depend_on_legacy_store_module(self):
         """Legacy SQLite persistence stays quarantined from normal runtime/domain code."""
@@ -25,8 +25,8 @@ class ArchitectureSeparationTests(unittest.TestCase):
             "wake/trust.py",
             "wake/experimental.py",
             "wake/experiment.py",
-            "wake/sudofx_application.py",
-            "wake/sudofx_store.py",
+            "wake/application.py",
+            "wake/record_store.py",
             "wake/audit.py",
             "wake/__main__.py",
         ):
@@ -86,7 +86,7 @@ class ArchitectureSeparationTests(unittest.TestCase):
         live = self.read('wake/live.py')
         self.assertIn('wake-live', cloud)
         self.assertIn('"authoritative": False', live)
-        self.assertIn('"authority": "sudofx SQLite"', live)
+        self.assertIn('"authority": "wake SQLite"', live)
         self.assertIn('"authority": "legacy WAKE SQLite"', live)
         self.assertNotIn('"authority": "SQLite"', live)
         self.assertNotIn('site/live.json', cloud)

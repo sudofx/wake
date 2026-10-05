@@ -39,7 +39,7 @@ def parser():
     wake.add_argument("--model")
     wake.add_argument("--crash-at", choices=["after-start", "during-commit"], help="Fixture-only crash experiment")
     sub.add_parser("status")
-    reset = sub.add_parser("reset", help="Start a new active WAKE generation at 0 while preserving prior sudofx history")
+    reset = sub.add_parser("reset", help="Start a new active WAKE generation at 0 while preserving prior wake history")
     reset.add_argument("--confirm", action="store_true",
                        help="Confirm deletion of all accumulated WAKE state")
     reset.add_argument("--output", default="site",

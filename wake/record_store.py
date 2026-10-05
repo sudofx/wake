@@ -1,10 +1,10 @@
 """
-Transitional WAKE Store interface backed by the sudofx authoritative database.
+Transitional WAKE Store interface backed by the wake authoritative database.
 
 The legacy WAKE database is accepted only as a verified, read-only migration
 source. Every post-migration mutation is an application intent committed to
-sudofx. Historical query methods combine the frozen imported legacy prefix with
-WAKE-compatible events reconstructed from sudofx application action inputs.
+wake. Historical query methods combine the frozen imported legacy prefix with
+WAKE-compatible events reconstructed from wake.kernel application action inputs.
 """
 
 from __future__ import annotations
@@ -15,22 +15,22 @@ import uuid
 from contextlib import contextmanager
 from pathlib import Path
 
-from sudofx import (
+from wake.kernel import (
     ApplicationHost, ApplicationIntent, ApplicationRegistry, Context,
     InvocationLifecycle, Kernel, Runtime, SubmissionProvenance,
 )
-from sudofx.governance import Governance
-from sudofx.record import Record
+from wake.kernel.governance import Governance
+from wake.kernel.record import Record
 
 from .errors import IntegrityError
 from .event_format import digest, now
 from .history import history_metrics, merge_history_metrics
-from .sudofx_application import LEGACY_ARCHIVE_CHUNK_SIZE, WAKE_APPLICATION, verified_legacy_snapshot
+from .application import LEGACY_ARCHIVE_CHUNK_SIZE, WAKE_APPLICATION, verified_legacy_snapshot
 from .matrix import MATRIX_KEY, continuity_matrix_progress
 
 
 class _CrashInjectableRecordStore:
-    """Wrap the public sudofx storage contract with a fixture-only pre-commit failpoint."""
+    """Wrap the public wake storage contract with a fixture-only pre-commit failpoint."""
 
     def __init__(self, record):
         self.record = record
@@ -67,13 +67,13 @@ class _CrashInjectableRecordStore:
         return self.record.projection_snapshot(history_limit)
 
 
-class SudofxStore:
-    """Present the narrow WAKE Store protocol while sudofx owns new durability."""
+class RecordStore:
+    """Present the narrow WAKE Store protocol while wake owns new durability."""
 
     def __init__(self, directory, *, initialize_empty=False, _migration_source=None):
         self.directory = Path(directory)
         self.directory.mkdir(parents=True, exist_ok=True)
-        self.path = self.directory / "sudofx.sqlite"
+        self.path = self.directory / "wake.sqlite"
         self.record = Record(self.path)
         self._kernel_store = _CrashInjectableRecordStore(self.record)
         self.registry = ApplicationRegistry((WAKE_APPLICATION,))
@@ -93,12 +93,12 @@ class SudofxStore:
                         rationale="Initialize WAKE application from verified legacy replay",
                     ),
                     provenance=SubmissionProvenance(
-                        "application", "wake-sudofx-store", "verified-legacy-migration"
+                        "application", "wake-wake-store", "verified-legacy-migration"
                     ),
                 )
                 if receipt.status != "accepted":
                     raise IntegrityError(
-                        "sudofx rejected verified WAKE migration: " + "; ".join(receipt.reasons)
+                        "wake rejected verified WAKE migration: " + "; ".join(receipt.reasons)
                     )
             elif initialize_empty:
                 receipt = self.host.submit(
@@ -107,15 +107,15 @@ class SudofxStore:
                         self.kernel.context().revision,
                         "initialize_empty",
                         {"reason": "explicit-initialization"},
-                        rationale="Initialize a brand-new WAKE application directly in sudofx",
+                        rationale="Initialize a brand-new WAKE application directly in wake",
                     ),
                     provenance=SubmissionProvenance(
-                        "application", "wake-sudofx-store", "explicit-native-initialization"
+                        "application", "wake-wake-store", "explicit-native-initialization"
                     ),
                 )
                 if receipt.status != "accepted":
                     raise IntegrityError(
-                        "sudofx rejected native WAKE initialization: " + "; ".join(receipt.reasons)
+                        "wake rejected native WAKE initialization: " + "; ".join(receipt.reasons)
                     )
             else:
                 raise IntegrityError(
@@ -127,7 +127,7 @@ class SudofxStore:
 
     @classmethod
     def migrate_legacy(cls, directory, legacy_store):
-        """Create sudofx authority from one verified, read-only legacy WAKE record."""
+        """Create WAKE authority from one verified, read-only legacy WAKE record."""
         return cls(directory, _migration_source=legacy_store)
 
     def _envelope(self):
@@ -137,7 +137,7 @@ class SudofxStore:
         return value
 
     def _archive_legacy_history(self, events):
-        """Copy the verified pre-migration event chain into the sudofx event log once."""
+        """Copy the verified pre-migration event chain into the wake event log once."""
         migration = self._envelope()["migration"]
         target_count = migration["import_legacy_event_count"]
         target_head = migration["import_legacy_head"]
@@ -157,20 +157,20 @@ class SudofxStore:
                     revision,
                     "import_legacy_event_chunk",
                     {"events": chunk},
-                    rationale="Move verified legacy WAKE history into the single sudofx database",
+                    rationale="Move verified legacy WAKE history into the single wake database",
                 ),
                 provenance=SubmissionProvenance(
-                    "application", "wake-sudofx-store", "verified-legacy-history-archive"
+                    "application", "wake-wake-store", "verified-legacy-history-archive"
                 ),
             )
             if receipt.status != "accepted":
                 raise IntegrityError(
-                    "sudofx rejected verified WAKE history archive: " + "; ".join(receipt.reasons)
+                    "wake rejected verified WAKE history archive: " + "; ".join(receipt.reasons)
                 )
             archived += len(chunk)
 
     def _archived_legacy_events(self):
-        """Reconstruct the exact imported legacy prefix from sudofx action inputs."""
+        """Reconstruct the exact imported legacy prefix from wake.kernel action inputs."""
         migration = self._envelope()["migration"]
         target_count = migration.get("import_legacy_event_count")
         target_head = migration.get("import_legacy_head")
@@ -220,7 +220,7 @@ class SudofxStore:
             migration.get("archive_event_count") != import_count
             or migration.get("archive_head") != import_head
         ):
-            raise IntegrityError("Imported WAKE history has not been fully archived into sudofx")
+            raise IntegrityError("Imported WAKE history has not been fully archived into WAKE")
         self._archived_legacy_events()
         if _migration_source is not None:
             events = _migration_source.events()
@@ -231,7 +231,7 @@ class SudofxStore:
                 raise IntegrityError("Imported WAKE head does not match legacy history prefix")
 
     def close(self):
-        """No persistent connection is retained by sudofx Record."""
+        """No persistent connection is retained by wake Record."""
 
     @contextmanager
     def lock(self):
@@ -248,7 +248,7 @@ class SudofxStore:
                 fcntl.flock(lock, fcntl.LOCK_UN)
 
     def begin_invocation_lifecycle(self, invocation_id, request, provider, model):
-        """Record one WAKE provider boundary in sudofx's generic invocation journal."""
+        """Record one WAKE provider boundary in wake's generic invocation journal."""
         context = Context(
             revision=self.kernel.context().revision,
             state={"app:wake:provider_request": request},
@@ -300,7 +300,7 @@ class SudofxStore:
                     "actor": "operator",
                     "reason": "Operator requested WAKE reset to cycle zero.",
                 },
-                rationale="Create a new active WAKE generation without deleting prior sudofx history",
+                rationale="Create a new active WAKE generation without deleting prior wake history",
             ),
             provenance=SubmissionProvenance(
                 "human", "wake-operator", "explicit-reset"
@@ -308,7 +308,7 @@ class SudofxStore:
         )
         if receipt.status != "accepted":
             from .governance import Rejected
-            raise Rejected("; ".join(receipt.reasons) or "sudofx rejected WAKE reset")
+            raise Rejected("; ".join(receipt.reasons) or "wake rejected WAKE reset")
         return self.load()
 
     def enable_continuity_matrix(self):
@@ -328,7 +328,7 @@ class SudofxStore:
         )
         if receipt.status != "accepted":
             from .governance import Rejected
-            raise Rejected("; ".join(receipt.reasons) or "sudofx rejected WAKE matrix enablement")
+            raise Rejected("; ".join(receipt.reasons) or "wake rejected WAKE matrix enablement")
         return self.continuity_matrix_progress()
 
     def record_continuity_matrix_result(self, coordinate_id, result):
@@ -340,7 +340,7 @@ class SudofxStore:
                 revision,
                 "record_continuity_matrix_result",
                 {"coordinate_id": coordinate_id, "result": result},
-                rationale="Persist WAKE matrix progress in authoritative sudofx SQLite state",
+                rationale="Persist WAKE matrix progress in authoritative WAKE SQLite state",
             ),
             provenance=SubmissionProvenance(
                 "application", "wake-matrix", "governed-result"
@@ -348,7 +348,7 @@ class SudofxStore:
         )
         if receipt.status != "accepted":
             from .governance import Rejected
-            raise Rejected("; ".join(receipt.reasons) or "sudofx rejected WAKE matrix result")
+            raise Rejected("; ".join(receipt.reasons) or "wake rejected WAKE matrix result")
         return self.continuity_matrix_progress()
 
     def continuity_matrix_progress(self):
@@ -365,15 +365,15 @@ class SudofxStore:
                 revision,
                 "append_legacy_event",
                 {"kind": kind, "payload": payload, "time": now()},
-                rationale="WAKE compatibility event committed through sudofx",
+                rationale="WAKE compatibility event committed through wake",
             ),
             provenance=SubmissionProvenance(
-                "application", "wake-engine", "sudofx-authoritative-store"
+                "application", "wake-engine", "wake-authoritative-store"
             ),
         )
         if receipt.status != "accepted":
             from .governance import Rejected
-            raise Rejected("; ".join(receipt.reasons) or f"sudofx rejected WAKE event: {kind}")
+            raise Rejected("; ".join(receipt.reasons) or f"wake rejected WAKE event: {kind}")
         return self.load()
 
     def _post_migration_events(self):
@@ -427,7 +427,7 @@ class SudofxStore:
             result.append(event)
         if head != migration["legacy_head"] or seq != migration["legacy_event_count"]:
             raise IntegrityError(
-                "sudofx WAKE active event projection does not match durable generation head"
+                "wake WAKE active event projection does not match durable generation head"
             )
         return result
 
@@ -460,16 +460,16 @@ class SudofxStore:
         return {"total": len(selected), "kinds": counts}
 
     def history_metrics(self):
-        """Derive complete metrics from exact history stored in the sudofx database."""
+        """Derive complete metrics from exact history stored in the wake database."""
         return history_metrics(self.events(), self.load())
 
     def performance_snapshot(self):
         health = self.record.health()
         return {
-            "authority": "sudofx",
+            "authority": "wake",
             "event_count": self._envelope()["migration"]["legacy_event_count"],
-            "sudofx_revision": health["revision"],
-            "sudofx_database_bytes": health["database_bytes"],
+            "wake_revision": health["revision"],
+            "wake_database_bytes": health["database_bytes"],
             "invocation_accounting": self.record.invocation_accounting(),
             "trusted_projection_active": True,
         }

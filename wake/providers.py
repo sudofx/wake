@@ -23,12 +23,12 @@ import time
 import urllib.error
 import urllib.request
 
-from sudofx import (
+from wake.kernel import (
     GenerationRequest,
     GeminiGenerationProvider,
-    ProviderError as SudofxProviderError,
-    ProviderQuotaError as SudofxProviderQuotaError,
-    ProviderTemporaryError as SudofxProviderTemporaryError,
+    ProviderError as WakeProviderError,
+    ProviderQuotaError as WakeProviderQuotaError,
+    ProviderTemporaryError as WakeProviderTemporaryError,
 )
 
 from .governance import PUBLICATION_MIN_SOURCES, Rejected, require
@@ -538,10 +538,10 @@ class Gemini:
 
     def propose(self, request):
         """
-        Keep WAKE policy above sudofx while delegating Gemini execution below it.
+        Keep WAKE policy above the WAKE kernel while delegating Gemini execution below it.
 
         WAKE owns prompt/schema meaning, model-order/fallback policy, configured
-        daily ceilings, and exact free-tier quota interpretation. sudofx owns
+        daily ceilings, and exact free-tier quota interpretation. The WAKE kernel owns
         vendor request construction, credential handling, HTTP execution,
         bounded diagnostics, and generic provider error classification.
         """
@@ -653,7 +653,7 @@ class Gemini:
                 usage = response.metadata.get("usage", {})
                 model_version = response.metadata.get("model_version", model)
 
-            except SudofxProviderQuotaError as exc:
+            except WakeProviderQuotaError as exc:
                 details = dict(getattr(exc, "details", {}) or {})
                 attempt.update(details)
                 quota_ids = set(details.get("quota_ids", []))
@@ -684,7 +684,7 @@ class Gemini:
                         "Gemini HTTP 429; wake attempt counted"
                     )
 
-            except SudofxProviderTemporaryError as exc:
+            except WakeProviderTemporaryError as exc:
                 details = dict(getattr(exc, "details", {}) or {})
                 attempt.update(details)
                 attempt["result"] = "transient_failure"
@@ -692,7 +692,7 @@ class Gemini:
                     "Gemini temporarily unavailable; wake deferred"
                 )
 
-            except SudofxProviderError as exc:
+            except WakeProviderError as exc:
                 details = dict(getattr(exc, "details", {}) or {})
                 attempt.update(details)
                 category = details.get("category")

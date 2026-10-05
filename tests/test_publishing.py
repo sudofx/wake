@@ -96,8 +96,8 @@ class PublishingTests(unittest.TestCase):
                 self.assertIn("window.addEventListener('pageshow',closeEventDetails)", flat_view)
                 self.assertNotIn('class="powered-by"', map_page)
                 self.assertNotIn('class="powered-by"', map3d_page)
-                self.assertIn('class="footer-powered"', map_page)
-                self.assertIn('class="footer-powered"', map3d_page)
+                self.assertNotIn('class="footer-powered"', map_page)
+                self.assertNotIn('class="footer-powered"', map3d_page)
 
                 full_graph = json.loads((root / "site/map-data.json").read_text())
                 lazy_shell = json.loads((root / "site/map3d-data.json").read_text())

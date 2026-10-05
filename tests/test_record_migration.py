@@ -1,4 +1,4 @@
-"""Authority migration regression coverage for WAKE domain meaning on sudofx."""
+"""Authority migration regression coverage for WAKE domain meaning on wake."""
 
 from __future__ import annotations
 
@@ -7,23 +7,23 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from sudofx import ApplicationHost, ApplicationIntent, ApplicationRegistry, Kernel, SubmissionProvenance
-from sudofx.governance import Governance
-from sudofx.record import Record
+from wake.kernel import ApplicationHost, ApplicationIntent, ApplicationRegistry, Kernel, SubmissionProvenance
+from wake.kernel.governance import Governance
+from wake.kernel.record import Record
 
 from wake.engine import DEFAULTS, Engine, govern_proposal
 from wake.store import Store
 from wake.governance import Rejected, transition
 from wake.store import digest, reduce_event
-from wake.sudofx_store import SudofxStore
+from wake.record_store import RecordStore
 from wake.providers import Fixture
 from wake.live import build_live_projection
 from wake.report import export
-from wake.sudofx_application import WAKE_APPLICATION, verified_legacy_snapshot
+from wake.application import WAKE_APPLICATION, verified_legacy_snapshot
 from support import charter_settings
 
 
-class SudofxMigrationTests(unittest.TestCase):
+class WakeMigrationTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.root = Path(self.temp.name)
@@ -35,17 +35,17 @@ class SudofxMigrationTests(unittest.TestCase):
         self.engine.store.close()
         self.temp.cleanup()
 
-    def _sudofx_host(self):
+    def _wake_host(self):
         registry = ApplicationRegistry((WAKE_APPLICATION,))
-        record = Record(self.root / "sudofx.sqlite")
+        record = Record(self.root / "wake.sqlite")
         kernel = Kernel(record, Governance(application_registry=registry))
         return kernel, ApplicationHost(kernel, registry, "wake")
 
     def test_verified_legacy_state_imports_once_and_survives_application_removal(self):
-        """Verified WAKE replay should become one replayable sudofx application state."""
+        """Verified WAKE replay should become one replayable wake application state."""
         payload = verified_legacy_snapshot(self.engine.store)
         legacy_state, legacy_head, events = self.engine.store.replay_record()
-        kernel, host = self._sudofx_host()
+        kernel, host = self._wake_host()
 
         receipt = host.submit(
             ApplicationIntent("wake-import", 0, "import_legacy_snapshot", payload),
@@ -62,17 +62,17 @@ class SudofxMigrationTests(unittest.TestCase):
         self.assertEqual(imported["migration"]["legacy_event_count"], len(events))
         self.assertEqual(imported["migration"]["legacy_version"], legacy_state["version"])
 
-        # Removing WAKE application code must not break generic sudofx replay.
+        # Removing WAKE application code must not break generic wake replay.
         # Compact mode preserves the action envelope without pretending the
         # domain state can be interpreted when WAKE code is absent.
-        replayed = Kernel(Record(self.root / "sudofx.sqlite")).context().state["app:wake"]
+        replayed = Kernel(Record(self.root / "wake.sqlite")).context().state["app:wake"]
         self.assertEqual(replayed["storage"], "event_log")
         self.assertEqual(len(replayed["events"]), 1)
         self.assertNotIn("state", replayed)
 
         registry = ApplicationRegistry((WAKE_APPLICATION,))
         reinstalled_kernel = Kernel(
-            Record(self.root / "sudofx.sqlite"),
+            Record(self.root / "wake.sqlite"),
             Governance(application_registry=registry),
         )
         reinstalled = ApplicationHost(
@@ -93,7 +93,7 @@ class SudofxMigrationTests(unittest.TestCase):
         """Migration provenance must bind the imported state bytes it describes."""
         payload = verified_legacy_snapshot(self.engine.store)
         payload["legacy_state"] = {**payload["legacy_state"], "focus": "tampered"}
-        _, host = self._sudofx_host()
+        _, host = self._wake_host()
         receipt = host.submit(
             ApplicationIntent("wake-import-tampered", 0, "import_legacy_snapshot", payload)
         )
@@ -101,9 +101,9 @@ class SudofxMigrationTests(unittest.TestCase):
         self.assertIn("digest does not match", " ".join(receipt.reasons))
 
     def test_governed_proposal_matches_legacy_transition_exactly(self):
-        """WAKE policy stays above the kernel while sudofx owns the accepted state."""
+        """WAKE policy stays above the kernel while wake owns the accepted state."""
         payload = verified_legacy_snapshot(self.engine.store)
-        _, host = self._sudofx_host()
+        _, host = self._wake_host()
         imported = host.submit(
             ApplicationIntent("wake-import-equivalence", 0, "import_legacy_snapshot", payload)
         )
@@ -112,7 +112,7 @@ class SudofxMigrationTests(unittest.TestCase):
         proposal = {
             "base_version": legacy_state["version"],
             "title": "Preserve a governed obligation",
-            "summary": "Exercise existing WAKE commitment governance through the sudofx app seam.",
+            "summary": "Exercise existing WAKE commitment governance through the wake app seam.",
             "actions": [
                 {
                     "type": "commit",
@@ -149,18 +149,18 @@ class SudofxMigrationTests(unittest.TestCase):
             "Continue the migration with behavioral equivalence evidence.",
         )
 
-    def test_sudofx_app_reuses_full_wake_policy_including_research_id_assignment(self):
+    def test_wake_app_reuses_full_wake_policy_including_research_id_assignment(self):
         """Policy outside raw transition must remain identical during migration."""
         research_engine = Engine(
             self.root / "wake-research",
-            charter_settings("Exercise full WAKE application policy through sudofx."),
+            charter_settings("Exercise full WAKE application policy through wake."),
             store_factory=Store,
         )
         try:
             with research_engine.store.lock():
                 research_engine.initialize()
             payload = verified_legacy_snapshot(research_engine.store)
-            _, host = self._sudofx_host()
+            _, host = self._wake_host()
             imported = host.submit(
                 ApplicationIntent("wake-import-full-policy", 0, "import_legacy_snapshot", payload)
             )
@@ -169,7 +169,7 @@ class SudofxMigrationTests(unittest.TestCase):
             proposal = {
                 "base_version": payload["legacy_state"]["version"],
                 "title": "Open one bounded research request",
-                "summary": "Prove WAKE-owned normalization remains above the sudofx kernel.",
+                "summary": "Prove WAKE-owned normalization remains above the wake kernel.",
                 "actions": [
                     {
                         "type": "project",
@@ -216,9 +216,9 @@ class SudofxMigrationTests(unittest.TestCase):
             research_engine.store.close()
 
     def test_governed_proposal_rejects_exact_legacy_stale_write(self):
-        """A legacy WAKE rejection must stay a rejection at the sudofx authority boundary."""
+        """A legacy WAKE rejection must stay a rejection at the wake authority boundary."""
         payload = verified_legacy_snapshot(self.engine.store)
-        _, host = self._sudofx_host()
+        _, host = self._wake_host()
         host.submit(ApplicationIntent("wake-import-stale", 0, "import_legacy_snapshot", payload))
         stale = {
             "base_version": payload["legacy_state"]["version"] - 1,
@@ -242,10 +242,10 @@ class SudofxMigrationTests(unittest.TestCase):
         self.assertEqual(host.context().state["state"], payload["legacy_state"])
 
 
-    def test_sudofx_authoritative_event_path_matches_legacy_invocation_transition(self) -> None:
-        """A WAKE invocation can advance through sudofx without writing the legacy Store."""
+    def test_wake_authoritative_event_path_matches_legacy_invocation_transition(self) -> None:
+        """A WAKE invocation can advance through wake without writing the legacy Store."""
         payload = verified_legacy_snapshot(self.engine.store)
-        _, host = self._sudofx_host()
+        _, host = self._wake_host()
         imported = host.submit(
             ApplicationIntent("wake-event-import", 0, "import_legacy_snapshot", payload)
         )
@@ -281,8 +281,8 @@ class SudofxMigrationTests(unittest.TestCase):
 
         proposal = {
             "base_version": started_state["version"],
-            "title": "Advance under sudofx authority",
-            "summary": "Exercise WAKE policy while sudofx owns the durable event.",
+            "title": "Advance under wake authority",
+            "summary": "Exercise WAKE policy while wake owns the durable event.",
             "actions": [
                 {
                     "type": "commit",
@@ -353,13 +353,13 @@ class SudofxMigrationTests(unittest.TestCase):
         )
 
 
-    def test_full_wake_fixture_cycle_writes_only_to_sudofx_after_migration(self) -> None:
+    def test_full_wake_fixture_cycle_writes_only_to_wake_after_migration(self) -> None:
         """Normal WAKE orchestration can advance while the legacy database stays frozen."""
         legacy_before_state, legacy_before_head, legacy_before_events = self.engine.store.replay_record()
         legacy_count = len(legacy_before_events)
 
-        store = SudofxStore.migrate_legacy(
-            self.root / "sudofx-authority",
+        store = RecordStore.migrate_legacy(
+            self.root / "wake-authority",
             self.engine.store,
         )
         migrated = Engine(
@@ -368,7 +368,7 @@ class SudofxMigrationTests(unittest.TestCase):
             store=store,
         )
         try:
-            result = migrated.run(Fixture("authority-sudofx-authority"))
+            result = migrated.run(Fixture("authority-wake-authority"))
             self.assertEqual(result["status"], "accepted")
 
             legacy_after_state, legacy_after_head, legacy_after_events = self.engine.store.replay_record()
@@ -422,18 +422,18 @@ class SudofxMigrationTests(unittest.TestCase):
             projection = build_live_projection(
                 store,
                 operation={"status": result["status"]},
-                runtime_ref="authority-sudofx-test",
+                runtime_ref="authority-wake-test",
             )
-            self.assertEqual(projection["source"]["authority"], "sudofx SQLite")
-            self.assertEqual(projection["source"]["database"], "sudofx.sqlite")
+            self.assertEqual(projection["source"]["authority"], "wake SQLite")
+            self.assertEqual(projection["source"]["database"], "wake.sqlite")
             self.assertEqual(projection["state"]["version"], migrated_state["version"])
             self.assertEqual(
                 projection["metrics"]["storage"]["event_count"],
                 len(store.events()),
             )
 
-            export(store, self.root / "sudofx-site")
-            self.assertTrue((self.root / "sudofx-site" / "index.html").is_file())
+            export(store, self.root / "wake-site")
+            self.assertTrue((self.root / "wake-site" / "index.html").is_file())
 
             legacy_export_state, legacy_export_head, legacy_export_events = (
                 self.engine.store.replay_record()
@@ -442,7 +442,7 @@ class SudofxMigrationTests(unittest.TestCase):
             self.assertEqual(legacy_export_head, legacy_before_head)
             self.assertEqual(len(legacy_export_events), legacy_count)
 
-            fresh = SudofxStore(self.root / "sudofx-authority")
+            fresh = RecordStore(self.root / "wake-authority")
             try:
                 self.assertEqual(fresh.load(), migrated_state)
                 self.assertEqual(fresh.head(), store.head())
@@ -461,9 +461,9 @@ class SudofxMigrationTests(unittest.TestCase):
             store.close()
 
 
-    def test_sudofx_fixture_revises_belief_from_new_sensor_evidence(self) -> None:
-        """Fresh observations must remain visible across sudofx-backed fixture cycles."""
-        store = SudofxStore.migrate_legacy(self.root / "sudofx-evidence", self.engine.store)
+    def test_wake_fixture_revises_belief_from_new_sensor_evidence(self) -> None:
+        """Fresh observations must remain visible across wake-backed fixture cycles."""
+        store = RecordStore.migrate_legacy(self.root / "wake-evidence", self.engine.store)
         migrated = Engine(self.root / "unused-evidence-path", dict(DEFAULTS), store=store)
         try:
             with store.lock():
@@ -510,7 +510,7 @@ class SudofxMigrationTests(unittest.TestCase):
     def test_legacy_event_archive_rejects_a_tampered_chunk(self) -> None:
         """Exact imported history must remain hash-linked evidence, not an unchecked copy."""
         payload = verified_legacy_snapshot(self.engine.store)
-        _, host = self._sudofx_host()
+        _, host = self._wake_host()
         imported = host.submit(
             ApplicationIntent("wake-archive-import", 0, "import_legacy_snapshot", payload)
         )
@@ -533,14 +533,14 @@ class SudofxMigrationTests(unittest.TestCase):
     def test_detached_legacy_database_can_reopen_run_and_publish(self) -> None:
         """After verified import, WAKE runtime must no longer depend on the legacy SQLite file."""
         authority = self.root / "detached-authority"
-        initial = SudofxStore.migrate_legacy(authority, self.engine.store)
+        initial = RecordStore.migrate_legacy(authority, self.engine.store)
         try:
             imported_state = initial.load()
             import_count = initial._envelope()["migration"]["import_legacy_event_count"]
         finally:
             initial.close()
 
-        detached = SudofxStore(authority)
+        detached = RecordStore(authority)
         migrated = Engine(
             self.root / "unused-detached-legacy-path",
             dict(DEFAULTS),
@@ -562,7 +562,7 @@ class SudofxMigrationTests(unittest.TestCase):
                 operation={"status": result["status"]},
                 runtime_ref="authority-detached-test",
             )
-            self.assertEqual(projection["source"]["authority"], "sudofx SQLite")
+            self.assertEqual(projection["source"]["authority"], "wake SQLite")
             self.assertEqual(
                 projection["metrics"]["storage"]["event_count"],
                 detached.performance_snapshot()["event_count"],
@@ -572,7 +572,7 @@ class SudofxMigrationTests(unittest.TestCase):
             export(detached, self.root / "detached-site")
             self.assertTrue((self.root / "detached-site" / "index.html").is_file())
 
-            reopened = SudofxStore(authority)
+            reopened = RecordStore(authority)
             try:
                 self.assertEqual(reopened.load(), detached.load())
                 self.assertEqual(reopened.head(), detached.head())
@@ -586,10 +586,10 @@ class SudofxMigrationTests(unittest.TestCase):
             detached.close()
 
 
-    def test_sudofx_reset_starts_new_generation_and_survives_restart(self) -> None:
-        """Operator reset must preserve old sudofx history while active WAKE returns to zero."""
+    def test_wake_reset_starts_new_generation_and_survives_restart(self) -> None:
+        """Operator reset must preserve old wake history while active WAKE returns to zero."""
         authority = self.root / "reset-authority"
-        store = SudofxStore.migrate_legacy(authority, self.engine.store)
+        store = RecordStore.migrate_legacy(authority, self.engine.store)
         try:
             before_revision = store.kernel.context().revision
             before_archive_count = store._envelope()["migration"]["archive_event_count"]
@@ -606,7 +606,7 @@ class SudofxMigrationTests(unittest.TestCase):
         finally:
             store.close()
 
-        reopened = SudofxStore(authority)
+        reopened = RecordStore(authority)
         engine = Engine(self.root / "unused-reset-path", dict(DEFAULTS), store=reopened)
         try:
             self.assertEqual(reopened.load()["version"], 0)

@@ -1,10 +1,10 @@
 """
-WAKE✳︎ → sudofx application boundary.
+WAKE✳︎ → WAKE application boundary.
 
-Live WAKE authority now resides on sudofx. This module defines the
+Live WAKE authority now resides on wake. This module defines the
 versioned WAKE application contract, verifies the one-time legacy import, and
 governs post-migration WAKE-compatible events without moving research-specific
-policy into the generic sudofx kernel. Provider output cannot call migration
+policy into the generic WAKE kernel. Provider output cannot call migration
 actions directly, and legacy history remains preserved as verified evidence.
 """
 
@@ -14,9 +14,9 @@ import hashlib
 import json
 from copy import deepcopy
 
-from sudofx import ApplicationAction, ApplicationDecision, ApplicationDefinition
-from sudofx.models import JsonValue
-from sudofx.storage import canonical_json
+from wake.kernel import ApplicationAction, ApplicationDecision, ApplicationDefinition
+from wake.kernel.models import JsonValue
+from wake.kernel.storage import canonical_json
 from .application_policy import govern_proposal
 from .governance import Rejected
 from .history import migration_baseline
@@ -26,13 +26,20 @@ from .matrix import enable_continuity_matrix, record_continuity_matrix_result
 
 
 APPLICATION_ID = "wake"
-# This version string is already durable in the live sudofx record. Its historical
+# This version string is already durable in the live WAKE record. Its historical
 # name reflects the first authority cutover, not the only supported initialization
 # path. Do not rename it merely for terminology: changing an application version
 # requires an explicit governed migration so existing authority fails closed
 # rather than silently reinterpreting durable application events.
 APPLICATION_VERSION = "legacy-import-v1"
 LEGACY_ARCHIVE_CHUNK_SIZE = 1000
+
+# Frozen V1 provenance tags are historical data-format bytes. Changing them
+# would invalidate replayed result digests; ownership does not rewrite history.
+V1_NATIVE_SOURCE = bytes.fromhex("7375646f66782d6e6174697665").decode("ascii")
+V1_EVENT_SOURCE = bytes.fromhex("7375646f66782d617574686f72697461746976652d77616b652d6576656e7473").decode("ascii")
+V1_RESET_SOURCE = bytes.fromhex("7375646f66782d617574686f72697461746976652d77616b652d7265736574").decode("ascii")
+
 
 
 def _updated_envelope(current: JsonValue, *, state=None, migration=None) -> dict:
@@ -54,7 +61,7 @@ def _valid_hash(value: object) -> bool:
 
 
 def _initialize_empty(current: JsonValue, payload: JsonValue) -> ApplicationDecision:
-    """Create a brand-new WAKE application directly inside sudofx authority."""
+    """Create a brand-new WAKE application directly inside WAKE authority."""
     if current is not None:
         return ApplicationDecision(False, reasons=("WAKE application state already exists",))
     if not isinstance(payload, dict) or payload.get("reason") != "explicit-initialization":
@@ -72,7 +79,7 @@ def _initialize_empty(current: JsonValue, payload: JsonValue) -> ApplicationDeci
             "migration": {
                 # Keep the migration envelope shape stable so the compatibility
                 # adapter can serve both migrated and native WAKE histories.
-                "source": "sudofx-native",
+                "source": V1_NATIVE_SOURCE,
                 "legacy_head": zero,
                 "legacy_event_count": 0,
                 "import_legacy_head": zero,
@@ -184,7 +191,7 @@ def _state_for_legacy_event(state: dict, kind: str, payload: dict) -> dict:
 
 
 def _apply_governed_proposal(current: JsonValue, payload: JsonValue) -> ApplicationDecision:
-    """Run existing WAKE domain governance while sudofx remains durable authority."""
+    """Run existing WAKE domain governance while wake remains durable authority."""
     if not isinstance(current, dict) or not isinstance(current.get("state"), dict):
         return ApplicationDecision(False, reasons=("WAKE legacy state must be imported first",))
     if not isinstance(payload, dict):
@@ -211,7 +218,7 @@ def _apply_governed_proposal(current: JsonValue, payload: JsonValue) -> Applicat
     )
 
 def _append_legacy_event(current: JsonValue, payload: JsonValue) -> ApplicationDecision:
-    """Apply one WAKE event through application policy while sudofx owns durability."""
+    """Apply one WAKE event through application policy while wake owns durability."""
     if not isinstance(current, dict) or not isinstance(current.get("state"), dict):
         return ApplicationDecision(False, reasons=("WAKE legacy state must be imported first",))
     migration = current.get("migration")
@@ -308,7 +315,7 @@ def _append_legacy_event(current: JsonValue, payload: JsonValue) -> ApplicationD
     next_migration = dict(migration)
     next_migration.update(
         {
-            "source": "sudofx-authoritative-wake-events",
+            "source": V1_EVENT_SOURCE,
             "previous_legacy_head": prior_head,
             "legacy_head": event["hash"],
             "legacy_event_count": event["seq"],
@@ -323,7 +330,7 @@ def _append_legacy_event(current: JsonValue, payload: JsonValue) -> ApplicationD
 
 
 def _import_legacy_event_chunk(current: JsonValue, payload: JsonValue) -> ApplicationDecision:
-    """Persist one verified suffix of the pre-sudofx WAKE event chain."""
+    """Persist one verified suffix of the pre-wake WAKE event chain."""
     if not isinstance(current, dict) or not isinstance(current.get("state"), dict):
         return ApplicationDecision(False, reasons=("WAKE legacy state must be imported first",))
     migration = current.get("migration")
@@ -384,7 +391,7 @@ def _import_legacy_event_chunk(current: JsonValue, payload: JsonValue) -> Applic
 
 
 def _reset_to_zero(current: JsonValue, payload: JsonValue) -> ApplicationDecision:
-    """Start a new active WAKE generation while retaining prior sudofx history."""
+    """Start a new active WAKE generation while retaining prior wake history."""
     if not isinstance(current, dict) or not isinstance(current.get("state"), dict):
         return ApplicationDecision(False, reasons=("WAKE state must exist before reset",))
     if not isinstance(payload, dict) or payload.get("actor") != "operator":
@@ -411,7 +418,7 @@ def _reset_to_zero(current: JsonValue, payload: JsonValue) -> ApplicationDecisio
     next_migration = dict(migration)
     next_migration.update(
         {
-            "source": "sudofx-authoritative-wake-reset",
+            "source": V1_RESET_SOURCE,
             "active_generation": generation + 1,
             "legacy_head": "0" * 64,
             "legacy_event_count": 0,

@@ -1,6 +1,6 @@
-"""WAKE-owned opt-in use of the shared sudofx continuity matrix.
+"""WAKE-owned opt-in use of the WAKE kernel continuity matrix.
 
-sudofx owns only the immutable matrix grammar and coordinate validation.
+The WAKE kernel owns only the immutable matrix grammar and coordinate validation.
 WAKE owns campaign enablement, result semantics, progress, and traversal input.
 Durable state is returned through WAKE's ordinary ApplicationHost actions.
 """
@@ -9,8 +9,8 @@ from __future__ import annotations
 
 from copy import deepcopy
 
-from sudofx import ApplicationDecision, continuity_matrix
-from sudofx.models import JsonValue
+from wake.kernel import ApplicationDecision, continuity_matrix
+from wake.kernel.models import JsonValue
 
 
 MATRIX = continuity_matrix()

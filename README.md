@@ -22,29 +22,27 @@ The **Console** (`console.html`) is the inspection workspace for that record. It
 
 ## Optional continuity matrix extension
 
-WAKE can explicitly opt into sudofx's versioned `continuity@1` 7×7×7 matrix without copying the matrix definition into this repository. sudofx owns the immutable grammar, coordinate IDs, traversal, validation, and definition digest; WAKE owns when the campaign is enabled, how coordinates are scheduled and prompted, how results are interpreted/scored, and which results count as completed. Matrix progress is committed through the existing WAKE `ApplicationHost` state in `sudofx.sqlite`; no JSON/Markdown progress store is authoritative. Existing research behavior is unchanged until matrix enablement is explicitly submitted. The **WAKE✳︎ - Enable continuity campaign** operator workflow performs that explicit opt-in through the serialized authority lane without calling a provider, and the Console links to it only when the durable projection explicitly reports the campaign disabled. Once enabled, each ordinary provider request carries at most one continuity sidecar for the next uncovered coordinate. The same model response returns the normal research proposal plus the isolated probe answer, so the campaign adds no second inference call and consumes no additional provider quota. The sidecar receives a deterministic exposure/pressure packet, cannot authorize research changes, is stripped before ordinary proposal governance, and is scored mechanically against explicit structural invariants. Any returned provider response completes that tested coordinate: a missing or malformed sidecar records a zero score instead of invalidating otherwise valid research, while a provider transport/quota deferral with no response leaves the coordinate uncovered for retry.
+WAKE can explicitly opt into WAKE's versioned `continuity@1` 7×7×7 matrix without copying the matrix definition into this repository. wake owns the immutable grammar, coordinate IDs, traversal, validation, and definition digest; WAKE owns when the campaign is enabled, how coordinates are scheduled and prompted, how results are interpreted/scored, and which results count as completed. Matrix progress is committed through the existing WAKE `ApplicationHost` state in `wake.sqlite`; no JSON/Markdown progress store is authoritative. Existing research behavior is unchanged until matrix enablement is explicitly submitted. The **WAKE✳︎ - Enable continuity campaign** operator workflow performs that explicit opt-in through the serialized authority lane without calling a provider, and the Console links to it only when the durable projection explicitly reports the campaign disabled. Once enabled, each ordinary provider request carries at most one continuity sidecar for the next uncovered coordinate. The same model response returns the normal research proposal plus the isolated probe answer, so the campaign adds no second inference call and consumes no additional provider quota. The sidecar receives a deterministic exposure/pressure packet, cannot authorize research changes, is stripped before ordinary proposal governance, and is scored mechanically against explicit structural invariants. Any returned provider response completes that tested coordinate: a missing or malformed sidecar records a zero score instead of invalidating otherwise valid research, while a provider transport/quota deferral with no response leaves the coordinate uncovered for retry.
 
 
-## Current architecture — October 2, 2026
+## Current architecture — October 5, 2026
 
-WAKE✳︎ now runs on `master` as a sudofx application rather than maintaining a competing operational engine. The explicitly promoted `wake-runtime` branch may lag `master` while research is running; promotion remains a separate maintenance operation that must first stop and drain active research.
+WAKE✳︎ is a standalone application. Its owned kernel in `wake/kernel/` provides the durable-work sequence **Record → Context → Proposal → Governance → Transition → Receipt**. Research policy, evidence qualification, Attention, Bob, and the continuity campaign remain application concerns above that kernel. Installing WAKE requires no other project's package, database, or runtime service.
 
-The current hosted path no longer treats the legacy WAKE SQLite database as live authority. `wake-state` carries `data/sudofx.sqlite`, and WAKE domain behavior is represented through the sudofx application boundary. The legacy `data/wake.sqlite3` chain is accepted only as verified migration evidence, imported/archived before provider work, and then frozen rather than used as a second operational store.
+- `wake/application.py` owns the versioned research application contract and deterministic replay.
+- `wake/record_store.py` exposes the WAKE store protocol over the owned record.
+- `wake/application_policy.py` owns research governance.
+- `master` holds development source; `wake-runtime` holds explicitly promoted code.
+- `wake-state` holds `data/wake.sqlite.gz`, the verified transport package for `data/wake.sqlite`.
+- `wake-live` and GitHub Pages are replaceable public views.
 
-The migration code is explicit:
+Existing V1 checkpoints are adopted by verified format discovery and an atomic filename change. Receipt hashes, exact WAKE events, application version, historical provenance tags, invocation accounting, and generation history remain unchanged. Historical format tags remain data, not a runtime dependency. The legacy `wake.sqlite3` store is only a verified import source or offline fixture; it never becomes a second operational authority.
 
-- `wake/sudofx_application.py` defines the versioned WAKE application and keeps WAKE-specific governance above the generic kernel.
-- `wake/sudofx_store.py` provides the transitional WAKE Store interface backed by sudofx authority.
-- `wake/application_policy.py` remains WAKE domain policy; it must not move into the sudofx kernel.
-- `wake-state` is the authoritative cloud SQLite checkpoint; `wake-live` is a disposable public projection.
-
-- Generic invocation lifecycle, interruption recovery, context-delivery evidence, barrier-before-provider sequencing, and provider-neutral invocation accounting now come from sudofx runtime primitives. WAKE keeps the application-specific pieces: research context construction, Gemini/fallback quota policy, domain events, and research governance.
-
-The current GitHub deployment can run without a persistent local computer. `master` holds development code, `wake-runtime` holds the explicitly promoted live code, `wake-state` holds authoritative sudofx SQLite state, and `wake-live` holds replaceable presentation data. GitHub Pages publishes the static application shell separately. Missing authority is treated as data loss: only an explicit `init` or first-ever cloud bootstrap may create an empty record. Fresh initialization creates `sudofx.sqlite` directly; it does not create a temporary legacy `wake.sqlite3`. Before a state checkpoint, SQLite is verified and compacted automatically once the file reaches 90 MiB so the authoritative blob stays below GitHub's 100 MiB single-file limit.
+Before any provider effect, the runtime checkpoints its durable reservation. WAKE's own database fence and operator Start/Stop workflows control execution. There is no external access latch. Promotion stops research, verifies the exact candidate, promotes it, and resumes the continuous runner. Missing authority fails closed; only explicit initialization or first-ever cloud bootstrap can create an empty record. SQLite transport is compressed and verified byte for byte, with verified compaction at 90 MiB and GitHub's 100 MiB compressed-blob ceiling enforced before provider work.
 
 ## Start here — no account, no API calls
 
-Requires **Python 3.11 or later on macOS or Linux**. WAKE now has Python runtime dependencies, including `pypdf` and a pinned sudofx revision. Node and a separate database server are not required. Install the project before running commands.
+Requires **Python 3.11 or later on macOS or Linux**. WAKE now has Python runtime dependencies, including `pypdf` and a pinned wake revision. Node and a separate database server are not required. Install the project before running commands.
 
 To run the deterministic experiment locally from scratch:
 
@@ -178,7 +176,7 @@ The exact request is durable before you switch apps. A pending manual request bl
 
 ## Inquiry-drive experiment
 
-Every chartered wake records a visible, deterministic shadow scorecard for active projects: continuity,
+Every chartered WAKE records a visible, deterministic shadow scorecard for active projects: continuity,
 novelty, coherence, generativity and self-correction. It is observational by default and does not reach the
 model. Review it in the journal's **Laboratory** view alongside the exact invocation receipts.
 
@@ -231,8 +229,8 @@ hook back to the exact belief and evidence roots; nothing is silently deleted or
 
 Working abstractions keep evidence pointers and retrieval hooks; they do not replace the exact record.
 
-- `wake/sudofx_store.py`: live/transitional Store interface backed by the authoritative sudofx database; legacy WAKE SQLite is migration evidence only.
-- `wake/sudofx_application.py`: versioned WAKE application actions, migration bridge, and compact event-log integration.
+- `wake/record_store.py`: live/transitional Store interface backed by the authoritative wake database; legacy WAKE SQLite is migration evidence only.
+- `wake/application.py`: versioned WAKE application actions, migration bridge, and compact event-log integration.
 - `wake/event_format.py`: stable WAKE event identity primitives (`canonical`, `digest`, timestamp format) shared across migration and live application code.
 - `wake/domain_events.py`: deterministic WAKE initial state and event reduction semantics with no database authority.
 - `wake/store.py`: retired legacy WAKE SQLite persistence retained only for verified migration, offline fixtures, and compatibility tests.

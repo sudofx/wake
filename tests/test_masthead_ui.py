@@ -25,9 +25,9 @@ class MastheadPresentationTests(unittest.TestCase):
         self.assertIn('class="actions-light"', header)
         self.assertIn('class="actions-light-label"', header)
         self.assertIn('title="Checking…"', header)
-        self.assertNotIn('Powered by sudofx', header)
-        self.assertIn('class="footer-powered"', self.html)
-        self.assertIn('Powered by sudofx', self.html)
+        self.assertNotIn('Powered by wake', header)
+        self.assertNotIn('class="footer-powered"', self.html)
+        self.assertNotIn('Powered by wake', self.html)
         self.assertNotIn('Operator', header)
         for forbidden in ('owner-', 'operator-status', 'operator-actions-link',
                           'WAKE_CONTROL_URL', 'wake-owner-session',

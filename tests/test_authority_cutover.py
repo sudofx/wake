@@ -1,3 +1,4 @@
+from wake.application import V1_NATIVE_SOURCE
 import tempfile
 import unittest
 from pathlib import Path
@@ -18,10 +19,10 @@ class AuthorityCutoverTests(unittest.TestCase):
             with patch("wake.store.Store", side_effect=AssertionError("legacy Store must not be opened")):
                 initialized = open_authoritative_store(root, allow_initialize=True)
             try:
-                self.assertTrue((root / "sudofx.sqlite").exists())
+                self.assertTrue((root / "wake.sqlite").exists())
                 self.assertFalse((root / "wake.sqlite3").exists())
                 envelope = initialized._envelope()
-                self.assertEqual(envelope["migration"]["source"], "sudofx-native")
+                self.assertEqual(envelope["migration"]["source"], V1_NATIVE_SOURCE)
                 self.assertEqual(envelope["migration"]["legacy_event_count"], 0)
                 self.assertTrue(envelope["migration"]["archive_complete"])
             finally:
@@ -41,12 +42,12 @@ class AuthorityCutoverTests(unittest.TestCase):
                 legacy.close()
 
             self.assertTrue((root / "wake.sqlite3").exists())
-            self.assertFalse((root / "sudofx.sqlite").exists())
+            self.assertFalse((root / "wake.sqlite").exists())
 
             migrated = open_authoritative_store(root)
             try:
                 self.assertEqual(migrated.load(), before)
-                self.assertTrue((root / "sudofx.sqlite").exists())
+                self.assertTrue((root / "wake.sqlite").exists())
                 self.assertFalse((root / "wake.sqlite3").exists())
             finally:
                 migrated.close()

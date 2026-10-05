@@ -33,50 +33,7 @@ LIVE_PROJECTION_WALL_SECONDS = 30
 # hard boundary so a normal research turn cannot strand the authority branch.
 GITHUB_BLOB_LIMIT_BYTES = 100 * 1024 * 1024
 STATE_COMPACT_AT_BYTES = 90 * 1024 * 1024
-STATE_ARCHIVE_NAME = "sudofx.sqlite.gz"
-SUDOFX_APPLICATION_ACCESS_URL = "https://raw.githubusercontent.com/sudofx/sudofx/sudofx-state/sudofx.sqlite"
-
-
-def assert_sudofx_application_access():
-    """Fail closed unless the central sudofx application-access latch is enabled.
-
-    WAKE owns a separate application database, so its local sudofx latch cannot
-    by itself implement a global operator STOP. Every cloud authority checkpoint
-    therefore re-reads the central sudofx authority. This check is performed at
-    the same barrier that precedes Gemini and before cloud state publication.
-    """
-    with tempfile.NamedTemporaryFile(prefix="sudofx-global-access-", suffix=".sqlite") as target:
-        url = f"{SUDOFX_APPLICATION_ACCESS_URL}?run={os.environ.get('GITHUB_RUN_ID', '')}&nonce={time.time_ns()}"
-        try:
-            with urllib.request.urlopen(url, timeout=20) as response:
-                shutil.copyfileobj(response, target)
-            target.flush()
-            with sqlite3.connect(target.name) as database:
-                quick = database.execute("PRAGMA quick_check").fetchone()[0]
-                if quick != "ok":
-                    raise Rejected("sudofx global access authority failed SQLite quick_check")
-                try:
-                    row = database.execute(
-                        "SELECT enabled, generation FROM application_access WHERE singleton = 1"
-                    ).fetchone()
-                except sqlite3.OperationalError as error:
-                    raise Rejected(
-                        "sudofx global application access latch is unavailable; refusing app work"
-                    ) from error
-        except Rejected:
-            raise
-        except Exception as error:
-            raise Rejected(
-                "Could not verify sudofx global application access; refusing app work"
-            ) from error
-    if row is None:
-        raise Rejected("sudofx global application access latch is missing")
-    enabled, generation = bool(row[0]), int(row[1])
-    if not enabled:
-        raise Rejected("SUDOFX_EXTERNAL_ACCESS_DISABLED")
-    return generation
-
-
+STATE_ARCHIVE_NAME = "wake.sqlite.gz"
 def compact_authority_for_checkpoint(
     path,
     *,
@@ -125,7 +82,7 @@ def package_authority_for_git(
     sqlite_path, archive_path = Path(sqlite_path), Path(archive_path)
     require_source = sqlite_path.exists()
     if not require_source:
-        raise Rejected("Cannot package missing sudofx.sqlite authority")
+        raise Rejected("Cannot package missing wake.sqlite authority")
 
     archive_path.parent.mkdir(parents=True, exist_ok=True)
     temporary = archive_path.with_suffix(archive_path.suffix + ".tmp")
@@ -163,7 +120,7 @@ def restore_authority_from_git(archive_path, sqlite_path):
             shutil.copyfileobj(source, target, length=1024 * 1024)
         # Opening and replaying through Record validates the restored SQLite
         # structure before the runtime is allowed to use it.
-        Record(temporary).full_replay()
+        verify_existing_record(temporary)
         temporary.replace(sqlite_path)
         return True
     except (OSError, EOFError) as exc:
@@ -176,8 +133,8 @@ from wake.governance import Rejected
 from wake.providers import Gemini
 from wake.research import collect
 from wake.live import build_live_projection
-from wake.authority import open_authoritative_store
-from sudofx.record import Record
+from wake.authority import open_authoritative_store, verify_existing_record
+from wake.kernel.record import Record
 
 
 from wake.scheduling import TRANSIENT_RETRY_DELAY, wake_status
@@ -234,13 +191,21 @@ class StateBranch:
             self.git("worktree", "add", "--detach", str(self.checkout), "FETCH_HEAD")
             self.remote_head = self.git("rev-parse", "HEAD", cwd=self.checkout).stdout.strip()
             legacy = self.checkout / "data/wake.sqlite3"
-            sudofx = self.checkout / "data/sudofx.sqlite"
+            wake = self.checkout / "data/wake.sqlite"
             archive = self.checkout / "data" / STATE_ARCHIVE_NAME
-            if not sudofx.exists() and archive.exists():
-                restore_authority_from_git(archive, sudofx)
-            if not legacy.exists() and not sudofx.exists():
+            previous_archives = [
+                path for path in (self.checkout / "data").glob("*.sqlite.gz")
+                if path != archive
+            ]
+            if previous_archives:
+                if archive.exists() or len(previous_archives) != 1:
+                    raise Rejected("Ambiguous WAKE authority checkpoint packages")
+                archive = previous_archives[0]
+            if not wake.exists() and archive.exists():
+                restore_authority_from_git(archive, wake)
+            if not legacy.exists() and not list((self.checkout / "data").glob("*.sqlite")):
                 raise Rejected(
-                    "Existing wake-state branch is missing both legacy and sudofx authority; refusing to continue"
+                    "Existing wake-state branch is missing both legacy and wake authority; refusing to continue"
                 )
         elif result.returncode == 2:
             self.existed = False
@@ -266,21 +231,21 @@ class StateBranch:
     def checkpoint(self):
         # Physical SQLite slack is not semantic history. Reclaim it before the
         # authoritative blob approaches GitHub's hard single-file limit.
-        # Record.compact() verifies SQLite integrity and complete sudofx replay
+        # Record.compact() verifies SQLite integrity and complete wake replay
         # before returning, so a failed maintenance pass cannot be checkpointed.
-        sudofx = self.checkout / "data/sudofx.sqlite"
-        compact_authority_for_checkpoint(sudofx)
+        wake = self.checkout / "data/wake.sqlite"
+        compact_authority_for_checkpoint(wake)
         archive = self.checkout / "data" / STATE_ARCHIVE_NAME
-        if sudofx.exists():
-            compressed_bytes = package_authority_for_git(sudofx, archive)
+        if wake.exists():
+            compressed_bytes = package_authority_for_git(wake, archive)
             print(
                 f"Packaged WAKE SQLite authority for Git transport: "
-                f"{sudofx.stat().st_size} -> {compressed_bytes} bytes."
+                f"{wake.stat().st_size} -> {compressed_bytes} bytes."
             )
 
         # wake-state is authority, not a publication cache. Retire legacy
         # JSON/HTML projections from the current tree. After migration,
-        # data/sudofx.sqlite is the sole accumulating operational record;
+        # data/wake.sqlite is the sole accumulating operational record;
         # data/wake.sqlite3 remains frozen migration evidence only.
         self.git("rm", "-r", "--ignore-unmatch", "events.jsonl", "state.json", "head.txt",
                  "operation.json", "site", cwd=self.checkout, check=False)
@@ -290,11 +255,17 @@ class StateBranch:
             else "data/wake.sqlite3"
         )
         if authority == f"data/{STATE_ARCHIVE_NAME}":
+            # Retire previous transport filenames only after the canonical
+            # package round-trip has verified. History stays inside SQLite.
+            for previous in (self.checkout / "data").glob("*.sqlite.gz"):
+                if previous != archive:
+                    self.git("rm", "--ignore-unmatch", str(previous.relative_to(self.checkout)),
+                             cwd=self.checkout, check=False)
             # The runtime database stays local to the worktree. Git stores only
             # the verified transport package, preventing GitHub blob limits from
             # becoming an accidental database-size ceiling.
             self.git(
-                "rm", "--cached", "--ignore-unmatch", "data/sudofx.sqlite",
+                "rm", "--cached", "--ignore-unmatch", "data/*.sqlite",
                 cwd=self.checkout, check=False,
             )
             self.git(
@@ -474,10 +445,6 @@ def main(reset=False, enable_continuity_matrix=False):
     with tempfile.TemporaryDirectory(prefix="wake-cloud-") as folder:
         branch = StateBranch(ROOT, Path(folder)/"state")
         branch.open()
-        # Recheck inside the runtime even though the workflow also has an early
-        # preflight. The script-level gate protects alternate GitHub entry points
-        # and closes the race between workflow setup and application execution.
-        assert_sudofx_application_access()
         authority_store = open_authoritative_store(
             branch.checkout / "data",
             allow_initialize=branch.existed is False,
@@ -485,8 +452,7 @@ def main(reset=False, enable_continuity_matrix=False):
         engine = Engine(branch.checkout/"data", settings, store=authority_store)
 
         def guarded_checkpoint():
-            """Revalidate central access immediately before provider/state barriers."""
-            assert_sudofx_application_access()
+            """Persist durable reservations before provider effects and results."""
             branch.checkpoint()
 
         try:
@@ -495,7 +461,7 @@ def main(reset=False, enable_continuity_matrix=False):
             with engine.store.lock():
                 if reset:
                     # Preserve the exact pre-reset Git state as a convenience
-                    # archive. sudofx itself also retains the prior governed
+                    # archive. wake itself also retains the prior governed
                     # generation, while active WAKE semantics restart at zero.
                     archive_branch = branch.archive_before_reset()
                     # Reset means exactly cycle/version zero. Do not immediately

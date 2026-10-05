@@ -1,4 +1,4 @@
-"""Bounded historical projections shared by legacy and sudofx-backed WAKE stores."""
+"""Bounded historical projections shared by legacy and wake-backed WAKE stores."""
 
 from __future__ import annotations
 

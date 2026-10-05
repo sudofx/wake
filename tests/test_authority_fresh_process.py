@@ -8,7 +8,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from wake.sudofx_store import SudofxStore
+from wake.record_store import RecordStore
 
 
 class AuthorityFreshProcessTests(unittest.TestCase):
@@ -38,7 +38,7 @@ class AuthorityFreshProcessTests(unittest.TestCase):
                 cli("wake", "--provider", "fixture",
                     "--model", "fixture-a" if cycle % 2 else "fixture-b")
 
-            store = SudofxStore(root)
+            store = RecordStore(root)
             try:
                 belief = store.load()["beliefs"]["sensor"]
                 self.assertEqual(belief["status"], "retracted")

@@ -13,14 +13,13 @@ description = "Infrastructure for durable, accountable work across interchangeab
 requires-python = ">=3.11"
 dependencies = [
   "pypdf==6.19.0",
-  "sudofx @ git+https://github.com/sudofx/sudofx.git@fad1e250e0253fde95c9ca964c7a36beb798240d",
 ]
 
 [project.scripts]
 wake = "wake.__main__:main"
 
 [tool.setuptools]
-packages = ["wake"]
+packages = ["wake", "wake.kernel"]
 include-package-data = true
 
 [tool.setuptools.package-data]

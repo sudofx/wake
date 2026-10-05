@@ -1,6 +1,6 @@
 """Disposable public projection for the WAKE✳︎ browser.
 
-sudofx SQLite on wake-state is authoritative. This module deliberately produces a
+wake SQLite on wake-state is authoritative. This module deliberately produces a
 bounded, replaceable view for the public UI; nothing here is read back into
 governance, recovery, or provider context.
 """
@@ -8,7 +8,7 @@ governance, recovery, or provider context.
 from copy import deepcopy
 from datetime import datetime, timezone
 
-from sudofx.observability import build_application_observability
+from wake.kernel.observability import build_application_observability
 
 
 LIVE_SCHEMA = 1
@@ -49,7 +49,7 @@ def _full_history_metrics(store, state):
     return {
         "storage": {
             "sqlite_bytes": performance.get(
-                "sudofx_database_bytes",
+                "wake_database_bytes",
                 store.path.stat().st_size if store.path.exists() else 0,
             ),
             "event_count": performance.get("event_count", len(store.events())),
@@ -75,11 +75,11 @@ def build_live_projection(store, operation=None, runtime_ref=""):
     public_state["journal"] = list(state.get("journal", []))[-160:]
 
     performance = store.performance_snapshot()
-    if performance.get("authority") == "sudofx":
+    if performance.get("authority") == "wake":
         source = {
-            "authority": "sudofx SQLite",
+            "authority": "wake SQLite",
             "branch": "wake-state",
-            "database": "sudofx.sqlite",
+            "database": "wake.sqlite",
             "head": head,
             "runtime_ref": runtime_ref,
         }

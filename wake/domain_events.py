@@ -1,7 +1,7 @@
 """WAKE domain event projection semantics.
 
 This module owns deterministic WAKE state initialization and event reduction.
-It contains no database authority. Both the sudofx application and the retired
+It contains no database authority. Both the wake application and the retired
 legacy SQLite compatibility Store use the same semantics so migration cannot
 fork domain meaning.
 """

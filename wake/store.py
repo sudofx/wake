@@ -1,6 +1,6 @@
 # =============================================================================
-# LEGACY STORE — compatibility/migration semantics for the pre-sudofx WAKE record.
-# Live operational authority is now sudofx SQLite. This module remains necessary
+# LEGACY STORE — compatibility/migration semantics for the pre-wake WAKE record.
+# Live operational authority is now wake SQLite. This module remains necessary
 # to verify/import historical wake.sqlite3 records and to support explicit
 # compatibility fixtures. It must not become a second live authority path.
 #

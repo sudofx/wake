@@ -13,7 +13,7 @@ from wake.matrix_campaign import (
     perfect_continuity_probe_response,
 )
 from wake.providers import Fixture
-from wake.sudofx_store import SudofxStore
+from wake.record_store import RecordStore
 
 
 class CountingFixture(Fixture):
@@ -54,7 +54,7 @@ class MatrixCampaignTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.root = Path(self.temp.name)
-        self.store = SudofxStore(self.root, initialize_empty=True)
+        self.store = RecordStore(self.root, initialize_empty=True)
         self.engine = Engine(self.root, dict(DEFAULTS), store=self.store)
         self.engine.initialize()
         self.store.enable_continuity_matrix()
@@ -118,7 +118,7 @@ class MatrixCampaignTests(unittest.TestCase):
 
     def test_disabled_campaign_keeps_unknown_top_level_fields_strict(self):
         other_root = self.root / "disabled"
-        other_store = SudofxStore(other_root, initialize_empty=True)
+        other_store = RecordStore(other_root, initialize_empty=True)
         other_engine = Engine(other_root, dict(DEFAULTS), store=other_store)
         try:
             other_engine.initialize()
