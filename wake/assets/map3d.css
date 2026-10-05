@@ -122,7 +122,7 @@
 body.map3d-window #constellation-stage{
   background-color:#020613!important;
   background-image:
-    linear-gradient(rgba(0,0,0,.20),rgba(0,0,0,.20)),
+    linear-gradient(rgba(0,0,0,.70),rgba(0,0,0,.70)),
     linear-gradient(180deg,rgba(3,7,22,.04) 0%,rgba(3,7,22,.10) 46%,rgba(3,7,22,.28) 100%),
     url("backgrounds/nebula-desktop-1680x1050.webp?v=20261004-8")!important;
   background-position:center top!important;
@@ -142,7 +142,7 @@ body.map3d-window #constellation-stage::before{
 @media (min-aspect-ratio:2/1){
   body.map3d-window #constellation-stage{
     background-image:
-      linear-gradient(rgba(0,0,0,.20),rgba(0,0,0,.20)),
+      linear-gradient(rgba(0,0,0,.70),rgba(0,0,0,.70)),
       linear-gradient(180deg,rgba(3,7,22,.04) 0%,rgba(3,7,22,.10) 46%,rgba(3,7,22,.28) 100%),
       url("backgrounds/nebula-ultrawide-3440x1440.webp?v=20261004-8")!important;
   }
@@ -150,7 +150,7 @@ body.map3d-window #constellation-stage::before{
 @media (min-width:701px) and (max-aspect-ratio:3/2){
   body.map3d-window #constellation-stage{
     background-image:
-      linear-gradient(rgba(0,0,0,.20),rgba(0,0,0,.20)),
+      linear-gradient(rgba(0,0,0,.70),rgba(0,0,0,.70)),
       linear-gradient(180deg,rgba(3,7,22,.04) 0%,rgba(3,7,22,.10) 46%,rgba(3,7,22,.28) 100%),
       url("backgrounds/nebula-ipad-landscape-2360x1640.webp?v=20261004-8")!important;
   }
@@ -158,7 +158,7 @@ body.map3d-window #constellation-stage::before{
 @media (max-width:700px){
   body.map3d-window #constellation-stage{
     background-image:
-      linear-gradient(rgba(0,0,0,.20),rgba(0,0,0,.20)),
+      linear-gradient(rgba(0,0,0,.70),rgba(0,0,0,.70)),
       linear-gradient(180deg,rgba(3,7,22,.04) 0%,rgba(3,7,22,.10) 46%,rgba(3,7,22,.28) 100%),
       url("backgrounds/nebula-iphone12mini-1080x2340.webp?v=20261004-8")!important;
     background-position:center top!important;
@@ -221,25 +221,29 @@ body.map3d-window main{
  filter:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
 }
 
-/* Bokeh belongs to sphere artwork only; text and interaction targets stay crisp. */
+
+/* Diffuse colored dust: soften circle artwork without filtering labels or hit targets. */
 body.map3d-window .constellation-node:not(.is-wake) .node-orb{
- fill:color-mix(in srgb,var(--node-color) 24%,transparent);
- opacity:.68;stroke-width:.8;
- filter:blur(1.6px) drop-shadow(0 0 14px color-mix(in srgb,var(--node-color) 48%,transparent));
+ fill:color-mix(in srgb,var(--node-color) 38%,transparent);
+ stroke:none;opacity:.52;
+ filter:blur(8px);
 }
 body.map3d-window .constellation-node:not(.is-wake) .node-depth{
- fill:color-mix(in srgb,var(--node-color) 18%,transparent);
- opacity:.42;filter:blur(3px);
+ fill:color-mix(in srgb,var(--node-color) 12%,transparent);
+ stroke:none;opacity:.20;filter:blur(12px);
 }
 body.map3d-window .constellation-node:not(.is-wake) .node-halo{
- stroke:color-mix(in srgb,var(--node-color) 24%,transparent);
- filter:blur(2px);
+ stroke:none;fill:none;
 }
 body.map3d-window .constellation-node .node-glow{
- fill:color-mix(in srgb,var(--node-color) 20%,transparent);filter:blur(16px);
+ fill:color-mix(in srgb,var(--node-color) 26%,transparent);
+ opacity:.70;filter:blur(24px);
 }
 body.map3d-window .constellation-node:not(.is-wake).is-focus .node-orb{
- opacity:.85;filter:blur(1.2px) drop-shadow(0 0 20px color-mix(in srgb,var(--node-color) 60%,transparent));
+ stroke:none;opacity:.72;filter:blur(10px);
+}
+body.map3d-window .constellation-node:not(.is-wake).is-focus .node-halo{
+ stroke:none;
 }
 body.map3d-window .constellation-node text,
 body.map3d-window .constellation-labels text{
