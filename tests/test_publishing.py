@@ -90,7 +90,7 @@ class PublishingTests(unittest.TestCase):
                 events_page = (root / "site/events.html").read_text()
                 self.assertNotIn('<details open', events_page)
                 self.assertNotIn(' open>', events_page)
-                self.assertIn("document.querySelectorAll('details[id^=\\\"event-\\\"]')", events_page)
+                self.assertIn("document.querySelectorAll('details[id^=\"event-\"]')", events_page)
                 self.assertIn("item.open=false", events_page)
                 self.assertIn("window.addEventListener('pageshow', closeEventHistory)", events_page)
                 self.assertNotIn('class="powered-by"', map_page)
