@@ -11,6 +11,7 @@ class MastheadPresentationTests(unittest.TestCase):
     def setUp(self):
         self.html = (ASSETS / "index.html").read_text()
         self.css = (ASSETS / "nav.css").read_text()
+        self.theme = (ASSETS / "theme.css").read_text()
 
     def test_masthead_is_dark_only_and_has_no_theme_switch(self):
         self.assertNotIn('id="theme-toggle"', self.html)
@@ -49,14 +50,22 @@ class MastheadPresentationTests(unittest.TestCase):
                 self.assertIn('M4.2 16.8a8.8 8.8 0 1 1 15.6 0', header_tools)
                 self.assertIn('M12 16l3.8-4.4', header_tools)
                 self.assertNotIn('>About</a>', nav)
+                self.assertLess(header_tools.index('class="repo-link"'),
+                                header_tools.index('class="console-link"'))
                 self.assertLess(header_tools.index('class="console-link"'),
-                                header_tools.index('class="repo-link"'))
+                                header_tools.index('class="actions-light"'))
                 self.assertIn('href="nav.css?v=20261004-13"', page)
         self.assertIn('class="console-link" href="console.html" aria-current="page"', pages["console"])
         self.assertIn('.repo-link,.console-link{', self.css)
         self.assertIn('.console-link[aria-current="page"]', self.css)
         self.assertIn('.console-link svg{width:27px;height:27px;display:block}', self.css)
         self.assertIn('.console-link{width:36px;height:36px;flex:0 0 36px}', self.css)
+
+    def test_page_chrome_blends_into_nebula_background(self):
+        self.assertIn('linear-gradient(180deg,#111a35 0%,#091027 18%,#040817 48%,#01030b 78%,#000 100%)', self.theme)
+        self.assertNotIn(':root[data-theme="dark"] body{background:#1b2036 !important}', self.theme)
+        self.assertIn('content="#05091f"', self.html)
+        self.assertIn('href="theme.css?v=20261004-14"', self.html)
 
     def test_primary_masthead_menu_is_research_journal_blog(self):
         pages = {
