@@ -602,9 +602,6 @@ html.console-detached body{
   gap:8px;
   margin-left:auto;
 }
-#popout-console{
-  white-space:nowrap;
-}
 .console-module-grid{
   display:grid;
   grid-template-columns:repeat(12,minmax(0,1fr));
@@ -691,9 +688,6 @@ html.console-detached body{
   display:none!important;
 }
 
-@media(pointer:coarse){
-  #popout-console{display:none!important}
-}
 
 /* A deep-inspection workspace gets its own dedicated pop-out window. */
 html.console-tool-window body{
@@ -1204,3 +1198,40 @@ html.console-tool-window #console-tool-frame{
     padding-inline:7px!important;
   }
 }
+
+/* TOOL WORKSPACE WINDOW — the Console masthead never overlays a popped workspace. */
+html.console-tool-window,
+html.console-tool-window body{
+  width:100%!important;
+  height:100%!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+}
+html.console-tool-window body>.research-header.masthead{
+  display:none!important;
+}
+html.console-tool-window #main{
+  position:fixed!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0!important;
+}
+html.console-tool-window #main>.console-tools{
+  display:flex!important;
+  position:absolute!important;
+  inset:0!important;
+  width:auto!important;
+  height:auto!important;
+  margin:0!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+html.console-tool-window #console-tool-frame{
+  border-radius:0!important;
+}
+
