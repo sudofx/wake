@@ -1,5 +1,5 @@
 /*
- * WAKE✳︎ modular Console workspace with optional explicit pop-out.
+ * WAKE✳︎ modular in-page Console workspace.
  * Presentation state only: layout preferences live in localStorage and never touch the durable record.
  */
 (() => {
@@ -162,25 +162,10 @@
 
   const toolbarRow=document.createElement('div');
   toolbarRow.className='console-workspace-controls';
-  toolbarRow.innerHTML=`<span>${detached?'DETACHED WORKSPACE':'CONSOLE WORKSPACE'}</span><div class="console-workspace-actions"><button id="reset-console-layout" type="button">Reset layout</button>${detached?'':'<button id="popout-console" type="button" title="Open Console in a separate desktop window">Pop out console ↗</button>'}</div>`;
+  toolbarRow.innerHTML=`<span>${detached?'DETACHED WORKSPACE':'CONSOLE WORKSPACE'}</span><div class="console-workspace-actions"><button id="reset-console-layout" type="button">Reset layout</button></div>`;
   status.before(toolbarRow);
   toolbarRow.querySelector('#reset-console-layout').addEventListener('click',()=>{
     try{localStorage.removeItem(STORAGE);}catch{}
     location.reload();
-  });
-  toolbarRow.querySelector('#popout-console')?.addEventListener('click',event=>{
-    const button=event.currentTarget;
-    const url=new URL(location.href);
-    url.searchParams.set('workspace','detached');
-    const width=Math.max(980,Math.min(1560,(screen.availWidth||1440)-80));
-    const height=Math.max(720,Math.min(1100,(screen.availHeight||900)-80));
-    const left=Math.max(0,Math.round(((screen.availWidth||width)-width)/2));
-    const top=Math.max(0,Math.round(((screen.availHeight||height)-height)/2));
-    const opened=window.open(url.href,'wake-console',`popup=yes,width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`);
-    if(opened)opened.focus();
-    else{
-      button.textContent='Pop-up blocked';
-      window.setTimeout(()=>{button.textContent='Pop out console ↗';},1800);
-    }
   });
 })();
