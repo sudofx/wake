@@ -26,12 +26,17 @@ class ConsolePresentationTests(unittest.TestCase):
         self.assertNotIn("Pop out console", self.layout)
         self.assertNotIn("window.open(", self.layout)
 
-    def test_deeper_console_workspace_pops_out_by_default_on_desktop(self):
-        self.assertIn("popWorkspace", self.tools)
-        self.assertIn("window.open(", self.tools)
-        self.assertIn("url.searchParams.set('workspace','tool')", self.tools)
-        self.assertIn("workspaceMode!=='tool'&&desktopPointer()", self.tools)
+    def test_console_workspaces_are_full_browser_pages(self):
+        self.assertIn("window.open(url.href,'wake-console-workspace')", self.tools)
+        self.assertIn("location.assign(url.href)", self.tools)
         self.assertIn("(hover: hover) and (pointer: fine)", self.tools)
+        self.assertNotIn("popup=yes", self.tools)
+        self.assertNotIn("frame.src", self.tools)
+        self.assertNotIn("workspace','tool", self.tools)
+
+    def test_standalone_tool_pages_do_not_swallow_their_links(self):
+        component = (ASSETS / "console-component.js").read_text()
+        self.assertIn("if(parent===window)return", component)
 
     def test_workspace_window_cannot_be_covered_by_console_masthead(self):
         self.assertIn("html.console-tool-window body>.research-header.masthead", self.css)
