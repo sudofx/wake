@@ -59,7 +59,7 @@ def parser():
     control.add_argument("--mode", choices=["real", "scaled", "frozen"])
     control.add_argument("--scale", type=float)
     control.add_argument("--reason", required=True)
-    report = sub.add_parser("export", help="Generate portable HTML, Markdown, state and history")
+    report = sub.add_parser("export", help="Generate portable HTML, state and history")
     report.add_argument("--output", default="site")
     audit = sub.add_parser("audit", help="Verify every event and reconstruct all state")
     audit.add_argument("--events", help="Verify a JSONL export independently of the database")
