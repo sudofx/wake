@@ -27,7 +27,7 @@ WAKE can explicitly opt into sudofx's versioned `continuity@1` 7×7×7 matrix wi
 
 ## Current architecture — October 2, 2026
 
-WAKE✳︎ has now satisfied the **Phase E architectural exit condition on `master`**: it runs as a sudofx application rather than maintaining a competing operational engine. The explicitly promoted `wake-runtime` branch may lag `master` while research is running; promotion remains a separate maintenance operation that must first stop and drain active research.
+WAKE✳︎ now runs on `master` as a sudofx application rather than maintaining a competing operational engine. The explicitly promoted `wake-runtime` branch may lag `master` while research is running; promotion remains a separate maintenance operation that must first stop and drain active research.
 
 The current hosted path no longer treats the legacy WAKE SQLite database as live authority. `wake-state` carries `data/sudofx.sqlite`, and WAKE domain behavior is represented through the sudofx application boundary. The legacy `data/wake.sqlite3` chain is accepted only as verified migration evidence, imported/archived before provider work, and then frozen rather than used as a second operational store.
 
@@ -36,7 +36,6 @@ The migration code is explicit:
 - `wake/sudofx_application.py` defines the versioned WAKE application and keeps WAKE-specific governance above the generic kernel.
 - `wake/sudofx_store.py` provides the transitional WAKE Store interface backed by sudofx authority.
 - `wake/application_policy.py` remains WAKE domain policy; it must not move into the sudofx kernel.
-- `.github/workflows/phase-e-production-rehearsal.yml` exercises the migration path before live adoption.
 - `wake-state` is the authoritative cloud SQLite checkpoint; `wake-live` is a disposable public projection.
 
 - Generic invocation lifecycle, interruption recovery, context-delivery evidence, barrier-before-provider sequencing, and provider-neutral invocation accounting now come from sudofx runtime primitives. WAKE keeps the application-specific pieces: research context construction, Gemini/fallback quota policy, domain events, and research governance.
@@ -142,8 +141,6 @@ Use the workflows by their literal names:
 - **WAKE✳︎ — Make new code live** — verify the selected candidate (normally `master`), then move that exact tested commit to `wake-runtime`. Research must be stopped first.
 - **WAKE✳︎ - Restart** — safe maintenance shortcut: stop, verify current `master`, promote it, then start again.
 - **WAKE✳︎ - Enable continuity campaign** — provider-free explicit opt-in to the governed `continuity@1` 343-cell campaign; immediately stops/drains WAKE, safely serializes the state change, then starts WAKE again whether enablement succeeds or fails.
-- **WAKE✳︎ - Migrate authority to sudofx** — provider-free authority cutover/migration workflow; it does not start research or call Gemini.
-- **WAKE✳︎ — Phase E authority rehearsal** — automatic migration/replay rehearsal used to validate the sudofx cutover path.
 - **WAKE✳︎ — Update website · automatic** — rebuild the public GitHub Pages site when website code changes.
 - **WAKE✳︎ — Check code · automatic** — run the repository's safety checks when code changes.
 - **WAKE✳︎ — Internal only: one research cycle** and **WAKE✳︎ — Internal only: keep-running switch** are plumbing. Do not use them for normal operation.
