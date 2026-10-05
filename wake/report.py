@@ -302,7 +302,12 @@ def _human_events_html(events, head):
         cards.append(
             f"<details id=\"event-{event['seq']}\"><summary class=\"record-panel-meta event-meta\"><span class=\"record-type\">EVENT #{event['seq']:04d}</span><span class=\"record-status\"><span class=\"badge {html.escape(kind)}\">{html.escape(kind)}</span></span><span class=\"record-key\">{html.escape(str(event_id))}</span><time>{html.escape(_reading_time(event['time']))}</time></summary><div class=\"inside\">{''.join(blocks)}</div></details>"
         )
-    body = "<p class=\"event-links\">Newest event first. Use your browser’s Find command to search prompts, evidence IDs, invocation IDs, or hashes.</p>" + "".join(cards)
+    collapse_script = """<script>
+const closeEventHistory=()=>document.querySelectorAll('details[id^="event-"]').forEach(item=>{item.open=false});
+closeEventHistory();
+window.addEventListener('pageshow', closeEventHistory);
+</script>"""
+    body = "<p class=\"event-links\">Newest event first. Use your browser’s Find command to search prompts, evidence IDs, invocation IDs, or hashes.</p>" + "".join(cards) + collapse_script
     return _human_page("Human-readable event history", "Every recorded event, including exact model requests and replies, without changing the canonical JSONL.", body, head, "events.jsonl", "events.md")
 
 
