@@ -68,7 +68,7 @@ class MastheadPresentationTests(unittest.TestCase):
         self.assertIn('background-position:center top!important;', self.theme)
         self.assertIn('position:fixed!important;', self.theme)
         self.assertIn('content="#000000"', self.html)
-        self.assertIn('href="theme.css?v=20261004-15"', self.html)
+        self.assertIn('href="theme.css?v=20261005-1"', self.html)
         self.assertIn('html{font-size:101.5%}', self.css)
         self.assertIn('padding-left:6px!important;', self.theme)
         self.assertIn('padding-right:6px!important;', self.theme)
