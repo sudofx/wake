@@ -54,6 +54,20 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('result_checkpointed = True', cloud)
         self.assertIn('if not result_checkpointed:', cloud)
 
+    def test_retired_phase_labels_and_one_time_migration_tools_are_absent(self):
+        retired = ("Phase" + " E", "phase" + "-e", "phase" + "_" + "e")
+        for path in ROOT.rglob("*"):
+            if not path.is_file() or ".git" in path.parts or path.suffix not in {".py", ".md", ".yml", ".yaml", ".toml", ".js", ".html", ".css"}:
+                continue
+            content = path.read_text(encoding="utf-8")
+            for label in retired:
+                self.assertNotIn(label, content, str(path.relative_to(ROOT)))
+            relative = str(path.relative_to(ROOT))
+            for label in retired[1:]:
+                self.assertNotIn(label, relative, relative)
+        self.assertFalse((ROOT / ".github/workflows/operator-migrate-authority.yml").exists())
+        self.assertFalse((ROOT / "scripts/github_migrate_authority.py").exists())
+
     def test_pages_lane_has_no_model_execution(self):
         workflow = self.read('.github/workflows/pages.yml')
         self.assertNotIn('GEMINI_API_KEY', workflow)
