@@ -8,9 +8,7 @@
   const stamp = (value, full=false) => { if (!value || Number.isNaN(Date.parse(value))) return 'Unknown'; return new Intl.DateTimeFormat('en-US', {timeZone:'America/Los_Angeles', ...(full ? {month:'short',day:'numeric'} : {}), hour:'numeric',minute:'2-digit'}).format(new Date(value)); };
   const badge = status => `<span class="badge ${esc(status)}">${esc(String(status || 'recorded').replaceAll('_',' '))}</span>`;
   const local = ['localhost','127.0.0.1',''].includes(location.hostname);
-  const api = 'https://api.github.com/repos/sudofx/wake';
   const raw = 'https://raw.githubusercontent.com/sudofx/wake/';
-  let lastExecution=0;
   let data, loading=false, fallback=false, loadedCommit='', selected='', topic='all', query='', mode=matchMedia('(max-width:700px)').matches?'list':'graph';
   let nodeById=new Map(), selectedWake='', wakeTab='summary', followLatest=true, focusedKinds=[];
   let motion=!matchMedia('(prefers-reduced-motion:reduce)').matches;
@@ -67,26 +65,6 @@
       if(data) { fallback=true;notice('Refresh failed. The previous snapshot remains visible.');freshness(); }
       else { notice('The research record could not be loaded. Retry, or inspect the complete record tools.');$('status-band').innerHTML='<p class="empty">Record unavailable · <button type="button" data-tool="lab">Open the Lab →</button></p>'; }
     } finally {loading=false;$('refresh').disabled=false;$('refresh').textContent='Refresh record ↻';}
-  }
-  async function execution() {
-    if(Date.now()-lastExecution<180000)return;lastExecution=Date.now();
-        try {
-      const [latch,runs]=await Promise.all([json(`${api}/actions/workflows/wake-runner.yml`),json(`${api}/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=5`)]);
-      const enabled=latch.state==='active',active=runs.workflow_runs.some(r=>r.status!=='completed');
-      const light=$('execution-state');
-      light.dataset.state=enabled?'running':'stopped';
-      light.title=enabled?(active?'Running':'Running · between cycles'):'Stopped';
-      light.setAttribute('aria-label',`Open WAKE GitHub Actions · ${light.title}`);
-      const label=light.querySelector('.actions-light-label');
-      if(label)label.textContent=enabled?'Running':'Stopped';
-    } catch {
-      const light=$('execution-state');
-      delete light.dataset.state;
-      light.title='GitHub Actions · status unavailable';
-      light.setAttribute('aria-label','Open WAKE GitHub Actions · status unavailable');
-      const label=light.querySelector('.actions-light-label');
-      if(label)label.textContent='Status';
-    }
   }
   function visibleRecord(x) {return topic==='all'||x.domain===topic||data.records.projects.find(p=>p.id===x.project)?.domain===topic;}
   function render() {
@@ -331,7 +309,7 @@
   document.querySelectorAll('.research-header details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)document.querySelectorAll('.research-header details').forEach(other=>{if(other!==d)other.open=false;});}));
   document.addEventListener('click',event=>{if(!event.target.closest('.research-header details'))document.querySelectorAll('.research-header details').forEach(d=>d.open=false);});
   let resizeFrame;window.addEventListener('resize',()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{if(data)renderMap();});});
-  controls();readUrl();refresh();execution();
-  setInterval(()=>{if(!document.hidden){refresh();execution();}},60000);
-  document.addEventListener('visibilitychange',()=>{if(!document.hidden){refresh();execution();}});
+  controls();readUrl();refresh();
+  setInterval(()=>{if(!document.hidden)refresh();},60000);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh();});
 })();
