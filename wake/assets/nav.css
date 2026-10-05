@@ -160,7 +160,7 @@ nav.compact-nav{display:flex;align-items:center;justify-content:center;gap:22px;
   gap:10px!important;
   flex:0 0 auto!important;
 }
-.repo-link{
+.repo-link,.console-link{
   display:inline-flex;
   align-items:center;
   justify-content:center;
@@ -169,11 +169,20 @@ nav.compact-nav{display:flex;align-items:center;justify-content:center;gap:22px;
   flex:0 0 32px;
   color:var(--ink);
   border:0;
-  border-radius:50%;
   background:transparent;
 }
-.repo-link svg{width:21px;height:21px;display:block}
-.repo-link:hover,.repo-link:focus-visible{
+.repo-link{border-radius:50%}
+.console-link{
+  border-radius:8px;
+  color:var(--muted);
+}
+.repo-link svg,.console-link svg{width:21px;height:21px;display:block}
+.console-link[aria-current="page"]{
+  color:var(--cyan,var(--green));
+  background:color-mix(in srgb,var(--cyan,var(--green)) 10%,transparent);
+}
+.repo-link:hover,.repo-link:focus-visible,
+.console-link:hover,.console-link:focus-visible{
   color:var(--cyan,var(--green));
   text-shadow:none!important;
 }
@@ -219,8 +228,8 @@ nav.compact-nav{display:flex;align-items:center;justify-content:center;gap:22px;
   .brand-lockup{flex:1 1 205px}
   .powered-by{font-size:8px;margin-top:4px}
   .header-tools{margin-left:auto!important;gap:8px!important}
-  .repo-link{width:36px;height:36px;flex-basis:36px}
-  .repo-link svg{width:22px;height:22px}
+  .repo-link,.console-link{width:36px;height:36px;flex-basis:36px}
+  .repo-link svg,.console-link svg{width:22px;height:22px}
   .actions-light{
     min-width:102px!important;
     height:38px!important;
@@ -241,8 +250,8 @@ nav.compact-nav{display:flex;align-items:center;justify-content:center;gap:22px;
 }
 @media(max-width:390px){
   .brand-lockup{flex:1 1 180px}
-  .repo-link{width:32px;height:34px;flex-basis:32px}
-  .repo-link svg{width:20px;height:20px}
+  .repo-link,.console-link{width:32px;height:34px;flex-basis:32px}
+  .repo-link svg,.console-link svg{width:20px;height:20px}
   .actions-light{min-width:94px!important;padding:0 8px!important;gap:7px!important}
   .actions-light-label{font-size:10px}
 }
