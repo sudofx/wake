@@ -446,6 +446,19 @@ def build_map3d_projection(graph):
         elif identifier not in children:
             children[identifier] = unique_canonical(related.get(identifier, []))
 
+    # Record one deterministic shortest presentation path per node.  The path is
+    # stored in that node's lazy shard (not the shell) so direct #record links can
+    # hydrate their ancestors before the first render without bloating map3d-data.json.
+    display_paths = {"root:wake": ["root:wake"]}
+    queue = ["root:wake"]
+    while queue:
+        parent = queue.pop(0)
+        for child in children.get(parent, []):
+            if child in display_paths:
+                continue
+            display_paths[child] = [*display_paths[parent], child]
+            queue.append(child)
+
     all_nodes = {**compact, **topics}
     shards = {}
     shard_parents = set(children) | set(MAP3D_ROOTS) | set(all_nodes)
@@ -453,6 +466,7 @@ def build_map3d_projection(graph):
         child_ids = [identifier for identifier in children.get(parent, []) if identifier in all_nodes or identifier.startswith("root:")]
         shards[parent] = {
             "parent": parent,
+            "path": display_paths.get(parent, [parent]),
             "self": all_nodes.get(parent),
             "children": [all_nodes[identifier] for identifier in child_ids if identifier in all_nodes],
             "child_ids": child_ids,
