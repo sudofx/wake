@@ -73,6 +73,14 @@ class PublishingTests(unittest.TestCase):
                 self.assertLess(map3d_page.index('class="console-link"'), map3d_page.index('class="repo-link"'))
                 self.assertIn('href="https://github.com/sudofx/wake/actions"', map_page)
                 self.assertIn('href="https://github.com/sudofx/wake/actions"', map3d_page)
+                for rendered_page in (map_page, map3d_page):
+                    nav = rendered_page.split('<nav class="compact-nav"', 1)[1].split('</nav>', 1)[0]
+                    visible = nav.split('<!-- Read menu temporarily retired.', 1)[0]
+                    self.assertNotIn('>Home</a>', visible)
+                    self.assertNotIn('<summary>Read</summary>', visible)
+                    self.assertIn('<!-- Read menu temporarily retired.', nav)
+                    self.assertLess(visible.index('>Research</a>'), visible.index('>Journal</a>'))
+                    self.assertLess(visible.index('>Journal</a>'), visible.index('>Bob’s Blog</a>'))
                 self.assertNotIn("control.js", map_page)
                 self.assertNotIn("control.js", map3d_page)
 
