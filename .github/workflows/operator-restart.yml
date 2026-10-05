@@ -183,3 +183,22 @@ jobs:
           done
           echo "::error::Promotion succeeded, but no restarted WAKE✳︎ cycle appeared. Continuation latch remains open; inspect Actions before retrying."
           exit 1
+
+      - name: Recover research if restart fails
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api --method PUT "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml/enable" >/dev/null || true
+          runtime_sha="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha')"
+          active_count="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=50" \
+            --jq "[.workflow_runs[] | select(.head_sha==\"$runtime_sha\" and .status!=\"completed\")] | length")"
+          if [[ "$active_count" == "0" ]]; then
+            gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime \
+              -f "dispatch_token=recover-$GITHUB_RUN_ID" \
+              -f "runtime_ref=$runtime_sha" || true
+            echo "Restart failed; continuation latch reopened and current promoted runtime $runtime_sha was relaunched." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Restart failed; continuation latch reopened. Current promoted runtime already has $active_count active run(s)." >> "$GITHUB_STEP_SUMMARY"
+          fi
