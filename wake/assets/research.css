@@ -1289,3 +1289,29 @@ html.console-tool-window #console-tool-frame{
 .outcomes-panel .meter-track{
   margin-top:0;
 }
+
+
+/* IPHONE MODE CONTROL ROW — compact, equal-width controls across Console. */
+@media(max-width:760px){
+  .research-page .map-heading{
+    flex-direction:column!important;
+    align-items:stretch!important;
+    gap:8px!important;
+  }
+  .research-page .map-heading>.mode-control{
+    width:100%!important;
+    display:grid!important;
+    grid-auto-flow:column!important;
+    grid-auto-columns:minmax(0,1fr)!important;
+    gap:3px!important;
+  }
+  .research-page .mode-control button{
+    width:100%!important;
+    min-width:0!important;
+    min-height:28px!important;
+    padding:2px 4px!important;
+    font-size:10px!important;
+    line-height:1!important;
+    white-space:nowrap!important;
+  }
+}
