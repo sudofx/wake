@@ -318,3 +318,38 @@ nav.compact-nav{display:flex;align-items:center;justify-content:center;gap:22px;
   }
 }
 
+/* MOBILE MASTHEAD UNIFICATION — 2026-10-04
+   Public site and Console use the same top offset and centered three-item nav. */
+@media(max-width:760px){
+  body>header.masthead,
+  .research-page>.research-header.masthead{
+    margin-top:8px!important;
+  }
+  body>header.masthead nav.compact-nav,
+  .research-page>.research-header.masthead nav.compact-nav,
+  .masthead nav.compact-nav,
+  nav.compact-nav{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    column-gap:10px!important;
+    justify-items:center!important;
+  }
+  body>header.masthead nav.compact-nav>a,
+  .research-page>.research-header.masthead nav.compact-nav>a,
+  body>header.masthead nav.compact-nav .nav-group>summary,
+  .research-page>.research-header.masthead nav.compact-nav .nav-group>summary,
+  .masthead nav.compact-nav>a,
+  .masthead nav.compact-nav .nav-group>summary{
+    justify-content:center!important;
+    text-align:center!important;
+    font-size:13px!important;
+  }
+}
+@media(max-width:390px){
+  body>header.masthead nav.compact-nav>a,
+  .research-page>.research-header.masthead nav.compact-nav>a,
+  body>header.masthead nav.compact-nav .nav-group>summary,
+  .research-page>.research-header.masthead nav.compact-nav .nav-group>summary{
+    font-size:12px!important;
+  }
+}
+
