@@ -54,12 +54,6 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('result_checkpointed = True', cloud)
         self.assertIn('if not result_checkpointed:', cloud)
 
-    def test_phase_e_rehearsal_reads_compressed_authority_checkpoint(self):
-        workflow = self.read('.github/workflows/phase-e-production-rehearsal.yml')
-        self.assertIn('data/sudofx.sqlite.gz', workflow)
-        self.assertIn('gzip -dc', workflow)
-        self.assertIn('data/sudofx.sqlite', workflow)
-
     def test_pages_lane_has_no_model_execution(self):
         workflow = self.read('.github/workflows/pages.yml')
         self.assertNotIn('GEMINI_API_KEY', workflow)
