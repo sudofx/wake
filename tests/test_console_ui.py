@@ -31,7 +31,7 @@ class ConsolePresentationTests(unittest.TestCase):
         self.assertIn("window.open(url.href,'wake-console-workspace')", self.tools)
         self.assertIn("location.assign(url.href)", self.tools)
         self.assertIn("(hover: hover) and (pointer: fine)", self.tools)
-        self.assertNotIn("popup=yes", self.tools)
+        self.assertIn("popup=yes,width=", self.tools)
         self.assertNotIn("frame.src", self.tools)
         self.assertNotIn("workspace','tool", self.tools)
 
@@ -49,14 +49,14 @@ class ConsolePresentationTests(unittest.TestCase):
     def test_3d_map_uses_dark_nebula_behind_transparent_floor(self):
         self.assertIn("NEBULA CONSTELLATION BACKDROP", self.map3d_css)
         self.assertIn('url("backgrounds/nebula-desktop-1680x1050.webp?v=20261004-8")', self.map3d_css)
-        self.assertIn("linear-gradient(rgba(0,0,0,.58),rgba(0,0,0,.58))", self.map3d_css)
+        self.assertIn("linear-gradient(rgba(0,0,0,.70),rgba(0,0,0,.70))", self.map3d_css)
         self.assertIn("#constellation-stage::before", self.map3d_css)
-        self.assertIn("backdrop-filter:blur(18px) brightness(.56) saturate(.82)", self.map3d_css)
-        self.assertIn("background-color:rgba(2,5,18,.30)!important", self.map3d_css)
+        self.assertIn("backdrop-filter:blur(18px)", self.map3d_css)
+        self.assertIn("background-color:rgba(2,5,18,.08)!important", self.map3d_css)
 
     def test_3d_map_stylesheet_is_cache_busted(self):
         map3d_html = (ASSETS / "map3d.html").read_text()
-        self.assertIn('href="map3d.css?v=20261004-9"', map3d_html)
+        self.assertIn('href="map3d.css?v=20261005-dust-3"', map3d_html)
 
     def test_wake_detail_tabs_stay_on_one_row_on_phones(self):
         self.assertIn(".wake-tabs{flex-wrap:nowrap;gap:3px;margin:10px 12px}", self.css)
