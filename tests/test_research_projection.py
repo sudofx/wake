@@ -60,7 +60,11 @@ class ResearchProjectionTests(unittest.TestCase):
             self.assertIn(edge['target'], ids)
 
     def test_history_population_and_empty_hour_bins_are_explicit(self):
-        data = build_research_projection(self.state(), [], 'head', metrics={'accepted_actions': {'by_type': {'notebook': 7, 'blog': 3}}})
+        data = build_research_projection(
+            self.state(), [], 'head',
+            metrics={'accepted_actions': {'by_type': {'notebook': 7, 'blog': 3}},
+                     'storage': {'sqlite_bytes': 12_345}},
+        )
         self.assertEqual(data['metrics']['completed'], 2)
         self.assertEqual(data['metrics']['outcomes'], {'accepted': 1, 'rejected': 1})
         self.assertEqual(len(data['metrics']['hourly']), 3)
@@ -68,6 +72,7 @@ class ResearchProjectionTests(unittest.TestCase):
         self.assertEqual(data['metrics']['research_actions'], {'notebook': 7})
         self.assertEqual(data['metrics']['editorial_actions'], 3)
         self.assertFalse(data['metrics']['provider_requests_complete'])
+        self.assertEqual(data['metrics']['storage'], {'sqlite_bytes': 12_345})
 
     def test_overview_is_bounded_without_dangling_edges(self):
         state = self.state()
