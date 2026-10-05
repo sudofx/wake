@@ -183,7 +183,9 @@ def _matrix_projection(progress, reported):
     results = (progress or {}).get('results', {})
     cells = [{'id': c.coordinate_id, 'position': [indices[i][key] for i, key in enumerate(c.value_keys)],
               'status': results.get(c.coordinate_id, {}).get('status', 'not_recorded'),
-              'score': results.get(c.coordinate_id, {}).get('score')}
+              'score': results.get(c.coordinate_id, {}).get('score'),
+              'invocation_id': results.get(c.coordinate_id, {}).get('invocation_id'),
+              'research_status': results.get(c.coordinate_id, {}).get('research_status')}
              for c in MATRIX.coordinates()]
     return {'id': MATRIX_KEY, 'definition_digest': MATRIX.definition_digest, 'axes': axes,
             'cells': cells, 'reported': reported, 'enabled': bool(progress) if reported else None,
