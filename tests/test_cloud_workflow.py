@@ -452,7 +452,7 @@ class CloudWorkflowTests(unittest.TestCase):
             self.assertIn('class="wordmark" href="index.html"', page)
         report = (root/"wake/report.py").read_text()
         self.assertNotIn('href=\\\"https://sudofx.github.io/wake/\\\"', report)
-        self.assertIn('class=\\\"wordmark\\\" href=\\\"index.html\\\"', report)
+        self.assertIn('class="wordmark" href="index.html"', report)
         self.assertIn('class=\\\"wordmark\\\" href=\\\"../index.html\\\"', report)
 
     def test_transient_diagnostics_survive_cloud_export_and_redact_credentials(self):
