@@ -47,6 +47,10 @@ class ConsolePresentationTests(unittest.TestCase):
         self.assertIn("backdrop-filter:blur(18px) brightness(.56) saturate(.82)", self.map3d_css)
         self.assertIn("background-color:rgba(2,5,18,.30)!important", self.map3d_css)
 
+    def test_3d_map_stylesheet_is_cache_busted(self):
+        map3d_html = (ASSETS / "map3d.html").read_text()
+        self.assertIn('href="map3d.css?v=20261004-9"', map3d_html)
+
     def test_console_loads_the_layout_controller(self):
         self.assertIn('<script src="console-layout.js" defer></script>', self.html)
 
