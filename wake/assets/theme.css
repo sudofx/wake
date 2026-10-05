@@ -2785,3 +2785,38 @@ body.help-open{
   }
 }
 
+
+
+/* EVIDENCE READABILITY PANELS — 2026-10-05 */
+/* Each recorded observation gets its own glass panel so source material remains
+   legible against the Nebula background without changing evidence semantics. */
+#evidence-content{
+  display:grid!important;
+  gap:14px!important;
+}
+#evidence-content .evidence-card{
+  margin:0!important;
+  padding:18px 20px!important;
+  border:1px solid rgba(78,112,158,.62)!important;
+  border-radius:12px!important;
+  background:linear-gradient(180deg,rgba(5,14,31,.78),rgba(4,12,28,.70))!important;
+  box-shadow:0 14px 38px rgba(0,0,18,.18)!important;
+  backdrop-filter:blur(18px) saturate(116%)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(116%)!important;
+}
+#evidence-content .evidence-card h3{
+  color:#f1f5ff!important;
+}
+#evidence-content .evidence-card .source,
+#evidence-content .evidence-card p,
+#evidence-content .evidence-card dd{
+  color:#c8d2e8!important;
+}
+#evidence-content .evidence-card details{
+  border-top:1px solid rgba(78,112,158,.42)!important;
+  padding-top:8px!important;
+}
+@media(max-width:720px){
+  #evidence-content{gap:12px!important}
+  #evidence-content .evidence-card{padding:16px!important}
+}
