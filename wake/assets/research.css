@@ -1032,6 +1032,42 @@ html.console-tool-window #console-tool-frame{
 }
 
 
+/* TABLET + MOBILE CONSOLE VIEWPORT LOCK — contain the normal Console through iPad Air landscape. */
+@media(max-width:1180px){
+  html:not(.console-detached):not(.console-tool-window){
+    width:100%!important;
+    max-width:100%!important;
+    overflow-x:hidden!important;
+  }
+  html:not(.console-detached):not(.console-tool-window) body.research-page{
+    width:100%!important;
+    max-width:100vw!important;
+    min-width:0!important;
+    overflow-x:hidden!important;
+    overscroll-behavior-x:none;
+  }
+  html:not(.console-detached):not(.console-tool-window) .research-page main{
+    box-sizing:border-box!important;
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    overflow-x:clip!important;
+  }
+  html:not(.console-detached):not(.console-tool-window) .research-page main > *,
+  html:not(.console-detached):not(.console-tool-window) .research-page .panel,
+  html:not(.console-detached):not(.console-tool-window) .research-page .status-band,
+  html:not(.console-detached):not(.console-tool-window) .research-page .story-grid,
+  html:not(.console-detached):not(.console-tool-window) .research-page .instruments-grid,
+  html:not(.console-detached):not(.console-tool-window) .research-page .telemetry-grid,
+  html:not(.console-detached):not(.console-tool-window) .research-page .research-workspace,
+  html:not(.console-detached):not(.console-tool-window) .research-page .map-stage,
+  html:not(.console-detached):not(.console-tool-window) .research-page .instrument-body,
+  html:not(.console-detached):not(.console-tool-window) .research-page #wake-detail{
+    max-width:100%!important;
+    min-width:0!important;
+  }
+}
+
 /* MOBILE CONSOLE VIEWPORT LOCK — 2026-10-04 */
 /* Match the public mobile masthead and prevent normal Console from widening the iPhone viewport. */
 @media(max-width:760px){
