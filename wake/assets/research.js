@@ -281,18 +281,19 @@
   $('activity-chart').addEventListener('focusin',e=>{const b=e.target.closest('[data-hour]');if(b)inspectHour(b.dataset.hour);});
 
 
-  function lineChart(series,names,unit='count',scrollable=false) {
+  function lineChart(series,names,unit='count',forceScrollable=false) {
     const palette={accepted:'var(--cyan)',rejected:'var(--red)',deferred:'var(--orange)',failed:'var(--violet)',objectives:'var(--cyan)',constraints:'var(--green)',frontier:'var(--orange)',results:'var(--red)'};
     const colors=names.map(k=>palette[k]||'var(--cyan)');
     if(!series.length)return '<p class="empty">No recorded measurements in this snapshot.</p>';
+    const scrollable=forceScrollable||series.length>12;
     const chartWidth=scrollable?Math.max(960,series.length*52+60):570;
     const max=Math.max(1,...series.flatMap(p=>names.map(k=>Number(p[k]||0)))),x=i=>40+i*(chartWidth-60)/Math.max(1,series.length-1),y=v=>145-120*v/max;
     const legend=names.map((k,i)=>`<span style="color:${colors[i]}">■ ${esc(k.replaceAll('_',' '))}</span>`).join(' ');
-    let svg=`<svg class="instrument-chart" viewBox="0 0 ${chartWidth} 185" ${scrollable?`style="--timeline-width:${chartWidth}px"`:""} role="img" aria-label="Recorded ${esc(names.join(', '))} in ${esc(unit)}. ${series.length} observations; maximum ${max.toFixed(1)}.">`;
+    let svg=`<svg class="instrument-chart" viewBox="0 0 ${chartWidth} 185" ${scrollable?`style="--chart-width:${chartWidth}px"`:""} role="img" aria-label="Recorded ${esc(names.join(', '))} in ${esc(unit)}. ${series.length} observations; maximum ${max.toFixed(1)}.">`;
     [0,.5,1].forEach(v=>{svg+=`<path class="chart-grid" d="M40 ${y(v*max)}H${chartWidth-20}"/><text x="32" y="${y(v*max)+4}" text-anchor="end">${Number((v*max).toFixed(1))}</text>`;});
     names.forEach((k,i)=>{svg+=`<path fill="none" stroke="${colors[i]}" stroke-width="1.7" ${k==='failed'?'stroke-dasharray="4 3"':''} d="${series.map((p,j)=>`${j?'L':'M'}${x(j)} ${y(p[k]||0)}`).join(' ')}"/>`;series.forEach((p,j)=>{svg+=`<circle tabindex="0" role="button" data-wake="${esc(p.id||'')}" ${p.hour?`data-hour="${esc(p.hour)}"`:''} cx="${x(j)}" cy="${y(p[k]||0)}" r="3" fill="${colors[i]}"><title>${esc(p.time)} · ${esc(k)}: ${esc(p[k]||0)} ${esc(unit)}</title></circle>`;});});
     [0,Math.floor((series.length-1)/2),series.length-1].forEach(i=>svg+=`<text x="${x(i)}" y="172" text-anchor="middle">${esc(stamp(series[i].time))}</text>`);
-    return (scrollable?'<p class="timeline-scroll-hint">Scroll or swipe horizontally to inspect each hour →</p><div class="timeline-scroll" tabindex="0" role="region" aria-label="Hourly wake timeline; scroll horizontally">':'')+svg+'</svg>'+(scrollable?'</div>':'')+'<div class="instrument-key">'+legend+`</div><p class="caption">${esc(unit)} · ${esc(stamp(series[0].time,true))}–${esc(stamp(series.at(-1).time,true))} PT</p>`;
+    return (scrollable?'<p class="timeline-scroll-hint">Scroll or swipe horizontally to inspect the full series →</p><div class="timeline-scroll" tabindex="0" role="region" aria-label="Chart series; scroll horizontally">':'')+svg+'</svg>'+(scrollable?'</div>':'')+'<div class="instrument-key">'+legend+`</div><p class="caption">${esc(unit)} · ${esc(stamp(series[0].time,true))}–${esc(stamp(series.at(-1).time,true))} PT</p>`;
   }
   function renderFrontierTable() {
     document.querySelectorAll('[data-frontier-state]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.frontierState===frontierState)));
