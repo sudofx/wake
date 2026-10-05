@@ -235,7 +235,7 @@ class Engine:
         return self.store.append("experimental_regime_adopted", adoption_payload(
             state, events, controls, "operator", reason, now(), len(events) + 1))
     def recover(self, explicit=False):
-        # During Phase E both the WAKE-compatible projection and the generic
+        # Both the WAKE-compatible projection and the generic
         # sudofx invocation journal describe the same provider boundary. Close
         # abandoned generic lifecycles first so process recovery cannot leave a
         # second, apparently-live attempt behind after WAKE resumes.
