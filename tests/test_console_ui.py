@@ -42,6 +42,7 @@ class ConsolePresentationTests(unittest.TestCase):
         self.assertNotIn('id="console-tool-frame"', self.html)
         self.assertNotIn('id="close-console-tools"', self.html)
         self.assertNotIn('<iframe', self.html)
+        self.assertNotIn("console-tool-window", self.html)
         self.assertIn("Complete research tools open as full browser pages.", self.html)
 
     def test_3d_map_uses_dark_nebula_behind_transparent_floor(self):
