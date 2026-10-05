@@ -21,8 +21,9 @@
     const events=text.split(/\n+/).filter(Boolean).map(line=>JSON.parse(line)).reverse();
     root.innerHTML=events.map(event=>{
       const payload=event.payload||{},id=payload.id||'system';
-      return '<article class="entry record-panel"><div class="record-panel-head"><div class="record-panel-meta"><span class="record-type">'+esc(event.kind)+'</span><time>'+esc(event.time)+'</time></div><h3>'+esc(id)+'</h3></div><div class="record-panel-body"><pre>'+esc(JSON.stringify(payload,null,2))+'</pre><p class="subtle">Hash '+esc(event.hash)+'</p></div></article>';
+      return '<details class="entry record-panel"><summary class="record-panel-head"><div class="record-panel-meta"><span class="record-type">'+esc(event.kind)+'</span><time>'+esc(event.time)+'</time></div><h3>'+esc(id)+'</h3></summary><div class="record-panel-body"><pre>'+esc(JSON.stringify(payload,null,2))+'</pre><p class="subtle">Hash '+esc(event.hash)+'</p></div></details>';
     }).join('')||'<p class="empty">No recorded events.</p>';
+    root.querySelectorAll('details.entry').forEach(item=>{item.open=false});
     return;
   }
   const data=await response.json();
