@@ -118,38 +118,3 @@ if(actionsLight){
   });
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshActionsLight();});
 }
-
-
-/* DETACHABLE CONSOLE LINKS — 2026-10-04 */
-(() => {
-  if (location.pathname.endsWith('/console.html')) return;
-  let consoleWindow=null,workspaceWindow=null;
-  const openConsole=(href)=>{
-    const url=new URL(href,location.href);
-    const isWorkspace=url.searchParams.has('tool');
-    url.searchParams.set('workspace',isWorkspace?'tool':'detached');
-    const width=Math.max(isWorkspace?900:980,Math.min(isWorkspace?1480:1560,(screen.availWidth||1440)-(isWorkspace?110:80)));
-    const height=Math.max(isWorkspace?680:720,Math.min(isWorkspace?1040:1100,(screen.availHeight||900)-(isWorkspace?110:80)));
-    const left=Math.max(0,Math.round(((screen.availWidth||width)-width)/2)+(isWorkspace?24:0));
-    const top=Math.max(0,Math.round(((screen.availHeight||height)-height)/2)+(isWorkspace?24:0));
-    const features=`popup=yes,width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`;
-    const name=isWorkspace?'wake-console-workspace':'wake-console';
-    const opened=window.open(url.href,name,features);
-    if(isWorkspace)workspaceWindow=opened;else consoleWindow=opened;
-    if(opened)opened.focus();
-    else location.href=url.href;
-  };
-  const desktopPointer=()=>window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  document.addEventListener('click',event=>{
-    if(event.defaultPrevented||event.button>0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
-    const link=event.target.closest('a[href]');
-    if(!link)return;
-    let url;try{url=new URL(link.href,location.href);}catch{return;}
-    if(url.origin!==location.origin||!url.pathname.endsWith('/console.html'))return;
-    // Pop the console out only for a desktop-style mouse/trackpad UI.
-    // Touch/coarse-pointer devices follow the normal link in the same window.
-    if(!desktopPointer())return;
-    event.preventDefault();
-    openConsole(url.href);
-  },true);
-})();
