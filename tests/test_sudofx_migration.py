@@ -1,4 +1,4 @@
-"""Phase E migration evidence: WAKE domain meaning crosses into sudofx without cutover."""
+"""Authority migration regression coverage for WAKE domain meaning on sudofx."""
 
 from __future__ import annotations
 
@@ -116,21 +116,21 @@ class SudofxMigrationTests(unittest.TestCase):
             "actions": [
                 {
                     "type": "commit",
-                    "id": "phase-e-equivalence",
+                    "id": "authority-equivalence",
                     "task": "Continue the migration with behavioral equivalence evidence.",
                     "due_cycle": legacy_state["version"] + 3,
                     "reason": "Keep the next migration step durable across process replacement.",
                 }
             ],
         }
-        expected = transition(legacy_state, proposal, "phase-e-equivalence")
+        expected = transition(legacy_state, proposal, "authority-equivalence")
 
         receipt = host.submit(
             ApplicationIntent(
                 "wake-governed-equivalence",
                 1,
                 "apply_governed_proposal",
-                {"invocation": "phase-e-equivalence", "proposal": proposal},
+                {"invocation": "authority-equivalence", "proposal": proposal},
             ),
             provenance=SubmissionProvenance(
                 "application", "wake-migration", "behavioral-equivalence"
@@ -145,7 +145,7 @@ class SudofxMigrationTests(unittest.TestCase):
         self.assertNotIn("next_state", value)
         self.assertEqual(len(value["result_digest"]), 64)
         self.assertEqual(
-            host.context().state["state"]["commitments"]["phase-e-equivalence"]["task"],
+            host.context().state["state"]["commitments"]["authority-equivalence"]["task"],
             "Continue the migration with behavioral equivalence evidence.",
         )
 
@@ -286,7 +286,7 @@ class SudofxMigrationTests(unittest.TestCase):
             "actions": [
                 {
                     "type": "commit",
-                    "id": "phase-e-native-authority",
+                    "id": "native-authority",
                     "task": "Preserve the migration boundary evidence.",
                     "due_cycle": started_state["version"] + 3,
                     "reason": "Prove the compatibility path before live cutover.",
@@ -340,7 +340,7 @@ class SudofxMigrationTests(unittest.TestCase):
             "accepted",
         )
         self.assertEqual(
-            final_envelope["state"]["commitments"]["phase-e-native-authority"]["task"],
+            final_envelope["state"]["commitments"]["native-authority"]["task"],
             "Preserve the migration boundary evidence.",
         )
         self.assertEqual(
@@ -611,7 +611,7 @@ class SudofxMigrationTests(unittest.TestCase):
         try:
             self.assertEqual(reopened.load()["version"], 0)
             self.assertEqual(reopened.events(), [])
-            result = engine.run(Fixture("phase-e-post-reset"))
+            result = engine.run(Fixture("post-reset"))
             self.assertEqual(result["status"], "accepted")
             self.assertEqual(reopened.load()["version"], 1)
             self.assertGreater(len(reopened.events()), 0)
