@@ -19,7 +19,7 @@
   const raw = 'https://raw.githubusercontent.com/sudofx/wake/';
   let data, loading=false, fallback=false, loadedCommit='', selected='', topic='all', query='', mode=matchMedia('(max-width:700px)').matches?'list':'graph';
   let nodeById=new Map(), selectedWake='', wakeTab='summary', followLatest=true, focusedKinds=[];
-  let motion=!matchMedia('(prefers-reduced-motion:reduce)').matches;
+  // Expensive view motion is opt-in. Idle Console should stay effectively idle.\n  let motion=false;
   const tools=window.WakeConsoleTools();
   const cube=window.WakeResearchCube($('matrix-cube'));
   const contextMap=window.WakeContextMap($('context-map-canvas'));
@@ -62,7 +62,7 @@
         catch { fallback=true;next=await json('research-data.json'); }
       }
       validate(next);
-      if(data && data.head===next.head && data.generated===next.generated){freshness();notice(next.preview_transport_error?'Public snapshot refresh failed. The last dated snapshot remains visible.':fallback?'Live data is unavailable. Showing the published snapshot; its date is shown above.':'');return;}
+      if(data && data.head===next.head && data.version===next.version){data.generated=next.generated;data.preview_transport_error=next.preview_transport_error;freshness();notice(next.preview_transport_error?'Public snapshot refresh failed. The last dated snapshot remains visible.':fallback?'Live data is unavailable. Showing the published snapshot; its date is shown above.':'');return;}
       const old=nodeById.get(selected);
       data=next;loadedCommit=commit;nodeById=new Map(data.graph.nodes.map(n=>[n.id,n]));
       if(old && !nodeById.has(selected))selected=nodeFor(old.kind,old.detail.id)?.id || '';
