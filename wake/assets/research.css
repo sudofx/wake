@@ -1235,3 +1235,28 @@ html.console-tool-window #console-tool-frame{
   border-radius:0!important;
 }
 
+/* MOBILE CONSOLE MASTHEAD FINAL SYNC — 2026-10-04
+   research.css loads after nav.css, so repeat the shared mobile geometry here. */
+@media(max-width:760px){
+  .research-page>.research-header.masthead{
+    margin-top:8px!important;
+  }
+  .research-page>.research-header.masthead nav.compact-nav{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    column-gap:10px!important;
+    justify-items:center!important;
+  }
+  .research-page>.research-header.masthead nav.compact-nav>a,
+  .research-page>.research-header.masthead nav.compact-nav .nav-group>summary{
+    justify-content:center!important;
+    text-align:center!important;
+    font-size:13px!important;
+  }
+}
+@media(max-width:390px){
+  .research-page>.research-header.masthead nav.compact-nav>a,
+  .research-page>.research-header.masthead nav.compact-nav .nav-group>summary{
+    font-size:12px!important;
+  }
+}
+
