@@ -5,6 +5,14 @@
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const safeUrl = value => { try { const u = new URL(value); return ['https:','http:'].includes(u.protocol) ? u.href : ''; } catch { return ''; } };
   const count = value => Number(value || 0).toLocaleString('en-US');
+  const bytes = value => {
+    const n=Number(value);
+    if(!Number.isFinite(n)||n<0)return 'Not reported';
+    if(n<1024)return `${count(n)} B`;
+    if(n<1024*1024)return `${(n/1024).toFixed(1)} KB`;
+    if(n<1024*1024*1024)return `${(n/1024/1024).toFixed(1)} MB`;
+    return `${(n/1024/1024/1024).toFixed(2)} GB`;
+  };
   const stamp = (value, full=false) => { if (!value || Number.isNaN(Date.parse(value))) return 'Unknown'; return new Intl.DateTimeFormat('en-US', {timeZone:'America/Los_Angeles', ...(full ? {month:'short',day:'numeric'} : {}), hour:'numeric',minute:'2-digit'}).format(new Date(value)); };
   const badge = status => `<span class="badge ${esc(status)}">${esc(String(status || 'recorded').replaceAll('_',' '))}</span>`;
   const local = ['localhost','127.0.0.1',''].includes(location.hostname);
@@ -283,7 +291,8 @@
     const latest=context.at(-1),current=data.wakes?.[0];
     const compressionSeries=context.filter(w=>w.ratio!==undefined).map(w=>({...w,compression_pct:(1-Number(w.ratio))*100}));
     const latestCompression=latest?.ratio===undefined?null:(1-Number(latest.ratio))*100;
-    $('compression').innerHTML=lineChart(compressionSeries,['compression_pct'],'request reduction %')+(latest?`<div class="telemetry-values"><button type="button" data-wake="${esc(latest.id)}">Compression reduction <strong>${latestCompression===null?'Not reported':latestCompression.toFixed(1)+'%'}</strong></button><button type="button" data-wake="${esc(latest.id)}">Delivered request <strong>${count(latest.delivered_request)} chars</strong></button><button type="button" data-wake="${esc(latest.id)}">Rich request <strong>${count(latest.rich_request)} chars</strong></button><button type="button" data-wake="${esc(latest.id)}">Retained ratio <strong>${latest.ratio===undefined?'Not reported':Number(latest.ratio).toFixed(4)}</strong></button></div><p class="caption">Compression reduction is the recorded size reduction from rich request to delivered request. It updates with each measured wake; size reduction alone does not establish that meaning was preserved.</p>`:'<p class="caption">No recorded compression denominator. No ratio is inferred.</p>');
+    const sqliteBytes=data.metrics?.storage?.sqlite_bytes;
+    $('compression').innerHTML=lineChart(compressionSeries,['compression_pct'],'request reduction %')+(latest?`<div class="telemetry-values"><button type="button" data-wake="${esc(latest.id)}">Compression reduction <strong>${latestCompression===null?'Not reported':latestCompression.toFixed(1)+'%'}</strong></button><button type="button" data-wake="${esc(latest.id)}">Delivered request <strong>${count(latest.delivered_request)} chars</strong></button><button type="button" data-wake="${esc(latest.id)}">Rich request <strong>${count(latest.rich_request)} chars</strong></button><button type="button" data-wake="${esc(latest.id)}">Retained ratio <strong>${latest.ratio===undefined?'Not reported':Number(latest.ratio).toFixed(4)}</strong></button><span>SQLite database <strong>${bytes(sqliteBytes)}</strong></span></div><p class="caption">Compression reduction is the recorded size reduction from rich request to delivered request. SQLite database is the measured authoritative database file size. Size reduction alone does not establish that meaning was preserved.</p>`:`<div class="telemetry-values"><span>SQLite database <strong>${bytes(sqliteBytes)}</strong></span></div><p class="caption">No recorded compression denominator. No ratio is inferred.</p>`);
     const attempts=wakes.flatMap(w=>w.attempts.filter(a=>typeof a.elapsed_ms==='number').map(a=>({id:w.id,time:w.finished||w.time,seconds:a.elapsed_ms/1000,result:a.result,usage:a.usage||{}})));
     $('latency').innerHTML=lineChart(attempts,['seconds'],'seconds per measured provider attempt')+`<p class="caption">${count(attempts.length)} measured attempts in the latest ${count(wakes.length)} wakes. Missing duration is omitted; provider latency excludes checkpoint and governance time.</p>`;
     $('wake-timeline').innerHTML=lineChart(data.metrics.hourly.map(b=>({...b,hour:b.time})),['accepted','rejected','deferred','failed'],'completed wakes per hour',true);
