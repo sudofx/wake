@@ -1262,15 +1262,26 @@ html.console-tool-window #console-tool-frame{
 
 
 
-/* TELEMETRY METER INSET + COMPACTION — 2026-10-04 */
+/* TELEMETRY PANEL BODY INSET + COMPACTION — 2026-10-04 */
+/* These panels are moved out of .telemetry-grid by the detachable Console layout,
+   so give the entire panel body its own stable inset instead of styling only bars. */
+.evidence-panel > :not(.panel-heading),
+.outcomes-panel > :not(.panel-heading){
+  margin-left:16px!important;
+  margin-right:16px!important;
+}
+.evidence-panel{
+  padding-bottom:16px;
+}
+.outcomes-panel{
+  padding-bottom:16px;
+}
 .evidence-panel .source-total{
   padding-top:12px;
-  padding-left:12px;
-  padding-right:12px;
 }
 .evidence-panel .meter-row,
 .outcomes-panel .meter-row{
-  padding:7px 12px 6px;
+  padding:7px 0 6px;
   column-gap:8px;
   row-gap:1px;
 }
