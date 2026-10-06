@@ -25,7 +25,7 @@
     ['transition','TRANSITION'],
     ['receipt','RECEIPT']
   ];
-  let projection=null,latest=null,frame=null,start=performance.now(),motion=!reduced,visible=true;
+  let projection=null,latest=null,frame=null,start=performance.now(),motion=false,visible=true;
   let nodePositions=[],recordEdges=[],recordNodes=[],lastVersion=null,flashUntil=0;
 
   const hash=value=>{let h=2166136261;for(const ch of String(value||''))h=Math.imul(h^ch.charCodeAt(0),16777619);return h>>>0;};
@@ -171,7 +171,7 @@
       ctx.beginPath();ctx.ellipse(cx,cy,scale*.62,scale*.31,0,0,Math.PI*2);ctx.stroke();
     }
     ctx.globalAlpha=1;
-    if(motion||runner==='running'||runner==='campaign'||now<flashUntil)frame=requestAnimationFrame(draw);
+    if(motion)frame=requestAnimationFrame(draw);
     else frame=null;
   }
   function scheduleDraw(){if(frame)return;frame=requestAnimationFrame(draw);}
@@ -187,9 +187,9 @@
   if(actions)observer.observe(actions,{attributes:true,attributeFilter:['data-state','title']});
 
   toggle?.addEventListener('click',()=>{
-    motion=!motion;toggle.setAttribute('aria-pressed',String(motion));toggle.textContent=motion?'Pause motion':'Resume motion';scheduleDraw();
+    motion=!motion;toggle.setAttribute('aria-pressed',String(motion));toggle.textContent=motion?'Motion on':'Motion off';scheduleDraw();
   });
-  if(reduced&&toggle){toggle.setAttribute('aria-pressed','false');toggle.textContent='Resume motion';}
+  if(toggle){toggle.setAttribute('aria-pressed','false');toggle.textContent='Motion off';}
   const io=new IntersectionObserver(entries=>{visible=entries[0]?.isIntersecting??true;if(visible)scheduleDraw();},{threshold:.02});
   io.observe(panel||canvas);
   window.addEventListener('resize',scheduleDraw);
