@@ -1866,3 +1866,13 @@ body.research-page::after{content:none!important;display:none!important;backgrou
   width:auto!important;
   max-width:max-content!important;
 }
+
+/* ULTRAWIDE DENSITY — use horizontal room for modules, not stretched cards. */
+@media(min-width:2200px){
+  .research-page main{padding-left:clamp(28px,3vw,72px)!important;padding-right:clamp(28px,3vw,72px)!important}
+  .console-module-grid{gap:16px!important}
+  .console-module-grid>.console-module[data-span="12"]:not(.process-field-panel){
+    grid-column-end:span var(--packed-span,6)!important;
+  }
+  .console-module-grid>.process-field-panel{grid-column:1/-1!important}
+}
