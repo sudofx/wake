@@ -1558,3 +1558,67 @@ body.research-page::after{
 .research-page .matrix-panel .cube-caption{
   color:var(--muted);
 }
+
+
+/* COMPACT PANEL TOOLBARS — 2026-10-05
+   Controls belong beside the title. Glyphs stay square; labels hug content. */
+.console-module-grid .panel-heading.map-heading,
+.console-module-grid .panel-heading{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  grid-template-rows:auto!important;
+  align-items:start!important;
+  gap:8px 12px!important;
+}
+.console-module-grid .panel-heading>.mode-control{
+  grid-column:2!important;
+  grid-row:1!important;
+  align-self:start!important;
+  justify-self:end!important;
+  display:flex!important;
+  width:auto!important;
+  max-width:min(100%,420px)!important;
+  flex-wrap:wrap!important;
+  justify-content:flex-end!important;
+  gap:5px!important;
+}
+.research-page .mode-control button{
+  width:auto!important;
+  min-width:0!important;
+  min-height:30px!important;
+  padding:5px 10px!important;
+  white-space:nowrap!important;
+  flex:0 0 auto!important;
+}
+.research-page .mode-control button[aria-label]:not([aria-label=""]){
+  width:32px!important;
+  min-width:32px!important;
+  padding:0!important;
+}
+@media(max-width:760px){
+  .console-module-grid .panel-heading.map-heading,
+  .console-module-grid .panel-heading{
+    grid-template-columns:minmax(0,1fr) auto!important;
+  }
+  .console-module-grid .panel-heading>.mode-control{
+    grid-column:2!important;
+    grid-row:1!important;
+    display:flex!important;
+    width:auto!important;
+    max-width:52vw!important;
+    flex-wrap:wrap!important;
+    justify-content:flex-end!important;
+    gap:4px!important;
+  }
+  .research-page .mode-control button{
+    width:auto!important;
+    min-width:0!important;
+    min-height:30px!important;
+    padding:4px 8px!important;
+  }
+  .research-page .mode-control button[aria-label]:not([aria-label=""]){
+    width:30px!important;
+    min-width:30px!important;
+    padding:0!important;
+  }
+}
