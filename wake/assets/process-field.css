@@ -45,3 +45,11 @@ radial-gradient(circle at 50% 50%,rgba(182,155,255,.035),transparent 48%)}
 .process-stage.selected strong{color:var(--orange)}
 .process-stage:focus-visible{outline:1px solid var(--cyan);outline-offset:2px}
 @media(max-width:700px){.process-field-controls button{min-height:38px}.process-field-selection{grid-column:1/-1}}
+
+/* A narrowed Console module must retain its canvas above the readout. */
+@container console-panel (max-width:640px){
+ .process-field-grid{grid-template-columns:1fr;min-height:0}
+ .process-field-canvas-wrap,#process-field-canvas{min-height:360px;height:360px}
+ .process-field-readout{border-left:0;border-top:1px solid var(--line)}
+ .process-field-warning{margin-left:0}
+}

@@ -1,6 +1,7 @@
 """Regression checks for the public masthead and GitHub Actions link."""
 
 from pathlib import Path
+import re
 import unittest
 
 
@@ -41,6 +42,7 @@ class MastheadPresentationTests(unittest.TestCase):
             "map3d": (ASSETS / "map3d.html").read_text(),
             "console": (ASSETS / "console.html").read_text(),
         }
+        stylesheet = re.search(r'href="nav\.css\?v=[^"]+"', pages["index"]).group(0)
         for name, page in pages.items():
             with self.subTest(page=name):
                 nav = page.split('<nav class="compact-nav"', 1)[1].split('</nav>', 1)[0]
@@ -56,7 +58,7 @@ class MastheadPresentationTests(unittest.TestCase):
                                 header_tools.index('class="console-link"'))
                 self.assertLess(header_tools.index('class="console-link"'),
                                 header_tools.index('class="actions-light"'))
-                self.assertIn('href="nav.css?v=20261004-16"', page)
+                self.assertIn(stylesheet, page)
         self.assertIn('class="console-link" href="console.html" aria-current="page"', pages["console"])
         self.assertIn('.repo-link,.console-link{', self.css)
         self.assertIn('.console-link[aria-current="page"]', self.css)

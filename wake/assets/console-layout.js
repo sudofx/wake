@@ -7,6 +7,7 @@
   const params=new URL(location.href).searchParams;
   const detached=params.get('workspace')==='detached';
   const toolWindow=params.get('workspace')==='tool';
+  const panelWindow=params.get('panel');
   if(toolWindow)return;
 
   if(detached){
@@ -20,27 +21,6 @@
   const status=document.getElementById('status-band');
   const toolbar=document.querySelector('.workspace-toolbar');
   if(!main||!status)return;
-
-  // Keep the desktop inspection rail level with the Console introduction.
-  const inspector=document.querySelector('.research-workspace > .detail-panel');
-  const intro=main.querySelector('.page-intro');
-  const header=document.querySelector('.research-header');
-  const alignInspector=()=>{
-    if(!inspector||!intro)return;
-    if(innerWidth<1200){inspector.style.removeProperty('top');return;}
-    const headerBottom=header?.getBoundingClientRect().bottom||0;
-    const inset=parseFloat(getComputedStyle(main).paddingTop)||0;
-    inspector.style.setProperty('top',Math.max(intro.getBoundingClientRect().top,headerBottom+inset)+'px','important');
-  };
-  alignInspector();
-  window.addEventListener('resize',()=>requestAnimationFrame(alignInspector));
-  window.addEventListener('scroll',()=>requestAnimationFrame(alignInspector),{passive:true});
-  if(typeof ResizeObserver!=='undefined'){
-    const observer=new ResizeObserver(alignInspector);
-    if(header)observer.observe(header);
-    observer.observe(intro);
-  }
-
 
   const sourceSelectors=[
     '#main > .process-field-panel',
@@ -61,7 +41,7 @@
 
   const originalParents=new Set();
   const slug=text=>String(text||'panel').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,50)||'panel';
-  const titleFor=panel=>panel.querySelector('h2,h3')?.textContent?.trim()||panel.getAttribute('aria-label')||'Console panel';
+  const titleFor=panel=>panel.querySelector('h1,h2,h3')?.textContent?.trim()||panel.getAttribute('aria-label')||'Console panel';
   const brandWakeMarks=root=>{
     root.querySelectorAll('.panel-heading h1,.panel-heading h2,.panel-heading h3,.panel-heading .eyebrow').forEach(el=>{
       if(el.querySelector('.wake-inline-mark')||!el.textContent.includes('WAKE✳︎'))return;
@@ -100,6 +80,59 @@
     heading.append(controls);
     grid.append(panel);
   });
+  // Give every header the same title stack and shared action row, regardless
+  // of whether the original markup wrapped its label and title in a div.
+  document.querySelectorAll('.panel > .panel-heading').forEach(heading=>{
+    const title=document.createElement('div');
+    title.className='panel-title';
+    const label=heading.querySelector('.eyebrow');
+    const name=heading.querySelector('h2,h3');
+    if(label)title.append(label);
+    if(name)title.append(name);
+    [...heading.children].forEach(child=>{if(!child.childNodes.length)child.remove();});
+    const actions=document.createElement('div');
+    actions.className='panel-actions';
+    while(heading.firstChild)actions.append(heading.firstChild);
+    heading.append(title,actions);
+    heading.classList.add('console-panel-heading');
+  });
+  // Each numbered panel opens the same data-bound Console in an isolated view.
+  document.querySelectorAll('.panel-id').forEach(label=>{
+    const panel=label.closest('.panel,.page-intro');
+    const id=label.textContent.match(/#(\d{3})/)?.[1];
+    if(!panel||!id)return;
+    panel.dataset.consolePanelId=id;
+    const button=document.createElement('button');
+    button.type='button';button.className='panel-popout';button.textContent='↗';
+    button.setAttribute('aria-label',`Pop out ${titleFor(panel)} · #${id}`);
+    (panel.querySelector('.module-controls,.panel-actions,.snapshot')||panel).append(button);
+    button.addEventListener('click',()=>{
+      const url=new URL(location.href);
+      url.searchParams.delete('workspace');url.searchParams.set('panel',id);
+      const opened=window.open(url.href,`wake-console-panel-${id}`,'popup=yes,width=1000,height=800');
+      if(opened)opened.focus();else location.assign(url.href);
+    });
+  });
+  if(panelWindow){
+    const target=document.querySelector(`[data-console-panel-id="${CSS.escape(panelWindow)}"]`);
+    if(target){
+      if(target.matches('.detail-panel'))main.append(target);
+      document.documentElement.classList.add('console-panel-window');
+      target.classList.add('panel-popout-target');
+      document.title=`${titleFor(target)} · #${panelWindow} / WAKE✳︎`;
+    }
+  }else{
+    const intro=document.querySelector('.page-intro');
+    const alignInspector=()=>{
+      document.documentElement.style.setProperty('--console-inspector-top',`${Math.max(20,intro.getBoundingClientRect().top)}px`);
+    };
+    if(intro){
+      alignInspector();
+      window.addEventListener('scroll',alignInspector,{passive:true});
+      window.addEventListener('resize',alignInspector);
+      new ResizeObserver(alignInspector).observe(intro);
+    }
+  }
   originalParents.forEach(parent=>{if(parent&&parent!==main)parent.classList.add('console-layout-source-empty');});
 
   const readState=()=>{
@@ -116,6 +149,7 @@
     }catch{return {};}
   };
   const writeState=()=>{
+    if(panelWindow)return;
     const state={
       order:[...grid.children].map(panel=>panel.dataset.moduleKey),
       panels:Object.fromEntries([...grid.children].map(panel=>[
@@ -139,46 +173,37 @@
       }
     });
   };
-  applyState();
+  if(!panelWindow)applyState();
 
-  const layoutSpec=()=>{
-    const w=innerWidth;
-    if(w>=2600)return {cols:6};
-    if(w>=1500)return {cols:4};
-    if(w>=768)return {cols:3};
-    return {cols:1};
-  };
-  const spanToSlots=(span,cols,panel)=>{
-    const ratio=Math.max(1,Math.min(12,Number(span||6)))/12;
-    return Math.max(1,Math.min(cols,Math.round(ratio*cols)));
-  };
+  // Count columns in the actual workspace, which excludes the inspection rail.
+  // CSS auto-placement owns rows; no stale row/column coordinates survive a resize.
+  const columnCount=()=>innerWidth<768?1:Math.max(1,Math.min(6,Math.floor((grid.clientWidth+16)/316)));
+  const spanToSlots=(span,cols)=>Math.max(1,Math.min(cols,Math.round(Number(span||6)*cols/12)));
   const pack=()=>{
-    const {cols}=layoutSpec();
+    const cols=panelWindow?1:columnCount();
     grid.style.setProperty('--console-cols',String(cols));
-    if(cols===1){[...grid.children].forEach(p=>{p.style.gridRow='';p.style.gridColumn='';p.style.removeProperty('--panel-slots');});return;}
-    const occupied=[];
-    const free=(row,col,span)=>{for(let c=col;c<col+span;c++)if(occupied[row]?.[c])return false;return true;};
-    const claim=(row,col,span)=>{occupied[row]??=Array(cols).fill(false);for(let c=col;c<col+span;c++)occupied[row][c]=true;};
     [...grid.children].forEach(panel=>{
-      const slots=spanToSlots(panel.dataset.span,cols,panel);
-      panel.style.setProperty('--panel-slots',String(slots));
-      let row=0,col=0,placed=false;
-      while(!placed){for(col=0;col<=cols-slots;col++){if(free(row,col,slots)){claim(row,col,slots);panel.style.gridRow=String(row+1);panel.style.gridColumn=`${col+1} / span ${slots}`;placed=true;break;}}if(!placed)row++;}
+      panel.style.setProperty('--panel-slots',String(spanToSlots(panel.dataset.span,cols)));
+      const button=panel.querySelector('.module-size');
+      if(button){
+        button.disabled=cols===1;
+        button.title=cols===1?'Full width in this workspace':'Change panel width';
+      }
     });
   };
   pack();
-  window.addEventListener('resize',()=>requestAnimationFrame(pack));
+  new ResizeObserver(pack).observe(grid);
 
-  const spanCycle=[3,4,6,8,9,12];
   grid.addEventListener('click',event=>{
     const panel=event.target.closest('.console-module');
     if(!panel)return;
     const size=event.target.closest('.module-size');
     const collapse=event.target.closest('.module-collapse');
     if(size){
-      const current=Number(panel.dataset.span||6);
-      const idx=spanCycle.findIndex(v=>v>=current);
-      panel.dataset.span=String(spanCycle[((idx<0?1:idx)+1)%spanCycle.length]);
+      const cols=columnCount();
+      if(cols===1)return;
+      const slots=spanToSlots(panel.dataset.span,cols)%cols+1;
+      panel.dataset.span=String(slots*12/cols);
       writeState();pack();
     }
     if(collapse){
@@ -211,6 +236,7 @@
     placeholder=document.createElement('div');
     placeholder.className='console-module-placeholder';
     placeholder.dataset.span=panel.dataset.span||'6';
+    placeholder.style.setProperty('--panel-slots',panel.style.getPropertyValue('--panel-slots'));
     panel.after(placeholder);
     panel.classList.add('module-dragging');
     document.body.classList.add('console-is-dragging');

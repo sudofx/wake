@@ -197,7 +197,7 @@
     stageList.querySelectorAll('.process-stage').forEach((el,i)=>el.classList.toggle('selected',i===index));scheduleDraw();
   }
   function resetView(){viewAngle=0;viewTilt=0;selectedNode=null;selectedStage=null;selectionEl.textContent='Drag the field to rotate · tap a node or stage to inspect';stageList.querySelectorAll('.process-stage').forEach(el=>el.classList.remove('selected'));scheduleDraw();}
-  function hitTest(x,y){let best=null,bestD=18;for(const pt of nodePositions){const d=Math.hypot(pt.x-x,pt.y-y);if(d<bestD){best=pt;bestD=d;}}if(best){inspectNode(best.id);return true;}let si=-1,sd=24;stagePoints.forEach((pt,i)=>{const d=Math.hypot(pt.x-x,pt.y-y);if(d<sd){si=i;sd=d;}});if(si>=0){inspectStage(si);return true;}return false;}
+  function hitTest(x,y){let best=null,bestD=18;for(const pt of nodePositions){const d=Math.hypot(pt.x-x,pt.y-y);if(d<bestD){best=pt;bestD=d;}}if(best){inspectNode(best.id);window.dispatchEvent(new CustomEvent('wake-process-record-select',{detail:best.id}));return true;}let si=-1,sd=24;stagePoints.forEach((pt,i)=>{const d=Math.hypot(pt.x-x,pt.y-y);if(d<sd){si=i;sd=d;}});if(si>=0){inspectStage(si);return true;}return false;}
   function receive(d){
     if(!d||d.projection_kind!=='disposable-research-view')return;
     projection=d;latest=(d.wakes||[])[0]||null;
@@ -246,6 +246,7 @@
   motion=false;
   const io=new IntersectionObserver(entries=>{visible=entries[0]?.isIntersecting??true;if(visible)scheduleDraw();},{threshold:.02});
   io.observe(panel||canvas);
+  new ResizeObserver(scheduleDraw).observe(canvas);
   window.addEventListener('resize',scheduleDraw);
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)scheduleDraw();});
   setStageReadout();scheduleDraw();loadProjection();

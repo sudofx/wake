@@ -26,6 +26,27 @@
   const contextMap=window.WakeContextMap($('context-map-canvas'));
   let frontierState='active';
   let matrixCell='';
+  const SELECTION_KEY='wake-console-linked-selection-v1';
+  let pendingSelection=null;
+  function receiveSelection(state){
+    if(!state||state.version!==1||!['recordId','wakeId','topic','tab','matrixCell'].every(key=>typeof state[key]==='string'&&state[key].length<1000))return;
+    if(!data){pendingSelection=state;return;}
+    selected=state.recordId;selectedWake=state.wakeId;followLatest=!selectedWake;
+    topic=state.topic==='all'||data.topics.some(t=>t.id===state.topic)?state.topic:'all';
+    wakeTab=['summary','context','response','provider','receipt'].includes(state.tab)?state.tab:'summary';
+    query='';$('topic').value=topic;$('search').value='';
+    renderFrontier();renderMap();renderDetail();renderSynthesis();renderWake();
+    if(!syncCubeToRecord(selected))syncCubeToWake(selectedWake);
+    if(data.matrix?.cells.some(c=>c.id===state.matrixCell)){matrixCell=state.matrixCell;cube.select(matrixCell);renderCell();}
+    writeUrl(false);
+    // Local notification only: receiving a selection must never echo it back.
+    const wake=(data.wakes||[]).find(w=>w.id===selectedWake)||null;
+    window.dispatchEvent(new CustomEvent('wake-console-selection',{detail:{recordId:selected,wakeId:selectedWake,wake}}));
+  }
+  window.addEventListener('storage',event=>{
+    if(event.key!==SELECTION_KEY||!event.newValue)return;
+    try{receiveSelection(JSON.parse(event.newValue));}catch{}
+  });
   const label = id => data?.topics.find(t=>t.id===id)?.label || 'Unattributed';
   const nodeFor = (kind, id) => data?.graph.nodes.find(n=>n.kind===kind && (n.detail.id===id || n.id===`${kind}:${id}`));
   const pickButton = (kind, item, text) => { const n=nodeFor(kind,item.id); return n?`<button type="button" data-record="${esc(n.id)}">${esc(text)}</button>`:`<button type="button" data-tool="projects">${esc(text)}</button>`; };
@@ -92,10 +113,11 @@
   function render() {
     const s=data.status,latest=s.latest || {};
     const cells=[['Accepted cycles',count(s.accepted_cycles),'Accepted transitions, not a quality score',''],['Latest outcome',latest.status || 'No attempts',latest.model || 'No recorded model',latest.status],['Active projects',count(s.active_projects),`${count(data.record_totals.projects)} projects in the record`,''],['Open commitments',count(s.open_commitments),'Outstanding recorded obligations',''],['Research focus',s.attention_topic?label(s.attention_topic):'Unassigned',s.regime?.enabled?`Time Dilation: ${s.regime.mode} · ×${s.regime.scale}`:'No recorded Time Dilation regime','']];
-    $('status-band').innerHTML=cells.map(([name,value,note,status],i)=>`<div class="status-cell"><span class="label">${esc(name)}</span><button type="button" class="status-value ${i===1||i===4?'latest-label ':''}${esc(status)}" data-metric="${['accepted','latest','projects','commitments','attention'][i]}">${esc(value)}</button><small>${esc(note)}</small></div>`).join('');
+    $('status-band').innerHTML=cells.map(([name,value,note,status],i)=>`<div class="status-cell"><span class="label">${esc(name)}</span><button type="button" data-ui-tooltip="Inspect ${esc(name.toLowerCase())}" class="status-value ${i===1||i===4?'latest-label ':''}${esc(status)}" data-metric="${['accepted','latest','projects','commitments','attention'][i]}">${esc(value)}</button><small>${esc(note)}</small></div>`).join('');
     $('topic').innerHTML='<option value="all">All topics</option>'+data.topics.map(t=>`<option value="${esc(t.id)}">${esc(t.label)}</option>`).join('');$('topic').value=topic;$('search').value=query;
     renderFrontier();renderMap();renderDetail();renderMetrics();renderSynthesis();renderCube();if(selected&&!syncCubeToRecord(selected) && selectedWake&&!followLatest)syncCubeToWake(selectedWake);else if(!selected&&selectedWake&&!followLatest)syncCubeToWake(selectedWake);renderWake();renderInstruments();
     window.dispatchEvent(new CustomEvent('wake-process-data',{detail:data}));
+    if(pendingSelection){const state=pendingSelection;pendingSelection=null;receiveSelection(state);}
     $('provenance').innerHTML=`<p>Snapshot: ${esc(stamp(data.generated,true))} PT · accepted state ${count(data.version)}</p><p>Authority: ${esc(data.source.authority || 'Verified export')} / ${esc(data.source.database || 'record')}</p><p>Record head: <code>${esc(data.head)}</code></p>${loadedCommit?`<p>Projection commit: <code>${esc(loadedCommit)}</code></p>`:''}<p><a href="research-data.json">Published JSON snapshot</a> · <a href="https://github.com/sudofx/wake/tree/wake-state">Authority checkpoint ↗</a></p>`;
   }
   function renderFrontier() {
@@ -235,6 +257,7 @@
   function broadcastSelection(recordId='',wakeId='') {
     const wake=wakeId?(data?.wakes||[]).find(item=>item.id===wakeId)||null:null;
     window.dispatchEvent(new CustomEvent('wake-console-selection',{detail:{recordId,wakeId,wake}}));
+    try{localStorage.setItem(SELECTION_KEY,JSON.stringify({version:1,recordId,wakeId,topic,tab:wakeTab,matrixCell,nonce:crypto.randomUUID()}));}catch{}
   }
   function chooseWake(id, floating=false) {
     selectedWake=id;followLatest=false;
@@ -242,7 +265,10 @@
     if(related){selected=related.id;renderMap();renderDetail();}
     writeUrl();syncCubeToWake(id);renderWake();broadcastSelection(related?.id||'',id);
     $('wake-detail').classList.toggle('floating',floating);
-    if(floating)$('wake-inspector-title')?.focus({preventScroll:true});
+    if(floating){
+      $('wake-inspector-title')?.focus({preventScroll:true});
+      $('wake-detail').scrollIntoView({block:'start'});
+    }
   }
   function renderWake() {
     const wakes=data.wakes || [], w=followLatest?wakes[0]:wakes.find(w=>w.id===selectedWake);
@@ -269,24 +295,35 @@
     window.addEventListener('wake-global-motion',event=>{motion=Boolean(event.detail?.enabled);cube.setMotion(motion);contextMap.setMotion(motion);document.body.dataset.motion=motion?'on':'off';});
     const motionButton=$('global-motion-toggle');
     if(motionButton&&!motionButton.dataset.motionBound){
+      const MOTION_KEY='wake-console-motion-v1';
       motionButton.dataset.motionBound='true';let globalMotion=false;
+      try{globalMotion=localStorage.getItem(MOTION_KEY)==='on';}catch{}
       const applyMotion=()=>{motionButton.setAttribute('aria-pressed',String(globalMotion));motionButton.textContent='Motion';motionButton.title=globalMotion?'Disable presentation motion':'Enable presentation motion';document.documentElement.dataset.motion=globalMotion?'on':'off';window.dispatchEvent(new CustomEvent('wake-global-motion',{detail:{enabled:globalMotion}}));};
-      motionButton.addEventListener('click',()=>{globalMotion=!globalMotion;applyMotion();});applyMotion();
+      motionButton.addEventListener('click',()=>{
+        globalMotion=!globalMotion;applyMotion();
+        try{localStorage.setItem(MOTION_KEY,globalMotion?'on':'off');}catch{}
+      });
+      window.addEventListener('storage',event=>{
+        if(event.key!==MOTION_KEY||!['on','off'].includes(event.newValue))return;
+        globalMotion=event.newValue==='on';applyMotion();
+      });
+      applyMotion();
     }
     $('cube-left').onclick=()=>cube.rotate(-.3);$('cube-right').onclick=()=>cube.rotate(.3);$('cube-reset').onclick=()=>cube.reset();
-    $('matrix-cube').addEventListener('wake-cube-select',e=>{matrixCell=e.detail;renderCell();});
-    $('cube-selectors').addEventListener('change',()=>{const pos=[...document.querySelectorAll('[data-cube-axis]')].map(el=>Number(el.value));const c=data.matrix.cells.find(c=>c.position.every((v,i)=>v===pos[i]));if(c){matrixCell=c.id;cube.select(c.id);renderCell();}});
+    $('matrix-cube').addEventListener('wake-cube-select',e=>{matrixCell=e.detail;renderCell();const id=data.matrix.cells.find(c=>c.id===matrixCell)?.invocation_id;if(id)chooseWake(id);else broadcastSelection(selected,selectedWake);});
+    $('cube-selectors').addEventListener('change',()=>{const pos=[...document.querySelectorAll('[data-cube-axis]')].map(el=>Number(el.value));const c=data.matrix.cells.find(c=>c.position.every((v,i)=>v===pos[i]));if(c){matrixCell=c.id;cube.select(c.id);renderCell();if(c.invocation_id)chooseWake(c.invocation_id);else broadcastSelection(selected,selectedWake);}});
     $('context-map-canvas').addEventListener('wake-graph-select',e=>choose(e.detail,true));
+    window.addEventListener('wake-process-record-select',e=>{if(nodeById.has(e.detail))choose(e.detail);});
     document.querySelectorAll('[data-context-view]').forEach(b=>b.onclick=()=>{contextMap.view(b.dataset.contextView);document.querySelectorAll('[data-context-view]').forEach(o=>o.setAttribute('aria-pressed',String(o===b)));});
     document.querySelectorAll('[data-frontier-state]').forEach(b=>b.onclick=()=>{frontierState=b.dataset.frontierState;renderFrontierTable();});
     document.addEventListener('click',e=>{const t=e.target.closest('[data-story-topic]');if(t){topic=t.dataset.storyTopic;selected='';query='';writeUrl();render();inspectRecords(label(topic),scopedNodes(),'Recorded research in this topic.');}});
-    const closeDataInspector=event=>{event?.preventDefault();event?.stopPropagation();const inspector=$('data-inspector');inspector.hidden=true;inspector.setAttribute('aria-hidden','true');};
+    const closeDataInspector=event=>{event?.preventDefault();event?.stopPropagation();const inspector=$('data-inspector');inspector.hidden=true;inspector.setAttribute('aria-hidden','true');$('show-projects')?.focus({preventScroll:true});};
     $('close-data-inspector').onclick=closeDataInspector;
     $('close-inspector').onclick=()=>{document.querySelector('.detail-panel').classList.remove('reader-floating');selected='';writeUrl();renderMap();renderDetail();broadcastSelection('',selectedWake&&!followLatest?selectedWake:'');};
     $('latest-wake').onclick=()=>{followLatest=true;selectedWake='';wakeTab='summary';const id=data?.wakes?.[0]?.id||'',related=recordForWake(id);if(related){selected=related.id;renderMap();renderDetail();}syncCubeToWake(id);broadcastSelection(related?.id||'',id);writeUrl();renderWake();};
     $('show-latest-receipt').onclick=()=>{wakeTab='receipt';chooseWake(data?.wakes?.[0]?.id||'',true);requestAnimationFrame(()=>$('wake-detail')?.scrollIntoView({block:'nearest'}));};
-    $('show-projects').onclick=()=>{inspectRecords('Research projects',data.graph.nodes.filter(n=>n.kind==='project'),'Current projects in the bounded overview. Select one to inspect its contents and relationships.');requestAnimationFrame(()=>$('data-inspector')?.scrollIntoView({block:'nearest'}));};
-    document.addEventListener('click',e=>{const outcome=e.target.closest('[data-outcome]'),evidence=e.target.closest('[data-evidence-class]');if(outcome)inspectWakes(`${outcome.dataset.outcome} invocations`,(data.wakes||[]).filter(w=>w.status===outcome.dataset.outcome),`${count(data.metrics.outcomes[outcome.dataset.outcome])} across the durable record; traces are limited to the latest ${count(data.wakes?.length)} invocations.`);if(evidence){const classes={'Source-ready records':'source','Discovery leads':'discovery','Metadata records':'metadata','Runtime receipts':'receipt','Unreadable material':'unreadable','Unclassified records':'unclassified'};inspectRecords(evidence.dataset.evidenceClass,data.graph.nodes.filter(n=>n.kind==='evidence'&&n.detail.evidence_class===classes[evidence.dataset.evidenceClass]),'These are cited records in the bounded research graph; the count includes the full evidence population.');}const metric=e.target.closest('[data-metric]'),kind=e.target.closest('[data-kind]'),hour=e.target.closest('[data-hour]');if(metric)inspectMetric(metric.dataset.metric);if(kind){focusedKinds=kind.dataset.kind.split(',');const list=scopedNodes().filter(n=>focusedKinds.includes(n.kind));const i=list.findIndex(n=>n.id===selected);if(list.length)choose(list[(i+1)%list.length].id);else{renderMap();inspectRecords('No records in this category',[]);}}if(hour)inspectHour(hour.dataset.hour,true);const w=e.target.closest('[data-wake]'),tab=e.target.closest('[data-wake-tab]');if(w&&w.dataset.wake&&!w.hasAttribute('data-hour')){$('data-inspector').hidden=true;wakeTab='summary';chooseWake(w.dataset.wake,true);}if(tab){wakeTab=tab.dataset.wakeTab;writeUrl(false);renderWake();}if(e.target.closest('#expand-context')){$('wake-detail').classList.add('floating');$('wake-inspector-title')?.focus({preventScroll:true});}if(e.target.closest('.close-wake'))$('wake-detail').classList.remove('floating');});
+    $('show-projects').onclick=()=>{inspectRecords('Research projects',data.graph.nodes.filter(n=>n.kind==='project'),'Current projects in the bounded overview. Select one to inspect its contents and relationships.');};
+    document.addEventListener('click',e=>{const outcome=e.target.closest('[data-outcome]'),evidence=e.target.closest('[data-evidence-class]');if(outcome)inspectWakes(`${outcome.dataset.outcome} invocations`,(data.wakes||[]).filter(w=>w.status===outcome.dataset.outcome),`${count(data.metrics.outcomes[outcome.dataset.outcome])} across the durable record; traces are limited to the latest ${count(data.wakes?.length)} invocations.`);if(evidence){const classes={'Source-ready records':'source','Discovery leads':'discovery','Metadata records':'metadata','Runtime receipts':'receipt','Unreadable material':'unreadable','Unclassified records':'unclassified'};inspectRecords(evidence.dataset.evidenceClass,data.graph.nodes.filter(n=>n.kind==='evidence'&&n.detail.evidence_class===classes[evidence.dataset.evidenceClass]),'These are cited records in the bounded research graph; the count includes the full evidence population.');}const metric=e.target.closest('[data-metric]'),kind=e.target.closest('[data-kind]'),hour=e.target.closest('[data-hour]');if(metric)inspectMetric(metric.dataset.metric);if(kind){focusedKinds=kind.dataset.kind.split(',');const list=scopedNodes().filter(n=>focusedKinds.includes(n.kind));const i=list.findIndex(n=>n.id===selected);if(list.length)choose(list[(i+1)%list.length].id);else{renderMap();inspectRecords('No records in this category',[]);}}if(hour)inspectHour(hour.dataset.hour,true);const w=e.target.closest('[data-wake]'),tab=e.target.closest('[data-wake-tab]');if(w&&w.dataset.wake&&!w.hasAttribute('data-hour')){$('data-inspector').hidden=true;wakeTab='summary';chooseWake(w.dataset.wake,true);}if(tab){wakeTab=tab.dataset.wakeTab;writeUrl(false);renderWake();broadcastSelection(selected,selectedWake);}if(e.target.closest('#expand-context')){$('wake-detail').classList.add('floating');$('wake-inspector-title')?.focus({preventScroll:true});}if(e.target.closest('.close-wake'))$('wake-detail').classList.remove('floating');});
   }
 
 
@@ -295,11 +332,14 @@
     $('data-inspector').setAttribute('aria-hidden','false');
     $('data-inspector-body').innerHTML=`<h2 tabindex="-1" id="referenced-title">${esc(title)}</h2><p class="caption">${esc(note)}</p>${nodes.map(n=>`<div class="relation-row"><small>${esc(n.kind)}</small><button type="button" data-record="${esc(n.id)}">${esc(n.title)}</button></div>`).join('')||'<p class="empty">No matching records in this bounded overview.</p>'}`;
     $('referenced-title').focus({preventScroll:true});
+    $('data-inspector').scrollIntoView({block:'start'});
   }
   function inspectWakes(title,wakes,note='') {
     $('data-inspector').hidden=false;
+    $('data-inspector').setAttribute('aria-hidden','false');
     $('data-inspector-body').innerHTML=`<h2 tabindex="-1" id="referenced-title">${esc(title)}</h2><p class="caption">${esc(note)}</p>${wakes.map(w=>`<div class="relation-row">${badge(w.status)}<button type="button" data-wake="${esc(w.id)}">${esc(w.proposal?.title||w.reason||w.id)}</button><small>${esc(stamp(w.finished||w.time,true))} PT · ${esc(w.id)}</small></div>`).join('')||'<p class="empty">No wake traces for this selection in the bounded snapshot.</p>'}`;
     $('referenced-title').focus({preventScroll:true});
+    $('data-inspector').scrollIntoView({block:'start'});
   }
   function inspectMetric(metric) {
     if(metric==='latest'){chooseWake(data.status.latest?.id||'',true);return;}
@@ -371,7 +411,7 @@
   document.addEventListener('click',event=>{const target=event.target.closest('[data-record]');if(target)choose(target.dataset.record,Boolean(target.closest('#data-inspector')));});
   document.querySelector('#outcomes').addEventListener('keydown',e=>{if(['Enter',' '].includes(e.key)&&e.target.matches('[data-outcome]')){e.preventDefault();e.target.dispatchEvent(new MouseEvent('click',{bubbles:true}));}});
   $('research-map').addEventListener('keydown',event=>{if(['Enter',' '].includes(event.key)){const target=event.target.closest('[data-record]');if(target){event.preventDefault();choose(target.dataset.record);}}});
-  $('topic').addEventListener('change',()=>{topic=$('topic').value;selected='';writeUrl();renderFrontier();renderMap();renderDetail();renderSynthesis();});
+  $('topic').addEventListener('change',()=>{topic=$('topic').value;selected='';writeUrl();renderFrontier();renderMap();renderDetail();renderSynthesis();broadcastSelection('',selectedWake);});
   $('search').addEventListener('input',()=>{query=$('search').value;writeUrl(false);renderMap();});
   $('refresh').addEventListener('click',refresh);
   window.addEventListener('popstate',()=>{readUrl();if(data)render();});

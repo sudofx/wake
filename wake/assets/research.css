@@ -4,7 +4,7 @@
 .research-header{display:flex;align-items:center;gap:30px;padding:20px 32px;border-bottom:1px solid var(--line)}.research-wordmark{font-size:26px;font-weight:700;letter-spacing:.04em;white-space:nowrap}.research-wordmark span{color:var(--cyan)}.research-wordmark small{display:block;color:var(--muted);font:9px/1.4 ui-monospace,monospace;letter-spacing:.18em}.research-header nav{display:flex;align-items:center;gap:20px;flex:1;flex-wrap:wrap;font-size:13px}.research-header nav>a,.research-header summary{color:var(--muted)}.research-header nav [aria-current]{color:var(--cyan);border-bottom:2px solid var(--cyan);padding-bottom:6px}.research-header details{position:relative}.research-page summary{cursor:pointer;min-height:42px;display:flex;align-items:center;gap:8px}.research-header summary:after{content:'⌄';color:var(--cyan)}.research-header .dropdown{position:absolute;top:100%;left:0;min-width:190px;background:var(--surface-raised);border:1px solid var(--line);padding:8px;z-index:20;box-shadow:0 12px 25px #0008}.research-header .dropdown a{display:block;padding:9px 12px}.execution{white-space:nowrap;font:11px ui-monospace,monospace}.execution>span:first-child{display:inline-block;width:7px;height:7px;background:var(--muted);border-radius:50%;margin-right:7px}.execution>span:first-child[data-state=running]{background:var(--green)}.execution>span:first-child[data-state=stopped]{background:var(--orange)}
 .research-page main{max-width:1800px;margin:auto;padding:30px 32px 24px}.page-intro{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:24px}.research-page h1{font-size:46px;line-height:1.1;letter-spacing:-.055em;font-weight:500}.research-page h1 span{color:var(--cyan)}.research-page .lede{margin-top:10px;color:var(--muted)}.snapshot{text-align:right;font-size:12px;color:var(--muted)}.snapshot button{margin-top:9px;font-size:12px}.notice{padding:12px 16px;border-left:3px solid var(--orange);background:#33261c;color:var(--orange);margin-bottom:18px}
 .status-band{display:grid;grid-template-columns:1.1fr 1.3fr repeat(3,1fr);border:1px solid var(--line);border-top:2px solid var(--cyan);background:var(--surface);margin-bottom:22px}.status-cell{padding:18px 22px;border-right:1px solid var(--line);min-width:0}.status-cell:last-child{border-right:0}.status-cell .label{font:10px ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block}.status-cell strong{display:block;font-size:32px;font-weight:500;line-height:1.3;color:var(--cyan);margin:7px 0}.status-cell .latest-label{font-size:22px}.status-cell small{display:block;color:var(--muted);font-size:12px;overflow-wrap:anywhere}.status-cell .accepted{color:var(--cyan)}.status-cell .rejected,.rejected{color:var(--red)}.status-cell .deferred,.deferred{color:var(--orange)}.accepted{color:var(--cyan)}.failed{color:var(--violet)}
-.workspace-toolbar{display:flex;align-items:end;gap:16px;margin:0 0 16px}.workspace-toolbar label{display:grid;gap:6px;font-size:11px;color:var(--muted)}.workspace-toolbar select{max-width:310px;width:100%}.record-search{flex:1;max-width:340px}.workspace-toolbar>span{margin-left:auto;font:11px ui-monospace,monospace;color:var(--muted);padding-bottom:10px}.research-workspace{display:grid;grid-template-columns:260px minmax(0,1fr) 275px;gap:14px;align-items:stretch}.panel{background:var(--surface);border:1px solid var(--line);min-width:0}.panel-heading{padding:18px 20px;border-bottom:1px solid var(--line)}.panel-subsection{padding:18px 20px;border-top:1px solid var(--line)}.frontier-panel #frontier{padding:4px 20px;max-height:475px;overflow:auto}.project-row{padding:16px 0;border-bottom:1px solid var(--line)}.project-row:last-child{border-bottom:0}.project-row button{display:block;text-align:left;padding:0;background:none;border:0;line-height:1.4;color:var(--ink);font-weight:600;min-height:44px;width:100%}.project-row button:hover{color:var(--cyan)}.project-row .question{font-size:12px;color:var(--muted);margin-top:7px}.badge{display:inline-flex;align-items:center;gap:5px;font:10px ui-monospace,monospace;text-transform:uppercase;border:1px solid currentColor;border-radius:2px;padding:3px 6px;color:var(--muted);max-width:100%;overflow-wrap:anywhere}.badge.active{color:var(--green)}.badge.accepted{color:var(--cyan)}.badge.rejected{color:var(--red)}.badge.failed{color:var(--violet)}.badge.parked,.badge.deferred,.badge.open{color:var(--orange)}.project-row .topic-label{font-size:11px;color:var(--muted);display:block;margin-top:7px}.obligation{padding:10px 0;border-bottom:1px solid var(--line);font-size:12px}.obligation button{font-size:12px;text-align:left;background:none;border:0;padding:0;color:var(--ink)}
+.workspace-toolbar{display:flex;align-items:end;gap:16px;margin:0 0 16px}.workspace-toolbar label{display:grid;gap:6px;font-size:11px;color:var(--muted)}.workspace-toolbar select{max-width:310px;width:100%}.record-search{flex:1;max-width:340px}.workspace-toolbar>span{margin-left:auto;font:11px ui-monospace,monospace;color:var(--muted);padding-bottom:10px}.research-workspace{display:grid;grid-template-columns:260px minmax(0,1fr) 275px;gap:14px;align-items:stretch}.panel{background:var(--surface);border:1px solid var(--line);min-width:0}.panel-heading{padding:18px 20px;border-bottom:1px solid var(--line)}.panel-subsection{padding:18px 20px;border-top:1px solid var(--line)}.frontier-panel #frontier{padding:4px 20px;max-height:475px;overflow:auto}.project-row{padding:16px 0;border-bottom:1px solid var(--line)}.project-row:last-child{border-bottom:0}.project-row button{display:block;text-align:left;padding:0;background:none;border:0;line-height:1.4;color:var(--ink);font-weight:600;min-height:44px;width:100%}.project-row button:hover{color:var(--cyan)}.project-row .question{font-size:12px;color:var(--muted);margin-top:7px}.badge{display:inline-flex;align-items:center;gap:5px;font:10px ui-monospace,monospace;text-transform:uppercase;border:1px solid currentColor;border-radius:2px;padding:3px 6px;color:var(--muted);max-width:100%;overflow-wrap:anywhere}.badge.active{color:var(--green)}.badge.accepted{color:var(--cyan)}.badge.rejected{color:var(--red)}.badge.failed{color:var(--violet)}.badge.parked,.badge.deferred,.badge.open{color:var(--orange)}.project-row .topic-label{font-size:11px;color:var(--muted);display:block;margin-top:7px}.obligation{padding:10px 0;border-bottom:1px solid var(--line);font-size:12px}.obligation>.badge{margin-inline-end:8px}.obligation button{font-size:12px;text-align:left;background:none;border:0;padding:0;color:var(--ink)}
 .map-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}.mode-control{display:flex;gap:4px}.mode-control button{font-size:11px;min-height:36px;padding:6px 10px}.mode-control [aria-pressed=true]{color:var(--cyan);border-color:var(--cyan);background:#153339}.map-key{display:flex;flex-wrap:wrap;gap:6px 16px;padding:12px 20px;color:var(--muted);font:10px ui-monospace,monospace}.map-stage{position:relative;min-height:425px;overflow-x:auto;background:radial-gradient(ellipse at 45% 48%,#11303788,transparent 70%)}#research-map{display:block;width:100%;min-width:640px;height:520px;overflow:visible}.map-grid{stroke:#1d3a43;stroke-width:.6}.map-edge{fill:none;stroke:#477983;stroke-width:1.2;opacity:.5}.map-edge.focused{stroke:var(--cyan);stroke-width:2.2;opacity:1}.map-node{cursor:pointer}.map-node rect{fill:#10252c;stroke:#476771;stroke-width:1.2;rx:4}.map-node circle{fill:#143b40;stroke:var(--cyan);stroke-width:1.2}.map-node text{fill:var(--ink);font-size:12px;font-family:inherit;pointer-events:none}.map-node .node-type{fill:var(--muted);font:11px ui-monospace,monospace;letter-spacing:.04em}.map-node .node-mark{fill:var(--cyan);font-size:17px}.map-node.active rect{stroke:var(--green)}.map-node.selected rect,.map-node:focus rect,.map-node:hover rect{stroke:var(--cyan);stroke-width:2.2;fill:#17383f}.map-node.selected circle{fill:#337879;stroke-width:3}.map-node.dimmed{opacity:.3}.map-lane{fill:var(--muted);font:10px ui-monospace,monospace;letter-spacing:.12em}.map-caption{display:flex;justify-content:space-between;gap:12px;padding:12px 20px;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}.depth-link{display:block;font-size:12px;padding:0 20px 15px}#map-list{padding:10px 20px;max-height:480px;overflow:auto}.map-list-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.map-list-row button{flex:1;text-align:left;background:none;border:0;font-size:12px;padding:4px}.map-list-row small{display:block;color:var(--muted)}
 #record-detail{padding:20px;max-height:none;overflow:visible;overflow-wrap:anywhere}.detail-title{font-size:20px;font-weight:500;margin:12px 0!important;line-height:1.3}.detail-text{color:var(--muted);font-size:13px;margin:12px 0!important;white-space:pre-line}.detail-field{margin:15px 0}.detail-field dt{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--cyan)}.detail-field dd{margin:6px 0 0;font-size:12px;color:var(--muted)}.detail-links{display:grid;gap:8px;font-size:12px;margin:18px 0}.record-id{font:10px/1.7 ui-monospace,monospace;color:var(--muted);overflow-wrap:anywhere}.relation-row{border-bottom:1px solid var(--line);padding:8px 0}.relation-row button{font-size:12px;text-align:left;padding:4px 0;min-height:40px;background:none;border:0;color:var(--cyan);display:block;width:100%}.relation-row small{font-size:10px;color:var(--muted);overflow-wrap:anywhere}
 .telemetry-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:14px;margin-top:14px}.telemetry-grid .panel{padding-bottom:20px}.telemetry-grid .panel>div:not(.panel-heading),.telemetry-grid .panel>p,.telemetry-grid .panel>h3,.telemetry-grid .panel>details{margin-left:20px;margin-right:20px}.telemetry-grid h3{margin-top:20px}#activity-chart{margin-top:20px;display:flex;align-items:end;gap:5px;height:130px;border-bottom:1px solid var(--line);overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}.hour-bin{flex:1 0 24px;height:100%;display:flex;flex-direction:column;justify-content:end;position:relative;min-width:24px}.hour-stack{display:flex;flex-direction:column-reverse;min-height:1px;border-radius:2px 2px 0 0;overflow:hidden}.hour-stack i{display:block;min-height:0;background:var(--cyan)}.hour-stack i.rejected{background:var(--red)}.hour-stack i.deferred{background:var(--orange)}.hour-stack i.failed{background:var(--violet)}.chart-key{display:flex;gap:16px;flex-wrap:wrap;font:10px ui-monospace,monospace;margin-top:12px}.chart-key span:before{content:'■';padding-right:5px}.activity-row{display:grid;grid-template-columns:65px 78px minmax(0,1fr);gap:8px;padding:10px 0;border-top:1px solid var(--line);font-size:11px}.activity-row time{color:var(--muted)}.activity-row a{color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.meter-row{display:grid;grid-template-columns:1fr auto;gap:7px;padding:12px 0;border-bottom:1px solid var(--line)}.meter-row span{font-size:12px}.meter-row strong{font-size:14px;font-weight:500;color:var(--cyan)}.meter-track{grid-column:1/-1;height:4px;background:#213941;overflow:hidden}.meter-track i{display:block;height:100%;background:var(--cyan)}.meter-track i.rejected{background:var(--red)}.meter-track i.deferred{background:var(--orange)}.meter-track i.accepted{background:var(--cyan)}.source-total{font-size:30px;font-weight:500;color:var(--cyan);padding-top:18px}.source-total small{font-size:12px;color:var(--muted);display:block}.evidence-depth{font-size:12px}.source-row{padding:10px 0;border-top:1px solid var(--line);overflow-wrap:anywhere}.source-row small{display:block;color:var(--muted);font-size:11px}.rejection-row{display:grid;grid-template-columns:1fr 24px;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:12px}.rejection-row b{color:var(--red);text-align:right;font-weight:500}
@@ -604,21 +604,18 @@ html.console-detached body{
 }
 .console-module-grid{
   display:grid;
-  grid-template-columns:repeat(12,minmax(0,1fr));
+  grid-template-columns:repeat(var(--console-cols,1),minmax(0,1fr))!important;
   gap:14px;
   align-items:start;
   margin:14px 0 22px;
 }
 .console-module{
-  grid-column:span 6;
+  grid-column:span var(--panel-slots,1)!important;
+  container:console-panel / inline-size;
   min-width:0;
   position:relative;
   transition:box-shadow .16s ease,border-color .16s ease,opacity .16s ease;
 }
-.console-module[data-span="4"]{grid-column:span 4}
-.console-module[data-span="6"]{grid-column:span 6}
-.console-module[data-span="8"]{grid-column:span 8}
-.console-module[data-span="12"]{grid-column:1/-1}
 .console-module .panel-heading{
   cursor:default;
 }
@@ -664,16 +661,12 @@ html.console-detached body{
   outline-offset:-4px;
 }
 .console-module-placeholder{
-  grid-column:span 6;
+  grid-column:span var(--panel-slots,1)!important;
   min-height:150px;
   border:1px dashed color-mix(in srgb,var(--cyan) 65%,transparent);
   border-radius:12px;
   background:rgba(0,217,238,.045);
 }
-.console-module-placeholder[data-span="4"]{grid-column:span 4}
-.console-module-placeholder[data-span="6"]{grid-column:span 6}
-.console-module-placeholder[data-span="8"]{grid-column:span 8}
-.console-module-placeholder[data-span="12"]{grid-column:1/-1}
 .console-module.module-collapsed{
   min-height:0!important;
 }
@@ -714,10 +707,6 @@ html.console-tool-window .console-tools{
 }
 html.console-tool-window #console-tool-frame{
   border-radius:0 0 12px 12px;
-}
-@media(max-width:1100px){
-  .console-module[data-span="4"]{grid-column:span 6}
-  .console-module[data-span="8"]{grid-column:span 12}
 }
 @media(max-width:760px){
   html.console-detached body{min-width:0}
@@ -764,10 +753,6 @@ html.console-tool-window #console-tool-frame{
   justify-self:stretch!important;
   overflow:visible!important;
 }
-.console-module-grid > .console-module[data-span="4"]{grid-column:span 4!important}
-.console-module-grid > .console-module[data-span="6"]{grid-column:span 6!important}
-.console-module-grid > .console-module[data-span="8"]{grid-column:span 8!important}
-.console-module-grid > .console-module[data-span="12"]{grid-column:1/-1!important}
 .console-module-grid > .console-module.detail-panel,
 .console-module-grid > .console-module.timeline-panel,
 .console-module-grid > .console-module.frontier-panel,
@@ -791,10 +776,7 @@ html.console-tool-window #console-tool-frame{
   height:auto!important;
   overflow:visible!important;
 }
-.console-module-grid .panel-heading{
-  position:relative!important;
-  z-index:2!important;
-}
+
 .console-module-grid canvas,
 .console-module-grid svg{
   max-width:100%;
@@ -1373,33 +1355,9 @@ html.console-tool-window #console-tool-frame{
 }
 
 
-/* CONSOLE FIT + CONTROL HIERARCHY — 2026-10-05
-   Keep visualizations fully visible inside their modules; controls get their own row. */
-.console-module-grid .panel-heading.map-heading,
-.console-module-grid .panel-heading{
-  display:grid!important;
-  grid-template-columns:minmax(0,1fr) auto!important;
-  align-items:start!important;
-  gap:10px 12px!important;
-}
-.console-module-grid .panel-heading>.mode-control{
-  grid-column:1/-1!important;
-  grid-row:2!important;
-  justify-content:flex-start!important;
-  flex-wrap:wrap!important;
-  min-width:0!important;
-}
-.console-module-grid .panel-heading>.module-controls{
-  grid-column:2!important;
-  grid-row:1!important;
-  align-self:start!important;
-}
-.console-module-grid .panel-heading>div:first-child{
-  min-width:0!important;
-}
-.console-module-grid .panel-heading h2{
-  overflow-wrap:anywhere;
-}
+
+
+
 
 /* Restore fit-to-panel graphs: no horizontal chart/map scrolling. */
 .research-page .map-stage{
@@ -1440,12 +1398,8 @@ html.console-tool-window #console-tool-frame{
   align-items:end!important;
 }
 @media(max-width:900px){
-  .console-module-grid .panel-heading>.mode-control{
-    gap:6px!important;
-  }
-  .console-module-grid .panel-heading>.mode-control button{
-    min-width:44px;
-  }
+
+
 }
 
 
@@ -1560,28 +1514,6 @@ body.research-page::after{
 }
 
 
-/* COMPACT PANEL TOOLBARS — 2026-10-05
-   Controls belong beside the title. Glyphs stay square; labels hug content. */
-.console-module-grid .panel-heading.map-heading,
-.console-module-grid .panel-heading{
-  display:grid!important;
-  grid-template-columns:minmax(0,1fr) auto!important;
-  grid-template-rows:auto!important;
-  align-items:start!important;
-  gap:8px 12px!important;
-}
-.console-module-grid .panel-heading>.mode-control{
-  grid-column:2!important;
-  grid-row:1!important;
-  align-self:start!important;
-  justify-self:end!important;
-  display:flex!important;
-  width:auto!important;
-  max-width:min(100%,420px)!important;
-  flex-wrap:wrap!important;
-  justify-content:flex-end!important;
-  gap:5px!important;
-}
 .research-page .mode-control button{
   width:auto!important;
   min-width:0!important;
@@ -1596,20 +1528,8 @@ body.research-page::after{
   padding:0!important;
 }
 @media(max-width:760px){
-  .console-module-grid .panel-heading.map-heading,
-  .console-module-grid .panel-heading{
-    grid-template-columns:minmax(0,1fr) auto!important;
-  }
-  .console-module-grid .panel-heading>.mode-control{
-    grid-column:2!important;
-    grid-row:1!important;
-    display:flex!important;
-    width:auto!important;
-    max-width:52vw!important;
-    flex-wrap:wrap!important;
-    justify-content:flex-end!important;
-    gap:4px!important;
-  }
+
+
   .research-page .mode-control button{
     width:auto!important;
     min-width:0!important;
@@ -1689,20 +1609,8 @@ body.research-page::after{
 .research-page .map-node:focus rect,
 .research-page .map-node:hover rect{stroke:#73c7ff!important}
 
-/* Give module chrome and panel-specific controls separate lanes. */
-.console-module-grid .panel-heading{
-  grid-template-columns:minmax(0,1fr) auto!important;
-  grid-template-rows:auto auto!important;
-}
-.console-module-grid .panel-heading>.module-controls{
-  grid-column:2!important;grid-row:1!important;
-}
-.console-module-grid .panel-heading>.mode-control{
-  grid-column:1/-1!important;grid-row:2!important;
-  justify-self:end!important;
-  max-width:100%!important;
-  margin-top:2px!important;
-}
+
+
 
 
 /* AUTHORITATIVE CONSOLE PALETTE — electric baby blue + glowing orange wireframe */
@@ -1802,97 +1710,7 @@ body.research-page::after{content:none!important;display:none!important;backgrou
   content:none!important;
   display:none!important;
 }
-/* Desktop/tablet modules pack independently into columns instead of inheriting row height. */
-@media(min-width:768px){
-  .console-module-grid{
-    display:block!important;
-    column-count:2;
-    column-gap:14px;
-  }
-  .console-module-grid>.console-module{
-    display:inline-block!important;
-    width:100%!important;
-    margin:0 0 14px!important;
-    break-inside:avoid!important;
-    page-break-inside:avoid!important;
-  }
-}
-@media(min-width:1500px){
-  .console-module-grid{column-count:3}
-}
-@media(max-width:767px){
-  .console-module-grid{display:grid!important;grid-template-columns:1fr!important}
-}
-
-/* REPAIR PACKING — restore span-aware grid; JS compacts modules into open cells. */
-@media(min-width:768px){
-  .console-module-grid{
-    display:grid!important;
-    column-count:initial!important;
-    grid-template-columns:repeat(12,minmax(0,1fr))!important;
-    grid-auto-flow:row!important;
-    gap:14px!important;
-    align-items:start!important;
-  }
-  .console-module-grid>.console-module{
-    display:block!important;
-    width:auto!important;
-    margin:0!important;
-    break-inside:auto!important;
-  }
-  .console-module-grid>.console-module[data-span="4"]{grid-column:span 4!important}
-  .console-module-grid>.console-module[data-span="6"]{grid-column:span 6!important}
-  .console-module-grid>.console-module[data-span="8"]{grid-column:span 8!important}
-  .console-module-grid>.console-module[data-span="12"]{grid-column:1/-1!important}
-}
-
-/* ACTION BUTTONS — actions size to content; inspectors remain visibly dismissible. */
-.research-page #show-projects,
-.research-page #show-latest-receipt{
-  width:auto!important;
-  max-width:max-content!important;
-  justify-self:start!important;
-  padding:7px 12px!important;
-  min-height:34px!important;
-  white-space:nowrap!important;
-}
-.research-page .notebook-panel>.panel-heading #show-projects{
-  grid-column:1!important;
-  grid-row:2!important;
-}
-.research-page #close-data-inspector,
-.research-page #close-inspector,
-.research-page .close-wake{
-  width:auto!important;
-  max-width:max-content!important;
-}
-
-/* ULTRAWIDE DENSITY — use horizontal room for modules, not stretched cards. */
-@media(min-width:2200px){
-  .research-page main{padding-left:clamp(28px,3vw,72px)!important;padding-right:clamp(28px,3vw,72px)!important}
-  .console-module-grid{gap:16px!important}
-  .console-module-grid>.console-module[data-span="12"]:not(.process-field-panel){
-    grid-column-end:span var(--packed-span,6)!important;
-  }
-  .console-module-grid>.process-field-panel{grid-column:1/-1!important}
-}
-
-/* RESPONSIVE LOGICAL PANEL GRID — 2 tablet, 3 compact desktop, 4 desktop, 6 ultrawide. */
-@media(min-width:768px){
-  .console-module-grid{
-    grid-template-columns:repeat(var(--console-cols,2),minmax(0,1fr))!important;
-    grid-auto-flow:row!important;
-  }
-  .console-module-grid>.console-module{
-    grid-column-end:span var(--panel-slots,1)!important;
-    min-width:0!important;
-  }
-  .console-module-grid>.process-field-panel{grid-column:1/-1!important}
-}
-
 /* WORKSPACE CONTROL REPAIR — every module, including Process Field, keeps its controls. */
-.console-module-grid>.console-module{grid-column-end:span var(--panel-slots,1)!important}
-.console-module-grid>.process-field-panel{grid-column-end:span var(--panel-slots,1)!important}
 .console-module-grid .panel-heading>.module-controls{
   display:flex!important;
   visibility:visible!important;
@@ -1928,7 +1746,7 @@ body.research-page::after{content:none!important;display:none!important;backgrou
   .research-workspace>.detail-panel.has-selection{
     display:block!important;
     position:fixed!important;
-    top:92px!important;
+    top:var(--console-inspector-top,20px)!important;
     right:14px!important;
     bottom:14px!important;
     left:auto!important;
@@ -2049,37 +1867,14 @@ body.research-page::after{content:none!important;display:none!important;backgrou
 }
 
 
-/* DEFAULT CONSOLE COMPOSITION — Research Landscape uses every available workspace column up to the inspection rail. */
-.console-module-grid{
-  width:100%!important;
-  max-width:none!important;
-}
-.console-module-grid>.map-panel[data-span="12"]{
-  grid-column:1/-1!important;
-  width:100%!important;
-  max-width:none!important;
-  justify-self:stretch!important;
-}
-@media(min-width:1200px){
-  .console-module-grid>.map-panel[data-span="12"]{
-    grid-column:1/-1!important;
-  }
-}
-
-
 /* CONSOLE VISUAL CONTRACT — 2026-10-06 screenshot-verified repairs. */
 /* Keep a visible seam after Process Field even when JS assigns explicit grid rows. */
 .console-module-grid>.process-field-panel{margin-bottom:16px!important}
 
-/* Workspace controls must remain visible at every viewport size. */
-.console-module-grid>.console-module>.panel-heading{position:relative!important;padding-right:124px!important}
-.console-module-grid>.console-module>.panel-heading>.module-controls{
-  display:flex!important;position:absolute!important;top:12px!important;right:12px!important;
-  z-index:50!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important;
-}
+
 @media(max-width:760px){
-  .console-module-grid>.console-module>.panel-heading{padding-right:118px!important}
-  .console-module-grid>.console-module>.panel-heading>.module-controls{top:10px!important;right:10px!important}
+
+
   .console-module-grid .module-size{display:inline-flex!important}
 }
 
@@ -2093,7 +1888,101 @@ body.research-page::after{content:none!important;display:none!important;backgrou
 .research-page .chart-key .deferred{color:var(--orange)!important}
 .research-page .chart-key .failed{color:var(--violet)!important}
 
-/* Research Landscape consumes the complete workspace width before the fixed inspection rail. */
-.console-module-grid>.map-panel{
-  grid-column:1/-1!important;width:100%!important;max-width:none!important;justify-self:stretch!important;
+/* Panel content responds to its own width, including user resize preferences. */
+@container console-panel (max-width:640px){
+  .cube-workspace{grid-template-columns:1fr}
+  .cube-readout{padding:12px 16px}
+  .context-map-space{grid-template-columns:1fr}
+  #context-map-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:0 16px}
+}
+
+/* Dedicated panel windows retain the live presentation and its interactions. */
+.console-panel-window body.research-page>.research-header.masthead,
+.console-panel-window .console-workspace-controls,
+.console-panel-window #main>:not(#console-module-grid):not(.panel-popout-target):not(#data-inspector),
+.console-panel-window #console-module-grid>:not(.panel-popout-target){display:none!important}
+.console-panel-window #main{padding:20px!important;margin:0!important;max-width:none!important}
+.console-panel-window #console-module-grid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;margin:0!important;width:100%!important}
+.console-panel-window .panel-popout-target{grid-column:1!important;width:100%!important;margin:0!important}
+.console-panel-window .detail-panel.panel-popout-target{position:relative!important;inset:auto!important;max-height:none!important;display:block!important}
+.console-panel-window #console-module-grid .module-drag{display:none!important}
+
+/* The inspector's dismissal shares the action row instead of floating over it. */
+body.research-page .detail-panel .console-panel-heading #close-inspector{
+ position:static!important;inset:auto!important;margin:0!important;transform:none!important;
+}
+
+/* A panel window scrolls inside its frame, with an equal viewport inset. */
+.console-panel-window body.research-page{height:100dvh;overflow:hidden;background:#020a11!important}
+.console-panel-window body.research-page::before,
+.console-panel-window body.research-page::after{display:none!important}
+.console-panel-window body.research-page #main{box-sizing:border-box!important;height:100dvh!important;width:100%!important;padding:20px!important;overflow:hidden}
+.console-panel-window #console-module-grid{height:100%!important;min-height:0!important}
+.console-panel-window #console-module-grid:not(:has(.panel-popout-target)){display:none!important}
+.console-panel-window body.research-page .panel-popout-target{
+ box-sizing:border-box!important;height:calc(100dvh - 40px)!important;max-height:calc(100dvh - 40px)!important;
+ min-height:0!important;overflow:auto!important;background:#030a13!important;
+}
+.console-panel-window .panel-popout-target>.console-panel-heading{flex-shrink:0;position:sticky!important;top:0;z-index:3;background:#030a13!important}
+.console-panel-window .process-field-panel.panel-popout-target{display:flex!important;flex-direction:column!important}
+.console-panel-window .process-field-panel .process-field-grid{flex:1;min-height:0!important;overflow:auto}
+.console-panel-window .process-field-panel .process-field-canvas-wrap{height:100%!important;min-height:0!important}
+.console-panel-window .process-field-panel #process-field-canvas{height:100%!important;min-height:0!important}
+.console-panel-window .process-field-panel .process-field-readout{min-height:0;overflow:auto}
+.console-panel-window .process-field-panel .process-field-legend{flex-shrink:0}
+@container console-panel (max-width:640px){
+ .console-panel-window .process-field-panel .process-field-grid{grid-template-rows:minmax(220px,1fr) auto}
+}
+
+/* Meter fills use the same category palette as their adjacent rings. */
+.research-page #outcomes .meter-track>i.accepted{background:var(--cyan)!important}
+.research-page #outcomes .meter-track>i.rejected{background:var(--red)!important}
+.research-page #outcomes .meter-track>i.deferred{background:var(--orange)!important}
+.research-page #outcomes .meter-track>i.failed{background:var(--violet)!important}
+.research-page #evidence-summary .meter-track>i{background:var(--muted)!important}
+.research-page #evidence-summary .meter-row:has([data-evidence-class="Source-ready records"]) .meter-track>i{background:var(--cyan)!important}
+.research-page #evidence-summary .meter-row:has([data-evidence-class="Discovery leads"]) .meter-track>i,
+.research-page #evidence-summary .meter-row:has([data-evidence-class="Metadata records"]) .meter-track>i{background:var(--orange)!important}
+
+/* Stable panel references remain readable alongside the section label. */
+.research-page .eyebrow .panel-id{display:inline-block;text-transform:none;letter-spacing:.03em}
+
+/* Console headers share one title stack and one wrapping action row. */
+.research-page .panel>.console-panel-heading{
+ display:flex!important;flex-direction:row!important;flex-wrap:wrap!important;align-items:center!important;
+ justify-content:space-between!important;align-content:start!important;gap:10px 16px!important;padding:18px 20px!important;
+}
+.research-page .console-panel-heading>.panel-title{
+ flex:1 1 200px;min-width:0;display:flex;flex-direction:column;gap:6px;
+}
+.research-page .console-panel-heading .panel-title>.eyebrow{margin:0!important}
+.research-page .console-panel-heading .panel-title>h2{margin:0!important;overflow-wrap:anywhere}
+.research-page .console-panel-heading>.panel-actions{
+ display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:6px;max-width:100%;margin-left:auto;
+}
+.research-page .console-panel-heading .panel-actions>.mode-control,
+.research-page .console-panel-heading .panel-actions>.module-controls{
+ display:flex!important;flex-wrap:wrap!important;align-items:center!important;
+ position:static!important;margin:0!important;gap:6px!important;max-width:100%!important;
+}
+.research-page .panel>.console-panel-heading .panel-actions button{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ height:32px!important;min-height:32px!important;padding:0 10px!important;
+ font-size:11px!important;line-height:1!important;white-space:nowrap;
+}
+.research-page .panel>.console-panel-heading .module-controls button{
+ width:32px!important;min-width:32px!important;padding:0!important;
+}
+.research-page .notebook-panel .synthesis-grid{
+ grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))!important;
+}
+.research-page .synthesis-item{min-width:0;overflow-wrap:anywhere}
+
+
+/* Keep the floated dismissal control above the following inspector content. */
+.research-page #close-data-inspector{position:relative;z-index:2}
+
+@container console-panel (max-width:640px){
+ .research-page .console-panel-heading>.panel-title{flex:0 0 100%}
+ .research-page .console-panel-heading>.panel-actions{flex:0 0 100%;margin:0;justify-content:flex-start}
 }
