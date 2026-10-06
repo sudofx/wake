@@ -2047,3 +2047,21 @@ body.research-page::after{content:none!important;display:none!important;backgrou
   .research-page .page-intro{padding:14px!important}
   .console-module-grid{gap:14px!important;row-gap:14px!important}
 }
+
+
+/* DEFAULT CONSOLE COMPOSITION — Research Landscape uses every available workspace column up to the inspection rail. */
+.console-module-grid{
+  width:100%!important;
+  max-width:none!important;
+}
+.console-module-grid>.map-panel[data-span="12"]{
+  grid-column:1/-1!important;
+  width:100%!important;
+  max-width:none!important;
+  justify-self:stretch!important;
+}
+@media(min-width:1200px){
+  .console-module-grid>.map-panel[data-span="12"]{
+    grid-column:1/-1!important;
+  }
+}
