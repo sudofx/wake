@@ -1902,7 +1902,7 @@ body.research-page::after{content:none!important;display:none!important;backgrou
   flex:0 0 auto!important;
 }
 .console-module-grid .module-controls button{display:inline-flex!important}
-.console-module-grid>.process-field-panel{margin-bottom:8px!important}
+.console-module-grid>.process-field-panel{margin-bottom:14px!important}
 
 /* INLINE WAKE BRAND MARK — panel/header references match the masthead identity. */
 .research-page .panel-heading .wake-inline-mark{
