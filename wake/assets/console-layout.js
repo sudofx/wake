@@ -21,6 +21,7 @@
   if(!main||!status)return;
 
   const sourceSelectors=[
+    '#main > .process-field-panel',
     '.story-grid > .panel',
     '.instruments-grid > .panel',
     '.research-workspace > .panel:not(.detail-panel)',
