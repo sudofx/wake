@@ -23,7 +23,7 @@
   const sourceSelectors=[
     '.story-grid > .panel',
     '.instruments-grid > .panel',
-    '.research-workspace > .panel',
+    '.research-workspace > .panel:not(.detail-panel)',
     '.telemetry-grid > .panel',
     '#main > .notebook-panel'
   ];
