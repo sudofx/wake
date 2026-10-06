@@ -95,6 +95,19 @@
   };
   applyState();
 
+  const pack=()=>{
+    if(matchMedia('(max-width:767px)').matches){[...grid.children].forEach(p=>{p.style.gridRow='';p.style.gridColumnStart='';});return;}
+    const cols=12,occupied=[];
+    const free=(row,col,span)=>{for(let c=col;c<col+span;c++)if(occupied[row]?.[c])return false;return true;};
+    const claim=(row,col,span)=>{occupied[row]??=Array(cols).fill(false);for(let c=col;c<col+span;c++)occupied[row][c]=true;};
+    [...grid.children].forEach(panel=>{
+      const span=Math.min(cols,Number(panel.dataset.span||6));let row=0,col=0,placed=false;
+      while(!placed){for(col=0;col<=cols-span;col++){if(free(row,col,span)){claim(row,col,span);panel.style.gridRow=String(row+1);panel.style.gridColumnStart=String(col+1);placed=true;break;}}if(!placed)row++;}
+    });
+  };
+  pack();
+  window.addEventListener('resize',()=>requestAnimationFrame(pack));
+
   const spanCycle=[4,6,8,12];
   grid.addEventListener('click',event=>{
     const panel=event.target.closest('.console-module');
@@ -104,13 +117,13 @@
     if(size){
       const current=Number(panel.dataset.span||6),idx=spanCycle.indexOf(current);
       panel.dataset.span=String(spanCycle[(idx+1)%spanCycle.length]);
-      writeState();
+      writeState();pack();
     }
     if(collapse){
       const collapsed=panel.classList.toggle('module-collapsed');
       collapse.setAttribute('aria-expanded',String(!collapsed));
       collapse.textContent=collapsed?'+':'−';
-      writeState();
+      writeState();pack();
     }
   });
 
@@ -155,7 +168,7 @@
     dragging.classList.remove('module-dragging');
     document.body.classList.remove('console-is-dragging');
     dragging=null;placeholder=null;pointerId=null;
-    writeState();
+    writeState();pack();
   };
   grid.addEventListener('pointerup',finish);
   grid.addEventListener('pointercancel',finish);
