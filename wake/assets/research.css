@@ -1958,3 +1958,41 @@ body.research-page::after{content:none!important;display:none!important;backgrou
 .console-module-grid>.process-field-panel + .matrix-panel{
   margin-top:0!important;
 }
+
+/* AUTHORITATIVE SCROLL + MODULE CHROME — newest data starts at the right edge. */
+.console-module-grid .module-controls{
+  display:flex!important;visibility:visible!important;opacity:1!important;
+  position:relative!important;z-index:20!important;
+}
+.console-module-grid .module-controls button{
+  display:inline-flex!important;visibility:visible!important;opacity:1!important;
+  width:32px!important;height:30px!important;min-width:32px!important;
+}
+.research-page .timeline-scroll,
+.research-page .map-stage,
+.research-page #activity-chart{
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  overscroll-behavior-x:contain!important;
+  -webkit-overflow-scrolling:touch!important;
+  scrollbar-gutter:stable!important;
+}
+.research-page .timeline-scroll{padding-bottom:8px!important}
+.research-page .timeline-scroll .instrument-chart{
+  width:var(--chart-width)!important;
+  min-width:100%!important;
+  max-width:none!important;
+}
+.research-page #research-map{min-width:640px!important;max-width:none!important}
+.research-page #activity-chart{
+  display:flex!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  padding-bottom:8px!important;
+}
+.research-page #activity-chart .hour-bin{
+  flex:0 0 24px!important;
+  min-width:24px!important;
+}
+.timeline-scroll-hint{display:block!important}
