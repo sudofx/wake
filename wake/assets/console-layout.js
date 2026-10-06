@@ -29,8 +29,6 @@
   ];
   const panels=[...document.querySelectorAll(sourceSelectors.join(','))];
   if(!panels.length)return;
-  // research.js binds several controls against the authored DOM. Build the detachable grid only after its first render.
-  if(!window.__wakeResearchReady){window.addEventListener('wake-research-ready',()=>location.reload(),{once:true});return;}
 
   const grid=document.createElement('section');
   grid.id='console-module-grid';
@@ -67,8 +65,6 @@
     grid.append(panel);
   });
   originalParents.forEach(parent=>{if(parent&&parent!==main)parent.classList.add('console-layout-source-empty');});
-  // Rehydrate projection-driven modules after DOM composition. This replaces the manual Refresh record step.
-  setTimeout(()=>document.getElementById('refresh')?.click(),350);
 
   const readState=()=>{
     try{return JSON.parse(localStorage.getItem(STORAGE)||'{}')||{};}catch{return {};}
@@ -166,7 +162,7 @@
 
   const toolbarRow=document.createElement('div');
   toolbarRow.className='console-workspace-controls';
-  toolbarRow.innerHTML=`<span>${detached?'DETACHED WORKSPACE':'CONSOLE WORKSPACE'}</span><div class="console-workspace-actions"><button id="global-motion-toggle" class="global-motion-toggle" type="button" aria-pressed="false" title="Enable presentation motion">Motion off</button><button id="reset-console-layout" type="button">Reset layout</button></div>`;
+  toolbarRow.innerHTML=`<span>${detached?'DETACHED WORKSPACE':'CONSOLE WORKSPACE'}</span><div class="console-workspace-actions"><button id="reset-console-layout" type="button">Reset layout</button></div>`;
   status.before(toolbarRow);
   toolbarRow.querySelector('#reset-console-layout').addEventListener('click',()=>{
     try{localStorage.removeItem(STORAGE);}catch{}
