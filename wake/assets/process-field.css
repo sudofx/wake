@@ -36,3 +36,12 @@ radial-gradient(circle at 50% 50%,rgba(182,155,255,.035),transparent 48%)}
  .process-field-warning{margin-left:0}
 }
 @media(prefers-reduced-motion:reduce){#process-field-canvas{scroll-behavior:auto}}
+#process-field-canvas{touch-action:pan-y;cursor:grab}
+#process-field-canvas.is-dragging{cursor:grabbing}
+.process-field-controls{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.process-field-selection{margin:0 0 12px;padding:9px 10px;border:1px solid var(--line);background:rgba(2,12,18,.58);color:var(--ink);font:9px/1.45 ui-monospace,monospace;overflow-wrap:anywhere}
+.process-stage{cursor:pointer;user-select:none}
+.process-stage.selected{background:rgba(0,217,238,.06)}
+.process-stage.selected strong{color:var(--orange)}
+.process-stage:focus-visible{outline:1px solid var(--cyan);outline-offset:2px}
+@media(max-width:700px){.process-field-controls button{min-height:38px}.process-field-selection{grid-column:1/-1}}
