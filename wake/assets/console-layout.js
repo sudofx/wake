@@ -99,8 +99,7 @@
     const w=innerWidth;
     if(w>=2600)return {cols:6};
     if(w>=1500)return {cols:4};
-    if(w>=1050)return {cols:3};
-    if(w>=768)return {cols:2};
+    if(w>=768)return {cols:3};
     return {cols:1};
   };
   const spanToSlots=(span,cols,panel)=>{
