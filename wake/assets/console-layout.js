@@ -29,6 +29,8 @@
   ];
   const panels=[...document.querySelectorAll(sourceSelectors.join(','))];
   if(!panels.length)return;
+  // research.js binds several controls against the authored DOM. Build the detachable grid only after its first render.
+  if(!window.__wakeResearchReady){window.addEventListener('wake-research-ready',()=>location.reload(),{once:true});return;}
 
   const grid=document.createElement('section');
   grid.id='console-module-grid';
