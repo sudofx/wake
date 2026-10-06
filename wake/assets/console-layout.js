@@ -21,6 +21,27 @@
   const toolbar=document.querySelector('.workspace-toolbar');
   if(!main||!status)return;
 
+  // Keep the desktop inspection rail level with the Console introduction.
+  const inspector=document.querySelector('.research-workspace > .detail-panel');
+  const intro=main.querySelector('.page-intro');
+  const header=document.querySelector('.research-header');
+  const alignInspector=()=>{
+    if(!inspector||!intro)return;
+    if(innerWidth<1200){inspector.style.removeProperty('top');return;}
+    const headerBottom=header?.getBoundingClientRect().bottom||0;
+    const inset=parseFloat(getComputedStyle(main).paddingTop)||0;
+    inspector.style.setProperty('top',Math.max(intro.getBoundingClientRect().top,headerBottom+inset)+'px','important');
+  };
+  alignInspector();
+  window.addEventListener('resize',()=>requestAnimationFrame(alignInspector));
+  window.addEventListener('scroll',()=>requestAnimationFrame(alignInspector),{passive:true});
+  if(typeof ResizeObserver!=='undefined'){
+    const observer=new ResizeObserver(alignInspector);
+    if(header)observer.observe(header);
+    observer.observe(intro);
+  }
+
+
   const sourceSelectors=[
     '#main > .process-field-panel',
     '.story-grid > .panel',
@@ -142,7 +163,7 @@
       const slots=spanToSlots(panel.dataset.span,cols,panel);
       panel.style.setProperty('--panel-slots',String(slots));
       let row=0,col=0,placed=false;
-      while(!placed){for(col=0;col<=cols-slots;col++){if(free(row,col,slots)){claim(row,col,slots);panel.style.gridRow=String(row+1);panel.style.gridColumn=\`${col+1} / span ${slots}\`;placed=true;break;}}if(!placed)row++;}
+      while(!placed){for(col=0;col<=cols-slots;col++){if(free(row,col,slots)){claim(row,col,slots);panel.style.gridRow=String(row+1);panel.style.gridColumn=`${col+1} / span ${slots}`;placed=true;break;}}if(!placed)row++;}
     });
   };
   pack();
