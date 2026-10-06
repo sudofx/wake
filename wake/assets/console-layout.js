@@ -67,6 +67,8 @@
     grid.append(panel);
   });
   originalParents.forEach(parent=>{if(parent&&parent!==main)parent.classList.add('console-layout-source-empty');});
+  // Rehydrate projection-driven modules after DOM composition. This replaces the manual Refresh record step.
+  setTimeout(()=>document.getElementById('refresh')?.click(),350);
 
   const readState=()=>{
     try{return JSON.parse(localStorage.getItem(STORAGE)||'{}')||{};}catch{return {};}
