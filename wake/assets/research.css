@@ -1845,3 +1845,24 @@ body.research-page::after{content:none!important;display:none!important;backgrou
   .console-module-grid>.console-module[data-span="8"]{grid-column:span 8!important}
   .console-module-grid>.console-module[data-span="12"]{grid-column:1/-1!important}
 }
+
+/* ACTION BUTTONS — actions size to content; inspectors remain visibly dismissible. */
+.research-page #show-projects,
+.research-page #show-latest-receipt{
+  width:auto!important;
+  max-width:max-content!important;
+  justify-self:start!important;
+  padding:7px 12px!important;
+  min-height:34px!important;
+  white-space:nowrap!important;
+}
+.research-page .notebook-panel>.panel-heading #show-projects{
+  grid-column:1!important;
+  grid-row:2!important;
+}
+.research-page #close-data-inspector,
+.research-page #close-inspector,
+.research-page .close-wake{
+  width:auto!important;
+  max-width:max-content!important;
+}
