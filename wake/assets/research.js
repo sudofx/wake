@@ -225,7 +225,24 @@
     const n=nodeById.get(id),d=n?.detail||{};
     return syncCubeToWake(d.updated_by||d.created_by||d.resolved_by||'');
   }
-  function chooseWake(id, floating=false) {selectedWake=id;followLatest=false;writeUrl();syncCubeToWake(id);renderWake();$('wake-detail').classList.toggle('floating',floating);if(floating)$('wake-inspector-title')?.focus({preventScroll:true});}
+  function recordForWake(id) {
+    if(!id)return null;
+    return data?.graph?.nodes?.find(n=>{
+      const d=n.detail||{};
+      return d.updated_by===id||d.created_by===id||d.resolved_by===id;
+    })||null;
+  }
+  function broadcastSelection(recordId='',wakeId='') {
+    window.dispatchEvent(new CustomEvent('wake-console-selection',{detail:{recordId,wakeId}}));
+  }
+  function chooseWake(id, floating=false) {
+    selectedWake=id;followLatest=false;
+    const related=recordForWake(id);
+    if(related){selected=related.id;renderMap();renderDetail();}
+    writeUrl();syncCubeToWake(id);broadcastSelection(related?.id||'',id);renderWake();
+    $('wake-detail').classList.toggle('floating',floating);
+    if(floating)$('wake-inspector-title')?.focus({preventScroll:true});
+  }
   function renderWake() {
     const wakes=data.wakes || [], w=followLatest?wakes[0]:wakes.find(w=>w.id===selectedWake);
     document.querySelectorAll('[data-wake-tab]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.wakeTab===wakeTab)));
@@ -262,9 +279,10 @@
     document.querySelectorAll('[data-context-view]').forEach(b=>b.onclick=()=>{contextMap.view(b.dataset.contextView);document.querySelectorAll('[data-context-view]').forEach(o=>o.setAttribute('aria-pressed',String(o===b)));});
     document.querySelectorAll('[data-frontier-state]').forEach(b=>b.onclick=()=>{frontierState=b.dataset.frontierState;renderFrontierTable();});
     document.addEventListener('click',e=>{const t=e.target.closest('[data-story-topic]');if(t){topic=t.dataset.storyTopic;selected='';query='';writeUrl();render();inspectRecords(label(topic),scopedNodes(),'Recorded research in this topic.');}});
-    $('close-data-inspector').onclick=()=>{$('data-inspector').hidden=true;};
-    $('close-inspector').onclick=()=>{document.querySelector('.detail-panel').classList.remove('reader-floating');selected='';writeUrl();renderMap();renderDetail();};
-    $('latest-wake').onclick=()=>{followLatest=true;selectedWake='';wakeTab='summary';const id=data?.wakes?.[0]?.id||'';syncCubeToWake(id);writeUrl();renderWake();};
+    const closeDataInspector=event=>{event?.preventDefault();event?.stopPropagation();const inspector=$('data-inspector');inspector.hidden=true;inspector.setAttribute('aria-hidden','true');};
+    $('close-data-inspector').onclick=closeDataInspector;
+    $('close-inspector').onclick=()=>{document.querySelector('.detail-panel').classList.remove('reader-floating');selected='';writeUrl();renderMap();renderDetail();broadcastSelection('',selectedWake&&!followLatest?selectedWake:'');};
+    $('latest-wake').onclick=()=>{followLatest=true;selectedWake='';wakeTab='summary';const id=data?.wakes?.[0]?.id||'',related=recordForWake(id);if(related){selected=related.id;renderMap();renderDetail();}syncCubeToWake(id);broadcastSelection(related?.id||'',id);writeUrl();renderWake();};
     $('show-latest-receipt').onclick=()=>{wakeTab='receipt';chooseWake(data?.wakes?.[0]?.id||'',true);requestAnimationFrame(()=>$('wake-detail')?.scrollIntoView({block:'nearest'}));};
     $('show-projects').onclick=()=>{inspectRecords('Research projects',data.graph.nodes.filter(n=>n.kind==='project'),'Current projects in the bounded overview. Select one to inspect its contents and relationships.');requestAnimationFrame(()=>$('data-inspector')?.scrollIntoView({block:'nearest'}));};
     document.addEventListener('click',e=>{const outcome=e.target.closest('[data-outcome]'),evidence=e.target.closest('[data-evidence-class]');if(outcome)inspectWakes(`${outcome.dataset.outcome} invocations`,(data.wakes||[]).filter(w=>w.status===outcome.dataset.outcome),`${count(data.metrics.outcomes[outcome.dataset.outcome])} across the durable record; traces are limited to the latest ${count(data.wakes?.length)} invocations.`);if(evidence){const classes={'Source-ready records':'source','Discovery leads':'discovery','Metadata records':'metadata','Runtime receipts':'receipt','Unreadable material':'unreadable','Unclassified records':'unclassified'};inspectRecords(evidence.dataset.evidenceClass,data.graph.nodes.filter(n=>n.kind==='evidence'&&n.detail.evidence_class===classes[evidence.dataset.evidenceClass]),'These are cited records in the bounded research graph; the count includes the full evidence population.');}const metric=e.target.closest('[data-metric]'),kind=e.target.closest('[data-kind]'),hour=e.target.closest('[data-hour]');if(metric)inspectMetric(metric.dataset.metric);if(kind){focusedKinds=kind.dataset.kind.split(',');const list=scopedNodes().filter(n=>focusedKinds.includes(n.kind));const i=list.findIndex(n=>n.id===selected);if(list.length)choose(list[(i+1)%list.length].id);else{renderMap();inspectRecords('No records in this category',[]);}}if(hour)inspectHour(hour.dataset.hour,true);const w=e.target.closest('[data-wake]'),tab=e.target.closest('[data-wake-tab]');if(w&&w.dataset.wake&&!w.hasAttribute('data-hour')){$('data-inspector').hidden=true;wakeTab='summary';chooseWake(w.dataset.wake,true);}if(tab){wakeTab=tab.dataset.wakeTab;writeUrl(false);renderWake();}if(e.target.closest('#expand-context')){$('wake-detail').classList.add('floating');$('wake-inspector-title')?.focus({preventScroll:true});}if(e.target.closest('.close-wake'))$('wake-detail').classList.remove('floating');});
@@ -273,6 +291,7 @@
 
   function inspectRecords(title, nodes, note='') {
     $('data-inspector').hidden=false;
+    $('data-inspector').setAttribute('aria-hidden','false');
     $('data-inspector-body').innerHTML=`<h2 tabindex="-1" id="referenced-title">${esc(title)}</h2><p class="caption">${esc(note)}</p>${nodes.map(n=>`<div class="relation-row"><small>${esc(n.kind)}</small><button type="button" data-record="${esc(n.id)}">${esc(n.title)}</button></div>`).join('')||'<p class="empty">No matching records in this bounded overview.</p>'}`;
     $('referenced-title').focus({preventScroll:true});
   }
@@ -340,7 +359,14 @@
     renderFrontierTable();
   }
 
-  function choose(id,floating=false) {document.querySelector('.detail-panel').classList.toggle('reader-floating',floating);$('data-inspector').hidden=true;selected=id;writeUrl();syncCubeToRecord(id);renderMap();renderDetail();$('detail-title').focus({preventScroll:true});}
+  function choose(id,floating=false) {
+    document.querySelector('.detail-panel').classList.toggle('reader-floating',floating);
+    $('data-inspector').hidden=true;$('data-inspector').setAttribute('aria-hidden','true');
+    selected=id;
+    const n=nodeById.get(id),d=n?.detail||{},wakeId=d.updated_by||d.created_by||d.resolved_by||'';
+    if(wakeId){selectedWake=wakeId;followLatest=false;}
+    writeUrl();syncCubeToRecord(id);renderMap();renderDetail();broadcastSelection(id,wakeId);$('detail-title').focus({preventScroll:true});
+  }
   document.addEventListener('click',event=>{const target=event.target.closest('[data-record]');if(target)choose(target.dataset.record,Boolean(target.closest('#data-inspector')));});
   document.querySelector('#outcomes').addEventListener('keydown',e=>{if(['Enter',' '].includes(e.key)&&e.target.matches('[data-outcome]')){e.preventDefault();e.target.dispatchEvent(new MouseEvent('click',{bubbles:true}));}});
   $('research-map').addEventListener('keydown',event=>{if(['Enter',' '].includes(event.key)){const target=event.target.closest('[data-record]');if(target){event.preventDefault();choose(target.dataset.record);}}});
@@ -348,7 +374,7 @@
   $('search').addEventListener('input',()=>{query=$('search').value;writeUrl(false);renderMap();});
   $('refresh').addEventListener('click',refresh);
   window.addEventListener('popstate',()=>{readUrl();if(data)render();});
-  document.addEventListener('keydown',event=>{if(['Enter',' '].includes(event.key)&&event.target.tagName.toLowerCase()==='circle'&&event.target.matches('[data-wake],[data-hour]')){event.preventDefault();event.target.dispatchEvent(new MouseEvent('click',{bubbles:true}));}if(event.key==='Escape'){$('data-inspector').hidden=true;selected='';renderDetail();writeUrl(false);$('wake-detail').classList.remove('floating');document.querySelectorAll('.research-header details[open]').forEach(d=>{d.open=false;d.querySelector('summary').focus();});}});
+  document.addEventListener('keydown',event=>{if(['Enter',' '].includes(event.key)&&event.target.tagName.toLowerCase()==='circle'&&event.target.matches('[data-wake],[data-hour]')){event.preventDefault();event.target.dispatchEvent(new MouseEvent('click',{bubbles:true}));}if(event.key==='Escape'){$('data-inspector').hidden=true;$('data-inspector').setAttribute('aria-hidden','true');selected='';renderMap();renderDetail();writeUrl(false);broadcastSelection('',selectedWake&&!followLatest?selectedWake:'');$('wake-detail').classList.remove('floating');document.querySelectorAll('.research-header details[open]').forEach(d=>{d.open=false;d.querySelector('summary').focus();});}});
   document.querySelectorAll('.research-header details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)document.querySelectorAll('.research-header details').forEach(other=>{if(other!==d)other.open=false;});}));
   document.addEventListener('click',event=>{if(!event.target.closest('.research-header details'))document.querySelectorAll('.research-header details').forEach(d=>d.open=false);});
   let resizeFrame;window.addEventListener('resize',()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{if(data)renderMap();});});
