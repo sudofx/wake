@@ -90,5 +90,15 @@ class ConsolePresentationTests(unittest.TestCase):
         self.assertIn("window.dispatchEvent(new CustomEvent('wake-global-motion'", self.research)
         self.assertIn("DESKTOP INSPECTION RAIL", self.css)
 
+
+    def test_horizontal_history_surfaces_are_scrollable_and_latest_first(self):
+        self.assertIn("AUTHORITATIVE SCROLL + MODULE CHROME", self.css)
+        self.assertIn("overflow-x:auto!important", self.css)
+        self.assertIn("el.scrollLeft=el.scrollWidth-el.clientWidth", self.research)
+        self.assertIn("const el=$('activity-chart')", self.research)
+
+    def test_mobile_deep_tools_open_new_tabs(self):
+        self.assertIn("window.open(url.href,'_blank','noopener')", self.tools)
+
 if __name__ == "__main__":
     unittest.main()
