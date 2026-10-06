@@ -14,7 +14,7 @@
     document.documentElement.classList.add('console-detached');
   }
 
-  const STORAGE='wake-console-workspace-v1';
+  const STORAGE='wake-console-workspace-v2';
   const main=document.getElementById('main');
   const status=document.getElementById('status-band');
   const toolbar=document.querySelector('.workspace-toolbar');
@@ -205,10 +205,10 @@
 
   const toolbarRow=document.createElement('div');
   toolbarRow.className='console-workspace-controls';
-  toolbarRow.innerHTML=`<span>${detached?'DETACHED WORKSPACE':'CONSOLE WORKSPACE'}</span><div class="console-workspace-actions"><button id="reset-console-layout" type="button">Reset layout</button></div>`;
+  toolbarRow.innerHTML=`<span>${detached?'DETACHED WORKSPACE':'CONSOLE WORKSPACE'}</span><div class="console-workspace-actions"><button id="reset-console-layout" type="button" aria-label="Reset Console view to the default panel arrangement">Reset view</button></div>`;
   status.before(toolbarRow);
   toolbarRow.querySelector('#reset-console-layout').addEventListener('click',()=>{
-    try{localStorage.removeItem(STORAGE);}catch{}
+    try{localStorage.removeItem(STORAGE);localStorage.removeItem('wake-console-workspace-v1');}catch{}
     location.reload();
   });
 })();
