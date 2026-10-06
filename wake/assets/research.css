@@ -1748,3 +1748,16 @@ body.research-page::after{content:none!important;display:none!important;backgrou
 .global-motion-toggle[aria-pressed=true]::before{content:"◉"}
 .process-field-controls button[aria-label^="Reset"],
 .matrix-panel .mode-control button[aria-label^="Reset"]{width:32px!important;min-width:32px!important;padding:0!important;font-size:16px!important}
+
+/* Slightly clearer Console glass — let the wireframe read softly through panels. */
+.research-page .panel,
+.research-page .status-band,
+.research-page .status-cell,
+.research-page .research-header.masthead,
+.research-page .console-workspace-controls,
+.research-page .research-footer{
+  background:rgba(3,10,19,.40)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(120%)!important;
+  backdrop-filter:blur(18px) saturate(120%)!important;
+}
+.research-page .panel-heading{background:rgba(3,10,19,.12)!important}
