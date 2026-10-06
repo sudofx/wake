@@ -239,7 +239,7 @@
     selectedWake=id;followLatest=false;
     const related=recordForWake(id);
     if(related){selected=related.id;renderMap();renderDetail();}
-    writeUrl();syncCubeToWake(id);broadcastSelection(related?.id||'',id);renderWake();
+    writeUrl();syncCubeToWake(id);renderWake();broadcastSelection(related?.id||'',id);
     $('wake-detail').classList.toggle('floating',floating);
     if(floating)$('wake-inspector-title')?.focus({preventScroll:true});
   }
