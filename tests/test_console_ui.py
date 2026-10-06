@@ -21,6 +21,13 @@ class ConsolePresentationTests(unittest.TestCase):
         self.assertNotIn("window.open(", self.nav)
         self.assertNotIn("DETACHABLE CONSOLE LINKS", self.nav)
 
+    def test_console_reset_view_restores_default_landscape_width(self):
+        self.assertIn("const STORAGE='wake-console-workspace-v2'", self.layout)
+        self.assertIn('>Reset view</button>', self.layout)
+        self.assertIn("panel.matches('.map-panel,.notebook-panel,.process-field-panel')?12", self.layout)
+        self.assertIn('.console-module-grid>.map-panel[data-span="12"]', self.css)
+        self.assertIn('grid-column:1/-1!important', self.css)
+
     def test_console_itself_has_no_popout_control(self):
         self.assertIn('id="reset-console-layout"', self.layout)
         self.assertNotIn('id="popout-console"', self.layout)
