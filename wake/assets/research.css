@@ -1741,3 +1741,10 @@ body.research-page::after{content:none!important;display:none!important;backgrou
 .research-page .panel-heading{border-bottom-color:rgba(143,211,255,.27)!important}
 .global-motion-toggle{border-color:rgba(143,211,255,.48)!important}
 .global-motion-toggle[aria-pressed=true]{color:#ffb15c!important;border-color:rgba(255,154,50,.72)!important;background:rgba(255,154,50,.10)!important}
+
+/* Universal motion control: one compact label, state conveyed by glyph + pressed styling. */
+.global-motion-toggle{min-width:72px!important}
+.global-motion-toggle::before{content:"▷";display:inline-block;margin-right:6px;font-size:11px}
+.global-motion-toggle[aria-pressed=true]::before{content:"◉"}
+.process-field-controls button[aria-label^="Reset"],
+.matrix-panel .mode-control button[aria-label^="Reset"]{width:32px!important;min-width:32px!important;padding:0!important;font-size:16px!important}
