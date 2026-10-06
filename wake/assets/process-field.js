@@ -232,7 +232,7 @@
   const finishPointer=event=>{if(!pointer||pointer.id!==event.pointerId)return;const rect=canvas.getBoundingClientRect();if(!dragged)hitTest(event.clientX-rect.left,event.clientY-rect.top);canvas.classList.remove('is-dragging');pointer=null;};
   canvas.addEventListener('pointerup',finishPointer);canvas.addEventListener('pointercancel',()=>{canvas.classList.remove('is-dragging');pointer=null;});
   toggle?.addEventListener('click',()=>{});
-  window.addEventListener('wake-global-motion',event=>{motion=Boolean(event.detail?.enabled)&&!reduced;if(!motion&&frame){cancelAnimationFrame(frame);frame=null;}scheduleDraw();});
+  window.addEventListener('wake-global-motion',event=>{motion=Boolean(event.detail?.enabled);if(!motion&&frame){cancelAnimationFrame(frame);frame=null;}scheduleDraw();});
   motion=false;
   const io=new IntersectionObserver(entries=>{visible=entries[0]?.isIntersecting??true;if(visible)scheduleDraw();},{threshold:.02});
   io.observe(panel||canvas);
