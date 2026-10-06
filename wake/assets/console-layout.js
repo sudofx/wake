@@ -98,10 +98,15 @@
   const pack=()=>{
     if(matchMedia('(max-width:767px)').matches){[...grid.children].forEach(p=>{p.style.gridRow='';p.style.gridColumnStart='';});return;}
     const cols=12,occupied=[];
+    const ultrawide=matchMedia('(min-width:2200px)').matches;
     const free=(row,col,span)=>{for(let c=col;c<col+span;c++)if(occupied[row]?.[c])return false;return true;};
     const claim=(row,col,span)=>{occupied[row]??=Array(cols).fill(false);for(let c=col;c<col+span;c++)occupied[row][c]=true;};
     [...grid.children].forEach(panel=>{
-      const span=Math.min(cols,Number(panel.dataset.span||6));let row=0,col=0,placed=false;
+      const stored=Math.min(cols,Number(panel.dataset.span||6));
+      // On ultrawide displays, legacy/default 12-wide modules become useful half-width cards.
+      // Explicit compact spans remain authoritative; the process field stays panoramic.
+      const span=ultrawide&&stored===12&&!panel.matches('.process-field-panel')?6:stored;
+      panel.style.setProperty('--packed-span',String(span));let row=0,col=0,placed=false;
       while(!placed){for(col=0;col<=cols-span;col++){if(free(row,col,span)){claim(row,col,span);panel.style.gridRow=String(row+1);panel.style.gridColumnStart=String(col+1);placed=true;break;}}if(!placed)row++;}
     });
   };
