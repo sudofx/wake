@@ -1996,3 +1996,54 @@ body.research-page::after{content:none!important;display:none!important;backgrou
   min-width:24px!important;
 }
 .timeline-scroll-hint{display:block!important}
+
+
+/* RUNNING-LIST CONSOLE REPAIRS — 2026-10-06 */
+.research-page .page-intro{
+  border:1px solid var(--line)!important;
+  border-radius:10px!important;
+  background:var(--surface)!important;
+  padding:18px 20px!important;
+  overflow:hidden!important;
+}
+.console-module-grid{
+  gap:16px!important;
+  row-gap:16px!important;
+}
+.console-module-grid>.console-module{
+  border-radius:10px!important;
+  overflow:hidden!important;
+}
+.console-module-grid .module-controls{
+  display:flex!important;
+  align-items:center!important;
+  gap:4px!important;
+  visibility:visible!important;
+  opacity:1!important;
+  pointer-events:auto!important;
+  position:relative!important;
+  z-index:30!important;
+}
+.console-module-grid .module-controls button{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  visibility:visible!important;
+  opacity:1!important;
+  pointer-events:auto!important;
+  width:32px!important;
+  min-width:32px!important;
+  height:30px!important;
+  min-height:30px!important;
+  padding:0!important;
+}
+.console-module-grid>.process-field-panel{
+  margin:0!important;
+}
+.console-module-grid>.process-field-panel + .matrix-panel{
+  margin-top:0!important;
+}
+@media(max-width:700px){
+  .research-page .page-intro{padding:14px!important}
+  .console-module-grid{gap:14px!important;row-gap:14px!important}
+}
