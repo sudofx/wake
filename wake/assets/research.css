@@ -1632,3 +1632,74 @@ body.research-page::after{
 }
 .global-motion-toggle[aria-pressed=true]{color:#ff9a32!important;border-color:rgba(255,154,50,.68)!important;background:rgba(255,154,50,.08)!important}
 @media(max-width:760px){.global-motion-toggle{min-width:78px!important;height:34px!important;padding-inline:8px!important}}
+
+
+/* BABY-BLUE GLASS + ORANGE WIREFRAME — 2026-10-05 */
+:root{
+  --cyan:#73c7ff;
+  --orange:#ff9a32;
+  --line:#31536d;
+}
+body.research-page{
+  background:#01060d!important;
+}
+body.research-page::before{
+  opacity:.58!important;
+  background-image:
+    linear-gradient(rgba(255,154,50,.20) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,154,50,.20) 1px,transparent 1px)!important;
+  background-size:58px 58px!important;
+}
+body.research-page::after{
+  content:none!important;
+  display:none!important;
+}
+.research-page .panel,
+.research-page .status-band,
+.research-page .status-cell,
+.research-page .research-header.masthead,
+.research-page .console-workspace-controls,
+.research-page .research-footer{
+  background:rgba(3,10,19,.52)!important;
+}
+.research-page .panel{border-color:rgba(115,199,255,.42)!important}
+.research-page .panel:after{border-color:#73c7ff!important}
+.research-page .panel-heading{border-bottom-color:rgba(115,199,255,.28)!important}
+.research-page .panel-heading h2,
+.research-page .eyebrow,
+.research-page .record-id,
+.research-page .map-lane,
+.research-page .status-cell strong,
+.research-page .source-total,
+.research-page .meter-row strong,
+.research-page a:not(.badge):not(.wordmark){
+  color:#73c7ff!important;
+}
+.research-page button[aria-pressed=true],
+.research-page .mode-control [aria-pressed=true]{
+  color:#9bd8ff!important;
+  border-color:#73c7ff!important;
+  background:rgba(115,199,255,.10)!important;
+}
+.research-page .map-edge,
+.research-page .meter-track i,
+.research-page .hour-stack i{stroke:#73c7ff!important;background:#73c7ff!important}
+.research-page .map-node circle,
+.research-page .map-node.selected rect,
+.research-page .map-node:focus rect,
+.research-page .map-node:hover rect{stroke:#73c7ff!important}
+
+/* Give module chrome and panel-specific controls separate lanes. */
+.console-module-grid .panel-heading{
+  grid-template-columns:minmax(0,1fr) auto!important;
+  grid-template-rows:auto auto!important;
+}
+.console-module-grid .panel-heading>.module-controls{
+  grid-column:2!important;grid-row:1!important;
+}
+.console-module-grid .panel-heading>.mode-control{
+  grid-column:1/-1!important;grid-row:2!important;
+  justify-self:end!important;
+  max-width:100%!important;
+  margin-top:2px!important;
+}
