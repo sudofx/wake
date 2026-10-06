@@ -56,7 +56,7 @@ class ConsolePresentationTests(unittest.TestCase):
 
     def test_3d_map_stylesheet_is_cache_busted(self):
         map3d_html = (ASSETS / "map3d.html").read_text()
-        self.assertIn('href="map3d.css?v=20261005-dust-3"', map3d_html)
+        self.assertRegex(map3d_html, r'href="map3d\.css\?v=[^"]+"')
 
     def test_wake_detail_tabs_stay_on_one_row_on_phones(self):
         self.assertIn(".wake-tabs{flex-wrap:nowrap;gap:3px;margin:10px 12px}", self.css)
@@ -70,7 +70,7 @@ class ConsolePresentationTests(unittest.TestCase):
         self.assertIn("syncCubeToRecord(id);renderMap()", self.research)
 
     def test_console_loads_the_layout_controller(self):
-        self.assertIn('<script src="console-layout.js" defer></script>', self.html)
+        self.assertRegex(self.html, r'<script src="console-layout\.js\?v=[^"]+" defer></script>')
 
 
 if __name__ == "__main__":
