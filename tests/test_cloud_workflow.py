@@ -37,6 +37,11 @@ class CloudWorkflowTests(unittest.TestCase):
         self.project, self.remote = self.root/"project", self.root/"remote.git"
         self.git("init", self.project)
         self.git("init", "--bare", self.remote)
+        # Cloud operations also invoke Git directly. Disable maintenance in
+        # both disposable repositories so detached writers cannot race cleanup.
+        for repository in (self.project, self.remote):
+            self.git("-C", repository, "config", "gc.auto", "0")
+            self.git("-C", repository, "config", "maintenance.auto", "false")
         (self.project/"README.md").write_text("Source files must never be the Pages artifact.")
         self.git("-C", self.project, "add", "README.md")
         self.git("-C", self.project, "-c", "user.name=test", "-c", "user.email=test@example.com", "commit", "-m", "Source")

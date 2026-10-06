@@ -16,7 +16,7 @@ concurrency:
 jobs:
   stop:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - name: Close the continuation latch first
         env:
@@ -62,7 +62,9 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          for attempt in {1..30}; do
+          # GitHub may take five minutes to finish cancellation. Leave time
+          # for that server-side timeout before declaring the drain failed.
+          for attempt in {1..180}; do
           runtime_sha="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime" --jq '.object.sha')"
           now_epoch="$(date -u +%s)"
           mapfile -t candidates < <(

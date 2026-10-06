@@ -141,7 +141,7 @@ The public website does not authenticate users or control the runtime. The small
 Use the workflows by their literal names:
 
 - **WAKE✳︎ - Start** — start WAKE✳︎ and keep it working.
-- **WAKE✳︎ - Stop** — stop the current chain and prevent another cycle from starting.
+- **WAKE✳︎ - Stop** — stop the current chain and prevent another cycle from starting. It waits for GitHub cancellation to finish, which can take five minutes.
 - **WAKE✳︎ - Reset** — safely stop as needed, preserve/archive prior governed history, and start a new active generation at zero; requires the workflow's explicit reset confirmation.
 - **WAKE✳︎ - promote** — verify the selected candidate (normally `master`), then move that exact tested commit to `wake-runtime`. Research must be stopped first.
 - **WAKE✳︎ - Restart** — safe maintenance shortcut: stop, verify current `master`, promote it, then start again.

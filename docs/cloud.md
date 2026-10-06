@@ -20,6 +20,8 @@ The Pages shell loads the disposable `wake-live/live.json` projection with `cach
 
 ## Authority maintenance
 
+**WAKE✳︎ - Stop** keeps the continuation latch closed while waiting for cancellation to finish. GitHub's server-side cancellation can take five minutes; Stop allows at least six minutes of polling within a ten-minute job budget and retains its force-cancel fallback. A cancellation request alone is not proof that research has drained.
+
 **WAKE✳︎ - Restart** is the normal maintenance shortcut for the current wake-backed runtime: stop, verify `master`, promote the verified commit, then start again.
 
 Do not use migration/rehearsal workflows as substitutes for ordinary Start/Stop control.
