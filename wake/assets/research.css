@@ -1622,3 +1622,13 @@ body.research-page::after{
     padding:0!important;
   }
 }
+
+.global-motion-toggle{
+  width:auto!important;min-width:88px!important;height:36px!important;padding:0 11px!important;
+  border:1px solid rgba(47,125,255,.48)!important;border-radius:8px!important;
+  background:rgba(6,17,32,.5)!important;color:#8fa1c2!important;
+  -webkit-backdrop-filter:blur(16px) saturate(125%);backdrop-filter:blur(16px) saturate(125%);
+  font:700 10px/1 var(--mono)!important;letter-spacing:.04em;white-space:nowrap;
+}
+.global-motion-toggle[aria-pressed=true]{color:#ff9a32!important;border-color:rgba(255,154,50,.68)!important;background:rgba(255,154,50,.08)!important}
+@media(max-width:760px){.global-motion-toggle{min-width:78px!important;height:34px!important;padding-inline:8px!important}}
