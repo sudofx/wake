@@ -233,7 +233,8 @@
     })||null;
   }
   function broadcastSelection(recordId='',wakeId='') {
-    window.dispatchEvent(new CustomEvent('wake-console-selection',{detail:{recordId,wakeId}}));
+    const wake=wakeId?(data?.wakes||[]).find(item=>item.id===wakeId)||null:null;
+    window.dispatchEvent(new CustomEvent('wake-console-selection',{detail:{recordId,wakeId,wake}}));
   }
   function chooseWake(id, floating=false) {
     selectedWake=id;followLatest=false;
@@ -310,7 +311,7 @@
     const b=data.metrics.hourly.find(b=>b.time===time);if(!b)return;
     const note=`${stamp(time,true)} PT · ${['accepted','rejected','deferred','failed'].map(k=>`${count(b[k]||0)} ${k}`).join(' · ')}`;
     $('hour-detail').textContent=note;
-    if(open){const start=Date.parse(time),end=start+3600000;inspectWakes('Completed wakes in this hour',(data.wakes||[]).filter(w=>{const t=Date.parse(w.finished||w.time);return t>=start&&t<end;}),`${note}. Wake detail is limited to the latest ${count(data.wakes?.length)} invocations.`);}
+    if(open){const start=Date.parse(time),end=start+3600000,wakes=(data.wakes||[]).filter(w=>{const t=Date.parse(w.finished||w.time);return t>=start&&t<end;});inspectWakes('Completed wakes in this hour',wakes,`${note}. Wake detail is limited to the latest ${count(data.wakes?.length)} invocations.`);if(wakes[0])broadcastSelection(recordForWake(wakes[0].id)?.id||'',wakes[0].id);}
   }
   $('activity-chart').addEventListener('pointerover',e=>{const b=e.target.closest('[data-hour]');if(b)inspectHour(b.dataset.hour);});
   $('activity-chart').addEventListener('focusin',e=>{const b=e.target.closest('[data-hour]');if(b)inspectHour(b.dataset.hour);});
