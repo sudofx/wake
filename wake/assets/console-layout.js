@@ -39,6 +39,19 @@
   const originalParents=new Set();
   const slug=text=>String(text||'panel').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,50)||'panel';
   const titleFor=panel=>panel.querySelector('h2,h3')?.textContent?.trim()||panel.getAttribute('aria-label')||'Console panel';
+  const brandWakeMarks=root=>{
+    root.querySelectorAll('.panel-heading h1,.panel-heading h2,.panel-heading h3,.panel-heading .eyebrow').forEach(el=>{
+      if(el.querySelector('.wake-inline-mark')||!el.textContent.includes('WAKE✳︎'))return;
+      [...el.childNodes].forEach(node=>{
+        if(node.nodeType!==Node.TEXT_NODE||!node.nodeValue.includes('WAKE✳︎'))return;
+        const frag=document.createDocumentFragment(),parts=node.nodeValue.split('WAKE✳︎');
+        parts.forEach((part,i)=>{if(i){const mark=document.createElement('span');mark.className='wake-inline-mark';mark.innerHTML='<span>WAKE</span><b>✳︎</b>';frag.append(mark);}frag.append(document.createTextNode(part));});
+        node.replaceWith(frag);
+      });
+    });
+  };
+  brandWakeMarks(document);
+
   panels.forEach((panel,index)=>{
     originalParents.add(panel.parentElement);
     panel.dataset.moduleKey=panel.id||slug(titleFor(panel))||`panel-${index}`;
