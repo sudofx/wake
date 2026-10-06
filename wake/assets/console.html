@@ -8,13 +8,13 @@
 <meta name="description" content="WAKE✳︎ Console: inspect the durable record, model calls, governance decisions, evidence, and research relationships.">
 <title>Console / WAKE✳︎</title>
 <link rel="stylesheet" href="nav.css?v=20261004-16">
-<link rel="stylesheet" href="research.css?v=20261005-19">
+<link rel="stylesheet" href="research.css?v=20261005-19">\n<link rel="stylesheet" href="process-field.css?v=20261005-1">
 <script>document.documentElement.dataset.theme='dark';try{localStorage.setItem('wake-theme','dark')}catch{};(()=>{const w=new URL(location.href).searchParams.get('workspace');if(w==='detached')document.documentElement.classList.add('console-detached')})()</script>
 <script src="research-scene.js?v=20261005-2" defer></script>
 <script src="research-instruments.js?v=20261005-2" defer></script>
 <script src="console-tools.js" defer></script>
 <script src="nav.js?v=20261004-11" defer></script>
-<script src="research.js?v=20261005-5" defer></script>
+<script src="process-field.js?v=20261005-1" defer></script>\n<script src="research.js?v=20261005-6" defer></script>
 <script src="console-layout.js" defer></script>
 </head>
 <body class="research-page">
@@ -51,6 +51,23 @@
 <div class="page-intro"><div><p class="eyebrow">DURABLE RECORD / INSPECTION WORKSPACE</p><h1>Console</h1><p class="lede">Inspect model calls, governed transitions, research evidence, and the receipts that connect them.</p></div><div class="snapshot"><p id="freshness" role="status">Loading the research record…</p><button id="refresh" type="button">Refresh record ↻</button></div></div>
 <div id="notice" class="notice" role="status" hidden></div>
 <section class="status-band" aria-label="Research status" id="status-band"><p class="empty">Loading verified-record projection…</p></section>
+<section class="panel process-field-panel" aria-labelledby="process-field-title">
+  <div class="panel-heading map-heading">
+    <div><p class="eyebrow">PROCESS / OBSERVABLE SYSTEM ACTIVITY</p><h2 id="process-field-title">WAKE✳︎ process field</h2></div>
+    <div class="mode-control"><button id="process-field-motion" type="button" aria-pressed="true">Pause motion</button></div>
+  </div>
+  <div class="process-field-grid">
+    <div class="process-field-canvas-wrap">
+      <canvas id="process-field-canvas" width="1100" height="430" aria-label="Observable WAKE process visualization. Recorded relationships form the background field; the kernel path shows Record, Context, Proposal, Governance, Transition, and Receipt."></canvas>
+      <div class="process-field-hud" aria-live="polite"><span id="process-field-status">EXECUTION STATUS UNKNOWN</span><span id="process-field-trace">Waiting for a recorded wake</span></div>
+    </div>
+    <aside class="process-field-readout" aria-label="Process field readout">
+      <p id="process-field-detail">Loading the observable process record…</p>
+      <div id="process-field-stages"></div>
+    </aside>
+  </div>
+  <div class="process-field-legend"><span><b>Background field</b> · recorded nodes + relationships</span><span><b>Orange trace</b> · replay of latest recorded wake</span><span><b>Green perimeter</b> · execution active</span><span class="process-field-warning">System activity visualization · not model cognition or consciousness</span></div>
+</section>
 <div class="story-grid">
 <section class="panel matrix-panel" aria-labelledby="matrix-title"><div class="panel-heading map-heading"><div><p class="eyebrow">CONTINUITY / EXPERIMENT SPACE</p><h2 id="matrix-title">The cube</h2></div><div class="mode-control"><button id="motion-toggle" type="button" aria-pressed="true">Pause motion</button><button id="cube-left" type="button" aria-label="Rotate cube left">↶</button><button id="cube-right" type="button" aria-label="Rotate cube right">↷</button><button id="cube-reset" type="button">Reset view</button></div></div><div class="cube-workspace"><canvas id="matrix-cube" aria-label="Continuity matrix. Drag to rotate; use the coordinate selectors or rotation buttons to explore." width="640" height="380"></canvas><div class="cube-readout"><p id="matrix-state" class="caption">Loading matrix definition…</p><strong id="matrix-coverage">—</strong><p class="caption">Recorded completed cells</p><a id="matrix-enable" class="matrix-enable-action" href="https://github.com/sudofx/wake/actions/workflows/operator-enable-continuity.yml" hidden>Enable campaign ↗</a><div id="cube-selectors"></div><p id="cube-cell" class="record-id"></p></div></div><p class="cube-caption caption">Drag or touch to rotate. Cyan = Semantic lens · orange = Exposure · violet = Pressure. Wires and highlighted faces mark each axis end; bright orange marks the inspected cell. Rotation is view motion, not research progress.</p></section>
 <section class="panel wake-story" aria-labelledby="wake-story-title"><div class="panel-heading map-heading"><div><p class="eyebrow">WAKE / START → FINISH</p><h2 id="wake-story-title">The latest recorded wake</h2></div><button id="latest-wake" type="button">Latest</button></div><div id="wake-flow"></div><div class="wake-tabs" aria-label="Wake detail"><button data-wake-tab="summary" type="button" aria-pressed="true">Summary</button><button data-wake-tab="context" type="button" aria-pressed="false">Context</button><button data-wake-tab="response" type="button" aria-pressed="false">Response</button><button data-wake-tab="provider" type="button" aria-pressed="false">Provider</button><button data-wake-tab="receipt" type="button" aria-pressed="false">Receipt</button></div><div id="wake-detail"></div><div id="live-story" class="caption"></div></section>
