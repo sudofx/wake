@@ -164,7 +164,7 @@
 
   const toolbarRow=document.createElement('div');
   toolbarRow.className='console-workspace-controls';
-  toolbarRow.innerHTML=`<span>${detached?'DETACHED WORKSPACE':'CONSOLE WORKSPACE'}</span><div class="console-workspace-actions"><button id="reset-console-layout" type="button">Reset layout</button></div>`;
+  toolbarRow.innerHTML=`<span>${detached?'DETACHED WORKSPACE':'CONSOLE WORKSPACE'}</span><div class="console-workspace-actions"><button id="global-motion-toggle" class="global-motion-toggle" type="button" aria-pressed="false" title="Enable presentation motion">Motion off</button><button id="reset-console-layout" type="button">Reset layout</button></div>`;
   status.before(toolbarRow);
   toolbarRow.querySelector('#reset-console-layout').addEventListener('click',()=>{
     try{localStorage.removeItem(STORAGE);}catch{}
