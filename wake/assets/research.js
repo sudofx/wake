@@ -348,7 +348,10 @@
   document.querySelectorAll('.research-header details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)document.querySelectorAll('.research-header details').forEach(other=>{if(other!==d)other.open=false;});}));
   document.addEventListener('click',event=>{if(!event.target.closest('.research-header details'))document.querySelectorAll('.research-header details').forEach(d=>d.open=false);});
   let resizeFrame;window.addEventListener('resize',()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{if(data)renderMap();});});
-  controls();readUrl();bootstrap();
+  controls();readUrl();
+  window.__wakeResearchReady=true;
+  window.dispatchEvent(new CustomEvent('wake-research-ready'));
+  bootstrap();
   setInterval(()=>{if(!document.hidden)refresh();},60000);
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh();});
 })();
