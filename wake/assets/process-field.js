@@ -14,6 +14,8 @@
   const traceEl=document.getElementById('process-field-trace');
   const detailEl=document.getElementById('process-field-detail');
   const toggle=document.getElementById('process-field-motion');
+  const reset=document.getElementById('process-field-reset');
+  const selectionEl=document.getElementById('process-field-selection');
   const actions=document.getElementById('execution-state');
   const reduced=matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
@@ -27,6 +29,8 @@
   ];
   let projection=null,latest=null,frame=null,start=performance.now(),motion=false,visible=true;
   let nodePositions=[],recordEdges=[],recordNodes=[],lastVersion=null,flashUntil=0;
+  let viewAngle=0,viewTilt=0,selectedNode=null,selectedStage=null,stagePoints=[];
+  let pointer=null,dragged=false;
 
   const hash=value=>{let h=2166136261;for(const ch of String(value||''))h=Math.imul(h^ch.charCodeAt(0),16777619);return h>>>0;};
   const stageState=w=>{
@@ -55,7 +59,7 @@
   function escapeHtml(value){return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
   function setStageReadout(){
     const active=stageState(latest);
-    stageList.innerHTML=STAGES.map(([key,label],i)=>`<div class="process-stage ${active[i]?'observed':'quiet'}" data-stage="${key}"><span>0${i+1}</span><strong>${label}</strong><small>${escapeHtml(stateLabel(latest,i))}</small></div>`).join('');
+    stageList.innerHTML=STAGES.map(([key,label],i)=>`<div class="process-stage ${active[i]?'observed':'quiet'}" data-stage="${key}" data-stage-index="${i}" role="button" tabindex="0"><span>0${i+1}</span><strong>${label}</strong><small>${escapeHtml(stateLabel(latest,i))}</small></div>`).join('');
     const runner=actions?.dataset.state||'unknown';
     const running=runner==='running'||runner==='campaign';
     statusEl.textContent=running?'EXECUTION ACTIVE':'EXECUTION '+(runner==='stopped'?'STOPPED':'STATUS UNKNOWN');
@@ -73,7 +77,7 @@
     const ids=new Set(nodes.map(n=>n.id));
     recordNodes=nodes.map((n,i)=>{
       const h=hash(n.id),a=(h%6283)/1000,r=.15+((h>>>8)%1000)/1000*.36;
-      return {id:n.id,kind:n.kind,a,r,phase:((h>>>16)%1000)/1000*Math.PI*2,index:i};
+      return {id:n.id,kind:n.kind,label:n.label||n.title||n.name||n.id,a,r,phase:((h>>>16)%1000)/1000*Math.PI*2,index:i};
     });
     recordEdges=(graph.edges||[]).filter(e=>ids.has(e.source)&&ids.has(e.target)).slice(-180);
   }
@@ -106,9 +110,11 @@
     const cx=w*.5,cy=h*.49,small=w<700,scale=Math.min(w,h);
     const drift=motion ? .015 : 0;
     nodePositions=recordNodes.map(n=>{
-      const angle=n.a+t*drift*((n.index%3)-1);
+      const angle=n.a+viewAngle+t*drift*((n.index%3)-1);
       const rr=n.r*scale*(.88+.08*Math.sin(t*.18+n.phase));
-      return {id:n.id,x:cx+Math.cos(angle)*rr*1.55,y:cy+Math.sin(angle)*rr*.82};
+      const depth=Math.sin(angle);
+      const tiltShift=viewTilt*scale*.18*depth;
+      return {id:n.id,kind:n.kind,label:n.label,x:cx+Math.cos(angle)*rr*1.55,y:cy+Math.sin(angle)*rr*.82+tiltShift,depth};
     });
     const byId=new Map(nodePositions.map(n=>[n.id,n]));
 
@@ -118,14 +124,17 @@
       ctx.strokeStyle=p.line;ctx.globalAlpha=.22;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
     });
     nodePositions.forEach((pt,i)=>{
-      ctx.fillStyle=i%9===0?p.violet:p.cyan;ctx.globalAlpha=i%9===0?.45:.24;
-      ctx.beginPath();ctx.arc(pt.x,pt.y,i%11===0?2.4:1.35,0,Math.PI*2);ctx.fill();
+      const chosen=selectedNode===pt.id;
+      ctx.fillStyle=chosen?p.orange:(i%9===0?p.violet:p.cyan);ctx.globalAlpha=chosen?.98:(i%9===0?.45:.24);
+      ctx.shadowColor=chosen?p.orange:'transparent';ctx.shadowBlur=chosen?14:0;
+      ctx.beginPath();ctx.arc(pt.x,pt.y,chosen?5:(i%11===0?2.4:1.35),0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
     });
 
     const active=stageState(latest);
     const margin=small?28:54;
     const y=cy;
     const points=STAGES.map((_,i)=>({x:margin+(w-margin*2)*(i/(STAGES.length-1)),y:y+Math.sin(i*1.7)*scale*.035}));
+    stagePoints=points;
     ctx.globalAlpha=.42;ctx.strokeStyle=p.cyan;ctx.lineWidth=1;
     ctx.beginPath();points.forEach((pt,i)=>i?ctx.lineTo(pt.x,pt.y):ctx.moveTo(pt.x,pt.y));ctx.stroke();
 
@@ -136,12 +145,12 @@
     ctx.globalAlpha=.28;ctx.beginPath();ctx.moveTo(points[1].x,points[1].y);ctx.lineTo(runtimeX,runtimeY);ctx.lineTo(points[2].x,points[2].y);ctx.stroke();
 
     points.forEach((pt,i)=>{
-      const observed=active[i],accepted=latest?.status==='accepted';
+      const observed=active[i],accepted=latest?.status==='accepted',chosen=selectedStage===i;
       const terminal=i===3&&latest&&['rejected','failed','deferred'].includes(latest.status);
-      const color=terminal?p.red:(i===4&&observed&&accepted?p.green:(observed?p.cyan:p.muted));
+      const color=chosen?p.orange:(terminal?p.red:(i===4&&observed&&accepted?p.green:(observed?p.cyan:p.muted)));
       const pulse=(motion&&observed)?1+Math.sin(t*1.5+i)*.08:1;
       ctx.globalAlpha=observed?.92:.3;ctx.fillStyle=color;ctx.shadowColor=color;ctx.shadowBlur=observed?10:0;
-      ctx.beginPath();ctx.arc(pt.x,pt.y,(small?6:8)*pulse,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
+      ctx.beginPath();ctx.arc(pt.x,pt.y,(chosen?1.35:1)*(small?6:8)*pulse,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
       ctx.globalAlpha=.9;ctx.fillStyle=p.ink;ctx.font=`${small?8:10}px ui-monospace,monospace`;ctx.textAlign='center';
       ctx.fillText(STAGES[i][1],pt.x,pt.y+(small?20:25));
     });
@@ -175,6 +184,20 @@
     else frame=null;
   }
   function scheduleDraw(){if(frame)return;frame=requestAnimationFrame(draw);}
+  function inspectNode(id){
+    const node=recordNodes.find(n=>n.id===id);if(!node)return;
+    selectedNode=id;selectedStage=null;
+    selectionEl.textContent=`Recorded object · ${node.kind||'record'} · ${node.label||node.id}`;
+    stageList.querySelectorAll('.process-stage').forEach(el=>el.classList.remove('selected'));scheduleDraw();
+  }
+  function inspectStage(index){
+    selectedStage=index;selectedNode=null;
+    const descriptions=['Durable record · governed history available to later work.','Context · bounded material assembled for an invocation.','Proposal · model/runtime output before WAKE grants it authority.','Governance · deterministic checks decide what may transition.','Transition · accepted change enters durable state.','Receipt · auditable trace of what happened and why.'];
+    selectionEl.textContent=`${STAGES[index][1]} · ${descriptions[index]}`;
+    stageList.querySelectorAll('.process-stage').forEach((el,i)=>el.classList.toggle('selected',i===index));scheduleDraw();
+  }
+  function resetView(){viewAngle=0;viewTilt=0;selectedNode=null;selectedStage=null;selectionEl.textContent='Drag the field to rotate · tap a node or stage to inspect';stageList.querySelectorAll('.process-stage').forEach(el=>el.classList.remove('selected'));scheduleDraw();}
+  function hitTest(x,y){let best=null,bestD=18;for(const pt of nodePositions){const d=Math.hypot(pt.x-x,pt.y-y);if(d<bestD){best=pt;bestD=d;}}if(best){inspectNode(best.id);return true;}let si=-1,sd=24;stagePoints.forEach((pt,i)=>{const d=Math.hypot(pt.x-x,pt.y-y);if(d<sd){si=i;sd=d;}});if(si>=0){inspectStage(si);return true;}return false;}
   function receive(d){
     if(!d||d.projection_kind!=='disposable-research-view')return;
     projection=d;latest=(d.wakes||[])[0]||null;
@@ -201,6 +224,13 @@
   const observer=new MutationObserver(()=>{setStageReadout();scheduleDraw();});
   if(actions)observer.observe(actions,{attributes:true,attributeFilter:['data-state','title']});
 
+  stageList.addEventListener('click',event=>{const el=event.target.closest('.process-stage');if(el)inspectStage(Number(el.dataset.stageIndex));});
+  stageList.addEventListener('keydown',event=>{if(event.key!=='Enter'&&event.key!==' ')return;const el=event.target.closest('.process-stage');if(!el)return;event.preventDefault();inspectStage(Number(el.dataset.stageIndex));});
+  reset?.addEventListener('click',resetView);
+  canvas.addEventListener('pointerdown',event=>{const rect=canvas.getBoundingClientRect();pointer={id:event.pointerId,lastX:event.clientX,lastY:event.clientY,startX:event.clientX,startY:event.clientY,rect};dragged=false;canvas.setPointerCapture?.(event.pointerId);});
+  canvas.addEventListener('pointermove',event=>{if(!pointer||pointer.id!==event.pointerId)return;const dx=event.clientX-pointer.lastX,dy=event.clientY-pointer.lastY;if(Math.hypot(event.clientX-pointer.startX,event.clientY-pointer.startY)>5)dragged=true;if(dragged){viewAngle+=dx*.008;viewTilt=Math.max(-1,Math.min(1,viewTilt+dy*.004));canvas.classList.add('is-dragging');scheduleDraw();}pointer.lastX=event.clientX;pointer.lastY=event.clientY;});
+  const finishPointer=event=>{if(!pointer||pointer.id!==event.pointerId)return;const rect=canvas.getBoundingClientRect();if(!dragged)hitTest(event.clientX-rect.left,event.clientY-rect.top);canvas.classList.remove('is-dragging');pointer=null;};
+  canvas.addEventListener('pointerup',finishPointer);canvas.addEventListener('pointercancel',()=>{canvas.classList.remove('is-dragging');pointer=null;});
   toggle?.addEventListener('click',()=>{
     motion=!motion;toggle.setAttribute('aria-pressed',String(motion));toggle.textContent=motion?'Motion on':'Motion off';scheduleDraw();
   });
