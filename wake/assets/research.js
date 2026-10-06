@@ -256,7 +256,6 @@
     $('cube-selectors').addEventListener('change',()=>{const pos=[...document.querySelectorAll('[data-cube-axis]')].map(el=>Number(el.value));const c=data.matrix.cells.find(c=>c.position.every((v,i)=>v===pos[i]));if(c){matrixCell=c.id;cube.select(c.id);renderCell();}});
     $('context-map-canvas').addEventListener('wake-graph-select',e=>choose(e.detail,true));
     document.querySelectorAll('[data-context-view]').forEach(b=>b.onclick=()=>{contextMap.view(b.dataset.contextView);document.querySelectorAll('[data-context-view]').forEach(o=>o.setAttribute('aria-pressed',String(o===b)));});
-    $('context-map-list').onclick=()=>inspectRecords('Context map records',scopedNodes(),'Select a record to inspect the relationships shown in this map.');
     document.querySelectorAll('[data-frontier-state]').forEach(b=>b.onclick=()=>{frontierState=b.dataset.frontierState;renderFrontierTable();});
     document.addEventListener('click',e=>{const t=e.target.closest('[data-story-topic]');if(t){topic=t.dataset.storyTopic;selected='';query='';writeUrl();render();inspectRecords(label(topic),scopedNodes(),'Recorded research in this topic.');}});
     $('close-data-inspector').onclick=()=>{$('data-inspector').hidden=true;};
