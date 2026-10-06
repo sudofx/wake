@@ -95,33 +95,46 @@
   };
   applyState();
 
+  const layoutSpec=()=>{
+    const w=innerWidth;
+    if(w>=2600)return {cols:6};
+    if(w>=1500)return {cols:4};
+    if(w>=1050)return {cols:3};
+    if(w>=768)return {cols:2};
+    return {cols:1};
+  };
+  const spanToSlots=(span,cols,panel)=>{
+    if(panel.matches('.process-field-panel'))return cols;
+    const ratio=Math.max(1,Math.min(12,Number(span||6)))/12;
+    return Math.max(1,Math.min(cols,Math.round(ratio*cols)));
+  };
   const pack=()=>{
-    if(matchMedia('(max-width:767px)').matches){[...grid.children].forEach(p=>{p.style.gridRow='';p.style.gridColumnStart='';});return;}
-    const cols=12,occupied=[];
-    const ultrawide=matchMedia('(min-width:2200px)').matches;
+    const {cols}=layoutSpec();
+    grid.style.setProperty('--console-cols',String(cols));
+    if(cols===1){[...grid.children].forEach(p=>{p.style.gridRow='';p.style.gridColumn='';p.style.removeProperty('--panel-slots');});return;}
+    const occupied=[];
     const free=(row,col,span)=>{for(let c=col;c<col+span;c++)if(occupied[row]?.[c])return false;return true;};
     const claim=(row,col,span)=>{occupied[row]??=Array(cols).fill(false);for(let c=col;c<col+span;c++)occupied[row][c]=true;};
     [...grid.children].forEach(panel=>{
-      const stored=Math.min(cols,Number(panel.dataset.span||6));
-      // On ultrawide displays, legacy/default 12-wide modules become useful half-width cards.
-      // Explicit compact spans remain authoritative; the process field stays panoramic.
-      const span=ultrawide&&stored===12&&!panel.matches('.process-field-panel')?6:stored;
-      panel.style.setProperty('--packed-span',String(span));let row=0,col=0,placed=false;
-      while(!placed){for(col=0;col<=cols-span;col++){if(free(row,col,span)){claim(row,col,span);panel.style.gridRow=String(row+1);panel.style.gridColumnStart=String(col+1);placed=true;break;}}if(!placed)row++;}
+      const slots=spanToSlots(panel.dataset.span,cols,panel);
+      panel.style.setProperty('--panel-slots',String(slots));
+      let row=0,col=0,placed=false;
+      while(!placed){for(col=0;col<=cols-slots;col++){if(free(row,col,slots)){claim(row,col,slots);panel.style.gridRow=String(row+1);panel.style.gridColumn=\`${col+1} / span ${slots}\`;placed=true;break;}}if(!placed)row++;}
     });
   };
   pack();
   window.addEventListener('resize',()=>requestAnimationFrame(pack));
 
-  const spanCycle=[4,6,8,12];
+  const spanCycle=[3,4,6,8,9,12];
   grid.addEventListener('click',event=>{
     const panel=event.target.closest('.console-module');
     if(!panel)return;
     const size=event.target.closest('.module-size');
     const collapse=event.target.closest('.module-collapse');
     if(size){
-      const current=Number(panel.dataset.span||6),idx=spanCycle.indexOf(current);
-      panel.dataset.span=String(spanCycle[(idx+1)%spanCycle.length]);
+      const current=Number(panel.dataset.span||6);
+      const idx=spanCycle.findIndex(v=>v>=current);
+      panel.dataset.span=String(spanCycle[((idx<0?1:idx)+1)%spanCycle.length]);
       writeState();pack();
     }
     if(collapse){
