@@ -1447,3 +1447,114 @@ html.console-tool-window #console-tool-frame{
     min-width:44px;
   }
 }
+
+
+/* CONSOLE ELECTRIC GLASS FIELD — 2026-10-05
+   Presentation only: wireframe backdrop, translucent Gaussian glass, electric blue + orange. */
+:root{
+  --cyan:#2f7dff;
+  --orange:#ff9a32;
+  --line:#244a78;
+  --surface:#071426b8;
+  --surface-raised:#0b1b31b8;
+  --surface-strong:#10223ab8;
+}
+body.research-page{
+  position:relative;
+  isolation:isolate;
+  background:
+    radial-gradient(circle at 18% 8%,rgba(47,125,255,.13),transparent 32%),
+    radial-gradient(circle at 83% 30%,rgba(255,154,50,.07),transparent 30%),
+    #030a14!important;
+}
+body.research-page::before{
+  content:"";
+  position:fixed;
+  inset:-12vh -8vw;
+  z-index:-2;
+  pointer-events:none;
+  opacity:.48;
+  background-image:
+    linear-gradient(rgba(47,125,255,.15) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(47,125,255,.15) 1px,transparent 1px);
+  background-size:58px 58px;
+  transform:perspective(720px) rotateX(61deg) rotateZ(-8deg) scale(1.35);
+  transform-origin:50% 48%;
+  mask-image:radial-gradient(ellipse at center,#000 22%,rgba(0,0,0,.82) 55%,transparent 82%);
+  -webkit-mask-image:radial-gradient(ellipse at center,#000 22%,rgba(0,0,0,.82) 55%,transparent 82%);
+}
+body.research-page::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  opacity:.42;
+  background:
+    linear-gradient(27deg,transparent 0 34%,rgba(47,125,255,.13) 34.1% 34.25%,transparent 34.35% 100%),
+    linear-gradient(151deg,transparent 0 57%,rgba(255,154,50,.08) 57.1% 57.22%,transparent 57.32% 100%),
+    radial-gradient(circle at 13% 28%,rgba(47,125,255,.55) 0 1.5px,transparent 2.5px),
+    radial-gradient(circle at 72% 17%,rgba(47,125,255,.48) 0 1.5px,transparent 2.5px),
+    radial-gradient(circle at 88% 68%,rgba(255,154,50,.45) 0 1.5px,transparent 2.5px);
+  background-size:auto,auto,170px 170px,230px 230px,290px 290px;
+}
+.research-page .panel,
+.research-page .status-band,
+.research-page .status-cell,
+.research-page .research-header.masthead,
+.research-page .console-workspace-controls,
+.research-page .research-footer{
+  background:rgba(6,17,32,.56)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(125%)!important;
+  backdrop-filter:blur(18px) saturate(125%)!important;
+}
+.research-page .panel{
+  border-color:rgba(47,125,255,.43)!important;
+  box-shadow:inset 0 1px 0 rgba(125,174,255,.09),0 12px 34px rgba(0,0,0,.14)!important;
+}
+.research-page .panel:after{
+  border-color:#2f7dff!important;
+}
+.research-page .panel-heading{
+  background:rgba(5,15,29,.18)!important;
+  border-bottom-color:rgba(47,125,255,.32)!important;
+}
+.research-page .panel-heading h2,
+.research-page .eyebrow,
+.research-page .record-id,
+.research-page .map-lane,
+.research-page .status-cell strong,
+.research-page .source-total,
+.research-page .meter-row strong{
+  color:#4b91ff;
+}
+.research-page button[aria-pressed=true],
+.research-page .mode-control [aria-pressed=true]{
+  color:#67a1ff!important;
+  border-color:#3c82f6!important;
+  background:rgba(47,125,255,.12)!important;
+}
+.research-page a:not(.badge):not(.wordmark){
+  color:#67a1ff;
+}
+.research-page .map-edge,
+.research-page .meter-track i,
+.research-page .hour-stack i{
+  stroke:#2f7dff;
+  background:#2f7dff;
+}
+.research-page .map-node circle{
+  stroke:#2f7dff;
+}
+.research-page .map-node.selected rect,
+.research-page .map-node:focus rect,
+.research-page .map-node:hover rect{
+  stroke:#2f7dff;
+}
+.research-page .asterisk,
+.research-page .process-field-warning{
+  color:#ff9a32!important;
+}
+.research-page .matrix-panel .cube-caption{
+  color:var(--muted);
+}
