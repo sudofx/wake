@@ -1,0 +1,24 @@
+name: "WAKE✳︎ — Autopilot start once"
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - ".github/workflows/autopilot-start-once.yml"
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  start:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Dispatch the existing operator start workflow
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh workflow run operator-start.yml --repo "$GITHUB_REPOSITORY" --ref master
+          echo "Dispatched the existing WAKE✳︎ Start workflow." >> "$GITHUB_STEP_SUMMARY"
