@@ -211,17 +211,3 @@
     location.reload();
   });
 })();
-;(()=>{
-  const button=document.getElementById('global-motion-toggle');
-  if(!button)return;
-  let enabled=false;
-  const apply=()=>{
-    button.setAttribute('aria-pressed',String(enabled));
-    button.textContent='Motion';
-    button.title=enabled?'Disable presentation motion':'Enable presentation motion';
-    document.documentElement.dataset.motion=enabled?'on':'off';
-    window.dispatchEvent(new CustomEvent('wake-global-motion',{detail:{enabled}}));
-  };
-  button.addEventListener('click',()=>{enabled=!enabled;apply();});
-  apply();
-})();
