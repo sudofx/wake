@@ -231,10 +231,9 @@
   canvas.addEventListener('pointermove',event=>{if(!pointer||pointer.id!==event.pointerId)return;const dx=event.clientX-pointer.lastX,dy=event.clientY-pointer.lastY;if(Math.hypot(event.clientX-pointer.startX,event.clientY-pointer.startY)>5)dragged=true;if(dragged){viewAngle+=dx*.008;viewTilt=Math.max(-1,Math.min(1,viewTilt+dy*.004));canvas.classList.add('is-dragging');scheduleDraw();}pointer.lastX=event.clientX;pointer.lastY=event.clientY;});
   const finishPointer=event=>{if(!pointer||pointer.id!==event.pointerId)return;const rect=canvas.getBoundingClientRect();if(!dragged)hitTest(event.clientX-rect.left,event.clientY-rect.top);canvas.classList.remove('is-dragging');pointer=null;};
   canvas.addEventListener('pointerup',finishPointer);canvas.addEventListener('pointercancel',()=>{canvas.classList.remove('is-dragging');pointer=null;});
-  toggle?.addEventListener('click',()=>{
-    motion=!motion;toggle.setAttribute('aria-pressed',String(motion));toggle.textContent=motion?'Motion on':'Motion off';scheduleDraw();
-  });
-  if(toggle){toggle.setAttribute('aria-pressed','false');toggle.textContent='Motion off';}
+  toggle?.addEventListener('click',()=>{});
+  window.addEventListener('wake-global-motion',event=>{motion=Boolean(event.detail?.enabled)&&!reduced;if(!motion&&frame){cancelAnimationFrame(frame);frame=null;}scheduleDraw();});
+  motion=false;
   const io=new IntersectionObserver(entries=>{visible=entries[0]?.isIntersecting??true;if(visible)scheduleDraw();},{threshold:.02});
   io.observe(panel||canvas);
   window.addEventListener('resize',scheduleDraw);
