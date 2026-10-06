@@ -2065,3 +2065,35 @@ body.research-page::after{content:none!important;display:none!important;backgrou
     grid-column:1/-1!important;
   }
 }
+
+
+/* CONSOLE VISUAL CONTRACT — 2026-10-06 screenshot-verified repairs. */
+/* Keep a visible seam after Process Field even when JS assigns explicit grid rows. */
+.console-module-grid>.process-field-panel{margin-bottom:16px!important}
+
+/* Workspace controls must remain visible at every viewport size. */
+.console-module-grid>.console-module>.panel-heading{position:relative!important;padding-right:124px!important}
+.console-module-grid>.console-module>.panel-heading>.module-controls{
+  display:flex!important;position:absolute!important;top:12px!important;right:12px!important;
+  z-index:50!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important;
+}
+@media(max-width:760px){
+  .console-module-grid>.console-module>.panel-heading{padding-right:118px!important}
+  .console-module-grid>.console-module>.panel-heading>.module-controls{top:10px!important;right:10px!important}
+  .console-module-grid .module-size{display:inline-flex!important}
+}
+
+/* Outcome bars and their key share one semantic color map. */
+.research-page #activity-chart .hour-stack i.accepted{background:var(--cyan)!important}
+.research-page #activity-chart .hour-stack i.rejected{background:var(--red)!important}
+.research-page #activity-chart .hour-stack i.deferred{background:var(--orange)!important}
+.research-page #activity-chart .hour-stack i.failed{background:var(--violet)!important}
+.research-page .chart-key .accepted{color:var(--cyan)!important}
+.research-page .chart-key .rejected{color:var(--red)!important}
+.research-page .chart-key .deferred{color:var(--orange)!important}
+.research-page .chart-key .failed{color:var(--violet)!important}
+
+/* Research Landscape consumes the complete workspace width before the fixed inspection rail. */
+.console-module-grid>.map-panel{
+  grid-column:1/-1!important;width:100%!important;max-width:none!important;justify-self:stretch!important;
+}
