@@ -22,11 +22,19 @@ class ConsolePresentationTests(unittest.TestCase):
         self.assertNotIn("DETACHABLE CONSOLE LINKS", self.nav)
 
     def test_console_reset_view_restores_default_landscape_width(self):
-        self.assertIn("const STORAGE='wake-console-workspace-v2'", self.layout)
+        self.assertIn("const STORAGE='wake-console-workspace-v3'", self.layout)
         self.assertIn('>Reset view</button>', self.layout)
         self.assertIn("panel.matches('.map-panel,.notebook-panel,.process-field-panel')?12", self.layout)
         self.assertIn('.console-module-grid>.map-panel[data-span="12"]', self.css)
         self.assertIn('grid-column:1/-1!important', self.css)
+
+    def test_console_screenshot_repairs_stay_authoritative(self):
+        self.assertIn('.console-module-grid>.process-field-panel{margin-bottom:16px!important}', self.css)
+        self.assertIn('.console-module-grid .module-size{display:inline-flex!important}', self.css)
+        self.assertIn('.research-page .chart-key .accepted{color:var(--cyan)!important}', self.css)
+        self.assertIn('.console-module-grid>.map-panel{', self.css)
+        self.assertIn("wake=selectedWake||(projection?.wakes||[]).find", (ASSETS / "process-field.js").read_text())
+        self.assertIn("detail:{recordId,wakeId,wake}", self.research)
 
     def test_console_itself_has_no_popout_control(self):
         self.assertIn('id="reset-console-layout"', self.layout)
