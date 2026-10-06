@@ -1941,3 +1941,20 @@ body.research-page::after{content:none!important;display:none!important;backgrou
   .research-workspace>.detail-panel #record-detail{max-height:none!important;overflow:visible!important}
   .research-workspace>.detail-panel #close-inspector{display:none!important}
 }
+
+/* MODULE SEAMS — preserve rounded panel outlines and a real vertical gutter. */
+.console-module-grid{
+  row-gap:16px!important;
+}
+.console-module-grid>.console-module{
+  margin-block:0!important;
+  border-radius:10px!important;
+  overflow:hidden!important;
+  isolation:isolate;
+}
+.console-module-grid>.process-field-panel{
+  margin-bottom:0!important;
+}
+.console-module-grid>.process-field-panel + .matrix-panel{
+  margin-top:0!important;
+}
