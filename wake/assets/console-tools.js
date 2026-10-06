@@ -12,7 +12,7 @@ window.WakeConsoleTools = () => {
     if(!url)return;
     // iPhone/iPad/touch devices stay in a normal full browser page. No iframe,
     // popup-sized window, or embedded workspace.
-    if(!desktopPointer()){location.assign(url.href);return;}
+    if(!desktopPointer()){const opened=window.open(url.href,'_blank','noopener');if(!opened)location.assign(url.href);return;}
     // The 3D map owns a dedicated viewport-filling desktop pop-out.
     const isMap=tool==='map3d';
     if(isMap)url.searchParams.set('popout','1');
