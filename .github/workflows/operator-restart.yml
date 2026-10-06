@@ -38,12 +38,14 @@ jobs:
             --jq '[.workflow_runs[] | select(.head_sha==env.CANDIDATE_SHA)] | sort_by(.created_at) | reverse | .[0] // {}')"
           status="$(jq -r '.status // "missing"' <<<"$result")"
           conclusion="$(jq -r '.conclusion // ""' <<<"$result")"
-          if [[ "$status" == "completed" && "$conclusion" != "success" ]]; then
-            echo "::error::Automatic CI already failed for $CANDIDATE_SHA (conclusion: $conclusion)."
+          if [[ "$status" == "completed" && "$conclusion" == "failure" ]]; then
+            echo "::error::Automatic CI already failed for $CANDIDATE_SHA."
             exit 1
           fi
           if [[ "$status" == "completed" && "$conclusion" == "success" ]]; then
             echo "Automatic CI already passed for $CANDIDATE_SHA." >> "$GITHUB_STEP_SUMMARY"
+          elif [[ "$status" == "completed" ]]; then
+            echo "Automatic CI completed without a definitive pass/fail signal (conclusion: $conclusion). Restart will verify the pinned candidate in this job before promotion." >> "$GITHUB_STEP_SUMMARY"
           else
             echo "Automatic CI is $status; Restart will not wait on another runner. The pinned candidate will be verified in this job before promotion." >> "$GITHUB_STEP_SUMMARY"
           fi
