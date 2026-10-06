@@ -73,5 +73,22 @@ class ConsolePresentationTests(unittest.TestCase):
         self.assertRegex(self.html, r'<script src="console-layout\.js\?v=[^"]+" defer></script>')
 
 
+
+    def test_process_field_is_a_modular_console_panel(self):
+        self.assertIn("'#main > .process-field-panel'", self.layout)
+        self.assertIn('class="module-drag"', self.layout)
+        self.assertIn('class="module-size"', self.layout)
+        self.assertIn('class="module-collapse"', self.layout)
+
+    def test_landscape_is_graph_only(self):
+        self.assertNotIn('id="graph-mode"', self.html)
+        self.assertNotIn('id="list-mode"', self.html)
+        self.assertNotIn('id="map-list"', self.html)
+
+    def test_motion_and_desktop_inspector_repairs_are_present(self):
+        self.assertIn("motionButton.dataset.motionBound", self.research)
+        self.assertIn("window.dispatchEvent(new CustomEvent('wake-global-motion'", self.research)
+        self.assertIn("DESKTOP INSPECTION RAIL", self.css)
+
 if __name__ == "__main__":
     unittest.main()
