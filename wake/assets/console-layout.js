@@ -43,7 +43,7 @@
     originalParents.add(panel.parentElement);
     panel.dataset.moduleKey=panel.id||slug(titleFor(panel))||`panel-${index}`;
     panel.classList.add('console-module');
-    const defaults=panel.matches('.map-panel,.notebook-panel')?12:
+    const defaults=panel.matches('.map-panel,.notebook-panel,.process-field-panel')?12:
       panel.matches('.frontier-panel,.detail-panel,.evidence-panel,.outcomes-panel')?4:
       6;
     panel.dataset.span=String(defaults);
