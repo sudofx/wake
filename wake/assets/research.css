@@ -1920,3 +1920,24 @@ body.research-page::after{content:none!important;display:none!important;backgrou
   font-weight:500!important;
   margin-left:.02em!important;
 }
+
+/* DESKTOP INSPECTION RAIL — Follow a record is a persistent Console surface. */
+@media(min-width:1200px){
+  body.research-page main{padding-right:clamp(330px,24vw,410px)!important}
+  .research-workspace>.detail-panel,
+  .research-workspace>.detail-panel.has-selection{
+    display:block!important;
+    position:fixed!important;
+    top:92px!important;
+    right:14px!important;
+    bottom:14px!important;
+    left:auto!important;
+    width:clamp(310px,22vw,390px)!important;
+    max-height:none!important;
+    margin:0!important;
+    z-index:70!important;
+    overflow:auto!important;
+  }
+  .research-workspace>.detail-panel #record-detail{max-height:none!important;overflow:visible!important}
+  .research-workspace>.detail-panel #close-inspector{display:none!important}
+}
