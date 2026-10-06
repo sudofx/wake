@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <title>WAKE✳︎</title>
+  <defs>
+    <linearGradient id="wake" x1="88" y1="256" x2="424" y2="256" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#20e2ed"/>
+      <stop offset=".48" stop-color="#5aa5ff"/>
+      <stop offset="1" stop-color="#d84dff"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="104" fill="#040b13"/>
+  <path d="M256 100v312M100 256h312M145.7 145.7l220.6 220.6M366.3 145.7L145.7 366.3"
+        fill="none" stroke="url(#wake)" stroke-width="26" stroke-linecap="square"/>
+</svg>

@@ -390,6 +390,13 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         target = Path(destination)
         target.mkdir(parents=True, exist_ok=True)
         assets = Path(__file__).parent / "assets"
+        # Browser and installed-app icons are shared presentation assets.
+        atomic_write(target / "manifest.webmanifest", (assets / "manifest.webmanifest").read_text())
+        icon_target = target / "icons"
+        icon_target.mkdir(parents=True, exist_ok=True)
+        for icon in (assets / "icons").iterdir():
+            if icon.is_file():
+                (icon_target / icon.name).write_bytes(icon.read_bytes())
         from .research_projection import build_research_projection
         research = (projection or {}).get("research") or build_research_projection(
             state, events, head, generated=data["generated"], metrics=data["metrics"],
