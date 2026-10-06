@@ -207,9 +207,9 @@
   }
   window.addEventListener('wake-process-data',event=>receive(event.detail));
   window.addEventListener('wake-console-selection',event=>{
-    const recordId=event.detail?.recordId||'',wakeId=event.detail?.wakeId||'';
+    const recordId=event.detail?.recordId||'',wakeId=event.detail?.wakeId||'',selectedWake=event.detail?.wake||null;
     if(wakeId){
-      const wake=(projection?.wakes||[]).find(w=>w.id===wakeId);
+      const wake=selectedWake||(projection?.wakes||[]).find(w=>w.id===wakeId);
       if(wake)latest=wake;
     }else if(projection?.wakes?.length)latest=projection.wakes[0];
     if(recordId && recordNodes.some(n=>n.id===recordId))inspectNode(recordId);
