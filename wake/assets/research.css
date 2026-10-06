@@ -1792,3 +1792,34 @@ body.research-page::after{content:none!important;display:none!important;backgrou
 }
 .research-page .activity-panel #activity-chart{margin-top:14px!important}
 .research-page .activity-panel #activity{margin-bottom:18px!important}
+
+/* PACKED CONSOLE + CLEANER GLASS — 2026-10-05 */
+.research-page .panel{
+  border-radius:10px!important;
+  background:rgba(3,10,19,.32)!important;
+}
+.research-page .panel::after{
+  content:none!important;
+  display:none!important;
+}
+/* Desktop/tablet modules pack independently into columns instead of inheriting row height. */
+@media(min-width:768px){
+  .console-module-grid{
+    display:block!important;
+    column-count:2;
+    column-gap:14px;
+  }
+  .console-module-grid>.console-module{
+    display:inline-block!important;
+    width:100%!important;
+    margin:0 0 14px!important;
+    break-inside:avoid!important;
+    page-break-inside:avoid!important;
+  }
+}
+@media(min-width:1500px){
+  .console-module-grid{column-count:3}
+}
+@media(max-width:767px){
+  .console-module-grid{display:grid!important;grid-template-columns:1fr!important}
+}
