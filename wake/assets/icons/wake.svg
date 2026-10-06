@@ -9,5 +9,5 @@
   </defs>
   <rect width="512" height="512" rx="104" fill="#040b13"/>
   <path d="M256 100v312M100 256h312M145.7 145.7l220.6 220.6M366.3 145.7L145.7 366.3"
-        fill="none" stroke="url(#wake)" stroke-width="26" stroke-linecap="square"/>
+        fill="none" stroke="url(#wake)" stroke-width="48" stroke-linecap="square"/>
 </svg>
