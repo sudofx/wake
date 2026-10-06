@@ -103,7 +103,6 @@
     return {cols:1};
   };
   const spanToSlots=(span,cols,panel)=>{
-    if(panel.matches('.process-field-panel'))return cols;
     const ratio=Math.max(1,Math.min(12,Number(span||6)))/12;
     return Math.max(1,Math.min(cols,Math.round(ratio*cols)));
   };
