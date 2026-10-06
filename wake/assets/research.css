@@ -1823,3 +1823,25 @@ body.research-page::after{content:none!important;display:none!important;backgrou
 @media(max-width:767px){
   .console-module-grid{display:grid!important;grid-template-columns:1fr!important}
 }
+
+/* REPAIR PACKING — restore span-aware grid; JS compacts modules into open cells. */
+@media(min-width:768px){
+  .console-module-grid{
+    display:grid!important;
+    column-count:initial!important;
+    grid-template-columns:repeat(12,minmax(0,1fr))!important;
+    grid-auto-flow:row!important;
+    gap:14px!important;
+    align-items:start!important;
+  }
+  .console-module-grid>.console-module{
+    display:block!important;
+    width:auto!important;
+    margin:0!important;
+    break-inside:auto!important;
+  }
+  .console-module-grid>.console-module[data-span="4"]{grid-column:span 4!important}
+  .console-module-grid>.console-module[data-span="6"]{grid-column:span 6!important}
+  .console-module-grid>.console-module[data-span="8"]{grid-column:span 8!important}
+  .console-module-grid>.console-module[data-span="12"]{grid-column:1/-1!important}
+}
