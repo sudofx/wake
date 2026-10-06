@@ -15,9 +15,9 @@
 <script src="research-instruments.js?v=20261005-3" defer></script>
 <script src="console-tools.js" defer></script>
 <script src="nav.js?v=20261004-11" defer></script>
-<script src="process-field.js?v=20261005-5" defer></script>
-<script src="research.js?v=20261005-13" defer></script>
-<script src="console-layout.js?v=20261005-14" defer></script>
+<script src="process-field.js?v=20261005-6" defer></script>
+<script src="research.js?v=20261005-14" defer></script>
+<script src="console-layout.js?v=20261005-15" defer></script>
 </head>
 <body class="research-page">
 <a class="skip-link" href="#main">Skip to Console</a>
@@ -86,7 +86,7 @@
 <div class="workspace-toolbar"><label>Research topic<select id="topic"><option value="all">All topics</option></select></label><label class="record-search">Find a record<input id="search" type="search" placeholder="Question, notebook, source…"></label><span id="scope-note">Current state · recorded relationships</span></div>
 <div class="research-workspace">
 <section class="panel frontier-panel" aria-labelledby="frontier-title"><div class="panel-heading"><p class="eyebrow">01 / FRONTIER</p><h2 id="frontier-title">Questions in motion</h2></div><div id="frontier"><p class="empty">Loading projects…</p></div><div class="panel-subsection"><h3>Commitments</h3><div id="commitments"></div></div></section>
-<section class="panel map-panel" aria-labelledby="map-title"><div class="panel-heading map-heading"><div><p class="eyebrow">02 / RELATIONSHIPS</p><h2 id="map-title">The research landscape</h2></div><div class="mode-control" aria-label="Map view"><button id="graph-mode" type="button" aria-pressed="true">Graph</button><button id="list-mode" type="button" aria-pressed="false">List</button></div></div><div class="map-key" aria-label="Select a record category"><button type="button" data-kind="project">□ Project</button><button type="button" data-kind="research">◇ Search</button><button type="button" data-kind="notebook">▤ Notebook</button><button type="button" data-kind="evidence">● Evidence</button><button type="button" data-kind="belief,commitment">△ Belief / commitment</button></div><div id="map-stage" class="map-stage" aria-label="Recorded research relationships"><svg id="research-map" viewBox="0 0 1000 620" role="group" aria-label="Research graph. Select a record to inspect its recorded relationships."></svg><div id="map-list" hidden></div></div><div class="map-caption"><span id="map-count">Waiting for graph…</span><span>Positions are layout, not scientific distance.</span></div><p class="depth-link">Select a record to follow its sources and wake receipts here.</p></section>
+<section class="panel map-panel" aria-labelledby="map-title"><div class="panel-heading map-heading"><div><p class="eyebrow">02 / RELATIONSHIPS</p><h2 id="map-title">The research landscape</h2></div></div><div class="map-key" aria-label="Select a record category"><button type="button" data-kind="project">□ Project</button><button type="button" data-kind="research">◇ Search</button><button type="button" data-kind="notebook">▤ Notebook</button><button type="button" data-kind="evidence">● Evidence</button><button type="button" data-kind="belief,commitment">△ Belief / commitment</button></div><div id="map-stage" class="map-stage" aria-label="Recorded research relationships"><svg id="research-map" viewBox="0 0 1000 620" role="group" aria-label="Research graph. Select a record to inspect its recorded relationships."></svg></div><div class="map-caption"><span id="map-count">Waiting for graph…</span><span>Positions are layout, not scientific distance.</span></div><p class="depth-link">Select a record to follow its sources and wake receipts here.</p></section>
 <aside class="panel detail-panel" aria-labelledby="detail-title"><div class="panel-heading"><p class="eyebrow">03 / INSPECT</p><h2 id="detail-title" tabindex="-1">Follow a record</h2><button id="close-inspector" type="button" aria-label="Close record inspector">×</button></div><div id="record-detail"><p class="empty">Select a project or a map node to see its contents, relationships, and provenance.</p></div></aside>
 </div>
 <div class="telemetry-grid">
