@@ -140,7 +140,7 @@
       const rows=shown.filter(n=>n.kind===kind);
       rows.forEach((n,i)=>pos.set(n.id,{x:step*(col+.5),y:65+i*(440/Math.max(rows.length,1))}));
     });
-    let svg='<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#75e6e3"/></marker></defs>';
+    let svg='<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#8fd3ff"/></marker></defs>';
     for(let x=0;x<=width;x+=50)svg+=`<path class="map-grid" d="M${x} 40V510"/>`;for(let y=60;y<=510;y+=50)svg+=`<path class="map-grid" d="M0 ${y}H${width}"/>`;
     usedKinds.forEach((kind,i)=>{svg+=`<text class="map-lane" x="${step*(i+.5)}" y="28" text-anchor="middle">${esc(kind==='research'?'SOURCE SEARCH':kind.toUpperCase())}</text>`;});
     const edges=data.graph.edges.filter(e=>pos.has(e.source)&&pos.has(e.target));
@@ -348,10 +348,7 @@
   document.querySelectorAll('.research-header details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)document.querySelectorAll('.research-header details').forEach(other=>{if(other!==d)other.open=false;});}));
   document.addEventListener('click',event=>{if(!event.target.closest('.research-header details'))document.querySelectorAll('.research-header details').forEach(d=>d.open=false);});
   let resizeFrame;window.addEventListener('resize',()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{if(data)renderMap();});});
-  controls();readUrl();
-  window.__wakeResearchReady=true;
-  window.dispatchEvent(new CustomEvent('wake-research-ready'));
-  bootstrap();
+  controls();readUrl();bootstrap();
   setInterval(()=>{if(!document.hidden)refresh();},60000);
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh();});
 })();
