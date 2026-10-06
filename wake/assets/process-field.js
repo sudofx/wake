@@ -183,6 +183,21 @@
     buildRecordField();setStageReadout();scheduleDraw();
   }
   window.addEventListener('wake-process-data',event=>receive(event.detail));
+  async function loadProjection(){
+    try{
+      const response=await fetch('research-data.json',{cache:'no-store'});
+      if(!response.ok)throw new Error(`HTTP ${response.status}`);
+      const next=await response.json();
+      if(next?.projection_kind!=='disposable-research-view'||!Array.isArray(next.graph?.nodes)||!Array.isArray(next.graph?.edges))throw new Error('Unsupported projection');
+      receive(next);
+    }catch(error){
+      statusEl.textContent='PROCESS DATA UNAVAILABLE';
+      statusEl.dataset.state='error';
+      traceEl.textContent='Published projection could not be loaded';
+      detailEl.textContent='The process field could not load its published WAKE projection. Other Console panels may still remain usable.';
+      scheduleDraw();
+    }
+  }
   const observer=new MutationObserver(()=>{setStageReadout();scheduleDraw();});
   if(actions)observer.observe(actions,{attributes:true,attributeFilter:['data-state','title']});
 
@@ -194,5 +209,5 @@
   io.observe(panel||canvas);
   window.addEventListener('resize',scheduleDraw);
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)scheduleDraw();});
-  setStageReadout();scheduleDraw();
+  setStageReadout();scheduleDraw();loadProjection();
 })();
