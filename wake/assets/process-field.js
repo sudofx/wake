@@ -104,7 +104,7 @@
     const p=palette(),now=performance.now(),t=(now-start)/1000;
     ctx.clearRect(0,0,w,h);
     const cx=w*.5,cy=h*.49,small=w<700,scale=Math.min(w,h);
-    const drift=motion?.015:0;
+    const drift=motion ? .015 : 0;
     nodePositions=recordNodes.map(n=>{
       const angle=n.a+t*drift*((n.index%3)-1);
       const rr=n.r*scale*(.88+.08*Math.sin(t*.18+n.phase));
