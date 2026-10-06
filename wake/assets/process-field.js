@@ -206,6 +206,16 @@
     buildRecordField();setStageReadout();scheduleDraw();
   }
   window.addEventListener('wake-process-data',event=>receive(event.detail));
+  window.addEventListener('wake-console-selection',event=>{
+    const recordId=event.detail?.recordId||'',wakeId=event.detail?.wakeId||'';
+    if(wakeId){
+      const wake=(projection?.wakes||[]).find(w=>w.id===wakeId);
+      if(wake)latest=wake;
+    }else if(projection?.wakes?.length)latest=projection.wakes[0];
+    if(recordId && recordNodes.some(n=>n.id===recordId))inspectNode(recordId);
+    else if(!recordId){selectedNode=null;selectedStage=null;stageList.querySelectorAll('.process-stage').forEach(el=>el.classList.remove('selected'));scheduleDraw();}
+    setStageReadout();scheduleDraw();
+  });
   async function loadProjection(){
     try{
       const response=await fetch('research-data.json',{cache:'no-store'});
