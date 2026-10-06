@@ -1876,3 +1876,16 @@ body.research-page::after{content:none!important;display:none!important;backgrou
   }
   .console-module-grid>.process-field-panel{grid-column:1/-1!important}
 }
+
+/* RESPONSIVE LOGICAL PANEL GRID — 2 tablet, 3 compact desktop, 4 desktop, 6 ultrawide. */
+@media(min-width:768px){
+  .console-module-grid{
+    grid-template-columns:repeat(var(--console-cols,2),minmax(0,1fr))!important;
+    grid-auto-flow:row!important;
+  }
+  .console-module-grid>.console-module{
+    grid-column-end:span var(--panel-slots,1)!important;
+    min-width:0!important;
+  }
+  .console-module-grid>.process-field-panel{grid-column:1/-1!important}
+}
