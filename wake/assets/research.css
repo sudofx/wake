@@ -1889,3 +1889,17 @@ body.research-page::after{content:none!important;display:none!important;backgrou
   }
   .console-module-grid>.process-field-panel{grid-column:1/-1!important}
 }
+
+/* WORKSPACE CONTROL REPAIR — every module, including Process Field, keeps its controls. */
+.console-module-grid>.console-module{grid-column-end:span var(--panel-slots,1)!important}
+.console-module-grid>.process-field-panel{grid-column-end:span var(--panel-slots,1)!important}
+.console-module-grid .panel-heading>.module-controls{
+  display:flex!important;
+  visibility:visible!important;
+  opacity:1!important;
+  position:relative!important;
+  z-index:8!important;
+  flex:0 0 auto!important;
+}
+.console-module-grid .module-controls button{display:inline-flex!important}
+.console-module-grid>.process-field-panel{margin-bottom:8px!important}
