@@ -14,7 +14,8 @@
     document.documentElement.classList.add('console-detached');
   }
 
-  const STORAGE='wake-console-workspace-v2';
+  const STORAGE='wake-console-workspace-v3';
+  const PREVIOUS_STORAGE='wake-console-workspace-v2';
   const main=document.getElementById('main');
   const status=document.getElementById('status-band');
   const toolbar=document.querySelector('.workspace-toolbar');
@@ -81,7 +82,17 @@
   originalParents.forEach(parent=>{if(parent&&parent!==main)parent.classList.add('console-layout-source-empty');});
 
   const readState=()=>{
-    try{return JSON.parse(localStorage.getItem(STORAGE)||'{}')||{};}catch{return {};}
+    try{
+      const current=localStorage.getItem(STORAGE);
+      if(current)return JSON.parse(current)||{};
+      const previous=JSON.parse(localStorage.getItem(PREVIOUS_STORAGE)||'{}')||{};
+      if(previous.panels){
+        const landscape=[...grid.children].find(panel=>panel.matches('.map-panel'));
+        if(landscape){previous.panels[landscape.dataset.moduleKey]={...(previous.panels[landscape.dataset.moduleKey]||{}),span:12};}
+        localStorage.setItem(STORAGE,JSON.stringify(previous));
+      }
+      return previous;
+    }catch{return {};}
   };
   const writeState=()=>{
     const state={
@@ -208,7 +219,7 @@
   toolbarRow.innerHTML=`<span>${detached?'DETACHED WORKSPACE':'CONSOLE WORKSPACE'}</span><div class="console-workspace-actions"><button id="reset-console-layout" type="button" aria-label="Reset Console view to the default panel arrangement">Reset view</button></div>`;
   status.before(toolbarRow);
   toolbarRow.querySelector('#reset-console-layout').addEventListener('click',()=>{
-    try{localStorage.removeItem(STORAGE);localStorage.removeItem('wake-console-workspace-v1');}catch{}
+    try{localStorage.removeItem(STORAGE);localStorage.removeItem(PREVIOUS_STORAGE);localStorage.removeItem('wake-console-workspace-v1');}catch{}
     location.reload();
   });
 })();
