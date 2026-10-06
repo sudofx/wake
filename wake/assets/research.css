@@ -1944,6 +1944,12 @@ body.research-page .detail-panel .console-panel-heading #close-inspector{
 .research-page #evidence-summary .meter-row:has([data-evidence-class="Discovery leads"]) .meter-track>i,
 .research-page #evidence-summary .meter-row:has([data-evidence-class="Metadata records"]) .meter-track>i{background:var(--orange)!important}
 
+/* Popped-out panels keep their saved place but release their parent grid space. */
+html:not(.console-panel-window) body.research-page [data-console-panel-id].panel-popped-out{display:none!important}
+@media(min-width:1200px){
+ html.console-inspector-popped-out body.research-page main{padding-right:24px!important}
+}
+
 /* Stable panel references remain readable alongside the section label. */
 .research-page .eyebrow .panel-id{display:inline-block;text-transform:none;letter-spacing:.03em}
 

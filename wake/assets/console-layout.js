@@ -8,6 +8,38 @@
   const detached=params.get('workspace')==='detached';
   const toolWindow=params.get('workspace')==='tool';
   const panelWindow=params.get('panel');
+  const poppedPanels=new Map();
+  const announcePanel=(target=window.opener)=>{
+    if(panelWindow&&target)try{target.postMessage({type:'wake-console-panel-open',id:panelWindow},location.origin);}catch{}
+  };
+  window.addEventListener('message',event=>{
+    if(event.origin!==location.origin||!event.source)return;
+    if(panelWindow){
+      if(event.data?.type==='wake-console-panel-ping'&&event.data.id===panelWindow)announcePanel(event.source);
+      return;
+    }
+    const id=event.data?.id;
+    if(event.data?.type!=='wake-console-panel-open'||!/^\d{3}$/.test(id))return;
+    const panel=document.querySelector(`[data-console-panel-id="${id}"]`);
+    if(!panel)return;
+    const tracked=poppedPanels.get(id);
+    try{if(tracked?.window!==event.source&&event.source.opener!==window)return;}catch{return;}
+    poppedPanels.set(id,{window:event.source,ready:true});
+    if(!panel.classList.contains('panel-popped-out'))panel.classList.add('panel-popped-out');
+    if(id==='014'&&!document.documentElement.classList.contains('console-inspector-popped-out'))document.documentElement.classList.add('console-inspector-popped-out');
+  });
+  if(!panelWindow)setInterval(()=>{
+    poppedPanels.forEach((entry,id)=>{
+      if(!entry.ready&&Date.now()>entry.expires){poppedPanels.delete(id);return;}
+      let closed=false;
+      try{closed=entry.window.closed;}catch{closed=true;}
+      if(closed){
+        document.querySelector(`[data-console-panel-id="${id}"]`)?.classList.remove('panel-popped-out');
+        if(id==='014')document.documentElement.classList.remove('console-inspector-popped-out');
+        poppedPanels.delete(id);
+      }else try{entry.window.postMessage({type:'wake-console-panel-ping',id},location.origin);}catch{}
+    });
+  },500);
   if(toolWindow)return;
 
   if(detached){
@@ -110,7 +142,10 @@
       const url=new URL(location.href);
       url.searchParams.delete('workspace');url.searchParams.set('panel',id);
       const opened=window.open(url.href,`wake-console-panel-${id}`,'popup=yes,width=1000,height=800');
-      if(opened)opened.focus();else location.assign(url.href);
+      if(opened){
+        if(!panelWindow)poppedPanels.set(id,{window:opened,ready:false,expires:Date.now()+15000});
+        opened.focus();
+      }else location.assign(url.href);
     });
   });
   if(panelWindow){
@@ -124,7 +159,8 @@
   }else{
     const intro=document.querySelector('.page-intro');
     const alignInspector=()=>{
-      document.documentElement.style.setProperty('--console-inspector-top',`${Math.max(20,intro.getBoundingClientRect().top)}px`);
+      const anchor=intro.classList.contains('panel-popped-out')?(toolbar||status):intro;
+      document.documentElement.style.setProperty('--console-inspector-top',`${Math.max(20,anchor.getBoundingClientRect().top)}px`);
     };
     if(intro){
       alignInspector();
@@ -216,7 +252,7 @@
 
   let dragging=null,placeholder=null,pointerId=null;
   const nearest=(x,y)=>{
-    const candidates=[...grid.querySelectorAll('.console-module')].filter(panel=>panel!==dragging);
+    const candidates=[...grid.querySelectorAll('.console-module')].filter(panel=>panel!==dragging&&!panel.classList.contains('panel-popped-out'));
     if(!candidates.length)return null;
     return candidates.reduce((best,panel)=>{
       const r=panel.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
@@ -269,4 +305,5 @@
     try{localStorage.removeItem(STORAGE);localStorage.removeItem(PREVIOUS_STORAGE);localStorage.removeItem('wake-console-workspace-v1');}catch{}
     location.reload();
   });
+  if(panelWindow){announcePanel();setInterval(()=>announcePanel(),2000);}
 })();
