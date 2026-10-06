@@ -1371,3 +1371,79 @@ html.console-tool-window #console-tool-frame{
     white-space:nowrap!important;
   }
 }
+
+
+/* CONSOLE FIT + CONTROL HIERARCHY — 2026-10-05
+   Keep visualizations fully visible inside their modules; controls get their own row. */
+.console-module-grid .panel-heading.map-heading,
+.console-module-grid .panel-heading{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  align-items:start!important;
+  gap:10px 12px!important;
+}
+.console-module-grid .panel-heading>.mode-control{
+  grid-column:1/-1!important;
+  grid-row:2!important;
+  justify-content:flex-start!important;
+  flex-wrap:wrap!important;
+  min-width:0!important;
+}
+.console-module-grid .panel-heading>.module-controls{
+  grid-column:2!important;
+  grid-row:1!important;
+  align-self:start!important;
+}
+.console-module-grid .panel-heading>div:first-child{
+  min-width:0!important;
+}
+.console-module-grid .panel-heading h2{
+  overflow-wrap:anywhere;
+}
+
+/* Restore fit-to-panel graphs: no horizontal chart/map scrolling. */
+.research-page .map-stage{
+  overflow-x:hidden!important;
+}
+.research-page #research-map{
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+}
+.research-page .timeline-scroll{
+  width:100%!important;
+  max-width:100%!important;
+  overflow-x:hidden!important;
+  overflow-y:hidden!important;
+  padding-bottom:0!important;
+}
+.research-page .timeline-scroll .instrument-chart{
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+}
+.research-page #activity-chart{
+  width:100%!important;
+  max-width:100%!important;
+  overflow-x:hidden!important;
+  overflow-y:hidden!important;
+}
+.research-page #activity-chart .hour-bin{
+  flex:1 1 0!important;
+  min-width:0!important;
+}
+.timeline-scroll-hint{display:none!important}
+
+/* Keep search/filter strip compact and visually attached to the modules it filters. */
+.research-page .workspace-toolbar{
+  margin:10px 0 14px!important;
+  align-items:end!important;
+}
+@media(max-width:900px){
+  .console-module-grid .panel-heading>.mode-control{
+    gap:6px!important;
+  }
+  .console-module-grid .panel-heading>.mode-control button{
+    min-width:44px;
+  }
+}
