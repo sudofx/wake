@@ -18,9 +18,16 @@ The public site exposes the same governed record at increasing depth: plain-lang
 
 **[Open **WAKE✳︎**’s home](https://sudofx.github.io/wake/)** · **[Open GitHub Actions](https://github.com/sudofx/wake/actions)**
 
+
+<p align="center"><img src="assets/covers/screenshot-full.png" alt="**WAKE✳︎** Console full screen" width="100%"/>
+
 The **Console** (`console.html`) is the inspection workspace for that record. It brings model calls, research activity, evidence depth, governance outcomes, notebooks and recorded relationships into one place. Projects, Lab, Evidence, History, Metrics, MAP, 3D MAP, exact events, state and rejected drafts open as deeper workspaces. Its compact `research-data.json` is disposable presentation, never operational authority. The Console visualizes the same core sequence used throughout WAKE✳︎: **Record → Context → Proposal → Governance → Transition → Receipt**. View layout and animation are presentation only and never represent research progress.
 
+<p align="center"><img src="assets/covers/screenshot-wide.png" alt="**WAKE✳︎** Console" width="100%"/>
+
 ## Optional continuity matrix extension
+
+<p align="center"><img src="assets/covers/screenshot-cube.png" alt="**WAKE✳︎** Console full screen" width="100%"/>
 
 WAKE can explicitly opt into WAKE's versioned `continuity@1` 7×7×7 matrix without copying the matrix definition into this repository. wake owns the immutable grammar, coordinate IDs, traversal, validation, and definition digest; WAKE owns when the campaign is enabled, how coordinates are scheduled and prompted, how results are interpreted/scored, and which results count as completed. Matrix progress is committed through the existing WAKE `ApplicationHost` state in `wake.sqlite`; no JSON/Markdown progress store is authoritative. Existing research behavior is unchanged until matrix enablement is explicitly submitted. The **WAKE✳︎ - Enable continuity campaign** operator workflow performs that explicit opt-in through the serialized authority lane without calling a provider, and the Console links to it only when the durable projection explicitly reports the campaign disabled. Once enabled, each ordinary provider request carries at most one continuity sidecar for the next uncovered coordinate. The same model response returns the normal research proposal plus the isolated probe answer, so the campaign adds no second inference call and consumes no additional provider quota. The sidecar receives a deterministic exposure/pressure packet, cannot authorize research changes, is stripped before ordinary proposal governance, and is scored mechanically against explicit structural invariants. Any returned provider response completes that tested coordinate: a missing or malformed sidecar records a zero score instead of invalidating otherwise valid research, while a provider transport/quota deferral with no response leaves the coordinate uncovered for retry.
 
