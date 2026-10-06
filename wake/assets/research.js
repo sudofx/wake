@@ -249,7 +249,8 @@
   function controls() {
     document.documentElement.dataset.theme='dark';
     try{localStorage.setItem('wake-theme','dark')}catch{}
-    const setMotion=()=>{cube.setMotion(motion);contextMap.setMotion(motion);document.body.dataset.motion=motion?'on':'off';$('motion-toggle').setAttribute('aria-pressed',String(motion));$('motion-toggle').textContent=motion?'Pause motion':'Resume motion';};setMotion();$('motion-toggle').onclick=()=>{motion=!motion;setMotion();};
+    cube.setMotion(false);contextMap.setMotion(false);document.body.dataset.motion='off';
+    window.addEventListener('wake-global-motion',event=>{motion=Boolean(event.detail?.enabled);cube.setMotion(motion);contextMap.setMotion(motion);document.body.dataset.motion=motion?'on':'off';});
     $('cube-left').onclick=()=>cube.rotate(-.3);$('cube-right').onclick=()=>cube.rotate(.3);$('cube-reset').onclick=()=>cube.reset();
     $('matrix-cube').addEventListener('wake-cube-select',e=>{matrixCell=e.detail;renderCell();});
     $('cube-selectors').addEventListener('change',()=>{const pos=[...document.querySelectorAll('[data-cube-axis]')].map(el=>Number(el.value));const c=data.matrix.cells.find(c=>c.position.every((v,i)=>v===pos[i]));if(c){matrixCell=c.id;cube.select(c.id);renderCell();}});
