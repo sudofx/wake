@@ -17,7 +17,7 @@
   const badge = status => `<span class="badge ${esc(status)}">${esc(String(status || 'recorded').replaceAll('_',' '))}</span>`;
   const local = ['localhost','127.0.0.1',''].includes(location.hostname);
   const raw = 'https://raw.githubusercontent.com/sudofx/wake/';
-  let data, loading=false, fallback=false, loadedCommit='', selected='', topic='all', query='', mode=matchMedia('(max-width:700px)').matches?'list':'graph';
+  let data, loading=false, fallback=false, loadedCommit='', selected='', topic='all', query='', mode='graph';
   let nodeById=new Map(), selectedWake='', wakeTab='summary', followLatest=true, focusedKinds=[];
   // Expensive view motion is opt-in. Idle Console should stay effectively idle.
   let motion=false;
@@ -32,12 +32,11 @@
   function readUrl() {
     const p=new URL(location.href).searchParams;
     topic=p.get('topic') || 'all'; selected=p.get('record') || ''; query=p.get('q') || '';selectedWake=p.get('wake')||'';followLatest=!selectedWake;wakeTab=['summary','context','response','provider','receipt'].includes(p.get('tab'))?p.get('tab'):'summary';
-    if(['list','graph'].includes(p.get('view'))) mode=p.get('view');
   }
   function writeUrl(push=true) {
     const u=new URL(location.href); for(const key of ['topic','record','q','view','wake','tab'])u.searchParams.delete(key);
     if(selectedWake&&!followLatest){u.searchParams.set('wake',selectedWake);u.searchParams.set('tab',wakeTab);}
-    if(topic!=='all')u.searchParams.set('topic',topic); if(selected)u.searchParams.set('record',selected); if(query)u.searchParams.set('q',query);u.searchParams.set('view',mode);
+    if(topic!=='all')u.searchParams.set('topic',topic); if(selected)u.searchParams.set('record',selected); if(query)u.searchParams.set('q',query);
     if(u.href!==location.href)history[push?'pushState':'replaceState'](null,'',u);
   }
   function notice(message) { $('notice').hidden=!message; $('notice').textContent=message || ''; }
@@ -122,9 +121,7 @@
   }
   function renderMap() {
     const scoped=scopedNodes();
-    $('graph-mode').setAttribute('aria-pressed',String(mode==='graph'));$('list-mode').setAttribute('aria-pressed',String(mode==='list'));
-    $('research-map').toggleAttribute('hidden',mode!=='graph');$('map-list').hidden=mode!=='list';
-    $('map-list').innerHTML=scoped.map(n=>`<div class="map-list-row"><span class="badge">${esc(n.kind)}</span><button type="button" aria-pressed="${n.id===selected}" data-record="${esc(n.id)}">${esc(n.title)}<small>${esc(n.detail.status || n.detail.evidence_class || 'recorded')}</small></button></div>`).join('')||'<p class="empty">No records match. Try another topic or clear the search.</p>';
+    $('research-map').hidden=false;
     document.querySelectorAll('[data-kind]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.kind.split(',').some(k=>focusedKinds.includes(k)))));
     const kinds=['project','research','notebook','evidence','belief','commitment'];
     const neighbors=new Set([selected]);data.graph.edges.forEach(e=>{if(e.source===selected)neighbors.add(e.target);if(e.target===selected)neighbors.add(e.source);});
@@ -149,7 +146,7 @@
     shown.forEach(n=>{const p=pos.get(n.id),connected=neighbors.has(n.id),nodeWidth=Math.min(180,step-14),chars=Math.max(9,Math.floor((nodeWidth-24)/7)),short=n.title.length>chars?n.title.slice(0,chars-1)+'…':n.title;svg+=`<g class="map-node ${esc(n.detail.status || '')}${n.id===selected?' selected':''}${focusedKinds.includes(n.kind)?' category-focus':''}${selected&&!connected?' dimmed':''}" data-record="${esc(n.id)}" tabindex="0" role="button" aria-label="${esc(n.kind+': '+n.title)}" aria-pressed="${n.id===selected}" transform="translate(${p.x},${p.y})"><title>${esc(n.title)}</title><rect x="${-nodeWidth/2}" y="-26" width="${nodeWidth}" height="53"/><text class="node-mark" x="${-nodeWidth/2+10}" y="-5">${marks[n.kind]}</text><text class="node-type" x="${-nodeWidth/2+33}" y="-7">${esc((n.detail.status || n.detail.evidence_class || n.kind).slice(0,Math.max(6,chars-4)))}</text><svg class="node-label-window" x="${-nodeWidth/2+10}" y="1" width="${nodeWidth-20}" height="23"><text class="node-long-label" style="--label-shift:${-Math.max(0,n.title.length*7-nodeWidth+25)}px;--label-duration:${Math.max(4,n.title.length*.14)}s" x="0" y="14">${esc(n.title)}</text></svg></g>`;});
     if(!shown.length)svg+=`<text x="${width/2}" y="300" text-anchor="middle" fill="#9fb7bf">No matching records</text>`;
     $('research-map').innerHTML=svg;
-    $('map-count').textContent=mode==='list'?`${count(scoped.length)} records in this view`:`${count(shown.length)} of ${count(scoped.length)} scoped records · ${count(edges.length)} visible relationships${data.graph.truncated?' · overview capped':''}`;
+    $('map-count').textContent=`${count(shown.length)} of ${count(scoped.length)} scoped records · ${count(edges.length)} visible relationships${data.graph.truncated?' · overview capped':''}`;
     const scopeIds=new Set(scoped.map(n=>n.id)),scopeEdges=data.graph.edges.filter(e=>scopeIds.has(e.source)&&scopeIds.has(e.target));
     contextMap.update({nodes:scoped,edges:scopeEdges},selected);
     const attributed=new Set(scoped.map(n=>n.detail.domain||data.records.projects.find(p=>p.id===n.detail.project)?.domain).filter(Boolean));
@@ -251,6 +248,12 @@
     try{localStorage.setItem('wake-theme','dark')}catch{}
     cube.setMotion(false);contextMap.setMotion(false);document.body.dataset.motion='off';
     window.addEventListener('wake-global-motion',event=>{motion=Boolean(event.detail?.enabled);cube.setMotion(motion);contextMap.setMotion(motion);document.body.dataset.motion=motion?'on':'off';});
+    const motionButton=$('global-motion-toggle');
+    if(motionButton&&!motionButton.dataset.motionBound){
+      motionButton.dataset.motionBound='true';let globalMotion=false;
+      const applyMotion=()=>{motionButton.setAttribute('aria-pressed',String(globalMotion));motionButton.textContent='Motion';motionButton.title=globalMotion?'Disable presentation motion':'Enable presentation motion';document.documentElement.dataset.motion=globalMotion?'on':'off';window.dispatchEvent(new CustomEvent('wake-global-motion',{detail:{enabled:globalMotion}}));};
+      motionButton.addEventListener('click',()=>{globalMotion=!globalMotion;applyMotion();});applyMotion();
+    }
     $('cube-left').onclick=()=>cube.rotate(-.3);$('cube-right').onclick=()=>cube.rotate(.3);$('cube-reset').onclick=()=>cube.reset();
     $('matrix-cube').addEventListener('wake-cube-select',e=>{matrixCell=e.detail;renderCell();});
     $('cube-selectors').addEventListener('change',()=>{const pos=[...document.querySelectorAll('[data-cube-axis]')].map(el=>Number(el.value));const c=data.matrix.cells.find(c=>c.position.every((v,i)=>v===pos[i]));if(c){matrixCell=c.id;cube.select(c.id);renderCell();}});
@@ -343,7 +346,6 @@
   $('research-map').addEventListener('keydown',event=>{if(['Enter',' '].includes(event.key)){const target=event.target.closest('[data-record]');if(target){event.preventDefault();choose(target.dataset.record);}}});
   $('topic').addEventListener('change',()=>{topic=$('topic').value;selected='';writeUrl();renderFrontier();renderMap();renderDetail();renderSynthesis();});
   $('search').addEventListener('input',()=>{query=$('search').value;writeUrl(false);renderMap();});
-  $('graph-mode').addEventListener('click',()=>{mode='graph';writeUrl();renderMap();});$('list-mode').addEventListener('click',()=>{mode='list';writeUrl();renderMap();});
   $('refresh').addEventListener('click',refresh);
   window.addEventListener('popstate',()=>{readUrl();if(data)render();});
   document.addEventListener('keydown',event=>{if(['Enter',' '].includes(event.key)&&event.target.tagName.toLowerCase()==='circle'&&event.target.matches('[data-wake],[data-hour]')){event.preventDefault();event.target.dispatchEvent(new MouseEvent('click',{bubbles:true}));}if(event.key==='Escape'){$('data-inspector').hidden=true;selected='';renderDetail();writeUrl(false);$('wake-detail').classList.remove('floating');document.querySelectorAll('.research-header details[open]').forEach(d=>{d.open=false;d.querySelector('summary').focus();});}});
