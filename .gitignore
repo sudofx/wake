@@ -12,3 +12,8 @@ dist/
 .wrangler/
 # Local mounted runtime credentials.
 secrets/
+
+# Generated package files and local editor settings.
+build/
+*.egg-info/
+.vscode/
