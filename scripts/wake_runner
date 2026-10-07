@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+# Recreate a standalone container; preserve its record unless --reset is supplied.
+
+usage() {
+    cat <<'EOF'
+Usage: wake_runner [container-name] [--reset]
+
+The name defaults to wake. --reset permanently deletes the selected data volume.
+The VS Code home volume is preserved. Options may precede or follow the name.
+The website uses host port 8080; only one container can use that port at a time.
+EOF
+}
+
+main() {
+    local container_name="wake"
+    local repo_dir
+    local data_volume home_volume arg
+    local reset=false name_set=false
+
+    for arg in "$@"; do
+        case "$arg" in
+            --reset) reset=true ;;
+            --help|-h) usage; return 0 ;;
+            -*) usage >&2; return 1 ;;
+            *)
+                if [[ "$name_set" == true || ! "$arg" =~ ^[a-zA-Z0-9][a-zA-Z0-9_.-]*$ ]]; then
+                    usage >&2
+                    return 1
+                fi
+                container_name="$arg"
+                name_set=true
+                ;;
+        esac
+    done
+
+    repo_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)" || return
+
+    if [[ "$container_name" == wake ]]; then
+        data_volume="wake-standalone-preview_wake-data"
+        home_volume="wake-standalone-preview_vscode-home"
+    else
+        data_volume="${container_name}-data"
+        home_volume="${container_name}-vscode-home"
+    fi
+
+    [[ -f "$repo_dir/.env" && -f "$repo_dir/wake.toml" ]] || {
+        echo "Missing .env or wake.toml in $repo_dir" >&2
+        return 1
+    }
+    docker info >/dev/null 2>&1 || {
+        echo "Docker is unavailable. Start Docker first." >&2
+        return 1
+    }
+    docker image inspect wake-standalone:vscode >/dev/null 2>&1 || {
+        echo "Missing image: wake-standalone:vscode" >&2
+        return 1
+    }
+
+    if docker container inspect "$container_name" >/dev/null 2>&1; then
+        docker stop --timeout 300 "$container_name" || return
+        docker rm "$container_name" || return
+    fi
+    if [[ "$reset" == true ]] && docker volume inspect "$data_volume" >/dev/null 2>&1; then
+        echo "Resetting WAKE record in $data_volume"
+        docker volume rm "$data_volume" || return
+    fi
+
+    docker run -d --name "$container_name" \
+        -p 8080:8080 \
+        -v "$data_volume:/data" \
+        -v "$home_volume:/home/wake" \
+        -v "$repo_dir:/workspace" \
+        -w /workspace \
+        --env-file "$repo_dir/.env" \
+        -e WAKE_ENABLE_CONTINUITY_MATRIX=true \
+        -e WAKE_PAUSED=false \
+        -e HTTPS_PROXY=http://http.docker.internal:3128 \
+        --read-only --tmpfs /tmp \
+        wake-standalone:vscode \
+        --config /workspace/wake.toml
+}
+
+main "$@"
