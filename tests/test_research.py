@@ -164,14 +164,15 @@ class ResearchTests(unittest.TestCase):
         }
         schema = schema_for_context(context)
         choices = schema["properties"]["actions"]["items"]["anyOf"]
-        blog = next(
-            action for action in choices
-            if action["properties"]["type"]["enum"] == ["blog"]
-        )
-        self.assertEqual(blog["properties"]["notebooks"]["minItems"], 0)
-        self.assertEqual(blog["properties"]["notebooks"]["maxItems"], 0)
-        self.assertEqual(blog["properties"]["evidence"]["minItems"], 0)
-        self.assertEqual(blog["properties"]["evidence"]["maxItems"], 0)
+        self.assertFalse(any(
+            action["properties"]["type"]["enum"] == ["blog"]
+            for action in choices
+        ))
+        checkpoint = schema["properties"]["bob_checkpoint"]
+        self.assertEqual(checkpoint["properties"]["notebooks"]["minItems"], 0)
+        self.assertEqual(checkpoint["properties"]["notebooks"]["maxItems"], 0)
+        self.assertEqual(checkpoint["properties"]["evidence"]["minItems"], 0)
+        self.assertEqual(checkpoint["properties"]["evidence"]["maxItems"], 0)
 
         def assert_no_empty_enum(node):
             if isinstance(node, dict):
@@ -1583,8 +1584,12 @@ class ResearchTests(unittest.TestCase):
         self.assertIn("p", state["projects"])
         self.assertIn(checkpoint["id"], state["posts"])
         self.assertNotIn("Bob checkpoint", state["journal"][-1]["title"])
+        receipt = next(
+            event["payload"] for event in reversed(self.engine.store.events())
+            if event["kind"] == "accepted"
+        )
         self.assertEqual(
-            result["rotation_filter"]["bob_checkpoint"]["due_cycle"],
+            receipt["rotation_filter"]["bob_checkpoint"]["due_cycle"],
             checkpoint["reflection_cycle"],
         )
 
