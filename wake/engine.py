@@ -1987,6 +1987,8 @@ class Engine:
                     "selected_topic": rotation_filter["selected_topic"],
                     "withheld_count": rotation_filter["withheld_count"],
                     "inserted_capacity_park": rotation_filter["inserted_capacity_park"],
+                    **({"bob_checkpoint": rotation_filter["bob_checkpoint"]}
+                       if rotation_filter.get("bob_checkpoint") else {}),
                 }} if rotation_filter else {}),
                 **(
                     {"continuity_matrix_probe": probe_result}
