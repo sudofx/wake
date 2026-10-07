@@ -5,6 +5,26 @@
 **WAKE✳︎** is infrastructure for continuity of accountable work, not continuity of a model instance. Its stable sequence is **Record → Context → Proposal → Governance → Transition → Receipt**. Models, vendors, runtimes and human operators may change; the durable record, authority boundary, provenance and correction mechanisms carry the work forward. Research is the first application running on that structure.
 
 
+## Independent standalone execution
+
+`wake/standalone.py` is a local execution adapter over the same authoritative store,
+Engine, governance and export paths. It adds no competing authority engine. Each
+installation owns one `/data/wake.sqlite` in a persistent volume. A genuinely unused
+volume bootstraps natively; subsequent starts verify the kernel record and application
+history before recovering interrupted automatic invocations. A used volume with missing
+or corrupt authority fails closed. A process lease prevents two local schedulers from
+owning the same volume.
+
+The scheduler serializes bounded cycles and honors durable quota eligibility. Runtime
+credentials enter through environment variables or a mounted secret file. A read-only
+HTTP server publishes disposable local snapshots outside the authority volume; its
+runtime endpoint reports local scheduling status and exposes no mutations. Explicit
+standalone presentation mode makes the Console, maps and status light read local data
+on every hostname. GitHub execution, state transport and Pages remain independent.
+
+See [standalone operation](standalone.md). This remains a single-host operator-controlled
+installation, not an authenticated tenant service.
+
 ## The authority boundary
 
 Models are proposal generators, not filesystem operators. A provider receives a durable JSON request and returns untrusted JSON. It has no shell, browser, code execution, policy editor, or network tool provided by **WAKE✳︎**. A charged wake may attempt the configured Gemini model chain, with each distinct model attempted at most once. With the research charter enabled, a separate trusted collector retrieves a bounded public sample from explicit HTTPS allowlists before inference. Normal mode budgets two requests. The current configured `observation_mode = true` profile raises that bounded sample to `research_collection_budget = 6` (capped at eight). With active projects, one slot preserves broad exploration while the remainder deepen active work through readable-source candidates, persistent identifiers, queued follow-ups, and question-led scholarly discovery. Discovery, metadata routing, and substantive readable evidence are separate states; only the last can mature a notebook. Routing progress keeps productive acquisition paths alive without pretending the research itself advanced. The model never performs network requests itself. Operator-supplied evidence and earlier journal prose are data, not executable instructions.

@@ -1,0 +1,12 @@
+# Allowlist: no authority checkpoints, secrets, Git metadata or hosted machinery.
+**
+!Dockerfile
+!pyproject.toml
+!README.md
+!LICENSE
+!wake.toml
+!research-topics.toml
+!wake/
+!wake/**
+wake/**/__pycache__/
+wake/**/*.pyc

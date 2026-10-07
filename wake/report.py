@@ -355,7 +355,7 @@ def _flat_browser_shell(title, eyebrow, heading, description, kind, source):
 
 
 def export(store=None, destination="site", experiment=None, operation=None, browser_only=False,
-           record_snapshot=None, projection=None):
+           record_snapshot=None, projection=None, standalone=False):
     lock = store.lock() if store is not None else nullcontext()
     with lock:
         # Pages may consume the disposable wake-live projection directly. It must
@@ -487,6 +487,8 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             # historical presentation files back into the live browser projection.
             atomic_write(target / "404.html", """<!doctype html><meta charset="utf-8"><script>(()=>{const p=location.pathname;let h='home';let m;if((m=p.match(/\\/blog\\/([^/]+)\\.(?:html|md)$/)))h='blog/'+decodeURIComponent(m[1]);else if((m=p.match(/\\/journal\\/([^/]+)\\.html$/)))h='history/'+decodeURIComponent(m[1]);else if((m=p.match(/\\/notebooks\\/([^/]+)\\.(?:html|md)$/)))h='projects/notebook:'+decodeURIComponent(m[1]);location.replace(new URL('index.html#'+h,location.href))})()</script>""")
             _export_console_components(target)
+            if standalone:
+                _standalone_site(target)
             return {"path": str((target / "index.html").resolve()), "cycles": state["version"], "head": head}
         from .feeds import build_feeds
         for filename, content in build_feeds(state).items():
@@ -553,4 +555,16 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             atomic_write(shard_dir / map3d_shard_filename(parent), json.dumps(shard, ensure_ascii=False))
         atomic_write(target / "index.html", page)
         _export_console_components(target)
+        if standalone:
+            _standalone_site(target)
         return {"path": str((target / "index.html").resolve()), "cycles": state["version"], "head": head}
+
+
+def _standalone_site(target):
+    """Explicit installation mode precedes every browser script, on any hostname."""
+    for path in target.rglob('*.html'):
+        page = path.read_text()
+        page = page.replace('<head>', '<head><script>window.WAKE_STANDALONE=true;</script>', 1)
+        page = page.replace('href="https://github.com/sudofx/wake/actions"', 'href="/runtime.json"')
+        page = page.replace('Open WAKE GitHub Actions', 'Inspect local WAKE runtime')
+        atomic_write(path, page)

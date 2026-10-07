@@ -10,3 +10,5 @@ dist/
 *.sqlite*
 *.lock
 .wrangler/
+# Local mounted runtime credentials.
+secrets/

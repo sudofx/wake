@@ -38,7 +38,18 @@
 })();
 
 const actionsLight=document.querySelector('.actions-light');
-if(actionsLight){
+if(actionsLight && window.WAKE_STANDALONE){
+  actionsLight.href='/runtime.json';
+  const refreshLocal=()=>fetch('/runtime.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('Unavailable');return r.json();}).then(status=>{
+    const label=status.state==='running'?'Running':status.state==='waiting'?'Waiting':'Paused';
+    actionsLight.dataset.state=status.state==='paused'?'stopped':'running';
+    actionsLight.title='Local WAKE · '+label;
+    actionsLight.setAttribute('aria-label','Inspect local WAKE runtime · '+label);
+    const text=actionsLight.querySelector('.actions-light-label');if(text)text.textContent=label;
+  }).catch(()=>{actionsLight.removeAttribute('data-state');actionsLight.title='Local runtime unavailable';});
+  refreshLocal();setInterval(refreshLocal,30000);
+}
+if(actionsLight && !window.WAKE_STANDALONE){
   const CACHE_KEY='wake-actions-light-state';
   const CACHE_FRESH_MS=90000;
   const REFRESH_MS=180000;

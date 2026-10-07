@@ -15,7 +15,7 @@
   };
   const stamp = (value, full=false) => { if (!value || Number.isNaN(Date.parse(value))) return 'Unknown'; return new Intl.DateTimeFormat('en-US', {timeZone:'America/Los_Angeles', ...(full ? {month:'short',day:'numeric'} : {}), hour:'numeric',minute:'2-digit'}).format(new Date(value)); };
   const badge = status => `<span class="badge ${esc(status)}">${esc(String(status || 'recorded').replaceAll('_',' '))}</span>`;
-  const local = ['localhost','127.0.0.1',''].includes(location.hostname);
+  const local = window.WAKE_STANDALONE || ['localhost','127.0.0.1',''].includes(location.hostname);
   const raw = 'https://raw.githubusercontent.com/sudofx/wake/';
   let data, loading=false, fallback=false, loadedCommit='', selected='', topic='all', query='', mode='graph';
   let nodeById=new Map(), selectedWake='', wakeTab='summary', followLatest=true, focusedKinds=[];
@@ -118,7 +118,7 @@
     renderFrontier();renderMap();renderDetail();renderMetrics();renderSynthesis();renderCube();if(selected&&!syncCubeToRecord(selected) && selectedWake&&!followLatest)syncCubeToWake(selectedWake);else if(!selected&&selectedWake&&!followLatest)syncCubeToWake(selectedWake);renderWake();renderInstruments();
     window.dispatchEvent(new CustomEvent('wake-process-data',{detail:data}));
     if(pendingSelection){const state=pendingSelection;pendingSelection=null;receiveSelection(state);}
-    $('provenance').innerHTML=`<p>Snapshot: ${esc(stamp(data.generated,true))} PT · accepted state ${count(data.version)}</p><p>Authority: ${esc(data.source.authority || 'Verified export')} / ${esc(data.source.database || 'record')}</p><p>Record head: <code>${esc(data.head)}</code></p>${loadedCommit?`<p>Projection commit: <code>${esc(loadedCommit)}</code></p>`:''}<p><a href="research-data.json">Published JSON snapshot</a> · <a href="https://github.com/sudofx/wake/tree/wake-state">Authority checkpoint ↗</a></p>`;
+    $('provenance').innerHTML=`<p>Snapshot: ${esc(stamp(data.generated,true))} PT · accepted state ${count(data.version)}</p><p>Authority: ${esc(data.source.authority || 'Verified export')} / ${esc(data.source.database || 'record')}</p><p>Record head: <code>${esc(data.head)}</code></p>${loadedCommit?`<p>Projection commit: <code>${esc(loadedCommit)}</code></p>`:''}<p><a href="research-data.json">Published JSON snapshot</a> · ${window.WAKE_STANDALONE?'<a href="events.jsonl">Local record export</a>':'<a href="https://github.com/sudofx/wake/tree/wake-state">Authority checkpoint ↗</a>'}</p>`;
   }
   function renderFrontier() {
     const projects=data.records.projects.filter(visibleRecord);
@@ -227,7 +227,7 @@
     $('matrix-state').textContent=m.reported?(m.enabled?'Continuity campaign recorded':'Campaign not enabled'):'Campaign progress not reported';
     $('matrix-coverage').textContent=m.reported?`${count(m.completed)} / ${count(m.cells.length)}`:`— / ${count(m.cells.length)}`;
     const enable=$('matrix-enable');
-    if(enable)enable.hidden=!(m.reported && m.enabled===false);
+    if(enable)enable.hidden=window.WAKE_STANDALONE || !(m.reported && m.enabled===false);
     $('cube-selectors').innerHTML=m.axes.map((a,i)=>`<label>${esc(a.label)}<select data-cube-axis="${i}" aria-label="${esc(a.label)}">${a.values.map((v,j)=>`<option value="${j}">${esc(v.label)}</option>`).join('')}</select></label>`).join('');
     renderCell();
   }

@@ -98,7 +98,7 @@ Keep presentation subordinate to the canonical durable record.
 </div>
 <footer><a class="footer-mark" href="#home">WAKE✳︎</a><span>DURABLE WORK. REPLACEABLE INTELLIGENCE.</span><div><a href="#about">About →</a><a href="state.html">State →</a><a href="events.html">History →</a></div><p>Made of evidence, not vibes. <span id="generated"></span></p></footer>
 <script>
-window.WakeLiveUrl='https://raw.githubusercontent.com/sudofx/wake/wake-live/live.json';
+window.WakeLiveUrl=window.WAKE_STANDALONE?'wake-data.json':'https://raw.githubusercontent.com/sudofx/wake/wake-live/live.json';
 window.WakeData=fetch(window.WakeLiveUrl+'?wake='+Date.now(),{cache:'no-store'})
   .then(response=>{if(!response.ok)throw new Error('Live WAKE projection could not be loaded');return response.json()})
   .catch(()=>fetch('wake-data.json',{cache:'no-store'})

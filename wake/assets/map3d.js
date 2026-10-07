@@ -15,6 +15,11 @@
 const LIVE_BASE='https://raw.githubusercontent.com/sudofx/wake/wake-live/';
 let liveMap3d=false;
 async function loadMap3dData(){
+  if(window.WAKE_STANDALONE){
+    const response=await fetch('map3d-data.json?wake='+Date.now(),{cache:'no-store'});
+    if(!response.ok)throw new Error('Local map data unavailable');
+    return response.json();
+  }
   const live=await fetch(LIVE_BASE+'map3d-data.json?wake='+Date.now(),{cache:'no-store'}).catch(()=>null);
   if(live?.ok){liveMap3d=true;return live.json();}
   const stateResponse=await fetch(LIVE_BASE+'live.json?wake='+Date.now(),{cache:'no-store'}).catch(()=>null);

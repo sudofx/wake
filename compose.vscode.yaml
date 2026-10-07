@@ -1,0 +1,17 @@
+# Optional VS Code attachment. Reuse the same Compose project and data volume.
+services:
+  wake:
+    build:
+      context: .
+      target: vscode
+    image: wake-standalone:vscode
+    working_dir: /workspace
+    command: ["--config", "/workspace/wake.toml"]
+    volumes:
+      - .:/workspace
+      - vscode-home:/home/wake
+    environment:
+      WAKE_PAUSED: "true"
+      GEMINI_API_KEY: ""
+volumes:
+  vscode-home:

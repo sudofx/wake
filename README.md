@@ -63,6 +63,28 @@ Use a **new** data directory each time. The experiment refuses to erase existing
 
 These are harness guarantees tested with simulated providers, **not evidence of live-model comprehension**. The separate live experiment protocol is in [docs/experiment.md](docs/experiment.md).
 
+## Standalone Docker — an independent installation
+
+Docker Desktop on macOS/Windows (Linux containers), or Docker Engine with Compose on Linux:
+
+```sh
+docker compose up --build -d
+```
+
+Set `GEMINI_API_KEY` in your shell or local `.env` first for live Gemini work. Open
+`http://localhost:8080`. For a no-key, no-call systems rehearsal, set
+`WAKE_PROVIDER=fixture`; these cycles are explicitly simulated. Set `WAKE_PAUSED=true`
+for an inspection-only installation.
+
+This mode runs the existing WAKE engine and website with its own named volume and
+`/data/wake.sqlite`. It never restores or synchronizes hosted authority, pushes branches,
+uses a GitHub token, dispatches Actions, or publishes Pages. The hosted installation
+continues independently. `docker compose down` removes the container while preserving
+its record; `docker compose up -d` reuses and audits that record before continuing.
+
+See [standalone operation](docs/standalone.md) for runtime secrets, backups, operator
+commands, and portable amd64/arm64 OCI builds.
+
 ## Quick setup — Gemini
 
 Gemini is currently the only unattended API provider that has been exercised by this project. Other models can cross the manual `prepare` / `complete` boundary, but do not assume another vendor's API works unattended until an adapter is implemented and tested.
