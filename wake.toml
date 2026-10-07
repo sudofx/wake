@@ -12,9 +12,12 @@ gemini_fallback_requires_primary_daily_quota = true
 # Legacy aggregate ceiling for compatibility. Live Gemini budgeting uses the per-model RPD buckets below.
 daily_call_limit = 500
 model_daily_call_limits = { "gemini-3.1-flash-lite" = 500, "gemini-3.8-flash" = 20, "gemini-3.5-flash" = 20 }
+# Routine derived working memory; shadow restores rich delivery with overflow fallback.
+memory_mode = "active"
 max_context_chars = 48000
 max_output_tokens = 8192
-timeout_seconds = 20
+# Allow bounded planning and answer responses to finish during transient latency.
+timeout_seconds = 45
 # Explicit opt-in: use an API project with billing disabled.
 free_tier_confirmed = true
 project_name = "WAKE✳︎"
@@ -26,5 +29,7 @@ inquiry_drive_enabled = false
 # Overnight observation profile: collect a wider, still bounded sample and
 # expose rejected proposals as explicit counterfactual receipts for review.
 observation_mode = true
+# Plan, retrieve routing hops immediately, then submit one governed proposal.
+same_wake_research = true
 research_collection_budget = 6
 repository = "sudofx/wake"

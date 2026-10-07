@@ -351,6 +351,19 @@ class Record:
         self.path = str(path)
         self.schema_changed = self._initialize()
 
+    @classmethod
+    def open_read_only(cls, path: str | Path) -> "Record":
+        """Inspect an existing current-format record without creating or migrating it."""
+        record = cls.__new__(cls)
+        record.path = str(Path(path).resolve())
+        record.schema_changed = False
+        record._read_only = True
+        with record.connect() as connection:
+            if (connection.execute("PRAGMA application_id").fetchone()[0] != APPLICATION_ID
+                    or connection.execute("PRAGMA user_version").fetchone()[0] != SCHEMA_VERSION):
+                raise StorageVersionError("Read-only inspection requires the current WAKE record format")
+        return record
+
     @contextmanager
     def connect(self) -> Iterator[sqlite3.Connection]:
         """
@@ -359,7 +372,10 @@ class Record:
         Transaction ownership stays with the calling operation because reads,
         governance, and append sometimes need one shared snapshot.
         """
-        connection = sqlite3.connect(self.path)
+        if getattr(self, "_read_only", False):
+            connection = sqlite3.connect(Path(self.path).as_uri() + "?mode=ro", uri=True)
+        else:
+            connection = sqlite3.connect(self.path)
         connection.row_factory = sqlite3.Row
         try:
             yield connection

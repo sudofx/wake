@@ -178,6 +178,7 @@ def _state_for_legacy_event(state: dict, kind: str, payload: dict) -> dict:
         "failed",
         "deferred",
         "recovered",
+        "research_planned",
     }:
         invocations = dict(state.get("invocations", {}))
         invocation_id = payload.get("id")

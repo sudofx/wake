@@ -246,17 +246,20 @@ durable projection → bounded context → fresh provider → untrusted proposal
 
 The design principle is **progressive abstraction with recoverable provenance**: preserve precision in the record, carry the smallest useful working representation forward, and re-expand into exact evidence when the task requires it. “Recoverable” means the abstraction keeps pointers back to authoritative receipts; the lossy representation does not pretend it can reconstruct discarded detail by itself.
 
-Each wake builds and durably records a deterministic lossy working set alongside the richer provider context. Under the normal size ceiling the rich context remains primary; the working set is observational. When the complete rich request still exceeds the configured 48,000-character ceiling after ordinary compaction, WAKE✳︎ makes one controlled, recoverable switch: the provider receives the deterministic bounded working representation instead. Exact event history, evidence, and state are never deleted or rewritten. The invocation receipt records `context_delivery.mode`, the original rich-request size, delivered sizes, omitted categories, and the provenance policy, so the cycle-102 ceiling event remains a visible boundary and later bounded cycles are auditable.
+Each wake durably records a deterministic working set, trust compacts and retrieval plan. The configured `memory_mode = "active"` now delivers that working view routinely, even when rich context fits. `context.memory` adds advisory compacts, recent operator observations and selected durable records for retractions, revised notebooks, clipped beliefs, due commitments and source handoffs. Exact history stays in the authoritative record; this creates no second memory store.
 
-The bounded view retains open commitments, active projects, uncertainty-bearing belief status/confidence, notebook and evidence provenance IDs, plus the governance-critical response contract. Trust Compacts remain receipt-only shadow annotations, and `inquiry_drive_enabled = false` remains unchanged; neither becomes an additional experimental variable. A request that cannot fit even in the bounded view still stops for human review, as do unrelated infrastructure failures.
+The working view preserves all belief identities, status/confidence and evidence roots, every open commitment, active projects and recent notebook provenance. Retrieved prose is bounded and explicitly labeled; omitted records have counts/digests, and collector prose follows existing source delivery limits. `SETTLED` compacts reflect recorded confidence and root count, not truth or source independence; `CHALLENGED` compacts preserve retracted claims. All compacts are advisory and governance remains unchanged. `inquiry_drive_enabled = false` remains unchanged.
 
-**Trust Compacts** extend that measurement without adding a second memory store. A compact is a deterministic,
-receipt-only candidate distilled from an evidence-backed belief: its rule, scope, strength (`SETTLED` only when
-an active belief has ≥0.90 confidence and at least two evidence roots), provenance, formation criteria, and
-reopen conditions. It remains out of provider context. A challenged source belief creates a retrieval-shadow
-hook back to the exact belief and evidence roots; nothing is silently deleted or made authoritative.
+Invocation receipts retain the original shadows and exact request, plus `context_delivery.memory_mode`, activation reason, memory digest, retrieved-record count and measured sizes. Set `memory_mode = "shadow"` and restart the runtime to restore rich delivery with the established size-triggered fallback. Active requests that exceed the ceiling stop before inference rather than silently dropping obligations. This operator-enabled condition is auditable; behavioral equivalence to rich context still needs paired evaluation.
 
 Working abstractions keep evidence pointers and retrieval hooks; they do not replace the exact record.
+
+With `same_wake_research = true`, one wake uses a planning inference, bounded immediate collection (including metadata-to-readable-source hops), then a fresh answer/proposal inference. Only the final accepted proposal advances the research cycle. Each inference has its own exact request, native lifecycle, quota reservation and terminal receipt; `research_planned` is retrieval intent, not accepted research. Failed retrieval or insufficient evidence must remain explicit. The final result includes the proposed answer and its governance verdict.
+
+An operator can ask directly with `python -m wake --data /data wake --provider gemini --question "What does the evidence show about this question?"`. Questions still follow the configured research topic and Attention policy. The writer lock prevents a concurrent CLI call from competing with the running scheduler. Setting `same_wake_research = false` restores ordinary scheduled precollection and one proposal inference; an explicit `--question` still requests immediate research.
+
+The collector now permits 98 anchored host families in addition to 55 explicit hosts: university/public-agency domains across countries and many scholarly publishers, preprints, institutional repositories and datasets. This substantially expands retrieval beyond the original short list. HTTPS, redirect validation, public-address checks and pinned direct connections, byte/parse/time limits and scientific-source qualification remain enforced. Access permission is not evidence of truth; discovery and metadata remain distinct from readable source material.
+
 
 - `wake/record_store.py`: live/transitional Store interface backed by the authoritative wake database; legacy WAKE SQLite is migration evidence only.
 - `wake/application.py`: versioned WAKE application actions, migration bridge, and compact event-log integration.
@@ -300,7 +303,52 @@ No model is immortal here. The record just has a better filing system.
 - [Architecture and limits](docs/architecture.md) — trust boundary, durable record, governance and known limits.
 - [Cloud operations](docs/cloud.md) — current GitHub-hosted runtime, quota and recovery behavior.
 - [Experiment protocol](docs/experiment.md) — how live and comparative runs should be evaluated.
-- [Retrieval shadow](docs/retrieval.md) — current progressive-abstraction/retrieval experiment.
+- [Routine memory and retrieval](docs/retrieval.md) — current progressive-abstraction/retrieval experiment.
 - [Validation record](docs/validation.md) — explicitly dated historical validation evidence.
 
 For exact behavior, code and tests on `master` remain authoritative when prose and implementation diverge.
+
+## Local evidence hardening and signed replay checkpoints
+
+Claim support counts distinct collector-stamped source works, so known mirrors
+cannot supply corroboration twice. Matching uses source titles, abstracts and
+excerpts; collector scope labels cannot establish relevance. Console reports
+source concentration, repeated observations and notebook reuse. These are
+mechanical diagnostics, not semantic entailment or scientific novelty scores.
+Continuity results now retain named failures and expected/returned evidence,
+including colliding source mappings. Older trials retain their original scores.
+
+`python -m wake --data /data correction-demo` performs an explicitly labeled,
+operator-controlled live correction using an existing notebook with two source
+works. It seeds a false counting belief and publication, records a new source
+identity measurement, retracts the belief and supersedes the publication through
+normal governance. It makes no provider call, holds the writer lock throughout,
+and leaves both accepted receipts and the original publication intact. It waits
+rather than bypassing a pending invocation or enforced Attention rotation.
+This demonstrates live additive correction, not autonomous model correction.
+
+With OpenSSL supporting Ed25519, create an operator-owned key **outside the
+record**, then retain the public key and checkpoint independently:
+
+```sh
+openssl genpkey -algorithm ED25519 -out checkpoint-private.pem
+chmod 600 checkpoint-private.pem
+openssl pkey -in checkpoint-private.pem -pubout -out checkpoint-public.pem
+python -m wake --data /data checkpoint checkpoint-001 --private-key checkpoint-private.pem
+python -m wake --data /data verify-checkpoint checkpoint-001 --public-key checkpoint-public.pem
+python -m wake --data /data replay-checkpoint checkpoint-001 --public-key checkpoint-public.pem --output replayed-state.json
+```
+
+The private key must not be published. Checkpoint creation fully verifies the
+semantic, provider invocation and application access journals in one transaction,
+materializes application state, and signs canonical checkpoint bytes. Destinations
+must be new. `verify-checkpoint` reconstructs from genesis and checks all journals
+against the retained witness. `replay-checkpoint` trusts the signed prefix and
+verifies only later semantic transitions, including application result digests;
+it does not attest subsequent provider/access journal events or detect interior
+prefix tampering. Use full verification for those guarantees. Replay returns a
+derived state file and never replaces authority, deletes events or changes normal
+runtime startup. No hosted publisher or checkpoint schedule is enabled by these
+commands. A locally stored signature is not external notarization: publish or
+retain witnesses through an independently controlled channel before claiming
+protection against an administrator replacing the entire history and witness.

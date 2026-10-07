@@ -404,12 +404,14 @@ def _verify_claim_support(claim, evidence, label, minimum_sources=2, minimum_ove
         title
         abstract
         excerpt
-        scope
+
+    Scope labels are collector metadata, never claim-supporting material.
+    Mirrors of one persistent work count once.
 
     Then we require at least two meaningful lexical tokens from the claim to
     overlap that material.
 
-    Finally, the caller's minimum number of DISTINCT source URLs must pass that
+    Finally, the caller's minimum number of DISTINCT source works must pass that
     test. Working notebooks use one; public-facing promotion keeps the stronger
     multi-source threshold.
 
@@ -433,18 +435,18 @@ def _verify_claim_support(claim, evidence, label, minimum_sources=2, minimum_ove
 
         material = " ".join(
             str(payload.get(key, ""))
-            for key in ("title", "abstract", "excerpt", "scope")
+            for key in ("title", "abstract", "excerpt")
         )
 
         overlap = claim_tokens & _claim_tokens(material)
 
         if len(overlap) >= minimum_overlap_tokens:
-            supporting.append(item.get("source"))
+            supporting.append(_source_identity(item))
 
     require(
         len(set(supporting)) >= minimum_sources,
         f"{label} requires material support from at least "
-        f"{minimum_sources} distinct collected source URL(s)",
+        f"{minimum_sources} distinct underlying source work(s)",
     )
 # ---------------------------------------------------------------------------
 # BLOG CORRECTION / LANGUAGE CALIBRATION

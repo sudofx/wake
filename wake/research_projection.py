@@ -9,6 +9,7 @@ from datetime import datetime, timedelta, timezone
 import json
 from urllib.parse import urlsplit
 
+from .evidence_quality import evidence_quality
 from .provenance import build_map
 from .research import effective_evidence_role, effective_host_tier, source_observation_readable
 
@@ -145,6 +146,7 @@ def build_research_projection(state, events, head, *, generated=None, metrics=No
                    'attention_topic': state.get('attention', {}).get('attention', {}).get('topic'),
                    'regime': deepcopy(state.get('experimental', {}).get('controls', {}).get('time_dilation', {}))},
         'records': records, 'record_totals': totals,
+        'evidence_quality': evidence_quality(state),
         'frontier': {'acquisition': [{k: deepcopy(x[k]) for k in ('project', 'capability_blocked', 'stage', 'last_outcome', 'consecutive_no_progress') if k in x}
                                     | {'project': key} for key, x in state.get('acquisition', {}).items()],
                      'deferred_topics': list(state.get('attention', {}).get('deferred', {}))},
@@ -185,12 +187,16 @@ def _matrix_projection(progress, reported):
               'status': results.get(c.coordinate_id, {}).get('status', 'not_recorded'),
               'score': results.get(c.coordinate_id, {}).get('score'),
               'invocation_id': results.get(c.coordinate_id, {}).get('invocation_id'),
-              'research_status': results.get(c.coordinate_id, {}).get('research_status')}
+              'research_status': results.get(c.coordinate_id, {}).get('research_status'),
+              'failed_checks': [k for k, v in results.get(c.coordinate_id, {}).get('checks', {}).items() if v is False],
+              'diagnostics': deepcopy(results.get(c.coordinate_id, {}).get('diagnostics', {}))}
              for c in MATRIX.coordinates()]
     return {'id': MATRIX_KEY, 'definition_digest': MATRIX.definition_digest, 'axes': axes,
             'cells': cells, 'reported': reported, 'enabled': bool(progress) if reported else None,
             'completed': (progress or {}).get('completed_count', 0) if reported else None,
-            'next_coordinate': (progress or {}).get('next_coordinate_id')}
+            'next_coordinate': (progress or {}).get('next_coordinate_id'),
+            'failure_counts': deepcopy((progress or {}).get('failure_counts', {})),
+            'passed': (progress or {}).get('passed_count', 0)}
 
 
 def _wake_traces(invocations, events, state):
@@ -201,7 +207,7 @@ def _wake_traces(invocations, events, state):
         matching = [e for e in events if e.get('payload', {}).get('id') == identifier
                     or e.get('payload', {}).get('invocation') == identifier]
         start = next((e for e in matching if e['kind'] == 'invocation_started'), None)
-        terminal = next((e for e in reversed(matching) if e['kind'] in ('accepted', 'rejected', 'failed', 'deferred', 'recovered')), None)
+        terminal = next((e for e in reversed(matching) if e['kind'] in ('accepted', 'rejected', 'failed', 'deferred', 'recovered', 'research_planned')), None)
         request = (start or {}).get('payload', {}).get('request', {})
         context = request.get('context', {})
         proposal = (terminal or {}).get('payload', {}).get('proposal', {})

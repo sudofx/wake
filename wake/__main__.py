@@ -27,6 +27,7 @@ from .governance import Rejected, require, text
 from .providers import Fixture, Gemini, SCHEMA
 from .report import atomic_write, export
 from .errors import IntegrityError
+from .kernel.record import IntegrityError as RecordIntegrityError
 
 def parser():
     p = argparse.ArgumentParser(prog="python -m wake", description="Infrastructure for durable, accountable work across interchangeable intelligences.")
@@ -37,8 +38,10 @@ def parser():
     wake = sub.add_parser("wake", help="Run one bounded invocation")
     wake.add_argument("--provider", choices=["gemini", "fixture"])
     wake.add_argument("--model")
+    wake.add_argument("--question", help="Research this question and submit an answer/proposal in this wake")
     wake.add_argument("--crash-at", choices=["after-start", "during-commit"], help="Fixture-only crash experiment")
     sub.add_parser("status")
+    sub.add_parser("correction-demo", help="Append an operator-controlled false-count correction and supersession; no API call")
     sub.add_parser("enable-continuity-matrix", help="Durably opt into continuity@1 without calling a provider")
     reset = sub.add_parser("reset", help="Start a new active WAKE generation at 0 while preserving prior wake history")
     reset.add_argument("--confirm", action="store_true",
@@ -65,6 +68,16 @@ def parser():
     audit = sub.add_parser("audit", help="Verify every event and reconstruct all state")
     audit.add_argument("--events", help="Verify a JSONL export independently of the database")
     audit.add_argument("--head", help="Path to independently retained head.txt, for truncation detection")
+    checkpoint = sub.add_parser("checkpoint", help="Export a fully verified, Ed25519-signed replay checkpoint")
+    checkpoint.add_argument("destination")
+    checkpoint.add_argument("--private-key", required=True)
+    verify = sub.add_parser("verify-checkpoint", help="Verify history against an independently retained signed checkpoint")
+    verify.add_argument("directory")
+    verify.add_argument("--public-key", required=True)
+    replay = sub.add_parser("replay-checkpoint", help="Replay semantic suffix from a trusted signed checkpoint")
+    replay.add_argument("directory")
+    replay.add_argument("--public-key", required=True)
+    replay.add_argument("--output", help="Write reconstructed kernel state to a new file")
     backup = sub.add_parser("backup")
     backup.add_argument("destination")
     prepare = sub.add_parser("prepare", help="Create a durable request for a free desktop model")
@@ -102,6 +115,20 @@ def execute(args):
     if args.command == "audit" and args.events:
         state, head = verify_history(args.events, Path(args.head).read_text() if args.head else None)
         return {"valid": True, "cycles": state["version"], "head": head, "source": "exported history only"}
+    if args.command in ("checkpoint", "verify-checkpoint", "replay-checkpoint"):
+        from .checkpoints import create_checkpoint, replay_checkpoint
+        from .kernel.record import Record
+        database = Path(args.data) / "wake.sqlite"
+        require(database.exists(), "No authority exists; checkpoint commands never initialize it")
+        record = Record.open_read_only(database)
+        if args.command == "checkpoint":
+            return create_checkpoint(record, args.destination, args.private_key)
+        revision, state, proof = replay_checkpoint(
+            record, args.directory, args.public_key, full=args.command == "verify-checkpoint")
+        if args.command == "replay-checkpoint" and args.output:
+            with Path(args.output).open("x") as stream:
+                json.dump(state, stream, sort_keys=True)
+        return {"valid": True, "revision": revision, **proof}
     settings = config(args.config)
     if args.command == "experiment":
         from .experiment import run_experiment
@@ -124,7 +151,10 @@ def execute(args):
             require(name in ("fixture", "gemini"), "Unsupported provider; use prepare/complete for desktop models")
             provider = Fixture(args.model or "fixture-a") if name == "fixture" else Gemini(settings, args.model)
             from .research import collect
-            return engine.run(provider, args.crash_at, collector=collect if name == "gemini" and settings.get("mission") else None)
+            return engine.run(provider, args.crash_at, collector=collect if name == "gemini" and settings.get("mission") else None, question=args.question)
+        if args.command == "correction-demo":
+            from .correction_demo import run_correction_demo
+            return run_correction_demo(engine)
         if args.command == "export":
             return export(engine.store, args.output)
         if args.command == "reset":
@@ -207,7 +237,7 @@ def main():
         if isinstance(result, dict) and result.get("status") in ("rejected", "failed"):
             return 2
         return 0
-    except (Rejected, IntegrityError, OSError, sqlite3.DatabaseError, ValueError) as exc:
+    except (Rejected, IntegrityError, RecordIntegrityError, OSError, sqlite3.DatabaseError, ValueError) as exc:
         print(json.dumps({"error": str(exc)}), file=sys.stderr)
         return 1
 

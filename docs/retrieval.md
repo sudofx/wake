@@ -1,8 +1,10 @@
-# Retrieval shadow: making forgetting observable
+# Routine memory and retrieval: making forgetting observable
 
-> **Active experimental design note.** This describes the current progressive-abstraction and deterministic retrieval layer. Shadow measurements remain important, but bounded-context delivery is no longer purely hypothetical: the engine can make a controlled fallback to the working representation when the rich request cannot fit.
+The configured `memory_mode = "active"` promotes derived working views into routine provider input. Every invocation carries compact belief state, all open commitments, active projects and recent notebook pointers, plus `context.memory` containing advisory compacts and selected durable records. Recent operator observations and retractions with their newest counterevidence take priority, followed by excerpt boundaries, due work, revisions and source handoffs. Up to eight retrieved records and eight compacts are delivered; fields are excerpted at 900 characters and compact rules at 320. Omission counts/digests, missing references, exact record hashes and retained evidence roots expose the limits. This is a deterministic bounded retrieval policy, not semantic contradiction detection.
 
-**WAKE✳︎** records a deliberately lossy working-set representation beside each invocation and a deterministic plan for which exact durable records become important when an abstraction is expensive to trust. Under the normal context ceiling, the provider still receives the richer context and these structures remain observational. If the rich request remains above the configured ceiling after ordinary compaction, the engine can make one explicit, receipt-bearing switch to the bounded working representation rather than silently dropping durable obligations or evidence.
+Collected source prose follows the existing qualifying-source rehydration budget (up to three records at 1,800 characters in active mode and four distinct repository URLs in total). Collector records outside visible source delivery carry pointers without content. Human falsifiers keep their provenance and can support belief review without becoming scientific notebook sources. Recent notebook evidence roots are included in the active retrieval plan so synthesis and publication allowlists remain usable.
+
+`memory_mode = "shadow"` restores rich delivery with the established size-triggered fallback after runtime restart. The raw shadow builders remain unchanged in both modes. Derived memory neither rewrites history nor changes governance; the authoritative database remains the single source of truth. Active requests that cannot fit stop before inference, preserving obligations.
 
 Console’s browser overview is a separate disposable presentation projection. Its bounded graph and record excerpts are never read back into provider context or retrieval decisions. IDs, explicit relationship pointers and record-head provenance support deeper inspection through Console’s complete record workspace; missing overview records do not imply missing authoritative records.
 
@@ -47,11 +49,11 @@ Each invocation should now retain:
 - counts by deterministic trigger
 - `trust_compacts_shadow`: candidate operational rules, their evidence roots, and their deterministic reopen hooks.
 
-`retrieval_shadow` and `trust_compacts_shadow` remain receipt-side measurements rather than independent authorities. The working representation can become provider input only through the engine's controlled context-delivery fallback; exact records remain authoritative and the receipt records which delivery mode was used.
+`retrieval_shadow` and `trust_compacts_shadow` remain receipt-side measurements. Active mode derives provider memory from them without making either authoritative. `context_delivery` records `memory_mode`, `activation_reason`, `memory_digest`, retrieved-record count and measured request sizes; `request_hash` identifies the exact full request. No extra model call is made.
 
 ## Evaluation boundary
 
-The size-triggered bounded-context fallback is an operational safeguard, not evidence that the abstraction is behaviorally equivalent to rich context. Before making bounded delivery the ordinary/default mode, collect enough paired invocations to score whether the representation preserves:
+Routine active delivery is operator-enabled, and the size-triggered fallback remains an operational safeguard. Neither proves behavioral equivalence to rich context. Paired evaluation remains necessary to score whether the representation preserves:
 
 - evidence-backed belief revision,
 - contradiction/counterevidence handling,
@@ -63,10 +65,10 @@ The size-triggered bounded-context fallback is an operational safeguard, not evi
 The comparison remains:
 
 **A — rich context**  
-Normal delivery when it fits.
+Delivery in shadow mode when it fits.
 
 **B — working abstraction + recoverable provenance**  
-Current controlled fallback and future candidate for broader use.
+Routine active delivery and the controlled overflow fallback, distinguished by receipt activation reason.
 
 **C — overcompressed control**  
 A deliberately weakened condition that removes provenance or uncertainty cues.
@@ -80,3 +82,11 @@ Console wake inspection includes bounded delivered-context field names, the full
 Console carries recorded context-delivery measurements alongside complete observed requests. Compression plots use the reported retained-request ratio. Allocation plots group selected delivered fields as objectives, constraints, frontier and results; excluded fields and the bounded event population are explicitly described.
 
 Console also exposes the exact provider-response text retained by terminal events. Rejected responses remain unaccepted output; parsed proposal summaries are views of that output and never replayed as accepted actions. The UI labels missing response events and any recording-time bounding.
+
+## Verified replay seeds
+
+Signed checkpoints materialize the WAKE application projection once instead of replaying its entire event-log prefix on every checkpoint resume. `replay-checkpoint` verifies the independently retained signature and boundary, then incrementally applies later semantic events and checks their recorded application result digests. It exports derived state without changing the database or ordinary startup. `verify-checkpoint` performs the slower genesis audit, including complete provider/access journals. The signed-prefix trust boundary is explicit: fast replay cannot prove untouched interior prefix bytes or later provider/access events. Complete original history is always retained for audit. Compact source concentration counters in normal provider context help expose repeated material without conflating diversity with truth.
+
+Active delivery avoids copying evidence prose twice: retrieved records use `content_location` to identify the corresponding readable entry in `context.evidence`. If the request still exceeds the ceiling, extended recovery prose is replaced with explicit omission markers, hashes and retained project/frame/observation pointers. All belief identities, evidence roots and open commitments remain intact. If this bounded request still does not fit, the provider is not called.
+
+Same-wake research plans are recorded before fetching. The collector can follow bounded metadata routes immediately instead of requiring another scheduled cycle. The final request prioritizes newly collected source IDs, including when no active project exists yet, then rebuilds scientific-source allowlists. Retrieval failures remain observations with `scope = failed`; discovery/metadata cannot become notebook evidence merely because they arrived in the same wake. Further pressure reduction excerpts source/working prose explicitly while preserving all visible identities, evidence roots and open obligations.

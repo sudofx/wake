@@ -22,7 +22,7 @@ from progressively more useful abstractions, retrieve detail when needed, and re
 evidence changes. That hypothesis requires behavioral testing; describing the architecture does not prove
 that the resulting behavior is reliable or intelligent.
 
-### Working-set shadow phase
+### Working-set measurement and routine active memory
 
 Before replacing any live context, **WAKE✳︎** records a deterministic `working_set_shadow` beside each invocation.
 It compresses durable beliefs into claim/confidence/status/reason/provenance, preserves every open commitment,
@@ -30,8 +30,7 @@ and carries compact active-project and recent-notebook pointers. Raw evidence co
 authoritative record and the richer provider context. `working_set_metrics` records shadow size versus the
 context actually delivered.
 
-Under normal-size requests this measurement is observational and the model receives rich context. The engine now also has a controlled size-triggered fallback in which the deterministic bounded working representation can be delivered when the rich request cannot fit; that fallback is recorded explicitly and should be analyzed as a separate context-delivery condition,
-so changes in behavior cannot yet be attributed to compression.
+The local configuration now enables `memory_mode = "active"`: the bounded working view, advisory compacts and selected provenance records are delivered routinely. `context_delivery` records the operator activation separately from shadow-mode size overflow, including the exact memory digest and delivered sizes. Raw shadows continue to be retained. This is a new experimental condition, not a measured equivalence claim; future paired evaluation must compare correction, provenance, commitment continuity and justification from identical starting states. `memory_mode = "shadow"` restores rich delivery after restart. Inquiry-drive activation remains separate and disabled in the repository configuration.
 
 ### Inquiry-drive shadow phase
 
@@ -100,3 +99,11 @@ Real-model interchangeability and long-term behavioral coherence remain unproved
 Console separates the continuity experiment space from the research landscape. Cube rotation, ring motion and relationship tracing are view animation; neither activity nor coverage is inferred from movement. Outcome rings use completed invocation counts, and retrieval-depth rings use evidence-record counts. Distinct source works retain a separate denominator; missing classification remains unknown.
 
 Console narrates the selected topic, supplied context, observed provider attempts, terminal governance outcome and accepted transition status. This is an inspectable execution record, not a reconstruction of hidden model reasoning. Context-evolution curves show serialized field allocation; compression, activity and latency do not establish research quality.
+
+## Controlled live correction
+
+`correction-demo` appends two explicitly labeled operator-controlled proposals to the existing record without an API call. A notebook source count is deliberately misstated as one, then measured using distinct collector source identities (URL fallback). New human measurement evidence retracts the belief at zero confidence and a new publication supersedes the original. Evidence and original text remain in the chain. This is a live software/record demonstration, not a trial of model recognition or independent scientific discovery. Source reuse/concentration diagnostics and lexical mismatch candidates describe evidence quality limits; they do not establish novelty or entailment. Matrix result diagnostics distinguish tested coverage from passed checks and retain failed provenance mappings.
+
+### Immediate research phase
+
+The operator enabled same-wake planning → bounded collection → final proposal. This introduces an additional inference, and the plan/answer phases have separate durable IDs and quota receipts. `research_planned` is not an accepted cycle; only normal proposal acceptance advances the research version. Broader host access is also a new collection condition. Comparisons against older runs must account for both changes instead of attributing differences solely to memory compression. The continuity sidecar remains only in the final proposal request.

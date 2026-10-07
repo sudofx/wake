@@ -37,6 +37,7 @@ from .research import effective_evidence_role, effective_host_tier, source_obser
 from .event_format import canonical, digest, now
 from .experimental import adoption_payload, defaults as experimental_defaults, temporal_snapshot, validate as validate_controls
 from .trust import build_trust_compacts_shadow
+from .memory import ACTIVE_MEMORY_SYSTEM, active_retrieval_plan, build_active_memory
 from .attention import assessment as attention_assessment, plan as attention_plan
 from .matrix_campaign import (
     MATRIX_SIDECAR_SYSTEM,
@@ -76,7 +77,7 @@ DEFAULTS = {"timezone": "America/Los_Angeles", "objective": "Test durable contin
             "provider": "gemini", "model": "gemini-2.5-flash", "daily_call_limit": 20, "model_daily_call_limits": {},
             "max_context_chars": 48000, "max_output_tokens": 4096, "timeout_seconds": 60,
             "free_tier_confirmed": False, "gemini_fallback_models": [], "gemini_fallback_requires_primary_daily_quota": False,
-            "inquiry_drive_enabled": False, "research_topics_file": "research-topics.toml",
+            "memory_mode": "shadow", "same_wake_research": False, "inquiry_drive_enabled": False, "research_topics_file": "research-topics.toml",
             "observation_mode": False, "research_collection_budget": 2, "research_collection_wall_seconds": 45}
 
 def _topics(settings, config_path=None):
@@ -137,6 +138,8 @@ def config(path="wake.toml"):
     require(result["timezone"] == "America/Los_Angeles", "Daily quota timezone must be America/Los_Angeles")
     for key, low, high in (("max_context_chars", 4000, 64000), ("max_output_tokens", 256, 8192), ("timeout_seconds", 1, 120)):
         require(type(result[key]) is int and low <= result[key] <= high, f"Invalid {key}")
+    require(type(result["same_wake_research"]) is bool, "same_wake_research must be boolean")
+    require(result["memory_mode"] in ("shadow", "active"), "memory_mode must be shadow or active")
     require(type(result["inquiry_drive_enabled"]) is bool,
             "inquiry_drive_enabled must be true or false")
     require(type(result["observation_mode"]) is bool,
@@ -165,6 +168,7 @@ def config(path="wake.toml"):
 class Engine:
     def __init__(self, directory="data", settings=None, *, store=None, store_factory=None):
         self.config = settings or config()
+        require(self.config.get("memory_mode", "shadow") in ("shadow", "active"), "memory_mode must be shadow or active")
         if self.config.get("mission"):
             if not self.config.get("research_topics"):
                 filename = self.config.get("research_topics_file")
@@ -258,9 +262,8 @@ class Engine:
     def working_set(self, state):
         """Build a deliberately lossy, traceable shadow of the durable state.
 
-        Shadow mode does not replace the provider context yet. It lets WAKE measure
-        what a purpose-conditioned working representation would look like without
-        changing live-model behavior before a controlled comparison exists.
+        Preserve the historical shadow receipt in both delivery modes. Routine
+        active delivery derives its model input from this same working-set owner.
         """
         def excerpt(value, limit):
             value = str(value)
@@ -413,7 +416,7 @@ class Engine:
         }
 
     def bounded_context(self, state, receipt, working_set, rich_context_chars):
-        """Make the deterministic working set the provider view under pressure.
+        """Make the deterministic working set the bounded provider view.
 
         This is deliberately a one-way delivery adaptation: the full projection,
         event chain, and the shadow annotations remain exact in the durable record.
@@ -614,6 +617,45 @@ class Engine:
             ),
         }
         return True
+
+    def fit_active_request(self, request):
+        """Remove duplicate prose and bound recovery detail without dropping obligations."""
+        context = request["context"]
+        visible = {item["id"]: item for item in context.get("evidence", []) if item.get("content")}
+        for item in context["memory"]["retrieved_records"]:
+            if item["kind"] == "evidence" and item["id"] in visible:
+                item["value"].pop("content", None)
+                item["content_location"] = {"field": "context.evidence", "id": item["id"]}
+        if len(canonical(request)) <= self.config["max_context_chars"]:
+            return
+        recovery = context.get("representation_recovery", [])
+        if recovery:
+            context["representation_recovery"] = [{
+                "project": item["project"], "record_hash": item.get("record_hash") or digest(item),
+                "context_excerpt": True, "details_omitted": True,
+                "capability_blocked": bool(item.get("capability_blocked") or item.get("capability", {}).get("capability_blocked")),
+                "parked_project": item.get("parked_project") or item.get("parked", {}).get("id"),
+                "frames": [{key: frame[key] for key in ("id", "observations") if key in frame}
+                           for frame in item.get("frames", [])],
+                "intervening_experience": item.get("intervening_experience", []),
+            } for item in recovery]
+            context["bounded_context"]["omitted_categories"].append("extended recovery prose; project/frame and observation pointers retained")
+        if len(canonical(request)) > self.config["max_context_chars"]:
+            for item in context.get("evidence", []):
+                if len(item.get("content", "")) > 900:
+                    item["content"] = item["content"][:899] + "…"
+                    item["context_excerpt"] = True
+            context["bounded_context"]["omitted_categories"].append("extended evidence excerpts; all visible evidence IDs retained")
+        if len(canonical(request)) > self.config["max_context_chars"]:
+            for category, fields in (("beliefs", ("statement", "reason", "falsifier")),
+                                     ("notebooks", ("summary", "findings", "limitations")),
+                                     ("projects", ("question", "next_step", "reason"))):
+                for item in context.get(category, []):
+                    for field in fields:
+                        if isinstance(item.get(field), str) and len(item[field]) > 180:
+                            item[field] = item[field][:179] + "…"
+                            item["context_excerpt"] = True
+            context["bounded_context"]["omitted_categories"].append("extended working prose; all belief/project/notebook identities and roots retained")
 
     def fit_bounded_request(self, request):
         """Deterministically shrink an already-bounded provider request below the hard ceiling.
@@ -1429,7 +1471,7 @@ class Engine:
             context["research_maturation"] = self.research_maturation(state)
         return context
 
-    def rehydrate_retrieval_context(self, state, context, retrieval_plan, content_limit=3000, max_records=3):
+    def rehydrate_retrieval_context(self, state, context, retrieval_plan, content_limit=3000, max_records=3, *, force=False):
         """Materialize qualifying durable evidence selected by retrieval into provider context.
 
         The retrieval planner remains deterministic and ID-based. This step is the
@@ -1483,7 +1525,7 @@ class Engine:
             commitment.get("due_cycle", 10**9) <= state.get("version", 0) + 2
             for commitment in context.get("commitments", [])
         )
-        if not projects_need_source and not commitments_need_evidence:
+        if not force and not projects_need_source and not commitments_need_evidence:
             context["retrieval_rehydration"] = {
                 "evidence_ids": [],
                 "boundary": "Visible active projects already have same-domain source evidence and no near-due commitment requires hidden source recovery.",
@@ -1617,7 +1659,7 @@ class Engine:
         ]
 
         return context
-    def start(self, provider, model, charged=False):
+    def start(self, provider, model, charged=False, *, phase="proposal", question=None, research=None):
         started_at = perf_counter()
         phase_at = started_at
         state = self.store.load()
@@ -1670,6 +1712,12 @@ class Engine:
         from .providers import RESEARCH_SYSTEM
         phase_at = perf_counter()
         delivered_context = self.context(state, receipt)
+        if state.get("charter"):
+            from .evidence_quality import evidence_quality
+            quality = evidence_quality(state)
+            delivered_context["evidence_quality"] = {
+                key: quality[key] for key in ("distinct_works", "distinct_hosts", "largest_host_share", "boundary")
+            }
         working_set_shadow = self.working_set(state)
         trust_compacts_shadow = build_trust_compacts_shadow(state)
         retrieval_shadow = build_retrieval_shadow(state, working_set_shadow, trust_compacts_shadow)
@@ -1712,7 +1760,8 @@ class Engine:
         context_build_ms = (perf_counter() - phase_at) * 1000
         phase_at = perf_counter()
         context_mode = "rich"
-        if state.get("charter") and len(canonical(request)) > self.config["max_context_chars"]:
+        routine_memory = self.config.get("memory_mode", "shadow") == "active"
+        if not routine_memory and state.get("charter") and len(canonical(request)) > self.config["max_context_chars"]:
             # Crossing the context threshold is a retrieval problem, not a reason to
             # discard durable history. Keep the complete record in SQLite/public
             # exports and shrink only this invocation's working view.
@@ -1801,11 +1850,9 @@ class Engine:
                 {key: value for key, value in item.items() if key != "resolution_evidence"}
                 for item in request["context"]["commitments"]
             ]
-        if state.get("charter") and len(canonical(request)) > self.config["max_context_chars"]:
-            # The earlier compaction preserves the established rich delivery when
-            # possible. Only its final overflow activates this controlled
-            # experimental condition; all other operator-attention failures stay
-            # ordinary rejections.
+        if routine_memory or (state.get("charter") and len(canonical(request)) > self.config["max_context_chars"]):
+            # Operator-enabled routine memory uses the same bounded owner as
+            # overflow delivery. Shadow mode retains rich delivery when it fits.
             request["context"] = self.bounded_context(
                 state, receipt, working_set_shadow, rich_context_chars
             )
@@ -1816,15 +1863,76 @@ class Engine:
             # collector records whenever retrieval found qualifying evidence.
             # One source enables an honest provisional notebook; two can support
             # corroborated revision/publication without weakening governance.
-            if retrieval_shadow.get("evidence_ids"):
+            retrieval_plan = active_retrieval_plan(state, retrieval_shadow) if routine_memory else retrieval_shadow
+            if research:
+                retrieval_plan = {**retrieval_plan, "evidence_ids": list(dict.fromkeys(research["evidence_ids"] + retrieval_plan.get("evidence_ids", [])))}
+            if retrieval_plan.get("evidence_ids"):
                 request["context"] = self.rehydrate_retrieval_context(
-                    state, request["context"], retrieval_shadow,
-                    content_limit=900, max_records=2,
+                    state, request["context"], retrieval_plan,
+                    content_limit=1800 if routine_memory else 900, max_records=3 if routine_memory else 2,
+                    force=bool(research),
                 )
-            request["response_schema"] = _provider_response_schema(request["context"], True)
+            if routine_memory:
+                # Same working-set owner as overflow delivery, activated by operator
+                # choice rather than size. No shadow annotation becomes authority.
+                from .providers import BOUNDED_RESEARCH_SYSTEM
+                context = request["context"]
+                context["memory"] = build_active_memory(state, trust_compacts_shadow, retrieval_plan,
+                    visible_collector_ids={item["id"] for item in context.get("evidence", [])
+                                           if item.get("actor") == "collector" and item.get("content")
+                                           and not item.get("content_omitted")})
+                context["bounded_context"]["activation_reason"] = "operator-active-memory"
+                context["memory_mode"] = "active"
+                # Non-collector falsifiers retain their original provenance. They
+                # may support belief review but never acquire notebook eligibility.
+                visible = {item["id"] for item in context.get("evidence", [])}
+                for item in context["memory"]["retrieved_records"]:
+                    if item["kind"] == "evidence" and item["value"].get("actor") != "collector":
+                        context["evidence"] = [record for record in context.get("evidence", []) if record["id"] != item["id"]]
+                        context["evidence"].append({**item["value"], "context_excerpt": item["context_excerpt"]})
+                        visible.add(item["id"])
+                context["evidence"].sort(key=lambda item: (item.get("version") or -1, item["id"]))
+                context["notebooks"] = [dict(item) for item in context.get("notebooks", [])]
+                for notebook in context.get("notebooks", []):
+                    notebook["evidence"] = list(state["notebooks"][notebook["id"]]["evidence"])
+                    context["blog_notebooks"].setdefault(notebook["project"], [])
+                context["blog_notebooks"] = {
+                    project: [{key: item.get(key) for key in ("id", "title", "revision", "evidence")}
+                              for item in context.get("notebooks", []) if item["project"] == project]
+                    for project in context.get("blog_notebooks", {})
+                }
+                # Source allowlists are rebuilt by rehydration. Human memory
+                # records do not enter those scientific-source lists.
+                for commitment in context.get("commitments", []):
+                    commitment["resolution_evidence"] = self.commitment_resolution_evidence_ids(state, list(visible), commitment)
+                request["system"] = SYSTEM + (BOUNDED_RESEARCH_SYSTEM if state.get("charter") else "") + ACTIVE_MEMORY_SYSTEM
+                if continuity_probe_context is not None:
+                    request["system"] += MATRIX_SIDECAR_SYSTEM
+                # Receipt-only quality telemetry remains useful in routine memory.
+                for key in ("evidence_quality", "inquiry_drive"):
+                    if key in delivered_context:
+                        context[key] = delivered_context[key]
+            request["response_schema"] = _provider_response_schema(request["context"], bool(state.get("charter")))
             context_mode = "bounded"
-            if len(canonical(request)) > self.config["max_context_chars"]:
+            if routine_memory:
+                self.fit_active_request(request)
+            if not routine_memory and len(canonical(request)) > self.config["max_context_chars"]:
                 self.fit_bounded_request(request)
+        if question:
+            text(question, "Operator question", 1000)
+            request["context"]["operator_question"] = question
+        if research:
+            request["context"]["same_wake_research"] = research
+            request["system"] += "\nAnswer the operator question or planned questions in summary using collected evidence IDs. Submit justified findings now in this proposal; disclose missing or insufficient evidence instead of claiming success.\n"
+        if phase == "planning":
+            from .research import RESEARCH_PLAN_SYSTEM, research_plan_schema
+            request["context"].pop("continuity_probe", None)
+            continuity_probe_context = None
+            request["context"]["research_phase"] = "planning"
+            request["system"] = RESEARCH_PLAN_SYSTEM + (ACTIVE_MEMORY_SYSTEM if routine_memory else "")
+            request["response_schema"] = research_plan_schema(request["context"])
+        if routine_memory:
+            self.fit_active_request(request)
         require(len(canonical(request)) <= self.config["max_context_chars"],
                 "Context ceiling reached; human review required, no model call made")
         compaction_ms = (perf_counter() - phase_at) * 1000
@@ -1841,7 +1949,7 @@ class Engine:
             "start_total_before_record_ms": round((perf_counter() - started_at) * 1000, 3),
             "store": self.store.performance_snapshot(),
         }
-        self.store.append("invocation_started", {"id": invocation, "provider": provider, "model": model,
+        self.store.append("invocation_started", {"id": invocation, "provider": provider, "model": model, "phase": phase,
             "charged": charged, "quota_day": day, "base_version": state["version"], "request": request,
             "request_hash": digest(request), "process_id": os.getpid(),
             "working_set_shadow": working_set_shadow,
@@ -1857,6 +1965,10 @@ class Engine:
             "runtime_performance": runtime_performance,
             "context_delivery": {
                 "mode": context_mode,
+                "memory_mode": "active" if routine_memory else "shadow",
+                "activation_reason": "operator-active-memory" if routine_memory else ("context-size" if context_mode == "bounded" else "rich-default"),
+                "memory_digest": digest(request["context"]["memory"]) if routine_memory else None,
+                "memory_retrieved_record_count": len(request["context"]["memory"]["retrieved_records"]) if routine_memory else 0,
                 "rich_context_chars": rich_context_chars,
                 "delivered_request_chars": delivered_request_chars,
                 "delivered_context_chars": delivered_chars,
@@ -2026,115 +2138,162 @@ class Engine:
             classify_error=Engine._invocation_failure_outcome,
         )
 
-    def run(self, provider, crash_at=None, checkpoint=None, collector=None):
+    def run(self, provider, crash_at=None, checkpoint=None, collector=None, *, question=None):
         with self.store.lock():
             self.initialize()
             self.recover()
-            if collector:
+            require(not question or (collector is not None and self.store.load().get("charter")),
+                    "Immediate questions require a research collector and charter")
+            research = None
+            if collector and (self.config.get("same_wake_research") or question):
+                from .research import collect_planned
+                plan = self._run_invocation(provider, checkpoint=checkpoint, phase="planning", question=question)
+                if plan["status"] != "planned":
+                    return plan
+                evidence_ids = collect_planned(self, plan["requests"])
+                research = {"planning_invocation": plan["id"], "requests": plan["requests"], "evidence_ids": evidence_ids}
+            elif collector:
                 collector(self)
-            invocation, request = self.start(provider.name, provider.model, provider.charged)
-            lifecycle = (
-                self.store.begin_invocation_lifecycle(
-                    invocation, request, provider.name, provider.model
-                )
-                if hasattr(self.store, "begin_invocation_lifecycle")
-                else None
+            result = self._run_invocation(provider, crash_at, checkpoint, question=question, research=research)
+            if research:
+                result.setdefault("same_wake_research", research)
+            return result
+
+    def _run_invocation(self, provider, crash_at=None, checkpoint=None, *, phase="proposal", question=None, research=None):
+        invocation, request = self.start(provider.name, provider.model, provider.charged, phase=phase, question=question, research=research)
+        lifecycle = (
+            self.store.begin_invocation_lifecycle(
+                invocation, request, provider.name, provider.model
             )
-            if hasattr(provider, "record_attempt"):
-                state = self.store.load()
-                day = state["invocations"][invocation]["quota_day"]
-                if self.config.get("model_daily_call_limits"):
-                    used_by_model = {}
-                    exhausted_models = set()
-                    for item in state["invocations"].values():
-                        if item["id"] == invocation or not item["charged"] or item["quota_day"] != day:
-                            continue
-                        for attempt in item.get("provider_attempts", []):
-                            if attempt.get("result") == "daily_quota" and is_free_tier_daily_quota(attempt):
-                                failed_model = attempt.get("model")
-                                if failed_model:
-                                    exhausted_models.add(failed_model)
-                        for attempt in item.get("provider_attempts", []):
-                            model = attempt.get("model")
-                            if model:
-                                used_by_model[model] = used_by_model.get(model, 0) + 1
-                    provider.model_request_limits = {model: max(0, self.config["model_daily_call_limits"].get(model, self.config["daily_call_limit"]) - used_by_model.get(model, 0)) for model in provider.models}
-                    for model in exhausted_models:
-                        provider.model_request_limits[model] = 0
-                else:
-                    used = sum(charged_request_slots(i) for i in state["invocations"].values() if i["id"] != invocation and i["charged"] and i["quota_day"] == day)
-                    provider.request_limit = min(len(provider.models), self.config["daily_call_limit"] - used)
-                def record_attempt(phase, attempt):
-                    self.store.append("provider_attempt_" + phase, {"id": invocation, "attempt": attempt})
-                    if checkpoint:
-                        checkpoint()
-                provider.record_attempt = record_attempt
-            if crash_at == "after-start":
-                try:
-                    self._invoke_external_effect(
-                        lifecycle,
-                        lambda: os._exit(85),
-                        checkpoint,
-                    )
-                except InvocationBarrierError as error:
-                    raise error.cause
+            if hasattr(self.store, "begin_invocation_lifecycle")
+            else None
+        )
+        if hasattr(provider, "record_attempt"):
+            state = self.store.load()
+            day = state["invocations"][invocation]["quota_day"]
+            if self.config.get("model_daily_call_limits"):
+                used_by_model = {}
+                exhausted_models = set()
+                for item in state["invocations"].values():
+                    if item["id"] == invocation or not item["charged"] or item["quota_day"] != day:
+                        continue
+                    for attempt in item.get("provider_attempts", []):
+                        if attempt.get("result") == "daily_quota" and is_free_tier_daily_quota(attempt):
+                            failed_model = attempt.get("model")
+                            if failed_model:
+                                exhausted_models.add(failed_model)
+                    for attempt in item.get("provider_attempts", []):
+                        model = attempt.get("model")
+                        if model:
+                            used_by_model[model] = used_by_model.get(model, 0) + 1
+                provider.model_request_limits = {model: max(0, self.config["model_daily_call_limits"].get(model, self.config["daily_call_limit"]) - used_by_model.get(model, 0)) for model in provider.models}
+                for model in exhausted_models:
+                    provider.model_request_limits[model] = 0
+            else:
+                used = sum(charged_request_slots(i) for i in state["invocations"].values() if i["id"] != invocation and i["charged"] and i["quota_day"] == day)
+                provider.request_limit = min(len(provider.models), self.config["daily_call_limit"] - used)
+            def record_attempt(phase, attempt):
+                self.store.append("provider_attempt_" + phase, {"id": invocation, "attempt": attempt})
+                if checkpoint:
+                    checkpoint()
+            provider.record_attempt = record_attempt
+        if crash_at == "after-start":
             try:
-                raw, metadata = self._invoke_external_effect(
+                self._invoke_external_effect(
                     lifecycle,
-                    lambda: provider.propose(request),
+                    lambda: os._exit(85),
                     checkpoint,
                 )
             except InvocationBarrierError as error:
                 raise error.cause
-            except TransientProviderError as exc:
-                reason = str(exc)[:1000]
-                self.store.append("deferred", {"id": invocation, "reason": reason, "provider_error": exc.details, **self._request_count(provider)})
-                if checkpoint:
-                    checkpoint()
-                return {"status": "deferred", "id": invocation, "reason": reason, "provider_error": exc.details, **self._request_count(provider)}
-            except DailyQuotaExceeded as exc:
-                reason = str(exc)[:1000]
-                payload = {"id": invocation, "reason": reason, "provider_error": exc.details,
-                           "quota_exhausted": "free_tier_daily", **self._request_count(provider)}
-                self.store.append("deferred", payload)
-                if checkpoint:
-                    checkpoint()
-                return {"status": "deferred", "id": invocation, "reason": reason,
-                        "provider_error": exc.details, "quota_exhausted": "free_tier_daily", **self._request_count(provider)}
-            except ConfiguredDailyLimitReached as exc:
-                reason = str(exc)[:1000]
-                payload = {"id": invocation, "reason": reason, "provider_error": exc.details,
-                           "quota_exhausted": "configured_daily_limit", **self._request_count(provider)}
-                self.store.append("deferred", payload)
-                if checkpoint:
-                    checkpoint()
-                return {"status": "deferred", "id": invocation, "reason": reason,
-                        "provider_error": exc.details, "quota_exhausted": "configured_daily_limit", **self._request_count(provider)}
-            except ProviderRequestError as exc:
-                reason = str(exc)[:1000]
-                self.store.append("failed", {"id": invocation, "reason": reason,
-                                             "provider_error": exc.details, **self._request_count(provider)})
-                if checkpoint:
-                    checkpoint()
-                return {"status": "failed", "id": invocation, "reason": reason,
-                        "provider_error": exc.details, **self._request_count(provider)}
-            except Exception as exc:
-                reason = str(exc)[:1000] if isinstance(exc, Rejected) else f"Provider failed ({type(exc).__name__}); no automatic retry"
-                self.store.append("failed", {"id": invocation, "reason": reason, **self._request_count(provider)})
-                if checkpoint:
-                    checkpoint()
-                return {"status": "failed", "id": invocation, "reason": reason}
-            proposal_id = "wake-response-" + invocation
-            if lifecycle is not None:
-                lifecycle.proposal_received(proposal_id)
-            result = self.finish(invocation, raw, metadata, crash=crash_at == "during-commit")
-            if lifecycle is not None:
-                lifecycle.governed(proposal_id, None, result["status"])
-                lifecycle.complete(
-                    proposal_id=proposal_id,
-                    receipt_id=None,
-                    detail=result["status"],
-                )
+        try:
+            raw, metadata = self._invoke_external_effect(
+                lifecycle,
+                lambda: provider.propose(request),
+                checkpoint,
+            )
+        except InvocationBarrierError as error:
+            raise error.cause
+        except TransientProviderError as exc:
+            reason = str(exc)[:1000]
+            self.store.append("deferred", {"id": invocation, "reason": reason, "provider_error": exc.details, **self._request_count(provider)})
             if checkpoint:
                 checkpoint()
-            return result
+            return {"status": "deferred", "id": invocation, "reason": reason, "provider_error": exc.details, **self._request_count(provider)}
+        except DailyQuotaExceeded as exc:
+            reason = str(exc)[:1000]
+            payload = {"id": invocation, "reason": reason, "provider_error": exc.details,
+                       "quota_exhausted": "free_tier_daily", **self._request_count(provider)}
+            self.store.append("deferred", payload)
+            if checkpoint:
+                checkpoint()
+            return {"status": "deferred", "id": invocation, "reason": reason,
+                    "provider_error": exc.details, "quota_exhausted": "free_tier_daily", **self._request_count(provider)}
+        except ConfiguredDailyLimitReached as exc:
+            reason = str(exc)[:1000]
+            payload = {"id": invocation, "reason": reason, "provider_error": exc.details,
+                       "quota_exhausted": "configured_daily_limit", **self._request_count(provider)}
+            self.store.append("deferred", payload)
+            if checkpoint:
+                checkpoint()
+            return {"status": "deferred", "id": invocation, "reason": reason,
+                    "provider_error": exc.details, "quota_exhausted": "configured_daily_limit", **self._request_count(provider)}
+        except ProviderRequestError as exc:
+            reason = str(exc)[:1000]
+            self.store.append("failed", {"id": invocation, "reason": reason,
+                                         "provider_error": exc.details, **self._request_count(provider)})
+            if checkpoint:
+                checkpoint()
+            return {"status": "failed", "id": invocation, "reason": reason,
+                    "provider_error": exc.details, **self._request_count(provider)}
+        except Exception as exc:
+            reason = str(exc)[:1000] if isinstance(exc, Rejected) else f"Provider failed ({type(exc).__name__}); no automatic retry"
+            self.store.append("failed", {"id": invocation, "reason": reason, **self._request_count(provider)})
+            if checkpoint:
+                checkpoint()
+            return {"status": "failed", "id": invocation, "reason": reason}
+        if phase == "planning":
+            plan_id = "wake-retrieval-plan-" + invocation
+            if lifecycle is not None:
+                lifecycle.proposal_received(plan_id)
+            from .research import validate_research_plan
+            try:
+                requests = validate_research_plan(raw, request["context"], self.store.load())
+            except (Rejected, ValueError) as exc:
+                self.store.append("failed", {"id": invocation, "reason": str(exc)[:1000],
+                    "raw": str(raw)[:16000], **self._request_count(provider)})
+                if lifecycle is not None:
+                    lifecycle.governed(plan_id, None, "rejected")
+                    lifecycle.complete(proposal_id=plan_id, detail="invalid-research-plan")
+                if checkpoint:
+                    checkpoint()
+                return {"status": "failed", "id": invocation, "reason": str(exc)}
+            self.store.append("research_planned", {"id": invocation, "requests": requests,
+                "raw": raw, "metadata": metadata, "reason": "Validated retrieval plan; no research transition committed",
+                **self._request_count(provider)})
+            if lifecycle is not None:
+                lifecycle.governed(plan_id, None, "accepted")
+                lifecycle.complete(proposal_id=plan_id, detail="research-planned")
+            if checkpoint:
+                checkpoint()
+            return {"status": "planned", "id": invocation, "requests": requests}
+        proposal_id = "wake-response-" + invocation
+        if lifecycle is not None:
+            lifecycle.proposal_received(proposal_id)
+        result = self.finish(invocation, raw, metadata, crash=crash_at == "during-commit")
+        if lifecycle is not None:
+            lifecycle.governed(proposal_id, None, result["status"])
+            lifecycle.complete(
+                proposal_id=proposal_id,
+                receipt_id=None,
+                detail=result["status"],
+            )
+        if checkpoint:
+            checkpoint()
+        if research:
+            result["same_wake_research"] = research
+            try:
+                result["answer"] = json.loads(raw).get("summary", "")
+            except (ValueError, AttributeError):
+                pass
+        return result

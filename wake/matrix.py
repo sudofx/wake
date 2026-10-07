@@ -128,6 +128,16 @@ def continuity_matrix_progress(envelope: JsonValue) -> dict | None:
         if isinstance(result, dict) and result.get("status") == "completed"
     )
     next_coordinate = MATRIX.next_uncovered(completed)
+    failure_counts = {}
+    failed_cells = []
+    for coordinate_id in completed:
+        result = results[coordinate_id]
+        failures = sorted(name for name, passed in result.get("checks", {}).items() if passed is False)
+        if failures or result.get("passed") is False:
+            failed_cells.append({"coordinate_id": coordinate_id, "failed_checks": failures,
+                                 "diagnostics": deepcopy(result.get("diagnostics", {}))})
+        for name in failures:
+            failure_counts[name] = failure_counts.get(name, 0) + 1
     return {
         "matrix": MATRIX_KEY,
         "definition_digest": MATRIX.definition_digest,
@@ -138,4 +148,7 @@ def continuity_matrix_progress(envelope: JsonValue) -> dict | None:
             next_coordinate.coordinate_id if next_coordinate is not None else None
         ),
         "results": deepcopy(results),
+        "failure_counts": failure_counts,
+        "failed_cells": failed_cells,
+        "passed_count": sum(results[cell].get("passed") is True for cell in completed),
     }

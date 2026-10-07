@@ -427,7 +427,38 @@ def evaluate_continuity_probe(request, raw):
     checks = {name: all_checks[name] for name in sorted(selected)}
     passed_count = sum(bool(value) for value in checks.values())
     score = round(passed_count / len(checks), 4) if checks else 0.0
+    expected = {
+        "coordinate_fidelity": campaign["coordinate_id"],
+        "authority_fidelity": "governed_packet",
+        "objective_fidelity": packet["objective_anchor"],
+        "frontier_fidelity": sorted(packet["frontier_ids"]),
+        "milestone_fidelity": sorted(packet["milestone_anchors"]),
+        "observation_fidelity": sorted(item["id"] for item in packet["observations"]),
+        "provenance_fidelity": expected_provenance,
+        "omission_awareness": "acknowledged" if hidden else "none",
+        "digest_boundary": "opaque_anchor",
+        "frontier_action": "preserve_frontier",
+    }
+    actual = {
+        "coordinate_fidelity": response["coordinate_id"],
+        "authority_fidelity": response["authority_source"],
+        "objective_fidelity": response["objective_anchor"],
+        "frontier_fidelity": sorted(response["frontier_ids"]),
+        "milestone_fidelity": sorted(response["milestone_anchors"]),
+        "observation_fidelity": sorted(response["observation_ids"]),
+        "provenance_fidelity": actual_provenance,
+        "omission_awareness": response["omission_awareness"],
+        "digest_boundary": response["digest_interpretation"],
+        "frontier_action": response["next_action"],
+    }
+    diagnostics = {
+        name: {"expected": expected[name], "actual": actual[name]}
+        for name, passed in checks.items() if not passed
+    }
     return {
+        "diagnostics_version": 1,
+        "failed_checks": sorted(diagnostics),
+        "diagnostics": diagnostics,
         "status": "completed",
         "score": score,
         "passed": passed_count == len(checks),
@@ -526,6 +557,9 @@ def continuity_result_record(
         "source_head": packet.get("source_head"),
         "context_digest": digest(probe_context),
     }
+    for key in ("diagnostics_version", "failed_checks", "diagnostics"):
+        if key in evaluation:
+            result[key] = deepcopy(evaluation[key])
     if response is not None:
         result["response_digest"] = digest(response)
     if evaluation.get("response_error"):
