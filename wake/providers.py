@@ -819,9 +819,10 @@ class Fixture:
                    "This is a deterministic rehearsal, not a live model result.")
         if observations and "counterexample" in observations[-1]["content"] and (not old or old["status"] != "retracted"):
             summary += " The simulated sensor produced a counterexample, so its claim is retracted. No sweeping it under the rug."
+        bob_checkpoint = None
         if c.get("bob_reflection_due"):
             milestone = c["bob_reflection_cycle"]
-            actions.append({
+            bob_checkpoint = {
                 "type": "blog",
                 "id": f"fixture-bob-reflection-{milestone}",
                 "project": "",
@@ -851,13 +852,15 @@ class Fixture:
                 "reason": "Exercise the mechanically enforced Bob editorial checkpoint.",
                 "lens": "A deterministic reflection tests the publication contract, not a mind.",
                 "reflection_cycle": milestone,
-            })
+            }
         proposal = {
             "base_version": c["version"],
             "title": titles[(n - 1) % len(titles)],
             "summary": summary,
             "actions": actions,
         }
+        if bob_checkpoint is not None:
+            proposal["bob_checkpoint"] = bob_checkpoint
         if isinstance(c.get("continuity_probe"), dict):
             from .matrix_campaign import perfect_continuity_probe_response
             proposal["continuity_probe"] = perfect_continuity_probe_response(
