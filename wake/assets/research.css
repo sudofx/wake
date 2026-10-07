@@ -2023,3 +2023,12 @@ html:not(.console-panel-window) body.research-page [data-console-panel-id].panel
 .cube-differences small{color:var(--muted)}
 .cube-differences span{display:block;margin-top:3px}
 @media(max-width:700px){.cube-journey{grid-template-columns:1fr}.cube-comparison{margin:12px 16px 16px}}
+
+/* Score colors are fixed to 0–100%, independent of campaign coverage. */
+.cube-heatmap-legend{margin:8px 20px 14px;font-size:12px;line-height:1.5;color:var(--ink)}
+.cube-heatmap-legend>strong{display:block;font-size:12px;font-weight:600;margin-bottom:8px}
+.cube-score-scale{height:12px;border-radius:2px}
+.cube-score-ticks{display:flex;justify-content:space-between;gap:8px;margin-top:5px;font-variant-numeric:tabular-nums}
+.cube-heatmap-legend p{margin:8px 0 0;color:var(--muted)}
+.cube-unscored{font-size:18px;vertical-align:-1px}
+@media(max-width:700px){.cube-heatmap-legend{margin:8px 16px 14px}}
