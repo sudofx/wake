@@ -110,7 +110,7 @@ class FailoverTests(unittest.TestCase):
         self.assertNotIn("responseJsonSchema", generation)
         system = json.loads(self.requests[1].data)["systemInstruction"]["parts"][0]["text"]
         self.assertIn("Response contract (JSON Schema):", system)
-        self.assertIn('"required": ["base_version", "title", "summary", "actions"]', system)
+        self.assertIn('"required": ["base_version", "title", "summary", "actions", "bob_checkpoint"]', system)
         for a in item["provider_attempts"]:
             self.assertGreaterEqual(a["elapsed_ms"], 0)
             self.assertEqual(a["request_payload_bytes"], len(self.requests[0].data))
