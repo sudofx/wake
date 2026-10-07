@@ -2007,3 +2007,19 @@ html:not(.console-panel-window) body.research-page [data-console-panel-id].panel
  .research-page .console-panel-heading>.panel-title{flex:0 0 100%}
  .research-page .console-panel-heading>.panel-actions{flex:0 0 100%;margin:0;justify-content:flex-start}
 }
+
+/* A read-only journey between continuity coordinates. */
+.cube-comparison{margin:16px 20px 20px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;line-height:1.55;overflow-wrap:anywhere}
+.cube-comparison h3{margin:0 0 14px;color:var(--cyan);font-size:16px}
+.cube-comparison h4{margin:14px 0 6px;font:11px ui-monospace,monospace;text-transform:uppercase;color:var(--muted)}
+.cube-journey{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cube-journey>div{min-width:0;padding:0 12px 12px;border:1px solid var(--line);background:var(--surface-raised)}
+.cube-journey>div:last-child{border-color:var(--orange)}
+.cube-result{color:var(--orange)}
+.cube-comparison details{font-size:10px;color:var(--muted)}
+.cube-differences{list-style:none;padding:0;margin:0}
+.cube-differences li{border-left:2px solid var(--line);padding:8px 10px;margin:6px 0;background:var(--surface-raised)}
+.cube-differences .changed{border-color:var(--orange)}
+.cube-differences small{color:var(--muted)}
+.cube-differences span{display:block;margin-top:3px}
+@media(max-width:700px){.cube-journey{grid-template-columns:1fr}.cube-comparison{margin:12px 16px 16px}}

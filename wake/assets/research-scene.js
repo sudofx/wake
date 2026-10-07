@@ -1,7 +1,7 @@
 /* Perspective is a view transform of the native 7×7×7 matrix coordinates. */
 window.WakeResearchCube = canvas => {
   const context=canvas.getContext('2d');
-  let matrix=null,selected='',yaw=.65,pitch=-.45,zoom=.6,hovered='',moving=false,timer=0,last=0,heldUntil=0,drag=null,points=[],visible=false,pointerFrame=0,pendingPointer=null;
+  let matrix=null,selected='',previous='',yaw=.65,pitch=-.45,zoom=.6,hovered='',moving=false,timer=0,last=0,heldUntil=0,drag=null,points=[],visible=false,pointerFrame=0,pendingPointer=null;
   const corners=[[-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]];
   const edges=[[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
   const turn=([x,y,z])=>{const a=x*Math.cos(yaw)+z*Math.sin(yaw),b=-x*Math.sin(yaw)+z*Math.cos(yaw);return[a,y*Math.cos(pitch)-b*Math.sin(pitch),y*Math.sin(pitch)+b*Math.cos(pitch)];};
@@ -31,13 +31,14 @@ window.WakeResearchCube = canvas => {
       const v=corners.map(c=>project(cell.position.map((x,i)=>x-3+c[i]*.26),w,h,scale));
       if(chosen||recorded){context.fillStyle=chosen?orange:context.strokeStyle;context.globalAlpha=chosen?.22:.15;context.beginPath();[0,1,2,3].forEach((n,i)=>i?context.lineTo(v[n].x,v[n].y):context.moveTo(v[n].x,v[n].y));context.closePath();context.fill();context.globalAlpha=1;context.shadowColor=chosen?orange:'transparent';context.shadowBlur=chosen?12:0;}
       context.beginPath();edges.forEach(([a,b])=>{context.moveTo(v[a].x,v[a].y);context.lineTo(v[b].x,v[b].y);});context.stroke();context.shadowBlur=0;
+      if(cell.id===previous&&cell.id!==selected){context.globalAlpha=1;context.strokeStyle=style.getPropertyValue('--ink').trim();context.lineWidth=1.5;context.beginPath();context.arc(cell.screen.x,cell.screen.y,7,0,Math.PI*2);context.stroke();}
     });
     context.globalAlpha=1;context.font='11px ui-monospace, monospace';context.fillStyle=muted;context.textAlign='center';
     [[3.26,0,0],[0,3.26,0],[0,0,3.26]].forEach((v,i)=>{
       const anchor=project(v,w,h,scale),labels=[[w*.76,26],[w*.26,h-20],[w*.24,26]],[x,y]=labels[i];
-      context.strokeStyle=axisColors[i];context.lineWidth=1;context.globalAlpha=.9;context.beginPath();context.moveTo(anchor.x,anchor.y);context.lineTo(x,y+7);context.lineTo(x+25,y+7);context.stroke();context.beginPath();context.arc(anchor.x,anchor.y,2.3,0,Math.PI*2);context.fillStyle=axisColors[i];context.fill();context.fillText(matrix.axes[i].label,x,y);context.globalAlpha=1;
+      context.strokeStyle=axisColors[i];context.lineWidth=1;context.globalAlpha=.9;context.beginPath();context.moveTo(anchor.x,anchor.y);context.lineTo(x,y+7);context.lineTo(x+25,y+7);context.stroke();context.beginPath();context.arc(anchor.x,anchor.y,2.3,0,Math.PI*2);context.fillStyle=axisColors[i];context.fill();context.fillText(['Question','View','Obstacles'][i],x,y);context.globalAlpha=1;
     });
-    canvas.dataset.zoom=String(zoom);canvas.dataset.selected=selected;canvas.dataset.hovered=hovered;
+    canvas.dataset.zoom=String(zoom);canvas.dataset.selected=selected;canvas.dataset.previous=previous;canvas.dataset.hovered=hovered;
   }
 
   function tick(){
@@ -49,7 +50,7 @@ window.WakeResearchCube = canvas => {
   }
   function start(){if(!timer&&shouldAnimate()){last=0;timer=setTimeout(tick,50);}}
   function stop(redraw=false){if(timer)clearTimeout(timer);timer=0;last=0;if(redraw)draw();}
-  const select=id=>{selected=id;draw();};
+  const select=(id,previousId=previous)=>{selected=id;previous=previousId;draw();};
 
   canvas.tabIndex=0;
   canvas.addEventListener('pointerdown',event=>{drag={x:event.clientX,y:event.clientY,startX:event.clientX,startY:event.clientY};heldUntil=performance.now()+5000;canvas.setPointerCapture(event.pointerId);});

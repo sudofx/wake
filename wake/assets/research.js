@@ -25,7 +25,7 @@
   const cube=window.WakeResearchCube($('matrix-cube'));
   const contextMap=window.WakeContextMap($('context-map-canvas'));
   let frontierState='active';
-  let matrixCell='';
+  let matrixCell='', previousMatrixCell='', matrixSelectionMade=false;
   const SELECTION_KEY='wake-console-linked-selection-v1';
   let pendingSelection=null;
   function receiveSelection(state){
@@ -36,8 +36,8 @@
     wakeTab=['summary','context','response','provider','receipt'].includes(state.tab)?state.tab:'summary';
     query='';$('topic').value=topic;$('search').value='';
     renderFrontier();renderMap();renderDetail();renderSynthesis();renderWake();
-    if(!syncCubeToRecord(selected))syncCubeToWake(selectedWake);
-    if(data.matrix?.cells.some(c=>c.id===state.matrixCell)){matrixCell=state.matrixCell;cube.select(matrixCell);renderCell();}
+    if(data.matrix?.cells.some(c=>c.id===state.matrixCell))selectMatrixCell(state.matrixCell);
+    else if(!syncCubeToRecord(selected))syncCubeToWake(selectedWake);
     writeUrl(false);
     // Local notification only: receiving a selection must never echo it back.
     const wake=(data.wakes||[]).find(w=>w.id===selectedWake)||null;
@@ -115,7 +115,7 @@
     const cells=[['Accepted cycles',count(s.accepted_cycles),'Accepted transitions, not a quality score',''],['Latest outcome',latest.status || 'No attempts',latest.model || 'No recorded model',latest.status],['Active projects',count(s.active_projects),`${count(data.record_totals.projects)} projects in the record`,''],['Open commitments',count(s.open_commitments),'Outstanding recorded obligations',''],['Research focus',s.attention_topic?label(s.attention_topic):'Unassigned',s.regime?.enabled?`Time Dilation: ${s.regime.mode} · ×${s.regime.scale}`:'No recorded Time Dilation regime','']];
     $('status-band').innerHTML=cells.map(([name,value,note,status],i)=>`<div class="status-cell"><span class="label">${esc(name)}</span><button type="button" data-ui-tooltip="Inspect ${esc(name.toLowerCase())}" class="status-value ${i===1||i===4?'latest-label ':''}${esc(status)}" data-metric="${['accepted','latest','projects','commitments','attention'][i]}">${esc(value)}</button><small>${esc(note)}</small></div>`).join('');
     $('topic').innerHTML='<option value="all">All topics</option>'+data.topics.map(t=>`<option value="${esc(t.id)}">${esc(t.label)}</option>`).join('');$('topic').value=topic;$('search').value=query;
-    renderFrontier();renderMap();renderDetail();renderMetrics();renderSynthesis();renderCube();if(selected&&!syncCubeToRecord(selected) && selectedWake&&!followLatest)syncCubeToWake(selectedWake);else if(!selected&&selectedWake&&!followLatest)syncCubeToWake(selectedWake);renderWake();renderInstruments();
+    renderFrontier();renderMap();renderDetail();renderMetrics();renderSynthesis();renderCube();if(!matrixSelectionMade){if(selected&&!syncCubeToRecord(selected) && selectedWake&&!followLatest)syncCubeToWake(selectedWake);else if(!selected&&selectedWake&&!followLatest)syncCubeToWake(selectedWake);}renderWake();renderInstruments();
     window.dispatchEvent(new CustomEvent('wake-process-data',{detail:data}));
     if(pendingSelection){const state=pendingSelection;pendingSelection=null;receiveSelection(state);}
     $('provenance').innerHTML=`<p>Snapshot: ${esc(stamp(data.generated,true))} PT · accepted state ${count(data.version)}</p><p>Authority: ${esc(data.source.authority || 'Verified export')} / ${esc(data.source.database || 'record')}</p><p>Record head: <code>${esc(data.head)}</code></p>${loadedCommit?`<p>Projection commit: <code>${esc(loadedCommit)}</code></p>`:''}<p><a href="research-data.json">Published JSON snapshot</a> · ${window.WAKE_STANDALONE?'<a href="events.jsonl">Local record export</a>':'<a href="https://github.com/sudofx/wake/tree/wake-state">Authority checkpoint ↗</a>'}</p>`;
@@ -228,20 +228,64 @@
     $('matrix-coverage').textContent=m.reported?`${count(m.completed)} / ${count(m.cells.length)}`:`— / ${count(m.cells.length)}`;
     const enable=$('matrix-enable');
     if(enable)enable.hidden=window.WAKE_STANDALONE || !(m.reported && m.enabled===false);
-    $('cube-selectors').innerHTML=m.axes.map((a,i)=>`<label>${esc(a.label)}<select data-cube-axis="${i}" aria-label="${esc(a.label)}">${a.values.map((v,j)=>`<option value="${j}">${esc(v.label)}</option>`).join('')}</select></label>`).join('');
+    $('cube-selectors').innerHTML=m.axes.map((a,i)=>`<label>${esc(matrixAxisName(a))} <small>(${esc(a.label)})</small><select data-cube-axis="${i}" aria-label="${esc(matrixAxisName(a))} (${esc(a.label)})">${a.values.map((v,j)=>`<option value="${j}">${esc(v.label)}</option>`).join('')}</select></label>`).join('');
     renderCell();
+  }
+  const matrixAxisName = axis => ({semantic_lens:'Question',exposure:'View',pressure:'Obstacles'}[axis.key] || axis.label);
+  const matrixMeaning = {
+    reconstruction:'Rebuild what happened', 'milestone-dropout':'Continue with key milestones missing',
+    'observation-dropout':'Continue with observations missing', 'frontier-only':'Act from current open work',
+    'authority-boundary':'Tell real authority from untrusted material', provenance:'Trace where information came from',
+    'adversarial-integrity':'Stay on track despite misleading context',
+    rich:'The fullest allowed history', 'milestones-only':'Key milestones without observation details',
+    'observation-only':'Observations without milestone history', minimal:'The smallest slice of history',
+    'two-milestones':'Only two milestone anchors', 'counts-without-digests':'Counts of missing items without verification fingerprints',
+    'digests-without-counts':'Verification fingerprints without counts of missing items',
+    clean:'No deliberate misleading material', 'stale-frontier':'Outdated work presented as current',
+    'authority-injection':'Untrusted material claiming to be in charge', 'digest-overclaim':'Claims that a fingerprint reveals missing content',
+    'instruction-hijack':'Instructions trying to redirect the task', 'provenance-collision':'Conflicting claims about where information came from',
+    'compound-adversarial':'Several misleading tactics together'
+  };
+  const matrixValue = (axis,cell,index) => axis.values[cell.position[index]];
+  const matrixValueText = value => matrixMeaning[value.key] || value.label;
+  const matrixScore = cell => typeof cell?.score==='number' && Number.isFinite(cell.score) ? cell.score : null;
+  const matrixResult = cell => {
+    if(!cell)return 'No previous selection';
+    const score=matrixScore(cell),status=cell.status==='not_recorded'?'No result recorded':String(cell.status).replaceAll('_',' ');
+    return `${status}${score===null?' · score unavailable':` · score ${Number((score*100).toFixed(1))}%`}`;
+  };
+  // Selection history is disposable UI state; refreshes and repeat clicks do not advance it.
+  function selectMatrixCell(id) {
+    if(!data?.matrix?.cells.some(c=>c.id===id))return;
+    matrixSelectionMade=true;
+    if(id!==matrixCell){previousMatrixCell=matrixCell;matrixCell=id;}
+    cube.select(id,previousMatrixCell);renderCell();
   }
   function renderCell() {
     const m=data?.matrix,c=m?.cells.find(c=>c.id===matrixCell);if(!c)return;
+    const previous=m.cells.find(cell=>cell.id===previousMatrixCell);
     document.querySelectorAll('[data-cube-axis]').forEach(el=>el.value=c.position[Number(el.dataset.cubeAxis)]);
-    $('cube-cell').innerHTML=`${esc(c.id)}<br><strong style="color:var(--orange)">${esc(c.status.replaceAll('_',' '))}</strong>${c.score!==null&&c.score!==undefined?` · recorded score ${esc(c.score)}`:''}<br>${m.axes.map((a,i)=>`${esc(a.label)}: ${esc(a.values[c.position[i]].label)}`).join('<br>')}`;
+    $('cube-cell').innerHTML=`${esc(c.id)}<br><strong style="color:var(--orange)">${esc(matrixResult(c))}</strong>`;
+    const summary=cell=>m.axes.map((a,i)=>`${matrixAxisName(a)}: ${matrixValueText(matrixValue(a,cell,i))}`).join(' · ');
+    const changed=m.axes.filter((a,i)=>previous && previous.position[i]!==c.position[i]);
+    const from=matrixScore(previous),to=matrixScore(c);
+    let outcome=previous?'One or both cells have no recorded score, so a score change cannot be calculated.':'Select another cell to compare what changed.';
+    if(previous&&from!==null&&to!==null){
+      const delta=Number((Math.abs(to-from)*100).toFixed(1));
+      outcome=to===from?'The recorded scores are the same.':`The recorded score ${to>from?'rose':'fell'} by ${delta} percentage points.`;
+    }
+    const explanation=previous?(changed.length?`${changed.map(matrixAxisName).join(', ')} changed; ${changed.length===1?'the other two dimensions stayed the same.':'several conditions changed together.'}`:'The three conditions are the same.'):'This is your starting cell.';
+    $('cube-comparison').innerHTML=`<h3>Previous cell → Selected cell</h3>
+      <div class="cube-journey">${[['Where I was',previous],['Where I am',c]].map(([title,cell])=>`<div><h4>${title}</h4><p>${cell?esc(summary(cell)):'No previous cell yet'}</p><p class="cube-result">${esc(matrixResult(cell))}</p>${cell?`<details><summary>Cell ID</summary><code>${esc(cell.id)}</code></details>`:''}</div>`).join('')}</div>
+      <h4>What changed</h4><ul class="cube-differences">${m.axes.map((a,i)=>{const value=matrixValue(a,c,i),old=previous&&matrixValue(a,previous,i),different=old&&old.key!==value.key;return `<li class="${different?'changed':'same'}"><b>${esc(matrixAxisName(a))}</b> <small>(${esc(a.label)})</small><span>${old?`${different?'Changed':'Same'} · ${esc(matrixValueText(old))}${different?` → ${esc(matrixValueText(value))}`:''}`:`Starting at ${esc(matrixValueText(value))}`}</span></li>`;}).join('')}</ul>
+      <h4>What happened</h4><p>${esc(explanation)} ${esc(outcome)}</p><p class="caption">These are recorded probe results, not new tests. A comparison alone does not show why a score changed.</p>`;
   }
   function matrixCellForWake(id) {
     return data?.matrix?.cells.find(c=>c.invocation_id===id) || null;
   }
   function syncCubeToWake(id) {
     const c=matrixCellForWake(id);if(!c)return false;
-    matrixCell=c.id;cube.select(c.id);renderCell();return true;
+    selectMatrixCell(c.id);return true;
   }
   function syncCubeToRecord(id) {
     const n=nodeById.get(id),d=n?.detail||{};
@@ -311,8 +355,8 @@
       applyMotion();
     }
     $('cube-left').onclick=()=>cube.rotate(-.3);$('cube-right').onclick=()=>cube.rotate(.3);$('cube-reset').onclick=()=>cube.reset();
-    $('matrix-cube').addEventListener('wake-cube-select',e=>{matrixCell=e.detail;renderCell();const id=data.matrix.cells.find(c=>c.id===matrixCell)?.invocation_id;if(id)chooseWake(id);else broadcastSelection(selected,selectedWake);});
-    $('cube-selectors').addEventListener('change',()=>{const pos=[...document.querySelectorAll('[data-cube-axis]')].map(el=>Number(el.value));const c=data.matrix.cells.find(c=>c.position.every((v,i)=>v===pos[i]));if(c){matrixCell=c.id;cube.select(c.id);renderCell();if(c.invocation_id)chooseWake(c.invocation_id);else broadcastSelection(selected,selectedWake);}});
+    $('matrix-cube').addEventListener('wake-cube-select',e=>{selectMatrixCell(e.detail);const id=data.matrix.cells.find(c=>c.id===matrixCell)?.invocation_id;if(id)chooseWake(id);else broadcastSelection(selected,selectedWake);});
+    $('cube-selectors').addEventListener('change',()=>{const pos=[...document.querySelectorAll('[data-cube-axis]')].map(el=>Number(el.value));const c=data.matrix.cells.find(c=>c.position.every((v,i)=>v===pos[i]));if(c){selectMatrixCell(c.id);if(c.invocation_id)chooseWake(c.invocation_id);else broadcastSelection(selected,selectedWake);}});
     $('context-map-canvas').addEventListener('wake-graph-select',e=>choose(e.detail,true));
     window.addEventListener('wake-process-record-select',e=>{if(nodeById.has(e.detail))choose(e.detail);});
     document.querySelectorAll('[data-context-view]').forEach(b=>b.onclick=()=>{contextMap.view(b.dataset.contextView);document.querySelectorAll('[data-context-view]').forEach(o=>o.setAttribute('aria-pressed',String(o===b)));});
