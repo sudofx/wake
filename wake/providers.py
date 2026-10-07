@@ -387,8 +387,21 @@ def schema_for_context(context):
             props["evidence"]["items"].pop("enum", None)
             props["evidence"]["maxItems"] = 0
 
-        # Bob is optional editorial output. Keep ordinary research choices available;
-        # a due editorial opportunity may coexist with them but never gates advancement.
+        if reflection_due:
+            # A due Bob checkpoint is mandatory at the disposable provider
+            # boundary, but it remains an editorial sidecar rather than research
+            # authority. Put it in a required top-level field so structured
+            # generation cannot silently omit it while keeping ordinary research
+            # actions available in the same response.
+            checkpoint = deepcopy(blog)
+            schema["properties"]["bob_checkpoint"] = checkpoint
+            if "bob_checkpoint" not in schema["required"]:
+                schema["required"].append("bob_checkpoint")
+            choices.remove(blog)
+
+        # Ordinary Bob publication stays optional and event-driven. A due
+        # checkpoint is required to be proposed, but publication can still be
+        # withheld by governance without blocking accepted research.
     return schema
 
 def retractable_quotes(post):
