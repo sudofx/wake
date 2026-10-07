@@ -60,6 +60,60 @@ def _journal_action_sentence(action):
     return f"Accepted {kind or 'research'} action."
 
 
+def materialize_due_bob_checkpoint_preflight(state, proposal):
+    """Turn the required provider checkpoint into the ordinary final blog sidecar.
+
+    The response schema requires bob_checkpoint only when Bob is due. Keeping
+    it outside actions lets the provider contract require the editorial
+    checkpoint without requiring or pruning any research action. This preflight
+    then materializes it as the final blog action before the existing WAKE policy
+    path runs.
+
+    Publication still does not gate research. If the materialized blog later
+    fails editorial governance, govern_proposal withholds only that final
+    action and accepts the valid research subset. Because no post becomes durable,
+    Bob remains due on the next wake.
+    """
+    if not isinstance(proposal, dict) or "bob_checkpoint" not in proposal:
+        return proposal, None
+
+    due_cycle = bob_reflection_due_cycle(state)
+    checkpoint = proposal.get("bob_checkpoint")
+    actions = proposal.get("actions")
+    require(due_cycle is not None, "Bob checkpoint supplied when no checkpoint is due")
+    require(isinstance(actions, list), "Bob checkpoint requires an actions array")
+    require(
+        isinstance(checkpoint, dict)
+        and checkpoint.get("type") == "blog"
+        and checkpoint.get("reflection_cycle") == due_cycle,
+        "Bob checkpoint must be the due blog reflection for this wake",
+    )
+
+    # The due checkpoint has one canonical lane. If a provider somehow returns
+    # an additional blog action despite the schema, discard that duplicate
+    # editorial output rather than letting it jeopardize otherwise valid research.
+    research_actions = [
+        action
+        for action in actions
+        if not (isinstance(action, dict) and action.get("type") == "blog")
+    ]
+    discarded = len(actions) - len(research_actions)
+
+    normalized = {
+        key: value
+        for key, value in proposal.items()
+        if key != "bob_checkpoint"
+    }
+    normalized["actions"] = [*research_actions, checkpoint]
+    return normalized, {
+        "bob_checkpoint": {
+            "due_cycle": due_cycle,
+            "materialized": True,
+            "discarded_duplicate_blog_actions": discarded,
+        }
+    }
+
+
 def separate_blog_from_journal_preflight(proposal):
     """Keep Bob's publication persona mechanically outside WAKE✳︎'s journal.
 
@@ -457,11 +511,12 @@ def enforce_synthesis_checkpoint(state, invocation, proposal):
 
 def govern_proposal(state, invocation, proposal):
     """Apply the complete WAKE domain-policy path without committing storage."""
+    proposal, checkpoint_filter = materialize_due_bob_checkpoint_preflight(state, proposal)
     proposal, reuse_filter = reuse_owned_project_preflight(state, proposal)
     proposal, rotation_filter = rotation_preflight(state, invocation, proposal)
     proposal, title_filter = freshen_duplicate_blog_titles_preflight(state, proposal)
     proposal, journal_filter = separate_blog_from_journal_preflight(proposal)
-    if reuse_filter or title_filter or journal_filter:
+    if checkpoint_filter or reuse_filter or title_filter or journal_filter:
         if rotation_filter is None:
             directive = state.get("invocations", {}).get(invocation, {}).get("attention", {})
             rotation_filter = {
@@ -470,6 +525,8 @@ def govern_proposal(state, invocation, proposal):
                 "withheld_actions": [],
                 "inserted_capacity_park": False,
             }
+        if checkpoint_filter:
+            rotation_filter = {**rotation_filter, **checkpoint_filter}
         if reuse_filter:
             rotation_filter = {**rotation_filter, **reuse_filter}
         if title_filter:
