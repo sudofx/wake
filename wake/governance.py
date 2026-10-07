@@ -782,12 +782,13 @@ def _bob_quiet_window(post):
 
 
 def bob_reflection_due_cycle(state):
-    """Return the accepted wake that requires Bob to publish, or None.
+    """Return the accepted wake that requires a Bob editorial checkpoint, or None.
 
-    The first accepted wake exposes an editorial opportunity for Bob's public role.
-    After that, ordinary posts remain event-driven and may happen at any time. If
-    nothing has been published for a stable jittered 15–20 accepted wakes, this
-    returns another editorial opportunity. It never blocks WAKE✳︎ state advancement.
+    The first accepted wake requires the provider to propose Bob's opening
+    checkpoint. After that, ordinary posts remain event-driven and may happen at
+    any time. If nothing has been published for a stable jittered 15–20 accepted
+    wakes, this returns another required checkpoint. Publication itself remains
+    governed editorial output and never blocks WAKE✳︎ research state advancement.
     """
     journal = state.get("journal", [])
     next_cycle = (journal[-1].get("cycle", len(journal)) if journal else 0) + 1
@@ -815,7 +816,7 @@ def _enforce_attention_rotation(state, invocation, action, candidate, historical
 
     Durable obligations from a deferred topic remain intact. During an enforced
     rotation the model may still park or complete an existing project to free
-    capacity, and an optional system-wide Bob reflection remains possible, but
+    capacity, and a due system-wide Bob reflection remains possible, but
     new substantive project/research/notebook/reframe/blog work must target the
     selected topic. Historical replay never applies a rule retroactively.
     """
