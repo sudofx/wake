@@ -1344,8 +1344,9 @@ class Engine:
                  "retractable_quotes": retractable_quotes(post)}
                 for post in list(state.get("posts", {}).values())[-4:]
             ]
-            # Bob receives a non-blocking editorial opportunity after the opening
-            # cycle and again after a stable quiet window. Research never depends on it.
+            # Bob receives a required editorial checkpoint after the opening
+            # cycle and again after a stable quiet window. The provider must propose
+            # it, but publication remains a sidecar and research never depends on it.
             context["bob_reflection_cycle"] = bob_reflection_due_cycle(state)
             context["bob_reflection_due"] = context["bob_reflection_cycle"] is not None
             context["reflection_history"] = (
