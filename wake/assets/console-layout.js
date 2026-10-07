@@ -8,7 +8,23 @@
   const detached=params.get('workspace')==='detached';
   const toolWindow=params.get('workspace')==='tool';
   const panelWindow=params.get('panel');
+  if(/iPhone/i.test(navigator.userAgent))document.documentElement.classList.add('console-iphone');
   const poppedPanels=new Map();
+  const setPanelPoppedOut=(panel,popped)=>{
+    panel.classList.toggle('panel-popped-out',popped);
+    const button=panel.querySelector('.panel-popout');
+    if(button){
+      button.textContent=popped?'↙':'↗';
+      button.setAttribute('aria-label',popped?button.dataset.restoreLabel:button.dataset.popoutLabel);
+      button.title=button.getAttribute('aria-label');
+    }
+    if(panel.dataset.consolePanelId==='014')document.documentElement.classList.toggle('console-inspector-popped-out',popped);
+  };
+  const restorePanel=id=>{
+    const panel=document.querySelector(`[data-console-panel-id="${id}"]`);
+    if(panel)setPanelPoppedOut(panel,false);
+    poppedPanels.delete(id);
+  };
   const announcePanel=(target=window.opener)=>{
     if(panelWindow&&target)try{target.postMessage({type:'wake-console-panel-open',id:panelWindow},location.origin);}catch{}
   };
@@ -19,14 +35,14 @@
       return;
     }
     const id=event.data?.id;
-    if(event.data?.type!=='wake-console-panel-open'||!/^\d{3}$/.test(id))return;
+    if(!['wake-console-panel-open','wake-console-panel-close'].includes(event.data?.type)||!/^\d{3}$/.test(id))return;
     const panel=document.querySelector(`[data-console-panel-id="${id}"]`);
     if(!panel)return;
     const tracked=poppedPanels.get(id);
     try{if(tracked?.window!==event.source&&event.source.opener!==window)return;}catch{return;}
+    if(event.data.type==='wake-console-panel-close'){restorePanel(id);return;}
     poppedPanels.set(id,{window:event.source,ready:true});
-    if(!panel.classList.contains('panel-popped-out'))panel.classList.add('panel-popped-out');
-    if(id==='014'&&!document.documentElement.classList.contains('console-inspector-popped-out'))document.documentElement.classList.add('console-inspector-popped-out');
+    setPanelPoppedOut(panel,true);
   });
   if(!panelWindow)setInterval(()=>{
     poppedPanels.forEach((entry,id)=>{
@@ -34,9 +50,7 @@
       let closed=false;
       try{closed=entry.window.closed;}catch{closed=true;}
       if(closed){
-        document.querySelector(`[data-console-panel-id="${id}"]`)?.classList.remove('panel-popped-out');
-        if(id==='014')document.documentElement.classList.remove('console-inspector-popped-out');
-        poppedPanels.delete(id);
+        restorePanel(id);
       }else try{entry.window.postMessage({type:'wake-console-panel-ping',id},location.origin);}catch{}
     });
   },500);
@@ -69,7 +83,9 @@
   grid.id='console-module-grid';
   grid.className='console-module-grid';
   grid.setAttribute('aria-label','Rearrangeable Console workspace');
-  (toolbar||status).after(grid);
+  const overview=document.querySelector('.console-overview');
+  if(toolbar)overview.append(toolbar);
+  overview.after(grid);
 
   const originalParents=new Set();
   const slug=text=>String(text||'panel').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,50)||'panel';
@@ -136,9 +152,24 @@
     panel.dataset.consolePanelId=id;
     const button=document.createElement('button');
     button.type='button';button.className='panel-popout';button.textContent='↗';
-    button.setAttribute('aria-label',`Pop out ${titleFor(panel)} · #${id}`);
+    button.dataset.popoutLabel=`Pop out ${titleFor(panel)} · #${id}`;
+    button.dataset.restoreLabel=`Restore ${titleFor(panel)} to Console · #${id}`;
+    button.setAttribute('aria-label',button.dataset.popoutLabel);
+    button.title=button.dataset.popoutLabel;
     (panel.querySelector('.module-controls,.panel-actions,.snapshot')||panel).append(button);
     button.addEventListener('click',()=>{
+      if(panelWindow===id){
+        if(window.opener&&!window.opener.closed){
+          window.opener.postMessage({type:'wake-console-panel-close',id},location.origin);
+          window.opener.focus();
+          window.close();
+        }else{
+          const url=new URL(location.href);url.searchParams.delete('panel');location.assign(url.href);
+        }
+        return;
+      }
+      const tracked=poppedPanels.get(id);
+      if(tracked&&!tracked.window.closed){tracked.window.close();restorePanel(id);return;}
       const url=new URL(location.href);
       url.searchParams.delete('workspace');url.searchParams.set('panel',id);
       const opened=window.open(url.href,`wake-console-panel-${id}`,'popup=yes,width=1000,height=800');
@@ -154,6 +185,8 @@
       if(target.matches('.detail-panel'))main.append(target);
       document.documentElement.classList.add('console-panel-window');
       target.classList.add('panel-popout-target');
+      const button=target.querySelector('.panel-popout');
+      if(button){button.textContent='↙';button.setAttribute('aria-label',button.dataset.restoreLabel);button.title=button.dataset.restoreLabel;}
       document.title=`${titleFor(target)} · #${panelWindow} / WAKE✳︎`;
     }
   }else{
@@ -209,7 +242,11 @@
       }
     });
   };
-  if(!panelWindow)applyState();
+  if(!panelWindow){
+    applyState();
+    const process=grid.querySelector('.process-field-panel');
+    if(process){process.dataset.span='12';grid.prepend(process);}
+  }
 
   // Count columns in the actual workspace, which excludes the inspection rail.
   // CSS auto-placement owns rows; no stale row/column coordinates survive a resize.
@@ -297,11 +334,7 @@
   grid.addEventListener('pointerup',finish);
   grid.addEventListener('pointercancel',finish);
 
-  const toolbarRow=document.createElement('div');
-  toolbarRow.className='console-workspace-controls';
-  toolbarRow.innerHTML=`<span>${detached?'DETACHED WORKSPACE':'CONSOLE WORKSPACE'}</span><div class="console-workspace-actions"><button id="reset-console-layout" type="button" aria-label="Reset Console view to the default panel arrangement">Reset view</button></div>`;
-  status.before(toolbarRow);
-  toolbarRow.querySelector('#reset-console-layout').addEventListener('click',()=>{
+  document.getElementById('reset-console-layout').addEventListener('click',()=>{
     try{localStorage.removeItem(STORAGE);localStorage.removeItem(PREVIOUS_STORAGE);localStorage.removeItem('wake-console-workspace-v1');}catch{}
     location.reload();
   });

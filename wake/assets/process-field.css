@@ -30,7 +30,7 @@ radial-gradient(circle at 50% 50%,rgba(182,155,255,.035),transparent 48%)}
  .process-field-grid{grid-template-columns:1fr;min-height:0}
  .process-field-canvas-wrap,#process-field-canvas{min-height:360px;height:360px}
  .process-field-readout{border-left:0;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
- .process-field-readout>p{grid-column:1/-1}
+ .process-field-readout>p,#process-field-selection,#process-field-stages{grid-column:1/-1}
  .process-stage{padding:9px 0}
  .process-field-legend{font-size:8px}
  .process-field-warning{margin-left:0}

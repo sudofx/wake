@@ -1,0 +1,6 @@
+# Optional local-network access over IPv4 and IPv6. Requires Compose 2.24.4+.
+# Keep the same Compose project name so the existing authority volume is reused.
+services:
+  wake:
+    ports: !override
+      - "${WAKE_PORT:-8080}:8080"

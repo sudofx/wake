@@ -652,6 +652,10 @@ html.console-detached body{
 .module-drag:active{
   cursor:grabbing!important;
 }
+html.console-iphone body.research-page .panel>.console-panel-heading .module-controls .module-drag,
+html.console-iphone body.research-page .panel>.console-panel-heading .module-controls .module-size{
+  display:none!important;
+}
 .console-is-dragging{
   user-select:none;
 }
@@ -1987,6 +1991,17 @@ html:not(.console-panel-window) body.research-page [data-console-panel-id].panel
 
 /* Keep the floated dismissal control above the following inspector content. */
 .research-page #close-data-inspector{position:relative;z-index:2}
+
+/* Overview owns status and filtering; the process field starts the next row. */
+.research-page .console-overview{flex-wrap:wrap;align-items:flex-start}
+.research-page .console-overview>div:first-child{flex:1;min-width:0}
+.research-page .console-overview>.status-band,
+.research-page .console-overview>.workspace-toolbar{flex:0 0 100%;width:100%;margin:0!important}
+.research-page .console-overview>.status-band{border:0;border-top:1px solid var(--line);border-radius:0!important}
+.research-page .wake-story>.wake-tabs .close-wake,
+.research-page #wake-detail.floating .inspector-tabs .close-wake{display:inline-flex!important;float:none;align-items:center;justify-content:center}
+.research-page .wake-story:has(#wake-detail[hidden])>.wake-tabs .close-wake,
+.research-page #wake-detail[hidden]{display:none!important}
 
 @container console-panel (max-width:640px){
  .research-page .console-panel-heading>.panel-title{flex:0 0 100%}

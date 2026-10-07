@@ -23,7 +23,7 @@ class ConsolePresentationTests(unittest.TestCase):
 
     def test_console_reset_view_restores_default_landscape_width(self):
         self.assertIn("const STORAGE='wake-console-workspace-v3'", self.layout)
-        self.assertIn('>Reset view</button>', self.layout)
+        self.assertIn('>Reset Console view</button>', self.html)
         self.assertIn("panel.matches('.map-panel,.notebook-panel,.process-field-panel')?12", self.layout)
         self.assertIn('grid-column:span var(--panel-slots,1)!important', self.css)
 
@@ -35,7 +35,7 @@ class ConsolePresentationTests(unittest.TestCase):
         self.assertIn("detail:{recordId,wakeId,wake}", self.research)
 
     def test_console_popouts_are_scoped_to_numbered_panels(self):
-        self.assertIn('id="reset-console-layout"', self.layout)
+        self.assertIn('id="reset-console-layout"', self.html)
         self.assertNotIn('id="popout-console"', self.layout)
         self.assertNotIn("Pop out console", self.layout)
         self.assertIn("url.searchParams.set('panel',id)", self.layout)

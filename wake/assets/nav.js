@@ -154,7 +154,7 @@ if(actionsLight && !window.WAKE_STANDALONE){
     if(button.matches('.module-size'))return ['↔',`Resize ${panelName}`];
     if(button.matches('.module-collapse'))return [button.closest('.module-collapsed')?'+':'−',`${button.closest('.module-collapsed')?'Expand':'Collapse'} ${panelName}`];
     if(button.matches('.close-wake'))return ['×','Close wake reader'];
-    if(button.matches('.panel-popout'))return ['↗',button.getAttribute('aria-label')];
+    if(button.matches('.panel-popout'))return [button.closest('.panel-popout-target,.panel-popped-out')?'↙':'↗',button.getAttribute('aria-label')];
     if(button.matches('.wake-tabs button'))return [tabs[button.dataset.wakeTab]||'≡',`Inspect ${button.dataset.wakeTab}`];
     if(button.dataset.contextView)return [button.dataset.contextView==='sphere'?'◉':'◇',`${button.dataset.contextView==='sphere'?'Sphere':'3D'} context view`];
     if(button.dataset.frontierState)return [states[button.dataset.frontierState],`${button.dataset.frontierState} frontier`];

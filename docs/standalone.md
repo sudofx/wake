@@ -37,6 +37,26 @@ quota deferrals respected. `WAKE_MODEL` optionally overrides the primary model.
 `WAKE_PORT` changes the host port. Compose binds only the host loopback interface.
 The read-only website is not an authenticated remote service.
 
+## Access from an iPhone or another device on the local network
+
+Add `compose.lan.yaml` to publish the website on the host's IPv4 and IPv6 addresses
+(Docker Compose 2.24.4 or newer). Keep the existing project name and volume:
+
+```sh
+docker compose -p wake-standalone-preview -f compose.yaml -f compose.lan.yaml up -d
+```
+
+For the VS Code setup, also include `-f compose.vscode.yaml` before the LAN override.
+That editor overlay defaults to paused mode; preserve your live provider and pause
+settings when recreating an existing installation. Port changes require recreation.
+
+Connect the iPhone to the same network, then open `http://HOST_IPV4:8080/console.html`
+or `http://[HOST_IPV6]:8080/console.html` in Safari. IPv6 literals require brackets.
+Use the host's network address rather than the container's internal address.
+Host firewall rules and Wi-Fi client isolation can affect access. The website
+remains read-only and unauthenticated, and this override listens on all host
+interfaces; use it on a trusted network without opening router ports.
+
 ## Continuity matrix campaign
 
 The 7×7×7 continuity cube is opt-in for each independent installation. Accepted
