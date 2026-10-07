@@ -1456,13 +1456,15 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(set(blog["properties"]["evidence"]["items"]["enum"]), {"s1", "s2"})
         self.assertNotIn("reflection_cycle", blog["required"])
 
-    def test_bob_publication_is_event_driven_with_non_blocking_editorial_opportunities(self):
+    def test_bob_publication_is_event_driven_with_required_non_blocking_checkpoints(self):
         self.assertIn("make an editorial judgment", RESEARCH_SYSTEM)
         self.assertIn("Ordinary publication\nis event-driven", RESEARCH_SYSTEM)
         self.assertIn("Bob never gates WAKE✳︎ research", RESEARCH_SYSTEM)
-        self.assertIn("Research may advance whether Bob publishes or not", RESEARCH_SYSTEM)
-        self.assertIn("No quota and no filler", RESEARCH_SYSTEM)
-        self.assertIn("bob_reflection_due", RESEARCH_SYSTEM)
+        self.assertIn("top-level bob_checkpoint", RESEARCH_SYSTEM)
+        self.assertIn("required editorial checkpoint", RESEARCH_SYSTEM)
+        self.assertIn("valid research still advances", RESEARCH_SYSTEM)
+        self.assertIn("Bob remains due on", RESEARCH_SYSTEM)
+        self.assertIn("no quota and no filler", RESEARCH_SYSTEM)
 
     def test_bob_prompt_aligns_opening_post_with_personhood_gate(self):
         self.assertIn("Bob is an editorial role/public correspondent, not a persistent person or mind", RESEARCH_SYSTEM)
@@ -1470,15 +1472,15 @@ class ResearchTests(unittest.TestCase):
         self.assertIn("without personhood\nlanguage", RESEARCH_SYSTEM)
         self.assertIn("First-person editorial voice is allowed", RESEARCH_SYSTEM)
 
-    def test_bounded_prompt_keeps_due_bob_opportunity_non_blocking(self):
+    def test_bounded_prompt_requires_due_bob_checkpoint_without_gating_research(self):
         from wake.providers import BOUNDED_RESEARCH_SYSTEM
         self.assertIn("context.bob_reflection_due is true", BOUNDED_RESEARCH_SYSTEM)
-        self.assertIn("optional editorial opportunity", BOUNDED_RESEARCH_SYSTEM)
-        self.assertIn("Research may advance without a blog action", BOUNDED_RESEARCH_SYSTEM)
-        self.assertIn("reflection_cycle to context.bob_reflection_cycle exactly", BOUNDED_RESEARCH_SYSTEM)
-        self.assertIn("FINAL action", BOUNDED_RESEARCH_SYSTEM)
+        self.assertIn("requires one top-level bob_checkpoint object", BOUNDED_RESEARCH_SYSTEM)
+        self.assertIn("mandatory to propose but never gates valid research", BOUNDED_RESEARCH_SYSTEM)
+        self.assertIn("bob_checkpoint.reflection_cycle", BOUNDED_RESEARCH_SYSTEM)
+        self.assertIn("FINAL editorial sidecar", BOUNDED_RESEARCH_SYSTEM)
         self.assertIn("body must be at least 900 characters", BOUNDED_RESEARCH_SYSTEM)
-        self.assertNotIn("mandatory before accepted state may advance", BOUNDED_RESEARCH_SYSTEM)
+        self.assertIn("Bob remains due on the next wake", BOUNDED_RESEARCH_SYSTEM)
 
 
     def test_bob_first_public_post_is_due_on_cycle_one(self):
@@ -1503,40 +1505,110 @@ class ResearchTests(unittest.TestCase):
         ]
         self.assertEqual(bob_reflection_due_cycle(state), 4 + first)
 
-    def test_fresh_research_schema_exposes_due_bob_introduction_without_pruning_work(self):
+    def test_fresh_research_schema_requires_due_bob_checkpoint_without_pruning_work(self):
         with self.engine.store.lock():
             invocation, request = self.engine.start("fixture", "research-test")
-        choices = request["response_schema"]["properties"]["actions"]["items"]["anyOf"]
+        schema = request["response_schema"]
+        choices = schema["properties"]["actions"]["items"]["anyOf"]
         self.assertTrue(any(
             item["properties"]["type"]["enum"] == ["project"]
             for item in choices
         ))
-        blog = next(
-            item for item in choices
-            if item["properties"]["type"]["enum"] == ["blog"]
-        )
+        self.assertFalse(any(
+            item["properties"]["type"]["enum"] == ["blog"]
+            for item in choices
+        ))
+        self.assertIn("bob_checkpoint", schema["required"])
+        checkpoint = schema["properties"]["bob_checkpoint"]
+        self.assertEqual(checkpoint["properties"]["type"]["enum"], ["blog"])
         self.assertEqual(
-            blog["properties"]["reflection_cycle"]["enum"],
+            checkpoint["properties"]["reflection_cycle"]["enum"],
             [request["context"]["bob_reflection_cycle"]],
         )
-        self.assertIn("reflection_cycle", blog["required"])
+        self.assertIn("reflection_cycle", checkpoint["required"])
 
-    def test_live_charged_research_can_advance_without_bob_opening_post(self):
+    def due_checkpoint(self, cycle, **changes):
+        body = (
+            "I'm Bob, WAKE✳︎'s public correspondent. This is the opening editorial checkpoint, "
+            "not a claim that a persistent person or mind exists. WAKE✳︎ carries a durable record "
+            "across disposable model invocations, and this note reports what that record can support. "
+            "At this checkpoint the safe story is structural: research actions remain governed, "
+            "accepted history is auditable, and public explanation stays separate from research authority. "
+            "The record may contain open projects, collected evidence, notebooks, limitations, and questions, "
+            "but this system-wide reflection does not turn any unsupported item into a finding. "
+            "What matters here is that publication has its own boundary: a draft can be withheld while valid "
+            "research still advances, and the next fresh invocation can see that Bob remains due. "
+            "That creates a durable editorial heartbeat without making the blog a steering mechanism. "
+            "The unresolved question is whether later checkpoints can explain meaningful longitudinal change "
+            "without flattening uncertainty or repeating routine status. That remains an editorial test, "
+            "not evidence of consciousness, subjective experience, personal memory, or sentience. "
+            "The useful standard is simple: say what changed, say what remains unknown, and keep every claim "
+            "inside the support actually present in the governed record. "
+            "\n\nSummary\n\n"
+            "Bob now has a required public checkpoint, but the checkpoint cannot block WAKE✳︎'s research. "
+            "If a draft is not good enough to publish, research can still continue and Bob must try again next wake."
+        )
+        action = dict(
+            type="blog",
+            id=f"bob-checkpoint-{cycle}",
+            project="",
+            title=f"Bob checkpoint at wake {cycle}",
+            lede="A required editorial checkpoint that remains outside research authority.",
+            body=body,
+            notebooks=[],
+            evidence=[],
+            reason="Required Bob editorial checkpoint.",
+            lens="A durable public rhythm can exist without turning publication into research authority.",
+            reflection_cycle=cycle,
+        )
+        action.update(changes)
+        return action
+
+    def test_due_bob_checkpoint_materializes_as_final_blog_sidecar(self):
         with self.engine.store.lock():
             invocation, request = self.engine.start("gemini", "test", charged=True)
+            checkpoint = self.due_checkpoint(request["context"]["bob_reflection_cycle"])
             result = self.engine.finish(
                 invocation,
                 json.dumps({
                     "base_version": request["context"]["version"],
                     "title": "Research fixture",
-                    "summary": "WAKE advances its research record without requiring editorial publication.",
+                    "summary": "Research and required editorial output share one provider response.",
                     "actions": [project()],
+                    "bob_checkpoint": checkpoint,
                 }),
             )
         self.assertEqual(result["status"], "accepted")
         state = self.engine.store.load()
+        self.assertIn("p", state["projects"])
+        self.assertIn(checkpoint["id"], state["posts"])
+        self.assertNotIn("Bob checkpoint", state["journal"][-1]["title"])
+        self.assertEqual(
+            result["rotation_filter"]["bob_checkpoint"]["due_cycle"],
+            checkpoint["reflection_cycle"],
+        )
+
+    def test_invalid_due_bob_checkpoint_is_withheld_without_blocking_research(self):
+        with self.engine.store.lock():
+            invocation, request = self.engine.start("gemini", "test", charged=True)
+            cycle = request["context"]["bob_reflection_cycle"]
+            checkpoint = self.due_checkpoint(cycle, body="Too short to publish.")
+            result = self.engine.finish(
+                invocation,
+                json.dumps({
+                    "base_version": request["context"]["version"],
+                    "title": "Research fixture",
+                    "summary": "Valid research must survive a bad required editorial draft.",
+                    "actions": [project()],
+                    "bob_checkpoint": checkpoint,
+                }),
+            )
+        self.assertEqual(result["status"], "accepted")
+        self.assertEqual(result["editorial"]["status"], "withheld")
+        state = self.engine.store.load()
+        self.assertIn("p", state["projects"])
         self.assertEqual(state["posts"], {})
-        self.assertEqual(state["journal"][-1]["title"], "Research fixture")
+        self.assertEqual(bob_reflection_due_cycle(state), state["version"] + 1)
 
     def test_revision_requires_changed_findings_and_new_evidence(self):
         self.source("s1", verified=True)
