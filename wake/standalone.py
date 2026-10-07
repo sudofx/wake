@@ -23,7 +23,7 @@ from .report import export
 from .scheduling import wake_status
 
 
-def bootstrap(directory, settings):
+def bootstrap(directory, settings, *, enable_continuity_matrix=False):
     """Only a genuinely unused volume may bootstrap; missing prior state is loss."""
     directory = Path(directory)
     directory.mkdir(parents=True, exist_ok=True)
@@ -41,6 +41,8 @@ def bootstrap(directory, settings):
                 if not state['objective']:
                     raise ValueError('Existing authority is not initialized; refusing automatic bootstrap')
                 engine.recover()
+            if enable_continuity_matrix and store.continuity_matrix_progress() is None:
+                store.enable_continuity_matrix()
             # A local continuity sentinel is not a second record or a state projection.
             marker = directory / '.standalone-initialized'
             if not marker.exists():
@@ -134,7 +136,7 @@ def run(args):
             fcntl.flock(lease, fcntl.LOCK_EX | fcntl.LOCK_NB)
         except BlockingIOError:
             raise ValueError('Another standalone runtime owns this data volume') from None
-        engine = bootstrap(data, settings)
+        engine = bootstrap(data, settings, enable_continuity_matrix=args.enable_continuity_matrix)
         server = None
         try:
             with tempfile.TemporaryDirectory(prefix='wake-website-') as directory:
@@ -192,6 +194,9 @@ def main():
     parser.add_argument('--provider', choices=('fixture', 'gemini'), default=os.environ.get('WAKE_PROVIDER') or None)
     parser.add_argument('--model', default=os.environ.get('WAKE_MODEL') or None)
     parser.add_argument('--paused', action='store_true', default=os.environ.get('WAKE_PAUSED', '').lower() == 'true')
+    parser.add_argument('--enable-continuity-matrix', action='store_true',
+                        default=os.environ.get('WAKE_ENABLE_CONTINUITY_MATRIX', '').lower() == 'true',
+                        help='Durably opt this installation into continuity@1; probes share ordinary provider calls')
     args = parser.parse_args()
     try:
         run(args)

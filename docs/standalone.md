@@ -37,6 +37,28 @@ quota deferrals respected. `WAKE_MODEL` optionally overrides the primary model.
 `WAKE_PORT` changes the host port. Compose binds only the host loopback interface.
 The read-only website is not an authenticated remote service.
 
+## Continuity matrix campaign
+
+The 7×7×7 continuity cube is opt-in for each independent installation. Accepted
+research cycles alone do not enable it. Set `WAKE_ENABLE_CONTINUITY_MATRIX=true`
+in `.env` and recreate the container using the same Compose project and data volume,
+or pass `--enable-continuity-matrix` to the standalone launcher. Startup audits and
+recovers the existing record before submitting the governed enablement action.
+Repeated starts preserve campaign results without recording another enablement.
+
+To enable an already running installation without restarting or calling a model:
+
+```sh
+docker compose exec wake python -m wake --data /data enable-continuity-matrix
+```
+
+The command shares the writer lock; retry between cycles if it is busy. Enablement
+is durable: removing the setting does not disable or reset the campaign. Paused mode
+can enable and display it but never runs probes. Each ordinary answered provider
+invocation scores one cell as a sidecar, including rejected research responses;
+timeouts and quota deferrals leave the cell pending. The website projects recorded
+progress after the cycle. No separate scheduler or extra provider call is needed.
+
 Custom config and topics may be mounted read-only over `/app/wake.toml` and
 `/app/research-topics.toml`. Mount both when changing relative topic-file paths.
 The image runs as UID/GID 10001; bind-mounted data directories must be writable by

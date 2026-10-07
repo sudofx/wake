@@ -39,6 +39,7 @@ def parser():
     wake.add_argument("--model")
     wake.add_argument("--crash-at", choices=["after-start", "during-commit"], help="Fixture-only crash experiment")
     sub.add_parser("status")
+    sub.add_parser("enable-continuity-matrix", help="Durably opt into continuity@1 without calling a provider")
     reset = sub.add_parser("reset", help="Start a new active WAKE generation at 0 while preserving prior wake history")
     reset.add_argument("--confirm", action="store_true",
                        help="Confirm deletion of all accumulated WAKE state")
@@ -154,6 +155,9 @@ def execute(args):
                 return {"recovered": True, "cycles": state["version"], "pending": state["pending"]}
             state = engine.store.load()
             require(bool(state["objective"]), "Initialize this record first")
+            if args.command == "enable-continuity-matrix":
+                require(state["pending"] is None, "Finish or recover the pending invocation first")
+                return engine.store.continuity_matrix_progress() or engine.store.enable_continuity_matrix()
             if args.command in ("status", "audit"):
                 _, head = engine.store.replay()
                 return {"valid": True, "cycles": state["version"], "head": head,

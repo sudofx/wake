@@ -12,6 +12,7 @@ services:
       WAKE_MODEL: ${WAKE_MODEL:-}
       WAKE_INTERVAL_SECONDS: ${WAKE_INTERVAL_SECONDS:-60}
       WAKE_PAUSED: ${WAKE_PAUSED:-false}
+      WAKE_ENABLE_CONTINUITY_MATRIX: ${WAKE_ENABLE_CONTINUITY_MATRIX:-false}
     restart: unless-stopped
     stop_grace_period: 5m
     read_only: true
