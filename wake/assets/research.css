@@ -1350,8 +1350,8 @@ html[data-theme] body.research-page .console-story-panel.console-module *,
 html[data-theme] body.research-page .console-story-panel.console-module::after{border-color:var(--story-border,#ffb15c)!important}
 /* A transparent amber wash preserves the wireframe and blur in both themes.
    Do not mix with the root surface: some page skins define an opaque surface. */
-html[data-theme=dark]{--story-border:color-mix(in srgb,#ffb15c 32%,var(--line));--story-wash:rgba(255,177,92,.07);--story-glass:rgba(3,10,19,.40)}
-html[data-theme=light]{--story-wash:rgba(166,83,9,.045);--story-glass:rgba(255,255,255,.88)}
+html[data-theme=dark]{--story-border:color-mix(in srgb,#ffb15c 65%,var(--line));--story-wash:rgba(255,177,92,.13);--story-glass:rgba(3,10,19,.40)}
+html[data-theme=light]{--story-border:#e98c2b;--story-wash:rgba(255,155,45,.09);--story-glass:rgba(255,255,255,.88)}
 html[data-theme] body.research-page .console-story-panel.console-module{background:linear-gradient(var(--story-wash),var(--story-wash)),var(--story-glass)!important}
 
 .research-page .console-module-grid>.detail-panel{display:flex!important;flex-direction:column;resize:none}

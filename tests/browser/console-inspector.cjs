@@ -28,7 +28,7 @@ const base=process.argv[2];
  await page.locator('#close-inspector').click();await page.waitForFunction(()=>!document.documentElement.classList.contains('console-inspector-docked'));
  assert.equal(await page.locator('.map-key').evaluate(e=>Boolean(e.closest('.panel-actions'))),true);
  const borders=await page.locator('.console-story-panel').evaluateAll(nodes=>nodes.map(e=>getComputedStyle(e).borderTopColor));assert.equal(borders.length,7);
- const washes=await page.locator('.console-story-panel').evaluateAll(nodes=>nodes.map(e=>getComputedStyle(e).backgroundImage));assert(washes.every(c=>c.includes('166, 83, 9')));assert(borders.every(c=>c==='rgb(255, 177, 92)'));
+ const washes=await page.locator('.console-story-panel').evaluateAll(nodes=>nodes.map(e=>getComputedStyle(e).backgroundImage));assert(washes.every(c=>c.includes('255, 155, 45')));assert(borders.every(c=>c==='rgb(233, 140, 43)'));
  const cube=page.locator('#matrix-cube');await cube.scrollIntoViewIfNeeded();const zoom=await cube.getAttribute('data-zoom');await cube.hover();await page.mouse.wheel(0,-150);assert.equal(await cube.getAttribute('data-zoom'),zoom);
  await page.setViewportSize({width:390,height:844});await page.waitForTimeout(300);await page.locator('.map-node').first().scrollIntoViewIfNeeded();await page.locator('.map-node').first().click();await page.locator('html.console-inspector-docked').waitFor();
  const sheet=await inspector.boundingBox(),origin=await page.locator('.map-node').first().boundingBox();assert(sheet.y>400);assert(origin.y+origin.height<=sheet.y);
