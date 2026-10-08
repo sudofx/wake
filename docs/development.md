@@ -86,6 +86,25 @@ local scheduler endpoint, so runtime status may be unavailable. The deliberate
 hosted preview is different: build its shell with `scripts/publish_pages.py`, then
 use `scripts/preview_research.py`. The helper rejects standalone directories.
 
+## Codespaces access and preview
+
+The committed Dev Container starts an independent, paused preview on port 8080.
+Keep the forwarded port private; it contains this workspace's disposable local
+view, not the hosted research record. Do not populate its record from `wake-state`.
+A Codespace must execute the mounted checkout, including uncommitted development
+changes, rather than an older image package.
+
+The editor-only Dev Container includes the standard SSH feature for GitHub CLI
+maintenance. It does not add an SSH service to the standalone runtime image.
+GitHub CLI access to Codespaces requires the `codespace` scope. If listing or
+creating a Codespace reports missing scope, use
+`gh auth refresh -h github.com -s codespace` and complete the browser authorization.
+An existing repository permission does not imply this account-level permission.
+Use the smallest suitable machine, set an idle timeout, and stop a development
+Codespace when finished. Container validation on another machine does not prove
+cloud build, startup, source mounting or port forwarding; verify those in the
+actual Codespace before claiming that environment works.
+
 ## Release and restart boundaries
 
 Local source edits do not publish GitHub. A push to `master` may immediately deploy
