@@ -53,6 +53,7 @@ verified operation.
 | Matrix | `kernel/matrix.py`, `matrix_campaign.py`, `matrix.py` | Frozen coordinates; results append through the application |
 | Correction / witnesses | `correction_demo.py`, `checkpoints.py`, `audit.py` | Supersede rather than erase; independent retained witness required |
 | Browser export / provenance | `report.py`, `live.py`, `research_projection.py`, `provenance.py`, `feeds.py`, `history.py`, `rejected.py` | Disposable views, never read back as operational authority |
+| Shared page chrome | `wake/assets/masthead.css`, `site-theme.js`, `nav.js`; `report.py` export | One geometry owner; themes and descriptions are presentation only |
 | Console interaction | `wake/assets/console*.js`, `research*.js/css`, `process-field.*`, shared `nav.js` | Browser preferences and animation do not alter experiments |
 | Legacy compatibility | `wake/store.py` | Migration/read-only historical evidence and deliberate fixtures only |
 
@@ -158,3 +159,24 @@ Use an isolated, slowed fixture to inspect live phase/cell markers without API
 calls. Verify both an active phase and its disappearance after completion or
 connection loss. A hosted snapshot cannot establish an in-flight phase. Keep
 activity overlays separate from score, selection and recorded historical traces.
+
+## Shared website chrome
+
+`masthead.css` owns header geometry, icon sizes, mobile breakpoints and the shared
+hover/focus/touch description surface. Load it after page skins. Page styles may
+supply color tokens but must not add competing masthead geometry. Export normalizes
+the main, map, flat-record and nested reading headers from the index shell, including
+relative navigation and accepted-cycle metadata. Verify exported HTML, not raw
+reading templates. Console component pages intentionally hide their enclosing header.
+
+`site-theme.js` is the only theme controller: it follows the device until a user
+chooses a theme. The choice uses the origin-local `wake-site-theme` key, so legacy
+forced-dark values cannot override the default. Header geometry must remain identical
+in both themes. The first control is a labelled switch; keyboard focus stays visible.
+
+`nav.js` supplies one description controller. Mouse hover and keyboard focus reveal
+it; touch hold reveals other control descriptions without performing their actions.
+Tapping the activity light shows its explanation. Status remains installation-specific
+and read-only. Running is green, paused is yellow, unavailable is neutral; waiting and
+blocked states have distinct accessible descriptions. Interactive canvases and drag
+controls suppress selection, while record inspectors and reading text remain selectable.

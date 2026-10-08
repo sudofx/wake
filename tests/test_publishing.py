@@ -78,8 +78,8 @@ class PublishingTests(unittest.TestCase):
                 self.assertLess(map3d_page.index('class="repo-link"'), map3d_page.index('class="console-link"'))
                 self.assertIn('href="https://github.com/sudofx/wake/actions"', map_page)
                 self.assertIn('href="https://github.com/sudofx/wake/actions"', map3d_page)
-                self.assertIn('href="theme.css?v=20261004-15"', map_page)
-                self.assertIn('href="theme.css?v=20261004-15"', map3d_page)
+                self.assertRegex(map_page, r'href="theme\.css\?v=[^"]+"')
+                self.assertRegex(map3d_page, r'href="theme\.css\?v=[^"]+"')
                 self.assertIn('name="theme-color" content="#000000"', map_page)
                 self.assertIn('name="theme-color" content="#000000"', map3d_page)
                 for rendered_page in (map_page, map3d_page):

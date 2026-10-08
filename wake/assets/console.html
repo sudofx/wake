@@ -7,17 +7,17 @@
 <meta name="theme-color" content="#000000">
 <meta name="description" content="WAKE✳︎ Console: inspect the durable record, model calls, governance decisions, evidence, and research relationships.">
 <title>Console / WAKE✳︎</title>
-<link rel="stylesheet" href="nav.css?v=20261006-1">
-<link rel="stylesheet" href="research.css?v=20261008-row-height">
+<link rel="stylesheet" href="nav.css?v=20261008-shared">
+<link rel="stylesheet" href="research.css?v=20261008-shared">
 <link rel="stylesheet" href="process-field.css?v=20261008-live">
-<script src="console-theme.js?v=20261007-light"></script>
+
 <link rel="stylesheet" href="console-light.css?v=20261007-light">
 <script>(()=>{const w=new URL(location.href).searchParams.get('workspace');if(w==='detached')document.documentElement.classList.add('console-detached')})()</script>
 <script src="runtime-activity.js?v=20261008-live" defer></script>
 <script src="research-scene.js?v=20261008-live" defer></script>
 <script src="research-instruments.js?v=20261005-3" defer></script>
 <script src="console-tools.js?v=20261005-2" defer></script>
-<script src="nav.js?v=20261008-live" defer></script>
+<script src="nav.js?v=20261008-shared" defer></script>
 <script src="process-field.js?v=20261008-live" defer></script>
 <script src="research.js?v=20261008-live" defer></script>
 <script src="console-layout.js?v=20261007-2" defer></script>
@@ -25,7 +25,7 @@
 <link rel="icon" href="icons/wake.svg?v=20261006-2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=20261006-2" sizes="180x180">
 <link rel="manifest" href="manifest.webmanifest?v=20261006-2">
-</head>
+<script src="site-theme.js?v=20261008-shared"></script><link rel="stylesheet" href="masthead.css?v=20261008-shared"></head>
 <body class="research-page">
 <a class="skip-link" href="#main">Skip to Console</a>
 <header class="research-header masthead">
@@ -44,7 +44,7 @@
     </div></details>
     -->
   </nav>
-  <div class="header-tools">
+  <div class="header-tools"><label class="theme-switch" data-ui-tooltip="Following system theme"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><span class="data-switch-track" aria-hidden="true"><i></i></span></label>
     <a class="repo-link" href="https://github.com/sudofx/wake" aria-label="Open WAKE repository" title="WAKE repository">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .7a11.3 11.3 0 0 0-3.57 22c.57.1.77-.25.77-.55v-2.17c-3.14.68-3.8-1.33-3.8-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.03-.7.08-.69.08-.69 1.13.08 1.73 1.16 1.73 1.16 1.01 1.73 2.65 1.23 3.3.94.1-.73.39-1.23.72-1.51-2.51-.29-5.15-1.26-5.15-5.59 0-1.24.44-2.25 1.16-3.04-.12-.29-.5-1.44.11-3 0 0 .95-.3 3.11 1.16a10.8 10.8 0 0 1 5.66 0C17.03 5 17.98 5.3 17.98 5.3c.61 1.56.23 2.71.11 3 .72.79 1.16 1.8 1.16 3.04 0 4.34-2.65 5.3-5.17 5.58.41.35.77 1.04.77 2.1v3.13c0 .3.2.66.78.55A11.3 11.3 0 0 0 12 .7Z"/></svg>
     </a>
@@ -52,7 +52,6 @@
     
     <a id="execution-state" class="actions-light" href="https://github.com/sudofx/wake/actions" aria-label="Open WAKE GitHub Actions" title="Checking…">
       <span class="actions-light-track" aria-hidden="true"><i id="execution-dot"></i></span>
-      <span class="actions-light-label">Checking…</span>
     </a>
   </div>
 </header>

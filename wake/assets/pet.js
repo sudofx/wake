@@ -11,7 +11,7 @@ window.WakePetReady=(async () => {
   const d=await window.WakeData,s=d.state;
   if(s.charter){document.querySelector('.footer-mark').href='#home';}
   const help=key=>window.WakeHelp.button(key);
-  const blogNav=document.querySelector('[data-nav="blog"]');if(blogNav)blogNav.hidden=!Object.keys(s.posts||{}).length;
+  // Navigation stays stable even when this installation has no posts yet.
   const WAKE_TEXT='WAKE\u2733\uFE0E';
   const normalizeWake=v=>String(v??'').replaceAll('WAKE\u2733\uFE0F','WAKE\u2733').replaceAll('WAKE\u2733\uFE0E','WAKE\u2733').replaceAll('WAKE\u2733',WAKE_TEXT);
   const esc=v=>normalizeWake(v).replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));

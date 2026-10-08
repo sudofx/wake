@@ -21,29 +21,24 @@ html[data-theme=light] body.research-page::before {
     linear-gradient(90deg,rgba(166,83,9,.2) 1px,transparent 1px)!important;
 }
 html[data-theme=light] .site-backdrop {display:none!important}
-html[data-theme=light] body.research-page :is(.panel,.status-band,.status-cell,.research-header.masthead,
-  .console-workspace-controls,.research-footer,.console-overview,.process-field-readout),
-html[data-theme=light] :is(.view,.entry,.record-card,.project-card,.notebook-card,.blog-card,
-  .dashboard-panel,.data-card,#map-field,#details) {
+html[data-theme=light] body.research-page :is(.panel,.status-band,.status-cell,
+  .console-workspace-controls,.research-footer,.console-overview,.process-field-readout),html[data-theme=light] :is(.view,.entry,.record-card,.project-card,.notebook-card,.blog-card,
+  .dashboard-panel,.data-card,#map-field,#details){
   background:var(--surface)!important; border-color:var(--line)!important;
   box-shadow:0 8px 24px rgba(40,67,101,.045),inset 0 1px 0 #fff!important;
 }
-html[data-theme=light] body.research-page :is(.panel-heading,.process-field-hud span,.process-field-selection,
-  .nav-dropdown,.actions-light,.actions-light-track),
-html[data-theme=light].console-panel-window :is(body.research-page,.panel-popout-target,.console-panel-heading),
-html[data-theme=light][data-console-theme] body:not(.research-page) main {
+html[data-theme=light] body.research-page :is(.panel-heading,.process-field-hud span,.process-field-selection),html[data-theme=light].console-panel-window :is(body.research-page,.panel-popout-target,.console-panel-heading),html[data-theme=light][data-console-theme] body:not(.research-page) main{
   background:var(--surface)!important; border-color:var(--line)!important;
 }
 html[data-theme=light] body.research-page :is(button,input,select,pre,.meter-track) {
   background:var(--surface-raised)!important; color:var(--ink)!important; border-color:var(--line)!important;
 }
 html[data-theme=light] body.research-page :is(.panel-heading h2,.eyebrow,.record-id,.map-lane,
-  .status-cell strong,.source-total,.meter-row strong,a:not(.badge):not(.wordmark)) {color:var(--cyan)!important}
-html[data-theme=light] body.research-page :is(.wordmark,.wake-inline-mark,.actions-light-label),
-html[data-theme=light] body.research-page>.research-header.masthead :is(.repo-link,nav.compact-nav>a,nav.compact-nav summary) {
+  .status-cell strong,.source-total,.meter-row strong){color:var(--cyan)!important}
+html[data-theme=light] body.research-page :is(.wake-inline-mark){
   color:var(--ink)!important; text-shadow:none!important;
 }
-html[data-theme=light] body.research-page :is(.powered-by,.module-controls button) {color:var(--muted)!important}
+html[data-theme=light] body.research-page :is(.module-controls button){color:var(--muted)!important}
 html[data-theme=light] body.research-page :is(button[aria-pressed=true],.mode-control [aria-pressed=true],.process-stage.selected) {
   color:var(--cyan)!important; border-color:var(--cyan)!important; background:#e4eefc!important;
 }
@@ -54,8 +49,7 @@ html[data-theme=light] body.research-page .panel::after {border-color:var(--cyan
 html[data-theme=light] body.research-page .global-motion-toggle[aria-pressed=true] {
   color:var(--orange)!important; border-color:var(--orange)!important; background:#fff0dd!important;
 }
-html[data-theme=light] body.research-page .actions-light[data-state=running] .actions-light-label {color:var(--green)!important}
-html[data-theme=light] body.research-page .actions-light[data-state=stopped] .actions-light-label {color:var(--red)!important}
+
 html[data-theme=light] body.research-page .process-field-panel {
   background:radial-gradient(ellipse at center,rgba(33,96,181,.045),transparent 65%),var(--surface)!important;
 }
@@ -73,20 +67,19 @@ html[data-theme=light] .notice {background:#fff0dd!important;color:var(--orange)
 html[data-theme=light] body.research-page .console-module-grid .module-controls button {
   background:var(--surface-raised)!important;color:var(--muted)!important;border-color:var(--line)!important;
 }
-html[data-theme=light] body.research-page>.research-header.masthead :is(.actions-light,.actions-light-track) {
-  background:var(--surface-raised)!important;border-color:var(--line)!important;
-}
-html[data-theme=light] body.research-page>.research-header.masthead .actions-light[data-state=stopped] .actions-light-label {color:var(--red)!important}
-html[data-theme=light] body.research-page>.research-header.masthead .actions-light[data-state=running] .actions-light-label {color:var(--green)!important}
+
 html[data-theme=light] body.research-page .panel>.console-panel-heading .panel-actions button.glyph-button {
   background:var(--surface-raised)!important;color:var(--muted)!important;border-color:var(--line)!important;
 }
-html[data-theme=light][data-console-theme] body:not(.research-page) main :is(h1,h2,h3,h4,p,li,summary) {
+html[data-theme=light] body:not(.research-page) main :is(h1,h2,h3,h4,p,li,summary) {
   color:var(--ink)!important;text-shadow:none!important;
 }
-html[data-theme=light][data-console-theme] body:not(.research-page) main :is(a,.eyebrow,.tag,.badge) {
+html[data-theme=light] body:not(.research-page) main :is(a,.eyebrow,.tag,.badge) {
   color:var(--cyan)!important;text-shadow:none!important;
 }
-html[data-theme=light][data-console-theme] body:not(.research-page) main :is(button,input,select,pre) {
+html[data-theme=light] body:not(.research-page) main :is(button,input,select,pre) {
   background:var(--surface-raised)!important;color:var(--ink)!important;border-color:var(--line)!important;
 }
+
+/* Complete reading pages use the same daylight tokens as the Console. */
+html[data-theme=light] :is(.reading-panel,.note-card,.topic-card,.about-contract){background:var(--surface)!important;border-color:var(--line)!important}

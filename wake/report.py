@@ -23,20 +23,6 @@ from .event_format import canonical, now
 from .scheduling import wake_status
 
 
-def _shared_theme_switch(page):
-    """Force generated standalone pages to the single supported dark theme."""
-    page = re.sub(r'<label class="data-switch theme-switch"[\\s\\S]*?</label>', '', page, count=1)
-    script = "<script>document.documentElement.dataset.theme='dark';try{localStorage.setItem('wake-theme','dark')}catch{}</script>"
-    return page.replace('</head>', script + '</head>', 1)
-
-
-def _with_shared_theme_switch(render):
-    def wrapped(*args, **kwargs):
-        return _shared_theme_switch(render(*args, **kwargs))
-    return wrapped
-
-
-
 def atomic_write(path, content):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -55,7 +41,7 @@ def atomic_write(path, content):
 def _export_console_components(target):
     """Reuse canonical renderers inside Console without retired HTML dependencies."""
     assets = Path(__file__).parent / "assets"
-    for name in ("console-tools.js", "console-component.js", "console-component.css", "console-theme.js", "console-light.css"):
+    for name in ("console-tools.js", "console-component.js", "console-component.css", "console-light.css"):
         atomic_write(target / name, (assets / name).read_text())
     pages = {"index.html": "console-records.html", "map.html": "console-map.html",
              "map3d.html": "console-map3d.html", "events.html": "console-events.html",
@@ -73,7 +59,7 @@ def _export_console_components(target):
             version = snapshot.get("state", {}).get("version", "unknown")
             content = content.replace("<main>", f'<main><p class="console-component-stamp">Published snapshot · state {version} · {stamp}<br>Head {record_head}</p>', 1)
         content = content.replace("<head>", '<head><meta name="darkreader-lock">', 1)
-        content = content.replace("</head>", '<link rel="stylesheet" href="console-component.css"><script src="console-theme.js"></script><link rel="stylesheet" href="console-light.css"></head>', 1)
+        content = content.replace("</head>", '<link rel="stylesheet" href="console-component.css"><link rel="stylesheet" href="console-light.css"></head>', 1)
         content = content.replace("</body>", '<script src="console-component.js"></script></body>', 1)
         atomic_write(target / destination, content)
 
@@ -126,19 +112,17 @@ def _reading_meta(type_label, status_label="", topic_html="", timestamp="", stat
     return f'<div class="record-panel-meta reading-meta"><span class="record-type">{html.escape(str(type_label))}</span>{status}{topics}{time}</div>'
 
 
-@_with_shared_theme_switch
 def _reading_page(title, eyebrow, body, record_href, back_href="../index.html", meta_html=""):
     """Standalone browser reading page backed by the live record projection."""
     favicon = "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2712%27 fill=%27%23f7f3ea%27/%3E%3Cpath d=%27M32 9v46M9 32h46M15.7 15.7l32.6 32.6M48.3 15.7L15.7 48.3%27 stroke=%27%23286d72%27 stroke-width=%276%27 stroke-linecap=%27round%27/%3E%3C/svg%3E"
     return f"""<!doctype html>
 <html lang=\"en\" data-theme=\"dark\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">
 <meta name=\"theme-color\" content=\"#000000\"><link rel=\"icon\" href=\"{favicon}\"><title>{html.escape(title)} · WAKE✳︎</title>
-<script>document.documentElement.dataset.theme='dark';try{{localStorage.setItem('wake-theme','dark')}}catch{{}}</script>
+
 <link rel=\"stylesheet\" href=\"../nav.css?v=20261004-15\"><link rel=\"stylesheet\" href=\"../theme.css?v=20261004-15\">
 <style>
 :root{{--paper:#000000;--surface:#07152d;--surface-strong:#0b1c38;--ink:#edf3ff;--muted:#9aa9c6;--line:#395274;--green:#55db9a;--cyan:#22e2eb;--accent:#bb4cff;--hot:#7aa2f7;--pale:#0b1c38;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--sans:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,"Segoe UI",Arial,sans-serif;--serif:var(--sans)}}
 *{{box-sizing:border-box}}body{{margin:0;background:#000000;color:var(--ink);font:17px/1.72 var(--sans);font-variant-emoji:text;position:relative}}.site-backdrop{{position:fixed;inset:0;z-index:0;pointer-events:none;background-color:#000000;background-image:linear-gradient(rgba(0,0,0,.20),rgba(0,0,0,.20)),linear-gradient(rgba(3,7,22,.05),rgba(3,7,22,.05)),url("../backgrounds/nebula-desktop-1680x1050.webp?v=20261004-7");background-position:center top;background-size:cover;background-repeat:no-repeat}}@media (min-aspect-ratio:2/1){{.site-backdrop{{background-image:linear-gradient(rgba(0,0,0,.20),rgba(0,0,0,.20)),linear-gradient(rgba(3,7,22,.05),rgba(3,7,22,.05)),url("../backgrounds/nebula-ultrawide-3440x1440.webp?v=20261004-7")}}}}@media (min-width:701px) and (max-aspect-ratio:3/2){{.site-backdrop{{background-image:linear-gradient(rgba(0,0,0,.20),rgba(0,0,0,.20)),linear-gradient(rgba(3,7,22,.05),rgba(3,7,22,.05)),url("../backgrounds/nebula-ipad-landscape-2360x1640.webp?v=20261004-7");background-position:center center}}}}@media (max-width:700px){{.site-backdrop{{background-image:linear-gradient(rgba(0,0,0,.20),rgba(0,0,0,.20)),linear-gradient(rgba(3,7,22,.05),rgba(3,7,22,.05)),url("../backgrounds/nebula-iphone12mini-1080x2340.webp?v=20261004-7");background-position:center top}}}}
-body>.masthead{{position:relative;z-index:20;max-width:1180px;margin:14px auto 0}}
 main{{position:relative;z-index:1;max-width:900px;margin:auto;padding:34px 22px 90px}}
 .reading-panel{{background:rgba(4,15,34,.70);border:1px solid rgba(74,111,158,.64);border-radius:13px;padding:34px 38px 44px;box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 20px 60px rgba(0,0,18,.20);backdrop-filter:blur(22px) saturate(116%);-webkit-backdrop-filter:blur(22px) saturate(116%)}}
 .reading-panel h1{{font:760 clamp(2.4rem,7vw,4.8rem)/1.02 var(--sans);letter-spacing:-.045em;margin:.18em 0 .3em;color:#f7f9ff}}
@@ -147,7 +131,7 @@ main{{position:relative;z-index:1;max-width:900px;margin:auto;padding:34px 22px 
 .reading-panel p,.reading-panel li{{color:#c9d1e6}}
 .reading-panel a{{color:var(--cyan);text-decoration:none}}.wake-mark{{font-weight:900}}@media(hover:hover) and (pointer:fine){{.reading-panel a:hover{{color:#fff;text-decoration:none;text-shadow:0 0 9px rgba(34,226,235,.4)}}}}
 .reading-links{{display:flex;gap:18px;flex-wrap:wrap;margin-top:17px;font:10px var(--mono)}}.eyebrow,.meta{{font:10px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.1em}}.eyebrow{{color:var(--cyan);margin-top:0}}.lede{{font-size:1.25rem;line-height:1.55;color:#e2e7f6!important}}.note{{border-left:3px solid var(--accent);padding:10px 0 10px 18px;margin:28px 0;background:rgba(11,28,56,.46);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}}.sources{{font-family:var(--sans);font-size:.95rem}}code{{font-family:var(--mono)}}hr{{border:0;border-top:1px solid var(--line);margin:34px 0}}small{{color:var(--muted)}}
-@media(max-width:680px){{body>.masthead{{margin:8px 6px 0}}main{{padding:18px 6px 60px}}.reading-panel{{padding:22px 18px 30px;border-radius:10px}}.reading-panel h1{{font-size:2.65rem}}}}
+@media(max-width:680px){{main{{padding:18px 6px 60px}}.reading-panel{{padding:22px 18px 30px;border-radius:10px}}.reading-panel h1{{font-size:2.65rem}}}}
 </style></head><body><div class=\"site-backdrop\" aria-hidden=\"true\"></div>
 <header class=\"masthead\">
   <div class=\"brand-lockup\"><a class=\"wordmark\" href=\"../index.html\">WAKE<span class=\"asterisk\">✳︎</span></a></div>
@@ -343,7 +327,7 @@ def _flat_browser_shell(title, eyebrow, heading, description, kind, source):
     return f'''<!doctype html>
 <html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(title)} / WAKE✳︎</title>
-<script>document.documentElement.dataset.theme='dark';try{{localStorage.setItem('wake-theme','dark')}}catch{{}}</script>
+
 <link rel="stylesheet" href="style.css"><link rel="stylesheet" href="nav.css?v=20261004-15"><link rel="stylesheet" href="theme.css?v=20261004-15"></head>
 <body data-flat-kind="{html.escape(kind)}" data-flat-source="{html.escape(source)}">
 <header class="masthead"><div class="brand-lockup"><a class="wordmark" href="index.html">WAKE<span class="asterisk">✳︎</span></a></div>
@@ -573,8 +557,36 @@ def _deployment_site(target, *, standalone):
     atomic_write(target / 'deployment.json', json.dumps({'schema': 1, 'mode': mode}))
     marker = ('<script>window.WAKE_DEPLOYMENT=' + json.dumps({'schema': 1, 'mode': mode})
               + ';window.WAKE_STANDALONE=' + ('true' if standalone else 'false') + ';</script>')
+    assets = Path(__file__).parent / "assets"
+    for name in ("masthead.css", "site-theme.js", "console-light.css"):
+        atomic_write(target / name, (assets / name).read_text())
+    shell = (assets / "index.html").read_text()
+    header = re.search(r'<header class="masthead">.*?</header>', shell, re.S).group(0)
+    snapshot_path = target / "wake-data.json"
+    snapshot = json.loads(snapshot_path.read_text()) if snapshot_path.exists() else {}
+    header = header.replace("WAKE_CYCLE_COUNT", str(snapshot.get("state", {}).get("version", "—")))
+    header = re.sub(r'href="#([^"]+)"', r'href="index.html#\1"', header)
     for path in target.rglob('*.html'):
         page = path.read_text()
+        prefix = "../" * len(path.relative_to(target).parts[:-1])
+        page = re.sub(r'href="((?:\.\./)*(?:style|nav|map|map3d|research|theme)\.css)(?:\?[^"]*)?"', r'href="\1?v=20261008-shared"', page)
+        page = re.sub(r'src="((?:\.\./)*nav\.js)(?:\?[^"]*)?"', r'src="\1?v=20261008-shared"', page)
+        if '<header class="' in page and 'masthead' in page:
+            shared = header
+            if path.name == "console.html":
+                shared = shared.replace('class="masthead"', 'class="research-header masthead"')
+                shared = shared.replace('class="console-link" href="console.html"', 'class="console-link" href="console.html" aria-current="page"')
+                shared = shared.replace('class="actions-light"', 'id="execution-state" class="actions-light"')
+                shared = shared.replace('<i></i></span>\n    </a>', '<i id="execution-dot"></i></span>\n    </a>')
+            # Relative navigation is derived from the artifact's directory,
+            # never the machine, hosted branch, or another installation.
+            shared = re.sub(r'href="(index|console)\.html', lambda m: 'href="' + prefix + m.group(1) + '.html', shared)
+            page = re.sub(r'<header class="[^"]*masthead[^"]*">.*?</header>', lambda _: shared, page, count=1, flags=re.S)
+        page = re.sub(r"<script>document.documentElement.dataset.theme='dark';try\{localStorage.setItem\('wake-theme','dark'\)\}catch\{\}</script>", '', page)
+        page = re.sub(r'<script src="(?:console-theme|site-theme)\.js[^"]*"></script>', '', page)
+        page = re.sub(r'<link rel="stylesheet" href="(?:\.\./)*masthead\.css[^"]*">', '', page)
+        page = re.sub(r'<link rel="stylesheet" href="(?:\.\./)*console-light\.css[^"]*">', '', page)
+        page = page.replace('</head>', f'<link rel="stylesheet" href="{prefix}console-light.css?v=20261008-shared"><script src="{prefix}site-theme.js?v=20261008-shared"></script><link rel="stylesheet" href="{prefix}masthead.css?v=20261008-shared"></head>', 1)
         # Re-export may reuse a directory. An older marker later in <head> must
         # not override the newly selected installation. Normalize to one owner.
         page = re.sub(r'<script>window\.WAKE_(?:DEPLOYMENT|STANDALONE)=[^<]*</script>', '', page)

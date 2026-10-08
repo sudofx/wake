@@ -46,11 +46,11 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.mode!=='hosted'){
     actionsLight.dataset.state=status.state==='running'?'running':status.state==='paused'?'stopped':status.state;
     actionsLight.title='Local WAKE · '+label;
     actionsLight.setAttribute('aria-label','Inspect local WAKE runtime · '+label);
-    const text=actionsLight.querySelector('.actions-light-label');if(text)text.textContent=label;
   };
-  const unavailable=()=>{actionsLight.removeAttribute('data-state');actionsLight.title='Local runtime unavailable';actionsLight.setAttribute('aria-label','Local runtime unavailable');const text=actionsLight.querySelector('.actions-light-label');if(text)text.textContent='Unknown';};
+  const unavailable=()=>{actionsLight.removeAttribute('data-state');actionsLight.title='Local runtime unavailable';actionsLight.setAttribute('aria-label','Local runtime unavailable');};
   const refreshLocal=()=>fetch('/runtime.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('Unavailable');return r.json();}).then(applyLocal).catch(unavailable);
-  window.addEventListener('wake-runtime-activity',event=>{if(event.detail)applyLocal(event.detail);else unavailable();});
+  // Activity is optional. Losing that capability is not proof the runtime is offline.
+  window.addEventListener('wake-runtime-activity',event=>{if(event.detail)applyLocal(event.detail);else refreshLocal();});
   refreshLocal();setInterval(refreshLocal,30000);
 }
 if(actionsLight && window.WAKE_DEPLOYMENT?.schema===1 && window.WAKE_DEPLOYMENT.mode==='hosted'){
@@ -69,8 +69,6 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.schema===1 && window.WAKE_DEPLOYMENT.
     const message=title||'Status unavailable';
     actionsLight.title=message;
     actionsLight.setAttribute('aria-label',`Open WAKE GitHub Actions · ${message}`);
-    const label=actionsLight.querySelector('.actions-light-label');
-    if(label)label.textContent=state==='campaign'?'Campaign':state==='running'?'Running':state==='stopped'?'Stopped':'Status';
   };
   const readCached=()=>{
     try{
@@ -185,7 +183,7 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.schema===1 && window.WAKE_DEPLOYMENT.
       if(element.textContent!==glyph)element.textContent=glyph;
     }
     const title=element.getAttribute('title');
-    if(title){element.dataset.uiTooltip=title;element.removeAttribute('title');}
+    if(title){if(element.dataset.uiTooltip!==title)element.dataset.uiTooltip=title;element.removeAttribute('title');}
     const svgTitle=element.matches('svg [role="button"]')?element.querySelector('title'):null;
     if(svgTitle){element.dataset.uiTooltip=svgTitle.textContent;svgTitle.remove();}
   }
@@ -205,17 +203,28 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.schema===1 && window.WAKE_DEPLOYMENT.
     const text=element.dataset.uiTooltip||element.getAttribute('aria-label');
     if(!text)return hide();
     if(owner!==element)hide();
-    owner=element;tooltip.textContent=text;tooltip.hidden=false;
+    owner=element;if(tooltip.textContent!==text)tooltip.textContent=text;tooltip.hidden=false;
     const ids=new Set((element.getAttribute('aria-describedby')||'').split(/\s+/).filter(Boolean));ids.add(tooltip.id);element.setAttribute('aria-describedby',[...ids].join(' '));
     const rect=element.getBoundingClientRect(),box=tooltip.getBoundingClientRect();
     tooltip.style.left=`${Math.max(8,Math.min(innerWidth-box.width-8,rect.left+rect.width/2-box.width/2))}px`;
     tooltip.style.top=`${rect.bottom+8+box.height<innerHeight?rect.bottom+8:Math.max(8,rect.top-box.height-8)}px`;
   }
-  document.addEventListener('pointerover',event=>show(event.target));
-  document.addEventListener('pointerout',event=>{if(owner&&!owner.contains(event.relatedTarget))hide();});
+  let touchTimer=null,touchOwner=null,touchShown=false,lastTouch=null;
+  const cancelTouch=()=>{clearTimeout(touchTimer);touchTimer=null;touchOwner=null;};
+  document.addEventListener('pointerdown',event=>{
+    if(event.pointerType!=='touch')return;
+    cancelTouch();touchShown=false;touchOwner=event.target;lastTouch=event.target;
+    touchTimer=setTimeout(()=>{show(touchOwner);touchShown=Boolean(owner);},450);
+  });
+  document.addEventListener('pointerup',()=>{cancelTouch();if(touchShown)setTimeout(hide,2500);});
+  document.addEventListener('pointercancel',()=>{cancelTouch();hide();});
+  document.addEventListener('pointermove',event=>{if(event.pointerType==='touch'&&!touchShown)cancelTouch();});
+  document.addEventListener('click',event=>{if(touchShown||(lastTouch===event.target&&event.target.closest('.actions-light'))){event.preventDefault();event.stopPropagation();show(event.target);touchShown=false;setTimeout(hide,2500);}else hide();lastTouch=null;},true);
+  document.addEventListener('pointerover',event=>{if(event.pointerType!=='touch')show(event.target);});
+  document.addEventListener('pointerout',event=>{if(event.pointerType!=='touch'&&owner&&!owner.contains(event.relatedTarget))hide();});
   document.addEventListener('focusin',event=>show(event.target));
   document.addEventListener('focusout',hide);
-  document.addEventListener('click',hide);
+
   document.addEventListener('keydown',event=>{if(event.key==='Escape')hide();});
   window.addEventListener('scroll',hide,true);window.addEventListener('resize',hide);
   new MutationObserver(changes=>{
@@ -224,5 +233,6 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.schema===1 && window.WAKE_DEPLOYMENT.
       else {if(change.target.matches?.('button'))decorate(change.target);change.addedNodes.forEach(scan);}
     }
     if(owner&&(!owner.isConnected||owner.closest('[hidden]')))hide();
-  }).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['title','aria-label','aria-pressed','class']});
+    else if(owner)show(owner);
+  }).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['title','aria-label','aria-pressed','class','data-ui-tooltip']});
 })();

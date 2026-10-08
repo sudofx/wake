@@ -89,9 +89,7 @@
 }
 
 /* Default surfaces and controls share the same deliberately small corner. */
-button,.more,.theme-toggle,.search,select,.panel,.flow span,.blog-receipts{border-radius:9px}
-.theme-switch{gap:7px}.data-switch .theme-icon{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;font:18px/18px var(--sans);color:var(--cyan);letter-spacing:0}
-.data-switch input:checked~.data-switch-track i{transform:translateX(16px);background:var(--cyan)}
+button,.more,.search,select,.panel,.flow span,.blog-receipts{border-radius:9px}
 
 /* The topic count belongs to the distribution it describes. */
 .panel-heading{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:14px}
@@ -101,7 +99,7 @@ button,.more,.theme-toggle,.search,select,.panel,.flow span,.blog-receipts{borde
 /* Cyan is the site's one interactive signal. Pink remains reserved for status,
    not for navigation or calls to action. */
 @media(hover:hover) and (pointer:fine){
-  a:hover,.compact-nav summary:hover,.compact-nav .nav-dropdown a:hover{
+  a:hover{
     color:var(--cyan) !important;
     border-color:var(--cyan) !important;
     text-shadow:0 0 10px color-mix(in srgb,var(--cyan) 42%,transparent) !important;
@@ -112,13 +110,9 @@ button,.more,.theme-toggle,.search,select,.panel,.flow span,.blog-receipts{borde
     color:var(--paper) !important;
   }
 }
-a:focus-visible,.compact-nav summary:focus-visible,.compact-nav a:focus-visible{outline-color:var(--cyan) !important}
-.masthead nav a[aria-current=page],.compact-nav .nav-group:has([aria-current=page])>summary,.compact-nav a[aria-current=page]{color:var(--cyan) !important;border-color:var(--cyan) !important}
-.metric:hover strong,.record-card>a:not(.subtle):hover strong,.record-card>a:not(.subtle):focus-visible strong{color:var(--cyan) !important}
+a:focus-visible{outline-color:var(--cyan) !important}
 
-/* Dropdown selection uses one straight underline, never rounded end caps. */
-.compact-nav .nav-dropdown a{border-radius:0 !important}
-.compact-nav .nav-dropdown a[aria-current=page]{border-bottom:2px solid var(--cyan) !important}
+.metric:hover strong,.record-card>a:not(.subtle):hover strong,.record-card>a:not(.subtle):focus-visible strong{color:var(--cyan) !important}
 
 /* The MAP detail inspector is an independent reading pane.  Keep its rounded
    shell, but let long selected records scroll inside it. */
@@ -133,10 +127,6 @@ h3{font-family:var(--sans) !important}
 
 /* The WAKE wordmark is always sans, including when it appears inside a serif heading. */
 .wake-mark{font-family:var(--sans) !important;font-style:normal}
-
-/* The header reports accepted wakes (state.version), not total completed wake attempts. */
-.wordmark .cycle-count{color:var(--cyan);font-weight:700}
-
 
 /* --------------------------------------------------------------------------
    RECORD HEADER SYSTEM
@@ -176,8 +166,6 @@ h3{font-family:var(--sans) !important}
   #node-popover .record-panel-meta time{order:-1;flex-basis:100%;width:100%;margin-left:0 !important;text-align:left}
 }
 
-
-/* NEBULA SITE THEME — approved 2026-10-04 */
 /*
  * Approved site-wide visual direction. Console remains intentionally independent.
  * Presentation only: these rules do not encode or mutate WAKE operational state.
@@ -257,55 +245,7 @@ body::after{
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 520' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop stop-color='%2315224f'/%3E%3Cstop offset='.55' stop-color='%230a1435'/%3E%3Cstop offset='1' stop-color='%23030818'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M0 330L90 258l74 35 105-117 88 79 95-139 73 92 105-65 91 102 103-183 92 149 76-70 106 108 95-133 87 86 109-144 97 140 85-78 75 94v305H0z'/%3E%3Cpath fill='%23020513' opacity='.82' d='M0 400l126-101 80 63 94-78 76 72 111-99 84 92 103-69 118 83 116-100 92 77 124-96 114 105 113-84 119 85v150H0z'/%3E%3C/svg%3E") center bottom/100% 100% no-repeat;
   filter:drop-shadow(0 -18px 40px rgba(169,39,255,.10));
 }
-body>header.masthead{
-  width:min(1320px,calc(100% - 44px));
-  max-width:1320px;
-  margin:18px auto 0!important;
-  padding:14px 22px!important;
-  min-height:64px;
-  border:1px solid color-mix(in srgb,var(--cyan) 24%,var(--line))!important;
-  border-radius:13px;
-  background:linear-gradient(180deg,rgba(5,11,34,.88),rgba(5,11,30,.72))!important;
-  box-shadow:0 18px 50px rgba(0,0,18,.25),inset 0 1px rgba(255,255,255,.03);
-  backdrop-filter:blur(18px) saturate(125%);
-  -webkit-backdrop-filter:blur(18px) saturate(125%);
-}
-.wordmark,.masthead .wordmark{
-  color:#18e6ef!important;
-  font-weight:900!important;
-  letter-spacing:-2px!important;
-}
-.wordmark .asterisk,.asterisk{color:#18e6ef!important;text-shadow:0 0 16px rgba(0,220,232,.48)}
-.wordmark small{color:#91a8c9!important}
-.masthead nav.compact-nav{gap:26px!important}
-.masthead nav.compact-nav>a,.masthead nav.compact-nav summary{
-  color:#d8ddf3!important;
-  font-weight:500;
-}
-.masthead nav.compact-nav>a[aria-current=page],
-.compact-nav .nav-group:has([aria-current=page])>summary{
-  color:#fff!important;
-  border-bottom:2px solid var(--cyan)!important;
-}
-.compact-nav .nav-dropdown{
-  background:rgba(6,13,34,.97)!important;
-  border:1px solid #405184!important;
-  box-shadow:0 20px 60px rgba(0,0,0,.5)!important;
-  backdrop-filter:blur(18px);
-}
-.compact-nav .nav-dropdown a{color:#d8ddf3!important}
-.header-tools{gap:12px!important}
-.theme-switch .data-switch-track,.actions-light-track{
-  border-color:#426184!important;
-  background:#08152d!important;
-}
-.actions-light{
-  border:1px solid #2d6680!important;
-  border-radius:999px!important;
-  width:42px!important;
-  height:32px!important;
-}
-.actions-light-track{border:0!important;background:transparent!important}
+
 main{
   max-width:1280px!important;
   padding-left:28px!important;
@@ -337,7 +277,7 @@ a,.text-link,.subtle,.research-links a{color:#22e2eb}
   box-shadow:0 10px 30px rgba(56,84,255,.25),0 0 28px rgba(190,60,255,.16);
 }
 .primary-link:hover{filter:brightness(1.08);transform:translateY(-1px)}
-button,.more,select,.search,.theme-toggle{
+button,.more,select,.search{
   background:rgba(7,16,39,.86)!important;
   color:#e9edff!important;
   border-color:#40507d!important;
@@ -527,25 +467,14 @@ footer strong,.footer-mark{color:#16e0e9!important}
   }
 }
 @media(max-width:900px){
-  body>header.masthead{
-    width:calc(100% - 24px);
-    margin-top:12px!important;
-    padding:14px 16px!important;
-  }
+
   .observatory-hero{grid-template-columns:1fr!important;min-height:auto;padding:54px 0 34px!important}
   .observatory-now{align-self:auto;margin-bottom:0}
   .observatory-question h1{font-size:clamp(48px,10vw,72px)!important}
 }
 @media(max-width:700px){
   body::after{height:35vh;opacity:.8}
-  body>header.masthead{border-radius:10px!important}
-  .masthead nav.compact-nav{
-    margin-top:6px;
-    padding-top:8px;
-    border-top:1px solid #25355d;
-    grid-template-columns:repeat(3,minmax(0,1fr))!important;
-  }
-  .masthead nav.compact-nav>a,.masthead nav.compact-nav summary{font-size:12px!important}
+
   main{padding-left:18px!important;padding-right:18px!important}
   .page-heading{padding-top:46px!important}
   .page-heading h1{font-size:clamp(40px,12vw,54px)!important}
@@ -561,7 +490,6 @@ footer strong,.footer-mark{color:#16e0e9!important}
 @media(prefers-reduced-motion:reduce){
   .primary-link:hover{transform:none}
 }
-
 
 /* NEBULA HOME COMPOSITION — approved mockup */
 #home{padding-bottom:52px}
@@ -850,7 +778,6 @@ footer strong,.footer-mark{color:#16e0e9!important}
   .nebula-topic-panel{padding:18px}
 }
 
-
 /* Nebula fidelity pass: use the approved art as the actual site backdrop. */
 body{
   background:#05091f url("nebula-bg.webp") center top / cover fixed no-repeat!important;
@@ -860,46 +787,17 @@ body::before,body::after{display:none!important}
 .nebula-planet{display:none!important}
 .nebula-home-hero{grid-template-columns:minmax(0,1fr)!important}
 .nebula-hero-copy{max-width:760px}
-.actions-light{
-  width:auto!important;
-  min-width:74px!important;
-  gap:8px!important;
-  padding:0 12px!important;
-  border:1px solid #2d6680!important;
-  border-radius:999px!important;
-  color:#eef7ff!important;
-  cursor:pointer!important;
-}
-.actions-light-label{display:inline-block;font-size:13px;font-weight:650;line-height:1}
-.actions-light-track{width:15px!important;height:15px!important;flex-basis:15px!important;padding:2px!important}
-.actions-light-track i{width:9px!important;height:9px!important;flex-basis:9px!important}
-.header-tools .theme-switch{display:inline-flex!important;align-items:center!important;gap:7px!important;min-height:34px!important}
-.header-tools .theme-switch .theme-glyph{display:inline-block;color:#f5f7ff;font-size:17px;line-height:1}
-.header-tools .theme-switch .data-switch-track{width:40px!important;height:22px!important;flex-basis:40px!important;padding:3px!important;border-color:#49718b!important;background:#0b1832!important}
-.header-tools .theme-switch .data-switch-track i{width:14px!important;height:14px!important;flex-basis:14px!important;background:#f1f5ff!important}
-.header-tools .theme-switch input:checked+.data-switch-track i{transform:translateX(18px)!important;background:#28e5ee!important}
-.repo-link{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;color:#fff!important;border-radius:50%;text-decoration:none}
-.repo-link svg{width:24px;height:24px;display:block}
-.repo-link:hover{color:#28e5ee!important;text-shadow:none!important}
+
 .nebula-icon svg{width:46px;height:46px;overflow:visible;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
 @media(max-width:700px){
   body{background-position:58% top!important;background-attachment:scroll!important}
-  .actions-light{min-width:62px!important;height:36px!important;flex-basis:auto!important;padding:0 10px!important}
-  .actions-light-label{font-size:12px}
-  .repo-link{width:36px;height:36px}
-  .repo-link svg{width:22px;height:22px}
-  .header-tools .theme-switch{min-width:auto!important}
-  .header-tools .theme-switch .theme-glyph{font-size:15px}
+
 }
 
 /* Header control order: theme first, then one GitHub Actions status control. */
-.header-tools{display:flex!important;align-items:center!important;gap:10px!important}
-.header-tools .theme-switch{order:1!important}
-.header-tools .actions-light{order:2!important}
-.header-tools .theme-glyph,.repo-link{display:none!important}
-.actions-light{min-width:104px!important;justify-content:center!important}
+
 .actions-github{display:block;width:20px;height:20px;flex:0 0 20px;color:#fff}
-.actions-light-label{display:inline-block}
+
 body{
   background-color:#05091f!important;
   background-image:linear-gradient(rgba(3,7,22,.08),rgba(3,7,22,.22)),url("nebula-bg.webp?v=20261004-2")!important;
@@ -910,7 +808,7 @@ body{
 }
 @media(max-width:700px){
   body{background-position:58% top!important;background-attachment:scroll!important}
-  .actions-light{min-width:94px!important}
+
   .actions-github{width:18px;height:18px;flex-basis:18px}
 }
 
@@ -932,10 +830,7 @@ body{
   background:#05091f!important;
   position:relative;
 }
-body>.masthead,
-body>main,
-body>footer,
-body>.skip{
+body>main,body>footer,body>.skip{
   position:relative;
   z-index:1;
 }
@@ -946,7 +841,6 @@ body>.skip{
     background-position:58% top;
   }
 }
-
 
 /* Responsive high-resolution Nebula artwork — 2026-10-04 */
 body{
@@ -1001,8 +895,6 @@ body{
   }
 }
 
-
-/* Gold-standard Nebula landing composition — 2026-10-04 */
 /* The approved mockup is the home-page reference. Dim artwork first; content stays crisp. */
 .site-backdrop{
   filter:brightness(.56) saturate(.84) contrast(1.06);
@@ -1218,94 +1110,12 @@ body{
   .nebula-explore-copy p{min-height:0}
 }
 
-
 /* FINAL MOCKUP FIDELITY — approved gold standard 2026-10-04 */
-body>header.masthead{
-  width:min(1304px,calc(100% - 48px))!important;
-  max-width:1304px!important;
-  min-height:64px!important;
-  margin:18px auto 0!important;
-  padding:12px 20px!important;
-  border-color:#27476c!important;
-  border-radius:12px!important;
-  background:rgba(3,12,31,.78)!important;
-  box-shadow:0 18px 52px rgba(0,0,18,.22)!important;
-}
-.wordmark,.masthead .wordmark{
-  font-size:34px!important;
-  line-height:1!important;
-  letter-spacing:-1.7px!important;
-}
-.wordmark small{display:none!important}
-.masthead nav.compact-nav{
-  justify-content:flex-start!important;
-  gap:40px!important;
-  margin-left:44px!important;
-  margin-right:auto!important;
-}
-.masthead nav.compact-nav>a{
-  min-height:42px!important;
-  padding:10px 0 8px!important;
-  color:#f1f3ff!important;
-  font-size:15px!important;
-  font-weight:500!important;
-}
-.masthead nav.compact-nav>a[aria-current=page]{
-  color:#fff!important;
-  border-bottom:2px solid #21dfea!important;
-}
-.header-tools{
-  gap:12px!important;
-  align-items:center!important;
-}
-.header-tools .theme-switch{
-  min-height:30px!important;
-  display:inline-flex!important;
-  align-items:center!important;
-}
-.header-tools .theme-switch .data-switch-track{
-  width:40px!important;
-  height:22px!important;
-  flex-basis:40px!important;
-  padding:3px!important;
-}
-.header-tools .theme-switch .data-switch-track i{
-  width:14px!important;
-  height:14px!important;
-  flex-basis:14px!important;
-}
-.header-tools .theme-switch input:checked+.data-switch-track i{transform:translateX(18px)!important}
-.actions-light{
-  width:44px!important;
-  min-width:44px!important;
-  height:30px!important;
-  flex-basis:44px!important;
-  padding:0!important;
-  gap:8px!important;
-  border:0!important;
-  border-radius:8px!important;
-  background:transparent!important;
-  align-items:center!important;
-  justify-content:center!important;
-}
-.actions-light-label{display:none!important}
+
 .actions-github{
   width:14px!important;
   height:14px!important;
   flex:0 0 14px!important;
-}
-.actions-light-track{
-  width:14px!important;
-  height:14px!important;
-  flex:0 0 14px!important;
-  padding:2px!important;
-  border:1px solid #46637d!important;
-  background:#07172d!important;
-}
-.actions-light-track i{
-  width:8px!important;
-  height:8px!important;
-  flex-basis:8px!important;
 }
 
 /* Preserve the new mockup-matched source artwork, then darken only where text needs it. */
@@ -1556,45 +1366,17 @@ body>header.masthead{
 }
 
 @media(max-width:1100px){
-  .masthead nav.compact-nav{gap:26px!important;margin-left:28px!important}
+
   .nebula-explore-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
 }
 @media(max-width:760px){
-  body>header.masthead{
-    width:calc(100% - 24px)!important;
-    padding:14px 16px!important;
-  }
-  .wordmark,.masthead .wordmark{font-size:30px!important}
-  .masthead nav.compact-nav{
-    order:3!important;
-    flex-basis:100%!important;
-    display:grid!important;
-    grid-template-columns:repeat(4,minmax(0,1fr))!important;
-    gap:8px!important;
-    margin:8px 0 0!important;
-    padding-top:8px!important;
-    border-top:1px solid #22375d!important;
-  }
-  .masthead nav.compact-nav>a{
-    justify-content:center!important;
-    font-size:12px!important;
-  }
-  .actions-light{
-    width:46px!important;
-    min-width:46px!important;
-    height:38px!important;
-    flex-basis:46px!important;
-  }
+
   .actions-github{
     width:16px!important;
     height:16px!important;
     flex-basis:16px!important;
   }
-  .actions-light-track{
-    width:16px!important;
-    height:16px!important;
-    flex-basis:16px!important;
-  }
+
   .nebula-home-hero{
     padding:42px 0 28px!important;
     min-height:auto!important;
@@ -1614,11 +1396,6 @@ body>header.masthead{
   .nebula-explore-copy p{min-height:0!important}
 }
 
-
-/* NEBULA MOBILE / GLASS FIDELITY PASS — 2026-10-04 */
-/* User-approved refinement: brighter artwork, wider phone layout, clickable card actions,
-   and stronger translucent-glass readability without changing record semantics. */
-
 /* Background art should read almost at source brightness: only a ~5% dark veil. */
 .site-backdrop{filter:none!important}
 .site-backdrop::after{
@@ -1626,13 +1403,7 @@ body>header.masthead{
 }
 
 /* Any translucent site panel gets real backdrop blur instead of relying on darkness. */
-body>header.masthead,
-.compact-nav .nav-dropdown,
-.panel,.record-card,.project-card,.notebook-card,.blog-card,.topic-card,.topic-hub,.discovery-card,
-.note-card,.about-contract,.dashboard-panel,.home-lead-story,.motion-pulse,.motion-numbers,
-.observatory-topic,.home-depth nav a,#map-field,#details,.constellation-shell,
-.nebula-pillars article,.nebula-explore-card,.nebula-topic-panel,.metric-strip,
-.help-panel,.decision,.research-note,.blog-receipts{
+.panel,.record-card,.project-card,.notebook-card,.blog-card,.topic-card,.topic-hub,.discovery-card,.note-card,.about-contract,.dashboard-panel,.home-lead-story,.motion-pulse,.motion-numbers,.observatory-topic,.home-depth nav a,#map-field,#details,.constellation-shell,.nebula-pillars article,.nebula-explore-card,.nebula-topic-panel,.metric-strip,.help-panel,.decision,.research-note,.blog-receipts{
   backdrop-filter:blur(18px) saturate(118%)!important;
   -webkit-backdrop-filter:blur(18px) saturate(118%)!important;
 }
@@ -1678,11 +1449,7 @@ body>header.masthead,
 
 /* iPhone: use the viewport rather than leaving tablet-sized side gutters. */
 @media(max-width:700px){
-  body>header.masthead{
-    width:calc(100% - 12px)!important;
-    margin:8px auto 0!important;
-    padding:12px 10px!important;
-  }
+
   main{
     padding-left:8px!important;
     padding-right:8px!important;
@@ -1745,53 +1512,6 @@ body>header.masthead,
   }
 }
 
-
-/* RESTORED READ MENU / MOBILE NAV FIT — 2026-10-04 */
-.masthead .compact-nav .nav-group>summary{
-  color:#f1f3ff!important;
-  font-size:15px!important;
-  font-weight:500!important;
-  min-height:42px!important;
-  padding:10px 0 8px!important;
-}
-.masthead .compact-nav .nav-group[open]>summary{
-  color:#fff!important;
-}
-.masthead .compact-nav .nav-dropdown{
-  background:rgba(3,12,31,.80)!important;
-  border:1px solid #34547d!important;
-  backdrop-filter:blur(18px) saturate(118%)!important;
-  -webkit-backdrop-filter:blur(18px) saturate(118%)!important;
-}
-.masthead .compact-nav .nav-dropdown a{
-  color:#edf2ff!important;
-}
-@media(max-width:760px){
-  .masthead nav.compact-nav{
-    grid-template-columns:repeat(5,minmax(0,1fr))!important;
-    gap:6px!important;
-  }
-  .masthead nav.compact-nav>a,
-  .masthead nav.compact-nav .nav-group>summary{
-    justify-content:center!important;
-    font-size:11px!important;
-    min-height:38px!important;
-    padding:7px 0!important;
-  }
-  .masthead .compact-nav .nav-group{
-    min-width:0!important;
-  }
-  .masthead .compact-nav .nav-dropdown{
-    left:50%!important;
-    right:auto!important;
-    transform:translateX(-50%)!important;
-    min-width:min(190px,calc(100vw - 24px))!important;
-    z-index:1400!important;
-  }
-}
-
-
-/* MOCKUP PARITY CORRECTIONS — 2026-10-04 */
 /* Remove the dark Explore band that became visible as an empty overlay at the page edge. */
 .nebula-explore::before{display:none!important}
 .nebula-explore{
@@ -1799,27 +1519,8 @@ body>header.masthead,
   border-top:0!important;
 }
 
-/* Read dropdown must sit above hero/backdrop and remain tappable. */
-body>.masthead{z-index:5000!important;overflow:visible!important}
-.masthead nav.compact-nav{position:relative!important;z-index:5100!important;overflow:visible!important}
-.masthead .compact-nav .nav-group{position:relative!important;z-index:5200!important}
-.masthead .compact-nav .nav-group[open]{z-index:9000!important}
-.masthead .compact-nav .nav-dropdown{
-  z-index:9999!important;
-  pointer-events:auto!important;
-  isolation:isolate;
-}
-.masthead .compact-nav .nav-dropdown a{
-  pointer-events:auto!important;
-  touch-action:manipulation;
-}
-
 /* Match mockup typography more closely. */
-body,
-.masthead,
-.nebula-hero-copy,
-.nebula-pillars,
-.nebula-explore{
+body,.nebula-hero-copy,.nebula-pillars,.nebula-explore{
   font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Inter,"Segoe UI",Arial,sans-serif!important;
 }
 .nebula-hero-copy h1,
@@ -1849,9 +1550,7 @@ body,
 }
 
 /* Mockup-smooth glass borders: quieter, more continuous, less boxy. */
-.nebula-pillars article,
-.nebula-explore-card,
-body>header.masthead{
+.nebula-pillars article,.nebula-explore-card{
   border-color:rgba(104,137,190,.58)!important;
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.035),
@@ -1859,7 +1558,6 @@ body>header.masthead{
 }
 .nebula-pillars article{border-radius:11px!important}
 .nebula-explore-card{border-radius:11px!important;overflow:hidden!important}
-body>header.masthead{border-radius:11px!important}
 
 /* All chip actions stay on the same row on desktop, as in the mockup. */
 .nebula-explore-tags{
@@ -1888,32 +1586,7 @@ body>header.masthead{border-radius:11px!important}
 }
 
 /* Top-right controls: restore the simple pre-redesign toggle + lone status lamp. */
-.actions-github,
-.actions-light-label{display:none!important}
-.actions-light{
-  width:34px!important;
-  min-width:34px!important;
-  height:30px!important;
-  flex:0 0 34px!important;
-  padding:0!important;
-  border:0!important;
-  background:transparent!important;
-  border-radius:0!important;
-}
-.actions-light-track{
-  width:18px!important;
-  height:18px!important;
-  flex:0 0 18px!important;
-  padding:2px!important;
-  border:1px solid rgba(88,125,151,.7)!important;
-  background:rgba(5,18,35,.7)!important;
-}
-.actions-light-track i{
-  width:12px!important;
-  height:12px!important;
-  flex-basis:12px!important;
-}
-.header-tools{gap:8px!important}
+.actions-github{display:none!important}
 
 /* Mobile keeps the fuller width while retaining mockup proportions. */
 @media(max-width:700px){
@@ -1932,25 +1605,8 @@ body>header.masthead{border-radius:11px!important}
     padding-left:11px!important;
     padding-right:11px!important;
   }
-  .actions-light{
-    width:40px!important;
-    min-width:40px!important;
-    height:38px!important;
-    flex-basis:40px!important;
-  }
-  .actions-light-track{
-    width:22px!important;
-    height:22px!important;
-    flex-basis:22px!important;
-    padding:3px!important;
-  }
-  .actions-light-track i{
-    width:14px!important;
-    height:14px!important;
-    flex-basis:14px!important;
-  }
-}
 
+}
 
 /* HERO TWO-LINE LOCK — 2026-10-04 */
 @media(min-width:701px){
@@ -1963,80 +1619,6 @@ body>header.masthead{border-radius:11px!important}
   .nebula-hero-copy h1 span{white-space:nowrap}
 }
 
-
-/* DARK-ONLY THEME — 2026-10-04 */
-.theme-switch{display:none!important}
-
-
-/* FINAL SHARED HEADER CONTROL SHAPE — 2026-10-04 */
-body>.masthead .header-tools{gap:10px!important}
-body>.masthead .repo-link{
-  display:inline-flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  width:32px!important;
-  height:32px!important;
-  flex:0 0 32px!important;
-  color:#f4f6ff!important;
-  border:0!important;
-  background:transparent!important;
-}
-body>.masthead .repo-link svg{width:21px!important;height:21px!important}
-body>.masthead .actions-light{
-  width:auto!important;
-  min-width:96px!important;
-  height:34px!important;
-  flex:0 0 auto!important;
-  display:inline-flex!important;
-  align-items:center!important;
-  justify-content:flex-start!important;
-  gap:8px!important;
-  padding:0 10px!important;
-  border:1px solid #365878!important;
-  border-radius:999px!important;
-  background:rgba(4,15,34,.58)!important;
-}
-body>.masthead .actions-light-track{
-  width:22px!important;
-  height:22px!important;
-  flex:0 0 22px!important;
-  padding:3px!important;
-  border:1px solid #46637d!important;
-  border-radius:50%!important;
-  background:#07172d!important;
-}
-body>.masthead .actions-light-track i{
-  width:14px!important;
-  height:14px!important;
-  flex:0 0 14px!important;
-}
-body>.masthead .actions-light-label{
-  display:inline-block!important;
-  color:#e7ebf8!important;
-  font-size:11px!important;
-  font-weight:700!important;
-  white-space:nowrap!important;
-}
-body>.masthead .actions-light[data-state="running"] .actions-light-label{color:#72e09b!important}
-body>.masthead .actions-light[data-state="campaign"] .actions-light-label{color:var(--purple)!important}
-body>.masthead .actions-light[data-state="stopped"] .actions-light-label{color:#ff7d87!important}
-body>.masthead .powered-by{
-  display:inline-block!important;
-  margin-top:5px!important;
-  color:#8fa1c2!important;
-  font:9px/1.2 var(--mono)!important;
-  letter-spacing:.08em!important;
-}
-@media(max-width:760px){
-  body>.masthead .repo-link{width:36px!important;height:36px!important;flex-basis:36px!important}
-  body>.masthead .repo-link svg{width:22px!important;height:22px!important}
-  body>.masthead .actions-light{min-width:102px!important;height:38px!important;padding:0 10px!important}
-  body>.masthead .actions-light-track{width:24px!important;height:24px!important;flex-basis:24px!important;padding:3px!important}
-  body>.masthead .actions-light-track i{width:16px!important;height:16px!important;flex-basis:16px!important}
-}
-
-
-/* FROSTED READING SURFACES — 2026-10-04 */
 /* Long-form content sits on a restrained glass reading plane so the Nebula art
    stays visible without competing with prose. */
 .entry,
@@ -2097,34 +1679,6 @@ body>.masthead .powered-by{
   }
 }
 
-
-/* FINAL WAKE WORDMARK GRADIENT — 2026-10-04 */
-.masthead .wordmark,
-.research-header.masthead .wordmark,
-.brand-lockup .wordmark{
-  color:transparent!important;
-  background:linear-gradient(90deg,#20e2ed 0%,#5aa5ff 48%,#d84dff 100%)!important;
-  -webkit-background-clip:text!important;
-  background-clip:text!important;
-  -webkit-text-fill-color:transparent!important;
-}
-.masthead .wordmark .asterisk,
-.research-header.masthead .wordmark .asterisk,
-.brand-lockup .wordmark .asterisk{
-  color:inherit!important;
-  -webkit-text-fill-color:transparent!important;
-  text-shadow:none!important;
-}
-.masthead .wordmark small,
-.research-header.masthead .wordmark small,
-.brand-lockup .wordmark small{
-  color:var(--muted)!important;
-  -webkit-text-fill-color:var(--muted)!important;
-  background:none!important;
-}
-
-
-/* MAIN PILLAR GLYPH SCALE — 2026-10-04 */
 /* The three principle glyphs should carry the visual weight of the approved mockup. */
 .nebula-pillars article{
   align-items:center!important;
@@ -2168,8 +1722,6 @@ body>.masthead .powered-by{
   }
 }
 
-
-/* HOME RESEARCH + LATEST PUBLICATIONS — 2026-10-04 */
 /* Back the Nebula artwork down another ~5% from the current presentation. */
 .site-backdrop{filter:none!important}
 .site-backdrop::after{background:rgba(2,6,20,.20)!important}
@@ -2377,8 +1929,6 @@ body>.masthead .powered-by{
   .home-latest-card h2{font-size:26px}
 }
 
-
-/* HOMEPAGE FOURTH ROW ONLY — 2026-10-04 */
 /* Current-topic block removed by design; keep only the two-card latest-work row. */
 .home-research-section,
 .home-topic-grid,
@@ -2388,7 +1938,6 @@ body>.masthead .powered-by{
 .home-latest-grid{
   margin-top:18px!important;
 }
-
 
 /* CURRENT RESEARCH HEADING GLASS — 2026-10-04 */
 .home-research-heading-panel{
@@ -2434,8 +1983,6 @@ body>.masthead .powered-by{
   }
 }
 
-
-/* CONSOLE + DOCS CARD ART SWAP — 2026-10-04 */
 /* User-provided artwork: cube for Console, previous globe for Documentation. */
 .nebula-explore-console{
   background:
@@ -2456,8 +2003,6 @@ body>.masthead .powered-by{
   display:none!important;
 }
 
-
-/* CONTEXTUAL HELP POPOVERS — 2026-10-04 */
 /* Help belongs beside its trigger. Do not blur or dim the entire page behind it. */
 .help-layer{
   position:fixed!important;
@@ -2585,8 +2130,6 @@ body.help-open{
   .help-copy p{margin-bottom:10px!important}
 }
 
-
-/* RESEARCH CARD GLOBE ART — 2026-10-04 */
 /* Move the user-provided globe artwork from Documentation to the first Research card. */
 .nebula-explore-research{
   background-image:
@@ -2605,8 +2148,6 @@ body.help-open{
   background-repeat:no-repeat!important;
 }
 
-
-/* ABOUT + DOCUMENTATION CARD ART — 2026-10-04 */
 /* User-provided graph artwork for the final two Explore WAKE✳︎ cards. */
 .nebula-explore-about{
   background-image:
@@ -2623,136 +2164,6 @@ body.help-open{
   background-position:center center!important;
   background-size:cover!important;
   background-repeat:no-repeat!important;
-}
-
-
-/* MOBILE MASTHEAD LOCK — 2026-10-04 */
-/* Two-row mobile masthead: brand + controls, then navigation. No stretched brand column. */
-@media(max-width:760px){
-  body>header.masthead{
-    display:grid!important;
-    grid-template-columns:minmax(0,1fr) auto!important;
-    grid-template-rows:auto auto!important;
-    align-items:center!important;
-    gap:10px 12px!important;
-    width:calc(100% - 12px)!important;
-    min-height:0!important;
-    height:auto!important;
-    margin:10px auto 0!important;
-    padding:14px 14px 12px!important;
-  }
-  body>header.masthead .brand-lockup{
-    grid-column:1!important;
-    grid-row:1!important;
-    display:flex!important;
-    flex-direction:column!important;
-    align-items:flex-start!important;
-    justify-content:flex-start!important;
-    align-self:center!important;
-    min-width:0!important;
-    min-height:0!important;
-    height:auto!important;
-    margin:0!important;
-    padding:0!important;
-    gap:4px!important;
-  }
-  body>header.masthead .wordmark{
-    flex:none!important;
-    width:auto!important;
-    min-width:0!important;
-    margin:0!important;
-    font-size:30px!important;
-    line-height:1!important;
-  }
-  body>header.masthead .powered-by{
-    display:block!important;
-    position:static!important;
-    margin:0!important;
-    padding:0!important;
-    font-size:8px!important;
-    line-height:1.2!important;
-  }
-  body>header.masthead .header-tools{
-    grid-column:2!important;
-    grid-row:1!important;
-    position:static!important;
-    align-self:center!important;
-    justify-self:end!important;
-    width:auto!important;
-    min-width:0!important;
-    margin:0!important;
-    padding:0!important;
-    flex-direction:row!important;
-    gap:8px!important;
-  }
-  body>header.masthead nav.compact-nav{
-    grid-column:1 / -1!important;
-    grid-row:2!important;
-    display:grid!important;
-    grid-template-columns:repeat(5,minmax(0,1fr))!important;
-    width:100%!important;
-    min-width:0!important;
-    margin:0!important;
-    padding:9px 0 0!important;
-    gap:0!important;
-    border-top:1px solid #22375d!important;
-    overflow:visible!important;
-  }
-  body>header.masthead nav.compact-nav>a,
-  body>header.masthead nav.compact-nav .nav-group>summary{
-    width:100%!important;
-    min-width:0!important;
-    min-height:36px!important;
-    margin:0!important;
-    padding:7px 2px!important;
-    justify-content:center!important;
-    text-align:center!important;
-    font-size:12px!important;
-    white-space:nowrap!important;
-  }
-  body>header.masthead .nav-group{
-    min-width:0!important;
-    width:100%!important;
-  }
-  body>header.masthead .repo-link{
-    display:inline-flex!important;
-    width:34px!important;
-    height:34px!important;
-    flex:0 0 34px!important;
-  }
-  body>header.masthead .repo-link svg{
-    width:21px!important;
-    height:21px!important;
-  }
-  body>header.masthead .actions-light{
-    width:auto!important;
-    min-width:94px!important;
-    height:36px!important;
-    flex:0 0 auto!important;
-    padding:0 9px!important;
-  }
-}
-@media(max-width:390px){
-  body>header.masthead{
-    padding-left:11px!important;
-    padding-right:11px!important;
-    gap:9px 8px!important;
-  }
-  body>header.masthead .wordmark{font-size:28px!important}
-  body>header.masthead nav.compact-nav>a,
-  body>header.masthead nav.compact-nav .nav-group>summary{
-    font-size:11px!important;
-    padding-inline:0!important;
-  }
-  body>header.masthead .repo-link{
-    width:31px!important;
-    height:34px!important;
-    flex-basis:31px!important;
-  }
-  body>header.masthead .actions-light{
-    min-width:88px!important;
-    padding-inline:7px!important;
-  }
 }
 
 /* IPHONE VIEWPORT POLISH — 2026-10-04
@@ -2785,9 +2196,6 @@ body.help-open{
   }
 }
 
-
-
-/* EVIDENCE READABILITY PANELS — 2026-10-05 */
 /* Each recorded observation gets its own glass panel so source material remains
    legible against the Nebula background without changing evidence semantics. */
 #evidence-content{

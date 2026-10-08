@@ -609,7 +609,7 @@ class SystemTests(unittest.TestCase):
     def test_report_display_polish_uses_shared_stylesheets(self):
         export(self.engine.store, self.root / "site")
         page = (self.root / "site/index.html").read_text()
-        self.assertIn('href="style.css"', page)
+        self.assertRegex(page, r'href="style\.css(?:\?v=[^"]+)?"')
         self.assertRegex(page, r'href="theme\.css(?:\?v=[^"]+)?"')
         self.assertTrue((self.root / "site" / "theme.css").is_file())
         self.assertIn('href="index.html" aria-label="Reload WAKE✳︎ from the site root"', page)
