@@ -148,12 +148,15 @@
     heading.append(title,actions);
     heading.classList.add('console-panel-heading');
   });
+  const categories=document.querySelector('.map-key');
+  if(categories)document.querySelector('.map-panel .panel-actions').append(categories);
   // Each numbered panel opens the same data-bound Console in an isolated view.
   document.querySelectorAll('.panel-id').forEach(label=>{
     const panel=label.closest('.panel,.page-intro');
     const id=label.textContent.match(/#(\d{3})/)?.[1];
     if(!panel||!id)return;
     panel.dataset.consolePanelId=id;
+    panel.classList.toggle('console-story-panel',Number(id)>=12&&Number(id)<=18);
     const button=document.createElement('button');
     button.type='button';button.className='panel-popout';button.textContent='↗';
     button.dataset.popoutLabel=`Pop out ${titleFor(panel)} · #${id}`;
@@ -334,5 +337,29 @@
     pack();writeState();
   });
   overview.querySelectorAll('.snapshot button').forEach(button=>overview.querySelector('.panel-actions').append(button));
+  // Dock only a populated inspector. Pop-out releases the reservation immediately;
+  // closing it restores docking without changing the saved grid order.
+  const inspector=document.querySelector('.detail-panel');
+  const heightHandle=document.createElement('button');
+  heightHandle.type='button';heightHandle.className='inspector-height-handle';
+  heightHandle.setAttribute('aria-label','Resize inspector height');heightHandle.title='Drag to resize height; arrow keys adjust height';
+  inspector.append(heightHandle);
+  let heightDrag=null;
+  heightHandle.addEventListener('pointerdown',event=>{
+    if(event.button!==0)return;event.preventDefault();
+    heightDrag={y:event.clientY,height:inspector.getBoundingClientRect().height};heightHandle.setPointerCapture(event.pointerId);
+  });
+  const setInspectorHeight=value=>inspector.style.setProperty('height',`${Math.max(180,Math.min(innerHeight-130,value))}px`,'important');
+  heightHandle.addEventListener('pointermove',event=>{if(heightDrag)setInspectorHeight(heightDrag.height+event.clientY-heightDrag.y);});
+  const finishHeight=()=>{heightDrag=null;};
+  heightHandle.addEventListener('pointerup',finishHeight);heightHandle.addEventListener('pointercancel',finishHeight);
+  heightHandle.addEventListener('keydown',event=>{if(['ArrowUp','ArrowDown'].includes(event.key)){event.preventDefault();setInspectorHeight(inspector.getBoundingClientRect().height+(event.key==='ArrowUp'?-40:40));}});
+  const dockInspector=()=>{
+    const docked=!panelWindow&&inspector.classList.contains('has-selection')&&!inspector.classList.contains('panel-popped-out');
+    document.documentElement.classList.toggle('console-inspector-docked',docked);
+    pack();
+  };
+  new MutationObserver(dockInspector).observe(inspector,{attributes:true,attributeFilter:['class']});
+  dockInspector();
   if(panelWindow){announcePanel();setInterval(()=>announcePanel(),2000);}
 })();

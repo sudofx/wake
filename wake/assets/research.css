@@ -1328,3 +1328,26 @@ html:not(.console-panel-window) body.research-page [data-console-panel-id].panel
 .console-module-grid>.console-overview>*{flex:0 0 auto;min-width:0;max-width:100%}
 .console-module-grid .console-overview>div:first-child{flex:none}
 .console-module-grid>.console-overview>.panel-heading{padding:0!important}
+
+/* Inspection is a presentation overlay, never a second record owner. */
+.console-module-grid>.detail-panel{resize:vertical;overflow:auto!important;min-height:180px}
+.research-page .map-panel .panel-actions .map-key{margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.research-page .map-panel .panel-actions{align-items:center}
+@media(min-width:768px){
+  html.console-inspector-docked:not(.console-panel-window) .research-page #main{width:calc(100% - 380px);margin-left:0;margin-right:380px}
+  html.console-inspector-docked:not(.console-panel-window) .research-page .detail-panel{position:fixed!important;inset:110px 20px auto auto!important;width:340px!important;height:calc(100dvh - 130px);max-height:calc(100dvh - 130px)!important;z-index:50;margin:0!important}
+}
+@media(max-width:767px){
+  html.console-inspector-docked:not(.console-panel-window) .research-page .detail-panel{position:fixed!important;inset:auto 8px 8px!important;width:auto!important;height:46dvh;max-height:46dvh;z-index:50;margin:0!important;box-shadow:0 -12px 40px #0006}
+  .research-page .console-overview>.console-panel-heading{padding-bottom:20px!important}
+}
+/* The seven numbered story sections share a visible group boundary. */
+html[data-theme] body.research-page .console-story-panel.console-module,
+html[data-theme] body.research-page .console-story-panel.console-module *,
+html[data-theme] body.research-page .console-story-panel.console-module::after{border-color:#ffb15c!important}
+
+.research-page .console-module-grid>.detail-panel{display:flex!important;flex-direction:column;resize:none}
+.research-page .detail-panel>.panel-heading{flex:none}
+.research-page .detail-panel>#record-detail{flex:1;min-height:0;overflow:auto;max-height:none}
+.research-page .detail-panel>.inspector-height-handle{display:block;flex:0 0 14px;min-height:14px;height:14px;padding:0;border:0;border-top:1px solid var(--line);border-radius:0;cursor:ns-resize;touch-action:none;background:var(--surface-raised);color:var(--muted)}
+.research-page .detail-panel>.inspector-height-handle::before{content:'↕';font-size:11px}

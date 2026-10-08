@@ -71,7 +71,7 @@
       statusEl.dataset.state=runtime.activity.active?'running':runtime.state;
       setText(traceEl,`Now · ${labels[runtime.activity.stage]}`);
       traceEl.title=`Sampled ${new Date(runtime.observed_at).toLocaleTimeString()}`;
-      setText(detailEl,'Live indicators report this installation’s current work. The orange trace and background remain a replay of recorded history; activity does not imply accepted progress.');
+      setText(detailEl,'The red marker reports this installation’s current stage. Background relationships come from recorded history; activity does not imply accepted progress.');
       return;
     }
     const runner=actions?.dataset.state||'unknown';
@@ -194,7 +194,7 @@
       ctx.fillText(STAGES[i][1],pt.x,pt.y+(small?20:25));
     });
 
-    if(latest&&motion){
+    if(latest&&motion&&!runtime){
       const completion=active.reduce((n,v)=>n+(v?1:0),0);
       const maxSegment=Math.max(0,Math.min(5,completion-1));
       if(maxSegment>0){
@@ -205,6 +205,13 @@
         ctx.globalAlpha=.95;ctx.fillStyle=p.orange;ctx.shadowColor=p.orange;ctx.shadowBlur=16;
         ctx.beginPath();ctx.arc(x,y2,small?3.8:4.8,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
       }
+    }
+
+    // A current sample owns the marker; never replay a completed wake as live work.
+    canvas.dataset.activityStage=runtime?.activity?.active?runtime.activity.stage:'idle';
+    if(liveIndex()>=0){
+      const pt=points[liveIndex()];ctx.globalAlpha=1;ctx.fillStyle=p.red;
+      ctx.beginPath();ctx.arc(pt.x,pt.y,small?4:5,0,Math.PI*2);ctx.fill();
     }
 
     const runner=actions?.dataset.state;

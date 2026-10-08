@@ -486,7 +486,7 @@
     if(wakeId){selectedWake=wakeId;followLatest=false;}
     writeUrl();syncCubeToRecord(id);renderMap();renderDetail();broadcastSelection(id,wakeId);$('detail-title').focus({preventScroll:true});
   }
-  document.addEventListener('click',event=>{const target=event.target.closest('[data-record]');if(target)choose(target.dataset.record,Boolean(target.closest('#data-inspector')));});
+  document.addEventListener('click',event=>{const target=event.target.closest('[data-record]');if(target){choose(target.dataset.record,Boolean(target.closest('#data-inspector')));if(matchMedia('(max-width:767px)').matches&&!target.closest('.detail-panel')){const top=target.getBoundingClientRect().top,header=document.querySelector('.masthead').getBoundingClientRect().bottom;window.scrollBy({top:top-Math.max(12,header+12),behavior:'instant'});}}});
   document.querySelector('#outcomes').addEventListener('keydown',e=>{if(['Enter',' '].includes(e.key)&&e.target.matches('[data-outcome]')){e.preventDefault();e.target.dispatchEvent(new MouseEvent('click',{bubbles:true}));}});
   $('research-map').addEventListener('keydown',event=>{if(['Enter',' '].includes(event.key)){const target=event.target.closest('[data-record]');if(target){event.preventDefault();choose(target.dataset.record);}}});
   $('topic').addEventListener('change',()=>{topic=$('topic').value;selected='';writeUrl();renderFrontier();renderMap();renderDetail();renderSynthesis();broadcastSelection('',selectedWake);});

@@ -114,8 +114,7 @@ window.WakeResearchCube = canvas => {
   canvas.addEventListener('pointerup',event=>{if(drag&&Math.hypot(event.clientX-drag.startX,event.clientY-drag.startY)<6){const rect=canvas.getBoundingClientRect(),x=event.clientX-rect.left,y=event.clientY-rect.top;const hits=points.filter(c=>Math.hypot(c.screen.x-x,c.screen.y-y)<12).sort((a,b)=>b.screen.z-a.screen.z);if(hits[0]){select(hits[0].id);canvas.dispatchEvent(new CustomEvent('wake-cube-select',{detail:hits[0].id}));}}drag=null;heldUntil=performance.now()+5000;});
   canvas.addEventListener('pointerleave',()=>{hovered='';draw();});
   canvas.addEventListener('pointercancel',()=>{drag=null;});
-  canvas.addEventListener('wheel',event=>{event.preventDefault();zoom=Math.max(.6,Math.min(1.5,zoom-event.deltaY*.001));heldUntil=performance.now()+5000;draw();},{passive:false});
-  canvas.addEventListener('keydown',event=>{if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','-'].includes(event.key)){event.preventDefault();if(event.key==='ArrowLeft')yaw-=.15;if(event.key==='ArrowRight')yaw+=.15;if(event.key==='ArrowUp')pitch-=.15;if(event.key==='ArrowDown')pitch+=.15;if(event.key==='+')zoom=Math.min(1.5,zoom+.1);if(event.key==='-')zoom=Math.max(.6,zoom-.1);heldUntil=performance.now()+5000;draw();}});
+  canvas.addEventListener('keydown',event=>{if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key)){event.preventDefault();if(event.key==='ArrowLeft')yaw-=.15;if(event.key==='ArrowRight')yaw+=.15;if(event.key==='ArrowUp')pitch-=.15;if(event.key==='ArrowDown')pitch+=.15;heldUntil=performance.now()+5000;draw();}});
 
   new ResizeObserver(()=>draw()).observe(canvas);
   new MutationObserver(()=>{if(visible)draw();}).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
