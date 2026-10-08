@@ -57,7 +57,7 @@ def atomic_write(path, content):
 def _export_console_components(target):
     """Reuse canonical renderers inside Console without retired HTML dependencies."""
     assets = Path(__file__).parent / "assets"
-    for name in ("console-tools.js", "console-component.js", "console-component.css"):
+    for name in ("console-tools.js", "console-component.js", "console-component.css", "console-theme.js", "console-light.css"):
         atomic_write(target / name, (assets / name).read_text())
     pages = {"index.html": "console-records.html", "map.html": "console-map.html",
              "map3d.html": "console-map3d.html", "events.html": "console-events.html",
@@ -75,7 +75,7 @@ def _export_console_components(target):
             version = snapshot.get("state", {}).get("version", "unknown")
             content = content.replace("<main>", f'<main><p class="console-component-stamp">Published snapshot · state {version} · {stamp}<br>Head {record_head}</p>', 1)
         content = content.replace("<head>", '<head><meta name="darkreader-lock">', 1)
-        content = content.replace("</head>", '<link rel="stylesheet" href="console-component.css"></head>', 1)
+        content = content.replace("</head>", '<link rel="stylesheet" href="console-component.css"><script src="console-theme.js"></script><link rel="stylesheet" href="console-light.css"></head>', 1)
         content = content.replace("</body>", '<script src="console-component.js"></script></body>', 1)
         atomic_write(target / destination, content)
 

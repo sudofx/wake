@@ -1,0 +1,92 @@
+/* The daylight counterpart to Console's blue/amber glass. Geometry stays shared. */
+:root[data-theme=light], :root[data-theme=light] body {
+  --bg:#f3f6fb!important; --paper:#f3f6fb!important;
+  --surface:rgba(255,255,255,.88)!important; --surface-raised:#edf3fa!important;
+  --surface-strong:#e5edf7!important; --pale:#edf3fa!important;
+  --ink:#20334b!important; --muted:#53677f!important; --line:#becddd!important;
+  --cyan:#2160b5!important; --accent:#2160b5!important; --hot:#2160b5!important;
+  --orange:#a65309!important; --yellow:#a65309!important; --pink:#a65309!important;
+  --red:#b43749!important; --danger:#b43749!important; --failure:#b43749!important;
+  --green:#217548!important; --success:#217548!important;
+  --purple:#7050a6!important; --violet:#7050a6!important;
+  --warning:#a65309!important; --info:#2160b5!important; color-scheme:light;
+}
+html[data-theme=light] body {color:var(--ink)!important;background:var(--paper)!important}
+html[data-theme=light] body.research-page {
+  background:radial-gradient(ellipse at 15% 0%,#e5effc,transparent 48%),var(--paper)!important;
+}
+html[data-theme=light] body.research-page::before {
+  opacity:.3!important; filter:none!important;
+  background-image:linear-gradient(rgba(166,83,9,.2) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(166,83,9,.2) 1px,transparent 1px)!important;
+}
+html[data-theme=light] .site-backdrop {display:none!important}
+html[data-theme=light] body.research-page :is(.panel,.status-band,.status-cell,.research-header.masthead,
+  .console-workspace-controls,.research-footer,.console-overview,.process-field-readout),
+html[data-theme=light] :is(.view,.entry,.record-card,.project-card,.notebook-card,.blog-card,
+  .dashboard-panel,.data-card,#map-field,#details) {
+  background:var(--surface)!important; border-color:var(--line)!important;
+  box-shadow:0 8px 24px rgba(40,67,101,.045),inset 0 1px 0 #fff!important;
+}
+html[data-theme=light] body.research-page :is(.panel-heading,.process-field-hud span,.process-field-selection,
+  .nav-dropdown,.actions-light,.actions-light-track),
+html[data-theme=light].console-panel-window :is(body.research-page,.panel-popout-target,.console-panel-heading),
+html[data-theme=light][data-console-theme] body:not(.research-page) main {
+  background:var(--surface)!important; border-color:var(--line)!important;
+}
+html[data-theme=light] body.research-page :is(button,input,select,pre,.meter-track) {
+  background:var(--surface-raised)!important; color:var(--ink)!important; border-color:var(--line)!important;
+}
+html[data-theme=light] body.research-page :is(.panel-heading h2,.eyebrow,.record-id,.map-lane,
+  .status-cell strong,.source-total,.meter-row strong,a:not(.badge):not(.wordmark)) {color:var(--cyan)!important}
+html[data-theme=light] body.research-page :is(.wordmark,.wake-inline-mark,.actions-light-label),
+html[data-theme=light] body.research-page>.research-header.masthead :is(.repo-link,nav.compact-nav>a,nav.compact-nav summary) {
+  color:var(--ink)!important; text-shadow:none!important;
+}
+html[data-theme=light] body.research-page :is(.powered-by,.module-controls button) {color:var(--muted)!important}
+html[data-theme=light] body.research-page :is(button[aria-pressed=true],.mode-control [aria-pressed=true],.process-stage.selected) {
+  color:var(--cyan)!important; border-color:var(--cyan)!important; background:#e4eefc!important;
+}
+html[data-theme=light] body.research-page :is(a,button):hover {text-shadow:none!important}
+html[data-theme=light] body.research-page button:hover {border-color:var(--cyan)!important}
+html[data-theme=light] body.research-page :focus-visible {outline-color:var(--cyan)!important}
+html[data-theme=light] body.research-page .panel::after {border-color:var(--cyan)!important}
+html[data-theme=light] body.research-page .global-motion-toggle[aria-pressed=true] {
+  color:var(--orange)!important; border-color:var(--orange)!important; background:#fff0dd!important;
+}
+html[data-theme=light] body.research-page .actions-light[data-state=running] .actions-light-label {color:var(--green)!important}
+html[data-theme=light] body.research-page .actions-light[data-state=stopped] .actions-light-label {color:var(--red)!important}
+html[data-theme=light] body.research-page .process-field-panel {
+  background:radial-gradient(ellipse at center,rgba(33,96,181,.045),transparent 65%),var(--surface)!important;
+}
+html[data-theme=light] :is(.map-stage,#process-field-canvas) {
+  background:radial-gradient(ellipse at center,rgba(33,96,181,.055),transparent 70%)!important;
+}
+html[data-theme=light] .map-grid {stroke:var(--line)!important}
+html[data-theme=light] .map-edge {stroke:#6588af!important}
+html[data-theme=light] .map-node rect {fill:#edf3fa!important;stroke:#7690ae!important}
+html[data-theme=light] .map-node circle {fill:#e0edfc!important}
+html[data-theme=light] .map-node.selected rect {fill:#dce9fa!important;stroke:var(--cyan)!important}
+html[data-theme=light] .map-node text {fill:var(--ink)!important}
+html[data-theme=light] .map-node .node-type {fill:var(--muted)!important}
+html[data-theme=light] .notice {background:#fff0dd!important;color:var(--orange)!important}
+html[data-theme=light] body.research-page .console-module-grid .module-controls button {
+  background:var(--surface-raised)!important;color:var(--muted)!important;border-color:var(--line)!important;
+}
+html[data-theme=light] body.research-page>.research-header.masthead :is(.actions-light,.actions-light-track) {
+  background:var(--surface-raised)!important;border-color:var(--line)!important;
+}
+html[data-theme=light] body.research-page>.research-header.masthead .actions-light[data-state=stopped] .actions-light-label {color:var(--red)!important}
+html[data-theme=light] body.research-page>.research-header.masthead .actions-light[data-state=running] .actions-light-label {color:var(--green)!important}
+html[data-theme=light] body.research-page .panel>.console-panel-heading .panel-actions button.glyph-button {
+  background:var(--surface-raised)!important;color:var(--muted)!important;border-color:var(--line)!important;
+}
+html[data-theme=light][data-console-theme] body:not(.research-page) main :is(h1,h2,h3,h4,p,li,summary) {
+  color:var(--ink)!important;text-shadow:none!important;
+}
+html[data-theme=light][data-console-theme] body:not(.research-page) main :is(a,.eyebrow,.tag,.badge) {
+  color:var(--cyan)!important;text-shadow:none!important;
+}
+html[data-theme=light][data-console-theme] body:not(.research-page) main :is(button,input,select,pre) {
+  background:var(--surface-raised)!important;color:var(--ink)!important;border-color:var(--line)!important;
+}

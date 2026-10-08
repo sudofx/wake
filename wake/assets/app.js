@@ -24,8 +24,10 @@
   if (window.WakePetReady) await window.WakePetReady;
   const s = data.state;
   const $ = id => document.getElementById(id);
-  document.documentElement.dataset.theme='dark';
-  try{localStorage.setItem('wake-theme','dark')}catch{}
+  if (!document.documentElement.dataset.consoleTheme) {
+    document.documentElement.dataset.theme='dark';
+    try{localStorage.setItem('wake-theme','dark')}catch{}
+  }
   const help = key => window.WakeHelp.button(key);
   const WAKE_TEXT='WAKE\u2733\uFE0E';
   const display = value => String(value ?? '').replaceAll('WAKE✳️','WAKE✳').replaceAll('WAKE✳︎','WAKE✳').replaceAll('WAKE✳','WAKE✳︎');

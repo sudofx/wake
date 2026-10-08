@@ -232,6 +232,7 @@
     }
   }
   const observer=new MutationObserver(()=>{setStageReadout();scheduleDraw();});
+  window.addEventListener('wake-theme-change',scheduleDraw);
   if(actions)observer.observe(actions,{attributes:true,attributeFilter:['data-state','title']});
 
   stageList.addEventListener('click',event=>{const el=event.target.closest('.process-stage');if(el)inspectStage(Number(el.dataset.stageIndex));});

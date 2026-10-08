@@ -338,8 +338,6 @@
     $('live-story').textContent=`Snapshot state ${count(data.version)}. Completed wakes are historical receipts; the status light separately reports execution now. Refresh checks every minute.`;
   }
   function controls() {
-    document.documentElement.dataset.theme='dark';
-    try{localStorage.setItem('wake-theme','dark')}catch{}
     cube.setMotion(false);contextMap.setMotion(false);document.body.dataset.motion='off';
     window.addEventListener('wake-global-motion',event=>{motion=Boolean(event.detail?.enabled);cube.setMotion(motion);contextMap.setMotion(motion);document.body.dataset.motion=motion?'on':'off';});
     const motionButton=$('global-motion-toggle');
