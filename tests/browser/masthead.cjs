@@ -21,6 +21,10 @@ const base=process.argv[2];if(!base)throw Error('Usage: node tests/browser/masth
     if(!(await page.locator('html').getAttribute('data-theme')))console.error('theme missing',path,await page.evaluate(()=>({url:location.href,owner:typeof window.WakeTheme,scripts:[...document.scripts].map(s=>s.src),root:document.documentElement.outerHTML.slice(0,100)})));
     assert.equal(await page.locator('html').getAttribute('data-theme'),theme,`${width} ${theme} ${path}: ${errors.join('; ')}`);
     assert.equal(await page.locator('.actions-light-label').count(),0);
+    assert.match(await page.locator('.wordmark small').innerText(),/ACCEPTED WAKES$/);
+    const glass=await page.locator('.masthead').evaluate(e=>{const s=getComputedStyle(e);return {background:s.backgroundColor,blur:s.backdropFilter,webkit:s.getPropertyValue("-webkit-backdrop-filter")||s.backdropFilter}});
+    assert.match(glass.blur,/blur\(24px\)/);const alpha=Number(glass.background.match(/\/\s*([\d.]+)\)/)?.[1]);assert(alpha>0&&alpha<=.53,glass.background);
+    assert.match(glass.webkit,/blur\(24px\)/);
     assert.equal(await page.locator('.header-tools>*').first().getAttribute('class'),'theme-switch');
     const consoleStyle=await page.locator('.console-link').evaluate(e=>{const c=getComputedStyle(e);return [c.backgroundColor,c.borderWidth,c.boxShadow]});
     assert.deepEqual(consoleStyle,['rgba(0, 0, 0, 0)','0px','none']);

@@ -977,7 +977,7 @@ body.research-page::after{content:none!important;display:none!important;backgrou
 
 /* PERSISTENT RESPONSIVE RECORD INSPECTOR — desktop/tablet dock, mobile bottom sheet. */
 @media(min-width:768px){
- body.research-page:has(.detail-panel.has-selection) main{padding-right:clamp(330px,29vw,430px)!important;transition:padding-right .18s ease}
+ body.research-page:not(:has(.console-module-grid)):has(.detail-panel.has-selection) main{padding-right:clamp(330px,29vw,430px)!important;transition:padding-right .18s ease}
  .research-workspace>.detail-panel{display:none!important}
  .research-workspace>.detail-panel.has-selection{display:block!important;position:fixed!important;top:92px!important;right:14px!important;bottom:14px!important;left:auto!important;width:clamp(310px,27vw,400px)!important;max-width:calc(100vw - 28px)!important;max-height:none!important;margin:0!important;z-index:70!important;overflow:auto!important;border-color:rgba(143,211,255,.55)!important;box-shadow:0 16px 48px rgba(0,0,0,.28)!important}
  .research-workspace>.detail-panel.has-selection #record-detail{max-height:none!important;overflow:visible!important}
@@ -1188,7 +1188,10 @@ body.research-page .detail-panel .console-panel-heading #close-inspector{
  position:static!important;inset:auto!important;margin:0!important;transform:none!important;
 }
 
-/* A panel window scrolls inside its frame, with an equal viewport inset. */
+/* A dedicated panel owns the window viewport. The site masthead must not add
+   a second height budget above it, or the bottom of the reader is clipped. */
+html.console-panel-window body.research-page #main .panel-popout-target :is(.module-drag,.module-size,.inspector-height-handle){display:none!important}
+.console-panel-window body.research-page .detail-panel.panel-popout-target{display:flex!important;flex-direction:column}
 .console-panel-window body.research-page{height:100dvh;overflow:hidden;background:#020a11!important}
 .console-panel-window body.research-page::before,
 .console-panel-window body.research-page::after{display:none!important}
@@ -1222,9 +1225,6 @@ body.research-page .detail-panel .console-panel-heading #close-inspector{
 
 /* Popped-out panels keep their saved place but release their parent grid space. */
 html:not(.console-panel-window) body.research-page [data-console-panel-id].panel-popped-out{display:none!important}
-@media(min-width:1200px){
- html.console-inspector-popped-out body.research-page main{padding-right:24px!important}
-}
 
 /* Stable panel references remain readable alongside the section label. */
 .research-page .eyebrow .panel-id{display:inline-block;text-transform:none;letter-spacing:.03em}
@@ -1327,7 +1327,7 @@ html:not(.console-panel-window) body.research-page [data-console-panel-id].panel
    column sends status and filters outside the panel instead of below its title. */
 .console-module-grid>.console-overview>*{flex:0 0 auto;min-width:0;max-width:100%}
 .console-module-grid .console-overview>div:first-child{flex:none}
-.console-module-grid>.console-overview>.panel-heading{padding:0!important}
+.console-module-grid>.console-overview>.panel-heading{padding:0 0 20px!important}
 
 /* Inspection is a presentation overlay, never a second record owner. */
 .console-module-grid>.detail-panel{resize:vertical;overflow:auto!important;min-height:180px}
@@ -1345,8 +1345,11 @@ html:not(.console-panel-window) body.research-page [data-console-panel-id].panel
 html[data-theme] body.research-page .console-story-panel.console-module,
 html[data-theme] body.research-page .console-story-panel.console-module *,
 html[data-theme] body.research-page .console-story-panel.console-module::after{border-color:var(--story-border,#ffb15c)!important}
-html[data-theme=dark]{--story-border:color-mix(in srgb,#ffb15c 32%,var(--line));--story-surface:color-mix(in srgb,#ffb15c 3%,var(--surface))}
-html[data-theme=dark] body.research-page .console-story-panel.console-module{background:var(--story-surface)!important}
+/* A transparent amber wash preserves the wireframe and blur in both themes.
+   Do not mix with the root surface: some page skins define an opaque surface. */
+html[data-theme=dark]{--story-border:color-mix(in srgb,#ffb15c 32%,var(--line));--story-wash:rgba(255,177,92,.07);--story-glass:rgba(3,10,19,.40)}
+html[data-theme=light]{--story-wash:rgba(166,83,9,.045);--story-glass:rgba(255,255,255,.88)}
+html[data-theme] body.research-page .console-story-panel.console-module{background:linear-gradient(var(--story-wash),var(--story-wash)),var(--story-glass)!important}
 
 .research-page .console-module-grid>.detail-panel{display:flex!important;flex-direction:column;resize:none}
 .research-page .detail-panel>.panel-heading{flex:none}

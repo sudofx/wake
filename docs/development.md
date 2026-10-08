@@ -241,3 +241,9 @@ The shared daylight surface owner is `wake/assets/console-light.css`, despite it
 historical filename. It loads after dark page skins through export; cover main-page
 cards, help/evidence surfaces and nested reading pages when revising it. Match
 geometry across themes and retain signal meaning rather than merely recoloring text.
+
+A modular inspector reserves width at the workspace boundary only; legacy reader
+padding is scoped to nonmodular views. Verify the grid content edge as well as the
+outer workspace width when testing dock, pop-out and restore. Dedicated panel
+windows omit the site masthead and fit their reader inside the window frame;
+window resizing replaces in-page position and size controls.

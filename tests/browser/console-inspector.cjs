@@ -10,14 +10,25 @@ const base=process.argv[2];
  await page.goto(new URL('console.html',base).href);await page.waitForLoadState('networkidle');
  const main=page.locator('#main'),inspector=page.locator('[data-console-panel-id="014"]');const full=(await main.boundingBox()).width;assert.equal(full,await page.evaluate(()=>document.documentElement.clientWidth));
  await page.goto(new URL('console.html?record=project%3Ainspector-fixture',base).href);await page.locator('html.console-inspector-docked').waitFor();
- assert((await main.boundingBox()).width<full-200);assert.equal(await inspector.locator('.inspector-height-handle').count(),1);
+ assert((await main.boundingBox()).width<full-200);
+ // Measure usable content, not just the outer box: legacy padding once reserved
+ // the inspector twice while the outer-width check still passed.
+ const usable=await page.locator('#console-module-grid').evaluate(e=>{const m=e.closest('#main'),r=m.getBoundingClientRect(),g=e.getBoundingClientRect(),s=getComputedStyle(m);return {gap:r.right-g.right,padding:parseFloat(s.paddingRight)}});assert(usable.padding<=24);assert(usable.gap<=25);
+ const desktopGap=await page.locator('.console-overview .panel-heading').evaluate(e=>e.getBoundingClientRect().bottom-e.querySelector('.panel-actions').getBoundingClientRect().bottom);assert(desktopGap>=19);
+ assert.equal(await inspector.locator('.inspector-height-handle').count(),1);
  const rect=await inspector.boundingBox(),handle=await inspector.locator('.inspector-height-handle').boundingBox();await page.mouse.move(handle.x+handle.width/2,handle.y+handle.height/2);await page.mouse.down();await page.mouse.move(handle.x+handle.width/2,handle.y+handle.height/2-120,{steps:8});await page.mouse.up();assert((await inspector.boundingBox()).height<rect.height-50);
  const popupPromise=page.waitForEvent('popup');await inspector.locator('.panel-popout').click();const popup=await popupPromise;await popup.waitForLoadState('networkidle');
  await page.waitForFunction(()=>!document.documentElement.classList.contains('console-inspector-docked'));
- assert.equal((await main.boundingBox()).width,full);await popup.close();await page.locator('html.console-inspector-docked').waitFor();assert((await main.boundingBox()).width<full-200);
+ assert.equal((await main.boundingBox()).width,full);
+ const frame=await popup.locator('.panel-popout-target').boundingBox(),viewport=await popup.evaluate(()=>({width:innerWidth,height:innerHeight}));assert(frame.y>=19);assert(frame.y+frame.height<=viewport.height-19);assert(frame.x+frame.width<=viewport.width-19);
+ assert.equal(await popup.locator('.masthead').isVisible(),false);assert.equal(await popup.locator('.panel-popout-target .module-drag').isVisible(),false);
+ const closing=popup.waitForEvent('close');await popup.locator('.panel-popout-target .panel-popout').click();await closing;await page.locator('html.console-inspector-docked').waitFor();assert((await main.boundingBox()).width<full-200);
+ // Closing the native popup also returns its reserved space to the source.
+ const secondPromise=page.waitForEvent('popup');await inspector.locator('.panel-popout').click();const second=await secondPromise;await second.waitForLoadState('networkidle');await page.waitForFunction(()=>!document.documentElement.classList.contains('console-inspector-docked'));await second.close();await page.locator('html.console-inspector-docked').waitFor();
  await page.locator('#close-inspector').click();await page.waitForFunction(()=>!document.documentElement.classList.contains('console-inspector-docked'));
  assert.equal(await page.locator('.map-key').evaluate(e=>Boolean(e.closest('.panel-actions'))),true);
- const borders=await page.locator('.console-story-panel').evaluateAll(nodes=>nodes.map(e=>getComputedStyle(e).borderTopColor));assert.equal(borders.length,7);assert(borders.every(c=>c==='rgb(255, 177, 92)'));
+ const borders=await page.locator('.console-story-panel').evaluateAll(nodes=>nodes.map(e=>getComputedStyle(e).borderTopColor));assert.equal(borders.length,7);
+ const washes=await page.locator('.console-story-panel').evaluateAll(nodes=>nodes.map(e=>getComputedStyle(e).backgroundImage));assert(washes.every(c=>c.includes('166, 83, 9')));assert(borders.every(c=>c==='rgb(255, 177, 92)'));
  const cube=page.locator('#matrix-cube');await cube.scrollIntoViewIfNeeded();const zoom=await cube.getAttribute('data-zoom');await cube.hover();await page.mouse.wheel(0,-150);assert.equal(await cube.getAttribute('data-zoom'),zoom);
  await page.setViewportSize({width:390,height:844});await page.waitForTimeout(300);await page.locator('.map-node').first().scrollIntoViewIfNeeded();await page.locator('.map-node').first().click();await page.locator('html.console-inspector-docked').waitFor();
  const sheet=await inspector.boundingBox(),origin=await page.locator('.map-node').first().boundingBox();assert(sheet.y>400);assert(origin.y+origin.height<=sheet.y);

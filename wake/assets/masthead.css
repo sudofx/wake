@@ -5,8 +5,8 @@
  grid-template-columns:minmax(180px,1fr) auto minmax(180px,1fr);
  align-items:center;gap:16px;width:100%;max-width:none;
  margin:0;padding:12px 24px;border:0;border-bottom:1px solid var(--line,#33406e);
- border-radius:0;background:var(--surface,#081127);color:var(--ink,#edf3ff);
- backdrop-filter:blur(16px);transform:translateY(0);transition:transform .18s ease;
+ border-radius:0;background:color-mix(in srgb,var(--surface,#081127) 52%,transparent);color:var(--ink,#edf3ff);
+ -webkit-backdrop-filter:blur(24px) saturate(120%);backdrop-filter:blur(24px) saturate(120%);transform:translateY(0);transition:transform .18s ease;
  font-family:Arial,Helvetica,sans-serif;line-height:1.25;letter-spacing:normal;
 }
 .masthead *{box-sizing:border-box}
@@ -68,3 +68,7 @@ body>.skip,body>.skip-link{position:fixed!important;left:12px;top:-100px;z-index
 body>.skip:focus,body>.skip-link:focus{top:12px}
 .masthead{font-size:16px}
 .masthead .compact-nav{order:0;flex-basis:auto}
+
+/* Dedicated panel windows own their viewport; global navigation belongs to
+   the source Console. Reserve no masthead height above the panel reader. */
+.console-panel-window .masthead{display:none!important}
