@@ -2316,14 +2316,15 @@ class Engine:
             try:
                 requests = validate_research_plan(raw, request["context"], self.store.load())
             except (Rejected, ValueError) as exc:
-                self.store.append("failed", {"id": invocation, "reason": str(exc)[:1000],
-                    "raw": str(raw)[:16000], **self._request_count(provider)})
+                self.store.append("rejected", {"id": invocation, "reason": str(exc)[:1000],
+                    "phase": "planning", "raw_response": str(raw)[:16000], "metadata": metadata,
+                    **self._request_count(provider)})
                 if lifecycle is not None:
                     lifecycle.governed(plan_id, None, "rejected")
                     lifecycle.complete(proposal_id=plan_id, detail="invalid-research-plan")
                 if checkpoint:
                     checkpoint()
-                return {"status": "failed", "id": invocation, "reason": str(exc)}
+                return {"status": "rejected", "id": invocation, "phase": "planning", "reason": str(exc)}
             self.store.append("research_planned", {"id": invocation, "requests": requests,
                 "raw": raw, "metadata": metadata, "reason": "Validated retrieval plan; no research transition committed",
                 **self._request_count(provider)})

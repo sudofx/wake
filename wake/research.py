@@ -1122,7 +1122,10 @@ title, summary or actions. Do not imitate the response format of earlier wakes.
 Plan immediate research, not a durable proposal. Return only the requests JSON.
 Choose up to two concrete questions needed for current work, using configured
 topic domains and respecting Attention's selected topic. project is an existing
-active project ID, or empty for a new question. url is an exact HTTPS source you
+active project ID in that same domain, or empty for a new question. Never choose
+a completed or parked project, or a project from another topic. If no active
+project exists in the chosen domain, use an empty project; research may inform
+the final proposal without reopening an old project. url is an exact HTTPS source you
 already know, or empty to search scholarly indexes; never invent URLs or paper
 identifiers. Prefer readable institutional, journal, preprint or repository sources.
 The trusted collector will retrieve sources now and a fresh inference will answer
@@ -1137,11 +1140,17 @@ def research_plan_schema(context):
     attention = context.get('attention', {})
     if attention.get('enforce_selected_topic'):
         domains = [attention['selected_topic']]
+    projects = [item for item in context.get('projects', []) if item.get('status') == 'active' and item.get('domain') in domains]
+    pairs = [{'type': 'object', 'properties': {
+        'domain': {'type': 'string', 'enum': [domain]},
+        'project': {'type': 'string', 'enum': [''] + [item['id'] for item in projects if item['domain'] == domain]}},
+        'required': ['domain', 'project']} for domain in domains]
     return {'type': 'object', 'properties': {'requests': {'type': 'array', 'maxItems': 2,
         'items': {'type': 'object', 'properties': {
             'query': {'type': 'string', 'minLength': 1, 'maxLength': 1000},
             'domain': {'type': 'string', 'enum': domains},
-            'project': {'type': 'string', 'enum': [''] + [item['id'] for item in context.get('projects', []) if item.get('status') == 'active' and item.get('domain') in domains]}, 'url': {'type': 'string', 'maxLength': 2000}},
+            'project': {'type': 'string', 'enum': [''] + [item['id'] for item in projects]}, 'url': {'type': 'string', 'maxLength': 2000}},
+            'anyOf': pairs,
             'required': ['query', 'domain', 'project', 'url'], 'additionalProperties': False}}},
         'required': ['requests'], 'additionalProperties': False}
 
@@ -1166,7 +1175,9 @@ def validate_research_plan(raw, context, state):
         require(isinstance(item['project'], str) and isinstance(item['url'], str), 'Research project and URL must be text')
         if item['project']:
             project = state.get('projects', {}).get(item['project'])
-            require(project and project['status'] == 'active' and project['domain'] == item['domain'],
+            visible = any(p.get('id') == item['project'] and p.get('status') == 'active'
+                          and p.get('domain') == item['domain'] for p in context.get('projects', []))
+            require(visible and project and project['status'] == 'active' and project['domain'] == item['domain'],
                     'Research planning requires an active project in the selected domain')
         if item['url']:
             allowed_url(item['url'], topics[item['domain']].get('repository', 'sudofx/wake'))

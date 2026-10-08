@@ -107,3 +107,5 @@ Console narrates the selected topic, supplied context, observed provider attempt
 ### Immediate research phase
 
 The operator enabled same-wake planning → bounded collection → final proposal. This introduces an additional inference, and the plan/answer phases have separate durable IDs and quota receipts. `research_planned` is not an accepted cycle; only normal proposal acceptance advances the research version. Broader host access is also a new collection condition. Comparisons against older runs must account for both changes instead of attributing differences solely to memory compression. The continuity sidecar remains only in the final proposal request.
+
+Invalid planning output is recorded as a rejection rather than a runtime failure. It consumes only the planning call, adds no accepted progress, and performs neither retrieval nor final inference. Scheduled continuation remains eligible; analysis should distinguish these planning rejections from final proposal rejections and infrastructure failures using the invocation phase and receipts.

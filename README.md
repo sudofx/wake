@@ -258,6 +258,8 @@ With `same_wake_research = true`, one wake uses a planning inference, bounded im
 
 An operator can ask directly with `python -m wake --data /data wake --provider gemini --question "What does the evidence show about this question?"`. Questions still follow the configured research topic and Attention policy. The writer lock prevents a concurrent CLI call from competing with the running scheduler. Setting `same_wake_research = false` restores ordinary scheduled precollection and one proposal inference; an explicit `--question` still requests immediate research.
 
+Planning constrains each project to its own topic and to active IDs delivered in context. A topic without an active project can use an empty project ID. Invalid plans are auditable `rejected` outcomes: they perform no retrieval or final inference, advance no research cycle, and permit normal scheduled continuation. Provider and infrastructure failures retain their existing failure handling.
+
 The collector now permits 98 anchored host families in addition to 55 explicit hosts: university/public-agency domains across countries and many scholarly publishers, preprints, institutional repositories and datasets. This substantially expands retrieval beyond the original short list. HTTPS, redirect validation, public-address checks and pinned direct connections, byte/parse/time limits and scientific-source qualification remain enforced. Access permission is not evidence of truth; discovery and metadata remain distinct from readable source material.
 
 

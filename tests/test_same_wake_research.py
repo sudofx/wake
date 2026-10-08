@@ -78,10 +78,55 @@ class SameWakeTests(unittest.TestCase):
         provider = ImmediateProvider(bad=True)
         with patch('wake.research.collect_planned') as collector:
             result = self.engine.run(provider, collector=lambda e: None)
-        self.assertEqual(result['status'], 'failed')
+        self.assertEqual(result['status'], 'rejected')
         collector.assert_not_called()
         self.assertEqual(self.store.load()['version'], 0)
         self.assertIsNone(self.store.load()['pending'])
+        invocation = self.store.load()['invocations'][result['id']]
+        self.assertEqual(invocation['status'], 'rejected')
+        self.assertEqual(invocation['provider_requests_sent'], 1)
+        self.assertEqual(len(provider.requests), 1)
+        stages = [event['stage'] for event in self.store.invocation_history(result['id'])]
+        self.assertIn('completed', stages)
+        receipt = next(e['payload'] for e in reversed(self.store.events()) if e['kind'] == 'rejected')
+        self.assertEqual(receipt['phase'], 'planning')
+        self.assertIn('127.0.0.1', receipt['raw_response'])
+        from scripts.github_wake import requires_operator_attention, continuation_outputs
+        self.assertFalse(requires_operator_attention(result))
+        with patch('scripts.github_wake.set_step_output') as output:
+            continuation_outputs(result)
+        self.assertIn(unittest.mock.call('continue_now', 'true'), output.call_args_list)
+        with patch('wake.research.collect_planned', self.collect):
+            resumed = self.engine.run(ImmediateProvider(), collector=lambda e: None)
+        self.assertEqual(resumed['status'], 'accepted', resumed)
+
+    def test_topic_without_active_project_accepts_unattached_research(self):
+        context = self.engine.context(self.store.load(), 'receipt')
+        context['projects'] = [{'id':'old', 'domain':'entropy', 'status':'completed'},
+                               {'id':'elsewhere', 'domain':'other', 'status':'active'}]
+        state = self.store.load()
+        state['projects'] = {p['id']: p for p in context['projects']}
+        request = dict(query='entropy', domain='entropy', project='', url='')
+        self.assertEqual(validate_research_plan(json.dumps({'requests':[request]}), context, state), [request])
+        for project_id in ('old', 'elsewhere'):
+            with self.subTest(project=project_id), self.assertRaisesRegex(Exception, 'active project'):
+                validate_research_plan(json.dumps({'requests':[{**request, 'project':project_id}]}), context, state)
+        pairs = research_plan_schema(context)['properties']['requests']['items']['anyOf']
+        entropy = next(p for p in pairs if p['properties']['domain']['enum'] == ['entropy'])
+        self.assertEqual(entropy['properties']['project']['enum'], [''])
+
+    def test_plan_project_must_be_delivered_and_active_in_matching_topic(self):
+        context = self.engine.context(self.store.load(), 'receipt')
+        context['projects'] = [{'id':'shown', 'domain':'entropy', 'status':'active'}]
+        state = self.store.load()
+        state['projects'] = {'shown':context['projects'][0], 'hidden':{'id':'hidden', 'domain':'entropy', 'status':'active'}}
+        request = dict(query='entropy', domain='entropy', project='shown', url='')
+        self.assertEqual(validate_research_plan(json.dumps({'requests':[request]}), context, state), [request])
+        with self.assertRaisesRegex(Exception, 'active project'):
+            validate_research_plan(json.dumps({'requests':[{**request, 'project':'hidden'}]}), context, state)
+        state['projects']['shown'] = {**state['projects']['shown'], 'status':'parked'}
+        with self.assertRaisesRegex(Exception, 'active project'):
+            validate_research_plan(json.dumps({'requests':[request]}), context, state)
     def test_final_failure_preserves_collected_receipts_without_fabricated_answer(self):
         provider = ImmediateProvider(fail_final=True)
         with patch('wake.research.collect_planned', self.collect):
