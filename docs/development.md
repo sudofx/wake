@@ -29,6 +29,7 @@ IP address, and an image tag can change; none identifies a record by itself.
 | GitHub Pages | Generated shell from `master` | None; reads public views | Pages artifact, independent of research promotion |
 | Standard Docker | Image package under `/app` | Selected volume at `/data/wake.sqlite` | Atomic temporary website generations |
 | VS Code overlay | Bind-mounted `/workspace` because it sets working directory there | Same selected `/data` volume | Local export, never hosted fallback |
+| Codespaces / Dev Container | Mounted workspace source | Checkout `data/devcontainer/record/wake.sqlite` | Paused same-origin preview, private forwarded port |
 | CLI / offline fixtures | Imported package in the invoking environment | Explicit `--data` directory | Exported directory |
 | Public preview helper | Local assets, public GitHub projections | None | Deliberate mirror of hosted data |
 
@@ -235,3 +236,8 @@ and a subtle tint; their layout and durable data remain unchanged.
 Private collaboration structure and artifact completion rules are in
 [the workbench guide](workbench.md). That guide deliberately describes structure,
 not the contents of any installation's private notes.
+
+The shared daylight surface owner is `wake/assets/console-light.css`, despite its
+historical filename. It loads after dark page skins through export; cover main-page
+cards, help/evidence surfaces and nested reading pages when revising it. Match
+geometry across themes and retain signal meaning rather than merely recoloring text.

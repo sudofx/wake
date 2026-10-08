@@ -287,8 +287,24 @@ retain records separately before deletion when they matter. No lifecycle imports
 hosted checkpoints or pushes/restarts hosted research. Authentication, billing,
 Codespaces creation and the forwarded-domain access remain GitHub responsibilities.
 
+If your development network requires a build proxy, supply the usual `HTTP_PROXY`
+and `HTTPS_PROXY` environment variables when invoking the Dev Containers tool.
+The configuration forwards them as build arguments; it contains no machine-specific
+proxy address. The runtime preview does not depend on that build transport.
+
 For local configuration acceptance, run the Dev Containers CLI `up` against this
 checkout, then verify `/runtime.json` reports paused, the exported installation
 identity is standalone, the source import points into the mounted checkout, and
 stop/start preserves the exact record head. This proves the container and lifecycle;
 a cloud Codespaces launch additionally verifies GitHub's workspace and forwarding.
+
+After `up`, the repository's lifecycle acceptance check runs in that same container:
+
+```sh
+npx @devcontainers/cli exec --workspace-folder . python scripts/test_dev_preview.py
+```
+
+It checks source identity, repeated launch, PID reuse protection, paused readiness,
+port collisions, a changed port, exact record preservation and zero provider
+invocations. It leaves the paused preview ready; stop it or close the development
+container after verification, retaining the workspace data.

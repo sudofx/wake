@@ -89,3 +89,44 @@ html[data-theme=light] body:not(.research-page) :is(.panel,.topic-hub,.discovery
 html[data-theme=light] body:not(.research-page) :is(.metric strong,.small,.exact,.relationship small,.page-heading,.about-intro,.intro,.record-type,.tiny-label,.field-head,.kind){color:var(--ink)!important;text-shadow:none!important}
 html[data-theme=light] body:not(.research-page) :is(.badge,.topic-tag){color:var(--cyan)!important;background:var(--surface-raised)!important;border-color:var(--line)!important}
 html[data-theme=light] body:not(.research-page) input::placeholder{color:var(--muted)!important}
+
+/* The main-page composition uses fixed dark artwork and glass in theme.css.
+   Its daylight counterpart changes color/surface only; shared geometry remains
+   there. Keep this after theme.css on every exported page, including nested views. */
+html[data-theme=light]{background:var(--paper)!important}
+html[data-theme=light] body:not(.research-page)::before,
+html[data-theme=light] body:not(.research-page)::after{display:none!important}
+html[data-theme=light] body:not(.research-page) #home{background:transparent!important;box-shadow:none!important}
+html[data-theme=light] .nebula-home-hero::before{background:radial-gradient(ellipse at 65% 30%,#e6e8fa,transparent 60%)!important}
+html[data-theme=light] .nebula-hero-copy h1 span{background:linear-gradient(90deg,#2160b5,#7050a6)!important;background-clip:text!important;-webkit-background-clip:text!important;color:transparent!important}
+html[data-theme=light] :is(.nebula-pillars article,.nebula-explore-card,.nebula-home-card,.nebula-topic-panel,.home-latest-card,.home-research-heading-panel){background:var(--surface)!important;border-color:var(--line)!important;box-shadow:0 8px 24px #2843650b!important}
+html[data-theme=light] .nebula-explore::before{background:var(--surface-raised)!important;border-color:var(--line)!important}
+html[data-theme=light] :is(.nebula-explore-copy,.nebula-home-card>header){background:var(--surface)!important;border-color:var(--line)!important}
+html[data-theme=light] :is(.nebula-secondary,.nebula-explore-tags a,.nebula-explore-tags span){background:var(--surface-raised)!important;color:var(--cyan)!important;border-color:var(--line)!important;box-shadow:none!important}
+html[data-theme=light] .primary-link{background:var(--cyan)!important;color:#fff!important;border-color:var(--cyan)!important;box-shadow:none!important}
+html[data-theme=light] :is(.nebula-record,.nebula-govern,.nebula-explore-glyph){text-shadow:none!important}
+html[data-theme=light] .nebula-record{color:var(--purple)!important}
+html[data-theme=light] .nebula-govern{color:var(--danger)!important}
+html[data-theme=light] .nebula-explore-glyph{color:var(--orange)!important}
+html[data-theme=light] body:not(.research-page) :is(.nebula-hero-copy>p,.nebula-pillars p,.nebula-explore-copy p,.nebula-research-row small,.nebula-research-row>b,.nebula-system-stats small,.nebula-status-stats small,.home-research-heading-panel p){color:var(--muted)!important}
+html[data-theme=light] body:not(.research-page) :is(.nebula-explore-heading h2,.home-research-heading-panel h2,.nebula-research-row strong,.nebula-system-stats b,.nebula-status-stats b){color:var(--ink)!important}
+html[data-theme=light] body:not(.research-page) :is(.nebula-research-row,.nebula-topic-row){border-color:var(--line)!important}
+html[data-theme=light] body:not(.research-page) :is(.help-trigger,.help-panel,.help-close,#evidence-content .evidence-card){background:var(--surface)!important;color:var(--ink)!important;border-color:var(--line)!important;box-shadow:0 8px 24px #2843650b!important}
+html[data-theme=light] #evidence-content .evidence-card :is(h3,p,dd,.source){color:var(--ink)!important}
+html[data-theme=light] body:not(.research-page) a:hover{text-shadow:none!important}
+html[data-theme=light] body:not(.research-page) main a.primary-link,
+html[data-theme=light] body:not(.research-page) main a.primary-link span{color:#fff!important}
+html[data-theme=light] :is(.home-latest-meta>span,footer a){color:var(--cyan)!important;text-shadow:none!important}
+html[data-theme=light] :is(.home-latest-stats b,footer .footer-mark){color:var(--ink)!important}
+html[data-theme=light] :is(.home-latest-meta time,.home-latest-stats small,footer>span){color:var(--muted)!important}
+html[data-theme=light] .home-latest-stats{border-color:var(--line)!important}
+html[data-theme=light] body:not(.research-page) .nebula-explore-card .nebula-explore-tags a{background:var(--surface-raised)!important;color:var(--cyan)!important;border-color:var(--line)!important}
+html[data-theme=light] footer strong{color:var(--ink)!important}
+html[data-theme=light] body:not(.research-page) main :is(.decision,.research-note,.blog-receipts){background:var(--surface-raised)!important;color:var(--ink)!important;border-color:var(--line)!important;box-shadow:none!important}
+html[data-theme=light] body:not(.research-page) main :is(strong,b,small,time,dt,dd){color:var(--ink)!important;text-shadow:none!important}
+html[data-theme=light] .note-stamp{color:var(--muted)!important;border-color:var(--line)!important}
+html[data-theme=light] body:not(.research-page) :is(.about-intro,.about-principles,.about-principles article,.about-body,.about-body section){background:var(--surface)!important;border-color:var(--line)!important;box-shadow:none!important}
+html[data-theme=light] .help-panel :is(h2,h3,p){color:var(--ink)!important;text-shadow:none!important}
+html[data-theme=light] #about :is(.about-intro,.about-principles article,.about-body>section,.about-contract){background:var(--surface)!important;border-color:var(--line)!important;box-shadow:0 8px 24px #2843650b!important}
+html[data-theme=light] #help-panel #help-title{color:var(--ink)!important;text-shadow:none!important}
+html[data-theme=light] #about .about-principles span{color:var(--cyan)!important}

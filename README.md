@@ -102,6 +102,9 @@ uses a GitHub token, dispatches Actions, or publishes Pages. The hosted installa
 continues independently. `docker compose down` removes the container while preserving
 its record; `docker compose up -d` reuses and audits that record before continuing.
 
+For an isolated paused editor preview, use the committed
+[Codespaces / Dev Containers setup](docs/standalone.md#codespaces-and-dev-containers).
+
 See [standalone operation](docs/standalone.md) for runtime secrets, backups, operator
 commands, and portable amd64/arm64 OCI builds.
 

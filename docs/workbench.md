@@ -27,6 +27,10 @@ steps. Keep blocked or unfinished tasks pending. On completion, rename the task 
 so the completed task remains readable. Preserve the original instructions and
 artifacts; do not claim completion from an intended change or workflow launch.
 
+After completing a task, inspect pending tasks for newly added work. Continue only
+within the current authorization and any explicit stop or review boundary. An older
+blocked release does not become authorized merely because another task finished.
+
 A workbench has no committed history. Retain evidence needed by unfinished work and
 write concise continuation notes. Other agents and machines must be able to build,
 verify and operate the project without this directory. Durable development guidance
