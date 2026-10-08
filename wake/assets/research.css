@@ -1264,10 +1264,10 @@ html:not(.console-panel-window) body.research-page [data-console-panel-id].panel
 .research-page #close-data-inspector{position:relative;z-index:2}
 
 /* Overview owns status and filtering; the process field starts the next row. */
-.research-page .console-overview{flex-wrap:wrap;align-items:flex-start}
+.research-page .console-overview{flex-wrap:nowrap;align-items:stretch;justify-content:flex-start}
 .research-page .console-overview>div:first-child{flex:1;min-width:0}
 .research-page .console-overview>.status-band,
-.research-page .console-overview>.workspace-toolbar{flex:0 0 100%;width:100%;margin:0!important}
+.research-page .console-overview>.workspace-toolbar{flex:0 0 auto;width:100%;margin:0!important}
 .research-page .console-overview>.status-band{border:0;border-top:1px solid var(--line);border-radius:0!important}
 .research-page .wake-story>.wake-tabs .close-wake,
 .research-page #wake-detail.floating .inspector-tabs .close-wake{display:inline-flex!important;float:none;align-items:center;justify-content:center}
@@ -1319,10 +1319,12 @@ html:not(.console-panel-window) body.research-page [data-console-panel-id].panel
 .console-module-grid > .console-module.module-collapsed{align-self:start!important}
 
 /* The overview and inspector use the same under-title controls in every view. */
-.research-page .overview-actions{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-start;margin:10px 0}
 .research-page .detail-panel .console-panel-heading #close-inspector{position:static!important;display:inline-flex}
 
 .console-module-grid>.detail-panel{display:block;position:relative!important;inset:auto!important;width:auto!important;max-height:none!important;grid-row:auto!important}
 .console-module-grid>.console-overview{display:flex!important;flex-direction:column;align-items:stretch;min-width:0}
+/* In a column, a percentage flex basis is height, not width. Wrapping that
+   column sends status and filters outside the panel instead of below its title. */
+.console-module-grid>.console-overview>*{flex:0 0 auto;min-width:0;max-width:100%}
 .console-module-grid .console-overview>div:first-child{flex:none}
 .console-module-grid>.console-overview>.panel-heading{padding:0!important}

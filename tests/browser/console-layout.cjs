@@ -21,6 +21,7 @@ const base=process.argv[2];
    await page.setViewportSize(screen);
    await page.waitForTimeout(100);
    assert.equal(await page.locator('[data-console-panel-id="001"]').evaluate(e=>e.getBoundingClientRect().width),await page.locator('#console-module-grid').evaluate(e=>e.getBoundingClientRect().width));
+   assert(await page.locator('.console-overview').evaluate(e=>{const outer=e.getBoundingClientRect();return [...e.children].every(child=>{const r=child.getBoundingClientRect();return r.left>=outer.left&&r.right<=outer.right+1})&&e.querySelector('.status-band').getBoundingClientRect().top>=e.querySelector('.panel-heading').getBoundingClientRect().bottom}));
    const misplaced=await page.locator('.console-panel-heading').evaluateAll(headings=>headings.filter(e=>{const title=e.querySelector('h1,h2,h3').getBoundingClientRect(),actions=e.querySelector('.panel-actions').getBoundingClientRect();return actions.top<title.bottom-1||Math.abs(actions.left-title.left)>2}).map(e=>e.innerText));assert.deepEqual(misplaced,[]);
   }
   let stage='context';
