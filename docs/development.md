@@ -205,7 +205,10 @@ A populated Console inspector docks only while it remains in the main workspace.
 Its pop-out handshake releases the desktop width reservation; closing the pop-out
 restores it. Unpopulated inspectors remain ordinary grid modules. Desktop height
 resizing is presentation state only. Phones use a lower sheet, and selecting a
-record scrolls the invoking control into the unobstructed upper area.
+record scrolls the invoking control into the unobstructed upper area. Test the sheet
+with a mobile browser context and hit testing, not only resized desktop geometry.
+The page uses horizontal clipping without creating a body scroll container, so
+viewport-sticky navigation can return when scrolling upward.
 
 The seven story sections (#012–#018) share amber borders. Category controls for
 #013 belong in its heading action row. Cube rotation is interactive; zoom is not.

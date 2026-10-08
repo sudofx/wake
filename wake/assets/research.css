@@ -541,18 +541,20 @@ html.console-tool-window #console-tool-frame{
   }
 }
 
+/* Use clip rather than hidden: hidden silently makes the body a vertical
+   scroll container and breaks viewport-sticky navigation on mobile browsers. */
 /* TABLET + MOBILE CONSOLE VIEWPORT LOCK — contain the normal Console through iPad Air landscape. */
 @media(max-width:1180px){
   html:not(.console-detached):not(.console-tool-window){
     width:100%!important;
     max-width:100%!important;
-    overflow-x:hidden!important;
+    overflow-x:clip!important;
   }
   html:not(.console-detached):not(.console-tool-window) body.research-page{
     width:100%!important;
     max-width:100vw!important;
     min-width:0!important;
-    overflow-x:hidden!important;
+    overflow-x:clip!important;
     overscroll-behavior-x:none;
   }
   html:not(.console-detached):not(.console-tool-window) .research-page main{
@@ -582,13 +584,13 @@ html.console-tool-window #console-tool-frame{
   html:not(.console-detached):not(.console-tool-window){
     width:100%!important;
     max-width:100%!important;
-    overflow-x:hidden!important;
+    overflow-x:clip!important;
   }
   html:not(.console-detached):not(.console-tool-window) body.research-page{
     width:100%!important;
     max-width:100vw!important;
     min-width:0!important;
-    overflow-x:hidden!important;
+    overflow-x:clip!important;
     overscroll-behavior-x:none;
   }
 
@@ -1329,16 +1331,17 @@ html:not(.console-panel-window) body.research-page [data-console-panel-id].panel
 .console-module-grid .console-overview>div:first-child{flex:none}
 .console-module-grid>.console-overview>.panel-heading{padding:0 0 20px!important}
 
-/* Inspection is a presentation overlay, never a second record owner. */
+/* Inspection is a presentation overlay, never a second record owner. Docked
+   height and stacking must override the legacy important grid/reader defaults. */
 .console-module-grid>.detail-panel{resize:vertical;overflow:auto!important;min-height:180px}
 .research-page .map-panel .panel-actions .map-key{margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
 .research-page .map-panel .panel-actions{align-items:center}
 @media(min-width:768px){
   html.console-inspector-docked:not(.console-panel-window) .research-page #main{width:calc(100% - 380px)!important;margin-left:0;margin-right:380px}
-  html.console-inspector-docked:not(.console-panel-window) .research-page .detail-panel{position:fixed!important;inset:110px 20px auto auto!important;width:340px!important;height:calc(100dvh - 130px);max-height:calc(100dvh - 130px)!important;z-index:50;margin:0!important}
+  html.console-inspector-docked:not(.console-panel-window) .research-page .detail-panel{position:fixed!important;inset:110px 20px auto auto!important;width:340px!important;height:calc(100dvh - 130px)!important;max-height:calc(100dvh - 130px)!important;z-index:50!important;margin:0!important}
 }
 @media(max-width:767px){
-  html.console-inspector-docked:not(.console-panel-window) .research-page .detail-panel{position:fixed!important;inset:auto 8px 8px!important;width:auto!important;height:46dvh;max-height:46dvh;z-index:50;margin:0!important;box-shadow:0 -12px 40px #0006}
+  html.console-inspector-docked:not(.console-panel-window) .research-page .detail-panel{position:fixed!important;inset:auto 8px 8px!important;width:auto!important;height:46dvh!important;max-height:46dvh!important;z-index:50!important;margin:0!important;box-shadow:0 -12px 40px #0006}
   .research-page .console-overview>.console-panel-heading{padding-bottom:20px!important}
 }
 /* The seven numbered story sections share a visible group boundary. */

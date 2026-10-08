@@ -34,6 +34,14 @@ const base=process.argv[2];
  const sheet=await inspector.boundingBox(),origin=await page.locator('.map-node').first().boundingBox();assert(sheet.y>400);assert(origin.y+origin.height<=sheet.y);
  const gap=await page.locator('.console-overview .panel-heading').evaluate(e=>e.getBoundingClientRect().bottom-e.querySelector('.panel-actions').getBoundingClientRect().bottom);assert(gap>=19);
  await context.close();
+ // Real mobile viewport semantics and iPhone controls need their own context;
+ // resizing a desktop context misses sticky overflow and inspector precedence.
+ const phone=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,userAgent:'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Version/18.0 Mobile Safari/604.1'}),mobile=await phone.newPage();
+ await phone.route('**/research-data.json',r=>r.fulfill({json:source}));
+ await mobile.goto(new URL('console.html?record=project%3Ainspector-fixture',base).href);await mobile.locator('html.console-inspector-docked').waitFor();
+ const visibleSheet=await mobile.locator('.detail-panel').evaluate(e=>{const r=e.getBoundingClientRect();return {height:r.height,top:r.top,visible:e.contains(document.elementFromPoint(r.left+30,r.top+40))}});assert(visibleSheet.height<=844*.47);assert(visibleSheet.top>400);assert(visibleSheet.visible);
+ await mobile.evaluate(()=>window.scrollTo({top:1100,behavior:'instant'}));await mobile.locator('.masthead-scroll-hidden').waitFor();await mobile.evaluate(()=>window.scrollTo({top:1000,behavior:'instant'}));await mobile.waitForFunction(()=>!document.querySelector('.masthead').classList.contains('masthead-scroll-hidden'));await mobile.waitForTimeout(220);assert.equal((await mobile.locator('.masthead').boundingBox()).y,0);
+ assert(await mobile.locator('.masthead').evaluate(e=>e.contains(document.elementFromPoint(30,20))));await phone.close();
  const light=await browser.newContext({colorScheme:'light'}),reading=await light.newPage();
  for(const path of ['index.html','map.html','map3d.html','state.html','events.html','rejected.html']){await reading.goto(new URL(path,base).href);await reading.waitForLoadState('networkidle');assert.equal(await reading.locator('html').getAttribute('data-theme'),'light');const dark=await reading.locator('.panel,.topic-hub,.discovery-card,.home-lead-story,.motion-pulse,.motion-numbers,.metric-strip,.about-contract').evaluateAll(nodes=>nodes.filter(e=>getComputedStyle(e).backgroundImage!=='none').map(e=>e.className));assert.deepEqual(dark,[],path);}
  await light.close();console.log('PASS: inspector dock/resize/pop-out/restore, mobile origin visibility, category row, seven amber sections, fixed cube scale and light reading surfaces.');
