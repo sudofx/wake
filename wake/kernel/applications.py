@@ -13,9 +13,11 @@ external-effect capabilities. ApplicationHost turns an intent into one generic
 apply_application operation; Kernel governance independently recomputes the
 declared transition before the event may be accepted.
 
-Accepted events store the verified resulting JSON state. Replay therefore does
-not need installed application code and historical generic record integrity does
-not depend on a plugin loader or a specific application still being present.
+Snapshot applications store verified resulting JSON state, which generic replay
+can reconstruct without installed application code. Event-log applications store
+inputs and result digests: generic replay preserves those envelopes, while domain
+reconstruction requires the matching versioned evaluator. Both modes keep history
+verification in the kernel; a missing application must never become guessed state.
 """
 
 from __future__ import annotations
