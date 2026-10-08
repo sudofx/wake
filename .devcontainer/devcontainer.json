@@ -1,0 +1,25 @@
+{
+  "name": "WAKE standalone development",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": "..",
+    "target": "vscode",
+    "args": {
+      "HTTP_PROXY": "${localEnv:HTTP_PROXY}",
+      "HTTPS_PROXY": "${localEnv:HTTPS_PROXY}"
+    }
+  },
+  "remoteUser": "wake",
+  "overrideCommand": true,
+  "shutdownAction": "stopContainer",
+  "forwardPorts": [
+    8080
+  ],
+  "portsAttributes": {
+    "8080": {
+      "label": "WAKE paused development preview",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "postStartCommand": "python scripts/dev_preview.py start"
+}

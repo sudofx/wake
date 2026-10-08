@@ -257,3 +257,38 @@ Use an updated installed image to get the activity endpoint. Updating assets alo
 cannot add runtime telemetry to a running Python process. Container acceptance now
 runs the installed package outside `/app`, so checkout-only asset availability
 cannot hide wheel omissions.
+
+## Codespaces and Dev Containers
+
+The committed `.devcontainer/devcontainer.json` builds the optional `vscode`
+target of the same Dockerfile. Use **Code → Codespaces → Create codespace** on
+the reviewed branch, or **Dev Containers: Reopen in Container** locally. The
+lifecycle starts a paused preview on port 8080 and opens the forwarded port.
+Keep Codespaces port visibility private; forwarded URLs are managed by GitHub,
+not by WAKE. See [GitHub's port-forwarding guidance](https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace).
+
+This is a new independent development installation. Source is imported from the
+mounted checkout. Its record is `data/devcontainer/record/wake.sqlite`, not the
+image's `/data`, a local operator volume, or `wake-state`. Its generated pages
+read same-origin data. The lifecycle uses the fixture provider and explicitly
+pauses research, even if provider credentials exist in Codespaces. Opening or
+rebuilding the editor does not run paid or unattended research.
+
+`scripts/dev_preview.py start` is idempotent: it recognizes its process by command,
+working directory and Linux process start-time. `python scripts/dev_preview.py stop`
+drains only that preview and retains the record. Stop and start after Python
+changes to import the updated source and regenerate pages. A custom local port
+can be selected with `start --port PORT`; update the forwarded port correspondingly.
+An occupied port is an error, not evidence that WAKE launched.
+
+The ignored `data/` directory survives an editor-container rebuild with the same
+workspace. Deleting a Codespace deletes that workspace's local data; export and
+retain records separately before deletion when they matter. No lifecycle imports
+hosted checkpoints or pushes/restarts hosted research. Authentication, billing,
+Codespaces creation and the forwarded-domain access remain GitHub responsibilities.
+
+For local configuration acceptance, run the Dev Containers CLI `up` against this
+checkout, then verify `/runtime.json` reports paused, the exported installation
+identity is standalone, the source import points into the mounted checkout, and
+stop/start preserves the exact record head. This proves the container and lifecycle;
+a cloud Codespaces launch additionally verifies GitHub's workspace and forwarding.
