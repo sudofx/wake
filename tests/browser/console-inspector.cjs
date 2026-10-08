@@ -3,12 +3,12 @@
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright'),assert=require('node:assert/strict');
 const base=process.argv[2];
 (async()=>{const browser=await chromium.launch({headless:true,...(process.env.CHROME_EXECUTABLE?{executablePath:process.env.CHROME_EXECUTABLE}:{})});try{
- const context=await browser.newContext({viewport:{width:1440,height:1000}}),page=await context.newPage();
+ const context=await browser.newContext({viewport:{width:1440,height:1000},colorScheme:'light'}),page=await context.newPage();
  const source=await context.request.get(new URL('research-data.json',base).href).then(r=>r.json());
  source.graph.nodes=[{id:'project:inspector-fixture',kind:'project',title:'Inspector fixture',detail:{id:'inspector-fixture',status:'active',question:'A readable test record'}}];source.graph.edges=[];
  await context.route('**/research-data.json',r=>r.fulfill({json:source}));
  await page.goto(new URL('console.html',base).href);await page.waitForLoadState('networkidle');
- const main=page.locator('#main'),inspector=page.locator('[data-console-panel-id="014"]');const full=(await main.boundingBox()).width;
+ const main=page.locator('#main'),inspector=page.locator('[data-console-panel-id="014"]');const full=(await main.boundingBox()).width;assert.equal(full,await page.evaluate(()=>document.documentElement.clientWidth));
  await page.goto(new URL('console.html?record=project%3Ainspector-fixture',base).href);await page.locator('html.console-inspector-docked').waitFor();
  assert((await main.boundingBox()).width<full-200);assert.equal(await inspector.locator('.inspector-height-handle').count(),1);
  const rect=await inspector.boundingBox(),handle=await inspector.locator('.inspector-height-handle').boundingBox();await page.mouse.move(handle.x+handle.width/2,handle.y+handle.height/2);await page.mouse.down();await page.mouse.move(handle.x+handle.width/2,handle.y+handle.height/2-120,{steps:8});await page.mouse.up();assert((await inspector.boundingBox()).height<rect.height-50);

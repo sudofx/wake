@@ -488,7 +488,8 @@
     if(wakeId){selectedWake=wakeId;followLatest=false;}
     writeUrl();syncCubeToRecord(id);renderMap();renderDetail();broadcastSelection(id,wakeId);$('detail-title').focus({preventScroll:true});
     if(originTop!==null&&matchMedia('(max-width:767px)').matches){
-      const header=document.querySelector('.masthead').getBoundingClientRect().bottom;
+      const masthead=document.querySelector('.masthead');
+      const header=Math.max(masthead.offsetHeight,masthead.getBoundingClientRect().bottom);
       window.scrollBy({top:originTop-Math.max(12,header+12),behavior:'instant'});
     }
   }

@@ -241,7 +241,7 @@
 
   // Count columns in the actual workspace, including every numbered panel.
   // CSS auto-placement owns rows; no stale row/column coordinates survive a resize.
-  const columnCount=()=>innerWidth<768?1:Math.max(1,Math.min(6,Math.floor((grid.clientWidth+16)/316)));
+  const columnCount=()=>innerWidth<768?1:Math.max(1,Math.floor((grid.clientWidth+16)/316));
   const spanToSlots=(span,cols)=>Math.max(1,Math.min(cols,Math.round(Number(span||6)*cols/12)));
   const pack=()=>{
     const cols=panelWindow?1:columnCount();

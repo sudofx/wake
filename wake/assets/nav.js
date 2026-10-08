@@ -236,3 +236,29 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.schema===1 && window.WAKE_DEPLOYMENT.
     else if(owner)show(owner);
   }).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['title','aria-label','aria-pressed','class','data-ui-tooltip']});
 })();
+
+/* One directional header controller for every page. Sticky positioning retains
+   its flow space, avoiding content jumps. Scroll sampling is presentation-only. */
+(() => {
+  const masthead=document.querySelector('.masthead');if(!masthead)return;
+  let previous=Math.max(0,scrollY),scheduled=false,keyboardFocus=false;
+  const reveal=()=>masthead.classList.remove('masthead-scroll-hidden');
+  // Mouse/touch focus must not pin the bar after clicking the theme switch.
+  // Keyboard focus still keeps navigation in view while tabbing through it.
+  document.addEventListener('keydown',event=>{if(event.key==='Tab')keyboardFocus=true;});
+  document.addEventListener('pointerdown',()=>{keyboardFocus=false;masthead.classList.remove('masthead-keyboard-focus');},{passive:true});
+  masthead.addEventListener('focusin',()=>{masthead.classList.toggle('masthead-keyboard-focus',keyboardFocus);reveal();});
+  masthead.addEventListener('focusout',event=>{if(!masthead.contains(event.relatedTarget))masthead.classList.remove('masthead-keyboard-focus');});
+  window.addEventListener('scroll',()=>{
+    if(scheduled)return;scheduled=true;
+    requestAnimationFrame(()=>{
+      scheduled=false;const current=Math.max(0,scrollY),delta=current-previous;
+      if(current<=masthead.offsetHeight)reveal();
+      else if(Math.abs(delta)>=3){
+        const interacting=masthead.classList.contains('masthead-keyboard-focus')||masthead.querySelector('details[open]');
+        masthead.classList.toggle('masthead-scroll-hidden',delta>0&&!interacting);
+      }
+      if(Math.abs(delta)>=3||current===0)previous=current;
+    });
+  },{passive:true});
+})();

@@ -1334,7 +1334,7 @@ html:not(.console-panel-window) body.research-page [data-console-panel-id].panel
 .research-page .map-panel .panel-actions .map-key{margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
 .research-page .map-panel .panel-actions{align-items:center}
 @media(min-width:768px){
-  html.console-inspector-docked:not(.console-panel-window) .research-page #main{width:calc(100% - 380px);margin-left:0;margin-right:380px}
+  html.console-inspector-docked:not(.console-panel-window) .research-page #main{width:calc(100% - 380px)!important;margin-left:0;margin-right:380px}
   html.console-inspector-docked:not(.console-panel-window) .research-page .detail-panel{position:fixed!important;inset:110px 20px auto auto!important;width:340px!important;height:calc(100dvh - 130px);max-height:calc(100dvh - 130px)!important;z-index:50;margin:0!important}
 }
 @media(max-width:767px){
@@ -1344,10 +1344,17 @@ html:not(.console-panel-window) body.research-page [data-console-panel-id].panel
 /* The seven numbered story sections share a visible group boundary. */
 html[data-theme] body.research-page .console-story-panel.console-module,
 html[data-theme] body.research-page .console-story-panel.console-module *,
-html[data-theme] body.research-page .console-story-panel.console-module::after{border-color:#ffb15c!important}
+html[data-theme] body.research-page .console-story-panel.console-module::after{border-color:var(--story-border,#ffb15c)!important}
+html[data-theme=dark]{--story-border:color-mix(in srgb,#ffb15c 32%,var(--line));--story-surface:color-mix(in srgb,#ffb15c 3%,var(--surface))}
+html[data-theme=dark] body.research-page .console-story-panel.console-module{background:var(--story-surface)!important}
 
 .research-page .console-module-grid>.detail-panel{display:flex!important;flex-direction:column;resize:none}
 .research-page .detail-panel>.panel-heading{flex:none}
 .research-page .detail-panel>#record-detail{flex:1;min-height:0;overflow:auto;max-height:none}
 .research-page .detail-panel>.inspector-height-handle{display:block;flex:0 0 14px;min-height:14px;height:14px;padding:0;border:0;border-top:1px solid var(--line);border-radius:0;cursor:ns-resize;touch-action:none;background:var(--surface-raised);color:var(--muted)}
 .research-page .detail-panel>.inspector-height-handle::before{content:'↕';font-size:11px}
+
+/* Console is a workspace, not a reading column. A popped-out inspector must
+   release the entire reservation, including older page-skin width caps. */
+body.research-page #main{box-sizing:border-box;width:100%!important;max-width:none!important;margin-left:0!important;margin-right:0!important}
+@media(min-width:768px){html.console-inspector-docked:not(.console-panel-window) body.research-page #main{width:calc(100% - 380px)!important;margin-right:380px!important}}
