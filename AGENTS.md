@@ -103,7 +103,7 @@ When code materially changes migration status, authority, operator workflows, co
 - `docs/experiment.md` — experimental interpretation
 - `docs/retrieval.md` — progressive abstraction/retrieval behavior
 
-`docs/validation.md` is intentionally historical. Do not silently turn it into a rolling certification; add a new dated validation record if a new formal validation snapshot is needed.
+Dated installation validation evidence belongs in the ignored `.workbench/validation/` directory. Preserve historical results there; public documentation describes reproducible checks and current contracts, not local certification. Never require private workbench files to build or operate another installation.
 
 When prose and implementation disagree, current code/tests are evidence of behavior, but the documentation mismatch is a defect to fix rather than a permanent disclaimer.
 

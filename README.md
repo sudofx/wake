@@ -328,7 +328,7 @@ No model is immortal here. The record just has a better filing system.
 - [Cloud operations](docs/cloud.md) — current GitHub-hosted runtime, quota and recovery behavior.
 - [Experiment protocol](docs/experiment.md) — how live and comparative runs should be evaluated.
 - [Routine memory and retrieval](docs/retrieval.md) — current progressive-abstraction/retrieval experiment.
-- [Validation record](docs/validation.md) — explicitly dated historical validation evidence.
+- [Development and verification](docs/development.md) — environment boundaries and reproducible checks.
 
 For exact behavior, code and tests on `master` remain authoritative when prose and implementation diverge.
 

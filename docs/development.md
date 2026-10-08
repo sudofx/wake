@@ -142,7 +142,7 @@ when interpreting a fast replay versus a full audit.
 | `docs/standalone.md` | Docker, LAN, editor, volume and backup operations |
 | `docs/retrieval.md` | Memory delivery, omissions and replay-seed guarantees |
 | `docs/experiment.md` | What observations mean and how to compare them |
-| `docs/validation*.md` | Dated evidence; preserve historical results |
+| `.workbench/validation/*.md` (local, ignored) | Dated evidence; preserve historical results |
 
 Update the owning living documents alongside material behavior changes. Keep
 command examples aligned with code and distinguish defaults from deployment
@@ -197,3 +197,23 @@ is awaited; `governance` means the response arrived and is being checked. The ou
 and inbound connector effects distinguish those phases. They do not imply visibility
 into network bytes or model cognition. Reduced-motion mode uses static emphasis, and
 idle/disconnected/hosted snapshot views cannot display an in-flight provider pulse.
+
+## Inspector and public reading presentation
+
+A populated Console inspector docks only while it remains in the main workspace.
+Its pop-out handshake releases the desktop width reservation; closing the pop-out
+restores it. Unpopulated inspectors remain ordinary grid modules. Desktop height
+resizing is presentation state only. Phones use a lower sheet, and selecting a
+record scrolls the invoking control into the unobstructed upper area.
+
+The seven story sections (#012–#018) share amber borders. Category controls for
+#013 belong in its heading action row. Cube rotation is interactive; zoom is not.
+Light-mode reading pages must change card backgrounds and text together, including
+home hero, topic, discovery, metric and reading surfaces. Do not assume changing
+body tokens overrides dark page skins. Verify exported pages in both themes.
+
+With a fresh local activity sample, the process marker follows the reported stage
+and historical traveling-dot replay is suppressed. The provider call boundary
+reports request-in-flight until response arrival; it cannot distinguish network
+upload completion from remote model processing. Hosted static snapshots do not
+provide that live capability and must retain their dated interpretation.
