@@ -21,10 +21,11 @@ class ConsolePresentationTests(unittest.TestCase):
         self.assertNotIn("window.open(", self.nav)
         self.assertNotIn("DETACHABLE CONSOLE LINKS", self.nav)
 
-    def test_console_reset_view_restores_default_landscape_width(self):
+    def test_console_reset_view_restores_minimum_width(self):
         self.assertIn("const STORAGE='wake-console-workspace-v3'", self.layout)
         self.assertIn('>Reset Console view</button>', self.html)
-        self.assertIn("panel.matches('.map-panel,.notebook-panel,.process-field-panel')?12", self.layout)
+        self.assertIn("panel===overview?'12':'1'", self.layout)
+        self.assertNotIn("location.reload()", self.layout)
         self.assertIn('grid-column:span var(--panel-slots,1)!important', self.css)
 
     def test_console_screenshot_repairs_stay_authoritative(self):
@@ -103,7 +104,8 @@ class ConsolePresentationTests(unittest.TestCase):
     def test_motion_and_desktop_inspector_repairs_are_present(self):
         self.assertIn("motionButton.dataset.motionBound", self.research)
         self.assertIn("window.dispatchEvent(new CustomEvent('wake-global-motion'", self.research)
-        self.assertIn("DESKTOP INSPECTION RAIL", self.css)
+        self.assertIn("'.research-workspace > .panel'", self.layout)
+        self.assertNotIn("DESKTOP INSPECTION RAIL", self.css)
 
 
     def test_horizontal_history_surfaces_are_scrollable_and_latest_first(self):

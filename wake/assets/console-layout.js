@@ -69,10 +69,11 @@
   if(!main||!status)return;
 
   const sourceSelectors=[
+    '#main > .console-overview',
     '#main > .process-field-panel',
     '.story-grid > .panel',
     '.instruments-grid > .panel',
-    '.research-workspace > .panel:not(.detail-panel)',
+    '.research-workspace > .panel',
     '.telemetry-grid > .panel',
     '#main > .notebook-panel'
   ];
@@ -86,8 +87,13 @@
   const overview=document.querySelector('.console-overview');
   if(toolbar)overview.append(toolbar);
   overview.after(grid);
+  const overviewHeading=document.createElement('div');overviewHeading.className='panel-heading';
+  overviewHeading.append(overview.querySelector('.eyebrow'),overview.querySelector('h1'));
+  overview.prepend(overviewHeading);
+
 
   const originalParents=new Set();
+  const defaultOrder=[...panels];
   const slug=text=>String(text||'panel').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,50)||'panel';
   const titleFor=panel=>panel.querySelector('h1,h2,h3')?.textContent?.trim()||panel.getAttribute('aria-label')||'Console panel';
   const brandWakeMarks=root=>{
@@ -107,10 +113,8 @@
     originalParents.add(panel.parentElement);
     panel.dataset.moduleKey=panel.id||slug(titleFor(panel))||`panel-${index}`;
     panel.classList.add('console-module');
-    const defaults=panel.matches('.map-panel,.notebook-panel,.process-field-panel')?12:
-      panel.matches('.frontier-panel,.detail-panel,.evidence-panel,.outcomes-panel')?4:
-      6;
-    panel.dataset.span=String(defaults);
+    // One slot is the minimum at every workspace width. Saved sizes override it.
+    panel.dataset.span=panel===overview?'12':'1';
 
     let heading=panel.querySelector(':scope > .panel-heading');
     if(!heading){
@@ -130,11 +134,11 @@
   });
   // Give every header the same title stack and shared action row, regardless
   // of whether the original markup wrapped its label and title in a div.
-  document.querySelectorAll('.panel > .panel-heading').forEach(heading=>{
+  document.querySelectorAll('.panel > .panel-heading,.page-intro > .panel-heading').forEach(heading=>{
     const title=document.createElement('div');
     title.className='panel-title';
     const label=heading.querySelector('.eyebrow');
-    const name=heading.querySelector('h2,h3');
+    const name=heading.querySelector('h1,h2,h3');
     if(label)title.append(label);
     if(name)title.append(name);
     [...heading.children].forEach(child=>{if(!child.childNodes.length)child.remove();});
@@ -189,18 +193,6 @@
       if(button){button.textContent='↙';button.setAttribute('aria-label',button.dataset.restoreLabel);button.title=button.dataset.restoreLabel;}
       document.title=`${titleFor(target)} · #${panelWindow} / WAKE✳︎`;
     }
-  }else{
-    const intro=document.querySelector('.page-intro');
-    const alignInspector=()=>{
-      const anchor=intro.classList.contains('panel-popped-out')?(toolbar||status):intro;
-      document.documentElement.style.setProperty('--console-inspector-top',`${Math.max(20,anchor.getBoundingClientRect().top)}px`);
-    };
-    if(intro){
-      alignInspector();
-      window.addEventListener('scroll',alignInspector,{passive:true});
-      window.addEventListener('resize',alignInspector);
-      new ResizeObserver(alignInspector).observe(intro);
-    }
   }
   originalParents.forEach(parent=>{if(parent&&parent!==main)parent.classList.add('console-layout-source-empty');});
 
@@ -210,8 +202,6 @@
       if(current)return JSON.parse(current)||{};
       const previous=JSON.parse(localStorage.getItem(PREVIOUS_STORAGE)||'{}')||{};
       if(previous.panels){
-        const landscape=[...grid.children].find(panel=>panel.matches('.map-panel'));
-        if(landscape){previous.panels[landscape.dataset.moduleKey]={...(previous.panels[landscape.dataset.moduleKey]||{}),span:12};}
         localStorage.setItem(STORAGE,JSON.stringify(previous));
       }
       return previous;
@@ -244,11 +234,9 @@
   };
   if(!panelWindow){
     applyState();
-    const process=grid.querySelector('.process-field-panel');
-    if(process){process.dataset.span='12';grid.prepend(process);}
   }
 
-  // Count columns in the actual workspace, which excludes the inspection rail.
+  // Count columns in the actual workspace, including every numbered panel.
   // CSS auto-placement owns rows; no stale row/column coordinates survive a resize.
   const columnCount=()=>innerWidth<768?1:Math.max(1,Math.min(6,Math.floor((grid.clientWidth+16)/316)));
   const spanToSlots=(span,cols)=>Math.max(1,Math.min(cols,Math.round(Number(span||6)*cols/12)));
@@ -256,11 +244,13 @@
     const cols=panelWindow?1:columnCount();
     grid.style.setProperty('--console-cols',String(cols));
     [...grid.children].forEach(panel=>{
-      panel.style.setProperty('--panel-slots',String(spanToSlots(panel.dataset.span,cols)));
+      // The overview always fills its row, including when an older save has a narrow span.
+      if(panel===overview)panel.dataset.span='12';
+      panel.style.setProperty('--panel-slots',String(panel===overview?cols:spanToSlots(panel.dataset.span,cols)));
       const button=panel.querySelector('.module-size');
       if(button){
-        button.disabled=cols===1;
-        button.title=cols===1?'Full width in this workspace':'Change panel width';
+        button.disabled=cols===1||panel===overview;
+        button.title=panel===overview?'Overview always fills the available row':cols===1?'Full width in this workspace':'Change panel width';
       }
     });
   };
@@ -274,7 +264,7 @@
     const collapse=event.target.closest('.module-collapse');
     if(size){
       const cols=columnCount();
-      if(cols===1)return;
+      if(cols===1||panel===overview)return;
       const slots=spanToSlots(panel.dataset.span,cols)%cols+1;
       panel.dataset.span=String(slots*12/cols);
       writeState();pack();
@@ -336,7 +326,13 @@
 
   document.getElementById('reset-console-layout').addEventListener('click',()=>{
     try{localStorage.removeItem(STORAGE);localStorage.removeItem(PREVIOUS_STORAGE);localStorage.removeItem('wake-console-workspace-v1');}catch{}
-    location.reload();
+    defaultOrder.forEach(panel=>{
+      grid.append(panel);panel.dataset.span=panel===overview?'12':'1';panel.classList.remove('module-collapsed');
+      const collapse=panel.querySelector('.module-collapse');
+      if(collapse){collapse.setAttribute('aria-expanded','true');collapse.textContent='−';}
+    });
+    pack();writeState();
   });
+  overview.querySelectorAll('.snapshot button').forEach(button=>overview.querySelector('.panel-actions').append(button));
   if(panelWindow){announcePanel();setInterval(()=>announcePanel(),2000);}
 })();

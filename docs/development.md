@@ -180,3 +180,20 @@ Tapping the activity light shows its explanation. Status remains installation-sp
 and read-only. Running is green, paused is yellow, unavailable is neutral; waiting and
 blocked states have distinct accessible descriptions. Interactive canvases and drag
 controls suppress selection, while record inspectors and reading text remain selectable.
+
+## Console layout and provider phases
+
+All numbered panels use the same workspace grid, including overview and inspection.
+Panel #001 always fills the available workspace columns. Every other panel has a
+one-column minimum; the first load without a saved layout and Reset use that minimum. Restore saved order and width before packing.
+Never prepend or expand a special panel afterward: that would discard the preference
+on refresh. Reset reorders existing nodes and expands collapsed panels in place; it
+must not navigate, reload projections or clear record selections. Buttons belong in
+the left-aligned action row directly beneath each heading, including isolated windows.
+
+The provider overlay uses current local runtime capability only. `context` means
+preparation; `provider` means the context-bearing request is in flight and a proposal
+is awaited; `governance` means the response arrived and is being checked. The outbound
+and inbound connector effects distinguish those phases. They do not imply visibility
+into network bytes or model cognition. Reduced-motion mode uses static emphasis, and
+idle/disconnected/hosted snapshot views cannot display an in-flight provider pulse.

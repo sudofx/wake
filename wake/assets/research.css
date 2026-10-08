@@ -347,8 +347,8 @@ html.console-detached body{
 .module-drag:active{
   cursor:grabbing!important;
 }
-html.console-iphone body.research-page .panel>.console-panel-heading .module-controls .module-drag,
-html.console-iphone body.research-page .panel>.console-panel-heading .module-controls .module-size{
+html.console-iphone body.research-page :is(.panel,.page-intro)>.console-panel-heading .module-controls .module-drag,
+html.console-iphone body.research-page :is(.panel,.page-intro)>.console-panel-heading .module-controls .module-size{
   display:none!important;
 }
 .console-is-dragging{
@@ -1044,27 +1044,6 @@ body.research-page::after{content:none!important;display:none!important;backgrou
   margin-left:.02em!important;
 }
 
-/* DESKTOP INSPECTION RAIL — Follow a record is a persistent Console surface. */
-@media(min-width:1200px){
-  body.research-page main{padding-right:clamp(330px,24vw,410px)!important}
-  .research-workspace>.detail-panel,
-  .research-workspace>.detail-panel.has-selection{
-    display:block!important;
-    position:fixed!important;
-    top:var(--console-inspector-top,20px)!important;
-    right:14px!important;
-    bottom:14px!important;
-    left:auto!important;
-    width:clamp(310px,22vw,390px)!important;
-    max-height:none!important;
-    margin:0!important;
-    z-index:70!important;
-    overflow:auto!important;
-  }
-  .research-workspace>.detail-panel #record-detail{max-height:none!important;overflow:visible!important}
-  .research-workspace>.detail-panel #close-inspector{display:none!important}
-}
-
 /* MODULE SEAMS — preserve rounded panel outlines and a real vertical gutter. */
 .console-module-grid{
   row-gap:16px!important;
@@ -1251,29 +1230,29 @@ html:not(.console-panel-window) body.research-page [data-console-panel-id].panel
 .research-page .eyebrow .panel-id{display:inline-block;text-transform:none;letter-spacing:.03em}
 
 /* Console headers share one title stack and one wrapping action row. */
-.research-page .panel>.console-panel-heading{
- display:flex!important;flex-direction:row!important;flex-wrap:wrap!important;align-items:center!important;
- justify-content:space-between!important;align-content:start!important;gap:10px 16px!important;padding:18px 20px!important;
+.research-page :is(.panel,.page-intro)>.console-panel-heading{
+ display:flex!important;flex-direction:column!important;flex-wrap:nowrap!important;align-items:stretch!important;
+ justify-content:flex-start!important;align-content:start!important;gap:10px 16px!important;padding:18px 20px!important;
 }
 .research-page .console-panel-heading>.panel-title{
- flex:1 1 200px;min-width:0;display:flex;flex-direction:column;gap:6px;
+ flex:none;min-width:0;display:flex;flex-direction:column;gap:6px;
 }
 .research-page .console-panel-heading .panel-title>.eyebrow{margin:0!important}
-.research-page .console-panel-heading .panel-title>h2{margin:0!important;overflow-wrap:anywhere}
+.research-page .console-panel-heading .panel-title>:is(h1,h2){margin:0!important;overflow-wrap:anywhere}
 .research-page .console-panel-heading>.panel-actions{
- display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:6px;max-width:100%;margin-left:auto;
+ display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:6px;max-width:100%;margin:0;
 }
 .research-page .console-panel-heading .panel-actions>.mode-control,
 .research-page .console-panel-heading .panel-actions>.module-controls{
  display:flex!important;flex-wrap:wrap!important;align-items:center!important;
  position:static!important;margin:0!important;gap:6px!important;max-width:100%!important;
 }
-.research-page .panel>.console-panel-heading .panel-actions button{
+.research-page :is(.panel,.page-intro)>.console-panel-heading .panel-actions button{
  display:inline-flex!important;align-items:center!important;justify-content:center!important;
  height:32px!important;min-height:32px!important;padding:0 10px!important;
  font-size:11px!important;line-height:1!important;white-space:nowrap;
 }
-.research-page .panel>.console-panel-heading .module-controls button{
+.research-page :is(.panel,.page-intro)>.console-panel-heading .module-controls button{
  width:32px!important;min-width:32px!important;padding:0!important;
 }
 .research-page .notebook-panel .synthesis-grid{
@@ -1296,8 +1275,8 @@ html:not(.console-panel-window) body.research-page [data-console-panel-id].panel
 .research-page #wake-detail[hidden]{display:none!important}
 
 @container console-panel (max-width:640px){
- .research-page .console-panel-heading>.panel-title{flex:0 0 100%}
- .research-page .console-panel-heading>.panel-actions{flex:0 0 100%;margin:0;justify-content:flex-start}
+ .research-page .console-panel-heading>.panel-title{flex:none}
+ .research-page .console-panel-heading>.panel-actions{flex:none;margin:0;justify-content:flex-start}
 }
 
 /* A read-only journey between continuity coordinates. */
@@ -1338,3 +1317,12 @@ html:not(.console-panel-window) body.research-page [data-console-panel-id].panel
   max-height:none!important;
 }
 .console-module-grid > .console-module.module-collapsed{align-self:start!important}
+
+/* The overview and inspector use the same under-title controls in every view. */
+.research-page .overview-actions{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-start;margin:10px 0}
+.research-page .detail-panel .console-panel-heading #close-inspector{position:static!important;display:inline-flex}
+
+.console-module-grid>.detail-panel{display:block;position:relative!important;inset:auto!important;width:auto!important;max-height:none!important;grid-row:auto!important}
+.console-module-grid>.console-overview{display:flex!important;flex-direction:column;align-items:stretch;min-width:0}
+.console-module-grid .console-overview>div:first-child{flex:none}
+.console-module-grid>.console-overview>.panel-heading{padding:0!important}

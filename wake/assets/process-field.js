@@ -32,7 +32,7 @@
   let viewAngle=0,viewTilt=0,selectedNode=null,selectedStage=null,stagePoints=[];
   let pointer=null,dragged=false;
   let runtime=window.WakeRuntimeActivity||null,lastLiveDraw=0,lastStageHTML='';
-  const liveIndex=()=>runtime?.activity?.active?({record:0,context:1,collecting:1,provider:2,governance:3,continuity:3,receipt:5}[runtime.activity.stage]??-1):-1;
+  const liveIndex=()=>runtime?.activity?.active?({record:0,context:1,collecting:1,provider:1,governance:3,continuity:3,receipt:5}[runtime.activity.stage]??-1):-1;
 
 
   const hash=value=>{let h=2166136261;for(const ch of String(value||''))h=Math.imul(h^ch.charCodeAt(0),16777619);return h>>>0;};
@@ -66,7 +66,7 @@
     if(stageHTML!==lastStageHTML){stageList.innerHTML=stageHTML;lastStageHTML=stageHTML;}
     const setText=(element,text)=>{if(element.textContent!==text)element.textContent=text;};
     if(runtime){
-      const labels={record:'reading the record',context:'preparing context',collecting:'collecting evidence',provider:'waiting for model response',governance:'checking the proposal',continuity:'evaluating the matrix response',receipt:'finishing the receipt',idle:({paused:'research paused',waiting:'waiting for the next eligible wake',blocked:'operator review required',running:'preparing work',idle:'between wakes'})[runtime.state]};
+      const labels={record:'reading the record',context:'preparing context',collecting:'collecting evidence',provider:'context handed to provider · awaiting proposal',governance:'proposal received · checking governance',continuity:'evaluating the matrix response',receipt:'finishing the receipt',idle:({paused:'research paused',waiting:'waiting for the next eligible wake',blocked:'operator review required',running:'preparing work',idle:'between wakes'})[runtime.state]};
       setText(statusEl,runtime.activity.active?'LIVE ACTIVITY':'RUNTIME '+runtime.state.toUpperCase());
       statusEl.dataset.state=runtime.activity.active?'running':runtime.state;
       setText(traceEl,`Now · ${labels[runtime.activity.stage]}`);
@@ -123,7 +123,7 @@
     if(!motion&&liveIndex()>=0&&!reduced&&performance.now()-lastLiveDraw<50){frame=requestAnimationFrame(draw);return;}
     lastLiveDraw=performance.now();
     const {w,h}=resize();if(!w||!h){frame=null;return;}
-    const p=palette(),now=performance.now(),t=(now-start)/1000;
+    const p=palette(),now=performance.now(),t=reduced?0:(now-start)/1000;
     ctx.clearRect(0,0,w,h);
     const cx=w*.5,cy=h*.49,small=w<700,scale=Math.min(w,h);
     const drift=motion ? .015 : 0;
@@ -157,10 +157,29 @@
     ctx.beginPath();points.forEach((pt,i)=>i?ctx.lineTo(pt.x,pt.y):ctx.moveTo(pt.x,pt.y));ctx.stroke();
 
     const runtimeX=(points[1].x+points[2].x)/2,runtimeY=y-scale*.16;
-    ctx.globalAlpha=.22+.08*Math.sin(t*1.3);ctx.strokeStyle=p.violet;ctx.lineWidth=1;
-    ctx.beginPath();ctx.arc(runtimeX,runtimeY,small?24:32,0,Math.PI*2);ctx.stroke();
-    ctx.globalAlpha=.75;ctx.fillStyle=p.muted;ctx.font=`${small?8:9}px ui-monospace,monospace`;ctx.textAlign='center';ctx.fillText('MODEL / RUNTIME',runtimeX,runtimeY+3);
-    ctx.globalAlpha=.28;ctx.beginPath();ctx.moveTo(points[1].x,points[1].y);ctx.lineTo(runtimeX,runtimeY);ctx.lineTo(points[2].x,points[2].y);ctx.stroke();
+    // This overlay uses reported runtime phases, never the historical replay.
+    // Request-in-flight is observable; model cognition and network byte transfer are not.
+    const providerPhase=runtime?.activity?.active?({context:'context',provider:'request',governance:'proposal',continuity:'proposal'}[runtime.activity.stage]||'idle'):'idle';
+    canvas.dataset.providerPhase=providerPhase;
+    const providerLive=providerPhase==='request'||providerPhase==='proposal';
+    const providerPulse=providerLive&&!reduced?1+Math.sin(t*3)*.07:1;
+    const radius=(small?24:32)*providerPulse;
+    ctx.globalAlpha=providerLive?.95:.3;ctx.strokeStyle=providerLive?p.green:p.violet;ctx.lineWidth=providerLive?2:1;
+    ctx.beginPath();ctx.arc(runtimeX,runtimeY,radius,0,Math.PI*2);ctx.stroke();
+    if(providerLive){
+      ctx.globalAlpha=.95;ctx.fillStyle=p.green;ctx.shadowColor=p.green;ctx.shadowBlur=reduced?0:24;
+      ctx.beginPath();ctx.arc(runtimeX,runtimeY,small?7:10,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
+    }
+    ctx.globalAlpha=.85;ctx.fillStyle=providerLive?p.ink:p.muted;ctx.font=`${small?8:9}px ui-monospace,monospace`;ctx.textAlign='center';ctx.fillText(providerLive?'PROVIDER':'MODEL / RUNTIME',runtimeX,runtimeY+radius+12);
+    const inbound=providerPhase==='proposal';
+    const linkStart=inbound?{x:runtimeX,y:runtimeY}:points[1];
+    const linkEnd=inbound?points[2]:{x:runtimeX,y:runtimeY};
+    ctx.globalAlpha=providerLive?.85:.28;ctx.strokeStyle=providerLive?p.green:p.violet;
+    ctx.beginPath();ctx.moveTo(points[1].x,points[1].y);ctx.lineTo(runtimeX,runtimeY);ctx.lineTo(points[2].x,points[2].y);ctx.stroke();
+    if(providerLive&&!reduced){
+      const travel=(t*.65)%1;ctx.globalAlpha=.98;ctx.fillStyle=p.green;ctx.shadowColor=p.green;ctx.shadowBlur=12;
+      ctx.beginPath();ctx.arc(linkStart.x+(linkEnd.x-linkStart.x)*travel,linkStart.y+(linkEnd.y-linkStart.y)*travel,small?3:4,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
+    }
 
     points.forEach((pt,i)=>{
       const observed=active[i],accepted=latest?.status==='accepted',chosen=selectedStage===i;
@@ -195,7 +214,7 @@
       ctx.globalAlpha=.9;ctx.fillStyle=p.green;ctx.font='9px ui-monospace,monospace';ctx.textAlign='right';ctx.fillText('EXECUTION ACTIVE',w-18,22);
     }
 
-    if(now<flashUntil){
+    if(now<flashUntil&&!reduced){
       const f=(flashUntil-now)/900;ctx.globalAlpha=f*.35;ctx.strokeStyle=p.orange;ctx.lineWidth=2;
       ctx.beginPath();ctx.ellipse(cx,cy,scale*.62,scale*.31,0,0,Math.PI*2);ctx.stroke();
     }
