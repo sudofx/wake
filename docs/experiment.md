@@ -1,5 +1,10 @@
 # Experiment protocol
 
+The [non-research kernel example](kernel.md#executable-non-research-proof) verifies
+software boundaries with deterministic inputs. Its results are not research cycles
+or cross-model evidence. Independent container verification is documented in
+[multiple installations](installations.md#verification-and-maintenance).
+
 > **Current evaluation protocol.** This defines how live and comparative **WAKE✳︎** runs should be interpreted. Observations and proposed mechanisms remain separate, and rejected, deferred and failed attempts stay in the experimental record.
 
 The working hypothesis is externalized continuity: many fresh model invocations can participate in one accountable process when durable evidence, obligations, state and enforceable rules connect them. The broader engineering aim is infrastructure for durable, accountable work that can survive changes in models, vendors, people and time.

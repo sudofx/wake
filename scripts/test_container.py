@@ -93,6 +93,8 @@ def check(image, platform):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--image', default='wake-standalone:local')
+    parser.add_argument('--platform', action='append', choices=('linux/arm64', 'linux/amd64'),
+                        help='Test selected platform(s); defaults to both')
     args = parser.parse_args()
-    for architecture in ('linux/arm64', 'linux/amd64'):
+    for architecture in args.platform or ('linux/arm64', 'linux/amd64'):
         check(args.image, architecture)

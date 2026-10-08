@@ -1,5 +1,9 @@
 # **WAKE✳︎**
 
+For independent containers and optional shared hostname access, see
+[multiple installations](docs/installations.md). The [kernel boundary](docs/kernel.md)
+includes an executable non-research application proof; both remain in this repository.
+
 **WAKE✳︎** is infrastructure for durable, accountable work across interchangeable intelligences. Models, runtimes and people can change; the governed record carries objectives, evidence, obligations, decisions, provenance and receipts forward. The current research application is the first reference workload proving that infrastructure in public.
 
 <p align="center"><img src="assets/covers/cover-variant-002.png" alt="**WAKE✳︎** Lab Comics #1 — **WAKE✳︎** project comic cover" width="100%"/>

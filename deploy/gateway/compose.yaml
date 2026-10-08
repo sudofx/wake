@@ -1,0 +1,21 @@
+# Optional gateway only; no Docker socket, authority volumes or provider secrets.
+services:
+  gateway:
+    image: "${WAKE_GATEWAY_IMAGE:-nginx:stable-alpine}"
+    entrypoint: ["nginx", "-g", "daemon off;"]
+    user: "101:101"
+    ports:
+      - "${WAKE_GATEWAY_BIND:-127.0.0.1}:${WAKE_GATEWAY_PORT:-80}:8080"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    networks: [gateway]
+    read_only: true
+    tmpfs:
+      - /tmp:size=32m,mode=1777
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    restart: unless-stopped
+networks:
+  gateway:
+    external: true
+    name: "${WAKE_GATEWAY_NETWORK:-wake-gateway}"

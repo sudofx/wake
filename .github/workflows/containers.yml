@@ -1,0 +1,42 @@
+name: WAKE — Offline container acceptance
+
+on:
+  pull_request:
+    paths:
+      - 'Dockerfile'
+      - '.dockerignore'
+      - 'compose*.yaml'
+      - 'deploy/**'
+      - 'wake/**'
+      - 'pyproject.toml'
+      - 'scripts/test_container.py'
+      - 'scripts/test_installations.py'
+      - '.github/workflows/containers.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: wake-container-proof-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  offline-containers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      matrix:
+        architecture: [amd64, arm64]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+      - name: Build the packaged candidate without publishing
+        run: docker buildx build --platform linux/${{ matrix.architecture }} --load -t wake-candidate:local .
+      - name: Verify offline interrupted recovery and preserved history
+        run: python3 scripts/test_container.py --image wake-candidate:local --platform linux/${{ matrix.architecture }}
+      - name: Verify independent installations and hostname gateway
+        run: |
+          docker pull nginx:stable-alpine
+          python3 scripts/test_installations.py --image wake-candidate:local --gateway-image nginx:stable-alpine

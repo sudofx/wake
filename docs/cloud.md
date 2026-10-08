@@ -1,5 +1,9 @@
 # WAKE✳︎ hosted operation
 
+Independent container deployments are described in [multiple installations](installations.md).
+They do not restore hosted checkpoints or use hosted public data. Hosted controls
+in this guide retain their separate authority and release procedure.
+
 > **Current operating specification.** This is the authoritative guide to the GitHub-hosted **WAKE✳︎** runtime: `master` is development, `wake-runtime` is the explicitly promoted executable, and `wake-state` carries the separate authoritative WAKE SQLite record.
 
 WAKE✳︎ provides the durable record and governed transition boundary. The hosted research application uses that infrastructure to choose small, useful projects from `research-topics.toml`. Topics are replaceable workload inputs, not WAKE✳︎ identity or kernel policy. The deployment can continue research without daily assignments, while resets and topic changes remain explicit operator interventions.

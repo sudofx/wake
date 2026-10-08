@@ -1,5 +1,9 @@
 # Standalone WAKE✳︎
 
+For multiple independent installations, dynamic ports and optional hostname routing,
+see [multiple installations](installations.md). The original single-installation
+Compose defaults remain available below.
+
 One installation owns one authoritative record. This Docker mode creates an independent
 WAKE with the existing runtime, research application, governance and website. It does
 not download the public installation's record or interact with GitHub operationally.

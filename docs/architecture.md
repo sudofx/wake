@@ -1,5 +1,9 @@
 # Architecture and limits
 
+See [the reusable kernel contract](kernel.md) for application ownership and the
+non-research execution proof, and [installation boundaries](installations.md) for
+independent volumes, ports and optional gateways. These remain inside this repository.
+
 > **Current specification.** This document explains why the present system is shaped this way: its trust boundary, durable record, governance model and known limits. Operational procedures belong in `cloud.md`; dated validation history belongs in `validation*.md`. Maintainer navigation and environment checks belong in `development.md`.
 
 **WAKE✳︎** is infrastructure for continuity of accountable work, not continuity of a model instance. Its stable sequence is **Record → Context → Proposal → Governance → Transition → Receipt**. Models, vendors, runtimes and human operators may change; the durable record, authority boundary, provenance and correction mechanisms carry the work forward. Research is the first application running on that structure.

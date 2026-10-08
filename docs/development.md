@@ -1,5 +1,8 @@
 # Maintainer map
 
+Use [kernel development](kernel.md) for the application seam and
+[multiple installations](installations.md) for parallel container operation.
+
 This is the entry point for changing WAKE safely. The repository owns executable
 behavior; installations own independent records. A shared source tree does not
 imply a shared database, execution process, deployment, or provider quota ledger.
@@ -115,7 +118,11 @@ record head/version and selected trace as well as layout and overflow. Test the
 artifact produced by export, not only its source templates.
 
 Container acceptance lives in `scripts/test_container.py`: it uses isolated
-resources, no network, and verifies persistence through recreation. Never use the
+resources, no network, and verifies persistence through recreation.
+`scripts/test_installations.py` verifies multiple real Compose installations and
+the optional gateway. `.github/workflows/containers.yml` runs packaged image
+acceptance for ARM64 and AMD64 on pull requests or manual dispatch, without
+publishing or changing research authority. Never use the
 operator's record as disposable test data. Keep signing keys and provider secrets
 out of logs, fixtures, exported sites and Git. Use [checkpoint limits](retrieval.md#verified-replay-seeds)
 when interpreting a fast replay versus a full audit.
@@ -127,6 +134,8 @@ when interpreting a fast replay versus a full audit.
 | `README.md` | Current overview, setup entry points and feature limits |
 | `AGENTS.md` | Repository-local change invariants |
 | `docs/development.md` | This navigation and environment map |
+| `docs/kernel.md` | Reusable application contract and extraction proof |
+| `docs/installations.md` | Independent Compose deployments and optional gateway |
 | `docs/architecture.md` | Authority, lifecycle, policy and trust boundaries |
 | `docs/cloud.md` | Canonical hosted controls, transport and recovery |
 | `docs/standalone.md` | Docker, LAN, editor, volume and backup operations |

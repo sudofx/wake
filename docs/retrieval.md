@@ -1,5 +1,9 @@
 # Routine memory and retrieval: making forgetting observable
 
+The [kernel contract](kernel.md) distinguishes generic envelope replay from
+application state reconstruction. Application IDs share a record revision when
+installed together; independent installations must select separate records.
+
 The configured `memory_mode = "active"` promotes derived working views into routine provider input. Every invocation carries compact belief state, all open commitments, active projects and recent notebook pointers, plus `context.memory` containing advisory compacts and selected durable records. Recent operator observations and retractions with their newest counterevidence take priority, followed by excerpt boundaries, due work, revisions and source handoffs. Up to eight retrieved records and eight compacts are delivered; fields are excerpted at 900 characters and compact rules at 320. Omission counts/digests, missing references, exact record hashes and retained evidence roots expose the limits. This is a deterministic bounded retrieval policy, not semantic contradiction detection.
 
 Collected source prose follows the existing qualifying-source rehydration budget (up to three records at 1,800 characters in active mode and four distinct repository URLs in total). Collector records outside visible source delivery carry pointers without content. Human falsifiers keep their provenance and can support belief review without becoming scientific notebook sources. Recent notebook evidence roots are included in the active retrieval plan so synthesis and publication allowlists remain usable.

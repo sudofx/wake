@@ -1,0 +1,13 @@
+# Optional shared hostname gateway. Create the external network explicitly.
+# Unique aliases avoid ambiguous service-name resolution on a shared network.
+services:
+  wake:
+    networks:
+      default: {}
+      gateway:
+        aliases:
+          - "${COMPOSE_PROJECT_NAME}"
+networks:
+  gateway:
+    external: true
+    name: "${WAKE_GATEWAY_NETWORK:-wake-gateway}"

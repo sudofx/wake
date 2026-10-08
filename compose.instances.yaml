@@ -1,0 +1,20 @@
+# Independent installations from one checkout. Requires Compose 2.24.4+.
+# Always select a unique, stable project with -p; its name owns the data volume.
+# Port 0 asks Docker to allocate a free host port. Never share /data between jobs.
+services:
+  wake:
+    image: "${WAKE_INSTANCE_IMAGE:-${COMPOSE_PROJECT_NAME}-standalone:local}"
+    ports: !override
+      - target: 8080
+        published: "${WAKE_INSTANCE_PORT:-0}"
+        host_ip: "${WAKE_INSTANCE_BIND:-127.0.0.1}"
+        protocol: tcp
+    environment:
+      # A new installation is inspectable before the operator enables research.
+      WAKE_PAUSED: ${WAKE_INSTANCE_PAUSED:-true}
+      WAKE_PROVIDER: ${WAKE_INSTANCE_PROVIDER:-fixture}
+      WAKE_MODEL: ${WAKE_INSTANCE_MODEL:-}
+      WAKE_INTERVAL_SECONDS: ${WAKE_INSTANCE_INTERVAL_SECONDS:-60}
+      WAKE_ENABLE_CONTINUITY_MATRIX: ${WAKE_INSTANCE_ENABLE_CONTINUITY_MATRIX:-false}
+      # Deliberately do not inherit credentials from the checkout's .env.
+      GEMINI_API_KEY: ${WAKE_INSTANCE_GEMINI_API_KEY:-}

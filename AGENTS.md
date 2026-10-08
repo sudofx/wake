@@ -144,3 +144,19 @@ are separate. Local development changes do not authorize hosted operations.
 Update living documentation at its existing owner; retain dated validation history.
 Comments should explain invariants, hazards and failure behavior at the responsible
 code seam, not preserve a conversation or repeat instructions without implementation.
+
+## Reusable kernel and parallel installations
+
+The kernel remains owned here. Its imports must stay within `wake/kernel/` and
+the Python standard library. Use the public application contract; no research
+imports or another project's service belongs in the generic kernel. Preserve
+application identity/version and migration semantics. See `docs/kernel.md`.
+
+Use stable unique Compose projects for independent installations, each with one
+writer and its own volume. `compose.instances.yaml` uses installation-specific
+settings, paused fixture defaults and dynamically assigned loopback ports. Never
+reuse the operator volume as test data. Hostname gateways are optional and may
+not mount Docker's socket, authority data or provider credentials.
+
+The offline container acceptance workflow builds and tests but never publishes
+images, runs live providers, promotes runtime or touches hosted authority.
