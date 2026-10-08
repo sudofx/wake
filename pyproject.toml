@@ -23,4 +23,6 @@ packages = ["wake", "wake.kernel"]
 include-package-data = true
 
 [tool.setuptools.package-data]
-wake = ["assets/*"]
+# Wheels must contain the same site resources as checkout execution. Explicit
+# nested patterns prevent source-tree imports from hiding incomplete packaging.
+wake = ["assets/*", "assets/icons/*", "assets/backgrounds/*", "assets/backgrounds/previews/*"]

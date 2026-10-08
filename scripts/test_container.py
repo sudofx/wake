@@ -21,10 +21,12 @@ def check(image, platform):
     docker('volume', 'create', volume)
 
     def start(paused=False):
-        args = ['run', '-d', '--name', name, '--platform', platform, '--network', 'none',
+        # Execute the installed wheel, not /app's source tree. Both are shipped
+        # in this image; cwd=/app can mask missing package assets/dependencies.
+        args = ['run', '-d', '--name', name, '--platform', platform, '--network', 'none', '--workdir', '/tmp',
                 '--read-only', '--tmpfs', '/tmp:mode=1777', '--cap-drop', 'ALL',
                 '-v', volume + ':/data', '-e', 'WAKE_PROVIDER=fixture',
-                '-e', 'WAKE_INTERVAL_SECONDS=1', image]
+                '-e', 'WAKE_INTERVAL_SECONDS=1', image, '--config', '/app/wake.toml']
         if paused:
             args.append('--paused')
         return docker(*args)
