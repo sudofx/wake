@@ -183,7 +183,7 @@ def _matrix_projection(progress, reported):
     axes = [{'key': a.key, 'label': a.label, 'values': [{'key': v.key, 'label': v.label, 'description': v.description} for v in a.values]} for a in MATRIX.axes]
     indices = [{v.key: i for i, v in enumerate(a.values)} for a in MATRIX.axes]
     results = (progress or {}).get('results', {})
-    cells = [{'id': c.coordinate_id, 'position': [indices[i][key] for i, key in enumerate(c.value_keys)],
+    cells = [{'id': c.coordinate_id, 'ordinal': c.ordinal, 'position': [indices[i][key] for i, key in enumerate(c.value_keys)],
               'status': results.get(c.coordinate_id, {}).get('status', 'not_recorded'),
               'score': results.get(c.coordinate_id, {}).get('score'),
               'invocation_id': results.get(c.coordinate_id, {}).get('invocation_id'),

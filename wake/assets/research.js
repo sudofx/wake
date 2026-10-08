@@ -267,7 +267,8 @@
     const m=data?.matrix,c=m?.cells.find(c=>c.id===matrixCell);if(!c)return;
     const previous=m.cells.find(cell=>cell.id===previousMatrixCell);
     document.querySelectorAll('[data-cube-axis]').forEach(el=>el.value=c.position[Number(el.dataset.cubeAxis)]);
-    $('cube-cell').innerHTML=`${esc(c.id)}<br><strong style="color:var(--orange)">${esc(matrixResult(c))}</strong>`;
+    const cellLabel=cell=>window.WakeMatrixCellLabel(cell,m);
+    $('cube-cell').innerHTML=`Cell ${esc(cellLabel(c))}<br>${esc(c.id)}<br><strong style="color:var(--orange)">${esc(matrixResult(c))}</strong>`;
     const summary=cell=>m.axes.map((a,i)=>`${matrixAxisName(a)}: ${matrixValueText(matrixValue(a,cell,i))}`).join(' · ');
     const changed=m.axes.filter((a,i)=>previous && previous.position[i]!==c.position[i]);
     const from=matrixScore(previous),to=matrixScore(c);
@@ -280,7 +281,7 @@
     const diagnostics=failed.length?`<h4>Failed checks</h4><ul>${failed.map(name=>{const detail=c.diagnostics?.[name];return `<li><b>${esc(name.replaceAll('_',' '))}</b>${detail?`<details><summary>Expected and returned evidence</summary><p>Expected: <code>${esc(JSON.stringify(detail.expected))}</code></p><p>Returned: <code>${esc(JSON.stringify(detail.actual))}</code></p></details>`:' · detailed evidence was not recorded for this trial'}</li>`;}).join('')}</ul>`:(c.status==='completed'?'<p>Failure diagnostics: no failed checks recorded.</p>':'');
     const explanation=previous?(changed.length?`${changed.map(matrixAxisName).join(', ')} changed; ${changed.length===1?'the other two dimensions stayed the same.':'several conditions changed together.'}`:'The three conditions are the same.'):'This is your starting cell.';
     $('cube-comparison').innerHTML=`<h3>Previous cell → Selected cell</h3>
-      <div class="cube-journey">${[['Where I was',previous],['Where I am',c]].map(([title,cell])=>`<div><h4>${title}</h4><p>${cell?esc(summary(cell)):'No previous cell yet'}</p><p class="cube-result">${esc(matrixResult(cell))}</p>${cell?`<details><summary>Cell ID</summary><code>${esc(cell.id)}</code></details>`:''}</div>`).join('')}</div>
+      <div class="cube-journey">${[['Where I was',previous],['Where I am',c]].map(([title,cell])=>`<div><h4>${title}${cell?` · ${esc(cellLabel(cell))}`:''}</h4><p>${cell?esc(summary(cell)):'No previous cell yet'}</p><p class="cube-result">${esc(matrixResult(cell))}</p>${cell?`<details><summary>Permanent cell ID</summary><code>${esc(cell.id)}</code></details>`:''}</div>`).join('')}</div>
       <h4>What changed</h4><ul class="cube-differences">${m.axes.map((a,i)=>{const value=matrixValue(a,c,i),old=previous&&matrixValue(a,previous,i),different=old&&old.key!==value.key;return `<li class="${different?'changed':'same'}"><b>${esc(matrixAxisName(a))}</b> <small>(${esc(a.label)})</small><span>${old?`${different?'Changed':'Same'} · ${esc(matrixValueText(old))}${different?` → ${esc(matrixValueText(value))}`:''}`:`Starting at ${esc(matrixValueText(value))}`}</span></li>`;}).join('')}</ul>
       <h4>What happened</h4><p>${esc(explanation)} ${esc(outcome)}</p>${diagnostics}<p class="caption">These are recorded probe results, not new tests. A comparison alone does not show why a score changed.</p>`;
   }

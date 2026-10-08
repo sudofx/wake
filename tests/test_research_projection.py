@@ -96,6 +96,9 @@ class ResearchProjectionTests(unittest.TestCase):
         from wake.matrix import MATRIX, MATRIX_KEY
         unknown = build_research_projection(self.state(), [], 'head')['matrix']
         self.assertEqual(len(unknown['cells']), 343)
+        self.assertEqual([cell['ordinal'] for cell in unknown['cells']], list(range(1, 344)))
+        self.assertEqual(unknown['cells'][0]['id'], 'continuity@1:reconstruction|rich|clean')
+        self.assertEqual(unknown['cells'][1]['id'], 'continuity@1:reconstruction|rich|stale-frontier')
         self.assertEqual({x['id'] for x in unknown['cells']}, {x.coordinate_id for x in MATRIX.coordinates()})
         self.assertIsNone(unknown['enabled'])
         self.assertIsNone(unknown['completed'])

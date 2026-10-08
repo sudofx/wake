@@ -1,4 +1,12 @@
 /* Perspective is a view transform of the native 7×7×7 matrix coordinates. */
+// Numeric labels follow the frozen row-major grammar, never draw depth or
+// selection order. Position fallback keeps older live snapshots readable.
+window.WakeMatrixCellLabel = (cell,matrix) => {
+  if(!cell)return '';
+  const ordinal=Number.isInteger(cell.ordinal)?cell.ordinal:
+    cell.position.reduce((value,index,axis)=>value*matrix.axes[axis].values.length+index,0)+1;
+  return `#${String(ordinal).padStart(3,'0')}`;
+};
 window.WakeResearchCube = canvas => {
   const context=canvas.getContext('2d');
   let matrix=null,selected='',previous='',yaw=.65,pitch=-.45,zoom=.6,hovered='',moving=false,timer=0,last=0,heldUntil=0,drag=null,points=[],visible=false,pointerFrame=0,pendingPointer=null;
@@ -87,7 +95,7 @@ window.WakeResearchCube = canvas => {
     if(pointerFrame)return;
     pointerFrame=requestAnimationFrame(()=>{
       pointerFrame=0;const e=pendingPointer;pendingPointer=null;if(!e)return;
-      if(!drag){const rect=canvas.getBoundingClientRect(),x=e.clientX-rect.left,y=e.clientY-rect.top;const hits=points.filter(c=>Math.hypot(c.screen.x-x,c.screen.y-y)<9).sort((a,b)=>b.screen.z-a.screen.z);hovered=hits[0]?.id||'';canvas.title=hovered?`${hovered} · ${hits[0].status.replaceAll('_',' ')} · ${scoreColor(hits[0].score)?`score ${Number((hits[0].score*100).toFixed(1))}%`:'score unavailable'}`:'Drag to rotate; hover a coordinate to inspect its definition.';draw();return;}
+      if(!drag){const rect=canvas.getBoundingClientRect(),x=e.clientX-rect.left,y=e.clientY-rect.top;const hits=points.filter(c=>Math.hypot(c.screen.x-x,c.screen.y-y)<9).sort((a,b)=>b.screen.z-a.screen.z);hovered=hits[0]?.id||'';canvas.title=hovered?`${window.WakeMatrixCellLabel(hits[0],matrix)} · ${hovered} · ${hits[0].status.replaceAll('_',' ')} · ${scoreColor(hits[0].score)?`score ${Number((hits[0].score*100).toFixed(1))}%`:'score unavailable'}`:'Drag to rotate; hover a coordinate to inspect its definition.';draw();return;}
       yaw+=(e.clientX-drag.x)*.008;pitch=Math.max(-1.35,Math.min(1.35,pitch+(e.clientY-drag.y)*.008));drag.x=e.clientX;drag.y=e.clientY;draw();
     });
   });
