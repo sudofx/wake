@@ -2,7 +2,8 @@
 from pathlib import Path
 import tempfile
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, MagicMock
+from types import SimpleNamespace
 import os
 import json
 import shutil
@@ -11,10 +12,35 @@ import subprocess
 from wake.engine import DEFAULTS
 from wake.errors import IntegrityError
 from wake.providers import Fixture
-from wake.standalone import bootstrap, load_secret, publish
+from wake.standalone import bootstrap, load_secret, publish, run
+from wake.governance import Rejected
 
 
 class StandaloneRuntimeTests(unittest.TestCase):
+    def test_context_limit_keeps_website_available_without_retrying(self):
+        with tempfile.TemporaryDirectory() as directory:
+            engine = bootstrap(directory, dict(DEFAULTS))
+            args = SimpleNamespace(interval=1, config='unused', provider='fixture',
+                                   data=directory, paused=False, enable_continuity_matrix=False,
+                                   host='127.0.0.1', port=0, model='test')
+            server = MagicMock()
+            stop = MagicMock()
+            stop.is_set.side_effect = [False, True]
+            reason = 'Context ceiling reached; human review required, no model call made'
+            with patch('wake.standalone.config', return_value=dict(DEFAULTS)), \
+                 patch('wake.standalone.bootstrap', return_value=engine), \
+                 patch('wake.standalone.verify_existing_record'), \
+                 patch('wake.standalone.publish', return_value=True), \
+                 patch('wake.standalone.ThreadingHTTPServer', return_value=server), \
+                 patch('wake.standalone.threading.Thread'), \
+                 patch('wake.standalone.threading.Event', return_value=stop), \
+                 patch.object(engine, 'run', side_effect=Rejected(reason)) as cycle:
+                run(args)
+            cycle.assert_called_once()
+            stop.wait.assert_called_once_with()
+            self.assertEqual(server.runtime_status['state'], 'blocked')
+            self.assertEqual(server.runtime_status['reason'], reason)
+
     def test_matrix_opt_in_preserves_history_advances_and_survives_restart(self):
         with tempfile.TemporaryDirectory() as directory:
             data = Path(directory) / 'data'

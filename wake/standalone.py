@@ -170,6 +170,14 @@ def run(args):
                     try:
                         result = engine.run(provider, collector=collect if provider_name == 'gemini' and settings.get('mission') else None)
                     except Rejected as exc:
+                        if str(exc) == 'Context ceiling reached; human review required, no model call made':
+                            server.runtime_status = {'mode': 'standalone', 'state': 'blocked',
+                                                     'reason': str(exc), 'action': 'Review context budget and restart'}
+                            print(json.dumps(server.runtime_status), flush=True)
+                            # Keep the read-only website available without retrying
+                            # an impossible request or spending provider quota.
+                            stop.wait()
+                            continue
                         if str(exc) != 'Another wake owns this state directory; no call was made':
                             raise
                         stop.wait(args.interval)

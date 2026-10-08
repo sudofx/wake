@@ -113,3 +113,11 @@ Live same-wake acceptance was observed: planning invocation `w-9850951c722f405c`
 A later malformed planning response exposed conflicting inherited ordinary-proposal instructions. The planning phase now has its own untrusted-data system contract and requests-only schema, with existing active-project IDs constrained explicitly. Final proposals retain the ordinary governance contract. Configuration/source changes remain local and uncommitted; local/remote source ancestry still needs reconciliation before publication.
 
 After the planning-contract correction, live plan `w-5a8d8c473ef94b25` validated successfully; linked final invocation `w-0cbeb8cbdf074485` ended as `accepted` with 1 planning request and 1 final request. The final request hash verified, and its size was 46573 characters. Outcome reason: accepted through ordinary governance. The container remained healthy.
+
+## Context-limit crash correction
+
+After publication, the local standalone process exited with code 1 on the context ceiling; the first hosted cycle also paused at that ceiling after a valid planning call. Late research links could exceed the request budget even after its initial fit. Larger accumulated hosted memory required additional pressure handling.
+
+The final fit now shortens readable excerpts, consolidates duplicated belief prose, bounds same-wake research links with exact request hashes and planning receipt pointers, and reduces optional advisory hints with omission counts/digests. Mandatory beliefs, their evidence roots, open commitments and visible evidence identities remain. The captured hosted request and maximum-length research links fit below 48,000 characters with unchanged belief roots and commitments. Standalone scheduling keeps its website available in an explicit blocked state if a request still cannot fit, without retrying or making a model call. Regression tests cover late-link sizing, mandatory-memory retention, and scheduler survival.
+
+The corrected local process remained healthy through a planning rejection; local research was then deliberately stopped at the operator's request to avoid additional API calls. Its existing data volume was retained.

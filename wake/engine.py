@@ -656,6 +656,62 @@ class Engine:
                             item[field] = item[field][:179] + "…"
                             item["context_excerpt"] = True
             context["bounded_context"]["omitted_categories"].append("extended working prose; all belief/project/notebook identities and roots retained")
+        # Same-wake retrieval links and the final proposal instructions arrive
+        # after the initial fit. Reserve their space by shortening source prose
+        # again, without removing records, provenance, or durable obligations.
+        if len(canonical(request)) > self.config["max_context_chars"]:
+            for item in context.get("evidence", []):
+                if len(item.get("content", "")) > 400:
+                    item["content"] = item["content"][:399] + "…"
+                    item["context_excerpt"] = True
+            note = "shorter source excerpts; all visible evidence IDs and provenance retained"
+            if note not in context["bounded_context"]["omitted_categories"]:
+                context["bounded_context"]["omitted_categories"].append(note)
+        if len(canonical(request)) > self.config["max_context_chars"]:
+            research = context.get("same_wake_research", {})
+            for item in research.get("requests", []):
+                item.setdefault("record_hash", digest(item))
+                if len(item.get("query", "")) > 180:
+                    item["query"] = item["query"][:179] + "…"
+                    item["context_excerpt"] = True
+                if item.get("url"):
+                    item["url_hash"] = digest(item.pop("url"))
+                    item["url_omitted"] = True
+            # Retrieved beliefs already appear in the mandatory belief working
+            # set. Point at that copy while keeping the exact retrieval hash.
+            beliefs = {item["id"] for item in context.get("beliefs", [])}
+            for item in context["memory"]["retrieved_records"]:
+                if item["kind"] == "belief" and item["id"] in beliefs:
+                    item["value"] = {key: item["value"][key] for key in
+                                     ("id", "status", "confidence", "evidence") if key in item["value"]}
+                    item["content_location"] = {"field": "context.beliefs", "id": item["id"]}
+                    item["context_excerpt"] = True
+            for compact in context["memory"].get("trust_compacts", []):
+                if len(compact.get("rule", "")) > 80:
+                    compact.setdefault("rule_hash", digest(compact["rule"]))
+                    compact["rule"] = compact["rule"][:79] + "…"
+                    compact["context_excerpt"] = True
+        if len(canonical(request)) > self.config["max_context_chars"]:
+            for category, fields in (("beliefs", ("statement", "reason", "falsifier")),
+                                     ("notebooks", ("title", "summary", "findings", "limitations")),
+                                     ("projects", ("title", "question", "next_step", "reason")),
+                                     ("recent_blog", ("title", "summary", "body"))):
+                for item in context.get(category, []):
+                    for field in fields:
+                        if isinstance(item.get(field), str) and len(item[field]) > 80:
+                            item[field] = item[field][:79] + "…"
+                            item["context_excerpt"] = True
+        for count in (4, 2, 0):
+            compacts = context["memory"].get("trust_compacts", [])
+            if len(canonical(request)) > self.config["max_context_chars"] and len(compacts) > count:
+                # These are optional derived hints, ordered with challenges
+                # first. Mandatory beliefs and obligations stay in the context.
+                omitted = compacts[count:]
+                omissions = context["memory"]["omissions"]
+                omissions["compact_count"] += len(omitted)
+                omissions["budget_compact_digest"] = digest({
+                    "previous": omissions.get("budget_compact_digest"), "omitted": omitted})
+                context["memory"]["trust_compacts"] = compacts[:count]
 
     def fit_bounded_request(self, request):
         """Deterministically shrink an already-bounded provider request below the hard ceiling.
@@ -1922,7 +1978,7 @@ class Engine:
             text(question, "Operator question", 1000)
             request["context"]["operator_question"] = question
         if research:
-            request["context"]["same_wake_research"] = research
+            request["context"]["same_wake_research"] = json.loads(canonical(research))
             request["system"] += "\nAnswer the operator question or planned questions in summary using collected evidence IDs. Submit justified findings now in this proposal; disclose missing or insufficient evidence instead of claiming success.\n"
         if phase == "planning":
             from .research import RESEARCH_PLAN_SYSTEM, research_plan_schema

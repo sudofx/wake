@@ -194,3 +194,54 @@ class ActiveMemoryTests(unittest.TestCase):
         filename.write_text('memory_mode="authoritative"\n')
         with self.assertRaisesRegex(Rejected, 'memory_mode'):
             config(filename)
+
+    def test_late_research_details_fit_without_losing_evidence_or_obligations(self):
+        from wake.event_format import canonical
+        records = [dict(id='e'+str(i), source='paper'+str(i), content='Measured result '*60)
+                   for i in range(3)]
+        context = dict(evidence=copy.deepcopy(records), commitments=[dict(id='c', task='Review counterevidence')],
+                       beliefs=[dict(id='b', evidence=['e0'], status='retracted')],
+                       memory=dict(retrieved_records=[]), bounded_context=dict(omitted_categories=[]))
+        request = dict(system='Policy '*250, context=context)
+        self.engine.config['max_context_chars'] = 5200
+        self.engine.fit_active_request(request)
+        self.assertLessEqual(len(canonical(request)), 5200)
+        context['same_wake_research'] = dict(planning_invocation='plan', requests=[
+            dict(query='Research question '*50, domain='physics', project='p',
+                 url='https://example.edu/'+'a'*1900)])
+        self.engine.fit_active_request(request)
+        self.assertLessEqual(len(canonical(request)), 5200)
+        self.assertEqual([item['id'] for item in context['evidence']], ['e0', 'e1', 'e2'])
+        self.assertTrue(all(item['content'] for item in context['evidence']))
+        self.assertEqual(context['commitments'], [dict(id='c', task='Review counterevidence')])
+        self.assertEqual(context['beliefs'][0]['evidence'], ['e0'])
+        link = context['same_wake_research']['requests'][0]
+        self.assertIn('record_hash', link)
+        self.assertTrue(link['url_omitted'])
+        self.assertLessEqual(len(link['query']), 180)
+
+    def test_pressure_reduces_optional_hints_but_retains_mandatory_memory(self):
+        from wake.event_format import canonical
+        beliefs = [dict(id='b'+str(i), statement='Durable finding '*20, reason='Measured support '*20,
+                        falsifier='Counterexample '*20, evidence=['root'+str(i)], status='settled', confidence=0.95)
+                   for i in range(8)]
+        compacts = [dict(id='hint'+str(i), rule='Advisory inference '*16,
+                        status='CHALLENGED' if i == 0 else 'SETTLED',
+                        provenance=dict(belief_id='b'+str(i), evidence_roots=['root'+str(i)]))
+                    for i in range(8)]
+        memory = dict(retrieved_records=[dict(kind='belief', id=b['id'], record_hash=digest(b), value=copy.deepcopy(b))
+                                        for b in beliefs], trust_compacts=compacts, omissions=dict(compact_count=0))
+        context = dict(beliefs=copy.deepcopy(beliefs), commitments=[dict(id='c', task='Review all eight findings')],
+                       evidence=[], memory=memory, bounded_context=dict(omitted_categories=[]))
+        request = dict(system='Policy '*400, context=context)
+        self.engine.config['max_context_chars'] = 9000
+        self.engine.fit_active_request(request)
+        self.assertLessEqual(len(canonical(request)), 9000)
+        self.assertEqual([b['id'] for b in context['beliefs']], [b['id'] for b in beliefs])
+        self.assertEqual([b['evidence'] for b in context['beliefs']], [b['evidence'] for b in beliefs])
+        self.assertEqual(context['commitments'][0]['id'], 'c')
+        self.assertGreater(memory['omissions']['compact_count'], 0)
+        self.assertIn('budget_compact_digest', memory['omissions'])
+        if memory['trust_compacts']:
+            self.assertEqual(memory['trust_compacts'][0]['status'], 'CHALLENGED')
+        self.assertEqual(memory['retrieved_records'][0]['record_hash'], digest(beliefs[0]))
