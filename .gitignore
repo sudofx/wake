@@ -17,3 +17,6 @@ secrets/
 build/
 *.egg-info/
 .vscode/
+
+# Local scoping workbench
+.workbench/
