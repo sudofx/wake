@@ -1179,7 +1179,7 @@ body.research-page::after{content:none!important;display:none!important;backgrou
 
 /* Dedicated panel windows retain the live presentation and its interactions. */
 .console-panel-window .console-workspace-controls,.console-panel-window #main>:not(#console-module-grid):not(.panel-popout-target):not(#data-inspector),.console-panel-window #console-module-grid>:not(.panel-popout-target){display:none!important}
-.console-panel-window #main{padding:20px!important;margin:0!important;max-width:none!important}
+.console-panel-window #main{padding:var(--console-edge)!important;margin:0!important;max-width:none!important}
 .console-panel-window #console-module-grid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;margin:0!important;width:100%!important}
 .console-panel-window .panel-popout-target{grid-column:1!important;width:100%!important;margin:0!important}
 .console-panel-window .detail-panel.panel-popout-target{position:relative!important;inset:auto!important;max-height:none!important;display:block!important}
@@ -1197,11 +1197,11 @@ html.console-panel-window body.research-page #main .panel-popout-target :is(.mod
 .console-panel-window body.research-page{height:100dvh;overflow:hidden;background:#020a11!important}
 .console-panel-window body.research-page::before,
 .console-panel-window body.research-page::after{display:none!important}
-.console-panel-window body.research-page #main{box-sizing:border-box!important;height:100dvh!important;width:100%!important;padding:20px!important;overflow:hidden}
+.console-panel-window body.research-page #main{box-sizing:border-box!important;height:100dvh!important;width:100%!important;padding:var(--console-edge)!important;overflow:hidden}
 .console-panel-window #console-module-grid{height:100%!important;min-height:0!important}
 .console-panel-window #console-module-grid:not(:has(.panel-popout-target)){display:none!important}
 .console-panel-window body.research-page .panel-popout-target{
- box-sizing:border-box!important;height:calc(100dvh - 40px)!important;max-height:calc(100dvh - 40px)!important;
+ box-sizing:border-box!important;height:calc(100dvh - 2 * var(--console-edge))!important;max-height:calc(100dvh - 2 * var(--console-edge))!important;
  min-height:0!important;overflow:auto!important;background:#030a13!important;
 }
 .console-panel-window .panel-popout-target>.console-panel-heading{flex-shrink:0;position:sticky!important;top:0;z-index:3;background:#030a13!important}
@@ -1341,7 +1341,7 @@ html:not(.console-panel-window) body.research-page [data-console-panel-id].panel
   html.console-inspector-docked:not(.console-panel-window) .research-page .detail-panel{position:fixed!important;inset:110px 20px auto auto!important;width:340px!important;height:calc(100dvh - 130px)!important;max-height:calc(100dvh - 130px)!important;z-index:50!important;margin:0!important}
 }
 @media(max-width:767px){
-  html.console-inspector-docked:not(.console-panel-window) .research-page .detail-panel{position:fixed!important;inset:auto 8px 8px!important;width:auto!important;height:46dvh!important;max-height:46dvh!important;z-index:50!important;margin:0!important;box-shadow:0 -12px 40px #0006}
+  html.console-inspector-docked:not(.console-panel-window) .research-page .detail-panel{position:fixed!important;inset:auto var(--console-edge) var(--console-edge)!important;width:auto!important;height:46dvh!important;max-height:46dvh!important;z-index:50!important;margin:0!important;box-shadow:0 -12px 40px #0006}
   .research-page .console-overview>.console-panel-heading{padding-bottom:20px!important}
 }
 /* The seven numbered story sections share a visible group boundary. */
@@ -1364,3 +1364,9 @@ html[data-theme] body.research-page .console-story-panel.console-module{backgrou
    release the entire reservation, including older page-skin width caps. */
 body.research-page #main{box-sizing:border-box;width:100%!important;max-width:none!important;margin-left:0!important;margin-right:0!important}
 @media(min-width:768px){html.console-inspector-docked:not(.console-panel-window) body.research-page #main{width:calc(100% - 380px)!important;margin-right:380px!important}}
+
+/* One viewport gutter owns the outer panel edges across page skins, docks and
+   dedicated windows. iPhone detection is shared with the layout controller. */
+html{--console-edge:20px}
+html.console-iphone{--console-edge:10px}
+body.research-page #main{padding-inline:var(--console-edge)!important}

@@ -13,7 +13,7 @@ const base=process.argv[2];
   for(const width of [1920,2560,3440,390]){
    await page.setViewportSize({width,height:1200});await page.waitForTimeout(200);
    const available=await page.evaluate(()=>document.documentElement.clientWidth),main=await page.locator('#main').boundingBox();assert.equal(main.x,0);assert.equal(main.width,available);
-   const grid=await page.locator('#console-module-grid').boundingBox(),overview=await page.locator('[data-console-panel-id="001"]').boundingBox();assert.equal(overview.width,grid.width);
+   const grid=await page.locator('#console-module-grid').boundingBox(),overview=await page.locator('[data-console-panel-id="001"]').boundingBox();assert.equal(overview.width,grid.width);assert.equal(grid.x,20);assert.equal(grid.x+grid.width,available-20);
    assert.equal(await page.locator('#console-module-grid').evaluate(e=>Number(getComputedStyle(e).getPropertyValue('--console-cols'))),width<768?1:Math.max(1,Math.floor((grid.width+16)/316)));
   }
   await page.setViewportSize({width:1920,height:1000});await page.waitForTimeout(200);

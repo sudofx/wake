@@ -185,6 +185,8 @@ controls suppress selection, while record inspectors and reading text remain sel
 ## Console layout and provider phases
 
 All numbered panels use the same workspace grid, including overview and inspection.
+The outer Console gutter is 20 px on each side, or 10 px on iPhone. The grid,
+docked inspector and dedicated panel windows share that gutter.
 Panel #001 always fills the available workspace columns. Every other panel has a
 one-column minimum; the first load without a saved layout and Reset use that minimum. Restore saved order and width before packing.
 Never prepend or expand a special panel afterward: that would discard the preference
