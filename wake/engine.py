@@ -705,6 +705,19 @@ class Engine:
             if item["kind"] == "evidence" and item["id"] in visible:
                 item["value"].pop("content", None)
                 item["content_location"] = {"field": "context.evidence", "id": item["id"]}
+        # Retrieved working records can duplicate the same prose delivered in
+        # the mandatory working set. Retain their exact retrieval hashes and
+        # evidence roots, and point to the visible copy instead of paying for
+        # both. A record outside that view must keep its delivered value.
+        for kind, field in (("project", "projects"), ("notebook", "notebooks"),
+                            ("research", "research"), ("commitment", "commitments")):
+            working_ids = {item["id"] for item in context.get(field, [])}
+            for item in context["memory"]["retrieved_records"]:
+                if item["kind"] == kind and item["id"] in working_ids:
+                    item["value"] = {key: item["value"][key] for key in
+                                     ("id", "status", "evidence") if key in item["value"]}
+                    item["content_location"] = {"field": "context." + field, "id": item["id"]}
+                    item["context_excerpt"] = True
         if len(canonical(request)) <= self.config["max_context_chars"]:
             return
         recovery = context.get("representation_recovery", [])

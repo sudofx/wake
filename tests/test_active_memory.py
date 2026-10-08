@@ -320,3 +320,28 @@ class ActiveMemoryTests(unittest.TestCase):
         if memory['trust_compacts']:
             self.assertEqual(memory['trust_compacts'][0]['status'], 'CHALLENGED')
         self.assertEqual(memory['retrieved_records'][0]['record_hash'], digest(beliefs[0]))
+
+    def test_retrieved_working_prose_uses_visible_copy_without_losing_roots(self):
+        from wake.event_format import canonical
+        records = [dict(id='p', kind='project', title='Long project prose '*180, status='active'),
+                   dict(id='n', kind='notebook', summary='Long notebook prose '*180, evidence=['source-a','source-b'])]
+        retrieved = [dict(kind=item['kind'], id=item['id'], record_hash=digest(item), value=copy.deepcopy(item)) for item in records]
+        outside = dict(kind='project', id='outside', record_hash='exact-outside-hash', value=dict(id='outside', title='Only delivered here'))
+        retrieved.append(copy.deepcopy(outside))
+        context = dict(projects=[copy.deepcopy(records[0])], notebooks=[copy.deepcopy(records[1])],
+                       commitments=[dict(id='c', task='Unchanged obligation')], evidence=[],
+                       memory=dict(retrieved_records=retrieved, trust_compacts=[], omissions=dict(compact_count=0)))
+        request = dict(context=context)
+        self.engine.config['max_context_chars'] = 10000
+        self.assertGreater(len(canonical(request)),10000)
+        self.engine.fit_active_request(request)
+        self.assertLessEqual(len(canonical(request)),10000)
+        for index,field in enumerate(('projects','notebooks')):
+            self.assertEqual(retrieved[index]['record_hash'],digest(records[index]))
+            self.assertEqual(retrieved[index]['content_location'],dict(field='context.'+field,id=records[index]['id']))
+            self.assertEqual(context[field][0],records[index])
+        self.assertEqual(retrieved[1]['value']['evidence'],['source-a','source-b'])
+        self.assertEqual(retrieved[2],outside)
+        self.assertEqual(context['commitments'][0]['task'],'Unchanged obligation')
+        before=canonical(request);self.engine.fit_active_request(request)
+        self.assertEqual(canonical(request),before)

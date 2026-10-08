@@ -121,3 +121,10 @@ matching installation's complete record tools to resolve it. See [development](d
 retrieved as operational context and does not authorize continuing a pending wake.
 The optional container activity channel is ephemeral and is never replayed into
 research memory, matrix results or history. Its live pulse is not a score.
+
+Retrieved projects, notebooks, search records and commitments already delivered in
+working fields use explicit `content_location` pointers instead of duplicate prose.
+Their exact retrieval hashes, status and evidence roots remain in memory receipts;
+records outside the visible working set retain their delivered value. This fit is
+idempotent and changes only the provider view. The final ceiling remains mandatory,
+and an impossible protected context still fails before any provider call.
