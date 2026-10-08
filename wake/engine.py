@@ -713,6 +713,41 @@ class Engine:
                     "previous": omissions.get("budget_compact_digest"), "omitted": omitted})
                 context["memory"]["trust_compacts"] = compacts[:count]
 
+        # Milestone editorial history is optional model input, not an obligation
+        # or evidence root. Its longitudinal window can dominate a final request
+        # even after all research prose has been excerpted. Bound that window too,
+        # recording its original identity rather than silently erasing history.
+        history = context.get("reflection_history")
+        if len(canonical(request)) > self.config["max_context_chars"] and isinstance(history, dict):
+            history.setdefault("record_hash", digest(history))
+            history.setdefault("window_counts", {key: len(value) for key, value in history.items()
+                                                  if isinstance(value, list)})
+            history["context_excerpt"] = True
+            note = "editorial reflection history excerpted; original window hash/counts retained, no missing content may be inferred"
+            if note not in context["bounded_context"]["omitted_categories"]:
+                context["bounded_context"]["omitted_categories"].append(note)
+            for key, value in history.items():
+                records = value if isinstance(value, list) else [value] if isinstance(value, dict) else []
+                for item in records:
+                    if not isinstance(item, dict):
+                        continue
+                    for field in ("title", "summary", "body_excerpt", "lede", "lens", "next_step", "query", "last_reason"):
+                        if isinstance(item.get(field), str) and len(item[field]) > 80:
+                            item[field] = item[field][:79] + "…"
+            # Prefer a short longitudinal wake window over extra editorial
+            # copies of projects/notebooks already represented in research context.
+            for key in history["window_counts"]:
+                if key != "accepted_wakes":
+                    history[key] = []
+            history["omitted_counts"] = {key: total - len(history[key])
+                                         for key, total in history["window_counts"].items()}
+            for count in (4, 2, 1, 0):
+                if len(canonical(request)) <= self.config["max_context_chars"]:
+                    break
+                history["accepted_wakes"] = history.get("accepted_wakes", [])[-count:] if count else []
+                history["omitted_counts"] = {key: total - len(history[key])
+                                             for key, total in history["window_counts"].items()}
+
     def fit_bounded_request(self, request):
         """Deterministically shrink an already-bounded provider request below the hard ceiling.
 

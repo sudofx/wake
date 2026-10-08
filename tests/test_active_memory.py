@@ -195,6 +195,59 @@ class ActiveMemoryTests(unittest.TestCase):
         with self.assertRaisesRegex(Rejected, 'memory_mode'):
             config(filename)
 
+    def test_milestone_history_fits_without_losing_mandatory_research(self):
+        from wake.event_format import canonical
+        history = dict(milestone=201, boundary='Editorial history only',
+            accepted_wakes=[dict(cycle=i, invocation='wake-'+str(i), title='Title '*25,
+                                 summary='Prior scientific work '*25) for i in range(191,201)],
+            projects=[dict(id='p'+str(i), domain='physics', status='active',
+                           title='Project '*25, next_step='Research step '*25) for i in range(8)],
+            notebooks=[dict(id='n'+str(i), project='p', revision=i,
+                            title='Notebook '*25, summary='Prior synthesis '*25) for i in range(6)],
+            research=[dict(id='q'+str(i), project='p', domain='physics', status='queued',
+                           query='Research question '*25) for i in range(10)],
+            acquisition_friction=[], previous_reflection=dict(id='post-190', reflection_cycle=190,
+                title='Prior reflection', body_excerpt='Editorial prose '*65))
+        original_hash = digest(history)
+        context = dict(reflection_history=copy.deepcopy(history),
+            beliefs=[dict(id='b', statement='Measured claim', status='active', evidence=['source'])],
+            commitments=[dict(id='c', task='Review contrary evidence', status='open')],
+            evidence=[dict(id='source', actor='collector', content='Measured result '*10)],
+            same_wake_research=dict(planning_invocation='plan', evidence_ids=['source'], requests=[]),
+            memory=dict(retrieved_records=[], trust_compacts=[], omissions=dict(compact_count=0)),
+            bounded_context=dict(omitted_categories=[]))
+        mandatory = {key: copy.deepcopy(context[key]) for key in
+                     ('beliefs','commitments','evidence','same_wake_research')}
+        request = dict(system='Policy '*250, context=context)
+        self.engine.config['max_context_chars'] = 4800
+        self.assertGreater(len(canonical(request)), 4800)
+        self.engine.fit_active_request(request)
+        self.assertLessEqual(len(canonical(request)), 4800)
+        for key, value in mandatory.items():
+            self.assertEqual(context[key], value)
+        fitted = context['reflection_history']
+        self.assertEqual(fitted['milestone'], 201)
+        self.assertEqual(fitted['previous_reflection']['id'], 'post-190')
+        self.assertEqual(fitted['record_hash'], original_hash)
+        self.assertEqual(fitted['window_counts']['accepted_wakes'], 10)
+        self.assertTrue(fitted['accepted_wakes'])
+        self.assertEqual(fitted['accepted_wakes'][-1]['invocation'], 'wake-200')
+        self.assertGreater(fitted['omitted_counts']['accepted_wakes'], 0)
+        context['operator_question'] = 'Late operator question '*40
+        self.engine.fit_active_request(request)
+        self.assertLessEqual(len(canonical(request)), 4800)
+        self.assertEqual(fitted['record_hash'], original_hash)
+        self.assertEqual(fitted['window_counts']['accepted_wakes'], 10)
+        for key, value in mandatory.items():
+            self.assertEqual(context[key], value)
+
+    def test_milestone_history_is_untouched_when_request_fits(self):
+        context = dict(reflection_history=dict(milestone=10, accepted_wakes=[dict(cycle=9, summary='Prior work')]),
+                       evidence=[], memory=dict(retrieved_records=[]))
+        before = copy.deepcopy(context)
+        self.engine.fit_active_request(dict(context=context))
+        self.assertEqual(context, before)
+
     def test_late_research_details_fit_without_losing_evidence_or_obligations(self):
         from wake.event_format import canonical
         records = [dict(id='e'+str(i), source='paper'+str(i), content='Measured result '*60)

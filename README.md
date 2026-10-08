@@ -260,6 +260,8 @@ An operator can ask directly with `python -m wake --data /data wake --provider g
 
 Planning constrains each project to its own topic and to active IDs delivered in context. A topic without an active project can use an empty project ID. Invalid plans are auditable `rejected` outcomes: they perform no retrieval or final inference, advance no research cycle, and permit normal scheduled continuation. Provider and infrastructure failures retain their existing failure handling.
 
+Under context pressure, milestone editorial history is an excerpted working view: optional duplicate project/notebook history is omitted before shortening the recent-wake window. Original window hashes, counts and milestone identity remain visible. This never removes authoritative history, mandatory belief roots or open commitments; missing editorial content must not be invented.
+
 The collector now permits 98 anchored host families in addition to 55 explicit hosts: university/public-agency domains across countries and many scholarly publishers, preprints, institutional repositories and datasets. This substantially expands retrieval beyond the original short list. HTTPS, redirect validation, public-address checks and pinned direct connections, byte/parse/time limits and scientific-source qualification remain enforced. Access permission is not evidence of truth; discovery and metadata remain distinct from readable source material.
 
 
