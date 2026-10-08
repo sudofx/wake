@@ -21,6 +21,13 @@ class ConsolePresentationTests(unittest.TestCase):
         self.assertNotIn("window.open(", self.nav)
         self.assertNotIn("DETACHABLE CONSOLE LINKS", self.nav)
 
+    def test_masthead_omits_establishment_prefix(self):
+        assets = Path(__file__).resolve().parents[1] / 'wake' / 'assets'
+        for name in ('index.html', 'console.html', 'map.html', 'map3d.html'):
+            page = (assets / name).read_text()
+            self.assertNotIn('EST. 2026', page)
+            self.assertIn('WAKE_CYCLE_COUNT', page)
+
     def test_console_reset_view_restores_minimum_width(self):
         self.assertIn("const STORAGE='wake-console-workspace-v3'", self.layout)
         self.assertIn('>Reset Console view</button>', self.html)
