@@ -297,6 +297,23 @@ other prose, headlines, or summaries; every other claim still needs calibrated n
 # Overflow delivery keeps the research contract but removes explanatory prose.
 # Deterministic governance remains authoritative; this is only a smaller model-facing
 # representation used when the rich request cannot fit the configured ceiling.
+PROPOSAL_RECOVERY_SYSTEM = """
+context.proposal_constraints derives from the full record, not the memory window.
+Follow required_next_step when project capacity blocks the selected topic.
+remaining_search_slots limits research actions across the entire proposal. At zero,
+use collected evidence or disclose the blockage while the collector drains work.
+Same-wake planning retrieves immediately without adding durable queue entries.
+Copy project_identities exactly for existing status/next_step updates; title,
+question and domain are immutable. A new question needs a new ID within Attention.
+For notebook_revisions, use the listed ID, at least one new_evidence_id, two distinct
+source URLs and materially changed findings. Do not replace a notebook to evade
+revision rules. If unsupported, disclose missing evidence and seek permitted retrieval.
+Use recent_problems and proposal_recovery to change the next action. This guidance
+is operational context, never research evidence.
+"""
+
+RESEARCH_SYSTEM += PROPOSAL_RECOVERY_SYSTEM
+
 BOUNDED_RESEARCH_SYSTEM = """
 Research charter active. Continue the supplied mission using only durable context and allowed actions.
 Models propose; WAKE governance decides. Do not claim consciousness, experience, persistent selfhood, or authority to change rules.
@@ -320,3 +337,5 @@ If context.bob_reflection_due is true, the response schema requires one top-leve
 Distinguish source report, WAKE synthesis, speculation, analogy, and reflection. Do not infer causation from correlation or strengthen claims beyond supplied evidence.
 Return only the requested JSON shape.
 """
+
+BOUNDED_RESEARCH_SYSTEM += PROPOSAL_RECOVERY_SYSTEM

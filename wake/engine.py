@@ -546,7 +546,72 @@ class Engine:
                     key: notebook.get(key, [] if key == "evidence" else None)
                     for key in ("id", "title", "revision", "evidence")
                 })
+        self.proposal_constraints(state, context)
         return context
+
+    def proposal_constraints(self, state, context):
+        """Retain mechanical action eligibility across every delivery mode.
+
+        Counts and prior identities come from the full authoritative state, not
+        the excerpted memory window. This view guides generation; governance
+        still checks the original proposal without repairing it.
+        """
+        if not state.get("charter"):
+            return
+        queued = sorted(item["id"] for item in state.get("research", {}).values()
+                        if item.get("status") == "queued")
+        visible_projects = {item["id"] for item in context.get("projects", [])}
+        attention = context.get("attention", {})
+        selected = attention.get("selected_topic") if attention.get("enforce_selected_topic") else None
+        notebooks = {}
+        # One current revision target per visible project. Historical notebook
+        # IDs are not an invitation to rewrite every old synthesis, and copying
+        # all historical findings would defeat bounded delivery.
+        latest = {}
+        for item in sorted(state.get("notebooks", {}).values(), key=lambda n: (
+                n.get("updated_version", n.get("created_version", 0)), n["id"])):
+            if item.get("project") not in visible_projects:
+                continue
+            if selected and state["projects"][item["project"]]["domain"] != selected:
+                continue
+            latest[item["project"]] = item
+        for item in latest.values():
+            allowed = set(context.get("project_evidence", {}).get(item["project"], []))
+            new = sorted(allowed - set(item.get("evidence", [])))
+            notebooks[item["id"]] = {
+                "project": item["project"], "new_evidence_ids": new,
+                "findings_hash": digest(item.get("findings", "")),
+                "prior_findings_excerpt": item.get("findings", "")[:400],
+            }
+        context["proposal_constraints"] = {
+            "queued_search_ids": queued,
+            "remaining_search_slots": max(0, 4 - len(queued)),
+            "known_project_ids": sorted(state.get("projects", {})),
+            "project_identities": {
+                key: {field: state["projects"][key][field]
+                      for field in ("title", "question", "domain")}
+                for key in sorted(visible_projects)
+            },
+            "notebook_revisions": notebooks,
+        }
+        active = [item for item in state.get("projects", {}).values()
+                  if item.get("status") == "active"]
+        if selected and len(active) >= 3 and not any(item["domain"] == selected for item in active):
+            context["proposal_constraints"]["required_next_step"] = (
+                "Park one existing active project first; all three active slots are full. "
+                "Resume the selected-topic parked project on a later accepted transition.")
+        outcomes = self.store.tail_events(("rejected", "failed"), 2)
+        context["recent_problems"] = [item["payload"].get("reason", "") for item in outcomes]
+        guidance = []
+        for reason in context["recent_problems"]:
+            if "four queued source searches" in reason:
+                guidance.append("Use remaining_search_slots for the entire proposal, not per action. When zero, use collected evidence or let the collector drain queued work; do not add searches.")
+            elif "cannot change title or research question" in reason:
+                guidance.append("Copy an existing project's exact project_identities fields when updating status/next_step. A different question requires a genuinely new project ID, subject to Attention and capacity.")
+            elif "revision needs changed findings" in reason:
+                guidance.append("Revise the exact notebook ID only with changed findings and at least one of its new_evidence_ids. Fresh retrieval alone does not make a repeated finding a revision.")
+        context["proposal_recovery"] = list(dict.fromkeys(guidance))
+
     def focus_synthesis_delivery(self, context):
         """Focus an overflowed working view on one synthesis-ready project.
 
@@ -621,6 +686,9 @@ class Engine:
     def fit_active_request(self, request):
         """Remove duplicate prose and bound recovery detail without dropping obligations."""
         context = request["context"]
+        if "bounded_context" in context:
+            context["bounded_context"]["omitted_categories"] = list(dict.fromkeys(
+                context["bounded_context"].get("omitted_categories", [])))
         visible = {item["id"]: item for item in context.get("evidence", []) if item.get("content")}
         for item in context["memory"]["retrieved_records"]:
             if item["kind"] == "evidence" and item["id"] in visible:
@@ -712,6 +780,17 @@ class Engine:
                 omissions["budget_compact_digest"] = digest({
                     "previous": omissions.get("budget_compact_digest"), "omitted": omitted})
                 context["memory"]["trust_compacts"] = compacts[:count]
+
+        # Prior finding prose helps compare revisions, but its exact identity and
+        # eligible new-source IDs are the necessary contract. Never let those
+        # optional excerpts crowd out the mechanical recovery boundary.
+        if len(canonical(request)) > self.config["max_context_chars"]:
+            for item in context.get("proposal_constraints", {}).get("notebook_revisions", {}).values():
+                if item.pop("prior_findings_excerpt", None) is not None:
+                    item["prior_findings_omitted"] = True
+            note = "prior notebook finding prose; artifact hashes and new-source eligibility retained"
+            if note not in context["bounded_context"]["omitted_categories"]:
+                context["bounded_context"]["omitted_categories"].append(note)
 
         # Milestone editorial history is optional model input, not an obligation
         # or evidence root. Its longitudinal window can dominate a final request
@@ -1560,6 +1639,7 @@ class Engine:
                 and project["id"] not in notebook_projects
             ]
             context["research_maturation"] = self.research_maturation(state)
+            self.proposal_constraints(state, context)
         return context
 
     def rehydrate_retrieval_context(self, state, context, retrieval_plan, content_limit=3000, max_records=3, *, force=False):
@@ -2015,6 +2095,13 @@ class Engine:
         if research:
             request["context"]["same_wake_research"] = json.loads(canonical(research))
             request["system"] += "\nAnswer the operator question or planned questions in summary using collected evidence IDs. Submit justified findings now in this proposal; disclose missing or insufficient evidence instead of claiming success.\n"
+        # Rehydration and focusing can change visible citation eligibility. Build
+        # the final contract from that view while retaining full-state queue and
+        # prior artifact identities, even in routine compact memory.
+        prior_constraints = request["context"].get("proposal_constraints")
+        self.proposal_constraints(state, request["context"])
+        if prior_constraints != request["context"].get("proposal_constraints"):
+            request["response_schema"] = _provider_response_schema(request["context"], bool(state.get("charter")))
         if phase == "planning":
             from .research import RESEARCH_PLAN_SYSTEM, research_plan_schema
             request["context"].pop("continuity_probe", None)

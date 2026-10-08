@@ -239,6 +239,47 @@ def schema_for_context(context):
             else:
                 choices.remove(research_action)
 
+    constraints = context.get("proposal_constraints", {})
+    slots = constraints.get("remaining_search_slots")
+    if isinstance(slots, int):
+        if slots == 0:
+            choices[:] = [item for item in choices
+                          if item["properties"]["type"]["enum"] != ["research"]]
+        else:
+            # This is a proposal-wide limit: two individually valid searches
+            # can still overflow the one remaining durable queue slot.
+            schema["properties"]["actions"].update({
+                "contains": {"type": "object", "properties": {
+                    "type": {"enum": ["research"]}}, "required": ["type"]},
+                "minContains": 0, "maxContains": slots,
+            })
+
+    identities = constraints.get("project_identities", {})
+    known_projects = constraints.get("known_project_ids", [])
+    for item in list(choices):
+        if item["properties"]["type"]["enum"] != ["project"]:
+            continue
+        ids = item["properties"]["id"].get("enum")
+        if ids:
+            # Bounded project prose may be excerpted. Pin the original identity,
+            # not the excerpt, in status/next-step update alternatives.
+            if len(ids) == 1 and ids[0] in identities:
+                for field, value in identities[ids[0]].items():
+                    item["properties"][field] = {"type": "string", "enum": [value]}
+            continue
+        if not known_projects:
+            continue
+        item["properties"]["id"]["not"] = {"enum": known_projects}
+        # The broad create action previously also allowed edits to immutable
+        # existing identity. Offer separate, exact update alternatives instead.
+        if not enforced_topic:
+            for identifier, identity in identities.items():
+                update = deepcopy(item)
+                update["properties"]["id"] = {"type": "string", "enum": [identifier]}
+                for field, value in identity.items():
+                    update["properties"][field] = {"type": "string", "enum": [value]}
+                choices.append(update)
+
     # Commitment resolution receives commitment-specific, governance-eligible
     # evidence alternatives. This prevents the provider from selecting only
     # pre-commitment evidence even when newer qualifying evidence is visible.
@@ -334,7 +375,7 @@ def schema_for_context(context):
                 for item in existing_notebooks.get(project["id"], [])
                 for evidence_id in item.get("evidence", [])
             }
-            if existing_notebooks.get(project["id"]) and not any(
+            if "notebook_revisions" not in constraints and existing_notebooks.get(project["id"]) and not any(
                 evidence_id not in prior_evidence for evidence_id in allowed
             ):
                 continue
@@ -342,7 +383,25 @@ def schema_for_context(context):
             constrained = deepcopy(notebook)
             constrained["properties"]["project"] = {"type": "string", "enum": [project["id"]]}
             constrained["properties"]["evidence"]["items"] = {"type": "string", "enum": allowed}
-            choices.append(constrained)
+            revisions = constraints.get("notebook_revisions")
+            prior = {identifier: item for identifier, item in (revisions or {}).items()
+                     if item["project"] == project["id"]}
+            if prior:
+                for identifier, item in prior.items():
+                    new = sorted(set(item["new_evidence_ids"]) & set(allowed))
+                    if not new or len({collector_evidence[e].get("source", e)
+                                       for e in allowed if e in collector_evidence}) < 2:
+                        continue
+                    revision = deepcopy(constrained)
+                    revision["properties"]["id"] = {"type": "string", "enum": [identifier]}
+                    revision["properties"]["evidence"].update({
+                        "minItems": 2, "uniqueItems": True,
+                        "contains": {"type": "string", "enum": new},
+                        "minContains": 1,
+                    })
+                    choices.append(revision)
+            else:
+                choices.append(constrained)
     blog = next(a for a in choices if a["properties"]["type"]["enum"] == ["blog"])
     evidence = sorted({eid for _, notebook in entries for eid in notebook["evidence"]})
     reflection_due = bool(context.get("bob_reflection_due"))
@@ -402,6 +461,16 @@ def schema_for_context(context):
         # Ordinary Bob publication stays optional and event-driven. A due
         # checkpoint is required to be proposed, but publication can still be
         # withheld by governance without blocking accepted research.
+    if constraints.get("required_next_step"):
+        parking = [item for item in choices
+                   if item["properties"]["type"]["enum"] == ["project"]
+                   and item["properties"]["status"].get("enum") == ["parked"]]
+        if parking:
+            # A capacity recovery wake is one exact parking transition, not a
+            # fresh commitment or another evidence-free synthesis attempt.
+            # Any due editorial checkpoint remains a separate top-level field.
+            choices[:] = parking
+            schema["properties"]["actions"].update({"minItems": 1, "maxItems": 1})
     return schema
 
 def retractable_quotes(post):

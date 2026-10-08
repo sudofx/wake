@@ -1012,6 +1012,107 @@ class ResearchTests(unittest.TestCase):
             for item in choices
         ))
 
+    def test_active_memory_retains_full_queue_and_rejection_recovery(self):
+        search = lambda query: dict(type="research", project="p", domain="entropy",
+                                    query=query, reason="Resolve the comparison")
+        self.assertEqual(self.propose([project()] + [search(f"comparison {n}") for n in range(4)])["status"], "accepted")
+        rejected = self.propose([search("a fifth comparison")])
+        self.assertEqual(rejected["reason"], "At most four queued source searches")
+        self.engine.config["memory_mode"] = "active"
+        with self.engine.store.lock():
+            _, request = self.engine.start("fixture", "queue-recovery")
+        context = request["context"]
+        self.assertEqual(context["proposal_constraints"]["remaining_search_slots"], 0)
+        self.assertEqual(len(context["proposal_constraints"]["queued_search_ids"]), 4)
+        self.assertIn(rejected["reason"], context["recent_problems"])
+        self.assertTrue(context["proposal_recovery"])
+        choices = request["response_schema"]["properties"]["actions"]["items"]["anyOf"]
+        self.assertFalse(any(item["properties"]["type"]["enum"] == ["research"] for item in choices))
+        self.assertIn("remaining_search_slots", request["system"])
+
+    def test_proposal_wide_queue_limit_and_exact_project_identity(self):
+        self.assertEqual(self.propose([project()])["status"], "accepted")
+        state = self.engine.store.load()
+        # Hidden old queue records must count even when the delivered research
+        # window is empty. Project prose excerpts must not become identity.
+        state["research"] = {str(n): {"id": str(n), "status": "queued"} for n in range(3)}
+        context = self.engine.context(state, "full-record-contract")
+        context["research"] = []
+        context["projects"][0] = {**context["projects"][0], "title": "excerpt", "question": "excerpt"}
+        self.engine.proposal_constraints(state, context)
+        schema = schema_for_context(context)
+        self.assertEqual(schema["properties"]["actions"]["maxContains"], 1)
+        self.assertEqual(schema["properties"]["actions"]["minContains"], 0)
+        choices = schema["properties"]["actions"]["items"]["anyOf"]
+        projects = [item for item in choices if item["properties"]["type"]["enum"] == ["project"]]
+        for item in projects:
+            if item["properties"]["id"].get("enum") == ["p"]:
+                self.assertEqual(item["properties"]["title"]["enum"], [project()["title"]])
+                self.assertEqual(item["properties"]["question"]["enum"], [project()["question"]])
+            else:
+                self.assertIn("p", item["properties"]["id"]["not"]["enum"])
+
+    def test_hidden_notebook_revision_requires_new_evidence_and_stable_id(self):
+        self.assertEqual(self.propose([project()])["status"], "accepted")
+        self.source("s1")
+        self.assertEqual(self.propose([notebook(["s1"])])["status"], "accepted")
+        self.source("s2")
+        state = self.engine.store.load()
+        context = self.engine.context(state, "revision-recovery")
+        context["notebooks"] = []  # routine memory can omit this prior artifact
+        self.engine.proposal_constraints(state, context)
+        choices = schema_for_context(context)["properties"]["actions"]["items"]["anyOf"]
+        revision = next(item for item in choices if item["properties"]["type"]["enum"] == ["notebook"])
+        self.assertEqual(revision["properties"]["id"]["enum"], ["n"])
+        self.assertEqual(revision["properties"]["evidence"]["contains"]["enum"], ["s2"])
+        self.assertEqual(revision["properties"]["evidence"]["minItems"], 2)
+        repeated = self.propose([notebook(["s1", "s2"])])
+        self.assertEqual(repeated["reason"], "A revision needs changed findings and newly retrieved evidence")
+        corrected = self.propose([notebook(["s1", "s2"], "Changed comparison supported by new material [s1] [s2].")])
+        self.assertEqual(corrected["status"], "accepted", corrected)
+
+    def test_revision_targets_are_bounded_and_attention_scoped(self):
+        self.assertEqual(self.propose([project()])["status"], "accepted")
+        state = self.engine.store.load()
+        state["notebooks"] = {f"old-{n}": {
+            "id": f"old-{n}", "project": "p", "updated_version": n,
+            "findings": "historical findings", "evidence": ["s1"],
+        } for n in range(30)}
+        state["projects"]["other"] = {**state["projects"]["p"], "id": "other", "domain": "music_experience"}
+        state["notebooks"]["other-notebook"] = {
+            "id": "other-notebook", "project": "other", "updated_version": 99,
+            "findings": "other topic", "evidence": [],
+        }
+        context = {"projects": list(state["projects"].values()),
+                   "project_evidence": {"p": ["s1", "s2"]},
+                   "attention": {"enforce_selected_topic": True, "selected_topic": "entropy"}}
+        self.engine.proposal_constraints(state, context)
+        revisions = context["proposal_constraints"]["notebook_revisions"]
+        self.assertEqual(list(revisions), ["old-29"])
+        self.assertEqual(revisions["old-29"]["new_evidence_ids"], ["s2"])
+
+    def test_full_project_capacity_offers_one_exact_parking_transition(self):
+        self.assertEqual(self.propose([project()])["status"], "accepted")
+        state = self.engine.store.load()
+        for identifier in ("second", "third"):
+            state["projects"][identifier] = {**state["projects"]["p"], "id": identifier}
+        state["projects"]["selected"] = {**state["projects"]["p"], "id": "selected",
+                                               "domain": "music_experience", "status": "parked"}
+        context = {"mission": state["charter"], "projects": list(state["projects"].values()),
+                   "research_topics": [{"id": "entropy"}, {"id": "music_experience"}],
+                   "attention": {"enforce_selected_topic": True, "selected_topic": "music_experience"}}
+        self.engine.proposal_constraints(state, context)
+        schema = schema_for_context(context)
+        actions = schema["properties"]["actions"]
+        self.assertEqual(actions["minItems"], 1)
+        self.assertEqual(actions["maxItems"], 1)
+        choices = actions["items"]["anyOf"]
+        self.assertEqual({item["properties"]["id"]["enum"][0] for item in choices}, {"p", "second", "third"})
+        for item in choices:
+            self.assertEqual(item["properties"]["type"]["enum"], ["project"])
+            self.assertEqual(item["properties"]["status"]["enum"], ["parked"])
+            self.assertEqual(item["properties"]["question"]["enum"], [project()["question"]])
+
     def test_schema_allows_notebook_revision_when_new_project_evidence_exists(self):
         context = {
             "research_topics": [{"id": "entropy"}],

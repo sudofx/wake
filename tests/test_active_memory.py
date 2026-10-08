@@ -45,6 +45,28 @@ class ActiveMemoryTests(unittest.TestCase):
             title='Memory contract test', summary='Isolated test actions', actions=actions)))
         self.assertEqual(result['status'], 'accepted')
 
+    def test_budget_pressure_omits_prior_findings_without_losing_revision_contract(self):
+        from wake.event_format import canonical
+        target = {'project': 'p', 'findings_hash': digest('original findings'),
+                  'prior_findings_excerpt': 'x' * 400, 'new_evidence_ids': ['new-source']}
+        request = {'system': '', 'response_schema': {}, 'context': {
+            'memory': {'retrieved_records': [], 'trust_compacts': []},
+            'bounded_context': {'omitted_categories': []},
+            'proposal_constraints': {'remaining_search_slots': 0,
+                                     'project_identities': {'p': {'title': 'Exact title'}},
+                                     'notebook_revisions': {'n': target}},
+        }}
+        limit = self.engine.config['max_context_chars']
+        request['system'] = 'x' * (limit + 40 - len(canonical(request)))
+        self.engine.fit_active_request(request)
+        self.assertLessEqual(len(canonical(request)), limit)
+        self.assertEqual(target['findings_hash'], digest('original findings'))
+        self.assertEqual(target['new_evidence_ids'], ['new-source'])
+        self.assertNotIn('prior_findings_excerpt', target)
+        self.assertTrue(target['prior_findings_omitted'])
+        self.assertEqual(request['context']['proposal_constraints']['remaining_search_slots'], 0)
+        self.assertEqual(request['context']['proposal_constraints']['project_identities']['p']['title'], 'Exact title')
+
     def test_active_mode_delivers_routine_memory_below_ceiling_and_makes_one_call(self):
         self.engine.config['memory_mode'] = 'active'
         provider = CountingFixture()

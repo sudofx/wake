@@ -356,3 +356,5 @@ runtime startup. No hosted publisher or checkpoint schedule is enabled by these
 commands. A locally stored signature is not external notarization: publish or
 retain witnesses through an independently controlled channel before claiming
 protection against an administrator replacing the entire history and witness.
+
+Routine memory retains full-record proposal constraints: outstanding search capacity, exact project identities, notebook-specific new-source eligibility and recent rejection recovery. The provider response contract excludes full-queue searches and mechanical identity/revision violations before generation; deterministic governance still independently decides acceptance. No rejected proposal is rewritten into accepted progress.
