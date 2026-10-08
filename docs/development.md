@@ -217,3 +217,21 @@ and historical traveling-dot replay is suppressed. The provider call boundary
 reports request-in-flight until response arrival; it cannot distinguish network
 upload completion from remote model processing. Hosted static snapshots do not
 provide that live capability and must retain their dated interpretation.
+
+## Workspace width and directional masthead
+
+Console fills the viewport rather than inheriting reading-page width caps. Only a
+populated, in-page desktop inspector reserves width; popping it out restores the
+entire workspace. The grid counts available columns instead of applying a fixed
+large-screen column limit. Other reading pages may retain their text-column limits.
+
+The shared masthead spans the viewport. Sticky flow space prevents content jumps:
+downward scroll hides it, upward scroll reveals it above inspection overlays.
+Keyboard focus and open navigation menus keep it accessible; reduced motion removes
+sliding animation. Phone inspection must reserve its height even while hidden,
+since upward movement reveals it again. Dark story sections use muted amber borders
+and a subtle tint; their layout and durable data remain unchanged.
+
+Private collaboration structure and artifact completion rules are in
+[the workbench guide](workbench.md). That guide deliberately describes structure,
+not the contents of any installation's private notes.

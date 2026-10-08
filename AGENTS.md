@@ -124,7 +124,8 @@ All active runtime code is owned here. Do not add another project's dependency, 
 
 ## Environment and publication boundaries
 
-Start with `docs/development.md`. Identify checkout, imported package, process, image,
+Start with `docs/development.md`. Optional private collaboration is described in
+`docs/workbench.md`; do not require its installation-local files for builds or operation. Identify checkout, imported package, process, image,
 data volume, runtime ref and intended website before changing execution or deployment.
 A bind-mounted checkout and an installed image may execute different code. Preserve
 existing edits and record volumes; source synchronization never authorizes record copying.
