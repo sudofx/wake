@@ -1,10 +1,12 @@
 """
-Transitional WAKE Store interface backed by the wake authoritative database.
+WAKE application Store interface backed by the owned kernel record.
 
 The legacy WAKE database is accepted only as a verified, read-only migration
 source. Every post-migration mutation is an application intent committed to
 wake. Historical query methods combine the frozen imported legacy prefix with
 WAKE-compatible events reconstructed from wake.kernel application action inputs.
+Normal reads use the verified materialized envelope; full audit/replay remains
+available. Never replace this adapter with legacy Store construction in Engine.
 """
 
 from __future__ import annotations

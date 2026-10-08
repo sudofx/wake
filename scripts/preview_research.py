@@ -48,6 +48,10 @@ def main():
     parser.add_argument('--directory', type=Path, default=Path('site'))
     parser.add_argument('--port', type=int, default=8947)
     args = parser.parse_args()
+    # This is a hosted-data mirror, not a preview of a local installation.
+    identity = args.directory / 'deployment.json'
+    if not identity.exists() or json.loads(identity.read_text()).get('mode') != 'hosted':
+        parser.error('Requires a hosted export; serve standalone exports with a plain static server instead')
     source = PublicResearch(args.directory)
 
     class Handler(SimpleHTTPRequestHandler):

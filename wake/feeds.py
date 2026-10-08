@@ -1,12 +1,5 @@
 # =============================================================================
 # FEEDS — a deterministic publication view. RSS is derived from accepted journal/blog records. Dates, attribution, correction links and status come from durable records rather than publication-time guesses.
-#
-# MAINTENANCE PRINCIPLE
-# ---------------------
-# The architecture is intentionally explicit.  A future human or AI maintainer
-# should be able to follow authority from input, through validation, to durable
-# record without relying on folklore.  Comments explain why boundaries exist,
-# what failure means, and which tempting shortcuts would weaken accountability.
 # =============================================================================
 
 """RSS 2.0 subscriptions derived from durable published records."""

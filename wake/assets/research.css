@@ -606,7 +606,7 @@ html.console-detached body{
   display:grid;
   grid-template-columns:repeat(var(--console-cols,1),minmax(0,1fr))!important;
   gap:14px;
-  align-items:start;
+  align-items:stretch;
   margin:14px 0 22px;
 }
 .console-module{
@@ -753,7 +753,7 @@ html.console-tool-window #console-tool-frame{
   margin:0!important;
   transform:none!important;
   grid-row:auto!important;
-  align-self:start!important;
+  align-self:stretch!important;
   justify-self:stretch!important;
   overflow:visible!important;
 }
@@ -2032,3 +2032,17 @@ html:not(.console-panel-window) body.research-page [data-console-panel-id].panel
 .cube-heatmap-legend p{margin:8px 0 0;color:var(--muted)}
 .cube-unscored{font-size:18px;vertical-align:-1px}
 @media(max-width:700px){.cube-heatmap-legend{margin:8px 16px 14px}}
+
+/* Panels share the full height of their grid row. Scrollable readers use the
+   extra space without making a long snapshot determine the row height. */
+.console-module-grid > .console-module:not(.module-collapsed){
+  display:flex;
+  flex-direction:column;
+}
+.console-module-grid > .console-module > *{flex-shrink:0}
+.console-module-grid > .console-module > #wake-detail:not(.floating){
+  flex:1 1 220px;
+  min-height:220px;
+  max-height:none!important;
+}
+.console-module-grid > .console-module.module-collapsed{align-self:start!important}

@@ -132,6 +132,8 @@ class StandaloneRuntimeTests(unittest.TestCase):
             publish(engine, root)
             for page in (root / 'current').rglob('*.html'):
                 self.assertIn('window.WAKE_STANDALONE=true', page.read_text())
+            self.assertEqual(json.loads((root / 'current' / 'deployment.json').read_text()),
+                             {'schema': 1, 'mode': 'standalone'})
             self.assertEqual((root / 'current' / 'head.txt').read_text().strip(), head)
             self.assertFalse((root / 'current' / 'wake.sqlite').exists())
             self.assertEqual(engine.store.head(), head)
@@ -157,9 +159,9 @@ let html='';process.stdin.on('data',chunk=>html+=chunk);
 process.stdin.on('end',async()=>{
   const script=[...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m=>m[1]).find(s=>s.includes('window.WakeLiveUrl='));
   const results=[];
-  for(const local of [true,false]){
+  for(const local of [true,false,null]){
     const calls=[];
-    const window={WAKE_STANDALONE:local};
+    const window=local===null?{}:{WAKE_DEPLOYMENT:{schema:1,mode:local?'standalone':'hosted'}};
     vm.runInNewContext(script,{window,Date,fetch:async url=>{calls.push(url);return {ok:true,json:async()=>({state:{version:0},head:'test'})}}});
     await window.WakeData;results.push(calls);
   }
@@ -168,9 +170,10 @@ process.stdin.on('end',async()=>{
 """
         result = subprocess.run(['node', '-e', javascript], input=page, text=True,
                                 capture_output=True, check=True)
-        local, hosted = json.loads(result.stdout)
+        local, hosted, unknown = json.loads(result.stdout)
         self.assertTrue(local and all(url.startswith('wake-data.json?') for url in local))
         self.assertTrue(hosted[0].startswith('https://raw.githubusercontent.com/sudofx/wake/wake-live/'))
+        self.assertTrue(unknown and all(url.startswith('wake-data.json?') for url in unknown))
 
     def test_busy_operator_does_not_discard_website_or_stop_refresh(self):
         with tempfile.TemporaryDirectory() as directory:

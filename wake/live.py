@@ -1,6 +1,7 @@
 """Disposable public projection for the WAKE✳︎ browser.
 
-wake SQLite on wake-state is authoritative. This module deliberately produces a
+For hosted operation, wake SQLite on wake-state is authoritative. Standalone
+operation uses its own volume; public projections never seed or repair it. This module deliberately produces a
 bounded, replaceable view for the public UI; nothing here is read back into
 governance, recovery, or provider context.
 """

@@ -27,7 +27,12 @@ class PublishingTests(unittest.TestCase):
                 self.assertEqual(payload["source"]["database"], "wake.sqlite3")
                 self.assertIsNone(payload["source"]["branch"])
                 before = engine.store.performance_snapshot()["full_replays"]
-                export(None, root / "site", browser_only=True, projection=payload)
+                export(None, root / "site", browser_only=True, projection=payload, standalone=False)
+                self.assertEqual(json.loads((root / "site/deployment.json").read_text()),
+                                 {"schema": 1, "mode": "hosted"})
+                for page in (root / "site").glob('*.html'):
+                    if '<head>' in page.read_text():
+                        self.assertIn('"mode": "hosted"', page.read_text())
                 self.assertEqual(engine.store.performance_snapshot()["full_replays"], before)
                 rendered = json.loads((root / "site/wake-data.json").read_text())
                 self.assertEqual(rendered["head"], payload["head"])
@@ -42,7 +47,7 @@ class PublishingTests(unittest.TestCase):
             try:
                 engine.run(Fixture())
                 before = engine.store.performance_snapshot()["full_replays"]
-                export(engine.store, root / "site")
+                export(engine.store, root / "site", standalone=False)
                 self.assertEqual(engine.store.performance_snapshot()["full_replays"] - before, 1)
 
                 for name in ("index.html", "events.html", "state.html",

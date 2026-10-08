@@ -29,12 +29,12 @@ The **Console** (`console.html`) is the inspection workspace for that record. It
 
 <p align="center"><img src="assets/covers/screenshot-cube.png" alt="**WAKE✳︎** Console full screen" width="100%"/>
 
-WAKE can explicitly opt into WAKE's versioned `continuity@1` 7×7×7 matrix without copying the matrix definition into this repository. wake owns the immutable grammar, coordinate IDs, traversal, validation, and definition digest; WAKE owns when the campaign is enabled, how coordinates are scheduled and prompted, how results are interpreted/scored, and which results count as completed. Matrix progress is committed through the existing WAKE `ApplicationHost` state in `wake.sqlite`; no JSON/Markdown progress store is authoritative. Existing research behavior is unchanged until matrix enablement is explicitly submitted. The **WAKE✳︎ - Enable continuity campaign** operator workflow performs that explicit opt-in through the serialized authority lane without calling a provider, and the Console links to it only when the durable projection explicitly reports the campaign disabled. Once enabled, each ordinary provider request carries at most one continuity sidecar for the next uncovered coordinate. The same model response returns the normal research proposal plus the isolated probe answer, so the campaign adds no second inference call and consumes no additional provider quota. The sidecar receives a deterministic exposure/pressure packet, cannot authorize research changes, is stripped before ordinary proposal governance, and is scored mechanically against explicit structural invariants. Any returned provider response completes that tested coordinate: a missing or malformed sidecar records a zero score instead of invalidating otherwise valid research, while a provider transport/quota deferral with no response leaves the coordinate uncovered for retry.
+The research application can explicitly opt into the owned kernel's versioned `continuity@1` 7×7×7 matrix. `wake/kernel/matrix.py` owns the immutable grammar, coordinate IDs, traversal, validation, and definition digest; the research application owns when the campaign is enabled, how coordinates are scheduled and prompted, how results are interpreted/scored, and which results count as completed. Matrix progress is committed through the existing WAKE `ApplicationHost` state in `wake.sqlite`; no JSON/Markdown progress store is authoritative. Existing research behavior is unchanged until matrix enablement is explicitly submitted. The **WAKE✳︎ - Enable continuity campaign** operator workflow performs that explicit opt-in through the serialized authority lane without calling a provider, and the Console links to it only when the durable projection explicitly reports the campaign disabled. Once enabled, each ordinary provider request carries at most one continuity sidecar for the next uncovered coordinate. The same model response returns the normal research proposal plus the isolated probe answer, so the campaign adds no second inference call and consumes no additional provider quota. The sidecar receives a deterministic exposure/pressure packet, cannot authorize research changes, is stripped before ordinary proposal governance, and is scored mechanically against explicit structural invariants. Any returned provider response completes that tested coordinate: a missing or malformed sidecar records a zero score instead of invalidating otherwise valid research, while a provider transport/quota deferral with no response leaves the coordinate uncovered for retry.
 
 
 The Console labels cells **#001–#343** using the frozen grammar's row-major ordinal. For example, #001 is `continuity@1:reconstruction|rich|clean` and #002 is `continuity@1:reconstruction|rich|stale-frontier`. Numeric labels appear in selection, comparison and hover readouts; the full coordinate ID remains the permanent identity. These labels do not change the campaign, scores or durable results.
 
-## Current architecture — October 5, 2026
+## Current architecture
 
 WAKE✳︎ is a standalone application. Its owned kernel in `wake/kernel/` provides the durable-work sequence **Record → Context → Proposal → Governance → Transition → Receipt**. Research policy, evidence qualification, Attention, Bob, and the continuity campaign remain application concerns above that kernel. Installing WAKE requires no other project's package, database, or runtime service.
 
@@ -48,6 +48,16 @@ WAKE✳︎ is a standalone application. Its owned kernel in `wake/kernel/` provi
 Existing V1 checkpoints are adopted by verified format discovery and an atomic filename change. Receipt hashes, exact WAKE events, application version, historical provenance tags, invocation accounting, and generation history remain unchanged. Historical format tags remain data, not a runtime dependency. The legacy `wake.sqlite3` store is only a verified import source or offline fixture; it never becomes a second operational authority.
 
 Before any provider effect, the runtime checkpoints its durable reservation. WAKE's own database fence and operator Start/Stop workflows control execution. There is no external access latch. Promotion stops research, verifies the exact candidate, promotes it, and resumes the continuous runner. Missing authority fails closed; only explicit initialization or first-ever cloud bootstrap can create an empty record. SQLite transport is compressed and verified byte for byte, with verified compaction at 90 MiB and GitHub's 100 MiB compressed-blob ceiling enforced before provider work.
+
+## Maintainer entry point
+
+Read the [maintainer map](docs/development.md) before changing deployment, authority,
+provider delivery or browser data routing. Hosted research, Pages and standalone
+Docker share source but own distinct execution and data paths. Local and hosted
+cycle counts are expected to differ; source publication is not record synchronization.
+See [standalone operation](docs/standalone.md) and [hosted operation](docs/cloud.md)
+for their respective controls. The browser requires explicit hosted installation
+identity before loading GitHub data; unconfigured templates stay same-origin.
 
 ## Start here — no account, no API calls
 
@@ -169,7 +179,7 @@ Use the workflows by their literal names:
 - **WAKE✳︎ - Reset** — safely stop as needed, preserve/archive prior governed history, and start a new active generation at zero; requires the workflow's explicit reset confirmation.
 - **WAKE✳︎ - promote** — verify the selected candidate (normally `master`), then move that exact tested commit to `wake-runtime`. Research must be stopped first.
 - **WAKE✳︎ - Restart** — safe maintenance shortcut: stop, verify current `master`, promote it, then start again.
-- **WAKE✳︎ - Enable continuity campaign** — provider-free explicit opt-in to the governed `continuity@1` 343-cell campaign; immediately stops/drains WAKE, safely serializes the state change, then starts WAKE again whether enablement succeeds or fails.
+- **WAKE✳︎ - Enable continuity campaign** — provider-free explicit opt-in to the governed `continuity@1` 343-cell campaign; drains research, serializes the state change, and restores the prior running/stopped state.
 - **WAKE✳︎ — Update website · automatic** — rebuild the public GitHub Pages site when website code changes.
 - **WAKE✳︎ — Check code · automatic** — run the repository's safety checks when code changes.
 - **WAKE✳︎ — Internal only: one research cycle** and **WAKE✳︎ — Internal only: keep-running switch** are plumbing. Do not use them for normal operation.

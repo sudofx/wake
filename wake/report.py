@@ -1,16 +1,14 @@
 # =============================================================================
 # REPORT — the human projection layer. Static HTML/JSON views are derived from canonical durable state. Rendering may explain or hide information, but it must never silently create experimental facts.
-#
-# MAINTENANCE PRINCIPLE
-# ---------------------
-# Read this file as part of a chain of custody.  WAKE✳︎ deliberately separates
-# disposable cognition from durable authority.  Comments therefore explain not
-# only what a function does, but why its boundary exists and what a refactor must
-# not accidentally collapse.  Prefer explicit receipts, deterministic state
-# transitions, and replayable facts over convenient hidden behavior.
 # =============================================================================
 
-"""Portable static site projection. No CDN, build pipeline, tracking, or API-key exposure."""
+"""Verified record-to-website export, including installation-specific transport.
+
+Use export rather than copying templates into a running site: deployment identity,
+local operator links, data projections and Console components form one artifact.
+The hosted Pages caller supplies a public projection; standalone callers supply
+their own store. Neither export path transfers authority between installations.
+"""
 
 from contextlib import nullcontext
 from datetime import datetime
@@ -355,7 +353,7 @@ def _flat_browser_shell(title, eyebrow, heading, description, kind, source):
 
 
 def export(store=None, destination="site", experiment=None, operation=None, browser_only=False,
-           record_snapshot=None, projection=None, standalone=False):
+           record_snapshot=None, projection=None, standalone=True):
     lock = store.lock() if store is not None else nullcontext()
     with lock:
         # Pages may consume the disposable wake-live projection directly. It must
@@ -400,7 +398,13 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         from .research_projection import build_research_projection
         research = (projection or {}).get("research") or build_research_projection(
             state, events, head, generated=data["generated"], metrics=data["metrics"],
-            operation=operation, source=(projection or {}).get("source"),
+            operation=operation, source=(projection or {}).get("source") or ({
+                "authority": "wake SQLite" if hasattr(store, "record") else "legacy WAKE SQLite",
+                "database": store.path.name,
+                "branch": None,
+                "installation": "standalone" if standalone else "export",
+                "head": head,
+            } if store is not None else {}),
             matrix_reported=projection is None and hasattr(store, "continuity_matrix_progress"),
             matrix_progress=store.continuity_matrix_progress() if projection is None and hasattr(store, "continuity_matrix_progress") else None,
         )
@@ -487,8 +491,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             # historical presentation files back into the live browser projection.
             atomic_write(target / "404.html", """<!doctype html><meta charset="utf-8"><script>(()=>{const p=location.pathname;let h='home';let m;if((m=p.match(/\\/blog\\/([^/]+)\\.(?:html|md)$/)))h='blog/'+decodeURIComponent(m[1]);else if((m=p.match(/\\/journal\\/([^/]+)\\.html$/)))h='history/'+decodeURIComponent(m[1]);else if((m=p.match(/\\/notebooks\\/([^/]+)\\.(?:html|md)$/)))h='projects/notebook:'+decodeURIComponent(m[1]);location.replace(new URL('index.html#'+h,location.href))})()</script>""")
             _export_console_components(target)
-            if standalone:
-                _standalone_site(target)
+            _deployment_site(target, standalone=standalone)
             return {"path": str((target / "index.html").resolve()), "cycles": state["version"], "head": head}
         from .feeds import build_feeds
         for filename, content in build_feeds(state).items():
@@ -555,16 +558,31 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             atomic_write(shard_dir / map3d_shard_filename(parent), json.dumps(shard, ensure_ascii=False))
         atomic_write(target / "index.html", page)
         _export_console_components(target)
-        if standalone:
-            _standalone_site(target)
+        _deployment_site(target, standalone=standalone)
         return {"path": str((target / "index.html").resolve()), "cycles": state["version"], "head": head}
 
 
-def _standalone_site(target):
-    """Explicit installation mode precedes every browser script, on any hostname."""
+def _deployment_site(target, *, standalone):
+    """Bind every generated page to its installation before any reader runs.
+
+    Templates are not deployable pages: export also selects data transport and
+    operator links. Missing identity must never opt a LAN preview into GitHub.
+    Keep this transform common to full exports and browser-only Pages shells.
+    """
+    mode = 'standalone' if standalone else 'hosted'
+    atomic_write(target / 'deployment.json', json.dumps({'schema': 1, 'mode': mode}))
+    marker = ('<script>window.WAKE_DEPLOYMENT=' + json.dumps({'schema': 1, 'mode': mode})
+              + ';window.WAKE_STANDALONE=' + ('true' if standalone else 'false') + ';</script>')
     for path in target.rglob('*.html'):
         page = path.read_text()
-        page = page.replace('<head>', '<head><script>window.WAKE_STANDALONE=true;</script>', 1)
-        page = page.replace('href="https://github.com/sudofx/wake/actions"', 'href="/runtime.json"')
-        page = page.replace('Open WAKE GitHub Actions', 'Inspect local WAKE runtime')
+        # Re-export may reuse a directory. An older marker later in <head> must
+        # not override the newly selected installation. Normalize to one owner.
+        page = re.sub(r'<script>window\.WAKE_(?:DEPLOYMENT|STANDALONE)=[^<]*</script>', '', page)
+        page = page.replace('<head>', '<head>' + marker, 1)
+        if standalone:
+            page = page.replace('href="https://github.com/sudofx/wake/actions"', 'href="/runtime.json"')
+            page = page.replace('Open WAKE GitHub Actions', 'Inspect local WAKE runtime')
+        else:
+            page = page.replace('href="/runtime.json"', 'href="https://github.com/sudofx/wake/actions"')
+            page = page.replace('Inspect local WAKE runtime', 'Open WAKE GitHub Actions')
         atomic_write(path, page)

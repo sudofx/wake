@@ -20,8 +20,10 @@ regardless of which model produced the proposal.
 A model cannot persuade this module, reinterpret its instructions, waive a
 requirement, or edit the rules during an invocation.
 
-If any part of a proposal violates governance, the ENTIRE proposal is rejected.
-There are no partial writes.
+A research transition is atomic: an invalid research action rejects that
+transition without partial writes. application_policy.py owns the separate
+editorial wrapper, which can withhold an invalid final blog while committing
+independently valid research. Do not move that exception into the reducer.
 
 This gives WAKE✳︎ an important property:
 

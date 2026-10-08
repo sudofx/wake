@@ -121,3 +121,26 @@ Fresh initialization is native wake initialization. The legacy Store is opened o
 ## Standalone ownership
 
 All active runtime code is owned here. Do not add another project's dependency, service, or access-control database. Preserve historical V1 format bytes and exact provenance when changing ownership or checkpoint filenames. Existing V1 authority is adopted by verified format discovery; ambiguity fails closed. The hosted transport is `data/wake.sqlite.gz`, restored as `data/wake.sqlite`. Research continues through WAKE-local governance and operator controls. Other repositories may be read for comparison, but never modified without explicit authorization.
+
+## Environment and publication boundaries
+
+Start with `docs/development.md`. Identify checkout, imported package, process, image,
+data volume, runtime ref and intended website before changing execution or deployment.
+A bind-mounted checkout and an installed image may execute different code. Preserve
+existing edits and record volumes; source synchronization never authorizes record copying.
+
+Local and hosted records are independent. Never reconcile their counters by importing
+one into the other. Browser transport may use GitHub only for an explicitly hosted
+export. Missing installation identity must stay same-origin and be visible in Console.
+Export owns deployment identity and local operator links as well as data and assets;
+raw HTML templates must not replace generated pages. Verify the actual snapshot
+head/version and transport on LAN access, not only appearance or HTTP success.
+
+Prepare a verified candidate before stopping hosted research. When a push is authorized,
+stop and fully drain research before pushing, then use canonical Restart and verify
+the exact promotion and subsequent attempt. Pages deployment and runtime promotion
+are separate. Local development changes do not authorize hosted operations.
+
+Update living documentation at its existing owner; retain dated validation history.
+Comments should explain invariants, hazards and failure behavior at the responsible
+code seam, not preserve a conversation or repeat instructions without implementation.

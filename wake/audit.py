@@ -1,12 +1,5 @@
 # =============================================================================
 # AUDIT — independent replay from exported events. The point is distrust: verify sequence, previous hash, event hash and deterministic reduction rather than trusting a saved projection or a successful-looking website.
-#
-# MAINTENANCE PRINCIPLE
-# ---------------------
-# The architecture is intentionally explicit.  A future human or AI maintainer
-# should be able to follow authority from input, through validation, to durable
-# record without relying on folklore.  Comments explain why boundaries exist,
-# what failure means, and which tempting shortcuts would weaken accountability.
 # =============================================================================
 
 """Reconstruct from exported events alone, without SQLite or a saved projection."""

@@ -1,13 +1,5 @@
 # =============================================================================
 # PROVENANCE — the relationship layer. The map is built from explicit IDs, citations, projects, invocations and events. It should visualize recorded relationships rather than infer a more compelling story than the record supports.
-#
-# MAINTENANCE PRINCIPLE
-# ---------------------
-# Read this file as part of a chain of custody.  WAKE✳︎ deliberately separates
-# disposable cognition from durable authority.  Comments therefore explain not
-# only what a function does, but why its boundary exists and what a refactor must
-# not accidentally collapse.  Prefer explicit receipts, deterministic state
-# transitions, and replayable facts over convenient hidden behavior.
 # =============================================================================
 
 """Static provenance derived only from replayed events and explicit durable IDs."""

@@ -1,12 +1,5 @@
 # =============================================================================
 # CLI — the human/operator boundary. Commands turn explicit operator intent into engine/store/report operations. Human-only powers such as focus changes, cancellation and generation reset stay visibly different from model proposals.
-#
-# MAINTENANCE PRINCIPLE
-# ---------------------
-# The architecture is intentionally explicit.  A future human or AI maintainer
-# should be able to follow authority from input, through validation, to durable
-# record without relying on folklore.  Comments explain why boundaries exist,
-# what failure means, and which tempting shortcuts would weaken accountability.
 # =============================================================================
 
 """Command line interface. All mutations share the same writer lock."""
@@ -156,7 +149,7 @@ def execute(args):
             from .correction_demo import run_correction_demo
             return run_correction_demo(engine)
         if args.command == "export":
-            return export(engine.store, args.output)
+            return export(engine.store, args.output, standalone=True)
         if args.command == "reset":
             require(args.confirm, "Reset requires --confirm")
             target = Path(args.output).resolve()
@@ -171,7 +164,7 @@ def execute(args):
                 state = engine.initialize()
             if target.exists():
                 shutil.rmtree(target)
-            published = export(engine.store, target)
+            published = export(engine.store, target, standalone=True)
             return {"reset": True, "cycles": state["version"],
                     "head": published["head"], "path": published["path"]}
         with engine.store.lock():

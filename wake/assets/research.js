@@ -15,7 +15,10 @@
   };
   const stamp = (value, full=false) => { if (!value || Number.isNaN(Date.parse(value))) return 'Unknown'; return new Intl.DateTimeFormat('en-US', {timeZone:'America/Los_Angeles', ...(full ? {month:'short',day:'numeric'} : {}), hour:'numeric',minute:'2-digit'}).format(new Date(value)); };
   const badge = status => `<span class="badge ${esc(status)}">${esc(String(status || 'recorded').replaceAll('_',' '))}</span>`;
-  const local = window.WAKE_STANDALONE || ['localhost','127.0.0.1',''].includes(location.hostname);
+  // Hosted transport requires an explicit export identity, never a hostname guess.
+  // A raw template or missing marker stays same-origin and reports the defect.
+  const deployment = window.WAKE_DEPLOYMENT;
+  const local = deployment?.schema!==1 || deployment.mode!=='hosted';
   const raw = 'https://raw.githubusercontent.com/sudofx/wake/';
   let data, loading=false, fallback=false, loadedCommit='', selected='', topic='all', query='', mode='graph';
   let nodeById=new Map(), selectedWake='', wakeTab='summary', followLatest=true, focusedKinds=[];
@@ -60,7 +63,11 @@
     if(topic!=='all')u.searchParams.set('topic',topic); if(selected)u.searchParams.set('record',selected); if(query)u.searchParams.set('q',query);
     if(u.href!==location.href)history[push?'pushState':'replaceState'](null,'',u);
   }
-  function notice(message) { $('notice').hidden=!message; $('notice').textContent=message || ''; }
+  function notice(message) {
+    if(deployment?.schema!==1 || !['standalone','hosted'].includes(deployment.mode))
+      message='Installation identity is missing. Showing only this server’s snapshot; regenerate the website with export. '+(message||'');
+    $('notice').hidden=!message; $('notice').textContent=message || '';
+  }
   async function json(url) { const r=await fetch(url,{cache:'no-store',signal:AbortSignal.timeout(12000)});if(!r.ok)throw new Error(`HTTP ${r.status}`);return r.json(); }
   function validate(d) {
     if(d?.projection_schema!==1 || d?.projection_kind!=='disposable-research-view' || d.authoritative!==false || !d.head || !Array.isArray(d.graph?.nodes) || !Array.isArray(d.graph?.edges) || !d.records || !Array.isArray(d.activity) || !Array.isArray(d.topics) || !d.metrics || !d.evidence || !d.status)throw new Error('Unsupported research projection');
@@ -118,7 +125,7 @@
     renderFrontier();renderMap();renderDetail();renderMetrics();renderSynthesis();renderCube();if(!matrixSelectionMade){if(selected&&!syncCubeToRecord(selected) && selectedWake&&!followLatest)syncCubeToWake(selectedWake);else if(!selected&&selectedWake&&!followLatest)syncCubeToWake(selectedWake);}renderWake();renderInstruments();
     window.dispatchEvent(new CustomEvent('wake-process-data',{detail:data}));
     if(pendingSelection){const state=pendingSelection;pendingSelection=null;receiveSelection(state);}
-    $('provenance').innerHTML=`<p>Snapshot: ${esc(stamp(data.generated,true))} PT · accepted state ${count(data.version)}</p><p>Authority: ${esc(data.source.authority || 'Verified export')} / ${esc(data.source.database || 'record')}</p><p>Record head: <code>${esc(data.head)}</code></p>${loadedCommit?`<p>Projection commit: <code>${esc(loadedCommit)}</code></p>`:''}<p><a href="research-data.json">Published JSON snapshot</a> · ${window.WAKE_STANDALONE?'<a href="events.jsonl">Local record export</a>':'<a href="https://github.com/sudofx/wake/tree/wake-state">Authority checkpoint ↗</a>'}</p>`;
+    $('provenance').innerHTML=`<p>Snapshot: ${esc(stamp(data.generated,true))} PT · accepted state ${count(data.version)}</p><p>Authority: ${esc(data.source.authority || 'Verified export')} / ${esc(data.source.database || 'record')}</p><p>Record head: <code>${esc(data.head)}</code></p>${loadedCommit?`<p>Projection commit: <code>${esc(loadedCommit)}</code></p>`:''}<p><a href="research-data.json">Published JSON snapshot</a> · ${local?'<a href="events.jsonl">Local record export</a>':'<a href="https://github.com/sudofx/wake/tree/wake-state">Authority checkpoint ↗</a>'}</p>`;
   }
   function renderFrontier() {
     const projects=data.records.projects.filter(visibleRecord);
@@ -229,7 +236,7 @@
     $('matrix-state').textContent=m.reported?(m.enabled?'Continuity campaign recorded':'Campaign not enabled'):'Campaign progress not reported';
     $('matrix-coverage').textContent=m.reported?`${count(m.completed)} / ${count(m.cells.length)}`:`— / ${count(m.cells.length)}`;
     const enable=$('matrix-enable');
-    if(enable)enable.hidden=window.WAKE_STANDALONE || !(m.reported && m.enabled===false);
+    if(enable)enable.hidden=local || !(m.reported && m.enabled===false);
     $('cube-selectors').innerHTML=m.axes.map((a,i)=>`<label>${esc(matrixAxisName(a))} <small>(${esc(a.label)})</small><select data-cube-axis="${i}" aria-label="${esc(matrixAxisName(a))} (${esc(a.label)})">${a.values.map((v,j)=>`<option value="${j}">${esc(v.label)}</option>`).join('')}</select></label>`).join('');
     renderCell();
   }

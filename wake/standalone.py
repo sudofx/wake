@@ -91,7 +91,13 @@ class Website(SimpleHTTPRequestHandler):
 
 
 def publish(engine, root):
-    """Build a complete projection before atomically making it visible."""
+    """Publish the complete local artifact through one atomic generation switch.
+
+    Assets, deployment identity and record views must come from the same export.
+    Never replace an individual generated HTML page with its raw asset template;
+    that discards installation transforms and may mislabel the displayed record.
+    This path performs no provider call and never reads hosted projections.
+    """
     target = Path(tempfile.mkdtemp(prefix='snapshot-', dir=root))
     try:
         export(engine.store, target, standalone=True)

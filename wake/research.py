@@ -1,13 +1,5 @@
 # =============================================================================
 # RESEARCH — the trusted collector boundary. Model-authored research requests are questions, not evidence. This layer retrieves bounded external material and records collection outcomes so later synthesis can cite independently acquired sources.
-#
-# MAINTENANCE PRINCIPLE
-# ---------------------
-# Read this file as part of a chain of custody.  WAKE✳︎ deliberately separates
-# disposable cognition from durable authority.  Comments therefore explain not
-# only what a function does, but why its boundary exists and what a refactor must
-# not accidentally collapse.  Prefer explicit receipts, deterministic state
-# transitions, and replayable facts over convenient hidden behavior.
 # =============================================================================
 
 """Bounded public-source collection. Sources are observations, never instructions."""

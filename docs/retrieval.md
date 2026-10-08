@@ -100,3 +100,13 @@ An attached planning project must be active, delivered in context and in the req
 Routine and emergency views retain full-record queue counts, exact visible project identities, notebook-specific new-evidence IDs and the last two rejection/failure reasons with targeted recovery guidance. The contract is refreshed after evidence rehydration, so new same-wake sources may enable a revision without losing prior notebook identity. Omitted notebook prose cannot make an existing artifact appear new. This guidance is operational context rather than research evidence, and the original append-only record remains unchanged.
 
 When Attention selects a parked topic while all three project slots are occupied, the provider contract offers one exact parking transition first. A due editorial checkpoint remains separate. This temporary generation restriction avoids unrelated commitments or synthesis attempts before capacity recovery; governance still decides whether the proposed transition is valid.
+
+## Inspecting delivery across installations
+
+Memory receipts describe the record that produced them. A local Console reads its
+installation's same-origin `research-data.json`; hosted mode explicitly reads the
+public projection. Confirm the displayed head/version and export mode before using
+a screenshot to assess retrieval or memory behavior. Shared code and shared topics
+do not make histories interchangeable. Missing context events in a bounded overview
+are a presentation gap, not proof that invocation evidence has been lost. Use the
+matching installation's complete record tools to resolve it. See [development](development.md).

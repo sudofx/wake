@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-# Recreate a standalone container; preserve its record unless --reset is supplied.
+# Local editor-image convenience launcher, not a portable or hosted operator.
+# /workspace executes the mounted checkout; recreation retains its named record.
+# This path forces live inference, LAN exposure and a Docker Desktop proxy. Use
+# Compose for paused inspection or portable transport. --reset destroys history.
 
 usage() {
     cat <<'EOF'

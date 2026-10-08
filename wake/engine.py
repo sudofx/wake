@@ -1,16 +1,14 @@
 # =============================================================================
 # ENGINE — the orchestration layer. A wake is one governed work transition: reconstruct durable state, select bounded context, reserve/record the invocation, call a provider, then ask governance whether the proposal may become history. The engine coordinates these steps but never substitutes its own judgment for governance.
-#
-# MAINTENANCE PRINCIPLE
-# ---------------------
-# Read this file as part of a chain of custody.  WAKE✳︎ deliberately separates
-# disposable cognition from durable authority.  Comments therefore explain not
-# only what a function does, but why its boundary exists and what a refactor must
-# not accidentally collapse.  Prefer explicit receipts, deterministic state
-# transitions, and replayable facts over convenient hidden behavior.
 # =============================================================================
 
-"""One fresh process, one bounded proposal, one atomic decision."""
+"""Research orchestration over an explicitly injected authoritative store.
+
+    A scheduled wake may plan, collect and then request a final proposal; each
+    inference phase has its own native reservation and receipt. Planning never
+    advances accepted research. Context/memory are derived delivery, while domain
+    policy and the application host decide the atomic durable transition.
+    """
 
 from datetime import datetime
 import json

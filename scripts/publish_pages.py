@@ -19,7 +19,7 @@ def main():
     )
     with urllib.request.urlopen(request, timeout=20) as response:
         payload = json.load(response)
-    result = export(None, ROOT / "site", browser_only=True, projection=payload)
+    result = export(None, ROOT / "site", browser_only=True, projection=payload, standalone=False)
     print(json.dumps({"status": "published-shell", **result}))
     return 0
 

@@ -3,14 +3,6 @@
 # Live operational authority is now wake SQLite. This module remains necessary
 # to verify/import historical wake.sqlite3 records and to support explicit
 # compatibility fixtures. It must not become a second live authority path.
-#
-# MAINTENANCE PRINCIPLE
-# ---------------------
-# Read this file as part of a chain of custody.  WAKE✳︎ deliberately separates
-# disposable cognition from durable authority.  Comments therefore explain not
-# only what a function does, but why its boundary exists and what a refactor must
-# not accidentally collapse.  Prefer explicit receipts, deterministic state
-# transitions, and replayable facts over convenient hidden behavior.
 # =============================================================================
 
 """Legacy WAKE SQLite replay used for migration evidence and compatibility fixtures."""

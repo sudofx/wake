@@ -1,13 +1,5 @@
 # =============================================================================
 # RETRIEVAL — the attention layer. Durable memory can be larger than any one prompt, so this module selects a bounded working set for a fresh invocation. What is omitted is still durable; it is simply outside this shift's attention.
-#
-# MAINTENANCE PRINCIPLE
-# ---------------------
-# Read this file as part of a chain of custody.  WAKE✳︎ deliberately separates
-# disposable cognition from durable authority.  Comments therefore explain not
-# only what a function does, but why its boundary exists and what a refactor must
-# not accidentally collapse.  Prefer explicit receipts, deterministic state
-# transitions, and replayable facts over convenient hidden behavior.
 # =============================================================================
 
 """Deterministic planning for recoverable provenance.

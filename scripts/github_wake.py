@@ -6,7 +6,13 @@
 # Explain intent, invariants, failure behavior, and architectural boundaries in comments.
 # Future humans and models should be able to tell deliberate constraints from incidental implementation.
 
-"""One cloud wake. Persist the call reservation remotely before sending to Gemini."""
+"""Execute only the promoted hosted runtime against wake-state authority.
+
+    master and Pages are separate release lanes; a new web shell does not promote
+    research code. Persist the invocation reservation remotely before provider
+    effects, then checkpoint the outcome before publishing disposable wake-live.
+    A green job can contain a governed rejection or deferral, not accepted work.
+    """
 
 import argparse
 import gzip

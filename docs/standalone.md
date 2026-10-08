@@ -6,6 +6,22 @@ not download the public installation's record or interact with GitHub operationa
 Internet access is needed for live Gemini and public research sources; fixture mode
 can run with networking disabled. Passive repository/documentation links remain links.
 
+## Code and website changes
+
+Follow the [maintainer map](development.md) before updating an existing installation.
+Record its image, working directory, source mount and named data volume. Shared
+source edits do not transfer research history between hosted and local installations.
+The website is regenerated through `wake.report.export` and the standalone publisher;
+raw HTML templates are not complete deployment artifacts. A generated installation
+identity keeps Console, maps, homepage and status requests on this server even when
+accessed through an IPv4/IPv6 LAN address. Missing identity never enables hosted data.
+`deployment.json` identifies export mode; snapshot head/version identify displayed data.
+
+For inspection without API calls, preserve the existing Compose project and volume
+and recreate with `WAKE_PAUSED=true`. Do not assume an editor overlay reloads imported
+Python. Generated website assets refresh through normal publication; rebuild the
+standard image when its source changes. Do not manually overwrite generated pages.
+
 ## Start
 
 Install Docker Desktop on macOS/Windows and use Linux containers, or install Docker
@@ -104,8 +120,10 @@ The authority remains `/data/wake.sqlite`; the rest of the image stays read-only
 In VS Code, open the Command Palette and choose **Dev Containers: Attach to Running
 Container…**, select `wake-standalone-preview-wake-1`, then open `/workspace`.
 Edits there persist in your local repository. `/app` is the packaged image copy.
-Python executes from the packaged image at `/app`; rebuild the image and recreate the
-container to load Python or dependency changes made in `/workspace`. Attach again after
+The overlay sets the working directory to `/workspace`, so `python -m wake.standalone`
+imports that mounted source tree. The standard image runs its packaged copy from `/app`.
+Confirm the actual imported path before testing. Restart the editor-mode process to
+load Python changes; rebuild for dependency or packaged-image changes. Attach again after
 recreation if the editor connection closes.
 
 VS Code copies the host Git identity configuration and can forward the host SSH agent.
@@ -204,3 +222,13 @@ For a transferable OCI archive, use a docker-container builder and
 `--output type=oci,dest=wake-standalone.oci.tar` instead of `--load`. A registry release
 may use `--push` to a registry you choose; neither registry publication nor hosted
 runtime promotion is part of local container operation.
+
+## Repository convenience launcher
+
+`./scripts/wake_runner wake` recreates the named editor container using the existing
+`wake-standalone:vscode` image and the established preview volume. It executes the
+mounted repository, forces live research and matrix enablement, and exposes LAN
+port 8080. It also selects a Docker Desktop proxy; inspect that transport before
+using it outside that environment. It is not the portable Compose setup above.
+Normal invocation retains the data and editor-home volumes. `--reset` permanently
+deletes the selected data volume and requires explicit history-loss authorization.

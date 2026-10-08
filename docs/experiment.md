@@ -70,12 +70,12 @@ Run `python3 -m wake --data data/rehearsal experiment --cycles 100 --output site
 | --- | --- |
 | Fresh-session continuity | Every fresh process receives the immediately preceding durable version; the accepted cycle number advances exactly once |
 | Causal state | Copy the same baseline into control/intervention directories; change only persisted focus; same next provider produces different focus-dependent output |
-| Commitment persistence | A commitment created by fixture A is resolved by fixture B after its runtime receipt records inheritance; 99 cross-provider handoffs in 100 cycles |
+| Commitment persistence | Eligible commitments cross fresh fixture invocations with inheritance receipts; forced Attention shifts preserve obligations until an eligible later shift. Read actual resolved/created/open counts from `experiment.json`. |
 | Mechanical constraints | Append a forbidden rule-changing action to an otherwise valid proposal; reject the entire proposal and preserve accepted state |
 | Evidence lifecycle | Synthetic baseline, supporting measurement, contradictory measurement; maintain then retract the same belief, retaining three citations |
 | Recovery | Immediately exit after start and during the SQLite transaction; separately corrupt the cached projection; accepted beliefs and commitments remain unchanged |
 | Audit reconstruction | Rebuild the exact projection from exported JSONL, without the original database or snapshot; verify the independently supplied head |
-| Longitudinal coherence | At least 100 accepted cycles, every commitment closed by the next invocation except the final open one |
+| Longitudinal coherence | At least 100 accepted cycles with the harness checking commitment continuity and reporting remaining open work; this does not measure real-model scientific coherence |
 
 `experiment.json` records outcomes, commands, limitations and observed values. The main journal includes the rejected action and both recovery events. The control and intervention databases and full exports remain under the experiment directory. All sensor readings are explicitly synthetic. The experiment runner fails if any check fails.
 
@@ -113,3 +113,18 @@ Invalid planning output is recorded as a rejection rather than a runtime failure
 Under request-budget pressure, milestone reflection history may be excerpted or partially omitted with original-window hashes and counts. This changes editorial input, not accepted research or durable history; an incomplete window does not justify inventing a longitudinal narrative. Interpret reflection quality in light of the recorded delivery omissions.
 
 Proposal eligibility and recovery guidance are retained in routine compact memory. Search capacity is calculated from all outstanding requests; notebook revision eligibility is calculated per durable artifact against currently readable qualifying evidence. This is a generation intervention, not relaxed acceptance. Evaluate subsequent rejection rates and accepted research progress separately; schema-valid output still does not establish scientific relevance, changed findings or truth.
+
+## Installation and comparison provenance
+
+A standalone run and hosted research are separate experimental records. Keep the
+installation, starting head, executable commit/imported source, configuration,
+provider model and terminal receipts with each comparison. Source changes may be
+shared without importing history. Do not align cycle counts, replace checkpoints,
+or transfer matrix results to make runs appear synchronized. Console transport
+identity and snapshot head/version must be checked before comparing screenshots.
+
+Matrix cell numbers are display ordinals of the frozen grammar, not run sequence
+numbers. Identical coordinates across records can have different scores and evidence.
+Panel ordering, row height, theme, animation and stored browser selection are
+presentation conditions; they neither rerun a cell nor change its durable result.
+Dated validation files preserve what was observed then, not current deployment health.

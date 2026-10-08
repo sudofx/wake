@@ -1,12 +1,5 @@
 # =============================================================================
 # EXPERIMENT — the offline measurement harness. Deterministic fixtures isolate architectural claims from live-provider variability. Measurements describe observed behavior; they do not become governance merely because a test reports them.
-#
-# MAINTENANCE PRINCIPLE
-# ---------------------
-# The architecture is intentionally explicit.  A future human or AI maintainer
-# should be able to follow authority from input, through validation, to durable
-# record without relying on folklore.  Comments explain why boundaries exist,
-# what failure means, and which tempting shortcuts would weaken accountability.
 # =============================================================================
 
 """Executable claims, isolated state, deterministic fixtures. Zero API calls."""

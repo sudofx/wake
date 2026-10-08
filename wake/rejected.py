@@ -1,12 +1,5 @@
 # =============================================================================
 # REJECTED — the failure-observation layer. Rejected proposals are not accepted state, but they are valuable evidence about what disposable cognition attempted and what deterministic governance prevented. Rendering them must preserve that distinction.
-#
-# MAINTENANCE PRINCIPLE
-# ---------------------
-# The architecture is intentionally explicit.  A future human or AI maintainer
-# should be able to follow authority from input, through validation, to durable
-# record without relying on folklore.  Comments explain why boundaries exist,
-# what failure means, and which tempting shortcuts would weaken accountability.
 # =============================================================================
 
 """Readable presentation of recorded rejection decisions; never rejudge old proposals."""

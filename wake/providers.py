@@ -1,13 +1,5 @@
 # =============================================================================
 # PROVIDERS — the replaceable cognition boundary. Prompts and schemas define what a disposable model may propose; network/failover code records which model was attempted and which actually answered. A provider never receives direct write authority.
-#
-# MAINTENANCE PRINCIPLE
-# ---------------------
-# Read this file as part of a chain of custody.  WAKE✳︎ deliberately separates
-# disposable cognition from durable authority.  Comments therefore explain not
-# only what a function does, but why its boundary exists and what a refactor must
-# not accidentally collapse.  Prefer explicit receipts, deterministic state
-# transitions, and replayable facts over convenient hidden behavior.
 # =============================================================================
 
 """Provider boundary: one JSON request in, one untrusted proposal out."""
