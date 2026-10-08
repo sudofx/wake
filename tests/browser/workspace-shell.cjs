@@ -19,7 +19,7 @@ const base=process.argv[2];
   await page.setViewportSize({width:1920,height:1000});await page.waitForTimeout(200);
   if(theme==='dark'){
    const border=await page.locator('.console-story-panel').first().evaluate(e=>getComputedStyle(e).borderTopColor);assert.notEqual(border,'rgb(255, 177, 92)');
-   const tint=await page.locator('.console-story-panel').first().evaluate(e=>getComputedStyle(e).backgroundImage),normal=await page.locator('.matrix-panel').evaluate(e=>getComputedStyle(e).backgroundImage);assert.notEqual(tint,normal);
+   const tint=await page.locator('.console-story-panel').first().evaluate(e=>getComputedStyle(e).backgroundImage),normal=await page.locator('.matrix-panel').evaluate(e=>getComputedStyle(e).backgroundImage);assert.equal(tint,normal);
   }
   await page.evaluate(()=>window.scrollTo(0,600));await page.locator('.masthead-scroll-hidden').waitFor();await page.waitForTimeout(220);
   assert((await page.locator('.masthead').boundingBox()).y<0);
@@ -32,5 +32,5 @@ const base=process.argv[2];
   await page.screenshot({path:`/tmp/wake-workspace-${theme}.png`});assert.deepEqual(errors,[]);await context.close();
  }
  const quiet=await browser.newContext({reducedMotion:'reduce'}),page=await quiet.newPage();await page.goto(new URL('console.html',base).href);assert.equal(await page.locator('.masthead').evaluate(e=>getComputedStyle(e).transitionDuration),'0s');await quiet.close();
- console.log('PASS: viewport-wide workspace at four sizes; eight full-width mastheads in both themes; subdued dark story panels; down/up scroll, keyboard reveal, top stacking and reduced motion.');
+ console.log('PASS: viewport-wide workspace at four sizes; eight full-width mastheads in both themes; border-only story grouping; down/up scroll, keyboard reveal, top stacking and reduced motion.');
 }finally{await browser.close()}})().catch(e=>{console.error(e);process.exitCode=1});

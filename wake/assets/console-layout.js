@@ -340,20 +340,20 @@
   // Dock only a populated inspector. Pop-out releases the reservation immediately;
   // closing it restores docking without changing the saved grid order.
   const inspector=document.querySelector('.detail-panel');
-  const heightHandle=document.createElement('button');
-  heightHandle.type='button';heightHandle.className='inspector-height-handle';
-  heightHandle.setAttribute('aria-label','Resize inspector height');heightHandle.title='Drag to resize height; arrow keys adjust height';
-  inspector.append(heightHandle);
-  let heightDrag=null;
-  heightHandle.addEventListener('pointerdown',event=>{
-    if(event.button!==0)return;event.preventDefault();
-    heightDrag={y:event.clientY,height:inspector.getBoundingClientRect().height};heightHandle.setPointerCapture(event.pointerId);
-  });
-  const setInspectorHeight=value=>inspector.style.setProperty('height',`${Math.max(180,Math.min(innerHeight-130,value))}px`,'important');
-  heightHandle.addEventListener('pointermove',event=>{if(heightDrag)setInspectorHeight(heightDrag.height+event.clientY-heightDrag.y);});
-  const finishHeight=()=>{heightDrag=null;};
-  heightHandle.addEventListener('pointerup',finishHeight);heightHandle.addEventListener('pointercancel',finishHeight);
-  heightHandle.addEventListener('keydown',event=>{if(['ArrowUp','ArrowDown'].includes(event.key)){event.preventDefault();setInspectorHeight(inspector.getBoundingClientRect().height+(event.key==='ArrowUp'?-40:40));}});
+  // Navigation owns visibility; the inspector only consumes that state. Never
+  // reserve a fixed header gap once the shared masthead has left the viewport.
+  const masthead=document.querySelector('.masthead');
+  const sizeInspector=()=>{
+    const edge=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--console-edge'))||20;
+    const header=masthead&&!masthead.classList.contains('masthead-scroll-hidden')?masthead.getBoundingClientRect().height:0;
+    document.documentElement.style.setProperty('--inspector-top',`${header+edge}px`);
+  };
+  if(masthead){
+    new MutationObserver(sizeInspector).observe(masthead,{attributes:true,attributeFilter:['class']});
+    new ResizeObserver(sizeInspector).observe(masthead);
+  }
+  window.addEventListener('resize',sizeInspector);
+  sizeInspector();
   const dockInspector=()=>{
     const docked=!panelWindow&&inspector.classList.contains('has-selection')&&!inspector.classList.contains('panel-popped-out');
     document.documentElement.classList.toggle('console-inspector-docked',docked);

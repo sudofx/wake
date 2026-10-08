@@ -1192,7 +1192,7 @@ body.research-page .detail-panel .console-panel-heading #close-inspector{
 
 /* A dedicated panel owns the window viewport. The site masthead must not add
    a second height budget above it, or the bottom of the reader is clipped. */
-html.console-panel-window body.research-page #main .panel-popout-target :is(.module-drag,.module-size,.inspector-height-handle){display:none!important}
+html.console-panel-window body.research-page #main .panel-popout-target :is(.module-drag,.module-size){display:none!important}
 .console-panel-window body.research-page .detail-panel.panel-popout-target{display:flex!important;flex-direction:column}
 .console-panel-window body.research-page{height:100dvh;overflow:hidden;background:#020a11!important}
 .console-panel-window body.research-page::before,
@@ -1338,27 +1338,28 @@ html:not(.console-panel-window) body.research-page [data-console-panel-id].panel
 .research-page .map-panel .panel-actions{align-items:center}
 @media(min-width:768px){
   html.console-inspector-docked:not(.console-panel-window) .research-page #main{width:calc(100% - 380px)!important;margin-left:0;margin-right:380px}
-  html.console-inspector-docked:not(.console-panel-window) .research-page .detail-panel{position:fixed!important;inset:110px 20px auto auto!important;width:340px!important;height:calc(100dvh - 130px)!important;max-height:calc(100dvh - 130px)!important;z-index:50!important;margin:0!important}
+  html.console-inspector-docked:not(.console-panel-window) .research-page .detail-panel{position:fixed!important;inset:var(--inspector-top,110px) var(--console-edge) var(--console-edge) auto!important;width:340px!important;height:calc(100dvh - var(--inspector-top,110px) - var(--console-edge))!important;max-height:none!important;transition:top .18s ease,height .18s ease;z-index:50!important;margin:0!important}
 }
 @media(max-width:767px){
-  html.console-inspector-docked:not(.console-panel-window) .research-page .detail-panel{position:fixed!important;inset:auto var(--console-edge) var(--console-edge)!important;width:auto!important;height:46dvh!important;max-height:46dvh!important;z-index:50!important;margin:0!important;box-shadow:0 -12px 40px #0006}
+  html.console-inspector-docked:not(.console-panel-window) .research-page .detail-panel{position:fixed!important;inset:auto var(--console-edge) var(--console-edge)!important;width:auto!important;height:50dvh!important;max-height:50dvh!important;animation:inspector-sheet-enter .2s ease-out;z-index:50!important;margin:0!important;box-shadow:0 -12px 40px #0006}
   .research-page .console-overview>.console-panel-heading{padding-bottom:20px!important}
 }
 /* The seven numbered story sections share a visible group boundary. */
 html[data-theme] body.research-page .console-story-panel.console-module,
 html[data-theme] body.research-page .console-story-panel.console-module *,
 html[data-theme] body.research-page .console-story-panel.console-module::after{border-color:var(--story-border,#ffb15c)!important}
-/* A transparent amber wash preserves the wireframe and blur in both themes.
-   Do not mix with the root surface: some page skins define an opaque surface. */
-html[data-theme=dark]{--story-border:color-mix(in srgb,#ffb15c 65%,var(--line));--story-wash:rgba(255,177,92,.13);--story-glass:rgba(3,10,19,.40)}
-html[data-theme=light]{--story-border:#e98c2b;--story-wash:rgba(255,155,45,.09);--story-glass:rgba(255,255,255,.88)}
-html[data-theme] body.research-page .console-story-panel.console-module{background:linear-gradient(var(--story-wash),var(--story-wash)),var(--story-glass)!important}
+/* Story membership is conveyed by borders. Keep the page field visible through
+   the panel and its heading; controls and readable content retain their skins. */
+html[data-theme] body.research-page .console-story-panel.console-module,
+html[data-theme] body.research-page .console-story-panel.console-module>.panel-heading{background:transparent!important}
+html[data-theme=dark]{--story-border:color-mix(in srgb,#ffb15c 65%,var(--line))}
+html[data-theme=light]{--story-border:#e98c2b}
+@keyframes inspector-sheet-enter{from{translate:0 calc(100% + var(--console-edge))}to{translate:0 0}}
+@media(prefers-reduced-motion:reduce){html.console-inspector-docked .research-page .detail-panel{animation:none!important;transition:none!important}}
 
 .research-page .console-module-grid>.detail-panel{display:flex!important;flex-direction:column;resize:none}
 .research-page .detail-panel>.panel-heading{flex:none}
 .research-page .detail-panel>#record-detail{flex:1;min-height:0;overflow:auto;max-height:none}
-.research-page .detail-panel>.inspector-height-handle{display:block;flex:0 0 14px;min-height:14px;height:14px;padding:0;border:0;border-top:1px solid var(--line);border-radius:0;cursor:ns-resize;touch-action:none;background:var(--surface-raised);color:var(--muted)}
-.research-page .detail-panel>.inspector-height-handle::before{content:'↕';font-size:11px}
 
 /* Console is a workspace, not a reading column. A popped-out inspector must
    release the entire reservation, including older page-skin width caps. */
