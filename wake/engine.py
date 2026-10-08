@@ -47,6 +47,19 @@ from .matrix_campaign import (
 )
 
 
+def report_activity(observer, stage, **details):
+    """Best-effort presentation telemetry, never permission or durable authority.
+
+    A broken display observer must not change research acceptance or interrupt a
+    provider effect. Only explicitly selected public identifiers cross this seam.
+    """
+    if observer is not None:
+        try:
+            observer(stage=stage, **details)
+        except Exception:
+            pass
+
+
 INQUIRY_DRIVE_MIN_CYCLES = 20
 TOPIC_COLORS = (
     "#ff5bb9", "#b25dff", "#46b5ff", "#ffe574", "#93ff74", "#ff9e64",
@@ -2170,12 +2183,14 @@ class Engine:
             }})
         return invocation, request
 
-    def _record_continuity_sidecar(self, state, invocation, response, research_status):
+    def _record_continuity_sidecar(self, state, invocation, response, research_status, activity=None):
         """Score one answered sidecar independently from normal research governance."""
         shadow = state["invocations"][invocation].get("continuity_probe_shadow")
         if not isinstance(shadow, dict) or not isinstance(shadow.get("context"), dict):
             return None
         probe_context = shadow["context"]
+        report_activity(activity, "continuity", invocation_id=invocation,
+                        coordinate_id=probe_context["campaign"]["coordinate_id"])
         try:
             if response is None:
                 raise ValueError("continuity_probe sidecar missing or response was not parseable")
@@ -2204,7 +2219,7 @@ class Engine:
             "next_coordinate_id": progress["next_coordinate_id"],
         }
 
-    def finish(self, invocation, raw, metadata=None, crash=False):
+    def finish(self, invocation, raw, metadata=None, crash=False, *, activity=None):
         state = self.store.load()
         require(state["pending"] == invocation, "Response does not match the pending invocation")
         probe_response = None
@@ -2240,6 +2255,7 @@ class Engine:
                 invocation,
                 probe_response,
                 "rejected",
+                activity=activity,
             )
             return {
                 "status": "rejected",
@@ -2268,6 +2284,7 @@ class Engine:
             invocation,
             probe_response,
             "accepted",
+            activity=activity,
         )
         return {"status": "accepted", "id": invocation, "cycle": result["version"],
                 **({"editorial": {k: v for k, v in editorial.items() if k != "action"}} if editorial else {}),
@@ -2314,28 +2331,35 @@ class Engine:
             classify_error=Engine._invocation_failure_outcome,
         )
 
-    def run(self, provider, crash_at=None, checkpoint=None, collector=None, *, question=None):
-        with self.store.lock():
-            self.initialize()
-            self.recover()
-            require(not question or (collector is not None and self.store.load().get("charter")),
-                    "Immediate questions require a research collector and charter")
-            research = None
-            if collector and (self.config.get("same_wake_research") or question):
-                from .research import collect_planned
-                plan = self._run_invocation(provider, checkpoint=checkpoint, phase="planning", question=question)
-                if plan["status"] != "planned":
-                    return plan
-                evidence_ids = collect_planned(self, plan["requests"])
-                research = {"planning_invocation": plan["id"], "requests": plan["requests"], "evidence_ids": evidence_ids}
-            elif collector:
-                collector(self)
-            result = self._run_invocation(provider, crash_at, checkpoint, question=question, research=research)
-            if research:
-                result.setdefault("same_wake_research", research)
-            return result
+    def run(self, provider, crash_at=None, checkpoint=None, collector=None, *, question=None, activity=None):
+        report_activity(activity, "record")
+        try:
+            with self.store.lock():
+                self.initialize()
+                self.recover()
+                require(not question or (collector is not None and self.store.load().get("charter")),
+                        "Immediate questions require a research collector and charter")
+                research = None
+                if collector and (self.config.get("same_wake_research") or question):
+                    from .research import collect_planned
+                    plan = self._run_invocation(provider, checkpoint=checkpoint, phase="planning", question=question, activity=activity)
+                    if plan["status"] != "planned":
+                        return plan
+                    report_activity(activity, "collecting")
+                    evidence_ids = collect_planned(self, plan["requests"])
+                    research = {"planning_invocation": plan["id"], "requests": plan["requests"], "evidence_ids": evidence_ids}
+                elif collector:
+                    report_activity(activity, "collecting")
+                    collector(self)
+                result = self._run_invocation(provider, crash_at, checkpoint, question=question, research=research, activity=activity)
+                if research:
+                    result.setdefault("same_wake_research", research)
+                return result
+        finally:
+            report_activity(activity, "idle")
 
-    def _run_invocation(self, provider, crash_at=None, checkpoint=None, *, phase="proposal", question=None, research=None):
+    def _run_invocation(self, provider, crash_at=None, checkpoint=None, *, phase="proposal", question=None, research=None, activity=None):
+        report_activity(activity, "context")
         invocation, request = self.start(provider.name, provider.model, provider.charged, phase=phase, question=question, research=research)
         lifecycle = (
             self.store.begin_invocation_lifecycle(
@@ -2382,10 +2406,15 @@ class Engine:
                 )
             except InvocationBarrierError as error:
                 raise error.cause
+        def propose():
+            probe = request.get("context", {}).get("continuity_probe", {}) if phase == "proposal" else {}
+            report_activity(activity, "provider", invocation_id=invocation,
+                            coordinate_id=probe.get("campaign", {}).get("coordinate_id"))
+            return provider.propose(request)
         try:
             raw, metadata = self._invoke_external_effect(
                 lifecycle,
-                lambda: provider.propose(request),
+                propose,
                 checkpoint,
             )
         except InvocationBarrierError as error:
@@ -2457,7 +2486,9 @@ class Engine:
         proposal_id = "wake-response-" + invocation
         if lifecycle is not None:
             lifecycle.proposal_received(proposal_id)
-        result = self.finish(invocation, raw, metadata, crash=crash_at == "during-commit")
+        report_activity(activity, "governance", invocation_id=invocation,
+                        coordinate_id=request.get("context", {}).get("continuity_probe", {}).get("campaign", {}).get("coordinate_id"))
+        result = self.finish(invocation, raw, metadata, crash=crash_at == "during-commit", activity=activity)
         if lifecycle is not None:
             lifecycle.governed(proposal_id, None, result["status"])
             lifecycle.complete(
@@ -2467,6 +2498,7 @@ class Engine:
             )
         if checkpoint:
             checkpoint()
+        report_activity(activity, "receipt", invocation_id=invocation)
         if research:
             result["same_wake_research"] = research
             try:

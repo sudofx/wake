@@ -26,6 +26,27 @@
   let motion=false;
   const tools=window.WakeConsoleTools();
   const cube=window.WakeResearchCube($('matrix-cube'));
+  function renderRuntimeActivity(){
+    const runtime=window.WakeRuntimeActivity;
+    const key=$('cube-live-key');if(key)key.hidden=!runtime;
+    const id=runtime?.activity?.coordinate_id;
+    cube.setActivity(id||'');
+    const label=$('cube-activity');if(!label)return;
+    const cell=data?.matrix?.cells?.find(c=>c.id===id);
+    const recorded=data?.recorded_activity;
+    const past=data?.matrix?.cells?.find(c=>c.id===recorded?.coordinate_id);
+    label.hidden=!cell&&!past;
+    label.textContent=cell?`Live probe ${window.WakeMatrixCellLabel(cell,data.matrix)} · ${runtime.activity.stage==='provider'?'waiting for model response':'checking response'}`:
+      past?`Last published pending probe ${window.WakeMatrixCellLabel(past,data.matrix)} · snapshot ${data.generated||'time unknown'} · current activity unavailable`:'';
+  }
+  let runtimePublication='';
+  window.addEventListener('wake-runtime-activity',event=>{
+    renderRuntimeActivity();
+    const status=event.detail;
+    const publication=status?.snapshot_generation?`${status.runtime_id}:${status.snapshot_generation}`:'';
+    if(data&&publication&&publication!==runtimePublication){runtimePublication=publication;refresh();}
+  });
+
   const contextMap=window.WakeContextMap($('context-map-canvas'));
   let frontierState='active';
   let matrixCell='', previousMatrixCell='', matrixSelectionMade=false;
@@ -123,6 +144,7 @@
     $('status-band').innerHTML=cells.map(([name,value,note,status],i)=>`<div class="status-cell"><span class="label">${esc(name)}</span><button type="button" data-ui-tooltip="Inspect ${esc(name.toLowerCase())}" class="status-value ${i===1||i===4?'latest-label ':''}${esc(status)}" data-metric="${['accepted','latest','projects','commitments','attention'][i]}">${esc(value)}</button><small>${esc(note)}</small></div>`).join('');
     $('topic').innerHTML='<option value="all">All topics</option>'+data.topics.map(t=>`<option value="${esc(t.id)}">${esc(t.label)}</option>`).join('');$('topic').value=topic;$('search').value=query;
     renderFrontier();renderMap();renderDetail();renderMetrics();renderSynthesis();renderCube();if(!matrixSelectionMade){if(selected&&!syncCubeToRecord(selected) && selectedWake&&!followLatest)syncCubeToWake(selectedWake);else if(!selected&&selectedWake&&!followLatest)syncCubeToWake(selectedWake);}renderWake();renderInstruments();
+    renderRuntimeActivity();
     window.dispatchEvent(new CustomEvent('wake-process-data',{detail:data}));
     if(pendingSelection){const state=pendingSelection;pendingSelection=null;receiveSelection(state);}
     $('provenance').innerHTML=`<p>Snapshot: ${esc(stamp(data.generated,true))} PT · accepted state ${count(data.version)}</p><p>Authority: ${esc(data.source.authority || 'Verified export')} / ${esc(data.source.database || 'record')}</p><p>Record head: <code>${esc(data.head)}</code></p>${loadedCommit?`<p>Projection commit: <code>${esc(loadedCommit)}</code></p>`:''}<p><a href="research-data.json">Published JSON snapshot</a> · ${local?'<a href="events.jsonl">Local record export</a>':'<a href="https://github.com/sudofx/wake/tree/wake-state">Authority checkpoint ↗</a>'}</p>`;
@@ -233,6 +255,7 @@
     const m=data.matrix;
     if(!m){$('matrix-state').textContent='Matrix progress is not reported in this snapshot.';const enable=$('matrix-enable');if(enable)enable.hidden=true;return;}
     matrixCell=cube.update(m) || m.cells[0]?.id;
+    renderRuntimeActivity();
     $('matrix-state').textContent=m.reported?(m.enabled?'Continuity campaign recorded':'Campaign not enabled'):'Campaign progress not reported';
     $('matrix-coverage').textContent=m.reported?`${count(m.completed)} / ${count(m.cells.length)}`:`— / ${count(m.cells.length)}`;
     const enable=$('matrix-enable');
@@ -343,7 +366,7 @@
     if(wakeTab==='provider')body=`<h3>${esc(w.provider||'Provider not reported')} / ${esc(w.model||'Model not reported')}</h3>${w.attempts.map((a,i)=>`<div class="attempt-row"><strong>Attempt ${i+1} · ${esc(a.model||'unknown')}</strong><p>${esc(a.result||'result not reported')} · ${a.elapsed_ms!==undefined?`${count(a.elapsed_ms)} ms`:'duration not reported'}</p><p class="caption">${a.request_payload_bytes!==undefined?`${count(a.request_payload_bytes)} request bytes`:'request size not reported'}${a.http_status?` · HTTP ${esc(a.http_status)}`:''}</p>${a.usage?`<pre>${esc(JSON.stringify(a.usage,null,2))}</pre>`:''}</div>`).join('')||'<p class="empty">Attempt details are not reported in this snapshot.</p>'}`;
     if(wakeTab==='receipt')body=`<h3>Durable event trace</h3><p class="record-id">Request ${esc(w.request_hash||'not reported')}<br>Terminal ${esc(w.receipt.hash||'not in event tail')}<br>Result ${esc(w.receipt.result_hash||'not reported')}</p>${w.events.map(e=>`<div class="trace-row"><span>${esc(e.kind)}</span><time>${esc(stamp(e.time))}</time><code>${esc(e.hash)}</code>${e.reason?`<p>${esc(e.reason)}</p>`:''}</div>`).join('')||'<p class="empty">Events are outside the bounded tail.</p>'}`;
     $('wake-detail').innerHTML=`<div class="wake-reader-toolbar"><div class="wake-tabs inspector-tabs">${["summary","context","response","provider","receipt"].map(t=>`<button type="button" data-wake-tab="${t}" aria-pressed="${t===wakeTab}">${t}</button>`).join("")}<button class="close-wake" type="button" aria-label="Close wake reader">×</button></div><h3 id="wake-inspector-title" tabindex="-1">${esc(w.id)}</h3></div>${story}<p class="caption">${esc(stamp(w.time,true))} PT → ${esc(stamp(w.finished))} · base state ${w.base_version==null?'not reported':count(w.base_version)}</p>${body}`;
-    $('live-story').textContent=`Snapshot state ${count(data.version)}. Completed wakes are historical receipts; the status light separately reports execution now. Refresh checks every minute.`;
+    $('live-story').textContent=`Snapshot state ${count(data.version)}. Completed wakes are historical receipts; the status light separately reports execution now. Snapshot checks every minute; supported live activity checks every three seconds.`;
   }
   function controls() {
     cube.setMotion(false);contextMap.setMotion(false);document.body.dataset.motion='off';

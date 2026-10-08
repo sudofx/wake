@@ -116,3 +116,12 @@ and Actions-status fetches. Standalone and unconfigured pages use their own orig
 Console warns about missing identity. This routing contract must remain common to
 home, Console, maps and generated deep tools. Never use a public projection to
 repair a standalone database or treat a successful page response as authority proof.
+
+## Console activity versus published history
+
+The hosted research projection includes `recorded_activity` with the pending
+invocation/cell known at export time, a snapshot timestamp and `active: false`.
+Console may display that dated pending report. It never treats it as a live
+in-flight cell or calls a container endpoint on Pages. Exact live inspection is
+shown only when the serving standalone runtime advertises the capability.
+No additional hosted workflow dispatches or provider calls are introduced.

@@ -146,3 +146,15 @@ when interpreting a fast replay versus a full audit.
 Update the owning living documents alongside material behavior changes. Keep
 command examples aligned with code and distinguish defaults from deployment
 configuration. Dated validation results do not certify the current checkout.
+
+## Installed-package and live-inspection checks
+
+Container acceptance runs from `/tmp` so Python imports the installed wheel, not
+`/app`'s copied checkout. Nested Console icons/backgrounds and every referenced
+script must survive packaging and export. New public activity fields are optional
+capabilities; assets cannot assume an older runtime implements them.
+
+Use an isolated, slowed fixture to inspect live phase/cell markers without API
+calls. Verify both an active phase and its disappearance after completion or
+connection loss. A hosted snapshot cannot establish an in-flight phase. Keep
+activity overlays separate from score, selection and recorded historical traces.

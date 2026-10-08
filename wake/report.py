@@ -411,7 +411,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         if research.get("head") != head or research.get("version") != state["version"]:
             raise ValueError("Research projection does not match the exported record")
         atomic_write(target / "research-data.json", json.dumps(research, ensure_ascii=False, separators=(",", ":")))
-        for name in ("console.html", "research.css", "research.js", "research-scene.js", "research-instruments.js", "console-layout.js", "process-field.css", "process-field.js"):
+        for name in ("console.html", "research.css", "research.js", "research-scene.js", "research-instruments.js", "console-layout.js", "process-field.css", "process-field.js", "runtime-activity.js"):
             content = (assets / name).read_text()
             if name == "console.html":
                 content = content.replace("WAKE_CYCLE_COUNT", str(state["version"]))

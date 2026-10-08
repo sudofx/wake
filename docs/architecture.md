@@ -276,3 +276,18 @@ Standalone publication builds all files in a new generation before atomically
 switching the website. Pages builds a hosted shell from public projections and does
 not open SQLite. A shell update, runtime promotion, data checkpoint and image rebuild
 are independent operations. Browser rendering remains disposable in every case.
+
+## Optional inspection activity
+
+Container activity is ephemeral, read-only telemetry exposed through `/runtime.json`.
+`Engine.run` may report selected stages to a best-effort observer; observer failure
+cannot change permission, provider effects, accepted state or receipts. Only stage,
+public invocation/cell identifiers and timestamps are exposed, never request/context
+contents, credentials or model reasoning. The durable record remains authority.
+
+The Console discovers the live capability only on an explicit standalone export.
+It polls every three seconds, clears marks on errors or expired samples, and uses
+separate overlays for active work. Matrix scores and inspection selection remain
+unchanged. Reduced-motion viewers receive a static outline. Hosted projections may
+report a pending cell in a dated snapshot; that is not evidence of current execution
+and never starts a live pulse. Deployment identity still determines transport.

@@ -236,3 +236,24 @@ port 8080. It also selects a Docker Desktop proxy; inspect that transport before
 using it outside that environment. It is not the portable Compose setup above.
 Normal invocation retains the data and editor-home volumes. `--reset` permanently
 deletes the selected data volume and requires explicit history-loss authorization.
+
+## Live Console inspection
+
+The current runtime serves optional activity metadata at `/runtime.json`: record,
+context, evidence collection, provider wait, governance, continuity evaluation,
+receipt and idle. It advertises `capabilities.live_activity` and an activity schema;
+older runtimes need not implement the channel. The endpoint is inspection-only.
+
+Console checks this endpoint every three seconds while visible. Panel #002 reports
+the current phase separately from its historical replay. Panel #003 outlines the
+exact cell delivered with an active probe; selecting a different cell does not
+move that indicator. A phase can finish between polls and may never be displayed.
+The pulse stops on idle, failed work, missing capability, connection failure or
+sample expiry; it is static under reduced-motion preference. Publication-generation
+changes trigger snapshot refresh, including rejected attempts whose accepted-cycle
+count did not advance. This still uses atomic complete exports, not mutable pages.
+
+Use an updated installed image to get the activity endpoint. Updating assets alone
+cannot add runtime telemetry to a running Python process. Container acceptance now
+runs the installed package outside `/app`, so checkout-only asset availability
+cannot hide wheel omissions.

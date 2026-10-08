@@ -114,3 +114,10 @@ a screenshot to assess retrieval or memory behavior. Shared code and shared topi
 do not make histories interchangeable. Missing context events in a bounded overview
 are a presentation gap, not proof that invocation evidence has been lost. Use the
 matching installation's complete record tools to resolve it. See [development](development.md).
+
+## Inspection metadata
+
+`recorded_activity` is a dated view of pending invocation/cell identity. It is not
+retrieved as operational context and does not authorize continuing a pending wake.
+The optional container activity channel is ephemeral and is never replayed into
+research memory, matrix results or history. Its live pulse is not a score.

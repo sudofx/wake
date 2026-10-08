@@ -160,3 +160,9 @@ not mount Docker's socket, authority data or provider credentials.
 
 The offline container acceptance workflow builds and tests but never publishes
 images, runs live providers, promotes runtime or touches hosted authority.
+
+Live Console inspection is optional, read-only and non-authoritative. Observers
+must not affect governance or provider-effect sequencing. Only an explicit local
+runtime capability may animate an in-flight matrix coordinate. Hosted pending
+snapshots are dated evidence, not live execution. Clear overlays on disconnect
+and keep score, selection, accepted progress and historical replay separate.

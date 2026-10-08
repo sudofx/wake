@@ -132,10 +132,18 @@ def build_research_projection(state, events, head, *, generated=None, metrics=No
     latest = completed[-1] if completed else {}
     traces = _wake_traces(invocations, events, state)
     matrix = _matrix_projection(matrix_progress, matrix_reported)
+    pending_id = state.get('pending')
+    pending = state.get('invocations', {}).get(pending_id, {})
+    probe = (pending.get('continuity_probe_shadow') or {}).get('context', {})
+    recorded_activity = {'source': 'published-record', 'active': False,
+                         'invocation_id': pending_id,
+                         'coordinate_id': probe.get('campaign', {}).get('coordinate_id'),
+                         'recorded_at': generated}
     accepted = [i for i in completed if i['status'] == 'accepted']
     actions = metrics.get('accepted_actions', {})
     return {
         'projection_schema': 1, 'projection_kind': 'disposable-research-view', 'authoritative': False,
+        'recorded_activity': recorded_activity,
         'head': head, 'version': state['version'], 'generated': generated, 'source': deepcopy(source or {}),
         'topics': [{'id': t['id'], 'label': t.get('label', t['id'])} for t in state.get('research_topics', [])],
         'status': {'accepted_cycles': state['version'], 'latest': activity[0] if activity else None,

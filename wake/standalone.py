@@ -21,6 +21,7 @@ from .governance import Rejected
 from .providers import Fixture, Gemini
 from .report import export
 from .scheduling import wake_status
+from .activity import RuntimeActivity
 
 
 def bootstrap(directory, settings, *, enable_continuity_matrix=False):
@@ -71,7 +72,11 @@ class Website(SimpleHTTPRequestHandler):
     """Serve only disposable snapshots, with an inspection-only runtime endpoint."""
     def do_GET(self):
         if self.path.split('?', 1)[0] == '/runtime.json':
-            body = json.dumps(self.server.runtime_status).encode()
+            status = dict(self.server.runtime_status)
+            if hasattr(self.server, 'activity'):
+                status.update(self.server.activity.snapshot())
+                status['snapshot_generation'] = self.server.snapshot_generation
+            body = json.dumps(status).encode()
             self.send_response(200)
             self.send_header('Content-Type', 'application/json')
             self.send_header('Cache-Control', 'no-store')
@@ -151,6 +156,8 @@ def run(args):
                     raise ValueError('Writer busy during initial website publication; retry startup')
                 server = ThreadingHTTPServer((args.host, args.port), partial(Website, directory=str(root / 'current')))
                 server.runtime_status = {'mode': 'standalone', 'state': 'paused' if args.paused else 'running'}
+                server.activity = RuntimeActivity()
+                server.snapshot_generation = 1
                 thread = threading.Thread(target=server.serve_forever, daemon=True)
                 thread.start()
                 print(f'Standalone WAKE: /data authority at {data / "wake.sqlite"}; website port {server.server_port}', flush=True)
@@ -159,7 +166,8 @@ def run(args):
                         stop.wait(args.interval)
                         if not stop.is_set():
                             verify_existing_record(data / 'wake.sqlite')
-                            publish(engine, root)
+                            if publish(engine, root):
+                                server.snapshot_generation += 1
                         continue
                     verify_existing_record(data / 'wake.sqlite')
                     state = engine.store.load()
@@ -174,7 +182,8 @@ def run(args):
                     provider = Fixture(args.model or 'standalone-fixture') if provider_name == 'fixture' else Gemini(settings, args.model)
                     from .research import collect
                     try:
-                        result = engine.run(provider, collector=collect if provider_name == 'gemini' and settings.get('mission') else None)
+                        result = engine.run(provider, collector=collect if provider_name == 'gemini' and settings.get('mission') else None,
+                                            activity=server.activity.update)
                     except Rejected as exc:
                         if str(exc) == 'Context ceiling reached; human review required, no model call made':
                             server.runtime_status = {'mode': 'standalone', 'state': 'blocked',
@@ -189,7 +198,9 @@ def run(args):
                         stop.wait(args.interval)
                         continue
                     print(json.dumps(result), flush=True)
-                    publish(engine, root)
+                    if publish(engine, root):
+                        server.snapshot_generation += 1
+                    server.runtime_status = {'mode': 'standalone', 'state': 'idle'}
                     stop.wait(args.interval)
         finally:
             if server:

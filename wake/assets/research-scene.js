@@ -30,7 +30,9 @@ window.WakeResearchCube = canvas => {
   const project=(point,w,h,scale)=>{const [x,y,z]=turn(point),p=7/(7-z*.32);return{x:w*.5+x*scale*p,y:h*.51+y*scale*p,z};};
   const canvasDpr=()=>Math.min(matchMedia('(max-width:700px)').matches?1.25:2,devicePixelRatio||1);
   const collapsed=()=>canvas.closest('.console-module')?.classList.contains('module-collapsed');
-  const shouldAnimate=()=>moving&&visible&&!document.hidden&&!collapsed();
+  let liveCoordinate='';
+  const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
+  const shouldAnimate=()=>(moving||(liveCoordinate&&!reducedMotion.matches))&&visible&&!document.hidden&&!collapsed();
 
   function draw(){
     if(!visible||collapsed())return;
@@ -59,6 +61,16 @@ window.WakeResearchCube = canvas => {
       context.strokeStyle=color||muted;context.globalAlpha=color?.85:.18;context.lineWidth=color?1:.65;
       context.beginPath();edges.forEach(([a,b])=>{context.moveTo(v[a].x,v[a].y);context.lineTo(v[b].x,v[b].y);});context.stroke();
     });
+    // Live marks are a separate overlay: they never replace recorded score fill.
+    canvas.dataset.liveCoordinate=liveCoordinate;
+    const inFlight=points.find(cell=>cell.id===liveCoordinate);
+    if(inFlight){
+      const pulse=reducedMotion.matches?0:(1+Math.sin(performance.now()*.005))/2;
+      context.strokeStyle=style.getPropertyValue('--green').trim()||'#4bd59a';
+      context.globalAlpha=.65+pulse*.35;context.lineWidth=2;
+      context.beginPath();context.arc(inFlight.screen.x,inFlight.screen.y,13+pulse*5,0,Math.PI*2);context.stroke();
+      context.globalAlpha=1;
+    }
     // Draw inspection marks last; never replace the score fill with a selection color.
     points.filter(cell=>[selected,previous,hovered].includes(cell.id)).forEach(cell=>{
       const isSelected=cell.id===selected,isPrevious=cell.id===previous&&!isSelected;
@@ -81,7 +93,7 @@ window.WakeResearchCube = canvas => {
     timer=0;
     if(!shouldAnimate())return;
     const now=performance.now(),dt=last?Math.min(100,now-last):50;last=now;
-    if(!drag&&now>heldUntil){yaw+=dt*.000075;draw();}
+    if(moving&&!drag&&now>heldUntil)yaw+=dt*.000075;draw();
     timer=setTimeout(tick,50);
   }
   function start(){if(!timer&&shouldAnimate()){last=0;timer=setTimeout(tick,50);}}
@@ -116,7 +128,8 @@ window.WakeResearchCube = canvas => {
     select,
     rotate:amount=>{yaw+=amount;heldUntil=performance.now()+5000;draw();},
     reset:()=>{yaw=.65;pitch=-.45;zoom=.6;draw();},
-    setMotion:value=>{moving=Boolean(value);if(moving)start();else stop(true);},
+    setMotion:value=>{moving=Boolean(value);stop(true);start();},
+    setActivity:id=>{liveCoordinate=matrix?.cells.some(c=>c.id===id)?id:'';stop(true);start();},
     getRotation:()=>({yaw,pitch,zoom})
   };
 };

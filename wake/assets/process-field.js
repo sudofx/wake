@@ -31,6 +31,9 @@
   let nodePositions=[],recordEdges=[],recordNodes=[],lastVersion=null,flashUntil=0;
   let viewAngle=0,viewTilt=0,selectedNode=null,selectedStage=null,stagePoints=[];
   let pointer=null,dragged=false;
+  let runtime=window.WakeRuntimeActivity||null,lastLiveDraw=0,lastStageHTML='';
+  const liveIndex=()=>runtime?.activity?.active?({record:0,context:1,collecting:1,provider:2,governance:3,continuity:3,receipt:5}[runtime.activity.stage]??-1):-1;
+
 
   const hash=value=>{let h=2166136261;for(const ch of String(value||''))h=Math.imul(h^ch.charCodeAt(0),16777619);return h>>>0;};
   const stageState=w=>{
@@ -59,15 +62,27 @@
   function escapeHtml(value){return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
   function setStageReadout(){
     const active=stageState(latest);
-    stageList.innerHTML=STAGES.map(([key,label],i)=>`<div class="process-stage ${active[i]?'observed':'quiet'}" data-stage="${key}" data-stage-index="${i}" role="button" tabindex="0"><span>0${i+1}</span><strong>${label}</strong><small>${escapeHtml(stateLabel(latest,i))}</small></div>`).join('');
+    const stageHTML=STAGES.map(([key,label],i)=>`<div class="process-stage ${active[i]?'observed':'quiet'} ${liveIndex()===i?'live-current':''}" data-stage="${key}" data-stage-index="${i}" role="button" tabindex="0"><span>0${i+1}</span><strong>${label}</strong><small>${escapeHtml(stateLabel(latest,i))}</small></div>`).join('');
+    if(stageHTML!==lastStageHTML){stageList.innerHTML=stageHTML;lastStageHTML=stageHTML;}
+    const setText=(element,text)=>{if(element.textContent!==text)element.textContent=text;};
+    if(runtime){
+      const labels={record:'reading the record',context:'preparing context',collecting:'collecting evidence',provider:'waiting for model response',governance:'checking the proposal',continuity:'evaluating the matrix response',receipt:'finishing the receipt',idle:({paused:'research paused',waiting:'waiting for the next eligible wake',blocked:'operator review required',running:'preparing work',idle:'between wakes'})[runtime.state]};
+      setText(statusEl,runtime.activity.active?'LIVE ACTIVITY':'RUNTIME '+runtime.state.toUpperCase());
+      statusEl.dataset.state=runtime.activity.active?'running':runtime.state;
+      setText(traceEl,`Now · ${labels[runtime.activity.stage]}`);
+      traceEl.title=`Sampled ${new Date(runtime.observed_at).toLocaleTimeString()}`;
+      setText(detailEl,'Live indicators report this installation’s current work. The orange trace and background remain a replay of recorded history; activity does not imply accepted progress.');
+      return;
+    }
     const runner=actions?.dataset.state||'unknown';
     const running=runner==='running'||runner==='campaign';
-    statusEl.textContent=running?'EXECUTION ACTIVE':'EXECUTION '+(runner==='stopped'?'STOPPED':'STATUS UNKNOWN');
+    setText(statusEl,running?'EXECUTION ACTIVE':'EXECUTION '+(runner==='stopped'?'STOPPED':'STATUS UNKNOWN'));
     statusEl.dataset.state=running?'running':runner;
-    traceEl.textContent=latest?`Latest recorded wake · ${latest.status||'unknown'}`:'Waiting for a recorded wake';
-    detailEl.textContent=running
-      ?'The runner is active. WAKE does not currently expose the exact in-flight kernel step, so the moving trace below replays the latest recorded wake rather than pretending to show hidden model thought.'
-      :'The field replays observable WAKE activity from the durable projection. Motion is presentation; nodes and relationships come from recorded data.';
+    setText(traceEl,latest?`Latest recorded wake · ${latest.status||'unknown'}`:'Waiting for a recorded wake');
+    traceEl.removeAttribute('title');
+    setText(detailEl,running
+      ?'The runner is active. Exact in-flight activity is unavailable here; the orange trace replays the latest recorded wake.'
+      :'The field replays observable WAKE activity from the durable projection. Motion is presentation; nodes and relationships come from recorded data.');
   }
   function buildRecordField(){
     const graph=projection?.graph;
@@ -103,8 +118,11 @@
     };
   }
   function draw(){
-    if(!visible)return;
-    const {w,h}=resize();if(!w||!h)return;
+    if(!visible){frame=null;return;}
+    // Keep live inspection lightweight on phones without changing view rotation.
+    if(!motion&&liveIndex()>=0&&!reduced&&performance.now()-lastLiveDraw<50){frame=requestAnimationFrame(draw);return;}
+    lastLiveDraw=performance.now();
+    const {w,h}=resize();if(!w||!h){frame=null;return;}
     const p=palette(),now=performance.now(),t=(now-start)/1000;
     ctx.clearRect(0,0,w,h);
     const cx=w*.5,cy=h*.49,small=w<700,scale=Math.min(w,h);
@@ -148,7 +166,9 @@
       const observed=active[i],accepted=latest?.status==='accepted',chosen=selectedStage===i;
       const terminal=i===3&&latest&&['rejected','failed','deferred'].includes(latest.status);
       const color=chosen?p.orange:(terminal?p.red:(i===4&&observed&&accepted?p.green:(observed?p.cyan:p.muted)));
-      const pulse=(motion&&observed)?1+Math.sin(t*1.5+i)*.08:1;
+      const live=liveIndex()===i;
+      const pulse=(!reduced&&(live||(motion&&observed)))?1+Math.sin(t*3+i)*.12:1;
+      if(live){ctx.strokeStyle=p.green;ctx.globalAlpha=.8;ctx.lineWidth=2;ctx.beginPath();ctx.arc(pt.x,pt.y,(small?11:15)*pulse,0,Math.PI*2);ctx.stroke();}
       ctx.globalAlpha=observed?.92:.3;ctx.fillStyle=color;ctx.shadowColor=color;ctx.shadowBlur=observed?10:0;
       ctx.beginPath();ctx.arc(pt.x,pt.y,(chosen?1.35:1)*(small?6:8)*pulse,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
       ctx.globalAlpha=.9;ctx.fillStyle=p.ink;ctx.font=`${small?8:10}px ui-monospace,monospace`;ctx.textAlign='center';
@@ -169,7 +189,7 @@
     }
 
     const runner=actions?.dataset.state;
-    if(runner==='running'||runner==='campaign'){
+    if(runtime?runtime.activity.active:(runner==='running'||runner==='campaign')){
       ctx.globalAlpha=.35+.2*Math.sin(t*2);ctx.strokeStyle=p.green;ctx.lineWidth=1.2;
       ctx.beginPath();ctx.ellipse(cx,cy,scale*.69,scale*.35,0,0,Math.PI*2);ctx.stroke();
       ctx.globalAlpha=.9;ctx.fillStyle=p.green;ctx.font='9px ui-monospace,monospace';ctx.textAlign='right';ctx.fillText('EXECUTION ACTIVE',w-18,22);
@@ -180,7 +200,7 @@
       ctx.beginPath();ctx.ellipse(cx,cy,scale*.62,scale*.31,0,0,Math.PI*2);ctx.stroke();
     }
     ctx.globalAlpha=1;
-    if(motion)frame=requestAnimationFrame(draw);
+    if(motion||(liveIndex()>=0&&!reduced&&!document.hidden))frame=requestAnimationFrame(draw);
     else frame=null;
   }
   function scheduleDraw(){if(frame)return;frame=requestAnimationFrame(draw);}
@@ -232,6 +252,7 @@
     }
   }
   const observer=new MutationObserver(()=>{setStageReadout();scheduleDraw();});
+  window.addEventListener('wake-runtime-activity',event=>{runtime=event.detail;setStageReadout();scheduleDraw();});
   window.addEventListener('wake-theme-change',scheduleDraw);
   if(actions)observer.observe(actions,{attributes:true,attributeFilter:['data-state','title']});
 

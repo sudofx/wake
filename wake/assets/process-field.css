@@ -53,3 +53,6 @@ radial-gradient(circle at 50% 50%,rgba(182,155,255,.035),transparent 48%)}
  .process-field-readout{border-left:0;border-top:1px solid var(--line)}
  .process-field-warning{margin-left:0}
 }
+
+/* Inspection activity is distinct from historical observed/selected stages. */
+.process-stage.live-current{border-left:2px solid var(--green,#4bd59a);box-shadow:inset 4px 0 12px -8px var(--green,#4bd59a)}

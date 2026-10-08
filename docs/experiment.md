@@ -133,3 +133,11 @@ numbers. Identical coordinates across records can have different scores and evid
 Panel ordering, row height, theme, animation and stored browser selection are
 presentation conditions; they neither rerun a cell nor change its durable result.
 Dated validation files preserve what was observed then, not current deployment health.
+
+## Interpreting live cell outlines
+
+A live outline means a continuity probe is assigned to the current model request
+or its response is being checked. It does not establish that the model is actively
+reasoning about that cell, or that a research proposal will be accepted. Completed
+matrix scores still come only from governed recorded evaluations. Snapshot-only
+pending reports on hosted installations carry no live pulse.

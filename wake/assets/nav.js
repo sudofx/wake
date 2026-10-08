@@ -41,13 +41,16 @@ const actionsLight=document.querySelector('.actions-light');
 // Unknown installation identity must not display GitHub's status as local status.
 if(actionsLight && window.WAKE_DEPLOYMENT?.mode!=='hosted'){
   actionsLight.href='/runtime.json';
-  const refreshLocal=()=>fetch('/runtime.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('Unavailable');return r.json();}).then(status=>{
-    const label=status.state==='running'?'Running':status.state==='waiting'?'Waiting':'Paused';
-    actionsLight.dataset.state=status.state==='paused'?'stopped':'running';
+  const applyLocal=status=>{
+    const label=({running:'Running',waiting:'Waiting',idle:'Idle',paused:'Paused',blocked:'Blocked'})[status.state]||'Unknown';
+    actionsLight.dataset.state=status.state==='running'?'running':status.state==='paused'?'stopped':status.state;
     actionsLight.title='Local WAKE · '+label;
     actionsLight.setAttribute('aria-label','Inspect local WAKE runtime · '+label);
     const text=actionsLight.querySelector('.actions-light-label');if(text)text.textContent=label;
-  }).catch(()=>{actionsLight.removeAttribute('data-state');actionsLight.title='Local runtime unavailable';});
+  };
+  const unavailable=()=>{actionsLight.removeAttribute('data-state');actionsLight.title='Local runtime unavailable';actionsLight.setAttribute('aria-label','Local runtime unavailable');const text=actionsLight.querySelector('.actions-light-label');if(text)text.textContent='Unknown';};
+  const refreshLocal=()=>fetch('/runtime.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('Unavailable');return r.json();}).then(applyLocal).catch(unavailable);
+  window.addEventListener('wake-runtime-activity',event=>{if(event.detail)applyLocal(event.detail);else unavailable();});
   refreshLocal();setInterval(refreshLocal,30000);
 }
 if(actionsLight && window.WAKE_DEPLOYMENT?.schema===1 && window.WAKE_DEPLOYMENT.mode==='hosted'){
