@@ -144,11 +144,31 @@ def persistent_identifiers(observation):
     return list(dict.fromkeys(values))[:12]
 
 
+def canonical_work_identity(identifier):
+    """Collapse explicit arXiv revisions and assigned DOIs to one underlying work.
+
+    Version-specific URLs remain in each observation's provenance. Bibliographic
+    identifiers extracted from article text must not be passed as source identity.
+    """
+    value = str(identifier).strip().lower()
+    match = re.fullmatch(
+        r"(?:arxiv:|doi:10\.48550/arxiv\.)(\d{4}\.\d{4,5}|[a-z-]+(?:\.[a-z-]+)?/\d{7})(?:v[1-9]\d*)?",
+        value,
+    )
+    return "arxiv:" + match.group(1) if match else value
+
+
 def route_source_identity(url):
     """Return the persistent work identity encoded by a deterministic retrieval route."""
     if not isinstance(url, str):
         return None
     parsed = urllib.parse.urlsplit(url)
+    if parsed.hostname in ("arxiv.org", "www.arxiv.org"):
+        match = re.fullmatch(r"/(?:abs|pdf)/(.+?)(?:\.pdf)?", parsed.path)
+        if match:
+            identity = canonical_work_identity("arxiv:" + match.group(1))
+            if re.fullmatch(r"arxiv:(\d{4}\.\d{4,5}|[a-z-]+(?:\.[a-z-]+)?/\d{7})", identity):
+                return identity
     if parsed.hostname == "api.crossref.org" and parsed.path.startswith("/works/"):
         doi = urllib.parse.unquote(parsed.path[len("/works/"):]).strip()
         return "doi:" + doi.lower() if doi else None

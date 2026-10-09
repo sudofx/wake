@@ -56,6 +56,21 @@ class QualityTests(unittest.TestCase):
             _verify_claim_support('quantum entropy measurement', mirrors, 'Claim')
         _verify_claim_support('quantum entropy measurement', mirrors + [source('three', 'doi:two', 'quantum entropy measurement')], 'Claim')
 
+    def test_arxiv_versions_and_assigned_doi_are_one_underlying_work(self):
+        mirrors = [source(str(i), work, 'quantum entropy measurement') for i, work in enumerate(
+            ['arxiv:1802.10546v2', 'arxiv:1802.10546', 'doi:10.48550/arXiv.1802.10546'])]
+        with self.assertRaisesRegex(Rejected, 'underlying source'):
+            _verify_claim_support('quantum entropy measurement', mirrors, 'Claim')
+        self.assertEqual(evidence_quality({'evidence': {e['id']: e for e in mirrors}})['distinct_works'], 1)
+
+    def test_unstamped_arxiv_routes_preserve_work_identity_without_reading_bibliography(self):
+        mirrors = [dict(id=str(i), actor='collector', scope='collected', source=url,
+            content=json.dumps({'excerpt': 'quantum entropy measurement'})) for i, url in enumerate(
+            ['https://arxiv.org/abs/1802.10546', 'https://arxiv.org/pdf/1802.10546v2.pdf',
+             'https://doi.org/10.48550/arXiv.1802.10546'])]
+        with self.assertRaisesRegex(Rejected, 'underlying source'):
+            _verify_claim_support('quantum entropy measurement', mirrors, 'Claim')
+
     def test_scope_label_cannot_supply_claim_support(self):
         unrelated = [source('one', 'doi:one', 'musical perception', 'quantum entropy measurement')]
         with self.assertRaises(Rejected):

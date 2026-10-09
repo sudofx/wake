@@ -342,8 +342,10 @@ For exact behavior, code and tests on `master` remain authoritative when prose a
 
 ## Local evidence hardening and signed replay checkpoints
 
-Claim support counts distinct collector-stamped source works, so known mirrors
-cannot supply corroboration twice. Matching uses source titles, abstracts and
+Claim support counts distinct collector-stamped or deterministic-route source works,
+so known mirrors cannot supply corroboration twice. arXiv versions and its assigned
+`10.48550/arXiv` DOI count as one work while exact version URLs remain provenance.
+Matching uses source titles, abstracts and
 excerpts; collector scope labels cannot establish relevance. Console reports
 source concentration, repeated observations and notebook reuse. These are
 mechanical diagnostics, not semantic entailment or scientific novelty scores.

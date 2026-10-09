@@ -269,13 +269,18 @@ def _source_identity(item):
     Mirrors and alternate landing pages for the same DOI/arXiv/OpenAlex work
     should not satisfy corroboration merely because their URLs differ.
     """
+    from .research import canonical_work_identity, route_source_identity
     payload = _evidence_payload(item)
     explicit = str(payload.get("source_identity") or "").strip().lower()
     if explicit:
-        return explicit
+        return canonical_work_identity(explicit)
     # Persistent identifiers found inside source text are retrieval leads,
     # not authoritative identity. Only a collector-stamped source_identity may
-    # collapse mirrors; legacy records fall back conservatively to their URL.
+    # collapse mirrors. A deterministic route can identify the work without
+    # inspecting article prose; unidentified legacy records retain their URL.
+    route = route_source_identity(str(item.get("source") or ""))
+    if route:
+        return canonical_work_identity(route)
     return "url:" + str(item.get("source") or "").strip().lower()
 
 

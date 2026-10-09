@@ -241,6 +241,11 @@ The V1 file-format ID, application version, canonical serialization, source meta
 
 Source collection prefers article/main HTML content and excludes navigation, hidden subtrees, response forms and recognizable publisher boilerplate. Current eligibility rejects empty/error payloads. Acquisition progress requires successful collection as well as readable source material; failed source fetches append route-failure receipts. Historical bytes are never rewritten, and replay retains historical acceptance rules. Derived source diagnostics flag citations that no longer pass current readability.
 
+Current corroboration also collapses arXiv version identifiers, direct arXiv
+abstract/PDF routes and assigned `10.48550/arXiv` DOI aliases into one work.
+Observation URLs and historical payloads retain exact retrieved versions;
+bibliography identifiers in source prose do not establish the source's identity.
+
 Claim-support matching ignores collector scope labels and counts collector-stamped work identities rather than URLs. Source concentration and reuse are derived diagnostics exposed to the provider and Console, not a claim of independent scientific evidence. Continuity failures retain expected/actual evidence in the existing application result; the matrix grammar and prior scores remain unchanged. The `correction-demo` operator command uses ordinary proposal governance to preserve a deliberately false count, its measured falsifier, belief retraction and publication supersession in the live record.
 
 ## Immediate research in one wake
