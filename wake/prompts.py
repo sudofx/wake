@@ -299,6 +299,8 @@ other prose, headlines, or summaries; every other claim still needs calibrated n
 # representation used when the rich request cannot fit the configured ceiling.
 PROPOSAL_RECOVERY_SYSTEM = """
 context.proposal_constraints derives from the full record, not the memory window.
+For belief_reviews, use the existing ID and cite at least one listed new_evidence_id.
+If none is available, do not review that belief. A new ID cannot overwrite a known belief.
 Follow required_next_step when project capacity blocks the selected topic.
 remaining_search_slots limits research actions across the entire proposal. At zero,
 use collected evidence or disclose the blockage while the collector drains work.

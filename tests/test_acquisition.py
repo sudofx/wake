@@ -7,7 +7,7 @@ from unittest.mock import patch
 
 from wake.engine import DEFAULTS, Engine
 from wake.store import Store
-from wake.research import collect, exact_identifier_url, persistent_identifiers, candidate_source_urls, route_source_identity, fetch_source
+from wake.research import collect, exact_identifier_url, persistent_identifiers, candidate_source_urls, route_source_identity, fetch_source, _collect_items
 from support import charter_settings
 
 
@@ -41,6 +41,21 @@ class AcquisitionTests(unittest.TestCase):
             self.engine.store.append("acquisition_assessed", self.receipt("crossref:discovery", "no_progress"))
             self.engine.store.append("acquisition_assessed", self.receipt("crossref:source", "progress"))
         self.assertEqual(self.engine.store.load()["acquisition"]["p"]["no_progress"], 0)
+
+    def test_failed_source_fetch_records_route_failure_and_preserves_failure_tracking(self):
+        url = "https://doi.org/10.1000/failed-source"
+        def failed_fetch(_url):
+            raise ValueError("Source is unavailable")
+        with self.engine.store.lock():
+            self.engine.store.append("acquisition_assessed", self.receipt("crossref:discovery", "no_progress"))
+            _collect_items(self.engine, [{"id": "failed-route", "url": url, "domain": "entropy",
+                "project": "p", "acquisition_followup": True}], {}, failed_fetch,
+                time.monotonic, time.monotonic(), 45)
+        state = self.engine.store.load()
+        receipt = state["acquisition"]["p"]["last_receipt"]
+        self.assertEqual(receipt["outcome"], "route_failure")
+        self.assertEqual(state["evidence"][receipt["evidence"]]["scope"], "failed")
+        self.assertGreater(state["acquisition"]["p"]["no_progress"], 0)
 
     def test_routing_progress_clears_acquisition_failure_without_claiming_research(self):
         with self.engine.store.lock():

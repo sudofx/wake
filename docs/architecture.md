@@ -239,6 +239,8 @@ The kernel, provider generation seam, matrix grammar, and observability projecti
 
 The V1 file-format ID, application version, canonical serialization, source metadata bytes, result digests, receipts, and invocation journal format are intentionally stable. A filename change is not a semantic migration. Existing archives are discovered by format and restored with complete record verification before the canonical checkpoint is published. Multiple candidate records or archives fail closed. The prior archive is retired from the current tree only after round-trip verification of the canonical package. Remote Git history and archived generations retain their original evidence.
 
+Source collection prefers article/main HTML content and excludes navigation, hidden subtrees, response forms and recognizable publisher boilerplate. Current eligibility rejects empty/error payloads. Acquisition progress requires successful collection as well as readable source material; failed source fetches append route-failure receipts. Historical bytes are never rewritten, and replay retains historical acceptance rules. Derived source diagnostics flag citations that no longer pass current readability.
+
 Claim-support matching ignores collector scope labels and counts collector-stamped work identities rather than URLs. Source concentration and reuse are derived diagnostics exposed to the provider and Console, not a claim of independent scientific evidence. Continuity failures retain expected/actual evidence in the existing application result; the matrix grammar and prior scores remain unchanged. The `correction-demo` operator command uses ordinary proposal governance to preserve a deliberately false count, its measured falsifier, belief retraction and publication supersession in the live record.
 
 ## Immediate research in one wake
@@ -291,3 +293,7 @@ separate overlays for active work. Matrix scores and inspection selection remain
 unchanged. Reduced-motion viewers receive a static outline. Hosted projections may
 report a pending cell in a dated snapshot; that is not evidence of current execution
 and never starts a live pulse. Deployment identity still determines transport.
+
+Current proposal guidance derives belief-review eligibility from the full record and visible evidence. Existing belief IDs are separate from new-belief creation; a review must cite at least one visible evidence ID outside that belief's durable roots. If no such evidence is delivered, no review alternative is offered. This narrows generation guidance without changing acceptance or historical replay.
+
+When the provider request approaches its context ceiling, belief review alternatives are bounded to one genuinely new visible evidence root per belief before source prose is shortened. Durable belief evidence and deterministic governance remain unchanged.

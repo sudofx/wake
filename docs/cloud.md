@@ -75,6 +75,8 @@ The state branch is public. It contains science-source snapshots, model requests
 
 Do not run a second independent live loop against the same provider quota. Local CLI commands remain useful for testing and manual records, but the hosted runtime is GitHub Actions plus `wake-runtime`/`wake-state`.
 
+Source qualification and acquisition outcomes are evaluated separately from workflow success. A failed publisher fetch appends a route-failure receipt; only successfully collected readable source material counts as acquisition progress. Current source qualification filters recognizable navigation and response forms. Existing receipts are retained unchanged when runtime policy becomes stricter.
+
 ## Maintenance
 
 The replayable history deliberately favors inspectability over unlimited scale. Normal reads validate the hash-bound materialized projection; startup/adoption and explicit audits use full replay where required. Signed replay seeds provide a separate verified-prefix path with the limits described in `retrieval.md`. As years of raw prompts and source excerpts accumulate, storage and replay time will need maintenance; this initial system does not claim indefinite unattended operation. The model's context is bounded and explicitly excerpts old material while preserving the full record. No expertise score, consciousness claim or simulated research result is used as a growth metric.
@@ -140,3 +142,7 @@ or manually cancelled run, and it never enables a closed switch. Use Stop for
 intentional maintenance. Optional sidecars can be deferred under context pressure
 through the same engine used by containers; receipts explain that omission without
 recording an unperformed probe.
+
+Current proposal guidance derives belief-review eligibility from the full record and visible evidence. Existing belief IDs are separate from new-belief creation; a review must cite at least one visible evidence ID outside that belief's durable roots. If no such evidence is delivered, no review alternative is offered. This narrows generation guidance without changing acceptance or historical replay.
+
+When the provider request approaches its context ceiling, belief review alternatives are bounded to one genuinely new visible evidence root per belief before source prose is shortened. Durable belief evidence and deterministic governance remain unchanged.

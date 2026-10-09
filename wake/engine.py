@@ -615,6 +615,15 @@ class Engine:
                 for key in sorted(visible_projects)
             },
             "notebook_revisions": notebooks,
+            "known_belief_ids": sorted(state.get("beliefs", {})),
+            "belief_reviews": {
+                item["id"]: {"new_evidence_ids": sorted(
+                    {e["id"] for e in context.get("evidence", [])
+                     if e.get("id") in state.get("evidence", {})}
+                    - set(state["beliefs"][item["id"]].get("evidence", [])))}
+                for item in context.get("beliefs", [])
+                if item.get("id") in state.get("beliefs", {})
+            },
         }
         active = [item for item in state.get("projects", {}).values()
                   if item.get("status") == "active"]
@@ -733,6 +742,18 @@ class Engine:
             return
         if context.pop("evidence_quality", None) is not None:
             context["bounded_context"]["omitted_categories"].append("advisory source-selection diagnostics")
+            if len(canonical(request)) <= self.config["max_context_chars"]:
+                return
+        # Review alternatives repeat new citation IDs in both context and schema.
+        # Bound this optional choice set before shortening source material; every
+        # offered review still requires a genuinely new delivered evidence root.
+        reviews = context.get("proposal_constraints", {}).get("belief_reviews", {})
+        if reviews:
+            for review in reviews.values():
+                review["new_evidence_ids"] = review["new_evidence_ids"][:1]
+            request["response_schema"] = _provider_response_schema(context, True)
+            context.setdefault("bounded_context", {}).setdefault("omitted_categories", []).append(
+                "belief review choices bounded to one new visible root per belief; durable roots unchanged")
             if len(canonical(request)) <= self.config["max_context_chars"]:
                 return
         recovery = context.get("representation_recovery", [])

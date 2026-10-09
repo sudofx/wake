@@ -232,6 +232,26 @@ def schema_for_context(context):
                 choices.remove(research_action)
 
     constraints = context.get("proposal_constraints", {})
+    if "known_belief_ids" in constraints:
+        belief = next(a for a in choices if a["properties"]["type"]["enum"] == ["belief"])
+        known = constraints["known_belief_ids"]
+        # New IDs cannot overwrite an existing belief. Reviews get a separate
+        # alternative requiring evidence outside that belief's durable roots.
+        if known:
+            belief["properties"]["id"]["not"] = {"enum": known}
+        belief["properties"]["status"] = {"type": "string", "enum": ["active"]}
+        visible = {e.get("id") for e in context.get("evidence", []) if e.get("id")}
+        groups = {}
+        for identifier, review in constraints.get("belief_reviews", {}).items():
+            new = tuple(sorted(set(review["new_evidence_ids"]) & visible))
+            if new:
+                groups.setdefault(new, []).append(identifier)
+        for new, identifiers in groups.items():
+            review = deepcopy(belief)
+            review["properties"]["id"] = {"type": "string", "enum": sorted(identifiers)}
+            review["properties"]["status"] = {"type": "string", "enum": ["active", "retracted"]}
+            review["properties"]["evidence"].update({"contains": {"enum": list(new)}, "minContains": 1})
+            choices.append(review)
     slots = constraints.get("remaining_search_slots")
     if isinstance(slots, int):
         if slots == 0:

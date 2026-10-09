@@ -2,7 +2,7 @@
 from collections import Counter
 from urllib.parse import urlsplit
 from .governance import _source_identity, _claim_tokens, _evidence_payload
-from .research import source_observation_readable
+from .research import source_material_text, source_observation_readable
 
 
 def evidence_quality(state):
@@ -17,10 +17,13 @@ def evidence_quality(state):
         identities = {_source_identity(item) for item in cited}
         use.update(identities)
         claim = _claim_tokens(notebook.get('findings', ''))
-        mismatches = [item['id'] for item in cited if len(claim & _claim_tokens(' '.join(
-            str(_evidence_payload(item).get(key, '')) for key in ('title', 'abstract', 'excerpt')))) < 2]
+        mismatches = [item['id'] for item in cited if len(claim & _claim_tokens(' '.join((
+            str(_evidence_payload(item).get('title', '')), str(_evidence_payload(item).get('abstract', '')),
+            source_material_text(_evidence_payload(item)))))) < 2]
         notebooks.append({'id': notebook['id'], 'distinct_works': len(identities),
-                          'citation_count': len(cited), 'possible_mismatch_ids': mismatches})
+                          'citation_count': len(cited), 'possible_mismatch_ids': mismatches,
+                          'unreadable_source_ids': [item['id'] for item in cited
+                              if not source_observation_readable(_evidence_payload(item))]})
     return {'schema_version': 1, 'collected_observations': len(sources), 'distinct_works': len(works),
             'mirror_or_repeat_observations': len(sources) - len(works), 'distinct_hosts': len(hosts),
             'largest_host_share': round(max(hosts.values(), default=0) / max(1, len(sources)), 4),

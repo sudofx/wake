@@ -37,7 +37,7 @@ import json
 import math
 import re
 
-from .research import effective_evidence_role, effective_host_tier, source_observation_readable
+from .research import effective_evidence_role, effective_host_tier, source_observation_readable, source_material_text
 
 # Working notebooks and public publication intentionally have different
 # evidence thresholds. One qualifying source may enter a provisional notebook,
@@ -435,10 +435,8 @@ def _verify_claim_support(claim, evidence, label, minimum_sources=2, minimum_ove
         except (ValueError, TypeError):
             payload = {}
 
-        material = " ".join(
-            str(payload.get(key, ""))
-            for key in ("title", "abstract", "excerpt")
-        )
+        material = " ".join((str(payload.get("title", "")),
+                             str(payload.get("abstract", "")), source_material_text(payload)))
 
         overlap = claim_tokens & _claim_tokens(material)
 

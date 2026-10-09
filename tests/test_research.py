@@ -449,12 +449,12 @@ class ResearchTests(unittest.TestCase):
             })
             self.engine.store.append("observation", {
                 "id": "wake-src", "source": "https://raw.githubusercontent.com/sudofx/wake/master/README.md",
-                "content": json.dumps({"verification_required": True, "topic_domain": "wake_analysis"}),
+                "content": json.dumps({"verification_required": True, "topic_domain": "wake_analysis", "excerpt": "Source-controlled WAKE architecture and accountable research."}),
                 "actor": "collector", "scope": "collected"
             })
             self.engine.store.append("observation", {
                 "id": "neuro-src", "source": "https://example.org/neuro",
-                "content": json.dumps({"verification_required": True, "topic_domain": "neurodivergence"}),
+                "content": json.dumps({"verification_required": True, "topic_domain": "neurodivergence", "excerpt": "Readable research on neurodivergence and cognitive frameworks."}),
                 "actor": "collector", "scope": "collected"
             })
             invocation, request = self.engine.start("fixture", "project-evidence-test")
@@ -487,6 +487,7 @@ class ResearchTests(unittest.TestCase):
             "content": json.dumps({
                 "verification_required": True, "evidence_role": "source",
                 "topic_domain": "entropy",
+                "excerpt": "The collected source compares entropy definitions and their limitations.",
             }),
         }
         second = self.engine.research_maturation(state)
@@ -506,6 +507,7 @@ class ResearchTests(unittest.TestCase):
             "content": json.dumps({
                 "verification_required": True, "evidence_role": "source",
                 "topic_domain": "entropy",
+                "excerpt": "An independent source compares entropy definitions and experimental methods.",
             }),
         }
         state["notebooks"]["n"] = {
@@ -1029,6 +1031,27 @@ class ResearchTests(unittest.TestCase):
         choices = request["response_schema"]["properties"]["actions"]["items"]["anyOf"]
         self.assertFalse(any(item["properties"]["type"]["enum"] == ["research"] for item in choices))
         self.assertIn("remaining_search_slots", request["system"])
+
+    def test_belief_review_schema_requires_new_visible_evidence_from_full_roots(self):
+        state = self.engine.store.load()
+        state['beliefs'] = {'b': {'id': 'b', 'evidence': ['old']}, 'hidden': {'id': 'hidden', 'evidence': []}}
+        state['evidence'] = {'old': {'id': 'old'}, 'new': {'id': 'new'}}
+        context = {'beliefs': [{'id': 'b', 'evidence': []}], 'evidence': [{'id': 'old'}], 'projects': []}
+        self.engine.proposal_constraints(state, context)
+        choices = schema_for_context(context)['properties']['actions']['items']['anyOf']
+        beliefs = [a for a in choices if a['properties']['type']['enum'] == ['belief']]
+        self.assertEqual(len(beliefs), 1)
+        self.assertEqual(beliefs[0]['properties']['id']['not']['enum'], ['b', 'hidden'])
+        context['evidence'].append({'id': 'new'})
+        self.engine.proposal_constraints(state, context)
+        choices = schema_for_context(context)['properties']['actions']['items']['anyOf']
+        review = next(a for a in choices if a['properties']['type']['enum'] == ['belief'] and a['properties']['id'].get('enum') == ['b'])
+        self.assertEqual(review['properties']['evidence']['contains']['enum'], ['new'])
+        self.assertEqual(review['properties']['evidence']['minContains'], 1)
+        # If fitting removes the new evidence, the review must disappear too.
+        context['evidence'] = [{'id': 'old'}]
+        choices = schema_for_context(context)['properties']['actions']['items']['anyOf']
+        self.assertFalse(any(a['properties']['type']['enum'] == ['belief'] and a['properties']['id'].get('enum') for a in choices))
 
     def test_proposal_wide_queue_limit_and_exact_project_identity(self):
         self.assertEqual(self.propose([project()])["status"], "accepted")

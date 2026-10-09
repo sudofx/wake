@@ -97,6 +97,8 @@ Start a separate live database using `python3 -m wake init`, or use the GitHub-h
 7. Use the fixture-only crash injection in a separate rehearsal; for a real interrupted process, retain the charged reservation and recovery event. Do not deliberately waste scarce live calls to retest SQLite behavior.
 8. Give an observer `events.jsonl` and a previously retained `head.txt`. They should reconstruct the objective, current beliefs, supporting observations, all obligations, reasons and invocation identities. Compare the result to the generated state.
 
+A successful HTTP response or a publisher hostname does not establish readable research. Current source qualification excludes recognizable navigation and response-form text from claim matching, and failed fetches never count as acquisition progress. Historical acquisition labels remain original observations of the old instrument; compare new route-failure receipts separately.
+
 Report both structural pass rates and human-assessed coherence. Useful behavioral measures include evidence relevance, whether claims overstate observations, overdue obligations, revisability after contradiction, and consistency of plans over time. The shipped dashboard reports actual counts and fixture test coverage; it does not fabricate a real-model coherence score.
 
 Real-model interchangeability and long-term behavioral coherence remain unproved until those live observations exist. Treat that as the experiment's open question.
@@ -212,3 +214,7 @@ projection alone is insufficient. This command does not modify the record.
 The matrix Console separately reports tested coverage, the number passing every
 check, the mean check score, and failed-check counts. A high average score is not a
 complete-pass rate or evidence that memory scaffolding beats a control condition.
+
+Current proposal guidance derives belief-review eligibility from the full record and visible evidence. Existing belief IDs are separate from new-belief creation; a review must cite at least one visible evidence ID outside that belief's durable roots. If no such evidence is delivered, no review alternative is offered. This narrows generation guidance without changing acceptance or historical replay.
+
+When the provider request approaches its context ceiling, belief review alternatives are bounded to one genuinely new visible evidence root per belief before source prose is shortened. Durable belief evidence and deterministic governance remain unchanged.

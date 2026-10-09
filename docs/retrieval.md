@@ -16,6 +16,8 @@ The active-memory fit also bounds milestone editorial history, including when fi
 
 Console’s browser overview is a separate disposable presentation projection. Its bounded graph and record excerpts are never read back into provider context or retrieval decisions. IDs, explicit relationship pointers and record-head provenance support deeper inspection through Console’s complete record workspace; missing overview records do not imply missing authoritative records.
 
+Current source eligibility requires nonempty readable collected material. Publisher menus and response forms cannot make a source synthesis-ready or supply claim-support tokens. Historical raw observations remain available for exact inspection; stricter current qualification does not invalidate historical replay. Derived evidence-quality diagnostics include unreadable cited-source IDs.
+
 ## Why this exists
 
 Progressive abstraction only stays epistemically safe if compression remains correctable.
@@ -132,3 +134,7 @@ Their exact retrieval hashes, status and evidence roots remain in memory receipt
 records outside the visible working set retain their delivered value. This fit is
 idempotent and changes only the provider view. The final ceiling remains mandatory,
 and an impossible protected context still fails before any provider call.
+
+Current proposal guidance derives belief-review eligibility from the full record and visible evidence. Existing belief IDs are separate from new-belief creation; a review must cite at least one visible evidence ID outside that belief's durable roots. If no such evidence is delivered, no review alternative is offered. This narrows generation guidance without changing acceptance or historical replay.
+
+When the provider request approaches its context ceiling, belief review alternatives are bounded to one genuinely new visible evidence root per belief before source prose is shortened. Durable belief evidence and deterministic governance remain unchanged.
