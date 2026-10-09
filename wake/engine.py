@@ -851,6 +851,31 @@ class Engine:
                 history["omitted_counts"] = {key: total - len(history[key])
                                              for key, total in history["window_counts"].items()}
 
+        # Blog eligibility is an editorial index, not a second notebook view.
+        # Its titles duplicate working/retrieved notebooks and grow independently
+        # of the source budget. Keep eligibility, revisions and evidence roots,
+        # but omit display prose only when the final assembled request overflows.
+        if len(canonical(request)) > self.config["max_context_chars"]:
+            index = context.get("blog_notebooks", {})
+            if index:
+                context.setdefault("blog_notebooks_hash", digest(index))
+            for notebooks in index.values():
+                for item in notebooks:
+                    if "title" in item:
+                        item.pop("title")
+                        item["title_omitted"] = True
+            note = "editorial notebook titles omitted; eligibility, revisions and evidence roots retained"
+            if note not in context["bounded_context"]["omitted_categories"]:
+                context["bounded_context"]["omitted_categories"].append(note)
+        if len(canonical(request)) > self.config["max_context_chars"]:
+            for item in context.get("evidence", []):
+                if len(item.get("content", "")) > 180:
+                    item["content"] = item["content"][:179] + "…"
+                    item["context_excerpt"] = True
+            note = "minimal source excerpts; all evidence identities and provenance retained"
+            if note not in context["bounded_context"]["omitted_categories"]:
+                context["bounded_context"]["omitted_categories"].append(note)
+
     def fit_bounded_request(self, request):
         """Deterministically shrink an already-bounded provider request below the hard ceiling.
 

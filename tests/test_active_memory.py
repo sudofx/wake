@@ -263,6 +263,30 @@ class ActiveMemoryTests(unittest.TestCase):
         for key, value in mandatory.items():
             self.assertEqual(context[key], value)
 
+    def test_final_budget_bounds_editorial_titles_without_losing_eligibility(self):
+        from wake.event_format import canonical
+        index = {'p': [dict(id='n'+str(i), title='Editorial display title '*30,
+                            revision=i, evidence=['root'+str(i)]) for i in range(6)]}
+        context = dict(blog_notebooks=copy.deepcopy(index), evidence=[],
+            commitments=[dict(id='c', task='Review contrary sources')],
+            same_wake_research=dict(planning_invocation='plan', evidence_ids=['new'], requests=[]),
+            memory=dict(retrieved_records=[], trust_compacts=[]),
+            bounded_context=dict(omitted_categories=[]))
+        request = dict(system='Policy '*200, context=context)
+        self.engine.config['max_context_chars'] = 2800
+        self.engine.fit_active_request(request)
+        self.assertLessEqual(len(canonical(request)), 2800)
+        self.assertEqual(context['blog_notebooks_hash'], digest(index))
+        for before, after in zip(index['p'], context['blog_notebooks']['p']):
+            for key in ('id', 'revision', 'evidence'):
+                self.assertEqual(before[key], after[key])
+            self.assertTrue(after['title_omitted'])
+        self.assertEqual(context['commitments'][0]['task'], 'Review contrary sources')
+        self.assertEqual(context['same_wake_research']['evidence_ids'], ['new'])
+        fitted = canonical(request)
+        self.engine.fit_active_request(request)
+        self.assertEqual(canonical(request), fitted)
+
     def test_milestone_history_is_untouched_when_request_fits(self):
         context = dict(reflection_history=dict(milestone=10, accepted_wakes=[dict(cycle=9, summary='Prior work')]),
                        evidence=[], memory=dict(retrieved_records=[]))
