@@ -41,6 +41,28 @@ class StandaloneRuntimeTests(unittest.TestCase):
             self.assertEqual(server.runtime_status['state'], 'blocked')
             self.assertEqual(server.runtime_status['reason'], reason)
 
+    def test_permanent_provider_failure_stays_visible_without_repeating_calls(self):
+        with tempfile.TemporaryDirectory() as directory:
+            engine = bootstrap(directory, dict(DEFAULTS))
+            args = SimpleNamespace(interval=1, config='unused', provider='fixture',
+                data=directory, paused=False, enable_continuity_matrix=False,
+                host='127.0.0.1', port=0, model='test')
+            server, stop = MagicMock(), MagicMock()
+            stop.is_set.side_effect = [False, True]
+            with patch('wake.standalone.config', return_value=dict(DEFAULTS)), \
+                 patch('wake.standalone.bootstrap', return_value=engine), \
+                 patch('wake.standalone.verify_existing_record'), \
+                 patch('wake.standalone.publish', return_value=True), \
+                 patch('wake.standalone.ThreadingHTTPServer', return_value=server), \
+                 patch('wake.standalone.threading.Thread'), \
+                 patch('wake.standalone.threading.Event', return_value=stop), \
+                 patch.object(engine, 'run', return_value=dict(status='failed', reason='Invalid provider credential')) as cycle:
+                run(args)
+            cycle.assert_called_once()
+            stop.wait.assert_called_once_with()
+            self.assertEqual(server.runtime_status['state'], 'blocked')
+            self.assertEqual(server.runtime_status['reason'], 'Invalid provider credential')
+
     def test_matrix_opt_in_preserves_history_advances_and_survives_restart(self):
         with tempfile.TemporaryDirectory() as directory:
             data = Path(directory) / 'data'

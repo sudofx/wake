@@ -200,6 +200,16 @@ def run(args):
                     print(json.dumps(result), flush=True)
                     if publish(engine, root):
                         server.snapshot_generation += 1
+                    if result.get('status') == 'failed':
+                        # Known temporary failures return deferred. A failed
+                        # provider outcome is not permission for another effect
+                        # on every loop (for example an invalid key/model).
+                        server.runtime_status = {'mode': 'standalone', 'state': 'blocked',
+                                                 'reason': result.get('reason', 'Provider failed'),
+                                                 'action': 'Review provider configuration and restart'}
+                        print(json.dumps(server.runtime_status), flush=True)
+                        stop.wait()
+                        continue
                     server.runtime_status = {'mode': 'standalone', 'state': 'idle'}
                     stop.wait(args.interval)
         finally:

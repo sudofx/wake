@@ -19,7 +19,7 @@ class PreviewIntentTests(unittest.TestCase):
                  patch.object(dev_preview, 'PREVIEW_HOME', home), \
                  patch.object(dev_preview, 'alive', return_value=False), \
                  patch('socket.socket'), \
-                 patch.dict(os.environ, {'GEMINI_API_KEY': 'fixture-not-a-credential'}), \
+                 patch.dict(os.environ, {'GEMINI_API_KEY': 'fixture-not-a-credential', 'GEMINI_API_KEY_FILE': ''}), \
                  patch.object(dev_preview.subprocess, 'Popen', side_effect=RuntimeError('captured launch')) as launch:
                 with self.assertRaisesRegex(RuntimeError, 'captured launch'):
                     dev_preview.start(8080, research)
@@ -59,3 +59,34 @@ class PreviewIntentTests(unittest.TestCase):
             start_time=(proc/'stat').read_text().rsplit(')',1)[1].split()[19],
             command=[arg.decode() for arg in (proc/'cmdline').read_bytes().split(bytes([0]))[:-1]])
         self.assertFalse(dev_preview.alive(identity))
+
+    def test_missing_key_keeps_existing_preview_and_record_intent(self):
+        with tempfile.TemporaryDirectory() as directory:
+            identity = Path(directory) / 'preview.json'
+            identity.write_text(json.dumps({'research': False}))
+            original = identity.read_bytes()
+            with patch.object(dev_preview, 'PID', identity), \
+                 patch.dict(os.environ, {'GEMINI_API_KEY': '', 'GEMINI_API_KEY_FILE': ''}), \
+                 patch.object(dev_preview, 'stop') as stop, \
+                 patch.object(dev_preview.subprocess, 'Popen') as launch:
+                with self.assertRaisesRegex(RuntimeError, 'existing preview retained'):
+                    dev_preview.start(8080, True)
+            stop.assert_not_called()
+            launch.assert_not_called()
+            self.assertEqual(identity.read_bytes(), original)
+
+    def test_secret_file_validation_does_not_duplicate_credential_forms(self):
+        with tempfile.TemporaryDirectory() as directory:
+            home = Path(directory)
+            secret = home / 'secret'
+            secret.write_text('fixture-not-a-credential')
+            with patch.object(dev_preview, 'PID', home / 'preview.json'), \
+                 patch.object(dev_preview, 'PREVIEW_HOME', home), \
+                 patch('socket.socket'), \
+                 patch.dict(os.environ, {'GEMINI_API_KEY': '', 'GEMINI_API_KEY_FILE': str(secret)}), \
+                 patch.object(dev_preview.subprocess, 'Popen', side_effect=RuntimeError('captured launch')) as launch:
+                with self.assertRaisesRegex(RuntimeError, 'captured launch'):
+                    dev_preview.start(8080, True)
+                self.assertEqual(os.environ['GEMINI_API_KEY'], '')
+                self.assertEqual(launch.call_args.kwargs['env']['GEMINI_API_KEY'], '')
+                self.assertEqual(launch.call_args.kwargs['env']['GEMINI_API_KEY_FILE'], str(secret))

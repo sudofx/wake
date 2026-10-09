@@ -327,3 +327,7 @@ recovery reason; no result is recorded and that coordinate remains next. Coverag
 can therefore lag research under budget pressure. This preserves research policy,
 mandatory records and source roots; an irreducibly oversized request still blocks
 before inference rather than dropping obligations or inventing progress.
+
+Permanent provider failures keep the read-only Console available in blocked state.
+Known transient outcomes remain deferred and retry through normal eligibility; an
+invalid credential or unsupported model must not generate another call every loop.

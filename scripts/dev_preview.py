@@ -55,6 +55,19 @@ def start(port, research=None):
     # Persist explicit research intent across a Codespace/container restart.
     # Stop removes this identity, so the next lifecycle start is paused again.
     research = bool(prior and prior.get('research')) if research is None else research
+    if research:
+        # Validate before draining a healthy paused preview. Credentials stay in
+        # this installation's environment and are never included in its record.
+        # Do not load the file into the parent environment: the child owns
+        # loading it, and receiving both forms would correctly fail closed.
+        filename = os.environ.get('GEMINI_API_KEY_FILE')
+        key = os.environ.get('GEMINI_API_KEY')
+        if filename and key:
+            raise ValueError('Use either GEMINI_API_KEY or GEMINI_API_KEY_FILE')
+        if filename:
+            key = Path(filename).read_text().strip()
+        if not key:
+            raise RuntimeError('Configure the Gemini secret before enabling research; existing preview retained')
     if prior and alive(prior) and bool(prior.get('research')) != research:
         stop()
         prior = None
