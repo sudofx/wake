@@ -2160,6 +2160,20 @@ class Engine:
             request["response_schema"] = research_plan_schema(request["context"])
         if routine_memory:
             self.fit_active_request(request)
+        # A matrix sidecar is optional experiment work, never a prerequisite
+        # for research. If mandatory delivery still cannot fit after prose
+        # compaction, defer this coordinate rather than halt the installation.
+        # No probe result is recorded: the same coordinate remains eligible.
+        deferred_probe = None
+        if (len(canonical(request)) > self.config["max_context_chars"]
+                and continuity_probe_context is not None):
+            deferred_probe = continuity_probe_context["campaign"]["coordinate_id"]
+            request["context"].pop("continuity_probe", None)
+            request["system"] = request["system"].replace(MATRIX_SIDECAR_SYSTEM, "")
+            request["response_schema"] = _provider_response_schema(request["context"], bool(state.get("charter")))
+            continuity_probe_context = None
+            request["context"].setdefault("bounded_context", {}).setdefault("omitted_categories", []).append(
+                "continuity sidecar deferred for context budget; coordinate remains untested")
         require(len(canonical(request)) <= self.config["max_context_chars"],
                 "Context ceiling reached; human review required, no model call made")
         compaction_ms = (perf_counter() - phase_at) * 1000
@@ -2193,6 +2207,8 @@ class Engine:
             "context_delivery": {
                 "mode": context_mode,
                 "memory_mode": "active" if routine_memory else "shadow",
+                **({"deferred_continuity_coordinate": deferred_probe,
+                    "recovery": "optional-sidecar-deferred"} if deferred_probe else {}),
                 "activation_reason": "operator-active-memory" if routine_memory else ("context-size" if context_mode == "bounded" else "rich-default"),
                 "memory_digest": digest(request["context"]["memory"]) if routine_memory else None,
                 "memory_retrieved_record_count": len(request["context"]["memory"]["retrieved_records"]) if routine_memory else 0,

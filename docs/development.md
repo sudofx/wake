@@ -43,7 +43,7 @@ verified operation.
 
 | Change | Start here | Protected boundary |
 | --- | --- | --- |
-| CLI and installation | `wake/__main__.py`, `wake/standalone.py`, Compose files, `scripts/wake_runner` | Explicit initialization; preserve selected volume; one scheduler |
+| CLI and installation | `wake/__main__.py`, `wake/standalone.py`, `runtime_supervisor.py`, Compose files, `scripts/wake_runner` | Explicit initialization; preserve selected volume; one scheduler |
 | Hosted lifecycle / persistence | Operator workflows, `scripts/github_wake.py`, `scripts/publish_pages.py` | Drain before promotion; durable reservation before provider effect |
 | Record adoption / domain bridge | `wake/authority.py`, `record_store.py`, `application.py`, `domain_events.py`, `event_format.py` | One writable authority; immutable historical meaning and hashes |
 | Generic record/runtime | `wake/kernel/` | Deterministic receipt, replay, access and invocation contracts |
@@ -104,6 +104,18 @@ Use the smallest suitable machine, set an idle timeout, and stop a development
 Codespace when finished. Container validation on another machine does not prove
 cloud build, startup, source mounting or port forwarding; verify those in the
 actual Codespace before claiming that environment works.
+
+### Managed research in a Codespace
+
+The lifecycle starts a paused fixture preview for a new installation. Use
+`python scripts/dev_preview.py research` to drain that preview and start supervised
+Gemini research on the same independent record (requires the existing Codespace
+secret). Use `python scripts/dev_preview.py pause` for read-only inspection or
+`python scripts/dev_preview.py stop` to stop the service. Research intent survives
+an environment restart only after that explicit command; Stop removes it and the
+next lifecycle starts paused. Normal idle shutdown is a Codespaces platform limit,
+not a recoverable process failure; no agent silently upgrades machines or defeats
+that limit. Worker recovery remains bounded and never resets the record.
 
 ## Release and restart boundaries
 

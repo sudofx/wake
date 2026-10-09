@@ -63,6 +63,28 @@ class MatrixCampaignTests(unittest.TestCase):
         self.store.close()
         self.temp.cleanup()
 
+    def test_budget_defers_optional_probe_then_resumes_same_coordinate(self):
+        self.engine.config.update(memory_mode='active', max_context_chars=13000)
+        coordinate = self.store.continuity_matrix_progress()['next_coordinate_id']
+        provider = CountingFixture()
+        result = self.engine.run(provider)
+        self.assertEqual(result['status'], 'accepted')
+        self.assertEqual(provider.calls, 1)
+        self.assertNotIn('continuity_matrix_probe', result)
+        progress = self.store.continuity_matrix_progress()
+        self.assertEqual(progress['completed_count'], 0)
+        self.assertEqual(progress['next_coordinate_id'], coordinate)
+        receipt = self.store.load()['invocations'][result['id']]
+        delivery = receipt['context_delivery']
+        self.assertEqual(delivery['deferred_continuity_coordinate'], coordinate)
+        self.assertEqual(delivery['recovery'], 'optional-sidecar-deferred')
+        self.assertLessEqual(delivery['delivered_request_chars'], 13000)
+        self.assertNotIn('continuity_probe_shadow', receipt)
+        self.engine.config['max_context_chars'] = DEFAULTS['max_context_chars']
+        result = self.engine.run(provider)
+        self.assertEqual(result['continuity_matrix_probe']['coordinate_id'], coordinate)
+        self.assertEqual(self.store.continuity_matrix_progress()['completed_count'], 1)
+
     def test_one_ordinary_provider_call_advances_research_and_exactly_one_cell(self):
         before_version = self.store.load()["version"]
         first = self.store.continuity_matrix_progress()["next_coordinate_id"]

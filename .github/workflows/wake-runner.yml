@@ -1,19 +1,35 @@
 name: "WAKE✳︎ — Internal only: keep-running switch"
 run-name: "WAKE✳︎ continuation latch"
 
-# This workflow exists only because GitHub gives workflows a durable enabled/disabled state.
+# Its enabled/disabled state is the operator continuation latch. The schedule
+# also repairs known transport handoff loss while that latch remains open.
 # Start research enables it. Stop research disables it. wake.yml reads that state before dispatching a successor.
 # This workflow is not an operator control. Use Start research or Stop research.
 on:
   workflow_call:
+  schedule:
+    - cron: "*/15 * * * *"
 
 permissions:
   contents: read
+  actions: write
 
 jobs:
   explain:
+    if: github.event_name == 'workflow_call'
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
       - name: Explain this internal latch
         run: echo "This workflow is only the continuous-research on/off latch. Use Start research to run WAKE✳︎."
+
+  recover-handoff:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - name: Recover only lost transport while continuation is enabled
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/repair_continuation.py

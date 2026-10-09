@@ -14,7 +14,7 @@ The public interface is **https://sudofx.github.io/wake/** once GitHub Pages is 
 
 The `WAKE✳︎ — Update website · automatic` workflow is the only Pages publisher. Do not add generic static or Jekyll publishing templates: they publish application source instead of the generated research home and can overwrite the correct site.
 
-`WAKE✳︎ — Internal only: one research cycle` is the only research execution lane. It may execute only when the workflow dispatch ref is `wake-runtime`; each accepted/rejected cycle can dispatch its successor from that same runtime branch and carries the exact runtime commit forward. `WAKE✳︎ — Internal only: keep-running switch` is only the durable on/off latch used by **WAKE✳︎ - Start** and **WAKE✳︎ - Stop**; running it manually does not start research.
+`WAKE✳︎ — Internal only: one research cycle` is the only research execution lane. It may execute only when the workflow dispatch ref is `wake-runtime`; each accepted/rejected cycle can dispatch its successor from that same runtime branch and carries the exact runtime commit forward. `WAKE✳︎ — Internal only: keep-running switch` is the durable on/off latch used by **WAKE✳︎ - Start** and **WAKE✳︎ - Stop**, with a scheduled lost-handoff check while enabled; running it manually does not start research.
 
 Runtime control lives entirely in GitHub Actions. The website's small status light opens the repository Actions page. It is green while the keep-running switch is open, including the brief handoff gap between successive `wake.yml` cycles, and red only when that switch is closed. The light reports the durable continuation latch, not whether a cycle is executing at that exact instant. There is no site authentication or control backend. **WAKE✳︎ - Start** opens the keep-running switch and dispatches the first `wake.yml` cycle on `wake-runtime`. **WAKE✳︎ - Stop** closes that switch before cancelling active cycles. **WAKE✳︎ - Reset** is the safe reset workflow: it stops research as needed, verifies/promotes current code when required, archives the prior governed generation, and starts a new active generation at cycle zero using its explicit confirmation input. Prior governed wake history remains durable. **WAKE✳︎ - Enable continuity campaign** is the explicit provider-free opt-in for the shared `continuity@1` matrix. It closes and drains the active research lane, verifies/promotes the candidate runtime, records enablement through the serialized `wake-authority` lane, then restores whether continuous research was running or stopped. The Console may link to this workflow when the live record reports the campaign disabled; it does not gain browser-side mutation authority. While enabled, each ordinary research provider request carries at most one isolated matrix sidecar for the next uncovered coordinate. The same Gemini response supplies both the research proposal and the probe answer, so campaign execution makes no second API request and consumes no extra provider slot. WAKE strips the expected sidecar before research governance, scores it deterministically, and commits only the compact coordinate result through application governance. Research can be accepted or rejected independently of the probe. Any returned response completes the tested coordinate; a missing or malformed sidecar is recorded as a zero-score result, while quota/transport deferral before a response leaves the cell uncovered for retry.
 
@@ -125,3 +125,18 @@ Console may display that dated pending report. It never treats it as a live
 in-flight cell or calls a container endpoint on Pages. Exact live inspection is
 shown only when the serving standalone runtime advertises the capability.
 No additional hosted workflow dispatches or provider calls are introduced.
+
+## Lost-continuation recovery
+
+While the operator keep-running switch is enabled, its scheduled watchdog checks
+roughly every fifteen minutes for a timed-out research run or failed successor
+handoff. It dispatches only the currently promoted runtime and only when no actual
+research job or operator maintenance is active. It does not use Pages or the public
+projection as authority. New cycles perform normal checkpoint verification and
+interrupted-invocation accounting. GitHub may delay scheduled checks.
+
+The watchdog does not restart a failed application, governance/configuration block,
+or manually cancelled run, and it never enables a closed switch. Use Stop for
+intentional maintenance. Optional sidecars can be deferred under context pressure
+through the same engine used by containers; receipts explain that omission without
+recording an unperformed probe.

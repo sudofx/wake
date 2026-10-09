@@ -1,4 +1,4 @@
-"""Paused, independent preview for Dev Containers and Codespaces.
+"""Independent preview and explicitly enabled research for Dev Containers/Codespaces.
 
 Lifecycle hooks may run more than once. Keep a verified process identity, never
 kill a process based only on a reused PID or an occupied port. Development data
@@ -21,10 +21,10 @@ RECORD = PREVIEW_HOME / 'record'
 PID = PREVIEW_HOME / 'preview.json'
 
 
-def command(port):
+def command(port, research=False):
     return [sys.executable, '-m', 'wake.standalone', '--config', str(ROOT / 'wake.toml'),
             '--data', str(RECORD), '--host', '0.0.0.0', '--port', str(port),
-            '--paused', '--provider', 'fixture']
+            *(['--provider', 'gemini'] if research else ['--paused', '--provider', 'fixture'])]
 
 
 def alive(identity):
@@ -41,12 +41,18 @@ def alive(identity):
         return False
 
 
-def start(port):
+def start(port, research=None):
     prior = json.loads(PID.read_text()) if PID.exists() else None
+    # Persist explicit research intent across a Codespace/container restart.
+    # Stop removes this identity, so the next lifecycle start is paused again.
+    research = bool(prior and prior.get('research')) if research is None else research
+    if prior and alive(prior) and bool(prior.get('research')) != research:
+        stop()
+        prior = None
     if prior and alive(prior):
-        if prior['command'] != command(port):
+        if prior['command'] != command(port, research):
             raise RuntimeError('Preview is already running with another port; stop it before changing ports')
-        print(f'Paused development preview already running on port {port}')
+        print(f'Development runtime already started on port {port}; research={research}')
         return
     # Refuse an occupied port before bootstrapping a new authority. An unrelated
     # process must not masquerade as this installation's successful launch.
@@ -57,26 +63,29 @@ def start(port):
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         sock.bind(('0.0.0.0', port))
     env = dict(os.environ)
-    for key in ('GEMINI_API_KEY', 'GEMINI_API_KEY_FILE', 'WAKE_MODEL'):
-        env.pop(key, None)
-    env.update(WAKE_PAUSED='true', WAKE_PROVIDER='fixture', WAKE_ENABLE_CONTINUITY_MATRIX='false')
-    args = command(port)
+    if not research:
+        for key in ('GEMINI_API_KEY', 'GEMINI_API_KEY_FILE', 'WAKE_MODEL'):
+            env.pop(key, None)
+    env.update(WAKE_PAUSED='false' if research else 'true',
+               WAKE_PROVIDER='gemini' if research else 'fixture', WAKE_ENABLE_CONTINUITY_MATRIX='false')
+    args = command(port, research)
     with (PREVIEW_HOME / 'preview.log').open('ab') as log:
         process = subprocess.Popen(args, cwd=ROOT, env=env, stdin=subprocess.DEVNULL,
                                    stdout=log, stderr=log, start_new_session=True)
-    identity = {'pid': process.pid, 'command': args,
+    identity = {'pid': process.pid, 'command': args, 'research': research,
                 'start_time': (Path('/proc') / str(process.pid) / 'stat').read_text().rsplit(')', 1)[1].split()[19]}
     PID.write_text(json.dumps(identity))
     try:
-        deadline = time.monotonic() + 90
+        deadline = time.monotonic() + 300
         while time.monotonic() < deadline:
             if process.poll() is not None:
                 raise RuntimeError('Preview exited; inspect data/devcontainer/preview.log')
             try:
                 with urllib.request.urlopen(f'http://127.0.0.1:{port}/runtime.json', timeout=2) as response:
                     status = json.load(response)
-                if status['state'] == 'paused':
-                    print(f'Paused development preview ready on port {port}; record: {RECORD}')
+                expected = {'running', 'idle', 'waiting'} if research else {'paused'}
+                if status['state'] in expected:
+                    print(f'Development runtime ready on port {port}; research={research}; record: {RECORD}')
                     return
             except (OSError, ValueError, KeyError):
                 time.sleep(.2)
@@ -84,7 +93,7 @@ def start(port):
     except BaseException:
         if alive(identity):
             process.terminate()
-            process.wait(timeout=30)
+            process.wait(timeout=300)
         PID.unlink(missing_ok=True)
         raise
 
@@ -93,7 +102,7 @@ def stop():
     identity = json.loads(PID.read_text()) if PID.exists() else None
     if identity and alive(identity):
         os.kill(identity['pid'], signal.SIGTERM)
-        deadline = time.monotonic() + 30
+        deadline = time.monotonic() + 300
         while alive(identity) and time.monotonic() < deadline:
             time.sleep(.2)
         if alive(identity):
@@ -104,7 +113,7 @@ def stop():
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('action', choices=('start', 'stop'))
+    parser.add_argument('action', choices=('start', 'stop', 'research', 'pause'))
     parser.add_argument('--port', type=int, default=8080)
     args = parser.parse_args()
     if not 1 <= args.port <= 65535:
@@ -112,7 +121,10 @@ def main():
     PREVIEW_HOME.mkdir(parents=True, exist_ok=True)
     with (PREVIEW_HOME / 'launcher.lock').open('a') as lock:
         fcntl.flock(lock, fcntl.LOCK_EX)
-        start(args.port) if args.action == 'start' else stop()
+        if args.action == 'stop':
+            stop()
+        else:
+            start(args.port, {'research': True, 'pause': False}.get(args.action))
 
 
 if __name__ == '__main__':

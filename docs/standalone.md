@@ -308,3 +308,22 @@ It checks source identity, repeated launch, PID reuse protection, paused readine
 port collisions, a changed port, exact record preservation and zero provider
 invocations. It leaves the paused preview ready; stop it or close the development
 container after verification, retaining the workspace data.
+
+## Automatic execution recovery
+
+Standalone launches a supervising parent and a record-owning worker on Docker,
+Codespaces and ordinary supported hosts. An unexpected worker signal or explicitly
+temporary operating-system error restarts the worker with increasing delays.
+After five restarts in fifteen minutes, recovery waits for that window to expire.
+Each worker reopens and verifies the same record and recovers interrupted invocation
+receipts before any provider effect. The supervisor never repairs or resets data.
+Normal shutdown, intentional pause, configuration errors and integrity failures
+are not retryable worker outcomes. Docker's own restart policy may relaunch a
+failed container; record verification still fails closed before inference.
+
+If mandatory context still exceeds its ceiling after safe excerpting, an optional
+continuity sidecar may be deferred. Delivery receipts identify the coordinate and
+recovery reason; no result is recorded and that coordinate remains next. Coverage
+can therefore lag research under budget pressure. This preserves research policy,
+mandatory records and source roots; an irreducibly oversized request still blocks
+before inference rather than dropping obligations or inventing progress.

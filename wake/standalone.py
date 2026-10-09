@@ -210,6 +210,11 @@ def run(args):
 
 
 def main():
+    # The same parent is used in Docker, Codespaces and a plain process. Child
+    # identity is operational only; it never changes record ownership or policy.
+    if os.environ.get('WAKE_RUNTIME_CHILD') != '1':
+        from .runtime_supervisor import supervise
+        return supervise([sys.executable, '-m', 'wake.standalone', *sys.argv[1:]])
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--data', default='/data')
     parser.add_argument('--config', default='/app/wake.toml')
@@ -232,6 +237,15 @@ def main():
         if secret:
             message = message.replace(secret, '[redacted]')
         print(json.dumps({'error': message}), file=sys.stderr)
+        # Only temporary OS transport/resource errors are restartable. Invalid
+        # records, permissions, configuration and governance stay fail-closed.
+        import errno
+        from .runtime_supervisor import TEMPORARY_EXIT
+        if isinstance(exc, OSError) and exc.errno in {
+                errno.EAGAIN, errno.ENOMEM, errno.ETIMEDOUT, errno.ECONNRESET,
+                errno.ECONNABORTED, errno.ENETDOWN, errno.ENETUNREACH,
+                errno.EHOSTUNREACH}:
+            return TEMPORARY_EXIT
         return 1
     return 0
 
