@@ -369,3 +369,23 @@ class ActiveMemoryTests(unittest.TestCase):
         self.assertEqual(context['commitments'][0]['task'],'Unchanged obligation')
         before=canonical(request);self.engine.fit_active_request(request)
         self.assertEqual(canonical(request),before)
+
+    def test_review_alternatives_fit_without_weakening_new_evidence_requirement(self):
+        from wake.event_format import canonical
+        from wake.providers import schema_for_context
+        evidence = [dict(id='source-'+str(i)) for i in range(50)]
+        reviews = {str(i): dict(new_evidence_ids=[e['id'] for e in evidence]) for i in range(14)}
+        context = dict(evidence=evidence, memory=dict(retrieved_records=[]),
+                       bounded_context=dict(omitted_categories=[]),
+                       proposal_constraints=dict(known_belief_ids=list(reviews), belief_reviews=reviews))
+        request = dict(context=context, response_schema=schema_for_context(context))
+        before=len(canonical(request))
+        self.engine.config['max_context_chars'] = before-2000
+        self.engine.fit_active_request(request)
+        self.assertLessEqual(len(canonical(request)), self.engine.config['max_context_chars'])
+        self.assertEqual(context['proposal_constraints']['known_belief_ids'],list(reviews))
+        choices=request['response_schema']['properties']['actions']['items']['anyOf']
+        for choice in choices:
+            if choice['properties']['type']['enum']==['belief'] and choice['properties']['id'].get('enum'):
+                self.assertEqual(choice['properties']['evidence']['contains']['enum'],['source-0'])
+                self.assertEqual(choice['properties']['evidence']['minContains'],1)

@@ -729,6 +729,18 @@ class Engine:
                     item["context_excerpt"] = True
         if len(canonical(request)) <= self.config["max_context_chars"]:
             return
+        # Review alternatives repeat new citation IDs in both context and schema.
+        # Bound this optional choice set before shortening source material; every
+        # offered review still requires a genuinely new delivered evidence root.
+        reviews = context.get("proposal_constraints", {}).get("belief_reviews", {})
+        if reviews:
+            for review in reviews.values():
+                review["new_evidence_ids"] = review["new_evidence_ids"][:1]
+            request["response_schema"] = _provider_response_schema(context, True)
+            context.setdefault("bounded_context", {}).setdefault("omitted_categories", []).append(
+                "belief review choices bounded to one new visible root per belief; durable roots unchanged")
+            if len(canonical(request)) <= self.config["max_context_chars"]:
+                return
         recovery = context.get("representation_recovery", [])
         if recovery:
             context["representation_recovery"] = [{
