@@ -8,6 +8,7 @@ import unittest
 from wake.engine import DEFAULTS, Engine
 from wake.matrix import MATRIX
 from wake.matrix_campaign import (
+    MATRIX_SIDECAR_SYSTEM,
     build_continuity_probe,
     evaluate_continuity_probe,
     perfect_continuity_probe_response,
@@ -64,7 +65,7 @@ class MatrixCampaignTests(unittest.TestCase):
         self.temp.cleanup()
 
     def test_budget_defers_optional_probe_then_resumes_same_coordinate(self):
-        self.engine.config.update(memory_mode='active', max_context_chars=8500)
+        self.engine.config.update(memory_mode='active', max_context_chars=8000)
         coordinate = self.store.continuity_matrix_progress()['next_coordinate_id']
         provider = CountingFixture()
         result = self.engine.run(provider)
@@ -78,7 +79,7 @@ class MatrixCampaignTests(unittest.TestCase):
         delivery = receipt['context_delivery']
         self.assertEqual(delivery['deferred_continuity_coordinate'], coordinate)
         self.assertEqual(delivery['recovery'], 'optional-sidecar-deferred')
-        self.assertLessEqual(delivery['delivered_request_chars'], 8500)
+        self.assertLessEqual(delivery['delivered_request_chars'], 8000)
         self.assertNotIn('continuity_probe_shadow', receipt)
         self.engine.config['max_context_chars'] = DEFAULTS['max_context_chars']
         result = self.engine.run(provider)
@@ -162,7 +163,7 @@ class MatrixCampaignTests(unittest.TestCase):
                 self.assertIn("continuity_probe", request["context"])
                 self.assertIn("continuity_probe", request["response_schema"]["properties"])
                 self.assertIn("continuity_probe", request["response_schema"]["required"])
-                self.assertIn("Continuity campaign sidecar", request["system"])
+                self.assertIn(MATRIX_SIDECAR_SYSTEM, request["system"])
                 shadow = self.store.load()["invocations"][invocation]["continuity_probe_shadow"]
                 self.assertEqual(
                     shadow["context"]["campaign"]["coordinate_id"],

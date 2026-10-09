@@ -427,3 +427,58 @@ class ActiveMemoryTests(unittest.TestCase):
         self.assertEqual(context['commitments'][0]['task'],'Review counterevidence')
         self.assertIn('genuinely new evidence',BOUNDED_SYSTEM)
         self.assertIn('resolution_evidence',BOUNDED_SYSTEM)
+
+    def test_shared_review_root_preserves_all_reviews_and_matrix_packet_under_pressure(self):
+        from wake.engine import _provider_response_schema
+        from wake.event_format import canonical
+        from wake.matrix_campaign import build_continuity_probe, MATRIX_SIDECAR_SYSTEM
+        state = self.store.load()
+        probe = build_continuity_probe(state, self.store.head(),
+            'continuity@1:adversarial-integrity|digests-without-counts|stale-frontier')['context']
+        evidence = [dict(id='source-'+str(i)) for i in range(14)] + [dict(id='shared-new')]
+        reviews = {str(i): dict(new_evidence_ids=['source-'+str(i), 'shared-new']) for i in range(14)}
+        eligible = copy.deepcopy(reviews)
+        beliefs = [dict(id=str(i), evidence=['old-root-'+str(i)]) for i in range(14)]
+        obligations = [dict(id='due', task='Review real evidence', due_cycle=1)]
+        context = dict(evidence=evidence, beliefs=beliefs, commitments=obligations,
+                       continuity_probe=copy.deepcopy(probe), memory=dict(retrieved_records=[]),
+                       bounded_context=dict(omitted_categories=[]),
+                       proposal_constraints=dict(known_belief_ids=list(reviews), belief_reviews=reviews))
+        request = dict(context=context, system=MATRIX_SIDECAR_SYSTEM,
+                       response_schema=_provider_response_schema(context, True))
+        self.engine.config['max_context_chars'] = len(canonical(request))-1000
+        self.engine.fit_active_request(request)
+        self.assertLessEqual(len(canonical(request)), self.engine.config['max_context_chars'])
+        self.assertEqual(set(reviews),set(eligible))
+        self.assertEqual(context['continuity_probe'],probe)
+        self.assertEqual(context['beliefs'],beliefs)
+        self.assertEqual(context['commitments'],obligations)
+        self.assertIn('continuity_probe',request['response_schema']['required'])
+        for key, review in reviews.items():
+            self.assertEqual(review['new_evidence_ids'],['shared-new'])
+            self.assertTrue(set(review['new_evidence_ids']) <= set(eligible[key]['new_evidence_ids']))
+        choices=request['response_schema']['properties']['actions']['items']['anyOf']
+        offered=[choice for choice in choices if choice['properties']['type']['enum']==['belief']
+                 and choice['properties']['id'].get('enum')]
+        self.assertEqual(len(offered),1)
+        self.assertEqual(set(offered[0]['properties']['id']['enum']),set(reviews))
+        self.assertEqual(offered[0]['properties']['evidence']['minContains'],1)
+
+    def test_pressure_compacts_memory_instructions_without_touching_delivery(self):
+        from wake.event_format import canonical
+        from wake.memory import ACTIVE_MEMORY_SYSTEM, BOUNDED_ACTIVE_MEMORY_SYSTEM
+        context = dict(memory=dict(retrieved_records=[]), evidence=[dict(id='source')],
+                       commitments=[dict(id='due', task='Do inherited work')])
+        original = copy.deepcopy(context)
+        request = dict(system=ACTIVE_MEMORY_SYSTEM+'Operator instructions stay intact.',
+                       context=context, response_schema=dict(required=['actions']))
+        self.engine.config['max_context_chars']=len(canonical(request))-100
+        self.engine.fit_active_request(request)
+        self.assertLessEqual(len(canonical(request)),self.engine.config['max_context_chars'])
+        self.assertEqual(context['memory'],original['memory'])
+        self.assertEqual(context['evidence'],original['evidence'])
+        self.assertEqual(context['commitments'],original['commitments'])
+        self.assertEqual(request['system'],BOUNDED_ACTIVE_MEMORY_SYSTEM+'Operator instructions stay intact.')
+        for boundary in ('CHALLENGED', 'SETTLED', 'source independence', 'never invent omitted content',
+                         'context.evidence', 'allowlists', 'content_location', 'No new tools'):
+            self.assertIn(boundary,request['system'])

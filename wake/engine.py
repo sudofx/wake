@@ -750,6 +750,16 @@ class Engine:
                 "core instruction prose compacted; response schema and governance unchanged")
             if len(canonical(request)) <= self.config["max_context_chars"]:
                 return
+        # Keep every memory trust/omission rule while avoiding a larger research
+        # or matrix omission merely to carry verbose explanatory instructions.
+        from .memory import BOUNDED_ACTIVE_MEMORY_SYSTEM
+        if ACTIVE_MEMORY_SYSTEM in request.get("system", ""):
+            request["system"] = request["system"].replace(
+                ACTIVE_MEMORY_SYSTEM, BOUNDED_ACTIVE_MEMORY_SYSTEM, 1)
+            context.setdefault("bounded_context", {}).setdefault("omitted_categories", []).append(
+                "active-memory instruction prose compacted; trust and retrieval boundaries unchanged")
+            if len(canonical(request)) <= self.config["max_context_chars"]:
+                return
         if context.pop("evidence_quality", None) is not None:
             context["bounded_context"]["omitted_categories"].append("advisory source-selection diagnostics")
             if len(canonical(request)) <= self.config["max_context_chars"]:
@@ -759,8 +769,21 @@ class Engine:
         # offered review still requires a genuinely new delivered evidence root.
         reviews = context.get("proposal_constraints", {}).get("belief_reviews", {})
         if reviews:
-            for review in reviews.values():
-                review["new_evidence_ids"] = review["new_evidence_ids"][:1]
+            # Share an eligible new root across reviews where possible. Picking
+            # each list's first ID independently repeats otherwise equivalent
+            # schema alternatives and can permanently starve the matrix sidecar.
+            # Never invent eligibility or remove a belief: this is only a choice
+            # among each review's already supplied new roots.
+            pending = {key: set(review["new_evidence_ids"])
+                       for key, review in reviews.items() if review["new_evidence_ids"]}
+            while pending:
+                candidates = set().union(*pending.values())
+                root = min(candidates, key=lambda value: (
+                    -sum(value in eligible for eligible in pending.values()), value))
+                covered = [key for key, eligible in pending.items() if root in eligible]
+                for key in covered:
+                    reviews[key]["new_evidence_ids"] = [root]
+                    del pending[key]
             request["response_schema"] = _provider_response_schema(context, True)
             context.setdefault("bounded_context", {}).setdefault("omitted_categories", []).append(
                 "belief review choices bounded to one new visible root per belief; durable roots unchanged")

@@ -137,10 +137,12 @@ and an impossible protected context still fails before any provider call.
 
 Current proposal guidance derives belief-review eligibility from the full record and visible evidence. Existing belief IDs are separate from new-belief creation; a review must cite at least one visible evidence ID outside that belief's durable roots. If no such evidence is delivered, no review alternative is offered. This narrows generation guidance without changing acceptance or historical replay.
 
-When the provider request approaches its context ceiling, belief review alternatives are bounded to one genuinely new visible evidence root per belief before source prose is shortened. Durable belief evidence and deterministic governance remain unchanged.
+When the provider request approaches its context ceiling, belief review alternatives are bounded to one genuinely new visible evidence root per belief before source prose is shortened. Where eligibility overlaps, reviews share a root so equivalent schema branches merge; all offered belief IDs and their new-evidence requirement remain. This prevents repeated schema alternatives from crowding out an enabled continuity sidecar. Durable belief evidence and deterministic governance remain unchanged.
 
 Under final context pressure, the engine can replace verbose core instructions with
-a concise equivalent before reducing source text. Application, memory, probe and
-operator-question instructions and the response schema remain intact. The delivery
+a concise equivalent before reducing source text. Active-memory instructions may
+also use concise wording preserving trust, correction, omission and citation rules.
+Application, probe and operator-question instructions and the response schema
+remain intact. The delivery
 receipt records the compaction; durable evidence roots, obligations and governance
 are unchanged. Requests that still cannot fit fail before inference.
