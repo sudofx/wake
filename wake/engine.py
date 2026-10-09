@@ -740,6 +740,16 @@ class Engine:
                     item["context_excerpt"] = True
         if len(canonical(request)) <= self.config["max_context_chars"]:
             return
+        # The detailed core prompt duplicates the response contract and research
+        # guidance. Compact only that prefix, preserving application, memory,
+        # probe and operator-question instructions verbatim. History is untouched.
+        from .prompts import BOUNDED_SYSTEM
+        if request.get("system", "").startswith(SYSTEM):
+            request["system"] = BOUNDED_SYSTEM + request["system"][len(SYSTEM):]
+            context.setdefault("bounded_context", {}).setdefault("omitted_categories", []).append(
+                "core instruction prose compacted; response schema and governance unchanged")
+            if len(canonical(request)) <= self.config["max_context_chars"]:
+                return
         if context.pop("evidence_quality", None) is not None:
             context["bounded_context"]["omitted_categories"].append("advisory source-selection diagnostics")
             if len(canonical(request)) <= self.config["max_context_chars"]:
@@ -911,6 +921,11 @@ class Engine:
             note = "minimal source excerpts; all evidence identities and provenance retained"
             if note not in context["bounded_context"]["omitted_categories"]:
                 context["bounded_context"]["omitted_categories"].append(note)
+        # Several assembly phases may refit one request. A compaction receipt is
+        # a set of applied transformations, not an ever-growing retry transcript.
+        if "bounded_context" in context:
+            context["bounded_context"]["omitted_categories"] = list(dict.fromkeys(
+                context["bounded_context"].get("omitted_categories", [])))
 
     def fit_bounded_request(self, request):
         """Deterministically shrink an already-bounded provider request below the hard ceiling.
@@ -2217,6 +2232,10 @@ class Engine:
             continuity_probe_context = None
             request["context"].setdefault("bounded_context", {}).setdefault("omitted_categories", []).append(
                 "continuity sidecar deferred for context budget; coordinate remains untested")
+            # Removing the probe rebuilds the final response contract. Fit that
+            # exact envelope too, including deduplication of repeated receipts.
+            if routine_memory:
+                self.fit_active_request(request)
         require(len(canonical(request)) <= self.config["max_context_chars"],
                 "Context ceiling reached; human review required, no model call made")
         compaction_ms = (perf_counter() - phase_at) * 1000

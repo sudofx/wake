@@ -406,3 +406,24 @@ class ActiveMemoryTests(unittest.TestCase):
             if choice['properties']['type']['enum']==['belief'] and choice['properties']['id'].get('enum'):
                 self.assertEqual(choice['properties']['evidence']['contains']['enum'],['source-0'])
                 self.assertEqual(choice['properties']['evidence']['minContains'],1)
+
+    def test_pressure_compacts_core_instructions_without_changing_contract_or_roots(self):
+        from wake.prompts import SYSTEM, BOUNDED_RESEARCH_SYSTEM, BOUNDED_SYSTEM
+        from wake.memory import ACTIVE_MEMORY_SYSTEM
+        from wake.event_format import canonical
+        context = dict(memory=dict(retrieved_records=[]),
+                       beliefs=[dict(id='b', evidence=['root'])],
+                       commitments=[dict(id='c', task='Review counterevidence')],
+                       evidence=[dict(id='root', source='fixture:measurement')])
+        schema = dict(required=['base_version', 'actions'])
+        suffix = BOUNDED_RESEARCH_SYSTEM + ACTIVE_MEMORY_SYSTEM + 'Answer the operator question.'
+        request = dict(system=SYSTEM+suffix, context=context, response_schema=schema)
+        self.engine.config['max_context_chars'] = len(canonical(request))-2000
+        self.engine.fit_active_request(request)
+        self.assertLessEqual(len(canonical(request)),self.engine.config['max_context_chars'])
+        self.assertEqual(request['system'],BOUNDED_SYSTEM+suffix)
+        self.assertEqual(request['response_schema'],schema)
+        self.assertEqual(context['beliefs'][0]['evidence'],['root'])
+        self.assertEqual(context['commitments'][0]['task'],'Review counterevidence')
+        self.assertIn('genuinely new evidence',BOUNDED_SYSTEM)
+        self.assertIn('resolution_evidence',BOUNDED_SYSTEM)
