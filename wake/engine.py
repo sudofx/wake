@@ -604,6 +604,15 @@ class Engine:
                 for key in sorted(visible_projects)
             },
             "notebook_revisions": notebooks,
+            "known_belief_ids": sorted(state.get("beliefs", {})),
+            "belief_reviews": {
+                item["id"]: {"new_evidence_ids": sorted(
+                    {e["id"] for e in context.get("evidence", [])
+                     if e.get("id") in state.get("evidence", {})}
+                    - set(state["beliefs"][item["id"]].get("evidence", [])))}
+                for item in context.get("beliefs", [])
+                if item.get("id") in state.get("beliefs", {})
+            },
         }
         active = [item for item in state.get("projects", {}).values()
                   if item.get("status") == "active"]

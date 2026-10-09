@@ -1032,6 +1032,27 @@ class ResearchTests(unittest.TestCase):
         self.assertFalse(any(item["properties"]["type"]["enum"] == ["research"] for item in choices))
         self.assertIn("remaining_search_slots", request["system"])
 
+    def test_belief_review_schema_requires_new_visible_evidence_from_full_roots(self):
+        state = self.engine.store.load()
+        state['beliefs'] = {'b': {'id': 'b', 'evidence': ['old']}, 'hidden': {'id': 'hidden', 'evidence': []}}
+        state['evidence'] = {'old': {'id': 'old'}, 'new': {'id': 'new'}}
+        context = {'beliefs': [{'id': 'b', 'evidence': []}], 'evidence': [{'id': 'old'}], 'projects': []}
+        self.engine.proposal_constraints(state, context)
+        choices = schema_for_context(context)['properties']['actions']['items']['anyOf']
+        beliefs = [a for a in choices if a['properties']['type']['enum'] == ['belief']]
+        self.assertEqual(len(beliefs), 1)
+        self.assertEqual(beliefs[0]['properties']['id']['not']['enum'], ['b', 'hidden'])
+        context['evidence'].append({'id': 'new'})
+        self.engine.proposal_constraints(state, context)
+        choices = schema_for_context(context)['properties']['actions']['items']['anyOf']
+        review = next(a for a in choices if a['properties']['type']['enum'] == ['belief'] and a['properties']['id'].get('enum') == ['b'])
+        self.assertEqual(review['properties']['evidence']['contains']['enum'], ['new'])
+        self.assertEqual(review['properties']['evidence']['minContains'], 1)
+        # If fitting removes the new evidence, the review must disappear too.
+        context['evidence'] = [{'id': 'old'}]
+        choices = schema_for_context(context)['properties']['actions']['items']['anyOf']
+        self.assertFalse(any(a['properties']['type']['enum'] == ['belief'] and a['properties']['id'].get('enum') for a in choices))
+
     def test_proposal_wide_queue_limit_and_exact_project_identity(self):
         self.assertEqual(self.propose([project()])["status"], "accepted")
         state = self.engine.store.load()

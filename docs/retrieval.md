@@ -130,3 +130,5 @@ Their exact retrieval hashes, status and evidence roots remain in memory receipt
 records outside the visible working set retain their delivered value. This fit is
 idempotent and changes only the provider view. The final ceiling remains mandatory,
 and an impossible protected context still fails before any provider call.
+
+Current proposal guidance derives belief-review eligibility from the full record and visible evidence. Existing belief IDs are separate from new-belief creation; a review must cite at least one visible evidence ID outside that belief's durable roots. If no such evidence is delivered, no review alternative is offered. This narrows generation guidance without changing acceptance or historical replay.

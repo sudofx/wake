@@ -142,3 +142,5 @@ or manually cancelled run, and it never enables a closed switch. Use Stop for
 intentional maintenance. Optional sidecars can be deferred under context pressure
 through the same engine used by containers; receipts explain that omission without
 recording an unperformed probe.
+
+Current proposal guidance derives belief-review eligibility from the full record and visible evidence. Existing belief IDs are separate from new-belief creation; a review must cite at least one visible evidence ID outside that belief's durable roots. If no such evidence is delivered, no review alternative is offered. This narrows generation guidance without changing acceptance or historical replay.

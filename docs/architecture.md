@@ -293,3 +293,5 @@ separate overlays for active work. Matrix scores and inspection selection remain
 unchanged. Reduced-motion viewers receive a static outline. Hosted projections may
 report a pending cell in a dated snapshot; that is not evidence of current execution
 and never starts a live pulse. Deployment identity still determines transport.
+
+Current proposal guidance derives belief-review eligibility from the full record and visible evidence. Existing belief IDs are separate from new-belief creation; a review must cite at least one visible evidence ID outside that belief's durable roots. If no such evidence is delivered, no review alternative is offered. This narrows generation guidance without changing acceptance or historical replay.

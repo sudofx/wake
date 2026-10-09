@@ -143,3 +143,5 @@ or its response is being checked. It does not establish that the model is active
 reasoning about that cell, or that a research proposal will be accepted. Completed
 matrix scores still come only from governed recorded evaluations. Snapshot-only
 pending reports on hosted installations carry no live pulse.
+
+Current proposal guidance derives belief-review eligibility from the full record and visible evidence. Existing belief IDs are separate from new-belief creation; a review must cite at least one visible evidence ID outside that belief's durable roots. If no such evidence is delivered, no review alternative is offered. This narrows generation guidance without changing acceptance or historical replay.
