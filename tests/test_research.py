@@ -449,12 +449,12 @@ class ResearchTests(unittest.TestCase):
             })
             self.engine.store.append("observation", {
                 "id": "wake-src", "source": "https://raw.githubusercontent.com/sudofx/wake/master/README.md",
-                "content": json.dumps({"verification_required": True, "topic_domain": "wake_analysis"}),
+                "content": json.dumps({"verification_required": True, "topic_domain": "wake_analysis", "excerpt": "Source-controlled WAKE architecture and accountable research."}),
                 "actor": "collector", "scope": "collected"
             })
             self.engine.store.append("observation", {
                 "id": "neuro-src", "source": "https://example.org/neuro",
-                "content": json.dumps({"verification_required": True, "topic_domain": "neurodivergence"}),
+                "content": json.dumps({"verification_required": True, "topic_domain": "neurodivergence", "excerpt": "Readable research on neurodivergence and cognitive frameworks."}),
                 "actor": "collector", "scope": "collected"
             })
             invocation, request = self.engine.start("fixture", "project-evidence-test")
@@ -487,6 +487,7 @@ class ResearchTests(unittest.TestCase):
             "content": json.dumps({
                 "verification_required": True, "evidence_role": "source",
                 "topic_domain": "entropy",
+                "excerpt": "The collected source compares entropy definitions and their limitations.",
             }),
         }
         second = self.engine.research_maturation(state)
@@ -506,6 +507,7 @@ class ResearchTests(unittest.TestCase):
             "content": json.dumps({
                 "verification_required": True, "evidence_role": "source",
                 "topic_domain": "entropy",
+                "excerpt": "An independent source compares entropy definitions and experimental methods.",
             }),
         }
         state["notebooks"]["n"] = {

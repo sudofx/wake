@@ -366,18 +366,38 @@ class PlainText(HTMLParser):
         super().__init__()
         self.skip = 0
         self.parts = []
+        self.stack = []
+        self.article_parts = []
 
     def handle_starttag(self, tag, attrs):
-        if tag in ("script", "style", "nav", "header", "footer"):
-            self.skip += 1
+        attrs = dict(attrs)
+        tokens = set(re.split(r"[\s_-]+", (str(attrs.get("class") or "") + " " + str(attrs.get("id") or "")).lower()))
+        hidden = (tag in ("script", "style", "nav", "header", "footer", "form", "button", "aside")
+                  or attrs.get("aria-hidden") == "true" or "hidden" in attrs
+                  or attrs.get("role") in ("navigation", "menu", "dialog")
+                  or bool(tokens & {"menu", "navigation", "sidebar", "cookie", "cookies", "modal", "comments"}))
+        if tag not in {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}:
+            self.stack.append((tag, hidden, tag in ("main", "article") or attrs.get("role") == "main"))
+            self.skip += int(hidden)
 
     def handle_endtag(self, tag):
-        if tag in ("script", "style", "nav", "header", "footer"):
-            self.skip = max(0, self.skip - 1)
+        # HTML can omit closing tags. Unwind only to an observed matching tag;
+        # a stray closing tag must not reopen a hidden navigation subtree.
+        for index in range(len(self.stack) - 1, -1, -1):
+            if self.stack[index][0] == tag:
+                self.skip -= sum(int(item[1]) for item in self.stack[index:])
+                del self.stack[index:]
+                break
 
     def handle_data(self, data):
         if not self.skip and data.strip():
             self.parts.append(data.strip())
+            if any(item[2] for item in self.stack):
+                self.article_parts.append(data.strip())
+
+    def text(self):
+        body = "\n".join(self.article_parts)
+        return body if len(body.strip()) >= 80 else "\n".join(self.parts)
 
 
 EVIDENCE_EXCERPT_CHARS = 10_000
@@ -578,7 +598,7 @@ def _fetch_source_unbounded(url, discovery_only=False):
     else:
         parser = PlainText()
         parser.feed(decoded)
-        text = "\n".join(parser.parts)
+        text = source_material_text({"excerpt": parser.text(), "scope": "extracted web-page text"})
         scope = "extracted web-page text; may be incomplete"
     if len(text.strip()) < 80:
         raise ValueError("Source did not provide enough readable content")
@@ -726,9 +746,55 @@ def source_observation_readable(payload):
     """Reject deterministic access/error pages that are not research content."""
     if not isinstance(payload, dict):
         return False
-    excerpt = str(payload.get("excerpt") or "")
+    if payload.get("error") or "fetch failed" in str(payload.get("scope", "")).casefold():
+        return False
+    excerpt = source_material_text(payload)
     lowered = excerpt.casefold()
-    return not any(marker in lowered for marker in ACCESS_CHALLENGE_MARKERS)
+    return bool(excerpt.strip()) and not any(marker in lowered for marker in ACCESS_CHALLENGE_MARKERS)
+
+
+# Legacy excerpts can include publisher chrome. Filter those same passages at
+# current eligibility/claim-support boundaries without changing historical bytes.
+SOURCE_UI_MARKERS = (
+    "please list any fees and grants", "please also list any non-financial",
+    "please tick the box", "please enter details of the conflict",
+    "please confirm you agree", "please accept terms", "more information *",
+    "please enter your", "please select", "required fields",
+    "click to return to homepage", "logo for cambridge core",
+    "by using this service, you agree", "please enter a valid",
+    "your email address will be used", "| cambridge core",
+)
+SOURCE_UI_LINES = frozenset({
+    "search", "menu", "menu links", "browse", "subjects", "open access", "all open access publishing",
+    "open access publishing", "institution login", "login", "log in", "sign in", "register",
+    "yes", "no", "terms of use", "more information", "summary", "share", "save", "submit",
+})
+
+
+def source_material_text(payload):
+    """Return collected material with recognizable UI/form prose excluded.
+
+    This is content hygiene, not semantic verification. Publisher menus must
+    never supply the lexical tokens used as evidence for a research claim.
+    """
+    if not isinstance(payload, dict):
+        return ""
+    excerpt = str(payload.get("excerpt") or "")
+    lines = excerpt.splitlines()
+    chrome = (any(marker in excerpt.casefold() for marker in SOURCE_UI_MARKERS)
+              or sum(line.strip().casefold() in SOURCE_UI_LINES for line in lines) >= 3)
+    material = []
+    for line in lines:
+        stripped = line.strip()
+        lower = stripped.casefold()
+        if lower in SOURCE_UI_LINES or any(marker in lower for marker in SOURCE_UI_MARKERS):
+            continue
+        # The observed publisher shells consist of short labels plus a response
+        # form. Preserve prose paragraphs, never the subject/category vocabulary.
+        if chrome and (len(stripped.split()) < 15 or not re.search(r"[.!?](?:[\"')]|\s|$)", stripped)):
+            continue
+        material.append(stripped)
+    return "\n".join(material).strip()
 
 
 def host_tier(url, discovery_only=False):
@@ -1080,7 +1146,8 @@ def _collect_items(engine, pending, topic_by_id, fetcher, monotonic, collection_
             # material. Exact index records and access-challenge pages are routing
             # or failure receipts, not research content.
             substantive = (
-                role == "source"
+                status == "collected"
+                and role == "source"
                 and tier != "verification-metadata"
                 and source_observation_readable(payload)
             )

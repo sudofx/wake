@@ -75,6 +75,8 @@ The state branch is public. It contains science-source snapshots, model requests
 
 Do not run a second independent live loop against the same provider quota. Local CLI commands remain useful for testing and manual records, but the hosted runtime is GitHub Actions plus `wake-runtime`/`wake-state`.
 
+Source qualification and acquisition outcomes are evaluated separately from workflow success. A failed publisher fetch appends a route-failure receipt; only successfully collected readable source material counts as acquisition progress. Current source qualification filters recognizable navigation and response forms. Existing receipts are retained unchanged when runtime policy becomes stricter.
+
 ## Maintenance
 
 The replayable history deliberately favors inspectability over unlimited scale. Normal reads validate the hash-bound materialized projection; startup/adoption and explicit audits use full replay where required. Signed replay seeds provide a separate verified-prefix path with the limits described in `retrieval.md`. As years of raw prompts and source excerpts accumulate, storage and replay time will need maintenance; this initial system does not claim indefinite unattended operation. The model's context is bounded and explicitly excerpts old material while preserving the full record. No expertise score, consciousness claim or simulated research result is used as a growth metric.

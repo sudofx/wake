@@ -16,6 +16,8 @@ The active-memory fit also bounds milestone editorial history, including when fi
 
 Console’s browser overview is a separate disposable presentation projection. Its bounded graph and record excerpts are never read back into provider context or retrieval decisions. IDs, explicit relationship pointers and record-head provenance support deeper inspection through Console’s complete record workspace; missing overview records do not imply missing authoritative records.
 
+Current source eligibility requires nonempty readable collected material. Publisher menus and response forms cannot make a source synthesis-ready or supply claim-support tokens. Historical raw observations remain available for exact inspection; stricter current qualification does not invalidate historical replay. Derived evidence-quality diagnostics include unreadable cited-source IDs.
+
 ## Why this exists
 
 Progressive abstraction only stays epistemically safe if compression remains correctable.
