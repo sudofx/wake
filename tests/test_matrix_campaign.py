@@ -79,7 +79,7 @@ class MatrixCampaignTests(unittest.TestCase):
         delivery = receipt['context_delivery']
         self.assertEqual(delivery['deferred_continuity_coordinate'], coordinate)
         self.assertEqual(delivery['recovery'], 'optional-sidecar-deferred')
-        self.assertLessEqual(delivery['delivered_request_chars'], 8000)
+        self.assertLessEqual(delivery['provider_input_budget']['provider_input_chars'], 8000)
         self.assertNotIn('continuity_probe_shadow', receipt)
         self.engine.config['max_context_chars'] = DEFAULTS['max_context_chars']
         result = self.engine.run(provider)

@@ -157,3 +157,35 @@ that exactly duplicate that supplied working record. Retrieval hashes and the
 pointer remain; every omitted field stays in the named working record. Different
 source provenance or evidence roots remain explicit instead of being merged or
 discarded. Records outside the supplied working view retain their values.
+
+
+## Provider-ready input budget
+
+`max_context_chars` bounds the exact model-visible **system plus user text**, in
+characters. It is WAKE's application safety budget, not a vendor token-window
+limit and not the size of an escaped HTTP JSON body. The engine and Gemini adapter
+share `provider_input_text`: compact JSON is rendered identically without expanding
+Unicode or inserting display whitespace into the context or response contract.
+The adapter refuses an oversized request before any network call, including when
+called outside the engine. Fallback models receive the same rendered text.
+
+Every fit includes the complete instruction/response contract and enabled
+continuity packet before calculating the remaining working-context allowance.
+That allowance covers all other context fields, including retrieved memory,
+working beliefs, source handoffs and omission metadata. There is no separate
+unaccounted schema or final-link surcharge. The final fit runs again after planning
+links and allowlists have been refreshed. Protected provenance and obligations
+remain governed by the existing retention rules; impossible requests still fail
+closed. An optional probe that cannot fit remains untested rather than receiving
+a fabricated result.
+
+New invocation receipts carry `context_delivery.provider_input_budget`, with a
+versioned measurement basis, exact rendered-input hash and size, reserved
+instruction/probe sizes, working-context allowance and usage, and remaining room.
+Provider-attempt receipts record the matching rendered-input hash/size. These
+receipts let inspection distinguish compaction from transport formatting and
+prove which text was attempted. Historical `delivered_request_chars`,
+`rich_context_chars` and `request_compression_ratio` retain their compact internal
+JSON-envelope meaning; use the new `provider_input_compression_ratio` to compare
+rich and delivered model-visible text. Transport bytes and vendor-reported token
+usage remain separate provider measurements. No extra provider call is required.

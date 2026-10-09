@@ -27,7 +27,7 @@ from unittest.mock import patch
 from wake.engine import DEFAULTS, Engine, config
 from wake.store import Store
 from wake.governance import Rejected
-from wake.providers import Gemini, Fixture, FREE_TIER_DAILY_QUOTA_ID
+from wake.providers import Gemini, Fixture, FREE_TIER_DAILY_QUOTA_ID, provider_input_budget
 from wake.scheduling import wake_status
 from wake.report import export
 from support import charter_settings
@@ -83,6 +83,39 @@ class FailoverTests(unittest.TestCase):
         state = self.engine.store.load()
         return result, state, state["invocations"][result["id"]], network
 
+    def test_provider_payload_matches_reserved_receipt_including_unicode_and_fallback(self):
+        self.engine.initialize()
+        self.engine.store.append("observation", {
+            "id": "unicode-source", "source": "fixture:unicode", "actor": "operator",
+            "scope": "local", "content": "Readable café ✳︎ evidence " * 20,
+        })
+        result, state, item, network = self.run_chain([failure(503), "valid"])
+        budget = item["context_delivery"]["provider_input_budget"]
+        recorded = self.engine.store.tail_events(("invocation_started",), 1)[0]["payload"]["request"]
+        for http in self.requests:
+            body = json.loads(http.data)
+            system = body["systemInstruction"]["parts"][0]["text"]
+            prompt = body["contents"][0]["parts"][0]["text"]
+            self.assertEqual(len(system) + len(prompt), budget["provider_input_chars"])
+            self.assertIn("café ✳︎", prompt)
+            self.assertNotIn("\\u00e9", prompt)
+            self.assertEqual(json.loads(prompt), recorded["context"])
+        self.assertEqual(budget["provider_input_chars"],
+                         budget["reserved_instruction_chars"] + budget["reserved_probe_chars"] + budget["working_context_chars"])
+        self.assertLessEqual(budget["working_context_chars"], budget["working_context_budget_chars"])
+        self.assertGreaterEqual(budget["remaining_chars"], 0)
+        for attempt in item["provider_attempts"]:
+            self.assertEqual(attempt["provider_input_hash"], budget["provider_input_hash"])
+            self.assertEqual(attempt["provider_input_chars"], budget["provider_input_chars"])
+
+    def test_adapter_refuses_unbudgeted_oversized_input_before_network(self):
+        request = {"system": "x" * 4000, "context": {}, "response_schema": {}}
+        settings = {**self.settings, "max_context_chars": 4000}
+        with patch("urllib.request.urlopen") as network:
+            with self.assertRaisesRegex(Rejected, "no model call made"):
+                Gemini(settings).propose(request)
+        network.assert_not_called()
+
     def test_primary_success(self):
         result, state, item, network = self.run_chain(["valid"])
         self.assertEqual(result["status"], "accepted")
@@ -110,7 +143,8 @@ class FailoverTests(unittest.TestCase):
         self.assertNotIn("responseJsonSchema", generation)
         system = json.loads(self.requests[1].data)["systemInstruction"]["parts"][0]["text"]
         self.assertIn("Response contract (JSON Schema):", system)
-        self.assertIn('"required": ["base_version", "title", "summary", "actions", "bob_checkpoint"]', system)
+        self.assertEqual(json.loads(system.split("Response contract (JSON Schema):\n", 1)[1])["required"],
+                         ["base_version", "title", "summary", "actions", "bob_checkpoint"])
         for a in item["provider_attempts"]:
             self.assertGreaterEqual(a["elapsed_ms"], 0)
             self.assertEqual(a["request_payload_bytes"], len(self.requests[0].data))

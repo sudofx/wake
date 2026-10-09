@@ -28,6 +28,7 @@ from .governance import Rejected, bob_reflection_due_cycle, require, text
 from .providers import (
     SCHEMA, SYSTEM, ConfiguredDailyLimitReached, DailyQuotaExceeded, ProviderRequestError, TransientProviderError,
     is_free_tier_daily_quota, retractable_quotes, schema_for_context,
+    provider_input_chars, provider_input_budget,
 )
 from .scheduling import charged_request_slots
 from .retrieval import build_retrieval_shadow
@@ -736,7 +737,12 @@ class Engine:
         return True
 
     def fit_active_request(self, request):
-        """Remove duplicate prose and bound recovery detail without dropping obligations."""
+        """Fit working context into the allowance after instructions/schema/probe.
+
+        Every comparison uses the exact provider renderer, including protected
+        packet framing and final response rules. Internal receipt JSON sizes
+        are historical metrics, never a second delivery-budget authority.
+        """
         context = request["context"]
         if "bounded_context" in context:
             context["bounded_context"]["omitted_categories"] = list(dict.fromkeys(
@@ -759,7 +765,7 @@ class Engine:
                                      ("id", "status", "evidence") if key in item["value"]}
                     item["content_location"] = {"field": "context." + field, "id": item["id"]}
                     item["context_excerpt"] = True
-        if len(canonical(request)) <= self.config["max_context_chars"]:
+        if provider_input_chars(request) <= self.config["max_context_chars"]:
             return
         # The detailed core prompt duplicates the response contract and research
         # guidance. Compact only that prefix, preserving application, memory,
@@ -769,7 +775,7 @@ class Engine:
             request["system"] = BOUNDED_SYSTEM + request["system"][len(SYSTEM):]
             context.setdefault("bounded_context", {}).setdefault("omitted_categories", []).append(
                 "core instruction prose compacted; response schema and governance unchanged")
-            if len(canonical(request)) <= self.config["max_context_chars"]:
+            if provider_input_chars(request) <= self.config["max_context_chars"]:
                 return
         # Keep every memory trust/omission rule while avoiding a larger research
         # or matrix omission merely to carry verbose explanatory instructions.
@@ -779,11 +785,11 @@ class Engine:
                 ACTIVE_MEMORY_SYSTEM, BOUNDED_ACTIVE_MEMORY_SYSTEM, 1)
             context.setdefault("bounded_context", {}).setdefault("omitted_categories", []).append(
                 "active-memory instruction prose compacted; trust and retrieval boundaries unchanged")
-            if len(canonical(request)) <= self.config["max_context_chars"]:
+            if provider_input_chars(request) <= self.config["max_context_chars"]:
                 return
         if context.pop("evidence_quality", None) is not None:
             context["bounded_context"]["omitted_categories"].append("advisory source-selection diagnostics")
-            if len(canonical(request)) <= self.config["max_context_chars"]:
+            if provider_input_chars(request) <= self.config["max_context_chars"]:
                 return
         # Review alternatives repeat new citation IDs in both context and schema.
         # Bound this optional choice set before shortening source material; every
@@ -808,7 +814,7 @@ class Engine:
             request["response_schema"] = _provider_response_schema(context, True)
             context.setdefault("bounded_context", {}).setdefault("omitted_categories", []).append(
                 "belief review choices bounded to one new visible root per belief; durable roots unchanged")
-            if len(canonical(request)) <= self.config["max_context_chars"]:
+            if provider_input_chars(request) <= self.config["max_context_chars"]:
                 return
         recovery = context.get("representation_recovery", [])
         if recovery:
@@ -822,13 +828,13 @@ class Engine:
                 "intervening_experience": item.get("intervening_experience", []),
             } for item in recovery]
             context["bounded_context"]["omitted_categories"].append("extended recovery prose; project/frame and observation pointers retained")
-        if len(canonical(request)) > self.config["max_context_chars"]:
+        if provider_input_chars(request) > self.config["max_context_chars"]:
             for item in context.get("evidence", []):
                 if len(item.get("content", "")) > 900:
                     item["content"] = item["content"][:899] + "…"
                     item["context_excerpt"] = True
             context["bounded_context"]["omitted_categories"].append("extended evidence excerpts; all visible evidence IDs retained")
-        if len(canonical(request)) > self.config["max_context_chars"]:
+        if provider_input_chars(request) > self.config["max_context_chars"]:
             for category, fields in (("beliefs", ("statement", "reason", "falsifier")),
                                      ("notebooks", ("summary", "findings", "limitations")),
                                      ("projects", ("question", "next_step", "reason"))):
@@ -841,7 +847,7 @@ class Engine:
         # Same-wake retrieval links and the final proposal instructions arrive
         # after the initial fit. Reserve their space by shortening source prose
         # again, without removing records, provenance, or durable obligations.
-        if len(canonical(request)) > self.config["max_context_chars"]:
+        if provider_input_chars(request) > self.config["max_context_chars"]:
             for item in context.get("evidence", []):
                 if len(item.get("content", "")) > 400:
                     item["content"] = item["content"][:399] + "…"
@@ -849,7 +855,7 @@ class Engine:
             note = "shorter source excerpts; all visible evidence IDs and provenance retained"
             if note not in context["bounded_context"]["omitted_categories"]:
                 context["bounded_context"]["omitted_categories"].append(note)
-        if len(canonical(request)) > self.config["max_context_chars"]:
+        if provider_input_chars(request) > self.config["max_context_chars"]:
             research = context.get("same_wake_research", {})
             for item in research.get("requests", []):
                 item.setdefault("record_hash", digest(item))
@@ -873,7 +879,7 @@ class Engine:
                     compact.setdefault("rule_hash", digest(compact["rule"]))
                     compact["rule"] = compact["rule"][:79] + "…"
                     compact["context_excerpt"] = True
-        if len(canonical(request)) > self.config["max_context_chars"]:
+        if provider_input_chars(request) > self.config["max_context_chars"]:
             for category, fields in (("beliefs", ("statement", "reason", "falsifier")),
                                      ("notebooks", ("title", "summary", "findings", "limitations")),
                                      ("projects", ("title", "question", "next_step", "reason")),
@@ -885,7 +891,7 @@ class Engine:
                             item["context_excerpt"] = True
         for count in (4, 2, 0):
             compacts = context["memory"].get("trust_compacts", [])
-            if len(canonical(request)) > self.config["max_context_chars"] and len(compacts) > count:
+            if provider_input_chars(request) > self.config["max_context_chars"] and len(compacts) > count:
                 # These are optional derived hints, ordered with challenges
                 # first. Mandatory beliefs and obligations stay in the context.
                 omitted = compacts[count:]
@@ -898,7 +904,7 @@ class Engine:
         # Prior finding prose helps compare revisions, but its exact identity and
         # eligible new-source IDs are the necessary contract. Never let those
         # optional excerpts crowd out the mechanical recovery boundary.
-        if len(canonical(request)) > self.config["max_context_chars"]:
+        if provider_input_chars(request) > self.config["max_context_chars"]:
             for item in context.get("proposal_constraints", {}).get("notebook_revisions", {}).values():
                 if item.pop("prior_findings_excerpt", None) is not None:
                     item["prior_findings_omitted"] = True
@@ -911,7 +917,7 @@ class Engine:
         # even after all research prose has been excerpted. Bound that window too,
         # recording its original identity rather than silently erasing history.
         history = context.get("reflection_history")
-        if len(canonical(request)) > self.config["max_context_chars"] and isinstance(history, dict):
+        if provider_input_chars(request) > self.config["max_context_chars"] and isinstance(history, dict):
             history.setdefault("record_hash", digest(history))
             history.setdefault("window_counts", {key: len(value) for key, value in history.items()
                                                   if isinstance(value, list)})
@@ -935,7 +941,7 @@ class Engine:
             history["omitted_counts"] = {key: total - len(history[key])
                                          for key, total in history["window_counts"].items()}
             for count in (4, 2, 1, 0):
-                if len(canonical(request)) <= self.config["max_context_chars"]:
+                if provider_input_chars(request) <= self.config["max_context_chars"]:
                     break
                 history["accepted_wakes"] = history.get("accepted_wakes", [])[-count:] if count else []
                 history["omitted_counts"] = {key: total - len(history[key])
@@ -945,7 +951,7 @@ class Engine:
         # Its titles duplicate working/retrieved notebooks and grow independently
         # of the source budget. Keep eligibility, revisions and evidence roots,
         # but omit display prose only when the final assembled request overflows.
-        if len(canonical(request)) > self.config["max_context_chars"]:
+        if provider_input_chars(request) > self.config["max_context_chars"]:
             index = context.get("blog_notebooks", {})
             if index:
                 context.setdefault("blog_notebooks_hash", digest(index))
@@ -957,7 +963,7 @@ class Engine:
             note = "editorial notebook titles omitted; eligibility, revisions and evidence roots retained"
             if note not in context["bounded_context"]["omitted_categories"]:
                 context["bounded_context"]["omitted_categories"].append(note)
-        if len(canonical(request)) > self.config["max_context_chars"]:
+        if provider_input_chars(request) > self.config["max_context_chars"]:
             for item in context.get("evidence", []):
                 if len(item.get("content", "")) > 180:
                     item["content"] = item["content"][:179] + "…"
@@ -973,11 +979,11 @@ class Engine:
             # Audit explanations can themselves crowd out a probe after research
             # grows. Keep every category, shortening only its display label.
             # Unknown/new labels remain verbatim instead of silently disappearing.
-            if len(canonical(request)) > self.config["max_context_chars"]:
+            if provider_input_chars(request) > self.config["max_context_chars"]:
                 context["bounded_context"]["omitted_categories"] = list(dict.fromkeys(
                     COMPACT_OMISSION_LABELS.get(label, label)
                     for label in context["bounded_context"]["omitted_categories"]))
-        if len(canonical(request)) > self.config["max_context_chars"]:
+        if provider_input_chars(request) > self.config["max_context_chars"]:
             fields = {"belief": "beliefs", "evidence": "evidence",
                       "project": "projects", "notebook": "notebooks",
                       "commitment": "commitments", "research": "research"}
@@ -1218,7 +1224,7 @@ class Engine:
         # Rebuild dependent allowlists after trimming. If still oversized, strip
         # nonessential prose one final time while retaining action identities.
         request["response_schema"] = _provider_response_schema(context, True)
-        if len(canonical(request)) > limit:
+        if provider_input_chars(request) > limit:
             context["beliefs"] = []
             context["representation_recovery"] = []
             if isinstance(context.get("reflection_history"), dict):
@@ -1231,13 +1237,13 @@ class Engine:
         # working-set material around one synthesis-ready project. Without this
         # step, a runtime that lives near the context ceiling can repeatedly hit
         # the final safety valve and starve notebook creation forever.
-        if len(canonical(request)) > limit and self.focus_synthesis_delivery(context):
+        if provider_input_chars(request) > limit and self.focus_synthesis_delivery(context):
             request["response_schema"] = _provider_response_schema(context, True)
 
         # Very small configured ceilings (including compaction tests) may not
         # have room for the normal 500-character synthesis excerpts. Degrade
         # source prose before abandoning the synthesis signal entirely.
-        if len(canonical(request)) > limit:
+        if provider_input_chars(request) > limit:
             for item in context.get("evidence", []):
                 if item.get("content"):
                     item["content"] = excerpt(item["content"], 160)
@@ -1249,7 +1255,7 @@ class Engine:
         # synthesis for this invocation. Normal production ceilings should reach
         # the focused path above; this branch is reserved for genuinely impossible
         # delivery budgets and deliberately exposes that loss in bounded_context.
-        if len(canonical(request)) > limit:
+        if provider_input_chars(request) > limit:
             context["evidence"] = [
                 {
                     "id": item.get("id"),
@@ -2102,11 +2108,12 @@ class Engine:
             ),
         }
         rich_context_chars = len(canonical(request))
+        rich_provider_input_chars = provider_input_chars(request)
         context_build_ms = (perf_counter() - phase_at) * 1000
         phase_at = perf_counter()
         context_mode = "rich"
         routine_memory = self.config.get("memory_mode", "shadow") == "active"
-        if not routine_memory and state.get("charter") and len(canonical(request)) > self.config["max_context_chars"]:
+        if not routine_memory and state.get("charter") and provider_input_chars(request) > self.config["max_context_chars"]:
             # Crossing the context threshold is a retrieval problem, not a reason to
             # discard durable history. Keep the complete record in SQLite/public
             # exports and shrink only this invocation's working view.
@@ -2195,7 +2202,7 @@ class Engine:
                 {key: value for key, value in item.items() if key != "resolution_evidence"}
                 for item in request["context"]["commitments"]
             ]
-        if routine_memory or (state.get("charter") and len(canonical(request)) > self.config["max_context_chars"]):
+        if routine_memory or (state.get("charter") and provider_input_chars(request) > self.config["max_context_chars"]):
             # Operator-enabled routine memory uses the same bounded owner as
             # overflow delivery. Shadow mode retains rich delivery when it fits.
             request["context"] = self.bounded_context(
@@ -2261,7 +2268,7 @@ class Engine:
             context_mode = "bounded"
             if routine_memory:
                 self.fit_active_request(request)
-            if not routine_memory and len(canonical(request)) > self.config["max_context_chars"]:
+            if not routine_memory and provider_input_chars(request) > self.config["max_context_chars"]:
                 self.fit_bounded_request(request)
         if question:
             text(question, "Operator question", 1000)
@@ -2295,7 +2302,7 @@ class Engine:
         # compaction, defer this coordinate rather than halt the installation.
         # No probe result is recorded: the same coordinate remains eligible.
         deferred_probe = None
-        if (len(canonical(request)) > self.config["max_context_chars"]
+        if (provider_input_chars(request) > self.config["max_context_chars"]
                 and continuity_probe_context is not None):
             deferred_probe = continuity_probe_context["campaign"]["coordinate_id"]
             request["context"].pop("continuity_probe", None)
@@ -2308,12 +2315,13 @@ class Engine:
             # exact envelope too, including deduplication of repeated receipts.
             if routine_memory:
                 self.fit_active_request(request)
-        require(len(canonical(request)) <= self.config["max_context_chars"],
+        require(provider_input_chars(request) <= self.config["max_context_chars"],
                 "Context ceiling reached; human review required, no model call made")
         compaction_ms = (perf_counter() - phase_at) * 1000
         shadow_chars = len(canonical(working_set_shadow))
         delivered_chars = len(canonical(request["context"]))
         delivered_request_chars = len(canonical(request))
+        delivery_budget = provider_input_budget(request, self.config["max_context_chars"])
         rehydrated_count = len(request["context"].get("retrieval_rehydration", {}).get("evidence_ids", []))
         runtime_performance = {
             "load_ms": round(load_ms, 3),
@@ -2347,6 +2355,9 @@ class Engine:
                 "memory_digest": digest(request["context"]["memory"]) if routine_memory else None,
                 "memory_retrieved_record_count": len(request["context"]["memory"]["retrieved_records"]) if routine_memory else 0,
                 "rich_context_chars": rich_context_chars,
+                "rich_provider_input_chars": rich_provider_input_chars,
+                "provider_input_budget": delivery_budget,
+                "provider_input_compression_ratio": round(delivery_budget["provider_input_chars"] / max(rich_provider_input_chars, 1), 4),
                 "delivered_request_chars": delivered_request_chars,
                 "delivered_context_chars": delivered_chars,
                 "request_compression_ratio": round(delivered_request_chars / max(rich_context_chars, 1), 4),

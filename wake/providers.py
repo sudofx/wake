@@ -24,6 +24,7 @@ from wake.kernel import (
 )
 
 from .governance import PUBLICATION_MIN_SOURCES, Rejected, require
+from .event_format import canonical, digest
 
 
 from .prompts import BOUNDED_RESEARCH_SYSTEM, RESEARCH_SYSTEM, SYSTEM
@@ -63,6 +64,52 @@ SCHEMA = {"type": "object", "additionalProperties": False, "properties": {
         action_schema("notebook", "id project title summary findings limitations next_questions evidence reason"),
         action_schema("blog", "id project title lede body notebooks evidence reason", optional=("lens", "supersedes", "reflection_cycle")),
     ]}}}, "required": ["base_version", "title", "summary", "actions"]}
+
+
+def provider_input_text(request):
+    """Render identical model-visible text for budgeting and provider delivery.
+
+    Compact UTF-8 JSON preserves decoded values without formatting expansion.
+    Transport JSON bytes and vendor token counts are separate measurements; this
+    application ceiling covers the exact system and user text, not HTTP framing.
+    Complete engine requests always include their response contract. Partial
+    context-only fitting probes need not invent one.
+    """
+    system = request.get("system", "")
+    if "response_schema" in request:
+        system += "\nResponse contract (JSON Schema):\n" + canonical(request["response_schema"])
+    return system, canonical(request["context"])
+
+
+def provider_input_chars(request):
+    system, prompt = provider_input_text(request)
+    return len(system) + len(prompt)
+
+
+def provider_input_budget(request, limit):
+    """Reserve instructions/contract and the complete probe before working memory.
+
+    The probe's JSON field framing counts too. The remaining working-context
+    allowance includes every other context field, including omission receipts;
+    it is not an allowance just for context.memory. No durable data is changed.
+    """
+    system, prompt = provider_input_text(request)
+    context = request["context"]
+    without_probe = {key: value for key, value in context.items() if key != "continuity_probe"}
+    working_chars = len(canonical(without_probe))
+    probe_chars = len(prompt) - working_chars
+    reserved = len(system) + probe_chars
+    return {
+        "basis": "provider-input-text@1",
+        "limit_chars": limit,
+        "provider_input_chars": len(system) + len(prompt),
+        "provider_input_hash": digest({"system": system, "prompt": prompt}),
+        "reserved_instruction_chars": len(system),
+        "reserved_probe_chars": probe_chars,
+        "working_context_budget_chars": max(0, limit - reserved),
+        "working_context_chars": working_chars,
+        "remaining_chars": limit - len(system) - len(prompt),
+    }
 
 def schema_for_context(context):
     """Put the durable blog citation allowlist in the model's JSON contract.
@@ -663,13 +710,13 @@ class Gemini:
                 },
             )
 
-        response_schema = request.get("response_schema", SCHEMA)
-        system = (
-            request["system"]
-            + "\nResponse contract (JSON Schema):\n"
-            + json.dumps(response_schema)
-        )
-        prompt = json.dumps(request["context"])
+        # The engine and adapter must budget/send the same rendered text. Never
+        # re-expand compact memory with a second JSON serializer at this seam.
+        rendered_request = {**request, "response_schema": request.get("response_schema", SCHEMA)}
+        system, prompt = provider_input_text(rendered_request)
+        budget = provider_input_budget(rendered_request, self.config.get("max_context_chars", 48000))
+        require(budget["remaining_chars"] >= 0,
+                "Context ceiling reached at provider boundary; no model call made")
 
         attempted = 0
         provider_wall_seconds = max(
@@ -705,6 +752,8 @@ class Gemini:
                 "model": model,
                 "http_status": None,
                 "result": "unknown",
+                "provider_input_chars": budget["provider_input_chars"],
+                "provider_input_hash": budget["provider_input_hash"],
             }
             if self.record_attempt:
                 self.record_attempt("started", attempt.copy())
