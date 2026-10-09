@@ -13,6 +13,7 @@ from collections import Counter
 import json
 
 from .research import effective_evidence_role, effective_host_tier, source_observation_readable
+from .governance import _source_identity
 
 
 TRIGGER_DESCRIPTIONS = {
@@ -129,6 +130,8 @@ def build_retrieval_shadow(state, working_set, trust_compacts=None):
         represented_evidence.update(belief.get("evidence", []))
     for notebook in state.get("notebooks", {}).values():
         represented_evidence.update(notebook.get("evidence", []))
+    represented_works = {_source_identity(state['evidence'][key]) for key in represented_evidence
+                         if key in state.get('evidence', {})}
 
     # Keep synthesis handoffs project-fair before applying the global recent
     # evidence window. A rotating collector can generate enough newer evidence
@@ -162,6 +165,8 @@ def build_retrieval_shadow(state, working_set, trust_compacts=None):
                 return False
         if payload.get("host_tier") == "verification-metadata":
             return False
+        if not source_observation_readable(payload):
+            return False
 
         domain = project.get("domain")
         topic = topics.get(domain, {})
@@ -186,14 +191,12 @@ def build_retrieval_shadow(state, working_set, trust_compacts=None):
     evidence_items = list(state.get("evidence", {}).items())
     reserved_project_sources = set()
     for project in active_projects:
-        match = next(
-            (
-                evidence_id
-                for evidence_id, evidence in reversed(evidence_items)
-                if qualifies_for_project(evidence_id, evidence, project)
-            ),
-            None,
-        )
+        matches = [evidence_id for evidence_id, evidence in reversed(evidence_items)
+                   if qualifies_for_project(evidence_id, evidence, project)]
+        # Prefer an uncited work to another observation of already incorporated
+        # material. Revisions/mirrors remain available when no new work exists.
+        match = min(matches, key=lambda key: _source_identity(state['evidence'][key])
+                    in represented_works, default=None)
         if match:
             reserved_project_sources.add(match)
             add(
@@ -233,8 +236,10 @@ def build_retrieval_shadow(state, working_set, trust_compacts=None):
         for project in state.get("projects", {}).values()
         if project.get("status") == "active"
     }
+    prioritized = sorted(reversed(unincorporated), key=lambda key:
+                         _source_identity(state['evidence'][key]) in represented_works)
     selected, seen_domains = [], set()
-    for evidence_id in reversed(unincorporated):
+    for evidence_id in prioritized:
         evidence = state["evidence"][evidence_id]
         try:
             payload = json.loads(evidence.get("content", ""))
@@ -244,7 +249,7 @@ def build_retrieval_shadow(state, working_set, trust_compacts=None):
         if domain in active_domains and domain not in seen_domains:
             selected.append(evidence_id)
             seen_domains.add(domain)
-    for evidence_id in reversed(unincorporated):
+    for evidence_id in prioritized:
         if evidence_id not in selected:
             selected.append(evidence_id)
         if len(selected) >= 6:

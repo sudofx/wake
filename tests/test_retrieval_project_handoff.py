@@ -5,6 +5,28 @@ from wake.retrieval import build_retrieval_shadow
 
 
 class ProjectFairRetrievalTests(unittest.TestCase):
+    def test_handoff_prefers_uncited_work_over_repeat_and_unreadable_page(self):
+        evidence = dict(self.source(key, 'observer', index) for index, key in enumerate(
+            ['cited', 'new-work', 'repeat', 'challenge']))
+        repeat = json.loads(evidence['repeat']['content'])
+        repeat['source_identity'] = 'work:cited'
+        evidence['repeat']['content'] = json.dumps(repeat)
+        challenge = json.loads(evidence['challenge']['content'])
+        challenge['excerpt'] = ''
+        evidence['challenge']['content'] = json.dumps(challenge)
+        state = dict(version=4, projects={'p': dict(id='p', domain='observer', status='active')},
+            research_topics=[dict(id='observer')], attention={'selected_topic': 'observer'},
+            evidence=evidence, beliefs={}, notebooks={'n': dict(id='n', revision=1, evidence=['cited'])},
+            commitments={})
+        retrieval = build_retrieval_shadow(state, {'beliefs': []})
+        handoff = next(item for item in retrieval['candidates'] if item['trigger'] == 'project_source_handoff')
+        self.assertEqual(handoff['evidence'], ['new-work'])
+        self.assertNotIn('challenge', retrieval['evidence_ids'])
+        del state['evidence']['new-work']
+        retrieval = build_retrieval_shadow(state, {'beliefs': []})
+        handoff = next(item for item in retrieval['candidates'] if item['trigger'] == 'project_source_handoff')
+        self.assertEqual(handoff['evidence'], ['repeat'])
+
     def source(self, identifier, domain, version):
         return identifier, {
             "id": identifier,
