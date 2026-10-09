@@ -54,6 +54,12 @@ cleanup. A changed interpretation needs an explicit, tested migration. Determini
 evaluation must not depend on network, wall clock, random values, or side effects;
 put such observations in the untrusted input before governed evaluation.
 
+An action may supply a deterministic `replay` reducer for committed event-log
+entries when current eligibility is stricter than historical acceptance. Live
+intents always use `evaluate`; callers cannot request historical permission.
+Replay still checks every recorded result digest. WAKE's historical event reducer
+uses this seam to preserve accepted work through evidence-policy hardening.
+
 Two supported persistence modes have different guarantees:
 
 | Mode | Recorded meaning | Reconstructing domain state |

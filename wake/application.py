@@ -218,7 +218,7 @@ def _apply_governed_proposal(current: JsonValue, payload: JsonValue) -> Applicat
         ),
     )
 
-def _append_legacy_event(current: JsonValue, payload: JsonValue) -> ApplicationDecision:
+def _append_legacy_event(current: JsonValue, payload: JsonValue, *, historical=False) -> ApplicationDecision:
     """Apply one WAKE event through application policy while wake owns durability."""
     if not isinstance(current, dict) or not isinstance(current.get("state"), dict):
         return ApplicationDecision(False, reasons=("WAKE legacy state must be imported first",))
@@ -245,7 +245,7 @@ def _append_legacy_event(current: JsonValue, payload: JsonValue) -> ApplicationD
         return ApplicationDecision(False, reasons=("current WAKE compatibility event count is invalid",))
 
     state = _state_for_legacy_event(current["state"], kind, event_payload)
-    if kind == "accepted":
+    if kind == "accepted" and not historical:
         proposal = event_payload.get("proposal")
         invocation = event_payload.get("id")
         if not isinstance(proposal, dict) or not isinstance(invocation, str):
@@ -309,7 +309,7 @@ def _append_legacy_event(current: JsonValue, payload: JsonValue) -> ApplicationD
     }
     event["hash"] = legacy_digest(event)
     try:
-        next_state = reduce_event(state, event)
+        next_state = reduce_event(state, event, historical=historical)
     except (Rejected, ValueError, TypeError, KeyError) as error:
         return ApplicationDecision(False, reasons=(str(error)[:1000],))
 
@@ -328,6 +328,11 @@ def _append_legacy_event(current: JsonValue, payload: JsonValue) -> ApplicationD
         True,
         _updated_envelope(current, migration=next_migration, state=next_state),
     )
+
+
+def _replay_legacy_event(current: JsonValue, payload: JsonValue) -> ApplicationDecision:
+    """Reconstruct committed history without reapplying today's eligibility policy."""
+    return _append_legacy_event(current, payload, historical=True)
 
 
 def _import_legacy_event_chunk(current: JsonValue, payload: JsonValue) -> ApplicationDecision:
@@ -440,7 +445,7 @@ WAKE_APPLICATION = ApplicationDefinition(
         ApplicationAction("import_legacy_snapshot", _import_legacy_snapshot),
         ApplicationAction("apply_governed_proposal", _apply_governed_proposal),
         ApplicationAction("import_legacy_event_chunk", _import_legacy_event_chunk),
-        ApplicationAction("append_legacy_event", _append_legacy_event),
+        ApplicationAction("append_legacy_event", _append_legacy_event, replay=_replay_legacy_event),
         ApplicationAction("enable_continuity_matrix", enable_continuity_matrix),
         ApplicationAction("record_continuity_matrix_result", record_continuity_matrix_result),
         ApplicationAction("reset_to_zero", _reset_to_zero),

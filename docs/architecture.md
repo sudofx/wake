@@ -246,6 +246,12 @@ abstract/PDF routes and assigned `10.48550/arXiv` DOI aliases into one work.
 Observation URLs and historical payloads retain exact retrieved versions;
 bibliography identifiers in source prose do not establish the source's identity.
 
+Application reconstruction and checkpoint suffix replay use the registered
+historical reducer for already committed WAKE events, while new submissions
+continue through current application governance. Historical result digests and
+transition result hashes remain mandatory; tightening current eligibility does
+not invalidate prior accepted work or silently rebuild it under a new policy.
+
 Claim-support matching ignores collector scope labels and counts collector-stamped work identities rather than URLs. Source concentration and reuse are derived diagnostics exposed to the provider and Console, not a claim of independent scientific evidence. Continuity failures retain expected/actual evidence in the existing application result; the matrix grammar and prior scores remain unchanged. The `correction-demo` operator command uses ordinary proposal governance to preserve a deliberately false count, its measured falsifier, belief retraction and publication supersession in the live record.
 
 ## Immediate research in one wake

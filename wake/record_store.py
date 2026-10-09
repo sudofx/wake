@@ -287,8 +287,12 @@ class RecordStore:
         reject an intact record when evidence policy becomes stricter.
         """
         from .audit import verify_events
+        from .kernel.applications import application_state
 
-        self.record.full_replay()
+        _, root = self.record.full_replay()
+        envelope = application_state(WAKE_APPLICATION, root.get("app:wake"))
+        if envelope != self._envelope():
+            raise IntegrityError("WAKE application projection differs from full historical replay")
         self.record.invocation_history()
         self.record.application_access_state()
         state, head = verify_events(self.events(), self.head())

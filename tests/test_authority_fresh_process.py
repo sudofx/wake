@@ -8,8 +8,12 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from wake.record_store import RecordStore
+from wake.application import WAKE_APPLICATION
+from wake.kernel.applications import application_state
+from wake.governance import Rejected
 
 
 class AuthorityFreshProcessTests(unittest.TestCase):
@@ -62,6 +66,20 @@ class AuthorityFreshProcessTests(unittest.TestCase):
                 self.assertEqual(belief["status"], "retracted")
                 self.assertEqual(belief["confidence"], 0)
                 self.assertEqual(len(belief["evidence"]), 3)
+                _, root_state = store.record.full_replay()
+                envelope = root_state['app:wake']
+                accepted = next(event for event in reversed(envelope['events'])
+                    if event['action'] == 'append_legacy_event' and event['input']['kind'] == 'accepted')
+                with patch('wake.application.govern_proposal', side_effect=Rejected('stricter current policy')):
+                    rebuilt = application_state(WAKE_APPLICATION, envelope)
+                    self.assertEqual(rebuilt, store._envelope())
+                    # Replay permission is never exposed to a new application intent.
+                    live = WAKE_APPLICATION.action('append_legacy_event').evaluate(rebuilt, accepted['input'])
+                    self.assertFalse(live.accepted)
+                    self.assertIn('stricter current policy', live.reasons)
+                envelope['events'][-1]['result_digest'] = '0' * 64
+                with self.assertRaisesRegex(ValueError, 'replay drift'):
+                    application_state(WAKE_APPLICATION, envelope)
             finally:
                 store.close()
 

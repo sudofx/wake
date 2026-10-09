@@ -54,10 +54,15 @@ ApplicationEvaluator = Callable[[JsonValue, JsonValue], ApplicationDecision]
 
 @dataclass(frozen=True)
 class ApplicationAction:
-    """Bind one stable domain action name to deterministic evaluation."""
+    """Bind live permission and optional historical reduction to a stable action.
+
+    Historical reduction is used only for already committed event-log entries;
+    its result must still match the durable digest. New intents always evaluate.
+    """
 
     name: str
     evaluate: ApplicationEvaluator
+    replay: ApplicationEvaluator | None = None
 
 
 @dataclass(frozen=True)
@@ -152,7 +157,7 @@ def application_state(
         action = definition.action(action_name)
         if action is None:
             raise ValueError(f"application event uses unknown action: {action_name}")
-        decision = action.evaluate(state, event.get("input"))
+        decision = (action.replay or action.evaluate)(state, event.get("input"))
         if not decision.accepted:
             raise ValueError(f"application replay rejected historical action: {action_name}")
         expected = hashlib.sha256(canonical_json(decision.next_state).encode()).hexdigest()

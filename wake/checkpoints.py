@@ -230,7 +230,7 @@ def _apply_seed_operation(state, operation):
     action = WAKE_APPLICATION.action(value["action"])
     if action is None:
         raise IntegrityError("Unknown application action in checkpoint suffix")
-    decision = action.evaluate(current, value.get("input"))
+    decision = (action.replay or action.evaluate)(current, value.get("input"))
     if not decision.accepted or _digest(decision.next_state) != value["result_digest"]:
         raise IntegrityError("Checkpoint application suffix replay drift")
     state[key] = {"application_id": value["application_id"],
