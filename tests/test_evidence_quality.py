@@ -63,6 +63,19 @@ class QualityTests(unittest.TestCase):
             _verify_claim_support('quantum entropy measurement', mirrors, 'Claim')
         self.assertEqual(evidence_quality({'evidence': {e['id']: e for e in mirrors}})['distinct_works'], 1)
 
+    def test_diagnostics_separate_discovery_and_metadata_from_readable_works(self):
+        evidence = {}
+        for key, role in [('lead', 'discovery'), ('index', 'metadata'), ('paper', 'source')]:
+            evidence[key] = source(key, 'doi:' + key, 'quantum entropy measurement ' * 10)
+            payload = json.loads(evidence[key]['content'])
+            payload['evidence_role'] = role
+            evidence[key]['content'] = json.dumps(payload)
+        quality = evidence_quality({'evidence': evidence})
+        self.assertEqual(quality['observations_by_role'], {'discovery': 1, 'metadata': 1, 'source': 1})
+        self.assertEqual(quality['readable_distinct_works'], 1)
+        self.assertEqual(quality['uncited_readable_distinct_works'], 1)
+        self.assertEqual(quality['uncited_readable_source_ids'], ['paper'])
+
     def test_unstamped_arxiv_routes_preserve_work_identity_without_reading_bibliography(self):
         mirrors = [dict(id=str(i), actor='collector', scope='collected', source=url,
             content=json.dumps({'excerpt': 'quantum entropy measurement'})) for i, url in enumerate(

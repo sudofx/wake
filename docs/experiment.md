@@ -201,6 +201,12 @@ separately within the existing byte, time, host and request limits. Access block
 are recorded as failed observations, never usable evidence. Multiple search engines
 or mirrors do not establish independent corroboration.
 
+Evidence-quality output separates observation roles and currently readable
+underlying works from the count of all collected leads. Readable work counts,
+cited readable works and uncited readable works share the governance identity
+rules; acquisition and maturation use those same rules. Historical notebook
+reuse remains a diagnostic, not evidence of independent corroboration or novelty.
+
 Provider context reports the most reused works and uncited readable-source IDs as
 advisory selection hints. These hints cannot establish relevance or authorize a
 notebook; normal claim/evidence governance still applies.

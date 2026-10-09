@@ -24,7 +24,7 @@ from zoneinfo import ZoneInfo
 from wake.kernel import InvocationBarrierError
 
 from .application_policy import _rotation_preflight, govern_proposal
-from .governance import Rejected, bob_reflection_due_cycle, require, text
+from .governance import Rejected, bob_reflection_due_cycle, require, text, _source_identity
 from .providers import (
     SCHEMA, SYSTEM, ConfiguredDailyLimitReached, DailyQuotaExceeded, ProviderRequestError, TransientProviderError,
     is_free_tier_daily_quota, retractable_quotes, schema_for_context,
@@ -1397,19 +1397,8 @@ class Engine:
         ]
 
     def durable_source_identity(self, state, evidence_id):
-        """Return work-level identity for corroboration, falling back to URL."""
-        evidence = state.get("evidence", {}).get(evidence_id, {})
-        try:
-            payload = json.loads(evidence.get("content", ""))
-        except (ValueError, TypeError):
-            payload = {}
-        explicit = str(payload.get("source_identity") or "").strip().lower() if isinstance(payload, dict) else ""
-        if explicit:
-            return explicit
-        # IDs discovered inside article text are retrieval leads, not
-        # authoritative work identity. Explicit collector provenance is required
-        # to collapse mirrors; historical records otherwise remain URL-distinct.
-        return "url:" + str(evidence.get("source") or "").strip().lower()
+        """Use governance's work identity for delivery and maturation counts."""
+        return _source_identity(state.get("evidence", {}).get(evidence_id, {}))
 
     def commitment_resolution_evidence_ids(self, state, evidence_ids, commitment):
         """Return visible evidence eligible to fulfill one durable commitment.
