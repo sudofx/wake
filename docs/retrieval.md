@@ -82,6 +82,10 @@ Routine active delivery and the controlled overflow fallback, distinguished by r
 A deliberately weakened condition that removes provenance or uncertainty cues.
 
 The primary question is whether B preserves correction while reducing active context.
+The executable [paired comparison](experiment.md#paired-memory-and-model-comparison)
+implements A and B from one frozen synthetic record, with native context/receipt
+handling and separate structural checks and human explanation scoring. C and repeated
+human-scored research handoffs remain future work.
 
 > Exact underneath. Approximate on purpose. Correctable always.
 

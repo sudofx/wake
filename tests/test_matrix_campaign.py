@@ -64,7 +64,7 @@ class MatrixCampaignTests(unittest.TestCase):
         self.temp.cleanup()
 
     def test_budget_defers_optional_probe_then_resumes_same_coordinate(self):
-        self.engine.config.update(memory_mode='active', max_context_chars=13000)
+        self.engine.config.update(memory_mode='active', max_context_chars=11000)
         coordinate = self.store.continuity_matrix_progress()['next_coordinate_id']
         provider = CountingFixture()
         result = self.engine.run(provider)
@@ -78,7 +78,7 @@ class MatrixCampaignTests(unittest.TestCase):
         delivery = receipt['context_delivery']
         self.assertEqual(delivery['deferred_continuity_coordinate'], coordinate)
         self.assertEqual(delivery['recovery'], 'optional-sidecar-deferred')
-        self.assertLessEqual(delivery['delivered_request_chars'], 13000)
+        self.assertLessEqual(delivery['delivered_request_chars'], 11000)
         self.assertNotIn('continuity_probe_shadow', receipt)
         self.engine.config['max_context_chars'] = DEFAULTS['max_context_chars']
         result = self.engine.run(provider)

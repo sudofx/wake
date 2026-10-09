@@ -2,6 +2,7 @@
 from collections import Counter
 from urllib.parse import urlsplit
 from .governance import _source_identity, _claim_tokens, _evidence_payload
+from .research import source_observation_readable
 
 
 def evidence_quality(state):
@@ -24,5 +25,10 @@ def evidence_quality(state):
             'mirror_or_repeat_observations': len(sources) - len(works), 'distinct_hosts': len(hosts),
             'largest_host_share': round(max(hosts.values(), default=0) / max(1, len(sources)), 4),
             'reused_works': [{'work': work, 'notebook_count': count} for work, count in sorted(use.items()) if count > 1],
+            'cited_distinct_works': len(use),
+            'uncited_readable_source_ids': [key for key, item in sorted(sources.items())
+                if _source_identity(item) not in use and _evidence_payload(item).get('evidence_role') == 'source'
+                and len(str(_evidence_payload(item).get('excerpt', ''))) >= 80
+                and source_observation_readable(_evidence_payload(item))][-20:],
             'notebooks': notebooks,
             'boundary': 'Lexical mismatch and concentration diagnostics do not establish entailment, independence, truth, or novelty.'}

@@ -2553,7 +2553,7 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(len(even), 2)
         self.assertIn("en.wikipedia.org", even[0])
         self.assertIn("api.crossref.org", even[1])
-        self.assertEqual(odd[0], even[0])
+        self.assertIn("www.bing.com", odd[0])
         self.assertIn("api.openalex.org", odd[1])
 
     def test_repository_topic_capability_is_configured_not_name_bound(self):
@@ -2604,7 +2604,7 @@ class ResearchTests(unittest.TestCase):
             "api.crossref.org", "api.openalex.org",
             "api.semanticscholar.org", "api.datacite.org",
         ])
-        self.assertTrue(all(len(routes) == 4 for routes in (routes0, routes1, routes2, routes3)))
+        self.assertTrue(all(len(routes) == 8 for routes in (routes0, routes1, routes2, routes3)))
 
     def test_targeted_project_maturation_excludes_datacite_rotation(self):
         routes = research_urls(
@@ -2613,7 +2613,7 @@ class ResearchTests(unittest.TestCase):
             attempts=0,
             targeted=True,
         )
-        self.assertEqual(len(routes), 3)
+        self.assertEqual(len(routes), 7)
         self.assertTrue(any("api.crossref.org" in url for url in routes))
         self.assertTrue(any("api.openalex.org" in url for url in routes))
         self.assertTrue(any("api.semanticscholar.org" in url for url in routes))
@@ -2655,7 +2655,7 @@ class ResearchTests(unittest.TestCase):
 
     def test_index_rotation_includes_semantic_scholar_and_datacite(self):
         routes = research_urls("neurodiversity paradigm", "neurodivergence", attempts=0)
-        self.assertEqual(len(routes), 4)
+        self.assertEqual(len(routes), 8)
         self.assertTrue(any("api.crossref.org" in url for url in routes))
         self.assertTrue(any("api.openalex.org" in url for url in routes))
         self.assertTrue(any("api.semanticscholar.org" in url for url in routes))

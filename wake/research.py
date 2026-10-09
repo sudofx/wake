@@ -26,7 +26,7 @@ from pypdf import PdfReader
 ALLOWED_HOSTS = {
     # Scholarly indexes / open research
     "api.crossref.org", "api.openalex.org", "api.semanticscholar.org",
-    "api.datacite.org", "doi.org", "arxiv.org", "export.arxiv.org", "rss.arxiv.org",
+    "api.datacite.org", "www.ebi.ac.uk", "www.bing.com", "doi.org", "arxiv.org", "export.arxiv.org", "rss.arxiv.org",
     "pubmed.ncbi.nlm.nih.gov", "pmc.ncbi.nlm.nih.gov", "www.ncbi.nlm.nih.gov",
     "europepmc.org", "api.core.ac.uk", "doaj.org", "eric.ed.gov",
     # Universities / public knowledge institutions
@@ -50,7 +50,7 @@ ALLOWED_HOSTS = {
 }
 # Idea-pool hosts are deliberately not evidence hosts. Their observations are
 # permanently stamped as discovery leads and cannot satisfy governance.
-ALLOWED_ALT_HOSTS = {"en.wikipedia.org", "theconversation.com", "aeon.co"}
+ALLOWED_ALT_HOSTS = {"en.wikipedia.org", "theconversation.com", "aeon.co", "www.bing.com"}
 ALLOWED_HOST_SUFFIXES = (
     # Institution families plus research publishers/repositories; matching is
     # label-boundary anchored, including the exact root for named domains.
@@ -106,6 +106,16 @@ def _approved_host(hostname):
     return hostname in ALLOWED_HOSTS or any(
         hostname and (hostname == suffix[1:] or hostname.endswith(suffix)) for suffix in ALLOWED_HOST_SUFFIXES
     )
+
+
+def web_search_url(query, *, reddit=False):
+    """Public web discovery, including indexed Reddit discussions; never evidence."""
+    return "https://www.bing.com/search?" + urllib.parse.urlencode({
+        "q": ("site:reddit.com " if reddit else "") + query[:1000], "format": "rss"})
+
+
+def discovery_routes(query):
+    return [web_search_url(query), web_search_url(query, reddit=True)]
 
 
 def persistent_identifiers(observation):
@@ -193,6 +203,8 @@ def candidate_source_urls(observation, current_url=""):
         url = normalize_candidate_url(raw)
         parsed = urllib.parse.urlsplit(url)
         if not parsed.hostname or parsed.hostname in metadata_hosts:
+            continue
+        if evidence_role(url) == "discovery":
             continue
         if current_url and url == current_url:
             continue
@@ -453,7 +465,30 @@ def _fetch_source_unbounded(url, discovery_only=False):
                 if is_pdf else "Source exceeds the one-megabyte collection limit"
             )
     decoded = "" if is_pdf else raw.decode("utf-8", errors="replace")
-    if "api.crossref.org" in url:
+    if urllib.parse.urlsplit(url).hostname == "www.bing.com":
+        results = ET.fromstring(decoded).findall(".//item")
+        records = [{"title": item.findtext("title", ""), "url": item.findtext("link", ""),
+                    "snippet": item.findtext("description", "")} for item in results[:8]]
+        query = urllib.parse.parse_qs(urllib.parse.urlsplit(url).query).get("q", [""])[0]
+        if query.startswith("site:reddit.com "):
+            # Some public feeds ignore site operators. Never label those results
+            # as Reddit discovery or let unrelated pages consume follow-up slots.
+            records = [item for item in records if urllib.parse.urlsplit(item["url"]).hostname in
+                       {"reddit.com", "www.reddit.com", "old.reddit.com"}]
+        if not records:
+            raise ValueError("Web search returned no readable results (possibly blocked)")
+        text = json.dumps({"query": query, "results": records}, ensure_ascii=False)
+        scope = "Bing public search snippets and links, including indexed discussions; discovery only, not retrieved articles"
+    elif urllib.parse.urlsplit(url).hostname == "www.ebi.ac.uk":
+        payload = json.loads(decoded)
+        records = payload.get("resultList", {}).get("result", [])
+        text = json.dumps([{
+            "title": item.get("title"), "abstract": item.get("abstractText"),
+            "doi": item.get("doi"), "pmid": item.get("id"), "pmcid": item.get("pmcid"),
+            "source": item.get("source"), "fullTextUrlList": item.get("fullTextUrlList"),
+        } for item in records], ensure_ascii=False)
+        scope = "Europe PMC search metadata, abstracts and full-text links; discovery only"
+    elif "api.crossref.org" in url:
         message = json.loads(decoded).get("message", {})
         items = message.get("items", [message] if isinstance(message, dict) else [])
         text = json.dumps(items, ensure_ascii=False)
@@ -662,14 +697,18 @@ def research_urls(query, domain, attempts=0, topic=None, *, targeted=False):
     datacite = "https://api.datacite.org/dois?" + urllib.parse.urlencode({
         "query": query, "page[size]": 4,
     })
+    europe_pmc = "https://www.ebi.ac.uk/europepmc/webservices/rest/search?" + urllib.parse.urlencode({
+        "query": query, "format": "json", "resultType": "core", "pageSize": 4})
+    arxiv = "https://export.arxiv.org/api/query?" + urllib.parse.urlencode({
+        "search_query": "all:" + query, "max_results": 4})
     # Rotate across independent indexes instead of treating Crossref/OpenAlex
     # as the whole scholarly world. Search responses remain discovery leads;
     # exact records or approved publisher/full-text pages are required for
     # qualifying evidence.
     indexes = (
-        [crossref, openalex, semantic_scholar]
+        [crossref, openalex, semantic_scholar, europe_pmc, arxiv, *discovery_routes(query)]
         if targeted
-        else [crossref, openalex, semantic_scholar, datacite]
+        else [crossref, openalex, semantic_scholar, datacite, europe_pmc, arxiv, *discovery_routes(query)]
     )
     start = attempts % len(indexes)
     return indexes[start:] + indexes[:start]
@@ -685,6 +724,12 @@ def evidence_role(url):
     """
     parsed = urllib.parse.urlsplit(url)
     query = urllib.parse.parse_qs(parsed.query)
+    if parsed.hostname == "www.bing.com":
+        return "discovery"
+    if parsed.hostname == "www.ebi.ac.uk" and parsed.path.endswith("/search"):
+        return "discovery"
+    if parsed.hostname == "export.arxiv.org" and "search_query" in query:
+        return "discovery"
     if parsed.hostname == "api.crossref.org" and parsed.path == "/works" and "query" in query:
         return "discovery"
     if parsed.hostname == "api.openalex.org" and parsed.path == "/works" and "search" in query:
@@ -737,7 +782,7 @@ def host_tier(url, discovery_only=False):
     The tier is provenance metadata, not a truth score. Governance still uses
     evidence_role plus project relevance and publication gates.
     """
-    if discovery_only:
+    if discovery_only or evidence_role(url) == "discovery":
         return "discovery"
     host = urllib.parse.urlsplit(url).hostname
     if host in {"arxiv.org", "rss.arxiv.org", "osf.io", "psyarxiv.com", "www.psyarxiv.com"} or any(
@@ -767,8 +812,8 @@ def discovery_urls(topic, attempts=0):
     if topic.get("source_kind") == "repository":
         return research_urls(topic["query"], topic["id"], attempts, topic)
     query = urllib.parse.urlencode({"action": "query", "list": "search", "srsearch": topic["query"], "format": "json"})
-    return ["https://en.wikipedia.org/w/api.php?" + query,
-            research_urls(topic["query"], topic["id"], attempts, topic)[0]]
+    pool = ["https://en.wikipedia.org/w/api.php?" + query, *discovery_routes(topic["query"])]
+    return [pool[attempts % len(pool)], research_urls(topic["query"], topic["id"], attempts, topic)[0]]
 
 
 def discovery_url(topic):
@@ -1064,7 +1109,7 @@ def _collect_items(engine, pending, topic_by_id, fetcher, monotonic, collection_
             next_items = []
             for candidate, identity in routes:
                 if candidate and candidate not in used_urls and len(pending) + len(next_items) < budget:
-                    next_items.append({**item, "url": candidate, "source_identity": identity, "queued_followup": False})
+                    next_items.append({**item, "url": candidate, "source_identity": identity, "queued_followup": False, "discovery_only": False})
                     used_urls.add(candidate)
                     if len(next_items) == 2:
                         break
@@ -1182,8 +1227,9 @@ def collect_planned(engine, requests, fetcher=fetch_source, monotonic=time.monot
     topic_by_id = {item['id']: item for item in state['research_topics']}
     budget = engine.config['research_collection_budget']
     pending = []
+    attempts = len(state.get("invocations", {}))
     for offset, item in enumerate(requests):
-        routes = [item['url']] if item['url'] else research_urls(item['query'], item['domain'], offset,
+        routes = [item['url']] if item['url'] else research_urls(item['query'], item['domain'], attempts + offset,
             topic_by_id[item['domain']], targeted=True)[:1]
         for url in routes:
             pending.append({'id': 'immediate-'+secrets.token_hex(8), 'project': item['project'],

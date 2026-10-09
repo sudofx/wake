@@ -105,6 +105,8 @@ class ResearchProjectionTests(unittest.TestCase):
         disabled = build_research_projection(self.state(), [], 'head', matrix_reported=True)['matrix']
         self.assertFalse(disabled['enabled'])
         self.assertEqual(disabled['completed'], 0)
+        self.assertIsNone(disabled['mean_score'])
+        self.assertEqual(disabled['passed'], 0)
         coordinate = next(iter(MATRIX.coordinates())).coordinate_id
         progress = {'matrix': MATRIX_KEY, 'definition_digest': MATRIX.definition_digest,
                     'completed_count': 1, 'results': {coordinate: {'status': 'failed', 'score': 0.25,

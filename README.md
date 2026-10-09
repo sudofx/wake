@@ -3,6 +3,8 @@
 For independent containers and optional shared hostname access, see
 [multiple installations](docs/installations.md). The [kernel boundary](docs/kernel.md)
 includes an executable non-research application proof; both remain in this repository.
+Paired memory/model trials and full-record evidence diagnostics are reproducible through
+[the comparison protocol](docs/experiment.md#paired-memory-and-model-comparison).
 
 Standalone Console can show live runtime phases and an outline around the active
 continuity probe. Hosted Console keeps dated snapshot evidence separate from

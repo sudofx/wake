@@ -84,6 +84,23 @@ class ActiveMemoryTests(unittest.TestCase):
         self.assertIn('retrieval_shadow', item)
         self.assertIn('trust_compacts_shadow', item)
 
+    def test_budget_pressure_drops_advisory_source_hints_before_open_obligations(self):
+        from wake.event_format import canonical
+        obligation = {'id': 'review', 'task': 'Check contradictory evidence', 'status': 'open'}
+        request = {'system': '', 'context': {
+            'memory': {'retrieved_records': []},
+            'bounded_context': {'omitted_categories': []},
+            'commitments': [obligation],
+            'evidence_quality': {'boundary': 'Advisory only', 'most_reused_works': ['x' * 1000]},
+        }}
+        limit = self.engine.config['max_context_chars']
+        request['system'] = 'x' * (limit + 40 - len(canonical(request)))
+        self.engine.fit_active_request(request)
+        self.assertLessEqual(len(canonical(request)), limit)
+        self.assertNotIn('evidence_quality', request['context'])
+        self.assertEqual(request['context']['commitments'], [obligation])
+        self.assertIn('advisory source-selection diagnostics', request['context']['bounded_context']['omitted_categories'])
+
     def test_switch_back_to_shadow_restores_rich_delivery(self):
         self.engine.config['memory_mode'] = 'active'
         self.engine.run(CountingFixture())

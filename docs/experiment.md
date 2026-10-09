@@ -65,7 +65,7 @@ starting state:
 
 Primary outcome: whether B preserves contradiction detection and appropriate evidence-backed revision while
 using materially less active context than A. C is expected to reveal where compression starts making
-correction harder. Do not activate B for unattended live wakes until that comparison has been run and scored.
+correction harder. B is already operator-enabled locally as a new experimental condition. The paired comparison remains necessary before claiming that B preserves behavioral performance or improves on A; activation itself is not evidence of equivalence.
 
 ## Reproducible offline harness
 
@@ -141,3 +141,74 @@ or its response is being checked. It does not establish that the model is active
 reasoning about that cell, or that a research proposal will be accepted. Completed
 matrix scores still come only from governed recorded evaluations. Snapshot-only
 pending reports on hosted installations carry no live pulse.
+
+
+## Paired memory and model comparison
+
+`comparison` creates an isolated, frozen synthetic sensor record with a provisional
+belief, an inherited review obligation and a later contradictory measurement.
+It never reads, copies or modifies the operator's research database. Rich (`shadow`)
+and active-memory arms start from the same verified head and state hash. Each
+trial receives a fresh context through normal Engine delivery and governance.
+This is a bounded behavioral task, not a scientific research-quality benchmark.
+
+```sh
+python -m wake comparison init --output .workbench/comparison
+python -m wake comparison prepare --output .workbench/comparison --arm rich --model Claude
+python -m wake comparison prepare --output .workbench/comparison --arm active --model Claude
+```
+
+Submit each saved `request.json` to a fresh session, preserve its unedited JSON
+reply, and import it with `comparison complete --output .workbench/comparison
+--trial TRIAL_KEY --reply REPLY.json`. Use the same model/settings for both arms.
+Repeat with another model for a cross-model comparison. A manual identity is
+human-attested; no reply is silently repaired.
+
+`comparison run --output .workbench/comparison --arm rich --model MODEL` uses the
+configured Gemini credential through native reservation-before-effect handling.
+Run the active arm with the same model, then both arms with a second available
+model. The experiment is serial, permits at most four API requests and disables
+fallbacks. Pause other live inference sharing the API project during these trials.
+`--fixture` validates the workflow only and is explicitly excluded from live-model
+evidence. Every attempted arm/model is retained, including rejections, failures
+and deferrals; repeats require a new comparison directory.
+
+`comparison report --output .workbench/comparison` reports actual attempts, request
+hashes and sizes, retained observations, claim retraction, contradictory citations,
+and obligation completion with measurement evidence. Structural pass checks are
+separate from the included human explanation rubric; no automatic check asserts
+comprehension or behavioral equivalence. The manifest records the source commit
+and whether the source tree was clean. Preserve the tested source with the results.
+One synthetic case is preliminary evidence; repeated cases and human-scored research
+handoffs remain necessary. The overcompressed third arm remains future work.
+
+## Broader discovery and reproducible evidence diagnostics
+
+With `research_google_search = true`, the existing Gemini planning request can
+use Google Search, including indexed Reddit discussions. The exact tool grant is
+in the recorded request and grounding queries/source links are retained in provider
+attempt receipts. This consumes the existing planning inference; final proposals
+receive no web tool. Provider grounding is discovery, not collector-qualified
+source evidence. A tool failure remains a failed/deferred invocation.
+
+The collector rotates Crossref, OpenAlex, Semantic Scholar, DataCite (exploration
+only), Europe PMC, arXiv, Bing public search feeds and Reddit-targeted web search. It
+retrieves public search snippets and links, not Reddit accounts or comment feeds.
+Public search feeds may change or block access; failures remain visible and scholarly indexes remain available. Search responses remain discovery leads; approved primary-source links are fetched
+separately within the existing byte, time, host and request limits. Access blocks
+are recorded as failed observations, never usable evidence. Multiple search engines
+or mirrors do not establish independent corroboration.
+
+Provider context reports the most reused works and uncited readable-source IDs as
+advisory selection hints. These hints cannot establish relevance or authorize a
+notebook; normal claim/evidence governance still applies.
+
+`python -m wake --data DATA evidence-quality --output diagnostics.json` computes
+the complete diagnostics from that installation's authoritative record and records
+its head. Do not rerun lexical checks over clipped public evidence text. Anyone
+reproducing a result needs the matching full record and source revision; a public
+projection alone is insufficient. This command does not modify the record.
+
+The matrix Console separately reports tested coverage, the number passing every
+check, the mean check score, and failed-check counts. A high average score is not a
+complete-pass rate or evidence that memory scaffolding beats a control condition.

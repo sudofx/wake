@@ -34,6 +34,16 @@ def parser():
     wake.add_argument("--question", help="Research this question and submit an answer/proposal in this wake")
     wake.add_argument("--crash-at", choices=["after-start", "during-commit"], help="Fixture-only crash experiment")
     sub.add_parser("status")
+    quality = sub.add_parser("evidence-quality", help="Compute diagnostics from the full authoritative record, not clipped public text")
+    quality.add_argument("--output", help="Write the complete diagnostic JSON")
+    comparison = sub.add_parser("comparison", help="Controlled paired memory/model trials in isolated records")
+    comparison.add_argument("operation", choices=["init", "prepare", "complete", "run", "report"])
+    comparison.add_argument("--output", required=True, help="Dedicated comparison directory")
+    comparison.add_argument("--arm", choices=["rich", "active"])
+    comparison.add_argument("--model")
+    comparison.add_argument("--trial", help="Prepared trial key for completion")
+    comparison.add_argument("--reply", help="Unedited manual JSON reply")
+    comparison.add_argument("--fixture", action="store_true", help="Exercise plumbing without live-model evidence")
     sub.add_parser("correction-demo", help="Append an operator-controlled false-count correction and supersession; no API call")
     sub.add_parser("enable-continuity-matrix", help="Durably opt into continuity@1 without calling a provider")
     reset = sub.add_parser("reset", help="Start a new active WAKE generation at 0 while preserving prior wake history")
@@ -123,6 +133,19 @@ def execute(args):
                 json.dump(state, stream, sort_keys=True)
         return {"valid": True, "revision": revision, **proof}
     settings = config(args.config)
+    if args.command == "comparison":
+        from .comparison import create_comparison, prepare_trial, complete_trial, run_trial, comparison_report
+        if args.operation == "init":
+            return create_comparison(args.output, settings)
+        if args.operation == "report":
+            return comparison_report(args.output)
+        if args.operation == "complete":
+            require(args.trial and args.reply, "Completion needs --trial and --reply")
+            return complete_trial(args.output, args.trial, args.reply)
+        require(args.arm and args.model, "Trial needs --arm and --model")
+        if args.operation == "prepare":
+            return prepare_trial(args.output, args.arm, args.model)
+        return run_trial(args.output, args.arm, args.model, fixture=args.fixture)
     if args.command == "experiment":
         from .experiment import run_experiment
         result = run_experiment(args.data, args.cycles, args.output)
@@ -148,6 +171,13 @@ def execute(args):
         if args.command == "correction-demo":
             from .correction_demo import run_correction_demo
             return run_correction_demo(engine)
+        if args.command == "evidence-quality":
+            from .evidence_quality import evidence_quality
+            with engine.store.lock():
+                result = {"head": engine.store.head(), "input": "full authoritative evidence", **evidence_quality(engine.store.load())}
+            if args.output:
+                atomic_write(args.output, json.dumps(result, indent=2))
+            return result
         if args.command == "export":
             return export(engine.store, args.output, standalone=True)
         if args.command == "reset":

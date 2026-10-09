@@ -711,6 +711,7 @@ class Gemini:
                 prompt=prompt,
                 response_mime_type="application/json",
                 max_output_tokens=self.config["max_output_tokens"],
+                tools=tuple(request.get("tools", ())),
                 reasoning_effort=reasoning_effort,
             )
             shared_provider = GeminiGenerationProvider(

@@ -77,7 +77,17 @@ def _topic_colors(topics):
 
 def _provider_response_schema(context, research):
     """Build the ordinary proposal contract plus an enabled continuity sidecar."""
-    base = schema_for_context(context) if research else SCHEMA
+    if research:
+        base = schema_for_context(context)
+    else:
+        # A generic reference workload has no research charter. Offering its
+        # domain actions would confound model behavior with a forbidden schema.
+        base = json.loads(canonical(SCHEMA))
+        base["properties"]["actions"]["items"]["anyOf"] = [
+            action for action in base["properties"]["actions"]["items"]["anyOf"]
+            if action["properties"]["type"]["enum"][0] in ("belief", "commit", "resolve")
+        ]
+        base["properties"]["base_version"]["enum"] = [context["version"]]
     probe = context.get("continuity_probe")
     if isinstance(probe, dict):
         return add_continuity_response_schema(base, probe)
@@ -88,7 +98,7 @@ DEFAULTS = {"timezone": "America/Los_Angeles", "objective": "Test durable contin
             "provider": "gemini", "model": "gemini-2.5-flash", "daily_call_limit": 20, "model_daily_call_limits": {},
             "max_context_chars": 48000, "max_output_tokens": 4096, "timeout_seconds": 60,
             "free_tier_confirmed": False, "gemini_fallback_models": [], "gemini_fallback_requires_primary_daily_quota": False,
-            "memory_mode": "shadow", "same_wake_research": False, "inquiry_drive_enabled": False, "research_topics_file": "research-topics.toml",
+            "memory_mode": "shadow", "research_google_search": False, "same_wake_research": False, "inquiry_drive_enabled": False, "research_topics_file": "research-topics.toml",
             "observation_mode": False, "research_collection_budget": 2, "research_collection_wall_seconds": 45}
 
 def _topics(settings, config_path=None):
@@ -149,6 +159,7 @@ def config(path="wake.toml"):
     require(result["timezone"] == "America/Los_Angeles", "Daily quota timezone must be America/Los_Angeles")
     for key, low, high in (("max_context_chars", 4000, 64000), ("max_output_tokens", 256, 8192), ("timeout_seconds", 1, 120)):
         require(type(result[key]) is int and low <= result[key] <= high, f"Invalid {key}")
+    require(type(result["research_google_search"]) is bool, "research_google_search must be boolean")
     require(type(result["same_wake_research"]) is bool, "same_wake_research must be boolean")
     require(result["memory_mode"] in ("shadow", "active"), "memory_mode must be shadow or active")
     require(type(result["inquiry_drive_enabled"]) is bool,
@@ -720,6 +731,10 @@ class Engine:
                     item["context_excerpt"] = True
         if len(canonical(request)) <= self.config["max_context_chars"]:
             return
+        if context.pop("evidence_quality", None) is not None:
+            context["bounded_context"]["omitted_categories"].append("advisory source-selection diagnostics")
+            if len(canonical(request)) <= self.config["max_context_chars"]:
+                return
         recovery = context.get("representation_recovery", [])
         if recovery:
             context["representation_recovery"] = [{
@@ -1936,8 +1951,10 @@ class Engine:
             from .evidence_quality import evidence_quality
             quality = evidence_quality(state)
             delivered_context["evidence_quality"] = {
-                key: quality[key] for key in ("distinct_works", "distinct_hosts", "largest_host_share", "boundary")
+                key: quality[key] for key in ("distinct_works", "distinct_hosts", "largest_host_share", "cited_distinct_works", "uncited_readable_source_ids", "boundary")
             }
+            delivered_context["evidence_quality"]["most_reused_works"] = sorted(
+                quality["reused_works"], key=lambda item: (-item["notebook_count"], item["work"]))[:4]
         working_set_shadow = self.working_set(state)
         trust_compacts_shadow = build_trust_compacts_shadow(state)
         retrieval_shadow = build_retrieval_shadow(state, working_set_shadow, trust_compacts_shadow)
@@ -2148,6 +2165,8 @@ class Engine:
         # the final contract from that view while retaining full-state queue and
         # prior artifact identities, even in routine compact memory.
         prior_constraints = request["context"].get("proposal_constraints")
+        if state.get("charter"):
+            request["context"]["evidence_quality"] = delivered_context["evidence_quality"]
         self.proposal_constraints(state, request["context"])
         if prior_constraints != request["context"].get("proposal_constraints"):
             request["response_schema"] = _provider_response_schema(request["context"], bool(state.get("charter")))
@@ -2158,6 +2177,9 @@ class Engine:
             request["context"]["research_phase"] = "planning"
             request["system"] = RESEARCH_PLAN_SYSTEM + (ACTIVE_MEMORY_SYSTEM if routine_memory else "")
             request["response_schema"] = research_plan_schema(request["context"])
+            if self.config.get("research_google_search"):
+                request["tools"] = ["search_public_web"]
+                request["system"] += "\nUse Google Search to cross-reference primary research, alternative explanations and indexed discussions (including Reddit where useful). Search snippets and discussions are discovery leads, not qualifying evidence. Prefer approved primary article URLs for collection. Return only the required JSON plan.\n"
         if routine_memory:
             self.fit_active_request(request)
         # A matrix sidecar is optional experiment work, never a prerequisite

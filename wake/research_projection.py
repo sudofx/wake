@@ -199,12 +199,15 @@ def _matrix_projection(progress, reported):
               'failed_checks': [k for k, v in results.get(c.coordinate_id, {}).get('checks', {}).items() if v is False],
               'diagnostics': deepcopy(results.get(c.coordinate_id, {}).get('diagnostics', {}))}
              for c in MATRIX.coordinates()]
+    scores = [cell['score'] for cell in cells if cell['status'] == 'completed' and isinstance(cell['score'], (int, float))]
     return {'id': MATRIX_KEY, 'definition_digest': MATRIX.definition_digest, 'axes': axes,
             'cells': cells, 'reported': reported, 'enabled': bool(progress) if reported else None,
             'completed': (progress or {}).get('completed_count', 0) if reported else None,
             'next_coordinate': (progress or {}).get('next_coordinate_id'),
             'failure_counts': deepcopy((progress or {}).get('failure_counts', {})),
-            'passed': (progress or {}).get('passed_count', 0)}
+            'passed': (progress or {}).get('passed_count', 0) if reported else None,
+            'mean_score': round(sum(scores) / len(scores), 4) if scores else None,
+            'score_count': len(scores)}
 
 
 def _wake_traces(invocations, events, state):

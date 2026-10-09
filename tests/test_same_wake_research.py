@@ -47,6 +47,17 @@ class SameWakeTests(unittest.TestCase):
         self.store.close(); self.temp.cleanup()
     def collect(self, engine, requests):
         return collect_planned(engine, requests, fetcher=lambda url: dict(excerpt='entropy comparison measurement findings', url=url))
+    def test_google_tool_grant_is_recorded_only_for_planning(self):
+        self.engine.config['research_google_search'] = True
+        provider = ImmediateProvider()
+        with patch('wake.research.collect_planned', self.collect):
+            result = self.engine.run(provider, collector=lambda e: None)
+        self.assertEqual(result['status'], 'accepted')
+        self.assertEqual(provider.requests[0]['tools'], ['search_public_web'])
+        self.assertNotIn('tools', provider.requests[1])
+        starts = [e['payload'] for e in self.store.events() if e['kind'] == 'invocation_started']
+        self.assertEqual(starts[0]['request']['tools'], ['search_public_web'])
+        self.assertEqual(starts[0]['request_hash'], digest(starts[0]['request']))
     def test_two_calls_one_accepted_cycle_sources_available_before_final_request(self):
         provider = ImmediateProvider()
         with patch('wake.research.collect_planned', self.collect):
@@ -62,6 +73,8 @@ class SameWakeTests(unittest.TestCase):
         self.assertIn('Entropy comparison', result['answer'])
         for request in provider.requests:
             self.assertEqual(request['context']['operator_question'], 'What distinguishes entropy measurements?')
+            self.assertIn('uncited_readable_source_ids', request['context']['evidence_quality'])
+            self.assertIn('most_reused_works', request['context']['evidence_quality'])
         final = provider.requests[-1]['context']
         readable = {item['id'] for item in final['evidence'] if item.get('content')}
         self.assertTrue(set(result['same_wake_research']['evidence_ids']) <= readable)

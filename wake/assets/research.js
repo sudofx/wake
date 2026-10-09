@@ -258,6 +258,11 @@
     renderRuntimeActivity();
     $('matrix-state').textContent=m.reported?(m.enabled?'Continuity campaign recorded':'Campaign not enabled'):'Campaign progress not reported';
     $('matrix-coverage').textContent=m.reported?`${count(m.completed)} / ${count(m.cells.length)}`:`— / ${count(m.cells.length)}`;
+    const checks=$('matrix-checks');
+    if(checks){
+      const failures=Object.entries(m.failure_counts||{}).sort((a,b)=>b[1]-a[1]);
+      checks.textContent=m.reported?`${m.passed==null?'Complete-pass count unavailable':`${count(m.passed)} / ${count(m.completed)} completed cells passed every check`}. ${typeof m.mean_score==='number'?`Mean check score ${(100*m.mean_score).toFixed(1)}%; this is not a complete-pass rate.`:'Mean check score unavailable.'}${failures.length?` Failed checks: ${failures.map(([name,n])=>`${name.replaceAll('_',' ')} ${count(n)}`).join(' · ')}.`:''}`:'Check outcomes are not reported.';
+    }
     const enable=$('matrix-enable');
     if(enable)enable.hidden=local || !(m.reported && m.enabled===false);
     $('cube-selectors').innerHTML=m.axes.map((a,i)=>`<label>${esc(matrixAxisName(a))} <small>(${esc(a.label)})</small><select data-cube-axis="${i}" aria-label="${esc(matrixAxisName(a))} (${esc(a.label)})">${a.values.map((v,j)=>`<option value="${j}">${esc(v.label)}</option>`).join('')}</select></label>`).join('');

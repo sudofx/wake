@@ -30,6 +30,10 @@ inquiry_drive_enabled = false
 # expose rejected proposals as explicit counterfactual receipts for review.
 observation_mode = true
 # Plan, retrieve routing hops immediately, then submit one governed proposal.
+# Google Search is available only during recorded research planning.
+# Grounding results remain discovery leads, not independently collected evidence.
+# Disabled until this API project has grounding quota; public Bing discovery is independent.
+research_google_search = false
 same_wake_research = true
 research_collection_budget = 6
 repository = "sudofx/wake"
