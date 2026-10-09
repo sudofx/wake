@@ -51,3 +51,11 @@ class PreviewIntentTests(unittest.TestCase):
                 dev_preview.stop()
             self.assertFalse(identity.exists())
             self.assertEqual(record.read_bytes(), b'record retained')
+
+    @unittest.skipUnless(Path('/proc/self/stat').exists(), 'Linux process identity proof')
+    def test_matching_foreign_process_metadata_is_not_launcher_authority(self):
+        proc = Path('/proc/self')
+        identity = dict(pid=os.getpid(),
+            start_time=(proc/'stat').read_text().rsplit(')',1)[1].split()[19],
+            command=[arg.decode() for arg in (proc/'cmdline').read_bytes().split(bytes([0]))[:-1]])
+        self.assertFalse(dev_preview.alive(identity))

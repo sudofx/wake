@@ -30,6 +30,15 @@ def command(port, research=False):
 def alive(identity):
     """Linux dev containers expose executable arguments and start-time in proc."""
     try:
+        # Matching a stored PID/start-time/argv is insufficient if that argv
+        # belongs to a foreign process. Only this launcher's canonical command
+        # can confer stop or resume authority.
+        args = identity['command']
+        if not isinstance(args, list):
+            return False
+        port = int(args[args.index('--port') + 1])
+        if not 1 <= port <= 65535 or args != command(port, bool(identity.get('research'))):
+            return False
         proc = Path('/proc') / str(identity['pid'])
         # Start-time guards PID reuse even if another identical preview starts.
         fields = (proc / 'stat').read_text().rsplit(')', 1)[1].split()
@@ -37,7 +46,7 @@ def alive(identity):
                 and (proc / 'cmdline').read_bytes().split(b'\0')[:-1]
                 == [arg.encode() for arg in identity['command']]
                 and (proc / 'cwd').resolve() == ROOT)
-    except (OSError, KeyError, ValueError):
+    except (OSError, KeyError, ValueError, IndexError, TypeError):
         return False
 
 
