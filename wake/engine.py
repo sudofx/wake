@@ -69,6 +69,27 @@ TOPIC_COLORS = (
 )
 
 
+# Human-readable delivery labels, not model instructions or authority. Under
+# pressure their shorter wording carries the same omission categories; the
+# provenance policy and exact supplied records remain separate, unchanged fields.
+COMPACT_OMISSION_LABELS = {
+    "full durable evidence content": "full evidence bodies",
+    "research and blog history outside the bounded working set": "older research/blog history",
+    "core instruction prose compacted; response schema and governance unchanged": "core instruction prose",
+    "active-memory instruction prose compacted; trust and retrieval boundaries unchanged": "memory instruction prose",
+    "advisory source-selection diagnostics": "source-selection diagnostics",
+    "belief review choices bounded to one new visible root per belief; durable roots unchanged": "extra eligible review citations",
+    "extended recovery prose; project/frame and observation pointers retained": "extended recovery prose",
+    "extended evidence excerpts; all visible evidence IDs retained": "extended source prose",
+    "extended working prose; all belief/project/notebook identities and roots retained": "extended working prose",
+    "shorter source excerpts; all visible evidence IDs and provenance retained": "shortened source excerpts",
+    "prior notebook finding prose; artifact hashes and new-source eligibility retained": "prior notebook finding prose",
+    "editorial reflection history excerpted; original window hash/counts retained, no missing content may be inferred": "editorial reflection prose",
+    "editorial notebook titles omitted; eligibility, revisions and evidence roots retained": "editorial notebook titles",
+    "minimal source excerpts; all evidence identities and provenance retained": "minimal source excerpts",
+}
+
+
 def _topic_colors(topics):
     """Assign a fresh, recorded color to each configured topic."""
     require(len(topics) <= len(TOPIC_COLORS), "Too many topics for unique topic colors")
@@ -949,6 +970,34 @@ class Engine:
         if "bounded_context" in context:
             context["bounded_context"]["omitted_categories"] = list(dict.fromkeys(
                 context["bounded_context"].get("omitted_categories", [])))
+            # Audit explanations can themselves crowd out a probe after research
+            # grows. Keep every category, shortening only its display label.
+            # Unknown/new labels remain verbatim instead of silently disappearing.
+            if len(canonical(request)) > self.config["max_context_chars"]:
+                context["bounded_context"]["omitted_categories"] = list(dict.fromkeys(
+                    COMPACT_OMISSION_LABELS.get(label, label)
+                    for label in context["bounded_context"]["omitted_categories"]))
+        if len(canonical(request)) > self.config["max_context_chars"]:
+            fields = {"belief": "beliefs", "evidence": "evidence",
+                      "project": "projects", "notebook": "notebooks",
+                      "commitment": "commitments", "research": "research"}
+            for item in context["memory"]["retrieved_records"]:
+                field = fields.get(item["kind"])
+                location = {"field": "context." + field, "id": item["id"]} if field else None
+                record = next((value for value in context.get(field, [])
+                               if value.get("id") == item["id"]), None) if field else None
+                if record is None or item.get("content_location") != location:
+                    continue
+                value = item["value"]
+                # Preserve conflicting provenance as explicit material. A full
+                # record pointer may replace identical fields, never a different
+                # source or evidence-root set that still needs reconciliation.
+                if any(key in value and value[key] != record.get(key)
+                       for key in ("evidence", "source")):
+                    continue
+                for key in list(value):
+                    if key in record and value[key] == record[key]:
+                        value.pop(key)
 
     def fit_bounded_request(self, request):
         """Deterministically shrink an already-bounded provider request below the hard ceiling.

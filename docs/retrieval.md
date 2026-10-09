@@ -146,3 +146,14 @@ Application, probe and operator-question instructions and the response schema
 remain intact. The delivery
 receipt records the compaction; durable evidence roots, obligations and governance
 are unchanged. Requests that still cannot fit fail before inference.
+
+Under extreme final-envelope pressure, omission explanations use concise,
+human-readable labels. Every category remains represented; unknown labels stay
+verbatim. This reduces delivery metadata rather than omitting a test, evidence
+identity, provenance root or obligation. Exact delivered requests remain recorded.
+
+A retrieved record with a full-record `content_location` pointer may omit fields
+that exactly duplicate that supplied working record. Retrieval hashes and the
+pointer remain; every omitted field stays in the named working record. Different
+source provenance or evidence roots remain explicit instead of being merged or
+discarded. Records outside the supplied working view retain their values.

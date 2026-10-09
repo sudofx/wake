@@ -482,3 +482,37 @@ class ActiveMemoryTests(unittest.TestCase):
         for boundary in ('CHALLENGED', 'SETTLED', 'source independence', 'never invent omitted content',
                          'context.evidence', 'allowlists', 'content_location', 'No new tools'):
             self.assertIn(boundary,request['system'])
+
+    def test_extreme_pressure_reuses_exact_working_roots_and_preserves_different_provenance(self):
+        from wake.event_format import canonical
+        from wake.engine import COMPACT_OMISSION_LABELS
+        belief=dict(id='kept', status='active', confidence=.7,
+                    evidence=['root-'+str(i) for i in range(40)])
+        matching=dict(kind='belief',id='kept',record_hash='exact-retrieval-hash',
+                      content_location=dict(field='context.beliefs',id='kept'),
+                      value=copy.deepcopy(belief))
+        different=dict(kind='belief',id='other',record_hash='other-retrieval-hash',
+                       content_location=dict(field='context.beliefs',id='other'),
+                       value=dict(id='other', evidence=['different-root']))
+        context=dict(beliefs=[copy.deepcopy(belief),dict(id='other',evidence=['working-root'])],
+                     commitments=[dict(id='due',task='Keep this obligation')],
+                     evidence=[],memory=dict(retrieved_records=[matching,different],trust_compacts=[]),
+                     bounded_context=dict(omitted_categories=list(COMPACT_OMISSION_LABELS)+['unknown category']))
+        request=dict(context=context)
+        roots=copy.deepcopy(context['beliefs'])
+        different_before=copy.deepcopy(different)
+        # Force both metadata and repeated-root compaction; no research record
+        # or matrix packet is removed merely to satisfy the envelope.
+        self.engine.config['max_context_chars']=len(canonical(request))-1000
+        self.engine.fit_active_request(request)
+        self.assertLessEqual(len(canonical(request)),self.engine.config['max_context_chars'])
+        self.assertEqual(context['beliefs'],roots)
+        self.assertEqual(context['commitments'][0]['task'],'Keep this obligation')
+        self.assertEqual(matching['record_hash'],'exact-retrieval-hash')
+        self.assertEqual(matching['content_location'],dict(field='context.beliefs',id='kept'))
+        self.assertNotIn('evidence',matching['value'])
+        self.assertEqual(different['value'],different_before['value'])
+        self.assertEqual(different['record_hash'],different_before['record_hash'])
+        self.assertEqual(different['content_location'],different_before['content_location'])
+        self.assertEqual(len(context['bounded_context']['omitted_categories']),len(COMPACT_OMISSION_LABELS)+1)
+        self.assertIn('unknown category',context['bounded_context']['omitted_categories'])
