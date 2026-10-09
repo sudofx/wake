@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import subprocess
+import sqlite3
 import sys
 import tempfile
 import unittest
@@ -12,6 +13,23 @@ from wake.record_store import RecordStore
 
 
 class AuthorityFreshProcessTests(unittest.TestCase):
+    def test_cli_audit_checks_interior_history_despite_valid_projection(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary) / "wake-data"
+            def cli(command, *args):
+                return subprocess.run(
+                    [sys.executable, "-m", "wake", "--data", str(root), command, *args],
+                    capture_output=True, text=True, timeout=30)
+            self.assertEqual(cli("init").returncode, 0)
+            self.assertEqual(cli("observe", "--source", "fixture:sensor", "--text", "measurement").returncode, 0)
+            self.assertEqual(cli("audit").returncode, 0)
+            with sqlite3.connect(root / "wake.sqlite") as database:
+                database.execute("UPDATE events SET reasons = ? WHERE sequence = 1", ('["tampered"]',))
+            self.assertEqual(cli("status").returncode, 0)
+            result = cli("audit")
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("event chain is invalid at sequence 1", result.stdout + result.stderr)
+
     def test_cli_cycles_1_5_10_retract_sensor_belief(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary) / "wake-data"

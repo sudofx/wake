@@ -279,6 +279,23 @@ class RecordStore:
         envelope = self._envelope()
         return envelope["state"], envelope["migration"]["legacy_head"]
 
+    def audit(self):
+        """Verify all kernel journals and independently reconstruct domain history.
+
+        Caller holds the installation writer lock. Historical accepted work is
+        reduced under historical rules; current eligibility must not retroactively
+        reject an intact record when evidence policy becomes stricter.
+        """
+        from .audit import verify_events
+
+        self.record.full_replay()
+        self.record.invocation_history()
+        self.record.application_access_state()
+        state, head = verify_events(self.events(), self.head())
+        if state != self.load():
+            raise IntegrityError("WAKE projection differs from independently replayed history")
+        return state, head
+
     def replay_record(self):
         """Return verified WAKE-compatible state, head, and event history."""
         state, head = self.replay()

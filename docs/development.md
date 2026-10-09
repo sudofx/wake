@@ -150,6 +150,11 @@ on loopback, LAN and hosted hostnames. For UI changes, inspect the browser's act
 record head/version and selected trace as well as layout and overflow. Test the
 artifact produced by export, not only its source templates.
 
+`python -m wake --data DATA audit` verifies the complete kernel event chain,
+provider and access journals, then independently reduces the active application's
+history using historical acceptance rules and compares it with the current
+projection. `status` uses the fast projection path and is not a full audit.
+
 Container acceptance lives in `scripts/test_container.py`: it uses isolated
 resources, no network, and verifies persistence through recreation.
 `scripts/test_installations.py` verifies multiple real Compose installations and

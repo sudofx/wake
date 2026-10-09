@@ -12,10 +12,20 @@ from .event_format import ZERO, digest
 from .domain_events import empty, reduce_event
 
 def verify_history(path, expected_head=None):
+    def events():
+        for seq, line in enumerate(Path(path).read_text().splitlines(), 1):
+            try:
+                yield json.loads(line)
+            except ValueError as exc:
+                raise IntegrityError(f"Exported event {seq} is invalid: {exc}") from exc
+    return verify_events(events(), expected_head)
+
+
+def verify_events(events, expected_head=None):
+    """Verify exact domain history using historical reduction, not today's policy."""
     state, head = empty(), ZERO
-    for seq, line in enumerate(Path(path).read_text().splitlines(), 1):
+    for seq, event in enumerate(events, 1):
         try:
-            event = json.loads(line)
             if event["seq"] != seq or event["prev_hash"] != head or digest({k:v for k,v in event.items() if k != "hash"}) != event["hash"]:
                 raise IntegrityError(f"Exported event {seq} failed verification")
             state = reduce_event(state, event, historical=True)

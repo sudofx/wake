@@ -212,7 +212,7 @@ def execute(args):
                 require(state["pending"] is None, "Finish or recover the pending invocation first")
                 return engine.store.continuity_matrix_progress() or engine.store.enable_continuity_matrix()
             if args.command in ("status", "audit"):
-                _, head = engine.store.replay()
+                state, head = engine.store.audit() if args.command == "audit" else engine.store.replay()
                 return {"valid": True, "cycles": state["version"], "head": head,
                         "pending": state["pending"], "beliefs": len(state["beliefs"]),
                         "open_commitments": sum(c["status"] == "open" for c in state["commitments"].values()),
