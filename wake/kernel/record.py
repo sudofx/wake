@@ -65,20 +65,60 @@ from .storage import (
 # wake record; user_version gives storage evolution one ordered owner instead
 # of scattering opportunistic CREATE/ALTER statements through runtime paths.
 APPLICATION_ID = 0x53444658  # Frozen V1 file-format identity; retain for existing records.
-SCHEMA_VERSION = 11
+SCHEMA_VERSION = 12
 
 
-_PROJECTION_CODEC_PREFIX = "zlib:"
+_PROJECTION_CODEC_PREFIX = "zlib:"  # Legacy v8-v11 text wrapper, still readable.
+_EVENT_CODEC_PREFIX = b"wake:event-json:zlib@1\x00"
+_PROJECTION_BINARY_PREFIX = b"wake:projection-json:zlib@1\x00"
 
 
-def _encode_projection_state(state_json: str) -> str:
-    """Compress derived projection bytes without changing semantic state."""
-    compressed = zlib.compress(state_json.encode(), level=9)
-    return _PROJECTION_CODEC_PREFIX + base64.b64encode(compressed).decode("ascii")
+def _decode_binary_json(stored: bytes, prefix: bytes) -> str:
+    """Decode one versioned storage value, rejecting truncated/extra streams."""
+    if not stored.startswith(prefix):
+        raise IntegrityError("unknown compressed record storage encoding")
+    try:
+        decoder = zlib.decompressobj()
+        raw = decoder.decompress(stored[len(prefix):]) + decoder.flush()
+        if not decoder.eof or decoder.unused_data or decoder.unconsumed_tail:
+            raise ValueError("incomplete or trailing compressed stream")
+        return raw.decode("utf-8")
+    except (ValueError, zlib.error, UnicodeDecodeError) as error:
+        raise IntegrityError("compressed record storage is invalid") from error
 
 
-def _decode_projection_state(stored: str) -> str:
-    """Decode current or legacy projection storage into canonical JSON text."""
+def _encode_event_payload(payload_json: str) -> str | bytes:
+    """Compress large physical payloads; semantic event/hash bytes never change.
+
+    SQLite's existing non-STRICT column accepts BLOBs as well as legacy TEXT.
+    Small or incompressible JSON stays TEXT, avoiding codec overhead. No consumer
+    may parse the physical column directly: decode before replay/hash/export.
+    """
+    raw = payload_json.encode("utf-8")
+    if len(raw) < 1024:
+        return payload_json
+    packed = _EVENT_CODEC_PREFIX + zlib.compress(raw, level=6)
+    return packed if len(packed) < len(raw) else payload_json
+
+
+def _decode_event_payload(stored: str | bytes) -> str:
+    if isinstance(stored, str):
+        return stored
+    if isinstance(stored, bytes):
+        return _decode_binary_json(stored, _EVENT_CODEC_PREFIX)
+    raise IntegrityError("invalid event payload storage type")
+
+
+def _encode_projection_state(state_json: str) -> bytes:
+    """Compress a derived cache without Base64's physical storage expansion."""
+    return _PROJECTION_BINARY_PREFIX + zlib.compress(state_json.encode("utf-8"), level=9)
+
+
+def _decode_projection_state(stored: str | bytes) -> str:
+    if isinstance(stored, bytes):
+        return _decode_binary_json(stored, _PROJECTION_BINARY_PREFIX)
+    if not isinstance(stored, str):
+        raise IntegrityError("invalid record projection storage type")
     if not stored.startswith(_PROJECTION_CODEC_PREFIX):
         return stored
     try:
@@ -295,7 +335,7 @@ class _SQLiteTransaction:
                 event.status,
                 event.revision_before,
                 event.revision_after,
-                canonical_json(event.payload),
+                _encode_event_payload(canonical_json(event.payload)),
                 canonical_json(list(event.reasons)),
                 canonical_json(event.provenance) if event.provenance is not None else None,
                 event.previous_hash,
@@ -350,6 +390,11 @@ class Record:
     def __init__(self, path: str | Path) -> None:
         self.path = str(path)
         self.schema_changed = self._initialize()
+        if getattr(self, "storage_encoding_migrated", False):
+            # Logical migration has committed atomically. Reclaim its old pages
+            # once, including on standalone installs that have no Git checkpoint.
+            # Failure leaves a valid v12 record, never a partially rewritten chain.
+            self.compact()
 
     @classmethod
     def open_read_only(cls, path: str | Path) -> "Record":
@@ -734,7 +779,7 @@ class Record:
             projection = connection.execute(
                 "SELECT state, state_digest FROM record_projection WHERE singleton = 1"
             ).fetchone()
-            if projection is not None and version < 8:
+            if projection is not None and version < 12:
                 state_json = _decode_projection_state(projection["state"])
                 if hashlib.sha256(state_json.encode()).hexdigest() != projection["state_digest"]:
                     raise IntegrityError("record projection state digest is invalid")
@@ -759,6 +804,31 @@ class Record:
                         hashlib.sha256(state_json.encode()).hexdigest(),
                     ),
                 )
+
+            if version < 12:
+                # Storage migration only: the original UTF-8 JSON bytes, event
+                # hashes, row identities, provenance and all journals survive.
+                # Verification precedes rewriting; any decode/update failure
+                # rolls back the complete migration and its version marker.
+                before_chain = self._verified_chain(connection)
+                before_invocations = self._verified_invocation_history(connection)
+                before_access = self._verified_application_access_history(connection)
+                migrated = False
+                for row in connection.execute("SELECT sequence, payload FROM events ORDER BY sequence"):
+                    raw = _decode_event_payload(row["payload"])
+                    encoded = _encode_event_payload(raw)
+                    if _decode_event_payload(encoded) != raw:
+                        raise IntegrityError("event storage migration changed decoded bytes")
+                    if encoded != row["payload"]:
+                        connection.execute("UPDATE events SET payload = ? WHERE sequence = ?",
+                                           (encoded, row["sequence"]))
+                        migrated = True
+                if self._verified_chain(connection) != before_chain:
+                    raise IntegrityError("event storage migration changed the verified chain")
+                if (self._verified_invocation_history(connection) != before_invocations
+                        or self._verified_application_access_history(connection) != before_access):
+                    raise IntegrityError("storage migration changed operational journals")
+                self.storage_encoding_migrated = version > 0 and (migrated or projection is not None)
 
             connection.execute(f"PRAGMA application_id = {APPLICATION_ID}")
             connection.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
@@ -1353,7 +1423,7 @@ class Record:
             "status": row["status"],
             "revision_before": row["revision_before"],
             "revision_after": row["revision_after"],
-            "proposal": json.loads(row["payload"]),
+            "proposal": json.loads(_decode_event_payload(row["payload"])),
             "reasons": json.loads(row["reasons"]),
             "provenance": json.loads(row["provenance"]) if row["provenance"] else None,
             "previous_hash": row["previous_hash"],
@@ -1391,7 +1461,7 @@ class Record:
         previous_hash = GENESIS_HASH
         sequence = 0
         for row in self.rows(connection):
-            payload = json.loads(row["payload"])
+            payload = json.loads(_decode_event_payload(row["payload"]))
             reasons = json.loads(row["reasons"])
             material = {
                 "receipt_id": row["receipt_id"],
@@ -1427,7 +1497,7 @@ class Record:
         previous_hash = GENESIS_HASH
         sequence = 0
         for row in self.rows(connection):
-            payload = json.loads(row["payload"])
+            payload = json.loads(_decode_event_payload(row["payload"]))
             reasons = json.loads(row["reasons"])
             material = {
                 "receipt_id": row["receipt_id"],
@@ -1568,7 +1638,7 @@ class Record:
                 "revision_before": row["revision_before"],
                 "revision_after": row["revision_after"],
                 "reasons": json.loads(row["reasons"]),
-                "proposal": json.loads(row["payload"]),
+                "proposal": json.loads(_decode_event_payload(row["payload"])),
                 "provenance": json.loads(row["provenance"]) if row["provenance"] else None,
                 "event_hash": row["event_hash"],
             }

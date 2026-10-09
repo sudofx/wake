@@ -146,3 +146,24 @@ recording an unperformed probe.
 Current proposal guidance derives belief-review eligibility from the full record and visible evidence. Existing belief IDs are separate from new-belief creation; a review must cite at least one visible evidence ID outside that belief's durable roots. If no such evidence is delivered, no review alternative is offered. This narrows generation guidance without changing acceptance or historical replay.
 
 When the provider request approaches its context ceiling, belief review alternatives are bounded to one genuinely new visible evidence root per belief before source prose is shortened. Durable belief evidence and deterministic governance remain unchanged. The ceiling now measures exact rendered system/user text shared with the provider adapter; instructions, response rules and enabled probes reserve space before working context. See [provider-ready budgeting](retrieval.md#provider-ready-input-budget) for receipt fields and historical measurement distinctions.
+
+## Lossless storage upgrade
+
+Storage version 12 reduces the SQLite file through per-event zlib encoding and a
+binary projection cache. The first writable open performs a verified atomic upgrade
+and one-time compaction before ordinary work. Prepare and test the candidate, use
+canonical Stop and fully drain research, preserve an immutable `wake-state` backup,
+then push and use canonical Restart. Verify the exact runtime, upgraded checkpoint,
+and a terminal new attempt. Never manually rewrite the live record or its hashes.
+
+The `.sqlite.gz` transport remains separately compressed and verified. A smaller
+SQLite file does not guarantee a smaller gzip package: already compressed individual
+payloads can reduce cross-event gzip savings. The existing 100 MiB blob guard still
+applies; storage compression does not provide unlimited hosted capacity.
+
+A prior runtime cannot read the newer format. After new work has been appended,
+rollback requires a compatible executable or an explicit lossless reverse migration;
+restoring the old backup would erase research. Kernel chain verification and
+historical application-policy reevaluation are distinct checks. Preserve and report
+any preexisting application replay discrepancy rather than weakening policy or
+rewriting accepted events to make the upgrade appear clean.

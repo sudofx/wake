@@ -83,3 +83,32 @@ hostname routing. The kernel and research application run without GitHub. GitHub
 transport, public Pages projection, and operator Actions belong to their hosted
 adapter, not application authority. See [development](development.md) for source,
 image, process, volume, and publication custody.
+
+## Physical storage and compatibility
+
+SQLite storage version 12 encodes large event JSON payloads as versioned zlib
+BLOBs when compression saves space; small or incompressible payloads remain TEXT.
+The projection cache uses a versioned binary zlib wrapper rather than Base64 text.
+The reader still accepts legacy event TEXT and legacy plain or `zlib:` projection
+text. Use record history/export APIs rather than parsing physical columns directly.
+
+Opening an older writable record verifies the event chain and operational journals,
+then atomically reencodes original UTF-8 JSON bytes and verifies the same chain and
+journals before committing the format marker. It neither canonicalizes historical
+payload text nor changes receipt IDs, timestamps, provenance, hashes, or revisions.
+A failed migration rolls back the rows, cache and version together. One subsequent
+verified compaction reclaims old pages; interruption there leaves a valid upgraded
+record. Reopening the current format does not repeat the migration.
+
+Cached reads verify the projection digest and its history anchor; they are not a
+full scan of every historical event. Full kernel replay verifies the complete chain
+and reconstructs recorded envelopes. Event-log application reevaluation additionally
+requires the matching historical policy semantics, as described above. Compression
+cannot repair policy drift or certify application reevaluation. Unknown, malformed,
+truncated or trailing compressed streams fail closed; decoded events still undergo
+ordinary hash verification. `tests/test_storage_compression.py` exercises migration,
+rollback, mixed formats, corruption, exact Unicode, exports and reader compatibility.
+
+Older runtimes reject storage version 12. Keep an immutable pre-upgrade backup,
+and upgrade each installation against its own record. Never restore that backup
+over work appended after the upgrade merely to roll back executable code.

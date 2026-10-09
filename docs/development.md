@@ -283,3 +283,11 @@ padding is scoped to nonmodular views. Verify the grid content edge as well as t
 outer workspace width when testing dock, pop-out and restore. Dedicated panel
 windows omit the site masthead and fit their reader inside the window frame;
 window resizing replaces in-page position and size controls.
+
+### Storage format upgrades across installations
+
+Each installation upgrades its own record on the next writable open. Updating source
+does not synchronize data. Keep user-stopped containers and Codespaces stopped;
+retain their volumes and upgrade them when the operator next starts them. Review
+[kernel storage compatibility](kernel.md#physical-storage-and-compatibility) before
+rolling an executable backward against an upgraded volume.
