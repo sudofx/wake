@@ -85,7 +85,7 @@ html[data-theme=light] body:not(.research-page) main :is(button,input,select,pre
 html[data-theme=light] :is(.reading-panel,.note-card,.topic-card,.about-contract){background:var(--surface)!important;border-color:var(--line)!important}
 
 /* Public reading surfaces must override dark glass, not just its text. */
-html[data-theme=light] body:not(.research-page) :is(.panel,.topic-hub,.discovery-card,.home-lead-story,.motion-pulse,.motion-numbers,.observatory-topic,.home-depth nav a,.constellation-shell,.metric-strip,.metric,.search,.reading-panel,.note-card,.topic-card,.about-contract){background:var(--surface)!important;border-color:var(--line)!important;box-shadow:0 8px 24px #2843650b!important}
+html[data-theme=light] body:not(.research-page) :is(.panel,.topic-hub,.discovery-card,.home-lead-story,.motion-pulse,.motion-numbers,.observatory-topic,.home-depth nav a,.constellation-shell,.metric-strip,.metric,.search,.reading-panel,.notebook-reading,.blog-reading,.article-reading,.longform-panel,.note-card,.topic-card,.about-contract){background:var(--surface)!important;border-color:var(--line)!important;box-shadow:0 8px 24px #2843650b!important}
 html[data-theme=light] body:not(.research-page) :is(.metric strong,.small,.exact,.relationship small,.page-heading,.about-intro,.intro,.record-type,.tiny-label,.field-head,.kind){color:var(--ink)!important;text-shadow:none!important}
 html[data-theme=light] body:not(.research-page) :is(.badge,.topic-tag){color:var(--cyan)!important;background:var(--surface-raised)!important;border-color:var(--line)!important}
 html[data-theme=light] body:not(.research-page) input::placeholder{color:var(--muted)!important}
