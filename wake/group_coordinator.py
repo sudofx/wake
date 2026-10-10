@@ -76,7 +76,9 @@ class GroupProviderGate:
 def group_provider_gate(settings):
     """Return a gate only for locally grouped standalone containers."""
     url = os.environ.get("WAKE_GROUP_COORDINATOR_URL", "")
-    member = os.environ.get("WAKE_GROUP_INSTANCE", "")
+    # The gateway indexes configured members by their public route hostname;
+    # WAKE_GROUP_INSTANCE is an internal peer-discovery alias instead.
+    member = os.environ.get("WAKE_PUBLIC_HOSTNAME", "").lower()
     if not url or not member:
         return None
     return GroupProviderGate(url, member, timeout_seconds=settings.get("timeout_seconds", 60))
