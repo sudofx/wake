@@ -182,39 +182,139 @@ class GroupProxy(BaseHTTPRequestHandler):
             return False
 
     def _serve_group_directory(self, host, group):
-        links = "".join(
-            f'<li><a href="http://{escape(member, quote=True)}/">'
-            f'{escape(member)}</a></li>'
-            for member in sorted(group["members"])
+        members = sorted(group["members"])
+        group_name = members[0].split(".", 1)[1] if members else host
+        panel = self._group_panel(
+            group_name,
+            members,
+            lambda member: f"http://{member}/",
+            "Open a member in a new tab.",
         )
-        self._serve_directory(f"WAKE group {host}", links)
+        self._serve_directory(group_name, [panel])
 
     def _serve_lan_directory(self, lan_ip):
-        sections = []
+        panels = []
         for group_name, group in sorted(self.server.groups.items()):
             members = [member for member in sorted(group["members"])
                        if self.server.routes[member].get("host_ip") not in {"127.0.0.1", "::1"}]
             if not members:
-                sections.append(f"<h2>{escape(group_name)}</h2><p>Recreate this group's containers to enable LAN access.</p>")
+                panels.append(self._group_panel(
+                    group_name, [], lambda member: "",
+                    "Recreate this group with LAN publishing enabled to add its links.",
+                ))
                 continue
-            links = "".join(
-                f'<li><a href="http://{escape(lan_ip, quote=True)}:{escape(self.server.routes[member]["host_port"], quote=True)}/console.html">'
-                f'{escape(member)}</a></li>'
-                for member in members
-            )
-            sections.append(f"<h2>{escape(group_name)}</h2><ul>{links}</ul>")
-        if not sections:
+            panels.append(self._group_panel(
+                group_name,
+                members,
+                lambda member: (
+                    f"http://{lan_ip}:{self.server.routes[member]['host_port']}/console.html"
+                ),
+                "Open a member on this local network in a new tab.",
+            ))
+        if not panels:
             self.send_error(403, "No WAKE groups are available from this network")
             return
-        self._serve_directory("WAKE groups", "".join(sections))
+        self._serve_directory("Local groups", panels)
 
-    def _serve_directory(self, title, links):
+    def _group_panel(self, group_name, members, href_for, description):
+        buttons = "".join(
+            '<a class="member-button" '
+            f'href="{escape(href_for(member), quote=True)}" target="_blank" '
+            f'rel="noopener noreferrer" aria-label="Open {escape(member, quote=True)} in a new tab">'
+            f'<span>{escape(member.split(".", 1)[0])}</span><small>↗</small></a>'
+            for member in members
+        )
+        member_count = f"{len(members)} {'member' if len(members) == 1 else 'members'}"
+        return (
+            '<section class="group-panel" aria-label="Group '
+            f'{escape(group_name, quote=True)}">'
+            '<header class="group-panel-heading"><div>'
+            f'<p class="eyebrow">LOCAL GROUP</p><h2>{escape(group_name)}</h2>'
+            f'</div><span class="member-count"><i></i>{member_count}</span></header>'
+            f'<p class="group-description">{escape(description)}</p>'
+            f'<div class="member-grid">{buttons}</div></section>'
+        )
+
+    def _serve_directory(self, title, panels):
         body = (
-            "<!doctype html><html lang=\"en\"><meta charset=\"utf-8\">"
-            f"<title>{escape(title)}</title>"
-            f"<h1>{escape(title)}</h1>"
-            "<p>Choose a WAKE container:</p>"
-            f"{links}</html>"
+            '<!doctype html><html lang="en"><head><meta charset="utf-8">'
+            '<meta name="viewport" content="width=device-width, initial-scale=1">'
+            '<meta name="theme-color" content="#f3f6fb">'
+            f'<title>WAKE✳︎ · {escape(title)}</title>'
+            '<style>'
+            ':root{color-scheme:light;--paper:#e8ecf4;--surface:#f8faff;--ink:#283457;'
+            '--muted:#59627e;--line:#c5cce0;--blue:#0f84a5;--violet:#7c5cc4;'
+            '--soft:#eef0f8;--button-bg:#f7f9fd;--button-line:#cbd6e9;--button-hover-line:#9eb5dc;'
+            '--masthead-bg:rgba(255,255,255,.76);--dot:#75a9d6;--shadow:0 14px 36px rgba(36,40,59,.06)}'
+            ':root[data-theme=dark]{color-scheme:dark;--paper:#24283b;--surface:#1f2335;--ink:#c0caf5;'
+            '--muted:#a9b1d6;--line:#3b4261;--blue:#7dcfff;--violet:#bb9af7;--soft:#292e42;'
+            '--button-bg:#292e42;--button-line:#3b4261;--button-hover-line:#6574a0;'
+            '--masthead-bg:rgba(31,35,53,.92);--dot:#7dcfff;--shadow:0 14px 36px rgba(0,0,0,.16)}'
+            '*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);'
+            'font:16px/1.55 Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}'
+            'a{color:inherit;text-decoration:none;-webkit-tap-highlight-color:transparent}'
+            'a:focus-visible{outline:3px solid var(--violet);outline-offset:4px}'
+            '.masthead{height:76px;border-bottom:1px solid var(--line);background:var(--masthead-bg);'
+            'display:flex;align-items:center;justify-content:space-between;padding:0 max(22px,calc((100vw - 980px)/2))}'
+            '.brand{font-size:25px;line-height:1;font-weight:800;letter-spacing:-1.1px}'
+            '.masthead-tools{display:flex;align-items:center;gap:18px}.theme-switch{position:relative;display:inline-flex;'
+            'align-items:center;cursor:pointer}.theme-switch input{position:absolute;width:1px;height:1px;margin:0;opacity:0}'
+            '.theme-track{display:inline-flex;align-items:center;flex:0 0 34px;width:34px;height:18px;padding:2px;'
+            'border:1px solid var(--line);border-radius:20px;background:var(--surface)}'
+            '.theme-track i{display:block;width:12px;height:12px;flex:0 0 12px;border-radius:50%;'
+            'background:var(--muted);transition:transform .15s ease,background .15s ease}'
+            '.theme-switch input:checked+.theme-track i{transform:translateX(16px);background:var(--blue)}'
+            '.theme-switch:focus-within{outline:2px solid var(--blue);outline-offset:3px;border-radius:20px}'
+            '.brand-star{color:var(--blue);margin-left:2px}.masthead-label,.eyebrow,.member-count,.gateway-foot'
+            '{font:10px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.09em;text-transform:uppercase}'
+            '.masthead-label{color:var(--muted);display:flex;align-items:center;gap:9px}'
+            '.masthead-label i{display:block;width:7px;height:7px;border-radius:50%;background:#e7c35a}'
+            'main{width:min(100% - 40px,760px);margin:0 auto;padding:58px 0 64px}'
+            '.page-intro{margin-bottom:30px}.eyebrow{color:var(--muted);margin:0 0 9px}'
+            'h1{font-size:clamp(30px,6vw,43px);line-height:1.08;letter-spacing:-1.8px;margin:0;font-weight:750}'
+            '.intro-copy{color:var(--muted);font-size:14px;margin:12px 0 0;max-width:520px}'
+            '.group-list{display:grid;gap:15px}.group-panel{border:1px solid var(--line);border-radius:15px;'
+            'background:var(--surface);box-shadow:var(--shadow);padding:21px 22px 22px}'
+            '.group-panel-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}'
+            '.group-panel-heading .eyebrow{font-size:9px;margin-bottom:5px;color:var(--blue)}'
+            '.group-panel h2{font-size:19px;letter-spacing:-.35px;line-height:1.25;margin:0;font-weight:700}'
+            '.member-count{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:9px;white-space:nowrap}'
+            '.member-count i{width:6px;height:6px;border-radius:50%;background:var(--dot)}'
+            '.group-description{color:var(--muted);font-size:12px;margin:11px 0 16px}'
+            '.member-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:9px}'
+            '.member-button{min-height:48px;border:1px solid var(--button-line);border-radius:10px;background:var(--button-bg);'
+            'display:flex;align-items:center;justify-content:space-between;padding:0 13px;color:var(--blue);'
+            'font-size:13px;font-weight:700;transition:background .15s,border-color .15s,transform .15s}'
+            '.member-button small{font-size:12px;color:var(--muted);font-weight:400}'
+            '@media(hover:hover){.member-button:hover{background:var(--soft);border-color:var(--button-hover-line);transform:translateY(-1px)}}'
+            '.gateway-foot{margin:23px 0 0;color:var(--muted);font-size:9px;letter-spacing:.04em;text-transform:none}'
+            '@media(max-width:480px){.masthead{height:66px;padding:0 17px}.brand{font-size:22px}.masthead-tools{gap:12px}'
+            'main{width:calc(100% - 32px);padding:39px 0 48px}.group-panel{padding:18px 16px}'
+            '.member-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.member-button{padding:0 10px}}'
+            '@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}}'
+            '</style><script>(function(){let choice;try{choice=localStorage.getItem("wake-site-theme")}catch{}'
+            'const dark=choice==="dark"||(!["light","dark"].includes(choice)&&matchMedia("(prefers-color-scheme: dark)").matches);'
+            'document.documentElement.dataset.theme=dark?"dark":"light"})();</script></head><body>'
+            '<header class="masthead"><div class="brand">WAKE<span class="brand-star">✳︎</span></div>'
+            '<div class="masthead-tools"><label class="theme-switch" title="Following system theme">'
+            '<input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme">'
+            '<span class="theme-track" aria-hidden="true"><i></i></span></label>'
+            '<div class="masthead-label"><i></i>LOCAL GATEWAY</div></div></header>'
+            '<main><div class="page-intro"><p class="eyebrow">WAKE✳︎ / GROUP ACCESS</p>'
+            f'<h1>{escape(title)}</h1>'
+            '<p class="intro-copy">Choose a member to open its WAKE Console in a new tab.</p></div>'
+            f'<div class="group-list">{"".join(panels)}</div>'
+            '<p class="gateway-foot">Each member keeps its own research record and can continue independently.</p>'
+            '</main><script>(function(){const root=document.documentElement,media=matchMedia("(prefers-color-scheme: dark)"),'
+            'key="wake-site-theme",toggle=document.getElementById("theme-toggle");let choice;'
+            'try{choice=localStorage.getItem(key)}catch{}if(!["dark","light"].includes(choice))choice=null;'
+            'const sync=()=>{const dark=(choice||(media.matches?"dark":"light"))==="dark",theme=dark?"dark":"light";'
+            'root.dataset.theme=theme;root.style.colorScheme=theme;document.querySelector("meta[name=theme-color]").content=dark?"#000000":"#f3f6fb";'
+            'toggle.checked=dark;toggle.setAttribute("aria-label",dark?"Use light theme":"Use dark theme");'
+            'toggle.closest("label").title=`${choice?"Manual":"Following system"} ${theme} theme · switch to ${dark?"light":"dark"}`};'
+            'sync();toggle.addEventListener("change",()=>{choice=toggle.checked?"dark":"light";try{localStorage.setItem(key,choice)}catch{}sync()});'
+            'media.addEventListener("change",()=>{if(!choice)sync()});window.addEventListener("storage",event=>{if(event.key===key){'
+            'choice=["dark","light"].includes(event.newValue)?event.newValue:null;sync()}})})();</script></body></html>'
         ).encode("utf-8")
         self.send_response(200)
         self.send_header("Content-Type", "text/html; charset=utf-8")
