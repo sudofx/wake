@@ -241,10 +241,13 @@ runtime promotion is part of local container operation.
 ## Repository convenience launcher
 
 `./scripts/wake_runner` creates and starts the default `wake` container when it is
-absent. If it already exists, the runner leaves it as-is and reports its research
-state and continuity progress. `./scripts/wake_runner.sh` is an equivalent entry
-point. A named invocation such as `./scripts/wake_runner wake-dev` follows the
-same create-if-missing, report-if-present behavior.
+absent. It publishes the container on a random localhost port and prints its URL;
+the suggested `/etc/hosts` entry lets that URL use the container name, such as
+`http://wake:8088/`. If the container already exists, the runner leaves it as-is
+and reports its research state and continuity progress. `./scripts/wake_runner.sh`
+is an equivalent entry point. A named invocation such as
+`./scripts/wake_runner wake-dev` follows the same create-if-missing,
+report-if-present behavior.
 
 New containers are enrolled in continuity@1 by default. Pass `--campaign none`
 when creating a container to omit that enrollment, for example
@@ -258,7 +261,7 @@ and `~/.inputrc` into that container's `/home/wake` volume. Missing files are
 skipped. This is enabled by default for solo containers and each newly created
 group member. Use `--dotfiles=false` (or `--no-dotfiles`) to skip the copy, for
 example `./scripts/wake_runner wake-dev --dotfiles=false` or
-`./scripts/wake_runner count --name wake.local --count 3 --dotfiles=false`.
+`./scripts/wake_runner wake.local --count 3 --dotfiles=false`.
 `--dotfiles false` is also accepted. This only applies when a container is
 created; invoking the runner for an existing container leaves its home volume
 unchanged.
@@ -270,14 +273,17 @@ Research reset asks the operator to type the container name and starts a new WAK
 generation at zero while preserving append-only history and continuity results.
 Container lifecycle is separate: `--container stop|start|pause|remove
 [container-name-or-group]`. `remove` deletes the selected container(s) and any
-unshared attached Docker data volumes. Numbered group prefixes select their
-`-001` through `-NNN` members when no exact container has that name.
+unshared attached Docker data volumes. A group prefix selects its
+`001.PREFIX` through `NNN.PREFIX` members when no exact container has that name.
 
-Create a numbered group with `./scripts/wake_runner count --name wake.local --count 3`
-(or `./scripts/wake_runner count --name wake.local --3`). Names are
-`wake.local-001` through `wake.local-003`, each with an independent volume and a
-Docker-assigned host port. The runner creates a private user-defined Docker bridge
-for that prefix and sets group membership only on these numbered containers.
+Supplying `--count` makes the positional name a group prefix and requires that
+name. For example, `./scripts/wake_runner wake.local --count 3` creates the
+`wake.local` proxy and Docker containers named `001.wake.local` through
+`003.wake.local`, each with an independent volume and a Docker-assigned host
+port. The proxy's bare hostname opens a directory of the numbered members. The
+runner creates a private
+user-defined Docker bridge for that prefix and sets group membership only on
+these numbered containers.
 Members can read compact research summaries from their peers and receive them as
 untrusted discovery context on their normal research requests; this exchange makes
 no provider call. Peer notes never become local evidence or eligible citations.
@@ -289,29 +295,31 @@ different topics, create files before creating the group, for example:
 
 ```sh
 mkdir -p .wake-runner-topics
-cp example.research-topics.toml .wake-runner-topics/wake.local-001.toml
-cp example.research-topics.toml .wake-runner-topics/wake.local-002.toml
-cp example.research-topics.toml .wake-runner-topics/wake.local-003.toml
+cp example.research-topics.toml .wake-runner-topics/001.wake.local.toml
+cp example.research-topics.toml .wake-runner-topics/002.wake.local.toml
+cp example.research-topics.toml .wake-runner-topics/003.wake.local.toml
 ```
 
 Edit each numbered file before launching. The runner mounts a matching file
 read-only into that member. If a matching file is absent, that member uses the
 shared `./research-topics.toml`; the runner requires that shared file before it
-creates containers. The shared local router listens on `127.0.0.1:80`, so
+creates containers. The `wake.local` proxy listens on `127.0.0.1:80`, so
 port 80 must be available. For this example, add the following line to `/etc/hosts`:
 
 ```text
-127.0.0.1 001.wake.local 002.wake.local 003.wake.local
+127.0.0.1 wake.local 001.wake.local 002.wake.local 003.wake.local
 ```
 
-Then open `http://001.wake.local/`, `http://002.wake.local/` or
-`http://003.wake.local/`. `wake_runner` prints the matching line and URLs for the
-chosen prefix. It does not edit `/etc/hosts`. One router serves all active groups;
-it blocks requests between different group networks. Group networks are removed
-when their last member is removed. The runner requires the existing
-`wake-standalone:vscode` image and selects the Docker Desktop proxy; it is not the
-portable Compose setup above. Only the explicit `--container remove` action deletes
-attached data volumes.
+Then open `http://wake.local/` for the proxy's member directory, or open
+`http://001.wake.local/`, `http://002.wake.local/` or
+`http://003.wake.local/` directly. `wake_runner` prints the suggested
+`/etc/hosts` line and URLs for the chosen prefix; add the hosts line yourself.
+One router serves all active groups; it blocks requests between different group
+networks. Group networks are removed when their last member is removed. The runner
+requires the existing
+`wake-standalone:vscode` image and selects the Docker Desktop proxy; it is not
+the portable Compose setup above. Only the explicit `--container remove` action
+deletes attached data volumes.
 
 ## Live Console inspection
 

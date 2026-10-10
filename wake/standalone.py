@@ -64,7 +64,11 @@ def bootstrap(directory, settings, *, enable_continuity_matrix=False):
     """Only a genuinely unused volume may bootstrap; missing prior state is loss."""
     directory = Path(directory)
     directory.mkdir(parents=True, exist_ok=True)
-    existing = [p for p in directory.iterdir() if p.name != 'standalone.lock']
+    # The runner may write its operational control file as soon as Docker starts
+    # the container, before this process acquires the lock and initializes a new
+    # volume. It is not record authority and must not make that volume look used.
+    existing = [p for p in directory.iterdir()
+                if p.name not in {'standalone.lock', _CONTROL_FILE}]
     fresh = not existing
     store = open_authoritative_store(directory, allow_initialize=fresh)
     engine = Engine(directory, settings, store=store)

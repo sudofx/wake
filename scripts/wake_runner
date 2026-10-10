@@ -7,15 +7,15 @@ set -euo pipefail
 
 IMAGE="wake-standalone:vscode"
 LABEL="com.sudofx.wake.runner"
+GROUP_ROUTER="wake.local"
+LEGACY_GROUP_ROUTER="wake-group-router"
 repo_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
 CAMPAIGN_PROGRESS_CODE='from wake.kernel.record import Record; from wake.matrix import continuity_matrix_progress; r=Record.open_read_only("/data/wake.sqlite"); _,root=r.replay(); app=root.get("app:wake"); state=app.get("projection_state") if isinstance(app,dict) else None; p=continuity_matrix_progress(state); print("none" if p is None else str(p["completed_count"])+"/"+str(p["cell_count"]))'
 
 usage() {
     cat <<'EOF'
 Usage:
-  scripts/wake_runner [container-name] [--campaign none] [--dotfiles=false]
-  scripts/wake_runner count --name PREFIX --count N [--dotfiles=false]
-  scripts/wake_runner count --name PREFIX --N [--dotfiles=false]
+  scripts/wake_runner [container-or-group-name] [--count N] [--campaign none] [--dotfiles=false]
   scripts/wake_runner --research stop|start|pause|reset|status [container-name]
   scripts/wake_runner --container stop|start|pause|remove [container-name-or-group]
 
@@ -24,14 +24,20 @@ existing container is left unchanged and its status is reported. New containers
 join continuity@1 by default. `--campaign none` opts a newly created container
 out. Campaign enrollment is immutable after creation.
 
+`--count N` creates a local group named by the positional argument, for example
+`wake_runner wake.local --count 3`. The group prefix is required with `--count`.
+Without `--count`, `wake` is a single standalone container published on a random
+localhost port.
+
 New containers copy any available ~/.bashrc, ~/.gitignore, ~/.bash_profile,
 ~/.profile, ~/.bash_aliases and ~/.inputrc files into their home volume by
 default. Use `--dotfiles=false` or `--no-dotfiles` to skip importing them.
 
-Groups are named PREFIX-001 through PREFIX-NNN and receive separate data volumes
-and Docker-assigned host ports. Group members share a private Docker bridge and
-read-only research summaries. Optional per-member topic files live at
-.wake-runner-topics/PREFIX-NNN.toml. Research controls leave Docker running.
+Groups use Docker container names 001.PREFIX through NNN.PREFIX and receive
+separate data volumes and Docker-assigned host ports. The bare PREFIX hostname
+serves the group proxy directory. Group members share a private Docker bridge
+and read-only research summaries. Optional per-member topic files live at
+.wake-runner-topics/NNN.PREFIX.toml. Research controls leave Docker running.
 Container remove also removes the selected container's data volumes.
 EOF
 }
@@ -68,16 +74,19 @@ cleanup_group_network() {
     docker network inspect "$network" >/dev/null 2>&1 || return 0
     label="$(docker network inspect --format "{{ index .Labels \"$LABEL.group\" }}" "$network")"
     [[ "$label" == "$group_id" ]] || return 0
-    if container_exists wake-group-router; then
-        ensure_group_router_identity wake-group-router
-        docker network disconnect "$network" wake-group-router >/dev/null 2>&1 || true
+    if container_exists "$GROUP_ROUTER"; then
+        ensure_group_router_identity "$GROUP_ROUTER"
+        docker network disconnect "$network" "$GROUP_ROUTER" >/dev/null 2>&1 || true
+    elif container_exists "$LEGACY_GROUP_ROUTER"; then
+        ensure_group_router_identity "$LEGACY_GROUP_ROUTER"
+        docker network disconnect "$network" "$LEGACY_GROUP_ROUTER" >/dev/null 2>&1 || true
     fi
     attached="$(docker network inspect --format '{{range .Containers}}{{.Name}} {{end}}' "$network")"
     [[ -n "$attached" ]] || docker network rm "$network" >/dev/null
 }
 
 ensure_group_router_identity() {
-    local name="${1:-wake-group-router}" runner_label router_label
+    local name="${1:-$GROUP_ROUTER}" runner_label router_label
     container_exists "$name" || return 0
     runner_label="$(docker inspect --format "{{ index .Config.Labels \"$LABEL\" }}" "$name")"
     router_label="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.router\" }}" "$name")"
@@ -91,22 +100,38 @@ refresh_group_router() {
     local first_network="" name host label router_network
     local groups=() networks=()
     routes_file="$(mktemp)"
+    if container_exists "$LEGACY_GROUP_ROUTER"; then
+        ensure_group_router_identity "$LEGACY_GROUP_ROUTER"
+        if container_exists "$GROUP_ROUTER"; then
+            ensure_group_router_identity "$GROUP_ROUTER"
+            docker rm -f "$LEGACY_GROUP_ROUTER" >/dev/null
+        else
+            docker rename "$LEGACY_GROUP_ROUTER" "$GROUP_ROUTER"
+        fi
+    fi
     while IFS= read -r container; do
         group_id="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.group\" }}" "$container")"
         [[ -n "$group_id" && "$group_id" != '<no value>' ]] || continue
-        ordinal="${container#"$group_id"-}"
-        [[ "$container" == "$group_id-$ordinal" && "$ordinal" =~ ^[0-9]{3}$ ]] || continue
+        if [[ "$container" == "$group_id"-[0-9][0-9][0-9] ]]; then
+            ordinal="${container##*-}"
+            host="$ordinal.$group_id"
+        else
+            ordinal="${container%%.*}"
+            host="$container"
+            [[ "$host" == "$ordinal.$group_id" ]] || continue
+        fi
+        [[ "$ordinal" =~ ^[0-9]{3}$ ]] || continue
         network="$(group_network_for "$group_id")"
         read -r subnet gateway < <(docker network inspect --format '{{range .IPAM.Config}}{{.Subnet}} {{.Gateway}}{{end}}' "$network")
         [[ -n "$subnet" && -n "$gateway" ]] || { rm -f "$routes_file"; fail "Could not read subnet and gateway for $network."; }
-        printf '%s\t%s\t%s\t%s\n' "$ordinal.$group_id" "$container" "$subnet" "$gateway" >> "$routes_file"
+        printf '%s\t%s\t%s\t%s\t%s\n' "$host" "$container" "$subnet" "$gateway" "$group_id" >> "$routes_file"
         groups+=("$group_id")
     done < <(docker ps -a --filter "label=$LABEL.group" --format '{{.Names}}')
 
     if [[ ! -s "$routes_file" ]]; then
-        if container_exists wake-group-router; then
-            ensure_group_router_identity wake-group-router
-            docker rm -f wake-group-router >/dev/null
+        if container_exists "$GROUP_ROUTER"; then
+            ensure_group_router_identity "$GROUP_ROUTER"
+            docker rm -f "$GROUP_ROUTER" >/dev/null
         fi
         rm -f "$config_file" "$routes_file"
         return 0
@@ -116,15 +141,20 @@ import json
 import sys
 
 routes = {}
+groups = {}
 with open(sys.argv[1]) as source:
     for line in source:
-        host, target, subnet, gateway = line.rstrip("\n").split("\t")
+        host, target, subnet, gateway, group_id = line.rstrip("\n").split("\t")
         key = host.lower()
         if key in routes and routes[key]["target"] != target:
             raise SystemExit(f"Duplicate local WAKE hostname: {key}")
         routes[key] = {"target": target, "subnet": subnet, "gateway": gateway}
+        group = groups.setdefault(group_id.lower(), {"members": [], "subnet": subnet, "gateway": gateway})
+        if group["subnet"] != subnet or group["gateway"] != gateway:
+            raise SystemExit(f"Inconsistent local WAKE group network: {group_id}")
+        group["members"].append(key)
 with open(sys.argv[2], "w") as target:
-    json.dump(routes, target, separators=(",", ":"))
+    json.dump({"routes": routes, "groups": groups}, target, separators=(",", ":"))
 PY
     ((${#groups[@]} > 0)) || { rm -f "$routes_file"; fail 'Group router has no group networks.'; }
     for group_id in "${groups[@]}"; do
@@ -134,11 +164,11 @@ PY
     done
     first_network="${networks[0]}"
     docker image inspect "$IMAGE" >/dev/null 2>&1 || { rm -f "$routes_file"; fail "Missing image: $IMAGE."; }
-    if container_exists wake-group-router; then
-        ensure_group_router_identity wake-group-router
-        docker rm -f wake-group-router >/dev/null
+    if container_exists "$GROUP_ROUTER"; then
+        ensure_group_router_identity "$GROUP_ROUTER"
+        docker rm -f "$GROUP_ROUTER" >/dev/null
     fi
-    docker run -d --name wake-group-router \
+    docker run -d --name "$GROUP_ROUTER" \
         --label "$LABEL=true" --label "$LABEL.router=true" \
         --network "$first_network" -p 127.0.0.1:80:8080 \
         -v "$repo_dir/scripts/wake_group_proxy.py:/workspace/wake_group_proxy.py:ro" \
@@ -146,14 +176,14 @@ PY
         --read-only --tmpfs /tmp --entrypoint python "$IMAGE" \
         /workspace/wake_group_proxy.py --config /run/wake-group-router.json >/dev/null ||
         { rm -f "$routes_file"; fail 'Could not start the localhost group router on 127.0.0.1:80.'; }
-    if ! is_running wake-group-router; then
-        docker logs wake-group-router >&2 || true
+    if ! is_running "$GROUP_ROUTER"; then
+        docker logs "$GROUP_ROUTER" >&2 || true
         rm -f "$routes_file"
         fail 'The localhost group router could not bind 127.0.0.1:80 or stopped during startup.'
     fi
     for network in "${networks[@]}"; do
-        router_network="$(docker inspect --format "{{if index .NetworkSettings.Networks \"$network\"}}joined{{end}}" wake-group-router)"
-        [[ "$router_network" == joined ]] || docker network connect "$network" wake-group-router
+        router_network="$(docker inspect --format "{{if index .NetworkSettings.Networks \"$network\"}}joined{{end}}" "$GROUP_ROUTER")"
+        [[ "$router_network" == joined ]] || docker network connect "$network" "$GROUP_ROUTER"
     done
     rm -f "$routes_file"
 }
@@ -281,7 +311,7 @@ campaign_progress() {
 }
 
 report_status() {
-    local name="$1" volume research campaign port
+    local name="$1" volume research campaign port group_id
     if ! container_exists "$name"; then
         research=stopped
         volume="$(data_volume_for "$name")"
@@ -306,13 +336,22 @@ report_status() {
         "$name" "$research" "$campaign"
     if container_exists "$name"; then
         port="$(docker inspect --format '{{range (index .NetworkSettings.Ports "8080/tcp")}}{{.HostPort}}{{end}}' "$name" 2>/dev/null || true)"
-        [[ -z "$port" ]] || printf 'URL: http://127.0.0.1:%s/console.html\n' "$port"
+        if [[ -n "$port" ]]; then
+            group_id="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.group\" }}" "$name")"
+            if [[ -n "$group_id" && "$group_id" != '<no value>' ]]; then
+                printf 'URL: http://%s/\n' "$name"
+            else
+                printf 'Add this to /etc/hosts: 127.0.0.1 %s\n' "$name"
+                printf 'URL: http://%s:%s/\n' "$name" "$port"
+                printf 'LOCAL URL: http://127.0.0.1:%s/\n' "$port"
+            fi
+        fi
     fi
 }
 
 create_container() {
     local name="$1" campaign="$2" paused="${3:-false}" group_id="${4:-}" peers="${5:-}" dotfiles="${6:-true}"
-    local data_volume home_volume topic_file topic_rel network
+    local data_volume home_volume topic_file topic_rel network group_instance
     local publish_args=()
     local group_args=(-e WAKE_GROUP_ID= -e WAKE_GROUP_INSTANCE= -e WAKE_GROUP_PEERS= -e WAKE_GROUP_TOPIC_FILE=)
     docker image inspect "$IMAGE" >/dev/null 2>&1 ||
@@ -320,21 +359,22 @@ create_container() {
     data_volume="$(data_volume_for "$name")"
     home_volume="$(home_volume_for "$name")"
     copy_host_dotfiles "$home_volume" "$dotfiles"
-    if [[ "$name" == wake ]]; then
-        publish_args=(-p 127.0.0.1:8080:8080)
-    else
-        publish_args=(-p 127.0.0.1::8080)
-    fi
+    publish_args=(-p 127.0.0.1::8080)
     if [[ -n "$group_id" ]]; then
         network="$(group_network_for "$group_id")"
+        group_instance="$group_id-${name%%.*}"
         group_args+=(--network "$network"
+            --network-alias "$group_instance"
             --label "$LABEL.group=$group_id"
             -e "WAKE_GROUP_ID=$group_id"
-            -e "WAKE_GROUP_INSTANCE=$name"
+            -e "WAKE_GROUP_INSTANCE=$group_instance"
             -e "WAKE_GROUP_PEERS=$peers")
         topic_file="$repo_dir/.wake-runner-topics/$name.toml"
+        if [[ ! -f "$topic_file" ]]; then
+            topic_file="$repo_dir/.wake-runner-topics/$group_instance.toml"
+        fi
         if [[ -f "$topic_file" ]]; then
-            topic_rel=".wake-runner-topics/$name.toml"
+            topic_rel=".wake-runner-topics/$(basename -- "$topic_file")"
             group_args+=(-e "WAKE_GROUP_TOPIC_FILE=/workspace/$topic_rel"
                 -v "$topic_file:/workspace/$topic_rel:ro")
         fi
@@ -374,6 +414,29 @@ ensure_present() {
         return 0
     fi
     create_container "$name" "$campaign" "$paused" "$group_id" "$peers" "$dotfiles"
+}
+
+ensure_group_peer_alias() {
+    local name="$1" group_id="$2" group_instance="$3" network aliases was_running=false
+    network="$(group_network_for "$group_id")"
+    aliases="$(docker inspect --format '{{range .NetworkSettings.Networks}}{{range .Aliases}}{{println .}}{{end}}{{end}}' "$name")"
+    grep -Fxq "$group_instance" <<< "$aliases" && return 0
+
+    # Keep the stable internal peer ID resolvable while Docker names use the
+    # public 001.group.example form. Docker only accepts aliases at connect time.
+    if is_running "$name"; then
+        docker stop --time 30 "$name" >/dev/null
+        was_running=true
+    fi
+    if ! docker network disconnect "$network" "$name" >/dev/null 2>&1 ||
+       ! docker network connect --alias "$group_instance" "$network" "$name"; then
+        if ! docker inspect --format "{{if index .NetworkSettings.Networks \"$network\"}}joined{{end}}" "$name" | grep -q '^joined$'; then
+            docker network connect "$network" "$name" >/dev/null 2>&1 || true
+        fi
+        if [[ "$was_running" == true ]]; then docker start "$name" >/dev/null || true; fi
+        fail "Could not install peer-discovery alias '$group_instance' for '$name'."
+    fi
+    if [[ "$was_running" == true ]]; then docker start "$name" >/dev/null; fi
 }
 
 reset_research() {
@@ -441,12 +504,14 @@ research_control() {
 container_control() {
     local action="$1" selector="$2" candidate status volume home name data_type group_id
     local targets=() volumes=() groups=()
-    if container_exists "$selector"; then
+    while IFS= read -r candidate; do
+        if [[ "$candidate" == [0-9][0-9][0-9]."$selector" ||
+              "$candidate" == "$selector"-[0-9][0-9][0-9] ]]; then
+            targets+=("$candidate")
+        fi
+    done < <(docker ps -a --filter "label=$LABEL.group=$selector" --format '{{.Names}}')
+    if ((${#targets[@]} == 0)) && container_exists "$selector"; then
         targets=("$selector")
-    else
-        while IFS= read -r candidate; do
-            [[ "$candidate" == "$selector"-[0-9][0-9][0-9] ]] && targets+=("$candidate")
-        done < <(docker ps -a --format '{{.Names}}')
     fi
     if ((${#targets[@]} == 0)) && [[ "$action" != remove ]]; then
         fail "No container or numbered group found for '$selector'."
@@ -500,7 +565,7 @@ container_control() {
 }
 
 start_group() {
-    local prefix="$1" count="$2" campaign="$3" dotfiles="${4:-true}" i name was_existing peers network
+    local prefix="$1" count="$2" campaign="$3" dotfiles="${4:-true}" i name ordinal legacy_name was_existing peers network group_instance
     local new_members=()
     [[ "$prefix" =~ ^[a-zA-Z0-9][a-zA-Z0-9_.-]*$ ]] || fail 'Invalid group name.'
     ((${#prefix} <= 50)) || fail 'Group name must be 50 characters or fewer.'
@@ -513,14 +578,27 @@ start_group() {
     ensure_group_network "$prefix"
     peers=""
     for ((i=1; i<=count; i++)); do
-        printf -v name '%s-%03d' "$prefix" "$i"
-        peers+="${peers:+,}$name"
+        printf -v ordinal '%03d' "$i"
+        group_instance="$prefix-$ordinal"
+        peers+="${peers:+,}$group_instance"
     done
     for ((i=1; i<=count; i++)); do
-        printf -v name '%s-%03d' "$prefix" "$i"
+        printf -v ordinal '%03d' "$i"
+        name="$ordinal.$prefix"
+        group_instance="$prefix-$ordinal"
+        legacy_name="$prefix-$ordinal"
+        if container_exists "$legacy_name"; then
+            ensure_wake_identity "$legacy_name"
+            [[ "$(docker inspect --format "{{ index .Config.Labels \"$LABEL.group\" }}" "$legacy_name")" == "$prefix" ]] ||
+                fail "Legacy container '$legacy_name' is not a member of group '$prefix'; leaving it untouched."
+            container_exists "$name" && fail "Both legacy '$legacy_name' and new '$name' containers exist; resolve the name collision before continuing."
+            docker rename "$legacy_name" "$name"
+            printf 'Renamed container %s to %s without changing its volumes.\n' "$legacy_name" "$name"
+        fi
         was_existing=false
         container_exists "$name" && was_existing=true
         ensure_present "$name" "$campaign" "$prefix" "$peers" true "$dotfiles"
+        ensure_group_peer_alias "$name" "$prefix" "$group_instance"
         [[ "$was_existing" == true ]] || new_members+=("$name")
         if [[ "$campaign" == false && "$was_existing" == true ]]; then
             printf 'wake_runner: --campaign none applies only when creating; existing enrollment for %s is unchanged.\n' "$name" >&2
@@ -530,20 +608,24 @@ start_group() {
     refresh_group_router
     for name in "${new_members[@]}"; do set_research_mode "$name" running; done
     printf 'Add this to /etc/hosts: 127.0.0.1'
+    printf ' %s' "$prefix"
     for ((i=1; i<=count; i++)); do
         printf -v name '%s-%03d' "$prefix" "$i"
         printf ' %03d.%s' "$i" "$prefix"
     done
     printf '\n'
+    printf 'GROUP PROXY CONTAINER: %s\n' "$GROUP_ROUTER"
+    printf 'GROUP PROXY URL: http://%s/\n' "$prefix"
     for ((i=1; i<=count; i++)); do
-        printf -v name '%s-%03d' "$prefix" "$i"
+        printf -v ordinal '%03d' "$i"
+        name="$ordinal.$prefix"
         printf 'GROUP URL: http://%03d.%s/\n' "$i" "$prefix"
         report_status "$name"
     done
 }
 
 main() {
-    local name=wake action= campaign=true dotfiles=true group=false prefix= count=3 arg name_set=false
+    local name=wake action= campaign=true dotfiles=true count= arg name_set=false
     local explicit_action=false container_action= container_action_set=false
     if (($# == 0)); then
         require_runtime
@@ -586,24 +668,17 @@ main() {
                 ;;
             --dotfiles=true) dotfiles=true ;;
             --dotfiles=false|--no-dotfiles) dotfiles=false ;;
-            count) group=true ;;
-            --name)
-                (($#)) || fail '--name requires a group prefix.'
-                prefix="$1"; shift
-                ;;
             --count)
                 (($#)) || fail '--count requires a number.'
                 count="$1"; shift
+                [[ "$count" =~ ^[0-9]+$ ]] || fail '--count requires a positive number.'
                 ;;
-            --[1-9][0-9]*) count="${arg#--}" ;;
             --) ;;
             -*) fail "Unknown option: $arg" ;;
             *)
-                if [[ "$name_set" == false && "$group" == false ]]; then
+                if [[ "$name_set" == false ]]; then
                     name="$arg"
                     name_set=true
-                elif [[ "$group" == true && "$arg" == count ]]; then
-                    : # Accept the repeated `count` token from the initial example.
                 else
                     fail "Unexpected argument: $arg"
                 fi
@@ -613,15 +688,17 @@ main() {
 
     if [[ "$explicit_action" == true && "$container_action_set" == true ]]; then
         fail 'Use --research or --container in one invocation, not both.'
+    elif [[ -n "$count" && ( "$explicit_action" == true || "$container_action_set" == true ) ]]; then
+        fail '--count is only valid when creating or ensuring a named group.'
     elif [[ "$container_action_set" == true ]]; then
         require_runtime
         container_control "$container_action" "$name"
     elif [[ "$explicit_action" == true ]]; then
         require_runtime
         research_control "$action" "$name" "$campaign" "$dotfiles"
-    elif [[ "$group" == true ]]; then
-        [[ -n "$prefix" ]] || fail 'Group mode requires --name PREFIX.'
-        start_group "$prefix" "$count" "$campaign" "$dotfiles"
+    elif [[ -n "$count" ]]; then
+        [[ "$name_set" == true ]] || fail 'Provide a group name with --count, for example: scripts/wake_runner wake.local --count 3.'
+        start_group "$name" "$count" "$campaign" "$dotfiles"
     else
         require_runtime
         local was_existing=false

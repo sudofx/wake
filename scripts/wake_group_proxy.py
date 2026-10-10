@@ -2,6 +2,7 @@
 """Host-name router for local wake_runner groups; listens only behind localhost publish."""
 
 import argparse
+from html import escape
 from http.client import HTTPConnection
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import ipaddress
@@ -25,16 +26,23 @@ class GroupProxy(BaseHTTPRequestHandler):
     def _forward(self):
         host = (self.headers.get("Host", "").split(":", 1)[0]).lower().rstrip(".")
         route = self.server.routes.get(host)
+        group = self.server.groups.get(host)
+        if group is not None:
+            if not self._allowed(group):
+                self.send_error(403, "This host belongs to a different local WAKE group")
+                return
+            if self.path not in {"/", "/index.html"}:
+                self.send_error(404, "The group proxy only serves its member directory")
+                return
+            self._serve_group_directory(host, group)
+            return
         if route is None:
             self.send_error(404, "No grouped WAKE container matches this host")
             return
+        if not self._allowed(route):
+            self.send_error(403, "This host belongs to a different local WAKE group")
+            return
         try:
-            remote = ipaddress.ip_address(self.client_address[0])
-            host_gateway = str(remote) == route.get("gateway")
-            if (remote not in ipaddress.ip_network(route["subnet"], strict=False)
-                    and not host_gateway and not remote.is_loopback):
-                self.send_error(403, "This host belongs to a different local WAKE group")
-                return
             connection = HTTPConnection(route["target"], 8080, timeout=15)
             headers = {key: value for key, value in self.headers.items()
                        if key.lower() not in _HOP_HEADERS and key.lower() != "host"}
@@ -54,6 +62,35 @@ class GroupProxy(BaseHTTPRequestHandler):
         except (OSError, ValueError):
             self.send_error(502, "Grouped WAKE container is unavailable")
 
+    def _allowed(self, route):
+        try:
+            remote = ipaddress.ip_address(self.client_address[0])
+            host_gateway = str(remote) == route.get("gateway")
+            return (remote in ipaddress.ip_network(route["subnet"], strict=False)
+                    or host_gateway or remote.is_loopback)
+        except (KeyError, ValueError):
+            return False
+
+    def _serve_group_directory(self, host, group):
+        links = "".join(
+            f'<li><a href="http://{escape(member, quote=True)}/">'
+            f'{escape(member)}</a></li>'
+            for member in sorted(group["members"])
+        )
+        body = (
+            "<!doctype html><html lang=\"en\"><meta charset=\"utf-8\">"
+            f"<title>WAKE group {escape(host)}</title>"
+            f"<h1>WAKE group {escape(host)}</h1>"
+            "<p>This address is the local group proxy. Choose a member:</p>"
+            f"<ul>{links}</ul></html>"
+        ).encode("utf-8")
+        self.send_response(200)
+        self.send_header("Content-Type", "text/html; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        if self.command != "HEAD":
+            self.wfile.write(body)
+
     def do_POST(self):
         self.send_error(405, "Group routing is read-only")
 
@@ -62,19 +99,24 @@ class GroupProxy(BaseHTTPRequestHandler):
     do_DELETE = do_POST
 
     def log_message(self, fmt, *args):
-        print("wake-group-router: " + fmt % args, flush=True)
+        print("wake.local: " + fmt % args, flush=True)
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", required=True)
     args = parser.parse_args()
-    routes = json.loads(Path(args.config).read_text())
-    if not isinstance(routes, dict) or not routes:
+    config = json.loads(Path(args.config).read_text())
+    if not isinstance(config, dict):
+        raise ValueError("Group route configuration must be an object")
+    routes = config.get("routes")
+    groups = config.get("groups")
+    if not isinstance(routes, dict) or not routes or not isinstance(groups, dict) or not groups:
         raise ValueError("Group route configuration is empty")
     server = ThreadingHTTPServer(("0.0.0.0", 8080), GroupProxy)
     server.routes = routes
-    print(f"Local WAKE group router ready for {len(routes)} hostnames", flush=True)
+    server.groups = groups
+    print(f"Local WAKE group router ready for {len(routes)} members in {len(groups)} groups", flush=True)
     server.serve_forever()
 
 

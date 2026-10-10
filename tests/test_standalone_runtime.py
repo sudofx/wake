@@ -17,6 +17,19 @@ from wake.governance import Rejected
 
 
 class StandaloneRuntimeTests(unittest.TestCase):
+    def test_runner_control_file_does_not_block_fresh_volume_bootstrap(self):
+        with tempfile.TemporaryDirectory() as directory:
+            data = Path(directory) / 'data'
+            data.mkdir()
+            (data / '.wake-runner-control.json').write_text('{"research":"running"}')
+
+            engine = bootstrap(data, dict(DEFAULTS), enable_continuity_matrix=True)
+            try:
+                self.assertTrue((data / 'wake.sqlite').exists())
+                self.assertEqual(engine.store.continuity_matrix_progress()['completed_count'], 0)
+            finally:
+                engine.store.close()
+
     def test_context_limit_keeps_website_available_without_retrying(self):
         with tempfile.TemporaryDirectory() as directory:
             engine = bootstrap(directory, dict(DEFAULTS))
