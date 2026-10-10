@@ -112,7 +112,7 @@ The local `checkpoint`, `verify-checkpoint` and `replay-checkpoint` commands cre
 
 ## Routine memory configuration
 
-`memory_mode = "active"` selects routine derived memory without additional inference calls. `shadow` restores rich delivery and its existing overflow fallback. Configuration is loaded at process startup, and invocation receipts attest the exact delivered memory and activation reason. Local activation does not promote hosted runtime code or dispatch any workflow; hosted adoption still requires the existing stopped-research promotion procedure.
+`memory_mode = "active"` selects routine derived memory without additional inference calls. `shadow` restores rich delivery and its existing overflow fallback. The final proposal is rechecked after same-wake plan details and instructions are attached; emergency compaction keeps query excerpts and request hashes, and retains the active-memory trust boundary. If the exact provider envelope still cannot fit, the invocation stops before inference. Configuration is loaded at process startup, and invocation receipts attest the exact delivered memory and activation reason. Local activation does not promote hosted runtime code or dispatch any workflow; hosted adoption still requires the existing stopped-research promotion procedure.
 
 ## Same-wake retrieval and wider research access
 

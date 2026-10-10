@@ -1079,7 +1079,7 @@ class Engine:
                     if key in record and value[key] == record[key]:
                         value.pop(key)
 
-    def fit_bounded_request(self, request):
+    def fit_bounded_request(self, request, *, system_suffix=""):
         """Deterministically shrink an already-bounded provider request below the hard ceiling.
 
         This is an emergency delivery adaptation only. Exact durable state is untouched.
@@ -1087,15 +1087,20 @@ class Engine:
         provenance roots while dropping duplicated prose and oversized recovery detail.
         """
         from .providers import BOUNDED_RESEARCH_SYSTEM
+        from .prompts import BOUNDED_SYSTEM
 
         context = request["context"]
         limit = self.config["max_context_chars"]
         # The rich research prompt explains every rule at human-documentation depth.
         # Under overflow, keep the same model-facing contract in compressed form;
         # deterministic governance remains the authority after generation.
-        request["system"] = SYSTEM + BOUNDED_RESEARCH_SYSTEM
+        request["system"] = BOUNDED_SYSTEM + BOUNDED_RESEARCH_SYSTEM
+        if context.get("memory_mode") == "active":
+            from .memory import BOUNDED_ACTIVE_MEMORY_SYSTEM
+            request["system"] += BOUNDED_ACTIVE_MEMORY_SYSTEM
         if isinstance(context.get("continuity_probe"), dict):
             request["system"] += MATRIX_SIDECAR_SYSTEM
+        request["system"] += system_suffix
 
         def excerpt(value, size):
             value = str(value or "")
@@ -1113,6 +1118,26 @@ class Engine:
                 omitted.append(item)
         bounded["omitted_categories"] = omitted
         bounded["emergency_compaction"] = True
+
+        # Same-wake planning data is attached after the earlier context fit.
+        # Preserve each request's identity and a readable query excerpt, while
+        # replacing a verbose URL with its stable digest in the final proposal.
+        planned = context.get("same_wake_research", {})
+        if isinstance(planned, dict):
+            for item in planned.get("requests", []):
+                if not isinstance(item, dict):
+                    continue
+                item.setdefault("record_hash", digest(item))
+                if len(item.get("query", "")) > 180:
+                    item["query"] = excerpt(item["query"], 180)
+                    item["context_excerpt"] = True
+                if item.get("url"):
+                    item.setdefault("url_hash", digest(item["url"]))
+                    item.pop("url", None)
+                    item["url_omitted"] = True
+            note = "planned retrieval requests compacted; query excerpts and request hashes retained"
+            if note not in bounded["omitted_categories"]:
+                bounded["omitted_categories"].append(note)
 
         # Preserve the routing decision Attention needs, not its full diagnostic payload.
         attention = context.get("attention") or {}
@@ -2341,12 +2366,14 @@ class Engine:
                 self.fit_active_request(request)
             if not routine_memory and provider_input_chars(request) > self.config["max_context_chars"]:
                 self.fit_bounded_request(request)
+        final_system_suffix = ""
         if question:
             text(question, "Operator question", 1000)
             request["context"]["operator_question"] = question
         if research:
             request["context"]["same_wake_research"] = json.loads(canonical(research))
-            request["system"] += "\nAnswer the operator question or planned questions in summary using collected evidence IDs. Submit justified findings now in this proposal; disclose missing or insufficient evidence instead of claiming success.\n"
+            final_system_suffix += "\nAnswer the operator question or planned questions in summary using collected evidence IDs. Submit justified findings now in this proposal; disclose missing or insufficient evidence instead of claiming success.\n"
+        request["system"] += final_system_suffix
         # Rehydration and focusing can change visible citation eligibility. Build
         # the final contract from that view while retaining full-state queue and
         # prior artifact identities, even in routine compact memory.
@@ -2368,10 +2395,6 @@ class Engine:
                 request["system"] += "\nUse Google Search to cross-reference primary research, alternative explanations and indexed discussions (including Reddit where useful). Search snippets and discussions are discovery leads, not qualifying evidence. Prefer approved primary article URLs for collection. Return only the required JSON plan.\n"
         if routine_memory:
             self.fit_active_request(request)
-            if routine_memory:
-                self.fit_active_request(request)
-            elif provider_input_chars(request) > self.config["max_context_chars"]:
-                self.fit_bounded_request(request)
         # A matrix sidecar is optional experiment work, never a prerequisite
         # for research. If mandatory delivery still cannot fit after prose
         # compaction, defer this coordinate rather than halt the installation.
@@ -2390,6 +2413,11 @@ class Engine:
             # exact envelope too, including deduplication of repeated receipts.
             if routine_memory:
                 self.fit_active_request(request)
+        # Fit the complete final envelope, after questions, same-wake research,
+        # continuity deferral and the rebuilt response schema. Earlier fits only
+        # see a partial request and cannot guarantee this provider boundary.
+        if provider_input_chars(request) > self.config["max_context_chars"] and phase != "planning":
+            self.fit_bounded_request(request, system_suffix=final_system_suffix)
         require(provider_input_chars(request) <= self.config["max_context_chars"],
                 "Context ceiling reached; human review required, no model call made")
         compaction_ms = (perf_counter() - phase_at) * 1000

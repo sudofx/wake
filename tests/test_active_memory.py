@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 from wake.engine import Engine, DEFAULTS, config
 from wake.event_format import digest
 from wake.governance import Rejected
@@ -83,6 +84,31 @@ class ActiveMemoryTests(unittest.TestCase):
         self.assertIn('working_set_shadow', item)
         self.assertIn('retrieval_shadow', item)
         self.assertIn('trust_compacts_shadow', item)
+
+    def test_final_research_payload_gets_emergency_fit_after_active_memory_fit(self):
+        """Late plan details must not bypass the exact provider-input ceiling."""
+        self.engine.config['memory_mode'] = 'active'
+        self.engine.config['max_context_chars'] = 48000
+        research = {
+            'planning_invocation': 'plan-fixture',
+            'requests': [
+                {'query': 'query ' + ('q' * 5000), 'url': 'https://example.org/' + ('u' * 5000)}
+                for _ in range(8)
+            ],
+            'evidence_ids': [],
+        }
+        # Simulate the case where the normal active-memory compactor has already
+        # exhausted its reductions. The final fallback must see the additions
+        # made after that earlier fit and preserve their model-facing contract.
+        with patch.object(self.engine, 'fit_active_request'):
+            _, request = self.engine.start('manual', 'final-fit', research=research)
+
+        self.assertLessEqual(provider_input_chars(request), self.engine.config['max_context_chars'])
+        self.assertIn('Active memory is a derived record view', request['system'])
+        self.assertIn('Submit justified findings now in this proposal', request['system'])
+        compacted = request['context']['same_wake_research']['requests']
+        self.assertTrue(all(len(item['query']) <= 180 for item in compacted))
+        self.assertTrue(all(item.get('url_omitted') for item in compacted))
 
     def test_budget_pressure_drops_advisory_source_hints_before_open_obligations(self):
         from wake.event_format import canonical
