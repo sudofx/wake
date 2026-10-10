@@ -7,6 +7,7 @@ services:
     volumes:
       - wake-data:/data
     environment:
+      WAKE_INSTANCE_NAME: ${WAKE_INSTANCE_NAME:-wake}
       GEMINI_API_KEY: ${GEMINI_API_KEY:-}
       WAKE_PROVIDER: ${WAKE_PROVIDER:-gemini}
       WAKE_MODEL: ${WAKE_MODEL:-}

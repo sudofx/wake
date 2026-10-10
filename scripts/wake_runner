@@ -531,6 +531,7 @@ create_container() {
         --env-file "$repo_dir/.env" \
         "${group_args[@]}" \
         -e "WAKE_ENABLE_CONTINUITY_MATRIX=$campaign" \
+        -e "WAKE_INSTANCE_NAME=$name" \
         -e "WAKE_PAUSED=$paused" \
         -e HTTPS_PROXY=http://http.docker.internal:3128 \
         --read-only --tmpfs /tmp \

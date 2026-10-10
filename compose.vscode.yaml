@@ -11,6 +11,7 @@ services:
       - .:/workspace
       - vscode-home:/home/wake
     environment:
+      WAKE_INSTANCE_NAME: ${WAKE_INSTANCE_NAME:-wake}
       WAKE_PAUSED: "true"
       GEMINI_API_KEY: ""
 volumes:
