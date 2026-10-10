@@ -41,6 +41,16 @@ class ContinuationRecoveryTests(unittest.TestCase):
         later = {**self.run, 'id': 2, 'created_at': self.now.isoformat(), 'conclusion': 'failure'}
         self.assertIsNone(recovery_reason([self.run, later], {}, 'live', self.now))
 
+    def test_quota_resume_is_due_only_after_midnight_and_once_per_pacific_date(self):
+        due = datetime(2026, 9, 15, 7, 0, tzinfo=timezone.utc)
+        self.assertIsNone(repair_continuation.quota_resume_token(due.isoformat(), due-timedelta(minutes=1)))
+        self.assertEqual(repair_continuation.quota_resume_token(due.isoformat(), due+timedelta(minutes=1)),
+                         'quota-resume-2026-09-15')
+        self.assertIsNone(repair_continuation.quota_resume_token(due.isoformat(), due+timedelta(hours=3)))
+        self.assertIsNone(repair_continuation.quota_resume_token(None, due+timedelta(minutes=1)))
+        self.assertTrue(repair_continuation.in_quota_check_window(due+timedelta(hours=2)))
+        self.assertFalse(repair_continuation.in_quota_check_window(due+timedelta(hours=3)))
+
     def test_closed_operator_latch_never_dispatches(self):
         with patch.dict('os.environ', {'GITHUB_REPOSITORY': 'fixture/wake'}), \
              patch.object(repair_continuation, 'api', return_value={'state': 'disabled_manually'}) as read, \

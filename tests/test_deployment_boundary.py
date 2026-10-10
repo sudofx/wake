@@ -1,9 +1,11 @@
 """Browser transports must never substitute another installation's record."""
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
 import unittest
+from unittest.mock import patch
 
 ASSETS = Path(__file__).resolve().parents[1] / 'wake' / 'assets'
 
@@ -57,6 +59,24 @@ process.stdout.write(JSON.stringify(results));
 
 
 class ExportIdentityTests(unittest.TestCase):
+    def test_only_local_group_exports_carry_group_identity(self):
+        import tempfile
+        from wake.report import _deployment_site
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory)
+            env = {'WAKE_GROUP_ID': 'wake.local', 'WAKE_GROUP_INSTANCE': 'wake.local-001'}
+            with patch.dict(os.environ, env, clear=True):
+                _deployment_site(target, standalone=True)
+            self.assertEqual(json.loads((target / 'deployment.json').read_text()), {
+                'schema': 1, 'mode': 'standalone',
+                'group': {'id': 'wake.local', 'instance': 'wake.local-001'},
+            })
+            with patch.dict(os.environ, {**env, 'CODESPACES': 'true'}, clear=True):
+                _deployment_site(target, standalone=True)
+            self.assertEqual(json.loads((target / 'deployment.json').read_text()), {
+                'schema': 1, 'mode': 'standalone',
+            })
+
     def test_default_export_is_local_and_keeps_the_original_record(self):
         import tempfile
         from wake.engine import DEFAULTS

@@ -77,6 +77,28 @@ def wake_status(state, daily_call_limit=20, now=None):
     if daily_call_limit is not None and request_slots_today >= daily_call_limit:
         resets.append(datetime.fromisoformat(day).replace(tzinfo=PACIFIC) + timedelta(days=1))
 
+    # Keep the quota boundary available after midnight as well. Hosted recovery
+    # checks run on a UTC schedule, and the Pacific reset can pass between two
+    # checks; retaining yesterday's boundary lets the first post-midnight check
+    # resume once, while the newly recorded attempt clears the old condition.
+    quota_standby_until = None
+    if latest:
+        provider_reset = daily_quota_next_eligible(latest)
+        if provider_reset is not None:
+            quota_standby_until = provider_reset
+        elif daily_call_limit is not None and latest.get("quota_day"):
+            latest_day_slots = sum(
+                charged_request_slots(item) for item in items
+                if item.get("charged") and item.get("quota_day") == latest["quota_day"]
+            )
+            if latest_day_slots >= daily_call_limit:
+                quota_standby_until = (
+                    datetime.fromisoformat(latest["quota_day"]).replace(tzinfo=PACIFIC)
+                    + timedelta(days=1)
+                ).astimezone(timezone.utc)
+
+    if quota_standby_until and quota_standby_until > now:
+        resets.append(quota_standby_until)
     next_eligible = max(resets) if resets and not state.get("pending") else None
 
     return {
@@ -84,6 +106,8 @@ def wake_status(state, daily_call_limit=20, now=None):
         "latest_attempt": brief(latest),
         "accepted_cycles": state["version"],
         "next_eligible": next_eligible.isoformat() if next_eligible else None,
+        "quota_standby_until": quota_standby_until.isoformat() if quota_standby_until else None,
+        "quota_standby": bool(quota_standby_until and quota_standby_until > now),
         "pending": bool(state.get("pending")),
         "attempts_today": len(charged_today),
         "provider_requests_today": sum(i.get("provider_requests_sent", 0) for i in charged_today),

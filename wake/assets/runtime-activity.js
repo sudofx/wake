@@ -3,7 +3,7 @@
  * live marks. Published pending invocations are historical evidence, not a pulse.
  */
 window.WakeRuntimeActivityView = status => {
-  const states=new Set(['running','idle','paused','waiting','blocked']);
+  const states=new Set(['running','idle','paused','waiting','standby','blocked']);
   const stages=new Set(['idle','record','context','collecting','provider','governance','continuity','receipt']);
   if(status?.mode!=='standalone'||status.activity_schema!==1||status.capabilities?.live_activity!==true||
      typeof status.runtime_id!=='string'||!status.runtime_id||!states.has(status.state)||

@@ -42,7 +42,8 @@ const actionsLight=document.querySelector('.actions-light');
 if(actionsLight && window.WAKE_DEPLOYMENT?.mode!=='hosted'){
   actionsLight.href='/runtime.json';
   const applyLocal=status=>{
-    const label=({running:'Running',waiting:'Waiting',idle:'Idle',paused:'Paused',blocked:'Blocked'})[status.state]||'Unknown';
+    const label=status.state==='standby'?'Research is paused until midnight Pacific time':
+      ({running:'Running',waiting:'Waiting',idle:'Idle',paused:'Paused',blocked:'Blocked'})[status.state]||'Unknown';
     actionsLight.dataset.state=status.state==='running'?'running':status.state==='paused'?'stopped':status.state;
     actionsLight.title='Local WAKE · '+label;
     actionsLight.setAttribute('aria-label','Inspect local WAKE runtime · '+label);
@@ -58,9 +59,9 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.schema===1 && window.WAKE_DEPLOYMENT.
   const CACHE_FRESH_MS=90000;
   const REFRESH_MS=180000;
   const CAMPAIGN_ACTIVE=new Set(['queued','in_progress','waiting','requested','pending']);
-  const validState=state=>['running','stopped','campaign'].includes(state);
+  const validState=state=>['running','stopped','campaign','standby'].includes(state);
   const stateTitle=(state,suffix='')=>{
-    const base=state==='campaign'?'Continuity campaign':state==='running'?'Running':state==='stopped'?'Stopped':'Status unavailable';
+    const base=state==='standby'?'Research is paused until midnight Pacific time':state==='campaign'?'Continuity campaign':state==='running'?'Running':state==='stopped'?'Stopped':'Status unavailable';
     return suffix?`${base} · ${suffix}`:base;
   };
   const applyActionsState=(state,title)=>{
@@ -92,7 +93,8 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.schema===1 && window.WAKE_DEPLOYMENT.
   const refreshActionsLight=(force=false)=>{
     if(document.hidden&&!force)return;
     const cached=readCached();
-    if(!force&&cached&&Date.now()-Number(cached.verified_at)<CACHE_FRESH_MS){
+    const standbyExpired=cached?.state==='standby'&&Number.isFinite(Date.parse(cached.standby_until))&&Date.now()>=Date.parse(cached.standby_until);
+    if(!force&&!standbyExpired&&cached&&Date.now()-Number(cached.verified_at)<CACHE_FRESH_MS){
       applyCached(cached);
       return;
     }
@@ -102,8 +104,16 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.schema===1 && window.WAKE_DEPLOYMENT.
     fetchJson(latchUrl)
       .then(latch=>{
         if(latch.state==='active'){
-          remember('running');
-          return null;
+          const liveUrl='https://raw.githubusercontent.com/sudofx/wake-live/main/live.json?_='+stamp;
+          return fetchJson(liveUrl).then(live=>{
+            const until=live?.wake_status?.quota_standby_until;
+            if(live?.wake_status?.quota_standby===true&&Number.isFinite(Date.parse(until))&&Date.now()<Date.parse(until)){
+              const standby={state:'standby',verified_at:Date.now(),standby_until:until};
+              applyActionsState('standby',stateTitle('standby'));
+              try{localStorage.setItem(CACHE_KEY,JSON.stringify(standby));}catch{}
+            }else remember('running');
+            return null;
+          }).catch(()=>{remember('running');return null;});
         }
         return fetchJson(campaignUrl).then(campaign=>{
           const active=(campaign.workflow_runs||[]).some(run=>CAMPAIGN_ACTIVE.has(run.status));

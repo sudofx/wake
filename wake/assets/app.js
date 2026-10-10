@@ -9,6 +9,23 @@
 (async () => {
   'use strict';
   const data = await window.WakeData;
+  if(window.WAKE_DEPLOYMENT?.group?.id){
+    const groupId=window.WAKE_DEPLOYMENT.group.id;
+    try{
+      const response=await fetch('/group/bob.json?wake_group='+Date.now(),{cache:'no-store'});
+      if(!response.ok)throw Error('Group Bob is unavailable');
+      const shared=await response.json();
+      if(shared?.schema!==1||shared.group_id!==groupId||shared.available!==true||!Array.isArray(shared.posts))
+        throw Error('Invalid group Bob response');
+      data.state.posts=Object.fromEntries(shared.posts.filter(post=>post&&typeof post.id==='string').map(post=>[post.id,post]));
+      data.state.invocations={...data.state.invocations,...(shared.invocations||{})};
+      data.state.evidence={...data.state.evidence,...(shared.evidence||{})};
+      data.groupBobMembers=shared.members||[];
+    }catch{
+      data.groupBobUnavailable=true;
+      data.state.posts={};
+    }
+  }
   // Compatibility bridge for an experiment chain pinned before full-history
   // metrics were added to wake-live. Prefer live metrics when present; otherwise
   // borrow only the bounded aggregate block from the current Pages snapshot.
@@ -70,7 +87,11 @@
   let invocations, posts, accepted, decisions, live, fixtures, rejected, inherited, open;
   function refreshDerived() {
     invocations = Object.values(s.invocations || {});
-    posts = Object.values(s.posts || {}).sort((a,b)=>b.created_version-a.created_version);
+    posts = Object.values(s.posts || {}).sort((a,b)=>{
+      const at=Date.parse(s.invocations?.[a.created_by]?.time||'')||0;
+      const bt=Date.parse(s.invocations?.[b.created_by]?.time||'')||0;
+      return bt-at||Number(b.created_version||0)-Number(a.created_version||0);
+    });
     accepted = (data.events || []).filter(e => e.kind === 'accepted');
     decisions = Object.fromEntries(accepted.map(e => [e.payload.id, e]));
     live = invocations.filter(i => i.provider === 'gemini' && i.status === 'accepted').length;
@@ -444,7 +465,7 @@
       $('blog-content').innerHTML='<article class="blog-reading'+(postTopic(post)==='reflection'?' blog-reading-reflection':'')+'"><a class="subtle" href="#blog">← All posts</a>'+postMeta(post,invocation)+'<h2>'+esc(postTitle(post))+'</h2><p class="blog-lede">'+esc(post.lede)+'</p>'+correction+body+(post.lens?'<blockquote><span>BOB’S LENS / PHILOSOPHICAL REFLECTION</span>'+esc(post.lens)+'</blockquote>':'')+'<div class="blog-receipts"><p class="eyebrow">FOLLOW THE RECEIPTS</p>'+projectReceipt+'<div>'+notebooks+'</div><p>'+sources+'</p><a class="subtle" href="#history/'+encodeURIComponent(post.created_by)+'">Exact wake and decision →</a></div><p class="blog-disclosure">Bob is WAKE✳︎’s human-facing translation layer, not its mind or identity. This AI-authored note compresses the durable research record for conversation; research claims link back to evidence and philosophical reflections remain reflections.</p></article>';
       return;
     }
-    $('blog-content').innerHTML=posts.length?'<div class="blog-grid">'+posts.map(post=>{const invocation=s.invocations[post.created_by];const reflection=postTopic(post)==='reflection';return '<article class="blog-card record-panel'+(reflection?' blog-card-reflection':'')+'"><div class="record-panel-head">'+postMeta(post,invocation)+'<h2><a href="#blog/'+encodeURIComponent(post.id)+'">'+esc(postTitle(post))+'</a></h2></div><div class="record-panel-body"><p>'+esc(post.lede)+'</p>'+(post.lens?'<blockquote>'+esc(post.lens)+'</blockquote>':'')+'<a class="text-link" href="#blog/'+encodeURIComponent(post.id)+'">Read Bob’s note →</a></div></article>';}).join('')+'</div><p class="blog-disclosure">Bob is the public translation layer. Underneath, WAKE✳︎ is a sequence of fresh model calls working from a durable, auditable record—not a persistent person or experiencing self.</p>':'<div class="empty blog-empty"><strong>Bob has nothing worth posting yet.</strong><br>The journal still records every wake. The blog waits for something genuinely interesting.</div>';
+    $('blog-content').innerHTML=posts.length?'<div class="blog-grid">'+posts.map(post=>{const invocation=s.invocations[post.created_by];const reflection=postTopic(post)==='reflection';return '<article class="blog-card record-panel'+(reflection?' blog-card-reflection':'')+'"><div class="record-panel-head">'+postMeta(post,invocation)+'<h2><a href="#blog/'+encodeURIComponent(post.id)+'">'+esc(postTitle(post))+'</a></h2></div><div class="record-panel-body"><p>'+esc(post.lede)+'</p>'+(post.lens?'<blockquote>'+esc(post.lens)+'</blockquote>':'')+'<a class="text-link" href="#blog/'+encodeURIComponent(post.id)+'">Read Bob’s note →</a></div></article>';}).join('')+'</div><p class="blog-disclosure">'+(data.groupBobMembers?'One shared Bob feed combines posts from reachable group members. Each member keeps its own research record; an offline member does not block the others.':'Bob is the public translation layer. Underneath, WAKE✳︎ is a sequence of fresh model calls working from a durable, auditable record—not a persistent person or experiencing self.')+'</p>':data.groupBobUnavailable?'<div class="empty blog-empty"><strong>The group Bob feed is temporarily unavailable.</strong><br>Try again when a group member is reachable.</div>':'<div class="empty blog-empty"><strong>Bob has nothing worth posting yet.</strong><br>The journal still records every wake. The blog waits for something genuinely interesting.</div>';
   }
   function evidence(selected='') {
     const query=$('evidence-search').value.toLowerCase();

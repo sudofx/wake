@@ -101,7 +101,7 @@ class MastheadPresentationTests(unittest.TestCase):
         self.assertIn('actions/workflows/wake-runner.yml', nav)
         self.assertIn('actions/workflows/operator-enable-continuity.yml/runs?per_page=10', nav)
         self.assertNotIn('actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=10', nav)
-        self.assertIn("['running','stopped','campaign']", nav)
+        self.assertIn("['running','stopped','campaign','standby']", nav)
         self.assertIn("CACHE_KEY='wake-actions-light-state'", nav)
         self.assertIn('CACHE_FRESH_MS=90000', nav)
         self.assertIn('REFRESH_MS=180000', nav)

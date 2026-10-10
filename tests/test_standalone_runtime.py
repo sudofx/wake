@@ -76,6 +76,29 @@ class StandaloneRuntimeTests(unittest.TestCase):
             self.assertEqual(server.runtime_status['state'], 'blocked')
             self.assertEqual(server.runtime_status['reason'], 'Invalid provider credential')
 
+    def test_daily_quota_exhaustion_enters_standby_without_blocking_runtime(self):
+        with tempfile.TemporaryDirectory() as directory:
+            engine = bootstrap(directory, dict(DEFAULTS))
+            args = SimpleNamespace(interval=1, config='unused', provider='fixture',
+                data=directory, paused=False, enable_continuity_matrix=False,
+                host='127.0.0.1', port=0, model='test')
+            server, stop = MagicMock(), MagicMock()
+            stop.is_set.side_effect = [False, True]
+            due = {'next_eligible': '2026-10-11T07:00:00+00:00',
+                   'quota_standby': True, 'quota_standby_until': '2026-10-11T07:00:00+00:00'}
+            with patch('wake.standalone.config', return_value=dict(DEFAULTS)), \
+                 patch('wake.standalone.bootstrap', return_value=engine), \
+                 patch('wake.standalone.verify_existing_record'), \
+                 patch('wake.standalone.publish', return_value=True), \
+                 patch('wake.standalone.ThreadingHTTPServer', return_value=server), \
+                 patch('wake.standalone.threading.Thread'), \
+                 patch('wake.standalone.threading.Event', return_value=stop), \
+                 patch('wake.standalone.wake_status', side_effect=[{'next_eligible': None}, due]), \
+                 patch.object(engine, 'run', return_value={'status': 'deferred', 'reason': 'quota'}):
+                run(args)
+            self.assertEqual(server.runtime_status['state'], 'standby')
+            self.assertEqual(server.runtime_status['resume_at'], due['quota_standby_until'])
+
     def test_matrix_opt_in_preserves_history_advances_and_survives_restart(self):
         with tempfile.TemporaryDirectory() as directory:
             data = Path(directory) / 'data'

@@ -311,6 +311,14 @@ cannot change permission, provider effects, accepted state or receipts. Only sta
 public invocation/cell identifiers and timestamps are exposed, never request/context
 contents, credentials or model reasoning. The durable record remains authority.
 
+Daily API quota exhaustion is a recoverable standby state, distinct from operator
+pause and code/data failure. Standalone and Codespaces runtimes expose `standby`
+through `/runtime.json` until the recorded Pacific reset; the hosted lane checks
+the quota boundary in `wake-state` and dispatches a fresh cycle after that boundary.
+Peer exchange and the shared Bob group projection are local numbered-group features
+only. They read each reachable member independently and skip unavailable peers, so
+the local group network is never a prerequisite for a member's own research loop.
+
 The Console discovers the live capability only on an explicit standalone export.
 It polls every three seconds, clears marks on errors or expired samples, and uses
 separate overlays for active work. Matrix scores and inspection selection remain

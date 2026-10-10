@@ -161,11 +161,18 @@ def requires_operator_attention(result):
     if status in ("accepted", "deferred", "waiting", "not_started", "rejected"):
         return False
 
+    reason = str(result.get("reason", ""))
+    if status == "paused" and reason.startswith((
+        "Configured daily request limits reached",
+        "Gemini free-tier daily quota exhausted",
+        "Daily call ceiling reached",
+    )):
+        return False
+
     provider_error = result.get("provider_error", {})
     if provider_error.get("http_status") == 429:
         return False
 
-    reason = str(result.get("reason", ""))
     quiet_prefixes = (
         "Gemini HTTP 429",
         "Gemini free-tier daily quota exhausted",
@@ -425,19 +432,15 @@ def continuation_outputs(result):
     if status == "deferred" and reason.startswith("Gemini temporarily unavailable"):
         continue_now = True
         retry_after = int(TRANSIENT_RETRY_DELAY.total_seconds())
-    elif status == "deferred" and (
+    elif status in ("deferred", "paused") and (
         reason.startswith("Configured daily request limits reached")
         or reason.startswith("Gemini free-tier daily quota exhausted")
         or reason.startswith("Daily call ceiling reached")
     ):
-        next_eligible = result.get("wake_status", {}).get("next_eligible")
-        if next_eligible:
-            try:
-                eligible_at = datetime.fromisoformat(str(next_eligible).replace("Z", "+00:00"))
-                retry_after = max(0, int((eligible_at - datetime.now(timezone.utc)).total_seconds()))
-                continue_now = True
-            except (TypeError, ValueError):
-                pass
+        # Daily quota waits can exceed the maximum lifetime of a GitHub job.
+        # The scheduled continuation watchdog reads wake-state after Pacific
+        # midnight and dispatches one fresh attempt when the durable boundary passes.
+        continue_now = False
     set_step_output("status", status or "unknown")
     set_step_output("continue_now", "true" if continue_now else "false")
     set_step_output("retry_after", str(retry_after))

@@ -12,6 +12,8 @@ from pathlib import Path
 
 _HOP_HEADERS = {"connection", "keep-alive", "proxy-authenticate", "proxy-authorization",
                 "te", "trailers", "transfer-encoding", "upgrade"}
+_MAX_BOB_PACKET = 512_000
+_MAX_GROUP_BOB_BYTES = 4_000_000
 
 
 class GroupProxy(BaseHTTPRequestHandler):
@@ -27,7 +29,15 @@ class GroupProxy(BaseHTTPRequestHandler):
         raw_host = self.headers.get("Host", "").split(":", 1)[0].strip("[]")
         host = raw_host.lower().rstrip(".")
         route = self.server.routes.get(host)
+        # The gateway hostname is a presentation alias for the group's canonical
+        # prefix. Keep group identity unchanged for peer provenance and routing.
         group = self.server.groups.get(host)
+        if group is None:
+            for alias_prefix in ("000.", "gateway."):
+                if host.startswith(alias_prefix):
+                    group = self.server.groups.get(host[len(alias_prefix):])
+                    if group is not None:
+                        break
         try:
             lan_ip = str(ipaddress.ip_address(raw_host))
         except ValueError:
@@ -53,6 +63,9 @@ class GroupProxy(BaseHTTPRequestHandler):
         if not self._allowed(route):
             self.send_error(403, "This host belongs to a different local WAKE group")
             return
+        if self.path.split("?", 1)[0] == "/group/bob.json":
+            self._serve_group_bob(route["group_id"])
+            return
         try:
             connection = HTTPConnection(route["target"], 8080, timeout=15)
             headers = {key: value for key, value in self.headers.items()
@@ -73,12 +86,98 @@ class GroupProxy(BaseHTTPRequestHandler):
         except (OSError, ValueError):
             self.send_error(502, "Grouped WAKE container is unavailable")
 
+    def _serve_group_bob(self, group_id):
+        """Merge published posts from reachable peers; one offline peer is skipped."""
+        group = self.server.groups.get(group_id.lower())
+        if not group:
+            self._json_error(404, "WAKE group is unavailable")
+            return
+        posts, invocations, evidence, members = {}, {}, {}, []
+        for hostname in sorted(group["members"]):
+            route = self.server.routes.get(hostname, {})
+            target = route.get("target")
+            route_group = route.get("group_id", "")
+            expected_instance = f"{route_group}-{hostname.split('.', 1)[0]}"
+            if not target or route_group.lower() != group_id.lower():
+                continue
+            connection = None
+            try:
+                connection = HTTPConnection(target, 8080, timeout=0.6)
+                connection.request("GET", "/group/bob.json", headers={"Accept": "application/json"})
+                response = connection.getresponse()
+                raw = response.read(_MAX_BOB_PACKET + 1)
+                if response.status != 200 or len(raw) > _MAX_BOB_PACKET:
+                    continue
+                packet = json.loads(raw)
+                if (not isinstance(packet, dict) or packet.get("schema") != 1
+                        or packet.get("group_id") != route_group
+                        or packet.get("instance_id") != expected_instance
+                        or not isinstance(packet.get("application_head"), str)
+                        or len(packet["application_head"]) != 64
+                        or not isinstance(packet.get("posts"), list)
+                        or not isinstance(packet.get("invocations"), dict)
+                        or not isinstance(packet.get("evidence"), dict)):
+                    continue
+                candidate_posts = dict(posts)
+                candidate_invocations = dict(invocations)
+                candidate_evidence = dict(evidence)
+                for post in packet["posts"]:
+                    if isinstance(post, dict) and isinstance(post.get("id"), str):
+                        candidate_posts.setdefault(post["id"], post)
+                candidate_invocations.update(packet["invocations"])
+                candidate_evidence.update(packet["evidence"])
+                candidate_size = len(json.dumps({
+                    "posts": candidate_posts, "invocations": candidate_invocations,
+                    "evidence": candidate_evidence,
+                }, separators=(",", ":")).encode("utf-8"))
+                if candidate_size > _MAX_GROUP_BOB_BYTES:
+                    continue
+                posts, invocations, evidence = (
+                    candidate_posts, candidate_invocations, candidate_evidence)
+                members.append(expected_instance)
+            except (OSError, ValueError, TypeError):
+                # A stopped, starting, or malformed peer never blocks other members.
+                continue
+            finally:
+                if connection is not None:
+                    connection.close()
+        if not members:
+            self._json_error(503, "No WAKE group member is currently available")
+            return
+        body = json.dumps({"schema": 1, "group_id": group_id, "available": True,
+                           "members": members, "posts": list(posts.values()),
+                           "invocations": invocations, "evidence": evidence},
+                          separators=(",", ":")).encode("utf-8")
+        self.send_response(200)
+        self.send_header("Content-Type", "application/json")
+        self.send_header("Cache-Control", "no-store")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        if self.command != "HEAD":
+            self.wfile.write(body)
+
+    def _json_error(self, status, message):
+        body = json.dumps({"schema": 1, "available": False, "error": message}).encode()
+        self.send_response(status)
+        self.send_header("Content-Type", "application/json")
+        self.send_header("Cache-Control", "no-store")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        if self.command != "HEAD":
+            self.wfile.write(body)
+
     def _allowed(self, route):
         try:
             remote = ipaddress.ip_address(self.client_address[0])
             host_gateway = str(remote) == route.get("gateway")
+            in_group_network = any(
+                remote in ipaddress.ip_network(group["subnet"], strict=False)
+                for group in self.server.groups.values()
+            )
+            local_host = (remote.is_loopback or
+                          (remote.is_private and not remote.is_link_local and not in_group_network))
             return (remote in ipaddress.ip_network(route["subnet"], strict=False)
-                    or host_gateway or remote.is_loopback)
+                    or host_gateway or local_host)
         except (KeyError, ValueError):
             return False
 
@@ -132,7 +231,7 @@ class GroupProxy(BaseHTTPRequestHandler):
     do_DELETE = do_POST
 
     def log_message(self, fmt, *args):
-        print("wake.local: " + fmt % args, flush=True)
+        print("000.wake.local: " + fmt % args, flush=True)
 
 
 def main():

@@ -255,6 +255,18 @@ class CloudWorkflowTests(unittest.TestCase):
             {"status": "paused", "reason": "Daily call ceiling reached; no request sent"}))
         self.assertFalse(github_wake.requires_operator_attention(
             {"status": "paused", "reason": "Gemini free-tier daily quota exhausted for this model until Pacific midnight; no request sent"}))
+        self.assertFalse(github_wake.requires_operator_attention(
+            {"status": "paused", "reason": "Configured daily request limits reached; no request sent"}))
+
+    def test_daily_quota_wait_does_not_hold_a_runner_until_midnight(self):
+        result = {"status": "deferred",
+                  "reason": "Gemini free-tier daily quota exhausted for this model until Pacific midnight",
+                  "wake_status": {"next_eligible": "2026-10-11T07:00:00+00:00"}}
+        with patch.object(github_wake, "set_step_output") as output:
+            github_wake.continuation_outputs(result)
+        written = {call.args[0]: call.args[1] for call in output.call_args_list}
+        self.assertEqual(written["continue_now"], "false")
+        self.assertEqual(written["retry_after"], "0")
 
     def test_attention_policy_still_fails_auth_and_unexpected_runtime_conditions(self):
         self.assertTrue(github_wake.requires_operator_attention(
@@ -264,6 +276,8 @@ class CloudWorkflowTests(unittest.TestCase):
             {"status": "paused", "reason": "GEMINI_API_KEY is missing"}))
         self.assertTrue(github_wake.requires_operator_attention(
             {"status": "failed", "reason": "Provider failed (ValueError); no automatic retry"}))
+        self.assertTrue(github_wake.requires_operator_attention(
+            {"status": "paused", "reason": "Context ceiling reached; human review required, no model call made"}))
         self.assertFalse(github_wake.requires_operator_attention(
             {"status": "rejected", "reason": "Invalid proposal"}))
 

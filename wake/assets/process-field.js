@@ -66,9 +66,10 @@
     if(stageHTML!==lastStageHTML){stageList.innerHTML=stageHTML;lastStageHTML=stageHTML;}
     const setText=(element,text)=>{if(element.textContent!==text)element.textContent=text;};
     if(runtime){
-      const labels={record:'reading the record',context:'preparing context',collecting:'collecting evidence',provider:'context handed to provider · awaiting proposal',governance:'proposal received · checking governance',continuity:'evaluating the matrix response',receipt:'finishing the receipt',idle:({paused:'research paused',waiting:'waiting for the next eligible wake',blocked:'operator review required',running:'preparing work',idle:'between wakes'})[runtime.state]};
+      const labels={record:'reading the record',context:'preparing context',collecting:'collecting evidence',provider:'context handed to provider · awaiting proposal',governance:'proposal received · checking governance',continuity:'evaluating the matrix response',receipt:'finishing the receipt',idle:({paused:'research paused',standby:'research is paused until midnight Pacific time',waiting:'waiting for the next eligible wake',blocked:'operator review required',running:'preparing work',idle:'between wakes'})[runtime.state]};
       setText(statusEl,runtime.activity.active?'LIVE ACTIVITY':'RUNTIME '+runtime.state.toUpperCase());
       statusEl.dataset.state=runtime.activity.active?'running':runtime.state;
+      statusEl.title=runtime.state==='standby'?'Research is paused until midnight Pacific time':`Runtime ${runtime.state}`;
       setText(traceEl,`Now · ${labels[runtime.activity.stage]}`);
       traceEl.title=`Sampled ${new Date(runtime.observed_at).toLocaleTimeString()}`;
       setText(detailEl,'The red marker reports this installation’s current stage. Background relationships come from recorded history; activity does not imply accepted progress.');

@@ -70,6 +70,19 @@ class StatusTests(unittest.TestCase):
         self.assertIsNone(result["daily_call_limit"])
         self.assertEqual(result["provider_request_slots_today"], 2)
 
+    def test_quota_standby_boundary_survives_midnight_for_one_recovery_check(self):
+        quota = dict(id="q", time="2026-09-14T18:00:00+00:00", status="deferred",
+                     charged=True, quota_day="2026-09-14", quota_exhausted="configured_daily_limit",
+                     provider_requests_sent=20, reason="Configured daily request limits reached")
+        state = dict(version=1, invocations={"q": quota}, pending=None)
+        before = wake_status(state, daily_call_limit=20,
+                             now=datetime(2026, 9, 15, 6, 59, tzinfo=timezone.utc))
+        after = wake_status(state, daily_call_limit=20,
+                            now=datetime(2026, 9, 15, 7, 1, tzinfo=timezone.utc))
+        self.assertTrue(before["quota_standby"])
+        self.assertFalse(after["quota_standby"])
+        self.assertEqual(after["quota_standby_until"], "2026-09-15T07:00:00+00:00")
+
     def test_empty_state_has_no_invented_success(self):
         result = wake_status(dict(version=0, invocations={}, pending=None))
         self.assertIsNone(result["last_accepted"])

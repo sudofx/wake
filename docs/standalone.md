@@ -250,6 +250,8 @@ and reports its research state and continuity progress. `./scripts/wake_runner.s
 is an equivalent entry point. A named invocation such as
 `./scripts/wake_runner wake-dev` follows the same create-if-missing,
 report-if-present behavior.
+Pass `--paused` when creating a solo container or group to make the website
+available without starting research. The flag affects new containers only.
 
 New containers are enrolled in continuity@1 by default. Pass `--campaign none`
 when creating a container to omit that enrollment, for example
@@ -280,9 +282,9 @@ unshared attached Docker data volumes. A group prefix selects its
 
 Supplying `--count` makes the positional name a group prefix and requires that
 name. For example, `./scripts/wake_runner wake.local --count 3` creates the
-`wake.local` proxy and Docker containers named `001.wake.local` through
+`000.wake.local` proxy and Docker containers named `001.wake.local` through
 `003.wake.local`, each with an independent volume and a Docker-assigned host
-port. The proxy's bare hostname opens a directory of the numbered members. The
+port. The reserved `000.wake.local` hostname opens a directory of numbered members. The
 runner creates a private
 user-defined Docker bridge for that prefix and sets group membership only on
 these numbered containers.
@@ -296,7 +298,10 @@ shared, and no prompt prescribes a connection to find. The exchange uses the loc
 Docker bridge and adds no provider call. The bridge trusts its operator-created
 members; it is not cryptographic remote attestation. Every member keeps its own
 `/data` record. Solo runner containers, Compose installs, Codespaces and hosted
-research do not participate.
+research do not participate. The numbered sites in a local group show one Bob
+feed assembled from posts in every reachable member. Research and durable records
+remain independent per member. The feed skips unavailable members and is only a
+display path; it does not gate a member's own research loop.
 
 By default all members use the shared `research-topics.toml`. To give members
 different topics, create files before creating the group, for example:
@@ -311,15 +316,15 @@ cp example.research-topics.toml .wake-runner-topics/003.wake.local.toml
 Edit each numbered file before launching. The runner mounts a matching file
 read-only into that member. If a matching file is absent, that member uses the
 shared `./research-topics.toml`; the runner requires that shared file before it
-creates containers. The `wake.local` proxy listens on host port 80 across network
+creates containers. The `000.wake.local` proxy listens on host port 80 across network
 interfaces, so port 80 must be available. For Mac browser access by group hostname,
 add the following line to the Mac's `/etc/hosts`:
 
 ```text
-127.0.0.1 wake.local 001.wake.local 002.wake.local 003.wake.local
+127.0.0.1 000.wake.local 001.wake.local 002.wake.local 003.wake.local
 ```
 
-Then open `http://wake.local/` for the proxy's member directory, or open
+Then open `http://000.wake.local/` for the proxy's member directory, or open
 `http://001.wake.local/`, `http://002.wake.local/` or
 `http://003.wake.local/` directly. `wake_runner` prints the suggested
 `/etc/hosts` line, local URLs and Mac LAN URLs. On an iPhone connected to the same

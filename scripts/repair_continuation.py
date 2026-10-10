@@ -8,7 +8,11 @@ checkpoint and accounts interrupted invocations before any provider effect.
 import json
 import os
 import subprocess
+import tempfile
+import tomllib
 from datetime import datetime, timezone
+from pathlib import Path
+from zoneinfo import ZoneInfo
 
 
 def api(repository, path):
@@ -41,6 +45,54 @@ def recovery_reason(runs, jobs, runtime, now):
     return None
 
 
+def quota_resume_token(due_at, now):
+    """Return a once-per-Pacific-day resume token only after its reset passes."""
+    if not due_at:
+        return None
+    try:
+        eligible = datetime.fromisoformat(str(due_at).replace('Z', '+00:00'))
+        if eligible.tzinfo is None:
+            eligible = eligible.replace(tzinfo=timezone.utc)
+    except (TypeError, ValueError):
+        return None
+    local_now = now.astimezone(ZoneInfo('America/Los_Angeles'))
+    # Check a bounded midnight window so the scheduled watcher need not restore
+    # the compressed record on every 15-minute transport-health check.
+    if local_now.hour >= 3 or eligible > now:
+        return None
+    return 'quota-resume-' + local_now.date().isoformat()
+
+
+def in_quota_check_window(now):
+    return now.astimezone(ZoneInfo('America/Los_Angeles')).hour < 3
+
+
+def authoritative_quota_status():
+    """Read the quota boundary from wake-state; live projections are never authority."""
+    from scripts.github_wake import ROOT, StateBranch
+    from wake.authority import open_authoritative_store
+    from wake.engine import DEFAULTS
+    from wake.scheduling import wake_status
+
+    with tempfile.TemporaryDirectory(prefix='wake-quota-check-') as folder:
+        checkout = Path(folder) / 'state'
+        branch = StateBranch(ROOT, checkout)
+        try:
+            branch.open()
+            store = open_authoritative_store(checkout / 'data', allow_initialize=False)
+            try:
+                settings_file = ROOT / 'wake.toml'
+                settings = {**DEFAULTS,
+                            **(tomllib.loads(settings_file.read_text()) if settings_file.exists() else {})}
+                daily_limit = None if settings.get('model_daily_call_limits') else settings['daily_call_limit']
+                return wake_status(store.load(), daily_call_limit=daily_limit)
+            finally:
+                store.close()
+        finally:
+            if checkout.exists():
+                branch.git('worktree', 'remove', '--force', str(checkout), check=False)
+
+
 def main():
     repository = os.environ['GITHUB_REPOSITORY']
     if api(repository, 'actions/workflows/wake-runner.yml')['state'] != 'active':
@@ -56,16 +108,32 @@ def main():
     jobs = {run['id']: api(repository, f"actions/runs/{run['id']}/jobs?per_page=100")['jobs']
             for run in runs if run['head_sha'] == runtime}
     reason = recovery_reason(runs, jobs, runtime, datetime.now(timezone.utc))
+    now = datetime.now(timezone.utc)
+    token = None
     if not reason:
-        print('No recoverable handoff loss; research is active or requires diagnosis.')
-        return
+        if not in_quota_check_window(now):
+            print('Outside the Pacific-midnight quota check window.')
+            return
+        if any(run['status'] != 'completed' for run in runs if run['head_sha'] == runtime):
+            print('A WAKE cycle is active; no duplicate quota resume.')
+            return
+        quota = authoritative_quota_status()
+        token = quota_resume_token(quota.get('quota_standby_until'), now)
+        if not token:
+            print('No recoverable handoff loss or due quota boundary.')
+            return
+        if any(token in str(run.get('display_title', '')) for run in runs):
+            print('Quota resume was already dispatched for this Pacific day.')
+            return
+        reason = 'daily-quota-reset'
     # Recheck intent and executable identity immediately before dispatch. A
     # concurrent Stop still closes/drains this lane and the cycle checks its pin.
     if (api(repository, 'actions/workflows/wake-runner.yml')['state'] != 'active'
             or api(repository, 'git/ref/heads/wake-runtime')['object']['sha'] != runtime):
         return
+    dispatch_token = token or f'recovery-{os.environ["GITHUB_RUN_ID"]}'
     subprocess.run(['gh', 'workflow', 'run', 'wake.yml', '--repo', repository, '--ref', 'wake-runtime',
-                    '-f', f'runtime_ref={runtime}', '-f', f'dispatch_token=recovery-{os.environ["GITHUB_RUN_ID"]}'],
+                    '-f', f'runtime_ref={runtime}', '-f', f'dispatch_token={dispatch_token}'],
                    check=True, timeout=30)
     print(json.dumps({'continuation_recovery': reason, 'runtime': runtime}))
 

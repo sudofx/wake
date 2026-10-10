@@ -11,6 +11,7 @@ radial-gradient(circle at 50% 50%,rgba(182,155,255,.035),transparent 48%)}
 .process-field-hud{position:absolute;left:16px;top:14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;pointer-events:none}
 .process-field-hud span{border:1px solid var(--line);padding:5px 7px;background:rgba(2,12,18,.78);font:9px ui-monospace,monospace;letter-spacing:.06em}
 #process-field-status[data-state=running]{border-color:var(--green);color:var(--green);box-shadow:0 0 10px rgba(85,219,154,.18)}
+#process-field-status[data-state=standby]{border-color:#a970ff;color:#a970ff;box-shadow:0 0 10px rgba(169,112,255,.18)}
 #process-field-trace{color:var(--orange)}
 .process-field-readout{border-left:1px solid var(--line);padding:16px;background:rgba(4,18,27,.72)}
 .process-field-readout>p{font:10px/1.55 ui-monospace,monospace;color:var(--muted);margin:0 0 14px}

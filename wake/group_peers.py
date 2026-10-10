@@ -116,6 +116,32 @@ def group_research_snapshot(engine, group_id, instance_id):
     return packet
 
 
+def group_bob_snapshot(engine, group_id, instance_id):
+    """Export this member's published Bob posts with only their receipt data."""
+    state, head = engine.store.replay()
+    posts = [post for post in state.get("posts", {}).values()
+             if isinstance(post, dict)
+             and post.get("status", "published") in {"published", "superseded"}]
+    posts.sort(key=lambda post: (post.get("created_version", -1), post.get("id", "")))
+    posts = posts[-100:]
+    invocation_ids = {post.get("created_by") for post in posts if isinstance(post.get("created_by"), str)}
+    evidence_ids = {
+        evidence_id for post in posts for evidence_id in post.get("evidence", [])
+        if isinstance(evidence_id, str)
+    }
+    return {
+        "schema": 1,
+        "group_id": group_id,
+        "instance_id": instance_id,
+        "application_head": head,
+        "posts": posts,
+        "invocations": {key: state.get("invocations", {})[key]
+                        for key in invocation_ids if key in state.get("invocations", {})},
+        "evidence": {key: state.get("evidence", {})[key]
+                     for key in evidence_ids if key in state.get("evidence", {})},
+    }
+
+
 def _validated_peer(value, group_id, expected_name):
     if (not isinstance(value, dict) or value.get("schema") != 2
             or value.get("group_id") != group_id

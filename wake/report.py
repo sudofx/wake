@@ -563,8 +563,15 @@ def _deployment_site(target, *, standalone):
     Keep this transform common to full exports and browser-only Pages shells.
     """
     mode = 'standalone' if standalone else 'hosted'
-    atomic_write(target / 'deployment.json', json.dumps({'schema': 1, 'mode': mode}))
-    marker = ('<script>window.WAKE_DEPLOYMENT=' + json.dumps({'schema': 1, 'mode': mode})
+    deployment = {'schema': 1, 'mode': mode}
+    group_id = os.environ.get('WAKE_GROUP_ID', '')
+    group_instance = os.environ.get('WAKE_GROUP_INSTANCE', '')
+    if (standalone and group_id and group_instance
+            and not any(os.environ.get(name, '').lower() == 'true'
+                        for name in ('GITHUB_ACTIONS', 'CODESPACES', 'CI'))):
+        deployment['group'] = {'id': group_id, 'instance': group_instance}
+    atomic_write(target / 'deployment.json', json.dumps(deployment))
+    marker = ('<script>window.WAKE_DEPLOYMENT=' + json.dumps(deployment)
               + ';window.WAKE_STANDALONE=' + ('true' if standalone else 'false') + ';</script>')
     assets = Path(__file__).parent / "assets"
     for name in ("masthead.css", "site-theme.js", "console-light.css"):

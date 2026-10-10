@@ -18,7 +18,7 @@ import time
 
 from .authority import open_authoritative_store, verify_existing_record
 from .engine import Engine, config
-from .group_peers import collect_group_peer_research, group_research_snapshot
+from .group_peers import collect_group_peer_research, group_bob_snapshot, group_research_snapshot
 from .governance import Rejected
 from .providers import Fixture, Gemini
 from .report import export
@@ -112,6 +112,25 @@ class Website(SimpleHTTPRequestHandler):
     """Serve only disposable snapshots, with an inspection-only runtime endpoint."""
     def do_GET(self):
         route = self.path.split('?', 1)[0]
+        if route == '/group/bob.json':
+            group_id = os.environ.get('WAKE_GROUP_ID', '')
+            instance_id = os.environ.get('WAKE_GROUP_INSTANCE', '')
+            if not group_id or not instance_id:
+                self.send_error(404)
+                return
+            try:
+                body = json.dumps(group_bob_snapshot(
+                    self.server.engine, group_id, instance_id), separators=(',', ':')).encode()
+            except (KeyError, ValueError):
+                self.send_error(503, 'Group Bob projection unavailable')
+                return
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json')
+            self.send_header('Cache-Control', 'no-store')
+            self.send_header('Content-Length', str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+            return
         if route == '/group/research.json':
             group_id = os.environ.get('WAKE_GROUP_ID', '')
             instance_id = os.environ.get('WAKE_GROUP_INSTANCE', '')
@@ -250,11 +269,26 @@ def run(args):
                         continue
                     verify_existing_record(data / 'wake.sqlite')
                     state = engine.store.load()
-                    eligibility = wake_status(state, daily_call_limit=None)['next_eligible']
+                    daily_limit = (
+                        None if engine.config.get('model_daily_call_limits')
+                        else engine.config['daily_call_limit']
+                    )
+                    schedule = wake_status(state, daily_call_limit=daily_limit)
+                    eligibility = schedule['next_eligible']
                     if eligibility:
                         delay = (datetime.fromisoformat(eligibility) - datetime.now(timezone.utc)).total_seconds()
                         if delay > 0:
-                            server.runtime_status = {'mode': 'standalone', 'state': 'waiting', 'next_eligible': eligibility}
+                            if schedule.get('quota_standby'):
+                                server.runtime_status = {
+                                    'mode': 'standalone', 'state': 'standby',
+                                    'resume_at': schedule['quota_standby_until'],
+                                    'reason': 'API allowance exhausted; research resumes at midnight Pacific time',
+                                }
+                            else:
+                                server.runtime_status = {
+                                    'mode': 'standalone', 'state': 'waiting',
+                                    'next_eligible': eligibility,
+                                }
                             if _wait_for_control(stop, data, min(delay, args.interval), research_mode, reset_id):
                                 break
                             continue
@@ -283,6 +317,16 @@ def run(args):
                     print(json.dumps(result), flush=True)
                     if publish(engine, root):
                         server.snapshot_generation += 1
+                    quota_schedule = wake_status(
+                        engine.store.load(), daily_call_limit=daily_limit
+                    )
+                    if quota_schedule.get('quota_standby'):
+                        server.runtime_status = {
+                            'mode': 'standalone', 'state': 'standby',
+                            'resume_at': quota_schedule['quota_standby_until'],
+                            'reason': 'API allowance exhausted; research resumes at midnight Pacific time',
+                        }
+                        continue
                     if result.get('status') == 'failed':
                         # Known temporary failures return deferred. A failed
                         # provider outcome is not permission for another effect

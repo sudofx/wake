@@ -37,6 +37,7 @@
 .masthead .actions-light[data-state=running] i,.masthead .actions-light[data-state=campaign] i{background:#3fb950}
 .masthead .actions-light[data-state=stopped] i,.masthead .actions-light[data-state=paused] i{background:#e7c35a}
 .masthead .actions-light[data-state=waiting] i{background:#e7c35a}
+.masthead .actions-light[data-state=standby] i{background:#a970ff;box-shadow:0 0 9px rgba(169,112,255,.65)}
 .masthead .actions-light[data-state=blocked] i{background:#dc5261}
 .masthead .nav-group{position:relative}
 .masthead .mobile-nav-menu{display:none}
