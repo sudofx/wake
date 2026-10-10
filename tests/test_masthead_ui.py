@@ -104,7 +104,7 @@ class MastheadPresentationTests(unittest.TestCase):
         self.assertIn("['running','stopped','campaign','standby']", nav)
         self.assertIn("CACHE_KEY='wake-actions-light-state'", nav)
         self.assertIn('CACHE_FRESH_MS=90000', nav)
-        self.assertIn('REFRESH_MS=180000', nav)
+        self.assertIn('REFRESH_MS=5000', nav)
         self.assertIn("fetchJson(latchUrl)", nav)
         self.assertIn("if(latch.state==='active')", nav)
         self.assertIn("fetchJson(campaignUrl)", nav)

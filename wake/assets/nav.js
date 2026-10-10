@@ -56,8 +56,10 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.mode!=='hosted'){
 }
 if(actionsLight && window.WAKE_DEPLOYMENT?.schema===1 && window.WAKE_DEPLOYMENT.mode==='hosted'){
   const CACHE_KEY='wake-actions-light-state';
+  const LATCH_CACHE_KEY='wake-actions-light-latch';
   const CACHE_FRESH_MS=90000;
-  const REFRESH_MS=180000;
+  const LATCH_FRESH_MS=180000;
+  const REFRESH_MS=5000;
   const CAMPAIGN_ACTIVE=new Set(['queued','in_progress','waiting','requested','pending']);
   const validState=state=>['running','stopped','campaign','standby'].includes(state);
   const stateTitle=(state,suffix='')=>{
@@ -77,6 +79,18 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.schema===1 && window.WAKE_DEPLOYMENT.
       return cached&&validState(cached.state)&&Number.isFinite(Number(cached.verified_at))?cached:null;
     }catch{return null;}
   };
+  let latchMemory=null;
+  const readLatch=()=>{
+    try{
+      const cached=JSON.parse(localStorage.getItem(LATCH_CACHE_KEY)||'null');
+      if(cached&&['active','inactive','unavailable'].includes(cached.state)&&Number.isFinite(Number(cached.verified_at)))return cached;
+    }catch{}
+    return latchMemory;
+  };
+  const rememberLatch=state=>{
+    latchMemory={state,verified_at:Date.now()};
+    try{localStorage.setItem(LATCH_CACHE_KEY,JSON.stringify(latchMemory));}catch{}
+  };
   const applyCached=(cached,suffix='last verified')=>{
     if(!cached)return false;
     const title=cached.state==='standby'&&cached.standby_until
@@ -85,42 +99,68 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.schema===1 && window.WAKE_DEPLOYMENT.
     applyActionsState(cached.state,title);
     return true;
   };
+  const showUnavailable=(cached=readCached())=>{
+    const title=cached
+      ?stateTitle(cached.state,'last verified · refresh unavailable')
+      :'Hosted status unavailable · refresh will retry';
+    applyActionsState(null,title);
+  };
   const initial=readCached();
-  if(initial)applyCached(initial);
+  if(initial&&Date.now()-Number(initial.verified_at)<CACHE_FRESH_MS)applyCached(initial);
+  else showUnavailable(initial);
   const remember=(state)=>{
     const cached={state,verified_at:Date.now()};
     applyActionsState(state,stateTitle(state));
     try{localStorage.setItem(CACHE_KEY,JSON.stringify(cached));}catch{}
   };
   const fetchJson=url=>fetch(url,{cache:'no-store'}).then(response=>response.ok?response.json():Promise.reject(new Error('GitHub status unavailable')));
+  let refreshInFlight=false;
+  const refreshLiveProjection=stamp=>{
+    const liveUrl='https://raw.githubusercontent.com/sudofx/wake/wake-live/live.json?_='+stamp;
+    return fetchJson(liveUrl).then(live=>{
+      const quotaStatus=live?.wake_status;
+      if(typeof quotaStatus?.provider_quota_limited!=='boolean'||typeof quotaStatus?.quota_standby!=='boolean'){
+        throw new Error('Hosted quota status missing from live projection');
+      }
+      const quotaLimited=quotaStatus.provider_quota_limited===true||quotaStatus.quota_standby===true;
+      if(quotaLimited){
+        const standbyUntil=quotaStatus.quota_standby_until||null;
+        const message=standbyUntil?`Configured request limit; resumes ${standbyUntil}`:stateTitle('standby');
+        const standby={state:'standby',verified_at:Date.now(),standby_until:standbyUntil};
+        applyActionsState('standby',message);
+        try{localStorage.setItem(CACHE_KEY,JSON.stringify(standby));}catch{}
+      }else remember('running');
+      return null;
+    }).catch(()=>{showUnavailable();return null;});
+  };
   const refreshActionsLight=(force=false)=>{
     if(document.hidden&&!force)return;
-    const cached=readCached();
-    const standbyExpired=cached?.state==='standby'&&Number.isFinite(Date.parse(cached.standby_until))&&Date.now()>=Date.parse(cached.standby_until);
-    if(!force&&!standbyExpired&&cached&&Date.now()-Number(cached.verified_at)<CACHE_FRESH_MS){
-      applyCached(cached);
-      return;
-    }
+    if(refreshInFlight)return;
+    const cachedLatch=readLatch();
     const stamp=Date.now();
     const latchUrl='https://api.github.com/repos/sudofx/wake/actions/workflows/wake-runner.yml?_='+stamp;
     const campaignUrl='https://api.github.com/repos/sudofx/wake/actions/workflows/operator-enable-continuity.yml/runs?per_page=10&_='+stamp;
+    const latchFreshFor=cachedLatch?.state==='unavailable'?60000:LATCH_FRESH_MS;
+    if(!force&&cachedLatch&&Date.now()-Number(cachedLatch.verified_at)<latchFreshFor){
+      if(cachedLatch.state==='active'){
+        refreshInFlight=true;
+        refreshLiveProjection(stamp).finally(()=>{refreshInFlight=false;});
+      }
+      return;
+    }
+    refreshInFlight=true;
     fetchJson(latchUrl)
       .then(latch=>{
-        if(latch.state==='active'){
-          const liveUrl='https://raw.githubusercontent.com/sudofx/wake-live/main/live.json?_='+stamp;
-          return fetchJson(liveUrl).then(live=>{
-            const quotaStatus=live?.wake_status||{};
-            const quotaLimited=quotaStatus.provider_quota_limited===true||quotaStatus.quota_standby===true;
-            if(quotaLimited){
-              const standbyUntil=quotaStatus.quota_standby_until||null;
-              const message=standbyUntil?`Configured request limit; resumes ${standbyUntil}`:stateTitle('standby');
-              const standby={state:'standby',verified_at:Date.now(),standby_until:standbyUntil};
-              applyActionsState('standby',message);
-              try{localStorage.setItem(CACHE_KEY,JSON.stringify(standby));}catch{}
-            }else remember('running');
-            return null;
-          }).catch(()=>{remember('running');return null;});
+        if(!latch||!['active','disabled'].includes(latch.state)){
+          rememberLatch('unavailable');
+          showUnavailable();
+          return null;
         }
+        if(latch.state==='active'){
+          rememberLatch('active');
+          return refreshLiveProjection(stamp);
+        }
+        rememberLatch('inactive');
         return fetchJson(campaignUrl).then(campaign=>{
           const active=(campaign.workflow_runs||[]).some(run=>CAMPAIGN_ACTIVE.has(run.status));
           remember(active?'campaign':'stopped');
@@ -128,13 +168,11 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.schema===1 && window.WAKE_DEPLOYMENT.
         });
       })
       .catch(()=>{
-        // A transport/rate-limit failure must not contradict a state already
-        // verified by another WAKE page. Yellow is reserved for "never verified".
-        const fallback=readCached();
-        if(!applyCached(fallback,'last verified · refresh unavailable')){
-          applyActionsState(null,'GitHub Actions status unavailable');
-        }
-      });
+        // A failed refresh is not evidence that research is running or stopped.
+        rememberLatch('unavailable');
+        showUnavailable();
+      })
+      .finally(()=>{refreshInFlight=false;});
   };
   refreshActionsLight();
   setInterval(refreshActionsLight,REFRESH_MS);
