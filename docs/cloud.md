@@ -49,6 +49,13 @@ Do not use migration/rehearsal workflows as substitutes for ordinary Start/Stop 
 
 The workflow uses the existing public repository and GitHub Pages. No paid fallback, paid search, or subscription is introduced. The local Pacific-day budget is enforced against durable provider-request reservations. With same-wake research enabled, planning and final proposal reserve separate slots. Each phase may reserve additional slots when an eligible transient failure advances to the next configured Gemini model; interrupted unknown attempts remain conservatively reserved. Manual wakes share the same ledger.
 
+The hosted Gemini quota fallback order is configured in `wake.toml`: 3.1 Flash-Lite,
+3.8 Flash, 3.5 Flash-Lite, then 3.6 Flash. WAKE advances only when Google reports
+the exact per-model daily free-tier quota exhausted. The configured daily ceilings
+match those model buckets (500 requests for the Lite models and 20 for Flash models);
+provider-reported exhaustion still handles quota already used outside WAKE. It then
+enters quota standby only after every configured model is unavailable.
+
 ## A wake's work
 
 A trusted collector retrieves a bounded sample before the final proposal inference. Normal mode uses two requests; the current `observation_mode = true` configuration uses `research_collection_budget = 6`. With same-wake research disabled and active projects, one slot remains broad exploration and the remaining slots prioritize project maturation: readable-source candidates, persistent-identifier promotion, queued follow-ups, then question-led scholarly discovery. Broad index results are discovery leads. Exact Crossref/OpenAlex/Semantic Scholar/DataCite records are metadata-routing receipts, not notebook evidence. Approved readable publisher/full-text/source-controlled text is the qualifying source boundary. PubMed/PMC identifiers can be promoted deterministically to NCBI PMC open-access BioC text when available. Collection remains separate from model authority and is bounded by HTTPS allowlists and redirect validation. Normal web responses are capped at one megabyte. PDFs are capped at eight megabytes and text extraction is bounded to the first 24 pages and 50,000 characters; the provider-facing evidence excerpt remains bounded to 10,000 characters with evidence-bearing sections preferentially retained.

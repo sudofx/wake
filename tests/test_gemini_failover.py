@@ -356,6 +356,34 @@ class FailoverTests(unittest.TestCase):
         self.assertEqual(state["version"], 0)
         self.assertFalse(state["journal"])
 
+    def test_daily_quota_failover_uses_flash_lite_then_36(self):
+        self.engine.store.close()
+        self.settings = config(Path(__file__).resolve().parents[1] / "wake.toml")
+        self.engine = Engine(Path(self.temp.name) / "data", self.settings, store_factory=Store)
+        daily_quota = lambda: failure(429, FREE_TIER_DAILY_QUOTA_ID)
+
+        result, state, item, network = self.run_chain(
+            [daily_quota(), daily_quota(), daily_quota(), "valid"]
+        )
+
+        request_models = [
+            request.full_url.split("/models/", 1)[1].split(":", 1)[0]
+            for request in self.requests
+        ]
+        self.assertEqual(
+            request_models,
+            [
+                "gemini-3.1-flash-lite",
+                "gemini-3.8-flash",
+                "gemini-3.5-flash-lite",
+                "gemini-3.6-flash",
+            ],
+        )
+        self.assertEqual(result["status"], "accepted")
+        self.assertEqual(network.call_count, 4)
+        self.assertEqual(item["successful_model"], "gemini-3.6-flash")
+        self.assertEqual(state["version"], 1)
+
     def test_attempt_results_are_checkpointed_before_next_model(self):
         snapshots = []
         def checkpoint():
@@ -377,7 +405,11 @@ class FailoverTests(unittest.TestCase):
         settings = config(Path(__file__).resolve().parents[1] / "wake.toml")
         self.assertEqual(settings["model"], "gemini-3.1-flash-lite")
         self.assertTrue(settings["gemini_fallback_requires_primary_daily_quota"])
-        self.assertEqual(settings["gemini_fallback_models"], ["gemini-3.8-flash", "gemini-3.5-flash"])
+        self.assertEqual(settings["gemini_fallback_models"], [
+            "gemini-3.8-flash", "gemini-3.5-flash-lite", "gemini-3.6-flash",
+        ])
         self.assertGreaterEqual(settings["model_daily_call_limits"]["gemini-3.1-flash-lite"], 1)
+        self.assertEqual(settings["model_daily_call_limits"]["gemini-3.5-flash-lite"], 500)
+        self.assertEqual(settings["model_daily_call_limits"]["gemini-3.6-flash"], 20)
         self.assertTrue(settings["research_topics"])
         self.assertEqual(len({topic["id"] for topic in settings["research_topics"]}), len(settings["research_topics"]))

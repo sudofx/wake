@@ -328,8 +328,12 @@ Then open `http://000.wake.local/` for the proxy's member directory, or open
 `http://001.wake.local/`, `http://002.wake.local/` or
 `http://003.wake.local/` directly. `wake_runner` prints the suggested
 `/etc/hosts` line, local URLs and Mac LAN URLs. On an iPhone connected to the same
-network, open the printed `GROUP PROXY LAN URL`; its page links to each member's
-direct LAN URL. Add the hosts line yourself for hostname access on the Mac.
+network, open the printed `GROUP PROXY LAN URL`; the gateway serves member buttons
+that point directly to the Mac's LAN address and each member's published port. If
+the gateway is opened by its group hostname from another device, it compares the
+requesting device's IP with the Mac's LAN IP and uses those same direct links for
+remote devices. The `/etc/hosts` line only configures the Mac; the iPhone can use the
+printed numeric LAN URL unless local DNS provides the group hostname.
 One router serves all active groups; it blocks requests between different group
 networks. Group networks are removed when their last member is removed. The runner
 requires the existing `wake-standalone:vscode` image and selects the Docker Desktop

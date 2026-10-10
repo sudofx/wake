@@ -181,14 +181,44 @@ class GroupProxy(BaseHTTPRequestHandler):
         except (KeyError, ValueError):
             return False
 
+    def _remote_client(self):
+        try:
+            client_ip = ipaddress.ip_address(self.client_address[0])
+        except (AttributeError, TypeError, ValueError):
+            return False
+        if client_ip.is_loopback:
+            return False
+        host_lan_ip = getattr(self.server, "host_lan_ip", None)
+        if not host_lan_ip:
+            return True
+        try:
+            return client_ip != ipaddress.ip_address(host_lan_ip)
+        except ValueError:
+            return True
+
     def _serve_group_directory(self, host, group):
         members = sorted(group["members"])
         group_name = members[0].split(".", 1)[1] if members else host
+        remote_client = self._remote_client()
+        lan_ip = self.server.host_lan_ip if remote_client else None
+        if lan_ip:
+            members = [member for member in members
+                       if self.server.routes[member].get("host_ip") not in {"127.0.0.1", "::1"}]
+            href_for = lambda member: (
+                f"http://{lan_ip}:{self.server.routes[member]['host_port']}/console.html"
+            )
+            description = "Open a member on this local network in a new tab."
+        else:
+            href_for = lambda member: f"http://{member}/"
+            description = "Open a member in a new tab."
+        if remote_client and not lan_ip:
+            members = []
+            description = "The host's LAN address is unavailable; open the printed GROUP PROXY LAN URL."
         panel = self._group_panel(
             group_name,
             members,
-            lambda member: f"http://{member}/",
-            "Open a member in a new tab.",
+            href_for,
+            description,
         )
         self._serve_directory(group_name, [panel])
 
@@ -348,6 +378,8 @@ def main():
     server = ThreadingHTTPServer(("0.0.0.0", 8080), GroupProxy)
     server.routes = routes
     server.groups = groups
+    host_lan_ip = config.get("host_lan_ip")
+    server.host_lan_ip = str(ipaddress.ip_address(host_lan_ip)) if host_lan_ip else None
     print(f"Local WAKE group router ready for {len(routes)} members in {len(groups)} groups", flush=True)
     server.serve_forever()
 

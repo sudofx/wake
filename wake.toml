@@ -6,12 +6,14 @@ timezone = "America/Los_Angeles"
 objective = "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process."
 provider = "gemini"
 model = "gemini-3.1-flash-lite"
-# Flash Lite handles normal operation. Newer models unlock only after Google's exact Lite daily free-tier quota is exhausted.
-gemini_fallback_models = ["gemini-3.8-flash", "gemini-3.5-flash"]
+# Flash Lite handles normal operation. Each fallback is used only after the
+# preceding model's exact per-model daily free-tier quota is exhausted.
+gemini_fallback_models = ["gemini-3.8-flash", "gemini-3.5-flash-lite", "gemini-3.6-flash"]
 gemini_fallback_requires_primary_daily_quota = true
-# Legacy aggregate ceiling for compatibility. Live Gemini budgeting uses the per-model RPD buckets below.
+# Match the current free-tier RPD buckets. Provider-reported daily exhaustion
+# still advances the chain when calls outside WAKE used part of a model's quota.
 daily_call_limit = 500
-model_daily_call_limits = { "gemini-3.1-flash-lite" = 500, "gemini-3.8-flash" = 20, "gemini-3.5-flash" = 20 }
+model_daily_call_limits = { "gemini-3.1-flash-lite" = 500, "gemini-3.8-flash" = 20, "gemini-3.5-flash-lite" = 500, "gemini-3.6-flash" = 20 }
 # Routine derived working memory; shadow restores rich delivery with overflow fallback.
 memory_mode = "active"
 max_context_chars = 48000

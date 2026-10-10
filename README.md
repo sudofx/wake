@@ -162,7 +162,7 @@ GEMINI_API_KEY=your_key_here
 
 ### 3. Configure the model and topics
 
-The provider/model settings live in `wake.toml`. The repository currently uses Gemini with an explicit fallback chain. Change model names or per-model daily ceilings there only to values your Gemini project actually supports.
+The provider/model settings live in `wake.toml`. The repository uses Gemini 3.1 Flash-Lite first, then falls back through Gemini 3.8 Flash, 3.5 Flash-Lite and 3.6 Flash only after an exact per-model daily free-tier quota response. Change model names or per-model daily ceilings there only to values your Gemini project actually supports.
 
 Research topics live **only** in `research-topics.toml`. On a new checkout, run `cp example.research-topics.toml research-topics.toml`, edit the copy, then start research. The custom file is ignored by Git for local use; to include topics in a hosted release, explicitly run `git add -f research-topics.toml` before committing and pushing. Startup explains how to create the file if it is absent. Do not hardcode topics into governance or prompts.
 

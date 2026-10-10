@@ -129,10 +129,11 @@ ensure_group_router_identity() {
 }
 
 refresh_group_router() {
-    local config_file="$repo_dir/.wake-runner-router.json" routes_file container group_id ordinal network subnet gateway host_port host_ip
+    local config_file="$repo_dir/.wake-runner-router.json" routes_file container group_id ordinal network subnet gateway host_port host_ip lan_ip
     local first_network="" name host label router_network
     local groups=() networks=()
     routes_file="$(mktemp)"
+    lan_ip="$(host_lan_ipv4 || true)"
     if container_exists "$LEGACY_GROUP_ROUTER"; then
         ensure_group_router_identity "$LEGACY_GROUP_ROUTER"
         if container_exists "$GROUP_ROUTER"; then
@@ -187,7 +188,7 @@ refresh_group_router() {
         rm -f "$config_file" "$routes_file"
         return 0
     fi
-    python3 - "$routes_file" "$config_file" <<'PY'
+python3 - "$routes_file" "$config_file" "$lan_ip" <<'PY'
 import json
 import sys
 
@@ -207,7 +208,8 @@ with open(sys.argv[1]) as source:
             raise SystemExit(f"Inconsistent local WAKE group network: {group_id}")
         group["members"].append(key)
 with open(sys.argv[2], "w") as target:
-    json.dump({"routes": routes, "groups": groups}, target, separators=(",", ":"))
+    json.dump({"routes": routes, "groups": groups,
+               "host_lan_ip": sys.argv[3] or None}, target, separators=(",", ":"))
 PY
     ((${#groups[@]} > 0)) || { rm -f "$routes_file"; fail 'Group router has no group networks.'; }
     for group_id in "${groups[@]}"; do
