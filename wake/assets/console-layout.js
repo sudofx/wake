@@ -18,7 +18,6 @@
       button.setAttribute('aria-label',popped?button.dataset.restoreLabel:button.dataset.popoutLabel);
       button.title=button.getAttribute('aria-label');
     }
-    if(panel.dataset.consolePanelId==='014')document.documentElement.classList.toggle('console-inspector-popped-out',popped);
   };
   const restorePanel=id=>{
     const panel=document.querySelector(`[data-console-panel-id="${id}"]`);
@@ -77,7 +76,8 @@
     '.telemetry-grid > .panel',
     '#main > .notebook-panel'
   ];
-  const panels=[...document.querySelectorAll(sourceSelectors.join(','))];
+  const inspector=document.querySelector('.detail-panel');
+  const panels=[...document.querySelectorAll(sourceSelectors.join(','))].filter(panel=>!panel.matches('.detail-panel'));
   if(!panels.length)return;
 
   const grid=document.createElement('section');
@@ -132,6 +132,9 @@
     heading.append(controls);
     grid.append(panel);
   });
+  // Inspection follows the workspace in normal document flow. It is not a
+  // docked, rearrangeable, or pop-out module and cannot reserve page width.
+  if(inspector)grid.after(inspector);
   // Give every header the same title stack and shared action row, regardless
   // of whether the original markup wrapped its label and title in a div.
   document.querySelectorAll('.panel > .panel-heading,.page-intro > .panel-heading').forEach(heading=>{
@@ -154,7 +157,7 @@
   document.querySelectorAll('.panel-id').forEach(label=>{
     const panel=label.closest('.panel,.page-intro');
     const id=label.textContent.match(/#(\d{3})/)?.[1];
-    if(!panel||!id)return;
+    if(!panel||!id||panel.matches('.detail-panel'))return;
     panel.dataset.consolePanelId=id;
     panel.classList.toggle('console-story-panel',Number(id)>=12&&Number(id)<=18);
     const button=document.createElement('button');
@@ -337,29 +340,5 @@
     pack();writeState();
   });
   overview.querySelectorAll('.snapshot button').forEach(button=>overview.querySelector('.panel-actions').append(button));
-  // Dock only a populated inspector. Pop-out releases the reservation immediately;
-  // closing it restores docking without changing the saved grid order.
-  const inspector=document.querySelector('.detail-panel');
-  // Navigation owns visibility; the inspector only consumes that state. Never
-  // reserve a fixed header gap once the shared masthead has left the viewport.
-  const masthead=document.querySelector('.masthead');
-  const sizeInspector=()=>{
-    const edge=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--console-edge'))||20;
-    const header=masthead&&!masthead.classList.contains('masthead-scroll-hidden')?masthead.getBoundingClientRect().height:0;
-    document.documentElement.style.setProperty('--inspector-top',`${header+edge}px`);
-  };
-  if(masthead){
-    new MutationObserver(sizeInspector).observe(masthead,{attributes:true,attributeFilter:['class']});
-    new ResizeObserver(sizeInspector).observe(masthead);
-  }
-  window.addEventListener('resize',sizeInspector);
-  sizeInspector();
-  const dockInspector=()=>{
-    const docked=!panelWindow&&inspector.classList.contains('has-selection')&&!inspector.classList.contains('panel-popped-out');
-    document.documentElement.classList.toggle('console-inspector-docked',docked);
-    pack();
-  };
-  new MutationObserver(dockInspector).observe(inspector,{attributes:true,attributeFilter:['class']});
-  dockInspector();
   if(panelWindow){announcePanel();setInterval(()=>announcePanel(),2000);}
 })();
