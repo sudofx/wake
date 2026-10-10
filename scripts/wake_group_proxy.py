@@ -529,6 +529,7 @@ class GroupProxy(BaseHTTPRequestHandler):
             '.status-key-list li{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:11px;line-height:1.4}'
             '.status-key-list .member-status-light{width:10px;height:10px;flex-basis:10px}'
             '.status-key-list .member-status-light i{width:8px;height:8px}'
+            '.status-key-list .member-status-light i{animation:none!important}'
             '.gateway-foot{margin:23px 0 0;color:var(--muted);font-size:9px;letter-spacing:.04em;text-transform:none}'
             '@media(max-width:480px){.masthead{height:66px;padding:0 17px}.brand{font-size:22px}.masthead-tools{gap:12px}'
             'main{width:calc(100% - 32px);padding:39px 0 48px}.group-panel{padding:18px 16px}'
