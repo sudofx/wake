@@ -61,9 +61,9 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.schema===1 && window.WAKE_DEPLOYMENT.
   const LATCH_FRESH_MS=180000;
   const REFRESH_MS=5000;
   const CAMPAIGN_ACTIVE=new Set(['queued','in_progress','waiting','requested','pending']);
-  const validState=state=>['running','stopped','campaign','standby'].includes(state);
+  const validState=state=>['running','stopped','campaign','standby','idle','waiting','blocked'].includes(state);
   const stateTitle=(state,suffix='')=>{
-    const base=state==='standby'?'Provider quota reported; retrying on the regular schedule':state==='campaign'?'Continuity campaign':state==='running'?'Running':state==='stopped'?'Stopped':'Status unavailable';
+    const base=state==='standby'?'Provider quota reported; retrying on the regular schedule':state==='campaign'?'Continuity campaign':state==='running'?'Research running':state==='idle'?'Research idle':state==='waiting'?'Waiting for the next research cycle':state==='blocked'?'Operator or agent action required':state==='stopped'?'Stopped':'Status unavailable';
     return suffix?`${base} · ${suffix}`:base;
   };
   const applyActionsState=(state,title)=>{
@@ -129,7 +129,27 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.schema===1 && window.WAKE_DEPLOYMENT.
         const standby={state:'standby',verified_at:Date.now(),standby_until:standbyUntil};
         applyActionsState('standby',message);
         try{localStorage.setItem(CACHE_KEY,JSON.stringify(standby));}catch{}
-      }else remember('running');
+        return null;
+      }
+      const operation=live?.operation;
+      if(!operation||typeof operation.status!=='string'){
+        showUnavailable();
+        return null;
+      }
+      const reason=String(operation.reason||'').trim();
+      if(operation.status==='paused'||operation.status==='failed'){
+        const blocked={state:'blocked',verified_at:Date.now()};
+        applyActionsState('blocked',reason?`${stateTitle('blocked')} · ${reason}`:stateTitle('blocked'));
+        try{localStorage.setItem(CACHE_KEY,JSON.stringify(blocked));}catch{}
+      }else if(['accepted','rejected','research_planned','deferred','not_started'].includes(operation.status)){
+        remember('idle');
+      }else if(operation.status==='waiting'){
+        remember('waiting');
+      }else if(operation.status==='running'){
+        remember('running');
+      }else{
+        showUnavailable();
+      }
       return null;
     }).catch(()=>{showUnavailable();return null;});
   };
