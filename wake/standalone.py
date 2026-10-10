@@ -292,7 +292,16 @@ def run(args):
                             if _wait_for_control(stop, data, min(delay, args.interval), research_mode, reset_id):
                                 break
                             continue
-                    server.runtime_status = {'mode': 'standalone', 'state': 'running'}
+                    # Keep a provider-quota standby visible while its regular
+                    # retry is in flight. Only a provider response can clear
+                    # this state; wake_status below observes that response.
+                    if schedule.get('provider_quota_limited'):
+                        server.runtime_status = {
+                            'mode': 'standalone', 'state': 'standby',
+                            'reason': 'Provider API quota reported; retrying on the regular schedule',
+                        }
+                    else:
+                        server.runtime_status = {'mode': 'standalone', 'state': 'running'}
                     provider = Fixture(args.model or 'standalone-fixture') if provider_name == 'fixture' else Gemini(settings, args.model)
                     if provider_name == 'gemini':
                         from .group_coordinator import group_provider_gate
