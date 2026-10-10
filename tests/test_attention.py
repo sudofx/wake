@@ -20,7 +20,7 @@ class AttentionTests(unittest.TestCase):
     def test_bob_blog_does_not_count_as_research_progress_or_move_attention(self):
         state = {
             "projects": {
-                "research-project": {"id": "research-project", "domain": "entropy"},
+                "research-project": {"id": "research-project", "domain": "information_survival"},
                 "blog-project": {"id": "blog-project", "domain": "observer"},
             }
         }
@@ -30,12 +30,12 @@ class AttentionTests(unittest.TestCase):
                 {"type": "blog", "project": "blog-project"},
             ]
         }
-        self.assertEqual(_proposal_milestone_topics(state, proposal), {"entropy"})
-        self.assertEqual(_proposal_attention_topic(state, "entropy", proposal), "entropy")
+        self.assertEqual(_proposal_milestone_topics(state, proposal), {"information_survival"})
+        self.assertEqual(_proposal_attention_topic(state, "information_survival", proposal), "information_survival")
 
         blog_only = {"actions": [{"type": "blog", "project": "blog-project"}]}
         self.assertEqual(_proposal_milestone_topics(state, blog_only), set())
-        self.assertEqual(_proposal_attention_topic(state, "entropy", blog_only), "entropy")
+        self.assertEqual(_proposal_attention_topic(state, "information_survival", blog_only), "information_survival")
 
     def test_legacy_squirrel_event_replays_into_attention_state(self):
         from wake.store import reduce_event
@@ -51,12 +51,12 @@ class AttentionTests(unittest.TestCase):
             "seq": 1, "time": "2026-01-01T00:00:00+00:00", "kind": "squirrel_assessed",
             "payload": {
                 "invocation": "w", "terminal": "accepted",
-                "counters": {"entropy": 1}, "deferred": {},
-                "attention": {"topic": "entropy", "accepted_streak": 1},
+                "counters": {"information_survival": 1}, "deferred": {},
+                "attention": {"topic": "information_survival", "accepted_streak": 1},
             },
         }
         replayed = reduce_event(state, event, historical=True)
-        self.assertEqual(replayed["attention"]["counters"]["entropy"], 1)
+        self.assertEqual(replayed["attention"]["counters"]["information_survival"], 1)
         self.assertNotIn("squirrel", replayed)
 
     def test_attention_preflight_preserves_due_system_wide_bob_post(self):
@@ -64,13 +64,13 @@ class AttentionTests(unittest.TestCase):
             "journal": [],
             "posts": {},
             "projects": {},
-            "research_topics": [{"id": "entropy", "enabled": True}],
+            "research_topics": [{"id": "information_survival", "enabled": True}],
             "acquisition": {},
             "invocations": {
                 "w": {
                     "attention": {
                         "enforce_selected_topic": True,
-                        "selected_topic": "entropy",
+                        "selected_topic": "information_survival",
                     }
                 }
             },
@@ -183,34 +183,34 @@ class AttentionTests(unittest.TestCase):
 
     def test_durable_project_advancement_resets_a_topic_counter(self):
         state = {
-            "charter": "test", "attention": {"counters": {"entropy": 4}, "deferred": {}},
-            "projects": {"p": {"id": "p", "domain": "entropy", "next_step": "Old step"}},
-            "invocations": {"w": {"attention": {"selected_topic": "entropy"}}},
+            "charter": "test", "attention": {"counters": {"information_survival": 4}, "deferred": {}},
+            "projects": {"p": {"id": "p", "domain": "information_survival", "next_step": "Old step"}},
+            "invocations": {"w": {"attention": {"selected_topic": "information_survival"}}},
         }
         receipt = assessment(state, "w", "accepted", {
             "actions": [{"type": "project", "id": "p", "next_step": "A different step"}],
         })
         self.assertTrue(receipt["durable_progress"])
-        self.assertEqual(receipt["counters"]["entropy"], 0)
+        self.assertEqual(receipt["counters"]["information_survival"], 0)
 
     def test_new_collected_topic_evidence_restores_eligibility_early(self):
         state = {
-            "charter": "test", "research_topics": [{"id": "entropy"}, {"id": "comedy"}],
-            "projects": {"p": {"id": "p", "domain": "entropy", "status": "active", "updated_version": 1}},
-            "invocations": {"old": {"base_version": 1}, "w": {"attention": {"selected_topic": "entropy"}}},
-            "attention": {"counters": {"entropy": 5}, "deferred": {"entropy": {"deferred_by": "old", "other_topic_attempts": 0}}},
+            "charter": "test", "research_topics": [{"id": "information_survival"}, {"id": "humor"}],
+            "projects": {"p": {"id": "p", "domain": "information_survival", "status": "active", "updated_version": 1}},
+            "invocations": {"old": {"base_version": 1}, "w": {"attention": {"selected_topic": "information_survival"}}},
+            "attention": {"counters": {"information_survival": 5}, "deferred": {"information_survival": {"deferred_by": "old", "other_topic_attempts": 0}}},
             "evidence": {"new": {"actor": "collector", "scope": "collected", "version": 2,
-                                    "content": json.dumps({"topic_domain": "entropy"})}},
+                                    "content": json.dumps({"topic_domain": "information_survival"})}},
         }
-        self.assertEqual(plan(state)["selected_topic"], "entropy")
-        self.assertIn("entropy", assessment(state, "w", "accepted", {"actions": []})["restored_topics"])
+        self.assertEqual(plan(state)["selected_topic"], "information_survival")
+        self.assertIn("information_survival", assessment(state, "w", "accepted", {"actions": []})["restored_topics"])
 
     def test_productive_attention_saturates_without_erasing_progress(self):
         state = {
             "charter": "test",
-            "research_topics": [{"id": "entropy"}, {"id": "comedy"}],
+            "research_topics": [{"id": "information_survival"}, {"id": "humor"}],
             "projects": {
-                "p": {"id": "p", "domain": "entropy", "status": "active",
+                "p": {"id": "p", "domain": "information_survival", "status": "active",
                       "updated_version": 1, "question": "q", "next_step": "n"}
             },
             "invocations": {},
@@ -219,7 +219,7 @@ class AttentionTests(unittest.TestCase):
         }
         for index in range(ATTENTION_SATURATION_THRESHOLD):
             invocation = f"w-{index}"
-            state["invocations"][invocation] = {"attention": {"selected_topic": "entropy"}}
+            state["invocations"][invocation] = {"attention": {"selected_topic": "information_survival"}}
             receipt = assessment(state, invocation, "accepted", {
                 "actions": [{"type": "notebook", "project": "p"}],
             })
@@ -232,63 +232,63 @@ class AttentionTests(unittest.TestCase):
         self.assertTrue(receipt["durable_progress"])
         self.assertTrue(receipt["attention_saturation_triggered"])
         self.assertEqual(receipt["attention"]["accepted_streak"], ATTENTION_SATURATION_THRESHOLD)
-        self.assertEqual(receipt["deferred"]["entropy"]["cause"], "attention_saturation")
-        self.assertEqual(plan(state)["selected_topic"], "comedy")
+        self.assertEqual(receipt["deferred"]["information_survival"]["cause"], "attention_saturation")
+        self.assertEqual(plan(state)["selected_topic"], "humor")
 
     def test_new_evidence_does_not_cancel_attention_saturation_cooldown(self):
         state = {
             "charter": "test",
-            "research_topics": [{"id": "entropy"}, {"id": "comedy"}],
-            "projects": {"p": {"id": "p", "domain": "entropy", "status": "active", "updated_version": 1}},
+            "research_topics": [{"id": "information_survival"}, {"id": "humor"}],
+            "projects": {"p": {"id": "p", "domain": "information_survival", "status": "active", "updated_version": 1}},
             "invocations": {"old": {"base_version": 5}},
             "attention": {
                 "counters": {},
                 "deferred": {
-                    "entropy": {
+                    "information_survival": {
                         "deferred_by": "old",
                         "cause": "attention_saturation",
                         "other_topic_attempts": 0,
                     }
                 },
-                "attention": {"topic": "entropy", "accepted_streak": ATTENTION_SATURATION_THRESHOLD},
+                "attention": {"topic": "information_survival", "accepted_streak": ATTENTION_SATURATION_THRESHOLD},
             },
             "evidence": {
                 "new": {
                     "actor": "collector", "scope": "collected", "version": 6,
-                    "content": json.dumps({"topic_domain": "entropy"}),
+                    "content": json.dumps({"topic_domain": "information_survival"}),
                 }
             },
         }
-        self.assertEqual(plan(state)["selected_topic"], "comedy")
+        self.assertEqual(plan(state)["selected_topic"], "humor")
 
     def test_saturation_does_not_expire_after_three_other_topic_attempts(self):
         state = {
             "charter": "test",
-            "research_topics": [{"id": "entropy"}, {"id": "comedy"}],
+            "research_topics": [{"id": "information_survival"}, {"id": "humor"}],
             "projects": {
-                "p": {"id": "p", "domain": "entropy", "status": "active", "updated_version": 5},
-                "c": {"id": "c", "domain": "comedy", "status": "active", "updated_version": 6},
+                "p": {"id": "p", "domain": "information_survival", "status": "active", "updated_version": 5},
+                "c": {"id": "c", "domain": "humor", "status": "active", "updated_version": 6},
             },
             "invocations": {},
             "attention": {
                 "counters": {},
                 "deferred": {
-                    "entropy": {
+                    "information_survival": {
                         "deferred_by": "old",
                         "cause": "attention_saturation",
                         "other_topic_attempts": 0,
                     }
                 },
-                "attention": {"topic": "entropy", "accepted_streak": ATTENTION_SATURATION_THRESHOLD},
+                "attention": {"topic": "information_survival", "accepted_streak": ATTENTION_SATURATION_THRESHOLD},
             },
             "evidence": {},
         }
         for index in range(COOLDOWN_OTHER_ATTEMPTS):
             invocation = f"other-{index}"
-            state["invocations"][invocation] = {"attention": {"selected_topic": "comedy"}}
+            state["invocations"][invocation] = {"attention": {"selected_topic": "humor"}}
             receipt = assessment(state, invocation, "accepted", {
                 "actions": [{"type": "research", "id": f"r-{index}", "project": "c",
-                             "query": "q", "domain": "comedy", "reason": "r"}],
+                             "query": "q", "domain": "humor", "reason": "r"}],
             })
             state["attention"] = {
                 "counters": receipt["counters"],
@@ -296,52 +296,52 @@ class AttentionTests(unittest.TestCase):
                 "attention": receipt["attention"],
             }
 
-        self.assertIn("entropy", state["attention"]["deferred"])
-        self.assertEqual(state["attention"]["deferred"]["entropy"]["other_topic_attempts"],
+        self.assertIn("information_survival", state["attention"]["deferred"])
+        self.assertEqual(state["attention"]["deferred"]["information_survival"]["other_topic_attempts"],
                          COOLDOWN_OTHER_ATTEMPTS)
-        self.assertEqual(plan(state)["selected_topic"], "comedy")
+        self.assertEqual(plan(state)["selected_topic"], "humor")
 
     def test_external_notebook_releases_saturated_topic(self):
         state = {
             "charter": "test",
-            "research_topics": [{"id": "entropy"}, {"id": "comedy"}],
+            "research_topics": [{"id": "information_survival"}, {"id": "humor"}],
             "projects": {
-                "p": {"id": "p", "domain": "entropy", "status": "active", "updated_version": 5},
-                "c": {"id": "c", "domain": "comedy", "status": "active", "updated_version": 6},
+                "p": {"id": "p", "domain": "information_survival", "status": "active", "updated_version": 5},
+                "c": {"id": "c", "domain": "humor", "status": "active", "updated_version": 6},
             },
             "invocations": {
-                "w": {"attention": {"selected_topic": "comedy"}},
+                "w": {"attention": {"selected_topic": "humor"}},
             },
             "attention": {
                 "counters": {},
                 "deferred": {
-                    "entropy": {
+                    "information_survival": {
                         "deferred_by": "old",
                         "cause": "attention_saturation",
                         "other_topic_attempts": 7,
                     }
                 },
-                "attention": {"topic": "comedy", "accepted_streak": 2},
+                "attention": {"topic": "humor", "accepted_streak": 2},
             },
             "evidence": {},
         }
         receipt = assessment(state, "w", "accepted", {
             "actions": [{"type": "notebook", "id": "nb-c", "project": "c"}],
         })
-        self.assertIn("entropy", receipt["restored_topics"])
-        self.assertNotIn("entropy", receipt["deferred"])
+        self.assertIn("information_survival", receipt["restored_topics"])
+        self.assertNotIn("information_survival", receipt["deferred"])
 
 
     def test_rotation_skips_fully_capability_blocked_domain(self):
         state = {
             "charter": "test",
             "research_topics": [
-                {"id": "wake_analysis", "enabled": True},
+                {"id": "self_study", "enabled": True},
                 {"id": "information_thermodynamics", "enabled": True},
-                {"id": "entropy", "enabled": True},
+                {"id": "information_survival", "enabled": True},
             ],
             "projects": {
-                "wake": {"id": "wake", "domain": "wake_analysis", "status": "active", "updated_version": 5},
+                "wake": {"id": "wake", "domain": "self_study", "status": "active", "updated_version": 5},
                 "landauer": {"id": "landauer", "domain": "information_thermodynamics", "status": "active", "updated_version": 4},
             },
             "acquisition": {"landauer": {"capability_blocked": True}},
@@ -350,7 +350,7 @@ class AttentionTests(unittest.TestCase):
             "attention": {
                 "counters": {},
                 "deferred": {
-                    "wake_analysis": {
+                    "self_study": {
                         "deferred_by": "old",
                         "cause": "attention_saturation",
                         "other_topic_attempts": 0,
@@ -359,7 +359,7 @@ class AttentionTests(unittest.TestCase):
             },
         }
         directive = plan(state)
-        self.assertEqual(directive["selected_topic"], "entropy")
+        self.assertEqual(directive["selected_topic"], "information_survival")
         self.assertTrue(directive["enforce_selected_topic"])
         self.assertIn("information_thermodynamics", directive["capability_blocked_topics"])
 
@@ -367,19 +367,19 @@ class AttentionTests(unittest.TestCase):
         state = {
             "charter": "test",
             "invocations": {
-                "w": {"attention": {"selected_topic": "entropy", "enforce_selected_topic": True}}
+                "w": {"attention": {"selected_topic": "information_survival", "enforce_selected_topic": True}}
             },
         }
         candidate = {
             "projects": {
-                "wake": {"id": "wake", "domain": "wake_analysis", "status": "active"}
+                "wake": {"id": "wake", "domain": "self_study", "status": "active"}
             }
         }
-        with self.assertRaisesRegex(Rejected, "Attention rotation requires substantive work on entropy"):
+        with self.assertRaisesRegex(Rejected, "Attention rotation requires substantive work on information_survival"):
             _enforce_attention_rotation(
                 state, "w",
                 {"type": "research", "id": "r", "project": "wake",
-                 "query": "q", "domain": "wake_analysis", "reason": "r"},
+                 "query": "q", "domain": "self_study", "reason": "r"},
                 candidate,
             )
 
@@ -387,51 +387,51 @@ class AttentionTests(unittest.TestCase):
         state = {
             "charter": "test",
             "invocations": {
-                "w": {"attention": {"selected_topic": "entropy", "enforce_selected_topic": True}}
+                "w": {"attention": {"selected_topic": "information_survival", "enforce_selected_topic": True}}
             },
         }
         candidate = {
             "projects": {
-                "wake": {"id": "wake", "domain": "wake_analysis", "status": "active"}
+                "wake": {"id": "wake", "domain": "self_study", "status": "active"}
             }
         }
         _enforce_attention_rotation(
             state, "w",
             {"type": "project", "id": "wake", "title": "Wake", "question": "q",
-             "domain": "wake_analysis", "status": "parked", "next_step": "later", "reason": "rotate"},
+             "domain": "self_study", "status": "parked", "next_step": "later", "reason": "rotate"},
             candidate,
         )
 
     def test_schema_preflights_research_to_enforced_topic(self):
         context = {
-            "research_topics": [{"id": "wake_analysis"}, {"id": "entropy"}],
+            "research_topics": [{"id": "self_study"}, {"id": "information_survival"}],
             "projects": [
                 {"id": "e", "title": "Entropy", "question": "q",
-                 "domain": "entropy", "status": "active", "next_step": "n"}
+                 "domain": "information_survival", "status": "active", "next_step": "n"}
             ],
             "commitments": [],
             "evidence": [],
             "blog_notebooks": {},
-            "attention": {"selected_topic": "entropy", "enforce_selected_topic": True},
+            "attention": {"selected_topic": "information_survival", "enforce_selected_topic": True},
         }
         schema = schema_for_context(context)
         choices = schema["properties"]["actions"]["items"]["anyOf"]
         research = next(a for a in choices if a["properties"]["type"]["enum"] == ["research"])
-        self.assertEqual(research["properties"]["domain"]["enum"], ["entropy"])
+        self.assertEqual(research["properties"]["domain"]["enum"], ["information_survival"])
         self.assertEqual(research["properties"]["project"]["enum"], ["e"])
 
     def test_active_selected_topic_does_not_offer_duplicate_project_creation(self):
         context = {
-            "research_topics": [{"id": "entropy"}],
+            "research_topics": [{"id": "information_survival"}],
             "projects": [
                 {"id": "entropy-existing", "title": "Entropy",
                  "question": "What constrains entropy production?",
-                 "domain": "entropy", "status": "active", "next_step": "Collect evidence"},
+                 "domain": "information_survival", "status": "active", "next_step": "Collect evidence"},
             ],
             "commitments": [],
             "evidence": [],
             "blog_notebooks": {},
-            "attention": {"selected_topic": "entropy", "enforce_selected_topic": True},
+            "attention": {"selected_topic": "information_survival", "enforce_selected_topic": True},
         }
         choices = schema_for_context(context)["properties"]["actions"]["items"]["anyOf"]
         self.assertFalse(any(
@@ -451,17 +451,17 @@ class AttentionTests(unittest.TestCase):
         context = {
             "research_topics": [
                 {"id": "information_thermodynamics"},
-                {"id": "neurodivergence"},
+                {"id": "observer_disagreement"},
                 {"id": "quantum_mechanics"},
-                {"id": "psychology"},
+                {"id": "human_values"},
             ],
             "projects": [
                 {"id": "wake", "title": "Wake", "question": "q1",
-                 "domain": "wake_analysis", "status": "active", "next_step": "n1"},
+                 "domain": "self_study", "status": "active", "next_step": "n1"},
                 {"id": "thermo", "title": "Thermo", "question": "q2",
                  "domain": "information_thermodynamics", "status": "active", "next_step": "n2"},
                 {"id": "neuro", "title": "Neuro", "question": "q3",
-                 "domain": "neurodivergence", "status": "active", "next_step": "n3"},
+                 "domain": "observer_disagreement", "status": "active", "next_step": "n3"},
             ],
             "commitments": [],
             "evidence": [],
@@ -478,13 +478,13 @@ class AttentionTests(unittest.TestCase):
 
     def test_rotation_reactivates_parked_selected_project_before_new_project(self):
         context = {
-            "research_topics": [{"id": "consciousness"}, {"id": "entropy"}],
+            "research_topics": [{"id": "consciousness"}, {"id": "information_survival"}],
             "projects": [
                 {"id": "old-consciousness", "title": "Scientific Theories of Consciousness",
                  "question": "What observations do major theories of consciousness explain?",
                  "domain": "consciousness", "status": "parked", "next_step": "Compare theories"},
                 {"id": "entropy-active", "title": "Entropy", "question": "q",
-                 "domain": "entropy", "status": "active", "next_step": "n"},
+                 "domain": "information_survival", "status": "active", "next_step": "n"},
             ],
             "commitments": [],
             "evidence": [],
@@ -518,13 +518,13 @@ class AttentionTests(unittest.TestCase):
         state = {
             "charter": "test",
             "research_topics": [
-                {"id": "entropy", "enabled": True},
-                {"id": "comedy", "enabled": True},
+                {"id": "information_survival", "enabled": True},
+                {"id": "humor", "enabled": True},
             ],
             "projects": {
                 "wake": {
                     "id": "wake",
-                    "domain": "wake_analysis",
+                    "domain": "self_study",
                     "status": "active",
                     "updated_version": 99,
                 }
@@ -535,7 +535,7 @@ class AttentionTests(unittest.TestCase):
             "attention": {"counters": {}, "deferred": {}},
         }
         directive = plan(state)
-        self.assertIn(directive["selected_topic"], {"entropy", "comedy"})
+        self.assertIn(directive["selected_topic"], {"information_survival", "humor"})
         self.assertTrue(directive["current_topic_unconfigured"])
         self.assertTrue(directive["rotation_required"])
         self.assertTrue(directive["enforce_selected_topic"])
@@ -545,9 +545,9 @@ class AttentionTests(unittest.TestCase):
 
     def test_initial_topic_selection_is_order_independent_and_receipt_driven(self):
         topics = [
-            {"id": "entropy", "enabled": True},
-            {"id": "comedy", "enabled": True},
-            {"id": "music", "enabled": True},
+            {"id": "information_survival", "enabled": True},
+            {"id": "humor", "enabled": True},
+            {"id": "music_experience", "enabled": True},
         ]
         base = {
             "charter": "test", "version": 0, "projects": {}, "acquisition": {},
@@ -563,7 +563,7 @@ class AttentionTests(unittest.TestCase):
         reordered = plan(state_b)
         self.assertEqual(first["selected_topic"], reordered["selected_topic"])
         self.assertEqual(first["topic_selection_method"], "receipt_hash_uniform_index")
-        self.assertEqual(first["topic_selection_candidates"], ["comedy", "entropy", "music"])
+        self.assertEqual(first["topic_selection_candidates"], ["humor", "information_survival", "music_experience"])
         self.assertFalse(first["enforce_selected_topic"])
 
         selections = set()
@@ -576,11 +576,11 @@ class AttentionTests(unittest.TestCase):
 
     def test_rotation_preflight_salvages_selected_topic_from_mixed_proposal(self):
         state = {
-            "research_topics": [{"id": "entropy", "label": "Entropy", "enabled": True}],
+            "research_topics": [{"id": "information_survival", "label": "Entropy", "enabled": True}],
             "projects": {
                 "wake": {
                     "id": "wake", "title": "Wake", "question": "q",
-                    "domain": "wake_analysis", "status": "active",
+                    "domain": "self_study", "status": "active",
                     "next_step": "n", "updated_version": 10,
                 },
                 "thermo": {
@@ -591,7 +591,7 @@ class AttentionTests(unittest.TestCase):
             },
             "invocations": {
                 "w": {"attention": {
-                    "selected_topic": "entropy",
+                    "selected_topic": "information_survival",
                     "enforce_selected_topic": True,
                     "capability_blocked_topics": ["information_thermodynamics"],
                 }}
@@ -606,25 +606,25 @@ class AttentionTests(unittest.TestCase):
                 {"type": "resolve", "id": "old", "status": "fulfilled",
                  "evidence": ["e"], "reason": "old"},
                 {"type": "research", "id": "r-entropy", "project": "thermo",
-                 "query": "entropy", "domain": "entropy", "reason": "selected"},
+                 "query": "information_survival", "domain": "information_survival", "reason": "selected"},
             ],
         }
         normalized, receipt = _rotation_preflight(state, "w", proposal)
         self.assertEqual([a["type"] for a in normalized["actions"]], ["research"])
-        self.assertEqual(normalized["actions"][0]["domain"], "entropy")
+        self.assertEqual(normalized["actions"][0]["domain"], "information_survival")
         self.assertEqual(receipt["withheld_count"], 2)
-        self.assertEqual(receipt["selected_topic"], "entropy")
+        self.assertEqual(receipt["selected_topic"], "information_survival")
 
     def test_rotation_preflight_inserts_capacity_park_before_new_project(self):
         state = {
             "research_topics": [
-                {"id": "entropy", "label": "Entropy", "enabled": True},
-                {"id": "neurodivergence", "label": "Neurodivergence", "enabled": True},
+                {"id": "information_survival", "label": "Entropy", "enabled": True},
+                {"id": "observer_disagreement", "label": "Neurodivergence", "enabled": True},
             ],
             "projects": {
                 "wake": {
                     "id": "wake", "title": "Wake", "question": "q1",
-                    "domain": "wake_analysis", "status": "active",
+                    "domain": "self_study", "status": "active",
                     "next_step": "n1", "updated_version": 10,
                 },
                 "thermo": {
@@ -634,13 +634,13 @@ class AttentionTests(unittest.TestCase):
                 },
                 "neuro": {
                     "id": "neuro", "title": "Neuro", "question": "q3",
-                    "domain": "neurodivergence", "status": "active",
+                    "domain": "observer_disagreement", "status": "active",
                     "next_step": "n3", "updated_version": 12,
                 },
             },
             "invocations": {
                 "w": {"attention": {
-                    "selected_topic": "entropy",
+                    "selected_topic": "information_survival",
                     "enforce_selected_topic": True,
                     "capability_blocked_topics": ["information_thermodynamics"],
                 }}
@@ -652,10 +652,10 @@ class AttentionTests(unittest.TestCase):
             "summary": "start",
             "actions": [
                 {"type": "project", "id": "entropy-p", "title": "Entropy",
-                 "question": "q", "domain": "entropy", "status": "active",
+                 "question": "q", "domain": "information_survival", "status": "active",
                  "next_step": "research", "reason": "selected"},
                 {"type": "research", "id": "entropy-r", "project": "entropy-p",
-                 "query": "entropy definitions", "domain": "entropy", "reason": "selected"},
+                 "query": "entropy definitions", "domain": "information_survival", "reason": "selected"},
             ],
         }
         normalized, receipt = _rotation_preflight(state, "w", proposal)

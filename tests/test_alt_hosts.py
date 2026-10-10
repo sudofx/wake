@@ -42,8 +42,8 @@ class AlternateHostTests(unittest.TestCase):
         with self.engine.store.lock():
             invocation, request = self.engine.start("fixture", "test")
             proposal = {"base_version": request["context"]["version"], "title": "Invalid host", "summary": "Test boundary",
-                        "actions": [{"type": "project", "id": "p", "title": "P", "question": "Q", "domain": "comedy", "status": "active", "next_step": "N", "reason": "R"},
-                                    {"type": "research", "id": "r", "project": "p", "query": "test", "domain": "comedy", "url": "https://en.wikipedia.org/wiki/Comedy", "reason": "Must fail"}]}
+                        "actions": [{"type": "project", "id": "p", "title": "P", "question": "Q", "domain": "humor", "status": "active", "next_step": "N", "reason": "R"},
+                                    {"type": "research", "id": "r", "project": "p", "query": "test", "domain": "humor", "url": "https://en.wikipedia.org/wiki/Comedy", "reason": "Must fail"}]}
             result = self.engine.finish(invocation, json.dumps(proposal))
         self.assertEqual(result["status"], "rejected")
 

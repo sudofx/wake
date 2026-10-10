@@ -174,10 +174,10 @@ class ActiveMemoryTests(unittest.TestCase):
         self.engine.initialize()
         for identifier in ('s1', 's2'):
             self.store.append('observation', dict(id=identifier, source='https://example.org/'+identifier,
-                actor='collector', scope='collected', content=json.dumps(dict(excerpt='entropy comparison measurement',
-                verification_required=True, topic_domain='entropy', evidence_role='source',
+                actor='collector', scope='collected', content=json.dumps(dict(excerpt='information persistence measurement',
+                verification_required=True, topic_domain='information_survival', evidence_role='source',
                 host_tier='verification-fulltext', source_identity='doi:'+identifier))))
-        self.submit([project(), notebook(['s1', 's2'], 'Entropy comparison measurement [s1] [s2].')])
+        self.submit([project(), notebook(['s1', 's2'], 'Information persistence measurement [s1] [s2].')])
         self.engine.observe('Human commentary is not collected scientific evidence.', 'operator:comment', evidence_id='human')
         self.engine.config['memory_mode'] = 'active'
         _, request = self.engine.start('manual', 'memory-research-test')

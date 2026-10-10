@@ -41,7 +41,7 @@ from support import charter_settings
 
 def project(identifier="p", status="active"):
     return dict(type="project", id=identifier, title="Comparing explanations", question="What distinguishes the explanations?",
-                domain="entropy", status=status, next_step="Compare collected sources", reason="A tractable question")
+                domain="information_survival", status=status, next_step="Compare collected sources", reason="A tractable question")
 
 
 def notebook(evidence, findings="A bounded comparison [s1] [s2]."):
@@ -75,11 +75,11 @@ class ResearchTests(unittest.TestCase):
             payload.update({
                 "excerpt": (
                     "A bounded comparison supports a provisional reading. "
-                    "Changed findings require new material. Entropy comparison "
+                    "Changed findings require new material. Information persistence "
                     "and underlying work are discussed in this readable fixture."
                 ),
                 "verification_required": True,
-                "topic_domain": "entropy",
+                "topic_domain": "information_survival",
                 "evidence_role": "source",
                 "host_tier": "verification-fulltext",
                 "persistent_identifiers": [persistent_id or f"doi:10.1000/{identifier}"],
@@ -116,7 +116,7 @@ class ResearchTests(unittest.TestCase):
                 "source": "https://link.springer.com/content/pdf/10.1007/example.pdf",
                 "content": json.dumps({
                     "verification_required": True,
-                    "topic_domain": "entropy",
+                    "topic_domain": "information_survival",
                     "evidence_role": "source",
                     "host_tier": "verification-publisher",
                     "excerpt": "Client Challenge\\nJavaScript is disabled in your browser. Please enable JavaScript to proceed.",
@@ -143,7 +143,7 @@ class ResearchTests(unittest.TestCase):
     def test_provider_schema_pins_base_version_to_durable_context(self):
         context = {
             "version": 76,
-            "research_topics": [{"id": "entropy"}],
+            "research_topics": [{"id": "information_survival"}],
             "projects": [],
             "blog_notebooks": {},
         }
@@ -154,7 +154,7 @@ class ResearchTests(unittest.TestCase):
         context = {
             "version": 0,
             "mission": "Research",
-            "research_topics": [{"id": "entropy"}],
+            "research_topics": [{"id": "information_survival"}],
             "projects": [],
             "evidence": [],
             "blog_notebooks": {},
@@ -188,8 +188,8 @@ class ResearchTests(unittest.TestCase):
 
     def test_model_research_schema_keeps_network_route_collector_owned(self):
         context = {
-            "research_topics": [{"id": "entropy"}],
-            "projects": [{"id": "p", "domain": "entropy", "status": "active"}],
+            "research_topics": [{"id": "information_survival"}],
+            "projects": [{"id": "p", "domain": "information_survival", "status": "active"}],
             "blog_notebooks": {},
         }
         schema = schema_for_context(context)
@@ -271,45 +271,45 @@ class ResearchTests(unittest.TestCase):
             renamed.store.close()
 
     def test_seed_question_is_initial_condition_not_repeated_instruction(self):
-        topic = next(item for item in self.engine.config["research_topics"] if item["id"] == "entropy")
+        topic = next(item for item in self.engine.config["research_topics"] if item["id"] == "information_survival")
         self.engine.config["research_topics"] = [
             {**item, **({"seed_question": "What distinguishes the major entropy definitions?"}
-                       if item["id"] == "entropy" else {})}
+                       if item["id"] == "information_survival" else {})}
             for item in self.engine.config["research_topics"]
         ]
         with self.engine.store.lock():
             state = self.engine.initialize()
             before = self.engine.context(state, "seed-before")
-            seeded = next(item for item in before["research_topics"] if item["id"] == "entropy")
+            seeded = next(item for item in before["research_topics"] if item["id"] == "information_survival")
             self.assertIn("seed_question", seeded)
             self.engine.store.append("project_adopted", {
                 "id": "seeded-entropy", "title": "Seeded entropy project",
-                "question": seeded["seed_question"], "domain": "entropy",
+                "question": seeded["seed_question"], "domain": "information_survival",
                 "status": "active", "next_step": "Collect qualifying evidence.",
                 "reason": "Start from the configured seed.", "actor": "operator"
             })
             after = self.engine.context(self.engine.store.load(), "seed-after")
-        entropy = next(item for item in after["research_topics"] if item["id"] == "entropy")
+        entropy = next(item for item in after["research_topics"] if item["id"] == "information_survival")
         self.assertNotIn("seed_question", entropy)
-        self.assertNotIn("entropy", [item["topic"] for item in after["seed_questions"]])
+        self.assertNotIn("information_survival", [item["topic"] for item in after["seed_questions"]])
         self.assertGreaterEqual(after["seed_question_metrics"]["started"], 1)
-        self.assertEqual(topic["id"], "entropy")
+        self.assertEqual(topic["id"], "information_survival")
 
     def test_selected_topic_parked_projects_survive_recent_project_window(self):
         other_domains = [
             topic["id"] for topic in self.engine.config["research_topics"]
-            if topic.get("enabled", True) and topic["id"] != "entropy"
+            if topic.get("enabled", True) and topic["id"] != "information_survival"
         ][:8]
         with self.engine.store.lock():
             self.engine.store.append("project_adopted", {
                 "id": "active-entropy", "title": "Active entropy",
-                "question": "What distinguishes current entropy definitions?", "domain": "entropy",
+                "question": "What distinguishes current entropy definitions?", "domain": "information_survival",
                 "status": "active", "next_step": "Continue source acquisition.",
                 "reason": "Keep entropy selected.", "actor": "operator",
             })
             self.engine.store.append("project_adopted", {
                 "id": "parked-entropy-old", "title": "Older entropy question",
-                "question": "How does entropy behave far from equilibrium?", "domain": "entropy",
+                "question": "How does entropy behave far from equilibrium?", "domain": "information_survival",
                 "status": "parked", "next_step": "Resume when entropy is selected.",
                 "reason": "Preserve unfinished work.", "actor": "operator",
             })
@@ -329,12 +329,12 @@ class ResearchTests(unittest.TestCase):
         """Old selected-topic work stays visible and cannot be replaced by a fresh project ID."""
         other_domains = [
             topic["id"] for topic in self.engine.config["research_topics"]
-            if topic.get("enabled", True) and topic["id"] != "entropy"
+            if topic.get("enabled", True) and topic["id"] != "information_survival"
         ][:8]
         with self.engine.store.lock():
             self.engine.store.append("project_adopted", {
                 "id": "selected-old", "title": "Selected old project",
-                "question": "How does entropy behave far from equilibrium?", "domain": "entropy",
+                "question": "How does entropy behave far from equilibrium?", "domain": "information_survival",
                 "status": "active", "next_step": "Continue the existing project.",
                 "reason": "Durable selected-topic work.", "actor": "operator",
             })
@@ -347,12 +347,12 @@ class ResearchTests(unittest.TestCase):
                 })
             state = self.engine.store.load()
             # Reproduce an enforced Attention rotation without relying on model behavior.
-            state["attention"]["attention"] = {"topic": "entropy", "accepted_streak": 5}
+            state["attention"]["attention"] = {"topic": "information_survival", "accepted_streak": 5}
             context = self.engine.context(state, "selected-schema-regression")
             context["attention"] = {
                 **context.get("attention", {}),
                 "active": True,
-                "selected_topic": "entropy",
+                "selected_topic": "information_survival",
                 "enforce_selected_topic": True,
                 "rotation_required": True,
             }
@@ -379,13 +379,13 @@ class ResearchTests(unittest.TestCase):
         with self.engine.store.lock():
             self.engine.initialize()
             self.engine.store.append("project_adopted", {
-                "id": "p", "title": "P", "question": "Q", "domain": "entropy",
+                "id": "p", "title": "P", "question": "Q", "domain": "information_survival",
                 "status": "active", "next_step": "N", "reason": "R", "actor": "operator"
             })
             for i in range(6):
                 self.engine.store.append("observation", {
                     "id": f"s{i}", "source": f"https://example.org/{i}",
-                    "content": json.dumps({"verification_required": True, "topic_domain": "entropy", "excerpt": "x" * 2000}),
+                    "content": json.dumps({"verification_required": True, "topic_domain": "information_survival", "excerpt": "x" * 2000}),
                     "actor": "collector", "scope": "collected"
                 })
             invocation, request = self.engine.start("fixture", "compact-allowlists")
@@ -440,21 +440,21 @@ class ResearchTests(unittest.TestCase):
     def test_context_exposes_project_scoped_notebook_evidence(self):
         with self.engine.store.lock():
             self.engine.store.append("project_adopted", {
-                "id": "p-wake", "title": "WAKE", "question": "Q", "domain": "wake_analysis",
+                "id": "p-wake", "title": "WAKE", "question": "Q", "domain": "self_study",
                 "status": "active", "next_step": "N", "reason": "R", "actor": "operator"
             })
             self.engine.store.append("project_adopted", {
-                "id": "p-neuro", "title": "Neuro", "question": "Q", "domain": "neurodivergence",
+                "id": "p-neuro", "title": "Neuro", "question": "Q", "domain": "observer_disagreement",
                 "status": "active", "next_step": "N", "reason": "R", "actor": "operator"
             })
             self.engine.store.append("observation", {
                 "id": "wake-src", "source": "https://raw.githubusercontent.com/sudofx/wake/master/README.md",
-                "content": json.dumps({"verification_required": True, "topic_domain": "wake_analysis", "excerpt": "Source-controlled WAKE architecture and accountable research."}),
+                "content": json.dumps({"verification_required": True, "topic_domain": "self_study", "excerpt": "Source-controlled WAKE architecture and accountable research."}),
                 "actor": "collector", "scope": "collected"
             })
             self.engine.store.append("observation", {
                 "id": "neuro-src", "source": "https://example.org/neuro",
-                "content": json.dumps({"verification_required": True, "topic_domain": "neurodivergence", "excerpt": "Readable research on neurodivergence and cognitive frameworks."}),
+                "content": json.dumps({"verification_required": True, "topic_domain": "observer_disagreement", "excerpt": "Readable research on neurodivergence and cognitive frameworks."}),
                 "actor": "collector", "scope": "collected"
             })
             invocation, request = self.engine.start("fixture", "project-evidence-test")
@@ -470,7 +470,7 @@ class ResearchTests(unittest.TestCase):
         state["projects"] = {
             "p": {
                 "id": "p", "title": "Entropy project", "question": "Q",
-                "domain": "entropy", "status": "active", "next_step": "N",
+                "domain": "information_survival", "status": "active", "next_step": "N",
                 "reason": "R", "created_version": 1,
             }
         }
@@ -486,7 +486,7 @@ class ResearchTests(unittest.TestCase):
             "scope": "collected", "version": 2,
             "content": json.dumps({
                 "verification_required": True, "evidence_role": "source",
-                "topic_domain": "entropy",
+                "topic_domain": "information_survival",
                 "excerpt": "The collected source compares entropy definitions and their limitations.",
             }),
         }
@@ -506,7 +506,7 @@ class ResearchTests(unittest.TestCase):
             "scope": "collected", "version": 4,
             "content": json.dumps({
                 "verification_required": True, "evidence_role": "source",
-                "topic_domain": "entropy",
+                "topic_domain": "information_survival",
                 "excerpt": "An independent source compares entropy definitions and experimental methods.",
             }),
         }
@@ -532,7 +532,7 @@ class ResearchTests(unittest.TestCase):
             "p": {
                 "id": "p", "title": "Entropy project",
                 "question": "How should entropy evidence be compared?",
-                "domain": "entropy", "status": "active",
+                "domain": "information_survival", "status": "active",
                 "next_step": "Synthesize substantive evidence.",
                 "reason": "Test legacy notebook migration.",
                 "created_version": 1,
@@ -545,7 +545,7 @@ class ResearchTests(unittest.TestCase):
                 "actor": "collector", "scope": "collected", "version": 2,
                 "content": json.dumps({
                     "verification_required": True,
-                    "topic_domain": "entropy",
+                    "topic_domain": "information_survival",
                     "evidence_role": "metadata",
                     "host_tier": "verification-metadata",
                 }),
@@ -556,7 +556,7 @@ class ResearchTests(unittest.TestCase):
                 "actor": "collector", "scope": "collected", "version": 4,
                 "content": json.dumps({
                     "verification_required": True,
-                    "topic_domain": "entropy",
+                    "topic_domain": "information_survival",
                     "evidence_role": "source",
                     "host_tier": "verification-fulltext",
                     "source_identity": "doi:10.1000/real",
@@ -596,10 +596,10 @@ class ResearchTests(unittest.TestCase):
         context = {
             "mission": "Research test",
             "version": 7,
-            "research_topics": [{"id": "entropy"}],
+            "research_topics": [{"id": "information_survival"}],
             "projects": [
-                {"id": "ready", "domain": "entropy", "status": "active"},
-                {"id": "hungry", "domain": "entropy", "status": "active"},
+                {"id": "ready", "domain": "information_survival", "status": "active"},
+                {"id": "hungry", "domain": "information_survival", "status": "active"},
             ],
             "evidence": [
                 {"id": "source-ready", "actor": "collector", "source": "https://example.org/ready"},
@@ -628,9 +628,9 @@ class ResearchTests(unittest.TestCase):
         context = {
             "projects": [
                 {"id": "other", "domain": "humor", "status": "active"},
-                {"id": "ready", "domain": "entropy", "status": "active"},
+                {"id": "ready", "domain": "information_survival", "status": "active"},
             ],
-            "attention": {"selected_topic": "entropy"},
+            "attention": {"selected_topic": "information_survival"},
             "evidence": [
                 {"id": "other-source", "content": "other", "actor": "collector"},
                 {"id": "ready-source", "content": "readable synthesis material", "actor": "collector"},
@@ -656,8 +656,8 @@ class ResearchTests(unittest.TestCase):
         context = {
             "mission": "Research test",
             "version": 7,
-            "research_topics": [{"id": "entropy"}],
-            "projects": [{"id": "ready", "domain": "entropy", "status": "active"}],
+            "research_topics": [{"id": "information_survival"}],
+            "projects": [{"id": "ready", "domain": "information_survival", "status": "active"}],
             "evidence": [
                 {"id": "source-ready", "actor": "collector", "source": "https://example.org/ready"},
             ],
@@ -676,7 +676,7 @@ class ResearchTests(unittest.TestCase):
         state = self.engine.store.load()
         state["projects"] = {
             "ready": {
-                "id": "ready", "domain": "entropy", "status": "active",
+                "id": "ready", "domain": "information_survival", "status": "active",
                 "title": "Ready", "question": "What does the source show?",
             }
         }
@@ -693,7 +693,7 @@ class ResearchTests(unittest.TestCase):
                 {
                     "actions": [{
                         "type": "research", "project": "ready",
-                        "domain": "entropy", "query": "Find one more source",
+                        "domain": "information_survival", "query": "Find one more source",
                     }]
                 },
             )
@@ -706,7 +706,7 @@ class ResearchTests(unittest.TestCase):
     def test_truncated_discovery_never_becomes_project_evidence(self):
         with self.engine.store.lock():
             self.engine.store.append("project_adopted", {
-                "id": "p", "title": "Entropy project", "question": "Q", "domain": "entropy",
+                "id": "p", "title": "Entropy project", "question": "Q", "domain": "information_survival",
                 "status": "active", "next_step": "Collect source evidence",
                 "reason": "Exercise durable metadata filtering", "actor": "operator"
             })
@@ -715,7 +715,7 @@ class ResearchTests(unittest.TestCase):
                 "source": "https://api.crossref.org/works?query=entropy",
                 "content": json.dumps({
                     "verification_required": True,
-                    "topic_domain": "entropy",
+                    "topic_domain": "information_survival",
                     "evidence_role": "discovery",
                     "scope": "search metadata",
                     "excerpt": "x" * 5000,
@@ -732,7 +732,7 @@ class ResearchTests(unittest.TestCase):
     def test_retrieval_ignores_unrelated_visible_source_when_project_domain_is_missing(self):
         with self.engine.store.lock():
             self.engine.store.append("project_adopted", {
-                "id": "p", "title": "Entropy project", "question": "Q", "domain": "entropy",
+                "id": "p", "title": "Entropy project", "question": "Q", "domain": "information_survival",
                 "status": "active", "next_step": "Synthesize entropy evidence",
                 "reason": "Exercise project-aware retrieval", "actor": "operator"
             })
@@ -741,7 +741,7 @@ class ResearchTests(unittest.TestCase):
                 "source": "https://api.crossref.org/works/10.1000/entropy",
                 "content": json.dumps({
                     "verification_required": True,
-                    "topic_domain": "entropy",
+                    "topic_domain": "information_survival",
                     "evidence_role": "source",
                     "host_tier": "verification-fulltext",
                     "scope": "readable full-text fixture",
@@ -757,7 +757,7 @@ class ResearchTests(unittest.TestCase):
                 "source": "https://api.crossref.org/works/10.1000/neuro",
                 "content": json.dumps({
                     "verification_required": True,
-                    "topic_domain": "neurodivergence",
+                    "topic_domain": "observer_disagreement",
                     "evidence_role": "source",
                     "host_tier": "verification-fulltext",
                     "scope": "readable full-text fixture",
@@ -770,7 +770,7 @@ class ResearchTests(unittest.TestCase):
                 "source": "https://api.crossref.org/works?query=entropy",
                 "content": json.dumps({
                     "verification_required": True,
-                    "topic_domain": "entropy",
+                    "topic_domain": "information_survival",
                     "evidence_role": "discovery",
                     "scope": "search metadata",
                     "excerpt": "entropy search result",
@@ -788,7 +788,7 @@ class ResearchTests(unittest.TestCase):
     def test_retrieval_rehydrates_older_qualifying_notebook_source(self):
         with self.engine.store.lock():
             self.engine.store.append("project_adopted", {
-                "id": "p", "title": "Entropy project", "question": "Q", "domain": "entropy",
+                "id": "p", "title": "Entropy project", "question": "Q", "domain": "information_survival",
                 "status": "active", "next_step": "Synthesize qualifying evidence",
                 "reason": "Exercise retrieval rehydration", "actor": "operator"
             })
@@ -797,7 +797,7 @@ class ResearchTests(unittest.TestCase):
                 "source": "https://www.frontiersin.org/articles/example/full",
                 "content": json.dumps({
                     "verification_required": True,
-                    "topic_domain": "entropy",
+                    "topic_domain": "information_survival",
                     "evidence_role": "source",
                     "host_tier": "verification-fulltext",
                     "scope": "readable full-text fixture",
@@ -814,7 +814,7 @@ class ResearchTests(unittest.TestCase):
                     "source": f"https://api.crossref.org/works?query=entropy-{i}",
                     "content": json.dumps({
                         "verification_required": True,
-                        "topic_domain": "entropy",
+                        "topic_domain": "information_survival",
                         "evidence_role": "discovery",
                         "scope": "search metadata",
                         "excerpt": "entropy search result",
@@ -838,7 +838,7 @@ class ResearchTests(unittest.TestCase):
     def test_bounded_context_can_rehydrate_selected_source_for_synthesis(self):
         with self.engine.store.lock():
             self.engine.store.append("project_adopted", {
-                "id": "p", "title": "Entropy project", "question": "Q", "domain": "entropy",
+                "id": "p", "title": "Entropy project", "question": "Q", "domain": "information_survival",
                 "status": "active", "next_step": "Synthesize qualifying evidence",
                 "reason": "Exercise bounded retrieval rehydration", "actor": "operator"
             })
@@ -847,7 +847,7 @@ class ResearchTests(unittest.TestCase):
                 "source": "https://www.frontiersin.org/articles/example/full",
                 "content": json.dumps({
                     "verification_required": True,
-                    "topic_domain": "entropy",
+                    "topic_domain": "information_survival",
                     "evidence_role": "source",
                     "host_tier": "verification-fulltext",
                     "scope": "readable article text",
@@ -863,7 +863,7 @@ class ResearchTests(unittest.TestCase):
                     "source": f"https://api.crossref.org/works?query=entropy-{i}",
                     "content": json.dumps({
                         "verification_required": True,
-                        "topic_domain": "entropy",
+                        "topic_domain": "information_survival",
                         "evidence_role": "discovery",
                         "scope": "search metadata",
                         "excerpt": "entropy search result",
@@ -921,11 +921,11 @@ class ResearchTests(unittest.TestCase):
         with self.engine.store.lock():
             self.engine.store.append("project_adopted", {
                 "id": "p", "title": "Entropy project",
-                "question": "How should entropy evidence be compared?", "domain": "entropy",
+                "question": "How should entropy evidence be compared?", "domain": "information_survival",
                 "status": "active", "next_step": "Compare readable sources.",
                 "reason": "Test commitment scoping.", "actor": "operator",
             })
-            collected("pre", "entropy")
+            collected("pre", "information_survival")
             invocation, request = self.engine.start("fixture", "commit-seed")
             proposal = json.loads(Fixture().propose(request)[0])
             proposal["actions"] = [{
@@ -935,8 +935,8 @@ class ResearchTests(unittest.TestCase):
                 "reason": "Test temporal and project gate",
             }]
             self.engine.finish(invocation, json.dumps(proposal))
-            collected("post-good", "entropy")
-            collected("post-wrong", "psychology")
+            collected("post-good", "information_survival")
+            collected("post-wrong", "human_values")
             second, second_request = self.engine.start("fixture", "commit-check")
             self.engine.store.append("recovered", {"id": second, "reason": "Test cleanup"})
 
@@ -959,7 +959,7 @@ class ResearchTests(unittest.TestCase):
                 "source": "https://www.frontiersin.org/articles/wrong/full",
                 "content": json.dumps({
                     "verification_required": True,
-                    "topic_domain": "psychology",
+                    "topic_domain": "human_values",
                     "evidence_role": "source",
                     "host_tier": "verification-fulltext",
                     "persistent_identifiers": ["doi:10.1000/wrong"],
@@ -977,8 +977,8 @@ class ResearchTests(unittest.TestCase):
     def test_research_commitment_schema_requires_existing_project(self):
         context = {
             "mission": "Research",
-            "research_topics": [{"id": "entropy"}],
-            "projects": [{"id": "p", "domain": "entropy", "status": "active"}],
+            "research_topics": [{"id": "information_survival"}],
+            "projects": [{"id": "p", "domain": "information_survival", "status": "active"}],
             "blog_notebooks": {},
             "commitments": [],
         }
@@ -989,9 +989,9 @@ class ResearchTests(unittest.TestCase):
 
     def test_schema_omits_notebook_revision_without_new_project_evidence(self):
         context = {
-            "research_topics": [{"id": "entropy"}],
+            "research_topics": [{"id": "information_survival"}],
             "projects": [{
-                "id": "p", "domain": "entropy", "status": "active",
+                "id": "p", "domain": "information_survival", "status": "active",
             }],
             "evidence": [{
                 "id": "source-old", "actor": "collector",
@@ -1015,7 +1015,7 @@ class ResearchTests(unittest.TestCase):
         ))
 
     def test_active_memory_retains_full_queue_and_rejection_recovery(self):
-        search = lambda query: dict(type="research", project="p", domain="entropy",
+        search = lambda query: dict(type="research", project="p", domain="information_survival",
                                     query=query, reason="Resolve the comparison")
         self.assertEqual(self.propose([project()] + [search(f"comparison {n}") for n in range(4)])["status"], "accepted")
         rejected = self.propose([search("a fifth comparison")])
@@ -1108,7 +1108,7 @@ class ResearchTests(unittest.TestCase):
         }
         context = {"projects": list(state["projects"].values()),
                    "project_evidence": {"p": ["s1", "s2"]},
-                   "attention": {"enforce_selected_topic": True, "selected_topic": "entropy"}}
+                   "attention": {"enforce_selected_topic": True, "selected_topic": "information_survival"}}
         self.engine.proposal_constraints(state, context)
         revisions = context["proposal_constraints"]["notebook_revisions"]
         self.assertEqual(list(revisions), ["old-29"])
@@ -1122,7 +1122,7 @@ class ResearchTests(unittest.TestCase):
         state["projects"]["selected"] = {**state["projects"]["p"], "id": "selected",
                                                "domain": "music_experience", "status": "parked"}
         context = {"mission": state["charter"], "projects": list(state["projects"].values()),
-                   "research_topics": [{"id": "entropy"}, {"id": "music_experience"}],
+                   "research_topics": [{"id": "information_survival"}, {"id": "music_experience"}],
                    "attention": {"enforce_selected_topic": True, "selected_topic": "music_experience"}}
         self.engine.proposal_constraints(state, context)
         schema = schema_for_context(context)
@@ -1138,9 +1138,9 @@ class ResearchTests(unittest.TestCase):
 
     def test_schema_allows_notebook_revision_when_new_project_evidence_exists(self):
         context = {
-            "research_topics": [{"id": "entropy"}],
+            "research_topics": [{"id": "information_survival"}],
             "projects": [{
-                "id": "p", "domain": "entropy", "status": "active",
+                "id": "p", "domain": "information_survival", "status": "active",
             }],
             "evidence": [
                 {"id": "source-old", "actor": "collector"},
@@ -1238,8 +1238,8 @@ class ResearchTests(unittest.TestCase):
         context = {
             "research_topics": [],
             "projects": [
-                {"id": "eligible", "domain": "entropy"},
-                {"id": "ordinary", "domain": "entropy"},
+                {"id": "eligible", "domain": "information_survival"},
+                {"id": "ordinary", "domain": "information_survival"},
             ],
             "evidence": [
                 {"id": "source-a", "actor": "collector"},
@@ -1261,7 +1261,7 @@ class ResearchTests(unittest.TestCase):
     def test_schema_omits_reframe_without_recovery_eligibility(self):
         context = {
             "research_topics": [],
-            "projects": [{"id": "p", "domain": "entropy"}],
+            "projects": [{"id": "p", "domain": "information_survival"}],
             "evidence": [{"id": "source-a", "actor": "collector"}],
             "representation_recovery": [],
             "blog_notebooks": {},
@@ -1277,7 +1277,7 @@ class ResearchTests(unittest.TestCase):
     def test_schema_omits_reframe_when_no_visible_evidence_exists(self):
         context = {
             "research_topics": [],
-            "projects": [{"id": "p", "domain": "entropy"}],
+            "projects": [{"id": "p", "domain": "information_survival"}],
             "evidence": [],
             "representation_recovery": [{"project": "p", "capability": {"capability_blocked": True}}],
             "blog_notebooks": {},
@@ -1317,7 +1317,7 @@ class ResearchTests(unittest.TestCase):
                         {"url": url, "scope": "fixture", "excerpt": "A sufficiently long test source excerpt for collection."})
             self.assertEqual(calls, ["https://api.github.com/repos/sudofx/wake/git/trees/master?recursive=1"])
             self.assertNotIn("source-controlled", RESEARCH_SYSTEM.lower())
-            self.assertNotIn("wake_analysis", RESEARCH_SYSTEM.lower())
+            self.assertNotIn("self_study", RESEARCH_SYSTEM.lower())
         finally:
             engine.store.close()
 
@@ -1333,12 +1333,12 @@ class ResearchTests(unittest.TestCase):
 
     def test_project_can_queue_research_in_another_configured_topic(self):
         action = dict(type="research", id="q", project="p", query="symmetry breaking",
-                      domain="entropy", reason="Test a cross-topic relationship")
+                      domain="information_survival", reason="Test a cross-topic relationship")
         self.assertEqual(self.propose([project(), action])["status"], "accepted")
 
     def test_engine_owns_research_ids_even_when_provider_supplies_one(self):
         action = dict(type="research", id="provider-chosen", project="p", query="symmetry breaking",
-                      domain="entropy", reason="Identity belongs to durable infrastructure")
+                      domain="information_survival", reason="Identity belongs to durable infrastructure")
         self.assertEqual(self.propose([project(), action])["status"], "accepted")
         research = next(iter(self.engine.store.load()["research"].values()))
         self.assertNotEqual(research["id"], "provider-chosen")
@@ -1346,10 +1346,10 @@ class ResearchTests(unittest.TestCase):
 
     def test_equivalent_research_query_is_rejected_even_with_new_generated_id(self):
         first = dict(type="research", project="p", query="  Symmetry   Breaking  ",
-                     domain="entropy", reason="First search")
+                     domain="information_survival", reason="First search")
         self.assertEqual(self.propose([project(), first])["status"], "accepted")
         duplicate = dict(type="research", project="p", query="symmetry breaking",
-                         domain="entropy", reason="Try the same search again")
+                         domain="information_survival", reason="Try the same search again")
         result = self.propose([duplicate])
         self.assertEqual(result["status"], "rejected")
         self.assertEqual(result["reason"], "Equivalent research request already exists")
@@ -1377,7 +1377,7 @@ class ResearchTests(unittest.TestCase):
             type="research",
             project="p-two",
             query="novel comparison evidence for explanatory distinctions",
-            domain="entropy",
+            domain="information_survival",
             reason="Advance the durable project instead of creating an alias.",
         )
         result = self.propose([duplicate, followup])
@@ -1409,12 +1409,12 @@ class ResearchTests(unittest.TestCase):
     def test_removed_topic_preserves_project_but_blocks_new_substantive_research(self):
         self.assertEqual(self.propose([project()])["status"], "accepted")
         self.engine.config["research_topics"] = [
-            topic for topic in self.engine.config["research_topics"] if topic["id"] != "entropy"]
+            topic for topic in self.engine.config["research_topics"] if topic["id"] != "information_survival"]
         with self.engine.store.lock():
             self.engine.initialize()
         self.assertIn("p", self.engine.store.load()["projects"])
         action = dict(type="research", id="q", project="p", query="cellular automata",
-                      domain="entropy", reason="Continue the existing investigation")
+                      domain="information_survival", reason="Continue the existing investigation")
         result = self.propose([action])
         self.assertEqual(result["status"], "rejected")
         self.assertIn("Attention rotation requires substantive work on", result["reason"])
@@ -1452,7 +1452,7 @@ class ResearchTests(unittest.TestCase):
     def test_wake_analysis_notebook_requires_wake_repository_sources(self):
         self.source("r1", "https://raw.githubusercontent.com/sudofx/wake/master/README.md")
         self.source("r2", "https://raw.githubusercontent.com/sudofx/wake/master/docs/architecture.md")
-        action = project(); action["domain"] = "wake_analysis"
+        action = project(); action["domain"] = "self_study"
         self.assertEqual(self.propose([action, notebook(["r1", "r2"])])["status"], "accepted")
 
         other = Engine(self.root/"other", charter_settings("test"), store_factory=Store)
@@ -1462,7 +1462,7 @@ class ResearchTests(unittest.TestCase):
             self.engine = other
             self.source("s1")
             self.source("s2", "https://api.crossref.org/works?query=test")
-            action = project(); action["domain"] = "wake_analysis"
+            action = project(); action["domain"] = "self_study"
             self.assertEqual(self.propose([action, notebook(["s1", "s2"])])["status"], "rejected")
         finally:
             self.engine = original
@@ -1470,8 +1470,8 @@ class ResearchTests(unittest.TestCase):
 
     def test_wake_analysis_notebook_schema_excludes_external_evidence(self):
         context = {
-            "projects": [{"id": "wake", "domain": "wake_analysis"},
-                         {"id": "other", "domain": "entropy"}],
+            "projects": [{"id": "wake", "domain": "self_study"},
+                         {"id": "other", "domain": "information_survival"}],
             "evidence": [
                 {"id": "wake-source", "actor": "collector",
                  "source": "https://raw.githubusercontent.com/sudofx/wake/master/wake/store.py"},
@@ -1491,7 +1491,7 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(other["properties"]["evidence"]["items"]["enum"], ["external-source", "wake-source"])
 
     def test_wake_source_context_is_distinct_and_bounded(self):
-        action = project(); action["domain"] = "wake_analysis"
+        action = project(); action["domain"] = "self_study"
         self.assertEqual(self.propose([action])["status"], "accepted")
         urls = [
             "https://raw.githubusercontent.com/sudofx/wake/master/README.md",
@@ -1524,14 +1524,14 @@ class ResearchTests(unittest.TestCase):
 
     def test_report_does_not_count_metadata_as_qualifying_research(self):
         state = {
-            "projects": {"p": {"id": "p", "domain": "entropy"}},
+            "projects": {"p": {"id": "p", "domain": "information_survival"}},
             "evidence": {
                 "m": {
                     "actor": "collector", "scope": "collected",
                     "source": "https://api.crossref.org/works/10.1000/example",
                     "content": json.dumps({
                         "verification_required": True,
-                        "topic_domain": "entropy",
+                        "topic_domain": "information_survival",
                         "evidence_role": "metadata",
                         "host_tier": "verification-metadata",
                         "persistent_identifiers": ["doi:10.1000/example"],
@@ -1539,7 +1539,7 @@ class ResearchTests(unittest.TestCase):
                 }
             },
         }
-        notebook_state = {"id": "n", "project": "p", "domain": "entropy", "evidence": ["m"]}
+        notebook_state = {"id": "n", "project": "p", "domain": "information_survival", "evidence": ["m"]}
         self.assertEqual(_notebook_evidence_profile(notebook_state, state), (0, 0, 1))
 
     def test_publication_requires_two_sources_even_when_notebook_is_provisional(self):
@@ -1567,8 +1567,8 @@ class ResearchTests(unittest.TestCase):
 
     def test_publication_threshold_is_exposed_in_provider_schema(self):
         context = {
-            "research_topics": [{"id": "entropy"}],
-            "projects": [{"id": "p", "domain": "entropy", "status": "active"}],
+            "research_topics": [{"id": "information_survival"}],
+            "projects": [{"id": "p", "domain": "information_survival", "status": "active"}],
             "commitments": [],
             "evidence": [{"id": "s1", "actor": "collector"}, {"id": "s2", "actor": "collector"}],
             "project_evidence": {"p": ["s1", "s2"]},
@@ -2124,7 +2124,7 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(posts["post-two"]["supersedes"], "post-one")
 
     def test_collector_attempts_two_requests_and_records_failures(self):
-        actions = [project()]+[dict(type="research", id=f"q{i}", project="p", query=f"consciousness angle {i}", domain="entropy", reason="Compare") for i in range(4)]
+        actions = [project()]+[dict(type="research", id=f"q{i}", project="p", query=f"consciousness angle {i}", domain="information_survival", reason="Compare") for i in range(4)]
         self.propose(actions)
         calls=[]
         def fetch(url):
@@ -2154,7 +2154,7 @@ class ResearchTests(unittest.TestCase):
 
     def test_queued_followup_gets_one_slot_and_neutral_discovery_keeps_one(self):
         self.propose([project(), dict(type="research", id="q-follow", project="p",
-            query="cellular automata symmetry followup", domain="entropy", reason="Continue active work")])
+            query="cellular automata symmetry followup", domain="information_survival", reason="Continue active work")])
         calls = []
         with patch("wake.research.secrets.SystemRandom.choice", side_effect=lambda seq: seq[0]), \
              patch("wake.research.secrets.SystemRandom.sample", side_effect=lambda seq, n: list(seq)[:n]):
@@ -2357,7 +2357,7 @@ class ResearchTests(unittest.TestCase):
     def test_queued_exact_source_url_is_not_replaced_by_another_search(self):
         exact = "https://api.crossref.org/works/10.1016%2Fj.example.2026.01.001"
         self.propose([project(), dict(type="research", id="q-exact", project="p",
-            query="entropy sensory processing", domain="entropy", url=exact,
+            query="entropy sensory processing", domain="information_survival", url=exact,
             reason="Inspect the individual paper selected from discovery")])
         calls = []
         with patch("wake.research.secrets.SystemRandom.choice", side_effect=lambda seq: seq[0]), \
@@ -2375,7 +2375,7 @@ class ResearchTests(unittest.TestCase):
                 self.engine.store.append("observation", dict(
                     id=identifier, source="https://api.crossref.org/works?query=entropy",
                     content=json.dumps({"scope":"search metadata", "excerpt":"entropy sensory processing autism",
-                                        "verification_required":True, "topic_domain":"entropy",
+                                        "verification_required":True, "topic_domain":"information_survival",
                                         "evidence_role":"discovery"}),
                     actor="collector", scope="collected"))
         self.assertEqual(self.propose([project(), notebook(["s1", "s2"])])["status"], "rejected")
@@ -2386,7 +2386,7 @@ class ResearchTests(unittest.TestCase):
                 self.engine.store.append("observation", dict(
                     id=identifier, source=f"https://api.crossref.org/works/10.1000/{identifier}",
                     content=json.dumps({"scope":"bibliographic metadata and abstract",
-                                        "verification_required":True, "topic_domain":"entropy",
+                                        "verification_required":True, "topic_domain":"information_survival",
                                         "evidence_role":"metadata",
                                         "host_tier":"verification-metadata"}),
                     actor="collector", scope="collected"))
@@ -2404,16 +2404,16 @@ class ResearchTests(unittest.TestCase):
                     content=json.dumps({
                         "scope": "readable source fixture",
                         "verification_required": True,
-                        "topic_domain": "entropy",
+                        "topic_domain": "information_survival",
                         "evidence_role": "source",
                         "host_tier": "verification-fulltext",
                         "source_identity": "doi:10.1000/same-work",
                         "persistent_identifiers": ["doi:10.1000/same-work"],
-                        "excerpt": "entropy comparison same underlying work",
+                        "excerpt": "information persistence same underlying work",
                     }),
                     actor="collector", scope="collected"))
-        self.assertEqual(self.propose([notebook(["s1"], findings="Entropy comparison discusses the underlying work [s1].")])["status"], "accepted")
-        revised = notebook(["s1", "s2"], findings="Revised entropy comparison of the same underlying work [s1] [s2].")
+        self.assertEqual(self.propose([notebook(["s1"], findings="Information persistence discusses the underlying work [s1].")])["status"], "accepted")
+        revised = notebook(["s1", "s2"], findings="Revised information persistence comparison of the same underlying work [s1] [s2].")
         result = self.propose([revised])
         self.assertEqual(result["status"], "rejected")
         self.assertIn("distinct underlying source work", result["reason"])
@@ -2431,7 +2431,7 @@ class ResearchTests(unittest.TestCase):
                     content=json.dumps({
                         "scope": "readable source fixture",
                         "verification_required": True,
-                        "topic_domain": "entropy",
+                        "topic_domain": "information_survival",
                         "evidence_role": "source",
                         "host_tier": "verification-fulltext",
                         "source_identity": work,
@@ -2441,13 +2441,13 @@ class ResearchTests(unittest.TestCase):
                             "doi:10.1000/shared-reference",
                             work,
                         ],
-                        "excerpt": "entropy comparison substantive readable material",
+                        "excerpt": "information persistence substantive readable material",
                     }),
                     actor="collector", scope="collected"))
         result = self.propose([
             notebook(
                 ["s1", "s2"],
-                findings="Entropy comparison uses two distinct retrieved works [s1] [s2].",
+                findings="Information persistence uses two distinct retrieved works [s1] [s2].",
             )
         ])
         self.assertEqual(result["status"], "accepted")
@@ -2468,7 +2468,7 @@ class ResearchTests(unittest.TestCase):
 
     def test_retired_followups_do_not_exhaust_queue_capacity(self):
         actions = [project()]+[dict(type="research", id=f"q{i}", project="p", query=f"follow up {i}",
-            domain="entropy", reason="Test queue lifecycle") for i in range(4)]
+            domain="information_survival", reason="Test queue lifecycle") for i in range(4)]
         self.propose(actions)
         for _ in range(4):
             with self.engine.store.lock():
@@ -2477,7 +2477,7 @@ class ResearchTests(unittest.TestCase):
         self.assertTrue(all(item["status"] == "collected"
                             for item in self.engine.store.load()["research"].values()))
         result = self.propose([dict(type="research", id="q-next", project="p", query="next follow up",
-            domain="entropy", reason="Queue remains usable")])
+            domain="information_survival", reason="Queue remains usable")])
         self.assertEqual(result["status"], "accepted")
 
     def test_notebook_rejects_unrelated_sources_as_corroboration(self):
@@ -2495,7 +2495,7 @@ class ResearchTests(unittest.TestCase):
         philosophy_project = dict(
             type="project", id="p", title="Verificationism",
             question="What primary texts define verificationism?",
-            domain="entropy", status="active",
+            domain="information_survival", status="active",
             next_step="Retrieve primary philosophical texts",
             reason="Test gross evidence mismatch",
         )
@@ -2508,7 +2508,7 @@ class ResearchTests(unittest.TestCase):
                     "title":"Recursive repository structure",
                     "excerpt":"A recursive file listing of source-controlled paths and filenames.",
                     "verification_required":True,
-                    "topic_domain":"entropy",
+                    "topic_domain":"information_survival",
                     "evidence_role":"source",
                     "host_tier":"verification-fulltext",
                 }),
@@ -2528,7 +2528,7 @@ class ResearchTests(unittest.TestCase):
                 content=json.dumps({"scope":"synthetic test fixture",
                                     "excerpt":"bounded comparison cellular automata explanations",
                                     "verification_required":True,
-                                    "topic_domain":"entropy"}),
+                                    "topic_domain":"information_survival"}),
                 actor="collector", scope="collected"))
         findings = "A bounded comparison of cellular automata explanations follows [s1]."
         self.assertEqual(self.propose([project(), notebook(["s1"], findings)])["status"], "accepted")
@@ -2564,13 +2564,13 @@ class ResearchTests(unittest.TestCase):
                 id="s1", source="https://plato.stanford.edu/entries/s1",
                 content=json.dumps({"scope":"synthetic test fixture",
                                     "excerpt":"bounded comparison cellular automata explanations",
-                                    "verification_required":True, "topic_domain":"music"}),
+                                    "verification_required":True, "topic_domain":"music_experience"}),
                 actor="collector", scope="collected"))
         findings = "A bounded comparison of cellular automata explanations follows [s1]."
         self.assertEqual(self.propose([project(), notebook(["s1"], findings)])["status"], "accepted")
 
     def test_topic_discovery_rotates_between_independent_indexes(self):
-        topic = {"id": "music", "label": "Music", "query": "music"}
+        topic = {"id": "music_experience", "label": "Music", "query": "music_experience"}
         even = discovery_urls(topic, 0)
         odd = discovery_urls(topic, 1)
         self.assertEqual(len(even), 2)
@@ -2617,10 +2617,10 @@ class ResearchTests(unittest.TestCase):
                 self.assertEqual(allowed_url(url), url)
 
     def test_scholarly_discovery_rotates_across_four_independent_indexes(self):
-        routes0 = research_urls("neurodiversity paradigm", "neurodivergence", attempts=0)
-        routes1 = research_urls("neurodiversity paradigm", "neurodivergence", attempts=1)
-        routes2 = research_urls("neurodiversity paradigm", "neurodivergence", attempts=2)
-        routes3 = research_urls("neurodiversity paradigm", "neurodivergence", attempts=3)
+        routes0 = research_urls("neurodiversity paradigm", "observer_disagreement", attempts=0)
+        routes1 = research_urls("neurodiversity paradigm", "observer_disagreement", attempts=1)
+        routes2 = research_urls("neurodiversity paradigm", "observer_disagreement", attempts=2)
+        routes3 = research_urls("neurodiversity paradigm", "observer_disagreement", attempts=3)
         hosts = [__import__("urllib.parse").parse.urlsplit(routes[0]).hostname
                  for routes in (routes0, routes1, routes2, routes3)]
         self.assertEqual(hosts, [
@@ -2643,7 +2643,7 @@ class ResearchTests(unittest.TestCase):
         self.assertFalse(any("api.datacite.org" in url for url in routes))
 
     def test_broad_index_searches_remain_discovery_only(self):
-        urls = research_urls("working memory", "psychology", attempts=0)
+        urls = research_urls("working memory", "human_values", attempts=0)
         self.assertTrue(all(evidence_role(url) == "discovery" for url in urls))
         self.assertEqual(
             evidence_role("https://api.datacite.org/dois/10.1234/example"),
@@ -2677,17 +2677,17 @@ class ResearchTests(unittest.TestCase):
                 self.assertEqual(allowed_url(url), url)
 
     def test_index_rotation_includes_semantic_scholar_and_datacite(self):
-        routes = research_urls("neurodiversity paradigm", "neurodivergence", attempts=0)
+        routes = research_urls("neurodiversity paradigm", "observer_disagreement", attempts=0)
         self.assertEqual(len(routes), 8)
         self.assertTrue(any("api.crossref.org" in url for url in routes))
         self.assertTrue(any("api.openalex.org" in url for url in routes))
         self.assertTrue(any("api.semanticscholar.org" in url for url in routes))
         self.assertTrue(any("api.datacite.org" in url for url in routes))
-        rotated = research_urls("neurodiversity paradigm", "neurodivergence", attempts=1)
+        rotated = research_urls("neurodiversity paradigm", "observer_disagreement", attempts=1)
         self.assertNotEqual(routes[0], rotated[0])
 
     def test_broad_index_queries_remain_discovery_only(self):
-        routes = research_urls("working memory", "psychology", attempts=0)
+        routes = research_urls("working memory", "human_values", attempts=0)
         self.assertTrue(all(evidence_role(url) == "discovery" for url in routes))
         self.assertEqual(
             evidence_role("https://api.datacite.org/dois/10.1234/example"),

@@ -29,7 +29,7 @@ from support import charter_settings
 
 def project():
     return dict(type="project", id="p", title="A question", question="What distinguishes these accounts?",
-                domain="entropy", status="active", next_step="Read more", reason="Compare sources")
+                domain="information_survival", status="active", next_step="Read more", reason="Compare sources")
 
 
 def notebook(evidence, findings="A bounded comparison of two sources."):
@@ -137,7 +137,7 @@ class ProvenanceTests(unittest.TestCase):
         page = (self.root/'site/map.html').read_text()
         graph = json.loads((self.root/'site/map-data.json').read_text())
         map_js = (self.root/'site/map.js').read_text()
-        self.assertEqual(graph["meta"]["topic_labels"]["entropy"], "Entropy")
+        self.assertEqual(graph["meta"]["topic_labels"]["information_survival"], "How Does Information Survive?")
         self.assertIn("wake-live/'", map_js)
         self.assertIn("map-data.json?wake=", map_js)
         self.assertIn("topicLabels=data.meta?.topic_labels||{}", map_js)
@@ -148,12 +148,12 @@ class ProvenanceTests(unittest.TestCase):
         map3d_page = (self.root/'site/map3d.html').read_text()
         map3d_js = (self.root/'site/map3d.js').read_text()
         map3d_shell = json.loads((self.root/'site/map3d-data.json').read_text())
-        self.assertEqual(map3d_shell["meta"]["topic_labels"]["entropy"], "Entropy")
+        self.assertEqual(map3d_shell["meta"]["topic_labels"]["information_survival"], "How Does Information Survive?")
         self.assertEqual(map3d_shell["meta"]["schema_version"], 2)
         self.assertIn("map3d-data.json?wake=", map3d_js)
         self.assertIn("fetch(branchUrl(id)", map3d_js)
         topic_shard = json.loads((self.root/'site/map3d'/map3d_shard_filename('root:topics')).read_text())
-        self.assertTrue(any(item["title"] == "Entropy" for item in topic_shard["children"]))
+        self.assertTrue(any(item["title"] == "How Does Information Survive?" for item in topic_shard["children"]))
         project_shard = json.loads((self.root/'site/map3d'/map3d_shard_filename('project:p@1')).read_text())
         self.assertEqual(project_shard["path"][:2], ["root:wake", "root:projects"])
         self.assertEqual(project_shard["path"][-1], "project:p@1")

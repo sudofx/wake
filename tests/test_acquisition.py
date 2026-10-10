@@ -18,13 +18,13 @@ class AcquisitionTests(unittest.TestCase):
         with self.engine.store.lock():
             self.engine.initialize()
             invocation, request = self.engine.start("fixture", "test")
-            self.engine.finish(invocation, json.dumps({"base_version": request["context"]["version"], "title": "P", "summary": "Seed project", "actions": [{"type": "project", "id": "p", "title": "P", "question": "Q", "domain": "entropy", "status": "active", "next_step": "N", "reason": "R"}]}))
+            self.engine.finish(invocation, json.dumps({"base_version": request["context"]["version"], "title": "P", "summary": "Seed project", "actions": [{"type": "project", "id": "p", "title": "P", "question": "Q", "domain": "information_survival", "status": "active", "next_step": "N", "reason": "R"}]}))
 
     def tearDown(self):
         self.engine.store.close(); self.temp.cleanup()
 
     def receipt(self, route, outcome):
-        return {"project": "p", "domain": "entropy", "research_id": route,
+        return {"project": "p", "domain": "information_survival", "research_id": route,
                 "route": route, "stage": "discovery", "outcome": outcome, "evidence": "e" + route[-1]}
 
     def test_distinct_no_progress_routes_become_capability_blocked(self):
@@ -48,7 +48,7 @@ class AcquisitionTests(unittest.TestCase):
             raise ValueError("Source is unavailable")
         with self.engine.store.lock():
             self.engine.store.append("acquisition_assessed", self.receipt("crossref:discovery", "no_progress"))
-            _collect_items(self.engine, [{"id": "failed-route", "url": url, "domain": "entropy",
+            _collect_items(self.engine, [{"id": "failed-route", "url": url, "domain": "information_survival",
                 "project": "p", "acquisition_followup": True}], {}, failed_fetch,
                 time.monotonic, time.monotonic(), 45)
         state = self.engine.store.load()
@@ -151,7 +151,7 @@ class AcquisitionTests(unittest.TestCase):
         self.assertEqual(len(promoted), 1)
         payload = json.loads(promoted[0]["content"])
         self.assertEqual(payload["evidence_role"], "source")
-        self.assertEqual(payload["topic_domain"], "entropy")
+        self.assertEqual(payload["topic_domain"], "information_survival")
         self.assertEqual(payload["source_identity"], "doi:10.1000/example.1")
         self.assertEqual(
             state["acquisition"]["p"]["source_candidate_identities"][readable],

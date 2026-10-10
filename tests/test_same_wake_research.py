@@ -26,15 +26,15 @@ class ImmediateProvider:
         self.requests.append(copy.deepcopy(request))
         if request['context'].get('research_phase') == 'planning':
             if self.bad:
-                return json.dumps({'requests': [dict(query='entropy', domain='entropy', project='', url='https://127.0.0.1/secret')]}), {}
-            return json.dumps({'requests': [dict(query='entropy comparison measurement', domain='entropy', project='',
+                return json.dumps({'requests': [dict(query='information_survival', domain='information_survival', project='', url='https://127.0.0.1/secret')]}), {}
+            return json.dumps({'requests': [dict(query='information persistence measurement', domain='information_survival', project='',
                 url='https://research.example.edu/'+name) for name in ('a','b')]}), {'provider_requests_sent': 1}
         if self.fail_final:
             raise OSError('Simulated provider outage')
         evidence = request['context']['same_wake_research']['evidence_ids']
         return json.dumps(dict(base_version=request['context']['version'], title='Immediate evidence-backed answer',
-            summary='Entropy comparison measurement findings '+''.join('['+i+']' for i in evidence),
-            actions=[project(), notebook(evidence, 'Entropy comparison measurement findings '+''.join('['+i+']' for i in evidence))])), {'provider_requests_sent': 1}
+            summary='Information persistence measurement findings '+''.join('['+i+']' for i in evidence),
+            actions=[project(), notebook(evidence, 'Information persistence measurement findings '+''.join('['+i+']' for i in evidence))])), {'provider_requests_sent': 1}
 
 
 class SameWakeTests(unittest.TestCase):
@@ -46,7 +46,7 @@ class SameWakeTests(unittest.TestCase):
     def tearDown(self):
         self.store.close(); self.temp.cleanup()
     def collect(self, engine, requests):
-        return collect_planned(engine, requests, fetcher=lambda url: dict(excerpt='entropy comparison measurement findings', url=url))
+        return collect_planned(engine, requests, fetcher=lambda url: dict(excerpt='information persistence measurement findings', url=url))
     def test_google_tool_grant_is_recorded_only_for_planning(self):
         self.engine.config['research_google_search'] = True
         provider = ImmediateProvider()
@@ -61,7 +61,7 @@ class SameWakeTests(unittest.TestCase):
     def test_two_calls_one_accepted_cycle_sources_available_before_final_request(self):
         provider = ImmediateProvider()
         with patch('wake.research.collect_planned', self.collect):
-            result = self.engine.run(provider, collector=lambda e: None, question='What distinguishes entropy measurements?')
+            result = self.engine.run(provider, collector=lambda e: None, question='How does information survive?')
         self.assertEqual(result['status'], 'accepted', result)
         self.assertEqual(len(provider.requests), 2)
         self.assertEqual(set(provider.requests[0]['response_schema']['properties']), {'requests'})
@@ -70,9 +70,9 @@ class SameWakeTests(unittest.TestCase):
         self.assertEqual(self.store.load()['version'], 1)
         self.assertIsNone(self.store.load()['pending'])
         self.assertEqual(set(self.store.load()['notebooks']['n']['evidence']), set(result['same_wake_research']['evidence_ids']))
-        self.assertIn('Entropy comparison', result['answer'])
+        self.assertIn('Information persistence', result['answer'])
         for request in provider.requests:
-            self.assertEqual(request['context']['operator_question'], 'What distinguishes entropy measurements?')
+            self.assertEqual(request['context']['operator_question'], 'How does information survive?')
             self.assertIn('uncited_readable_source_ids', request['context']['evidence_quality'])
             self.assertIn('most_reused_works', request['context']['evidence_quality'])
         final = provider.requests[-1]['context']
@@ -115,25 +115,25 @@ class SameWakeTests(unittest.TestCase):
 
     def test_topic_without_active_project_accepts_unattached_research(self):
         context = self.engine.context(self.store.load(), 'receipt')
-        context['projects'] = [{'id':'old', 'domain':'entropy', 'status':'completed'},
+        context['projects'] = [{'id':'old', 'domain':'information_survival', 'status':'completed'},
                                {'id':'elsewhere', 'domain':'other', 'status':'active'}]
         state = self.store.load()
         state['projects'] = {p['id']: p for p in context['projects']}
-        request = dict(query='entropy', domain='entropy', project='', url='')
+        request = dict(query='information_survival', domain='information_survival', project='', url='')
         self.assertEqual(validate_research_plan(json.dumps({'requests':[request]}), context, state), [request])
         for project_id in ('old', 'elsewhere'):
             with self.subTest(project=project_id), self.assertRaisesRegex(Exception, 'active project'):
                 validate_research_plan(json.dumps({'requests':[{**request, 'project':project_id}]}), context, state)
         pairs = research_plan_schema(context)['properties']['requests']['items']['anyOf']
-        entropy = next(p for p in pairs if p['properties']['domain']['enum'] == ['entropy'])
+        entropy = next(p for p in pairs if p['properties']['domain']['enum'] == ['information_survival'])
         self.assertEqual(entropy['properties']['project']['enum'], [''])
 
     def test_plan_project_must_be_delivered_and_active_in_matching_topic(self):
         context = self.engine.context(self.store.load(), 'receipt')
-        context['projects'] = [{'id':'shown', 'domain':'entropy', 'status':'active'}]
+        context['projects'] = [{'id':'shown', 'domain':'information_survival', 'status':'active'}]
         state = self.store.load()
-        state['projects'] = {'shown':context['projects'][0], 'hidden':{'id':'hidden', 'domain':'entropy', 'status':'active'}}
-        request = dict(query='entropy', domain='entropy', project='shown', url='')
+        state['projects'] = {'shown':context['projects'][0], 'hidden':{'id':'hidden', 'domain':'information_survival', 'status':'active'}}
+        request = dict(query='information_survival', domain='information_survival', project='shown', url='')
         self.assertEqual(validate_research_plan(json.dumps({'requests':[request]}), context, state), [request])
         with self.assertRaisesRegex(Exception, 'active project'):
             validate_research_plan(json.dumps({'requests':[{**request, 'project':'hidden'}]}), context, state)
@@ -154,17 +154,17 @@ class SameWakeTests(unittest.TestCase):
         def fetch(url):
             fetched.append(url)
             if 'api.crossref.org' in url:
-                return dict(excerpt='entropy comparison measurement https://research.example.edu/readable')
-            return dict(excerpt='entropy comparison measurement results')
-        ids=collect_planned(self.engine, [dict(query='entropy', domain='entropy', project='', url='')], fetcher=fetch)
+                return dict(excerpt='information persistence measurement https://research.example.edu/readable')
+            return dict(excerpt='information persistence measurement results')
+        ids=collect_planned(self.engine, [dict(query='information_survival', domain='information_survival', project='', url='')], fetcher=fetch)
         self.assertEqual(len(ids), 2)
         self.assertIn('research.example.edu/readable', fetched[-1])
         contents=[json.loads(self.store.load()['evidence'][identifier]['content']) for identifier in ids]
         self.assertEqual([item['evidence_role'] for item in contents], ['discovery','source'])
     def test_bad_domain_and_attention_constraints_are_enforced_before_fetch(self):
         state=self.store.load(); context=self.engine.context(state,'receipt')
-        context['attention']={'enforce_selected_topic': True,'selected_topic':'entropy'}
-        for domain in ('music', [], 'unknown'):
+        context['attention']={'enforce_selected_topic': True,'selected_topic':'information_survival'}
+        for domain in ('music_experience', [], 'unknown'):
             with self.subTest(domain=domain), self.assertRaises(Exception):
                 validate_research_plan(json.dumps({'requests':[dict(query='q',domain=domain,project='',url='')]}), context, state)
     def test_budget_exhaustion_does_not_send_final_call(self):

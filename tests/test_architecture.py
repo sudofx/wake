@@ -1,5 +1,8 @@
 from pathlib import Path
+import tomllib
 import unittest
+
+from support import TEST_RESEARCH_TOPICS
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -112,20 +115,14 @@ class ArchitectureSeparationTests(unittest.TestCase):
 
     def test_wake_zero_topics_are_the_operator_selected_ten(self):
         topics = self.read('research-topics.toml')
-        self.assertEqual(topics.count('[[topics]]'), 10)
-        for seed in (
-            'What Is an Observer?',
-            "How Do We Know We're Wrong?",
-            'What Makes You You?',
-            'Why Does Music Feel Like Something?',
-            'Why Are Things Funny?',
-            'How Does Information Survive?',
-            'When Does Simple Become Smart?',
-            'Can Two Honest Observers Disagree?',
-            'What Actually Matters to Us?',
-            'Can Curiosity Be Built?',
-        ):
-            self.assertIn(seed, topics)
+        configured = tomllib.loads(topics)['topics']
+        self.assertEqual(len(configured), 10)
+        fixture_topics = [
+            {key: topic[key] for key in ('id', 'label', 'query', 'seed_question', 'enabled')}
+            for topic in TEST_RESEARCH_TOPICS
+            if topic.get('source_kind', 'web') == 'web'
+        ]
+        self.assertEqual(fixture_topics, configured)
 
     def test_bob_is_plain_language_scientific_interpreter_without_a_quota(self):
         provider = self.read('wake/providers.py')
