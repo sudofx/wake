@@ -1341,7 +1341,7 @@ html:not(.console-panel-window) body.research-page [data-console-panel-id].panel
   html.console-inspector-docked:not(.console-panel-window) .research-page .detail-panel{position:fixed!important;inset:var(--inspector-top,110px) var(--console-edge) var(--console-edge) auto!important;width:340px!important;height:calc(100dvh - var(--inspector-top,110px) - var(--console-edge))!important;max-height:none!important;transition:top .18s ease,height .18s ease;z-index:50!important;margin:0!important}
 }
 @media(max-width:767px){
-  html.console-inspector-docked:not(.console-panel-window) .research-page .detail-panel{position:fixed!important;inset:auto var(--console-edge) var(--console-edge)!important;width:auto!important;height:50dvh!important;max-height:50dvh!important;animation:inspector-sheet-enter .2s ease-out;z-index:50!important;margin:0!important;box-shadow:0 -12px 40px #0006}
+  html.console-inspector-docked:not(.console-panel-window) .research-page .detail-panel{position:fixed!important;inset:auto var(--console-edge) var(--console-edge)!important;width:auto!important;height:50dvh!important;max-height:50dvh!important;overflow-y:auto!important;overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y;animation:inspector-sheet-enter .2s ease-out;z-index:50!important;margin:0!important;box-shadow:0 -12px 40px #0006}
   .research-page .console-overview>.console-panel-heading{padding-bottom:20px!important}
 }
 /* The seven numbered story sections share a visible group boundary. */

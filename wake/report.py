@@ -569,7 +569,7 @@ def _deployment_site(target, *, standalone):
     for path in target.rglob('*.html'):
         page = path.read_text()
         prefix = "../" * len(path.relative_to(target).parts[:-1])
-        page = re.sub(r'href="((?:\.\./)*(?:style|nav|map|map3d|research|theme)\.css)(?:\?[^"]*)?"', r'href="\1?v=20261008-inspector-auto"', page)
+        page = re.sub(r'href="((?:\.\./)*(?:style|nav|map|map3d|research|theme)\.css)(?:\?[^"]*)?"', r'href="\1?v=20261010-mobile-inspector-scroll"', page)
         page = re.sub(r'src="((?:\.\./)*nav\.js)(?:\?[^"]*)?"', r'src="\1?v=20261008-workspace"', page)
         if '<header class="' in page and 'masthead' in page:
             shared = header
