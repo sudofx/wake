@@ -188,7 +188,16 @@ def _notebook_html(notebook, state):
     source_items = []
     for eid in notebook["evidence"]:
         evidence = state["evidence"][eid]
-        source_items.append(f'<li><a href="{html.escape(str(evidence["source"]))}">{html.escape(eid)}</a></li>')
+        origin = evidence.get("peer_origin")
+        attribution = ""
+        if isinstance(origin, dict) and isinstance(origin.get("instance_id"), str):
+            attribution = (
+                " · collected by " + html.escape(origin["instance_id"])
+                + " as " + html.escape(str(origin.get("evidence_id", "peer evidence")))
+            )
+        source_items.append(
+            f'<li><a href="{html.escape(str(evidence["source"]))}">{html.escape(eid)}</a>{attribution}</li>'
+        )
     source_count, cross_topic_count, nonqualifying_count = _notebook_evidence_profile(notebook, state)
     source_word = "work" if source_count == 1 else "works"
     cross_note = (
@@ -570,7 +579,7 @@ def _deployment_site(target, *, standalone):
         page = path.read_text()
         prefix = "../" * len(path.relative_to(target).parts[:-1])
         page = re.sub(r'href="((?:\.\./)*(?:style|nav|map|map3d|research|theme)\.css)(?:\?[^"]*)?"', r'href="\1?v=20261010-mobile-inspector-scroll"', page)
-        page = re.sub(r'src="((?:\.\./)*nav\.js)(?:\?[^"]*)?"', r'src="\1?v=20261008-workspace"', page)
+        page = re.sub(r'src="((?:\.\./)*nav\.js)(?:\?[^"]*)?"', r'src="\1?v=20261010-handset-menu"', page)
         if '<header class="' in page and 'masthead' in page:
             shared = header
             if path.name == "console.html":
@@ -586,7 +595,7 @@ def _deployment_site(target, *, standalone):
         page = re.sub(r'<script src="(?:console-theme|site-theme)\.js[^"]*"></script>', '', page)
         page = re.sub(r'<link rel="stylesheet" href="(?:\.\./)*masthead\.css[^"]*">', '', page)
         page = re.sub(r'<link rel="stylesheet" href="(?:\.\./)*console-light\.css[^"]*">', '', page)
-        page = page.replace('</head>', f'<link rel="stylesheet" href="{prefix}console-light.css?v=20261008-daylight"><script src="{prefix}site-theme.js?v=20261008-shared"></script><link rel="stylesheet" href="{prefix}masthead.css?v=20261008-inspector-auto"></head>', 1)
+        page = page.replace('</head>', f'<link rel="stylesheet" href="{prefix}console-light.css?v=20261008-daylight"><script src="{prefix}site-theme.js?v=20261008-shared"></script><link rel="stylesheet" href="{prefix}masthead.css?v=20261010-handset-menu"></head>', 1)
         # Re-export may reuse a directory. An older marker later in <head> must
         # not override the newly selected installation. Normalize to one owner.
         page = re.sub(r'<script>window\.WAKE_(?:DEPLOYMENT|STANDALONE)=[^<]*</script>', '', page)

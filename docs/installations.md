@@ -44,8 +44,9 @@ selecting `gemini` requires that installation's explicit
 Compose configuration with credentials. Shell environment variables can override
 env-file values; inspect the intended settings before starting research.
 
-Use `WAKE_INSTANCE_PORT` for a fixed port; `WAKE_INSTANCE_BIND=0.0.0.0` exposes it
-to the host's IPv4 interfaces for trusted LAN access. Loopback is the default.
+Use `WAKE_INSTANCE_PORT` for a fixed port. Installations bind to all host network
+interfaces by default for trusted LAN access; set `WAKE_INSTANCE_BIND=127.0.0.1`
+to restrict one to loopback.
 Keep each installed image's architecture compatible with its host; a published
 multi-architecture image can be selected with `WAKE_INSTANCE_IMAGE` without a
 local build. Such publication is a separate authorized operation.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Host-name router for local wake_runner groups; listens only behind localhost publish."""
+"""LAN and host-name router for local wake_runner groups."""
 
 import argparse
 from html import escape
@@ -24,9 +24,20 @@ class GroupProxy(BaseHTTPRequestHandler):
         self._forward()
 
     def _forward(self):
-        host = (self.headers.get("Host", "").split(":", 1)[0]).lower().rstrip(".")
+        raw_host = self.headers.get("Host", "").split(":", 1)[0].strip("[]")
+        host = raw_host.lower().rstrip(".")
         route = self.server.routes.get(host)
         group = self.server.groups.get(host)
+        try:
+            lan_ip = str(ipaddress.ip_address(raw_host))
+        except ValueError:
+            lan_ip = None
+        if lan_ip is not None:
+            if self.path not in {"/", "/index.html"}:
+                self.send_error(404, "The group proxy only serves its member directory by IP")
+                return
+            self._serve_lan_directory(lan_ip)
+            return
         if group is not None:
             if not self._allowed(group):
                 self.send_error(403, "This host belongs to a different local WAKE group")
@@ -77,12 +88,34 @@ class GroupProxy(BaseHTTPRequestHandler):
             f'{escape(member)}</a></li>'
             for member in sorted(group["members"])
         )
+        self._serve_directory(f"WAKE group {host}", links)
+
+    def _serve_lan_directory(self, lan_ip):
+        sections = []
+        for group_name, group in sorted(self.server.groups.items()):
+            members = [member for member in sorted(group["members"])
+                       if self.server.routes[member].get("host_ip") not in {"127.0.0.1", "::1"}]
+            if not members:
+                sections.append(f"<h2>{escape(group_name)}</h2><p>Recreate this group's containers to enable LAN access.</p>")
+                continue
+            links = "".join(
+                f'<li><a href="http://{escape(lan_ip, quote=True)}:{escape(self.server.routes[member]["host_port"], quote=True)}/console.html">'
+                f'{escape(member)}</a></li>'
+                for member in members
+            )
+            sections.append(f"<h2>{escape(group_name)}</h2><ul>{links}</ul>")
+        if not sections:
+            self.send_error(403, "No WAKE groups are available from this network")
+            return
+        self._serve_directory("WAKE groups", "".join(sections))
+
+    def _serve_directory(self, title, links):
         body = (
             "<!doctype html><html lang=\"en\"><meta charset=\"utf-8\">"
-            f"<title>WAKE group {escape(host)}</title>"
-            f"<h1>WAKE group {escape(host)}</h1>"
-            "<p>This address is the local group proxy. Choose a member:</p>"
-            f"<ul>{links}</ul></html>"
+            f"<title>{escape(title)}</title>"
+            f"<h1>{escape(title)}</h1>"
+            "<p>Choose a WAKE container:</p>"
+            f"{links}</html>"
         ).encode("utf-8")
         self.send_response(200)
         self.send_header("Content-Type", "text/html; charset=utf-8")

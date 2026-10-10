@@ -120,7 +120,7 @@ class Website(SimpleHTTPRequestHandler):
                 return
             try:
                 body = json.dumps(group_research_snapshot(
-                    self.directory, group_id, instance_id), separators=(',', ':')).encode()
+                    self.server.engine, group_id, instance_id), separators=(',', ':')).encode()
             except ValueError:
                 self.send_error(503, 'Group research projection unavailable')
                 return
@@ -223,6 +223,7 @@ def run(args):
                 if not publish(engine, root):
                     raise ValueError('Writer busy during initial website publication; retry startup')
                 server = ThreadingHTTPServer((args.host, args.port), partial(Website, directory=str(root / 'current')))
+                server.engine = engine
                 server.runtime_status = {'mode': 'standalone', 'state': research_mode}
                 server.activity = RuntimeActivity()
                 server.snapshot_generation = 1

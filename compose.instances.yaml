@@ -7,7 +7,7 @@ services:
     ports: !override
       - target: 8080
         published: "${WAKE_INSTANCE_PORT:-0}"
-        host_ip: "${WAKE_INSTANCE_BIND:-127.0.0.1}"
+        host_ip: "${WAKE_INSTANCE_BIND:-0.0.0.0}"
         protocol: tcp
     environment:
       # A new installation is inspectable before the operator enables research.

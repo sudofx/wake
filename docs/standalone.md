@@ -65,28 +65,29 @@ docker compose up -d --force-recreate
 
 `WAKE_INTERVAL_SECONDS` defaults to 60 seconds between bounded cycles, with durable
 quota deferrals respected. `WAKE_MODEL` optionally overrides the primary model.
-`WAKE_PORT` changes the host port. Compose binds only the host loopback interface.
-The read-only website is not an authenticated remote service.
+`WAKE_PORT` changes the host port. Compose publishes on all host network interfaces
+by default, including the Mac's LAN address. The read-only website is not an
+authenticated remote service.
 
 ## Access from an iPhone or another device on the local network
 
-Add `compose.lan.yaml` to publish the website on the host's IPv4 and IPv6 addresses
-(Docker Compose 2.24.4 or newer). Keep the existing project name and volume:
+Connect the iPhone to the same local network as the host and open
+`http://MAC_LAN_IP:8080/console.html` in Safari. Find the Mac's LAN IPv4 address
+in System Settings under Network or Wi-Fi. Keep the existing Compose project name
+and volume when recreating an existing installation:
 
 ```sh
-docker compose -p wake-standalone-preview -f compose.yaml -f compose.lan.yaml up -d
+docker compose -p wake-standalone-preview up -d --force-recreate
 ```
 
-For the VS Code setup, also include `-f compose.vscode.yaml` before the LAN override.
-That editor overlay defaults to paused mode; preserve your live provider and pause
-settings when recreating an existing installation. Port changes require recreation.
+For the VS Code setup, also include `-f compose.vscode.yaml`. That editor overlay
+defaults to paused mode; preserve your live provider and pause settings when
+recreating an existing installation. Port changes require recreation.
 
-Connect the iPhone to the same network, then open `http://HOST_IPV4:8080/console.html`
-or `http://[HOST_IPV6]:8080/console.html` in Safari. IPv6 literals require brackets.
-Use the host's network address rather than the container's internal address.
-Host firewall rules and Wi-Fi client isolation can affect access. The website
-remains read-only and unauthenticated, and this override listens on all host
-interfaces; use it on a trusted network without opening router ports.
+`compose.lan.yaml` remains available for older checkout instructions but is no longer
+needed. The website is read-only and unauthenticated; use it on a trusted network
+without opening router ports. Host firewall rules and Wi-Fi client isolation can
+affect access.
 
 ## Continuity matrix campaign
 
@@ -241,7 +242,8 @@ runtime promotion is part of local container operation.
 ## Repository convenience launcher
 
 `./scripts/wake_runner` creates and starts the default `wake` container when it is
-absent. It publishes the container on a random localhost port and prints its URL;
+absent. It publishes the container on a random host port across host network
+interfaces and prints its local and LAN URLs when available;
 the suggested `/etc/hosts` entry lets that URL use the container name, such as
 `http://wake:8088/`. If the container already exists, the runner leaves it as-is
 and reports its research state and continuity progress. `./scripts/wake_runner.sh`
@@ -284,11 +286,17 @@ port. The proxy's bare hostname opens a directory of the numbered members. The
 runner creates a private
 user-defined Docker bridge for that prefix and sets group membership only on
 these numbered containers.
-Members can read compact research summaries from their peers and receive them as
-untrusted discovery context on their normal research requests; this exchange makes
-no provider call. Peer notes never become local evidence or eligible citations.
-Every member keeps its own `/data` record. Solo runner containers, Compose installs,
-Codespaces and hosted research do not join a group or receive peer context.
+Members exchange bounded, readable source observations and one concise,
+attributed notebook finding from each peer.
+Each recipient records an imported source locally with its original source URL and
+peer provenance, then applies its own source eligibility and claim rules before it
+can be cited. A peer notebook finding is an attributed lead, not a local claim or
+citation ID. Full notebooks, topic lists, projects and record authority are not
+shared, and no prompt prescribes a connection to find. The exchange uses the local
+Docker bridge and adds no provider call. The bridge trusts its operator-created
+members; it is not cryptographic remote attestation. Every member keeps its own
+`/data` record. Solo runner containers, Compose installs, Codespaces and hosted
+research do not participate.
 
 By default all members use the shared `research-topics.toml`. To give members
 different topics, create files before creating the group, for example:
@@ -303,8 +311,9 @@ cp example.research-topics.toml .wake-runner-topics/003.wake.local.toml
 Edit each numbered file before launching. The runner mounts a matching file
 read-only into that member. If a matching file is absent, that member uses the
 shared `./research-topics.toml`; the runner requires that shared file before it
-creates containers. The `wake.local` proxy listens on `127.0.0.1:80`, so
-port 80 must be available. For this example, add the following line to `/etc/hosts`:
+creates containers. The `wake.local` proxy listens on host port 80 across network
+interfaces, so port 80 must be available. For Mac browser access by group hostname,
+add the following line to the Mac's `/etc/hosts`:
 
 ```text
 127.0.0.1 wake.local 001.wake.local 002.wake.local 003.wake.local
@@ -313,13 +322,15 @@ port 80 must be available. For this example, add the following line to `/etc/hos
 Then open `http://wake.local/` for the proxy's member directory, or open
 `http://001.wake.local/`, `http://002.wake.local/` or
 `http://003.wake.local/` directly. `wake_runner` prints the suggested
-`/etc/hosts` line and URLs for the chosen prefix; add the hosts line yourself.
+`/etc/hosts` line, local URLs and Mac LAN URLs. On an iPhone connected to the same
+network, open the printed `GROUP PROXY LAN URL`; its page links to each member's
+direct LAN URL. Add the hosts line yourself for hostname access on the Mac.
 One router serves all active groups; it blocks requests between different group
 networks. Group networks are removed when their last member is removed. The runner
-requires the existing
-`wake-standalone:vscode` image and selects the Docker Desktop proxy; it is not
-the portable Compose setup above. Only the explicit `--container remove` action
-deletes attached data volumes.
+requires the existing `wake-standalone:vscode` image and selects the Docker Desktop
+proxy; it is not the portable Compose setup above. These websites are read-only and
+unauthenticated; use them on a trusted network without opening router ports. Only
+the explicit `--container remove` action deletes attached data volumes.
 
 ## Live Console inspection
 

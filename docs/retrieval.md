@@ -17,13 +17,20 @@ Collected source prose follows the existing qualifying-source rehydration budget
 
 The complete request is checked again after same-wake research links and final proposal instructions are added. Under pressure, source excerpts shorten first to 900 and then to 400 characters. Duplicate retrieved belief prose points to the mandatory belief working set; prose may shorten to 80 characters. Optional advisory compacts shorten and then reduce in number, with omission counts and a digest, retaining challenged hints first. Visible evidence IDs, mandatory belief provenance roots and open commitments remain present. If the request still cannot fit, no model call is made. The standalone scheduler keeps its website available with a `blocked` runtime status until an operator reviews the budget and restarts it.
 
-Numbered containers created by the local `wake_runner` may receive compact peer
-project and notebook summaries over their group bridge. These summaries are
-untrusted discovery context from separate records, never local evidence or
-citation-eligible IDs. The receiver bounds the peer payload and drops it when the
-configured request ceiling would otherwise be exceeded. Fetching peer summaries is
-local network traffic and makes no provider call. Solo, Codespace and hosted
-installations do not participate.
+Numbered containers created by the local `wake_runner` exchange a bounded set of
+readable source observations and one concise, attributed notebook finding per peer
+over their private group bridge. A source packet carries the source URL and
+collected content plus its originating instance, evidence ID, application head,
+version and content hash. The receiving WAKE appends each valid item to its own
+record as a peer-origin source observation, then applies its usual source
+qualification and claim-support rules before allowing citation. The notebook
+finding is an attributed lead, never a local claim or citation ID; full notebooks,
+topic lists, projects and record authority are not shared. The normal research
+context includes peer notes and selected peer sources alongside local sources,
+without instructing the model to seek a particular connection. Fetching and
+importing peer material makes no provider call. The local bridge trusts its
+operator-created members and is not cryptographic remote attestation. Solo,
+Codespace and hosted installations do not participate.
 
 The active-memory fit also bounds milestone editorial history, including when final research links arrive after its initial fit. It clips editorial prose to 80 characters, omits auxiliary editorial project/notebook/search windows, and retains as many of the latest four, two or one accepted wakes as fit; zero is permitted when necessary. Previous-reflection identity and milestone remain, alongside the original history hash, original window counts and omitted counts. Repeated fits preserve that original hash. These omissions affect only disposable editorial context, not the durable record or the current research working set. The existing hard ceiling still fails closed if protected context cannot fit.
 

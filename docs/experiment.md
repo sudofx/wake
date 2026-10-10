@@ -9,6 +9,12 @@ or cross-model evidence. Independent container verification is documented in
 
 The working hypothesis is externalized continuity: many fresh model invocations can participate in one accountable process when durable evidence, obligations, state and enforceable rules connect them. The broader engineering aim is infrastructure for durable, accountable work that can survive changes in models, vendors, people and time.
 
+Numbered local groups add a cross-pollination condition: members retain separate
+topics, records and decisions while making peer-collected source observations
+available for independent local governance and citation. The arrangement shares
+no target synthesis and does not establish emergence or novelty; any such result
+must be identified in accepted work and checked against the sources themselves.
+
 This project is deliberately exploratory before it is explanatory. Early runs generate an observational history; repeated patterns can motivate narrower, falsifiable experiments later. A pattern in the record and a proposed mechanism for that pattern are different claims and should be reported separately. Rejected work, failed calls, corrections and negative results are part of the dataset rather than noise to be cleaned away.
 
 Console reports completed invocation outcomes separately from provider success and accepted research actions. Editorial actions are excluded from its research-action summary. Activity bins describe completed invocations per real wall-clock hour, retain empty hours, and show their time range. Current evidence counts include runtime receipts, discovery leads and metadata; readable source-ready material and distinct collector-stamped works are shown separately. None of these counts establish scientific quality, corroboration, or publication eligibility. Missing or clipped classification metadata remains visibly unclassified. The dashboard is presentation and does not change the experimental regime.

@@ -30,11 +30,17 @@ See [standalone operation](standalone.md). This remains a single-host operator-c
 installation, not an authenticated tenant service.
 
 The repository convenience runner can optionally place numbered local groups on
-private user-defined Docker bridges. Only those members receive a bounded,
-read-only peer research summary; it is untrusted discovery context and cannot be
-cited as local evidence or alter another member's record. Solo containers,
-Codespaces and hosted execution do not enable this path. Each member continues to
-own an independent `/data/wake.sqlite` authority.
+private user-defined Docker bridges. Group members exchange bounded, readable
+source observations collected by their peers. Each receiver appends an imported
+source to its own record with the peer identity, source evidence ID, application
+head, version and content hash, then applies its own source eligibility and claim
+governance before citation. Members also receive one concise, attributed notebook
+finding from each peer as optional context; those notes are not local claims or
+citation IDs. Full notebooks, topic lists, projects and record authority are not
+shared, and no prompt prescribes a connection to find.
+This local bridge trusts its operator-created members and is not cryptographic
+remote attestation. Solo containers, Codespaces and hosted execution do not enable
+the path. Every member owns an independent `/data/wake.sqlite` authority.
 
 ## The authority boundary
 

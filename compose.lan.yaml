@@ -1,5 +1,5 @@
-# Optional local-network access over IPv4 and IPv6. Requires Compose 2.24.4+.
-# Keep the same Compose project name so the existing authority volume is reused.
+# Compatibility override for older checkouts; compose.yaml now publishes on all
+# host interfaces by default. Keep the same Compose project to reuse its volume.
 services:
   wake:
     ports: !override

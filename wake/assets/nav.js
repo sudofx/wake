@@ -241,8 +241,13 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.schema===1 && window.WAKE_DEPLOYMENT.
    its flow space, avoiding content jumps. Scroll sampling is presentation-only. */
 (() => {
   const masthead=document.querySelector('.masthead');if(!masthead)return;
+  const handset=window.matchMedia('(max-width:700px) and (pointer:coarse), (max-height:500px) and (pointer:coarse)');
   let previous=Math.max(0,scrollY),scheduled=false,keyboardFocus=false;
   const reveal=()=>masthead.classList.remove('masthead-scroll-hidden');
+  // Handset navigation remains visible regardless of scroll direction.
+  const syncHandset=()=>{if(handset.matches){reveal();previous=Math.max(0,scrollY);}};
+  handset.addEventListener('change',syncHandset);
+  syncHandset();
   // Mouse/touch focus must not pin the bar after clicking the theme switch.
   // Keyboard focus still keeps navigation in view while tabbing through it.
   document.addEventListener('keydown',event=>{if(event.key==='Tab')keyboardFocus=true;});
@@ -253,6 +258,7 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.schema===1 && window.WAKE_DEPLOYMENT.
     if(scheduled)return;scheduled=true;
     requestAnimationFrame(()=>{
       scheduled=false;const current=Math.max(0,scrollY),delta=current-previous;
+      if(handset.matches){reveal();previous=current;return;}
       if(current<=masthead.offsetHeight)reveal();
       else if(Math.abs(delta)>=3){
         const interacting=masthead.classList.contains('masthead-keyboard-focus')||masthead.querySelector('details[open]');

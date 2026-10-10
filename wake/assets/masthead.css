@@ -39,6 +39,7 @@
 .masthead .actions-light[data-state=waiting] i{background:#e7c35a}
 .masthead .actions-light[data-state=blocked] i{background:#dc5261}
 .masthead .nav-group{position:relative}
+.masthead .mobile-nav-menu{display:none}
 .masthead summary{cursor:pointer;list-style:none}
 .masthead summary::-webkit-details-marker{display:none}
 .masthead .nav-dropdown{position:absolute;top:100%;right:0;min-width:190px;padding:8px;border:1px solid var(--line);border-radius:9px;background:var(--surface);z-index:30}
@@ -50,6 +51,20 @@
  .masthead .wordmark small{font-size:8px}
 }
 @media(max-width:380px){.masthead{padding:10px 8px}.masthead .header-tools{gap:2px}.masthead .wordmark{font-size:25px}.masthead .wordmark small{font-size:7px}}
+@media (max-width:700px) and (pointer:coarse), (max-height:500px) and (pointer:coarse){
+ .masthead{grid-template-columns:max-content max-content minmax(0,1fr);gap:8px;padding:9px 12px}
+ .masthead .brand-lockup{grid-row:1;grid-column:1;align-self:center}
+ .masthead .compact-nav{grid-row:1;grid-column:2;display:flex;justify-content:flex-start;align-self:center}
+ .masthead .compact-nav>a{display:none}
+ .masthead .mobile-nav-menu{display:block}
+ .masthead .mobile-nav-menu summary{display:flex;align-items:center;justify-content:center;width:40px;height:40px;padding:0;border-radius:8px}
+ .masthead .mobile-nav-menu summary:is(:hover,:focus-visible),.masthead .mobile-nav-menu[open]>summary{background:color-mix(in srgb,var(--ink) 8%,transparent)}
+ .masthead .mobile-nav-menu summary:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+ .masthead .mobile-nav-menu summary svg{display:block;width:22px;height:22px}
+ .masthead .mobile-nav-menu .nav-dropdown{left:0;right:auto;min-width:180px;box-shadow:0 12px 32px rgba(0,0,0,.22)}
+ .masthead .header-tools{grid-row:1;grid-column:3;justify-self:end}
+ .masthead.masthead-scroll-hidden{transform:translateY(0);pointer-events:auto}
+}
 /* Interaction surfaces must not select text during a drag. Reading panes remain
    selectable: never apply user-select:none to body, panels, or their contents. */
 button,[role=button],.theme-switch,.module-drag,.module-size,canvas,#research-map,#map-stage,#constellation .constellation-node{

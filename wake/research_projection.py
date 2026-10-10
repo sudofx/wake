@@ -124,6 +124,14 @@ def build_research_projection(state, events, head, *, generated=None, metrics=No
         if n['kind'] == 'evidence':
             eid = detail.get('id') or n['id'].removeprefix('evidence:')
             item.update(source=detail.get('source'), evidence_class=classes.get(eid, 'unclassified'))
+            origin = detail.get('peer_origin')
+            if isinstance(origin, dict):
+                item['peer_origin'] = {
+                    key: deepcopy(origin[key])
+                    for key in ('instance_id', 'application_head', 'record_version',
+                                'evidence_id', 'evidence_version', 'content_sha256')
+                    if key in origin
+                }
             payload = _payload(evidence.get(eid, {}))
             if payload.get('topic_domain'):
                 item['domain'] = payload['topic_domain']

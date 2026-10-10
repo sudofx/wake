@@ -31,7 +31,7 @@ class InstallationConfigTests(unittest.TestCase):
         return json.loads(subprocess.check_output(args + ['config', '--format', 'json'],
                                                   text=True, env=env))
 
-    def test_projects_have_distinct_volumes_images_and_safe_defaults(self):
+    def test_projects_have_distinct_volumes_images_and_lan_defaults(self):
         a, b = self.config('wake-test-a'), self.config('wake-test-b')
         self.assertNotEqual(a['volumes']['wake-data']['name'], b['volumes']['wake-data']['name'])
         self.assertNotEqual(a['services']['wake']['image'], b['services']['wake']['image'])
@@ -41,7 +41,11 @@ class InstallationConfigTests(unittest.TestCase):
         self.assertEqual(service['environment']['WAKE_PAUSED'], 'true')
         self.assertEqual(service['environment']['WAKE_PROVIDER'], 'fixture')
         self.assertEqual(service['ports'][0]['published'], '0')
-        self.assertEqual(service['ports'][0]['host_ip'], '127.0.0.1')
+        self.assertEqual(service['ports'][0]['host_ip'], '0.0.0.0')
+
+    def test_loopback_binding_can_be_requested_explicitly(self):
+        result = self.config('wake-test-a', WAKE_INSTANCE_BIND='127.0.0.1')
+        self.assertEqual(result['services']['wake']['ports'][0]['host_ip'], '127.0.0.1')
 
     def test_explicit_installation_settings_and_gateway_alias(self):
         result = self.config('wake-test-a', gateway=True, WAKE_INSTANCE_PORT='8099',

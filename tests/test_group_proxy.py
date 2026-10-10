@@ -29,11 +29,14 @@ class GroupProxyTests(unittest.TestCase):
 
         self.proxy = ThreadingHTTPServer(("127.0.0.1", 0), GroupProxy)
         self.proxy.routes = {
-            "001.wake.local": {
+            f"{member:03d}.wake.local": {
                 "target": "127.0.0.1",
                 "subnet": "127.0.0.0/8",
                 "gateway": "",
+                "host_ip": "0.0.0.0",
+                "host_port": str(8080 + member),
             }
+            for member in range(1, 4)
         }
         self.proxy.groups = {
             "wake.local": {
@@ -66,6 +69,12 @@ class GroupProxyTests(unittest.TestCase):
         self.assertIn("WAKE group wake.local", body)
         for member in ("001", "002", "003"):
             self.assertIn(f"http://{member}.wake.local/", body)
+
+    def test_lan_ip_serves_group_directory_with_direct_member_urls(self):
+        with self.request("192.0.2.10") as response:
+            body = response.read().decode("utf-8")
+        for member in range(1, 4):
+            self.assertIn(f"http://192.0.2.10:{8080 + member}/console.html", body)
 
     def test_numbered_hostname_forwards_to_member(self):
         with patch(

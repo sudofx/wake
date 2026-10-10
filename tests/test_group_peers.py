@@ -1,0 +1,84 @@
+import hashlib
+import json
+import unittest
+from unittest.mock import patch
+
+from wake.group_peers import _validated_peer, import_group_peer_evidence
+
+
+class _Store:
+    def __init__(self):
+        self.state = {"charter": {"id": "charter"}, "evidence": {}}
+        self.appended = []
+
+    def load(self):
+        return self.state
+
+    def append(self, event_type, payload):
+        self.appended.append((event_type, payload))
+        self.state["evidence"][payload["id"]] = payload
+
+
+class _Engine:
+    def __init__(self):
+        self.store = _Store()
+
+
+class GroupPeerTests(unittest.TestCase):
+    def setUp(self):
+        self.url = "https://example.edu/paper"
+        self.content = json.dumps({"url": self.url, "text": "A readable source observation."})
+        self.content_hash = hashlib.sha256(self.content.encode("utf-8")).hexdigest()
+        self.peer = {
+            "schema": 2,
+            "group_id": "wake.local",
+            "instance_id": "002-wake.local",
+            "application_head": "a" * 64,
+            "version": 12,
+            "notes": [],
+            "evidence": [{
+                "id": "source-123",
+                "source": self.url,
+                "content": self.content,
+                "content_sha256": self.content_hash,
+                "version": 7,
+            }],
+        }
+
+    def test_peer_packet_requires_matching_content_hash_and_valid_source(self):
+        with patch("wake.group_peers._source_payload", return_value={"url": self.url}):
+            accepted = _validated_peer(self.peer, "wake.local", "002-wake.local")
+            self.assertEqual(accepted["evidence"][0]["id"], "source-123")
+
+            altered = {**self.peer, "evidence": [{**self.peer["evidence"][0], "content": "changed"}]}
+            self.assertEqual(_validated_peer(altered, "wake.local", "002-wake.local")["evidence"], [])
+
+    def test_import_appends_attributed_source_once_to_local_record(self):
+        engine = _Engine()
+        with patch.dict("os.environ", {"WAKE_GROUP_ID": "wake.local"}), \
+                patch("wake.group_peers._source_payload", return_value={"url": self.url}):
+            first = import_group_peer_evidence(engine, [{
+                "instance_id": "002-wake.local",
+                "application_head": "a" * 64,
+                "version": 12,
+                "evidence": self.peer["evidence"],
+            }])
+            second = import_group_peer_evidence(engine, [{
+                "instance_id": "002-wake.local",
+                "application_head": "a" * 64,
+                "version": 12,
+                "evidence": self.peer["evidence"],
+            }])
+
+        self.assertEqual(len(first), 1)
+        self.assertEqual(second, [])
+        self.assertEqual(len(engine.store.appended), 1)
+        event_type, stored = engine.store.appended[0]
+        self.assertEqual(event_type, "observation")
+        self.assertEqual(stored["peer_origin"]["instance_id"], "002-wake.local")
+        self.assertEqual(stored["peer_origin"]["evidence_id"], "source-123")
+        self.assertEqual(stored["source"], self.url)
+
+
+if __name__ == "__main__":
+    unittest.main()
