@@ -51,6 +51,8 @@ home_volume_for() {
 require_runtime() {
     [[ -f "$repo_dir/.env" && -f "$repo_dir/wake.toml" ]] ||
         fail "Missing .env or wake.toml in $repo_dir"
+    [[ -f "$repo_dir/research-topics.toml" ]] ||
+        fail "Missing research topics. Run 'cp example.research-topics.toml research-topics.toml', edit the copy, then try again."
     docker info >/dev/null 2>&1 || fail 'Docker is unavailable; start Docker first.'
 }
 

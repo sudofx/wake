@@ -4,8 +4,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends openssl && rm -
 WORKDIR /app
 COPY pyproject.toml README.md LICENSE ./
 COPY wake ./wake
-COPY wake.toml research-topics.toml ./
-RUN python -m pip install . && groupadd --gid 10001 wake && useradd --uid 10001 --gid wake --create-home --shell /bin/bash wake && mkdir /data && chown wake:wake /data
+COPY wake.toml example.research-topics.toml ./
+# Include an operator's ignored, optional topics file when it exists in the
+# build context. Docker COPY cannot target an optional path directly.
+COPY . /tmp/wake-build-context/
+RUN if [ -f /tmp/wake-build-context/research-topics.toml ]; then cp /tmp/wake-build-context/research-topics.toml /app/research-topics.toml; fi \
+    && rm -rf /tmp/wake-build-context \
+    && python -m pip install . \
+    && groupadd --gid 10001 wake \
+    && useradd --uid 10001 --gid wake --create-home --shell /bin/bash wake \
+    && mkdir /data \
+    && chown wake:wake /data
 USER 10001:10001
 VOLUME ["/data"]
 EXPOSE 8080

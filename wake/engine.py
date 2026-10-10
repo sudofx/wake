@@ -131,7 +131,10 @@ def _topics(settings, config_path=None):
         topic_path = Path(filename)
         if not topic_path.is_absolute():
             topic_path = config_path.parent / topic_path
-        require(topic_path.is_file(), f"Research topics file not found: {topic_path}")
+        require(
+            topic_path.is_file(),
+            f"Research topics file not found: {topic_path}. Create it with `cp example.research-topics.toml research-topics.toml`, edit it, then try again.",
+        )
         topics = tomllib.loads(topic_path.read_text()).get("topics")
     require(isinstance(topics, list) and 1 <= len(topics) <= 24,
             "Research topics must contain 1–24 entries")

@@ -10,6 +10,17 @@ not download the public installation's record or interact with GitHub operationa
 Internet access is needed for live Gemini and public research sources; fixture mode
 can run with networking disabled. Passive repository/documentation links remain links.
 
+Before starting research from a fresh checkout, create and edit the local topic file:
+
+```sh
+cp example.research-topics.toml research-topics.toml
+```
+
+The custom file is ignored by Git for local use. If it is missing, WAKE prints this
+command and stops before running research. Docker builds include the local file when
+present. Hosted research uses the exact promoted release commit; explicitly add its
+topics file with `git add -f research-topics.toml` before committing and promoting it.
+
 ## Code and website changes
 
 Follow the [maintainer map](development.md) before updating an existing installation.

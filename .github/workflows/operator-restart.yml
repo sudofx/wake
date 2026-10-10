@@ -28,6 +28,18 @@ jobs:
           echo "sha=$candidate_sha" >> "$GITHUB_OUTPUT"
           echo "Restart candidate: $candidate_sha" >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Require hosted research topics in the release candidate
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CANDIDATE_SHA: ${{ steps.candidate.outputs.sha }}
+        run: |
+          set -euo pipefail
+          if ! gh api "repos/$GITHUB_REPOSITORY/contents/research-topics.toml?ref=$CANDIDATE_SHA" >/dev/null 2>&1; then
+            echo "::error::Hosted release is missing research-topics.toml. Run 'cp example.research-topics.toml research-topics.toml', edit it, then 'git add -f research-topics.toml', commit and push before promoting."
+            exit 1
+          fi
+          echo "Hosted topic configuration is present in the pinned release." >> "$GITHUB_STEP_SUMMARY"
+
       - name: Refuse a known-failing automatic CI result
         env:
           GH_TOKEN: ${{ github.token }}

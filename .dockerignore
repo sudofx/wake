@@ -6,6 +6,7 @@
 !LICENSE
 !wake.toml
 !research-topics.toml
+!example.research-topics.toml
 !wake/
 !wake/**
 wake/**/__pycache__/

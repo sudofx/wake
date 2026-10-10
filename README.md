@@ -18,7 +18,13 @@ It does **not** assume or test for consciousness, qualia, personhood, or a persi
 
 The project deliberately treats failures as data. Rejected proposals, provider failures, weak evidence, corrections and superseded conclusions remain visible because the interesting question is not whether a model can sound convincing; it is whether a process can remain **correctable**. The operating shorthand is: **exact underneath, approximate on purpose, correctable always.**
 
-Research topics are dynamic and come only from `research-topics.toml`. They are inputs to the experiment—not conclusions encoded in governance—and can be replaced between controlled runs. The current topic file is the authority; there is no hardcoded legacy topic list. A topic may also carry an operator-supplied `seed_question`: a bounded starting coordinate exposed only until that topic has a durable project. The seed is not evidence, an answer, or a permanent mission; once work begins, the durable project and subsequent evidence take over. Topic-configuration changes are appended to the record, so adding seeds never rewrites the conditions of earlier cycles. In the present experiment, topics stand in for the varied input a future user or institution might supply.
+Research topics are install-local inputs and come only from `research-topics.toml`. On a new install, create that file from the starter and edit it before starting research:
+
+```sh
+cp example.research-topics.toml research-topics.toml
+```
+
+The custom file is ignored by Git for local installs. If it is missing, startup prints this instruction and stops so no research runs without operator-supplied topics. Hosted research uses the exact promoted release commit, so include the file in that commit with `git add -f research-topics.toml`; the Restart workflow refuses to promote a hosted release without it. Topics are inputs to the experiment—not conclusions encoded in governance—and can be replaced between controlled runs. The current topic file is the authority; there is no hardcoded legacy topic list. A topic may also carry an operator-supplied `seed_question`: a bounded starting coordinate exposed only until that topic has a durable project. The seed is not evidence, an answer, or a permanent mission; once work begins, the durable project and subsequent evidence take over. Topic-configuration changes are appended to the record, so adding seeds never rewrites the conditions of earlier cycles. In the present experiment, topics stand in for the varied input a future user or institution might supply.
 
 When an approved evidence route repeatedly makes no progress, WAKE✳︎ preserves the project and may record a bounded alternative *representation* of the same problem. Frames are auditable strategy hypotheses tied to exact observations; they never count as evidence, findings, or commitment completion.
 
@@ -148,7 +154,7 @@ GEMINI_API_KEY=your_key_here
 
 The provider/model settings live in `wake.toml`. The repository currently uses Gemini with an explicit fallback chain. Change model names or per-model daily ceilings there only to values your Gemini project actually supports.
 
-Research topics live **only** in `research-topics.toml`. Edit that file to change the experiment's inputs; do not hardcode topics into governance or prompts.
+Research topics live **only** in `research-topics.toml`. On a new checkout, run `cp example.research-topics.toml research-topics.toml`, edit the copy, then start research. The custom file is ignored by Git for local use; to include topics in a hosted release, explicitly run `git add -f research-topics.toml` before committing and pushing. Startup explains how to create the file if it is absent. Do not hardcode topics into governance or prompts.
 
 ### 4. Initialize and test locally
 
