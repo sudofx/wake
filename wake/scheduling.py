@@ -28,7 +28,24 @@ def charged_request_slots(item):
 def daily_quota_next_eligible(item):
     """Return the next Pacific midnight for a durable per-day quota boundary."""
     configured_limit = item.get("quota_exhausted") == "configured_daily_limit"
-    if not configured_limit and not is_free_tier_daily_quota(item.get("provider_error", {})):
+    # A model-specific daily 429 is evidence for skipping that model, not for
+    # pausing the whole installation. Only an exhausted-all-models receipt, or
+    # a legacy receipt whose final provider response was the exact daily quota,
+    # puts the installation into midnight standby. Earlier fallback failures
+    # may coexist with a successful or rate-limited later model.
+    provider_error = item.get("provider_error", {})
+    final_provider_error = (
+        provider_error.get("provider_error", provider_error)
+        if isinstance(provider_error, dict) else {}
+    )
+    confirmed_daily_quota = (
+        item.get("quota_exhausted") == "free_tier_daily"
+        or (
+            item.get("status") == "deferred"
+            and is_free_tier_daily_quota(final_provider_error)
+        )
+    )
+    if not configured_limit and not confirmed_daily_quota:
         return None
     quota_day = item.get("quota_day")
     if not quota_day:
@@ -59,11 +76,7 @@ def wake_status(state, daily_call_limit=20, now=None):
 
     day = now.astimezone(PACIFIC).date().isoformat()
     charged_today = [i for i in items if i.get("charged") and i.get("quota_day") == day]
-    resets = [
-        reset
-        for reset in (daily_quota_next_eligible(i) for i in charged_today)
-        if reset is not None
-    ]
+    resets = []
     if (
         latest
         and latest.get("status") == "deferred"
@@ -71,7 +84,13 @@ def wake_status(state, daily_call_limit=20, now=None):
     ):
         base = latest.get("finished") or latest.get("time")
         if base:
-            resets.append(datetime.fromisoformat(base) + TRANSIENT_RETRY_DELAY)
+            retry_after = (latest.get("provider_error") or {}).get("retry_after_seconds")
+            delay = (
+                timedelta(seconds=max(1, min(int(retry_after), 3600)))
+                if isinstance(retry_after, (int, float)) and not isinstance(retry_after, bool)
+                else TRANSIENT_RETRY_DELAY
+            )
+            resets.append(datetime.fromisoformat(base) + delay)
     request_slots_today = sum(charged_request_slots(i) for i in charged_today)
 
     if daily_call_limit is not None and request_slots_today >= daily_call_limit:

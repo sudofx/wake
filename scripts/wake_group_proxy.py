@@ -189,8 +189,12 @@ class GroupProxy(BaseHTTPRequestHandler):
             )
             local_host = (remote.is_loopback or
                           (remote.is_private and not remote.is_link_local and not in_group_network))
-            return (remote in ipaddress.ip_network(route["subnet"], strict=False)
-                    or host_gateway or local_host)
+            route_subnet = route.get("subnet")
+            in_route_network = (
+                route_subnet is not None
+                and remote in ipaddress.ip_network(route_subnet, strict=False)
+            )
+            return in_route_network or host_gateway or local_host
         except (KeyError, ValueError):
             return False
 
@@ -378,6 +382,12 @@ class GroupProxy(BaseHTTPRequestHandler):
             '.member-status-light[data-state=blocked] i{background:#dc5261}'
             '.member-button.unavailable{opacity:.55;cursor:default}'
             '@media(hover:hover){.member-button:hover{background:var(--soft);border-color:var(--button-hover-line);transform:translateY(-1px)}}'
+            '.status-key{margin:24px 0 0;padding:15px 16px;border:1px solid var(--line);border-radius:11px;background:var(--surface)}'
+            '.status-key-title{margin:0 0 10px;color:var(--muted);font:9px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.09em;text-transform:uppercase}'
+            '.status-key-list{display:flex;flex-wrap:wrap;gap:9px 18px;margin:0;padding:0;list-style:none}'
+            '.status-key-list li{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:11px;line-height:1.4}'
+            '.status-key-list .member-status-light{width:10px;height:10px;flex-basis:10px}'
+            '.status-key-list .member-status-light i{width:8px;height:8px}'
             '.gateway-foot{margin:23px 0 0;color:var(--muted);font-size:9px;letter-spacing:.04em;text-transform:none}'
             '@media(max-width:480px){.masthead{height:66px;padding:0 17px}.brand{font-size:22px}.masthead-tools{gap:12px}'
             'main{width:calc(100% - 32px);padding:39px 0 48px}.group-panel{padding:18px 16px}'
@@ -395,6 +405,14 @@ class GroupProxy(BaseHTTPRequestHandler):
             f'<h1>{escape(title)}</h1>'
             '<p class="intro-copy">Choose a member to open its WAKE Console in a new tab.</p></div>'
             f'<div class="group-list">{"".join(panels)}</div>'
+            '<section class="status-key" aria-label="Status light key"><p class="status-key-title">Status lights</p>'
+            '<ul class="status-key-list">'
+            '<li><span class="member-status-light" data-state="running" aria-hidden="true"><i></i></span>Green · Research running</li>'
+            '<li><span class="member-status-light" data-state="idle" aria-hidden="true"><i></i></span>Blue · Research idle</li>'
+            '<li><span class="member-status-light" data-state="waiting" aria-hidden="true"><i></i></span>Yellow · Waiting, paused, or stopped</li>'
+            '<li><span class="member-status-light" data-state="standby" aria-hidden="true"><i></i></span>Purple · Quota standby until midnight Pacific</li>'
+            '<li><span class="member-status-light" data-state="blocked" aria-hidden="true"><i></i></span>Red · Blocked or unavailable</li>'
+            '</ul></section>'
             '<p class="gateway-foot">Each member keeps its own research record and can continue independently.</p>'
             '</main><script>(function(){const root=document.documentElement,media=matchMedia("(prefers-color-scheme: dark)"),'
             'key="wake-site-theme",toggle=document.getElementById("theme-toggle");let choice;'

@@ -27,7 +27,10 @@ from unittest.mock import patch
 from wake.engine import DEFAULTS, Engine, config
 from wake.store import Store
 from wake.governance import Rejected
-from wake.providers import Gemini, Fixture, FREE_TIER_DAILY_QUOTA_ID, provider_input_budget
+from wake.providers import (
+    Gemini, Fixture, FREE_TIER_DAILY_QUOTA_ID,
+    FREE_TIER_MINUTE_QUOTA_ID, provider_input_budget,
+)
 from wake.scheduling import wake_status
 from wake.report import export
 from support import charter_settings
@@ -189,6 +192,22 @@ class FailoverTests(unittest.TestCase):
                 self.assertEqual(result["status"], "failed")
                 self.assertEqual(network.call_count, 1)
                 self.assertNotIn("quota_exhausted", item)
+
+    def test_per_minute_quota_uses_the_next_model_fallback(self):
+        self.settings["gemini_fallback_requires_primary_daily_quota"] = True
+        result, _, item, network = self.run_chain(
+            [
+                failure(429, FREE_TIER_DAILY_QUOTA_ID),
+                failure(429, FREE_TIER_MINUTE_QUOTA_ID),
+                "valid",
+            ]
+        )
+        self.assertEqual(result["status"], "accepted")
+        self.assertEqual(network.call_count, 3)
+        self.assertEqual(
+            [attempt["result"] for attempt in item["provider_attempts"]],
+            ["daily_quota", "rate_limited", "success"],
+        )
 
     def test_exact_quota_on_one_model_continues_to_next_model(self):
         result, state, item, network = self.run_chain(

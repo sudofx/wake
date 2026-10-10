@@ -40,6 +40,28 @@ class _Connection:
 
 
 class GroupProxyTests(unittest.TestCase):
+    def test_gateway_directory_explains_each_status_light_color(self):
+        proxy = GroupProxy.__new__(GroupProxy)
+        proxy.command = "GET"
+        proxy.wfile = io.BytesIO()
+        proxy.send_response = lambda *args: None
+        proxy.send_header = lambda *args: None
+        proxy.end_headers = lambda: None
+
+        proxy._serve_directory("wake.local", [])
+        html = proxy.wfile.getvalue().decode()
+
+        for color, state, meaning in (
+            ("Green", "running", "Research running"),
+            ("Blue", "idle", "Research idle"),
+            ("Yellow", "waiting", "Waiting, paused, or stopped"),
+            ("Purple", "standby", "Quota standby until midnight Pacific"),
+            ("Red", "blocked", "Blocked or unavailable"),
+        ):
+            with self.subTest(color=color):
+                self.assertIn(f'data-state="{state}"', html)
+                self.assertIn(f"{color} · {meaning}", html)
+
     def test_zero_ordinal_hostname_serves_its_group_directory(self):
         proxy = GroupProxy.__new__(GroupProxy)
         group = {"members": ["001.wake.local", "002.wake.local"],
@@ -70,6 +92,12 @@ class GroupProxyTests(unittest.TestCase):
             with self.subTest(address=address):
                 proxy.client_address = (address, 12345)
                 self.assertEqual(proxy._allowed(route), expected)
+
+    def test_group_directory_allows_localhost_without_a_group_subnet_field(self):
+        proxy = GroupProxy.__new__(GroupProxy)
+        proxy.server = SimpleNamespace(groups={"wake.local": {"networks": ["wake-group-wake.local"]}})
+        proxy.client_address = ("127.0.0.1", 12345)
+        self.assertTrue(proxy._allowed(proxy.server.groups["wake.local"]))
 
     def test_group_bob_skips_unreachable_peer_and_serves_the_reachable_member(self):
         proxy = GroupProxy.__new__(GroupProxy)

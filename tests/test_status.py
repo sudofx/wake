@@ -16,6 +16,7 @@
 from datetime import datetime, timezone
 import unittest
 from wake.scheduling import wake_status
+from wake.providers import FREE_TIER_DAILY_QUOTA_ID, FREE_TIER_MINUTE_QUOTA_ID
 
 class StatusTests(unittest.TestCase):
     def test_latest_failure_does_not_replace_last_accepted_and_quota_reset_is_visible(self):
@@ -82,6 +83,49 @@ class StatusTests(unittest.TestCase):
         self.assertTrue(before["quota_standby"])
         self.assertFalse(after["quota_standby"])
         self.assertEqual(after["quota_standby_until"], "2026-09-15T07:00:00+00:00")
+
+    def test_model_fallback_quota_does_not_pause_the_installation(self):
+        daily_attempt = dict(
+            model="gemini-primary", result="daily_quota",
+            provider_error={"details": [{"violations": [{"quotaId": FREE_TIER_DAILY_QUOTA_ID}]}]},
+        )
+        minute_attempt = dict(
+            model="gemini-fallback", result="rate_limited",
+            provider_error={"details": [{"violations": [{"quotaId": FREE_TIER_MINUTE_QUOTA_ID}]}]},
+        )
+        fallback_success = dict(
+            id="accepted", time="2026-09-14T09:00:00+00:00", status="accepted",
+            charged=True, quota_day="2026-09-14", provider_requests_sent=2,
+            provider_attempts=[daily_attempt, dict(model="gemini-fallback", result="success")],
+        )
+        now = datetime(2026, 9, 14, 9, 0, 10, tzinfo=timezone.utc)
+        succeeded = wake_status(
+            dict(version=1, invocations={"accepted": fallback_success}, pending=None),
+            daily_call_limit=None, now=now,
+        )
+        self.assertFalse(succeeded["quota_standby"])
+        self.assertIsNone(succeeded["next_eligible"])
+
+        rate_limited = dict(
+            id="limited", time="2026-09-14T09:00:00+00:00", status="deferred",
+            charged=True, quota_day="2026-09-14", provider_requests_sent=2,
+            provider_attempts=[daily_attempt, minute_attempt],
+            reason="Gemini temporarily unavailable due to a per-minute model limit; wake deferred",
+            provider_error={
+                "retry_after_seconds": 22,
+                "provider_error": {"details": [{"violations": [{"quotaId": FREE_TIER_MINUTE_QUOTA_ID}]}]},
+                "provider_attempts": [daily_attempt, minute_attempt],
+            },
+        )
+        waiting = wake_status(
+            dict(version=0, invocations={"limited": rate_limited}, pending=None),
+            daily_call_limit=None, now=now,
+        )
+        self.assertFalse(waiting["quota_standby"])
+        self.assertEqual(
+            datetime.fromisoformat(waiting["next_eligible"]),
+            datetime(2026, 9, 14, 9, 0, 22, tzinfo=timezone.utc),
+        )
 
     def test_empty_state_has_no_invented_success(self):
         result = wake_status(dict(version=0, invocations={}, pending=None))

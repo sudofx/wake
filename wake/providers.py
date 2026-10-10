@@ -562,6 +562,7 @@ class ProviderRequestError(Rejected):
 
 
 FREE_TIER_DAILY_QUOTA_ID = "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+FREE_TIER_MINUTE_QUOTA_ID = "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
 
 class DailyQuotaExceeded(ProviderRequestError):
     """Gemini reported the exact per-day free-tier project/model quota."""
@@ -583,6 +584,30 @@ def _quota_ids(value):
 def is_free_tier_daily_quota(details):
     """Classify only Google's exact free-tier daily quota identifier."""
     return FREE_TIER_DAILY_QUOTA_ID in set(_quota_ids(details or {}))
+
+def is_free_tier_minute_quota(details):
+    """Classify Google's per-model, per-minute free-tier request limit."""
+    return FREE_TIER_MINUTE_QUOTA_ID in set(_quota_ids(details or {}))
+
+def _retry_after_seconds(details):
+    """Read a bounded retry delay from the header or Google's RetryInfo."""
+    retry_after = details.get("retry_after")
+    if isinstance(retry_after, str):
+        try:
+            seconds = float(retry_after)
+        except ValueError:
+            seconds = 0
+        if seconds > 0:
+            return min(3600, max(1, int(seconds)))
+    provider_error = details.get("provider_error", {})
+    for item in provider_error.get("details", []) if isinstance(provider_error, dict) else []:
+        if not isinstance(item, dict) or not str(item.get("@type", "")).endswith("RetryInfo"):
+            continue
+        retry_delay = item.get("retryDelay", "")
+        match = re.fullmatch(r"(\d+(?:\.\d+)?)s", str(retry_delay))
+        if match:
+            return min(3600, max(1, int(float(match.group(1)))))
+    return None
 
 def _safe_provider_value(value, depth=0):
     """Bound provider error JSON and drop fields that could plausibly contain credentials."""
@@ -804,6 +829,7 @@ class Gemini:
                 attempt.update(details)
                 quota_ids = set(details.get("quota_ids", []))
                 exact_daily_quota = FREE_TIER_DAILY_QUOTA_ID in quota_ids
+                exact_minute_quota = FREE_TIER_MINUTE_QUOTA_ID in quota_ids
                 attempt["category"] = "quota"
                 attempt["result"] = (
                     "daily_quota" if exact_daily_quota else "http_failure"
@@ -825,6 +851,14 @@ class Gemini:
                         error = DailyQuotaExceeded(
                             "Gemini free-tier daily quotas exhausted for available models; wake deferred until Pacific midnight"
                         )
+                elif exact_minute_quota:
+                    attempt["result"] = "rate_limited"
+                    retry_after_seconds = _retry_after_seconds(details)
+                    if retry_after_seconds is not None:
+                        attempt["retry_after_seconds"] = retry_after_seconds
+                    error = TransientProviderError(
+                        "Gemini temporarily unavailable due to a per-minute model limit; wake deferred"
+                    )
                 else:
                     error = ProviderRequestError(
                         "Gemini HTTP 429; wake attempt counted"
