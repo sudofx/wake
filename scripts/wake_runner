@@ -13,9 +13,9 @@ CAMPAIGN_PROGRESS_CODE='from wake.kernel.record import Record; from wake.matrix 
 usage() {
     cat <<'EOF'
 Usage:
-  scripts/wake_runner [container-name] [--campaign none]
-  scripts/wake_runner count --name PREFIX --count N [--campaign none]
-  scripts/wake_runner count --name PREFIX --N [--campaign none]
+  scripts/wake_runner [container-name] [--campaign none] [--dotfiles=false]
+  scripts/wake_runner count --name PREFIX --count N [--dotfiles=false]
+  scripts/wake_runner count --name PREFIX --N [--dotfiles=false]
   scripts/wake_runner --research stop|start|pause|reset|status [container-name]
   scripts/wake_runner --container stop|start|pause|remove [container-name-or-group]
 
@@ -23,6 +23,10 @@ Without a research action, an absent container is created and started; an
 existing container is left unchanged and its status is reported. New containers
 join continuity@1 by default. `--campaign none` opts a newly created container
 out. Campaign enrollment is immutable after creation.
+
+New containers copy any available ~/.bashrc, ~/.gitignore, ~/.bash_profile,
+~/.profile, ~/.bash_aliases and ~/.inputrc files into their home volume by
+default. Use `--dotfiles=false` or `--no-dotfiles` to skip importing them.
 
 Groups are named PREFIX-001 through PREFIX-NNN and receive separate data volumes
 and Docker-assigned host ports. Group members share a private Docker bridge and
@@ -162,6 +166,45 @@ home_volume_for() {
     fi
 }
 
+copy_host_dotfiles() {
+    local home_volume="$1" enabled="${2:-true}" host_home="${HOME:-}"
+    local staging_dir dotfile copied=()
+    if [[ "$enabled" != true ]]; then
+        printf 'DOTFILES: skipped (disabled)\n'
+        return 0
+    fi
+    if [[ -z "$host_home" || ! -d "$host_home" ]]; then
+        printf 'DOTFILES: no host home directory found; continuing without dotfiles\n'
+        return 0
+    fi
+    staging_dir="$(mktemp -d "$repo_dir/.wake-runner-dotfiles.XXXXXX")" ||
+        fail 'Could not create a temporary dotfiles staging directory.'
+    for dotfile in .bashrc .gitignore .bash_profile .profile .bash_aliases .inputrc; do
+        if [[ -f "$host_home/$dotfile" ]]; then
+            if ! cp "$host_home/$dotfile" "$staging_dir/$dotfile"; then
+                rm -rf "$staging_dir"
+                fail "Could not stage host dotfile: $host_home/$dotfile"
+            fi
+            copied+=("$dotfile")
+        fi
+    done
+    if ((${#copied[@]} == 0)); then
+        rm -rf "$staging_dir"
+        printf 'DOTFILES: no matching host files found; continuing without dotfiles\n'
+        return 0
+    fi
+    if ! docker run --rm --network none --read-only --tmpfs /tmp \
+        -v "$home_volume:/home/wake" \
+        -v "$staging_dir:/run/wake-dotfiles:ro" \
+        -v "$repo_dir/scripts/wake_copy_dotfiles.py:/run/wake-copy-dotfiles.py:ro" \
+        --user 0:0 --entrypoint python "$IMAGE" /run/wake-copy-dotfiles.py >/dev/null; then
+        rm -rf "$staging_dir"
+        fail 'Could not copy host dotfiles into the new container home volume.'
+    fi
+    rm -rf "$staging_dir"
+    printf 'DOTFILES: copied %s into the new container home\n' "${copied[*]}"
+}
+
 require_runtime() {
     [[ -f "$repo_dir/.env" && -f "$repo_dir/wake.toml" ]] ||
         fail "Missing .env or wake.toml in $repo_dir"
@@ -268,7 +311,7 @@ report_status() {
 }
 
 create_container() {
-    local name="$1" campaign="$2" paused="${3:-false}" group_id="${4:-}" peers="${5:-}"
+    local name="$1" campaign="$2" paused="${3:-false}" group_id="${4:-}" peers="${5:-}" dotfiles="${6:-true}"
     local data_volume home_volume topic_file topic_rel network
     local publish_args=()
     local group_args=(-e WAKE_GROUP_ID= -e WAKE_GROUP_INSTANCE= -e WAKE_GROUP_PEERS= -e WAKE_GROUP_TOPIC_FILE=)
@@ -276,6 +319,7 @@ create_container() {
         fail "Missing image: $IMAGE (build the VS Code target first)."
     data_volume="$(data_volume_for "$name")"
     home_volume="$(home_volume_for "$name")"
+    copy_host_dotfiles "$home_volume" "$dotfiles"
     if [[ "$name" == wake ]]; then
         publish_args=(-p 127.0.0.1:8080:8080)
     else
@@ -311,7 +355,7 @@ create_container() {
 }
 
 ensure_present() {
-    local name="$1" campaign="$2" group_id="${3:-}" peers="${4:-}" paused="${5:-false}"
+    local name="$1" campaign="$2" group_id="${3:-}" peers="${4:-}" paused="${5:-false}" dotfiles="${6:-true}"
     local network group_label group_peers
     if container_exists "$name"; then
         ensure_wake_identity "$name"
@@ -329,7 +373,7 @@ ensure_present() {
         fi
         return 0
     fi
-    create_container "$name" "$campaign" "$paused" "$group_id" "$peers"
+    create_container "$name" "$campaign" "$paused" "$group_id" "$peers" "$dotfiles"
 }
 
 reset_research() {
@@ -356,7 +400,7 @@ reset_research() {
 }
 
 research_control() {
-    local action="$1" name="$2" campaign="$3"
+    local action="$1" name="$2" campaign="$3" dotfiles="${4:-true}"
     if [[ "$campaign" == false ]] && container_exists "$name"; then
         printf 'wake_runner: --campaign none applies only when creating; existing enrollment is unchanged.\n' >&2
     fi
@@ -377,11 +421,11 @@ research_control() {
                 is_running "$name" || fail "Container $name is stopped; use --container start first."
                 set_research_mode "$name" running
             else
-                create_container "$name" "$campaign"
+                create_container "$name" "$campaign" false '' '' "$dotfiles"
             fi
             ;;
         pause)
-            if ! container_exists "$name"; then create_container "$name" "$campaign" true; fi
+            if ! container_exists "$name"; then create_container "$name" "$campaign" true '' '' "$dotfiles"; fi
             ensure_wake_identity "$name"
             is_running "$name" || fail "Container $name is stopped; use --container start first."
             set_research_mode "$name" paused
@@ -456,7 +500,7 @@ container_control() {
 }
 
 start_group() {
-    local prefix="$1" count="$2" campaign="$3" i name was_existing peers network
+    local prefix="$1" count="$2" campaign="$3" dotfiles="${4:-true}" i name was_existing peers network
     local new_members=()
     [[ "$prefix" =~ ^[a-zA-Z0-9][a-zA-Z0-9_.-]*$ ]] || fail 'Invalid group name.'
     ((${#prefix} <= 50)) || fail 'Group name must be 50 characters or fewer.'
@@ -476,7 +520,7 @@ start_group() {
         printf -v name '%s-%03d' "$prefix" "$i"
         was_existing=false
         container_exists "$name" && was_existing=true
-        ensure_present "$name" "$campaign" "$prefix" "$peers" true
+        ensure_present "$name" "$campaign" "$prefix" "$peers" true "$dotfiles"
         [[ "$was_existing" == true ]] || new_members+=("$name")
         if [[ "$campaign" == false && "$was_existing" == true ]]; then
             printf 'wake_runner: --campaign none applies only when creating; existing enrollment for %s is unchanged.\n' "$name" >&2
@@ -499,11 +543,11 @@ start_group() {
 }
 
 main() {
-    local name=wake action= campaign=true group=false prefix= count=3 arg name_set=false
+    local name=wake action= campaign=true dotfiles=true group=false prefix= count=3 arg name_set=false
     local explicit_action=false container_action= container_action_set=false
     if (($# == 0)); then
         require_runtime
-        ensure_present wake true
+        ensure_present wake true '' '' false "$dotfiles"
         report_status wake
         return
     fi
@@ -532,6 +576,16 @@ main() {
                 esac
                 shift
                 ;;
+            --dotfiles)
+                if (($#)) && [[ "$1" == true || "$1" == false ]]; then
+                    dotfiles="$1"
+                    shift
+                else
+                    dotfiles=true
+                fi
+                ;;
+            --dotfiles=true) dotfiles=true ;;
+            --dotfiles=false|--no-dotfiles) dotfiles=false ;;
             count) group=true ;;
             --name)
                 (($#)) || fail '--name requires a group prefix.'
@@ -564,15 +618,15 @@ main() {
         container_control "$container_action" "$name"
     elif [[ "$explicit_action" == true ]]; then
         require_runtime
-        research_control "$action" "$name" "$campaign"
+        research_control "$action" "$name" "$campaign" "$dotfiles"
     elif [[ "$group" == true ]]; then
         [[ -n "$prefix" ]] || fail 'Group mode requires --name PREFIX.'
-        start_group "$prefix" "$count" "$campaign"
+        start_group "$prefix" "$count" "$campaign" "$dotfiles"
     else
         require_runtime
         local was_existing=false
         container_exists "$name" && was_existing=true
-        ensure_present "$name" "$campaign"
+        ensure_present "$name" "$campaign" '' '' false "$dotfiles"
         if [[ "$campaign" == false && "$was_existing" == true ]]; then
             printf 'wake_runner: --campaign none applies only when creating; existing enrollment is unchanged.\n' >&2
         fi

@@ -17,6 +17,7 @@ secrets/
 research-topics.toml
 .wake-runner-topics/
 .wake-runner-router.json
+.wake-runner-dotfiles.*/
 
 # Generated package files and local editor settings.
 build/

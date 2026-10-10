@@ -252,6 +252,17 @@ when creating a container to omit that enrollment, for example
 this runner after creation. Campaign progress is still reported for existing
 containers.
 
+When creating a new container, `wake_runner` copies any existing host files from
+`~/.bashrc`, `~/.gitignore`, `~/.bash_profile`, `~/.profile`, `~/.bash_aliases`
+and `~/.inputrc` into that container's `/home/wake` volume. Missing files are
+skipped. This is enabled by default for solo containers and each newly created
+group member. Use `--dotfiles=false` (or `--no-dotfiles`) to skip the copy, for
+example `./scripts/wake_runner wake-dev --dotfiles=false` or
+`./scripts/wake_runner count --name wake.local --count 3 --dotfiles=false`.
+`--dotfiles false` is also accepted. This only applies when a container is
+created; invoking the runner for an existing container leaves its home volume
+unchanged.
+
 Explicit research actions are available as
 `--research stop|start|pause|reset|status [container-name]`. These control the
 research scheduler while keeping the Docker container and Console available.
@@ -284,7 +295,9 @@ cp example.research-topics.toml .wake-runner-topics/wake.local-003.toml
 ```
 
 Edit each numbered file before launching. The runner mounts a matching file
-read-only into that member. The shared local router listens on `127.0.0.1:80`, so
+read-only into that member. If a matching file is absent, that member uses the
+shared `./research-topics.toml`; the runner requires that shared file before it
+creates containers. The shared local router listens on `127.0.0.1:80`, so
 port 80 must be available. For this example, add the following line to `/etc/hosts`:
 
 ```text
