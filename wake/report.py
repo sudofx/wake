@@ -564,6 +564,9 @@ def _deployment_site(target, *, standalone):
     """
     mode = 'standalone' if standalone else 'hosted'
     deployment = {'schema': 1, 'mode': mode}
+    codespace_name = os.environ.get('CODESPACE_NAME', '').strip()
+    if codespace_name and os.environ.get('CODESPACES', '').lower() == 'true':
+        deployment['codespace_name'] = codespace_name
     group_id = os.environ.get('WAKE_GROUP_ID', '')
     group_instance = os.environ.get('WAKE_GROUP_INSTANCE', '')
     if (standalone and group_id and group_instance

@@ -181,39 +181,14 @@ class GroupProxy(BaseHTTPRequestHandler):
         except (KeyError, ValueError):
             return False
 
-    def _remote_client(self):
-        try:
-            client_ip = ipaddress.ip_address(self.client_address[0])
-        except (AttributeError, TypeError, ValueError):
-            return False
-        if client_ip.is_loopback:
-            return False
-        host_lan_ip = getattr(self.server, "host_lan_ip", None)
-        if not host_lan_ip:
-            return True
-        try:
-            return client_ip != ipaddress.ip_address(host_lan_ip)
-        except ValueError:
-            return True
-
     def _serve_group_directory(self, host, group):
         members = sorted(group["members"])
         group_name = members[0].split(".", 1)[1] if members else host
-        remote_client = self._remote_client()
-        lan_ip = self.server.host_lan_ip if remote_client else None
-        if lan_ip:
-            members = [member for member in members
-                       if self.server.routes[member].get("host_ip") not in {"127.0.0.1", "::1"}]
-            href_for = lambda member: (
-                f"http://{lan_ip}:{self.server.routes[member]['host_port']}/console.html"
-            )
-            description = "Open a member on this local network in a new tab."
-        else:
-            href_for = lambda member: f"http://{member}/"
-            description = "Open a member in a new tab."
-        if remote_client and not lan_ip:
-            members = []
-            description = "The host's LAN address is unavailable; open the printed GROUP PROXY LAN URL."
+        # Hostname access is the Mac's /etc/hosts path; IP access is routed to
+        # _serve_lan_directory below. Docker Desktop rewrites source addresses,
+        # so peer-IP comparison cannot reliably distinguish those clients.
+        href_for = lambda member: f"http://{member}/console.html"
+        description = "Open a member by its local hostname in a new tab."
         panel = self._group_panel(
             group_name,
             members,
@@ -221,6 +196,38 @@ class GroupProxy(BaseHTTPRequestHandler):
             description,
         )
         self._serve_directory(group_name, [panel])
+
+    def _member_runtime(self, member):
+        route = self.server.routes.get(member, {})
+        connection = None
+        try:
+            connection = HTTPConnection(route['target'], 8080, timeout=0.7)
+            connection.request('GET', '/runtime.json', headers={'Accept': 'application/json'})
+            response = connection.getresponse()
+            raw = response.read(32_768)
+            if response.status != 200:
+                raise ValueError('runtime status unavailable')
+            packet = json.loads(raw)
+            if not isinstance(packet, dict) or packet.get('mode') != 'standalone':
+                raise ValueError('unsupported runtime status')
+            state = packet.get('state')
+            labels = {
+                'running': 'Research running',
+                'idle': 'Research idle',
+                'waiting': 'Waiting for the next research cycle',
+                'standby': 'Research paused until midnight Pacific time',
+                'paused': 'Research paused',
+                'stopped': 'Research stopped',
+                'blocked': 'Research blocked',
+            }
+            if state not in labels:
+                raise ValueError('unknown runtime state')
+            return state, labels[state]
+        except (KeyError, OSError, ValueError, TypeError):
+            return 'blocked', 'Container unavailable'
+        finally:
+            if connection is not None:
+                connection.close()
 
     def _serve_lan_directory(self, lan_ip):
         panels = []
@@ -248,10 +255,7 @@ class GroupProxy(BaseHTTPRequestHandler):
 
     def _group_panel(self, group_name, members, href_for, description):
         buttons = "".join(
-            '<a class="member-button" '
-            f'href="{escape(href_for(member), quote=True)}" target="_blank" '
-            f'rel="noopener noreferrer" aria-label="Open {escape(member, quote=True)} in a new tab">'
-            f'<span>{escape(member.split(".", 1)[0])}</span><small>↗</small></a>'
+            self._member_button(member, href_for(member))
             for member in members
         )
         member_count = f"{len(members)} {'member' if len(members) == 1 else 'members'}"
@@ -263,6 +267,18 @@ class GroupProxy(BaseHTTPRequestHandler):
             f'</div><span class="member-count"><i></i>{member_count}</span></header>'
             f'<p class="group-description">{escape(description)}</p>'
             f'<div class="member-grid">{buttons}</div></section>'
+        )
+
+    def _member_button(self, member, href):
+        state, label = self._member_runtime(member)
+        return (
+            '<a class="member-button" '
+            f'href="{escape(href, quote=True)}" target="_blank" '
+            f'rel="noopener noreferrer" title="{escape(label, quote=True)}" '
+            f'aria-label="Open {escape(member, quote=True)} in a new tab · {escape(label, quote=True)}">'
+            f'<span>{escape(member.split(".", 1)[0])}</span>'
+            f'<span class="member-status-light" data-state="{escape(state, quote=True)}" '
+            f'role="img" aria-label="{escape(label, quote=True)}"><i></i></span></a>'
         )
 
     def _serve_directory(self, title, panels):
@@ -316,6 +332,13 @@ class GroupProxy(BaseHTTPRequestHandler):
             'display:flex;align-items:center;justify-content:space-between;padding:0 13px;color:var(--blue);'
             'font-size:13px;font-weight:700;transition:background .15s,border-color .15s,transform .15s}'
             '.member-button small{font-size:12px;color:var(--muted);font-weight:400}'
+            '.member-status-light{display:inline-flex;align-items:center;justify-content:center;width:12px;height:12px;flex:0 0 12px}'
+            '.member-status-light i{display:block;width:10px;height:10px;border-radius:50%;background:#8a96a8}'
+            '.member-status-light[data-state=running] i,.member-status-light[data-state=campaign] i{background:#3fb950}'
+            '.member-status-light[data-state=paused] i,.member-status-light[data-state=stopped] i,.member-status-light[data-state=waiting] i{background:#e7c35a}'
+            '.member-status-light[data-state=idle] i{background:#58a6ff}'
+            '.member-status-light[data-state=standby] i{background:#a970ff;box-shadow:0 0 9px rgba(169,112,255,.65)}'
+            '.member-status-light[data-state=blocked] i{background:#dc5261}'
             '@media(hover:hover){.member-button:hover{background:var(--soft);border-color:var(--button-hover-line);transform:translateY(-1px)}}'
             '.gateway-foot{margin:23px 0 0;color:var(--muted);font-size:9px;letter-spacing:.04em;text-transform:none}'
             '@media(max-width:480px){.masthead{height:66px;padding:0 17px}.brand{font-size:22px}.masthead-tools{gap:12px}'

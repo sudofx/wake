@@ -1230,6 +1230,8 @@ html:not(.console-panel-window) body.research-page [data-console-panel-id].panel
 
 /* Stable panel references remain readable alongside the section label. */
 .research-page .eyebrow .panel-id{display:inline-block;text-transform:none;letter-spacing:.03em}
+.research-page #instance-heading{display:flex;align-items:center;gap:12px;overflow-wrap:anywhere}
+.research-page .instance-glyph{display:inline-flex;align-items:center;justify-content:center;flex:0 0 34px;width:34px;height:34px;border:1px solid var(--line);border-radius:9px;color:var(--cyan);font-size:22px;line-height:1}
 
 /* Console headers share one title stack and one wrapping action row. */
 .research-page :is(.panel,.page-intro)>.console-panel-heading{
