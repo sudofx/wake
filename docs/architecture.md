@@ -29,15 +29,19 @@ on every hostname. GitHub execution, state transport and Pages remain independen
 See [standalone operation](standalone.md). This remains a single-host operator-controlled
 installation, not an authenticated tenant service.
 
-The repository convenience runner can optionally place numbered local groups on
-private user-defined Docker bridges. Group members exchange bounded, readable
-source observations collected by their peers. Each receiver appends an imported
-source to its own record with the peer identity, source evidence ID, application
-head, version and content hash, then applies its own source eligibility and claim
-governance before citation. Members also receive one concise, attributed notebook
-finding from each peer as optional context; those notes are not local claims or
-citation IDs. Full notebooks, topic lists, projects and record authority are not
-shared, and no prompt prescribes a connection to find.
+The repository convenience runner can optionally create numbered local parent
+groups, each with three independently stored child researchers. Parent nodes
+exchange bounded, readable source observations with other parents and query only
+their own children. Children exchange with siblings on a private per-parent Docker
+bridge; they do not address children in other cells. Each receiver appends an
+imported source to its own record with peer identity, source evidence ID,
+application head, version and content hash, then applies its own source
+eligibility and claim governance before citation. Peers also receive one concise,
+attributed notebook finding as optional context; those notes are not local claims
+or citation IDs. Children share their parent's selected topic file read-only, but
+keep separate record volumes. Full notebooks, projects and record authority are
+not shared, and no prompt prescribes a connection to find. An unavailable child
+or sibling never blocks its parent or the other nodes.
 This local bridge trusts its operator-created members and is not cryptographic
 remote attestation. Solo containers, Codespaces and hosted execution do not enable
 the path. Every member owns an independent `/data/wake.sqlite` authority.

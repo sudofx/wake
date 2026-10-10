@@ -77,11 +77,13 @@ See [standalone operation](docs/standalone.md) and [hosted operation](docs/cloud
 for their respective controls. The browser requires explicit hosted installation
 identity before loading GitHub data; unconfigured templates stay same-origin.
 The local numbered-container runner can create isolated research groups with
-per-container topic files, concise attributed peer findings, peer-collected
-source evidence, and one shared Bob feed assembled from reachable members.
-Each container keeps its own record and governance; an offline peer does not
-block the others. Solo, Codespace and hosted installations remain outside the
-group exchange.
+three independent child researchers per numbered parent, parent-specific topics,
+bounded peer findings, peer-collected source evidence, and one shared Bob feed
+assembled from reachable parents. Children contribute through their parent's
+research context. Parent and child nodes each keep a separate
+record and governance; child exchange stays within one parent's local cell, and
+an offline peer does not block the others. Solo, Codespace and hosted installations
+remain outside the group exchange.
 
 When a daily provider allowance is exhausted, research enters a recoverable
 standby until midnight Pacific time. The runtime status indicator turns purple;

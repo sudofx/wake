@@ -38,10 +38,12 @@ default. Use `--dotfiles=false` or `--no-dotfiles` to skip importing them.
 
 Groups use Docker container names 001.PREFIX through NNN.PREFIX and receive
 separate data volumes and Docker-assigned host ports published on the host's
-network interfaces. The reserved `000.PREFIX` hostname serves the group proxy directory.
-Group members share a private Docker bridge
-and read-only research summaries. Optional per-member topic files live at
-.wake-runner-topics/NNN.PREFIX.toml. Research controls leave Docker running.
+network interfaces. Each parent gets three independently stored research
+children. Children share findings only with siblings in their parent's private
+bridge; the parent can query its children and remains the only bridge between
+parent groups. The reserved `000.PREFIX` hostname serves the group directory.
+Optional per-parent topic files live at .wake-runner-topics/NNN.PREFIX.toml
+and are shared read-only with that parent's children. Research controls leave Docker running.
 Container remove also removes the selected container's data volumes.
 EOF
 }
@@ -57,10 +59,11 @@ data_volume_for() {
 }
 
 group_network_for() { printf 'wake-group-%s' "$1"; }
+cell_network_for() { printf 'wake-c-%s-%s' "$1" "$2"; }
 
 ensure_group_network() {
-    local group_id="$1" network label
-    network="$(group_network_for "$group_id")"
+    local group_id="$1" network="${2:-}" label
+    [[ -n "$network" ]] || network="$(group_network_for "$group_id")"
     if docker network inspect "$network" >/dev/null 2>&1; then
         label="$(docker network inspect --format "{{ index .Labels \"$LABEL.group\" }}" "$network")"
         [[ "$label" == "$group_id" ]] ||
@@ -71,28 +74,42 @@ ensure_group_network() {
         --label "$LABEL=true" --label "$LABEL.group=$group_id" "$network" >/dev/null
 }
 
-cleanup_group_network() {
-    local group_id="$1" network label attached
-    [[ -n "$group_id" ]] || return 0
-    network="$(group_network_for "$group_id")"
-    docker network inspect "$network" >/dev/null 2>&1 || return 0
-    label="$(docker network inspect --format "{{ index .Labels \"$LABEL.group\" }}" "$network")"
-    [[ "$label" == "$group_id" ]] || return 0
-    if container_exists "$GROUP_ROUTER"; then
-        ensure_group_router_identity "$GROUP_ROUTER"
-        docker network disconnect "$network" "$GROUP_ROUTER" >/dev/null 2>&1 || true
-    elif container_exists "$PREVIOUS_GROUP_ROUTER"; then
-        ensure_group_router_identity "$PREVIOUS_GROUP_ROUTER"
-        docker network disconnect "$network" "$PREVIOUS_GROUP_ROUTER" >/dev/null 2>&1 || true
-    elif container_exists "$OLDER_GROUP_ROUTER"; then
-        ensure_group_router_identity "$OLDER_GROUP_ROUTER"
-        docker network disconnect "$network" "$OLDER_GROUP_ROUTER" >/dev/null 2>&1 || true
-    elif container_exists "$LEGACY_GROUP_ROUTER"; then
-        ensure_group_router_identity "$LEGACY_GROUP_ROUTER"
-        docker network disconnect "$network" "$LEGACY_GROUP_ROUTER" >/dev/null 2>&1 || true
+ensure_cell_network() {
+    local group_id="$1" parent_ordinal="$2" network label cell_label
+    network="$(cell_network_for "$group_id" "$parent_ordinal")"
+    if docker network inspect "$network" >/dev/null 2>&1; then
+        label="$(docker network inspect --format "{{ index .Labels \"$LABEL.group\" }}" "$network")"
+        cell_label="$(docker network inspect --format "{{ index .Labels \"$LABEL.cell\" }}" "$network")"
+        [[ "$label" == "$group_id" && "$cell_label" == "$parent_ordinal" ]] ||
+            fail "Network '$network' exists but is not owned by this group's research cell."
+        return 0
     fi
-    attached="$(docker network inspect --format '{{range .Containers}}{{.Name}} {{end}}' "$network")"
-    [[ -n "$attached" ]] || docker network rm "$network" >/dev/null
+    docker network create --driver bridge \
+        --label "$LABEL=true" --label "$LABEL.group=$group_id" \
+        --label "$LABEL.cell=$parent_ordinal" "$network" >/dev/null
+}
+
+cleanup_group_network() {
+    local group_id="$1" network label attached ordinal router
+    [[ -n "$group_id" ]] || return 0
+    local networks=("$(group_network_for "$group_id")")
+    for ((ordinal=1; ordinal<=99; ordinal++)); do
+        printf -v label '%03d' "$ordinal"
+        networks+=("$(cell_network_for "$group_id" "$label")")
+    done
+    for network in "${networks[@]}"; do
+        docker network inspect "$network" >/dev/null 2>&1 || continue
+        label="$(docker network inspect --format "{{ index .Labels \"$LABEL.group\" }}" "$network")"
+        [[ "$label" == "$group_id" ]] || continue
+        for router in "$GROUP_ROUTER" "$PREVIOUS_GROUP_ROUTER" "$OLDER_GROUP_ROUTER" "$LEGACY_GROUP_ROUTER"; do
+            if container_exists "$router"; then
+                ensure_group_router_identity "$router"
+                docker network disconnect "$network" "$router" >/dev/null 2>&1 || true
+            fi
+        done
+        attached="$(docker network inspect --format '{{range .Containers}}{{.Name}} {{end}}' "$network")"
+        [[ -n "$attached" ]] || docker network rm "$network" >/dev/null
+    done
 }
 
 host_lan_ipv4() {
@@ -130,7 +147,7 @@ ensure_group_router_identity() {
 
 refresh_group_router() {
     local config_file="$repo_dir/.wake-runner-router.json" routes_file container group_id ordinal network subnet gateway host_port host_ip lan_ip
-    local first_network="" name host label router_network
+    local first_network="" name host label router_network role parent instance
     local groups=() networks=()
     routes_file="$(mktemp)"
     lan_ip="$(host_lan_ipv4 || true)"
@@ -162,21 +179,39 @@ refresh_group_router() {
     while IFS= read -r container; do
         group_id="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.group\" }}" "$container")"
         [[ -n "$group_id" && "$group_id" != '<no value>' ]] || continue
-        if [[ "$container" == "$group_id"-[0-9][0-9][0-9] ]]; then
-            ordinal="${container##*-}"
-            host="$ordinal.$group_id"
-        else
-            ordinal="${container%%.*}"
-            host="$container"
-            [[ "$host" == "$ordinal.$group_id" ]] || continue
+        host="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.hostname\" }}" "$container")"
+        instance="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.instance\" }}" "$container")"
+        role="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.role\" }}" "$container")"
+        parent="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.parent\" }}" "$container")"
+        network="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.network\" }}" "$container")"
+        if [[ -z "$host" || "$host" == '<no value>' ]]; then
+            # Existing parent containers created before nested cells have no
+            # topology labels; retain their stable group URLs during upgrades.
+            if [[ "$container" == "$group_id"-[0-9][0-9][0-9] ]]; then
+                ordinal="${container##*-}"
+                host="$ordinal.$group_id"
+            else
+                ordinal="${container%%.*}"
+                host="$container"
+                [[ "$host" == "$ordinal.$group_id" ]] || continue
+            fi
+            [[ "$ordinal" =~ ^[0-9]{3}$ ]] || continue
+            instance="$group_id-$ordinal"
+            role=parent
+            parent=""
+            network="$(group_network_for "$group_id")"
         fi
-        [[ "$ordinal" =~ ^[0-9]{3}$ ]] || continue
-        network="$(group_network_for "$group_id")"
+        [[ -n "$host" && "$host" != '<no value>' && -n "$instance" && "$instance" != '<no value>' ]] || continue
+        [[ "$role" == parent || "$role" == child ]] || continue
+        [[ -n "$network" && "$network" != '<no value>' ]] || continue
         read -r subnet gateway < <(docker network inspect --format '{{range .IPAM.Config}}{{.Subnet}} {{.Gateway}}{{end}}' "$network")
         [[ -n "$subnet" && -n "$gateway" ]] || { rm -f "$routes_file"; fail "Could not read subnet and gateway for $network."; }
         read -r host_ip host_port < <(docker inspect --format '{{range $i, $binding := (index .NetworkSettings.Ports "8080/tcp")}}{{if eq $i 0}}{{$binding.HostIp}} {{$binding.HostPort}}{{end}}{{end}}' "$container" 2>/dev/null || true) || true
         [[ -n "$host_port" ]] || { rm -f "$routes_file"; fail "Could not read published host port for $container."; }
-        printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "$host" "$container" "$subnet" "$gateway" "$group_id" "$host_ip" "$host_port" >> "$routes_file"
+        [[ "$parent" != '<no value>' ]] || parent=""
+        printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' \
+            "$host" "$container" "$subnet" "$gateway" "$group_id" "$host_ip" "$host_port" \
+            "$role" "$parent" "$instance" "$network" >> "$routes_file"
         groups+=("$group_id")
     done < <(docker ps -a --filter "label=$LABEL.group" --format '{{.Names}}')
 
@@ -196,27 +231,46 @@ routes = {}
 groups = {}
 with open(sys.argv[1]) as source:
     for line in source:
-        host, target, subnet, gateway, group_id, host_ip, host_port = line.rstrip("\n").split("\t")
+        (host, target, subnet, gateway, group_id, host_ip, host_port,
+         role, parent, instance, network) = line.rstrip("\n").split("\t")
         key = host.lower()
         if key in routes and routes[key]["target"] != target:
             raise SystemExit(f"Duplicate local WAKE hostname: {key}")
         routes[key] = {"target": target, "subnet": subnet, "gateway": gateway,
                        "group_id": group_id,
-                       "host_ip": host_ip, "host_port": host_port}
-        group = groups.setdefault(group_id.lower(), {"members": [], "subnet": subnet, "gateway": gateway})
-        if group["subnet"] != subnet or group["gateway"] != gateway:
-            raise SystemExit(f"Inconsistent local WAKE group network: {group_id}")
+                       "host_ip": host_ip, "host_port": host_port,
+                       "role": role, "parent": parent or None,
+                       "instance": instance, "network": network}
+        group = groups.setdefault(group_id.lower(), {"members": [], "parents": [],
+                                                    "children": {}, "networks": []})
         group["members"].append(key)
+        if network not in group["networks"]:
+            group["networks"].append(network)
+        if role == "parent":
+            group["parents"].append(key)
+        elif parent:
+            group["children"].setdefault(parent.lower(), []).append(key)
+        else:
+            raise SystemExit(f"Child WAKE node has no parent: {key}")
 with open(sys.argv[2], "w") as target:
     json.dump({"routes": routes, "groups": groups,
                "host_lan_ip": sys.argv[3] or None}, target, separators=(",", ":"))
 PY
     ((${#groups[@]} > 0)) || { rm -f "$routes_file"; fail 'Group router has no group networks.'; }
-    for group_id in "${groups[@]}"; do
+    while IFS= read -r network; do
+        [[ -n "$network" ]] || continue
         local already=false
-        for name in "${networks[@]}"; do [[ "$name" == "$(group_network_for "$group_id")" ]] && already=true; done
-        [[ "$already" == true ]] || networks+=("$(group_network_for "$group_id")")
-    done
+        for name in "${networks[@]}"; do [[ "$name" == "$network" ]] && already=true; done
+        [[ "$already" == true ]] || networks+=("$network")
+    done < <(python3 - "$config_file" <<'PY'
+import json
+import sys
+with open(sys.argv[1]) as source:
+    config = json.load(source)
+for group in config["groups"].values():
+    print("\n".join(group["networks"]))
+PY
+    )
     first_network="${networks[0]}"
     docker image inspect "$IMAGE" >/dev/null 2>&1 || { rm -f "$routes_file"; fail "Missing image: $IMAGE."; }
     if container_exists "$GROUP_ROUTER"; then
@@ -424,7 +478,8 @@ report_status() {
 
 create_container() {
     local name="$1" campaign="$2" paused="${3:-false}" group_id="${4:-}" peers="${5:-}" dotfiles="${6:-true}"
-    local data_volume home_volume topic_file topic_rel network group_instance
+    local group_instance="${7:-}" public_host="${8:-}" role="${9:-parent}" parent_host="${10:-}" network="${11:-}" topic_owner="${12:-}"
+    local data_volume home_volume topic_file topic_rel topic_fallback
     local publish_args=()
     local group_args=(-e WAKE_GROUP_ID= -e WAKE_GROUP_INSTANCE= -e WAKE_GROUP_PEERS= -e WAKE_GROUP_TOPIC_FILE=)
     docker image inspect "$IMAGE" >/dev/null 2>&1 ||
@@ -434,17 +489,31 @@ create_container() {
     copy_host_dotfiles "$home_volume" "$dotfiles"
     publish_args=(-p 8080)
     if [[ -n "$group_id" ]]; then
-        network="$(group_network_for "$group_id")"
-        group_instance="$group_id-${name%%.*}"
+        [[ -n "$network" ]] || network="$(group_network_for "$group_id")"
+        [[ -n "$topic_owner" ]] || topic_owner="$public_host"
         group_args+=(--network "$network"
             --network-alias "$group_instance"
             --label "$LABEL.group=$group_id"
+            --label "$LABEL.role=$role"
+            --label "$LABEL.hostname=$public_host"
+            --label "$LABEL.instance=$group_instance"
+            --label "$LABEL.network=$network"
             -e "WAKE_GROUP_ID=$group_id"
             -e "WAKE_GROUP_INSTANCE=$group_instance"
-            -e "WAKE_GROUP_PEERS=$peers")
-        topic_file="$repo_dir/.wake-runner-topics/$name.toml"
+            -e "WAKE_GROUP_PEERS=$peers"
+            -e "WAKE_PUBLIC_HOSTNAME=$public_host"
+            -e "WAKE_PARENT_HOSTNAME=$parent_host")
+        if [[ -n "$parent_host" ]]; then
+            group_args+=(--label "$LABEL.parent=$parent_host")
+        fi
+        topic_file="$repo_dir/.wake-runner-topics/$topic_owner.toml"
         if [[ ! -f "$topic_file" ]]; then
-            topic_file="$repo_dir/.wake-runner-topics/$group_instance.toml"
+            if [[ "$role" == child ]]; then
+                topic_fallback="$group_id-${parent_host%%.*}"
+            else
+                topic_fallback="$group_instance"
+            fi
+            topic_file="$repo_dir/.wake-runner-topics/$topic_fallback.toml"
         fi
         if [[ -f "$topic_file" ]]; then
             topic_rel=".wake-runner-topics/$(basename -- "$topic_file")"
@@ -469,12 +538,13 @@ create_container() {
 
 ensure_present() {
     local name="$1" campaign="$2" group_id="${3:-}" peers="${4:-}" paused="${5:-false}" dotfiles="${6:-true}"
+    local group_instance="${7:-}" public_host="${8:-}" role="${9:-parent}" parent_host="${10:-}" node_network="${11:-}" topic_owner="${12:-}"
     local network group_label group_peers
     if container_exists "$name"; then
         ensure_wake_identity "$name"
         if [[ -n "$group_id" ]]; then
             group_label="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.group\" }}" "$name")"
-            network="$(group_network_for "$group_id")"
+            if [[ -n "$node_network" ]]; then network="$node_network"; else network="$(group_network_for "$group_id")"; fi
             [[ "$group_label" == "$group_id" ]] ||
                 fail "Existing container '$name' is not a member of group '$group_id'; it must be recreated to join this group network. Save its data volume first because container removal deletes unshared volumes."
             docker inspect --format "{{if index .NetworkSettings.Networks \"$network\"}}joined{{end}}" "$name" | grep -q '^joined$' ||
@@ -486,7 +556,16 @@ ensure_present() {
         fi
         return 0
     fi
-    create_container "$name" "$campaign" "$paused" "$group_id" "$peers" "$dotfiles"
+    create_container "$name" "$campaign" "$paused" "$group_id" "$peers" "$dotfiles" \
+        "$group_instance" "$public_host" "$role" "$parent_host" "$node_network" "$topic_owner"
+}
+
+ensure_cell_parent_alias() {
+    local parent_name="$1" network="$2" alias="$3" joined
+    joined="$(docker inspect --format "{{if index .NetworkSettings.Networks \"$network\"}}joined{{end}}" "$parent_name")"
+    if [[ "$joined" != joined ]]; then
+        docker network connect --alias "$alias" "$network" "$parent_name"
+    fi
 }
 
 ensure_group_peer_alias() {
@@ -579,6 +658,7 @@ container_control() {
     local targets=() volumes=() groups=()
     while IFS= read -r candidate; do
         if [[ "$candidate" == [0-9][0-9][0-9]."$selector" ||
+              "$candidate" == [0-9][0-9][0-9].[0-9][0-9][0-9]."$selector" ||
               "$candidate" == "$selector"-[0-9][0-9][0-9] ]]; then
             targets+=("$candidate")
         fi
@@ -639,6 +719,9 @@ container_control() {
 
 start_group() {
     local prefix="$1" count="$2" campaign="$3" dotfiles="${4:-true}" paused="${5:-false}" i name ordinal legacy_name was_existing peers network group_instance
+    local child_ordinal child_index child_name child_instance child_peers child_network parent_host cell_parent_alias
+    local -a parent_instances=()
+    local children_per_parent=3
     local new_members=()
     [[ "$prefix" =~ ^[a-zA-Z0-9][a-zA-Z0-9_.-]*$ ]] || fail 'Invalid group name.'
     ((${#prefix} <= 50)) || fail 'Group name must be 50 characters or fewer.'
@@ -649,16 +732,27 @@ start_group() {
         fail 'Grouped peer networking is available only from a local wake_runner session.'
     require_runtime
     ensure_group_network "$prefix"
-    peers=""
     for ((i=1; i<=count; i++)); do
         printf -v ordinal '%03d' "$i"
         group_instance="$prefix-$ordinal"
-        peers+="${peers:+,}$group_instance"
+        parent_instances+=("$group_instance")
+        ensure_cell_network "$prefix" "$ordinal"
     done
     for ((i=1; i<=count; i++)); do
         printf -v ordinal '%03d' "$i"
         name="$ordinal.$prefix"
         group_instance="$prefix-$ordinal"
+        parent_host="$ordinal.$prefix"
+        cell_parent_alias="$prefix-p$ordinal-parent"
+        peers=""
+        for ((child_ordinal=1; child_ordinal<=children_per_parent; child_ordinal++)); do
+            printf -v child_ordinal '%03d' "$child_ordinal"
+            peers+="${peers:+,}$prefix-p$ordinal-c$child_ordinal"
+        done
+        for child_instance in "${parent_instances[@]}"; do
+            [[ "$child_instance" == "$group_instance" ]] || peers+="${peers:+,}$child_instance"
+        done
+        network="$(group_network_for "$prefix")"
         legacy_name="$prefix-$ordinal"
         if container_exists "$legacy_name"; then
             ensure_wake_identity "$legacy_name"
@@ -670,12 +764,30 @@ start_group() {
         fi
         was_existing=false
         container_exists "$name" && was_existing=true
-        ensure_present "$name" "$campaign" "$prefix" "$peers" "$paused" "$dotfiles"
+        ensure_present "$name" "$campaign" "$prefix" "$peers" "$paused" "$dotfiles" \
+            "$group_instance" "$parent_host" parent "" "$network" "$parent_host"
         ensure_group_peer_alias "$name" "$prefix" "$group_instance"
+        ensure_cell_parent_alias "$name" "$(cell_network_for "$prefix" "$ordinal")" "$cell_parent_alias"
         [[ "$was_existing" == true ]] || new_members+=("$name")
         if [[ "$campaign" == false && "$was_existing" == true ]]; then
             printf 'wake_runner: --campaign none applies only when creating; existing enrollment for %s is unchanged.\n' "$name" >&2
         fi
+        for ((child_ordinal=1; child_ordinal<=children_per_parent; child_ordinal++)); do
+            printf -v child_ordinal '%03d' "$child_ordinal"
+            child_instance="$prefix-p$ordinal-c$child_ordinal"
+            child_name="$child_ordinal.$ordinal.$prefix"
+            child_peers=""
+            for ((child_index=1; child_index<=children_per_parent; child_index++)); do
+                printf -v name '%03d' "$child_index"
+                [[ "$name" == "$child_ordinal" ]] || child_peers+="${child_peers:+,}$prefix-p$ordinal-c$name"
+            done
+            child_network="$(cell_network_for "$prefix" "$ordinal")"
+            was_existing=false
+            container_exists "$child_name" && was_existing=true
+            ensure_present "$child_name" "$campaign" "$prefix" "$child_peers" "$paused" "$dotfiles" \
+                "$child_instance" "$child_name" child "$parent_host" "$child_network" "$parent_host"
+            [[ "$was_existing" == true ]] || new_members+=("$child_name")
+        done
     done
     # Start schedulers only after every expected DNS name is present; --paused
     # leaves a fresh group available for inspection without provider effects.
@@ -688,6 +800,11 @@ start_group() {
     for ((i=1; i<=count; i++)); do
         printf -v name '%s-%03d' "$prefix" "$i"
         printf ' %03d.%s' "$i" "$prefix"
+        printf -v ordinal '%03d' "$i"
+        for ((child_ordinal=1; child_ordinal<=children_per_parent; child_ordinal++)); do
+            printf -v child_name '%03d' "$child_ordinal"
+            printf ' %s.%s.%s' "$child_name" "$ordinal" "$prefix"
+        done
     done
     printf '\n'
     printf 'GROUP PROXY CONTAINER: %s\n' "$GROUP_ROUTER"
@@ -704,6 +821,12 @@ start_group() {
         name="$ordinal.$prefix"
         printf 'GROUP URL: http://%03d.%s/\n' "$i" "$prefix"
         report_status "$name"
+        for ((child_ordinal=1; child_ordinal<=children_per_parent; child_ordinal++)); do
+            printf -v child_name '%03d' "$child_ordinal"
+            child_name="$child_name.$ordinal.$prefix"
+            printf 'CHILD URL: http://%s/\n' "$child_name"
+            report_status "$child_name"
+        done
     done
 }
 

@@ -569,10 +569,16 @@ def _deployment_site(target, *, standalone):
         deployment['codespace_name'] = codespace_name
     group_id = os.environ.get('WAKE_GROUP_ID', '')
     group_instance = os.environ.get('WAKE_GROUP_INSTANCE', '')
+    group_hostname = os.environ.get('WAKE_PUBLIC_HOSTNAME', '')
+    group_parent = os.environ.get('WAKE_PARENT_HOSTNAME', '')
     if (standalone and group_id and group_instance
             and not any(os.environ.get(name, '').lower() == 'true'
                         for name in ('GITHUB_ACTIONS', 'CODESPACES', 'CI'))):
         deployment['group'] = {'id': group_id, 'instance': group_instance}
+        if group_hostname:
+            deployment['group']['hostname'] = group_hostname
+        if group_parent:
+            deployment['group']['parent'] = group_parent
     atomic_write(target / 'deployment.json', json.dumps(deployment))
     marker = ('<script>window.WAKE_DEPLOYMENT=' + json.dumps(deployment)
               + ';window.WAKE_STANDALONE=' + ('true' if standalone else 'false') + ';</script>')

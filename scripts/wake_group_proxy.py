@@ -95,9 +95,13 @@ class GroupProxy(BaseHTTPRequestHandler):
         posts, invocations, evidence, members = {}, {}, {}, []
         for hostname in sorted(group["members"]):
             route = self.server.routes.get(hostname, {})
+            # Child research informs its parent; only parent Bob posts are
+            # assembled into the public group voice.
+            if route.get("role") == "child":
+                continue
             target = route.get("target")
             route_group = route.get("group_id", "")
-            expected_instance = f"{route_group}-{hostname.split('.', 1)[0]}"
+            expected_instance = route.get("instance") or f"{route_group}-{hostname.split('.', 1)[0]}"
             if not target or route_group.lower() != group_id.lower():
                 continue
             connection = None
@@ -170,9 +174,18 @@ class GroupProxy(BaseHTTPRequestHandler):
         try:
             remote = ipaddress.ip_address(self.client_address[0])
             host_gateway = str(remote) == route.get("gateway")
+            known_subnets = [
+                item["subnet"] for item in getattr(self.server, "routes", {}).values()
+                if isinstance(item, dict) and item.get("subnet")
+            ]
+            if not known_subnets:
+                known_subnets = [
+                    item["subnet"] for item in self.server.groups.values()
+                    if isinstance(item, dict) and item.get("subnet")
+                ]
             in_group_network = any(
-                remote in ipaddress.ip_network(group["subnet"], strict=False)
-                for group in self.server.groups.values()
+                remote in ipaddress.ip_network(subnet, strict=False)
+                for subnet in known_subnets
             )
             local_host = (remote.is_loopback or
                           (remote.is_private and not remote.is_link_local and not in_group_network))
@@ -182,19 +195,14 @@ class GroupProxy(BaseHTTPRequestHandler):
             return False
 
     def _serve_group_directory(self, host, group):
-        members = sorted(group["members"])
-        group_name = members[0].split(".", 1)[1] if members else host
+        parents = sorted(group.get("parents", []))
+        group_name = parents[0].split(".", 1)[1] if parents else host
         # Hostname access is the Mac's /etc/hosts path; IP access is routed to
         # _serve_lan_directory below. Docker Desktop rewrites source addresses,
         # so peer-IP comparison cannot reliably distinguish those clients.
         href_for = lambda member: f"http://{member}/console.html"
         description = "Open a member by its local hostname in a new tab."
-        panel = self._group_panel(
-            group_name,
-            members,
-            href_for,
-            description,
-        )
+        panel = self._group_panel(group_name, group, href_for, description)
         self._serve_directory(group_name, [panel])
 
     def _member_runtime(self, member):
@@ -232,53 +240,79 @@ class GroupProxy(BaseHTTPRequestHandler):
     def _serve_lan_directory(self, lan_ip):
         panels = []
         for group_name, group in sorted(self.server.groups.items()):
-            members = [member for member in sorted(group["members"])
-                       if self.server.routes[member].get("host_ip") not in {"127.0.0.1", "::1"}]
-            if not members:
-                panels.append(self._group_panel(
-                    group_name, [], lambda member: "",
-                    "Recreate this group with LAN publishing enabled to add its links.",
-                ))
-                continue
+            accessible = {member for member in group["members"]
+                          if self.server.routes[member].get("host_ip") not in {"127.0.0.1", "::1"}}
+            visible = {
+                **group,
+                "parents": [member for member in group.get("parents", []) if member in accessible],
+                "children": {
+                    parent: [member for member in children if member in accessible]
+                    for parent, children in group.get("children", {}).items()
+                },
+            }
+            description = "Open a member on this local network in a new tab."
+            if not accessible:
+                description = "Recreate this group with LAN publishing enabled to add its links."
             panels.append(self._group_panel(
                 group_name,
-                members,
+                visible,
                 lambda member: (
                     f"http://{lan_ip}:{self.server.routes[member]['host_port']}/console.html"
-                ),
-                "Open a member on this local network in a new tab.",
+                ) if member in accessible else "",
+                description,
             ))
         if not panels:
             self.send_error(403, "No WAKE groups are available from this network")
             return
         self._serve_directory("Local groups", panels)
 
-    def _group_panel(self, group_name, members, href_for, description):
-        buttons = "".join(
-            self._member_button(member, href_for(member))
-            for member in members
-        )
-        member_count = f"{len(members)} {'member' if len(members) == 1 else 'members'}"
+    def _group_panel(self, group_name, group, href_for, description):
+        parents = sorted(group.get("parents", []))
+        children = group.get("children", {})
+        member_count = len(parents) + sum(len(children.get(parent, [])) for parent in parents)
+        parent_panels = []
+        for parent in parents:
+            child_buttons = "".join(
+                self._member_button(child, href_for(child))
+                for child in sorted(children.get(parent, []))
+            )
+            child_section = (
+                '<div class="child-heading">Research children</div>'
+                f'<div class="child-grid">{child_buttons}</div>'
+                if children.get(parent) else ""
+            )
+            parent_panels.append(
+                '<section class="parent-node" aria-label="Parent node '
+                f'{escape(parent, quote=True)}">'
+                f'<div class="parent-button">{self._member_button(parent, href_for(parent))}</div>'
+                f'{child_section}</section>'
+            )
+        buttons = "".join(parent_panels)
+        member_label = f"{member_count} {'node' if member_count == 1 else 'nodes'}"
         return (
             '<section class="group-panel" aria-label="Group '
             f'{escape(group_name, quote=True)}">'
             '<header class="group-panel-heading"><div>'
             f'<p class="eyebrow">LOCAL GROUP</p><h2>{escape(group_name)}</h2>'
-            f'</div><span class="member-count"><i></i>{member_count}</span></header>'
+            f'</div><span class="member-count"><i></i>{member_label}</span></header>'
             f'<p class="group-description">{escape(description)}</p>'
-            f'<div class="member-grid">{buttons}</div></section>'
+            f'<div class="parent-list">{buttons}</div></section>'
         )
 
     def _member_button(self, member, href):
         state, label = self._member_runtime(member)
+        route = self.server.routes.get(member, {})
+        parts = member.split(".")
+        display = ".".join(parts[:2]) if route.get("role") == "child" else parts[0]
+        tag = "a" if href else "div"
+        destination = f'href="{escape(href, quote=True)}" target="_blank" rel="noopener noreferrer"' if href else 'aria-disabled="true"'
         return (
-            '<a class="member-button" '
-            f'href="{escape(href, quote=True)}" target="_blank" '
-            f'rel="noopener noreferrer" title="{escape(label, quote=True)}" '
+            f'<{tag} class="member-button {"unavailable" if not href else ""}" '
+            f'{destination} title="{escape(label, quote=True)}" '
             f'aria-label="Open {escape(member, quote=True)} in a new tab · {escape(label, quote=True)}">'
-            f'<span>{escape(member.split(".", 1)[0])}</span>'
+            f'<span>{escape(display)}</span>'
             f'<span class="member-status-light" data-state="{escape(state, quote=True)}" '
-            f'role="img" aria-label="{escape(label, quote=True)}"><i></i></span></a>'
+            f'role="img" aria-label="{escape(label, quote=True)}"><i></i></span></{tag}>'
         )
 
     def _serve_directory(self, title, panels):
@@ -327,7 +361,10 @@ class GroupProxy(BaseHTTPRequestHandler):
             '.member-count{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:9px;white-space:nowrap}'
             '.member-count i{width:6px;height:6px;border-radius:50%;background:var(--dot)}'
             '.group-description{color:var(--muted);font-size:12px;margin:11px 0 16px}'
-            '.member-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:9px}'
+            '.parent-list{display:grid;gap:12px}.parent-node{border:1px solid var(--line);border-radius:11px;'
+            'padding:12px;background:var(--soft)}.parent-button .member-button{max-width:220px;min-width:140px}'
+            '.child-heading{margin:13px 0 7px;color:var(--muted);font-size:10px;letter-spacing:.06em;text-transform:uppercase}'
+            '.child-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:8px}'
             '.member-button{min-height:48px;border:1px solid var(--button-line);border-radius:10px;background:var(--button-bg);'
             'display:flex;align-items:center;justify-content:space-between;padding:0 13px;color:var(--blue);'
             'font-size:13px;font-weight:700;transition:background .15s,border-color .15s,transform .15s}'
@@ -339,11 +376,12 @@ class GroupProxy(BaseHTTPRequestHandler):
             '.member-status-light[data-state=idle] i{background:#58a6ff}'
             '.member-status-light[data-state=standby] i{background:#a970ff;box-shadow:0 0 9px rgba(169,112,255,.65)}'
             '.member-status-light[data-state=blocked] i{background:#dc5261}'
+            '.member-button.unavailable{opacity:.55;cursor:default}'
             '@media(hover:hover){.member-button:hover{background:var(--soft);border-color:var(--button-hover-line);transform:translateY(-1px)}}'
             '.gateway-foot{margin:23px 0 0;color:var(--muted);font-size:9px;letter-spacing:.04em;text-transform:none}'
             '@media(max-width:480px){.masthead{height:66px;padding:0 17px}.brand{font-size:22px}.masthead-tools{gap:12px}'
             'main{width:calc(100% - 32px);padding:39px 0 48px}.group-panel{padding:18px 16px}'
-            '.member-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.member-button{padding:0 10px}}'
+            '.child-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.member-button{padding:0 10px}}'
             '@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}}'
             '</style><script>(function(){let choice;try{choice=localStorage.getItem("wake-site-theme")}catch{}'
             'const dark=choice==="dark"||(!["light","dark"].includes(choice)&&matchMedia("(prefers-color-scheme: dark)").matches);'

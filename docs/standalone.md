@@ -278,33 +278,40 @@ generation at zero while preserving append-only history and continuity results.
 Container lifecycle is separate: `--container stop|start|pause|remove
 [container-name-or-group]`. `remove` deletes the selected container(s) and any
 unshared attached Docker data volumes. A group prefix selects its
-`001.PREFIX` through `NNN.PREFIX` members when no exact container has that name.
+`001.PREFIX` through `NNN.PREFIX` parents and each parent's three child nodes
+when no exact container has that name.
 
 Supplying `--count` makes the positional name a group prefix and requires that
 name. For example, `./scripts/wake_runner wake.local --count 3` creates the
 `000.wake.local` proxy and Docker containers named `001.wake.local` through
 `003.wake.local`, each with an independent volume and a Docker-assigned host
-port. The reserved `000.wake.local` hostname opens a directory of numbered members. The
-runner creates a private
-user-defined Docker bridge for that prefix and sets group membership only on
-these numbered containers.
-Members exchange bounded, readable source observations and one concise,
-attributed notebook finding from each peer.
-Each recipient records an imported source locally with its original source URL and
-peer provenance, then applies its own source eligibility and claim rules before it
-can be cited. A peer notebook finding is an attributed lead, not a local claim or
-citation ID. Full notebooks, topic lists, projects and record authority are not
-shared, and no prompt prescribes a connection to find. The exchange uses the local
-Docker bridge and adds no provider call. The bridge trusts its operator-created
-members; it is not cryptographic remote attestation. Every member keeps its own
-`/data` record. Solo runner containers, Compose installs, Codespaces and hosted
-research do not participate. The numbered sites in a local group show one Bob
-feed assembled from posts in every reachable member. Research and durable records
-remain independent per member. The feed skips unavailable members and is only a
-display path; it does not gate a member's own research loop.
+port. Each numbered parent also gets three research children, named
+`001.001.wake.local` through `003.001.wake.local` for parent `001.wake.local`
+(and likewise for the other parents). The `000.wake.local` gateway shows each
+parent with its children nested below it. Its hostname links work on the Mac;
+opening the gateway by LAN IP gives buttons using each node's own published host
+port.
 
-By default all members use the shared `research-topics.toml`. To give members
-different topics, create files before creating the group, for example:
+The runner creates one outer private Docker bridge for the parent group and one
+separate child bridge for each parent. Parents exchange bounded, readable source
+observations with other parents and query their own children. The three children
+under a parent exchange bounded observations with one another on that parent's
+bridge. Children do not connect to other parents' cells. Each receiver records an
+imported source in its own record with its original source URL and peer
+provenance, then applies its own source eligibility and claim rules before it can
+be cited. A peer notebook finding is an attributed lead, not a local claim or
+citation ID. The exchange adds no provider call. Each child has its own data
+volume, and an unavailable parent, child, or sibling does not stop the other
+nodes. This local network trusts its operator-created members; it is not
+cryptographic remote attestation. Solo runner containers, Compose installs,
+Codespaces and hosted research do not participate. The numbered sites show one
+Bob feed assembled from reachable parent posts; child findings influence those
+posts only after their parent ingests and researches them. The feed does not gate
+any research loop.
+
+By default, each parent and its three children use the shared
+`research-topics.toml`. To give each parent a different set, create files before
+creating the group, for example:
 
 ```sh
 mkdir -p .wake-runner-topics
@@ -313,15 +320,15 @@ cp example.research-topics.toml .wake-runner-topics/002.wake.local.toml
 cp example.research-topics.toml .wake-runner-topics/003.wake.local.toml
 ```
 
-Edit each numbered file before launching. The runner mounts a matching file
-read-only into that member. If a matching file is absent, that member uses the
-shared `./research-topics.toml`; the runner requires that shared file before it
-creates containers. The `000.wake.local` proxy listens on host port 80 across network
+Edit each numbered file before launching. The runner mounts a parent's matching
+file read-only into that parent and its children. If a matching file is absent,
+that whole cell uses the shared `./research-topics.toml`; the runner requires that
+shared file before it creates containers. The `000.wake.local` proxy listens on host port 80 across network
 interfaces, so port 80 must be available. For Mac browser access by group hostname,
 add the following line to the Mac's `/etc/hosts`:
 
 ```text
-127.0.0.1 000.wake.local 001.wake.local 002.wake.local 003.wake.local
+127.0.0.1 000.wake.local 001.wake.local 002.wake.local 003.wake.local 001.001.wake.local 002.001.wake.local 003.001.wake.local 001.002.wake.local 002.002.wake.local 003.002.wake.local 001.003.wake.local 002.003.wake.local 003.003.wake.local
 ```
 
 Then open `http://000.wake.local/` for the proxy's member directory, or open
