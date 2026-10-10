@@ -229,13 +229,35 @@ runtime promotion is part of local container operation.
 
 ## Repository convenience launcher
 
-`./scripts/wake_runner wake` recreates the named editor container using the existing
-`wake-standalone:vscode` image and the established preview volume. It executes the
-mounted repository, forces live research and matrix enablement, and exposes LAN
-port 8080. It also selects a Docker Desktop proxy; inspect that transport before
-using it outside that environment. It is not the portable Compose setup above.
-Normal invocation retains the data and editor-home volumes. `--reset` permanently
-deletes the selected data volume and requires explicit history-loss authorization.
+`./scripts/wake_runner` creates and starts the default `wake` container when it is
+absent. If it already exists, the runner leaves it as-is and reports its research
+state and continuity progress. `./scripts/wake_runner.sh` is an equivalent entry
+point. A named invocation such as `./scripts/wake_runner wake-dev` follows the
+same create-if-missing, report-if-present behavior.
+
+New containers are enrolled in continuity@1 by default. Pass `--campaign none`
+when creating a container to omit that enrollment, for example
+`./scripts/wake_runner wake-dev --campaign none`. Enrollment cannot be changed by
+this runner after creation. Campaign progress is still reported for existing
+containers.
+
+Explicit research actions are available as
+`--research stop|start|pause|reset|status [container-name]`. These control the
+research scheduler while keeping the Docker container and Console available.
+Research reset asks the operator to type the container name and starts a new WAKE
+generation at zero while preserving append-only history and continuity results.
+Container lifecycle is separate: `--container stop|start|pause|remove
+[container-name-or-group]`. `remove` deletes the selected container(s) and any
+unshared attached Docker data volumes. Numbered group prefixes select their
+`-001` through `-NNN` members when no exact container has that name.
+
+Create a numbered group with `./scripts/wake_runner count --name wake-demo --count 3`
+(or `./scripts/wake_runner count --name wake-demo --3`). Names are
+`wake-demo-001` through `wake-demo-003`, each with an independent volume and a
+Docker-assigned host port. Existing group members are only reported. The runner
+does not edit `/etc/hosts`. It requires the existing `wake-standalone:vscode`
+image and selects the Docker Desktop proxy; it is not the portable Compose setup
+above. Only the explicit `--container remove` action deletes attached data volumes.
 
 ## Live Console inspection
 

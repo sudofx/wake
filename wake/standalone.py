@@ -14,6 +14,7 @@ import signal
 import sys
 import tempfile
 import threading
+import time
 
 from .authority import open_authoritative_store, verify_existing_record
 from .engine import Engine, config
@@ -22,6 +23,38 @@ from .providers import Fixture, Gemini
 from .report import export
 from .scheduling import wake_status
 from .activity import RuntimeActivity
+
+
+_CONTROL_FILE = '.wake-runner-control.json'
+_CONTROL_ACK_FILE = '.wake-runner-reset-ack.json'
+_RESEARCH_MODES = {'running', 'stopped', 'paused'}
+
+
+def _research_control(directory, default='running'):
+    try:
+        value = json.loads((Path(directory) / _CONTROL_FILE).read_text())
+    except FileNotFoundError:
+        return default, None
+    mode = value.get('research') if isinstance(value, dict) else None
+    reset_id = value.get('reset_id') if isinstance(value, dict) else None
+    return (mode if mode in _RESEARCH_MODES else default,
+            reset_id if isinstance(reset_id, str) else None)
+
+
+def _write_control_ack(directory, reset_id, error=None):
+    target = Path(directory) / _CONTROL_ACK_FILE
+    temporary = target.with_suffix('.tmp')
+    temporary.write_text(json.dumps({'reset_id': reset_id, 'error': error}))
+    os.replace(temporary, target)
+
+
+def _wait_for_control(stop, directory, seconds, mode, reset_id):
+    deadline = time.monotonic() + seconds
+    while not stop.is_set() and time.monotonic() < deadline:
+        next_mode, next_reset_id = _research_control(directory, mode)
+        if next_mode != mode or next_reset_id != reset_id:
+            return
+        stop.wait(min(.5, max(0, deadline - time.monotonic())))
 
 
 def bootstrap(directory, settings, *, enable_continuity_matrix=False):
@@ -133,12 +166,20 @@ def run(args):
     provider_name = args.provider or settings['provider']
     if provider_name not in ('fixture', 'gemini'):
         raise ValueError('Standalone unattended providers: fixture or gemini')
-    if not args.paused and provider_name == 'gemini':
+    data = Path(args.data).resolve()
+    data.mkdir(parents=True, exist_ok=True)
+    default_mode = 'paused' if args.paused else 'running'
+    research_mode, handled_reset_id = _research_control(data, default_mode)
+    try:
+        prior_ack = json.loads((data / _CONTROL_ACK_FILE).read_text())
+        if prior_ack.get('reset_id') == handled_reset_id:
+            handled_reset_id = prior_ack['reset_id']
+    except (FileNotFoundError, AttributeError, json.JSONDecodeError):
+        pass
+    if research_mode == 'running' and provider_name == 'gemini':
         load_secret()
         if not os.environ.get('GEMINI_API_KEY'):
             raise ValueError('Set GEMINI_API_KEY or GEMINI_API_KEY_FILE at runtime')
-    data = Path(args.data).resolve()
-    data.mkdir(parents=True, exist_ok=True)
     stop = threading.Event()
     for sig in (signal.SIGTERM, signal.SIGINT):
         signal.signal(sig, lambda *_: stop.set())
@@ -155,19 +196,29 @@ def run(args):
                 if not publish(engine, root):
                     raise ValueError('Writer busy during initial website publication; retry startup')
                 server = ThreadingHTTPServer((args.host, args.port), partial(Website, directory=str(root / 'current')))
-                server.runtime_status = {'mode': 'standalone', 'state': 'paused' if args.paused else 'running'}
+                server.runtime_status = {'mode': 'standalone', 'state': research_mode}
                 server.activity = RuntimeActivity()
                 server.snapshot_generation = 1
                 thread = threading.Thread(target=server.serve_forever, daemon=True)
                 thread.start()
                 print(f'Standalone WAKE: /data authority at {data / "wake.sqlite"}; website port {server.server_port}', flush=True)
                 while not stop.is_set():
-                    if args.paused:
-                        stop.wait(args.interval)
-                        if not stop.is_set():
-                            verify_existing_record(data / 'wake.sqlite')
+                    research_mode, reset_id = _research_control(data, default_mode)
+                    if reset_id and reset_id != handled_reset_id:
+                        try:
+                            with engine.store.lock():
+                                engine.store.reset()
+                                engine.initialize()
                             if publish(engine, root):
                                 server.snapshot_generation += 1
+                            handled_reset_id = reset_id
+                            _write_control_ack(data, reset_id)
+                        except Exception as exc:
+                            handled_reset_id = reset_id
+                            _write_control_ack(data, reset_id, str(exc))
+                    if research_mode != 'running':
+                        server.runtime_status = {'mode': 'standalone', 'state': research_mode}
+                        stop.wait(.5)
                         continue
                     verify_existing_record(data / 'wake.sqlite')
                     state = engine.store.load()
@@ -176,7 +227,7 @@ def run(args):
                         delay = (datetime.fromisoformat(eligibility) - datetime.now(timezone.utc)).total_seconds()
                         if delay > 0:
                             server.runtime_status = {'mode': 'standalone', 'state': 'waiting', 'next_eligible': eligibility}
-                            stop.wait(min(delay, args.interval))
+                            _wait_for_control(stop, data, min(delay, args.interval), research_mode, reset_id)
                             continue
                     server.runtime_status = {'mode': 'standalone', 'state': 'running'}
                     provider = Fixture(args.model or 'standalone-fixture') if provider_name == 'fixture' else Gemini(settings, args.model)
@@ -191,11 +242,11 @@ def run(args):
                             print(json.dumps(server.runtime_status), flush=True)
                             # Keep the read-only website available without retrying
                             # an impossible request or spending provider quota.
-                            stop.wait()
+                            _wait_for_control(stop, data, 86400, research_mode, reset_id)
                             continue
                         if str(exc) != 'Another wake owns this state directory; no call was made':
                             raise
-                        stop.wait(args.interval)
+                        _wait_for_control(stop, data, args.interval, research_mode, reset_id)
                         continue
                     print(json.dumps(result), flush=True)
                     if publish(engine, root):
@@ -208,10 +259,10 @@ def run(args):
                                                  'reason': result.get('reason', 'Provider failed'),
                                                  'action': 'Review provider configuration and restart'}
                         print(json.dumps(server.runtime_status), flush=True)
-                        stop.wait()
+                        _wait_for_control(stop, data, 86400, research_mode, reset_id)
                         continue
                     server.runtime_status = {'mode': 'standalone', 'state': 'idle'}
-                    stop.wait(args.interval)
+                    _wait_for_control(stop, data, args.interval, research_mode, reset_id)
         finally:
             if server:
                 server.shutdown()

@@ -1,86 +1,408 @@
 #!/usr/bin/env bash
-# Local editor-image convenience launcher, not a portable or hosted operator.
-# /workspace executes the mounted checkout; recreation retains its named record.
-# This path forces live inference, LAN exposure and a Docker Desktop proxy. Use
-# Compose for paused inspection or portable transport. --reset destroys history.
+# Local standalone WAKE container creator, status reporter, and research control.
+# Existing containers are only inspected unless an explicit --research action
+# is supplied. No operation deletes or replaces a data volume.
+
+set -euo pipefail
+
+IMAGE="wake-standalone:vscode"
+LABEL="com.sudofx.wake.runner"
+repo_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
+CAMPAIGN_PROGRESS_CODE='from wake.kernel.record import Record; from wake.matrix import continuity_matrix_progress; r=Record.open_read_only("/data/wake.sqlite"); _,root=r.replay(); app=root.get("app:wake"); state=app.get("projection_state") if isinstance(app,dict) else None; p=continuity_matrix_progress(state); print("none" if p is None else str(p["completed_count"])+"/"+str(p["cell_count"]))'
 
 usage() {
     cat <<'EOF'
-Usage: wake_runner [container-name] [--reset]
+Usage:
+  scripts/wake_runner [container-name] [--campaign none]
+  scripts/wake_runner count --name PREFIX --count N [--campaign none]
+  scripts/wake_runner count --name PREFIX --N [--campaign none]
+  scripts/wake_runner --research stop|start|pause|reset|status [container-name]
+  scripts/wake_runner --container stop|start|pause|remove [container-name-or-group]
 
-The name defaults to wake. --reset permanently deletes the selected data volume.
-The VS Code home volume is preserved. Options may precede or follow the name.
-The website uses host port 8080; only one container can use that port at a time.
+Without a research action, an absent container is created and started; an
+existing container is left unchanged and its status is reported. New containers
+join continuity@1 by default. `--campaign none` opts a newly created container
+out. Campaign enrollment is immutable after creation.
+
+Groups are named PREFIX-001 through PREFIX-NNN and receive separate data volumes
+and Docker-assigned host ports. Research controls leave Docker running. Container
+remove also removes the selected container's data volumes.
 EOF
 }
 
-main() {
-    local container_name="wake"
-    local repo_dir
-    local data_volume home_volume arg
-    local reset=false name_set=false
+fail() { printf 'wake_runner: %s\n' "$*" >&2; return 1; }
 
-    for arg in "$@"; do
+data_volume_for() {
+    if [[ "$1" == wake ]]; then
+        printf '%s' 'wake-standalone-preview_wake-data'
+    else
+        printf '%s-data' "$1"
+    fi
+}
+
+home_volume_for() {
+    if [[ "$1" == wake ]]; then
+        printf '%s' 'wake-standalone-preview_vscode-home'
+    else
+        printf '%s-vscode-home' "$1"
+    fi
+}
+
+require_runtime() {
+    [[ -f "$repo_dir/.env" && -f "$repo_dir/wake.toml" ]] ||
+        fail "Missing .env or wake.toml in $repo_dir"
+    docker info >/dev/null 2>&1 || fail 'Docker is unavailable; start Docker first.'
+}
+
+container_exists() { docker container inspect "$1" >/dev/null 2>&1; }
+
+is_running() {
+    [[ "$(docker inspect --format '{{.State.Running}}' "$1" 2>/dev/null || true)" == true ]]
+}
+
+ensure_wake_identity() {
+    local name="$1" image
+    container_exists "$name" || return 0
+    image="$(docker inspect --format '{{.Config.Image}}' "$name")"
+    [[ "$image" == *wake-standalone* ]] ||
+        fail "Container '$name' uses image '$image', not a WAKE standalone image; leaving it untouched."
+}
+
+data_mount() {
+    local name="$1" value
+    value="$(docker inspect --format '{{range .Mounts}}{{if eq .Destination "/data"}}{{if .Name}}{{.Name}}{{else}}{{.Source}}{{end}}{{end}}{{end}}' "$name" 2>/dev/null || true)"
+    [[ -n "$value" ]] || value="$(data_volume_for "$name")"
+    printf '%s' "$value"
+}
+
+image_for() {
+    docker inspect --format '{{.Config.Image}}' "$1"
+}
+
+paused_config() {
+    local value
+    value="$(docker inspect --format '{{range .Config.Env}}{{println .}}{{end}}' "$1" |
+        awk -F= '$1 == "WAKE_PAUSED" {print $2}' | tail -n 1)"
+    [[ "${value,,}" == true || "${value,,}" == 1 || "${value,,}" == yes ]]
+}
+
+research_mode() {
+    local name="$1" value container_paused
+    value="$(docker exec "$name" python -c 'import json,pathlib; p=pathlib.Path("/data/.wake-runner-control.json"); print(json.loads(p.read_text()).get("research", "")) if p.exists() else None' 2>/dev/null || true)"
+    case "$value" in running|stopped|paused) printf '%s' "$value" ;; *)
+        container_paused="$(docker inspect --format '{{.State.Paused}}' "$name" 2>/dev/null || true)"
+        if [[ "$container_paused" == true ]] || paused_config "$name"; then printf paused; else printf running; fi ;;
+    esac
+}
+
+set_research_mode() {
+    docker exec "$1" python -c 'import json,os,pathlib,sys; p=pathlib.Path("/data/.wake-runner-control.json"); d=json.loads(p.read_text()) if p.exists() else {}; d["research"]=sys.argv[1]; t=p.with_suffix(".tmp"); t.write_text(json.dumps(d)); os.replace(t,p)' "$2" >/dev/null
+}
+
+campaign_progress() {
+    local name="$1" volume="$2" image result attempt
+    image="$(image_for "$name")"
+    if is_running "$name"; then
+        # A freshly created standalone process may still be initializing SQLite
+        # when the launcher asks for its first status. Retry quietly so a normal
+        # startup race does not leak a traceback or hide the useful status line.
+        for ((attempt=1; attempt<=15; attempt++)); do
+            if result="$(docker exec "$name" python -c "$CAMPAIGN_PROGRESS_CODE" 2>/dev/null)" && [[ -n "$result" ]]; then
+                printf '%s' "$result"
+                return 0
+            fi
+            sleep 1
+        done
+        return 1
+    else
+        docker run --rm --network none --read-only --tmpfs /tmp \
+            -v "$volume:/data:ro" -v "$repo_dir:/workspace:ro" -w /workspace \
+            --entrypoint python "$image" -c "$CAMPAIGN_PROGRESS_CODE" 2>/dev/null
+    fi
+}
+
+report_status() {
+    local name="$1" volume research campaign port
+    if ! container_exists "$name"; then
+        research=stopped
+        volume="$(data_volume_for "$name")"
+        if docker volume inspect "$volume" >/dev/null 2>&1; then
+            campaign="$(docker run --rm --network none --read-only --tmpfs /tmp \
+                -v "$volume:/data:ro" -v "$repo_dir:/workspace:ro" -w /workspace \
+                --entrypoint python "$IMAGE" -c "$CAMPAIGN_PROGRESS_CODE" 2>/dev/null)" || campaign=unavailable
+        else
+            campaign=none
+        fi
+    else
+        ensure_wake_identity "$name"
+        volume="$(data_mount "$name")"
+        if ! is_running "$name"; then
+            research=stopped
+        else
+            research="$(research_mode "$name")"
+        fi
+        campaign="$(campaign_progress "$name" "$volume")" || campaign=unavailable
+    fi
+    printf 'CONTAINER: %s | RESEARCH_STATUS: %s | CONTINUITY_CAMPAIGN: %s\n' \
+        "$name" "$research" "$campaign"
+    if container_exists "$name"; then
+        port="$(docker inspect --format '{{range (index .NetworkSettings.Ports "8080/tcp")}}{{.HostPort}}{{end}}' "$name" 2>/dev/null || true)"
+        [[ -z "$port" ]] || printf 'URL: http://127.0.0.1:%s/console.html\n' "$port"
+    fi
+}
+
+create_container() {
+    local name="$1" campaign="$2" paused="${3:-false}" data_volume home_volume
+    local publish_args=()
+    docker image inspect "$IMAGE" >/dev/null 2>&1 ||
+        fail "Missing image: $IMAGE (build the VS Code target first)."
+    data_volume="$(data_volume_for "$name")"
+    home_volume="$(home_volume_for "$name")"
+    if [[ "$name" == wake ]]; then
+        publish_args=(-p 127.0.0.1:8080:8080)
+    else
+        publish_args=(-p 127.0.0.1::8080)
+    fi
+    docker run -d --name "$name" \
+        --label "$LABEL=true" \
+        "${publish_args[@]}" \
+        -v "$data_volume:/data" \
+        -v "$home_volume:/home/wake" \
+        -v "$repo_dir:/workspace" -w /workspace \
+        --env-file "$repo_dir/.env" \
+        -e "WAKE_ENABLE_CONTINUITY_MATRIX=$campaign" \
+        -e "WAKE_PAUSED=$paused" \
+        -e HTTPS_PROXY=http://http.docker.internal:3128 \
+        --read-only --tmpfs /tmp \
+        "$IMAGE" --config /workspace/wake.toml >/dev/null
+}
+
+ensure_present() {
+    local name="$1" campaign="$2"
+    if container_exists "$name"; then
+        ensure_wake_identity "$name"
+        return 0
+    fi
+    create_container "$name" "$campaign"
+}
+
+reset_research() {
+    local name="$1" answer reset_id ack attempt
+    [[ -t 0 ]] || fail 'Research reset requires an interactive terminal.'
+    container_exists "$name" || fail "Research reset requires an existing container: $name"
+    ensure_wake_identity "$name"
+    is_running "$name" || fail "Container $name is stopped; use --container start first."
+    printf 'Reset %s research to WAKE 0? Prior append-only history and continuity results are preserved. Type %s to continue: ' "$name" "$name" >&2
+    IFS= read -r answer
+    [[ "$answer" == "$name" ]] || fail 'Reset cancelled.'
+    reset_id="$(date +%s)-$$-$RANDOM"
+    docker exec "$name" python -c 'import json,os,pathlib,sys; p=pathlib.Path("/data/.wake-runner-control.json"); d=json.loads(p.read_text()) if p.exists() else {}; d["research"]="stopped"; d["reset_id"]=sys.argv[1]; t=p.with_suffix(".tmp"); t.write_text(json.dumps(d)); os.replace(t,p)' "$reset_id" >/dev/null
+    for ((attempt=1; attempt<=600; attempt++)); do
+        ack="$(docker exec "$name" python -c 'import json,pathlib; p=pathlib.Path("/data/.wake-runner-reset-ack.json"); print(json.dumps(json.loads(p.read_text())) if p.exists() else "")' 2>/dev/null || true)"
+        if [[ -n "$ack" && "$ack" == *"\"reset_id\": \"$reset_id\""* ]]; then
+            [[ "$ack" == *'"error": null'* ]] || fail "Research reset failed: $ack"
+            printf 'Research reset complete at WAKE 0; research is stopped. Use --research start to resume.\n'
+            return 0
+        fi
+        sleep 0.5
+    done
+    fail 'Research reset is still pending; restart the container once to load the updated runtime, then retry.'
+}
+
+research_control() {
+    local action="$1" name="$2" campaign="$3"
+    if [[ "$campaign" == false ]] && container_exists "$name"; then
+        printf 'wake_runner: --campaign none applies only when creating; existing enrollment is unchanged.\n' >&2
+    fi
+    case "$action" in
+        status)
+            report_status "$name"
+            return
+            ;;
+        stop)
+            container_exists "$name" || fail "Container does not exist: $name"
+            ensure_wake_identity "$name"
+            is_running "$name" || fail "Container $name is stopped; use --container start first."
+            set_research_mode "$name" stopped
+            ;;
+        start)
+            if container_exists "$name"; then
+                ensure_wake_identity "$name"
+                is_running "$name" || fail "Container $name is stopped; use --container start first."
+                set_research_mode "$name" running
+            else
+                create_container "$name" "$campaign"
+            fi
+            ;;
+        pause)
+            if ! container_exists "$name"; then create_container "$name" "$campaign" true; fi
+            ensure_wake_identity "$name"
+            is_running "$name" || fail "Container $name is stopped; use --container start first."
+            set_research_mode "$name" paused
+            ;;
+        reset)
+            reset_research "$name" "$campaign"
+            ;;
+        *) usage >&2; return 2 ;;
+    esac
+    report_status "$name"
+}
+
+container_control() {
+    local action="$1" selector="$2" candidate status volume home name data_type
+    local targets=() volumes=()
+    if container_exists "$selector"; then
+        targets=("$selector")
+    else
+        while IFS= read -r candidate; do
+            [[ "$candidate" == "$selector"-[0-9][0-9][0-9] ]] && targets+=("$candidate")
+        done < <(docker ps -a --format '{{.Names}}')
+    fi
+    if ((${#targets[@]} == 0)) && [[ "$action" != remove ]]; then
+        fail "No container or numbered group found for '$selector'."
+    fi
+    if ((${#targets[@]} == 0)) && [[ "$action" == remove ]]; then
+        targets=("$selector")
+    fi
+    for name in "${targets[@]}"; do
+        if container_exists "$name"; then
+            ensure_wake_identity "$name"
+            status="$(docker inspect --format '{{.State.Status}}' "$name")"
+            case "$action" in
+                stop) [[ "$status" == exited ]] || docker stop --timeout 300 "$name" >/dev/null ;;
+                start)
+                    if [[ "$status" == paused ]]; then docker unpause "$name" >/dev/null
+                    elif [[ "$status" != running ]]; then docker start "$name" >/dev/null; fi
+                    ;;
+                pause) [[ "$status" != running ]] || docker pause "$name" >/dev/null ;;
+                remove)
+                    data_type="$(docker inspect --format '{{range .Mounts}}{{if eq .Destination "/data"}}{{.Type}}{{end}}{{end}}' "$name")"
+                    [[ "$data_type" != bind ]] || fail "Refusing scorched-earth removal of $name: /data is a host bind mount."
+                    volume="$(docker inspect --format '{{range .Mounts}}{{if and (eq .Type "volume") (eq .Destination "/data")}}{{.Name}}{{end}}{{end}}' "$name")"
+                    home="$(docker inspect --format '{{range .Mounts}}{{if and (eq .Type "volume") (eq .Destination "/home/wake")}}{{.Name}}{{end}}{{end}}' "$name")"
+                    [[ -n "$volume" ]] && volumes+=("$volume")
+                    [[ -n "$home" ]] && volumes+=("$home")
+                    docker rm -f "$name" >/dev/null
+                    ;;
+            esac
+        elif [[ "$action" == remove && "$name" == "$selector" ]]; then
+            volumes+=("$(data_volume_for "$name")" "$(home_volume_for "$name")")
+        fi
+    done
+    if [[ "$action" == remove ]]; then
+        for volume in "${volumes[@]}"; do
+            docker volume inspect "$volume" >/dev/null 2>&1 || continue
+            if [[ -z "$(docker ps -a --filter "volume=$volume" --format '{{.Names}}')" ]]; then
+                docker volume rm "$volume" >/dev/null
+            fi
+        done
+        printf 'Removed %s and unshared attached data volumes.\n' "$selector"
+    else
+        for name in "${targets[@]}"; do
+            printf 'CONTAINER: %s | DOCKER_STATUS: %s\n' "$name" "$(docker inspect --format '{{.State.Status}}' "$name")"
+        done
+    fi
+}
+
+start_group() {
+    local prefix="$1" count="$2" campaign="$3" i name was_existing
+    [[ "$prefix" =~ ^[a-zA-Z0-9][a-zA-Z0-9_.-]*$ ]] || fail 'Invalid group name.'
+    [[ "$count" =~ ^[0-9]{1,2}$ ]] || fail 'Count must be a number from 1 to 99.'
+    count=$((10#$count))
+    (( count >= 1 && count <= 99 )) || fail 'Count must be between 1 and 99.'
+    require_runtime
+    for ((i=1; i<=count; i++)); do
+        printf -v name '%s-%03d' "$prefix" "$i"
+        was_existing=false
+        container_exists "$name" && was_existing=true
+        ensure_present "$name" "$campaign"
+        if [[ "$campaign" == false && "$was_existing" == true ]]; then
+            printf 'wake_runner: --campaign none applies only when creating; existing enrollment for %s is unchanged.\n' "$name" >&2
+        fi
+        report_status "$name"
+    done
+}
+
+main() {
+    local name=wake action= campaign=true group=false prefix= count=3 arg name_set=false
+    local explicit_action=false container_action= container_action_set=false
+    if (($# == 0)); then
+        require_runtime
+        ensure_present wake true
+        report_status wake
+        return
+    fi
+    while (($#)); do
+        arg="$1"; shift
         case "$arg" in
-            --reset) reset=true ;;
             --help|-h) usage; return 0 ;;
-            -*) usage >&2; return 1 ;;
+            --research)
+                (($#)) || fail '--research requires stop, start, pause, reset, or status.'
+                action="$1"; shift
+                case "$action" in stop|start|pause|reset|status) ;; *) fail "Unknown research action: $action" ;; esac
+                explicit_action=true
+                ;;
+            --container)
+                (($#)) || fail '--container requires stop, start, pause, or remove.'
+                container_action="$1"; shift
+                case "$container_action" in stop|start|pause|remove) ;; *) fail "Unknown container action: $container_action" ;; esac
+                container_action_set=true
+                ;;
+            --campaign)
+                (($#)) || fail '--campaign requires `none` or `continuity`.'
+                case "$1" in
+                    none) campaign=false ;;
+                    continuity|continuity@1) campaign=true ;;
+                    *) fail "Unknown campaign option: $1" ;;
+                esac
+                shift
+                ;;
+            count) group=true ;;
+            --name)
+                (($#)) || fail '--name requires a group prefix.'
+                prefix="$1"; shift
+                ;;
+            --count)
+                (($#)) || fail '--count requires a number.'
+                count="$1"; shift
+                ;;
+            --[1-9][0-9]*) count="${arg#--}" ;;
+            --) ;;
+            -*) fail "Unknown option: $arg" ;;
             *)
-                if [[ "$name_set" == true || ! "$arg" =~ ^[a-zA-Z0-9][a-zA-Z0-9_.-]*$ ]]; then
-                    usage >&2
-                    return 1
+                if [[ "$name_set" == false && "$group" == false ]]; then
+                    name="$arg"
+                    name_set=true
+                elif [[ "$group" == true && "$arg" == count ]]; then
+                    : # Accept the repeated `count` token from the initial example.
+                else
+                    fail "Unexpected argument: $arg"
                 fi
-                container_name="$arg"
-                name_set=true
                 ;;
         esac
     done
 
-    repo_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)" || return
-
-    if [[ "$container_name" == wake ]]; then
-        data_volume="wake-standalone-preview_wake-data"
-        home_volume="wake-standalone-preview_vscode-home"
+    if [[ "$explicit_action" == true && "$container_action_set" == true ]]; then
+        fail 'Use --research or --container in one invocation, not both.'
+    elif [[ "$container_action_set" == true ]]; then
+        require_runtime
+        container_control "$container_action" "$name"
+    elif [[ "$explicit_action" == true ]]; then
+        require_runtime
+        research_control "$action" "$name" "$campaign"
+    elif [[ "$group" == true ]]; then
+        [[ -n "$prefix" ]] || fail 'Group mode requires --name PREFIX.'
+        start_group "$prefix" "$count" "$campaign"
     else
-        data_volume="${container_name}-data"
-        home_volume="${container_name}-vscode-home"
+        require_runtime
+        local was_existing=false
+        container_exists "$name" && was_existing=true
+        ensure_present "$name" "$campaign"
+        if [[ "$campaign" == false && "$was_existing" == true ]]; then
+            printf 'wake_runner: --campaign none applies only when creating; existing enrollment is unchanged.\n' >&2
+        fi
+        report_status "$name"
     fi
-
-    [[ -f "$repo_dir/.env" && -f "$repo_dir/wake.toml" ]] || {
-        echo "Missing .env or wake.toml in $repo_dir" >&2
-        return 1
-    }
-    docker info >/dev/null 2>&1 || {
-        echo "Docker is unavailable. Start Docker first." >&2
-        return 1
-    }
-    docker image inspect wake-standalone:vscode >/dev/null 2>&1 || {
-        echo "Missing image: wake-standalone:vscode" >&2
-        return 1
-    }
-
-    if docker container inspect "$container_name" >/dev/null 2>&1; then
-        docker stop --timeout 300 "$container_name" || return
-        docker rm "$container_name" || return
-    fi
-    if [[ "$reset" == true ]] && docker volume inspect "$data_volume" >/dev/null 2>&1; then
-        echo "Resetting WAKE record in $data_volume"
-        docker volume rm "$data_volume" || return
-    fi
-
-    docker run -d --name "$container_name" \
-        -p 8080:8080 \
-        -v "$data_volume:/data" \
-        -v "$home_volume:/home/wake" \
-        -v "$repo_dir:/workspace" \
-        -w /workspace \
-        --env-file "$repo_dir/.env" \
-        -e WAKE_ENABLE_CONTINUITY_MATRIX=true \
-        -e WAKE_PAUSED=false \
-        -e HTTPS_PROXY=http://http.docker.internal:3128 \
-        --read-only --tmpfs /tmp \
-        wake-standalone:vscode \
-        --config /workspace/wake.toml
 }
 
 main "$@"
