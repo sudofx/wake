@@ -32,6 +32,13 @@ importing peer material makes no provider call. The local bridge trusts its
 operator-created members and is not cryptographic remote attestation. Solo,
 Codespace and hosted installations do not participate.
 
+Grouped local Gemini model requests also use the local gateway as a best-effort
+FIFO call coordinator. It serializes provider requests and applies per-model
+spacing, but it carries no research data or durable state. If the gateway is
+unreachable, a member proceeds without coordination; leases expire if a member
+stops during a request. This scheduling layer does not join solo, Codespace or
+hosted installations.
+
 The active-memory fit also bounds milestone editorial history, including when final research links arrive after its initial fit. It clips editorial prose to 80 characters, omits auxiliary editorial project/notebook/search windows, and retains as many of the latest four, two or one accepted wakes as fit; zero is permitted when necessary. Previous-reflection identity and milestone remain, alongside the original history hash, original window counts and omitted counts. Repeated fits preserve that original hash. These omissions affect only disposable editorial context, not the durable record or the current research working set. The existing hard ceiling still fails closed if protected context cannot fit.
 
 `memory_mode = "shadow"` restores rich delivery with the established size-triggered fallback after runtime restart. The raw shadow builders remain unchanged in both modes. Derived memory neither rewrites history nor changes governance; the authoritative database remains the single source of truth. Active requests that cannot fit stop before inference, preserving obligations.

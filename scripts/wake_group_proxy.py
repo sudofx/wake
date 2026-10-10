@@ -9,12 +9,102 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import ipaddress
 import json
 from pathlib import Path
+import secrets
+import threading
+import time
+from collections import deque
 
 
 _HOP_HEADERS = {"connection", "keep-alive", "proxy-authenticate", "proxy-authorization",
                 "te", "trailers", "transfer-encoding", "upgrade"}
 _MAX_BOB_PACKET = 512_000
 _MAX_GROUP_BOB_BYTES = 4_000_000
+
+
+class GroupCallCoordinator:
+    """Ephemeral FIFO for provider calls; container research remains independent."""
+
+    # Conservative spacing from the provider limits used by the local group.
+    # Unknown models still share a short gap and the same single-call lease.
+    MODEL_GAPS = {
+        "gemini-3.1-flash-lite": 4.25,
+        "gemini-3.5-flash-lite": 4.25,
+        "gemini-3.5-flash": 12.5,
+        "gemini-3.6-flash": 12.5,
+        "gemini-3.7-flash": 12.5,
+        "gemini-3.8-flash": 12.5,
+    }
+    DEFAULT_GAP = 4.0
+    QUEUE_TTL = 30.0
+
+    def __init__(self):
+        self.lock = threading.Lock()
+        self.queue = deque()
+        self.tickets = {}
+        self.active = None
+        self.last_started = {}
+
+    def _prune(self, now):
+        self.queue = deque(
+            key for key in self.queue
+            if key in self.tickets and now - self.tickets[key]["seen"] <= self.QUEUE_TTL
+        )
+        for key, ticket in list(self.tickets.items()):
+            if ticket["state"] == "queued" and now - ticket["seen"] > self.QUEUE_TTL:
+                del self.tickets[key]
+        if self.active and now >= self.active["expires"]:
+            key = self.active["key"]
+            self.tickets.pop(key, None)
+            self.active = None
+
+    def acquire(self, key, model, lease_seconds):
+        now = time.monotonic()
+        with self.lock:
+            self._prune(now)
+            ticket = self.tickets.get(key)
+            if ticket and ticket["state"] == "granted":
+                ticket["seen"] = now
+                return {"status": "granted", "token": ticket["token"]}
+            if ticket is None:
+                ticket = {"state": "queued", "model": model, "seen": now}
+                self.tickets[key] = ticket
+                self.queue.append(key)
+            else:
+                ticket["seen"] = now
+            if not self.active and self.queue and self.queue[0] == key:
+                gap = self.MODEL_GAPS.get(model, self.DEFAULT_GAP)
+                elapsed = now - self.last_started.get(model, float("-inf"))
+                if elapsed >= gap:
+                    token = secrets.token_urlsafe(24)
+                    ticket.update(state="granted", token=token, seen=now)
+                    self.queue.popleft()
+                    self.active = {"key": key, "token": token,
+                                   "expires": now + lease_seconds, "model": model}
+                    self.last_started[model] = now
+                    return {"status": "granted", "token": token}
+                return {"status": "queued", "retry_after": min(5.0, max(0.25, gap - elapsed))}
+            return {"status": "queued", "retry_after": 1.0}
+
+    def release(self, key, token):
+        with self.lock:
+            self._prune(time.monotonic())
+            if not self.active or self.active["key"] != key or not secrets.compare_digest(
+                self.active["token"], token
+            ):
+                return False
+            self.tickets.pop(key, None)
+            self.active = None
+            return True
+
+
+def _json_response(handler, status, packet):
+    body = json.dumps(packet, separators=(",", ":")).encode("utf-8")
+    handler.send_response(status)
+    handler.send_header("Content-Type", "application/json; charset=utf-8")
+    handler.send_header("Cache-Control", "no-store")
+    handler.send_header("Content-Length", str(len(body)))
+    handler.end_headers()
+    handler.wfile.write(body)
 
 
 class GroupProxy(BaseHTTPRequestHandler):
@@ -258,7 +348,7 @@ class GroupProxy(BaseHTTPRequestHandler):
                 'running': 'Research running',
                 'idle': 'Research idle; waiting for the next cycle',
                 'waiting': 'Research waiting for its next retry',
-                'standby': 'Research paused until midnight Pacific time',
+                'standby': 'Provider quota reported; retrying on the regular schedule',
                 'paused': 'Research paused by operator',
                 'stopped': 'Research stopped by operator',
                 'blocked': 'Operator or agent action required',
@@ -269,17 +359,19 @@ class GroupProxy(BaseHTTPRequestHandler):
             if state == 'waiting' and packet.get('next_eligible'):
                 label = f"{label}; retry scheduled for {str(packet['next_eligible'])[:32]}"
             elif state == 'standby' and packet.get('resume_at'):
-                label = f"{label}; resumes {str(packet['resume_at'])[:32]}"
+                label = f"Configured request limit; resumes {str(packet['resume_at'])[:32]}"
             elif state == 'blocked':
                 reason = ' '.join(str(packet.get('reason') or '').split())[:180]
                 action = ' '.join(str(packet.get('action') or '').split())[:120]
+                if not action:
+                    return 'waiting', 'Blocked status has no operator action; checking again automatically'
                 if reason:
                     label = f"{label}: {reason}"
                 if action:
                     label = f"{label} · {action}"
             return state, label
         except (KeyError, OSError, ValueError, TypeError):
-            return 'blocked', 'Operator or agent action required: container unavailable'
+            return 'waiting', 'Status temporarily unavailable; checking again automatically'
         finally:
             if connection is not None:
                 connection.close()
@@ -429,7 +521,7 @@ class GroupProxy(BaseHTTPRequestHandler):
             '.status-key{margin:24px 0 0;padding:15px 16px;border:1px solid var(--line);border-radius:11px;background:var(--surface)}'
             '.status-key-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 10px;color:var(--muted);font:9px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.09em;text-transform:uppercase}'
             '.status-updated{font:10px/1.4 Arial,Helvetica,sans-serif;letter-spacing:0;text-transform:none;white-space:nowrap}'
-            '.status-key-list{display:flex;flex-wrap:wrap;gap:9px 18px;margin:0;padding:0;list-style:none}'
+            '.status-key-list{display:grid;grid-template-columns:minmax(0,1fr);gap:9px;margin:0;padding:0;list-style:none}'
             '.status-key-list li{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:11px;line-height:1.4}'
             '.status-key-list .member-status-light{width:10px;height:10px;flex-basis:10px}'
             '.status-key-list .member-status-light i{width:8px;height:8px}'
@@ -453,11 +545,11 @@ class GroupProxy(BaseHTTPRequestHandler):
             '<section class="status-key" aria-label="Status light key"><p class="status-key-title">Status lights'
             '<span class="status-updated" id="status-updated" role="status">Auto-refreshes every 5 seconds</span></p>'
             '<ul class="status-key-list">'
+            '<li><span class="member-status-light" data-state="blocked" aria-hidden="true"><i></i></span>Red · Operator or agent action required</li>'
+            '<li><span class="member-status-light" data-state="waiting" aria-hidden="true"><i></i></span>Yellow · Waiting, paused, or stopped</li>'
             '<li><span class="member-status-light" data-state="running" aria-hidden="true"><i></i></span>Green · Research running</li>'
             '<li><span class="member-status-light" data-state="idle" aria-hidden="true"><i></i></span>Blue · Research idle</li>'
-            '<li><span class="member-status-light" data-state="waiting" aria-hidden="true"><i></i></span>Yellow · Waiting, paused, or stopped</li>'
-            '<li><span class="member-status-light" data-state="standby" aria-hidden="true"><i></i></span>Purple · Quota standby until midnight Pacific</li>'
-            '<li><span class="member-status-light" data-state="blocked" aria-hidden="true"><i></i></span>Red · Operator or agent action required</li>'
+            '<li><span class="member-status-light" data-state="standby" aria-hidden="true"><i></i></span>Purple · Provider quota reported; retrying on schedule</li>'
             '</ul></section>'
             '<p class="gateway-foot">Each member keeps its own research record and can continue independently.</p>'
             '</main><script>(function(){const updated=document.getElementById("status-updated");'
@@ -490,7 +582,56 @@ class GroupProxy(BaseHTTPRequestHandler):
             self.wfile.write(body)
 
     def do_POST(self):
-        self.send_error(405, "Group routing is read-only")
+        if self.path != "/group/coordinator":
+            self.send_error(405, "Group routing is read-only")
+            return
+        try:
+            length = int(self.headers.get("Content-Length", "0"))
+            if not 0 < length <= 4096:
+                raise ValueError("invalid request size")
+            packet = json.loads(self.rfile.read(length))
+            if not isinstance(packet, dict):
+                raise ValueError("invalid request")
+            action = packet.get("action")
+            member = packet.get("member")
+            request_id = packet.get("request_id")
+            if not isinstance(member, str) or not isinstance(request_id, str):
+                raise ValueError("unknown group member")
+            route = self.server.routes.get(member)
+            route_group = route.get("group_id") if isinstance(route, dict) else None
+            if (len(request_id) != 32 or any(c not in "0123456789abcdef" for c in request_id)
+                    or not route or route.get("role") not in {"parent", "child"}
+                    or not isinstance(route_group, str)
+                    or route_group.lower() not in self.server.groups):
+                raise ValueError("unknown group member")
+            remote = ipaddress.ip_address(self.client_address[0])
+            if remote not in ipaddress.ip_network(route["subnet"], strict=False):
+                self.send_error(403, "Coordinator is available only to local group members")
+                return
+            key = (route["group_id"].lower(), member, request_id)
+            if action == "acquire":
+                model = packet.get("model")
+                if not isinstance(model, str) or not model or len(model) > 100:
+                    raise ValueError("invalid model")
+                try:
+                    lease_seconds = float(packet.get("lease_seconds", 120))
+                except (TypeError, ValueError):
+                    raise ValueError("invalid lease") from None
+                if not 1 <= lease_seconds <= 900:
+                    raise ValueError("invalid lease")
+                result = self.server.call_coordinator.acquire(key, model, lease_seconds)
+                _json_response(self, 200, result)
+                return
+            if action == "release":
+                token = packet.get("token")
+                if not isinstance(token, str) or len(token) > 128:
+                    raise ValueError("invalid lease token")
+                released = self.server.call_coordinator.release(key, token)
+                _json_response(self, 200, {"status": "released" if released else "expired"})
+                return
+            raise ValueError("unsupported coordinator action")
+        except (ValueError, TypeError, KeyError, UnicodeDecodeError, json.JSONDecodeError):
+            _json_response(self, 400, {"error": "invalid coordinator request"})
 
     do_PUT = do_POST
     do_PATCH = do_POST
@@ -514,6 +655,7 @@ def main():
     server = ThreadingHTTPServer(("0.0.0.0", 8080), GroupProxy)
     server.routes = routes
     server.groups = groups
+    server.call_coordinator = GroupCallCoordinator()
     host_lan_ip = config.get("host_lan_ip")
     server.host_lan_ip = str(ipaddress.ip_address(host_lan_ip)) if host_lan_ip else None
     print(f"Local WAKE group router ready for {len(routes)} members in {len(groups)} groups", flush=True)

@@ -429,10 +429,20 @@ def continuation_outputs(result):
     reason = str(result.get("reason", ""))
     continue_now = status in ("accepted", "rejected")
     retry_after = 0
-    if status == "deferred" and reason.startswith("Gemini temporarily unavailable"):
+    provider_attempts = result.get("provider_attempts") or (
+        result.get("provider_error", {}).get("provider_attempts", [])
+        if isinstance(result.get("provider_error"), dict) else []
+    )
+    provider_quota_limited = any(
+        attempt.get("result") in ("daily_quota", "rate_limited")
+        for attempt in provider_attempts if isinstance(attempt, dict)
+    ) or result.get("quota_exhausted") == "free_tier_daily"
+    if status == "deferred" and reason.startswith("Gemini temporarily unavailable") and not provider_quota_limited:
         continue_now = True
         retry_after = int(TRANSIENT_RETRY_DELAY.total_seconds())
     elif status in ("deferred", "paused") and (
+        provider_quota_limited
+        or
         reason.startswith("Configured daily request limits reached")
         or reason.startswith("Gemini free-tier daily quota exhausted")
         or reason.startswith("Daily call ceiling reached")

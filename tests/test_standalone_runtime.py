@@ -76,7 +76,7 @@ class StandaloneRuntimeTests(unittest.TestCase):
             self.assertEqual(server.runtime_status['state'], 'blocked')
             self.assertEqual(server.runtime_status['reason'], 'Invalid provider credential')
 
-    def test_daily_quota_exhaustion_enters_standby_without_blocking_runtime(self):
+    def test_provider_quota_stays_purple_and_retries_on_the_regular_interval(self):
         with tempfile.TemporaryDirectory() as directory:
             engine = bootstrap(directory, dict(DEFAULTS))
             args = SimpleNamespace(interval=1, config='unused', provider='fixture',
@@ -84,8 +84,8 @@ class StandaloneRuntimeTests(unittest.TestCase):
                 host='127.0.0.1', port=0, model='test')
             server, stop = MagicMock(), MagicMock()
             stop.is_set.side_effect = [False, True]
-            due = {'next_eligible': '2026-10-11T07:00:00+00:00',
-                   'quota_standby': True, 'quota_standby_until': '2026-10-11T07:00:00+00:00'}
+            due = {'next_eligible': None, 'quota_standby': True,
+                   'provider_quota_limited': True, 'quota_standby_until': None}
             with patch('wake.standalone.config', return_value=dict(DEFAULTS)), \
                  patch('wake.standalone.bootstrap', return_value=engine), \
                  patch('wake.standalone.verify_existing_record'), \
@@ -94,10 +94,12 @@ class StandaloneRuntimeTests(unittest.TestCase):
                  patch('wake.standalone.threading.Thread'), \
                  patch('wake.standalone.threading.Event', return_value=stop), \
                  patch('wake.standalone.wake_status', side_effect=[{'next_eligible': None}, due]), \
+                 patch('wake.standalone._wait_for_control', return_value=True) as wait_for_control, \
                  patch.object(engine, 'run', return_value={'status': 'deferred', 'reason': 'quota'}):
                 run(args)
             self.assertEqual(server.runtime_status['state'], 'standby')
-            self.assertEqual(server.runtime_status['resume_at'], due['quota_standby_until'])
+            self.assertIn('retrying on the regular schedule', server.runtime_status['reason'])
+            self.assertEqual(wait_for_control.call_args.args[2], args.interval)
 
     def test_matrix_opt_in_preserves_history_advances_and_survives_restart(self):
         with tempfile.TemporaryDirectory() as directory:

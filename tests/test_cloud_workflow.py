@@ -268,6 +268,18 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertEqual(written["continue_now"], "false")
         self.assertEqual(written["retry_after"], "0")
 
+    def test_provider_rate_limit_uses_scheduled_quota_retry_not_fast_transient_loop(self):
+        result = {
+            "status": "deferred",
+            "reason": "Gemini temporarily unavailable due to a provider quota or rate limit; wake deferred",
+            "provider_attempts": [{"model": "gemini-3.1-flash-lite", "result": "rate_limited"}],
+        }
+        with patch.object(github_wake, "set_step_output") as output:
+            github_wake.continuation_outputs(result)
+        written = {call.args[0]: call.args[1] for call in output.call_args_list}
+        self.assertEqual(written["continue_now"], "false")
+        self.assertEqual(written["retry_after"], "0")
+
     def test_attention_policy_still_fails_auth_and_unexpected_runtime_conditions(self):
         self.assertTrue(github_wake.requires_operator_attention(
             {"status": "failed", "reason": "Gemini HTTP 401; wake attempt counted",

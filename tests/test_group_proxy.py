@@ -52,15 +52,45 @@ class GroupProxyTests(unittest.TestCase):
         html = proxy.wfile.getvalue().decode()
 
         for color, state, meaning in (
+            ("Red", "blocked", "Operator or agent action required"),
+            ("Yellow", "waiting", "Waiting, paused, or stopped"),
             ("Green", "running", "Research running"),
             ("Blue", "idle", "Research idle"),
-            ("Yellow", "waiting", "Waiting, paused, or stopped"),
-            ("Purple", "standby", "Quota standby until midnight Pacific"),
-            ("Red", "blocked", "Operator or agent action required"),
+            ("Purple", "standby", "Provider quota reported; retrying on schedule"),
         ):
             with self.subTest(color=color):
                 self.assertIn(f'data-state="{state}"', html)
                 self.assertIn(f"{color} · {meaning}", html)
+        colors = [html.index(f'{color} ·') for color in ("Red", "Yellow", "Green", "Blue", "Purple")]
+        self.assertEqual(colors, sorted(colors))
+
+    def test_missing_member_status_is_yellow_and_rechecked_not_red(self):
+        proxy = GroupProxy.__new__(GroupProxy)
+        proxy.server = SimpleNamespace(routes={"001.wake.local": {"target": "offline"}})
+        with patch("scripts.wake_group_proxy.HTTPConnection", side_effect=OSError("offline")):
+            state, label = proxy._member_runtime("001.wake.local")
+        self.assertEqual(state, "waiting")
+        self.assertIn("checking again automatically", label)
+
+    def test_blocked_without_operator_action_is_yellow(self):
+        class RuntimeResponse:
+            status = 200
+            def read(self, limit):
+                return json.dumps({"mode": "standalone", "state": "blocked",
+                                   "reason": "unknown temporary condition"}).encode()
+
+        class RuntimeConnection:
+            def __init__(self, *args, **kwargs): pass
+            def request(self, *args, **kwargs): pass
+            def getresponse(self): return RuntimeResponse()
+            def close(self): pass
+
+        proxy = GroupProxy.__new__(GroupProxy)
+        proxy.server = SimpleNamespace(routes={"001.wake.local": {"target": "online"}})
+        with patch("scripts.wake_group_proxy.HTTPConnection", RuntimeConnection):
+            state, label = proxy._member_runtime("001.wake.local")
+        self.assertEqual(state, "waiting")
+        self.assertIn("no operator action", label)
 
     def test_blocked_light_explains_the_required_operator_action(self):
         class RuntimeResponse:

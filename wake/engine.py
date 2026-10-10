@@ -27,7 +27,7 @@ from .application_policy import _rotation_preflight, govern_proposal
 from .governance import Rejected, bob_reflection_due_cycle, require, text, _source_identity
 from .providers import (
     SCHEMA, SYSTEM, ConfiguredDailyLimitReached, DailyQuotaExceeded, ProviderRequestError, TransientProviderError,
-    is_free_tier_daily_quota, retractable_quotes, schema_for_context,
+    retractable_quotes, schema_for_context,
     provider_input_chars, provider_input_budget,
 )
 from .scheduling import charged_request_slots
@@ -2097,21 +2097,6 @@ class Engine:
         load_ms = (perf_counter() - phase_at) * 1000
         require(state["pending"] is None, "An invocation is already pending")
         day = datetime.now(ZoneInfo(self.config["timezone"])).date().isoformat()
-        if charged:
-            exhausted = [
-                item for item in state["invocations"].values()
-                if item.get("charged")
-                and item.get("provider") == provider
-                and item.get("model") == model
-                and item.get("quota_day") == day
-                and item.get("provider_error", {}).get("result") == "daily_quota"
-                and item.get("provider_error", {}).get("model") == model
-                and is_free_tier_daily_quota(item.get("provider_error", {}))
-            ]
-            require(
-                not exhausted,
-                "Gemini free-tier daily quota exhausted for this model until Pacific midnight; no request sent",
-            )
         used = sum(charged_request_slots(i) for i in state["invocations"].values()
                    if i["charged"] and i["quota_day"] == day)
         if charged and not self.config.get("model_daily_call_limits"):
@@ -2670,22 +2655,14 @@ class Engine:
             day = state["invocations"][invocation]["quota_day"]
             if self.config.get("model_daily_call_limits"):
                 used_by_model = {}
-                exhausted_models = set()
                 for item in state["invocations"].values():
                     if item["id"] == invocation or not item["charged"] or item["quota_day"] != day:
                         continue
-                    for attempt in item.get("provider_attempts", []):
-                        if attempt.get("result") == "daily_quota" and is_free_tier_daily_quota(attempt):
-                            failed_model = attempt.get("model")
-                            if failed_model:
-                                exhausted_models.add(failed_model)
                     for attempt in item.get("provider_attempts", []):
                         model = attempt.get("model")
                         if model:
                             used_by_model[model] = used_by_model.get(model, 0) + 1
                 provider.model_request_limits = {model: max(0, self.config["model_daily_call_limits"].get(model, self.config["daily_call_limit"]) - used_by_model.get(model, 0)) for model in provider.models}
-                for model in exhausted_models:
-                    provider.model_request_limits[model] = 0
             else:
                 used = sum(charged_request_slots(i) for i in state["invocations"].values() if i["id"] != invocation and i["charged"] and i["quota_day"] == day)
                 provider.request_limit = min(len(provider.models), self.config["daily_call_limit"] - used)

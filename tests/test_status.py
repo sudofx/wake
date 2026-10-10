@@ -71,7 +71,7 @@ class StatusTests(unittest.TestCase):
         self.assertIsNone(result["daily_call_limit"])
         self.assertEqual(result["provider_request_slots_today"], 2)
 
-    def test_quota_standby_boundary_survives_midnight_for_one_recovery_check(self):
+    def test_configured_daily_limit_waits_until_midnight(self):
         quota = dict(id="q", time="2026-09-14T18:00:00+00:00", status="deferred",
                      charged=True, quota_day="2026-09-14", quota_exhausted="configured_daily_limit",
                      provider_requests_sent=20, reason="Configured daily request limits reached")
@@ -83,6 +83,45 @@ class StatusTests(unittest.TestCase):
         self.assertTrue(before["quota_standby"])
         self.assertFalse(after["quota_standby"])
         self.assertEqual(after["quota_standby_until"], "2026-09-15T07:00:00+00:00")
+
+    def test_provider_daily_quota_stays_purple_but_does_not_gate_scheduled_retry(self):
+        quota = dict(
+            id="q", time="2026-09-14T18:00:00+00:00", status="deferred",
+            charged=True, quota_day="2026-09-14", quota_exhausted="free_tier_daily",
+            provider_requests_sent=4,
+            reason="Gemini free-tier daily quotas exhausted for available models",
+        )
+        state = dict(version=0, invocations={"q": quota}, pending=None)
+        before_reset = wake_status(state, daily_call_limit=None,
+                                   now=datetime(2026, 9, 14, 18, 1, tzinfo=timezone.utc))
+        after_reset = wake_status(state, daily_call_limit=None,
+                                  now=datetime(2026, 9, 15, 7, 1, tzinfo=timezone.utc))
+        for result in (before_reset, after_reset):
+            self.assertTrue(result["provider_quota_limited"])
+            self.assertTrue(result["quota_standby"])
+            self.assertIsNone(result["next_eligible"])
+            self.assertIsNone(result["quota_standby_until"])
+
+        recovered = dict(id="ok", time="2026-09-15T07:02:00+00:00", status="accepted",
+                         charged=True, quota_day="2026-09-15", provider_requests_sent=1)
+        cleared = wake_status(dict(version=1, invocations={"q": quota, "ok": recovered}, pending=None),
+                              daily_call_limit=None,
+                              now=datetime(2026, 9, 15, 7, 3, tzinfo=timezone.utc))
+        self.assertFalse(cleared["provider_quota_limited"])
+        self.assertFalse(cleared["quota_standby"])
+
+    def test_per_minute_quota_response_is_visible_until_later_success(self):
+        limited = dict(
+            id="limited", time="2026-09-14T09:00:00+00:00", status="deferred",
+            charged=True, quota_day="2026-09-14", provider_requests_sent=1,
+            provider_attempts=[dict(model="gemini-model", result="rate_limited")],
+            reason="Gemini temporarily unavailable due to a per-minute model limit; wake deferred",
+        )
+        state = dict(version=0, invocations={"limited": limited}, pending=None)
+        status = wake_status(state, daily_call_limit=None,
+                             now=datetime(2026, 9, 14, 9, 1, tzinfo=timezone.utc))
+        self.assertTrue(status["provider_quota_limited"])
+        self.assertTrue(status["quota_standby"])
 
     def test_model_fallback_quota_does_not_pause_the_installation(self):
         daily_attempt = dict(
@@ -121,7 +160,8 @@ class StatusTests(unittest.TestCase):
             dict(version=0, invocations={"limited": rate_limited}, pending=None),
             daily_call_limit=None, now=now,
         )
-        self.assertFalse(waiting["quota_standby"])
+        self.assertTrue(waiting["quota_standby"])
+        self.assertTrue(waiting["provider_quota_limited"])
         self.assertEqual(
             datetime.fromisoformat(waiting["next_eligible"]),
             datetime(2026, 9, 14, 9, 0, 22, tzinfo=timezone.utc),

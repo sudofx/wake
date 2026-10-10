@@ -12,7 +12,6 @@ import tempfile
 import tomllib
 from datetime import datetime, timezone
 from pathlib import Path
-from zoneinfo import ZoneInfo
 
 
 def api(repository, path):
@@ -45,26 +44,12 @@ def recovery_reason(runs, jobs, runtime, now):
     return None
 
 
-def quota_resume_token(due_at, now):
-    """Return a once-per-Pacific-day resume token only after its reset passes."""
-    if not due_at:
-        return None
-    try:
-        eligible = datetime.fromisoformat(str(due_at).replace('Z', '+00:00'))
-        if eligible.tzinfo is None:
-            eligible = eligible.replace(tzinfo=timezone.utc)
-    except (TypeError, ValueError):
-        return None
-    local_now = now.astimezone(ZoneInfo('America/Los_Angeles'))
-    # Check a bounded midnight window so the scheduled watcher need not restore
-    # the compressed record on every 15-minute transport-health check.
-    if local_now.hour >= 3 or eligible > now:
-        return None
-    return 'quota-resume-' + local_now.date().isoformat()
-
-
-def in_quota_check_window(now):
-    return now.astimezone(ZoneInfo('America/Los_Angeles')).hour < 3
+def quota_retry_token(now):
+    """Return a stable dispatch token for this scheduled 15-minute retry slot."""
+    now = now.astimezone(timezone.utc)
+    slot_minute = now.minute - now.minute % 15
+    slot = now.replace(minute=slot_minute, second=0, microsecond=0)
+    return 'quota-retry-' + slot.strftime('%Y%m%dT%H%MZ')
 
 
 def authoritative_quota_status():
@@ -111,21 +96,28 @@ def main():
     now = datetime.now(timezone.utc)
     token = None
     if not reason:
-        if not in_quota_check_window(now):
-            print('Outside the Pacific-midnight quota check window.')
-            return
         if any(run['status'] != 'completed' for run in runs if run['head_sha'] == runtime):
-            print('A WAKE cycle is active; no duplicate quota resume.')
+            print('A WAKE cycle is active; no duplicate quota retry.')
             return
         quota = authoritative_quota_status()
-        token = quota_resume_token(quota.get('quota_standby_until'), now)
+        token = quota_retry_token(now) if quota.get('provider_quota_limited') else None
+        eligible = quota.get('next_eligible')
+        if eligible:
+            try:
+                due = datetime.fromisoformat(str(eligible).replace('Z', '+00:00'))
+                if due.tzinfo is None:
+                    due = due.replace(tzinfo=timezone.utc)
+                if due > now:
+                    token = None
+            except (TypeError, ValueError):
+                token = None
         if not token:
-            print('No recoverable handoff loss or due quota boundary.')
+            print('No provider quota retry is due.')
             return
         if any(token in str(run.get('display_title', '')) for run in runs):
-            print('Quota resume was already dispatched for this Pacific day.')
+            print('Provider quota retry was already dispatched in this 15-minute slot.')
             return
-        reason = 'daily-quota-reset'
+        reason = 'provider-quota-retry'
     # Recheck intent and executable identity immediately before dispatch. A
     # concurrent Stop still closes/drains this lane and the cycle checks its pin.
     if (api(repository, 'actions/workflows/wake-runner.yml')['state'] != 'active'

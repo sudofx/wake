@@ -281,7 +281,7 @@ class SystemTests(unittest.TestCase):
             clock.now.return_value = datetime(2026, 9, 10, 0, 1, tzinfo=ZoneInfo("America/Los_Angeles"))
             self.assertEqual(self.engine.run(Charged())["status"], "accepted")
 
-    def test_exact_daily_quota_is_deferred_and_blocks_same_day_recall(self):
+    def test_exact_daily_quota_is_deferred_and_scheduled_retry_can_reach_provider(self):
         from wake.providers import DailyQuotaExceeded
         details = {
             "model": "gemini-3.8-flash",
@@ -314,13 +314,17 @@ class SystemTests(unittest.TestCase):
         self.assertEqual(invocation["status"], "deferred")
         self.assertEqual(invocation["provider_error"]["http_status"], 429)
 
-        class NeverCall(Exhausted):
+        class Retry(Exhausted):
+            calls = 0
             def propose(self, request):
-                raise AssertionError("Daily quota guard must suppress the provider call")
+                self.calls += 1
+                raise DailyQuotaExceeded("API still limited", details)
 
-        with self.assertRaisesRegex(Rejected, "daily quota exhausted"):
-            self.engine.run(NeverCall())
-        self.assertEqual(len(self.engine.store.load()["invocations"]), 1)
+        retry = Retry()
+        retried = self.engine.run(retry)
+        self.assertEqual(retried["status"], "deferred")
+        self.assertEqual(retry.calls, 1)
+        self.assertEqual(len(self.engine.store.load()["invocations"]), 2)
 
     def test_context_ceiling_prevents_call(self):
         self.engine.config["max_context_chars"] = 10
@@ -677,22 +681,39 @@ class SystemTests(unittest.TestCase):
         wait.assert_not_called()
         denied.close()
 
-    def test_real_adapter_daily_quota_makes_one_request_then_preflight_blocks(self):
+    def test_real_adapter_can_retry_after_daily_quota_and_later_success_clears_status(self):
         body = {"error": {"details": [{"violations": [{
             "quotaId": "GenerateRequestsPerDayPerProjectPerModel-FreeTier"}]}]}}
-        failure = urllib.error.HTTPError("https://example.invalid", 429, "limited", Message(),
-                                         io.BytesIO(json.dumps(body).encode()))
+        def limited_response():
+            return urllib.error.HTTPError("https://example.invalid", 429, "limited", Message(),
+                                          io.BytesIO(json.dumps(body).encode()))
+
+        class Response:
+            def __init__(self, req): self.req = req
+            def __enter__(self): return self
+            def __exit__(self, *args): pass
+            def read(self, maximum):
+                context = json.loads(json.loads(self.req.data)["contents"][0]["parts"][0]["text"])
+                raw, _ = Fixture().propose({"context": context})
+                return json.dumps({"candidates": [{"finishReason": "STOP", "content": {"parts": [{"text": raw}]}}]}).encode()
+
+        requests = []
+        def respond(req, **kwargs):
+            requests.append(req)
+            return limited_response() if len(requests) == 1 else Response(req)
+
         with patch.dict("os.environ", {"GEMINI_API_KEY": "test-key"}), patch(
-                "urllib.request.urlopen", side_effect=failure) as network:
+                "urllib.request.urlopen", side_effect=respond) as network:
             provider = Gemini({**DEFAULTS, "free_tier_confirmed": True})
             result = self.engine.run(provider)
             self.assertEqual(result["status"], "deferred")
-            with self.assertRaisesRegex(Rejected, "daily quota exhausted"):
-                self.engine.run(provider)
-            self.assertEqual(network.call_count, 1)
+            recovered = self.engine.run(provider)
+            self.assertEqual(recovered["status"], "accepted")
+            self.assertEqual(network.call_count, 2)
         state = self.engine.store.load()
-        self.assertEqual(state["version"], 0)
+        self.assertEqual(state["version"], 1)
         self.assertEqual(state["invocations"][result["id"]]["provider_requests_sent"], 1)
+        self.assertFalse(recovered["wake_status"]["provider_quota_limited"])
 
     def test_successful_charged_wake_records_one_request(self):
         class Response:

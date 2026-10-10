@@ -502,7 +502,8 @@ create_container() {
             -e "WAKE_GROUP_INSTANCE=$group_instance"
             -e "WAKE_GROUP_PEERS=$peers"
             -e "WAKE_PUBLIC_HOSTNAME=$public_host"
-            -e "WAKE_PARENT_HOSTNAME=$parent_host")
+            -e "WAKE_PARENT_HOSTNAME=$parent_host"
+            -e "WAKE_GROUP_COORDINATOR_URL=http://$GROUP_ROUTER:8080/group/coordinator")
         if [[ -n "$parent_host" ]]; then
             group_args+=(--label "$LABEL.parent=$parent_host")
         fi

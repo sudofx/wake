@@ -697,6 +697,7 @@ class Gemini:
         self.model_request_limits = None
         self.skipped_models = []
         self.record_attempt = None
+        self.request_gate = None
         require(
             config["free_tier_confirmed"] is True,
             "Set free_tier_confirmed=true in wake.toml only for an API project with billing disabled",
@@ -816,7 +817,11 @@ class Gemini:
             )
 
             try:
-                response = shared_provider.generate(generation)
+                if self.request_gate is None:
+                    response = shared_provider.generate(generation)
+                else:
+                    with self.request_gate.request(model):
+                        response = shared_provider.generate(generation)
                 attempt.update(response.metadata)
                 attempt["result"] = "success"
                 raw = response.text
@@ -860,8 +865,13 @@ class Gemini:
                         "Gemini temporarily unavailable due to a per-minute model limit; wake deferred"
                     )
                 else:
-                    error = ProviderRequestError(
-                        "Gemini HTTP 429; wake attempt counted"
+                    # A 429 is provider-reported quota/rate pressure even when
+                    # Google omits a recognizable quotaId. Defer it so the
+                    # scheduler can retry; do not misreport it as a broken key
+                    # or a fault requiring operator intervention.
+                    attempt["result"] = "rate_limited"
+                    error = TransientProviderError(
+                        "Gemini temporarily unavailable due to a provider quota or rate limit; wake deferred"
                     )
 
             except WakeProviderTemporaryError as exc:
@@ -923,6 +933,7 @@ class Gemini:
                 and self.fallback_requires_primary_daily_quota
                 and model == self.model
                 and not primary_daily_quota_exhausted
+                and attempt.get("result") != "rate_limited"
             ):
                 raise error
 

@@ -294,6 +294,9 @@ def run(args):
                             continue
                     server.runtime_status = {'mode': 'standalone', 'state': 'running'}
                     provider = Fixture(args.model or 'standalone-fixture') if provider_name == 'fixture' else Gemini(settings, args.model)
+                    if provider_name == 'gemini':
+                        from .group_coordinator import group_provider_gate
+                        provider.request_gate = group_provider_gate(settings)
                     from .research import collect
                     try:
                         result = engine.run(provider, collector=collect if provider_name == 'gemini' and settings.get('mission') else None,
@@ -321,11 +324,19 @@ def run(args):
                         engine.store.load(), daily_call_limit=daily_limit
                     )
                     if quota_schedule.get('quota_standby'):
-                        server.runtime_status = {
-                            'mode': 'standalone', 'state': 'standby',
-                            'resume_at': quota_schedule['quota_standby_until'],
-                            'reason': 'API allowance exhausted; research resumes at midnight Pacific time',
-                        }
+                        if quota_schedule.get('provider_quota_limited'):
+                            server.runtime_status = {
+                                'mode': 'standalone', 'state': 'standby',
+                                'reason': 'Provider API quota reported; retrying on the regular schedule',
+                            }
+                        else:
+                            server.runtime_status = {
+                                'mode': 'standalone', 'state': 'standby',
+                                'resume_at': quota_schedule['quota_standby_until'],
+                                'reason': 'Configured API request limit reached; research resumes at midnight Pacific time',
+                            }
+                        if _wait_for_control(stop, data, args.interval, research_mode, reset_id):
+                            break
                         continue
                     if result.get('status') == 'failed':
                         # Known temporary failures return deferred. A failed

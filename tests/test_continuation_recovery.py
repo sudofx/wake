@@ -41,15 +41,11 @@ class ContinuationRecoveryTests(unittest.TestCase):
         later = {**self.run, 'id': 2, 'created_at': self.now.isoformat(), 'conclusion': 'failure'}
         self.assertIsNone(recovery_reason([self.run, later], {}, 'live', self.now))
 
-    def test_quota_resume_is_due_only_after_midnight_and_once_per_pacific_date(self):
-        due = datetime(2026, 9, 15, 7, 0, tzinfo=timezone.utc)
-        self.assertIsNone(repair_continuation.quota_resume_token(due.isoformat(), due-timedelta(minutes=1)))
-        self.assertEqual(repair_continuation.quota_resume_token(due.isoformat(), due+timedelta(minutes=1)),
-                         'quota-resume-2026-09-15')
-        self.assertIsNone(repair_continuation.quota_resume_token(due.isoformat(), due+timedelta(hours=3)))
-        self.assertIsNone(repair_continuation.quota_resume_token(None, due+timedelta(minutes=1)))
-        self.assertTrue(repair_continuation.in_quota_check_window(due+timedelta(hours=2)))
-        self.assertFalse(repair_continuation.in_quota_check_window(due+timedelta(hours=3)))
+    def test_quota_retries_use_distinct_stable_fifteen_minute_slots(self):
+        now = datetime(2026, 9, 15, 7, 7, 42, tzinfo=timezone.utc)
+        self.assertEqual(repair_continuation.quota_retry_token(now), 'quota-retry-20260915T0700Z')
+        self.assertEqual(repair_continuation.quota_retry_token(now + timedelta(minutes=8)),
+                         'quota-retry-20260915T0715Z')
 
     def test_closed_operator_latch_never_dispatches(self):
         with patch.dict('os.environ', {'GITHUB_REPOSITORY': 'fixture/wake'}), \
@@ -58,6 +54,28 @@ class ContinuationRecoveryTests(unittest.TestCase):
             repair_continuation.main()
         read.assert_called_once()
         dispatch.assert_not_called()
+
+    def test_provider_quota_dispatches_regular_retry_without_waiting_for_midnight(self):
+        def api(repository, path):
+            if path == 'actions/workflows/wake-runner.yml':
+                return {'state': 'active'}
+            if 'operator-' in path or 'promote-runtime' in path:
+                return {'workflow_runs': []}
+            if path == 'git/ref/heads/wake-runtime':
+                return {'object': {'sha': 'live'}}
+            if '/jobs?' in path:
+                return {'jobs': [dict(name='wake', conclusion='success')]}
+            return {'workflow_runs': []}
+
+        with patch.dict('os.environ', {'GITHUB_REPOSITORY': 'fixture/wake', 'GITHUB_RUN_ID': '123'}), \
+             patch.object(repair_continuation, 'api', side_effect=api), \
+             patch.object(repair_continuation, 'authoritative_quota_status',
+                          return_value={'provider_quota_limited': True, 'next_eligible': None}), \
+             patch.object(repair_continuation.subprocess, 'run') as dispatch:
+            repair_continuation.main()
+        self.assertEqual(dispatch.call_count, 1)
+        command = dispatch.call_args.args[0]
+        self.assertIn('quota-retry-', ' '.join(command))
 
     def test_concurrent_stop_wins_before_recovery_dispatch(self):
         reads = 0

@@ -185,13 +185,19 @@ class FailoverTests(unittest.TestCase):
                 self.assertEqual(result["status"], "accepted")
                 self.assertEqual(network.call_count, 2)
 
-    def test_auth_request_and_unclassified_quota_stop_chain(self):
-        for status in (400, 401, 403, 404, 429):
+    def test_auth_and_client_errors_stop_chain_but_unclassified_429_is_deferred(self):
+        for status in (400, 401, 403, 404):
             with self.subTest(status=status):
                 result, _, item, network = self.run_chain([failure(status)])
                 self.assertEqual(result["status"], "failed")
                 self.assertEqual(network.call_count, 1)
                 self.assertNotIn("quota_exhausted", item)
+
+        result, _, item, network = self.run_chain([failure(429)])
+        self.assertEqual(result["status"], "deferred")
+        self.assertEqual(network.call_count, 1)
+        self.assertEqual(item["provider_attempts"][0]["result"], "rate_limited")
+        self.assertTrue(result["wake_status"]["provider_quota_limited"])
 
     def test_per_minute_quota_uses_the_next_model_fallback(self):
         self.settings["gemini_fallback_requires_primary_daily_quota"] = True

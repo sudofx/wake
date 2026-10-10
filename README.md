@@ -86,8 +86,14 @@ an offline peer does not block the others. Solo, Codespace and hosted installati
 remain outside the group exchange.
 
 When a daily provider allowance is exhausted, research enters a recoverable
-standby until midnight Pacific time. The runtime status indicator turns purple;
-hosted recovery checks the authoritative `wake-state` record before resuming.
+standby and the runtime status indicator turns purple. Provider-reported quota
+limits are retried on the ordinary schedule so a recovered model can be used;
+only an operator-configured hard daily cap waits until midnight Pacific time.
+Hosted recovery checks the authoritative `wake-state` record before resuming.
+Grouped local containers request provider-call slots from their local gateway,
+which serializes calls and spaces them by model. This scheduler has no research
+state and fails open if the gateway is unavailable; solo, Codespace and hosted
+installs do not use it.
 
 ## Start here — no account, no API calls
 
@@ -164,7 +170,7 @@ GEMINI_API_KEY=your_key_here
 
 ### 3. Configure the model and topics
 
-The provider/model settings live in `wake.toml`. The repository uses Gemini 3.1 Flash-Lite first, then falls back through Gemini 3.8 Flash, 3.5 Flash-Lite and 3.6 Flash only after an exact per-model daily free-tier quota response. Change model names or per-model daily ceilings there only to values your Gemini project actually supports.
+The provider/model settings live in `wake.toml`. The repository uses Gemini 3.1 Flash-Lite first, then falls back through Gemini 3.8 Flash, 3.5 Flash-Lite and 3.6 Flash after a per-model daily quota or 429 rate-limit response. Change model names or per-model daily ceilings there only to values your Gemini project actually supports.
 
 Research topics live **only** in `research-topics.toml`. On a new checkout, run `cp example.research-topics.toml research-topics.toml`, edit the copy, then start research. The custom file is ignored by Git for local use; to include topics in a hosted release, explicitly run `git add -f research-topics.toml` before committing and pushing. Startup explains how to create the file if it is absent. Do not hardcode topics into governance or prompts.
 

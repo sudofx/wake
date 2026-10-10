@@ -42,7 +42,7 @@ const actionsLight=document.querySelector('.actions-light');
 if(actionsLight && window.WAKE_DEPLOYMENT?.mode!=='hosted'){
   actionsLight.href='/runtime.json';
   const applyLocal=status=>{
-    const label=status.state==='standby'?'Research is paused until midnight Pacific time':
+    const label=status.state==='standby'?(status.reason||'Provider quota reported; retrying on the regular schedule'):
       ({running:'Running',waiting:'Waiting',idle:'Idle',paused:'Paused',blocked:'Blocked'})[status.state]||'Unknown';
     actionsLight.dataset.state=status.state==='running'?'running':status.state==='paused'?'stopped':status.state;
     actionsLight.title='Local WAKE · '+label;
@@ -61,7 +61,7 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.schema===1 && window.WAKE_DEPLOYMENT.
   const CAMPAIGN_ACTIVE=new Set(['queued','in_progress','waiting','requested','pending']);
   const validState=state=>['running','stopped','campaign','standby'].includes(state);
   const stateTitle=(state,suffix='')=>{
-    const base=state==='standby'?'Research is paused until midnight Pacific time':state==='campaign'?'Continuity campaign':state==='running'?'Running':state==='stopped'?'Stopped':'Status unavailable';
+    const base=state==='standby'?'Provider quota reported; retrying on the regular schedule':state==='campaign'?'Continuity campaign':state==='running'?'Running':state==='stopped'?'Stopped':'Status unavailable';
     return suffix?`${base} · ${suffix}`:base;
   };
   const applyActionsState=(state,title)=>{
@@ -79,7 +79,10 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.schema===1 && window.WAKE_DEPLOYMENT.
   };
   const applyCached=(cached,suffix='last verified')=>{
     if(!cached)return false;
-    applyActionsState(cached.state,stateTitle(cached.state,suffix));
+    const title=cached.state==='standby'&&cached.standby_until
+      ?`Configured request limit; resumes ${cached.standby_until}`
+      :stateTitle(cached.state,suffix);
+    applyActionsState(cached.state,title);
     return true;
   };
   const initial=readCached();
@@ -106,10 +109,13 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.schema===1 && window.WAKE_DEPLOYMENT.
         if(latch.state==='active'){
           const liveUrl='https://raw.githubusercontent.com/sudofx/wake-live/main/live.json?_='+stamp;
           return fetchJson(liveUrl).then(live=>{
-            const until=live?.wake_status?.quota_standby_until;
-            if(live?.wake_status?.quota_standby===true&&Number.isFinite(Date.parse(until))&&Date.now()<Date.parse(until)){
-              const standby={state:'standby',verified_at:Date.now(),standby_until:until};
-              applyActionsState('standby',stateTitle('standby'));
+            const quotaStatus=live?.wake_status||{};
+            const quotaLimited=quotaStatus.provider_quota_limited===true||quotaStatus.quota_standby===true;
+            if(quotaLimited){
+              const standbyUntil=quotaStatus.quota_standby_until||null;
+              const message=standbyUntil?`Configured request limit; resumes ${standbyUntil}`:stateTitle('standby');
+              const standby={state:'standby',verified_at:Date.now(),standby_until:standbyUntil};
+              applyActionsState('standby',message);
               try{localStorage.setItem(CACHE_KEY,JSON.stringify(standby));}catch{}
             }else remember('running');
             return null;
