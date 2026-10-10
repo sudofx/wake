@@ -256,18 +256,30 @@ class GroupProxy(BaseHTTPRequestHandler):
             state = packet.get('state')
             labels = {
                 'running': 'Research running',
-                'idle': 'Research idle',
-                'waiting': 'Waiting for the next research cycle',
+                'idle': 'Research idle; waiting for the next cycle',
+                'waiting': 'Research waiting for its next retry',
                 'standby': 'Research paused until midnight Pacific time',
-                'paused': 'Research paused',
-                'stopped': 'Research stopped',
-                'blocked': 'Research blocked',
+                'paused': 'Research paused by operator',
+                'stopped': 'Research stopped by operator',
+                'blocked': 'Operator or agent action required',
             }
             if state not in labels:
                 raise ValueError('unknown runtime state')
-            return state, labels[state]
+            label = labels[state]
+            if state == 'waiting' and packet.get('next_eligible'):
+                label = f"{label}; retry scheduled for {str(packet['next_eligible'])[:32]}"
+            elif state == 'standby' and packet.get('resume_at'):
+                label = f"{label}; resumes {str(packet['resume_at'])[:32]}"
+            elif state == 'blocked':
+                reason = ' '.join(str(packet.get('reason') or '').split())[:180]
+                action = ' '.join(str(packet.get('action') or '').split())[:120]
+                if reason:
+                    label = f"{label}: {reason}"
+                if action:
+                    label = f"{label} · {action}"
+            return state, label
         except (KeyError, OSError, ValueError, TypeError):
-            return 'blocked', 'Container unavailable'
+            return 'blocked', 'Operator or agent action required: container unavailable'
         finally:
             if connection is not None:
                 connection.close()
@@ -445,7 +457,7 @@ class GroupProxy(BaseHTTPRequestHandler):
             '<li><span class="member-status-light" data-state="idle" aria-hidden="true"><i></i></span>Blue · Research idle</li>'
             '<li><span class="member-status-light" data-state="waiting" aria-hidden="true"><i></i></span>Yellow · Waiting, paused, or stopped</li>'
             '<li><span class="member-status-light" data-state="standby" aria-hidden="true"><i></i></span>Purple · Quota standby until midnight Pacific</li>'
-            '<li><span class="member-status-light" data-state="blocked" aria-hidden="true"><i></i></span>Red · Blocked or unavailable</li>'
+            '<li><span class="member-status-light" data-state="blocked" aria-hidden="true"><i></i></span>Red · Operator or agent action required</li>'
             '</ul></section>'
             '<p class="gateway-foot">Each member keeps its own research record and can continue independently.</p>'
             '</main><script>(function(){const updated=document.getElementById("status-updated");'

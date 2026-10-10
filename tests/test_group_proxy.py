@@ -56,11 +56,44 @@ class GroupProxyTests(unittest.TestCase):
             ("Blue", "idle", "Research idle"),
             ("Yellow", "waiting", "Waiting, paused, or stopped"),
             ("Purple", "standby", "Quota standby until midnight Pacific"),
-            ("Red", "blocked", "Blocked or unavailable"),
+            ("Red", "blocked", "Operator or agent action required"),
         ):
             with self.subTest(color=color):
                 self.assertIn(f'data-state="{state}"', html)
                 self.assertIn(f"{color} · {meaning}", html)
+
+    def test_blocked_light_explains_the_required_operator_action(self):
+        class RuntimeResponse:
+            status = 200
+
+            def read(self, limit):
+                return json.dumps({
+                    "mode": "standalone", "state": "blocked",
+                    "reason": "Invalid provider configuration",
+                    "action": "Check the API key and restart",
+                }).encode()
+
+        class RuntimeConnection:
+            def __init__(self, *args, **kwargs):
+                pass
+
+            def request(self, *args, **kwargs):
+                pass
+
+            def getresponse(self):
+                return RuntimeResponse()
+
+            def close(self):
+                pass
+
+        proxy = GroupProxy.__new__(GroupProxy)
+        proxy.server = SimpleNamespace(routes={"001.wake.local": {"target": "001.wake.local"}})
+        with patch("scripts.wake_group_proxy.HTTPConnection", RuntimeConnection):
+            state, label = proxy._member_runtime("001.wake.local")
+        self.assertEqual(state, "blocked")
+        self.assertIn("Operator or agent action required", label)
+        self.assertIn("Invalid provider configuration", label)
+        self.assertIn("Check the API key and restart", label)
 
     def test_zero_ordinal_hostname_serves_its_group_directory(self):
         proxy = GroupProxy.__new__(GroupProxy)
