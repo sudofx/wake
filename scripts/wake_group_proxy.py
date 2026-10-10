@@ -2,6 +2,7 @@
 """LAN and host-name router for local wake_runner groups."""
 
 import argparse
+from concurrent.futures import ThreadPoolExecutor
 from html import escape
 from http.client import HTTPConnection
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -43,6 +44,9 @@ class GroupProxy(BaseHTTPRequestHandler):
         except ValueError:
             lan_ip = None
         if lan_ip is not None:
+            if self.path.split("?", 1)[0] == "/group/status.json":
+                self._serve_status(self._accessible_members())
+                return
             if self.path not in {"/", "/index.html"}:
                 self.send_error(404, "The group proxy only serves its member directory by IP")
                 return
@@ -51,6 +55,9 @@ class GroupProxy(BaseHTTPRequestHandler):
         if group is not None:
             if not self._allowed(group):
                 self.send_error(403, "This host belongs to a different local WAKE group")
+                return
+            if self.path.split("?", 1)[0] == "/group/status.json":
+                self._serve_status(group.get("members", []))
                 return
             if self.path not in {"/", "/index.html"}:
                 self.send_error(404, "The group proxy only serves its member directory")
@@ -164,6 +171,30 @@ class GroupProxy(BaseHTTPRequestHandler):
         body = json.dumps({"schema": 1, "available": False, "error": message}).encode()
         self.send_response(status)
         self.send_header("Content-Type", "application/json")
+        self.send_header("Cache-Control", "no-store")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        if self.command != "HEAD":
+            self.wfile.write(body)
+
+    def _accessible_members(self):
+        return [
+            member
+            for member, route in self.server.routes.items()
+            if route.get("host_ip") not in {"127.0.0.1", "::1"}
+        ]
+
+    def _serve_status(self, members):
+        members = list(members)
+        with ThreadPoolExecutor(max_workers=min(16, max(1, len(members)))) as pool:
+            results = pool.map(self._member_runtime, members)
+            states = {
+                member: {"state": state, "label": label}
+                for member, (state, label) in zip(members, results)
+            }
+        body = json.dumps({"states": states}, separators=(",", ":")).encode("utf-8")
+        self.send_response(200)
+        self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Cache-Control", "no-store")
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
@@ -315,7 +346,8 @@ class GroupProxy(BaseHTTPRequestHandler):
             f'{destination} title="{escape(label, quote=True)}" '
             f'aria-label="Open {escape(member, quote=True)} in a new tab · {escape(label, quote=True)}">'
             f'<span>{escape(display)}</span>'
-            f'<span class="member-status-light" data-state="{escape(state, quote=True)}" '
+            f'<span class="member-status-light" data-member="{escape(member, quote=True)}" '
+            f'data-state="{escape(state, quote=True)}" '
             f'role="img" aria-label="{escape(label, quote=True)}"><i></i></span></{tag}>'
         )
 
@@ -383,7 +415,8 @@ class GroupProxy(BaseHTTPRequestHandler):
             '.member-button.unavailable{opacity:.55;cursor:default}'
             '@media(hover:hover){.member-button:hover{background:var(--soft);border-color:var(--button-hover-line);transform:translateY(-1px)}}'
             '.status-key{margin:24px 0 0;padding:15px 16px;border:1px solid var(--line);border-radius:11px;background:var(--surface)}'
-            '.status-key-title{margin:0 0 10px;color:var(--muted);font:9px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.09em;text-transform:uppercase}'
+            '.status-key-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 10px;color:var(--muted);font:9px/1.4 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.09em;text-transform:uppercase}'
+            '.status-updated{font:10px/1.4 Arial,Helvetica,sans-serif;letter-spacing:0;text-transform:none;white-space:nowrap}'
             '.status-key-list{display:flex;flex-wrap:wrap;gap:9px 18px;margin:0;padding:0;list-style:none}'
             '.status-key-list li{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:11px;line-height:1.4}'
             '.status-key-list .member-status-light{width:10px;height:10px;flex-basis:10px}'
@@ -405,7 +438,8 @@ class GroupProxy(BaseHTTPRequestHandler):
             f'<h1>{escape(title)}</h1>'
             '<p class="intro-copy">Choose a member to open its WAKE Console in a new tab.</p></div>'
             f'<div class="group-list">{"".join(panels)}</div>'
-            '<section class="status-key" aria-label="Status light key"><p class="status-key-title">Status lights</p>'
+            '<section class="status-key" aria-label="Status light key"><p class="status-key-title">Status lights'
+            '<span class="status-updated" id="status-updated" role="status">Auto-refreshes every 5 seconds</span></p>'
             '<ul class="status-key-list">'
             '<li><span class="member-status-light" data-state="running" aria-hidden="true"><i></i></span>Green · Research running</li>'
             '<li><span class="member-status-light" data-state="idle" aria-hidden="true"><i></i></span>Blue · Research idle</li>'
@@ -414,7 +448,17 @@ class GroupProxy(BaseHTTPRequestHandler):
             '<li><span class="member-status-light" data-state="blocked" aria-hidden="true"><i></i></span>Red · Blocked or unavailable</li>'
             '</ul></section>'
             '<p class="gateway-foot">Each member keeps its own research record and can continue independently.</p>'
-            '</main><script>(function(){const root=document.documentElement,media=matchMedia("(prefers-color-scheme: dark)"),'
+            '</main><script>(function(){const updated=document.getElementById("status-updated");'
+            'async function refreshStatuses(){if(document.hidden)return;try{const response=await fetch("/group/status.json",'
+            '{cache:"no-store",headers:{Accept:"application/json"}});if(!response.ok)throw new Error("status request failed");'
+            'const payload=await response.json();for(const [member,status] of Object.entries(payload.states||{})){'
+            'const light=document.querySelector(`.member-status-light[data-member="${CSS.escape(member)}"]`);'
+            'if(!light||!status||typeof status.state!=="string"||typeof status.label!=="string")continue;'
+            'light.dataset.state=status.state;light.setAttribute("aria-label",status.label);const button=light.closest(".member-button");'
+            'if(button){button.title=status.label;button.setAttribute("aria-label",`Open ${member} in a new tab · ${status.label}`)}}'
+            'updated.textContent=`Updated ${new Date().toLocaleTimeString([], {hour:"numeric",minute:"2-digit"})}`;'
+            '}catch{updated.textContent="Status check unavailable"}}setInterval(refreshStatuses,5000);})();'
+            '(function(){const root=document.documentElement,media=matchMedia("(prefers-color-scheme: dark)"),'
             'key="wake-site-theme",toggle=document.getElementById("theme-toggle");let choice;'
             'try{choice=localStorage.getItem(key)}catch{}if(!["dark","light"].includes(choice))choice=null;'
             'const sync=()=>{const dark=(choice||(media.matches?"dark":"light"))==="dark",theme=dark?"dark":"light";'
@@ -427,6 +471,7 @@ class GroupProxy(BaseHTTPRequestHandler):
         ).encode("utf-8")
         self.send_response(200)
         self.send_header("Content-Type", "text/html; charset=utf-8")
+        self.send_header("Cache-Control", "no-store")
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         if self.command != "HEAD":

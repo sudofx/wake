@@ -99,6 +99,31 @@ class GroupProxyTests(unittest.TestCase):
         proxy.client_address = ("127.0.0.1", 12345)
         self.assertTrue(proxy._allowed(proxy.server.groups["wake.local"]))
 
+    def test_gateway_status_endpoint_returns_each_members_current_state(self):
+        proxy = GroupProxy.__new__(GroupProxy)
+        proxy.server = SimpleNamespace(
+            groups={"wake.local": {"members": ["001.wake.local", "002.wake.local"]}},
+            routes={},
+        )
+        proxy.headers = {"Host": "000.wake.local"}
+        proxy.path = "/group/status.json"
+        proxy.client_address = ("127.0.0.1", 12345)
+        proxy.command = "GET"
+        proxy.wfile = io.BytesIO()
+        proxy.send_response = lambda *args: None
+        proxy.send_header = lambda *args: None
+        proxy.end_headers = lambda: None
+        proxy._member_runtime = lambda member: (
+            ("standby", "Research paused until midnight Pacific time")
+            if member.startswith("001") else ("blocked", "Research blocked")
+        )
+
+        proxy._forward()
+
+        payload = json.loads(proxy.wfile.getvalue())
+        self.assertEqual(payload["states"]["001.wake.local"]["state"], "standby")
+        self.assertEqual(payload["states"]["002.wake.local"]["state"], "blocked")
+
     def test_group_bob_skips_unreachable_peer_and_serves_the_reachable_member(self):
         proxy = GroupProxy.__new__(GroupProxy)
         proxy.server = SimpleNamespace(
