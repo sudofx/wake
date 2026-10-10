@@ -193,11 +193,12 @@ class FailoverTests(unittest.TestCase):
                 self.assertEqual(network.call_count, 1)
                 self.assertNotIn("quota_exhausted", item)
 
-        result, _, item, network = self.run_chain([failure(429)])
+        self.settings["gemini_fallback_requires_primary_daily_quota"] = True
+        result, state, item, network = self.run_chain([failure(429)])
         self.assertEqual(result["status"], "deferred")
         self.assertEqual(network.call_count, 1)
         self.assertEqual(item["provider_attempts"][0]["result"], "rate_limited")
-        self.assertTrue(result["wake_status"]["provider_quota_limited"])
+        self.assertTrue(wake_status(state)["provider_quota_limited"])
 
     def test_per_minute_quota_uses_the_next_model_fallback(self):
         self.settings["gemini_fallback_requires_primary_daily_quota"] = True

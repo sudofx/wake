@@ -700,7 +700,9 @@ class SystemTests(unittest.TestCase):
         requests = []
         def respond(req, **kwargs):
             requests.append(req)
-            return limited_response() if len(requests) == 1 else Response(req)
+            if len(requests) == 1:
+                raise limited_response()
+            return Response(req)
 
         with patch.dict("os.environ", {"GEMINI_API_KEY": "test-key"}), patch(
                 "urllib.request.urlopen", side_effect=respond) as network:
@@ -710,10 +712,11 @@ class SystemTests(unittest.TestCase):
             recovered = self.engine.run(provider)
             self.assertEqual(recovered["status"], "accepted")
             self.assertEqual(network.call_count, 2)
+        from wake.scheduling import wake_status
         state = self.engine.store.load()
         self.assertEqual(state["version"], 1)
         self.assertEqual(state["invocations"][result["id"]]["provider_requests_sent"], 1)
-        self.assertFalse(recovered["wake_status"]["provider_quota_limited"])
+        self.assertFalse(wake_status(state)["provider_quota_limited"])
 
     def test_successful_charged_wake_records_one_request(self):
         class Response:
@@ -734,7 +737,7 @@ class SystemTests(unittest.TestCase):
         self.assertEqual(sum(i["charged"] for i in state["invocations"].values()), 1)
 
     def test_gemini_429_exposes_safe_structured_diagnostics(self):
-        from wake.providers import ProviderRequestError, DailyQuotaExceeded
+        from wake.providers import TransientProviderError, DailyQuotaExceeded
         headers = Message()
         headers["Retry-After"] = "37"
         body = {
@@ -759,7 +762,7 @@ class SystemTests(unittest.TestCase):
         with patch.dict("os.environ", {"GEMINI_API_KEY":"test-key"}), \
              patch("urllib.request.urlopen", side_effect=limited) as network, \
              patch("wake.providers.time.monotonic", side_effect=[10.0, 11.25]):
-            with self.assertRaises(ProviderRequestError) as caught:
+            with self.assertRaises(TransientProviderError) as caught:
                 Gemini({**DEFAULTS, "free_tier_confirmed":True}).propose({"system":"rules", "context":{}})
         self.assertNotIsInstance(caught.exception, DailyQuotaExceeded)
         self.assertEqual(network.call_count, 1)
@@ -773,7 +776,7 @@ class SystemTests(unittest.TestCase):
                          "GenerateRequestsPerMinutePerProjectPerModel")
         self.assertNotIn("apiKey", detail["provider_error"])
 
-    def test_gemini_429_diagnostics_are_durable_on_failed_invocation(self):
+    def test_gemini_429_diagnostics_are_durable_on_deferred_invocation(self):
         headers = Message()
         headers["Retry-After"] = "12"
         body = {"error": {"code": 429, "status": "RESOURCE_EXHAUSTED",
@@ -787,13 +790,15 @@ class SystemTests(unittest.TestCase):
              patch("urllib.request.urlopen", side_effect=limited):
             provider = Gemini({**DEFAULTS, "free_tier_confirmed":True})
             result = self.engine.run(provider)
-        self.assertEqual(result["status"], "failed")
+        self.assertEqual(result["status"], "deferred")
+        from wake.scheduling import wake_status
+        self.assertTrue(wake_status(self.engine.store.load())["provider_quota_limited"])
         self.assertEqual(result["provider_error"]["http_status"], 429)
-        failed = [e for e in self.engine.store.events() if e["kind"] == "failed"][-1]
-        self.assertEqual(failed["payload"]["provider_error"]["retry_after"], "12")
-        self.assertEqual(failed["payload"]["provider_error"]["provider_error"]["status"],
+        deferred = [e for e in self.engine.store.events() if e["kind"] == "deferred"][-1]
+        self.assertEqual(deferred["payload"]["provider_error"]["retry_after"], "12")
+        self.assertEqual(deferred["payload"]["provider_error"]["provider_error"]["status"],
                          "RESOURCE_EXHAUSTED")
-        self.assertEqual(self.engine.store.load()["invocations"][result["id"]]["status"], "failed")
+        self.assertEqual(self.engine.store.load()["invocations"][result["id"]]["status"], "deferred")
 
 
 if __name__ == "__main__":

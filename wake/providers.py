@@ -760,7 +760,7 @@ class Gemini:
         error = TransientProviderError(
             "Gemini provider wall budget exhausted; wake deferred"
         )
-        primary_daily_quota_exhausted = False
+        primary_model_quota_confirmed = False
 
         for model in self.models:
             if attempted >= self.request_limit:
@@ -842,7 +842,7 @@ class Gemini:
 
                 if exact_daily_quota:
                     if model == self.model:
-                        primary_daily_quota_exhausted = True
+                        primary_model_quota_confirmed = True
                     remaining = self.models[self.models.index(model) + 1 :]
                     if any(
                         self.model_request_limits is None
@@ -857,6 +857,8 @@ class Gemini:
                             "Gemini free-tier daily quotas exhausted for available models; wake deferred until Pacific midnight"
                         )
                 elif exact_minute_quota:
+                    if model == self.model:
+                        primary_model_quota_confirmed = True
                     attempt["result"] = "rate_limited"
                     retry_after_seconds = _retry_after_seconds(details)
                     if retry_after_seconds is not None:
@@ -932,8 +934,7 @@ class Gemini:
                 isinstance(error, TransientProviderError)
                 and self.fallback_requires_primary_daily_quota
                 and model == self.model
-                and not primary_daily_quota_exhausted
-                and attempt.get("result") != "rate_limited"
+                and not primary_model_quota_confirmed
             ):
                 raise error
 

@@ -225,6 +225,29 @@ class CloudWorkflowTests(unittest.TestCase):
                                  "refs/heads/wake-archive-*", "--format=%(refname:short)").stdout.splitlines()
         self.assertIn(archive_branch, archived_refs)
 
+    def test_cloud_reset_can_enable_continuity_before_any_fresh_research(self):
+        self.assertEqual(self.run_cloud(Fixture("before-reset")), 0)
+
+        class NeverCall(Fixture):
+            def propose(self, request):
+                raise AssertionError("Reset and continuity setup must not call a model")
+
+        self.assertEqual(
+            self.run_cloud(
+                NeverCall("reset-with-continuity"),
+                reset=True,
+                enable_continuity_matrix=True,
+            ),
+            0,
+        )
+        live = self.live()
+        self.assertEqual(live["state"]["version"], 0)
+        self.assertEqual(live["state"]["journal"], [])
+        self.assertEqual(live["state"]["invocations"], {})
+        self.assertTrue(live["research"]["matrix"]["enabled"])
+        self.assertEqual(live["research"]["matrix"]["completed"], 0)
+        self.assertTrue(live["operation"]["reset"])
+
     def test_access_limit_failure_is_counted_exported_visible_but_not_action_failure(self):
         class Failure(Fixture):
             charged = True

@@ -86,8 +86,8 @@ jobs:
           WAKE_RUNTIME_REF: ${{ inputs.runtime_ref || github.sha }}
         run: |
           args=()
-          if [[ "${{ inputs.reset }}" == "true" ]]; then args=(--reset --confirm-reset); fi
-          if [[ "${{ inputs.enable_continuity_matrix }}" == "true" ]]; then args=(--enable-continuity-matrix); fi
+          if [[ "${{ inputs.reset }}" == "true" ]]; then args+=(--reset --confirm-reset); fi
+          if [[ "${{ inputs.enable_continuity_matrix }}" == "true" ]]; then args+=(--enable-continuity-matrix); fi
           python scripts/github_wake.py "${args[@]}"
       - name: Record run summary
         if: always()

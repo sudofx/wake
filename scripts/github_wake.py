@@ -483,10 +483,15 @@ def main(reset=False, enable_continuity_matrix=False):
                     # archive. wake itself also retains the prior governed
                     # generation, while active WAKE semantics restart at zero.
                     archive_branch = branch.archive_before_reset()
-                    # Reset means exactly cycle/version zero. Do not immediately
-                    # re-seed initialization events; the next deliberate cycle
-                    # adopts current configuration and records that transition.
+                    # Reset means exactly research cycle/version zero. Normally
+                    # initialization waits for the next cycle; a combined reset
+                    # and continuity opt-in initializes only enough durable state
+                    # to record that provider-free campaign choice before restart.
                     engine.store.reset()
+                    if enable_continuity_matrix:
+                        engine.initialize()
+                        engine.store.enable_continuity_matrix()
+                        guarded_checkpoint()
                 else:
                     engine.initialize()
                     engine.recover(explicit=True)

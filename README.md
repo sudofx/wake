@@ -215,7 +215,7 @@ Use the workflows by their literal names:
 
 - **WAKE✳︎ - Start** — start WAKE✳︎ and keep it working.
 - **WAKE✳︎ - Stop** — stop the current chain and prevent another cycle from starting. It waits for GitHub cancellation to finish, which can take five minutes.
-- **WAKE✳︎ - Reset** — safely stop as needed, preserve/archive prior governed history, and start a new active generation at zero; requires the workflow's explicit reset confirmation.
+- **WAKE✳︎ - Reset** — safely stop as needed, preserve/archive prior governed history, and start a new active generation at zero; requires the workflow's explicit reset confirmation. Its optional `enable_continuity_matrix` input records continuity@1 before the first fresh research cycle.
 - **WAKE✳︎ - promote** — verify the selected candidate (normally `master`), then move that exact tested commit to `wake-runtime`. Research must be stopped first.
 - **WAKE✳︎ - Restart** — safe maintenance shortcut: stop, verify current `master`, promote it, then start again.
 - **WAKE✳︎ - Enable continuity campaign** — provider-free explicit opt-in to the governed `continuity@1` 343-cell campaign; drains research, serializes the state change, and restores the prior running/stopped state.
