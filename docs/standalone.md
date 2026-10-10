@@ -262,13 +262,43 @@ Container lifecycle is separate: `--container stop|start|pause|remove
 unshared attached Docker data volumes. Numbered group prefixes select their
 `-001` through `-NNN` members when no exact container has that name.
 
-Create a numbered group with `./scripts/wake_runner count --name wake-demo --count 3`
-(or `./scripts/wake_runner count --name wake-demo --3`). Names are
-`wake-demo-001` through `wake-demo-003`, each with an independent volume and a
-Docker-assigned host port. Existing group members are only reported. The runner
-does not edit `/etc/hosts`. It requires the existing `wake-standalone:vscode`
-image and selects the Docker Desktop proxy; it is not the portable Compose setup
-above. Only the explicit `--container remove` action deletes attached data volumes.
+Create a numbered group with `./scripts/wake_runner count --name wake.local --count 3`
+(or `./scripts/wake_runner count --name wake.local --3`). Names are
+`wake.local-001` through `wake.local-003`, each with an independent volume and a
+Docker-assigned host port. The runner creates a private user-defined Docker bridge
+for that prefix and sets group membership only on these numbered containers.
+Members can read compact research summaries from their peers and receive them as
+untrusted discovery context on their normal research requests; this exchange makes
+no provider call. Peer notes never become local evidence or eligible citations.
+Every member keeps its own `/data` record. Solo runner containers, Compose installs,
+Codespaces and hosted research do not join a group or receive peer context.
+
+By default all members use the shared `research-topics.toml`. To give members
+different topics, create files before creating the group, for example:
+
+```sh
+mkdir -p .wake-runner-topics
+cp example.research-topics.toml .wake-runner-topics/wake.local-001.toml
+cp example.research-topics.toml .wake-runner-topics/wake.local-002.toml
+cp example.research-topics.toml .wake-runner-topics/wake.local-003.toml
+```
+
+Edit each numbered file before launching. The runner mounts a matching file
+read-only into that member. The shared local router listens on `127.0.0.1:80`, so
+port 80 must be available. For this example, add the following line to `/etc/hosts`:
+
+```text
+127.0.0.1 001.wake.local 002.wake.local 003.wake.local
+```
+
+Then open `http://001.wake.local/`, `http://002.wake.local/` or
+`http://003.wake.local/`. `wake_runner` prints the matching line and URLs for the
+chosen prefix. It does not edit `/etc/hosts`. One router serves all active groups;
+it blocks requests between different group networks. Group networks are removed
+when their last member is removed. The runner requires the existing
+`wake-standalone:vscode` image and selects the Docker Desktop proxy; it is not the
+portable Compose setup above. Only the explicit `--container remove` action deletes
+attached data volumes.
 
 ## Live Console inspection
 

@@ -29,6 +29,13 @@ on every hostname. GitHub execution, state transport and Pages remain independen
 See [standalone operation](standalone.md). This remains a single-host operator-controlled
 installation, not an authenticated tenant service.
 
+The repository convenience runner can optionally place numbered local groups on
+private user-defined Docker bridges. Only those members receive a bounded,
+read-only peer research summary; it is untrusted discovery context and cannot be
+cited as local evidence or alter another member's record. Solo containers,
+Codespaces and hosted execution do not enable this path. Each member continues to
+own an independent `/data/wake.sqlite` authority.
+
 ## The authority boundary
 
 Models are proposal generators, not filesystem operators. A provider receives a durable JSON request and returns untrusted JSON. It has no shell, browser, code execution or policy editor provided by **WAKE✳︎**. An explicit `research_google_search` setting can grant the Gemini planning request read-only public search; the grant and provider grounding receipts are recorded. Final proposals receive no search tool, and grounding snippets are discovery leads rather than independently collected evidence. A charged wake may attempt the configured Gemini model chain, with each distinct model attempted at most once per inference phase. With the research charter enabled, a separate trusted collector retrieves a bounded public sample from anchored HTTPS host policy before the final proposal inference. Normal mode budgets two requests. The current configured `observation_mode = true` profile raises that bounded sample to `research_collection_budget = 6` (capped at eight). With same-wake research disabled and active projects, one slot preserves broad exploration while the remainder deepen active work through readable-source candidates, persistent identifiers, queued follow-ups, and question-led scholarly discovery. Discovery, metadata routing, and substantive readable evidence are separate states; only the last can mature a notebook. Routing progress keeps productive acquisition paths alive without pretending the research itself advanced. Operator-supplied evidence and earlier journal prose are data, not executable instructions.

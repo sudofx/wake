@@ -18,6 +18,7 @@ import time
 
 from .authority import open_authoritative_store, verify_existing_record
 from .engine import Engine, config
+from .group_peers import collect_group_peer_research, group_research_snapshot
 from .governance import Rejected
 from .providers import Fixture, Gemini
 from .report import export
@@ -50,11 +51,13 @@ def _write_control_ack(directory, reset_id, error=None):
 
 def _wait_for_control(stop, directory, seconds, mode, reset_id):
     deadline = time.monotonic() + seconds
-    while not stop.is_set() and time.monotonic() < deadline:
+    while time.monotonic() < deadline:
         next_mode, next_reset_id = _research_control(directory, mode)
         if next_mode != mode or next_reset_id != reset_id:
-            return
-        stop.wait(min(.5, max(0, deadline - time.monotonic())))
+            return False
+        if stop.wait(min(.5, max(0, deadline - time.monotonic()))):
+            return True
+    return False
 
 
 def bootstrap(directory, settings, *, enable_continuity_matrix=False):
@@ -104,7 +107,27 @@ def load_secret():
 class Website(SimpleHTTPRequestHandler):
     """Serve only disposable snapshots, with an inspection-only runtime endpoint."""
     def do_GET(self):
-        if self.path.split('?', 1)[0] == '/runtime.json':
+        route = self.path.split('?', 1)[0]
+        if route == '/group/research.json':
+            group_id = os.environ.get('WAKE_GROUP_ID', '')
+            instance_id = os.environ.get('WAKE_GROUP_INSTANCE', '')
+            if not group_id or not instance_id:
+                self.send_error(404)
+                return
+            try:
+                body = json.dumps(group_research_snapshot(
+                    self.directory, group_id, instance_id), separators=(',', ':')).encode()
+            except ValueError:
+                self.send_error(503, 'Group research projection unavailable')
+                return
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json')
+            self.send_header('Cache-Control', 'no-store')
+            self.send_header('Content-Length', str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+            return
+        if route == '/runtime.json':
             status = dict(self.server.runtime_status)
             if hasattr(self.server, 'activity'):
                 status.update(self.server.activity.snapshot())
@@ -227,14 +250,16 @@ def run(args):
                         delay = (datetime.fromisoformat(eligibility) - datetime.now(timezone.utc)).total_seconds()
                         if delay > 0:
                             server.runtime_status = {'mode': 'standalone', 'state': 'waiting', 'next_eligible': eligibility}
-                            _wait_for_control(stop, data, min(delay, args.interval), research_mode, reset_id)
+                            if _wait_for_control(stop, data, min(delay, args.interval), research_mode, reset_id):
+                                break
                             continue
                     server.runtime_status = {'mode': 'standalone', 'state': 'running'}
                     provider = Fixture(args.model or 'standalone-fixture') if provider_name == 'fixture' else Gemini(settings, args.model)
                     from .research import collect
                     try:
                         result = engine.run(provider, collector=collect if provider_name == 'gemini' and settings.get('mission') else None,
-                                            activity=server.activity.update)
+                                            activity=server.activity.update,
+                                            peer_research=collect_group_peer_research())
                     except Rejected as exc:
                         if str(exc) == 'Context ceiling reached; human review required, no model call made':
                             server.runtime_status = {'mode': 'standalone', 'state': 'blocked',
@@ -242,11 +267,13 @@ def run(args):
                             print(json.dumps(server.runtime_status), flush=True)
                             # Keep the read-only website available without retrying
                             # an impossible request or spending provider quota.
-                            _wait_for_control(stop, data, 86400, research_mode, reset_id)
+                            if _wait_for_control(stop, data, 86400, research_mode, reset_id):
+                                break
                             continue
                         if str(exc) != 'Another wake owns this state directory; no call was made':
                             raise
-                        _wait_for_control(stop, data, args.interval, research_mode, reset_id)
+                        if _wait_for_control(stop, data, args.interval, research_mode, reset_id):
+                            break
                         continue
                     print(json.dumps(result), flush=True)
                     if publish(engine, root):
@@ -259,10 +286,12 @@ def run(args):
                                                  'reason': result.get('reason', 'Provider failed'),
                                                  'action': 'Review provider configuration and restart'}
                         print(json.dumps(server.runtime_status), flush=True)
-                        _wait_for_control(stop, data, 86400, research_mode, reset_id)
+                        if _wait_for_control(stop, data, 86400, research_mode, reset_id):
+                            break
                         continue
                     server.runtime_status = {'mode': 'standalone', 'state': 'idle'}
-                    _wait_for_control(stop, data, args.interval, research_mode, reset_id)
+                    if _wait_for_control(stop, data, args.interval, research_mode, reset_id):
+                        break
         finally:
             if server:
                 server.shutdown()

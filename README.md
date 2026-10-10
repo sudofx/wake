@@ -76,6 +76,9 @@ cycle counts are expected to differ; source publication is not record synchroniz
 See [standalone operation](docs/standalone.md) and [hosted operation](docs/cloud.md)
 for their respective controls. The browser requires explicit hosted installation
 identity before loading GitHub data; unconfigured templates stay same-origin.
+The local numbered-container runner can create isolated research groups with
+read-only peer summaries and per-container topic files; other standalone and hosted
+installations remain independent.
 
 ## Start here — no account, no API calls
 

@@ -25,8 +25,10 @@ join continuity@1 by default. `--campaign none` opts a newly created container
 out. Campaign enrollment is immutable after creation.
 
 Groups are named PREFIX-001 through PREFIX-NNN and receive separate data volumes
-and Docker-assigned host ports. Research controls leave Docker running. Container
-remove also removes the selected container's data volumes.
+and Docker-assigned host ports. Group members share a private Docker bridge and
+read-only research summaries. Optional per-member topic files live at
+.wake-runner-topics/PREFIX-NNN.toml. Research controls leave Docker running.
+Container remove also removes the selected container's data volumes.
 EOF
 }
 
@@ -38,6 +40,118 @@ data_volume_for() {
     else
         printf '%s-data' "$1"
     fi
+}
+
+group_network_for() { printf 'wake-group-%s' "$1"; }
+
+ensure_group_network() {
+    local group_id="$1" network label
+    network="$(group_network_for "$group_id")"
+    if docker network inspect "$network" >/dev/null 2>&1; then
+        label="$(docker network inspect --format "{{ index .Labels \"$LABEL.group\" }}" "$network")"
+        [[ "$label" == "$group_id" ]] ||
+            fail "Network '$network' exists but is not owned by wake_runner group '$group_id'."
+        return 0
+    fi
+    docker network create --driver bridge \
+        --label "$LABEL=true" --label "$LABEL.group=$group_id" "$network" >/dev/null
+}
+
+cleanup_group_network() {
+    local group_id="$1" network label attached
+    [[ -n "$group_id" ]] || return 0
+    network="$(group_network_for "$group_id")"
+    docker network inspect "$network" >/dev/null 2>&1 || return 0
+    label="$(docker network inspect --format "{{ index .Labels \"$LABEL.group\" }}" "$network")"
+    [[ "$label" == "$group_id" ]] || return 0
+    if container_exists wake-group-router; then
+        ensure_group_router_identity wake-group-router
+        docker network disconnect "$network" wake-group-router >/dev/null 2>&1 || true
+    fi
+    attached="$(docker network inspect --format '{{range .Containers}}{{.Name}} {{end}}' "$network")"
+    [[ -n "$attached" ]] || docker network rm "$network" >/dev/null
+}
+
+ensure_group_router_identity() {
+    local name="${1:-wake-group-router}" runner_label router_label
+    container_exists "$name" || return 0
+    runner_label="$(docker inspect --format "{{ index .Config.Labels \"$LABEL\" }}" "$name")"
+    router_label="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.router\" }}" "$name")"
+    [[ "$runner_label" == true && "$router_label" == true ]] ||
+        fail "Container '$name' is not owned by wake_runner's local group router; leaving it untouched."
+    ensure_wake_identity "$name"
+}
+
+refresh_group_router() {
+    local config_file="$repo_dir/.wake-runner-router.json" routes_file container group_id ordinal network subnet gateway
+    local first_network="" name host label router_network
+    local groups=() networks=()
+    routes_file="$(mktemp)"
+    while IFS= read -r container; do
+        group_id="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.group\" }}" "$container")"
+        [[ -n "$group_id" && "$group_id" != '<no value>' ]] || continue
+        ordinal="${container#"$group_id"-}"
+        [[ "$container" == "$group_id-$ordinal" && "$ordinal" =~ ^[0-9]{3}$ ]] || continue
+        network="$(group_network_for "$group_id")"
+        read -r subnet gateway < <(docker network inspect --format '{{range .IPAM.Config}}{{.Subnet}} {{.Gateway}}{{end}}' "$network")
+        [[ -n "$subnet" && -n "$gateway" ]] || { rm -f "$routes_file"; fail "Could not read subnet and gateway for $network."; }
+        printf '%s\t%s\t%s\t%s\n' "$ordinal.$group_id" "$container" "$subnet" "$gateway" >> "$routes_file"
+        groups+=("$group_id")
+    done < <(docker ps -a --filter "label=$LABEL.group" --format '{{.Names}}')
+
+    if [[ ! -s "$routes_file" ]]; then
+        if container_exists wake-group-router; then
+            ensure_group_router_identity wake-group-router
+            docker rm -f wake-group-router >/dev/null
+        fi
+        rm -f "$config_file" "$routes_file"
+        return 0
+    fi
+    python3 - "$routes_file" "$config_file" <<'PY'
+import json
+import sys
+
+routes = {}
+with open(sys.argv[1]) as source:
+    for line in source:
+        host, target, subnet, gateway = line.rstrip("\n").split("\t")
+        key = host.lower()
+        if key in routes and routes[key]["target"] != target:
+            raise SystemExit(f"Duplicate local WAKE hostname: {key}")
+        routes[key] = {"target": target, "subnet": subnet, "gateway": gateway}
+with open(sys.argv[2], "w") as target:
+    json.dump(routes, target, separators=(",", ":"))
+PY
+    ((${#groups[@]} > 0)) || { rm -f "$routes_file"; fail 'Group router has no group networks.'; }
+    for group_id in "${groups[@]}"; do
+        local already=false
+        for name in "${networks[@]}"; do [[ "$name" == "$(group_network_for "$group_id")" ]] && already=true; done
+        [[ "$already" == true ]] || networks+=("$(group_network_for "$group_id")")
+    done
+    first_network="${networks[0]}"
+    docker image inspect "$IMAGE" >/dev/null 2>&1 || { rm -f "$routes_file"; fail "Missing image: $IMAGE."; }
+    if container_exists wake-group-router; then
+        ensure_group_router_identity wake-group-router
+        docker rm -f wake-group-router >/dev/null
+    fi
+    docker run -d --name wake-group-router \
+        --label "$LABEL=true" --label "$LABEL.router=true" \
+        --network "$first_network" -p 127.0.0.1:80:8080 \
+        -v "$repo_dir/scripts/wake_group_proxy.py:/workspace/wake_group_proxy.py:ro" \
+        -v "$config_file:/run/wake-group-router.json:ro" \
+        --read-only --tmpfs /tmp --entrypoint python "$IMAGE" \
+        /workspace/wake_group_proxy.py --config /run/wake-group-router.json >/dev/null ||
+        { rm -f "$routes_file"; fail 'Could not start the localhost group router on 127.0.0.1:80.'; }
+    if ! is_running wake-group-router; then
+        docker logs wake-group-router >&2 || true
+        rm -f "$routes_file"
+        fail 'The localhost group router could not bind 127.0.0.1:80 or stopped during startup.'
+    fi
+    for network in "${networks[@]}"; do
+        router_network="$(docker inspect --format "{{if index .NetworkSettings.Networks \"$network\"}}joined{{end}}" wake-group-router)"
+        [[ "$router_network" == joined ]] || docker network connect "$network" wake-group-router
+    done
+    rm -f "$routes_file"
 }
 
 home_volume_for() {
@@ -154,8 +268,10 @@ report_status() {
 }
 
 create_container() {
-    local name="$1" campaign="$2" paused="${3:-false}" data_volume home_volume
+    local name="$1" campaign="$2" paused="${3:-false}" group_id="${4:-}" peers="${5:-}"
+    local data_volume home_volume topic_file topic_rel network
     local publish_args=()
+    local group_args=(-e WAKE_GROUP_ID= -e WAKE_GROUP_INSTANCE= -e WAKE_GROUP_PEERS= -e WAKE_GROUP_TOPIC_FILE=)
     docker image inspect "$IMAGE" >/dev/null 2>&1 ||
         fail "Missing image: $IMAGE (build the VS Code target first)."
     data_volume="$(data_volume_for "$name")"
@@ -165,6 +281,20 @@ create_container() {
     else
         publish_args=(-p 127.0.0.1::8080)
     fi
+    if [[ -n "$group_id" ]]; then
+        network="$(group_network_for "$group_id")"
+        group_args+=(--network "$network"
+            --label "$LABEL.group=$group_id"
+            -e "WAKE_GROUP_ID=$group_id"
+            -e "WAKE_GROUP_INSTANCE=$name"
+            -e "WAKE_GROUP_PEERS=$peers")
+        topic_file="$repo_dir/.wake-runner-topics/$name.toml"
+        if [[ -f "$topic_file" ]]; then
+            topic_rel=".wake-runner-topics/$name.toml"
+            group_args+=(-e "WAKE_GROUP_TOPIC_FILE=/workspace/$topic_rel"
+                -v "$topic_file:/workspace/$topic_rel:ro")
+        fi
+    fi
     docker run -d --name "$name" \
         --label "$LABEL=true" \
         "${publish_args[@]}" \
@@ -172,6 +302,7 @@ create_container() {
         -v "$home_volume:/home/wake" \
         -v "$repo_dir:/workspace" -w /workspace \
         --env-file "$repo_dir/.env" \
+        "${group_args[@]}" \
         -e "WAKE_ENABLE_CONTINUITY_MATRIX=$campaign" \
         -e "WAKE_PAUSED=$paused" \
         -e HTTPS_PROXY=http://http.docker.internal:3128 \
@@ -180,12 +311,25 @@ create_container() {
 }
 
 ensure_present() {
-    local name="$1" campaign="$2"
+    local name="$1" campaign="$2" group_id="${3:-}" peers="${4:-}" paused="${5:-false}"
+    local network group_label group_peers
     if container_exists "$name"; then
         ensure_wake_identity "$name"
+        if [[ -n "$group_id" ]]; then
+            group_label="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.group\" }}" "$name")"
+            network="$(group_network_for "$group_id")"
+            [[ "$group_label" == "$group_id" ]] ||
+                fail "Existing container '$name' is not a member of group '$group_id'; it must be recreated to join this group network. Save its data volume first because container removal deletes unshared volumes."
+            docker inspect --format "{{if index .NetworkSettings.Networks \"$network\"}}joined{{end}}" "$name" | grep -q '^joined$' ||
+                fail "Existing container '$name' is not connected to '$network'."
+            group_peers="$(docker inspect --format '{{range .Config.Env}}{{println .}}{{end}}' "$name" |
+                awk -F= '$1 == "WAKE_GROUP_PEERS" {print $2}' | tail -n 1)"
+            [[ "$group_peers" == "$peers" ]] ||
+                fail "Existing container '$name' has a different peer list; recreate it before changing the group size."
+        fi
         return 0
     fi
-    create_container "$name" "$campaign"
+    create_container "$name" "$campaign" "$paused" "$group_id" "$peers"
 }
 
 reset_research() {
@@ -251,8 +395,8 @@ research_control() {
 }
 
 container_control() {
-    local action="$1" selector="$2" candidate status volume home name data_type
-    local targets=() volumes=()
+    local action="$1" selector="$2" candidate status volume home name data_type group_id
+    local targets=() volumes=() groups=()
     if container_exists "$selector"; then
         targets=("$selector")
     else
@@ -278,6 +422,8 @@ container_control() {
                     ;;
                 pause) [[ "$status" != running ]] || docker pause "$name" >/dev/null ;;
                 remove)
+                    group_id="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.group\" }}" "$name")"
+                    [[ -z "$group_id" || "$group_id" == '<no value>' ]] || groups+=("$group_id")
                     data_type="$(docker inspect --format '{{range .Mounts}}{{if eq .Destination "/data"}}{{.Type}}{{end}}{{end}}' "$name")"
                     [[ "$data_type" != bind ]] || fail "Refusing scorched-earth removal of $name: /data is a host bind mount."
                     volume="$(docker inspect --format '{{range .Mounts}}{{if and (eq .Type "volume") (eq .Destination "/data")}}{{.Name}}{{end}}{{end}}' "$name")"
@@ -298,6 +444,9 @@ container_control() {
                 docker volume rm "$volume" >/dev/null
             fi
         done
+        if [[ "$selector" != wake ]]; then groups+=("$selector"); fi
+        for group_id in "${groups[@]}"; do cleanup_group_network "$group_id"; done
+        refresh_group_router
         printf 'Removed %s and unshared attached data volumes.\n' "$selector"
     else
         for name in "${targets[@]}"; do
@@ -307,20 +456,44 @@ container_control() {
 }
 
 start_group() {
-    local prefix="$1" count="$2" campaign="$3" i name was_existing
+    local prefix="$1" count="$2" campaign="$3" i name was_existing peers network
+    local new_members=()
     [[ "$prefix" =~ ^[a-zA-Z0-9][a-zA-Z0-9_.-]*$ ]] || fail 'Invalid group name.'
+    ((${#prefix} <= 50)) || fail 'Group name must be 50 characters or fewer.'
     [[ "$count" =~ ^[0-9]{1,2}$ ]] || fail 'Count must be a number from 1 to 99.'
     count=$((10#$count))
     (( count >= 1 && count <= 99 )) || fail 'Count must be between 1 and 99.'
+    [[ "${CODESPACES:-false}" != true && -z "${CODESPACE_NAME:-}" && "${GITHUB_ACTIONS:-false}" != true && "${CI:-false}" != true ]] ||
+        fail 'Grouped peer networking is available only from a local wake_runner session.'
     require_runtime
+    ensure_group_network "$prefix"
+    peers=""
+    for ((i=1; i<=count; i++)); do
+        printf -v name '%s-%03d' "$prefix" "$i"
+        peers+="${peers:+,}$name"
+    done
     for ((i=1; i<=count; i++)); do
         printf -v name '%s-%03d' "$prefix" "$i"
         was_existing=false
         container_exists "$name" && was_existing=true
-        ensure_present "$name" "$campaign"
+        ensure_present "$name" "$campaign" "$prefix" "$peers" true
+        [[ "$was_existing" == true ]] || new_members+=("$name")
         if [[ "$campaign" == false && "$was_existing" == true ]]; then
             printf 'wake_runner: --campaign none applies only when creating; existing enrollment for %s is unchanged.\n' "$name" >&2
         fi
+    done
+    # Start new group schedulers only after every expected DNS name is present.
+    refresh_group_router
+    for name in "${new_members[@]}"; do set_research_mode "$name" running; done
+    printf 'Add this to /etc/hosts: 127.0.0.1'
+    for ((i=1; i<=count; i++)); do
+        printf -v name '%s-%03d' "$prefix" "$i"
+        printf ' %03d.%s' "$i" "$prefix"
+    done
+    printf '\n'
+    for ((i=1; i<=count; i++)); do
+        printf -v name '%s-%03d' "$prefix" "$i"
+        printf 'GROUP URL: http://%03d.%s/\n' "$i" "$prefix"
         report_status "$name"
     done
 }

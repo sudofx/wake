@@ -25,7 +25,7 @@ class StandaloneRuntimeTests(unittest.TestCase):
                                    host='127.0.0.1', port=0, model='test')
             server = MagicMock()
             stop = MagicMock()
-            stop.is_set.side_effect = [False, True]
+            stop.is_set.side_effect = [False]
             reason = 'Context ceiling reached; human review required, no model call made'
             with patch('wake.standalone.config', return_value=dict(DEFAULTS)), \
                  patch('wake.standalone.bootstrap', return_value=engine), \
@@ -37,7 +37,7 @@ class StandaloneRuntimeTests(unittest.TestCase):
                  patch.object(engine, 'run', side_effect=Rejected(reason)) as cycle:
                 run(args)
             cycle.assert_called_once()
-            stop.wait.assert_called_once_with()
+            stop.wait.assert_called_once()
             self.assertEqual(server.runtime_status['state'], 'blocked')
             self.assertEqual(server.runtime_status['reason'], reason)
 
@@ -48,7 +48,7 @@ class StandaloneRuntimeTests(unittest.TestCase):
                 data=directory, paused=False, enable_continuity_matrix=False,
                 host='127.0.0.1', port=0, model='test')
             server, stop = MagicMock(), MagicMock()
-            stop.is_set.side_effect = [False, True]
+            stop.is_set.side_effect = [False]
             with patch('wake.standalone.config', return_value=dict(DEFAULTS)), \
                  patch('wake.standalone.bootstrap', return_value=engine), \
                  patch('wake.standalone.verify_existing_record'), \
@@ -59,7 +59,7 @@ class StandaloneRuntimeTests(unittest.TestCase):
                  patch.object(engine, 'run', return_value=dict(status='failed', reason='Invalid provider credential')) as cycle:
                 run(args)
             cycle.assert_called_once()
-            stop.wait.assert_called_once_with()
+            stop.wait.assert_called_once()
             self.assertEqual(server.runtime_status['state'], 'blocked')
             self.assertEqual(server.runtime_status['reason'], 'Invalid provider credential')
 
