@@ -13,6 +13,9 @@ dist/
 # Local mounted runtime credentials.
 secrets/
 
+# custom research topics
+research-topics.toml
+
 # Generated package files and local editor settings.
 build/
 *.egg-info/
