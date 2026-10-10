@@ -38,7 +38,13 @@
 .masthead .actions-light[data-state=stopped] i,.masthead .actions-light[data-state=paused] i{background:#e7c35a}
 .masthead .actions-light[data-state=waiting] i{background:#e7c35a}
 .masthead .actions-light[data-state=standby] i{background:#a970ff;box-shadow:0 0 9px rgba(169,112,255,.65)}
+.masthead .actions-light[data-state=idle] i{background:#58a6ff}
 .masthead .actions-light[data-state=blocked] i{background:#dc5261}
+.masthead .actions-light[data-state=blocked] i{animation:wake-status-blink 1s steps(2,start) infinite}
+.masthead .actions-light[data-state=idle] i,.masthead .actions-light[data-state=standby] i{animation:wake-status-pulse 2.4s ease-in-out infinite}
+@keyframes wake-status-blink{50%{opacity:.18}}
+@keyframes wake-status-pulse{0%,100%{opacity:.72;transform:scale(.9)}50%{opacity:1;transform:scale(1.12)}}
+@media(prefers-reduced-motion:reduce){.masthead .actions-light-track i{animation:none!important}}
 .masthead .nav-group{position:relative}
 .masthead .mobile-nav-menu{display:none}
 .masthead summary{cursor:pointer;list-style:none}
