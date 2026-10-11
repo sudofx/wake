@@ -3,15 +3,9 @@ run-name: "[RESET] WAKE✳︎"
 
 # Reset stops WAKE✳︎ if needed, promotes verified master when required,
 # archives the current durable history, resets authority to cycle zero,
-# then automatically starts the fresh experiment.
+# enables a fresh continuity campaign, and leaves research stopped.
 on:
   workflow_dispatch:
-    inputs:
-      enable_continuity_matrix:
-        description: Enable continuity@1 before fresh research starts
-        type: boolean
-        required: false
-        default: false
 
 permissions:
   actions: write
@@ -140,9 +134,8 @@ jobs:
           gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime \
             -f "dispatch_token=$token" \
             -f "runtime_ref=$runtime_ref" \
-            -f "reset=true" \
-            -f "enable_continuity_matrix=${{ inputs.enable_continuity_matrix }}"
-          echo "Wake Zero reset requested from runtime $runtime_ref." >> "$GITHUB_STEP_SUMMARY"
+            -f "reset=true"
+          echo "Wake Zero reset and fresh continuity@1 campaign requested from runtime $runtime_ref." >> "$GITHUB_STEP_SUMMARY"
 
       - name: Wait for cycle-zero reset to complete
         env:
@@ -179,18 +172,3 @@ jobs:
           done
           echo "::error::Governed reset did not finish before the safety timeout."
           exit 1
-
-      - name: Restart fresh continuous research
-        env:
-          GH_TOKEN: ${{ github.token }}
-          RUNTIME_REF: ${{ steps.reset_dispatch.outputs.runtime_ref }}
-        run: |
-          set -euo pipefail
-          state="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml" --jq '.state')"
-          if [[ "$state" != "active" ]]; then
-            gh api --method PUT "repos/$GITHUB_REPOSITORY/actions/workflows/wake-runner.yml/enable" >/dev/null
-          fi
-          gh workflow run wake.yml --repo "$GITHUB_REPOSITORY" --ref wake-runtime \
-            -f "dispatch_token=restart-after-reset-$GITHUB_RUN_ID" \
-            -f "runtime_ref=$RUNTIME_REF"
-          echo "Reset complete; fresh continuous research restarted from $RUNTIME_REF." >> "$GITHUB_STEP_SUMMARY"

@@ -483,15 +483,13 @@ def main(reset=False, enable_continuity_matrix=False):
                     # archive. wake itself also retains the prior governed
                     # generation, while active WAKE semantics restart at zero.
                     archive_branch = branch.archive_before_reset()
-                    # Reset means exactly research cycle/version zero. Normally
-                    # initialization waits for the next cycle; a combined reset
-                    # and continuity opt-in initializes only enough durable state
-                    # to record that provider-free campaign choice before restart.
+                    # Every hosted reset starts a fresh provider-free campaign,
+                    # but does not start research. Start remains a separate
+                    # operator action after the reset state has been inspected.
                     engine.store.reset()
-                    if enable_continuity_matrix:
-                        engine.initialize()
-                        engine.store.enable_continuity_matrix()
-                        guarded_checkpoint()
+                    engine.initialize()
+                    engine.store.enable_continuity_matrix()
+                    guarded_checkpoint()
                 else:
                     engine.initialize()
                     engine.recover(explicit=True)
@@ -503,9 +501,12 @@ def main(reset=False, enable_continuity_matrix=False):
             try:
                 if reset:
                     state = engine.store.load()
+                    matrix = engine.store.continuity_matrix_progress()
                     result = {"status": "not_started",
-                              "reason": "WAKE reset to zero",
+                              "reason": "WAKE reset to zero; fresh continuity@1 campaign enabled",
                               "reset": True,
+                              "continuity_matrix_enabled": True,
+                              "matrix": matrix,
                               "archive_branch": archive_branch,
                               "cycle": state["version"]}
                 elif enable_continuity_matrix:

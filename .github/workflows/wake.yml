@@ -23,7 +23,7 @@ on:
         required: false
         default: false
       enable_continuity_matrix:
-        description: INTERNAL governed continuity campaign switch.
+        description: INTERNAL opt-in for a normal run; reset always enables a fresh campaign.
         type: boolean
         required: false
         default: false
