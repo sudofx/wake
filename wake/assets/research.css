@@ -1263,23 +1263,28 @@ html:not(.console-panel-window) body.research-page [data-console-panel-id].panel
 .console-module-grid .console-overview>div:first-child{flex:none}
 .console-module-grid>.console-overview>.panel-heading{padding:0 0 20px!important}
 
-/* Panel #014 is ordinary page content after the workspace. Selecting a record
-   reveals it without docking, changing the workspace width, or moving scroll. */
-#main>.detail-panel{display:block;position:relative!important;inset:auto!important;z-index:auto!important;transform:none!important;translate:none!important;transition:none!important;animation:none!important;width:auto!important;height:auto!important;max-height:none!important;margin:14px 0!important;overflow:visible!important}
-#main>.detail-panel:not(.has-selection){display:none!important}
-#main>.detail-panel.has-selection{display:block!important}
-#main>.detail-panel #record-detail{position:static!important;width:auto!important;max-width:100%!important;height:auto!important;max-height:none!important;overflow:visible!important}
-#main>.detail-panel #close-inspector{position:static!important;inset:auto!important;z-index:auto!important}
+/* Panel #014 is the third story section, revealed in place without a dock,
+   overlay, reserved column, or scroll jump. */
+#main>.detail-panel,
+#console-module-grid>.detail-panel{display:block;position:relative!important;inset:auto!important;z-index:auto!important;transform:none!important;translate:none!important;transition:none!important;animation:none!important;width:auto!important;height:auto!important;max-height:none!important;margin:0!important;overflow:visible!important;border-radius:10px!important}
+#main>.detail-panel:not(.has-selection),
+#console-module-grid>.detail-panel:not(.has-selection){display:none!important}
+#main>.detail-panel.has-selection,
+#console-module-grid>.detail-panel.has-selection{display:block!important}
+#main>.detail-panel #record-detail,
+#console-module-grid>.detail-panel #record-detail{position:static!important;width:auto!important;max-width:100%!important;height:auto!important;max-height:none!important;overflow:visible!important}
+#main>.detail-panel #close-inspector,
+#console-module-grid>.detail-panel #close-inspector{position:static!important;inset:auto!important;z-index:auto!important}
 .research-page .map-panel .panel-actions .map-key{margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
 .research-page .map-panel .panel-actions{align-items:center}
 /* The seven numbered story sections share a visible group boundary. */
-html[data-theme] body.research-page .console-story-panel.console-module,
-html[data-theme] body.research-page .console-story-panel.console-module *,
-html[data-theme] body.research-page .console-story-panel.console-module::after{border-color:var(--story-border,#ffb15c)!important}
+html[data-theme] body.research-page .console-story-panel,
+html[data-theme] body.research-page .console-story-panel *,
+html[data-theme] body.research-page .console-story-panel::after{border-color:var(--story-border,#ffb15c)!important}
 /* Story membership is conveyed by borders. Keep the page field visible through
    the panel and its heading; controls and readable content retain their skins. */
-html[data-theme] body.research-page .console-story-panel.console-module,
-html[data-theme] body.research-page .console-story-panel.console-module>.panel-heading{background:transparent!important}
+html[data-theme] body.research-page .console-story-panel,
+html[data-theme] body.research-page .console-story-panel>.panel-heading{background:transparent!important}
 html[data-theme=dark]{--story-border:color-mix(in srgb,#ffb15c 65%,var(--line))}
 html[data-theme=light]{--story-border:#e98c2b}
 

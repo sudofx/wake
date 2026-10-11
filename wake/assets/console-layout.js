@@ -132,9 +132,15 @@
     heading.append(controls);
     grid.append(panel);
   });
-  // Inspection follows the workspace in normal document flow. It is not a
-  // docked, rearrangeable, or pop-out module and cannot reserve page width.
-  if(inspector)grid.after(inspector);
+  // Panel #014 is the third story section. Keep it in normal document flow,
+  // immediately after #013, without making it a draggable workspace module.
+  const placeInspector=()=>{
+    if(!inspector)return;
+    const landscape=[...grid.children].find(panel=>panel.querySelector('.panel-id')?.textContent.includes('#013'));
+    if(landscape)landscape.after(inspector);else grid.append(inspector);
+  };
+  placeInspector();
+  if(inspector)inspector.classList.add('console-story-panel');
   // Give every header the same title stack and shared action row, regardless
   // of whether the original markup wrapped its label and title in a div.
   document.querySelectorAll('.panel > .panel-heading,.page-intro > .panel-heading').forEach(heading=>{
@@ -215,9 +221,10 @@
   };
   const writeState=()=>{
     if(panelWindow)return;
+    const modules=[...grid.children].filter(panel=>panel.classList.contains('console-module'));
     const state={
-      order:[...grid.children].map(panel=>panel.dataset.moduleKey),
-      panels:Object.fromEntries([...grid.children].map(panel=>[
+      order:modules.map(panel=>panel.dataset.moduleKey),
+      panels:Object.fromEntries(modules.map(panel=>[
         panel.dataset.moduleKey,
         {span:Number(panel.dataset.span||6),collapsed:panel.classList.contains('module-collapsed')}
       ]))
@@ -226,9 +233,10 @@
   };
   const applyState=()=>{
     const state=readState();
-    const byKey=new Map([...grid.children].map(panel=>[panel.dataset.moduleKey,panel]));
+    const modules=[...grid.children].filter(panel=>panel.classList.contains('console-module'));
+    const byKey=new Map(modules.map(panel=>[panel.dataset.moduleKey,panel]));
     (state.order||[]).forEach(key=>{const panel=byKey.get(key);if(panel)grid.append(panel);});
-    [...grid.children].forEach(panel=>{
+    modules.forEach(panel=>{
       const saved=state.panels?.[panel.dataset.moduleKey];
       if(saved?.span)panel.dataset.span=String(saved.span);
       if(saved?.collapsed){
@@ -237,6 +245,7 @@
         if(button){button.setAttribute('aria-expanded','false');button.textContent='+';}
       }
     });
+    placeInspector();
   };
   if(!panelWindow){
     applyState();
@@ -337,6 +346,7 @@
       const collapse=panel.querySelector('.module-collapse');
       if(collapse){collapse.setAttribute('aria-expanded','true');collapse.textContent='−';}
     });
+    placeInspector();
     pack();writeState();
   });
   overview.querySelectorAll('.snapshot button').forEach(button=>overview.querySelector('.panel-actions').append(button));
