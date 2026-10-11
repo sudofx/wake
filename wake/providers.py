@@ -756,7 +756,7 @@ class Gemini:
                 )
             ),
         )
-        provider_deadline = time.monotonic() + provider_wall_seconds
+        provider_deadline = time.perf_counter() + provider_wall_seconds
         error = TransientProviderError(
             "Gemini provider wall budget exhausted; wake deferred"
         )
@@ -767,9 +767,9 @@ class Gemini:
             nonlocal provider_deadline
             if self.record_attempt is None:
                 return
-            checkpoint_started = time.monotonic()
+            checkpoint_started = time.perf_counter()
             self.record_attempt(phase, attempt.copy())
-            provider_deadline += time.monotonic() - checkpoint_started
+            provider_deadline += time.perf_counter() - checkpoint_started
 
         for model in self.models:
             if attempted >= self.request_limit:
@@ -780,7 +780,7 @@ class Gemini:
             ):
                 continue
 
-            remaining_seconds = provider_deadline - time.monotonic()
+            remaining_seconds = provider_deadline - time.perf_counter()
             if remaining_seconds <= 0:
                 break
 
