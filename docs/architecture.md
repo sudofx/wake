@@ -71,7 +71,29 @@ the path. Every member owns an independent `/data/wake.sqlite` authority.
 
 ## The authority boundary
 
-Models are proposal generators, not filesystem operators. A provider receives a durable JSON request and returns untrusted JSON. It has no shell, browser, code execution or policy editor provided by **WAKE✳︎**. An explicit `research_google_search` setting can grant the Gemini planning request read-only public search; the grant and provider grounding receipts are recorded. Final proposals receive no search tool, and grounding snippets are discovery leads rather than independently collected evidence. A charged wake may attempt the configured Gemini model chain, with each distinct model attempted at most once per inference phase. With the research charter enabled, a separate trusted collector retrieves a bounded public sample from anchored HTTPS host policy before the final proposal inference. Normal mode budgets two requests. The current configured `observation_mode = true` profile raises that bounded sample to `research_collection_budget = 6` (capped at eight). With same-wake research disabled and active projects, one slot preserves broad exploration while the remainder deepen active work through readable-source candidates, persistent identifiers, queued follow-ups, and question-led scholarly discovery. Discovery, metadata routing, and substantive readable evidence are separate states; only the last can mature a notebook. Routing progress keeps productive acquisition paths alive without pretending the research itself advanced. Operator-supplied evidence and earlier journal prose are data, not executable instructions.
+Models suggest changes; they do not operate the filesystem. A provider receives a
+durable JSON request and returns untrusted JSON. WAKE gives it no shell, browser,
+code execution or policy editor.
+
+The optional `research_google_search` setting gives Gemini's planning request
+read-only public search. WAKE records that grant and the provider's grounding
+receipt. The final proposal request has no search tool. Search snippets are leads,
+not collected research evidence. A charged wake can try the configured Gemini
+models, but it tries each model at most once per inference phase.
+
+When the research charter is enabled, a separate trusted collector gathers a
+bounded sample from approved HTTPS sources before the final proposal request. The
+usual budget is two retrieval requests. The current `observation_mode = true`
+profile sets `research_collection_budget = 6`, capped at eight. When same-wake
+research is disabled and projects are active, one slot stays open for broad
+exploration; the other slots deepen current projects through readable sources,
+persistent identifiers, queued follow-ups and question-led discovery.
+
+WAKE distinguishes three steps: finding a lead, routing to source metadata, and
+collecting readable source material. Only readable material can support a mature
+notebook. Progress through discovery or metadata routing keeps useful paths open,
+but does not count as research advancement. Operator-supplied evidence and old
+journal text are data; they are never executable instructions.
 
 The fixed objective is written at initialization. Models cannot alter it or the governance code. Humans can record a focus change, add an observation, or cancel an open commitment with a reason. Those actions are events, not edits to previous events. Local operators control the code and database; this is a single-host accountability system, not a hostile-administrator security boundary.
 

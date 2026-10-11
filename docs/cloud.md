@@ -128,7 +128,27 @@ midnight; only an operator-configured hard daily request cap does that.
 
 ## A wake's work
 
-A trusted collector retrieves a bounded sample before the final proposal inference. Normal mode uses two requests; the current `observation_mode = true` configuration uses `research_collection_budget = 6`. With same-wake research disabled and active projects, one slot remains broad exploration and the remaining slots prioritize project maturation: readable-source candidates, persistent-identifier promotion, queued follow-ups, then question-led scholarly discovery. Broad index results are discovery leads. Exact Crossref/OpenAlex/Semantic Scholar/DataCite records are metadata-routing receipts, not notebook evidence. Approved readable publisher/full-text/source-controlled text is the qualifying source boundary. PubMed/PMC identifiers can be promoted deterministically to NCBI PMC open-access BioC text when available. Collection remains separate from model authority and is bounded by HTTPS allowlists and redirect validation. Normal web responses are capped at one megabyte. PDFs are capped at eight megabytes and text extraction is bounded to the first 24 pages and 50,000 characters; the provider-facing evidence excerpt remains bounded to 10,000 characters with evidence-bearing sections preferentially retained.
+A trusted collector gathers a bounded sample before the final proposal request.
+The current collection settings are:
+
+- Normal mode allows two collection requests.
+- With `observation_mode = true`, `research_collection_budget = 6`.
+- When same-wake research is off and projects are active, one request slot stays
+  available for broad exploration. The others prioritize current projects through
+  readable-source candidates, persistent identifiers, queued follow-ups and
+  question-led discovery.
+
+Search results are discovery leads, not notebook evidence. Crossref, OpenAlex,
+Semantic Scholar and DataCite records route to metadata; they do not qualify as
+research sources by themselves. A notebook needs readable publisher, full-text or
+source-controlled material. When available, WAKE can route PubMed/PMC identifiers
+to NCBI's open-access BioC article text.
+
+Collection is separate from model authority. HTTPS host allowlists and redirect
+checks limit where it can fetch. A normal response is capped at 1 MB. A PDF is
+capped at 8 MB; extraction reads at most 24 pages and 50,000 characters. The
+excerpt sent to a provider is capped at 10,000 characters and favors sections
+that contain evidence.
 
 ## Changing research topics
 

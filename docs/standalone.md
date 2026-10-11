@@ -355,51 +355,59 @@ flowchart TB
   P3 --> C33[003.003 child]
 ```
 
-The runner creates one outer private Docker bridge for the parent group and one
-separate child bridge for each parent. Parents exchange bounded, readable source
-observations with other parents and query their own children. The three children
-under a parent exchange bounded observations with one another on that parent's
-bridge. Children do not connect to other parents' cells. Each receiver records an
-imported source in its own record with its original source URL and peer
-provenance, then applies its own source eligibility and claim rules before it can
-be cited. A peer notebook finding is an attributed lead, not a local claim or
-citation ID. The exchange adds no provider call. Each child has its own data
-volume, and an unavailable parent, child, or sibling does not stop the other
-nodes. This local network trusts its operator-created members; it is not
-cryptographic remote attestation. Solo runner containers, Compose installs,
-Codespaces and hosted research do not participate. The numbered sites show one
-Bob feed assembled from reachable parent posts; child findings influence those
-posts only after their parent ingests and researches them. The feed does not gate
-any research loop.
+### How group members share research
 
-By default, each parent and its three children use the shared
-`research-topics.toml`. The optional per-parent files described above are mounted
-read-only into that parent and its children. If a parent's file is absent, its
-whole cell uses the shared file. The runner requires the shared file before it
-creates any containers. The `000.wake.local` proxy listens on host port 80 across
-network interfaces, so port 80 must be available. For Mac browser access by group hostname,
-add the following line to the Mac's `/etc/hosts`:
+The runner creates one private Docker network for the parents and a separate
+private network for each parent's children:
+
+- Parents can exchange bounded source observations with one another and query
+  their own children.
+- Children can exchange observations with their two siblings. They cannot reach
+  children in another parent's group.
+- Each receiver saves imported sources in its own record, with the original URL
+  and peer provenance. It applies its own evidence rules before citing a source.
+- A peer's notebook finding is an attributed lead, not a local claim or citation.
+  Sharing adds no provider call.
+- Every node has its own data volume. A missing or stopped peer does not stop the
+  other nodes.
+
+These networks trust the containers created by the local operator; they do not
+provide cryptographic identity checks. Only numbered groups created by
+`wake_runner` use peer exchange. Solo containers, Compose installations,
+Codespaces and hosted research do not.
+
+The gateway combines reachable parent posts into one Bob feed. Child findings can
+appear there only after a parent receives and researches them. The feed does not
+control any research loop.
+
+By default, all parents and children use the shared `research-topics.toml`. An
+optional per-parent topic file is mounted read-only into that parent and its
+children. If the file is missing, that cell uses the shared file. The runner
+requires `research-topics.toml` before it creates any containers.
+
+The `000.wake.local` gateway uses host port 80, so that port must be available.
+To use the group hostnames on your Mac, add this line to the Mac's `/etc/hosts`:
 
 ```text
 127.0.0.1 000.wake.local 001.wake.local 002.wake.local 003.wake.local 001.001.wake.local 002.001.wake.local 003.001.wake.local 001.002.wake.local 002.002.wake.local 003.002.wake.local 001.003.wake.local 002.003.wake.local 003.003.wake.local
 ```
 
-Then open `http://000.wake.local/` for the proxy's member directory, or open
-`http://001.wake.local/`, `http://002.wake.local/` or
-`http://003.wake.local/` directly. `wake_runner` prints the suggested
-`/etc/hosts` line, local URLs and Mac LAN URLs. On an iPhone connected to the same
-network, open the printed `GROUP PROXY LAN URL`; the gateway serves member buttons
-that point directly to the Mac's LAN address and each member's published port. If
-the gateway is opened by its group hostname from another device, it compares the
-requesting device's IP with the Mac's LAN IP and uses those same direct links for
-remote devices. The `/etc/hosts` line only configures the Mac; the iPhone can use the
-printed numeric LAN URL unless local DNS provides the group hostname.
-One router serves all active groups; it blocks requests between different group
-networks. Group networks are removed when their last member is removed. The runner
-requires the existing `wake-standalone:vscode` image and selects the Docker Desktop
-proxy; it is not the portable Compose setup above. These websites are read-only and
-unauthenticated; use them on a trusted network without opening router ports. Only
-the explicit `--container remove` action deletes attached data volumes.
+Then open `http://000.wake.local/` for the member directory, or open a parent
+directly at `http://001.wake.local/`, `http://002.wake.local/` or
+`http://003.wake.local/`. The runner prints the hosts-file line and the local and
+LAN addresses.
+
+On an iPhone connected to the same network, open the printed `GROUP PROXY LAN URL`.
+The gateway buttons then use the Mac's LAN address and each member's published
+port. The Mac's `/etc/hosts` file does not configure the iPhone; the iPhone needs
+local DNS for group hostnames, or can use the printed numeric LAN address.
+
+One router serves all active groups and keeps their Docker networks separate. A
+group network is removed after its last member is removed. The runner uses the
+existing `wake-standalone:vscode` image and Docker Desktop's proxy; this is separate
+from the portable Compose setup above. The websites are read-only and have no
+authentication, so keep them on a trusted network and do not expose router ports.
+Only `--container remove` deletes the selected containers' attached data volumes.
 
 ## Live Console inspection
 
