@@ -258,9 +258,10 @@ idle/disconnected/hosted snapshot views cannot display an in-flight provider pul
 Panel #014 is the record inspector and the third section in the seven-part story.
 It appears after #013 and before #015, in ordinary page flow. It is not draggable,
 does not reserve a side column, float over other panels, or use a special z-index.
-On iPhone it does not slide up as a sheet. Selecting a record must not scroll or
-zoom the page to another panel. When there is no selection, the inspector is hidden;
-when selected, it appears in its story position. Check this at phone width as well
+On iPhone it does not slide up as a sheet. It stays visible in the story with a
+short empty state until a record is selected; selecting a record fills the panel in
+place. This keeps the space between #013 and #015 stable while scrolling. Selection
+must not scroll or zoom the page to another panel. Check this at phone width as well
 as desktop width. The page uses horizontal clipping without creating a body scroll
 container. The shared masthead behavior is described below.
 

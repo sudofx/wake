@@ -1263,18 +1263,16 @@ html:not(.console-panel-window) body.research-page [data-console-panel-id].panel
 .console-module-grid .console-overview>div:first-child{flex:none}
 .console-module-grid>.console-overview>.panel-heading{padding:0 0 20px!important}
 
-/* Panel #014 is the third story section, revealed in place without a dock,
-   overlay, reserved column, or scroll jump. */
+/* Panel #014 stays visible as the third story section. Its empty state keeps
+   the page flow stable until a record is selected. */
 #main>.detail-panel,
-#console-module-grid>.detail-panel{display:block;position:relative!important;inset:auto!important;z-index:auto!important;transform:none!important;translate:none!important;transition:none!important;animation:none!important;width:auto!important;height:auto!important;max-height:none!important;margin:0!important;overflow:visible!important;border-radius:10px!important}
-#main>.detail-panel:not(.has-selection),
-#console-module-grid>.detail-panel:not(.has-selection){display:none!important}
-#main>.detail-panel.has-selection,
-#console-module-grid>.detail-panel.has-selection{display:block!important}
+#console-module-grid>.detail-panel{display:block!important;position:relative!important;inset:auto!important;z-index:auto!important;transform:none!important;translate:none!important;transition:none!important;animation:none!important;width:auto!important;height:auto!important;max-height:none!important;margin:0!important;overflow:visible!important;border-radius:10px!important}
 #main>.detail-panel #record-detail,
 #console-module-grid>.detail-panel #record-detail{position:static!important;width:auto!important;max-width:100%!important;height:auto!important;max-height:none!important;overflow:visible!important}
 #main>.detail-panel #close-inspector,
 #console-module-grid>.detail-panel #close-inspector{position:static!important;inset:auto!important;z-index:auto!important}
+#main>.detail-panel:not(.has-selection) #close-inspector,
+#console-module-grid>.detail-panel:not(.has-selection) #close-inspector{display:none!important}
 .research-page .map-panel .panel-actions .map-key{margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
 .research-page .map-panel .panel-actions{align-items:center}
 /* The seven numbered story sections share a visible group boundary. */
