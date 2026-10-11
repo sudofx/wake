@@ -27,6 +27,11 @@ is accepted, rejected, deferred, or fails. This makes the work inspectable and
 correctable; it does not prove that a research claim is true or that a model is
 conscious.
 
+WAKE uses **progressive abstraction with recoverable provenance**. In plain terms,
+it shortens material for everyday use while keeping evidence links back to the
+exact receipts. Working abstractions keep evidence pointers; a short summary does
+not pretend it can restore details that it left out.
+
 ## Choose a guide
 
 | If you want to… | Start here |
