@@ -334,6 +334,8 @@
     dragging.classList.remove('module-dragging');
     document.body.classList.remove('console-is-dragging');
     dragging=null;placeholder=null;pointerId=null;
+    // Keep the static inspector attached to the landscape when its panel moves.
+    placeInspector();
     writeState();pack();
   };
   grid.addEventListener('pointerup',finish);

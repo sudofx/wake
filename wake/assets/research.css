@@ -1273,6 +1273,7 @@ html:not(.console-panel-window) body.research-page [data-console-panel-id].panel
 #console-module-grid>.detail-panel #close-inspector{position:static!important;inset:auto!important;z-index:auto!important}
 #main>.detail-panel:not(.has-selection) #close-inspector,
 #console-module-grid>.detail-panel:not(.has-selection) #close-inspector{display:none!important}
+#console-module-grid>.detail-panel{grid-column:1 / -1!important}
 .research-page .map-panel .panel-actions .map-key{margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
 .research-page .map-panel .panel-actions{align-items:center}
 /* The seven numbered story sections share a visible group boundary. */
