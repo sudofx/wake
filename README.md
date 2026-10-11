@@ -108,10 +108,11 @@ cp example.research-topics.toml research-topics.toml
 
 This creates `000.wake` as the gateway, three independent parent containers,
 and three child containers under each parent. Parents use 100-step names such as
-`100.wake`; children use `100.001.wake`, `100.002.wake`, and `100.003.wake`.
-The next parents are `200.wake`, `300.wake`, and so on. Each node keeps its own
-record. These local hostnames use plain HTTP; the iPhone can use the gateway's
-LAN address and each node's published port.
+`100.wake`; children use `101.wake`, `102.wake`, and `103.wake` under that
+parent. The next parent group is `200.wake` with children `201.wake` through
+`203.wake`, then `300.wake` with children `301.wake` through `303.wake`. Each
+node keeps its own record. These local hostnames use plain HTTP; the iPhone can
+use the gateway's LAN address and each node's published port.
 Parents and their children can exchange bounded research material on the local
 Docker network; an unreachable peer does not stop another node. To give each parent
 different topics, prepare `.wake-runner-topics/100.wake.toml` and the

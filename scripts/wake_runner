@@ -37,11 +37,11 @@ default. Use `--dotfiles=false` or `--no-dotfiles` to skip importing them.
 Groups use parent container names 100.PREFIX, 200.PREFIX, and so on, and receive
 separate data volumes and Docker-assigned host ports published on the host's
 network interfaces. Each parent gets three independently stored research
-children named PARENT.CHILD.PREFIX; for example, 100.002.wake is child 002 of
-parent 100.wake. Children share findings only with siblings in their parent's
-private bridge; the parent can query its children and remains the only bridge
-between parent groups. The reserved `000.PREFIX` hostname serves the group
-directory. Optional per-parent topic files live at
+children whose numeric IDs immediately follow their parent; for example, 102.wake
+is child 002 of parent 100.wake. Children share findings only with siblings in
+their parent's private bridge; the parent can query its children and remains the
+only bridge between parent groups. The reserved `000.PREFIX` hostname serves the
+group directory. Optional per-parent topic files live at
 .wake-runner-topics/NNN.PREFIX.toml and are shared read-only with that
 parent's children. Research controls leave Docker running.
 `--refresh-router` rebuilds the local gateway hostname map from node identities;
@@ -62,6 +62,12 @@ data_volume_for() {
 
 group_network_for() { printf 'wake-group-%s' "$1"; }
 cell_network_for() { printf 'wake-c-%s-%s' "$1" "$2"; }
+
+child_hostname_ordinal() {
+    local parent_ordinal="$1" child_ordinal="$2" combined
+    combined=$((10#$parent_ordinal + 10#$child_ordinal))
+    printf '%0*d' "${#parent_ordinal}" "$combined"
+}
 
 ensure_group_network() {
     local group_id="$1" network="${2:-}" label
@@ -147,7 +153,7 @@ ensure_group_router_identity() {
 
 refresh_group_router() {
     local config_file="$repo_dir/.wake-runner-router.json" routes_file container group_id ordinal network subnet gateway host_port host_ip lan_ip
-    local first_network="" name host label router_network role parent instance parent_ordinal child_ordinal child_identity
+    local first_network="" name host label router_network role parent instance parent_ordinal child_ordinal child_identity child_host_ordinal
     local groups=() networks=()
     routes_file="$(mktemp)"
     lan_ip="$(host_lan_ipv4 || true)"
@@ -159,8 +165,8 @@ refresh_group_router() {
         role="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.role\" }}" "$container")"
         parent="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.parent\" }}" "$container")"
         network="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.network\" }}" "$container")"
-        # Public parents use PARENT.GROUP; children use PARENT.CHILD.GROUP.
-        # Parent ordinals advance by 100 and child ordinals by one.
+        # Public parents use PARENT.GROUP; children use (PARENT + CHILD).GROUP.
+        # Parent ordinals advance by 100 and child offsets are 001 through 003.
         if [[ "$role" == child && "$instance" == "$group_id-p"* ]]; then
             child_identity="${instance#"$group_id-p"}"
             [[ "$child_identity" =~ ^([0-9]{3,})-c([0-9]{3})$ ]] || { rm -f "$routes_file"; fail "Invalid child identity: $instance"; }
@@ -170,7 +176,8 @@ refresh_group_router() {
                 rm -f "$routes_file"
                 fail "Child identity '$instance' does not match its recorded parent '$parent'."
             }
-            host="$ordinal.$child_ordinal.$group_id"
+            child_host_ordinal="$(child_hostname_ordinal "$ordinal" "$child_ordinal")"
+            host="$child_host_ordinal.$group_id"
         elif [[ "$role" == parent && "$instance" == "$group_id-"* ]]; then
             ordinal="${instance#"$group_id-"}"
             [[ "$ordinal" =~ ^[0-9]{3,}$ ]] || { rm -f "$routes_file"; fail "Invalid parent identity: $instance"; }
@@ -711,7 +718,7 @@ container_control() {
 
 start_group() {
     local prefix="$1" count="$2" campaign="$3" dotfiles="${4:-true}" paused="${5:-false}" i name ordinal was_existing peers network group_instance
-    local child_ordinal child_index child_name child_instance child_peers child_network parent_host cell_parent_alias
+    local child_ordinal child_index child_name child_instance child_peers child_network parent_host cell_parent_alias child_host_ordinal
     local existing_group existing_instance existing_parent existing_role
     local -a parent_instances=()
     local children_per_parent=3
@@ -728,7 +735,8 @@ start_group() {
     for ((i=1; i<=count; i++)); do
         printf -v ordinal '%03d' "$((i * 100))"
         for ((child_ordinal=1; child_ordinal<=children_per_parent; child_ordinal++)); do
-            printf -v child_name '%s.%03d.%s' "$ordinal" "$child_ordinal" "$prefix"
+            child_host_ordinal="$(child_hostname_ordinal "$ordinal" "$child_ordinal")"
+            child_name="$child_host_ordinal.$prefix"
             printf -v child_instance '%s-p%s-c%03d' "$prefix" "$ordinal" "$child_ordinal"
             if container_exists "$child_name"; then
                 ensure_wake_identity "$child_name"
@@ -778,7 +786,8 @@ start_group() {
         for ((child_ordinal=1; child_ordinal<=children_per_parent; child_ordinal++)); do
             printf -v child_ordinal '%03d' "$child_ordinal"
             child_instance="$prefix-p$ordinal-c$child_ordinal"
-            child_name="$ordinal.$child_ordinal.$prefix"
+            child_host_ordinal="$(child_hostname_ordinal "$ordinal" "$child_ordinal")"
+            child_name="$child_host_ordinal.$prefix"
             child_peers=""
             for ((child_index=1; child_index<=children_per_parent; child_index++)); do
                 printf -v name '%03d' "$child_index"
@@ -804,8 +813,8 @@ start_group() {
         printf -v ordinal '%03d' "$((i * 100))"
         printf ' %s.%s' "$ordinal" "$prefix"
         for ((child_ordinal=1; child_ordinal<=children_per_parent; child_ordinal++)); do
-            printf -v child_name '%03d' "$child_ordinal"
-            printf ' %s.%s.%s' "$ordinal" "$child_name" "$prefix"
+            child_host_ordinal="$(child_hostname_ordinal "$ordinal" "$child_ordinal")"
+            printf ' %s.%s' "$child_host_ordinal" "$prefix"
         done
     done
     printf '\n'
@@ -824,8 +833,8 @@ start_group() {
         printf 'GROUP URL: http://%s.%s/\n' "$ordinal" "$prefix"
         report_status "$name"
         for ((child_ordinal=1; child_ordinal<=children_per_parent; child_ordinal++)); do
-            printf -v child_name '%03d' "$child_ordinal"
-            child_name="$ordinal.$child_name.$prefix"
+            child_host_ordinal="$(child_hostname_ordinal "$ordinal" "$child_ordinal")"
+            child_name="$child_host_ordinal.$prefix"
             printf 'CHILD URL: http://%s/\n' "$child_name"
             report_status "$child_name"
         done

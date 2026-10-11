@@ -332,13 +332,14 @@ Supplying `--count` makes the positional name a group prefix and requires that
 name. For example, `./scripts/wake_runner wake --count 3` creates the
 `000.wake` gateway and Docker containers named `100.wake`, `200.wake`, `300.wake`,
 and so on, each with an independent volume and a Docker-assigned host port. Each
-numbered parent also gets three research children named `100.001.wake`,
-`100.002.wake`, and `100.003.wake` for parent `100.wake`. Child names follow
-`PARENT.CHILD.GROUP`; each parent therefore sorts directly with its children. For
-example, `200.003.wake` is child 003 of parent `200.wake`. The `000.wake` gateway
-shows each parent with its children nested below it. Its hostname links work on
-the Mac; opening the gateway by LAN IP gives buttons using each node's own
-published host port.
+numbered parent also gets three research children named `101.wake`, `102.wake`,
+and `103.wake` for parent `100.wake`. Child names use the three numeric IDs
+immediately after the parent, so parent `100.wake` has children
+`101.wake`, `102.wake`, and `103.wake`; parent `200.wake` has `201.wake` through
+`203.wake`. This keeps every member in the same sortable numeric namespace. The
+`000.wake` gateway shows each parent with its children nested below it. Its
+hostname links work on the Mac; opening the gateway by LAN IP gives buttons using
+each node's own published host port.
 
 This naming scheme is used for groups created with the current runner. To change
 an existing group, back up its research data, remove the old group, and create it
@@ -350,15 +351,15 @@ flowchart TB
   G[000 group directory] --> P1[100 parent]
   G --> P2[200 parent]
   G --> P3[300 parent]
-  P1 --> C11[100.001 child]
-  P1 --> C12[100.002 child]
-  P1 --> C13[100.003 child]
-  P2 --> C21[200.001 child]
-  P2 --> C22[200.002 child]
-  P2 --> C23[200.003 child]
-  P3 --> C31[300.001 child]
-  P3 --> C32[300.002 child]
-  P3 --> C33[300.003 child]
+  P1 --> C11[101 child]
+  P1 --> C12[102 child]
+  P1 --> C13[103 child]
+  P2 --> C21[201 child]
+  P2 --> C22[202 child]
+  P2 --> C23[203 child]
+  P3 --> C31[301 child]
+  P3 --> C32[302 child]
+  P3 --> C33[303 child]
 ```
 
 ### How group members share research
@@ -397,7 +398,10 @@ The `000.wake` gateway uses host port 80, so that port must be available. To use
 the group hostnames on your Mac, add this line to the Mac's `/etc/hosts`:
 
 ```text
-127.0.0.1 000.wake 100.wake 100.001.wake 100.002.wake 100.003.wake 200.wake 200.001.wake 200.002.wake 200.003.wake 300.wake 300.001.wake 300.002.wake 300.003.wake
+127.0.0.1 000.wake
+127.0.0.1 100.wake 101.wake 102.wake 103.wake
+127.0.0.1 200.wake 201.wake 202.wake 203.wake
+127.0.0.1 300.wake 301.wake 302.wake 303.wake
 ```
 
 Then open `http://000.wake/` for the member directory, or open a parent directly
