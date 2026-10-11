@@ -28,7 +28,7 @@ class _Connection:
 
     def getresponse(self):
         return _Response({
-            "schema": 1, "group_id": "wake.local", "instance_id": "wake.local-002",
+            "schema": 1, "group_id": "wake", "instance_id": "wake-002",
             "application_head": "a" * 64,
             "posts": [{"id": "post-002", "created_by": "wake-002"}],
             "invocations": {"wake-002": {"id": "wake-002"}},
@@ -48,7 +48,7 @@ class GroupProxyTests(unittest.TestCase):
         proxy.send_header = lambda *args: None
         proxy.end_headers = lambda: None
 
-        proxy._serve_directory("wake.local", [])
+        proxy._serve_directory("wake", [])
         html = proxy.wfile.getvalue().decode()
 
         for color, state, meaning in (
@@ -66,9 +66,9 @@ class GroupProxyTests(unittest.TestCase):
 
     def test_missing_member_status_is_yellow_and_rechecked_not_red(self):
         proxy = GroupProxy.__new__(GroupProxy)
-        proxy.server = SimpleNamespace(routes={"001.wake.local": {"target": "offline"}})
+        proxy.server = SimpleNamespace(routes={"100.001.wake": {"target": "offline"}})
         with patch("scripts.wake_group_proxy.HTTPConnection", side_effect=OSError("offline")):
-            state, label = proxy._member_runtime("001.wake.local")
+            state, label = proxy._member_runtime("100.001.wake")
         self.assertEqual(state, "waiting")
         self.assertIn("checking again automatically", label)
 
@@ -86,9 +86,9 @@ class GroupProxyTests(unittest.TestCase):
             def close(self): pass
 
         proxy = GroupProxy.__new__(GroupProxy)
-        proxy.server = SimpleNamespace(routes={"001.wake.local": {"target": "online"}})
+        proxy.server = SimpleNamespace(routes={"100.001.wake": {"target": "online"}})
         with patch("scripts.wake_group_proxy.HTTPConnection", RuntimeConnection):
-            state, label = proxy._member_runtime("001.wake.local")
+            state, label = proxy._member_runtime("100.001.wake")
         self.assertEqual(state, "waiting")
         self.assertIn("no operator action", label)
 
@@ -117,9 +117,9 @@ class GroupProxyTests(unittest.TestCase):
                 pass
 
         proxy = GroupProxy.__new__(GroupProxy)
-        proxy.server = SimpleNamespace(routes={"001.wake.local": {"target": "001.wake.local"}})
+        proxy.server = SimpleNamespace(routes={"100.001.wake": {"target": "100.001.wake"}})
         with patch("scripts.wake_group_proxy.HTTPConnection", RuntimeConnection):
-            state, label = proxy._member_runtime("001.wake.local")
+            state, label = proxy._member_runtime("100.001.wake")
         self.assertEqual(state, "blocked")
         self.assertIn("Operator or agent action required", label)
         self.assertIn("Invalid provider configuration", label)
@@ -127,10 +127,10 @@ class GroupProxyTests(unittest.TestCase):
 
     def test_zero_ordinal_hostname_serves_its_group_directory(self):
         proxy = GroupProxy.__new__(GroupProxy)
-        group = {"members": ["001.wake.local", "002.wake.local"],
+        group = {"members": ["100.001.wake", "100.002.wake"],
                  "subnet": "172.24.0.0/16", "gateway": "172.24.0.1"}
-        proxy.server = SimpleNamespace(routes={}, groups={"wake.local": group})
-        proxy.headers = {"Host": "000.wake.local"}
+        proxy.server = SimpleNamespace(routes={}, groups={"wake": group})
+        proxy.headers = {"Host": "000.wake"}
         proxy.path = "/"
         proxy.client_address = ("127.0.0.1", 12345)
         proxy.command = "GET"
@@ -139,13 +139,13 @@ class GroupProxyTests(unittest.TestCase):
         proxy._serve_group_directory = lambda host, value: served.append((host, value))
         proxy.send_error = lambda *args: errors.append(args)
         proxy._forward()
-        self.assertEqual(served, [("000.wake.local", group)])
+        self.assertEqual(served, [("000.wake", group)])
         self.assertEqual(errors, [])
 
     def test_group_directory_displays_parent_zero_child_ordinal(self):
         proxy = GroupProxy.__new__(GroupProxy)
-        parent = "100.000.wake.local"
-        child = "100.001.wake.local"
+        parent = "100.wake"
+        child = "100.001.wake"
         proxy.server = SimpleNamespace(routes={
             parent: {"role": "parent"},
             child: {"role": "child"},
@@ -153,21 +153,21 @@ class GroupProxyTests(unittest.TestCase):
         proxy._member_runtime = lambda member: ("idle", "Research idle")
 
         html = proxy._group_panel(
-            "wake.local",
+            "wake",
             {"parents": [parent], "children": {parent: [child]}},
             lambda member: f"http://{member}/",
             "Open a member on this local network in a new tab.",
         )
 
-        self.assertIn("<span>100.000</span>", html)
+        self.assertIn("<span>100</span>", html)
         self.assertIn("<span>100.001</span>", html)
-        self.assertIn('aria-label="Parent node 100.000.wake.local"', html)
+        self.assertIn('aria-label="Parent node 100.wake"', html)
 
     def test_host_and_lan_clients_are_allowed_but_other_group_members_are_not(self):
         proxy = GroupProxy.__new__(GroupProxy)
         proxy.server = SimpleNamespace(groups={
-            "wake.local": {"subnet": "172.24.0.0/16"},
-            "other.local": {"subnet": "172.25.0.0/16"},
+            "wake": {"subnet": "172.24.0.0/16"},
+            "other": {"subnet": "172.25.0.0/16"},
         })
         route = {"subnet": "172.24.0.0/16", "gateway": "172.24.0.1"}
         for address, expected in (("127.0.0.1", True), ("192.168.65.1", True),
@@ -179,17 +179,17 @@ class GroupProxyTests(unittest.TestCase):
 
     def test_group_directory_allows_localhost_without_a_group_subnet_field(self):
         proxy = GroupProxy.__new__(GroupProxy)
-        proxy.server = SimpleNamespace(groups={"wake.local": {"networks": ["wake-group-wake.local"]}})
+        proxy.server = SimpleNamespace(groups={"wake": {"networks": ["wake-group-wake"]}})
         proxy.client_address = ("127.0.0.1", 12345)
-        self.assertTrue(proxy._allowed(proxy.server.groups["wake.local"]))
+        self.assertTrue(proxy._allowed(proxy.server.groups["wake"]))
 
     def test_gateway_status_endpoint_returns_each_members_current_state(self):
         proxy = GroupProxy.__new__(GroupProxy)
         proxy.server = SimpleNamespace(
-            groups={"wake.local": {"members": ["001.wake.local", "002.wake.local"]}},
+            groups={"wake": {"members": ["100.001.wake", "100.002.wake"]}},
             routes={},
         )
-        proxy.headers = {"Host": "000.wake.local"}
+        proxy.headers = {"Host": "000.wake"}
         proxy.path = "/group/status.json"
         proxy.client_address = ("127.0.0.1", 12345)
         proxy.command = "GET"
@@ -199,22 +199,22 @@ class GroupProxyTests(unittest.TestCase):
         proxy.end_headers = lambda: None
         proxy._member_runtime = lambda member: (
             ("standby", "Research paused until midnight Pacific time")
-            if member.startswith("001") else ("blocked", "Research blocked")
+            if member.endswith(".001.wake") else ("blocked", "Research blocked")
         )
 
         proxy._forward()
 
         payload = json.loads(proxy.wfile.getvalue())
-        self.assertEqual(payload["states"]["001.wake.local"]["state"], "standby")
-        self.assertEqual(payload["states"]["002.wake.local"]["state"], "blocked")
+        self.assertEqual(payload["states"]["100.001.wake"]["state"], "standby")
+        self.assertEqual(payload["states"]["100.002.wake"]["state"], "blocked")
 
     def test_group_bob_skips_unreachable_peer_and_serves_the_reachable_member(self):
         proxy = GroupProxy.__new__(GroupProxy)
         proxy.server = SimpleNamespace(
-            groups={"wake.local": {"members": ["001.wake.local", "002.wake.local"]}},
+            groups={"wake": {"members": ["100.001.wake", "100.002.wake"]}},
             routes={
-                "001.wake.local": {"target": "offline", "group_id": "wake.local"},
-                "002.wake.local": {"target": "online", "group_id": "wake.local"},
+                "100.001.wake": {"target": "offline", "group_id": "wake"},
+                "100.002.wake": {"target": "online", "group_id": "wake"},
             },
         )
         proxy.command = "GET"
@@ -224,10 +224,10 @@ class GroupProxyTests(unittest.TestCase):
         proxy.send_header = lambda *args: None
         proxy.end_headers = lambda: None
         with patch("scripts.wake_group_proxy.HTTPConnection", _Connection):
-            proxy._serve_group_bob("wake.local")
+            proxy._serve_group_bob("wake")
         self.assertEqual(statuses, [200])
         body = json.loads(proxy.wfile.getvalue())
-        self.assertEqual(body["members"], ["wake.local-002"])
+        self.assertEqual(body["members"], ["wake-002"])
         self.assertEqual([post["id"] for post in body["posts"]], ["post-002"])
 
 

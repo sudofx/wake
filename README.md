@@ -103,19 +103,18 @@ group a shared topic file first, then run:
 ```sh
 cp example.research-topics.toml research-topics.toml
 # Edit research-topics.toml
-./scripts/wake_runner wake.local --count 3
+./scripts/wake_runner wake --count 3
 ```
 
-This creates `000.wake.local` as the gateway, three independent parent containers,
-and three child containers under each parent. Parent numbers use 100-step labels,
-with `.000` marking the parent: `100.000.wake.local`. Child numbers use 001,
-002, and 003, so `100.001.wake.local`, `100.002.wake.local`, and
-`100.003.wake.local` belong to that parent. The next parents are
-`200.000.wake.local`, `300.000.wake.local`, and so on. Each node keeps its own
-record.
+This creates `000.wake` as the gateway, three independent parent containers,
+and three child containers under each parent. Parents use 100-step names such as
+`100.wake`; children use `100.001.wake`, `100.002.wake`, and `100.003.wake`.
+The next parents are `200.wake`, `300.wake`, and so on. Each node keeps its own
+record. These local hostnames use plain HTTP; the iPhone can use the gateway's
+LAN address and each node's published port.
 Parents and their children can exchange bounded research material on the local
 Docker network; an unreachable peer does not stop another node. To give each parent
-different topics, prepare `.wake-runner-topics/100.000.wake.local.toml` and the
+different topics, prepare `.wake-runner-topics/100.wake.toml` and the
 matching files for the other parents before creating the group. The [group guide](docs/standalone.md#repository-convenience-launcher)
 explains addresses, child visibility, dotfiles, and lifecycle commands.
 

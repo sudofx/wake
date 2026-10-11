@@ -442,7 +442,7 @@ class GroupProxy(BaseHTTPRequestHandler):
         state, label = self._member_runtime(member)
         route = self.server.routes.get(member, {})
         parts = member.split(".")
-        display = ".".join(parts[:2])
+        display = parts[0] if route.get("role") == "parent" else ".".join(parts[:2])
         tag = "a" if href else "div"
         destination = f'href="{escape(href, quote=True)}" target="_blank" rel="noopener noreferrer"' if href else 'aria-disabled="true"'
         return (
@@ -643,7 +643,7 @@ class GroupProxy(BaseHTTPRequestHandler):
     do_DELETE = do_POST
 
     def log_message(self, fmt, *args):
-        print("000.wake.local: " + fmt % args, flush=True)
+        print("000.wake: " + fmt % args, flush=True)
 
 
 def main():

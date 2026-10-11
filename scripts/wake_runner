@@ -7,10 +7,7 @@ set -euo pipefail
 
 IMAGE="wake-standalone:vscode"
 LABEL="com.sudofx.wake.runner"
-GROUP_ROUTER="000.wake.local"
-PREVIOUS_GROUP_ROUTER="gateway.wake.local"
-OLDER_GROUP_ROUTER="wake.local"
-LEGACY_GROUP_ROUTER="wake-group-router"
+GROUP_ROUTER="000.wake"
 repo_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
 CAMPAIGN_PROGRESS_CODE='from wake.kernel.record import Record; from wake.matrix import continuity_matrix_progress; r=Record.open_read_only("/data/wake.sqlite"); _,root=r.replay(); app=root.get("app:wake"); state=app.get("projection_state") if isinstance(app,dict) else None; p=continuity_matrix_progress(state); print("none" if p is None else str(p["completed_count"])+"/"+str(p["cell_count"]))'
 
@@ -28,7 +25,7 @@ join continuity@1 by default. `--campaign none` opts a newly created container
 out. Campaign enrollment is immutable after creation.
 
 `--count N` creates a local group named by the positional argument, for example
-`wake_runner wake.local --count 3`. The group prefix is required with `--count`.
+`wake_runner wake --count 3`. The group prefix is required with `--count`.
 Use `--paused` to create containers without starting their research schedulers.
 Without `--count`, `wake` is a single standalone container published on a random
 host port on all host network interfaces.
@@ -37,15 +34,15 @@ New containers copy any available ~/.bashrc, ~/.gitignore, ~/.bash_profile,
 ~/.profile, ~/.bash_aliases and ~/.inputrc files into their home volume by
 default. Use `--dotfiles=false` or `--no-dotfiles` to skip importing them.
 
-Groups use Docker container names 100.000.PREFIX, 200.000.PREFIX, and so on, and
-receive separate data volumes and Docker-assigned host ports published on the
-host's network interfaces. Each parent gets three independently stored research
-children named PARENT.CHILD.PREFIX; for example, 100.002.wake.local is child 002
-of parent 100.000. Children share findings only with siblings in their parent's
+Groups use parent container names 100.PREFIX, 200.PREFIX, and so on, and receive
+separate data volumes and Docker-assigned host ports published on the host's
+network interfaces. Each parent gets three independently stored research
+children named PARENT.CHILD.PREFIX; for example, 100.002.wake is child 002 of
+parent 100.wake. Children share findings only with siblings in their parent's
 private bridge; the parent can query its children and remains the only bridge
 between parent groups. The reserved `000.PREFIX` hostname serves the group
 directory. Optional per-parent topic files live at
-.wake-runner-topics/NNN.000.PREFIX.toml and are shared read-only with that
+.wake-runner-topics/NNN.PREFIX.toml and are shared read-only with that
 parent's children. Research controls leave Docker running.
 `--refresh-router` rebuilds the local gateway hostname map from node identities;
 it does not recreate research containers or touch their data volumes.
@@ -106,12 +103,10 @@ cleanup_group_network() {
         docker network inspect "$network" >/dev/null 2>&1 || continue
         label="$(docker network inspect --format "{{ index .Labels \"$LABEL.group\" }}" "$network")"
         [[ "$label" == "$group_id" ]] || continue
-        for router in "$GROUP_ROUTER" "$PREVIOUS_GROUP_ROUTER" "$OLDER_GROUP_ROUTER" "$LEGACY_GROUP_ROUTER"; do
-            if container_exists "$router"; then
-                ensure_group_router_identity "$router"
-                docker network disconnect "$network" "$router" >/dev/null 2>&1 || true
-            fi
-        done
+        if container_exists "$GROUP_ROUTER"; then
+            ensure_group_router_identity "$GROUP_ROUTER"
+            docker network disconnect "$network" "$GROUP_ROUTER" >/dev/null 2>&1 || true
+        fi
         attached="$(docker network inspect --format '{{range .Containers}}{{.Name}} {{end}}' "$network")"
         [[ -n "$attached" ]] || docker network rm "$network" >/dev/null
     done
@@ -156,31 +151,6 @@ refresh_group_router() {
     local groups=() networks=()
     routes_file="$(mktemp)"
     lan_ip="$(host_lan_ipv4 || true)"
-    if container_exists "$LEGACY_GROUP_ROUTER"; then
-        ensure_group_router_identity "$LEGACY_GROUP_ROUTER"
-        if container_exists "$GROUP_ROUTER"; then
-            ensure_group_router_identity "$GROUP_ROUTER"
-            docker rm -f "$LEGACY_GROUP_ROUTER" >/dev/null
-        else
-            docker rename "$LEGACY_GROUP_ROUTER" "$GROUP_ROUTER"
-        fi
-    fi
-    if container_exists "$PREVIOUS_GROUP_ROUTER"; then
-        ensure_group_router_identity "$PREVIOUS_GROUP_ROUTER"
-        if container_exists "$GROUP_ROUTER"; then
-            docker rm -f "$PREVIOUS_GROUP_ROUTER" >/dev/null
-        else
-            docker rename "$PREVIOUS_GROUP_ROUTER" "$GROUP_ROUTER"
-        fi
-    fi
-    if container_exists "$OLDER_GROUP_ROUTER"; then
-        ensure_group_router_identity "$OLDER_GROUP_ROUTER"
-        if container_exists "$GROUP_ROUTER"; then
-            docker rm -f "$OLDER_GROUP_ROUTER" >/dev/null
-        else
-            docker rename "$OLDER_GROUP_ROUTER" "$GROUP_ROUTER"
-        fi
-    fi
     while IFS= read -r container; do
         group_id="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.group\" }}" "$container")"
         [[ -n "$group_id" && "$group_id" != '<no value>' ]] || continue
@@ -189,14 +159,14 @@ refresh_group_router() {
         role="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.role\" }}" "$container")"
         parent="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.parent\" }}" "$container")"
         network="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.network\" }}" "$container")"
-        # Public hostnames use PARENT.CHILD.GROUP; the parent ordinal is a
-        # 100-step number and the child ordinal is a three-digit number.
+        # Public parents use PARENT.GROUP; children use PARENT.CHILD.GROUP.
+        # Parent ordinals advance by 100 and child ordinals by one.
         if [[ "$role" == child && "$instance" == "$group_id-p"* ]]; then
             child_identity="${instance#"$group_id-p"}"
             [[ "$child_identity" =~ ^([0-9]{3,})-c([0-9]{3})$ ]] || { rm -f "$routes_file"; fail "Invalid child identity: $instance"; }
             ordinal="${BASH_REMATCH[1]}"
             child_ordinal="${BASH_REMATCH[2]}"
-            [[ "$parent" == "$ordinal.000.$group_id" ]] || {
+            [[ "$parent" == "$ordinal.$group_id" ]] || {
                 rm -f "$routes_file"
                 fail "Child identity '$instance' does not match its recorded parent '$parent'."
             }
@@ -204,7 +174,7 @@ refresh_group_router() {
         elif [[ "$role" == parent && "$instance" == "$group_id-"* ]]; then
             ordinal="${instance#"$group_id-"}"
             [[ "$ordinal" =~ ^[0-9]{3,}$ ]] || { rm -f "$routes_file"; fail "Invalid parent identity: $instance"; }
-            host="$ordinal.000.$group_id"
+            host="$ordinal.$group_id"
         else
             continue
         fi
@@ -589,8 +559,8 @@ ensure_group_peer_alias() {
     aliases="$(docker inspect --format '{{range .NetworkSettings.Networks}}{{range .Aliases}}{{println .}}{{end}}{{end}}' "$name")"
     grep -Fxq "$group_instance" <<< "$aliases" && return 0
 
-    # Keep the stable internal peer ID resolvable while Docker names use the
-    # public 001.group.example form. Docker only accepts aliases at connect time.
+    # Keep the stable internal peer ID resolvable alongside the public hostname.
+    # Docker only accepts aliases at connect time.
     if is_running "$name"; then
         docker stop --time 30 "$name" >/dev/null
         was_running=true
@@ -767,7 +737,7 @@ start_group() {
                 existing_parent="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.parent\" }}" "$child_name")"
                 existing_role="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.role\" }}" "$child_name")"
                 [[ "$existing_group" == "$prefix" && "$existing_instance" == "$child_instance" &&
-                   "$existing_parent" == "$ordinal.000.$prefix" && "$existing_role" == child ]] ||
+                   "$existing_parent" == "$ordinal.$prefix" && "$existing_role" == child ]] ||
                     fail "Existing container '$child_name' belongs to a different child assignment. Remove and recreate the group to apply this naming scheme."
             fi
         done
@@ -781,9 +751,9 @@ start_group() {
     done
     for ((i=1; i<=count; i++)); do
         printf -v ordinal '%03d' "$((i * 100))"
-        name="$ordinal.000.$prefix"
+        name="$ordinal.$prefix"
         group_instance="$prefix-$ordinal"
-        parent_host="$ordinal.000.$prefix"
+        parent_host="$ordinal.$prefix"
         cell_parent_alias="$prefix-p$ordinal-parent"
         peers=""
         for ((child_ordinal=1; child_ordinal<=children_per_parent; child_ordinal++)); do
@@ -832,7 +802,7 @@ start_group() {
     printf ' 000.%s' "$prefix"
     for ((i=1; i<=count; i++)); do
         printf -v ordinal '%03d' "$((i * 100))"
-        printf ' %s.000.%s' "$ordinal" "$prefix"
+        printf ' %s.%s' "$ordinal" "$prefix"
         for ((child_ordinal=1; child_ordinal<=children_per_parent; child_ordinal++)); do
             printf -v child_name '%03d' "$child_ordinal"
             printf ' %s.%s.%s' "$ordinal" "$child_name" "$prefix"
@@ -850,8 +820,8 @@ start_group() {
     fi
     for ((i=1; i<=count; i++)); do
         printf -v ordinal '%03d' "$((i * 100))"
-        name="$ordinal.000.$prefix"
-        printf 'GROUP URL: http://%s.000.%s/\n' "$ordinal" "$prefix"
+        name="$ordinal.$prefix"
+        printf 'GROUP URL: http://%s.%s/\n' "$ordinal" "$prefix"
         report_status "$name"
         for ((child_ordinal=1; child_ordinal<=children_per_parent; child_ordinal++)); do
             printf -v child_name '%03d' "$child_ordinal"
@@ -943,7 +913,7 @@ main() {
         require_runtime
         research_control "$action" "$name" "$campaign" "$dotfiles"
     elif [[ -n "$count" ]]; then
-        [[ "$name_set" == true ]] || fail 'Provide a group name with --count, for example: scripts/wake_runner wake.local --count 3.'
+        [[ "$name_set" == true ]] || fail 'Provide a group name with --count, for example: scripts/wake_runner wake --count 3.'
         start_group "$name" "$count" "$campaign" "$dotfiles" "$paused"
     else
         require_runtime

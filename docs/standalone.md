@@ -16,7 +16,7 @@ can run with networking disabled. Passive repository/documentation links remain 
 | --- | --- |
 | One portable Compose installation | `docker compose up --build -d` |
 | One named runner container on a random host port | `./scripts/wake_runner wake` |
-| A numbered local group with three parents | `./scripts/wake_runner wake.local --count 3` |
+| A numbered local group with three parents | `./scripts/wake_runner wake --count 3` |
 | An inspection-only installation | Use Compose with `WAKE_PAUSED=true`, or add `--paused` to a new runner install |
 
 Create and edit `research-topics.toml` before starting research. A missing file
@@ -275,12 +275,12 @@ the group with one command:
 ```sh
 cp example.research-topics.toml research-topics.toml
 # Edit research-topics.toml
-./scripts/wake_runner wake.local --count 3
+./scripts/wake_runner wake --count 3
 ```
 
 To give the three parents different topics, prepare
-`.wake-runner-topics/100.000.wake.local.toml` through
-`.wake-runner-topics/300.000.wake.local.toml` before running the same command. The
+`.wake-runner-topics/100.wake.toml` through
+`.wake-runner-topics/300.wake.toml` before running the same command. The
 children under each parent use that parent's file. If one of those files is absent,
 the entire parent cell uses the shared `research-topics.toml` instead.
 
@@ -312,7 +312,7 @@ and `~/.inputrc` into that container's `/home/wake` volume. Missing files are
 skipped. This is enabled by default for solo containers and each newly created
 group member. Use `--dotfiles=false` (or `--no-dotfiles`) to skip the copy, for
 example `./scripts/wake_runner wake-dev --dotfiles=false` or
-`./scripts/wake_runner wake.local --count 3 --dotfiles=false`.
+`./scripts/wake_runner wake --count 3 --dotfiles=false`.
 `--dotfiles false` is also accepted. This only applies when a container is
 created; invoking the runner for an existing container leaves its home volume
 unchanged.
@@ -325,22 +325,20 @@ generation at zero while preserving append-only history and continuity results.
 Container lifecycle is separate: `--container stop|start|pause|remove
 [container-name-or-group]`. `remove` deletes the selected container(s) and any
 unshared attached Docker data volumes. A group prefix selects its
-`100.000.PREFIX`, `200.000.PREFIX`, and later parents and each parent's three child nodes
+`100.PREFIX`, `200.PREFIX`, and later parents and each parent's three child nodes
 when no exact container has that name.
 
 Supplying `--count` makes the positional name a group prefix and requires that
-name. For example, `./scripts/wake_runner wake.local --count 3` creates the
-`000.wake.local` proxy and Docker containers named `100.000.wake.local`,
-`200.000.wake.local`, `300.000.wake.local`, and so on, each with an independent
-volume and a Docker-assigned host port. Each numbered parent also gets three
-research children named `100.001.wake.local`, `100.002.wake.local`, and
-`100.003.wake.local` for parent `100.000.wake.local`. Child names follow
-`PARENT.CHILD.GROUP`, with `.000` reserved for the parent, so each parent sorts
-with its children. For example, `200.003.wake.local` is child 003 of parent
-`200.000.wake.local`. The `000.wake.local` gateway shows each
-parent with its children nested below it. Its hostname links work on the Mac;
-opening the gateway by LAN IP gives buttons using each node's own published host
-port.
+name. For example, `./scripts/wake_runner wake --count 3` creates the
+`000.wake` gateway and Docker containers named `100.wake`, `200.wake`, `300.wake`,
+and so on, each with an independent volume and a Docker-assigned host port. Each
+numbered parent also gets three research children named `100.001.wake`,
+`100.002.wake`, and `100.003.wake` for parent `100.wake`. Child names follow
+`PARENT.CHILD.GROUP`; each parent therefore sorts directly with its children. For
+example, `200.003.wake` is child 003 of parent `200.wake`. The `000.wake` gateway
+shows each parent with its children nested below it. Its hostname links work on
+the Mac; opening the gateway by LAN IP gives buttons using each node's own
+published host port.
 
 This naming scheme is used for groups created with the current runner. To change
 an existing group, back up its research data, remove the old group, and create it
@@ -349,9 +347,9 @@ volumes; restore a backup afterward if you need to keep its research history.
 
 ```mermaid
 flowchart TB
-  G[000 group directory] --> P1[100.000 parent]
-  G --> P2[200.000 parent]
-  G --> P3[300.000 parent]
+  G[000 group directory] --> P1[100 parent]
+  G --> P2[200 parent]
+  G --> P3[300 parent]
   P1 --> C11[100.001 child]
   P1 --> C12[100.002 child]
   P1 --> C13[100.003 child]
@@ -395,17 +393,16 @@ optional per-parent topic file is mounted read-only into that parent and its
 children. If the file is missing, that cell uses the shared file. The runner
 requires `research-topics.toml` before it creates any containers.
 
-The `000.wake.local` gateway uses host port 80, so that port must be available.
-To use the group hostnames on your Mac, add this line to the Mac's `/etc/hosts`:
+The `000.wake` gateway uses host port 80, so that port must be available. To use
+the group hostnames on your Mac, add this line to the Mac's `/etc/hosts`:
 
 ```text
-127.0.0.1 000.wake.local 100.000.wake.local 100.001.wake.local 100.002.wake.local 100.003.wake.local 200.000.wake.local 200.001.wake.local 200.002.wake.local 200.003.wake.local 300.000.wake.local 300.001.wake.local 300.002.wake.local 300.003.wake.local
+127.0.0.1 000.wake 100.wake 100.001.wake 100.002.wake 100.003.wake 200.wake 200.001.wake 200.002.wake 200.003.wake 300.wake 300.001.wake 300.002.wake 300.003.wake
 ```
 
-Then open `http://000.wake.local/` for the member directory, or open a parent
-directly at `http://100.000.wake.local/`, `http://200.000.wake.local/` or
-`http://300.000.wake.local/`. The runner prints the hosts-file line and the local and
-LAN addresses.
+Then open `http://000.wake/` for the member directory, or open a parent directly
+at `http://100.wake/`, `http://200.wake/` or `http://300.wake/`. The runner prints
+the hosts-file line and the local and LAN addresses.
 
 On an iPhone connected to the same network, open the printed `GROUP PROXY LAN URL`.
 The gateway buttons then use the Mac's LAN address and each member's published
