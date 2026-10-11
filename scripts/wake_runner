@@ -39,7 +39,8 @@ default. Use `--dotfiles=false` or `--no-dotfiles` to skip importing them.
 Groups use Docker container names 001.PREFIX through NNN.PREFIX and receive
 separate data volumes and Docker-assigned host ports published on the host's
 network interfaces. Each parent gets three independently stored research
-children. Children share findings only with siblings in their parent's private
+children named PARENT.CHILD.PREFIX; for example, 001.002.wake.local is child 002
+of parent 001. Children share findings only with siblings in their parent's private
 bridge; the parent can query its children and remains the only bridge between
 parent groups. The reserved `000.PREFIX` hostname serves the group directory.
 Optional per-parent topic files live at .wake-runner-topics/NNN.PREFIX.toml
@@ -722,6 +723,7 @@ container_control() {
 start_group() {
     local prefix="$1" count="$2" campaign="$3" dotfiles="${4:-true}" paused="${5:-false}" i name ordinal legacy_name was_existing peers network group_instance
     local child_ordinal child_index child_name child_instance child_peers child_network parent_host cell_parent_alias
+    local existing_group existing_instance existing_parent existing_role
     local -a parent_instances=()
     local children_per_parent=3
     local new_members=()
@@ -733,6 +735,25 @@ start_group() {
     [[ "${CODESPACES:-false}" != true && -z "${CODESPACE_NAME:-}" && "${GITHUB_ACTIONS:-false}" != true && "${CI:-false}" != true ]] ||
         fail 'Grouped peer networking is available only from a local wake_runner session.'
     require_runtime
+    # Check public child-name collisions before changing group networks or aliases.
+    # Parent-first names can collide with a different child's old child-first name.
+    for ((i=1; i<=count; i++)); do
+        printf -v ordinal '%03d' "$i"
+        for ((child_ordinal=1; child_ordinal<=children_per_parent; child_ordinal++)); do
+            printf -v child_name '%s.%03d.%s' "$ordinal" "$child_ordinal" "$prefix"
+            printf -v child_instance '%s-p%s-c%03d' "$prefix" "$ordinal" "$child_ordinal"
+            if container_exists "$child_name"; then
+                ensure_wake_identity "$child_name"
+                existing_group="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.group\" }}" "$child_name")"
+                existing_instance="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.instance\" }}" "$child_name")"
+                existing_parent="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.parent\" }}" "$child_name")"
+                existing_role="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.role\" }}" "$child_name")"
+                [[ "$existing_group" == "$prefix" && "$existing_instance" == "$child_instance" &&
+                   "$existing_parent" == "$ordinal.$prefix" && "$existing_role" == child ]] ||
+                    fail "Existing container '$child_name' belongs to a different child assignment. Migrate the group to parent-first names while preserving its data volumes before ensuring it again; no containers or volumes were changed."
+            fi
+        done
+    done
     ensure_group_network "$prefix"
     for ((i=1; i<=count; i++)); do
         printf -v ordinal '%03d' "$i"
@@ -777,7 +798,7 @@ start_group() {
         for ((child_ordinal=1; child_ordinal<=children_per_parent; child_ordinal++)); do
             printf -v child_ordinal '%03d' "$child_ordinal"
             child_instance="$prefix-p$ordinal-c$child_ordinal"
-            child_name="$child_ordinal.$ordinal.$prefix"
+            child_name="$ordinal.$child_ordinal.$prefix"
             child_peers=""
             for ((child_index=1; child_index<=children_per_parent; child_index++)); do
                 printf -v name '%03d' "$child_index"
@@ -805,7 +826,7 @@ start_group() {
         printf -v ordinal '%03d' "$i"
         for ((child_ordinal=1; child_ordinal<=children_per_parent; child_ordinal++)); do
             printf -v child_name '%03d' "$child_ordinal"
-            printf ' %s.%s.%s' "$child_name" "$ordinal" "$prefix"
+            printf ' %s.%s.%s' "$ordinal" "$child_name" "$prefix"
         done
     done
     printf '\n'
@@ -825,7 +846,7 @@ start_group() {
         report_status "$name"
         for ((child_ordinal=1; child_ordinal<=children_per_parent; child_ordinal++)); do
             printf -v child_name '%03d' "$child_ordinal"
-            child_name="$child_name.$ordinal.$prefix"
+            child_name="$ordinal.$child_name.$prefix"
             printf 'CHILD URL: http://%s/\n' "$child_name"
             report_status "$child_name"
         done

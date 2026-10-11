@@ -107,7 +107,9 @@ cp example.research-topics.toml research-topics.toml
 ```
 
 This creates `000.wake.local` as the gateway, three independent parent containers,
-and three child containers under each parent. Each node keeps its own record.
+and three child containers under each parent. Child hostnames put the parent number
+first, then the child number: `001.001.wake.local`, `001.002.wake.local` and
+`001.003.wake.local` belong to parent `001.wake.local`. Each node keeps its own record.
 Parents and their children can exchange bounded research material on the local
 Docker network; an unreachable peer does not stop another node. To give each parent
 different topics, prepare `.wake-runner-topics/001.wake.local.toml` and the matching

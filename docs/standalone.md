@@ -333,11 +333,20 @@ name. For example, `./scripts/wake_runner wake.local --count 3` creates the
 `000.wake.local` proxy and Docker containers named `001.wake.local` through
 `003.wake.local`, each with an independent volume and a Docker-assigned host
 port. Each numbered parent also gets three research children, named
-`001.001.wake.local` through `003.001.wake.local` for parent `001.wake.local`
-(and likewise for the other parents). The `000.wake.local` gateway shows each
+`001.001.wake.local`, `001.002.wake.local` and `001.003.wake.local` for parent
+`001.wake.local`. Child names follow `PARENT.CHILD.GROUP`, so the parent number
+comes first and all three children sort together. For example, `002.003.wake.local`
+is child 003 of parent `002.wake.local`. The `000.wake.local` gateway shows each
 parent with its children nested below it. Its hostname links work on the Mac;
 opening the gateway by LAN IP gives buttons using each node's own published host
 port.
+
+This naming change applies when a group is created with the current runner.
+Existing child containers keep their old names. Because some old names overlap
+with a different parent's new child assignment, the runner stops with a clear
+message instead of silently attaching the wrong record. An existing group needs
+a data-volume-preserving migration before it can use the new names; this naming
+change does not rename or remove any running containers or research records.
 
 ```mermaid
 flowchart TB
@@ -345,13 +354,13 @@ flowchart TB
   G --> P2[002 parent]
   G --> P3[003 parent]
   P1 --> C11[001.001 child]
-  P1 --> C12[002.001 child]
-  P1 --> C13[003.001 child]
-  P2 --> C21[001.002 child]
+  P1 --> C12[001.002 child]
+  P1 --> C13[001.003 child]
+  P2 --> C21[002.001 child]
   P2 --> C22[002.002 child]
-  P2 --> C23[003.002 child]
-  P3 --> C31[001.003 child]
-  P3 --> C32[002.003 child]
+  P2 --> C23[002.003 child]
+  P3 --> C31[003.001 child]
+  P3 --> C32[003.002 child]
   P3 --> C33[003.003 child]
 ```
 
@@ -389,7 +398,7 @@ The `000.wake.local` gateway uses host port 80, so that port must be available.
 To use the group hostnames on your Mac, add this line to the Mac's `/etc/hosts`:
 
 ```text
-127.0.0.1 000.wake.local 001.wake.local 002.wake.local 003.wake.local 001.001.wake.local 002.001.wake.local 003.001.wake.local 001.002.wake.local 002.002.wake.local 003.002.wake.local 001.003.wake.local 002.003.wake.local 003.003.wake.local
+127.0.0.1 000.wake.local 001.wake.local 001.001.wake.local 001.002.wake.local 001.003.wake.local 002.wake.local 002.001.wake.local 002.002.wake.local 002.003.wake.local 003.wake.local 003.001.wake.local 003.002.wake.local 003.003.wake.local
 ```
 
 Then open `http://000.wake.local/` for the member directory, or open a parent
