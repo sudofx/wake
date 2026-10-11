@@ -23,6 +23,19 @@ flowchart LR
 The branches have different jobs. Updating the website does not reset research;
 publishing code does not copy a local record into the hosted installation.
 
+### The short operating path
+
+- **Start or resume research:** use **WAKE✳︎ - Start**.
+- **Pause for maintenance:** use **WAKE✳︎ - Stop** and wait until research jobs have
+  finished before changing or promoting code.
+- **Publish a code change:** verify the candidate, then use **Stop → promote → Start**
+  (or the **Restart** shortcut). Check the promoted commit and a new terminal receipt.
+- **Start a new research generation:** use **Reset** only when you intend to archive
+  the current generation and begin again at zero.
+
+These controls affect hosted WAKE only. Local containers and Codespaces keep their
+own code paths and records.
+
 WAKE✳︎ provides the durable record and governed transition boundary. The hosted research application uses that infrastructure to choose small, useful projects from `research-topics.toml`. Topics are replaceable workload inputs, not WAKE✳︎ identity or kernel policy. The deployment can continue research without daily assignments, while resets and topic changes remain explicit operator interventions.
 
 ## Read or wake it
@@ -119,7 +132,25 @@ A trusted collector retrieves a bounded sample before the final proposal inferen
 
 ## Changing research topics
 
-Create the topic file on `master` with `cp example.research-topics.toml research-topics.toml`, then edit it. Local files are ignored by Git; hosted research uses the exact promoted commit, so explicitly include hosted topics with `git add -f research-topics.toml`, commit and push, then promote that candidate. Restart refuses to promote a release without the file, before it stops the current runtime. Each topic has a stable machine `id`, a public `label`, a neutral discovery `query`, and may have a `seed_question`. Development changes on `master` do not affect live research until that commit is explicitly promoted to `wake-runtime`. After promotion and restart, the next runtime cycle records changed topic configuration as an auditable event before doing research. This is forward-only: existing cycles and projects are not rewritten. Keep an ID unchanged when renaming a topic that already owns projects. Removing a topic prevents new projects in it, while existing projects remain reviewable and can be completed or parked. Durable records and filters keep the stable topic `id`; public journal, notebook, blog, and MAP tags resolve that ID through the configured `label` so internal names are not used as display text.
+The repository includes `research-topics.toml`. If it is missing, copy the starter
+file and edit it:
+
+```sh
+cp example.research-topics.toml research-topics.toml
+```
+
+In this repository, the topic file is tracked. An edit changes your checkout but
+does not reach hosted WAKE until it is committed, pushed, and promoted. The Restart
+workflow checks that the candidate commit contains the file before it stops the
+current runtime.
+
+Each topic has a stable machine `id`, a public `label`, a neutral discovery `query`,
+and an optional `seed_question`. Keep an existing ID when renaming a topic that
+already owns projects. Removing a topic prevents new projects under it, but existing
+projects remain available for review, completion, or parking. Once promoted, the
+next cycle records the configuration change as an event; old cycles and projects
+are not rewritten. Public pages show the configured label while the record keeps
+the stable ID.
 
 **WAKE✳︎** can start, update, park and complete projects; queue research; publish or revise notebooks; and use the existing belief/commitment system. At most three projects are active and four model-proposed searches are pending. A notebook may preserve a provisional synthesis from one qualifying substantive source, but project completion requires a notebook backed by at least two substantive distinct underlying source works. Known DOI/arXiv/OpenAlex identities collapse mirrors to one work. Revisions require changed findings and newly collected evidence. Previous revisions remain in the event history.
 

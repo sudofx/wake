@@ -116,10 +116,24 @@ Run `python3 -m wake --data data/rehearsal experiment --cycles 100 --output site
 
 ## Live-model protocol
 
-Start a separate live database using `python3 -m wake init`, or use the GitHub-hosted record described in `cloud.md`. Do not count fixture cycles as live evidence. Define the intended batch size before the run (100 attempted wakes is the current experimental unit), preserve the starting configuration—including enabled topics, seed questions, observation mode, collection budget, provider chain and experimental regime—and count accepted, rejected, deferred and failed attempts separately. Do not retry or discard an unfavorable result to make the metrics prettier. When comparing reset runs, preserve the configuration unless the intervention itself is the variable being tested.
+Use a separate live database or the hosted record. Fixture results are not live
+evidence. Before a run, write down the question, intended batch size, topic file,
+provider settings, and other conditions. Count accepted, rejected, deferred, and
+failed attempts separately. Keep the same conditions between runs unless one of
+them is the variable being studied. Do not discard an unfavorable attempt.
 
 1. Supply a narrow, externally assessable research question and observations using `observe`. Begin with a provisional belief and at least one concrete review obligation.
-2. Run Gemini A from the durable request. For a handoff, use `prepare` with a fresh Claude or ChatGPT desktop chat and `complete` its unedited JSON response. Save the human-attested identity exactly.
+2. Run Gemini A from the durable request. To hand a request to a desktop model,
+   prepare it, submit the exact request in a fresh chat, then import the unedited
+   JSON reply:
+
+   ```sh
+   python -m wake prepare --model 'Claude Desktop / human-attested' --output request.json
+   python -m wake complete --id w-PASTE_THE_ID_FROM_PREPARE --file reply.json
+   ```
+
+   The pending request is durable and blocks automatic wakes until it is completed
+   or explicitly recovered. The model name is recorded as human-attested.
 3. Check whether the new model notices and meaningfully addresses inherited obligations without a human reminder. Inspect exact requests, raw replies and citations. A mere repeated ID is insufficient evidence of comprehension.
 4. Add a new supporting observation and later a contradictory one. Check whether the model explains the change and revises or retracts its belief appropriately. A model that ignores a contradiction is a failed behavioral result even if its proposal passes structural governance.
 5. Run a controlled focus intervention on copied **offline/manual** requests. Keep starting state and model settings the same and document all changed inputs. Avoid two live API databases sharing one quota ledger.

@@ -10,6 +10,21 @@ not download the public installation's record or interact with GitHub operationa
 Internet access is needed for live Gemini and public research sources; fixture mode
 can run with networking disabled. Passive repository/documentation links remain links.
 
+### Pick a local setup
+
+| Goal | Start with |
+| --- | --- |
+| One portable Compose installation | `docker compose up --build -d` |
+| One named runner container on a random host port | `./scripts/wake_runner wake` |
+| A numbered local group with three parents | `./scripts/wake_runner wake.local --count 3` |
+| An inspection-only installation | Use Compose with `WAKE_PAUSED=true`, or add `--paused` to a new runner install |
+
+Create and edit `research-topics.toml` before starting research. A missing file
+causes startup to stop and print the copy command. The numbered runner can use one
+shared topic file for every node or a separate file for each parent; its children
+inherit their parent's topics. Group networking is local Docker infrastructure and
+is not enabled for solo, Codespace, or hosted installs.
+
 ```mermaid
 flowchart LR
   C[WAKE container] --> D[(Its own /data/wake.sqlite)]
@@ -28,10 +43,11 @@ Before starting research from a fresh checkout, create and edit the local topic 
 cp example.research-topics.toml research-topics.toml
 ```
 
-The custom file is ignored by Git for local use. If it is missing, WAKE prints this
-command and stops before running research. Docker builds include the local file when
-present. Hosted research uses the exact promoted release commit; explicitly add its
-topics file with `git add -f research-topics.toml` before committing and promoting it.
+If the file is missing, WAKE prints this command and stops before running research.
+This repository currently tracks `research-topics.toml`, so editing it changes your
+working copy and appears in `git status`; it does not publish or promote anything.
+The container build includes the file. Hosted research uses the exact promoted
+release commit, so that candidate must contain the topics you intend to run.
 
 ## Code and website changes
 
@@ -253,6 +269,21 @@ runtime promotion is part of local container operation.
 
 ## Repository convenience launcher
 
+For the runner's common group setup, create/edit the shared topic file and launch
+the group with one command:
+
+```sh
+cp example.research-topics.toml research-topics.toml
+# Edit research-topics.toml
+./scripts/wake_runner wake.local --count 3
+```
+
+To give the three parents different topics, prepare
+`.wake-runner-topics/001.wake.local.toml` through
+`.wake-runner-topics/003.wake.local.toml` before running the same command. The
+children under each parent use that parent's file. If one of those files is absent,
+the entire parent cell uses the shared `research-topics.toml` instead.
+
 `./scripts/wake_runner` creates and starts the default `wake` container when it is
 absent. It publishes the container on a random host port across host network
 interfaces and prints its local and LAN URLs when available;
@@ -342,21 +373,11 @@ posts only after their parent ingests and researches them. The feed does not gat
 any research loop.
 
 By default, each parent and its three children use the shared
-`research-topics.toml`. To give each parent a different set, create files before
-creating the group, for example:
-
-```sh
-mkdir -p .wake-runner-topics
-cp example.research-topics.toml .wake-runner-topics/001.wake.local.toml
-cp example.research-topics.toml .wake-runner-topics/002.wake.local.toml
-cp example.research-topics.toml .wake-runner-topics/003.wake.local.toml
-```
-
-Edit each numbered file before launching. The runner mounts a parent's matching
-file read-only into that parent and its children. If a matching file is absent,
-that whole cell uses the shared `./research-topics.toml`; the runner requires that
-shared file before it creates containers. The `000.wake.local` proxy listens on host port 80 across network
-interfaces, so port 80 must be available. For Mac browser access by group hostname,
+`research-topics.toml`. The optional per-parent files described above are mounted
+read-only into that parent and its children. If a parent's file is absent, its
+whole cell uses the shared file. The runner requires the shared file before it
+creates any containers. The `000.wake.local` proxy listens on host port 80 across
+network interfaces, so port 80 must be available. For Mac browser access by group hostname,
 add the following line to the Mac's `/etc/hosts`:
 
 ```text

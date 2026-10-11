@@ -108,6 +108,13 @@ Dated installation validation evidence belongs in the ignored `.workbench/valida
 
 When prose and implementation disagree, current code/tests are evidence of behavior, but the documentation mismatch is a defect to fix rather than a permanent disclaimer.
 
+Write guides for a person who is new to the feature: lead with the plain-language
+answer, explain a term when it first appears, and put runnable steps before deep
+implementation detail. Keep technical precision where it affects safety or correct
+operation. Use task-oriented headings and a small diagram when it makes ownership,
+data flow, or setup easier to follow. Prefer one canonical explanation with links
+over repeating the same detail in several documents.
+
 
 ## Engine authority injection
 

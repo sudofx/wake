@@ -1,448 +1,179 @@
-# **WAKE✳︎**
+# WAKE✳︎
 
-For independent containers and optional shared hostname access, see
-[multiple installations](docs/installations.md). The [kernel boundary](docs/kernel.md)
-includes an executable non-research application proof; both remain in this repository.
-Paired memory/model trials and full-record evidence diagnostics are reproducible through
-[the comparison protocol](docs/experiment.md#paired-memory-and-model-comparison).
+WAKE✳︎ is infrastructure for durable, accountable work across interchangeable
+models, runtimes, and people. A model can suggest a change, but WAKE's rules decide
+whether to accept it. The record keeps the evidence, decisions, and history so work
+can continue when the model or machine changes.
 
-Standalone Console can show live runtime phases and an outline around the active
-continuity probe. Hosted Console keeps dated snapshot evidence separate from
-current activity. See [live inspection](docs/standalone.md#live-console-inspection).
+Research is WAKE's first application. It is a useful way to exercise the record and
+governance system; it is not the definition of the WAKE kernel.
 
-**WAKE✳︎** is infrastructure for durable, accountable work across interchangeable intelligences. Models, runtimes and people can change; the governed record carries objectives, evidence, obligations, decisions, provenance and receipts forward. The current research application is the first reference workload proving that infrastructure in public.
+[Open the public site](https://sudofx.github.io/wake/) · [View source and releases](https://github.com/sudofx/wake) · [GitHub Actions](https://github.com/sudofx/wake/actions)
 
-## Start here
-
-Pick the guide that matches what you want to do:
-
-| If you want to… | Start with… |
-| --- | --- |
-| Understand what WAKE is and try the offline example | This page, then [the experiment protocol](docs/experiment.md) |
-| Look up a term used in the guides | [WAKE glossary](docs/glossary.md) |
-| Run one local Docker installation | [Standalone setup](docs/standalone.md) |
-| Run several independent installations or a local group | [Multiple installations](docs/installations.md) and the [runner guide](docs/standalone.md#repository-convenience-launcher) |
-| Operate the GitHub-hosted installation | [Hosted operation](docs/cloud.md) |
-| Change code safely | [Maintainer map](docs/development.md) |
-| Understand the reusable kernel | [Kernel boundary](docs/kernel.md) |
-
-The core flow is easier to read as six steps:
+## The basic idea
 
 ```mermaid
 flowchart LR
-  R[Record<br/>what is known] --> C[Context<br/>what is shown]
-  C --> P[Proposal<br/>what a model suggests]
-  P --> G[Governance<br/>rules check it]
-  G --> T[Transition<br/>accepted change]
-  T --> X[Receipt<br/>proof of the outcome]
+  R[Durable record] --> C[Bounded context]
+  C --> M[Model suggestion]
+  M --> G[WAKE checks the rules]
+  G --> T[Accepted change or no change]
+  T --> X[Receipt records what happened]
   G -. rejected or deferred .-> X
 ```
 
-The record is the source of truth. Models suggest changes; WAKE's rules decide
-whether those changes are accepted. A receipt records what happened, including
-rejections and deferrals.
+The model never writes directly to the record. A receipt is kept whether a proposal
+is accepted, rejected, deferred, or fails. This makes the work inspectable and
+correctable; it does not prove that a research claim is true or that a model is
+conscious.
 
-<p align="center"><img src="assets/covers/cover-variant-002.png" alt="**WAKE✳︎** Lab Comics #1 — **WAKE✳︎** project comic cover" width="100%"/>
+## Choose a guide
 
-It does **not** assume or test for consciousness, qualia, personhood, or a persistent internal self. Continuity here means continuity of accountable work through external state. A coherent narrative is not evidence that a persistent mind exists.
+| If you want to… | Start here |
+| --- | --- |
+| Understand the design and its limits | [Architecture](docs/architecture.md) |
+| Try the kernel without a model or API key | [Kernel example](docs/kernel.md#executable-non-research-proof) |
+| Run one local Docker installation | [Standalone setup](docs/standalone.md) |
+| Create a local group with separate parent and child researchers | [Group setup](docs/standalone.md#repository-convenience-launcher) |
+| Operate the GitHub-hosted research instance | [Hosted operation](docs/cloud.md) |
+| Compare research runs or memory settings | [Experiment guide](docs/experiment.md) |
+| Understand a project term | [Glossary](docs/glossary.md) |
+| Change code and verify the right installation | [Maintainer map](docs/development.md) |
 
-The project deliberately treats failures as data. Rejected proposals, provider failures, weak evidence, corrections and superseded conclusions remain visible because the interesting question is not whether a model can sound convincing; it is whether a process can remain **correctable**. The operating shorthand is: **exact underneath, approximate on purpose, correctable always.**
+## Set your research topics
 
-Research topics are install-local inputs and come only from `research-topics.toml`. On a new install, create that file from the starter and edit it before starting research:
+Every research installation needs `research-topics.toml`. This repository includes
+a default file. If it is missing, make a copy from the example and edit it before
+starting the installation:
 
 ```sh
 cp example.research-topics.toml research-topics.toml
 ```
 
-The custom file is ignored by Git for local installs. If it is missing, startup prints this instruction and stops so no research runs without operator-supplied topics. Hosted research uses the exact promoted release commit, so include the file in that commit with `git add -f research-topics.toml`; the Restart workflow refuses to promote a hosted release without it. Topics are inputs to the experiment—not conclusions encoded in governance—and can be replaced between controlled runs. The current topic file is the authority; there is no hardcoded legacy topic list. A topic may also carry an operator-supplied `seed_question`: a bounded starting coordinate exposed only until that topic has a durable project. The seed is not evidence, an answer, or a permanent mission; once work begins, the durable project and subsequent evidence take over. Topic-configuration changes are appended to the record, so adding seeds never rewrites the conditions of earlier cycles. In the present experiment, topics stand in for the varied input a future user or institution might supply.
+If the file is missing, WAKE shows this command and stops before research begins.
+In this repository, `research-topics.toml` is tracked. Editing it changes your
+checkout; it does not publish anything until you commit and push. Hosted research
+uses the file in its promoted commit, and the Restart workflow checks that it is
+present before promotion. See [local group topics](docs/standalone.md#repository-convenience-launcher)
+for a different topic file per parent.
 
-When an approved evidence route repeatedly makes no progress, WAKE✳︎ preserves the project and may record a bounded alternative *representation* of the same problem. Frames are auditable strategy hypotheses tied to exact observations; they never count as evidence, findings, or commitment completion.
+## Quick local paths
 
-A trusted collector retrieves a bounded public sample before inference. In the current configured observation profile, `observation_mode = true` raises that sample to `research_collection_budget = 6`; normal mode remains a two-request budget. When active projects exist, most slots now deepen those projects and one slot preserves broad exploration. Discovery searches produce leads; exact scholarly-index records are routing metadata; only substantive readable publisher/full-text/source-controlled material can qualify a notebook. Useful identifiers and publisher URLs count as acquisition-routing progress without pretending the research itself matured. A notebook may preserve a provisional synthesis from one qualifying source, while completion and ordinary Bob publication require at least two substantive distinct underlying source works. Persistent identifiers collapse known mirrors of the same work; unidentified mirrors may still remain indistinguishable. These are provenance and promotion rules, **not proof of truth, source independence, scientific validity, or semantic entailment**.
+### Offline kernel example
 
-Current source qualification rejects failed or empty fetch payloads and excludes recognizable publisher navigation and response forms from claim matching. HTML collection prefers article/main content and omits navigation, hidden content and forms. These checks improve content hygiene; they do not establish semantic entailment. Historical observations and receipts remain intact.
-
-The public site exposes the same governed record at increasing depth: plain-language summaries and Bob’s editorial layer at the surface; projects, notebooks and evidence underneath; maps and the journal for provenance; exact events and state at the bottom. Research is a WAKE✳︎ application, not WAKE✳︎’s identity. Bob is the public byline for selected explanations of already-recorded research. A blog post never steers research, counts as research progress, or gates an accepted transition.
-
-**[Open **WAKE✳︎**’s home](https://sudofx.github.io/wake/)** · **[Open GitHub Actions](https://github.com/sudofx/wake/actions)**
-
-
-<p align="center"><img src="assets/covers/screenshot-full.png" alt="**WAKE✳︎** Console full screen" width="100%"/>
-
-The **Console** (`console.html`) is the inspection workspace for that record. It brings model calls, research activity, evidence depth, governance outcomes, notebooks and recorded relationships into one place. Projects, Lab, Evidence, History, Metrics, MAP, 3D MAP, exact events, state and rejected drafts open as deeper workspaces. Its compact `research-data.json` is disposable presentation, never operational authority. The Console visualizes the same core sequence used throughout WAKE✳︎: **Record → Context → Proposal → Governance → Transition → Receipt**. View layout and animation are presentation only and never represent research progress.
-
-<p align="center"><img src="assets/covers/screenshot-wide.png" alt="**WAKE✳︎** Console" width="100%"/>
-
-## Optional continuity matrix extension
-
-<p align="center"><img src="assets/covers/screenshot-cube.png" alt="**WAKE✳︎** Console full screen" width="100%"/>
-
-The research application can explicitly opt into the owned kernel's versioned `continuity@1` 7×7×7 matrix. `wake/kernel/matrix.py` owns the immutable grammar, coordinate IDs, traversal, validation, and definition digest; the research application owns when the campaign is enabled, how coordinates are scheduled and prompted, how results are interpreted/scored, and which results count as completed. Matrix progress is committed through the existing WAKE `ApplicationHost` state in `wake.sqlite`; no JSON/Markdown progress store is authoritative. Existing research behavior is unchanged until matrix enablement is explicitly submitted. The **WAKE✳︎ - Enable continuity campaign** operator workflow performs that explicit opt-in through the serialized authority lane without calling a provider, and the Console links to it only when the durable projection explicitly reports the campaign disabled. Once enabled, each ordinary provider request carries at most one continuity sidecar for the next uncovered coordinate. The same model response returns the normal research proposal plus the isolated probe answer, so the campaign adds no second inference call and consumes no additional provider quota. The sidecar receives a deterministic exposure/pressure packet, cannot authorize research changes, is stripped before ordinary proposal governance, and is scored mechanically against explicit structural invariants. Any returned provider response completes that tested coordinate: a missing or malformed sidecar records a zero score instead of invalidating otherwise valid research, while a provider transport/quota deferral with no response leaves the coordinate uncovered for retry.
-
-
-The Console labels cells **#001–#343** using the frozen grammar's row-major ordinal. For example, #001 is `continuity@1:reconstruction|rich|clean` and #002 is `continuity@1:reconstruction|rich|stale-frontier`. Numeric labels appear in selection, comparison and hover readouts; the full coordinate ID remains the permanent identity. These labels do not change the campaign, scores or durable results.
-
-## Current architecture
-
-WAKE✳︎ is a standalone application. Its owned kernel in `wake/kernel/` provides the durable-work sequence **Record → Context → Proposal → Governance → Transition → Receipt**. Research policy, evidence qualification, Attention, Bob, and the continuity campaign remain application concerns above that kernel. Installing WAKE requires no other project's package, database, or runtime service.
-
-- `wake/application.py` owns the versioned research application contract and deterministic replay.
-- `wake/record_store.py` exposes the WAKE store protocol over the owned record.
-- `wake/application_policy.py` owns research governance.
-- `master` holds development source; `wake-runtime` holds explicitly promoted code.
-- `wake-state` holds `data/wake.sqlite.gz`, the verified transport package for `data/wake.sqlite`.
-- `wake-live` and GitHub Pages are replaceable public views.
-
-Existing V1 checkpoints are adopted by verified format discovery and an atomic filename change. Receipt hashes, exact WAKE events, application version, historical provenance tags, invocation accounting, and generation history remain unchanged. Historical format tags remain data, not a runtime dependency. The legacy `wake.sqlite3` store is only a verified import source or offline fixture; it never becomes a second operational authority.
-
-Before any provider effect, the runtime checkpoints its durable reservation. WAKE's own database fence and operator Start/Stop workflows control execution. There is no external access latch. Promotion stops research, verifies the exact candidate, promotes it, and resumes the continuous runner. Missing authority fails closed; only explicit initialization or first-ever cloud bootstrap can create an empty record. Large SQLite event payloads use lossless versioned compression, preserving decoded history and hashes; see [storage compatibility](docs/kernel.md#physical-storage-and-compatibility). SQLite transport is separately compressed and verified byte for byte, with verified compaction at 90 MiB and GitHub's 100 MiB compressed-blob ceiling enforced before provider work.
-
-## Maintainer entry point
-
-Read the [maintainer map](docs/development.md) before changing deployment, authority,
-provider delivery or browser data routing. Hosted research, Pages and standalone
-Docker share source but own distinct execution and data paths. Local and hosted
-cycle counts are expected to differ; source publication is not record synchronization.
-See [standalone operation](docs/standalone.md) and [hosted operation](docs/cloud.md)
-for their respective controls. The browser requires explicit hosted installation
-identity before loading GitHub data; unconfigured templates stay same-origin.
-The local numbered-container runner can create isolated research groups with
-three independent child researchers per numbered parent, parent-specific topics,
-bounded peer findings, peer-collected source evidence, and one shared Bob feed
-assembled from reachable parents. Children contribute through their parent's
-research context. Parent and child nodes each keep a separate
-record and governance; child exchange stays within one parent's local cell, and
-an offline peer does not block the others. Solo, Codespace and hosted installations
-remain outside the group exchange.
-
-When a daily provider allowance is exhausted, research enters a recoverable
-standby and the runtime status indicator turns purple. Provider-reported quota
-limits are retried on the ordinary schedule so a recovered model can be used;
-only an operator-configured hard daily cap waits until midnight Pacific time.
-Hosted recovery checks the authoritative `wake-state` record before resuming.
-Grouped local containers request provider-call slots from their local gateway,
-which serializes calls and spaces them by model. This scheduler has no research
-state and fails open if the gateway is unavailable; solo, Codespace and hosted
-installs do not use it.
-
-## Start here — no account, no API calls
-
-Requires **Python 3.11 or later on macOS or Linux**. WAKE now has Python runtime dependencies, including `pypdf` and a pinned wake revision. Node and a separate database server are not required. Install the project before running commands.
-
-To run the deterministic experiment locally from scratch:
+Install the project with Python 3.11 or later, then run the non-research example in
+a fresh directory. It uses deterministic fixtures and makes no API calls:
 
 ```sh
-python3 -m wake --data data/rehearsal experiment --cycles 100 --output site
-python3 -m wake audit --events site/events.jsonl --head site/head.txt
-python3 -m wake serve
-```
-
-Use a **new** data directory each time. The experiment refuses to erase existing records. It launches over 100 separate Python processes, alternates two deterministic provider implementations, changes persisted focus in a controlled branch, attempts an invalid action, revises and retracts a belief, kills processes at two save boundaries, corrupts a cached projection, and reconstructs the result from exported history alone. It costs **zero API calls**.
-
-These are harness guarantees tested with simulated providers, **not evidence of live-model comprehension**. The separate live experiment protocol is in [docs/experiment.md](docs/experiment.md).
-
-## Standalone Docker — an independent installation
-
-Docker Desktop on macOS/Windows (Linux containers), or Docker Engine with Compose on Linux:
-
-```sh
-docker compose up --build -d
-```
-
-Set `GEMINI_API_KEY` in your shell or local `.env` first for live Gemini work. Open
-`http://localhost:8080`. For a no-key, no-call systems rehearsal, set
-`WAKE_PROVIDER=fixture`; these cycles are explicitly simulated. Set `WAKE_PAUSED=true`
-for an inspection-only installation.
-
-This mode runs the existing WAKE engine and website with its own named volume and
-`/data/wake.sqlite`. It never restores or synchronizes hosted authority, pushes branches,
-uses a GitHub token, dispatches Actions, or publishes Pages. The hosted installation
-continues independently. `docker compose down` removes the container while preserving
-its record; `docker compose up -d` reuses and audits that record before continuing.
-
-For an isolated paused editor preview, use the committed
-[Codespaces / Dev Containers setup](docs/standalone.md#codespaces-and-dev-containers).
-
-See [standalone operation](docs/standalone.md) for runtime secrets, backups, operator
-commands, and portable amd64/arm64 OCI builds.
-
-## Quick setup — Gemini
-
-Gemini is currently the only unattended API provider that has been exercised by this project. Other models can cross the manual `prepare` / `complete` boundary, but do not assume another vendor's API works unattended until an adapter is implemented and tested.
-
-### 1. Clone and verify
-
-```sh
-git clone https://github.com/sudofx/wake.git
-cd wake
-python3 --version                 # Python 3.11+
 python3 -m pip install -e .
-python3 -m unittest discover -s tests -v
+python -m examples.task_list.run --data /tmp/wake-task-example
 ```
 
-No Node, separate database server, or vendor SDK is required.
+The example shows an accepted change, a rejected change, and an audit. It is a
+small proof of the record-and-rules boundary, not a research run.
 
-### 2. Add your Gemini API key locally
+### One Docker container
 
-Create a Gemini API key in Google AI Studio. Then:
+With Docker Compose installed, set `GEMINI_API_KEY` in a local `.env` file if you
+want live research. Then create topics and start WAKE:
 
 ```sh
 cp .env.example .env
+# Add GEMINI_API_KEY for live research, or set WAKE_PROVIDER=fixture for an offline rehearsal.
+cp example.research-topics.toml research-topics.toml
+# Edit research-topics.toml
+docker compose up --build -d
 ```
 
-Edit `.env` so it contains:
+Open [http://localhost:8080](http://localhost:8080). For an inspection-only
+installation, set `WAKE_PAUSED=true`. Each installation has its own data volume. Ordinary
+`docker compose down` preserves that data. The [standalone guide](docs/standalone.md)
+covers backups, LAN access, updates, and the repository runner.
 
-```text
-GEMINI_API_KEY=your_key_here
-```
+### Local research group
 
-`.env` is ignored by Git. Never commit the key. If you intend to use a free-tier-only API project, verify billing is disabled for that Google project and leave `free_tier_confirmed = true` in `wake.toml` only when that statement is true.
-
-### 3. Configure the model and topics
-
-The provider/model settings live in `wake.toml`. The repository uses Gemini 3.1 Flash-Lite first, then falls back through Gemini 3.8 Flash, 3.5 Flash-Lite and 3.6 Flash after a per-model daily quota or 429 rate-limit response. Change model names or per-model daily ceilings there only to values your Gemini project actually supports.
-
-Research topics live **only** in `research-topics.toml`. On a new checkout, run `cp example.research-topics.toml research-topics.toml`, edit the copy, then start research. The custom file is ignored by Git for local use; to include topics in a hosted release, explicitly run `git add -f research-topics.toml` before committing and pushing. Startup explains how to create the file if it is absent. Do not hardcode topics into governance or prompts.
-
-### 4. Initialize and test locally
+The repository runner creates a numbered group and its child researchers. Give the
+group a shared topic file first, then run:
 
 ```sh
-python3 -m wake init
-python3 -m wake wake
-python3 -m wake audit
-python3 -m wake export
-python3 -m wake serve
+cp example.research-topics.toml research-topics.toml
+# Edit research-topics.toml
+./scripts/wake_runner wake.local --count 3
 ```
 
-Open `http://127.0.0.1:8000`. A live `wake` can consume Gemini quota. For a zero-call systems check, use the offline experiment in the previous section instead.
+This creates `000.wake.local` as the gateway, three independent parent containers,
+and three child containers under each parent. Each node keeps its own record.
+Parents and their children can exchange bounded research material on the local
+Docker network; an unreachable peer does not stop another node. To give each parent
+different topics, prepare `.wake-runner-topics/001.wake.local.toml` and the matching
+files for the other parents before creating the group. The [group guide](docs/standalone.md#repository-convenience-launcher)
+explains addresses, child visibility, dotfiles, and lifecycle commands.
 
-### 5. Add the same key to GitHub Actions
+## How installations stay separate
 
-In your GitHub repository:
-
-1. Open **Settings → Secrets and variables → Actions**.
-2. Choose **New repository secret**.
-3. Name it exactly `GEMINI_API_KEY`.
-4. Paste the same Gemini API key and save it.
-
-Do **not** put the key in `wake.toml`, `research-topics.toml`, workflow YAML, Issues, Actions logs, or the public `wake-state` branch.
-
-### 6. Configure GitHub Actions permissions
-
-Open **Settings → Actions → General**. Under **Workflow permissions**, select **Read and write permissions** and save. Leave Actions enabled for the repository.
-
-The included workflow itself requests only the permissions it needs: `contents: write` for the durable state branch and `pages: write` / `id-token: write` for GitHub Pages deployment.
-
-### 7. Configure GitHub Pages
-
-Open **Settings → Pages** and set the build/deployment source to **GitHub Actions**. Do not add a generic Jekyll/static Pages workflow; **WAKE✳︎ — Update website · automatic** is the publisher.
-
-### 8. Operate WAKE✳︎ from GitHub Actions
-
-The public website does not authenticate users or control the runtime. Its masthead status light links to this repository's GitHub Actions page and reports the latest known research status; it is not a control button.
-
-Use the workflows by their literal names:
-
-- **WAKE✳︎ - Start** — start WAKE✳︎ and keep it working.
-- **WAKE✳︎ - Stop** — stop the current chain and prevent another cycle from starting. It waits for GitHub cancellation to finish, which can take five minutes.
-- **WAKE✳︎ - Reset** — safely stop as needed, preserve/archive prior governed history, and start a new active generation at zero; requires the workflow's explicit reset confirmation. Its optional `enable_continuity_matrix` input records continuity@1 before the first fresh research cycle.
-- **WAKE✳︎ - promote** — verify the selected candidate (normally `master`), then move that exact tested commit to `wake-runtime`. Research must be stopped first.
-- **WAKE✳︎ - Restart** — safe maintenance shortcut: stop, verify current `master`, promote it, then start again.
-- **WAKE✳︎ - Enable continuity campaign** — provider-free explicit opt-in to the governed `continuity@1` 343-cell campaign; drains research, serializes the state change, and restores the prior running/stopped state.
-- **WAKE✳︎ — Update website · automatic** — rebuild the public GitHub Pages site when website code changes.
-- **WAKE✳︎ — Check code · automatic** — run the repository's safety checks when code changes.
-- **WAKE✳︎ — Internal only: one research cycle** and **WAKE✳︎ — Internal only: keep-running switch** are plumbing. Do not use them for normal operation.
-
-A source-code push can refresh the site without spending a Gemini call. Runtime code changes do not affect live research until **WAKE✳︎ - promote** succeeds.
-
-### 9. Verify the installation
-
-Check that:
-
-- a research cycle completes without an infrastructure failure that needs human attention;
-- the Pages deployment succeeds;
-- the public site loads;
-- `wake-state` exists after the first stateful cloud run;
-- the site reports the latest attempt separately from the latest accepted wake;
-- **WAKE✳︎ — Check code · automatic** passes on `master`.
-
-After that, normal operation requires no open local computer.
-
-For recovery behavior, quota semantics, reset controls and the exact cloud lifecycle, read [cloud operations](docs/cloud.md). For the trust boundary, read [architecture and limits](docs/architecture.md).
-
-## Claude, ChatGPT, and other desktop models
-
-Use free desktop sessions manually without assuming they include free API access:
-
-```sh
-python3 -m wake prepare --model 'Claude Desktop / human-attested' --output request.json
-# Paste request.json into a fresh desktop chat. Ask for the specified JSON object.
-# Save the response alone as reply.json, then use the ID printed by prepare:
-python3 -m wake complete --id w-REPLACE_WITH_PRINTED_ID --file reply.json
-python3 -m wake export
+```mermaid
+flowchart LR
+  S[Shared source code] --> L[Local containers]
+  S --> C[Codespace]
+  S --> H[Hosted runtime]
+  L --> LR[(Local records)]
+  C --> CR[(Codespace record)]
+  H --> HR[(Hosted record)]
+  L -. website views .-> LV[Local Console]
+  H -. published view .-> HV[Hosted site]
 ```
 
-The exact request is durable before you switch apps. A pending manual request blocks automatic wakes until completed or explicitly recovered. All providers cross the same governance boundary. Manual model identity is honestly labeled human-attested. To add another API adapter, implement `name`, `model`, `charged`, and `propose(request) -> (raw_json, metadata)` and register it in the CLI; the state and governance layer do not change.
+Local containers, Codespaces, and hosted WAKE can run the same code while keeping
+separate records and controls. A code push does not copy or reset research data.
+The hosted research runtime uses the explicitly promoted `wake-runtime` branch;
+GitHub Pages is a separate read-only view.
 
-## Inquiry-drive experiment
+Local group status lights refresh every five seconds. Their colors follow the same
+order as the gateway key: red means operator or agent action is required; yellow
+means paused or waiting; green means research is running; blue means idle; purple
+means a provider reported quota pressure. WAKE retries on schedule and can recover
+when a provider becomes available. Gray means status could not be confirmed. See
+the [glossary](docs/glossary.md) and [hosted status details](docs/cloud.md#read-or-wake-it).
 
-Every chartered WAKE records a visible, deterministic shadow scorecard for active projects: continuity,
-novelty, coherence, generativity and self-correction. It is observational by default and does not reach the
-model. Review it in the journal's **Laboratory** view alongside the exact invocation receipts.
+## What else is included
 
-Only after reviewing at least 20 accepted scored cycles may a human maintainer set
-`inquiry_drive_enabled = true` in `wake.toml`. Until both conditions are met, the scorecard stays locked.
-When unlocked, it is supplied only as an advisory ranking for productive, revisable inquiry; it never grants
-self-preservation, rule-changing, external-action, or data-retention authority.
+- The optional `continuity@1` campaign adds a structured probe to a normal model
+  response; it does not make an extra provider call. See [campaign operation](docs/standalone.md#continuity-matrix-campaign).
+- Routine memory and source retrieval are bounded views of the full record. Exact
+  history remains available for audit. See [retrieval](docs/retrieval.md).
+- Bob is a plain-language byline for selected summaries of already-recorded work.
+  Bob does not choose topics or accept research.
+- WAKE preserves uncertainty, failure, rejection, and correction instead of
+  rewriting them as success. See the [experiment protocol](docs/experiment.md)
+  before interpreting results.
 
-## Experimental controls and Time Dilation
+## Maintainer and project references
 
-The experimental-instrument backend records human interventions as append-only regimes, not mutable
-preferences. The initial regime enables Time Dilation observability: every wake retains UTC wall-clock,
-accepted-cycle, intervening-event, and effective-time measurements. Effective time may be real (1×), scaled,
-or frozen, but it never rewrites timestamps or becomes evidence. Change it only with a reason:
+- [Architecture and known limits](docs/architecture.md)
+- [Reusable kernel contract](docs/kernel.md)
+- [Development and verification map](docs/development.md)
+- [Independent installations and optional gateway](docs/installations.md)
+- [Private development workbench](docs/workbench.md)
 
-```sh
-python3 -m wake time-dilation --mode scaled --scale 24 --reason '24 effective hours per wall hour comparison'
-```
+For exact behavior, current code and tests are authoritative when they disagree
+with prose. Update the relevant guide when behavior changes.
 
-The exported state and invocation receipts include stable regime IDs and structured temporal data for a future
-instrument-panel visualization. Provider proposals cannot change these controls or governance.
+## License
 
-## How it works
-
-```text
-exact receipts / event history
-          ↓
-durable projection → bounded context → fresh provider → untrusted proposal
-          ↑                                              ↓
-          └──── deterministic governance ← accept / reject
-                           ↓
-               working abstractions
-                           ↓
-         Bob / human-readable interface
-                           ↓
-               links back to receipts
-```
-
-The design principle is **progressive abstraction with recoverable provenance**: preserve precision in the record, carry the smallest useful working representation forward, and re-expand into exact evidence when the task requires it. “Recoverable” means the abstraction keeps pointers back to authoritative receipts; the lossy representation does not pretend it can reconstruct discarded detail by itself.
-
-Each wake durably records a deterministic working set, trust compacts and retrieval plan. The configured `memory_mode = "active"` now delivers that working view routinely, even when rich context fits. `context.memory` adds advisory compacts, recent operator observations and selected durable records for retractions, revised notebooks, clipped beliefs, due commitments and source handoffs. Exact history stays in the authoritative record; this creates no second memory store.
-
-The working view preserves all belief identities, status/confidence and evidence roots, every open commitment, active projects and recent notebook provenance. Retrieved prose is bounded and explicitly labeled; omitted records have counts/digests, and collector prose follows existing source delivery limits. `SETTLED` compacts reflect recorded confidence and root count, not truth or source independence; `CHALLENGED` compacts preserve retracted claims. All compacts are advisory and governance remains unchanged. `inquiry_drive_enabled = false` remains unchanged.
-
-Invocation receipts retain the original shadows and exact request, plus `context_delivery.memory_mode`, activation reason, memory digest, retrieved-record count and measured sizes. Set `memory_mode = "shadow"` and restart the runtime to restore rich delivery with the established size-triggered fallback. The complete proposal envelope is rechecked after same-wake research is attached; emergency delivery compaction shortens planned-query text and replaces URLs with request hashes while retaining the active-memory trust rules and proposal instructions. If that exact envelope still exceeds the ceiling, no provider call is made. This operator-enabled condition is auditable; behavioral equivalence to rich context still needs paired evaluation.
-
-Working abstractions keep evidence pointers and retrieval hooks; they do not replace the exact record.
-
-With `same_wake_research = true`, one wake uses a planning inference, bounded immediate collection (including metadata-to-readable-source hops), then a fresh answer/proposal inference. Only the final accepted proposal advances the research cycle. Each inference has its own exact request, native lifecycle, quota reservation and terminal receipt; `research_planned` is retrieval intent, not accepted research. Failed retrieval or insufficient evidence must remain explicit. The final result includes the proposed answer and its governance verdict.
-
-An operator can ask directly with `python -m wake --data /data wake --provider gemini --question "What does the evidence show about this question?"`. Questions still follow the configured research topic and Attention policy. The writer lock prevents a concurrent CLI call from competing with the running scheduler. Setting `same_wake_research = false` restores ordinary scheduled precollection and one proposal inference; an explicit `--question` still requests immediate research.
-
-Planning constrains each project to its own topic and to active IDs delivered in context. A topic without an active project can use an empty project ID. Invalid plans are auditable `rejected` outcomes: they perform no retrieval or final inference, advance no research cycle, and permit normal scheduled continuation. Provider and infrastructure failures retain their existing failure handling.
-
-Under context pressure, milestone editorial history is an excerpted working view: optional duplicate project/notebook history is omitted before shortening the recent-wake window. Original window hashes, counts and milestone identity remain visible. This never removes authoritative history, mandatory belief roots or open commitments; missing editorial content must not be invented.
-
-The collector now permits 98 anchored host families in addition to 55 explicit hosts: university/public-agency domains across countries and many scholarly publishers, preprints, institutional repositories and datasets. This substantially expands retrieval beyond the original short list. HTTPS, redirect validation, public-address checks and pinned direct connections, byte/parse/time limits and scientific-source qualification remain enforced. Access permission is not evidence of truth; discovery and metadata remain distinct from readable source material.
-
-
-- `wake/record_store.py`: live/transitional Store interface backed by the authoritative wake database; legacy WAKE SQLite is migration evidence only.
-- `wake/application.py`: versioned WAKE application actions, migration bridge, and compact event-log integration.
-- `wake/event_format.py`: stable WAKE event identity primitives (`canonical`, `digest`, timestamp format) shared across migration and live application code.
-- `wake/domain_events.py`: deterministic WAKE initial state and event reduction semantics with no database authority.
-- `wake/store.py`: retired legacy WAKE SQLite persistence retained only for verified migration, offline fixtures, and compatibility tests.
-- `wake/governance.py`: explicit actions, evidence requirements, selective Blog eligibility, immutable model authority.
-- `wake/engine.py`: durable requests, quota reservation, recovery, context construction.
-- `wake/research.py`: bounded collection of public research sources.
-- `research-topics.toml`: editable topic names and neutral discovery queries; changes are adopted as audited events.
-- `scripts/github_wake.py`: fresh-runner recovery and durable GitHub checkpoints.
-- `wake/providers.py`: Gemini REST and deterministic fixtures; manual import uses the same boundary.
-- `wake/report.py`, `wake/assets/`: Bob's Blog plus portable HTML reports and record projections.
-- `assets/covers/`: archived Lab Comics covers.
-- `wake/experiment.py`: executable 100–1000-cycle experiment.
-- `tests/`: failure, governance, provider-contract and audit checks.
-- `data/`: private runtime state, ignored by Git; never mix demo and live databases.
-
-Read [architecture and limits](docs/architecture.md), [cloud operations](docs/cloud.md), or [experiment protocol](docs/experiment.md) for details.
-
-## License and commercial use
-
-**WAKE✳︎** is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0-only)**. You may use, study, modify, and redistribute the software under that license. Modified versions used to provide network interaction are subject to the AGPL's corresponding-source requirements.
-
-Copyright © 2026 Rob Johnson. Copyright is retained by the copyright holder; the AGPL grants the public the rights stated in the license.
-
-Organizations that want to incorporate **WAKE✳︎** into proprietary software or otherwise use it on terms incompatible with the AGPL may request a separate commercial license from the copyright holder. No commercial license is granted by this repository itself.
-
-Earlier versions that were published under the MIT License remain available under the rights already granted for those versions; this relicensing governs the current and future **WAKE✳︎** code released by the copyright holder under this repository's license unless expressly stated otherwise.
+WAKE✳︎ is licensed under the **GNU Affero General Public License v3.0 only
+(AGPL-3.0-only)**. Modified versions used to provide network interaction must meet
+the license's corresponding-source requirements. A separate commercial license may
+be requested from the copyright holder. Earlier versions published under MIT remain
+available under the rights already granted for those versions.
 
 ## Verify
+
+With the project dependencies installed, run the offline test suite:
 
 ```sh
 python3 -m unittest discover -s tests -v
 ```
 
-No model is immortal here. The record just has a better filing system.
-
-### Current authority
-
-- [Architecture and limits](docs/architecture.md) — trust boundary, durable record, governance and known limits.
-- [Cloud operations](docs/cloud.md) — current GitHub-hosted runtime, quota and recovery behavior.
-- [Experiment protocol](docs/experiment.md) — how live and comparative runs should be evaluated.
-- [Routine memory and retrieval](docs/retrieval.md) — current progressive-abstraction/retrieval experiment.
-- [Private development workbench](docs/workbench.md) — optional local tasks, artifacts and dated evidence.
-- [Development and verification](docs/development.md) — environment boundaries and reproducible checks.
-
-For exact behavior, code and tests on `master` remain authoritative when prose and implementation diverge.
-
-## Local evidence hardening and signed replay checkpoints
-
-Claim support counts distinct collector-stamped or deterministic-route source works,
-so known mirrors cannot supply corroboration twice. arXiv versions and its assigned
-`10.48550/arXiv` DOI count as one work while exact version URLs remain provenance.
-Matching uses source titles, abstracts and
-excerpts; collector scope labels cannot establish relevance. Console reports
-source concentration, repeated observations and notebook reuse. These are
-mechanical diagnostics, not semantic entailment or scientific novelty scores.
-Continuity results now retain named failures and expected/returned evidence,
-including colliding source mappings. Older trials retain their original scores.
-
-`python -m wake --data /data correction-demo` performs an explicitly labeled,
-operator-controlled live correction using an existing notebook with two source
-works. It seeds a false counting belief and publication, records a new source
-identity measurement, retracts the belief and supersedes the publication through
-normal governance. It makes no provider call, holds the writer lock throughout,
-and leaves both accepted receipts and the original publication intact. It waits
-rather than bypassing a pending invocation or enforced Attention rotation.
-This demonstrates live additive correction, not autonomous model correction.
-
-With OpenSSL supporting Ed25519, create an operator-owned key **outside the
-record**, then retain the public key and checkpoint independently:
-
-```sh
-openssl genpkey -algorithm ED25519 -out checkpoint-private.pem
-chmod 600 checkpoint-private.pem
-openssl pkey -in checkpoint-private.pem -pubout -out checkpoint-public.pem
-python -m wake --data /data checkpoint checkpoint-001 --private-key checkpoint-private.pem
-python -m wake --data /data verify-checkpoint checkpoint-001 --public-key checkpoint-public.pem
-python -m wake --data /data replay-checkpoint checkpoint-001 --public-key checkpoint-public.pem --output replayed-state.json
-```
-
-The private key must not be published. Checkpoint creation fully verifies the
-semantic, provider invocation and application access journals in one transaction,
-materializes application state, and signs canonical checkpoint bytes. Destinations
-must be new. `verify-checkpoint` reconstructs from genesis and checks all journals
-against the retained witness. `replay-checkpoint` trusts the signed prefix and
-verifies only later semantic transitions, including application result digests;
-it does not attest subsequent provider/access journal events or detect interior
-prefix tampering. Use full verification for those guarantees. Replay returns a
-derived state file and never replaces authority, deletes events or changes normal
-runtime startup. No hosted publisher or checkpoint schedule is enabled by these
-commands. A locally stored signature is not external notarization: publish or
-retain witnesses through an independently controlled channel before claiming
-protection against an administrator replacing the entire history and witness.
-
-Routine memory retains full-record proposal constraints: outstanding search capacity, exact project identities, notebook-specific new-source eligibility and recent rejection recovery. The provider response contract excludes full-queue searches and mechanical identity/revision violations before generation; deterministic governance still independently decides acceptance. No rejected proposal is rewritten into accepted progress.
-
-Current proposal guidance derives belief-review eligibility from the full record and visible evidence. Existing belief IDs are separate from new-belief creation; a review must cite at least one visible evidence ID outside that belief's durable roots. If no such evidence is delivered, no review alternative is offered. This narrows generation guidance without changing acceptance or historical replay.
-
-When the provider request approaches its context ceiling, belief review alternatives are bounded to one genuinely new visible evidence root per belief before source prose is shortened. Durable belief evidence and deterministic governance remain unchanged. The ceiling now measures exact rendered system/user text shared with the provider adapter; instructions, response rules and enabled probes reserve space before working context. See [provider-ready budgeting](docs/retrieval.md#provider-ready-input-budget) for receipt fields and historical measurement distinctions.
+These checks use fixtures. They do not make live-model calls or certify a hosted
+installation. Follow the [maintainer map](docs/development.md) for checks matched
+to a specific deployment.

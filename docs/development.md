@@ -261,8 +261,7 @@ z-index. On iPhone it does not slide up as a sheet. Selecting a record must not
 scroll or zoom the page to another panel. When there is no selection, the inspector
 is hidden; when selected, it appears in the normal document flow. Check this at
 phone width as well as desktop width. The page uses horizontal clipping without
-creating a body scroll container, so viewport-sticky navigation can return when
-scrolling upward.
+creating a body scroll container. The shared masthead behavior is described below.
 
 The seven story sections (#012–#018) share amber borders. Category controls for
 #013 belong in its heading action row. Cube rotation is interactive; zoom is not.
@@ -276,16 +275,16 @@ reports request-in-flight until response arrival; it cannot distinguish network
 upload completion from remote model processing. Hosted static snapshots do not
 provide that live capability and must retain their dated interpretation.
 
-## Workspace width and directional masthead
+## Workspace width and masthead scrolling
 
 Console fills the viewport rather than inheriting reading-page width caps. The
 record inspector follows the workspace and never reserves width. The grid counts
 available columns instead of applying a fixed large-screen column limit. Other
 reading pages may retain their text-column limits.
 
-The shared masthead spans the viewport. Sticky flow space prevents content jumps:
-downward scroll hides it, upward scroll reveals it above inspection overlays.
-Keyboard focus and open navigation menus keep it accessible; reduced motion removes
+The shared masthead spans the viewport. On desktop, scrolling down hides it and
+scrolling up reveals it; keyboard focus and an open navigation menu keep it visible.
+On phones, it stays visible at every scroll position. Reduced-motion mode removes
 sliding animation. Dark story sections use muted amber borders and a subtle tint;
 their layout and durable data remain unchanged.
 
@@ -297,11 +296,6 @@ The shared daylight surface owner is `wake/assets/console-light.css`, despite it
 historical filename. It loads after dark page skins through export; cover main-page
 cards, help/evidence surfaces and nested reading pages when revising it. Match
 geometry across themes and retain signal meaning rather than merely recoloring text.
-
-The inspector is outside the modular grid, so it cannot change grid width or saved
-panel layout. Verify that selecting a record leaves the viewport position unchanged
-and that the inspector appears below the workspace. Dedicated panel windows omit
-the site masthead and fit their reader inside the window frame.
 
 ### Storage format upgrades across installations
 
