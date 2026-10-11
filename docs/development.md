@@ -323,8 +323,8 @@ publication path. Worker blog drafts are retained as withheld editorial output; 
 not become separate public voices. Research advances independently of publication.
 
 The gateway's group endpoints admit members from all of that group's parent and
-child networks, while rejecting members of other groups. Bob writes plain paragraphs
-for the existing blog renderer; Markdown heading and emphasis markers are not rendered.
+child networks, while rejecting members of other groups. Bob requests provider-enforced article fields, with the Summary inside the body string.
+He writes plain paragraphs for the existing blog renderer; Markdown heading and emphasis markers are not rendered.
 
 The shared `group-wake-introduction` identifies WAKE01. On creation the group first
 uses one parent model invocation to introduce the initialized records of all members,

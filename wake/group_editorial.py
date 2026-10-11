@@ -89,9 +89,11 @@ def request(packet, checkpoint):
             "and respectful. Return only title, lede, body and lens as JSON. No proposed research actions."
             " Write short plain paragraphs without Markdown heading markers, bold markers or lists. "
             "Do not repeat the lede in the body or repeat the same caveat in multiple paragraphs. "
-            "Use Summary as a plain final heading."
+            "Put the plain final heading Summary and its paragraphs INSIDE the body string. "
+            "Return exactly four keys: title, lede, body, lens. Never add a summary key."
         ),
         'context': {'checkpoint': checkpoint, 'group': packet},
+        'enforce_response_schema': True,
         'response_schema': {'type': 'object', 'additionalProperties': False,
                             'properties': {key: {'type': 'string'} for key in ARTICLE_FIELDS},
                             'required': list(ARTICLE_FIELDS)},

@@ -126,6 +126,17 @@ class FailoverTests(unittest.TestCase):
         self.assertEqual(item["provider_requests_sent"], 1)
         self.assertEqual(item["successful_model"], self.settings["model"])
 
+    def test_explicit_structured_output_schema_reaches_provider_payload(self):
+        schema = {"type": "object", "properties": {"body": {"type": "string"}}, "required": ["body"]}
+        captured = []
+        def send(req, **kwargs):
+            captured.append(json.loads(req.data))
+            return Response('{"body":"Summary belongs in the body."}')
+        with patch("urllib.request.urlopen", side_effect=send):
+            Gemini(self.settings).propose({"system":"Write an article.", "context":{},
+                "response_schema":schema, "enforce_response_schema":True})
+        self.assertEqual(captured[0]["generationConfig"]["responseJsonSchema"], schema)
+
     def test_successful_fallback_is_one_research_cycle_with_identical_payload(self):
         result, state, item, network = self.run_chain([failure(503), "valid"])
         self.assertEqual(result["status"], "accepted")

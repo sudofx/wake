@@ -821,6 +821,7 @@ class Gemini:
                 system=system,
                 prompt=prompt,
                 response_mime_type="application/json",
+                response_schema=request.get("response_schema") if request.get("enforce_response_schema") is True else None,
                 max_output_tokens=self.config["max_output_tokens"],
                 tools=tuple(request.get("tools", ())),
                 reasoning_effort=reasoning_effort,
