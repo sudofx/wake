@@ -20,6 +20,7 @@ Usage:
   scripts/wake_runner [container-or-group-name] [--count N] [--campaign none] [--dotfiles=false] [--paused]
   scripts/wake_runner --research stop|start|pause|reset|status [container-name]
   scripts/wake_runner --container stop|start|pause|remove [container-name-or-group]
+  scripts/wake_runner --refresh-router
 
 Without a research action, an absent container is created and started; an
 existing container is left unchanged and its status is reported. New containers
@@ -45,6 +46,8 @@ bridge; the parent can query its children and remains the only bridge between
 parent groups. The reserved `000.PREFIX` hostname serves the group directory.
 Optional per-parent topic files live at .wake-runner-topics/NNN.PREFIX.toml
 and are shared read-only with that parent's children. Research controls leave Docker running.
+`--refresh-router` rebuilds the local gateway hostname map from node identities;
+it does not recreate research containers or touch their data volumes.
 Container remove also removes the selected container's data volumes.
 EOF
 }
@@ -148,7 +151,7 @@ ensure_group_router_identity() {
 
 refresh_group_router() {
     local config_file="$repo_dir/.wake-runner-router.json" routes_file container group_id ordinal network subnet gateway host_port host_ip lan_ip
-    local first_network="" name host label router_network role parent instance
+    local first_network="" name host label router_network role parent instance parent_ordinal child_ordinal child_identity
     local groups=() networks=()
     routes_file="$(mktemp)"
     lan_ip="$(host_lan_ipv4 || true)"
@@ -185,6 +188,21 @@ refresh_group_router() {
         role="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.role\" }}" "$container")"
         parent="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.parent\" }}" "$container")"
         network="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.network\" }}" "$container")"
+        # Public child hostnames use PARENT.CHILD.GROUP. A running group from
+        # the earlier child-first layout can keep its containers and volumes;
+        # derive its canonical public hostname from its stable instance identity.
+        if [[ "$role" == child && "$instance" == "$group_id-p"* ]]; then
+            child_identity="${instance#"$group_id-p"}"
+            parent_ordinal="${child_identity%%-c*}"
+            child_ordinal="${child_identity#*-c}"
+            if [[ "$child_identity" == *-c* && "$parent_ordinal" =~ ^[0-9]{3}$ && "$child_ordinal" =~ ^[0-9]{3}$ ]]; then
+                [[ "$parent" == "$parent_ordinal.$group_id" ]] || {
+                    rm -f "$routes_file"
+                    fail "Child identity '$instance' does not match its recorded parent '$parent'."
+                }
+                host="$parent_ordinal.$child_ordinal.$group_id"
+            fi
+        fi
         if [[ -z "$host" || "$host" == '<no value>' ]]; then
             # Existing parent containers created before nested cells have no
             # topology labels; retain their stable group URLs during upgrades.
@@ -855,7 +873,7 @@ start_group() {
 
 main() {
     local name=wake action= campaign=true dotfiles=true paused=false count= arg name_set=false
-    local explicit_action=false container_action= container_action_set=false
+    local explicit_action=false container_action= container_action_set=false router_refresh=false
     if (($# == 0)); then
         require_runtime
         ensure_present wake true '' '' false "$dotfiles"
@@ -898,6 +916,7 @@ main() {
             --dotfiles=true) dotfiles=true ;;
             --dotfiles=false|--no-dotfiles) dotfiles=false ;;
             --paused) paused=true ;;
+            --refresh-router) router_refresh=true ;;
             --count)
                 (($#)) || fail '--count requires a number.'
                 count="$1"; shift
@@ -916,7 +935,13 @@ main() {
         esac
     done
 
-    if [[ "$explicit_action" == true && "$container_action_set" == true ]]; then
+    if [[ "$router_refresh" == true ]]; then
+        [[ "$explicit_action" == false && "$container_action_set" == false && -z "$count" && "$name_set" == false ]] ||
+            fail '--refresh-router must be used by itself.'
+        require_runtime
+        refresh_group_router
+        printf 'Refreshed the local group gateway routes from current container identities.\n'
+    elif [[ "$explicit_action" == true && "$container_action_set" == true ]]; then
         fail 'Use --research or --container in one invocation, not both.'
     elif [[ -n "$count" && ( "$explicit_action" == true || "$container_action_set" == true ) ]]; then
         fail '--count is only valid when creating or ensuring a named group.'

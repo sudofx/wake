@@ -341,12 +341,16 @@ parent with its children nested below it. Its hostname links work on the Mac;
 opening the gateway by LAN IP gives buttons using each node's own published host
 port.
 
-This naming change applies when a group is created with the current runner.
-Existing child containers keep their old names. Because some old names overlap
-with a different parent's new child assignment, the runner stops with a clear
-message instead of silently attaching the wrong record. An existing group needs
-a data-volume-preserving migration before it can use the new names; this naming
-change does not rename or remove any running containers or research records.
+This naming change applies to Docker container names when a group is created with
+the current runner. Existing child containers keep their old names. To update an
+existing group's public gateway names and grouping without changing its research
+data, run `./scripts/wake_runner --refresh-router`. The gateway derives each
+child's public parent-first hostname from its stored parent/child identity and
+routes it to the existing container. This does not rename Docker containers or
+move volumes; Docker Desktop can therefore continue to show the old names until
+a separate data-preserving container migration is performed. Running the group
+creation command against an old assignment still stops with a clear message
+rather than silently attaching the wrong record.
 
 ```mermaid
 flowchart TB
