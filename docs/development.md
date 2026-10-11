@@ -355,7 +355,7 @@ paying for repeated model calls. To apply an explicitly authorized exception, us
 same saved publication packet in each enrolled, paused member:
 
 ```sh
-python /workspace/scripts/wake_group_bob.py --data /data \
+PYTHONPATH=/workspace python /workspace/scripts/wake_group_bob.py --data /data \
   --publication /tmp/reviewed-group-introduction.json \
   --confirm-wake01-exception --reason 'Operator authorized this first group introduction only'
 ```
