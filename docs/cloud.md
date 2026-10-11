@@ -30,8 +30,9 @@ publishing code does not copy a local record into the hosted installation.
   finished before changing or promoting code.
 - **Publish a code change:** verify the candidate, then use **Stop → promote → Start**
   (or the **Restart** shortcut). Check the promoted commit and a new terminal receipt.
-- **Start a new research generation:** use **Reset** only when you intend to archive
-  the current generation and begin again at zero.
+- **Reset for a fresh campaign:** use **Reset** to archive the current generation,
+  begin at zero, and enable a new `continuity@1` campaign. Research remains stopped;
+  use **Start** separately after inspecting the reset state.
 
 These controls affect hosted WAKE only. Local containers and Codespaces keep their
 own code paths and records.
@@ -62,20 +63,24 @@ not whether a job is running at this exact second:
 The status light checks on a five-second loop while the page is visible. When the
 keep-running switch is open, it refreshes the latest `wake-live` runtime/quota
 projection on that loop. To limit GitHub API traffic, it rechecks the continuation
-latch every three minutes. A network or publication delay can make the displayed
-result briefly stale. Provider quota reports are retried on the ordinary schedule;
-only a configured hard daily request cap waits for its Pacific reset.
+latch every three minutes, and forces a fresh latch check when a tab returns to the
+foreground or the page is reloaded. A network or publication delay can make the
+displayed result briefly stale; gray means the latest status could not be verified,
+even if a previous state is shown in its description. Provider quota reports are
+retried on the ordinary schedule; only a configured hard daily request cap waits for
+its Pacific reset.
 
 Use **WAKE✳︎ - Start** to open the keep-running switch and dispatch the first cycle.
 Use **WAKE✳︎ - Stop** to close the switch and drain active work. A scheduled check
 may restart a lost handoff only while the switch is open. The light is not a control
 backend, and the site has no authentication.
 
-Use **WAKE✳︎ - Reset** only when you intend to start a new research generation.
-It stops research as needed, archives the prior governed generation, then starts
-at cycle zero after explicit confirmation. Archiving preserves the prior history.
-Its optional `enable_continuity_matrix` input enables the provider-free
-`continuity@1` campaign before new research begins.
+Use **WAKE✳︎ - Reset** when you intend to start a fresh generation. It stops and
+drains research, archives the prior governed generation, resets active research to
+cycle zero, and enables a new provider-free `continuity@1` campaign with zero
+recorded cells. It leaves the continuation latch closed and does not dispatch
+research. Inspect the reset state, then use **WAKE✳︎ - Start** when you are ready to
+continue. The archived generation retains its prior campaign results.
 
 **WAKE✳︎ - Enable continuity campaign** is another provider-free opt-in. It drains
 the active lane, records enablement through the serialized authority workflow, and

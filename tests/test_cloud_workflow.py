@@ -233,11 +233,16 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertEqual(state["journal"], [])
         self.assertEqual(state["posts"], {})
         self.assertEqual(state["invocations"], {})
+        matrix = self.live()["research"]["matrix"]
+        self.assertTrue(matrix["enabled"])
+        self.assertEqual(matrix["completed"], 0)
         self.assertTrue(stale.exists())
 
         operation = self.live()["operation"]
         self.assertTrue(operation["reset"])
         self.assertEqual(operation["status"], "not_started")
+        self.assertTrue(operation["continuity_matrix_enabled"])
+        self.assertEqual(operation["matrix"]["completed_count"], 0)
         archive_branch = operation["archive_branch"]
         self.assertTrue(archive_branch.startswith("wake-archive-"))
         archived_refs = self.git("--git-dir", self.remote, "for-each-ref",
@@ -433,8 +438,12 @@ class CloudWorkflowTests(unittest.TestCase):
         self.assertIn("continuation latch is open", promotion.lower())
         self.assertIn("name: WAKE✳︎ - [RESET]", reset)
         self.assertNotIn('confirm_reset', reset)
+        self.assertNotIn("inputs.enable_continuity_matrix", reset)
+        self.assertNotIn("Restart fresh continuous research", reset)
+        self.assertNotIn("wake-runner.yml/enable", reset)
         self.assertIn("wake-runner.yml/disable", reset)
         self.assertIn('reset=true', reset)
+        self.assertIn("fresh continuity@1 campaign", reset)
         self.assertIn('name: "WAKE✳︎ — Internal only: keep-running switch"', runner)
         self.assertNotIn("gh workflow run wake.yml", runner)
         self.assertIn("workflow_call:", runner)

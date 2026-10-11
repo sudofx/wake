@@ -90,7 +90,7 @@ class WakeMatrixIntegrationTests(unittest.TestCase):
             finally:
                 store.close()
 
-    def test_existing_wake_reset_preserves_opted_in_matrix_state(self) -> None:
+    def test_existing_wake_reset_clears_matrix_and_reenable_starts_fresh(self) -> None:
         matrix = continuity_matrix()
         with tempfile.TemporaryDirectory() as tempdir:
             store = RecordStore(Path(tempdir), initialize_empty=True)
@@ -104,7 +104,11 @@ class WakeMatrixIntegrationTests(unittest.TestCase):
                 before = store.continuity_matrix_progress()
                 reset_state = store.reset()
                 self.assertEqual(reset_state["version"], 0)
-                self.assertEqual(store.continuity_matrix_progress(), before)
+                self.assertEqual(before["completed_count"], 1)
+                self.assertIsNone(store.continuity_matrix_progress())
+                enabled = store.enable_continuity_matrix()
+                self.assertEqual(enabled["completed_count"], 0)
+                self.assertEqual(enabled["results"], {})
             finally:
                 store.close()
 
