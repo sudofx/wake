@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Local standalone WAKE container creator, status reporter, and research control.
-# Existing containers are only inspected unless an explicit --research action
-# is supplied. No operation deletes or replaces a data volume.
+# Existing containers are only inspected unless an explicit action is supplied.
+# `--container remove` deletes the selected containers and unshared volumes.
 
 set -euo pipefail
 
@@ -37,15 +37,16 @@ New containers copy any available ~/.bashrc, ~/.gitignore, ~/.bash_profile,
 ~/.profile, ~/.bash_aliases and ~/.inputrc files into their home volume by
 default. Use `--dotfiles=false` or `--no-dotfiles` to skip importing them.
 
-Groups use Docker container names 100.PREFIX, 200.PREFIX, and so on, and receive
-separate data volumes and Docker-assigned host ports published on the host's
-network interfaces. Each parent gets three independently stored research
+Groups use Docker container names 100.000.PREFIX, 200.000.PREFIX, and so on, and
+receive separate data volumes and Docker-assigned host ports published on the
+host's network interfaces. Each parent gets three independently stored research
 children named PARENT.CHILD.PREFIX; for example, 100.002.wake.local is child 002
-of parent 100. Children share findings only with siblings in their parent's private
-bridge; the parent can query its children and remains the only bridge between
-parent groups. The reserved `000.PREFIX` hostname serves the group directory.
-Optional per-parent topic files live at .wake-runner-topics/NNN.PREFIX.toml
-and are shared read-only with that parent's children. Research controls leave Docker running.
+of parent 100.000. Children share findings only with siblings in their parent's
+private bridge; the parent can query its children and remains the only bridge
+between parent groups. The reserved `000.PREFIX` hostname serves the group
+directory. Optional per-parent topic files live at
+.wake-runner-topics/NNN.000.PREFIX.toml and are shared read-only with that
+parent's children. Research controls leave Docker running.
 `--refresh-router` rebuilds the local gateway hostname map from node identities;
 it does not recreate research containers or touch their data volumes.
 Container remove also removes the selected container's data volumes.
@@ -195,7 +196,7 @@ refresh_group_router() {
             [[ "$child_identity" =~ ^([0-9]{3,})-c([0-9]{3})$ ]] || { rm -f "$routes_file"; fail "Invalid child identity: $instance"; }
             ordinal="${BASH_REMATCH[1]}"
             child_ordinal="${BASH_REMATCH[2]}"
-            [[ "$parent" == "$ordinal.$group_id" ]] || {
+            [[ "$parent" == "$ordinal.000.$group_id" ]] || {
                 rm -f "$routes_file"
                 fail "Child identity '$instance' does not match its recorded parent '$parent'."
             }
@@ -203,7 +204,7 @@ refresh_group_router() {
         elif [[ "$role" == parent && "$instance" == "$group_id-"* ]]; then
             ordinal="${instance#"$group_id-"}"
             [[ "$ordinal" =~ ^[0-9]{3,}$ ]] || { rm -f "$routes_file"; fail "Invalid parent identity: $instance"; }
-            host="$ordinal.$group_id"
+            host="$ordinal.000.$group_id"
         else
             continue
         fi
@@ -766,7 +767,7 @@ start_group() {
                 existing_parent="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.parent\" }}" "$child_name")"
                 existing_role="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.role\" }}" "$child_name")"
                 [[ "$existing_group" == "$prefix" && "$existing_instance" == "$child_instance" &&
-                   "$existing_parent" == "$ordinal.$prefix" && "$existing_role" == child ]] ||
+                   "$existing_parent" == "$ordinal.000.$prefix" && "$existing_role" == child ]] ||
                     fail "Existing container '$child_name' belongs to a different child assignment. Remove and recreate the group to apply this naming scheme."
             fi
         done
@@ -780,9 +781,9 @@ start_group() {
     done
     for ((i=1; i<=count; i++)); do
         printf -v ordinal '%03d' "$((i * 100))"
-        name="$ordinal.$prefix"
+        name="$ordinal.000.$prefix"
         group_instance="$prefix-$ordinal"
-        parent_host="$ordinal.$prefix"
+        parent_host="$ordinal.000.$prefix"
         cell_parent_alias="$prefix-p$ordinal-parent"
         peers=""
         for ((child_ordinal=1; child_ordinal<=children_per_parent; child_ordinal++)); do
@@ -831,7 +832,7 @@ start_group() {
     printf ' 000.%s' "$prefix"
     for ((i=1; i<=count; i++)); do
         printf -v ordinal '%03d' "$((i * 100))"
-        printf ' %s.%s' "$ordinal" "$prefix"
+        printf ' %s.000.%s' "$ordinal" "$prefix"
         for ((child_ordinal=1; child_ordinal<=children_per_parent; child_ordinal++)); do
             printf -v child_name '%03d' "$child_ordinal"
             printf ' %s.%s.%s' "$ordinal" "$child_name" "$prefix"
@@ -849,8 +850,8 @@ start_group() {
     fi
     for ((i=1; i<=count; i++)); do
         printf -v ordinal '%03d' "$((i * 100))"
-        name="$ordinal.$prefix"
-        printf 'GROUP URL: http://%s.%s/\n' "$ordinal" "$prefix"
+        name="$ordinal.000.$prefix"
+        printf 'GROUP URL: http://%s.000.%s/\n' "$ordinal" "$prefix"
         report_status "$name"
         for ((child_ordinal=1; child_ordinal<=children_per_parent; child_ordinal++)); do
             printf -v child_name '%03d' "$child_ordinal"

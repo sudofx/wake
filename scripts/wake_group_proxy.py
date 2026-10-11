@@ -442,7 +442,7 @@ class GroupProxy(BaseHTTPRequestHandler):
         state, label = self._member_runtime(member)
         route = self.server.routes.get(member, {})
         parts = member.split(".")
-        display = ".".join(parts[:2]) if route.get("role") == "child" else parts[0]
+        display = ".".join(parts[:2])
         tag = "a" if href else "div"
         destination = f'href="{escape(href, quote=True)}" target="_blank" rel="noopener noreferrer"' if href else 'aria-disabled="true"'
         return (

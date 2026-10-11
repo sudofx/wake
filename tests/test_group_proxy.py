@@ -142,6 +142,27 @@ class GroupProxyTests(unittest.TestCase):
         self.assertEqual(served, [("000.wake.local", group)])
         self.assertEqual(errors, [])
 
+    def test_group_directory_displays_parent_zero_child_ordinal(self):
+        proxy = GroupProxy.__new__(GroupProxy)
+        parent = "100.000.wake.local"
+        child = "100.001.wake.local"
+        proxy.server = SimpleNamespace(routes={
+            parent: {"role": "parent"},
+            child: {"role": "child"},
+        })
+        proxy._member_runtime = lambda member: ("idle", "Research idle")
+
+        html = proxy._group_panel(
+            "wake.local",
+            {"parents": [parent], "children": {parent: [child]}},
+            lambda member: f"http://{member}/",
+            "Open a member on this local network in a new tab.",
+        )
+
+        self.assertIn("<span>100.000</span>", html)
+        self.assertIn("<span>100.001</span>", html)
+        self.assertIn('aria-label="Parent node 100.000.wake.local"', html)
+
     def test_host_and_lan_clients_are_allowed_but_other_group_members_are_not(self):
         proxy = GroupProxy.__new__(GroupProxy)
         proxy.server = SimpleNamespace(groups={
