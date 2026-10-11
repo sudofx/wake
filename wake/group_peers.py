@@ -133,6 +133,8 @@ def group_bob_snapshot(engine, group_id, instance_id):
         "schema": 1,
         "group_id": group_id,
         "instance_id": instance_id,
+        "available": True,
+        "members": [instance_id],
         "application_head": head,
         "posts": posts,
         "invocations": {key: state.get("invocations", {})[key]

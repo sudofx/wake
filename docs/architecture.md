@@ -424,3 +424,30 @@ and never starts a live pulse. Deployment identity still determines transport.
 Current proposal guidance derives belief-review eligibility from the full record and visible evidence. Existing belief IDs are separate from new-belief creation; a review must cite at least one visible evidence ID outside that belief's durable roots. If no such evidence is delivered, no review alternative is offered. This narrows generation guidance without changing acceptance or historical replay.
 
 When the provider request approaches its context ceiling, belief review alternatives are bounded to one genuinely new visible evidence root per belief before source prose is shortened. Durable belief evidence and deterministic governance remain unchanged.
+
+### First-run publication and private operational advice
+
+Grouped Bob publication is model synthesis of dated summaries from **every parent and
+child**, followed by independent application publication receipts containing identical
+article text. The gateway remains read-only transport; it cannot approve or store authority.
+Research proposals retain worker blog drafts as withheld editorial output. The shared
+editorial phase uses native invocation accounting and never mutates research, journals,
+Attention or continuity results. An operator-only, digest-bound WAKE01 exception can
+approve the first shared article once per record, without admitting any research action.
+The initial group startup stage synthesizes initialized records before research requests;
+it does not require invented research progress or child provider calls. Failed initial
+synthesis awaits operator repair rather than automatic paid retries. All later articles
+use the ordinary editorial gates. Missing peers and withheld drafts
+remain visible; completed drafts are reused rather than repeatedly inferred. Historical
+solo welcomes and rejected attempts remain replayable. See
+[the operating contract](development.md#first-run-publication-and-passenger).
+
+Bob additionally has a private container advisory role in Passenger. This role
+cannot advise research direction or grant authority: it appends operational
+assessments and inert proposed changes to one installation's shared Markdown
+volume. Advisory calls use the native invocation boundary but persist no private
+request, raw response, metadata or content hash. Their public receipt has only
+an outcome; they do not advance accepted research or Attention. Paid requests
+still consume the existing quota. Public and private generation have separate
+contexts. See [first-run publication and Passenger](development.md#first-run-publication-and-passenger)
+for storage, reset, coordination, resource and operator boundaries.

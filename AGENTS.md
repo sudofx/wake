@@ -35,11 +35,17 @@ commitments, technical record, research progress accounting and institutional vo
 concerns layered on WAKE✳︎'s durable-work infrastructure, not the identity of the kernel itself. Institutional
 first-person grammar does not imply a person, persona, identity, consciousness or subjective experience.
 
-Bob is confined to Bob's Blog as a reader-facing translation persona. Bob may summarize and simplify already
+Bob's public voice is confined to Bob's Blog as a reader-facing translation persona. Bob may summarize and simplify already
 durable WAKE✳︎ work, but must never write the journal, gate an accepted research transition, move Attention,
 count as research progress, fulfill commitments, alter evidence, or steer project selection. A Bob draft may be
 withheld without rejecting otherwise valid research. Keep Bob's Summary respectful, especially simple and
 plain-language, with no child-oriented label.
+
+Passenger is Bob's separate, private container advisory workspace. It accepts bounded additive
+operational assessments and inert change proposals, with no research, source, deployment or governance
+authority. Its input/output must never enter public provider requests, responses or exports. Use the
+shared installation volume and coordinated append/reset boundary in `wake/passenger.py`; only the
+operator CLI exposes reset. See `docs/development.md#first-run-publication-and-passenger`.
 
 
 `wake/application.py` is the application contract bridge.

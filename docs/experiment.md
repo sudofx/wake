@@ -268,3 +268,12 @@ complete-pass rate or evidence that memory scaffolding beats a control condition
 Current proposal guidance derives belief-review eligibility from the full record and visible evidence. Existing belief IDs are separate from new-belief creation; a review must cite at least one visible evidence ID outside that belief's durable roots. If no such evidence is delivered, no review alternative is offered. This narrows generation guidance without changing acceptance or historical replay.
 
 When the provider request approaches its context ceiling, belief review alternatives are bounded to one genuinely new visible evidence root per belief before source prose is shortened. Durable belief evidence and deterministic governance remain unchanged. The ceiling now measures exact rendered system/user text shared with the provider adapter; instructions, response rules and enabled probes reserve space before working context. See [provider-ready budgeting](retrieval.md#provider-ready-input-budget) for receipt fields and historical measurement distinctions.
+
+A group WAKE01 introduction is a shared model synthesis of dated summaries from all
+parents and children. Its checkpoint is editorial metadata, not an added accepted
+research cycle or scientific result. Initial summaries may all have accepted version zero;
+one shared editorial invocation precedes ordinary group research requests. A recorded first-post operator exception does
+not qualify scientific evidence or alter continuity scores. Private Passenger assessments do
+not advance research transitions, Attention or continuity scores. Their paid
+provider requests remain accounted under the ordinary quota. See
+[the first-run and advisory boundary](development.md#first-run-publication-and-passenger).

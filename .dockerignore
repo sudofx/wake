@@ -11,3 +11,4 @@
 !wake/**
 wake/**/__pycache__/
 wake/**/*.pyc
+**/.passenger*

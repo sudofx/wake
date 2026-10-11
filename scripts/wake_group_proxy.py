@@ -149,6 +149,9 @@ class GroupProxy(BaseHTTPRequestHandler):
             if self.path.split("?", 1)[0] == "/group/status.json":
                 self._serve_status(group.get("members", []))
                 return
+            if self.path.split("?", 1)[0] in {"/group/bob-inputs.json", "/group/bob-publication.json"}:
+                self._serve_group_editorial(group)
+                return
             if self.path not in {"/", "/index.html"}:
                 self.send_error(404, "The group proxy only serves its member directory")
                 return
@@ -162,6 +165,9 @@ class GroupProxy(BaseHTTPRequestHandler):
             return
         if self.path.split("?", 1)[0] == "/group/bob.json":
             self._serve_group_bob(route["group_id"])
+            return
+        if self.path.split("?", 1)[0] in {"/group/bob-inputs.json", "/group/bob-publication.json"}:
+            self._serve_group_editorial(self.server.groups[route['group_id'].lower()])
             return
         try:
             connection = HTTPConnection(route["target"], 8080, timeout=15)
@@ -182,6 +188,50 @@ class GroupProxy(BaseHTTPRequestHandler):
             connection.close()
         except (OSError, ValueError):
             self.send_error(502, "Grouped WAKE container is unavailable")
+
+    def _serve_group_editorial(self, group):
+        """Read-only transport; never synthesize, approve or persist publications."""
+        members = sorted(group['members'])
+        parents = [n for n in members if self.server.routes[n].get('role') != 'child']
+        if not parents:
+            self._json_error(503, 'Group editorial parent unavailable')
+            return
+        leader = parents[0]
+        publication = self.path.split('?', 1)[0].endswith('publication.json')
+        inputs = []
+        for name in ([leader] if publication else members):
+            route = self.server.routes[name]
+            connection = None
+            try:
+                connection = HTTPConnection(route['target'], 8080, timeout=2)
+                connection.request('GET', '/group/bob-publication.json' if publication else '/group/bob-input.json')
+                response = connection.getresponse()
+                raw = response.read(240001)
+                if response.status != 200 or len(raw) > 240000:
+                    raise ValueError('Incomplete group input')
+                value = json.loads(raw)
+                if not publication and (not isinstance(value, dict) or value.get('member') != name or value.get('group_id') != route['group_id']):
+                    raise ValueError('Invalid member input')
+                inputs.append(value)
+            except (OSError, ValueError, TypeError):
+                self._json_error(503, 'Every parent and child is required for group Bob synthesis')
+                return
+            finally:
+                if connection is not None:
+                    connection.close()
+        value = inputs[0] if publication else {'schema':1, 'group_id':self.server.routes[leader]['group_id'],
+                                                'members':members, 'leader':leader, 'inputs':inputs}
+        body = json.dumps(value, separators=(',', ':')).encode()
+        if len(body) > 240000:
+            self._json_error(503, 'Group editorial input ceiling reached')
+            return
+        self.send_response(200)
+        self.send_header('Content-Type', 'application/json')
+        self.send_header('Cache-Control', 'no-store')
+        self.send_header('Content-Length', str(len(body)))
+        self.end_headers()
+        if self.command != 'HEAD':
+            self.wfile.write(body)
 
     def _serve_group_bob(self, group_id):
         """Merge published posts from reachable peers; one offline peer is skipped."""
@@ -310,14 +360,31 @@ class GroupProxy(BaseHTTPRequestHandler):
             )
             local_host = (remote.is_loopback or
                           (remote.is_private and not remote.is_link_local and not in_group_network))
-            route_subnet = route.get("subnet")
-            in_route_network = (
-                route_subnet is not None
-                and remote in ipaddress.ip_network(route_subnet, strict=False)
+            # A group directory spans its parent bridge and child cell bridges.
+            # Derive that union from this group's explicit members, never every
+            # known network (which would admit another group's containers).
+            route_subnets = [route.get("subnet")]
+            route_subnets.extend(
+                self.server.routes.get(member, {}).get("subnet")
+                for member in route.get("members", [])
+            )
+            in_route_network = any(
+                subnet and remote in ipaddress.ip_network(subnet, strict=False)
+                for subnet in route_subnets
             )
             return in_route_network or host_gateway or local_host
         except (KeyError, ValueError):
             return False
+
+    def _coordinator_allowed(self, member, route):
+        # Parents also connect to their own children's bridge. Docker DNS may
+        # reach the gateway through either interface, so both must be admitted.
+        subnets = [route['subnet']]
+        if route.get('role') == 'parent':
+            subnets.extend(r['subnet'] for r in self.server.routes.values()
+                           if r.get('parent') == member and r.get('group_id') == route.get('group_id'))
+        remote = ipaddress.ip_address(self.client_address[0])
+        return any(remote in ipaddress.ip_network(subnet, strict=False) for subnet in subnets)
 
     def _serve_group_directory(self, host, group):
         parents = sorted(group.get("parents", []))
@@ -614,8 +681,7 @@ class GroupProxy(BaseHTTPRequestHandler):
                     or not isinstance(route_group, str)
                     or route_group.lower() not in self.server.groups):
                 raise ValueError("unknown group member")
-            remote = ipaddress.ip_address(self.client_address[0])
-            if remote not in ipaddress.ip_network(route["subnet"], strict=False):
+            if not self._coordinator_allowed(member, route):
                 self.send_error(403, "Coordinator is available only to local group members")
                 return
             key = (route["group_id"].lower(), member, request_id)

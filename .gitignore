@@ -26,3 +26,5 @@ build/
 
 # Local scoping workbench
 .workbench/
+# Private installation advisory state must never be committed.
+**/.passenger*

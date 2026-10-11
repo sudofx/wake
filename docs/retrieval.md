@@ -236,3 +236,15 @@ prove which text was attempted. Historical `delivered_request_chars`,
 JSON-envelope meaning; use the new `provider_input_compression_ratio` to compare
 rich and delivered model-visible text. Transport bytes and vendor-reported token
 usage remain separate provider measurements. No extra provider call is required.
+
+Group Bob requests carry bounded attributed excerpts from every member, with
+record heads and versions identifying their dated origins. Excerpting must not drop
+a member or let the model infer missing facts. These summaries are editorial
+context rather than imported qualifying evidence. Native invocation receipts retain
+the exact delivered public request and model response.
+
+Passenger text never enters research memory, retrieval or trust compacts. A
+separate bounded private advisory request may read its latest assessments as
+lower-trust data. It cannot supply scientific evidence, policy or authorization;
+private output stays outside the public record. See
+[the advisory privacy boundary](development.md#first-run-publication-and-passenger).

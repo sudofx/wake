@@ -190,3 +190,12 @@ python3 -m unittest discover -s tests -v
 These checks use fixtures. They do not make live-model calls or certify a hosted
 installation. Follow the [maintainer map](docs/development.md) for checks matched
 to a specific deployment.
+
+Worker groups synthesize one model-written WAKE01 introduction from every parent and
+child and publish identical text on all members before ordinary research requests begin.
+The introductory checkpoint does not increment accepted research progress.
+Container installations also have **Passenger**, a private, installation-wide
+Markdown workspace for Bob's operational assessments and proposed changes.
+Passenger cannot execute changes or govern research. See
+[first-run publication and Passenger](docs/development.md#first-run-publication-and-passenger)
+for persistence, privacy, shared storage and operator reset.

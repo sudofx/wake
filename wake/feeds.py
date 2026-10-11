@@ -65,8 +65,14 @@ def build_feeds(state):
         entries = state.get("posts", {}).values() if kind == "blog" else state["journal"]
         for entry in entries:
             iid = entry["created_by"] if kind == "blog" else entry["invocation"]
-            invocation = state["invocations"][iid]
-            if invocation["status"] != "accepted":
+            invocation = state["invocations"].get(iid)
+            shared = entry.get("group_publication") if kind == "blog" else None
+            if shared:
+                # Replica publication has a local application receipt and an
+                # attributed remote inference, never a fabricated local call.
+                invocation = {"time":entry["published_at"], "status":"editorial_completed",
+                              "provider":shared["provider"]["name"], "model":shared["provider"]["model"]}
+            if not invocation or invocation["status"] not in ("accepted", "editorial_completed"):
                 continue
             if kind == "blog":
                 if entry.get("status", "current") not in ("current", "superseded"):

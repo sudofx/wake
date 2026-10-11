@@ -12,15 +12,33 @@ their own store. Neither export path transfers authority between installations.
 
 from contextlib import nullcontext
 from datetime import datetime
+from http.server import SimpleHTTPRequestHandler
 import html
 import json
 import os
 import re
 from pathlib import Path
 from zoneinfo import ZoneInfo
+from urllib.parse import unquote, urlsplit
 
 from .event_format import canonical, now
 from .scheduling import wake_status
+
+
+class PublicSnapshotHandler(SimpleHTTPRequestHandler):
+    """Private advisory files remain inaccessible even in a misconfigured root."""
+    def send_head(self):
+        route = unquote(urlsplit(self.path).path)
+        if any(part.startswith('.passenger') for part in route.split('/')):
+            self.send_error(404)
+            return None
+        return super().send_head()
+
+    def list_directory(self, path):
+        # Snapshot pages are explicit artifacts. A listing must not disclose
+        # private files accidentally placed beside a public export.
+        self.send_error(404)
+        return None
 
 
 def atomic_write(path, content):
@@ -288,8 +306,10 @@ def _blog_html(post, state):
     body = (
         f'<p class="lede">{_blog_html_text(post["lede"], post, state)}</p>{correction}{paragraphs}{lens}'
         f'{research_receipts}'
-        f'<p><a href="../index.html#history/{html.escape(post["created_by"])}">Exact wake and decision →</a></p>'
-        '<hr><p class="meta">AI-authored from WAKE✳︎’s durable research record. Research claims link to evidence; philosophical reflections are reflections.</p>'
+        + (f'<p>Shared synthesis from {len(post["group_publication"]["members"])} parent and child nodes. '
+         f'<a href="../events.html">Local publication receipt →</a></p>' if post.get("group_publication") else
+         f'<p><a href="../index.html#history/{html.escape(post["created_by"])}">Exact wake and decision →</a></p>')
+        + '<hr><p class="meta">AI-authored from WAKE✳︎’s durable research record. Research claims link to evidence; philosophical reflections are reflections.</p>'
     )
     version = int(post.get("created_version") or 0)
     reflection_cycle = int(post.get("reflection_cycle") or 0)
@@ -297,7 +317,7 @@ def _blog_html(post, state):
     domain = state.get("projects", {}).get(post.get("project"), {}).get("domain")
     invocation = state.get("invocations", {}).get(post.get("created_by"), {})
     status = str(post.get("status") or "published").upper()
-    meta = _reading_meta("REFLECTION" if is_reflection else "BLOG", status, _topic_meta(state, domain, "blog"), invocation.get("time"), post.get("status") or "published")
+    meta = _reading_meta("REFLECTION" if is_reflection else "BLOG", status, _topic_meta(state, domain, "blog"), post.get("published_at") or invocation.get("time"), post.get("status") or "published")
     return _reading_page(_blog_display_title(post), "BOB / WAKE✳︎ BLOG", body, "../index.html#blog/" + post["id"], meta_html=meta)
 
 

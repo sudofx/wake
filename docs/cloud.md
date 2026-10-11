@@ -291,3 +291,10 @@ restoring the old backup would erase research. Kernel chain verification and
 historical application-policy reevaluation are distinct checks. Preserve and report
 any preexisting application replay discrepancy rather than weakening policy or
 rewriting accepted events to make the upgrade appear clean.
+
+Passenger is container-only private storage; the hosted Actions/Pages lanes do
+not initialize, read, publish or deploy its document. Fresh native hosted research
+records still use the solo governed introductory publication contract. Local group
+synthesis and its explicitly authorized WAKE01 exception do not alter hosted
+publication or authorize a hosted reset, promotion or provider call. See
+[first-run publication and Passenger](development.md#first-run-publication-and-passenger).

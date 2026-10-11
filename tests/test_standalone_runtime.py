@@ -17,6 +17,39 @@ from wake.governance import Rejected
 
 
 class StandaloneRuntimeTests(unittest.TestCase):
+    def test_operator_first_post_pause_is_consumed_without_research_progress(self):
+        from wake.standalone import _pause_after_introduction, _research_control
+        with tempfile.TemporaryDirectory() as directory:
+            control=Path(directory)/'.wake-runner-control.json'
+            control.write_text(json.dumps({'research':'running','pause_after_group_introduction':True}))
+            self.assertFalse(_pause_after_introduction(directory,{'group_bob':{'checkpoint':0}}))
+            self.assertEqual(_research_control(directory)[0],'running')
+            self.assertTrue(_pause_after_introduction(directory,{'version':0,'group_bob':{'checkpoint':1}}))
+            self.assertEqual(_research_control(directory)[0],'paused')
+            self.assertNotIn('pause_after_group_introduction',json.loads(control.read_text()))
+
+    def test_group_startup_waits_for_shared_intro_without_child_research_calls(self):
+        with tempfile.TemporaryDirectory() as directory:
+            engine = bootstrap(directory, dict(DEFAULTS))
+            args = SimpleNamespace(interval=1, config='unused', provider='fixture',
+                data=directory, paused=False, enable_continuity_matrix=False,
+                host='127.0.0.1', port=0, model='test')
+            server, stop = MagicMock(), MagicMock()
+            stop.is_set.side_effect = [False, True]
+            with patch.dict(os.environ, {'WAKE_GROUP_ID':'wake','WAKE_PUBLIC_HOSTNAME':'101.wake'}), \
+                 patch('wake.standalone.config', return_value=dict(DEFAULTS)), \
+                 patch('wake.standalone.bootstrap', return_value=engine), \
+                 patch('wake.standalone.publish', return_value=True), \
+                 patch('wake.standalone.ThreadingHTTPServer', return_value=server), \
+                 patch('wake.standalone.threading.Thread'), \
+                 patch('wake.standalone.threading.Event', return_value=stop), \
+                 patch('wake.group_editorial.synchronize',return_value=False), \
+                 patch.object(engine,'run') as cycle:
+                run(args)
+            cycle.assert_not_called()
+            self.assertEqual(server.runtime_status['state'],'waiting')
+            self.assertIn('WAKE01',server.runtime_status['reason'])
+
     def test_runner_control_file_does_not_block_fresh_volume_bootstrap(self):
         with tempfile.TemporaryDirectory() as directory:
             data = Path(directory) / 'data'

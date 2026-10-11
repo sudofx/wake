@@ -125,6 +125,8 @@ class GroupPeerTests(unittest.TestCase):
                                     "wake.local", "wake.local-001")
         self.assertEqual(packet["group_id"], "wake.local")
         self.assertEqual(packet["instance_id"], "wake.local-001")
+        self.assertTrue(packet["available"])
+        self.assertEqual(packet["members"], ["wake.local-001"])
         self.assertEqual([post["id"] for post in packet["posts"]], ["post-a"])
         self.assertIn("wake-a", packet["invocations"])
         self.assertIn("evidence-a", packet["evidence"])

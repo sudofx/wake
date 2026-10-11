@@ -516,6 +516,12 @@ def govern_proposal(state, invocation, proposal):
     proposal, rotation_filter = rotation_preflight(state, invocation, proposal)
     proposal, title_filter = freshen_duplicate_blog_titles_preflight(state, proposal)
     proposal, journal_filter = separate_blog_from_journal_preflight(proposal)
+    group_editorial = None
+    if state.get("group_bob") and isinstance(proposal, dict) and isinstance(proposal.get("actions"), list):
+        drafts = [a for a in proposal["actions"] if isinstance(a, dict) and a.get("type") == "blog"]
+        if drafts:
+            proposal = {**proposal, "actions": [a for a in proposal["actions"] if a not in drafts]}
+            group_editorial = {"status":"withheld", "reason":"Worker draft retained for all-member group synthesis; individual publication is disabled", "actions":drafts}
     if checkpoint_filter or reuse_filter or title_filter or journal_filter:
         if rotation_filter is None:
             directive = state.get("invocations", {}).get(invocation, {}).get("attention", {})
@@ -535,7 +541,7 @@ def govern_proposal(state, invocation, proposal):
             rotation_filter = {**rotation_filter, **journal_filter}
     proposal = assign_research_ids(proposal, invocation)
     enforce_synthesis_checkpoint(state, invocation, proposal)
-    editorial = None
+    editorial = group_editorial
     try:
         result = transition(state, proposal, invocation)
     except Rejected as exc:
@@ -563,6 +569,19 @@ def govern_proposal(state, invocation, proposal):
         # It must not leak Bob's publication lifecycle into WAKE✳︎'s journal.
         proposal = accepted_proposal
         result = transition(state, proposal, invocation)
+    # First validate all provider output under the ordinary policy, including
+    # editorial rejection/withholding. A mandatory welcome must not launder an
+    # invalid action or grant Bob permission to bypass publication governance.
+    from .introduction import materialize
+    initialized_proposal = materialize(state, proposal)
+    if initialized_proposal != proposal:
+        proposal, intro_journal_filter = separate_blog_from_journal_preflight(initialized_proposal)
+        result = transition(state, proposal, invocation)
+        directive = state.get("invocations", {}).get(invocation, {}).get("attention", {})
+        rotation_filter = {"selected_topic": directive.get("selected_topic"), "withheld_count": 0,
+                           "withheld_actions": [], "inserted_capacity_park": False,
+                           **(rotation_filter or {}), **(intro_journal_filter or {}),
+                           "initial_publication": {"source": "wake.introduction@1"}}
     return proposal, result, editorial, rotation_filter
 
 

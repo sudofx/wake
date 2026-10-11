@@ -183,6 +183,29 @@ class GroupProxyTests(unittest.TestCase):
         proxy.client_address = ("127.0.0.1", 12345)
         self.assertTrue(proxy._allowed(proxy.server.groups["wake"]))
 
+    def test_group_directory_accepts_each_member_network_but_rejects_other_group(self):
+        proxy=GroupProxy.__new__(GroupProxy)
+        group={'members':['100.wake','101.wake','201.wake','301.wake']}
+        proxy.server=SimpleNamespace(groups={'wake':group},routes={
+            name:{'subnet':f'172.{ordinal}.0.0/16'}
+            for name,ordinal in [('100.wake',20),('101.wake',21),('201.wake',22),('301.wake',23),('100.other',24)]})
+        for ordinal in range(20,25):
+            proxy.client_address=(f'172.{ordinal}.0.8',12345)
+            self.assertEqual(proxy._allowed(group),ordinal<24)
+        proxy.client_address=('172.21.0.8',12345)
+        self.assertFalse(proxy._allowed(proxy.server.routes['100.other']))
+
+    def test_parent_coordinator_accepts_own_cell_interface_only(self):
+        proxy=GroupProxy.__new__(GroupProxy)
+        parent={'subnet':'172.20.0.0/16','role':'parent','group_id':'wake'}
+        proxy.server=SimpleNamespace(routes={'100.wake':parent,
+            '101.wake':{'subnet':'172.21.0.0/16','parent':'100.wake','group_id':'wake'},
+            '201.wake':{'subnet':'172.22.0.0/16','parent':'200.wake','group_id':'wake'},
+            '101.other':{'subnet':'172.24.0.0/16','parent':'100.wake','group_id':'other'}})
+        for ordinal in (20,21,22,24):
+            proxy.client_address=(f'172.{ordinal}.0.8',12345)
+            self.assertEqual(proxy._coordinator_allowed('100.wake',parent),ordinal in (20,21))
+
     def test_gateway_status_endpoint_returns_each_members_current_state(self):
         proxy = GroupProxy.__new__(GroupProxy)
         proxy.server = SimpleNamespace(
@@ -229,6 +252,33 @@ class GroupProxyTests(unittest.TestCase):
         body = json.loads(proxy.wfile.getvalue())
         self.assertEqual(body["members"], ["wake-002"])
         self.assertEqual([post["id"] for post in body["posts"]], ["post-002"])
+
+    def test_editorial_manifest_requires_parent_and_child(self):
+        proxy = GroupProxy.__new__(GroupProxy)
+        group = {'members':['100.wake','101.wake']}
+        proxy.server = SimpleNamespace(groups={'wake':group}, routes={
+            '100.wake':{'target':'100.wake','group_id':'wake','role':'parent'},
+            '101.wake':{'target':'101.wake','group_id':'wake','role':'child'}})
+        proxy.command='GET'; proxy.path='/group/bob-inputs.json'; proxy.wfile=io.BytesIO()
+        statuses=[]; proxy.send_response=lambda status,*args:statuses.append(status)
+        proxy.send_header=lambda *args:None; proxy.end_headers=lambda:None
+        class Connection:
+            def __init__(self,host,*args,**kwargs): self.host=host
+            def request(self,*args,**kwargs): pass
+            def getresponse(self): return _Response({'schema':1,'group_id':'wake','member':self.host})
+            def close(self): pass
+        with patch('scripts.wake_group_proxy.HTTPConnection',Connection): proxy._serve_group_editorial(group)
+        packet=json.loads(proxy.wfile.getvalue())
+        self.assertEqual(statuses,[200]); self.assertEqual(packet['leader'],'100.wake')
+        self.assertEqual([i['member'] for i in packet['inputs']],['100.wake','101.wake'])
+        proxy.wfile=io.BytesIO(); statuses.clear()
+        class MissingChild(Connection):
+            def __init__(self,host,*args,**kwargs):
+                if host=='101.wake': raise OSError('offline child')
+                super().__init__(host)
+        with patch('scripts.wake_group_proxy.HTTPConnection',MissingChild): proxy._serve_group_editorial(group)
+        self.assertEqual(statuses,[503])
+        self.assertNotIn('inputs',json.loads(proxy.wfile.getvalue()))
 
 
 if __name__ == "__main__":

@@ -41,7 +41,7 @@ def development_worker(root, command, env):
     with tempfile.TemporaryDirectory(prefix='wake-dev-source-') as directory:
         candidate = Path(directory)
         shutil.copytree(root / 'wake', candidate / 'wake',
-                        ignore=shutil.ignore_patterns('__pycache__', '*.pyc'))
+                        ignore=shutil.ignore_patterns('__pycache__', '*.pyc', '.passenger*'))
         for name in ('wake.toml', 'research-topics.toml', '.wake-runner-topics'):
             source = root / name
             if source.is_dir():
@@ -100,7 +100,7 @@ def source_signature(root):
     paths += [root / 'wake.toml', root / 'research-topics.toml']
     result = []
     for path in sorted(paths):
-        if '__pycache__' in path.parts or not path.is_file():
+        if '__pycache__' in path.parts or any(part.startswith('.passenger') for part in path.parts) or not path.is_file():
             continue
         if path.suffix != '.py' and 'assets' not in path.parts and path.suffix != '.toml':
             continue

@@ -87,13 +87,18 @@ class SameWakeTests(unittest.TestCase):
             self.assertIn('completed', stages)
         replay = self.store.record.full_replay()[1]
         self.assertIn('app:wake', replay)
-    def test_invalid_plan_makes_no_network_call_or_transition(self):
+    def test_invalid_plan_makes_no_collection_call_or_research_transition(self):
         provider = ImmediateProvider(bad=True)
         with patch('wake.research.collect_planned') as collector:
             result = self.engine.run(provider, collector=lambda e: None)
         self.assertEqual(result['status'], 'rejected')
         collector.assert_not_called()
-        self.assertEqual(self.store.load()['version'], 0)
+        # WAKE 01's mandatory welcome is an editorial transition. The failed
+        # plan still creates no research artifact, answer or collector effect.
+        self.assertEqual(self.store.load()['version'], 1)
+        self.assertEqual(self.store.load()['projects'], {})
+        self.assertEqual(self.store.load()['notebooks'], {})
+        self.assertEqual(set(self.store.load()['posts']), {'wake-introduction'})
         self.assertIsNone(self.store.load()['pending'])
         invocation = self.store.load()['invocations'][result['id']]
         self.assertEqual(invocation['status'], 'rejected')
@@ -146,7 +151,9 @@ class SameWakeTests(unittest.TestCase):
             result = self.engine.run(provider, collector=lambda e: None)
         self.assertEqual(result['status'], 'failed')
         self.assertIn('planning_invocation', result['same_wake_research'])
-        self.assertEqual(self.store.load()['version'], 0)
+        self.assertEqual(self.store.load()['version'], 1)
+        self.assertEqual(self.store.load()['notebooks'], {})
+        self.assertEqual(set(self.store.load()['posts']), {'wake-introduction'})
         self.assertEqual(sum(e['actor']=='collector' for e in self.store.load()['evidence'].values()), 2)
         self.assertIsNone(self.store.load()['pending'])
     def test_metadata_route_reaches_readable_source_in_same_pass(self):

@@ -6,7 +6,7 @@
 
 import argparse
 from functools import partial
-from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from http.server import ThreadingHTTPServer
 import json
 from pathlib import Path
 import sqlite3
@@ -18,7 +18,7 @@ from .authority import open_authoritative_store
 from .engine import Engine, config
 from .governance import Rejected, require, text
 from .providers import Fixture, Gemini, SCHEMA
-from .report import atomic_write, export
+from .report import atomic_write, export, PublicSnapshotHandler
 from .errors import IntegrityError
 from .kernel.record import IntegrityError as RecordIntegrityError
 
@@ -28,6 +28,8 @@ def parser():
     p.add_argument("--config", default="wake.toml")
     sub = p.add_subparsers(dest="command", required=True)
     sub.add_parser("init", help="Initialize an empty record; never overwrite an existing one")
+    passenger = sub.add_parser("passenger-reset", help="Operator-only reset of private container advisory notes")
+    passenger.add_argument("--confirm", action="store_true", help="Confirm intentionally clearing the installation's Passenger")
     wake = sub.add_parser("wake", help="Run one bounded invocation")
     wake.add_argument("--provider", choices=["gemini", "fixture"])
     wake.add_argument("--model")
@@ -100,13 +102,22 @@ def parser():
     return p
 
 def execute(args):
+    if args.command == "passenger-reset":
+        from .passenger import resolve
+        require(args.confirm, "Passenger reset requires --confirm")
+        workspace = resolve()
+        require(workspace is not None, "Passenger is available only inside containers")
+        try:
+            return workspace.operator_reset()
+        except Exception:
+            raise Rejected("Passenger reset unavailable; no private details retained") from None
     if args.command == "schema":
         return SCHEMA
     if args.command == "serve":
         path = Path(args.directory).resolve()
         require((path / "index.html").exists(), "Export a journal before serving it")
         require(not (path / ".env").exists() and not (path / ".git").exists(), "Serve a report directory, not the repository")
-        server = ThreadingHTTPServer((args.host, args.port), partial(SimpleHTTPRequestHandler, directory=str(path)))
+        server = ThreadingHTTPServer((args.host, args.port), partial(PublicSnapshotHandler, directory=str(path)))
         print(f"Journal: http://{args.host}:{server.server_port} (Ctrl-C to stop)", flush=True)
         try:
             server.serve_forever()
@@ -202,7 +213,10 @@ def execute(args):
                 state = engine.initialize()
             if args.command == "init":
                 state = engine.initialize()
-                return {"initialized": True, "cycles": state["version"]}
+                from .introduction import pending
+                return {"initialized": not pending(state), "record_initialized": True,
+                        "initial_publication": "pending" if pending(state) else "complete-or-not-required",
+                        "cycles": state["version"]}
             if args.command == "recover":
                 state = engine.recover(explicit=True)
                 return {"recovered": True, "cycles": state["version"], "pending": state["pending"]}

@@ -4,7 +4,7 @@ import argparse
 from datetime import datetime, timezone
 import fcntl
 from functools import partial
-from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from http.server import ThreadingHTTPServer
 import json
 import hashlib
 import math
@@ -22,7 +22,7 @@ from .engine import Engine, config
 from .group_peers import collect_group_peer_research, group_bob_snapshot, group_research_snapshot
 from .governance import Rejected
 from .providers import Fixture, Gemini
-from .report import export
+from .report import export, PublicSnapshotHandler
 from .scheduling import wake_status
 from .activity import RuntimeActivity
 
@@ -57,6 +57,25 @@ def _write_control_ack(directory, reset_id, error=None):
     temporary = target.with_suffix('.tmp')
     temporary.write_text(json.dumps({'reset_id': reset_id, 'error': error}))
     os.replace(temporary, target)
+
+
+def _pause_after_introduction(directory, state):
+    """Consume an operator's local first-post pause before any research effect."""
+    if state.get('group_bob', {}).get('checkpoint', 0) < 1:
+        return False
+    target = Path(directory) / _CONTROL_FILE
+    try:
+        value = json.loads(target.read_text())
+    except FileNotFoundError:
+        return False
+    if value.get('pause_after_group_introduction') is not True:
+        return False
+    value['research'] = 'paused'
+    value.pop('pause_after_group_introduction')
+    temporary = target.with_suffix('.intro.tmp')
+    temporary.write_text(json.dumps(value))
+    os.replace(temporary, target)
+    return True
 
 
 def _wait_for_control(stop, directory, seconds, mode, reset_id):
@@ -118,10 +137,31 @@ def load_secret():
         os.environ['GEMINI_API_KEY'] = secret
 
 
-class Website(SimpleHTTPRequestHandler):
+class Website(PublicSnapshotHandler):
     """Serve only disposable snapshots, with an inspection-only runtime endpoint."""
     def do_GET(self):
         route = self.path.split('?', 1)[0]
+        from urllib.parse import unquote
+        if any(part.startswith('.passenger') for part in unquote(route).split('/')):
+            self.send_error(404)
+            return
+        if route in ('/group/bob-input.json', '/group/bob-publication.json'):
+            from .group_editorial import input_snapshot
+            group_id = os.environ.get('WAKE_GROUP_ID', '')
+            member = os.environ.get('WAKE_PUBLIC_HOSTNAME', '')
+            if not group_id or not member:
+                self.send_error(404)
+                return
+            value = (input_snapshot(self.server.engine, group_id, member) if route.endswith('input.json')
+                     else self.server.engine.store.load().get('group_bob', {}).get('publication'))
+            body = json.dumps(value, separators=(',', ':')).encode()
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json')
+            self.send_header('Cache-Control', 'no-store')
+            self.send_header('Content-Length', str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+            return
         if route == '/group/bob.json':
             group_id = os.environ.get('WAKE_GROUP_ID', '')
             instance_id = os.environ.get('WAKE_GROUP_INSTANCE', '')
@@ -281,8 +321,26 @@ def run(args):
                                            os.environ.get('WAKE_DEV_CONFIG_SOURCE', args.config),
                                            lambda state: server.development_status.update(state=state)),
                                      daemon=True).start()
+                last_group_editorial = 0
                 while not stop.is_set():
                     research_mode, reset_id = _research_control(data, default_mode)
+                    if os.environ.get('WAKE_GROUP_ID') and time.monotonic() - last_group_editorial >= 15:
+                        last_group_editorial = time.monotonic()
+                        from .group_editorial import synchronize
+                        try:
+                            editorial_provider = None
+                            group = engine.store.load().get('group_bob', {})
+                            if research_mode == 'running' and group.get('leader') == os.environ.get('WAKE_PUBLIC_HOSTNAME'):
+                                editorial_provider = Fixture(args.model or 'standalone-fixture') if provider_name == 'fixture' else Gemini(settings, args.model)
+                                if provider_name == 'gemini':
+                                    from .group_coordinator import group_provider_gate
+                                    editorial_provider.request_gate = group_provider_gate(settings, should_pause=lambda: stop.is_set() or _research_control(data, default_mode)[0] != 'running')
+                            if synchronize(engine, editorial_provider) and publish(engine, root):
+                                server.snapshot_generation += 1
+                        except Exception as exc:
+                            # No partial group, synthetic fallback or concealed
+                            # scientific progress when a peer/provider is unavailable.
+                            print(f'Group Bob waiting ({type(exc).__name__}): {str(exc)[:180]}', flush=True)
                     if reset_id and reset_id != handled_reset_id:
                         try:
                             with engine.store.lock():
@@ -295,8 +353,18 @@ def run(args):
                         except Exception as exc:
                             handled_reset_id = reset_id
                             _write_control_ack(data, reset_id, str(exc))
+                    if _pause_after_introduction(data, engine.store.load()):
+                        research_mode = 'paused'
                     if research_mode != 'running':
                         server.runtime_status = {'mode': 'standalone', 'state': research_mode}
+                        stop.wait(.5)
+                        continue
+                    if os.environ.get('WAKE_GROUP_ID') and engine.store.load().get('group_bob', {}).get('checkpoint', 0) == 0:
+                        # The group starts with one shared editorial invocation.
+                        # Children contribute initialized records without making
+                        # research requests while this startup objective is pending.
+                        server.runtime_status = {'mode':'standalone', 'state':'waiting',
+                                                 'reason':'Waiting for the shared WAKE01 introduction'}
                         stop.wait(.5)
                         continue
                     verify_existing_record(data / 'wake.sqlite')

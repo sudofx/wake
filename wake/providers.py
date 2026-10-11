@@ -991,6 +991,8 @@ class Fixture:
         self.model = model
 
     def propose(self, request):
+        if "advisory_assessments" in request.get("context", {}):
+            return json.dumps({"observations": []}), {"fixture": True}
         c = request["context"]
         n = c["version"] + 1
         receipt = c["receipt"]

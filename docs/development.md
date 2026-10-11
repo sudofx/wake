@@ -310,3 +310,123 @@ does not synchronize data. Keep user-stopped containers and Codespaces stopped;
 retain their volumes and upgrade them when the operator next starts them. Review
 [kernel storage compatibility](kernel.md#physical-storage-and-compatibility) before
 rolling an executable backward against an upgraded volume.
+
+## First-run publication and Passenger
+
+Grouped installations publish **one model-written Bob article with identical text on every
+parent and child**. The elected parent (the first configured parent hostname) obtains a
+bounded, dated summary from every member and synthesizes their shared story. A missing
+member leaves publication pending. The gateway only transports these summaries and the
+result; it has no publication authority. Each member appends its own governed publication
+receipt to its authoritative record and exports the article through its normal website
+publication path. Worker blog drafts are retained as withheld editorial output; they do
+not become separate public voices. Research advances independently of publication.
+
+The gateway's group endpoints admit members from all of that group's parent and
+child networks, while rejecting members of other groups. Bob writes plain paragraphs
+for the existing blog renderer; Markdown heading and emphasis markers are not rendered.
+
+The shared `group-wake-introduction` identifies WAKE01. On creation the group first
+uses one parent model invocation to introduce the initialized records of all members,
+even when their accepted research versions are still zero. Children make no research
+requests during this startup stage. A failed initial synthesis requires operator repair
+and a fresh group; it is not automatically retried. Research starts after publication,
+unless the operator pauses the group at this checkpoint. Subsequent group reflections use
+the existing stable 15–20 wake quiet window after the shared checkpoint, once every member
+has reached it. The article records its checkpoint separately from each member's research
+version and publication time. Synthesis and publication do not add research cycles,
+journal entries, scientific evidence, notebooks, Attention moves or continuity results.
+Public synthesis uses the native invocation lifecycle and the ordinary provider quota;
+its bounded input and exact response remain auditable. Passenger is excluded.
+
+For a monitored first-post run, the operator may set
+`pause_after_group_introduction: true` alongside `research: "running"` in each
+member's local `.wake-runner-control.json` before enabling the batch. Each runtime
+consumes this one-use control and pauses immediately after its publication receipt,
+before an ordinary research request. Paused members continue importing the shared
+article so the entire group can finish publication without additional inference.
+
+The one-time operator exception is limited to the exact digest of the group WAKE01
+article. It bypasses that article's editorial gates only, adds no scientific support,
+and is consumed once in each member's record. It cannot approve other posts or research
+mutations. Normal later articles retain Bob's publication and language gates. If a
+completed synthesis is withheld, its durable draft and reason are retained instead of
+paying for repeated model calls. To apply an explicitly authorized exception, use the
+same saved publication packet in each enrolled, paused member:
+
+```sh
+python /workspace/scripts/wake_group_bob.py --data /data \
+  --publication /tmp/reviewed-group-introduction.json \
+  --confirm-wake01-exception --reason 'Operator authorized this first group introduction only'
+```
+
+Restart the paused local service through its normal container control to regenerate its
+complete website after an operator publication. Check the authoritative post and served
+blog on every member; an accepted draft or HTTP success alone is insufficient.
+
+The older solo `wake-introduction` local recovery contract remains supported for solo
+installations and replay of already accepted welcomes. Grouped runtime enrolls before
+research and never substitutes that programmed welcome for group synthesis. Initialization
+and pending publication remain separate states. No introductory article is a scientific
+finding.
+
+Passenger is a private Markdown workspace for operational observations and inert
+change proposals. Its logical interface is `./.passenger.md`, resolved relative
+to the explicit installation storage root, never the process working directory.
+It is available only inside containers. Solo images use `/data/passenger`; new
+runner nodes use `/passenger`, a named volume shared by a parent and its authorized
+children. For example, 100.wake and 101–103.wake share `100.wake-passenger`, while
+200.wake and its children use `200.wake-passenger`. The persisted installation
+identity rejects accidental reuse. An older grouped container without this
+mapping reports Passenger unavailable instead of creating a child-specific copy.
+
+To add the mapping to existing **paused** runner nodes without deleting their
+records or home volumes:
+
+```sh
+python3 scripts/wake_passenger_upgrade.py 100.wake 101.wake 102.wake 103.wake
+scripts/wake_runner --refresh-router
+```
+
+The upgrade retains a stopped original until the replacement serves the same
+record head while paused. Failure restores that original. Never use the runner's
+container `remove` command for an upgrade: that command removes data volumes.
+Other installations need their own exact names and storage identity.
+
+Initialization creates an empty document if absent and preserves existing text.
+Bob may append observations or add a correction naming an earlier assessment.
+Code snippets remain text. File writes use a shared-volume lock, atomic replace
+and a one-second contention limit; failures are reported without private content
+and never fail primary research. The whole document is limited to 1 MiB, model
+context to the last 4,000 characters, and each response to 12,000 characters/three
+observations. No automatic compaction erases earlier assessments. A full or
+malformed document needs a human decision, not an autonomous cleanup.
+
+Sparse advisory assessments run after accepted research at most once per 15
+accepted cycles. They use the existing provider adapter, quota accounting,
+pause gate and native durability barrier. They add an occasional model call;
+creation needs none, and no update is required each cycle. Private input and
+output stay in memory/the advisory volume; the public record retains only a
+redacted invocation and outcome. They never share model context with public
+research/blog generation. This separation prevents stored advisory instructions
+from becoming public content or execution authorization.
+
+Only an explicit human command exposes intentional reset:
+
+```sh
+docker exec 100.wake python -m wake passenger-reset --confirm
+```
+
+Reset advances a persisted generation before clearing the document. Recovery
+finishes an interrupted reset, and an older in-flight assessment cannot restore
+cleared text. Operator and developer edits should preserve history; developers
+have no separate reset authority. The model contract contains append-only data,
+no reset/delete/execute operation or filesystem tools. This is the repository's
+human-command authority boundary, not an operating-system restriction on humans
+who already have Docker/filesystem access.
+
+Passenger is ignored by Git, excluded from image contexts and frozen source
+copies, absent from public exports and blocked by the standalone web handler.
+It is not served by the group peer endpoints. Treat its text as lower-trust
+advisory data, never policy or instructions. No reset, recommendation or proposed
+patch changes the research record, source code, credentials or deployment.

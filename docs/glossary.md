@@ -34,3 +34,15 @@ record → bounded context → model proposal → governance decision → transi
 See [architecture and limits](architecture.md) for the full trust model and
 [hosted operation](cloud.md) or [standalone operation](standalone.md) for the
 operator procedures.
+
+- **Initial publication** — the durable introductory Bob article. Worker groups
+  synthesize `group-wake-introduction` from every parent and child and publish the
+  same text in each record. Its WAKE01 checkpoint is separate from research progress.
+  The older solo `wake-introduction` contract remains replayable.
+- **First-post exception** — explicit operator permission for the exact first
+  group introduction only. It is consumed once per member and cannot accept
+  research, create scientific evidence or authorize later posts.
+- **Passenger** — private container Markdown for installation-wide operational
+  assessments and inert change proposals. It is advisory, cannot authorize work,
+  and stays out of public context and exports. See
+  [the operating contract](development.md#first-run-publication-and-passenger).

@@ -69,6 +69,11 @@ def reduce_event(state, event, historical=False):
             state["research_topics"] = p["topics"]
         if "topic_colors" in p:
             state["topic_colors"] = p["topic_colors"]
+    elif kind == "introduction_required":
+        require(state.get("charter") and not state.get("introduction_required")
+                and state["version"] == 0 and not state["posts"], "Introduction requires a fresh research installation")
+        require(p.get("actor") == "operator", "Introduction initialization is operator-owned")
+        state["introduction_required"] = True
     elif kind == "pet_renamed":
         require(state.get("charter"), "WAKE must exist before it can be renamed")
         require(p["pet_name"] != state.get("pet_name"), "Pet already has this name")
@@ -161,6 +166,9 @@ def reduce_event(state, event, historical=False):
         item = state["commitments"].get(p["id"])
         require(item is not None and item["status"] == "open", "Only open commitments can be cancelled")
         item.update(status="cancelled", resolution_reason=p["reason"], resolved_by="human")
+    elif kind in ("group_bob_enrolled", "group_bob_exception_granted", "group_bob_drafted", "group_bob_withheld", "group_bob_published"):
+        from .group_editorial import apply_event
+        state = apply_event(state, kind, p, event["time"])
     elif kind == "invocation_started":
         require(state["pending"] is None and p["id"] not in state["invocations"], "Conflicting invocation")
         require(p["base_version"] == state["version"], "Start version mismatch")
@@ -191,7 +199,7 @@ def reduce_event(state, event, historical=False):
         item["provider_requests_sent"] += 1
         if p["attempt"]["result"] == "success":
             item["successful_model"] = p["attempt"]["model"]
-    elif kind in ("accepted", "rejected", "failed", "deferred", "recovered", "research_planned"):
+    elif kind in ("accepted", "rejected", "failed", "deferred", "recovered", "research_planned", "advisory_completed", "editorial_completed"):
         require(state["pending"] == p["id"], "Invocation is not pending")
         if kind == "accepted":
             state = transition(state, p["proposal"], p["id"], historical=historical)
@@ -199,6 +207,15 @@ def reduce_event(state, event, historical=False):
             require(digest({k: state[k] for k in fields}) == p["result_hash"],
                     "Transition result hash mismatch")
         terminal = {"status": kind, "finished": event["time"], "reason": p.get("reason", "")}
+        if kind == "editorial_completed":
+            require(state["invocations"][p["id"]].get("phase") == "group_editorial", "Editorial receipt requires its public synthesis phase")
+            from .group_editorial import validate_article
+            validate_article(p["article"])
+            terminal.update(article=p["article"], input_digest=p["input_digest"], checkpoint=p["checkpoint"])
+        if kind == "advisory_completed":
+            require(state["invocations"][p["id"]].get("phase") == "passenger", "Advisory receipt requires its private phase")
+            require(p.get("outcome") in ("applied", "already-applied", "no-observations", "invalid-output", "stale", "unavailable"), "Invalid advisory outcome")
+            terminal["outcome"] = p["outcome"]
         if "provider_requests_sent" in p:
             terminal["provider_requests_sent"] = p["provider_requests_sent"]
         diagnostics = p.get("metadata", p)
