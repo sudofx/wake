@@ -279,8 +279,8 @@ cp example.research-topics.toml research-topics.toml
 ```
 
 To give the three parents different topics, prepare
-`.wake-runner-topics/001.wake.local.toml` through
-`.wake-runner-topics/003.wake.local.toml` before running the same command. The
+`.wake-runner-topics/100.wake.local.toml` through
+`.wake-runner-topics/300.wake.local.toml` before running the same command. The
 children under each parent use that parent's file. If one of those files is absent,
 the entire parent cell uses the shared `research-topics.toml` instead.
 
@@ -325,47 +325,41 @@ generation at zero while preserving append-only history and continuity results.
 Container lifecycle is separate: `--container stop|start|pause|remove
 [container-name-or-group]`. `remove` deletes the selected container(s) and any
 unshared attached Docker data volumes. A group prefix selects its
-`001.PREFIX` through `NNN.PREFIX` parents and each parent's three child nodes
+`100.PREFIX`, `200.PREFIX`, and later parents and each parent's three child nodes
 when no exact container has that name.
 
 Supplying `--count` makes the positional name a group prefix and requires that
 name. For example, `./scripts/wake_runner wake.local --count 3` creates the
-`000.wake.local` proxy and Docker containers named `001.wake.local` through
-`003.wake.local`, each with an independent volume and a Docker-assigned host
-port. Each numbered parent also gets three research children, named
-`001.001.wake.local`, `001.002.wake.local` and `001.003.wake.local` for parent
-`001.wake.local`. Child names follow `PARENT.CHILD.GROUP`, so the parent number
-comes first and all three children sort together. For example, `002.003.wake.local`
-is child 003 of parent `002.wake.local`. The `000.wake.local` gateway shows each
+`000.wake.local` proxy and Docker containers named `100.wake.local`,
+`200.wake.local`, `300.wake.local`, and so on, each with an independent volume and
+a Docker-assigned host port. Each numbered parent also gets three research children,
+named `100.001.wake.local`, `100.002.wake.local` and `100.003.wake.local` for
+parent `100.wake.local`. Child names follow `PARENT.CHILD.GROUP`, so the parent
+number comes first and all three children sort together. For example,
+`200.003.wake.local` is child 003 of parent `200.wake.local`. The `000.wake.local` gateway shows each
 parent with its children nested below it. Its hostname links work on the Mac;
 opening the gateway by LAN IP gives buttons using each node's own published host
 port.
 
-This naming change applies to Docker container names when a group is created with
-the current runner. Existing child containers keep their old names. To update an
-existing group's public gateway names and grouping without changing its research
-data, run `./scripts/wake_runner --refresh-router`. The gateway derives each
-child's public parent-first hostname from its stored parent/child identity and
-routes it to the existing container. This does not rename Docker containers or
-move volumes; Docker Desktop can therefore continue to show the old names until
-a separate data-preserving container migration is performed. Running the group
-creation command against an old assignment still stops with a clear message
-rather than silently attaching the wrong record.
+This naming scheme is used for groups created with the current runner. To change
+an existing group, back up its research data, remove the old group, and create it
+again. Removing a group with `--container remove` also deletes its attached data
+volumes; restore a backup afterward if you need to keep its research history.
 
 ```mermaid
 flowchart TB
-  G[000 group directory] --> P1[001 parent]
-  G --> P2[002 parent]
-  G --> P3[003 parent]
-  P1 --> C11[001.001 child]
-  P1 --> C12[001.002 child]
-  P1 --> C13[001.003 child]
-  P2 --> C21[002.001 child]
-  P2 --> C22[002.002 child]
-  P2 --> C23[002.003 child]
-  P3 --> C31[003.001 child]
-  P3 --> C32[003.002 child]
-  P3 --> C33[003.003 child]
+  G[000 group directory] --> P1[100 parent]
+  G --> P2[200 parent]
+  G --> P3[300 parent]
+  P1 --> C11[100.001 child]
+  P1 --> C12[100.002 child]
+  P1 --> C13[100.003 child]
+  P2 --> C21[200.001 child]
+  P2 --> C22[200.002 child]
+  P2 --> C23[200.003 child]
+  P3 --> C31[300.001 child]
+  P3 --> C32[300.002 child]
+  P3 --> C33[300.003 child]
 ```
 
 ### How group members share research
@@ -404,12 +398,12 @@ The `000.wake.local` gateway uses host port 80, so that port must be available.
 To use the group hostnames on your Mac, add this line to the Mac's `/etc/hosts`:
 
 ```text
-127.0.0.1 000.wake.local 001.wake.local 001.001.wake.local 001.002.wake.local 001.003.wake.local 002.wake.local 002.001.wake.local 002.002.wake.local 002.003.wake.local 003.wake.local 003.001.wake.local 003.002.wake.local 003.003.wake.local
+127.0.0.1 000.wake.local 100.wake.local 100.001.wake.local 100.002.wake.local 100.003.wake.local 200.wake.local 200.001.wake.local 200.002.wake.local 200.003.wake.local 300.wake.local 300.001.wake.local 300.002.wake.local 300.003.wake.local
 ```
 
 Then open `http://000.wake.local/` for the member directory, or open a parent
-directly at `http://001.wake.local/`, `http://002.wake.local/` or
-`http://003.wake.local/`. The runner prints the hosts-file line and the local and
+directly at `http://100.wake.local/`, `http://200.wake.local/` or
+`http://300.wake.local/`. The runner prints the hosts-file line and the local and
 LAN addresses.
 
 On an iPhone connected to the same network, open the printed `GROUP PROXY LAN URL`.

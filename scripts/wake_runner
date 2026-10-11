@@ -37,11 +37,11 @@ New containers copy any available ~/.bashrc, ~/.gitignore, ~/.bash_profile,
 ~/.profile, ~/.bash_aliases and ~/.inputrc files into their home volume by
 default. Use `--dotfiles=false` or `--no-dotfiles` to skip importing them.
 
-Groups use Docker container names 001.PREFIX through NNN.PREFIX and receive
+Groups use Docker container names 100.PREFIX, 200.PREFIX, and so on, and receive
 separate data volumes and Docker-assigned host ports published on the host's
 network interfaces. Each parent gets three independently stored research
-children named PARENT.CHILD.PREFIX; for example, 001.002.wake.local is child 002
-of parent 001. Children share findings only with siblings in their parent's private
+children named PARENT.CHILD.PREFIX; for example, 100.002.wake.local is child 002
+of parent 100. Children share findings only with siblings in their parent's private
 bridge; the parent can query its children and remains the only bridge between
 parent groups. The reserved `000.PREFIX` hostname serves the group directory.
 Optional per-parent topic files live at .wake-runner-topics/NNN.PREFIX.toml
@@ -97,7 +97,7 @@ cleanup_group_network() {
     local group_id="$1" network label attached ordinal router
     [[ -n "$group_id" ]] || return 0
     local networks=("$(group_network_for "$group_id")")
-    for ((ordinal=1; ordinal<=99; ordinal++)); do
+    for ((ordinal=100; ordinal<=9900; ordinal+=100)); do
         printf -v label '%03d' "$ordinal"
         networks+=("$(cell_network_for "$group_id" "$label")")
     done
@@ -188,37 +188,24 @@ refresh_group_router() {
         role="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.role\" }}" "$container")"
         parent="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.parent\" }}" "$container")"
         network="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.network\" }}" "$container")"
-        # Public child hostnames use PARENT.CHILD.GROUP. A running group from
-        # the earlier child-first layout can keep its containers and volumes;
-        # derive its canonical public hostname from its stable instance identity.
+        # Public hostnames use PARENT.CHILD.GROUP; the parent ordinal is a
+        # 100-step number and the child ordinal is a three-digit number.
         if [[ "$role" == child && "$instance" == "$group_id-p"* ]]; then
             child_identity="${instance#"$group_id-p"}"
-            parent_ordinal="${child_identity%%-c*}"
-            child_ordinal="${child_identity#*-c}"
-            if [[ "$child_identity" == *-c* && "$parent_ordinal" =~ ^[0-9]{3}$ && "$child_ordinal" =~ ^[0-9]{3}$ ]]; then
-                [[ "$parent" == "$parent_ordinal.$group_id" ]] || {
-                    rm -f "$routes_file"
-                    fail "Child identity '$instance' does not match its recorded parent '$parent'."
-                }
-                host="$parent_ordinal.$child_ordinal.$group_id"
-            fi
-        fi
-        if [[ -z "$host" || "$host" == '<no value>' ]]; then
-            # Existing parent containers created before nested cells have no
-            # topology labels; retain their stable group URLs during upgrades.
-            if [[ "$container" == "$group_id"-[0-9][0-9][0-9] ]]; then
-                ordinal="${container##*-}"
-                host="$ordinal.$group_id"
-            else
-                ordinal="${container%%.*}"
-                host="$container"
-                [[ "$host" == "$ordinal.$group_id" ]] || continue
-            fi
-            [[ "$ordinal" =~ ^[0-9]{3}$ ]] || continue
-            instance="$group_id-$ordinal"
-            role=parent
-            parent=""
-            network="$(group_network_for "$group_id")"
+            [[ "$child_identity" =~ ^([0-9]{3,})-c([0-9]{3})$ ]] || { rm -f "$routes_file"; fail "Invalid child identity: $instance"; }
+            ordinal="${BASH_REMATCH[1]}"
+            child_ordinal="${BASH_REMATCH[2]}"
+            [[ "$parent" == "$ordinal.$group_id" ]] || {
+                rm -f "$routes_file"
+                fail "Child identity '$instance' does not match its recorded parent '$parent'."
+            }
+            host="$ordinal.$child_ordinal.$group_id"
+        elif [[ "$role" == parent && "$instance" == "$group_id-"* ]]; then
+            ordinal="${instance#"$group_id-"}"
+            [[ "$ordinal" =~ ^[0-9]{3,}$ ]] || { rm -f "$routes_file"; fail "Invalid parent identity: $instance"; }
+            host="$ordinal.$group_id"
+        else
+            continue
         fi
         [[ -n "$host" && "$host" != '<no value>' && -n "$instance" && "$instance" != '<no value>' ]] || continue
         [[ "$role" == parent || "$role" == child ]] || continue
@@ -560,14 +547,20 @@ create_container() {
 ensure_present() {
     local name="$1" campaign="$2" group_id="${3:-}" peers="${4:-}" paused="${5:-false}" dotfiles="${6:-true}"
     local group_instance="${7:-}" public_host="${8:-}" role="${9:-parent}" parent_host="${10:-}" node_network="${11:-}" topic_owner="${12:-}"
-    local network group_label group_peers
+    local network group_label group_peers instance_label role_label parent_label
     if container_exists "$name"; then
         ensure_wake_identity "$name"
         if [[ -n "$group_id" ]]; then
             group_label="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.group\" }}" "$name")"
+            instance_label="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.instance\" }}" "$name")"
+            role_label="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.role\" }}" "$name")"
+            parent_label="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.parent\" }}" "$name")"
+            [[ "$parent_label" == '<no value>' ]] && parent_label=""
             if [[ -n "$node_network" ]]; then network="$node_network"; else network="$(group_network_for "$group_id")"; fi
             [[ "$group_label" == "$group_id" ]] ||
                 fail "Existing container '$name' is not a member of group '$group_id'; it must be recreated to join this group network. Save its data volume first because container removal deletes unshared volumes."
+            [[ "$instance_label" == "$group_instance" && "$role_label" == "$role" && "${parent_label:-}" == "$parent_host" ]] ||
+                fail "Existing container '$name' has a different group identity; remove and recreate it to apply the new naming scheme."
             docker inspect --format "{{if index .NetworkSettings.Networks \"$network\"}}joined{{end}}" "$name" | grep -q '^joined$' ||
                 fail "Existing container '$name' is not connected to '$network'."
             group_peers="$(docker inspect --format '{{range .Config.Env}}{{println .}}{{end}}' "$name" |
@@ -675,12 +668,19 @@ research_control() {
 }
 
 container_control() {
-    local action="$1" selector="$2" candidate status volume home name data_type group_id
+    local action="$1" selector="$2" candidate status volume home name data_type group_id node parent child
     local targets=() volumes=() groups=()
     while IFS= read -r candidate; do
-        if [[ "$candidate" == [0-9][0-9][0-9]."$selector" ||
-              "$candidate" == [0-9][0-9][0-9].[0-9][0-9][0-9]."$selector" ||
-              "$candidate" == "$selector"-[0-9][0-9][0-9] ]]; then
+        if [[ "$candidate" == *".$selector" ]]; then
+            node="${candidate%.$selector}"
+            if [[ "$node" =~ ^[0-9]{3,}$ ]]; then
+                targets+=("$candidate")
+            elif [[ "$node" == *.* ]]; then
+                parent="${node%%.*}"
+                child="${node#*.}"
+                [[ "$parent" =~ ^[0-9]{3,}$ && "$child" =~ ^[0-9]{3}$ ]] && targets+=("$candidate")
+            fi
+        elif [[ "$candidate" == "$selector"-[0-9][0-9][0-9] ]]; then
             targets+=("$candidate")
         fi
     done < <(docker ps -a --filter "label=$LABEL.group=$selector" --format '{{.Names}}')
@@ -739,7 +739,7 @@ container_control() {
 }
 
 start_group() {
-    local prefix="$1" count="$2" campaign="$3" dotfiles="${4:-true}" paused="${5:-false}" i name ordinal legacy_name was_existing peers network group_instance
+    local prefix="$1" count="$2" campaign="$3" dotfiles="${4:-true}" paused="${5:-false}" i name ordinal was_existing peers network group_instance
     local child_ordinal child_index child_name child_instance child_peers child_network parent_host cell_parent_alias
     local existing_group existing_instance existing_parent existing_role
     local -a parent_instances=()
@@ -753,10 +753,9 @@ start_group() {
     [[ "${CODESPACES:-false}" != true && -z "${CODESPACE_NAME:-}" && "${GITHUB_ACTIONS:-false}" != true && "${CI:-false}" != true ]] ||
         fail 'Grouped peer networking is available only from a local wake_runner session.'
     require_runtime
-    # Check public child-name collisions before changing group networks or aliases.
-    # Parent-first names can collide with a different child's old child-first name.
+    # Check child-name collisions before creating networks or containers.
     for ((i=1; i<=count; i++)); do
-        printf -v ordinal '%03d' "$i"
+        printf -v ordinal '%03d' "$((i * 100))"
         for ((child_ordinal=1; child_ordinal<=children_per_parent; child_ordinal++)); do
             printf -v child_name '%s.%03d.%s' "$ordinal" "$child_ordinal" "$prefix"
             printf -v child_instance '%s-p%s-c%03d' "$prefix" "$ordinal" "$child_ordinal"
@@ -768,19 +767,19 @@ start_group() {
                 existing_role="$(docker inspect --format "{{ index .Config.Labels \"$LABEL.role\" }}" "$child_name")"
                 [[ "$existing_group" == "$prefix" && "$existing_instance" == "$child_instance" &&
                    "$existing_parent" == "$ordinal.$prefix" && "$existing_role" == child ]] ||
-                    fail "Existing container '$child_name' belongs to a different child assignment. Migrate the group to parent-first names while preserving its data volumes before ensuring it again; no containers or volumes were changed."
+                    fail "Existing container '$child_name' belongs to a different child assignment. Remove and recreate the group to apply this naming scheme."
             fi
         done
     done
     ensure_group_network "$prefix"
     for ((i=1; i<=count; i++)); do
-        printf -v ordinal '%03d' "$i"
+        printf -v ordinal '%03d' "$((i * 100))"
         group_instance="$prefix-$ordinal"
         parent_instances+=("$group_instance")
         ensure_cell_network "$prefix" "$ordinal"
     done
     for ((i=1; i<=count; i++)); do
-        printf -v ordinal '%03d' "$i"
+        printf -v ordinal '%03d' "$((i * 100))"
         name="$ordinal.$prefix"
         group_instance="$prefix-$ordinal"
         parent_host="$ordinal.$prefix"
@@ -794,21 +793,13 @@ start_group() {
             [[ "$child_instance" == "$group_instance" ]] || peers+="${peers:+,}$child_instance"
         done
         network="$(group_network_for "$prefix")"
-        legacy_name="$prefix-$ordinal"
-        if container_exists "$legacy_name"; then
-            ensure_wake_identity "$legacy_name"
-            [[ "$(docker inspect --format "{{ index .Config.Labels \"$LABEL.group\" }}" "$legacy_name")" == "$prefix" ]] ||
-                fail "Legacy container '$legacy_name' is not a member of group '$prefix'; leaving it untouched."
-            container_exists "$name" && fail "Both legacy '$legacy_name' and new '$name' containers exist; resolve the name collision before continuing."
-            docker rename "$legacy_name" "$name"
-            printf 'Renamed container %s to %s without changing its volumes.\n' "$legacy_name" "$name"
-        fi
         was_existing=false
         container_exists "$name" && was_existing=true
         ensure_present "$name" "$campaign" "$prefix" "$peers" "$paused" "$dotfiles" \
             "$group_instance" "$parent_host" parent "" "$network" "$parent_host"
         ensure_group_peer_alias "$name" "$prefix" "$group_instance"
-        ensure_cell_parent_alias "$name" "$(cell_network_for "$prefix" "$ordinal")" "$cell_parent_alias"
+        child_network="$(cell_network_for "$prefix" "$ordinal")"
+        ensure_cell_parent_alias "$name" "$child_network" "$cell_parent_alias"
         [[ "$was_existing" == true ]] || new_members+=("$name")
         if [[ "$campaign" == false && "$was_existing" == true ]]; then
             printf 'wake_runner: --campaign none applies only when creating; existing enrollment for %s is unchanged.\n' "$name" >&2
@@ -839,9 +830,8 @@ start_group() {
     printf 'Add this to /etc/hosts: 127.0.0.1'
     printf ' 000.%s' "$prefix"
     for ((i=1; i<=count; i++)); do
-        printf -v name '%s-%03d' "$prefix" "$i"
-        printf ' %03d.%s' "$i" "$prefix"
-        printf -v ordinal '%03d' "$i"
+        printf -v ordinal '%03d' "$((i * 100))"
+        printf ' %s.%s' "$ordinal" "$prefix"
         for ((child_ordinal=1; child_ordinal<=children_per_parent; child_ordinal++)); do
             printf -v child_name '%03d' "$child_ordinal"
             printf ' %s.%s.%s' "$ordinal" "$child_name" "$prefix"
@@ -858,9 +848,9 @@ start_group() {
         printf 'GROUP PROXY LAN URL: unavailable (could not detect the host IPv4 address)\n'
     fi
     for ((i=1; i<=count; i++)); do
-        printf -v ordinal '%03d' "$i"
+        printf -v ordinal '%03d' "$((i * 100))"
         name="$ordinal.$prefix"
-        printf 'GROUP URL: http://%03d.%s/\n' "$i" "$prefix"
+        printf 'GROUP URL: http://%s.%s/\n' "$ordinal" "$prefix"
         report_status "$name"
         for ((child_ordinal=1; child_ordinal<=children_per_parent; child_ordinal++)); do
             printf -v child_name '%03d' "$child_ordinal"

@@ -107,12 +107,14 @@ cp example.research-topics.toml research-topics.toml
 ```
 
 This creates `000.wake.local` as the gateway, three independent parent containers,
-and three child containers under each parent. Child hostnames put the parent number
-first, then the child number: `001.001.wake.local`, `001.002.wake.local` and
-`001.003.wake.local` belong to parent `001.wake.local`. Each node keeps its own record.
+and three child containers under each parent. Parent numbers use 100-step labels
+and child numbers use 001, 002, and 003: `100.001.wake.local`,
+`100.002.wake.local` and `100.003.wake.local` belong to parent `100.wake.local`.
+The next parents are `200.wake.local`, `300.wake.local`, and so on. Each node keeps
+its own record.
 Parents and their children can exchange bounded research material on the local
 Docker network; an unreachable peer does not stop another node. To give each parent
-different topics, prepare `.wake-runner-topics/001.wake.local.toml` and the matching
+different topics, prepare `.wake-runner-topics/100.wake.local.toml` and the matching
 files for the other parents before creating the group. The [group guide](docs/standalone.md#repository-convenience-launcher)
 explains addresses, child visibility, dotfiles, and lifecycle commands.
 
