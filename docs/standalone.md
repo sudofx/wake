@@ -60,10 +60,40 @@ identity keeps Console, maps, homepage and status requests on this server even w
 accessed through an IPv4/IPv6 LAN address. Missing identity never enables hosted data.
 `deployment.json` identifies export mode; snapshot head/version identify displayed data.
 
-For inspection without API calls, preserve the existing Compose project and volume
-and recreate with `WAKE_PAUSED=true`. Do not assume an editor overlay reloads imported
-Python. Generated website assets refresh through normal publication; rebuild the
-standard image when its source changes. Do not manually overwrite generated pages.
+Editable runner containers automatically reload saved Python, website assets and
+configuration from the shared checkout. Each worker executes an immutable source
+copy, so saving another file cannot mix code within its running attempt. A settled
+replacement must compile, import and validate configuration before reloading;
+incomplete saves leave the current worker serving. The worker finishes its current attempt,
+closes the record, then reopens and verifies the same volume and regenerates the
+website. Parents and children each perform this reload independently. Refresh the
+browser to load changed page code. No image rebuild is needed for these edits.
+`WAKE_DEV_RELOAD=true` explicitly enables this behavior; the runner sets it, and an
+existing Git checkout mounted at `/workspace` enables it by default. Set it to
+`false` to keep a development worker fixed. Packaged images keep their installed
+code and require a rebuild for source changes. Dependency, image or mount changes
+also require rebuilding or recreating the container. Do not manually overwrite
+generated pages.
+
+The read-only `/runtime.json` endpoint reports the development source signature,
+imported directory and whether the worker is watching, draining or waiting for a
+complete save. A valid replacement can still contain a behavioral defect: fatal
+startup failures remain closed until a corrected save, with no automatic record
+rollback. Normal shutdown and the local timed research pause remain authoritative.
+
+For inspection without API calls, use `scripts/wake_runner --research pause NAME`.
+This keeps the server and record available. A scheduled cutoff is available when
+starting research:
+
+```sh
+scripts/wake_runner --research start 100.wake --pause-at 2026-10-12T06:45:00+00:00
+```
+
+The timestamp must include its timezone. At the deadline, the scheduler pauses and
+every pending local provider slot checks the control again before sending a request.
+A request already in flight may finish; its outcome stays recorded. A normal explicit
+`--research start` without a deadline clears the previous cutoff. This operational
+control is local to each volume and never starts or stops hosted research.
 
 ## Start
 

@@ -13,9 +13,16 @@ const base=process.argv[2];if(!base)throw Error('Usage: node tests/browser/masth
   let baseline;
   for(const theme of ['dark','light']){
    const context=await browser.newContext({viewport:{width,height:1000},colorScheme:theme,reducedMotion:'reduce'});
+   await context.route('**/runtime.json',route=>route.fulfill({json:{state:'paused'}}));
    const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('requestfailed',r=>errors.push(r.url()+': '+r.failure()?.errorText));
    for(const path of pages){
     await page.goto(new URL(path,base).href);await page.waitForLoadState('networkidle');await page.locator('.actions-light[data-state=stopped]').waitFor();
+    await page.evaluate(()=>{document.body.style.minHeight='300vh'});
+    for(const top of [700,300,1200,0]){
+     await page.evaluate(top=>window.scrollTo({top,behavior:'instant'}),top);
+     assert.equal((await page.locator('.masthead').boundingBox()).y,0);
+     assert(await page.locator('.masthead').evaluate(e=>e.contains(document.elementFromPoint(innerWidth/2,12))));
+    }
     const geometry=await page.evaluate(selectors=>selectors.map(s=>{const e=document.querySelector(s),r=e.getBoundingClientRect(),c=getComputedStyle(e);return [s,...[r.x,r.y,r.width,r.height].map(n=>Math.round(n*100)/100),c.fontSize,c.fontFamily]}),selectors);
     if(!baseline)baseline=geometry;else assert.deepEqual(geometry,baseline,`${width} ${theme} ${path}`);
     if(!(await page.locator('html').getAttribute('data-theme')))console.error('theme missing',path,await page.evaluate(()=>({url:location.href,owner:typeof window.WakeTheme,scripts:[...document.scripts].map(s=>s.src),root:document.documentElement.outerHTML.slice(0,100)})));
@@ -36,7 +43,8 @@ const base=process.argv[2];if(!base)throw Error('Usage: node tests/browser/masth
   }
  }
  const context=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,colorScheme:'light'});
- const page=await context.newPage();await page.goto(new URL('console.html',base).href);
+ await context.route('**/runtime.json',route=>route.fulfill({json:{state:'paused'}}));
+   const page=await context.newPage();await page.goto(new URL('console.html',base).href);
  await page.locator('.actions-light[data-state=stopped]').waitFor();
  await page.locator('.actions-light').tap();
  await page.locator('#site-tooltip:not([hidden])').waitFor();assert.match(await page.locator('#site-tooltip').innerText(),/Paused/);

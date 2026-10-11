@@ -8,13 +8,16 @@ import time
 from urllib.request import ProxyHandler, Request, build_opener
 import uuid
 
+from .providers import ProviderCallPaused
+
 
 class GroupProviderGate:
     """Ask the local group router for a fair provider-call slot; fail open."""
 
-    def __init__(self, url, member, *, timeout_seconds=60):
+    def __init__(self, url, member, *, timeout_seconds=60, should_pause=None):
         self.url = url
         self.member = member
+        self.should_pause = should_pause
         self.wait_seconds = max(60, min(1800, float(timeout_seconds) * 20))
         self.lease_seconds = max(120, min(900, float(timeout_seconds) + 60))
         self.opener = build_opener(ProxyHandler({}))
@@ -32,6 +35,7 @@ class GroupProviderGate:
     def _acquire(self, request_id, model):
         deadline = time.monotonic() + self.wait_seconds
         while time.monotonic() < deadline:
+            self._check_pause()
             packet = self._request({
                 "action": "acquire", "member": self.member,
                 "request_id": request_id, "model": model,
@@ -44,12 +48,21 @@ class GroupProviderGate:
             time.sleep(min(1.0, max(0.1, float(packet.get("retry_after", 1.0)))))
         raise TimeoutError("local group provider slot was not available in time")
 
+    def _check_pause(self):
+        if self.should_pause and self.should_pause():
+            raise ProviderCallPaused('Local research paused before provider call; no request was sent')
+
     @contextmanager
     def request(self, model):
         request_id = uuid.uuid4().hex
         token = None
+        self._check_pause()
         try:
-            token = self._acquire(request_id, model)
+            if self.url:
+                token = self._acquire(request_id, model)
+        except ProviderCallPaused:
+            # A closed local operator control must never take the fail-open path.
+            raise
         except Exception as exc:
             print(
                 f"WAKE group call coordination unavailable; continuing independently ({type(exc).__name__}).",
@@ -57,6 +70,7 @@ class GroupProviderGate:
                 flush=True,
             )
         try:
+            self._check_pause()
             yield
         finally:
             if token:
@@ -73,12 +87,14 @@ class GroupProviderGate:
                     )
 
 
-def group_provider_gate(settings):
+def group_provider_gate(settings, *, should_pause=None):
     """Return a gate only for locally grouped standalone containers."""
     url = os.environ.get("WAKE_GROUP_COORDINATOR_URL", "")
     # The gateway indexes configured members by their public route hostname;
     # WAKE_GROUP_INSTANCE is an internal peer-discovery alias instead.
     member = os.environ.get("WAKE_PUBLIC_HOSTNAME", "").lower()
-    if not url or not member:
+    if (not url or not member) and should_pause is None:
         return None
-    return GroupProviderGate(url, member, timeout_seconds=settings.get("timeout_seconds", 60))
+    return GroupProviderGate(url if member else '', member,
+                             timeout_seconds=settings.get("timeout_seconds", 60),
+                             should_pause=should_pause)

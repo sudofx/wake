@@ -554,6 +554,10 @@ class TransientProviderError(RuntimeError):
         super().__init__(message)
         self.details = details or {}
 
+
+class ProviderCallPaused(TransientProviderError):
+    """Local operator control closed before the provider effect was issued."""
+
 class ProviderRequestError(Rejected):
     """Provider rejected a request; safe structured diagnostics may be persisted."""
     def __init__(self, message, details=None):
@@ -797,7 +801,6 @@ class Gemini:
             }
             record_attempt("started", attempt)
 
-            self.provider_requests_sent += 1
             error = None
 
             reasoning_effort = (
@@ -829,9 +832,11 @@ class Gemini:
 
             try:
                 if self.request_gate is None:
+                    self.provider_requests_sent += 1
                     response = shared_provider.generate(generation)
                 else:
                     with self.request_gate.request(model):
+                        self.provider_requests_sent += 1
                         response = shared_provider.generate(generation)
                 attempt.update(response.metadata)
                 attempt["result"] = "success"
@@ -839,6 +844,10 @@ class Gemini:
                 self.successful_model = model
                 usage = response.metadata.get("usage", {})
                 model_version = response.metadata.get("model_version", model)
+
+            except ProviderCallPaused as exc:
+                attempt.update(result="operator_paused", provider_call_made=False)
+                error = exc
 
             except WakeProviderQuotaError as exc:
                 details = dict(getattr(exc, "details", {}) or {})
@@ -939,6 +948,9 @@ class Gemini:
 
             if isinstance(error, (ProviderRequestError, TransientProviderError)):
                 error.details = {**attempt, **self.diagnostics()}
+
+            if isinstance(error, ProviderCallPaused):
+                raise error
 
             if (
                 isinstance(error, TransientProviderError)

@@ -235,8 +235,8 @@ selection, while record inspectors and reading text remain selectable.
 
 ## Console layout and provider phases
 
-Console modules use the same workspace grid, including the overview. The record
-inspector (#014) sits after the workspace in normal page flow. The outer Console
+Console modules use the same workspace grid, including the overview and record
+inspector (#014). The outer Console
 gutter is 20 px on each side, or 10 px on iPhone. The grid and dedicated panel
 windows share that gutter.
 Panel #001 always fills the available workspace columns. Every other panel has a
@@ -256,8 +256,11 @@ idle/disconnected/hosted snapshot views cannot display an in-flight provider pul
 ## Inspector and public reading presentation
 
 Panel #014 is the record inspector and the third section in the seven-part story.
-It appears after #013 and before #015, in ordinary page flow. It is not draggable,
-does not reserve a side column, float over other panels, or use a special z-index.
+Its initial and Reset position is after #013 and before #015 in the same workspace
+grid. It has the same drag, resize, collapse and pop-out controls as its peers.
+Saved user placement is respected. Selection updates only its content. Grid packing
+keeps document order instead of backfilling holes with later story panels.
+It does not reserve a side column, float over other panels, or use a special z-index.
 On iPhone it does not slide up as a sheet. It stays visible in the story with a
 short empty state until a record is selected; selecting a record fills the panel in
 place. This keeps the space between #013 and #015 stable while scrolling. Selection
@@ -285,10 +288,10 @@ record inspector follows the workspace and never reserves width. The grid counts
 available columns instead of applying a fixed large-screen column limit. Other
 reading pages may retain their text-column limits.
 
-The shared masthead spans the viewport. On desktop, scrolling down hides it and
-scrolling up reveals it; keyboard focus and an open navigation menu keep it visible.
-On phones, it stays visible at every scroll position. Reduced-motion mode removes
-sliding animation. Dark story sections use muted amber borders and a subtle tint;
+The shared masthead is fixed to the viewport and stays visible at every scroll
+position on desktop and phones. Shared navigation reserves its measured height
+above content. Its layer is 12000; same-window popup surfaces use 12001. Dedicated dashboard panel windows hide the masthead.
+Dark story sections use muted amber borders and a subtle tint;
 their layout and durable data remain unchanged.
 
 Private collaboration structure and artifact completion rules are in

@@ -214,7 +214,7 @@ class GroupProxyTests(unittest.TestCase):
             groups={"wake": {"members": ["101.wake", "102.wake"]}},
             routes={
                 "101.wake": {"target": "offline", "group_id": "wake"},
-                "102.wake": {"target": "online", "group_id": "wake"},
+                "102.wake": {"target": "online", "group_id": "wake", "instance": "wake-002"},
             },
         )
         proxy.command = "GET"

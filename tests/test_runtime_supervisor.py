@@ -23,6 +23,9 @@ class RuntimeSupervisorTests(unittest.TestCase):
         result, calls = self.attempt('os._exit(75)')
         self.assertEqual((result, calls), (0, 2))
 
+    def test_drained_development_reload_starts_one_replacement(self):
+        self.assertEqual(self.attempt('os._exit(76)'), (0, 2))
+
     def test_unexpected_signal_recovers(self):
         self.assertEqual(self.attempt('os.kill(os.getpid(), signal.SIGKILL)'), (0, 2))
 

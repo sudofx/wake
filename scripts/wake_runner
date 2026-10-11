@@ -15,7 +15,7 @@ usage() {
     cat <<'EOF'
 Usage:
   scripts/wake_runner [container-or-group-name] [--count N] [--campaign none] [--dotfiles=false] [--paused]
-  scripts/wake_runner --research stop|start|pause|reset|status [container-name]
+  scripts/wake_runner --research stop|start|pause|reset|status [container-name] [--pause-at ISO8601]
   scripts/wake_runner --container stop|start|pause|remove [container-name-or-group]
   scripts/wake_runner --refresh-router
 
@@ -365,14 +365,13 @@ image_for() {
 
 paused_config() {
     local value
-    value="$(docker inspect --format '{{range .Config.Env}}{{println .}}{{end}}' "$1" |
-        awk -F= '$1 == "WAKE_PAUSED" {print $2}' | tail -n 1)"
-    [[ "${value,,}" == true || "${value,,}" == 1 || "${value,,}" == yes ]]
+    value="$(docker inspect --format '{{range .Config.Env}}{{if or (eq . "WAKE_PAUSED=true") (eq . "WAKE_PAUSED=1") (eq . "WAKE_PAUSED=yes")}}true{{end}}{{end}}' "$1")"
+    [[ "$value" == true ]]
 }
 
 research_mode() {
     local name="$1" value container_paused
-    value="$(docker exec "$name" python -c 'import json,pathlib; p=pathlib.Path("/data/.wake-runner-control.json"); print(json.loads(p.read_text()).get("research", "")) if p.exists() else None' 2>/dev/null || true)"
+    value="$(docker exec "$name" python -c 'import os; from wake.standalone import _research_control; print(_research_control("/data", "paused" if os.environ.get("WAKE_PAUSED")=="true" else "running")[0])' 2>/dev/null || true)"
     case "$value" in running|stopped|paused) printf '%s' "$value" ;; *)
         container_paused="$(docker inspect --format '{{.State.Paused}}' "$name" 2>/dev/null || true)"
         if [[ "$container_paused" == true ]] || paused_config "$name"; then printf paused; else printf running; fi ;;
@@ -380,7 +379,7 @@ research_mode() {
 }
 
 set_research_mode() {
-    docker exec "$1" python -c 'import json,os,pathlib,sys; p=pathlib.Path("/data/.wake-runner-control.json"); d=json.loads(p.read_text()) if p.exists() else {}; d["research"]=sys.argv[1]; t=p.with_suffix(".tmp"); t.write_text(json.dumps(d)); os.replace(t,p)' "$2" >/dev/null
+    docker exec "$1" python -c 'import datetime,json,os,pathlib,sys; p=pathlib.Path("/data/.wake-runner-control.json"); d=json.loads(p.read_text()) if p.exists() else {}; deadline=sys.argv[2]; parsed=datetime.datetime.fromisoformat(deadline) if deadline else None; assert parsed is None or parsed.tzinfo is not None, "--pause-at requires a timezone"; d["research"]=sys.argv[1]; d.pop("pause_at",None) if sys.argv[1]=="running" else None; d.update(pause_at=deadline) if deadline else None; t=p.with_suffix(".tmp"); t.write_text(json.dumps(d)); os.replace(t,p)' "$2" "${3:-}" >/dev/null
 }
 
 campaign_progress() {
@@ -517,6 +516,7 @@ create_container() {
         -e "WAKE_ENABLE_CONTINUITY_MATRIX=$campaign" \
         -e "WAKE_INSTANCE_NAME=$name" \
         -e "WAKE_PAUSED=$paused" \
+        -e WAKE_DEV_RELOAD=true \
         -e HTTPS_PROXY=http://http.docker.internal:3128 \
         --read-only --tmpfs /tmp \
         "$IMAGE" --config /workspace/wake.toml >/dev/null
@@ -607,7 +607,7 @@ reset_research() {
 }
 
 research_control() {
-    local action="$1" name="$2" campaign="$3" dotfiles="${4:-true}"
+    local action="$1" name="$2" campaign="$3" dotfiles="${4:-true}" pause_at="${5:-}"
     if [[ "$campaign" == false ]] && container_exists "$name"; then
         printf 'wake_runner: --campaign none applies only when creating; existing enrollment is unchanged.\n' >&2
     fi
@@ -626,9 +626,10 @@ research_control() {
             if container_exists "$name"; then
                 ensure_wake_identity "$name"
                 is_running "$name" || fail "Container $name is stopped; use --container start first."
-                set_research_mode "$name" running
+                set_research_mode "$name" running "$pause_at"
             else
                 create_container "$name" "$campaign" false '' '' "$dotfiles"
+                set_research_mode "$name" running "$pause_at"
             fi
             ;;
         pause)
@@ -842,7 +843,7 @@ start_group() {
 
 main() {
     local name=wake action= campaign=true dotfiles=true paused=false count= arg name_set=false
-    local explicit_action=false container_action= container_action_set=false router_refresh=false
+    local explicit_action=false container_action= container_action_set=false router_refresh=false pause_at=
     if (($# == 0)); then
         require_runtime
         ensure_present wake true '' '' false "$dotfiles"
@@ -885,6 +886,10 @@ main() {
             --dotfiles=true) dotfiles=true ;;
             --dotfiles=false|--no-dotfiles) dotfiles=false ;;
             --paused) paused=true ;;
+            --pause-at)
+                (($#)) || fail '--pause-at requires an ISO8601 timestamp with timezone.'
+                pause_at="$1"; shift
+                ;;
             --refresh-router) router_refresh=true ;;
             --count)
                 (($#)) || fail '--count requires a number.'
@@ -919,7 +924,8 @@ main() {
         container_control "$container_action" "$name"
     elif [[ "$explicit_action" == true ]]; then
         require_runtime
-        research_control "$action" "$name" "$campaign" "$dotfiles"
+        [[ -z "$pause_at" || "$action" == start ]] || fail '--pause-at applies only to --research start.'
+        research_control "$action" "$name" "$campaign" "$dotfiles" "$pause_at"
     elif [[ -n "$count" ]]; then
         [[ "$name_set" == true ]] || fail 'Provide a group name with --count, for example: scripts/wake_runner wake --count 3.'
         start_group "$name" "$count" "$campaign" "$dotfiles" "$paused"

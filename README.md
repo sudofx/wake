@@ -135,6 +135,9 @@ flowchart LR
 
 Local containers, Codespaces, and hosted WAKE can run the same code while keeping
 separate records and controls. A code push does not copy or reset research data.
+Editable local containers reload saved code after completing the current attempt;
+their websites are regenerated from their own retained records. See
+[code changes and timed research pauses](docs/standalone.md#code-and-website-changes).
 The hosted research runtime uses the explicitly promoted `wake-runtime` branch;
 GitHub Pages is a separate read-only view.
 

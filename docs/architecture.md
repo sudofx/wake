@@ -49,6 +49,13 @@ runtime endpoint reports local scheduling status and exposes no mutations. Expli
 standalone presentation mode makes the Console, maps and status light read local data
 on every hostname. GitHub execution, state transport and Pages remain independent.
 
+Editable standalone workers may reload source after draining their current attempt.
+They close and reverify the same record before any new effect. Local timed pause
+controls are checked both by the scheduler and immediately before a provider call,
+including after waiting for a group slot. A closed control defers the invocation,
+records that no request was sent and prevents fallback. It does not claim provider
+quota exhaustion or accepted research. Installed runtimes remain fixed by default.
+
 See [standalone operation](standalone.md). This remains a single-host operator-controlled
 installation, not an authenticated tenant service.
 

@@ -6,6 +6,7 @@ import fcntl
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import json
+import hashlib
 import math
 import os
 from pathlib import Path
@@ -38,6 +39,15 @@ def _research_control(directory, default='running'):
         return default, None
     mode = value.get('research') if isinstance(value, dict) else None
     reset_id = value.get('reset_id') if isinstance(value, dict) else None
+    pause_at = value.get('pause_at') if isinstance(value, dict) else None
+    if pause_at:
+        # The deadline is local operational control, never record authority.
+        # Invalid or timezone-free deadlines fail closed before another effect.
+        deadline = datetime.fromisoformat(pause_at)
+        if deadline.tzinfo is None:
+            raise ValueError('Research pause_at must include a timezone')
+        if datetime.now(timezone.utc) >= deadline and (mode or default) == 'running':
+            mode = 'paused'
     return (mode if mode in _RESEARCH_MODES else default,
             reset_id if isinstance(reset_id, str) else None)
 
@@ -152,6 +162,8 @@ class Website(SimpleHTTPRequestHandler):
             return
         if route == '/runtime.json':
             status = dict(self.server.runtime_status)
+            if getattr(self.server, 'development_status', None):
+                status['development'] = dict(self.server.development_status)
             if hasattr(self.server, 'activity'):
                 status.update(self.server.activity.snapshot())
                 status['snapshot_generation'] = self.server.snapshot_generation
@@ -208,6 +220,13 @@ def publish(engine, root):
 def run(args):
     if not math.isfinite(args.interval) or args.interval <= 0:
         raise ValueError('Interval must be positive')
+    from .runtime_supervisor import (development_root, source_signature,
+                                    watch_development_sources, DEVELOPMENT_RELOAD_EXIT)
+    source_root = development_root()
+    frozen_signature = os.environ.get('WAKE_DEV_SOURCE_SIGNATURE')
+    initial_source = (tuple(tuple(item) for item in json.loads(frozen_signature))
+                      if source_root and frozen_signature else
+                      source_signature(source_root) if source_root else None)
     settings = config(args.config)
     provider_name = args.provider or settings['provider']
     if provider_name not in ('fixture', 'gemini'):
@@ -227,6 +246,7 @@ def run(args):
         if not os.environ.get('GEMINI_API_KEY'):
             raise ValueError('Set GEMINI_API_KEY or GEMINI_API_KEY_FILE at runtime')
     stop = threading.Event()
+    reload_requested = threading.Event() if source_root else None
     for sig in (signal.SIGTERM, signal.SIGINT):
         signal.signal(sig, lambda *_: stop.set())
     with (data / 'standalone.lock').open('a') as lease:
@@ -246,9 +266,21 @@ def run(args):
                 server.runtime_status = {'mode': 'standalone', 'state': research_mode}
                 server.activity = RuntimeActivity()
                 server.snapshot_generation = 1
+                server.development_status = ({
+                    'enabled': True, 'state': 'watching',
+                    'source_root': str(source_root),
+                    'imported_root': str(Path(__file__).resolve().parent.parent),
+                    'source_signature': hashlib.sha256(json.dumps(initial_source).encode()).hexdigest(),
+                } if source_root else None)
                 thread = threading.Thread(target=server.serve_forever, daemon=True)
                 thread.start()
                 print(f'Standalone WAKE: /data authority at {data / "wake.sqlite"}; website port {server.server_port}', flush=True)
+                if source_root:
+                    threading.Thread(target=watch_development_sources,
+                                     args=(source_root, initial_source, stop, reload_requested,
+                                           os.environ.get('WAKE_DEV_CONFIG_SOURCE', args.config),
+                                           lambda state: server.development_status.update(state=state)),
+                                     daemon=True).start()
                 while not stop.is_set():
                     research_mode, reset_id = _research_control(data, default_mode)
                     if reset_id and reset_id != handled_reset_id:
@@ -305,7 +337,9 @@ def run(args):
                     provider = Fixture(args.model or 'standalone-fixture') if provider_name == 'fixture' else Gemini(settings, args.model)
                     if provider_name == 'gemini':
                         from .group_coordinator import group_provider_gate
-                        provider.request_gate = group_provider_gate(settings)
+                        provider.request_gate = group_provider_gate(
+                            settings, should_pause=lambda: stop.is_set() or
+                            _research_control(data, default_mode)[0] != 'running')
                     from .research import collect
                     try:
                         result = engine.run(provider, collector=collect if provider_name == 'gemini' and settings.get('mission') else None,
@@ -362,10 +396,12 @@ def run(args):
                     if _wait_for_control(stop, data, args.interval, research_mode, reset_id):
                         break
         finally:
+            stop.set()
             if server:
                 server.shutdown()
                 server.server_close()
             engine.store.close()
+    return DEVELOPMENT_RELOAD_EXIT if reload_requested and reload_requested.is_set() else 0
 
 
 def main():
@@ -388,7 +424,7 @@ def main():
                         help='Durably opt this installation into continuity@1; probes share ordinary provider calls')
     args = parser.parse_args()
     try:
-        run(args)
+        return run(args)
     except Exception as exc:
         # Never print runtime credentials even if an external exception includes them.
         message = str(exc)

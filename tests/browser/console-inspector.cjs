@@ -1,57 +1,55 @@
-/* Read-only generated fixture. A synthetic record exercises selection without
-   editing an installation's authority or contacting a model. */
+/* Read-only export: selection fills #014 without changing layout or scroll. */
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright'),assert=require('node:assert/strict');
 const base=process.argv[2];
 (async()=>{const browser=await chromium.launch({headless:true,...(process.env.CHROME_EXECUTABLE?{executablePath:process.env.CHROME_EXECUTABLE}:{})});try{
- const context=await browser.newContext({viewport:{width:1440,height:1000},colorScheme:'light'}),page=await context.newPage();
- const source=await context.request.get(new URL('research-data.json',base).href).then(r=>r.json());
- source.graph.nodes=[{id:'project:inspector-fixture',kind:'project',title:'Inspector fixture',detail:{id:'inspector-fixture',status:'active',question:'A readable test record'}}];source.graph.edges=[];
- await context.route('**/research-data.json',r=>r.fulfill({json:source}));
- await page.goto(new URL('console.html',base).href);await page.waitForLoadState('networkidle');
- const main=page.locator('#main'),inspector=page.locator('[data-console-panel-id="014"]');const full=(await main.boundingBox()).width;assert.equal(full,await page.evaluate(()=>document.documentElement.clientWidth));
- await page.goto(new URL('console.html?record=project%3Ainspector-fixture',base).href);await page.locator('html.console-inspector-docked').waitFor();
- assert((await main.boundingBox()).width<full-200);
- // Measure usable content, not just the outer box: legacy padding once reserved
- // the inspector twice while the outer-width check still passed.
- const usable=await page.locator('#console-module-grid').evaluate(e=>{const m=e.closest('#main'),r=m.getBoundingClientRect(),g=e.getBoundingClientRect(),s=getComputedStyle(m);return {gap:r.right-g.right,padding:parseFloat(s.paddingRight)}});assert(usable.padding<=24);assert(usable.gap<=25);
- const desktopGap=await page.locator('.console-overview .panel-heading').evaluate(e=>e.getBoundingClientRect().bottom-e.querySelector('.panel-actions').getBoundingClientRect().bottom);assert(desktopGap>=19);
- assert.equal(await inspector.locator('.inspector-height-handle').count(),0);
- assert.equal(await inspector.evaluate(e=>getComputedStyle(e).resize),'none');
- const docked=await inspector.boundingBox();
- assert.equal(docked.y,(await page.locator('.masthead').boundingBox()).height+20);
- assert.equal(docked.y+docked.height,980);
- await page.evaluate(()=>window.scrollTo(0,600));await page.locator('.masthead-scroll-hidden').waitFor();await page.waitForTimeout(250);
- const expanded=await inspector.boundingBox();assert.equal(expanded.y,20);assert.equal(expanded.height,960);
- await page.evaluate(()=>window.scrollTo(0,480));await page.waitForFunction(()=>!document.querySelector('.masthead').classList.contains('masthead-scroll-hidden'));await page.waitForTimeout(250);
- assert.equal((await inspector.boundingBox()).y,docked.y);assert.equal((await inspector.boundingBox()).height,docked.height);
- const popupPromise=page.waitForEvent('popup');await inspector.locator('.panel-popout').click();const popup=await popupPromise;await popup.waitForLoadState('networkidle');
- await page.waitForFunction(()=>!document.documentElement.classList.contains('console-inspector-docked'));
- assert.equal((await main.boundingBox()).width,full);
- const frame=await popup.locator('.panel-popout-target').boundingBox(),viewport=await popup.evaluate(()=>({width:innerWidth,height:innerHeight}));assert(frame.y>=19);assert(frame.y+frame.height<=viewport.height-19);assert(frame.x+frame.width<=viewport.width-19);
- assert.equal(await popup.locator('.masthead').isVisible(),false);assert.equal(await popup.locator('.panel-popout-target .module-drag').isVisible(),false);
- const closing=popup.waitForEvent('close');await popup.locator('.panel-popout-target .panel-popout').click();await closing;await page.locator('html.console-inspector-docked').waitFor();assert((await main.boundingBox()).width<full-200);
- // Closing the native popup also returns its reserved space to the source.
- const secondPromise=page.waitForEvent('popup');await inspector.locator('.panel-popout').click();const second=await secondPromise;await second.waitForLoadState('networkidle');await page.waitForFunction(()=>!document.documentElement.classList.contains('console-inspector-docked'));await second.close();await page.locator('html.console-inspector-docked').waitFor();
- await page.locator('#close-inspector').click();await page.waitForFunction(()=>!document.documentElement.classList.contains('console-inspector-docked'));
- assert.equal(await page.locator('.map-key').evaluate(e=>Boolean(e.closest('.panel-actions'))),true);
- const borders=await page.locator('.console-story-panel').evaluateAll(nodes=>nodes.map(e=>getComputedStyle(e).borderTopColor));assert.equal(borders.length,7);
- const backgrounds=await page.locator('.console-story-panel').evaluateAll(nodes=>nodes.map(e=>getComputedStyle(e).backgroundColor));assert(backgrounds.every(c=>c==='rgba(0, 0, 0, 0)'));
- const washes=await page.locator('.console-story-panel').evaluateAll(nodes=>nodes.map(e=>getComputedStyle(e).backgroundImage));assert(washes.every(c=>c==='none'));assert(borders.every(c=>c==='rgb(233, 140, 43)'));
- const cube=page.locator('#matrix-cube');await cube.scrollIntoViewIfNeeded();const zoom=await cube.getAttribute('data-zoom');await cube.hover();await page.mouse.wheel(0,-150);assert.equal(await cube.getAttribute('data-zoom'),zoom);
- await page.setViewportSize({width:390,height:844});await page.waitForTimeout(300);await page.locator('.map-node').first().scrollIntoViewIfNeeded();await page.locator('.map-node').first().click();await page.locator('html.console-inspector-docked').waitFor();
- const sheet=await inspector.boundingBox(),origin=await page.locator('.map-node').first().boundingBox();assert(sheet.y>400);assert(origin.y+origin.height<=sheet.y);
- const gap=await page.locator('.console-overview .panel-heading').evaluate(e=>e.getBoundingClientRect().bottom-e.querySelector('.panel-actions').getBoundingClientRect().bottom);assert(gap>=19);
- await context.close();
- // Real mobile viewport semantics and iPhone controls need their own context;
- // resizing a desktop context misses sticky overflow and inspector precedence.
- const phone=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,userAgent:'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Version/18.0 Mobile Safari/604.1'}),mobile=await phone.newPage();
- await phone.route('**/research-data.json',r=>r.fulfill({json:source}));
- await mobile.goto(new URL('console.html?record=project%3Ainspector-fixture',base).href);await mobile.locator('html.console-inspector-docked').waitFor();
- await mobile.waitForTimeout(250);
- const visibleSheet=await mobile.locator('.detail-panel').evaluate(e=>{const r=e.getBoundingClientRect();return {left:r.left,right:r.right,height:r.height,top:r.top,visible:e.contains(document.elementFromPoint(r.left+30,r.top+40))}});assert(visibleSheet.height===844*.5);assert(visibleSheet.top>400);assert(visibleSheet.visible);assert.equal(visibleSheet.left,10);assert.equal(visibleSheet.right,380);assert.equal((await mobile.locator('[data-console-panel-id="001"]').boundingBox()).x,10);
- await mobile.evaluate(()=>window.scrollTo({top:1100,behavior:'instant'}));await mobile.locator('.masthead-scroll-hidden').waitFor();await mobile.evaluate(()=>window.scrollTo({top:1000,behavior:'instant'}));await mobile.waitForFunction(()=>!document.querySelector('.masthead').classList.contains('masthead-scroll-hidden'));await mobile.waitForTimeout(220);assert.equal((await mobile.locator('.masthead').boundingBox()).y,0);
- assert(await mobile.locator('.masthead').evaluate(e=>e.contains(document.elementFromPoint(30,20))));await phone.close();
- const light=await browser.newContext({colorScheme:'light'}),reading=await light.newPage();
- for(const path of ['index.html','map.html','map3d.html','state.html','events.html','rejected.html']){await reading.goto(new URL(path,base).href);await reading.waitForLoadState('networkidle');assert.equal(await reading.locator('html').getAttribute('data-theme'),'light');const dark=await reading.locator('.panel,.topic-hub,.discovery-card,.home-lead-story,.motion-pulse,.motion-numbers,.metric-strip,.about-contract').evaluateAll(nodes=>nodes.filter(e=>getComputedStyle(e).backgroundImage!=='none').map(e=>e.className));assert.deepEqual(dark,[],path);}
- await light.close();console.log('PASS: inspector automatic height/pop-out/restore, mobile origin visibility, category row, seven amber borders without tinted backgrounds, fixed cube scale and light reading surfaces.');
+ for(const viewport of [{width:1440,height:1000},{width:390,height:844}]){
+  const context=await browser.newContext({viewport,hasTouch:viewport.width===390}),page=await context.newPage(),errors=[];
+  page.on('pageerror',e=>errors.push(e.message));
+  const source=await context.request.get(new URL('research-data.json',base).href).then(r=>r.json());
+  source.graph.nodes=[{id:'project:inspector-fixture',kind:'project',title:'Inspector fixture',detail:{id:'inspector-fixture',status:'active',question:'A readable test record'}}];source.graph.edges=[];
+  await context.route('**/research-data.json',r=>r.fulfill({json:source}));
+  await page.goto(new URL('console.html',base).href);await page.waitForLoadState('networkidle');
+  const inspector=page.locator('[data-console-panel-id="014"]');
+  assert(await inspector.isVisible());assert(await inspector.locator('.empty').isVisible());
+  const order=()=>page.locator('#console-module-grid>.console-module').evaluateAll(nodes=>nodes.map(e=>e.dataset.consolePanelId));
+  const initial=await order();assert.equal(initial.indexOf('014'),initial.indexOf('013')+1);assert.equal(initial.indexOf('015'),initial.indexOf('014')+1);
+  assert.equal(await inspector.evaluate(e=>getComputedStyle(e).position),'relative');
+  assert.equal(await inspector.locator('.module-drag').count(),1);assert.equal(await inspector.locator('.panel-popout').count(),1);
+  for(const top of [600,480,800,400]){
+   await page.evaluate(top=>window.scrollTo({top,behavior:'instant'}),top);await page.waitForTimeout(200);
+   assert.equal((await page.locator('.masthead').boundingBox()).y,0);assert.equal(await page.evaluate(()=>scrollY),top);
+  }
+  const position=await inspector.boundingBox();
+  const before=await page.evaluate(()=>scrollY);
+  await page.evaluate(()=>window.dispatchEvent(new CustomEvent('wake-process-record-select',{detail:'project:inspector-fixture'})));
+  await inspector.locator('.detail-title').waitFor();
+  assert.match(await inspector.innerText(),/Inspector fixture/);assert.equal(await page.evaluate(()=>scrollY),before);
+  assert.deepEqual(await order(),initial);assert.equal((await inspector.boundingBox()).x,position.x);assert.equal(await inspector.evaluate(e=>getComputedStyle(e).position),'relative');assert.equal(await page.locator('html.console-inspector-docked').count(),0);
+  const [popup]=await Promise.all([page.waitForEvent('popup'),inspector.locator('.panel-popout').click()]);
+  await popup.locator('.panel-popout-target').waitFor();assert.equal(await popup.locator('.masthead').isVisible(),false);
+  assert(await popup.locator('[data-console-panel-id="014"].panel-popout-target').isVisible());
+  await page.waitForFunction(()=>document.querySelector('[data-console-panel-id="014"]').classList.contains('panel-popped-out'));
+  assert.equal(await inspector.isVisible(),false);await popup.close();
+  await page.waitForFunction(()=>!document.querySelector('[data-console-panel-id="014"]').classList.contains('panel-popped-out'));
+  assert(await inspector.isVisible());assert.deepEqual(await order(),initial);
+  if(viewport.width===1440){
+   await page.evaluate(()=>{const key='wake-console-workspace-v3',state={order:[...document.querySelectorAll('.console-module')].filter(e=>e.dataset.consolePanelId!=='014').map(e=>e.dataset.moduleKey),panels:{}};localStorage.setItem(key,JSON.stringify(state));});
+   await page.reload();await page.waitForLoadState('networkidle');assert.deepEqual(await order(),initial);
+   await page.evaluate(()=>{const key='wake-console-workspace-v3',state=JSON.parse(localStorage.getItem(key)),panel=document.querySelector('[data-console-panel-id="014"]');state.order=state.order.filter(key=>key!==panel.dataset.moduleKey);state.order.push(panel.dataset.moduleKey);localStorage.setItem(key,JSON.stringify(state));});
+   await page.reload();await page.waitForLoadState('networkidle');assert.equal((await order()).at(-1),'014');
+   await page.locator('#reset-console-layout').click();assert.deepEqual(await order(),initial);
+   // A large preceding card must not let later story cards backfill a grid hole.
+   await page.locator('[data-console-panel-id="013"] .module-size').click();
+   const visual=await page.locator('#console-module-grid>.console-module').evaluateAll(nodes=>nodes.map(e=>({id:e.dataset.consolePanelId,r:e.getBoundingClientRect()})).sort((a,b)=>a.r.top-b.r.top||a.r.left-b.r.left).map(e=>e.id));
+   assert.deepEqual(visual,initial);
+   const node=page.locator('#research-map [data-record="project:inspector-fixture"]');
+   await node.scrollIntoViewIfNeeded();
+   const beforeClick=await inspector.boundingBox(),scroll=await page.evaluate(()=>scrollY);
+   await node.dispatchEvent('click');
+   assert.deepEqual(await order(),initial);assert.equal((await inspector.boundingBox()).x,beforeClick.x);assert.equal(await inspector.evaluate(e=>getComputedStyle(e).position),'relative');assert.equal(await page.evaluate(()=>scrollY),scroll);
+   await page.locator('#reset-console-layout').click();assert.deepEqual(await order(),initial);
+  }
+  await page.screenshot({path:`/tmp/wake-sunday-console-${viewport.width}.png`});assert.deepEqual(errors,[]);await context.close();
+ }
+ console.log('PASS: ordinary #014 module on desktop/phone; selection preserves scroll/order; explicit pop-out/restore, saved placement and reset; continuously visible masthead.');
 }finally{await browser.close()}})().catch(e=>{console.error(e);process.exitCode=1});

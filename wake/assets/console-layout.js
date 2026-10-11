@@ -73,11 +73,12 @@
     '.story-grid > .panel',
     '.instruments-grid > .panel',
     '.research-workspace > .panel',
+    '#main > .detail-panel',
     '.telemetry-grid > .panel',
     '#main > .notebook-panel'
   ];
   const inspector=document.querySelector('.detail-panel');
-  const panels=[...document.querySelectorAll(sourceSelectors.join(','))].filter(panel=>!panel.matches('.detail-panel'));
+  const panels=[...document.querySelectorAll(sourceSelectors.join(','))];
   if(!panels.length)return;
 
   const grid=document.createElement('section');
@@ -132,15 +133,6 @@
     heading.append(controls);
     grid.append(panel);
   });
-  // Panel #014 is the third story section. Keep it in normal document flow,
-  // immediately after #013, without making it a draggable workspace module.
-  const placeInspector=()=>{
-    if(!inspector)return;
-    const landscape=[...grid.children].find(panel=>panel.querySelector('.panel-id')?.textContent.includes('#013'));
-    if(landscape)landscape.after(inspector);else grid.append(inspector);
-  };
-  placeInspector();
-  if(inspector)inspector.classList.add('console-story-panel');
   // Give every header the same title stack and shared action row, regardless
   // of whether the original markup wrapped its label and title in a div.
   document.querySelectorAll('.panel > .panel-heading,.page-intro > .panel-heading').forEach(heading=>{
@@ -163,7 +155,7 @@
   document.querySelectorAll('.panel-id').forEach(label=>{
     const panel=label.closest('.panel,.page-intro');
     const id=label.textContent.match(/#(\d{3})/)?.[1];
-    if(!panel||!id||panel.matches('.detail-panel'))return;
+    if(!panel||!id)return;
     panel.dataset.consolePanelId=id;
     panel.classList.toggle('console-story-panel',Number(id)>=12&&Number(id)<=18);
     const button=document.createElement('button');
@@ -198,7 +190,6 @@
   if(panelWindow){
     const target=document.querySelector(`[data-console-panel-id="${CSS.escape(panelWindow)}"]`);
     if(target){
-      if(target.matches('.detail-panel'))main.append(target);
       document.documentElement.classList.add('console-panel-window');
       target.classList.add('panel-popout-target');
       const button=target.querySelector('.panel-popout');
@@ -245,7 +236,12 @@
         if(button){button.setAttribute('aria-expanded','false');button.textContent='+';}
       }
     });
-    placeInspector();
+    // Migrate layouts saved before the inspector joined the workspace. Existing
+    // explicit inspector placements are ordinary user preferences.
+    if(inspector&&!(state.order||[]).includes(inspector.dataset.moduleKey)){
+      const landscape=grid.querySelector('[data-console-panel-id="013"]');
+      if(landscape)landscape.after(inspector);
+    }
   };
   if(!panelWindow){
     applyState();
@@ -334,8 +330,6 @@
     dragging.classList.remove('module-dragging');
     document.body.classList.remove('console-is-dragging');
     dragging=null;placeholder=null;pointerId=null;
-    // Keep the static inspector attached to the landscape when its panel moves.
-    placeInspector();
     writeState();pack();
   };
   grid.addEventListener('pointerup',finish);
@@ -348,7 +342,6 @@
       const collapse=panel.querySelector('.module-collapse');
       if(collapse){collapse.setAttribute('aria-expanded','true');collapse.textContent='−';}
     });
-    placeInspector();
     pack();writeState();
   });
   overview.querySelectorAll('.snapshot button').forEach(button=>overview.querySelector('.panel-actions').append(button));
