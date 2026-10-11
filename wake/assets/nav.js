@@ -194,7 +194,10 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.schema===1 && window.WAKE_DEPLOYMENT.
       })
       .finally(()=>{refreshInFlight=false;});
   };
-  refreshActionsLight();
+  // Recheck after reload/foreground: the normal three-minute latch cache can
+  // otherwise keep a manually stopped run looking idle after reset.
+  const navigation=performance.getEntriesByType('navigation')[0];
+  refreshActionsLight(navigation?.type==='reload');
   setInterval(refreshActionsLight,REFRESH_MS);
   window.addEventListener('storage',event=>{
     if(event.key!==CACHE_KEY||!event.newValue)return;
@@ -203,7 +206,7 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.schema===1 && window.WAKE_DEPLOYMENT.
       if(cached&&validState(cached.state))applyCached(cached);
     }catch{}
   });
-  document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshActionsLight();});
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshActionsLight(true);});
 }
 
 /* Shared action glyphs and previews. Record names and metric values remain content. */

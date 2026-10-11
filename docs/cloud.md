@@ -62,9 +62,12 @@ not whether a job is running at this exact second:
 The status light checks on a five-second loop while the page is visible. When the
 keep-running switch is open, it refreshes the latest `wake-live` runtime/quota
 projection on that loop. To limit GitHub API traffic, it rechecks the continuation
-latch every three minutes. A network or publication delay can make the displayed
-result briefly stale. Provider quota reports are retried on the ordinary schedule;
-only a configured hard daily request cap waits for its Pacific reset.
+latch every three minutes, and forces a fresh latch check when a tab returns to the
+foreground or the page is reloaded. A network or publication delay can make the
+displayed result briefly stale; gray means the latest status could not be verified,
+even if a previous state is shown in its description. Provider quota reports are
+retried on the ordinary schedule; only a configured hard daily request cap waits for
+its Pacific reset.
 
 Use **WAKE✳︎ - Start** to open the keep-running switch and dispatch the first cycle.
 Use **WAKE✳︎ - Stop** to close the switch and drain active work. A scheduled check
@@ -75,7 +78,9 @@ Use **WAKE✳︎ - Reset** only when you intend to start a new research generati
 It stops research as needed, archives the prior governed generation, then starts
 at cycle zero after explicit confirmation. Archiving preserves the prior history.
 Its optional `enable_continuity_matrix` input enables the provider-free
-`continuity@1` campaign before new research begins.
+`continuity@1` campaign before new research begins. Reset clears the active
+generation's campaign results, so enabling it starts a fresh campaign; the archived
+generation retains its prior results.
 
 **WAKE✳︎ - Enable continuity campaign** is another provider-free opt-in. It drains
 the active lane, records enablement through the serialized authority workflow, and

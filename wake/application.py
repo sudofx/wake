@@ -22,7 +22,7 @@ from .governance import Rejected
 from .history import migration_baseline
 from .event_format import digest as legacy_digest
 from .domain_events import empty, reduce_event
-from .matrix import enable_continuity_matrix, record_continuity_matrix_result
+from .matrix import MATRIX_KEY, enable_continuity_matrix, record_continuity_matrix_result
 
 
 APPLICATION_ID = "wake"
@@ -397,7 +397,7 @@ def _import_legacy_event_chunk(current: JsonValue, payload: JsonValue) -> Applic
 
 
 def _reset_to_zero(current: JsonValue, payload: JsonValue) -> ApplicationDecision:
-    """Start a new active WAKE generation while retaining prior wake history."""
+    """Start a new generation while retaining archived history, not campaign progress."""
     if not isinstance(current, dict) or not isinstance(current.get("state"), dict):
         return ApplicationDecision(False, reasons=("WAKE state must exist before reset",))
     if not isinstance(payload, dict) or payload.get("actor") != "operator":
@@ -431,10 +431,15 @@ def _reset_to_zero(current: JsonValue, payload: JsonValue) -> ApplicationDecisio
             "reset_history": reset_history,
         }
     )
-    return ApplicationDecision(
-        True,
-        _updated_envelope(current, migration=next_migration, state=empty()),
-    )
+    next_envelope = _updated_envelope(current, migration=next_migration, state=empty())
+    # Continuity results belong to the active generation. The operator workflow
+    # archives the old authority before reset, so the new generation must not
+    # inherit the old campaign when it is re-enabled. Preserve unrelated
+    # application extensions across the reset.
+    extensions = next_envelope.get("extensions")
+    if isinstance(extensions, dict):
+        extensions.pop(MATRIX_KEY, None)
+    return ApplicationDecision(True, next_envelope)
 
 
 WAKE_APPLICATION = ApplicationDefinition(
