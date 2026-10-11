@@ -395,13 +395,23 @@ children. If the file is missing, that cell uses the shared file. The runner
 requires `research-topics.toml` before it creates any containers.
 
 The `000.wake` gateway uses host port 80, so that port must be available. To use
-the group hostnames on your Mac, add this line to the Mac's `/etc/hosts`:
+the group hostnames on your Mac, add each hostname as a separate entry in the
+Mac's `/etc/hosts`:
 
 ```text
 127.0.0.1 000.wake
-127.0.0.1 100.wake 101.wake 102.wake 103.wake
-127.0.0.1 200.wake 201.wake 202.wake 203.wake
-127.0.0.1 300.wake 301.wake 302.wake 303.wake
+127.0.0.1 100.wake
+127.0.0.1 101.wake
+127.0.0.1 102.wake
+127.0.0.1 103.wake
+127.0.0.1 200.wake
+127.0.0.1 201.wake
+127.0.0.1 202.wake
+127.0.0.1 203.wake
+127.0.0.1 300.wake
+127.0.0.1 301.wake
+127.0.0.1 302.wake
+127.0.0.1 303.wake
 ```
 
 Then open `http://000.wake/` for the member directory, or open a parent directly

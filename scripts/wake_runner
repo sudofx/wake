@@ -807,17 +807,16 @@ start_group() {
     if [[ "$paused" != true ]]; then
         for name in "${new_members[@]}"; do set_research_mode "$name" running; done
     fi
-    printf 'Add this to /etc/hosts: 127.0.0.1'
-    printf ' 000.%s' "$prefix"
+    printf 'Add these entries to /etc/hosts, one hostname per line:\n'
+    printf '127.0.0.1 000.%s\n' "$prefix"
     for ((i=1; i<=count; i++)); do
         printf -v ordinal '%03d' "$((i * 100))"
-        printf ' %s.%s' "$ordinal" "$prefix"
+        printf '127.0.0.1 %s.%s\n' "$ordinal" "$prefix"
         for ((child_ordinal=1; child_ordinal<=children_per_parent; child_ordinal++)); do
             child_host_ordinal="$(child_hostname_ordinal "$ordinal" "$child_ordinal")"
-            printf ' %s.%s' "$child_host_ordinal" "$prefix"
+            printf '127.0.0.1 %s.%s\n' "$child_host_ordinal" "$prefix"
         done
     done
-    printf '\n'
     printf 'GROUP PROXY CONTAINER: %s\n' "$GROUP_ROUTER"
     printf 'GROUP PROXY URL: http://000.%s/\n' "$prefix"
     local lan_ip
