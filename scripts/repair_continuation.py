@@ -8,10 +8,15 @@ checkpoint and accounts interrupted invocations before any provider effect.
 import json
 import os
 import subprocess
+import sys
 import tempfile
 import tomllib
 from datetime import datetime, timezone
 from pathlib import Path
+
+REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
+if str(REPOSITORY_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPOSITORY_ROOT))
 
 
 def api(repository, path):
