@@ -246,6 +246,8 @@ def publish(engine, root):
         for old in root.glob('snapshot-*'):
             if old not in (target, previous):
                 shutil.rmtree(old)
+        from .passenger import record_initial_publication
+        record_initial_publication(engine.store.load())
     except Rejected as exc:
         shutil.rmtree(target)
         if str(exc) == 'Another wake owns this state directory; no call was made':

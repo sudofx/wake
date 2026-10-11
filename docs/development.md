@@ -373,25 +373,20 @@ finding.
 Passenger is a private Markdown workspace for operational observations and inert
 change proposals. Its logical interface is `./.passenger.md`, resolved relative
 to the explicit installation storage root, never the process working directory.
-It is available only inside containers. Solo images use `/data/passenger`; new
-runner nodes use `/passenger`, a named volume shared by a parent and its authorized
-children. For example, 100.wake and 101–103.wake share `100.wake-passenger`, while
-200.wake and its children use `200.wake-passenger`. The persisted installation
-identity rejects accidental reuse. An older grouped container without this
-mapping reports Passenger unavailable instead of creating a child-specific copy.
+It is available only inside containers. Solo images use `/data/passenger`; solo
+runner nodes use their explicit `/passenger` volume. A named runner group uses
+`/workspace/.passenger.md`, which is the actual `.passenger.md` in its host project
+root. All parents and children share that document with identity `group-GROUP`.
+Independent installations need separate project/storage roots; the persisted
+identity rejects accidental reuse. Existing containers retain their original
+mapping until explicitly upgraded or recreated while preserving their records.
+Never use the runner's container `remove` command for a record-preserving upgrade.
 
-To add the mapping to existing **paused** runner nodes without deleting their
-records or home volumes:
-
-```sh
-python3 scripts/wake_passenger_upgrade.py 100.wake 101.wake 102.wake 103.wake
-scripts/wake_runner --refresh-router
-```
-
-The upgrade retains a stopped original until the replacement serves the same
-record head while paused. Failure restores that original. Never use the runner's
-container `remove` command for an upgrade: that command removes data volumes.
-Other installations need their own exact names and storage identity.
+The first successfully exported introductory article appends a factual initialization
+receipt with its publication provenance and member heads. This gives the private
+file meaningful contents without an extra model call. It is explicitly labelled
+as durable facts, not a model assessment or scientific finding. A retry is idempotent;
+an operator reset prevents an old publication from restoring cleared text.
 
 Initialization creates an empty document if absent and preserves existing text.
 Bob may append observations or add a correction naming an earlier assessment.

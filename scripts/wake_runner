@@ -462,7 +462,7 @@ report_status() {
 create_container() {
     local name="$1" campaign="$2" paused="${3:-false}" group_id="${4:-}" peers="${5:-}" dotfiles="${6:-true}"
     local group_instance="${7:-}" public_host="${8:-}" role="${9:-parent}" parent_host="${10:-}" network="${11:-}" topic_owner="${12:-}"
-    local data_volume home_volume topic_file topic_rel topic_fallback passenger_owner passenger_volume
+    local data_volume home_volume topic_file topic_rel topic_fallback passenger_owner passenger_volume passenger_root passenger_identity
     local publish_args=()
     local group_args=(-e WAKE_GROUP_ID= -e WAKE_GROUP_INSTANCE= -e WAKE_GROUP_PEERS= -e WAKE_GROUP_TOPIC_FILE=)
     docker image inspect "$IMAGE" >/dev/null 2>&1 ||
@@ -471,8 +471,17 @@ create_container() {
     home_volume="$(home_volume_for "$name")"
     passenger_owner="${parent_host:-${public_host:-$name}}"
     passenger_volume="${passenger_owner}-passenger"
-    # Each cell shares one advisory volume. Independent parents never use the
-    # shared source checkout for private notes. Keep volumes across recreation.
+    passenger_root=/passenger
+    passenger_identity="$passenger_owner"
+    if [[ -n "$group_id" ]]; then
+        # One project-root advisory document for the explicitly named group.
+        # A different group in this checkout fails the persisted identity check;
+        # independent installations need their own checkout/storage root.
+        passenger_root=/workspace
+        passenger_identity="group-$group_id"
+    fi
+    # Retain the explicit volume for solo compatibility; named groups select
+    # the shared project root above. Keep existing volumes across recreation.
     docker volume create "$passenger_volume" >/dev/null
     docker run --rm --user 0:0 --entrypoint chown -v "$passenger_volume:/passenger" \
         "$IMAGE" 10001:10001 /passenger >/dev/null
@@ -518,8 +527,8 @@ create_container() {
         -v "$data_volume:/data" \
         -v "$home_volume:/home/wake" \
         -v "$passenger_volume:/passenger" \
-        -e WAKE_PASSENGER_ROOT=/passenger \
-        -e "WAKE_PASSENGER_INSTALLATION=$passenger_owner" \
+        -e "WAKE_PASSENGER_ROOT=$passenger_root" \
+        -e "WAKE_PASSENGER_INSTALLATION=$passenger_identity" \
         -v "$repo_dir:/workspace" -w /workspace \
         --env-file "$repo_dir/.env" \
         "${group_args[@]}" \

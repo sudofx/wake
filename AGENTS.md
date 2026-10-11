@@ -44,7 +44,7 @@ plain-language, with no child-oriented label.
 Passenger is Bob's separate, private container advisory workspace. It accepts bounded additive
 operational assessments and inert change proposals, with no research, source, deployment or governance
 authority. Its input/output must never enter public provider requests, responses or exports. Use the
-shared installation volume and coordinated append/reset boundary in `wake/passenger.py`; only the
+explicit shared installation storage root and coordinated append/reset boundary in `wake/passenger.py`; only the
 operator CLI exposes reset. See `docs/development.md#first-run-publication-and-passenger`.
 
 

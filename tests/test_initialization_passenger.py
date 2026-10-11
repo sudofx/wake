@@ -32,6 +32,30 @@ def observation(title="Retry classification"):
 
 
 class InitializationPassengerTests(unittest.TestCase):
+    def test_first_publication_populates_private_file_without_extra_calls_and_preserves_reset(self):
+        from wake.passenger import record_initial_publication
+        from wake.standalone import publish
+        self.engine.run(Fixture())
+        before=self.engine.store.load()
+        with patch('wake.passenger.resolve',return_value=self.workspace):
+            self.assertTrue(publish(self.engine,self.root))
+            self.assertTrue(publish(self.engine,self.root))
+            self.assertIn('First introductory publication recorded',self.workspace.path.read_text())
+            self.assertEqual(self.workspace.path.read_text().count('<!-- passenger-submission:'),1)
+            self.assertEqual(self.engine.store.load(),before)
+            self.workspace.operator_reset()
+            self.assertEqual(record_initial_publication(before),'preserved-operator-reset')
+            self.assertEqual(self.workspace.path.read_text(),'')
+        self.assertFalse(any(p.name.startswith('.passenger') for p in (self.root/'current').rglob('*')))
+
+    def test_first_publication_intent_recovers_file_failure_without_duplicate_observations(self):
+        with patch.object(self.workspace,'append',side_effect=Unavailable('busy')):
+            with self.assertRaises(Unavailable):
+                self.workspace.record_first_publication('first-proof',[observation()])
+        self.assertEqual(self.workspace.record_first_publication('first-proof',[observation()]),'applied')
+        self.assertEqual(self.workspace.record_first_publication('first-proof',[observation()]),'already-applied')
+        self.assertEqual(self.workspace.path.read_text().count('<!-- passenger-submission:'),1)
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.root = Path(self.temp.name)

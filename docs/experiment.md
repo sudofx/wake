@@ -274,6 +274,7 @@ parents and children. Its checkpoint is editorial metadata, not an added accepte
 research cycle or scientific result. Initial summaries may all have accepted version zero;
 one shared editorial invocation precedes ordinary group research requests. A recorded first-post operator exception does
 not qualify scientific evidence or alter continuity scores. Private Passenger assessments do
-not advance research transitions, Attention or continuity scores. Their paid
+not advance research transitions, Attention or continuity scores. The factual
+first-publication receipt also adds no research or model assessment. Their paid
 provider requests remain accounted under the ordinary quota. See
 [the first-run and advisory boundary](development.md#first-run-publication-and-passenger).

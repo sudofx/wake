@@ -44,5 +44,6 @@ operator procedures.
   research, create scientific evidence or authorize later posts.
 - **Passenger** — private container Markdown for installation-wide operational
   assessments and inert change proposals. It is advisory, cannot authorize work,
-  and stays out of public context and exports. See
+  and stays out of public context and exports. Named groups share the project-root
+  file; its first-publication receipt contains facts rather than a model assessment. See
   [the operating contract](development.md#first-run-publication-and-passenger).

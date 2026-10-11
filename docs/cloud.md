@@ -293,7 +293,8 @@ any preexisting application replay discrepancy rather than weakening policy or
 rewriting accepted events to make the upgrade appear clean.
 
 Passenger is container-only private storage; the hosted Actions/Pages lanes do
-not initialize, read, publish or deploy its document. Fresh native hosted research
+not initialize, read, publish or deploy its document or factual initialization
+receipt. The local group project-root file remains private. Fresh native hosted research
 records still use the solo governed introductory publication contract. Local group
 synthesis and its explicitly authorized WAKE01 exception do not alter hosted
 publication or authorize a hosted reset, promotion or provider call. See

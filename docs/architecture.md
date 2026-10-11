@@ -445,7 +445,8 @@ solo welcomes and rejected attempts remain replayable. See
 Bob additionally has a private container advisory role in Passenger. This role
 cannot advise research direction or grant authority: it appends operational
 assessments and inert proposed changes to one installation's shared Markdown
-volume. Advisory calls use the native invocation boundary but persist no private
+storage root. Named groups use the project root shared by all members. First
+publication adds an explicitly factual receipt without a private model call. Advisory calls use the native invocation boundary but persist no private
 request, raw response, metadata or content hash. Their public receipt has only
 an outcome; they do not advance accepted research or Attention. Paid requests
 still consume the existing quota. Public and private generation have separate

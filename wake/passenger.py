@@ -96,10 +96,17 @@ class Workspace:
                     if len(encoded) > 4096:
                         raise Unavailable("control-size")
                     control = json.loads(encoded)
-                    if set(control) != {"installation", "generation", "reset_pending"} or control["installation"] != self.identity:
+                    if set(control) not in ({"installation", "generation", "reset_pending"},
+                                             {"installation", "generation", "reset_pending", "initial_publication"}) or control["installation"] != self.identity:
                         raise Unavailable("identity")
                     if not re.fullmatch(r"[a-f0-9]{32}", control["generation"]) or type(control["reset_pending"]) is not bool:
                         raise Unavailable("control")
+                    initial = control.get('initial_publication')
+                    if initial is not None and (not isinstance(initial, dict)
+                            or set(initial) != {'submission','generation'}
+                            or not re.fullmatch(r'[A-Za-z0-9_-]{1,100}', str(initial['submission']))
+                            or not re.fullmatch(r'[a-f0-9]{32}', str(initial['generation']))):
+                        raise Unavailable('control')
                 else:
                     control = {"installation": self.identity, "generation": uuid.uuid4().hex, "reset_pending": False}
                     self._atomic(self.control, json.dumps(control))
@@ -168,6 +175,54 @@ class Workspace:
             control["reset_pending"] = False
             self._atomic(self.control, json.dumps(control))
             return {"reset": True, "generation": control["generation"]}
+
+    def record_first_publication(self, submission, observations):
+        """Recoverable initial facts, without resurrecting an operator-cleared file."""
+        if not re.fullmatch(r'[A-Za-z0-9_-]{1,100}', submission):
+            raise Unavailable('submission')
+        validate(observations)
+        with self._locked() as control:
+            initial = control.get('initial_publication')
+            if initial:
+                if initial['submission'] != submission or initial['generation'] != control['generation']:
+                    return 'preserved-operator-reset'
+            else:
+                initial = {'submission':submission, 'generation':control['generation']}
+                control['initial_publication'] = initial
+                # Persist the generation-bound intent before the file effect.
+                # A crash can retry it; a reset invalidates it permanently.
+                self._atomic(self.control, json.dumps(control))
+        return self.append(initial['generation'], submission, observations)
+
+
+def record_initial_publication(state):
+    """Private, factual startup receipt; never a fabricated model assessment."""
+    from .event_format import digest
+    try:
+        workspace = resolve()
+        if workspace is None:
+            return 'disabled'
+        post = state.get('posts', {}).get('group-wake-introduction') or state.get('posts', {}).get('wake-introduction')
+        if not post:
+            return 'pending'
+        group = post.get('group_publication', {})
+        inputs = state.get('group_bob', {}).get('publication', {}).get('inputs', {}).get('inputs', [])
+        receipt = state.get('invocations', {}).get(post['created_by'], {})
+        provenance = group.get('digest') or digest({'id':post['id'], 'invocation':post['created_by']})
+        description = f"This installation has recorded its introductory article {post['title']}. "
+        if inputs:
+            description += f"Its shared source packet includes {len(inputs)} members. "
+        description += 'This is an initialization receipt written from durable facts, not a model assessment or scientific finding.'
+        facts = [{'title':'First introductory publication recorded', 'status':'observed', 'confidence':'high',
+            'assessment':description,
+            'evidence':f"Post: {post['id']}\nInvocation: {post['created_by']}\nPublication digest: {provenance}\nProvider: {group.get('provider') or receipt.get('provider')}\n"
+                       + '\n'.join(f"{i['member']}: {i['head']} (accepted version {i['version']})" for i in inputs),
+            'candidate_change':'No code change is proposed by this receipt. Later assessments may add specific inert proposals here.',
+            'verification':'Inspect the authoritative publication receipt and served blog on each member. Keep accepted research, provider failures and publication outcomes distinct.'}]
+        return workspace.record_first_publication('first-publication-'+provenance[:40], facts)
+    except Exception:
+        diagnostic('initial-publication-note-unavailable')
+        return 'unavailable'
 
 
 FIELDS = ("title", "status", "confidence", "assessment", "evidence", "candidate_change", "verification")

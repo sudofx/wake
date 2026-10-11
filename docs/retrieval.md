@@ -243,7 +243,8 @@ a member or let the model infer missing facts. These summaries are editorial
 context rather than imported qualifying evidence. Native invocation receipts retain
 the exact delivered public request and model response.
 
-Passenger text never enters research memory, retrieval or trust compacts. A
+Passenger text, including its factual first-publication receipt, never enters
+research memory, retrieval or trust compacts. A
 separate bounded private advisory request may read its latest assessments as
 lower-trust data. It cannot supply scientific evidence, policy or authorization;
 private output stays outside the public record. See
