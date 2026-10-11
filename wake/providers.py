@@ -747,12 +747,15 @@ class Gemini:
                 "Context ceiling reached at provider boundary; no model call made")
 
         attempted = 0
+        # A slow fallback must not consume the full execution budget and prevent
+        # later configured models from receiving their own bounded attempt.
+        fallback_wall_budget = float(self.config["timeout_seconds"]) * len(self.models)
         provider_wall_seconds = max(
             1,
             int(
                 self.config.get(
                     "provider_wall_seconds",
-                    self.config["timeout_seconds"],
+                    fallback_wall_budget,
                 )
             ),
         )
