@@ -4,6 +4,24 @@ The [kernel contract](kernel.md) distinguishes generic envelope replay from
 application state reconstruction. Application IDs share a record revision when
 installed together; independent installations must select separate records.
 
+## In plain language
+
+The full record keeps exact history. A model receives a smaller working view so
+the request stays useful and within a size limit. When detail is needed, the
+request can point back to exact records. If required material still will not fit,
+WAKE stops before calling the model rather than silently dropping obligations.
+
+```mermaid
+flowchart LR
+  F[(Full durable record)] -->|select and summarize| W[Bounded working context]
+  W --> M[Model request]
+  M --> R[Receipt records what was delivered]
+  W -. exact IDs and provenance .-> F
+```
+
+The shortened view is not a second database, and it is not semantic memory. It
+does not reliably detect contradictions or decide what is true.
+
 Project source handoffs exclude unreadable payloads and prefer a qualifying
 underlying work not yet cited in a belief or notebook over a newer repeat or
 mirror of incorporated material. The bounded unincorporated-source window uses

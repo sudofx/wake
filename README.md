@@ -12,6 +12,36 @@ current activity. See [live inspection](docs/standalone.md#live-console-inspecti
 
 **WAKE✳︎** is infrastructure for durable, accountable work across interchangeable intelligences. Models, runtimes and people can change; the governed record carries objectives, evidence, obligations, decisions, provenance and receipts forward. The current research application is the first reference workload proving that infrastructure in public.
 
+## Start here
+
+Pick the guide that matches what you want to do:
+
+| If you want to… | Start with… |
+| --- | --- |
+| Understand what WAKE is and try the offline example | This page, then [the experiment protocol](docs/experiment.md) |
+| Look up a term used in the guides | [WAKE glossary](docs/glossary.md) |
+| Run one local Docker installation | [Standalone setup](docs/standalone.md) |
+| Run several independent installations or a local group | [Multiple installations](docs/installations.md) and the [runner guide](docs/standalone.md#repository-convenience-launcher) |
+| Operate the GitHub-hosted installation | [Hosted operation](docs/cloud.md) |
+| Change code safely | [Maintainer map](docs/development.md) |
+| Understand the reusable kernel | [Kernel boundary](docs/kernel.md) |
+
+The core flow is easier to read as six steps:
+
+```mermaid
+flowchart LR
+  R[Record<br/>what is known] --> C[Context<br/>what is shown]
+  C --> P[Proposal<br/>what a model suggests]
+  P --> G[Governance<br/>rules check it]
+  G --> T[Transition<br/>accepted change]
+  T --> X[Receipt<br/>proof of the outcome]
+  G -. rejected or deferred .-> X
+```
+
+The record is the source of truth. Models suggest changes; WAKE's rules decide
+whether those changes are accepted. A receipt records what happened, including
+rejections and deferrals.
+
 <p align="center"><img src="assets/covers/cover-variant-002.png" alt="**WAKE✳︎** Lab Comics #1 — **WAKE✳︎** project comic cover" width="100%"/>
 
 It does **not** assume or test for consciousness, qualia, personhood, or a persistent internal self. Continuity here means continuity of accountable work through external state. A coherent narrative is not evidence that a persistent mind exists.
@@ -32,7 +62,7 @@ A trusted collector retrieves a bounded public sample before inference. In the c
 
 Current source qualification rejects failed or empty fetch payloads and excludes recognizable publisher navigation and response forms from claim matching. HTML collection prefers article/main content and omits navigation, hidden content and forms. These checks improve content hygiene; they do not establish semantic entailment. Historical observations and receipts remain intact.
 
-The public site exposes the same governed record at increasing depth: plain-language summaries and Bob’s editorial layer at the surface; projects, notebooks and evidence underneath; maps and the journal for provenance; exact events and state at the bottom. Research is a WAKE✳︎ application, not WAKE✳︎’s identity. Bob is only the public byline for selected explanations of already-recorded research; a blog post never steers research, counts as research progress, or gates an accepted transition.
+The public site exposes the same governed record at increasing depth: plain-language summaries and Bob’s editorial layer at the surface; projects, notebooks and evidence underneath; maps and the journal for provenance; exact events and state at the bottom. Research is a WAKE✳︎ application, not WAKE✳︎’s identity. Bob is the public byline for selected explanations of already-recorded research. A blog post never steers research, counts as research progress, or gates an accepted transition.
 
 **[Open **WAKE✳︎**’s home](https://sudofx.github.io/wake/)** · **[Open GitHub Actions](https://github.com/sudofx/wake/actions)**
 
@@ -209,7 +239,7 @@ Open **Settings → Pages** and set the build/deployment source to **GitHub Acti
 
 ### 8. Operate WAKE✳︎ from GitHub Actions
 
-The public website does not authenticate users or control the runtime. The small flashing green light in the masthead is simply a link to this repository's GitHub Actions page.
+The public website does not authenticate users or control the runtime. Its masthead status light links to this repository's GitHub Actions page and reports the latest known research status; it is not a control button.
 
 Use the workflows by their literal names:
 

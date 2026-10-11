@@ -4,7 +4,29 @@ The kernel remains in `wake/kernel/` in this repository. Research remains the
 operational application. A future repository/package split is a separate release
 and compatibility decision; moving files alone is not the acceptance criterion.
 
+**In plain language:** the kernel is the reusable record-and-rules layer. The
+research application supplies research-specific rules. The runtime supplies the
+model and where the record is stored.
+
+```mermaid
+flowchart LR
+  A[Application rules] --> K[WAKE kernel]
+  M[Model proposal] --> K
+  K --> R[(Durable record)]
+  K --> O[Receipt and decision]
+  D[Runtime and deployment] --> K
+```
+
+The boundary matters: adding another application should not require putting its
+rules into the kernel, and changing the model should not change record authority.
+
 ## Ownership
+
+| Part | Owns |
+| --- | --- |
+| Kernel | Record format, deterministic decisions, replay and provider-call receipts |
+| Application | Domain meaning and the rules for accepting a proposal |
+| Runtime/deployment | Installed code, credentials, process lifecycle and selected record |
 
 The kernel owns Record → Context → Proposal → Governance → Transition → Receipt,
 serialized durable submission, verified replay, generic invocation accounting,

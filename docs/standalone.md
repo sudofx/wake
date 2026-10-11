@@ -10,6 +10,18 @@ not download the public installation's record or interact with GitHub operationa
 Internet access is needed for live Gemini and public research sources; fixture mode
 can run with networking disabled. Passive repository/documentation links remain links.
 
+```mermaid
+flowchart LR
+  C[WAKE container] --> D[(Its own /data/wake.sqlite)]
+  C --> W[Read-only local website]
+  C -->|optional| M[Gemini and public sources]
+  C -. no hosted record sync .-> H[GitHub-hosted WAKE]
+```
+
+For a first run, copy and edit the topic starter, configure a provider key if you
+want live research, then start the container. For a safe preview, use the fixture
+provider or pause research.
+
 Before starting research from a fresh checkout, create and edit the local topic file:
 
 ```sh
@@ -250,6 +262,10 @@ and reports its research state and continuity progress. `./scripts/wake_runner.s
 is an equivalent entry point. A named invocation such as
 `./scripts/wake_runner wake-dev` follows the same create-if-missing,
 report-if-present behavior.
+Use this launcher when you want its convenience features, including copied
+dotfiles, LAN access and numbered groups. Use Compose above for explicit, portable
+settings. The launcher reuses a named installation; it does not silently recreate
+or reset it.
 Pass `--paused` when creating a solo container or group to make the website
 available without starting research. The flag affects new containers only.
 
@@ -291,6 +307,22 @@ port. Each numbered parent also gets three research children, named
 parent with its children nested below it. Its hostname links work on the Mac;
 opening the gateway by LAN IP gives buttons using each node's own published host
 port.
+
+```mermaid
+flowchart TB
+  G[000 group directory] --> P1[001 parent]
+  G --> P2[002 parent]
+  G --> P3[003 parent]
+  P1 --> C11[001.001 child]
+  P1 --> C12[002.001 child]
+  P1 --> C13[003.001 child]
+  P2 --> C21[001.002 child]
+  P2 --> C22[002.002 child]
+  P2 --> C23[003.002 child]
+  P3 --> C31[001.003 child]
+  P3 --> C32[002.003 child]
+  P3 --> C33[003.003 child]
+```
 
 The runner creates one outer private Docker bridge for the parent group and one
 separate child bridge for each parent. Parents exchange bounded, readable source

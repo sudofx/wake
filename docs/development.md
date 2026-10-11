@@ -9,6 +9,18 @@ imply a shared database, execution process, deployment, or provider quota ledger
 Read [architecture](architecture.md) for invariants, [hosted operation](cloud.md)
 for GitHub, and [standalone operation](standalone.md) for Docker.
 
+Before changing anything, answer three questions:
+
+1. **Which installation are you changing?** Local Docker, Codespace and hosted
+   WAKE have separate records and processes.
+2. **Which code is actually running there?** A checkout, mounted workspace and
+   packaged image can all contain different versions.
+3. **What are you authorized to change?** Editing, committing, pushing, promoting
+   hosted code and resetting research data are separate actions.
+
+If you only need the key terms, use the [glossary](glossary.md). If you need a
+release procedure, go to [hosted operation](cloud.md#authority-maintenance).
+
 ## Establish the target before editing
 
 Record the checkout's remote, branch, HEAD and existing changes. Identify whether
@@ -172,6 +184,7 @@ when interpreting a fast replay versus a full audit.
 | `README.md` | Current overview, setup entry points and feature limits |
 | `AGENTS.md` | Repository-local change invariants |
 | `docs/development.md` | This navigation and environment map |
+| `docs/glossary.md` | Plain-language definitions of WAKE terms |
 | `docs/kernel.md` | Reusable application contract and extraction proof |
 | `docs/installations.md` | Independent Compose deployments and optional gateway |
 | `docs/architecture.md` | Authority, lifecycle, policy and trust boundaries |
@@ -213,16 +226,19 @@ in both themes. The first control is a labelled switch; keyboard focus stays vis
 
 `nav.js` supplies one description controller. Mouse hover and keyboard focus reveal
 it; touch hold reveals other control descriptions without performing their actions.
-Tapping the activity light shows its explanation. Status remains installation-specific
-and read-only. Running is green, paused is yellow, unavailable is neutral; waiting and
-blocked states have distinct accessible descriptions. Interactive canvases and drag
-controls suppress selection, while record inspectors and reading text remain selectable.
+Tapping the status light shows its explanation. Status is installation-specific and
+read-only. Keep its meaning consistent across views: green means running; blue,
+idle; yellow, waiting or stopped; purple, provider quota standby; and red, operator
+or agent action required. If status cannot be confirmed, show it as unavailable
+rather than as a red failure. Interactive canvases and drag controls suppress
+selection, while record inspectors and reading text remain selectable.
 
 ## Console layout and provider phases
 
-All numbered panels use the same workspace grid, including overview and inspection.
-The outer Console gutter is 20 px on each side, or 10 px on iPhone. The grid,
-docked inspector and dedicated panel windows share that gutter.
+Console modules use the same workspace grid, including the overview. The record
+inspector (#014) sits after the workspace in normal page flow. The outer Console
+gutter is 20 px on each side, or 10 px on iPhone. The grid and dedicated panel
+windows share that gutter.
 Panel #001 always fills the available workspace columns. Every other panel has a
 one-column minimum; the first load without a saved layout and Reset use that minimum. Restore saved order and width before packing.
 Never prepend or expand a special panel afterward: that would discard the preference
@@ -239,14 +255,14 @@ idle/disconnected/hosted snapshot views cannot display an in-flight provider pul
 
 ## Inspector and public reading presentation
 
-A populated Console inspector docks only while it remains in the main workspace.
-Its pop-out handshake releases the desktop width reservation; closing the pop-out
-restores it. Unpopulated inspectors remain ordinary grid modules. Desktop height
-resizing is presentation state only. Phones use a lower sheet, and selecting a
-record scrolls the invoking control into the unobstructed upper area. Test the sheet
-with a mobile browser context and hit testing, not only resized desktop geometry.
-The page uses horizontal clipping without creating a body scroll container, so
-viewport-sticky navigation can return when scrolling upward.
+Panel #014 is the record inspector. It is ordinary page content after the Console
+workspace: it does not reserve a column, float over other panels, or use a special
+z-index. On iPhone it does not slide up as a sheet. Selecting a record must not
+scroll or zoom the page to another panel. When there is no selection, the inspector
+is hidden; when selected, it appears in the normal document flow. Check this at
+phone width as well as desktop width. The page uses horizontal clipping without
+creating a body scroll container, so viewport-sticky navigation can return when
+scrolling upward.
 
 The seven story sections (#012–#018) share amber borders. Category controls for
 #013 belong in its heading action row. Cube rotation is interactive; zoom is not.
@@ -262,17 +278,16 @@ provide that live capability and must retain their dated interpretation.
 
 ## Workspace width and directional masthead
 
-Console fills the viewport rather than inheriting reading-page width caps. Only a
-populated, in-page desktop inspector reserves width; popping it out restores the
-entire workspace. The grid counts available columns instead of applying a fixed
-large-screen column limit. Other reading pages may retain their text-column limits.
+Console fills the viewport rather than inheriting reading-page width caps. The
+record inspector follows the workspace and never reserves width. The grid counts
+available columns instead of applying a fixed large-screen column limit. Other
+reading pages may retain their text-column limits.
 
 The shared masthead spans the viewport. Sticky flow space prevents content jumps:
 downward scroll hides it, upward scroll reveals it above inspection overlays.
 Keyboard focus and open navigation menus keep it accessible; reduced motion removes
-sliding animation. Phone inspection must reserve its height even while hidden,
-since upward movement reveals it again. Dark story sections use muted amber borders
-and a subtle tint; their layout and durable data remain unchanged.
+sliding animation. Dark story sections use muted amber borders and a subtle tint;
+their layout and durable data remain unchanged.
 
 Private collaboration structure and artifact completion rules are in
 [the workbench guide](workbench.md). That guide deliberately describes structure,
@@ -283,11 +298,10 @@ historical filename. It loads after dark page skins through export; cover main-p
 cards, help/evidence surfaces and nested reading pages when revising it. Match
 geometry across themes and retain signal meaning rather than merely recoloring text.
 
-A modular inspector reserves width at the workspace boundary only; legacy reader
-padding is scoped to nonmodular views. Verify the grid content edge as well as the
-outer workspace width when testing dock, pop-out and restore. Dedicated panel
-windows omit the site masthead and fit their reader inside the window frame;
-window resizing replaces in-page position and size controls.
+The inspector is outside the modular grid, so it cannot change grid width or saved
+panel layout. Verify that selecting a record leaves the viewport position unchanged
+and that the inspector appears below the workspace. Dedicated panel windows omit
+the site masthead and fit their reader inside the window frame.
 
 ### Storage format upgrades across installations
 

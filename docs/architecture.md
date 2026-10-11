@@ -8,6 +8,29 @@ independent volumes, ports and optional gateways. These remain inside this repos
 
 **WAKE✳︎** is infrastructure for continuity of accountable work, not continuity of a model instance. Its stable sequence is **Record → Context → Proposal → Governance → Transition → Receipt**. Models, vendors, runtimes and human operators may change; the durable record, authority boundary, provenance and correction mechanisms carry the work forward. Research is the first application running on that structure.
 
+In everyday terms: WAKE keeps the record, gives a model a bounded view of it,
+checks the model's suggestion against rules, and records what happened. A model
+never writes directly to the database.
+
+```mermaid
+flowchart TB
+  subgraph App[Research application]
+    topics[Topics and research policy]
+    evidence[Evidence and notebooks]
+  end
+  topics --> K[WAKE kernel]
+  evidence --> K
+  K --> record[(One durable record)]
+  model[Replaceable model] -->|suggestion| K
+  K -->|bounded context| model
+  deploy[Local, Codespace, or hosted runtime] --> K
+  views[Website and Console views] -. read-only views .-> record
+```
+
+**What this means:** the application decides what work is allowed, the kernel
+records and checks transitions, and each installation owns its own record. A
+website or Console is a view of that record, not another source of truth.
+
 
 ## Independent standalone execution
 
@@ -70,7 +93,44 @@ Missing both authority databases is a fail-closed condition, not an empty projec
 
 The record includes the objective, focus, all observations, belief revisions, commitments, exact request and response text, provider/model identity, request hashes, process IDs, dates, quota reservations, accepted/rejected decisions and recovery records. Invocation metadata is a compact projection; exact prompts and replies remain in events. UTC storage and `America/Los_Angeles` presentation preserve daylight-saving behavior.
 
-## **WAKE✳︎** lifecycle
+## Status lights
+
+The light describes runtime state; it is not a measure of research quality. The
+Console and gateway use the same basic meanings:
+
+| Color | Meaning |
+| --- | --- |
+| Red | Operator or agent action is required |
+| Yellow | Waiting, paused, or stopped |
+| Green | Research is running |
+| Blue | Idle between research attempts |
+| Purple | Provider quota pressure; retry remains scheduled |
+| Gray | Status is unavailable or could not be confirmed |
+
+A purple light is a recoverable standby, not a code failure. Provider-reported
+quota limits are retried on the ordinary schedule; a configured hard daily cap
+waits until its Pacific reset. A red light is reserved for a blocked condition
+that needs an operator or agent to investigate.
+
+## Research lifecycle
+
+The same six steps describe every research attempt:
+
+```mermaid
+sequenceDiagram
+  participant R as Record
+  participant C as Context
+  participant M as Model
+  participant G as Governance
+  participant T as Transition
+  participant X as Receipt
+  R->>C: Select bounded evidence and obligations
+  C->>M: Send exact request
+  M->>G: Return untrusted proposal
+  G->>T: Apply accepted changes
+  G->>X: Record accepted, rejected, or deferred result
+  T->>R: Save the new record version
+```
 
 1. Acquire the writer lock and verify history and projection.
 2. If a prior automatic invocation is unfinished, record recovery. A manual request requires explicit recovery.

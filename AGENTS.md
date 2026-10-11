@@ -102,6 +102,7 @@ When code materially changes migration status, authority, operator workflows, co
 - `docs/cloud.md` — current hosted operating procedure
 - `docs/experiment.md` — experimental interpretation
 - `docs/retrieval.md` — progressive abstraction/retrieval behavior
+- `docs/glossary.md` — plain-language meanings for project terms
 
 Dated installation validation evidence belongs in the ignored `.workbench/validation/` directory. Preserve historical results there; public documentation describes reproducible checks and current contracts, not local certification. Never require private workbench files to build or operate another installation.
 

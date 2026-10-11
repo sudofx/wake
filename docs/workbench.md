@@ -6,6 +6,10 @@ is useful. It is not committed, packaged, published or required by runtime/CI.
 Each checkout may have its own workbench; source synchronization does not transfer
 its private contents.
 
+Think of it as a private project notebook: useful for current tasks and dated
+checks, but never a substitute for the durable WAKE record or the maintained
+project guides.
+
 Use it for task instructions, exploratory notes, diagnostics, screenshots and dated
 installation validation. Keep maintained architecture, operating procedures and
 reproducible verification guidance in the public documentation and code. Workbench

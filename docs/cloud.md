@@ -10,6 +10,19 @@ workflows and Codespaces do not join those networks or receive peer material.
 
 > **Current operating specification.** This is the authoritative guide to the GitHub-hosted **WAKE✳︎** runtime: `master` is development, `wake-runtime` is the explicitly promoted executable, and `wake-state` carries the separate authoritative WAKE SQLite record.
 
+### The three hosted branches, in one picture
+
+```mermaid
+flowchart LR
+  M[master<br/>development code] -->|verify and promote| R[wake-runtime<br/>code that runs]
+  R -->|reads and updates| S[(wake-state<br/>authoritative research record)]
+  S -->|publish view| L[wake-live<br/>disposable status and data]
+  L --> P[GitHub Pages<br/>website]
+```
+
+The branches have different jobs. Updating the website does not reset research;
+publishing code does not copy a local record into the hosted installation.
+
 WAKE✳︎ provides the durable record and governed transition boundary. The hosted research application uses that infrastructure to choose small, useful projects from `research-topics.toml`. Topics are replaceable workload inputs, not WAKE✳︎ identity or kernel policy. The deployment can continue research without daily assignments, while resets and topic changes remain explicit operator interventions.
 
 ## Read or wake it
@@ -20,11 +33,51 @@ The `WAKE✳︎ — Update website · automatic` workflow is the only Pages publ
 
 `WAKE✳︎ — Internal only: one research cycle` is the only research execution lane. It may execute only when the workflow dispatch ref is `wake-runtime`; each accepted/rejected cycle can dispatch its successor from that same runtime branch and carries the exact runtime commit forward. `WAKE✳︎ — Internal only: keep-running switch` is the durable on/off latch used by **WAKE✳︎ - Start** and **WAKE✳︎ - Stop**, with a scheduled lost-handoff check while enabled; running it manually does not start research.
 
-Runtime control lives entirely in GitHub Actions. The website's small status light opens the repository Actions page. It is green while the keep-running switch is open and no provider quota response is current, purple while provider quota pressure is current, and stopped when the continuation switch is closed. The light reports the durable continuation latch and latest published quota status, not whether a cycle is executing at that exact instant. There is no site authentication or control backend. **WAKE✳︎ - Start** opens the keep-running switch and dispatches the first `wake.yml` cycle on `wake-runtime`. **WAKE✳︎ - Stop** closes that switch before cancelling active cycles. The scheduled continuation check reads quota eligibility from `wake-state` and retries a provider-quota result at most once per 15-minute slot; a configured hard daily request cap remains ineligible until its Pacific reset. It never treats `wake-live` as authority or keeps a runner sleeping through the daily wait. **WAKE✳︎ - Reset** is the safe reset workflow: it stops research as needed, verifies/promotes current code when required, archives the prior governed generation, and starts a new active generation at cycle zero using its explicit confirmation input. Its optional `enable_continuity_matrix` input records the provider-free `continuity@1` opt-in during reset, before the first fresh research cycle. Prior governed wake history remains durable. **WAKE✳︎ - Enable continuity campaign** is the explicit provider-free opt-in for the shared `continuity@1` matrix. It closes and drains the active research lane, verifies/promotes the candidate runtime, records enablement through the serialized `wake-authority` lane, then restores whether continuous research was running or stopped. The Console may link to this workflow when the live record reports the campaign disabled; it does not gain browser-side mutation authority. While enabled, each ordinary research provider request carries at most one isolated matrix sidecar for the next uncovered coordinate. The same Gemini response supplies both the research proposal and the probe answer, so campaign execution makes no second API request and consumes no extra provider slot. WAKE strips the expected sidecar before research governance, scores it deterministically, and commits only the compact coordinate result through application governance. Research can be accepted or rejected independently of the probe. Any returned response completes the tested coordinate; a missing or malformed sidecar is recorded as a zero-score result, while quota/transport deferral before a response leaves the cell uncovered for retry.
+The hosted site is read-only. Its masthead light opens GitHub Actions; it does not
+start or stop research. The light summarizes the latest published runtime status,
+not whether a job is running at this exact second:
+
+| Light | Meaning |
+| --- | --- |
+| Red | An operator or agent needs to investigate and act |
+| Yellow | Waiting, paused, or stopped |
+| Green | Research is running |
+| Blue | Research is idle between attempts |
+| Purple | A provider reported quota pressure; scheduled retries continue |
+| Gray | Status could not be confirmed |
+
+The status light checks on a five-second loop while the page is visible. When the
+keep-running switch is open, it refreshes the latest `wake-live` runtime/quota
+projection on that loop. To limit GitHub API traffic, it rechecks the continuation
+latch every three minutes. A network or publication delay can make the displayed
+result briefly stale. Provider quota reports are retried on the ordinary schedule;
+only a configured hard daily request cap waits for its Pacific reset.
+
+Use **WAKE✳︎ - Start** to open the keep-running switch and dispatch the first cycle.
+Use **WAKE✳︎ - Stop** to close the switch and drain active work. A scheduled check
+may restart a lost handoff only while the switch is open. The light is not a control
+backend, and the site has no authentication.
+
+Use **WAKE✳︎ - Reset** only when you intend to start a new research generation.
+It stops research as needed, archives the prior governed generation, then starts
+at cycle zero after explicit confirmation. Archiving preserves the prior history.
+Its optional `enable_continuity_matrix` input enables the provider-free
+`continuity@1` campaign before new research begins.
+
+**WAKE✳︎ - Enable continuity campaign** is another provider-free opt-in. It drains
+the active lane, records enablement through the serialized authority workflow, and
+restores the prior running/stopped state. When enabled, each research request may
+include one isolated matrix probe. The same model response contains both the
+research proposal and probe answer, so the campaign adds no provider call. A
+returned response completes that probe even if its answer is missing or malformed
+(recorded as zero); a quota or transport deferral leaves it for a later attempt.
 
 Runtime adoption is explicit. **WAKE✳︎ - promote** verifies a candidate, rechecks that no real `wake-runtime` cycle is queued or running, and only then moves the runtime branch to that exact verified commit. It refuses while research is active: **WAKE✳︎ - Stop → WAKE✳︎ - promote → WAKE✳︎ - Start**. CI on `master` is development feedback only; failures there never stop or redefine an already-running research chain.
 
-The Pages shell loads the disposable `wake-live/live.json` projection with `cache: "no-store"` and checks it every ten seconds. New state is applied in place; live research no longer waits for or triggers a Pages deployment.
+The Pages shell loads the disposable `wake-live/live.json` projection with
+`cache: "no-store"` and refreshes the research view independently of Pages
+deployment. The masthead status light has a five-second refresh loop while visible.
+New state is applied in place; live research does not wait for a Pages deployment.
 
 ## Authority maintenance
 

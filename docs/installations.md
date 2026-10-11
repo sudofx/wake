@@ -6,6 +6,21 @@ another independent installation; matching versions do not imply matching data.
 No container needs GitHub Pages, Actions, public snapshots, or another project.
 External AI access is needed only when an external provider is selected.
 
+```mermaid
+flowchart LR
+  S[Shared source code] --> A[Install A]
+  S --> B[Install B]
+  S --> H[Hosted install]
+  A --> RA[(A record)]
+  B --> RB[(B record)]
+  H --> RH[(Hosted record)]
+```
+
+This guide covers independent Compose installations and their optional gateway.
+For the numbered local research group created by `scripts/wake_runner`, see
+[the runner guide](standalone.md#repository-convenience-launcher). Each member
+keeps its own record; shared source code does not mean shared research history.
+
 ## Compose projects own installation identity
 
 Requires Docker with Compose 2.24.4 or newer, on a Linux container engine

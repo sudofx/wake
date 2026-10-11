@@ -7,6 +7,26 @@ or cross-model evidence. Independent container verification is documented in
 
 > **Current evaluation protocol.** This defines how live and comparative **WAKE✳︎** runs should be interpreted. Observations and proposed mechanisms remain separate, and rejected, deferred and failed attempts stay in the experimental record.
 
+### The short version
+
+WAKE is testing whether separate model calls can continue useful work when they
+share a verified record, clear obligations and rules for correcting mistakes.
+The experiment can show what happened in that record. It cannot, by itself, show
+that a model is conscious, that a finding is true, or that an apparent pattern is
+scientifically novel.
+
+```mermaid
+flowchart LR
+  Q[Question and starting record] --> I[Fresh model invocation]
+  I --> D[Governance decision]
+  D --> R[Accepted, rejected, deferred, or failed receipt]
+  R --> Q2[Next invocation receives recorded context]
+  Q2 --> I
+```
+
+For a quick, zero-API demonstration, use the [offline harness](#reproducible-offline-harness).
+For live comparisons, follow the separate [live-model protocol](#live-model-protocol).
+
 The working hypothesis is externalized continuity: many fresh model invocations can participate in one accountable process when durable evidence, obligations, state and enforceable rules connect them. The broader engineering aim is infrastructure for durable, accountable work that can survive changes in models, vendors, people and time.
 
 Numbered local groups add a cross-pollination condition: members retain separate
@@ -94,7 +114,7 @@ Run `python3 -m wake --data data/rehearsal experiment --cycles 100 --output site
 
 `experiment.json` records outcomes, commands, limitations and observed values. The main journal includes the rejected action and both recovery events. The control and intervention databases and full exports remain under the experiment directory. All sensor readings are explicitly synthetic. The experiment runner fails if any check fails.
 
-## Live-model protocol — deliberately separate
+## Live-model protocol
 
 Start a separate live database using `python3 -m wake init`, or use the GitHub-hosted record described in `cloud.md`. Do not count fixture cycles as live evidence. Define the intended batch size before the run (100 attempted wakes is the current experimental unit), preserve the starting configuration—including enabled topics, seed questions, observation mode, collection budget, provider chain and experimental regime—and count accepted, rejected, deferred and failed attempts separately. Do not retry or discard an unfavorable result to make the metrics prettier. When comparing reset runs, preserve the configuration unless the intervention itself is the variable being tested.
 
