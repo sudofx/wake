@@ -389,9 +389,11 @@ provide cryptographic identity checks. Only numbered groups created by
 `wake_runner` use peer exchange. Solo containers, Compose installations,
 Codespaces and hosted research do not.
 
-The gateway combines reachable parent posts into one Bob feed. Child findings can
-appear there only after a parent receives and researches them. The feed does not
-control any research loop.
+The gateway combines current and superseded Bob posts from reachable parent nodes
+into one group feed. A post stored with status `current` is a live post and is
+included. Child nodes' own posts stay on their individual pages; child findings
+can appear in the group feed only after a parent receives and researches them.
+The feed does not control any research loop.
 
 By default, all parents and children use the shared `research-topics.toml`. An
 optional per-parent topic file is mounted read-only into that parent and its

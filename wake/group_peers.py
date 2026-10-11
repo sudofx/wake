@@ -117,11 +117,11 @@ def group_research_snapshot(engine, group_id, instance_id):
 
 
 def group_bob_snapshot(engine, group_id, instance_id):
-    """Export this member's published Bob posts with only their receipt data."""
+    """Export this member's current or historical Bob posts with receipt data."""
     state, head = engine.store.replay()
     posts = [post for post in state.get("posts", {}).values()
              if isinstance(post, dict)
-             and post.get("status", "published") in {"published", "superseded"}]
+             and post.get("status", "published") in {"published", "current", "superseded"}]
     posts.sort(key=lambda post: (post.get("created_version", -1), post.get("id", "")))
     posts = posts[-100:]
     invocation_ids = {post.get("created_by") for post in posts if isinstance(post.get("created_by"), str)}
