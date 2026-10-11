@@ -569,8 +569,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
     if args.reset and not args.confirm_reset:
         raise SystemExit("--reset requires --confirm-reset")
-    if args.reset and args.enable_continuity_matrix:
-        raise SystemExit("--reset and --enable-continuity-matrix are mutually exclusive")
     try:
         sys.exit(main(
             reset=args.reset,

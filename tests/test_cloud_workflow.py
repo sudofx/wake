@@ -17,8 +17,10 @@
 """A failed inference is publishable; a failed state checkpoint is not."""
 
 import json
+import os
 from pathlib import Path
 import subprocess
+import sys
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -52,6 +54,23 @@ class CloudWorkflowTests(unittest.TestCase):
 
     def git(self, *args):
         return subprocess.run(["git", *map(str,args)], check=True, capture_output=True, text=True)
+
+    def test_cli_accepts_continuity_opt_in_with_confirmed_reset(self):
+        """The canonical reset records continuity before its first fresh cycle."""
+        script = Path(__file__).resolve().parents[1] / "scripts" / "github_wake.py"
+        environment = dict(os.environ)
+        environment.pop("GITHUB_ACTIONS", None)
+
+        result = subprocess.run(
+            [sys.executable, str(script), "--reset", "--confirm-reset", "--enable-continuity-matrix"],
+            capture_output=True,
+            text=True,
+            env=environment,
+        )
+
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("This entry point runs in GitHub Actions", result.stderr)
+        self.assertNotIn("mutually exclusive", result.stderr)
 
     def live(self):
         return json.loads(
