@@ -4,7 +4,9 @@ import re
 import struct
 import zlib
 
-_STRING = re.compile(rb'"(?:[^"\\]|\\.)*"')
+# Consume ordinary text in spans: per-character alternatives make long saved
+# provider strings costly to scan. Escapes retain the exact existing token grammar.
+_STRING = re.compile(rb'"[^"\\]*(?:\\.[^"\\]*)*"')
 _MIN_BYTES = 128 * 1024
 
 
