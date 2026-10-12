@@ -127,11 +127,19 @@ def continuity_matrix_progress(envelope: JsonValue) -> dict | None:
         for coordinate_id, result in results.items()
         if isinstance(result, dict) and result.get("status") == "completed"
     )
-    next_coordinate = MATRIX.next_uncovered(completed)
+    lens_counts = {value.key: 0 for value in MATRIX.axes[0].values}
+    for cell in completed:
+        lens_counts[MATRIX.coordinate_by_id(cell).value_keys[0]] += 1
+    remaining = (c for c in MATRIX.coordinates() if c.coordinate_id not in set(completed))
+    next_coordinate = min(remaining, key=lambda c: (lens_counts[c.value_keys[0]], c.ordinal), default=None)
     failure_counts = {}
     failed_cells = []
+    invalid_responses = []
     for coordinate_id in completed:
         result = results[coordinate_id]
+        if result.get("response_error"):
+            invalid_responses.append({"coordinate_id": coordinate_id, "reason": result["response_error"]})
+            continue
         failures = sorted(name for name, passed in result.get("checks", {}).items() if passed is False)
         if failures or result.get("passed") is False:
             failed_cells.append({"coordinate_id": coordinate_id, "failed_checks": failures,
@@ -150,5 +158,11 @@ def continuity_matrix_progress(envelope: JsonValue) -> dict | None:
         "results": deepcopy(results),
         "failure_counts": failure_counts,
         "failed_cells": failed_cells,
+        "invalid_responses": invalid_responses,
+        "invalid_response_count": len(invalid_responses),
+        "graded_count": len(completed) - len(invalid_responses),
+        "graded_failed_count": len(failed_cells),
+        "lens_coverage": lens_counts,
+        "traversal": "least-covered-lens-first@1",
         "passed_count": sum(results[cell].get("passed") is True for cell in completed),
     }

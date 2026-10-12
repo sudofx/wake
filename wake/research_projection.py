@@ -209,10 +209,12 @@ def _matrix_projection(progress, reported):
               'score': results.get(c.coordinate_id, {}).get('score'),
               'invocation_id': results.get(c.coordinate_id, {}).get('invocation_id'),
               'research_status': results.get(c.coordinate_id, {}).get('research_status'),
-              'failed_checks': [k for k, v in results.get(c.coordinate_id, {}).get('checks', {}).items() if v is False],
+              'response_error': results.get(c.coordinate_id, {}).get('response_error'),
+              'failed_checks': [] if results.get(c.coordinate_id, {}).get('response_error') else [k for k, v in results.get(c.coordinate_id, {}).get('checks', {}).items() if v is False],
               'diagnostics': deepcopy(results.get(c.coordinate_id, {}).get('diagnostics', {}))}
              for c in MATRIX.coordinates()]
-    scores = [cell['score'] for cell in cells if cell['status'] == 'completed' and isinstance(cell['score'], (int, float))]
+    raw_scores = [cell['score'] for cell in cells if cell['status'] == 'completed' and isinstance(cell['score'], (int, float))]
+    scores = [cell['score'] for cell in cells if cell['status'] == 'completed' and not cell['response_error'] and isinstance(cell['score'], (int, float))]
     return {'id': MATRIX_KEY, 'definition_digest': MATRIX.definition_digest, 'axes': axes,
             'cells': cells, 'reported': reported, 'enabled': bool(progress) if reported else None,
             'completed': (progress or {}).get('completed_count', 0) if reported else None,
@@ -220,7 +222,12 @@ def _matrix_projection(progress, reported):
             'failure_counts': deepcopy((progress or {}).get('failure_counts', {})),
             'passed': (progress or {}).get('passed_count', 0) if reported else None,
             'mean_score': round(sum(scores) / len(scores), 4) if scores else None,
-            'score_count': len(scores)}
+            'score_count': len(scores),
+            'historical_mean_score': round(sum(raw_scores) / len(raw_scores), 4) if raw_scores else None,
+            'invalid_response_count': (progress or {}).get('invalid_response_count', 0),
+            'graded_count': (progress or {}).get('graded_count', 0),
+            'graded_failed_count': (progress or {}).get('graded_failed_count', 0),
+            'lens_coverage': deepcopy((progress or {}).get('lens_coverage', {}))}
 
 
 def _wake_traces(invocations, events, state):

@@ -136,3 +136,16 @@ class WakeMatrixIntegrationTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+class FairMatrixReportingTests(unittest.TestCase):
+    def test_invalid_answer_is_not_a_fact_failure_and_lenses_balance(self):
+        from wake.matrix import MATRIX, MATRIX_KEY, continuity_matrix_progress
+        first = next(iter(MATRIX.coordinates()))
+        envelope = {'extensions': {MATRIX_KEY: {'results': {first.coordinate_id: {'status': 'completed', 'score': 0, 'passed': False, 'checks': {'source_fidelity': False}, 'response_error': 'Missing probe'}}}}}
+        before = envelope['extensions'][MATRIX_KEY]['results'][first.coordinate_id].copy()
+        progress = continuity_matrix_progress(envelope)
+        self.assertEqual(progress['invalid_response_count'], 1)
+        self.assertEqual(progress['graded_failed_count'], 0)
+        self.assertEqual(progress['failure_counts'], {})
+        self.assertNotEqual(MATRIX.coordinate_by_id(progress['next_coordinate_id']).value_keys[0], first.value_keys[0])
+        self.assertEqual(envelope['extensions'][MATRIX_KEY]['results'][first.coordinate_id], before)
