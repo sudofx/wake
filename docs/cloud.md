@@ -121,9 +121,12 @@ Do not use migration/rehearsal workflows as substitutes for ordinary Start/Stop 
 The workflow uses the existing public repository and GitHub Pages. No paid fallback, paid search, or subscription is introduced. The local Pacific-day budget is enforced against durable provider-request reservations. With same-wake research enabled, planning and final proposal reserve separate slots. Each phase may reserve additional slots when an eligible transient failure advances to the next configured Gemini model; interrupted unknown attempts remain conservatively reserved. Manual wakes share the same ledger.
 
 The hosted Gemini quota fallback order is configured in `wake.toml`: 3.1 Flash-Lite,
-3.8 Flash, 3.5 Flash-Lite, then 3.6 Flash. WAKE advances when Google reports
-the exact per-model daily free-tier quota or an HTTP 429 rate limit. Other
-transient failures follow the configured fallback policy. The configured daily ceilings
+3.5 Flash-Lite, 3.6 Flash, then 3.8 Flash. With the configured daily-only policy,
+WAKE advances only when Google reports the exact per-model daily free-tier quota
+or that model reaches its configured daily ceiling. Per-minute rate limits and
+temporary failures defer the attempt and retry the current model on the next wake;
+they do not advance to the next model. This rule applies to every model in the chain.
+The configured daily ceilings
 match those model buckets (500 requests for the Lite models and 20 for Flash models);
 provider-reported exhaustion still handles quota already used outside WAKE. Any
 provider-reported quota response is shown as purple and remains eligible for the

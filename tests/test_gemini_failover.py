@@ -211,21 +211,38 @@ class FailoverTests(unittest.TestCase):
         self.assertEqual(item["provider_attempts"][0]["result"], "rate_limited")
         self.assertTrue(wake_status(state)["provider_quota_limited"])
 
-    def test_per_minute_quota_uses_the_next_model_fallback(self):
+    def test_daily_only_policy_waits_on_fallback_per_minute_quota(self):
         self.settings["gemini_fallback_requires_primary_daily_quota"] = True
         result, _, item, network = self.run_chain(
             [
                 failure(429, FREE_TIER_DAILY_QUOTA_ID),
                 failure(429, FREE_TIER_MINUTE_QUOTA_ID),
-                "valid",
             ]
         )
-        self.assertEqual(result["status"], "accepted")
-        self.assertEqual(network.call_count, 3)
+        self.assertEqual(result["status"], "deferred")
+        self.assertEqual(network.call_count, 2)
         self.assertEqual(
             [attempt["result"] for attempt in item["provider_attempts"]],
-            ["daily_quota", "rate_limited", "success"],
+            ["daily_quota", "rate_limited"],
         )
+
+    def test_daily_only_policy_waits_on_primary_minute_quota_and_transient_errors(self):
+        self.settings["gemini_fallback_requires_primary_daily_quota"] = True
+        for error in (failure(429, FREE_TIER_MINUTE_QUOTA_ID), failure(503)):
+            with self.subTest(error=error.code):
+                result, _, _, network = self.run_chain([error])
+                self.assertEqual(result["status"], "deferred")
+                self.assertEqual(network.call_count, 1)
+
+    def test_daily_only_policy_waits_on_fallback_transient_error(self):
+        self.settings["gemini_fallback_requires_primary_daily_quota"] = True
+        result, _, item, network = self.run_chain([
+            failure(429, FREE_TIER_DAILY_QUOTA_ID), failure(503),
+        ])
+        self.assertEqual(result["status"], "deferred")
+        self.assertEqual(network.call_count, 2)
+        self.assertEqual([a["result"] for a in item["provider_attempts"]],
+                         ["daily_quota", "transient_failure"])
 
     def test_exact_quota_on_one_model_continues_to_next_model(self):
         result, state, item, network = self.run_chain(
@@ -393,7 +410,7 @@ class FailoverTests(unittest.TestCase):
         self.assertEqual(state["version"], 0)
         self.assertFalse(state["journal"])
 
-    def test_daily_quota_failover_uses_flash_lite_then_36(self):
+    def test_daily_quota_failover_uses_requested_order(self):
         self.engine.store.close()
         self.settings = config(Path(__file__).resolve().parents[1] / "wake.toml")
         self.engine = Engine(Path(self.temp.name) / "data", self.settings, store_factory=Store)
@@ -411,14 +428,16 @@ class FailoverTests(unittest.TestCase):
             request_models,
             [
                 "gemini-3.1-flash-lite",
-                "gemini-3.8-flash",
                 "gemini-3.5-flash-lite",
                 "gemini-3.6-flash",
+                "gemini-3.8-flash",
             ],
         )
         self.assertEqual(result["status"], "accepted")
         self.assertEqual(network.call_count, 4)
-        self.assertEqual(item["successful_model"], "gemini-3.6-flash")
+        self.assertEqual(item["successful_model"], "gemini-3.8-flash")
+        self.assertEqual([a["result"] for a in item["provider_attempts"]],
+                         ["daily_quota", "daily_quota", "daily_quota", "success"])
         self.assertEqual(state["version"], 1)
 
     def test_attempt_results_are_checkpointed_before_next_model(self):
@@ -443,7 +462,7 @@ class FailoverTests(unittest.TestCase):
         self.assertEqual(settings["model"], "gemini-3.1-flash-lite")
         self.assertTrue(settings["gemini_fallback_requires_primary_daily_quota"])
         self.assertEqual(settings["gemini_fallback_models"], [
-            "gemini-3.8-flash", "gemini-3.5-flash-lite", "gemini-3.6-flash",
+            "gemini-3.5-flash-lite", "gemini-3.6-flash", "gemini-3.8-flash",
         ])
         self.assertGreaterEqual(settings["model_daily_call_limits"]["gemini-3.1-flash-lite"], 1)
         self.assertEqual(settings["model_daily_call_limits"]["gemini-3.5-flash-lite"], 500)
