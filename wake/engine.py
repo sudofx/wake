@@ -2221,6 +2221,11 @@ class Engine:
         day = datetime.now(ZoneInfo(self.config["timezone"])).date().isoformat()
         used = sum(charged_request_slots(i) for i in state["invocations"].values()
                    if i["charged"] and i["quota_day"] == day)
+        if charged and self.config.get("wait_for_daily_quota_reset"):
+            from .scheduling import wake_status
+            eligibility = wake_status(state, daily_call_limit=None, wait_provider_daily=True).get("next_eligible")
+            require(not eligibility or datetime.fromisoformat(eligibility) <= datetime.now(ZoneInfo("UTC")),
+                    "Daily call ceiling reached; provider daily quota wait until Pacific midnight; no request sent")
         if charged and not self.config.get("model_daily_call_limits"):
             require(used < self.config["daily_call_limit"], "Daily call ceiling reached; no request sent")
         # Capture the temporal environment before the next model boundary. This

@@ -25,10 +25,11 @@ def charged_request_slots(item):
     return item.get("provider_requests_sent", 1)
 
 
-def daily_quota_next_eligible(item):
-    """Return a local configured-cap boundary, not a provider-reported quota."""
+def daily_quota_next_eligible(item, *, wait_provider_daily=False):
+    """Return a configured cap or explicitly enabled daily-provider wait boundary."""
     configured_limit = item.get("quota_exhausted") == "configured_daily_limit"
-    if not configured_limit:
+    if not configured_limit and not (wait_provider_daily and item.get("status") == "deferred"
+                                     and item.get("quota_exhausted") == "free_tier_daily"):
         return None
     quota_day = item.get("quota_day")
     if not quota_day:
@@ -54,7 +55,7 @@ def provider_quota_limited(item):
     return is_free_tier_daily_quota(provider_error)
 
 
-def wake_status(state, daily_call_limit=20, now=None):
+def wake_status(state, daily_call_limit=20, now=None, *, wait_provider_daily=False):
     """Summarize accepted work, latest attempt, request accounting, and quota waits."""
     now = now or datetime.now(timezone.utc)
     items = sorted(state["invocations"].values(), key=lambda item: item["time"])
@@ -105,7 +106,7 @@ def wake_status(state, daily_call_limit=20, now=None):
     # ordinary scheduler retries them so a recovered model can be observed.
     quota_standby_until = None
     if latest:
-        provider_reset = daily_quota_next_eligible(latest)
+        provider_reset = daily_quota_next_eligible(latest, wait_provider_daily=wait_provider_daily)
         if provider_reset is not None:
             quota_standby_until = provider_reset
         elif daily_call_limit is not None and latest.get("quota_day"):

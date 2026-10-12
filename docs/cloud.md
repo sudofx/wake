@@ -57,7 +57,7 @@ not whether a job is running at this exact second:
 | Yellow | Waiting, paused, or stopped |
 | Green | Research is running |
 | Blue | Research is idle between attempts |
-| Purple | A provider reported quota pressure; scheduled retries continue |
+| Purple | A provider reported quota pressure; daily exhaustion waits until Pacific midnight when configured |
 | Gray | Status could not be confirmed |
 
 The status light checks on a five-second loop while the page is visible. When the
@@ -129,7 +129,7 @@ they do not advance to the next model. This rule applies to every model in the c
 The configured daily ceilings
 match those model buckets (500 requests for the Lite models and 20 for Flash models);
 provider-reported exhaustion still handles quota already used outside WAKE. Any
-provider-reported quota response is shown as purple and remains eligible for the
+provider-reported quota response is shown as purple. With `wait_for_daily_quota_reset = true`, exhaustion of the full daily chain waits until Pacific midnight. Minute limits still remain eligible for the
 scheduled retry check, so a model that recovers or a fallback with remaining
 capacity can be used. Purple does not itself mean research is waiting until
 midnight; only an operator-configured hard daily request cap does that.
@@ -319,3 +319,5 @@ rewriting historical receipts.
 
 Hosted zero-cycle Reset always enables a fresh continuity campaign; there is no
 separate enrollment step. Start remains a separate operator action.
+
+The promoted configuration uses `wait_for_daily_quota_reset = true`. The authoritative latest daily-exhaustion receipt supplies the Pacific-day boundary to both the scheduler and provider preflight. This does not infer daily exhaustion from a minute limit or from a successful fallback. Disabling this option restores scheduled quota retries.

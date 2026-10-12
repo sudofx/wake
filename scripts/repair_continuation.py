@@ -75,7 +75,8 @@ def authoritative_quota_status():
                 settings = {**DEFAULTS,
                             **(tomllib.loads(settings_file.read_text()) if settings_file.exists() else {})}
                 daily_limit = None if settings.get('model_daily_call_limits') else settings['daily_call_limit']
-                return wake_status(store.load(), daily_call_limit=daily_limit)
+                return wake_status(store.load(), daily_call_limit=daily_limit,
+                                   wait_provider_daily=settings.get("wait_for_daily_quota_reset", False))
             finally:
                 store.close()
         finally:

@@ -171,3 +171,15 @@ class StatusTests(unittest.TestCase):
         result = wake_status(dict(version=0, invocations={}, pending=None))
         self.assertIsNone(result["last_accepted"])
         self.assertIsNone(result["latest_attempt"])
+
+class DailyProviderWaitTests(unittest.TestCase):
+    def test_explicit_daily_wait_expires_at_midnight_but_minute_limit_does_not(self):
+        from wake.scheduling import wake_status
+        from datetime import datetime, timezone
+        item = {'id': 'q', 'time': '2026-10-12T21:00:00+00:00', 'status': 'deferred', 'charged': True, 'quota_day': '2026-10-12', 'quota_exhausted': 'free_tier_daily', 'provider_requests_sent': 4, 'provider_attempts': [{'result': 'daily_quota'}]}
+        state = {'version': 1, 'pending': None, 'invocations': {'q': item}}
+        result = wake_status(state, None, datetime(2026,10,12,22,tzinfo=timezone.utc), wait_provider_daily=True)
+        self.assertEqual(result['next_eligible'], '2026-10-13T07:00:00+00:00')
+        self.assertIsNone(wake_status(state, None, datetime(2026,10,13,7,tzinfo=timezone.utc), wait_provider_daily=True)['next_eligible'])
+        item.pop('quota_exhausted'); item['provider_attempts'] = [{'result': 'rate_limited'}]
+        self.assertIsNone(wake_status(state, None, datetime(2026,10,12,22,tzinfo=timezone.utc), wait_provider_daily=True)['next_eligible'])

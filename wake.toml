@@ -42,3 +42,6 @@ repository = "sudofx/wake"
 
 # Adopt the forward source-support contract on the next research wake.
 research_quality_policy = true
+
+# Fully exhausted daily model chain waits without new calls until Pacific midnight.
+wait_for_daily_quota_reset = true

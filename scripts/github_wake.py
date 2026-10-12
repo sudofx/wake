@@ -550,6 +550,7 @@ def main(reset=False, enable_continuity_matrix=False):
             result["wake_status"] = wake_status(
                 engine.store.load(),
                 None if settings.get("model_daily_call_limits") else settings["daily_call_limit"],
+                wait_provider_daily=settings.get("wait_for_daily_quota_reset", False),
             )
 
             # Engine.run already made ordinary terminal results durable. Reset
