@@ -1,0 +1,83 @@
+{
+  "protocol": "crn-equilibrium@1",
+  "source": "https://arxiv.org/html/2205.06313v1",
+  "source_equations": [
+    6,
+    7
+  ],
+  "status": "measured",
+  "claim": "A conserved three-species reversible reaction simulation approximates the predicted equilibrium distribution; this does not demonstrate chemical heredity.",
+  "parameters": {
+    "population": 12,
+    "rates": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "initial_counts": [
+      12,
+      0,
+      0
+    ],
+    "observation_seconds": 5000.0,
+    "burn_in_seconds": 100.0,
+    "seeds": [
+      11,
+      23,
+      37,
+      53,
+      71
+    ]
+  },
+  "method": "Exact Gillespie simulation; stationary distribution estimated by residence time, not jump frequency.",
+  "runs": [
+    {
+      "seed": 11,
+      "jumps": 81823,
+      "total_variation_error": 0.015274342282638643,
+      "covariance_a_b": -1.365446936082222,
+      "conservation_violations": 0
+    },
+    {
+      "seed": 23,
+      "jumps": 81475,
+      "total_variation_error": 0.01548104436321764,
+      "covariance_a_b": -1.374553103711742,
+      "conservation_violations": 0
+    },
+    {
+      "seed": 37,
+      "jumps": 81269,
+      "total_variation_error": 0.01756876285118316,
+      "covariance_a_b": -1.3096898706979552,
+      "conservation_violations": 0
+    },
+    {
+      "seed": 53,
+      "jumps": 81446,
+      "total_variation_error": 0.016551563788304025,
+      "covariance_a_b": -1.2959865882214459,
+      "conservation_violations": 0
+    },
+    {
+      "seed": 71,
+      "jumps": 81849,
+      "total_variation_error": 0.01785485579081742,
+      "covariance_a_b": -1.329859435570107,
+      "conservation_violations": 0
+    }
+  ],
+  "expected_covariance_a_b": -1.3333333333333333,
+  "baseline": {
+    "name": "Independent binomial variables with the same exact one-species marginals",
+    "total_variation_error": 0.8600904882860726,
+    "conservation_violation_probability": 0.8600904882860726,
+    "covariance_a_b": 0
+  },
+  "acceptance": {
+    "predeclared_max_total_variation": 0.04,
+    "passed": true
+  },
+  "limitations": "Numerical reproduction of a simple equilibrium result, not the paper's complex inference figures, wet chemistry, heredity, learning, or new research. Seeds are repeated trajectories, not independent biological experiments."
+}

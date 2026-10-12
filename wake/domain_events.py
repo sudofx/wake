@@ -109,6 +109,9 @@ def reduce_event(state, event, historical=False):
                 and 1 <= p["version"] <= POLICY_VERSION, "Invalid research quality policy")
         require(p["version"] > state.get("research_quality_policy", 0), "Quality policy must advance")
         state["research_quality_policy"] = p["version"]
+    elif kind == "reproduction_recorded":
+        from .reproduction import record_result
+        record_result(state, p, event, historical=historical)
     elif kind == "scientific_review_recorded":
         from .research_reviews import apply_review
         apply_review(state, p, event)
