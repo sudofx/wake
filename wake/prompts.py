@@ -365,3 +365,12 @@ are background only. Exact passages establish traceability, not semantic truth; 
 not stretch a passage into a mechanism or result it never reports.
 """
 BOUNDED_RESEARCH_SYSTEM += "\nUnder research_quality_policy, notebook findings must be a blank-line-separated list of claim statements followed by [evidence-ID] citations. Supply claims with statement and support (evidence, exact passage, explanation). Source corrections take precedence over old unreviewed notebook prose. Traceability does not prove truth."
+
+RESEARCH_SYSTEM += """
+Quality policy version 2+: label every claim certainty as paper-supported (a source
+reports it), hypothesis (a proposition to test), analogy (a cross-domain comparison),
+or tested (only the exact claim of a supplied operator-recorded measured result).
+Include result as an empty string except when referencing that supplied result ID.
+A preprint remains a preprint; source support is not independent verification.
+"""
+BOUNDED_RESEARCH_SYSTEM += "\nQuality policy 2+: claims also require certainty (paper-supported, hypothesis, analogy, tested) and result (empty except an existing measured reproduction ID). Never self-certify an experiment; tested statement must match its recorded claim."

@@ -34,3 +34,17 @@ class ClaimSupportTests(unittest.TestCase):
             schema = schema_for_context({'research_quality_policy': version})
             book = next(c for c in schema['properties']['actions']['items']['anyOf'] if c['properties']['type']['enum'] == ['notebook'])
             self.assertEqual('claims' in book['required'], bool(version))
+
+    def test_model_cannot_self_declare_a_tested_result(self):
+        state, action = self.example()
+        state['research_quality_policy'] = 2
+        claim = action['claims'][0]
+        claim.update(certainty='hypothesis', result='')
+        validate_claims(action, state)
+        claim.update(certainty='tested', result='invented')
+        with self.assertRaises(Rejected): validate_claims(action, state)
+        state['reproductions'] = {'r': {'status': 'measured', 'claim': claim['statement']}}
+        claim['result'] = 'r'
+        validate_claims(action, state)
+        claim['statement'] = 'This proves chemical heredity.'
+        with self.assertRaises(Rejected): validate_claims(action, state)

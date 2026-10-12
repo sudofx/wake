@@ -58,7 +58,7 @@ def build_research_projection(state, events, head, *, generated=None, metrics=No
     fields = ('id', 'title', 'question', 'next_step', 'summary', 'findings', 'limitations',
               'next_questions', 'statement', 'task', 'status', 'domain', 'project', 'reason',
               'revision', 'confidence', 'due_cycle', 'updated_version', 'created_version',
-              'updated_by', 'created_by', 'resolved_by')
+              'updated_by', 'created_by', 'resolved_by', 'claims')
     totals = {}
     for collection in ('projects', 'notebooks', 'beliefs', 'commitments', 'research'):
         items = sorted(state.get(collection, {}).values(),
