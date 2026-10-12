@@ -297,3 +297,14 @@ Storage compression changes physical bytes only. It does not add accepted resear
 
 Resetting to zero also starts an empty continuity campaign. Enrollment itself
 is provider-free and does not count as research or a completed matrix cell.
+
+### Correcting weak source use
+
+An operator can append a source correction while an installation is paused and drained:
+
+```sh
+python -m scripts.review_notebooks --data /data
+python -m scripts.review_notebooks --data /data --apply
+```
+
+This review flags known dictionary citations and the funding-only PLOS correction. It does not certify other sources. Corrections name the notebook revision and cited evidence, appear alongside the original findings, and neither rewrite old research nor increment accepted cycles. Scientific mechanisms, bounds and heredity interpretations affected by these citations remain unverified until reviewed against substantive source passages. Corrections use the existing native application event authority.

@@ -68,6 +68,11 @@ def build_research_projection(state, events, head, *, generated=None, metrics=No
                                    for k in fields if k in x},
                                 'evidence': list(x.get('evidence', []))[:24]}
                                for x in items[:MAX_RECORDS]]
+    from .research_reviews import notebook_review
+    for book in records['notebooks']:
+        review = notebook_review(state, book)
+        if review:
+            book['source_correction'] = review['correction']
     evidence = state.get('evidence', {})
     classes = {key: _evidence_class(item) for key, item in evidence.items()}
     counts = dict(Counter(classes.values()))

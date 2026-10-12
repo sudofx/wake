@@ -203,6 +203,9 @@ def _notebook_evidence_profile(notebook, state):
 
 
 def _notebook_html(notebook, state):
+    from .research_reviews import notebook_review
+    review = notebook_review(state, notebook)
+    correction = (f'<aside class="research-note"><h2>Source correction</h2><p>{_html_text(review["correction"])}</p></aside>' if review else "")
     source_items = []
     for eid in notebook["evidence"]:
         evidence = state["evidence"][eid]
@@ -232,7 +235,7 @@ def _notebook_html(notebook, state):
     body = (
         f'<p class="lede">{_html_text(notebook["summary"])}</p>'
         f'<p class="meta">Evidence profile · {source_count} distinct qualifying source {source_word}{cross_note}{nonqualifying_note}</p>'
-        f'<h2>Findings</h2><p>{_html_text(notebook["findings"])}</p>'
+        + correction + f'<h2>Findings</h2><p>{_html_text(notebook["findings"])}</p>'
         f'<h2>Limitations and competing views</h2><p>{_html_text(notebook["limitations"])}</p>'
         f'<h2>Next questions</h2><p>{_html_text(notebook["next_questions"])}</p>'
         f'<h2>Collected sources</h2><ul class="sources">{"".join(source_items)}</ul>'

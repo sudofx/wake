@@ -163,7 +163,9 @@ def _state_for_legacy_event(state: dict, kind: str, payload: dict) -> dict:
     if kind == "accepted":
         # transition() owns proposal atomicity and does not mutate its input.
         return result
-    if kind == "research_collected":
+    if kind == "scientific_review_recorded":
+        result["research_reviews"] = dict(state.get("research_reviews", {}))
+    elif kind == "research_collected":
         research = dict(state.get("research", {}))
         item_id = payload.get("id")
         if item_id in research and isinstance(research[item_id], dict):
