@@ -312,13 +312,13 @@ class RecordStore:
         return self._envelope()["migration"]["legacy_head"]
 
     def reset(self):
-        """Start WAKE Zero through the governed application boundary."""
+        """Start WAKE Zero with an empty continuity campaign in one governed action."""
         revision = self.kernel.context().revision
         receipt = self.host.submit(
             ApplicationIntent(
                 f"wake-reset-{revision + 1}-{uuid.uuid4().hex[:12]}",
                 revision,
-                "reset_to_zero",
+                "reset_with_continuity",
                 {
                     "actor": "operator",
                     "reason": "Operator requested WAKE reset to cycle zero.",
@@ -424,7 +424,7 @@ class RecordStore:
                 continue
             value = operation.get("value", {})
             action = value.get("action")
-            if action == "reset_to_zero":
+            if action in ("reset_to_zero", "reset_with_continuity"):
                 current_generation += 1
                 active = current_generation == generation
                 if active:

@@ -6,6 +6,7 @@ from pathlib import Path
 import pwd
 import re
 import socket
+import sys
 import time
 from urllib.request import urlopen
 
@@ -20,8 +21,13 @@ alias ll='ls -alF'
 alias wake-status='python /workspace/scripts/wake_terminal.py status'
 _wake_prompt() {
     local detail
-    detail="$(python /workspace/scripts/wake_terminal.py prompt 2>/dev/null)"
-    PS1="${detail:-WAKE | status unavailable} \w\n\$ "
+    if [[ -t 1 && ${TERM:-dumb} != dumb && ! ${NO_COLOR+x} ]]; then
+        detail="$(python /workspace/scripts/wake_terminal.py prompt --color 2>/dev/null)"
+        PS1="\n\[\e[1;35m\]┌─ \[\e[0m\]${detail:-WAKE | status unavailable} \[\e[1;97m\]\w\[\e[0m\]\n\[\e[1;35m\]└─\[\e[1;36m\]\$\[\e[0m\] "
+    else
+        detail="$(python /workspace/scripts/wake_terminal.py prompt 2>/dev/null)"
+        PS1="\n${detail:-WAKE | status unavailable} \w\n\$ "
+    fi
 }
 PROMPT_COMMAND=_wake_prompt
 python /workspace/scripts/wake_terminal.py status
@@ -101,28 +107,74 @@ def statistics():
             'observed': time.strftime('%H:%M:%S %Z')}
 
 
+
+def state_color(state):
+    text = str(state).lower()
+    if 'quota' in text:
+        return '1;35'
+    if text in ('failed', 'error', 'blocked'):
+        return '1;31'
+    if text in ('running', 'active') or text.startswith('gateway'):
+        return '1;32'
+    if text in ('paused', 'waiting', 'stopped'):
+        return '1;33'
+    return '1;34' if text == 'idle' else '37'
+
+
+def colorize(value, code, enabled=False, *, prompt=False):
+    if not enabled:
+        return str(value)
+    start, end = f'\x1b[{code}m', '\x1b[0m'
+    if prompt:
+        # Readline must not count ANSI sequences toward the cursor column.
+        start, end = '\\[' + start + '\\]', '\\[' + end + '\\]'
+    return start + str(value) + end
+
+
+def prompt_details(s, colored=False):
+    safe = lambda value: re.sub(r"[^A-Za-z0-9 .:_/@|·—-]", "?", str(value))
+    paint = lambda value, code: colorize(safe(value), code, colored, prompt=True)
+    sep = paint(' | ', '35')
+    return sep.join((paint(s['node'], '1;36'), paint(s['state'], state_color(s['state'])),
+                     paint('accepted ' + str(s['version']), '1;32'), paint(s['memory'], '1;34')))
+
+
+def status_details(s, colored=False):
+    paint = lambda value, code: colorize(value, code, colored)
+    label = lambda text: paint(text, '37')
+    authority = (label('Authority: ') + paint('none (read-only gateway)', '1;97')
+                 if s['role'] == 'gateway' else
+                 label('Workspace: ') + paint('/workspace', '1;97') + '   ' +
+                 label('Authority: ') + paint('/data/wake.sqlite', '1;97'))
+    return (f"\n{paint('WAKE✳︎', '1;35')}  {paint(s['node'], '1;36')} · {paint(s['role'], '1;35')}\n"
+            f"{label('Status: ')}{paint(s['state'], state_color(s['state']))}   "
+            f"{label('Accepted cycles: ')}{paint(s['version'], '1;32')}   "
+            f"{label('Observed: ')}{paint(s['observed'], '1;97')}\n"
+            f"{label('Group: ')}{paint(s['group'], '1;35')}   "
+            f"{label('Parent: ')}{paint(s['parent'], '1;36')}   "
+            f"{label('Image: ')}{paint(s['image'], '1;34')}\n"
+            f"{label('Memory: ')}{paint(s['memory'], '1;34')}   "
+            f"{label('Load (host): ')}{paint(s['load'], '1;97')}   "
+            f"{label('Uptime: ')}{paint(s['uptime'], '1;97')}\n"
+            f"{authority}\n"
+            f"{label('Live status refreshes at each prompt. Run wake-status for details.')}\n")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('mode', choices=('install', 'status', 'prompt'))
     parser.add_argument('--home', type=Path, default=Path('/home/wake'))
     parser.add_argument('--node', default='wake')
     parser.add_argument('--image', default='')
+    parser.add_argument('--color', action='store_true', help='Enable color for prompt command substitution')
     args = parser.parse_args()
     if args.mode == 'install':
         install(args.home, args.node, args.image)
         return
     s = statistics()
-    if args.mode == 'prompt':
-        safe = lambda value: re.sub(r"[^A-Za-z0-9 .:_/@|·—-]", "?", str(value))
-        print(f"{safe(s['node'])} | {safe(s['state'])} | accepted {safe(s['version'])} | {safe(s['memory'])}")
-    else:
-        authority = "Authority: none (read-only gateway)" if s["role"] == "gateway" else "Workspace: /workspace   Authority: /data/wake.sqlite"
-        print(f"\nWAKE✳︎  {s['node']} · {s['role']}\n"
-              f"Status: {s['state']}   Accepted cycles: {s['version']}   Observed: {s['observed']}\n"
-              f"Group: {s['group']}   Parent: {s['parent']}   Image: {s['image']}\n"
-              f"Memory: {s['memory']}   Load (host): {s['load']}   Uptime: {s['uptime']}\n"
-              f"{authority}\n"
-              "Live status refreshes at each prompt. Run wake-status for details.\n")
+    colored = ((args.color or sys.stdout.isatty()) and os.environ.get('TERM', 'dumb') != 'dumb'
+               and 'NO_COLOR' not in os.environ)
+    print(prompt_details(s, colored) if args.mode == 'prompt' else status_details(s, colored))
 
 
 if __name__ == '__main__':

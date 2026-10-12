@@ -481,7 +481,12 @@ receipt and idle. It advertises `capabilities.live_activity` and an activity sch
 older runtimes need not implement the channel. The endpoint is inspection-only.
 
 Console checks this endpoint every three seconds while visible. Panel #002 reports
-the current phase separately from its historical replay. Panel #003 outlines the
+the current phase separately from its historical replay. **API QUEUE** means the
+worker is waiting for its shared slot and has not sent that attempt. **Request
+sent** means the adapter has begun provider transport; **response received** means
+it is decoding the returned proposal. Waiting workers do not animate the provider
+request pulse. If coordination is unavailable and the existing independent-call
+fallback is used, the Console explicitly says so. Panel #003 outlines the
 exact cell delivered with an active probe; selecting a different cell does not
 move that indicator. A phase can finish between polls and may never be displayed.
 The pulse stops on idle, failed work, missing capability, connection failure or
@@ -567,3 +572,9 @@ before inference rather than dropping obligations or inventing progress.
 Permanent provider failures keep the read-only Console available in blocked state.
 Known transient outcomes remain deferred and retry through normal eligibility; an
 invalid credential or unsupported model must not generate another call every loop.
+
+Zero-cycle operator resets always enable a fresh `continuity@1` campaign with
+zero results. Local reset and enrollment commit in one governed application
+action; historical reset receipts retain their original replay meaning. Hosted
+fresh Reset also enables continuity before checkpointing. This enrollment does
+not start research or count as accepted progress.

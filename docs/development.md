@@ -399,12 +399,22 @@ Bob may append observations or add a correction naming an earlier assessment.
 Code snippets remain text. File writes use a shared-volume lock, atomic replace
 and a one-second contention limit; failures are reported without private content
 and never fail primary research. The whole document is limited to 1 MiB, model
-context to the last 4,000 characters, and each response to 12,000 characters/three
+previous private notes supplied to the model to the last 4,000 characters, and each response to 12,000 characters/three
 observations. No automatic compaction erases earlier assessments. A full or
 malformed document needs a human decision, not an autonomous cleanup.
 
-Sparse advisory assessments run after accepted research at most once per 15
-accepted cycles. They use the existing provider adapter, quota accounting,
+Passenger notes use plain prose about research progress, surprising connections,
+uncertainties, and useful next questions as well as operational friction. Their
+bounded input includes recent journal, project, notebook and execution summaries;
+the group leader also receives attributed summaries from every member. Previous
+private notes inform continuity but are never instructions or execution authority.
+
+Solo assessments run after accepted research at most once per 15 accepted cycles.
+In a shared group, only the leader requests a private assessment after each
+successfully published later Bob checkpoint; initialization has no extra assessment.
+If that private call exhausts daily provider quota, its recorded checkpoint remains
+eligible for a retry on a later Pacific day, without repeating a successful note.
+They use the existing provider adapter, quota accounting,
 pause gate and native durability barrier. They add an occasional model call;
 creation needs none, and no update is required each cycle. Private input and
 output stay in memory/the advisory volume; the public record retains only a
@@ -433,3 +443,12 @@ advisory data, never policy or instructions. No reset, recommendation or propose
 patch changes the research record, source code, credentials or deployment.
 
 Hosted fresh resets and public Bob prose are described in [hosted operation](cloud.md#fresh-hosted-reset).
+
+Zero-cycle reset defaults and first-post pause controls are documented in
+[standalone operation](standalone.md) and [first-run publication](#first-run-publication-and-passenger).
+
+To run a local group until its next shared Bob post, set each member’s
+`pause_after_group_checkpoint` control to its current shared checkpoint plus one,
+then set `research` to `running`. The target is a publication lower bound, not a
+requested research cycle: Bob retains its normal quiet window. Each member pauses
+once it durably imports the newer shared post, before another research request.

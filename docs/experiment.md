@@ -294,3 +294,6 @@ is confined to Passenger. Public display removes legacy heading markers without
 rewriting historical receipts.
 
 Storage compression changes physical bytes only. It does not add accepted research, remove evidence, or change continuity results. See [kernel storage](kernel.md#physical-storage-and-compatibility).
+
+Resetting to zero also starts an empty continuity campaign. Enrollment itself
+is provider-free and does not count as research or a completed matrix cell.

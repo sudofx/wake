@@ -145,11 +145,60 @@ for(const mode of ['standalone','hosted',undefined]){
   assert.equal(window.WakeRuntimeActivityView({...status,state:'paused'}).activity.coordinate_id,null);
   assert.equal(window.WakeRuntimeActivityView({...status,capabilities:{}}),null);
   assert.equal(window.WakeRuntimeActivityView({...status,state:'invented'}),null);
+  const queued=window.WakeRuntimeActivityView({...status,activity:{...status.activity,stage:'provider_wait'}});
+  assert.equal(queued.activity.active,true);
+  assert.equal(queued.activity.coordinate_id,null);
+  const retry=window.WakeRuntimeActivityView({...status,state:'standby'});
+  assert.equal(retry.activity.active,true);
+  assert.equal(retry.activity.coordinate_id,'real-cell');
+  for(const stage of ['provider_uncoordinated','provider_response']){
+   assert.equal(window.WakeRuntimeActivityView({...status,activity:{...status.activity,stage}}).activity.active,true);
+  }
  }
 }
 })().catch(error=>{console.error(error);process.exit(1)});
 '''
         subprocess.run(['node','-e',program,str(ROOT/'wake/assets/runtime-activity.js')], check=True)
+
+    @unittest.skipUnless(shutil.which('node'), 'Node required for canvas renderer execution')
+    def test_process_field_queue_has_no_provider_request_pulse(self):
+        program=r'''
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const elements={},listeners={},frames=[];
+const element=()=>({dataset:{},textContent:'',addEventListener(){},removeAttribute(){},querySelectorAll:()=>[]});
+const ctx=new Proxy({}, {get:()=>()=>{},set:()=>true});
+const canvas={...element(),clientWidth:640,clientHeight:380,getContext:()=>ctx,closest:()=>null};
+elements['process-field-canvas']=canvas;
+for(const id of ['stages','status','trace','detail','selection'])elements['process-field-'+id]=element();
+const window={addEventListener:(name,fn)=>listeners[name]=fn};
+const context={window,document:{hidden:false,body:{},getElementById:id=>elements[id]||null,addEventListener(){}},
+ matchMedia:()=>({matches:true}),devicePixelRatio:1,performance:{now:()=>0},
+ getComputedStyle:()=>({getPropertyValue:()=> '#4bd59a'}),
+ requestAnimationFrame:fn=>{frames.push(fn);return frames.length},cancelAnimationFrame(){},
+ MutationObserver:class{observe(){}},ResizeObserver:class{observe(){}},IntersectionObserver:class{observe(){}},
+ fetch:()=>new Promise(()=>{})};
+vm.runInNewContext(fs.readFileSync(process.argv[1],'utf8'),context);
+frames.shift()(0);
+const send=stage=>{
+ listeners['wake-runtime-activity']({detail:{state:'running',observed_at:'2026-10-12T19:00:00Z',activity:{stage,active:true}}});
+ frames.shift()(0);
+};
+send('provider_wait');
+assert.equal(elements['process-field-status'].textContent,'API QUEUE');
+assert(elements['process-field-trace'].textContent.includes('request not sent'));
+assert.equal(canvas.dataset.providerPhase,'queued');
+send('provider');
+assert(elements['process-field-trace'].textContent.includes('request sent'));
+assert.equal(canvas.dataset.providerPhase,'request');
+send('provider_response');
+assert(elements['process-field-trace'].textContent.includes('response received'));
+assert.equal(canvas.dataset.providerPhase,'proposal');
+send('provider_uncoordinated');
+assert(elements['process-field-trace'].textContent.includes('coordination unavailable'));
+listeners['wake-runtime-activity']({detail:null});frames.shift()(0);
+assert.equal(canvas.dataset.providerPhase,'idle');
+'''
+        subprocess.run(['node','-e',program,str(ROOT/'wake/assets/process-field.js')], check=True)
 
     @unittest.skipUnless(shutil.which('node'), 'Node required for canvas renderer execution')
     def test_cube_live_overlay_is_separate_from_selection_and_stops_on_clear(self):

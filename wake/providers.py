@@ -702,6 +702,7 @@ class Gemini:
         self.skipped_models = []
         self.record_attempt = None
         self.request_gate = None
+        self.request_activity = None
         require(
             config["free_tier_confirmed"] is True,
             "Set free_tier_confirmed=true in wake.toml only for an API project with billing disabled",
@@ -767,7 +768,6 @@ class Gemini:
         error = TransientProviderError(
             "Gemini provider wall budget exhausted; wake deferred"
         )
-        primary_model_quota_confirmed = False
 
         def record_attempt(phase, attempt):
             """Keep durable checkpoints outside the provider execution budget."""
@@ -831,14 +831,26 @@ class Gemini:
                 timeout_seconds=request_timeout,
             )
 
+            def observe_request(stage):
+                # Inspection cannot interrupt, authorize, or account for an effect.
+                if self.request_activity is not None:
+                    try:
+                        self.request_activity(stage)
+                    except Exception:
+                        pass
+
             try:
                 if self.request_gate is None:
+                    observe_request('provider')
                     self.provider_requests_sent += 1
                     response = shared_provider.generate(generation)
                 else:
-                    with self.request_gate.request(model):
+                    observe_request('provider_wait' if self.request_gate.url else 'context')
+                    with self.request_gate.request(model) as coordinated:
+                        observe_request('provider_uncoordinated' if self.request_gate.url and not coordinated else 'provider')
                         self.provider_requests_sent += 1
                         response = shared_provider.generate(generation)
+                observe_request('provider_response')
                 attempt.update(response.metadata)
                 attempt["result"] = "success"
                 raw = response.text
@@ -862,8 +874,6 @@ class Gemini:
                 )
 
                 if exact_daily_quota:
-                    if model == self.model:
-                        primary_model_quota_confirmed = True
                     remaining = self.models[self.models.index(model) + 1 :]
                     if any(
                         self.model_request_limits is None
@@ -878,8 +888,6 @@ class Gemini:
                             "Gemini free-tier daily quotas exhausted for available models; wake deferred until Pacific midnight"
                         )
                 elif exact_minute_quota:
-                    if model == self.model:
-                        primary_model_quota_confirmed = True
                     attempt["result"] = "rate_limited"
                     retry_after_seconds = _retry_after_seconds(details)
                     if retry_after_seconds is not None:
@@ -956,9 +964,10 @@ class Gemini:
             if (
                 isinstance(error, TransientProviderError)
                 and self.fallback_requires_primary_daily_quota
-                and model == self.model
-                and not primary_model_quota_confirmed
+                and attempt.get("result") != "daily_quota"
             ):
+                # Daily-only policy applies at every boundary in the chain.
+                # Minute pressure and temporary failures retry the current model.
                 raise error
 
             if not isinstance(error, TransientProviderError):

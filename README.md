@@ -218,3 +218,5 @@ rewriting historical receipts.
 Lossless storage compression preserves exact records, hashes and replay. Version 13
 shares repeated long strings within stored JSON values when that saves space.
 See [storage compatibility](docs/kernel.md#physical-storage-and-compatibility).
+
+Zero-cycle resets automatically enable an empty continuity campaign. See [reset operation](docs/standalone.md).

@@ -223,6 +223,24 @@ def gateway_url(path):
     return coordinator.rsplit('/group/', 1)[0] + path if '/group/' in coordinator else None
 
 
+def _assess_group_note(engine, provider, published):
+    """One private note per shared publication; daily-quota deferrals survive retries."""
+    if not published or published['checkpoint'] <= 1:
+        return
+    state = engine.store.load()
+    previous = [i for i in state['invocations'].values()
+                if i.get('phase') == 'passenger' and i.get('group_checkpoint') == published['checkpoint']]
+    if previous:
+        latest = max(previous, key=lambda item: item['time'])
+        if latest.get('quota_exhausted') != 'free_tier_daily':
+            return
+        from datetime import datetime
+        from zoneinfo import ZoneInfo
+        if latest.get('quota_day') == datetime.now(ZoneInfo(engine.config['timezone'])).date().isoformat():
+            return
+    engine.assess_passenger(provider, group_packet=published['inputs'])
+
+
 def synchronize(engine, provider=None):
     """Called by the local scheduler. Paused nodes only ingest existing posts."""
     url = gateway_url('/group/bob-inputs.json')
@@ -251,6 +269,8 @@ def synchronize(engine, provider=None):
     with engine.store.lock():
         state = engine.store.load()
         draft = state['group_bob'].get('draft')
+        if not draft:
+            _assess_group_note(engine, provider, state['group_bob'].get('publication'))
         if draft:
             # A rejected publication remains a dated durable draft. Do not pay
             # for repeated synthesis just because its editorial gate is closed.
@@ -260,6 +280,8 @@ def synchronize(engine, provider=None):
                 engine.store.append('group_bob_published', {'publication':draft})
             except Rejected as exc:
                 engine.store.append('group_bob_withheld', {'publication_digest':digest(draft), 'reason':str(exc)[:1000]})
+            else:
+                _assess_group_note(engine, provider, draft)
             return True
         prior = state['group_bob']['checkpoint']
         last_post = state['posts'].get(state['group_bob'].get('publication', {}).get('id'), {})
@@ -284,4 +306,6 @@ def synchronize(engine, provider=None):
             engine.store.append('group_bob_published', {'publication':p})
         except Rejected as exc:
             engine.store.append('group_bob_withheld', {'publication_digest':digest(p), 'reason':str(exc)[:1000]})
+        else:
+            _assess_group_note(engine, provider, p)
     return True

@@ -121,7 +121,9 @@ For JSON at least 128 KiB, the codec can store repeated long string tokens once
 in a stream-local dictionary before zlib compression. This shares repeated
 provider text across the historical events represented in a cache, and within
 large event payloads, without removing any logical event or cache field. Tokens
-preserve exact UTF-8 bytes and JSON escapes. No external blobs, dictionary files
+preserve exact UTF-8 bytes and JSON escapes. The scanner consumes ordinary text
+in spans to reduce CPU cost for long strings while retaining the same token
+grammar and encoded bytes. No external blobs, dictionary files
 or application-specific imports are required. Each value uses this encoding only
 when it is smaller than the original zlib format (and plain event text).
 Both version-12 binary wrappers remain readable.

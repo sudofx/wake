@@ -36,7 +36,7 @@
     const recorded=data?.recorded_activity;
     const past=data?.matrix?.cells?.find(c=>c.id===recorded?.coordinate_id);
     label.hidden=!cell&&!past;
-    label.textContent=cell?`Live probe ${window.WakeMatrixCellLabel(cell,data.matrix)} · ${runtime.activity.stage==='provider'?'waiting for model response':'checking response'}`:
+    label.textContent=cell?`Live probe ${window.WakeMatrixCellLabel(cell,data.matrix)} · ${['provider','provider_uncoordinated'].includes(runtime.activity.stage)?'waiting for model response':'checking response'}`:
       past?`Last published pending probe ${window.WakeMatrixCellLabel(past,data.matrix)} · snapshot ${data.generated||'time unknown'} · current activity unavailable`:'';
   }
   let runtimePublication='';

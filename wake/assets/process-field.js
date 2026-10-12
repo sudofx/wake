@@ -32,7 +32,7 @@
   let viewAngle=0,viewTilt=0,selectedNode=null,selectedStage=null,stagePoints=[];
   let pointer=null,dragged=false;
   let runtime=window.WakeRuntimeActivity||null,lastLiveDraw=0,lastStageHTML='';
-  const liveIndex=()=>runtime?.activity?.active?({record:0,context:1,collecting:1,provider:1,governance:3,continuity:3,receipt:5}[runtime.activity.stage]??-1):-1;
+  const liveIndex=()=>runtime?.activity?.active?({record:0,context:1,collecting:1,provider_wait:1,provider:1,provider_uncoordinated:1,provider_response:2,governance:3,continuity:3,receipt:5}[runtime.activity.stage]??-1):-1;
 
 
   const hash=value=>{let h=2166136261;for(const ch of String(value||''))h=Math.imul(h^ch.charCodeAt(0),16777619);return h>>>0;};
@@ -66,9 +66,9 @@
     if(stageHTML!==lastStageHTML){stageList.innerHTML=stageHTML;lastStageHTML=stageHTML;}
     const setText=(element,text)=>{if(element.textContent!==text)element.textContent=text;};
     if(runtime){
-      const labels={record:'reading the record',context:'preparing context',collecting:'collecting evidence',provider:'context handed to provider · awaiting proposal',governance:'proposal received · checking governance',continuity:'evaluating the matrix response',receipt:'finishing the receipt',idle:({paused:'research paused',standby:'provider quota reported · retrying on schedule',waiting:'waiting for the next eligible wake',blocked:'operator review required',running:'preparing work',idle:'between wakes'})[runtime.state]};
-      setText(statusEl,runtime.activity.active?'LIVE ACTIVITY':'RUNTIME '+runtime.state.toUpperCase());
-      statusEl.dataset.state=runtime.activity.active?'running':runtime.state;
+      const labels={record:'reading the record',context:'preparing context',collecting:'collecting evidence',provider_wait:'waiting for API slot · request not sent',provider:'request sent · awaiting provider response',provider_uncoordinated:'request sent · coordination unavailable',provider_response:'response received · decoding proposal',governance:'proposal received · checking governance',continuity:'evaluating the matrix response',receipt:'finishing the receipt',idle:({paused:'research paused',standby:'provider quota reported · retrying on schedule',waiting:'waiting for the next eligible wake',blocked:'operator review required',running:'preparing work',idle:'between wakes'})[runtime.state]};
+      setText(statusEl,runtime.activity.active?(runtime.activity.stage==='provider_wait'?'API QUEUE':'LIVE ACTIVITY'):'RUNTIME '+runtime.state.toUpperCase());
+      statusEl.dataset.state=runtime.activity.active?(runtime.activity.stage==='provider_wait'?'waiting':'running'):runtime.state;
       statusEl.title=runtime.state==='standby'?(runtime.reason||'Provider quota reported; retrying on the regular schedule'):`Runtime ${runtime.state}`;
       setText(traceEl,`Now · ${labels[runtime.activity.stage]}`);
       traceEl.title=`Sampled ${new Date(runtime.observed_at).toLocaleTimeString()}`;
@@ -160,7 +160,7 @@
     const runtimeX=(points[1].x+points[2].x)/2,runtimeY=y-scale*.16;
     // This overlay uses reported runtime phases, never the historical replay.
     // Request-in-flight is observable; model cognition and network byte transfer are not.
-    const providerPhase=runtime?.activity?.active?({context:'context',provider:'request',governance:'proposal',continuity:'proposal'}[runtime.activity.stage]||'idle'):'idle';
+    const providerPhase=runtime?.activity?.active?({context:'context',provider_wait:'queued',provider:'request',provider_uncoordinated:'request',provider_response:'proposal',governance:'proposal',continuity:'proposal'}[runtime.activity.stage]||'idle'):'idle';
     canvas.dataset.providerPhase=providerPhase;
     const providerLive=providerPhase==='request'||providerPhase==='proposal';
     const providerPulse=providerLive&&!reduced?1+Math.sin(t*3)*.07:1;
@@ -171,7 +171,7 @@
       ctx.globalAlpha=.95;ctx.fillStyle=p.green;ctx.shadowColor=p.green;ctx.shadowBlur=reduced?0:24;
       ctx.beginPath();ctx.arc(runtimeX,runtimeY,small?7:10,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
     }
-    ctx.globalAlpha=.85;ctx.fillStyle=providerLive?p.ink:p.muted;ctx.font=`${small?8:9}px ui-monospace,monospace`;ctx.textAlign='center';ctx.fillText(providerLive?'PROVIDER':'MODEL / RUNTIME',runtimeX,runtimeY+radius+12);
+    ctx.globalAlpha=.85;ctx.fillStyle=providerLive?p.ink:p.muted;ctx.font=`${small?8:9}px ui-monospace,monospace`;ctx.textAlign='center';ctx.fillText(providerPhase==='queued'?'API QUEUE':(providerLive?'PROVIDER':'MODEL / RUNTIME'),runtimeX,runtimeY+radius+12);
     const inbound=providerPhase==='proposal';
     const linkStart=inbound?{x:runtimeX,y:runtimeY}:points[1];
     const linkEnd=inbound?points[2]:{x:runtimeX,y:runtimeY};
@@ -219,7 +219,7 @@
     if(runtime?runtime.activity.active:(runner==='running'||runner==='campaign')){
       ctx.globalAlpha=.35+.2*Math.sin(t*2);ctx.strokeStyle=p.green;ctx.lineWidth=1.2;
       ctx.beginPath();ctx.ellipse(cx,cy,scale*.69,scale*.35,0,0,Math.PI*2);ctx.stroke();
-      ctx.globalAlpha=.9;ctx.fillStyle=p.green;ctx.font='9px ui-monospace,monospace';ctx.textAlign='right';ctx.fillText('EXECUTION ACTIVE',w-18,22);
+      ctx.globalAlpha=.9;ctx.fillStyle=p.green;ctx.font='9px ui-monospace,monospace';ctx.textAlign='right';ctx.fillText(runtime?.activity?.stage==='provider_wait'?'WAITING FOR API SLOT':'EXECUTION ACTIVE',w-18,22);
     }
 
     if(now<flashUntil&&!reduced){

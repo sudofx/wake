@@ -139,7 +139,15 @@
   // whether an older model happened to include the word in its raw title.
   const postResearchTopic=post=>s.projects?.[post.project]?.domain;
   const postTopic=post=>Number(post.created_version)%10===0?'reflection':postResearchTopic(post);
-  const postMeta=(post,invocation)=>{const reflection=postTopic(post)==='reflection',topic=postResearchTopic(post),status=String(post.status||'published');return `<div class="record-panel-meta blog-meta"><span class="record-type">${reflection?'REFLECTION':'BLOG'}</span><span class="record-status">${badge(status,status.toUpperCase())}</span><span class="record-topics">${topic?topicTag(topic,'blog'):''}</span><time datetime="${esc(invocation.time)}">${esc(fmt(invocation.time))}</time></div>`;};
+  const postMeta=(post,invocation)=>{
+    const reflection=postTopic(post)==='reflection',topic=postResearchTopic(post),status=String(post.status||'published');
+    // A shared article can reference the leader's invocation, which is not part
+    // of a child's independent record. Its local publication receipt supplies
+    // the display time without importing or inventing an invocation.
+    const time=post.published_at||invocation?.time;
+    const timeHtml=time?`<time datetime="${esc(time)}">${esc(fmt(time))}</time>`:'<span>Publication time unavailable</span>';
+    return `<div class="record-panel-meta blog-meta"><span class="record-type">${reflection?'REFLECTION':'BLOG'}</span><span class="record-status">${badge(status,status.toUpperCase())}</span><span class="record-topics">${topic?topicTag(topic,'blog'):''}</span>${timeHtml}</div>`;
+  };
   const postTitle=post=>{
     const title=String(post.title||'').trim();
     if(!(Number(post.created_version)%10===0))return title;

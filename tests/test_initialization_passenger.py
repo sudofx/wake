@@ -126,7 +126,7 @@ class InitializationPassengerTests(unittest.TestCase):
         update = {**observation("Correction"), "supersedes": "first-1", "status": "superseded"}
         self.workspace.append(snapshot["generation"], "second", [update])
         content = self.workspace.path.read_text()
-        self.assertIn("Assessment first-1", content)
+        self.assertIn("<!-- passenger-assessment:first-1 -->", content)
         self.assertIn("Supersedes: first-1", content)
         self.assertIn("raise RuntimeError", content)
         self.assertEqual(self.workspace.append(snapshot["generation"], "second", [update]), "already-applied")
@@ -140,6 +140,34 @@ class InitializationPassengerTests(unittest.TestCase):
             results = list(pool.map(append, range(12)))
         self.assertEqual(results, ["applied"] * 12)
         self.assertEqual(self.workspace.path.read_text().count("<!-- passenger-submission:"), 12)
+
+    def test_private_notes_are_readable_and_can_correct_legacy_entries(self):
+        snapshot = self.workspace.snapshot()
+        self.workspace.path.write_text('## Assessment legacy-1: Old note\nPreserve this.\n')
+        note = {**observation('A connection worth investigating'), 'supersedes': 'legacy-1'}
+        self.workspace.append(snapshot['generation'], 'new-note', [note], cycle=19)
+        text = self.workspace.path.read_text()
+        self.assertIn('Preserve this.', text)
+        self.assertIn('## A connection worth investigating', text)
+        self.assertIn('Accepted cycle 19', text)
+        self.assertIn('### What stands out', text)
+        self.assertNotIn('Candidate change (inert proposal)', text)
+
+    def test_private_context_contains_research_and_excludes_other_private_receipts(self):
+        from wake.passenger import request
+        state = {'version': 19, 'objective': 'Explore useful connections',
+                 'journal': [{'cycle': 18, 'title': 'A surprising result', 'summary': 'Two explanations disagree.'}],
+                 'notebooks': {'n': {'title': 'An open question', 'findings': 'A limited result',
+                                     'limitations': 'One small sample', 'next_questions': 'Does it generalize?'}},
+                 'invocations': {'private': {'phase': 'passenger', 'reason': 'excluded-private-canary'},
+                                 'public': {'phase': 'proposal', 'status': 'deferred', 'reason': 'Quota pressure'}}}
+        data = request({'assessments': 'Prior private note', 'truncated': False}, state)
+        rendered = json.dumps(data)
+        for text in ('Two explanations disagree.', 'One small sample', 'Does it generalize?', 'Quota pressure'):
+            self.assertIn(text, rendered)
+        self.assertNotIn('excluded-private-canary', rendered)
+        self.assertIn('Prior private note', rendered)
+        self.assertEqual(data['tools'], [])
 
     def test_operator_reset_rejects_stale_updates_and_recovers_partial_reset(self):
         old = self.workspace.snapshot()

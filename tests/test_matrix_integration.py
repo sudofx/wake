@@ -90,7 +90,7 @@ class WakeMatrixIntegrationTests(unittest.TestCase):
             finally:
                 store.close()
 
-    def test_existing_wake_reset_clears_matrix_and_reenable_starts_fresh(self) -> None:
+    def test_existing_wake_reset_atomically_enables_fresh_campaign(self) -> None:
         matrix = continuity_matrix()
         with tempfile.TemporaryDirectory() as tempdir:
             store = RecordStore(Path(tempdir), initialize_empty=True)
@@ -102,13 +102,34 @@ class WakeMatrixIntegrationTests(unittest.TestCase):
                     {"status": "completed", "score": 0.75},
                 )
                 before = store.continuity_matrix_progress()
+                history = store.record.history()
                 reset_state = store.reset()
                 self.assertEqual(reset_state["version"], 0)
                 self.assertEqual(before["completed_count"], 1)
-                self.assertIsNone(store.continuity_matrix_progress())
-                enabled = store.enable_continuity_matrix()
+                self.assertEqual(store.record.history()[:-1], history)
+                enabled = store.continuity_matrix_progress()
                 self.assertEqual(enabled["completed_count"], 0)
                 self.assertEqual(enabled["results"], {})
+                store.audit()
+            finally:
+                store.close()
+
+
+    def test_reset_rejection_preserves_previous_campaign_and_state(self):
+        from unittest.mock import patch
+        from wake.kernel import ApplicationDecision
+        with tempfile.TemporaryDirectory() as folder:
+            store = RecordStore(Path(folder), initialize_empty=True)
+            try:
+                store.enable_continuity_matrix()
+                before = store.load()
+                campaign = store.continuity_matrix_progress()
+                with patch('wake.application.enable_continuity_matrix',
+                           return_value=ApplicationDecision(False, reasons=('campaign rejected',))):
+                    with self.assertRaises(Rejected): store.reset()
+                self.assertEqual(store.load(), before)
+                self.assertEqual(store.continuity_matrix_progress(), campaign)
+                store.audit()
             finally:
                 store.close()
 

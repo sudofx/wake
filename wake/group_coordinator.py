@@ -71,7 +71,7 @@ class GroupProviderGate:
             )
         try:
             self._check_pause()
-            yield
+            yield bool(token)
         finally:
             if token:
                 try:

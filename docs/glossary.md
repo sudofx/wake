@@ -63,3 +63,7 @@ is confined to Passenger. Public display removes legacy heading markers without
 rewriting historical receipts.
 
 **Lossless storage compression:** a smaller physical encoding that reconstructs the exact original record bytes. It is distinct from a model summary, which can omit detail. See [kernel storage](kernel.md#physical-storage-and-compatibility).
+
+**Zero-cycle reset:** an operator action that clears active research progress and
+starts a fresh enabled continuity campaign. It leaves research stopped or paused
+until explicitly started; see [reset operation](standalone.md).

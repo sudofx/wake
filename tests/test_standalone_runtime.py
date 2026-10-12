@@ -17,6 +17,17 @@ from wake.governance import Rejected
 
 
 class StandaloneRuntimeTests(unittest.TestCase):
+    def test_next_group_post_pause_survives_until_a_new_publication(self):
+        from wake.standalone import _pause_after_introduction, _research_control
+        with tempfile.TemporaryDirectory() as directory:
+            control = Path(directory) / '.wake-runner-control.json'
+            control.write_text(json.dumps({'research':'running','pause_after_group_checkpoint':2}))
+            self.assertFalse(_pause_after_introduction(directory, {'group_bob':{'checkpoint':1}}))
+            self.assertEqual(_research_control(directory, 'paused')[0], 'running')
+            self.assertTrue(_pause_after_introduction(directory, {'group_bob':{'checkpoint':18}}))
+            self.assertEqual(_research_control(directory, 'running')[0], 'paused')
+            self.assertNotIn('pause_after_group_checkpoint', json.loads(control.read_text()))
+
     def test_operator_first_post_pause_is_consumed_without_research_progress(self):
         from wake.standalone import _pause_after_introduction, _research_control
         with tempfile.TemporaryDirectory() as directory:

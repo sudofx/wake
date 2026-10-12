@@ -207,6 +207,7 @@ def execute(args):
                 shutil.rmtree(target)
             published = export(engine.store, target, standalone=True)
             return {"reset": True, "cycles": state["version"],
+                    "continuity_matrix_enabled": True,
                     "head": published["head"], "path": published["path"]}
         with engine.store.lock():
             if args.command == "time-dilation":

@@ -4,13 +4,13 @@
  */
 window.WakeRuntimeActivityView = status => {
   const states=new Set(['running','idle','paused','waiting','standby','blocked']);
-  const stages=new Set(['idle','record','context','collecting','provider','governance','continuity','receipt']);
+  const stages=new Set(['idle','record','context','collecting','provider_wait','provider','provider_uncoordinated','provider_response','governance','continuity','receipt']);
   if(status?.mode!=='standalone'||status.activity_schema!==1||status.capabilities?.live_activity!==true||
      typeof status.runtime_id!=='string'||!status.runtime_id||!states.has(status.state)||
      typeof status.observed_at!=='string'||!Number.isFinite(Date.parse(status.observed_at))||!stages.has(status.activity?.stage))return null;
-  const active=status.state==='running'&&status.activity.active===true&&status.activity.stage!=='idle';
+  const active=['running','standby'].includes(status.state)&&status.activity.active===true&&status.activity.stage!=='idle';
   return {...status,activity:{...status.activity,active,
-    coordinate_id:active&&['provider','governance','continuity'].includes(status.activity.stage)&&
+    coordinate_id:active&&['provider','provider_uncoordinated','provider_response','governance','continuity'].includes(status.activity.stage)&&
       typeof status.activity.coordinate_id==='string'?status.activity.coordinate_id:null}};
 };
 (() => {

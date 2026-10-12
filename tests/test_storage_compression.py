@@ -183,6 +183,25 @@ class StorageCompressionTests(unittest.TestCase):
                 with self.assertRaises(IntegrityError):
                     _decode_projection_state(_PROJECTION_DICTIONARY_PREFIX + zlib.compress(packed))
 
+    def test_span_scanner_preserves_existing_dictionary_bytes_and_rejections(self):
+        import re
+        from wake.kernel import compression
+        old_scanner = re.compile(rb'"(?:[^"\\]|\\.)*"')
+        strings = [('ordinary text ' * 900), ('quotes " backslashes \\ newline\n café ✳︎ ' * 200),
+                   ('\\' * 300 + '"' * 300), ('\t\r\n' * 300)]
+        raw = json.dumps({'strings': strings * 20}, ensure_ascii=False).encode()
+        current = compression.encode_dictionary(raw, 6)
+        self.assertIsNotNone(current)
+        with patch.object(compression, '_STRING', old_scanner):
+            previous = compression.encode_dictionary(raw, 6)
+            self.assertEqual(compression.decode_dictionary(zlib.decompress(current)), raw)
+        self.assertEqual(current, previous)
+        self.assertEqual(compression.decode_dictionary(zlib.decompress(previous)), raw)
+        for token in (b'"' + b'x' * 300 + b'\\"', b'"' + b'x' * 300 + b'"trailing',
+                      b'"' + b'x' * 300 + b'\\\n"'):
+            self.assertIsNone(compression._STRING.fullmatch(token))
+            self.assertIsNone(old_scanner.fullmatch(token))
+
     def test_v12_upgrade_preserves_semantic_rows_and_exact_cache(self):
         before = self.record.full_replay()
         history = self.record.history()

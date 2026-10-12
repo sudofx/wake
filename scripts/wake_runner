@@ -593,7 +593,7 @@ reset_research() {
         ack="$(docker exec "$name" python -c 'import json,pathlib; p=pathlib.Path("/data/.wake-runner-reset-ack.json"); print(json.dumps(json.loads(p.read_text())) if p.exists() else "")' 2>/dev/null || true)"
         if [[ -n "$ack" && "$ack" == *"\"reset_id\": \"$reset_id\""* ]]; then
             [[ "$ack" == *'"error": null'* ]] || fail "Research reset failed: $ack"
-            printf 'Research reset complete at WAKE 0; research is stopped. Use --research start to resume.\n'
+            printf 'Research reset complete at WAKE 0; fresh continuity@1 campaign enabled; research is stopped. Use --research start to resume.\n'
             return 0
         fi
         sleep 0.5

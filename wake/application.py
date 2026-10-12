@@ -455,6 +455,14 @@ def _reset_to_zero(current: JsonValue, payload: JsonValue) -> ApplicationDecisio
     return ApplicationDecision(True, next_envelope)
 
 
+def _reset_with_continuity(current: JsonValue, payload: JsonValue) -> ApplicationDecision:
+    """Reset and enroll atomically; retain old reset semantics for historical replay."""
+    reset = _reset_to_zero(current, payload)
+    if not reset.accepted:
+        return reset
+    return enable_continuity_matrix(reset.next_state, {"matrix": MATRIX_KEY})
+
+
 WAKE_APPLICATION = ApplicationDefinition(
     APPLICATION_ID,
     APPLICATION_VERSION,
@@ -467,6 +475,7 @@ WAKE_APPLICATION = ApplicationDefinition(
         ApplicationAction("enable_continuity_matrix", enable_continuity_matrix),
         ApplicationAction("record_continuity_matrix_result", record_continuity_matrix_result),
         ApplicationAction("reset_to_zero", _reset_to_zero),
+        ApplicationAction("reset_with_continuity", _reset_with_continuity),
     ),
     state_storage="event_log",
 )

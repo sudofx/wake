@@ -60,18 +60,24 @@ def _write_control_ack(directory, reset_id, error=None):
 
 
 def _pause_after_introduction(directory, state):
-    """Consume an operator's local first-post pause before any research effect."""
-    if state.get('group_bob', {}).get('checkpoint', 0) < 1:
-        return False
+    """Consume an operator's group-post pause before the next research effect."""
     target = Path(directory) / _CONTROL_FILE
     try:
         value = json.loads(target.read_text())
     except FileNotFoundError:
         return False
-    if value.get('pause_after_group_introduction') is not True:
+    checkpoint = value.get('pause_after_group_checkpoint')
+    if checkpoint is None:
+        if value.get('pause_after_group_introduction') is not True:
+            return False
+        checkpoint = 1
+    if isinstance(checkpoint, bool) or not isinstance(checkpoint, int) or checkpoint < 1:
+        raise ValueError('Group publication pause requires a positive checkpoint integer')
+    if state.get('group_bob', {}).get('checkpoint', 0) < checkpoint:
         return False
     value['research'] = 'paused'
-    value.pop('pause_after_group_introduction')
+    value.pop('pause_after_group_introduction', None)
+    value.pop('pause_after_group_checkpoint', None)
     temporary = target.with_suffix('.intro.tmp')
     temporary.write_text(json.dumps(value))
     os.replace(temporary, target)

@@ -13,12 +13,51 @@ from unittest.mock import patch
 from wake.engine import DEFAULTS
 from wake.group_coordinator import GroupProviderGate
 from wake.providers import Gemini, ProviderCallPaused
+from wake.kernel.generation import GenerationResponse
 from wake.runtime_supervisor import (InvalidDevelopmentSource, development_worker,
                                      source_signature, watch_development_sources)
 from wake.standalone import _research_control, bootstrap
 
 
 class DevelopmentControlsTests(unittest.TestCase):
+    def test_provider_activity_distinguishes_queue_transport_and_response(self):
+        with patch.dict(os.environ, {'GEMINI_API_KEY': 'fixture-key'}):
+            provider = Gemini(dict(DEFAULTS, free_tier_confirmed=True))
+            events = []
+            provider.request_activity = events.append
+            gate = GroupProviderGate('http://fixture', 'fixture')
+            provider.request_gate = gate
+            def coordinator(packet):
+                if packet['action'] == 'acquire':
+                    self.assertEqual(events, ['provider_wait'])
+                    self.assertEqual(provider.provider_requests_sent, 0)
+                    return {'status': 'granted', 'token': 'fixture'}
+                return {'status': 'released'}
+            def generate(request):
+                self.assertEqual(events[-1], 'provider')
+                return GenerationResponse('gemini', request.model, '{}')
+            with patch.object(gate, '_request', side_effect=coordinator), patch(
+                    'wake.providers.GeminiGenerationProvider.generate', side_effect=generate):
+                provider.propose({'context': {}})
+            self.assertEqual(events, ['provider_wait', 'provider', 'provider_response'])
+
+    def test_coordination_bypass_is_visible_and_observer_failure_is_inert(self):
+        with patch.dict(os.environ, {'GEMINI_API_KEY': 'fixture-key'}):
+            provider = Gemini(dict(DEFAULTS, free_tier_confirmed=True))
+            events = []
+            def observe(stage):
+                events.append(stage)
+                raise RuntimeError('Display unavailable')
+            provider.request_activity = observe
+            gate = GroupProviderGate('http://fixture', 'fixture')
+            provider.request_gate = gate
+            with patch.object(gate, '_request', side_effect=OSError('offline')), patch(
+                    'wake.providers.GeminiGenerationProvider.generate', return_value=
+                    GenerationResponse('gemini', provider.model, '{}')) as generate:
+                provider.propose({'context': {}})
+            generate.assert_called_once()
+            self.assertEqual(events, ['provider_wait', 'provider_uncoordinated', 'provider_response'])
+
     def source(self, root):
         (root / 'wake').mkdir()
         (root / 'wake/__init__.py').write_text('')

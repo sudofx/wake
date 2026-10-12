@@ -8,6 +8,7 @@ import threading
 import uuid
 
 STAGES = frozenset({'idle', 'record', 'context', 'collecting', 'provider',
+                    'provider_wait', 'provider_uncoordinated', 'provider_response',
                     'governance', 'continuity', 'receipt'})
 
 

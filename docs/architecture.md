@@ -405,6 +405,9 @@ Container activity is ephemeral, read-only telemetry exposed through `/runtime.j
 cannot change permission, provider effects, accepted state or receipts. Only stage,
 public invocation/cell identifiers and timestamps are exposed, never request/context
 contents, credentials or model reasoning. The durable record remains authority.
+The local Gemini adapter reports queue waiting before slot acquisition, request
+dispatch only after acquisition, and response arrival before proposal decoding.
+A coordination failure that falls back to an independent call is visibly distinct.
 
 Daily API quota exhaustion is a recoverable standby state, distinct from operator
 pause and code/data failure. Standalone and Codespaces runtimes expose `standby`
@@ -466,3 +469,7 @@ Local in-place resets retain their history and are a separate operation.
 Bob’s public articles use plain prose, including the built-in welcome. Markdown
 is confined to Passenger. Public display removes legacy heading markers without
 rewriting historical receipts.
+
+Local `reset_with_continuity` resets and enrolls in one governed action; historical
+`reset_to_zero` receipts retain their original replay meaning. Hosted fresh Reset
+also enables continuity before checkpointing. Neither path starts research.
