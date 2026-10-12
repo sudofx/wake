@@ -21,6 +21,28 @@ _HOP_HEADERS = {"connection", "keep-alive", "proxy-authenticate", "proxy-authori
 _MAX_BOB_PACKET = 512_000
 _MAX_GROUP_BOB_BYTES = 4_000_000
 
+# Console uses the same gauge glyph as the application masthead.
+_PAGE_ICONS = {
+    'Main': (
+        '<svg viewBox="0 0 24 24" aria-hidden="true">'
+        '<path d="m3 10 9-7 9 7M5 9v11h5v-6h4v6h5V9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'
+        '</svg>'
+    ),
+    'Blog': (
+        '<svg viewBox="0 0 24 24" aria-hidden="true">'
+        '<path d="M12 5v15M12 5C9 3 5 3 3 4v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-2-1-6-1-9 1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'
+        '</svg>'
+    ),
+    'Console': (
+        '<svg viewBox="0 0 24 24" aria-hidden="true">'
+        '<path d="M4.2 16.8a8.8 8.8 0 1 1 15.6 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'
+        '<path d="M6.8 14.3l-1.7-.8M8.2 9.8 7 8.5M12 8V6.2M15.8 9.8 17 8.5M17.2 14.3l1.7-.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>'
+        '<path d="M12 16l3.8-4.4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>'
+        '<circle cx="12" cy="16" r="1.35" fill="currentColor"/>'
+        '</svg>'
+    ),
+}
+
 
 class GroupCallCoordinator:
     """Ephemeral FIFO for provider calls; container research remains independent."""
@@ -514,7 +536,8 @@ class GroupProxy(BaseHTTPRequestHandler):
         base = href.rsplit("/", 1)[0] if href else ""
         links = "".join(
             f'<a href="{escape(base + path, quote=True)}" target="_blank" '
-            f'rel="noopener noreferrer" aria-label="{label} · {escape(member, quote=True)}">{label}</a>'
+            f'rel="noopener noreferrer" aria-label="{label} · {escape(member, quote=True)}" '
+            f'title="{label}">{_PAGE_ICONS[label]}</a>'
             for label, path in (("Main", "/index.html"), ("Blog", "/index.html#blog"), ("Console", "/console.html"))
         ) if href else '<span>Unavailable</span>'
         return (
@@ -550,8 +573,8 @@ class GroupProxy(BaseHTTPRequestHandler):
             'display:flex;align-items:center;justify-content:space-between;padding:0 max(22px,calc((100vw - 980px)/2))}'
             '.brand{font-size:25px;line-height:1;font-weight:800;letter-spacing:-1.1px}'
             '.masthead-identity{display:flex;flex-direction:column;align-items:flex-start;gap:5px}'
-            '.hosted-console-link{color:var(--blue);font-size:11px;font-weight:700;line-height:1.2}'
-            '.hosted-console-link:hover{text-decoration:underline}'
+            '.hosted-console-link{color:var(--blue);display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px}'
+            '.hosted-console-link svg{width:24px;height:24px}'
             '.masthead-tools{display:flex;align-items:center;gap:18px}.theme-switch{position:relative;display:inline-flex;'
             'align-items:center;cursor:pointer}.theme-switch input{position:absolute;width:1px;height:1px;margin:0;opacity:0}'
             '.theme-track{display:inline-flex;align-items:center;flex:0 0 34px;width:34px;height:18px;padding:2px;'
@@ -585,9 +608,10 @@ class GroupProxy(BaseHTTPRequestHandler):
             'font-size:13px;font-weight:700;transition:background .15s,border-color .15s,transform .15s}'
             '.gateway-domain{font:600 11px/1.2 ui-monospace,monospace;color:var(--muted)}'
             '.member-identity{display:flex;align-items:center;justify-content:space-between;width:100%}'
-            '.member-links{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;width:100%}'
-            '.member-links a{color:var(--blue);font-size:11px;padding:3px 0;text-decoration:none}'
-            '.member-links a:hover{text-decoration:underline}.member-links a:focus-visible{outline:2px solid var(--blue);outline-offset:3px}'
+            '.member-links{display:flex;gap:2px;justify-content:center;width:100%}'
+            '.member-links a{color:var(--blue);display:inline-flex;align-items:center;justify-content:center;flex:1;min-width:0;height:40px;border-radius:7px}'
+            '.member-links svg{width:22px;height:22px;flex-shrink:0}'
+            '.member-links a:hover{background:var(--soft)}.member-links a:focus-visible{outline:2px solid var(--blue);outline-offset:3px}'
             '.member-button small{font-size:12px;color:var(--muted);font-weight:400}'
             '.member-status-light{display:inline-flex;align-items:center;justify-content:center;width:12px;height:12px;flex:0 0 12px}'
             '.member-status-light i{display:block;width:10px;height:10px;border-radius:50%;background:#8a96a8}'
@@ -620,9 +644,10 @@ class GroupProxy(BaseHTTPRequestHandler):
             'document.documentElement.dataset.theme=dark?"dark":"light"})();</script></head><body>'
             '<header class="masthead"><div class="masthead-identity"><div class="brand">WAKE<span class="brand-star">✳︎</span></div>'
             f'<span class="gateway-domain">{escape(os.environ.get("WAKE_PUBLIC_HOSTNAME", ""))}</span>'
-            '<a class="hosted-console-link" href="https://sudofx.github.io/wake/console.html" '
-            'target="_blank" rel="noopener noreferrer">Hosted Console</a></div>'
-            '<div class="masthead-tools"><label class="theme-switch" title="Following system theme">'
+            '</div><div class="masthead-tools"><a class="hosted-console-link" href="https://sudofx.github.io/wake/console.html" '
+            'target="_blank" rel="noopener noreferrer" aria-label="Hosted Console" title="Hosted Console">'
+            f'{_PAGE_ICONS["Console"]}</a>'
+            '<label class="theme-switch" title="Following system theme">'
             '<input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme">'
             '<span class="theme-track" aria-hidden="true"><i></i></span></label>'
             '<div class="masthead-label"><i></i>LOCAL GATEWAY</div></div></header>'
