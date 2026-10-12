@@ -473,7 +473,10 @@ def main(reset=False, enable_continuity_matrix=False):
             # The old ledger remains immutable on its verified remote archive.
             # Fresh authority must not reimport that ledger or its quota counters.
             with authority_store.lock():
-                _, old_head = authority_store.audit()
+                # StateBranch.open already verified complete genesis replay on
+                # restoration. Read its bound projection here rather than replay
+                # the same historical ledger a second time.
+                _, old_head = authority_store.replay()
                 archive_branch = branch.archive_before_reset()
                 archived = branch.git("ls-remote", "--exit-code", "--heads", "origin",
                                       f"refs/heads/{archive_branch}").stdout.split()[0]
