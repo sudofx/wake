@@ -1843,6 +1843,11 @@ def transition(state, proposal, invocation, historical=False):
                 bool(state.get("charter")),
                 "Research charter is not enabled",
             )
+            if not historical:
+                from .research_reviews import notebook_review
+                require(not any(notebook_review(result, result["notebooks"][nid])
+                                for nid in action.get("notebooks", []) if nid in result["notebooks"]),
+                        "Corrected notebook revisions need source review before supporting new publication")
 
             # Blog must come LAST.
             #

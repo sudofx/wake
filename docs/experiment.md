@@ -320,3 +320,7 @@ Quality policy version 3 requires a critical review for every claim: supplied co
 ### Fair continuity readouts
 
 Continuity@1 keeps the same coordinates, scoring rubric, definition digest and stored results. Missing or invalid probe output is reported separately from a valid answer that failed factual checks. The displayed mean uses valid answers; the original mean including invalid zeros remains available as `historical_mean_score`. Failure counts exclude invalid responses. Coverage remains all completed trials, with per-lens counts visible. Future application traversal chooses the least-covered lens first, then its original coordinate order, so a short campaign does not sample only reconstruction. This changes sampling, not historical scores or the immutable kernel definition.
+
+### Evidence and results versus activity
+
+The research readout separates canonical source works, distinct supporting passages, critical-review coverage, operator corrections and measured reproductions from cycles and notebook revisions. Rewording a claim, repeating a source or importing its mirror does not create another supporting passage. Older unclassified notebooks remain visible. These are inspectable output counts, not a score for understanding, novelty or scientific truth. A corrected notebook revision cannot support a new blog claim until a new governed revision addresses its source use.

@@ -1588,6 +1588,9 @@ class Engine:
         is no longer strong enough. Current maturation/provider context must not
         mistake those artifacts for valid present-day synthesis.
         """
+        from .research_reviews import notebook_review
+        if notebook_review(state, notebook):
+            return []
         return [
             evidence_id for evidence_id in notebook.get("evidence", [])
             if self.durable_notebook_source_payload(state, evidence_id) is not None

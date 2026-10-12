@@ -10,6 +10,7 @@ import json
 from urllib.parse import urlsplit
 
 from .evidence_quality import evidence_quality
+from .research_progress import research_progress
 from .provenance import build_map
 from .research import effective_evidence_role, effective_host_tier, source_observation_readable
 
@@ -126,6 +127,10 @@ def build_research_projection(state, events, head, *, generated=None, metrics=No
     for n in candidates:
         detail = n.get('detail', {})
         item = {k: deepcopy(detail[k]) for k in fields if k in detail}
+        if n['kind'] == 'notebook':
+            review = notebook_review(state, detail)
+            if review:
+                item['source_correction'] = review['correction']
         if n['kind'] == 'evidence':
             eid = detail.get('id') or n['id'].removeprefix('evidence:')
             item.update(source=detail.get('source'), evidence_class=classes.get(eid, 'unclassified'))
@@ -168,6 +173,7 @@ def build_research_projection(state, events, head, *, generated=None, metrics=No
                    'regime': deepcopy(state.get('experimental', {}).get('controls', {}).get('time_dilation', {}))},
         'records': records, 'record_totals': totals,
         'evidence_quality': evidence_quality(state),
+        'progress': research_progress(state),
         'frontier': {'acquisition': [{k: deepcopy(x[k]) for k in ('project', 'capability_blocked', 'stage', 'last_outcome', 'consecutive_no_progress') if k in x}
                                     | {'project': key} for key, x in state.get('acquisition', {}).items()],
                      'deferred_topics': list(state.get('attention', {}).get('deferred', {}))},
