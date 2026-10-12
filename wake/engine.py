@@ -1182,6 +1182,9 @@ class Engine:
         # Under overflow, keep the same model-facing contract in compressed form;
         # deterministic governance remains the authority after generation.
         request["system"] = BOUNDED_SYSTEM + BOUNDED_RESEARCH_SYSTEM
+        if context.get("research_quality_policy"):
+            from .prompts import QUALITY_RESEARCH_SYSTEM
+            request["system"] += QUALITY_RESEARCH_SYSTEM
         if context.get("memory_mode") == "active":
             from .memory import BOUNDED_ACTIVE_MEMORY_SYSTEM
             request["system"] += BOUNDED_ACTIVE_MEMORY_SYSTEM
@@ -2468,6 +2471,12 @@ class Engine:
         # Rehydration and focusing can change visible citation eligibility. Build
         # the final contract from that view while retaining full-state queue and
         # prior artifact identities, even in routine compact memory.
+        if state.get("research_quality_policy"):
+            from .prompts import QUALITY_RESEARCH_SYSTEM
+            request["context"]["research_quality_policy"] = state["research_quality_policy"]
+            request["context"]["source_corrections"] = list(state.get("research_reviews", {}).values())[-8:]
+            request["context"]["measured_results"] = list(state.get("reproductions", {}).values())[-4:]
+            request["system"] += QUALITY_RESEARCH_SYSTEM
         prior_constraints = request["context"].get("proposal_constraints")
         if state.get("charter"):
             request["context"]["evidence_quality"] = delivered_context["evidence_quality"]

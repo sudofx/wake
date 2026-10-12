@@ -207,6 +207,7 @@ def _notebook_html(notebook, state):
     review = notebook_review(state, notebook)
     correction = (f'<aside class="research-note"><h2>Source correction</h2><p>{_html_text(review["correction"])}</p></aside>' if review else "")
     claims_html = "".join(f'<li><strong>{html.escape(c.get("certainty", "unclassified"))}</strong> · {_html_text(c["statement"])}</li>' for c in notebook.get("claims", []))
+    review_html = "".join(f'<li>{_html_text(c["statement"])}<p>Alternative: {_html_text(c["review"]["alternative"])}</p><p>Would change the conclusion: {_html_text(c["review"]["would_change_mind"])}</p><p>Counterevidence: {html.escape(", ".join(c["review"]["counterevidence"]) or "Not supplied; remains missing")}</p></li>' for c in notebook.get("claims", []) if c.get("review"))
     source_items = []
     for eid in notebook["evidence"]:
         evidence = state["evidence"][eid]
@@ -236,7 +237,7 @@ def _notebook_html(notebook, state):
     body = (
         f'<p class="lede">{_html_text(notebook["summary"])}</p>'
         f'<p class="meta">Evidence profile · {source_count} distinct qualifying source {source_word}{cross_note}{nonqualifying_note}</p>'
-        + correction + (f'<h2>Claim labels</h2><ul>{claims_html}</ul>' if claims_html else '<p class="meta">Historical claims: certainty not classified.</p>') + f'<h2>Findings</h2><p>{_html_text(notebook["findings"])}</p>'
+        + correction + (f'<h2>Critical review</h2><ul>{review_html}</ul><p>Peer reuse and distinct works do not establish independent confirmation.</p>' if review_html else "") + (f'<h2>Claim labels</h2><ul>{claims_html}</ul>' if claims_html else '<p class="meta">Historical claims: certainty not classified.</p>') + f'<h2>Findings</h2><p>{_html_text(notebook["findings"])}</p>'
         f'<h2>Limitations and competing views</h2><p>{_html_text(notebook["limitations"])}</p>'
         f'<h2>Next questions</h2><p>{_html_text(notebook["next_questions"])}</p>'
         f'<h2>Collected sources</h2><ul class="sources">{"".join(source_items)}</ul>'

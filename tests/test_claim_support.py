@@ -48,3 +48,18 @@ class ClaimSupportTests(unittest.TestCase):
         validate_claims(action, state)
         claim['statement'] = 'This proves chemical heredity.'
         with self.assertRaises(Rejected): validate_claims(action, state)
+
+    def test_critical_review_cannot_invent_counterevidence_or_independence(self):
+        from wake.claim_support import support_provenance
+        state, action = self.example()
+        state['research_quality_policy'] = 3
+        claim = action['claims'][0]
+        claim.update(certainty='paper-supported', result='', review={'counterevidence': [], 'alternative': 'Equilibrium sampling may explain the observation without any temporal memory.', 'would_change_mind': 'A controlled temporal intervention showing persistent history dependence would change this reading.'})
+        validate_claims(action, state)
+        state['evidence']['e']['peer_origin'] = {'instance_id': 'peer'}
+        receipt = support_provenance(action, state)[0]
+        self.assertEqual(receipt['distinct_works'], 1)
+        self.assertEqual(receipt['independent_confirmation'], 'not-established')
+        self.assertTrue(receipt['peer_imported'])
+        claim['review']['counterevidence'] = ['fabricated']
+        with self.assertRaises(Rejected): validate_claims(action, state)

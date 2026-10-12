@@ -1761,6 +1761,8 @@ def transition(state, proposal, invocation, historical=False):
                             minimum_sources=notebook_min_sources,
                         )
 
+            support_receipt = None
+
             # Repository-analysis is a configured topic capability, not a
             # special hardcoded topic identity. When enabled, its notebooks
             # must stay grounded in source-controlled files from that topic's
@@ -1809,8 +1811,12 @@ def transition(state, proposal, invocation, historical=False):
                     "and newly retrieved evidence",
                 )
 
+            if state.get("research_quality_policy", 0) >= 3:
+                from .claim_support import support_provenance
+                support_receipt = support_provenance(action, result)
             result["notebooks"][action["id"]] = {
                 **action,
+                **({"support_provenance": support_receipt} if support_receipt is not None else {}),
                 "revision": (
                     old or {}
                 ).get("revision", 0) + 1,

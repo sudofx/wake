@@ -355,22 +355,18 @@ Inherited commitments survive replacement. Due work takes priority; never replac
 Follow persisted focus and Attention. Do not cancel commitments, erase history, change rules/objective or take external actions.
 """
 
-RESEARCH_SYSTEM += """
-When context.research_quality_policy is present, every notebook requires claims.
-Each claim names a statement and support items with evidence ID, an exact substantive
-passage from the collected source, and an explanation of what that passage establishes
-and what it does not. findings must be exactly the statements followed by their
-[evidence-ID] citations, separated by a blank line. Dictionaries and funding notices
-are background only. Exact passages establish traceability, not semantic truth; do
-not stretch a passage into a mechanism or result it never reports.
+QUALITY_RESEARCH_SYSTEM = """
+Research quality: notebook claims require statement, support (evidence ID, exact
+substantive passage from the collected source, explanation of scope). findings must
+be exactly each statement followed by its [evidence-ID] citations, separated by blank
+lines. Do not add claims outside that list. Exact quotation is traceability, not truth.
+Definitions and funding notices are background. Respect source_corrections.
+Policy 2+: certainty is paper-supported (reported by a paper), hypothesis, analogy,
+or tested (only the exact claim of a supplied measured reproduction). result is empty
+unless naming that recorded reproduction. Preprints remain preprints.
+Policy 3+: review each claim critically with counterevidence IDs (empty if missing),
+a substantive alternative explanation, and would_change_mind (a concrete observation).
+Do not invent counterevidence. Peer repetition, mirrors and different works do not
+automatically establish independent experiments or confirmation. This critical pass
+shares your invocation and is not an independent reviewer.
 """
-BOUNDED_RESEARCH_SYSTEM += "\nUnder research_quality_policy, notebook findings must be a blank-line-separated list of claim statements followed by [evidence-ID] citations. Supply claims with statement and support (evidence, exact passage, explanation). Source corrections take precedence over old unreviewed notebook prose. Traceability does not prove truth."
-
-RESEARCH_SYSTEM += """
-Quality policy version 2+: label every claim certainty as paper-supported (a source
-reports it), hypothesis (a proposition to test), analogy (a cross-domain comparison),
-or tested (only the exact claim of a supplied operator-recorded measured result).
-Include result as an empty string except when referencing that supplied result ID.
-A preprint remains a preprint; source support is not independent verification.
-"""
-BOUNDED_RESEARCH_SYSTEM += "\nQuality policy 2+: claims also require certainty (paper-supported, hypothesis, analogy, tested) and result (empty except an existing measured reproduction ID). Never self-certify an experiment; tested statement must match its recorded claim."
