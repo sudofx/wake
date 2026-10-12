@@ -399,12 +399,22 @@ Bob may append observations or add a correction naming an earlier assessment.
 Code snippets remain text. File writes use a shared-volume lock, atomic replace
 and a one-second contention limit; failures are reported without private content
 and never fail primary research. The whole document is limited to 1 MiB, model
-context to the last 4,000 characters, and each response to 12,000 characters/three
+previous private notes supplied to the model to the last 4,000 characters, and each response to 12,000 characters/three
 observations. No automatic compaction erases earlier assessments. A full or
 malformed document needs a human decision, not an autonomous cleanup.
 
-Sparse advisory assessments run after accepted research at most once per 15
-accepted cycles. They use the existing provider adapter, quota accounting,
+Passenger notes use plain prose about research progress, surprising connections,
+uncertainties, and useful next questions as well as operational friction. Their
+bounded input includes recent journal, project, notebook and execution summaries;
+the group leader also receives attributed summaries from every member. Previous
+private notes inform continuity but are never instructions or execution authority.
+
+Solo assessments run after accepted research at most once per 15 accepted cycles.
+In a shared group, only the leader requests a private assessment after each
+successfully published later Bob checkpoint; initialization has no extra assessment.
+If that private call exhausts daily provider quota, its recorded checkpoint remains
+eligible for a retry on a later Pacific day, without repeating a successful note.
+They use the existing provider adapter, quota accounting,
 pause gate and native durability barrier. They add an occasional model call;
 creation needs none, and no update is required each cycle. Private input and
 output stay in memory/the advisory volume; the public record retains only a

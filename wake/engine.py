@@ -300,11 +300,12 @@ class Engine:
                           "retention": "Private advisory input and output are not recorded or exported."}
         self.store.append("invocation_started", {"id": invocation, "provider": provider.name,
             "model": provider.model, "phase": "passenger", "charged": provider.charged,
+            **({'group_checkpoint': state['group_bob']['checkpoint']} if state.get('group_bob') else {}),
             "quota_day": day, "base_version": state["version"], "request": public_request,
             "request_hash": digest(public_request), "process_id": os.getpid()})
         return invocation, public_request
 
-    def assess_passenger(self, provider, checkpoint=None):
+    def assess_passenger(self, provider, checkpoint=None, *, group_packet=None):
         """Optional private lane. Caller holds the research writer lock."""
         from . import passenger
         try:
@@ -312,7 +313,7 @@ class Engine:
             if workspace is None:
                 return {"status": "disabled"}
             snapshot = workspace.snapshot()
-            private_request = passenger.request(snapshot, self.store.load())
+            private_request = passenger.request(snapshot, self.store.load(), group_packet)
             return self._run_invocation(provider, checkpoint=checkpoint, phase="passenger",
                                         private_request=private_request,
                                         passenger_submission=(workspace, snapshot["generation"]))
@@ -2754,7 +2755,8 @@ class Engine:
                 state = self.store.load()
                 previous = [i.get("base_version", 0) for i in state["invocations"].values()
                             if i.get("phase") == "passenger"]
-                if result["status"] == "accepted" and state["version"] >= 15 and state["version"] - max(previous, default=0) >= 15:
+                if (not state.get('group_bob') and result["status"] == "accepted"
+                        and state["version"] >= 15 and state["version"] - max(previous, default=0) >= 15):
                     self.assess_passenger(provider, checkpoint)
                 return result
         finally:
@@ -2908,7 +2910,8 @@ class Engine:
             else:
                 try:
                     workspace, generation = passenger_submission
-                    outcome = workspace.append(generation, invocation, data["observations"])
+                    outcome = workspace.append(generation, invocation, data["observations"],
+                                               cycle=request['context']['version'])
                 except passenger.Unavailable as error:
                     outcome = "stale" if str(error) == "stale" else "unavailable"
                     passenger.diagnostic("update-not-applied")
