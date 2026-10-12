@@ -46,6 +46,7 @@ from contextlib import closing, contextmanager
 from pathlib import Path
 from typing import Any, Iterator
 
+from .compression import encode_dictionary, decode_dictionary
 from .models import JsonValue
 from .applications import application_key
 from .governance import work_key
@@ -65,15 +66,18 @@ from .storage import (
 # wake record; user_version gives storage evolution one ordered owner instead
 # of scattering opportunistic CREATE/ALTER statements through runtime paths.
 APPLICATION_ID = 0x53444658  # Frozen V1 file-format identity; retain for existing records.
-SCHEMA_VERSION = 12
+SCHEMA_VERSION = 13
 
 
 _PROJECTION_CODEC_PREFIX = "zlib:"  # Legacy v8-v11 text wrapper, still readable.
 _EVENT_CODEC_PREFIX = b"wake:event-json:zlib@1\x00"
 _PROJECTION_BINARY_PREFIX = b"wake:projection-json:zlib@1\x00"
+_EVENT_DICTIONARY_PREFIX = b"wake:event-json:dictionary-zlib@1\x00"
+_PROJECTION_DICTIONARY_PREFIX = b"wake:projection-json:dictionary-zlib@1\x00"
 
 
-def _decode_binary_json(stored: bytes, prefix: bytes) -> str:
+
+def _decode_binary_json(stored: bytes, prefix: bytes, *, dictionary=False) -> str:
     """Decode one versioned storage value, rejecting truncated/extra streams."""
     if not stored.startswith(prefix):
         raise IntegrityError("unknown compressed record storage encoding")
@@ -82,6 +86,8 @@ def _decode_binary_json(stored: bytes, prefix: bytes) -> str:
         raw = decoder.decompress(stored[len(prefix):]) + decoder.flush()
         if not decoder.eof or decoder.unused_data or decoder.unconsumed_tail:
             raise ValueError("incomplete or trailing compressed stream")
+        if dictionary:
+            raw = decode_dictionary(raw)
         return raw.decode("utf-8")
     except (ValueError, zlib.error, UnicodeDecodeError) as error:
         raise IntegrityError("compressed record storage is invalid") from error
@@ -98,6 +104,11 @@ def _encode_event_payload(payload_json: str) -> str | bytes:
     if len(raw) < 1024:
         return payload_json
     packed = _EVENT_CODEC_PREFIX + zlib.compress(raw, level=6)
+    dictionary = encode_dictionary(raw, 6)
+    if dictionary is not None:
+        alternative = _EVENT_DICTIONARY_PREFIX + dictionary
+        if len(alternative) < min(len(packed), len(raw)):
+            return alternative
     return packed if len(packed) < len(raw) else payload_json
 
 
@@ -105,17 +116,28 @@ def _decode_event_payload(stored: str | bytes) -> str:
     if isinstance(stored, str):
         return stored
     if isinstance(stored, bytes):
+        if stored.startswith(_EVENT_DICTIONARY_PREFIX):
+            return _decode_binary_json(stored, _EVENT_DICTIONARY_PREFIX, dictionary=True)
         return _decode_binary_json(stored, _EVENT_CODEC_PREFIX)
     raise IntegrityError("invalid event payload storage type")
 
 
 def _encode_projection_state(state_json: str) -> bytes:
     """Compress a derived cache without Base64's physical storage expansion."""
-    return _PROJECTION_BINARY_PREFIX + zlib.compress(state_json.encode("utf-8"), level=9)
+    raw = state_json.encode("utf-8")
+    packed = _PROJECTION_BINARY_PREFIX + zlib.compress(raw, level=9)
+    dictionary = encode_dictionary(raw, 9)
+    if dictionary is not None:
+        alternative = _PROJECTION_DICTIONARY_PREFIX + dictionary
+        if len(alternative) < len(packed):
+            return alternative
+    return packed
 
 
 def _decode_projection_state(stored: str | bytes) -> str:
     if isinstance(stored, bytes):
+        if stored.startswith(_PROJECTION_DICTIONARY_PREFIX):
+            return _decode_binary_json(stored, _PROJECTION_DICTIONARY_PREFIX, dictionary=True)
         return _decode_binary_json(stored, _PROJECTION_BINARY_PREFIX)
     if not isinstance(stored, str):
         raise IntegrityError("invalid record projection storage type")
@@ -393,7 +415,7 @@ class Record:
         if getattr(self, "storage_encoding_migrated", False):
             # Logical migration has committed atomically. Reclaim its old pages
             # once, including on standalone installs that have no Git checkpoint.
-            # Failure leaves a valid v12 record, never a partially rewritten chain.
+            # Failure leaves a valid current-format record, never a partially rewritten chain.
             self.compact()
 
     @classmethod
@@ -779,13 +801,16 @@ class Record:
             projection = connection.execute(
                 "SELECT state, state_digest FROM record_projection WHERE singleton = 1"
             ).fetchone()
-            if projection is not None and version < 12:
+            if projection is not None and version < 13:
                 state_json = _decode_projection_state(projection["state"])
                 if hashlib.sha256(state_json.encode()).hexdigest() != projection["state_digest"]:
                     raise IntegrityError("record projection state digest is invalid")
+                encoded_projection = _encode_projection_state(state_json)
+                if _decode_projection_state(encoded_projection) != state_json:
+                    raise IntegrityError("projection storage migration changed decoded bytes")
                 connection.execute(
                     "UPDATE record_projection SET state = ? WHERE singleton = 1",
-                    (_encode_projection_state(state_json),),
+                    (encoded_projection,),
                 )
             if projection is None:
                 revision, state, sequence, event_hash = self._full_replay(connection)
@@ -805,7 +830,7 @@ class Record:
                     ),
                 )
 
-            if version < 12:
+            if version < 13:
                 # Storage migration only: the original UTF-8 JSON bytes, event
                 # hashes, row identities, provenance and all journals survive.
                 # Verification precedes rewriting; any decode/update failure

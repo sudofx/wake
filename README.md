@@ -214,3 +214,7 @@ Local in-place resets retain their history and are a separate operation.
 Bob’s public articles use plain prose, including the built-in welcome. Markdown
 is confined to Passenger. Public display removes legacy heading markers without
 rewriting historical receipts.
+
+Lossless storage compression preserves exact records, hashes and replay. Version 13
+shares repeated long strings within stored JSON values when that saves space.
+See [storage compatibility](docs/kernel.md#physical-storage-and-compatibility).

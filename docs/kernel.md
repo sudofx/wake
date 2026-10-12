@@ -114,9 +114,17 @@ image, process, volume, and publication custody.
 
 ## Physical storage and compatibility
 
-SQLite storage version 12 encodes large event JSON payloads as versioned zlib
+SQLite storage version 13 encodes large event JSON payloads as versioned zlib
 BLOBs when compression saves space; small or incompressible payloads remain TEXT.
-The projection cache uses a versioned binary zlib wrapper rather than Base64 text.
+The projection cache uses a versioned binary wrapper rather than Base64 text.
+For JSON at least 128 KiB, the codec can store repeated long string tokens once
+in a stream-local dictionary before zlib compression. This shares repeated
+provider text across the historical events represented in a cache, and within
+large event payloads, without removing any logical event or cache field. Tokens
+preserve exact UTF-8 bytes and JSON escapes. No external blobs, dictionary files
+or application-specific imports are required. Each value uses this encoding only
+when it is smaller than the original zlib format (and plain event text).
+Both version-12 binary wrappers remain readable.
 The reader still accepts legacy event TEXT and legacy plain or `zlib:` projection
 text. Use record history/export APIs rather than parsing physical columns directly.
 
@@ -137,6 +145,6 @@ truncated or trailing compressed streams fail closed; decoded events still under
 ordinary hash verification. `tests/test_storage_compression.py` exercises migration,
 rollback, mixed formats, corruption, exact Unicode, exports and reader compatibility.
 
-Older runtimes reject storage version 12. Keep an immutable pre-upgrade backup,
+Older runtimes reject storage version 13. Keep an immutable pre-upgrade backup,
 and upgrade each installation against its own record. Never restore that backup
 over work appended after the upgrade merely to roll back executable code.

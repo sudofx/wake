@@ -61,3 +61,5 @@ Local in-place resets retain their history and are a separate operation.
 Bob’s public articles use plain prose, including the built-in welcome. Markdown
 is confined to Passenger. Public display removes legacy heading markers without
 rewriting historical receipts.
+
+**Lossless storage compression:** a smaller physical encoding that reconstructs the exact original record bytes. It is distinct from a model summary, which can omit detail. See [kernel storage](kernel.md#physical-storage-and-compatibility).

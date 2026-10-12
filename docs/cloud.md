@@ -273,8 +273,8 @@ When the provider request approaches its context ceiling, belief review alternat
 
 ## Lossless storage upgrade
 
-Storage version 12 reduces the SQLite file through per-event zlib encoding and a
-binary projection cache. The first writable open performs a verified atomic upgrade
+Storage version 13 reduces repeated long text through optional stream-local dictionaries
+in event payloads and the replay cache. It retains the previous lossless zlib codecs. The first writable open performs a verified atomic upgrade
 and one-time compaction before ordinary work. Prepare and test the candidate, use
 canonical Stop and fully drain research, preserve an immutable `wake-state` backup,
 then push and use canonical Restart. Verify the exact runtime, upgraded checkpoint,

@@ -147,3 +147,60 @@ class StorageCompressionTests(unittest.TestCase):
             stored=c.execute('SELECT state FROM record_projection').fetchone()[0]
             c.execute('UPDATE record_projection SET state=?',(stored[:-1],));c.commit()
         with self.assertRaises(IntegrityError):self.record.replay()
+
+    def test_dictionary_preserves_exact_json_bytes_and_legacy_codec(self):
+        from wake.kernel.record import (_encode_projection_state, _PROJECTION_DICTIONARY_PREFIX,
+                                       _EVENT_DICTIONARY_PREFIX)
+        import random
+        rng = random.Random(7)
+        text = ''.join(rng.choice('abcdefXYZ0123456789') for _ in range(4096)) + ' café ✳︎ \\" '
+        raw = json.dumps({'requests': [text] * 70, 'literal': {'$ref': 0},
+                          'types': [None, True, 4, 2.5]}, ensure_ascii=True, indent=2)
+        for encoder, decoder, prefix in (
+            (_encode_projection_state, _decode_projection_state, _PROJECTION_DICTIONARY_PREFIX),
+            (_encode_event_payload, _decode_event_payload, _EVENT_DICTIONARY_PREFIX)):
+            with self.subTest(prefix=prefix):
+                stored = encoder(raw)
+                self.assertTrue(stored.startswith(prefix))
+                self.assertEqual(decoder(stored), raw)
+                old = (_EVENT_CODEC_PREFIX + zlib.compress(raw.encode(), 6)
+                       if decoder is _decode_event_payload else
+                       b'wake:projection-json:zlib@1\x00' + zlib.compress(raw.encode(), 9))
+                self.assertEqual(decoder(old), raw)
+                self.assertLess(len(stored), len(old))
+                for bad in (stored[:-1], stored + b'extra'):
+                    with self.assertRaises(IntegrityError): decoder(bad)
+
+    def test_dictionary_invalid_references_and_entries_fail_closed(self):
+        import struct
+        from wake.kernel.record import _PROJECTION_DICTIONARY_PREFIX
+        token = json.dumps('x' * 300).encode()
+        header = struct.pack('>I', 1) + struct.pack('>I', len(token)) + token
+        for packed in (header + b'\0' + struct.pack('>I', 1),
+                       header + b'\0\0', struct.pack('>I', 999),
+                       struct.pack('>I', 1) + struct.pack('>I', 300) + b'x' * 300):
+            with self.subTest(packed=packed[:8]):
+                with self.assertRaises(IntegrityError):
+                    _decode_projection_state(_PROJECTION_DICTIONARY_PREFIX + zlib.compress(packed))
+
+    def test_v12_upgrade_preserves_semantic_rows_and_exact_cache(self):
+        before = self.record.full_replay()
+        history = self.record.history()
+        with self.record.connect() as c:
+            for row in c.execute('SELECT sequence,payload FROM events').fetchall():
+                raw = _decode_event_payload(row['payload'])
+                stored = _EVENT_CODEC_PREFIX + zlib.compress(raw.encode(), 6) if len(raw) >= 1024 else raw
+                c.execute('UPDATE events SET payload=? WHERE sequence=?', (stored,row['sequence']))
+            raw = _decode_projection_state(c.execute('SELECT state FROM record_projection').fetchone()[0])
+            c.execute('UPDATE record_projection SET state=?',
+                      (b'wake:projection-json:zlib@1\x00' + zlib.compress(raw.encode(),9),))
+            c.execute('PRAGMA user_version=12');c.commit()
+        old = self.physical_rows()
+        with patch('wake.kernel.record.SCHEMA_VERSION',12):
+            self.assertEqual(Record.open_read_only(self.path).replay(), before)
+        fresh = Record(self.path)
+        self.assertEqual(fresh.full_replay(),before)
+        self.assertEqual(fresh.history(),history)
+        for a,b in zip(old,self.physical_rows()):
+            self.assertEqual(a[:6],b[:6]);self.assertEqual(a[7:],b[7:])
+            self.assertEqual(_decode_event_payload(a[6]),_decode_event_payload(b[6]))

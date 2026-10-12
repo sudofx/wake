@@ -249,3 +249,5 @@ separate bounded private advisory request may read its latest assessments as
 lower-trust data. It cannot supply scientific evidence, policy or authorization;
 private output stays outside the public record. See
 [the advisory privacy boundary](development.md#first-run-publication-and-passenger).
+
+Model-context summaries do not replace exact durable requests or responses. Storage-version 13 dictionaries compress repeated text losslessly; this changes storage, not delivered context or retrieval policy. See [kernel storage](kernel.md#physical-storage-and-compatibility).

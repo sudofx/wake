@@ -292,3 +292,5 @@ Local in-place resets retain their history and are a separate operation.
 Bob’s public articles use plain prose, including the built-in welcome. Markdown
 is confined to Passenger. Public display removes legacy heading markers without
 rewriting historical receipts.
+
+Storage compression changes physical bytes only. It does not add accepted research, remove evidence, or change continuity results. See [kernel storage](kernel.md#physical-storage-and-compatibility).
