@@ -797,6 +797,9 @@ ACCESS_CHALLENGE_MARKERS = (
 
 def effective_evidence_role(url, payload):
     """Classify legacy and current evidence with the same forward rules."""
+    from .research_reviews import background_reason
+    if background_reason(url, payload):
+        return "background"
     explicit = payload.get("evidence_role") if isinstance(payload, dict) else None
     return explicit if explicit in ("discovery", "metadata", "source") else evidence_role(url)
 

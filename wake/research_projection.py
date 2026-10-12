@@ -37,7 +37,7 @@ def _evidence_class(item):
     if not payload:
         return 'unclassified'
     role = effective_evidence_role(item.get('source', ''), payload)
-    if role in ('discovery', 'metadata'):
+    if role in ('discovery', 'metadata', 'background'):
         return role
     if effective_host_tier(item.get('source', ''), payload) == 'verification-metadata':
         return 'metadata'

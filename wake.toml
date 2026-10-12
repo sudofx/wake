@@ -39,3 +39,6 @@ research_google_search = false
 same_wake_research = true
 research_collection_budget = 6
 repository = "sudofx/wake"
+
+# Adopt the forward source-support contract on the next research wake.
+research_quality_policy = true

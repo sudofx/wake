@@ -1638,7 +1638,7 @@ def transition(state, proposal, invocation, historical=False):
             keys(
                 action,
                 "type id project title summary findings limitations "
-                "next_questions evidence reason",
+                "next_questions evidence reason" + (" claims" if state.get("research_quality_policy") else ""),
                 "Notebook",
             )
 
@@ -1663,6 +1663,9 @@ def transition(state, proposal, invocation, historical=False):
                 text(action[key], key, limit)
 
             references(action["evidence"], result)
+            if state.get("research_quality_policy") and not historical:
+                from .claim_support import validate_claims
+                validate_claims(action, result)
 
             cited = [
                 result["evidence"][e]

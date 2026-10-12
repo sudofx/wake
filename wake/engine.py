@@ -1797,6 +1797,10 @@ class Engine:
                 "evidence": [evidence for _, evidence in ordered_evidence],
                 "recent_journal": state["journal"][-3:],
             "evidence_scope": "Recent observations plus newest three citations per belief; full evidence remains in history."}
+        if state.get("research_quality_policy"):
+            context["research_quality_policy"] = state["research_quality_policy"]
+        if state.get("research_reviews"):
+            context["source_corrections"] = list(state["research_reviews"].values())[-8:]
         if state.get("experimental"):
             context["experimental_regime"] = {
                 "id": state["experimental"]["id"], "controls": state["experimental"]["controls"],
@@ -2727,6 +2731,10 @@ class Engine:
             with self.store.lock():
                 self.initialize()
                 self.recover()
+                if self.config.get("research_quality_policy"):
+                    from .claim_support import POLICY_VERSION
+                    if self.store.load().get("research_quality_policy", 0) < POLICY_VERSION:
+                        self.store.append("research_quality_adopted", {"actor": "operator", "version": POLICY_VERSION})
                 if peer_research:
                     from .group_peers import import_group_peer_evidence
                     import_group_peer_evidence(self, peer_research)

@@ -132,6 +132,12 @@ def schema_for_context(context):
         entries = [(project, notebook) for project, notebook in entries
                    if project_domains.get(project) == enforced_topic]
     choices = schema["properties"]["actions"]["items"]["anyOf"]
+    if context.get("research_quality_policy"):
+        from .claim_support import claim_schema
+        for choice in choices:
+            if choice["properties"]["type"]["enum"] == ["notebook"]:
+                choice["properties"]["claims"] = claim_schema(context["research_quality_policy"])
+                choice["required"].append("claims")
 
     # In research mode, new commitments belong to one existing durable project.
     # The base non-research kernel keeps generic commitments available.

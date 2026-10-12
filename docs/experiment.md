@@ -308,3 +308,7 @@ python -m scripts.review_notebooks --data /data --apply
 ```
 
 This review flags known dictionary citations and the funding-only PLOS correction. It does not certify other sources. Corrections name the notebook revision and cited evidence, appear alongside the original findings, and neither rewrite old research nor increment accepted cycles. Scientific mechanisms, bounds and heredity interpretations affected by these citations remain unverified until reviewed against substantive source passages. Corrections use the existing native application event authority.
+
+### Traceable scientific findings
+
+With `research_quality_policy = true`, the next research wake records adoption of the forward quality contract. Every new notebook finding must be enumerated with an exact collected-source passage and an explanation of its scope. Findings cannot add assertions outside that list. Definitions and funding-only notices cannot qualify as scientific support, even when an older collector stamped them as sources. Historical events keep their original acceptance rules. These checks establish traceability and expose interpretation to review; they do not automatically establish semantic entailment or scientific truth.

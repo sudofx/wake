@@ -354,3 +354,14 @@ Cite exact supplied evidence IDs. Beliefs need calibrated confidence, concrete f
 Inherited commitments survive replacement. Due work takes priority; never replace an overdue commitment. Fulfill only a genuinely completed task, citing resolution_evidence supplied for that obligation. Failed searches, unrelated material and old evidence do not establish completion. If evidence is insufficient, keep the obligation open and identify the precise gap. New due_cycle: base_version+1 < due_cycle <= base_version+101.
 Follow persisted focus and Attention. Do not cancel commitments, erase history, change rules/objective or take external actions.
 """
+
+RESEARCH_SYSTEM += """
+When context.research_quality_policy is present, every notebook requires claims.
+Each claim names a statement and support items with evidence ID, an exact substantive
+passage from the collected source, and an explanation of what that passage establishes
+and what it does not. findings must be exactly the statements followed by their
+[evidence-ID] citations, separated by a blank line. Dictionaries and funding notices
+are background only. Exact passages establish traceability, not semantic truth; do
+not stretch a passage into a mechanism or result it never reports.
+"""
+BOUNDED_RESEARCH_SYSTEM += "\nUnder research_quality_policy, notebook findings must be a blank-line-separated list of claim statements followed by [evidence-ID] citations. Supply claims with statement and support (evidence, exact passage, explanation). Source corrections take precedence over old unreviewed notebook prose. Traceability does not prove truth."

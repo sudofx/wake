@@ -103,6 +103,12 @@ def reduce_event(state, event, historical=False):
         require(p["regime_id"] == state["experimental"]["id"], "Temporal receipt regime mismatch")
         state["temporal"] = {"anchor_time": p["observed_at"], "anchor_version": state["version"],
                              "anchor_seq": event["seq"], "effective_seconds": p["effective_seconds_total"]}
+    elif kind == "research_quality_adopted":
+        from .claim_support import POLICY_VERSION
+        require(p.get("actor") == "operator" and type(p.get("version")) is int
+                and 1 <= p["version"] <= POLICY_VERSION, "Invalid research quality policy")
+        require(p["version"] > state.get("research_quality_policy", 0), "Quality policy must advance")
+        state["research_quality_policy"] = p["version"]
     elif kind == "scientific_review_recorded":
         from .research_reviews import apply_review
         apply_review(state, p, event)
