@@ -192,7 +192,6 @@ when interpreting a fast replay versus a full audit.
 | `docs/standalone.md` | Docker, LAN, editor, volume and backup operations |
 | `docs/retrieval.md` | Memory delivery, omissions and replay-seed guarantees |
 | `docs/experiment.md` | What observations mean and how to compare them |
-| `.workbench/validation/*.md` (local, ignored) | Dated evidence; preserve historical results |
 
 Update the owning living documents alongside material behavior changes. Keep
 command examples aligned with code and distinguish defaults from deployment
@@ -299,10 +298,6 @@ position on desktop and phones. Shared navigation reserves its measured height
 above content. Its layer is 12000; same-window popup surfaces use 12001. Dedicated dashboard panel windows hide the masthead.
 Dark story sections use muted amber borders and a subtle tint;
 their layout and durable data remain unchanged.
-
-Private collaboration structure and artifact completion rules are in
-[the workbench guide](workbench.md). That guide deliberately describes structure,
-not the contents of any installation's private notes.
 
 The shared daylight surface owner is `wake/assets/console-light.css`, despite its
 historical filename. It loads after dark page skins through export; cover main-page

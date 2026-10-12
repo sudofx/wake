@@ -199,18 +199,18 @@ trial receives a fresh context through normal Engine delivery and governance.
 This is a bounded behavioral task, not a scientific research-quality benchmark.
 
 ```sh
-python -m wake comparison init --output .workbench/comparison
-python -m wake comparison prepare --output .workbench/comparison --arm rich --model Claude
-python -m wake comparison prepare --output .workbench/comparison --arm active --model Claude
+python -m wake comparison init --output /tmp/wake-comparison
+python -m wake comparison prepare --output /tmp/wake-comparison --arm rich --model Claude
+python -m wake comparison prepare --output /tmp/wake-comparison --arm active --model Claude
 ```
 
 Submit each saved `request.json` to a fresh session, preserve its unedited JSON
-reply, and import it with `comparison complete --output .workbench/comparison
+reply, and import it with `comparison complete --output /tmp/wake-comparison
 --trial TRIAL_KEY --reply REPLY.json`. Use the same model/settings for both arms.
 Repeat with another model for a cross-model comparison. A manual identity is
 human-attested; no reply is silently repaired.
 
-`comparison run --output .workbench/comparison --arm rich --model MODEL` uses the
+`comparison run --output /tmp/wake-comparison --arm rich --model MODEL` uses the
 configured Gemini credential through native reservation-before-effect handling.
 Run the active arm with the same model, then both arms with a second available
 model. The experiment is serial, permits at most four API requests and disables
@@ -219,7 +219,7 @@ fallbacks. Pause other live inference sharing the API project during these trial
 evidence. Every attempted arm/model is retained, including rejections, failures
 and deferrals; repeats require a new comparison directory.
 
-`comparison report --output .workbench/comparison` reports actual attempts, request
+`comparison report --output /tmp/wake-comparison` reports actual attempts, request
 hashes and sizes, retained observations, claim retraction, contradictory citations,
 and obligation completion with measurement evidence. Structural pass checks are
 separate from the included human explanation rubric; no automatic check asserts
