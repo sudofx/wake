@@ -618,6 +618,9 @@ def _deployment_site(target, *, standalone):
     header = re.sub(r'href="#([^"]+)"', r'href="index.html#\1"', header)
     for path in target.rglob('*.html'):
         page = path.read_text()
+        # The shared preference script can select dark; uninitialized views start light.
+        page = re.sub(r'(<html[^>]*)\sdata-theme=[\"\'][^\"\']*[\"\']', r'\1', page, count=1)
+        page = re.sub(r'<html([^>]*)>', r'<html\1 data-theme="light">', page, count=1)
         prefix = "../" * len(path.relative_to(target).parts[:-1])
         page = re.sub(r'href="((?:\.\./)*(?:style|nav|map|map3d|research|theme)\.css)(?:\?[^"]*)?"', r'href="\1?v=20261011-story-order"', page)
         page = re.sub(r'src="((?:\.\./)*nav\.js)(?:\?[^"]*)?"', r'src="\1?v=20261011-node-domain"', page)
@@ -636,7 +639,7 @@ def _deployment_site(target, *, standalone):
         page = re.sub(r'<script src="(?:console-theme|site-theme)\.js[^"]*"></script>', '', page)
         page = re.sub(r'<link rel="stylesheet" href="(?:\.\./)*masthead\.css[^"]*">', '', page)
         page = re.sub(r'<link rel="stylesheet" href="(?:\.\./)*console-light\.css[^"]*">', '', page)
-        page = page.replace('</head>', f'<link rel="stylesheet" href="{prefix}console-light.css?v=20261008-daylight"><script src="{prefix}site-theme.js?v=20261008-shared"></script><link rel="stylesheet" href="{prefix}masthead.css?v=20261011-node-domain"></head>', 1)
+        page = page.replace('</head>', f'<link rel="stylesheet" href="{prefix}console-light.css?v=20261008-daylight"><script src="{prefix}site-theme.js?v=20261012-light-default"></script><link rel="stylesheet" href="{prefix}masthead.css?v=20261011-node-domain"></head>', 1)
         # Re-export may reuse a directory. An older marker later in <head> must
         # not override the newly selected installation. Normalize to one owner.
         page = re.sub(r'<script>window\.WAKE_(?:DEPLOYMENT|STANDALONE)=[^<]*</script>', '', page)

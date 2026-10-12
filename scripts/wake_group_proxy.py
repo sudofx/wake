@@ -552,7 +552,7 @@ class GroupProxy(BaseHTTPRequestHandler):
 
     def _serve_directory(self, title, panels):
         body = (
-            '<!doctype html><html lang="en"><head><meta charset="utf-8">'
+            '<!doctype html><html lang="en" data-theme="light"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width, initial-scale=1">'
             '<meta name="theme-color" content="#f3f6fb">'
             f'<title>WAKE✳︎ · {escape(title)}</title>'
@@ -640,7 +640,7 @@ class GroupProxy(BaseHTTPRequestHandler):
             '.child-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.member-button{padding:10px 8px}}'
             '@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}'
             '</style><script>(function(){let choice;try{choice=localStorage.getItem("wake-site-theme")}catch{}'
-            'const dark=choice==="dark"||(!["light","dark"].includes(choice)&&matchMedia("(prefers-color-scheme: dark)").matches);'
+            'const dark=choice==="dark"||(!["light","dark"].includes(choice)&&window.matchMedia?.("(prefers-color-scheme: dark)")?.matches);'
             'document.documentElement.dataset.theme=dark?"dark":"light"})();</script></head><body>'
             '<header class="masthead"><div class="masthead-identity"><div class="brand">WAKE<span class="brand-star">✳︎</span></div>'
             f'<span class="gateway-domain">{escape(os.environ.get("WAKE_PUBLIC_HOSTNAME", ""))}</span>'
@@ -676,15 +676,15 @@ class GroupProxy(BaseHTTPRequestHandler):
             'if(button){button.title=status.label;button.setAttribute("aria-label",`${member} · ${status.label}`)}}'
             'updated.textContent=`Updated ${new Date().toLocaleTimeString([], {hour:"numeric",minute:"2-digit"})}`;'
             '}catch{updated.textContent="Status check unavailable"}}setInterval(refreshStatuses,5000);})();'
-            '(function(){const root=document.documentElement,media=matchMedia("(prefers-color-scheme: dark)"),'
+            '(function(){const root=document.documentElement,media=window.matchMedia?.("(prefers-color-scheme: dark)"),'
             'key="wake-site-theme",toggle=document.getElementById("theme-toggle");let choice;'
             'try{choice=localStorage.getItem(key)}catch{}if(!["dark","light"].includes(choice))choice=null;'
-            'const sync=()=>{const dark=(choice||(media.matches?"dark":"light"))==="dark",theme=dark?"dark":"light";'
+            'const sync=()=>{const dark=(choice||(media?.matches?"dark":"light"))==="dark",theme=dark?"dark":"light";'
             'root.dataset.theme=theme;root.style.colorScheme=theme;document.querySelector("meta[name=theme-color]").content=dark?"#000000":"#f3f6fb";'
             'toggle.checked=dark;toggle.setAttribute("aria-label",dark?"Use light theme":"Use dark theme");'
             'toggle.closest("label").title=`${choice?"Manual":"Following system"} ${theme} theme · switch to ${dark?"light":"dark"}`};'
             'sync();toggle.addEventListener("change",()=>{choice=toggle.checked?"dark":"light";try{localStorage.setItem(key,choice)}catch{}sync()});'
-            'media.addEventListener("change",()=>{if(!choice)sync()});window.addEventListener("storage",event=>{if(event.key===key){'
+            'media?.addEventListener?.("change",()=>{if(!choice)sync()});window.addEventListener("storage",event=>{if(event.key===key){'
             'choice=["dark","light"].includes(event.newValue)?event.newValue:null;sync()}})})();</script></body></html>'
         ).encode("utf-8")
         self.send_response(200)

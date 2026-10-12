@@ -37,6 +37,8 @@ class SharedChromeTests(unittest.TestCase):
                         for asset in re.findall(r'(?:href|src)="([^"?]+)(?:\?[^\"]*)?"', page):
                             if asset.endswith(('masthead.css', 'site-theme.js')):
                                 self.assertTrue((path.parent / asset).is_file(), (path, asset))
+                        self.assertIn('data-theme="light"', page, path)
+                        self.assertNotIn('data-theme="dark"', page, path)
                         self.assertEqual(page.count('site-theme.js?v='), 1, path)
                         self.assertEqual(page.count('masthead.css?v='), 1, path)
                         self.assertNotIn('console-theme.js', page)
@@ -67,6 +69,14 @@ for(const denied of [false,true]){
  media.matches=true;systemChange();assert.equal(root.dataset.theme,'light');
  assert.equal(toggle['aria-label'],'Use dark theme');assert.match(label.dataset.uiTooltip,/Manual light/);
  events.storage({key:'wake-site-theme',newValue:null});assert.equal(root.dataset.theme,'dark');
+ // Devices without a theme API still get light and a working manual toggle.
+ delete context.matchMedia;delete context.window.WakeTheme;
+ vm.runInNewContext(source,context);assert.equal(root.dataset.theme,'light');
+ toggle.checked=true;choiceChange({target:toggle});assert.equal(root.dataset.theme,'dark');
+ if(!denied){
+  delete context.window.WakeTheme;vm.runInNewContext(source,context);
+  assert.equal(root.dataset.theme,'dark'); // A saved manual choice survives loading another page.
+ }
 }
 '''
         subprocess.run(['node', '-e', script, str(source)], check=True, capture_output=True, text=True)
