@@ -200,3 +200,17 @@ Named groups share the actual project-root `.passenger.md`; first publication ad
 factual receipt without another model call. Passenger cannot execute changes or govern research. See
 [first-run publication and Passenger](docs/development.md#first-run-publication-and-passenger)
 for persistence, privacy, shared storage and operator reset.
+
+### Fresh hosted reset
+
+Hosted Reset verifies the old authority and retains its exact checkpoint on a
+`wake-archive-*` branch before initializing a small new database. The native
+initialization receipt records the archive branch, commit and prior domain head.
+Active research cycles, provider accounting and continuity results start at zero;
+the fresh continuity campaign is enabled without a provider call. Historical
+records stay in the archive rather than accumulating inside the new database.
+Local in-place resets retain their history and are a separate operation.
+
+Bob’s public articles use plain prose, including the built-in welcome. Markdown
+is confined to Passenger. Public display removes legacy heading markers without
+rewriting historical receipts.

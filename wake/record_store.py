@@ -72,7 +72,7 @@ class _CrashInjectableRecordStore:
 class RecordStore:
     """Present the narrow WAKE Store protocol while wake owns new durability."""
 
-    def __init__(self, directory, *, initialize_empty=False, _migration_source=None):
+    def __init__(self, directory, *, initialize_empty=False, _migration_source=None, reset_origin=None):
         self.directory = Path(directory)
         self.directory.mkdir(parents=True, exist_ok=True)
         self.path = self.directory / "wake.sqlite"
@@ -108,7 +108,7 @@ class RecordStore:
                         "wake-native-initialize",
                         self.kernel.context().revision,
                         "initialize_empty",
-                        {"reason": "explicit-initialization"},
+                        {"reason": "explicit-initialization", **({"reset_origin": reset_origin} if reset_origin is not None else {})},
                         rationale="Initialize a brand-new WAKE application directly in wake",
                     ),
                     provenance=SubmissionProvenance(

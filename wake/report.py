@@ -267,7 +267,7 @@ INLINE_BLOG_SOURCE_LINKS_FROM_VERSION = 203
 
 def _blog_html_text(value, post, state):
     """Render future inline [source-id] citations as links without rewriting older posts."""
-    rendered = _html_text(value)
+    rendered = _html_text(re.sub(r"(?m)^#{1,6}\s+", "", str(value)))
     if int(post.get("created_version") or 0) < INLINE_BLOG_SOURCE_LINKS_FROM_VERSION:
         return rendered
     allowed = set(post.get("evidence", []))

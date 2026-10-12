@@ -468,6 +468,26 @@ def main(reset=False, enable_continuity_matrix=False):
             branch.checkout / "data",
             allow_initialize=branch.existed is False,
         )
+        archive_branch = None
+        if reset:
+            # The old ledger remains immutable on its verified remote archive.
+            # Fresh authority must not reimport that ledger or its quota counters.
+            with authority_store.lock():
+                _, old_head = authority_store.audit()
+                archive_branch = branch.archive_before_reset()
+                archived = branch.git("ls-remote", "--exit-code", "--heads", "origin",
+                                      f"refs/heads/{archive_branch}").stdout.split()[0]
+                if archived != branch.remote_head:
+                    raise Rejected("Reset archive does not match prior hosted authority")
+            authority_store.close()
+            for name in ("wake.sqlite", "wake.sqlite-wal", "wake.sqlite-shm",
+                         "wake.sqlite3", STATE_ARCHIVE_NAME):
+                (branch.checkout / "data" / name).unlink(missing_ok=True)
+            authority_store = open_authoritative_store(
+                branch.checkout / "data", allow_initialize=True,
+                reset_origin={"archive_branch": archive_branch, "commit": archived,
+                              "domain_head": old_head},
+            )
         engine = Engine(branch.checkout/"data", settings, store=authority_store)
 
         def guarded_checkpoint():
@@ -479,14 +499,8 @@ def main(reset=False, enable_continuity_matrix=False):
             # durable events and must checkpoint before any provider request.
             with engine.store.lock():
                 if reset:
-                    # Preserve the exact pre-reset Git state as a convenience
-                    # archive. wake itself also retains the prior governed
-                    # generation, while active WAKE semantics restart at zero.
-                    archive_branch = branch.archive_before_reset()
-                    # Every hosted reset starts a fresh provider-free campaign,
-                    # but does not start research. Start remains a separate
-                    # operator action after the reset state has been inspected.
-                    engine.store.reset()
+                    # This is the freshly initialized record, not an in-place
+                    # generation reset retaining historical provider attempts.
                     engine.initialize()
                     engine.store.enable_continuity_matrix()
                     guarded_checkpoint()

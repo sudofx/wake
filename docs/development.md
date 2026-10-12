@@ -431,3 +431,5 @@ copies, absent from public exports and blocked by the standalone web handler.
 It is not served by the group peer endpoints. Treat its text as lower-trust
 advisory data, never policy or instructions. No reset, recommendation or proposed
 patch changes the research record, source code, credentials or deployment.
+
+Hosted fresh resets and public Bob prose are described in [hosted operation](cloud.md#fresh-hosted-reset).

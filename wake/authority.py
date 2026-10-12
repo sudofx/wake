@@ -50,7 +50,7 @@ def adopt_record_filename(data_directory):
     return destination
 
 
-def open_authoritative_store(data_directory, *, allow_initialize=False):
+def open_authoritative_store(data_directory, *, allow_initialize=False, reset_origin=None):
     """Open existing authority, or explicitly initialize a brand-new record.
 
     Missing authority is not equivalent to an empty project. Production and
@@ -72,7 +72,7 @@ def open_authoritative_store(data_directory, *, allow_initialize=False):
             )
         # A brand-new WAKE begins directly in wake. Do not create a temporary
         # legacy wake.sqlite3 merely to import an empty state.
-        return RecordStore(data_directory, initialize_empty=True)
+        return RecordStore(data_directory, initialize_empty=True, reset_origin=reset_origin)
 
     # Keep the legacy engine entirely off the normal operational import path.
     # It is loaded only when an actual pre-migration database exists.

@@ -2,7 +2,7 @@ name: WAKE✳︎ - [RESET]
 run-name: "[RESET] WAKE✳︎"
 
 # Reset stops WAKE✳︎ if needed, promotes verified master when required,
-# archives the current durable history, resets authority to cycle zero,
+# archives the current durable history, initializes fresh authority at cycle zero,
 # enables a fresh continuity campaign, and leaves research stopped.
 on:
   workflow_dispatch:

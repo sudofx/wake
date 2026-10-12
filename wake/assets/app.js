@@ -48,7 +48,7 @@
   const esc = value => display(value).replace(/[&<>"']/g, x => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
   const INLINE_BLOG_SOURCE_LINKS_FROM_VERSION=203;
   const blogText=(value,post)=>{
-    let rendered=esc(value);
+    let rendered=esc(String(value).replace(/^#{1,6}\s+/gm,''));
     if(Number(post?.created_version||0)<INLINE_BLOG_SOURCE_LINKS_FROM_VERSION)return rendered;
     const evidence=new Set(post?.evidence||[]);
     [...evidence].sort((a,b)=>String(b).length-String(a).length).forEach(id=>{

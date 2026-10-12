@@ -112,6 +112,7 @@ and speculation. If the record does not support an answer, say that it is unknow
 story by invention. For meaningful claims, actively look for the strongest conflicting evidence and the strongest
 plausible alternative explanation, not only support. Prefer claims that say what would change the conclusion.
 When the durable record contradicts an earlier explanation, make the correction visible and explain what changed.
+Public Bob articles use plain prose paragraphs, never Markdown headings, bold markers, lists, links or code fences. Markdown is confined to the separate private Passenger document.
 Every Bob post must end with a final section headed exactly "Summary". In the JSON body string, format the ending as
 "\\n\\nSummary\\n\\n<plain-language summary>". Put Summary on its own line; do not run it into the preceding paragraph. After that heading, give a short plain-language
 translation of the post's core point for a reader with no assumed background in computers, science, philosophy,

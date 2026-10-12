@@ -70,6 +70,16 @@ def _initialize_empty(current: JsonValue, payload: JsonValue) -> ApplicationDeci
             reasons=("Native WAKE initialization requires explicit-initialization intent",),
         )
 
+    reset_origin = payload.get("reset_origin")
+    if reset_origin is not None:
+        if (not isinstance(reset_origin, dict)
+                or not isinstance(reset_origin.get("archive_branch"), str)
+                or not reset_origin["archive_branch"].startswith("wake-archive-")
+                or not isinstance(reset_origin.get("commit"), str)
+                or len(reset_origin["commit"]) != 40
+                or any(c not in "0123456789abcdef" for c in reset_origin["commit"])
+                or not _valid_hash(reset_origin.get("domain_head"))):
+            return ApplicationDecision(False, reasons=("Fresh reset requires verified archive provenance",))
     state = empty()
     state_digest = hashlib.sha256(canonical_json(state).encode()).hexdigest()
     zero = "0" * 64
@@ -91,6 +101,7 @@ def _initialize_empty(current: JsonValue, payload: JsonValue) -> ApplicationDeci
                 "archive_head": zero,
                 "archive_complete": True,
                 "active_generation": 0,
+                **({"reset_origin": deepcopy(reset_origin)} if reset_origin is not None else {}),
             },
             "state": state,
         },

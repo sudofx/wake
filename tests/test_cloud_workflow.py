@@ -248,6 +248,22 @@ class CloudWorkflowTests(unittest.TestCase):
         archived_refs = self.git("--git-dir", self.remote, "for-each-ref",
                                  "refs/heads/wake-archive-*", "--format=%(refname:short)").stdout.splitlines()
         self.assertIn(archive_branch, archived_refs)
+        from wake.authority import open_authoritative_store
+        with tempfile.TemporaryDirectory() as folder:
+            branch = github_wake.StateBranch(self.project, Path(folder) / "fresh")
+            branch.open()
+            store = open_authoritative_store(branch.checkout / "data")
+            try:
+                store.audit()
+                self.assertLess(store.path.stat().st_size, 1024 * 1024)
+                origin = store._envelope()["migration"]["reset_origin"]
+                self.assertEqual(origin["archive_branch"], archive_branch)
+                self.assertEqual(origin["commit"], self.git("--git-dir", self.remote,
+                    "rev-parse", archive_branch).stdout.strip())
+                self.assertEqual(len(store.record.invocation_history()), 0)
+            finally:
+                store.close()
+
 
     def test_cloud_reset_can_enable_continuity_before_any_fresh_research(self):
         self.assertEqual(self.run_cloud(Fixture("before-reset")), 0)
