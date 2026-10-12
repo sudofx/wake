@@ -212,6 +212,12 @@ activity overlays separate from score, selection and recorded historical traces.
 
 ## Shared website chrome
 
+Export adds the configured node domain below the logo on every page with the shared
+masthead; the browser hostname fills an unconfigured domain. The gateway supplies
+Main, Blog and Console links per node. See [runner terminals](standalone.md)
+for repository-owned shell setup; no personal host dotfiles are imported.
+
+
 `masthead.css` owns header geometry, icon sizes, mobile breakpoints and the shared
 hover/focus/touch description surface. Load it after page skins. Page styles may
 supply color tokens but must not add competing masthead geometry. Export normalizes

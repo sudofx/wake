@@ -8,6 +8,7 @@ from http.client import HTTPConnection
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import ipaddress
 import json
+import os
 from pathlib import Path
 import secrets
 import threading
@@ -510,16 +511,20 @@ class GroupProxy(BaseHTTPRequestHandler):
         route = self.server.routes.get(member, {})
         parts = member.split(".")
         display = parts[0]
-        tag = "a" if href else "div"
-        destination = f'href="{escape(href, quote=True)}" target="_blank" rel="noopener noreferrer"' if href else 'aria-disabled="true"'
+        base = href.rsplit("/", 1)[0] if href else ""
+        links = "".join(
+            f'<a href="{escape(base + path, quote=True)}" target="_blank" '
+            f'rel="noopener noreferrer" aria-label="{label} · {escape(member, quote=True)}">{label}</a>'
+            for label, path in (("Main", "/index.html"), ("Blog", "/index.html#blog"), ("Console", "/console.html"))
+        ) if href else '<span>Unavailable</span>'
         return (
-            f'<{tag} class="member-button {"unavailable" if not href else ""}" '
-            f'{destination} title="{escape(label, quote=True)}" '
-            f'aria-label="Open {escape(member, quote=True)} in a new tab · {escape(label, quote=True)}">'
-            f'<span>{escape(display)}</span>'
+            f'<div class="member-button {"unavailable" if not href else ""}" '
+            f'title="{escape(label, quote=True)}" aria-label="{escape(member, quote=True)} · {escape(label, quote=True)}">'
+            f'<div class="member-identity"><span>{escape(display)}</span>'
             f'<span class="member-status-light" data-member="{escape(member, quote=True)}" '
             f'data-state="{escape(state, quote=True)}" '
-            f'role="img" aria-label="{escape(label, quote=True)}"><i></i></span></{tag}>'
+            f'role="img" aria-label="{escape(label, quote=True)}"><i></i></span></div>'
+            f'<nav class="member-links" aria-label="{escape(member, quote=True)} pages">{links}</nav></div>'
         )
 
     def _serve_directory(self, title, panels):
@@ -576,8 +581,13 @@ class GroupProxy(BaseHTTPRequestHandler):
             '.child-heading{margin:13px 0 7px;color:var(--muted);font-size:10px;letter-spacing:.06em;text-transform:uppercase}'
             '.child-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:8px}'
             '.member-button{min-height:48px;border:1px solid var(--button-line);border-radius:10px;background:var(--button-bg);'
-            'display:flex;align-items:center;justify-content:space-between;padding:0 13px;color:var(--blue);'
+            'display:flex;flex-direction:column;gap:9px;padding:12px 13px;color:var(--blue);'
             'font-size:13px;font-weight:700;transition:background .15s,border-color .15s,transform .15s}'
+            '.gateway-domain{font:600 11px/1.2 ui-monospace,monospace;color:var(--muted)}'
+            '.member-identity{display:flex;align-items:center;justify-content:space-between;width:100%}'
+            '.member-links{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;width:100%}'
+            '.member-links a{color:var(--blue);font-size:11px;padding:3px 0;text-decoration:none}'
+            '.member-links a:hover{text-decoration:underline}.member-links a:focus-visible{outline:2px solid var(--blue);outline-offset:3px}'
             '.member-button small{font-size:12px;color:var(--muted);font-weight:400}'
             '.member-status-light{display:inline-flex;align-items:center;justify-content:center;width:12px;height:12px;flex:0 0 12px}'
             '.member-status-light i{display:block;width:10px;height:10px;border-radius:50%;background:#8a96a8}'
@@ -603,21 +613,23 @@ class GroupProxy(BaseHTTPRequestHandler):
             '.gateway-foot{margin:23px 0 0;color:var(--muted);font-size:9px;letter-spacing:.04em;text-transform:none}'
             '@media(max-width:480px){body{padding-top:72px}.masthead{height:72px;padding:0 17px}.brand{font-size:22px}.masthead-tools{gap:12px}'
             'main{width:calc(100% - 32px);padding:39px 0 48px}.group-panel{padding:18px 16px}'
-            '.child-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.member-button{padding:0 10px}}'
+            '.child-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.member-button{padding:10px 8px}}'
             '@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}'
             '</style><script>(function(){let choice;try{choice=localStorage.getItem("wake-site-theme")}catch{}'
             'const dark=choice==="dark"||(!["light","dark"].includes(choice)&&matchMedia("(prefers-color-scheme: dark)").matches);'
             'document.documentElement.dataset.theme=dark?"dark":"light"})();</script></head><body>'
             '<header class="masthead"><div class="masthead-identity"><div class="brand">WAKE<span class="brand-star">✳︎</span></div>'
+            f'<span class="gateway-domain">{escape(os.environ.get("WAKE_PUBLIC_HOSTNAME", ""))}</span>'
             '<a class="hosted-console-link" href="https://sudofx.github.io/wake/console.html" '
-            'target="_blank" rel="noopener noreferrer">sudofx.github.io</a></div>'
+            'target="_blank" rel="noopener noreferrer">Hosted Console</a></div>'
             '<div class="masthead-tools"><label class="theme-switch" title="Following system theme">'
             '<input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme">'
             '<span class="theme-track" aria-hidden="true"><i></i></span></label>'
             '<div class="masthead-label"><i></i>LOCAL GATEWAY</div></div></header>'
+            '<script>const domain=document.querySelector(".gateway-domain");if(domain&&!domain.textContent)domain.textContent=location.hostname;</script>'
             '<main><div class="page-intro"><p class="eyebrow">WAKE✳︎ / GROUP ACCESS</p>'
             f'<h1>{escape(title)}</h1>'
-            '<p class="intro-copy">Choose a member to open its WAKE Console in a new tab.</p></div>'
+            '<p class="intro-copy">Open a node’s main page, Bob’s Blog, or Console in a new tab.</p></div>'
             f'<div class="group-list">{"".join(panels)}</div>'
             '<section class="status-key" aria-label="Status light key"><p class="status-key-title">Status lights'
             '<span class="status-updated" id="status-updated" role="status">Auto-refreshes every 5 seconds</span></p>'
@@ -636,7 +648,7 @@ class GroupProxy(BaseHTTPRequestHandler):
             'const light=document.querySelector(`.member-status-light[data-member="${CSS.escape(member)}"]`);'
             'if(!light||!status||typeof status.state!=="string"||typeof status.label!=="string")continue;'
             'light.dataset.state=status.state;light.setAttribute("aria-label",status.label);const button=light.closest(".member-button");'
-            'if(button){button.title=status.label;button.setAttribute("aria-label",`Open ${member} in a new tab · ${status.label}`)}}'
+            'if(button){button.title=status.label;button.setAttribute("aria-label",`${member} · ${status.label}`)}}'
             'updated.textContent=`Updated ${new Date().toLocaleTimeString([], {hour:"numeric",minute:"2-digit"})}`;'
             '}catch{updated.textContent="Status check unavailable"}}setInterval(refreshStatuses,5000);})();'
             '(function(){const root=document.documentElement,media=matchMedia("(prefers-color-scheme: dark)"),'

@@ -7,6 +7,8 @@
  */
 
 (() => {
+  const domain=document.querySelector('.node-domain');
+  if(domain&&!domain.textContent.trim())domain.textContent=location.hostname;
   const masthead=document.querySelector('body > .masthead');
   if(masthead){
     const reserveHeader=()=>document.documentElement.style.setProperty('--wake-masthead-height',`${masthead.getBoundingClientRect().height}px`);

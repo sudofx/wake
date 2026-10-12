@@ -17,6 +17,7 @@ body:has(>.masthead){padding-top:var(--wake-masthead-height)!important}
 .masthead .wordmark{display:block;margin:0;padding:0;border:0;background:none;color:var(--ink);font:800 32px/1 Arial,Helvetica,sans-serif;letter-spacing:-1.2px;white-space:nowrap}
 .masthead .asterisk{display:inline;font:inherit;color:var(--cyan,#8fd3ff);margin:0 0 0 2px}
 .masthead .wordmark small{display:block;margin:7px 0 0;color:var(--muted);font:700 9px/1.25 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.04em}
+.masthead .node-domain{display:block;margin-top:5px;color:var(--muted);font:600 11px/1.2 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}
 .masthead .cycle-count{color:var(--cyan)}
 .masthead .compact-nav{display:flex;align-items:center;justify-content:center;gap:20px;margin:0;padding:0;min-width:0}
 .masthead .compact-nav>a,.masthead summary{display:block;margin:0;padding:6px 0;border:0;background:none;color:var(--ink);font:700 13px/1.25 Arial,Helvetica,sans-serif;letter-spacing:0;white-space:nowrap}

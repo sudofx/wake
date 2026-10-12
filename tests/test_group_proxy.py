@@ -40,6 +40,17 @@ class _Connection:
 
 
 class GroupProxyTests(unittest.TestCase):
+    def test_member_card_links_share_the_correct_hostname_or_lan_port(self):
+        proxy = GroupProxy.__new__(GroupProxy)
+        proxy.server = SimpleNamespace(routes={"101.wake": {}})
+        with patch.object(proxy, "_member_runtime", return_value=("paused", "Paused")):
+            for origin in ("http://101.wake", "http://192.168.1.74:54321"):
+                card = proxy._member_button("101.wake", origin + "/console.html")
+                for path in ("/index.html", "/index.html#blog", "/console.html"):
+                    self.assertIn('href="' + origin + path + '"', card)
+                self.assertEqual(card.count('<a '), 3)
+                self.assertTrue(card.startswith('<div '))
+
     def test_gateway_directory_explains_each_status_light_color(self):
         proxy = GroupProxy.__new__(GroupProxy)
         proxy.command = "GET"

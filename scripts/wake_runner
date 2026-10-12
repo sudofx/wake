@@ -30,9 +30,9 @@ Use `--paused` to create containers without starting their research schedulers.
 Without `--count`, `wake` is a single standalone container published on a random
 host port on all host network interfaces.
 
-New containers copy any available ~/.bashrc, ~/.gitignore, ~/.bash_profile,
-~/.profile, ~/.bash_aliases and ~/.inputrc files into their home volume by
-default. Use `--dotfiles=false` or `--no-dotfiles` to skip importing them.
+New containers use the repository-owned WAKE terminal with live status and node
+identity. Host dotfiles are never imported. Legacy --dotfiles options remain
+accepted for command compatibility and do not enable host-file copying.
 
 Groups use parent container names 100.PREFIX, 200.PREFIX, and so on, and receive
 separate data volumes and Docker-assigned host ports published on the host's
@@ -261,11 +261,16 @@ PY
         ensure_group_router_identity "$GROUP_ROUTER"
         docker rm -f "$GROUP_ROUTER" >/dev/null
     fi
+    initialize_terminal_home "${GROUP_ROUTER}-vscode-home" "$GROUP_ROUTER"
     docker run -d --name "$GROUP_ROUTER" \
         --label "$LABEL=true" --label "$LABEL.router=true" \
         --network "$first_network" -p 80:8080 \
         --health-cmd "python -c 'import urllib.request; urllib.request.urlopen(\"http://127.0.0.1:8080/\", timeout=3).read()'" \
         --health-interval 30s --health-timeout 5s --health-start-period 30s --health-retries 3 \
+        -v "${GROUP_ROUTER}-vscode-home:/home/wake" \
+        -v "$repo_dir/scripts/wake_terminal.py:/workspace/scripts/wake_terminal.py:ro" \
+        -e WAKE_TERMINAL_ROLE=gateway -e "WAKE_PUBLIC_HOSTNAME=$GROUP_ROUTER" \
+        -e "WAKE_CONTAINER_IMAGE=$IMAGE" \
         -v "$repo_dir/scripts/wake_group_proxy.py:/workspace/wake_group_proxy.py:ro" \
         -v "$config_file:/run/wake-group-router.json:ro" \
         --read-only --tmpfs /tmp --entrypoint python "$IMAGE" \
@@ -291,43 +296,13 @@ home_volume_for() {
     fi
 }
 
-copy_host_dotfiles() {
-    local home_volume="$1" enabled="${2:-true}" host_home="${HOME:-}"
-    local staging_dir dotfile copied=()
-    if [[ "$enabled" != true ]]; then
-        printf 'DOTFILES: skipped (disabled)\n'
-        return 0
-    fi
-    if [[ -z "$host_home" || ! -d "$host_home" ]]; then
-        printf 'DOTFILES: no host home directory found; continuing without dotfiles\n'
-        return 0
-    fi
-    staging_dir="$(mktemp -d "$repo_dir/.wake-runner-dotfiles.XXXXXX")" ||
-        fail 'Could not create a temporary dotfiles staging directory.'
-    for dotfile in .bashrc .gitignore .bash_profile .profile .bash_aliases .inputrc; do
-        if [[ -f "$host_home/$dotfile" ]]; then
-            if ! cp "$host_home/$dotfile" "$staging_dir/$dotfile"; then
-                rm -rf "$staging_dir"
-                fail "Could not stage host dotfile: $host_home/$dotfile"
-            fi
-            copied+=("$dotfile")
-        fi
-    done
-    if ((${#copied[@]} == 0)); then
-        rm -rf "$staging_dir"
-        printf 'DOTFILES: no matching host files found; continuing without dotfiles\n'
-        return 0
-    fi
-    if ! docker run --rm --network none --read-only --tmpfs /tmp \
+initialize_terminal_home() {
+    local home_volume="$1" node="$2"
+    docker volume create "$home_volume" >/dev/null
+    docker run --rm --network none --read-only --tmpfs /tmp \
         -v "$home_volume:/home/wake" \
-        -v "$staging_dir:/run/wake-dotfiles:ro" \
-        -v "$repo_dir/scripts/wake_copy_dotfiles.py:/run/wake-copy-dotfiles.py:ro" \
-        --user 0:0 --entrypoint python "$IMAGE" /run/wake-copy-dotfiles.py >/dev/null; then
-        rm -rf "$staging_dir"
-        fail 'Could not copy host dotfiles into the new container home volume.'
-    fi
-    rm -rf "$staging_dir"
-    printf 'DOTFILES: copied %s into the new container home\n' "${copied[*]}"
+        -v "$repo_dir/scripts/wake_terminal.py:/run/wake-terminal.py:ro" \
+        --user 0:0 --entrypoint python "$IMAGE" /run/wake-terminal.py install --node "$node" --image "$IMAGE"
 }
 
 require_runtime() {
@@ -485,7 +460,7 @@ create_container() {
     docker volume create "$passenger_volume" >/dev/null
     docker run --rm --user 0:0 --entrypoint chown -v "$passenger_volume:/passenger" \
         "$IMAGE" 10001:10001 /passenger >/dev/null
-    copy_host_dotfiles "$home_volume" "$dotfiles"
+    initialize_terminal_home "$home_volume" "$name"
     publish_args=(-p 8080)
     if [[ -n "$group_id" ]]; then
         [[ -n "$network" ]] || network="$(group_network_for "$group_id")"
@@ -527,6 +502,7 @@ create_container() {
         -v "$data_volume:/data" \
         -v "$home_volume:/home/wake" \
         -v "$passenger_volume:/passenger" \
+        -e "WAKE_CONTAINER_IMAGE=$IMAGE" \
         -e "WAKE_PASSENGER_ROOT=$passenger_root" \
         -e "WAKE_PASSENGER_INSTALLATION=$passenger_identity" \
         -v "$repo_dir:/workspace" -w /workspace \

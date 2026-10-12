@@ -336,16 +336,29 @@ when creating a container to omit that enrollment, for example
 this runner after creation. Campaign progress is still reported for existing
 containers.
 
-When creating a new container, `wake_runner` copies any existing host files from
-`~/.bashrc`, `~/.gitignore`, `~/.bash_profile`, `~/.profile`, `~/.bash_aliases`
-and `~/.inputrc` into that container's `/home/wake` volume. Missing files are
-skipped. This is enabled by default for solo containers and each newly created
-group member. Use `--dotfiles=false` (or `--no-dotfiles`) to skip the copy, for
-example `./scripts/wake_runner wake-dev --dotfiles=false` or
-`./scripts/wake_runner wake --count 3 --dotfiles=false`.
-`--dotfiles false` is also accepted. This only applies when a container is
-created; invoking the runner for an existing container leaves its home volume
-unchanged.
+New runner containers use a repository-owned Bash environment rather than personal
+host dotfiles. Opening an attached VS Code terminal shows the node identity, role,
+research status, accepted cycles, group/parent, memory and host load. Status refreshes
+at each prompt; `wake-status` shows the full banner again. These are bounded local
+read-only observations and make no provider requests. An unavailable service is
+labelled unavailable rather than implying a research failure.
+
+The installer replaces the six formerly imported files in the selected home volume:
+`.bashrc`, `.bash_profile`, `.profile`, `.bash_aliases`, `.inputrc`, and `.gitignore`.
+It preserves other home data and every research record. New `.bashrc` and
+`.bash_profile` files load only the WAKE terminal. Existing containers may receive
+the same setup without recreation:
+
+```sh
+docker exec --user root 100.wake python /workspace/scripts/wake_terminal.py install --node 100.wake
+```
+
+Use the exact node name for each member. Legacy `--dotfiles` flags remain accepted
+for command compatibility but never import host files. The gateway has its own home
+volume and reports gateway identity and configured node count, with no research authority.
+Node cards on the gateway offer Main, Blog and Console links. Generated node pages
+display the configured domain below the logo, falling back to the browser hostname
+when no domain is configured.
 
 Explicit research actions are available as
 `--research stop|start|pause|reset|status [container-name]`. These control the

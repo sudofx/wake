@@ -59,6 +59,22 @@ process.stdout.write(JSON.stringify(results));
 
 
 class ExportIdentityTests(unittest.TestCase):
+    def test_node_domain_is_escaped_and_present_on_nested_export_pages(self):
+        import tempfile
+        from wake.report import _deployment_site
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory)
+            (target / 'blog').mkdir()
+            shell = (ASSETS / 'index.html').read_text()
+            for name in ('index.html', 'console.html', 'blog/introduction.html'):
+                (target / name).write_text(shell)
+            with patch.dict(os.environ, {'WAKE_PUBLIC_HOSTNAME': '101.wake<script>'}, clear=True):
+                _deployment_site(target, standalone=True)
+            for name in ('index.html', 'console.html', 'blog/introduction.html'):
+                page = (target / name).read_text()
+                self.assertIn('<span class="node-domain">101.wake&lt;script&gt;</span>', page)
+                self.assertNotIn('101.wake<script>', page)
+
     def test_only_local_group_exports_carry_group_identity(self):
         import tempfile
         from wake.report import _deployment_site

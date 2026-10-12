@@ -117,7 +117,7 @@ Parents and their children can exchange bounded research material on the local
 Docker network; an unreachable peer does not stop another node. To give each parent
 different topics, prepare `.wake-runner-topics/100.wake.toml` and the
 matching files for the other parents before creating the group. The [group guide](docs/standalone.md#repository-convenience-launcher)
-explains addresses, child visibility, dotfiles, and lifecycle commands.
+explains addresses, node page links, child visibility, live terminal status, and lifecycle commands.
 
 ## How installations stay separate
 
