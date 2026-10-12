@@ -140,6 +140,7 @@
   function visibleRecord(x) {return topic==='all'||x.domain===topic||data.records.projects.find(p=>p.id===x.project)?.domain===topic;}
   function render() {
     const s=data.status,latest=s.latest || {};
+    document.querySelectorAll('.cycle-count').forEach(node=>node.textContent=count(s.accepted_cycles));
     const cells=[['Accepted cycles',count(s.accepted_cycles),'Accepted transitions, not a quality score',''],['Latest outcome',latest.status || 'No attempts',latest.model || 'No recorded model',latest.status],['Active projects',count(s.active_projects),`${count(data.record_totals.projects)} projects in the record`,''],['Open commitments',count(s.open_commitments),'Outstanding recorded obligations',''],['Research focus',s.attention_topic?label(s.attention_topic):'Unassigned',s.regime?.enabled?`Time Dilation: ${s.regime.mode} · ×${s.regime.scale}`:'No recorded Time Dilation regime','']];
     $('status-band').innerHTML=cells.map(([name,value,note,status],i)=>`<div class="status-cell"><span class="label">${esc(name)}</span><button type="button" data-ui-tooltip="Inspect ${esc(name.toLowerCase())}" class="status-value ${i===1||i===4?'latest-label ':''}${esc(status)}" data-metric="${['accepted','latest','projects','commitments','attention'][i]}">${esc(value)}</button><small>${esc(note)}</small></div>`).join('');
     $('topic').innerHTML='<option value="all">All topics</option>'+data.topics.map(t=>`<option value="${esc(t.id)}">${esc(t.label)}</option>`).join('');$('topic').value=topic;$('search').value=query;
