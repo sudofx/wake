@@ -99,6 +99,18 @@ Never read them back as operational truth.
 
 Public labels should use configured human-facing topic labels rather than leaking internal machine IDs where a label exists.
 
+## Conceptual consistency
+
+Use [why WAKE](docs/why-wake.md) as the canonical explanation of the wake and
+Quantum Wake Function metaphor. Keep the infrastructure-first identity and
+research as its first application. Connect the metaphor to recorded consequences,
+bounded context and governed transitions; never describe it as an implemented
+function, new quantum physics, quantum computation, consciousness or persistent
+personal identity. Recorded claims are not established truth, and a rejected
+proposal's receipt is not an accepted transition. Corrections and supersession
+preserve earlier history. Keep API definitions literal and link to the canonical
+explanation instead of repeating it.
+
 ## Documentation synchronization
 
 When code materially changes migration status, authority, operator workflows, context delivery, provider accounting, or research governance, update the canonical prose in the same work:

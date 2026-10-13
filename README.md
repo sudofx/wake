@@ -32,10 +32,19 @@ it shortens material for everyday use while keeping evidence links back to the
 exact receipts. Working abstractions keep evidence pointers; a short summary does
 not pretend it can restore details that it left out.
 
+The name adds an image to this architecture: **a wave describes possibilities;
+a wake carries the consequences of what has occurred.** A wake is both evidence
+of the past and an influence on the future. WAKE's durable record carries those
+consequences into later work, even when the model that produced them is replaced.
+**Quantum Wake Function** names this philosophical metaphor, not a physical
+theory, quantum computation, or an implemented function. Read
+[why WAKE](docs/why-wake.md) for the full explanation and its limits.
+
 ## Choose a guide
 
 | If you want to… | Start here |
 | --- | --- |
+| Understand the name and its metaphor | [Why WAKE](docs/why-wake.md) |
 | Understand the design and its limits | [Architecture](docs/architecture.md) |
 | Try the kernel without a model or API key | [Kernel example](docs/kernel.md#executable-non-research-proof) |
 | Run one local Docker installation | [Standalone setup](docs/standalone.md) |

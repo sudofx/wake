@@ -35,6 +35,9 @@ Deployment owns installed application versions, permissions, provider credential
 process lifecycle, and the selected record. A model proposes; it cannot grant its
 own permissions or bypass governance.
 
+For the name's conceptual meaning, see [why WAKE](why-wake.md). That metaphor
+adds no API, computational function or guarantee to this technical contract.
+
 `wake/application.py` is the research bridge, not the generic extension interface.
 New applications use `wake.kernel.applications`: `ApplicationDefinition`, actions
 returning `ApplicationDecision`, an `ApplicationRegistry`, and `ApplicationHost`.

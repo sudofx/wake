@@ -2,7 +2,7 @@
 
 Use this page when a technical term in the other guides is unfamiliar. The
 definitions describe the current WAKE implementation, not broader industry
-definitions.
+definitions. The wake entries describe its conceptual language rather than an API.
 
 | Term | Plain-language meaning |
 | --- | --- |
@@ -22,8 +22,10 @@ definitions.
 | **Kernel** | The reusable WAKE layer for records, decisions, transitions, receipts and replay. It does not contain research-specific policy. |
 | **Projection** | A disposable view of the record for a website or Console. It can be rebuilt and is never the authority. |
 | **Proposal** | A model's suggested changes. A proposal is untrusted until governance checks it. |
+| **Quantum Wake Function** | A philosophical metaphor: the wavefunction describes what might happen; the wake function describes how what happened shapes what can happen next. It is not an established mathematical object, physical law, or implemented computational function. See [why WAKE](why-wake.md) for the scientific limits. |
 | **Quota standby / purple** | A provider reported a quota limit. WAKE keeps scheduling retries, so it may return to normal research when a model has capacity. A configured hard daily cap can instead wait until the Pacific reset. |
 | **Receipt** | A durable account of an attempt or decision, including what was requested and whether it was accepted, rejected or deferred. |
+| **Wake metaphor** | The image of a disturbance left by passage through water: evidence of the past that can influence what follows. In WAKE, durable records carry consequences into future bounded context; this does not imply consciousness or a persistent personal identity. See [why WAKE](why-wake.md). |
 
 The usual flow is:
 

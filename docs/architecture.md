@@ -12,6 +12,15 @@ In everyday terms: WAKE keeps the record, gives a model a bounded view of it,
 checks the model's suggestion against rules, and records what happened. A model
 never writes directly to the database.
 
+The [wake metaphor](why-wake.md) connects this lifecycle to persistent
+consequences: proposals express possibilities, governance evaluates them, and
+accepted transitions change governed state. Rejected proposals leave receipts
+without becoming accepted transitions; deferrals and provider failures have
+their own recorded outcomes. The record supplies bounded context for subsequent
+work without granting the next model authority. This is a conceptual reading of
+the lifecycle; the technical guarantees below come from the kernel, application
+policy and runtime contracts, not from quantum physics.
+
 ```mermaid
 flowchart TB
   subgraph App[Research application]
