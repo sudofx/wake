@@ -65,6 +65,7 @@ class SubmissionProvenance:
     origin: Literal["human", "model", "runtime", "application", "integration"]
     actor: str
     source: str = ""
+    purpose: str = ""
 
     def to_dict(self) -> dict[str, str]:
         """Return validated provider-neutral provenance for durable hashing."""
@@ -73,6 +74,8 @@ class SubmissionProvenance:
         data = {"origin": self.origin, "actor": self.actor}
         if self.source:
             data["source"] = self.source
+        if self.purpose:
+            data["purpose"] = self.purpose
         return data
 
 
@@ -173,6 +176,7 @@ class Receipt:
     revision_after: int
     reasons: tuple[str, ...]
     event_hash: str
+    provenance: dict[str, str] | None = None
 
 
 @dataclass(frozen=True)

@@ -77,9 +77,14 @@ class RecordStore:
         self.directory.mkdir(parents=True, exist_ok=True)
         self.path = self.directory / "wake.sqlite"
         self.record = Record(self.path)
+        self.receipt_location = os.environ.get('WAKE_PUBLIC_HOSTNAME') or (
+            'github:' + os.environ['GITHUB_REPOSITORY'] if os.environ.get('GITHUB_ACTIONS') == 'true'
+            and os.environ.get('GITHUB_REPOSITORY') else 'local:' + self.path.name)
+        self.record.receipt_location = self.receipt_location
         self._kernel_store = _CrashInjectableRecordStore(self.record)
         self.registry = ApplicationRegistry((WAKE_APPLICATION,))
-        self.kernel = Kernel(self._kernel_store, Governance(application_registry=self.registry))
+        self.kernel = Kernel(self._kernel_store, Governance(application_registry=self.registry),
+                             receipt_location=self.receipt_location)
         self.host = ApplicationHost(self.kernel, self.registry, "wake")
         if _migration_source is not None and initialize_empty:
             raise IntegrityError("Choose verified legacy migration or native initialization, not both")
@@ -259,7 +264,8 @@ class RecordStore:
         return InvocationLifecycle.begin(
             self.record,
             context,
-            provenance=SubmissionProvenance("model", provider, model),
+            provenance=SubmissionProvenance("model", provider, model,
+                purpose="Obtain an untrusted proposal from bounded recorded context"),
             context_scope={"kind": "application", "application_id": "wake"},
             invocation_id=invocation_id,
         )
@@ -388,7 +394,7 @@ class RecordStore:
                 revision,
                 "append_legacy_event",
                 {"kind": kind, "payload": payload, "time": now()},
-                rationale="WAKE compatibility event committed through wake",
+                rationale=str(payload.get("reason") or payload.get("summary") or f"Record {kind}"),
             ),
             provenance=SubmissionProvenance(
                 "application", "wake-engine", "wake-authoritative-store"

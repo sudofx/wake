@@ -954,9 +954,14 @@ class Record:
         if not event.context_digest.strip():
             raise ValueError("context_digest must not be empty")
 
-        provenance = (
-            canonical_json(event.provenance) if event.provenance is not None else None
-        )
+        from .receipts import receipt_provenance
+        attribution = receipt_provenance(
+            event.provenance, what=f"{event.stage} invocation {event.invocation_id}",
+            where=getattr(self, 'receipt_location', ''),
+            why=event.detail or (event.provenance or {}).get("purpose")
+                or f"Record provider lifecycle stage: {event.stage}",
+            how="Durable invocation lifecycle journal")
+        provenance = canonical_json(attribution)
         context_receipt = (
             canonical_json(
                 {
@@ -994,7 +999,7 @@ class Record:
                     "stage": event.stage,
                     "source_revision": event.source_revision,
                     "context_digest": event.context_digest,
-                    "provenance": event.provenance,
+                    "provenance": attribution,
                     "context_receipt": (
                         {
                             "policy_version": event.context_receipt.policy_version,

@@ -644,7 +644,7 @@ def _deployment_site(target, *, standalone):
         page = re.sub(r'(<html[^>]*)\sdata-theme=[\"\'][^\"\']*[\"\']', r'\1', page, count=1)
         page = re.sub(r'<html([^>]*)>', r'<html\1 data-theme="light">', page, count=1)
         prefix = "../" * len(path.relative_to(target).parts[:-1])
-        page = re.sub(r'href="((?:\.\./)*(?:style|nav|map|map3d|research|theme)\.css)(?:\?[^"]*)?"', r'href="\1?v=20261011-story-order"', page)
+        page = re.sub(r'href="((?:\.\./)*(?:style|nav|map|map3d|research|theme)\.css)(?:\?[^"]*)?"', r'href="\1?v=20261013-map-theme"', page)
         page = re.sub(r'src="((?:\.\./)*nav\.js)(?:\?[^"]*)?"', r'src="\1?v=20261011-node-domain"', page)
         if '<header class="' in page and 'masthead' in page:
             shared = header

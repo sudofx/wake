@@ -106,6 +106,23 @@ Effect requests declare intent only. Installed capabilities and deployment grant
 both limit them; declaring a capability is not permission to execute it. Retain the
 existing durability-before-effect runtime boundary when adding effects or providers.
 
+## Receipt attribution
+
+New proposal receipts and provider lifecycle entries bind `wake-receipt@1`
+attribution into their existing provenance and hash chains. The six fields are
+`who` (trusted caller identity), `what` (recorded action and outcome), `where`
+(runtime-supplied execution location), `why` (declared rationale or lifecycle
+reason), `how` (the governed submission or invocation mechanism), and `when`
+(UTC recording time). Attribution is evidence, never permission or proof of a
+claim. Kernel hosts supply `receipt_location`; the WAKE application supplies its
+configured node name, hosted repository identity, or local record name.
+
+Unspecified identity, location or rationale is explicitly reported as not
+supplied. Older receipts retain their exact bytes, hashes and absent fields;
+no historical attribution is invented. The returned proposal receipt exposes
+its `provenance`, and record history and invocation history expose the durable
+fields. No record schema migration is needed.
+
 ## Deployment independence
 
 Use [standalone](standalone.md) for container operation and

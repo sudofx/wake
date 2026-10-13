@@ -72,10 +72,11 @@ class ConsolePresentationTests(unittest.TestCase):
     def test_3d_map_uses_dark_nebula_behind_transparent_floor(self):
         self.assertIn("NEBULA CONSTELLATION BACKDROP", self.map3d_css)
         self.assertIn('url("backgrounds/nebula-desktop-1680x1050.webp?v=20261004-8")', self.map3d_css)
-        self.assertIn("linear-gradient(rgba(0,0,0,.70),rgba(0,0,0,.70))", self.map3d_css)
+        self.assertIn("linear-gradient(var(--map3d-veil),var(--map3d-veil))", self.map3d_css)
+        self.assertIn('--map3d-veil:rgba(0,0,0,.70)', self.map3d_css)
         self.assertIn("#constellation-stage::before", self.map3d_css)
         self.assertIn("backdrop-filter:blur(18px)", self.map3d_css)
-        self.assertIn("background-color:rgba(2,5,18,.08)!important", self.map3d_css)
+        self.assertIn("background-color:var(--map3d-floor)!important", self.map3d_css)
 
     def test_3d_map_stylesheet_is_cache_busted(self):
         map3d_html = (ASSETS / "map3d.html").read_text()

@@ -55,8 +55,10 @@ class Kernel:
     by RecordStore, not on one backend's connection API or schema.
     """
 
-    def __init__(self, record: RecordStore, governance: Governance | None = None) -> None:
+    def __init__(self, record: RecordStore, governance: Governance | None = None,
+                 *, receipt_location: str = "") -> None:
         self.record = record
+        self.receipt_location = receipt_location
         self.governance = governance or Governance()
 
     def application_access_state(self) -> ApplicationAccessState:
@@ -167,11 +169,21 @@ class Kernel:
                 "payload": durable_payload,
                 "reasons": list(decision.reasons),
             }
-            # Legacy events predate trusted provenance and intentionally omit the
-            # field from their hash material. New attributed events bind origin
-            # evidence into the same semantic hash chain as the proposal.
-            if provenance_payload is not None:
-                material["provenance"] = provenance_payload
+            # New attribution is hash-bound. Historical rows keep their original
+            # optional provenance and are verified without rewriting their bytes.
+            from .receipts import receipt_provenance
+            actions = []
+            for operation in durable_payload.get('operations', []):
+                value = operation.get('value')
+                action = value.get('action', operation['action']) if isinstance(value, dict) else operation['action']
+                if isinstance(value, dict) and isinstance(value.get('input'), dict):
+                    action = value['input'].get('kind', action)
+                actions.append(str(action))
+            provenance_payload = receipt_provenance(
+                provenance_payload, what=f"{status}: {', '.join(actions) or 'no operations'} (proposal {proposal.proposal_id})",
+                where=self.receipt_location, why=proposal.rationale,
+                how="Deterministic governance and serialized record submission")
+            material["provenance"] = provenance_payload
             event_hash = hash_event(previous_hash, material)
 
             # Storage receives one complete event. Commit/rollback remains inside
@@ -201,4 +213,5 @@ class Kernel:
             revision_after=revision_after,
             reasons=decision.reasons,
             event_hash=event_hash,
+            provenance=provenance_payload,
         )
