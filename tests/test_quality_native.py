@@ -24,6 +24,7 @@ class NativeQualityContractTests(unittest.TestCase):
                 invocation, request = engine.start('fixture', 'offline')
                 choices = request['response_schema']['properties']['actions']['items']['anyOf']
                 self.assertTrue(any('claims' in c.get('required', []) for c in choices))
+                action.pop('findings')
                 result = engine.finish(invocation, json.dumps({'base_version': request['context']['version'], 'title': 'Source review', 'summary': 'A bounded finding.', 'actions': [action]}))
                 self.assertEqual(result['status'], 'accepted', result)
                 original = store.load()['notebooks']['n']

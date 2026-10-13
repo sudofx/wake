@@ -475,3 +475,5 @@ Local `reset_with_continuity` resets and enrolls in one governed action; histori
 also enables continuity before checkpointing. Neither path starts research.
 
 The proposal delivery contract is rebuilt after forward quality policy and measured-result eligibility are attached. Models copy the current domain version into `base_version`; governance alone advances it. Claim `result` fields name only supplied measured reproductions, and non-tested claims use an empty string. Deterministic acceptance remains authoritative.
+
+Under forward quality policy, notebook proposals supply structured claims and omit the duplicate `findings` field. WAKE renders findings from those exact statements and support IDs before validation. Historical proposals with supplied findings remain valid only when they match the claims exactly; conflicting prose is never repaired. Source support and accepted-cycle accounting retain their existing checks.

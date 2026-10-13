@@ -30,6 +30,22 @@ class ClaimSupportTests(unittest.TestCase):
         action['findings'] += '\nThis proves heredity.'
         with self.assertRaises(Rejected): validate_claims(action, state)
 
+    def test_omitted_findings_are_rendered_but_conflicting_findings_still_fail(self):
+        from wake.claim_support import materialize_claim_findings
+        state, action = self.example()
+        state['research_quality_policy'] = 1
+        action['type'] = 'notebook'
+        expected = action.pop('findings')
+        proposal = {'actions': [action]}
+        rendered = materialize_claim_findings(proposal, state)
+        self.assertNotIn('findings', action)
+        self.assertEqual(rendered['actions'][0]['findings'], expected)
+        validate_claims(rendered['actions'][0], state)
+        action['findings'] = 'An unsupported additional conclusion.'
+        rendered = materialize_claim_findings(proposal, state)
+        with self.assertRaises(Rejected):
+            validate_claims(rendered['actions'][0], state)
+
     def test_fabricated_passage_and_background_fail(self):
         state, action = self.example()
         action['claims'][0]['support'][0]['passage'] = 'A completely invented substantive passage not actually in this collected paper.'

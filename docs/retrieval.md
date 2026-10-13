@@ -253,3 +253,5 @@ private output stays outside the public record. See
 Model-context summaries do not replace exact durable requests or responses. Storage-version 13 dictionaries compress repeated text losslessly; this changes storage, not delivered context or retrieval policy. See [kernel storage](kernel.md#physical-storage-and-compatibility).
 
 The final proposal schema is rebuilt after quality-policy and measured-result context are attached, even when queue constraints have not changed. Non-tested claim results are empty strings; tested eligibility comes only from visible measured reproductions. Both rich and compact instructions require copying the current version without incrementing it, and recovery guidance retains these specific rejection remedies.
+
+Under forward quality policy, notebook proposals supply structured claims and omit the duplicate `findings` field. WAKE renders findings from those exact statements and support IDs before validation. Historical proposals with supplied findings remain valid only when they match the claims exactly; conflicting prose is never repaired. Source support and accepted-cycle accounting retain their existing checks.

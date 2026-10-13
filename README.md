@@ -222,3 +222,5 @@ See [storage compatibility](docs/kernel.md#physical-storage-and-compatibility).
 Zero-cycle resets automatically enable an empty continuity campaign. See [reset operation](docs/standalone.md).
 
 Research jobs can succeed without advancing the journal: rejected proposals and provider deferrals remain visible. The proposal contract copies the current version exactly and limits measured-result references to operator-recorded reproductions; accepted journal cycles remain the progress signal.
+
+Under forward quality policy, notebook proposals supply structured claims and omit the duplicate `findings` field. WAKE renders findings from those exact statements and support IDs before validation. Historical proposals with supplied findings remain valid only when they match the claims exactly; conflicting prose is never repaired. Source support and accepted-cycle accounting retain their existing checks.

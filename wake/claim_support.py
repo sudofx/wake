@@ -8,6 +8,27 @@ def render_findings(claims):
     return '\n\n'.join(c['statement'] + ' ' + ' '.join('[' + s['evidence'] + ']' for s in c['support']) for c in claims)
 
 
+def materialize_claim_findings(proposal, state):
+    """Render omitted duplicate prose from claims; never repair conflicting prose."""
+    if not state.get('research_quality_policy') or not isinstance(proposal, dict):
+        return proposal
+    actions = proposal.get('actions')
+    if not isinstance(actions, list):
+        return proposal
+    rendered = []
+    for action in actions:
+        claims = action.get('claims') if isinstance(action, dict) else None
+        if (isinstance(action, dict) and action.get('type') == 'notebook'
+                and 'findings' not in action and isinstance(claims, list)
+                and claims and all(isinstance(c, dict) and isinstance(c.get('statement'), str)
+                    and isinstance(c.get('support'), list)
+                    and all(isinstance(s, dict) and isinstance(s.get('evidence'), str)
+                            for s in c['support']) for c in claims)):
+            action = {**action, 'findings': render_findings(claims)}
+        rendered.append(action)
+    return {**proposal, 'actions': rendered}
+
+
 def validate_claims(action, state):
     from .governance import require, text, keys, _evidence_payload
     from .research_reviews import background_reason

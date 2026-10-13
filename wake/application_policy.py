@@ -511,6 +511,8 @@ def enforce_synthesis_checkpoint(state, invocation, proposal):
 
 def govern_proposal(state, invocation, proposal):
     """Apply the complete WAKE domain-policy path without committing storage."""
+    from .claim_support import materialize_claim_findings
+    proposal = materialize_claim_findings(proposal, state)
     proposal, checkpoint_filter = materialize_due_bob_checkpoint_preflight(state, proposal)
     proposal, reuse_filter = reuse_owned_project_preflight(state, proposal)
     proposal, rotation_filter = rotation_preflight(state, invocation, proposal)

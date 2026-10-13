@@ -361,9 +361,12 @@ Follow persisted focus and Attention. Do not cancel commitments, erase history, 
 
 QUALITY_RESEARCH_SYSTEM = """
 Research quality: notebook claims require statement, support (evidence ID, exact
-substantive passage from the collected source, explanation of scope). findings must
-be exactly each statement followed by its [evidence-ID] citations, separated by blank
-lines. Do not add claims outside that list. Exact quotation is traceability, not truth.
+substantive passage from the collected source, explanation of scope). Omit the
+notebook findings field: WAKE renders it from claim statements and support IDs.
+Do not add claims outside that list. Cite substantive source prose, not just a
+paper title. If sources do not address the project's question, disclose the gap
+and request relevant retrieval instead of inventing a notebook. Exact quotation
+is traceability, not truth.
 Definitions and funding notices are background. Respect source_corrections.
 Policy 2+: certainty is paper-supported (reported by a paper), hypothesis, analogy,
 or tested (only the exact claim of a supplied measured reproduction). result is empty

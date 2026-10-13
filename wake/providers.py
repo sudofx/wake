@@ -139,6 +139,8 @@ def schema_for_context(context):
             if choice["properties"]["type"]["enum"] == ["notebook"]:
                 choice["properties"]["claims"] = claim_schema(context["research_quality_policy"], context.get("measured_results", []))
                 choice["required"].append("claims")
+                choice["properties"].pop("findings")
+                choice["required"].remove("findings")
 
     # In research mode, new commitments belong to one existing durable project.
     # The base non-research kernel keeps generic commitments available.
