@@ -327,11 +327,8 @@ class GroupProxy(BaseHTTPRequestHandler):
     def _serve_status(self, members):
         members = list(members)
         with ThreadPoolExecutor(max_workers=min(16, max(1, len(members)))) as pool:
-            results = pool.map(self._member_runtime, members)
-            states = {
-                member: {"state": state, "label": label}
-                for member, (state, label) in zip(members, results)
-            }
+            results = pool.map(self._member_status, members)
+            states = dict(zip(members, results))
         body = json.dumps({"states": states}, separators=(",", ":")).encode("utf-8")
         self.send_response(200)
         self.send_header("Content-Type", "application/json; charset=utf-8")
@@ -396,6 +393,35 @@ class GroupProxy(BaseHTTPRequestHandler):
         description = "Open a member by its local hostname in a new tab."
         panel = self._group_panel(group_name, group, href_for, description)
         self._serve_directory(group_name, [panel])
+
+    def _member_status(self, member):
+        state, label = self._member_runtime(member)
+        return {'state': state, 'label': label, 'accepted_wakes': self._member_count(member)}
+
+    def _member_count(self, member):
+        """Read accepted progress from the worker's bounded published snapshot."""
+        route = self.server.routes.get(member, {})
+        connection = None
+        try:
+            connection = HTTPConnection(route['target'], 8080, timeout=0.7)
+            connection.request('GET', '/group/bob-input.json', headers={'Accept': 'application/json'})
+            response = connection.getresponse()
+            raw = response.read(16_385)
+            if response.status != 200 or len(raw) > 16_384:
+                raise ValueError('Node progress unavailable')
+            packet = json.loads(raw)
+            count = packet.get('version')
+            if (packet.get('schema') != 1 or packet.get('member') != member
+                    or packet.get('group_id') != route.get('group_id')
+                    or not isinstance(packet.get('head'), str) or len(packet['head']) != 64
+                    or type(count) is not int or count < 0):
+                raise ValueError('Invalid node progress')
+            return count
+        except (KeyError, OSError, ValueError, TypeError, AttributeError):
+            return None
+        finally:
+            if connection is not None:
+                connection.close()
 
     def _member_runtime(self, member):
         route = self.server.routes.get(member, {})
@@ -506,7 +532,10 @@ class GroupProxy(BaseHTTPRequestHandler):
         )
 
     def _member_button(self, member, href):
-        state, label = self._member_runtime(member)
+        status = self._member_status(member)
+        state, label = status["state"], status["label"]
+        count = status["accepted_wakes"]
+        count_text = str(count) if count is not None else "—"
         display = member.split(".")[0]
         tag = "a" if href else "div"
         destination = (
@@ -515,8 +544,10 @@ class GroupProxy(BaseHTTPRequestHandler):
         )
         return (
             f'<{tag} class="member-button {"unavailable" if not href else ""}"{destination} '
-            f'title="{escape(label, quote=True)}" aria-label="{escape(member, quote=True)} · {escape(label, quote=True)}">'
+            f'title="{escape(label, quote=True)}" aria-label="{escape(member, quote=True)} · {count_text} accepted wakes · {escape(label, quote=True)}">'
             f'<div class="member-identity"><span>{escape(display)}</span>'
+            f'<span class="member-accepted" data-count-member="{escape(member, quote=True)}" '
+            f'aria-label="Accepted wakes: {count_text}"> | {count_text}</span>'
             f'<span class="member-status-light" data-member="{escape(member, quote=True)}" '
             f'data-state="{escape(state, quote=True)}" '
             f'role="img" aria-label="{escape(label, quote=True)}"><i></i></span></div></{tag}>'
@@ -580,6 +611,7 @@ class GroupProxy(BaseHTTPRequestHandler):
             'font-size:13px;font-weight:700;transition:background .15s,border-color .15s,transform .15s}'
             '.gateway-domain{font:600 11px/1.2 ui-monospace,monospace;color:var(--muted)}'
             '.member-identity{display:flex;align-items:center;justify-content:space-between;width:100%}'
+            '.member-accepted{margin-left:auto;padding:0 5px;white-space:nowrap;color:var(--muted);font-weight:500;font-variant-numeric:tabular-nums}'
             '.member-button small{font-size:12px;color:var(--muted);font-weight:400}'
             '.member-status-light{display:inline-flex;align-items:center;justify-content:center;width:12px;height:12px;flex:0 0 12px}'
             '.member-status-light i{display:block;width:10px;height:10px;border-radius:50%;background:#8a96a8}'
@@ -641,7 +673,10 @@ class GroupProxy(BaseHTTPRequestHandler):
             'const light=document.querySelector(`.member-status-light[data-member="${CSS.escape(member)}"]`);'
             'if(!light||!status||typeof status.state!=="string"||typeof status.label!=="string")continue;'
             'light.dataset.state=status.state;light.setAttribute("aria-label",status.label);const button=light.closest(".member-button");'
-            'if(button){button.title=status.label;button.setAttribute("aria-label",`${member} · ${status.label}`)}}'
+            'const count=button?.querySelector(".member-accepted");'
+            'const accepted=Number.isInteger(status.accepted_wakes)&&status.accepted_wakes>=0?status.accepted_wakes:"—";'
+            'if(count){count.textContent=` | ${accepted}`;count.setAttribute("aria-label",`Accepted wakes: ${accepted}`)}'
+            'if(button){button.title=status.label;button.setAttribute("aria-label",`${member} · ${accepted} accepted wakes · ${status.label}`)}}'
             'updated.textContent=`Updated ${new Date().toLocaleTimeString([], {hour:"numeric",minute:"2-digit"})}`;'
             '}catch{updated.textContent="Status check unavailable"}}setInterval(refreshStatuses,5000);})();'
             '(function(){const root=document.documentElement,media=window.matchMedia?.("(prefers-color-scheme: dark)"),'

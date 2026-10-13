@@ -217,6 +217,24 @@ class GroupProxyTests(unittest.TestCase):
             proxy.client_address=(f'172.{ordinal}.0.8',12345)
             self.assertEqual(proxy._coordinator_allowed('100.wake',parent),ordinal in (20,21))
 
+    def test_member_count_is_attributed_accepted_progress_not_attempts(self):
+        proxy = GroupProxy.__new__(GroupProxy)
+        proxy.server = SimpleNamespace(routes={'201.wake': {'target': '201.wake', 'group_id': 'wake'}})
+        packet = {'schema': 1, 'group_id': 'wake', 'member': '201.wake',
+                  'head': 'a' * 64, 'version': 21, 'attempts': [1, 2, 3]}
+        connection = _Connection('201.wake', 8080, 0.7)
+        connection.getresponse = lambda: _Response(packet)
+        with patch('scripts.wake_group_proxy.HTTPConnection', return_value=connection):
+            self.assertEqual(proxy._member_count('201.wake'), 21)
+            for field, invalid in [('version', True), ('version', -1), ('member', '202.wake')]:
+                changed = {**packet, field: invalid}
+                connection.getresponse = lambda: _Response(changed)
+                self.assertIsNone(proxy._member_count('201.wake'))
+        proxy._member_status = lambda member: {'state': 'running', 'label': 'Research running', 'accepted_wakes': 21}
+        html = proxy._member_button('201.wake', 'http://201.wake/console.html')
+        self.assertLess(html.index('<span>201</span>'), html.index(' | 21</span>'))
+        self.assertLess(html.index(' | 21</span>'), html.index('member-status-light'))
+
     def test_gateway_status_endpoint_returns_each_members_current_state(self):
         proxy = GroupProxy.__new__(GroupProxy)
         proxy.server = SimpleNamespace(
