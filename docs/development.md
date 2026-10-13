@@ -442,6 +442,12 @@ Hosted fresh resets and public Bob prose are described in [hosted operation](clo
 Zero-cycle reset defaults and first-post pause controls are documented in
 [standalone operation](standalone.md) and [first-run publication](#first-run-publication-and-passenger).
 
+Group peer JSON and Bob feeds are exported from the same verified state and head
+as each worker's website, then served from its atomic snapshot generation. HTTP
+requests do not reopen the growing record. A missing snapshot returns unavailable
+rather than reconstructing authority in a request handler. These dated views remain
+context and presentation; receivers retain their own governance and records.
+
 To run a local group until its next shared Bob post, set each member’s
 `pause_after_group_checkpoint` control to its current shared checkpoint plus one,
 then set `research` to `running`. The target is a publication lower bound, not a

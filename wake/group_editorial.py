@@ -17,8 +17,8 @@ MAX_PACKET = 240_000
 ARTICLE_FIELDS = ('title', 'lede', 'body', 'lens')
 
 
-def input_snapshot(engine, group_id, member):
-    state, head = engine.store.replay()
+def input_snapshot(engine, group_id, member, *, record_snapshot=None):
+    state, head = record_snapshot if record_snapshot is not None else engine.store.replay()
     def subset(item, fields, limit=700):
         return {key: str(item.get(key, ''))[:limit] for key in fields}
     packet = {

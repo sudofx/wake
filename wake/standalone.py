@@ -151,60 +151,17 @@ class Website(PublicSnapshotHandler):
         if any(part.startswith('.passenger') for part in unquote(route).split('/')):
             self.send_error(404)
             return
-        if route in ('/group/bob-input.json', '/group/bob-publication.json'):
-            from .group_editorial import input_snapshot
-            group_id = os.environ.get('WAKE_GROUP_ID', '')
-            member = os.environ.get('WAKE_PUBLIC_HOSTNAME', '')
-            if not group_id or not member:
+        if route in ('/group/bob-input.json', '/group/bob-publication.json',
+                     '/group/bob.json', '/group/research.json'):
+            if not os.environ.get('WAKE_GROUP_ID') or not os.environ.get('WAKE_GROUP_INSTANCE'):
                 self.send_error(404)
                 return
-            value = (input_snapshot(self.server.engine, group_id, member) if route.endswith('input.json')
-                     else self.server.engine.store.load().get('group_bob', {}).get('publication'))
-            body = json.dumps(value, separators=(',', ':')).encode()
-            self.send_response(200)
-            self.send_header('Content-Type', 'application/json')
-            self.send_header('Cache-Control', 'no-store')
-            self.send_header('Content-Length', str(len(body)))
-            self.end_headers()
-            self.wfile.write(body)
-            return
-        if route == '/group/bob.json':
-            group_id = os.environ.get('WAKE_GROUP_ID', '')
-            instance_id = os.environ.get('WAKE_GROUP_INSTANCE', '')
-            if not group_id or not instance_id:
-                self.send_error(404)
+            if not Path(self.translate_path(route)).is_file():
+                self.send_error(503, 'Group projection is not published yet')
                 return
-            try:
-                body = json.dumps(group_bob_snapshot(
-                    self.server.engine, group_id, instance_id), separators=(',', ':')).encode()
-            except (KeyError, ValueError):
-                self.send_error(503, 'Group Bob projection unavailable')
-                return
-            self.send_response(200)
-            self.send_header('Content-Type', 'application/json')
-            self.send_header('Cache-Control', 'no-store')
-            self.send_header('Content-Length', str(len(body)))
-            self.end_headers()
-            self.wfile.write(body)
-            return
-        if route == '/group/research.json':
-            group_id = os.environ.get('WAKE_GROUP_ID', '')
-            instance_id = os.environ.get('WAKE_GROUP_INSTANCE', '')
-            if not group_id or not instance_id:
-                self.send_error(404)
-                return
-            try:
-                body = json.dumps(group_research_snapshot(
-                    self.server.engine, group_id, instance_id), separators=(',', ':')).encode()
-            except ValueError:
-                self.send_error(503, 'Group research projection unavailable')
-                return
-            self.send_response(200)
-            self.send_header('Content-Type', 'application/json')
-            self.send_header('Cache-Control', 'no-store')
-            self.send_header('Content-Length', str(len(body)))
-            self.end_headers()
-            self.wfile.write(body)
+            # Use the same atomic generation as the website. A slow record read
+            # must not make every gateway poll queue another reconstruction.
+            super().do_GET()
             return
         if route == '/runtime.json':
             status = dict(self.server.runtime_status)

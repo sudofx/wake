@@ -243,6 +243,58 @@ class StandaloneRuntimeTests(unittest.TestCase):
             self.assertEqual(engine.store.head(), head)
             engine.store.close()
 
+    def test_group_http_serves_atomic_export_without_record_reads(self):
+        from functools import partial
+        from http.server import ThreadingHTTPServer
+        import threading
+        from urllib.request import urlopen
+        from urllib.error import HTTPError
+        from wake.standalone import Website
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory) / 'website'
+            root.mkdir()
+            engine = bootstrap(Path(directory) / 'data', dict(DEFAULTS))
+            identity = {'WAKE_GROUP_ID': 'wake', 'WAKE_PUBLIC_HOSTNAME': '100.wake',
+                        'WAKE_GROUP_INSTANCE': 'wake-100'}
+            with patch.dict(os.environ, identity):
+                self.assertTrue(publish(engine, root))
+                head = engine.store.head()
+                server = ThreadingHTTPServer(('127.0.0.1', 0),
+                    partial(Website, directory=str(root / 'current')))
+                server.engine = MagicMock()
+                server.engine.store.load.side_effect = AssertionError('HTTP read authority')
+                server.engine.store.replay.side_effect = AssertionError('HTTP replayed authority')
+                thread = threading.Thread(target=server.serve_forever, daemon=True)
+                thread.start()
+                try:
+                    base = f'http://127.0.0.1:{server.server_port}/group/'
+                    packets = {}
+                    for name in ('bob-input.json', 'bob-publication.json', 'bob.json', 'research.json'):
+                        with urlopen(base + name, timeout=2) as response:
+                            packets[name] = json.load(response)
+                    self.assertEqual(packets['bob-input.json']['head'], head)
+                    self.assertEqual(packets['bob.json']['application_head'], head)
+                    self.assertEqual(packets['research.json']['application_head'], head)
+                    self.assertIsNone(packets['bob-publication.json'])
+                    self.assertEqual(engine.store.head(), head)
+                    # An absent export is unavailable, never a live-record fallback.
+                    (root / 'current' / 'group' / 'bob.json').unlink()
+                    with self.assertRaises(HTTPError) as missing:
+                        urlopen(base + 'bob.json', timeout=2)
+                    self.assertEqual(missing.exception.code, 503)
+                    missing.exception.close()
+                    self.assertTrue(publish(engine, root))
+                    with urlopen(base + 'bob.json', timeout=2) as response:
+                        self.assertEqual(json.load(response)['application_head'], head)
+                    server.engine.store.load.assert_not_called()
+                    server.engine.store.replay.assert_not_called()
+                finally:
+                    server.shutdown()
+                    server.server_close()
+                    thread.join(timeout=2)
+                    engine.store.close()
+
     def test_secret_file_is_runtime_only_and_ambiguity_fails(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / 'key'

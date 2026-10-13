@@ -43,9 +43,9 @@ def _source_payload(content, source):
     return payload
 
 
-def group_research_snapshot(engine, group_id, instance_id):
+def group_research_snapshot(engine, group_id, instance_id, *, record_snapshot=None):
     """Export one attributed research note and bounded local sources, not topic lists."""
-    state, head = engine.store.replay()
+    state, head = record_snapshot if record_snapshot is not None else engine.store.replay()
     packet = {
         "schema": 2,
         "group_id": group_id,
@@ -116,9 +116,9 @@ def group_research_snapshot(engine, group_id, instance_id):
     return packet
 
 
-def group_bob_snapshot(engine, group_id, instance_id):
+def group_bob_snapshot(engine, group_id, instance_id, *, record_snapshot=None):
     """Export this member's current or historical Bob posts with receipt data."""
-    state, head = engine.store.replay()
+    state, head = record_snapshot if record_snapshot is not None else engine.store.replay()
     posts = [post for post in state.get("posts", {}).values()
              if isinstance(post, dict)
              and post.get("status", "published") in {"published", "current", "superseded"}]

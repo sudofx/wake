@@ -405,6 +405,23 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
                     "metrics": _full_history_metrics(store, state)}
         target = Path(destination)
         target.mkdir(parents=True, exist_ok=True)
+        group_id = os.environ.get("WAKE_GROUP_ID", "")
+        member = os.environ.get("WAKE_PUBLIC_HOSTNAME", "")
+        instance_id = os.environ.get("WAKE_GROUP_INSTANCE", "")
+        if standalone and group_id and member and instance_id:
+            from .group_editorial import input_snapshot
+            from .group_peers import group_bob_snapshot, group_research_snapshot
+            # All peer views share the export's verified head. HTTP serves these
+            # disposable files without opening authority or competing with work.
+            snapshot = (state, head)
+            packets = {
+                "bob-input.json": input_snapshot(None, group_id, member, record_snapshot=snapshot),
+                "bob-publication.json": state.get("group_bob", {}).get("publication"),
+                "bob.json": group_bob_snapshot(None, group_id, instance_id, record_snapshot=snapshot),
+                "research.json": group_research_snapshot(None, group_id, instance_id, record_snapshot=snapshot),
+            }
+            for name, packet in packets.items():
+                atomic_write(target / "group" / name, json.dumps(packet, separators=(",", ":")))
         assets = Path(__file__).parent / "assets"
         # Browser and installed-app icons are shared presentation assets.
         atomic_write(target / "manifest.webmanifest", (assets / "manifest.webmanifest").read_text())
