@@ -251,3 +251,5 @@ private output stays outside the public record. See
 [the advisory privacy boundary](development.md#first-run-publication-and-passenger).
 
 Model-context summaries do not replace exact durable requests or responses. Storage-version 13 dictionaries compress repeated text losslessly; this changes storage, not delivered context or retrieval policy. See [kernel storage](kernel.md#physical-storage-and-compatibility).
+
+The final proposal schema is rebuilt after quality-policy and measured-result context are attached, even when queue constraints have not changed. Non-tested claim results are empty strings; tested eligibility comes only from visible measured reproductions. Both rich and compact instructions require copying the current version without incrementing it, and recovery guidance retains these specific rejection remedies.

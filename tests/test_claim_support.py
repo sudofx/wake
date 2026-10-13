@@ -7,6 +7,16 @@ from wake.providers import schema_for_context
 
 
 class ClaimSupportTests(unittest.TestCase):
+    def test_delivery_cannot_offer_invented_measured_results(self):
+        from wake.claim_support import claim_schema
+        properties = claim_schema(3)['items']['properties']
+        self.assertEqual(properties['result']['enum'], [''])
+        self.assertNotIn('tested', properties['certainty']['enum'])
+        properties = claim_schema(3, [{'id': 'r', 'status': 'measured'},
+                                     {'id': 'pending', 'status': 'pending'}])['items']['properties']
+        self.assertEqual(properties['result']['enum'], ['', 'r'])
+        self.assertIn('tested', properties['certainty']['enum'])
+
     def example(self):
         passage = 'This reaction network has a conserved total population and a stationary distribution.'
         state = {'evidence': {'e': {'source': 'https://arxiv.org/abs/2205.06313', 'content': json.dumps({'excerpt': passage})}}}

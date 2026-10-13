@@ -324,3 +324,5 @@ Continuity@1 keeps the same coordinates, scoring rubric, definition digest and s
 ### Evidence and results versus activity
 
 The research readout separates canonical source works, distinct supporting passages, critical-review coverage, operator corrections and measured reproductions from cycles and notebook revisions. Rewording a claim, repeating a source or importing its mirror does not create another supporting passage. Older unclassified notebooks remain visible. These are inspectable output counts, not a score for understanding, novelty or scientific truth. A corrected notebook revision cannot support a new blog claim until a new governed revision addresses its source use.
+
+Journal stagnation and workflow activity are separate observations. Version-copying and measured-result delivery constraints reduce mechanical rejection without relaxing source qualification or acceptance. Evaluate subsequent terminal receipts and accepted journal progress; a provider response or successful job is insufficient.

@@ -408,7 +408,7 @@ class ResearchTests(unittest.TestCase):
                 invocation, request = self.engine.start("fixture", "schema-compaction-test")
                 self.engine.store.append("recovered", {"id": invocation, "reason": "Test cleanup"})
 
-        self.assertEqual(len(calls), 2)
+        self.assertGreaterEqual(len(calls), 2)
         self.assertEqual(request["response_schema"], {"type": "object", "marker": "rebuilt"})
         self.assertLessEqual(
             len(json.dumps(request, sort_keys=True, separators=(",", ":"))),

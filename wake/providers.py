@@ -123,6 +123,7 @@ def schema_for_context(context):
     # relying on governance to reject stale guesses afterward.
     if isinstance(context.get("version"), int):
         schema["properties"]["base_version"]["enum"] = [context["version"]]
+        schema["properties"]["base_version"].update(minimum=context["version"], maximum=context["version"])
     directive = context.get("attention", {})
     enforced_topic = directive.get("selected_topic") if directive.get("enforce_selected_topic") else None
     entries = [(project, notebook) for project, notebooks in context.get("blog_notebooks", {}).items()
@@ -136,7 +137,7 @@ def schema_for_context(context):
         from .claim_support import claim_schema
         for choice in choices:
             if choice["properties"]["type"]["enum"] == ["notebook"]:
-                choice["properties"]["claims"] = claim_schema(context["research_quality_policy"])
+                choice["properties"]["claims"] = claim_schema(context["research_quality_policy"], context.get("measured_results", []))
                 choice["required"].append("claims")
 
     # In research mode, new commitments belong to one existing durable project.

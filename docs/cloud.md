@@ -321,3 +321,5 @@ Hosted zero-cycle Reset always enables a fresh continuity campaign; there is no
 separate enrollment step. Start remains a separate operator action.
 
 The promoted configuration uses `wait_for_daily_quota_reset = true`. The authoritative latest daily-exhaustion receipt supplies the Pacific-day boundary to both the scheduler and provider preflight. This does not infer daily exhaustion from a minute limit or from a successful fallback. Disabling this option restores scheduled quota retries.
+
+When jobs run but the journal stalls, inspect terminal proposal reasons in `wake-state`. Repeated stale-version rejections and prose in measured-result fields are delivery-contract failures, not accepted progress. Proposal guidance now explicitly copies the current version without incrementing it and uses an empty `result` for non-tested claims. Gemini remains in JSON response mode with the complete schema in the prompt; native structured-schema enforcement is not enabled for the complex research contract.

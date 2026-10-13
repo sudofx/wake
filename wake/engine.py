@@ -824,6 +824,10 @@ class Engine:
                 guidance.append("Copy an existing project's exact project_identities fields when updating status/next_step. A different question requires a genuinely new project ID, subject to Attention and capacity.")
             elif "revision needs changed findings" in reason:
                 guidance.append("Revise the exact notebook ID only with changed findings and at least one of its new_evidence_ids. Fresh retrieval alone does not make a repeated finding a revision.")
+            elif "Stale or invalid base_version" in reason:
+                guidance.append("Copy context.version exactly into base_version; do not increment it. Governance advances the cycle after acceptance.")
+            elif "Only tested claims can reference a measured result" in reason:
+                guidance.append('For paper-supported, hypothesis, and analogy claims, result must be the empty string. It is a measured reproduction ID field, never a findings or explanation field.')
         context["proposal_recovery"] = list(dict.fromkeys(guidance))
 
     def focus_synthesis_delivery(self, context):
@@ -2485,12 +2489,12 @@ class Engine:
             request["context"]["source_corrections"] = list(state.get("research_reviews", {}).values())[-8:]
             request["context"]["measured_results"] = list(state.get("reproductions", {}).values())[-4:]
             request["system"] += QUALITY_RESEARCH_SYSTEM
-        prior_constraints = request["context"].get("proposal_constraints")
         if state.get("charter"):
             request["context"]["evidence_quality"] = delivered_context["evidence_quality"]
         self.proposal_constraints(state, request["context"])
-        if prior_constraints != request["context"].get("proposal_constraints"):
-            request["response_schema"] = _provider_response_schema(request["context"], bool(state.get("charter")))
+        # Final quality policy and measured-result eligibility are attached after
+        # the first schema build. Rebuild even when queue constraints did not change.
+        request["response_schema"] = _provider_response_schema(request["context"], bool(state.get("charter")))
         if phase == "planning":
             from .research import RESEARCH_PLAN_SYSTEM, research_plan_schema
             request["context"].pop("continuity_probe", None)

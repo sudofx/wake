@@ -473,3 +473,5 @@ rewriting historical receipts.
 Local `reset_with_continuity` resets and enrolls in one governed action; historical
 `reset_to_zero` receipts retain their original replay meaning. Hosted fresh Reset
 also enables continuity before checkpointing. Neither path starts research.
+
+The proposal delivery contract is rebuilt after forward quality policy and measured-result eligibility are attached. Models copy the current domain version into `base_version`; governance alone advances it. Claim `result` fields name only supplied measured reproductions, and non-tested claims use an empty string. Deterministic acceptance remains authoritative.

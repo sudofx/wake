@@ -50,7 +50,7 @@ def validate_claims(action, state):
     require(action['findings'] == render_findings(claims), 'Findings must match the enumerated supported claims exactly')
 
 
-def claim_schema(version=POLICY_VERSION):
+def claim_schema(version=POLICY_VERSION, measured_results=()):
     string = {'type': 'string'}
     support = {'type': 'object', 'additionalProperties': False,
                'required': ['evidence', 'passage', 'explanation'],
@@ -58,7 +58,10 @@ def claim_schema(version=POLICY_VERSION):
     properties = {'statement': string, 'support': {'type': 'array', 'minItems': 1, 'maxItems': 4, 'items': support}}
     required = ['statement', 'support']
     if version >= 2:
-        properties.update(certainty={'type': 'string', 'enum': ['paper-supported', 'hypothesis', 'analogy', 'tested']}, result=string)
+        measured_ids = [item['id'] for item in measured_results if item.get('status') == 'measured']
+        properties.update(certainty={'type': 'string', 'enum': ['paper-supported', 'hypothesis', 'analogy'] + (['tested'] if measured_ids else [])},
+                          result={'type': 'string', 'enum': [''] + measured_ids,
+                                  'description': 'Use the empty string for paper-supported, hypothesis, or analogy. Only tested may name a supplied measured reproduction ID; never put prose here.'})
         required += ['certainty', 'result']
     if version >= 3:
         properties['review'] = {'type': 'object', 'additionalProperties': False,

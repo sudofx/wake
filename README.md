@@ -220,3 +220,5 @@ shares repeated long strings within stored JSON values when that saves space.
 See [storage compatibility](docs/kernel.md#physical-storage-and-compatibility).
 
 Zero-cycle resets automatically enable an empty continuity campaign. See [reset operation](docs/standalone.md).
+
+Research jobs can succeed without advancing the journal: rejected proposals and provider deferrals remain visible. The proposal contract copies the current version exactly and limits measured-result references to operator-recorded reproductions; accepted journal cycles remain the progress signal.
