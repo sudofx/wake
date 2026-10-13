@@ -138,7 +138,7 @@ if __name__ == "__main__":
     unittest.main()
 
 class FairMatrixReportingTests(unittest.TestCase):
-    def test_invalid_answer_is_not_a_fact_failure_and_lenses_balance(self):
+    def test_invalid_answer_is_not_a_fact_failure_and_columns_stay_contiguous(self):
         from wake.matrix import MATRIX, MATRIX_KEY, continuity_matrix_progress
         first = next(iter(MATRIX.coordinates()))
         envelope = {'extensions': {MATRIX_KEY: {'results': {first.coordinate_id: {'status': 'completed', 'score': 0, 'passed': False, 'checks': {'source_fidelity': False}, 'response_error': 'Missing probe'}}}}}
@@ -147,5 +147,22 @@ class FairMatrixReportingTests(unittest.TestCase):
         self.assertEqual(progress['invalid_response_count'], 1)
         self.assertEqual(progress['graded_failed_count'], 0)
         self.assertEqual(progress['failure_counts'], {})
-        self.assertNotEqual(MATRIX.coordinate_by_id(progress['next_coordinate_id']).value_keys[0], first.value_keys[0])
+        second = MATRIX.coordinate_by_id(progress['next_coordinate_id'])
+        self.assertEqual(second.value_keys[:2], first.value_keys[:2])
+        self.assertEqual(second.ordinal, first.ordinal + 1)
         self.assertEqual(envelope['extensions'][MATRIX_KEY]['results'][first.coordinate_id], before)
+
+    def test_column_traversal_finishes_columns_and_skips_existing_results(self):
+        from wake.matrix import MATRIX, MATRIX_KEY, continuity_matrix_progress
+        coordinates = list(MATRIX.coordinates())
+        results = {}
+        envelope = {'extensions': {MATRIX_KEY: {'results': results}}}
+        for cell in coordinates:
+            progress = continuity_matrix_progress(envelope)
+            self.assertEqual(progress['next_coordinate_id'], cell.coordinate_id)
+            results[cell.coordinate_id] = {'status': 'completed', 'score': 1, 'passed': True}
+        self.assertIsNone(continuity_matrix_progress(envelope)['next_coordinate_id'])
+        del results[coordinates[11].coordinate_id]
+        before = {key: dict(value) for key, value in results.items()}
+        self.assertEqual(continuity_matrix_progress(envelope)['next_coordinate_id'], coordinates[11].coordinate_id)
+        self.assertEqual(results, before)

@@ -319,7 +319,7 @@ Quality policy version 3 requires a critical review for every claim: supplied co
 
 ### Fair continuity readouts
 
-Continuity@1 keeps the same coordinates, scoring rubric, definition digest and stored results. Missing or invalid probe output is reported separately from a valid answer that failed factual checks. The displayed mean uses valid answers; the original mean including invalid zeros remains available as `historical_mean_score`. Failure counts exclude invalid responses. Coverage remains all completed trials, with per-lens counts visible. Future application traversal chooses the least-covered lens first, then its original coordinate order, so a short campaign does not sample only reconstruction. This changes sampling, not historical scores or the immutable kernel definition.
+Continuity@1 keeps the same coordinates, scoring rubric, definition digest and stored results. Missing or invalid probe output is reported separately from a valid answer that failed factual checks. The displayed mean uses valid answers; the original mean including invalid zeros remains available as `historical_mean_score`. Failure counts exclude invalid responses. Coverage remains all completed trials, with per-lens counts visible. Future application traversal follows the original coordinate order: finish all seven Obstacles in a Question/View column, then move to the next View, then the next Question. Previously completed cells are skipped, including cells recorded under the former least-covered-lens traversal. This restores column-first progression without moving, rescoring or resetting historical results. Per-lens coverage remains visible; a partial column-first campaign is not balanced across Questions.
 
 ### Evidence and results versus activity
 

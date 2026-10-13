@@ -130,8 +130,9 @@ def continuity_matrix_progress(envelope: JsonValue) -> dict | None:
     lens_counts = {value.key: 0 for value in MATRIX.axes[0].values}
     for cell in completed:
         lens_counts[MATRIX.coordinate_by_id(cell).value_keys[0]] += 1
-    remaining = (c for c in MATRIX.coordinates() if c.coordinate_id not in set(completed))
-    next_coordinate = min(remaining, key=lambda c: (lens_counts[c.value_keys[0]], c.ordinal), default=None)
+    # Finish the current column before moving across the cube. Switching lenses
+    # by coverage interrupts columns and changes the recorded traversal pattern.
+    next_coordinate = MATRIX.next_uncovered(completed)
     failure_counts = {}
     failed_cells = []
     invalid_responses = []
@@ -163,6 +164,6 @@ def continuity_matrix_progress(envelope: JsonValue) -> dict | None:
         "graded_count": len(completed) - len(invalid_responses),
         "graded_failed_count": len(failed_cells),
         "lens_coverage": lens_counts,
-        "traversal": "least-covered-lens-first@1",
+        "traversal": "column-first@1",
         "passed_count": sum(results[cell].get("passed") is True for cell in completed),
     }
