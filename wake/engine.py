@@ -32,7 +32,7 @@ from .providers import (
 )
 from .scheduling import charged_request_slots
 from .retrieval import build_retrieval_shadow
-from .research import effective_evidence_role, effective_host_tier, source_observation_readable
+from .research import effective_evidence_role, effective_host_tier, source_observation_readable, source_delivery_excerpt
 from .event_format import canonical, digest, now
 from .experimental import adoption_payload, defaults as experimental_defaults, temporal_snapshot, validate as validate_controls
 from .trust import build_trust_compacts_shadow
@@ -634,7 +634,7 @@ class Engine:
                 "id": item["id"], "source": item.get("source", ""),
                 "actor": item.get("actor", ""), "version": item.get("version"),
                 "scope": item.get("scope"),
-                "content": excerpt(item.get("content", ""), 1_000),
+                "content": source_delivery_excerpt(item.get("content", ""), 1_000),
                 "context_excerpt": True,
                 "peer_origin": item.get("peer_origin"),
             })
@@ -996,7 +996,7 @@ class Engine:
         if provider_input_chars(request) > self.config["max_context_chars"]:
             for item in context.get("evidence", []):
                 if len(item.get("content", "")) > 900:
-                    item["content"] = item["content"][:899] + "…"
+                    item["content"] = source_delivery_excerpt(item["content"], 900)
                     item["context_excerpt"] = True
             context["bounded_context"]["omitted_categories"].append("extended evidence excerpts; all visible evidence IDs retained")
         if provider_input_chars(request) > self.config["max_context_chars"]:
@@ -1015,7 +1015,7 @@ class Engine:
         if provider_input_chars(request) > self.config["max_context_chars"]:
             for item in context.get("evidence", []):
                 if len(item.get("content", "")) > 400:
-                    item["content"] = item["content"][:399] + "…"
+                    item["content"] = source_delivery_excerpt(item["content"], 400)
                     item["context_excerpt"] = True
             note = "shorter source excerpts; all visible evidence IDs and provenance retained"
             if note not in context["bounded_context"]["omitted_categories"]:
@@ -1131,7 +1131,7 @@ class Engine:
         if provider_input_chars(request) > self.config["max_context_chars"]:
             for item in context.get("evidence", []):
                 if len(item.get("content", "")) > 180:
-                    item["content"] = item["content"][:179] + "…"
+                    item["content"] = source_delivery_excerpt(item["content"], 180)
                     item["context_excerpt"] = True
             note = "minimal source excerpts; all evidence identities and provenance retained"
             if note not in context["bounded_context"]["omitted_categories"]:
@@ -1298,7 +1298,7 @@ class Engine:
                 } if isinstance((origin := item.get("peer_origin")), dict) else {}),
                 **(
                     {
-                        "content": excerpt(item.get("content"), 500),
+                        "content": source_delivery_excerpt(item.get("content"), 500),
                         "context_excerpt": True,
                     }
                     if (item.get("id") in synthesis_ids or item.get("peer_origin")) and item.get("content")
@@ -1447,7 +1447,7 @@ class Engine:
         if provider_input_chars(request) > limit:
             for item in context.get("evidence", []):
                 if item.get("content"):
-                    item["content"] = excerpt(item["content"], 160)
+                    item["content"] = source_delivery_excerpt(item["content"], 160)
                     item["context_excerpt"] = True
             request["response_schema"] = _provider_response_schema(context, True)
 
@@ -1978,9 +1978,9 @@ class Engine:
             peer_sources = [peer_latest[name] for name in sorted(peer_latest)
                             if peer_latest[name].get("source") not in local_urls]
             sources = local_sources + peer_sources[:8]
-            context["evidence"] = [{**e, "content": e["content"][:3000], "context_excerpt": len(e["content"]) > 3000}
+            context["evidence"] = [{**e, "content": source_delivery_excerpt(e["content"], 3000), "context_excerpt": len(e["content"]) > 3000}
                                    for e in context["evidence"] if e.get("actor") != "collector"][-3:]
-            context["evidence"] += [{**e, "content": e["content"][:3000], "context_excerpt": len(e["content"]) > 3000} for e in sources]
+            context["evidence"] += [{**e, "content": source_delivery_excerpt(e["content"], 3000), "context_excerpt": len(e["content"]) > 3000} for e in sources]
             context["beliefs"] = [{**b, "evidence": b["evidence"][-6:]} for b in context["beliefs"]]
             outcomes = self.store.tail_events(("rejected", "failed"), 2)
             context["recent_problems"] = [e["payload"].get("reason", "") for e in outcomes]
@@ -2150,7 +2150,7 @@ class Engine:
                 ]
                 context.setdefault("evidence", []).append({
                     **evidence,
-                    "content": content[:content_limit],
+                    "content": source_delivery_excerpt(content, content_limit),
                     "context_excerpt": len(content) > content_limit,
                 })
                 existing.add(evidence_id)
@@ -2379,7 +2379,7 @@ class Engine:
                 request["context"][collection] = [{**item, **{key:item[key][:200] for key in fields},
                                                    "context_excerpt": True} for item in request["context"][collection]]
             for evidence in request["context"]["evidence"]:
-                evidence["content"] = evidence["content"][:800]
+                evidence["content"] = source_delivery_excerpt(evidence["content"], 800)
                 evidence["context_excerpt"] = True
 
             # Maturation telemetry is an optimization signal, not a governance

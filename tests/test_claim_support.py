@@ -7,6 +7,22 @@ from wake.providers import schema_for_context
 
 
 class ClaimSupportTests(unittest.TestCase):
+    def test_compacted_source_keeps_exact_prose_and_valid_json(self):
+        from wake.research import source_delivery_excerpt, source_material_text
+        prose = 'The experiment compares agent designs under controlled feedback and reports bounded improvements without establishing recursive correctness.'
+        original = {'excerpt': 'Article title\n' + '\n'.join('Author '+str(i) for i in range(80)) + '\nAbstract\n' + prose + '\n' + prose * 30,
+                    'evidence_role': 'source', 'verification_required': True}
+        content = json.dumps(original)
+        for limit in (3000, 900, 400, 180, 160):
+            content = source_delivery_excerpt(content, limit)
+            self.assertLessEqual(len(content), limit)
+            packet = json.loads(content)
+            self.assertEqual(packet['evidence_role'], 'source')
+            self.assertTrue(packet['verification_required'])
+            self.assertTrue(packet['excerpt'])
+            self.assertIn(packet['excerpt'], source_material_text(original))
+            self.assertNotIn('Author', packet['excerpt'])
+
     def test_delivery_cannot_offer_invented_measured_results(self):
         from wake.claim_support import claim_schema
         properties = claim_schema(3)['items']['properties']

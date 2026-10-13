@@ -865,6 +865,34 @@ def source_material_text(payload):
     return "\n".join(material).strip()
 
 
+def source_delivery_excerpt(content, limit):
+    """Compact collected source JSON without cutting its envelope or front matter."""
+    if not isinstance(content, str) or len(content) <= limit:
+        return content
+    try:
+        payload = json.loads(content)
+    except (ValueError, TypeError):
+        return content[:limit]
+    if not isinstance(payload, dict) or not isinstance(payload.get('excerpt'), str):
+        return content[:limit]
+    material = source_material_text(payload)
+    # Prefer an actual prose paragraph over titles, authors and PDF figure labels.
+    # This remains an exact contiguous substring of collected source material.
+    lines = material.splitlines()
+    start = next((i for i, line in enumerate(lines)
+                  if len(line.split()) >= 15 and re.search(r'[.!?](?:\s|$)', line)), 0)
+    material = '\n'.join(lines[start:])
+    packet = {key: payload[key] for key in ('evidence_role', 'discovery_only', 'verification_required') if key in payload}
+    packet['excerpt'] = ''
+    # JSON escaping also consumes the delivery budget. Never clip encoded JSON.
+    render = lambda: json.dumps(packet, ensure_ascii=False, separators=(',', ':'))
+    available = max(0, limit - len(render()))
+    packet['excerpt'] = material[:available]
+    while len(render()) > limit and packet['excerpt']:
+        packet['excerpt'] = packet['excerpt'][:max(0, len(packet['excerpt']) - (len(render()) - limit))]
+    return render()
+
+
 def host_tier(url, discovery_only=False):
     """Describe what kind of approved source was retrieved.
 
