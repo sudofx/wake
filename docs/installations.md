@@ -1,5 +1,26 @@
 # Multiple independent installations
 
+## Current single-container installations
+
+Use [the standalone installation guide](standalone.md#run-one-installation-container)
+for the current path: one container, three parent and nine child worker processes,
+one server, and separate governed records per node. Each container launch starts
+stopped for inspection. One installation's lifecycle controls all of its workers.
+There is no Docker-in-Docker requirement and no separate DNS container.
+
+Multiple installations must still have distinct storage roots, names, ports, and
+operator sockets. Do not share an active node database between installations.
+Their API queues are independent; common provider credentials can still share
+quota and produce concurrent calls across installations. Codespaces remote
+execution of the new path requires an actual acceptance run.
+
+## Retained Compose and gateway compatibility
+
+The remaining instructions document earlier single-record Compose installations
+and optional hostname gateways. Their exact volume protections still apply when
+maintaining one of those installations. They are not the default one-container
+node runtime.
+
 Each installation has its own record, secrets, configuration, and lifecycle.
 The same source checkout may build many installations. GitHub hosted research is
 another independent installation; matching versions do not imply matching data.

@@ -1,5 +1,5 @@
 {
-  "name": "WAKE standalone development",
+  "name": "WAKE installation development",
   "build": {
     "dockerfile": "../Dockerfile",
     "context": "..",
@@ -17,11 +17,16 @@
   ],
   "portsAttributes": {
     "8080": {
-      "label": "WAKE paused development preview",
+      "label": "WAKE installation Console",
       "onAutoForward": "openBrowser"
     }
   },
-  "postStartCommand": "python scripts/dev_preview.py start",
+  "remoteEnv": {
+    "PYTHONPATH": "${containerWorkspaceFolder}",
+    "WAKE_INSTALLATION_DATA": "${containerWorkspaceFolder}/data/installation",
+    "WAKE_TERMINAL_ROLE": "installation"
+  },
+  "postStartCommand": "python scripts/installation_preview.py start",
   "features": {
     "ghcr.io/devcontainers/features/sshd:1": {
       "version": "latest"

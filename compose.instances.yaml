@@ -3,6 +3,9 @@
 # Port 0 asks Docker to allocate a free host port. Never share /data between jobs.
 services:
   wake:
+    # Retained single-node compatibility path; the current installation launcher
+    # owns the one-container/twelve-process deployment.
+    entrypoint: ["python", "-m", "wake.standalone"]
     image: "${WAKE_INSTANCE_IMAGE:-${COMPOSE_PROJECT_NAME}-standalone:local}"
     ports: !override
       - target: 8080

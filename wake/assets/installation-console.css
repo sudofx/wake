@@ -1,0 +1,32 @@
+/* Installation views consume projections; this asset owns no execution controls. */
+.installation-page main{max-width:1600px;margin:0 auto;padding:26px 24px}
+.installation-intro{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:12px}
+.installation-intro h1{margin:4px 0 8px}.installation-intro p{color:var(--muted)}
+.installation-node-picker{display:grid;gap:5px;font-size:12px;color:var(--muted);min-width:190px}
+.installation-node-picker select{max-width:100%;min-height:44px}
+.console-overview .installation-node-picker{margin-top:12px;width:min(100%,300px)}
+.installation-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0}
+.installation-summary>div{padding:18px;border:1px solid var(--line);background:var(--surface)}
+.installation-summary strong{display:block;font:26px ui-monospace,monospace;color:var(--cyan)}
+.installation-summary span{display:block;color:var(--muted);font-size:12px;margin-top:5px}
+.installation-panel{margin-bottom:18px}.installation-caption{padding:0 20px 16px;color:var(--muted);font-size:12px}
+.installation-overview{margin-bottom:24px;border-bottom:1px solid var(--line);padding-bottom:18px}
+.installation-extra{margin:12px 0}.installation-extra>summary{cursor:pointer;padding:12px 0;color:var(--cyan)}
+.unified-console .installation-table tr{height:auto;min-height:0}.unified-console .installation-table td{height:auto}
+.installation-table-wrap{overflow-x:auto}.installation-table{width:100%;border-collapse:collapse;text-align:left}
+.installation-table th{font-size:11px;font-weight:600;color:var(--muted);white-space:nowrap}
+.installation-table td,.installation-table th{padding:13px 18px;border-top:1px solid var(--line);vertical-align:top}
+.installation-table td{font-size:13px}.installation-table td small{display:block;color:var(--muted);margin-top:4px}
+.installation-table td:last-child small{max-width:290px;overflow-wrap:anywhere}
+.installation-table tr[data-role=child] td:first-child{padding-left:32px}
+.installation-table tr[data-unavailable=true]{color:var(--muted)}
+.installation-columns{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.installation-list{list-style:none;padding:0 20px 12px;margin:0}
+.installation-list li{padding:12px 0;border-top:1px solid var(--line);overflow-wrap:anywhere}
+.installation-list small{display:block;color:var(--muted);margin-top:4px}
+.installation-receipts li{display:grid;grid-template-columns:100px 1fr;gap:12px}
+.installation-receipts .receipt-outcome{color:var(--cyan);font:12px ui-monospace,monospace}
+.installation-watch-link{display:inline-block;min-height:28px}
+#installation-freshness{color:var(--muted);font-size:12px}
+.installation-page .research-footer{display:flex;gap:20px;flex-wrap:wrap}
+@media(max-width:700px){.installation-page main{padding:18px 12px}.installation-intro{align-items:stretch;flex-direction:column;gap:12px}.installation-node-picker{width:100%}.installation-summary{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.installation-summary>div{padding:13px}.installation-columns{grid-template-columns:1fr;gap:0}.installation-table td,.installation-table th{padding:12px}.installation-table tr[data-role=child] td:first-child{padding-left:22px}.installation-receipts li{grid-template-columns:1fr;gap:4px}}

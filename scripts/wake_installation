@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# One local installation. Source is editable; launch never pulls or switches Git.
+set -euo pipefail
+repo_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+action="${1:-start}"
+build_proxy="${HTTPS_PROXY:-}"
+if [[ -z "$build_proxy" && "$(uname -s)" == Darwin ]]; then build_proxy=http://http.docker.internal:3128; fi
+case "$action" in
+  build) docker build --build-arg "HTTPS_PROXY=$build_proxy" --build-arg "HTTP_PROXY=$build_proxy" --target vscode -t wake-installation:vscode "$repo_dir" ;;
+  start)
+    if docker container inspect wake >/dev/null 2>&1; then
+      [[ "$(docker inspect wake --format '{{index .Config.Labels "com.sudofx.wake.installation"}}')" == true ]] || { echo 'Container wake is not this managed installation.' >&2; exit 1; }
+      docker start wake
+    else
+      mkdir -p "$repo_dir/data/installation/backups"
+      if [[ ! -e "$repo_dir/data/backups" && ! -L "$repo_dir/data/backups" ]]; then
+        ln -s installation/backups "$repo_dir/data/backups"
+      fi
+      # Bash parses the operator's quoted .env; Docker --env-file does not.
+      if [[ -f "$repo_dir/.env" ]]; then set -a; source "$repo_dir/.env"; set +a; fi
+      if [[ -z "${HTTPS_PROXY:-}" && "$(uname -s)" == Darwin ]]; then export HTTPS_PROXY=http://http.docker.internal:3128; fi
+      docker run -d --name wake --hostname wake --init --user 10001:10001 \
+        --label com.sudofx.wake.installation=true --restart unless-stopped --stop-timeout 180 \
+        -p "${WAKE_PORT:-80}:8080" -w /workspace \
+        --mount "type=bind,source=$repo_dir,target=/workspace" \
+        --mount "type=bind,source=$repo_dir/data/installation,target=/data" \
+        --mount type=volume,source=wake-installation-home,target=/home/wake \
+        -e GEMINI_API_KEY -e GEMINI_API_KEY_FILE -e HTTPS_PROXY -e HTTP_PROXY -e NO_PROXY \
+        -e WAKE_PROVIDER="${WAKE_PROVIDER:-gemini}" -e WAKE_TERMINAL_ROLE=installation \
+        -e WAKE_PUBLIC_HOSTNAME=wake -e WAKE_INSTALLATION_DATA=/data \
+        -e PYTHONPATH=/workspace \
+        -e WAKE_PUBLISH_REPOSITORY -e WAKE_PUBLISH_BRANCH \
+        wake-installation:vscode --config /workspace/wake.toml
+    fi ;;
+  stop|restart|status|shell)
+    [[ "$(docker inspect wake --format '{{index .Config.Labels "com.sudofx.wake.installation"}}')" == true ]] || { echo 'Managed wake installation not found.' >&2; exit 1; }
+    case "$action" in
+      stop) docker stop wake ;;
+      restart) docker restart wake ;;
+      status) docker exec wake wake-research status ;;
+      shell) docker exec -it wake bash ;;
+    esac ;;
+  *) echo 'Usage: scripts/wake_installation build|start|stop|restart|status|shell' >&2; exit 2 ;;
+esac

@@ -72,7 +72,14 @@ def statistics():
     group = os.environ.get('WAKE_GROUP_ID') or 'standalone'
     state, version = 'unavailable', '—'
     try:
-        if role == 'gateway':
+        if role == 'installation':
+            status = public_json('runtime.json')
+            manifest = public_json('installation.json')
+            state = status.get('state', 'unavailable')
+            versions = [n.get('snapshot', {}).get('version') for n in manifest.get('nodes', [])]
+            version = sum(v for v in versions if type(v) is int) if all(type(v) is int for v in versions) else '—'
+            group = '12 internal nodes'
+        elif role == 'gateway':
             config = json.loads(Path('/run/wake-group-router.json').read_text())
             state = f"gateway · {len(config['routes'])} nodes"
             group = ', '.join(sorted(config['groups']))
@@ -142,7 +149,8 @@ def prompt_details(s, colored=False):
 def status_details(s, colored=False):
     paint = lambda value, code: colorize(value, code, colored)
     label = lambda text: paint(text, '37')
-    authority = (label('Authority: ') + paint('none (read-only gateway)', '1;97')
+    authority = (label('Workspace: ') + paint('/workspace', '1;97') + '   ' + label('Node records: ') + paint('/data/nodes', '1;97')
+                 if s['role'] == 'installation' else label('Authority: ') + paint('none (read-only gateway)', '1;97')
                  if s['role'] == 'gateway' else
                  label('Workspace: ') + paint('/workspace', '1;97') + '   ' +
                  label('Authority: ') + paint('/data/wake.sqlite', '1;97'))

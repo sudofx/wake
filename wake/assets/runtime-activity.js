@@ -3,7 +3,7 @@
  * live marks. Published pending invocations are historical evidence, not a pulse.
  */
 window.WakeRuntimeActivityView = status => {
-  const states=new Set(['running','idle','paused','waiting','standby','blocked']);
+  const states=new Set(['running','idle','paused','stopped','waiting','standby','blocked']);
   const stages=new Set(['idle','record','context','collecting','provider_wait','provider','provider_uncoordinated','provider_response','governance','continuity','receipt']);
   if(status?.mode!=='standalone'||status.activity_schema!==1||status.capabilities?.live_activity!==true||
      typeof status.runtime_id!=='string'||!status.runtime_id||!states.has(status.state)||
@@ -14,7 +14,7 @@ window.WakeRuntimeActivityView = status => {
       typeof status.activity.coordinate_id==='string'?status.activity.coordinate_id:null}};
 };
 (() => {
-  if(window.WAKE_DEPLOYMENT?.schema!==1||window.WAKE_DEPLOYMENT.mode!=='standalone')return;
+  if(window.WAKE_DEPLOYMENT?.schema!==1||window.WAKE_DEPLOYMENT.mode!=='standalone'||window.WAKE_DEPLOYMENT.snapshot_only===true)return;
   let receivedAt=0,busy=false;
   const publish=value=>{window.WakeRuntimeActivity=value;window.dispatchEvent(new CustomEvent('wake-runtime-activity',{detail:value}));};
   async function poll(){
@@ -22,7 +22,7 @@ window.WakeRuntimeActivityView = status => {
     busy=true;
     const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),2500);
     try{
-      const response=await fetch('/runtime.json',{cache:'no-store',signal:controller.signal});
+      const response=await fetch(new URL('runtime.json',location.href),{cache:'no-store',signal:controller.signal});
       if(!response.ok)throw new Error('Runtime unavailable');
       const view=window.WakeRuntimeActivityView(await response.json());
       receivedAt=performance.now();publish(view);

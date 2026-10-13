@@ -1,4 +1,28 @@
-# WAKE✳︎ hosted operation
+# WAKE✳︎ public mirror and retained hosted operation
+
+## Publish a local installation mirror
+
+The current one-container path prepares its website locally. `wake-research publish`
+uploads the complete unified website, node artifacts and `installation.json` to a configured
+dedicated publication branch. The mirror shows the latest uploaded snapshot and
+its date, with a selector for the whole installation and all twelve nodes. The
+unified Console keeps its normal panels with an installation overview at the top. It neither runs research nor
+connects back to the local records, and it has no live operator controls.
+
+See [publication setup](standalone.md#publish-an-optional-read-only-mirror) for
+configuration and a local preview command. Public artifacts are filtered views,
+not manual import/export archives or a copied authoritative database. GitHub
+Pages still deploys the prepared artifact; publication does not require a hosted
+research executor. This local workflow does not promote, start, reset, or replace
+the retained hosted runtime or `wake-state` record.
+
+## Retained hosted executor compatibility
+
+The procedures below apply only to the independent GitHub-hosted executor and
+its existing branches. They preserve dated operating history and remain valid
+for separately authorized maintenance; they are not the launch procedure for the
+current one-container installation. New local development does not reopen hosted
+research.
 
 Independent container deployments are described in [multiple installations](installations.md).
 They do not restore hosted checkpoints or use hosted public data. Hosted controls
@@ -8,7 +32,7 @@ The local numbered-group peer-note and source-evidence exchange and hostname
 router are created only by `scripts/wake_runner` on a local Docker host. Hosted
 workflows and Codespaces do not join those networks or receive peer material.
 
-> **Current operating specification.** This is the authoritative guide to the GitHub-hosted **WAKE✳︎** runtime: `master` is development, `wake-runtime` is the explicitly promoted executable, and `wake-state` carries the separate authoritative WAKE SQLite record.
+> **Hosted compatibility operating specification.** This is the authoritative guide to the GitHub-hosted **WAKE✳︎** runtime: `master` is development, `wake-runtime` is the explicitly promoted executable, and `wake-state` carries the separate authoritative WAKE SQLite record.
 
 ### The three hosted branches, in one picture
 

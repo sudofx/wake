@@ -1,4 +1,4 @@
-"""Best-effort provider-call coordination for local wake_runner groups."""
+"""Provider-call coordination, mandatory for installation workers."""
 
 from contextlib import contextmanager
 import json
@@ -9,10 +9,11 @@ from urllib.request import ProxyHandler, Request, build_opener
 import uuid
 
 from .providers import ProviderCallPaused
+from .installation_gate import InstallationSlotUnavailable
 
 
 class GroupProviderGate:
-    """Ask the local group router for a fair provider-call slot; fail open."""
+    """Ask the controller for a fair slot; installation workers fail closed."""
 
     def __init__(self, url, member, *, timeout_seconds=60, should_pause=None):
         self.url = url
@@ -29,6 +30,8 @@ class GroupProviderGate:
             headers={"Content-Type": "application/json", "Accept": "application/json"},
             method="POST",
         )
+        if os.environ.get('WAKE_INSTALLATION_TOKEN'):
+            request.add_header('Authorization', 'Bearer ' + os.environ['WAKE_INSTALLATION_TOKEN'])
         with self.opener.open(request, timeout=10) as response:
             return json.loads(response.read(4096))
 
@@ -45,8 +48,26 @@ class GroupProviderGate:
                 return packet["token"]
             if packet.get("status") != "queued":
                 raise ValueError("group coordinator returned an unknown status")
-            time.sleep(min(1.0, max(0.1, float(packet.get("retry_after", 1.0)))))
+            if packet.get("reason") in {"daily_quota", "rate_limited", "access_blocked"}:
+                raise InstallationSlotUnavailable(packet["reason"], packet.get("retry_after", 300))
+            # Installation HTTP long-polls for a slot change. After a bounded
+            # empty response, retry promptly rather than adding another second.
+            if os.environ.get('WAKE_INSTALLATION_WORKER') == '1':
+                time.sleep(min(.05, max(.02, float(packet.get("retry_after", .05)))))
+            else:
+                time.sleep(min(1.0, max(0.1, float(packet.get("retry_after", 1.0)))))
         raise TimeoutError("local group provider slot was not available in time")
+
+    def _cancel_queued(self, request_id):
+        if not self.url:
+            return
+        try:
+            self._request({"action": "cancel", "member": self.member,
+                           "request_id": request_id})
+        except Exception:
+            # Cancellation never frees a grant. Queued tickets can expire; an
+            # uncertain active grant requires controller-proven process death.
+            pass
 
     def _check_pause(self):
         if self.should_pause and self.should_pause():
@@ -57,13 +78,20 @@ class GroupProviderGate:
         request_id = uuid.uuid4().hex
         token = None
         self._check_pause()
+        self.outcome = {}
+        strict = os.environ.get('WAKE_INSTALLATION_WORKER') == '1'
         try:
+            if strict and (not self.url or not self.member):
+                raise ProviderCallPaused('Installation controller missing; no request was sent')
             if self.url:
                 token = self._acquire(request_id, model)
-        except ProviderCallPaused:
-            # A closed local operator control must never take the fail-open path.
+        except (ProviderCallPaused, InstallationSlotUnavailable):
+            self._cancel_queued(request_id)
             raise
         except Exception as exc:
+            self._cancel_queued(request_id)
+            if strict:
+                raise ProviderCallPaused('Installation controller unavailable; no request was sent') from exc
             print(
                 f"WAKE group call coordination unavailable; continuing independently ({type(exc).__name__}).",
                 file=sys.stderr,
@@ -75,13 +103,16 @@ class GroupProviderGate:
         finally:
             if token:
                 try:
-                    self._request({
+                    packet = {
                         "action": "release", "member": self.member,
                         "request_id": request_id, "token": token,
-                    })
+                    }
+                    if hasattr(self, 'outcome'):
+                        packet['outcome'] = self.outcome
+                    self._request(packet)
                 except Exception as exc:
                     print(
-                        f"WAKE group call slot release unavailable; it will expire automatically ({type(exc).__name__}).",
+                        f"WAKE group call slot release unavailable; the installation slot remains blocked until confirmed worker exit ({type(exc).__name__}).",
                         file=sys.stderr,
                         flush=True,
                     )
@@ -93,7 +124,7 @@ def group_provider_gate(settings, *, should_pause=None):
     # The gateway indexes configured members by their public route hostname;
     # WAKE_GROUP_INSTANCE is an internal peer-discovery alias instead.
     member = os.environ.get("WAKE_PUBLIC_HOSTNAME", "").lower()
-    if (not url or not member) and should_pause is None:
+    if (not url or not member) and should_pause is None and os.environ.get("WAKE_INSTALLATION_WORKER") != "1":
         return None
     return GroupProviderGate(url if member else '', member,
                              timeout_seconds=settings.get("timeout_seconds", 60),

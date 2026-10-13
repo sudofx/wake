@@ -291,7 +291,7 @@ class Engine:
         day = datetime.now(ZoneInfo(self.config["timezone"])).date().isoformat()
         used = sum(charged_request_slots(i) for i in state["invocations"].values()
                    if i["charged"] and i["quota_day"] == day)
-        require(not provider.charged or self.config.get("model_daily_call_limits")
+        require(not provider.charged or self.config.get('provider_managed_limits') or self.config.get("model_daily_call_limits")
                 or used < self.config["daily_call_limit"], "Daily call ceiling reached; no request sent")
         require(provider_input_chars(private_request) <= self.config["max_context_chars"],
                 "Private advisory context ceiling; no request sent")
@@ -346,7 +346,7 @@ class Engine:
         day = datetime.now(ZoneInfo(self.config["timezone"])).date().isoformat()
         used = sum(charged_request_slots(i) for i in state["invocations"].values()
                    if i["charged"] and i["quota_day"] == day)
-        require(not provider.charged or self.config.get("model_daily_call_limits")
+        require(not provider.charged or self.config.get('provider_managed_limits') or self.config.get("model_daily_call_limits")
                 or used < self.config["daily_call_limit"], "Daily call ceiling reached; no request sent")
         require(provider_input_chars(request) <= self.config["max_context_chars"],
                 "Group editorial context ceiling; no request sent")
@@ -2225,12 +2225,12 @@ class Engine:
         day = datetime.now(ZoneInfo(self.config["timezone"])).date().isoformat()
         used = sum(charged_request_slots(i) for i in state["invocations"].values()
                    if i["charged"] and i["quota_day"] == day)
-        if charged and self.config.get("wait_for_daily_quota_reset"):
+        if charged and self.config.get("wait_for_daily_quota_reset") and not self.config.get('provider_managed_limits'):
             from .scheduling import wake_status
             eligibility = wake_status(state, daily_call_limit=None, wait_provider_daily=True).get("next_eligible")
             require(not eligibility or datetime.fromisoformat(eligibility) <= datetime.now(ZoneInfo("UTC")),
                     "Daily call ceiling reached; provider daily quota wait until Pacific midnight; no request sent")
-        if charged and not self.config.get("model_daily_call_limits"):
+        if charged and not self.config.get("model_daily_call_limits") and not self.config.get('provider_managed_limits'):
             require(used < self.config["daily_call_limit"], "Daily call ceiling reached; no request sent")
         # Capture the temporal environment before the next model boundary. This
         # measures a new interval; it never recalculates an earlier receipt.
@@ -2816,7 +2816,10 @@ class Engine:
         if hasattr(provider, "record_attempt"):
             state = self.store.load()
             day = state["invocations"][invocation]["quota_day"]
-            if self.config.get("model_daily_call_limits"):
+            if self.config.get('provider_managed_limits'):
+                provider.model_request_limits = None
+                provider.request_limit = len(provider.models)
+            elif self.config.get("model_daily_call_limits"):
                 used_by_model = {}
                 for item in state["invocations"].values():
                     if item["id"] == invocation or not item["charged"] or item["quota_day"] != day:

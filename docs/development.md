@@ -21,6 +21,33 @@ Before changing anything, answer three questions:
 If you only need the key terms, use the [glossary](glossary.md). If you need a
 release procedure, go to [hosted operation](cloud.md#authority-maintenance).
 
+## Current development path
+
+Start with [one-container setup](standalone.md#run-one-installation-container).
+`scripts/wake_installation build` builds the writable development image;
+`start` launches one `wake` container stopped for inspection. Attach VS Code or
+use `scripts/wake_installation shell`. Preserve the existing `.bashrc` prompt.
+Internal nodes are worker processes, with one server on container port 8080
+(host port 80 by default), not twelve separately operated containers.
+
+The root website is a full unified view of the node snapshots. Its Console retains
+the normal panels below an installation overview; individual node views remain
+selectable. `wake/installation_projection.py` owns aggregation and attribution;
+`wake/installation_site.py` exports the website through the canonical report exporter.
+Neither opens authority or requests model output.
+
+The installed CLI is `wake-research`; operator commands use an installation-specific
+Unix socket in `/tmp` with mode 0600. Console access over the LAN is read-only. Source changes do not
+automatically replace these workers: a container restart returns to stopped
+inspection, while `wake-research restart` explicitly resumes research. Commands,
+archive verification, quotas, and publication are documented once in the
+[standalone guide](standalone.md#control-research-from-the-shell).
+
+The multi-container runner, Compose installations, old development preview, and
+GitHub-hosted executor below are retained compatibility paths. Changes to the
+local installation do not authorize running or promoting the hosted executor.
+The new Codespace path needs its own actual remote acceptance evidence.
+
 ## Establish the target before editing
 
 Record the checkout's remote, branch, HEAD and existing changes. Identify whether
@@ -37,11 +64,12 @@ IP address, and an image tag can change; none identifies a record by itself.
 
 | Surface | Executable source | Authority | Presentation |
 | --- | --- | --- | --- |
-| Hosted research | Exact promoted `wake-runtime` commit | `wake-state/data/wake.sqlite.gz`, restored as `wake.sqlite` | `wake-live` projections |
+| One-container installation | Fixed worker source in `/workspace` | `/data/nodes/ID/record/wake.sqlite`, one writer per node | One server, per-node exports and `installation.json` |
+| Hosted research compatibility | Exact promoted `wake-runtime` commit | `wake-state/data/wake.sqlite.gz`, restored as `wake.sqlite` | `wake-live` projections |
 | GitHub Pages | Generated shell from `master` | None; reads public views | Pages artifact, independent of research promotion |
-| Standard Docker | Image package under `/app` | Selected volume at `/data/wake.sqlite` | Atomic temporary website generations |
-| VS Code overlay | Bind-mounted `/workspace` because it sets working directory there | Same selected `/data` volume | Local export, never hosted fallback |
-| Codespaces / Dev Container | Mounted workspace source | Checkout `data/devcontainer/record/wake.sqlite` | Paused same-origin preview, private forwarded port |
+| Compatibility Docker | Image package under `/app` | Selected volume at `/data/wake.sqlite` | Atomic temporary website generations |
+| Compatibility VS Code overlay | Bind-mounted `/workspace` because it sets working directory there | Same selected `/data` volume | Local export, never hosted fallback |
+| Compatibility Codespaces preview | Mounted workspace source | Checkout `data/devcontainer/record/wake.sqlite` | Paused same-origin preview, private forwarded port |
 | CLI / offline fixtures | Imported package in the invoking environment | Explicit `--data` directory | Exported directory |
 | Public preview helper | Local assets, public GitHub projections | None | Deliberate mirror of hosted data |
 
@@ -55,7 +83,7 @@ verified operation.
 
 | Change | Start here | Protected boundary |
 | --- | --- | --- |
-| CLI and installation | `wake/__main__.py`, `wake/standalone.py`, `runtime_supervisor.py`, Compose files, `scripts/wake_runner` | Explicit initialization; preserve selected volume; one scheduler |
+| CLI and installation | `wake/installation.py`, `installation_cli.py`, `installation_gate.py`, `scripts/wake_installation`; compatibility: `wake/__main__.py`, `wake/standalone.py`, `runtime_supervisor.py`, Compose files, `scripts/wake_runner` | Explicit initialization; preserve selected volume; one scheduler |
 | Hosted lifecycle / persistence | Operator workflows, `scripts/github_wake.py`, `scripts/publish_pages.py` | Drain before promotion; durable reservation before provider effect |
 | Record adoption / domain bridge | `wake/authority.py`, `record_store.py`, `application.py`, `domain_events.py`, `event_format.py` | One writable authority; immutable historical meaning and hashes |
 | Generic record/runtime | `wake/kernel/` | Deterministic receipt, replay, access and invocation contracts |
@@ -374,7 +402,10 @@ finding.
 Passenger is a private Markdown workspace for operational observations and inert
 change proposals. Its logical interface is `./.passenger.md`, resolved relative
 to the explicit installation storage root, never the process working directory.
-It is available only inside containers. Solo images use `/data/passenger`; solo
+It is available only inside containers. The current one-container controller sets
+`WAKE_PASSENGER_ROOT=/data/private` for all twelve nodes. Active private data is
+removed by uppercase `wake-research RESET`; manual record archives exclude it.
+Compatibility solo images use `/data/passenger`; solo
 runner nodes use their explicit `/passenger` volume. A named runner group uses
 `/workspace/.passenger.md`, which is the actual `.passenger.md` in its host project
 root. All parents and children share that document with identity `group-GROUP`.

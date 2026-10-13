@@ -25,6 +25,7 @@ from wake.kernel import (
 
 from .governance import PUBLICATION_MIN_SOURCES, Rejected, require
 from .event_format import canonical, digest
+from .installation_gate import InstallationSlotUnavailable
 
 
 from .prompts import BOUNDED_RESEARCH_SYSTEM, RESEARCH_SYSTEM, SYSTEM
@@ -855,10 +856,26 @@ class Gemini:
                     response = shared_provider.generate(generation)
                 else:
                     observe_request('provider_wait' if self.request_gate.url else 'context')
+                    queue_started = time.perf_counter()
                     with self.request_gate.request(model) as coordinated:
+                        # Fair-queue waiting is not provider execution time;
+                        # it must not consume a later model's transport budget.
+                        provider_deadline += time.perf_counter() - queue_started
                         observe_request('provider_uncoordinated' if self.request_gate.url and not coordinated else 'provider')
                         self.provider_requests_sent += 1
-                        response = shared_provider.generate(generation)
+                        try:
+                            response = shared_provider.generate(generation)
+                            self.request_gate.outcome = {'result': 'success'}
+                        except Exception as gate_error:
+                            details = dict(getattr(gate_error, 'details', {}) or {})
+                            ids = set(details.get('quota_ids', []))
+                            self.request_gate.outcome = {
+                                'result': ('daily_quota' if FREE_TIER_DAILY_QUOTA_ID in ids else
+                                           'rate_limited' if details.get('http_status') == 429 else 'failed'),
+                                'http_status': details.get('http_status'),
+                                'retry_after_seconds': _retry_after_seconds(details),
+                            }
+                            raise
                 observe_request('provider_response')
                 attempt.update(response.metadata)
                 attempt["result"] = "success"
@@ -866,6 +883,16 @@ class Gemini:
                 self.successful_model = model
                 usage = response.metadata.get("usage", {})
                 model_version = response.metadata.get("model_version", model)
+
+            except InstallationSlotUnavailable as exc:
+                attempt.update(exc.outcome)
+                # Eligibility was decided without a provider effect. Other
+                # configured models may still have allowance in this queue.
+                error = TransientProviderError('Gemini shared slot unavailable; trying eligible fallback')
+                if exc.outcome.get('result') == 'daily_quota':
+                    remaining = self.models[self.models.index(model) + 1:]
+                    if not remaining:
+                        error = DailyQuotaExceeded('Gemini daily quotas exhausted; shared recovery scheduled')
 
             except ProviderCallPaused as exc:
                 attempt.update(result="operator_paused", provider_call_made=False)
@@ -942,6 +969,9 @@ class Gemini:
                         or "Gemini provider request failed"
                     )
                 )
+                if (os.environ.get('WAKE_INSTALLATION_WORKER') == '1' and http_status in (401, 403)
+                        and self.models[self.models.index(model) + 1:]):
+                    error = TransientProviderError('Gemini model access blocked; trying eligible fallback')
 
             except Exception as exc:
                 attempt.update(
@@ -974,6 +1004,8 @@ class Gemini:
                 isinstance(error, TransientProviderError)
                 and self.fallback_requires_primary_daily_quota
                 and attempt.get("result") != "daily_quota"
+                and attempt.get('provider_call_made') is not False
+                and attempt.get('http_status') not in (401, 403)
             ):
                 # Daily-only policy applies at every boundary in the chain.
                 # Minute pressure and temporary failures retry the current model.

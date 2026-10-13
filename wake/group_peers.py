@@ -215,7 +215,7 @@ def collect_group_peer_research():
     group_id = os.environ.get("WAKE_GROUP_ID", "")
     own_name = os.environ.get("WAKE_GROUP_INSTANCE", "")
     if (not group_id or not _PEER_NAME.fullmatch(own_name)
-            or os.environ.get("CODESPACES", "").lower() == "true"
+            or (os.environ.get("CODESPACES", "").lower() == "true" and os.environ.get('WAKE_INSTALLATION_WORKER') != '1')
             or os.environ.get("GITHUB_ACTIONS", "").lower() == "true"
             or os.environ.get("CI", "").lower() == "true"):
         return None
@@ -231,7 +231,9 @@ def collect_group_peer_research():
     opener = build_opener(ProxyHandler({}))
     peers = []
     for name in names[:_MAX_PEERS]:
-        request = Request(f"http://{name}:8080/group/research.json", headers={"Accept": "application/json"})
+        base = os.environ.get('WAKE_INSTALLATION_URL')
+        url = f"{base}/nodes/{name}/group/research.json" if base else f"http://{name}:8080/group/research.json"
+        request = Request(url, headers={"Accept": "application/json"})
         try:
             with opener.open(request, timeout=0.4) as response:
                 raw = response.read(_MAX_RESPONSE_BYTES + 1)

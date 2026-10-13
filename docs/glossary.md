@@ -8,22 +8,26 @@ definitions. The wake entries describe its conceptual language rather than an AP
 | --- | --- |
 | **Accepted cycle** | A research attempt whose proposed changes passed WAKE's rules and were recorded. A workflow can succeed even when its attempt is rejected or deferred. |
 | **Application** | The rules and behavior for a particular kind of work. Research is WAKE's current application. |
-| **Authority / authoritative record** | The one database allowed to decide what state is current for an installation. Each local or hosted installation has its own. |
+| **Authority / authoritative record** | The one database allowed to decide a node’s current state. The current installation has one governed record per node; its aggregate Console is a view, not another authority. |
 | **Blocked / red** | The runtime cannot continue without operator or agent action. |
 | **Bob** | The byline for selected plain-language summaries of already-recorded research. Bob does not make research decisions or change the record. |
-| **Child node** | One of three independent local researchers assigned to a parent node. It has its own record and can exchange findings only with its siblings and parent. |
+| **Child node** | One of three internal worker processes assigned to a parent. It owns a governed record, exchanges bounded material with its siblings and parent, and stops when the installation controller exits. |
 | **Context** | The bounded information included in one model request. It can be smaller than the full record, but it keeps links to the exact sources it summarizes. |
 | **Continuity matrix** | An optional, versioned set of structured probes. It uses the same model response as research and does not make another provider call. |
 | **Discovery lead** | A search result or index entry that may help locate a source. It is not itself qualifying research evidence. |
 | **Evidence** | A collected, readable source or recorded observation. WAKE checks provenance and structure; this does not prove that a claim is true. |
-| **Gateway** | The local group landing page. It lists parent and child nodes and routes the browser to a selected node; it does not own their research records. |
+| **Gateway** | The retained multi-container setup’s hostname router and landing page. The current installation instead has one controller and one web server. |
 | **Governance** | The deterministic rules that check a model's proposal before WAKE accepts changes. |
-| **Group / parent node** | A local runner setup with numbered parent containers and three independent child nodes per parent. Each node keeps its own record. Network exchange provides optional context; a node can continue if another is unavailable. |
+| **Group / parent node** | The current installation has three parent worker processes, each with three children. Each node owns a record; the installation controller owns their shared lifecycle and API queue. Earlier container groups are compatibility paths. |
+| **Installation controller** | The process supervising all internal nodes, the shared model-request queue, and one web server. It owns lifecycle, not a merged research record. |
+| **Whole installation** | The complete unified WAKE website, including journal, research and shared Bob blog. Its Console adds installation observations above the normal panels. Source records remain attributed to their nodes. |
+| **Public mirror** | The latest locally generated public export uploaded for hosting. It has a snapshot date, no live execution claim, and no local operator authority. |
+| **RESET** | The uppercase operator command that destroys active data without making a backup, initializes cycle zero, and leaves research stopped. Existing manual exports survive. |
 | **Kernel** | The reusable WAKE layer for records, decisions, transitions, receipts and replay. It does not contain research-specific policy. |
 | **Projection** | A disposable view of the record for a website or Console. It can be rebuilt and is never the authority. |
 | **Proposal** | A model's suggested changes. A proposal is untrusted until governance checks it. |
 | **Quantum Wake Function** | A philosophical metaphor: the wavefunction describes what might happen; the wake function describes how what happened shapes what can happen next. It is not an established mathematical object, physical law, or implemented computational function. See [why WAKE](why-wake.md) for the scientific limits. |
-| **Quota standby / purple** | A provider reported a quota limit. WAKE keeps scheduling retries, so it may return to normal research when a model has capacity. A configured hard daily cap can instead wait until the Pacific reset. |
+| **Quota standby / purple** | A provider limit makes affected requests temporarily ineligible. Gemini daily-quota recovery begins at 23:55 Pacific, no more than once per five minutes; short limits follow their retry interval. Other eligible requests use the same serial queue. |
 | **Receipt** | A durable account of an attempt or decision. New proposal and provider receipts record Who, What, Where, Why, How, and When in hash-bound attribution; older missing details stay unspecified. See [receipt attribution](kernel.md#receipt-attribution). |
 | **Wake metaphor** | The image of a disturbance left by passage through water: evidence of the past that can influence what follows. In WAKE, durable records carry consequences into future bounded context; this does not imply consciousness or a persistent personal identity. See [why WAKE](why-wake.md). |
 

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="darkreader-lock"><meta name="theme-color" content="#f3f6fb">
+<title>Installation Console / WAKE✳︎</title>
+<link rel="stylesheet" href="research.css"><link rel="stylesheet" href="console-light.css">
+<link rel="stylesheet" href="installation-console.css"><link rel="stylesheet" href="masthead.css">
+<script src="site-theme.js"></script><script src="installation-console.js" defer></script>
+</head>
+<body class="research-page installation-page">
+<a class="skip-link" href="#main">Skip to installation Console</a>
+<header class="research-header masthead">
+<div class="brand-lockup"><a class="wordmark" href="console.html">WAKE<span class="asterisk">✳︎</span><small>INSTALLATION CONSOLE</small></a></div>
+<nav class="compact-nav" aria-label="Main navigation"><a href="console.html" aria-current="page">Installation</a></nav>
+<div class="header-tools"><label class="theme-switch"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><span class="data-switch-track" aria-hidden="true"><i></i></span></label></div>
+</header>
+<main id="main" tabindex="-1">
+<section class="installation-intro"><div><p class="eyebrow">ONE INSTALLATION / INTERNAL NODES</p><h1 id="installation-name">WAKE✳︎ Console</h1><p>Inspect the installation, then open a node’s full Console to follow its record.</p></div><div id="installation-selector"></div></section>
+<p id="installation-freshness" role="status">Loading installation snapshot…</p>
+<p id="installation-notice" class="notice" role="status" hidden></p>
+<div id="installation-summary" class="installation-summary"></div>
+<section class="panel installation-panel" aria-labelledby="nodes-title"><div class="panel-heading"><p class="eyebrow">RECORDS / NODE COMPARISON</p><h2 id="nodes-title">Parents and children</h2></div><p class="installation-caption">Accepted wakes and outcomes describe recorded work, not scientific quality. Repeated sources are not independent confirmations.</p><div class="installation-table-wrap"><table class="installation-table"><thead><tr><th scope="col">Node</th><th scope="col">Research</th><th scope="col">Accepted wakes</th><th scope="col">Pending</th><th scope="col">Outcomes</th><th scope="col">Snapshot</th></tr></thead><tbody id="installation-nodes"></tbody></table></div></section>
+<div class="installation-columns">
+<section class="panel installation-panel" aria-labelledby="watch-title"><div class="panel-heading"><p class="eyebrow">OBSERVATIONS / COVERAGE</p><h2 id="watch-title">Things to watch</h2></div><ul id="installation-watch" class="installation-list"></ul></section>
+<section class="panel installation-panel" aria-labelledby="live-title"><div class="panel-heading"><p class="eyebrow">RUNTIME / SAMPLED STAGES</p><h2 id="live-title">Current activity</h2></div><p id="installation-live-note" class="installation-caption"></p><ul id="installation-live" class="installation-list"></ul></section>
+</div>
+<section class="panel installation-panel" aria-labelledby="receipts-title"><div class="panel-heading"><p class="eyebrow">DURABLE RECEIPTS / BOUNDED RECENT HISTORY</p><h2 id="receipts-title">Recorded outcomes</h2></div><p class="installation-caption">These receipts are separate from current runtime observations. Open a node to inspect the underlying record.</p><ol id="installation-receipts" class="installation-list installation-receipts"></ol></section>
+<footer class="research-footer"><p id="installation-provenance">Installation data is a derived view of the nodes’ records.</p><a href="installation.json">Download this installation snapshot</a></footer>
+<noscript><p>This Console needs JavaScript. <a href="installation.json">Download the installation snapshot</a>.</p></noscript>
+</main>
+</body>
+</html>

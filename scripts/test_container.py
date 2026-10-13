@@ -26,7 +26,8 @@ def check(image, platform):
         args = ['run', '-d', '--name', name, '--platform', platform, '--network', 'none', '--workdir', '/tmp',
                 '--read-only', '--tmpfs', '/tmp:mode=1777', '--cap-drop', 'ALL',
                 '-v', volume + ':/data', '-e', 'WAKE_PROVIDER=fixture',
-                '-e', 'WAKE_INTERVAL_SECONDS=1', image, '--config', '/app/wake.toml']
+                '-e', 'WAKE_INTERVAL_SECONDS=1', '--entrypoint', 'python', image,
+                '-m', 'wake.standalone', '--config', '/app/wake.toml']
         if paused:
             args.append('--paused')
         return docker(*args)
@@ -99,4 +100,10 @@ if __name__ == '__main__':
                         help='Test selected platform(s); defaults to both')
     args = parser.parse_args()
     for architecture in args.platform or ('linux/arm64', 'linux/amd64'):
+        from pathlib import Path
+        lifecycle = Path(__file__).resolve().parents[1] / 'tests/test_installation_lifecycle.py'
+        docker('run', '--rm', '--platform', architecture, '--network', 'none',
+               '--read-only', '--tmpfs', '/tmp:mode=1777', '--cap-drop', 'ALL',
+               '--mount', f'type=bind,source={lifecycle},target=/tmp/test_installation_lifecycle.py,readonly',
+               '--entrypoint', 'python', args.image, '/tmp/test_installation_lifecycle.py')
         check(args.image, architecture)

@@ -7,6 +7,23 @@ or cross-model evidence. Independent container verification is documented in
 
 > **Current evaluation protocol.** This defines how live and comparative **WAKE✳︎** runs should be interpreted. Observations and proposed mechanisms remain separate, and rejected, deferred and failed attempts stay in the experimental record.
 
+## Interpret the internal-node workload
+
+The current container runs three parent and nine child processes under one
+controller. Research is a replaceable workload used to exercise accountable work,
+communication, provenance, and scheduling. Each node keeps a separate governed
+record. Console sums measure node work; duplicate sources or exchanged findings
+are not independent corroboration. Runtime stages and queue eligibility are
+observations, not accepted research transitions.
+
+The shared queue serializes model requests while local processing can overlap.
+Compare transport latency, queue delay, provider failure, and accepted progress
+separately. Record snapshot heads, versions, dates, and node attribution when
+comparing runs. Fresh launch, import, and `RESET` leave research stopped for
+inspection; `RESET` destroys active history without a backup and retains manual
+exports. See [the installation contract](standalone.md#run-one-installation-container).
+Older hosted and multi-container experiments below retain their original scope.
+
 ### The short version
 
 WAKE is testing whether separate model calls can continue useful work when they

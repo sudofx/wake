@@ -1,5 +1,143 @@
 # Standalone WAKE✳︎
 
+## Run one installation container
+
+The current local path is one `wake` container, one web server, and twelve internal
+worker processes called nodes. Three parents (`100.wake`, `200.wake`, `300.wake`)
+each have three children. Nodes do not run their own web servers. The installation
+controller starts, stops, and routes them; they cannot continue after it exits.
+Each node retains its own governed SQLite record. The controller has no separate
+writable group research database.
+
+Prepare topics and provider settings, then build and launch from the repository:
+
+```sh
+test -f .env || cp .env.example .env
+test -f research-topics.toml || cp example.research-topics.toml research-topics.toml
+# Configure GEMINI_API_KEY if you intend to enable Gemini later.
+# Edit your local research-topics.toml for this installation.
+./scripts/wake_installation build
+./scripts/wake_installation start
+./scripts/wake_installation shell
+wake-research --help
+wake-research status
+```
+
+**Every container launch starts research stopped.** Inspection does not enable
+research, Bob calls, or Passenger calls. The Console and shell are available first;
+use `wake-research start` only after inspecting the installation and configuration.
+The launcher neither pulls source nor switches branches. VS Code can attach to the
+running `wake` container; `/workspace` is writable and the existing WAKE `.bashrc`
+terminal prompt is retained.
+
+Open `http://localhost/console.html`. The container listens on port 8080; the
+launcher publishes it on host port 80 by default. Set `WAKE_PORT` before launch to
+choose another host port. An iPhone on the same network uses the Mac's LAN IP,
+for example `http://192.168.1.20/console.html`. No DNS container is needed. The
+Console selector opens the complete unified WAKE website or a node's complete
+exported view. Whole installation includes the journal, research, maps and Bob's
+Blog. Its Console keeps the normal panels and adds the installation overview at
+the top. Identical shared group publications appear once in the unified blog;
+node contributions keep links and provenance back to their own records. A shared
+publication must already be recorded before it appears; viewing the site never
+calls a model to create one.
+Snapshot age, unavailable nodes, recorded outcomes, and sampled runtime activity
+remain separate. Counts do not establish scientific quality or independent support.
+
+```mermaid
+flowchart TB
+  browser[Mac or iPhone browser] --> web[One read-only web server]
+  shell[VS Code and wake-research] --> controller[Installation controller]
+  controller --> parents[Three parent processes]
+  parents --> children[Nine child processes]
+  parents --> records[(Separate governed node records)]
+  children --> records
+  records -. derived snapshots .-> web
+  parents --> queue[One model-request queue]
+  children --> queue
+  queue --> provider[External provider]
+```
+
+### Control research from the shell
+
+`wake-research` is in the container's PATH. Its local Unix control socket has mode
+0600; browser/LAN routes cannot issue operator commands. Responses distinguish
+per-node acknowledgment, draining, failure, and unknown state. A written control
+alone is not proof that a worker stopped.
+
+| Command | Effect |
+| --- | --- |
+| `wake-research start` | Enable research after inspection. |
+| `wake-research stop` | Prevent new calls and drain active work; keep the container and Console available. |
+| `wake-research pause` | Suspend research and drain active work while preserving the available Console. |
+| `wake-research restart` | Drain, recreate worker processes with current configuration, and enable research again; retain records. |
+| `wake-research RESET` | Drain, destroy active node records and private active data, initialize cycle zero, and leave research stopped. Uppercase is required. No backup is created. |
+| `wake-research export --name inspection.zip` | Drain and write a reloadable twelve-record archive to `./data/backups`; leave research stopped. |
+| `wake-research import inspection.zip` | Verify every archived record and its provenance before replacing active records; leave research stopped. |
+| `wake-research publish --output /tmp/wake-public` | Drain and generate a local public mirror artifact without uploading it; leave research stopped. |
+| `wake-research publish` | Drain and explicitly upload the prebuilt public projection to the configured dedicated branch; leave research stopped. |
+| `wake-research status` | Read node availability, snapshot identity, runtime state, and shared queue status. |
+
+The host active-data directory is `data/installation`, mounted as `/data` in the
+container. Node authority lives at `/data/nodes/ID/record/wake.sqlite`. The launcher
+provides `./data/backups` as a link to this installation's manual archive directory.
+`RESET` deletes active data only: existing manual exports in the backups directory
+survive. It does not create a backup, delete source, or reset another installation.
+Imported archives contain records, not provider credentials or private Passenger
+content. Import rejects incomplete, altered, or non-replayable archives.
+
+### Collect quickly through one shared API queue
+
+Exactly one model transport request may be in flight across the twelve nodes.
+Retries, fallbacks, and group editorial requests use the same installation queue.
+Release the slot when the complete response or transport failure is received; local
+response processing can overlap the next eligible request. There is no added delay
+between eligible calls, and queued nodes receive fair access.
+
+A 429 may describe a short rate limit or daily exhaustion; eligibility follows the
+reported limit. Permission failures such as 403 block affected access rather than
+making repeated calls. For exhausted Gemini daily quota, recovery becomes eligible
+at 23:55 in `America/Los_Angeles`, then no more than once per 300 seconds until
+success. Other eligible models can continue through the same serial queue.
+Independent installations sharing provider credentials also share provider quotas,
+but their local queues do not serialize calls with one another.
+
+### Publish an optional read-only mirror
+
+A local publish builds the complete unified website, node artifacts and an
+`installation.json` manifest. The
+hosted Console uses the same node selector and shows the most recent successful
+upload, its date, and each node's snapshot identity. It has no local operator access,
+live execution claim, or writable authority. Public projections exclude credentials
+and Passenger input/output; manual reloadable archives are never the public mirror.
+
+Configure `WAKE_PUBLISH_REPOSITORY` with a GitHub repository URL and
+`WAKE_PUBLISH_BRANCH` with a dedicated publication branch before launching. Review
+`publish --output` first. An explicit `publish` uploads that artifact using configured
+Git credentials. GitHub Pages still performs its deployment step; GitHub does not
+need to run research or connect to local records to display this mirror. The existing
+hosted executor and its record remain a separate compatibility path. Publishing this
+mirror does not promote or reopen that executor.
+
+### Codespaces and remote instances
+
+The single-server design also fits a Codespace: run the installation controller in
+the development container and forward port 8080 privately. Use GitHub's authenticated
+forwarded URL for remote access. Treat each Codespace as an independent installation
+with its own records and controls. Codespaces can stop after inactivity; use a
+separate hosting environment for continuous operation. Cloud execution of this new
+path still requires an actual Codespace acceptance run. The older preview helper
+below is a compatibility path, not evidence that the new twelve-node runtime has
+been verified remotely.
+
+## Earlier standalone and multi-container paths
+
+The remaining sections document retained compatibility launchers, Compose setups,
+and dated operating history. Their independently served node containers, optional
+DNS gateway, automatic reload behavior, and hosted references are not the current
+one-container launch contract above. Do not use them to enable research in a fresh
+installation before inspection.
+
 For multiple independent installations, dynamic ports and optional hostname routing,
 see [multiple installations](installations.md). The original single-installation
 Compose defaults remain available below.

@@ -5,6 +5,11 @@ models, runtimes, and people. A model can suggest a change, but WAKE's rules dec
 whether to accept it. The record keeps the evidence, decisions, and history so work
 can continue when the model or machine changes.
 
+The local Docker installation presents one complete WAKE website and shared blog,
+with three parents and nine children working internally. Its Console adds an
+installation overview above the normal panels and lets you inspect each node.
+Every launch leaves research stopped for inspection.
+
 Research is WAKE's first application. It is a useful way to exercise the record and
 governance system; it is not the definition of the WAKE kernel.
 
@@ -48,7 +53,7 @@ theory, quantum computation, or an implemented function. Read
 | Understand the design and its limits | [Architecture](docs/architecture.md) |
 | Try the kernel without a model or API key | [Kernel example](docs/kernel.md#executable-non-research-proof) |
 | Run one local Docker installation | [Standalone setup](docs/standalone.md) |
-| Create a local group with separate parent and child researchers | [Group setup](docs/standalone.md#repository-convenience-launcher) |
+| Inspect three parents and nine children inside one container | [Installation setup](docs/standalone.md#run-one-installation-container) |
 | Operate the GitHub-hosted research instance | [Hosted operation](docs/cloud.md) |
 | Compare research runs or memory settings | [Experiment guide](docs/experiment.md) |
 | Understand a project term | [Glossary](docs/glossary.md) |
@@ -88,45 +93,32 @@ small proof of the record-and-rules boundary, not a research run.
 
 ### One Docker container
 
-With Docker Compose installed, set `GEMINI_API_KEY` in a local `.env` file if you
-want live research. Then create topics and start WAKE:
+The current local setup runs one `wake` container with twelve internal worker
+processes: three parents and nine children. One web server serves the whole
+installation and each node's Console. Every launch starts research stopped.
 
 ```sh
 cp .env.example .env
-# Add GEMINI_API_KEY for live research, or set WAKE_PROVIDER=fixture for an offline rehearsal.
-cp example.research-topics.toml research-topics.toml
-# Edit research-topics.toml
-docker compose up --build -d
+# Configure your provider and edit research-topics.toml.
+./scripts/wake_installation build
+./scripts/wake_installation start
+./scripts/wake_installation shell
+wake-research status
+# Inspect first. Enable research separately when ready:
+# wake-research start
 ```
 
-Open [http://localhost:8080](http://localhost:8080). For an inspection-only
-installation, set `WAKE_PAUSED=true`. Each installation has its own data volume. Ordinary
-`docker compose down` preserves that data. The [standalone guide](docs/standalone.md)
-covers backups, LAN access, updates, and the repository runner.
+Open `http://localhost/console.html` (host port 80 by default). Attach VS Code to
+`wake` for the writable `/workspace` and existing terminal prompt. The Console's
+selector opens an individual node's record. [Standalone setup](docs/standalone.md#run-one-installation-container)
+explains controls, destructive `RESET`, manual archives, serial API scheduling,
+LAN access, and the optional public mirror.
 
-### Local research group
+### Compatibility launchers
 
-The repository runner creates a numbered group and its child researchers. Give the
-group a shared topic file first, then run:
-
-```sh
-cp example.research-topics.toml research-topics.toml
-# Edit research-topics.toml
-./scripts/wake_runner wake --count 3
-```
-
-This creates `000.wake` as the gateway, three independent parent containers,
-and three child containers under each parent. Parents use 100-step names such as
-`100.wake`; children use `101.wake`, `102.wake`, and `103.wake` under that
-parent. The next parent group is `200.wake` with children `201.wake` through
-`203.wake`, then `300.wake` with children `301.wake` through `303.wake`. Each
-node keeps its own record. These local hostnames use plain HTTP; the iPhone can
-use the gateway's LAN address and each node's published port.
-Parents and their children can exchange bounded research material on the local
-Docker network; an unreachable peer does not stop another node. To give each parent
-different topics, prepare `.wake-runner-topics/100.wake.toml` and the
-matching files for the other parents before creating the group. The [group guide](docs/standalone.md#repository-convenience-launcher)
-explains addresses, node page links, child visibility, live terminal status, and lifecycle commands.
+The older Compose, `scripts/wake_runner`, numbered container groups, and hosted
+executor remain compatibility paths. Their existing operating history is retained;
+they are not the default launch path for the one-container installation.
 
 ## How installations stay separate
 
@@ -144,13 +136,14 @@ flowchart LR
 
 Local containers, Codespaces, and hosted WAKE can run the same code while keeping
 separate records and controls. A code push does not copy or reset research data.
-Editable local containers reload saved code after completing the current attempt;
-their websites are regenerated from their own retained records. See
-[code changes and timed research pauses](docs/standalone.md#code-and-website-changes).
+The current installation uses fixed worker code until an explicit restart;
+`wake-research restart` also enables research, while a container restart returns
+to stopped inspection. Its public mirror is a locally prepared read-only export. See
+[installation operation](docs/standalone.md#run-one-installation-container).
 The hosted research runtime uses the explicitly promoted `wake-runtime` branch;
 GitHub Pages is a separate read-only view.
 
-Local group status lights refresh every five seconds. Their colors follow the same
+Legacy multi-container group status lights refresh every five seconds. Their colors follow the same
 order as the gateway key: red means operator or agent action is required; yellow
 means paused or waiting; green means research is running; blue means idle; purple
 means a provider reported quota pressure. WAKE retries on schedule and can recover
@@ -204,12 +197,13 @@ child and publish identical text on all members before ordinary research request
 The introductory checkpoint does not increment accepted research progress.
 Container installations also have **Passenger**, a private, installation-wide
 Markdown workspace for Bob's operational assessments and proposed changes.
-Named groups share the actual project-root `.passenger.md`; first publication adds a
+The current installation shares its private Passenger storage root; compatibility
+named groups share the project-root `.passenger.md`. First publication adds a
 factual receipt without another model call. Passenger cannot execute changes or govern research. See
 [first-run publication and Passenger](docs/development.md#first-run-publication-and-passenger)
 for persistence, privacy, shared storage and operator reset.
 
-### Fresh hosted reset
+### Retained hosted reset
 
 Hosted Reset verifies the old authority and retains its exact checkpoint on a
 `wake-archive-*` branch before initializing a small new database. The native
@@ -217,7 +211,9 @@ initialization receipt records the archive branch, commit and prior domain head.
 Active research cycles, provider accounting and continuity results start at zero;
 the fresh continuity campaign is enabled without a provider call. Historical
 records stay in the archive rather than accumulating inside the new database.
-Local in-place resets retain their history and are a separate operation.
+Compatibility local in-place resets retain history. The current uppercase
+`wake-research RESET` instead destroys active records without a backup and leaves
+research stopped; existing manual exports survive.
 
 Bob’s public articles use plain prose, including the built-in welcome. Markdown
 is confined to Passenger. Public display removes legacy heading markers without
@@ -227,7 +223,8 @@ Lossless storage compression preserves exact records, hashes and replay. Version
 shares repeated long strings within stored JSON values when that saves space.
 See [storage compatibility](docs/kernel.md#physical-storage-and-compatibility).
 
-Zero-cycle resets automatically enable an empty continuity campaign. See [reset operation](docs/standalone.md).
+Compatibility zero-cycle resets can enable an empty continuity campaign. For the
+current destructive reset contract, see [installation controls](docs/standalone.md#control-research-from-the-shell).
 
 Research jobs can succeed without advancing the journal: rejected proposals and provider deferrals remain visible. The proposal contract copies the current version exactly and limits measured-result references to operator-recorded reproductions; accepted journal cycles remain the progress signal.
 

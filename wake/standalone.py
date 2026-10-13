@@ -16,6 +16,7 @@ import sys
 import tempfile
 import threading
 import time
+from types import SimpleNamespace
 
 from .authority import open_authoritative_store, verify_existing_record
 from .engine import Engine, config
@@ -223,6 +224,15 @@ def publish(engine, root):
 
 
 def run(args):
+    if os.environ.get('WAKE_INSTALLATION_WORKER') == '1':
+        # Linux container workers cannot outlive their controller, including
+        # SIGKILL. A graceful stop still drains through the normal signal path.
+        import ctypes
+        expected_parent = int(os.environ['WAKE_CONTROLLER_PID'])
+        if ctypes.CDLL(None, use_errno=True).prctl(1, signal.SIGKILL) != 0:
+            raise OSError('Cannot bind worker lifecycle to controller')
+        if os.getppid() != expected_parent:
+            return 1
     if not math.isfinite(args.interval) or args.interval <= 0:
         raise ValueError('Interval must be positive')
     from .runtime_supervisor import (development_root, source_signature,
@@ -233,6 +243,8 @@ def run(args):
                       if source_root and frozen_signature else
                       source_signature(source_root) if source_root else None)
     settings = config(args.config)
+    if os.environ.get('WAKE_INSTALLATION_WORKER') == '1':
+        settings['provider_managed_limits'] = True
     provider_name = args.provider or settings['provider']
     if provider_name not in ('fixture', 'gemini'):
         raise ValueError('Standalone unattended providers: fixture or gemini')
@@ -262,11 +274,17 @@ def run(args):
         engine = bootstrap(data, settings, enable_continuity_matrix=args.enable_continuity_matrix)
         server = None
         try:
-            with tempfile.TemporaryDirectory(prefix='wake-website-') as directory:
+            from contextlib import nullcontext
+            website_context = (nullcontext(args.site_root) if getattr(args, 'site_root', None)
+                               else tempfile.TemporaryDirectory(prefix='wake-website-'))
+            with website_context as directory:
                 root = Path(directory)
+                root.mkdir(parents=True, exist_ok=True)
                 if not publish(engine, root):
                     raise ValueError('Writer busy during initial website publication; retry startup')
-                server = ThreadingHTTPServer((args.host, args.port), partial(Website, directory=str(root / 'current')))
+                headless = getattr(args, 'headless', False)
+                server = (SimpleNamespace() if headless else
+                          ThreadingHTTPServer((args.host, args.port), partial(Website, directory=str(root / 'current'))))
                 server.engine = engine
                 server.runtime_status = {'mode': 'standalone', 'state': research_mode}
                 server.activity = RuntimeActivity()
@@ -277,9 +295,23 @@ def run(args):
                     'imported_root': str(Path(__file__).resolve().parent.parent),
                     'source_signature': hashlib.sha256(json.dumps(initial_source).encode()).hexdigest(),
                 } if source_root else None)
-                thread = threading.Thread(target=server.serve_forever, daemon=True)
-                thread.start()
-                print(f'Standalone WAKE: /data authority at {data / "wake.sqlite"}; website port {server.server_port}', flush=True)
+                if not headless:
+                    thread = threading.Thread(target=server.serve_forever, daemon=True)
+                    thread.start()
+                print(f'WAKE authority at {data / "wake.sqlite"}; headless={headless}', flush=True)
+                if headless:
+                    def emit_status():
+                        while not stop.is_set():
+                            packet = {**server.runtime_status, **server.activity.snapshot(),
+                                      'snapshot_generation': server.snapshot_generation}
+                            if hasattr(server, 'control_ack'):
+                                packet['control_ack'] = server.control_ack
+                            target = Path(args.runtime_file)
+                            temporary = target.with_suffix('.tmp')
+                            temporary.write_text(json.dumps(packet))
+                            os.replace(temporary, target)
+                            stop.wait(.2)
+                    threading.Thread(target=emit_status, daemon=True).start()
                 if source_root:
                     threading.Thread(target=watch_development_sources,
                                      args=(source_root, initial_source, stop, reload_requested,
@@ -321,9 +353,34 @@ def run(args):
                     if _pause_after_introduction(data, engine.store.load()):
                         research_mode = 'paused'
                     if research_mode != 'running':
-                        server.runtime_status = {'mode': 'standalone', 'state': research_mode}
+                        control = json.loads((data / _CONTROL_FILE).read_text()) if (data / _CONTROL_FILE).exists() else {}
+                        server.activity.update(stage='idle')
+                        server.runtime_status = {'mode': 'standalone', 'state': research_mode,
+                                                 'control_ack': control.get('command_id')}
+                        server.control_ack = control.get('command_id')
                         stop.wait(.5)
                         continue
+                    if headless:
+                        server.control_ack = json.loads((data / _CONTROL_FILE).read_text()).get('command_id')
+                        if provider_name == 'gemini' and not os.environ.get('GEMINI_API_KEY'):
+                            load_secret()
+                        schedule_file = os.environ.get('WAKE_INSTALLATION_SCHEDULE_FILE')
+                        if provider_name == 'gemini' and schedule_file and Path(schedule_file).exists():
+                            models = Gemini(settings, args.model).models
+                            shared = json.loads(Path(schedule_file).read_text()).get('models', {})
+                            now = time.time()
+                            eligible = [m for m in models if not shared.get(m, {}).get('blocked') and
+                                        max(shared.get(m, {}).get('retry_at', 0), shared.get(m, {}).get('probe_at', 0)) <= now]
+                            if not eligible:
+                                deadlines = [max(shared.get(m, {}).get('retry_at', 0), shared.get(m, {}).get('probe_at', 0))
+                                             for m in models if not shared.get(m, {}).get('blocked')]
+                                delay = max(.5, min(deadlines) - now) if deadlines else 300
+                                server.runtime_status = {'mode': 'standalone', 'state': 'standby' if deadlines else 'blocked',
+                                    'reason': 'Shared provider allowance unavailable' if deadlines else 'Provider access requires operator repair',
+                                    'action': None if deadlines else 'Correct provider configuration and restart research'}
+                                if _wait_for_control(stop, data, min(delay, 300), research_mode, reset_id):
+                                    break
+                                continue
                     if os.environ.get('WAKE_GROUP_ID') and engine.store.load().get('group_bob', {}).get('checkpoint', 0) == 0:
                         # The group starts with one shared editorial invocation.
                         # Children contribute initialized records without making
@@ -334,11 +391,15 @@ def run(args):
                         continue
                     verify_existing_record(data / 'wake.sqlite')
                     state = engine.store.load()
-                    daily_limit = (
+                    daily_limit = (None if os.environ.get('WAKE_INSTALLATION_WORKER') == '1' else
                         None if engine.config.get('model_daily_call_limits')
                         else engine.config['daily_call_limit']
                     )
                     schedule = wake_status(state, daily_call_limit=daily_limit)
+                    if os.environ.get('WAKE_INSTALLATION_WORKER') == '1':
+                        # The installation queue owns shared provider eligibility;
+                        # node-local dated projections cannot impose a second cap.
+                        schedule['next_eligible'] = None
                     eligibility = schedule['next_eligible']
                     if eligibility:
                         delay = (datetime.fromisoformat(eligibility) - datetime.now(timezone.utc)).total_seconds()
@@ -430,7 +491,7 @@ def run(args):
                         break
         finally:
             stop.set()
-            if server:
+            if server and not getattr(args, 'headless', False):
                 server.shutdown()
                 server.server_close()
             engine.store.close()
@@ -445,6 +506,9 @@ def main():
         return supervise([sys.executable, '-m', 'wake.standalone', *sys.argv[1:]])
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--data', default='/data')
+    parser.add_argument('--headless', action='store_true', help='Internal installation worker; no web listener')
+    parser.add_argument('--site-root', help='Disposable node export directory')
+    parser.add_argument('--runtime-file', help='Internal redacted activity file')
     parser.add_argument('--config', default='/app/wake.toml')
     parser.add_argument('--host', default='0.0.0.0')
     parser.add_argument('--port', type=int, default=8080)

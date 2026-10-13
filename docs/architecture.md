@@ -2,9 +2,9 @@
 
 See [the reusable kernel contract](kernel.md) for application ownership and the
 non-research execution proof, and [installation boundaries](installations.md) for
-independent volumes, ports and optional gateways. These remain inside this repository.
+independent records and runtime lifecycles. These remain inside this repository.
 
-> **Current specification.** This document explains why the present system is shaped this way: its trust boundary, durable record, governance model and known limits. Operational procedures belong in `cloud.md`. Maintainer navigation, environment checks and reproducible validation guidance belong in `development.md`.
+> **Current specification.** This document explains why the present system is shaped this way: its trust boundary, durable record, governance model and known limits. Current local procedures belong in `standalone.md`; retained hosted procedures belong in `cloud.md`. Maintainer navigation, environment checks and reproducible validation guidance belong in `development.md`.
 
 **WAKE✳︎** is infrastructure for continuity of accountable work, not continuity of a model instance. Its stable sequence is **Record → Context → Proposal → Governance → Transition → Receipt**. Models, vendors, runtimes and human operators may change; the durable record, authority boundary, provenance and correction mechanisms carry the work forward. Research is the first application running on that structure.
 
@@ -37,15 +37,48 @@ flowchart TB
 ```
 
 **What this means:** the application decides what work is allowed, the kernel
-records and checks transitions, and each installation owns its own record. A
-website or Console is a view of that record, not another source of truth.
+records and checks transitions, and each node owns one authoritative record. A
+website or Console is a view of records, not another source of truth.
 
 
-## Independent standalone execution
+## One installation, internal nodes
+
+The current local runtime is `wake/installation.py`: one container supervises
+three parent and nine child processes, one shared model-request coordinator, and
+one read-only web server. Workers export their own views without running web
+servers. The installation exposes a complete unified website: journal, research,
+maps and shared Bob blog. Its normal Console adds installation metrics at the top;
+the selector switches between that site and individual node views. The root view
+qualifies record IDs by node, retains source heads and original receipts, and
+deduplicates identical configured topics and identical shared group publications.
+Its fingerprint identifies a snapshot, not an authoritative record head. Accepted
+counts sum node work; they do not establish independent scientific support. Every launch leaves research stopped until an explicit operator start.
+
+Each node has one writable `wake.sqlite` under its own record directory and uses
+`open_authoritative_store(...)`, the application bridge, and the owned kernel.
+The controller owns process lifecycle and scheduling, not research truth. Its
+installation manifest, queue state, and disposable snapshots do not form a second
+governance engine or merged authoritative record. Worker communication delivers
+bounded proposals/context; imports still pass each node's own governance.
+
+Only one model transport request can occupy the installation slot. Its release
+allows another eligible node to call while response processing continues. Provider
+failures and quota state remain visible and are not accepted progress. Independently
+running installations have independent queues even when their credentials share a
+provider quota. The web interface has no operator mutations: `wake-research` uses
+an owner-only local Unix socket. All workers terminate when the controller exits.
+The shell prompt and writable workspace remain development presentation.
+
+See [the canonical setup and command contract](standalone.md#run-one-installation-container).
+The optional hosted mirror consists of public node artifacts and one manifest;
+it is dated presentation with no local control or record authority.
+
+## Retained single-record execution adapter
+
 
 `wake/standalone.py` is a local execution adapter over the same authoritative store,
 Engine, governance and export paths. It adds no competing authority engine. Each
-installation owns one `/data/wake.sqlite` in a persistent volume. A genuinely unused
+legacy single-record installation owns one `/data/wake.sqlite` in a persistent volume. A genuinely unused
 volume bootstraps natively; subsequent starts verify the kernel record and application
 history before recovering interrupted automatic invocations. A used volume with missing
 or corrupt authority fails closed. A process lease prevents two local schedulers from
@@ -68,7 +101,7 @@ quota exhaustion or accepted research. Installed runtimes remain fixed by defaul
 See [standalone operation](standalone.md). This remains a single-host operator-controlled
 installation, not an authenticated tenant service.
 
-The repository convenience runner can optionally create numbered local parent
+The retained compatibility runner can optionally create numbered local parent
 groups, each with three independently stored child researchers. Parent nodes
 exchange bounded, readable source observations with other parents and query only
 their own children. Children exchange with siblings on a private per-parent Docker
@@ -416,15 +449,18 @@ public invocation/cell identifiers and timestamps are exposed, never request/con
 contents, credentials or model reasoning. The durable record remains authority.
 The local Gemini adapter reports queue waiting before slot acquisition, request
 dispatch only after acquisition, and response arrival before proposal decoding.
-A coordination failure that falls back to an independent call is visibly distinct.
+The installation request gate fails closed if coordination is unavailable; it
+cannot bypass the single-request rule. Older peer coordination fallback behavior
+belongs to the compatibility multi-container path.
 
 Daily API quota exhaustion is a recoverable standby state, distinct from operator
 pause and code/data failure. Standalone and Codespaces runtimes expose `standby`
 through `/runtime.json` until the recorded Pacific reset; the hosted lane checks
 the quota boundary in `wake-state` and dispatches a fresh cycle after that boundary.
-Peer exchange and the shared Bob group projection are local numbered-group features
-only. They read each reachable member independently and skip unavailable peers, so
-the local group network is never a prerequisite for a member's own research loop.
+Peer exchange and the shared Bob projection also operate between internal nodes
+through controller routes. They read members independently and preserve unavailable
+state. Older numbered-container groups use their retained private networks; the
+current nodes share the installation controller's lifecycle.
 
 The Console discovers the live capability only on an explicit standalone export.
 It polls every three seconds, clears marks on errors or expired samples, and uses

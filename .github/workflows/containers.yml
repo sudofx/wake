@@ -12,6 +12,7 @@ on:
       - 'example.research-topics.toml'
       - 'scripts/test_container.py'
       - 'scripts/test_installations.py'
+      - 'tests/test_installation_lifecycle.py'
       - '.github/workflows/containers.yml'
   workflow_dispatch:
 

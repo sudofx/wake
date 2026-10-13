@@ -446,7 +446,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         if research.get("head") != head or research.get("version") != state["version"]:
             raise ValueError("Research projection does not match the exported record")
         atomic_write(target / "research-data.json", json.dumps(research, ensure_ascii=False, separators=(",", ":")))
-        for name in ("console.html", "research.css", "research.js", "research-scene.js", "research-instruments.js", "console-layout.js", "process-field.css", "process-field.js", "runtime-activity.js"):
+        for name in ("console.html", "research.css", "research.js", "research-scene.js", "research-instruments.js", "console-layout.js", "process-field.css", "process-field.js", "runtime-activity.js", "installation.html", "installation-console.css", "installation-console.js"):
             content = (assets / name).read_text()
             if name == "console.html":
                 content = content.replace("WAKE_CYCLE_COUNT", str(state["version"]))
@@ -573,7 +573,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             "Rejected & withheld drafts.", "Loaded from the current published record when this page opens.",
             "rejected", "wake-data.json"))
         from .provenance import build_map, build_map3d_projection, map3d_shard_filename
-        graph = build_map(state, events, head)
+        graph = build_map(state, events, head, replay_history=projection is None)
         graph_json = json.dumps(graph, ensure_ascii=False)
         graph3d_shell, graph3d_shards = build_map3d_projection(graph)
         graph3d_json = json.dumps(graph3d_shell, ensure_ascii=False)
@@ -597,7 +597,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         return {"path": str((target / "index.html").resolve()), "cycles": state["version"], "head": head}
 
 
-def _deployment_site(target, *, standalone):
+def _deployment_site(target, *, standalone, installation=None):
     """Bind every generated page to its installation before any reader runs.
 
     Templates are not deployable pages: export also selects data transport and
@@ -606,6 +606,8 @@ def _deployment_site(target, *, standalone):
     """
     mode = 'standalone' if standalone else 'hosted'
     deployment = {'schema': 1, 'mode': mode}
+    if installation:
+        deployment.update(installation)
     instance_name = os.environ.get('WAKE_INSTANCE_NAME', '').strip()
     if standalone and instance_name:
         deployment['instance_name'] = instance_name

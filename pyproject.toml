@@ -17,6 +17,7 @@ dependencies = [
 
 [project.scripts]
 wake = "wake.__main__:main"
+wake-research = "wake.installation_cli:main"
 
 [tool.setuptools]
 packages = ["wake", "wake.kernel"]

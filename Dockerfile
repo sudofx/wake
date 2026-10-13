@@ -4,6 +4,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends openssl && rm -
 WORKDIR /app
 COPY pyproject.toml README.md LICENSE ./
 COPY wake ./wake
+COPY scripts/wake_terminal.py ./scripts/wake_terminal.py
 COPY wake.toml example.research-topics.toml ./
 # Include an operator's ignored, optional topics file when it exists in the
 # build context. Docker COPY cannot target an optional path directly.
@@ -14,12 +15,15 @@ RUN if [ -f /tmp/wake-build-context/research-topics.toml ]; then cp /tmp/wake-bu
     && groupadd --gid 10001 wake \
     && useradd --uid 10001 --gid wake --create-home --shell /bin/bash wake \
     && mkdir /data \
-    && chown wake:wake /data
+    && chown wake:wake /data \
+    && mkdir -p /workspace/scripts \
+    && ln -s /app/scripts/wake_terminal.py /workspace/scripts/wake_terminal.py \
+    && python /app/scripts/wake_terminal.py install --node wake --image wake-installation
 USER 10001:10001
 VOLUME ["/data"]
 EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=5s --start-period=60s CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/runtime.json', timeout=3).read()"
-ENTRYPOINT ["python", "-m", "wake.standalone"]
+ENTRYPOINT ["python", "-m", "wake.installation"]
 
 # Optional editor tools; the default standalone image stays minimal.
 FROM runtime AS vscode

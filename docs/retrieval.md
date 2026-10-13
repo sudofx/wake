@@ -4,6 +4,20 @@ The [kernel contract](kernel.md) distinguishes generic envelope replay from
 application state reconstruction. Application IDs share a record revision when
 installed together; independent installations must select separate records.
 
+## Internal nodes and Console aggregation
+
+In the current one-container installation, three parents and nine children each
+own a record and receive bounded context through the research application. Shared
+notes and repeated source material retain their original attribution; another
+node's use of the same source does not create independent evidence. The kernel
+retrieval and authority boundaries are unchanged.
+
+`installation.json` combines exported node projections for inspection. It cannot
+replace a node's record or become operational truth. The Console selects a node's
+complete view; the public mirror shows dated exports rather than live execution.
+[Standalone setup](standalone.md#run-one-installation-container) owns that transport
+and operator contract. Archives for import/export remain separate from public views.
+
 ## In plain language
 
 The full record keeps exact history. A model receives a smaller working view so

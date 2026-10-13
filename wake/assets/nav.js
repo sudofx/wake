@@ -47,17 +47,22 @@
 
 const actionsLight=document.querySelector('.actions-light');
 // Unknown installation identity must not display GitHub's status as local status.
-if(actionsLight && window.WAKE_DEPLOYMENT?.mode!=='hosted'){
-  actionsLight.href='/runtime.json';
+if(actionsLight && window.WAKE_DEPLOYMENT?.snapshot_only===true){
+  actionsLight.href='installation.json';
+  actionsLight.title='Published WAKE snapshot';
+  actionsLight.setAttribute('aria-label','Inspect published WAKE snapshot');
+}
+if(actionsLight && window.WAKE_DEPLOYMENT?.mode!=='hosted' && window.WAKE_DEPLOYMENT?.snapshot_only!==true){
+  actionsLight.href='runtime.json';
   const applyLocal=status=>{
     const label=status.state==='standby'?(status.reason||'Provider quota reported; retrying on the regular schedule'):
-      ({running:'Running',waiting:'Waiting',idle:'Idle',paused:'Paused',blocked:'Blocked'})[status.state]||'Unknown';
+      ({running:'Running',waiting:'Waiting',idle:'Idle',paused:'Paused',stopped:'Stopped',blocked:'Blocked'})[status.state]||'Unknown';
     actionsLight.dataset.state=status.state==='running'?'running':status.state==='paused'?'stopped':status.state;
     actionsLight.title='Local WAKE · '+label;
     actionsLight.setAttribute('aria-label','Inspect local WAKE runtime · '+label);
   };
   const unavailable=()=>{actionsLight.removeAttribute('data-state');actionsLight.title='Local runtime unavailable';actionsLight.setAttribute('aria-label','Local runtime unavailable');};
-  const refreshLocal=()=>fetch('/runtime.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('Unavailable');return r.json();}).then(applyLocal).catch(unavailable);
+  const refreshLocal=()=>fetch(new URL('runtime.json',location.href),{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('Unavailable');return r.json();}).then(applyLocal).catch(unavailable);
   // Activity is optional. Losing that capability is not proof the runtime is offline.
   window.addEventListener('wake-runtime-activity',event=>{if(event.detail)applyLocal(event.detail);else refreshLocal();});
   refreshLocal();setInterval(refreshLocal,30000);

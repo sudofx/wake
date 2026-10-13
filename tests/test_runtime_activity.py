@@ -130,12 +130,12 @@ class RuntimeActivityTests(unittest.TestCase):
 const fs=require('fs'),vm=require('vm'),assert=require('assert');
 const source=fs.readFileSync(process.argv[1],'utf8');
 (async()=>{
-for(const mode of ['standalone','hosted',undefined]){
+for(const mode of ['standalone','hosted',undefined,'snapshot']){
  let fail=false,requests=0,now=0;const intervals=[];
  const status={mode:'standalone',state:'running',activity_schema:1,runtime_id:'runtime',observed_at:'2026-10-08T18:00:00Z',capabilities:{live_activity:true},activity:{stage:'provider',active:true,coordinate_id:'real-cell'}};
- const window={WAKE_DEPLOYMENT:mode?{schema:1,mode}:undefined,dispatchEvent(){}};
- const context={window,document:{hidden:false,addEventListener(){}},performance:{now:()=>now},CustomEvent:class{},AbortController,
- setTimeout:()=>1,clearTimeout(){},setInterval:(fn,ms)=>intervals.push({fn,ms}),fetch:async()=>{requests++;if(fail)throw Error();return {ok:true,json:async()=>status};}};
+ const window={WAKE_DEPLOYMENT:mode==='snapshot'?{schema:1,mode:'standalone',snapshot_only:true}:mode?{schema:1,mode}:undefined,dispatchEvent(){}};
+ const context={window,URL,location:{href:'http://localhost/nodes/100.wake/console.html'},document:{hidden:false,addEventListener(){}},performance:{now:()=>now},CustomEvent:class{},AbortController,
+ setTimeout:()=>1,clearTimeout(){},setInterval:(fn,ms)=>intervals.push({fn,ms}),fetch:async url=>{assert.equal(url.pathname,'/nodes/100.wake/runtime.json');requests++;if(fail)throw Error();return {ok:true,json:async()=>status};}};
  vm.runInNewContext(source,context);await new Promise(resolve=>setImmediate(resolve));
  assert.equal(requests,mode==='standalone'?1:0);
  if(mode==='standalone'){

@@ -9,6 +9,8 @@
 !example.research-topics.toml
 !wake/
 !wake/**
+!scripts/
+!scripts/wake_terminal.py
 wake/**/__pycache__/
 wake/**/*.pyc
 **/.passenger*
