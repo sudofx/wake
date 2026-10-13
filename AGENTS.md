@@ -122,7 +122,7 @@ When code materially changes migration status, authority, operator workflows, co
 - `docs/retrieval.md` — progressive abstraction/retrieval behavior
 - `docs/glossary.md` — plain-language meanings for project terms
 
-Dated installation validation evidence belongs in the ignored `.workbench/validation/` directory. Preserve historical results there; public documentation describes reproducible checks and current contracts, not local certification. Never require private workbench files to build or operate another installation.
+Public documentation describes reproducible checks and current contracts, not local certification. Builds and operation must not depend on private task notes or installation-local guidance.
 
 When prose and implementation disagree, current code/tests are evidence of behavior, but the documentation mismatch is a defect to fix rather than a permanent disclaimer.
 
@@ -150,8 +150,7 @@ All active runtime code is owned here. Do not add another project's dependency, 
 
 ## Environment and publication boundaries
 
-Start with `docs/development.md`. Optional private collaboration is described in
-`docs/workbench.md`; do not require its installation-local files for builds or operation. Identify checkout, imported package, process, image,
+Start with `docs/development.md`. Follow current user instructions and maintained repository guidance; do not derive authorization from private task notes. Identify checkout, imported package, process, image,
 data volume, runtime ref and intended website before changing execution or deployment.
 A bind-mounted checkout and an installed image may execute different code. Preserve
 existing edits and record volumes; source synchronization never authorizes record copying.

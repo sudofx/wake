@@ -175,7 +175,6 @@ the [glossary](docs/glossary.md) and [hosted status details](docs/cloud.md#read-
 - [Reusable kernel contract](docs/kernel.md)
 - [Development and verification map](docs/development.md)
 - [Independent installations and optional gateway](docs/installations.md)
-- [Private development workbench](docs/workbench.md)
 
 For exact behavior, current code and tests are authoritative when they disagree
 with prose. Update the relevant guide when behavior changes.
