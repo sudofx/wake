@@ -31,3 +31,18 @@ class TerminalEnvironmentTests(unittest.TestCase):
         self.assertEqual(s['state'], 'unavailable')
         self.assertEqual(s['version'], '—')
         read.assert_called_once_with('runtime.json')
+
+class InstallationStatusTests(unittest.TestCase):
+    def test_waiting_nodes_are_visible_even_when_research_is_enabled(self):
+        from wake.installation import installation_runtime
+        from scripts.wake_terminal import status_details
+        snapshot = {'nodes':[{'runtime':{'state':'waiting','reason':'Publication unavailable'}} for _ in range(12)]}
+        runtime = installation_runtime(snapshot, 'running', {'active':None})
+        with patch.dict('os.environ', {'WAKE_TERMINAL_ROLE':'installation'}), \
+             patch('scripts.wake_terminal.public_json', side_effect=[runtime, {'nodes':[{'snapshot':{'version':0}} for _ in range(12)]}]):
+            result = statistics()
+        self.assertEqual(result['state'],'waiting')
+        self.assertIn('Reason: Publication unavailable',status_details(result))
+        self.assertEqual(runtime['research'],'running')
+        self.assertEqual(installation_runtime(snapshot,'stopped',{'active':None})['state'],'stopped')
+        self.assertEqual(installation_runtime(snapshot,'running',{'active':{'member':'100.wake'}})['state'],'running')

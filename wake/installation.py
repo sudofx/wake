@@ -72,6 +72,25 @@ def installation_snapshot(root, *, live=True):
             'live': live, 'nodes': nodes}
 
 
+def installation_runtime(snapshot, mode, coordinator):
+    """Separate operator intent from fresh worker observations."""
+    counts = {}
+    for node in snapshot['nodes']:
+        state = node.get('runtime', {}).get('state', 'unavailable')
+        counts[state] = counts.get(state, 0) + 1
+    state, reason = mode, None
+    if mode == 'running' and not coordinator.get('active'):
+        if len(counts) == 1:
+            observed = next(iter(counts))
+            if observed in ('waiting', 'standby', 'blocked', 'unavailable'):
+                state = observed
+                reason = next((n['runtime'].get('reason') for n in snapshot['nodes']
+                               if n['runtime'].get('reason')), 'Worker observations unavailable')
+    return {'mode': 'installation', 'state': state, 'research': mode,
+            'reason': reason, 'worker_states': counts, 'nodes': len(snapshot['nodes']),
+            'capabilities': {'live_activity': False}}
+
+
 class InstallationHTTP(PublicSnapshotHandler):
     def json_response(self, status, packet):
         body = json.dumps(packet, separators=(',', ':')).encode()
@@ -92,8 +111,8 @@ class InstallationHTTP(PublicSnapshotHandler):
             self.json_response(200, packet)
             return
         if route == '/runtime.json':
-            self.json_response(200, {'mode': 'installation', 'state': controller.mode,
-                'nodes': len(controller.workers), 'capabilities': {'live_activity': False}})
+            self.json_response(200, installation_runtime(installation_snapshot(controller.root),
+                controller.mode, controller.coordinator.status()))
             return
         if route.startswith('/nodes/') and route.endswith('/runtime.json'):
             name = route.split('/')[2]

@@ -716,3 +716,8 @@ zero results. Local reset and enrollment commit in one governed application
 action; historical reset receipts retain their original replay meaning. Hosted
 fresh Reset also enables continuity before checkpointing. This enrollment does
 not start research or count as accepted progress.
+
+The installation never waits for Bob publication before doing research. A withheld
+introduction stays visible as a draft while eligible research nodes continue.
+Runtime and terminal status distinguish enabled research from workers waiting,
+quota standby, or blocked access. The shared API queue still controls eligibility.

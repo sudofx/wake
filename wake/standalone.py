@@ -381,8 +381,11 @@ def run(args):
                                 if _wait_for_control(stop, data, min(delay, 300), research_mode, reset_id):
                                     break
                                 continue
-                    if os.environ.get('WAKE_GROUP_ID') and engine.store.load().get('group_bob', {}).get('checkpoint', 0) == 0:
-                        # The group starts with one shared editorial invocation.
+                    if (os.environ.get('WAKE_INSTALLATION_WORKER') != '1' and
+                        os.environ.get('WAKE_GROUP_ID') and engine.store.load().get('group_bob', {}).get('checkpoint', 0) == 0):
+                        # The legacy group inspection workflow awaits its introduction.
+                        # Installation research must proceed independently of Bob
+                        # availability or publication eligibility.
                         # Children contribute initialized records without making
                         # research requests while this startup objective is pending.
                         server.runtime_status = {'mode':'standalone', 'state':'waiting',

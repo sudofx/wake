@@ -70,12 +70,13 @@ def statistics():
     node = os.environ.get('WAKE_PUBLIC_HOSTNAME') or (node_file.read_text().strip() if node_file.exists() else socket.gethostname())
     role = os.environ.get('WAKE_TERMINAL_ROLE') or ('child' if os.environ.get('WAKE_PARENT_HOSTNAME') else 'parent')
     group = os.environ.get('WAKE_GROUP_ID') or 'standalone'
-    state, version = 'unavailable', '—'
+    state, version, reason = 'unavailable', '—', None
     try:
         if role == 'installation':
             status = public_json('runtime.json')
             manifest = public_json('installation.json')
             state = status.get('state', 'unavailable')
+            reason = status.get('reason')
             versions = [n.get('snapshot', {}).get('version') for n in manifest.get('nodes', [])]
             version = sum(v for v in versions if type(v) is int) if all(type(v) is int for v in versions) else '—'
             group = '12 internal nodes'
@@ -106,7 +107,7 @@ def statistics():
         uptime = f'{seconds // 3600}h {(seconds // 60) % 60}m (host)'
     except (OSError, ValueError):
         pass
-    return {'node': node, 'role': role, 'state': state, 'version': version,
+    return {'node': node, 'role': role, 'state': state, 'version': version, 'reason': reason,
             'memory': memory, 'uptime': uptime, 'load': ' '.join(f'{v:.2f}' for v in os.getloadavg()),
             'group': group,
             'parent': os.environ.get('WAKE_PARENT_HOSTNAME') or '—',
@@ -165,6 +166,7 @@ def status_details(s, colored=False):
             f"{label('Load (host): ')}{paint(s['load'], '1;97')}   "
             f"{label('Uptime: ')}{paint(s['uptime'], '1;97')}\n"
             f"{authority}\n"
+            + (f"Reason: {s['reason']}\n" if s.get('reason') else "") +
             f"{label('Live status refreshes at each prompt. Run wake-status for details.')}\n")
 
 

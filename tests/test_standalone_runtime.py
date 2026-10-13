@@ -61,6 +61,34 @@ class StandaloneRuntimeTests(unittest.TestCase):
             self.assertEqual(server.runtime_status['state'],'waiting')
             self.assertIn('WAKE01',server.runtime_status['reason'])
 
+    def test_installation_research_proceeds_before_group_blog_publication(self):
+        with tempfile.TemporaryDirectory() as directory:
+            engine = bootstrap(directory, dict(DEFAULTS))
+            engine.store.append('group_bob_enrolled', {'actor':'operator', 'group_id':'wake',
+                'members':['100.wake','101.wake'], 'leader':'100.wake', 'member':'101.wake'})
+            args = SimpleNamespace(interval=1, config='unused', provider='fixture',
+                data=directory, paused=False, enable_continuity_matrix=False,
+                host='127.0.0.1', port=0, model='test')
+            server, stop = MagicMock(), MagicMock()
+            stop.is_set.return_value = False
+            with patch.dict(os.environ, {'WAKE_GROUP_ID':'wake','WAKE_PUBLIC_HOSTNAME':'101.wake',
+                                        'WAKE_INSTALLATION_WORKER':'1','WAKE_CONTROLLER_PID':str(os.getppid())}), \
+                 patch('ctypes.CDLL',return_value=SimpleNamespace(prctl=lambda *args:0)), \
+                 patch('wake.standalone.config', return_value=dict(DEFAULTS)), \
+                 patch('wake.standalone.bootstrap', return_value=engine), \
+                 patch('wake.standalone.publish', return_value=True), \
+                 patch('wake.standalone.ThreadingHTTPServer', return_value=server), \
+                 patch('wake.standalone.threading.Thread'), \
+                 patch('wake.standalone.threading.Event', return_value=stop), \
+                 patch('wake.standalone._wait_for_control', return_value=True), \
+                 patch('wake.standalone.collect_group_peer_research', return_value={}), \
+                 patch('wake.group_editorial.synchronize',return_value=False), \
+                 patch.object(engine,'run',return_value={'status':'accepted'}) as cycle:
+                run(args)
+            cycle.assert_called_once()
+            self.assertEqual(engine.store.load()['group_bob']['checkpoint'],0)
+            engine.store.close()
+
     def test_runner_control_file_does_not_block_fresh_volume_bootstrap(self):
         with tempfile.TemporaryDirectory() as directory:
             data = Path(directory) / 'data'
