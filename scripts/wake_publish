@@ -11,4 +11,11 @@ container_dir="/tmp/wake-public-$(date +%s)-$$"
 trap 'rm -rf "$public_dir"' EXIT
 docker exec wake wake-research publish --output "$container_dir"
 docker cp "wake:$container_dir/." "$public_dir/site"
+# Reuse GitHub CLI authentication for HTTPS without storing a token or changing
+# the user's global Git configuration. Other credentials remain native Git's job.
+if [[ "$WAKE_PUBLISH_REPOSITORY" == https://github.com/* ]] && command -v gh >/dev/null 2>&1; then
+  export GIT_CONFIG_COUNT=1
+  export GIT_CONFIG_KEY_0=credential.helper
+  export GIT_CONFIG_VALUE_0='!gh auth git-credential'
+fi
 python3 scripts/publish_pages.py --artifact "$public_dir/site"
