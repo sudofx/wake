@@ -192,6 +192,37 @@ class InstallationArchiveTests(unittest.TestCase):
         source.unlink()
         self.assertEqual((self.root / 'copied-pin').read_text(), 'another snapshot')
 
+    def test_public_history_compression_preserves_exact_bytes_and_node_links(self):
+        import gzip
+        from wake.installation_cli import package_public_history
+        site = self.root / 'public'
+        site.mkdir()
+        original = ('{"origin":{"node":"100.wake"},"text":"retained history ✳︎"}\n' * 4).encode()
+        (site / 'events.jsonl').write_bytes(original)
+        (site / 'wake-data.json').write_text(json.dumps({'event_history': {'total': 4}}))
+        (site / 'events.html').write_text('<body data-flat-source="events.jsonl"><a href="events.jsonl">Download</a>')
+        node = site / 'nodes/100.wake'
+        node.mkdir(parents=True)
+        (node / 'events.jsonl').write_text('{}\n')
+        (node / 'events.html').write_text('events.jsonl')
+        package_public_history(site, threshold=100)
+        self.assertEqual(gzip.decompress((site / 'events.jsonl.gz').read_bytes()), original)
+        self.assertFalse((site / 'events.jsonl').exists())
+        self.assertIn('data-flat-source="events.jsonl.gz"', (site / 'events.html').read_text())
+        self.assertEqual(json.loads((site / 'wake-data.json').read_text())['event_history'],
+                         {'total': 4, 'complete_url': 'events.jsonl.gz'})
+        self.assertEqual((node / 'events.html').read_text(), 'events.jsonl')
+        self.assertEqual((node / 'events.jsonl').read_text(), '{}\n')
+
+    def test_upload_rejects_oversized_files_before_git_or_network(self):
+        from wake.installation_cli import upload_public_artifact
+        with (self.root / 'oversized').open('wb') as stream:
+            stream.truncate(100 * 1024 * 1024 + 1)
+        with patch('wake.installation_cli.subprocess.run') as run:
+            with self.assertRaisesRegex(ValueError, 'Public file exceeds GitHub limit: oversized'):
+                upload_public_artifact(self.root, 'https://github.com/example/wake', 'wake-public')
+        run.assert_not_called()
+
     def test_public_artifact_identifies_exports_without_opening_live_authority(self):
         from wake.installation_cli import build_public_artifact
         from wake.engine import Engine, DEFAULTS

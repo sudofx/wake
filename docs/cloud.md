@@ -88,10 +88,18 @@ artifact; do not use a source or record branch as the destination.
 The unified website and all twelve node views retain the same interface. The node
 selector works from every page. Each view shows the upload date and reads only its
 own uploaded JSON, including maps and their shards. The homepage carries the
-latest 400 events; the full public event export remains in `events.jsonl` and the
-History tools. Node records, accepted counts, and full-history metrics are unchanged. Provider bodies, Passenger,
+latest 400 events; History tools retain the full public event export as
+`events.jsonl` or its lossless gzip archive described below. Node records, accepted counts, and full-history metrics are unchanged. Provider bodies, Passenger,
 databases, logs, and control sockets are excluded. Manual import archives are
 separate and never uploaded as the public website.
+
+Public event streams over 50 MiB are packaged losslessly as `events.jsonl.gz` to
+remain below GitHub's individual-file limit. Generated History pages read and
+decompress the same-origin file; download links name the compressed archive.
+Decompression restores every byte of the filtered event stream, including node
+attribution and historical receipts. Smaller public streams and operational node
+exports retain `events.jsonl`. Upload preflight rejects any remaining file over
+100 MiB before Git or network work; it never trims history to fit.
 
 ## Development and release
 

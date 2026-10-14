@@ -147,7 +147,7 @@
     renderRuntimeActivity();
     window.dispatchEvent(new CustomEvent('wake-process-data',{detail:data}));
     if(pendingSelection){const state=pendingSelection;pendingSelection=null;receiveSelection(state);}
-    $('provenance').innerHTML=`<p>Snapshot: ${esc(stamp(data.generated,true))} PT · ${unified?'accepted node cycles':'accepted state'} ${count(data.version)}</p><p>Authority: ${esc(data.source.authority || 'Verified export')} / ${esc(data.source.database || 'record')}</p><p>${unified?'Snapshot fingerprint':'Record head'}: <code>${esc(data.head)}</code></p>${loadedCommit?`<p>Projection commit: <code>${esc(loadedCommit)}</code></p>`:''}<p><a href="research-data.json">Published JSON snapshot</a> · <a href="events.jsonl">${unified?'Combined event view':'Record export'}</a></p>`;
+    $('provenance').innerHTML=`<p>Snapshot: ${esc(stamp(data.generated,true))} PT · ${unified?'accepted node cycles':'accepted state'} ${count(data.version)}</p><p>Authority: ${esc(data.source.authority || 'Verified export')} / ${esc(data.source.database || 'record')}</p><p>${unified?'Snapshot fingerprint':'Record head'}: <code>${esc(data.head)}</code></p>${loadedCommit?`<p>Projection commit: <code>${esc(loadedCommit)}</code></p>`:''}<p><a href="research-data.json">Published JSON snapshot</a> · <a href="events.html">Complete event history</a></p>`;
   }
   function renderFrontier() {
     const projects=data.records.projects.filter(visibleRecord);

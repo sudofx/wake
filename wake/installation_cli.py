@@ -300,9 +300,31 @@ def _build_public_artifact(root: Path, destination: Path, *, progress=None) -> d
         (staging / 'installation.json').write_text(encoded)
         for node in NODE_IDS:
             (staging / 'nodes' / node / 'installation.json').write_text(encoded)
+        package_public_history(staging)
         (staging / '.nojekyll').touch()
         staging.rename(destination)
     return manifest
+
+
+def package_public_history(site, *, threshold=50 * 1024 * 1024):
+    """Losslessly package large public streams; operational exports stay intact."""
+    import gzip
+    for history in Path(site).rglob('events.jsonl'):
+        if history.stat().st_size <= threshold:
+            continue
+        archive = history.with_suffix('.jsonl.gz')
+        with history.open('rb') as source, archive.open('wb') as destination:
+            with gzip.GzipFile(filename='', fileobj=destination, mode='wb', mtime=0) as compressed:
+                shutil.copyfileobj(source, compressed)
+        # Rewrite only the generated pages belonging to this stream. Node views
+        # name their own stream and must not inherit the root's packaging choice.
+        for page in history.parent.glob('*.html'):
+            page.write_text(page.read_text().replace('events.jsonl', 'events.jsonl.gz'))
+        overview_path = history.parent / 'wake-data.json'
+        overview = json.loads(overview_path.read_text())
+        overview.setdefault('event_history', {})['complete_url'] = 'events.jsonl.gz'
+        overview_path.write_text(json.dumps(overview, ensure_ascii=False, separators=(',', ':')))
+        history.unlink()
 
 
 def _pin_export_file(source, destination):
@@ -367,6 +389,9 @@ def build_public_artifact(root: Path, destination: Path, *, progress=None) -> di
 def upload_public_artifact(target: Path, repository: str, branch: str):
     """Upload a prepared public site using native Git credentials and normal pushes."""
     target = Path(target).resolve(strict=True)
+    for path in target.rglob('*'):
+        if path.is_file() and path.stat().st_size > 100 * 1024 * 1024:
+            raise ValueError(f'Public file exceeds GitHub limit: {path.relative_to(target)}; no upload attempted')
     if not repository or not branch or branch in {'master', 'main', 'wake-runtime', 'wake-state', 'wake-live'}:
         raise ValueError('Configure WAKE_PUBLISH_REPOSITORY and a dedicated WAKE_PUBLISH_BRANCH')
     if not re.fullmatch(r'(?:https://github\.com/|git@github\.com:)[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+(?:\.git)?', repository):
