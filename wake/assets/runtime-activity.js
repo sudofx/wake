@@ -28,12 +28,12 @@ window.WakeViewData=(()=>{
 window.WakeLazyCanvas=(canvas,factory)=>{
   let view=null,near=false,selected='';const pending=new Map();
   const panel=canvas.closest('.panel');
-  const create=()=>{if(view)return view;view=factory(canvas);canvas.dataset.wakeInitialized='true';for(const [name,args] of pending)view[name]?.(...args);pending.clear();return view;};
+  const create=()=>{if(!view){view=factory(canvas);canvas.dataset.wakeInitialized='true';}for(const [name,args] of pending)view[name]?.(...args);pending.clear();return view;};
   const initialize=()=>{if(near&&!document.hidden&&!panel?.classList.contains('module-collapsed'))create();};
   new IntersectionObserver(entries=>{near=entries[0]?.isIntersecting===true;initialize();},{rootMargin:'150px'}).observe(canvas);
   if(panel)new MutationObserver(initialize).observe(panel,{attributes:true,attributeFilter:['class']});
   document.addEventListener('visibilitychange',initialize);
-  const call=(name,args,interaction=false)=>{if(interaction)create();if(view)return view[name]?.(...args);pending.set(name,args);};
+  const call=(name,args,interaction=false)=>{if(interaction)create();if(view&&!document.hidden&&!panel?.classList.contains('module-collapsed'))return view[name]?.(...args);pending.set(name,args);};
   return {update:(...args)=>{const cells=args[0]?.cells;if(cells&&!cells.some(c=>c.id===selected))selected=cells.find(c=>c.position.every(v=>v===3))?.id||cells[0]?.id||'';call('update',args);return selected||undefined;},select:(...args)=>{selected=args[0];return call('select',args);},rotate:(...args)=>call('rotate',args,true),reset:(...args)=>call('reset',args,true),view:(...args)=>call('view',args,true),setMotion:(...args)=>call('setMotion',args),setActivity:(...args)=>call('setActivity',args),getRotation:()=>create().getRotation()};
 };
 

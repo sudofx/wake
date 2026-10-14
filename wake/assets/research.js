@@ -28,7 +28,7 @@
     if(!entry){
       const target=$(id),panel=target.closest('.panel');
       entry={near:false,draw:null};sections.set(id,entry);
-      entry.flush=()=>{if(entry.near&&!document.hidden&&!panel?.classList.contains('module-collapsed')&&entry.draw){const pending=entry.draw;entry.draw=null;pending();}};
+      entry.flush=()=>{if(entry.near&&!document.hidden&&!panel?.classList.contains('module-collapsed')&&entry.draw){const pending=entry.draw;entry.draw=null;pending();requestAnimationFrame(()=>{const charts=[...target.querySelectorAll('.timeline-scroll[data-latest-edge="true"]')];if(id==='activity-chart')charts.push(target);for(const chart of charts)if(!chart.dataset.latestInitialized){chart.scrollLeft=chart.scrollWidth-chart.clientWidth;chart.dataset.latestInitialized='true';}});}};
       new IntersectionObserver(items=>{entry.near=items[0]?.isIntersecting===true;entry.flush();},{rootMargin:'150px'}).observe(target);
       if(panel)new MutationObserver(entry.flush).observe(panel,{attributes:true,attributeFilter:['class']});
       document.addEventListener('visibilitychange',entry.flush);
@@ -227,7 +227,6 @@
       return `<button type="button" class="hour-bin" data-hour="${esc(b.time)}" aria-label="${esc(note)}" title="${esc(note)}"><div class="hour-stack" style="height:${100*total/maximum}%">${['accepted','rejected','deferred','failed'].map(k=>`<i class="${k}" style="height:${total?100*(b[k]||0)/total:0}%"></i>`).join('')}</div></button>`;
     }).join('');
     });
-    requestAnimationFrame(()=>{const el=$('activity-chart');if(el&&!el.dataset.latestInitialized){el.scrollLeft=el.scrollWidth-el.clientWidth;el.dataset.latestInitialized='true';}});
     $('activity-caption').textContent=m.hourly.length?`Completed invocations per hour · ${stamp(m.hourly[0].time,true)}–${stamp(m.hourly.at(-1).time,true)} PT · peak ${maximum}/hour. All topics; zero-hour gaps retained.`:'No completed invocation timestamps recorded.';
     $('activity').innerHTML=data.activity.slice(0,6).map(a=>`<div class="activity-row"><time datetime="${esc(a.time)}">${esc(stamp(a.time))}</time><span class="${esc(a.status)}">${esc(a.status)}</span><button type="button" data-wake="${esc(a.id)}" title="${esc(a.reason || a.model)}">${esc(a.reason || a.model || a.id)}</button></div>`).join('');
     const p=data.progress;
@@ -493,7 +492,6 @@
     const groups={objectives:['objective','mission'],constraints:['bounded_context'],frontier:['projects','research','working_notebook'],results:['notebooks','beliefs','evidence','project_evidence']};
     const evolution=wakes.filter(w=>w.context.request?.context).map(w=>{const c=w.context.request.context;return {id:w.id,time:w.time,...Object.fromEntries(Object.entries(groups).map(([name,keys])=>[name,keys.reduce((s,k)=>s+(c[k]===undefined?0:JSON.stringify(c[k]).length),0)]))};});
     renderSection('context-evolution',()=>{$('context-evolution').innerHTML=lineChart(evolution,Object.keys(groups),'serialized characters in delivered fields')+'<p class="caption">Size of selected delivered fields, grouped by role. This shows context allocation, not importance, reasoning, or quality. Other request fields are excluded.</p>';});
-    requestAnimationFrame(()=>document.querySelectorAll('.timeline-scroll[data-latest-edge="true"]').forEach(el=>{if(!el.dataset.latestInitialized){el.scrollLeft=el.scrollWidth-el.clientWidth;el.dataset.latestInitialized='true';}}));
     const topics=data.topics.map(t=>{const types=data.metrics.by_topic[t.id]?.by_type||{},total=Object.entries(types).filter(([k])=>k!=='blog').reduce((s,[k,n])=>s+n,0);const values=data.metrics.hourly.map(bin=>wakes.filter(w=>w.topic===t.id&&w.status==='accepted'&&Date.parse(w.finished||w.time)>=Date.parse(bin.time)&&Date.parse(w.finished||w.time)<Date.parse(bin.time)+3600000).length);return {...t,total,values};}).sort((a,b)=>b.total-a.total);
     const max=Math.max(1,...topics.map(t=>t.total));
     renderSection('top-topics',()=>{$('top-topics').innerHTML=topics.map((t,i)=>{const peak=Math.max(1,...t.values),path=t.values.map((v,j)=>`${j?'L':'M'}${j*100/Math.max(1,t.values.length-1)} ${28-25*v/peak}`).join(' ');return `<div class="topic-ranking"><span>${i+1}</span><button data-story-topic="${esc(t.id)}" type="button">${esc(t.label)}</button><b>${count(t.total)}</b><div class="topic-bar"><i style="width:${100*t.total/max}%"></i></div><svg viewBox="0 0 100 32" role="img" aria-label="${esc(t.label)}: ${t.values.reduce((a,b)=>a+b,0)} attributed accepted wakes in trace"><path d="${path}" fill="none" stroke="var(--orange)" stroke-width="1.5"/></svg></div>`;}).join('');});
