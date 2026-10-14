@@ -252,6 +252,11 @@ main{
   padding-right:28px!important;
   position:relative;
 }
+/* Keep reading content inset from the page canvas on phones and desktops. */
+body:not(.research-page) main > .view:not(#home){
+  box-sizing:border-box;
+  padding:24px clamp(18px,3vw,32px);
+}
 .view>.page-heading,
 .intro,.about-intro{
   max-width:900px;
