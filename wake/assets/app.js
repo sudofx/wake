@@ -138,7 +138,8 @@
   // Every tenth accepted cycle is a governed Bob reflection, regardless of
   // whether an older model happened to include the word in its raw title.
   const postResearchTopic=post=>s.projects?.[post.project]?.domain;
-  const postTopic=post=>Number(post.created_version)%10===0?'reflection':postResearchTopic(post);
+  const postCycle=post=>Number(post.group_publication?.checkpoint??post.created_version);
+  const postTopic=post=>postCycle(post)%10===0?'reflection':postResearchTopic(post);
   const postMeta=(post,invocation)=>{
     const reflection=postTopic(post)==='reflection',topic=postResearchTopic(post),status=String(post.status||'published');
     // A shared article can reference the leader's invocation, which is not part
@@ -146,13 +147,13 @@
     // the display time without importing or inventing an invocation.
     const time=post.published_at||invocation?.time;
     const timeHtml=time?`<time datetime="${esc(time)}">${esc(fmt(time))}</time>`:'<span>Publication time unavailable</span>';
-    return `<div class="record-panel-meta blog-meta"><span class="record-type">${reflection?'REFLECTION':'BLOG'}</span><span class="record-status">${badge(status,status.toUpperCase())}</span><span class="record-topics">${topic?topicTag(topic,'blog'):''}</span>${timeHtml}</div>`;
+    return `<div class="record-panel-meta blog-meta"><span class="record-type">${post.group_publication?.checkpoint?'SHARED CHECKPOINT '+String(post.group_publication.checkpoint).padStart(2,'0'):(reflection?'REFLECTION':'BLOG')}</span><span class="record-status">${badge(status,status.toUpperCase())}</span><span class="record-topics">${topic?topicTag(topic,'blog'):''}</span>${timeHtml}</div>`;
   };
   const postTitle=post=>{
     const title=String(post.title||'').trim();
-    if(!(Number(post.created_version)%10===0))return title;
+    if(!(postCycle(post)%10===0))return title;
     const remainder=title.replace(/^\s*(?:cycle\s*\d+\s*[:—–-]?\s*)?(?:reflection\s*[:—–-]?\s*)?/i,'').replace(/\b(?:first|inaugural)\s+reflection\b/ig,'Reflection').trim();
-    return `Cycle ${post.created_version} Reflection: ${remainder||title}`;
+    return `${post.group_publication?'Shared checkpoint':'Cycle'} ${postCycle(post)} Reflection: ${remainder||title}`;
   };
   const proofNames = {
     fresh_sessions:'Fresh-session continuity', causal_state:'Causal state intervention',
@@ -464,7 +465,10 @@
       const post=posts.find(item=>item.id===selected);
       if(!post){$('blog-content').innerHTML='<p class="empty">That post is not in this record.</p>';return;}
       const invocation=s.invocations[post.created_by];
-      const body=String(post.body).split(/\n\s*\n/).map(part=>'<p>'+blogText(part,post)+'</p>').join('');
+      // Only an explicit final marker changes layout; stored prose stays exact.
+      const sourceBody=String(post.body),markers=[...sourceBody.matchAll(/(?:^|(?<=[.!?])\s+|\n+)Summary[.:]\s+(?=\S)/g)],marker=markers.at(-1);
+      const paragraphs=value=>value.split(/\n\s*\n/).filter(part=>part.trim()).map(part=>'<p>'+blogText(part,post)+'</p>').join('');
+      const body=marker?paragraphs(sourceBody.slice(0,marker.index))+'<h3>Summary</h3>'+paragraphs(sourceBody.slice(marker.index+marker[0].length)):paragraphs(sourceBody);
       const notebooks=(post.notebooks||[]).map(id=>s.notebooks?.[id]?'<a class="text-link" href="#projects/notebook:'+encodeURIComponent(id)+'">'+esc(s.notebooks[id].title)+' →</a>':'').join('');
       const sources=(post.evidence||[]).map(id=>'<a href="#evidence/'+encodeURIComponent(id)+'">'+esc(id)+' →</a>').join(' ');
       const project=post.project?s.projects?.[post.project]:null;

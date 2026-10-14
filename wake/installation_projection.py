@@ -4,6 +4,8 @@ Nothing in this module opens a record or feeds aggregation back into governance.
 A fingerprint identifies the supplied snapshots, not an authoritative event head.
 """
 from copy import deepcopy
+from datetime import datetime, timezone
+from math import isfinite
 from hashlib import sha256
 import json
 
@@ -54,6 +56,95 @@ def _canonical_topic_refs(value, aliases, field=None):
     return deepcopy(value)
 
 
+
+def _unified_matrix(node_snapshots, node_research):
+    """Select recorded coordinate results; never average node scores into a trial."""
+    matrix = _matrix_projection(None, False)
+    canonical = {cell['id']: cell for cell in matrix['cells']}
+    reported_nodes, enabled_nodes = [], []
+    contributions = {}
+    for node, packet in node_snapshots.items():
+        view = node_research.get(node, {}).get('matrix', {})
+        if not view.get('reported'):
+            continue
+        if (view.get('id') != matrix['id'] or
+                view.get('definition_digest') != matrix['definition_digest'] or
+                view.get('axes') != matrix['axes']):
+            raise ValueError(f'Continuity matrix grammar does not match node {node}')
+        reported_nodes.append(node)
+        if view.get('enabled'):
+            enabled_nodes.append(node)
+        state = packet['state']
+        for cell in view.get('cells', []):
+            if cell.get('id') not in canonical or cell.get('position') != canonical[cell['id']]['position']:
+                raise ValueError(f'Continuity matrix coordinate does not match node {node}')
+            if cell.get('status') == 'not_recorded':
+                continue
+            if cell.get('status') not in ('completed', 'failed', 'deferred'):
+                raise ValueError(f'Continuity matrix result status does not match node {node}')
+            score = cell.get('score')
+            if score is not None and (isinstance(score, bool) or not isinstance(score, (int, float))
+                                      or not isfinite(score) or not 0 <= score <= 1):
+                raise ValueError(f'Continuity matrix score does not match node {node}')
+            invocation_id = cell.get('invocation_id')
+            invocation = state.get('invocations', {}).get(invocation_id, {})
+            recorded_at = invocation.get('finished') or invocation.get('time')
+            try:
+                stamp = datetime.fromisoformat(recorded_at)
+                stamp = stamp.replace(tzinfo=timezone.utc) if stamp.tzinfo is None else stamp
+                order = stamp.timestamp()
+            except (ValueError, TypeError):
+                order = float('-inf')
+            result = {**deepcopy(cell), 'invocation_id': _prefix(node, invocation_id),
+                      'recorded_at': recorded_at,
+                      'origin': {'node': node, 'head': packet.get('head'),
+                                 'version': state.get('version', 0), 'invocation_id': invocation_id}}
+            contributions.setdefault(cell['id'], []).append((order, node, result))
+    for identifier, entries in contributions.items():
+        entries.sort(key=lambda entry: (entry[0], entry[1]), reverse=True)
+        cell = canonical[identifier]
+        cell.update(deepcopy(entries[0][2]))
+        cell['contributions'] = [deepcopy(entry[2]) for entry in entries]
+        cell['contribution_count'] = len(entries)
+        cell['selection_time_available'] = entries[0][0] != float('-inf')
+    completed = [cell for cell in matrix['cells'] if cell['status'] == 'completed']
+    graded = [cell for cell in completed if not cell.get('response_error')]
+    valid_scores = [cell['score'] for cell in graded if isinstance(cell.get('score'), (int, float))]
+    raw_scores = [cell['score'] for cell in completed if isinstance(cell.get('score'), (int, float))]
+    passed_known = [cell for cell in graded if isinstance(cell.get('passed'), bool)]
+    failed_checks = {}
+    lens_coverage = {value['key']: 0 for value in matrix['axes'][0]['values']}
+    for cell in completed:
+        lens_coverage[matrix['axes'][0]['values'][cell['position'][0]]['key']] += 1
+        if not cell.get('response_error'):
+            for check in cell.get('failed_checks', []):
+                failed_checks[check] = failed_checks.get(check, 0) + 1
+    all_results = [entry[2] for entries in contributions.values() for entry in entries]
+    matrix.update(
+        reported=bool(reported_nodes), enabled=bool(enabled_nodes) if reported_nodes else None,
+        completed=len(completed) if reported_nodes else None,
+        passed=sum(cell['passed'] for cell in passed_known) if len(passed_known) == len(graded) and reported_nodes else None,
+        passed_known_cells=len(passed_known), graded_count=len(graded),
+        graded_failed_count=sum(bool(cell.get('failed_checks')) or cell.get('passed') is False for cell in graded),
+        invalid_response_count=len(completed) - len(graded), failure_counts=failed_checks,
+        lens_coverage=lens_coverage, next_coordinate=None,
+        mean_score=round(sum(valid_scores) / len(valid_scores), 4) if valid_scores else None,
+        historical_mean_score=round(sum(raw_scores) / len(raw_scores), 4) if raw_scores else None,
+        score_count=len(valid_scores),
+        aggregation='latest-recorded-node-result-per-coordinate',
+        scope='Each cell displays the latest recorded node result by invocation time; ties use node ID. All current node contributions remain attributed. Counts describe distinct displayed cells, not independent confirmations.',
+        mean_scope='Mean of valid displayed coordinate scores; node scores are never averaged to create a cell result.',
+        reported_nodes=reported_nodes, enabled_nodes=enabled_nodes,
+        contribution_counts={
+            'recorded': len(all_results), 'completed': sum(r['status'] == 'completed' for r in all_results),
+            'failed': sum(r['status'] == 'failed' for r in all_results),
+            'deferred': sum(r['status'] == 'deferred' for r in all_results),
+            'nodes': len({r['origin']['node'] for r in all_results}),
+            'coordinates': len(contributions)},
+        history_scope='Current exported result from each node for each coordinate; earlier overwritten trials are not reconstructed.')
+    return matrix
+
+
 def build_unified_projection(node_snapshots, node_research, installation_id):
     """Combine public exports without synthesizing accepted research or shared authority.
 
@@ -80,7 +171,9 @@ def build_unified_projection(node_snapshots, node_research, installation_id):
         local = packet['state']
         origin = {'node': node, 'head': packet.get('head'), 'version': local.get('version', 0)}
         origins[node] = origin
-        heads[node] = deepcopy(origin)
+        heads[node] = {**deepcopy(origin), 'snapshot_digest': sha256(json.dumps(
+            {'record': packet, 'research': node_research.get(node)}, sort_keys=True,
+            separators=(',', ':')).encode()).hexdigest()}
         heads[node]['generated'] = packet.get('generated')
         known = {str(key) for collection in _COLLECTIONS for key in local.get(collection, {})}
         known.update(str(topic['id']) for topic in local.get('research_topics', []) if topic.get('id'))
@@ -209,8 +302,7 @@ def build_unified_projection(node_snapshots, node_research, installation_id):
             item['origin'] = deepcopy(state[collection].get(item['id'], {}).get('origin', {}))
     for item in research['evidence']['recent']:
         item['origin'] = deepcopy(state['evidence'].get(item['id'], {}).get('origin', {}))
-    research['matrix'] = _matrix_projection(None, False)
-    research['matrix']['scope'] = 'Select an individual node to inspect its recorded matrix results.'
+    research['matrix'] = _unified_matrix(available, node_research)
     research['status']['accepted_cycles_meaning'] = source['version_meaning']
     research['status']['pending_nodes'] = deepcopy(pending_nodes)
     research['status']['attention_topic'] = None

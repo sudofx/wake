@@ -591,10 +591,10 @@ def _enforce_bob_personhood_policy(claim_text):
 def _has_final_summary(body):
     """Return whether Bob's body ends with a final plain-language Summary section."""
     # JSON model output sometimes collapses the heading into the last paragraph.
-    # An explicit sentence-boundary Summary: marker still identifies the final
+    # An explicit sentence-boundary Summary: or Summary. marker identifies the final
     # translation; incidental mentions and empty summaries do not qualify.
     return bool(re.search(
-        r"(?:(?:^|\n\n)Summary:?\n+|(?:^|[.!?]\s+|\n)Summary:[ \t]+)"
+        r"(?:(?:^|\n\n)Summary:?\n+|(?:^|[.!?]\s+|\n)Summary[:.][ \t]+)"
         r"\S[\s\S]*\Z",
         str(body).strip(),
     ))

@@ -13,7 +13,7 @@ definitions. The wake entries describe its conceptual language rather than an AP
 | **Bob** | The byline for selected plain-language summaries of already-recorded research. Bob does not make research decisions or change the record. |
 | **Child node** | One of three internal worker processes assigned to a parent. It owns a governed record, exchanges bounded material with its siblings and parent, and stops when the installation controller exits. |
 | **Context** | The bounded information included in one model request. It can be smaller than the full record, but it keeps links to the exact sources it summarizes. |
-| **Continuity matrix** | An optional, versioned set of structured probes. It uses the same model response as research and does not make another provider call. |
+| **Continuity matrix** | A versioned set of structured probes enabled automatically for native research initialization and every reset. It uses the same model response as research and does not make another provider call. |
 | **Discovery lead** | A search result or index entry that may help locate a source. It is not itself qualifying research evidence. |
 | **Evidence** | A collected, readable source or recorded observation. WAKE checks provenance and structure; this does not prove that a claim is true. |
 | **Gateway** | The retained multi-container setup’s hostname router and landing page. The current installation instead has one controller and one web server. |

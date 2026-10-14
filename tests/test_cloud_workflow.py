@@ -157,7 +157,7 @@ class CloudWorkflowTests(unittest.TestCase):
         matrix = live["research"]["matrix"]
         self.assertTrue(matrix["reported"])
         self.assertTrue(matrix["enabled"])
-        self.assertEqual(matrix["completed"], 0)
+        self.assertEqual(matrix["completed"], 1)
         self.assertEqual(len(matrix["cells"]), 343)
 
         checkout = self.root / "matrix-restored-state"
@@ -168,7 +168,7 @@ class CloudWorkflowTests(unittest.TestCase):
             try:
                 progress = store.continuity_matrix_progress()
                 self.assertEqual(progress["matrix"], "continuity@1")
-                self.assertEqual(progress["completed_count"], 0)
+                self.assertEqual(progress["completed_count"], 1)
                 self.assertEqual(progress["cell_count"], 343)
             finally:
                 store.close()

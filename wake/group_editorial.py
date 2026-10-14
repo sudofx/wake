@@ -10,7 +10,7 @@ import re
 from urllib.request import ProxyHandler, Request, build_opener
 
 from .event_format import digest
-from .governance import require, text, transition, _bob_quiet_window, Rejected
+from .governance import require, text, transition, _bob_quiet_window, _has_final_summary, Rejected
 
 INTRO_ID = 'group-wake-introduction'
 MAX_PACKET = 240_000
@@ -262,27 +262,36 @@ def synchronize(engine, provider=None):
         with engine.store.lock():
             engine.store.append('group_bob_published', {'publication':shared})
         changed = True
-    if provider is None or member != state['group_bob']['leader']:
+    if member != state['group_bob']['leader']:
+        return changed
+    draft = state['group_bob'].get('draft')
+    if draft:
+        # A formatting-only policy correction may release the exact durable
+        # model draft, including while research is paused. Other withheld drafts
+        # remain withheld; no automatic paid re-synthesis or prose repair.
+        withheld = state['group_bob'].get('withheld')
+        if withheld and not (withheld.get('reason') ==
+                'Bob posts must end with a final Summary section in plain language'
+                and _has_final_summary(draft['article']['body'])):
+            return changed
+        with engine.store.lock():
+            try:
+                engine.store.append('group_bob_published', {'publication':draft})
+            except Rejected as exc:
+                reason = str(exc)[:1000]
+                if not withheld or withheld.get('reason') != reason:
+                    engine.store.append('group_bob_withheld', {'publication_digest':digest(draft), 'reason':reason})
+            else:
+                if provider is not None:
+                    _assess_group_note(engine, provider, draft)
+        return True
+    if provider is None:
         return changed
     packet = packet or validate_inputs(fetch(url))
     minimum = min(i['version'] for i in packet['inputs'])
     with engine.store.lock():
         state = engine.store.load()
-        draft = state['group_bob'].get('draft')
-        if not draft:
-            _assess_group_note(engine, provider, state['group_bob'].get('publication'))
-        if draft:
-            # A rejected publication remains a dated durable draft. Do not pay
-            # for repeated synthesis just because its editorial gate is closed.
-            if state['group_bob'].get('withheld'):
-                return changed
-            try:
-                engine.store.append('group_bob_published', {'publication':draft})
-            except Rejected as exc:
-                engine.store.append('group_bob_withheld', {'publication_digest':digest(draft), 'reason':str(exc)[:1000]})
-            else:
-                _assess_group_note(engine, provider, draft)
-            return True
+        _assess_group_note(engine, provider, state['group_bob'].get('publication'))
         prior = state['group_bob']['checkpoint']
         last_post = state['posts'].get(state['group_bob'].get('publication', {}).get('id'), {})
         checkpoint = 1 if prior == 0 else prior + _bob_quiet_window({**last_post, 'created_version':prior})

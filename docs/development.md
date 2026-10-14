@@ -32,7 +32,8 @@ Internal nodes are worker processes, with one server on container port 8080
 
 The root website is a full unified view of the node snapshots. Its Console retains
 the normal panels below an installation overview; individual node views remain
-selectable. `wake/installation_projection.py` owns aggregation and attribution;
+selectable from the fixed masthead on every page; the unified option is named
+`wake`. Switching retains the current page and view. `wake/installation_projection.py` owns aggregation and attribution;
 `wake/installation_site.py` exports the website through the canonical report exporter.
 Neither opens authority or requests model output.
 

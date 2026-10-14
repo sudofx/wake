@@ -47,7 +47,7 @@ class UnexpectedSidecarFixture(CountingFixture):
     def propose(self, request):
         raw, metadata = super().propose(request)
         value = json.loads(raw)
-        value["continuity_probe"] = {"unexpected": True}
+        value["unexpected"] = True
         return json.dumps(value), metadata
 
 
@@ -139,7 +139,7 @@ class MatrixCampaignTests(unittest.TestCase):
         recorded = next(iter(progress["results"].values()))
         self.assertEqual(recorded["research_status"], "rejected")
 
-    def test_disabled_campaign_keeps_unknown_top_level_fields_strict(self):
+    def test_mandatory_campaign_keeps_unrelated_top_level_fields_strict(self):
         other_root = self.root / "disabled"
         other_store = RecordStore(other_root, initialize_empty=True)
         other_engine = Engine(other_root, dict(DEFAULTS), store=other_store)
@@ -151,8 +151,8 @@ class MatrixCampaignTests(unittest.TestCase):
 
             self.assertEqual(provider.calls, 1)
             self.assertEqual(result["status"], "rejected")
-            self.assertIsNone(other_store.continuity_matrix_progress())
-            self.assertNotIn("continuity_matrix_probe", result)
+            self.assertEqual(other_store.continuity_matrix_progress()["completed_count"],1)
+            self.assertIn("continuity_matrix_probe", result)
         finally:
             other_store.close()
 

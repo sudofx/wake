@@ -100,3 +100,11 @@ body>.skip:focus,body>.skip-link:focus{top:12px}
 /* Only same-window transient surfaces may cover shared navigation. */
 .help-layer,#site-tooltip,.data-inspector,.console-tools{z-index:var(--wake-popup-layer)!important}
 html:is(.console-panel-window,.console-tool-window) body{padding-top:0!important}
+
+/* The installation selector belongs to the permanent header, including deep views. */
+.masthead .installation-node-picker{display:flex;align-items:center;gap:6px;max-width:100%;margin-top:8px;color:var(--ink);font:12px/1.2 Arial,Helvetica,sans-serif}
+.masthead .installation-picker-label{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.masthead .installation-picker-icon{display:inline-flex;flex:0 0 20px;width:20px;height:20px;color:var(--cyan)}
+.masthead .installation-picker-icon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
+.masthead .installation-node-picker select{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:3px;min-width:0;max-width:100%;width:170px;min-height:36px;padding:5px 6px;cursor:pointer}
+@media(max-width:700px){.masthead .installation-node-picker select{width:145px;min-height:40px}.masthead .installation-picker-icon{flex-basis:18px;width:18px}}

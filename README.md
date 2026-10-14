@@ -8,7 +8,9 @@ can continue when the model or machine changes.
 The local Docker installation presents one complete WAKE website and shared blog,
 with three parents and nine children working internally. Its Console adds an
 installation overview above the normal panels and lets you inspect each node.
-Every launch leaves research stopped for inspection.
+Every launch leaves research stopped for inspection. Native initialization and
+every reset enable a continuity campaign automatically; its probes share research
+requests.
 
 Research is WAKE's first application. It is a useful way to exercise the record and
 governance system; it is not the definition of the WAKE kernel.
@@ -152,7 +154,7 @@ the [glossary](docs/glossary.md) and [hosted status details](docs/cloud.md#read-
 
 ## What else is included
 
-- The optional `continuity@1` campaign adds a structured probe to a normal model
+- The mandatory `continuity@1` research campaign adds a structured probe to a normal model
   response; it does not make an extra provider call. See [campaign operation](docs/standalone.md#continuity-matrix-campaign).
 - Routine memory and source retrieval are bounded views of the full record. Exact
   history remains available for audit. See [retrieval](docs/retrieval.md).

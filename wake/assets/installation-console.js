@@ -2,9 +2,31 @@
 (()=>{
  'use strict';
  const dashboard=document.body.classList.contains('installation-page');
- const nodeMatch=location.pathname.match(/^(.*\/)nodes\/([^/]+)\/[^/]*$/);
- const root=new URL(nodeMatch?nodeMatch[1]: './',location.href);
+ // The asset URL identifies the export root even on nested record pages.
+ const asset=new URL(document.currentScript?.src||'installation-console.js',location.href);
+ const assetNode=asset.pathname.match(/^(.*\/)nodes\/([^/]+)\//);
+ const nodeMatch=location.pathname.match(/^(.*\/)nodes\/([^/]+)\/(.*)$/);
+ const root=new URL(assetNode?assetNode[1]:'./',asset);
+ const pagePath=nodeMatch?nodeMatch[3]:location.pathname.slice(root.pathname.length);
+ const currentPage=pagePath||'index.html';
  const nodeURL=id=>new URL(`nodes/${encodeURIComponent(id)}/console.html`,root);
+ const viewURL=id=>{
+  let page=currentPage,hash=location.hash;
+  const deep=page.match(/^([^/]+)\/([^/]+)$/);
+  if(deep){
+   let file;try{file=decodeURIComponent(deep[2]);}catch{file=deep[2];}
+   const qualified=file.match(/^([A-Za-z0-9][A-Za-z0-9._-]{0,99})::(.+)$/);
+   const owner=nodeMatch?.[2]||qualified?.[1],localFile=nodeMatch?file:qualified?.[2];
+   if(!id&&nodeMatch){page=`${deep[1]}/${encodeURIComponent(owner+'::'+file)}`;}
+   else if(id&&owner===id&&localFile){page=`${deep[1]}/${encodeURIComponent(localFile)}`;}
+   else if(id&&owner!==id){
+    // A record from another node cannot be assumed to exist in this record.
+    const section={notebooks:'projects',projects:'projects',questions:'projects',blog:'blog',journal:'journal',evidence:'evidence',receipts:'history'}[deep[1]];
+    page=section?'index.html':'console.html';hash=section?'#'+section:'';
+   }
+  }
+  const url=new URL((id?`nodes/${encodeURIComponent(id)}/`:'')+page,root);url.search=location.search;url.hash=hash;return url;
+ };
  const el=(tag,text,className)=>{const item=document.createElement(tag);if(text!==undefined)item.textContent=String(text);if(className)item.className=className;return item;};
  const get=id=>document.getElementById(id);
  const number=value=>typeof value==='number'&&Number.isFinite(value)&&value>=0?value:null;
@@ -15,20 +37,28 @@
  const validNode=node=>node&&typeof node.id==='string'&&/^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/.test(node.id);
  function link(node,text,invocation){const a=el('a',text);const url=nodeURL(node.id);if(invocation)url.searchParams.set('wake',invocation);a.href=url.href;return a;}
  let picker,manifest;
+ function pickerIcon(node){
+  const computer=!node&&Boolean(window.WAKE_DEPLOYMENT?.codespace_name);
+  const path=computer?'<rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/>':node?'<circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><path d="M12 8v4M5 16v-4h14v4"/>':'<path d="m12 3 9 5-9 5-9-5 9-5ZM3 8v9l9 5 9-5V8M12 13v9"/>';
+  const icon=document.querySelector('.installation-picker-icon');if(icon)icon.innerHTML=`<svg viewBox="0 0 24 24" aria-hidden="true">${path}</svg>`;
+ }
  function buildPicker(nodes){
-  let host=get('installation-selector');
-  if(!host){host=el('div');const intro=document.querySelector('.console-overview>.snapshot')||document.querySelector('.console-overview>div');if(!intro)return;intro.append(host);}
-  if(!picker){const label=el('label','Console view','installation-node-picker');picker=el('select');picker.setAttribute('aria-label','Choose installation or node Console');label.append(picker);host.append(label);picker.addEventListener('change',()=>{location.href=picker.value;});}
+  document.querySelectorAll('#installation-selector,.console-overview .installation-node-picker').forEach(item=>item.remove());
+  const masthead=document.querySelector('body>.masthead'),host=masthead?.querySelector('.brand-lockup');if(!host)return;
+  if(!picker){const label=el('label',undefined,'installation-node-picker');label.append(el('span','Choose installation or node','installation-picker-label'),el('span',undefined,'installation-picker-icon'));picker=el('select');picker.setAttribute('aria-label','Choose installation or node');label.append(picker);host.append(label);picker.addEventListener('change',()=>{location.href=viewURL(picker.value||null).href;});}
   picker.replaceChildren();
-  const whole=el('option','Whole installation');whole.value=new URL('console.html',root).href;picker.append(whole);
-  nodes.forEach(node=>{const option=el('option',`${node.role==='child'?'↳ ':''}${node.id}${node.available===false?' · unavailable':''}`);option.value=nodeURL(node.id).href;option.selected=nodeMatch?.[2]===node.id;picker.append(option);});
+  const whole=el('option','wake');whole.value='';picker.append(whole);
+  nodes.forEach(node=>{const option=el('option',`${node.role==='child'?'↳ ':''}${node.id}${node.available===false?' · unavailable':''}`);option.value=node.id;option.selected=nodeMatch?.[2]===node.id;picker.append(option);});
   if(!nodeMatch)whole.selected=true;
-  const label=get('instance-name');if(label)label.textContent=nodeMatch?nodeMatch[2]:(window.WAKE_DEPLOYMENT?.unified?'WAKE✳︎':label.textContent);
+  pickerIcon(nodeMatch?nodes.find(node=>node.id===nodeMatch[2]):null);
+  const label=get('instance-name');if(label)label.textContent=nodeMatch?nodeMatch[2]:'wake';
+  const domain=masthead.querySelector('.node-domain');if(domain)domain.textContent=nodeMatch?nodeMatch[2]:'wake';
+  document.documentElement.style.setProperty('--wake-masthead-height',`${masthead.getBoundingClientRect().height}px`);
  }
  function listItem(list,node,text,detail){const item=el('li');if(node)item.append(link(node,node.id),' · ');item.append(document.createTextNode(text));if(detail)item.append(el('small',detail));list.append(item);}
  function render(data){
   const nodes=data.nodes.filter(validNode).slice(0,100);buildPicker(nodes);if(!dashboard)return;
-  get('installation-name').textContent=window.WAKE_DEPLOYMENT?.unified?'Installation overview':'WAKE✳︎';
+  get('installation-name').textContent='wake';
   get('installation-freshness').textContent=`${data.live===true?'Local installation snapshot':'Published mirror · dated snapshot'} · ${stamp(data.generated)} · ${age(data.generated)}`;
   const available=nodes.filter(n=>n.available===true&&n.research);
   const values=available.map(n=>number(n.research.status?.accepted_cycles??n.snapshot?.version));
@@ -67,9 +97,9 @@
  let timer;
  async function load(){
   clearTimeout(timer);
-  try{const response=await fetch(new URL('installation.json',location.href),{cache:'no-store',credentials:'same-origin'});if(!response.ok)throw Error(`HTTP ${response.status}`);const data=await response.json();if(data.schema!==1||!Array.isArray(data.nodes))throw Error('Unsupported installation snapshot');manifest=data;render(data);if(dashboard)get('installation-notice').hidden=true;}
+  try{const response=await fetch(new URL('installation.json',asset),{cache:'no-store',credentials:'same-origin'});if(!response.ok)throw Error(`HTTP ${response.status}`);const data=await response.json();if(data.schema!==1||!Array.isArray(data.nodes))throw Error('Unsupported installation snapshot');if(window.WAKE_DEPLOYMENT?.snapshot_only===true)data.live=false;manifest=data;render(data);if(dashboard)get('installation-notice').hidden=true;}
   catch(error){if(dashboard){const notice=get('installation-notice');notice.hidden=false;notice.textContent=manifest?'Connection unavailable. Showing the last received snapshot; current activity is unknown.':'Installation snapshot unavailable. No node activity or counts inferred.';if(manifest){const old={...manifest,live:false};render(old);get('installation-freshness').textContent=`Disconnected · last snapshot ${stamp(manifest.generated)} · ${age(manifest.generated)}`;}}}
-  if(dashboard&&(!manifest||manifest.live===true))timer=setTimeout(load,5000);
+  if(dashboard&&window.WAKE_DEPLOYMENT?.snapshot_only!==true&&(!manifest||manifest.live===true))timer=setTimeout(load,5000);
  }
  load();
 })();

@@ -80,6 +80,31 @@ class GroupEditorialTests(unittest.TestCase):
             self.assertNotIn('wake-introduction',e.store.load()['posts'])
             self.assertEqual(e.store.audit()[0],e.store.load())
 
+    def test_summary_sentence_draft_releases_while_paused_without_another_model_call(self):
+        from wake.group_editorial import synchronize
+        for engine, member in zip(self.engines,self.members):
+            engine.store.reset(); engine.initialize()
+            engine.store.append('group_bob_enrolled',{'actor':'operator','group_id':'wake','members':self.members,'leader':self.members[0],'member':member})
+        self.packet['inputs']=[input_snapshot(engine,'wake',member) for engine,member in zip(self.engines,self.members)]
+        writer = Writer()
+        writer.article['body'] = writer.article['body'].replace('\n\nSummary\n\n',' Summary. ')
+        p = self.draft(writer)
+        engine = self.engines[0]
+        engine.store.append('group_bob_drafted', {'publication':p})
+        # Fixture carries the prior policy's dated withholding receipt.
+        engine.store.append('group_bob_withheld', {'publication_digest':digest(p),
+            'reason':'Bob posts must end with a final Summary section in plain language'})
+        before = deepcopy(engine.store.load())
+        with patch.dict(os.environ, {'WAKE_GROUP_ID':'wake','WAKE_GROUP_COORDINATOR_URL':'http://controller/group/coordinator','WAKE_PUBLIC_HOSTNAME':self.members[0]}), \
+             patch('wake.group_editorial.fetch', return_value=None):
+            self.assertTrue(synchronize(engine, None))
+        after = engine.store.load()
+        self.assertEqual(after['posts'][INTRO_ID]['body'],p['article']['body'])
+        self.assertEqual(after['invocations'],before['invocations'])
+        self.assertEqual(after['version'],before['version'])
+        self.assertNotIn('withheld',after['group_bob'])
+        self.assertEqual(engine.store.audit()[0],after)
+
     def test_partial_inputs_rejected_before_call(self):
         packet=deepcopy(self.packet); packet['inputs'].pop()
         with self.assertRaises(Rejected): validate_inputs(packet)

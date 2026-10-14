@@ -47,10 +47,16 @@ class InstallationLifecycleTests(unittest.TestCase):
                 self.assertIsNotNone(manifest)
                 self.assertTrue(all(n['available'] for n in manifest['nodes']))
                 self.assertEqual(0, sum(n['research']['metrics']['provider_requests'] for n in manifest['nodes']))
+                self.assertTrue(all(n['research']['matrix']['enabled'] for n in manifest['nodes']))
+                self.assertTrue(all(n['research']['matrix']['completed']==0 for n in manifest['nodes']))
                 self.assertTrue(request(root, {'action': 'start'})['ok'])
                 self.assertTrue(request(root, {'action': 'pause'})['ok'])
                 self.assertTrue(request(root, {'action': 'export', 'name': 'manual.zip'})['ok'])
                 self.assertTrue(request(root, {'action': 'RESET'})['ok'])
+                with urllib.request.urlopen(f'http://127.0.0.1:{port}/installation.json') as response:
+                    reset = json.load(response)
+                self.assertTrue(all(n['research']['matrix']['enabled'] for n in reset['nodes']))
+                self.assertTrue(all(n['snapshot']['version']==0 and n['research']['matrix']['completed']==0 for n in reset['nodes']))
                 # Recheck another command: short-lived socket handlers must not
                 # own the replacement workers' Linux parent-death boundary.
                 time.sleep(.5)

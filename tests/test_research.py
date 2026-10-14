@@ -1801,6 +1801,8 @@ class ResearchTests(unittest.TestCase):
     def test_bob_summary_accepts_explicit_inline_marker_without_accepting_mentions(self):
         prefix = "A useful public explanation."
         self.assertTrue(_has_final_summary(prefix + " Summary: Plain language follows."))
+        self.assertTrue(_has_final_summary(prefix + " Summary. Plain language follows."))
+        self.assertFalse(_has_final_summary(prefix + " Summary.   "))
         self.assertTrue(_has_final_summary(prefix + "\nSummary: Plain language follows."))
         self.assertFalse(_has_final_summary(prefix + " Summary:   "))
         self.assertFalse(_has_final_summary(prefix + " The Summary: is discussed here."))

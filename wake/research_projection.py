@@ -215,6 +215,7 @@ def _matrix_projection(progress, reported):
               'score': results.get(c.coordinate_id, {}).get('score'),
               'invocation_id': results.get(c.coordinate_id, {}).get('invocation_id'),
               'research_status': results.get(c.coordinate_id, {}).get('research_status'),
+              'passed': results.get(c.coordinate_id, {}).get('passed'),
               'response_error': results.get(c.coordinate_id, {}).get('response_error'),
               'failed_checks': [] if results.get(c.coordinate_id, {}).get('response_error') else [k for k, v in results.get(c.coordinate_id, {}).get('checks', {}).items() if v is False],
               'diagnostics': deepcopy(results.get(c.coordinate_id, {}).get('diagnostics', {}))}

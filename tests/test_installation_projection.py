@@ -7,7 +7,8 @@ import unittest
 
 from wake.domain_events import empty
 from wake.installation_projection import build_unified_projection
-from wake.research_projection import build_research_projection
+from wake.research_projection import build_research_projection, _matrix_projection
+from wake.matrix import MATRIX, MATRIX_KEY
 from wake.report import export
 
 
@@ -143,6 +144,79 @@ class InstallationProjectionTests(unittest.TestCase):
             self.assertIn('id="entries"', (mirror / 'index.html').read_text())
             self.assertTrue(json.loads((mirror / 'deployment.json').read_text())['snapshot_only'])
             self.assertEqual(len(json.loads((mirror / 'state.json').read_text())['posts']), 1)
+
+    def matrix_view(self, packet, results):
+        view = build_research_projection(packet['state'], [], packet['head'])
+        view['matrix'] = _matrix_projection({
+            'matrix': MATRIX_KEY, 'definition_digest': MATRIX.definition_digest,
+            'results': results, 'completed_count': sum(r['status'] == 'completed' for r in results.values()),
+        }, True)
+        return view
+
+    def test_matrix_uses_latest_recorded_result_and_retains_all_node_contributions(self):
+        packets = {node: self.snapshot(node) for node in ('100', '101')}
+        coordinates = list(MATRIX.coordinates())
+        first, second = coordinates[0].coordinate_id, coordinates[1].coordinate_id
+        packets['101']['state']['invocations']['i']['finished'] = '2026-10-13T11:00:00+00:00'
+        views = {
+            '100': self.matrix_view(packets['100'], {first: {
+                'status': 'completed', 'score': 1.0, 'invocation_id': 'i', 'passed': True, 'checks': {'answer': True}}}),
+            '101': self.matrix_view(packets['101'], {
+                first: {'status': 'completed', 'score': 0.2, 'invocation_id': 'i', 'passed': False, 'checks': {'answer': False}},
+                second: {'status': 'completed', 'score': 0.7, 'invocation_id': 'i', 'passed': False, 'response_error': 'invalid answer'},
+            }),
+        }
+        original = deepcopy((packets, views))
+        matrix = build_unified_projection(packets, views, 'installation')['research']['matrix']
+        self.assertEqual((packets, views), original)
+        self.assertTrue(matrix['reported'])
+        self.assertTrue(matrix['enabled'])
+        cell = next(c for c in matrix['cells'] if c['id'] == first)
+        self.assertEqual(cell['score'], 0.2)
+        self.assertEqual(cell['invocation_id'], '101::i')
+        self.assertEqual(cell['origin']['head'], 'head-101')
+        self.assertEqual([r['score'] for r in cell['contributions']], [0.2, 1.0])
+        self.assertEqual([r['origin']['node'] for r in cell['contributions']], ['101', '100'])
+        self.assertEqual(matrix['completed'], 2)
+        self.assertEqual(matrix['graded_count'], 1)
+        self.assertEqual(matrix['passed'], 0)
+        self.assertEqual(matrix['invalid_response_count'], 1)
+        self.assertEqual(matrix['score_count'], 1)
+        self.assertEqual(matrix['mean_score'], 0.2)
+        self.assertEqual(matrix['failure_counts'], {'answer': 1})
+        self.assertEqual(matrix['contribution_counts'], {'recorded': 3, 'completed': 3, 'failed': 0, 'deferred': 0, 'nodes': 2, 'coordinates': 2})
+        self.assertIsNone(matrix['next_coordinate'])
+        self.assertEqual(len(matrix['cells']), MATRIX.cell_count)
+        self.assertEqual(sum(c['score'] is not None for c in matrix['cells']), 2)
+
+    def test_matrix_missing_pass_status_is_not_inferred_from_a_score(self):
+        packets = {'100': self.snapshot('100')}
+        coordinate = next(iter(MATRIX.coordinates())).coordinate_id
+        views = {'100': self.matrix_view(packets['100'], {coordinate: {
+            'status': 'completed', 'score': 1.0, 'invocation_id': 'i'}})}
+        matrix = build_unified_projection(packets, views, 'installation')['research']['matrix']
+        self.assertIsNone(matrix['passed'])
+        self.assertEqual(matrix['passed_known_cells'], 0)
+
+    def test_matrix_rejects_mismatched_grammar_and_uses_stable_tie_break(self):
+        packets = {node: self.snapshot(node) for node in ('100', '101')}
+        coordinate = next(iter(MATRIX.coordinates())).coordinate_id
+        views = {node: self.matrix_view(packet, {coordinate: {
+            'status': 'completed', 'score': score, 'invocation_id': 'i', 'passed': False}})
+            for (node, packet), score in zip(packets.items(), (0.1, 0.9))}
+        matrix = build_unified_projection(packets, views, 'installation')['research']['matrix']
+        cell = next(c for c in matrix['cells'] if c['id'] == coordinate)
+        self.assertEqual(cell['origin']['node'], '101')
+        views['101']['matrix']['definition_digest'] = 'different'
+        with self.assertRaisesRegex(ValueError, 'grammar.*101'):
+            build_unified_projection(packets, views, 'installation')
+
+    def test_snapshot_fingerprint_tracks_instrument_changes_at_same_domain_head(self):
+        packets, research, before = self.build()
+        research['100']['matrix']['enabled'] = True
+        after = build_unified_projection(packets, research, 'installation')
+        self.assertNotEqual(before['head'],after['head'])
+        self.assertEqual(before['source']['node_heads']['100']['head'],after['source']['node_heads']['100']['head'])
 
     def test_mismatched_research_fails_closed(self):
         packets, research, _ = self.build()

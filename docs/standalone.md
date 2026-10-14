@@ -34,8 +34,8 @@ Open `http://localhost/console.html`. The container listens on port 8080; the
 launcher publishes it on host port 80 by default. Set `WAKE_PORT` before launch to
 choose another host port. An iPhone on the same network uses the Mac's LAN IP,
 for example `http://192.168.1.20/console.html`. No DNS container is needed. The
-Console selector opens the complete unified WAKE website or a node's complete
-exported view. Whole installation includes the journal, research, maps and Bob's
+fixed masthead selector opens the complete unified WAKE website or a node's complete
+exported view. The `wake` option includes the journal, research, maps and Bob's
 Blog. Its Console keeps the normal panels and adds the installation overview at
 the top. Identical shared group publications appear once in the unified blog;
 node contributions keep links and provenance back to their own records. A shared
@@ -287,21 +287,17 @@ affect access.
 
 ## Continuity matrix campaign
 
-The 7×7×7 continuity cube is opt-in for each independent installation. Accepted
-research cycles alone do not enable it. Set `WAKE_ENABLE_CONTINUITY_MATRIX=true`
-in `.env` and recreate the container using the same Compose project and data volume,
-or pass `--enable-continuity-matrix` to the standalone launcher. Startup audits and
-recovers the existing record before submitting the governed enablement action.
-Repeated starts preserve campaign results without recording another enablement.
+The 7×7×7 continuity campaign is mandatory for native research initialization and
+every reset. There is no enablement choice in the normal launcher. Startup verifies
+and recovers existing records, enables a missing campaign through the governed
+record action, and preserves existing campaign results on repeated starts. This
+does not make provider calls or manufacture results for earlier research cycles.
 
-To enable an already running installation without restarting or calling a model:
+The unified cube displays the latest recorded node result for each coordinate.
+Source node, invocation and other contributions remain inspectable; multiple node
+results do not count as multiple completed coordinates or averaged replications.
 
-```sh
-docker compose exec wake python -m wake --data /data enable-continuity-matrix
-```
-
-The command shares the writer lock; retry between cycles if it is busy. Enablement
-is durable: removing the setting does not disable or reset the campaign. Paused mode
+Paused mode
 can enable and display it but never runs probes. Each ordinary answered provider
 invocation scores one cell as a sidecar, including rejected research responses;
 timeouts and quota deferrals leave the cell pending. The website projects recorded

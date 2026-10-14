@@ -254,7 +254,7 @@ def _notebook_html(notebook, state):
 def _blog_display_title(post):
     """Keep scheduled Bob reflections recognisable in every public export."""
     title = str(post.get("title", "")).strip()
-    version = int(post.get("created_version") or 0)
+    version = int(post.get("group_publication", {}).get("checkpoint") or post.get("created_version") or 0)
     reflection_cycle = int(post.get("reflection_cycle") or 0)
     milestone = reflection_cycle or (version if version and version % 10 == 0 else 0)
     if not milestone:
@@ -264,7 +264,8 @@ def _blog_display_title(post):
         "", title, flags=re.IGNORECASE,
     )
     remainder = re.sub(r"\b(?:first|inaugural)\s+reflection\b", "Reflection", remainder, flags=re.IGNORECASE).strip()
-    return f"Cycle {milestone} Reflection: {remainder or title}"
+    label = "Shared checkpoint" if post.get("group_publication") else "Cycle"
+    return f"{label} {milestone} Reflection: {remainder or title}"
 
 
 INLINE_BLOG_SOURCE_LINKS_FROM_VERSION = 203
@@ -287,8 +288,21 @@ def _blog_html_text(value, post, state):
     return rendered
 
 
+def _blog_body_html(post, state):
+    """Lay out an explicit final Summary marker without changing stored prose."""
+    body = str(post["body"])
+    def paragraphs(value):
+        return "".join(f"<p>{_blog_html_text(part, post, state)}</p>"
+                       for part in re.split(r"\n\s*\n", value) if part.strip())
+    markers = list(re.finditer(r"(?:^|(?<=[.!?])\s+|\n+)Summary[.:]\s+(?=\S)", body))
+    if not markers:
+        return paragraphs(body)
+    marker = markers[-1]
+    return paragraphs(body[:marker.start()]) + "<h3>Summary</h3>" + paragraphs(body[marker.end():])
+
+
 def _blog_html(post, state):
-    paragraphs = "".join(f"<p>{_blog_html_text(part, post, state)}</p>" for part in str(post["body"]).split("\n\n") if part.strip())
+    paragraphs = _blog_body_html(post, state)
     lens = f'<div class="note"><div class="eyebrow">BOB’S LENS / PHILOSOPHICAL REFLECTION</div><p>{_html_text(post["lens"])}</p></div>' if post.get("lens") else ""
     notebooks = "".join(
         f'<li><a href="../notebooks/{html.escape(nid)}.html">{html.escape(state["notebooks"][nid]["title"])}</a></li>'
@@ -316,13 +330,15 @@ def _blog_html(post, state):
          f'<p><a href="../index.html#history/{html.escape(post["created_by"])}">Exact wake and decision →</a></p>')
         + '<hr><p class="meta">AI-authored from WAKE✳︎’s durable research record. Research claims link to evidence; philosophical reflections are reflections.</p>'
     )
-    version = int(post.get("created_version") or 0)
+    version = int(post.get("group_publication", {}).get("checkpoint") or post.get("created_version") or 0)
     reflection_cycle = int(post.get("reflection_cycle") or 0)
     is_reflection = bool(reflection_cycle or (version and version % 10 == 0))
     domain = state.get("projects", {}).get(post.get("project"), {}).get("domain")
     invocation = state.get("invocations", {}).get(post.get("created_by"), {})
     status = str(post.get("status") or "published").upper()
-    meta = _reading_meta("REFLECTION" if is_reflection else "BLOG", status, _topic_meta(state, domain, "blog"), post.get("published_at") or invocation.get("time"), post.get("status") or "published")
+    checkpoint = post.get("group_publication", {}).get("checkpoint")
+    kind = f"SHARED CHECKPOINT {int(checkpoint):02d}" if checkpoint else ("REFLECTION" if is_reflection else "BLOG")
+    meta = _reading_meta(kind, status, _topic_meta(state, domain, "blog"), post.get("published_at") or invocation.get("time"), post.get("status") or "published")
     return _reading_page(_blog_display_title(post), "BOB / WAKE✳︎ BLOG", body, "../index.html#blog/" + post["id"], meta_html=meta)
 
 
@@ -630,7 +646,7 @@ def _deployment_site(target, *, standalone, installation=None):
     marker = ('<script>window.WAKE_DEPLOYMENT=' + json.dumps(deployment)
               + ';window.WAKE_STANDALONE=' + ('true' if standalone else 'false') + ';</script>')
     assets = Path(__file__).parent / "assets"
-    for name in ("masthead.css", "site-theme.js", "console-light.css"):
+    for name in ("masthead.css", "site-theme.js", "console-light.css", "installation-console.js", "installation-console.css"):
         atomic_write(target / name, (assets / name).read_text())
     shell = (assets / "index.html").read_text()
     header = re.search(r'<header class="masthead">.*?</header>', shell, re.S).group(0)
@@ -663,6 +679,11 @@ def _deployment_site(target, *, standalone, installation=None):
         page = re.sub(r'<script src="(?:console-theme|site-theme)\.js[^"]*"></script>', '', page)
         page = re.sub(r'<link rel="stylesheet" href="(?:\.\./)*masthead\.css[^"]*">', '', page)
         page = re.sub(r'<link rel="stylesheet" href="(?:\.\./)*console-light\.css[^"]*">', '', page)
+        # All exported views share the installation selector, including record
+        # pages below subdirectories. Its asset URL retains the node export root.
+        page = re.sub(r'<script src="(?:\.\./)*installation-console\.js[^"]*"[^>]*></script>', '', page)
+        page = re.sub(r'<link rel="stylesheet" href="(?:\.\./)*installation-console\.css[^"]*">', '', page)
+        page = page.replace('</head>', f'<link rel="stylesheet" href="{prefix}installation-console.css?v=20261013-masthead"><script src="{prefix}installation-console.js?v=20261013-masthead" defer></script></head>', 1)
         page = page.replace('</head>', f'<link rel="stylesheet" href="{prefix}console-light.css?v=20261008-daylight"><script src="{prefix}site-theme.js?v=20261012-light-default"></script><link rel="stylesheet" href="{prefix}masthead.css?v=20261011-node-domain"></head>', 1)
         # Re-export may reuse a directory. An older marker later in <head> must
         # not override the newly selected installation. Normalize to one owner.

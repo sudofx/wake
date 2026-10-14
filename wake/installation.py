@@ -303,7 +303,8 @@ class Controller:
                 continue
         if not snapshots:
             return False
-        signature = tuple((n, p['head']) for n, p in sorted(snapshots.items()))
+        signature = tuple((n, p['head'], p.get('generated'), research[n].get('generated'))
+                          for n, p in sorted(snapshots.items()))
         if signature == self.site_signature:
             return False
         identity = read_json(self.root / 'installation-id.json')['id']

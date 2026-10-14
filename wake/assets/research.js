@@ -259,13 +259,14 @@
     if(!m){$('matrix-state').textContent='Matrix progress is not reported in this snapshot.';const enable=$('matrix-enable');if(enable)enable.hidden=true;return;}
     matrixCell=cube.update(m) || m.cells[0]?.id;
     renderRuntimeActivity();
-    $('matrix-state').textContent=m.reported?(m.enabled?'Continuity campaign recorded':'Campaign not enabled'):'Campaign progress not reported';
+    $('matrix-state').textContent=m.reported?(m.enabled?(m.aggregation?'Continuity campaigns · latest result per coordinate':'Continuity campaign recorded'):'Campaign not enabled'):'Campaign progress not reported';
     $('matrix-coverage').textContent=m.reported?`${count(m.completed)} / ${count(m.cells.length)}`:`— / ${count(m.cells.length)}`;
     const checks=$('matrix-checks');
     if(checks){
       const failures=Object.entries(m.failure_counts||{}).sort((a,b)=>b[1]-a[1]);
       checks.textContent=m.reported?`${m.passed==null?'Complete-pass count unavailable':`${count(m.passed)} / ${count(m.graded_count ?? m.completed)} graded answers passed every check`}. ${typeof m.mean_score==='number'?`Mean check score for valid answers ${(100*m.mean_score).toFixed(1)}%; this is not a complete-pass rate.`:'Mean check score unavailable.'} ${count(m.invalid_response_count||0)} missing or invalid answers shown separately. Lens coverage: ${Object.entries(m.lens_coverage||{}).map(([k,n])=>`${k} ${count(n)}`).join(' · ')}.${failures.length?` Failed checks: ${failures.map(([name,n])=>`${name.replaceAll('_',' ')} ${count(n)}`).join(' · ')}.`:''}`:'Check outcomes are not reported.';
     }
+    if(checks && m.contribution_counts)checks.textContent += ` ${count(m.contribution_counts.recorded)} attributed node results across ${count(m.contribution_counts.nodes)} nodes. Each cell shows its latest recorded result; repeated trials stay separate.`;
     const enable=$('matrix-enable');
     if(enable)enable.hidden=local || !(m.reported && m.enabled===false);
     $('cube-selectors').innerHTML=m.axes.map((a,i)=>`<label>${esc(matrixAxisName(a))} <small>(${esc(a.label)})</small><select data-cube-axis="${i}" aria-label="${esc(matrixAxisName(a))} (${esc(a.label)})">${a.values.map((v,j)=>`<option value="${j}">${esc(v.label)}</option>`).join('')}</select></label>`).join('');
@@ -321,7 +322,7 @@
     $('cube-comparison').innerHTML=`<h3>Previous cell → Selected cell</h3>
       <div class="cube-journey">${[['Where I was',previous],['Where I am',c]].map(([title,cell])=>`<div><h4>${title}${cell?` · ${esc(cellLabel(cell))}`:''}</h4><p>${cell?esc(summary(cell)):'No previous cell yet'}</p><p class="cube-result">${esc(matrixResult(cell))}</p>${cell?`<details><summary>Permanent cell ID</summary><code>${esc(cell.id)}</code></details>`:''}</div>`).join('')}</div>
       <h4>What changed</h4><ul class="cube-differences">${m.axes.map((a,i)=>{const value=matrixValue(a,c,i),old=previous&&matrixValue(a,previous,i),different=old&&old.key!==value.key;return `<li class="${different?'changed':'same'}"><b>${esc(matrixAxisName(a))}</b> <small>(${esc(a.label)})</small><span>${old?`${different?'Changed':'Same'} · ${esc(matrixValueText(old))}${different?` → ${esc(matrixValueText(value))}`:''}`:`Starting at ${esc(matrixValueText(value))}`}</span></li>`;}).join('')}</ul>
-      <h4>What happened</h4><p>${esc(explanation)} ${esc(outcome)}</p>${diagnostics}<p class="caption">These are recorded probe results, not new tests. A comparison alone does not show why a score changed.</p>`;
+      <h4>What happened</h4><p>${esc(explanation)} ${esc(outcome)}</p>${diagnostics}${c.origin?`<p class="caption">Displayed result from <a href="nodes/${esc(encodeURIComponent(c.origin.node))}/console.html?wake=${esc(encodeURIComponent(c.origin.invocation_id||''))}">${esc(c.origin.node)}</a> · ${esc(stamp(c.recorded_at,true))} PT</p><details><summary>${count(c.contribution_count)} recorded node contributions</summary>${(c.contributions||[]).map(result=>`<p>${esc(result.origin.node)} · ${esc(matrixResult(result))}</p>`).join('')}</details>`:''}<p class="caption">These are recorded probe results, not new tests. A comparison alone does not show why a score changed.</p>`;
   }
   function matrixCellForWake(id) {
     return data?.matrix?.cells.find(c=>c.invocation_id===id) || null;

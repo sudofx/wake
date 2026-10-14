@@ -272,6 +272,10 @@ class Engine:
             self.store.append("experimental_regime_adopted", adoption_payload(
                 state, events, experimental_defaults(), "operator",
                 "Initialize the default experimental instrument regime.", now(), len(events) + 1))
+        # Fresh native WAKE research always begins with the owned continuity
+        # instrument. Legacy migration/replay stores keep their historical bytes.
+        if hasattr(self.store, 'record') and self.store.continuity_matrix_progress() is None:
+            self.store.enable_continuity_matrix()
         self._initialize_passenger()
         return self.store.load(repair=True)
 

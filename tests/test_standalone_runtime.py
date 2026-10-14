@@ -173,7 +173,7 @@ class StandaloneRuntimeTests(unittest.TestCase):
             self.assertIn('retrying on the regular schedule', server.runtime_status['reason'])
             self.assertEqual(wait_for_control.call_args.args[2], args.interval)
 
-    def test_matrix_opt_in_preserves_history_advances_and_survives_restart(self):
+    def test_mandatory_matrix_preserves_history_advances_and_survives_restart(self):
         with tempfile.TemporaryDirectory() as directory:
             data = Path(directory) / 'data'
             root = Path(directory) / 'website'
@@ -182,27 +182,27 @@ class StandaloneRuntimeTests(unittest.TestCase):
             for _ in range(7):
                 engine.run(Fixture('before-opt-in'))
             before = engine.store.events()
-            self.assertIsNone(engine.store.continuity_matrix_progress())
+            self.assertEqual(engine.store.continuity_matrix_progress()['completed_count'], 7)
             engine.store.close()
 
             engine = bootstrap(data, dict(DEFAULTS), enable_continuity_matrix=True)
             self.assertEqual(engine.store.events(), before)
             self.assertEqual(engine.store.load()['version'], 7)
-            self.assertEqual(engine.store.continuity_matrix_progress()['completed_count'], 0)
+            self.assertEqual(engine.store.continuity_matrix_progress()['completed_count'], 7)
             opted_in_record = engine.store.record.full_replay()
             engine.store.close()
             engine = bootstrap(data, dict(DEFAULTS), enable_continuity_matrix=True)
             self.assertEqual(engine.store.record.full_replay(), opted_in_record)
             engine.run(Fixture('after-opt-in'))
             self.assertEqual(engine.store.events()[:len(before)], before)
-            self.assertEqual(engine.store.continuity_matrix_progress()['completed_count'], 1)
+            self.assertEqual(engine.store.continuity_matrix_progress()['completed_count'], 8)
             publish(engine, root)
             matrix = json.loads((root / 'current' / 'research-data.json').read_text())['matrix']
             self.assertTrue(matrix['enabled'])
-            self.assertEqual(matrix['completed'], 1)
+            self.assertEqual(matrix['completed'], 8)
             engine.store.close()
             engine = bootstrap(data, dict(DEFAULTS))
-            self.assertEqual(engine.store.continuity_matrix_progress()['completed_count'], 1)
+            self.assertEqual(engine.store.continuity_matrix_progress()['completed_count'], 8)
             engine.store.record.full_replay()
             engine.store.close()
 
