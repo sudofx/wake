@@ -30,12 +30,15 @@ const tick=setInterval(()=>{if(online)for(const res of clients)res.write('data: 
   assert.equal(await page.locator('#matrix-cube').getAttribute('data-wake-initialized'),null,'offscreen cube stays uninstantiated');
   assert.equal(await page.locator('#research-map').innerHTML(),'','offscreen landscape stays unrendered');
   assert.equal(await page.locator('#compression svg').count(),0,'offscreen chart stays unrendered');
+  assert.equal(await page.locator('#activity-chart').getAttribute('data-latest-initialized'),null,'hidden history does not initialize scrolling before rendering');
   await page.locator('#matrix-cube').evaluate(canvas=>canvas.closest('.panel').classList.add('module-collapsed'));
   await page.locator('.matrix-panel').scrollIntoViewIfNeeded();await page.waitForTimeout(300);
   assert.equal(await page.locator('#matrix-cube').getAttribute('data-wake-initialized'),null,'collapsed cube stays uninstantiated');
   await page.locator('#matrix-cube').evaluate(canvas=>canvas.closest('.panel').classList.remove('module-collapsed'));
   await page.locator('#matrix-cube').scrollIntoViewIfNeeded();await page.waitForFunction(()=>document.querySelector('#matrix-cube').dataset.wakeInitialized==='true');
   await page.locator('#map-stage').scrollIntoViewIfNeeded();await page.waitForFunction(()=>document.querySelector('#research-map').childElementCount>0);
+  await page.locator('#activity-chart').scrollIntoViewIfNeeded();await page.waitForFunction(()=>document.querySelector('#activity-chart').dataset.latestInitialized==='true');
+  assert(await page.locator('#activity-chart').evaluate(chart=>Math.abs(chart.scrollLeft-(chart.scrollWidth-chart.clientWidth))<2),'revealed history starts at its latest edge');
   state='running';await page.waitForFunction(()=>document.querySelector('.installation-node-menu a[data-node="100.wake"] .installation-node-status').dataset.state==='running');
   projection={...initial,head:'b'.repeat(64)};await page.waitForFunction(()=>window.WakeStatusSnapshot.head==='b'.repeat(64));await page.waitForTimeout(3500);assert.equal(projectionRequests,2,'head change fetches the projection once');
   online=false;for(const res of clients)res.destroy();clients.clear();await page.waitForFunction(()=>document.querySelector('.installation-node-menu a[data-node="100.wake"] .installation-node-status').dataset.state==='unknown');

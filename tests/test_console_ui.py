@@ -116,11 +116,9 @@ class ConsolePresentationTests(unittest.TestCase):
         self.assertNotIn("DESKTOP INSPECTION RAIL", self.css)
 
 
-    def test_horizontal_history_surfaces_are_scrollable_and_latest_first(self):
+    def test_horizontal_history_surfaces_are_scrollable(self):
         self.assertIn("AUTHORITATIVE SCROLL + MODULE CHROME", self.css)
         self.assertIn("overflow-x:auto!important", self.css)
-        self.assertIn("el.scrollLeft=el.scrollWidth-el.clientWidth", self.research)
-        self.assertIn("const el=$('activity-chart')", self.research)
 
     def test_mobile_deep_tools_open_new_tabs(self):
         self.assertIn("window.open(url.href,'_blank','noopener')", self.tools)
