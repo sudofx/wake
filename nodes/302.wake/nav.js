@@ -70,9 +70,17 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.mode!=='hosted' && window.WAKE_DEPLOY
   };
   const unavailable=()=>{actionsLight.removeAttribute('data-state');actionsLight.title='Local runtime unavailable';actionsLight.setAttribute('aria-label','Local runtime unavailable');};
   const refreshLocal=()=>fetch(new URL('runtime.json',location.href),{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('Unavailable');return r.json();}).then(applyLocal).catch(unavailable);
-  // Activity is optional. Losing that capability is not proof the runtime is offline.
-  window.addEventListener('wake-runtime-activity',event=>{if(event.detail)applyLocal(event.detail);else refreshLocal();});
-  refreshLocal();setInterval(refreshLocal,30000);
+  let connected=false,fallbackTimer=null;
+  const connect=()=>{
+    if(connected||!window.WakeStatusChannel)return connected;
+    connected=true;clearInterval(fallbackTimer);
+    window.WakeStatusChannel.subscribe(packet=>{const status=window.WakeStatusChannel.view(packet);if(status)applyLocal(status);else unavailable();});
+    return true;
+  };
+  window.addEventListener('wake-status-ready',connect);
+  const fallback=()=>{if(connect())return;refreshLocal();fallbackTimer=setInterval(()=>{if(!connected&&!document.hidden)refreshLocal();},30000);};
+  if(!connect()){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fallback,{once:true});else queueMicrotask(fallback);}
+
 }
 /* Shared action glyphs and previews. Record names and metric values remain content. */
 (() => {

@@ -8,7 +8,7 @@ Keep presentation subordinate to the canonical durable record.
 <!-- WAKE public data contract: research stays public; operator actions live in GitHub Actions. -->
 <!doctype html>
 <html lang="en" data-theme="light">
-<head><script>window.WAKE_DEPLOYMENT={"schema": 1, "mode": "standalone", "group": {"id": "wake", "instance": "100.wake", "hostname": "100.wake"}, "snapshot_only": true};window.WAKE_STANDALONE=true;document.documentElement.dataset.wakeSnapshotOnly='true';</script><meta name="darkreader-lock">
+<head><script>window.WAKE_DEPLOYMENT={"schema": 1, "mode": "standalone", "group": {"id": "wake", "instance": "100.wake", "hostname": "100.wake"}, "snapshot_only": true};window.WAKE_STANDALONE=true;document.documentElement.dataset.wakeSnapshotOnly='true';</script><script src="runtime-activity.js?v=20261014-shared-status" defer></script><meta name="darkreader-lock">
 <!-- Reader data belongs to this exported snapshot. -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,7 +31,7 @@ Keep presentation subordinate to the canonical durable record.
 <a href="#main" class="skip">Skip to content</a>
 <header class="masthead">
   <div class="brand-lockup">
-    <a class="wordmark" href="index.html" aria-label="Reload WAKE✳︎ from the site root">WAKE<span class="asterisk">✳︎</span><small><span class="cycle-count">14</span> ACCEPTED WAKES</small></a><span class="node-domain">wake</span>
+    <a class="wordmark" href="index.html" aria-label="Reload WAKE✳︎ from the site root">WAKE<span class="asterisk">✳︎</span><small><span class="cycle-count">17</span> ACCEPTED WAKES</small></a><span class="node-domain"></span>
     </div>
   <nav class="compact-nav" aria-label="Main navigation">
     <a href="index.html#discoveries" data-nav="discoveries" data-nav-section="research">Research</a>
@@ -1103,9 +1103,17 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.mode!=='hosted' && window.WAKE_DEPLOY
   };
   const unavailable=()=>{actionsLight.removeAttribute('data-state');actionsLight.title='Local runtime unavailable';actionsLight.setAttribute('aria-label','Local runtime unavailable');};
   const refreshLocal=()=>fetch(new URL('runtime.json',location.href),{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('Unavailable');return r.json();}).then(applyLocal).catch(unavailable);
-  // Activity is optional. Losing that capability is not proof the runtime is offline.
-  window.addEventListener('wake-runtime-activity',event=>{if(event.detail)applyLocal(event.detail);else refreshLocal();});
-  refreshLocal();setInterval(refreshLocal,30000);
+  let connected=false,fallbackTimer=null;
+  const connect=()=>{
+    if(connected||!window.WakeStatusChannel)return connected;
+    connected=true;clearInterval(fallbackTimer);
+    window.WakeStatusChannel.subscribe(packet=>{const status=window.WakeStatusChannel.view(packet);if(status)applyLocal(status);else unavailable();});
+    return true;
+  };
+  window.addEventListener('wake-status-ready',connect);
+  const fallback=()=>{if(connect())return;refreshLocal();fallbackTimer=setInterval(()=>{if(!connected&&!document.hidden)refreshLocal();},30000);};
+  if(!connect()){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fallback,{once:true});else queueMicrotask(fallback);}
+
 }
 /* Shared action glyphs and previews. Record names and metric values remain content. */
 (() => {

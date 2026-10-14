@@ -17,7 +17,12 @@
     return;
   }
   if(kind==='events'){
-    const text=await response.text();
+    const bytes=new Uint8Array(await response.arrayBuffer());
+    // Direct .gz downloads may be served with or without Content-Encoding.
+    // Decode only bytes that still carry the gzip header after browser transport.
+    const text=bytes[0]===31&&bytes[1]===139?
+      await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).text():
+      new TextDecoder().decode(bytes);
     const events=text.split(/\n+/).filter(Boolean).map(line=>JSON.parse(line)).reverse();
     root.innerHTML=events.map(event=>{
       const payload=event.payload||{},id=payload.id||'system';
@@ -37,5 +42,9 @@
 })().catch(error=>{
   console.error(error);
   const root=document.getElementById('flat-content');
-  if(root)root.innerHTML='<p class="empty">This published view could not load its flat data file.</p>';
+  if(root){
+    root.innerHTML='<p class="empty">This published view could not load its flat data file.</p>';
+    const source=document.body.dataset.flatSource;
+    if(source){const link=document.createElement('a');link.href=source;link.textContent='Download published data';root.append(link);}
+  }
 });

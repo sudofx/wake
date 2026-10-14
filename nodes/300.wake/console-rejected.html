@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="en" data-theme="light"><head><script>window.WAKE_DEPLOYMENT={"schema": 1, "mode": "standalone", "group": {"id": "wake", "instance": "300.wake", "hostname": "300.wake"}, "snapshot_only": true};window.WAKE_STANDALONE=true;document.documentElement.dataset.wakeSnapshotOnly='true';</script><meta name="darkreader-lock"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en" data-theme="light"><head><script>window.WAKE_DEPLOYMENT={"schema": 1, "mode": "standalone", "group": {"id": "wake", "instance": "300.wake", "hostname": "300.wake"}, "snapshot_only": true};window.WAKE_STANDALONE=true;document.documentElement.dataset.wakeSnapshotOnly='true';</script><script src="runtime-activity.js?v=20261014-shared-status" defer></script><meta name="darkreader-lock"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Rejected &amp; withheld drafts / WAKE✳︎</title>
 
 <link rel="stylesheet" href="style.css?v=20261014-mobile-width"><link rel="stylesheet" href="nav.css?v=20261014-mobile-width"><link rel="stylesheet" href="theme.css?v=20261014-mobile-width"><link rel="stylesheet" href="console-component.css"><link rel="stylesheet" href="installation-console.css?v=20261014-icon-picker"><script src="installation-console.js?v=20261014-network-picker" defer></script><link rel="stylesheet" href="console-light.css?v=20261014-mobile-width"><script src="site-theme.js?v=20261014-system-theme"></script><link rel="stylesheet" href="masthead.css?v=20261014-system-theme"></head>
 <body data-flat-kind="rejected" data-flat-source="wake-data.json">
 <header class="masthead">
   <div class="brand-lockup">
-    <a class="wordmark" href="index.html" aria-label="Reload WAKE✳︎ from the site root">WAKE<span class="asterisk">✳︎</span><small><span class="cycle-count">18</span> ACCEPTED WAKES</small></a><span class="node-domain">wake</span>
+    <a class="wordmark" href="index.html" aria-label="Reload WAKE✳︎ from the site root">WAKE<span class="asterisk">✳︎</span><small><span class="cycle-count">19</span> ACCEPTED WAKES</small></a><span class="node-domain"></span>
     </div>
   <nav class="compact-nav" aria-label="Main navigation">
     <a href="index.html#discoveries" data-nav="discoveries" data-nav-section="research">Research</a>
@@ -39,7 +39,7 @@
     
   </div>
 </header>
-<main><p class="console-component-stamp">Published snapshot · state 18 · 2026-10-14T18:57:24.929166+00:00<br>Head 103a44cca41051c64dd40dccd316612d2b062991feca0693289e07015501f9c2</p><div class="page-heading"><p class="eyebrow">GOVERNANCE / STOPPED PROPOSALS</p><h1>Rejected &amp; withheld drafts.</h1><p>Loaded from the current published record when this page opens.</p></div><div id="flat-content"></div></main>
+<main><p class="console-component-stamp">Published snapshot · state 19 · 2026-10-14T20:35:54.395645+00:00<br>Head 1a6e4760485413ded48770b4dfcce3f8fc88aa1971d43bcb5cfea1bfe60963e1</p><div class="page-heading"><p class="eyebrow">GOVERNANCE / STOPPED PROPOSALS</p><h1>Rejected &amp; withheld drafts.</h1><p>Loaded from the current published record when this page opens.</p></div><div id="flat-content"></div></main>
 <script>/*
  * WAKE✳︎ flat-view controller.
  * Standalone pages are stable shells; current facts are loaded from flat exports
@@ -59,7 +59,12 @@
     return;
   }
   if(kind==='events'){
-    const text=await response.text();
+    const bytes=new Uint8Array(await response.arrayBuffer());
+    // Direct .gz downloads may be served with or without Content-Encoding.
+    // Decode only bytes that still carry the gzip header after browser transport.
+    const text=bytes[0]===31&&bytes[1]===139?
+      await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).text():
+      new TextDecoder().decode(bytes);
     const events=text.split(/\n+/).filter(Boolean).map(line=>JSON.parse(line)).reverse();
     root.innerHTML=events.map(event=>{
       const payload=event.payload||{},id=payload.id||'system';
@@ -79,7 +84,11 @@
 })().catch(error=>{
   console.error(error);
   const root=document.getElementById('flat-content');
-  if(root)root.innerHTML='<p class="empty">This published view could not load its flat data file.</p>';
+  if(root){
+    root.innerHTML='<p class="empty">This published view could not load its flat data file.</p>';
+    const source=document.body.dataset.flatSource;
+    if(source){const link=document.createElement('a');link.href=source;link.textContent='Download published data';root.append(link);}
+  }
 });
 </script><script>/*
  * WAKE✳︎ MAINTAINER NOTE
@@ -153,9 +162,17 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.mode!=='hosted' && window.WAKE_DEPLOY
   };
   const unavailable=()=>{actionsLight.removeAttribute('data-state');actionsLight.title='Local runtime unavailable';actionsLight.setAttribute('aria-label','Local runtime unavailable');};
   const refreshLocal=()=>fetch(new URL('runtime.json',location.href),{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('Unavailable');return r.json();}).then(applyLocal).catch(unavailable);
-  // Activity is optional. Losing that capability is not proof the runtime is offline.
-  window.addEventListener('wake-runtime-activity',event=>{if(event.detail)applyLocal(event.detail);else refreshLocal();});
-  refreshLocal();setInterval(refreshLocal,30000);
+  let connected=false,fallbackTimer=null;
+  const connect=()=>{
+    if(connected||!window.WakeStatusChannel)return connected;
+    connected=true;clearInterval(fallbackTimer);
+    window.WakeStatusChannel.subscribe(packet=>{const status=window.WakeStatusChannel.view(packet);if(status)applyLocal(status);else unavailable();});
+    return true;
+  };
+  window.addEventListener('wake-status-ready',connect);
+  const fallback=()=>{if(connect())return;refreshLocal();fallbackTimer=setInterval(()=>{if(!connected&&!document.hidden)refreshLocal();},30000);};
+  if(!connect()){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fallback,{once:true});else queueMicrotask(fallback);}
+
 }
 /* Shared action glyphs and previews. Record names and metric values remain content. */
 (() => {

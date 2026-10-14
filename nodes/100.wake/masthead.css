@@ -128,3 +128,12 @@ html:is(.console-panel-window,.console-tool-window) body{padding-top:0!important
 @media(max-width:350px){.masthead .installation-node-picker{flex-basis:30px;width:30px}}
 
 html[data-system-theme="detected"] .masthead .theme-switch{display:none!important}
+
+/* Status is an observation; mirrored colors always describe an uploaded date. */
+.masthead .installation-node-menu a{display:flex;align-items:center;gap:9px;white-space:nowrap}
+.masthead .installation-node-status{display:block;flex:0 0 8px;width:8px;height:8px;border-radius:50%;background:#8a96a8}
+.masthead .installation-node-status[data-state=running]{background:#3fb950}
+.masthead .installation-node-status:is([data-state=waiting],[data-state=paused],[data-state=stopped]){background:#e7c35a}
+.masthead .installation-node-status[data-state=idle]{background:#58a6ff}
+.masthead .installation-node-status[data-state=standby]{background:#a970ff}
+.masthead .installation-node-status[data-state=blocked]{background:#dc5261}

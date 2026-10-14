@@ -7,7 +7,7 @@
   'use strict';
   const canvas=document.getElementById('process-field-canvas');
   if(!canvas)return;
-  const ctx=canvas.getContext('2d');
+  let ctx=null;
   const panel=canvas.closest('.process-field-panel');
   const stageList=document.getElementById('process-field-stages');
   const statusEl=document.getElementById('process-field-status');
@@ -27,7 +27,7 @@
     ['transition','TRANSITION'],
     ['receipt','RECEIPT']
   ];
-  let projection=null,latest=null,frame=null,start=performance.now(),motion=false,visible=true;
+  let projection=null,latest=null,frame=null,start=performance.now(),motion=false,visible=false;
   let nodePositions=[],recordEdges=[],recordNodes=[],lastVersion=null,flashUntil=0;
   let viewAngle=0,viewTilt=0,selectedNode=null,selectedStage=null,stagePoints=[];
   let pointer=null,dragged=false;
@@ -127,7 +127,7 @@
     };
   }
   function draw(){
-    if(!visible){frame=null;return;}
+    if(!visible||document.hidden||panel?.classList.contains('module-collapsed')||!ctx){frame=null;return;}
     // Keep live inspection lightweight on phones without changing view rotation.
     if(!motion&&liveIndex()>=0&&!reduced&&performance.now()-lastLiveDraw<50){frame=requestAnimationFrame(draw);return;}
     lastLiveDraw=performance.now();
@@ -258,7 +258,7 @@
     projection=d;latest=(d.wakes||[])[0]||null;
     if(lastVersion!==null&&d.version!==lastVersion)flashUntil=performance.now()+900;
     lastVersion=d.version;
-    buildRecordField();setStageReadout();scheduleDraw();
+    if(visible&&!panel?.classList.contains('module-collapsed'))buildRecordField();setStageReadout();scheduleDraw();
   }
   window.addEventListener('wake-process-data',event=>receive(event.detail));
   window.addEventListener('wake-console-selection',event=>{
@@ -273,9 +273,7 @@
   });
   async function loadProjection(){
     try{
-      const response=await fetch('research-data.json',{cache:'no-store'});
-      if(!response.ok)throw new Error(`HTTP ${response.status}`);
-      const next=await response.json();
+      const next=window.WakeViewData?await window.WakeViewData.research():await fetch('research-data.json',{cache:'no-store'}).then(response=>{if(!response.ok)throw Error(`HTTP ${response.status}`);return response.json();});
       if(next?.projection_kind!=='disposable-research-view'||!Array.isArray(next.graph?.nodes)||!Array.isArray(next.graph?.edges))throw new Error('Unsupported projection');
       receive(next);
     }catch(error){
@@ -301,10 +299,12 @@
   toggle?.addEventListener('click',()=>{});
   window.addEventListener('wake-global-motion',event=>{motion=Boolean(event.detail?.enabled);if(!motion&&frame){cancelAnimationFrame(frame);frame=null;}scheduleDraw();});
   motion=false;
-  const io=new IntersectionObserver(entries=>{visible=entries[0]?.isIntersecting??true;if(visible)scheduleDraw();},{threshold:.02});
+  const initialize=()=>{if(visible&&!document.hidden&&!panel?.classList.contains('module-collapsed')){ctx||=canvas.getContext('2d');if(projection)buildRecordField();else loadProjection();scheduleDraw();}};
+  const io=new IntersectionObserver(entries=>{visible=entries[0]?.isIntersecting===true;initialize();},{rootMargin:'150px',threshold:.02});
+  if(panel)new MutationObserver(initialize).observe(panel,{attributes:true,attributeFilter:['class']});
   io.observe(panel||canvas);
   new ResizeObserver(scheduleDraw).observe(canvas);
   window.addEventListener('resize',scheduleDraw);
-  document.addEventListener('visibilitychange',()=>{if(!document.hidden)scheduleDraw();});
-  setStageReadout();scheduleDraw();loadProjection();
+  document.addEventListener('visibilitychange',initialize);
+  setStageReadout();
 })();

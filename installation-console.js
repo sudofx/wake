@@ -86,7 +86,7 @@
   const domain=masthead.querySelector('.node-domain');if(domain)domain.textContent=nodeMatch?nodeMatch[2]:'wake';
   document.documentElement.style.setProperty('--wake-masthead-height',`${masthead.getBoundingClientRect().height}px`);
  }
- function listItem(list,node,text,detail){const item=el('li');if(node)item.append(link(node,node.id),' · ');item.append(document.createTextNode(text));if(detail)item.append(el('small',detail));list.append(item);}
+ function listItem(list,node,text,detail){const item=el('li');if(node)item.dataset.node=node.id;if(node)item.append(link(node,node.id),' · ');item.append(document.createTextNode(text));if(detail)item.append(el('small',detail));list.append(item);}
  function render(data){
   const nodes=data.nodes.filter(validNode).slice(0,100);buildPicker(nodes,data);if(!dashboard)return;
   get('installation-name').textContent='wake';
@@ -125,15 +125,34 @@
   if(!history.length)listItem(receipts,null,'No terminal outcomes in this snapshot.');
   get('installation-provenance').textContent=`Derived installation view · ${data.installation_id||'identity unavailable'} · each row names its source snapshot. Totals add node work; they do not count independent scientific confirmations.`;
  }
- let timer;
+ let timer,refreshTimer,loading=false,statusConnected=false,lastStatusShape='',lastExportHead='';
+ const connectStatus=()=>{
+  if(statusConnected||!window.WakeStatusChannel)return;statusConnected=true;
+  window.WakeStatusChannel.subscribe(packet=>{
+   if(!manifest||manifest.live!==true)return;
+   if(!packet){lastStatusShape='';render({...manifest,live:false,disconnected:true});return;}
+   if(!Array.isArray(packet.members))return;
+   clearTimeout(timer);
+   const fresh=new Map(packet.members.map(member=>[member.id,member]));
+   const data={...manifest,disconnected:false,nodes:manifest.nodes.map(node=>({...node,runtime:fresh.get(node.id)?.runtime||{state:'unavailable'}}))};
+   const shape=data.nodes.map(node=>`${node.id}:${node.runtime.state}:${node.runtime.activity?.stage||''}`).join('|');
+   manifest=data;window.WakeInstallationSnapshot=data;
+   if(shape!==lastStatusShape){lastStatusShape=shape;render(data);}else{buildPicker(data.nodes,data);if(dashboard)for(const node of data.nodes){const note=get('installation-live').querySelector(`li[data-node="${node.id}"] small`),observed=node.runtime.observed_at;if(note)note.textContent=stale(observed)?`Observation ${age(observed)}; no live activity inferred.`:`Sampled ${stamp(observed)} · ${age(observed)}. This is an observation, not a receipt.`;}}
+   if(lastExportHead&&packet.head&&packet.head!==lastExportHead&&!refreshTimer){const refresh=()=>{if(loading){refreshTimer=setTimeout(refresh,3000);return;}refreshTimer=null;load();};refreshTimer=setTimeout(refresh,3000);}if(packet.head)lastExportHead=packet.head;
+  });
+ };
  async function load(){
+  if(loading)return;loading=true;
   clearTimeout(timer);
   try{const response=await fetch(new URL('installation.json',asset),{cache:'no-store',credentials:'same-origin'});if(!response.ok)throw Error(`HTTP ${response.status}`);const data=await response.json();if(data.schema!==1||!Array.isArray(data.nodes))throw Error('Unsupported installation snapshot');if(window.WAKE_DEPLOYMENT?.snapshot_only===true)data.live=false;manifest=data;window.WakeInstallationSnapshot=data;window.dispatchEvent(new CustomEvent('wake-installation-snapshot',{detail:data}));render(data);if(dashboard)get('installation-notice').hidden=true;}
   catch(error){
    if(manifest)render({...manifest,live:false,disconnected:true});
    if(dashboard){const notice=get('installation-notice');notice.hidden=false;notice.textContent=manifest?'Connection unavailable. Showing the last received snapshot; current activity is unknown.':'Installation snapshot unavailable. No node activity or counts inferred.';if(manifest)get('installation-freshness').textContent=`Disconnected · last snapshot ${stamp(manifest.generated)} · ${age(manifest.generated)}`;}
   }
-  if(window.WAKE_DEPLOYMENT?.snapshot_only!==true&&(!manifest||manifest.live===true))timer=setTimeout(load,5000);
+  loading=false;
+  const shared=window.WakeStatusSnapshot?.members;
+  if(window.WAKE_DEPLOYMENT?.snapshot_only!==true&&(!manifest||manifest.live===true)&&!Array.isArray(shared))timer=setTimeout(load,5000);
  }
+ window.addEventListener('wake-status-ready',connectStatus);connectStatus();
  load();
 })();

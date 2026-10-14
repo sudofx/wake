@@ -21,8 +21,22 @@
   let nodeById=new Map(), selectedWake='', wakeTab='summary', followLatest=true, focusedKinds=[];
   // Expensive view motion is opt-in. Idle Console should stay effectively idle.
   let motion=false;
+  // Keep only the latest render until a chart's section is visible and open.
+  const sections=new Map();
+  function renderSection(id,draw){
+    let entry=sections.get(id);
+    if(!entry){
+      const target=$(id),panel=target.closest('.panel');
+      entry={near:false,draw:null};sections.set(id,entry);
+      entry.flush=()=>{if(entry.near&&!document.hidden&&!panel?.classList.contains('module-collapsed')&&entry.draw){const pending=entry.draw;entry.draw=null;pending();requestAnimationFrame(()=>{const charts=[...target.querySelectorAll('.timeline-scroll[data-latest-edge="true"]')];if(id==='activity-chart')charts.push(target);for(const chart of charts)if(!chart.dataset.latestInitialized){chart.scrollLeft=chart.scrollWidth-chart.clientWidth;chart.dataset.latestInitialized='true';}});}};
+      new IntersectionObserver(items=>{entry.near=items[0]?.isIntersecting===true;entry.flush();},{rootMargin:'150px'}).observe(target);
+      if(panel)new MutationObserver(entry.flush).observe(panel,{attributes:true,attributeFilter:['class']});
+      document.addEventListener('visibilitychange',entry.flush);
+    }
+    entry.draw=draw;entry.flush();
+  }
   const tools=window.WakeConsoleTools();
-  const cube=window.WakeResearchCube($('matrix-cube'));
+  const cube=window.WakeLazyCanvas?window.WakeLazyCanvas($('matrix-cube'),window.WakeResearchCube):window.WakeResearchCube($('matrix-cube'));
   function renderRuntimeActivity(){
     const runtime=window.WakeRuntimeActivity;
     const key=$('cube-live-key');if(key)key.hidden=!runtime;
@@ -44,7 +58,7 @@
     if(data&&publication&&publication!==runtimePublication){runtimePublication=publication;refresh();}
   });
 
-  const contextMap=window.WakeContextMap($('context-map-canvas'));
+  const contextMap=window.WakeLazyCanvas?window.WakeLazyCanvas($('context-map-canvas'),window.WakeContextMap):window.WakeContextMap($('context-map-canvas'));
   let frontierState='active';
   let matrixCell='', previousMatrixCell='', matrixSelectionMade=false;
   const SELECTION_KEY='wake-console-linked-selection-v1';
@@ -104,7 +118,7 @@
     if(loading)return;loading=true;
     try {
       let next,commit=''; fallback=false;
-      next=await json('research-data.json');
+      next=window.WakeViewData?await window.WakeViewData.research(true):await json('research-data.json');
       validate(next);
       if(data && data.head===next.head && data.version===next.version){data.generated=next.generated;data.preview_transport_error=next.preview_transport_error;freshness();notice(next.preview_transport_error?'Public snapshot refresh failed. The last dated snapshot remains visible.':fallback?'Live data is unavailable. Showing the published snapshot; its date is shown above.':'');return;}
       const old=nodeById.get(selected);
@@ -133,7 +147,7 @@
     renderRuntimeActivity();
     window.dispatchEvent(new CustomEvent('wake-process-data',{detail:data}));
     if(pendingSelection){const state=pendingSelection;pendingSelection=null;receiveSelection(state);}
-    $('provenance').innerHTML=`<p>Snapshot: ${esc(stamp(data.generated,true))} PT · ${unified?'accepted node cycles':'accepted state'} ${count(data.version)}</p><p>Authority: ${esc(data.source.authority || 'Verified export')} / ${esc(data.source.database || 'record')}</p><p>${unified?'Snapshot fingerprint':'Record head'}: <code>${esc(data.head)}</code></p>${loadedCommit?`<p>Projection commit: <code>${esc(loadedCommit)}</code></p>`:''}<p><a href="research-data.json">Published JSON snapshot</a> · <a href="events.jsonl">${unified?'Combined event view':'Record export'}</a></p>`;
+    $('provenance').innerHTML=`<p>Snapshot: ${esc(stamp(data.generated,true))} PT · ${unified?'accepted node cycles':'accepted state'} ${count(data.version)}</p><p>Authority: ${esc(data.source.authority || 'Verified export')} / ${esc(data.source.database || 'record')}</p><p>${unified?'Snapshot fingerprint':'Record head'}: <code>${esc(data.head)}</code></p>${loadedCommit?`<p>Projection commit: <code>${esc(loadedCommit)}</code></p>`:''}<p><a href="research-data.json">Published JSON snapshot</a> · <a href="events.html">Complete event history</a></p>`;
   }
   function renderFrontier() {
     const projects=data.records.projects.filter(visibleRecord);
@@ -158,6 +172,7 @@
   }
   function renderMap() {
     const scoped=scopedNodes();
+    renderSection('map-stage',()=>{
     $('research-map').hidden=false;
     document.querySelectorAll('[data-kind]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.kind.split(',').some(k=>focusedKinds.includes(k)))));
     const kinds=['project','research','notebook','evidence','belief','commitment'];
@@ -184,10 +199,13 @@
     if(!shown.length)svg+=`<text x="${width/2}" y="300" text-anchor="middle" fill="#9fb7bf">No matching records</text>`;
     $('research-map').innerHTML=svg;
     $('map-count').textContent=`${count(shown.length)} of ${count(scoped.length)} scoped records · ${count(edges.length)} visible relationships${data.graph.truncated?' · overview capped':''}`;
+    });
+    renderSection('context-map-canvas',()=>{
     const scopeIds=new Set(scoped.map(n=>n.id)),scopeEdges=data.graph.edges.filter(e=>scopeIds.has(e.source)&&scopeIds.has(e.target));
     contextMap.update({nodes:scoped,edges:scopeEdges},selected);
     const attributed=new Set(scoped.map(n=>n.detail.domain||data.records.projects.find(p=>p.id===n.detail.project)?.domain).filter(Boolean));
     $('context-map-stats').innerHTML=[['Records',scoped.length],['Links',scopeEdges.length],['Attributed topics',attributed.size],['Active projects',scoped.filter(n=>n.kind==='project'&&n.detail.status==='active').length]].map(([k,v])=>`<p>${esc(k)}<strong>${count(v)}</strong></p>`).join('');
+    });
     $('scope-note').textContent=`Current state ${count(data.version)} · ${data.graph.nodes.length} overview records`;
   }
   function renderDetail() {
@@ -203,11 +221,12 @@
   function meter(name,value,total,cls='') {return `<div class="meter-row"><button type="button" ${cls?`data-outcome="${esc(cls)}"`:`data-evidence-class="${esc(name)}"`}>${esc(name)}</button><strong>${count(value)}</strong><div class="meter-track"><i class="${cls}" style="width:${total?Math.min(100,100*value/total):0}%"></i></div></div>`;}
   function renderMetrics() {
     const m=data.metrics,maximum=Math.max(1,...m.hourly.map(b=>['accepted','rejected','deferred','failed'].reduce((n,k)=>n+(b[k]||0),0)));
+    renderSection('activity-chart',()=>{
     $('activity-chart').innerHTML=m.hourly.map(b=>{
       const total=['accepted','rejected','deferred','failed'].reduce((n,k)=>n+(b[k]||0),0),note=`${stamp(b.time,true)} PT: ${b.accepted||0} accepted, ${b.rejected||0} rejected, ${b.deferred||0} deferred, ${b.failed||0} failed`;
       return `<button type="button" class="hour-bin" data-hour="${esc(b.time)}" aria-label="${esc(note)}" title="${esc(note)}"><div class="hour-stack" style="height:${100*total/maximum}%">${['accepted','rejected','deferred','failed'].map(k=>`<i class="${k}" style="height:${total?100*(b[k]||0)/total:0}%"></i>`).join('')}</div></button>`;
     }).join('');
-    requestAnimationFrame(()=>{const el=$('activity-chart');if(el&&!el.dataset.latestInitialized){el.scrollLeft=el.scrollWidth-el.clientWidth;el.dataset.latestInitialized='true';}});
+    });
     $('activity-caption').textContent=m.hourly.length?`Completed invocations per hour · ${stamp(m.hourly[0].time,true)}–${stamp(m.hourly.at(-1).time,true)} PT · peak ${maximum}/hour. All topics; zero-hour gaps retained.`:'No completed invocation timestamps recorded.';
     $('activity').innerHTML=data.activity.slice(0,6).map(a=>`<div class="activity-row"><time datetime="${esc(a.time)}">${esc(stamp(a.time))}</time><span class="${esc(a.status)}">${esc(a.status)}</span><button type="button" data-wake="${esc(a.id)}" title="${esc(a.reason || a.model)}">${esc(a.reason || a.model || a.id)}</button></div>`).join('');
     const p=data.progress;
@@ -215,9 +234,9 @@
     const e=data.evidence,classes=[['source','Source-ready records'],['discovery','Discovery leads'],['metadata','Metadata records'],['background','Background definitions / notices'],['receipt','Runtime receipts'],['unreadable','Unreadable material'],['unclassified','Unclassified records']];
     const quality=data.evidence_quality;
     const qualityReadout=quality?`<p class="caption">Collected sources: ${count(quality.distinct_works)} distinct works across ${count(quality.distinct_hosts)} hosts. ${count(quality.mirror_or_repeat_observations)} repeated or mirrored observations; ${count(quality.reused_works.length)} works cited in multiple notebooks. Largest host share: ${Math.round(quality.largest_host_share*100)}%. These counts do not establish truth or source independence.</p>`:'';
-    $('evidence-summary').innerHTML=qualityReadout+evidenceRing(e)+`<div class="source-total">${e.classification_complete?'':'≥ '}${count(e.source_works)}<small>${e.classification_complete?'Distinct':'Known distinct'} source-ready works · ${count(e.total)} evidence records overall</small></div>`+classes.map(([key,name])=>meter(name,e.by_class[key]||0,e.total)).join('')+(!e.classification_complete?'<p class="caption">Classification is incomplete in this snapshot. Unclassified records are not counted as source-ready.</p>':'');
+    renderSection('evidence-summary',()=>{$('evidence-summary').innerHTML=qualityReadout+evidenceRing(e)+`<div class="source-total">${e.classification_complete?'':'≥ '}${count(e.source_works)}<small>${e.classification_complete?'Distinct':'Known distinct'} source-ready works · ${count(e.total)} evidence records overall</small></div>`+classes.map(([key,name])=>meter(name,e.by_class[key]||0,e.total)).join('')+(!e.classification_complete?'<p class="caption">Classification is incomplete in this snapshot. Unclassified records are not counted as source-ready.</p>':'');});
     $('evidence-recent').innerHTML=e.recent.map(x=>{const u=safeUrl(x.source);return `<div class="source-row">${badge(x.class)}<p>${u?`<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(new URL(u).hostname)} ↗</a>`:esc(x.source)}</p><small>${esc(x.id)} · ${esc(stamp(x.time,true))} PT</small></div>`;}).join('')+`<p class="caption">Top source hosts · counts are records, not independent works.</p>`+e.hosts.map(x=>`<div class="rejection-row"><span>${esc(x.host)}</span><b>${count(x.count)}</b></div>`).join('');
-    $('outcomes').innerHTML=progressReadout+ring(m.outcomes,m.completed,'Completed invocations')+['accepted','rejected','deferred','failed'].map(k=>meter(k[0].toUpperCase()+k.slice(1),m.outcomes[k]||0,m.completed,k)).join('')+`<p class="caption">${count(m.completed)} completed invocations across the record. ${count(Object.values(m.research_actions).reduce((sum,n)=>sum+n,0))} accepted non-editorial actions; ${count(m.editorial_actions)} editorial actions shown separately.</p><p class="caption">${count(m.provider_requests)} recorded provider requests${m.provider_requests_complete?'':' · historical request accounting incomplete'}.</p>`;
+    renderSection('outcomes',()=>{$('outcomes').innerHTML=progressReadout+ring(m.outcomes,m.completed,'Completed invocations')+['accepted','rejected','deferred','failed'].map(k=>meter(k[0].toUpperCase()+k.slice(1),m.outcomes[k]||0,m.completed,k)).join('')+`<p class="caption">${count(m.completed)} completed invocations across the record. ${count(Object.values(m.research_actions).reduce((sum,n)=>sum+n,0))} accepted non-editorial actions; ${count(m.editorial_actions)} editorial actions shown separately.</p><p class="caption">${count(m.provider_requests)} recorded provider requests${m.provider_requests_complete?'':' · historical request accounting incomplete'}.</p>`;});
     $('rejections').innerHTML=m.rejection_reasons.map(x=>`<div class="rejection-row"><span>${esc(x.reason)}</span><b>${count(x.count)}</b></div>`).join('')||'<p class="empty">No recorded rejections.</p>';
   }
   function renderSynthesis() {
@@ -464,19 +483,18 @@
     const averageCompression=compressionSeries.at(-1)?.average_reduction_pct;
     const latestCompression=measuredRatio(latest)?(1-latest.ratio)*100:null;
     const sqliteBytes=data.metrics?.storage?.sqlite_bytes;
-    $('compression').innerHTML=lineChart(compressionSeries,['compression_pct','average_reduction_pct'],'request reduction %')+(latest?`<div class="telemetry-values"><span>Average reduction <strong>${averageCompression===undefined?'Not reported':averageCompression.toFixed(1)+'%'}</strong></span><button type="button" data-wake="${esc(latest.id)}">Latest reduction <strong>${latestCompression===null?'Not reported':latestCompression.toFixed(1)+'%'}</strong></button><button type="button" data-wake="${esc(latest.id)}">Delivered request <strong>${count(latest.delivered_request)} chars</strong></button><button type="button" data-wake="${esc(latest.id)}">Rich request <strong>${count(latest.rich_request)} chars</strong></button><button type="button" data-wake="${esc(latest.id)}">Retained ratio <strong>${!measuredRatio(latest)?'Not reported':latest.ratio.toFixed(4)}</strong></button><span>SQLite database <strong>${bytes(sqliteBytes)}</strong></span></div><p class="caption">Average is the mean reduction per measured request across ${count(compressionSeries.length)} measurements in the displayed history; the average line accumulates from its start. Missing ratios are omitted. Compression reduction is the recorded size reduction from rich request to delivered request. SQLite database is the measured authoritative database file size. Size reduction alone does not establish that meaning was preserved.</p>`:`<div class="telemetry-values"><span>SQLite database <strong>${bytes(sqliteBytes)}</strong></span></div><p class="caption">No recorded compression denominator. No ratio is inferred.</p>`);
+    renderSection('compression',()=>{$('compression').innerHTML=lineChart(compressionSeries,['compression_pct','average_reduction_pct'],'request reduction %')+(latest?`<div class="telemetry-values"><span>Average reduction <strong>${averageCompression===undefined?'Not reported':averageCompression.toFixed(1)+'%'}</strong></span><button type="button" data-wake="${esc(latest.id)}">Latest reduction <strong>${latestCompression===null?'Not reported':latestCompression.toFixed(1)+'%'}</strong></button><button type="button" data-wake="${esc(latest.id)}">Delivered request <strong>${count(latest.delivered_request)} chars</strong></button><button type="button" data-wake="${esc(latest.id)}">Rich request <strong>${count(latest.rich_request)} chars</strong></button><button type="button" data-wake="${esc(latest.id)}">Retained ratio <strong>${!measuredRatio(latest)?'Not reported':latest.ratio.toFixed(4)}</strong></button><span>SQLite database <strong>${bytes(sqliteBytes)}</strong></span></div><p class="caption">Average is the mean reduction per measured request across ${count(compressionSeries.length)} measurements in the displayed history; the average line accumulates from its start. Missing ratios are omitted. Compression reduction is the recorded size reduction from rich request to delivered request. SQLite database is the measured authoritative database file size. Size reduction alone does not establish that meaning was preserved.</p>`:`<div class="telemetry-values"><span>SQLite database <strong>${bytes(sqliteBytes)}</strong></span></div><p class="caption">No recorded compression denominator. No ratio is inferred.</p>`);});
     const attempts=wakes.flatMap(w=>w.attempts.filter(a=>typeof a.elapsed_ms==='number').map(a=>({id:w.id,time:w.finished||w.time,seconds:a.elapsed_ms/1000,result:a.result,usage:a.usage||{}})));
-    $('latency').innerHTML=lineChart(attempts,['seconds'],'seconds per measured provider attempt')+`<p class="caption">${count(attempts.length)} measured attempts in the latest ${count(wakes.length)} wakes. Missing duration is omitted; provider latency excludes checkpoint and governance time.</p>`;
-    $('wake-timeline').innerHTML=lineChart(data.metrics.hourly.map(b=>({...b,hour:b.time})),['accepted','rejected','deferred','failed'],'completed wakes per hour',true);
+    renderSection('latency',()=>{$('latency').innerHTML=lineChart(attempts,['seconds'],'seconds per measured provider attempt')+`<p class="caption">${count(attempts.length)} measured attempts in the latest ${count(wakes.length)} wakes. Missing duration is omitted; provider latency excludes checkpoint and governance time.</p>`;});
+    renderSection('wake-timeline',()=>{$('wake-timeline').innerHTML=lineChart(data.metrics.hourly.map(b=>({...b,hour:b.time})),['accepted','rejected','deferred','failed'],'completed wakes per hour',true);});
     const successes=attempts.filter(a=>a.result==='success').length,avg=attempts.length?attempts.reduce((s,a)=>s+a.seconds,0)/attempts.length:null,inputs=attempts.filter(a=>typeof a.usage.promptTokenCount==='number'),outputs=attempts.filter(a=>typeof a.usage.candidatesTokenCount==='number');
     $('provider-readout').innerHTML=`<span>Measured attempts <b>${count(attempts.length)}</b></span><span>Provider success <b>${attempts.length?Math.round(100*successes/attempts.length)+'%':'Not reported'}</b></span><span>Mean latency <b>${avg===null?'Not reported':avg.toFixed(1)+'s'}</b></span><span>Reported prompt / candidate tokens <b>${inputs.length?count(inputs.reduce((s,a)=>s+a.usage.promptTokenCount,0)):'—'} / ${outputs.length?count(outputs.reduce((s,a)=>s+a.usage.candidatesTokenCount,0)):'—'}</b></span><p class="caption">Bounded measured-attempt population; token totals cover ${inputs.length} prompt / ${outputs.length} candidate usage receipts. Provider success remains separate from research acceptance.</p>`;
     const groups={objectives:['objective','mission'],constraints:['bounded_context'],frontier:['projects','research','working_notebook'],results:['notebooks','beliefs','evidence','project_evidence']};
     const evolution=wakes.filter(w=>w.context.request?.context).map(w=>{const c=w.context.request.context;return {id:w.id,time:w.time,...Object.fromEntries(Object.entries(groups).map(([name,keys])=>[name,keys.reduce((s,k)=>s+(c[k]===undefined?0:JSON.stringify(c[k]).length),0)]))};});
-    $('context-evolution').innerHTML=lineChart(evolution,Object.keys(groups),'serialized characters in delivered fields')+'<p class="caption">Size of selected delivered fields, grouped by role. This shows context allocation, not importance, reasoning, or quality. Other request fields are excluded.</p>';
-    requestAnimationFrame(()=>document.querySelectorAll('.timeline-scroll[data-latest-edge="true"]').forEach(el=>{if(!el.dataset.latestInitialized){el.scrollLeft=el.scrollWidth-el.clientWidth;el.dataset.latestInitialized='true';}}));
+    renderSection('context-evolution',()=>{$('context-evolution').innerHTML=lineChart(evolution,Object.keys(groups),'serialized characters in delivered fields')+'<p class="caption">Size of selected delivered fields, grouped by role. This shows context allocation, not importance, reasoning, or quality. Other request fields are excluded.</p>';});
     const topics=data.topics.map(t=>{const types=data.metrics.by_topic[t.id]?.by_type||{},total=Object.entries(types).filter(([k])=>k!=='blog').reduce((s,[k,n])=>s+n,0);const values=data.metrics.hourly.map(bin=>wakes.filter(w=>w.topic===t.id&&w.status==='accepted'&&Date.parse(w.finished||w.time)>=Date.parse(bin.time)&&Date.parse(w.finished||w.time)<Date.parse(bin.time)+3600000).length);return {...t,total,values};}).sort((a,b)=>b.total-a.total);
     const max=Math.max(1,...topics.map(t=>t.total));
-    $('top-topics').innerHTML=topics.map((t,i)=>{const peak=Math.max(1,...t.values),path=t.values.map((v,j)=>`${j?'L':'M'}${j*100/Math.max(1,t.values.length-1)} ${28-25*v/peak}`).join(' ');return `<div class="topic-ranking"><span>${i+1}</span><button data-story-topic="${esc(t.id)}" type="button">${esc(t.label)}</button><b>${count(t.total)}</b><div class="topic-bar"><i style="width:${100*t.total/max}%"></i></div><svg viewBox="0 0 100 32" role="img" aria-label="${esc(t.label)}: ${t.values.reduce((a,b)=>a+b,0)} attributed accepted wakes in trace"><path d="${path}" fill="none" stroke="var(--orange)" stroke-width="1.5"/></svg></div>`;}).join('');
+    renderSection('top-topics',()=>{$('top-topics').innerHTML=topics.map((t,i)=>{const peak=Math.max(1,...t.values),path=t.values.map((v,j)=>`${j?'L':'M'}${j*100/Math.max(1,t.values.length-1)} ${28-25*v/peak}`).join(' ');return `<div class="topic-ranking"><span>${i+1}</span><button data-story-topic="${esc(t.id)}" type="button">${esc(t.label)}</button><b>${count(t.total)}</b><div class="topic-bar"><i style="width:${100*t.total/max}%"></i></div><svg viewBox="0 0 100 32" role="img" aria-label="${esc(t.label)}: ${t.values.reduce((a,b)=>a+b,0)} attributed accepted wakes in trace"><path d="${path}" fill="none" stroke="var(--orange)" stroke-width="1.5"/></svg></div>`;}).join('');});
     renderFrontierTable();
   }
 
@@ -499,6 +517,7 @@
   let resizeFrame;window.addEventListener('resize',()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{if(data)renderMap();});});
   controls();readUrl();bootstrap();
   window.addEventListener('wake-installation-snapshot',freshness);
+  if(window.WakeStatusChannel)window.WakeStatusChannel.subscribe(packet=>{const node=location.pathname.match(/\/nodes\/([^/]+)\//)?.[1],head=node?packet?.members?.find(member=>member.id===node)?.head:packet?.head;if(data&&head&&head!==data.head)refresh();});
   if(deployment?.snapshot_only!==true){
     setInterval(()=>{if(!document.hidden)refresh();},60000);
     document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh();});
