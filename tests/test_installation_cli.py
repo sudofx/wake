@@ -121,6 +121,8 @@ class InstallationArchiveTests(unittest.TestCase):
         (source / 'research-data.json').write_text(json.dumps({'head': 'receipt', 'traces': [
             {'request': {'secret': 'prompt-secret'}, 'response': 'response-secret',
              'attempts': [{'http_status': 429}], 'context': {'system': 'system-secret', 'characters': 4}}]}))
+        event = {'text': 'first\u2028second\u0085third', 'request': {'secret': 'private'}}
+        (source / 'events.jsonl').write_text(json.dumps(event, ensure_ascii=False) + '\n')
         (source / 'console-state.html').write_text('<html>State view</html>')
         (source / 'journal').mkdir()
         (source / 'journal/receipt.html').write_text('<html>Journal</html>')
@@ -134,6 +136,7 @@ class InstallationArchiveTests(unittest.TestCase):
         _copy_public_site(source, target)
         projected = json.loads((target / 'research-data.json').read_text())
         self.assertEqual(projected['traces'][0]['attempts'][0]['http_status'], 429)
+        self.assertEqual(json.loads((target / 'events.jsonl').read_text()), {'text': event['text']})
         self.assertNotIn('secret', json.dumps(projected))
         self.assertTrue((target / 'console-state.html').exists())
         self.assertTrue((target / 'journal/receipt.html').exists())

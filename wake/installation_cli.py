@@ -190,7 +190,7 @@ def _copy_public_site(source: Path, destination: Path):
             target.write_text(json.dumps(value, ensure_ascii=False))
         elif path.suffix == '.jsonl':
             target.write_text(''.join(json.dumps(_public_projection(json.loads(line)), ensure_ascii=False) + '\n'
-                                      for line in path.read_text().splitlines() if line.strip()))
+                                      for line in path.read_text().split('\n') if line.strip()))
         elif path.suffix == '.html':
             page = path.read_text()
             def mark_snapshot(match):
