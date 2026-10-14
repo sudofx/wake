@@ -7,24 +7,10 @@
  */
 
 (async()=>{'use strict';
-const LIVE_BASE='https://raw.githubusercontent.com/sudofx/wake/wake-live/';
 async function loadMapData(){
-  // Only an explicitly hosted export may read the public installation.
-  if(window.WAKE_DEPLOYMENT?.schema!==1 || window.WAKE_DEPLOYMENT.mode!=='hosted'){
-    const response=await fetch('map-data.json?wake='+Date.now(),{cache:'no-store'});
-    if(!response.ok)throw new Error('Local map data unavailable');
-    return response.json();
-  }
-  const live=await fetch(LIVE_BASE+'map-data.json?wake='+Date.now(),{cache:'no-store'}).catch(()=>null);
-  if(live?.ok)return live.json();
-  const stateResponse=await fetch(LIVE_BASE+'live.json?wake='+Date.now(),{cache:'no-store'}).catch(()=>null);
-  if(stateResponse?.ok){
-    const snapshot=await stateResponse.json();
-    if(Number(snapshot?.state?.version||0)===0)return {journals:[],blogs:[],nodes:[],edges:[],meta:{version:0,topic_colors:{},topic_labels:{}}};
-  }
-  const fallback=await fetch('map-data.json?wake='+Date.now(),{cache:'no-store'});
-  if(!fallback.ok)throw new Error('Live WAKE map data could not be loaded');
-  return fallback.json();
+  const response=await fetch('map-data.json?wake='+Date.now(),{cache:'no-store'});
+  if(!response.ok)throw new Error('Snapshot map data unavailable');
+  return response.json();
 }
 const data=await loadMapData(), nodes=new Map(data.nodes.map(n=>[n.id,n])), topicColors=data.meta?.topic_colors||{}, topicLabels=data.meta?.topic_labels||{};
 window.WakeOperatorSyncPublic?.({meta:data.meta});

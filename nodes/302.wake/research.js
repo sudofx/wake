@@ -15,11 +15,8 @@
   };
   const stamp = (value, full=false) => { if (!value || Number.isNaN(Date.parse(value))) return 'Unknown'; return new Intl.DateTimeFormat('en-US', {timeZone:'America/Los_Angeles', ...(full ? {month:'short',day:'numeric'} : {}), hour:'numeric',minute:'2-digit'}).format(new Date(value)); };
   const badge = status => `<span class="badge ${esc(status)}">${esc(String(status || 'recorded').replaceAll('_',' '))}</span>`;
-  // Hosted transport requires an explicit export identity, never a hostname guess.
-  // A raw template or missing marker stays same-origin and reports the defect.
+  // Every view reads only its own container export or uploaded snapshot.
   const deployment = window.WAKE_DEPLOYMENT;
-  const local = deployment?.snapshot_only===true || deployment?.schema!==1 || deployment.mode!=='hosted';
-  const raw = 'https://raw.githubusercontent.com/sudofx/wake/';
   let data, loading=false, fallback=false, loadedCommit='', selected='', topic='all', query='', mode='graph';
   let nodeById=new Map(), selectedWake='', wakeTab='summary', followLatest=true, focusedKinds=[];
   // Expensive view motion is opt-in. Idle Console should stay effectively idle.
@@ -107,11 +104,7 @@
     if(loading)return;loading=true;
     try {
       let next,commit=''; fallback=false;
-      if(local) next=await json('research-data.json');
-      else {
-        try { next=await json(`${raw}wake-live/research-data.json`); }
-        catch { fallback=true;next=await json('research-data.json'); }
-      }
+      next=await json('research-data.json');
       validate(next);
       if(data && data.head===next.head && data.version===next.version){data.generated=next.generated;data.preview_transport_error=next.preview_transport_error;freshness();notice(next.preview_transport_error?'Public snapshot refresh failed. The last dated snapshot remains visible.':fallback?'Live data is unavailable. Showing the published snapshot; its date is shown above.':'');return;}
       const old=nodeById.get(selected);
@@ -126,16 +119,6 @@
     } finally {loading=false;}
   }
   async function bootstrap() {
-    // Paint the same-origin published snapshot first so Console never waits on the remote live branch to become usable.
-    if(!local&&!data){
-      try {
-        const next=validate(await json('research-data.json'));
-        data=next;fallback=true;loadedCommit='';nodeById=new Map(data.graph.nodes.map(n=>[n.id,n]));
-        if(topic!=='all'&&!data.topics.some(t=>t.id===topic))topic='all';
-        notice(next.preview_transport_error?'Public snapshot refresh failed. The last dated snapshot remains visible.':'');
-        render();writeUrl(false);freshness();
-      } catch {}
-    }
     await refresh();
     if(!data)setTimeout(()=>refresh(),1500);
   }
@@ -150,7 +133,7 @@
     renderRuntimeActivity();
     window.dispatchEvent(new CustomEvent('wake-process-data',{detail:data}));
     if(pendingSelection){const state=pendingSelection;pendingSelection=null;receiveSelection(state);}
-    $('provenance').innerHTML=`<p>Snapshot: ${esc(stamp(data.generated,true))} PT · ${unified?'accepted node cycles':'accepted state'} ${count(data.version)}</p><p>Authority: ${esc(data.source.authority || 'Verified export')} / ${esc(data.source.database || 'record')}</p><p>${unified?'Snapshot fingerprint':'Record head'}: <code>${esc(data.head)}</code></p>${loadedCommit?`<p>Projection commit: <code>${esc(loadedCommit)}</code></p>`:''}<p><a href="research-data.json">Published JSON snapshot</a> · ${local?`<a href="events.jsonl">${unified?'Combined event view':'Local record export'}</a>`:'<a href="https://github.com/sudofx/wake/tree/wake-state">Authority checkpoint ↗</a>'}</p>`;
+    $('provenance').innerHTML=`<p>Snapshot: ${esc(stamp(data.generated,true))} PT · ${unified?'accepted node cycles':'accepted state'} ${count(data.version)}</p><p>Authority: ${esc(data.source.authority || 'Verified export')} / ${esc(data.source.database || 'record')}</p><p>${unified?'Snapshot fingerprint':'Record head'}: <code>${esc(data.head)}</code></p>${loadedCommit?`<p>Projection commit: <code>${esc(loadedCommit)}</code></p>`:''}<p><a href="research-data.json">Published JSON snapshot</a> · <a href="events.jsonl">${unified?'Combined event view':'Record export'}</a></p>`;
   }
   function renderFrontier() {
     const projects=data.records.projects.filter(visibleRecord);
@@ -258,7 +241,7 @@
 
   function renderCube() {
     const m=data.matrix;
-    if(!m){$('matrix-state').textContent='Matrix progress is not reported in this snapshot.';const enable=$('matrix-enable');if(enable)enable.hidden=true;return;}
+    if(!m){$('matrix-state').textContent='Matrix progress is not reported in this snapshot.';return;}
     matrixCell=cube.update(m) || m.cells[0]?.id;
     renderRuntimeActivity();
     $('matrix-state').textContent=m.reported?(m.enabled?(m.aggregation?'Continuity campaigns · latest result per coordinate':'Continuity campaign recorded'):'Campaign not enabled'):'Campaign progress not reported';
@@ -269,8 +252,6 @@
       checks.textContent=m.reported?`${m.passed==null?'Complete-pass count unavailable':`${count(m.passed)} / ${count(m.graded_count ?? m.completed)} graded answers passed every check`}. ${typeof m.mean_score==='number'?`Mean check score for valid answers ${(100*m.mean_score).toFixed(1)}%; this is not a complete-pass rate.`:'Mean check score unavailable.'} ${count(m.invalid_response_count||0)} missing or invalid answers shown separately. Lens coverage: ${Object.entries(m.lens_coverage||{}).map(([k,n])=>`${k} ${count(n)}`).join(' · ')}.${failures.length?` Failed checks: ${failures.map(([name,n])=>`${name.replaceAll('_',' ')} ${count(n)}`).join(' · ')}.`:''}`:'Check outcomes are not reported.';
     }
     if(checks && m.contribution_counts)checks.textContent += ` ${count(m.contribution_counts.recorded)} attributed node results across ${count(m.contribution_counts.nodes)} nodes. Each cell shows its latest recorded result; repeated trials stay separate.`;
-    const enable=$('matrix-enable');
-    if(enable)enable.hidden=local || !(m.reported && m.enabled===false);
     $('cube-selectors').innerHTML=m.axes.map((a,i)=>`<label>${esc(matrixAxisName(a))} <small>(${esc(a.label)})</small><select data-cube-axis="${i}" aria-label="${esc(matrixAxisName(a))} (${esc(a.label)})">${a.values.map((v,j)=>`<option value="${j}">${esc(v.label)}</option>`).join('')}</select></label>`).join('');
     renderCell();
   }
