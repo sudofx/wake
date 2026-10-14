@@ -1,0 +1,1 @@
+{"parent": "root:topics", "path": ["root:wake", "root:topics"], "self": null, "children": [{"id": "topic:predictive_dissipation", "kind": "topic", "title": "Does Better Prediction Reduce the Cost of Information Processing?", "domain": "predictive_dissipation", "detail": {"domain": "predictive_dissipation"}}], "child_ids": ["topic:predictive_dissipation"], "total": 1}

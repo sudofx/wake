@@ -1,0 +1,1 @@
+{"parent": "root:topics", "path": ["root:wake", "root:topics"], "self": null, "children": [{"id": "topic:causal_memory", "kind": "topic", "title": "When Does Stored Information Actually Change a System's Future?", "domain": "causal_memory", "detail": {"domain": "causal_memory"}}], "child_ids": ["topic:causal_memory"], "total": 1}
