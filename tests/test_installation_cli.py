@@ -147,6 +147,22 @@ class InstallationArchiveTests(unittest.TestCase):
         self.assertFalse((target / 'worker.log').exists())
         self.assertFalse((target / 'group' / 'bob-input.json').exists())
 
+    def test_public_overview_bounds_history_without_truncating_complete_export(self):
+        source = self.root / 'history-source'
+        source.mkdir()
+        events = [{'seq': n, 'text': 'exact\u2028text'} for n in range(405)]
+        (source / 'wake-data.json').write_text(json.dumps({'state': {'version': 19},
+            'metrics': {'storage': {'event_count': 405}}, 'events': events}))
+        (source / 'events.jsonl').write_text(''.join(json.dumps(e, ensure_ascii=False) + '\n' for e in events))
+        target = self.root / 'history-artifact'
+        _copy_public_site(source, target)
+        packet = json.loads((target / 'wake-data.json').read_text())
+        self.assertEqual(packet['events'], events[-400:])
+        self.assertEqual(packet['state']['version'], 19)
+        self.assertEqual(packet['metrics']['storage']['event_count'], 405)
+        self.assertEqual(packet['event_history'], {'displayed': 400, 'total': 405, 'complete_url': 'events.jsonl'})
+        self.assertEqual([json.loads(line) for line in (target / 'events.jsonl').read_text().split('\n') if line], events)
+
     def test_real_application_records_export_import_and_reopen(self):
         from wake.engine import Engine, DEFAULTS
         from wake.record_store import RecordStore

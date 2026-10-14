@@ -185,6 +185,14 @@ def _copy_public_site(source: Path, destination: Path):
         target.parent.mkdir(parents=True, exist_ok=True)
         if path.suffix == '.json':
             value = _public_projection(json.loads(path.read_text()))
+            if path.name == 'wake-data.json' and isinstance(value.get('events'), list):
+                # The overview duplicates history already published in events.jsonl.
+                # Keep a bounded display tail while the complete export stays intact.
+                from .live import MAX_EVENTS
+                total = len(value['events'])
+                value['events'] = value['events'][-MAX_EVENTS:]
+                value['event_history'] = {'displayed': len(value['events']), 'total': total,
+                                          'complete_url': 'events.jsonl'}
             if path.name == 'deployment.json':
                 value['snapshot_only'] = True
             target.write_text(json.dumps(value, ensure_ascii=False))

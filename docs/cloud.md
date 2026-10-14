@@ -33,7 +33,8 @@ Then publish:
 ./scripts/wake_publish
 ```
 
-The command drains local research, builds the filtered artifact in the container,
+The command drains local research and builds the filtered artifact in a fresh
+container process using the current mounted source,
 and uploads it with the host's existing Git credentials. Research remains stopped;
 inspect `wake-research status` inside the container before explicitly starting again.
 Inside an installation with working Git credentials, `wake-research publish`
@@ -46,7 +47,9 @@ artifact; do not use a source or record branch as the destination.
 
 The unified website and all twelve node views retain the same interface. The node
 selector works from every page. Each view shows the upload date and reads only its
-own uploaded JSON, including maps and their shards. Provider bodies, Passenger,
+own uploaded JSON, including maps and their shards. The homepage carries the
+latest 400 events; the full public event export remains in `events.jsonl` and the
+History tools. Node records, accepted counts, and full-history metrics are unchanged. Provider bodies, Passenger,
 databases, logs, and control sockets are excluded. Manual import archives are
 separate and never uploaded as the public website.
 

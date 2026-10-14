@@ -41,6 +41,11 @@
   if (window.WakePetReady) await window.WakePetReady;
   const s = data.state;
   const $ = id => document.getElementById(id);
+  const historyScope=$('history-scope'),historyPacket=data.event_history;
+  if(historyScope && historyPacket?.total>historyPacket.displayed){
+    historyScope.hidden=false;
+    historyScope.textContent=`Showing the latest ${historyPacket.displayed.toLocaleString()} of ${historyPacket.total.toLocaleString()} exported events. Open Complete history below for the full export.`;
+  }
 
   const help = key => window.WakeHelp.button(key);
   const WAKE_TEXT='WAKE\u2733\uFE0E';

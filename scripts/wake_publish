@@ -9,7 +9,10 @@ if [[ -f .env ]]; then set -a; source .env; set +a; fi
 public_dir="$(mktemp -d "${TMPDIR:-/tmp}/wake-public.XXXXXX")"
 container_dir="/tmp/wake-public-$(date +%s)-$$"
 trap 'rm -rf "$public_dir"' EXIT
-docker exec wake wake-research publish --output "$container_dir"
+# Drain through the controller, then render with a fresh process so publishing
+# uses current mounted source even while the controller keeps imported code.
+docker exec wake wake-research stop >/dev/null
+docker exec wake python -c 'from pathlib import Path; import sys; from wake.installation_cli import build_public_artifact; build_public_artifact(Path("/data"), Path(sys.argv[1]))' "$container_dir"
 docker cp "wake:$container_dir/." "$public_dir/site"
 # Reuse GitHub CLI authentication for HTTPS without storing a token or changing
 # the user's global Git configuration. Other credentials remain native Git's job.
