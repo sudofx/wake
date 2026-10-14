@@ -39,7 +39,7 @@
     
   </div>
 </header>
-<main><p class="console-component-stamp">Published snapshot · state 14 · 2026-10-14T17:22:30.920919+00:00<br>Head 59fd33d6e058f5a5fbdcb3e3d79a2096973c4cf85e140fd2e789d800bdf0cbfa</p><div class="page-heading"><p class="eyebrow">THE CURRENT DURABLE STATE</p><h1>Current state.</h1><p>Loaded from state.json when this page opens.</p></div><div id="flat-content"></div></main>
+<main><p class="console-component-stamp">Published snapshot · state 14 · 2026-10-14T18:16:45.924263+00:00<br>Head 59fd33d6e058f5a5fbdcb3e3d79a2096973c4cf85e140fd2e789d800bdf0cbfa</p><div class="page-heading"><p class="eyebrow">THE CURRENT DURABLE STATE</p><h1>Current state.</h1><p>Loaded from state.json when this page opens.</p></div><div id="flat-content"></div></main>
 <script>/*
  * WAKE✳︎ flat-view controller.
  * Standalone pages are stable shells; current facts are loaded from flat exports
@@ -106,19 +106,20 @@
   }
   const nav = document.querySelector('.compact-nav');
   if (!nav) return;
-  const groups = [...(masthead||nav).querySelectorAll('.nav-group')];
+  const groups = () => [...(masthead||nav).querySelectorAll('.nav-group')];
   const menuScope=masthead||nav;
   function close(except) {
-    groups.forEach(group => { if (group !== except) group.open = false; });
+    groups().forEach(group => { if (group !== except) group.open = false; });
   }
-  groups.forEach(group => {
-    group.addEventListener('toggle', () => { if (group.open) close(group); });
-  });
+  // Node navigation is added after the installation manifest arrives.
+  menuScope.addEventListener('toggle', event => {
+    const group=event.target;if(group.matches('.nav-group')&&group.open)close(group);
+  }, true);
   menuScope.addEventListener('click', event => {
     if (event.target.closest('a')) close();
   });
   menuScope.addEventListener('keydown', event => {
-    const open = groups.find(group => group.open);
+    const open = groups().find(group => group.open);
     if (event.key === 'Escape' && open) {
       event.preventDefault();
       event.stopPropagation();

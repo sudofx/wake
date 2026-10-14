@@ -55,11 +55,18 @@
  function buildPicker(nodes){
   document.querySelectorAll('#installation-selector,.console-overview .installation-node-picker').forEach(item=>item.remove());
   const masthead=document.querySelector('body>.masthead'),host=masthead?.querySelector('.header-tools')||masthead?.querySelector('.brand-lockup');if(!host)return;
-  if(!picker){const label=el('label',undefined,'installation-node-picker');label.append(el('span','Choose installation or node','installation-picker-label'),el('span',undefined,'installation-picker-icon'));picker=el('select');picker.setAttribute('aria-label','Choose installation or node');label.append(picker);host.insertBefore(label,host.querySelector('.mobile-nav-menu'));picker.addEventListener('change',()=>{location.href=viewURL(picker.value||null).href;});}
+  if(!picker){
+   const menu=el('details',undefined,'nav-group installation-node-picker');
+   const summary=el('summary');summary.setAttribute('aria-label','Choose installation or node');
+   summary.append(el('span','Choose installation or node','installation-picker-label'),el('span',undefined,'installation-picker-icon'));
+   picker=el('div',undefined,'nav-dropdown installation-node-menu');menu.append(summary,picker);
+   host.insertBefore(menu,host.querySelector('.mobile-nav-menu'));
+   picker.addEventListener('click',event=>{const choice=event.target.closest('a[data-node]');if(choice)choice.href=viewURL(choice.dataset.node||null).href;});
+  }
   picker.replaceChildren();
-  const whole=el('option','wake');whole.value='';picker.append(whole);
-  nodes.forEach(node=>{const option=el('option',`${node.role==='child'?'↳ ':''}${node.id}${node.available===false?' · unavailable':''}`);option.value=node.id;option.selected=nodeMatch?.[2]===node.id;picker.append(option);});
-  if(!nodeMatch)whole.selected=true;
+  const choice=(id,text)=>{const a=el('a',text);a.dataset.node=id;a.href=viewURL(id||null).href;if((nodeMatch?.[2]||'')===id)a.setAttribute('aria-current','page');return a;};
+  picker.append(choice('','wake'));
+  nodes.forEach(node=>picker.append(choice(node.id,`${node.role==='child'?'↳ ':''}${node.id}${node.available===false?' · unavailable':''}`)));
   pickerIcon(nodeMatch?nodes.find(node=>node.id===nodeMatch[2]):null);
   const label=get('instance-name');if(label)label.textContent=nodeMatch?nodeMatch[2]:'wake';
   const domain=masthead.querySelector('.node-domain');if(domain)domain.textContent=nodeMatch?nodeMatch[2]:'wake';

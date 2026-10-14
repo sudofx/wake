@@ -39,7 +39,7 @@
     
   </div>
 </header>
-<main><p class="console-component-stamp">Published snapshot · state 181 · 2026-10-14T17:22:31.348570+00:00<br>Head snapshot:d9cfb72688d7724fef1c6caa8aabeb2517cd23e220845bd40914af326be5fad7</p><div class="page-heading"><p class="eyebrow">THE APPEND-ONLY RECORD</p><h1>Exact history.</h1><p>Loaded from events.jsonl when this page opens.</p></div><div id="flat-content"></div></main>
+<main><p class="console-component-stamp">Published snapshot · state 181 · 2026-10-14T18:16:47.897229+00:00<br>Head snapshot:c346c54462a1cfb6325cf4636810b72051c5ed92c5f85c4cb34f9f5cb9952ed8</p><div class="page-heading"><p class="eyebrow">THE APPEND-ONLY RECORD</p><h1>Exact history.</h1><p>Loaded from events.jsonl when this page opens.</p></div><div id="flat-content"></div></main>
 <script>/*
  * WAKE✳︎ flat-view controller.
  * Standalone pages are stable shells; current facts are loaded from flat exports
@@ -106,19 +106,20 @@
   }
   const nav = document.querySelector('.compact-nav');
   if (!nav) return;
-  const groups = [...(masthead||nav).querySelectorAll('.nav-group')];
+  const groups = () => [...(masthead||nav).querySelectorAll('.nav-group')];
   const menuScope=masthead||nav;
   function close(except) {
-    groups.forEach(group => { if (group !== except) group.open = false; });
+    groups().forEach(group => { if (group !== except) group.open = false; });
   }
-  groups.forEach(group => {
-    group.addEventListener('toggle', () => { if (group.open) close(group); });
-  });
+  // Node navigation is added after the installation manifest arrives.
+  menuScope.addEventListener('toggle', event => {
+    const group=event.target;if(group.matches('.nav-group')&&group.open)close(group);
+  }, true);
   menuScope.addEventListener('click', event => {
     if (event.target.closest('a')) close();
   });
   menuScope.addEventListener('keydown', event => {
-    const open = groups.find(group => group.open);
+    const open = groups().find(group => group.open);
     if (event.key === 'Escape' && open) {
       event.preventDefault();
       event.stopPropagation();

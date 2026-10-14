@@ -1056,19 +1056,20 @@ window.WakePetReady=(async () => {
   }
   const nav = document.querySelector('.compact-nav');
   if (!nav) return;
-  const groups = [...(masthead||nav).querySelectorAll('.nav-group')];
+  const groups = () => [...(masthead||nav).querySelectorAll('.nav-group')];
   const menuScope=masthead||nav;
   function close(except) {
-    groups.forEach(group => { if (group !== except) group.open = false; });
+    groups().forEach(group => { if (group !== except) group.open = false; });
   }
-  groups.forEach(group => {
-    group.addEventListener('toggle', () => { if (group.open) close(group); });
-  });
+  // Node navigation is added after the installation manifest arrives.
+  menuScope.addEventListener('toggle', event => {
+    const group=event.target;if(group.matches('.nav-group')&&group.open)close(group);
+  }, true);
   menuScope.addEventListener('click', event => {
     if (event.target.closest('a')) close();
   });
   menuScope.addEventListener('keydown', event => {
-    const open = groups.find(group => group.open);
+    const open = groups().find(group => group.open);
     if (event.key === 'Escape' && open) {
       event.preventDefault();
       event.stopPropagation();

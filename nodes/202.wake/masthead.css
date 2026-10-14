@@ -59,11 +59,11 @@ body:has(>.masthead){padding-top:var(--wake-masthead-height)!important}
 .masthead .nav-dropdown a{display:block;padding:8px;color:var(--ink);font:13px/1.3 Arial,Helvetica,sans-serif}
 /* Keep navigation and tools in one row. iPad-sized and smaller views use
    the same page links inside the rightmost menu instead of a second header row. */
-.masthead .mobile-nav-menu summary,.masthead .mobile-nav-menu[open]>summary{margin:0;border:0;display:flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;border-radius:6px}
-.masthead .mobile-nav-menu summary svg{display:block;width:22px;height:22px}
-.masthead .mobile-nav-menu summary:is(:hover,:focus-visible),.masthead .mobile-nav-menu[open]>summary{background:color-mix(in srgb,var(--ink) 8%,transparent)}
-.masthead .mobile-nav-menu summary:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
-.masthead .mobile-nav-menu .nav-dropdown{left:auto;right:0;min-width:190px;box-shadow:0 12px 32px rgba(0,0,0,.22)}
+.masthead :is(.mobile-nav-menu,.installation-node-picker) summary,.masthead :is(.mobile-nav-menu,.installation-node-picker)[open]>summary{margin:0;border:0;display:flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;border-radius:6px}
+.masthead :is(.mobile-nav-menu,.installation-node-picker) summary svg{display:block;width:22px;height:22px}
+.masthead :is(.mobile-nav-menu,.installation-node-picker) summary:is(:hover,:focus-visible),.masthead :is(.mobile-nav-menu,.installation-node-picker)[open]>summary{background:color-mix(in srgb,var(--ink) 8%,transparent)}
+.masthead :is(.mobile-nav-menu,.installation-node-picker) summary:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.masthead :is(.mobile-nav-menu,.installation-node-picker) .nav-dropdown{left:auto;right:0;min-width:190px;box-shadow:0 12px 32px rgba(0,0,0,.22)}
 .masthead .actions-light{order:0}
 .masthead .theme-switch{order:1}
 .masthead .repo-link{order:2}
@@ -81,7 +81,7 @@ body:has(>.masthead){padding-top:var(--wake-masthead-height)!important}
  .masthead .wordmark{font-size:25px}
  .masthead .wordmark small{font-size:7px;letter-spacing:0}
  .masthead .header-tools{gap:1px}
- .masthead .repo-link,.masthead .console-link,.masthead .actions-light,.masthead .theme-switch,.masthead .mobile-nav-menu summary{flex-basis:32px;width:32px;height:36px}
+ .masthead .repo-link,.masthead .console-link,.masthead .actions-light,.masthead .theme-switch,.masthead :is(.mobile-nav-menu,.installation-node-picker) summary{flex-basis:32px;width:32px;height:36px}
  .masthead .data-switch-track{flex-basis:28px;width:28px;height:16px;padding:2px}
  .masthead .data-switch-track i{width:10px;height:10px;flex-basis:10px}
  .masthead .theme-switch input:checked+.data-switch-track i{transform:translateX(12px)}
@@ -89,7 +89,7 @@ body:has(>.masthead){padding-top:var(--wake-masthead-height)!important}
 @media(max-width:350px){
  .masthead .wordmark{font-size:22px}
  .masthead .header-tools{gap:0}
- .masthead .repo-link,.masthead .console-link,.masthead .actions-light,.masthead .theme-switch,.masthead .mobile-nav-menu summary{flex-basis:30px;width:30px}
+ .masthead .repo-link,.masthead .console-link,.masthead .actions-light,.masthead .theme-switch,.masthead :is(.mobile-nav-menu,.installation-node-picker) summary{flex-basis:30px;width:30px}
 }
 /* Interaction surfaces must not select text during a drag. Reading panes remain
    selectable: never apply user-select:none to body, panels, or their contents. */
@@ -116,15 +116,14 @@ body>.skip:focus,body>.skip-link:focus{top:12px}
 .help-layer,#site-tooltip,.data-inspector,.console-tools{z-index:var(--wake-popup-layer)!important}
 html:is(.console-panel-window,.console-tool-window) body{padding-top:0!important}
 
-/* A native select overlays the icon so touch and keyboard navigation retain
-   platform behavior without adding another text row to the masthead. */
-.masthead .installation-node-picker{position:relative;display:inline-flex;align-items:center;justify-content:center;flex:0 0 36px;width:36px;height:36px;margin:0;padding:0;color:var(--ink);cursor:pointer}
+/* Node and main navigation share the same disclosure and link surfaces. */
+.masthead .installation-node-picker{position:relative;flex:0 0 36px;width:36px;height:36px;margin:0;padding:0;color:var(--ink)}
 .masthead .installation-picker-label{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .masthead .installation-picker-icon{display:inline-flex;width:22px;height:22px;color:var(--ink);pointer-events:none}
 .masthead .installation-picker-icon svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
-.masthead .installation-node-picker select{position:absolute;inset:0;width:100%;height:100%;min-height:0;padding:0;margin:0;opacity:0;cursor:pointer}
-.masthead .installation-node-picker:is(:hover,:focus-within){background:color-mix(in srgb,var(--ink) 8%,transparent);border-radius:6px}
-.masthead .installation-node-picker:focus-within{outline:2px solid var(--cyan);outline-offset:2px}
+.masthead .installation-node-menu{max-height:calc(100dvh - var(--wake-masthead-height) - 16px);max-width:calc(100vw - 24px);overflow-y:auto;overscroll-behavior:contain}
+.masthead .nav-dropdown a:is(:hover,:focus-visible){background:color-mix(in srgb,var(--ink) 8%,transparent);border-radius:6px}
+.masthead .nav-dropdown a:focus-visible{outline:2px solid var(--cyan);outline-offset:-2px}
 @media(max-width:480px){.masthead .installation-node-picker{flex-basis:32px;width:32px}}
 @media(max-width:350px){.masthead .installation-node-picker{flex-basis:30px;width:30px}}
 
