@@ -17,7 +17,9 @@ const server=http.createServer((req,res)=>{const url=new URL(req.url,'http://loc
   assert.match(await page.locator('#installation-summary').innerText(),/available nodes only/);
   assert.match(await page.locator('#installation-live').innerText(),/idle/);
   assert.equal(await page.locator('#installation-receipts a').getAttribute('href'),base+'nodes/100.wake/console.html?wake=fixture-receipt');
-  for(const viewport of [{width:1440,height:1100},{width:390,height:844}]){await page.setViewportSize(viewport);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));assert.equal(await page.locator('.masthead').evaluate(e=>getComputedStyle(e).position),'fixed');}
+  // Console readers enlarge ordinary disclosure targets; header icons keep canonical sizing.
+  await page.addStyleTag({content:'summary{min-height:44px}'});
+  for(const viewport of [{width:1440,height:1100},{width:390,height:844}]){await page.setViewportSize(viewport);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));assert.equal(await page.locator('.masthead').evaluate(e=>getComputedStyle(e).position),'fixed');assert.equal(await page.locator('.installation-picker-icon').evaluate(e=>{const r=e.getBoundingClientRect(),h=e.closest('.header-tools').getBoundingClientRect();return r.y+r.height/2-(h.y+h.height/2)}),0);}
   await page.locator('.installation-node-picker summary').click();
   const popup=page.locator('.installation-node-menu');assert.equal(await popup.evaluate(e=>getComputedStyle(e).borderRadius),'9px');assert(await popup.evaluate(e=>e.getBoundingClientRect().right<=innerWidth));
   await page.screenshot({path:'/tmp/wake-installation-node-menu-mobile.png'});await page.keyboard.press('Escape');assert.equal(await page.locator('.installation-node-picker').getAttribute('open'),null);
