@@ -27,7 +27,7 @@
     }
   }
   // Compatibility bridge for an experiment chain pinned before full-history
-  // metrics were added to wake-live. Prefer live metrics when present; otherwise
+  // metrics were added to exported snapshots. Prefer snapshot metrics when present; otherwise
   // borrow only the bounded aggregate block from the current Pages snapshot.
   if(!data.metrics){
     try{
@@ -363,8 +363,8 @@
       ['Problem frames',frames.length,'strategy hypotheses; not findings','neutral'],
       ['Attention parking',parkedTopics,'topics preserved while attention moves','neutral'],
       ['Known provider attempts',knownAttempts.length,providerSuccesses+' success-labelled','neutral'],
-      ['SQLite database',sqliteSize,Number.isFinite(sqliteBytes)?sqliteBytes.toLocaleString()+' bytes on wake-state':'Waiting for promoted runtime metric','info'],
-      ['Durable events',eventRecordCount,Number.isFinite(durableEventCount)?'append-only event rows in SQLite':'Waiting for promoted runtime metric','info']
+      ['SQLite database',sqliteSize,Number.isFinite(sqliteBytes)?sqliteBytes.toLocaleString()+' bytes in the node record':'Storage metric unavailable','info'],
+      ['Durable events',eventRecordCount,Number.isFinite(durableEventCount)?'append-only event rows in SQLite':'Storage metric unavailable','info']
     ];
     const telemetryHtml=telemetry.map(([label,value,note,tone])=>`<article class="telemetry-cell ${tone||'neutral'}"><span>${label}</span><strong>${value}</strong><small>${note}</small></article>`).join('');
     const card=(value,label,note)=>`<article class="metric-card"><strong>${value}</strong><span>${label}</span><small>${note}</small></article>`;

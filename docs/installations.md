@@ -22,8 +22,8 @@ maintaining one of those installations. They are not the default one-container
 node runtime.
 
 Each installation has its own record, secrets, configuration, and lifecycle.
-The same source checkout may build many installations. GitHub hosted research is
-another independent installation; matching versions do not imply matching data.
+The same source checkout may build many installations. The retired GitHub executor retains its historical records; matching versions
+do not imply matching data.
 No container needs GitHub Pages, Actions, public snapshots, or another project.
 External AI access is needed only when an external provider is selected.
 

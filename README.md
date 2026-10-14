@@ -16,7 +16,7 @@ Research is WAKE's first application. It is a useful way to exercise the record 
 governance system; it is not the definition of the WAKE kernel.
 
 The public site is a dated, read-only mirror uploaded from the local installation.
-Research executes in the container; hosted research workflows are disabled.
+Research executes in the container; the GitHub research executor is retired.
 Use [publication instructions](docs/cloud.md#publish-the-local-installation-mirror)
 to upload the current unified website and all node views.
 
@@ -61,7 +61,7 @@ theory, quantum computation, or an implemented function. Read
 | Try the kernel without a model or API key | [Kernel example](docs/kernel.md#executable-non-research-proof) |
 | Run one local Docker installation | [Standalone setup](docs/standalone.md) |
 | Inspect three parents and nine children inside one container | [Installation setup](docs/standalone.md#run-one-installation-container) |
-| Operate the GitHub-hosted research instance | [Hosted operation](docs/cloud.md) |
+| Publish container data to GitHub Pages | [Public mirror](docs/cloud.md) |
 | Compare research runs or memory settings | [Experiment guide](docs/experiment.md) |
 | Understand a project term | [Glossary](docs/glossary.md) |
 | Change code and verify the right installation | [Maintainer map](docs/development.md) |
@@ -78,9 +78,8 @@ cp example.research-topics.toml research-topics.toml
 
 If the file is missing, WAKE shows this command and stops before research begins.
 In this repository, `research-topics.toml` is tracked. Editing it changes your
-checkout; it does not publish anything until you commit and push. Hosted research
-uses the file in its promoted commit, and the Restart workflow checks that it is
-present before promotion. See [local group topics](docs/standalone.md#repository-convenience-launcher)
+checkout; it does not publish anything until you commit and push. Container workers use the topic file in their selected workspace.
+A source push does not restart them or upload their data. See [local group topics](docs/standalone.md#repository-convenience-launcher)
 for a different topic file per parent.
 
 ## Quick local paths
@@ -133,29 +132,28 @@ they are not the default launch path for the one-container installation.
 flowchart LR
   S[Shared source code] --> L[Local containers]
   S --> C[Codespace]
-  S --> H[Hosted runtime]
   L --> LR[(Local records)]
   C --> CR[(Codespace record)]
-  H --> HR[(Hosted record)]
   L -. website views .-> LV[Local Console]
-  H -. published view .-> HV[Hosted site]
+  L -->|public export upload| P[wake-public]
+  P --> HV[GitHub Pages mirror]
 ```
 
-Local containers, Codespaces, and hosted WAKE can run the same code while keeping
+Local containers and Codespaces can run the same code while keeping
 separate records and controls. A code push does not copy or reset research data.
 The current installation uses fixed worker code until an explicit restart;
 `wake-research restart` also enables research, while a container restart returns
 to stopped inspection. Its public mirror is a locally prepared read-only export. See
 [installation operation](docs/standalone.md#run-one-installation-container).
-The hosted research runtime uses the explicitly promoted `wake-runtime` branch;
-GitHub Pages is a separate read-only view.
+GitHub Pages serves only the uploaded public snapshot. The old hosted executor
+is retired; its records and branches remain historical artifacts.
 
 Legacy multi-container group status lights refresh every five seconds. Their colors follow the same
 order as the gateway key: red means operator or agent action is required; yellow
 means paused or waiting; green means research is running; blue means idle; purple
 means a provider reported quota pressure. WAKE retries on schedule and can recover
 when a provider becomes available. Gray means status could not be confirmed. See
-the [glossary](docs/glossary.md) and [hosted status details](docs/cloud.md#read-or-wake-it).
+the [glossary](docs/glossary.md) and [public mirror guide](docs/cloud.md).
 
 ## What else is included
 

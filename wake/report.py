@@ -6,7 +6,7 @@
 
 Use export rather than copying templates into a running site: deployment identity,
 local operator links, data projections and Console components form one artifact.
-The hosted Pages caller supplies a public projection; standalone callers supply
+Public mirror rendering supplies a public projection; container callers supply
 their own store. Neither export path transfers authority between installations.
 """
 
@@ -390,7 +390,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
            record_snapshot=None, projection=None, standalone=True):
     lock = store.lock() if store is not None else nullcontext()
     with lock:
-        # Pages may consume the disposable wake-live projection directly. It must
+        # Public rendering may consume a disposable exported projection directly. It must
         # never reopen/replay the growing authoritative SQLite record merely to
         # render a browser shell.
         if projection is not None:
@@ -618,10 +618,12 @@ def _deployment_site(target, *, standalone, installation=None):
 
     Templates are not deployable pages: export also selects data transport and
     operator links. Missing identity must never opt a LAN preview into GitHub.
-    Keep this transform common to full exports and browser-only Pages shells.
+    Keep this transform common to full exports and public snapshot rendering.
     """
     mode = 'standalone' if standalone else 'hosted'
     deployment = {'schema': 1, 'mode': mode}
+    if not standalone:
+        deployment['snapshot_only'] = True
     if installation:
         deployment.update(installation)
     instance_name = os.environ.get('WAKE_INSTANCE_NAME', '').strip()
@@ -663,7 +665,7 @@ def _deployment_site(target, *, standalone, installation=None):
         page = re.sub(r'<html([^>]*)>', r'<html\1 data-theme="light">', page, count=1)
         prefix = "../" * len(path.relative_to(target).parts[:-1])
         page = re.sub(r'href="((?:\.\./)*(?:style|nav|map|map3d|research|theme)\.css)(?:\?[^"]*)?"', r'href="\1?v=20261013-map-theme"', page)
-        page = re.sub(r'src="((?:\.\./)*nav\.js)(?:\?[^"]*)?"', r'src="\1?v=20261014-compact-masthead"', page)
+        page = re.sub(r'src="((?:\.\./)*nav\.js)(?:\?[^"]*)?"', r'src="\1?v=20261014-container-mirror"', page)
         if '<header class="' in page and 'masthead' in page:
             shared = header
             if path.name == "console.html":
@@ -695,4 +697,6 @@ def _deployment_site(target, *, standalone, installation=None):
         else:
             page = page.replace('href="/runtime.json"', 'href="https://github.com/sudofx/wake/actions"')
             page = page.replace('Inspect local WAKE runtime', 'Open WAKE GitHub Actions')
+        if deployment.get('snapshot_only'):
+            page = re.sub(r'<a\b[^>]*class="[^"]*actions-light[^"]*"[^>]*>.*?</a>', '', page, flags=re.S)
         atomic_write(path, page)

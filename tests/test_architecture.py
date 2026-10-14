@@ -44,19 +44,6 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertNotIn("class Store", domain)
         self.assertIn("def reduce_event", domain)
 
-    def test_cycle_lane_has_no_pages_work(self):
-        workflow = self.read('.github/workflows/wake.yml')
-        self.assertNotIn('deploy-pages', workflow)
-        self.assertNotIn('upload-pages-artifact', workflow)
-        self.assertNotIn('pages.yml', workflow)
-        self.assertIn('group: wake-authority', workflow)
-        self.assertIn('timeout-minutes: 30', workflow)
-
-    def test_completed_wake_is_not_recheckpointed_before_live_projection(self):
-        cloud = self.read('scripts/github_wake.py')
-        self.assertIn('result_checkpointed = True', cloud)
-        self.assertIn('if not result_checkpointed:', cloud)
-
     def test_retired_phase_labels_and_one_time_migration_tools_are_absent(self):
         retired = ("Phase" + " E", "phase" + "-e", "phase" + "_" + "e")
         for path in ROOT.rglob("*"):
@@ -71,49 +58,13 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertFalse((ROOT / ".github/workflows/operator-migrate-authority.yml").exists())
         self.assertFalse((ROOT / "scripts/github_migrate_authority.py").exists())
 
-    def test_pages_lane_has_no_model_execution(self):
-        workflow = self.read('.github/workflows/pages.yml')
-        self.assertNotIn('GEMINI_API_KEY', workflow)
-        self.assertNotIn('Continue independent research', workflow)
-        self.assertIn('group: wake-pages', workflow)
-
-    def test_pages_only_deploys_uploaded_mirror_without_research_or_generation(self):
-        workflow = self.read('.github/workflows/pages.yml')
-        self.assertIn('workflow_dispatch:', workflow)
-        self.assertIn('ref: wake-public', workflow)
-        self.assertNotIn('push:', workflow)
-        self.assertNotIn('setup-python', workflow)
-        self.assertNotIn('publish_pages.py', workflow)
-        self.assertNotIn('wake-state', workflow)
-
-    def test_live_projection_is_non_authoritative_and_outside_pages(self):
-        cloud = self.read('scripts/github_wake.py')
-        live = self.read('wake/live.py')
-        self.assertIn('wake-live', cloud)
-        self.assertIn('"authoritative": False', live)
-        self.assertIn('"authority": "wake SQLite"', live)
-        self.assertIn('"authority": "legacy WAKE SQLite"', live)
-        self.assertNotIn('"authority": "SQLite"', live)
-        self.assertNotIn('site/live.json', cloud)
-
     def test_browser_polls_live_projection_without_reload(self):
         page = self.read('wake/assets/index.html')
         app = self.read('wake/assets/app.js')
-        self.assertIn('wake-live/live.json', page)
+        self.assertNotIn('raw.githubusercontent.com', page)
         self.assertIn('window.WakeApplyLive?.(next)', page)
         self.assertNotIn('location.replace(url.toString())', page)
         self.assertIn('window.WakeApplyLive = next =>', app)
-
-    def test_runtime_pin_survives_start_and_successor_dispatch(self):
-        start = self.read('.github/workflows/operator-start.yml')
-        runner = self.read('.github/workflows/wake-runner.yml')
-        cycle = self.read('.github/workflows/wake.yml')
-        self.assertIn('git/ref/heads/wake-runtime', start)
-        self.assertIn('-f "runtime_ref=$runtime_ref"', start)
-        self.assertNotIn('gh workflow run wake.yml', runner)
-        self.assertIn('ref: ${{ inputs.runtime_ref || github.sha }}', cycle)
-        self.assertIn('--ref wake-runtime', cycle)
-        self.assertIn('runtime_ref=$RUNTIME_REF', cycle)
 
     def test_wake_zero_topics_are_the_operator_selected_ten(self):
         topics = self.read('research-topics.toml')
@@ -155,29 +106,6 @@ class ArchitectureSeparationTests(unittest.TestCase):
             pet,
         )
 
-    def test_reset_auto_promotes_master_only_when_runtime_differs(self):
-        reset = self.read('.github/workflows/operator-reset.yml')
-        self.assertIn('Check whether runtime promotion is needed', reset)
-        self.assertIn('master_sha="$(git rev-parse HEAD)"', reset)
-        self.assertIn('runtime_sha="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/wake-runtime"', reset)
-        self.assertIn("if: steps.promotion.outputs.needed == 'true'", reset)
-        self.assertIn('python -m unittest discover -s tests -v', reset)
-        self.assertIn('python -m wake --data /tmp/wake-reset-promote experiment --cycles 100', reset)
-        self.assertIn('Promote verified master only when needed', reset)
-        self.assertIn('-f "runtime_ref=$runtime_ref"', reset)
-        self.assertLess(
-            reset.index('Promote verified master only when needed'),
-            reset.index('Dispatch the governed archive-first reset'),
-        )
-
-    def test_state_branch_current_tree_contract_is_sqlite_only(self):
-        cloud = self.read('scripts/github_wake.py')
-        self.assertIn('data/wake.sqlite3', cloud)
-        self.assertIn('events.jsonl', cloud)
-        self.assertIn('operation.json', cloud)
-        self.assertIn('git("rm", "-r", "--ignore-unmatch"', cloud)
-        self.assertNotIn('branch.checkout/"operation.json"', cloud)
-
     def test_metrics_use_full_history_aggregates_not_event_tail(self):
         live = self.read('wake/live.py')
         app = self.read('wake/assets/app.js')
@@ -189,22 +117,6 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertIn('fullMetrics.rejection_reasons', app)
         self.assertIn('"metrics": _full_history_metrics(store, state)', self.read('wake/report.py'))
         self.assertIn("if(!data.metrics)", app)
-
-    def test_site_operator_link_goes_directly_to_github_actions(self):
-        page = self.read('wake/assets/index.html')
-        self.assertIn('href="https://github.com/sudofx/wake/actions"', page)
-        self.assertNotIn('WAKE_CONTROL_URL', page)
-        self.assertNotIn('control.js', page)
-        self.assertFalse((ROOT / 'control-worker').exists())
-
-    def test_console_continuity_enablement_stays_outside_browser_authority(self):
-        console = self.read('wake/assets/console.html')
-        research = self.read('wake/assets/research.js')
-        self.assertIn('id="matrix-enable"', console)
-        self.assertIn('actions/workflows/operator-enable-continuity.yml', console)
-        self.assertIn('m.reported && m.enabled===false', research)
-        self.assertNotIn('enable_continuity_matrix', research)
-        self.assertNotIn('WAKE_CONTROL_URL', console)
 
 if __name__ == '__main__':
     unittest.main()

@@ -118,9 +118,8 @@ Configure `WAKE_PUBLISH_REPOSITORY` with a GitHub repository URL and
 `WAKE_PUBLISH_BRANCH` with a dedicated publication branch before launching. Review
 `publish --output` first. An explicit `publish` uploads that artifact using configured
 Git credentials. GitHub Pages still performs its deployment step; GitHub does not
-need to run research or connect to local records to display this mirror. The existing
-hosted executor and its record remain a separate compatibility path. Publishing this
-mirror does not promote or reopen that executor.
+need to run research or connect to local records to display this mirror. The GitHub research executor has been removed. Its historical records remain
+separate from this installation and are never publication inputs.
 
 ### Codespaces and remote instances
 
@@ -171,7 +170,7 @@ flowchart LR
   C[WAKE container] --> D[(Its own /data/wake.sqlite)]
   C --> W[Read-only local website]
   C -->|optional| M[Gemini and public sources]
-  C -. no hosted record sync .-> H[GitHub-hosted WAKE]
+  C -->|filtered public upload| H[GitHub Pages mirror]
 ```
 
 For a first run, copy and edit the topic starter, configure a provider key if you
@@ -187,8 +186,8 @@ cp example.research-topics.toml research-topics.toml
 If the file is missing, WAKE prints this command and stops before running research.
 This repository currently tracks `research-topics.toml`, so editing it changes your
 working copy and appears in `git status`; it does not publish or promote anything.
-The container build includes the file. Hosted research uses the exact promoted
-release commit, so that candidate must contain the topics you intend to run.
+The container build includes the file. Workers use the selected workspace topic file. A source push alone does not
+restart workers or update the published snapshot.
 
 ## Code and website changes
 
@@ -431,8 +430,7 @@ Multi-platform loading requires a compatible image store, as described in Docker
 [multi-platform build documentation](https://docs.docker.com/build/building/multi-platform/).
 For a transferable OCI archive, use a docker-container builder and
 `--output type=oci,dest=wake-standalone.oci.tar` instead of `--load`. A registry release
-may use `--push` to a registry you choose; neither registry publication nor hosted
-runtime promotion is part of local container operation.
+may use `--push` to a registry you choose; registry publication is separate from container operation and public snapshot uploads.
 
 ## Repository convenience launcher
 

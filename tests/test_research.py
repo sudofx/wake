@@ -21,7 +21,6 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from scripts.github_wake import StateBranch
 from wake.audit import verify_history
 from wake.engine import DEFAULTS, Engine
 from wake.store import Store
@@ -2714,43 +2713,7 @@ class ResearchTests(unittest.TestCase):
         self.assertIsNotNone(self.engine.store.load()["pending"])
 
 
-class CloudPersistenceTests(unittest.TestCase):
-    def test_new_runner_recovers_reserved_attempt_without_refund(self):
-        with tempfile.TemporaryDirectory() as folder:
-            root=Path(folder)
-            def git(*args): return subprocess.run(["git", *map(str,args)],check=True,capture_output=True,text=True)
-            remote, runner = root/"remote.git", root/"runner"
-            git("init","--bare",remote)
-            git("init",runner)
-            (runner/"README.md").write_text("Source stays separate")
-            git("-C",runner,"add","README.md")
-            git("-C",runner,"-c","user.name=test","-c","user.email=test@example.com","commit","-m","Source")
-            git("-C",runner,"remote","add","origin",remote)
-            branch=StateBranch(runner,root/"state-one")
-            branch.open()
-            settings={**DEFAULTS,"daily_call_limit":1}
-            engine=Engine(branch.checkout/"data", settings, store_factory=Store)
-            try:
-                with engine.store.lock():
-                    engine.initialize()
-                    engine.start("gemini","test",charged=True)
-                    branch.checkpoint()
-            finally: engine.store.close()
-            # A genuinely separate clone reads only the remotely checkpointed record.
-            git("clone","--branch","wake-state",remote,root/"fresh-runner")
-            other=StateBranch(root/"fresh-runner",root/"state-two")
-            other.open()
-            reopened=Engine(other.checkout/"data", settings, store_factory=Store)
-            try:
-                with reopened.store.lock():
-                    state=reopened.recover()
-                    self.assertEqual(next(iter(state["invocations"].values()))["status"],"recovered")
-                    with self.assertRaisesRegex(Rejected,"Daily call ceiling"):
-                        reopened.start("gemini","test",charged=True)
-                self.assertFalse((other.checkout/"README.md").exists())
-            finally: reopened.store.close()
-
-
+class PresentationBoundaryTests(unittest.TestCase):
     def test_public_persona_is_explicitly_a_translation_layer(self):
         from wake.providers import RESEARCH_SYSTEM
         self.assertIn("public-facing translation layer", RESEARCH_SYSTEM)

@@ -175,7 +175,7 @@ When Attention selects a parked topic while all three project slots are occupied
 ## Inspecting delivery across installations
 
 Memory receipts describe the record that produced them. A local Console reads its
-installation's same-origin `research-data.json`; hosted mode explicitly reads the
+installation's same-origin `research-data.json`; public mirrors read their uploaded
 public projection. Confirm the displayed head/version and export mode before using
 a screenshot to assess retrieval or memory behavior. Shared code and shared topics
 do not make histories interchangeable. Missing context events in a bounded overview

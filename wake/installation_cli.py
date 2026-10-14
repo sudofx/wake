@@ -200,6 +200,8 @@ def _copy_public_site(source: Path, destination: Path):
             page = re.sub(r'window\.WAKE_DEPLOYMENT=(\{[^<]*?\});window\.WAKE_STANDALONE=(?:true|false);', mark_snapshot, page)
             prefix = '../' * (len(relative.parts) - 1)
             page = page.replace('href="/runtime.json"', f'href="{prefix}installation.json"').replace('Inspect local WAKE runtime', 'Inspect published WAKE snapshot')
+            # A public snapshot has no execution control, even before scripts load.
+            page = re.sub(r'<a\b[^>]*class="[^"]*actions-light[^"]*"[^>]*>.*?</a>', '', page, flags=re.S)
             target.write_text(page)
         else:
             shutil.copyfile(path, target)

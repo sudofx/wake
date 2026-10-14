@@ -109,11 +109,6 @@ class SameWakeTests(unittest.TestCase):
         receipt = next(e['payload'] for e in reversed(self.store.events()) if e['kind'] == 'rejected')
         self.assertEqual(receipt['phase'], 'planning')
         self.assertIn('127.0.0.1', receipt['raw_response'])
-        from scripts.github_wake import requires_operator_attention, continuation_outputs
-        self.assertFalse(requires_operator_attention(result))
-        with patch('scripts.github_wake.set_step_output') as output:
-            continuation_outputs(result)
-        self.assertIn(unittest.mock.call('continue_now', 'true'), output.call_args_list)
         with patch('wake.research.collect_planned', self.collect):
             resumed = self.engine.run(ImmediateProvider(), collector=lambda e: None)
         self.assertEqual(resumed['status'], 'accepted', resumed)

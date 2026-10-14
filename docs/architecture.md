@@ -4,7 +4,7 @@ See [the reusable kernel contract](kernel.md) for application ownership and the
 non-research execution proof, and [installation boundaries](installations.md) for
 independent records and runtime lifecycles. These remain inside this repository.
 
-> **Current specification.** This document explains why the present system is shaped this way: its trust boundary, durable record, governance model and known limits. Current local procedures belong in `standalone.md`; retained hosted procedures belong in `cloud.md`. Maintainer navigation, environment checks and reproducible validation guidance belong in `development.md`.
+> **Current specification.** This document explains why the present system is shaped this way: its trust boundary, durable record, governance model and known limits. Current local procedures belong in `standalone.md`; public mirror publishing belongs in `cloud.md`. Maintainer navigation, environment checks and reproducible validation guidance belong in `development.md`.
 
 **WAKE✳︎** is infrastructure for continuity of accountable work, not continuity of a model instance. Its stable sequence is **Record → Context → Proposal → Governance → Transition → Receipt**. Models, vendors, runtimes and human operators may change; the durable record, authority boundary, provenance and correction mechanisms carry the work forward. Research is the first application running on that structure.
 
@@ -32,7 +32,7 @@ flowchart TB
   K --> record[(One durable record)]
   model[Replaceable model] -->|suggestion| K
   K -->|bounded context| model
-  deploy[Local, Codespace, or hosted runtime] --> K
+  deploy[Container or Codespace runtime] --> K
   views[Website and Console views] -. read-only views .-> record
 ```
 
@@ -148,9 +148,9 @@ The fixed objective is written at initialization. Models cannot alter it or the 
 
 ## Durable record
 
-WAKE's operational authority, generic runtime lifecycle, effect boundary, recovery, and provider-neutral accounting are WAKE-owned; WAKE retains domain/research policy. `wake-runtime` is promoted separately and may intentionally lag while continuous research is active.
+WAKE's operational authority, generic runtime lifecycle, effect boundary, recovery, and provider-neutral accounting are WAKE-owned; WAKE retains domain/research policy. Container worker source changes take effect through an explicit runtime restart; source pushes and public uploads are separate.
 
-WAKE is a standalone application backed by its owned kernel in `wake/kernel/`. `data/wake.sqlite` is the active operational authority on `wake-state`. WAKE-specific research policy remains above the reusable WAKE kernel; models still propose, WAKE policy still validates domain meaning, and WAKE records the governed result, provenance and replay contract.
+WAKE is a standalone application backed by its owned kernel in `wake/kernel/`. Each node’s `record/wake.sqlite` is its active operational authority. WAKE-specific research policy remains above the reusable WAKE kernel; models still propose, WAKE policy still validates domain meaning, and WAKE records the governed result, provenance and replay contract.
 
 The runtime boundary has also moved downward: WAKE records the generic invocation lifecycle, context-delivery receipt, incomplete-invocation recovery, durability barrier before an external provider effect, and provider-neutral invocation accounting. WAKE still owns its richer research-context telemetry, provider/fallback quota policy, and domain-specific terminal events. Those application records supplement the generic runtime evidence rather than replacing it.
 
@@ -160,7 +160,7 @@ The WAKE application uses wake compact event-log storage: durable application ac
 
 WAKE event identity and domain replay are now separated from legacy persistence. `wake/event_format.py` defines the stable canonical JSON, hash, genesis, and timestamp conventions used by historical WAKE events. `wake/domain_events.py` defines the initial WAKE state and deterministic event reducer. Neither module owns a database. `wake/store.py` is therefore quarantined as legacy SQLite migration/fixture compatibility rather than being imported by normal runtime, presentation, or WAKE application code.
 
-Missing both authority databases is a fail-closed condition, not an empty project. Local initialization must be explicit, and an existing cloud `wake-state` branch missing both formats is rejected before provider work. Physical SQLite slack is maintenance, not semantic history. Storage version 13 also losslessly compresses large event payloads and the binary projection, using stream-local dictionaries for repeated long JSON strings when smaller. This changes physical bytes only; decoded JSON, receipt identities, hashes and replay meaning remain stable. See [kernel storage compatibility](kernel.md#physical-storage-and-compatibility) for migration and audit boundaries. The cloud checkpoint path compacts verified WAKE SQLite at 90 MiB and checks the verified compressed transport against GitHub's 100 MiB blob ceiling before any further provider effect. A local advisory writer lock still covers a whole automatic wake, including the network call. GitHub Actions serializes the cloud authority lane and checkpoints `data/wake.sqlite` to `wake-state` before any provider request whose reservation changed durable state. Competing writers fail before requesting a model. Do not put SQLite on unreliable network filesystems or run separate hosts against copies of one record.
+Missing both authority databases is a fail-closed condition, not an empty project. Local initialization must be explicit; a missing existing node record fails closed before provider work. Physical SQLite slack is maintenance, not semantic history. Storage version 13 also losslessly compresses large event payloads and the binary projection, using stream-local dictionaries for repeated long JSON strings when smaller. This changes physical bytes only; decoded JSON, receipt identities, hashes and replay meaning remain stable. See [kernel storage compatibility](kernel.md#physical-storage-and-compatibility) for migration and audit boundaries. A local advisory writer lock still covers a whole automatic wake, including the network call. Container workers serialize each node’s authority and persist request reservations before provider effects. Competing writers fail before requesting a model. Do not put SQLite on unreliable network filesystems or run separate hosts against copies of one record.
 
 The record includes the objective, focus, all observations, belief revisions, commitments, exact request and response text, provider/model identity, request hashes, process IDs, dates, quota reservations, accepted/rejected decisions and recovery records. Invocation metadata is a compact projection; exact prompts and replies remain in events. UTC storage and `America/Los_Angeles` presentation preserve daylight-saving behavior.
 
@@ -211,7 +211,7 @@ sequenceDiagram
 6. Persist WAKE's domain `invocation_started` receipt, exact request, provider identity and quota reservation. The same `w-…` ID enters wake's generic invocation journal with bounded context-delivery evidence.
 7. Let wake enforce the durability barrier before the external provider effect and record generic temporary/quota/provider failure evidence. WAKE still owns Gemini-specific fallback eligibility, Pacific-day allowances, and the research meaning of deferred/failed attempts. An eligible transient Gemini failure may advance to the next configured model; the same model is never retried within that wake.
 8. Validate the reply. Research actions remain atomic. If a single optional final blog action fails validation, independently validate the preceding research and commit it with a withheld-blog receipt, the exact raw response, and an explicit journal note. Invalid research, invalid proposal envelopes, multiple or misplaced blogs, and invalid blog-only proposals still reject the whole reply. Historical accepted events replay unchanged. Eligible transient server and narrowly classified network failures retain per-attempt diagnostics and may advance through the configured model chain; exhaustion defers the wake.
-9. Checkpoint the authoritative SQLite record, then refresh the disposable `wake-live` public projection. The static GitHub Pages shell is deployed independently from research cycles.
+9. Persist the authoritative node record and refresh its local public projection. GitHub Pages changes only after an explicit public artifact upload.
 
 The wake invocation journal and WAKE runtime receipt are complementary: the generic journal proves provider-boundary ordering, recovery, and aggregate accounting, while the WAKE receipt preserves domain-specific exact request and quota evidence. Neither attests that the remote model understood the supplied context. Prose in a journal is the provider's narrative; accepted means governance checks passed, not that every sentence is true.
 
@@ -322,7 +322,7 @@ Gemini requests use JSON output mode and an output-token cap. The durable reques
 
 The hard local ceiling is enforced against durable provider-request reservations per Pacific day. Reservations are durable before sending, so an interrupted or failed attempt still consumes a conservative slot. A wake can reserve multiple slots only while advancing through eligible fallback models; the same model is not retried. Manual imports and fixtures do not use API slots. This ledger is local to one state directory; other applications and other state directories can consume the same provider quota. Never run multiple live databases against the same local allowance. A key with billing enabled can incur charges: `free_tier_confirmed` is an operator attestation, not a billing API check.
 
-Provider-reported HTTP 429 and quota responses are recoverable pressure, not operator faults. They remain visible as purple status while scheduled attempts continue, allowing a fallback or recovered model to succeed; a successful later attempt clears the purple state. Only configured hard daily request caps defer until their Pacific reset. A local numbered `wake_runner` group additionally asks its gateway for a FIFO call lease before each Gemini model request and spaces calls per model. The gateway holds no research authority: its leases expire, and members continue independently if it is unavailable. Solo containers, Codespaces and hosted installs do not join this coordinator.
+Provider-reported HTTP 429 and quota responses are recoverable pressure, not operator faults. They remain visible as purple status while scheduled attempts continue, allowing a fallback or recovered model to succeed; a successful later attempt clears the purple state. Only configured hard daily request caps defer until their Pacific reset. A local numbered `wake_runner` group additionally asks its gateway for a FIFO call lease before each Gemini model request and spaces calls per model. The gateway holds no research authority: its leases expire, and members continue independently if it is unavailable. Solo containers and Codespaces do not join this coordinator.
 
 ## Recovery and audit limits
 
@@ -330,11 +330,11 @@ An interrupted transaction rolls back. An interrupted invocation is closed as re
 
 A hash chain detects modifications relative to a trusted head. An administrator can rewrite the whole database and recompute hashes. A deleted suffix can also be a valid prefix. Retain `head.txt` independently, for example in a reviewed Git commit or separate backup, and pass it to the standalone audit verifier. Hashes alone do not prove identity, prevent censorship, or establish an external timestamp.
 
-Full local exports verify state before rendering and remain useful for audit and offline fixtures. The hosted site no longer republishes a growing report tree on every wake: GitHub Pages serves a static shell, while `wake-live` is a replaceable projection derived from the verified SQLite record. The projection is disposable and never outranks `wake-state`.
+Full local exports verify state before rendering and remain useful for audit and offline fixtures. GitHub Pages serves the complete filtered artifact uploaded from containers. Its dated snapshots are disposable presentation and never outrank the node records.
 
-Console is an isolated static page with page-scoped CSS and JavaScript. `wake/research_projection.py` derives a bounded presentation from verified state and existing provenance edges; it never opens storage or participates in provider context, scheduling, or governance. Live construction classifies evidence before content clipping, separates runtime receipts and discovery/metadata from readable source material, and preserves collector work identities. Source readiness is not claim support or publication eligibility. The compact overview excludes editorial records; graph positions are layout only. `research-data.json` is published in the same `wake-live` commit as the existing projections, and the browser reads all dashboard data from that single self-contained snapshot with its recorded head and version.
+Console is an isolated static page with page-scoped CSS and JavaScript. `wake/research_projection.py` derives a bounded presentation from verified state and existing provenance edges; it never opens storage or participates in provider context, scheduling, or governance. Live construction classifies evidence before content clipping, separates runtime receipts and discovery/metadata from readable source material, and preserves collector work identities. Source readiness is not claim support or publication eligibility. The compact overview excludes editorial records; graph positions are layout only. `research-data.json` is exported alongside the other node projections; readers use the same-origin snapshot with its recorded head and version.
 
-Normal reads use the atomically hash-bound materialized projection; explicit full replay reconstructs from genesis. Signed `wake-checkpoint@1` exports provide a separate, operator-owned replay seed without changing authority. Creation fully verifies semantic, invocation and access journals in one read transaction and materializes the WAKE application projection. An explicitly retained public key verifies the Ed25519 signature. Fast replay checks the retained boundary and every new semantic event/result digest; full checkpoint verification also reconstructs the trusted prefix and verifies complete invocation/access journals. Fast replay does not detect interior prefix tampering or attest later non-semantic journal entries. Checkpoints never erase events, replace authority or change historical event bytes. External retention/publication and signing-key custody are operator responsibilities; this implementation does not claim external notarization or change hosted runners.
+Normal reads use the atomically hash-bound materialized projection; explicit full replay reconstructs from genesis. Signed `wake-checkpoint@1` exports provide a separate, operator-owned replay seed without changing authority. Creation fully verifies semantic, invocation and access journals in one read transaction and materializes the WAKE application projection. An explicitly retained public key verifies the Ed25519 signature. Fast replay checks the retained boundary and every new semantic event/result digest; full checkpoint verification also reconstructs the trusted prefix and verifies complete invocation/access journals. Fast replay does not detect interior prefix tampering or attest later non-semantic journal entries. Checkpoints never erase events, replace authority or change historical event bytes. External retention/publication and signing-key custody are operator responsibilities; this implementation does not claim external notarization.
 
 ## Public interpretation layer
 
@@ -370,16 +370,16 @@ Philosophical reflection may help Bob ask better questions about observation, un
 
 ## Shared continuity matrix
 
-The mandatory research `continuity@1` matrix is consumed from wake.kernel as a reusable deterministic extension. WAKE does not fork its axes or coordinate meanings. Native initialization always submits governed enablement; WAKE application policy adds enablement and governed result-recording actions, and stores the resulting campaign state inside the same WAKE application envelope as the rest of WAKE authority. Ordinary WAKE transitions preserve that extension state. A hosted operator reset begins a new active generation, clears prior campaign results, and immediately enables a fresh campaign with zero results; the prior generation remains archived. Reset leaves the continuation latch closed so the operator can inspect the new generation before separately starting research. A fresh `Record` / `Kernel` / `ApplicationHost` reconstruction therefore restores active matrix progress from `wake.sqlite` alone.
+The mandatory research `continuity@1` matrix is consumed from wake.kernel as a reusable deterministic extension. WAKE does not fork its axes or coordinate meanings. Native initialization always submits governed enablement; WAKE application policy adds enablement and governed result-recording actions, and stores the resulting campaign state inside the same WAKE application envelope as the rest of WAKE authority. Ordinary WAKE transitions preserve that extension state. A container operator reset begins a new active generation, clears prior campaign results, and immediately enables a fresh campaign with zero results; the prior generation remains archived. Reset leaves the continuation latch closed so the operator can inspect the new generation before separately starting research. A fresh `Record` / `Kernel` / `ApplicationHost` reconstruction therefore restores active matrix progress from `wake.sqlite` alone.
 
-Matrix actions remain ordinary application actions: they do not bypass WAKE-local application-access fencing, WAKE governance, or provider lifecycle controls. Provider prompting, scheduling, scoring, research interpretation, and progress semantics remain WAKE concerns above the shared matrix grammar. The GitHub Actions **Enable continuity campaign** workflow is a provider-free operator path that safely drains the active runtime, records this application action through the same serialized authority lane, and restores the prior run state. After enablement, the hosted research loop embeds at most one next-uncovered coordinate as a sidecar in the final proposal request; the same-wake planning request does not carry the probe. The same response contains the normal research proposal and a separate probe answer; no second provider invocation or quota lane exists. Trusted system instructions mark the probe's adversarial material as evaluation data rather than research authority. Before ordinary proposal governance, WAKE removes only the expected sidecar field, scores it mechanically against the exact exposed packet, and records the compact matrix result through the existing application action. Research acceptance/rejection is therefore independent of probe quality. A returned response completes the tested coordinate even when the sidecar is missing or malformed (score zero); a provider failure before any response leaves it uncovered.
+Matrix actions remain ordinary application actions: they do not bypass WAKE-local application-access fencing, WAKE governance, or provider lifecycle controls. Provider prompting, scheduling, scoring, research interpretation, and progress semantics remain WAKE concerns above the shared matrix grammar. Container initialization and reset enable the campaign through a governed application action. The container research loop embeds at most one next-uncovered coordinate as a sidecar in the final proposal request; the same-wake planning request does not carry the probe. The same response contains the normal research proposal and a separate probe answer; no second provider invocation or quota lane exists. Trusted system instructions mark the probe's adversarial material as evaluation data rather than research authority. Before ordinary proposal governance, WAKE removes only the expected sidecar field, scores it mechanically against the exact exposed packet, and records the compact matrix result through the existing application action. Research acceptance/rejection is therefore independent of probe quality. A returned response completes the tested coordinate even when the sidecar is missing or malformed (score zero); a provider failure before any response leaves it uncovered.
 
 
-The Console cube uses the frozen native `continuity@1` coordinate grammar and reported campaign results; it never infers coordinates from research clusters or directly mutates a campaign. A disabled campaign and unreported progress are distinct. When the durable projection explicitly reports the campaign disabled, Console may expose a link to the GitHub Actions operator workflow; the governed mutation still occurs outside the browser. Wake traces expose bounded start/terminal events and recorded provider attempts, with explicit gaps when events are outside the projection. Record selection stays in the view; links and inspectors cannot mutate research.
+The Console cube uses the frozen native `continuity@1` coordinate grammar and reported campaign results; it never infers coordinates from research clusters or directly mutates a campaign. A disabled campaign and unreported progress are distinct. Campaign changes use container operator controls outside the read-only browser. Wake traces expose bounded start/terminal events and recorded provider attempts, with explicit gaps when events are outside the projection. Record selection stays in the view; links and inspectors cannot mutate research.
 
 Console instrument views share the same bounded provenance graph and wake traces. Sphere, plane and 3D rack placement are visual layouts; only recorded edges convey relationships. Topic totals exclude editorial actions. Context-delivery ratios use recorded `context_delivery` numerators and denominators, rather than a guessed full-state size. Provider-latency and token aggregates identify their bounded measured-attempt population separately from the full-record outcome timeline.
 
-The Console is a touch-friendly diagnostic surface for research state, supplied context, proposals and recorded decisions. Its controls manipulate views and selections. Operational commands remain in the existing operator workflow; possible future Console controls require separate scoped authorization and the same durability and governance boundaries. Cyan, orange and violet cube leader wires mark the three positive outer axis faces, whose highlights are view guides; a highlighted coordinate does not imply a recorded experiment result.
+The Console is a touch-friendly diagnostic surface for research state, supplied context, proposals and recorded decisions. Its controls manipulate views and selections. Operational commands remain in the container CLI; possible future Console controls require separate scoped authorization and the same durability and governance boundaries. Cyan, orange and violet cube leader wires mark the three positive outer axis faces, whose highlights are view guides; a highlighted coordinate does not imply a recorded experiment result.
 
 Console deep tools reuse the canonical existing record, map and flat-view renderers through generated `console-*` pages. They open as full browser pages rather than embedded workspaces; touch devices navigate directly, while desktop may reuse a normal browser tab/window. The overview is bounded; deeper tools retain their original search, filters, event paging, nested project/notebook views, provenance inspection, raw views and map interaction. Console components do not depend on the retired Research-menu HTML filenames. Flat export tools identify their own published snapshot; live tools retain their existing public data loading and scope.
 
@@ -408,7 +408,7 @@ Claim-support matching ignores collector scope labels and counts collector-stamp
 
 `same_wake_research` enables a planning phase before the final proposal. Planning selects at most two configured-domain questions and optional known source URLs. Deterministic validation checks field bounds, active-project identities, Attention routing and allowed URLs before retrieval. Each phase uses `Engine.start`, normal quota reservation/accounting and the existing WAKE native invocation lifecycle. A `research_planned` terminal closes only retrieval intent; it never increments the accepted cycle or applies model research actions. The complete plan/request/response remains auditable.
 
-The planning schema pairs topic domains with their delivered active project IDs. Empty project IDs support topics without active projects; parked and completed projects cannot be reused. Deterministic validation checks the delivered context and current authority before collection. Invalid model plans close as `rejected`, retaining raw responses, request accounting and native lifecycle completion; they make no network retrieval or final inference and do not halt normal hosted continuation.
+The planning schema pairs topic domains with their delivered active project IDs. Empty project IDs support topics without active projects; parked and completed projects cannot be reused. Deterministic validation checks the delivered context and current authority before collection. Invalid model plans close as `rejected`, retaining raw responses, request accounting and native lifecycle completion; they make no network retrieval or final inference and do not halt normal container continuation.
 
 Due milestone reflections can add longitudinal editorial history to the same provider request. Active-memory fitting bounds that optional history separately, preserving milestone/previous-post identity and omission anchors while leaving mandatory beliefs, evidence roots and open commitments intact. Excerpted editorial history is neither application authority nor source evidence, and missing content cannot be inferred from a hash.
 
@@ -423,21 +423,22 @@ When Attention selects a parked topic while all three project slots are occupied
 ## Installation identity and presentation custody
 
 Execution environment does not identify authority. A host checkout, editor mount,
-packaged image and promoted GitHub commit may differ while using the same package
+packaged image and source commit may differ while using the same package
 name. Operators establish the imported path, process and selected record explicitly.
-Each standalone volume owns an independent record; `wake-state` owns hosted history.
+Each container node owns an independent record; the retired `wake-state` branch
+retains historical hosted data.
 Neither equal counters nor a matching web view establishes that two records are equal.
 
 Export owns the complete installation artifact, including `deployment.json`, early
-`WAKE_DEPLOYMENT` configuration, local operator links and bounded record views. Only
-explicit hosted mode permits public GitHub transport. Missing/invalid mode remains
-same-origin and Console reports it. A raw template cannot inherit hosted mode from
+`WAKE_DEPLOYMENT` configuration, local operator links and bounded record views. All
+browser readers use same-origin exported files. Missing/invalid mode remains
+same-origin and Console reports it. A raw template cannot select a different installation from
 a LAN address or a missing flag. This protects data selection rather than authenticating
 an operator. Templates and generated pages are distinct lifecycle stages.
 
 Standalone publication builds all files in a new generation before atomically
-switching the website. Pages builds a hosted shell from public projections and does
-not open SQLite. A shell update, runtime promotion, data checkpoint and image rebuild
+switching the website. Pages serves a filtered public artifact uploaded to `wake-public` and does
+not open SQLite or generate research. A public upload, data checkpoint and image rebuild
 are independent operations. Browser rendering remains disposable in every case.
 
 ## Optional inspection activity
@@ -455,8 +456,8 @@ belongs to the compatibility multi-container path.
 
 Daily API quota exhaustion is a recoverable standby state, distinct from operator
 pause and code/data failure. Standalone and Codespaces runtimes expose `standby`
-through `/runtime.json` until the recorded Pacific reset; the hosted lane checks
-the quota boundary in `wake-state` and dispatches a fresh cycle after that boundary.
+through `/runtime.json` until the recorded Pacific reset. Public mirrors have no
+execution capability or live quota polling.
 Peer exchange and the shared Bob projection also operate between internal nodes
 through controller routes. They read members independently and preserve unavailable
 state. Older numbered-container groups use their retained private networks; the
@@ -501,23 +502,18 @@ still consume the existing quota. Public and private generation have separate
 contexts. See [first-run publication and Passenger](development.md#first-run-publication-and-passenger)
 for storage, reset, coordination, resource and operator boundaries.
 
-### Fresh hosted reset
+### Container reset and public prose
 
-Hosted Reset verifies the old authority and retains its exact checkpoint on a
-`wake-archive-*` branch before initializing a small new database. The native
-initialization receipt records the archive branch, commit and prior domain head.
-Active research cycles, provider accounting and continuity results start at zero;
-the fresh continuity campaign is enabled without a provider call. Historical
-records stay in the archive rather than accumulating inside the new database.
-Local in-place resets retain their history and are a separate operation.
+Container reset is an explicit operator action on the selected installation.
+It leaves research stopped and starts an empty continuity campaign. Public uploads
+never reset records. Historical hosted archives remain unchanged.
 
 Bob’s public articles use plain prose, including the built-in welcome. Markdown
 is confined to Passenger. Public display removes legacy heading markers without
 rewriting historical receipts.
 
 Local `reset_with_continuity` resets and enrolls in one governed action; historical
-`reset_to_zero` receipts retain their original replay meaning. Hosted fresh Reset
-also enables continuity before checkpointing. Neither path starts research.
+`reset_to_zero` receipts retain their original replay meaning. Reset does not start research.
 
 The proposal delivery contract is rebuilt after forward quality policy and measured-result eligibility are attached. Models copy the current domain version into `base_version`; governance alone advances it. Claim `result` fields name only supplied measured reproductions, and non-tested claims use an empty string. Deterministic acceptance remains authoritative.
 
@@ -537,6 +533,6 @@ Bob section; publication preserves the exact model article and receipt. A
 formatting-only withheld draft can be reevaluated without a provider call.
 
 GitHub Pages serves the uploaded `wake-public` installation projection directly.
-Hosted research workflows are disabled; the retained hosted record is not merged
+Hosted research workflows and their runner are removed; the retained hosted record is not merged
 with local authority. Mirrors hide the status lamp and perform no live-status
 polling. Upload timestamps and node snapshot provenance remain visible.

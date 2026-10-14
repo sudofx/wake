@@ -12,7 +12,7 @@ ASSETS = Path(__file__).resolve().parents[1] / 'wake' / 'assets'
 
 @unittest.skipUnless(shutil.which('node'), 'Node required for browser transport execution')
 class DeploymentBoundaryTests(unittest.TestCase):
-    def test_actual_readers_require_explicit_hosted_identity_on_every_hostname(self):
+    def test_actual_readers_stay_same_origin_on_every_hostname(self):
         # Run the production loader bodies with observed HTTP requests. The LAN,
         # loopback and Pages hostnames must not choose an installation implicitly.
         program = r"""
@@ -36,7 +36,7 @@ for(const mode of ['standalone','hosted','missing','invalid']){
      'refresh();';
    }else{
     const fn=reader==='map'?'loadMapData':'loadMap3dData';
-    code=source.slice(source.indexOf('const LIVE_BASE='),source.indexOf('const data=await '+fn))+
+    code=source.slice(source.indexOf('async function '+fn),source.indexOf('const data=await '+fn))+
      fn+'();';
    }
    await vm.runInNewContext(code,env);
@@ -52,10 +52,7 @@ process.stdout.write(JSON.stringify(results));
         for row in json.loads(result.stdout):
             with self.subTest(**{k: row[k] for k in ('mode', 'hostname', 'reader')}):
                 self.assertTrue(row['calls'])
-                if row['mode'] == 'hosted':
-                    self.assertTrue(row['calls'][0].startswith('https://raw.githubusercontent.com/'))
-                else:
-                    self.assertTrue(all(not url.startswith('http') for url in row['calls']))
+                self.assertTrue(all(not url.startswith('http') for url in row['calls']))
 
 
 class ExportIdentityTests(unittest.TestCase):

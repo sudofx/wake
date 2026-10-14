@@ -94,25 +94,12 @@ class MastheadPresentationTests(unittest.TestCase):
             rules = re.sub(r'/\*.*?\*/', '', (ASSETS / name).read_text(), flags=re.S)
             self.assertNotRegex(rules, r'\.(masthead|research-header|header-tools|wordmark|console-link|actions-light)\b')
 
-    def test_actions_light_is_phone_safe_and_read_only(self):
+    def test_status_controller_reads_only_local_runtime(self):
         nav = (ASSETS / "nav.js").read_text()
-        self.assertIn('cursor:pointer', self.css)
-        self.assertIn('actions/workflows/wake-runner.yml', nav)
-        self.assertIn('actions/workflows/operator-enable-continuity.yml/runs?per_page=10', nav)
-        self.assertNotIn('actions/workflows/wake.yml/runs?branch=wake-runtime&per_page=10', nav)
-        self.assertIn("['running','stopped','campaign','standby','idle','waiting','blocked']", nav)
-        self.assertIn("CACHE_KEY='wake-actions-light-state'", nav)
-        self.assertIn('CACHE_FRESH_MS=90000', nav)
-        self.assertIn('REFRESH_MS=5000', nav)
-        self.assertIn("fetchJson(latchUrl)", nav)
-        self.assertIn("if(latch.state==='active')", nav)
-        self.assertIn("fetchJson(campaignUrl)", nav)
-        self.assertIn("last verified · refresh unavailable", nav)
-        self.assertIn("window.addEventListener('storage'", nav)
-        self.assertNotIn('Promise.allSettled([', nav)
-        self.assertIn('setInterval(refreshActionsLight,REFRESH_MS)', nav)
-        self.assertNotIn('.owner-', self.css)
-        self.assertNotIn('operator-status', self.css)
+        self.assertNotIn('api.github.com', nav)
+        self.assertNotIn('raw.githubusercontent.com', nav)
+        self.assertIn("new URL('runtime.json',location.href)", nav)
+        self.assertIn("snapshot_only!==true", nav)
 
     def test_console_reuses_shared_actions_status_controller(self):
         console = (ASSETS / "console.html").read_text()

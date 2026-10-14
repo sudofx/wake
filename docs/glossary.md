@@ -38,7 +38,7 @@ record → bounded context → model proposal → governance decision → transi
 ```
 
 See [architecture and limits](architecture.md) for the full trust model and
-[hosted operation](cloud.md) or [standalone operation](standalone.md) for the
+[public mirror publishing](cloud.md) or [standalone operation](standalone.md) for the
 operator procedures.
 
 - **Initial publication** — the durable introductory Bob article. Worker groups
@@ -54,15 +54,17 @@ operator procedures.
   file; its first-publication receipt contains facts rather than a model assessment. See
   [the operating contract](development.md#first-run-publication-and-passenger).
 
-### Fresh hosted reset
+### Public mirror
 
-Hosted Reset verifies the old authority and retains its exact checkpoint on a
-`wake-archive-*` branch before initializing a small new database. The native
-initialization receipt records the archive branch, commit and prior domain head.
-Active research cycles, provider accounting and continuity results start at zero;
-the fresh continuity campaign is enabled without a provider call. Historical
-records stay in the archive rather than accumulating inside the new database.
-Local in-place resets retain their history and are a separate operation.
+A dated, read-only website exported from container records and uploaded to
+`wake-public`. GitHub Pages serves that artifact; it has no research executor,
+operator controls, or status light. Local records remain authority.
+
+### Container reset
+
+An explicit operator action on the selected installation. It leaves research
+stopped and enrolls an empty continuity campaign. Publishing never resets records.
+Historical hosted checkpoints and archives remain preserved.
 
 Bob’s public articles use plain prose, including the built-in welcome. Markdown
 is confined to Passenger. Public display removes legacy heading markers without

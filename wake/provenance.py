@@ -187,7 +187,7 @@ def build_map(state, events, head, replay_history=True):
             nodes[jid]["detail"]["exact_record"] = f"Event {event['seq']} · {event['hash']}"
     
     else:
-        # The wake-live projection intentionally carries only a bounded event tail.
+        # The browser projection intentionally carries only a bounded event tail.
         # Build the public map from current durable objects and their explicit IDs
         # instead of pretending that tail can replay history from cycle zero.
         #

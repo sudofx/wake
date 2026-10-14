@@ -4,7 +4,8 @@ WAKE✳︎ is infrastructure for durable, accountable work across interchangeabl
 
 ## Current authority model
 
-The live hosted record is `data/wake.sqlite` on `wake-state`.
+Each container node owns `/data/nodes/ID/record/wake.sqlite`. GitHub Pages is a
+read-only public mirror of exports from those records.
 
 The legacy `data/wake.sqlite3` chain is migration evidence only. It may be verified, imported, archived, and used by offline compatibility tests, but new operational truth must not be split between the legacy store and wake.
 
@@ -70,16 +71,14 @@ When replacing a legacy path:
 
 A migration convenience is not sufficient reason to weaken governance, provenance, or failure visibility.
 
-## Runtime branches
+## Source and publication branches
 
 - `master` — development source and documentation
-- `wake-runtime` — explicitly promoted live executable
-- `wake-state` — authoritative WAKE SQLite checkpoint
-- `wake-live` — disposable public projection
+- `wake-public` — uploaded, filtered website snapshot served by GitHub Pages
+- `wake-runtime`, `wake-state`, `wake-live` — preserved historical executor artifacts
 
-Research must be stopped before promoting new runtime code.
-
-GitHub Actions is execution infrastructure, not application authority.
+Research runs only in containers. GitHub Actions checks source and containers; it
+does not run research, promote runtime, or generate the website.
 
 ## Provider boundary
 
@@ -117,7 +116,7 @@ When code materially changes migration status, authority, operator workflows, co
 
 - `README.md` — current repository-level picture
 - `docs/architecture.md` — authority and trust boundaries
-- `docs/cloud.md` — current hosted operating procedure
+- `docs/cloud.md` — container export and public mirror publishing
 - `docs/experiment.md` — experimental interpretation
 - `docs/retrieval.md` — progressive abstraction/retrieval behavior
 - `docs/glossary.md` — plain-language meanings for project terms
@@ -146,7 +145,7 @@ Fresh initialization is native wake initialization. The legacy Store is opened o
 
 ## Standalone ownership
 
-All active runtime code is owned here. Do not add another project's dependency, service, or access-control database. Preserve historical V1 format bytes and exact provenance when changing ownership or checkpoint filenames. Existing V1 authority is adopted by verified format discovery; ambiguity fails closed. The hosted transport is `data/wake.sqlite.gz`, restored as `data/wake.sqlite`. Research continues through WAKE-local governance and operator controls. Other repositories may be read for comparison, but never modified without explicit authorization.
+All active runtime code is owned here. Do not add another project's dependency, service, or access-control database. Preserve historical V1 format bytes and exact provenance when changing ownership or checkpoint filenames. Existing V1 authority is adopted by verified format discovery; ambiguity fails closed. Historical hosted checkpoints use `data/wake.sqlite.gz`; retain them as history. Current research continues through container governance and operator controls. Other repositories may be read for comparison, but never modified without explicit authorization.
 
 ## Environment and publication boundaries
 
@@ -156,16 +155,15 @@ A bind-mounted checkout and an installed image may execute different code. Prese
 existing edits and record volumes; source synchronization never authorizes record copying.
 
 Local and hosted records are independent. Never reconcile their counters by importing
-one into the other. Browser transport may use GitHub only for an explicitly hosted
-export. Missing installation identity must stay same-origin and be visible in Console.
+one into the other. Browser transport reads only same-origin exported files. Missing installation identity must stay same-origin and be visible in Console.
 Export owns deployment identity and local operator links as well as data and assets;
 raw HTML templates must not replace generated pages. Verify the actual snapshot
 head/version and transport on LAN access, not only appearance or HTTP success.
 
-Prepare a verified candidate before stopping hosted research. When a push is authorized,
-stop and fully drain research before pushing, then use canonical Restart and verify
-the exact promotion and subsequent attempt. Pages deployment and runtime promotion
-are separate. Local development changes do not authorize hosted operations.
+Verify source before an authorized push. Source publication, container restart,
+public snapshot upload, and record reset are separate actions. Publishing the
+mirror drains the selected installation and leaves research stopped; never reset
+or copy its records as a side effect. Preserve all historical hosted branches.
 
 Update living documentation at its existing owner; retain dated validation history.
 Comments should explain invariants, hazards and failure behavior at the responsible

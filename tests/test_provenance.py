@@ -138,7 +138,7 @@ class ProvenanceTests(unittest.TestCase):
         graph = json.loads((self.root/'site/map-data.json').read_text())
         map_js = (self.root/'site/map.js').read_text()
         self.assertEqual(graph["meta"]["topic_labels"]["information_survival"], "How Does Information Survive?")
-        self.assertIn("wake-live/'", map_js)
+        self.assertNotIn("raw.githubusercontent.com", map_js)
         self.assertIn("map-data.json?wake=", map_js)
         self.assertIn("topicLabels=data.meta?.topic_labels||{}", map_js)
         self.assertIn("topicLabel(topic).toLowerCase()", map_js)

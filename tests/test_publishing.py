@@ -29,7 +29,7 @@ class PublishingTests(unittest.TestCase):
                 before = engine.store.performance_snapshot()["full_replays"]
                 export(None, root / "site", browser_only=True, projection=payload, standalone=False)
                 self.assertEqual(json.loads((root / "site/deployment.json").read_text()),
-                                 {"schema": 1, "mode": "hosted"})
+                                 {"schema": 1, "mode": "hosted", "snapshot_only": True})
                 for page in (root / "site").glob('*.html'):
                     if '<head>' in page.read_text():
                         self.assertIn('"mode": "hosted"', page.read_text())
@@ -57,9 +57,9 @@ class PublishingTests(unittest.TestCase):
                     self.assertTrue((root / "site" / name).is_file())
 
                 page = (root / "site/index.html").read_text()
-                self.assertIn("wake-live/live.json", page)
+                self.assertNotIn("raw.githubusercontent.com", page)
                 self.assertIn("window.WakeApplyLive", page)
-                self.assertIn('href="https://github.com/sudofx/wake/actions"', page)
+                self.assertNotIn('href="https://github.com/sudofx/wake/actions"', page)
                 self.assertNotIn("data-visibility-toggle", page)
                 self.assertNotIn("wake-hide-current-data", page)
                 self.assertNotIn("control.js", page)
@@ -76,8 +76,8 @@ class PublishingTests(unittest.TestCase):
                 self.assertNotIn('>About</a>', map3d_page.split('<nav class="compact-nav"', 1)[1].split('</nav>', 1)[0])
                 self.assertLess(map_page.index('class="repo-link"'), map_page.index('class="console-link"'))
                 self.assertLess(map3d_page.index('class="repo-link"'), map3d_page.index('class="console-link"'))
-                self.assertIn('href="https://github.com/sudofx/wake/actions"', map_page)
-                self.assertIn('href="https://github.com/sudofx/wake/actions"', map3d_page)
+                self.assertNotIn('href="https://github.com/sudofx/wake/actions"', map_page)
+                self.assertNotIn('href="https://github.com/sudofx/wake/actions"', map3d_page)
                 self.assertRegex(map_page, r'href="theme\.css\?v=[^"]+"')
                 self.assertRegex(map3d_page, r'href="theme\.css\?v=[^"]+"')
                 self.assertIn('name="theme-color" content="#000000"', map_page)

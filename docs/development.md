@@ -6,20 +6,20 @@ Use [kernel development](kernel.md) for the application seam and
 This is the entry point for changing WAKE safely. The repository owns executable
 behavior; installations own independent records. A shared source tree does not
 imply a shared database, execution process, deployment, or provider quota ledger.
-Read [architecture](architecture.md) for invariants, [hosted operation](cloud.md)
+Read [architecture](architecture.md) for invariants, [mirror publishing](cloud.md)
 for GitHub, and [standalone operation](standalone.md) for Docker.
 
 Before changing anything, answer three questions:
 
-1. **Which installation are you changing?** Local Docker, Codespace and hosted
+1. **Which installation are you changing?** Local Docker and Codespace
    WAKE have separate records and processes.
 2. **Which code is actually running there?** A checkout, mounted workspace and
    packaged image can all contain different versions.
-3. **What are you authorized to change?** Editing, committing, pushing, promoting
-   hosted code and resetting research data are separate actions.
+3. **What are you authorized to change?** Editing, committing, pushing, restarting containers,
+   uploading a public snapshot and resetting records are separate actions.
 
 If you only need the key terms, use the [glossary](glossary.md). If you need a
-release procedure, go to [hosted operation](cloud.md#authority-maintenance).
+release procedure, go to [mirror publishing](cloud.md#development-and-release).
 
 ## Current development path
 
@@ -44,9 +44,9 @@ inspection, while `wake-research restart` explicitly resumes research. Commands,
 archive verification, quotas, and publication are documented once in the
 [standalone guide](standalone.md#control-research-from-the-shell).
 
-The multi-container runner, Compose installations, old development preview, and
-GitHub-hosted executor below are retained compatibility paths. Changes to the
-local installation do not authorize running or promoting the hosted executor.
+The multi-container runner, Compose installations and development preview remain
+compatibility paths. The GitHub research executor has been removed; its branches
+are historical records, not active runtime or publication inputs.
 The new Codespace path needs its own actual remote acceptance evidence.
 
 ## Establish the target before editing
@@ -58,21 +58,18 @@ working directory, image and mounts before assuming which source executes.
 `python -c 'import wake; print(wake.__file__)'` reveals the imported package in that
 execution environment. Do not print environment variables or container secrets.
 
-For hosted changes, inspect the current GitHub refs and workflows rather than
-assuming local remote-tracking refs are current. For standalone changes, identify
+For publication, inspect the Pages source and public branch. For container changes, identify
 the container and its exact data volume before recreation. A container name, an
 IP address, and an image tag can change; none identifies a record by itself.
 
 | Surface | Executable source | Authority | Presentation |
 | --- | --- | --- | --- |
 | One-container installation | Fixed worker source in `/workspace` | `/data/nodes/ID/record/wake.sqlite`, one writer per node | One server, per-node exports and `installation.json` |
-| Hosted research compatibility | Exact promoted `wake-runtime` commit | `wake-state/data/wake.sqlite.gz`, restored as `wake.sqlite` | `wake-live` projections |
-| GitHub Pages | Generated shell from `master` | None; reads public views | Pages artifact, independent of research promotion |
+| GitHub Pages | Uploaded artifact on `wake-public` | None | Dated unified website and node snapshots |
 | Compatibility Docker | Image package under `/app` | Selected volume at `/data/wake.sqlite` | Atomic temporary website generations |
 | Compatibility VS Code overlay | Bind-mounted `/workspace` because it sets working directory there | Same selected `/data` volume | Local export, never hosted fallback |
 | Compatibility Codespaces preview | Mounted workspace source | Checkout `data/devcontainer/record/wake.sqlite` | Paused same-origin preview, private forwarded port |
 | CLI / offline fixtures | Imported package in the invoking environment | Explicit `--data` directory | Exported directory |
-| Public preview helper | Local assets, public GitHub projections | None | Deliberate mirror of hosted data |
 
 These rows may share code while retaining different histories. Equal cycle counts
 are not evidence of shared authority; unequal counts are not a synchronization
@@ -85,7 +82,7 @@ verified operation.
 | Change | Start here | Protected boundary |
 | --- | --- | --- |
 | CLI and installation | `wake/installation.py`, `installation_cli.py`, `installation_gate.py`, `scripts/wake_installation`; compatibility: `wake/__main__.py`, `wake/standalone.py`, `runtime_supervisor.py`, Compose files, `scripts/wake_runner` | Explicit initialization; preserve selected volume; one scheduler |
-| Hosted lifecycle / persistence | Operator workflows, `scripts/github_wake.py`, `scripts/publish_pages.py` | Drain before promotion; durable reservation before provider effect |
+| Public mirror | `wake/installation_cli.py`, `scripts/wake_publish`, `scripts/publish_pages.py` | Filter private data; drain before export; dedicated publication branch |
 | Record adoption / domain bridge | `wake/authority.py`, `record_store.py`, `application.py`, `domain_events.py`, `event_format.py` | One writable authority; immutable historical meaning and hashes |
 | Generic record/runtime | `wake/kernel/` | Deterministic receipt, replay, access and invocation contracts |
 | Research orchestration / context | `engine.py`, `prompts.py`, `memory.py`, `retrieval.py`, `trust.py`, `attention.py` | Derived context cannot rewrite record or waive obligations |
@@ -108,9 +105,9 @@ Avoid duplicating obvious syntax or embedding operator conversation in source.
 
 `wake.report.export` defaults to standalone mode and produces a complete artifact: templates, transformed pages,
 record views, Console components and `deployment.json`. `_deployment_site` places
-`WAKE_DEPLOYMENT` before reader scripts in generated pages. Only schema 1 with
-mode `hosted` permits public GitHub transport. Standalone mode reads same-origin
-JSON and `/runtime.json`, including through LAN addresses. A missing/invalid
+`WAKE_DEPLOYMENT` before reader scripts in generated pages. All modes read same-origin JSON. Live containers may read `/runtime.json`,
+including through LAN addresses; snapshot-only public exports have no runtime
+capability, status light, or GitHub polling. A missing/invalid
 identity stays same-origin; Console reports the missing identity instead of
 silently substituting public research. Identity is routing configuration, not
 an authentication credential or proof that the snapshot is fresh.
@@ -123,9 +120,8 @@ its temporary generation as an upgrade procedure. `/tmp` disappears on recreatio
 
 `python -m wake --data DATA export --output SITE` creates a same-origin standalone view.
 A simple static server can serve that export without provider calls. It has no
-local scheduler endpoint, so runtime status may be unavailable. The deliberate
-hosted preview is different: build its shell with `scripts/publish_pages.py`, then
-use `scripts/preview_research.py`. The helper rejects standalone directories.
+local scheduler endpoint, so runtime status may be unavailable. Preview a public artifact with a plain static server. `scripts/publish_pages.py`
+only uploads a prepared twelve-node public artifact.
 
 ## Codespaces access and preview
 
@@ -160,19 +156,16 @@ that limit. Worker recovery remains bounded and never resets the record.
 
 ## Release and restart boundaries
 
-Local source edits do not publish GitHub. A push to `master` may immediately deploy
-Pages because of path filters, but research remains on `wake-runtime`. An image
-rebuild does not promote hosted code. Editing a bind mount changes that checkout;
-already imported Python does not automatically reload, and a published website
-retains its generation until the next export. Restart the intended process through
-its supported operator path, retaining the data volume.
+Local source edits do not publish GitHub. An authorized source push updates
+`master` and runs CI; it does not publish container data or replace running workers.
+Build or restart the intended container separately, preserving its data volume.
+Already imported Python does not automatically reload. Workers start stopped for
+inspection after a container restart; explicitly start research when ready.
 
-Prepare and test the candidate first. When hosted publication is authorized,
-use **Stop**, wait for real research jobs to drain, push the candidate, then use
-**Restart**. Verify candidate CI, exact promoted SHA, successful restart, continuation
-latch and a new research attempt. Verify its terminal receipt and accepted progress
-separately: a green job may record a rejection or quota deferral. Do not start or
-stop other installations as a side effect of a release.
+Public publishing is a separate upload to `wake-public`. It drains the selected
+installation, exports its public data with current assets, and leaves research
+stopped. Verify Pages deployment and the upload date independently of source CI.
+No runtime promotion or GitHub research restart exists. See [publishing](cloud.md).
 
 `scripts/wake_runner` is a convenience launcher for the named local editor image.
 It preserves its selected data volume on normal recreation, forces live mode and
@@ -217,7 +210,7 @@ when interpreting a fast replay versus a full audit.
 | `docs/kernel.md` | Reusable application contract and extraction proof |
 | `docs/installations.md` | Independent Compose deployments and optional gateway |
 | `docs/architecture.md` | Authority, lifecycle, policy and trust boundaries |
-| `docs/cloud.md` | Canonical hosted controls, transport and recovery |
+| `docs/cloud.md` | Canonical container export and public mirror publication |
 | `docs/standalone.md` | Docker, LAN, editor, volume and backup operations |
 | `docs/retrieval.md` | Memory delivery, omissions and replay-seed guarantees |
 | `docs/experiment.md` | What observations mean and how to compare them |
@@ -478,7 +471,7 @@ It is not served by the group peer endpoints. Treat its text as lower-trust
 advisory data, never policy or instructions. No reset, recommendation or proposed
 patch changes the research record, source code, credentials or deployment.
 
-Hosted fresh resets and public Bob prose are described in [hosted operation](cloud.md#fresh-hosted-reset).
+Public mirror publishing is described in [publication](cloud.md).
 
 Zero-cycle reset defaults and first-post pause controls are documented in
 [standalone operation](standalone.md) and [first-run publication](#first-run-publication-and-passenger).

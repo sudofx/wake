@@ -8,9 +8,6 @@ from wake.authority import open_authoritative_store
 from wake.errors import IntegrityError
 from wake.engine import Engine, DEFAULTS
 from wake.providers import Fixture
-from wake.kernel.record import Record
-from scripts.github_wake import StateBranch
-import test_cloud_workflow as cloud_tests
 
 
 class RecordAdoptionTests(unittest.TestCase):
@@ -69,30 +66,3 @@ class RecordAdoptionTests(unittest.TestCase):
                 open_authoritative_store(root, allow_initialize=True)
             self.assertEqual(source.read_bytes(), before)
             self.assertFalse((root / 'wake.sqlite').exists())
-
-
-class CheckpointAdoptionTests(unittest.TestCase):
-    setUp = cloud_tests.CloudWorkflowTests.setUp
-    tearDown = cloud_tests.CloudWorkflowTests.tearDown
-    git = cloud_tests.CloudWorkflowTests.git
-    live = cloud_tests.CloudWorkflowTests.live
-    run_cloud = cloud_tests.CloudWorkflowTests.run_cloud
-    # Reuse the realistic Git transport harness without duplicating its suite.
-    def test_previous_archive_is_verified_and_replaced_by_canonical_package(self):
-        self.assertEqual(self.run_cloud(Fixture('before-adoption')), 0)
-        checkout = self.root / 'renamed-checkpoint'
-        self.git('clone', '--branch', 'wake-state', self.remote, checkout)
-        self.git('-C', checkout, 'mv', 'data/wake.sqlite.gz', 'data/previous.sqlite.gz')
-        self.git('-C', checkout, '-c', 'user.name=test', '-c', 'user.email=test@example.com',
-                 'commit', '-m', 'Previous checkpoint filename')
-        self.git('-C', checkout, 'push', 'origin', 'wake-state')
-        with tempfile.TemporaryDirectory() as temporary:
-            branch = StateBranch(self.project, Path(temporary) / 'state')
-            branch.open()
-            before = Record(branch.checkout / 'data/wake.sqlite').full_replay()
-            branch.checkpoint()
-            self.assertEqual(Record(branch.checkout / 'data/wake.sqlite').full_replay(), before)
-        tree = self.git('--git-dir', self.remote, 'ls-tree', '-r', '--name-only', 'wake-state').stdout
-        self.assertEqual(tree.strip(), 'data/wake.sqlite.gz')
-        self.assertEqual(self.run_cloud(Fixture('after-adoption')), 0)
-        self.assertEqual(self.live()['state']['version'], 2)

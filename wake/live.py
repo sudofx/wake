@@ -1,7 +1,7 @@
 """Disposable public projection for the WAKE✳︎ browser.
 
-For hosted operation, wake SQLite on wake-state is authoritative. Standalone
-operation uses its own volume; public projections never seed or repair it. This module deliberately produces a
+Each container record is authoritative for its node; public projections never seed
+or repair it. This module deliberately produces a
 bounded, replaceable view for the public UI; nothing here is read back into
 governance, recovery, or provider context.
 """
@@ -79,7 +79,7 @@ def build_live_projection(store, operation=None, runtime_ref=""):
     if performance.get("authority") == "wake":
         source = {
             "authority": "wake SQLite",
-            "branch": "wake-state",
+            "branch": None,
             "database": "wake.sqlite",
             "head": head,
             "runtime_ref": runtime_ref,

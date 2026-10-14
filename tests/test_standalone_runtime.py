@@ -356,7 +356,7 @@ process.stdin.on('end',async()=>{
                                 capture_output=True, check=True)
         local, hosted, unknown = json.loads(result.stdout)
         self.assertTrue(local and all(url.startswith('wake-data.json?') for url in local))
-        self.assertTrue(hosted[0].startswith('https://raw.githubusercontent.com/sudofx/wake/wake-live/'))
+        self.assertTrue(hosted and all(url.startswith('wake-data.json?') for url in hosted))
         self.assertTrue(unknown and all(url.startswith('wake-data.json?') for url in unknown))
 
     def test_busy_operator_does_not_discard_website_or_stop_refresh(self):

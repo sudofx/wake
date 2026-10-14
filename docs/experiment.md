@@ -133,7 +133,7 @@ Run `python3 -m wake --data data/rehearsal experiment --cycles 100 --output site
 
 ## Live-model protocol
 
-Use a separate live database or the hosted record. Fixture results are not live
+Use a separate container record. Fixture results are not live
 evidence. Before a run, write down the question, intended batch size, topic file,
 provider settings, and other conditions. Count accepted, rejected, deferred, and
 failed attempts separately. Keep the same conditions between runs unless one of
@@ -184,7 +184,7 @@ Proposal eligibility and recovery guidance are retained in routine compact memor
 
 ## Installation and comparison provenance
 
-A standalone run and hosted research are separate experimental records. Keep the
+A container run and historical hosted research are separate experimental records. Keep the
 installation, starting head, executable commit/imported source, configuration,
 provider model and terminal receipts with each comparison. Source changes may be
 shared without importing history. Do not align cycle counts, replace checkpoints,
@@ -296,15 +296,11 @@ first-publication receipt also adds no research or model assessment. Their paid
 provider requests remain accounted under the ordinary quota. See
 [the first-run and advisory boundary](development.md#first-run-publication-and-passenger).
 
-### Fresh hosted reset
+### Container reset and public prose
 
-Hosted Reset verifies the old authority and retains its exact checkpoint on a
-`wake-archive-*` branch before initializing a small new database. The native
-initialization receipt records the archive branch, commit and prior domain head.
-Active research cycles, provider accounting and continuity results start at zero;
-the fresh continuity campaign is enabled without a provider call. Historical
-records stay in the archive rather than accumulating inside the new database.
-Local in-place resets retain their history and are a separate operation.
+Container reset is an explicit operator action on the selected installation.
+It leaves research stopped and starts an empty continuity campaign. Public uploads
+never reset records. Historical hosted archives remain unchanged.
 
 Bob’s public articles use plain prose, including the built-in welcome. Markdown
 is confined to Passenger. Public display removes legacy heading markers without
