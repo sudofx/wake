@@ -2206,6 +2206,21 @@ body.help-open{
   }
 }
 
+/* Mobile pages use one viewport gutter; card padding stays independent. */
+@media(max-width:700px){
+  body:not(.research-page) main{
+    margin-left:0;
+    margin-right:0;
+    max-width:none!important;
+    padding-left:16px!important;
+    padding-right:16px!important;
+  }
+  body:not(.research-page) main > .view:not(#home){
+    padding-left:0;
+    padding-right:0;
+  }
+}
+
 /* Each recorded observation gets its own glass panel so source material remains
    legible against the Nebula background without changing evidence semantics. */
 #evidence-content{
