@@ -74,6 +74,8 @@ def _pause_after_introduction(directory, state):
         checkpoint = 1
     if isinstance(checkpoint, bool) or not isinstance(checkpoint, int) or checkpoint < 1:
         raise ValueError('Group publication pause requires a positive checkpoint integer')
+    # Inactive one-use controls do not need an expensive authority projection.
+    state = state() if callable(state) else state
     if state.get('group_bob', {}).get('checkpoint', 0) < checkpoint:
         return False
     value['research'] = 'paused'
@@ -336,7 +338,15 @@ def run(args):
                             editorial_provider = None
                             group = engine.store.load().get('group_bob', {})
                             editorial_request_path = data / '.wake-editorial-request.json'
-                            editorial_nonce = json.loads(editorial_request_path.read_text()).get('nonce') if editorial_request_path.exists() else None
+                            editorial_command = json.loads(editorial_request_path.read_text()) if editorial_request_path.exists() else {}
+                            editorial_nonce = editorial_command.get('nonce')
+                            if editorial_command.get('revision_reason') and group.get('last_revision_command') != editorial_nonce:
+                                from .event_format import digest
+                                with engine.store.lock():
+                                    group = engine.store.load().get('group_bob', {})
+                                    engine.store.append('group_bob_revision_requested', {
+                                        'actor': 'operator', 'command_id': editorial_nonce, 'publication_digest': digest(group.get('publication')),
+                                        'reason': editorial_command['revision_reason']})
                             if (research_mode == 'running' or editorial_nonce) and group.get('leader') == os.environ.get('WAKE_PUBLIC_HOSTNAME'):
                                 editorial_provider = Fixture(args.model or 'standalone-fixture') if provider_name == 'fixture' else Gemini(settings, args.model)
                                 if provider_name == 'gemini':
@@ -363,7 +373,7 @@ def run(args):
                         except Exception as exc:
                             handled_reset_id = reset_id
                             _write_control_ack(data, reset_id, str(exc))
-                    if _pause_after_introduction(data, engine.store.load()):
+                    if _pause_after_introduction(data, engine.store.load):
                         research_mode = 'paused'
                     if research_mode != 'running':
                         control = json.loads((data / _CONTROL_FILE).read_text()) if (data / _CONTROL_FILE).exists() else {}

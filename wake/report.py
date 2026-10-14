@@ -419,7 +419,8 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
                     "timezone": projection.get("timezone") or "America/Los_Angeles",
                     "operation": operation,
                     "wake_status": projection.get("wake_status") or (operation or {}).get("wake_status") or wake_status(state),
-                    "metrics": projection.get("metrics", {})}
+                    "metrics": projection.get("metrics", {}),
+                    **({"event_history": projection["event_history"]} if projection.get("event_history") else {})}
         else:
             # Full exports still consume one verified authoritative snapshot.
             state, head, events = record_snapshot if record_snapshot is not None else store.replay_record()

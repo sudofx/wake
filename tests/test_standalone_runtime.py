@@ -17,6 +17,15 @@ from wake.governance import Rejected
 
 
 class StandaloneRuntimeTests(unittest.TestCase):
+    def test_inactive_automatic_pause_does_not_load_authority(self):
+        from wake.standalone import _pause_after_introduction
+        with tempfile.TemporaryDirectory() as directory:
+            control = Path(directory) / '.wake-runner-control.json'
+            control.write_text(json.dumps({'research':'paused'}))
+            load = MagicMock(side_effect=AssertionError('Unnecessary authority read'))
+            self.assertFalse(_pause_after_introduction(directory, load))
+            load.assert_not_called()
+
     def test_next_group_post_pause_survives_until_a_new_publication(self):
         from wake.standalone import _pause_after_introduction, _research_control
         with tempfile.TemporaryDirectory() as directory:

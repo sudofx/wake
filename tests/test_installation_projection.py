@@ -31,6 +31,31 @@ class InstallationProjectionTests(unittest.TestCase):
         research = {node: build_research_projection(packet['state'], [], packet['head']) for node, packet in packets.items()}
         return packets, research, build_unified_projection(packets, research, 'installation')
 
+    def test_complete_history_is_separate_from_a_bounded_overview(self):
+        from wake.installation_site import export_unified_site, export_unified_history
+        packets, _, projection = self.build()
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            generations = {}
+            for node, packet in packets.items():
+                generation = root / node
+                generation.mkdir()
+                events = [{**packet['events'][0], 'seq': seq} for seq in range(1, 402)]
+                (generation / 'events.jsonl').write_text(''.join(json.dumps(event) + '\n' for event in events))
+                packet['events'] = events[-1:]
+                generations[node] = generation
+            target = root / 'unified'
+            export_unified_site(projection, target)
+            self.assertEqual(export_unified_history(generations, packets, target), 802)
+            overview = json.loads((target / 'wake-data.json').read_text())
+            self.assertEqual(overview['event_history']['total'], 802)
+            self.assertLess(overview['event_history']['displayed'], 802)
+            history = [json.loads(line) for line in (target / 'events.jsonl').read_text().splitlines()]
+            self.assertEqual(history[0]['payload']['id'], '100::i')
+            self.assertEqual(history[0]['original_event']['payload']['id'], 'i')
+            self.assertNotIn('raw_response', history[0]['original_event']['payload'])
+            self.assertTrue(all(row['projection_only'] for row in history))
+
     def test_namespaces_and_preserves_original_records_and_receipts(self):
         packets, research, unified = self.build()
         before = deepcopy((packets, research))

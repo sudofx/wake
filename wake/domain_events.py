@@ -178,7 +178,7 @@ def reduce_event(state, event, historical=False):
         item = state["commitments"].get(p["id"])
         require(item is not None and item["status"] == "open", "Only open commitments can be cancelled")
         item.update(status="cancelled", resolution_reason=p["reason"], resolved_by="human")
-    elif kind in ("group_bob_enrolled", "group_bob_exception_granted", "group_bob_drafted", "group_bob_withheld", "group_bob_published"):
+    elif kind in ("group_bob_enrolled", "group_bob_revision_requested", "group_bob_exception_granted", "group_bob_drafted", "group_bob_withheld", "group_bob_published"):
         from .group_editorial import apply_event
         state = apply_event(state, kind, p, event["time"], historical=historical)
     elif kind == "invocation_started":

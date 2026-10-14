@@ -197,6 +197,10 @@ class InstallationArchiveTests(unittest.TestCase):
             manifest = build_public_artifact(self.root, self.root / 'public')
         self.assertEqual({node: data['head'] for node, data in manifest['record_heads'].items()}, exported)
         self.assertFalse(manifest['live'])
+        full = (self.root / 'public/events.jsonl').read_text().splitlines()
+        overview = json.loads((self.root / 'public/wake-data.json').read_text())
+        self.assertEqual(overview['event_history']['total'], len(full))
+        self.assertTrue(all(json.loads(line)['origin']['node'] in NODE_IDS for line in full))
         self.assertFalse(list((self.root / 'public').rglob('*.sqlite')))
         # Capture must reject a link before copying private bytes into staging.
         source = self.root / 'nodes' / NODE_IDS[0] / 'site/current'

@@ -45,6 +45,12 @@ operator procedures.
   synthesize `group-wake-introduction` from every parent and child and publish the
   same text in each record. Its WAKE01 checkpoint is separate from research progress.
   The older solo `wake-introduction` contract remains replayable.
+- **Editorial sequence** — Bob's article number, separate from every member's
+  research count. New group activity or a recorded operator correction can make
+  the next explanation due. All members supply inputs even when progress differs.
+- **Editorial correction** — a new model-written article that supersedes an older
+  explanation while retaining its text, references and invocation. It changes no
+  research result or scientific evidence.
 - **First-post exception** — explicit operator permission for the exact first
   group introduction only. It is consumed once per member and cannot accept
   research, create scientific evidence or authorize later posts.

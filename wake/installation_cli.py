@@ -269,6 +269,8 @@ def _build_public_artifact(root: Path, destination: Path) -> dict:
         generated = Path(temporary) / 'generated' / 'unified'
         export_unified_site(projection, generated)
         _copy_public_site(generated, staging)
+        from .installation_site import export_unified_history
+        export_unified_history({node: root / 'nodes' / node / 'site/current' for node in NODE_IDS}, snapshots, staging)
         encoded = json.dumps(manifest, sort_keys=True)
         (staging / 'installation.json').write_text(encoded)
         for node in NODE_IDS:
@@ -385,8 +387,9 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser(prog='wake-research', description='Control this WAKE installation. New installations and imports start stopped. RESET destroys active data without making a backup; manual data/backups exports survive.')
     parser.add_argument('--data', type=Path, default=data_root(), help='Installation data root (WAKE_INSTALLATION_DATA, default /data)')
     actions = parser.add_subparsers(dest='action', required=True)
-    for action in ('start', 'stop', 'pause', 'restart', 'RESET', 'status', 'bob', 'mirror-enable', 'mirror-disable'):
+    for action in ('start', 'stop', 'pause', 'restart', 'RESET', 'status', 'mirror-enable', 'mirror-disable'):
         actions.add_parser(action)
+    actions.add_parser('bob', help='Request eligible editorial work without starting research').add_argument('--revise', help='Request a model-written correction of the current shared article, with a recorded operator reason')
     actions.add_parser('mirror-ack', help='Acknowledge the exact shared publication in a delivered immutable artifact').add_argument('digest')
     actions.add_parser('import', help='Verify and replace active data, leaving research stopped').add_argument('archive', help='Archive basename inside data/backups')
     actions.add_parser('export', help='Drain and export reloadable records into data/backups').add_argument('--name', default=None, help='New .zip archive basename')
@@ -394,7 +397,9 @@ def main(argv=None) -> int:
     args = parser.parse_args(argv)
     payload = {'action': args.action}
     try:
-        if args.action == 'mirror-ack':
+        if args.action == 'bob' and args.revise:
+            payload['revision_reason'] = args.revise
+        elif args.action == 'mirror-ack':
             payload['digest'] = args.digest
         elif args.action in ('import', 'export'):
             name = args.archive if args.action == 'import' else args.name or datetime.now(timezone.utc).strftime('wake-%Y%m%dT%H%M%S%fZ.zip')

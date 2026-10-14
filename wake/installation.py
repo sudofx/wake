@@ -327,6 +327,8 @@ class Controller:
         candidate = Path(tempfile.mkdtemp(prefix='snapshot-', dir=site))
         try:
             export_unified_site(projection, candidate)
+            from .installation_site import export_unified_history
+            export_unified_history({name: generations[name] for name in snapshots}, snapshots, candidate)
             current = site / 'current'
             previous = current.resolve() if current.exists() else None
             replacement = site / 'next'
@@ -492,7 +494,7 @@ class Controller:
             if action == 'bob':
                 self.editorial_nonce = secrets.token_hex(16)
                 atomic_write(self.root / 'nodes' / NODE_IDS[0] / 'record' / '.wake-editorial-request.json',
-                             json.dumps({'nonce': self.editorial_nonce}))
+                             json.dumps({'nonce': self.editorial_nonce, **({'revision_reason': packet['revision_reason']} if packet.get('revision_reason') else {})}))
                 return {'ok': True, 'research': self.mode, 'editorial': 'queued; bounded by cadence, capacity and provider quota'}
             if action == 'publish':
                 with self.mirror_lock:

@@ -30,7 +30,7 @@ def input_snapshot(engine, group_id, member, *, record_snapshot=None):
                 'source': url if isinstance(url, str) and len(url) <= 500 else '',
                 'record_url': prefix + 'index.html#evidence/' + evidence_id}
     attempts = [subset(i, ('id', 'finished', 'phase', 'status', 'reason'), 100)
-                for i in list(state.get('invocations', {}).values())[-20:]
+                for i in sorted(state.get('invocations', {}).values(), key=lambda i: i.get('time', ''))
                 if i.get('phase') not in ('passenger', 'group_editorial')][-2:]
     from collections import Counter
     activity = {'version': state['version'], 'attempts': attempts,
@@ -38,7 +38,7 @@ def input_snapshot(engine, group_id, member, *, record_snapshot=None):
                 'claim_labels': dict(Counter(c.get('certainty', 'unlabelled') for n in state.get('notebooks', {}).values() for c in n.get('claims', [])))}
     stories = [{'id': member + ':activity', 'kind': 'recorded-activity',
                 'record_url': prefix + 'events.html', 'statement': activity}]
-    for notebook in list(state.get('notebooks', {}).values())[-2:]:
+    for notebook in sorted(state.get('notebooks', {}).values(), key=lambda n: (n.get('updated_version', n.get('created_version', 0)), n['id']))[-2:]:
         receipt = state.get('invocations', {}).get(notebook.get('updated_by'), {})
         stories.append({
             'id': member + ':notebook:' + notebook['id'], 'kind': 'provisional-notebook',
@@ -62,7 +62,7 @@ def input_snapshot(engine, group_id, member, *, record_snapshot=None):
         'topics': [{'label': t['label'], 'question': t.get('seed_question', '')[:120]}
                    for t in state.get('research_topics', [])],
         'projects': [subset(p, ('id', 'title', 'question', 'status', 'next_step'), 180)
-                     for p in list(state.get('projects', {}).values())[-1:]],
+                     for p in sorted(state.get('projects', {}).values(), key=lambda p: p.get('updated_version', p.get('created_version', 0)))[-1:]],
         'stories': stories,
     }
     # Trim whole older stories, never attribution, certainty labels or URLs.
@@ -140,12 +140,20 @@ def request(packet, checkpoint, repair=None):
 
     if modern:
         result['system'] = result['system'].replace('Return only title, lede, body and lens as JSON.', 'Return title, lede, body, lens and references as JSON.').replace('Return exactly four keys: title, lede, body, lens.', 'Return exactly five keys: title, lede, body, lens, references.')
+        if checkpoint > 1:
+            result['system'] = result['system'].replace('For checkpoint 1 introduce WAKE and yourself.',
+                f'Write an ongoing catch-up article, editorial sequence {checkpoint}. Start with the recorded work, not an introduction.')
         result['system'] += (
             " This is a progress explanation, not a new scientific result. Write for a curious 15-year-old "
             "who knows none of the research vocabulary. Never label the audience as children or teens. "
             "Explain unfamiliar terms before or as they appear. Use a concrete everyday example explicitly "
             "labelled as an analogy, not evidence. Tell a connected story about who did what, where and when, "
             "how and why. Include uneven progress, failed approaches and blockers where recorded. "
+            "Do not copy technical vocabulary from the notebooks. Prefer everyday words throughout title, lede, body and lens. "
+            "If you use specialist terms, define each explicitly at first use with words such as means. "
+            "Use a separate short paragraph for each research theme, with a simple concrete analogy. "
+            "The opening should explain what the computer workers actually did since the last article and when; "
+            "do not offer another welcome or call this checkpoint one. Say what papers suggest, not we found that. "
             "Paper-supported means a recorded reading of a paper, not independently confirmed or tested. "
             "Do not claim experiments, proof or discoveries absent from the supplied stories. "
             "Checkpoint is an editorial sequence, NOT a research count. Do not introduce Bob again after 1. "
@@ -161,6 +169,9 @@ def request(packet, checkpoint, repair=None):
                 'properties': {'input_ids': {'type': 'array', 'items': {'type': 'string'}}},
                 'required': ['input_ids']}}
         result['response_schema']['required'] = [*ARTICLE_FIELDS, 'references']
+        result['response_schema']['properties']['references']['items']['properties']['input_ids']['items']['enum'] = [story['id'] for i in packet['inputs'] for story in i.get('stories', [])]
+        if repair:
+            result['system'] += '\nEditorial correction required: ' + repair['reason'] + '\nThe earlier draft excerpt is a failed example. Rewrite it; do not copy its wording.'
         result['context']['repair'] = ({'reason': repair['reason'], 'previous_draft_excerpt': repair['article']['body'][:1800]} if repair else None)
     return result
 
@@ -172,12 +183,13 @@ def validate_article(article):
     return article
 
 
-def publication(packet, checkpoint, article, invocation, provider):
+def publication(packet, checkpoint, article, invocation, provider, *, supersedes=None):
     validate_inputs(packet)
     validate_article(article)
     return {'schema': 2 if all(i.get('editorial_schema') == 2 for i in packet['inputs']) else 1, 'group_id': packet['group_id'], 'checkpoint': checkpoint,
             'inputs': packet, 'article': article, 'invocation': invocation,
-            'provider': provider, 'id': INTRO_ID if checkpoint == 1 else f'group-bob-{checkpoint}'}
+            'provider': provider, 'id': INTRO_ID if checkpoint == 1 else f'group-bob-{checkpoint}',
+            **({'supersedes': supersedes} if supersedes else {})}
 
 
 def apply_event(state, kind, payload, timestamp, *, historical=False):
@@ -195,6 +207,17 @@ def apply_event(state, kind, payload, timestamp, *, historical=False):
         return state
     group = state.get('group_bob')
     require(group, 'Group editorial publication requires enrollment')
+    if kind == 'group_bob_revision_requested':
+        require(set(payload) == {'actor', 'publication_digest', 'reason', 'command_id'} and payload['actor'] == 'operator'
+                and group['member'] == group['leader'] and group.get('publication')
+                and payload['publication_digest'] == digest(group['publication']),
+                'Editorial revision requires the operator and the current shared publication')
+        text(payload['reason'], 'Editorial revision reason', 1000)
+        require(isinstance(payload['command_id'], str) and re.fullmatch('[a-f0-9]{32}', payload['command_id'])
+                and payload['command_id'] != group.get('last_revision_command'), 'Revision command already consumed or invalid')
+        group['last_revision_command'] = payload['command_id']
+        group['revision_requested'] = payload
+        return state
     if kind == 'group_bob_exception_granted':
         require(set(payload) == {'actor', 'checkpoint', 'publication_digest', 'reason'}
                 and payload['actor'] == 'operator' and payload['checkpoint'] == 1,
@@ -213,7 +236,8 @@ def apply_event(state, kind, payload, timestamp, *, historical=False):
     require(kind in ('group_bob_published', 'group_bob_drafted'), 'Unknown group editorial event')
     require(set(payload) == {'publication'}, 'Publication cannot contain research actions')
     p = payload['publication']
-    require(isinstance(p, dict) and set(p) == {'schema','group_id','checkpoint','inputs','article','invocation','provider','id'}, 'Invalid group publication')
+    require(isinstance(p, dict) and set(p) in ({'schema','group_id','checkpoint','inputs','article','invocation','provider','id'},
+                           {'schema','group_id','checkpoint','inputs','article','invocation','provider','id','supersedes'}), 'Invalid group publication')
     validate_inputs(p['inputs']); validate_article(p['article'])
     require(p['schema'] in (1, 2) and p['group_id'] == group['group_id']
             and p['inputs']['group_id'] == group['group_id']
@@ -248,8 +272,14 @@ def apply_event(state, kind, payload, timestamp, *, historical=False):
     if checkpoint == 1 and 'wake-introduction' in state['posts']:
         action['supersedes'] = 'wake-introduction'
     if p['schema'] == 2:
-        require(checkpoint == group['checkpoint'] + 1, 'Editorial sequence must advance once')
-        validate_grounding(p['article'], p['inputs'], historical=historical)
+        require(group['member'] != group['leader'] or checkpoint == group['checkpoint'] + 1, 'Leader editorial sequence must advance once')
+        if p.get('supersedes'):
+            require(re.fullmatch(r'group-(?:bob-[0-9]+|wake-introduction)', p['supersedes'])
+                    and p['supersedes'] != p['id'], 'Correction must identify an earlier shared article')
+            if group['member'] == group['leader']:
+                require(p['supersedes'] == group.get('publication', {}).get('id'), 'Correction must supersede the current shared article')
+            action['supersedes'] = p['supersedes']
+        validate_grounding(p['article'], p['inputs'], historical=historical, checkpoint=checkpoint)
     if not override and p['schema'] == 1:
         shadow = deepcopy(state)
         shadow['version'] = checkpoint - 1
@@ -272,13 +302,14 @@ def apply_event(state, kind, payload, timestamp, *, historical=False):
                                   'digest': digest(p), 'members': group['members'], 'exception': override,
                                   'leader':group['leader'], 'provider':p['provider']}}
     state['posts'][p['id']] = post
-    if action.get('supersedes'):
+    if action.get('supersedes') in state['posts']:
         state['posts'][action['supersedes']].update(status='superseded', superseded_by=p['id'])
     group.update(checkpoint=checkpoint, publication=p)
     if p['schema'] == 2:
         group['published_at'] = timestamp
     group.pop('draft', None)
     group.pop('withheld', None)
+    group.pop('revision_requested', None)
     return state
 
 
@@ -376,7 +407,9 @@ def synchronize(engine, provider=None):
             return changed
         if not modern and prior == 0 and attempts:
             return changed
+        revision = group.get('revision_requested')
         repair = {'article': draft['article'], 'reason': withheld['reason']} if draft and withheld else (
+            {'article': group['publication']['article'], 'reason': revision['reason']} if revision else
             {'article': {'body': ''}, 'reason': same[-1].get('reason', 'Previous synthesis did not complete')} if same else None)
         result = engine.synthesize_group(provider, packet, checkpoint, repair=repair)
         if result['status'] != 'editorial_completed':
@@ -384,7 +417,8 @@ def synchronize(engine, provider=None):
             return True
         p = publication(packet, checkpoint, result['article'], result['id'],
                         {'name':provider.name, 'model':result.get('successful_model')
-                         or getattr(provider, 'successful_model', None) or provider.model})
+                         or getattr(provider, 'successful_model', None) or provider.model},
+                        supersedes=group['publication']['id'] if revision else None)
         engine.store.append('group_bob_drafted', {'publication':p})
         try:
             engine.store.append('group_bob_published', {'publication':p})
@@ -402,6 +436,8 @@ def _time(value):
 
 def editorial_due(group, packet, *, now=None):
     """18 new group transitions, or 45 minutes with meaningful new activity."""
+    if group.get('revision_requested'):
+        return True
     previous = group.get('publication', {}).get('inputs', {}).get('inputs', [])
     if not previous:
         return True
@@ -424,7 +460,7 @@ def reference_links(article, packet):
     return [[stories[key] for key in ref['input_ids']] for ref in article.get('references', [])]
 
 
-def validate_grounding(article, packet, *, historical=False):
+def validate_grounding(article, packet, *, historical=False, checkpoint=None):
     refs = article.get('references')
     require(isinstance(refs, list) and 1 <= len(refs) <= 20, 'Progress articles require attributed references')
     known = {story['id']: item['member'] for item in packet['inputs'] for story in item.get('stories', [])}
@@ -445,6 +481,7 @@ def validate_grounding(article, packet, *, historical=False):
         cited.update(numbers)
     require(cited == set(range(1, len(refs) + 1)), 'Every reference must be cited in the article')
     if not historical:
+        validate_accessibility(article, checkpoint)
         from .governance import _enforce_bob_personhood_policy, _blog_language
         _enforce_bob_personhood_policy(' '.join(article[k] for k in ARTICLE_FIELDS).lower())
         _blog_language(article, [], historical=False)
@@ -453,4 +490,27 @@ def validate_grounding(article, packet, *, historical=False):
         for prose, limit in ((body, 45), (summary, 25)):
             require(all(len(sentence.split()) <= limit for sentence in re.split(r'[.!?]\s+', prose)),
                     'Use shorter sentences and explain unfamiliar terms simply')
+    return article
+
+
+def validate_accessibility(article, checkpoint=None):
+    """Catch concrete accessibility failures, without claiming a reading-age score."""
+    prose = ' '.join(article[k] for k in ARTICLE_FIELDS)
+    if checkpoint and checkpoint > 1:
+        require(not re.search(r"\b(?:I am Bob|I'm Bob|Welcome to WAKE|checkpoint (?:one|1))\b", prose, re.I),
+                'Later articles must explain new work without repeating the introduction')
+    require(not re.search(r'\bwe (?:found|proved|discovered) that\b', prose, re.I),
+            'Describe what the recorded papers suggest; do not imply a new group discovery')
+    terms = ('thermodynamic', 'entropy', 'dissipative', 'substrates', 'delocalizes',
+             'redundant', 'prebiotic', 'heredity', 'non-equilibrium', 'scrambling',
+             'mutual information', 'wet-lab', 'fidelity', 'quantum', 'provisional')
+    for term in terms:
+        match = re.search(r'\b' + re.escape(term) + r'\b', prose, re.I)
+        if not match:
+            continue
+        # A first use needs a nearby explicit plain-language definition. Long
+        # scientific titles in the reference list are not part of reader prose.
+        sentence = re.split(r'[.!?]\s+', prose[:match.start()])[-1] + prose[match.start():].split('.', 1)[0]
+        require(re.search(r'\b(?:means|meaning|that is|in other words|called|simply|describes|before life|tiny particles)\b', sentence, re.I),
+                f'Explain {term} at first use or replace it with everyday words')
     return article

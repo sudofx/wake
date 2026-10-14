@@ -26,3 +26,49 @@ def export_unified_site(projection, target):
     atomic_write(target / 'console.html', console)
     _deployment_site(target, standalone=True, installation={'unified': True, 'instance_name': 'WAKE✳︎'})
     return {'path': str(target / 'index.html'), 'head': projection['head']}
+
+
+def export_unified_history(generations, snapshots, target):
+    """Merge complete exported streams without reading any authority database.
+
+    Keep file handles open across rendering: a retired generation's files may be
+    unlinked by its owner while these handles continue reading the captured bytes.
+    The sort index contains only dates and offsets, not growing provider payloads.
+    """
+    from contextlib import ExitStack
+    import json
+    from .installation_projection import _COLLECTIONS, _remap, _prefix
+    from .installation_cli import _public_projection
+    target = Path(target)
+    index, streams, known = [], {}, {}
+    with ExitStack() as stack:
+        for node, packet in snapshots.items():
+            streams[node] = stack.enter_context((Path(generations[node]) / 'events.jsonl').open('rb'))
+            state = packet['state']
+            known[node] = {str(key) for collection in _COLLECTIONS for key in state.get(collection, {})}
+            known[node].update(str(t['id']) for t in state.get('research_topics', []) if t.get('id'))
+        for node, stream in streams.items():
+            while True:
+                offset = stream.tell()
+                line = stream.readline()
+                if not line:
+                    break
+                if not line.strip():
+                    continue
+                event = json.loads(line)
+                index.append((str(event.get('time', '')), node, event.get('seq', 0), offset))
+        with (target / 'events.jsonl').open('w') as output:
+            for _, node, _, offset in sorted(index):
+                streams[node].seek(offset)
+                event = _public_projection(json.loads(streams[node].readline()))
+                packet = snapshots[node]
+                mapped = {**event, 'payload': _remap(event.get('payload', {}), node, known[node]),
+                    'origin': {'node': node, 'head': packet['head'], 'version': packet['state']['version']},
+                    'original_event': event, 'projection_only': True,
+                    'projection_id': _prefix(node, event.get('hash') or event.get('seq'))}
+                output.write(json.dumps(mapped, ensure_ascii=False, separators=(',', ':')) + '\n')
+    overview = json.loads((target / 'wake-data.json').read_text())
+    overview['event_history'] = {'displayed': len(overview.get('events', [])),
+                                 'total': len(index), 'complete_url': 'events.jsonl'}
+    atomic_write(target / 'wake-data.json', json.dumps(overview, ensure_ascii=False, separators=(',', ':')))
+    return len(index)

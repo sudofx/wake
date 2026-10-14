@@ -39,6 +39,10 @@ Neither opens authority or requests model output.
 The journal overview carries a bounded event tail and compact invocation/evidence
 views; complete history remains in `events.jsonl`. Installation comparisons read
 small exported summaries, and runtime status reads only worker observations.
+The unified complete-history stream is merged from node exports, retaining source
+heads and local receipt identities. Its sort index holds dates and offsets rather
+than full payloads. Inactive automatic-pause controls do not load authority during
+the idle loop.
 
 The installed CLI is `wake-research`; operator commands use an installation-specific
 Unix socket in `/tmp` with mode 0600. Console access over the LAN is read-only. Source changes do not
@@ -399,6 +403,17 @@ fabricated Bob fallback fills a quota failure. Passenger remains private.
 is paused. It grants only the leader's editorial provider slot, respects quota,
 cadence and capacity, and cannot start research. A later pause/stop cancels that
 pending capability. Paused members still import an already accepted shared article.
+`wake-research bob --revise 'REASON'` records a digest-bound operator request for
+an eligible model-written correction of the current article. It can become due
+without new research activity, but never bypasses editorial capacity or language
+checks. A consumed command cannot repeat after interrupted export. The new
+article supersedes the earlier one while retaining its text and invocation.
+New prose checks reject repeated introductions, discovery wording for literature
+readings, and known specialist terms without an explicit first-use explanation;
+they do not claim to certify a reading age or full semantic accuracy.
+Only the leader advances its editorial sequence one step at a time; other members
+can import a later accepted shared article after missing an earlier feed update.
+No missing historical article or research transition is fabricated.
 Public delivery is documented in [mirror publishing](cloud.md).
 
 For a monitored first-post run, the operator may set

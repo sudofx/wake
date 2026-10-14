@@ -286,6 +286,16 @@ Current proposal guidance derives belief-review eligibility from the full record
 
 When the provider request approaches its context ceiling, belief review alternatives are bounded to one genuinely new visible evidence root per belief before source prose is shortened. Durable belief evidence and deterministic governance remain unchanged. The ceiling now measures exact rendered system/user text shared with the provider adapter; instructions, response rules and enabled probes reserve space before working context. See [provider-ready budgeting](retrieval.md#provider-ready-input-budget) for receipt fields and historical measurement distinctions.
 
+Later shared Bob articles measure editorial activity, not research progress.
+Their sequence can advance for an explanation of recorded questions, provisional
+paper readings, corrections, failures or blockers without the two-source
+scientific-result gate. This exception cannot accept research or complete a
+project. A model-written editorial correction retains and supersedes the earlier
+article; its operator request, draft and invocation remain auditable. Readable
+prose and traceable references do not establish independent scientific validity.
+The [editorial contract](development.md#first-run-publication-and-passenger)
+defines cadence, capacity and language checks.
+
 A group WAKE01 introduction is a shared model synthesis of dated summaries from all
 parents and children. Its checkpoint is editorial metadata, not an added accepted
 research cycle or scientific result. Initial summaries may all have accepted version zero;

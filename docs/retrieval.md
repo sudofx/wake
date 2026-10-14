@@ -255,7 +255,14 @@ Group Bob requests carry bounded attributed excerpts from every member, with
 record heads and versions identifying their dated origins. Excerpting must not drop
 a member or let the model infer missing facts. These summaries are editorial
 context rather than imported qualifying evidence. Native invocation receipts retain
-the exact delivered public request and model response.
+the exact delivered public request and model response. Inputs include notebook
+and revision identifiers, dates, claim labels, limitations and source/record links.
+Whole older stories and prose may be omitted to fit; remaining identifiers are
+retained, and an oversized source URL is omitted rather than truncated into a
+false link. Recent attempts are selected by recorded time. Articles cite supplied
+story IDs; operator correction feedback and a bounded prior-draft excerpt reserve
+room inside the same provider input ceiling. See the
+[editorial contract](development.md#first-run-publication-and-passenger).
 
 Passenger text, including its factual first-publication receipt, never enters
 research memory, retrieval or trust compacts. A

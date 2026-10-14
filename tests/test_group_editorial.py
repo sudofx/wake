@@ -111,6 +111,13 @@ class GroupEditorialTests(unittest.TestCase):
         self.assertNotIn('withheld',after['group_bob'])
         self.assertEqual(engine.store.audit()[0],after)
 
+    def test_attempt_packets_follow_dates_instead_of_dictionary_order(self):
+        state = deepcopy(self.engines[0].store.load())
+        state['invocations'] = {key:{'id':key, 'time':date, 'phase':'research', 'status':'failed'}
+            for key,date in (('z-old','2026-01-01'),('a-new','2026-10-14'),('m-middle','2026-09-01'))}
+        packet = input_snapshot(None, 'wake', self.members[0], record_snapshot=(state, 'a' * 64))
+        self.assertEqual([i['id'] for i in packet['stories'][0]['statement']['attempts']], ['m-middle','a-new'])
+
     def test_member_packet_bounds_prose_without_truncating_source_urls(self):
         state = deepcopy(self.engines[0].store.load())
         state['research_topics'] = [{'label':'A research topic', 'seed_question':'q' * 800} for _ in range(3)]
@@ -127,6 +134,53 @@ class GroupEditorialTests(unittest.TestCase):
         self.assertEqual(story['revision'], 3)
         self.assertEqual(story['claims'][0]['certainty'], 'hypothesis')
         self.assertTrue(all(source['source'] == '' and source['record_url'] for source in story['sources']))
+
+    def test_accessibility_rejects_repeated_intro_and_undefined_terms(self):
+        from wake.group_editorial import validate_accessibility
+        article = deepcopy(Writer().article)
+        article['lede'] = 'I am Bob, your translation voice for checkpoint one.'
+        with self.assertRaisesRegex(Rejected, 'introduction'): validate_accessibility(article, 2)
+        article['lede'] = 'Notes about memory.'
+        article['body'] = 'Members studied thermodynamic entropy production in dissipative substrates.'
+        with self.assertRaisesRegex(Rejected, 'first use'): validate_accessibility(article, 2)
+        article['body'] = 'Prebiotic simply means before life. We are reading papers about early chemistry.'
+        validate_accessibility(article, 2)
+        article['body'] = 'We found that storing memory always costs energy.'
+        with self.assertRaisesRegex(Rejected, 'discovery'): validate_accessibility(article, 2)
+
+    def test_new_accessibility_checks_preserve_prior_accepted_group_prose(self):
+        initial = self.draft()
+        leader = self.engines[0]
+        leader.store.append('group_bob_published', {'publication':initial})
+        writer = Writer(); writer.article['lede'] = 'Welcome to WAKE, checkpoint one.'
+        with leader.store.lock(): r = leader.synthesize_group(writer, self.packet, 2)
+        prior = publication(self.packet, 2, r['article'], r['id'], {'name':'fixture','model':writer.model})
+        with patch('wake.group_editorial.validate_accessibility'):
+            leader.store.append('group_bob_published', {'publication':prior})
+        self.assertEqual(leader.store.audit()[0], leader.store.load())
+
+    def test_operator_revision_supersedes_without_research_changes_or_repeat_command(self):
+        from wake.group_editorial import editorial_due
+        p = self.draft()
+        for engine in self.engines: engine.store.append('group_bob_published', {'publication':p})
+        leader = self.engines[0]
+        before = deepcopy(leader.store.load())
+        command = {'actor':'operator', 'command_id':'a' * 32, 'publication_digest':digest(p),
+                   'reason':'Explain unfamiliar terms in everyday words.'}
+        leader.store.append('group_bob_revision_requested', command)
+        with self.assertRaises(Rejected): leader.store.append('group_bob_revision_requested', command)
+        self.assertTrue(editorial_due(leader.store.load()['group_bob'], self.packet))
+        writer = Writer(); writer.article['title'] = 'A clearer explanation of our notes'
+        with leader.store.lock(): r = leader.synthesize_group(writer, self.packet, 2)
+        correction = publication(self.packet, 2, r['article'], r['id'], {'name':'fixture','model':writer.model}, supersedes=p['id'])
+        for engine in self.engines: engine.store.append('group_bob_published', {'publication':correction})
+        after = leader.store.load()
+        self.assertEqual(after['posts'][p['id']]['status'], 'superseded')
+        self.assertEqual(after['posts'][correction['id']]['supersedes'], p['id'])
+        for key in ('version','journal','evidence','notebooks','attention','commitments','projects'):
+            self.assertEqual(after[key], before[key])
+        self.assertNotIn('revision_requested', after['group_bob'])
+        self.assertEqual(leader.store.audit()[0], after)
 
     def test_progress_cadence_uses_group_total_and_meaningful_silence(self):
         from datetime import datetime, timedelta, timezone
