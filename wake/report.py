@@ -664,7 +664,7 @@ def _deployment_site(target, *, standalone, installation=None):
         page = re.sub(r'(<html[^>]*)\sdata-theme=[\"\'][^\"\']*[\"\']', r'\1', page, count=1)
         page = re.sub(r'<html([^>]*)>', r'<html\1 data-theme="light">', page, count=1)
         prefix = "../" * len(path.relative_to(target).parts[:-1])
-        page = re.sub(r'href="((?:\.\./)*(?:style|nav|map|map3d|research|theme)\.css)(?:\?[^"]*)?"', r'href="\1?v=20261014-reading-space"', page)
+        page = re.sub(r'href="((?:\.\./)*(?:style|nav|map|map3d|research|theme)\.css)(?:\?[^"]*)?"', r'href="\1?v=20261014-mobile-width"', page)
         page = re.sub(r'src="((?:\.\./)*nav\.js)(?:\?[^"]*)?"', r'src="\1?v=20261014-container-mirror"', page)
         if '<header class="' in page and 'masthead' in page:
             shared = header
@@ -686,7 +686,7 @@ def _deployment_site(target, *, standalone, installation=None):
         page = re.sub(r'<script src="(?:\.\./)*installation-console\.js[^"]*"[^>]*></script>', '', page)
         page = re.sub(r'<link rel="stylesheet" href="(?:\.\./)*installation-console\.css[^"]*">', '', page)
         page = page.replace('</head>', f'<link rel="stylesheet" href="{prefix}installation-console.css?v=20261014-icon-picker"><script src="{prefix}installation-console.js?v=20261014-network-picker" defer></script></head>', 1)
-        page = page.replace('</head>', f'<link rel="stylesheet" href="{prefix}console-light.css?v=20261014-reading-space"><script src="{prefix}site-theme.js?v=20261014-system-theme"></script><link rel="stylesheet" href="{prefix}masthead.css?v=20261014-system-theme"></head>', 1)
+        page = page.replace('</head>', f'<link rel="stylesheet" href="{prefix}console-light.css?v=20261014-mobile-width"><script src="{prefix}site-theme.js?v=20261014-system-theme"></script><link rel="stylesheet" href="{prefix}masthead.css?v=20261014-system-theme"></head>', 1)
         # Re-export may reuse a directory. An older marker later in <head> must
         # not override the newly selected installation. Normalize to one owner.
         page = re.sub(r'<script>window\.WAKE_(?:DEPLOYMENT|STANDALONE)=[^<]*</script>', '', page)
