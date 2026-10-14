@@ -127,3 +127,5 @@ html:is(.console-panel-window,.console-tool-window) body{padding-top:0!important
 .masthead .installation-node-picker:focus-within{outline:2px solid var(--cyan);outline-offset:2px}
 @media(max-width:480px){.masthead .installation-node-picker{flex-basis:32px;width:32px}}
 @media(max-width:350px){.masthead .installation-node-picker{flex-basis:30px;width:30px}}
+
+html[data-system-theme="detected"] .masthead .theme-switch{display:none!important}
