@@ -164,7 +164,7 @@ def _copy_public_site(source: Path, destination: Path):
     assets = Path(__file__).parent / 'assets'
     root_data = {'research-data.json', 'research.json', 'wake-data.json', 'state.json',
                  'events.jsonl', 'head.txt', 'map-data.json', 'map3d-data.json',
-                 'deployment.json', 'manifest.webmanifest', 'experiment.json'}
+                 'deployment.json', 'manifest.webmanifest', 'experiment.json', 'export-format.json'}
     for path in source.rglob('*'):
         relative = path.relative_to(source)
         if path.is_symlink():
@@ -227,6 +227,8 @@ def _build_public_artifact(root: Path, destination: Path, *, progress=None) -> d
         staging.mkdir()
         nodes, snapshots, research = [], {}, {}
         from .report import export, _deployment_site
+        from .export_cache import renderer_signature
+        compatible_renderer = renderer_signature()
         for node in NODE_IDS:
             if progress:
                 progress(f'Building website pages for {node} ({NODE_IDS.index(node) + 1}/12).')
@@ -240,23 +242,38 @@ def _build_public_artifact(root: Path, destination: Path, *, progress=None) -> d
             if snapshot['head'] != view['head'] or snapshot['state']['version'] != view['version']:
                 raise ValueError('Node export does not identify one matching snapshot')
             snapshots[node], research[node] = snapshot, view
-            # Render the recorded packet with current owned assets, so an upload
-            # cannot retain obsolete live-polling code from an earlier export.
-            generated = Path(temporary) / 'generated' / node
-            export(None, generated, projection={**snapshot, 'research':view}, standalone=True)
-            for name in ('events.jsonl', 'events.html', 'state.html', 'map-data.json', 'map3d-data.json'):
-                if (source / name).is_file():
-                    shutil.copyfile(source / name, generated / name)
-            if (source / 'map3d').exists():
-                shutil.copytree(source / 'map3d', generated / 'map3d', dirs_exist_ok=True)
-            deployment = json.loads((source / 'deployment.json').read_text())
-            _deployment_site(generated, standalone=True, installation=deployment)
-            for name in ('bob.json', 'bob-publication.json'):
-                packet = source / 'group' / name
-                if packet.is_file():
-                    (generated / 'group').mkdir(exist_ok=True)
-                    shutil.copyfile(packet,generated / 'group' / name)
-            _copy_public_site(generated, staging / 'nodes' / node)
+            marker = source / 'export-format.json'
+            try:
+                compatible = json.loads(marker.read_text()) == {
+                    'schema': 1, 'renderer': compatible_renderer}
+            except (OSError, ValueError):
+                # A missing or damaged hint invalidates reuse, not the captured
+                # record packet. Rebuild it through the normal exporter.
+                compatible = False
+            if compatible:
+                # Completed immutable pages already contain deployment identity
+                # and the exact captured record. No second render is needed.
+                if progress:
+                    progress(f'Reusing completed website pages for {node}.')
+                _copy_public_site(source, staging / 'nodes' / node)
+            else:
+                # Render the recorded packet with current owned assets, so an upload
+                # cannot retain obsolete live-polling code from an earlier export.
+                generated = Path(temporary) / 'generated' / node
+                export(None, generated, projection={**snapshot, 'research':view}, standalone=True)
+                for name in ('events.jsonl', 'events.html', 'state.html', 'map-data.json', 'map3d-data.json'):
+                    if (source / name).is_file():
+                        shutil.copyfile(source / name, generated / name)
+                if (source / 'map3d').exists():
+                    shutil.copytree(source / 'map3d', generated / 'map3d', dirs_exist_ok=True)
+                deployment = json.loads((source / 'deployment.json').read_text())
+                _deployment_site(generated, standalone=True, installation=deployment)
+                for name in ('bob.json', 'bob-publication.json'):
+                    packet = source / 'group' / name
+                    if packet.is_file():
+                        (generated / 'group').mkdir(exist_ok=True)
+                        shutil.copyfile(packet,generated / 'group' / name)
+                _copy_public_site(generated, staging / 'nodes' / node)
             nodes.append({'id': node, 'url': f'/nodes/{node}/',
                           'record': {'head': snapshot['head'], 'version': snapshot['state']['version']}})
         from .installation import installation_snapshot
@@ -288,6 +305,19 @@ def _build_public_artifact(root: Path, destination: Path, *, progress=None) -> d
     return manifest
 
 
+def _pin_export_file(source, destination):
+    """Immutable generation files survive retirement through their own link.
+
+    Pins live beside the installation so compatible filesystems need no byte
+    copy under the retention lease. Filesystems without hardlinks still copy.
+    """
+    try:
+        os.link(source, destination)
+    except OSError:
+        shutil.copy2(source, destination)
+    return destination
+
+
 def build_public_artifact(root: Path, destination: Path, *, progress=None) -> dict:
     """Pin each immutable export while its owner retains/deletes generations.
 
@@ -295,7 +325,7 @@ def build_public_artifact(root: Path, destination: Path, *, progress=None) -> di
     The resulting manifest describes exported heads, never a later live record.
     """
     root = Path(root)
-    with tempfile.TemporaryDirectory(prefix='wake-pinned-') as temporary:
+    with tempfile.TemporaryDirectory(prefix='.wake-pinned-', dir=root) as temporary:
         pinned = Path(temporary)
         shutil.copyfile(root / 'installation-id.json', pinned / 'installation-id.json')
         for node in NODE_IDS:
@@ -307,7 +337,7 @@ def build_public_artifact(root: Path, destination: Path, *, progress=None) -> di
                 source = (site / 'current').resolve(strict=True)
                 if any(path.is_symlink() for path in source.rglob('*')):
                     raise ValueError('Public sites may not contain symlink assets')
-                shutil.copytree(source, pinned / 'nodes' / node / 'site' / 'current', symlinks=True)
+                shutil.copytree(source, pinned / 'nodes' / node / 'site' / 'current', symlinks=True, copy_function=_pin_export_file)
             # Only bounded, dated observation fields enter the mirror. They do
             # not provide a live runtime capability or research authority.
             try:

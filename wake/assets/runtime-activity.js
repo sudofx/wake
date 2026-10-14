@@ -13,24 +13,65 @@ window.WakeRuntimeActivityView = status => {
     coordinate_id:active&&['provider','provider_uncoordinated','provider_response','governance','continuity'].includes(status.activity.stage)&&
       typeof status.activity.coordinate_id==='string'?status.activity.coordinate_id:null}};
 };
+// Shared, disposable research data: one request and object for this document.
+window.WakeViewData=(()=>{
+  let current=null,pending=null;
+  const get=async (url,json=true)=>{const response=await fetch(url,{cache:'no-store',signal:AbortSignal.timeout(12000)});if(!response.ok)throw Error(`HTTP ${response.status}`);return json?response.json():response.text();};
+  return {research:async (refresh=false)=>{
+    if(pending)return pending;if(current&&!refresh)return current;
+    pending=(async()=>{if(current){try{const head=(await get('head.txt',false)).trim();if(head===current.head)return current;}catch{}}const next=await get('research-data.json');if(next?.projection_kind!=='disposable-research-view'||!next.head)throw Error('Unsupported research projection');current=next;return current;})();
+    try{return await pending;}finally{pending=null;}
+  }};
+})();
+
+// Expensive view objects are created only near the viewport or on interaction.
+window.WakeLazyCanvas=(canvas,factory)=>{
+  let view=null,near=false,selected='';const pending=new Map();
+  const panel=canvas.closest('.panel');
+  const create=()=>{if(view)return view;view=factory(canvas);canvas.dataset.wakeInitialized='true';for(const [name,args] of pending)view[name]?.(...args);pending.clear();return view;};
+  const initialize=()=>{if(near&&!document.hidden&&!panel?.classList.contains('module-collapsed'))create();};
+  new IntersectionObserver(entries=>{near=entries[0]?.isIntersecting===true;initialize();},{rootMargin:'150px'}).observe(canvas);
+  if(panel)new MutationObserver(initialize).observe(panel,{attributes:true,attributeFilter:['class']});
+  document.addEventListener('visibilitychange',initialize);
+  const call=(name,args,interaction=false)=>{if(interaction)create();if(view)return view[name]?.(...args);pending.set(name,args);};
+  return {update:(...args)=>{const cells=args[0]?.cells;if(cells&&!cells.some(c=>c.id===selected))selected=cells.find(c=>c.position.every(v=>v===3))?.id||cells[0]?.id||'';call('update',args);return selected||undefined;},select:(...args)=>{selected=args[0];return call('select',args);},rotate:(...args)=>call('rotate',args,true),reset:(...args)=>call('reset',args,true),view:(...args)=>call('view',args,true),setMotion:(...args)=>call('setMotion',args),setActivity:(...args)=>call('setActivity',args),getRotation:()=>create().getRotation()};
+};
+
 (() => {
-  if(window.WAKE_DEPLOYMENT?.schema!==1||window.WAKE_DEPLOYMENT.mode!=='standalone'||window.WAKE_DEPLOYMENT.snapshot_only===true)return;
-  let receivedAt=0,busy=false;
-  const publish=value=>{window.WakeRuntimeActivity=value;window.dispatchEvent(new CustomEvent('wake-runtime-activity',{detail:value}));};
+  const deployment=window.WAKE_DEPLOYMENT;
+  if(deployment?.schema!==1||deployment.mode!=='standalone'||deployment.snapshot_only===true)return;
+  const asset=new URL(document.currentScript?.src||'runtime-activity.js',location.href);
+  const node=location.pathname.match(/\/nodes\/([^/]+)\//)?.[1];
+  const root=new URL(asset.pathname.includes('/nodes/')?asset.pathname.split('/nodes/')[0]+'/':'./',asset);
+  const listeners=new Set();let latest=null,stream=null,timer=null,busy=false,receivedAt=0,streamRetryAt=0;
+  const view=packet=>packet?.mode==='installation'&&node?packet.members?.find(member=>member.id===node)?.runtime||packet.legacy_node||null:packet;
+  const publish=packet=>{latest=packet;window.WakeStatusSnapshot=packet;for(const listener of listeners)listener(packet);const status=window.WakeRuntimeActivityView(view(packet));window.WakeRuntimeActivity=status;window.dispatchEvent(new CustomEvent('wake-runtime-activity',{detail:status}));};
+  window.WakeStatusChannel={root:root.href,get snapshot(){return latest;},subscribe:listener=>{listeners.add(listener);if(latest)listener(latest);return ()=>listeners.delete(listener);},view};
+  const accept=packet=>{if(document.hidden){publish(null);return;}receivedAt=performance.now();publish(packet);};
+  const close=()=>{stream?.close();stream=null;clearTimeout(timer);timer=null;};
+  const startStream=()=>{
+    if(!window.EventSource||stream||document.hidden)return;
+    stream=new EventSource(new URL('runtime.events',root));
+    stream.onmessage=event=>{try{const packet=JSON.parse(event.data);if(packet.mode!=='installation'||!Array.isArray(packet.members))throw Error('Unsupported status stream');accept(packet);}catch{publish(null);}};
+    stream.onerror=()=>{close();streamRetryAt=performance.now()+30000;publish(null);timer=setTimeout(poll,3000);};
+  };
+  const fetchJSON=async url=>{const response=await fetch(url,{cache:'no-store',signal:AbortSignal.timeout(2500)});if(!response.ok)throw Error('Runtime unavailable');return response.json();};
   async function poll(){
-    if(busy||document.hidden)return;
-    busy=true;
-    const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),2500);
+    if(busy||document.hidden)return;busy=true;
     try{
-      const response=await fetch(new URL('runtime.json',location.href),{cache:'no-store',signal:controller.signal});
-      if(!response.ok)throw new Error('Runtime unavailable');
-      const view=window.WakeRuntimeActivityView(await response.json());
-      receivedAt=performance.now();publish(view);
-    }catch{
-      publish(null);
-    }finally{clearTimeout(timeout);busy=false;}
+      const packet=await fetchJSON(new URL('runtime.json',root));
+      if(packet.mode==='installation'&&node&&!Array.isArray(packet.members))packet.legacy_node=await fetchJSON(new URL('runtime.json',location.href));
+      accept(packet);
+      if(packet.capabilities?.status_stream===true&&window.EventSource&&performance.now()>=streamRetryAt){startStream();return;}
+    }catch{publish(null);}finally{busy=false;}
+    timer=setTimeout(poll,3000);
   }
-  poll();setInterval(poll,3000);
-  setInterval(()=>{if(window.WakeRuntimeActivity&&performance.now()-receivedAt>9000)publish(null);},1000);
-  document.addEventListener('visibilitychange',()=>{publish(null);if(!document.hidden)poll();});
+  // Same-origin embedded panels subscribe to their parent instead of opening
+  // another long-lived HTTP connection. Separate browser windows own a channel.
+  try{if(window.parent!==window&&window.parent.WakeStatusChannel?.root===root.href){const parent=window.parent.WakeStatusChannel;const unsubscribe=parent.subscribe(packet=>{if(document.hidden)publish(null);else accept(packet);});document.addEventListener('visibilitychange',()=>{if(document.hidden)publish(null);else if(parent.snapshot)accept(parent.snapshot);});window.addEventListener('pagehide',unsubscribe,{once:true});window.dispatchEvent(new Event('wake-status-ready'));return;}}catch{}
+  window.dispatchEvent(new Event('wake-status-ready'));
+  poll();
+  setInterval(()=>{if(latest&&performance.now()-receivedAt>9000)publish(null);},1000);
+  document.addEventListener('visibilitychange',()=>{close();publish(null);if(!document.hidden)poll();});
+  window.addEventListener('pagehide',close);
 })();

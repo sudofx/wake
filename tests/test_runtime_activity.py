@@ -131,17 +131,17 @@ const fs=require('fs'),vm=require('vm'),assert=require('assert');
 const source=fs.readFileSync(process.argv[1],'utf8');
 (async()=>{
 for(const mode of ['standalone','hosted',undefined,'snapshot']){
- let fail=false,requests=0,now=0;const intervals=[];
+ let fail=false,requests=0,now=0;const intervals=[],timeouts=[];
  const status={mode:'standalone',state:'running',activity_schema:1,runtime_id:'runtime',observed_at:'2026-10-08T18:00:00Z',capabilities:{live_activity:true},activity:{stage:'provider',active:true,coordinate_id:'real-cell'}};
- const window={WAKE_DEPLOYMENT:mode==='snapshot'?{schema:1,mode:'standalone',snapshot_only:true}:mode?{schema:1,mode}:undefined,dispatchEvent(){}};
- const context={window,URL,location:{href:'http://localhost/nodes/100.wake/console.html'},document:{hidden:false,addEventListener(){}},performance:{now:()=>now},CustomEvent:class{},AbortController,
- setTimeout:()=>1,clearTimeout(){},setInterval:(fn,ms)=>intervals.push({fn,ms}),fetch:async url=>{assert.equal(url.pathname,'/nodes/100.wake/runtime.json');requests++;if(fail)throw Error();return {ok:true,json:async()=>status};}};
+ const window={WAKE_DEPLOYMENT:mode==='snapshot'?{schema:1,mode:'standalone',snapshot_only:true}:mode?{schema:1,mode}:undefined,dispatchEvent(){},addEventListener(){}};
+ const context={window,URL,location:{href:'http://localhost/nodes/100.wake/console.html',pathname:'/nodes/100.wake/console.html'},document:{hidden:false,addEventListener(){}},performance:{now:()=>now},CustomEvent:class{},Event,AbortController,AbortSignal,
+ setTimeout:(fn,ms)=>{timeouts.push({fn,ms});return 1},clearTimeout(){},setInterval:(fn,ms)=>intervals.push({fn,ms}),fetch:async url=>{assert.equal(url.pathname,'/runtime.json');requests++;if(fail)throw Error();return {ok:true,json:async()=>status};}};
  vm.runInNewContext(source,context);await new Promise(resolve=>setImmediate(resolve));
  assert.equal(requests,mode==='standalone'?1:0);
  if(mode==='standalone'){
   assert.equal(window.WakeRuntimeActivity.activity.coordinate_id,'real-cell');
   now=10000;intervals.find(x=>x.ms===1000).fn();assert.equal(window.WakeRuntimeActivity,null);
-  fail=true;await intervals.find(x=>x.ms===3000).fn();assert.equal(window.WakeRuntimeActivity,null);
+  fail=true;await timeouts.find(x=>x.ms===3000).fn();assert.equal(window.WakeRuntimeActivity,null);
   assert.equal(window.WakeRuntimeActivityView({...status,state:'paused'}).activity.coordinate_id,null);
   assert.equal(window.WakeRuntimeActivityView({...status,capabilities:{}}),null);
   assert.equal(window.WakeRuntimeActivityView({...status,state:'invented'}),null);
@@ -175,7 +175,7 @@ const context={window,document:{hidden:false,body:{},getElementById:id=>elements
  matchMedia:()=>({matches:true}),devicePixelRatio:1,performance:{now:()=>0},
  getComputedStyle:()=>({getPropertyValue:()=> '#4bd59a'}),
  requestAnimationFrame:fn=>{frames.push(fn);return frames.length},cancelAnimationFrame(){},
- MutationObserver:class{observe(){}},ResizeObserver:class{observe(){}},IntersectionObserver:class{observe(){}},
+ MutationObserver:class{observe(){}},ResizeObserver:class{observe(){}},IntersectionObserver:class{constructor(fn){this.fn=fn}observe(){this.fn([{isIntersecting:true}])}},
  fetch:()=>new Promise(()=>{})};
 vm.runInNewContext(fs.readFileSync(process.argv[1],'utf8'),context);
 frames.shift()(0);

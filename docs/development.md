@@ -170,8 +170,28 @@ Already imported Python does not automatically reload. Workers start stopped for
 inspection after a container restart; explicitly start research when ready.
 
 Public publishing is a separate upload to `wake-public`. It pins exported
-generations and renders current assets without changing research controls. Verify Pages deployment and the upload date independently of source CI.
+generations, reuses compatible completed pages and rebuilds incompatible pages
+without changing research controls. See [capture and compatibility](cloud.md#publish-the-local-installation-mirror).
+Verify Pages deployment and the upload date independently of source CI.
 No runtime promotion or GitHub research restart exists. See [publishing](cloud.md).
+
+## Lightweight website observation
+
+Local pages share one read-only status channel per document; same-origin embedded
+panels subscribe to their parent. `/runtime.json` reads bounded worker observation
+files and small export-head files, never record databases or research graphs.
+The optional `/runtime.events` server-sent stream shares the same sample for up
+to one second, supports at most sixteen simultaneous connections, and falls back
+to small status requests when unavailable. Worker samples older than five seconds
+are unavailable. Visibility changes, disconnects and expired samples clear live
+indicators. Public snapshots open no live channel and label uploaded observations
+with their dates.
+
+Console and process views share a single research projection request. Refreshes
+check the export head before fetching another projection. Canvas views are created
+near the viewport or on interaction, and collapsed views defer initialization.
+These caches hold disposable presentation only; they cannot accept research or
+change provider sequencing. See [inspection boundaries](architecture.md#optional-inspection-activity).
 
 `scripts/wake_runner` is a convenience launcher for the named local editor image.
 It preserves its selected data volume on normal recreation, forces live mode and

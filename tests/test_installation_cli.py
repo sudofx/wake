@@ -179,6 +179,19 @@ class InstallationArchiveTests(unittest.TestCase):
             self.assertEqual(store.record.full_replay()[0], manifest['nodes'][node]['revision'])
             store.close()
 
+    def test_pinned_generation_survives_retirement_and_copy_fallback(self):
+        from wake.installation_cli import _pin_export_file
+        source, pinned = self.root / 'generation', self.root / 'pin'
+        source.write_text('complete exported snapshot')
+        _pin_export_file(source, pinned)
+        source.unlink()
+        self.assertEqual(pinned.read_text(), 'complete exported snapshot')
+        source.write_text('another snapshot')
+        with patch('wake.installation_cli.os.link', side_effect=OSError('Hardlinks unavailable')):
+            _pin_export_file(source, self.root / 'copied-pin')
+        source.unlink()
+        self.assertEqual((self.root / 'copied-pin').read_text(), 'another snapshot')
+
     def test_public_artifact_identifies_exports_without_opening_live_authority(self):
         from wake.installation_cli import build_public_artifact
         from wake.engine import Engine, DEFAULTS
@@ -196,12 +209,16 @@ class InstallationArchiveTests(unittest.TestCase):
         (self.root / 'nodes' / NODE_IDS[0] / 'runtime.json').write_text(json.dumps({
             'state': 'running', 'observed_at': '2026-10-14T18:00:00+00:00', 'private': 'private-runtime-marker'}))
         messages = []
-        with patch('wake.installation_cli._record_metadata', side_effect=AssertionError('Live record read forbidden')):
+        # Load the unified exporter before the node-render guard, so its module
+        # binding cannot retain a temporary mock after this test finishes.
+        from wake import installation_site
+        with patch('wake.installation_cli._record_metadata', side_effect=AssertionError('Live record read forbidden')), \
+             patch('wake.report.export', side_effect=lambda store, target, **kwargs: export(store, target, **kwargs) if Path(target).name == 'unified' else (_ for _ in ()).throw(AssertionError('Compatible node pages rendered twice'))):
             manifest = build_public_artifact(self.root, self.root / 'public', progress=messages.append)
         self.assertEqual(manifest['nodes'][0]['recorded_runtime'], {'state': 'running', 'observed_at': '2026-10-14T18:00:00+00:00'})
         self.assertNotIn('private-runtime-marker', json.dumps(manifest))
         self.assertEqual(sum(message.startswith('Capturing ') for message in messages), 12)
-        self.assertEqual(sum(message.startswith('Building website pages') for message in messages), 12)
+        self.assertEqual(sum(message.startswith('Reusing completed website pages') for message in messages), 12)
         self.assertEqual({node: data['head'] for node, data in manifest['record_heads'].items()}, exported)
         self.assertFalse(manifest['live'])
         full = (self.root / 'public/events.jsonl').read_text().splitlines()
@@ -209,6 +226,13 @@ class InstallationArchiveTests(unittest.TestCase):
         self.assertEqual(overview['event_history']['total'], len(full))
         self.assertTrue(all(json.loads(line)['origin']['node'] in NODE_IDS for line in full))
         self.assertFalse(list((self.root / 'public').rglob('*.sqlite')))
+        # Older or mismatched renderers rebuild once rather than serving stale pages.
+        marker = self.root / 'nodes' / NODE_IDS[0] / 'site/current/export-format.json'
+        marker.write_text('{damaged compatibility hint')
+        with patch('wake.report.export', wraps=export) as rebuilt:
+            refreshed = build_public_artifact(self.root, self.root / 'rebuilt-public')
+        self.assertEqual(sum(Path(call.args[1]).name != 'unified' for call in rebuilt.call_args_list), 1)
+        self.assertEqual(refreshed['record_heads'], manifest['record_heads'])
         # Capture must reject a link before copying private bytes into staging.
         source = self.root / 'nodes' / NODE_IDS[0] / 'site/current'
         (source / 'injected.html').symlink_to(self.root / 'nodes' / NODE_IDS[0] / 'record/wake.sqlite')

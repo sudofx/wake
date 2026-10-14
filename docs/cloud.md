@@ -34,7 +34,7 @@ Then publish:
 ```
 
 The command prints its capture, page-building, copy and upload stages. Capturing a
-node can wait for its current page export; research continues during that wait. It
+node pins its last complete page export while the next generation renders. It
 checks for running GitHub Actions before capture and again before upload, and
 returns without uploading when Actions is busy. After delivery, it exits without
 waiting for Pages to rebuild.
@@ -48,6 +48,16 @@ records. The node menu shows colored status dots: current observations on the lo
 site, and explicitly dated uploaded observations on the public mirror. A missing
 observation is gray; a disconnected local site clears its current status colors.
 These observations do not establish accepted research. Every member must have exported the same accepted shared Bob article.
+
+Capture holds a short generation-retention lock while pinning immutable files,
+using hardlinks on the installation filesystem with a copy fallback. Retirement
+of an old generation cannot remove the pinned bytes. Export rendering uses a
+separate lock and does not block capture. A renderer fingerprint covering Python
+code and website assets permits reuse of compatible completed node pages;
+missing, damaged or incompatible fingerprints cause a rebuild from the captured
+packet. The unified website is rebuilt from the twelve captured snapshots.
+Both paths apply the public allowlist and private-field filter and retain full
+attributed `events.jsonl` history with the exact captured heads.
 
 To keep the mirror current after later Bob articles, run:
 

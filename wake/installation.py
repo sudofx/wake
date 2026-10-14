@@ -39,6 +39,27 @@ def read_json(path, maximum=16_000_000):
     return json.loads(raw)
 
 
+def worker_runtime(root, name):
+    """Read one bounded observation, never an authority or research graph."""
+    try:
+        runtime = read_json(Path(root) / 'nodes' / name / 'runtime.json', 32768)
+        observed = datetime.fromisoformat(runtime['observed_at'])
+        if not 0 <= (datetime.now(timezone.utc) - observed).total_seconds() <= 5:
+            return {'state': 'unavailable', 'observed_at': runtime['observed_at']}
+        return runtime
+    except (OSError, ValueError, KeyError, TypeError):
+        return {'state': 'unavailable'}
+
+
+def exported_head(site):
+    try:
+        with (Path(site) / 'current/head.txt').open() as stream:
+            head = stream.read(129).strip()
+        return head if len(head) == 64 and all(c in '0123456789abcdef' for c in head) else None
+    except OSError:
+        return None
+
+
 def installation_snapshot(root, *, live=True, include_research=True):
     from .installation_cli import _public_projection
     root = Path(root)
@@ -61,19 +82,11 @@ def installation_snapshot(root, *, live=True, include_research=True):
             except (OSError, ValueError, TypeError):
                 pass
         if live:
-            try:
-                runtime = read_json(base / 'runtime.json', 32768)
-                # Never turn stale worker files into live activity after failure.
-                observed = datetime.fromisoformat(runtime['observed_at'])
-                if (datetime.now(timezone.utc) - observed).total_seconds() > 5:
-                    runtime = {'state': 'unavailable', 'observed_at': runtime['observed_at']}
-                node['runtime'] = runtime
-            except (OSError, ValueError, KeyError, TypeError):
-                pass
+            node['runtime'] = worker_runtime(root, name)
         else:
             node['runtime'] = {'state': 'snapshot', 'activity': {'active': False}}
         nodes.append(node)
-    identity = read_json(root / 'installation-id.json')
+    identity = read_json(root / 'installation-id.json', 1024)
     return {'schema': 1, 'installation_id': identity['id'], 'generated': datetime.now(timezone.utc).isoformat(),
             'live': live, 'nodes': nodes}
 
@@ -98,6 +111,31 @@ def installation_runtime(snapshot, mode, coordinator):
 
 
 class InstallationHTTP(PublicSnapshotHandler):
+    def stream_runtime(self):
+        controller = self.server.controller
+        if not controller.observer_slots.acquire(blocking=False):
+            self.send_error(503, 'Observer connection limit reached')
+            return
+        try:
+            self.connection.settimeout(5)
+            self.send_response(200)
+            self.send_header('Content-Type', 'text/event-stream; charset=utf-8')
+            self.send_header('Cache-Control', 'no-store')
+            self.send_header('X-Accel-Buffering', 'no')
+            self.end_headers()
+            while not controller.shutdown.is_set():
+                body = json.dumps(controller.runtime_snapshot(), separators=(',', ':'))
+                self.wfile.write(('data: ' + body + '\n\n').encode())
+                self.wfile.flush()
+                if controller.shutdown.wait(1):
+                    break
+        except (OSError, ValueError):
+            # A disconnected observer has no effect on workers or provider gates.
+            pass
+        finally:
+            controller.observer_slots.release()
+            self.close_connection = True
+
     def json_response(self, status, packet):
         body = json.dumps(packet, separators=(',', ':')).encode()
         self.send_response(status)
@@ -117,13 +155,18 @@ class InstallationHTTP(PublicSnapshotHandler):
             self.json_response(200, packet)
             return
         if route == '/runtime.json':
-            self.json_response(200, installation_runtime(installation_snapshot(controller.root, include_research=False),
-                controller.mode, controller.coordinator.status()))
+            self.json_response(200, controller.runtime_snapshot())
+            return
+        if route == '/runtime.events':
+            if self.command == 'HEAD':
+                self.json_response(200, {'capability': 'read-only-status-stream'})
+            else:
+                self.stream_runtime()
             return
         if route.startswith('/nodes/') and route.endswith('/runtime.json'):
             name = route.split('/')[2]
             if name in NODE_IDS:
-                packet = next(n['runtime'] for n in installation_snapshot(controller.root, include_research=False)['nodes'] if n['id'] == name)
+                packet = worker_runtime(controller.root, name)
                 self.json_response(200, packet)
                 return
         if route == '/group/bob-inputs.json':
@@ -253,6 +296,10 @@ class Controller:
         self.commands = queue.Queue(maxsize=32)
         self.site_signature = None
         self.site_lock = threading.RLock()
+        self.observer_lock = threading.Lock()
+        self.observer_slots = threading.BoundedSemaphore(16)
+        self.observer_sample = None
+        self.observer_sample_at = 0
         self.root.mkdir(parents=True, exist_ok=True)
         schedule = self.root / 'provider-schedule.json'
         if schedule.exists():
@@ -264,6 +311,33 @@ class Controller:
         identity = self.root / 'installation-id.json'
         if not identity.exists():
             atomic_write(identity, json.dumps({'id': secrets.token_hex(16)}))
+
+    def runtime_snapshot(self):
+        """Share one bounded sample across local observers for at most a second."""
+        with self.observer_lock:
+            sampled = time.monotonic()
+            if (self.observer_sample is not None and sampled - self.observer_sample_at < 1
+                    and self.observer_sample['research'] == self.mode):
+                return self.observer_sample
+            snapshot = installation_snapshot(self.root, include_research=False)
+            result = installation_runtime(snapshot, self.mode, self.coordinator.status())
+            fields = ('mode', 'state', 'runtime_id', 'observed_at', 'snapshot_generation', 'activity_schema')
+            activity_fields = ('stage', 'active', 'invocation_id', 'coordinate_id', 'started_at')
+            members = []
+            for node in snapshot['nodes']:
+                runtime = node['runtime']
+                bounded = {key: runtime[key] for key in fields if key in runtime}
+                bounded['capabilities'] = {'live_activity': runtime.get('capabilities', {}).get('live_activity') is True}
+                if runtime.get('reason'):
+                    bounded['reason'] = str(runtime['reason'])[:300]
+                bounded['activity'] = {key: runtime.get('activity', {})[key]
+                                      for key in activity_fields if key in runtime.get('activity', {})}
+                members.append({'id': node['id'], 'runtime': bounded,
+                                'head': exported_head(self.root / 'nodes' / node['id'] / 'site')})
+            result.update(members=members, head=exported_head(self.root / 'site'), observed_at=snapshot['generated'])
+            result['capabilities']['status_stream'] = True
+            self.observer_sample, self.observer_sample_at = result, sampled
+            return result
 
     def set_controls(self, mode):
         command_id = secrets.token_hex(16)

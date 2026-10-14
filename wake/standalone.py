@@ -201,34 +201,43 @@ def _publish(engine, root):
     This path performs no provider call and never reads hosted projections.
     """
     target = Path(tempfile.mkdtemp(prefix='snapshot-', dir=root))
+    installed = False
     try:
         export(engine.store, target, standalone=True)
-        current = root / 'current'
-        previous = current.resolve() if current.exists() else None
-        link = root / 'next'
-        link.symlink_to(target, target_is_directory=True)
-        link.replace(current)
-        # Retain the preceding snapshot for requests already reading it.
-        for old in root.glob('snapshot-*'):
-            if old not in (target, previous):
-                shutil.rmtree(old)
+        # Readers pin the preceding complete generation while this candidate
+        # renders. Only switching and retiring generations require their lease.
+        import fcntl
+        with (root / '.export.lock').open('a') as lease:
+            fcntl.flock(lease, fcntl.LOCK_EX)
+            current = root / 'current'
+            previous = current.resolve() if current.exists() else None
+            link = root / 'next'
+            link.symlink_to(target, target_is_directory=True)
+            link.replace(current)
+            installed = True
+            for old in root.glob('snapshot-*'):
+                if old not in (target, previous):
+                    shutil.rmtree(old)
         from .passenger import record_initial_publication
         record_initial_publication(engine.store.load())
     except Rejected as exc:
-        shutil.rmtree(target)
+        if not installed:
+            shutil.rmtree(target)
         if str(exc) == 'Another wake owns this state directory; no call was made':
             return False
         raise
     except BaseException:
-        shutil.rmtree(target)
+        if not installed:
+            shutil.rmtree(target)
         raise
     return True
 
 
 def publish(engine, root):
-    # The generation retention lease is shared with immutable mirror capture.
+    # Serialize builders separately; capture never needs to wait for rendering.
     import fcntl
-    with (root / '.export.lock').open('a') as lease:
+    root = Path(root).resolve()
+    with (root / '.export-build.lock').open('a') as lease:
         fcntl.flock(lease, fcntl.LOCK_EX)
         return _publish(engine, root)
 

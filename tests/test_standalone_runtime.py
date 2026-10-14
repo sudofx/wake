@@ -368,6 +368,52 @@ process.stdin.on('end',async()=>{
         self.assertTrue(hosted and all(url.startswith('wake-data.json?') for url in hosted))
         self.assertTrue(unknown and all(url.startswith('wake-data.json?') for url in unknown))
 
+    def test_capture_can_pin_complete_generation_during_next_render(self):
+        import fcntl
+        import threading
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            engine = SimpleNamespace(store=MagicMock())
+            entered, finish_render, rendered, done = (threading.Event() for _ in range(4))
+            errors = []
+            def export_first(store, target, **kwargs):
+                (target / 'head.txt').write_text('first')
+            def export_next(store, target, **kwargs):
+                entered.set()
+                if not finish_render.wait(5):
+                    raise TimeoutError('Test render was not released')
+                (target / 'head.txt').write_text('second')
+                rendered.set()
+            def build():
+                try:
+                    publish(engine, root)
+                except BaseException as error:
+                    errors.append(error)
+                finally:
+                    done.set()
+            with patch('wake.passenger.record_initial_publication'), patch('wake.standalone.export', side_effect=export_first):
+                publish(engine, root)
+                previous = (root / 'current').resolve()
+                with patch('wake.standalone.export', side_effect=export_next):
+                    thread = threading.Thread(target=build)
+                    thread.start()
+                    try:
+                        self.assertTrue(entered.wait(5))
+                        with (root / '.export.lock').open('a') as lease:
+                            # Must succeed while a candidate is still rendering.
+                            fcntl.flock(lease, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                            self.assertEqual((root / 'current/head.txt').read_text(), 'first')
+                            finish_render.set()
+                            self.assertTrue(rendered.wait(5))
+                            self.assertEqual((root / 'current').resolve(), previous)
+                        self.assertTrue(done.wait(5))
+                    finally:
+                        finish_render.set()
+                        thread.join(timeout=5)
+                self.assertFalse(errors)
+                self.assertEqual((root / 'current/head.txt').read_text(), 'second')
+                self.assertEqual((previous / 'head.txt').read_text(), 'first')
+
     def test_busy_operator_does_not_discard_website_or_stop_refresh(self):
         with tempfile.TemporaryDirectory() as directory:
             data = Path(directory) / 'data'

@@ -471,11 +471,22 @@ state. Older numbered-container groups use their retained private networks; the
 current nodes share the installation controller's lifecycle.
 
 The Console discovers the live capability only on an explicit standalone export.
-It polls every three seconds, clears marks on errors or expired samples, and uses
+One shared page channel uses the optional local `/runtime.events` stream or
+three-second `/runtime.json` fallback, clears marks on errors or expired samples, and uses
 separate overlays for active work. Matrix scores and inspection selection remain
 unchanged. Reduced-motion viewers receive a static outline. Hosted projections may
 report a pending cell in a dated snapshot; that is not evidence of current execution
 and never starts a live pulse. Deployment identity still determines transport.
+
+The installation shares a bounded status sample for at most one second. It reads
+worker runtime files (at most 32 KiB each), installation identity and export heads,
+never authority or full research projections. Sixteen stream slots bound observer
+connections; disconnects release their slots without touching workers or provider
+gates. Root status never grants a live matrix capability. Projection requests are
+shared within a document; head checks avoid loading unchanged graphs. Hidden and
+collapsed canvas views defer construction until needed. Immutable export reuse
+and generation-retention leases are [presentation contracts](cloud.md#publish-the-local-installation-mirror),
+not record caches or an additional authority.
 
 Current proposal guidance derives belief-review eligibility from the full record and visible evidence. Existing belief IDs are separate from new-belief creation; a review must cite at least one visible evidence ID outside that belief's durable roots. If no such evidence is delivered, no review alternative is offered. This narrows generation guidance without changing acceptance or historical replay.
 

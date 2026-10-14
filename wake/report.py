@@ -23,6 +23,7 @@ from urllib.parse import unquote, urlsplit
 
 from .event_format import canonical, now
 from .scheduling import wake_status
+from .export_cache import renderer_signature
 
 
 class PublicSnapshotHandler(SimpleHTTPRequestHandler):
@@ -434,6 +435,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
                     "metrics": _full_history_metrics(store, state)}
         target = Path(destination)
         target.mkdir(parents=True, exist_ok=True)
+        atomic_write(target / "export-format.json", json.dumps({"schema": 1, "renderer": renderer_signature()}))
         group_id = os.environ.get("WAKE_GROUP_ID", "")
         member = os.environ.get("WAKE_PUBLIC_HOSTNAME", "")
         instance_id = os.environ.get("WAKE_GROUP_INSTANCE", "")
@@ -663,7 +665,7 @@ def _deployment_site(target, *, standalone, installation=None):
     marker = ('<script>window.WAKE_DEPLOYMENT=' + json.dumps(deployment)
               + ';window.WAKE_STANDALONE=' + ('true' if standalone else 'false') + ';</script>')
     assets = Path(__file__).parent / "assets"
-    for name in ("masthead.css", "site-theme.js", "console-light.css", "installation-console.js", "installation-console.css"):
+    for name in ("masthead.css", "site-theme.js", "console-light.css", "installation-console.js", "installation-console.css", "runtime-activity.js"):
         atomic_write(target / name, (assets / name).read_text())
     shell = (assets / "index.html").read_text()
     header = re.search(r'<header class="masthead">.*?</header>', shell, re.S).group(0)
@@ -705,7 +707,8 @@ def _deployment_site(target, *, standalone, installation=None):
         # Re-export may reuse a directory. An older marker later in <head> must
         # not override the newly selected installation. Normalize to one owner.
         page = re.sub(r'<script>window\.WAKE_(?:DEPLOYMENT|STANDALONE)=[^<]*</script>', '', page)
-        page = page.replace('<head>', '<head>' + marker, 1)
+        page = re.sub(r'<script src="(?:\.\./)*runtime-activity\.js[^"]*"[^>]*></script>', '', page)
+        page = page.replace('<head>', '<head>' + marker + f'<script src="{prefix}runtime-activity.js?v=20261014-shared-status" defer></script>', 1)
         if standalone:
             page = page.replace('href="https://github.com/sudofx/wake/actions"', 'href="/runtime.json"')
             page = page.replace('Open WAKE GitHub Actions', 'Inspect local WAKE runtime')

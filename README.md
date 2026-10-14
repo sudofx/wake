@@ -206,6 +206,10 @@ silence interval with new activity, independently of scientific-result governanc
 See the [editorial contract](docs/development.md#first-run-publication-and-passenger).
 `./scripts/wake_publish --watch` delivers later accepted articles from immutable
 exports while preserving research controls.
+Compatible completed node pages are reused; incompatible pages rebuild from the
+captured snapshots. Local Console views defer hidden charts and share lightweight
+read-only status updates. See [website observation](docs/development.md#lightweight-website-observation)
+and [mirror capture](docs/cloud.md#publish-the-local-installation-mirror).
 Container installations also have **Passenger**, a private, installation-wide
 Markdown workspace for Bob's operational assessments and proposed changes.
 The current installation shares its private Passenger storage root; compatibility
