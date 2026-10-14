@@ -324,7 +324,10 @@ reading pages may retain their text-column limits.
 
 The shared masthead keeps one compact row. The right-hand controls appear in this
 order: status light, theme, GitHub, Console, node selector and main menu. The node
-selector is an icon with an accessible native dropdown. At 1100 pixels and below,
+selector always uses the network-node icon with an accessible native dropdown.
+The website follows the detected system light or dark theme, including changes
+while open. The theme switch is visible only when detection is unavailable;
+previous manual preferences apply only in that fallback. At 1100 pixels and below,
 or tablet touch screens up to 1366 pixels, page links move into the rightmost main
 menu; wider desktop screens retain horizontal page links.
 
