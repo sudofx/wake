@@ -198,6 +198,11 @@ class InstallationArchiveTests(unittest.TestCase):
         self.assertEqual({node: data['head'] for node, data in manifest['record_heads'].items()}, exported)
         self.assertFalse(manifest['live'])
         self.assertFalse(list((self.root / 'public').rglob('*.sqlite')))
+        # Capture must reject a link before copying private bytes into staging.
+        source = self.root / 'nodes' / NODE_IDS[0] / 'site/current'
+        (source / 'injected.html').symlink_to(self.root / 'nodes' / NODE_IDS[0] / 'record/wake.sqlite')
+        with self.assertRaisesRegex(ValueError, 'symlink'):
+            build_public_artifact(self.root, self.root / 'unsafe-public')
 
     def test_publication_retains_existing_branch_history_without_force(self):
         commands = []

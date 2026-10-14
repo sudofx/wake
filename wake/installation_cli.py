@@ -293,7 +293,9 @@ def build_public_artifact(root: Path, destination: Path) -> dict:
             with (site / '.export.lock').open('a') as lease:
                 fcntl.flock(lease, fcntl.LOCK_EX)
                 source = (site / 'current').resolve(strict=True)
-                shutil.copytree(source, pinned / 'nodes' / node / 'site' / 'current')
+                if any(path.is_symlink() for path in source.rglob('*')):
+                    raise ValueError('Public sites may not contain symlink assets')
+                shutil.copytree(source, pinned / 'nodes' / node / 'site' / 'current', symlinks=True)
         publications = []
         for node in NODE_IDS:
             path = pinned / 'nodes' / node / 'site/current/group/bob-publication.json'
