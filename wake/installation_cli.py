@@ -216,7 +216,7 @@ def _copy_public_site(source: Path, destination: Path):
             shutil.copyfile(path, target)
 
 
-def _build_public_artifact(root: Path, destination: Path) -> dict:
+def _build_public_artifact(root: Path, destination: Path, *, progress=None) -> dict:
     """Copy only generated public sites; records/private runtime files stay local."""
     root, destination = Path(root), Path(destination)
     if destination.exists():
@@ -228,6 +228,8 @@ def _build_public_artifact(root: Path, destination: Path) -> dict:
         nodes, snapshots, research = [], {}, {}
         from .report import export, _deployment_site
         for node in NODE_IDS:
+            if progress:
+                progress(f'Building website pages for {node} ({NODE_IDS.index(node) + 1}/12).')
             source = (root / 'nodes' / node / 'site' / 'current').resolve(strict=True)
             # Public generation may use a current symlink, but contained assets must be real files.
             for path in source.rglob('*'):
@@ -259,6 +261,10 @@ def _build_public_artifact(root: Path, destination: Path) -> dict:
                           'record': {'head': snapshot['head'], 'version': snapshot['state']['version']}})
         from .installation import installation_snapshot
         manifest = _public_projection(installation_snapshot(root, live=False))
+        for node in manifest['nodes']:
+            status = root / 'nodes' / node['id'] / 'recorded-runtime.json'
+            if status.exists():
+                node['recorded_runtime'] = json.loads(status.read_text())
         manifest['public_projection'] = 'provider-bodies-omitted'
         manifest['record_heads'] = {entry['id']: entry['record'] for entry in nodes}
         # The public mirror retains the complete unified site, not a metrics-only
@@ -266,6 +272,8 @@ def _build_public_artifact(root: Path, destination: Path) -> dict:
         from .installation_projection import build_unified_projection
         from .installation_site import export_unified_site
         projection = build_unified_projection(snapshots, research, manifest['installation_id'])
+        if progress:
+            progress('Building the combined website and complete exported history.')
         generated = Path(temporary) / 'generated' / 'unified'
         export_unified_site(projection, generated)
         _copy_public_site(generated, staging)
@@ -280,7 +288,7 @@ def _build_public_artifact(root: Path, destination: Path) -> dict:
     return manifest
 
 
-def build_public_artifact(root: Path, destination: Path) -> dict:
+def build_public_artifact(root: Path, destination: Path, *, progress=None) -> dict:
     """Pin each immutable export while its owner retains/deletes generations.
 
     No authority database is read or copied, and research keeps its control mode.
@@ -291,6 +299,8 @@ def build_public_artifact(root: Path, destination: Path) -> dict:
         pinned = Path(temporary)
         shutil.copyfile(root / 'installation-id.json', pinned / 'installation-id.json')
         for node in NODE_IDS:
+            if progress:
+                progress(f'Capturing {node} ({NODE_IDS.index(node) + 1}/12); waiting for its page export if needed.')
             site = root / 'nodes' / node / 'site'
             with (site / '.export.lock').open('a') as lease:
                 fcntl.flock(lease, fcntl.LOCK_EX)
@@ -298,6 +308,22 @@ def build_public_artifact(root: Path, destination: Path) -> dict:
                 if any(path.is_symlink() for path in source.rglob('*')):
                     raise ValueError('Public sites may not contain symlink assets')
                 shutil.copytree(source, pinned / 'nodes' / node / 'site' / 'current', symlinks=True)
+            # Only bounded, dated observation fields enter the mirror. They do
+            # not provide a live runtime capability or research authority.
+            try:
+                from .installation import read_json
+                runtime = read_json(root / 'nodes' / node / 'runtime.json', 32768)
+                state = runtime.get('state')
+                if state in {'running', 'waiting', 'idle', 'paused', 'stopped', 'standby', 'blocked', 'unavailable'}:
+                    observed = runtime.get('observed_at')
+                    if isinstance(observed, str):
+                        from datetime import datetime
+                        if datetime.fromisoformat(observed).utcoffset() is None:
+                            raise ValueError('Runtime observation needs a timezone')
+                        (pinned / 'nodes' / node / 'recorded-runtime.json').write_text(
+                            json.dumps({'state': state, 'observed_at': observed}))
+            except (OSError, ValueError, TypeError):
+                pass
         publications = []
         for node in NODE_IDS:
             path = pinned / 'nodes' / node / 'site/current/group/bob-publication.json'
@@ -305,7 +331,7 @@ def build_public_artifact(root: Path, destination: Path) -> dict:
         from .event_format import digest
         if any(publications) and (not all(publications) or len({digest(p) for p in publications}) != 1):
             raise ValueError('Wait for every node to export the same accepted Bob article')
-        return _build_public_artifact(pinned, destination)
+        return _build_public_artifact(pinned, destination, progress=progress)
 
 
 def upload_public_artifact(target: Path, repository: str, branch: str):

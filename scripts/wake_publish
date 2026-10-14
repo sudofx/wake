@@ -1,17 +1,40 @@
 #!/usr/bin/env bash
 # Upload an installation snapshot with the host's existing Git credentials.
-set -euo pipefail
+set -Eeuo pipefail
 repo_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$repo_dir"
 if [[ -f .env ]]; then set -a; source .env; set +a; fi
 : "${WAKE_PUBLISH_REPOSITORY:?Configure WAKE_PUBLISH_REPOSITORY in .env}"
 : "${WAKE_PUBLISH_BRANCH:?Configure WAKE_PUBLISH_BRANCH in .env}"
+progress(){ printf 'WAKE publish: %s\n' "$*"; }
+check_actions(){
+  local publish_repo="${WAKE_PUBLISH_REPOSITORY#https://github.com/}"
+  publish_repo="${publish_repo#git@github.com:}"
+  publish_repo="${publish_repo%.git}"
+  command -v gh >/dev/null || { progress 'GitHub CLI is required to check running Actions.'; return 1; }
+  local running_actions
+  running_actions="$(gh run list --repo "$publish_repo" --status in_progress --json databaseId --jq length)"
+  if [[ "$running_actions" != 0 ]]; then
+    progress 'GitHub Actions is running. Try publishing again when it is idle.'
+    return 1
+  fi
+}
+stage='checking running GitHub Actions'
+trap 'printf "WAKE publish: failed while %s; upload not confirmed.\n" "$stage" >&2' ERR
+progress 'Checking running GitHub Actions; research keeps its current setting.'
+check_actions
 public_dir="$(mktemp -d "${TMPDIR:-/tmp}/wake-public.XXXXXX")"
 container_dir="/tmp/wake-public-$(date +%s)-$$"
 trap 'rm -rf "$public_dir"' EXIT
 # Pin immutable exports; neither capture nor delivery changes research controls.
+stage='enabling mirror delivery'
+progress 'Connecting to the installation.'
 docker exec wake wake-research mirror-enable >/dev/null
-docker exec wake python -c 'from pathlib import Path; import sys; from wake.installation_cli import build_public_artifact; build_public_artifact(Path("/data"), Path(sys.argv[1]))' "$container_dir"
+stage='capturing and building website pages'
+progress 'Capturing all twelve node exports. This can take several minutes.'
+docker exec wake python -c 'from pathlib import Path; import sys; from wake.installation_cli import build_public_artifact; build_public_artifact(Path("/data"), Path(sys.argv[1]), progress=lambda message: print(message, flush=True))' "$container_dir"
+stage='copying the website to the Mac'
+progress 'Copying the prepared website to your Mac.'
 docker cp "wake:$container_dir/." "$public_dir/site"
 # Reuse GitHub CLI authentication for HTTPS without storing a token or changing
 # the user's global Git configuration. Other credentials remain native Git's job.
@@ -20,9 +43,16 @@ if [[ "$WAKE_PUBLISH_REPOSITORY" == https://github.com/* ]] && command -v gh >/d
   export GIT_CONFIG_KEY_0=credential.helper
   export GIT_CONFIG_VALUE_0='!gh auth git-credential'
 fi
+stage='checking Actions before upload'
+check_actions
+stage='uploading the website snapshot to GitHub'
+progress 'Uploading the website snapshot to GitHub.'
 python3 scripts/publish_pages.py --artifact "$public_dir/site"
 publication_digest="$(python3 -c 'import json,sys; from wake.event_format import digest; print(digest(json.load(open(sys.argv[1]))))' "$public_dir/site/nodes/100.wake/group/bob-publication.json")"
+stage='recording delivery'
+progress 'Recording successful delivery.'
 docker exec wake wake-research mirror-ack "$publication_digest" >/dev/null
+progress 'Done. GitHub has the snapshot; Pages rebuilds separately. Research was not stopped.'
 if [[ "${1:-}" == --watch ]]; then
   exec python3 scripts/wake_mirror.py
 fi

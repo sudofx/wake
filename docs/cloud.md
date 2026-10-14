@@ -33,12 +33,21 @@ Then publish:
 ./scripts/wake_publish
 ```
 
+The command prints its capture, page-building, copy and upload stages. Capturing a
+node can wait for its current page export; research continues during that wait. It
+checks for running GitHub Actions before capture and again before upload, and
+returns without uploading when Actions is busy. After delivery, it exits without
+waiting for Pages to rebuild.
+
 The command pins the twelve current export generations and builds the filtered
 artifact in a fresh container process using the mounted source. It uploads with
 the host's existing Git credentials. Research keeps its current running, paused
 or stopped setting. Export capture never opens or copies the authority databases.
 The manifest identifies the captured heads and versions, rather than later live
-records. Every member must have exported the same accepted shared Bob article.
+records. The node menu shows colored status dots: current observations on the local
+site, and explicitly dated uploaded observations on the public mirror. A missing
+observation is gray; a disconnected local site clears its current status colors.
+These observations do not establish accepted research. Every member must have exported the same accepted shared Bob article.
 
 To keep the mirror current after later Bob articles, run:
 

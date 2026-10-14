@@ -193,8 +193,15 @@ class InstallationArchiveTests(unittest.TestCase):
             export(store, target, standalone=True)
             exported[node] = store.replay()[1]
             store.close()
+        (self.root / 'nodes' / NODE_IDS[0] / 'runtime.json').write_text(json.dumps({
+            'state': 'running', 'observed_at': '2026-10-14T18:00:00+00:00', 'private': 'private-runtime-marker'}))
+        messages = []
         with patch('wake.installation_cli._record_metadata', side_effect=AssertionError('Live record read forbidden')):
-            manifest = build_public_artifact(self.root, self.root / 'public')
+            manifest = build_public_artifact(self.root, self.root / 'public', progress=messages.append)
+        self.assertEqual(manifest['nodes'][0]['recorded_runtime'], {'state': 'running', 'observed_at': '2026-10-14T18:00:00+00:00'})
+        self.assertNotIn('private-runtime-marker', json.dumps(manifest))
+        self.assertEqual(sum(message.startswith('Capturing ') for message in messages), 12)
+        self.assertEqual(sum(message.startswith('Building website pages') for message in messages), 12)
         self.assertEqual({node: data['head'] for node, data in manifest['record_heads'].items()}, exported)
         self.assertFalse(manifest['live'])
         full = (self.root / 'public/events.jsonl').read_text().splitlines()
