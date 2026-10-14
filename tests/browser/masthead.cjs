@@ -9,7 +9,7 @@ const base=process.argv[2];if(!base)throw Error('Usage: node tests/browser/masth
  const selectors=['.masthead','.wordmark','.compact-nav','.header-tools','.theme-switch','.console-link','.actions-light'];
  const pages=['index.html','console.html','map.html','map3d.html','state.html','events.html','rejected.html','notebooks/chrome-test.html'];
  const errors=[];
- for(const width of [1440,900,390,320]){
+ for(const width of [1440,1100,1024,768,390,320]){
   let baseline;
   for(const theme of ['dark','light']){
    const context=await browser.newContext({viewport:{width,height:1000},colorScheme:theme,reducedMotion:'reduce'});
@@ -28,6 +28,12 @@ const base=process.argv[2];if(!base)throw Error('Usage: node tests/browser/masth
     if(!(await page.locator('html').getAttribute('data-theme')))console.error('theme missing',path,await page.evaluate(()=>({url:location.href,owner:typeof window.WakeTheme,scripts:[...document.scripts].map(s=>s.src),root:document.documentElement.outerHTML.slice(0,100)})));
     assert.equal(await page.locator('html').getAttribute('data-theme'),theme,`${width} ${theme} ${path}: ${errors.join('; ')}`);
     assert.equal(await page.locator('.actions-light-label').count(),0);
+    const tools=await page.locator('.header-tools').evaluate(e=>[...e.children].filter(c=>getComputedStyle(c).display!=='none').map(c=>c.className));
+    assert.deepEqual(tools.slice(0,4),['actions-light','theme-switch','repo-link','console-link']);
+    assert.equal(await page.locator('.mobile-nav-menu').isVisible(),width<=1100);
+    assert.equal(await page.locator('.compact-nav').isVisible(),width>1100);
+    assert((await page.locator('.masthead').boundingBox()).height<=76);
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
     assert.match(await page.locator('.wordmark small').innerText(),/ACCEPTED WAKES$/);
     const glass=await page.locator('.masthead').evaluate(e=>{const s=getComputedStyle(e);return {background:s.backgroundColor,blur:s.backdropFilter,webkit:s.getPropertyValue("-webkit-backdrop-filter")||s.backdropFilter}});
     assert.match(glass.blur,/blur\(24px\)/);const alpha=Number(glass.background.match(/\/\s*([\d.]+)\)/)?.[1]);assert(alpha>0&&alpha<=.53,glass.background);

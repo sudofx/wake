@@ -11,23 +11,30 @@
   if(domain&&!domain.textContent.trim())domain.textContent=location.hostname;
   const masthead=document.querySelector('body > .masthead');
   if(masthead){
+    const tools=masthead.querySelector('.header-tools'),menu=masthead.querySelector('.mobile-nav-menu');
+    if(tools){
+      ['.actions-light','.theme-switch','.repo-link','.console-link'].forEach(selector=>{const control=masthead.querySelector(selector);if(control)tools.append(control);});
+      const nodePicker=masthead.querySelector('.installation-node-picker');if(nodePicker)tools.append(nodePicker);
+      if(menu){menu.querySelector('summary').setAttribute('aria-label','Open main menu');tools.append(menu);}
+    }
     const reserveHeader=()=>document.documentElement.style.setProperty('--wake-masthead-height',`${masthead.getBoundingClientRect().height}px`);
     reserveHeader();
     new ResizeObserver(reserveHeader).observe(masthead);
   }
   const nav = document.querySelector('.compact-nav');
   if (!nav) return;
-  const groups = [...nav.querySelectorAll('.nav-group')];
+  const groups = [...(masthead||nav).querySelectorAll('.nav-group')];
+  const menuScope=masthead||nav;
   function close(except) {
     groups.forEach(group => { if (group !== except) group.open = false; });
   }
   groups.forEach(group => {
     group.addEventListener('toggle', () => { if (group.open) close(group); });
   });
-  nav.addEventListener('click', event => {
+  menuScope.addEventListener('click', event => {
     if (event.target.closest('a')) close();
   });
-  nav.addEventListener('keydown', event => {
+  menuScope.addEventListener('keydown', event => {
     const open = groups.find(group => group.open);
     if (event.key === 'Escape' && open) {
       event.preventDefault();
@@ -37,10 +44,10 @@
     }
   });
   document.addEventListener('focusin', event => {
-    if (!nav.contains(event.target)) close();
+    if (!menuScope.contains(event.target)) close();
   });
   document.addEventListener('click', event => {
-    if (!nav.contains(event.target)) close();
+    if (!menuScope.contains(event.target)) close();
   });
   window.addEventListener('hashchange', () => close());
 })();

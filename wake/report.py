@@ -663,7 +663,7 @@ def _deployment_site(target, *, standalone, installation=None):
         page = re.sub(r'<html([^>]*)>', r'<html\1 data-theme="light">', page, count=1)
         prefix = "../" * len(path.relative_to(target).parts[:-1])
         page = re.sub(r'href="((?:\.\./)*(?:style|nav|map|map3d|research|theme)\.css)(?:\?[^"]*)?"', r'href="\1?v=20261013-map-theme"', page)
-        page = re.sub(r'src="((?:\.\./)*nav\.js)(?:\?[^"]*)?"', r'src="\1?v=20261011-node-domain"', page)
+        page = re.sub(r'src="((?:\.\./)*nav\.js)(?:\?[^"]*)?"', r'src="\1?v=20261014-compact-masthead"', page)
         if '<header class="' in page and 'masthead' in page:
             shared = header
             if path.name == "console.html":
@@ -683,8 +683,8 @@ def _deployment_site(target, *, standalone, installation=None):
         # pages below subdirectories. Its asset URL retains the node export root.
         page = re.sub(r'<script src="(?:\.\./)*installation-console\.js[^"]*"[^>]*></script>', '', page)
         page = re.sub(r'<link rel="stylesheet" href="(?:\.\./)*installation-console\.css[^"]*">', '', page)
-        page = page.replace('</head>', f'<link rel="stylesheet" href="{prefix}installation-console.css?v=20261013-masthead"><script src="{prefix}installation-console.js?v=20261013-masthead" defer></script></head>', 1)
-        page = page.replace('</head>', f'<link rel="stylesheet" href="{prefix}console-light.css?v=20261008-daylight"><script src="{prefix}site-theme.js?v=20261012-light-default"></script><link rel="stylesheet" href="{prefix}masthead.css?v=20261011-node-domain"></head>', 1)
+        page = page.replace('</head>', f'<link rel="stylesheet" href="{prefix}installation-console.css?v=20261014-icon-picker"><script src="{prefix}installation-console.js?v=20261014-icon-picker" defer></script></head>', 1)
+        page = page.replace('</head>', f'<link rel="stylesheet" href="{prefix}console-light.css?v=20261008-daylight"><script src="{prefix}site-theme.js?v=20261012-light-default"></script><link rel="stylesheet" href="{prefix}masthead.css?v=20261014-compact-masthead"></head>', 1)
         # Re-export may reuse a directory. An older marker later in <head> must
         # not override the newly selected installation. Normalize to one owner.
         page = re.sub(r'<script>window\.WAKE_(?:DEPLOYMENT|STANDALONE)=[^<]*</script>', '', page)

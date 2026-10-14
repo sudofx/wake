@@ -322,6 +322,12 @@ record inspector follows the workspace and never reserves width. The grid counts
 available columns instead of applying a fixed large-screen column limit. Other
 reading pages may retain their text-column limits.
 
+The shared masthead keeps one compact row. The right-hand controls appear in this
+order: status light, theme, GitHub, Console, node selector and main menu. The node
+selector is an icon with an accessible native dropdown. At 1100 pixels and below,
+or tablet touch screens up to 1366 pixels, page links move into the rightmost main
+menu; wider desktop screens retain horizontal page links.
+
 The shared masthead is fixed to the viewport and stays visible at every scroll
 position on desktop and phones. Shared navigation reserves its measured height
 above content. Its layer is 12000; same-window popup surfaces use 12001. Dedicated dashboard panel windows hide the masthead.

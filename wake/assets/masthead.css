@@ -1,13 +1,13 @@
-:root{--wake-masthead-layer:12000;--wake-popup-layer:12001;--wake-masthead-height:90px}
+:root{--wake-masthead-layer:12000;--wake-popup-layer:12001;--wake-masthead-height:68px}
 html{scroll-padding-top:var(--wake-masthead-height)}
 body:has(>.masthead){padding-top:var(--wake-masthead-height)!important}
 /* Canonical masthead geometry for every exported page. Page skins own colors,
    never control sizes or breakpoints. Keep this file after page styles. */
 .masthead{
  box-sizing:border-box;position:fixed!important;inset:0 0 auto!important;z-index:var(--wake-masthead-layer)!important;display:grid;
- grid-template-columns:minmax(180px,1fr) auto minmax(180px,1fr);
+ grid-template-columns:minmax(150px,1fr) auto minmax(230px,1fr);
  align-items:center;gap:16px;width:100%;max-width:none;
- margin:0;padding:12px 24px;border:0;border-bottom:1px solid var(--line,#33406e);
+ margin:0;padding:8px 20px;border:0;border-bottom:1px solid var(--line,#33406e);
  border-radius:0;background:color-mix(in srgb,var(--surface,#081127) 52%,transparent);color:var(--ink,#edf3ff);
  -webkit-backdrop-filter:blur(24px) saturate(120%);backdrop-filter:blur(24px) saturate(120%);transform:none!important;transition:none!important;
  font-family:Arial,Helvetica,sans-serif;line-height:1.25;letter-spacing:normal;
@@ -16,13 +16,13 @@ body:has(>.masthead){padding-top:var(--wake-masthead-height)!important}
 .masthead .brand-lockup{display:block;min-width:0;margin:0;padding:0}
 .masthead .wordmark{display:block;margin:0;padding:0;border:0;background:none;color:var(--ink);font:800 32px/1 Arial,Helvetica,sans-serif;letter-spacing:-1.2px;white-space:nowrap}
 .masthead .asterisk{display:inline;font:inherit;color:var(--cyan,#8fd3ff);margin:0 0 0 2px}
-.masthead .wordmark small{display:block;margin:7px 0 0;color:var(--muted);font:700 9px/1.25 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.04em}
-.masthead .node-domain{display:block;margin-top:5px;color:var(--muted);font:600 11px/1.2 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}
+.masthead .wordmark small{display:block;margin:4px 0 0;color:var(--muted);font:700 9px/1.25 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.04em}
+.masthead .node-domain{display:none;margin-top:0;color:var(--muted);font:600 11px/1.2 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}
 .masthead .cycle-count{color:var(--cyan)}
 .masthead .compact-nav{display:flex;align-items:center;justify-content:center;gap:20px;margin:0;padding:0;min-width:0}
 .masthead .compact-nav>a,.masthead summary{display:block;margin:0;padding:6px 0;border:0;background:none;color:var(--ink);font:700 13px/1.25 Arial,Helvetica,sans-serif;letter-spacing:0;white-space:nowrap}
 .masthead a[aria-current=page]{color:var(--cyan)}
-.masthead .header-tools{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin:0;padding:0;min-width:0}
+.masthead .header-tools{display:flex;align-items:center;justify-content:flex-end;gap:4px;margin:0;padding:0;min-width:0}
 .masthead .repo-link,.masthead .console-link,.masthead .actions-light,.masthead .theme-switch{
  display:inline-flex;align-items:center;justify-content:center;flex:0 0 36px;width:36px;height:36px;min-width:0;min-height:0;margin:0;padding:0;
  border:0;border-radius:0;background:transparent;box-shadow:none;color:var(--ink);cursor:pointer;
@@ -49,32 +49,45 @@ body:has(>.masthead){padding-top:var(--wake-masthead-height)!important}
 @keyframes wake-status-blink{50%{opacity:.18}}
 @keyframes wake-status-pulse{0%,100%{opacity:.72;transform:scale(.9)}50%{opacity:1;transform:scale(1.12)}}
 @media(prefers-reduced-motion:reduce){.masthead .actions-light-track i{animation:none!important}}
-.masthead .nav-group{position:relative}
+.masthead .nav-group{position:relative;margin:0;padding:0;border:0;background:transparent}
 .masthead .mobile-nav-menu{display:none}
 .masthead summary{cursor:pointer;list-style:none}
 .masthead summary::-webkit-details-marker{display:none}
 .masthead .nav-dropdown{position:absolute;top:100%;right:0;min-width:190px;padding:8px;border:1px solid var(--line);border-radius:9px;background:var(--surface);z-index:30}
 .masthead .nav-dropdown a{display:block;padding:8px;color:var(--ink);font:13px/1.3 Arial,Helvetica,sans-serif}
-@media(max-width:900px){
- .masthead{grid-template-columns:minmax(0,1fr) auto;gap:10px;padding:10px 12px}
- .masthead .compact-nav{grid-row:2;grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));justify-items:center;gap:0}
- .masthead .wordmark{font-size:28px}
- .masthead .wordmark small{font-size:8px}
-}
-@media(max-width:380px){.masthead{padding:10px 8px}.masthead .header-tools{gap:2px}.masthead .wordmark{font-size:25px}.masthead .wordmark small{font-size:7px}}
-@media (max-width:700px) and (pointer:coarse), (max-height:500px) and (pointer:coarse){
- .masthead{grid-template-columns:max-content max-content minmax(0,1fr);gap:8px;padding:9px 12px}
- .masthead .brand-lockup{grid-row:1;grid-column:1;align-self:center}
- .masthead .compact-nav{grid-row:1;grid-column:2;display:flex;justify-content:flex-start;align-self:center}
- .masthead .compact-nav>a{display:none}
+/* Keep navigation and tools in one row. iPad-sized and smaller views use
+   the same page links inside the rightmost menu instead of a second header row. */
+.masthead .mobile-nav-menu summary,.masthead .mobile-nav-menu[open]>summary{margin:0;border:0;display:flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;border-radius:6px}
+.masthead .mobile-nav-menu summary svg{display:block;width:22px;height:22px}
+.masthead .mobile-nav-menu summary:is(:hover,:focus-visible),.masthead .mobile-nav-menu[open]>summary{background:color-mix(in srgb,var(--ink) 8%,transparent)}
+.masthead .mobile-nav-menu summary:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.masthead .mobile-nav-menu .nav-dropdown{left:auto;right:0;min-width:190px;box-shadow:0 12px 32px rgba(0,0,0,.22)}
+.masthead .actions-light{order:0}
+.masthead .theme-switch{order:1}
+.masthead .repo-link{order:2}
+.masthead .console-link{order:3}
+.masthead .installation-node-picker{order:4}
+.masthead .mobile-nav-menu{order:5}
+@media(max-width:1100px), (max-width:1366px) and (pointer:coarse){
+ .masthead{grid-template-columns:minmax(0,1fr) auto;gap:8px;padding:8px 12px}
+ .masthead .compact-nav{display:none}
+ .masthead .header-tools{grid-column:2;grid-row:1}
  .masthead .mobile-nav-menu{display:block}
- .masthead .mobile-nav-menu summary{display:flex;align-items:center;justify-content:center;width:40px;height:40px;padding:0;border-radius:8px}
- .masthead .mobile-nav-menu summary:is(:hover,:focus-visible),.masthead .mobile-nav-menu[open]>summary{background:color-mix(in srgb,var(--ink) 8%,transparent)}
- .masthead .mobile-nav-menu summary:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
- .masthead .mobile-nav-menu summary svg{display:block;width:22px;height:22px}
- .masthead .mobile-nav-menu .nav-dropdown{left:0;right:auto;min-width:180px;box-shadow:0 12px 32px rgba(0,0,0,.22)}
- .masthead .header-tools{grid-row:1;grid-column:3;justify-self:end}
- .masthead.masthead-scroll-hidden{transform:translateY(0);pointer-events:auto}
+}
+@media(max-width:480px){
+ .masthead{padding:7px 8px;gap:4px}
+ .masthead .wordmark{font-size:25px}
+ .masthead .wordmark small{font-size:7px;letter-spacing:0}
+ .masthead .header-tools{gap:1px}
+ .masthead .repo-link,.masthead .console-link,.masthead .actions-light,.masthead .theme-switch,.masthead .mobile-nav-menu summary{flex-basis:32px;width:32px;height:36px}
+ .masthead .data-switch-track{flex-basis:28px;width:28px;height:16px;padding:2px}
+ .masthead .data-switch-track i{width:10px;height:10px;flex-basis:10px}
+ .masthead .theme-switch input:checked+.data-switch-track i{transform:translateX(12px)}
+}
+@media(max-width:350px){
+ .masthead .wordmark{font-size:22px}
+ .masthead .header-tools{gap:0}
+ .masthead .repo-link,.masthead .console-link,.masthead .actions-light,.masthead .theme-switch,.masthead .mobile-nav-menu summary{flex-basis:30px;width:30px}
 }
 /* Interaction surfaces must not select text during a drag. Reading panes remain
    selectable: never apply user-select:none to body, panels, or their contents. */
@@ -101,10 +114,14 @@ body>.skip:focus,body>.skip-link:focus{top:12px}
 .help-layer,#site-tooltip,.data-inspector,.console-tools{z-index:var(--wake-popup-layer)!important}
 html:is(.console-panel-window,.console-tool-window) body{padding-top:0!important}
 
-/* The installation selector belongs to the permanent header, including deep views. */
-.masthead .installation-node-picker{display:flex;align-items:center;gap:6px;max-width:100%;margin-top:8px;color:var(--ink);font:12px/1.2 Arial,Helvetica,sans-serif}
+/* A native select overlays the icon so touch and keyboard navigation retain
+   platform behavior without adding another text row to the masthead. */
+.masthead .installation-node-picker{position:relative;display:inline-flex;align-items:center;justify-content:center;flex:0 0 36px;width:36px;height:36px;margin:0;padding:0;color:var(--ink);cursor:pointer}
 .masthead .installation-picker-label{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-.masthead .installation-picker-icon{display:inline-flex;flex:0 0 20px;width:20px;height:20px;color:var(--cyan)}
-.masthead .installation-picker-icon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
-.masthead .installation-node-picker select{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:3px;min-width:0;max-width:100%;width:170px;min-height:36px;padding:5px 6px;cursor:pointer}
-@media(max-width:700px){.masthead .installation-node-picker select{width:145px;min-height:40px}.masthead .installation-picker-icon{flex-basis:18px;width:18px}}
+.masthead .installation-picker-icon{display:inline-flex;width:22px;height:22px;color:var(--ink);pointer-events:none}
+.masthead .installation-picker-icon svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
+.masthead .installation-node-picker select{position:absolute;inset:0;width:100%;height:100%;min-height:0;padding:0;margin:0;opacity:0;cursor:pointer}
+.masthead .installation-node-picker:is(:hover,:focus-within){background:color-mix(in srgb,var(--ink) 8%,transparent);border-radius:6px}
+.masthead .installation-node-picker:focus-within{outline:2px solid var(--cyan);outline-offset:2px}
+@media(max-width:480px){.masthead .installation-node-picker{flex-basis:32px;width:32px}}
+@media(max-width:350px){.masthead .installation-node-picker{flex-basis:30px;width:30px}}

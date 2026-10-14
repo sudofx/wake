@@ -25,6 +25,17 @@
     page=section?'index.html':'console.html';hash=section?'#'+section:'';
    }
   }
+  // Reader routes use node-qualified IDs in the unified view and local IDs
+  // in node views. Preserve the section when another node has no such record.
+  const route=hash.match(/^#(blog|history)\/([^/]+)$/);
+  if(route){
+   let record;try{record=decodeURIComponent(route[2]);}catch{record=route[2];}
+   const qualified=record.match(/^([A-Za-z0-9][A-Za-z0-9._-]{0,99})::(.+)$/);
+   const owner=nodeMatch?.[2]||qualified?.[1],local=nodeMatch?record:qualified?.[2];
+   if(id&&id===owner&&local)hash=`#${route[1]}/${encodeURIComponent(local)}`;
+   else if(id&&owner&&id!==owner)hash=`#${route[1]}`;
+   else if(!id&&nodeMatch)hash=record.startsWith('group-')?`#${route[1]}`:`#${route[1]}/${encodeURIComponent(owner+'::'+record)}`;
+  }
   const url=new URL((id?`nodes/${encodeURIComponent(id)}/`:'')+page,root);url.search=location.search;url.hash=hash;return url;
  };
  const el=(tag,text,className)=>{const item=document.createElement(tag);if(text!==undefined)item.textContent=String(text);if(className)item.className=className;return item;};
@@ -44,8 +55,8 @@
  }
  function buildPicker(nodes){
   document.querySelectorAll('#installation-selector,.console-overview .installation-node-picker').forEach(item=>item.remove());
-  const masthead=document.querySelector('body>.masthead'),host=masthead?.querySelector('.brand-lockup');if(!host)return;
-  if(!picker){const label=el('label',undefined,'installation-node-picker');label.append(el('span','Choose installation or node','installation-picker-label'),el('span',undefined,'installation-picker-icon'));picker=el('select');picker.setAttribute('aria-label','Choose installation or node');label.append(picker);host.append(label);picker.addEventListener('change',()=>{location.href=viewURL(picker.value||null).href;});}
+  const masthead=document.querySelector('body>.masthead'),host=masthead?.querySelector('.header-tools')||masthead?.querySelector('.brand-lockup');if(!host)return;
+  if(!picker){const label=el('label',undefined,'installation-node-picker');label.append(el('span','Choose installation or node','installation-picker-label'),el('span',undefined,'installation-picker-icon'));picker=el('select');picker.setAttribute('aria-label','Choose installation or node');label.append(picker);host.insertBefore(label,host.querySelector('.mobile-nav-menu'));picker.addEventListener('change',()=>{location.href=viewURL(picker.value||null).href;});}
   picker.replaceChildren();
   const whole=el('option','wake');whole.value='';picker.append(whole);
   nodes.forEach(node=>{const option=el('option',`${node.role==='child'?'↳ ':''}${node.id}${node.available===false?' · unavailable':''}`);option.value=node.id;option.selected=nodeMatch?.[2]===node.id;picker.append(option);});
