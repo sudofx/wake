@@ -2,7 +2,7 @@
 <html lang="en" data-theme="light"><head><script>window.WAKE_DEPLOYMENT={"schema": 1, "mode": "standalone", "group": {"id": "wake", "instance": "103.wake", "hostname": "103.wake", "parent": "100.wake"}, "snapshot_only": true};window.WAKE_STANDALONE=true;document.documentElement.dataset.wakeSnapshotOnly='true';</script><meta name="darkreader-lock"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>State / WAKE✳︎</title>
 
-<link rel="stylesheet" href="style.css?v=20261013-map-theme"><link rel="stylesheet" href="nav.css?v=20261013-map-theme"><link rel="stylesheet" href="theme.css?v=20261014-mobile-width"><link rel="stylesheet" href="console-component.css"><link rel="stylesheet" href="installation-console.css?v=20261014-icon-picker"><script src="installation-console.js?v=20261014-network-picker" defer></script><link rel="stylesheet" href="console-light.css?v=20261014-mobile-width"><script src="site-theme.js?v=20261014-system-theme"></script><link rel="stylesheet" href="masthead.css?v=20261014-system-theme"></head>
+<link rel="stylesheet" href="style.css?v=20261014-mobile-width"><link rel="stylesheet" href="nav.css?v=20261014-mobile-width"><link rel="stylesheet" href="theme.css?v=20261014-mobile-width"><link rel="stylesheet" href="console-component.css"><link rel="stylesheet" href="installation-console.css?v=20261014-icon-picker"><script src="installation-console.js?v=20261014-network-picker" defer></script><link rel="stylesheet" href="console-light.css?v=20261014-mobile-width"><script src="site-theme.js?v=20261014-system-theme"></script><link rel="stylesheet" href="masthead.css?v=20261014-system-theme"></head>
 <body data-flat-kind="state" data-flat-source="state.json">
 <header class="masthead">
   <div class="brand-lockup">
@@ -39,7 +39,7 @@
     
   </div>
 </header>
-<main><p class="console-component-stamp">Published snapshot · state 10 · 2026-10-14T13:31:37.456721+00:00<br>Head eafac586a747902597c08a28e38cba7ee2f421ed29e7d69e7374b18681dca019</p><div class="page-heading"><p class="eyebrow">THE CURRENT DURABLE STATE</p><h1>Current state.</h1><p>Loaded from state.json when this page opens.</p></div><div id="flat-content"></div></main>
+<main><p class="console-component-stamp">Published snapshot · state 10 · 2026-10-14T17:22:27.609832+00:00<br>Head 25b0cdc84cdbea58a372d5edc11aac9a2475fe5b07efc55ae3ab537f67bcfdfc</p><div class="page-heading"><p class="eyebrow">THE CURRENT DURABLE STATE</p><h1>Current state.</h1><p>Loaded from state.json when this page opens.</p></div><div id="flat-content"></div></main>
 <script>/*
  * WAKE✳︎ flat-view controller.
  * Standalone pages are stable shells; current facts are loaded from flat exports
@@ -260,6 +260,12 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.mode!=='hosted' && window.WAKE_DEPLOY
     else if(owner)show(owner);
   }).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['title','aria-label','aria-pressed','class','data-ui-tooltip']});
 })();
+
+// Recorded links stay within this installation on LAN and a Pages subpath.
+for(const link of document.querySelectorAll('[data-record-url]')){
+  const path=location.pathname,root=path.includes('/nodes/')?path.split('/nodes/')[0]+'/':path.split('/blog/')[0]+'/';
+  link.href=root+link.dataset.recordUrl.replace(/^\//,'');
+}
 </script><script>/* Every off-site destination opens separately; covers later rendered records. */
 (() => {
   const apply = link => {

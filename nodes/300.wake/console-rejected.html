@@ -2,7 +2,7 @@
 <html lang="en" data-theme="light"><head><script>window.WAKE_DEPLOYMENT={"schema": 1, "mode": "standalone", "group": {"id": "wake", "instance": "300.wake", "hostname": "300.wake"}, "snapshot_only": true};window.WAKE_STANDALONE=true;document.documentElement.dataset.wakeSnapshotOnly='true';</script><meta name="darkreader-lock"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Rejected &amp; withheld drafts / WAKE✳︎</title>
 
-<link rel="stylesheet" href="style.css?v=20261013-map-theme"><link rel="stylesheet" href="nav.css?v=20261013-map-theme"><link rel="stylesheet" href="theme.css?v=20261014-mobile-width"><link rel="stylesheet" href="console-component.css"><link rel="stylesheet" href="installation-console.css?v=20261014-icon-picker"><script src="installation-console.js?v=20261014-network-picker" defer></script><link rel="stylesheet" href="console-light.css?v=20261014-mobile-width"><script src="site-theme.js?v=20261014-system-theme"></script><link rel="stylesheet" href="masthead.css?v=20261014-system-theme"></head>
+<link rel="stylesheet" href="style.css?v=20261014-mobile-width"><link rel="stylesheet" href="nav.css?v=20261014-mobile-width"><link rel="stylesheet" href="theme.css?v=20261014-mobile-width"><link rel="stylesheet" href="console-component.css"><link rel="stylesheet" href="installation-console.css?v=20261014-icon-picker"><script src="installation-console.js?v=20261014-network-picker" defer></script><link rel="stylesheet" href="console-light.css?v=20261014-mobile-width"><script src="site-theme.js?v=20261014-system-theme"></script><link rel="stylesheet" href="masthead.css?v=20261014-system-theme"></head>
 <body data-flat-kind="rejected" data-flat-source="wake-data.json">
 <header class="masthead">
   <div class="brand-lockup">
@@ -39,7 +39,7 @@
     
   </div>
 </header>
-<main><p class="console-component-stamp">Published snapshot · state 14 · 2026-10-14T13:31:53.821472+00:00<br>Head 776872f379070ba05d4aa6362d2f77827f5de49ad57cc57fe3bcf6560ca135a2</p><div class="page-heading"><p class="eyebrow">GOVERNANCE / STOPPED PROPOSALS</p><h1>Rejected &amp; withheld drafts.</h1><p>Loaded from the current published record when this page opens.</p></div><div id="flat-content"></div></main>
+<main><p class="console-component-stamp">Published snapshot · state 14 · 2026-10-14T17:22:30.920919+00:00<br>Head 59fd33d6e058f5a5fbdcb3e3d79a2096973c4cf85e140fd2e789d800bdf0cbfa</p><div class="page-heading"><p class="eyebrow">GOVERNANCE / STOPPED PROPOSALS</p><h1>Rejected &amp; withheld drafts.</h1><p>Loaded from the current published record when this page opens.</p></div><div id="flat-content"></div></main>
 <script>/*
  * WAKE✳︎ flat-view controller.
  * Standalone pages are stable shells; current facts are loaded from flat exports
@@ -260,6 +260,12 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.mode!=='hosted' && window.WAKE_DEPLOY
     else if(owner)show(owner);
   }).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['title','aria-label','aria-pressed','class','data-ui-tooltip']});
 })();
+
+// Recorded links stay within this installation on LAN and a Pages subpath.
+for(const link of document.querySelectorAll('[data-record-url]')){
+  const path=location.pathname,root=path.includes('/nodes/')?path.split('/nodes/')[0]+'/':path.split('/blog/')[0]+'/';
+  link.href=root+link.dataset.recordUrl.replace(/^\//,'');
+}
 </script><script>/* Every off-site destination opens separately; covers later rendered records. */
 (() => {
   const apply = link => {
