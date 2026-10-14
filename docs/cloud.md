@@ -1,24 +1,39 @@
 # WAKE✳︎ public mirror and retained hosted operation
 
-## Publish a local installation mirror
+## Publish the local installation mirror
 
-The current one-container path prepares its website locally. `wake-research publish`
-uploads the complete unified website, node artifacts and `installation.json` to a configured
-dedicated publication branch. The mirror shows the latest uploaded snapshot and
-its date, with a selector for the whole installation and all twelve nodes. The
-unified Console keeps its normal panels with an installation overview at the top. It neither runs research nor
-connects back to the local records, and it has no live operator controls.
+The public site displays uploaded local data. Research runs only in the installation
+container; hosted research workflows are disabled. The former `wake-state` record
+and `wake-runtime` ref remain separate historical installations and are not imported
+into local records. The public status light is hidden; local status stays visible.
 
-See [publication setup](standalone.md#publish-an-optional-read-only-mirror) for
-configuration and a local preview command. Public artifacts are filtered views,
-not manual import/export archives or a copied authoritative database. GitHub
-Pages still deploys the prepared artifact; publication does not require a hosted
-research executor. This local workflow does not promote, start, reset, or replace
-the retained hosted runtime or `wake-state` record.
+Pages serves the root of `wake-public`, with `.nojekyll`, using branch publishing.
+GitHub performs its normal Pages deployment, but does not execute WAKE, generate
+research data, or connect to local records. The optional manual Pages recovery
+workflow only deploys files already uploaded to `wake-public`.
+
+Publishing is manual. On the Mac, configure these values in `.env`:
+
+```bash
+WAKE_PUBLISH_REPOSITORY=https://github.com/sudofx/wake
+WAKE_PUBLISH_BRANCH=wake-public
+./scripts/wake_publish
+```
+
+This drains local research, creates the filtered public artifact in the container,
+and uploads it using the host's existing Git credentials. It leaves research stopped.
+Inside an installation with working Git credentials, `wake-research publish` performs
+the same upload directly. Do not copy credentials into public artifacts.
+
+The unified website and all twelve node views retain the current interface. The
+masthead selector works from every page. Each view shows the upload date rather
+than a live-execution claim, and reads only its own uploaded JSON. Provider bodies,
+Passenger files, databases, logs and control sockets are excluded. Manual import
+archives are separate and never uploaded as the public website.
 
 ## Retained hosted executor compatibility
 
-The procedures below apply only to the independent GitHub-hosted executor and
+The procedures below are retained history for the disabled GitHub-hosted executor and
 its existing branches. They preserve dated operating history and remain valid
 for separately authorized maintenance; they are not the launch procedure for the
 current one-container installation. New local development does not reopen hosted

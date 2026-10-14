@@ -65,6 +65,14 @@
     const stageHTML=STAGES.map(([key,label],i)=>`<div class="process-stage ${active[i]?'observed':'quiet'} ${liveIndex()===i?'live-current':''}" data-stage="${key}" data-stage-index="${i}" role="button" tabindex="0"><span>0${i+1}</span><strong>${label}</strong><small>${escapeHtml(stateLabel(latest,i))}</small></div>`).join('');
     if(stageHTML!==lastStageHTML){stageList.innerHTML=stageHTML;lastStageHTML=stageHTML;}
     const setText=(element,text)=>{if(element.textContent!==text)element.textContent=text;};
+    if(window.WAKE_DEPLOYMENT?.snapshot_only===true){
+      setText(statusEl,'PUBLIC SNAPSHOT');statusEl.dataset.state='snapshot';
+      statusEl.title='Uploaded record snapshot; no live execution data';
+      setText(traceEl,latest?`${latest.id} · ${latest.status}`:'No recorded wake in this snapshot');
+      traceEl.title='Recorded history';
+      setText(detailEl,'Relationships and stages show recorded history from the uploaded snapshot. This public view reports no current execution or live activity.');
+      return;
+    }
     if(runtime){
       const labels={record:'reading the record',context:'preparing context',collecting:'collecting evidence',provider_wait:'waiting for API slot · request not sent',provider:'request sent · awaiting provider response',provider_uncoordinated:'request sent · coordination unavailable',provider_response:'response received · decoding proposal',governance:'proposal received · checking governance',continuity:'evaluating the matrix response',receipt:'finishing the receipt',idle:({stopped:'research stopped',paused:'research paused',standby:'provider quota reported · retrying on schedule',waiting:'waiting for the next eligible wake',blocked:'operator review required',running:'preparing work',idle:'between wakes'})[runtime.state]};
       setText(statusEl,runtime.activity.active?(runtime.activity.stage==='provider_wait'?'API QUEUE':'LIVE ACTIVITY'):'RUNTIME '+runtime.state.toUpperCase());

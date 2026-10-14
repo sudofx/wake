@@ -70,7 +70,7 @@
  function render(data){
   const nodes=data.nodes.filter(validNode).slice(0,100);buildPicker(nodes);if(!dashboard)return;
   get('installation-name').textContent='wake';
-  get('installation-freshness').textContent=`${data.live===true?'Local installation snapshot':'Published mirror · dated snapshot'} · ${stamp(data.generated)} · ${age(data.generated)}`;
+  get('installation-freshness').textContent=`${data.live===true?'Local installation snapshot':'Last uploaded data · dated snapshot'} · ${stamp(data.generated)} · ${age(data.generated)}`;
   const available=nodes.filter(n=>n.available===true&&n.research);
   const values=available.map(n=>number(n.research.status?.accepted_cycles??n.snapshot?.version));
   const total=values.every(v=>v!==null)?values.reduce((a,b)=>a+b,0):null;
@@ -108,7 +108,7 @@
  let timer;
  async function load(){
   clearTimeout(timer);
-  try{const response=await fetch(new URL('installation.json',asset),{cache:'no-store',credentials:'same-origin'});if(!response.ok)throw Error(`HTTP ${response.status}`);const data=await response.json();if(data.schema!==1||!Array.isArray(data.nodes))throw Error('Unsupported installation snapshot');if(window.WAKE_DEPLOYMENT?.snapshot_only===true)data.live=false;manifest=data;render(data);if(dashboard)get('installation-notice').hidden=true;}
+  try{const response=await fetch(new URL('installation.json',asset),{cache:'no-store',credentials:'same-origin'});if(!response.ok)throw Error(`HTTP ${response.status}`);const data=await response.json();if(data.schema!==1||!Array.isArray(data.nodes))throw Error('Unsupported installation snapshot');if(window.WAKE_DEPLOYMENT?.snapshot_only===true)data.live=false;manifest=data;window.WakeInstallationSnapshot=data;window.dispatchEvent(new CustomEvent('wake-installation-snapshot',{detail:data}));render(data);if(dashboard)get('installation-notice').hidden=true;}
   catch(error){if(dashboard){const notice=get('installation-notice');notice.hidden=false;notice.textContent=manifest?'Connection unavailable. Showing the last received snapshot; current activity is unknown.':'Installation snapshot unavailable. No node activity or counts inferred.';if(manifest){const old={...manifest,live:false};render(old);get('installation-freshness').textContent=`Disconnected · last snapshot ${stamp(manifest.generated)} · ${age(manifest.generated)}`;}}}
   if(dashboard&&window.WAKE_DEPLOYMENT?.snapshot_only!==true&&(!manifest||manifest.live===true))timer=setTimeout(load,5000);
  }

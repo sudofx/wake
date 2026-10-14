@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Upload an installation snapshot with the host's existing Git credentials.
+set -euo pipefail
+repo_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$repo_dir"
+if [[ -f .env ]]; then set -a; source .env; set +a; fi
+: "${WAKE_PUBLISH_REPOSITORY:?Configure WAKE_PUBLISH_REPOSITORY in .env}"
+: "${WAKE_PUBLISH_BRANCH:?Configure WAKE_PUBLISH_BRANCH in .env}"
+public_dir="$(mktemp -d "${TMPDIR:-/tmp}/wake-public.XXXXXX")"
+container_dir="/tmp/wake-public-$(date +%s)-$$"
+trap 'rm -rf "$public_dir"' EXIT
+docker exec wake wake-research publish --output "$container_dir"
+docker cp "wake:$container_dir/." "$public_dir/site"
+python3 scripts/publish_pages.py --artifact "$public_dir/site"

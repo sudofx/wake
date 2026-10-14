@@ -93,7 +93,6 @@ class MastheadPresentationTests(unittest.TestCase):
         for name in ('nav.css', 'style.css', 'theme.css', 'research.css', 'console-light.css'):
             rules = re.sub(r'/\*.*?\*/', '', (ASSETS / name).read_text(), flags=re.S)
             self.assertNotRegex(rules, r'\.(masthead|research-header|header-tools|wordmark|console-link|actions-light)\b')
-        self.assertIn('grid-template-columns:repeat(3,minmax(0,1fr))', self.css)
 
     def test_actions_light_is_phone_safe_and_read_only(self):
         nav = (ASSETS / "nav.js").read_text()

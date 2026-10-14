@@ -55,9 +55,8 @@
 const actionsLight=document.querySelector('.actions-light');
 // Unknown installation identity must not display GitHub's status as local status.
 if(actionsLight && window.WAKE_DEPLOYMENT?.snapshot_only===true){
-  actionsLight.href='installation.json';
-  actionsLight.title='Published WAKE snapshot';
-  actionsLight.setAttribute('aria-label','Inspect published WAKE snapshot');
+  document.documentElement.dataset.wakeSnapshotOnly='true';
+  actionsLight.hidden=true;
 }
 if(actionsLight && window.WAKE_DEPLOYMENT?.mode!=='hosted' && window.WAKE_DEPLOYMENT?.snapshot_only!==true){
   actionsLight.href='runtime.json';
@@ -74,7 +73,7 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.mode!=='hosted' && window.WAKE_DEPLOY
   window.addEventListener('wake-runtime-activity',event=>{if(event.detail)applyLocal(event.detail);else refreshLocal();});
   refreshLocal();setInterval(refreshLocal,30000);
 }
-if(actionsLight && window.WAKE_DEPLOYMENT?.schema===1 && window.WAKE_DEPLOYMENT.mode==='hosted'){
+if(actionsLight && window.WAKE_DEPLOYMENT?.snapshot_only!==true && window.WAKE_DEPLOYMENT?.schema===1 && window.WAKE_DEPLOYMENT.mode==='hosted'){
   const CACHE_KEY='wake-actions-light-state';
   const LATCH_CACHE_KEY='wake-actions-light-latch';
   const CACHE_FRESH_MS=90000;

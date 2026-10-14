@@ -530,7 +530,13 @@
   $('history-more').addEventListener('click',()=>{historyLimit+=35;route();});
   const resetPageScroll=()=>requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo(0,0)));
   window.addEventListener('hashchange',()=>{historyLimit=35;$('evidence-search').value='';$('history-search').value='';$('event-filter').value='all';route();resetPageScroll();});
-  $('generated').textContent=`Live projection ${fmt(data.generated)}.`;
+  const projectionDate=()=>{
+    const mirror=window.WAKE_DEPLOYMENT?.snapshot_only===true;
+    const generated=mirror?(window.WakeInstallationSnapshot?.generated||data.generated):data.generated;
+    $('generated').textContent=`${mirror?'Last uploaded data':'Live projection'} ${fmt(generated)}.`;
+  };
+  window.addEventListener('wake-installation-snapshot',projectionDate);
+  projectionDate();
 
   window.WakeApplyLive = next => {
     if(!next || !next.state || next.authoritative === true) return;
@@ -559,7 +565,7 @@
         const option=document.createElement('option');option.value=kind;option.textContent=kind;eventSelect.append(option);
       }
     }
-    $('generated').textContent=`Live projection ${fmt(data.generated)}.`;
+    projectionDate();
     journalLimit=8;historyLimit=35;
     route();
   };

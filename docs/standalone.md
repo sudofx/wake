@@ -111,6 +111,9 @@ upload, its date, and each node's snapshot identity. It has no local operator ac
 live execution claim, or writable authority. Public projections exclude credentials
 and Passenger input/output; manual reloadable archives are never the public mirror.
 
+On a Mac, `./scripts/wake_publish` uploads the container-generated artifact using
+the host’s existing Git credentials. See [public mirror operation](cloud.md#publish-the-local-installation-mirror).
+
 Configure `WAKE_PUBLISH_REPOSITORY` with a GitHub repository URL and
 `WAKE_PUBLISH_BRANCH` with a dedicated publication branch before launching. Review
 `publish --output` first. An explicit `publish` uploads that artifact using configured

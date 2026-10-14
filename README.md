@@ -15,6 +15,11 @@ requests.
 Research is WAKE's first application. It is a useful way to exercise the record and
 governance system; it is not the definition of the WAKE kernel.
 
+The public site is a dated, read-only mirror uploaded from the local installation.
+Research executes in the container; hosted research workflows are disabled.
+Use [publication instructions](docs/cloud.md#publish-the-local-installation-mirror)
+to upload the current unified website and all node views.
+
 [Open the public site](https://sudofx.github.io/wake/) · [View source and releases](https://github.com/sudofx/wake) · [GitHub Actions](https://github.com/sudofx/wake/actions)
 
 ## The basic idea

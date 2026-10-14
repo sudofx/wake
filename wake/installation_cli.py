@@ -174,9 +174,9 @@ def _copy_public_site(source: Path, destination: Path):
                    (assets / path.name).is_file() or path.name in {
                        'state.html', 'events.html', 'rejected.html', '404.html',
                        'console-records.html', 'console-map.html', 'console-map3d.html',
-                       'console-events.html', 'console-rejected.html'}))
+                       'console-events.html', 'console-state.html', 'console-rejected.html'}))
         allowed = allowed or (relative.parts[0] in {'icons', 'backgrounds'} and (assets / relative).is_file())
-        allowed = allowed or (relative.parts[0] in {'blog', 'notebooks'} and path.suffix == '.html')
+        allowed = allowed or (relative.parts[0] in {'blog', 'notebooks', 'journal'} and path.suffix == '.html')
         allowed = allowed or (relative.parts[0] == 'map3d' and path.suffix == '.json')
         allowed = allowed or relative.as_posix() in {'group/bob-publication.json', 'group/bob.json'}
         if not allowed:
@@ -196,9 +196,10 @@ def _copy_public_site(source: Path, destination: Path):
             def mark_snapshot(match):
                 deployment = json.loads(match.group(1))
                 deployment['snapshot_only'] = True
-                return 'window.WAKE_DEPLOYMENT=' + json.dumps(deployment) + ';window.WAKE_STANDALONE=true;'
+                return 'window.WAKE_DEPLOYMENT=' + json.dumps(deployment) + ";window.WAKE_STANDALONE=true;document.documentElement.dataset.wakeSnapshotOnly='true';"
             page = re.sub(r'window\.WAKE_DEPLOYMENT=(\{[^<]*?\});window\.WAKE_STANDALONE=(?:true|false);', mark_snapshot, page)
-            page = page.replace('href="/runtime.json"', 'href="installation.json"').replace('Inspect local WAKE runtime', 'Inspect published WAKE snapshot')
+            prefix = '../' * (len(relative.parts) - 1)
+            page = page.replace('href="/runtime.json"', f'href="{prefix}installation.json"').replace('Inspect local WAKE runtime', 'Inspect published WAKE snapshot')
             target.write_text(page)
         else:
             shutil.copyfile(path, target)
@@ -213,14 +214,31 @@ def build_public_artifact(root: Path, destination: Path) -> dict:
     with tempfile.TemporaryDirectory(prefix='.wake-public-', dir=destination.parent) as temporary:
         staging = Path(temporary) / 'site'
         staging.mkdir()
-        nodes = []
+        nodes, snapshots, research = [], {}, {}
+        from .report import export, _deployment_site
         for node in NODE_IDS:
             source = (root / 'nodes' / node / 'site' / 'current').resolve(strict=True)
             # Public generation may use a current symlink, but contained assets must be real files.
             for path in source.rglob('*'):
                 if path.is_symlink():
                     raise ValueError('Public sites may not contain symlink assets')
-            _copy_public_site(source, staging / 'nodes' / node)
+            snapshot = json.loads((source / 'wake-data.json').read_text())
+            view = json.loads((source / 'research-data.json').read_text())
+            if snapshot['head'] != view['head'] or snapshot['state']['version'] != view['version']:
+                raise ValueError('Node export does not identify one matching snapshot')
+            snapshots[node], research[node] = snapshot, view
+            # Render the recorded packet with current owned assets, so an upload
+            # cannot retain obsolete live-polling code from an earlier export.
+            generated = Path(temporary) / 'generated' / node
+            export(None, generated, projection={**snapshot, 'research':view}, standalone=True)
+            deployment = json.loads((source / 'deployment.json').read_text())
+            _deployment_site(generated, standalone=True, installation=deployment)
+            for name in ('bob.json', 'bob-publication.json'):
+                packet = source / 'group' / name
+                if packet.is_file():
+                    (generated / 'group').mkdir(exist_ok=True)
+                    shutil.copyfile(packet,generated / 'group' / name)
+            _copy_public_site(generated, staging / 'nodes' / node)
             nodes.append({'id': node, 'url': f'/nodes/{node}/',
                           'record': _record_metadata(root / 'nodes' / node / 'record' / 'wake.sqlite')})
         from .installation import installation_snapshot
@@ -229,10 +247,12 @@ def build_public_artifact(root: Path, destination: Path) -> dict:
         manifest['record_heads'] = {entry['id']: entry['record'] for entry in nodes}
         # The public mirror retains the complete unified site, not a metrics-only
         # landing page. Snapshot identity disables local runtime polling.
-        unified = root / 'site/current'
-        if not unified.exists():
-            raise ValueError('Unified website is not ready; wait for node exports')
-        _copy_public_site(unified.resolve(strict=True), staging)
+        from .installation_projection import build_unified_projection
+        from .installation_site import export_unified_site
+        projection = build_unified_projection(snapshots, research, manifest['installation_id'])
+        generated = Path(temporary) / 'generated' / 'unified'
+        export_unified_site(projection, generated)
+        _copy_public_site(generated, staging)
         encoded = json.dumps(manifest, sort_keys=True)
         (staging / 'installation.json').write_text(encoded)
         for node in NODE_IDS:
@@ -242,19 +262,15 @@ def build_public_artifact(root: Path, destination: Path) -> dict:
     return manifest
 
 
-def publish_artifact(root: Path, output: Path | None = None) -> dict:
-    if output is not None:
-        return build_public_artifact(root, output)
-    repository = os.environ.get('WAKE_PUBLISH_REPOSITORY', '')
-    branch = os.environ.get('WAKE_PUBLISH_BRANCH', '')
+def upload_public_artifact(target: Path, repository: str, branch: str):
+    """Upload a prepared public site using native Git credentials and normal pushes."""
+    target = Path(target).resolve(strict=True)
     if not repository or not branch or branch in {'master', 'main', 'wake-runtime', 'wake-state'}:
         raise ValueError('Configure WAKE_PUBLISH_REPOSITORY and a dedicated WAKE_PUBLISH_BRANCH')
     if not re.fullmatch(r'(?:https://github\.com/|git@github\.com:)[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+(?:\.git)?', repository):
         raise ValueError('Publication requires a GitHub repository URL without embedded credentials')
     subprocess.run(['git', 'check-ref-format', '--branch', branch], check=True, capture_output=True)
     with tempfile.TemporaryDirectory(prefix='wake-publish-') as temporary:
-        target = Path(temporary) / 'site'
-        manifest = build_public_artifact(root, target)
         checkout = Path(temporary) / 'checkout'
         checkout.mkdir()
         def git(*args):
@@ -282,6 +298,20 @@ def publish_artifact(root: Path, output: Path | None = None) -> dict:
         git('-c', 'user.name=WAKE operator', '-c', 'user.email=wake@localhost',
             'commit', '--allow-empty', '-m', 'Publish WAKE public snapshot')
         git('push', 'origin', f'HEAD:refs/heads/{branch}')
+
+
+def publish_artifact(root: Path, output: Path | None = None) -> dict:
+    if output is not None:
+        return build_public_artifact(root, output)
+    repository = os.environ.get('WAKE_PUBLISH_REPOSITORY', '')
+    branch = os.environ.get('WAKE_PUBLISH_BRANCH', '')
+    # Fail closed before reading active exports when publication is unconfigured.
+    if not repository or not branch or branch in {'master', 'main', 'wake-runtime', 'wake-state'}:
+        raise ValueError('Configure WAKE_PUBLISH_REPOSITORY and a dedicated WAKE_PUBLISH_BRANCH')
+    with tempfile.TemporaryDirectory(prefix='wake-public-') as temporary:
+        target = Path(temporary) / 'site'
+        manifest = build_public_artifact(root, target)
+        upload_public_artifact(target, repository, branch)
     return manifest
 
 

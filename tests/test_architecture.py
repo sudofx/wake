@@ -77,12 +77,14 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertNotIn('Continue independent research', workflow)
         self.assertIn('group: wake-pages', workflow)
 
-    def test_pages_triggers_only_from_site_paths(self):
+    def test_pages_only_deploys_uploaded_mirror_without_research_or_generation(self):
         workflow = self.read('.github/workflows/pages.yml')
-        for path in ('wake/assets/**','wake/report.py','wake/provenance.py','wake/rejected.py','wake/feeds.py'):
-            self.assertIn(path, workflow)
-        self.assertNotIn('wake.toml', workflow)
-        self.assertNotIn('research-topics.toml', workflow)
+        self.assertIn('workflow_dispatch:', workflow)
+        self.assertIn('ref: wake-public', workflow)
+        self.assertNotIn('push:', workflow)
+        self.assertNotIn('setup-python', workflow)
+        self.assertNotIn('publish_pages.py', workflow)
+        self.assertNotIn('wake-state', workflow)
 
     def test_live_projection_is_non_authoritative_and_outside_pages(self):
         cloud = self.read('scripts/github_wake.py')

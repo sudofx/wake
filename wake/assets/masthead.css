@@ -1,4 +1,6 @@
 :root{--wake-masthead-layer:12000;--wake-popup-layer:12001;--wake-masthead-height:68px}
+/* Public mirrors have dates, not an execution capability or status light. */
+html[data-wake-snapshot-only=true] .masthead .actions-light{display:none!important}
 html{scroll-padding-top:var(--wake-masthead-height)}
 body:has(>.masthead){padding-top:var(--wake-masthead-height)!important}
 /* Canonical masthead geometry for every exported page. Page skins own colors,

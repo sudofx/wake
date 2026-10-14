@@ -18,7 +18,7 @@
   // Hosted transport requires an explicit export identity, never a hostname guess.
   // A raw template or missing marker stays same-origin and reports the defect.
   const deployment = window.WAKE_DEPLOYMENT;
-  const local = deployment?.schema!==1 || deployment.mode!=='hosted';
+  const local = deployment?.snapshot_only===true || deployment?.schema!==1 || deployment.mode!=='hosted';
   const raw = 'https://raw.githubusercontent.com/sudofx/wake/';
   let data, loading=false, fallback=false, loadedCommit='', selected='', topic='all', query='', mode='graph';
   let nodeById=new Map(), selectedWake='', wakeTab='summary', followLatest=true, focusedKinds=[];
@@ -98,8 +98,10 @@
   }
   function freshness() {
     if(!data)return;
-    const age=Math.max(0,Math.round((Date.now()-Date.parse(data.generated))/60000));
-    $('freshness').textContent=`${fallback?'Published snapshot':'Record snapshot'} · ${stamp(data.generated,true)} PT${age>15?` · ${age} min old`:''}`;
+    const mirror=deployment?.snapshot_only===true;
+    const generated=mirror?(window.WakeInstallationSnapshot?.generated||data.generated):data.generated;
+    const snapshotAge=Math.max(0,Math.round((Date.now()-Date.parse(generated))/60000));
+    $('freshness').textContent=`${mirror?'Last uploaded data':fallback?'Published snapshot':'Record snapshot'} · ${stamp(generated,true)} PT${snapshotAge>15?` · ${snapshotAge} min old`:''}`;
   }
   async function refresh() {
     if(loading)return;loading=true;
@@ -375,7 +377,9 @@
     if(wakeTab==='provider')body=`<h3>${esc(w.provider||'Provider not reported')} / ${esc(w.model||'Model not reported')}</h3>${w.attempts.map((a,i)=>`<div class="attempt-row"><strong>Attempt ${i+1} · ${esc(a.model||'unknown')}</strong><p>${esc(a.result||'result not reported')} · ${a.elapsed_ms!==undefined?`${count(a.elapsed_ms)} ms`:'duration not reported'}</p><p class="caption">${a.request_payload_bytes!==undefined?`${count(a.request_payload_bytes)} request bytes`:'request size not reported'}${a.http_status?` · HTTP ${esc(a.http_status)}`:''}</p>${a.usage?`<pre>${esc(JSON.stringify(a.usage,null,2))}</pre>`:''}</div>`).join('')||'<p class="empty">Attempt details are not reported in this snapshot.</p>'}`;
     if(wakeTab==='receipt')body=`<h3>Durable event trace</h3><p class="record-id">Request ${esc(w.request_hash||'not reported')}<br>Terminal ${esc(w.receipt.hash||'not in event tail')}<br>Result ${esc(w.receipt.result_hash||'not reported')}</p>${w.events.map(e=>`<div class="trace-row"><span>${esc(e.kind)}</span><time>${esc(stamp(e.time))}</time><code>${esc(e.hash)}</code>${e.reason?`<p>${esc(e.reason)}</p>`:''}</div>`).join('')||'<p class="empty">Events are outside the bounded tail.</p>'}`;
     $('wake-detail').innerHTML=`<div class="wake-reader-toolbar"><div class="wake-tabs inspector-tabs">${["summary","context","response","provider","receipt"].map(t=>`<button type="button" data-wake-tab="${t}" aria-pressed="${t===wakeTab}">${t}</button>`).join("")}<button class="close-wake" type="button" aria-label="Close wake reader">×</button></div><h3 id="wake-inspector-title" tabindex="-1">${esc(w.id)}</h3></div>${story}<p class="caption">${esc(stamp(w.time,true))} PT → ${esc(stamp(w.finished))} · base state ${w.base_version==null?'not reported':count(w.base_version)}</p>${body}`;
-    $('live-story').textContent=`Snapshot state ${count(data.version)}. Completed wakes are historical receipts; the status light separately reports execution now. Snapshot checks every minute; supported live activity checks every three seconds.`;
+    $('live-story').textContent=deployment?.snapshot_only===true
+      ?`Uploaded snapshot state ${count(data.version)}. Completed wakes are historical receipts. This dated public view has no live activity or automatic refresh; reload to read the latest uploaded data.`
+      :`Snapshot state ${count(data.version)}. Completed wakes are historical receipts; the status light separately reports execution now. Snapshot checks every minute; supported live activity checks every three seconds.`;
   }
   function controls() {
     cube.setMotion(false);contextMap.setMotion(false);document.body.dataset.motion='off';
@@ -513,6 +517,9 @@
   document.addEventListener('click',event=>{if(!event.target.closest('.research-header details'))document.querySelectorAll('.research-header details').forEach(d=>d.open=false);});
   let resizeFrame;window.addEventListener('resize',()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{if(data)renderMap();});});
   controls();readUrl();bootstrap();
-  setInterval(()=>{if(!document.hidden)refresh();},60000);
-  document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh();});
+  window.addEventListener('wake-installation-snapshot',freshness);
+  if(deployment?.snapshot_only!==true){
+    setInterval(()=>{if(!document.hidden)refresh();},60000);
+    document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh();});
+  }
 })();

@@ -121,6 +121,11 @@ class InstallationArchiveTests(unittest.TestCase):
         (source / 'research-data.json').write_text(json.dumps({'head': 'receipt', 'traces': [
             {'request': {'secret': 'prompt-secret'}, 'response': 'response-secret',
              'attempts': [{'http_status': 429}], 'context': {'system': 'system-secret', 'characters': 4}}]}))
+        (source / 'console-state.html').write_text('<html>State view</html>')
+        (source / 'journal').mkdir()
+        (source / 'journal/receipt.html').write_text('<html>Journal</html>')
+        (source / 'blog').mkdir()
+        (source / 'blog/post.html').write_text('<html><head><script>window.WAKE_DEPLOYMENT={"schema":1,"mode":"standalone"};window.WAKE_STANDALONE=true;</script></head><body><a href="/runtime.json">Inspect local WAKE runtime</a></body></html>')
         (source / '.passenger.md').write_text('passenger-secret')
         (source / 'worker.log').write_text('log-secret')
         (source / 'group').mkdir()
@@ -130,6 +135,10 @@ class InstallationArchiveTests(unittest.TestCase):
         projected = json.loads((target / 'research-data.json').read_text())
         self.assertEqual(projected['traces'][0]['attempts'][0]['http_status'], 429)
         self.assertNotIn('secret', json.dumps(projected))
+        self.assertTrue((target / 'console-state.html').exists())
+        self.assertTrue((target / 'journal/receipt.html').exists())
+        self.assertIn('href="../installation.json"',(target / 'blog/post.html').read_text())
+        self.assertIn("dataset.wakeSnapshotOnly='true'",(target / 'blog/post.html').read_text())
         self.assertFalse((target / '.passenger.md').exists())
         self.assertFalse((target / 'worker.log').exists())
         self.assertFalse((target / 'group' / 'bob-input.json').exists())

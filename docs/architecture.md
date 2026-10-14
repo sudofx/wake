@@ -535,3 +535,8 @@ retaining each contributing node and receipt. It never averages separate node
 scores into an invented trial. A Summary sentence marker is accepted as a final
 Bob section; publication preserves the exact model article and receipt. A
 formatting-only withheld draft can be reevaluated without a provider call.
+
+GitHub Pages serves the uploaded `wake-public` installation projection directly.
+Hosted research workflows are disabled; the retained hosted record is not merged
+with local authority. Mirrors hide the status lamp and perform no live-status
+polling. Upload timestamps and node snapshot provenance remain visible.

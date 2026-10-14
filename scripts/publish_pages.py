@@ -1,28 +1,29 @@
 #!/usr/bin/env python3
-"""Build the static Pages shell from the disposable wake-live projection."""
-
+"""Upload an already generated installation mirror; never execute research."""
+import argparse
 import json
+import os
 from pathlib import Path
-import urllib.request
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-
-from wake.report import export
-
-LIVE_URL = "https://raw.githubusercontent.com/sudofx/wake/wake-live/live.json"
+sys.path.insert(0, str(ROOT))
+from wake.installation_cli import upload_public_artifact
 
 
-def main():
-    request = urllib.request.Request(
-        LIVE_URL,
-        headers={"User-Agent": "WAKE-pages/1", "Cache-Control": "no-cache"},
-    )
-    with urllib.request.urlopen(request, timeout=20) as response:
-        payload = json.load(response)
-    result = export(None, ROOT / "site", browser_only=True, projection=payload, standalone=False)
-    print(json.dumps({"status": "published-shell", **result}))
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--artifact', type=Path, required=True)
+    args = parser.parse_args(argv)
+    manifest = json.loads((args.artifact / 'installation.json').read_text())
+    if manifest.get('live') is not False or len(manifest.get('nodes', [])) != 12:
+        raise ValueError('Publish requires a twelve-node, snapshot-only public artifact')
+    upload_public_artifact(args.artifact, os.environ.get('WAKE_PUBLISH_REPOSITORY', ''),
+                           os.environ.get('WAKE_PUBLISH_BRANCH', ''))
+    print(json.dumps({'status':'uploaded-snapshot','installation_id':manifest['installation_id'],
+                      'generated':manifest['generated'],'nodes':len(manifest['nodes'])}))
     return 0
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     raise SystemExit(main())
