@@ -52,7 +52,17 @@
   const icon=document.querySelector('.installation-picker-icon');
   if(icon)icon.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><path d="M12 8v4M5 16v-4h14v4"/></svg>';
  }
- function buildPicker(nodes){
+ const stateNames={running:'Running',waiting:'Waiting',idle:'Idle',paused:'Paused',stopped:'Stopped',standby:'Waiting for provider',blocked:'Blocked',unavailable:'Unavailable',unknown:'Unknown',mixed:'Mixed node states'};
+ function pickerState(node,data){
+  if(data.disconnected)return {state:'unknown',description:'Current status unavailable; connection lost'};
+  if(data.live===true){
+   const runtime=node.runtime||{},state=stateNames[runtime.state]?runtime.state:'unknown';
+   return {state,description:`Current status: ${stateNames[state]}`};
+  }
+  const runtime=node.recorded_runtime||{},state=stateNames[runtime.state]?runtime.state:'unknown';
+  return {state,description:state==='unknown'?'No uploaded status available':`Last uploaded status: ${stateNames[state]} · observed ${stamp(runtime.observed_at)}`};
+ }
+ function buildPicker(nodes,data){
   document.querySelectorAll('#installation-selector,.console-overview .installation-node-picker').forEach(item=>item.remove());
   const masthead=document.querySelector('body>.masthead'),host=masthead?.querySelector('.header-tools')||masthead?.querySelector('.brand-lockup');if(!host)return;
   if(!picker){
@@ -63,10 +73,14 @@
    host.insertBefore(menu,host.querySelector('.mobile-nav-menu'));
    picker.addEventListener('click',event=>{const choice=event.target.closest('a[data-node]');if(choice)choice.href=viewURL(choice.dataset.node||null).href;});
   }
-  picker.replaceChildren();
-  const choice=(id,text)=>{const a=el('a',text);a.dataset.node=id;a.href=viewURL(id||null).href;if((nodeMatch?.[2]||'')===id)a.setAttribute('aria-current','page');return a;};
-  picker.append(choice('','wake'));
-  nodes.forEach(node=>picker.append(choice(node.id,`${node.role==='child'?'↳ ':''}${node.id}${node.available===false?' · unavailable':''}`)));
+  const states=nodes.map(node=>pickerState(node,data));
+  const unique=new Set(states.map(item=>item.state)),whole=unique.size===1?states[0]:{state:'mixed',description:data.live===true?'Current status: Mixed node states':'Last uploaded statuses: Mixed node states'};
+  const rows=[{id:'',text:'wake',status:whole||{state:'unknown',description:'Status unavailable'}},...nodes.map((node,index)=>({id:node.id,text:`${node.role==='child'?'↳ ':''}${node.id}${node.available===false?' · unavailable':''}`,status:states[index]}))];
+  const current=[...picker.children];
+  // Steady polling updates lights without replacing focused menu links.
+  const same=current.length===rows.length&&current.every((a,index)=>a.dataset.node===rows[index].id);
+  if(!same)picker.replaceChildren(...rows.map(row=>{const a=el('a');a.dataset.node=row.id;const light=el('span',undefined,'installation-node-status');light.setAttribute('aria-hidden','true');a.append(light,el('span',row.text,'installation-node-name'));return a;}));
+  rows.forEach((row,index)=>{const a=picker.children[index],name=a.querySelector('.installation-node-name');if(name.textContent!==row.text)name.textContent=row.text;a.href=viewURL(row.id||null).href;a.querySelector('.installation-node-status').dataset.state=row.status.state;a.setAttribute('aria-label',`${row.text} · ${row.status.description}`);a.dataset.uiTooltip=`${row.text} · ${row.status.description}`;if((nodeMatch?.[2]||'')===row.id)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
   pickerIcon(nodeMatch?nodes.find(node=>node.id===nodeMatch[2]):null);
   const label=get('instance-name');if(label)label.textContent=nodeMatch?nodeMatch[2]:'wake';
   const domain=masthead.querySelector('.node-domain');if(domain)domain.textContent=nodeMatch?nodeMatch[2]:'wake';
@@ -74,7 +88,7 @@
  }
  function listItem(list,node,text,detail){const item=el('li');if(node)item.append(link(node,node.id),' · ');item.append(document.createTextNode(text));if(detail)item.append(el('small',detail));list.append(item);}
  function render(data){
-  const nodes=data.nodes.filter(validNode).slice(0,100);buildPicker(nodes);if(!dashboard)return;
+  const nodes=data.nodes.filter(validNode).slice(0,100);buildPicker(nodes,data);if(!dashboard)return;
   get('installation-name').textContent='wake';
   get('installation-freshness').textContent=`${data.live===true?'Local installation snapshot':'Last uploaded data · dated snapshot'} · ${stamp(data.generated)} · ${age(data.generated)}`;
   const available=nodes.filter(n=>n.available===true&&n.research);
@@ -115,8 +129,11 @@
  async function load(){
   clearTimeout(timer);
   try{const response=await fetch(new URL('installation.json',asset),{cache:'no-store',credentials:'same-origin'});if(!response.ok)throw Error(`HTTP ${response.status}`);const data=await response.json();if(data.schema!==1||!Array.isArray(data.nodes))throw Error('Unsupported installation snapshot');if(window.WAKE_DEPLOYMENT?.snapshot_only===true)data.live=false;manifest=data;window.WakeInstallationSnapshot=data;window.dispatchEvent(new CustomEvent('wake-installation-snapshot',{detail:data}));render(data);if(dashboard)get('installation-notice').hidden=true;}
-  catch(error){if(dashboard){const notice=get('installation-notice');notice.hidden=false;notice.textContent=manifest?'Connection unavailable. Showing the last received snapshot; current activity is unknown.':'Installation snapshot unavailable. No node activity or counts inferred.';if(manifest){const old={...manifest,live:false};render(old);get('installation-freshness').textContent=`Disconnected · last snapshot ${stamp(manifest.generated)} · ${age(manifest.generated)}`;}}}
-  if(dashboard&&window.WAKE_DEPLOYMENT?.snapshot_only!==true&&(!manifest||manifest.live===true))timer=setTimeout(load,5000);
+  catch(error){
+   if(manifest)render({...manifest,live:false,disconnected:true});
+   if(dashboard){const notice=get('installation-notice');notice.hidden=false;notice.textContent=manifest?'Connection unavailable. Showing the last received snapshot; current activity is unknown.':'Installation snapshot unavailable. No node activity or counts inferred.';if(manifest)get('installation-freshness').textContent=`Disconnected · last snapshot ${stamp(manifest.generated)} · ${age(manifest.generated)}`;}
+  }
+  if(window.WAKE_DEPLOYMENT?.snapshot_only!==true&&(!manifest||manifest.live===true))timer=setTimeout(load,5000);
  }
  load();
 })();
