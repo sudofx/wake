@@ -79,6 +79,10 @@ alone is not proof that a worker stopped.
 | `wake-research publish` | Upload immutable exports to the configured dedicated branch; preserve research controls and enable later Bob mirror delivery. |
 | `wake-research status` | Read node availability, snapshot identity, runtime state, and shared queue status. |
 
+Paused workers check the shared Bob publication before rereading their full records.
+An unchanged publication needs no repeat record load; a changed post or an explicit
+editorial request still goes through the normal record checks.
+
 The host active-data directory is `data/installation`, mounted as `/data` in the
 container. Node authority lives at `/data/nodes/ID/record/wake.sqlite`. The launcher
 provides `./data/backups` as a link to this installation's manual archive directory.

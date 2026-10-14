@@ -329,17 +329,26 @@ def run(args):
                                            lambda state: server.development_status.update(state=state)),
                                      daemon=True).start()
                 last_group_editorial = 0
+                paused_group_publication = None
                 while not stop.is_set():
                     research_mode, reset_id = _research_control(data, default_mode)
                     if os.environ.get('WAKE_GROUP_ID') and time.monotonic() - last_group_editorial >= 15:
                         last_group_editorial = time.monotonic()
-                        from .group_editorial import synchronize
+                        from .group_editorial import synchronize, fetch, gateway_url
                         try:
                             editorial_provider = None
-                            group = engine.store.load().get('group_bob', {})
                             editorial_request_path = data / '.wake-editorial-request.json'
                             editorial_command = json.loads(editorial_request_path.read_text()) if editorial_request_path.exists() else {}
                             editorial_nonce = editorial_command.get('nonce')
+                            # Paused observers need a full authority read only when the
+                            # shared post changes. This hint never authorizes a write.
+                            shared_signature = None
+                            if research_mode != 'running' and not editorial_nonce:
+                                from .event_format import digest
+                                shared_signature = digest(fetch(gateway_url('/group/bob-publication.json')))
+                                if shared_signature == paused_group_publication:
+                                    continue
+                            group = engine.store.load().get('group_bob', {})
                             if editorial_command.get('revision_reason') and group.get('last_revision_command') != editorial_nonce:
                                 from .event_format import digest
                                 with engine.store.lock():
@@ -355,6 +364,7 @@ def run(args):
                                     editorial_provider.request_gate.editorial_nonce = editorial_nonce
                             if synchronize(engine, editorial_provider) and publish(engine, root):
                                 server.snapshot_generation += 1
+                            paused_group_publication = shared_signature
                             if editorial_nonce:
                                 editorial_request_path.unlink(missing_ok=True)
                         except Exception as exc:
@@ -366,6 +376,7 @@ def run(args):
                             with engine.store.lock():
                                 engine.store.reset()
                                 engine.initialize()
+                            paused_group_publication = None
                             if publish(engine, root):
                                 server.snapshot_generation += 1
                             handled_reset_id = reset_id
