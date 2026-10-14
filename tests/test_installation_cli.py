@@ -89,9 +89,10 @@ class InstallationArchiveTests(unittest.TestCase):
         with patch.dict('os.environ', {}, clear=True):
             with self.assertRaisesRegex(ValueError, 'Configure'):
                 publish_artifact(self.root)
-        with patch.dict('os.environ', {'WAKE_PUBLISH_REPOSITORY': 'https://github.com/example/repo', 'WAKE_PUBLISH_BRANCH': 'master'}, clear=True):
-            with self.assertRaisesRegex(ValueError, 'Configure'):
-                publish_artifact(self.root)
+        for branch in ('master', 'wake-runtime', 'wake-state', 'wake-live'):
+            with patch.dict('os.environ', {'WAKE_PUBLISH_REPOSITORY': 'https://github.com/example/repo', 'WAKE_PUBLISH_BRANCH': branch}, clear=True):
+                with self.assertRaisesRegex(ValueError, 'Configure'):
+                    publish_artifact(self.root)
 
     def test_local_control_transport_requires_complete_acknowledgment(self):
         server = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)

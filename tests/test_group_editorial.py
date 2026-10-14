@@ -204,7 +204,7 @@ class GroupEditorialTests(unittest.TestCase):
             return self.packet if url.endswith('bob-inputs.json') else None
         with patch.dict(os.environ, {'WAKE_GROUP_COORDINATOR_URL':'http://000.wake/group/coordinator',
                                     'WAKE_PUBLIC_HOSTNAME':self.members[0]}), patch('wake.group_editorial.fetch',side_effect=response):
-            synchronize(e,writer)
+            self.assertTrue(synchronize(e,writer))
             synchronize(e,writer)
         self.assertEqual(writer.calls,1)
         self.assertEqual(e.store.load()['version'],0)

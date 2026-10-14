@@ -307,7 +307,7 @@ def build_public_artifact(root: Path, destination: Path) -> dict:
 def upload_public_artifact(target: Path, repository: str, branch: str):
     """Upload a prepared public site using native Git credentials and normal pushes."""
     target = Path(target).resolve(strict=True)
-    if not repository or not branch or branch in {'master', 'main', 'wake-runtime', 'wake-state'}:
+    if not repository or not branch or branch in {'master', 'main', 'wake-runtime', 'wake-state', 'wake-live'}:
         raise ValueError('Configure WAKE_PUBLISH_REPOSITORY and a dedicated WAKE_PUBLISH_BRANCH')
     if not re.fullmatch(r'(?:https://github\.com/|git@github\.com:)[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+(?:\.git)?', repository):
         raise ValueError('Publication requires a GitHub repository URL without embedded credentials')
@@ -348,7 +348,7 @@ def publish_artifact(root: Path, output: Path | None = None) -> dict:
     repository = os.environ.get('WAKE_PUBLISH_REPOSITORY', '')
     branch = os.environ.get('WAKE_PUBLISH_BRANCH', '')
     # Fail closed before reading active exports when publication is unconfigured.
-    if not repository or not branch or branch in {'master', 'main', 'wake-runtime', 'wake-state'}:
+    if not repository or not branch or branch in {'master', 'main', 'wake-runtime', 'wake-state', 'wake-live'}:
         raise ValueError('Configure WAKE_PUBLISH_REPOSITORY and a dedicated WAKE_PUBLISH_BRANCH')
     with tempfile.TemporaryDirectory(prefix='wake-public-') as temporary:
         target = Path(temporary) / 'site'

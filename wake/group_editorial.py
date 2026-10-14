@@ -380,7 +380,8 @@ def synchronize(engine, provider=None):
             {'article': {'body': ''}, 'reason': same[-1].get('reason', 'Previous synthesis did not complete')} if same else None)
         result = engine.synthesize_group(provider, packet, checkpoint, repair=repair)
         if result['status'] != 'editorial_completed':
-            return changed
+            # A terminal failure changed authority too; expose its receipt while paused.
+            return True
         p = publication(packet, checkpoint, result['article'], result['id'],
                         {'name':provider.name, 'model':result.get('successful_model')
                          or getattr(provider, 'successful_model', None) or provider.model})
