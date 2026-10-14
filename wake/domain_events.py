@@ -180,7 +180,7 @@ def reduce_event(state, event, historical=False):
         item.update(status="cancelled", resolution_reason=p["reason"], resolved_by="human")
     elif kind in ("group_bob_enrolled", "group_bob_exception_granted", "group_bob_drafted", "group_bob_withheld", "group_bob_published"):
         from .group_editorial import apply_event
-        state = apply_event(state, kind, p, event["time"])
+        state = apply_event(state, kind, p, event["time"], historical=historical)
     elif kind == "invocation_started":
         require(state["pending"] is None and p["id"] not in state["invocations"], "Conflicting invocation")
         require(p["base_version"] == state["version"], "Start version mismatch")

@@ -190,7 +190,7 @@ class Website(PublicSnapshotHandler):
         return None
 
 
-def publish(engine, root):
+def _publish(engine, root):
     """Publish the complete local artifact through one atomic generation switch.
 
     Assets, deployment identity and record views must come from the same export.
@@ -221,6 +221,14 @@ def publish(engine, root):
         shutil.rmtree(target)
         raise
     return True
+
+
+def publish(engine, root):
+    # The generation retention lease is shared with immutable mirror capture.
+    import fcntl
+    with (root / '.export.lock').open('a') as lease:
+        fcntl.flock(lease, fcntl.LOCK_EX)
+        return _publish(engine, root)
 
 
 def run(args):
@@ -327,13 +335,18 @@ def run(args):
                         try:
                             editorial_provider = None
                             group = engine.store.load().get('group_bob', {})
-                            if research_mode == 'running' and group.get('leader') == os.environ.get('WAKE_PUBLIC_HOSTNAME'):
+                            editorial_request_path = data / '.wake-editorial-request.json'
+                            editorial_nonce = json.loads(editorial_request_path.read_text()).get('nonce') if editorial_request_path.exists() else None
+                            if (research_mode == 'running' or editorial_nonce) and group.get('leader') == os.environ.get('WAKE_PUBLIC_HOSTNAME'):
                                 editorial_provider = Fixture(args.model or 'standalone-fixture') if provider_name == 'fixture' else Gemini(settings, args.model)
                                 if provider_name == 'gemini':
                                     from .group_coordinator import group_provider_gate
-                                    editorial_provider.request_gate = group_provider_gate(settings, should_pause=lambda: stop.is_set() or _research_control(data, default_mode)[0] != 'running')
+                                    editorial_provider.request_gate = group_provider_gate(settings, should_pause=lambda: stop.is_set() or (not editorial_request_path.exists() if editorial_nonce else _research_control(data, default_mode)[0] != 'running'))
+                                    editorial_provider.request_gate.editorial_nonce = editorial_nonce
                             if synchronize(engine, editorial_provider) and publish(engine, root):
                                 server.snapshot_generation += 1
+                            if editorial_nonce:
+                                editorial_request_path.unlink(missing_ok=True)
                         except Exception as exc:
                             # No partial group, synthetic fallback or concealed
                             # scientific progress when a peer/provider is unavailable.

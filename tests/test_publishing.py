@@ -14,6 +14,28 @@ from wake.report import export
 
 
 class PublishingTests(unittest.TestCase):
+    def test_overview_bounds_history_without_mutating_complete_export(self):
+        from copy import deepcopy
+        from wake.live import browser_projection, MAX_EVENTS, MAX_EVIDENCE_TEXT
+        data = {'head': 'same-head', 'state': {'version': 7,
+            'invocations': {'i': {'id': 'i', 'status': 'accepted', 'request': 'private body',
+                                 'origin': {'node': '100.wake'}}},
+            'evidence': {'e': {'content': 'x' * (MAX_EVIDENCE_TEXT * 2)}}},
+            'events': [{'seq': i, 'payload': {'raw_response': 'private body'}}
+                       for i in range(MAX_EVENTS + 20)]}
+        before = deepcopy(data)
+        view = browser_projection(data)
+        self.assertEqual(data, before)
+        self.assertEqual(view['head'], data['head'])
+        self.assertEqual(view['state']['version'], 7)
+        self.assertEqual(view['event_history']['total'], MAX_EVENTS + 20)
+        self.assertEqual(len(view['events']), MAX_EVENTS)
+        self.assertEqual(view['events'][0]['seq'], 20)
+        self.assertNotIn('raw_response', view['events'][0]['payload'])
+        self.assertNotIn('request', view['state']['invocations']['i'])
+        self.assertEqual(view['state']['invocations']['i']['origin'], {'node': '100.wake'})
+        self.assertLessEqual(len(view['state']['evidence']['e']['content']), MAX_EVIDENCE_TEXT + 1)
+
     def test_browser_shell_can_render_from_live_projection_without_store_replay(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)

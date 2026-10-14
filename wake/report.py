@@ -294,7 +294,7 @@ def _blog_body_html(post, state):
     def paragraphs(value):
         return "".join(f"<p>{_blog_html_text(part, post, state)}</p>"
                        for part in re.split(r"\n\s*\n", value) if part.strip())
-    markers = list(re.finditer(r"(?:^|(?<=[.!?])\s+|\n+)Summary[.:]\s+(?=\S)", body))
+    markers = list(re.finditer(r"(?:^|(?<=[.!?])\s+|\n+)Summary[.:]?\s+(?=\S)", body))
     if not markers:
         return paragraphs(body)
     marker = markers[-1]
@@ -322,9 +322,21 @@ def _blog_html(post, state):
         )
     elif post.get("reflection_cycle"):
         research_receipts = '<p class="meta">System-wide reflection · no project-specific research receipts attached.</p>'
+    attributed = ''
+    for number, items in enumerate(post.get('editorial_references', []), 1):
+        links = []
+        for item in items:
+            label = item['member'] + ' · ' + item.get('title', 'recorded activity')
+            if item.get('revision'):
+                label += ' · revision ' + str(item['revision'])
+            links.append('<a href="../index.html" data-record-url="' + html.escape(item['record_url'], quote=True) + '">' + html.escape(label) + '</a>')
+            for source in item.get('sources', []):
+                if source.get('source', '').startswith('https://'):
+                    links.append('<a href="' + html.escape(source['source'], quote=True) + '">source</a>')
+        attributed += '<p>[' + str(number) + '] ' + '; '.join(links) + '</p>'
     body = (
         f'<p class="lede">{_blog_html_text(post["lede"], post, state)}</p>{correction}{paragraphs}{lens}'
-        f'{research_receipts}'
+        f'{research_receipts}{attributed}'
         + (f'<p>Shared synthesis from {len(post["group_publication"]["members"])} parent and child nodes. '
          f'<a href="../events.html">Local publication receipt →</a></p>' if post.get("group_publication") else
          f'<p><a href="../index.html#history/{html.escape(post["created_by"])}">Exact wake and decision →</a></p>')
@@ -462,6 +474,8 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         if research.get("head") != head or research.get("version") != state["version"]:
             raise ValueError("Research projection does not match the exported record")
         atomic_write(target / "research-data.json", json.dumps(research, ensure_ascii=False, separators=(",", ":")))
+        from .live import browser_projection, installation_overview
+        atomic_write(target / "installation-overview.json", json.dumps(installation_overview(research), ensure_ascii=False, separators=(",", ":")))
         for name in ("console.html", "research.css", "research.js", "research-scene.js", "research-instruments.js", "console-layout.js", "process-field.css", "process-field.js", "runtime-activity.js", "installation.html", "installation-console.css", "installation-console.js"):
             content = (assets / name).read_text()
             if name == "console.html":
@@ -490,7 +504,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             "console-graph-alt.png",
         ):
             (background_target / name).write_bytes((background_source / name).read_bytes())
-        browser_data = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
+        browser_data = json.dumps(browser_projection(data), ensure_ascii=False, separators=(",", ":"))
         atomic_write(target / "wake-data.json", browser_data)
         page = template.replace("/* WAKE_STYLE */", "").replace("/* NAV_STYLE */", "")
         page = page.replace("/* NAV_SCRIPT */", (assets / "nav.js").read_text())

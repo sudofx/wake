@@ -178,6 +178,26 @@ class InstallationArchiveTests(unittest.TestCase):
             self.assertEqual(store.record.full_replay()[0], manifest['nodes'][node]['revision'])
             store.close()
 
+    def test_public_artifact_identifies_exports_without_opening_live_authority(self):
+        from wake.installation_cli import build_public_artifact
+        from wake.engine import Engine, DEFAULTS
+        from wake.record_store import RecordStore
+        from wake.report import export
+        (self.root / 'installation-id.json').write_text(json.dumps({'id': 'test-installation'}))
+        exported = {}
+        for node in NODE_IDS:
+            base = self.root / 'nodes' / node
+            store = RecordStore(base / 'record')
+            target = base / 'site' / 'current'
+            export(store, target, standalone=True)
+            exported[node] = store.replay()[1]
+            store.close()
+        with patch('wake.installation_cli._record_metadata', side_effect=AssertionError('Live record read forbidden')):
+            manifest = build_public_artifact(self.root, self.root / 'public')
+        self.assertEqual({node: data['head'] for node, data in manifest['record_heads'].items()}, exported)
+        self.assertFalse(manifest['live'])
+        self.assertFalse(list((self.root / 'public').rglob('*.sqlite')))
+
     def test_publication_retains_existing_branch_history_without_force(self):
         commands = []
         def build(root, destination):

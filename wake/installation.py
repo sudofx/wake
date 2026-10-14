@@ -39,7 +39,7 @@ def read_json(path, maximum=16_000_000):
     return json.loads(raw)
 
 
-def installation_snapshot(root, *, live=True):
+def installation_snapshot(root, *, live=True, include_research=True):
     from .installation_cli import _public_projection
     root = Path(root)
     nodes = []
@@ -48,12 +48,18 @@ def installation_snapshot(root, *, live=True):
         node = {'id': name, 'role': 'parent' if name[:3].endswith('00') else 'child',
                 'parent': None if name[:3].endswith('00') else name[0] + '00.wake',
                 'available': False, 'runtime': {'state': 'unavailable'}}
-        try:
-            research = _public_projection(read_json(base / 'site/current/research-data.json'))
-            node.update(available=True, snapshot={k: research.get(k) for k in ('head', 'version', 'generated')},
-                        research=research)
-        except (OSError, ValueError, TypeError):
-            pass
+        if include_research:
+            try:
+                overview = base / 'site/current/installation-overview.json'
+                if overview.exists():
+                    research = _public_projection(read_json(overview))
+                else:
+                    from .live import installation_overview
+                    research = installation_overview(_public_projection(read_json(base / 'site/current/research-data.json')))
+                node.update(available=True, snapshot={k: research.get(k) for k in ('head', 'version', 'generated')},
+                            research=research)
+            except (OSError, ValueError, TypeError):
+                pass
         if live:
             try:
                 runtime = read_json(base / 'runtime.json', 32768)
@@ -111,13 +117,13 @@ class InstallationHTTP(PublicSnapshotHandler):
             self.json_response(200, packet)
             return
         if route == '/runtime.json':
-            self.json_response(200, installation_runtime(installation_snapshot(controller.root),
+            self.json_response(200, installation_runtime(installation_snapshot(controller.root, include_research=False),
                 controller.mode, controller.coordinator.status()))
             return
         if route.startswith('/nodes/') and route.endswith('/runtime.json'):
             name = route.split('/')[2]
             if name in NODE_IDS:
-                packet = next(n['runtime'] for n in installation_snapshot(controller.root)['nodes'] if n['id'] == name)
+                packet = next(n['runtime'] for n in installation_snapshot(controller.root, include_research=False)['nodes'] if n['id'] == name)
                 self.json_response(200, packet)
                 return
         if route == '/group/bob-inputs.json':
@@ -184,7 +190,7 @@ class InstallationHTTP(PublicSnapshotHandler):
                 raise ValueError('Invalid identity')
             key = ('wake', member, request_id)
             if packet['action'] == 'acquire':
-                if controller.mode != 'running':
+                if controller.mode != 'running' and not (member == NODE_IDS[0] and controller.editorial_nonce and packet.get('editorial_nonce') == controller.editorial_nonce):
                     self.json_response(409, {'error': 'Research stopped'})
                     return
                 with controller.slot_condition:
@@ -236,6 +242,8 @@ class Controller:
         self.provider, self.port = provider, port
         self.workers, self.logs = {}, {}
         self.mode = 'stopped'
+        self.editorial_nonce = None
+        self.mirror_lock = threading.Lock()
         self.token = secrets.token_urlsafe(32)
         self.coordinator = InstallationCallCoordinator()
         self.command_lock = threading.Lock()
@@ -260,6 +268,8 @@ class Controller:
     def set_controls(self, mode):
         command_id = secrets.token_hex(16)
         self.mode = mode
+        self.editorial_nonce = None
+        (self.root / 'nodes' / NODE_IDS[0] / 'record' / '.wake-editorial-request.json').unlink(missing_ok=True)
         with self.slot_condition:
             self.slot_condition.notify_all()
         for name in NODE_IDS:
@@ -290,9 +300,13 @@ class Controller:
         """Publish one full website from attributed node exports, never records."""
         from .installation_projection import build_unified_projection
         from .installation_site import export_unified_site
+        generations = {name: (self.root / 'nodes' / name / 'site/current').resolve() for name in NODE_IDS}
+        signature = tuple((name, str(path)) for name, path in generations.items())
+        if signature == self.site_signature:
+            return False
         snapshots, research = {}, {}
         for name in NODE_IDS:
-            generation = (self.root / 'nodes' / name / 'site/current').resolve()
+            generation = generations[name]
             try:
                 snapshot = read_json(generation / 'wake-data.json')
                 view = read_json(generation / 'research-data.json')
@@ -302,10 +316,6 @@ class Controller:
             except (OSError, ValueError, KeyError, TypeError):
                 continue
         if not snapshots:
-            return False
-        signature = tuple((n, p['head'], p.get('generated'), research[n].get('generated'))
-                          for n, p in sorted(snapshots.items()))
-        if signature == self.site_signature:
             return False
         identity = read_json(self.root / 'installation-id.json')['id']
         projection = build_unified_projection(snapshots, research, identity)
@@ -330,6 +340,47 @@ class Controller:
             shutil.rmtree(candidate)
             raise
         return True
+
+    def shared_publication_digest(self):
+        publications = []
+        for node in NODE_IDS:
+            try:
+                p = read_json(self.root / 'nodes' / node / 'site/current/group/bob-publication.json', 240000)
+                publications.append(p)
+            except (OSError, ValueError):
+                return None
+        from .event_format import digest
+        hashes = {digest(p) for p in publications if p}
+        return next(iter(hashes)) if len(hashes) == 1 and len([p for p in publications if p]) == len(NODE_IDS) else None
+
+    def update_public_mirror(self):
+        """Coalesce accepted shared articles, with retry status outside authority."""
+        path = self.root / 'public-mirror.json'
+        if not path.exists():
+            return
+        with self.mirror_lock:
+            status = read_json(path)
+            if not status.get('enabled') or status.get('retry_at', 0) > time.time():
+                return
+            current = self.shared_publication_digest()
+            if not current or current == status.get('published_digest'):
+                return
+            if status.get('delivery') == 'host':
+                status.update(status='queued', queued_digest=current)
+                atomic_write(path, json.dumps(status))
+                return
+            from .installation_cli import publish_artifact
+            status.update(status='uploading', queued_digest=current)
+            atomic_write(path, json.dumps(status))
+            try:
+                publish_artifact(self.root)
+            except Exception as exc:
+                status.update(status='failed', error=type(exc).__name__, retry_at=time.time() + 300)
+            else:
+                status.update(status='published', published_digest=current,
+                              published_at=datetime.now(timezone.utc).isoformat(), retry_at=0)
+                status.pop('error', None)
+            atomic_write(path, json.dumps(status))
 
     def spawn(self):
         # Linux parent-death signals bind to the creating thread. Process
@@ -419,8 +470,41 @@ class Controller:
                 result = installation_snapshot(self.root)
                 for node in result['nodes']:
                     node.pop('research', None)
-                result.update(ok=True, research=self.mode, coordinator=self.coordinator.status())
+                result.update(ok=True, research=self.mode, coordinator=self.coordinator.status(),
+                    public_mirror=read_json(self.root / 'public-mirror.json') if (self.root / 'public-mirror.json').exists() else {'enabled': False})
                 return result
+            if action in ('mirror-enable', 'mirror-disable', 'mirror-ack'):
+                with self.mirror_lock:
+                    path = self.root / 'public-mirror.json'
+                    status = read_json(path) if path.exists() else {}
+                    if action == 'mirror-enable':
+                        status.update(enabled=True, delivery='host')
+                    elif action == 'mirror-disable':
+                        status.update(enabled=False, status='disabled')
+                    else:
+                        from .governance import require
+                        import re
+                        require(isinstance(packet.get('digest'), str) and re.fullmatch('[a-f0-9]{64}', packet['digest']), 'Invalid delivered publication digest')
+                        status.update(published_digest=packet['digest'], status='published', retry_at=0,
+                                      published_at=datetime.now(timezone.utc).isoformat())
+                    atomic_write(path, json.dumps(status))
+                return {'ok': True, 'research': self.mode, 'public_mirror': status}
+            if action == 'bob':
+                self.editorial_nonce = secrets.token_hex(16)
+                atomic_write(self.root / 'nodes' / NODE_IDS[0] / 'record' / '.wake-editorial-request.json',
+                             json.dumps({'nonce': self.editorial_nonce}))
+                return {'ok': True, 'research': self.mode, 'editorial': 'queued; bounded by cadence, capacity and provider quota'}
+            if action == 'publish':
+                with self.mirror_lock:
+                    result = publish_artifact(self.root, output=packet.get('output'))
+                    if not packet.get('output'):
+                        dig = self.shared_publication_digest()
+                        atomic_write(self.root / 'public-mirror.json', json.dumps({
+                            'enabled': True, 'published_digest': dig, 'published_at': datetime.now(timezone.utc).isoformat(),
+                            'status': 'published'}))
+                return {'ok': True, 'research': self.mode, 'publication': {
+                    'installation_id': result.get('installation_id'), 'generated': result.get('generated'),
+                    'nodes': len(result.get('nodes', [])), 'output': packet.get('output')}}
             if action == 'start':
                 if any(p.poll() is not None for p in self.workers.values()):
                     raise ValueError('A worker exited; restart the installation before research')
@@ -474,12 +558,6 @@ class Controller:
                     raise ValueError('Export must be a filename in data/backups')
                 result = export_records(self.root, backups / name)
                 return {'ok': True, 'research': 'stopped', 'export': str(backups / name), 'result': result}
-            if action == 'publish':
-                self.refresh_site()
-                result = publish_artifact(self.root, output=packet.get('output'))
-                return {'ok': True, 'research': 'stopped', 'publication': {
-                    'installation_id': result.get('installation_id'), 'generated': result.get('generated'),
-                    'nodes': len(result.get('nodes', [])), 'output': packet.get('output')}}
             if action == 'import':
                 name = packet.get('archive')
                 if not isinstance(name, str) or Path(name).name != name:
@@ -534,6 +612,13 @@ def run(args):
                         print(json.dumps({'presentation_unavailable': type(exc).__name__}), flush=True)
                     controller.shutdown.wait(1)
             threading.Thread(target=publish_loop, daemon=True).start()
+            def mirror_loop():
+                while not controller.shutdown.wait(15):
+                    try:
+                        controller.update_public_mirror()
+                    except Exception as exc:
+                        print(json.dumps({'public_mirror_unavailable': type(exc).__name__}), flush=True)
+            threading.Thread(target=mirror_loop, daemon=True).start()
             print(f'WAKE installation: one server on {controller.port}; twelve internal nodes; research stopped', flush=True)
             while not controller.shutdown.wait(.2):
                 try:

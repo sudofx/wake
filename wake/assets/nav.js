@@ -177,3 +177,9 @@ if(actionsLight && window.WAKE_DEPLOYMENT?.mode!=='hosted' && window.WAKE_DEPLOY
     else if(owner)show(owner);
   }).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['title','aria-label','aria-pressed','class','data-ui-tooltip']});
 })();
+
+// Recorded links stay within this installation on LAN and a Pages subpath.
+for(const link of document.querySelectorAll('[data-record-url]')){
+  const path=location.pathname,root=path.includes('/nodes/')?path.split('/nodes/')[0]+'/':path.split('/blog/')[0]+'/';
+  link.href=root+link.dataset.recordUrl.replace(/^\//,'');
+}

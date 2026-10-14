@@ -352,7 +352,14 @@ the who/what/where/when/why/how a nontechnical reader needs. The persona exists 
 is too detailed for ordinary conversation: Bob selects the smallest useful idea, explains it in everyday
 language, and gives readers a path back to the notebooks, sources and exact accepted wake. Every Bob post
 ends with a section headed `Summary` whose content is deliberately simpler than the main post, while
-keeping the tone respectful and using no child-oriented labels.
+keeping the tone respectful and using no child-oriented labels. Group progress
+articles use a separate editorial sequence and attributed inputs from every
+member, rather than waiting for the slowest research ordinal. They may explain
+recorded questions, failures and provisional findings; scientific-result and
+project-completion support rules remain unchanged. See the
+[editorial contract](development.md#first-run-publication-and-passenger).
+Publication captures immutable export generations without reopening authority or
+changing research controls; [mirror delivery](cloud.md) queues accepted shared articles.
 
 The journal/blog boundary is mechanical, not merely stylistic. If one provider response contains both research
 actions and a Bob blog action, the journal entry is constructed only from the non-blog research actions. Bob's

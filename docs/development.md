@@ -36,6 +36,9 @@ selectable from the fixed masthead on every page; the unified option is named
 `wake`. Switching retains the current page and view. `wake/installation_projection.py` owns aggregation and attribution;
 `wake/installation_site.py` exports the website through the canonical report exporter.
 Neither opens authority or requests model output.
+The journal overview carries a bounded event tail and compact invocation/evidence
+views; complete history remains in `events.jsonl`. Installation comparisons read
+small exported summaries, and runtime status reads only worker observations.
 
 The installed CLI is `wake-research`; operator commands use an installation-specific
 Unix socket in `/tmp` with mode 0600. Console access over the LAN is read-only. Source changes do not
@@ -82,7 +85,7 @@ verified operation.
 | Change | Start here | Protected boundary |
 | --- | --- | --- |
 | CLI and installation | `wake/installation.py`, `installation_cli.py`, `installation_gate.py`, `scripts/wake_installation`; compatibility: `wake/__main__.py`, `wake/standalone.py`, `runtime_supervisor.py`, Compose files, `scripts/wake_runner` | Explicit initialization; preserve selected volume; one scheduler |
-| Public mirror | `wake/installation_cli.py`, `scripts/wake_publish`, `scripts/publish_pages.py` | Filter private data; drain before export; dedicated publication branch |
+| Public mirror | `wake/installation_cli.py`, `scripts/wake_publish`, `scripts/publish_pages.py` | Filter private data; pin immutable exports; dedicated publication branch |
 | Record adoption / domain bridge | `wake/authority.py`, `record_store.py`, `application.py`, `domain_events.py`, `event_format.py` | One writable authority; immutable historical meaning and hashes |
 | Generic record/runtime | `wake/kernel/` | Deterministic receipt, replay, access and invocation contracts |
 | Research orchestration / context | `engine.py`, `prompts.py`, `memory.py`, `retrieval.py`, `trust.py`, `attention.py` | Derived context cannot rewrite record or waive obligations |
@@ -162,9 +165,8 @@ Build or restart the intended container separately, preserving its data volume.
 Already imported Python does not automatically reload. Workers start stopped for
 inspection after a container restart; explicitly start research when ready.
 
-Public publishing is a separate upload to `wake-public`. It drains the selected
-installation, exports its public data with current assets, and leaves research
-stopped. Verify Pages deployment and the upload date independently of source CI.
+Public publishing is a separate upload to `wake-public`. It pins exported
+generations and renders current assets without changing research controls. Verify Pages deployment and the upload date independently of source CI.
 No runtime promotion or GitHub research restart exists. See [publishing](cloud.md).
 
 `scripts/wake_runner` is a convenience launcher for the named local editor image.
@@ -361,15 +363,43 @@ He writes plain paragraphs for the existing blog renderer; Markdown heading and 
 The shared `group-wake-introduction` identifies WAKE01. On creation the group first
 uses one parent model invocation to introduce the initialized records of all members,
 even when their accepted research versions are still zero. Children make no research
-requests during this startup stage. A failed initial synthesis requires operator repair
-and a fresh group; it is not automatically retried. Research starts after publication,
-unless the operator pauses the group at this checkpoint. Subsequent group reflections use
-the existing stable 15–20 wake quiet window after the shared checkpoint, once every member
-has reached it. The article records its checkpoint separately from each member's research
-version and publication time. Synthesis and publication do not add research cycles,
-journal entries, scientific evidence, notebooks, Attention moves or continuity results.
-Public synthesis uses the native invocation lifecycle and the ordinary provider quota;
-its bounded input and exact response remain auditable. Passenger is excluded.
+requests during this startup stage. A legacy failed initial synthesis retains its historical single-attempt rule.
+New attributed editorial packets use an independent sequence: the next article is
+due after 18 new accepted transitions across the group, or 45 minutes since the
+last article when questions, notebook work or non-editorial attempts have changed.
+All twelve inputs are required, but members need not advance equally. Bob's own
+receipts and changing export heads cannot manufacture news. Regressing a member's
+research version fails closed for operator review; a reset is never inferred from
+an editorial cadence.
+
+Each input supplies attributed story IDs, node/record links, notebook revisions,
+dates, recorded claim labels and limitations, plus bounded source URLs. The model
+returns numeric paragraph references to those supplied IDs. References must cover
+every member. These structural checks support traceability; they do not prove
+semantic entailment or scientific validity. A progress article can explain open
+questions, provisional readings, corrections, failures and blockers without the
+two-source scientific-result gate. Result publication and project completion keep
+their existing rules. No article advances research, writes a journal, moves
+Attention or fulfills a commitment.
+
+Write for a curious reader with no specialist vocabulary assumptions: explain
+terms when they appear, use clearly labelled everyday analogies, and naturally
+explain who, what, where, when, how and why. The final Summary uses especially
+simple, short sentences without condescension or a public audience label.
+
+Editorial inference uses the existing native invocation and provider quota
+boundary. A withheld draft and reason remain durable; bounded repairs include
+that reason and an excerpt of the draft. Capacity is at most three synthesis
+invocations per editorial sequence per Pacific day, six across the day, with at
+least 15 minutes between unsuccessful attempts. The configured provider fallback
+chain retains its own per-model accounting. Capacity renews on a new day; no
+fabricated Bob fallback fills a quota failure. Passenger remains private.
+
+`wake-research bob` requests one eligible editorial attempt even while research
+is paused. It grants only the leader's editorial provider slot, respects quota,
+cadence and capacity, and cannot start research. A later pause/stop cancels that
+pending capability. Paused members still import an already accepted shared article.
+Public delivery is documented in [mirror publishing](cloud.md).
 
 For a monitored first-post run, the operator may set
 `pause_after_group_introduction: true` alongside `research: "running"` in each
@@ -382,8 +412,8 @@ The one-time operator exception is limited to the exact digest of the group WAKE
 article. It bypasses that article's editorial gates only, adds no scientific support,
 and is consumed once in each member's record. It cannot approve other posts or research
 mutations. Normal later articles retain Bob's publication and language gates. If a
-completed synthesis is withheld, its durable draft and reason are retained instead of
-paying for repeated model calls. To apply an explicitly authorized exception, use the
+completed synthesis is withheld, its durable draft and reason are retained; new
+attributed articles may receive the bounded repairs described above. To apply an explicitly authorized exception, use the
 same saved publication packet in each enrolled, paused member:
 
 ```sh
@@ -485,5 +515,5 @@ context and presentation; receivers retain their own governance and records.
 To run a local group until its next shared Bob post, set each member’s
 `pause_after_group_checkpoint` control to its current shared checkpoint plus one,
 then set `research` to `running`. The target is a publication lower bound, not a
-requested research cycle: Bob retains its normal quiet window. Each member pauses
+requested research cycle: Bob follows the group progress/silence cadence above. Each member pauses
 once it durably imports the newer shared post, before another research request.

@@ -6,6 +6,7 @@ writer or deletes live data. Manual archives are separate from public exports.
 from __future__ import annotations
 
 import argparse
+import fcntl
 from datetime import datetime, timezone
 import hashlib
 import json
@@ -189,7 +190,7 @@ def _copy_public_site(source: Path, destination: Path):
                 # The overview duplicates history already published in events.jsonl.
                 # Keep a bounded display tail while the complete export stays intact.
                 from .live import MAX_EVENTS
-                total = len(value['events'])
+                total = value.get('event_history', {}).get('total', len(value['events']))
                 value['events'] = value['events'][-MAX_EVENTS:]
                 value['event_history'] = {'displayed': len(value['events']), 'total': total,
                                           'complete_url': 'events.jsonl'}
@@ -215,7 +216,7 @@ def _copy_public_site(source: Path, destination: Path):
             shutil.copyfile(path, target)
 
 
-def build_public_artifact(root: Path, destination: Path) -> dict:
+def _build_public_artifact(root: Path, destination: Path) -> dict:
     """Copy only generated public sites; records/private runtime files stay local."""
     root, destination = Path(root), Path(destination)
     if destination.exists():
@@ -241,6 +242,11 @@ def build_public_artifact(root: Path, destination: Path) -> dict:
             # cannot retain obsolete live-polling code from an earlier export.
             generated = Path(temporary) / 'generated' / node
             export(None, generated, projection={**snapshot, 'research':view}, standalone=True)
+            for name in ('events.jsonl', 'events.html', 'state.html', 'map-data.json', 'map3d-data.json'):
+                if (source / name).is_file():
+                    shutil.copyfile(source / name, generated / name)
+            if (source / 'map3d').exists():
+                shutil.copytree(source / 'map3d', generated / 'map3d', dirs_exist_ok=True)
             deployment = json.loads((source / 'deployment.json').read_text())
             _deployment_site(generated, standalone=True, installation=deployment)
             for name in ('bob.json', 'bob-publication.json'):
@@ -250,7 +256,7 @@ def build_public_artifact(root: Path, destination: Path) -> dict:
                     shutil.copyfile(packet,generated / 'group' / name)
             _copy_public_site(generated, staging / 'nodes' / node)
             nodes.append({'id': node, 'url': f'/nodes/{node}/',
-                          'record': _record_metadata(root / 'nodes' / node / 'record' / 'wake.sqlite')})
+                          'record': {'head': snapshot['head'], 'version': snapshot['state']['version']}})
         from .installation import installation_snapshot
         manifest = _public_projection(installation_snapshot(root, live=False))
         manifest['public_projection'] = 'provider-bodies-omitted'
@@ -270,6 +276,32 @@ def build_public_artifact(root: Path, destination: Path) -> dict:
         (staging / '.nojekyll').touch()
         staging.rename(destination)
     return manifest
+
+
+def build_public_artifact(root: Path, destination: Path) -> dict:
+    """Pin each immutable export while its owner retains/deletes generations.
+
+    No authority database is read or copied, and research keeps its control mode.
+    The resulting manifest describes exported heads, never a later live record.
+    """
+    root = Path(root)
+    with tempfile.TemporaryDirectory(prefix='wake-pinned-') as temporary:
+        pinned = Path(temporary)
+        shutil.copyfile(root / 'installation-id.json', pinned / 'installation-id.json')
+        for node in NODE_IDS:
+            site = root / 'nodes' / node / 'site'
+            with (site / '.export.lock').open('a') as lease:
+                fcntl.flock(lease, fcntl.LOCK_EX)
+                source = (site / 'current').resolve(strict=True)
+                shutil.copytree(source, pinned / 'nodes' / node / 'site' / 'current')
+        publications = []
+        for node in NODE_IDS:
+            path = pinned / 'nodes' / node / 'site/current/group/bob-publication.json'
+            publications.append(json.loads(path.read_text()) if path.exists() else None)
+        from .event_format import digest
+        if any(publications) and (not all(publications) or len({digest(p) for p in publications}) != 1):
+            raise ValueError('Wait for every node to export the same accepted Bob article')
+        return _build_public_artifact(pinned, destination)
 
 
 def upload_public_artifact(target: Path, repository: str, branch: str):
@@ -351,15 +383,18 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser(prog='wake-research', description='Control this WAKE installation. New installations and imports start stopped. RESET destroys active data without making a backup; manual data/backups exports survive.')
     parser.add_argument('--data', type=Path, default=data_root(), help='Installation data root (WAKE_INSTALLATION_DATA, default /data)')
     actions = parser.add_subparsers(dest='action', required=True)
-    for action in ('start', 'stop', 'pause', 'restart', 'RESET', 'status'):
+    for action in ('start', 'stop', 'pause', 'restart', 'RESET', 'status', 'bob', 'mirror-enable', 'mirror-disable'):
         actions.add_parser(action)
+    actions.add_parser('mirror-ack', help='Acknowledge the exact shared publication in a delivered immutable artifact').add_argument('digest')
     actions.add_parser('import', help='Verify and replace active data, leaving research stopped').add_argument('archive', help='Archive basename inside data/backups')
     actions.add_parser('export', help='Drain and export reloadable records into data/backups').add_argument('--name', default=None, help='New .zip archive basename')
-    actions.add_parser('publish', help='Publish generated public data using configured dedicated GitHub branch').add_argument('--output', type=Path, help='Build a local public artifact instead of uploading')
+    actions.add_parser('publish', help='Publish immutable exports without changing research controls; enable subsequent Bob mirror updates').add_argument('--output', type=Path, help='Build a local public artifact instead of uploading')
     args = parser.parse_args(argv)
     payload = {'action': args.action}
     try:
-        if args.action in ('import', 'export'):
+        if args.action == 'mirror-ack':
+            payload['digest'] = args.digest
+        elif args.action in ('import', 'export'):
             name = args.archive if args.action == 'import' else args.name or datetime.now(timezone.utc).strftime('wake-%Y%m%dT%H%M%S%fZ.zip')
             if name != Path(name).name or not name.endswith('.zip') or '\\' in name:
                 raise ValueError('Use a .zip basename inside data/backups')

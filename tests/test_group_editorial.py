@@ -25,7 +25,11 @@ class Writer:
             'lens':'A shared story must include every worker and retain uncertainty.'}
     def propose(self, request):
         self.request = request
-        return json.dumps(self.article), {}
+        article = deepcopy(self.article)
+        if 'references' in request.get('response_schema', {}).get('properties', {}):
+            article['references'] = [{'input_ids': [i['stories'][0]['id'] for i in request['context']['group']['inputs']]}]
+            article['body'] = article['body'].replace('\n\nSummary', ' [1]\n\nSummary')
+        return json.dumps(article), {}
 
 
 class GroupEditorialTests(unittest.TestCase):
@@ -81,11 +85,13 @@ class GroupEditorialTests(unittest.TestCase):
             self.assertEqual(e.store.audit()[0],e.store.load())
 
     def test_summary_sentence_draft_releases_while_paused_without_another_model_call(self):
+        for item in self.packet['inputs']: item.pop('editorial_schema')
         from wake.group_editorial import synchronize
         for engine, member in zip(self.engines,self.members):
             engine.store.reset(); engine.initialize()
             engine.store.append('group_bob_enrolled',{'actor':'operator','group_id':'wake','members':self.members,'leader':self.members[0],'member':member})
         self.packet['inputs']=[input_snapshot(engine,'wake',member) for engine,member in zip(self.engines,self.members)]
+        for item in self.packet['inputs']: item.pop('editorial_schema', None)
         writer = Writer()
         writer.article['body'] = writer.article['body'].replace('\n\nSummary\n\n',' Summary. ')
         p = self.draft(writer)
@@ -104,6 +110,80 @@ class GroupEditorialTests(unittest.TestCase):
         self.assertEqual(after['version'],before['version'])
         self.assertNotIn('withheld',after['group_bob'])
         self.assertEqual(engine.store.audit()[0],after)
+
+    def test_member_packet_bounds_prose_without_truncating_source_urls(self):
+        state = deepcopy(self.engines[0].store.load())
+        state['research_topics'] = [{'label':'A research topic', 'seed_question':'q' * 800} for _ in range(3)]
+        state['evidence'] = {f'e{i}': {'id':f'e{i}', 'source':'https://example.com/' + 's' * 600,
+                                    'time':'2026-10-14T00:00:00+00:00'} for i in range(2)}
+        state['notebooks'] = {'n': {'id':'n', 'title':'t' * 250, 'summary':'s' * 1000,
+            'limitations':'l' * 1000, 'next_questions':'q' * 1000, 'revision':3,
+            'evidence':['e0','e1'], 'claims':[{'statement':'a' * 450,
+                'certainty':'hypothesis', 'support':[{'evidence':'e0'}]}]}}
+        packet = input_snapshot(None, 'wake', self.members[0], record_snapshot=(state, 'a' * 64))
+        self.assertLessEqual(len(json.dumps(packet)), 3500)
+        story = packet['stories'][-1]
+        self.assertEqual(story['notebook_id'], 'n')
+        self.assertEqual(story['revision'], 3)
+        self.assertEqual(story['claims'][0]['certainty'], 'hypothesis')
+        self.assertTrue(all(source['source'] == '' and source['record_url'] for source in story['sources']))
+
+    def test_progress_cadence_uses_group_total_and_meaningful_silence(self):
+        from datetime import datetime, timedelta, timezone
+        from wake.group_editorial import editorial_due
+        now = datetime.now(timezone.utc)
+        packet = deepcopy(self.packet)
+        group = {'publication': {'inputs': deepcopy(packet)}, 'published_at': now.isoformat()}
+        self.assertFalse(editorial_due(group, packet, now=now + timedelta(hours=2)))
+        packet['inputs'][0]['version'] += 18
+        self.assertTrue(editorial_due(group, packet, now=now))
+        packet['inputs'][0]['version'] -= 17
+        self.assertFalse(editorial_due(group, packet, now=now + timedelta(minutes=44)))
+        self.assertTrue(editorial_due(group, packet, now=now + timedelta(minutes=45)))
+        packet['inputs'][0]['version'] -= 1
+        packet['inputs'][0]['activity']['attempt_digest'] = 'new failed attempt'
+        self.assertTrue(editorial_due(group, packet, now=now + timedelta(minutes=45)))
+        packet['inputs'][0]['version'] = -1
+        with self.assertRaises(Rejected): editorial_due(group, packet, now=now)
+
+    def test_progress_references_reject_invented_sources_and_missing_members(self):
+        from wake.group_editorial import validate_grounding
+        p = self.draft()
+        validate_grounding(p['article'], p['inputs'])
+        p['article']['references'][0]['input_ids'] = ['invented']
+        with self.assertRaises(Rejected): validate_grounding(p['article'], p['inputs'])
+        p['article']['references'][0]['input_ids'] = [self.packet['inputs'][0]['stories'][0]['id']]
+        with self.assertRaises(Rejected): validate_grounding(p['article'], p['inputs'])
+
+    def test_withheld_progress_is_retained_and_repaired_with_bounded_calls(self):
+        from wake.group_editorial import synchronize
+        leader = self.engines[0]
+        writer = Writer()
+        writer.article['body'] = writer.article['body'].replace('Summary', 'Closing')
+        def response(url):
+            return self.packet if url.endswith('bob-inputs.json') else None
+        with patch.dict(os.environ, {'WAKE_GROUP_COORDINATOR_URL':'http://controller/group/coordinator',
+                                    'WAKE_PUBLIC_HOSTNAME':self.members[0]}), \
+             patch('wake.group_editorial.fetch', side_effect=response):
+            synchronize(leader, writer)
+            group = leader.store.load()['group_bob']
+            self.assertIn('withheld', group)
+            self.assertIn('draft', group)
+            before = deepcopy(leader.store.load())
+            synchronize(leader, writer)
+            self.assertEqual(leader.store.load()['invocations'], before['invocations'])
+            # Capacity persists in receipts, including a failed publication.
+            from datetime import datetime, timedelta, timezone
+            future = datetime.now(timezone.utc) + timedelta(minutes=16)
+            writer.article = Writer().article
+            with patch('wake.group_editorial.datetime') as clock:
+                clock.now.return_value = future
+                clock.fromisoformat.side_effect = datetime.fromisoformat
+                synchronize(leader, writer)
+            self.assertIn('repair', writer.request['context'])
+            self.assertEqual(leader.store.load()['group_bob']['checkpoint'], 1)
+            self.assertEqual(leader.store.load()['version'], before['version'])
+            self.assertEqual(leader.store.audit()[0], leader.store.load())
 
     def test_partial_inputs_rejected_before_call(self):
         packet=deepcopy(self.packet); packet['inputs'].pop()
@@ -131,6 +211,7 @@ class GroupEditorialTests(unittest.TestCase):
         self.assertEqual(e.store.load()['posts'],{})
         self.assertEqual(e.store.record.incomplete_invocations(),())
     def test_exception_cannot_publish_changed_article_research_actions_or_another_checkpoint(self):
+        for item in self.packet['inputs']: item.pop('editorial_schema')
         p=self.draft(Writer({'title':'Short first post','lede':'Welcome.','body':'This welcome is intentionally short.','lens':'Open questions.'}))
         e=self.engines[0]; self.grant(e,p)
         changed=deepcopy(p); changed['article']['body']='A changed article.'
@@ -173,11 +254,11 @@ class GroupEditorialTests(unittest.TestCase):
                 patch('wake.passenger.resolve', return_value=workspace):
             synchronize(leader, writer)
             synchronize(leader, writer)
-        self.assertEqual(leader.store.load()['group_bob']['checkpoint'], due)
+        self.assertEqual(leader.store.load()['group_bob']['checkpoint'], 2)
         self.assertEqual(writer.private_calls, 1)
         self.assertIn('A useful private reflection', workspace.path.read_text())
         notes = [i for i in leader.store.load()['invocations'].values() if i.get('phase') == 'passenger']
-        self.assertEqual(notes[-1]['group_checkpoint'], due)
+        self.assertEqual(notes[-1]['group_checkpoint'], 2)
         child = self.engines[1]
         with patch.dict(os.environ, {'WAKE_GROUP_COORDINATOR_URL': 'http://000.wake/group/coordinator',
                                     'WAKE_PUBLIC_HOSTNAME': self.members[1]}), \
@@ -224,7 +305,7 @@ class GroupEditorialTests(unittest.TestCase):
         p=self.draft(); e=self.engines[0]; self.grant(e,p)
         e.store.append('group_bob_published',{'publication':p})
         from wake.group_editorial import _bob_quiet_window
-        cycle=1+_bob_quiet_window({**e.store.load()['posts'][INTRO_ID],'created_version':1})
+        cycle=2
         packet=deepcopy(self.packet)
         for i in packet['inputs']: i['version']=cycle
         writer=Writer(); writer.article['title']='A later shared reflection'

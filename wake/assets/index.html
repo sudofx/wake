@@ -138,7 +138,9 @@ window.WakeData=fetch(window.WakeLiveUrl+'?wake='+Date.now(),{cache:'no-store'})
       window.WakeApplyLive?.(next);
     }catch{}
   };
-  setInterval(refreshLiveState,10000);
+  // Complete one transfer before scheduling another, including initial load.
+  const poll=async()=>{await refreshLiveState();setTimeout(poll,10000);};
+  window.WakeData.finally(()=>setTimeout(poll,10000)).catch(()=>{});
 })();
 </script>
 </body></html>

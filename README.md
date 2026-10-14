@@ -199,7 +199,13 @@ to a specific deployment.
 
 Worker groups synthesize one model-written WAKE01 introduction from every parent and
 child and publish identical text on all members before ordinary research requests begin.
-The introductory checkpoint does not increment accepted research progress.
+The introductory checkpoint does not increment accepted research progress. Later
+articles explain group progress in plain language, with attributed references and
+a particularly simple Summary. Their cadence uses group activity and a maximum
+silence interval with new activity, independently of scientific-result governance.
+See the [editorial contract](docs/development.md#first-run-publication-and-passenger).
+`./scripts/wake_publish --watch` delivers later accepted articles from immutable
+exports while preserving research controls.
 Container installations also have **Passenger**, a private, installation-wide
 Markdown workspace for Bob's operational assessments and proposed changes.
 The current installation shares its private Passenger storage root; compatibility

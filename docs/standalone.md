@@ -69,13 +69,14 @@ alone is not proof that a worker stopped.
 | --- | --- |
 | `wake-research start` | Enable research after inspection. |
 | `wake-research stop` | Prevent new calls and drain active work; keep the container and Console available. |
+| `wake-research bob` | Request one eligible, bounded group editorial attempt from recorded inputs; keep research paused or running as selected. |
 | `wake-research pause` | Suspend research and drain active work while preserving the available Console. |
 | `wake-research restart` | Drain, recreate worker processes with current configuration, and enable research again; retain records. |
 | `wake-research RESET` | Drain, destroy active node records and private active data, initialize cycle zero, and leave research stopped. Uppercase is required. No backup is created. |
 | `wake-research export --name inspection.zip` | Drain and write a reloadable twelve-record archive to `./data/backups`; leave research stopped. |
 | `wake-research import inspection.zip` | Verify every archived record and its provenance before replacing active records; leave research stopped. |
-| `wake-research publish --output /tmp/wake-public` | Drain and generate a local public mirror artifact without uploading it; leave research stopped. |
-| `wake-research publish` | Drain and explicitly upload the prebuilt public projection to the configured dedicated branch; leave research stopped. |
+| `wake-research publish --output /tmp/wake-public` | Capture immutable exported pages without uploading or changing research controls. |
+| `wake-research publish` | Upload immutable exports to the configured dedicated branch; preserve research controls and enable later Bob mirror delivery. |
 | `wake-research status` | Read node availability, snapshot identity, runtime state, and shared queue status. |
 
 The host active-data directory is `data/installation`, mounted as `/data` in the
@@ -112,7 +113,8 @@ live execution claim, or writable authority. Public projections exclude credenti
 and Passenger input/output; manual reloadable archives are never the public mirror.
 
 On a Mac, `./scripts/wake_publish` uploads the container-generated artifact using
-the host’s existing Git credentials. See [public mirror operation](cloud.md#publish-the-local-installation-mirror).
+the host’s existing Git credentials. Add `--watch` to keep delivering queued shared
+Bob articles without stopping research. See [public mirror operation](cloud.md#publish-the-local-installation-mirror).
 
 Configure `WAKE_PUBLISH_REPOSITORY` with a GitHub repository URL and
 `WAKE_PUBLISH_BRANCH` with a dedicated publication branch before launching. Review

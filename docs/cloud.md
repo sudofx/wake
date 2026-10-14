@@ -33,12 +33,33 @@ Then publish:
 ./scripts/wake_publish
 ```
 
-The command drains local research and builds the filtered artifact in a fresh
-container process using the current mounted source,
-and uploads it with the host's existing Git credentials. Research remains stopped;
-inspect `wake-research status` inside the container before explicitly starting again.
-Inside an installation with working Git credentials, `wake-research publish`
-performs the upload directly. Credentials are never part of the website.
+The command pins the twelve current export generations and builds the filtered
+artifact in a fresh container process using the mounted source. It uploads with
+the host's existing Git credentials. Research keeps its current running, paused
+or stopped setting. Export capture never opens or copies the authority databases.
+The manifest identifies the captured heads and versions, rather than later live
+records. Every member must have exported the same accepted shared Bob article.
+
+To keep the mirror current after later Bob articles, run:
+
+```bash
+./scripts/wake_publish --watch
+```
+
+This uploads once, then runs one host delivery worker per checkout. Keep that
+process and the container available. After all twelve members export a new
+accepted article, the controller queues its digest; the host worker captures and
+uploads immutable exports and acknowledges the delivered digest. Failures remain
+visible in the worker output and retry after a minute. `wake-research status`
+shows queued/delivered mirror state separately from research state. Stop delivery
+with `wake-research mirror-disable` or stop the host worker. Re-running `--watch`
+resumes delivery without changing records or research controls.
+
+Inside an installation configured with Git credentials and the two publication
+variables, `wake-research publish` uploads directly and enables controller delivery
+of subsequent shared articles. Failed direct uploads retain a visible status and
+retry after five minutes. Credentials never enter the website. GitHub deployment
+is a separate step; a delivered branch is not yet proof that Pages serves it.
 
 To prepare an artifact without uploading, use `wake-research publish --output DIR`
 inside the container. Serve the resulting directory with a plain static server to

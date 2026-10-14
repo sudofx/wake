@@ -32,9 +32,33 @@ def _compact_invocation(item):
     allowed = (
         "id", "time", "finished", "status", "reason", "provider", "model",
         "successful_model", "provider_attempts", "provider_requests_sent",
-        "quota_day", "inquiry_drive_shadow", "provider_error", "charged",
+        "quota_day", "inquiry_drive_shadow", "provider_error", "charged", "origin", "origins",
     )
     return {key: deepcopy(item[key]) for key in allowed if key in item}
+
+
+def browser_projection(data):
+    """Bound the overview transport; complete exported history stays separate."""
+    from .installation_cli import _public_projection
+    state = dict(data['state'])
+    state['invocations'] = {key: _compact_invocation(value)
+                            for key, value in state.get('invocations', {}).items()}
+    state['evidence'] = {key: {**value, 'content': _clip(value.get('content'))}
+                        for key, value in state.get('evidence', {}).items()}
+    events = data.get('events', [])
+    return _public_projection({**data, 'state': state, 'events': events[-MAX_EVENTS:],
+        'event_history': {'displayed': min(len(events), MAX_EVENTS),
+                          'total': data.get('event_history', {}).get('total', len(events)),
+                          'complete_url': 'events.jsonl'}})
+
+
+def installation_overview(research):
+    """Only fields consumed by the installation comparison, never its full graph."""
+    return {**{key: research.get(key) for key in ('head', 'version', 'generated', 'status', 'metrics')},
+            'activity': research.get('activity', [])[:12],
+            'wakes': [{key: item.get(key) for key in ('id', 'receipt')}
+                      for item in research.get('wakes', [])[:12]],
+            'matrix': {key: research.get('matrix', {}).get(key) for key in ('enabled', 'completed')}}
 
 
 

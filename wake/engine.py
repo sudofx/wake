@@ -334,7 +334,7 @@ class Engine:
             result["initial_publication"] = {"status": publication["status"], "id": publication["id"]}
         return result
 
-    def synthesize_group(self, provider, packet, checkpoint):
+    def synthesize_group(self, provider, packet, checkpoint, *, repair=None):
         """Public editorial inference through the existing native invocation boundary.
 
         Caller holds the writer lock. No research action, Attention selection or
@@ -342,7 +342,7 @@ class Engine:
         """
         from .group_editorial import request
         return self._run_invocation(provider, phase="group_editorial",
-                                    editorial_request=request(packet, checkpoint))
+                                    editorial_request=request(packet, checkpoint, repair))
 
     def _start_group_editorial(self, provider, request):
         state = self.store.load()
@@ -358,7 +358,8 @@ class Engine:
         self.store.append("invocation_started", {"id":invocation, "provider":provider.name,
             "model":provider.model, "phase":"group_editorial", "charged":provider.charged,
             "quota_day":day, "base_version":state["version"], "request":request,
-            "request_hash":digest(request), "process_id":os.getpid()})
+            "request_hash":digest(request), "process_id":os.getpid(),
+            "editorial_checkpoint":request["context"]["checkpoint"]})
         return invocation, request
 
     def set_time_dilation(self, *, enabled=None, mode=None, scale=None, reason):

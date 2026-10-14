@@ -118,7 +118,8 @@ class MastheadPresentationTests(unittest.TestCase):
     def test_live_projection_still_updates_the_public_site(self):
         self.assertIn('data.public_cycle=Number(data.state?.version||0)', self.html)
         self.assertIn("window.WakeApplyLive?.(next)", self.html)
-        self.assertIn("setInterval(refreshLiveState,10000)", self.html)
+        self.assertIn("setTimeout(poll,10000)", self.html)
+        self.assertNotIn("setInterval(refreshLiveState,10000)", self.html)
 
 
 if __name__ == "__main__":

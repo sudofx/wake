@@ -33,6 +33,23 @@ class TerminalEnvironmentTests(unittest.TestCase):
         read.assert_called_once_with('runtime.json')
 
 class InstallationStatusTests(unittest.TestCase):
+    def test_runtime_status_does_not_read_research_exports(self):
+        from datetime import datetime, timezone
+        from wake.installation import installation_snapshot, NODE_IDS
+        reads = []
+        def read(path, *args):
+            reads.append(Path(path).name)
+            if Path(path).name == 'installation-id.json':
+                return {'id': 'installation'}
+            if Path(path).name == 'runtime.json':
+                return {'state': 'standby', 'observed_at': datetime.now(timezone.utc).isoformat()}
+            self.fail('Runtime status attempted to read a research export')
+        with patch('wake.installation.read_json', side_effect=read):
+            snapshot = installation_snapshot('/unused', include_research=False)
+        self.assertEqual(len(snapshot['nodes']), len(NODE_IDS))
+        self.assertEqual(set(reads), {'runtime.json', 'installation-id.json'})
+        self.assertTrue(all(n['runtime']['state'] == 'standby' for n in snapshot['nodes']))
+
     def test_waiting_nodes_are_visible_even_when_research_is_enabled(self):
         from wake.installation import installation_runtime
         from scripts.wake_terminal import status_details
