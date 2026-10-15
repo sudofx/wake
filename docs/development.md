@@ -190,6 +190,8 @@ to small status requests when unavailable. Worker samples older than five second
 are unavailable. Visibility changes, disconnects and expired samples clear live
 indicators. Public snapshots open no live channel and label uploaded observations
 with their dates.
+Workers report completed quota waits or provider failures before rebuilding their
+website, so slow exports cannot leave the live light green after a known failure.
 
 Console and process views share a single research projection request. Refreshes
 check the export head before fetching another projection. Canvas views are created
@@ -394,7 +396,7 @@ uses one parent model invocation to introduce the initialized records of all mem
 even when their accepted research versions are still zero. Children make no research
 requests during this startup stage. A legacy failed initial synthesis retains its historical single-attempt rule.
 New attributed editorial packets use an independent sequence: the next article is
-required at every aggregate fiftieth accepted wake (50, 100, 150, and so on)
+required at every aggregate tenth accepted wake (10, 20, 30, and so on)
 across all nodes. The last publication’s captured inputs are the durable watermark.
 A missed milestone remains due until publication succeeds; one catch-up article
 covers accumulated work without fabricating backdated posts. Failed attempts,
@@ -568,5 +570,5 @@ context and presentation; receivers retain their own governance and records.
 To run a local group until its next shared Bob post, set each member’s
 `pause_after_group_checkpoint` control to its current shared checkpoint plus one,
 then set `research` to `running`. The target is a publication lower bound, not a
-requested research cycle: Bob follows the aggregate fifty-wake cadence above. Each member pauses
+requested research cycle: Bob follows the aggregate ten-wake cadence above. Each member pauses
 once it durably imports the newer shared post, before another research request.

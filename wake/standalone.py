@@ -87,6 +87,24 @@ def _pause_after_introduction(directory, state):
     return True
 
 
+def _completed_runtime_status(result, schedule=None):
+    """Expose terminal outcomes before slow projection reads or website rendering."""
+    schedule = schedule or {}
+    quota = result.get('quota_exhausted')
+    if quota or schedule.get('quota_standby'):
+        if quota == 'free_tier_daily' or schedule.get('provider_quota_limited'):
+            return {'mode': 'standalone', 'state': 'standby',
+                    'reason': 'Provider API quota reported; retrying on the regular schedule'}
+        return {'mode': 'standalone', 'state': 'standby',
+                'resume_at': schedule.get('quota_standby_until'),
+                'reason': 'Configured API request limit reached; research resumes at midnight Pacific time'}
+    if result.get('status') == 'failed':
+        return {'mode': 'standalone', 'state': 'blocked',
+                'reason': result.get('reason', 'Provider failed'),
+                'action': 'Review provider configuration and restart'}
+    return {'mode': 'standalone', 'state': 'idle'}
+
+
 def _wait_for_control(stop, directory, seconds, mode, reset_id):
     deadline = time.monotonic() + seconds
     while time.monotonic() < deadline:
@@ -501,23 +519,16 @@ def run(args):
                             break
                         continue
                     print(json.dumps(result), flush=True)
-                    if publish(engine, root):
-                        server.snapshot_generation += 1
+                    # A recorded failure must reach runtime observers before a
+                    # potentially slow authority read or derived website build.
+                    server.runtime_status = _completed_runtime_status(result)
                     quota_schedule = wake_status(
                         engine.store.load(), daily_call_limit=daily_limit
                     )
+                    server.runtime_status = _completed_runtime_status(result, quota_schedule)
+                    if publish(engine, root):
+                        server.snapshot_generation += 1
                     if quota_schedule.get('quota_standby'):
-                        if quota_schedule.get('provider_quota_limited'):
-                            server.runtime_status = {
-                                'mode': 'standalone', 'state': 'standby',
-                                'reason': 'Provider API quota reported; retrying on the regular schedule',
-                            }
-                        else:
-                            server.runtime_status = {
-                                'mode': 'standalone', 'state': 'standby',
-                                'resume_at': quota_schedule['quota_standby_until'],
-                                'reason': 'Configured API request limit reached; research resumes at midnight Pacific time',
-                            }
                         if _wait_for_control(stop, data, args.interval, research_mode, reset_id):
                             break
                         continue
@@ -525,14 +536,10 @@ def run(args):
                         # Known temporary failures return deferred. A failed
                         # provider outcome is not permission for another effect
                         # on every loop (for example an invalid key/model).
-                        server.runtime_status = {'mode': 'standalone', 'state': 'blocked',
-                                                 'reason': result.get('reason', 'Provider failed'),
-                                                 'action': 'Review provider configuration and restart'}
                         print(json.dumps(server.runtime_status), flush=True)
                         if _wait_for_control(stop, data, 86400, research_mode, reset_id):
                             break
                         continue
-                    server.runtime_status = {'mode': 'standalone', 'state': 'idle'}
                     if _wait_for_control(stop, data, args.interval, research_mode, reset_id):
                         break
         finally:

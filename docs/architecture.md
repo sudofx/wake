@@ -506,7 +506,7 @@ it does not require invented research progress or child provider calls. Legacy f
 initial synthesis retains its single-attempt rule; modern articles use quota-bounded
 retries with fifteen-minute spacing. All later articles
 require valid attributed references and the Bob/WAKE identity boundary; prose
-style is guidance rather than a publication veto. Each aggregate fiftieth accepted
+style is guidance rather than a publication veto. Each aggregate tenth accepted
 wake creates a publication obligation that survives failed attempts and quota waits,
 without blocking research. Missing peers and withheld drafts
 remain visible; completed drafts are reused rather than repeatedly inferred. Historical

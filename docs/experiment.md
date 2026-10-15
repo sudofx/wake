@@ -294,7 +294,7 @@ project. A model-written editorial correction retains and supersedes the earlier
 article; its operator request, draft and invocation remain auditable. Readable
 prose and traceable references do not establish independent scientific validity.
 The [editorial contract](development.md#first-run-publication-and-passenger)
-defines the required aggregate fifty-wake cadence, quota-bounded retries and
+defines the required aggregate ten-wake cadence, quota-bounded retries and
 editorial language guidance. Forgiving Bob’s prose changes no research evidence
 qualification or accepted-cycle rule.
 

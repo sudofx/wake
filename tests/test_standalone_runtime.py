@@ -167,17 +167,33 @@ class StandaloneRuntimeTests(unittest.TestCase):
             stop.is_set.side_effect = [False, True]
             due = {'next_eligible': None, 'quota_standby': True,
                    'provider_quota_limited': True, 'quota_standby_until': None}
+            publications = []
+            schedules = []
+            def observe_publish(*args):
+                # The first publication happens before the runtime server exists.
+                if publications:
+                    self.assertEqual(server.runtime_status['state'], 'standby')
+                publications.append(True)
+                return True
+            def observe_schedule(*args, **kwargs):
+                if schedules:
+                    # Even the projection read preceding export must not retain green.
+                    self.assertEqual(server.runtime_status['state'], 'standby')
+                    return due
+                schedules.append(True)
+                return {'next_eligible': None}
             with patch('wake.standalone.config', return_value=dict(DEFAULTS)), \
                  patch('wake.standalone.bootstrap', return_value=engine), \
                  patch('wake.standalone.verify_existing_record'), \
-                 patch('wake.standalone.publish', return_value=True), \
+                 patch('wake.standalone.publish', side_effect=observe_publish), \
                  patch('wake.standalone.ThreadingHTTPServer', return_value=server), \
                  patch('wake.standalone.threading.Thread'), \
                  patch('wake.standalone.threading.Event', return_value=stop), \
-                 patch('wake.standalone.wake_status', side_effect=[{'next_eligible': None}, due]), \
+                 patch('wake.standalone.wake_status', side_effect=observe_schedule), \
                  patch('wake.standalone._wait_for_control', return_value=True) as wait_for_control, \
-                 patch.object(engine, 'run', return_value={'status': 'deferred', 'reason': 'quota'}):
+                 patch.object(engine, 'run', return_value={'status': 'deferred', 'reason': 'quota', 'quota_exhausted': 'free_tier_daily'}):
                 run(args)
+            self.assertEqual(len(publications), 2)
             self.assertEqual(server.runtime_status['state'], 'standby')
             self.assertIn('retrying on the regular schedule', server.runtime_status['reason'])
             self.assertEqual(wait_for_control.call_args.args[2], args.interval)
