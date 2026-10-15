@@ -502,8 +502,9 @@ editorial phase uses native invocation accounting and never mutates research, jo
 Attention or continuity results. An operator-only, digest-bound WAKE01 exception can
 approve the first shared article once per record, without admitting any research action.
 The initial group startup stage synthesizes initialized records before research requests;
-it does not require invented research progress or child provider calls. Failed initial
-synthesis awaits operator repair rather than automatic paid retries. All later articles
+it does not require invented research progress or child provider calls. Legacy failed
+initial synthesis retains its single-attempt rule; modern articles use quota-bounded
+retries with fifteen-minute spacing. All later articles
 require valid attributed references and the Bob/WAKE identity boundary; prose
 style is guidance rather than a publication veto. Each aggregate twentieth accepted
 wake creates a publication obligation that survives failed attempts and quota waits,
