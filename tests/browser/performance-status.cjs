@@ -51,7 +51,10 @@ const tick=setInterval(()=>{if(online)for(const res of clients)res.write('data: 
   assert(await flat.locator('.theme-switch').isVisible(),'theme switch remains visible with system detection');
   await flat.locator('.theme-switch').click();assert.equal(await flat.locator('html').getAttribute('data-theme'),'dark');
   await flat.reload();assert.equal(await flat.locator('html').getAttribute('data-theme'),'dark','manual theme survives navigation');
-  await flat.setViewportSize({width:390,height:844});assert(await flat.locator('.theme-switch').isVisible());assert(await flat.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await flat.close();
+  await flat.setViewportSize({width:390,height:844});assert(await flat.locator('.theme-switch').isVisible());assert(await flat.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+  await flat.goto(base+'console.html');await flat.locator('.mobile-nav-menu summary').click();
+  const explore=flat.locator('.mobile-nav-menu a[data-nav="home"]');assert.equal(await explore.innerText(),'Explore');assert.equal(await explore.getAttribute('href'),'index.html#home');
+  await explore.click();await flat.waitForURL('**/index.html#home');await flat.locator('#home').waitFor();assert(await flat.locator('.theme-switch').isVisible());await flat.close();
   console.log('PASS: shared stream/projection, head refresh, lazy collapsed canvas and SVG views, latest history edge, disconnect/reconnect, no hosted live channel, complete gzip history with either transport encoding.');
  }finally{for(const res of clients)res.destroy();clearInterval(tick);await browser.close();server.close();}
 })().catch(e=>{console.error(e);clearInterval(tick);for(const res of clients)res.destroy();server.close();process.exitCode=1;});

@@ -348,7 +348,8 @@ The website follows the system light or dark theme until a reader uses the alway
 visible theme switch. That manual choice persists across pages and overrides
 later system changes. At 1100 pixels and below,
 or tablet touch screens up to 1366 pixels, page links move into the rightmost main
-menu; wider desktop screens retain horizontal page links.
+menu; wider desktop screens retain horizontal page links. Explore opens the main
+home page, followed by Research, Journal and Bob’s Blog.
 
 The shared masthead is fixed to the viewport and stays visible at every scroll
 position on desktop and phones. Shared navigation reserves its measured height

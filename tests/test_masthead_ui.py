@@ -68,7 +68,7 @@ class MastheadPresentationTests(unittest.TestCase):
             self.assertIn('src="site-theme.js?v=', page)
             self.assertGreater(page.index('href="masthead.css?v='), page.index('href="nav.css?v='))
 
-    def test_primary_masthead_menu_is_research_journal_blog(self):
+    def test_primary_masthead_menu_is_explore_research_journal_blog(self):
         pages = {
             "index": (ASSETS / "index.html").read_text(),
             "map": (ASSETS / "map.html").read_text(),
@@ -83,9 +83,11 @@ class MastheadPresentationTests(unittest.TestCase):
                 self.assertNotIn('<summary>Read</summary>', visible)
                 self.assertIn('<!-- Read menu temporarily retired.', nav)
                 self.assertIn('<summary>Read</summary>', nav)
+                explore = visible.index('>Explore</a>')
                 research = visible.index('>Research</a>')
                 journal = visible.index('>Journal</a>')
                 blog = visible.index('>Bob’s Blog</a>')
+                self.assertLess(explore, research)
                 self.assertLess(research, journal)
                 self.assertLess(journal, blog)
 
