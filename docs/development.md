@@ -45,8 +45,12 @@ than full payloads. Inactive automatic-pause controls do not load authority duri
 the idle loop.
 
 The installed CLI is `wake-research`; operator commands use an installation-specific
-Unix socket in `/tmp` with mode 0600. Console access over the LAN is read-only. Source changes do not
-automatically replace these workers: a container restart returns to stopped
+Unix socket in `/tmp` with mode 0600. Console access over the LAN is read-only.
+Inside the installation, `wake status` reads the same controller status as
+`wake-research status`. To inspect one record explicitly, use
+`wake --data /data/nodes/100.wake/record status`. Outside the installation,
+`wake status` retains the single-record default of `data`.
+Source changes do not automatically replace these workers: a container restart returns to stopped
 inspection, while `wake-research restart` explicitly resumes research. Commands,
 archive verification, quotas, and publication are documented once in the
 [standalone guide](standalone.md#control-research-from-the-shell).

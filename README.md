@@ -110,6 +110,7 @@ cp .env.example .env
 ./scripts/wake_installation start
 ./scripts/wake_installation shell
 wake-research status
+# Inside this installation, wake status returns the same controller status.
 # Inspect first. Enable research separately when ready:
 # wake-research start
 ```

@@ -77,7 +77,7 @@ alone is not proof that a worker stopped.
 | `wake-research import inspection.zip` | Verify every archived record and its provenance before replacing active records; leave research stopped. |
 | `wake-research publish --output /tmp/wake-public` | Capture immutable exported pages without uploading or changing research controls. |
 | `wake-research publish` | Upload immutable exports to the configured dedicated branch; preserve research controls and enable later Bob mirror delivery. |
-| `wake-research status` | Read node availability, snapshot identity, runtime state, and shared queue status. |
+| `wake-research status` (or `wake status` inside the installation) | Read node availability, snapshot identity, runtime state, and shared queue status. |
 
 Paused workers check the shared Bob publication before rereading their full records.
 An unchanged publication needs no repeat record load; a changed post or an explicit

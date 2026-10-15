@@ -8,6 +8,7 @@ import argparse
 from functools import partial
 from http.server import ThreadingHTTPServer
 import json
+import os
 from pathlib import Path
 import sqlite3
 import sys
@@ -24,7 +25,7 @@ from .kernel.record import IntegrityError as RecordIntegrityError
 
 def parser():
     p = argparse.ArgumentParser(prog="python -m wake", description="Infrastructure for durable, accountable work across interchangeable intelligences.")
-    p.add_argument("--data", default="data", help="Durable state directory (default: data)")
+    p.add_argument("--data", default=None, help="Durable state directory (default: data; installation status uses its controller)")
     p.add_argument("--config", default="wake.toml")
     sub = p.add_subparsers(dest="command", required=True)
     sub.add_parser("init", help="Initialize an empty record; never overwrite an existing one")
@@ -102,6 +103,15 @@ def parser():
     return p
 
 def execute(args):
+    if args.command == "status" and args.data is None and os.environ.get("WAKE_TERMINAL_ROLE") == "installation":
+        # Installation status has twelve authorities, never a default solo store.
+        # A missing controller must fail visibly rather than opening another record.
+        from .installation_cli import data_root, request
+        result = request(data_root(), {"action": "status"})
+        require(result.get("ok", False), result.get("error", "Installation status unavailable"))
+        return result
+    if args.data is None:
+        args.data = "data"
     if args.command == "passenger-reset":
         from .passenger import resolve
         require(args.confirm, "Passenger reset requires --confirm")
