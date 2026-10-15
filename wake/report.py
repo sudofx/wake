@@ -703,7 +703,7 @@ def _deployment_site(target, *, standalone, installation=None):
         page = re.sub(r'<script src="(?:\.\./)*installation-console\.js[^"]*"[^>]*></script>', '', page)
         page = re.sub(r'<link rel="stylesheet" href="(?:\.\./)*installation-console\.css[^"]*">', '', page)
         page = page.replace('</head>', f'<link rel="stylesheet" href="{prefix}installation-console.css?v=20261014-icon-picker"><script src="{prefix}installation-console.js?v=20261014-network-picker" defer></script></head>', 1)
-        page = page.replace('</head>', f'<link rel="stylesheet" href="{prefix}console-light.css?v=20261014-mobile-width"><script src="{prefix}site-theme.js?v=20261014-system-theme"></script><link rel="stylesheet" href="{prefix}masthead.css?v=20261014-system-theme"></head>', 1)
+        page = page.replace('</head>', f'<link rel="stylesheet" href="{prefix}console-light.css?v=20261014-mobile-width"><script src="{prefix}site-theme.js?v=20261014-visible-theme"></script><link rel="stylesheet" href="{prefix}masthead.css?v=20261014-visible-theme"></head>', 1)
         # Re-export may reuse a directory. An older marker later in <head> must
         # not override the newly selected installation. Normalize to one owner.
         page = re.sub(r'<script>window\.WAKE_(?:DEPLOYMENT|STANDALONE)=[^<]*</script>', '', page)
