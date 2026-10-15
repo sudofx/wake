@@ -1,5 +1,4 @@
-/* System theme owns presentation when detectable. Manual choice is a fallback
-   for browsers that cannot report a light or dark system preference. */
+/* Follow the system until the reader chooses a theme; retain that choice. */
 (()=>{
  if(window.WakeTheme)return;
  if(document.querySelector('link[href*="console-component.css"]'))document.documentElement.dataset.consoleTheme='shared';
@@ -11,11 +10,11 @@
  const sync=()=>{
   const detected=Boolean(darkMedia?.matches||lightMedia?.matches);
   root.dataset.systemTheme=detected?'detected':'unavailable';
-  const dark=detected?Boolean(darkMedia.matches):choice==='dark';
+  const dark=choice?choice==='dark':Boolean(darkMedia?.matches);
   root.dataset.theme=dark?'dark':'light';root.style.colorScheme=root.dataset.theme;
   document.querySelectorAll('meta[name="theme-color"]').forEach(meta=>meta.content=dark?'#000000':'#f3f6fb');
   const toggle=document.getElementById('theme-toggle');
-  if(toggle){toggle.checked=dark;toggle.setAttribute('aria-label',dark?'Use light theme':'Use dark theme');const label=toggle.closest('label');if(label){label.hidden=detected;label.dataset.uiTooltip=`${detected?'Following system':'Manual'} ${root.dataset.theme} theme · switch to ${dark?'light':'dark'}`;}}
+  if(toggle){toggle.checked=dark;toggle.setAttribute('aria-label',dark?'Use light theme':'Use dark theme');const label=toggle.closest('label');if(label){label.hidden=false;label.dataset.uiTooltip=`${detected&&!choice?'Following system':'Manual'} ${root.dataset.theme} theme · switch to ${dark?'light':'dark'}`;}}
   window.dispatchEvent(new CustomEvent('wake-theme-change',{detail:{theme:root.dataset.theme}}));
  };
  const bind=()=>{sync();document.getElementById('theme-toggle')?.addEventListener('change',event=>{choice=event.target.checked?'dark':'light';try{localStorage.setItem(key,choice)}catch{}sync();});};
