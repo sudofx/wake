@@ -390,8 +390,11 @@ uses one parent model invocation to introduce the initialized records of all mem
 even when their accepted research versions are still zero. Children make no research
 requests during this startup stage. A legacy failed initial synthesis retains its historical single-attempt rule.
 New attributed editorial packets use an independent sequence: the next article is
-due after 18 new accepted transitions across the group, or 45 minutes since the
-last article when questions, notebook work or non-editorial attempts have changed.
+required at every aggregate twentieth accepted wake (20, 40, 60, and so on)
+across all nodes. The last publication’s captured inputs are the durable watermark.
+A missed milestone remains due until publication succeeds; one catch-up article
+covers accumulated work without fabricating backdated posts. Failed attempts,
+wall time and Bob’s receipts do not count. Research never waits for the article.
 All twelve inputs are required, but members need not advance equally. Bob's own
 receipts and changing export heads cannot manufacture news. Regressing a member's
 research version fails closed for operator review; a reset is never inferred from
@@ -399,7 +402,8 @@ an editorial cadence.
 
 Each input supplies attributed story IDs, node/record links, notebook revisions,
 dates, recorded claim labels and limitations, plus bounded source URLs. The model
-returns numeric paragraph references to those supplied IDs. References must cover
+returns numeric paragraph references to those supplied IDs; both `[1][2]` and
+`[1, 2]` are accepted without rewriting the model’s text. References must cover
 every member. These structural checks support traceability; they do not prove
 semantic entailment or scientific validity. A progress article can explain open
 questions, provisional readings, corrections, failures and blockers without the
@@ -410,15 +414,25 @@ Attention or fulfills a commitment.
 Write for a curious reader with no specialist vocabulary assumptions: explain
 terms when they appear, use clearly labelled everyday analogies, and naturally
 explain who, what, where, when, how and why. The final Summary uses especially
-simple, short sentences without condescension or a public audience label.
+simple, short sentences without condescension or a public audience label. These
+are writing instructions, not mechanical publication vetoes: informal discovery
+phrasing, specialist vocabulary, repeated introductions, sentence lengths and
+Summary word counts do not withhold an otherwise traceable article. The final
+Summary, valid supplied references covering every member, bounded article fields,
+and the boundary against attributing personhood to Bob or WAKE remain required.
+Bob’s wording cannot qualify evidence or promote a research claim.
 
 Editorial inference uses the existing native invocation and provider quota
 boundary. A withheld draft and reason remain durable; bounded repairs include
-that reason and an excerpt of the draft. Capacity is at most three synthesis
-invocations per editorial sequence per Pacific day, six across the day, with at
-least 15 minutes between unsuccessful attempts. The configured provider fallback
-chain retains its own per-model accounting. Capacity renews on a new day; no
-fabricated Bob fallback fills a quota failure. Passenger remains private.
+that reason and an excerpt of the draft. Modern milestone articles retry at most
+once per 15 minutes for the same editorial sequence, including quota deferrals.
+There is no three-attempt or six-per-day editorial cutoff that can erase a required
+post; native provider budgets and quota controls still apply. Legacy packets retain
+their historical capacity rules. Exact retained drafts are reevaluated under the
+current rules without another model call; no draft text or historical receipt is
+rewritten. The configured provider fallback chain retains its own per-model
+accounting and reset schedules. No fabricated Bob fallback fills a quota failure.
+Passenger remains private.
 
 `wake-research bob` requests one eligible editorial attempt even while research
 is paused. It grants only the leader's editorial provider slot, respects quota,
@@ -426,12 +440,11 @@ cadence and capacity, and cannot start research. A later pause/stop cancels that
 pending capability. Paused members still import an already accepted shared article.
 `wake-research bob --revise 'REASON'` records a digest-bound operator request for
 an eligible model-written correction of the current article. It can become due
-without new research activity, but never bypasses editorial capacity or language
-checks. A consumed command cannot repeat after interrupted export. The new
-article supersedes the earlier one while retaining its text and invocation.
-New prose checks reject repeated introductions, discovery wording for literature
-readings, and known specialist terms without an explicit first-use explanation;
-they do not claim to certify a reading age or full semantic accuracy.
+without new research activity, but never bypasses provider quotas, retry spacing
+or structural publication checks. A consumed command cannot repeat after
+interrupted export. The new article supersedes the earlier one while retaining its text and invocation.
+Writing instructions discourage repeated introductions, overstated discovery wording
+and unexplained specialist terms; they do not certify semantic accuracy.
 Only the leader advances its editorial sequence one step at a time; other members
 can import a later accepted shared article after missing an earlier feed update.
 No missing historical article or research transition is fabricated.
@@ -447,7 +460,7 @@ article so the entire group can finish publication without additional inference.
 The one-time operator exception is limited to the exact digest of the group WAKE01
 article. It bypasses that article's editorial gates only, adds no scientific support,
 and is consumed once in each member's record. It cannot approve other posts or research
-mutations. Normal later articles retain Bob's publication and language gates. If a
+mutations. Normal later articles retain Bob's structural publication and identity boundaries. If a
 completed synthesis is withheld, its durable draft and reason are retained; new
 attributed articles may receive the bounded repairs described above. To apply an explicitly authorized exception, use the
 same saved publication packet in each enrolled, paused member:
@@ -551,5 +564,5 @@ context and presentation; receivers retain their own governance and records.
 To run a local group until its next shared Bob post, set each member’s
 `pause_after_group_checkpoint` control to its current shared checkpoint plus one,
 then set `research` to `running`. The target is a publication lower bound, not a
-requested research cycle: Bob follows the group progress/silence cadence above. Each member pauses
+requested research cycle: Bob follows the aggregate twenty-wake cadence above. Each member pauses
 once it durably imports the newer shared post, before another research request.

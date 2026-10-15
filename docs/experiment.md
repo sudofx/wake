@@ -294,7 +294,9 @@ project. A model-written editorial correction retains and supersedes the earlier
 article; its operator request, draft and invocation remain auditable. Readable
 prose and traceable references do not establish independent scientific validity.
 The [editorial contract](development.md#first-run-publication-and-passenger)
-defines cadence, capacity and language checks.
+defines the required aggregate twenty-wake cadence, quota-bounded retries and
+editorial language guidance. Forgiving Bob’s prose changes no research evidence
+qualification or accepted-cycle rule.
 
 A group WAKE01 introduction is a shared model synthesis of dated summaries from all
 parents and children. Its checkpoint is editorial metadata, not an added accepted

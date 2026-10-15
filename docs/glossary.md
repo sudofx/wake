@@ -46,8 +46,10 @@ operator procedures.
   same text in each record. Its WAKE01 checkpoint is separate from research progress.
   The older solo `wake-introduction` contract remains replayable.
 - **Editorial sequence** — Bob's article number, separate from every member's
-  research count. New group activity or a recorded operator correction can make
-  the next explanation due. All members supply inputs even when progress differs.
+  research count. A post is required at each aggregate twentieth accepted wake,
+  or after a recorded operator correction. Missed milestones remain due; one
+  catch-up covers accumulated work. All members supply inputs even when progress
+  differs. Bob’s language guidance does not alter research evidence rules.
 - **Editorial correction** — a new model-written article that supersedes an older
   explanation while retaining its text, references and invocation. It changes no
   research result or scientific evidence.

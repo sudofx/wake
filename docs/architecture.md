@@ -504,7 +504,10 @@ approve the first shared article once per record, without admitting any research
 The initial group startup stage synthesizes initialized records before research requests;
 it does not require invented research progress or child provider calls. Failed initial
 synthesis awaits operator repair rather than automatic paid retries. All later articles
-use the ordinary editorial gates. Missing peers and withheld drafts
+require valid attributed references and the Bob/WAKE identity boundary; prose
+style is guidance rather than a publication veto. Each aggregate twentieth accepted
+wake creates a publication obligation that survives failed attempts and quota waits,
+without blocking research. Missing peers and withheld drafts
 remain visible; completed drafts are reused rather than repeatedly inferred. Historical
 solo welcomes and rejected attempts remain replayable. See
 [the operating contract](development.md#first-run-publication-and-passenger).

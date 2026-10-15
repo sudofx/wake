@@ -201,8 +201,10 @@ Worker groups synthesize one model-written WAKE01 introduction from every parent
 child and publish identical text on all members before ordinary research requests begin.
 The introductory checkpoint does not increment accepted research progress. Later
 articles explain group progress in plain language, with attributed references and
-a particularly simple Summary. Their cadence uses group activity and a maximum
-silence interval with new activity, independently of scientific-result governance.
+a particularly simple Summary. A post is required at every twentieth accepted wake
+across the group; overdue work stays due without blocking research. Language is
+editorial guidance, while supplied references and research evidence rules remain
+required independently.
 See the [editorial contract](docs/development.md#first-run-publication-and-passenger).
 `./scripts/wake_publish --watch` delivers later accepted articles from immutable
 exports while preserving research controls.

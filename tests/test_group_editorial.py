@@ -182,23 +182,64 @@ class GroupEditorialTests(unittest.TestCase):
         self.assertNotIn('revision_requested', after['group_bob'])
         self.assertEqual(leader.store.audit()[0], after)
 
-    def test_progress_cadence_uses_group_total_and_meaningful_silence(self):
+    def test_progress_cadence_requires_twentieth_aggregate_wake_without_time_expiry(self):
         from datetime import datetime, timedelta, timezone
         from wake.group_editorial import editorial_due
         now = datetime.now(timezone.utc)
         packet = deepcopy(self.packet)
         group = {'publication': {'inputs': deepcopy(packet)}, 'published_at': now.isoformat()}
         self.assertFalse(editorial_due(group, packet, now=now + timedelta(hours=2)))
-        packet['inputs'][0]['version'] += 18
+        # Two existing wakes: 19 is not due, 20 is, even with an idle peer.
+        packet['inputs'][0]['version'] += 17
+        self.assertFalse(editorial_due(group, packet, now=now + timedelta(days=2)))
+        packet['inputs'][0]['version'] += 1
         self.assertTrue(editorial_due(group, packet, now=now))
-        packet['inputs'][0]['version'] -= 17
-        self.assertFalse(editorial_due(group, packet, now=now + timedelta(minutes=44)))
-        self.assertTrue(editorial_due(group, packet, now=now + timedelta(minutes=45)))
-        packet['inputs'][0]['version'] -= 1
+        # One catch-up at 47 covers earlier milestones; next obligation is 60.
+        packet['inputs'][0]['version'] += 27
+        self.assertTrue(editorial_due(group, packet, now=now))
+        group['publication']['inputs'] = deepcopy(packet)
+        self.assertFalse(editorial_due(group, packet, now=now))
+        packet['inputs'][0]['version'] += 12
+        self.assertFalse(editorial_due(group, packet, now=now))
+        packet['inputs'][1]['version'] += 1
+        self.assertTrue(editorial_due(group, packet, now=now))
+        packet = deepcopy(group['publication']['inputs'])
         packet['inputs'][0]['activity']['attempt_digest'] = 'new failed attempt'
-        self.assertTrue(editorial_due(group, packet, now=now + timedelta(minutes=45)))
+        self.assertFalse(editorial_due(group, packet, now=now + timedelta(days=2)))
         packet['inputs'][0]['version'] = -1
         with self.assertRaises(Rejected): editorial_due(group, packet, now=now)
+
+    def test_retained_grouped_citations_and_informal_language_publish_without_inference(self):
+        from wake.group_editorial import synchronize, validate_grounding
+        class ExactWriter(Writer):
+            def propose(self, request):
+                return json.dumps(self.article), {}
+        article = deepcopy(Writer().article)
+        article['body'] = ('We found that quantum memory is an interesting question. '
+                           + 'Long sentences are editorial guidance ' * 50
+                           + '[1, 2]\n\nSummary\n\n' + 'There is more to read. ' * 30)
+        article['references'] = [{'input_ids':[item['stories'][0]['id']]} for item in self.packet['inputs']]
+        leader = self.engines[0]
+        with leader.store.lock(): result = leader.synthesize_group(ExactWriter(article), self.packet, 1)
+        p = publication(self.packet, 1, result['article'], result['id'], {'name':'fixture','model':Writer.model})
+        leader.store.append('group_bob_drafted', {'publication':p})
+        leader.store.append('group_bob_withheld', {'publication_digest':digest(p), 'reason':'Every story paragraph needs valid numeric references'})
+        before = deepcopy(leader.store.load())
+        with patch.dict(os.environ, {'WAKE_GROUP_COORDINATOR_URL':'http://controller/group/coordinator',
+                                    'WAKE_PUBLIC_HOSTNAME':self.members[0]}), patch('wake.group_editorial.fetch', return_value=None):
+            self.assertTrue(synchronize(leader, None))
+        after = leader.store.load()
+        self.assertEqual(after['posts'][INTRO_ID]['body'], article['body'])
+        self.assertEqual(after['invocations'], before['invocations'])
+        for key in ('version','journal','evidence','notebooks','attention','commitments','projects'):
+            self.assertEqual(after[key], before[key])
+        self.assertEqual(leader.store.audit()[0], after)
+        for bad in ('[0]', '[1, 3]', '[1, invented]'):
+            invalid = deepcopy(article); invalid['body'] = invalid['body'].replace('[1, 2]', bad)
+            with self.assertRaises(Rejected): validate_grounding(invalid, self.packet)
+        invalid = deepcopy(article)
+        invalid['lede'] = 'I am conscious and sentient.'
+        with self.assertRaises(Rejected): validate_grounding(invalid, self.packet)
 
     def test_progress_references_reject_invented_sources_and_missing_members(self):
         from wake.group_editorial import validate_grounding
@@ -238,6 +279,34 @@ class GroupEditorialTests(unittest.TestCase):
             self.assertEqual(leader.store.load()['group_bob']['checkpoint'], 1)
             self.assertEqual(leader.store.load()['version'], before['version'])
             self.assertEqual(leader.store.audit()[0], leader.store.load())
+
+    def test_required_post_survives_more_than_three_failed_drafts_in_a_day(self):
+        from datetime import datetime, timedelta, timezone
+        from wake.group_editorial import synchronize
+        leader = self.engines[0]
+        writer = Writer()
+        writer.article['body'] = writer.article['body'].replace('Summary', 'Closing')
+        def response(url):
+            return self.packet if url.endswith('bob-inputs.json') else None
+        before = deepcopy(leader.store.load())
+        with patch.dict(os.environ, {'WAKE_GROUP_COORDINATOR_URL':'http://controller/group/coordinator',
+                                    'WAKE_PUBLIC_HOSTNAME':self.members[0]}), \
+             patch('wake.group_editorial.fetch', side_effect=response):
+            synchronize(leader, writer)
+            future = datetime.now(timezone.utc) + timedelta(minutes=16)
+            with patch('wake.group_editorial.datetime') as clock:
+                clock.now.return_value = future
+                clock.fromisoformat.side_effect = datetime.fromisoformat
+                for _ in range(6):
+                    synchronize(leader, writer)
+                writer.article = Writer().article
+                synchronize(leader, writer)
+        after = leader.store.load()
+        self.assertEqual(after['group_bob']['checkpoint'], 1)
+        self.assertEqual(sum(i.get('phase') == 'group_editorial' for i in after['invocations'].values()), 8)
+        for key in ('version','journal','evidence','notebooks','attention','commitments','projects'):
+            self.assertEqual(after[key], before[key])
+        self.assertEqual(leader.store.audit()[0], after)
 
     def test_partial_inputs_rejected_before_call(self):
         packet=deepcopy(self.packet); packet['inputs'].pop()
