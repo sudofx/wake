@@ -450,7 +450,7 @@ def _time(value):
 
 
 def editorial_due(group, packet, *, now=None):
-    """One pending article at each aggregate multiple of twenty accepted wakes.
+    """One pending article at each aggregate multiple of fifty accepted wakes.
 
     Publication's captured inputs are the durable watermark. An overdue article
     covers accumulated work once; it does not invent historical milestone posts.
@@ -463,8 +463,8 @@ def editorial_due(group, packet, *, now=None):
     require(all(i['version'] >= old.get(i['member'], {}).get('version', 0) for i in packet['inputs']),
             'Member research generation regressed; operator reconciliation required')
     return bool(group.get('revision_requested')) or (
-        sum(i['version'] for i in packet['inputs']) // 20
-        > sum(i['version'] for i in previous) // 20)
+        sum(i['version'] for i in packet['inputs']) // 50
+        > sum(i['version'] for i in previous) // 50)
 
 
 def reference_links(article, packet):

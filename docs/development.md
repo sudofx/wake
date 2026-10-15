@@ -390,7 +390,7 @@ uses one parent model invocation to introduce the initialized records of all mem
 even when their accepted research versions are still zero. Children make no research
 requests during this startup stage. A legacy failed initial synthesis retains its historical single-attempt rule.
 New attributed editorial packets use an independent sequence: the next article is
-required at every aggregate twentieth accepted wake (20, 40, 60, and so on)
+required at every aggregate fiftieth accepted wake (50, 100, 150, and so on)
 across all nodes. The last publication’s captured inputs are the durable watermark.
 A missed milestone remains due until publication succeeds; one catch-up article
 covers accumulated work without fabricating backdated posts. Failed attempts,
@@ -564,5 +564,5 @@ context and presentation; receivers retain their own governance and records.
 To run a local group until its next shared Bob post, set each member’s
 `pause_after_group_checkpoint` control to its current shared checkpoint plus one,
 then set `research` to `running`. The target is a publication lower bound, not a
-requested research cycle: Bob follows the aggregate twenty-wake cadence above. Each member pauses
+requested research cycle: Bob follows the aggregate fifty-wake cadence above. Each member pauses
 once it durably imports the newer shared post, before another research request.
