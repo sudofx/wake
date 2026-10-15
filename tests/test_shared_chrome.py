@@ -53,7 +53,7 @@ class SharedChromeTests(unittest.TestCase):
                 store.close()
 
     @unittest.skipUnless(shutil.which('node'), 'Node required for production theme controller')
-    def test_theme_follows_detected_system_and_manual_fallback_handles_storage_failure(self):
+    def test_visible_theme_switch_overrides_system_and_handles_storage_failure(self):
         source = ROOT / 'wake/assets/site-theme.js'
         script = r'''
 const vm=require('node:vm'),fs=require('node:fs'),assert=require('node:assert/strict');
@@ -65,11 +65,11 @@ for(const denied of [false,true]){
  const lightMedia={matches:true,addEventListener(){}};
  const context={document:{documentElement:root,readyState:'complete',querySelector(){return null},querySelectorAll(){return []},getElementById(){return toggle}},matchMedia(query){return query.includes('dark')?media:lightMedia},localStorage:{getItem(k){if(denied)throw Error();return saved[k]},setItem(k,v){if(denied)throw Error();saved[k]=v}},CustomEvent:class{},window:{dispatchEvent(){},addEventListener(k,v){events[k]=v}}};
  vm.runInNewContext(source,context);
- assert.equal(root.dataset.theme,'light');assert.equal(label.hidden,true);
+ assert.equal(root.dataset.theme,'light');assert.equal(label.hidden,false);
  lightMedia.matches=false;media.matches=true;systemChange();assert.equal(root.dataset.theme,'dark');
- toggle.checked=false;choiceChange({target:toggle});assert.equal(root.dataset.theme,'dark');
- systemChange();assert.equal(root.dataset.theme,'dark');
- assert.equal(toggle['aria-label'],'Use light theme');assert.match(label.dataset.uiTooltip,/Following system dark/);
+ toggle.checked=false;choiceChange({target:toggle});assert.equal(root.dataset.theme,'light');
+ systemChange();assert.equal(root.dataset.theme,'light');
+ assert.equal(toggle['aria-label'],'Use dark theme');assert.match(label.dataset.uiTooltip,/Manual light/);
  events.storage({key:'wake-site-theme',newValue:null});assert.equal(root.dataset.theme,'dark');
  // Devices without a theme API still get light and a working manual toggle.
  delete context.matchMedia;delete context.window.WakeTheme;

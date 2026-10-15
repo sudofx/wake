@@ -47,7 +47,11 @@ const tick=setInterval(()=>{if(online)for(const res of clients)res.write('data: 
   online=true;await page.waitForFunction(()=>document.querySelector('.installation-node-menu a[data-node="100.wake"] .installation-node-status').dataset.state==='running');
   assert.deepEqual(errors,[]);await page.close();
   online=true;const mirror=await browser.newPage({viewport:{width:390,height:844}});const counts=[streams,runtimeRequests];await mirror.goto(base+'console.html?mirror=1');await mirror.locator('#status-band .status-cell').first().waitFor();await mirror.waitForTimeout(3500);assert.deepEqual([streams,runtimeRequests],counts,'public snapshot must open no status connection');await mirror.close();
-  const flat=await browser.newPage();for(const suffix of ['', '?encoding=1']){await flat.goto(base+'events.html'+suffix);await flat.locator('#flat-content details.entry').first().waitFor();assert.equal(await flat.locator('#flat-content details.entry').count(),history.toString().trim().split('\n').length,'gzip transport retains complete readable history');}await flat.close();
+  const flat=await browser.newPage({colorScheme:'light'});for(const suffix of ['', '?encoding=1']){await flat.goto(base+'events.html'+suffix);await flat.locator('#flat-content details.entry').first().waitFor();assert.equal(await flat.locator('#flat-content details.entry').count(),history.toString().trim().split('\n').length,'gzip transport retains complete readable history');}
+  assert(await flat.locator('.theme-switch').isVisible(),'theme switch remains visible with system detection');
+  await flat.locator('.theme-switch').click();assert.equal(await flat.locator('html').getAttribute('data-theme'),'dark');
+  await flat.reload();assert.equal(await flat.locator('html').getAttribute('data-theme'),'dark','manual theme survives navigation');
+  await flat.setViewportSize({width:390,height:844});assert(await flat.locator('.theme-switch').isVisible());assert(await flat.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await flat.close();
   console.log('PASS: shared stream/projection, head refresh, lazy collapsed canvas and SVG views, latest history edge, disconnect/reconnect, no hosted live channel, complete gzip history with either transport encoding.');
  }finally{for(const res of clients)res.destroy();clearInterval(tick);await browser.close();server.close();}
 })().catch(e=>{console.error(e);clearInterval(tick);for(const res of clients)res.destroy();server.close();process.exitCode=1;});
