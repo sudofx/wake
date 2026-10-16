@@ -31,7 +31,7 @@ Keep presentation subordinate to the canonical durable record.
 <a href="#main" class="skip">Skip to content</a>
 <header class="masthead">
   <div class="brand-lockup">
-    <a class="wordmark" href="index.html" aria-label="Reload WAKE✳︎ from the site root">WAKE<span class="asterisk">✳︎</span><small><span class="cycle-count">30</span> ACCEPTED WAKES</small></a><span class="node-domain">103.wake</span>
+    <a class="wordmark" href="index.html" aria-label="Reload WAKE✳︎ from the site root">WAKE<span class="asterisk">✳︎</span><small><span class="cycle-count">30</span> ACCEPTED WAKES</small></a><span class="node-domain">wake</span>
     </div>
   <nav class="compact-nav" aria-label="Main navigation">
     <a href="index.html" data-nav="home">Explore</a>
@@ -871,6 +871,8 @@ window.WakePetReady=(async () => {
     // Explore is the public entry point even before the record has a charter.
     // Journal remains a depth layer, never the default landing view.
     const page=['home','discoveries','topics','blog','projects','journal','lab','metrics','evidence','history','about'].includes(part)?part:initialPage;
+    // A legacy hash can redirect this document before its data finishes loading.
+    if(document.documentElement.dataset.wakePage && page!==initialPage)return;
     document.querySelectorAll('.view').forEach(el=>el.hidden=el.id!==page);
     document.querySelectorAll('[data-nav]').forEach(el=>{if(el.dataset.nav===page||(el.dataset.navSection==='research'&&['discoveries','topics','journal','blog','projects','lab','metrics','evidence','history'].includes(page)))el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
     let selected='';try{selected=decodeURIComponent(id||'');}catch{}
