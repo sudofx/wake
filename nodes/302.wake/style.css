@@ -789,7 +789,6 @@ html,body{max-width:100%;overflow-x:clip}
 @media(max-width:700px){
   main,footer{width:auto;max-width:calc(100% - 40px)}
 
-  .observatory-topic{min-width:0;max-width:100%}
 
 }
 
@@ -807,7 +806,6 @@ html,body{max-width:100%;overflow-x:clip}
   .blog-card{padding:20px 16px}
   .blog-card h2{font-size:clamp(28px,8.8vw,36px)}
 
-  .observatory-topic{padding:18px 16px}
 }
 
 /* Help system — current WAKE✳︎ theme. One shared treatment for every contextual ? panel. */
