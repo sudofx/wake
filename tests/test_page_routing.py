@@ -29,3 +29,16 @@ for(const prefix of ['/wake/','/wake/nodes/100.wake/']){
 }
 '''
         subprocess.run(['node', '-e', program, str(source)], check=True, capture_output=True, text=True)
+
+    def test_departing_document_does_not_render_an_absent_section(self):
+        source = Path(__file__).parents[1] / 'wake/assets/app.js'
+        program = r'''
+const vm=require('node:vm'),fs=require('node:fs');
+const source=fs.readFileSync(process.argv[1],'utf8');
+const route=source.slice(source.indexOf('  function route()'),source.indexOf("  $('evidence-search')"));
+for(const [current,target] of [['home','blog'],['journal','home'],['blog','journal']]){
+ const document={documentElement:{dataset:{wakePage:current}},querySelectorAll(){throw Error('Departing page tried to render another section');}};
+ vm.runInNewContext(route+'route();',{document,location:{hash:'#'+target+'/existing-record'}});
+}
+'''
+        subprocess.run(['node', '-e', program, str(source)], check=True, capture_output=True, text=True)
