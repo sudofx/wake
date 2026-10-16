@@ -1801,6 +1801,8 @@ class ResearchTests(unittest.TestCase):
         prefix = "A useful public explanation."
         self.assertTrue(_has_final_summary(prefix + " Summary: Plain language follows."))
         self.assertTrue(_has_final_summary(prefix + " Summary. Plain language follows."))
+        self.assertTrue(_has_final_summary(prefix + " Summary We are learning how systems hold information."))
+        self.assertFalse(_has_final_summary(prefix + " Summary   "))
         self.assertFalse(_has_final_summary(prefix + " Summary.   "))
         self.assertTrue(_has_final_summary(prefix + "\nSummary: Plain language follows."))
         self.assertFalse(_has_final_summary(prefix + " Summary:   "))

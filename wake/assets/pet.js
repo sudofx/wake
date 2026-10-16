@@ -100,147 +100,47 @@ window.WakePetReady=(async () => {
       else output=`<h2 class="shelf-title">The notebook shelf ${help('notebook_shelf')}</h2><div class="project-grid">${books.map((n,i)=>bookCard(n,i<2)).join('')||'<p class="empty">No research has been published yet. Finished work will appear here with its evidence and limitations.</p>'}</div><h2 class="shelf-title">Research notes</h2><div class="project-grid">${[...projects].sort((a,b)=>(b.status==='active')-(a.status==='active')||b.updated_version-a.updated_version).map((p,i)=>projectCard(p,i<2)).join('')||'<p class="empty">The first research question will appear after an autonomous wake.</p>'}</div>`;
       document.getElementById('pet-projects').innerHTML=output;return;
     }
-    const journal=s.journal.at(-1);
-    const noteLink=journal?'#journal':'#about';
-    const latestBook=books[0], leadProject=latestBook?projects.find(p=>p.id===latestBook.project):active[0];
-    const completed=invocations.filter(i=>['accepted','rejected','deferred','failed','recovered'].includes(i.status));
-    const recentWakes=completed.slice(-60);
-    const wakeCells=recentWakes.map(i=>`<a class="home-wake-cell ${esc(i.status||'unknown')}" href="#history/${encodeURIComponent(i.id)}" title="${esc(i.status||'unknown')} · ${esc(i.id)}"></a>`).join('');
-    const outcomeCounts={};recentWakes.forEach(i=>outcomeCounts[i.status]=(outcomeCounts[i.status]||0)+1);
-    const acceptedRecent=outcomeCounts.accepted||0,rejectedRecent=outcomeCounts.rejected||0,deferredRecent=outcomeCounts.deferred||0;
-    const topicActivity=topicActivityRows();
-    const maxTopic=Math.max(1,...topicActivity.map(x=>x.score));
-    const topicObservatory=topicActivity.map(({topic,ps,ns,activeCount,score})=>{const latest=ns[0],question=ps.find(p=>p.status==='active')?.question||ps[0]?.question||'No active project has been recorded for this topic yet.';return `<a class="observatory-topic" style="--topic-color:${esc(topicColors[topic.id]||'var(--cyan)')};--activity:${Math.max(4,100*score/maxTopic)}%" href="#projects/topic:${encodeURIComponent(topic.id)}"><div><span>${activeCount?'ACTIVE':'TOPIC'}</span><h3>${esc(topic.label)}</h3></div><p>${esc(question)}</p><div class="topic-signal"><i></i><b>${ns.length}</b><small>notebooks</small></div>${latest?`<small class="topic-latest">LATEST / ${esc(latest.title)}</small>`:''}</a>`;}).join('');
-    const leadTitle=latestBook?.title||journal?.title||'The record is still building its first research finding.';
-    const leadSummary=latestBook?.summary||journal?.summary||'WAKE✳︎ will not manufacture a discovery before the durable record contains one.';
-    const leadTopic=latestBook?.domain;
-    const evidenceDepth=latestBook?.evidence?.length||0;
-    const latestResearch=books.slice(0,3);
-    const latestResearchRows=latestResearch.map(n=>{
-      const stamp=panelTime(n);
-      return `<a class="nebula-research-row" href="#projects/notebook:${encodeURIComponent(n.id)}"><span class="nebula-thumb" style="--topic-color:${esc(topicColors[n.domain]||'var(--cyan)')}"></span><span><strong>${esc(n.title)}</strong><small>${stamp?esc(stamp):'Recorded notebook'}</small></span><b aria-hidden="true">›</b></a>`;
-    }).join('');
-    const topTopics=topicActivity.slice(0,4).map(({topic,score})=>`<a class="nebula-topic-row" href="#projects/topic:${encodeURIComponent(topic.id)}"><span>${esc(topic.label)}</span><b>${score}</b></a>`).join('');
-    const publishedBlogPosts=[...blogPosts]
-      .filter(post=>String(post.status||'current')!=='superseded')
+    const readablePosts=[...blogPosts].filter(p=>p.status!=='superseded')
       .sort((a,b)=>Number(b.created_version||0)-Number(a.created_version||0));
-    const latestBlog=publishedBlogPosts[0]||[...blogPosts].sort((a,b)=>Number(b.created_version||0)-Number(a.created_version||0))[0];
-    const latestPublishedBook=books.find(n=>n.findings&&n.summary)||books[0];
-    const latestBlogInvocation=latestBlog?.created_by?s.invocations?.[latestBlog.created_by]:null;
-    const latestBlogStamp=latestBlogInvocation?.time?format(latestBlogInvocation.time):'';
-    const latestBookStamp=latestPublishedBook?panelTime(latestPublishedBook):'';
+    const seen=new Set(),stories=readablePosts.filter(p=>{
+      const key=p.group_publication?`${p.group_publication.group_id}:${p.group_publication.checkpoint}`:p.id;
+      if(seen.has(key))return false;seen.add(key);return true;
+    });
+    const latest=stories[0],storyLink=latest?'#blog/'+encodeURIComponent(latest.id):'#blog';
+    const stamp=latest?.published_at||s.invocations?.[latest?.created_by]?.finished||s.invocations?.[latest?.created_by]?.time;
+    const questionTopics=new Set();
+    const questions=books.filter(n=>{if(!n.next_questions||questionTopics.has(n.domain))return false;questionTopics.add(n.domain);return true;}).slice(0,3);
+    const readingMinutes=latest?Math.max(1,Math.ceil(String(latest.body).split(/\s+/).length/200)):0;
     document.getElementById('pet-home').innerHTML=`
-      <section class="nebula-home-hero">
-        <div class="nebula-hero-copy">
-          <h1>A more durable<br><span>intelligence future.</span></h1>
-          <p>WAKE✳︎ is infrastructure for accountable work across interchangeable intelligences — preserving how we reach conclusions, not just what they are.</p>
-          <div class="nebula-hero-actions">
-            <a class="primary-link" href="#discoveries">Explore Research <span>→</span></a>
-            <a class="nebula-secondary" href="console.html">Open Console</a>
+      <div class="attention-home">
+        <section class="attention-opening" aria-labelledby="attention-question">
+          <div class="attention-invitation">
+            <p class="eyebrow">AN OPEN INVESTIGATION</p>
+            <h1 id="attention-question">What makes something<br><em>a memory?</em></h1>
+            <p class="attention-deck">A mark can remain after an event. When does it actually change what happens next?</p>
+            <a class="primary-link" href="${storyLink}">${latest?'Start with Bob’s latest story':'Explore Bob’s Blog'} <span aria-hidden="true">↗</span></a>
+            <p class="attention-context">WAKE✳︎ builds infrastructure for durable, accountable work across interchangeable intelligences. Research is its first application. Bob explains the recorded work for curious readers.</p>
           </div>
-        </div>
-      </section>
-
-      <section class="nebula-pillars" aria-label="WAKE principles">
-        <article>
-          <span class="nebula-icon nebula-record" aria-hidden="true">
-            <svg viewBox="0 0 64 64"><ellipse cx="32" cy="14" rx="19" ry="8"/><path d="M13 14v13c0 4.5 8.5 8 19 8s19-3.5 19-8V14"/><path d="M13 27v13c0 4.5 8.5 8 19 8s19-3.5 19-8V27"/><path d="M13 40v9c0 4.5 8.5 8 19 8s19-3.5 19-8v-9"/></svg>
-          </span>
-          <div><h2>Record</h2><p>Append-only history<br>with verifiable provenance.</p></div>
-        </article>
-        <article>
-          <span class="nebula-icon nebula-govern" aria-hidden="true">
-            <svg viewBox="0 0 64 64"><path d="M32 7 49 14v14c0 11-6.5 21-17 28-10.5-7-17-17-17-28V14L32 7Z"/><path class="shield-flame" d="M32 22c3.6 4.5 5.5 7.9 5.5 11a5.5 5.5 0 0 1-11 0c0-3.1 1.9-6.5 5.5-11Z"/></svg>
-          </span>
-          <div><h2>Govern</h2><p>Deterministic policy<br>and accountability.</p></div>
-        </article>
-        <article>
-          <span class="nebula-icon nebula-explore-glyph" aria-hidden="true">
-            <svg viewBox="0 0 64 64">
-              <path d="M32 31 32 13M32 31 16 22M32 31 48 22M32 31 20 48M32 31 44 48"/>
-              <circle cx="32" cy="31" r="5"/><circle cx="32" cy="11" r="5"/><circle cx="14" cy="21" r="5"/><circle cx="50" cy="21" r="5"/><circle cx="18" cy="50" r="5"/><circle cx="46" cy="50" r="5"/>
-            </svg>
-          </span>
-          <div><h2>Explore</h2><p>Research in<br>the open.</p></div>
-        </article>
-      </section>
-
-      <section class="nebula-explore" aria-labelledby="nebula-explore-title">
-        <div class="nebula-explore-heading">
-          <div>
-            <h2 id="nebula-explore-title">Explore WAKE✳︎</h2>
-            <p>Different views into the same system. From research to documentation.</p>
-          </div>
-          <a href="#topics">View all topics →</a>
-        </div>
-        <div class="nebula-explore-grid">
-          <article class="nebula-explore-card">
-            <a class="nebula-explore-visual nebula-explore-research" href="#discoveries" aria-label="Open research"></a>
-            <div class="nebula-explore-copy">
-              <h3><a href="#discoveries">Research</a></h3>
-              <p>Exploring how intelligence systems can work together accountably.</p>
-              <nav class="nebula-explore-tags" aria-label="Research shortcuts">
-                <a href="#topics">Topics</a><a href="map.html">Map</a><a href="#metrics">Metrics</a>
-              </nav>
-            </div>
+          <article class="attention-feature" aria-label="Bob’s latest story">
+            <div class="attention-feature-label"><span>BOB’S LATEST STORY</span>${stamp?`<time>${esc(format(stamp))}</time>`:''}</div>
+            <div class="attention-orbit" aria-hidden="true"><span>PAST</span><i></i><span>WHAT CHANGES NEXT?</span></div>
+            <h2><a href="${storyLink}">${esc(latest?.title||'The investigation is beginning.')}</a></h2>
+            <p>${esc(latest?.lede||'There is no published article in this snapshot yet. The record remains available while Bob prepares a story worth sharing.')}</p>
+            ${latest?`<a class="text-link" href="${storyLink}">Read the story <span aria-hidden="true">→</span></a><small>${readingMinutes} min read · Sources linked throughout</small>`:'<a class="text-link" href="#journal">Explore the recorded work →</a>'}
           </article>
-          <article class="nebula-explore-card">
-            <a class="nebula-explore-visual nebula-explore-console" href="console.html" aria-label="Open Live Console"><i></i><i></i><i></i><i></i><i></i><i></i></a>
-            <div class="nebula-explore-copy">
-              <h3><a href="console.html">Live Console</a></h3>
-              <p>Interactive tools, visualizations and the current state.</p>
-              <nav class="nebula-explore-tags" aria-label="Console shortcuts">
-                <a href="console.html?tool=map3d">3D Map</a><a href="console.html?tool=history">Timeline</a><a href="console.html?tool=records">Records</a>
-              </nav>
-            </div>
-          </article>
-          <article class="nebula-explore-card">
-            <a class="nebula-explore-visual nebula-explore-about" href="#about" aria-label="About WAKE"></a>
-            <div class="nebula-explore-copy">
-              <h3><a href="#about">About WAKE✳︎</a></h3>
-              <p>A long-horizon project for durable, accountable work.</p>
-              <nav class="nebula-explore-tags" aria-label="About shortcuts">
-                <a href="#about">The vision</a><a href="#lab">How it works</a><a href="https://github.com/sudofx/wake">Contributing</a>
-              </nav>
-            </div>
-          </article>
-          <article class="nebula-explore-card">
-            <a class="nebula-explore-visual nebula-explore-docs" href="https://github.com/sudofx/wake/tree/master/docs" aria-label="Open documentation"></a>
-            <div class="nebula-explore-copy">
-              <h3><a href="https://github.com/sudofx/wake/tree/master/docs">Documentation</a></h3>
-              <p>Guides, references and architecture details.</p>
-              <nav class="nebula-explore-tags" aria-label="Documentation shortcuts">
-                <a href="https://github.com/sudofx/wake#start-here--no-account-no-api-calls">Getting started</a>
-              </nav>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="home-research-heading-panel" aria-labelledby="home-research-heading-title">
-        <div><p class="eyebrow">CURRENT RESEARCH</p><h2 id="home-research-heading-title">Questions in motion.</h2><p>Lightweight progress from the recorded research frontier.</p></div>
-        <a href="#topics">View all topics →</a>
-      </section>
-
-      <section class="home-latest-grid" aria-label="Latest published work">
-        <article class="home-latest-card">
-          <div class="home-latest-meta"><span>BOB’S LATEST POST</span>${latestBlogStamp?`<time>${esc(latestBlogStamp)}</time>`:''}</div>
-          ${latestBlog?`
-            <h2><a href="#blog/${encodeURIComponent(latestBlog.id)}">${esc(latestBlog.title||'Latest post')}</a></h2>
-            <p>${esc(latestBlog.lede||String(latestBlog.body||'').split(/\n\s*\n/)[0]||'Read the latest note from Bob.')}</p>
-            <div class="home-latest-actions"><a class="text-link" href="#blog/${encodeURIComponent(latestBlog.id)}">Read Bob’s post →</a><a class="subtle" href="#blog">All posts</a></div>
-          `:'<p class="empty">Bob has not published a post yet.</p>'}
-        </article>
-        <article class="home-latest-card">
-          <div class="home-latest-meta"><span>LATEST PUBLISHED NOTEBOOK</span>${latestBookStamp?`<time>${esc(latestBookStamp)}</time>`:''}</div>
-          ${latestPublishedBook?`
-            <h2><a href="#projects/notebook:${encodeURIComponent(latestPublishedBook.id)}">${esc(latestPublishedBook.title)}</a></h2>
-            <p>${esc(latestPublishedBook.summary||'Open the latest published research notebook.')}</p>
-            <div class="home-latest-stats"><span><b>R${esc(latestPublishedBook.revision??'—')}</b><small>revision</small></span><span><b>${latestPublishedBook.evidence?.length||0}</b><small>evidence</small></span><span><b>${esc(topicName(latestPublishedBook.domain))}</b><small>topic</small></span></div>
-            <div class="home-latest-actions"><a class="text-link" href="#projects/notebook:${encodeURIComponent(latestPublishedBook.id)}">Read the notebook →</a><a class="subtle" href="#discoveries">All findings</a></div>
-          `:'<p class="empty">No notebook has been published yet.</p>'}
-        </article>
-      </section>   `;  }
+        </section>
+        <section class="attention-follow" aria-labelledby="attention-follow-title">
+          <div><p class="eyebrow">FOLLOW THE INVESTIGATION</p><h2 id="attention-follow-title">A good question stays with you.</h2><p>Get each new Bob article in your feed reader. Every story follows recorded work, including uncertainty and changes of direction.</p></div>
+          <div><a class="primary-link" href="blog.xml" type="application/rss+xml">Follow Bob via RSS <span aria-hidden="true">↗</span></a><details><summary>How does following work?</summary><p>Add this page’s <a href="blog.xml">Bob feed</a> to an RSS reader. Your reader checks for new articles. No account or email address is needed here.</p></details></div>
+        </section>
+        <section class="attention-questions" aria-labelledby="attention-open-title">
+          <div class="attention-section-heading"><div><p class="eyebrow">QUESTIONS STILL OPEN</p><h2 id="attention-open-title">Where the work leads next.</h2></div><a class="text-link" href="#discoveries">Explore the research →</a></div>
+          <div class="attention-question-grid">${questions.map((n,i)=>`<a class="attention-question-card" href="#projects/notebook:${encodeURIComponent(n.id)}"><span class="eyebrow">${String(i+1).padStart(2,'0')} / OPEN QUESTION</span><h3>${esc(topicName(n.domain))}</h3><p>From ${esc(n.title)}. This is a recorded open question, not a promised result.</p><span class="text-link">Follow this question →</span></a>`).join('')||'<p class="empty">Open questions will appear here when they are recorded in a notebook.</p>'}</div>
+        </section>
+        ${stories.length>1?`<section class="attention-story-trail" aria-labelledby="attention-trail-title"><div class="attention-section-heading"><div><p class="eyebrow">THE STORY SO FAR</p><h2 id="attention-trail-title">Pick up an earlier thread.</h2></div><a class="text-link" href="#blog">All of Bob’s stories →</a></div><div class="attention-trail-grid">${stories.slice(1,4).map(p=>`<article><h3><a href="#blog/${encodeURIComponent(p.id)}">${esc(p.title)}</a></h3><p>${esc(p.lede)}</p><a class="text-link" href="#blog/${encodeURIComponent(p.id)}">Read this story →</a></article>`).join('')}</div></section>`:''}
+        <section class="attention-foundation"><div><p class="eyebrow">THE WORK BEHIND THE WORDS</p><h2>Every story leaves a trail.</h2><p>Bob translates the research record. The journal holds the decisions, notebooks hold the developing arguments, and sources let you examine their support.</p></div><nav aria-label="Explore WAKE"><a href="#journal">Read the journal →</a><a href="#about">Why WAKE exists →</a><a href="console.html">Open the Console →</a><a href="https://github.com/sudofx/wake/tree/master/docs">Read the documentation →</a></nav></section>
+      </div>`;
+  }
   window.WakePet={render};
   return window.WakePet;
 })();

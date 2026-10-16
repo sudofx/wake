@@ -209,6 +209,11 @@ required independently.
 See the [editorial contract](docs/development.md#first-run-publication-and-passenger).
 `./scripts/wake_publish --watch` delivers later accepted articles from immutable
 exports while preserving research controls.
+The homepage brings readers into an open question and Bob's latest story;
+`blog.xml` lets them follow new articles through RSS. Later articles receive
+bounded prior-publication context so they can revisit earlier questions without
+treating Bob's prose as scientific evidence. See
+[reader experience and editorial continuity](docs/development.md#reader-experience-and-editorial-continuity).
 Compatible completed node pages are reused; incompatible pages rebuild from the
 captured snapshots. Local Console views defer hidden charts and share lightweight
 read-only status updates. See [website observation](docs/development.md#lightweight-website-observation)

@@ -32,6 +32,8 @@ def published(invocation):
 def blog_title(entry):
     """Use the same scheduled-reflection title convention as reading pages."""
     title = str(entry.get("title", "")).strip()
+    if entry.get('group_publication'):
+        return title
     version = int(entry.get("created_version") or 0)
     reflection_cycle = int(entry.get("reflection_cycle") or 0)
     milestone = reflection_cycle or (version if version and version % 10 == 0 else 0)
@@ -41,7 +43,10 @@ def blog_title(entry):
     remainder = re.sub(r"\b(?:first|inaugural)\s+reflection\b", "Reflection", remainder, flags=re.IGNORECASE).strip()
     return f"Cycle {milestone} Reflection: {remainder or title}"
 
-def build_feeds(state):
+def build_feeds(state, *, reader_routes=False, base_url=HOME):
+    def blog_url(identifier):
+        return base_url + ('index.html#blog/' + quote(identifier, safe='') if reader_routes
+                           else 'blog/' + quote(identifier, safe='') + '.html')
     feeds = {}
     for kind, title, description in (
         ("blog", "Bob’s Blog / WAKE✳︎", "Bob’s published notes from WAKE✳︎’s durable research record."),
@@ -55,11 +60,12 @@ def build_feeds(state):
             return element
 
         add(channel, "title", title)
-        add(channel, "link", HOME + "index.html#" + kind)
+        channel_base = base_url if kind == 'blog' else HOME
+        add(channel, "link", channel_base + "index.html#" + kind)
         add(channel, "description", description)
         add(channel, "language", "en-us")
         add(channel, "ttl", "60")
-        ET.SubElement(channel, f"{{{ATOM}}}link", href=HOME + kind + ".xml",
+        ET.SubElement(channel, f"{{{ATOM}}}link", href=channel_base + kind + ".xml",
                       rel="self", type="application/rss+xml")
         records = []
         entries = state.get("posts", {}).values() if kind == "blog" else state["journal"]
@@ -77,13 +83,13 @@ def build_feeds(state):
             if kind == "blog":
                 if entry.get("status", "current") not in ("current", "superseded"):
                     continue
-                url = HOME + "blog/" + quote(entry["id"], safe="") + ".html"
+                url = blog_url(entry['id'])
                 body = paragraphs(entry["lede"]) + paragraphs(entry["body"])
                 if entry.get("lens"):
                     body += "<h3>Bob’s Lens — philosophical reflection</h3>" + paragraphs(entry["lens"])
                 for field, label in (("supersedes", "Corrects an earlier post"), ("superseded_by", "Read the newer correction")):
                     if entry.get(field):
-                        target = HOME + "blog/" + quote(entry[field], safe="") + ".html"
+                        target = blog_url(entry[field])
                         body += f'<p><a href="{html.escape(target)}">{label}</a></p>'
                 body += f'<p><a href="{html.escape(url)}">Read the post and its sources</a></p>'
                 item_title = blog_title(entry)

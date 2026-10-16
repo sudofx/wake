@@ -31,6 +31,18 @@ from wake.report import _blog_display_title, export
 
 
 class FeedTests(unittest.TestCase):
+    def test_reader_feed_has_real_node_routes_and_preserves_shared_title(self):
+        state = {'journal': [], 'invocations': {}, 'posts': {'group-bob-4': {
+            'id': 'group-bob-4', 'title': 'Tracking Memories Across Atoms and Reactions',
+            'lede': 'A question worth following.', 'body': 'Recorded work. Summary: Questions remain.',
+            'created_by': 'remote', 'published_at': '2026-10-16T09:34:52+00:00',
+            'reflection_cycle': 4, 'group_publication': {'provider': {'name': 'fixture', 'model': 'fixture'}}}}}
+        base = HOME + 'nodes/100.wake/'
+        xml = ET.fromstring(build_feeds(state, reader_routes=True, base_url=base)['blog.xml'])
+        self.assertEqual(xml.findtext('channel/item/link'), base + 'index.html#blog/group-bob-4')
+        self.assertEqual(xml.findtext('channel/item/title'), state['posts']['group-bob-4']['title'])
+        self.assertEqual(xml.find('channel').find(f'{{{ATOM}}}link').get('href'), base + 'blog.xml')
+
     def setUp(self):
         self.state = {
             "invocations": {
@@ -135,15 +147,16 @@ class FeedTests(unittest.TestCase):
                 self.assertTrue(target.is_file())
                 self.assertIn("Recorded commitment handoff-1", target.read_text())
                 self.assertIn("Deterministic simulation", item.findtext("description"))
-                # Feeds remain generated and directly addressable, but the public UI does not advertise them.
+                # Bob now has an explicit follow path; journal subscriptions are
+                # separate from the reader-facing editorial experience.
                 self.assertTrue((root / "site/blog.xml").is_file())
                 self.assertTrue((root / "site/journal.xml").is_file())
                 for page in (root / "site/index.html", root / "site/map.html", root / "site/map3d.html", target):
                     text = page.read_text()
-                    self.assertNotIn('type="application/rss+xml"', text)
                     self.assertNotIn("Blog RSS", text)
                     self.assertNotIn("Journal RSS", text)
                     self.assertNotIn("Subscribe to Bob’s blog via RSS", text)
                     self.assertNotIn("Subscribe to the journal via RSS", text)
+                self.assertIn('Follow Bob via RSS', (root / 'site/index.html').read_text())
             finally:
                 engine.store.close()

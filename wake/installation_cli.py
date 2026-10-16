@@ -164,7 +164,7 @@ def _copy_public_site(source: Path, destination: Path):
     assets = Path(__file__).parent / 'assets'
     root_data = {'research-data.json', 'research.json', 'wake-data.json', 'state.json',
                  'events.jsonl', 'head.txt', 'map-data.json', 'map3d-data.json',
-                 'deployment.json', 'manifest.webmanifest', 'experiment.json', 'export-format.json'}
+                 'deployment.json', 'manifest.webmanifest', 'experiment.json', 'export-format.json', 'blog.xml'}
     for path in source.rglob('*'):
         relative = path.relative_to(source)
         if path.is_symlink():
@@ -175,7 +175,10 @@ def _copy_public_site(source: Path, destination: Path):
                    (assets / path.name).is_file() or path.name in {
                        'state.html', 'events.html', 'rejected.html', '404.html',
                        'console-records.html', 'console-map.html', 'console-map3d.html',
-                       'console-events.html', 'console-state.html', 'console-rejected.html'}))
+                       'console-events.html', 'console-state.html', 'console-rejected.html',
+                       'research.html', 'topics.html', 'blog.html', 'projects.html',
+                       'journal.html', 'lab.html', 'metrics.html', 'evidence.html',
+                       'history.html', 'about.html'}))
         allowed = allowed or (relative.parts[0] in {'icons', 'backgrounds'} and (assets / relative).is_file())
         allowed = allowed or (relative.parts[0] in {'blog', 'notebooks', 'journal'} and path.suffix == '.html')
         allowed = allowed or (relative.parts[0] == 'map3d' and path.suffix == '.json')
@@ -260,7 +263,9 @@ def _build_public_artifact(root: Path, destination: Path, *, progress=None) -> d
                 # Render the recorded packet with current owned assets, so an upload
                 # cannot retain obsolete live-polling code from an earlier export.
                 generated = Path(temporary) / 'generated' / node
-                export(None, generated, projection={**snapshot, 'research':view}, standalone=True)
+                from .feeds import HOME
+                export(None, generated, projection={**snapshot, 'research':view}, standalone=True,
+                       feed_base=HOME + f'nodes/{node}/')
                 for name in ('events.jsonl', 'events.html', 'state.html', 'map-data.json', 'map3d-data.json'):
                     if (source / name).is_file():
                         shutil.copyfile(source / name, generated / name)

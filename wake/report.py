@@ -400,7 +400,7 @@ def _flat_browser_shell(title, eyebrow, heading, description, kind, source):
 
 
 def export(store=None, destination="site", experiment=None, operation=None, browser_only=False,
-           record_snapshot=None, projection=None, standalone=True):
+           record_snapshot=None, projection=None, standalone=True, feed_base=None):
     lock = store.lock() if store is not None else nullcontext()
     with lock:
         # Public rendering may consume a disposable exported projection directly. It must
@@ -516,6 +516,9 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         page = page.replace("/* PET_SCRIPT */", (assets / "pet.js").read_text())
         # Browser UX is HTML-first. Do not publish duplicate Markdown projections.
         if browser_only:
+            from .feeds import build_feeds, HOME
+            atomic_write(target / 'blog.xml', build_feeds(state, reader_routes=True,
+                         base_url=feed_base or HOME)['blog.xml'])
             # Fast Pages projection: publish one application shell plus current flat
             # record exports. Historical presentation is rendered by the browser;
             # publication cost therefore no longer grows with every journal entry.
@@ -562,7 +565,10 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             _deployment_site(target, standalone=standalone)
             return {"path": str((target / "index.html").resolve()), "cycles": state["version"], "head": head}
         from .feeds import build_feeds
-        for filename, content in build_feeds(state).items():
+        from .feeds import HOME
+        node_feed_base = feed_base or (HOME + f'nodes/{member}/' if member and
+                          os.environ.get('WAKE_INSTALLATION_WORKER') == '1' else HOME)
+        for filename, content in build_feeds(state, reader_routes=True, base_url=node_feed_base).items():
             atomic_write(target / filename, content)
         accepted_by_invocation = {event.get("payload", {}).get("id"): event for event in events if event.get("kind") == "accepted"}
         for entry in state["journal"]:
@@ -630,6 +636,46 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         return {"path": str((target / "index.html").resolve()), "cycles": state["version"], "head": head}
 
 
+_READER_PAGES = {
+    'home': 'index.html', 'discoveries': 'research.html', 'topics': 'topics.html',
+    'blog': 'blog.html', 'projects': 'projects.html', 'journal': 'journal.html',
+    'lab': 'lab.html', 'metrics': 'metrics.html', 'evidence': 'evidence.html',
+    'history': 'history.html', 'about': 'about.html',
+}
+
+
+def _export_reader_pages(target):
+    """Give each reader view its own document before asynchronous data arrives.
+
+    Console components are cloned from the full shell before this transform and
+    keep their original styling and routing. Only the selected section is shipped
+    in each reader document; historical hash links redirect before body parsing.
+    """
+    if not (target / 'index.html').is_file():
+        return
+    source = (target / 'index.html').read_text()
+    sections = {}
+    for match in re.finditer(r'<section id="([^"]+)" class="view"[^>]*>', source):
+        depth = 1
+        for tag in re.finditer(r'<(/?)section\b[^>]*>', source[match.end():]):
+            depth += -1 if tag.group(1) else 1
+            if depth == 0:
+                end = match.end() + tag.end()
+                sections[match.group(1)] = source[match.start():end]
+                break
+    if len(sections) < 2:
+        return  # Deployment binding can be repeated on an already split export.
+    main = re.search(r'<main\b[^>]*>.*?</main>', source, re.S)
+    if not main or set(sections) != set(_READER_PAGES):
+        raise ValueError('Reader shell does not contain the expected page sections')
+    for name, filename in _READER_PAGES.items():
+        section = re.sub(r' hidden(?=[ >])', '', sections[name], count=1)
+        document = source[:main.start()] + '<main id="main" tabindex="-1">' + section + '<noscript><p>Read the <a href="events.html">complete history</a> or <a href="state.html">durable state</a> without JavaScript.</p></noscript></main>' + source[main.end():]
+        document = document.replace('<html ', '<html data-wake-page="' + name + '" ', 1)
+        document = re.sub(r'<title>.*?</title>', '<title>WAKE✳︎ / ' + ('Explore' if name == 'home' else name.title()) + '</title>', document, count=1)
+        atomic_write(target / filename, document)
+
+
 def _deployment_site(target, *, standalone, installation=None):
     """Bind every generated page to its installation before any reader runs.
 
@@ -637,6 +683,7 @@ def _deployment_site(target, *, standalone, installation=None):
     operator links. Missing identity must never opt a LAN preview into GitHub.
     Keep this transform common to full exports and public snapshot rendering.
     """
+    _export_reader_pages(target)
     mode = 'standalone' if standalone else 'hosted'
     deployment = {'schema': 1, 'mode': mode}
     if not standalone:
@@ -665,7 +712,7 @@ def _deployment_site(target, *, standalone, installation=None):
     marker = ('<script>window.WAKE_DEPLOYMENT=' + json.dumps(deployment)
               + ';window.WAKE_STANDALONE=' + ('true' if standalone else 'false') + ';</script>')
     assets = Path(__file__).parent / "assets"
-    for name in ("masthead.css", "site-theme.js", "console-light.css", "installation-console.js", "installation-console.css", "runtime-activity.js"):
+    for name in ("masthead.css", "site-theme.js", "console-light.css", "installation-console.js", "installation-console.css", "runtime-activity.js", "reader-theme.css", "page-routing.js"):
         atomic_write(target / name, (assets / name).read_text())
     shell = (assets / "index.html").read_text()
     header = re.search(r'<header class="masthead">.*?</header>', shell, re.S).group(0)
@@ -704,6 +751,19 @@ def _deployment_site(target, *, standalone, installation=None):
         page = re.sub(r'<link rel="stylesheet" href="(?:\.\./)*installation-console\.css[^"]*">', '', page)
         page = page.replace('</head>', f'<link rel="stylesheet" href="{prefix}installation-console.css?v=20261014-icon-picker"><script src="{prefix}installation-console.js?v=20261014-network-picker" defer></script></head>', 1)
         page = page.replace('</head>', f'<link rel="stylesheet" href="{prefix}console-light.css?v=20261014-mobile-width"><script src="{prefix}site-theme.js?v=20261014-visible-theme"></script><link rel="stylesheet" href="{prefix}masthead.css?v=20261014-visible-theme"></head>', 1)
+        if not path.name.startswith('console'):
+            page = re.sub(r'<link rel="stylesheet" href="(?:\.\./)*reader-theme\.css[^"]*">', '', page)
+            page = re.sub(r'<script src="(?:\.\./)*page-routing\.js[^"]*"></script>', '', page)
+            page = page.replace('</head>', f'<link rel="stylesheet" href="{prefix}reader-theme.css?v=20261016-reader2"><script src="{prefix}page-routing.js?v=20261016-reader2"></script></head>', 1)
+            def reader_link(match):
+                route = match.group(2)
+                section = route.split('/')[0]
+                filename = _READER_PAGES.get(section)
+                if not filename:
+                    return match.group(0)
+                fragment = '#' + route if '/' in route else ''
+                return 'href="' + match.group(1) + filename + fragment + '"'
+            page = re.sub(r'href="((?:\.\./)*)(?:index\.html)?#([^"#]+)"', reader_link, page)
         # Re-export may reuse a directory. An older marker later in <head> must
         # not override the newly selected installation. Normalize to one owner.
         page = re.sub(r'<script>window\.WAKE_(?:DEPLOYMENT|STANDALONE)=[^<]*</script>', '', page)

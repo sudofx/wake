@@ -163,7 +163,7 @@ class ProvenanceTests(unittest.TestCase):
         self.assertIn("function timeFor(n)", map_js)
         self.assertIn("node-time", map_js)
         self.assertNotIn('</script><script>alert("no")</script>', page)
-        self.assertIn('href="map.html"', (self.root/'site/index.html').read_text())
+        self.assertIn('href="map.html"', (self.root/'site/lab.html').read_text())
         self.assertIn('aria-label="Record details"', page)
         self.assertIn('prefers-reduced-motion', (Path(__file__).resolve().parents[1]/"wake/assets/map.css").read_text())
         self.assertIn('<strong>WAKE✳︎</strong>', page)

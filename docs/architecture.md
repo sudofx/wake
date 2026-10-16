@@ -374,6 +374,11 @@ counterevidence, source limitations, or the distinction between source report, W
 philosophical reflection.
 
 Philosophical reflection may help Bob ask better questions about observation, uncertainty, perspective and the limits of intuition, but reflection remains explicitly separate from evidence. Analogy cannot be promoted into scientific support for a factual claim.
+Editorial continuity is also derived context: bounded prior-publication excerpts
+and comparisons of supplied story packets help explain change to readers. They
+create no second authority, research acceptance condition or topic-selection
+signal. The reader experience and RSS feed remain application presentation; see
+[the reader contract](development.md#reader-experience-and-editorial-continuity).
 
 ## Shared continuity matrix
 

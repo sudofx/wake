@@ -334,7 +334,7 @@ class Engine:
             result["initial_publication"] = {"status": publication["status"], "id": publication["id"]}
         return result
 
-    def synthesize_group(self, provider, packet, checkpoint, *, repair=None):
+    def synthesize_group(self, provider, packet, checkpoint, *, repair=None, previous=None):
         """Public editorial inference through the existing native invocation boundary.
 
         Caller holds the writer lock. No research action, Attention selection or
@@ -342,7 +342,9 @@ class Engine:
         """
         from .group_editorial import request
         return self._run_invocation(provider, phase="group_editorial",
-                                    editorial_request=request(packet, checkpoint, repair))
+                                    editorial_request=request(packet, checkpoint, repair,
+                                                              previous=previous,
+                                                              max_context_chars=self.config['max_context_chars']))
 
     def _start_group_editorial(self, provider, request):
         state = self.store.load()

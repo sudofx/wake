@@ -54,6 +54,11 @@
   const INLINE_BLOG_SOURCE_LINKS_FROM_VERSION=203;
   const blogText=(value,post)=>{
     let rendered=esc(String(value).replace(/^#{1,6}\s+/gm,''));
+    if(post?.editorial_references?.length){
+      rendered=rendered.replace(/\[([0-9]+(?:\s*,\s*[0-9]+)*)\]/g,(marker,numbers)=>
+        '['+numbers.replace(/\d+/g,n=>Number(n)>0&&Number(n)<=post.editorial_references.length?
+          '<a class="inline-source-citation" data-bob-reference="'+n+'" href="#bob-reference-'+n+'" aria-label="Read source reference '+n+'">'+n+'</a>':n)+']');
+    }
     if(Number(post?.created_version||0)<INLINE_BLOG_SOURCE_LINKS_FROM_VERSION)return rendered;
     const evidence=new Set(post?.evidence||[]);
     [...evidence].sort((a,b)=>String(b).length-String(a).length).forEach(id=>{
@@ -64,6 +69,15 @@
     });
     return rendered;
   };
+  document.addEventListener('click',event=>{
+    const link=event.target.closest('a[data-bob-reference]');
+    if(!link)return;
+    const target=document.getElementById('bob-reference-'+link.dataset.bobReference);
+    if(!target)return;
+    event.preventDefault();
+    target.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+    target.setAttribute('tabindex','-1');target.focus({preventScroll:true});
+  });
   function emphasizeWake(root=document) {
     const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
     const targets=[];
@@ -152,7 +166,7 @@
     // the display time without importing or inventing an invocation.
     const time=post.published_at||invocation?.time;
     const timeHtml=time?`<time datetime="${esc(time)}">${esc(fmt(time))}</time>`:'<span>Publication time unavailable</span>';
-    return `<div class="record-panel-meta blog-meta"><span class="record-type">${post.group_publication?.checkpoint?'SHARED CHECKPOINT '+String(post.group_publication.checkpoint).padStart(2,'0'):(reflection?'REFLECTION':'BLOG')}</span><span class="record-status">${badge(status,status.toUpperCase())}</span><span class="record-topics">${topic?topicTag(topic,'blog'):''}</span>${timeHtml}</div>`;
+    return `<div class="record-panel-meta blog-meta"><span class="record-type">${post.group_publication?.checkpoint?'STORY '+String(post.group_publication.checkpoint).padStart(2,'0'):(reflection?'REFLECTION':'BLOG')}</span><span class="record-status">${badge(status,status.toUpperCase())}</span><span class="record-topics">${topic?topicTag(topic,'blog'):''}</span>${timeHtml}</div>`;
   };
   const postTitle=post=>{
     const title=String(post.title||'').trim();
@@ -167,6 +181,7 @@
     audit_reconstruction:'Independent audit reconstruction', longitudinal:'100+ fresh invocation cycles'
   };
   function renderMetricStrip() {
+    if(!$('metrics') || !$('metrics').classList.contains('metric-strip'))return;
     $('metrics').innerHTML = [
       [s.version,'Recorded cycles',`${fixtures} simulated · ${live} live Gemini`,'#history'],
       [inherited,'Obligations inherited','Across fresh invocations','#history/filter:inherited'],
@@ -177,13 +192,13 @@
   renderMetricStrip();
   const providerSelect = $('provider-filter');
   [...new Set(invocations.map(i=>i.provider))].sort().forEach(provider => {
-    const option = document.createElement('option'); option.value=provider; option.textContent=provider; providerSelect.append(option);
+    const option = document.createElement('option'); option.value=provider; option.textContent=provider; if(providerSelect)providerSelect.append(option);
   });
   // Event kinds evolve with the durable record. Build this selector from the
   // exported history so a newly introduced receipt never becomes invisible.
   const eventSelect = $('event-filter');
   [...new Set(data.events.map(event=>displayEventKind(event.kind)))].sort().forEach(kind => {
-    const option = document.createElement('option'); option.value=kind; option.textContent=kind; eventSelect.append(option);
+    const option = document.createElement('option'); option.value=kind; option.textContent=kind; if(eventSelect)eventSelect.append(option);
   });
   function journal() {
     const query=$('search').value.toLowerCase(), provider=providerSelect.value;
@@ -200,10 +215,10 @@
     }).join('') || '<p class="empty">No matching entries. The tape is blank here.</p>';
     $('more').hidden=entries.length<=journalLimit;
   }
-  $('search').addEventListener('input',()=>{journalLimit=8;journal();});
-  providerSelect.addEventListener('change',()=>{journalLimit=8;journal();});
-  $('more').addEventListener('click',()=>{journalLimit+=8;journal();});
-  $('open-commitments').innerHTML=open.slice(0,3).map(c=>`<div class="obligation"><span class="dot"></span><div>${esc(c.task)}<small>DUE / CYCLE ${c.due_cycle}${(c.origin?.version??s.version)>=c.due_cycle?' · OVERDUE':''}</small></div></div>`).join('')||'<p class="small">No open obligations. Nothing quietly dropped.</p>';
+  $('search')?.addEventListener('input',()=>{journalLimit=8;journal();});
+  providerSelect?.addEventListener('change',()=>{journalLimit=8;journal();});
+  $('more')?.addEventListener('click',()=>{journalLimit+=8;journal();});
+  if($('open-commitments'))$('open-commitments').innerHTML=open.slice(0,3).map(c=>`<div class="obligation"><span class="dot"></span><div>${esc(c.task)}<small>DUE / CYCLE ${c.due_cycle}${(c.origin?.version??s.version)>=c.due_cycle?' · OVERDUE':''}</small></div></div>`).join('')||'<p class="small">No open obligations. Nothing quietly dropped.</p>';
   function modelPerformance() {
     const attempts=[];
     invocations.forEach(invocation=>(invocation.provider_attempts||[]).forEach(attempt=>attempts.push({
@@ -460,6 +475,7 @@
     $('lab-content').innerHTML=`<div class="panel"><p class="eyebrow">THE DURABLE OBJECTIVE ${help('durable_objective')}</p><h2>${esc(s.objective)}</h2><p>Current focus: <strong>${esc(s.focus)}</strong></p><div class="flow"><span>Durable state</span>→<span>Fresh invocation</span>→<span>Untrusted proposal</span>→<span>Mechanical rules</span>→<span>Atomic event</span></div><p>Models may review beliefs, create obligations, and propose evidence-backed completion. External actions and rule changes are outside their authority.</p></div>${drivePanel}<div class="lab-grid"><div class="panel"><p class="eyebrow">REPEATABLE HARNESS EXPERIMENT ${help('repeatable_harness')}</p><h2>The test, not the hype.</h2>${coverage}<p>${exp?`Executed ${esc(exp.generated)}. ${exp.cycles} accepted cycles, ${exp.fresh_processes} fresh wake processes.`:'Run the offline experiment to populate this checklist.'}</p><p>These results exercise deterministic simulated providers. They do not establish real-model comprehension or general intelligence. Live Gemini accepted cycles here: <strong>${live}</strong>. Human-pasted replies have human-attested model identity.</p></div><div class="panel"><p class="eyebrow">LAST ${Math.min(accepted.length,100)} ACCEPTED CYCLES ${help('accepted_cycles')}</p><h2>Small steps. Long record.</h2><div class="spark" role="group" aria-label="Number of accepted changes per cycle">${bars}</div><div class="chart-labels"><span>OLDER →</span><span>ACCEPTED CHANGES / CYCLE</span><span>NOW</span></div><h3>What the system enforces</h3><p>Atomic proposals. Existing evidence references. New evidence for belief reviews. Persistent obligations. No model cancellation. An auditable decision for each completed invocation.</p><h3>What still needs judgment</h3><p>Whether evidence is true, whether it supports a claim, and whether an obligation was meaningfully fulfilled. Hashes detect edits relative to the recorded head; they do not stop an administrator rewriting the entire history.</p><p>Verified export head:<br><code>${esc(data.head)}</code></p></div></div>${modelPerformance()}<div class="panel"><p class="eyebrow">CURRENT BELIEFS ${help('beliefs')}</p><h2>Allowed to change our minds.</h2>${Object.values(s.beliefs).sort((a,b)=>b.confidence-a.confidence||String(a.id).localeCompare(String(b.id))).map(b=>`<div class="data-card"><div class="entry-meta">${badge(b.status==='active'?'accepted':'rejected',b.status)}<span>${Math.round(b.confidence*100)}% CONFIDENCE</span><span>${esc(b.id)}</span></div><p>${esc(b.statement)}</p><p>${esc(b.reason)}</p>${b.falsifier?'<p><strong>What would change this:</strong> '+esc(b.falsifier)+'</p>':''}${refs(b.evidence)}<details><summary>Full belief record</summary>${raw(b)}</details></div>`).join('')||'<p>No beliefs recorded yet.</p>'}</div><div class="panel"><p class="eyebrow">COMMITMENT REGISTER ${help('commitments')}</p><h2>Still on the hook.</h2>${committed.map(c=>`<details class="data-card"><summary>${esc(c.id)} · ${esc(c.status)} · due cycle ${c.due_cycle}${c.status==='open'&&s.version>=c.due_cycle?' · OVERDUE':''}</summary><p>${esc(c.task)}</p><p>${esc(c.resolution_reason||c.reason)}</p>${refs(c.evidence)}${raw(c)}</details>`).join('')||'<p>No commitments yet.</p>'}</div>`;
   }
   function blog(selected='') {
+    $('blog').classList.toggle('reading-story',Boolean(selected)&&!selected.startsWith('topic:'));
     if(selected.startsWith('topic:')){
       const topic=decodeURIComponent(selected.slice(6));
       const filtered=posts.filter(post=>postTopic(post)===topic);
@@ -472,7 +488,12 @@
       const invocation=s.invocations[post.created_by];
       // Only an explicit final marker changes layout; stored prose stays exact.
       const sourceBody=String(post.body),markers=[...sourceBody.matchAll(/(?:^|(?<=[.!?])\s+|\n+)Summary[.:]?\s+(?=\S)/g)],marker=markers.at(-1);
-      const paragraphs=value=>value.split(/\n\s*\n/).filter(part=>part.trim()).map(part=>'<p>'+blogText(part,post)+'</p>').join('');
+      const paragraphs=value=>{
+        // Restore reading pauses at attributed paragraph boundaries when model
+        // JSON flattened whitespace. This view never rewrites retained prose.
+        const spaced=/\n\s*\n/.test(value)?value:value.replace(/(\[\d+(?:\s*,\s*\d+)*\][.!?]?)\s+(?=[A-Z])/g,'$1\n\n');
+        return spaced.split(/\n\s*\n/).filter(part=>part.trim()).map(part=>'<p>'+blogText(part,post)+'</p>').join('');
+      };
       const body=marker?paragraphs(sourceBody.slice(0,marker.index))+'<h3>Summary</h3>'+paragraphs(sourceBody.slice(marker.index+marker[0].length)):paragraphs(sourceBody);
       const notebooks=(post.notebooks||[]).map(id=>s.notebooks?.[id]?'<a class="text-link" href="#projects/notebook:'+encodeURIComponent(id)+'">'+esc(s.notebooks[id].title)+' →</a>':'').join('');
       const attributed=(post.editorial_references||[]).map((items,index)=>'<p id="bob-reference-'+(index+1)+'">['+(index+1)+'] '+items.map(item=>'<a href="'+esc(item.record_url.replace(/^\//,(window.location.pathname.includes('/nodes/')?window.location.pathname.split('/nodes/')[0]+'/':window.location.pathname.replace(/[^/]*$/,''))))+'">'+esc(item.member+' · '+(item.title||'recorded activity')+(item.revision?' · revision '+item.revision:''))+'</a>'+(item.recorded_at?' · '+esc(fmt(item.recorded_at)):'')+(item.sources||[]).map(source=>source.source?.startsWith('https://')?' · <a href="'+esc(source.source)+'">source</a>':'').join('')).join('; ')+'</p>').join('');
@@ -480,10 +501,15 @@
       const project=post.project?s.projects?.[post.project]:null;
       const projectReceipt=project?'<p>Related project: <a href="#projects/'+encodeURIComponent(post.project)+'">'+esc(project.title)+' →</a></p>':'<p>Scope: system-wide reflection.</p>';
       const correction=post.status==='superseded'?'<div class="research-note">A later post corrected or superseded this one. <a href="#blog/'+encodeURIComponent(post.superseded_by)+'">Read the follow-up →</a></div>':post.supersedes?'<div class="research-note">This note corrects an earlier post. <a href="#blog/'+encodeURIComponent(post.supersedes)+'">Read the original →</a></div>':'';
-      $('blog-content').innerHTML='<article class="blog-reading'+(postTopic(post)==='reflection'?' blog-reading-reflection':'')+'"><a class="subtle" href="#blog">← All posts</a>'+postMeta(post,invocation)+'<h2>'+esc(postTitle(post))+'</h2><p class="blog-lede">'+esc(post.lede)+'</p>'+correction+body+(post.lens?'<blockquote><span>BOB’S LENS / PHILOSOPHICAL REFLECTION</span>'+esc(post.lens)+'</blockquote>':'')+'<div class="blog-receipts"><p class="eyebrow">FOLLOW THE RECEIPTS</p>'+projectReceipt+'<div>'+notebooks+'</div><p>'+sources+'</p>'+attributed+(post.group_publication?'<p>Shared synthesis from '+post.group_publication.members.length+' parent and child nodes.</p><a class="subtle" href="events.html">Local publication receipt →</a>':'<a class="subtle" href="#history/'+encodeURIComponent(post.created_by)+'">Exact wake and decision →</a>')+'</div><p class="blog-disclosure">Bob is WAKE✳︎’s human-facing translation layer, not its mind or identity. This AI-authored note compresses the durable research record for conversation; research claims link back to evidence and philosophical reflections remain reflections.</p></article>';
+      const series=posts.filter(p=>p.status!=='superseded'),position=series.findIndex(p=>p.id===post.id);
+      const earlier=position>=0?series[position+1]:null,later=position>0?series[position-1]:null;
+      const continueReading='<nav class="blog-continue" aria-label="Continue the investigation">'+(earlier?'<div><p class="eyebrow">EARLIER IN THE INVESTIGATION</p><a href="#blog/'+encodeURIComponent(earlier.id)+'">'+esc(postTitle(earlier))+' →</a></div>':'')+(later?'<div><p class="eyebrow">THE NEXT PUBLISHED STORY</p><a href="#blog/'+encodeURIComponent(later.id)+'">'+esc(postTitle(later))+' →</a></div>':'')+'</nav>';
+      const follow='<aside class="blog-follow"><strong>Follow the investigation.</strong> Get new Bob articles in your feed reader. <a href="blog.xml" type="application/rss+xml">Follow Bob via RSS →</a></aside>';
+      $('blog-content').innerHTML='<article class="blog-reading'+(postTopic(post)==='reflection'?' blog-reading-reflection':'')+'"><a class="subtle" href="#blog">← All posts</a>'+postMeta(post,invocation)+'<h1>'+esc(postTitle(post))+'</h1><p class="blog-lede">'+esc(post.lede)+'</p>'+correction+body+continueReading+follow+(post.lens?'<blockquote><span>BOB’S LENS / PHILOSOPHICAL REFLECTION</span>'+esc(post.lens)+'</blockquote>':'')+'<div class="blog-receipts"><p class="eyebrow">FOLLOW THE RECEIPTS</p>'+projectReceipt+'<div>'+notebooks+'</div><p>'+sources+'</p>'+attributed+(post.group_publication?'<p>Shared synthesis from '+post.group_publication.members.length+' parent and child nodes.</p><a class="subtle" href="events.html">Local publication receipt →</a>':'<a class="subtle" href="#history/'+encodeURIComponent(post.created_by)+'">Exact wake and decision →</a>')+'</div><p class="blog-disclosure">Bob is WAKE✳︎’s human-facing translation layer, not its mind or identity. This AI-authored note compresses the durable research record for conversation; research claims link back to evidence and philosophical reflections remain reflections.</p></article>';
       return;
     }
-    $('blog-content').innerHTML=posts.length?'<div class="blog-grid">'+posts.map(post=>{const invocation=s.invocations[post.created_by];const reflection=postTopic(post)==='reflection';return '<article class="blog-card record-panel'+(reflection?' blog-card-reflection':'')+'"><div class="record-panel-head">'+postMeta(post,invocation)+'<h2><a href="#blog/'+encodeURIComponent(post.id)+'">'+esc(postTitle(post))+'</a></h2></div><div class="record-panel-body"><p>'+esc(post.lede)+'</p>'+(post.lens?'<blockquote>'+esc(post.lens)+'</blockquote>':'')+'<a class="text-link" href="#blog/'+encodeURIComponent(post.id)+'">Read Bob’s note →</a></div></article>';}).join('')+'</div><p class="blog-disclosure">'+(data.groupBobMembers?'Group Bob articles synthesize dated summaries from every parent and child. The same article is published in each member’s independent record.':'Bob is the public translation layer. Underneath, WAKE✳︎ is a sequence of fresh model calls working from a durable, auditable record—not a persistent person or experiencing self.')+'</p>':data.groupBobUnavailable?'<div class="empty blog-empty"><strong>The group Bob feed is temporarily unavailable.</strong><br>Try again when a group member is reachable.</div>':'<div class="empty blog-empty"><strong>Bob has nothing worth posting yet.</strong><br>The journal still records every wake. The blog waits for something genuinely interesting.</div>';
+    const seriesHeading='<div class="blog-follow"><strong>Stay with the investigation.</strong> Get new stories in your feed reader. <a href="blog.xml" type="application/rss+xml">Follow Bob via RSS →</a></div>';
+    $('blog-content').innerHTML=posts.length?seriesHeading+'<div class="blog-grid">'+posts.map(post=>{const invocation=s.invocations[post.created_by];const reflection=postTopic(post)==='reflection';return '<article class="blog-card record-panel'+(reflection?' blog-card-reflection':'')+'"><div class="record-panel-head">'+postMeta(post,invocation)+'<h2><a href="#blog/'+encodeURIComponent(post.id)+'">'+esc(postTitle(post))+'</a></h2></div><div class="record-panel-body"><p>'+esc(post.lede)+'</p>'+(post.lens?'<blockquote>'+esc(post.lens)+'</blockquote>':'')+'<a class="text-link" href="#blog/'+encodeURIComponent(post.id)+'">Read Bob’s note →</a></div></article>';}).join('')+'</div><p class="blog-disclosure">'+(data.groupBobMembers?'Group Bob articles synthesize dated summaries from every parent and child. The same article is published in each member’s independent record.':'Bob is the public translation layer. Underneath, WAKE✳︎ is a sequence of fresh model calls working from a durable, auditable record—not a persistent person or experiencing self.')+'</p>':data.groupBobUnavailable?'<div class="empty blog-empty"><strong>The group Bob feed is temporarily unavailable.</strong><br>Try again when a group member is reachable.</div>':'<div class="empty blog-empty"><strong>Bob has nothing worth posting yet.</strong><br>The journal still records every wake. The blog waits for something genuinely interesting.</div>';
   }
   function evidence(selected='') {
     const query=$('evidence-search').value.toLowerCase();
@@ -513,9 +539,10 @@
   }
   function route() {
     const [part,id]=location.hash.slice(1).split('/');
+    const initialPage=document.documentElement.dataset.wakePage||'home';
     // Explore is the public entry point even before the record has a charter.
     // Journal remains a depth layer, never the default landing view.
-    const page=['home','discoveries','topics','blog','projects','journal','lab','metrics','evidence','history','about'].includes(part)?part:'home';
+    const page=['home','discoveries','topics','blog','projects','journal','lab','metrics','evidence','history','about'].includes(part)?part:initialPage;
     document.querySelectorAll('.view').forEach(el=>el.hidden=el.id!==page);
     document.querySelectorAll('[data-nav]').forEach(el=>{if(el.dataset.nav===page||(el.dataset.navSection==='research'&&['discoveries','topics','journal','blog','projects','lab','metrics','evidence','history'].includes(page)))el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
     let selected='';try{selected=decodeURIComponent(id||'');}catch{}
@@ -530,12 +557,12 @@
     emphasizeWake(document);
     document.title=`${WAKE_TEXT} / ${page==='home'?'Explore':page==='journal'?'Read':page[0].toUpperCase()+page.slice(1)}`;
   }
-  $('evidence-search').addEventListener('input',route);
-  $('history-search').addEventListener('input',()=>{historyLimit=35;route();});
-  $('event-filter').addEventListener('change',()=>{historyLimit=35;route();});
-  $('history-more').addEventListener('click',()=>{historyLimit+=35;route();});
+  $('evidence-search')?.addEventListener('input',route);
+  $('history-search')?.addEventListener('input',()=>{historyLimit=35;route();});
+  $('event-filter')?.addEventListener('change',()=>{historyLimit=35;route();});
+  $('history-more')?.addEventListener('click',()=>{historyLimit+=35;route();});
   const resetPageScroll=()=>requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo(0,0)));
-  window.addEventListener('hashchange',()=>{historyLimit=35;$('evidence-search').value='';$('history-search').value='';$('event-filter').value='all';route();resetPageScroll();});
+  window.addEventListener('hashchange',()=>{historyLimit=35;for(const id of ['evidence-search','history-search','event-filter']){if($(id))$(id).value=id==='event-filter'?'all':'';}route();resetPageScroll();});
   const projectionDate=()=>{
     const mirror=window.WAKE_DEPLOYMENT?.snapshot_only===true;
     const generated=mirror?(window.WakeInstallationSnapshot?.generated||data.generated):data.generated;
@@ -562,13 +589,13 @@
     renderMetricStrip();
     document.querySelectorAll('.cycle-count').forEach(node=>node.textContent=String(s.version??'—'));
     for(const provider of [...new Set(invocations.map(i=>i.provider).filter(Boolean))].sort()){
-      if(![...providerSelect.options].some(option=>option.value===provider)){
-        const option=document.createElement('option');option.value=provider;option.textContent=provider;providerSelect.append(option);
+      if(providerSelect && ![...providerSelect.options].some(option=>option.value===provider)){
+        const option=document.createElement('option');option.value=provider;option.textContent=provider;if(providerSelect)providerSelect.append(option);
       }
     }
     for(const kind of [...new Set(data.events.map(event=>displayEventKind(event.kind)))].sort()){
-      if(![...eventSelect.options].some(option=>option.value===kind)){
-        const option=document.createElement('option');option.value=kind;option.textContent=kind;eventSelect.append(option);
+      if(eventSelect && ![...eventSelect.options].some(option=>option.value===kind)){
+        const option=document.createElement('option');option.value=kind;option.textContent=kind;if(eventSelect)eventSelect.append(option);
       }
     }
     projectionDate();

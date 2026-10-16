@@ -69,7 +69,9 @@ This uploads once, then runs one host delivery worker per checkout. Keep that
 process and the container available. After all twelve members export a new
 accepted article, the controller queues its digest; the host worker captures and
 uploads immutable exports and acknowledges the delivered digest. Failures remain
-visible in the worker output and retry after a minute. `wake-research status`
+visible in the worker output and retry after a minute. The host worker waits for
+a started publication to finish, including complete-history builds that exceed
+ten minutes, before considering another delivery attempt. `wake-research status`
 shows queued/delivered mirror state separately from research state. Stop delivery
 with `wake-research mirror-disable` or stop the host worker. Re-running `--watch`
 resumes delivery without changing records or research controls.
@@ -84,6 +86,11 @@ To prepare an artifact without uploading, use `wake-research publish --output DI
 inside the container. Serve the resulting directory with a plain static server to
 inspect it. Publishing replaces the dedicated public branch with that complete
 artifact; do not use a source or record branch as the destination.
+
+The public allowlist includes `blog.xml`, Bob's RSS feed of accepted articles.
+The homepage and blog link to this same-origin file; items use the canonical
+public reading URLs for the root or selected node. A feed is a dated publication
+view, with no research controls, email collection or provider request bodies.
 
 The unified website and all twelve node views retain the same interface. The node
 selector works from every page. Each view shows the upload date and reads only its

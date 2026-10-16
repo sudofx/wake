@@ -46,7 +46,7 @@ class SharedChromeTests(unittest.TestCase):
                         if '<header class="' in page:
                             self.assertIn('id="theme-toggle"', page)
                             self.assertNotIn('class="actions-light-label"', page)
-                    self.assertIn('href="../index.html#journal"', nested.read_text())
+                    self.assertIn('href="../journal.html"', nested.read_text())
                     self.assertIn('href="/runtime.json"', nested.read_text())
                     self.assertEqual(store.head(), head)
             finally:

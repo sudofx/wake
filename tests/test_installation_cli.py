@@ -131,6 +131,7 @@ class InstallationArchiveTests(unittest.TestCase):
         (source / 'blog/post.html').write_text('<html><head><script>window.WAKE_DEPLOYMENT={"schema":1,"mode":"standalone"};window.WAKE_STANDALONE=true;</script></head><body><a href="/runtime.json">Inspect local WAKE runtime</a><a class="actions-light" href="/runtime.json"><span><i></i></span></a></body></html>')
         (source / '.passenger.md').write_text('passenger-secret')
         (source / 'worker.log').write_text('log-secret')
+        (source / 'blog.xml').write_text('<rss version="2.0"><channel><title>Bob</title></channel></rss>')
         (source / 'group').mkdir()
         (source / 'group' / 'bob-input.json').write_text('{"input":"peer-private"}')
         target = self.root / 'artifact'
@@ -141,6 +142,7 @@ class InstallationArchiveTests(unittest.TestCase):
         self.assertNotIn('secret', json.dumps(projected))
         self.assertTrue((target / 'console-state.html').exists())
         self.assertTrue((target / 'journal/receipt.html').exists())
+        self.assertEqual((target / 'blog.xml').read_text(), (source / 'blog.xml').read_text())
         self.assertIn('href="../installation.json"',(target / 'blog/post.html').read_text())
         self.assertIn("dataset.wakeSnapshotOnly='true'",(target / 'blog/post.html').read_text())
         self.assertNotIn('class="actions-light"', (target / 'blog/post.html').read_text())

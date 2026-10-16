@@ -30,9 +30,9 @@ for(const width of [1440,390]){
   if(await page.locator('#help-close').isVisible())await page.locator('#help-close').click();
  }
  await page.goto(new URL('index.html#home',base).href);await page.waitForLoadState('networkidle');
- assert.equal(await page.locator('.nebula-pillars article').count(),3);
- assert.equal(await page.locator('.nebula-explore-card').count(),4);
- assert.equal(await page.locator('.nebula-explore-copy').first().evaluate(e=>getComputedStyle(e).backgroundImage),'none');
+ assert.equal(await page.locator('.attention-opening h1').count(),1);
+ assert.equal(await page.locator('.attention-feature').count(),1);
+ assert.equal(await page.locator('.attention-follow a[type="application/rss+xml"]').getAttribute('href'),'blog.xml');
  await page.screenshot({path:`/tmp/wake-daylight-home-${width}.png`,fullPage:true});assert.deepEqual(errors,[]);await context.close();
 }
 console.log('PASS: populated main-page routes in daylight at desktop/phone sizes; rendered text contrast, no horizontal overflow, complete home surfaces and no script errors.');

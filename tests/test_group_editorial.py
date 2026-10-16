@@ -33,6 +33,36 @@ class Writer:
 
 
 class GroupEditorialTests(unittest.TestCase):
+    def test_editorial_continuity_keeps_attributed_changes_and_prior_text_bounded(self):
+        from wake.group_editorial import request
+        prior = self.draft()
+        packet = deepcopy(self.packet)
+        packet['inputs'][0]['version'] += 1
+        packet['inputs'][0]['stories'][0]['statement']['version'] += 1
+        before = deepcopy(packet)
+        result = request(packet, 2, previous=prior)
+        continuity = result['context']['continuity']
+        self.assertEqual(continuity['previous_post']['id'], prior['id'])
+        self.assertEqual(continuity['previous_post']['ending_excerpt'], prior['article']['body'][-900:])
+        self.assertEqual(continuity['recorded_changes'][0]['changed_story_ids'], [packet['inputs'][0]['stories'][0]['id']])
+        self.assertEqual(continuity['recorded_changes'][1]['changed_story_ids'], [])
+        self.assertEqual(result['context']['group'], packet)
+        self.assertEqual(packet, before)
+
+    def test_tight_editorial_budget_preserves_every_current_member(self):
+        from wake.group_editorial import request
+        from wake.providers import provider_input_chars
+        prior = self.draft()
+        repair = {'reason': 'Explain the unresolved question more plainly.', 'article': prior['article']}
+        for correction in (None, repair):
+            with self.subTest(repair=bool(correction)):
+                base = request(self.packet, 2, correction)
+                limit = provider_input_chars(base) + 20
+                result = request(self.packet, 2, correction, previous=prior, max_context_chars=limit)
+                self.assertLessEqual(provider_input_chars(result), limit)
+                self.assertEqual(result['context']['group'], self.packet)
+                self.assertEqual(result['context']['repair'], base['context']['repair'])
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.engines = []
@@ -110,6 +140,31 @@ class GroupEditorialTests(unittest.TestCase):
         self.assertEqual(after['version'],before['version'])
         self.assertNotIn('withheld',after['group_bob'])
         self.assertEqual(engine.store.audit()[0],after)
+
+    def test_retained_inline_summary_releases_exact_draft_without_inference(self):
+        from wake.group_editorial import synchronize
+        class InlineWriter(Writer):
+            def propose(self, request):
+                raw, metadata = super().propose(request)
+                article = json.loads(raw)
+                article['body'] = article['body'].replace('\n\nSummary\n\n', '. Summary ')
+                return json.dumps(article), metadata
+        draft = self.draft(InlineWriter())
+        leader = self.engines[0]
+        leader.store.append('group_bob_drafted', {'publication': draft})
+        leader.store.append('group_bob_withheld', {'publication_digest': digest(draft),
+            'reason': 'Bob posts must end with a final Summary section in plain language'})
+        before = deepcopy(leader.store.load())
+        with patch.dict(os.environ, {'WAKE_GROUP_COORDINATOR_URL': 'http://controller/group/coordinator',
+                                    'WAKE_PUBLIC_HOSTNAME': self.members[0]}), patch('wake.group_editorial.fetch', return_value=None):
+            self.assertTrue(synchronize(leader, None))
+        after = leader.store.load()
+        self.assertEqual(after['posts'][INTRO_ID]['body'], draft['article']['body'])
+        self.assertEqual(after['invocations'], before['invocations'])
+        for key in ('version', 'journal', 'evidence', 'notebooks', 'attention', 'commitments', 'projects'):
+            self.assertEqual(after[key], before[key])
+        self.assertNotIn('withheld', after['group_bob'])
+        self.assertEqual(leader.store.audit()[0], after)
 
     def test_attempt_packets_follow_dates_instead_of_dictionary_order(self):
         state = deepcopy(self.engines[0].store.load())

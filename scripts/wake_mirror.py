@@ -20,8 +20,11 @@ def run():
                 if not status.get('enabled'):
                     return
                 if status.get('status') == 'queued':
+                    # Complete-history builds can exceed ten minutes. A timeout
+                    # here kills only the shell, leaving its capture/upload child
+                    # alive while a later retry starts a competing publisher.
                     subprocess.run([str(ROOT / 'scripts/wake_publish')], cwd=ROOT,
-                                   check=True, timeout=600)
+                                   check=True)
             except (subprocess.SubprocessError, ValueError) as exc:
                 print(json.dumps({'mirror_delivery_failed': type(exc).__name__}), flush=True)
             time.sleep(60)

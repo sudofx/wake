@@ -112,7 +112,33 @@ def validate_inputs(packet):
     return packet
 
 
-def request(packet, checkpoint, repair=None):
+def editorial_continuity(packet, previous):
+    """Bounded public reading context, derived from the last accepted article.
+
+    Versions identify recorded change, not scientific progress or importance.
+    Earlier prose is context to revisit, never evidence or a research instruction.
+    """
+    if not previous:
+        return None
+    article = previous['article']
+    old = {item['member']: item for item in previous['inputs']['inputs']}
+    changes = []
+    for item in packet['inputs']:
+        prior = old.get(item['member'], {})
+        prior_stories = {s['id']: s for s in prior.get('stories', [])}
+        changes.append({'member': item['member'], 'previous_version': prior.get('version'),
+                        'current_version': item['version'],
+                        'changed_story_ids': [s['id'] for s in item.get('stories', [])
+                                              if s != prior_stories.get(s['id'])]})
+    body = article['body']
+    return {'previous_post': {'id': previous['id'], 'title': article['title'],
+                             'lede': article['lede'][:300],
+                             'opening_excerpt': body[:700], 'ending_excerpt': body[-900:],
+                             'excerpted': True},
+            'recorded_changes': changes}
+
+
+def request(packet, checkpoint, repair=None, *, previous=None, max_context_chars=None):
     validate_inputs(packet)
     modern = all(i.get('editorial_schema') == 2 for i in packet['inputs'])
     result = {
@@ -128,7 +154,8 @@ def request(packet, checkpoint, repair=None):
             "and respectful. Return only title, lede, body and lens as JSON. No proposed research actions."
             " Write short plain paragraphs without Markdown heading markers, bold markers or lists. "
             "Do not repeat the lede in the body or repeat the same caveat in multiple paragraphs. "
-            "Put the plain final heading Summary and its paragraphs INSIDE the body string. "
+            "Put the plain final heading Summary on its own line INSIDE the body string, "
+            "with a blank line before the heading and before its summary paragraphs. "
             "Return exactly four keys: title, lede, body, lens. Never add a summary key."
         ),
         'context': {'checkpoint': checkpoint, 'group': packet},
@@ -144,6 +171,14 @@ def request(packet, checkpoint, repair=None):
             result['system'] = result['system'].replace('For checkpoint 1 introduce WAKE and yourself.',
                 f'Write an ongoing catch-up article, editorial sequence {checkpoint}. Start with the recorded work, not an introduction.')
         result['system'] += (
+            " Build one connected investigation around a specific question a newcomer can understand. "
+            "Earn curiosity with a concrete example and a useful explanation early in the article. "
+            "Use the supplied continuity context to revisit earlier questions, explain what changed, "
+            "and distinguish new recorded work from repeated material. Earlier Bob prose is not evidence. "
+            "Account for every member through references without turning the story into a node-by-node roll call. "
+            "Explain competing interpretations and why the distinction matters when the supplied records support it. "
+            "Before Summary, leave the reader with a specific unresolved question from the supplied stories. "
+            "Do not invent suspense, breakthroughs, experiments, future commitments or a publication date. "
             " This is a progress explanation, not a new scientific result. Write for a curious 15-year-old "
             "who knows none of the research vocabulary. Never label the audience as children or teens. "
             "Explain unfamiliar terms before or as they appear. Use a concrete everyday example explicitly "
@@ -151,8 +186,8 @@ def request(packet, checkpoint, repair=None):
             "how and why. Include uneven progress, failed approaches and blockers where recorded. "
             "Do not copy technical vocabulary from the notebooks. Prefer everyday words throughout title, lede, body and lens. "
             "If you use specialist terms, define each explicitly at first use with words such as means. "
-            "Use a separate short paragraph for each research theme, with a simple concrete analogy. "
-            "The opening should explain what the computer workers actually did since the last article and when; "
+            "Connect the research themes through the central question, using short paragraphs and concrete analogies. "
+            "Open with a concrete question or example, then explain what the computer workers actually did and when; "
             "do not offer another welcome or call this checkpoint one. Say what papers suggest, not we found that. "
             "Paper-supported means a recorded reading of a paper, not independently confirmed or tested. "
             "Do not claim experiments, proof or discoveries absent from the supplied stories. "
@@ -170,9 +205,27 @@ def request(packet, checkpoint, repair=None):
                 'required': ['input_ids']}}
         result['response_schema']['required'] = [*ARTICLE_FIELDS, 'references']
         result['response_schema']['properties']['references']['items']['properties']['input_ids']['items']['enum'] = [story['id'] for i in packet['inputs'] for story in i.get('stories', [])]
+        continuity = editorial_continuity(packet, previous)
+        if continuity:
+            result['context']['continuity'] = continuity
         if repair:
             result['system'] += '\nEditorial correction required: ' + repair['reason'] + '\nThe earlier draft excerpt is a failed example. Rewrite it; do not copy its wording.'
         result['context']['repair'] = ({'reason': repair['reason'], 'previous_draft_excerpt': repair['article']['body'][:1800]} if repair else None)
+        if continuity:
+            # Preserve every current member and citation ID before optional older
+            # prose. Context budgets still fail visibly if the base packet cannot fit.
+            if max_context_chars is not None:
+                from .providers import provider_input_chars
+                prior = continuity['previous_post']
+                for key in ('opening_excerpt', 'ending_excerpt', 'lede'):
+                    if provider_input_chars(result) <= max_context_chars:
+                        break
+                    prior.pop(key, None)
+                if provider_input_chars(result) > max_context_chars:
+                    result['context'].pop('continuity')
+                    result['context']['continuity_unavailable'] = 'Prior article omitted to preserve current evidence within the context budget.'
+                    if provider_input_chars(result) > max_context_chars:
+                        result['context'].pop('continuity_unavailable')
     return result
 
 
@@ -426,7 +479,8 @@ def synchronize(engine, provider=None):
         repair = {'article': draft['article'], 'reason': withheld['reason']} if draft and withheld else (
             {'article': group['publication']['article'], 'reason': revision['reason']} if revision else
             {'article': {'body': ''}, 'reason': same[-1].get('reason', 'Previous synthesis did not complete')} if same else None)
-        result = engine.synthesize_group(provider, packet, checkpoint, repair=repair)
+        result = engine.synthesize_group(provider, packet, checkpoint, repair=repair,
+                                         previous=group.get('publication'))
         if result['status'] != 'editorial_completed':
             # A terminal failure changed authority too; expose its receipt while paused.
             return True

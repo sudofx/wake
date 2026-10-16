@@ -149,6 +149,7 @@ class InstallationProjectionTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             target = Path(directory) / 'local'
             export_unified_site(unified, target)
+            self.assertTrue((target / 'blog.xml').is_file())
             console = (target / 'console.html').read_text()
             self.assertLess(console.index('installation-overview'), console.index('id="status-band"'))
             self.assertEqual(console.count('id="main"'), 1)
@@ -163,10 +164,23 @@ class InstallationProjectionTests(unittest.TestCase):
             self.assertTrue(deployment['unified'])
             mirror = Path(directory) / 'public'
             _copy_public_site(target, mirror)
+            self.assertTrue((mirror / 'blog.xml').is_file())
             self.assertIn('installation-overview', (mirror / 'console.html').read_text())
             self.assertIn('panel id: #018', (mirror / 'console.html').read_text())
             self.assertNotEqual((mirror / 'index.html').read_text(), console)
-            self.assertIn('id="entries"', (mirror / 'index.html').read_text())
+            self.assertIn('id="entries"', (mirror / 'journal.html').read_text())
+            from wake.report import _READER_PAGES
+            for section, filename in _READER_PAGES.items():
+                document = (mirror / filename).read_text()
+                self.assertIn(f'data-wake-page="{section}"', document)
+                self.assertIn(f'<section id="{section}" class="view">', document)
+                self.assertEqual(document.count('class="view"'), 1)
+                self.assertIn('reader-theme.css', document)
+                self.assertIn('page-routing.js', document)
+            for filename in ('console.html', 'console-records.html', 'console-events.html'):
+                document = (mirror / filename).read_text()
+                self.assertNotIn('reader-theme.css', document)
+                self.assertNotIn('page-routing.js', document)
             self.assertTrue(json.loads((mirror / 'deployment.json').read_text())['snapshot_only'])
             self.assertEqual(len(json.loads((mirror / 'state.json').read_text())['posts']), 1)
 

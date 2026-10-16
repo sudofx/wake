@@ -264,6 +264,13 @@ story IDs; operator correction feedback and a bounded prior-draft excerpt reserv
 room inside the same provider input ceiling. See the
 [editorial contract](development.md#first-run-publication-and-passenger).
 
+Later group requests also compare current supplied story packets with the last
+accepted article's captured inputs and include bounded excerpts of that article.
+These differences describe the delivered records, not semantic novelty or verified
+scientific progress. Optional prior prose is shortened or omitted before current
+member summaries and citation identities. Earlier Bob prose remains presentation,
+never qualifying evidence. See [reader continuity](development.md#reader-experience-and-editorial-continuity).
+
 Passenger text, including its factual first-publication receipt, never enters
 research memory, retrieval or trust compacts. A
 separate bounded private advisory request may read its latest assessments as

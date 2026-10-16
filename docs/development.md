@@ -376,6 +376,45 @@ retain their volumes and upgrade them when the operator next starts them. Review
 [kernel storage compatibility](kernel.md#physical-storage-and-compatibility) before
 rolling an executable backward against an upgraded volume.
 
+## Reader experience and editorial continuity
+
+Reader navigation uses separate static documents: `index.html` (Explore),
+`research.html`, `journal.html`, `blog.html`, and the remaining named section pages.
+Each document contains only its own view, visible before exported data loads.
+Legacy `index.html#section/record` links redirect to the corresponding page;
+record fragments stay within that page. GitHub Pages needs no rewrite service.
+`report.py` owns page generation and `page-routing.js` owns legacy-link compatibility.
+The reader-only `reader-theme.css` uses sudofx's light/dark palette and sans/mono
+font stacks without changing page geometry. Console and its embedded components
+never load that stylesheet or the reader navigation script. The dark reader
+background is plain, with no background image.
+
+The homepage opens with a question, Bob's latest accepted story, and links to
+recorded open questions. Bob's reading pages preserve the article's words while
+separating a flattened body at numbered citation boundaries and exposing its
+Summary, sources and adjacent published stories. RSS is the working follow path;
+there is no email collection or follower counter. The Console keeps its own layout.
+`wake/assets/pet.js` owns the homepage, `app.js` owns blog reading, and scoped rules
+in `theme.css` style those views. The exporter owns `blog.xml` and its installation
+links; do not add a follow control without exporting its destination.
+
+Later group articles receive bounded excerpts of the previous accepted publication
+and per-member comparisons of the supplied story packets. The prior opening is
+limited to 700 characters, ending to 900, and lede to 300. Changes identify versions
+and supplied story IDs; these are structural differences, not certified scientific
+progress. Current member summaries and reference identities have priority over
+older prose under the existing provider input ceiling. Earlier prose is omitted
+first, then optional continuity context if necessary. Native invocation receipts
+retain the exact delivered request. No separate editorial database is introduced.
+
+Writing guidance asks for a concrete opening, a connected question, an explanation
+of meaningful recorded changes, and an unresolved question already present in the
+supplied work. It cannot invent a discovery, future commitment or publication date.
+Readership interest cannot select projects or qualify evidence. These are design
+hypotheses informed by curiosity research, not a claim of measured audience growth. The rationale draws on [Kang et al. (2009)](https://www.cmu.edu/dietrich/sds/docs/loewenstein/WickCandleLearning.pdf)
+and [Le Quéré and Matias (2025)](https://www.nature.com/articles/s41598-024-81575-9);
+their findings do not establish retention outcomes for this site.
+
 ## First-run publication and Passenger
 
 Grouped installations publish **one model-written Bob article with identical text on every
@@ -389,6 +428,10 @@ not become separate public voices. Research advances independently of publicatio
 
 The gateway's group endpoints admit members from all of that group's parent and
 child networks, while rejecting members of other groups. Bob requests provider-enforced article fields, with the Summary inside the body string.
+The prompt requests a separate Summary heading. Validation also recognizes a
+sentence-boundary `Summary` followed by a capitalized summary sentence if the
+model collapses the heading into the prose. Retained drafts are reevaluated with
+their exact text; an acceptable draft needs no replacement model call.
 He writes plain paragraphs for the existing blog renderer; Markdown heading and emphasis markers are not rendered.
 
 The shared `group-wake-introduction` identifies WAKE01. On creation the group first

@@ -50,6 +50,11 @@ operator procedures.
   or after a recorded operator correction. Missed milestones remain due; one
   catch-up covers accumulated work. All members supply inputs even when progress
   differs. Bob’s language guidance does not alter research evidence rules.
+- **Editorial continuity** — bounded context from Bob's previous accepted story
+  and the current supplied records, helping a later article revisit open questions.
+  It does not establish scientific progress or change research selection.
+- **RSS** — a feed reader's way to check `blog.xml` for new Bob articles without
+  giving this website an email address. The feed contains published, dated work.
 - **Editorial correction** — a new model-written article that supersedes an older
   explanation while retaining its text, references and invocation. It changes no
   research result or scientific evidence.
