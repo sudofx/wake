@@ -6,6 +6,8 @@ legacy SQLite compatibility Store use the same semantics so migration cannot
 fork domain meaning.
 """
 
+import json
+
 from .event_format import digest
 from .governance import Rejected, require, transition
 
@@ -223,6 +225,19 @@ def reduce_event(state, event, historical=False):
             require(state["invocations"][p["id"]].get("phase") == "group_editorial", "Editorial receipt requires its public synthesis phase")
             from .group_editorial import validate_article
             validate_article(p["article"])
+            structured_request = state["invocations"][p["id"]].get("editorial_output_contract")
+            if "output_transform" in p or structured_request:
+                from .group_editorial import render_response
+                try:
+                    rendered, transformation = render_response(json.loads(p["raw_response"]))
+                except (ValueError, TypeError, KeyError) as exc:
+                    raise Rejected("Invalid editorial rendering receipt") from exc
+                require(transformation == p.get("output_transform") and rendered == p["article"],
+                        "Editorial rendering must match exact provider response")
+                if transformation is not None:
+                    require(structured_request == transformation['contract'],
+                            "Editorial rendering contract differs from invocation")
+                    terminal["output_transform"] = transformation
             terminal.update(article=p["article"], input_digest=p["input_digest"], checkpoint=p["checkpoint"])
         if kind == "advisory_completed":
             require(state["invocations"][p["id"]].get("phase") == "passenger", "Advisory receipt requires its private phase")

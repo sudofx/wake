@@ -150,6 +150,43 @@ class InstallationArchiveTests(unittest.TestCase):
         self.assertFalse((target / 'worker.log').exists())
         self.assertFalse((target / 'group' / 'bob-input.json').exists())
 
+    def test_public_artifact_omits_editorial_raw_excerpt_from_every_transport_and_history(self):
+        source = self.root / 'editorial-source'
+        source.mkdir()
+        marker = 'RAW-BOB-DRAFT-RETAINED-ONLY-FOR-LOCAL-REPAIR-93751'
+        diagnostic = {'reason': 'Every story paragraph needs valid numeric references',
+                      'draft_excerpt': marker}
+        invocation = {'id': 'bob-rejected', 'phase': 'group_editorial', 'status': 'rejected',
+                      'editorial': diagnostic}
+        event = {'kind': 'rejected', 'payload': {'id': invocation['id'],
+                 'raw_response': marker, 'editorial': diagnostic}}
+        packets = {
+            'wake-data.json': {'state': {'invocations': {invocation['id']: invocation}}, 'events': [event]},
+            'reader-data.json': {'state': {'invocations': {invocation['id']: invocation}}},
+            'reader-records/invocations/626f622d72656a6563746564.json': {'item': invocation, 'events': [event]},
+            'reader-records/pages/events/0.json': {'rows': [event]},
+            'research-data.json': {'wakes': [{'id': invocation['id'], 'events': [event]}]},
+            'research-details/' + 'a' * 64 + '.json': {'wake': {'id': invocation['id'], 'events': [event]}},
+        }
+        for name, packet in packets.items():
+            path = source / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(json.dumps(packet))
+        (source / 'events.jsonl').write_text(json.dumps(event) + '\n')
+        target = self.root / 'editorial-public-artifact'
+        _copy_public_site(source, target)
+        expected = {*packets, 'events.jsonl'}
+        self.assertEqual({path.relative_to(target).as_posix() for path in target.rglob('*') if path.is_file()}, expected)
+        for name in expected:
+            with self.subTest(path=name):
+                self.assertIn(marker, (source / name).read_text())
+                public = (target / name).read_text()
+                self.assertNotIn(marker, public)
+                self.assertNotIn('draft_excerpt', public)
+                self.assertIn(diagnostic['reason'], public)
+        self.assertEqual(json.loads((target / 'events.jsonl').read_text())['payload']['editorial'],
+                         {'reason': diagnostic['reason']})
+
     def test_public_overview_bounds_history_without_truncating_complete_export(self):
         source = self.root / 'history-source'
         source.mkdir()
@@ -266,6 +303,22 @@ class InstallationArchiveTests(unittest.TestCase):
             refreshed = build_public_artifact(self.root, self.root / 'rebuilt-public')
         self.assertEqual(sum(Path(call.args[1]).name != 'unified' for call in rebuilt.call_args_list), 1)
         self.assertEqual(refreshed['record_heads'], manifest['record_heads'])
+        # A stale/missing follower export and differing accepted article views
+        # must never prevent delivery of other completed node snapshots.
+        for node, checkpoint in ((NODE_IDS[0], 2), (NODE_IDS[1], 1)):
+            group = self.root / 'nodes' / node / 'site/current/group'
+            group.mkdir(exist_ok=True)
+            (group / 'bob-publication.json').write_text(json.dumps({'checkpoint': checkpoint}))
+        import shutil
+        shutil.rmtree(self.root / 'nodes/301.wake/site/current')
+        partial = build_public_artifact(self.root, self.root / 'partial-public')
+        self.assertEqual(len(partial['record_heads']), 11)
+        missing = next(node for node in partial['nodes'] if node['id'] == '301.wake')
+        self.assertEqual(missing['export_status'], 'missing')
+        self.assertFalse(missing['available'])
+        self.assertFalse((self.root / 'partial-public/nodes/301.wake').exists())
+        self.assertEqual(len(partial['export_digest']), 64)
+        self.assertEqual(len(partial['publication_digest']), 64)
         # Capture must reject a link before copying private bytes into staging.
         source = self.root / 'nodes' / NODE_IDS[0] / 'site/current'
         (source / 'injected.html').symlink_to(self.root / 'nodes' / NODE_IDS[0] / 'record/wake.sqlite')

@@ -79,6 +79,28 @@ Console’s browser overview is a separate disposable presentation projection. I
 
 Current source eligibility requires nonempty readable collected material. Publisher menus and response forms cannot make a source synthesis-ready or supply claim-support tokens. Historical raw observations remain available for exact inspection; stricter current qualification does not invalidate historical replay. Derived evidence-quality diagnostics include unreadable cited-source IDs.
 
+### Browser views and exact detail
+
+Open the homepage, Blog or journal normally. Reader pages download a recent
+overview of at most 256 KiB. Select a story, source, notebook or invocation to fetch
+its exact exported detail. Use **Load older** below a list to fetch another page.
+Recent-overview limits are labelled; complete history and state exports remain
+available through their explicit archive links. An overview does not count as the
+complete record and is never used to reconstruct authority.
+
+Console and its process view share `research-overview.json`; opening a wake's
+context or response fetches its detail under `research-details/`. The complete
+`research-data.json` export remains available separately. Detail errors are visible
+and retryable. A record-detail packet that belongs to a different reader snapshot
+is rejected with a reload instruction. Ordinary refreshes check the small export
+head rather than downloading the accumulated archive again.
+
+These files are produced together in a disposable website generation. HTTP
+serving reads completed exports and bounded observations, never a record database
+or provider. Stopped, stale or missing workers therefore cannot gate access to
+completed pages. Missing exports remain visibly missing; no replacement research
+or synthetic progress is inferred.
+
 ## Why this exists
 
 Progressive abstraction only stays epistemically safe if compression remains correctable.

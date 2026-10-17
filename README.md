@@ -18,7 +18,11 @@ governance system; it is not the definition of the WAKE kernel.
 The public site is a dated, read-only mirror uploaded from the local installation.
 Research executes in the container; the GitHub research executor is retired.
 Use [publication instructions](docs/cloud.md#publish-the-local-installation-mirror)
-to upload the current unified website and all node views.
+to upload the current unified website and available node views.
+Enabled mirror delivery uploads changed exports every 30 minutes by default and
+after accepted Bob articles, independently of other nodes' availability. Reader
+pages load a small overview first and fetch exact details on demand; full history
+remains exported. See [browser views](docs/retrieval.md#browser-views-and-exact-detail).
 
 [Open the public site](https://sudofx.github.io/wake/) · [View source and releases](https://github.com/sudofx/wake) · [GitHub Actions](https://github.com/sudofx/wake/actions)
 
@@ -205,7 +209,10 @@ articles explain group progress in plain language, with attributed references an
 a particularly simple Summary. A post is required at every tenth accepted wake
 across the group; overdue work stays due without blocking research. Language is
 editorial guidance, while supplied references and research evidence rules remain
-required independently.
+required independently. New articles supply structured paragraphs and reference
+numbers; deterministic rendering adds citations and the Summary heading, retaining
+the exact provider response and a replay-verified rendering receipt. Existing dated
+node exports remain usable while a worker is unavailable.
 See the [editorial contract](docs/development.md#first-run-publication-and-passenger).
 `./scripts/wake_publish --watch` delivers later accepted articles from immutable
 exports while preserving research controls.

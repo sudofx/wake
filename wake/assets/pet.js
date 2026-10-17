@@ -20,8 +20,8 @@ window.WakePetReady=(async () => {
   const topicColors=s.topic_colors||{};
   const topicName=id=>names[id]||String(id||'Unconfigured topic').replaceAll('_',' ');
   const topicTag=(id)=>`<a class="topic-tag" data-topic="${esc(id)}" style="--topic-color:${esc(topicColors[id]||'var(--cyan)')}" href="#projects/topic:${encodeURIComponent(id)}">${esc(topicName(id).toLowerCase())}</a>`;
-  const projects=Object.values(s.projects||{}),books=Object.values(s.notebooks||{}).sort((a,b)=>b.updated_version-a.updated_version);
-  const blogPosts=Object.values(s.posts||{});
+  let projects=Object.values(s.projects||{}),books=Object.values(s.notebooks||{}).sort((a,b)=>b.updated_version-a.updated_version);
+  let blogPosts=Object.values(s.posts||{});
   const topicActivityRows=()=> (s.research_topics||[]).map(topic=>{
     const ps=projects.filter(p=>p.domain===topic.id);
     const ns=books.filter(n=>n.domain===topic.id);
@@ -90,6 +90,8 @@ window.WakePetReady=(async () => {
     document.getElementById('topics-content').innerHTML=`<div class="topic-hubs">${cards||'<p class="empty">No research topics are configured.</p>'}</div>`;
   }
   function render(page,selected){
+    projects=Object.values(s.projects||{});books=Object.values(s.notebooks||{}).sort((a,b)=>b.updated_version-a.updated_version);
+    blogPosts=Object.values(s.posts||{});
     if(page==='discoveries'){discoveries();return;}
     if(page==='topics'){topics();return;}
     if(page==='projects'){

@@ -16,6 +16,7 @@ from .governance import require, text, transition, _bob_quiet_window, _has_final
 INTRO_ID = 'group-wake-introduction'
 MAX_PACKET = 240_000
 ARTICLE_FIELDS = ('title', 'lede', 'body', 'lens')
+PARAGRAPH_CONTRACT = 'group-editorial-paragraphs@1'
 
 
 def input_snapshot(engine, group_id, member, *, record_snapshot=None):
@@ -166,7 +167,19 @@ def request(packet, checkpoint, repair=None, *, previous=None, max_context_chars
     }
 
     if modern:
-        result['system'] = result['system'].replace('Return only title, lede, body and lens as JSON.', 'Return title, lede, body, lens and references as JSON.').replace('Return exactly four keys: title, lede, body, lens.', 'Return exactly five keys: title, lede, body, lens, references.')
+        # Prose and attribution come from the provider; punctuation and the
+        # Summary heading come from a versioned, replayable renderer.
+        result['system'] = result['system'].replace(
+            'Return only title, lede, body and lens as JSON.',
+            'Return title, lede, paragraphs, summary, lens and references as JSON.'
+        ).replace(
+            'Put the plain final heading Summary on its own line INSIDE the body string, '
+            'with a blank line before the heading and before its summary paragraphs. '
+            'Return exactly four keys: title, lede, body, lens. Never add a summary key.',
+            'Return exactly six keys: title, lede, paragraphs, summary, lens, references. '
+            'The renderer adds the final Summary heading; do not supply a body field.'
+        )
+        result['context']['output_contract'] = PARAGRAPH_CONTRACT
         if checkpoint > 1:
             result['system'] = result['system'].replace('For checkpoint 1 introduce WAKE and yourself.',
                 f'Write an ongoing catch-up article, editorial sequence {checkpoint}. Start with the recorded work, not an introduction.')
@@ -194,16 +207,30 @@ def request(packet, checkpoint, repair=None, *, previous=None, max_context_chars
             "Checkpoint is an editorial sequence, NOT a research count. Do not introduce Bob again after 1. "
             "Aim for short sentences, usually under 45 words. End with Summary, ideally under 100 words, "
             "using especially simple short sentences and no new claims. "
-            "Add a fifth JSON key references: an array of objects with input_ids (story IDs). "
-            "Every paragraph before Summary must have numeric citations like [1] or [1, 2], corresponding to this array. "
+            "References is an array of objects with input_ids (story IDs). "
+            "Paragraphs is an array of objects with text (one plain paragraph) and reference_numbers "
+            "(a nonempty array of integers indexing references, starting at 1). "
+            "Include the unresolved question in a paragraph with its supporting references. "
+            "Do not write citation markers in text; the renderer appends them. "
+            "Summary is separate plain prose with no heading or new claims. "
             "References must collectively include at least one story from EVERY member, including members "
             "without new findings. Cite only supplied story IDs. No URLs or invented reference IDs in prose."
         )
         result['response_schema']['properties']['references'] = {
-            'type': 'array', 'items': {'type': 'object', 'additionalProperties': False,
-                'properties': {'input_ids': {'type': 'array', 'items': {'type': 'string'}}},
+            'type': 'array', 'minItems': 1, 'maxItems': 20,
+            'items': {'type': 'object', 'additionalProperties': False,
+                'properties': {'input_ids': {'type': 'array', 'minItems': 1, 'maxItems': 32, 'items': {'type': 'string'}}},
                 'required': ['input_ids']}}
-        result['response_schema']['required'] = [*ARTICLE_FIELDS, 'references']
+        properties = result['response_schema']['properties']
+        properties.pop('body')
+        properties['paragraphs'] = {'type': 'array', 'minItems': 1, 'maxItems': 24,
+            'items': {'type': 'object', 'additionalProperties': False,
+                'properties': {'text': {'type': 'string'}, 'reference_numbers': {
+                    'type': 'array', 'minItems': 1, 'maxItems': 20,
+                    'items': {'type': 'integer', 'minimum': 1, 'maximum': 20}}},
+                'required': ['text', 'reference_numbers']}}
+        properties['summary'] = {'type': 'string'}
+        result['response_schema']['required'] = list(properties)
         result['response_schema']['properties']['references']['items']['properties']['input_ids']['items']['enum'] = [story['id'] for i in packet['inputs'] for story in i.get('stories', [])]
         continuity = editorial_continuity(packet, previous)
         if continuity:
@@ -227,6 +254,45 @@ def request(packet, checkpoint, repair=None, *, previous=None, max_context_chars
                     if provider_input_chars(result) > max_context_chars:
                         result['context'].pop('continuity_unavailable')
     return result
+
+
+def render_response(response):
+    """Render explicit attribution, preserving legacy body responses unchanged.
+
+    No attribution or prose is repaired or inferred. The raw provider response and
+    the versioned transformation remain independently verifiable during replay.
+    """
+    if isinstance(response, dict) and 'body' in response:
+        return validate_article(response), None
+    require(isinstance(response, dict) and set(response) == {
+        'title', 'lede', 'paragraphs', 'summary', 'lens', 'references'},
+        'Structured group article requires title, lede, paragraphs, summary, lens and references')
+    refs = response['references']
+    require(isinstance(refs, list) and 1 <= len(refs) <= 20,
+            'Progress articles require attributed references')
+    paragraphs = response['paragraphs']
+    require(isinstance(paragraphs, list) and 1 <= len(paragraphs) <= 24,
+            'Structured article requires bounded story paragraphs')
+    rendered = []
+    for paragraph in paragraphs:
+        require(isinstance(paragraph, dict) and set(paragraph) == {'text', 'reference_numbers'},
+                'Structured paragraph requires text and reference_numbers')
+        prose = paragraph['text']
+        text(prose, 'paragraph text', 6000)
+        require(prose == prose.strip() and '\n' not in prose and '\r' not in prose
+                and not re.search(r'\[[^\]]*\]', prose),
+                'Supply one plain paragraph without citation markers')
+        numbers = paragraph['reference_numbers']
+        require(isinstance(numbers, list) and 1 <= len(numbers) <= 20
+                and all(type(number) is int and 1 <= number <= len(refs) for number in numbers),
+                'Every story paragraph needs valid numeric references')
+        rendered.append(prose + ' [' + ', '.join(str(number) for number in numbers) + ']')
+    text(response['summary'], 'summary', 6000)
+    article = {key: response[key] for key in ('title', 'lede', 'lens', 'references')}
+    article['body'] = '\n\n'.join([*rendered, 'Summary', response['summary']])
+    validate_article(article)
+    return article, {'contract': PARAGRAPH_CONTRACT, 'response_digest': digest(response),
+                     'article_digest': digest(article)}
 
 
 def validate_article(article):
@@ -460,7 +526,10 @@ def synchronize(engine, provider=None):
             checkpoint = 1 if prior == 0 else prior + _bob_quiet_window({**last, 'created_version':prior})
             if checkpoint > 1 and min(i['version'] for i in packet['inputs']) < checkpoint:
                 return changed
-        attempts = [i for i in state['invocations'].values() if i.get('phase') == 'group_editorial']
+        # Projection serialization may reorder invocation IDs. Repair context must
+        # follow the latest recorded attempt, never dictionary iteration order.
+        attempts = sorted((i for i in state['invocations'].values() if i.get('phase') == 'group_editorial'),
+                          key=lambda i: (_time(i['time']), i['id']))
         now = datetime.now(timezone.utc)
         today = now.astimezone(__import__('zoneinfo').ZoneInfo(engine.config['timezone'])).date().isoformat()
         daily = [i for i in attempts if i.get('quota_day') == today]
@@ -478,7 +547,8 @@ def synchronize(engine, provider=None):
         revision = group.get('revision_requested')
         repair = {'article': draft['article'], 'reason': withheld['reason']} if draft and withheld else (
             {'article': group['publication']['article'], 'reason': revision['reason']} if revision else
-            {'article': {'body': ''}, 'reason': same[-1].get('reason', 'Previous synthesis did not complete')} if same else None)
+            {'article': {'body': recent[-1].get('editorial', {}).get('draft_excerpt', '')},
+             'reason': recent[-1].get('reason', 'Previous synthesis did not complete')} if recent else None)
         result = engine.synthesize_group(provider, packet, checkpoint, repair=repair,
                                          previous=group.get('publication'))
         if result['status'] != 'editorial_completed':

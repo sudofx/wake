@@ -360,18 +360,18 @@ class StandaloneRuntimeTests(unittest.TestCase):
 
     @unittest.skipUnless(shutil.which('node'), 'Node is optional browser-boundary verification')
     def test_home_bootstrap_fetches_only_its_installation(self):
-        # Execute the actual home-page bootstrap, rather than checking source strings.
-        page = (Path(__file__).resolve().parents[1] / 'wake/assets/index.html').read_text()
+        # Execute the actual reader bootstrap for each installation identity.
+        page = (Path(__file__).resolve().parents[1] / 'wake/assets/reader-data.js').read_text()
         javascript = r"""
 const vm=require('node:vm');
 let html='';process.stdin.on('data',chunk=>html+=chunk);
 process.stdin.on('end',async()=>{
-  const script=[...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m=>m[1]).find(s=>s.includes('window.WakeLiveUrl='));
+  const script=html;
   const results=[];
   for(const local of [true,false,null]){
     const calls=[];
     const window=local===null?{}:{WAKE_DEPLOYMENT:{schema:1,mode:local?'standalone':'hosted'}};
-    vm.runInNewContext(script,{window,Date,fetch:async url=>{calls.push(url);return {ok:true,json:async()=>({state:{version:0},head:'test'})}}});
+    vm.runInNewContext(script,{window,Date,AbortSignal,setTimeout(){},fetch:async url=>{calls.push(url);return {ok:true,json:async()=>({state:{version:0},head:'test'})}}});
     await window.WakeData;results.push(calls);
   }
   process.stdout.write(JSON.stringify(results));
@@ -380,9 +380,9 @@ process.stdin.on('end',async()=>{
         result = subprocess.run(['node', '-e', javascript], input=page, text=True,
                                 capture_output=True, check=True)
         local, hosted, unknown = json.loads(result.stdout)
-        self.assertTrue(local and all(url.startswith('wake-data.json?') for url in local))
-        self.assertTrue(hosted and all(url.startswith('wake-data.json?') for url in hosted))
-        self.assertTrue(unknown and all(url.startswith('wake-data.json?') for url in unknown))
+        self.assertEqual(local, ['reader-data.json'])
+        self.assertEqual(hosted, ['reader-data.json'])
+        self.assertEqual(unknown, ['reader-data.json'])
 
     def test_capture_can_pin_complete_generation_during_next_render(self):
         import fcntl

@@ -296,7 +296,11 @@ prose and traceable references do not establish independent scientific validity.
 The [editorial contract](development.md#first-run-publication-and-passenger)
 defines the required aggregate ten-wake cadence, quota-bounded retries and
 editorial language guidance. Forgiving Bob’s prose changes no research evidence
-qualification or accepted-cycle rule.
+qualification or accepted-cycle rule. Structured editorial responses supply explicit
+paragraph references and a separate summary; deterministic rendering is recorded
+with the exact provider output and does not supply missing scientific support.
+A structurally invalid editorial response is a rejected invocation, not a completed
+synthesis or accepted research.
 
 A group WAKE01 introduction is a shared model synthesis of dated summaries from all
 parents and children. Its checkpoint is editorial metadata, not an added accepted

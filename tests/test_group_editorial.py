@@ -32,6 +32,27 @@ class Writer:
         return json.dumps(article), {}
 
 
+class StructuredWriter:
+    name, model, charged = 'fixture', 'structured-editorial-fixture', False
+    def __init__(self):
+        self.calls = 0
+    def propose(self, request):
+        self.calls += 1
+        self.request = request
+        response = {'title': 'What can a recorded reading tell us?',
+            'lede': 'The group keeps a trace of its questions and readings.',
+            'lens': 'A record of a reading leaves the scientific question open.',
+            'paragraphs': [
+                {'text': 'Each worker recorded its own reading and open questions.', 'reference_numbers': [1]},
+                {'text': 'Which interpretation could a later reading help distinguish?', 'reference_numbers': [1]}],
+            'summary': 'The workers have recorded readings. Their questions remain open.',
+            'references': [{'input_ids': [item['stories'][0]['id'] for item in request['context']['group']['inputs']]}]}
+        if hasattr(self, 'alter'):
+            self.alter(response)
+        self.raw = json.dumps(response, indent=2)
+        return self.raw, {'fixture': True}
+
+
 class GroupEditorialTests(unittest.TestCase):
     def test_editorial_continuity_keeps_attributed_changes_and_prior_text_bounded(self):
         from wake.group_editorial import request
@@ -307,7 +328,7 @@ class GroupEditorialTests(unittest.TestCase):
         p['article']['references'][0]['input_ids'] = [self.packet['inputs'][0]['stories'][0]['id']]
         with self.assertRaises(Rejected): validate_grounding(p['article'], p['inputs'])
 
-    def test_withheld_progress_is_retained_and_repaired_with_bounded_calls(self):
+    def test_invalid_progress_rejection_is_retained_and_repaired_with_bounded_calls(self):
         from wake.group_editorial import synchronize
         leader = self.engines[0]
         writer = Writer()
@@ -319,8 +340,13 @@ class GroupEditorialTests(unittest.TestCase):
              patch('wake.group_editorial.fetch', side_effect=response):
             synchronize(leader, writer)
             group = leader.store.load()['group_bob']
-            self.assertIn('withheld', group)
-            self.assertIn('draft', group)
+            self.assertNotIn('draft', group)
+            rejected = [item for item in leader.store.load()['invocations'].values()
+                        if item.get('phase') == 'group_editorial'][-1]
+            self.assertEqual(rejected['status'], 'rejected')
+            self.assertIn('Summary', rejected['reason'])
+            self.assertTrue(rejected['editorial']['draft_excerpt'])
+            self.assertEqual(leader.store.record.incomplete_invocations(), ())
             before = deepcopy(leader.store.load())
             synchronize(leader, writer)
             self.assertEqual(leader.store.load()['invocations'], before['invocations'])
@@ -332,7 +358,8 @@ class GroupEditorialTests(unittest.TestCase):
                 clock.now.return_value = future
                 clock.fromisoformat.side_effect = datetime.fromisoformat
                 synchronize(leader, writer)
-            self.assertIn('repair', writer.request['context'])
+            self.assertEqual(writer.request['context']['repair']['reason'], rejected['reason'])
+            self.assertTrue(writer.request['context']['repair']['previous_draft_excerpt'])
             self.assertEqual(leader.store.load()['group_bob']['checkpoint'], 1)
             self.assertEqual(leader.store.load()['version'], before['version'])
             self.assertEqual(leader.store.audit()[0], leader.store.load())
@@ -364,6 +391,132 @@ class GroupEditorialTests(unittest.TestCase):
         for key in ('version','journal','evidence','notebooks','attention','commitments','projects'):
             self.assertEqual(after[key], before[key])
         self.assertEqual(leader.store.audit()[0], after)
+
+    def test_structured_article_renders_explicit_refs_and_summary_with_exact_raw_receipt(self):
+        from wake.group_editorial import PARAGRAPH_CONTRACT
+        leader, child = self.engines
+        writer = StructuredWriter()
+        before = deepcopy(leader.store.load())
+        draft = self.draft(writer)
+        self.assertEqual(writer.request['context']['output_contract'], PARAGRAPH_CONTRACT)
+        schema = writer.request['response_schema']
+        self.assertEqual(set(schema['required']), {'title', 'lede', 'lens', 'paragraphs', 'summary', 'references'})
+        self.assertNotIn('body', schema['properties'])
+        body = draft['article']['body']
+        self.assertIn('distinguish? [1]\n\nSummary\n\n', body)
+        receipt = leader.store.load()['invocations'][draft['invocation']]
+        self.assertEqual(receipt['output_transform']['contract'], PARAGRAPH_CONTRACT)
+        event = next(e for e in leader.store.events() if e['kind'] == 'editorial_completed')
+        self.assertEqual(event['payload']['raw_response'], writer.raw)
+        self.assertEqual(receipt['output_transform']['response_digest'], digest(json.loads(writer.raw)))
+        for engine in (leader, child):
+            engine.store.append('group_bob_published', {'publication': draft})
+            self.assertEqual(engine.store.load()['posts'][INTRO_ID]['body'], body)
+            self.assertEqual(engine.store.audit()[0], engine.store.load())
+            self.assertEqual(engine.store.record.incomplete_invocations(), ())
+        for key in ('version', 'journal', 'evidence', 'notebooks', 'attention', 'commitments', 'projects'):
+            self.assertEqual(leader.store.load()[key], before[key])
+        self.assertEqual(writer.calls, 1)
+
+    def test_structured_attribution_errors_are_terminal_rejections_without_progress(self):
+        leader = self.engines[0]
+        before = deepcopy(leader.store.load())
+        alterations = (
+            lambda r: r['paragraphs'][1].update(reference_numbers=[]),
+            lambda r: r['paragraphs'][1].update(reference_numbers=[0]),
+            lambda r: r['paragraphs'][1].update(reference_numbers=[2]),
+            lambda r: r['paragraphs'][1].update(reference_numbers=[True]),
+            lambda r: r['paragraphs'][1].pop('reference_numbers'),
+            lambda r: r['references'][0].update(input_ids=['invented']),
+            lambda r: r['references'][0].update(input_ids=[self.packet['inputs'][0]['stories'][0]['id']]),
+        )
+        for alter in alterations:
+            writer = StructuredWriter(); writer.alter = alter
+            with self.subTest(alter=alter), leader.store.lock():
+                result = leader.synthesize_group(writer, self.packet, 1)
+                self.assertEqual(result['status'], 'rejected')
+                self.assertIsNone(leader.store.load()['pending'])
+                self.assertEqual(leader.store.record.incomplete_invocations(), ())
+                self.assertEqual(writer.calls, 1)
+        after = leader.store.load()
+        for key in ('version', 'posts', 'journal', 'evidence', 'notebooks', 'attention', 'commitments', 'projects'):
+            self.assertEqual(after[key], before[key])
+        self.assertEqual(leader.store.audit()[0], after)
+
+    def test_structured_failure_repairs_on_next_day_with_original_reason_and_no_extra_calls(self):
+        from datetime import datetime, timedelta, timezone
+        from wake.group_editorial import synchronize
+        leader = self.engines[0]
+        writer = StructuredWriter()
+        writer.alter = lambda response: response['paragraphs'][1].update(reference_numbers=[])
+        def response(url):
+            return self.packet if url.endswith('bob-inputs.json') else None
+        with patch.dict(os.environ, {'WAKE_GROUP_COORDINATOR_URL': 'http://controller/group/coordinator',
+                                    'WAKE_PUBLIC_HOSTNAME': self.members[0]}), \
+             patch('wake.group_editorial.fetch', side_effect=response):
+            self.assertTrue(synchronize(leader, writer))
+            rejected = [i for i in leader.store.load()['invocations'].values()
+                        if i.get('phase') == 'group_editorial'][-1]
+            self.assertEqual(rejected['status'], 'rejected')
+            synchronize(leader, writer)
+            self.assertEqual(writer.calls, 1)
+            del writer.alter
+            with patch('wake.group_editorial.datetime') as clock:
+                clock.now.return_value = datetime.now(timezone.utc) + timedelta(days=1)
+                clock.fromisoformat.side_effect = datetime.fromisoformat
+                self.assertTrue(synchronize(leader, writer))
+        repair = writer.request['context']['repair']
+        self.assertEqual(repair['reason'], rejected['reason'])
+        self.assertEqual(repair['previous_draft_excerpt'], rejected['editorial']['draft_excerpt'])
+        self.assertEqual(writer.calls, 2)
+        self.assertEqual(leader.store.load()['group_bob']['checkpoint'], 1)
+        self.assertEqual(leader.store.record.incomplete_invocations(), ())
+        self.assertEqual(leader.store.audit()[0], leader.store.load())
+
+    def test_repair_uses_latest_attempt_by_date_when_projection_reorders_ids(self):
+        from wake.group_editorial import synchronize
+        leader = self.engines[0]
+        state = deepcopy(leader.store.load())
+        state['invocations'] = {
+            'a-new': {'id': 'a-new', 'phase': 'group_editorial', 'editorial_checkpoint': 1,
+                      'time': '2025-02-01T00:00:00+00:00', 'quota_day': '2025-02-01',
+                      'reason': 'Latest reference error', 'editorial': {'draft_excerpt': 'Latest failed draft'}},
+            'z-old': {'id': 'z-old', 'phase': 'group_editorial', 'editorial_checkpoint': 1,
+                      'time': '2025-01-01T00:00:00+00:00', 'quota_day': '2025-01-01',
+                      'reason': 'Older summary error', 'editorial': {'draft_excerpt': 'Older failed draft'}}}
+        def response(url):
+            return self.packet if url.endswith('bob-inputs.json') else None
+        with patch.dict(os.environ, {'WAKE_GROUP_COORDINATOR_URL': 'http://controller/group/coordinator',
+                                    'WAKE_PUBLIC_HOSTNAME': self.members[0]}), \
+             patch('wake.group_editorial.fetch', side_effect=response), \
+             patch.object(leader.store, 'load', return_value=state), \
+             patch.object(leader, 'synthesize_group', return_value={'status': 'rejected'}) as synthesize:
+            self.assertTrue(synchronize(leader, StructuredWriter()))
+        self.assertEqual(synthesize.call_args.kwargs['repair'], {
+            'reason': 'Latest reference error', 'article': {'body': 'Latest failed draft'}})
+
+    def test_structured_rendering_receipt_rejects_changed_prose_or_transformation_on_replay(self):
+        from wake.domain_events import reduce_event
+        leader = self.engines[0]
+        self.draft(StructuredWriter())
+        events = leader.store.events()
+        target = next(i for i, event in enumerate(events) if event['kind'] == 'editorial_completed')
+        # Reconstruct the pending state immediately before the terminal receipt.
+        from wake.domain_events import empty
+        state = empty()
+        for event in events[:target]:
+            state = reduce_event(state, event, historical=True)
+        for change in ('article', 'output_transform', 'raw_response', 'remove_transform'):
+            event = deepcopy(events[target])
+            payload = event['payload']
+            if change == 'article': payload['article']['body'] += ' Invented prose.'
+            elif change == 'output_transform': payload['output_transform']['contract'] = 'invented@1'
+            elif change == 'raw_response': payload['raw_response'] = payload['raw_response'].replace('open questions', 'proven findings')
+            else: payload.pop('output_transform')
+            for historical in (False, True):
+                with self.subTest(change=change, historical=historical), self.assertRaises(Rejected):
+                    reduce_event(deepcopy(state), event, historical=historical)
+        self.assertEqual(leader.store.audit()[0], leader.store.load())
 
     def test_partial_inputs_rejected_before_call(self):
         packet=deepcopy(self.packet); packet['inputs'].pop()

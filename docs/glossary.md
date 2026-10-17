@@ -50,6 +50,10 @@ operator procedures.
   or after a recorded operator correction. Missed milestones remain due; one
   catch-up covers accumulated work. All members supply inputs even when progress
   differs. Bob’s language guidance does not alter research evidence rules.
+- **Editorial rendering receipt** — a versioned description and hashes linking
+  the exact provider response to its article. Rendering adds citation punctuation
+  and the Summary heading from explicitly supplied paragraphs and references; it
+  cannot invent attribution or scientific support.
 - **Editorial continuity** — bounded context from Bob's previous accepted story
   and the current supplied records, helping a later article revisit open questions.
   It does not establish scientific progress or change research selection.

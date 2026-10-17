@@ -147,7 +147,7 @@ def import_records(root: Path, archive: Path) -> dict:
 
 
 _PUBLIC_OMIT = {'request', 'response', 'raw_response', 'system', 'credentials', 'api_key',
-                'authorization', 'passenger', 'private', 'token'}
+                'authorization', 'passenger', 'private', 'token', 'draft_excerpt'}
 
 
 def _public_projection(value):
@@ -182,7 +182,8 @@ def _copy_public_site(source: Path, destination: Path):
         allowed = allowed or (relative.parts[0] in {'icons', 'backgrounds'} and (assets / relative).is_file())
         allowed = allowed or (relative.parts[0] in {'blog', 'notebooks', 'journal'} and path.suffix == '.html')
         allowed = allowed or (relative.parts[0] == 'map3d' and path.suffix == '.json')
-        allowed = allowed or relative.as_posix() in {'group/bob-publication.json', 'group/bob.json'}
+        allowed = allowed or relative.as_posix() in {'group/bob-publication.json', 'group/bob.json', 'reader-data.json', 'research-overview.json'}
+        allowed = allowed or (relative.parts[0] in {'reader-records', 'research-details'} and path.suffix == '.json')
         if not allowed:
             continue
         target = destination / relative
@@ -233,6 +234,8 @@ def _build_public_artifact(root: Path, destination: Path, *, progress=None) -> d
         from .export_cache import renderer_signature
         compatible_renderer = renderer_signature()
         for node in NODE_IDS:
+            if not (root / 'nodes' / node / 'site/current').exists():
+                continue
             if progress:
                 progress(f'Building website pages for {node} ({NODE_IDS.index(node) + 1}/12).')
             source = (root / 'nodes' / node / 'site' / 'current').resolve(strict=True)
@@ -289,6 +292,11 @@ def _build_public_artifact(root: Path, destination: Path, *, progress=None) -> d
                 node['recorded_runtime'] = json.loads(status.read_text())
         manifest['public_projection'] = 'provider-bodies-omitted'
         manifest['record_heads'] = {entry['id']: entry['record'] for entry in nodes}
+        from .mirror import heads_digest, exported_identity
+        manifest['export_digest'] = heads_digest(manifest['record_heads'])
+        manifest['publication_digest'] = exported_identity(root)['publication_digest']
+        for entry in manifest['nodes']:
+            entry['export_status'] = 'captured' if entry['id'] in snapshots else 'missing'
         # The public mirror retains the complete unified site, not a metrics-only
         # landing page. Snapshot identity disables local runtime polling.
         from .installation_projection import build_unified_projection
@@ -300,10 +308,10 @@ def _build_public_artifact(root: Path, destination: Path, *, progress=None) -> d
         export_unified_site(projection, generated)
         _copy_public_site(generated, staging)
         from .installation_site import export_unified_history
-        export_unified_history({node: root / 'nodes' / node / 'site/current' for node in NODE_IDS}, snapshots, staging)
+        export_unified_history({node: root / 'nodes' / node / 'site/current' for node in snapshots}, snapshots, staging)
         encoded = json.dumps(manifest, sort_keys=True)
         (staging / 'installation.json').write_text(encoded)
-        for node in NODE_IDS:
+        for node in snapshots:
             (staging / 'nodes' / node / 'installation.json').write_text(encoded)
         package_public_history(staging)
         (staging / '.nojekyll').touch()
@@ -357,8 +365,12 @@ def build_public_artifact(root: Path, destination: Path, *, progress=None) -> di
         shutil.copyfile(root / 'installation-id.json', pinned / 'installation-id.json')
         for node in NODE_IDS:
             if progress:
-                progress(f'Capturing {node} ({NODE_IDS.index(node) + 1}/12); waiting for its page export if needed.')
+                progress(f'Capturing {node} ({NODE_IDS.index(node) + 1}/12); using its last completed export.')
             site = root / 'nodes' / node / 'site'
+            if not (site / 'current').exists():
+                if progress:
+                    progress(f'{node} has no completed export; marking it missing.')
+                continue
             with (site / '.export.lock').open('a') as lease:
                 fcntl.flock(lease, fcntl.LOCK_EX)
                 source = (site / 'current').resolve(strict=True)
@@ -381,13 +393,8 @@ def build_public_artifact(root: Path, destination: Path, *, progress=None) -> di
                             json.dumps({'state': state, 'observed_at': observed}))
             except (OSError, ValueError, TypeError):
                 pass
-        publications = []
-        for node in NODE_IDS:
-            path = pinned / 'nodes' / node / 'site/current/group/bob-publication.json'
-            publications.append(json.loads(path.read_text()) if path.exists() else None)
-        from .event_format import digest
-        if any(publications) and (not all(publications) or len({digest(p) for p in publications}) != 1):
-            raise ValueError('Wait for every node to export the same accepted Bob article')
+        if not any((pinned / 'nodes' / node / 'site/current').exists() for node in NODE_IDS):
+            raise ValueError('No completed node exports are available')
         return _build_public_artifact(pinned, destination, progress=progress)
 
 
@@ -440,10 +447,12 @@ def publish_artifact(root: Path, output: Path | None = None) -> dict:
     # Fail closed before reading active exports when publication is unconfigured.
     if not repository or not branch or branch in {'master', 'main', 'wake-runtime', 'wake-state', 'wake-live'}:
         raise ValueError('Configure WAKE_PUBLISH_REPOSITORY and a dedicated WAKE_PUBLISH_BRANCH')
-    with tempfile.TemporaryDirectory(prefix='wake-public-') as temporary:
-        target = Path(temporary) / 'site'
-        manifest = build_public_artifact(root, target)
-        upload_public_artifact(target, repository, branch)
+    with (Path(root) / '.public-publish.lock').open('a') as lease:
+        fcntl.flock(lease, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        with tempfile.TemporaryDirectory(prefix='wake-public-') as temporary:
+            target = Path(temporary) / 'site'
+            manifest = build_public_artifact(root, target)
+            upload_public_artifact(target, repository, branch)
     return manifest
 
 
@@ -476,7 +485,10 @@ def main(argv=None) -> int:
     for action in ('start', 'stop', 'pause', 'restart', 'RESET', 'status', 'mirror-enable', 'mirror-disable'):
         actions.add_parser(action)
     actions.add_parser('bob', help='Request eligible editorial work without starting research').add_argument('--revise', help='Request a model-written correction of the current shared article, with a recorded operator reason')
-    actions.add_parser('mirror-ack', help='Acknowledge the exact shared publication in a delivered immutable artifact').add_argument('digest')
+    ack = actions.add_parser('mirror-ack', help='Acknowledge the exact captured export digest; legacy Bob digests remain supported')
+    ack.add_argument('digest')
+    ack.add_argument('--export', action='store_true', dest='export_ack')
+    ack.add_argument('--publication-digest')
     actions.add_parser('import', help='Verify and replace active data, leaving research stopped').add_argument('archive', help='Archive basename inside data/backups')
     actions.add_parser('export', help='Drain and export reloadable records into data/backups').add_argument('--name', default=None, help='New .zip archive basename')
     actions.add_parser('publish', help='Publish immutable exports without changing research controls; enable subsequent Bob mirror updates').add_argument('--output', type=Path, help='Build a local public artifact instead of uploading')
@@ -487,6 +499,8 @@ def main(argv=None) -> int:
             payload['revision_reason'] = args.revise
         elif args.action == 'mirror-ack':
             payload['digest'] = args.digest
+            if args.export_ack:
+                payload.update(export_digest=args.digest, publication_digest=args.publication_digest)
         elif args.action in ('import', 'export'):
             name = args.archive if args.action == 'import' else args.name or datetime.now(timezone.utc).strftime('wake-%Y%m%dT%H%M%S%fZ.zip')
             if name != Path(name).name or not name.endswith('.zip') or '\\' in name:

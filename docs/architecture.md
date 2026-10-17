@@ -455,6 +455,14 @@ are independent operations. Browser rendering remains disposable in every case.
 
 ## Optional inspection activity
 
+Browser delivery is separate from retained history and worker liveness. Reader
+pages use a 256 KiB bootstrap and same-origin paged/detail exports. Console uses a
+compact overview and optional wake detail files. The installation comparison
+serves completed summary observations rather than fanning out during HTTP reads.
+Unavailable workers retain their last exported data with visible freshness; none
+of these disposable views supplies governance or provider context. See
+[browser transport](retrieval.md#browser-views-and-exact-detail).
+
 Container activity is ephemeral, read-only telemetry exposed through `/runtime.json`.
 `Engine.run` may report selected stages to a best-effort observer; observer failure
 cannot change permission, provider effects, accepted state or receipts. Only stage,
@@ -514,7 +522,13 @@ require valid attributed references and the Bob/WAKE identity boundary; prose
 style is guidance rather than a publication veto. Each aggregate tenth accepted
 wake creates a publication obligation that survives failed attempts and quota waits,
 without blocking research. Missing peers and withheld drafts
-remain visible; completed drafts are reused rather than repeatedly inferred. Historical
+remain visible; completed drafts are reused rather than repeatedly inferred. Modern
+requests separate prose paragraphs, explicit reference numbers and summary. Owned
+rendering adds citation punctuation and the Summary heading under a versioned,
+hash-bound contract while retaining the exact provider response. Replay checks
+that transformation; it never infers missing support. Attribution failures close
+the native invocation as rejected and feed bounded repair context. Existing dated
+node exports remain editorial inputs when a worker is unavailable. Historical
 solo welcomes and rejected attempts remain replayable. See
 [the operating contract](development.md#first-run-publication-and-passenger).
 
@@ -556,8 +570,10 @@ quota standby, or blocked access. The shared API queue still controls eligibilit
 The unified cube selects the latest recorded node result per canonical coordinate,
 retaining each contributing node and receipt. It never averages separate node
 scores into an invented trial. A Summary sentence marker is accepted as a final
-Bob section; publication preserves the exact model article and receipt. A
-formatting-only withheld draft can be reevaluated without a provider call.
+Bob section for legacy body-string responses. Retained articles preserve their
+exact bytes; new structured responses retain both their exact raw output and
+verified rendering receipt. A formatting-only withheld draft can be reevaluated
+without a provider call.
 
 GitHub Pages serves the uploaded `wake-public` installation projection directly.
 Hosted research workflows and their runner are removed; the retained hosted record is not merged

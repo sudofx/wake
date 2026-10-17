@@ -4,6 +4,9 @@ set -Eeuo pipefail
 repo_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$repo_dir"
 if [[ -f .env ]]; then set -a; source .env; set +a; fi
+if [[ "${WAKE_MIRROR_LEASED:-}" != 1 ]]; then
+  exec python3 scripts/wake_mirror.py --publish "$@"
+fi
 : "${WAKE_PUBLISH_REPOSITORY:?Configure WAKE_PUBLISH_REPOSITORY in .env}"
 : "${WAKE_PUBLISH_BRANCH:?Configure WAKE_PUBLISH_BRANCH in .env}"
 progress(){ printf 'WAKE publish: %s\n' "$*"; }
@@ -25,13 +28,17 @@ progress 'Checking running GitHub Actions; research keeps its current setting.'
 check_actions
 public_dir="$(mktemp -d "${TMPDIR:-/tmp}/wake-public.XXXXXX")"
 container_dir="/tmp/wake-public-$(date +%s)-$$"
-trap 'rm -rf "$public_dir"' EXIT
+cleanup(){
+  rm -rf "$public_dir"
+  docker exec wake rm -rf "$container_dir" >/dev/null 2>&1 || true
+}
+trap cleanup EXIT
 # Pin immutable exports; neither capture nor delivery changes research controls.
 stage='enabling mirror delivery'
 progress 'Connecting to the installation.'
 docker exec wake wake-research mirror-enable >/dev/null
 stage='capturing and building website pages'
-progress 'Capturing all twelve node exports. This can take several minutes.'
+progress 'Capturing completed node exports; unavailable workers do not delay capture.'
 docker exec wake python -c 'from pathlib import Path; import sys; from wake.installation_cli import build_public_artifact; build_public_artifact(Path("/data"), Path(sys.argv[1]), progress=lambda message: print(message, flush=True))' "$container_dir"
 stage='copying the website to the Mac'
 progress 'Copying the prepared website to your Mac.'
@@ -48,11 +55,13 @@ check_actions
 stage='uploading the website snapshot to GitHub'
 progress 'Uploading the website snapshot to GitHub.'
 python3 scripts/publish_pages.py --artifact "$public_dir/site"
-publication_digest="$(python3 -c 'import json,sys; from wake.event_format import digest; print(digest(json.load(open(sys.argv[1]))))' "$public_dir/site/nodes/100.wake/group/bob-publication.json")"
 stage='recording delivery'
-progress 'Recording successful delivery.'
-docker exec wake wake-research mirror-ack "$publication_digest" >/dev/null
-progress 'Done. GitHub has the snapshot; Pages rebuilds separately. Research was not stopped.'
-if [[ "${1:-}" == --watch ]]; then
-  exec python3 scripts/wake_mirror.py
+progress 'Recording successful delivery of the captured heads.'
+python3 scripts/wake_mirror.py --record-delivery "$public_dir/site/installation.json"
+# Legacy controllers understand only Bob digests. The host delivery receipt
+# above retains the exact captured head digest regardless of controller age.
+publication_digest="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("publication_digest") or "")' "$public_dir/site/installation.json")"
+if [[ -n "$publication_digest" ]]; then
+  docker exec wake wake-research mirror-ack "$publication_digest" >/dev/null
 fi
+progress 'Done. GitHub has the snapshot; Pages rebuilds separately. Research was not stopped.'

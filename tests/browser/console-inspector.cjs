@@ -7,7 +7,7 @@ const base=process.argv[2];
   page.on('pageerror',e=>errors.push(e.message));
   const source=await context.request.get(new URL('research-data.json',base).href).then(r=>r.json());
   source.graph.nodes=[{id:'project:inspector-fixture',kind:'project',title:'Inspector fixture',detail:{id:'inspector-fixture',status:'active',question:'A readable test record'}}];source.graph.edges=[];
-  await context.route('**/research-data.json',r=>r.fulfill({json:source}));
+  await context.route(/\/research-(?:data|overview)\.json$/,r=>r.fulfill({json:source}));
   await page.goto(new URL('console.html',base).href);await page.waitForLoadState('networkidle');
   const inspector=page.locator('[data-console-panel-id="014"]');
   assert(await inspector.isVisible());assert(await inspector.locator('.empty').isVisible());

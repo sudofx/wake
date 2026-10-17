@@ -361,7 +361,9 @@ class Engine:
             "model":provider.model, "phase":"group_editorial", "charged":provider.charged,
             "quota_day":day, "base_version":state["version"], "request":request,
             "request_hash":digest(request), "process_id":os.getpid(),
-            "editorial_checkpoint":request["context"]["checkpoint"]})
+            "editorial_checkpoint":request["context"]["checkpoint"],
+            **({"editorial_output_contract": request["context"]["output_contract"]}
+               if request["context"].get("output_contract") else {})})
         return invocation, request
 
     def set_time_dilation(self, *, enabled=None, mode=None, scale=None, reason):
@@ -2924,16 +2926,23 @@ class Engine:
                 checkpoint()
             return {"status": "failed", "id": invocation, "reason": reason}
         if phase == "group_editorial":
-            from .group_editorial import validate_article
+            from .group_editorial import PARAGRAPH_CONTRACT, render_response, validate_grounding
             proposal_id = "group-editorial-" + invocation
             if lifecycle is not None:
                 lifecycle.proposal_received(proposal_id)
             try:
                 require(isinstance(raw, str) and len(raw) <= 10000, "Invalid group editorial output")
-                article = validate_article(json.loads(raw))
+                article, transformation = render_response(json.loads(raw))
+                require(transformation is None or request['context'].get('output_contract') == PARAGRAPH_CONTRACT,
+                        "Structured editorial response requires its declared rendering contract")
+                packet = request["context"]["group"]
+                if all(item.get('editorial_schema') == 2 for item in packet['inputs']):
+                    validate_grounding(article, packet, checkpoint=request["context"]["checkpoint"])
             except (Rejected, ValueError, TypeError) as exc:
                 self.store.append("rejected", {"id":invocation, "reason":str(exc)[:1000],
-                    "raw_response":str(raw)[:10000], "metadata":metadata, **request_counts()})
+                    "raw_response":str(raw)[:10000], "metadata":metadata,
+                    "editorial": {"reason":str(exc)[:1000], "draft_excerpt":str(raw)[:1800]},
+                    **request_counts()})
                 if lifecycle is not None:
                     lifecycle.governed(proposal_id, None, "rejected")
                     lifecycle.complete(proposal_id=proposal_id, detail="invalid-group-editorial")
@@ -2941,6 +2950,7 @@ class Engine:
             self.store.append("editorial_completed", {"id":invocation, "article":article,
                 "input_digest":digest(request["context"]["group"]), "checkpoint":request["context"]["checkpoint"],
                 "raw_response":raw, "metadata":metadata,
+                **({"output_transform":transformation} if transformation else {}),
                 "reason":"Model synthesis of every group member; no research transition.", **request_counts()})
             if lifecycle is not None:
                 lifecycle.governed(proposal_id, None, "accepted")

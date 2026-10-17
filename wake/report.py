@@ -17,6 +17,7 @@ import html
 import json
 import os
 import re
+import secrets
 from pathlib import Path
 from zoneinfo import ZoneInfo
 from urllib.parse import unquote, urlsplit
@@ -48,12 +49,17 @@ def atomic_write(path, content):
     if path.suffix == ".html" and "</body>" in content and "<script>/* Every off-site destination opens separately;" not in content:
         external = (Path(__file__).parent / "assets" / "external-links.js").read_text()
         content = content.replace("</body>", "<script>" + external + "</script></body>", 1)
-    temporary = path.with_suffix(path.suffix + ".tmp")
-    with temporary.open("w", encoding="utf-8") as stream:
-        stream.write(content)
-        stream.flush()
-        os.fsync(stream.fileno())
-    temporary.replace(path)
+    # Concurrent status/export writers must never rename each other's staging
+    # file. Every reader observes the previous complete file or the new one.
+    temporary = path.with_name(path.name + '.' + secrets.token_hex(8) + '.tmp')
+    try:
+        with temporary.open("x", encoding="utf-8") as stream:
+            stream.write(content)
+            stream.flush()
+            os.fsync(stream.fileno())
+        temporary.replace(path)
+    finally:
+        temporary.unlink(missing_ok=True)
 
 
 
@@ -477,6 +483,8 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         if research.get("head") != head or research.get("version") != state["version"]:
             raise ValueError("Research projection does not match the exported record")
         atomic_write(target / "research-data.json", json.dumps(research, ensure_ascii=False, separators=(",", ":")))
+        from .research_transport import export_research_transport
+        export_research_transport(research, target)
         from .live import browser_projection, installation_overview
         atomic_write(target / "installation-overview.json", json.dumps(installation_overview(research), ensure_ascii=False, separators=(",", ":")))
         for name in ("console.html", "research.css", "research.js", "research-scene.js", "research-instruments.js", "console-layout.js", "process-field.css", "process-field.js", "runtime-activity.js", "installation.html", "installation-console.css", "installation-console.js"):
@@ -507,8 +515,11 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             "console-graph-alt.png",
         ):
             (background_target / name).write_bytes((background_source / name).read_bytes())
-        browser_data = json.dumps(browser_projection(data), ensure_ascii=False, separators=(",", ":"))
+        public_data = browser_projection(data)
+        browser_data = json.dumps(public_data, ensure_ascii=False, separators=(",", ":"))
         atomic_write(target / "wake-data.json", browser_data)
+        from .reader_transport import export_reader_transport
+        export_reader_transport(public_data, target)
         page = template.replace("/* WAKE_STYLE */", "").replace("/* NAV_STYLE */", "")
         page = page.replace("/* NAV_SCRIPT */", (assets / "nav.js").read_text())
         page = page.replace("/* WAKE_SCRIPT */", (assets / "app.js").read_text())
@@ -712,7 +723,7 @@ def _deployment_site(target, *, standalone, installation=None):
     marker = ('<script>window.WAKE_DEPLOYMENT=' + json.dumps(deployment)
               + ';window.WAKE_STANDALONE=' + ('true' if standalone else 'false') + ';</script>')
     assets = Path(__file__).parent / "assets"
-    for name in ("masthead.css", "site-theme.js", "console-light.css", "installation-console.js", "installation-console.css", "runtime-activity.js", "reader-theme.css", "page-routing.js"):
+    for name in ("masthead.css", "site-theme.js", "console-light.css", "installation-console.js", "installation-console.css", "runtime-activity.js", "reader-theme.css", "page-routing.js", "reader-data.js"):
         atomic_write(target / name, (assets / name).read_text())
     shell = (assets / "index.html").read_text()
     header = re.search(r'<header class="masthead">.*?</header>', shell, re.S).group(0)

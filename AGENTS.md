@@ -162,8 +162,9 @@ head/version and transport on LAN access, not only appearance or HTTP success.
 
 Verify source before an authorized push. Source publication, container restart,
 public snapshot upload, and record reset are separate actions. Publishing the
-mirror drains the selected installation and leaves research stopped; never reset
-or copy its records as a side effect. Preserve all historical hosted branches.
+mirror pins completed immutable exports without changing research controls; never
+reset or copy its authority records as a side effect. Mirror delivery must not
+wait for worker availability or acceptance of a new Bob article. Preserve all historical hosted branches.
 
 Update living documentation at its existing owner; retain dated validation history.
 Comments should explain invariants, hazards and failure behavior at the responsible

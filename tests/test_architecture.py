@@ -60,9 +60,11 @@ class ArchitectureSeparationTests(unittest.TestCase):
 
     def test_browser_polls_live_projection_without_reload(self):
         page = self.read('wake/assets/index.html')
+        loader = self.read('wake/assets/reader-data.js')
         app = self.read('wake/assets/app.js')
         self.assertNotIn('raw.githubusercontent.com', page)
-        self.assertIn('window.WakeApplyLive?.(next)', page)
+        self.assertIn('src="reader-data.js"', page)
+        self.assertIn('window.WakeApplyLive?.(next)', loader)
         self.assertNotIn('location.replace(url.toString())', page)
         self.assertIn('window.WakeApplyLive = next =>', app)
 

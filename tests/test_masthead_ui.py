@@ -118,10 +118,11 @@ class MastheadPresentationTests(unittest.TestCase):
         self.assertNotIn('DATA_VIEW_SCRIPT', self.html)
 
     def test_live_projection_still_updates_the_public_site(self):
-        self.assertIn('data.public_cycle=Number(data.state?.version||0)', self.html)
-        self.assertIn("window.WakeApplyLive?.(next)", self.html)
-        self.assertIn("setTimeout(poll,10000)", self.html)
-        self.assertNotIn("setInterval(refreshLiveState,10000)", self.html)
+        loader=(ASSETS / 'reader-data.js').read_text()
+        self.assertIn('data.public_cycle=Number(data.state?.version||0)', loader)
+        self.assertIn("window.WakeApplyLive?.(next)", loader)
+        self.assertIn("setTimeout(poll,10000)", loader)
+        self.assertNotIn("setInterval(refreshLiveState,10000)", loader)
 
 
 if __name__ == "__main__":

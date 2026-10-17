@@ -39,6 +39,12 @@ Neither opens authority or requests model output.
 The journal overview carries a bounded event tail and compact invocation/evidence
 views; complete history remains in `events.jsonl`. Installation comparisons read
 small exported summaries, and runtime status reads only worker observations.
+Reader pages begin with `reader-data.json`, capped at 256 KiB. Opening an exact
+record or loading older entries fetches same-origin `reader-records/` pages; the
+complete `wake-data.json` archive is never a routine polling channel. An unavailable
+node changes its freshness indicator, not access to its last completed export.
+Console similarly separates its overview from optional wake details. See
+[browser transport](retrieval.md#browser-views-and-exact-detail).
 The unified complete-history stream is merged from node exports, retaining source
 heads and local receipt identities. Its sort index holds dates and offsets rather
 than full payloads. Inactive automatic-pause controls do not load authority during
@@ -196,6 +202,8 @@ website, so slow exports cannot leave the live light green after a known failure
 Console and process views share a single research projection request. Refreshes
 check the export head before fetching another projection. Canvas views are created
 near the viewport or on interaction, and collapsed views defer initialization.
+The installation comparison uses the presentation thread's completed summaries;
+an HTTP request does not open twelve research files or wait for workers.
 These caches hold disposable presentation only; they cannot accept research or
 change provider sequencing. See [inspection boundaries](architecture.md#optional-inspection-activity).
 
@@ -427,12 +435,18 @@ publication path. Worker blog drafts are retained as withheld editorial output; 
 not become separate public voices. Research advances independently of publication.
 
 The gateway's group endpoints admit members from all of that group's parent and
-child networks, while rejecting members of other groups. Bob requests provider-enforced article fields, with the Summary inside the body string.
-The prompt requests a separate Summary heading. Validation also recognizes a
-sentence-boundary `Summary` followed by a capitalized summary sentence if the
-model collapses the heading into the prose. Retained drafts are reevaluated with
-their exact text; an acceptable draft needs no replacement model call.
-He writes plain paragraphs for the existing blog renderer; Markdown heading and emphasis markers are not rendered.
+child networks, while rejecting members of other groups. Modern Bob requests use
+provider-enforced structured paragraphs: each supplies its prose and an explicit
+nonempty list of reference numbers. The model supplies a separate summary. The
+versioned `group-editorial-paragraphs@1` renderer adds only citation punctuation,
+paragraph breaks and the final Summary heading. It never chooses supporting
+stories or supplies missing attribution. The exact provider response and a
+hash-bound rendering receipt remain in authority; replay verifies that the
+published article follows that transformation. Older body-string responses remain
+supported unchanged. Their final heading can also be a sentence-boundary `Summary`
+followed by a capitalized summary sentence. Retained drafts are reevaluated with
+their exact text; an acceptable draft needs no replacement model call. Markdown
+heading and emphasis markers are not rendered.
 
 The shared `group-wake-introduction` identifies WAKE01. On creation the group first
 uses one parent model invocation to introduce the initialized records of all members,
@@ -444,15 +458,18 @@ across all nodes. The last publication’s captured inputs are the durable water
 A missed milestone remains due until publication succeeds; one catch-up article
 covers accumulated work without fabricating backdated posts. Failed attempts,
 wall time and Bob’s receipts do not count. Research never waits for the article.
-All twelve inputs are required, but members need not advance equally. Bob's own
+All twelve dated exports are required, but members need not advance equally or
+have a currently running worker. An unavailable worker's existing exported stories
+remain usable with their captured date, head and version. Bob's own
 receipts and changing export heads cannot manufacture news. Regressing a member's
 research version fails closed for operator review; a reset is never inferred from
 an editorial cadence.
 
 Each input supplies attributed story IDs, node/record links, notebook revisions,
 dates, recorded claim labels and limitations, plus bounded source URLs. The model
-returns numeric paragraph references to those supplied IDs; both `[1][2]` and
-`[1, 2]` are accepted without rewriting the model’s text. References must cover
+returns paragraph reference numbers pointing to those supplied IDs; the renderer
+prints them as `[1]` or `[1, 2]`. Legacy body-string responses can use `[1][2]` or
+`[1, 2]` unchanged. References must cover
 every member. These structural checks support traceability; they do not prove
 semantic entailment or scientific validity. A progress article can explain open
 questions, provisional readings, corrections, failures and blockers without the
@@ -472,8 +489,12 @@ and the boundary against attributing personhood to Bob or WAKE remain required.
 Bob’s wording cannot qualify evidence or promote a research claim.
 
 Editorial inference uses the existing native invocation and provider quota
-boundary. A withheld draft and reason remain durable; bounded repairs include
-that reason and an excerpt of the draft. Modern milestone articles retry at most
+boundary. Article structure and attribution are checked before an editorial
+invocation can complete. Invalid responses finish as visible rejections with their
+exact bounded response, reason and draft excerpt, rather than falsely reporting a
+completed synthesis. Existing withheld drafts and their reasons remain durable.
+Bounded repairs include the failure reason and an excerpt, including after a day
+boundary. Modern milestone articles retry at most
 once per 15 minutes for the same editorial sequence, including quota deferrals.
 There is no three-attempt or six-per-day editorial cutoff that can erase a required
 post; native provider budgets and quota controls still apply. Legacy packets retain

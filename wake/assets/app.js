@@ -9,7 +9,7 @@
 (async () => {
   'use strict';
   const data = await window.WakeData;
-  if(window.WAKE_DEPLOYMENT?.group?.id){
+  if(window.WAKE_DEPLOYMENT?.group?.id && !data.reader_transport){
     const groupId=window.WAKE_DEPLOYMENT.group.id;
     try{
       const response=await fetch(new URL('group/bob.json?wake_group='+Date.now(),location.href),{cache:'no-store'});
@@ -205,11 +205,11 @@
     const routeMatch=location.hash.match(/^#journal\/(topic:|cycle:)([^/]+)/);
     const selectedKind=routeMatch?.[1]||'', selected=decodeURIComponent(routeMatch?.[2]||'');
     const entries=[...s.journal].reverse().filter(j =>
-      (provider==='all'||s.invocations[j.invocation].provider===provider) &&
+      (provider==='all'||s.invocations[j.invocation]?.provider===provider) &&
       (!selected||(selectedKind==='topic:'?journalTopics(j).includes(selected):String(j.cycle)===selected)) &&
       `${j.title} ${j.summary} ${j.invocation} ${j.cycle} ${journalTopics(j).map(topicLabel).join(' ')}`.toLowerCase().includes(query));
     $('entries').innerHTML=entries.slice(0,journalLimit).map(j => {
-      const i=s.invocations[j.invocation], event=decisions[j.invocation], actions=event?.payload?.proposal?.actions;
+      const i=s.invocations[j.invocation]||{}, event=decisions[j.invocation], actions=event?.payload?.proposal?.actions;
       const changeLabel=Array.isArray(actions)?`${actions.length} recorded change${actions.length===1?'':'s'}`:'Change details outside the live history window';
       return `<article class="entry record-panel" id="cycle-${esc(j.origin?.node?`${j.origin.node}-${j.cycle}`:j.cycle)}"><div class="record-panel-head"><div class="record-panel-meta journal-meta"><span class="record-type">JOURNAL · WAKE✳︎ ${String(j.cycle).padStart(3,'0')}</span><span class="record-status">${badge(i.provider==='fixture'?'simulated':'accepted',i.provider==='fixture'?'SIMULATED':'ACCEPTED')}</span><span class="record-topics journal-topics">${journalTopics(j).map(id=>topicTag(id,'journal')).join('')}</span><time datetime="${esc(i.time)}">${esc(fmt(i.time))}</time></div><h3><a href="#journal/cycle:${j.cycle}">${esc(j.title)}</a></h3></div><div class="record-panel-body"><p>${esc(j.summary)}</p><div class="entry-bottom"><span>${esc(i.provider)} / ${esc(i.model)}${j.origin?.node?` · <a href="nodes/${esc(encodeURIComponent(j.origin.node))}/index.html#journal/cycle:${j.cycle}">${esc(j.origin.node)}</a>`:''}</span><span>${esc(changeLabel)}</span></div><details class="lab-notes"><summary>LAB NOTES / ${Array.isArray(actions)?`${actions.length} RECORDED CHANGE${actions.length===1?'':'S'}`:'HISTORICAL CHANGE DETAILS'}</summary><div class="lab-notes-body">${Array.isArray(actions)?(actions.map(a=>`<div class="decision"><strong>${esc(a.type)} / ${esc(a.id)}</strong><p>${esc(a.statement||a.task||a.status)}</p><p>${esc(a.reason)}</p>${refs(a.evidence)}</div>`).join('') || '<p>No state changes proposed.</p>'):'<p>The journal entry is preserved, but its change details are outside the recent events included in this live view.</p>'}</div></details><a class="subtle" href="#history/${encodeURIComponent(j.invocation)}">Full invocation & decision →</a></div></article>`;
     }).join('') || '<p class="empty">No matching entries. The tape is blank here.</p>';
@@ -527,6 +527,7 @@
     $('evidence-content').innerHTML=(selected?'<p><a class="text-link" href="#evidence">← All evidence</a></p>':'')+rows.map(e=>`<article class="data-card evidence-card"><h3>${esc(e.id)}</h3><span class="source">${esc(e.source)} / ${esc(e.actor)} / ${esc(fmt(e.time))}</span>${readable(e)}<details><summary>Raw observation</summary>${raw(displayEvent(e))}</details></article>`).join('')+(rows.length?'':'<p class="empty">No observations match.</p>');
   }
   function history(selected='') {
+    if(data.reader_transport && historyScope){historyScope.hidden=false;historyScope.textContent=`Showing ${data.events.length.toLocaleString()} loaded events from the recent overview. Complete history retains the full export.`;}
     const query=$('history-search').value.toLowerCase(), filter=selected.startsWith('filter:')?selected.slice(7):'', kind=filter==='rejected'?'rejected':$('event-filter').value;
     if(filter==='rejected')$('event-filter').value='rejected';
     const inheritedIds=new Set(Object.values(s.commitments).filter(x=>x.status==='fulfilled'&&x.created_by!==x.resolved_by).flatMap(x=>[x.created_by,x.resolved_by]).filter(Boolean));
@@ -536,6 +537,27 @@
     const events=[...data.events].reverse().filter(e=>(!exact||e.payload.id===exact)&&matchesFilter(e)&&(kind==='all'||displayEventKind(e.kind)===kind)&&JSON.stringify(displayEvent(e)).toLowerCase().includes(query));
     $('history-content').innerHTML=((selected)?'<p><a class="text-link" href="#history">← All events</a></p>':'')+events.slice(0,historyLimit).map(e=>`<details class="audit-row"><summary><span>#${String(e.seq).padStart(4,'0')}</span>${badge(displayEventKind(e.kind))}<time datetime="${esc(e.time)}">${esc(fmt(e.time))}</time><span class="event-id">${esc(e.payload.id||'system')}</span></summary>${e.payload.reason?`<p>${esc(e.payload.reason)}</p>`:''}${(e.kind==='rejected'||e.payload.editorial)?`<p><a class="text-link" href="rejected.html#${encodeURIComponent(e.payload.id)}">Read the draft and explanation →</a></p>`:''}${raw(e)}</details>`).join('')+(events.length?'':'<p class="empty">No events match.</p>');
     $('history-more').hidden=events.length<=historyLimit;
+  }
+  let routeTicket=0;
+  function readerPagination(page,selected){
+    $('reader-pagination')?.remove();
+    if(!data.reader_transport||(selected&&!selected.startsWith('topic:')))return;
+    const collections=({blog:['posts'],journal:['journal'],history:['events'],evidence:['evidence'],projects:['notebooks','projects'],discoveries:['notebooks']})[page];
+    if(!collections)return;
+    const panel=document.createElement('div');panel.id='reader-pagination';panel.className='research-note';
+    const text=document.createElement('p');text.textContent=data.reader_transport.scope;panel.append(text);
+    for(const collection of collections){
+      if(!data.reader_transport.counts[collection])continue;
+      const button=document.createElement('button');button.type='button';button.textContent='Load older '+collection;
+      button.addEventListener('click',async()=>{
+        button.disabled=true;
+        try{const more=await window.WakeReader.more(collection);refreshDerived();
+          if(collection==='journal')journalLimit+=24;if(collection==='events')historyLimit+=24;
+          route();if(!more)document.querySelector('#reader-pagination [data-collection="'+collection+'"]')?.remove();
+        }catch(error){button.disabled=false;text.textContent=error.message;}
+      });button.dataset.collection=collection;panel.append(button);
+    }
+    $(page)?.append(panel);
   }
   function route() {
     const [part,id]=location.hash.slice(1).split('/');
@@ -548,6 +570,10 @@
     document.querySelectorAll('.view').forEach(el=>el.hidden=el.id!==page);
     document.querySelectorAll('[data-nav]').forEach(el=>{if(el.dataset.nav===page||(el.dataset.navSection==='research'&&['discoveries','topics','journal','blog','projects','lab','metrics','evidence','history'].includes(page)))el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');});
     let selected='';try{selected=decodeURIComponent(id||'');}catch{}
+    const ticket=++routeTicket;
+    const draw=()=>{
+    if(ticket!==routeTicket)return;
+    $(page)?.querySelector('[data-reader-error]')?.remove();
     if(page==='blog')blog(selected);
     if(page==='journal')journal();
     if(page==='lab')lab();
@@ -558,6 +584,17 @@
     expandRecordDetails();
     emphasizeWake(document);
     document.title=`${WAKE_TEXT} / ${page==='home'?'Explore':page==='journal'?'Read':page[0].toUpperCase()+page.slice(1)}`;
+    readerPagination(page,selected);
+    };
+    if(window.WakeReader && data.reader_transport && (selected||['journal','history','evidence'].includes(page))){
+      window.WakeReader.ensure(page,selected).then(()=>{refreshDerived();draw();}).catch(error=>{
+        if(ticket!==routeTicket)return;
+        const target=$(page);if(!target)return;
+        const message=document.createElement('p');message.className='research-note';message.textContent=error.message+' ';
+        const retry=document.createElement('button');retry.type='button';retry.textContent='Retry loading details';retry.addEventListener('click',route);message.append(retry);
+        target.querySelector('[data-reader-error]')?.remove();message.dataset.readerError='true';target.prepend(message);
+      });
+    }else draw();
   }
   $('evidence-search')?.addEventListener('input',route);
   $('history-search')?.addEventListener('input',()=>{historyLimit=35;route();});
@@ -587,6 +624,7 @@
     // metrics block synchronized with the same projection as state/events so
     // newly published storage counters appear without a Pages redeploy.
     data.metrics=next.metrics||data.metrics||{};
+    data.reader_transport=next.reader_transport||data.reader_transport;
     refreshDerived();
     renderMetricStrip();
     document.querySelectorAll('.cycle-count').forEach(node=>node.textContent=String(s.version??'—'));

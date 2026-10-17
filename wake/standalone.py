@@ -87,6 +87,29 @@ def _pause_after_introduction(directory, state):
     return True
 
 
+def _shared_provider_schedule(filename):
+    """A missing/racing observation cannot terminate an owned node.
+
+    This is a wait optimization only. The installation request gate still owns
+    permission to send every provider effect, including on a fresh installation.
+    """
+    path = Path(filename)
+    try:
+        if not path.exists():
+            return {}
+        with path.open('rb') as stream:
+            raw = stream.read(32769)
+        if len(raw) > 32768:
+            return None
+        packet = json.loads(raw)
+        models = packet.get('models') if isinstance(packet, dict) else None
+        if not isinstance(models, dict) or any(not isinstance(value, dict) for value in models.values()):
+            return None
+        return models
+    except (OSError, ValueError):
+        return None
+
+
 def _completed_runtime_status(result, schedule=None):
     """Expose terminal outcomes before slow projection reads or website rendering."""
     schedule = schedule or {}
@@ -426,9 +449,14 @@ def run(args):
                         if provider_name == 'gemini' and not os.environ.get('GEMINI_API_KEY'):
                             load_secret()
                         schedule_file = os.environ.get('WAKE_INSTALLATION_SCHEDULE_FILE')
-                        if provider_name == 'gemini' and schedule_file and Path(schedule_file).exists():
+                        if provider_name == 'gemini' and schedule_file:
                             models = Gemini(settings, args.model).models
-                            shared = json.loads(Path(schedule_file).read_text()).get('models', {})
+                            shared = _shared_provider_schedule(schedule_file)
+                            if shared is None:
+                                server.runtime_status = {'mode': 'standalone', 'state': 'waiting',
+                                    'reason': 'Shared provider scheduling observation temporarily unavailable'}
+                                stop.wait(1)
+                                continue
                             now = time.time()
                             eligible = [m for m in models if not shared.get(m, {}).get('blocked') and
                                         max(shared.get(m, {}).get('retry_at', 0), shared.get(m, {}).get('probe_at', 0)) <= now]

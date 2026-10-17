@@ -3,7 +3,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
 const assert=require('node:assert/strict'),fs=require('node:fs'),http=require('node:http'),path=require('node:path');
 const site=process.argv[2];if(!site)throw Error('Usage: performance-status.cjs <generated fixture directory>');
 let state='paused',online=true,streams=0,runtimeRequests=0,projectionRequests=0,manifestRequests=0;
-const clients=new Set(),initial=JSON.parse(fs.readFileSync(path.join(site,'research-data.json')));let projection=initial;
+const clients=new Set(),initial=JSON.parse(fs.readFileSync(path.join(site,fs.existsSync(path.join(site,'research-overview.json'))?'research-overview.json':'research-data.json')));let projection=initial;
 const history=fs.readFileSync(path.join(site,'events.jsonl')),compressedHistory=require('node:zlib').gzipSync(history);
 const runtime=()=>({mode:'standalone',state,activity_schema:1,runtime_id:'fixture',snapshot_generation:1,observed_at:new Date().toISOString(),capabilities:{live_activity:true},activity:{stage:'idle',active:false}});
 const packet=()=>({mode:'installation',research:'running',state,members:[{id:'100.wake',runtime:runtime(),head:projection.head}],head:projection.head,capabilities:{live_activity:false,status_stream:true}});
@@ -14,7 +14,7 @@ const server=http.createServer((req,res)=>{
  if(name==='runtime.json'){runtimeRequests++;res.setHeader('Content-Type','application/json');res.end(JSON.stringify(packet()));return;}
  if(name==='installation.json'){manifestRequests++;res.setHeader('Content-Type','application/json');res.end(JSON.stringify(manifest()));return;}
  if(name==='head.txt'){res.end(projection.head+'\n');return;}
- if(name==='research-data.json'){projectionRequests++;res.setHeader('Content-Type','application/json');res.end(JSON.stringify(projection));return;}
+ if(name==='research-data.json'||name==='research-overview.json'){projectionRequests++;res.setHeader('Content-Type','application/json');res.end(JSON.stringify(projection));return;}
  if(name==='events.jsonl.gz'){res.setHeader('Content-Type','application/gzip');if(url.searchParams.has('encoding'))res.setHeader('Content-Encoding','gzip');res.end(compressedHistory);return;}
  const relative=url.pathname.replace(/^\/wake\//,''),file=path.join(site,relative||'index.html');if(!fs.existsSync(file)||!fs.statSync(file).isFile()){res.writeHead(404);res.end();return;}
  const type=name.endsWith('.js')?'text/javascript':name.endsWith('.css')?'text/css':name.endsWith('.html')?'text/html':'application/octet-stream';res.setHeader('Content-Type',type);

@@ -55,7 +55,10 @@ def exported_head(site):
     try:
         with (Path(site) / 'current/head.txt').open() as stream:
             head = stream.read(129).strip()
-        return head if len(head) == 64 and all(c in '0123456789abcdef' for c in head) else None
+        # Unified exports use a presentation fingerprint, never a node receipt
+        # head. Both bounded forms may notify readers that a view changed.
+        identity = head.removeprefix('snapshot:')
+        return head if len(identity) == 64 and all(c in '0123456789abcdef' for c in identity) else None
     except OSError:
         return None
 
@@ -150,7 +153,7 @@ class InstallationHTTP(PublicSnapshotHandler):
         route = unquote(urlsplit(self.path).path)
         controller = self.server.controller
         if route == '/installation.json' or route in {f'/nodes/{n}/installation.json' for n in NODE_IDS}:
-            packet = installation_snapshot(controller.root)
+            packet = controller.installation_manifest()
             packet['coordinator'] = controller.coordinator.status()
             self.json_response(200, packet)
             return
@@ -249,7 +252,7 @@ class InstallationHTTP(PublicSnapshotHandler):
             elif packet['action'] == 'release':
                 with controller.slot_condition:
                     released = controller.coordinator.release(key, packet['token'], packet.get('outcome'),
-                        persist=lambda state: atomic_write(controller.root / 'provider-schedule.json', json.dumps(state)))
+                        persist=controller.persist_schedule)
                     controller.slot_condition.notify_all()
                 result = {'status': 'released' if released else 'expired'}
             elif packet['action'] == 'cancel':
@@ -300,6 +303,7 @@ class Controller:
         self.observer_slots = threading.BoundedSemaphore(16)
         self.observer_sample = None
         self.observer_sample_at = 0
+        self.manifest_sample = None
         self.root.mkdir(parents=True, exist_ok=True)
         schedule = self.root / 'provider-schedule.json'
         if schedule.exists():
@@ -339,6 +343,20 @@ class Controller:
             self.observer_sample, self.observer_sample_at = result, sampled
             return result
 
+    def installation_manifest(self):
+        """Serve completed comparison summaries without fanning out to workers."""
+        from copy import deepcopy
+        packet = deepcopy(self.manifest_sample)
+        if packet is None:
+            # Cold startup still serves a bounded unavailable observation. The
+            # presentation thread fills summaries independently of this request.
+            packet = installation_snapshot(self.root, include_research=False)
+        observations = {member['id']: member['runtime'] for member in self.runtime_snapshot()['members']}
+        packet.update(live=True, generated=datetime.now(timezone.utc).isoformat())
+        for node in packet['nodes']:
+            node['runtime'] = observations.get(node['id'], {'state': 'unavailable'})
+        return packet
+
     def set_controls(self, mode):
         command_id = secrets.token_hex(16)
         self.mode = mode
@@ -362,9 +380,15 @@ class Controller:
             return {'ok': False, 'error': 'Command still unresolved; inspect status before retrying'}
         return result
 
-    def persist_schedule(self):
+    def persist_schedule(self, state=None):
+        if state is None:
+            # Match acquire/release's lock order. A release callback already
+            # holds the coordinator lock and supplies its detached state.
+            with self.slot_condition:
+                self.persist_schedule(self.coordinator.dump_state())
+            return
         with self.schedule_lock:
-            atomic_write(self.root / 'provider-schedule.json', json.dumps(self.coordinator.dump_state()))
+            atomic_write(self.root / 'provider-schedule.json', json.dumps(state))
 
     def refresh_site(self):
         with self.site_lock:
@@ -409,6 +433,15 @@ class Controller:
             replacement.symlink_to(candidate)
             replacement.replace(current)
             self.site_signature = signature
+            from .live import installation_overview
+            self.manifest_sample = {'schema': 1, 'installation_id': identity,
+                'live': True, 'generated': projection['generated'], 'nodes': [
+                    {'id': name, 'role': 'parent' if name[:3].endswith('00') else 'child',
+                     'parent': None if name[:3].endswith('00') else name[0] + '00.wake',
+                     'available': name in snapshots,
+                     **({'snapshot': {key: research[name].get(key) for key in ('head','version','generated')},
+                         'research': installation_overview(research[name])} if name in snapshots else {})}
+                    for name in NODE_IDS]}
             for old in site.glob('snapshot-*'):
                 if old not in (candidate, previous):
                     shutil.rmtree(old)
@@ -418,44 +451,35 @@ class Controller:
         return True
 
     def shared_publication_digest(self):
-        publications = []
-        for node in NODE_IDS:
-            try:
-                p = read_json(self.root / 'nodes' / node / 'site/current/group/bob-publication.json', 240000)
-                publications.append(p)
-            except (OSError, ValueError):
-                return None
-        from .event_format import digest
-        hashes = {digest(p) for p in publications if p}
-        return next(iter(hashes)) if len(hashes) == 1 and len([p for p in publications if p]) == len(NODE_IDS) else None
+        from .mirror import exported_identity
+        return exported_identity(self.root)['publication_digest']
 
     def update_public_mirror(self):
-        """Coalesce accepted shared articles, with retry status outside authority."""
+        """Queue changed exported heads on cadence, or a new accepted article."""
         path = self.root / 'public-mirror.json'
         if not path.exists():
             return
         with self.mirror_lock:
-            status = read_json(path)
-            if not status.get('enabled') or status.get('retry_at', 0) > time.time():
+            from .mirror import exported_identity, delivery_due, acknowledge, interval_seconds, mirror_status
+            status = mirror_status(self.root)
+            status.setdefault('interval_seconds', interval_seconds())
+            current = exported_identity(self.root)
+            if not delivery_due(status, current):
                 return
-            current = self.shared_publication_digest()
-            if not current or current == status.get('published_digest'):
-                return
+            status.update(status='queued', queued_digest=current['publication_digest'],
+                          queued_export_digest=current['export_digest'])
             if status.get('delivery') == 'host':
-                status.update(status='queued', queued_digest=current)
                 atomic_write(path, json.dumps(status))
                 return
             from .installation_cli import publish_artifact
-            status.update(status='uploading', queued_digest=current)
+            status['status'] = 'uploading'
             atomic_write(path, json.dumps(status))
             try:
-                publish_artifact(self.root)
+                manifest = publish_artifact(self.root)
             except Exception as exc:
                 status.update(status='failed', error=type(exc).__name__, retry_at=time.time() + 300)
             else:
-                status.update(status='published', published_digest=current,
-                              published_at=datetime.now(timezone.utc).isoformat(), retry_at=0)
-                status.pop('error', None)
+                acknowledge(status, manifest)
             atomic_write(path, json.dumps(status))
 
     def spawn(self):
@@ -546,23 +570,33 @@ class Controller:
                 result = installation_snapshot(self.root)
                 for node in result['nodes']:
                     node.pop('research', None)
+                from .mirror import mirror_status
                 result.update(ok=True, research=self.mode, coordinator=self.coordinator.status(),
-                    public_mirror=read_json(self.root / 'public-mirror.json') if (self.root / 'public-mirror.json').exists() else {'enabled': False})
+                    public_mirror=mirror_status(self.root))
                 return result
             if action in ('mirror-enable', 'mirror-disable', 'mirror-ack'):
                 with self.mirror_lock:
                     path = self.root / 'public-mirror.json'
                     status = read_json(path) if path.exists() else {}
                     if action == 'mirror-enable':
-                        status.update(enabled=True, delivery='host')
+                        from .mirror import interval_seconds
+                        status.update(enabled=True, delivery='host', interval_seconds=interval_seconds())
                     elif action == 'mirror-disable':
                         status.update(enabled=False, status='disabled')
                     else:
                         from .governance import require
                         import re
                         require(isinstance(packet.get('digest'), str) and re.fullmatch('[a-f0-9]{64}', packet['digest']), 'Invalid delivered publication digest')
-                        status.update(published_digest=packet['digest'], status='published', retry_at=0,
-                                      published_at=datetime.now(timezone.utc).isoformat())
+                        if packet.get('export_digest'):
+                            from .mirror import acknowledge
+                            publication = packet.get('publication_digest')
+                            require(publication is None or re.fullmatch('[a-f0-9]{64}', publication), 'Invalid delivered Bob digest')
+                            acknowledge(status, {'export_digest': packet['digest'], 'publication_digest': publication})
+                        else:
+                            # Old publishers acknowledge only Bob; never pretend
+                            # that this confirms a later or uncaptured record head.
+                            status.update(published_digest=packet['digest'], status='published', retry_at=0,
+                                          published_at=datetime.now(timezone.utc).isoformat())
                     atomic_write(path, json.dumps(status))
                 return {'ok': True, 'research': self.mode, 'public_mirror': status}
             if action == 'bob':
@@ -574,10 +608,11 @@ class Controller:
                 with self.mirror_lock:
                     result = publish_artifact(self.root, output=packet.get('output'))
                     if not packet.get('output'):
-                        dig = self.shared_publication_digest()
-                        atomic_write(self.root / 'public-mirror.json', json.dumps({
-                            'enabled': True, 'published_digest': dig, 'published_at': datetime.now(timezone.utc).isoformat(),
-                            'status': 'published'}))
+                        from .mirror import acknowledge, interval_seconds
+                        path = self.root / 'public-mirror.json'
+                        status = read_json(path) if path.exists() else {}
+                        status.update(enabled=True, delivery='controller', interval_seconds=interval_seconds())
+                        atomic_write(path, json.dumps(acknowledge(status, result)))
                 return {'ok': True, 'research': self.mode, 'publication': {
                     'installation_id': result.get('installation_id'), 'generated': result.get('generated'),
                     'nodes': len(result.get('nodes', [])), 'output': packet.get('output')}}

@@ -11,7 +11,7 @@ flowchart LR
   S[master: source and documentation] --> C[Container runtime]
   C --> R[(Per-node durable records)]
   R --> E[Filtered public export]
-  E -->|explicit upload| P[wake-public]
+  E -->|operator or interval upload| P[wake-public]
   P --> G[GitHub Pages mirror]
 ```
 
@@ -25,6 +25,8 @@ On the host, configure the publishing destination in `.env`:
 ```bash
 WAKE_PUBLISH_REPOSITORY=https://github.com/sudofx/wake
 WAKE_PUBLISH_BRANCH=wake-public
+# Changed exported heads upload every 30 minutes while the host worker runs.
+WAKE_MIRROR_INTERVAL_SECONDS=1800
 ```
 
 Then publish:
@@ -39,7 +41,7 @@ checks for running GitHub Actions before capture and again before upload, and
 returns without uploading when Actions is busy. After delivery, it exits without
 waiting for Pages to rebuild.
 
-The command pins the twelve current export generations and builds the filtered
+The command pins each available completed export generation and builds the filtered
 artifact in a fresh container process using the mounted source. It uploads with
 the host's existing Git credentials. Research keeps its current running, paused
 or stopped setting. Export capture never opens or copies the authority databases.
@@ -47,7 +49,11 @@ The manifest identifies the captured heads and versions, rather than later live
 records. The node menu shows colored status dots: current observations on the local
 site, and explicitly dated uploaded observations on the public mirror. A missing
 observation is gray; a disconnected local site clears its current status colors.
-These observations do not establish accepted research. Every member must have exported the same accepted shared Bob article.
+These observations do not establish accepted research. An unavailable worker keeps
+its last completed export; a member with no completed export is marked `missing`
+in the manifest and has no node view in that upload. No empty record is invented.
+Different members may have exported different accepted Bob article versions;
+mirror delivery does not wait for their availability or editorial agreement.
 
 Capture holds a short generation-retention lock while pinning immutable files,
 using hardlinks on the installation filesystem with a copy fallback. Retirement
@@ -59,26 +65,43 @@ packet. The unified website is rebuilt from the twelve captured snapshots.
 Both paths apply the public allowlist and private-field filter and retain full
 attributed `events.jsonl` history with the exact captured heads.
 
-To keep the mirror current after later Bob articles, run:
+To keep the mirror current automatically, run:
 
 ```bash
 ./scripts/wake_publish --watch
 ```
 
 This uploads once, then runs one host delivery worker per checkout. Keep that
-process and the container available. After all twelve members export a new
-accepted article, the controller queues its digest; the host worker captures and
-uploads immutable exports and acknowledges the delivered digest. Failures remain
-visible in the worker output and retry after a minute. The host worker waits for
-a started publication to finish, including complete-history builds that exceed
-ten minutes, before considering another delivery attempt. `wake-research status`
-shows queued/delivered mirror state separately from research state. Stop delivery
-with `wake-research mirror-disable` or stop the host worker. Re-running `--watch`
-resumes delivery without changing records or research controls.
+process and the container available. The worker checks completed export heads
+every minute and uploads changed heads every 30 minutes by default, even if Bob
+has no new accepted article or a node is unavailable. A new accepted article in
+the leader's completed export triggers an earlier upload. Unchanged heads skip
+scheduled upload. Set `WAKE_MIRROR_INTERVAL_SECONDS` in the host environment or
+`.env` to change the cadence (minimum 60 seconds); the interval starts after each
+successful upload. Withheld drafts remain governed editorial outcomes and never
+hold the mirror delivery queue.
+
+One installation file lease covers capture and upload for both host and direct
+container publishers, including manual commands. An already running publisher
+excludes another attempt. The worker waits for publication to finish, including
+complete-history builds exceeding ten minutes. Failures appear in worker output
+and delivery status and retry after a minute. Running GitHub Actions defer the
+upload through the same retry path. `wake-research status` shows the delivered
+captured-head digest, Bob article digest and upload date separately from research
+state. A receipt confirms the exact immutable artifact uploaded; exports advancing
+during upload remain eligible for the next interval. Old Bob-only acknowledgments
+remain readable but never claim delivery of uncaptured heads.
+
+Stop delivery with `wake-research mirror-disable` or stop the host worker.
+Re-running `--watch` resumes without changing records or research controls.
+Updating source does not replace an existing host Python worker: restart that
+worker to adopt a changed scheduler. Host capture and scheduling load the mounted
+source in fresh processes, so they work independently of the resident controller
+version. Current controllers merge the host's separate delivery receipt for status.
 
 Inside an installation configured with Git credentials and the two publication
 variables, `wake-research publish` uploads directly and enables controller delivery
-of subsequent shared articles. Failed direct uploads retain a visible status and
+on the same changed-head cadence and accepted-article trigger. Failed direct uploads retain a visible status and
 retry after five minutes. Credentials never enter the website. GitHub deployment
 is a separate step; a delivered branch is not yet proof that Pages serves it.
 
@@ -92,10 +115,11 @@ The homepage and blog link to this same-origin file; items use the canonical
 public reading URLs for the root or selected node. A feed is a dated publication
 view, with no research controls, email collection or provider request bodies.
 
-The unified website and all twelve node views retain the same interface. The node
+The unified website and all available node views retain the same interface. The node
 selector works from every page. Each view shows the upload date and reads only its
-own uploaded JSON, including maps and their shards. The homepage carries the
-latest 400 events; History tools retain the full public event export as
+own uploaded JSON, including maps and their shards. Reader pages begin with a
+bounded overview and fetch exact details or older entries on demand. The separate
+`wake-data.json` archive carries the latest 400 events; History tools retain the full public event export as
 `events.jsonl` or its lossless gzip archive described below. Node records, accepted counts, and full-history metrics are unchanged. Provider bodies, Passenger,
 databases, logs, and control sockets are excluded. Manual import archives are
 separate and never uploaded as the public website.
