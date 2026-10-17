@@ -8,6 +8,7 @@ definitions. The wake entries describe its conceptual language rather than an AP
 | --- | --- |
 | **Accepted cycle** | A research attempt whose proposed changes passed WAKE's rules and were recorded. A workflow can succeed even when its attempt is rejected or deferred. |
 | **Application** | The rules and behavior for a particular kind of work. Research is WAKE's current application. |
+| **Ask Bob** | An opt-in local reader experiment for bounded questions over published evidence. Conversation and reader self-reports never become accepted research or proof of comprehension. See [setup and limits](ask-bob.md). |
 | **Authority / authoritative record** | The one database allowed to decide a node’s current state. The current installation has one governed record per node; its aggregate Console is a view, not another authority. |
 | **Blocked / red** | The runtime cannot continue without operator or agent action. |
 | **Bob** | The byline for selected plain-language summaries of already-recorded research. Bob does not make research decisions or change the record. |

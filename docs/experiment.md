@@ -5,6 +5,11 @@ software boundaries with deterministic inputs. Its results are not research cycl
 or cross-model evidence. Independent container verification is documented in
 [multiple installations](installations.md#verification-and-maintenance).
 
+The separate [Ask Bob A/B/C protocol](ask-bob.md#compare-context-conditions)
+compares no history, rich relevant conversation and compressed contextual
+continuity. Its provider-free fixture measures input and retrieval costs only;
+response quality, comprehension and energy savings are not implied.
+
 > **Current evaluation protocol.** This defines how live and comparative **WAKE✳︎** runs should be interpreted. Observations and proposed mechanisms remain separate, and rejected, deferred and failed attempts stay in the experimental record.
 
 ## Interpret the internal-node workload

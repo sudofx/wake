@@ -40,6 +40,12 @@ flowchart TB
 records and checks transitions, and each node owns one authoritative record. A
 website or Console is a view of records, not another source of truth.
 
+The [local Ask Bob prototype](ask-bob.md) is a separate loopback reader surface.
+It uses completed public exports and the existing owning worker's native provider
+invocation journal. It never submits governed research changes or creates a second
+writer. Browser conversations remain local; operational hashes and outcomes remain
+in the existing record. Public Pages has no live conversation endpoint.
+
 
 ## One installation, internal nodes
 

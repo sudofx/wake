@@ -187,7 +187,7 @@ class ReaderPreviewHandler(PublicSnapshotHandler):
             packet = json.loads(self.rfile.read(length))
             if not isinstance(packet, dict):
                 raise ValueError()
-        except (ValueError, OSError):
+        except (ValueError, OSError, RecursionError):
             self.json_response(400, {'error': 'Invalid question request'})
             return
         if not server.busy.acquire(blocking=False):

@@ -25,6 +25,10 @@ For private human checkpoints and fresh-conversation recovery, use the
 [continuity workflow](continuity/README.md). It complements the authoritative
 research record without adding runtime state or automatic model context.
 
+For the opt-in host-loopback reader prototype, see [Ask Bob](ask-bob.md).
+It requires an owning worker that includes the reader service and never starts
+or resets research as a side effect of opening its preview.
+
 ## Current development path
 
 Start with [one-container setup](standalone.md#run-one-installation-container).

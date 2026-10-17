@@ -29,6 +29,9 @@ explicit worker recovery, failure evidence and reproducible disturbance checks.
 Use the [private continuity workflow](docs/continuity/README.md) to preserve human
 research notes and engineering handoffs between conversations.
 
+The opt-in [local Ask Bob experiment](docs/ask-bob.md) adds bounded questions over
+published evidence, with browser-local history and no research authority.
+
 [Open the public site](https://sudofx.github.io/wake/) · [View source and releases](https://github.com/sudofx/wake) · [GitHub Actions](https://github.com/sudofx/wake/actions)
 
 ## The basic idea

@@ -4,6 +4,11 @@ The [kernel contract](kernel.md) distinguishes generic envelope replay from
 application state reconstruction. Application IDs share a record revision when
 installed together; independent installations must select separate records.
 
+[Ask Bob](ask-bob.md#how-context-stays-bounded) separately retrieves a bounded
+current publication and directly linked exact public records. Its A/B/C browser
+conversation context is advisory; it never enters the research retrieval policy
+or creates accepted scientific memory.
+
 ## Internal nodes and Console aggregation
 
 In the current one-container installation, three parents and nine children each

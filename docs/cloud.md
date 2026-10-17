@@ -6,6 +6,10 @@ Research runs in containers. Each node owns its durable SQLite record; the websi
 is a dated, read-only copy of the public data exported from those records. GitHub
 Pages executes no research and has no research controls or execution status light.
 
+[Ask Bob](ask-bob.md) runs only through an explicitly started host-loopback
+preview. Its browser history, request capability and live endpoint are not part
+of the mirror. Exported reader assets remain inert without that local capability.
+
 ```mermaid
 flowchart LR
   S[master: source and documentation] --> C[Container runtime]
