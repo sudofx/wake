@@ -15,12 +15,33 @@ window.WakeRuntimeActivityView = status => {
 };
 // Shared, disposable research data: one request and object for this document.
 window.WakeViewData=(()=>{
-  let current=null,pending=null;
-  const get=async (url,json=true)=>{const response=await fetch(url,{cache:'no-store',signal:AbortSignal.timeout(12000)});if(!response.ok)throw Error(`HTTP ${response.status}`);return json?response.json():response.text();};
+  let current=null,pending=null,legacy=false;
+  const details=new Map();
+  const get=async (url,json=true)=>{const response=await fetch(url,{cache:'no-store',signal:AbortSignal.timeout(12000)});if(!response.ok){const error=Error(`HTTP ${response.status}`);error.status=response.status;throw error;}return json?response.json():response.text();};
+  const overview=async()=>{
+    if(legacy)return get('research-data.json');
+    try{return await get('research-overview.json');}
+    catch(error){if(![404,410].includes(error.status))throw error;legacy=true;return get('research-data.json');}
+  };
   return {research:async (refresh=false)=>{
     if(pending)return pending;if(current&&!refresh)return current;
-    pending=(async()=>{if(current){try{const head=(await get('head.txt',false)).trim();if(head===current.head)return current;}catch{}}const next=await get('research-data.json');if(next?.projection_kind!=='disposable-research-view'||!next.head)throw Error('Unsupported research projection');current=next;return current;})();
+    pending=(async()=>{if(current){try{const head=(await get('head.txt',false)).trim();if(head===current.head)return current;}catch{}}const next=await overview();if(next?.projection_kind!=='disposable-research-view'||!next.head)throw Error('Unsupported research projection');current=next;return current;})();
     try{return await pending;}finally{pending=null;}
+  },wake:async (projection,wake)=>{
+    if(!wake.detail_url)return wake;
+    if(!/^research-details\/[a-f0-9]{64}\.json$/.test(wake.detail_url))throw Error('Unsafe wake detail path');
+    const key=wake.detail_url;
+    const attach=detail=>{if(detail?.id!==wake.id||detail.request_hash!==wake.request_hash)throw Error('Wake detail does not match this snapshot');return wake.origin?{...detail,origin:wake.origin}:detail;};
+    if(details.has(key))return attach(await details.get(key));
+    const pendingDetail=(async()=>{
+      const detail=await get(key);
+      if(detail?.schema!==1||detail.wake?.id!==wake.id||detail.wake?.request_hash!==wake.request_hash)throw Error('Wake detail does not match this snapshot');
+      return detail.wake;
+    })();
+    details.set(key,pendingDetail);
+    // Long reading sessions must not retain every multi-megabyte context opened.
+    if(details.size>8)details.delete(details.keys().next().value);
+    try{return attach(await pendingDetail);}catch(error){details.delete(key);throw error;}
   }};
 })();
 

@@ -273,7 +273,8 @@
   });
   async function loadProjection(){
     try{
-      const next=window.WakeViewData?await window.WakeViewData.research():await fetch('research-data.json',{cache:'no-store'}).then(response=>{if(!response.ok)throw Error(`HTTP ${response.status}`);return response.json();});
+      const load=async()=>{let response=await fetch('research-overview.json',{cache:'no-store'});if([404,410].includes(response.status))response=await fetch('research-data.json',{cache:'no-store'});if(!response.ok)throw Error(`HTTP ${response.status}`);return response.json();};
+      const next=window.WakeViewData?await window.WakeViewData.research():await load();
       if(next?.projection_kind!=='disposable-research-view'||!Array.isArray(next.graph?.nodes)||!Array.isArray(next.graph?.edges))throw new Error('Unsupported projection');
       receive(next);
     }catch(error){
