@@ -19,7 +19,8 @@ _COLLECTIONS = ('projects', 'notebooks', 'beliefs', 'evidence', 'commitments',
 _REFS = {'id', 'project', 'invocation', 'invocation_id', 'created_by', 'updated_by',
          'resolved_by', 'supersedes', 'superseded_by', 'domain', 'topic', 'selected_topic',
          'attention_topic', 'pending', 'evidence_id', 'notebook', 'belief', 'commitment'}
-_REF_LISTS = {'evidence', 'notebooks', 'projects', 'beliefs', 'commitments', 'deferred_topics'}
+_REF_LISTS = {'evidence', 'notebooks', 'projects', 'beliefs', 'commitments', 'deferred_topics',
+              'observations'}
 _OPAQUE = {'content', 'raw_response', 'response', 'request', 'group_publication',
            'peer_origin', 'origin', 'original_event', 'context_delivery'}
 
@@ -179,6 +180,17 @@ def build_unified_projection(node_snapshots, node_research, installation_id):
         known.update(str(topic['id']) for topic in local.get('research_topics', []) if topic.get('id'))
         for collection in _COLLECTIONS:
             for identifier, item in local.get(collection, {}).items():
+                if collection == 'representations':
+                    # Frames are ordered project history, not ID-bearing records.
+                    # Preserve that shape and attribute each frame without
+                    # inventing an accepted frame identity.
+                    if not isinstance(item, list) or any(not isinstance(frame, dict) for frame in item):
+                        raise ValueError(f'Invalid representation history for {node}::{identifier}')
+                    state[collection][_prefix(node, identifier)] = [
+                        {**_remap(frame, node, known),
+                         'origin': {**deepcopy(origin), 'project': identifier}}
+                        for frame in item]
+                    continue
                 if collection == 'posts':
                     publication = item.get('group_publication')
                     if not isinstance(publication, dict):

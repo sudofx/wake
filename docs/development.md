@@ -36,6 +36,8 @@ selectable from the fixed masthead on every page; the unified option is named
 `wake`. Switching retains the current page and view. `wake/installation_projection.py` owns aggregation and attribution;
 `wake/installation_site.py` exports the website through the canonical report exporter.
 Neither opens authority or requests model output.
+Project reframing histories keep their ordered lists in the unified view, with
+node-qualified project and evidence links and each frame's captured source head.
 The journal overview carries a bounded event tail and compact invocation/evidence
 views; complete history remains in `events.jsonl`. Installation comparisons read
 small exported summaries, and runtime status reads only worker observations.

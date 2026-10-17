@@ -90,6 +90,40 @@ class InstallationProjectionTests(unittest.TestCase):
         result = build_unified_projection(packets, research, 'installation')
         self.assertEqual(len(result['state']['posts']), 2)
 
+    def test_project_frame_histories_keep_order_links_and_source_provenance(self):
+        packets = {node: self.snapshot(node) for node in ('100', '101')}
+        for packet in packets.values():
+            packet['state']['representations'] = {'p': [
+                {'type': 'reframe', 'project': 'p', 'old_frame': 'p',
+                 'new_frame': label, 'observations': ['e'], 'created_by': 'i',
+                 'created_version': version, 'status': 'hypothesis'}
+                for version, label in enumerate(('First frame', 'Second frame'), 1)],
+                'unused': []}
+        original = deepcopy(packets)
+        views = {node: build_research_projection(p['state'], [], p['head'])
+                 for node, p in packets.items()}
+        unified = build_unified_projection(packets, views, 'installation')
+        histories = unified['state']['representations']
+        self.assertEqual(set(histories), {'100::p', '101::p', '100::unused', '101::unused'})
+        for node in packets:
+            self.assertEqual(histories[f'{node}::unused'], [])
+            frames = histories[f'{node}::p']
+            self.assertEqual([f['new_frame'] for f in frames], ['First frame', 'Second frame'])
+            for version, frame in enumerate(frames, 1):
+                self.assertEqual(frame['project'], f'{node}::p')
+                self.assertEqual(frame['observations'], [f'{node}::e'])
+                self.assertEqual(frame['created_by'], f'{node}::i')
+                self.assertEqual(frame['created_version'], version)
+                self.assertEqual(frame['old_frame'], 'p')
+                self.assertNotIn('id', frame)
+                self.assertEqual(frame['origin'], {
+                    'node': node, 'head': f'head-{node}', 'version': 2, 'project': 'p'})
+        self.assertEqual(packets, original)
+        with tempfile.TemporaryDirectory() as directory:
+            export(None, destination=directory, projection=unified, standalone=True)
+            exported = json.loads((Path(directory) / 'state.json').read_text())
+            self.assertEqual(exported['representations'], histories)
+
     def test_graph_links_and_activity_are_node_qualified(self):
         _, _, unified = self.build()
         research = unified['research']
