@@ -1,0 +1,9 @@
+/* Reader-only panel; capability absence leaves every public view unchanged. */
+.ask-bob{border-top:1px solid currentColor;margin-top:2rem;padding-top:1.5rem;max-width:100%;overflow-wrap:anywhere}
+.ask-bob>summary{font-size:1rem;font-weight:600;cursor:pointer;width:fit-content}.ask-bob[open]>summary{margin-bottom:1rem}.ask-bob-note,.ask-bob-status{font-size:.9rem}
+.ask-bob form,.ask-bob label{display:grid;gap:.55rem}.ask-bob form{gap:1rem;margin:1rem 0}
+.ask-bob textarea,.ask-bob select{font:inherit;color:inherit;background:var(--panel,transparent);border:1px solid currentColor;border-radius:.3rem;padding:.65rem;width:100%;max-width:100%;box-sizing:border-box}
+.ask-bob button{font:inherit;cursor:pointer;padding:.6rem .9rem;color:inherit;background:var(--panel,transparent);border:1px solid currentColor;border-radius:.3rem;width:fit-content}
+.ask-bob button:disabled{opacity:.6;cursor:wait}.ask-bob select:disabled{opacity:.6}
+.ask-bob-turn{border-left:2px solid currentColor;padding-left:1rem;margin:1.2rem 0}.ask-bob-answer{white-space:pre-wrap}
+.ask-bob details{margin:1.2rem 0}.ask-bob pre{white-space:pre-wrap;max-height:18rem;overflow:auto;font-size:.75rem}

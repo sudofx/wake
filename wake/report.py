@@ -496,7 +496,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         # Publish source styles alongside every HTML view: Pages and exports share
         # the same theme file rather than receiving copied inline palettes.
         for name in ("style.css", "nav.css", "map.css", "map3d.css", "theme.css",
-                     "nav.js", "map.js", "map3d.js", "flat-view.js"):
+                     "nav.js", "map.js", "map3d.js", "flat-view.js", "ask-bob.js", "ask-bob.css"):
             atomic_write(target / name, (assets / name).read_text())
         # Static Nebula artwork is presentation-only. Publish the responsive
         # source set alongside the generated shell without routing binaries through text IO.
@@ -522,7 +522,8 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         export_reader_transport(public_data, target)
         page = template.replace("/* WAKE_STYLE */", "").replace("/* NAV_STYLE */", "")
         page = page.replace("/* NAV_SCRIPT */", (assets / "nav.js").read_text())
-        page = page.replace("/* WAKE_SCRIPT */", (assets / "app.js").read_text())
+        page = page.replace("/* WAKE_SCRIPT */", (assets / "ask-bob.js").read_text() + "\n" + (assets / "app.js").read_text())
+        page = page.replace("</head>", '<link rel="stylesheet" href="ask-bob.css"></head>', 1)
         page = page.replace("/* HELP_SCRIPT */", (assets / "help.js").read_text())
         page = page.replace("/* PET_SCRIPT */", (assets / "pet.js").read_text())
         # Browser UX is HTML-first. Do not publish duplicate Markdown projections.
