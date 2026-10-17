@@ -60,6 +60,21 @@ def _write_control_ack(directory, reset_id, error=None):
     os.replace(temporary, target)
 
 
+def _reader_admission_paused(directory, default, stop, handled_reset_id):
+    mode, reset_id = _research_control(directory, default)
+    return stop.is_set() or mode != 'running' or bool(reset_id and reset_id != handled_reset_id)
+
+
+def _reader_drain_pending(service, server, mode, reset_id, handled_reset_id):
+    """Withhold drainage/reset acknowledgements while the reader owns an effect."""
+    pending_reset = bool(reset_id and reset_id != handled_reset_id)
+    if service and service.active and (mode != 'running' or pending_reset):
+        server.runtime_status = {'mode': 'standalone', 'state': 'draining',
+                                 'reason': 'Waiting for the active reader request to finish'}
+        return True
+    return False
+
+
 def _pause_after_introduction(directory, state):
     """Consume an operator's group-post pause before the next research effect."""
     target = Path(directory) / _CONTROL_FILE
@@ -333,6 +348,7 @@ def run(args):
             raise ValueError('Another standalone runtime owns this data volume') from None
         engine = bootstrap(data, settings)
         server = None
+        reader_service = None
         try:
             from contextlib import nullcontext
             website_context = (nullcontext(args.site_root) if getattr(args, 'site_root', None)
@@ -348,6 +364,13 @@ def run(args):
                 server.engine = engine
                 server.runtime_status = {'mode': 'standalone', 'state': research_mode}
                 server.activity = RuntimeActivity()
+                if (provider_name == 'gemini' and os.environ.get('WAKE_INSTALLATION_WORKER') == '1'
+                        and os.environ.get('WAKE_PUBLIC_HOSTNAME') == '100.wake'):
+                    from .reader_questions import ReaderQuestions, ReaderService
+                    installation_root = Path(os.environ.get('WAKE_INSTALLATION_DATA', str(data.parents[2])))
+                    reader_service = ReaderService(data, ReaderQuestions(
+                        engine, settings, installation_root / 'site',
+                        should_pause=lambda: _reader_admission_paused(data, default_mode, stop, handled_reset_id)))
                 server.snapshot_generation = 1
                 server.development_status = ({
                     'enabled': True, 'state': 'watching',
@@ -382,6 +405,9 @@ def run(args):
                 paused_group_publication = None
                 while not stop.is_set():
                     research_mode, reset_id = _research_control(data, default_mode)
+                    if _reader_drain_pending(reader_service, server, research_mode, reset_id, handled_reset_id):
+                        stop.wait(.05)
+                        continue
                     if os.environ.get('WAKE_GROUP_ID') and time.monotonic() - last_group_editorial >= 15:
                         last_group_editorial = time.monotonic()
                         from .group_editorial import synchronize, fetch, gateway_url
@@ -437,6 +463,11 @@ def run(args):
                     if _pause_after_introduction(data, engine.store.load):
                         research_mode = 'paused'
                     if research_mode != 'running':
+                        # The automatic post-introduction pause may have arrived
+                        # after the loop's first control read.
+                        if _reader_drain_pending(reader_service, server, research_mode, reset_id, handled_reset_id):
+                            stop.wait(.05)
+                            continue
                         control = json.loads((data / _CONTROL_FILE).read_text()) if (data / _CONTROL_FILE).exists() else {}
                         server.activity.update(stage='idle')
                         server.runtime_status = {'mode': 'standalone', 'state': research_mode,
@@ -572,6 +603,8 @@ def run(args):
                         break
         finally:
             stop.set()
+            if reader_service:
+                reader_service.close()
             if server and not getattr(args, 'headless', False):
                 server.shutdown()
                 server.server_close()
