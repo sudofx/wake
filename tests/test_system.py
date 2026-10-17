@@ -17,6 +17,7 @@
 from datetime import datetime
 from email.message import Message
 import io
+from itertools import chain, repeat
 import json
 from pathlib import Path
 import subprocess
@@ -402,8 +403,13 @@ class SystemTests(unittest.TestCase):
                 [event["stage"] for event in lifecycle],
                 ["requested", "context_delivered", "attempt_started", "failed"],
             )
-            self.assertIsNone(lifecycle[-1]["outcome"])
+            self.assertEqual(lifecycle[-1]["outcome"], "effect_barrier_failure")
             self.assertEqual(lifecycle[-1]["detail"], "effect_barrier:OSError")
+            from wake.kernel.observability import build_application_observability
+            observations = build_application_observability(engine.store.record)
+            metrics = next(app for app in observations['applications'] if app['id'] == 'wake')
+            self.assertEqual(metrics['invocations']['effect_barrier_failures'], 1)
+            self.assertEqual(engine.store.load()['version'], 0)
         finally:
             engine.store.close()
 
@@ -761,7 +767,7 @@ class SystemTests(unittest.TestCase):
         )
         with patch.dict("os.environ", {"GEMINI_API_KEY":"test-key"}), \
              patch("urllib.request.urlopen", side_effect=limited) as network, \
-             patch("wake.providers.time.monotonic", side_effect=[10.0, 11.25]):
+             patch("wake.providers.time.monotonic", side_effect=chain([10.0], repeat(11.25))):
             with self.assertRaises(TransientProviderError) as caught:
                 Gemini({**DEFAULTS, "free_tier_confirmed":True}).propose({"system":"rules", "context":{}})
         self.assertNotIsInstance(caught.exception, DailyQuotaExceeded)

@@ -190,7 +190,7 @@ class InvocationLifecycle:
                 effect_barrier()
             except Exception as error:
                 self.fail(
-                    outcome=None,
+                    outcome="effect_barrier_failure",
                     detail=f"effect_barrier:{type(error).__name__}",
                 )
                 raise InvocationBarrierError(error) from error

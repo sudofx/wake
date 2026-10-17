@@ -693,6 +693,12 @@ container after verification, retaining the workspace data.
 
 ## Automatic execution recovery
 
+For the installation's explicit `wake-research restart`, every surviving worker
+must acknowledge stopping. A confirmed dead owned worker may be reaped without an
+acknowledgment; a missing or undrained live worker still blocks replacement.
+Restart resumes research after native verification and recovery, without resetting
+records. See [failure checks and remaining limits](resilience.md).
+
 Standalone launches a supervising parent and a record-owning worker on Docker,
 Codespaces and ordinary supported hosts. An unexpected worker signal or explicitly
 temporary operating-system error restarts the worker with increasing delays.

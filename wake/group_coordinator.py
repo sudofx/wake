@@ -1,11 +1,13 @@
 """Provider-call coordination, mandatory for installation workers."""
 
 from contextlib import contextmanager
+from http.client import IncompleteRead
 import json
 import os
 import sys
 import time
 from urllib.request import ProxyHandler, Request, build_opener
+from urllib.error import HTTPError
 import uuid
 
 from .providers import ProviderCallPaused
@@ -35,11 +37,25 @@ class GroupProviderGate:
         with self.opener.open(request, timeout=10) as response:
             return json.loads(response.read(4096))
 
+    def _request_reliably(self, payload):
+        # A lost response may follow a granted slot or a completed release.
+        # Retry the same identity/token: the controller makes both idempotent.
+        # Exhaustion retains the existing fail-closed, confirmed-death boundary.
+        for attempt in range(3):
+            try:
+                return self._request(payload)
+            except HTTPError:
+                raise
+            except (OSError, IncompleteRead, json.JSONDecodeError, UnicodeDecodeError):
+                if attempt == 2:
+                    raise
+                time.sleep(.1 * (attempt + 1))
+
     def _acquire(self, request_id, model):
         deadline = time.monotonic() + self.wait_seconds
         while time.monotonic() < deadline:
             self._check_pause()
-            packet = self._request({
+            packet = self._request_reliably({
                 "action": "acquire", "member": self.member,
                 "request_id": request_id, "model": model,
                 "lease_seconds": self.lease_seconds,
@@ -110,7 +126,7 @@ class GroupProviderGate:
                     }
                     if hasattr(self, 'outcome'):
                         packet['outcome'] = self.outcome
-                    self._request(packet)
+                    self._request_reliably(packet)
                 except Exception as exc:
                     print(
                         f"WAKE group call slot release unavailable; the installation slot remains blocked until confirmed worker exit ({type(exc).__name__}).",

@@ -24,6 +24,12 @@ inspection; `RESET` destroys active history without a backup and retains manual
 exports. See [the installation contract](standalone.md#run-one-installation-container).
 Older hosted and multi-container experiments below retain their original scope.
 
+Operational fault fixtures compare fixed disturbances and deterministic safety
+outcomes separately from research quality. They do not establish a production
+failure-rate distribution or a mathematical stability proof. See
+[resilience checks and model assumptions](resilience.md) before interpreting
+retry counts, backlog drift or recovery duration as an experimental result.
+
 ### The short version
 
 WAKE is testing whether separate model calls can continue useful work when they

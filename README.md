@@ -23,6 +23,8 @@ Enabled mirror delivery uploads changed exports every 30 minutes by default and
 after accepted Bob articles, independently of other nodes' availability. Reader
 pages load a small overview first and fetch exact details on demand; full history
 remains exported. See [browser views](docs/retrieval.md#browser-views-and-exact-detail).
+See [operational resilience](docs/resilience.md) for bounded coordination retries,
+explicit worker recovery, failure evidence and reproducible disturbance checks.
 
 [Open the public site](https://sudofx.github.io/wake/) · [View source and releases](https://github.com/sudofx/wake) · [GitHub Actions](https://github.com/sudofx/wake/actions)
 

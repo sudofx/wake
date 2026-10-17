@@ -10,8 +10,67 @@ import tempfile
 import time
 import unittest
 import urllib.request
+from unittest.mock import Mock, patch
 
 from wake.installation_cli import request
+from wake.installation import Controller, NODE_IDS
+
+
+class InstallationRestartTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.controller = Controller(self.temp.name, Path(self.temp.name) / 'wake.toml', 'fixture', 0)
+        self.controller.workers = {name: Mock() for name in NODE_IDS}
+        self.controller.logs = {name: Mock() for name in NODE_IDS}
+        for name, process in self.controller.workers.items():
+            process.poll.return_value = 1 if name == NODE_IDS[0] else None
+
+    def test_restart_reaps_dead_worker_after_survivors_drain(self):
+        controller = self.controller
+        key = ('wake', NODE_IDS[0], 'request')
+        controller.coordinator.acquire(key, 'fixture')
+        # A death notification alone cannot release a grant: reaping does.
+        controller.workers[NODE_IDS[0]].wait.side_effect = lambda **_: self.assertIsNotNone(controller.coordinator.status()['active'])
+        original_control = controller.control
+        def control(mode):
+            if mode == 'stopped':
+                return original_control(mode)
+            self.assertIsNone(controller.coordinator.status()['active'])
+            self.assertFalse(controller.workers)
+            return {'ok': True, 'research': 'running'}
+        with patch.object(controller, 'set_controls', return_value='command'), \
+             patch('wake.installation.read_json', return_value={'control_ack': 'command', 'state': 'stopped'}), \
+             patch.object(controller, 'control', side_effect=control), \
+             patch.object(controller, 'spawn') as spawn:
+            self.assertTrue(controller.command({'action': 'restart'})['ok'])
+        spawn.assert_called_once_with()
+
+    def test_restart_never_replaces_live_unknown_or_missing_worker(self):
+        for state, missing in [('unknown', False), ('failed', False), ('failed', True)]:
+            with self.subTest(state=state, missing=missing):
+                controller = self.controller
+                name = NODE_IDS[-1]
+                process = controller.workers.pop(name) if missing else controller.workers[name]
+                nodes = {node: {'state': 'drained'} for node in NODE_IDS}
+                nodes[NODE_IDS[0]] = {'state': 'failed'}
+                nodes[name] = {'state': state}
+                result = {'ok': False, 'nodes': nodes}
+                with patch.object(controller, 'control', return_value=result), \
+                     patch.object(controller, 'terminate') as terminate, \
+                     patch.object(controller, 'spawn') as spawn:
+                    self.assertIs(controller.command({'action': 'restart'}), result)
+                terminate.assert_not_called()
+                spawn.assert_not_called()
+                controller.workers[name] = process
+
+    def test_stop_still_reports_dead_worker_failure(self):
+        with patch.object(self.controller, 'set_controls', return_value='command'), \
+             patch('wake.installation.read_json', return_value={'control_ack': 'command', 'state': 'stopped'}):
+            result = self.controller.command({'action': 'stop'})
+        self.assertFalse(result['ok'])
+        self.assertEqual(result['nodes'][NODE_IDS[0]]['state'], 'failed')
+        self.assertEqual(sum(node['state'] == 'drained' for node in result['nodes'].values()), 11)
 
 
 @unittest.skipUnless(sys.platform == 'linux', 'Worker parent-death contract requires Linux')

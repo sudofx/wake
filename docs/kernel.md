@@ -22,6 +22,11 @@ rules into the kernel, and changing the model should not change record authority
 
 ## Ownership
 
+Generic invocation and generation diagnostics remain in the kernel; controller
+message retries and worker replacement remain deployment concerns. The
+[resilience guide](resilience.md) documents effect-barrier failure accounting,
+bounded recent-list projections and the limits of response-body deadlines.
+
 | Part | Owns |
 | --- | --- |
 | Kernel | Record format, deterministic decisions, replay and provider-call receipts |

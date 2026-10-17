@@ -40,6 +40,8 @@ node pins its last complete page export while the next generation renders. It
 checks for running GitHub Actions before capture and again before upload, and
 returns without uploading when Actions is busy. After delivery, it exits without
 waiting for Pages to rebuild.
+An upload verifies delivery of dated exports; it does not demonstrate adoption or
+live [recovery behavior](resilience.md) in the resident container processes.
 
 The command pins each available completed export generation and builds the filtered
 artifact in a fresh container process using the mounted source. It uploads with

@@ -153,12 +153,49 @@ def request_gemini_json(
 ) -> tuple[dict[str, Any], int]:
     """Execute one Gemini HTTP request and decode a successful JSON object."""
 
+    deadline = time.monotonic() + timeout
     with urllib.request.urlopen(http_request, timeout=timeout) as response:
         status = int(getattr(response, "status", 200))
-        payload = json.loads(response.read(1_000_001))
+        payload = json.loads(_read_response_body(response, maximum=1_000_000, deadline=deadline))
     if not isinstance(payload, dict):
         raise ValueError("Gemini response must be a JSON object")
     return payload, status
+
+
+def _read_response_body(response: Any, *, maximum: int, deadline: float) -> bytes:
+    """Bound body size and check elapsed time between incremental body reads.
+
+    For non-chunked Content-Length responses, read1 avoids waiting for the entire
+    body while bytes keep arriving. A blocked body read can still overshoot by
+    the socket inactivity timeout. Chunked framing may perform multiple reads
+    inside read1, so a slow chunk-size line can exceed that bound before control
+    returns here. DNS, headers and chunk framing remain urllib's responsibility;
+    this is not a hard end-to-end deadline.
+    """
+    read = getattr(response, "read1", None)
+    if read is None:
+        # Alternate transports without incremental reads retain their ordinary
+        # read contract; the incremental Content-Length behavior requires read1.
+        body = response.read(maximum + 1)
+        if time.monotonic() >= deadline:
+            raise TimeoutError("Gemini response body deadline exceeded")
+        if len(body) > maximum:
+            raise ValueError("Gemini response body exceeds size limit")
+        return body
+    chunks: list[bytes] = []
+    size = 0
+    while True:
+        if time.monotonic() >= deadline:
+            raise TimeoutError("Gemini response body deadline exceeded")
+        chunk = read(min(65_536, maximum + 1 - size))
+        if time.monotonic() >= deadline:
+            raise TimeoutError("Gemini response body deadline exceeded")
+        if not chunk:
+            return b"".join(chunks)
+        size += len(chunk)
+        if size > maximum:
+            raise ValueError("Gemini response body exceeds size limit")
+        chunks.append(chunk)
 
 
 def extract_gemini_text(response: dict[str, Any]) -> str:
@@ -168,7 +205,7 @@ def extract_gemini_text(response: dict[str, Any]) -> str:
     if not isinstance(candidates, list) or not candidates:
         raise ProviderError("Gemini returned no candidates")
     first = candidates[0]
-    if not isinstance(first, dict) or first.get("finishReason") not in {None, "STOP"}:
+    if not isinstance(first, dict) or first.get("finishReason") not in (None, "STOP"):
         raise ProviderError("Gemini did not return a complete answer")
     content = first.get("content")
     parts = content.get("parts") if isinstance(content, dict) else None
@@ -239,13 +276,16 @@ def _safe_error_payload(
     error: urllib.error.HTTPError,
     *,
     secret_values: tuple[str, ...] = (),
+    deadline: float,
 ) -> dict[str, Any]:
     """Retain bounded provider diagnostics while excluding credentials."""
 
     try:
-        raw = error.read(64_001)
+        raw = _read_response_body(error, maximum=64_000, deadline=deadline)
     except Exception:
         raw = b""
+    finally:
+        error.close()
     try:
         parsed = json.loads(raw.decode("utf-8", errors="replace")) if raw else {}
     except Exception:
@@ -346,6 +386,7 @@ class GeminiGenerationProvider:
             provider_error = _safe_error_payload(
                 error,
                 secret_values=(self._api_key,),
+                deadline=started + self.timeout_seconds,
             )
             details = {
                 **base,
@@ -462,9 +503,37 @@ class GeminiGenerationProvider:
             "model_version": payload.get("modelVersion", safe_model),
             "web_evidence": extract_gemini_web_evidence(payload),
         }
+        try:
+            text = extract_gemini_text(payload)
+        except ProviderError as error:
+            # A successful HTTP exchange can still contain no complete answer.
+            # Keep transport/model evidence without retaining the rejected text.
+            usage = payload.get("usageMetadata")
+            token_fields = (
+                "promptTokenCount", "cachedContentTokenCount", "candidatesTokenCount",
+                "totalTokenCount", "toolUsePromptTokenCount", "thoughtsTokenCount",
+            )
+            _raise_with_details(
+                error,
+                {
+                    **base,
+                    "http_status": http_status,
+                    "elapsed_ms": metadata["elapsed_ms"],
+                    "category": "invalid_response",
+                    "error_type": type(error).__name__,
+                    "finish_reason": metadata["finish_reason"].replace(self._api_key, "[redacted]")[:100]
+                    if isinstance(metadata["finish_reason"], str) else None,
+                    "model_version": metadata["model_version"].replace(self._api_key, "[redacted]")[:200]
+                    if isinstance(metadata["model_version"], str) else safe_model,
+                    "usage": {
+                        key: usage[key] for key in token_fields
+                        if type(usage.get(key)) is int and usage[key] >= 0
+                    } if isinstance(usage, dict) else {},
+                },
+            )
         return GenerationResponse(
             provider=self.provider,
             model=safe_model,
-            text=extract_gemini_text(payload),
+            text=text,
             metadata=metadata,
         )

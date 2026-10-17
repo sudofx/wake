@@ -176,7 +176,8 @@ def build_application_observability(
             )
 
     for app in applications.values():
-        app["actions"]["recent"] = app["actions"]["recent"][-max(0, recent_actions):]
+        limit = max(0, recent_actions)
+        app["actions"]["recent"] = app["actions"]["recent"][-limit:] if limit else []
 
     # Scope may be recorded only on context_delivered. Discover the application
     # for an invocation first, then associate the complete lifecycle with it.
@@ -227,7 +228,15 @@ def build_application_observability(
         metrics["quota_exhausted"] += int("quota_exhausted" in outcomes)
         metrics["temporary_failures"] += int("temporary_failure" in outcomes)
         metrics["provider_failures"] += int("provider_failure" in outcomes)
-        metrics["effect_barrier_failures"] += int("effect_barrier_failure" in outcomes)
+        # Older native lifecycles classified the barrier only in detail. Project
+        # that retained evidence without rewriting the historical invocation.
+        metrics["effect_barrier_failures"] += int(
+            "effect_barrier_failure" in outcomes or any(
+                event.get("stage") == "failed"
+                and str(event.get("detail", "")).startswith("effect_barrier:")
+                for event in events
+            )
+        )
 
         context_event = next(
             (event for event in events if _invocation_application(event) == application_id),
@@ -261,9 +270,8 @@ def build_application_observability(
         )
 
     for application_id, invocations in by_application.items():
-        applications[application_id]["invocations"]["recent"] = invocations[
-            -max(0, recent_invocations):
-        ]
+        limit = max(0, recent_invocations)
+        applications[application_id]["invocations"]["recent"] = invocations[-limit:] if limit else []
 
     return {
         "projection_schema": PROJECTION_SCHEMA,

@@ -641,7 +641,15 @@ class Controller:
                 return self.control('stopped' if action == 'stop' else 'paused')
             if action == 'restart':
                 drained = self.control('stopped')
-                if not drained['ok']:
+                # Dead owned workers cannot acknowledge drainage. They are safe
+                # to reap, but a surviving unacknowledged worker must still stop
+                # replacement. terminate() reaps before releasing their grants.
+                if not all(
+                    drained.get('nodes', {}).get(name, {}).get('state') == 'drained'
+                    or (drained.get('nodes', {}).get(name, {}).get('state') == 'failed'
+                        and name in self.workers and self.workers[name].poll() is not None)
+                    for name in NODE_IDS
+                ):
                     return drained
                 # Recreate processes to pick up corrected configuration. No reset.
                 self.terminate()

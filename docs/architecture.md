@@ -154,6 +154,13 @@ WAKE is a standalone application backed by its owned kernel in `wake/kernel/`. E
 
 The runtime boundary has also moved downward: WAKE records the generic invocation lifecycle, context-delivery receipt, incomplete-invocation recovery, durability barrier before an external provider effect, and provider-neutral invocation accounting. WAKE still owns its richer research-context telemetry, provider/fallback quota policy, and domain-specific terminal events. Those application records supplement the generic runtime evidence rather than replacing it.
 
+Native generation checks response-body deadlines and classifies incomplete HTTP
+200 answers as invalid responses. The installation retries ambiguous coordination
+messages with the same identity, never the provider effect. Explicit restart can
+reap confirmed dead workers only after survivors drain; startup verification still
+precedes effects. [Operational resilience](resilience.md) defines these bounds,
+historical failure projection and the limits of stochastic-stability claims.
+
 Brand-new WAKE state is initialized directly inside WAKE; the legacy store is not created as a bootstrap intermediate. The pre-migration `data/wake.sqlite3` record is verified once and imported into WAKE. The exact historical WAKE event chain is then archived inside governed WAKE application events in bounded chunks and reverified against the imported head. The old SQLite file may remain frozen in Git history as migration evidence, but it is not read for normal post-migration execution. A fresh process can reconstruct the current WAKE application state and its exact legacy history from `wake.sqlite` alone.
 
 The WAKE application uses wake compact event-log storage: durable application actions store governed inputs plus deterministic result digests instead of repeatedly copying the whole research state into every event. Reconstructing WAKE domain state requires the matching WAKE application version, while the underlying WAKE record remains replayable and auditable independently. Silent same-version policy drift is detected by result-digest mismatch.

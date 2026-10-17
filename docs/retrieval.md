@@ -88,6 +88,11 @@ Recent-overview limits are labelled; complete history and state exports remain
 available through their explicit archive links. An overview does not count as the
 complete record and is never used to reconstruct authority.
 
+Generic application observability also separates complete-history counts from
+bounded recent lists; zero or negative recent limits omit those lists. Its failure
+diagnostics are derived evidence, never provider context or recovery authority.
+See [operational indicators](resilience.md#use-separate-indicators).
+
 Console and its process view share `research-overview.json`; opening a wake's
 context or response fetches its detail under `research-details/`. The complete
 `research-data.json` export remains available separately. Detail errors are visible

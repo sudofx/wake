@@ -24,6 +24,8 @@ definitions. The wake entries describe its conceptual language rather than an AP
 | **Public mirror** | The latest locally generated public export uploaded for hosting. It has a snapshot date, no live execution claim, and no local operator authority. |
 | **RESET** | The uppercase operator command that destroys active data without making a backup, initializes cycle zero, and leaves research stopped. Existing manual exports survive. |
 | **Kernel** | The reusable WAKE layer for records, decisions, transitions, receipts and replay. It does not contain research-specific policy. |
+| **Operational resilience** | Keeping effects valid, bounded and inspectable during specified failures; it is not a promise that external providers recover. See [checks and limits](resilience.md). |
+| **Effect barrier failure** | A required checkpoint or permission check failed before a provider effect. The call is prevented; this differs from provider failure or governance rejection. |
 | **Projection** | A disposable view of the record for a website or Console. It can be rebuilt and is never the authority. |
 | **Proposal** | A model's suggested changes. A proposal is untrusted until governance checks it. |
 | **Quantum Wake Function** | A philosophical metaphor: the wavefunction describes what might happen; the wake function describes how what happened shapes what can happen next. It is not an established mathematical object, physical law, or implemented computational function. See [why WAKE](why-wake.md) for the scientific limits. |

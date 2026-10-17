@@ -1,7 +1,11 @@
 """Mandatory provider slots never fail open or stall an eligible fallback."""
 import os
+import json
+import threading
 import unittest
+from http.server import BaseHTTPRequestHandler, HTTPServer
 from unittest.mock import patch
+from urllib.error import HTTPError
 
 from wake.group_coordinator import GroupProviderGate, group_provider_gate
 from wake.installation_gate import InstallationCallCoordinator, InstallationSlotUnavailable
@@ -101,6 +105,201 @@ class InstallationProviderGateTests(unittest.TestCase):
         coordinator.acquire(("wake", "100.wake", "request"), "gemini", 1)
         with self.assertRaises(RuntimeError):
             coordinator.restore_state({"version": 1, "models": {}})
+
+    def test_lost_grant_and_release_responses_reuse_identity_without_overlap(self):
+        coordinator = InstallationCallCoordinator()
+        gate = GroupProviderGate('http://controller', '100.wake')
+        packets, effects = [], []
+        lost = {'acquire', 'release'}
+        def reply(packet):
+            packets.append(dict(packet))
+            key = ('wake', packet['member'], packet['request_id'])
+            if packet['action'] == 'acquire':
+                result = coordinator.acquire(key, packet['model'])
+            else:
+                released = coordinator.release(key, packet['token'], packet.get('outcome'))
+                result = {'status': 'released' if released else 'expired'}
+            if packet['action'] in lost:
+                lost.remove(packet['action'])
+                raise OSError('Response lost after controller applied request')
+            return result
+        with patch.dict(os.environ, {'WAKE_INSTALLATION_WORKER': '1'}), \
+             patch.object(gate, '_request', side_effect=reply), \
+             patch('wake.group_coordinator.time.sleep'):
+            with gate.request('gemini'):
+                effects.append('provider effect')
+                self.assertEqual(coordinator.acquire(('wake', '101.wake', 'other'), 'gemini')['status'], 'queued')
+                gate.outcome = {'result': 'success'}
+        self.assertEqual(effects, ['provider effect'])
+        self.assertEqual([packet['action'] for packet in packets], ['acquire', 'acquire', 'release', 'release'])
+        self.assertEqual(packets[0], packets[1])
+        self.assertEqual(packets[2], packets[3])
+        self.assertIsNone(coordinator.status()['active'])
+        self.assertEqual(coordinator.acquire(('wake', '101.wake', 'other'), 'gemini')['status'], 'granted')
+
+    def test_ambiguous_acquire_exhaustion_retains_grant_and_never_calls_provider(self):
+        coordinator = InstallationCallCoordinator()
+        gate = GroupProviderGate('http://controller', '100.wake')
+        packets = []
+        def reply(packet):
+            packets.append(dict(packet))
+            key = ('wake', packet['member'], packet['request_id'])
+            if packet['action'] == 'cancel':
+                return {'status': 'cancelled', 'removed': coordinator.cancel_request(key)}
+            coordinator.acquire(key, packet['model'])
+            raise OSError('Controller response unavailable')
+        with patch.dict(os.environ, {'WAKE_INSTALLATION_WORKER': '1'}), \
+             patch.object(gate, '_request', side_effect=reply), \
+             patch('wake.group_coordinator.time.sleep'):
+            with self.assertRaises(ProviderCallPaused):
+                with gate.request('gemini'):
+                    self.fail('Ambiguous grant permitted provider effect')
+        self.assertEqual([packet['action'] for packet in packets], ['acquire'] * 3 + ['cancel'])
+        self.assertEqual(packets[0], packets[1])
+        self.assertEqual(packets[1], packets[2])
+        self.assertIsNotNone(coordinator.status()['active'])
+        self.assertEqual(coordinator.acquire(('wake', '101.wake', 'next'), 'gemini')['status'], 'queued')
+
+    def test_release_exhaustion_retains_grant_without_repeating_provider_effect(self):
+        coordinator = InstallationCallCoordinator()
+        gate = GroupProviderGate('http://controller', '100.wake')
+        packets, effects = [], []
+        def reply(packet):
+            packets.append(dict(packet))
+            if packet['action'] == 'release':
+                raise OSError('Release never reached controller')
+            return coordinator.acquire(('wake', packet['member'], packet['request_id']), packet['model'])
+        with patch.dict(os.environ, {'WAKE_INSTALLATION_WORKER': '1'}), \
+             patch.object(gate, '_request', side_effect=reply), \
+             patch('wake.group_coordinator.time.sleep'), \
+             patch('wake.group_coordinator.sys.stderr'):
+            with gate.request('gemini'):
+                effects.append('provider effect')
+        self.assertEqual(effects, ['provider effect'])
+        self.assertEqual([packet['action'] for packet in packets], ['acquire'] + ['release'] * 3)
+        self.assertEqual(packets[1], packets[2])
+        self.assertEqual(packets[2], packets[3])
+        self.assertIsNotNone(coordinator.status()['active'])
+
+    def test_controller_http_rejection_is_not_retried(self):
+        gate = GroupProviderGate('http://controller', '100.wake')
+        error = HTTPError('http://controller', 409, 'Stopped', {}, None)
+        self.addCleanup(error.close)
+        with patch.object(gate, '_request', side_effect=error) as request, \
+             patch('wake.group_coordinator.time.sleep') as sleep:
+            with self.assertRaises(HTTPError):
+                gate._request_reliably({'action': 'acquire'})
+        request.assert_called_once()
+        sleep.assert_not_called()
+
+    def test_semantically_invalid_controller_packet_is_not_retried(self):
+        gate = GroupProviderGate('http://controller', '100.wake')
+        packets = []
+        def reply(packet):
+            packets.append(packet)
+            return {'status': 'unknown'}
+        with patch.dict(os.environ, {'WAKE_INSTALLATION_WORKER': '1'}), \
+             patch.object(gate, '_request', side_effect=reply), \
+             patch('wake.group_coordinator.time.sleep') as sleep:
+            with self.assertRaises(ProviderCallPaused):
+                with gate.request('gemini'):
+                    self.fail('Invalid controller packet allowed provider effect')
+        self.assertEqual([packet['action'] for packet in packets], ['acquire', 'cancel'])
+        sleep.assert_not_called()
+
+    def test_pause_after_ambiguous_acquire_releases_recovered_grant(self):
+        coordinator = InstallationCallCoordinator()
+        gate = GroupProviderGate('http://controller', '100.wake', should_pause=lambda: paused[0])
+        paused, packets = [False], []
+        def reply(packet):
+            packets.append(dict(packet))
+            key = ('wake', packet['member'], packet['request_id'])
+            if packet['action'] == 'release':
+                return {'status': 'released' if coordinator.release(key, packet['token']) else 'expired'}
+            result = coordinator.acquire(key, packet['model'])
+            if len(packets) == 1:
+                paused[0] = True
+                raise OSError('Pause arrives while grant response is lost')
+            return result
+        with patch.dict(os.environ, {'WAKE_INSTALLATION_WORKER': '1'}), \
+             patch.object(gate, '_request', side_effect=reply), \
+             patch('wake.group_coordinator.time.sleep'):
+            with self.assertRaises(ProviderCallPaused):
+                with gate.request('gemini'):
+                    self.fail('Operator pause ignored')
+        self.assertEqual([packet['action'] for packet in packets], ['acquire', 'acquire', 'release'])
+        self.assertIsNone(coordinator.status()['active'])
+
+    def test_truncated_controller_responses_recover_or_exhaust_with_same_identity(self):
+        for failure in ('json', 'unicode', 'chunked'):
+            for exhausted in (False, True):
+                for phase in ('acquire', 'release'):
+                    with self.subTest(failure=failure, exhausted=exhausted, phase=phase):
+                        self.check_truncated_controller_response(failure, exhausted, phase)
+
+    def check_truncated_controller_response(self, failure, exhausted, phase):
+        coordinator = InstallationCallCoordinator()
+        packets, effects = [], []
+
+        class ControllerResponse(BaseHTTPRequestHandler):
+            def log_message(self, *args):
+                pass
+
+            def do_POST(self):
+                packet = json.loads(self.rfile.read(int(self.headers['Content-Length'])))
+                packets.append(packet)
+                key = ('wake', packet['member'], packet['request_id'])
+                failed = packet['action'] == phase and (exhausted or sum(p['action'] == phase for p in packets) == 1)
+                if packet['action'] == 'acquire':
+                    result = coordinator.acquire(key, packet['model'])
+                elif packet['action'] == 'release':
+                    # Exhausted release delivery leaves the grant held; an
+                    # applied release with a lost reply is safe to repeat.
+                    released = False if exhausted and failed else coordinator.release(key, packet['token'])
+                    result = {'status': 'released' if released else 'expired'}
+                else:
+                    result = {'status': 'cancelled', 'removed': coordinator.cancel_request(key)}
+                self.send_response(200)
+                if failed and failure == 'chunked':
+                    self.send_header('Transfer-Encoding', 'chunked')
+                    self.end_headers()
+                    self.wfile.write(b'10\r\n{')
+                else:
+                    body = (b'{' if failure == 'json' else b'\xff') if failed else json.dumps(result).encode()
+                    self.send_header('Content-Length', str(len(body)))
+                    self.end_headers()
+                    self.wfile.write(body)
+                self.close_connection = True
+
+        server = HTTPServer(('127.0.0.1', 0), ControllerResponse)
+        worker = threading.Thread(target=server.serve_forever, kwargs={'poll_interval': .01}, daemon=True)
+        worker.start()
+        gate = GroupProviderGate(f'http://127.0.0.1:{server.server_port}', '100.wake')
+        try:
+            with patch.dict(os.environ, {'WAKE_INSTALLATION_WORKER': '1'}), \
+                 patch('wake.group_coordinator.time.sleep'), \
+                 patch('wake.group_coordinator.sys.stderr'):
+                if exhausted and phase == 'acquire':
+                    with self.assertRaises(ProviderCallPaused):
+                        with gate.request('gemini'):
+                            self.fail('Truncated grant allowed provider effect')
+                else:
+                    with gate.request('gemini'):
+                        effects.append('provider effect')
+                        self.assertEqual(coordinator.acquire(('wake', '101.wake', 'other'), 'gemini')['status'], 'queued')
+        finally:
+            server.shutdown()
+            worker.join(timeout=1)
+            server.server_close()
+        acquires = [packet for packet in packets if packet['action'] == 'acquire']
+        self.assertEqual(len(acquires), (3 if exhausted else 2) if phase == 'acquire' else 1)
+        self.assertTrue(all(packet == acquires[0] for packet in acquires))
+        retries = [packet for packet in packets if packet['action'] == phase]
+        self.assertTrue(all(packet == retries[0] for packet in retries))
+        self.assertEqual(effects, [] if exhausted and phase == 'acquire' else ['provider effect'])
+        expected = (['acquire'] * 3 + ['cancel'] if exhausted else ['acquire', 'acquire', 'release']) if phase == 'acquire' else ['acquire'] + ['release'] * (3 if exhausted else 2)
+        self.assertEqual([packet['action'] for packet in packets], expected)
+        self.assertEqual(coordinator.status()['active'] is not None, exhausted)
 
 
 if __name__ == "__main__":
