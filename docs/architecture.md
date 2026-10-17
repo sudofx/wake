@@ -459,6 +459,8 @@ Browser delivery is separate from retained history and worker liveness. Reader
 pages use a 256 KiB bootstrap and same-origin paged/detail exports. Console uses a
 compact overview and optional wake detail files. The installation comparison
 serves completed summary observations rather than fanning out during HTTP reads.
+Operator reset/import invalidates those comparisons and primes them from the
+replacement exports before acknowledging completion.
 Unavailable workers retain their last exported data with visible freshness; none
 of these disposable views supplies governance or provider context. See
 [browser transport](retrieval.md#browser-views-and-exact-detail).

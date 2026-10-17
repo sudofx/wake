@@ -677,6 +677,10 @@ class Controller:
                 verify_import(backups / name)
             self.terminate()
             with self.site_lock:
+                # Replacement records invalidate comparison observations too.
+                # HTTP readers must not retain pre-reset counts while waiting
+                # for the independent unified website renderer.
+                self.manifest_sample = None
                 if action == 'RESET':
                     for directory in ('nodes', 'private', 'site'):
                         target = self.root / directory
@@ -690,7 +694,12 @@ class Controller:
                         shutil.rmtree(self.root / 'private')
                 self.site_signature = None
                 self.spawn()
-            return self.control('stopped')
+                result = self.control('stopped')
+                # Control acknowledgement follows each worker's completed
+                # export. Prime the small comparison here, never on HTTP reads,
+                # without waiting for a full unified-history render.
+                self.manifest_sample = installation_snapshot(self.root, live=False)
+                return result
 
 
 def run(args):
