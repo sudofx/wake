@@ -26,3 +26,6 @@ build/
 
 # Private installation advisory state must never be committed.
 **/.passenger*
+
+# Human continuity notes are local, never source or public content.
+/.wake-continuity/

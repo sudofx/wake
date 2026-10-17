@@ -21,6 +21,10 @@ Before changing anything, answer three questions:
 If you only need the key terms, use the [glossary](glossary.md). If you need a
 release procedure, go to [mirror publishing](cloud.md#development-and-release).
 
+For private human checkpoints and fresh-conversation recovery, use the
+[continuity workflow](continuity/README.md). It complements the authoritative
+research record without adding runtime state or automatic model context.
+
 ## Current development path
 
 Start with [one-container setup](standalone.md#run-one-installation-container).
