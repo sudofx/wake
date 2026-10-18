@@ -21,6 +21,12 @@ a resident process, that research is running, that the hosted page is current, o
 that another installation holds equivalent records. Missing information is not
 permission to reconstruct a convenient history.
 
+Public research exports omit private/provider bodies and may namespace identifiers
+in aggregate views. A retained source-event hash identifies historical provenance;
+it is not a hash of the filtered JSON beside it. Do not claim full authoritative
+replay from those views alone. The isolated task-list artifact separately retains
+its complete recorded proposals for checking that fixture's event hashes.
+
 A compact orientation also omits detail. Inspect the implementation and tests
 before relying on compatibility, migration, transaction or failure guarantees.
 Successful offline tests do not measure provider reliability or real-world
