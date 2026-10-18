@@ -72,6 +72,20 @@ class ReaderPreviewTests(unittest.TestCase):
         self.assertEqual(json.loads(body)['answer'], 'Fixture answer')
         self.assertEqual(self.calls, [packet])
 
+    def test_static_inspection_text_is_readable_without_exposing_neighboring_notes(self):
+        site = completed_site(self.root)
+        inspection = site / 'inspect'
+        inspection.mkdir()
+        (inspection / 'README.md').write_text('Public orientation')
+        (inspection / 'packet.md').write_text('Public packet')
+        (inspection / 'private.md').write_text('Private neighboring note')
+        (site / 'private.md').write_text('Private root note')
+        for route in ('/inspect/README.md', '/inspect/packet.md'):
+            self.assertEqual(self.request('GET', route)[0], 200)
+        for route in ('/inspect/private.md', '/private.md'):
+            self.assertEqual(self.request('GET', route)[0], 404)
+        self.assertEqual(self.calls, [])
+
     def test_limits_and_failures_do_not_repeat_provider_attempt(self):
         self.server.busy.acquire()
         self.assertEqual(self.request('POST', '/ask-bob', {}, **self.allowed())[0], 429)

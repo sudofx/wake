@@ -25,6 +25,17 @@ def export_unified_site(projection, target):
     console = console.replace('<main id="main" tabindex="-1">', '<main id="main" tabindex="-1"><section class="installation-overview">' + content + '</section>', 1)
     atomic_write(target / 'console.html', console)
     _deployment_site(target, standalone=True, installation={'unified': True, 'instance_name': 'WAKE✳︎'})
+    from .inspection import export_inspection
+    export_inspection(target, projection)
+    # Root unified reader pages share one static public inspection packet.
+    # Do not alter Console presentation or create per-node duplicate bundles.
+    from .report import _READER_PAGES
+    for filename in _READER_PAGES.values():
+        path = target / filename
+        page = path.read_text()
+        if 'href="inspect/index.html"' not in page:
+            page = page.replace('</footer>', '<a href="inspect/index.html">External LLM inspection →</a></footer>', 1)
+            atomic_write(path, page)
     return {'path': str(target / 'index.html'), 'head': projection['head']}
 
 

@@ -32,6 +32,9 @@ research notes and engineering handoffs between conversations.
 The opt-in [local Ask Bob experiment](docs/ask-bob.md) adds bounded questions over
 published evidence, with browser-local history and no research authority.
 
+The [static inspection interface](docs/inspection.md) gives unfamiliar readers and
+AI systems plain-text explanations, exact evidence and a reproducible kernel example.
+
 [Open the public site](https://sudofx.github.io/wake/) · [View source and releases](https://github.com/sudofx/wake) · [GitHub Actions](https://github.com/sudofx/wake/actions)
 
 ## The basic idea

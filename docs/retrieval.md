@@ -9,6 +9,10 @@ current publication and directly linked exact public records. Its A/B/C browser
 conversation context is advisory; it never enters the research retrieval policy
 or creates accepted scientific memory.
 
+The separate [inspection reading path](inspection.md) offers a compact orientation,
+manifest and progressively deeper static evidence. It requires no model-specific
+protocol or JavaScript and never reads public presentation back as runtime truth.
+
 ## Internal nodes and Console aggregation
 
 In the current one-container installation, three parents and nine children each

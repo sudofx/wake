@@ -160,8 +160,10 @@ class ReaderPreviewHandler(PublicSnapshotHandler):
             resolved = candidate.resolve(strict=True)
         except (OSError, RuntimeError):
             return denied
+        from .inspection import PUBLIC_FILES as INSPECTION_FILES
+        inspection_text = len(parts) == 2 and parts[0] == 'inspect' and parts[1] in INSPECTION_FILES
         if (not resolved.is_relative_to(base) or not resolved.is_file()
-                or resolved.suffix.lower() not in PUBLIC_SUFFIXES):
+                or (resolved.suffix.lower() not in PUBLIC_SUFFIXES and not inspection_text)):
             return denied
         return str(resolved)
 

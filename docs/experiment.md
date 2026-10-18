@@ -10,6 +10,11 @@ compares no history, rich relevant conversation and compressed contextual
 continuity. Its provider-free fixture measures input and retrieval costs only;
 response quality, comprehension and energy savings are not implied.
 
+[Inspection evaluation](inspection.md) asks a fresh observer to reconstruct the
+architecture and critique evidence. A reproducible kernel fixture and valid links
+are automated checks; unfamiliar-model accuracy requires a separate recorded
+evaluation and must not be inferred from those checks.
+
 > **Current evaluation protocol.** This defines how live and comparative **WAKE✳︎** runs should be interpreted. Observations and proposed mechanisms remain separate, and rejected, deferred and failed attempts stay in the experimental record.
 
 ## Interpret the internal-node workload

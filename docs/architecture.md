@@ -46,6 +46,10 @@ invocation journal. It never submits governed research changes or creates a seco
 writer. Browser conversations remain local; operational hashes and outcomes remain
 in the existing record. Public Pages has no live conversation endpoint.
 
+The [static inspection interface](inspection.md) exposes explanations and an
+isolated kernel fixture for independent observers. Reading it grants no execution,
+provider or record authority; its manifest is derived presentation.
+
 
 ## One installation, internal nodes
 

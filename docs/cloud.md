@@ -10,6 +10,10 @@ Pages executes no research and has no research controls or execution status ligh
 preview. Its browser history, request capability and live endpoint are not part
 of the mirror. Exported reader assets remain inert without that local capability.
 
+The unified export also generates [static inspection resources](inspection.md)
+under `inspect/`. They require no JavaScript, authentication or live model; their
+manifest identifies dated export evidence rather than operational authority.
+
 ```mermaid
 flowchart LR
   S[master: source and documentation] --> C[Container runtime]
