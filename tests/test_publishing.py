@@ -14,6 +14,20 @@ from wake.report import export
 
 
 class PublishingTests(unittest.TestCase):
+    def test_metrics_reuse_captured_complete_history_without_reopening_authority(self):
+        from unittest.mock import Mock
+        from wake.live import _full_history_metrics
+        from wake.history import history_metrics
+        store = Mock()
+        store.events.side_effect = AssertionError('Captured history must not be read again')
+        store.history_metrics.side_effect = AssertionError('Captured metrics must not reopen history')
+        store.performance_snapshot.return_value = {'event_count': 42, 'wake_database_bytes': 123}
+        events = [{'seq': 1, 'kind': 'initialized', 'payload': {'objective': 'fixture'}}]
+        state = {'version': 0, 'invocations': {}}
+        result = _full_history_metrics(store, state, events)
+        self.assertEqual(result, {'storage': {'sqlite_bytes': 123, 'event_count': 42},
+                                 **history_metrics(events, state)})
+
     def test_overview_bounds_history_without_mutating_complete_export(self):
         from copy import deepcopy
         from wake.live import browser_projection, MAX_EVENTS, MAX_EVIDENCE_TEXT

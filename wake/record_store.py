@@ -176,9 +176,9 @@ class RecordStore:
                 )
             archived += len(chunk)
 
-    def _archived_legacy_events(self):
+    def _archived_legacy_events(self, envelope=None, receipts=None):
         """Reconstruct the exact imported legacy prefix from wake.kernel action inputs."""
-        migration = self._envelope()["migration"]
+        migration = (self._envelope() if envelope is None else envelope)["migration"]
         target_count = migration.get("import_legacy_event_count")
         target_head = migration.get("import_legacy_head")
         if not migration.get("archive_complete"):
@@ -187,7 +187,7 @@ class RecordStore:
         result = []
         head = "0" * 64
         expected_seq = 1
-        for receipt in self.record.history():
+        for receipt in (self.record.history() if receipts is None else receipts):
             if receipt["status"] != "accepted":
                 continue
             operations = receipt["proposal"].get("operations", [])
@@ -220,7 +220,8 @@ class RecordStore:
         return result
 
     def _verify_legacy_prefix(self, _migration_source=None):
-        migration = self._envelope()["migration"]
+        envelope = self._envelope()
+        migration = envelope["migration"]
         import_count = migration.get("import_legacy_event_count")
         import_head = migration.get("import_legacy_head")
         if (
@@ -228,7 +229,7 @@ class RecordStore:
             or migration.get("archive_head") != import_head
         ):
             raise IntegrityError("Imported WAKE history has not been fully archived into WAKE")
-        self._archived_legacy_events()
+        self._archived_legacy_events(envelope)
         if _migration_source is not None:
             events = _migration_source.events()
             if not isinstance(import_count, int) or import_count < 0 or import_count > len(events):
@@ -308,8 +309,8 @@ class RecordStore:
 
     def replay_record(self):
         """Return verified WAKE-compatible state, head, and event history."""
-        state, head = self.replay()
-        return state, head, self.events()
+        envelope = self._envelope()
+        return envelope["state"], envelope["migration"]["legacy_head"], self._events(envelope)
 
     def projection(self):
         return self.replay()
@@ -405,8 +406,8 @@ class RecordStore:
             raise Rejected("; ".join(receipt.reasons) or f"wake rejected WAKE event: {kind}")
         return self.load()
 
-    def _post_migration_events(self):
-        envelope = self._envelope()
+    def _post_migration_events(self, envelope=None, receipts=None):
+        envelope = self._envelope() if envelope is None else envelope
         migration = envelope["migration"]
         generation = migration.get("active_generation", 0)
         if generation:
@@ -419,7 +420,7 @@ class RecordStore:
         result = []
         active = generation == 0
         current_generation = 0
-        for receipt in self.record.history():
+        for receipt in (self.record.history() if receipts is None else receipts):
             if receipt["status"] != "accepted":
                 continue
             operations = receipt["proposal"].get("operations", [])
@@ -466,10 +467,17 @@ class RecordStore:
 
     def events(self):
         """Return the complete event history for the active WAKE generation."""
-        migration = self._envelope()["migration"]
-        if migration.get("active_generation", 0):
-            return self._post_migration_events()
-        return [*self._archived_legacy_events(), *self._post_migration_events()]
+        return self._events(self._envelope())
+
+    def _events(self, envelope):
+        # Reuse one captured envelope and receipt list throughout reconstruction.
+        # Both prefix and active-head checks still run; no cross-call cache can
+        # hide a new transition or corruption in the next snapshot.
+        receipts = self.record.history()
+        if envelope["migration"].get("active_generation", 0):
+            return self._post_migration_events(envelope, receipts)
+        return [*self._archived_legacy_events(envelope, receipts),
+                *self._post_migration_events(envelope, receipts)]
 
     def tail_events_all(self, limit):
         return self.events()[-max(0, limit):] if limit > 0 else []

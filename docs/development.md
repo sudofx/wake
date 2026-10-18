@@ -217,6 +217,16 @@ an HTTP request does not open twelve research files or wait for workers.
 These caches hold disposable presentation only; they cannot accept research or
 change provider sequencing. See [inspection boundaries](architecture.md#optional-inspection-activity).
 
+Complete exports reuse their captured state and event history for aggregate
+metrics. Record reconstruction passes the same envelope and receipt list through
+legacy-prefix and active-head validation instead of decoding the projection
+again for each helper. This reuse lasts only for that operation; the next read
+still loads current authority, and full startup and audit verification remain.
+Historical MAP rendering replays into one private working state, copies each
+incoming event, and retains independent node details. It does not copy the full
+accumulated invocation history at every event. Creation/revision labels still
+use collection membership from before the recorded transition.
+
 `scripts/wake_runner` is a convenience launcher for the named local editor image.
 It preserves its selected data volume on normal recreation, forces live mode and
 matrix enablement, binds port 8080 to LAN interfaces, and uses a configured Docker

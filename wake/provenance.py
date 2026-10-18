@@ -144,8 +144,15 @@ def build_map(state, events, head, replay_history=True):
         starts = {e["payload"]["id"]: e for e in events if e["kind"] == "invocation_started"}
         replayed = empty()
         for event in events:
-            before = replayed
-            replayed = reduce_event(deepcopy(replayed), event, historical=True)
+            # Only membership before an accepted transition is needed to label
+            # creations versus revisions. Copying the accumulated invocation
+            # history for every event makes export quadratic. Replay owns this
+            # working state; isolate incoming payloads and retained graph nodes
+            # instead so neither input history nor earlier details can mutate.
+            before = ({collection: set(replayed.get(collection, {}))
+                       for collection in set(COLLECTIONS.values())}
+                      if event["kind"] == "accepted" else {})
+            replayed = reduce_event(replayed, deepcopy(event), historical=True)
             if event["kind"] != "accepted":
                 continue
             p = event["payload"]

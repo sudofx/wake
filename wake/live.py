@@ -63,9 +63,12 @@ def installation_overview(research):
 
 
 
-def _full_history_metrics(store, state):
+def _full_history_metrics(store, state, events=None):
     """Return tiny aggregates from the store contract, never a concrete SQLite schema."""
-    if hasattr(store, "history_metrics"):
+    if events is not None:
+        from .history import history_metrics
+        summary = history_metrics(events, state)
+    elif hasattr(store, "history_metrics"):
         summary = store.history_metrics()
     else:
         from .history import history_metrics
@@ -78,7 +81,8 @@ def _full_history_metrics(store, state):
                 "wake_database_bytes",
                 store.path.stat().st_size if store.path.exists() else 0,
             ),
-            "event_count": performance.get("event_count", len(store.events())),
+            "event_count": (performance["event_count"] if "event_count" in performance
+                            else len(events) if events is not None else len(store.events())),
         },
         **summary,
     }

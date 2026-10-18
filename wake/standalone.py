@@ -172,7 +172,7 @@ def bootstrap(directory, settings, *, enable_continuity_matrix=True):
                 engine.initialize()
             else:
                 verify_existing_record(directory / 'wake.sqlite')
-                state, _, _ = store.replay_record()
+                state = store.load()
                 if not state['objective']:
                     raise ValueError('Existing authority is not initialized; refusing automatic bootstrap')
                 engine.recover()
