@@ -1,0 +1,287 @@
+{
+  "application": {
+    "id": "example-task-list",
+    "version": "1"
+  },
+  "checks": {
+    "expected_decisions": true,
+    "expected_revisions": true,
+    "full_replay_matches_current_state": true,
+    "rejected_state_unchanged": true,
+    "research_record_absent": true
+  },
+  "events": [
+    {
+      "created_at": "2026-10-17 22:15:59",
+      "event_hash": "37aed91c7aa29e8bfa1debf0b35ad2174a22458d8d4c2932825cceedacac9f65",
+      "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "proposal": {
+        "based_on_revision": 0,
+        "operations": [
+          {
+            "action": "apply_application",
+            "key": "example-task-list",
+            "value": {
+              "action": "add",
+              "application_id": "example-task-list",
+              "application_version": "1",
+              "input": {
+                "id": "f49f094b497e4c2684b754b322ee0d0f",
+                "title": "Verify independent kernel application"
+              },
+              "next_state": {
+                "f49f094b497e4c2684b754b322ee0d0f": {
+                  "completed": false,
+                  "title": "Verify independent kernel application"
+                }
+              }
+            }
+          }
+        ],
+        "proposal_id": "db76bf4c83df40ceb83a1761bab108cb",
+        "rationale": ""
+      },
+      "proposal_id": "db76bf4c83df40ceb83a1761bab108cb",
+      "provenance": {
+        "how": "Deterministic governance and serialized record submission",
+        "receipt_schema": "wake-receipt@1",
+        "what": "accepted: add (proposal db76bf4c83df40ceb83a1761bab108cb)",
+        "when": "2026-10-17T22:15:59.095235+00:00",
+        "where": "Execution location not supplied",
+        "who": "Caller identity not supplied",
+        "why": "Reason not supplied"
+      },
+      "reasons": [],
+      "receipt_id": "3ac67ebe-188a-4c56-9305-ed808a303bed",
+      "revision_after": 1,
+      "revision_before": 0,
+      "sequence": 1,
+      "status": "accepted"
+    },
+    {
+      "created_at": "2026-10-17 22:15:59",
+      "event_hash": "e1399a6aaf9735e13cb3dfacae08f4fbc4e4a759f5e5ccd2fdca227f5004a6ce",
+      "previous_hash": "37aed91c7aa29e8bfa1debf0b35ad2174a22458d8d4c2932825cceedacac9f65",
+      "proposal": {
+        "based_on_revision": 1,
+        "operations": [
+          {
+            "action": "apply_application",
+            "key": "example-task-list",
+            "value": {
+              "action": "complete",
+              "application_id": "example-task-list",
+              "application_version": "1",
+              "input": {
+                "id": "missing-task"
+              },
+              "next_state": null
+            }
+          }
+        ],
+        "proposal_id": "a80245635ce6446ba3a62acdcb993bfd",
+        "rationale": ""
+      },
+      "proposal_id": "a80245635ce6446ba3a62acdcb993bfd",
+      "provenance": {
+        "how": "Deterministic governance and serialized record submission",
+        "receipt_schema": "wake-receipt@1",
+        "what": "rejected: complete (proposal a80245635ce6446ba3a62acdcb993bfd)",
+        "when": "2026-10-17T22:15:59.098099+00:00",
+        "where": "Execution location not supplied",
+        "who": "Caller identity not supplied",
+        "why": "Reason not supplied"
+      },
+      "reasons": [
+        "task does not exist"
+      ],
+      "receipt_id": "f41f3313-3a4f-4adb-8418-d5c954fd6db5",
+      "revision_after": 1,
+      "revision_before": 1,
+      "sequence": 2,
+      "status": "rejected"
+    },
+    {
+      "created_at": "2026-10-17 22:15:59",
+      "event_hash": "021d45f244f9e2de5a21429c031bbef74e9a703582acbfc6c90b4f233475e45a",
+      "previous_hash": "e1399a6aaf9735e13cb3dfacae08f4fbc4e4a759f5e5ccd2fdca227f5004a6ce",
+      "proposal": {
+        "based_on_revision": 1,
+        "operations": [
+          {
+            "action": "apply_application",
+            "key": "example-task-list",
+            "value": {
+              "action": "complete",
+              "application_id": "example-task-list",
+              "application_version": "1",
+              "input": {
+                "id": "f49f094b497e4c2684b754b322ee0d0f"
+              },
+              "next_state": {
+                "f49f094b497e4c2684b754b322ee0d0f": {
+                  "completed": true,
+                  "title": "Verify independent kernel application"
+                }
+              }
+            }
+          }
+        ],
+        "proposal_id": "8929412e447245a28051aeba385bd52a",
+        "rationale": ""
+      },
+      "proposal_id": "8929412e447245a28051aeba385bd52a",
+      "provenance": {
+        "how": "Deterministic governance and serialized record submission",
+        "receipt_schema": "wake-receipt@1",
+        "what": "accepted: complete (proposal 8929412e447245a28051aeba385bd52a)",
+        "when": "2026-10-17T22:15:59.101065+00:00",
+        "where": "Execution location not supplied",
+        "who": "Caller identity not supplied",
+        "why": "Reason not supplied"
+      },
+      "reasons": [],
+      "receipt_id": "5b1579ba-04ff-4ce5-a604-2babb0f18663",
+      "revision_after": 2,
+      "revision_before": 1,
+      "sequence": 3,
+      "status": "accepted"
+    }
+  ],
+  "format": "wake-kernel-inspection@1",
+  "generated_at": "2026-10-17T22:15:59.105547+00:00",
+  "limits": [
+    "Offline synthetic task-list demonstration, not accepted research or a live service.",
+    "Application rules and decision semantics are deterministic; UUIDs, receipt timestamps and exact hashes vary between runs.",
+    "Hashes detect edits relative to retained bytes and head; they do not authenticate the author or prevent replacement of the entire artifact.",
+    "The artifact records checks performed during generation; a static page does not rerun the kernel.",
+    "No model or provider is called, and no research record is opened."
+  ],
+  "reproduction": {
+    "command": "python -S -m examples.task_list.inspection --output demo.json",
+    "example_command": "python -S -m examples.task_list.run --data FRESH_TEMPORARY_DIRECTORY",
+    "requirements": [
+      "Python 3.11 or later",
+      "standard library only",
+      "this source checkout"
+    ]
+  },
+  "result": {
+    "head": "021d45f244f9e2de5a21429c031bbef74e9a703582acbfc6c90b4f233475e45a",
+    "receipts": [
+      {
+        "reasons": [],
+        "revision": 1,
+        "status": "accepted"
+      },
+      {
+        "reasons": [
+          "task does not exist"
+        ],
+        "revision": 1,
+        "status": "rejected"
+      },
+      {
+        "reasons": [],
+        "revision": 2,
+        "status": "accepted"
+      }
+    ],
+    "replay_verified": true,
+    "revision": 2,
+    "state": {
+      "f49f094b497e4c2684b754b322ee0d0f": {
+        "completed": true,
+        "title": "Verify independent kernel application"
+      }
+    }
+  },
+  "scenario": "task-list-three-decisions",
+  "source": {
+    "dirty": true,
+    "files": [
+      {
+        "path": "wake/__init__.py",
+        "sha256": "f78e2a2f3719c327ce7b9979fe3d43f41cf5d1ff63b141b49fb60af94e38c080"
+      },
+      {
+        "path": "wake/kernel/__init__.py",
+        "sha256": "0833c3f9440d5e7f5a66732a6536d6724e27550569df359c50533620d2df6955"
+      },
+      {
+        "path": "wake/kernel/applications.py",
+        "sha256": "97ed1dfb24f1dd4861210c161cd8a85022072cb9756cab072261cb2417913540"
+      },
+      {
+        "path": "wake/kernel/compression.py",
+        "sha256": "ca8ab7e0fbe60a560816db571c2f58b06e0d19bf4de889a0a5812d68222b5efa"
+      },
+      {
+        "path": "wake/kernel/generation.py",
+        "sha256": "d6fa548adf8ef3ddc7613a53d984ded775ea7f5651ae86640933e6b57037b406"
+      },
+      {
+        "path": "wake/kernel/governance.py",
+        "sha256": "841b57552731a6650ce87d91e715eb2e9817395ae34340fa314a88a201fbd221"
+      },
+      {
+        "path": "wake/kernel/kernel.py",
+        "sha256": "23761107a3c71c2aa856ddd97aeae695b34b4cb9c9ba8d3cc856e2afb1f2e0e9"
+      },
+      {
+        "path": "wake/kernel/matrix.py",
+        "sha256": "6458eb9ace3e4c071c0e5fdd3d8fd469e3942e1ab5055451ff8260598817a053"
+      },
+      {
+        "path": "wake/kernel/models.py",
+        "sha256": "834465849a2d060981fb04eacd0c1ccc96a490566279e43192bcdc705ca89474"
+      },
+      {
+        "path": "wake/kernel/observability.py",
+        "sha256": "045034d65e67871ccb21fd24ce9b44ef4c8a0c233388b2a220eac68450a9b2db"
+      },
+      {
+        "path": "wake/kernel/providers.py",
+        "sha256": "bed7f832b3dc3dd40d3c8b1797ad547b9e06e59108d7a41bc1fc7aa2fe857220"
+      },
+      {
+        "path": "wake/kernel/receipts.py",
+        "sha256": "e9b63f4dc11e4ba0fbf9949c19540614b78965dc063892dfcbd6d3f085c7886a"
+      },
+      {
+        "path": "wake/kernel/record.py",
+        "sha256": "c88666ded959426af873c8a6323830eeeb953943d034c3a9eac01b9bc814bf94"
+      },
+      {
+        "path": "wake/kernel/runtime.py",
+        "sha256": "a532ee8c3b3c5da944e6f1793e2ee1d5f96955b6d8458bbb2e6a64397319aa5e"
+      },
+      {
+        "path": "wake/kernel/storage.py",
+        "sha256": "09b9c5dbdc47193f700b94b6daa5dd1aff876edc91178c2856deea5d47208a0c"
+      },
+      {
+        "path": "examples/task_list/app.py",
+        "sha256": "8111a898e01023236849171411d51fb7112488434fa875d27ca18e1b7728848e"
+      },
+      {
+        "path": "examples/task_list/run.py",
+        "sha256": "a1894b159cac5067337b2135fb15c7d956b507271c815b3fffa16a1572ded20a"
+      },
+      {
+        "path": "examples/task_list/inspection.py",
+        "sha256": "cb74f47bbd490a39a4f1154651ec414adbb6817f64b1749c800b11541478f132"
+      },
+      {
+        "path": "tests/test_kernel_boundary.py",
+        "sha256": "c65b932670f30278833e7ff405d39c32de655b86811b079a20c6825f661463c4"
+      },
+      {
+        "path": "tests/test_inspection_demo.py",
+        "sha256": "f181f71293536a7d27a894d4eb02ba46c8e78a8c6bcf8fe3441028c473ad3b1a"
+      }
+    ],
+    "git_revision": "fcec49b269b8a7609414683fe923c05019e91a7b",
+    "scope": "Exact listed source-file bytes; Git revision is descriptive, not proof that a dirty checkout matches its commit."
+  }
+}
