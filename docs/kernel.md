@@ -35,6 +35,9 @@ it. Leaving the scope releases ownership even on error, and a new process has
 no surviving owners, so unfinished attempts remain recoverable. This scope
 does not serialize application actions, reserve provider capacity, or grant
 authority; those boundaries still apply independently.
+Invocation journal appends wait up to 30 seconds for an existing SQLite writer
+to commit. That wait happens before the invocation event is durably appended;
+it does not retry a provider effect or skip hash-chain or lifecycle validation.
 
 | Part | Owns |
 | --- | --- |

@@ -60,6 +60,7 @@ class GroupProviderGate:
                 "request_id": request_id, "model": model,
                 "lease_seconds": self.lease_seconds,
                 **({"editorial_nonce": self.editorial_nonce} if getattr(self, "editorial_nonce", None) else {}),
+                **({"purpose": "reader"} if getattr(self, "purpose", None) == 'reader' else {}),
             })
             if packet.get("status") == "granted" and isinstance(packet.get("token"), str):
                 return packet["token"]

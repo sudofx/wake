@@ -136,6 +136,36 @@ class ReaderQuestionTests(unittest.TestCase):
         self.assertEqual(self.engine.store.recover_invocation_lifecycles(), (live.invocation_id,))
         self.assertEqual(record.invocation_history()[-1]['detail'], 'interrupted')
 
+    def test_reader_waits_for_an_in_flight_sqlite_write_before_provider_effect(self):
+        entered, release = threading.Event(), threading.Event()
+        def write():
+            with self.engine.store.record.write_transaction():
+                entered.set()
+                release.wait(12)
+        writer = threading.Thread(target=write)
+        writer.start()
+        self.assertTrue(entered.wait(2))
+        timer = threading.Timer(6, release.set)
+        timer.start()
+        try:
+            result = self.questions.answer({'article_id': 'article'})
+        finally:
+            release.set()
+            timer.cancel()
+            writer.join(5)
+        self.assertTrue(result['ok'], result)
+        self.generate.assert_called_once()
+        self.assertEqual(self.engine.store.invocation_history()[-1]['stage'], 'completed')
+
+    def test_outer_failure_logs_only_the_exception_class(self):
+        with patch.object(self.questions, '_answer', side_effect=RuntimeError('private fixture question and credential')):
+            with self.assertLogs('wake.reader_questions', level='WARNING') as logs:
+                result = self.questions.answer({'article_id': 'article'})
+        self.assertEqual(result, {'ok': False, 'error': 'busy_or_unavailable'})
+        self.assertIn('RuntimeError', logs.output[0])
+        self.assertNotIn('private fixture', logs.output[0])
+        self.assertNotIn('credential', logs.output[0])
+
     def test_bad_citations_are_visible_failures_without_accepting_research(self):
         before = self.engine.store.load()['version']
         self.generate.return_value = GenerationResponse('fixture', 'fixture', json.dumps(
@@ -196,7 +226,8 @@ class ReaderQuestionTests(unittest.TestCase):
             self.assertTrue(entered.wait(2))
             self.assertTrue(service.active)
             runtime = SimpleNamespace(runtime_status={}, control_ack='old-command')
-            for mode, reset_id in (('paused', None), ('stopped', None), ('running', 'new-reset')):
+            self.assertFalse(_reader_drain_pending(service, runtime, 'paused', None, None))
+            for mode, reset_id in (('stopped', None), ('running', 'new-reset')):
                 self.assertTrue(_reader_drain_pending(service, runtime, mode, reset_id, None))
                 self.assertEqual(runtime.runtime_status['state'], 'draining')
                 self.assertNotIn('control_ack', runtime.runtime_status)
@@ -219,6 +250,10 @@ class ReaderQuestionTests(unittest.TestCase):
         stop = threading.Event()
         self.assertTrue(_reader_admission_paused(self.data, 'running', stop, 'old'))
         self.assertFalse(_reader_admission_paused(self.data, 'running', stop, 'new'))
+        control.write_text(json.dumps({'research': 'paused'}))
+        self.assertFalse(_reader_admission_paused(self.data, 'running', stop, None))
+        control.write_text(json.dumps({'research': 'stopped'}))
+        self.assertTrue(_reader_admission_paused(self.data, 'running', stop, None))
 
     def test_bridge_uses_private_socket_and_existing_worker(self):
         service = ReaderService(self.data, self.questions)

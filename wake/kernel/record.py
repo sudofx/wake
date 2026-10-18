@@ -975,6 +975,11 @@ class Record:
             else None
         )
         with self.connect() as connection:
+            # An in-process application writer may still be committing a large
+            # projection. Wait for that transaction before recording this effect
+            # barrier; SQLite's default five seconds is too short under load.
+            # This does not retry a provider effect or relax journal verification.
+            connection.execute("PRAGMA busy_timeout = 30000")
             connection.execute("BEGIN IMMEDIATE")
             try:
                 verified = self._verified_invocation_history(connection)

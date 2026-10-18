@@ -62,13 +62,13 @@ def _write_control_ack(directory, reset_id, error=None):
 
 def _reader_admission_paused(directory, default, stop, handled_reset_id):
     mode, reset_id = _research_control(directory, default)
-    return stop.is_set() or mode != 'running' or bool(reset_id and reset_id != handled_reset_id)
+    return stop.is_set() or mode == 'stopped' or bool(reset_id and reset_id != handled_reset_id)
 
 
 def _reader_drain_pending(service, server, mode, reset_id, handled_reset_id):
     """Withhold drainage/reset acknowledgements while the reader owns an effect."""
     pending_reset = bool(reset_id and reset_id != handled_reset_id)
-    if service and service.active and (mode != 'running' or pending_reset):
+    if service and service.active and (mode == 'stopped' or pending_reset):
         server.runtime_status = {'mode': 'standalone', 'state': 'draining',
                                  'reason': 'Waiting for the active reader request to finish'}
         return True

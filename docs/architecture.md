@@ -49,6 +49,10 @@ Reader invocation evidence uses the kernel's managed lifecycle scope, which
 protects an active same-process call from interruption recovery. It does not hold
 the application research turn lock or modify research state. The shared provider
 slot and access barriers still govern each external call.
+An authenticated request from the owning reader worker can use that same slot
+while automated research is paused. Other workers and ordinary research requests
+remain blocked. Reader questions have no quota exemption; STOP and pending reset
+still close their admission.
 
 The [static inspection interface](inspection.md) exposes explanations and an
 isolated kernel fixture for independent observers. Reading it grants no execution,

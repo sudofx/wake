@@ -13,6 +13,15 @@ from wake.providers import ProviderCallPaused
 
 
 class InstallationProviderGateTests(unittest.TestCase):
+    def test_research_pause_allows_only_the_authenticated_owner_reader_role(self):
+        from wake.installation import provider_admitted
+        for mode in ('paused', 'stopped'):
+            self.assertFalse(provider_admitted(mode, '100.wake', {}))
+            self.assertFalse(provider_admitted(mode, '101.wake', {'purpose': 'reader'}))
+        self.assertTrue(provider_admitted('paused', '100.wake', {'purpose': 'reader'}))
+        self.assertFalse(provider_admitted('stopped', '100.wake', {'purpose': 'reader'}))
+        self.assertTrue(provider_admitted('running', '101.wake', {}))
+
     def test_shared_limit_returns_immediately_and_cancels_queue(self):
         for reason in ("daily_quota", "rate_limited", "access_blocked"):
             gate = GroupProviderGate("http://controller", "100.wake")

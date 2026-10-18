@@ -7,6 +7,7 @@ import argparse
 from dataclasses import asdict
 import hashlib
 import json
+import logging
 import os
 from pathlib import Path
 import re
@@ -91,8 +92,10 @@ class ReaderQuestions:
                 return {'ok': False, 'error': 'session_limit'}
             try:
                 return self._answer(request)
-            except Exception:
-                # Never echo exception strings containing question/provider text.
+            except Exception as error:
+                # Exception class only: messages and traceback locals can contain
+                # visitor questions, provider text or credentials.
+                logging.getLogger(__name__).warning('Reader request unavailable (%s)', type(error).__name__)
                 return {'ok': False, 'error': 'busy_or_unavailable'}
         finally:
             self.busy.release()
@@ -116,6 +119,7 @@ class ReaderQuestions:
         if gate is None or not gate.url:
             return {'ok': False, 'error': 'coordinator_unavailable'}
         gate.wait_seconds = min(gate.wait_seconds, 10)
+        gate.purpose = 'reader'
         generation = GenerationRequest(
             model=self.settings['model'], system=prepared['system'],
             prompt=prepared['prompt'],

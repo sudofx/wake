@@ -15,6 +15,46 @@ from wake.installation import Controller, InstallationHTTP, read_json, worker_ru
 
 
 class InstallationObserverTests(unittest.TestCase):
+    def test_paused_reader_http_admission_preserves_authentication_and_quota(self):
+        self.controller.mode = 'paused'
+        server = ThreadingHTTPServer(('127.0.0.1', 0), partial(InstallationHTTP, directory=str(self.root)))
+        server.controller = self.controller
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        packet = {'action': 'acquire', 'member': '100.wake', 'request_id': 'a' * 32,
+                  'purpose': 'reader', 'model': 'fixture'}
+        def post(body, token=None):
+            headers = {'Content-Type': 'application/json',
+                       'Authorization': 'Bearer ' + (token or self.controller.token)}
+            request = Request(f'http://127.0.0.1:{server.server_port}/group/coordinator',
+                              data=json.dumps(body).encode(), headers=headers, method='POST')
+            with urlopen(request, timeout=2) as response:
+                return json.load(response)
+        try:
+            for body, token, status in ((packet, 'invalid', 403),
+                    ({k: v for k, v in packet.items() if k != 'purpose'}, None, 409),
+                    ({**packet, 'member': '101.wake'}, None, 409)):
+                with self.assertRaises(HTTPError) as error:
+                    post(body, token)
+                self.assertEqual(error.exception.code, status)
+                error.exception.close()
+            granted = post(packet)
+            self.assertEqual(granted['status'], 'granted')
+            post({**packet, 'action': 'release', 'token': granted['token'],
+                  'outcome': {'result': 'daily_quota'}})
+            blocked = post({**packet, 'request_id': 'b' * 32})
+            self.assertEqual(blocked['reason'], 'daily_quota')
+            self.assertIsNone(self.controller.coordinator.status()['active'])
+            self.controller.mode = 'stopped'
+            with self.assertRaises(HTTPError) as error:
+                post({**packet, 'request_id': 'c' * 32})
+            self.assertEqual(error.exception.code, 409)
+            error.exception.close()
+        finally:
+            server.shutdown()
+            server.server_close()
+            thread.join(2)
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.root = Path(self.temp.name)

@@ -10,12 +10,18 @@ question endpoint.
 Use the managed `wake` container with this checkout mounted at `/workspace` and
 this installation at `/data`. Its current worker source must include the reader
 service. Preserve the existing research controls and records when adopting source;
-see [development setup](development.md). The prototype uses the existing
-running-research provider gate: paused, quota-limited or unavailable workers may
-decline a question. Reader answers share the owning worker's invocation journal
+see [development setup](development.md). The prototype uses the existing shared
+provider gate: quota-limited or unavailable workers may decline a question.
+Pausing automated research leaves explicitly submitted Ask Bob questions usable;
+stopping the installation or requesting a reset closes reader admission too.
+Reader answers share the owning worker's invocation journal
 without taking the research turn lock, so a long research turn does not itself
 block a question. Only one reader question runs at a time; provider calls still
 wait for the shared installation slot. Opening the preview never resumes research.
+The native journal also waits for an in-flight record write to commit before
+crossing its provider-effect barrier. A bounded wait can still expire under
+heavy load; the worker logs only the exception class, never the question or
+provider response, when that outer boundary cannot complete.
 
 From the checkout root:
 

@@ -32,6 +32,7 @@ research notes and engineering handoffs between conversations.
 The opt-in [local Ask Bob experiment](docs/ask-bob.md) adds bounded questions over
 published evidence, with browser-local history and no research authority. Its
 answer calls share the existing provider gate without holding the research turn lock.
+Automated research can remain paused while a reader explicitly asks a question.
 
 The [static inspection interface](docs/inspection.md) gives unfamiliar readers and
 AI systems plain-text explanations, exact evidence and a reproducible kernel example.

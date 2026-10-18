@@ -70,7 +70,7 @@ alone is not proof that a worker stopped.
 | `wake-research start` | Enable research after inspection. |
 | `wake-research stop` | Prevent new calls and drain active work; keep the container and Console available. |
 | `wake-research bob` | Request one eligible, bounded group editorial attempt from recorded inputs; keep research paused or running as selected. |
-| `wake-research pause` | Suspend research and drain active work while preserving the available Console. |
+| `wake-research pause` | Suspend automated research and drain its active work; preserve Console and explicitly submitted local Ask Bob questions. |
 | `wake-research restart` | Drain, recreate worker processes with current configuration, and enable research again; retain records. |
 | `wake-research RESET` | Drain, destroy active node records and private active data, initialize cycle zero, and leave research stopped. Uppercase is required. No backup is created. |
 | `wake-research export --name inspection.zip` | Drain and write a reloadable twelve-record archive to `./data/backups`; leave research stopped. |

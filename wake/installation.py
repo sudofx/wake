@@ -30,6 +30,19 @@ NODE_IDS = tuple(f'{parent + offset}.wake' for parent in (100, 200, 300) for off
 ASSETS = Path(__file__).parent / 'assets'
 
 
+def provider_admitted(mode, member, packet, editorial_nonce=None):
+    """Separate explicit reader questions from automatic research admission.
+
+    Packets arrive only through the authenticated internal worker boundary.
+    The reader role belongs to the owning worker; it grants no quota exemption.
+    STOP still closes reader admission, while PAUSE leaves manual questions usable.
+    """
+    return (mode == 'running'
+            or (mode == 'paused' and member == NODE_IDS[0] and packet.get('purpose') == 'reader')
+            or bool(member == NODE_IDS[0] and editorial_nonce
+                    and packet.get('editorial_nonce') == editorial_nonce))
+
+
 def read_json(path, maximum=16_000_000):
     path = Path(path)
     with path.open('rb') as stream:
@@ -236,7 +249,7 @@ class InstallationHTTP(PublicSnapshotHandler):
                 raise ValueError('Invalid identity')
             key = ('wake', member, request_id)
             if packet['action'] == 'acquire':
-                if controller.mode != 'running' and not (member == NODE_IDS[0] and controller.editorial_nonce and packet.get('editorial_nonce') == controller.editorial_nonce):
+                if not provider_admitted(controller.mode, member, packet, controller.editorial_nonce):
                     self.json_response(409, {'error': 'Research stopped'})
                     return
                 with controller.slot_condition:
@@ -244,7 +257,8 @@ class InstallationHTTP(PublicSnapshotHandler):
                     while True:
                         result = controller.coordinator.acquire(key, packet['model'], packet.get('lease_seconds', 120))
                         if (result.get('status') == 'granted' or result.get('reason') not in ('busy', 'fifo')
-                                or time.monotonic() >= deadline or controller.mode != 'running'):
+                                or time.monotonic() >= deadline
+                                or not provider_admitted(controller.mode, member, packet, controller.editorial_nonce)):
                             break
                         controller.slot_condition.wait(timeout=max(.01, deadline - time.monotonic()))
                     if result.get('status') == 'granted':
