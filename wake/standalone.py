@@ -422,27 +422,28 @@ def run(args):
                             if research_mode != 'running' and not editorial_nonce:
                                 from .event_format import digest
                                 shared_signature = digest(fetch(gateway_url('/group/bob-publication.json')))
-                                if shared_signature == paused_group_publication:
-                                    continue
-                            group = engine.store.load().get('group_bob', {})
-                            if editorial_command.get('revision_reason') and group.get('last_revision_command') != editorial_nonce:
-                                from .event_format import digest
-                                with engine.store.lock():
-                                    group = engine.store.load().get('group_bob', {})
-                                    engine.store.append('group_bob_revision_requested', {
-                                        'actor': 'operator', 'command_id': editorial_nonce, 'publication_digest': digest(group.get('publication')),
-                                        'reason': editorial_command['revision_reason']})
-                            if (research_mode == 'running' or editorial_nonce) and group.get('leader') == os.environ.get('WAKE_PUBLIC_HOSTNAME'):
-                                editorial_provider = Fixture(args.model or 'standalone-fixture') if provider_name == 'fixture' else Gemini(settings, args.model)
-                                if provider_name == 'gemini':
-                                    from .group_coordinator import group_provider_gate
-                                    editorial_provider.request_gate = group_provider_gate(settings, should_pause=lambda: stop.is_set() or (not editorial_request_path.exists() if editorial_nonce else _research_control(data, default_mode)[0] != 'running'))
-                                    editorial_provider.request_gate.editorial_nonce = editorial_nonce
-                            if synchronize(engine, editorial_provider) and publish(engine, root):
-                                server.snapshot_generation += 1
-                            paused_group_publication = shared_signature
-                            if editorial_nonce:
-                                editorial_request_path.unlink(missing_ok=True)
+                            # A slow unchanged fetch can keep the editorial timer due.
+                            # Skip only publication work so control acknowledgments still run.
+                            if research_mode == 'running' or editorial_nonce or shared_signature != paused_group_publication:
+                                group = engine.store.load().get('group_bob', {})
+                                if editorial_command.get('revision_reason') and group.get('last_revision_command') != editorial_nonce:
+                                    from .event_format import digest
+                                    with engine.store.lock():
+                                        group = engine.store.load().get('group_bob', {})
+                                        engine.store.append('group_bob_revision_requested', {
+                                            'actor': 'operator', 'command_id': editorial_nonce, 'publication_digest': digest(group.get('publication')),
+                                            'reason': editorial_command['revision_reason']})
+                                if (research_mode == 'running' or editorial_nonce) and group.get('leader') == os.environ.get('WAKE_PUBLIC_HOSTNAME'):
+                                    editorial_provider = Fixture(args.model or 'standalone-fixture') if provider_name == 'fixture' else Gemini(settings, args.model)
+                                    if provider_name == 'gemini':
+                                        from .group_coordinator import group_provider_gate
+                                        editorial_provider.request_gate = group_provider_gate(settings, should_pause=lambda: stop.is_set() or (not editorial_request_path.exists() if editorial_nonce else _research_control(data, default_mode)[0] != 'running'))
+                                        editorial_provider.request_gate.editorial_nonce = editorial_nonce
+                                if synchronize(engine, editorial_provider) and publish(engine, root):
+                                    server.snapshot_generation += 1
+                                paused_group_publication = shared_signature
+                                if editorial_nonce:
+                                    editorial_request_path.unlink(missing_ok=True)
                         except Exception as exc:
                             # No partial group, synthetic fallback or concealed
                             # scientific progress when a peer/provider is unavailable.

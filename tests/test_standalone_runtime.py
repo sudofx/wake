@@ -17,6 +17,47 @@ from wake.governance import Rejected
 
 
 class StandaloneRuntimeTests(unittest.TestCase):
+    def test_slow_unchanged_group_publication_acknowledges_new_stopped_control(self):
+        with tempfile.TemporaryDirectory() as directory:
+            engine = bootstrap(directory, dict(DEFAULTS))
+            control = Path(directory) / '.wake-runner-control.json'
+            control.write_text(json.dumps({'research': 'stopped', 'command_id': 'old-stop'}))
+            args = SimpleNamespace(interval=1, config='unused', provider='fixture',
+                data=directory, paused=False, enable_continuity_matrix=False,
+                host='127.0.0.1', port=0, model='test')
+            server, stop = MagicMock(), MagicMock()
+            stop.is_set.side_effect = [False, False, True]
+            clock = [100.0]
+            publication = {'checkpoint': 1}
+            fetch_count = [0]
+
+            def slow_fetch(url):
+                clock[0] += 20
+                fetch_count[0] += 1
+                if fetch_count[0] == 2:
+                    control.write_text(json.dumps({
+                        'research': 'stopped', 'command_id': 'new-stop'}))
+                return publication
+
+            with patch.dict(os.environ, {'WAKE_GROUP_ID': 'wake',
+                                        'WAKE_PUBLIC_HOSTNAME': '101.wake'}, clear=True), \
+                 patch('wake.runtime_supervisor.development_root', return_value=None), \
+                 patch('wake.standalone.config', return_value=dict(DEFAULTS)), \
+                 patch('wake.standalone.bootstrap', return_value=engine), \
+                 patch('wake.standalone.publish', return_value=True), \
+                 patch('wake.standalone.ThreadingHTTPServer', return_value=server), \
+                 patch('wake.standalone.threading.Thread'), \
+                 patch('wake.standalone.threading.Event', return_value=stop), \
+                 patch('wake.standalone.time.monotonic', side_effect=lambda: clock[0]), \
+                 patch('wake.group_editorial.fetch', side_effect=slow_fetch), \
+                 patch('wake.group_editorial.synchronize', return_value=False) as synchronize, \
+                 patch.object(engine, 'run') as cycle:
+                run(args)
+            self.assertEqual(fetch_count[0], 2)
+            synchronize.assert_called_once()
+            cycle.assert_not_called()
+            self.assertEqual(server.control_ack, 'new-stop')
+
     def test_inactive_automatic_pause_does_not_load_authority(self):
         from wake.standalone import _pause_after_introduction
         with tempfile.TemporaryDirectory() as directory:
