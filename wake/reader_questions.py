@@ -90,15 +90,14 @@ class ReaderQuestions:
             if self.attempts >= MAX_ATTEMPTS:
                 return {'ok': False, 'error': 'session_limit'}
             try:
-                with self.engine.store.lock():
-                    return self._answer_locked(request)
+                return self._answer(request)
             except Exception:
                 # Never echo exception strings containing question/provider text.
                 return {'ok': False, 'error': 'busy_or_unavailable'}
         finally:
             self.busy.release()
 
-    def _answer_locked(self, request):
+    def _answer(self, request):
         access = self.engine.store.kernel.application_access_state()
         if not access.enabled:
             return {'ok': False, 'error': 'access_blocked'}
@@ -125,12 +124,18 @@ class ReaderQuestions:
         # Exact private context is fingerprinted, never copied to the journal.
         context = Context(revision=self.engine.store.kernel.context().revision,
                           state={'generation_request': asdict(generation)}, recent_receipts=())
-        lifecycle = InvocationLifecycle.begin(
+        # This reader thread records only invocation evidence. The managed native
+        # scope keeps research recovery from interrupting it; no research-turn
+        # lock or application action is needed to explain completed public data.
+        with InvocationLifecycle.managed(
             self.engine.store.record, context,
             provenance=SubmissionProvenance('model', 'google-gemini', generation.model,
                                            purpose='Explain completed public exports for a local reader'),
             context_scope={'kind': 'application', 'application_id': APPLICATION_ID, 'purpose': 'reader'},
-        )
+        ) as lifecycle:
+            return self._generate(request, prepared, access, gate, generation, lifecycle, key)
+
+    def _generate(self, request, prepared, access, gate, generation, lifecycle, key):
         self.attempts += 1
 
         def effect():

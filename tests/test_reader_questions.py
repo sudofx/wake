@@ -15,8 +15,8 @@ from unittest.mock import patch
 from wake.authority import open_authoritative_store
 from wake.engine import DEFAULTS, Engine
 from wake.kernel.generation import GenerationResponse
-from wake.kernel.runtime import context_digest
-from wake.kernel.models import Context
+from wake.kernel.runtime import context_digest, InvocationLifecycle
+from wake.kernel.models import Context, SubmissionProvenance
 from wake.reader_questions import ReaderQuestions, ReaderService, socket_path, validate_answer
 from wake.providers import ProviderCallPaused
 from wake.standalone import _reader_admission_paused, _reader_drain_pending
@@ -88,8 +88,8 @@ class ReaderQuestionTests(unittest.TestCase):
         self.assertEqual(generation.tools, ())
 
     def test_busy_paused_and_session_limit_never_call_provider(self):
-        with self.engine.store.lock():
-            self.assertEqual(self.questions.answer({})['error'], 'busy_or_unavailable')
+        with self.questions.busy:
+            self.assertEqual(self.questions.answer({})['error'], 'busy')
         self.questions.should_pause = lambda: True
         self.assertEqual(self.questions.answer({})['error'], 'paused')
         self.questions.should_pause = lambda: False
@@ -97,6 +97,44 @@ class ReaderQuestionTests(unittest.TestCase):
         self.assertEqual(self.questions.answer({})['error'], 'session_limit')
         self.generate.assert_not_called()
         self.assertEqual(self.engine.store.invocation_history(), ())
+
+    def test_reader_can_answer_during_research_without_recovery_interrupting_it(self):
+        entered, release = threading.Event(), threading.Event()
+        original = self.generate.return_value
+        def generate(request):
+            entered.set()
+            if not release.wait(5):
+                raise TimeoutError('fixture did not release provider')
+            return original
+        self.generate.side_effect = generate
+        results = []
+        before = self.engine.store.load()
+        with self.engine.store.lock():
+            worker = threading.Thread(target=lambda: results.append(self.questions.answer({'article_id': 'article'})))
+            worker.start()
+            try:
+                self.assertTrue(entered.wait(5), 'Reader must not require the research turn lock')
+                self.engine.recover()
+                pending = self.engine.store.record.incomplete_invocations()
+                self.assertEqual(len(pending), 1)
+                self.assertEqual(self.engine.store.invocation_history()[-1]['stage'], 'attempt_started')
+            finally:
+                release.set()
+                worker.join(5)
+        self.assertFalse(worker.is_alive())
+        self.assertTrue(results[0]['ok'])
+        self.assertEqual(self.engine.store.load(), before)
+        self.assertEqual(self.engine.store.invocation_history()[-1]['stage'], 'completed')
+
+    def test_unfinished_managed_invocation_is_recoverable_after_owner_leaves(self):
+        record = self.engine.store.record
+        with self.assertRaisesRegex(RuntimeError, 'fixture interruption'):
+            with InvocationLifecycle.managed(record, self.engine.store.kernel.context(),
+                    provenance=SubmissionProvenance('model', 'fixture', 'fixture')) as live:
+                self.assertEqual(self.engine.store.recover_invocation_lifecycles(), ())
+                raise RuntimeError('fixture interruption')
+        self.assertEqual(self.engine.store.recover_invocation_lifecycles(), (live.invocation_id,))
+        self.assertEqual(record.invocation_history()[-1]['detail'], 'interrupted')
 
     def test_bad_citations_are_visible_failures_without_accepting_research(self):
         before = self.engine.store.load()['version']

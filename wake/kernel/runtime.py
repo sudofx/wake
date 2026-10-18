@@ -18,7 +18,10 @@ database so a fresh process can reconstruct that an attempt occurred.
 from __future__ import annotations
 
 import hashlib
+import os
+import threading
 import uuid
+from contextlib import contextmanager
 from collections.abc import Callable
 from dataclasses import dataclass
 
@@ -61,6 +64,12 @@ class InvocationResult:
 
 
 CONTEXT_POLICY_VERSION = "kernel-context-v1"
+
+# Recovery and managed invocation creation share this short critical section.
+# Ownership is process-local and tied to the canonical journal object: a fresh
+# worker has no live owners and must recover every abandoned durable attempt.
+_invocation_ownership_lock = threading.RLock()
+_live_invocations: dict[tuple[int, int], set[str]] = {}
 
 
 def context_payload(context: object) -> dict[str, object]:
@@ -115,6 +124,29 @@ class InvocationLifecycle:
     source_revision: int
     context_digest: str
     provenance: dict[str, object]
+
+    @classmethod
+    @contextmanager
+    def managed(cls, journal: InvocationJournal, context: object, **kwargs):
+        """Protect a live concurrent invocation from same-process recovery.
+
+        Use the same journal object for execution and recovery. Only invocation
+        evidence is coordinated here; application mutation still needs its own
+        serialization. Leaving the scope releases ownership even on failure,
+        so unfinished evidence becomes recoverable without an expiry or retry.
+        """
+        key = (os.getpid(), id(journal))
+        with _invocation_ownership_lock:
+            lifecycle = cls.begin(journal, context, **kwargs)
+            _live_invocations.setdefault(key, set()).add(lifecycle.invocation_id)
+        try:
+            yield lifecycle
+        finally:
+            with _invocation_ownership_lock:
+                owners = _live_invocations[key]
+                owners.remove(lifecycle.invocation_id)
+                if not owners:
+                    del _live_invocations[key]
 
     @classmethod
     def begin(
@@ -274,9 +306,16 @@ class Runtime:
         evidence. It does not manufacture a Proposal, receipt, or successful
         external effect.
         """
+        with _invocation_ownership_lock:
+            return self._recover_unowned_invocations()
+
+    def _recover_unowned_invocations(self) -> tuple[str, ...]:
         recovered: list[str] = []
+        active = _live_invocations.get((os.getpid(), id(self.journal)), set())
         for pending in self.journal.incomplete_invocations():
             invocation_id = str(pending["invocation_id"])
+            if invocation_id in active:
+                continue
             self.journal.append_invocation_event(
                 InvocationEvent(
                     invocation_id=invocation_id,

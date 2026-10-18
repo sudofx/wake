@@ -27,6 +27,15 @@ message retries and worker replacement remain deployment concerns. The
 [resilience guide](resilience.md) documents effect-barrier failure accounting,
 bounded recent-list projections and the limits of response-body deadlines.
 
+`InvocationLifecycle.managed(journal, context, ...)` is a context manager for
+concurrent invocation evidence on the same canonical journal object. Recovery
+skips invocations owned by a live scope in that process. Creation and recovery
+are serialized through a short critical section; provider effects run outside
+it. Leaving the scope releases ownership even on error, and a new process has
+no surviving owners, so unfinished attempts remain recoverable. This scope
+does not serialize application actions, reserve provider capacity, or grant
+authority; those boundaries still apply independently.
+
 | Part | Owns |
 | --- | --- |
 | Kernel | Record format, deterministic decisions, replay and provider-call receipts |

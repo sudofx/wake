@@ -30,7 +30,8 @@ Use the [private continuity workflow](docs/continuity/README.md) to preserve hum
 research notes and engineering handoffs between conversations.
 
 The opt-in [local Ask Bob experiment](docs/ask-bob.md) adds bounded questions over
-published evidence, with browser-local history and no research authority.
+published evidence, with browser-local history and no research authority. Its
+answer calls share the existing provider gate without holding the research turn lock.
 
 The [static inspection interface](docs/inspection.md) gives unfamiliar readers and
 AI systems plain-text explanations, exact evidence and a reproducible kernel example.

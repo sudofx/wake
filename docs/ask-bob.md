@@ -10,9 +10,12 @@ question endpoint.
 Use the managed `wake` container with this checkout mounted at `/workspace` and
 this installation at `/data`. Its current worker source must include the reader
 service. Preserve the existing research controls and records when adopting source;
-see [development setup](development.md). The initial prototype uses the existing
-running-research provider gate: paused, busy, quota-limited or unavailable workers
-may decline a question. Opening the preview never resumes research.
+see [development setup](development.md). The prototype uses the existing
+running-research provider gate: paused, quota-limited or unavailable workers may
+decline a question. Reader answers share the owning worker's invocation journal
+without taking the research turn lock, so a long research turn does not itself
+block a question. Only one reader question runs at a time; provider calls still
+wait for the shared installation slot. Opening the preview never resumes research.
 
 From the checkout root:
 
