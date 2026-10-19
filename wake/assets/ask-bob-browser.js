@@ -105,12 +105,20 @@ export async function prepare(request, read = readPublic, signal) {
 export async function initialize(createEngine, modelURL, {progress = () => {}, signal, stallMs = 90000} = {}) {
   const controller = new AbortController();
   let candidate, timer, finished = false, loadedBefore = -1, rejectStopped;
+  let phase = 'Loading the browser engine', phaseStarted = Date.now();
+  const report = message => {
+    if (finished || controller.signal.aborted) return;
+    if (phase !== message) { phase = message; phaseStarted = Date.now(); arm(); }
+    progress(phase + '… (' + Math.floor((Date.now() - phaseStarted) / 1000) + ' seconds)');
+  };
+  const ticker = setInterval(() => report(phase),5000);
+  const fail = error => { if (!finished && !controller.signal.aborted) rejectStopped(Error('Bob engine stopped: ' + String(error?.message || error || 'browser worker failed').slice(0,240))); };
   const stopped = new Promise((_,reject) => { rejectStopped = reject; });
   const stop = (cancelled = false) => {
     if (finished) return;
     controller.abort();
     const error = cancelled ? new DOMException('Bob loading cancelled. Downloaded model files are kept for retry.','AbortError')
-      : Error('Bob stopped loading after 90 seconds without progress. Close other tabs to free memory, then retry. Downloaded model files are kept where browser storage permits.');
+      : Error('Bob stopped after 90 seconds without progress while ' + phase.toLowerCase() + '. Downloaded model files are kept for retry.');
     rejectStopped(error);
   };
   const arm = () => { clearTimeout(timer); timer = setTimeout(() => stop(),stallMs); };
@@ -119,17 +127,25 @@ export async function initialize(createEngine, modelURL, {progress = () => {}, s
   arm();
   if (signal?.aborted) cancel();
   const work = (async () => {
-    candidate = await createEngine();
+    candidate = await createEngine({report,fail});
     if (controller.signal.aborted) { void candidate.exit().catch(() => {}); throw new DOMException('Cancelled','AbortError'); }
-    await candidate.loadModelFromUrl(modelURL,{n_ctx:8192,n_threads:1,n_gpu_layers:0,
+    const options = {n_ctx:8192,n_threads:1,n_gpu_layers:0,
       n_batch:128,n_ubatch:128,warmup:false,signal:controller.signal,
       progressCallback:({loaded,total}) => {
         if (controller.signal.aborted || finished) return;
         // Repeated identical callbacks cannot keep a dead worker alive forever.
         if (loaded > loadedBefore) { loadedBefore = loaded; arm(); }
-        progress(total && loaded < total ? 'Downloading Bob: ' + Math.floor(100 * loaded / total) + '% of about 491 MB…'
-          : 'Preparing Bob on this device…');
-      }});
+        report(total && loaded < total ? 'Downloading Bob: ' + Math.floor(100 * loaded / total) + '% of about 491 MB'
+          : 'Opening downloaded Bob');
+      }};
+    // Keep cache opening separate from worker initialization so an iOS storage
+    // failure cannot masquerade as a model still preparing in the worker.
+    const model = await candidate.modelManager.getModelOrDownload({url:modelURL},options);
+    report('Opening downloaded Bob');
+    const blobs = await model.open();
+    if (controller.signal.aborted) throw new DOMException('Cancelled','AbortError');
+    report('Starting Bob’s browser engine');
+    await candidate.loadModel(blobs,options);
     if (controller.signal.aborted) throw new DOMException('Cancelled','AbortError');
     return candidate;
   })();
@@ -138,26 +154,35 @@ export async function initialize(createEngine, modelURL, {progress = () => {}, s
     controller.abort();
     // The native exit terminates its worker; do not wait on the failed startup.
     if (candidate) { try { void candidate.exit().catch(() => {}); } catch {} }
-    throw error;
+    if (error.name === 'AbortError' || String(error.message).startsWith('Bob ')) throw error;
+    throw Error('Bob failed while ' + phase.toLowerCase() + ': ' + String(error.message || error).slice(0,240));
   } finally {
-    finished = true; clearTimeout(timer); signal?.removeEventListener('abort',cancel);
+    finished = true; clearTimeout(timer); clearInterval(ticker); signal?.removeEventListener('abort',cancel);
   }
 }
 let engine, loading, loadingController, active = false;
 export const ready = () => !!engine?.isModelLoaded();
 export const cancelLoad = () => loadingController?.abort();
+if (globalThis.addEventListener) globalThis.addEventListener('pagehide',event => {
+  if (event.persisted) return; // Back/forward cache retains the usable page and model together.
+  cancelLoad(); const previous = engine; engine = null;
+  if (previous) void previous.exit().catch(() => {});
+});
 export async function load(progress = () => {}) {
   if (ready()) return;
   if (loading) return loading;
   loadingController = new AbortController();
   const controller = loadingController;
-  loading = initialize(async () => {
+  loading = initialize(async ({report,fail}) => {
     if (!globalThis.WebAssembly || !globalThis.Worker) throw Error('This browser cannot run Bob. Try a current desktop browser.');
-    progress('Loading the browser engine…');
+    report('Loading the browser engine');
     const {Wllama} = await import(new URL('ask-bob-engine.js',BASE).href);
     const silent = () => {};
     const candidate = new Wllama({default:new URL('ask-bob-engine.wasm',BASE).href},
-      {suppressNativeLog:true,logger:{debug:silent,log:silent,warn:silent,error:silent}});
+      {suppressNativeLog:true,logger:{debug:message=>{
+        if (message === 'Calling wllamaStart...') report('Starting Bob’s model reader');
+        if (message === 'Loading model...') report('Loading Bob’s model into memory');
+      },log:silent,warn:silent,error:fail}});
     // Let native feature detection select the matching Safari/older-browser
     // build. Both variants are served here; no CDN or account is involved.
     candidate.setCompat({wasm:new URL('ask-bob-engine-compat.wasm',BASE).href,
@@ -169,7 +194,7 @@ export async function load(progress = () => {}) {
     progress('Bob is ready on this device. No question is sent to an answer server.');
   } catch(error) {
     engine = null;
-    if (error.name === 'AbortError' || error.message.startsWith('Bob stopped loading')) throw error;
+    if (error.name === 'AbortError' || error.message.startsWith('Bob stopped') || error.message.startsWith('Bob engine stopped') || error.message.startsWith('Bob failed while')) throw error;
     throw Error('Bob could not load on this device. Check available memory, browser storage and your connection, then try again.');
   } finally { if (loadingController === controller) { loading = null; loadingController = null; } }
 }

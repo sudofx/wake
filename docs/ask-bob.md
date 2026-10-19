@@ -19,6 +19,10 @@ A failed load remains visible and never prevents reading the article.
 Safari and browsers missing the newer WebAssembly features automatically use a
 separate compatibility engine served by the same website. Startup uses smaller
 processing batches and skips inference warm-up to reduce initial memory demand.
+Startup reports whether it is opening the saved model, starting the browser
+engine, or loading the model into memory. Browser worker errors end startup
+immediately; a stalled stage reports its name and elapsed time. Closing or reloading the
+page terminates its model worker to avoid retaining WASM memory across reloads.
 **Cancel loading** stops the worker. If loading makes no progress for 90 seconds,
 it terminates with a retry message instead of waiting indefinitely. Retry does
 not clear downloaded model files or private conversation history. A browser can
