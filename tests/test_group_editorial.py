@@ -258,22 +258,22 @@ class GroupEditorialTests(unittest.TestCase):
         self.assertNotIn('revision_requested', after['group_bob'])
         self.assertEqual(leader.store.audit()[0], after)
 
-    def test_progress_cadence_requires_tenth_aggregate_wake_without_time_expiry(self):
+    def test_progress_cadence_requires_three_per_hundred_without_time_expiry(self):
         from datetime import datetime, timedelta, timezone
         from wake.group_editorial import editorial_due
         now = datetime.now(timezone.utc)
         packet = deepcopy(self.packet)
         group = {'publication': {'inputs': deepcopy(packet)}, 'published_at': now.isoformat()}
         self.assertFalse(editorial_due(group, packet, now=now + timedelta(hours=2)))
-        # Two existing wakes: neither 8 nor 9 is due; 10 is, with an idle peer.
-        packet['inputs'][0]['version'] += 6
+        # Two existing wakes: neither 32 nor 33 is due; 34 is, with an idle peer.
+        packet['inputs'][0]['version'] += 30
         self.assertFalse(editorial_due(group, packet, now=now))
         packet['inputs'][0]['version'] += 1
         self.assertFalse(editorial_due(group, packet, now=now + timedelta(days=2)))
         packet['inputs'][0]['version'] += 1
         self.assertTrue(editorial_due(group, packet, now=now))
-        # One catch-up at 37 covers earlier milestones; next obligation is 40.
-        packet['inputs'][0]['version'] += 27
+        # One catch-up at 97 covers earlier milestones; next obligation is 100.
+        packet['inputs'][0]['version'] += 63
         self.assertTrue(editorial_due(group, packet, now=now))
         group['publication']['inputs'] = deepcopy(packet)
         self.assertFalse(editorial_due(group, packet, now=now))
@@ -286,6 +286,20 @@ class GroupEditorialTests(unittest.TestCase):
         self.assertFalse(editorial_due(group, packet, now=now + timedelta(days=2)))
         packet['inputs'][0]['version'] = -1
         with self.assertRaises(Rejected): editorial_due(group, packet, now=now)
+
+    def test_three_publication_opportunities_in_each_hundred_accepted_wakes(self):
+        from wake.group_editorial import editorial_due
+        packet = deepcopy(self.packet)
+        packet['inputs'][0]['version'] = 1
+        packet['inputs'][1]['version'] = 1
+        group = {'publication': {'inputs': deepcopy(packet)}}
+        milestones = []
+        for total in range(3, 201):
+            packet['inputs'][0]['version'] = total - 1
+            if editorial_due(group, packet):
+                milestones.append(total)
+                group['publication']['inputs'] = deepcopy(packet)
+        self.assertEqual(milestones, [34, 67, 100, 134, 167, 200])
 
     def test_retained_grouped_citations_and_informal_language_publish_without_inference(self):
         from wake.group_editorial import synchronize, validate_grounding
@@ -402,6 +416,15 @@ class GroupEditorialTests(unittest.TestCase):
         schema = writer.request['response_schema']
         self.assertEqual(set(schema['required']), {'title', 'lede', 'lens', 'paragraphs', 'summary', 'references'})
         self.assertNotIn('body', schema['properties'])
+        # Provider grammar stays structural; local rejection tests below retain
+        # exact source membership, numeric ranges and all-member coverage.
+        def structural(value):
+            if isinstance(value, dict):
+                self.assertFalse(set(value) & {'enum', 'minItems', 'maxItems', 'minimum', 'maximum'})
+                for child in value.values(): structural(child)
+            elif isinstance(value, list):
+                for child in value: structural(child)
+        structural(schema)
         body = draft['article']['body']
         self.assertIn('distinguish? [1]\n\nSummary\n\n', body)
         receipt = leader.store.load()['invocations'][draft['invocation']]
@@ -561,7 +584,7 @@ class GroupEditorialTests(unittest.TestCase):
             self.grant(engine, initial)
             engine.store.append('group_bob_published', {'publication': initial})
         leader = self.engines[0]
-        due = 5  # Two member inputs reach the aggregate ten-wake milestone.
+        due = 17  # Two member inputs reach the first aggregate milestone (34).
         for item in self.packet['inputs']:
             item['version'] = due
         def response(url):

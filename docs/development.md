@@ -474,8 +474,8 @@ uses one parent model invocation to introduce the initialized records of all mem
 even when their accepted research versions are still zero. Children make no research
 requests during this startup stage. A legacy failed initial synthesis retains its historical single-attempt rule.
 New attributed editorial packets use an independent sequence: the next article is
-required at every aggregate tenth accepted wake (10, 20, 30, and so on)
-across all nodes. The last publication’s captured inputs are the durable watermark.
+scheduled three times per 100 aggregate accepted wakes (34, 67, 100, then
+134, 167, 200, and so on) across all nodes. The last publication’s captured inputs are the durable watermark.
 A missed milestone remains due until publication succeeds; one catch-up article
 covers accumulated work without fabricating backdated posts. Failed attempts,
 wall time and Bob’s receipts do not count. Research never waits for the article.
@@ -511,7 +511,10 @@ Bob’s wording cannot qualify evidence or promote a research claim.
 
 Editorial inference uses the existing native invocation and provider quota
 boundary. Article structure and attribution are checked before an editorial
-invocation can complete. Invalid responses finish as visible rejections with their
+invocation can complete. The provider-facing output schema specifies structure
+without nested array cardinalities or long story-ID enums, which can exceed
+provider grammar capacity. Local validation still enforces all size limits, exact
+supplied source IDs, numeric reference ranges and complete member coverage. Invalid responses finish as visible rejections with their
 exact bounded response, reason and draft excerpt, rather than falsely reporting a
 completed synthesis. Existing withheld drafts and their reasons remain durable.
 Bounded repairs include the failure reason and an excerpt, including after a day
@@ -655,5 +658,5 @@ context and presentation; receivers retain their own governance and records.
 To run a local group until its next shared Bob post, set each member’s
 `pause_after_group_checkpoint` control to its current shared checkpoint plus one,
 then set `research` to `running`. The target is a publication lower bound, not a
-requested research cycle: Bob follows the aggregate ten-wake cadence above. Each member pauses
+requested research cycle: Bob follows the aggregate three-per-100-wake cadence above. Each member pauses
 once it durably imports the newer shared post, before another research request.

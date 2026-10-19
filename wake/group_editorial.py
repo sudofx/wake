@@ -217,21 +217,23 @@ def request(packet, checkpoint, repair=None, *, previous=None, max_context_chars
             "without new findings. Cite only supplied story IDs. No URLs or invented reference IDs in prose."
         )
         result['response_schema']['properties']['references'] = {
-            'type': 'array', 'minItems': 1, 'maxItems': 20,
+            'type': 'array',
             'items': {'type': 'object', 'additionalProperties': False,
-                'properties': {'input_ids': {'type': 'array', 'minItems': 1, 'maxItems': 32, 'items': {'type': 'string'}}},
+                'properties': {'input_ids': {'type': 'array', 'items': {'type': 'string'}}},
                 'required': ['input_ids']}}
         properties = result['response_schema']['properties']
         properties.pop('body')
-        properties['paragraphs'] = {'type': 'array', 'minItems': 1, 'maxItems': 24,
+        properties['paragraphs'] = {'type': 'array',
             'items': {'type': 'object', 'additionalProperties': False,
                 'properties': {'text': {'type': 'string'}, 'reference_numbers': {
-                    'type': 'array', 'minItems': 1, 'maxItems': 20,
-                    'items': {'type': 'integer', 'minimum': 1, 'maximum': 20}}},
+                    'type': 'array', 'items': {'type': 'integer'}}},
                 'required': ['text', 'reference_numbers']}}
         properties['summary'] = {'type': 'string'}
         result['response_schema']['required'] = list(properties)
-        result['response_schema']['properties']['references']['items']['properties']['input_ids']['items']['enum'] = [story['id'] for i in packet['inputs'] for story in i.get('stories', [])]
+        # Keep provider constrained decoding structural. Nested bounded arrays of
+        # long story-ID enums can exceed its grammar capacity (HTTP 400). Exact
+        # IDs, sizes and reference ranges remain mandatory in local validation;
+        # an unsupported or invented citation still rejects the whole draft.
         continuity = editorial_continuity(packet, previous)
         if continuity:
             result['context']['continuity'] = continuity
@@ -574,7 +576,7 @@ def _time(value):
 
 
 def editorial_due(group, packet, *, now=None):
-    """One pending article at each aggregate multiple of ten accepted wakes.
+    """Three article opportunities per hundred aggregate accepted wakes.
 
     Publication's captured inputs are the durable watermark. An overdue article
     covers accumulated work once; it does not invent historical milestone posts.
@@ -587,8 +589,8 @@ def editorial_due(group, packet, *, now=None):
     require(all(i['version'] >= old.get(i['member'], {}).get('version', 0) for i in packet['inputs']),
             'Member research generation regressed; operator reconciliation required')
     return bool(group.get('revision_requested')) or (
-        sum(i['version'] for i in packet['inputs']) // 10
-        > sum(i['version'] for i in previous) // 10)
+        sum(i['version'] for i in packet['inputs']) * 3 // 100
+        > sum(i['version'] for i in previous) * 3 // 100)
 
 
 def reference_links(article, packet):

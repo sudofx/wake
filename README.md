@@ -220,8 +220,8 @@ Worker groups synthesize one model-written WAKE01 introduction from every parent
 child and publish identical text on all members before ordinary research requests begin.
 The introductory checkpoint does not increment accepted research progress. Later
 articles explain group progress in plain language, with attributed references and
-a particularly simple Summary. A post is required at every tenth accepted wake
-across the group; overdue work stays due without blocking research. Language is
+a particularly simple Summary. Three posts are scheduled per 100 accepted wakes
+across the group (at totals 34, 67, 100, and so on); overdue work stays due without blocking research. Language is
 editorial guidance, while supplied references and research evidence rules remain
 required independently. New articles supply structured paragraphs and reference
 numbers; deterministic rendering adds citations and the Summary heading, retaining
