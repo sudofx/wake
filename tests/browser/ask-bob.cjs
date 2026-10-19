@@ -2,9 +2,18 @@
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
 const assert=require('node:assert/strict'),fs=require('node:fs'),http=require('node:http'),path=require('node:path');
 const assets=path.resolve(__dirname,'../../wake/assets'),requests=[];
+let browserMode=false;
 let enabled=true,installation='fixture-installation',pending=null,longAnswer=false;
 const server=http.createServer((req,res)=>{
  const url=new URL(req.url,'http://localhost');
+ if(url.pathname==='/installation.json'){
+  res.writeHead(browserMode?200:404,{'Content-Type':'application/json'});res.end(JSON.stringify({installation_id:installation}));return;
+ }
+ if(url.pathname==='/ask-bob-browser.js'){
+  requests.push({browserRuntime:true});res.writeHead(200,{'Content-Type':'text/javascript'});
+  res.end(`export const load=async progress=>progress('Fixture browser model ready');export const answer=async body=>({ok:true,answer:'Browser-only answer [S1]',article:{id:body.article_id,hash:body.expected_article_hash,head:'h'.repeat(64)},citations:[{id:'S1',label:'Article',url:'blog.html'}],metrics:{condition:body.condition},warnings:[],missing:[]});`);return;
+ }
+
  if(url.pathname==='/ask-bob/capabilities'){
   requests.push({capability:true});res.writeHead(enabled?200:404,{'Content-Type':'application/json'});res.end(JSON.stringify({enabled,token:'fixture-token',installation_id:installation}));return;
  }
@@ -31,6 +40,15 @@ const server=http.createServer((req,res)=>{
   const state=()=>page.evaluate(()=>{const key=Object.keys(localStorage).find(key=>key.startsWith('wake-ask-bob:'));return key?{key,value:JSON.parse(localStorage[key]),bytes:new TextEncoder().encode(localStorage[key]).length}:null;});
   const ask=async (question,mode='C')=>{await page.getByRole('combobox',{name:'Conversation context'}).selectOption(mode);await page.getByRole('textbox',{name:'Your question'}).fill(question);await page.getByRole('button',{name:'Ask Bob',exact:true}).click();await page.waitForFunction(()=>!document.querySelector('.ask-bob button[type=submit]').disabled);};
   enabled=true;await page.goto(base+'/blog.html');await page.evaluate(()=>window.WAKE_DEPLOYMENT={snapshot_only:true});const snapshotRequests=requests.length;await mount('snapshot-only');assert.equal(await page.locator('.ask-bob').count(),0);assert.equal(requests.length,snapshotRequests);assert.equal(await state(),null);
+  browserMode=true;await page.goto(base+'/blog.html');await page.evaluate(()=>window.WAKE_DEPLOYMENT={snapshot_only:true});
+  const publicBefore=requests.length;await mount('public-article');assert.equal(await page.locator('.ask-bob').count(),1);
+  assert.equal(requests.length,publicBefore);assert(await page.getByRole('button',{name:'Ask Bob',exact:true}).isDisabled());
+  assert((await page.locator('.ask-bob-note').innerText()).includes('No sign-in or API key'));
+  await page.getByRole('button',{name:'Load Bob on this device (491 MB)',exact:true}).click();
+  await page.waitForFunction(()=>!document.querySelector('.ask-bob button[type=submit]').disabled);
+  await ask('Explain this article');assert.equal(await page.locator('.ask-bob-answer').innerText(),'Browser-only answer [S1]');
+  assert.deepEqual(requests.slice(publicBefore),[{browserRuntime:true}]);
+  await page.evaluate(()=>localStorage.clear());browserMode=false;
   enabled=false;await page.goto(base+'/blog.html');await mount('p1');assert.equal(await page.locator('.ask-bob').count(),0);assert.equal(await state(),null);
   enabled=true;await page.goto(base+'/nodes/100.wake/blog.html');const before=requests.length;await mount('p1');assert.equal(await page.locator('.ask-bob').count(),0);assert.equal(requests.length,before);
   await page.goto(base+'/blog.html');await mount('p1','a'.repeat(64),false);assert(!(await page.getByRole('textbox',{name:'Your question'}).isVisible()));await page.locator('.ask-bob > summary').focus();await page.keyboard.press('Enter');assert(await page.getByRole('textbox',{name:'Your question'}).isVisible());await page.keyboard.press('Enter');assert(!(await page.getByRole('textbox',{name:'Your question'}).isVisible()));await page.keyboard.press('Enter');assert(!(await page.getByRole('combobox',{name:'Your understanding of this article version'}).isDisabled()));assert.equal((await state()).value.articles[0].hash,'a'.repeat(64));assert(!Number.isNaN(Date.parse((await state()).value.articles[0].encountered_at)));
@@ -60,6 +78,6 @@ const server=http.createServer((req,res)=>{
   const blocked=await browser.newPage();blocked.on('pageerror',error=>errors.push(error.message));await blocked.goto(base+'/blog.html');
   await blocked.evaluate(async()=>{for(const key of ['getItem','setItem','removeItem'])Storage.prototype[key]=()=>{throw new DOMException('Blocked','SecurityError');};await window.WakeAskBob.mount(document.querySelector('#article'),{post:{id:'blocked',_reader_article:{hash:'a'.repeat(64),head:'h'.repeat(64)}}});});
   await blocked.locator('.ask-bob > summary').click();assert((await blocked.locator('.ask-bob-status').innerText()).includes('storage is unavailable'));await blocked.getByRole('textbox',{name:'Your question'}).fill('In memory');await blocked.getByRole('button',{name:'Ask Bob',exact:true}).click();await blocked.locator('.ask-bob-answer').waitFor();assert((await blocked.locator('.ask-bob-status').innerText()).includes('storage is unavailable'));await blocked.getByRole('button',{name:'Clear private browser history'}).click();assert.equal(await blocked.locator('.ask-bob-turn').count(),0);await blocked.close();
-  assert.deepEqual(errors,[]);console.log(JSON.stringify({result:'PASS',checks:'static snapshot exclusion, absent capability, node exclusion, A/B/C context, explicit version-bound self-report, hostile text/source URL safety, stale navigation, clear during request, history byte/article/turn caps, installation isolation, phone layout, collapsed keyboard disclosure, dated version history, invalid JSON and unavailable storage'}));
+  assert.deepEqual(errors,[]);console.log(JSON.stringify({result:'PASS',checks:'public browser inference opt-in with no answer API, absent installation/capability, node exclusion, A/B/C context, explicit version-bound self-report, hostile text/source URL safety, stale navigation, clear during request, history byte/article/turn caps, installation isolation, phone layout, collapsed keyboard disclosure, dated version history, invalid JSON and unavailable storage'}));
  }finally{await browser.close();server.close();}
 })().catch(error=>{console.error(error);server.close();process.exitCode=1;});

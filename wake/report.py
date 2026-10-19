@@ -496,8 +496,12 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         # Publish source styles alongside every HTML view: Pages and exports share
         # the same theme file rather than receiving copied inline palettes.
         for name in ("style.css", "nav.css", "map.css", "map3d.css", "theme.css",
-                     "nav.js", "map.js", "map3d.js", "flat-view.js", "ask-bob.js", "ask-bob.css"):
+                     "nav.js", "map.js", "map3d.js", "flat-view.js", "ask-bob.js", "ask-bob.css", "ask-bob-browser.js"):
             atomic_write(target / name, (assets / name).read_text())
+        # These static inference assets are loaded only after the reader opts in.
+        # They contain no provider credentials and never open research authority.
+        for name in ('ask-bob-engine.js', 'ask-bob-engine.wasm', 'ask-bob-engine.LICENSE.txt', 'ask-bob-engine.json'):
+            (target / name).write_bytes((assets / name).read_bytes())
         # Static Nebula artwork is presentation-only. Publish the responsive
         # source set alongside the generated shell without routing binaries through text IO.
         background_source = assets / "backgrounds"

@@ -29,10 +29,11 @@ explicit worker recovery, failure evidence and reproducible disturbance checks.
 Use the [private continuity workflow](docs/continuity/README.md) to preserve human
 research notes and engineering handoffs between conversations.
 
-The opt-in [local Ask Bob experiment](docs/ask-bob.md) adds bounded questions over
-published evidence, with browser-local history and no research authority. Its
-answer calls share the existing provider gate without holding the research turn lock.
-Automated research can remain paused while a reader explicitly asks a question.
+[Ask Bob](docs/ask-bob.md) answers questions about published articles on the public
+mirror without sign-in, an API key or a running installation. Readers explicitly
+load a small model on their own device (about 491 MB); questions and replies stay
+in that browser. The optional local Gemini preview remains separate. Neither
+reader surface has research authority or starts automated research.
 
 The [static inspection interface](docs/inspection.md) gives unfamiliar readers and
 AI systems plain-text explanations, exact evidence and a reproducible kernel example.

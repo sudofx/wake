@@ -25,9 +25,10 @@ For private human checkpoints and fresh-conversation recovery, use the
 [continuity workflow](continuity/README.md). It complements the authoritative
 research record without adding runtime state or automatic model context.
 
-For the opt-in host-loopback reader prototype, see [Ask Bob](ask-bob.md).
-It requires an owning worker that includes the reader service and never starts
-or resets research as a side effect of opening its preview.
+For public browser-only answers and the optional host-loopback Gemini preview,
+see [Ask Bob](ask-bob.md). Public answers use static public shards and a model
+running on the reader's device. They require no owning worker or authentication.
+Neither mode starts or resets research when opened.
 
 ## Current development path
 

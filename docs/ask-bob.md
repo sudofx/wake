@@ -1,9 +1,53 @@
-# Ask Bob on this Mac
+# Ask Bob about a published article
 
-Ask Bob is an opt-in local reader experiment. It answers questions about completed
+## Use it on the public website
+
+Open an article in Bob's Blog and expand **Ask Bob about this article** beneath
+the article. No sign-in, account, API key, cloud service setup or running WAKE
+installation is required. Select **Load Bob on this device (491 MB)**, wait for
+the download and preparation to finish, then submit your question. Opening an
+article alone never downloads the model or starts inference.
+
+The public version uses Qwen2.5-0.5B-Instruct, an open model running in a browser
+worker through the vendored MIT-licensed wllama runtime. It does not use Gemini
+or consume Gemini API quota. The first model download is 491,400,032 bytes
+(about 491 MB decimal); browser storage may cache it. Browser/device memory and
+speed determine whether it can load and how long an answer takes. Inference
+uses single-thread WebAssembly so GitHub Pages needs no special isolation
+headers or GPU. Keep the tab open; a slower device may need several minutes.
+A failed load remains visible and never prevents reading the article.
+
+The runtime ships with the website. Model weights come from the public,
+immutable revision recorded in `wake/assets/ask-bob-engine.json`. Downloading
+them contacts Hugging Face and its delivery network, which receive ordinary
+download metadata such as the requesting IP. Questions, answers and selected
+conversation history are processed on the device and are not sent to a model
+provider, server or research installation. Browser cache and private conversation
+history are separate: clearing the conversation does not remove downloaded weights.
+Use browser site-storage controls to remove the model cache.
+
+The small model can be less reliable than cloud models. It receives an explicitly
+excerpted current article, up to two directly linked exact exported records and
+bounded same-article history. It never recursively browses or retrieves private
+data. The displayed article hash must match the fetched public article, and linked
+records must share its snapshot head. Missing/excerpted sources remain visible;
+all returned source IDs must come from that supplied set. These checks establish
+attribution and version identity, not scientific truth or semantic entailment.
+
+Public input is capped at 14,000 UTF-8 bytes for the JSON context plus a fixed
+system instruction; the question is at most 2,000 characters. The A/B/C controls
+select no history, bounded recent same-article history, or shorter excerpts of
+that history. These browser excerpts are a separate policy from the local
+provider experiment below; they are not an A/B/C answer-quality finding.
+Model output is bounded and validated before it enters browser history.
+Navigation, clearing history and the answer timeout cancel a pending answer.
+No answer changes accepted research, Attention, commitments or project selection.
+
+## Optional Gemini preview on a Mac
+
+The Gemini preview is an opt-in local reader experiment. It answers questions about completed
 publications and their linked evidence. It cannot start research, accept findings,
-move Attention or change a project. The public GitHub Pages mirror has no live
-question endpoint.
+move Attention or change a project. It is not required by the public browser-only version.
 
 ## Open the local preview
 

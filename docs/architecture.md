@@ -40,7 +40,18 @@ flowchart TB
 records and checks transitions, and each node owns one authoritative record. A
 website or Console is a view of records, not another source of truth.
 
-The [local Ask Bob prototype](ask-bob.md) is a separate loopback reader surface.
+[Public Ask Bob](ask-bob.md) is a browser-only explanation aid on the static
+mirror. It loads a pinned open model only after an explicit reader action, then
+uses bounded same-origin exact article/source shards. It verifies the displayed
+article hash and source snapshot heads, keeps conversation in the browser, and
+cannot call research controls, submit transitions or read authority. The model
+is untrusted presentation, not an intelligence executing inside a WAKE worker.
+It creates no research receipts or progress and makes no remote generation call.
+The vendored inference runtime and its license/checksums ship as static assets;
+model weights download from their pinned public revision. No visitor identity,
+API key, hosting account or local installation is involved in answering.
+
+The optional local Gemini preview is a separate loopback reader surface.
 It uses completed public exports and the existing owning worker's native provider
 invocation journal. It never submits governed research changes or creates a second
 writer. Browser conversations remain local; operational hashes and outcomes remain

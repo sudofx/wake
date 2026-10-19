@@ -40,9 +40,17 @@
       clear(){value={schema:1,articles:[]};damaged=false;try{localStorage.removeItem(key);}catch{available=false;}}};
   }
   let capability;
-  const capabilities=()=>capability||(capability=fetch('/ask-bob/capabilities',{
+  const capabilities=()=>capability||(capability=window.WAKE_DEPLOYMENT?.snapshot_only===true?
+    fetch('installation.json',{cache:'no-cache',credentials:'omit',signal:AbortSignal.timeout(5000)})
+      .then(async response=>{
+        const value=response.ok?await response.json():null;
+        return typeof value?.installation_id==='string'&&value.installation_id?
+          {enabled:true,token:'browser-only',installation_id:value.installation_id,browser:true}:null;
+      }).catch(()=>null):fetch('/ask-bob/capabilities',{
     cache:'no-store',credentials:'same-origin',signal:AbortSignal.timeout(5000)
   }).then(async response=>response.ok?response.json():null).catch(()=>null));
+  let browserRuntime;
+  const browser=async()=>browserRuntime||(browserRuntime=await import(new URL('ask-bob-browser.js',document.baseURI).href));
   function element(tag,content,className){
     const node=document.createElement(tag);if(content!==undefined)node.textContent=content;
     if(className)node.className=className;return node;
@@ -52,8 +60,8 @@
     try{const url=new URL(value,location.href);return ['http:','https:'].includes(url.protocol)?url.href:null;}catch{return null;}
   }
   async function mount(container,{post,head=''}){
-    // Node-qualified article IDs are intentionally outside this prototype's lookup.
-    if(window.WAKE_DEPLOYMENT?.snapshot_only===true||!container||!post?.id||/^\/nodes(?:\/|$)/.test(location.pathname))return;
+    // The unified blog owns cross-node source IDs; individual node pages do not.
+    if(!container||!post?.id||/\/nodes(?:\/|$)/.test(location.pathname))return;
     const route=location.href,valid=()=>container.isConnected&&location.href===route;
     const cap=await capabilities();
     if(!valid()||!cap?.enabled||typeof cap.token!=='string'||!cap.token||typeof cap.installation_id!=='string'||!cap.installation_id)return;
@@ -78,12 +86,17 @@
     const panel=element('details',undefined,'ask-bob');
     panel.append(element('summary','Ask Bob about this article'));
     panel.append(element('p','Questions and replies are private conversation aids, not accepted research. Opening an article records exposure, not comprehension.'));
-    const privacy=element('p','History stays in this browser. Your question and selected context go to the local answer service and its configured model; they are excluded from public exports.','ask-bob-note');panel.append(privacy);
+    const privacy=element('p',cap.browser?
+      'No sign-in or API key. Bob runs on your device using a small model, with answers that may be less accurate than cloud models. Loading it downloads about 491 MB from Hugging Face; your browser may cache it. Questions and saved replies stay in this browser and never enter the research record.':
+      'History stays in this browser. Your question and selected context go to the local answer service and its configured model; they are excluded from public exports.','ask-bob-note');panel.append(privacy);
+    let modelReady=!cap.browser;
+    const loadModel=cap.browser?element('button','Load Bob on this device (491 MB)'):null;
+    if(loadModel){loadModel.type='button';panel.append(loadModel);}
     const form=element('form'),label=element('label','Your question'),question=element('textarea');
     question.required=true;question.maxLength=2000;question.rows=3;question.setAttribute('aria-label','Your question');label.append(question);form.append(label);
     const contextLabel=element('label','Conversation context'),condition=element('select');condition.setAttribute('aria-label','Conversation context');
     for(const [value,title] of [['A','No prior conversation (A)'],['B','Full prior conversation (B)'],['C','Compact prior conversation (C)']]){const option=element('option',title);option.value=value;condition.append(option);}condition.value='C';contextLabel.append(condition);form.append(contextLabel);
-    const submit=element('button','Ask Bob');submit.type='submit';submit.disabled=!displayedHash;form.append(submit);panel.append(form);
+    const submit=element('button','Ask Bob');submit.type='submit';submit.disabled=!displayedHash||!modelReady;form.append(submit);panel.append(form);
     const status=element('p','', 'ask-bob-status');status.setAttribute('role','status');panel.append(status);
     const conversation=element('div',undefined,'ask-bob-conversation');conversation.setAttribute('aria-live','polite');panel.append(conversation);
     const understandingLabel=element('label','Your understanding of this exact article version (optional)'),understanding=element('select');understanding.setAttribute('aria-label','Your understanding of this article version');
@@ -101,6 +114,19 @@
       const item=element('div',undefined,'ask-bob-turn');item.append(element('p','You: '+value.question));item.append(element('p',value.answer,'ask-bob-answer'));conversation.append(item);
     }
     current.turns.forEach(display);refresh();
+    if(loadModel){
+      loadModel.addEventListener('click',async()=>{
+        loadModel.disabled=true;
+        try{
+          const runtime=await browser();
+          await runtime.load(message=>{if(valid())status.textContent=message;});
+          modelReady=true;
+          if(valid()){loadModel.hidden=true;submit.disabled=!displayedHash;}
+        }catch(error){if(valid())status.textContent=text(error.message,500)||'Bob could not load on this device.';}
+        finally{if(valid())loadModel.disabled=false;}
+      });
+      status.textContent='Load Bob once before asking. It can take time and needs available device memory. Reading the article does not load the model.';
+    }
     if(!displayedHash)status.textContent='This article has no verified display version. Reload a newly exported snapshot before asking a question.';
     understanding.addEventListener('change',()=>{
       // No reading-duration or navigation inference can set a self-report.
@@ -112,7 +138,7 @@
     clear.addEventListener('click',()=>{
       epoch++;active?.abort();previous=null;priorHash='';store.clear();current={id:text(post.id,240),hash:displayedHash,head:text(descriptor?.head||head,100),opened:true,encountered_at:new Date().toISOString(),self_report:null,turns:[],versions:[]};
       conversation.replaceChildren();historyView.textContent=JSON.stringify(store.value,null,2);
-      understanding.value='';understanding.disabled=!displayedHash;submit.disabled=!displayedHash;status.textContent='Private browser history cleared.';
+      understanding.value='';understanding.disabled=!displayedHash;submit.disabled=!displayedHash||!modelReady;status.textContent='Private browser history cleared.';
     });
     form.addEventListener('submit',async event=>{
       event.preventDefault();if(submit.disabled||!valid())return;
@@ -123,15 +149,19 @@
         history:mode==='A'?[]:store.value.articles.flatMap(row=>row.turns).sort((a,b)=>a.time.localeCompare(b.time)||a.id.localeCompare(b.id)).slice(-MAX_TURNS),
         previous_article:mode==='A'?null:(priorHash?previous:{id:current.id,hash:current.hash||undefined,head:current.head,exposure:{opened:true},self_report:current.self_report})};
       if(mode!=='A'&&priorHash)body.prior_article_hash=priorHash;
-      submit.disabled=true;status.textContent='Preparing an answer from this article and its recorded sources…';
-      const controller=new AbortController();active=controller;const timeout=setTimeout(()=>controller.abort(),120000);
+      submit.disabled=true;status.textContent=cap.browser?'Bob is answering on your device. Keep this tab open; slower devices can take a few minutes…':'Preparing an answer from this article and its recorded sources…';
+      const controller=new AbortController();active=controller;const timeout=setTimeout(()=>controller.abort(),cap.browser?300000:120000);
       const leave=()=>controller.abort();window.addEventListener('hashchange',leave,{once:true});
       try{
-        const response=await fetch('/ask-bob',{method:'POST',credentials:'same-origin',cache:'no-store',
-          headers:{'Content-Type':'application/json','X-Wake-Reader-Token':cap.token},body:JSON.stringify(body),signal:controller.signal});
-        const result=await response.json();
+        let result,responseOK=true;
+        if(cap.browser){result=await (await browser()).answer(body,controller.signal);}
+        else{
+          const response=await fetch('/ask-bob',{method:'POST',credentials:'same-origin',cache:'no-store',
+            headers:{'Content-Type':'application/json','X-Wake-Reader-Token':cap.token},body:JSON.stringify(body),signal:controller.signal});
+          responseOK=response.ok;result=await response.json();
+        }
         if(!requestValid())return;
-        if(!response.ok||result.ok===false){
+        if(!responseOK||result.ok===false){
           const unavailable={busy:'The answer service is busy. Try again shortly.',busy_or_unavailable:'The answer service is busy or unavailable. Try again shortly.',paused:'Reader questions are paused.',session_limit:'This local preview has reached its question limit.',provider_deferred_or_failed:'The configured model deferred or could not complete this answer. Try again later.',invalid_or_unavailable_article:'This article is unavailable or has changed. Reload it before asking again.'};
           throw Error(unavailable[result.error]||'The answer service could not complete this question. Try again later.');
         }
@@ -156,7 +186,7 @@
         status.textContent=notices.map(value=>typeof value==='string'?text(value,500):[text(value?.collection,50),text(value?.id,240),text(value?.reason,300)].filter(Boolean).join(': ')).filter(Boolean).join(' ')||'Answer ready. Check the linked sources; this reply does not change the research record.';
         refresh();
       }catch(error){if(requestValid())status.textContent=error.name==='AbortError'?'The answer timed out or navigation interrupted it. You can retry.':text(error.message,500)||'Answer unavailable. You can retry.';}
-      finally{clearTimeout(timeout);window.removeEventListener('hashchange',leave);if(valid())submit.disabled=!displayedHash;}
+      finally{clearTimeout(timeout);window.removeEventListener('hashchange',leave);if(valid())submit.disabled=!displayedHash||!modelReady;}
     });
   }
   window.WakeAskBob={mount};
