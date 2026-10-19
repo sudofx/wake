@@ -101,7 +101,8 @@ class ReaderBrowserIntegrationTests(unittest.TestCase):
                 self.assertIn('offline-integration-source', generate.call_args.args[0].prompt)
             self.assertEqual(len(packets), 1)
             self.assertEqual(packets[0]['expected_article_hash'], browser['article_hash'])
-            self.assertEqual(packets[0]['previous_article']['self_report'], 'unsure')
+            self.assertIsNone(packets[0]['previous_article']['self_report'])
+            self.assertEqual(packets[0]['condition'], 'C')
             self.assertEqual(engine.store.load(), original_state)
             events = engine.store.invocation_history()
             self.assertEqual([event['stage'] for event in events],

@@ -104,14 +104,19 @@ export async function prepare(request, read = readPublic, signal) {
 }
 // Startup is a separate bounded operation from generation. A crashed WASM
 // worker may never settle its promise, so waiting for that promise is not enough.
-export async function initialize(createEngine, modelURL, {progress = () => {}, signal, stallMs = 90000} = {}) {
+export async function initialize(createEngine, modelURL, {progress = () => {}, signal, stallMs = 90000, timeoutMs = 600000} = {}) {
   const controller = new AbortController();
   let candidate, timer, finished = false, loadedBefore = -1, rejectStopped;
-  let phase = 'Loading the browser engine', phaseStarted = Date.now();
-  const report = message => {
+  const started = Date.now();
+  let phase = 'Loading the browser engine', phaseStarted = started, stage = 'download', downloaded = null;
+  const report = (message, detail) => {
     if (finished || controller.signal.aborted) return;
-    if (phase !== message) { phase = message; phaseStarted = Date.now(); arm(); }
-    progress(phase + '… (' + Math.floor((Date.now() - phaseStarted) / 1000) + ' seconds)');
+    if (detail) { stage = detail.stage; downloaded = detail.fraction ?? null; }
+    // A changing percentage is activity only when the byte counter advances.
+    // Changing between native preparation phases also resets the stall limit.
+    if (phase !== message) { if (stage !== 'download') arm(); phase = message; phaseStarted = Date.now(); }
+    progress(phase + '… (' + Math.floor((Date.now() - phaseStarted) / 1000) + ' seconds)',
+      {stage,fraction:downloaded,elapsed:Math.floor((Date.now() - started) / 1000)});
   };
   const ticker = setInterval(() => report(phase),5000);
   const fail = error => { if (!finished && !controller.signal.aborted) rejectStopped(Error('Bob engine stopped: ' + String(error?.message || error || 'browser worker failed').slice(0,240))); };
@@ -120,11 +125,20 @@ export async function initialize(createEngine, modelURL, {progress = () => {}, s
     if (finished) return;
     controller.abort();
     const error = cancelled ? new DOMException('Bob loading cancelled. Downloaded model files are kept for retry.','AbortError')
-      : Error('Bob stopped after 90 seconds without progress while ' + phase.toLowerCase() + '. Downloaded model files are kept for retry.');
+      : Error('Bob stopped after ' + Math.round(stallMs / 1000) + ' seconds without progress while ' + phase.toLowerCase() + '. Send your question again to retry; downloaded model files are kept.');
     rejectStopped(error);
   };
   const arm = () => { clearTimeout(timer); timer = setTimeout(() => stop(),stallMs); };
   const cancel = () => stop(true);
+  const checkDeadline = () => {
+    if (!finished && Date.now() - started >= timeoutMs) {
+      controller.abort();
+      rejectStopped(new DOMException('Bob took too long to prepare. Send your question again to retry; downloaded model files are kept.','TimeoutError'));
+    }
+  };
+  const deadline = setTimeout(checkDeadline,timeoutMs);
+  globalThis.document?.addEventListener('visibilitychange',checkDeadline);
+  globalThis.addEventListener?.('pageshow',checkDeadline);
   signal?.addEventListener('abort',cancel,{once:true});
   arm();
   if (signal?.aborted) cancel();
@@ -138,16 +152,18 @@ export async function initialize(createEngine, modelURL, {progress = () => {}, s
         // Repeated identical callbacks cannot keep a dead worker alive forever.
         if (loaded > loadedBefore) { loadedBefore = loaded; arm(); }
         report(total && loaded < total ? 'Downloading Bob: ' + Math.floor(100 * loaded / total) + '% of about 491 MB'
-          : 'Opening downloaded Bob');
+          : 'Opening downloaded Bob', {stage:loaded < total ? 'download' : 'prepare',
+            fraction:total > 0 ? Math.min(1,loaded / total) : null});
       }};
     // Keep cache opening separate from worker initialization so an iOS storage
     // failure cannot masquerade as a model still preparing in the worker.
     const model = await candidate.modelManager.getModelOrDownload({url:modelURL},options);
-    report('Opening downloaded Bob');
+    report('Opening downloaded Bob',{stage:'prepare',fraction:1});
     const blobs = await model.open();
     if (controller.signal.aborted) throw new DOMException('Cancelled','AbortError');
     report('Starting Bob’s browser engine');
     await candidate.loadModel(blobs,options);
+    checkDeadline();
     if (controller.signal.aborted) throw new DOMException('Cancelled','AbortError');
     return candidate;
   })();
@@ -159,7 +175,9 @@ export async function initialize(createEngine, modelURL, {progress = () => {}, s
     if (error.name === 'AbortError' || String(error.message).startsWith('Bob ')) throw error;
     throw Error('Bob failed while ' + phase.toLowerCase() + ': ' + String(error.message || error).slice(0,240));
   } finally {
-    finished = true; clearTimeout(timer); clearInterval(ticker); signal?.removeEventListener('abort',cancel);
+    finished = true; clearTimeout(timer); clearTimeout(deadline); clearInterval(ticker); signal?.removeEventListener('abort',cancel);
+    globalThis.document?.removeEventListener('visibilitychange',checkDeadline);
+    globalThis.removeEventListener?.('pageshow',checkDeadline);
   }
 }
 let engine, loading, loadingController, active = false;
@@ -173,11 +191,14 @@ if (globalThis.addEventListener) globalThis.addEventListener('pagehide',event =>
   cancelLoad(); const previous = engine; engine = null;
   if (previous) void previous.exit().catch(() => {});
 });
-export async function load(progress = () => {}) {
+export async function load(progress = () => {}, signal) {
   if (ready()) return;
   if (loading) return loading;
   loadingController = new AbortController();
   const controller = loadingController;
+  const cancel = () => controller.abort();
+  signal?.addEventListener('abort',cancel,{once:true});
+  if (signal?.aborted) cancel();
   loading = initialize(async ({report,fail}) => {
     if (!globalThis.WebAssembly || !globalThis.Worker) throw Error('This browser cannot run Bob. Try a current desktop browser.');
     report('Loading the browser engine');
@@ -205,12 +226,12 @@ export async function load(progress = () => {}) {
   },MODEL,{progress,signal:controller.signal});
   try {
     engine = await loading;
-    progress('Bob is ready on this device. No question is sent to an answer server.');
+    progress('Bob is ready on this device.',{stage:'ready',fraction:1});
   } catch(error) {
     engine = null;
-    if (error.name === 'AbortError' || error.message.startsWith('Bob stopped') || error.message.startsWith('Bob engine stopped') || error.message.startsWith('Bob failed while')) throw error;
+    if (error.name === 'AbortError' || error.name === 'TimeoutError' || error.message.startsWith('Bob stopped') || error.message.startsWith('Bob engine stopped') || error.message.startsWith('Bob failed while')) throw error;
     throw Error('Bob could not load on this device. Check available memory, browser storage and your connection, then try again.');
-  } finally { if (loadingController === controller) { loading = null; loadingController = null; } }
+  } finally { signal?.removeEventListener('abort',cancel); if (loadingController === controller) { loading = null; loadingController = null; } }
 }
 export function validateReply(response, sources) {
   const choice = response?.choices?.[0], raw = choice?.message?.content;
@@ -245,16 +266,17 @@ export async function generateReply(candidate, options, {signal,progress = () =>
   };
   // Native cancellation is cooperative and can itself wait on a dead worker.
   // Settle the caller independently and terminate that worker before any retry.
-  const expired = () => stop(new DOMException('Bob reached the five-minute answer limit. Load Bob again to retry; your saved download and earlier replies are kept.','TimeoutError'));
+  const expired = () => stop(new DOMException('Bob reached the five-minute answer limit. Send your question again to retry; your saved download and earlier replies are kept.','TimeoutError'));
   const checkDeadline = () => { if (Date.now() - started >= timeoutMs) expired(); };
   const cancel = () => stop(signal.reason?.name === 'TimeoutError' ? signal.reason
-    : new DOMException('Answer cancelled. Load Bob again to retry; your saved download and earlier replies are kept.','AbortError'));
-  const arm = () => { clearTimeout(stall); stall = setTimeout(() => stop(new Error('Bob stopped after 90 seconds without progress. Load Bob again to retry; your saved download and earlier replies are kept.')),stallMs); };
+    : new DOMException('Answer cancelled. Send your question again to retry; your saved download and earlier replies are kept.','AbortError'));
+  const arm = () => { clearTimeout(stall); stall = setTimeout(() => stop(new Error('Bob stopped after 90 seconds without progress. Send your question again to retry; your saved download and earlier replies are kept.')),stallMs); };
   const report = () => {
     checkDeadline(); if (finished) return;
     progress((raw ? 'Bob is drafting a reply' : 'Bob is reading the article and question') +
       '… (' + Math.floor((Date.now() - started) / 1000) + ' seconds' +
-      (raw ? '; ' + raw.length + ' characters generated' : '') + ')');
+      (raw ? '; ' + raw.length + ' characters generated' : '') + ')',
+      {stage:'answer',elapsed:Math.floor((Date.now() - started) / 1000),characters:raw.length});
   };
   const deadline = setTimeout(expired,timeoutMs), ticker = setInterval(report,1000);
   signal?.addEventListener('abort',cancel,{once:true});
@@ -276,7 +298,7 @@ export async function generateReply(candidate, options, {signal,progress = () =>
         report();
       }});
     checkDeadline(); if (finished) return stopped;
-    if (!reason) throw Error('Bob stopped before completing the reply. Load Bob again to retry; earlier replies are kept.');
+    if (!reason) throw Error('Bob stopped before completing the reply. Send your question again to retry; earlier replies are kept.');
     return {choices:[{message:{content:raw},finish_reason:reason}]};
   })();
   try { return await Promise.race([work,stopped]); }
@@ -289,7 +311,7 @@ export async function generateReply(candidate, options, {signal,progress = () =>
   }
 }
 export async function answer(request, signal, progress = () => {}) {
-  if (!ready()) throw Error('Load Bob on this device first.');
+  if (!ready()) throw Error('Bob is not ready. Send your question again to retry.');
   if (active) throw Error('Bob is answering another question.');
   active = true;
   const start = performance.now();

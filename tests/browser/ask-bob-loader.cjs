@@ -35,6 +35,21 @@ const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
   const advancing=fake({loadModelFromUrl:async(_url,options)=>{for(let i=1;i<=4;i++){await delay(10);options.progressCallback({loaded:i,total:4});}},exit:async()=>{throw Error('Unexpected exit');}});
   assert.equal(await initialize(async()=>advancing,'fixture://model',{stallMs:25,progress:text=>progress.push(text)}),advancing);
   assert(progress.some(text=>text.includes('Opening downloaded')));
+  // Slow but continuously advancing downloads still have an absolute limit.
+  let advancingTick;
+  const endlessDownload={modelManager:{getModelOrDownload:async(_model,options)=>{
+    let loaded=0;advancingTick=setInterval(()=>options.progressCallback({loaded:++loaded,total:10000}),2);
+    return new Promise(()=>{});
+  }},exit:async()=>clearInterval(advancingTick)};
+  await assert.rejects(initialize(async()=>endlessDownload,'fixture://slow',{timeoutMs:25,stallMs:100}),error=>error.name==='TimeoutError');
+  const details=[];
+  const downloadThenPrepare={modelManager:{getModelOrDownload:async(_model,options)=>{
+    options.progressCallback({loaded:20,total:100});options.progressCallback({loaded:100,total:100});
+    return {open:async()=>[]};
+  }},loadModel:async()=>{},exit:async()=>{}};
+  await initialize(async()=>downloadThenPrepare,'fixture://progress',{progress:(_text,detail)=>details.push(detail)});
+  assert(details.some(detail=>detail.stage==='download'&&detail.fraction===.2));
+  assert(details.some(detail=>detail.stage==='prepare'&&detail.fraction===1));
   // Worker.onerror can be logged without settling the native task promise.
   // It must reject immediately rather than wait for the stall deadline.
   exits=0;

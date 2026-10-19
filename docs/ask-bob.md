@@ -2,12 +2,21 @@
 
 ## Use it on the public website
 
-Open an article in Bob's Blog and expand **Ask Bob about this article** beneath
-the article. No sign-in, account, API key, cloud service setup or running WAKE
-installation is required. Select **Load Bob on this device (491 MB)**, wait for
-the download and preparation to finish, then submit your question. Opening an
-article alone never downloads the model or starts inference.
+Open an article in Bob's Blog, type a message in **Ask Bob**, and press **Send**.
+No sign-in, account, API key, cloud service setup or running WAKE installation is
+required. The first message automatically downloads and prepares Bob on the device;
+later messages and visits can reuse the saved model. Opening an article alone
+never downloads the model or starts inference. The chat shows your message
+immediately and keeps replies in a scrollable conversation. Recent same-article
+conversation is selected automatically; there are no context or comprehension
+selectors in the visitor interface.
 
+A three-stage line shows **Download → Prepare → Reply**. Download percentage
+comes from received bytes. Preparation and answering show activity and elapsed
+time rather than a fabricated time estimate. Keep the tab open while Bob works;
+a slower phone may need several minutes. **Stop** ends the current wait, and
+**Retry** or **Send** automatically prepares Bob again if necessary. No separate
+load button is needed.
 The public version uses Qwen2.5-0.5B-Instruct, an open model running in a browser
 worker through the vendored MIT-licensed wllama runtime. It does not use Gemini
 or consume Gemini API quota. The first model download is 491,400,032 bytes
@@ -30,8 +39,8 @@ Startup reports whether it is opening the saved model, starting the browser
 engine, or loading the model into memory. Browser worker errors end startup
 immediately; a stalled stage reports its name and elapsed time. Closing or reloading the
 page terminates its model worker to avoid retaining WASM memory across reloads.
-**Cancel loading** stops the worker. If loading makes no progress for 90 seconds,
-it terminates with a retry message instead of waiting indefinitely. Retry does
+**Stop** cancels preparation and stops its worker. If loading makes no progress for 90 seconds,
+it terminates with a retry message instead of waiting indefinitely. Preparation also has an absolute ten-minute limit, including download time; resuming a suspended tab checks that original deadline. Retry does
 not clear downloaded model files or private conversation history. A browser can
 still evict its cache or lack sufficient memory/storage; do not clear site data
 when trying to reuse a completed download.
@@ -59,9 +68,9 @@ all returned source IDs must come from that supplied set. These checks establish
 attribution and version identity, not scientific truth or semantic entailment.
 
 Public input is capped at 14,000 UTF-8 bytes for the JSON context plus a fixed
-system instruction; the question is at most 2,000 characters. The A/B/C controls
-select no history, bounded recent same-article history, or shorter excerpts of
-that history. These browser excerpts are a separate policy from the local
+system instruction; the question is at most 2,000 characters. The public chat automatically uses the compact same-article history policy
+(condition C). Internal A/B/C request support remains available to offline
+experiments, without visitor-facing selectors. These browser excerpts are a separate policy from the local
 provider experiment below; they are not an A/B/C answer-quality finding.
 Model output is bounded and validated before it enters browser history.
 If the model reaches its reply limit or returns incomplete JSON, the reply is
@@ -69,9 +78,9 @@ withheld with a plain-language suggestion to ask a narrower question. Partial
 text and invented source references are never used to repair a failed reply.
 Navigation, clearing history and the answer timeout cancel a pending answer.
 During an answer, elapsed time and generated-character counts show activity
-without displaying unvalidated draft text. **Cancel answer** stops the browser
+without displaying unvalidated draft text. **Stop** ends the answer and stops the browser
 worker. A five-minute deadline, or 90 seconds without model progress, also ends
-the wait even if native cancellation does not return. Select **Load Bob** again
+the wait even if native cancellation does not return. Send again to retry automatically
 after a stopped worker; the completed model download and earlier replies remain.
 No answer changes accepted research, Attention, commitments or project selection.
 
@@ -121,7 +130,7 @@ or establishing a cause.
 ## What the experiment retains
 
 Browser-local history is anonymous and limited to this browser origin and
-installation. Use the panel's inspect and clear controls. Clearing browser data,
+installation. Use **About this chat → Clear chat** to remove saved messages. Clearing browser data,
 changing origins or using another device loses access to that local history.
 Retention is capped at 20 articles, 10 turns per article and 32 KiB total, with
 oldest turns/articles evicted deterministically. Encounter timestamps and up to
@@ -132,9 +141,9 @@ Do not enter secrets or unnecessary personal information. Selected questions and
 history are sent to the configured provider to obtain an answer.
 
 Opening an article records exposure only. A question and answer record an
-interaction. An explicit reader confirmation is a self-report tied to the
-article version, not measured comprehension. Missing or outdated confirmation
-leaves understanding unknown.
+interaction. The chat does not infer comprehension from opening an article or asking a
+question. Previously retained explicit self-reports remain version-bound data;
+the simplified chat does not collect new self-reports.
 
 The host proxy keeps requests in memory and sends bounded JSON over Docker stdin
 to a private worker socket. It does not save transcripts or log URLs/questions.

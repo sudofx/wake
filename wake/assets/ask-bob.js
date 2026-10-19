@@ -51,7 +51,7 @@
   }).then(async response=>response.ok?response.json():null).catch(()=>null));
   let browserRuntime;
   // Replace the broken startup module without invalidating the large model cache.
-  const browser=async()=>browserRuntime||(browserRuntime=await import(new URL('ask-bob-browser.js?build=answer-control-1',document.baseURI).href));
+  const browser=async()=>browserRuntime||(browserRuntime=await import(new URL('ask-bob-browser.js?build=chat-1',document.baseURI).href));
   function element(tag,content,className){
     const node=document.createElement(tag);if(content!==undefined)node.textContent=content;
     if(className)node.className=className;return node;
@@ -83,124 +83,141 @@
     }
     current.encountered_at=new Date().toISOString();
     persist();
-    let epoch=0,active;
-    const panel=element('details',undefined,'ask-bob');
-    panel.append(element('summary','Ask Bob about this article'));
-    panel.append(element('p','Questions and replies are private conversation aids, not accepted research. Opening an article records exposure, not comprehension.'));
-    const privacy=element('p',cap.browser?
-      'No sign-in or API key. Bob runs on your device using a small model, with answers that may be less accurate than cloud models. Loading it downloads about 491 MB from Hugging Face; your browser may cache it. Questions and saved replies stay in this browser and never enter the research record.':
-      'History stays in this browser. Your question and selected context go to the local answer service and its configured model; they are excluded from public exports.','ask-bob-note');panel.append(privacy);
-    let modelReady=!cap.browser,modelLoadCancelled=false;
-    const loadModel=cap.browser?element('button','Load Bob on this device (491 MB)'):null;
-    const cancelModel=cap.browser?element('button','Cancel loading'):null;
-    if(loadModel){loadModel.type='button';cancelModel.type='button';cancelModel.hidden=true;panel.append(loadModel,cancelModel);}
-    const form=element('form'),label=element('label','Your question'),question=element('textarea');
-    question.required=true;question.maxLength=2000;question.rows=3;question.setAttribute('aria-label','Your question');label.append(question);form.append(label);
-    const contextLabel=element('label','Conversation context'),condition=element('select');condition.setAttribute('aria-label','Conversation context');
-    for(const [value,title] of [['A','No prior conversation (A)'],['B','Full prior conversation (B)'],['C','Compact prior conversation (C)']]){const option=element('option',title);option.value=value;condition.append(option);}condition.value='C';contextLabel.append(condition);form.append(contextLabel);
-    const submit=element('button','Ask Bob');submit.type='submit';submit.disabled=!displayedHash||!modelReady;form.append(submit);panel.append(form);
-    const cancelAnswer=element('button','Cancel answer');cancelAnswer.type='button';cancelAnswer.hidden=true;form.append(cancelAnswer);
-    cancelAnswer.addEventListener('click',()=>active?.abort());
-    const status=element('p','', 'ask-bob-status');status.setAttribute('role','status');panel.append(status);
-    const conversation=element('div',undefined,'ask-bob-conversation');conversation.setAttribute('aria-live','polite');panel.append(conversation);
-    const understandingLabel=element('label','Your understanding of this exact article version (optional)'),understanding=element('select');understanding.setAttribute('aria-label','Your understanding of this article version');
-    for(const [value,title] of [['','Not reported'],['understood','I understand it'],['unsure','I am unsure']]){const option=element('option',title);option.value=value;understanding.append(option);}understanding.value=current.self_report||'';understanding.disabled=!current.hash;understandingLabel.append(understanding);panel.append(understandingLabel);
-    const inspect=element('details'),summary=element('summary','Inspect private browser history'),historyView=element('pre');inspect.append(summary,historyView);panel.append(inspect);
-    const clear=element('button','Clear private browser history');clear.type='button';panel.append(clear);
+    let epoch=0,active,failedTurn;
+    const panel=element('section',undefined,'ask-bob');
+    panel.setAttribute('aria-label','Ask Bob');
+    panel.append(element('h2','Ask Bob'));
+    panel.append(element('p',cap.browser?
+      'Talk about this article. Your first message downloads Bob to this device (about 491 MB); later visits may use the saved download. Keep this tab open while Bob works.':
+      'Talk about this article. Bob uses the article and your recent conversation.','ask-bob-note'));
+    const conversation=element('div',undefined,'ask-bob-conversation');
+    conversation.setAttribute('role','log');conversation.setAttribute('aria-label','Conversation with Bob');
+    conversation.setAttribute('aria-live','polite');conversation.tabIndex=0;panel.append(conversation);
+    const activity=element('div',undefined,'ask-bob-activity');activity.hidden=true;
+    const stages=element('ol',undefined,'ask-bob-stages');stages.setAttribute('aria-label','Bob progress');
+    const steps=['Download','Prepare','Reply'].map(title=>{const step=element('li',title);stages.append(step);return step;});
+    const progressBar=element('progress');progressBar.max=1;progressBar.setAttribute('aria-label','Bob download progress');
+    const spinner=element('span',undefined,'ask-bob-spinner');spinner.setAttribute('aria-hidden','true');
+    const progressText=element('span'),elapsed=element('span',undefined,'ask-bob-elapsed');elapsed.setAttribute('aria-hidden','true');
+    const progressLine=element('div',undefined,'ask-bob-progress-line');progressLine.setAttribute('role','status');progressLine.append(spinner,progressText,elapsed);
+    activity.append(stages,progressBar,progressLine);panel.append(activity);
+    const status=element('p','','ask-bob-status');status.setAttribute('role','status');panel.append(status);
+    const form=element('form',undefined,'ask-bob-composer'),question=element('textarea');
+    question.required=true;question.maxLength=2000;question.rows=2;
+    question.placeholder='Ask about this article…';question.setAttribute('aria-label','Message Bob');
+    const submit=element('button','Send');submit.type='submit';submit.disabled=!displayedHash;
+    const cancel=element('button','Stop');cancel.type='button';cancel.hidden=true;cancel.addEventListener('click',()=>active?.abort());
+    form.append(question,submit,cancel);panel.append(form);
+    const retry=element('button','Retry');retry.type='button';retry.hidden=true;panel.append(retry);
+    retry.addEventListener('click',()=>form.requestSubmit());
+    const privacy=element('details',undefined,'ask-bob-privacy');privacy.append(element('summary','About this chat'));
+    privacy.append(element('p',cap.browser?
+      'No sign-in or API key. The model downloads from Hugging Face and answers on this device. Questions and saved replies stay in this browser and never enter the research record. Bob can make mistakes; check the sources.':
+      'History stays in this browser. Questions and recent context go to the local answer service and its configured model, and are excluded from public exports. Bob can make mistakes; check the sources.'));
+    const storageNote=element('p');privacy.append(storageNote);
+    const clear=element('button','Clear chat');clear.type='button';privacy.append(clear);panel.append(privacy);
     container.append(panel);
     function persist(){store.save();current=store.value.articles.find(row=>row.id===post.id)||current;}
     function refresh(){
-      historyView.textContent=JSON.stringify(store.value,null,2);
-      if(!store.available)status.textContent='Browser storage is unavailable. This conversation can continue in memory; it may be lost when you leave.';
-      else if(store.damaged)status.textContent='Stored browser history could not be read. Starting a new local history; missing entries have not been reconstructed.';
+      storageNote.textContent=!store.available?'Browser storage is unavailable. This chat works in memory and may be lost when you leave.':
+        store.damaged?'Saved chat could not be read. Starting a new chat; missing messages have not been reconstructed.':
+        'Chat is saved only in this browser. Clearing chat keeps the downloaded model.';
     }
+    function bottom(){conversation.scrollTop=conversation.scrollHeight;}
     function display(value){
-      const item=element('div',undefined,'ask-bob-turn');item.append(element('p','You: '+value.question));item.append(element('p',value.answer,'ask-bob-answer'));conversation.append(item);
+      const item=element('div',undefined,'ask-bob-turn');
+      const user=element('div',undefined,'ask-bob-message ask-bob-user');user.append(element('strong','You'),element('p',value.question));item.append(user);
+      if(value.answer){
+        const reply=element('div',undefined,'ask-bob-message ask-bob-reply');reply.append(element('strong','Bob'),element('p',value.answer,'ask-bob-answer'));item.append(reply);
+      }
+      conversation.append(item);bottom();return item;
     }
     current.turns.forEach(display);refresh();
-    if(loadModel){
-      cancelModel.addEventListener('click',()=>{modelLoadCancelled=true;browserRuntime?.cancelLoad?.();});
-      loadModel.addEventListener('click',async()=>{
-        modelLoadCancelled=false;loadModel.disabled=true;cancelModel.hidden=false;
-        try{
-          const runtime=await browser();
-          if(modelLoadCancelled)throw new DOMException('Bob loading cancelled.','AbortError');
-          await runtime.load(message=>{if(valid())status.textContent=message;});
-          modelReady=true;
-          if(valid()){loadModel.hidden=true;submit.disabled=!displayedHash;}
-        }catch(error){if(valid())status.textContent=text(error.message,500)||'Bob could not load on this device.';}
-        finally{if(valid()){loadModel.disabled=false;cancelModel.hidden=true;}}
-      });
-      status.textContent='Load Bob once before asking. It can take time and needs available device memory. Reading the article does not load the model.';
-    }
     if(!displayedHash)status.textContent='This article has no verified display version. Reload a newly exported snapshot before asking a question.';
-    understanding.addEventListener('change',()=>{
-      // No reading-duration or navigation inference can set a self-report.
-      if(!current.hash)return;if(!store.value.articles.includes(current))store.value.articles.push(current);current.self_report=report(understanding.value);
-      // Earlier turns retain their original metadata for compressed-context hashes.
-      // The current report applies now and is captured by subsequent interactions.
-      persist();refresh();
-    });
     clear.addEventListener('click',()=>{
       epoch++;active?.abort();previous=null;priorHash='';store.clear();current={id:text(post.id,240),hash:displayedHash,head:text(descriptor?.head||head,100),opened:true,encountered_at:new Date().toISOString(),self_report:null,turns:[],versions:[]};
-      conversation.replaceChildren();historyView.textContent=JSON.stringify(store.value,null,2);
-      understanding.value='';understanding.disabled=!displayedHash;submit.disabled=!displayedHash||!modelReady;status.textContent='Private browser history cleared.';
+      conversation.replaceChildren();failedTurn=null;retry.hidden=true;status.textContent='Chat cleared.';refresh();
     });
     form.addEventListener('submit',async event=>{
-      event.preventDefault();if(submit.disabled||!valid())return;
+      event.preventDefault();if(submit.disabled||active||!valid())return;
       const asked=question.value.trim();if(!asked)return;
-      const mode=condition.value,requestEpoch=epoch;
-      const requestValid=()=>valid()&&requestEpoch===epoch;
-      const body={article_id:post.id,question:asked,condition:mode,expected_article_hash:displayedHash,
-        history:mode==='A'?[]:store.value.articles.flatMap(row=>row.turns).sort((a,b)=>a.time.localeCompare(b.time)||a.id.localeCompare(b.id)).slice(-MAX_TURNS),
-        previous_article:mode==='A'?null:(priorHash?previous:{id:current.id,hash:current.hash||undefined,head:current.head,exposure:{opened:true},self_report:current.self_report})};
-      if(mode!=='A'&&priorHash)body.prior_article_hash=priorHash;
-      submit.disabled=true;cancelAnswer.hidden=false;status.textContent=cap.browser?'Bob is reading the article and question… (0 seconds)':'Preparing an answer from this article and its recorded sources…';
-      const controller=new AbortController();active=controller;const timeout=setTimeout(()=>controller.abort(new DOMException('The answer timed out. You can retry.','TimeoutError')),cap.browser?300000:120000);
+      const requestEpoch=epoch,requestValid=()=>valid()&&requestEpoch===epoch;
+      // Conversation policy is automatic. Prior answers stay untrusted and
+      // bounded; no opening/typing event asserts reader comprehension.
+      const body={article_id:post.id,question:asked,condition:'C',expected_article_hash:displayedHash,
+        history:current.turns.slice(-MAX_TURNS),
+        previous_article:priorHash?previous:{id:current.id,hash:current.hash||undefined,head:current.head,exposure:{opened:true},self_report:current.self_report}};
+      if(priorHash)body.prior_article_hash=priorHash;
+      failedTurn?.remove();failedTurn=null;const pending=display({question:asked});question.value='';
+      retry.hidden=true;submit.disabled=true;cancel.hidden=false;activity.hidden=false;status.textContent='';
+      conversation.setAttribute('aria-busy','true');
+      const controller=new AbortController();active=controller;
+      let phase='prepare',started=Date.now(),deadlineAt=started+(cap.browser?600000:120000),deadline,ticker;
+      let rejectStopped;
+      const stopped=new Promise((_,reject)=>{rejectStopped=reject;});
+      const showProgress=(message,detail={})=>{
+        if(!requestValid()||controller.signal.aborted)return;
+        const stage=detail.stage==='download'?0:detail.stage==='answer'||detail.stage==='ready'?2:1;
+        steps.forEach((step,index)=>{step.className=index<stage?'complete':index===stage?'current':'';if(index===stage)step.setAttribute('aria-current','step');else step.removeAttribute('aria-current');});
+        progressBar.hidden=stage!==0;
+        if(stage===0&&typeof detail.fraction==='number'){progressBar.value=detail.fraction;progressBar.setAttribute('aria-valuetext',Math.floor(detail.fraction*100)+'% downloaded');}
+        else{progressBar.removeAttribute('value');progressBar.removeAttribute('aria-valuetext');}
+        progressText.textContent=stage===0?(typeof detail.fraction==='number'?'Downloading Bob: '+Math.floor(detail.fraction*100)+'%':'Checking Bob’s saved download…'):
+          stage===1?'Preparing Bob on your device…':detail.characters?'Bob is writing… '+detail.characters+' characters generated':'Bob is reading and thinking…';
+      };
+      const checkDeadline=()=>{if(Date.now()>=deadlineAt)controller.abort(new DOMException(phase==='prepare'?'Bob took too long to prepare.':'Bob took too long to answer.','TimeoutError'));};
+      const setDeadline=ms=>{clearTimeout(deadline);deadlineAt=Date.now()+ms;deadline=setTimeout(checkDeadline,ms);};
+      const stop=()=>{if(phase==='prepare')browserRuntime?.cancelLoad?.();rejectStopped(controller.signal.reason||new DOMException('Stopped','AbortError'));};
+      controller.signal.addEventListener('abort',stop,{once:true});
       const leave=()=>controller.abort();window.addEventListener('hashchange',leave,{once:true});
+      document.addEventListener('visibilitychange',checkDeadline);window.addEventListener('pageshow',checkDeadline);
+      ticker=setInterval(()=>{checkDeadline();if(requestValid())elapsed.textContent=Math.floor((Date.now()-started)/1000)+'s elapsed';},1000);
+      elapsed.textContent='0s elapsed';showProgress('',{stage:cap.browser?'download':'answer'});setDeadline(cap.browser?600000:120000);
       try{
-        let result,responseOK=true;
-        if(cap.browser){result=await (await browser()).answer(body,controller.signal,message=>{if(requestValid())status.textContent=message;});}
-        else{
-          const response=await fetch('/ask-bob',{method:'POST',credentials:'same-origin',cache:'no-store',
-            headers:{'Content-Type':'application/json','X-Wake-Reader-Token':cap.token},body:JSON.stringify(body),signal:controller.signal});
-          responseOK=response.ok;result=await response.json();
-        }
+        const work=(async()=>{
+          let result,responseOK=true;
+          if(cap.browser){
+            const runtime=await browser();
+            if(controller.signal.aborted)throw controller.signal.reason;
+            await runtime.load(showProgress,controller.signal);
+            if(controller.signal.aborted)throw controller.signal.reason;
+            phase='answer';setDeadline(300000);showProgress('',{stage:'answer'});
+            result=await runtime.answer(body,controller.signal,showProgress);
+          }else{
+            phase='answer';
+            const response=await fetch('/ask-bob',{method:'POST',credentials:'same-origin',cache:'no-store',
+              headers:{'Content-Type':'application/json','X-Wake-Reader-Token':cap.token},body:JSON.stringify(body),signal:controller.signal});
+            responseOK=response.ok;result=await response.json();
+          }
+          checkDeadline();if(controller.signal.aborted)throw controller.signal.reason;
+          return {result,responseOK};
+        })();
+        const {result,responseOK}=await Promise.race([work,stopped]);
         if(!requestValid())return;
         if(!responseOK||result.ok===false){
-          const unavailable={busy:'The answer service is busy. Try again shortly.',busy_or_unavailable:'The answer service is busy or unavailable. Try again shortly.',paused:'Reader questions are paused.',session_limit:'This local preview has reached its question limit.',provider_deferred_or_failed:'The configured model deferred or could not complete this answer. Try again later.',invalid_or_unavailable_article:'This article is unavailable or has changed. Reload it before asking again.'};
-          throw Error(unavailable[result.error]||'The answer service could not complete this question. Try again later.');
+          const unavailable={busy:'Bob is busy. Try again shortly.',busy_or_unavailable:'Bob is busy or unavailable. Try again shortly.',paused:'Reader questions are paused.',session_limit:'This local preview has reached its question limit.',provider_deferred_or_failed:'Bob could not complete this answer. Try again later.',invalid_or_unavailable_article:'This article is unavailable or has changed. Reload it before asking again.'};
+          throw Error(unavailable[result.error]||'Bob could not complete this question. Try again later.');
         }
         if(typeof result.answer!=='string'||result.article?.id!==post.id||result.article?.hash!==displayedHash)throw Error('The answer did not identify this article version.');
-        if(current.hash&&current.hash!==result.article.hash){current.self_report=null;understanding.value='';}
-        current.hash=result.article.hash;current.head=text(result.article.head,100);understanding.disabled=false;
+        current.hash=result.article.hash;current.head=text(result.article.head,100);
         const value=turn({id:crypto.randomUUID(),article_id:post.id,article_hash:current.hash,head:current.head,question:asked,answer:result.answer,self_report:current.self_report,time:new Date().toISOString()});
         if(!store.value.articles.includes(current))store.value.articles.push(current);
-        current.turns.push(value);persist();display(value);question.value='';priorHash='';previous=null;
-        const links=element('ul');
-        for(const source of Array.isArray(result.citations)?result.citations:[]){const href=safeURL(source.url||source.path);if(!href)continue;const item=element('li'),link=element('a',text((source.id?source.id+' · ':'')+(source.title||source.label||'Source'),300));link.href=href;link.rel='noopener noreferrer';if(new URL(href).origin!==location.origin)link.target='_blank';item.append(link);links.append(item);}if(links.children.length)conversation.append(links);
-        const metrics=element('details'),metricsTitle=element('summary','Response details'),metricsList=element('dl');
-        const fields={condition:'Context condition',source_records:'Source records',context_bytes:'Input bytes',source_bytes_read:'Source bytes read',output_bytes:'Output bytes',latency_ms:'Response time (ms)',history_input_turns:'History turns supplied',history_selected_turns:'History turns selected',history_omitted_turns:'History turns omitted'};
-        for(const [key,label] of Object.entries(fields)){
-          const metric=result.metrics?.[key];if(typeof metric==='number'&&Number.isFinite(metric)||key==='condition'&&['A','B','C'].includes(metric)){metricsList.append(element('dt',label),element('dd',String(metric)));}
-        }
-        for(const key of ['promptTokenCount','candidatesTokenCount','totalTokenCount','thoughtsTokenCount']){
-          const count=result.metrics?.provider_tokens?.[key];if(Number.isInteger(count)&&count>=0)metricsList.append(element('dt',key),element('dd',String(count)));
-        }
-        if(metricsList.children.length){metrics.append(metricsTitle,metricsList);conversation.append(metrics);}
+        current.turns.push(value);persist();pending.remove();const completed=display(value);priorHash='';previous=null;
+        const links=element('ul',undefined,'ask-bob-sources');
+        for(const source of Array.isArray(result.citations)?result.citations:[]){const href=safeURL(source.url||source.path);if(!href)continue;const item=element('li'),link=element('a',text((source.id?source.id+' · ':'')+(source.title||source.label||'Source'),300));link.href=href;link.rel='noopener noreferrer';if(new URL(href).origin!==location.origin)link.target='_blank';item.append(link);links.append(item);}if(links.children.length)completed.querySelector('.ask-bob-reply').append(links);
         const notices=[...(Array.isArray(result.missing)?result.missing:[]),...(Array.isArray(result.warnings)?result.warnings:[])];
-        status.textContent=notices.map(value=>typeof value==='string'?text(value,500):[text(value?.collection,50),text(value?.id,240),text(value?.reason,300)].filter(Boolean).join(': ')).filter(Boolean).join(' ')||'Answer ready. Check the linked sources; this reply does not change the research record.';
-        refresh();
+        const note=notices.map(value=>typeof value==='string'?text(value,500):[text(value?.collection,50),text(value?.id,240),text(value?.reason,300)].filter(Boolean).join(': ')).filter(Boolean).join(' ');
+        if(note){const notes=element('details');notes.append(element('summary','Source notes'),element('p',note));completed.querySelector('.ask-bob-reply').append(notes);}
+        status.textContent='';bottom();refresh();
       }catch(error){if(requestValid()){
-        const retry=cap.browser&&!browserRuntime?.ready()?'Load Bob again to retry; your saved download and earlier replies are kept.':'You can retry; earlier replies are kept.';
-        status.textContent=controller.signal.reason?.name==='TimeoutError'?'The answer timed out. '+retry:error.name==='AbortError'?'Answer cancelled. '+retry:text(error.message,500)||'Answer unavailable. You can retry.';
-      }}
-      finally{
-        clearTimeout(timeout);window.removeEventListener('hashchange',leave);
-        if(active===controller){active=null;if(valid()){
-          if(cap.browser){modelReady=!!browserRuntime?.ready();loadModel.hidden=modelReady;}
-          cancelAnswer.hidden=true;submit.disabled=!displayedHash||!modelReady;
-        }}
+        failedTurn=pending;pending.classList.add('ask-bob-failed');
+        const reason=controller.signal.reason?.name==='TimeoutError'?controller.signal.reason.message:error.name==='AbortError'?'Stopped.':text(error.message,500)||'Bob could not answer.';
+        status.textContent=reason+' You can send again to retry. Your saved download and earlier replies are kept.';
+        if(!question.value)question.value=asked;retry.hidden=false;
+      }}finally{
+        clearTimeout(deadline);clearInterval(ticker);controller.signal.removeEventListener('abort',stop);
+        window.removeEventListener('hashchange',leave);document.removeEventListener('visibilitychange',checkDeadline);window.removeEventListener('pageshow',checkDeadline);
+        if(active===controller){active=null;if(valid()){activity.hidden=true;cancel.hidden=true;submit.disabled=!displayedHash;conversation.setAttribute('aria-busy','false');}}
       }
     });
   }

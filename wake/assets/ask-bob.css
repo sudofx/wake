@@ -1,9 +1,24 @@
-/* Reader-only panel; capability absence leaves every public view unchanged. */
+/* Scoped reader chat; Console and shared page geometry keep their own owners. */
 .ask-bob{border-top:1px solid currentColor;margin-top:2rem;padding-top:1.5rem;max-width:100%;overflow-wrap:anywhere}
-.ask-bob>summary{font-size:1rem;font-weight:600;cursor:pointer;width:fit-content}.ask-bob[open]>summary{margin-bottom:1rem}.ask-bob-note,.ask-bob-status{font-size:.9rem}
-.ask-bob form,.ask-bob label{display:grid;gap:.55rem}.ask-bob form{gap:1rem;margin:1rem 0}
-.ask-bob textarea,.ask-bob select{font:inherit;color:inherit;background:var(--panel,transparent);border:1px solid currentColor;border-radius:.3rem;padding:.65rem;width:100%;max-width:100%;box-sizing:border-box}
-.ask-bob button{font:inherit;cursor:pointer;padding:.6rem .9rem;color:inherit;background:var(--panel,transparent);border:1px solid currentColor;border-radius:.3rem;width:fit-content}
-.ask-bob button:disabled{opacity:.6;cursor:wait}.ask-bob select:disabled{opacity:.6}
-.ask-bob-turn{border-left:2px solid currentColor;padding-left:1rem;margin:1.2rem 0}.ask-bob-answer{white-space:pre-wrap}
-.ask-bob details{margin:1.2rem 0}.ask-bob pre{white-space:pre-wrap;max-height:18rem;overflow:auto;font-size:.75rem}
+.ask-bob h2{font-size:1.15rem;margin:0 0 .6rem}.ask-bob-note,.ask-bob-status,.ask-bob-privacy{font-size:.85rem}
+.ask-bob [hidden]{display:none!important}
+.ask-bob-conversation{max-height:28rem;max-height:min(60svh,28rem);overflow-y:auto;overscroll-behavior-y:contain;scrollbar-gutter:stable;padding:.3rem .5rem .3rem 0;}
+.ask-bob-conversation:empty{display:none}
+.ask-bob-message{border:1px solid currentColor;border-radius:.9rem;padding:.65rem .85rem;margin:.7rem 0;max-width:92%;box-sizing:border-box}
+.ask-bob-message strong{font-size:.75rem;opacity:.8}.ask-bob-message p{margin:.35rem 0;white-space:pre-wrap}
+.ask-bob-user{margin-left:auto;background:color-mix(in srgb,currentColor 7%,transparent)}
+.ask-bob-reply{margin-right:auto}.ask-bob-answer{white-space:pre-wrap}
+.ask-bob-sources{font-size:.8rem;padding-left:1.2rem;margin:.5rem 0}
+.ask-bob-composer{display:flex;align-items:end;gap:.5rem;margin:.6rem 0;flex-wrap:wrap}
+.ask-bob textarea{flex:1 1 12rem;min-width:0;font:inherit;font-size:max(1rem,16px);color:inherit;background:transparent;border:1px solid currentColor;border-radius:.7rem;padding:.7rem;max-width:100%;box-sizing:border-box;resize:vertical}
+.ask-bob button{font:inherit;font-size:.9rem;cursor:pointer;min-height:44px;padding:.6rem .85rem;color:inherit;background:transparent;border:1px solid currentColor;border-radius:.6rem;width:fit-content}
+.ask-bob button:disabled{opacity:.5;cursor:wait}
+.ask-bob-activity{padding:.6rem 0}.ask-bob-stages{display:flex;list-style:none;padding:0;margin:0 0 .7rem;gap:.3rem;font-size:.75rem}
+.ask-bob-stages li{flex:1;border-top:3px solid currentColor;padding-top:.35rem;opacity:.4}
+.ask-bob-stages .current,.ask-bob-stages .complete{opacity:1}.ask-bob-stages .current{font-weight:700}
+.ask-bob progress{display:block;width:100%;height:.5rem;margin:.5rem 0;accent-color:currentColor}
+.ask-bob-progress-line{display:flex;align-items:center;gap:.5rem;font-size:.8rem;flex-wrap:wrap}
+.ask-bob-elapsed{opacity:.7;font-variant-numeric:tabular-nums}.ask-bob-spinner{display:inline-block;flex:none;width:.8rem;height:.8rem;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:bob-spin 1s linear infinite}
+.ask-bob-status:empty{display:none}.ask-bob-privacy{margin-top:.8rem}.ask-bob summary{cursor:pointer}.ask-bob-message details{font-size:.8rem;margin:.5rem 0}
+@keyframes bob-spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.ask-bob-spinner{animation:none;border-style:dotted}}
