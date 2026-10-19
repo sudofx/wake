@@ -130,13 +130,16 @@ export async function initialize(createEngine, modelURL, {progress = () => {}, s
   };
   const arm = () => { clearTimeout(timer); timer = setTimeout(() => stop(),stallMs); };
   const cancel = () => stop(true);
-  const checkDeadline = () => {
-    if (!finished && Date.now() - started >= timeoutMs) {
+  const expire = () => {
+    if (!finished) {
       controller.abort();
       rejectStopped(new DOMException('Bob took too long to prepare. Send your question again to retry; downloaded model files are kept.','TimeoutError'));
     }
   };
-  const deadline = setTimeout(checkDeadline,timeoutMs);
+  const checkDeadline = () => { if (Date.now() - started >= timeoutMs) expire(); };
+  // The relative timer must expire unconditionally: wall-clock adjustment or
+  // millisecond rounding cannot silently discard the only maximum-duration timer.
+  const deadline = setTimeout(expire,timeoutMs);
   globalThis.document?.addEventListener('visibilitychange',checkDeadline);
   globalThis.addEventListener?.('pageshow',checkDeadline);
   signal?.addEventListener('abort',cancel,{once:true});

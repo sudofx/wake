@@ -43,7 +43,17 @@ const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
     let loaded=0;advancingTick=setInterval(()=>options.progressCallback({loaded:++loaded,total:10000}),2);
     return new Promise(()=>{});
   }},exit:async()=>clearInterval(advancingTick)};
-  await assert.rejects(initialize(async()=>endlessDownload,'fixture://slow',{timeoutMs:25,stallMs:100}),error=>error.name==='TimeoutError');
+  // A wall-clock adjustment before the native timer fires cannot erase the
+  // maximum duration while download callbacks keep resetting the stall timer.
+  const realNow=Date.now;
+  const startup=initialize(async()=>endlessDownload,'fixture://slow',{timeoutMs:25,stallMs:100});
+  Date.now=()=>realNow()-1000;
+  let watchdog;
+  try {
+   await assert.rejects(Promise.race([startup,new Promise((_,reject)=>{
+    watchdog=setTimeout(()=>reject(Error('Startup deadline was lost after the clock changed')),500);
+   })]),error=>error.name==='TimeoutError');
+  }finally{Date.now=realNow;clearTimeout(watchdog);clearInterval(advancingTick);}
   const details=[];
   const downloadThenPrepare={modelManager:{getModelOrDownload:async(_model,options)=>{
     options.progressCallback({loaded:20,total:100});options.progressCallback({loaded:100,total:100});
