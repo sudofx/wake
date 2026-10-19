@@ -255,14 +255,25 @@ class InstallationHTTP(PublicSnapshotHandler):
                 with controller.slot_condition:
                     deadline = time.monotonic() + 5
                     while True:
-                        result = controller.coordinator.acquire(key, packet['model'], packet.get('lease_seconds', 120))
+                        result = controller.coordinator.acquire(key, packet['model'], packet.get('lease_seconds', 120),
+                            confirmation_required=packet.get('confirmation_required', False))
                         if (result.get('status') == 'granted' or result.get('reason') not in ('busy', 'fifo')
                                 or time.monotonic() >= deadline
                                 or not provider_admitted(controller.mode, member, packet, controller.editorial_nonce)):
                             break
                         controller.slot_condition.wait(timeout=max(.01, deadline - time.monotonic()))
-                    if result.get('status') == 'granted':
+                    if result.get('status') == 'granted' and not result.get('confirmation_required'):
                         controller.persist_schedule()
+            elif packet['action'] == 'confirm':
+                if not provider_admitted(controller.mode, member, packet, controller.editorial_nonce):
+                    self.json_response(409, {'error': 'Research stopped'})
+                    return
+                with controller.slot_condition:
+                    confirmed = controller.coordinator.confirm(key, packet['token'])
+                    if confirmed:
+                        controller.persist_schedule()
+                    controller.slot_condition.notify_all()
+                result = {'status': 'confirmed' if confirmed else 'expired'}
             elif packet['action'] == 'release':
                 with controller.slot_condition:
                     released = controller.coordinator.release(key, packet['token'], packet.get('outcome'),
@@ -270,7 +281,9 @@ class InstallationHTTP(PublicSnapshotHandler):
                     controller.slot_condition.notify_all()
                 result = {'status': 'released' if released else 'expired'}
             elif packet['action'] == 'cancel':
-                controller.coordinator.cancel_request(key)
+                with controller.slot_condition:
+                    controller.coordinator.cancel_request(key)
+                    controller.slot_condition.notify_all()
                 result = {'status': 'cancelled'}
             else:
                 raise ValueError('Unknown action')

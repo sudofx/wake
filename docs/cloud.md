@@ -7,8 +7,8 @@ is a dated, read-only copy of the public data exported from those records. GitHu
 Pages executes no research and has no research controls or execution status light.
 
 [Ask Bob](ask-bob.md) runs its public model in each reader's browser. The mirror
-ships the inference engine; an explicit load button downloads the pinned open
-model. No account, API key, answer server or local installation is required.
+ships the inference engine; the first Send automatically downloads and prepares
+the pinned open model. No account, API key, answer server or local installation is required.
 Normal reading never loads inference or model weights. Questions and browser
 history are not uploaded. The optional local Gemini preview is a separate mode.
 The unified blog uses a private-memory inference build on Pages, so Safari needs

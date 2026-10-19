@@ -99,6 +99,21 @@ Release the slot when the complete response or transport failure is received; lo
 response processing can overlap the next eligible request. There is no added delay
 between eligible calls, and queued nodes receive fair access.
 
+Current workers first reserve a slot, then confirm receipt of its token before
+any model request. An unconfirmed reservation authorizes no provider effect: it
+can be cancelled or reclaimed after 30 seconds, and a late confirmation fails.
+Confirmed calls never expire. Only the matching release or controller-proven
+worker death can free them. Legacy workers retain that conservative grant rule.
+Lost release replies are retried with the same request identity and token, in a
+background transport task if needed; the model request is never repeated by that
+recovery. Queue status includes whether the held slot is confirmed.
+
+If a legacy confirmed slot is stranded, use the normal stop/restart workflow;
+never clear it merely because it is old. Wait for surviving writers to drain
+before refreshing processes. Research enabled in controls is separate from
+accepted research progress: verify accepted wake counts and Bob publication
+receipts after recovery, rather than treating a running label as success.
+
 A 429 may describe a short rate limit or daily exhaustion; eligibility follows the
 reported limit. Permission failures such as 403 block affected access rather than
 making repeated calls. For exhausted Gemini daily quota, recovery becomes eligible

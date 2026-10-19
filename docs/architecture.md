@@ -94,7 +94,13 @@ bounded proposals/context; imports still pass each node's own governance.
 
 Only one model transport request can occupy the installation slot. Its release
 allows another eligible node to call while response processing continues. Provider
-failures and quota state remain visible and are not accepted progress. Independently
+slot reservations use a receipt-confirmation handshake before authorizing an
+effect. Unconfirmed reservations can be cancelled or reclaimed; late tokens
+cannot confirm a replacement slot. Confirmed grants never expire, and an
+uncertain matching release is retried without repeating inference. Controller
+proof of worker death remains the final recovery boundary. This ephemeral
+transport state neither accepts research nor replaces native invocation journals.
+Provider failures and quota state remain visible and are not accepted progress. Independently
 running installations have independent queues even when their credentials share a
 provider quota. The web interface has no operator mutations: `wake-research` uses
 an owner-only local Unix socket. All workers terminate when the controller exits.

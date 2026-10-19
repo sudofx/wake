@@ -6,12 +6,54 @@ import json
 import os
 import sys
 import time
+import threading
 from urllib.request import ProxyHandler, Request, build_opener
 from urllib.error import HTTPError
 import uuid
 
 from .providers import ProviderCallPaused
 from .installation_gate import InstallationSlotUnavailable
+
+
+class _ReleaseRetrier:
+    """Retry internal matching releases, never provider effects or grant expiry."""
+
+    def __init__(self):
+        self.lock = threading.Lock()
+        self.pending = {}
+        self.running = False
+
+    def add(self, gate, packet):
+        with self.lock:
+            key = (gate.url, gate.member, packet['request_id'])
+            self.pending[key] = (gate, dict(packet))
+            if self.running:
+                return
+            self.running = True
+        threading.Thread(target=self.run, daemon=True).start()
+
+    def retry(self):
+        with self.lock:
+            pending = list(self.pending.items())
+        for key, (gate, packet) in pending:
+            try:
+                gate._release(packet)
+            except Exception:
+                continue
+            with self.lock:
+                self.pending.pop(key, None)
+
+    def run(self):
+        while True:
+            self.retry()
+            with self.lock:
+                if not self.pending:
+                    self.running = False
+                    return
+            time.sleep(2)
+
+
+_releases = _ReleaseRetrier()
 
 
 class GroupProviderGate:
@@ -34,7 +76,7 @@ class GroupProviderGate:
         )
         if os.environ.get('WAKE_INSTALLATION_TOKEN'):
             request.add_header('Authorization', 'Bearer ' + os.environ['WAKE_INSTALLATION_TOKEN'])
-        with self.opener.open(request, timeout=10) as response:
+        with self.opener.open(request, timeout=30) as response:
             return json.loads(response.read(4096))
 
     def _request_reliably(self, payload):
@@ -44,7 +86,8 @@ class GroupProviderGate:
         for attempt in range(3):
             try:
                 return self._request(payload)
-            except HTTPError:
+            except HTTPError as error:
+                error.close()
                 raise
             except (OSError, IncompleteRead, json.JSONDecodeError, UnicodeDecodeError):
                 if attempt == 2:
@@ -59,10 +102,32 @@ class GroupProviderGate:
                 "action": "acquire", "member": self.member,
                 "request_id": request_id, "model": model,
                 "lease_seconds": self.lease_seconds,
+                "confirmation_required": True,
                 **({"editorial_nonce": self.editorial_nonce} if getattr(self, "editorial_nonce", None) else {}),
                 **({"purpose": "reader"} if getattr(self, "purpose", None) == 'reader' else {}),
             })
             if packet.get("status") == "granted" and isinstance(packet.get("token"), str):
+                if packet.get('confirmation_required') is True:
+                    token = packet['token']
+                    try:
+                        self._check_pause()
+                        confirmed = self._request_reliably({
+                            'action': 'confirm', 'member': self.member,
+                            'request_id': request_id, 'token': token,
+                            **({'editorial_nonce': self.editorial_nonce} if getattr(self, 'editorial_nonce', None) else {}),
+                            **({'purpose': 'reader'} if getattr(self, 'purpose', None) == 'reader' else {}),
+                        })
+                        if confirmed.get('status') == 'expired':
+                            continue
+                        if confirmed.get('status') != 'confirmed':
+                            raise ValueError('Invalid provider slot confirmation')
+                    except Exception:
+                        # The token is known, but the caller has not entered the
+                        # effect boundary. A lost confirmation reply is released
+                        # with that exact identity, including across later waits.
+                        self._release_or_defer({'action': 'release', 'member': self.member,
+                            'request_id': request_id, 'token': token})
+                        raise
                 return packet["token"]
             if packet.get("status") != "queued":
                 raise ValueError("group coordinator returned an unknown status")
@@ -90,6 +155,19 @@ class GroupProviderGate:
     def _check_pause(self):
         if self.should_pause and self.should_pause():
             raise ProviderCallPaused('Local research paused before provider call; no request was sent')
+
+    def _release(self, packet):
+        result = self._request_reliably(packet)
+        if result.get('status') not in ('released', 'expired'):
+            raise ValueError('Invalid provider slot release acknowledgment')
+
+    def _release_or_defer(self, packet):
+        try:
+            self._release(packet)
+        except Exception:
+            _releases.add(self, packet)
+            print('WAKE group call release is pending; retrying the same internal release without repeating the provider call.',
+                  file=sys.stderr, flush=True)
 
     @contextmanager
     def request(self, model):
@@ -120,20 +198,11 @@ class GroupProviderGate:
             yield bool(token)
         finally:
             if token:
-                try:
-                    packet = {
-                        "action": "release", "member": self.member,
-                        "request_id": request_id, "token": token,
-                    }
-                    if hasattr(self, 'outcome'):
-                        packet['outcome'] = self.outcome
-                    self._request_reliably(packet)
-                except Exception as exc:
-                    print(
-                        f"WAKE group call slot release unavailable; the installation slot remains blocked until confirmed worker exit ({type(exc).__name__}).",
-                        file=sys.stderr,
-                        flush=True,
-                    )
+                packet = {'action': 'release', 'member': self.member,
+                          'request_id': request_id, 'token': token}
+                if hasattr(self, 'outcome'):
+                    packet['outcome'] = dict(self.outcome) if isinstance(self.outcome, dict) else {}
+                self._release_or_defer(packet)
 
 
 def group_provider_gate(settings, *, should_pause=None):

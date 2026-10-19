@@ -13,6 +13,152 @@ from wake.providers import ProviderCallPaused
 
 
 class InstallationProviderGateTests(unittest.TestCase):
+    def setUp(self):
+        # Unit fixtures control recovery explicitly; do not leave retry threads
+        # making real HTTP requests after a mocked transport has been restored.
+        retry = patch('wake.group_coordinator._releases.add')
+        self.defer_release = retry.start()
+        self.addCleanup(retry.stop)
+
+    def test_unconfirmed_grant_lost_on_every_reply_can_be_cancelled(self):
+        coordinator = InstallationCallCoordinator()
+        gate = GroupProviderGate('http://controller', '100.wake')
+        tokens, packets = [], []
+        def reply(packet):
+            packets.append(packet)
+            key = ('wake', packet['member'], packet['request_id'])
+            if packet['action'] == 'cancel':
+                coordinator.cancel_request(key)
+                return {'status': 'cancelled'}
+            result = coordinator.acquire(key, packet['model'], confirmation_required=True)
+            tokens.append((key, result['token']))
+            raise OSError('Every reservation response lost')
+        with patch.dict(os.environ, {'WAKE_INSTALLATION_WORKER': '1'}), \
+             patch.object(gate, '_request', side_effect=reply), patch('wake.group_coordinator.time.sleep'):
+            with self.assertRaises(ProviderCallPaused):
+                with gate.request('gemini'):
+                    self.fail('Unconfirmed reservation authorized an effect')
+        self.assertEqual([p['action'] for p in packets], ['acquire'] * 3 + ['cancel'])
+        self.assertIsNone(coordinator.status()['active'])
+        self.assertFalse(coordinator.confirm(*tokens[0]))
+        self.assertEqual(coordinator.acquire(('wake', '101.wake', 'next'), 'gemini')['status'], 'granted')
+
+    def test_only_unconfirmed_reservations_expire_and_stale_confirmation_fails(self):
+        now = [0.0]
+        coordinator = InstallationCallCoordinator(clock=lambda: now[0])
+        first = ('wake', '100.wake', 'first')
+        grant = coordinator.acquire(first, 'gemini', confirmation_required=True)
+        now[0] = 31
+        second = ('wake', '101.wake', 'second')
+        replacement = coordinator.acquire(second, 'gemini', confirmation_required=True)
+        self.assertEqual(replacement['status'], 'granted')
+        self.assertFalse(coordinator.confirm(first, grant['token']))
+        self.assertTrue(coordinator.confirm(second, replacement['token']))
+        now[0] = 1_000_000
+        self.assertFalse(coordinator.cancel_request(second))
+        self.assertEqual(coordinator.acquire(('wake', '102.wake', 'third'), 'gemini')['status'], 'queued')
+        self.assertTrue(coordinator.status()['active']['confirmed'])
+
+    def test_confirmation_retries_and_pending_release_never_repeat_provider_effect(self):
+        from wake.group_coordinator import _ReleaseRetrier
+        coordinator = InstallationCallCoordinator()
+        gate = GroupProviderGate('http://controller', '100.wake')
+        effects, packets = [], []
+        lost_confirm, offline_release = [True], [True]
+        def reply(packet):
+            packets.append(dict(packet))
+            key = ('wake', packet['member'], packet['request_id'])
+            if packet['action'] == 'acquire':
+                return coordinator.acquire(key, packet['model'], confirmation_required=True)
+            if packet['action'] == 'confirm':
+                result = {'status': 'confirmed' if coordinator.confirm(key, packet['token']) else 'expired'}
+                if lost_confirm[0]:
+                    lost_confirm[0] = False
+                    raise OSError('First confirmation response lost')
+                return result
+            if offline_release[0]:
+                raise OSError('Release temporarily unreachable')
+            return {'status': 'released' if coordinator.release(key, packet['token'], packet.get('outcome')) else 'expired'}
+        with patch.object(gate, '_request', side_effect=reply), patch('wake.group_coordinator.time.sleep'), \
+             patch('wake.group_coordinator.sys.stderr'):
+            with gate.request('gemini'):
+                self.assertTrue(coordinator.status()['active']['confirmed'])
+                effects.append('one effect')
+                gate.outcome = {'result': 'rate_limited', 'http_status': 429, 'retry_after_seconds': 60}
+            self.assertIsNotNone(coordinator.status()['active'])
+            self.defer_release.assert_called_once()
+            retrier = _ReleaseRetrier()
+            with patch('wake.group_coordinator.threading.Thread'):
+                retrier.add(*self.defer_release.call_args.args)
+            retrier.retry()
+            self.assertTrue(retrier.pending)
+            offline_release[0] = False
+            retrier.retry()
+            self.assertFalse(retrier.pending)
+        self.assertEqual(effects, ['one effect'])
+        self.assertEqual([p['action'] for p in packets].count('confirm'), 2)
+        self.assertIsNone(coordinator.status()['active'])
+        self.assertEqual(coordinator.acquire(('wake', '101.wake', 'next'), 'gemini')['reason'], 'rate_limited')
+
+    def test_lost_confirmation_exhaustion_releases_known_token_without_effect(self):
+        coordinator = InstallationCallCoordinator()
+        gate = GroupProviderGate('http://controller', '100.wake')
+        def reply(packet):
+            key = ('wake', packet['member'], packet['request_id'])
+            if packet['action'] == 'acquire':
+                return coordinator.acquire(key, packet['model'], confirmation_required=True)
+            if packet['action'] == 'confirm':
+                coordinator.confirm(key, packet['token'])
+                raise OSError('Confirmation reply lost')
+            if packet['action'] == 'release':
+                return {'status': 'released' if coordinator.release(key, packet['token']) else 'expired'}
+            return {'status': 'cancelled', 'removed': coordinator.cancel_request(key)}
+        with patch.dict(os.environ, {'WAKE_INSTALLATION_WORKER': '1'}), \
+             patch.object(gate, '_request', side_effect=reply), patch('wake.group_coordinator.time.sleep'):
+            with self.assertRaises(ProviderCallPaused):
+                with gate.request('gemini'):
+                    self.fail('Unknown confirmation authorized an effect')
+        self.assertIsNone(coordinator.status()['active'])
+        self.defer_release.assert_not_called()
+
+    def test_real_installation_endpoint_confirms_before_effect_and_persists_release(self):
+        from http.server import ThreadingHTTPServer
+        from types import SimpleNamespace
+        from wake.installation import InstallationHTTP
+        coordinator = InstallationCallCoordinator()
+        persisted = []
+        controller = SimpleNamespace(token='fixture-token', mode='running', editorial_nonce=None,
+            coordinator=coordinator, slot_condition=threading.Condition(),
+            persist_schedule=lambda packet=None: persisted.append(packet))
+        server = ThreadingHTTPServer(('127.0.0.1', 0), InstallationHTTP)
+        server.controller = controller
+        thread = threading.Thread(target=server.serve_forever, kwargs={'poll_interval': .01}, daemon=True)
+        thread.start()
+        gate = GroupProviderGate(f'http://127.0.0.1:{server.server_port}/group/coordinator', '100.wake')
+        try:
+            with patch.dict(os.environ, {'WAKE_INSTALLATION_TOKEN': 'fixture-token', 'WAKE_INSTALLATION_WORKER': '1'}):
+                with gate.request('fixture'):
+                    self.assertTrue(coordinator.status()['active']['confirmed'])
+                    self.assertEqual(len(persisted), 1)
+                    gate.outcome = {'result': 'rate_limited', 'http_status': 429}
+            self.assertIsNone(coordinator.status()['active'])
+            self.assertTrue(persisted[-1]['models']['fixture']['retry_at'])
+            controller.mode = 'stopped'
+            controller.editorial_nonce = 'operator-editorial'
+            gate.editorial_nonce = 'operator-editorial'
+            with patch.dict(os.environ, {'WAKE_INSTALLATION_TOKEN': 'fixture-token', 'WAKE_INSTALLATION_WORKER': '1'}):
+                with gate.request('editorial-fixture'):
+                    self.assertTrue(coordinator.status()['active']['confirmed'])
+                gate.editorial_nonce = 'wrong-command'
+                with self.assertRaises(ProviderCallPaused):
+                    with gate.request('editorial-fixture'):
+                        self.fail('Wrong editorial command authorized a provider effect')
+            self.assertIsNone(coordinator.status()['active'])
+        finally:
+            server.shutdown()
+            thread.join(timeout=1)
+            server.server_close()
+
     def test_research_pause_allows_only_the_authenticated_owner_reader_role(self):
         from wake.installation import provider_admitted
         for mode in ('paused', 'stopped'):

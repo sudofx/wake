@@ -71,6 +71,13 @@ Source changes do not automatically replace these workers: a container restart r
 inspection, while `wake-research restart` explicitly resumes research. Commands,
 archive verification, quotas, and publication are documented once in the
 [standalone guide](standalone.md#control-research-from-the-shell).
+Changes to the controller's provider-slot protocol require refreshing the
+controller as well as workers. Drain through the operator controls, preserve
+`/data`, restart the existing container, then explicitly start research. Verify
+fresh process identities, control acknowledgments and accepted progress; a
+running control alone does not establish healthy execution. The
+[shared queue contract](standalone.md#collect-quickly-through-one-shared-api-queue)
+distinguishes cancellable reservations from confirmed provider calls.
 
 The multi-container runner, Compose installations and development preview remain
 compatibility paths. The GitHub research executor has been removed; its branches

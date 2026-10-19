@@ -120,6 +120,9 @@ small proof of the record-and-rules boundary, not a research run.
 The current local setup runs one `wake` container with twelve internal worker
 processes: three parents and nine children. One web server serves the whole
 installation and each node's Console. Every launch starts research stopped.
+The shared provider queue confirms slot reservations before a model call and
+recovers lost handshakes without repeating inference. Research being enabled is
+separate from accepted progress; see the [queue and recovery contract](docs/standalone.md#collect-quickly-through-one-shared-api-queue).
 
 ```sh
 cp .env.example .env

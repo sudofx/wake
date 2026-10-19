@@ -1,7 +1,8 @@
 """Installation-local serialization of provider effects and shared quota recovery.
 
-This is ephemeral scheduling, not a second durable record. A grant deliberately
-has no expiry: only a matching release or confirmed worker death can free it.
+This is ephemeral scheduling, not a second durable record. Confirmed grants have
+no expiry: only a matching release or confirmed worker death can free them.
+Unconfirmed reservations cannot authorize effects and may be reclaimed.
 """
 
 from collections import deque
@@ -71,7 +72,10 @@ class InstallationCallCoordinator:
         self.active = None
         self.models = {}
 
-    def _prune(self, now):
+    def _prune(self, now, *, reservations=True):
+        if (reservations and self.active and not self.active.get('confirmed', True)
+                and now - self.active['started'] > self.queue_ttl):
+            self.active = None
         for key in list(self.queue):
             if now - self.tickets[key]["seen"] > self.queue_ttl:
                 self.queue.remove(key)
@@ -96,26 +100,29 @@ class InstallationCallCoordinator:
             return False, until - now, "daily_quota" if state.get("daily") else "rate_limited"
         return True, 0, "ready"
 
-    def acquire(self, key, model, lease_seconds=120):
+    def acquire(self, key, model, lease_seconds=120, *, confirmation_required=False):
         """Poll a stable request key; lease_seconds never permits overlapping calls."""
         key = tuple(key)
         if len(key) != 3 or not all(isinstance(part, str) and part for part in key):
             raise ValueError("Expected (group, member, request) key")
         if not isinstance(model, str) or not model:
             raise ValueError("Expected model name")
+        if type(confirmation_required) is not bool:
+            raise ValueError('Invalid confirmation mode')
         with self.lock:
             now = self.clock()
             self._prune(now)
             if self.active and self.active["key"] == key:
-                if self.active["model"] != model:
+                if (self.active["model"] != model
+                        or self.active.get('confirmation_required', False) != confirmation_required):
                     raise ValueError("An active request cannot change model")
-                return {"status": "granted", "token": self.active["token"]}
+                return self._grant_packet()
             ticket = self.tickets.get(key)
             if ticket is None:
-                ticket = {"model": model, "seen": now}
+                ticket = {"model": model, "seen": now, 'confirmation_required': confirmation_required}
                 self.tickets[key] = ticket
                 self.queue.append(key)
-            elif ticket["model"] != model:
+            elif ticket["model"] != model or ticket['confirmation_required'] != confirmation_required:
                 raise ValueError("A queued request cannot change model")
             ticket["seen"] = now
             eligible, delay, reason = self._eligibility(model, now)
@@ -123,15 +130,37 @@ class InstallationCallCoordinator:
                           if self._eligibility(self.tickets[item]["model"], now)[0]), None)
             if self.active is None and eligible and first == key:
                 token = secrets.token_urlsafe(24)
-                self.active = {"key": key, "model": model, "token": token, "started": now}
+                self.active = {"key": key, "model": model, "token": token, "started": now,
+                               'confirmed': not ticket['confirmation_required'],
+                               'confirmation_required': ticket['confirmation_required']}
                 self.queue.remove(key)
                 self.tickets.pop(key)
                 state = self.models.get(model, {})
-                if state.get("daily"):
+                if state.get("daily") and self.active['confirmed']:
                     state["probe_at"] = now + 300
-                return {"status": "granted", "token": token}
+                return self._grant_packet()
             return {"status": "queued", "retry_after": max(0.1, delay or 1.0),
                     "reason": reason if not eligible else "busy" if self.active else "fifo"}
+
+    def _grant_packet(self):
+        return {'status': 'granted', 'token': self.active['token'],
+                **({'confirmation_required': True} if self.active.get('confirmation_required') else {})}
+
+    def confirm(self, key, token):
+        """Confirm receipt before an effect; stale tokens can never revive a slot."""
+        with self.lock:
+            now = self.clock()
+            self._prune(now)
+            if (not self.active or self.active['key'] != tuple(key)
+                    or not isinstance(token, str)
+                    or not secrets.compare_digest(token, self.active['token'])):
+                return False
+            if not self.active.get('confirmed', True):
+                self.active['confirmed'] = True
+                state = self.models.get(self.active['model'], {})
+                if state.get('daily'):
+                    state['probe_at'] = now + 300
+            return True
 
     def release(self, key, token, outcome=None, *, persist=None):
         """Apply limits, persist them while held, then allow the next request.
@@ -166,9 +195,12 @@ class InstallationCallCoordinator:
             return True
 
     def cancel_request(self, key):
-        """Remove an abandoned queued request, never an active provider grant."""
+        """Cancel queues or unconfirmed reservations, never confirmed effects."""
         key = tuple(key)
         with self.lock:
+            if self.active and self.active['key'] == key and not self.active.get('confirmed', True):
+                self.active = None
+                return True
             if key not in self.tickets:
                 return False
             self.tickets.pop(key)
@@ -233,12 +265,15 @@ class InstallationCallCoordinator:
         """Return bounded scheduler facts without tokens or provider content."""
         with self.lock:
             now = self.clock()
-            self._prune(now)
+            # Observation does not retire a reservation. The next acquire or
+            # confirmation applies its deadline before allowing any effect.
+            self._prune(now, reservations=False)
             active = None
             if self.active:
                 active = {"group": self.active["key"][0], "member": self.active["key"][1],
                           "model": self.active["model"],
                           "elapsed_seconds": max(0, now - self.active["started"]),
+                          'confirmed': self.active.get('confirmed', True),
                           "release_unresolved": self.active.get("release_unresolved", False)}
             return {"active": active, "queued": len(self.queue),
                     "models": {model: dict(state) for model, state in self.models.items() if state}}

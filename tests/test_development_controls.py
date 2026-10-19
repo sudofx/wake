@@ -129,6 +129,8 @@ class DevelopmentControlsTests(unittest.TestCase):
             nonlocal paused
             calls.append(payload['action'])
             paused = True
+            if payload['action'] == 'release':
+                return {'status': 'released'}
             return {'status': 'granted', 'token': 'fixture'}
         gate = GroupProviderGate('http://fixture', 'fixture', should_pause=lambda: paused)
         with patch.object(gate, '_request', side_effect=coordinator):
