@@ -46,6 +46,8 @@ history are separate: clearing the conversation does not remove downloaded weigh
 Use browser site-storage controls to remove the model cache.
 
 The small model can be less reliable than cloud models. It receives an explicitly
+short-answer instruction: address the question directly in two to four sentences,
+at most 100 words, rather than repeating the whole article. It receives an
 excerpted current article, up to two directly linked exact exported records and
 bounded same-article history. It never recursively browses or retrieves private
 data. The displayed article hash must match the fetched public article, and linked
