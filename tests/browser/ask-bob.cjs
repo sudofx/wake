@@ -11,7 +11,7 @@ const server=http.createServer((req,res)=>{
  }
  if(url.pathname==='/ask-bob-browser.js'){
   requests.push({browserRuntime:true});res.writeHead(200,{'Content-Type':'text/javascript'});
-  res.end(`let cancel;export const cancelLoad=()=>cancel?.();export const load=async progress=>{if(window.__holdBrowserLoad)await new Promise((_,reject)=>cancel=()=>reject(new DOMException('Bob loading cancelled.','AbortError')));progress('Fixture browser model ready');};export const answer=async body=>({ok:true,answer:'Browser-only answer [S1]',article:{id:body.article_id,hash:body.expected_article_hash,head:'h'.repeat(64)},citations:[{id:'S1',label:'Article',url:'blog.html'}],metrics:{condition:body.condition},warnings:[],missing:[]});`);return;
+  res.end(`let cancel,loaded=false;export const ready=()=>loaded;export const cancelLoad=()=>cancel?.();export const load=async progress=>{if(window.__holdBrowserLoad)await new Promise((_,reject)=>cancel=()=>reject(new DOMException('Bob loading cancelled.','AbortError')));loaded=true;progress('Fixture browser model ready');};export const answer=async(body,signal,progress)=>{progress?.('Fixture drafting progress');if(window.__holdBrowserAnswer)await new Promise((_,reject)=>signal.addEventListener('abort',()=>{loaded=false;reject(new DOMException('Answer cancelled','AbortError'));},{once:true}));return {ok:true,answer:'Browser-only answer [S1]',article:{id:body.article_id,hash:body.expected_article_hash,head:'h'.repeat(64)},citations:[{id:'S1',label:'Article',url:'blog.html'}],metrics:{condition:body.condition},warnings:[],missing:[]};};`);return;
  }
 
  if(url.pathname==='/ask-bob/capabilities'){
@@ -54,6 +54,16 @@ const server=http.createServer((req,res)=>{
   await page.getByRole('button',{name:'Load Bob on this device (491 MB)',exact:true}).click();
   await page.waitForFunction(()=>!document.querySelector('.ask-bob button[type=submit]').disabled);
   await ask('Explain this article');assert.equal(await page.locator('.ask-bob-answer').innerText(),'Browser-only answer [S1]');
+  await ask('A second question');assert.equal(await page.locator('.ask-bob-answer').count(),2);
+  await page.evaluate(()=>window.__holdBrowserAnswer=true);
+  await page.getByRole('textbox',{name:'Your question'}).fill('Cancel this draft');await page.getByRole('button',{name:'Ask Bob',exact:true}).click();
+  await page.waitForFunction(()=>document.querySelector('.ask-bob-status').textContent==='Fixture drafting progress');
+  await page.getByRole('button',{name:'Cancel answer',exact:true}).click();
+  await page.waitForFunction(()=>document.querySelector('.ask-bob-status').textContent.includes('Answer cancelled'));
+  assert.equal(await page.locator('.ask-bob-answer').count(),2);assert(await page.getByRole('button',{name:'Ask Bob',exact:true}).isDisabled());
+  assert(await page.getByRole('button',{name:'Load Bob on this device (491 MB)',exact:true}).isVisible());
+  await page.evaluate(()=>window.__holdBrowserAnswer=false);await page.getByRole('button',{name:'Load Bob on this device (491 MB)',exact:true}).click();
+  await page.waitForFunction(()=>!document.querySelector('.ask-bob button[type=submit]').disabled);await ask('Retry after cancellation');assert.equal(await page.locator('.ask-bob-answer').count(),3);
   assert.deepEqual(requests.slice(publicBefore),[{browserRuntime:true}]);
   await page.evaluate(()=>localStorage.clear());browserMode=false;
   enabled=false;await page.goto(base+'/blog.html');await mount('p1');assert.equal(await page.locator('.ask-bob').count(),0);assert.equal(await state(),null);

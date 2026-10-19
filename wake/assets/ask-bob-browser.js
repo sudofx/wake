@@ -227,7 +227,66 @@ export function validateReply(response, sources) {
   return {answer:value.answer,citations:sources.filter(source => value.citations.includes(source.id)),
     output_bytes:encoder.encode(raw).length};
 }
-export async function answer(request, signal) {
+export async function generateReply(candidate, options, {signal,progress = () => {},discard = () => {},
+    timeoutMs = 300000,stallMs = 90000} = {}) {
+  const controller = new AbortController(), started = Date.now();
+  let finished = false, discarded = false, raw = '', reason = null, processed = -1, stall, rejectStopped;
+  const retire = () => {
+    if (discarded) return;
+    discarded = true; discard();
+    try { void candidate.exit().catch(() => {}); } catch {}
+  };
+  const stopped = new Promise((_,reject) => { rejectStopped = reject; });
+  const stop = error => {
+    if (finished) return;
+    finished = true; controller.abort(); retire(); rejectStopped(error);
+  };
+  // Native cancellation is cooperative and can itself wait on a dead worker.
+  // Settle the caller independently and terminate that worker before any retry.
+  const expired = () => stop(new DOMException('Bob reached the five-minute answer limit. Load Bob again to retry; your saved download and earlier replies are kept.','TimeoutError'));
+  const checkDeadline = () => { if (Date.now() - started >= timeoutMs) expired(); };
+  const cancel = () => stop(signal.reason?.name === 'TimeoutError' ? signal.reason
+    : new DOMException('Answer cancelled. Load Bob again to retry; your saved download and earlier replies are kept.','AbortError'));
+  const arm = () => { clearTimeout(stall); stall = setTimeout(() => stop(new Error('Bob stopped after 90 seconds without progress. Load Bob again to retry; your saved download and earlier replies are kept.')),stallMs); };
+  const report = () => {
+    checkDeadline(); if (finished) return;
+    progress((raw ? 'Bob is drafting a reply' : 'Bob is reading the article and question') +
+      '… (' + Math.floor((Date.now() - started) / 1000) + ' seconds' +
+      (raw ? '; ' + raw.length + ' characters generated' : '') + ')');
+  };
+  const deadline = setTimeout(expired,timeoutMs), ticker = setInterval(report,1000);
+  signal?.addEventListener('abort',cancel,{once:true});
+  globalThis.document?.addEventListener('visibilitychange',checkDeadline);
+  globalThis.addEventListener?.('pageshow',checkDeadline);
+  arm(); if (signal?.aborted) cancel();
+  const work = (async () => {
+    if (finished) return stopped;
+    report(); if (finished) return stopped;
+    await candidate.createChatCompletion({...options,stream:true,return_progress:true,abortSignal:controller.signal,
+      onData:chunk => {
+        if (finished) return;
+        const next = chunk.prompt_progress?.processed;
+        if (typeof next === 'number' && next > processed) { processed = next; arm(); }
+        const choice = chunk.choices?.[0], content = choice?.delta?.content;
+        if (typeof content === 'string' && content) { raw += content; arm(); }
+        if (raw.length > 16000) { stop(Error('Bob exceeded the browser reply limit. Try a simpler question.')); return; }
+        if (choice?.finish_reason) reason = choice.finish_reason;
+        report();
+      }});
+    checkDeadline(); if (finished) return stopped;
+    if (!reason) throw Error('Bob stopped before completing the reply. Load Bob again to retry; earlier replies are kept.');
+    return {choices:[{message:{content:raw},finish_reason:reason}]};
+  })();
+  try { return await Promise.race([work,stopped]); }
+  catch(error) { retire(); throw error; }
+  finally {
+    finished = true; clearTimeout(deadline); clearTimeout(stall); clearInterval(ticker);
+    signal?.removeEventListener('abort',cancel);
+    globalThis.document?.removeEventListener('visibilitychange',checkDeadline);
+    globalThis.removeEventListener?.('pageshow',checkDeadline);
+  }
+}
+export async function answer(request, signal, progress = () => {}) {
   if (!ready()) throw Error('Load Bob on this device first.');
   if (active) throw Error('Bob is answering another question.');
   active = true;
@@ -235,8 +294,10 @@ export async function answer(request, signal) {
   try {
     const prepared = await prepare(request,readPublic,signal);
     const schema = {type:'object',properties:{answer:{type:'string'},citations:{type:'array',items:{type:'string',enum:prepared.sources.map(s=>s.id)},minItems:1}},required:['answer','citations'],additionalProperties:false};
-    const response = await engine.createChatCompletion({messages:[{role:'system',content:prepared.system},{role:'user',content:prepared.prompt}],
-      temperature:0.2,max_tokens:420,response_format:{type:'json_schema',json_schema:{name:'reader_answer',schema,strict:true}},abortSignal:signal});
+    const candidate = engine;
+    const response = await generateReply(candidate,{messages:[{role:'system',content:prepared.system},{role:'user',content:prepared.prompt}],
+      temperature:0.2,max_tokens:420,response_format:{type:'json_schema',json_schema:{name:'reader_answer',schema,strict:true}}},
+      {signal,progress,discard:() => { if (engine === candidate) engine = null; }});
     if (signal?.aborted) throw new DOMException('Cancelled','AbortError');
     const value = validateReply(response,prepared.sources);
     return {ok:true,answer:value.answer,article:prepared.article,citations:value.citations,

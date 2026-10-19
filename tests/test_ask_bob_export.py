@@ -89,3 +89,9 @@ class AskBobExportTests(unittest.TestCase):
         script = Path(__file__).parent / 'browser/ask-bob-private.cjs'
         result = subprocess.run(['node', str(script)], check=True, capture_output=True, text=True)
         self.assertEqual(json.loads(result.stdout)['result'], 'PASS')
+
+    @unittest.skipUnless(shutil.which('node'), 'Node is required for the answer lifecycle contract')
+    def test_browser_answer_can_stop_a_dead_worker_and_accept_multiple_replies(self):
+        script = Path(__file__).parent / 'browser/ask-bob-answer.cjs'
+        result = subprocess.run(['node', str(script)], check=True, capture_output=True, text=True)
+        self.assertEqual(json.loads(result.stdout)['result'], 'PASS')

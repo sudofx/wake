@@ -51,7 +51,7 @@
   }).then(async response=>response.ok?response.json():null).catch(()=>null));
   let browserRuntime;
   // Replace the broken startup module without invalidating the large model cache.
-  const browser=async()=>browserRuntime||(browserRuntime=await import(new URL('ask-bob-browser.js?build=reply-validation-1',document.baseURI).href));
+  const browser=async()=>browserRuntime||(browserRuntime=await import(new URL('ask-bob-browser.js?build=answer-control-1',document.baseURI).href));
   function element(tag,content,className){
     const node=document.createElement(tag);if(content!==undefined)node.textContent=content;
     if(className)node.className=className;return node;
@@ -99,6 +99,8 @@
     const contextLabel=element('label','Conversation context'),condition=element('select');condition.setAttribute('aria-label','Conversation context');
     for(const [value,title] of [['A','No prior conversation (A)'],['B','Full prior conversation (B)'],['C','Compact prior conversation (C)']]){const option=element('option',title);option.value=value;condition.append(option);}condition.value='C';contextLabel.append(condition);form.append(contextLabel);
     const submit=element('button','Ask Bob');submit.type='submit';submit.disabled=!displayedHash||!modelReady;form.append(submit);panel.append(form);
+    const cancelAnswer=element('button','Cancel answer');cancelAnswer.type='button';cancelAnswer.hidden=true;form.append(cancelAnswer);
+    cancelAnswer.addEventListener('click',()=>active?.abort());
     const status=element('p','', 'ask-bob-status');status.setAttribute('role','status');panel.append(status);
     const conversation=element('div',undefined,'ask-bob-conversation');conversation.setAttribute('aria-live','polite');panel.append(conversation);
     const understandingLabel=element('label','Your understanding of this exact article version (optional)'),understanding=element('select');understanding.setAttribute('aria-label','Your understanding of this article version');
@@ -153,12 +155,12 @@
         history:mode==='A'?[]:store.value.articles.flatMap(row=>row.turns).sort((a,b)=>a.time.localeCompare(b.time)||a.id.localeCompare(b.id)).slice(-MAX_TURNS),
         previous_article:mode==='A'?null:(priorHash?previous:{id:current.id,hash:current.hash||undefined,head:current.head,exposure:{opened:true},self_report:current.self_report})};
       if(mode!=='A'&&priorHash)body.prior_article_hash=priorHash;
-      submit.disabled=true;status.textContent=cap.browser?'Bob is answering on your device. Keep this tab open; slower devices can take a few minutes…':'Preparing an answer from this article and its recorded sources…';
-      const controller=new AbortController();active=controller;const timeout=setTimeout(()=>controller.abort(),cap.browser?300000:120000);
+      submit.disabled=true;cancelAnswer.hidden=false;status.textContent=cap.browser?'Bob is reading the article and question… (0 seconds)':'Preparing an answer from this article and its recorded sources…';
+      const controller=new AbortController();active=controller;const timeout=setTimeout(()=>controller.abort(new DOMException('The answer timed out. You can retry.','TimeoutError')),cap.browser?300000:120000);
       const leave=()=>controller.abort();window.addEventListener('hashchange',leave,{once:true});
       try{
         let result,responseOK=true;
-        if(cap.browser){result=await (await browser()).answer(body,controller.signal);}
+        if(cap.browser){result=await (await browser()).answer(body,controller.signal,message=>{if(requestValid())status.textContent=message;});}
         else{
           const response=await fetch('/ask-bob',{method:'POST',credentials:'same-origin',cache:'no-store',
             headers:{'Content-Type':'application/json','X-Wake-Reader-Token':cap.token},body:JSON.stringify(body),signal:controller.signal});
@@ -189,8 +191,14 @@
         const notices=[...(Array.isArray(result.missing)?result.missing:[]),...(Array.isArray(result.warnings)?result.warnings:[])];
         status.textContent=notices.map(value=>typeof value==='string'?text(value,500):[text(value?.collection,50),text(value?.id,240),text(value?.reason,300)].filter(Boolean).join(': ')).filter(Boolean).join(' ')||'Answer ready. Check the linked sources; this reply does not change the research record.';
         refresh();
-      }catch(error){if(requestValid())status.textContent=error.name==='AbortError'?'The answer timed out or navigation interrupted it. You can retry.':text(error.message,500)||'Answer unavailable. You can retry.';}
-      finally{clearTimeout(timeout);window.removeEventListener('hashchange',leave);if(valid())submit.disabled=!displayedHash||!modelReady;}
+      }catch(error){if(requestValid())status.textContent=controller.signal.reason?.name==='TimeoutError'?'The answer timed out. Load Bob again to retry; your saved download and earlier replies are kept.':error.name==='AbortError'?(cap.browser?'Answer cancelled. Load Bob again to retry; your saved download and earlier replies are kept.':'Answer cancelled. You can retry.'):text(error.message,500)||'Answer unavailable. You can retry.';}
+      finally{
+        clearTimeout(timeout);window.removeEventListener('hashchange',leave);
+        if(active===controller){active=null;if(valid()){
+          if(cap.browser){modelReady=!!browserRuntime?.ready();loadModel.hidden=modelReady;}
+          cancelAnswer.hidden=true;submit.disabled=!displayedHash||!modelReady;
+        }}
+      }
     });
   }
   window.WakeAskBob={mount};

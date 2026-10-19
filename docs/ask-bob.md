@@ -63,6 +63,11 @@ If the model reaches its reply limit or returns incomplete JSON, the reply is
 withheld with a plain-language suggestion to ask a narrower question. Partial
 text and invented source references are never used to repair a failed reply.
 Navigation, clearing history and the answer timeout cancel a pending answer.
+During an answer, elapsed time and generated-character counts show activity
+without displaying unvalidated draft text. **Cancel answer** stops the browser
+worker. A five-minute deadline, or 90 seconds without model progress, also ends
+the wait even if native cancellation does not return. Select **Load Bob** again
+after a stopped worker; the completed model download and earlier replies remain.
 No answer changes accepted research, Attention, commitments or project selection.
 
 ## Optional Gemini preview on a Mac
