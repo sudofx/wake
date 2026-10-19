@@ -191,7 +191,10 @@
         const notices=[...(Array.isArray(result.missing)?result.missing:[]),...(Array.isArray(result.warnings)?result.warnings:[])];
         status.textContent=notices.map(value=>typeof value==='string'?text(value,500):[text(value?.collection,50),text(value?.id,240),text(value?.reason,300)].filter(Boolean).join(': ')).filter(Boolean).join(' ')||'Answer ready. Check the linked sources; this reply does not change the research record.';
         refresh();
-      }catch(error){if(requestValid())status.textContent=controller.signal.reason?.name==='TimeoutError'?'The answer timed out. Load Bob again to retry; your saved download and earlier replies are kept.':error.name==='AbortError'?(cap.browser?'Answer cancelled. Load Bob again to retry; your saved download and earlier replies are kept.':'Answer cancelled. You can retry.'):text(error.message,500)||'Answer unavailable. You can retry.';}
+      }catch(error){if(requestValid()){
+        const retry=cap.browser&&!browserRuntime?.ready()?'Load Bob again to retry; your saved download and earlier replies are kept.':'You can retry; earlier replies are kept.';
+        status.textContent=controller.signal.reason?.name==='TimeoutError'?'The answer timed out. '+retry:error.name==='AbortError'?'Answer cancelled. '+retry:text(error.message,500)||'Answer unavailable. You can retry.';
+      }}
       finally{
         clearTimeout(timeout);window.removeEventListener('hashchange',leave);
         if(active===controller){active=null;if(valid()){
