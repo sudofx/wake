@@ -49,7 +49,10 @@ The small model can be less reliable than cloud models. It receives an explicitl
 short-answer instruction: address the question directly in two to four sentences,
 at most 100 words, rather than repeating the whole article. It receives an
 excerpted current article, up to two directly linked exact exported records and
-bounded same-article history. It never recursively browses or retrieves private
+bounded same-article history. Stable source text precedes the changing question
+so follow-ups can reuse unchanged model processing; each answer still validates
+the current article version and includes only the selected history.
+It never recursively browses or retrieves private
 data. The displayed article hash must match the fetched public article, and linked
 records must share its snapshot head. Missing/excerpted sources remain visible;
 all returned source IDs must come from that supplied set. These checks establish

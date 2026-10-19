@@ -45,11 +45,13 @@ export async function prepare(request, read = readPublic, signal) {
     url:'blog.html#blog/' + encodeURIComponent(item.id)}];
   const warnings = [], missing = [];
   const body = String(item.body || '');
-  const data = {question:request.question, article:{title:item.title, lede:item.lede,
+  // Stable source context precedes the changing question so the native engine
+  // can reuse its exact prompt prefix without retaining prior answers as evidence.
+  const data = {article:{title:item.title, lede:item.lede,
     body:body.slice(0,6500), source_id:'S1'}, records:[], history:[],
     version_note:request.prior_article_hash && request.prior_article_hash !== packet.article.hash
       ? 'The article changed; prior text is unavailable. Do not invent a comparison.' : '',
-    reader_understanding:'unknown; a question does not demonstrate comprehension'};
+    reader_understanding:'unknown; a question does not demonstrate comprehension',question:request.question};
   if (body.length > 6500) warnings.push('The article was excerpted; the full article remains available at S1.');
   let bytesRead = loaded.bytes;
   const links = [];
@@ -296,7 +298,7 @@ export async function answer(request, signal, progress = () => {}) {
     const schema = {type:'object',properties:{answer:{type:'string'},citations:{type:'array',items:{type:'string',enum:prepared.sources.map(s=>s.id)},minItems:1}},required:['answer','citations'],additionalProperties:false};
     const candidate = engine;
     const response = await generateReply(candidate,{messages:[{role:'system',content:prepared.system},{role:'user',content:prepared.prompt}],
-      temperature:0.2,max_tokens:420,response_format:{type:'json_schema',json_schema:{name:'reader_answer',schema,strict:true}}},
+      temperature:0.2,max_tokens:420,cache_prompt:true,response_format:{type:'json_schema',json_schema:{name:'reader_answer',schema,strict:true}}},
       {signal,progress,discard:() => { if (engine === candidate) engine = null; }});
     if (signal?.aborted) throw new DOMException('Cancelled','AbortError');
     const value = validateReply(response,prepared.sources);
