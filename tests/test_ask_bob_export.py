@@ -81,7 +81,8 @@ class AskBobExportTests(unittest.TestCase):
     @unittest.skipUnless(shutil.which('node'), 'Node is required for the browser startup contract')
     def test_browser_startup_can_cancel_stalled_workers_and_retry(self):
         script = Path(__file__).parent / 'browser/ask-bob-loader.cjs'
-        result = subprocess.run(['node', str(script)], check=True, capture_output=True, text=True)
+        result = subprocess.run(['node', str(script)], capture_output=True, text=True, timeout=30)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         self.assertEqual(json.loads(result.stdout)['result'], 'PASS')
 
     @unittest.skipUnless(shutil.which('node'), 'Node is required for the private-memory contract')
@@ -93,5 +94,6 @@ class AskBobExportTests(unittest.TestCase):
     @unittest.skipUnless(shutil.which('node'), 'Node is required for the answer lifecycle contract')
     def test_browser_answer_can_stop_a_dead_worker_and_accept_multiple_replies(self):
         script = Path(__file__).parent / 'browser/ask-bob-answer.cjs'
-        result = subprocess.run(['node', str(script)], check=True, capture_output=True, text=True)
+        result = subprocess.run(['node', str(script)], capture_output=True, text=True, timeout=30)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         self.assertEqual(json.loads(result.stdout)['result'], 'PASS')

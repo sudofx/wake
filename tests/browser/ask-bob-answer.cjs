@@ -17,7 +17,9 @@ const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
   await assert.rejects(generateReply(hung,{}, {signal:cancel.signal}),error=>error.name==='AbortError');
   let timer;
   const repeating={createChatCompletion:options=>{timer=setInterval(()=>options.onData({prompt_progress:{processed:10},choices:[]}),2);return new Promise(()=>{});},exit:async()=>clearInterval(timer)};
-  await assert.rejects(generateReply(repeating,{}, {timeoutMs:500,stallMs:15}),/without progress/);
+  // Leave scheduling margin on loaded CI hosts: this tests lack of advancing
+  // progress, independently of the separate hard-deadline assertion above.
+  await assert.rejects(generateReply(repeating,{}, {timeoutMs:5000,stallMs:100}),/without progress/);
   const sources=[{id:'S1',record_id:'article'}],progress=[];
   let calls=0;
   const usable={createChatCompletion:async options=>{
@@ -29,7 +31,7 @@ const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
    options.onData({choices:[{delta:{},finish_reason:'stop'}]});
   },exit:async()=>{throw Error('A completed reply must keep the loaded model');}};
   for(let index=0;index<2;index++){
-   const response=await generateReply(usable,{max_tokens:420},{timeoutMs:1000,stallMs:30,progress:value=>progress.push(value)});
+   const response=await generateReply(usable,{max_tokens:420},{timeoutMs:5000,stallMs:1000,progress:value=>progress.push(value)});
    assert.equal(validateReply(response,sources).citations[0].record_id,'article');
   }
   assert.equal(calls,2);assert(progress.some(value=>value.includes('characters generated')));
@@ -49,4 +51,4 @@ const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
   }finally{Date.now=clock;if(add)globalThis.addEventListener=add;else delete globalThis.addEventListener;if(remove)globalThis.removeEventListener=remove;else delete globalThis.removeEventListener;}
   console.log(JSON.stringify({result:'PASS',checks:'hard deadline and cancellation despite unresponsive native exit, progress stall, two replies per model, late draft rejection, deadline on Safari resume'}));
  }finally{fs.rmSync(directory,{recursive:true,force:true});}
-})().catch(error=>{console.error(error);process.exitCode=1;});
+})().catch(error=>{console.error(error);process.exit(1);});

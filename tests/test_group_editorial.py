@@ -420,11 +420,13 @@ class GroupEditorialTests(unittest.TestCase):
         # exact source membership, numeric ranges and all-member coverage.
         def structural(value):
             if isinstance(value, dict):
-                self.assertFalse(set(value) & {'enum', 'minItems', 'maxItems', 'minimum', 'maximum'})
+                self.assertFalse(set(value) & {'minItems', 'maxItems', 'minimum', 'maximum'})
                 for child in value.values(): structural(child)
             elif isinstance(value, list):
                 for child in value: structural(child)
         structural(schema)
+        self.assertEqual(schema['properties']['references']['items']['properties']['input_ids']['items']['enum'],
+                         [story['id'] for item in self.packet['inputs'] for story in item['stories']])
         body = draft['article']['body']
         self.assertIn('distinguish? [1]\n\nSummary\n\n', body)
         receipt = leader.store.load()['invocations'][draft['invocation']]

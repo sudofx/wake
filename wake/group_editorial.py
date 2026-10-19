@@ -215,6 +215,12 @@ def request(packet, checkpoint, repair=None, *, previous=None, max_context_chars
             "Summary is separate plain prose with no heading or new claims. "
             "References must collectively include at least one story from EVERY member, including members "
             "without new findings. Cite only supplied story IDs. No URLs or invented reference IDs in prose."
+            " Copy input_ids exactly from context.group.inputs[].stories[].id in the CURRENT packet; "
+            "never reconstruct a notebook ID or copy IDs from continuity or a failed draft. "
+            "A paragraph text must contain NO square brackets or line breaks. Put all citation numbers "
+            "in reference_numbers, never in text. For example, use "
+            "{\"text\":\"The workers compared recorded readings.\",\"reference_numbers\":[1]} "
+            "rather than text ending in [1]. The renderer supplies that marker."
         )
         result['response_schema']['properties']['references'] = {
             'type': 'array',
@@ -230,10 +236,13 @@ def request(packet, checkpoint, repair=None, *, previous=None, max_context_chars
                 'required': ['text', 'reference_numbers']}}
         properties['summary'] = {'type': 'string'}
         result['response_schema']['required'] = list(properties)
-        # Keep provider constrained decoding structural. Nested bounded arrays of
-        # long story-ID enums can exceed its grammar capacity (HTTP 400). Exact
-        # IDs, sizes and reference ranges remain mandatory in local validation;
+        # Avoid nested array cardinalities in provider constrained decoding:
+        # expanding long story-ID enums inside bounded arrays can exhaust its
+        # grammar capacity (HTTP 400). Exact source IDs still constrain decoding;
+        # sizes and reference ranges remain mandatory in local validation;
         # an unsupported or invented citation still rejects the whole draft.
+        properties['references']['items']['properties']['input_ids']['items']['enum'] = [
+            story['id'] for item in packet['inputs'] for story in item.get('stories', [])]
         continuity = editorial_continuity(packet, previous)
         if continuity:
             result['context']['continuity'] = continuity

@@ -512,8 +512,8 @@ Bob’s wording cannot qualify evidence or promote a research claim.
 Editorial inference uses the existing native invocation and provider quota
 boundary. Article structure and attribution are checked before an editorial
 invocation can complete. The provider-facing output schema specifies structure
-without nested array cardinalities or long story-ID enums, which can exceed
-provider grammar capacity. Local validation still enforces all size limits, exact
+without nested array cardinalities that can exceed provider grammar capacity.
+Supplied source IDs remain explicit enum choices. Local validation still enforces all size limits, exact
 supplied source IDs, numeric reference ranges and complete member coverage. Invalid responses finish as visible rejections with their
 exact bounded response, reason and draft excerpt, rather than falsely reporting a
 completed synthesis. Existing withheld drafts and their reasons remain durable.

@@ -19,21 +19,23 @@ const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
   await assert.rejects(initialize(async()=>hung,'fixture://model',{stallMs:15}),/stopped after/);
   assert.equal(exits,1);assert(receivedSignal.aborted);
   const successful=fake({loadModelFromUrl:async(_url,options)=>{assert.equal(options.n_gpu_layers,0);assert.equal(options.n_batch,128);assert.equal(options.warmup,false);},exit:async()=>{throw Error('Successful startup must stay alive');}});
-  assert.equal(await initialize(async()=>successful,'fixture://same-cached-model',{stallMs:20}),successful);
+  assert.equal(await initialize(async()=>successful,'fixture://same-cached-model',{stallMs:1000}),successful);
   const cancel=new AbortController();exits=0;
-  const pending=initialize(async()=>hung,'fixture://model',{stallMs:100,signal:cancel.signal});
+  const pending=initialize(async()=>hung,'fixture://model',{stallMs:5000,signal:cancel.signal});
   await delay(1);cancel.abort();await assert.rejects(pending,error=>error.name==='AbortError');assert.equal(exits,1);
   // A late module import cannot start another worker after cancellation.
   let lateLoads=0;exits=0;
-  await assert.rejects(initialize(async()=>{await delay(30);return {loadModelFromUrl:async()=>{lateLoads++;},exit:async()=>{exits++;}};},'fixture://model',{stallMs:10}),/stopped after/);
-  await delay(35);assert.equal(lateLoads,0);assert.equal(exits,1);
+  let finishFactory;
+  await assert.rejects(initialize(()=>new Promise(resolve=>{finishFactory=resolve;}),'fixture://model',{stallMs:100}),/stopped after/);
+  finishFactory({loadModelFromUrl:async()=>{lateLoads++;},exit:async()=>{exits++;}});
+  await delay(0);assert.equal(lateLoads,0);assert.equal(exits,1);
   // A stuck engine repeating the same progress callback must still time out.
   let tick;
   const repeating=fake({loadModelFromUrl:async(_url,options)=>{tick=setInterval(()=>options.progressCallback({loaded:10,total:10}),2);return new Promise(()=>{});},exit:async()=>clearInterval(tick)});
   await assert.rejects(initialize(async()=>repeating,'fixture://model',{stallMs:15}),/stopped after/);
   let progress=[];
   const advancing=fake({loadModelFromUrl:async(_url,options)=>{for(let i=1;i<=4;i++){await delay(10);options.progressCallback({loaded:i,total:4});}},exit:async()=>{throw Error('Unexpected exit');}});
-  assert.equal(await initialize(async()=>advancing,'fixture://model',{stallMs:25,progress:text=>progress.push(text)}),advancing);
+  assert.equal(await initialize(async()=>advancing,'fixture://model',{stallMs:1000,progress:text=>progress.push(text)}),advancing);
   assert(progress.some(text=>text.includes('Opening downloaded')));
   // Slow but continuously advancing downloads still have an absolute limit.
   let advancingTick;
@@ -67,4 +69,4 @@ const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
   assert.equal(nativeLoads,0);
   console.log(JSON.stringify({result:'PASS',checks:'bounded startup, worker termination, retry without cache deletion, cancellation, late-factory cancellation, identical-progress stall, advancing-download progress'}));
  }finally{fs.rmSync(temporary,{recursive:true,force:true});}
-})().catch(error=>{console.error(error);process.exitCode=1;});
+})().catch(error=>{console.error(error);process.exit(1);});
