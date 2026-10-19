@@ -11,7 +11,7 @@ const server=http.createServer((req,res)=>{
  }
  if(url.pathname==='/ask-bob-browser.js'){
   requests.push({browserRuntime:true});res.writeHead(200,{'Content-Type':'text/javascript'});
-  res.end(`export const load=async progress=>progress('Fixture browser model ready');export const answer=async body=>({ok:true,answer:'Browser-only answer [S1]',article:{id:body.article_id,hash:body.expected_article_hash,head:'h'.repeat(64)},citations:[{id:'S1',label:'Article',url:'blog.html'}],metrics:{condition:body.condition},warnings:[],missing:[]});`);return;
+  res.end(`let cancel;export const cancelLoad=()=>cancel?.();export const load=async progress=>{if(window.__holdBrowserLoad)await new Promise((_,reject)=>cancel=()=>reject(new DOMException('Bob loading cancelled.','AbortError')));progress('Fixture browser model ready');};export const answer=async body=>({ok:true,answer:'Browser-only answer [S1]',article:{id:body.article_id,hash:body.expected_article_hash,head:'h'.repeat(64)},citations:[{id:'S1',label:'Article',url:'blog.html'}],metrics:{condition:body.condition},warnings:[],missing:[]});`);return;
  }
 
  if(url.pathname==='/ask-bob/capabilities'){
@@ -44,6 +44,13 @@ const server=http.createServer((req,res)=>{
   const publicBefore=requests.length;await mount('public-article');assert.equal(await page.locator('.ask-bob').count(),1);
   assert.equal(requests.length,publicBefore);assert(await page.getByRole('button',{name:'Ask Bob',exact:true}).isDisabled());
   assert((await page.locator('.ask-bob-note').innerText()).includes('No sign-in or API key'));
+  await page.evaluate(()=>window.__holdBrowserLoad=true);
+  await page.getByRole('button',{name:'Load Bob on this device (491 MB)',exact:true}).click();
+  await page.getByRole('button',{name:'Cancel loading',exact:true}).click();
+  await page.waitForFunction(()=>document.querySelector('.ask-bob-status').textContent.includes('cancelled'));
+  assert(await page.getByRole('button',{name:'Ask Bob',exact:true}).isDisabled());
+  assert(!(await page.getByRole('button',{name:'Load Bob on this device (491 MB)',exact:true}).isDisabled()));
+  await page.evaluate(()=>window.__holdBrowserLoad=false);
   await page.getByRole('button',{name:'Load Bob on this device (491 MB)',exact:true}).click();
   await page.waitForFunction(()=>!document.querySelector('.ask-bob button[type=submit]').disabled);
   await ask('Explain this article');assert.equal(await page.locator('.ask-bob-answer').innerText(),'Browser-only answer [S1]');

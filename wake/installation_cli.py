@@ -160,7 +160,7 @@ def _public_projection(value):
     return value
 
 
-def _copy_public_site(source: Path, destination: Path):
+def _copy_public_site(source: Path, destination: Path, *, include_reader_inference=True):
     inspection = source / 'inspect'
     if inspection.exists():
         from .inspection import validate_inspection
@@ -173,6 +173,10 @@ def _copy_public_site(source: Path, destination: Path):
         relative = path.relative_to(source)
         if path.is_symlink():
             raise ValueError('Public sites may not contain symlink assets')
+        # Only the unified blog mounts Ask Bob. Avoid duplicating the large
+        # browser engines in twelve node views that cannot use them.
+        if not include_reader_inference and path.name.startswith('ask-bob-engine'):
+            continue
         if not path.is_file() or any(part.startswith('.') for part in relative.parts):
             continue
         allowed = (len(relative.parts) == 1 and (path.name in root_data or
@@ -271,7 +275,7 @@ def _build_public_artifact(root: Path, destination: Path, *, progress=None) -> d
                 # and the exact captured record. No second render is needed.
                 if progress:
                     progress(f'Reusing completed website pages for {node}.')
-                _copy_public_site(source, staging / 'nodes' / node)
+                _copy_public_site(source, staging / 'nodes' / node, include_reader_inference=False)
             else:
                 # Render the recorded packet with current owned assets, so an upload
                 # cannot retain obsolete live-polling code from an earlier export.
@@ -291,7 +295,7 @@ def _build_public_artifact(root: Path, destination: Path, *, progress=None) -> d
                     if packet.is_file():
                         (generated / 'group').mkdir(exist_ok=True)
                         shutil.copyfile(packet,generated / 'group' / name)
-                _copy_public_site(generated, staging / 'nodes' / node)
+                _copy_public_site(generated, staging / 'nodes' / node, include_reader_inference=False)
             nodes.append({'id': node, 'url': f'/nodes/{node}/',
                           'record': {'head': snapshot['head'], 'version': snapshot['state']['version']}})
         from .installation import installation_snapshot

@@ -100,29 +100,78 @@ export async function prepare(request, read = readPublic, signal) {
       source_records:sources.length,source_bytes_read:bytesRead,history_input_turns:history.length,
       history_selected_turns:data.history.length,history_omitted_turns:history.length - data.history.length}};
 }
-let engine, loading, active = false;
+// Startup is a separate bounded operation from generation. A crashed WASM
+// worker may never settle its promise, so waiting for that promise is not enough.
+export async function initialize(createEngine, modelURL, {progress = () => {}, signal, stallMs = 90000} = {}) {
+  const controller = new AbortController();
+  let candidate, timer, finished = false, loadedBefore = -1, rejectStopped;
+  const stopped = new Promise((_,reject) => { rejectStopped = reject; });
+  const stop = (cancelled = false) => {
+    if (finished) return;
+    controller.abort();
+    const error = cancelled ? new DOMException('Bob loading cancelled. Downloaded model files are kept for retry.','AbortError')
+      : Error('Bob stopped loading after 90 seconds without progress. Close other tabs to free memory, then retry. Downloaded model files are kept where browser storage permits.');
+    rejectStopped(error);
+  };
+  const arm = () => { clearTimeout(timer); timer = setTimeout(() => stop(),stallMs); };
+  const cancel = () => stop(true);
+  signal?.addEventListener('abort',cancel,{once:true});
+  arm();
+  if (signal?.aborted) cancel();
+  const work = (async () => {
+    candidate = await createEngine();
+    if (controller.signal.aborted) { void candidate.exit().catch(() => {}); throw new DOMException('Cancelled','AbortError'); }
+    await candidate.loadModelFromUrl(modelURL,{n_ctx:8192,n_threads:1,n_gpu_layers:0,
+      n_batch:128,n_ubatch:128,warmup:false,signal:controller.signal,
+      progressCallback:({loaded,total}) => {
+        if (controller.signal.aborted || finished) return;
+        // Repeated identical callbacks cannot keep a dead worker alive forever.
+        if (loaded > loadedBefore) { loadedBefore = loaded; arm(); }
+        progress(total && loaded < total ? 'Downloading Bob: ' + Math.floor(100 * loaded / total) + '% of about 491 MB…'
+          : 'Preparing Bob on this device…');
+      }});
+    if (controller.signal.aborted) throw new DOMException('Cancelled','AbortError');
+    return candidate;
+  })();
+  try { return await Promise.race([work,stopped]); }
+  catch(error) {
+    controller.abort();
+    // The native exit terminates its worker; do not wait on the failed startup.
+    if (candidate) { try { void candidate.exit().catch(() => {}); } catch {} }
+    throw error;
+  } finally {
+    finished = true; clearTimeout(timer); signal?.removeEventListener('abort',cancel);
+  }
+}
+let engine, loading, loadingController, active = false;
 export const ready = () => !!engine?.isModelLoaded();
+export const cancelLoad = () => loadingController?.abort();
 export async function load(progress = () => {}) {
   if (ready()) return;
   if (loading) return loading;
-  loading = (async () => {
+  loadingController = new AbortController();
+  const controller = loadingController;
+  loading = initialize(async () => {
     if (!globalThis.WebAssembly || !globalThis.Worker) throw Error('This browser cannot run Bob. Try a current desktop browser.');
     progress('Loading the browser engine…');
     const {Wllama} = await import(new URL('ask-bob-engine.js',BASE).href);
     const silent = () => {};
-    engine = new Wllama({default:new URL('ask-bob-engine.wasm',BASE).href},
+    const candidate = new Wllama({default:new URL('ask-bob-engine.wasm',BASE).href},
       {suppressNativeLog:true,logger:{debug:silent,log:silent,warn:silent,error:silent}});
-    engine.setCompat(null);
-    await engine.loadModelFromUrl(MODEL,{n_ctx:8192,n_threads:1,n_gpu_layers:0,
-      progressCallback:({loaded,total}) => progress(total && loaded < total
-        ? 'Downloading Bob: ' + Math.floor(100 * loaded / total) + '% of about 491 MB…'
-        : 'Preparing Bob on this device…')});
+    // Let native feature detection select the matching Safari/older-browser
+    // build. Both variants are served here; no CDN or account is involved.
+    candidate.setCompat({wasm:new URL('ask-bob-engine-compat.wasm',BASE).href,
+      worker:new URL('ask-bob-engine-compat.js',BASE).href},'firefox_safari');
+    return candidate;
+  },MODEL,{progress,signal:controller.signal});
+  try {
+    engine = await loading;
     progress('Bob is ready on this device. No question is sent to an answer server.');
-  })();
-  try { await loading; } catch(error) {
-    try { await engine?.exit(); } catch {}
-    engine = null; throw Error('Bob could not load on this device. Check available memory, browser storage and your connection, then try again.');
-  } finally { loading = null; }
+  } catch(error) {
+    engine = null;
+    if (error.name === 'AbortError' || error.message.startsWith('Bob stopped loading')) throw error;
+    throw Error('Bob could not load on this device. Check available memory, browser storage and your connection, then try again.');
+  } finally { if (loadingController === controller) { loading = null; loadingController = null; } }
 }
 export async function answer(request, signal) {
   if (!ready()) throw Error('Load Bob on this device first.');

@@ -6,7 +6,9 @@
   "files": {
     "ask-bob-engine.js": "e5506753e41a59c11f61f2c52422045be9fc76e32a7e47f037aaad5df4ec723e",
     "ask-bob-engine.wasm": "551f13439366eff11e057b1b91fe46a7fdac29d56d67372d4c5f19a549dfe70c",
-    "ask-bob-engine.LICENSE.txt": "806c02161e1707761b61e2d0fe50040f240bff326fe43d895714edbc3e36edd2"
+    "ask-bob-engine.LICENSE.txt": "806c02161e1707761b61e2d0fe50040f240bff326fe43d895714edbc3e36edd2",
+    "ask-bob-engine-compat.js": "2649eeb408988841c372e54805adfa25aed5d02f850c09add78c2f3ac0f3fce1",
+    "ask-bob-engine-compat.wasm": "2db3f67d0bcc19cdf8f14f129e46cab691bff898954808f8a2dc4c586eb5bb68"
   },
   "model": {
     "repository": "Qwen/Qwen2.5-0.5B-Instruct-GGUF",
@@ -16,5 +18,11 @@
     "sha256": "74a4da8c9fdbcd15bd1f6d01d621410d31c6fc00986f5eb687824e7b93d7a9db",
     "license": "Apache-2.0"
   },
-  "llama_cpp": "b11364-46ca246"
+  "llama_cpp": "b11364-46ca246",
+  "compat": {
+    "package": "@wllama/wllama-compat",
+    "version": "3.8.1",
+    "source": "https://registry.npmjs.org/@wllama/wllama-compat/-/wllama-compat-3.8.1.tgz",
+    "license": "MIT"
+  }
 }

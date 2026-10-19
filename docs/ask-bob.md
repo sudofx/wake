@@ -16,6 +16,14 @@ speed determine whether it can load and how long an answer takes. Inference
 uses single-thread WebAssembly so GitHub Pages needs no special isolation
 headers or GPU. Keep the tab open; a slower device may need several minutes.
 A failed load remains visible and never prevents reading the article.
+Safari and browsers missing the newer WebAssembly features automatically use a
+separate compatibility engine served by the same website. Startup uses smaller
+processing batches and skips inference warm-up to reduce initial memory demand.
+**Cancel loading** stops the worker. If loading makes no progress for 90 seconds,
+it terminates with a retry message instead of waiting indefinitely. Retry does
+not clear downloaded model files or private conversation history. A browser can
+still evict its cache or lack sufficient memory/storage; do not clear site data
+when trying to reuse a completed download.
 
 The runtime ships with the website. Model weights come from the public,
 immutable revision recorded in `wake/assets/ask-bob-engine.json`. Downloading

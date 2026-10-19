@@ -50,7 +50,8 @@
     cache:'no-store',credentials:'same-origin',signal:AbortSignal.timeout(5000)
   }).then(async response=>response.ok?response.json():null).catch(()=>null));
   let browserRuntime;
-  const browser=async()=>browserRuntime||(browserRuntime=await import(new URL('ask-bob-browser.js',document.baseURI).href));
+  // Replace the broken startup module without invalidating the large model cache.
+  const browser=async()=>browserRuntime||(browserRuntime=await import(new URL('ask-bob-browser.js?build=safari-startup-1',document.baseURI).href));
   function element(tag,content,className){
     const node=document.createElement(tag);if(content!==undefined)node.textContent=content;
     if(className)node.className=className;return node;
@@ -89,9 +90,10 @@
     const privacy=element('p',cap.browser?
       'No sign-in or API key. Bob runs on your device using a small model, with answers that may be less accurate than cloud models. Loading it downloads about 491 MB from Hugging Face; your browser may cache it. Questions and saved replies stay in this browser and never enter the research record.':
       'History stays in this browser. Your question and selected context go to the local answer service and its configured model; they are excluded from public exports.','ask-bob-note');panel.append(privacy);
-    let modelReady=!cap.browser;
+    let modelReady=!cap.browser,modelLoadCancelled=false;
     const loadModel=cap.browser?element('button','Load Bob on this device (491 MB)'):null;
-    if(loadModel){loadModel.type='button';panel.append(loadModel);}
+    const cancelModel=cap.browser?element('button','Cancel loading'):null;
+    if(loadModel){loadModel.type='button';cancelModel.type='button';cancelModel.hidden=true;panel.append(loadModel,cancelModel);}
     const form=element('form'),label=element('label','Your question'),question=element('textarea');
     question.required=true;question.maxLength=2000;question.rows=3;question.setAttribute('aria-label','Your question');label.append(question);form.append(label);
     const contextLabel=element('label','Conversation context'),condition=element('select');condition.setAttribute('aria-label','Conversation context');
@@ -115,15 +117,17 @@
     }
     current.turns.forEach(display);refresh();
     if(loadModel){
+      cancelModel.addEventListener('click',()=>{modelLoadCancelled=true;browserRuntime?.cancelLoad?.();});
       loadModel.addEventListener('click',async()=>{
-        loadModel.disabled=true;
+        modelLoadCancelled=false;loadModel.disabled=true;cancelModel.hidden=false;
         try{
           const runtime=await browser();
+          if(modelLoadCancelled)throw new DOMException('Bob loading cancelled.','AbortError');
           await runtime.load(message=>{if(valid())status.textContent=message;});
           modelReady=true;
           if(valid()){loadModel.hidden=true;submit.disabled=!displayedHash;}
         }catch(error){if(valid())status.textContent=text(error.message,500)||'Bob could not load on this device.';}
-        finally{if(valid())loadModel.disabled=false;}
+        finally{if(valid()){loadModel.disabled=false;cancelModel.hidden=true;}}
       });
       status.textContent='Load Bob once before asking. It can take time and needs available device memory. Reading the article does not load the model.';
     }

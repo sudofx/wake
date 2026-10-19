@@ -500,7 +500,8 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             atomic_write(target / name, (assets / name).read_text())
         # These static inference assets are loaded only after the reader opts in.
         # They contain no provider credentials and never open research authority.
-        for name in ('ask-bob-engine.js', 'ask-bob-engine.wasm', 'ask-bob-engine.LICENSE.txt', 'ask-bob-engine.json'):
+        for name in ('ask-bob-engine.js', 'ask-bob-engine.wasm', 'ask-bob-engine-compat.js',
+                     'ask-bob-engine-compat.wasm', 'ask-bob-engine.LICENSE.txt', 'ask-bob-engine.json'):
             (target / name).write_bytes((assets / name).read_bytes())
         # Static Nebula artwork is presentation-only. Publish the responsive
         # source set alongside the generated shell without routing binaries through text IO.
