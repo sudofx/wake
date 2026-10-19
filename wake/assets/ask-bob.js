@@ -51,7 +51,7 @@
   }).then(async response=>response.ok?response.json():null).catch(()=>null));
   let browserRuntime;
   // Replace the broken startup module without invalidating the large model cache.
-  const browser=async()=>browserRuntime||(browserRuntime=await import(new URL('ask-bob-browser.js?build=private-memory-1',document.baseURI).href));
+  const browser=async()=>browserRuntime||(browserRuntime=await import(new URL('ask-bob-browser.js?build=reply-validation-1',document.baseURI).href));
   function element(tag,content,className){
     const node=document.createElement(tag);if(content!==undefined)node.textContent=content;
     if(className)node.className=className;return node;

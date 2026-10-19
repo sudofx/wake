@@ -59,6 +59,9 @@ select no history, bounded recent same-article history, or shorter excerpts of
 that history. These browser excerpts are a separate policy from the local
 provider experiment below; they are not an A/B/C answer-quality finding.
 Model output is bounded and validated before it enters browser history.
+If the model reaches its reply limit or returns incomplete JSON, the reply is
+withheld with a plain-language suggestion to ask a narrower question. Partial
+text and invented source references are never used to repair a failed reply.
 Navigation, clearing history and the answer timeout cancel a pending answer.
 No answer changes accepted research, Attention, commitments or project selection.
 

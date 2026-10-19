@@ -210,6 +210,23 @@ export async function load(progress = () => {}) {
     throw Error('Bob could not load on this device. Check available memory, browser storage and your connection, then try again.');
   } finally { if (loadingController === controller) { loading = null; loadingController = null; } }
 }
+export function validateReply(response, sources) {
+  const choice = response?.choices?.[0], raw = choice?.message?.content;
+  // A token limit can stop inside a JSON string. Never display or save a
+  // partial answer, even when its completed prefix looks like valid prose.
+  if (choice?.finish_reason === 'length')
+    throw Error('Bob reached the reply limit before finishing. Try a narrower question, such as “What is the main point?”');
+  let value;
+  try { value = typeof raw === 'string' ? JSON.parse(raw) : null; }
+  catch { throw Error('Bob could not finish a readable answer. Try a simpler question.'); }
+  if (!value || typeof value.answer !== 'string' || !value.answer.trim() || value.answer.length > 6000 ||
+      !Array.isArray(value.citations) || !value.citations.length ||
+      value.citations.some(id => !sources.some(source => source.id === id)) ||
+      [...value.answer.matchAll(/\[(S\d+)\]/g)].some(match => !value.citations.includes(match[1])))
+    throw Error('The browser model could not produce an answer with valid source references. Try a simpler question.');
+  return {answer:value.answer,citations:sources.filter(source => value.citations.includes(source.id)),
+    output_bytes:encoder.encode(raw).length};
+}
 export async function answer(request, signal) {
   if (!ready()) throw Error('Load Bob on this device first.');
   if (active) throw Error('Bob is answering another question.');
@@ -221,16 +238,9 @@ export async function answer(request, signal) {
     const response = await engine.createChatCompletion({messages:[{role:'system',content:prepared.system},{role:'user',content:prepared.prompt}],
       temperature:0.2,max_tokens:420,response_format:{type:'json_schema',json_schema:{name:'reader_answer',schema,strict:true}},abortSignal:signal});
     if (signal?.aborted) throw new DOMException('Cancelled','AbortError');
-    const raw = response.choices?.[0]?.message?.content;
-    const value = typeof raw === 'string' ? JSON.parse(raw) : null;
-    if (!value || typeof value.answer !== 'string' || !value.answer.trim() || value.answer.length > 6000 ||
-        !Array.isArray(value.citations) || !value.citations.length ||
-        value.citations.some(id => !prepared.sources.some(s => s.id === id)) ||
-        [...value.answer.matchAll(/\[(S\d+)\]/g)].some(match => !value.citations.includes(match[1])))
-      throw Error('The browser model could not produce an answer with valid source references. Try a simpler question.');
-    const citations = prepared.sources.filter(source => value.citations.includes(source.id));
-    return {ok:true,answer:value.answer,article:prepared.article,citations,
-      metrics:{...prepared.metrics,latency_ms:Math.round(performance.now()-start),output_bytes:encoder.encode(raw).length},
+    const value = validateReply(response,prepared.sources);
+    return {ok:true,answer:value.answer,article:prepared.article,citations:value.citations,
+      metrics:{...prepared.metrics,latency_ms:Math.round(performance.now()-start),output_bytes:value.output_bytes},
       warnings:[...prepared.warnings,'This small browser model can make mistakes. Check the cited article and sources.'],missing:prepared.missing};
   } finally { active = false; }
 }
