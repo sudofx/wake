@@ -16,9 +16,16 @@ speed determine whether it can load and how long an answer takes. Inference
 uses single-thread WebAssembly so GitHub Pages needs no special isolation
 headers or GPU. Keep the tab open; a slower device may need several minutes.
 A failed load remains visible and never prevents reading the article.
-Safari and browsers missing the newer WebAssembly features automatically use a
-separate compatibility engine served by the same website. Startup uses smaller
-processing batches and skips inference warm-up to reduce initial memory demand.
+Pages uses a CPU-only, single-thread, private-memory build of wllama 3.8.1.
+The upstream 3.8.1 unified binaries allocate shared memory even with one execution
+thread; Safari restricts that memory without cross-origin isolation. The upstream
+engine remains available for isolated pages, with its compatibility build when
+needed. This selection changes the inference engine, not the pinned model URL
+or model-cache key. Existing completed downloads remain reusable. Vendored bytes,
+licenses, versions and reproducible build inputs are recorded in
+`wake/assets/ask-bob-engine.json`. No service worker or site-wide isolation policy
+is installed. Startup uses bounded processing batches and skips unnecessary
+inference warm-up where supported.
 Startup reports whether it is opening the saved model, starting the browser
 engine, or loading the model into memory. Browser worker errors end startup
 immediately; a stalled stage reports its name and elapsed time. Closing or reloading the

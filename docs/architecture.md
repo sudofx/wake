@@ -47,7 +47,9 @@ article hash and source snapshot heads, keeps conversation in the browser, and
 cannot call research controls, submit transitions or read authority. The model
 is untrusted presentation, not an intelligence executing inside a WAKE worker.
 It creates no research receipts or progress and makes no remote generation call.
-The vendored inference runtime and its license/checksums ship as static assets;
+Unisolated public pages use an actual private-memory single-thread build,
+including on Safari; no site-wide service worker or shared-memory permission is
+required. The vendored inference runtimes and their licenses/checksums ship as static assets;
 model weights download from their pinned public revision. No visitor identity,
 API key, hosting account or local installation is involved in answering.
 

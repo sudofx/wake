@@ -163,6 +163,9 @@ export async function initialize(createEngine, modelURL, {progress = () => {}, s
 let engine, loading, loadingController, active = false;
 export const ready = () => !!engine?.isModelLoaded();
 export const cancelLoad = () => loadingController?.abort();
+// The newer unified WASM binary imports shared memory even with n_threads=1.
+// Static Pages has no isolation headers, so use the separate private-memory build.
+export const needsPrivateMemory = () => !globalThis.crossOriginIsolated || typeof globalThis.SharedArrayBuffer !== 'function';
 if (globalThis.addEventListener) globalThis.addEventListener('pagehide',event => {
   if (event.persisted) return; // Back/forward cache retains the usable page and model together.
   cancelLoad(); const previous = engine; engine = null;
@@ -176,13 +179,22 @@ export async function load(progress = () => {}) {
   loading = initialize(async ({report,fail}) => {
     if (!globalThis.WebAssembly || !globalThis.Worker) throw Error('This browser cannot run Bob. Try a current desktop browser.');
     report('Loading the browser engine');
-    const {Wllama} = await import(new URL('ask-bob-engine.js',BASE).href);
     const silent = () => {};
-    const candidate = new Wllama({default:new URL('ask-bob-engine.wasm',BASE).href},
-      {suppressNativeLog:true,logger:{debug:message=>{
-        if (message === 'Calling wllamaStart...') report('Starting Bob’s model reader');
-        if (message === 'Loading model...') report('Loading Bob’s model into memory');
-      },log:silent,warn:silent,error:fail}});
+    const config = {suppressNativeLog:true,logger:{debug:message=>{
+      if (message === 'Calling wllamaStart...') report('Starting Bob’s model reader');
+      if (message === 'Loading model...') report('Loading Bob’s model into memory');
+    },log:silent,warn:silent,error:fail}};
+    if (needsPrivateMemory()) {
+      report('Starting Bob with private memory');
+      const [{Wllama},{privateEngine}] = await Promise.all([
+        import(new URL('ask-bob-engine.js',BASE).href),
+        import(new URL('ask-bob-private.js',BASE).href)
+      ]);
+      return privateEngine(Wllama,{wasm:new URL('ask-bob-engine-private.wasm',BASE).href,
+        worker:new URL('ask-bob-engine-private.js',BASE).href},config);
+    }
+    const {Wllama} = await import(new URL('ask-bob-engine.js',BASE).href);
+    const candidate = new Wllama({default:new URL('ask-bob-engine.wasm',BASE).href},config);
     // Let native feature detection select the matching Safari/older-browser
     // build. Both variants are served here; no CDN or account is involved.
     candidate.setCompat({wasm:new URL('ask-bob-engine-compat.wasm',BASE).href,

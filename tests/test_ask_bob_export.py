@@ -26,7 +26,8 @@ class AskBobExportTests(unittest.TestCase):
             _copy_public_site(site, mirror)
             for name in ('ask-bob.js', 'ask-bob.css', 'ask-bob-browser.js', 'ask-bob-engine.js',
                          'ask-bob-engine.wasm', 'ask-bob-engine-compat.js', 'ask-bob-engine-compat.wasm',
-                         'ask-bob-engine.LICENSE.txt', 'ask-bob-engine.json'):
+                         'ask-bob-engine.LICENSE.txt', 'ask-bob-engine.json', 'ask-bob-private.js',
+                         'ask-bob-engine-private.js', 'ask-bob-engine-private.wasm', 'ask-bob-engine-private.LICENSE.txt'):
                 if name.endswith('.json'):
                     self.assertEqual(json.loads((mirror / name).read_text()), json.loads((site / name).read_text()))
                 else:
@@ -46,6 +47,30 @@ class AskBobExportTests(unittest.TestCase):
             self.assertEqual(hashlib.sha256((assets / name).read_bytes()).hexdigest(), digest)
         self.assertIn('Permission is hereby granted', (assets / 'ask-bob-engine.LICENSE.txt').read_text())
         self.assertEqual((assets / 'ask-bob-engine.wasm').read_bytes()[:4], b'\x00asm')
+        # A file named single-thread can still import shared memory. Check the
+        # actual private build's WASM memory flags rather than trusting its name.
+        binary = (assets / 'ask-bob-engine-private.wasm').read_bytes()
+        def unsigned(offset):
+            value = shift = 0
+            while True:
+                byte = binary[offset]
+                offset += 1
+                value |= (byte & 127) << shift
+                if not byte & 128:
+                    return value, offset
+                shift += 7
+        offset, found_memory = 8, False
+        while offset < len(binary):
+            section = binary[offset]
+            length, start = unsigned(offset + 1)
+            if section == 5:
+                count, cursor = unsigned(start)
+                self.assertEqual(count, 1)
+                flags, _ = unsigned(cursor)
+                self.assertFalse(flags & 2, 'Public fallback must not require shared memory')
+                found_memory = True
+            offset = start + length
+        self.assertTrue(found_memory, 'Expected a defined private WASM memory')
 
     @unittest.skipUnless(shutil.which('node'), 'Node is required for the browser context contract')
     def test_browser_context_uses_only_bounded_version_matched_public_sources(self):
@@ -56,5 +81,11 @@ class AskBobExportTests(unittest.TestCase):
     @unittest.skipUnless(shutil.which('node'), 'Node is required for the browser startup contract')
     def test_browser_startup_can_cancel_stalled_workers_and_retry(self):
         script = Path(__file__).parent / 'browser/ask-bob-loader.cjs'
+        result = subprocess.run(['node', str(script)], check=True, capture_output=True, text=True)
+        self.assertEqual(json.loads(result.stdout)['result'], 'PASS')
+
+    @unittest.skipUnless(shutil.which('node'), 'Node is required for the private-memory contract')
+    def test_private_memory_adapter_keeps_cache_and_generation_boundaries(self):
+        script = Path(__file__).parent / 'browser/ask-bob-private.cjs'
         result = subprocess.run(['node', str(script)], check=True, capture_output=True, text=True)
         self.assertEqual(json.loads(result.stdout)['result'], 'PASS')

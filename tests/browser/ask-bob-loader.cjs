@@ -6,7 +6,12 @@ const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
  const temporary=fs.mkdtempSync(path.join(os.tmpdir(),'wake-browser-loader-'));
  try{
   const modulePath=path.join(temporary,'loader.mjs');fs.copyFileSync(path.join(__dirname,'../../wake/assets/ask-bob-browser.js'),modulePath);
-  const {initialize}=await import(pathToFileURL(modulePath));
+  const {initialize,needsPrivateMemory}=await import(pathToFileURL(modulePath));
+  const isolated=Object.getOwnPropertyDescriptor(globalThis,'crossOriginIsolated');
+  try{
+   Object.defineProperty(globalThis,'crossOriginIsolated',{value:false,configurable:true});assert(needsPrivateMemory());
+   Object.defineProperty(globalThis,'crossOriginIsolated',{value:true,configurable:true});assert.equal(needsPrivateMemory(),typeof SharedArrayBuffer!=='function');
+  }finally{if(isolated)Object.defineProperty(globalThis,'crossOriginIsolated',isolated);else delete globalThis.crossOriginIsolated;}
   const fake = spec => ({...spec,modelManager:{getModelOrDownload:async()=>({open:async()=>[]})},
    loadModel:async(_blobs,options)=>spec.loadModelFromUrl('fixture://model',options)});
   let exits=0,receivedSignal;

@@ -11,8 +11,9 @@ ships the inference engine; an explicit load button downloads the pinned open
 model. No account, API key, answer server or local installation is required.
 Normal reading never loads inference or model weights. Questions and browser
 history are not uploaded. The optional local Gemini preview is a separate mode.
-The unified blog ships both the normal and Safari-compatible engines; individual
-node pages do not mount Ask Bob and omit those unused large binaries.
+The unified blog uses a private-memory inference build on Pages, so Safari needs
+no isolation headers. The newer shared-memory engines are reserved for isolated
+pages. Individual node pages do not mount Ask Bob and omit unused engine binaries.
 
 The unified export also generates [static inspection resources](inspection.md)
 under `inspect/`. They require no JavaScript, authentication or live model; their
