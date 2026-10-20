@@ -10,6 +10,8 @@ import re
 import signal
 import subprocess
 import sys
+import tempfile
+import threading
 import time
 from urllib.error import HTTPError
 
@@ -101,6 +103,49 @@ def capture_all(transport, root):
         transport.checkpoint_node(root / 'nodes' / node / 'record')
 
 
+def publish_hosted_snapshot(client, root, artifact, revision):
+    """Publish pinned completed exports without stopping workers or opening records."""
+    parent = client.request('git/ref/heads/wake-public')['object']['sha']
+    manifest = build_public_artifact(root, artifact, progress=lambda message: print(message, flush=True))
+    manifest['hosted_execution'] = {'source_revision': revision,
+        'run_id': os.environ.get('GITHUB_RUN_ID'), 'captured_at': datetime.now(timezone.utc).isoformat()}
+    for path in [artifact / 'installation.json', *[artifact / 'nodes' / n / 'installation.json' for n in NODE_IDS]]:
+        path.write_text(json.dumps(manifest, sort_keys=True))
+    from wake.hosted_presentation import bind_hosted_status
+    bind_hosted_status(artifact, client.repository, revision)
+    authorization = base64.b64encode(('x-access-token:' + client.token).encode()).decode()
+    os.environ.update(GIT_CONFIG_COUNT='1', GIT_CONFIG_KEY_0='http.https://github.com/.extraheader',
+                      GIT_CONFIG_VALUE_0='AUTHORIZATION: basic ' + authorization)
+    upload_public_artifact(artifact, 'https://github.com/' + client.repository + '.git',
+                           'wake-public', expected_head=parent)
+    client.request('pages/builds', method='POST', body={})
+    return manifest
+
+
+class PeriodicPublication:
+    """Independent mirror delivery; final publication waits for a healthy upload."""
+    def __init__(self, client, root, revision, interval=1800):
+        self.client, self.root, self.revision, self.interval = client, root, revision, interval
+        self.closed = threading.Event()
+        self.thread = threading.Thread(target=self.run, daemon=True)
+
+    def run(self):
+        while not self.closed.wait(self.interval):
+            try:
+                with tempfile.TemporaryDirectory(prefix='wake-hosted-mirror-') as temporary:
+                    publish_hosted_snapshot(self.client, self.root, Path(temporary) / 'site', self.revision)
+                print(json.dumps({'hosted_mirror': 'published'}), flush=True)
+            except Exception as error:
+                # A concurrent public refresh or transient upload error cannot
+                # stop research. The next interval or final capture retries.
+                print(json.dumps({'hosted_mirror': 'unavailable', 'reason': type(error).__name__}), flush=True)
+
+    def close(self, *, wait=True):
+        self.closed.set()
+        if wait and self.thread.is_alive():
+            self.thread.join()
+
+
 def run_batch(minutes, provider):
     client = api()
     if not enabled(client):
@@ -134,6 +179,7 @@ def run_batch(minutes, provider):
             env=dict(os.environ, WAKE_DEV_RELOAD='false'))
         from wake.hosted_activity import HostedActivityPublisher
         activity = HostedActivityPublisher(root, before['installation_id'], os.environ.get('GITHUB_RUN_ID'), revision)
+        mirror = PeriodicPublication(client, root, revision)
         activity.start()
         try:
             ready(root, process)
@@ -152,6 +198,8 @@ def run_batch(minutes, provider):
                     if not any(value.get('state') == 'acknowledged'
                                for value in start.get('nodes', {}).values()):
                         stopped = True
+            if not stopped:
+                mirror.thread.start()
             deadline = time.monotonic() + minutes * 60
             next_intent_check = 0
             while not stopped and time.monotonic() < deadline:
@@ -178,28 +226,17 @@ def run_batch(minutes, provider):
             except subprocess.TimeoutExpired:
                 process.kill()
                 process.wait()
+            mirror.close(wait=False)
     if process.returncode != 0:
         raise RuntimeError('Hosted controller did not shut down cleanly')
     capture_all(transport, root)
+    # Native recovery is saved before waiting for independent delivery. Do not
+    # race a final publication against a healthy periodic uploader.
+    mirror.close()
     # Publication is derived and independently recoverable. Preserve authority
     # before a rendering/upload error can fail the run.
     artifact = Path(os.environ['WAKE_HOSTED_ARTIFACT'])
-    manifest = build_public_artifact(root, artifact, progress=lambda message: print(message, flush=True))
-    manifest['hosted_execution'] = {'source_revision': revision,
-        'run_id': os.environ.get('GITHUB_RUN_ID'), 'captured_at': datetime.now(timezone.utc).isoformat()}
-    # The inspection bundle's bytes/hashes are untouched. Installation identity
-    # is a separate deployment manifest copied consistently to every node.
-    for path in [artifact / 'installation.json', *[artifact / 'nodes' / n / 'installation.json' for n in NODE_IDS]]:
-        path.write_text(json.dumps(manifest, sort_keys=True))
-    from wake.hosted_presentation import bind_hosted_status
-    bind_hosted_status(artifact, client.repository, revision)
-    authorization = base64.b64encode(('x-access-token:' + client.token).encode()).decode()
-    os.environ.update(GIT_CONFIG_COUNT='1', GIT_CONFIG_KEY_0='http.https://github.com/.extraheader',
-                      GIT_CONFIG_VALUE_0='AUTHORIZATION: basic ' + authorization)
-    upload_public_artifact(artifact, 'https://github.com/' + client.repository + '.git', 'wake-public')
-    # GITHUB_TOKEN pushes do not trigger branch-based Pages builds. Request its
-    # native build explicitly, without paid artifacts or a separate deploy host.
-    client.request('pages/builds', method='POST', body={})
+    manifest = publish_hosted_snapshot(client, root, artifact, revision)
     with transport.lease():
         transport.prune()
     after = transport.read_manifest()

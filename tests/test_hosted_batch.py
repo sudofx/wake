@@ -10,16 +10,29 @@ from unittest.mock import MagicMock, patch
 
 from wake.installation_cli import NODE_IDS
 from scripts.github_research import run_batch
+from scripts.github_research import PeriodicPublication
 
 
 class HostedBatchTests(unittest.TestCase):
+    def test_periodic_publication_failure_does_not_own_research_or_final_capture(self):
+        import threading
+        observed = threading.Event()
+        mirror = PeriodicPublication(SimpleNamespace(), Path('/fixture'), 'a'*40, interval=.001)
+        def failed(*_):
+            mirror.closed.set();observed.set();raise OSError('fixture network failure')
+        with patch('scripts.github_research.publish_hosted_snapshot',side_effect=failed) as publish, redirect_stdout(io.StringIO()):
+            mirror.thread.start()
+            self.assertTrue(observed.wait(2))
+            mirror.close()
+        publish.assert_called_once()
+
     def test_partial_start_runs_confirmed_workers_and_no_ack_closes_but_both_publish(self):
         for acknowledged in (True, False):
             with self.subTest(acknowledged=acknowledged), tempfile.TemporaryDirectory() as directory:
                 root, artifact = Path(directory) / 'records', Path(directory) / 'public'
                 revision = 'a' * 40
                 client = SimpleNamespace(repository='example/repo', token='fixture', request=MagicMock(
-                    return_value={'workflow_runs': [{'head_sha': revision, 'head_branch': 'master'}]}))
+                    return_value={'object':{'sha':'b'*40}, 'workflow_runs': [{'head_sha': revision, 'head_branch': 'master'}]}))
                 transport = MagicMock()
                 def restore(path, **_):
                     path.mkdir();return {'installation_id': 'original', 'generation': 1, 'nodes': {}}

@@ -319,4 +319,6 @@ real worker sample and Console disconnect behavior before claiming live delivery
 
 Two-hour hosted batches use a three-hour job deadline, leaving time for drain,
 final capture and publication. Required pre-effect saves remain in place. The
-public mirror updates at batch boundaries; live observations do not advance it.
+public mirror uploads pinned completed exports every thirty minutes during work
+and again after final capture. Upload failures do not stop research, and a changed
+public parent rejects a stale artifact. Live observations do not advance research counts.
