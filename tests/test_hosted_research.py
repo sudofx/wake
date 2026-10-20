@@ -140,6 +140,15 @@ class HostedTransportTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, 'Git operation failed'):
             stale.checkpoint_node(self.root / 'stale-root/nodes/100.wake/record')
 
+    def test_growing_records_automatically_use_larger_blocks_without_losing_bytes(self):
+        source = self.root / 'growing.bin'
+        source.write_bytes(bytes(range(256)) * 1024)
+        with patch('wake.hosted.BLOCK_SIZE', 1024):
+            blocks = self.transport.put_file(source, self.transport.assets())
+        self.assertLessEqual(len(blocks), 32)
+        self.transport.get_file(blocks, self.root / 'growing-restored.bin')
+        self.assertEqual(source.read_bytes(), (self.root / 'growing-restored.bin').read_bytes())
+
     def test_wrong_key_and_tampering_fail_closed(self):
         wrong = self.new_transport('wrong')
         wrong.key = b'z' * 32

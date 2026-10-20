@@ -40,6 +40,7 @@ STATE_BRANCH = 'wake-hosted-state'
 RELEASE_TAG = 'wake-hosted-checkpoints'
 FORMAT = 'wake-hosted-state@1'
 BLOCK_SIZE = 4 * 1024 * 1024
+MAX_BLOCK_SIZE = 256 * 1024 * 1024
 MAX_DATABASE = 8 * 1024**3
 AUXILIARY = ('installation-id.json', 'provider-schedule.json',
              'private/.passenger.md', 'private/.passenger-state.json')
@@ -269,9 +270,20 @@ class HostedState:
         return {'name': name, 'id': assets[name], 'size': len(raw)}
 
     def put_file(self, path, assets):
+        size = Path(path).stat().st_size
+        if size > MAX_DATABASE:
+            raise ValueError('Hosted checkpoint file exceeds the recovery limit')
+        # Grow blocks automatically with records. Keeping at most 32 blocks
+        # per node leaves room for both recovery snapshots and in-flight changes
+        # below GitHub's 1000-assets-per-release limit, even after years of growth.
+        block_size = BLOCK_SIZE
+        while block_size * 32 < size:
+            block_size *= 2
+        if block_size > MAX_BLOCK_SIZE:
+            raise ValueError('Hosted checkpoint block exceeds recovery limit')
         blocks = []
         with Path(path).open('rb') as stream:
-            while raw := stream.read(BLOCK_SIZE):
+            while raw := stream.read(block_size):
                 blocks.append(self.put_block(raw, assets))
         return blocks
 
@@ -286,9 +298,9 @@ class HostedState:
                 data = self.api.request(f'releases/assets/{int(item["id"])}', binary=True)
                 compressed = unseal(self.key, data, item['name'])
                 with gzip.GzipFile(fileobj=io.BytesIO(compressed)) as source:
-                    raw = source.read(BLOCK_SIZE + 1)
+                    raw = source.read(MAX_BLOCK_SIZE + 1)
                 expected = 'block-' + hmac.new(self.key, b'block\0' + raw, hashlib.sha256).hexdigest() + '.bin'
-                if len(raw) != item['size'] or len(raw) > BLOCK_SIZE or expected != item['name']:
+                if len(raw) != item['size'] or len(raw) > MAX_BLOCK_SIZE or expected != item['name']:
                     raise ValueError('Encrypted block content mismatch')
                 size += len(raw)
                 if size > MAX_DATABASE:

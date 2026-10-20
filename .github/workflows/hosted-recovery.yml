@@ -2,7 +2,9 @@ name: WAKE — Recover hosted handoff
 
 on:
   workflow_run:
-    workflows: ['WAKE — Hosted research']
+    # Run events can carry the dynamic run-name. Match that known namespace as
+    # well as the static workflow name, then verify the exact file below.
+    workflows: ['WAKE — Hosted research', 'WAKE hosted *']
     types: [completed]
     branches: [master]
   workflow_dispatch:
@@ -24,7 +26,10 @@ concurrency:
 
 jobs:
   recover:
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion != 'success'
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.path == '.github/workflows/hosted-research.yml' &&
+       github.event.workflow_run.conclusion != 'success')
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
