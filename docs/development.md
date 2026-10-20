@@ -144,7 +144,9 @@ Avoid duplicating obvious syntax or embedding operator conversation in source.
 record views, Console components and `deployment.json`. `_deployment_site` places
 `WAKE_DEPLOYMENT` before reader scripts in generated pages. All modes read same-origin JSON. Live containers may read `/runtime.json`,
 including through LAN addresses; snapshot-only public exports have no runtime
-capability, status light, or GitHub polling. A missing/invalid
+capability. Only an explicit `hosted_status` presentation binding enables a separate,
+read-only public Actions observer for the header light; ordinary mirrors do not poll
+GitHub. That observer never feeds the research transport or live canvases. A missing/invalid
 identity stays same-origin; Console reports the missing identity instead of
 silently substituting public research. Identity is routing configuration, not
 an authentication credential or proof that the snapshot is fresh.

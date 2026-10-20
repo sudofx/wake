@@ -414,7 +414,7 @@ def build_public_artifact(root: Path, destination: Path, *, progress=None) -> di
         return _build_public_artifact(pinned, destination, progress=progress)
 
 
-def upload_public_artifact(target: Path, repository: str, branch: str):
+def upload_public_artifact(target: Path, repository: str, branch: str, *, expected_head=None):
     """Upload a prepared public site using native Git credentials and normal pushes."""
     target = Path(target).resolve(strict=True)
     for path in target.rglob('*'):
@@ -438,8 +438,12 @@ def upload_public_artifact(target: Path, repository: str, branch: str):
             # Keep remote history intact without downloading years of exports
             # into each disposable publisher.
             git('fetch', '--depth=1', 'origin', f'refs/heads/{branch}')
+            if expected_head is not None and git('rev-parse', 'FETCH_HEAD').stdout.decode().strip() != expected_head:
+                raise ValueError('Public snapshot advanced; refresh from its new head before publishing')
             git('checkout', '-b', branch, 'FETCH_HEAD')
         else:
+            if expected_head is not None:
+                raise ValueError('Expected public snapshot is missing')
             git('checkout', '--orphan', branch)
         # The branch is a dedicated public projection; history is retained and
         # normal pushes reject concurrent publication instead of overwriting it.

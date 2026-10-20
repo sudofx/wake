@@ -15,11 +15,13 @@ requests.
 Research is WAKE's first application. It is a useful way to exercise the record and
 governance system; it is not the definition of the WAKE kernel.
 
-The public site is a dated, read-only mirror uploaded from the local installation.
+The public site is a dated, read-only mirror uploaded from its owning installation.
 Research can run autonomously in GitHub Actions containers, with GitHub Pages
 serving its public website and no laptop required. Explicit API dispatches
 continue the workload; completion events recover failed handoffs. See
 [autonomous hosted operation](docs/cloud.md#run-research-on-github-without-a-laptop).
+The hosted header light reports public Actions batch status separately from dated
+research snapshots; it requires no sign-in or token.
 Use [publication instructions](docs/cloud.md#publish-the-local-installation-mirror)
 to upload the current unified website and available node views.
 Enabled mirror delivery uploads changed exports every 30 minutes by default and

@@ -93,6 +93,11 @@ Current source eligibility requires nonempty readable collected material. Publis
 
 ### Browser views and exact detail
 
+Research transport always reads same-origin exported files. An explicitly bound
+hosted header light separately reads public GitHub Actions metadata; batch execution
+is not research progress or a live per-node capability. See
+[hosted status](cloud.md#read-the-hosted-status-light) for freshness and failure behavior.
+
 Open the homepage, Blog or journal normally. Reader pages download a recent
 overview of at most 256 KiB. Select a story, source, notebook or invocation to fetch
 its exact exported detail. Use **Load older** below a list to fetch another page.

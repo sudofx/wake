@@ -79,7 +79,8 @@ operator procedures.
 
 A dated, read-only website exported from container records and uploaded to
 `wake-public`. GitHub Pages serves that artifact; it has no research executor,
-operator controls, or status light. Native node records remain authority, whether
+or operator controls. An explicitly configured hosted light observes the GitHub
+batch separately from the dated research snapshot. Native node records remain authority, whether
 the owning controller runs locally or in a GitHub Actions container.
 
 ### Hosted continuation

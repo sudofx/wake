@@ -508,6 +508,9 @@ must not resume the transferred records independently.
 A normal run drains, saves records, publishes the filtered snapshot, explicitly
 requests the Pages build and dispatches its successor. A separate completion-event
 workflow reconciles failed successor dispatches before retrying. No cron is used.
+Start acknowledgment failures remain visible: confirmed workers may proceed,
+while a batch with no confirmed worker closes and publishes before its successor
+retries. This does not bypass a node's native pre-effect checkpoint or admission gate.
 The research workflow's native enabled/disabled state is the stop switch; it is checked before startup,
 before successor dispatch and at most once per minute while running. Stop drains
 active work and retains records. GitHub/platform outages, revoked credentials,
@@ -561,7 +564,11 @@ belongs to the compatibility multi-container path.
 Daily API quota exhaustion is a recoverable standby state, distinct from operator
 pause and code/data failure. Standalone and Codespaces runtimes expose `standby`
 through `/runtime.json` until the recorded Pacific reset. Public mirrors have no
-execution capability or live quota polling.
+execution capability or live quota polling. An explicit hosted presentation binding
+may observe public Actions workflow metadata for the header light. This anonymous,
+read-only observation never enters research transport, per-node runtime capabilities,
+provider context, progress accounting or governance. Its gray unavailable state cannot
+be mistaken for a confirmed green batch. See [hosted status](cloud.md#read-the-hosted-status-light).
 Peer exchange and the shared Bob projection also operate between internal nodes
 through controller routes. They read members independently and preserve unavailable
 state. Older numbered-container groups use their retained private networks; the

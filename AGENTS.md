@@ -160,7 +160,7 @@ A bind-mounted checkout and an installed image may execute different code. Prese
 existing edits and record volumes; source synchronization never authorizes record copying.
 
 Local and hosted records are independent. Never reconcile their counters by importing
-one into the other. Browser transport reads only same-origin exported files. Missing installation identity must stay same-origin and be visible in Console.
+one into the other. Research browser transport reads only same-origin exported files. An explicitly bound hosted status light may read public GitHub Actions metadata anonymously; those observations never enter research state, per-node runtime animation or governance. Missing installation identity must stay same-origin and be visible in Console.
 Export owns deployment identity and local operator links as well as data and assets;
 raw HTML templates must not replace generated pages. Verify the actual snapshot
 head/version and transport on LAN access, not only appearance or HTTP success.

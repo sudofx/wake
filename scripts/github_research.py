@@ -140,7 +140,15 @@ def run_batch(minutes, provider):
             if enabled(client) and not stopped:
                 start = request(root, {'action': 'start'})
                 if not start.get('ok'):
-                    raise RuntimeError('Not every hosted worker acknowledged start')
+                    # Admission is already running. Preserve healthy workers
+                    # while keeping unavailable/late acknowledgments visible.
+                    # With no confirmed worker, close this batch and publish
+                    # its saved exports; the successor retries from checkpoints.
+                    print(json.dumps({'hosted_start': 'degraded',
+                                      'nodes': start.get('nodes', {})}), flush=True)
+                    if not any(value.get('state') == 'acknowledged'
+                               for value in start.get('nodes', {}).values()):
+                        stopped = True
             deadline = time.monotonic() + minutes * 60
             next_intent_check = 0
             while not stopped and time.monotonic() < deadline:
@@ -179,6 +187,8 @@ def run_batch(minutes, provider):
     # is a separate deployment manifest copied consistently to every node.
     for path in [artifact / 'installation.json', *[artifact / 'nodes' / n / 'installation.json' for n in NODE_IDS]]:
         path.write_text(json.dumps(manifest, sort_keys=True))
+    from wake.hosted_presentation import bind_hosted_status
+    bind_hosted_status(artifact, client.repository, revision)
     authorization = base64.b64encode(('x-access-token:' + client.token).encode()).decode()
     os.environ.update(GIT_CONFIG_COUNT='1', GIT_CONFIG_KEY_0='http.https://github.com/.extraheader',
                       GIT_CONFIG_VALUE_0='AUTHORIZATION: basic ' + authorization)

@@ -4,7 +4,8 @@
 
 Research runs in containers. Each node owns its durable SQLite record; the website
 is a dated, read-only copy of the public data exported from those records. GitHub
-Pages executes no research and has no research controls or execution status light.
+Pages executes no research and has no research controls. An explicitly bound hosted
+status light observes the GitHub Actions executor; ordinary mirrors have no execution light.
 
 [Ask Bob](ask-bob.md) runs its public model in each reader's browser. The mirror
 ships the inference engine; the first Send automatically downloads and prepares
@@ -230,6 +231,10 @@ commits the encrypted checkpoint before continuing. A crash after a request star
 leaves an interrupted native invocation to recover, never a fabricated result.
 Free quota waits survive runner handover; no automatic reset or quota bypass exists.
 Worker failures are recovered from verified records in the next bounded run.
+Missing Start acknowledgments are reported explicitly. Confirmed workers may
+continue a partial batch; if none confirm, the batch closes and publishes its
+completed exports before the successor retries. One unavailable worker cannot
+withhold the other records or their public mirror.
 The system does not write unreviewed source repairs or change its own research rules.
 
 The dedicated release stores authenticated encrypted blocks. Unchanged blocks
@@ -251,3 +256,35 @@ then read the served `installation.json` and its twelve captured heads. Its
 `hosted_execution` field identifies the source revision and capture run; dated
 runtime observations never become a live execution capability. Source CI, record
 checkpoint, provider outcome, website upload and Pages serving are separate claims.
+
+### Read the hosted status light
+
+The header light checks public GitHub Actions metadata without sign-in or a token.
+Green means a hosted batch is active, including restoration, quota waits and publication;
+it does not mean a provider call is in flight or research has been accepted. Yellow
+means queued, stopped, draining or awaiting automatic recovery. Blue means between
+successful batches; red means GitHub reports that attention is required. Gray means
+status could not be confirmed. Tap or focus the light for its explanation and check time;
+its link opens the research workflow. Node dots and Console canvases remain dated snapshots.
+
+Only exports explicitly bound by `wake.hosted_presentation.bind_hosted_status` enable
+this observer. It makes two anonymous reads at most every three minutes while visible,
+shares a short cache across pages, bounds each read to eight seconds, clears stale
+or offline observations, and never reads private records or changes research controls.
+GitHub rate limits can make the light unavailable without stopping research.
+
+A presentation-only refresh can use an existing `wake-public` artifact without opening
+authority. Capture its exact Git head, extract the generated artifact without `.git`,
+then publish with the normal repository settings:
+
+```sh
+WAKE_PUBLISH_REPOSITORY=https://github.com/OWNER/REPO \
+WAKE_PUBLISH_BRANCH=wake-public \
+python scripts/publish_pages.py --artifact SITE \
+  --refresh-hosted-status --expected-head CAPTURED_SHA
+gh api --method POST repos/OWNER/REPO/pages/builds
+```
+
+A changed parent fails closed: capture the newer artifact and retry. Research data, captured heads,
+`hosted_execution` and hashed inspection packets remain unchanged; `presentation`
+records the UI source revision separately. Normal hosted batches apply the same binding.

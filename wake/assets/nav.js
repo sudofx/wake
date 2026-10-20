@@ -55,11 +55,11 @@
 
 const actionsLight=document.querySelector('.actions-light');
 // Unknown installation identity must not display GitHub's status as local status.
-if(actionsLight && window.WAKE_DEPLOYMENT?.snapshot_only===true){
+if(actionsLight && window.WAKE_DEPLOYMENT?.snapshot_only===true && !window.WAKE_DEPLOYMENT?.hosted_status){
   document.documentElement.dataset.wakeSnapshotOnly='true';
   actionsLight.hidden=true;
 }
-if(actionsLight && window.WAKE_DEPLOYMENT?.mode!=='hosted' && window.WAKE_DEPLOYMENT?.snapshot_only!==true){
+if(actionsLight && !window.WAKE_DEPLOYMENT?.hosted_status && window.WAKE_DEPLOYMENT?.mode!=='hosted' && window.WAKE_DEPLOYMENT?.snapshot_only!==true){
   actionsLight.href='runtime.json';
   const applyLocal=status=>{
     const label=status.state==='standby'?(status.reason||'Provider quota reported; retrying on the regular schedule'):
