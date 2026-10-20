@@ -508,7 +508,7 @@ must not resume the transferred records independently.
 A normal run drains, saves records, publishes the filtered snapshot, explicitly
 requests the Pages build and dispatches its successor. A separate completion-event
 workflow reconciles failed successor dispatches before retrying. No cron is used.
-The repository enable variable is the stop switch; it is checked before startup,
+The research workflow's native enabled/disabled state is the stop switch; it is checked before startup,
 before successor dispatch and at most once per minute while running. Stop drains
 active work and retains records. GitHub/platform outages, revoked credentials,
 corrupt authority and exhausted provider quotas remain visible limitations;

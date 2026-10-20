@@ -27,7 +27,7 @@ def api():
 
 def enabled(client):
     try:
-        return client.request('actions/variables/WAKE_HOSTED_ENABLED')['value'] == 'true'
+        return client.request(f'actions/workflows/{WORKFLOW}')['state'] == 'active'
     except HTTPError as error:
         if error.code == 404:
             return False
@@ -44,13 +44,8 @@ def checked_revision(client):
 
 def control(action):
     client = api()
-    value = 'true' if action == 'start' else 'false'
-    try:
-        client.request('actions/variables/WAKE_HOSTED_ENABLED', method='PATCH', body={'value': value})
-    except HTTPError as error:
-        if error.code != 404:
-            raise
-        client.request('actions/variables', method='POST', body={'name': 'WAKE_HOSTED_ENABLED', 'value': value})
+    operation = 'enable' if action == 'start' else 'disable'
+    client.request(f'actions/workflows/{WORKFLOW}/{operation}', method='PUT')
     if action == 'start':
         revision = checked_revision(client)
         client.request(f'actions/workflows/{WORKFLOW}/dispatches', method='POST', body={

@@ -195,8 +195,9 @@ flowchart LR
 Open **Actions → WAKE — Start or stop hosted research → Run workflow** on
 `master`. Choose `start` to continue the existing records or `stop` to prevent
 successors and drain the active run. The active controller checks stop intent
-at least once per minute. This never resets records. The repository variable
-`WAKE_HOSTED_ENABLED=true` enables continuation; missing or false means stopped.
+at least once per minute. This never resets records. The enabled/disabled state of **WAKE — Hosted research** is the native
+continuation switch. Disabled or missing means stopped; the built-in Actions
+token can operate it without an expiring personal credential.
 Manual cancellation alone is recoverable failure, not the durable stop switch.
 
 The first setup requires `GEMINI_API_KEY`, a random 32-byte hex
