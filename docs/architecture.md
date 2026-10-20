@@ -204,7 +204,7 @@ The WAKE application uses wake compact event-log storage: durable application ac
 
 WAKE event identity and domain replay are now separated from legacy persistence. `wake/event_format.py` defines the stable canonical JSON, hash, genesis, and timestamp conventions used by historical WAKE events. `wake/domain_events.py` defines the initial WAKE state and deterministic event reducer. Neither module owns a database. `wake/store.py` is therefore quarantined as legacy SQLite migration/fixture compatibility rather than being imported by normal runtime, presentation, or WAKE application code.
 
-Missing both authority databases is a fail-closed condition, not an empty project. Local initialization must be explicit; a missing existing node record fails closed before provider work. Physical SQLite slack is maintenance, not semantic history. Storage version 13 also losslessly compresses large event payloads and the binary projection, using stream-local dictionaries for repeated long JSON strings when smaller. This changes physical bytes only; decoded JSON, receipt identities, hashes and replay meaning remain stable. See [kernel storage compatibility](kernel.md#physical-storage-and-compatibility) for migration and audit boundaries. A local advisory writer lock still covers a whole automatic wake, including the network call. Container workers serialize each node’s authority and persist request reservations before provider effects. Competing writers fail before requesting a model. Do not put SQLite on unreliable network filesystems or run separate hosts against copies of one record.
+Missing both authority databases is a fail-closed condition, not an empty project. Local initialization must be explicit; a missing existing node record fails closed before provider work. Physical SQLite slack is maintenance, not semantic history. Storage version 13 also losslessly compresses large event payloads and the binary projection, using stream-local dictionaries for repeated long JSON strings. This changes physical bytes only; decoded JSON, receipt identities, hashes and replay meaning remain stable. See [kernel storage compatibility](kernel.md#physical-storage-and-compatibility) for migration and audit boundaries. A local advisory writer lock still covers a whole automatic wake, including the network call. Container workers serialize each node’s authority and persist request reservations before provider effects. Competing writers fail before requesting a model. Do not put SQLite on unreliable network filesystems or run separate hosts against copies of one record.
 
 The record includes the objective, focus, all observations, belief revisions, commitments, exact request and response text, provider/model identity, request hashes, process IDs, dates, quota reservations, accepted/rejected decisions and recovery records. Invocation metadata is a compact projection; exact prompts and replies remain in events. UTC storage and `America/Los_Angeles` presentation preserve daylight-saving behavior.
 
@@ -671,3 +671,21 @@ The current hosted runner uses the same twelve-node controller and encrypted
 native-record checkpoints; the earlier hosted records remain historical and are
 not merged into the transferred installation. Mirrors hide the status lamp and perform no live-status
 polling. Upload timestamps and node snapshot provenance remain visible.
+
+### Expiring hosted activity observations
+
+The hosted activity relay is a read-only view of native worker observations,
+separate from Actions batch metadata and research transport. The runner strips
+all but the allowlisted activity fields before its asynchronous sender runs.
+A relay outage never interrupts research, a durability barrier or final capture.
+The Sites Worker stores only one bounded expiring JSON object and accepts writes
+using a scoped ingestion secret. It has no record, provider or control access.
+Browsers bind it to the exact installation, reject stale samples, and clear live
+marks on disconnect. Native capability samples may animate current activity;
+accepted scores, selection and historical replay remain captured research data.
+See [live hosted activity](cloud.md#watch-live-hosted-node-activity).
+
+Context construction may reuse one verified history inside a bounded read-only
+`RecordStore.history_view`. No history survives the scope, and event appends in
+the scope fail. Subsequent builds re-read the record. This changes query cost,
+not delivered history or application governance.

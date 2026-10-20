@@ -22,6 +22,8 @@ def bind_hosted_status(site, repository, revision):
             or not manifest.get('installation_id') or len(manifest.get('record_heads', {})) != 12):
         raise ValueError('Hosted status requires an identified twelve-node hosted snapshot')
     config = {'repository': repository, 'workflow': 'hosted-research.yml', 'branch': 'master'}
+    from .hosted_activity import ACTIVITY_ORIGIN
+    activity = {'url': ACTIVITY_ORIGIN + '/activity.json', 'installation_id': manifest['installation_id']}
     assets = Path(__file__).parent / 'assets'
     shell = (assets / 'index.html').read_text()
     light = re.search(r'<a\b[^>]*class="actions-light"[^>]*>.*?</a>', shell, re.S).group(0)
@@ -45,6 +47,7 @@ def bind_hosted_status(site, repository, revision):
         def binding(match):
             deployment = json.loads(match.group(1))
             deployment['hosted_status'] = config
+            deployment['hosted_activity'] = activity
             return ('window.WAKE_DEPLOYMENT=' + json.dumps(deployment)
                     + ";document.documentElement.dataset.wakeHostedStatus='true';")
         page = page.replace("document.documentElement.dataset.wakeHostedStatus='true';", '')
@@ -56,18 +59,20 @@ def bind_hosted_status(site, repository, revision):
         page = re.sub(r'((?:nav\.js|masthead\.css)\?v=)[^"<]+', r'\g<1>20261020-hosted-status', page)
         page = re.sub(r'<script src="[^\"]*hosted-status\.js[^\"]*"[^>]*></script>', '', page)
         page = page.replace('</head>', f'<script src="{prefix}hosted-status.js?v=20261020-hosted-status" defer></script></head>', 1)
+        page = re.sub(r'((?:runtime-activity\.js|installation-console\.js|process-field\.js)\?v=)[^"<]+', r'\g<1>20261020-hosted-activity', page)
         path.write_text(page)
     if not roots:
         raise ValueError('No generated hosted pages found')
     for root in roots:
-        for name in ('nav.js', 'masthead.css', 'hosted-status.js'):
+        for name in ('nav.js', 'masthead.css', 'hosted-status.js', 'runtime-activity.js', 'installation-console.js', 'process-field.js'):
             shutil.copyfile(assets / name, root / name)
         deployment_path = root / 'deployment.json'
         if deployment_path.exists():
             deployment = json.loads(deployment_path.read_text())
             deployment['hosted_status'] = config
+            deployment['hosted_activity'] = activity
             deployment_path.write_text(json.dumps(deployment))
-    manifest['presentation'] = {'source_revision': revision, 'hosted_status': config}
+    manifest['presentation'] = {'source_revision': revision, 'hosted_status': config, 'hosted_activity': activity}
     encoded = json.dumps(manifest, sort_keys=True)
     for path in [site / 'installation.json', *site.glob('nodes/*/installation.json')]:
         path.write_text(encoded)

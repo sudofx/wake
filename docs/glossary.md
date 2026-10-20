@@ -105,3 +105,11 @@ rewriting historical receipts.
 **Zero-cycle reset:** an operator action that clears active research progress and
 starts a fresh enabled continuity campaign. It leaves research stopped or paused
 until explicitly started; see [reset operation](standalone.md).
+
+### Hosted activity relay
+
+A read-only connection showing sampled node stages and confirmed provider-call
+activity from the hosted installation. It keeps one short-lived public view,
+clears on stale data, and contains no research bodies or controls. Unlike the
+Actions light, it observes native worker activity. Research counts remain dated
+exports. See [live hosted activity](cloud.md#watch-live-hosted-node-activity).

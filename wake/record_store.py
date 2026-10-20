@@ -386,6 +386,8 @@ class RecordStore:
         return continuity_matrix_progress(self._envelope())
 
     def append(self, kind, payload, crash=False):
+        if hasattr(self, '_query_events'):
+            raise IntegrityError('Cannot append inside a read-only history view')
         if crash:
             self._kernel_store.crash_next_write = True
         revision = self.kernel.context().revision
@@ -467,7 +469,25 @@ class RecordStore:
 
     def events(self):
         """Return the complete event history for the active WAKE generation."""
+        if hasattr(self, '_query_events'):
+            return list(self._query_events)
         return self._events(self._envelope())
+
+    @contextmanager
+    def history_view(self):
+        """Reuse verified history during one bounded, read-only context build.
+
+        Nothing survives this scope: the next build rechecks the record. This
+        avoids repeatedly decoding complete history for small tail queries.
+        """
+        if hasattr(self, '_query_events'):
+            yield
+            return
+        self._query_events = tuple(self._events(self._envelope()))
+        try:
+            yield
+        finally:
+            del self._query_events
 
     def _events(self, envelope):
         # Reuse one captured envelope and receipt list throughout reconstruction.

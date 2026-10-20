@@ -347,12 +347,13 @@ on refresh. Reset reorders existing nodes and expands collapsed panels in place;
 must not navigate, reload projections or clear record selections. Buttons belong in
 the left-aligned action row directly beneath each heading, including isolated windows.
 
-The provider overlay uses current local runtime capability only. `context` means
+The provider overlay uses a current native runtime capability, locally or through
+the explicitly bound hosted activity relay. `context` means
 preparation; `provider` means the context-bearing request is in flight and a proposal
 is awaited; `governance` means the response arrived and is being checked. The outbound
 and inbound connector effects distinguish those phases. They do not imply visibility
 into network bytes or model cognition. Reduced-motion mode uses static emphasis, and
-idle/disconnected/hosted snapshot views cannot display an in-flight provider pulse.
+idle, disconnected and unbound snapshot views cannot display an in-flight provider pulse.
 
 ## Inspector and public reading presentation
 
@@ -673,3 +674,11 @@ To run a local group until its next shared Bob post, set each member’s
 then set `research` to `running`. The target is a publication lower bound, not a
 requested research cycle: Bob follows the aggregate three-per-100-wake cadence above. Each member pauses
 once it durably imports the newer shared post, before another research request.
+
+For the hosted live-activity sender and relay, start with
+[the public activity contract](cloud.md#watch-live-hosted-node-activity).
+`deploy/activity-relay/` owns the Worker source; its publication checkout is only
+a delivery mirror. Keep the ingestion token in GitHub/Sites secrets, never source
+or browser bindings. Run `node --test tests/relay.test.js` in that directory and
+`node tests/browser/hosted-activity-unit.cjs` at the repository root alongside the
+Python checks. These checks exercise expiry and privacy without live providers.

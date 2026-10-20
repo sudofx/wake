@@ -195,3 +195,10 @@ rollback, mixed formats, corruption, exact Unicode, exports and reader compatibi
 Older runtimes reject storage version 13. Keep an immutable pre-upgrade backup,
 and upgrade each installation against its own record. Never restore that backup
 over work appended after the upgrade merely to roll back executable code.
+
+Current projection writes use level-six compression and select a self-contained
+long-string dictionary when available, avoiding a second compression of the same
+large view. Existing codec prefixes, historical event bytes and all semantic
+hashes stay unchanged. Both historical maximum-compression projections and new
+writes decode through the same checked readers; this does not require a schema
+migration or removal of any history.

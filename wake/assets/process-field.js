@@ -65,7 +65,7 @@
     const stageHTML=STAGES.map(([key,label],i)=>`<div class="process-stage ${active[i]?'observed':'quiet'} ${liveIndex()===i?'live-current':''}" data-stage="${key}" data-stage-index="${i}" role="button" tabindex="0"><span>0${i+1}</span><strong>${label}</strong><small>${escapeHtml(stateLabel(latest,i))}</small></div>`).join('');
     if(stageHTML!==lastStageHTML){stageList.innerHTML=stageHTML;lastStageHTML=stageHTML;}
     const setText=(element,text)=>{if(element.textContent!==text)element.textContent=text;};
-    if(window.WAKE_DEPLOYMENT?.snapshot_only===true){
+    if(window.WAKE_DEPLOYMENT?.snapshot_only===true&&!runtime){
       setText(statusEl,'PUBLIC SNAPSHOT');statusEl.dataset.state='snapshot';
       statusEl.title='Uploaded record snapshot; no live execution data';
       setText(traceEl,latest?`${latest.id} · ${latest.status}`:'No recorded wake in this snapshot');

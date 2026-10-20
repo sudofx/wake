@@ -13,9 +13,9 @@ on:
         type: string
         required: true
       minutes:
-        description: Bounded batch duration; automatic successors use 30 minutes.
+        description: Bounded batch duration; automatic successors use 120 minutes.
         type: number
-        default: 30
+        default: 120
 
 permissions:
   contents: write
@@ -31,7 +31,7 @@ jobs:
   research:
     if: github.ref_name == 'master'
     runs-on: ubuntu-latest
-    timeout-minutes: 75
+    timeout-minutes: 180
     container: python:3.13-bookworm
     env:
       GH_TOKEN: ${{ github.token }}
@@ -42,6 +42,7 @@ jobs:
       WAKE_HOSTED_ARTIFACT: /tmp/wake-hosted-public
       WAKE_DEV_RELOAD: 'false'
       WAKE_HOSTED_STATE_KEY: ${{ secrets.WAKE_HOSTED_STATE_KEY }}
+      WAKE_ACTIVITY_INGEST_TOKEN: ${{ secrets.WAKE_ACTIVITY_INGEST_TOKEN }}
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       BATCH_MINUTES: ${{ inputs.minutes }}
     steps:

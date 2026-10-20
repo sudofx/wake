@@ -366,6 +366,7 @@ class Controller:
                 members.append({'id': node['id'], 'runtime': bounded,
                                 'head': exported_head(self.root / 'nodes' / node['id'] / 'site')})
             result.update(members=members, head=exported_head(self.root / 'site'), observed_at=snapshot['generated'])
+            result['coordinator'] = self.coordinator.status()
             result['capabilities']['status_stream'] = True
             self.observer_sample, self.observer_sample_at = result, sampled
             return result
@@ -745,6 +746,7 @@ def run(args):
         controller = Controller(root, args.config, args.provider, args.port)
         server = ThreadingHTTPServer((args.host, args.port), partial(InstallationHTTP, directory=str(ASSETS)))
         controller.port = server.server_port
+        atomic_write(root / 'runtime-endpoint.json', json.dumps({'url': f'http://127.0.0.1:{server.server_port}/runtime.json'}))
         server.controller = controller
         from .installation_cli import control_socket
         socket_path = control_socket(root)

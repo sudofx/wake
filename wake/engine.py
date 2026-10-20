@@ -1795,6 +1795,11 @@ class Engine:
         }
 
     def context(self, state, receipt):
+        from contextlib import nullcontext
+        with self.store.history_view() if hasattr(self.store, 'history_view') else nullcontext():
+            return self._context(state, receipt)
+
+    def _context(self, state, receipt):
         # Recent receipts and the newest supporting evidence for every belief stay visible.
         # All citation IDs remain in beliefs; full evidence is always in the durable export.
         # Persistence canonicalizes object keys, so dictionary iteration order is

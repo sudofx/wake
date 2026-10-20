@@ -329,3 +329,10 @@ The final proposal schema is rebuilt after quality-policy and measured-result co
 Under forward quality policy, notebook proposals supply structured claims and omit the duplicate `findings` field. WAKE renders findings from those exact statements and support IDs before validation. Historical proposals with supplied findings remain valid only when they match the claims exactly; conflicting prose is never repaired. Source support and accepted-cycle accounting retain their existing checks.
 
 Source delivery compacts the parsed source packet rather than cutting serialized JSON. Bounded views preserve source classification and select exact substantive prose ahead of titles, authors and PDF front matter. Escaped JSON stays within the provider budget, and successive shortening retains a quotation surface. These are incomplete derived views; full source records, IDs, provenance and exact-passage validation remain authoritative.
+
+An explicit hosted activity binding can additionally observe the owning native
+runtime through the [expiring relay](cloud.md#watch-live-hosted-node-activity).
+This channel carries current stages, not research records or provider content;
+research still loads same-origin exports. It never updates accepted counts.
+Context tail queries reuse verified history for one read-only context build only;
+the next build checks the record again.

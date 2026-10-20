@@ -22,6 +22,9 @@ continue the workload; completion events recover failed handoffs. See
 [autonomous hosted operation](docs/cloud.md#run-research-on-github-without-a-laptop).
 The hosted header light reports public Actions batch status separately from dated
 research snapshots; it requires no sign-in or token.
+Hosted Console activity can also use an explicitly bound, expiring native-runtime
+feed. Node stages and confirmed provider calls update separately from captured
+research counts. Visitors need no sign-in; unavailable samples clear live marks.
 Use [publication instructions](docs/cloud.md#publish-the-local-installation-mirror)
 to upload the current unified website and available node views.
 Enabled mirror delivery uploads changed exports every 30 minutes by default and

@@ -216,7 +216,7 @@ an authoritative record. See [authority and recovery](architecture.md#hosted-exe
 `hosted-research.yml` restores every native record, verifies the full kernel and
 provider/access journals, checks application state against the result digest in
 the verified event chain, and starts the
-existing controller, runs for a bounded thirty-minute window, drains and saves
+existing controller, runs for a bounded two-hour research window, drains and saves
 all records, builds the existing filtered artifact, pushes `wake-public` and
 requests the Pages build. Its final job explicitly dispatches a successor through
 `workflow_dispatch`, using the newest `master` source revision with successful
@@ -288,3 +288,35 @@ gh api --method POST repos/OWNER/REPO/pages/builds
 A changed parent fails closed: capture the newer artifact and retry. Research data, captured heads,
 `hosted_execution` and hashed inspection packets remain unchanged; `presentation`
 records the UI source revision separately. Normal hosted batches apply the same binding.
+
+### Watch live hosted node activity
+
+Console can show current node stages and confirmed shared-queue provider calls
+while its research counts remain a dated export. The explicit `hosted_activity`
+binding names the relay and owning installation. The browser polls it every three
+seconds while visible, without credentials, and clears activity after a failed,
+stale or mismatched response. It does not fetch hosted authority or controls.
+
+The runner samples only its loopback `/runtime.json` in a bounded background task.
+`wake/hosted_activity.py` allowlists stage, worker identity, timestamps, public
+invocation/coordinate IDs and confirmed queue metadata before transmission. It
+excludes prompts, responses, source bodies, Passenger, provider errors and keys.
+Observers never participate in checkpoint or provider-effect sequencing.
+
+The relay source is owned in `deploy/activity-relay/`. Its Sites Worker stores one
+expiring public JSON view in an R2 object; this is disposable presentation storage,
+not research authority or a recovery source. It rejects another installation,
+requires the runner's write credential for ingestion, and exposes no controls.
+An observation expires after twelve seconds; browser overlays expire sooner.
+The relay can disappear without changing research or record recovery.
+
+The Sites environment requires secret `INGEST_TOKEN` and the public
+`INSTALLATION_ID`. The corresponding GitHub Actions secret is
+`WAKE_ACTIVITY_INGEST_TOKEN`. Visitors receive neither secret. Follow the Sites
+source/build/publish workflow for the tracked Worker; a publication mirror is
+not a second implementation owner. Verify anonymous `/activity.json`, then a
+real worker sample and Console disconnect behavior before claiming live delivery.
+
+Two-hour hosted batches use a three-hour job deadline, leaving time for drain,
+final capture and publication. Required pre-effect saves remain in place. The
+public mirror updates at batch boundaries; live observations do not advance it.

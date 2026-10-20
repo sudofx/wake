@@ -388,3 +388,10 @@ Journal stagnation and workflow activity are separate observations. Version-copy
 Under forward quality policy, notebook proposals supply structured claims and omit the duplicate `findings` field. WAKE renders findings from those exact statements and support IDs before validation. Historical proposals with supplied findings remain valid only when they match the claims exactly; conflicting prose is never repaired. Source support and accepted-cycle accounting retain their existing checks.
 
 Source delivery compacts the parsed source packet rather than cutting serialized JSON. Bounded views preserve source classification and select exact substantive prose ahead of titles, authors and PDF front matter. Escaped JSON stays within the provider budget, and successive shortening retains a quotation surface. These are incomplete derived views; full source records, IDs, provenance and exact-passage validation remain authoritative.
+
+Live hosted activity describes sampled execution stages, not an accepted research
+transition or experimental result. Longer hosted batches, scoped history reuse
+and cheaper physical projection compression change execution overhead without
+relaxing policy, context-delivery receipts or pre-effect durability. Compare
+provider attempts, terminal outcomes and accepted progress separately when
+measuring throughput; a green light or moving coordinate is not a result.

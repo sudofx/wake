@@ -60,12 +60,22 @@ window.WakeLazyCanvas=(canvas,factory)=>{
 
 (() => {
   const deployment=window.WAKE_DEPLOYMENT;
-  if(deployment?.schema!==1||deployment.mode!=='standalone'||deployment.snapshot_only===true)return;
+  const hosted=deployment?.hosted_activity;
+  const remote=hosted?.url==='https://wake-live-activity.coolgrove68.chatgpt.site/activity.json'&&typeof hosted.installation_id==='string';
+  if(deployment?.schema!==1||deployment.mode!=='standalone'||(deployment.snapshot_only===true&&!remote))return;
   const asset=new URL(document.currentScript?.src||'runtime-activity.js',location.href);
   const node=location.pathname.match(/\/nodes\/([^/]+)\//)?.[1];
   const root=new URL(asset.pathname.includes('/nodes/')?asset.pathname.split('/nodes/')[0]+'/':'./',asset);
   const listeners=new Set();let latest=null,stream=null,timer=null,busy=false,receivedAt=0,streamRetryAt=0;
-  const view=packet=>packet?.mode==='installation'&&node?packet.members?.find(member=>member.id===node)?.runtime||packet.legacy_node||null:packet;
+  const view=packet=>{
+    if(packet?.mode!=='installation')return packet;
+    if(node)return packet.members?.find(member=>member.id===node)?.runtime||packet.legacy_node||null;
+    if(!remote||packet.coordinator?.active?.confirmed!==true)return null;
+    const runtime=packet.members?.find(member=>member.id===packet.coordinator.active.member)?.runtime;
+    // The unified view may show a confirmed call, but its matrix is not the
+    // selected worker's matrix. Only node views may animate that coordinate.
+    return runtime?{...runtime,activity:{...runtime.activity,coordinate_id:null}}:null;
+  };
   const publish=packet=>{latest=packet;window.WakeStatusSnapshot=packet;for(const listener of listeners)listener(packet);const status=window.WakeRuntimeActivityView(view(packet));window.WakeRuntimeActivity=status;window.dispatchEvent(new CustomEvent('wake-runtime-activity',{detail:status}));};
   window.WakeStatusChannel={root:root.href,get snapshot(){return latest;},subscribe:listener=>{listeners.add(listener);if(latest)listener(latest);return ()=>listeners.delete(listener);},view};
   const accept=packet=>{if(document.hidden){publish(null);return;}receivedAt=performance.now();publish(packet);};
@@ -76,14 +86,15 @@ window.WakeLazyCanvas=(canvas,factory)=>{
     stream.onmessage=event=>{try{const packet=JSON.parse(event.data);if(packet.mode!=='installation'||!Array.isArray(packet.members))throw Error('Unsupported status stream');accept(packet);}catch{publish(null);}};
     stream.onerror=()=>{close();streamRetryAt=performance.now()+30000;publish(null);timer=setTimeout(poll,3000);};
   };
-  const fetchJSON=async url=>{const response=await fetch(url,{cache:'no-store',signal:AbortSignal.timeout(2500)});if(!response.ok)throw Error('Runtime unavailable');return response.json();};
+  const fetchJSON=async url=>{const response=await fetch(url,{cache:'no-store',credentials:remote?'omit':'same-origin',referrerPolicy:'no-referrer',signal:AbortSignal.timeout(2500)});if(!response.ok)throw Error('Runtime unavailable');return response.json();};
   async function poll(){
     if(busy||document.hidden)return;busy=true;
     try{
-      const packet=await fetchJSON(new URL('runtime.json',root));
+      const packet=await fetchJSON(remote?hosted.url:new URL('runtime.json',root));
+      if(remote&&(packet?.mode!=='installation'||packet.installation_id!==hosted.installation_id||!Array.isArray(packet.members)||packet.members.length!==12||!Number.isFinite(Date.parse(packet.observed_at))||Date.now()-Date.parse(packet.observed_at)>9000||Date.parse(packet.observed_at)>Date.now()+5000))throw Error('Hosted activity unavailable');
       if(packet.mode==='installation'&&node&&!Array.isArray(packet.members))packet.legacy_node=await fetchJSON(new URL('runtime.json',location.href));
       accept(packet);
-      if(packet.capabilities?.status_stream===true&&window.EventSource&&performance.now()>=streamRetryAt){startStream();return;}
+      if(!remote&&packet.capabilities?.status_stream===true&&window.EventSource&&performance.now()>=streamRetryAt){startStream();return;}
     }catch{publish(null);}finally{busy=false;}
     timer=setTimeout(poll,3000);
   }

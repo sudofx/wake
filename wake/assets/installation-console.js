@@ -90,13 +90,13 @@
  function render(data){
   const nodes=data.nodes.filter(validNode).slice(0,100);buildPicker(nodes,data);if(!dashboard)return;
   get('installation-name').textContent='wake';
-  get('installation-freshness').textContent=`${data.live===true?'Local installation snapshot':'Last uploaded data · dated snapshot'} · ${stamp(data.generated)} · ${age(data.generated)}`;
+  get('installation-freshness').textContent=`${data.hosted_activity?'Live hosted activity · research data captured':data.live===true?'Local installation snapshot':'Last uploaded data · dated snapshot'} · ${stamp(data.generated)} · ${age(data.generated)}`;
   const available=nodes.filter(n=>n.available===true&&n.research);
   const values=available.map(n=>number(n.research.status?.accepted_cycles??n.snapshot?.version));
   const total=values.every(v=>v!==null)?values.reduce((a,b)=>a+b,0):null;
   const pending=available.map(n=>n.research.status?.pending);
   const summary=get('installation-summary');summary.replaceChildren();
-  [[`${available.length} / ${nodes.length}`,'Nodes with snapshots'],[count(total),`Accepted wakes · ${available.length===nodes.length?'all nodes':'available nodes only'}`],[pending.every(v=>typeof v==='boolean')?String(pending.filter(Boolean).length):'—','Nodes with pending attempts'],[data.live===true?'Local':'Mirror','Observation mode']].forEach(([value,label])=>{const cell=el('div');cell.append(el('strong',value),el('span',label));summary.append(cell);});
+  [[`${available.length} / ${nodes.length}`,'Nodes with snapshots'],[count(total),`Accepted wakes · ${available.length===nodes.length?'all nodes':'available nodes only'}`],[pending.every(v=>typeof v==='boolean')?String(pending.filter(Boolean).length):'—','Nodes with pending attempts'],[data.live===true?(data.hosted_activity?'Hosted live':'Local'):'Mirror','Observation mode']].forEach(([value,label])=>{const cell=el('div');cell.append(el('strong',value),el('span',label));summary.append(cell);});
   const rows=get('installation-nodes'),watch=get('installation-watch'),live=get('installation-live'),receipts=get('installation-receipts');[rows,watch,live,receipts].forEach(item=>item.replaceChildren());
   if(data.live===true&&data.coordinator){const coordinator=data.coordinator,active=coordinator.active;listItem(live,null,active?`API request in flight · ${active.member||'node unknown'} · ${active.model||'model unknown'}`:'No API request in flight.',`Shared queue: ${count(coordinator.queued)} waiting. Local response processing can continue separately.`);Object.entries(coordinator.models||{}).slice(0,20).forEach(([model,state])=>{if(state.daily)listItem(watch,null,`${model} · daily quota exhausted.`,state.probe_at?`Next shared eligibility check: ${stamp(new Date(state.probe_at*1000).toISOString())}.`:'Recovery check time unavailable.');else if(state.blocked)listItem(watch,null,`${model} · access blocked.`, 'Provider access needs attention before this model can receive more calls.');else if(state.retry_at)listItem(watch,null,`${model} · temporary rate limit.`, `Eligible again: ${stamp(new Date(state.retry_at*1000).toISOString())}.`);});}
   const history=[];
@@ -129,16 +129,17 @@
  const connectStatus=()=>{
   if(statusConnected||!window.WakeStatusChannel)return;statusConnected=true;
   window.WakeStatusChannel.subscribe(packet=>{
-   if(!manifest||manifest.live!==true)return;
+   const hosted=window.WAKE_DEPLOYMENT?.hosted_activity;
+   if(!manifest||(manifest.live!==true&&!hosted))return;
    if(!packet){lastStatusShape='';render({...manifest,live:false,disconnected:true});return;}
-   if(!Array.isArray(packet.members))return;
+   if(!Array.isArray(packet.members)||(hosted&&packet.installation_id!==manifest.installation_id))return;
    clearTimeout(timer);
    const fresh=new Map(packet.members.map(member=>[member.id,member]));
-   const data={...manifest,disconnected:false,nodes:manifest.nodes.map(node=>({...node,runtime:fresh.get(node.id)?.runtime||{state:'unavailable'}}))};
-   const shape=data.nodes.map(node=>`${node.id}:${node.runtime.state}:${node.runtime.activity?.stage||''}`).join('|');
+   const data={...manifest,live:true,hosted_activity:Boolean(hosted),coordinator:packet.coordinator,disconnected:false,nodes:manifest.nodes.map(node=>({...node,runtime:fresh.get(node.id)?.runtime||{state:'unavailable'}}))};
+   const shape=data.nodes.map(node=>`${node.id}:${node.runtime.runtime_id||''}:${node.runtime.state}:${node.runtime.activity?.stage||''}:${node.runtime.activity?.active}`).join('|')+JSON.stringify(packet.coordinator||{});
    manifest=data;window.WakeInstallationSnapshot=data;
    if(shape!==lastStatusShape){lastStatusShape=shape;render(data);}else{buildPicker(data.nodes,data);if(dashboard)for(const node of data.nodes){const note=get('installation-live').querySelector(`li[data-node="${node.id}"] small`),observed=node.runtime.observed_at;if(note)note.textContent=stale(observed)?`Observation ${age(observed)}; no live activity inferred.`:`Sampled ${stamp(observed)} · ${age(observed)}. This is an observation, not a receipt.`;}}
-   if(lastExportHead&&packet.head&&packet.head!==lastExportHead&&!refreshTimer){const refresh=()=>{if(loading){refreshTimer=setTimeout(refresh,3000);return;}refreshTimer=null;load();};refreshTimer=setTimeout(refresh,3000);}if(packet.head)lastExportHead=packet.head;
+   if(!hosted&&lastExportHead&&packet.head&&packet.head!==lastExportHead&&!refreshTimer){const refresh=()=>{if(loading){refreshTimer=setTimeout(refresh,3000);return;}refreshTimer=null;load();};refreshTimer=setTimeout(refresh,3000);}if(packet.head)lastExportHead=packet.head;
   });
  };
  async function load(){

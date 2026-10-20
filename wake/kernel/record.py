@@ -125,13 +125,14 @@ def _decode_event_payload(stored: str | bytes) -> str:
 def _encode_projection_state(state_json: str) -> bytes:
     """Compress a derived cache without Base64's physical storage expansion."""
     raw = state_json.encode("utf-8")
-    packed = _PROJECTION_BINARY_PREFIX + zlib.compress(raw, level=9)
-    dictionary = encode_dictionary(raw, 9)
+    # The projection is rewritten at every accepted append. Avoid compressing
+    # its complete history twice; the self-contained dictionary already handles
+    # repeated long context strings. Semantic JSON and all decoder versions stay
+    # unchanged. Level six avoids the CPU cost of maximum compression.
+    dictionary = encode_dictionary(raw, 6)
     if dictionary is not None:
-        alternative = _PROJECTION_DICTIONARY_PREFIX + dictionary
-        if len(alternative) < len(packed):
-            return alternative
-    return packed
+        return _PROJECTION_DICTIONARY_PREFIX + dictionary
+    return _PROJECTION_BINARY_PREFIX + zlib.compress(raw, level=6)
 
 
 def _decode_projection_state(stored: str | bytes) -> str:

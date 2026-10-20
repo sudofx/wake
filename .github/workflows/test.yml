@@ -49,6 +49,10 @@ jobs:
         run: cp example.research-topics.toml research-topics.toml
       - name: Check that code and architecture rules still work
         run: python -m unittest discover -s tests -v
+      - name: Check hosted activity privacy and freshness
+        run: |
+          node --test deploy/activity-relay/tests/relay.test.js
+          node tests/browser/hosted-activity-unit.cjs
       - name: Simulate 100 WAKE cycles
         if: github.event_name != 'push'
         run: python -m wake --data /tmp/wake-experiment experiment --cycles 100 --output site

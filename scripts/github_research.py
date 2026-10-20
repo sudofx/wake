@@ -132,6 +132,9 @@ def run_batch(minutes, provider):
             '--config', str(root / 'config/wake.toml'), '--host', '127.0.0.1', '--port', '0',
             '--provider', provider], stdout=log, stderr=log,
             env=dict(os.environ, WAKE_DEV_RELOAD='false'))
+        from wake.hosted_activity import HostedActivityPublisher
+        activity = HostedActivityPublisher(root, before['installation_id'], os.environ.get('GITHUB_RUN_ID'), revision)
+        activity.start()
         try:
             ready(root, process)
             # Bootstrap can recover interrupted native invocations. Persist that
@@ -168,6 +171,7 @@ def run_batch(minutes, provider):
                 print(json.dumps({'hosted_drain': 'bounded-shutdown',
                                   'nodes': drained.get('nodes', {})}), flush=True)
         finally:
+            activity.close()
             process.terminate()
             try:
                 process.wait(timeout=210)
@@ -215,7 +219,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest='action', required=True)
     run = commands.add_parser('run')
-    run.add_argument('--minutes', type=float, default=30)
+    run.add_argument('--minutes', type=float, default=120)
     run.add_argument('--provider', choices=('fixture', 'gemini'), default='gemini')
     chain = commands.add_parser('continue')
     chain.add_argument('--predecessor', required=True)
