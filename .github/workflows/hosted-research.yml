@@ -1,0 +1,77 @@
+name: WAKE — Hosted research
+run-name: WAKE hosted ${{ inputs.handoff || github.run_id }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      handoff:
+        description: Internal successor identity; leave empty for a manual start.
+        type: string
+        default: ''
+      runtime_ref:
+        description: Full source commit with successful code CI.
+        type: string
+        required: true
+      minutes:
+        description: Bounded batch duration; automatic successors use 30 minutes.
+        type: number
+        default: 30
+
+permissions:
+  contents: write
+  actions: write
+  pages: write
+
+# One writer for the whole installation, including restore and final capture.
+concurrency:
+  group: wake-hosted-authority
+  cancel-in-progress: false
+
+jobs:
+  research:
+    if: github.ref_name == 'master'
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    container: python:3.13-bookworm
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_REPOSITORY: ${{ github.repository }}
+      WAKE_SOURCE_REVISION: ${{ inputs.runtime_ref }}
+      WAKE_HOSTED_STATE_DIR: /tmp/wake-hosted-transport
+      WAKE_INSTALLATION_DATA: /tmp/wake-hosted-installation
+      WAKE_HOSTED_ARTIFACT: /tmp/wake-hosted-public
+      WAKE_DEV_RELOAD: 'false'
+      WAKE_HOSTED_STATE_KEY: ${{ secrets.WAKE_HOSTED_STATE_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      BATCH_MINUTES: ${{ inputs.minutes }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.runtime_ref }}
+      - name: Install hosted transport and native application
+        run: python -m pip install --disable-pip-version-check -e '.[hosted]'
+      - name: Restore, research, checkpoint, and publish
+        run: python scripts/github_research.py run --minutes "$BATCH_MINUTES"
+  continue:
+    needs: research
+    if: always() && !cancelled()
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency:
+      group: wake-hosted-handoff
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Allow transient failures to settle
+        if: needs.research.result != 'success'
+        run: sleep 120
+      - name: Install the application dependencies
+        run: python -m pip install --disable-pip-version-check -e .
+      - name: Explicitly dispatch the next research run
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python scripts/github_research.py continue --predecessor '${{ github.run_id }}'

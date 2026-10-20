@@ -16,7 +16,10 @@ Research is WAKE's first application. It is a useful way to exercise the record 
 governance system; it is not the definition of the WAKE kernel.
 
 The public site is a dated, read-only mirror uploaded from the local installation.
-Research executes in the container; the GitHub research executor is retired.
+Research can run autonomously in GitHub Actions containers, with GitHub Pages
+serving its public website and no laptop required. Explicit API dispatches
+continue the workload; completion events recover failed handoffs. See
+[autonomous hosted operation](docs/cloud.md#run-research-on-github-without-a-laptop).
 Use [publication instructions](docs/cloud.md#publish-the-local-installation-mirror)
 to upload the current unified website and available node views.
 Enabled mirror delivery uploads changed exports every 30 minutes by default and
@@ -167,8 +170,11 @@ The current installation uses fixed worker code until an explicit restart;
 `wake-research restart` also enables research, while a container restart returns
 to stopped inspection. Its public mirror is a locally prepared read-only export. See
 [installation operation](docs/standalone.md#run-one-installation-container).
-GitHub Pages serves only the uploaded public snapshot. The old hosted executor
-is retired; its records and branches remain historical artifacts.
+GitHub Pages serves the uploaded public snapshot. The current hosted controller
+runs the same twelve native records in disposable Actions containers, using
+encrypted recovery storage. The older executor branches remain untouched
+historical artifacts. Hosted research and website publication are separate
+observable outcomes. See [hosted operation](docs/cloud.md#run-research-on-github-without-a-laptop).
 
 Legacy multi-container group status lights refresh every five seconds. Their colors follow the same
 order as the gateway key: red means operator or agent action is required; yellow

@@ -217,7 +217,9 @@ def config(path="wake.toml"):
     return result
 
 class Engine:
-    def __init__(self, directory="data", settings=None, *, store=None, store_factory=None):
+    def __init__(self, directory="data", settings=None, *, store=None, store_factory=None,
+                 effect_checkpoint=None):
+        self.effect_checkpoint = effect_checkpoint
         self.config = settings or config()
         require(self.config.get("memory_mode", "shadow") in ("shadow", "active"), "memory_mode must be shadow or active")
         if self.config.get("mission"):
@@ -2803,6 +2805,10 @@ class Engine:
     def _run_invocation(self, provider, crash_at=None, checkpoint=None, *, phase="proposal", question=None,
                         research=None, activity=None, peer_notes=None, private_request=None, passenger_submission=None,
                         editorial_request=None):
+        # Disposable hosted runners inject transport at the existing native
+        # durability barrier, including editorial/private provider attempts.
+        # A failed remote checkpoint must prevent the next external effect.
+        checkpoint = checkpoint if checkpoint is not None else self.effect_checkpoint
         def request_counts():
             counts = self._request_count(provider)
             if private_request is None:

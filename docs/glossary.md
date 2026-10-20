@@ -79,7 +79,15 @@ operator procedures.
 
 A dated, read-only website exported from container records and uploaded to
 `wake-public`. GitHub Pages serves that artifact; it has no research executor,
-operator controls, or status light. Local records remain authority.
+operator controls, or status light. Native node records remain authority, whether
+the owning controller runs locally or in a GitHub Actions container.
+
+### Hosted continuation
+
+A research run explicitly asks the GitHub API to start its successor. A separate
+completion-event workflow repairs failed handoffs. This is independent of cron.
+Encrypted blocks transport complete native records between disposable runners;
+they are not a second governance engine. See [hosted operation](cloud.md#run-research-on-github-without-a-laptop).
 
 ### Container reset
 

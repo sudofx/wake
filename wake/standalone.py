@@ -154,7 +154,7 @@ def _wait_for_control(stop, directory, seconds, mode, reset_id):
     return False
 
 
-def bootstrap(directory, settings, *, enable_continuity_matrix=True):
+def bootstrap(directory, settings, *, enable_continuity_matrix=True, effect_checkpoint=None):
     """Only a genuinely unused volume may bootstrap; missing prior state is loss."""
     directory = Path(directory)
     directory.mkdir(parents=True, exist_ok=True)
@@ -165,7 +165,7 @@ def bootstrap(directory, settings, *, enable_continuity_matrix=True):
                 if p.name not in {'standalone.lock', _CONTROL_FILE}]
     fresh = not existing
     store = open_authoritative_store(directory, allow_initialize=fresh)
-    engine = Engine(directory, settings, store=store)
+    engine = Engine(directory, settings, store=store, effect_checkpoint=effect_checkpoint)
     try:
         with store.lock():
             if fresh:
@@ -346,7 +346,12 @@ def run(args):
             fcntl.flock(lease, fcntl.LOCK_EX | fcntl.LOCK_NB)
         except BlockingIOError:
             raise ValueError('Another standalone runtime owns this data volume') from None
-        engine = bootstrap(data, settings)
+        effect_checkpoint = None
+        if os.environ.get('WAKE_HOSTED_STATE_DIR'):
+            from .hosted import HostedState
+            transport = HostedState.from_environment()
+            effect_checkpoint = lambda: transport.checkpoint_node(data)
+        engine = bootstrap(data, settings, effect_checkpoint=effect_checkpoint)
         server = None
         reader_service = None
         try:

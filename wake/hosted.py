@@ -1,0 +1,430 @@
+"""Encrypted transport of native records between disposable GitHub runners.
+
+SQLite remains the sole authority. Release assets are authenticated encrypted
+blocks of SQLite backups; a compare-and-swap Git ref selects a complete recovery
+snapshot. No provider, browser, or projection can write that ref. Only current
+and previous recovery snapshots are retained; each contains the full history.
+"""
+from __future__ import annotations
+
+from contextlib import contextmanager, closing, nullcontext
+from concurrent.futures import ProcessPoolExecutor
+from datetime import datetime, timezone
+import base64
+import fcntl
+import gzip
+import hashlib
+import hmac
+import io
+import json
+import multiprocessing
+import os
+from pathlib import Path
+import re
+import shutil
+import sqlite3
+import subprocess
+import tempfile
+import time
+from urllib.error import HTTPError, URLError
+from urllib.parse import quote
+from urllib.request import Request, urlopen
+import zipfile
+
+from .installation_cli import NODE_IDS, _record_metadata
+from .kernel.record import Record
+from .report import atomic_write
+
+STATE_BRANCH = 'wake-hosted-state'
+RELEASE_TAG = 'wake-hosted-checkpoints'
+FORMAT = 'wake-hosted-state@1'
+BLOCK_SIZE = 4 * 1024 * 1024
+MAX_DATABASE = 8 * 1024**3
+AUXILIARY = ('installation-id.json', 'provider-schedule.json',
+             'private/.passenger.md', 'private/.passenger-state.json')
+
+
+def encode(value):
+    return json.dumps(value, sort_keys=True, separators=(',', ':')).encode()
+
+
+def atomic_bytes(path, body):
+    with tempfile.NamedTemporaryFile(dir=path.parent, delete=False) as stream:
+        temporary = Path(stream.name)
+        stream.write(body)
+        stream.flush()
+        os.fsync(stream.fileno())
+    os.replace(temporary, path)
+
+
+def seal(key, data, purpose):
+    from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+    nonce = os.urandom(12)
+    return nonce + AESGCM(key).encrypt(nonce, data, purpose.encode())
+
+
+def unseal(key, data, purpose):
+    from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+    if len(data) < 28:
+        raise ValueError('Truncated encrypted checkpoint')
+    return AESGCM(key).decrypt(data[:12], data[12:], purpose.encode())
+
+
+class GitHub:
+    def __init__(self, repository, token):
+        if not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+', repository):
+            raise ValueError('Expected owner/repository')
+        if not token:
+            raise ValueError('GitHub credential missing')
+        self.repository, self.token = repository, token
+
+    def request(self, path, *, method='GET', body=None, binary=False, upload=False):
+        host = 'https://uploads.github.com' if upload else 'https://api.github.com'
+        url = host + '/repos/' + self.repository + '/' + path
+        headers = {'Authorization': 'Bearer ' + self.token,
+                   'Accept': 'application/octet-stream' if binary else 'application/vnd.github+json',
+                   'X-GitHub-Api-Version': '2022-11-28', 'User-Agent': 'WAKE-hosted-transport'}
+        if body is not None:
+            headers['Content-Type'] = 'application/octet-stream' if upload else 'application/json'
+            if not upload:
+                body = encode(body)
+        # Only safe reads retry automatically. Mutations reconcile their actual
+        # result at the caller before retrying the same identity.
+        for attempt in range(3):
+            try:
+                with urlopen(Request(url, data=body, headers=headers, method=method), timeout=120) as response:
+                    data = response.read()
+                return data if binary else json.loads(data) if data else None
+            except (HTTPError, URLError, TimeoutError) as error:
+                transient = not isinstance(error, HTTPError) or error.code in (429, 500, 502, 503, 504)
+                if method != 'GET' or not transient or attempt == 2:
+                    raise
+                time.sleep(2 ** attempt)
+
+
+def record_identity(path):
+    """Identify a coherent backup; full replay remains mandatory on restore."""
+    with closing(sqlite3.connect(Path(path).resolve().as_uri() + '?mode=ro', uri=True)) as db:
+        row = db.execute('SELECT revision_after,event_hash FROM events ORDER BY sequence DESC LIMIT 1').fetchone()
+    if row is None:
+        raise ValueError('Missing initialized record history')
+    return {'revision': row[0], 'head': row[1], 'sha256': hashlib.sha256(Path(path).read_bytes()).hexdigest()}
+
+
+def _verified_snapshot(source, target):
+    Record.open_read_only(source).backup_to(target)
+    return record_identity(target)
+
+
+class HostedState:
+    def __init__(self, directory, repository, token, key):
+        self.directory = Path(directory).resolve()
+        self.api = GitHub(repository, token)
+        self.key = bytes.fromhex(key) if isinstance(key, str) else key
+        if len(self.key) != 32:
+            raise ValueError('Hosted checkpoint key must contain 32 random bytes')
+        self.checkout = self.directory / 'ref'
+        self.directory.mkdir(parents=True, exist_ok=True)
+
+    @classmethod
+    def from_environment(cls):
+        return cls(os.environ['WAKE_HOSTED_STATE_DIR'], os.environ['GITHUB_REPOSITORY'],
+                   os.environ['GH_TOKEN'], os.environ['WAKE_HOSTED_STATE_KEY'])
+
+    @contextmanager
+    def lease(self):
+        # All node callbacks and final capture share this transport lease. Node
+        # SQLite writers retain their existing record leases and governance.
+        with (self.directory / 'transport.lock').open('a') as stream:
+            fcntl.flock(stream, fcntl.LOCK_EX)
+            yield
+
+    def git(self, *args):
+        authorization = base64.b64encode(('x-access-token:' + self.api.token).encode()).decode()
+        env = dict(os.environ, GIT_CONFIG_COUNT='1',
+                   GIT_CONFIG_KEY_0='http.https://github.com/.extraheader',
+                   GIT_CONFIG_VALUE_0='AUTHORIZATION: basic ' + authorization)
+        result = subprocess.run(['git', *args], cwd=self.checkout, env=env,
+                                capture_output=True, timeout=240)
+        if result.returncode:
+            # Do not echo Git's credential-bearing environment or provider data.
+            raise RuntimeError('Hosted checkpoint Git operation failed: ' + args[0])
+        return result.stdout.decode().strip()
+
+    def open(self, *, initialize=False):
+        self.checkout.mkdir(parents=True, exist_ok=True)
+        self.git('init', '-q')
+        self.git('config', 'user.name', 'WAKE hosted runner')
+        self.git('config', 'user.email', 'wake@localhost')
+        self.git('remote', 'add', 'origin', 'https://github.com/' + self.api.repository + '.git')
+        refs = self.git('ls-remote', 'origin', 'refs/heads/' + STATE_BRANCH)
+        if initialize:
+            if refs:
+                raise ValueError('Hosted state already exists; refusing to overwrite it')
+            return
+        if not refs:
+            raise ValueError('Hosted authority missing; refusing fresh initialization')
+        self.git('fetch', '--depth=1', 'origin', 'refs/heads/' + STATE_BRANCH)
+        self.git('checkout', '--detach', 'FETCH_HEAD')
+        self.read_manifest()  # Authentication is checked before any restoration.
+
+    def read_manifest(self, name='current.enc'):
+        value = json.loads(unseal(self.key, (self.checkout / name).read_bytes(), FORMAT))
+        if value.get('format') != FORMAT or set(value.get('nodes', {})) != set(NODE_IDS):
+            raise ValueError('Incomplete hosted installation checkpoint')
+        if not isinstance(value.get('generation'), int) or value['generation'] < 1:
+            raise ValueError('Invalid checkpoint generation')
+        return value
+
+    def release(self):
+        cache = self.directory / 'release.json'
+        if cache.exists():
+            return json.loads(cache.read_text())
+        try:
+            release = self.api.request('releases/tags/' + RELEASE_TAG)
+        except HTTPError as error:
+            if error.code != 404:
+                raise
+            release = self.api.request('releases', method='POST', body={
+                'tag_name': RELEASE_TAG, 'name': 'WAKE encrypted working checkpoints',
+                'target_commitish': os.environ.get('WAKE_SOURCE_REVISION', 'master'),
+                'prerelease': True,
+                'body': 'Encrypted recovery blocks for the autonomous WAKE installation. '
+                        'Only the current and previous complete checkpoints are retained. '
+                        'Each verified native record retains its complete event history. '
+                        'The decryption key is a repository secret; these are not public exports.'})
+        atomic_write(cache, json.dumps({'id': release['id']}))
+        return release
+
+    def assets(self, *, refresh=False):
+        cache = self.directory / 'assets.json'
+        if cache.exists() and not refresh:
+            return json.loads(cache.read_text())
+        release = self.release()
+        all_items = []
+        page = 1
+        while True:
+            batch = self.api.request(f'releases/{release["id"]}/assets?per_page=100&page={page}')
+            all_items.extend(batch)
+            if len(batch) < 100:
+                break
+            page += 1
+        items = {item['name']: item['id'] for item in all_items if item.get('state') == 'uploaded'}
+        # A failed GitHub upload can leave an empty starter asset under the
+        # requested name. It cannot satisfy a durability barrier or block the
+        # next identical retry forever. Only this dedicated block namespace is
+        # eligible for removal, under the transport lease.
+        for item in all_items:
+            if item.get('state') == 'starter' and re.fullmatch(r'block-[0-9a-f]{64}\.bin', item['name']):
+                self.api.request(f'releases/assets/{item["id"]}', method='DELETE')
+        atomic_write(cache, json.dumps(items))
+        return items
+
+    def put_block(self, raw, assets):
+        name = 'block-' + hmac.new(self.key, b'block\0' + raw, hashlib.sha256).hexdigest() + '.bin'
+        if name not in assets:
+            body = seal(self.key, gzip.compress(raw, compresslevel=6, mtime=0), name)
+            release = self.release()
+            try:
+                item = self.api.request(f'releases/{release["id"]}/assets?name={quote(name)}',
+                                        method='POST', body=body, upload=True)
+            except (HTTPError, URLError, TimeoutError):
+                # The upload may have succeeded despite a lost response. Reuse
+                # its content identity; never create a second checkpoint block.
+                found = self.assets(refresh=True)
+                if name not in found:
+                    raise
+                item = {'id': found[name]}
+            if item.get('state', 'uploaded') != 'uploaded' or item.get('size', len(body)) != len(body):
+                raise ValueError('GitHub did not acknowledge a complete encrypted block')
+            assets[name] = item['id']
+            atomic_write(self.directory / 'assets.json', json.dumps(assets))
+        return {'name': name, 'id': assets[name], 'size': len(raw)}
+
+    def put_file(self, path, assets):
+        blocks = []
+        with Path(path).open('rb') as stream:
+            while raw := stream.read(BLOCK_SIZE):
+                blocks.append(self.put_block(raw, assets))
+        return blocks
+
+    def get_file(self, blocks, destination):
+        destination = Path(destination)
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        size = 0
+        with destination.open('xb') as stream:
+            for item in blocks:
+                if not re.fullmatch(r'block-[0-9a-f]{64}\.bin', item['name']):
+                    raise ValueError('Invalid encrypted block identity')
+                data = self.api.request(f'releases/assets/{int(item["id"])}', binary=True)
+                compressed = unseal(self.key, data, item['name'])
+                with gzip.GzipFile(fileobj=io.BytesIO(compressed)) as source:
+                    raw = source.read(BLOCK_SIZE + 1)
+                expected = 'block-' + hmac.new(self.key, b'block\0' + raw, hashlib.sha256).hexdigest() + '.bin'
+                if len(raw) != item['size'] or len(raw) > BLOCK_SIZE or expected != item['name']:
+                    raise ValueError('Encrypted block content mismatch')
+                size += len(raw)
+                if size > MAX_DATABASE:
+                    raise ValueError('Hosted checkpoint exceeds installation limit')
+                stream.write(raw)
+
+    def put_auxiliary(self, root, assets):
+        root = Path(root)
+        with tempfile.TemporaryDirectory(dir=self.directory) as temporary:
+            target = Path(temporary) / 'aux.zip'
+            with zipfile.ZipFile(target, 'w', compression=zipfile.ZIP_DEFLATED) as archive:
+                paths = [root / relative for relative in AUXILIARY]
+                paths += list((root / 'config').rglob('*.toml'))
+                for node in NODE_IDS:
+                    paths.append(root / 'nodes' / node / 'record/.standalone-initialized')
+                for path in sorted(paths):
+                    if path.is_file() and not path.is_symlink():
+                        archive.write(path, str(path.relative_to(root)))
+            return self.put_file(target, assets)
+
+    def save(self, manifest):
+        previous = self.checkout / 'current.enc'
+        base = self.git('rev-parse', 'HEAD') if previous.exists() else ''
+        if previous.exists():
+            shutil.copyfile(previous, self.checkout / 'previous.enc')
+        manifest['generation'] += 1
+        manifest['captured_at'] = datetime.now(timezone.utc).isoformat()
+        atomic_bytes(previous, seal(self.key, encode(manifest), FORMAT))
+        self.git('add', 'current.enc')
+        if (self.checkout / 'previous.enc').exists():
+            self.git('add', 'previous.enc')
+        tree = self.git('write-tree')
+        commit = self.git('commit-tree', tree, '-m', 'Checkpoint native WAKE installation')
+        ref = 'refs/heads/' + STATE_BRANCH
+        # A rotating ref avoids unbounded Git history of encrypted snapshots.
+        # The previous complete checkpoint is a separate file in the same tree;
+        # historical branches are never touched. Lease failure stops effects.
+        try:
+            self.git('push', 'origin', '--force-with-lease=' + ref + ':' + base, commit + ':' + ref)
+        except RuntimeError:
+            remote = self.git('ls-remote', 'origin', ref).split()
+            if not remote or remote[0] != commit:
+                raise
+        self.git('reset', '--hard', commit)
+        return commit
+
+    def checkpoint_node(self, record_directory):
+        record_directory = Path(record_directory).resolve()
+        node = record_directory.parent.name
+        root = record_directory.parents[2]
+        if node not in NODE_IDS or record_directory != root / 'nodes' / node / 'record':
+            raise ValueError('Checkpoint requires an owned installation node')
+        with self.lease(), tempfile.TemporaryDirectory(dir=self.directory) as temporary:
+            manifest = self.read_manifest()
+            assets = self.assets()
+            backup = Path(temporary) / 'wake.sqlite'
+            # This process already runs verified authority and native appends.
+            # Transport needs a coherent physical image, not another full replay
+            # of the growing prefix before every provider attempt. Restoring
+            # always performs the complete semantic/journal audit below.
+            Record.open_read_only(record_directory / 'wake.sqlite').snapshot_to(backup)
+            manifest['nodes'][node] = {**record_identity(backup), 'blocks': self.put_file(backup, assets)}
+            manifest['auxiliary'] = self.put_auxiliary(root, assets)
+            self.save(manifest)
+            # Bound release storage during long runs, not just on clean exit.
+            if manifest['generation'] % 10 == 0:
+                self.prune()
+
+    def prune(self):
+        referenced = set()
+        for filename in ('current.enc', 'previous.enc'):
+            if not (self.checkout / filename).exists():
+                continue
+            value = self.read_manifest(filename)
+            referenced.update(item['name'] for item in value['auxiliary'])
+            for node in value['nodes'].values():
+                referenced.update(item['name'] for item in node['blocks'])
+        assets = self.assets(refresh=True)
+        for name, identity in list(assets.items()):
+            if re.fullmatch(r'block-[0-9a-f]{64}\.bin', name) and name not in referenced:
+                try:
+                    self.api.request(f'releases/assets/{identity}', method='DELETE')
+                except HTTPError as error:
+                    if error.code != 404:
+                        raise
+                assets.pop(name)
+        atomic_write(self.directory / 'assets.json', json.dumps(assets))
+
+    def seed(self, root, *, workers=1):
+        root = Path(root)
+        if not 1 <= workers <= 4:
+            raise ValueError('Migration verification uses one to four processes')
+        with self.lease(), tempfile.TemporaryDirectory(dir=self.directory) as temporary:
+            self.open(initialize=True)
+            manifest = {'format': FORMAT, 'generation': 0, 'nodes': {},
+                        'installation_id': json.loads((root / 'installation-id.json').read_text())['id'],
+                        'origin': 'operator-authorized transfer of stopped laptop installation',
+                        'migrated_at': datetime.now(timezone.utc).isoformat()}
+            assets = self.assets()
+            context = (ProcessPoolExecutor(max_workers=workers, mp_context=multiprocessing.get_context('spawn'))
+                       if workers > 1 else nullcontext(None))
+            with context as executor:
+                pending = {node: executor.submit(_verified_snapshot,
+                    root / 'nodes' / node / 'record/wake.sqlite', Path(temporary) / (node + '.sqlite'))
+                    for node in NODE_IDS} if executor else {}
+                for node in NODE_IDS:
+                    print('Verifying and encrypting ' + node, flush=True)
+                    target = Path(temporary) / (node + '.sqlite')
+                    identity = (pending[node].result() if executor else
+                                _verified_snapshot(root / 'nodes' / node / 'record/wake.sqlite', target))
+                    manifest['nodes'][node] = {**identity, 'blocks': self.put_file(target, assets)}
+                    target.unlink()
+            manifest['auxiliary'] = self.put_auxiliary(root, assets)
+            return self.save(manifest)
+
+    def restore(self, root, *, workers=1):
+        root = Path(root)
+        if not 1 <= workers <= 4:
+            raise ValueError('Recovery verification uses one to four processes')
+        if root.exists() and any(root.iterdir()):
+            raise ValueError('Restore destination must be empty')
+        root.mkdir(parents=True, exist_ok=True)
+        with self.lease(), tempfile.TemporaryDirectory(dir=self.directory) as temporary:
+            manifest = self.read_manifest()
+            context = (ProcessPoolExecutor(max_workers=workers, mp_context=multiprocessing.get_context('spawn'))
+                       if workers > 1 else nullcontext(None))
+            with context as executor:
+                pending = {}
+                for node in NODE_IDS:
+                    target = root / 'nodes' / node / 'record/wake.sqlite'
+                    value = manifest['nodes'][node]
+                    self.get_file(value['blocks'], target)
+                    if executor:
+                        pending[node] = executor.submit(_record_metadata, target)
+                    else:
+                        pending[node] = _record_metadata(target)
+                for node, value in manifest['nodes'].items():
+                    actual = pending[node].result() if executor else pending[node]
+                    expected = {k: value[k] for k in ('revision', 'head', 'sha256')}
+                    if actual != expected:
+                        raise ValueError('Restored node history differs from checkpoint: ' + node)
+            archive_path = Path(temporary) / 'aux.zip'
+            self.get_file(manifest['auxiliary'], archive_path)
+            with zipfile.ZipFile(archive_path) as archive:
+                names = archive.namelist()
+                if len(names) != len(set(names)):
+                    raise ValueError('Duplicate auxiliary checkpoint paths')
+                for entry in archive.infolist():
+                    name = entry.filename
+                    marker = any(name == f'nodes/{node}/record/.standalone-initialized' for node in NODE_IDS)
+                    config = name.startswith('config/') and name.endswith('.toml')
+                    if (name not in AUXILIARY and not marker and not config) or '..' in Path(name).parts or Path(name).is_absolute():
+                        raise ValueError('Unexpected auxiliary checkpoint path')
+                    if entry.file_size > 16 * 1024 * 1024:
+                        raise ValueError('Auxiliary checkpoint file exceeds limit')
+                    target = root / name
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    with target.open('xb') as output:
+                        output.write(archive.read(entry))
+            identity = json.loads((root / 'installation-id.json').read_text())['id']
+            if identity != manifest['installation_id']:
+                raise ValueError('Installation identity mismatch')
+            for node in NODE_IDS:
+                atomic_write(root / 'nodes' / node / 'record/.wake-runner-control.json',
+                             json.dumps({'research': 'stopped'}))
+            return manifest

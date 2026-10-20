@@ -29,9 +29,9 @@ flowchart LR
 ```
 
 Pages serves the root of `wake-public`, with `.nojekyll`, using branch publishing.
-GitHub performs its normal Pages build and deployment. There is no custom Pages
-workflow, research workflow, runtime promotion, continuation switch, or scheduled
-GitHub research job. Code CI and offline container acceptance remain available.
+GitHub performs its normal Pages build and deployment. The hosted adapter explicitly requests the native Pages build after its upload:
+GitHub does not start branch-based Pages builds for pushes made with GITHUB_TOKEN.
+Code CI and offline container acceptance remain separate from live research.
 
 On the host, configure the publishing destination in `.env`:
 
@@ -166,5 +166,85 @@ merge or restore them into an installation merely to match counters.
 
 Old workflow runs remain GitHub history. The old runtime ref can contain old
 workflow definitions, so its executor workflows must remain disabled in repository
-Actions settings. New research uses container controls only. Recovering historical
+Actions settings. The historical executor must not be reenabled. Current hosted research uses the
+Actions-container adapter below, with separate state transport and controls. Recovering historical
 records is a separately scoped, verified operation.
+
+## Run research on GitHub without a laptop
+
+GitHub Actions runs the same twelve-node installation in a disposable Linux
+container. GitHub Pages serves the filtered public website. The laptop is not a
+runner, scheduler, publisher or recovery dependency. Use a public repository and
+standard `ubuntu-latest` runners; no larger runner, Codespace, paid artifact store
+or external hosting is required. Provider credentials must remain on a project
+with billing disabled; provider free quotas still limit research. No automation
+can promise uninterrupted service or permanent access to an external platform.
+
+```mermaid
+flowchart LR
+  R[Actions container: native records] -->|verified encrypted checkpoints| C[GitHub recovery storage]
+  C -->|verify and restore| N[Successor Actions container]
+  R -->|filtered export| P[wake-public]
+  P --> G[GitHub Pages]
+  R -->|explicit API dispatch| N
+  F[Run-completion recovery] -->|reconcile lost handoff| N
+```
+
+### Start and stop
+
+Open **Actions → WAKE — Start or stop hosted research → Run workflow** on
+`master`. Choose `start` to continue the existing records or `stop` to prevent
+successors and drain the active run. The active controller checks stop intent
+at least once per minute. This never resets records. The repository variable
+`WAKE_HOSTED_ENABLED=true` enables continuation; missing or false means stopped.
+Manual cancellation alone is recoverable failure, not the durable stop switch.
+
+The first setup requires `GEMINI_API_KEY`, a random 32-byte hex
+`WAKE_HOSTED_STATE_KEY` repository secret, a verified encrypted initial checkpoint,
+and successful code CI. Keep an offline copy of the encryption key: losing it
+makes the private recovery data unreadable. Existing records are transferred
+only with operator authorization, after stopping all original writers. The
+installation identity, twelve historical heads, private workspace, topic files
+and shared quota state are preserved. Historical executor branches are untouched.
+Never seed a missing checkpoint automatically or import public website data as
+an authoritative record. See [authority and recovery](architecture.md#hosted-execution-and-durable-recovery).
+
+### Continuation and repair
+
+`hosted-research.yml` restores and fully verifies every native record, starts the
+existing controller, runs for a bounded thirty-minute window, drains and saves
+all records, builds the existing filtered artifact, pushes `wake-public` and
+requests the Pages build. Its final job explicitly dispatches a successor through
+`workflow_dispatch`, using the newest `master` source revision with successful
+code CI. `hosted-recovery.yml` handles failed or cancelled run-completion events
+and repairs a lost successor dispatch with the same identity. Duplicate handoffs
+are reconciled and installation execution is serialized. Neither uses cron.
+
+The existing kernel invocation lifecycle calls the injected remote checkpoint
+before provider effects and at terminal boundaries. Each callback snapshots the
+owning node, preserves native replay/provenance and auxiliary private state, and
+commits the encrypted checkpoint before continuing. A crash after a request starts
+leaves an interrupted native invocation to recover, never a fabricated result.
+Free quota waits survive runner handover; no automatic reset or quota bypass exists.
+Worker failures are recovered from verified records in the next bounded run.
+The system does not write unreviewed source repairs or change its own research rules.
+
+The dedicated release stores authenticated encrypted blocks. Unchanged blocks
+are reused and unreferenced ones are removed automatically. The dedicated
+`wake-hosted-state` ref rotates atomically with current and previous encrypted
+manifests; it does not accumulate a Git history of database ciphertext. These
+are recovery snapshots of native SQLite, not a second writable research store.
+Every retained database includes its complete event history. Transport growth
+and GitHub service limits remain real constraints, not grounds to trim history.
+No Actions artifacts or caches are used for authority or publication.
+
+### Verify actual progress
+
+Inspect **WAKE — Hosted research** runs and their summaries for source revision,
+checkpoint generation, record heads and accepted versions. A successful run can
+still contain rejected or deferred proposals. Confirm actual accepted progress
+from successive record heads and versions. Check the Pages deployment separately,
+then read the served `installation.json` and its twelve captured heads. Its
+`hosted_execution` field identifies the source revision and capture run; dated
+runtime observations never become a live execution capability. Source CI, record
+checkpoint, provider outcome, website upload and Pages serving are separate claims.

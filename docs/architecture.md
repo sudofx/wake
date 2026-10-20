@@ -476,6 +476,44 @@ Provider delivery includes a derived `proposal_constraints` view rebuilt after r
 
 When Attention selects a parked topic while all three project slots are occupied, the provider contract offers one exact parking transition first. A due editorial checkpoint remains separate. This temporary generation restriction avoids unrelated commitments or synthesis attempts before capacity recovery; governance still decides whether the proposed transition is valid.
 
+## Hosted execution and durable recovery
+
+The GitHub adapter runs `wake/installation.py` inside an Actions job container.
+The kernel, application actions, three parents, nine children and shared provider
+queue are unchanged. `Engine.effect_checkpoint` injects transport into the
+existing native invocation lifecycle, including research, editorial and Passenger
+attempts. Before an external effect, the owning native record is copied through
+SQLite's transactionally coherent snapshot API, encrypted and durably selected
+on GitHub. The running owner already verified authority; transport copies check
+physical integrity and restoration requires full semantic/journal verification. Failure
+prevents the effect. Recovery verifies every record and invocation/access journal
+before starting workers; abandoned invocations use normal native recovery.
+
+A dedicated `wake-hosted-state` Git ref selects encrypted current and previous
+manifests. Authenticated encrypted blocks live in the dedicated
+`wake-hosted-checkpoints` release. Content identities use a secret-key HMAC, and
+AES-256-GCM authenticates each compressed block and manifest. Raw databases,
+Passenger, provider bodies and configuration never enter public source or Pages.
+Only the Actions secret grants decryption. The transport is not application
+state or an alternative authority engine. Old checkpoints may expire; each
+retained native record still contains its entire event history.
+
+Actions concurrency permits one installation writer. Compare-and-swap replacement
+of this new rotating ref rejects stale writers; it does not alter the historical
+`wake-state`, `wake-runtime` or `wake-live` branches. Unreferenced encrypted blocks
+are pruned while current and previous complete snapshots remain available.
+The source laptop must be stopped before an authorized authority transfer, and
+must not resume the transferred records independently.
+
+A normal run drains, saves records, publishes the filtered snapshot, explicitly
+requests the Pages build and dispatches its successor. A separate completion-event
+workflow reconciles failed successor dispatches before retrying. No cron is used.
+The repository enable variable is the stop switch; it is checked before startup,
+before successor dispatch and at most once per minute while running. Stop drains
+active work and retains records. GitHub/platform outages, revoked credentials,
+corrupt authority and exhausted provider quotas remain visible limitations;
+recovery never fabricates progress, resets history or edits governance.
+
 ## Installation identity and presentation custody
 
 Execution environment does not identify authority. A host checkout, editor mount,
@@ -622,6 +660,7 @@ verified rendering receipt. A formatting-only withheld draft can be reevaluated
 without a provider call.
 
 GitHub Pages serves the uploaded `wake-public` installation projection directly.
-Hosted research workflows and their runner are removed; the retained hosted record is not merged
-with local authority. Mirrors hide the status lamp and perform no live-status
+The current hosted runner uses the same twelve-node controller and encrypted
+native-record checkpoints; the earlier hosted records remain historical and are
+not merged into the transferred installation. Mirrors hide the status lamp and perform no live-status
 polling. Upload timestamps and node snapshot provenance remain visible.

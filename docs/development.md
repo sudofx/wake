@@ -80,8 +80,10 @@ running control alone does not establish healthy execution. The
 distinguishes cancellable reservations from confirmed provider calls.
 
 The multi-container runner, Compose installations and development preview remain
-compatibility paths. The GitHub research executor has been removed; its branches
-are historical records, not active runtime or publication inputs.
+compatibility paths. The earlier GitHub executor branches remain historical
+records. The current [hosted installation](cloud.md#run-research-on-github-without-a-laptop)
+uses the same controller in Actions containers and its own encrypted native-record
+transport. Do not restart a transferred local installation as a second writer.
 The new Codespace path needs its own actual remote acceptance evidence.
 
 ## Establish the target before editing
@@ -201,7 +203,9 @@ Public publishing is a separate upload to `wake-public`. It pins exported
 generations, reuses compatible completed pages and rebuilds incompatible pages
 without changing research controls. See [capture and compatibility](cloud.md#publish-the-local-installation-mirror).
 Verify Pages deployment and the upload date independently of source CI.
-No runtime promotion or GitHub research restart exists. See [publishing](cloud.md).
+Hosted successors select a source commit with successful repository CI. Use the
+[hosted start/stop workflow](cloud.md#run-research-on-github-without-a-laptop) for
+that installation; local container controls do not control it.
 
 ## Lightweight website observation
 

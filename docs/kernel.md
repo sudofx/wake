@@ -20,6 +20,14 @@ flowchart LR
 The boundary matters: adding another application should not require putting its
 rules into the kernel, and changing the model should not change record authority.
 
+`Record.snapshot_to(path)` creates a transactionally coherent SQLite image,
+including committed WAL data, and checks physical integrity. It does not attest
+semantic history. `Record.backup_to(path)` keeps its stronger contract: the same
+physical copy followed by full semantic, invocation and access-journal verification.
+Disposable hosted transport uses physical snapshots of already verified running
+records, then requires full verification before restoring execution. Neither API
+creates another authority or changes historical format bytes.
+
 ## Ownership
 
 Generic invocation and generation diagnostics remain in the kernel; controller

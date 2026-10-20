@@ -19,7 +19,10 @@ In the current one-container installation, three parents and nine children each
 own a record and receive bounded context through the research application. Shared
 notes and repeated source material retain their original attribution; another
 node's use of the same source does not create independent evidence. The kernel
-retrieval and authority boundaries are unchanged.
+retrieval and authority boundaries are unchanged. The hosted Actions adapter uses
+the same controller and bounded contexts, with encrypted native-record transport
+between runners. GitHub Pages remains a same-origin exported view; it never
+becomes a retrieval authority or a provider gateway.
 
 `installation.json` combines exported node projections for inspection. It cannot
 replace a node's record or become operational truth. The Console selects a node's

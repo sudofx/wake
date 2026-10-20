@@ -1293,6 +1293,19 @@ class Record:
         The snapshot is then checked physically and semantically before callers
         may publish it as a checkpoint or recovery artifact.
         """
+        self.snapshot_to(destination)
+        verified = Record(destination)
+        verified.full_replay()
+        verified.invocation_history()
+        verified.application_access_history()
+
+    def snapshot_to(self, destination: str | Path) -> None:
+        """Copy one coherent SQLite transaction, checking physical integrity only.
+
+        This transport primitive includes WAL-resident writes. It does not
+        certify semantic history: use backup_to for a verified backup, and fully
+        replay an untrusted/restored snapshot before executing from it.
+        """
         destination = Path(destination)
         destination.parent.mkdir(parents=True, exist_ok=True)
         # sqlite3.Connection's context manager owns commit/rollback but does not
@@ -1304,10 +1317,6 @@ class Record:
             result = check.execute("PRAGMA quick_check").fetchone()[0]
             if result != "ok":
                 raise IntegrityError(f"snapshot failed SQLite quick_check: {result}")
-        verified = Record(destination)
-        verified.full_replay()
-        verified.invocation_history()
-        verified.application_access_history()
 
     def compact(self) -> None:
         """

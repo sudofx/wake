@@ -1,0 +1,219 @@
+"""Hosted recovery preserves native meaning, privacy and pre-effect durability."""
+from pathlib import Path
+import json
+import os
+import sqlite3
+import subprocess
+import sys
+import tempfile
+import unittest
+from unittest.mock import patch
+
+from wake.engine import Engine, DEFAULTS
+from wake.hosted import HostedState, seal, unseal, FORMAT
+from wake.installation_cli import NODE_IDS
+from wake.providers import Fixture
+from wake.record_store import RecordStore
+
+
+class Assets:
+    def __init__(self):
+        self.repository, self.token = 'example/repo', 'test-token'
+        self.objects = {}
+        self.next_id = 1
+
+    def request(self, path, *, method='GET', body=None, binary=False, upload=False):
+        if path.startswith('releases/tags/'):
+            return {'id': 1}
+        if upload:
+            from urllib.parse import parse_qs, urlsplit
+            name = parse_qs(urlsplit(path).query)['name'][0]
+            identity = self.next_id
+            self.next_id += 1
+            self.objects[identity] = {'name': name, 'data': body, 'id': identity}
+            return {'id': identity, 'state': 'uploaded', 'size': len(body)}
+        if path.startswith('releases/1/assets?'):
+            from urllib.parse import parse_qs, urlsplit
+            page = int(parse_qs(urlsplit(path).query)['page'][0])
+            return [{'id': item['id'], 'name': item['name'], 'state': item.get('state', 'uploaded')}
+                    for item in list(self.objects.values())[(page-1)*100:page*100]]
+        if path.startswith('releases/assets/'):
+            identity = int(path.rsplit('/', 1)[1])
+            if method == 'DELETE':
+                del self.objects[identity]
+                return
+            return self.objects[identity]['data']
+        raise AssertionError((path, method))
+
+
+class LocalState(HostedState):
+    remote = None
+
+    def git(self, *args):
+        if args[:3] == ('remote', 'add', 'origin'):
+            args = (*args[:3], str(self.remote))
+        return super().git(*args)
+
+
+class HostedTransportTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.root = Path(self.temp.name)
+        self.active = self.root / 'source'
+        for node in NODE_IDS:
+            directory = self.active / 'nodes' / node / 'record'
+            store = RecordStore(directory, initialize_empty=True)
+            engine = Engine(directory, dict(DEFAULTS), store=store)
+            engine.initialize()
+            engine.run(Fixture('before-transfer'))
+            store.close()
+            (directory / '.standalone-initialized').write_text('Authority: wake.sqlite\n')
+        (self.active / 'installation-id.json').write_text('{"id":"test-installation"}')
+        (self.active / 'config').mkdir()
+        (self.active / 'config/wake.toml').write_text('provider="fixture"\n')
+        (self.active / 'private').mkdir()
+        (self.active / 'private/.passenger.md').write_text('PRIVATE PASSENGER CONTENT')
+        (self.active / 'private/.passenger-state.json').write_text('{"generation":0}')
+        self.remote = self.root / 'remote.git'
+        subprocess.run(['git', 'init', '--bare', '-q', str(self.remote)], check=True)
+        LocalState.remote = self.remote
+        self.assets = Assets()
+        self.key = b'k' * 32
+        self.transport = self.new_transport('seed')
+        self.transport.seed(self.active)
+
+    def new_transport(self, name):
+        value = LocalState(self.root / name, 'example/repo', 'test-token', self.key)
+        value.api = self.assets
+        return value
+
+    def tearDown(self):
+        self.temp.cleanup()
+
+    def test_transfer_and_successor_preserve_history_identity_and_private_workspace(self):
+        successor = self.new_transport('successor')
+        successor.open()
+        restored = self.root / 'restored'
+        manifest = successor.restore(restored)
+        self.assertEqual(manifest['installation_id'], 'test-installation')
+        self.assertEqual((restored / 'private/.passenger.md').read_text(), 'PRIVATE PASSENGER CONTENT')
+        for node in NODE_IDS:
+            source = RecordStore(self.active / 'nodes' / node / 'record')
+            target = RecordStore(restored / 'nodes' / node / 'record')
+            self.assertEqual(source.events(), target.events())
+            self.assertEqual(source.head(), target.head())
+            self.assertEqual(target.load()['version'], 1)
+            source.close()
+            target.close()
+            control = json.loads((restored / 'nodes' / node / 'record/.wake-runner-control.json').read_text())
+            self.assertEqual(control['research'], 'stopped')
+        directory = restored / 'nodes/100.wake/record'
+        store = RecordStore(directory)
+        result = Engine(directory, dict(DEFAULTS), store=store,
+                        effect_checkpoint=lambda: successor.checkpoint_node(directory)).run(Fixture('after-transfer'))
+        self.assertEqual(result['status'], 'accepted')
+        store.close()
+        again = self.new_transport('again')
+        again.open()
+        again.restore(self.root / 'again-restored')
+        store = RecordStore(self.root / 'again-restored/nodes/100.wake/record')
+        self.assertEqual(store.load()['version'], 2)
+        store.close()
+        with successor.lease():
+            successor.prune()
+        # A previous complete checkpoint is retained in the same atomic tree.
+        self.assertTrue((successor.checkout / 'previous.enc').exists())
+        for item in self.assets.objects.values():
+            self.assertNotIn(b'SQLite format', item['data'])
+            self.assertNotIn(b'PRIVATE PASSENGER', item['data'])
+        self.assertNotIn(b'test-installation', (successor.checkout / 'current.enc').read_bytes())
+        parents = successor.git('rev-list', '--parents', '-n', '1', 'HEAD').split()
+        self.assertEqual(len(parents), 1)  # Bounded transport history, full record history.
+
+    def test_stale_runner_cannot_replace_a_newer_checkpoint(self):
+        first, stale = self.new_transport('first'), self.new_transport('stale')
+        first.open()
+        stale.open()
+        first.restore(self.root / 'first-root')
+        stale.restore(self.root / 'stale-root')
+        first.checkpoint_node(self.root / 'first-root/nodes/100.wake/record')
+        with self.assertRaisesRegex(RuntimeError, 'Git operation failed'):
+            stale.checkpoint_node(self.root / 'stale-root/nodes/100.wake/record')
+
+    def test_wrong_key_and_tampering_fail_closed(self):
+        wrong = self.new_transport('wrong')
+        wrong.key = b'z' * 32
+        from cryptography.exceptions import InvalidTag
+        with self.assertRaises(InvalidTag):
+            wrong.open()
+        successor = self.new_transport('tampered')
+        successor.open()
+        item = next(iter(self.assets.objects.values()))
+        item['data'] = item['data'][:-1] + bytes([item['data'][-1] ^ 1])
+        with self.assertRaises(InvalidTag):
+            successor.restore(self.root / 'corrupt-root')
+
+    def test_empty_or_existing_destinations_never_initialize_silently(self):
+        missing = self.new_transport('missing')
+        empty = self.root / 'empty.git'
+        subprocess.run(['git', 'init', '--bare', '-q', str(empty)], check=True)
+        with patch.object(LocalState, 'remote', empty):
+            with self.assertRaisesRegex(ValueError, 'authority missing'):
+                missing.open()
+        successor = self.new_transport('occupied')
+        successor.open()
+        with self.assertRaisesRegex(ValueError, 'must be empty'):
+            successor.restore(self.active)
+
+
+class EffectCheckpointTests(unittest.TestCase):
+    def test_physical_snapshot_includes_committed_wal(self):
+        from wake.kernel.record import Record
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            record = Record(root / 'source.sqlite')
+            with sqlite3.connect(root / 'source.sqlite') as connection:
+                connection.execute('PRAGMA journal_mode=WAL')
+                connection.execute('CREATE TABLE transport_probe(value TEXT)')
+                connection.execute("INSERT INTO transport_probe VALUES ('committed WAL')")
+                connection.commit()
+                self.assertGreater((root / 'source.sqlite-wal').stat().st_size, 0)
+                record.snapshot_to(root / 'snapshot.sqlite')
+                with sqlite3.connect(root / 'snapshot.sqlite') as snapshot:
+                    self.assertEqual(snapshot.execute('SELECT value FROM transport_probe').fetchone()[0], 'committed WAL')
+
+    def test_verified_backup_still_rejects_semantically_corrupt_history(self):
+        from wake.kernel.record import Record, IntegrityError
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            store = RecordStore(root / 'record', initialize_empty=True)
+            Engine(root / 'record', dict(DEFAULTS), store=store).initialize()
+            store.close()
+            with sqlite3.connect(root / 'record/wake.sqlite') as connection:
+                connection.execute('UPDATE events SET event_hash=? WHERE sequence=(SELECT MAX(sequence) FROM events)', ('f' * 64,))
+            record = Record.open_read_only(root / 'record/wake.sqlite')
+            record.snapshot_to(root / 'physical.sqlite')
+            with self.assertRaises(IntegrityError):
+                record.backup_to(root / 'verified.sqlite')
+
+    def test_failed_injected_barrier_never_enters_provider(self):
+        class Provider(Fixture):
+            calls = 0
+            def propose(self, *args, **kwargs):
+                self.calls += 1
+                return super().propose(*args, **kwargs)
+        with tempfile.TemporaryDirectory() as folder:
+            store = RecordStore(folder, initialize_empty=True)
+            def fail():
+                raise RuntimeError('remote unavailable')
+            engine = Engine(folder, dict(DEFAULTS), store=store, effect_checkpoint=fail)
+            engine.initialize()
+            provider = Provider('fixture')
+            with self.assertRaisesRegex(RuntimeError, 'remote unavailable'):
+                engine.run(provider)
+            self.assertEqual(provider.calls, 0)
+            store.close()
+
+
+if __name__ == '__main__':
+    unittest.main()

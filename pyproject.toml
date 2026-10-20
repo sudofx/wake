@@ -15,6 +15,9 @@ dependencies = [
   "pypdf==6.19.0",
 ]
 
+[project.optional-dependencies]
+hosted = ["cryptography==50.0.2"]
+
 [project.scripts]
 wake = "wake.__main__:main"
 wake-research = "wake.installation_cli:main"

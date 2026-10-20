@@ -77,8 +77,13 @@ A migration convenience is not sufficient reason to weaken governance, provenanc
 - `wake-public` — uploaded, filtered website snapshot served by GitHub Pages
 - `wake-runtime`, `wake-state`, `wake-live` — preserved historical executor artifacts
 
-Research runs only in containers. GitHub Actions checks source and containers; it
-does not run research, promote runtime, or generate the website.
+Research runs in containers: either an explicitly selected local installation or
+the hosted GitHub Actions installation. Hosted continuation uses explicit API
+dispatches, with completion-event recovery; it never relies on cron.
+`wake-hosted-state` and the encrypted `wake-hosted-checkpoints` release carry
+verified native-record recovery snapshots. Only that dedicated rotating ref may
+use compare-and-swap replacement; preserve all historical hosted branches.
+See `docs/cloud.md` for privacy, checkpoint, stop and publication boundaries.
 
 ## Provider boundary
 
@@ -145,7 +150,7 @@ Fresh initialization is native wake initialization. The legacy Store is opened o
 
 ## Standalone ownership
 
-All active runtime code is owned here. Do not add another project's dependency, service, or access-control database. Preserve historical V1 format bytes and exact provenance when changing ownership or checkpoint filenames. Existing V1 authority is adopted by verified format discovery; ambiguity fails closed. Historical hosted checkpoints use `data/wake.sqlite.gz`; retain them as history. Current research continues through container governance and operator controls. Other repositories may be read for comparison, but never modified without explicit authorization.
+All active runtime code is owned here. Do not add another project's dependency, service, or access-control database. Preserve historical V1 format bytes and exact provenance when changing ownership or checkpoint filenames. Existing V1 authority is adopted by verified format discovery; ambiguity fails closed. Historical hosted checkpoints use `data/wake.sqlite.gz`; retain them as history. Current research continues through the same container governance and local or hosted operator controls. Other repositories may be read for comparison, but never modified without explicit authorization.
 
 ## Environment and publication boundaries
 

@@ -32,6 +32,11 @@ separately. Record snapshot heads, versions, dates, and node attribution when
 comparing runs. Fresh launch, import, and `RESET` leave research stopped for
 inspection; `RESET` destroys active history without a backup and retains manual
 exports. See [the installation contract](standalone.md#run-one-installation-container).
+The hosted Actions adapter runs that same controller and native records inside
+a disposable container. A verified transfer continues the same installation and
+record heads; it is not a new independent experimental replicate. Record the
+source revision and handover heads. A green job or website build does not prove
+accepted research; inspect terminal receipts and subsequent accepted versions.
 Older hosted and multi-container experiments below retain their original scope.
 
 Operational fault fixtures compare fixed disturbances and deterministic safety

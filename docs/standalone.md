@@ -139,7 +139,8 @@ Configure `WAKE_PUBLISH_REPOSITORY` with a GitHub repository URL and
 `WAKE_PUBLISH_BRANCH` with a dedicated publication branch before launching. Review
 `publish --output` first. An explicit `publish` uploads that artifact using configured
 Git credentials. GitHub Pages still performs its deployment step; GitHub does not
-need to run research or connect to local records to display this mirror. The GitHub research executor has been removed. Its historical records remain
+need to run research or connect to local records to display this mirror. The earlier GitHub research executor remains retired. The current autonomous
+Actions-container adapter is described in [hosted operation](cloud.md#run-research-on-github-without-a-laptop). The earlier executor records remain
 separate from this installation and are never publication inputs.
 
 ### Codespaces and remote instances
