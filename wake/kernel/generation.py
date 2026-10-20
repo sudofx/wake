@@ -418,7 +418,10 @@ class GeminiGenerationProvider:
         except urllib.error.URLError as error:
             cause = getattr(error, "reason", error)
             transient = (
-                isinstance(cause, (TimeoutError, ConnectionError))
+                # An abrupt TLS close is a dropped connection, not evidence
+                # of broken credentials or certificate trust. Leave other
+                # SSL failures on the operator-repair path.
+                isinstance(cause, (TimeoutError, ConnectionError, ssl.SSLEOFError))
                 or getattr(cause, "errno", None)
                 in {
                     errno.ETIMEDOUT,

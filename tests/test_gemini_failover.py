@@ -262,10 +262,13 @@ class FailoverTests(unittest.TestCase):
         self.assertEqual(item["provider_error"]["model"], "gemini-3.1-flash-lite")
 
     def test_transport_availability_fails_over_but_tls_configuration_does_not(self):
-        for error in (TimeoutError(), urllib.error.URLError(ConnectionRefusedError())):
-            result, _, _, network = self.run_chain([error, "valid"])
+        for error in (TimeoutError(), urllib.error.URLError(ConnectionRefusedError()),
+                      urllib.error.URLError(ssl.SSLEOFError(8, 'unexpected EOF'))):
+            result, _, item, network = self.run_chain([error, "valid"])
             self.assertEqual(result["status"], "accepted")
             self.assertEqual(network.call_count, 2)
+            self.assertEqual(item['provider_requests_sent'], 2)
+            self.assertEqual(item['provider_attempts'][0]['result'], 'transient_failure')
         result, _, _, network = self.run_chain([urllib.error.URLError(ssl.SSLCertVerificationError())])
         self.assertEqual(result["status"], "failed")
         self.assertEqual(network.call_count, 1)

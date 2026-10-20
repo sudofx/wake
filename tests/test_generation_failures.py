@@ -1,19 +1,36 @@
 """Offline transport evidence for incomplete provider answers."""
 import json
 import io
+import ssl
 import threading
 import time
 import unittest
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.request import Request
-from urllib.error import HTTPError
+from urllib.error import HTTPError, URLError
 from unittest.mock import patch
 
 from wake.kernel.generation import GeminiGenerationProvider, GenerationRequest, request_gemini_json, _safe_error_payload
-from wake.kernel.providers import ProviderError
+from wake.kernel.providers import ProviderError, ProviderTemporaryError
 
 
 class GenerationFailureTests(unittest.TestCase):
+    def test_tls_eof_defers_but_certificate_failure_requires_repair(self):
+        for cause, temporary in (
+            (ssl.SSLEOFError(8, 'unexpected EOF'), True),
+            (ssl.SSLCertVerificationError(1, 'certificate verification failed'), False),
+        ):
+            with self.subTest(error=type(cause).__name__):
+                with patch('wake.kernel.generation.request_gemini_json',
+                           side_effect=URLError(cause)) as send:
+                    with self.assertRaises(ProviderError) as caught:
+                        GeminiGenerationProvider('fixture-key').generate(
+                            GenerationRequest(model='fixture', prompt='bounded fixture'))
+                send.assert_called_once()
+                self.assertEqual(isinstance(caught.exception, ProviderTemporaryError), temporary)
+                self.assertEqual(caught.exception.details['error_type'], type(cause).__name__)
+                self.assertEqual(caught.exception.details['category'], 'connection' if temporary else 'tls')
+
     def test_content_length_response_bytes_do_not_extend_body_deadline(self):
         self.check_slow_response(200)
 
