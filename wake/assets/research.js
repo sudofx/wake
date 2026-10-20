@@ -400,7 +400,7 @@
     if(detailPending)body=wakeDetail.status==='failed'?'<p class="empty">The selected wake detail could not be loaded. Its recorded summary remains available.</p><button type="button" data-retry-wake-detail>Retry wake details</button>':'<p class="empty" role="status">Loading the selected wake details…</p>';
     $('wake-detail').innerHTML=`<div class="wake-reader-toolbar"><div class="wake-tabs inspector-tabs">${["summary","context","response","provider","receipt"].map(t=>`<button type="button" data-wake-tab="${t}" aria-pressed="${t===wakeTab}">${t}</button>`).join("")}<button class="close-wake" type="button" aria-label="Close wake reader">×</button></div><h3 id="wake-inspector-title" tabindex="-1">${esc(w.id)}</h3></div>${story}<p class="caption">${esc(stamp(w.time,true))} PT → ${esc(stamp(w.finished))} · base state ${w.base_version==null?'not reported':count(w.base_version)}</p>${body}`;
     $('live-story').textContent=deployment?.snapshot_only===true
-      ?`Uploaded snapshot state ${count(data.version)}. Completed wakes are historical receipts. This dated public view has no live activity or automatic refresh; reload to read the latest uploaded data.`
+      ?`Uploaded snapshot state ${count(data.version)}. Completed wakes are historical receipts. ${deployment?.hosted_activity?'Current activity is shown separately; reload for the latest uploaded research data.':'This dated public view has no live activity or automatic refresh; reload to read the latest uploaded data.'}`
       :`Snapshot state ${count(data.version)}. Completed wakes are historical receipts; the status light separately reports execution now. Snapshot checks every minute; supported live activity checks every three seconds.`;
   }
   function controls() {
