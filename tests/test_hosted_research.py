@@ -235,5 +235,35 @@ class EffectCheckpointTests(unittest.TestCase):
             store.close()
 
 
+class ContinuationTests(unittest.TestCase):
+    def test_late_recovery_does_not_seed_a_second_chain_after_manual_start(self):
+        from scripts.github_research import continue_chain
+        class Client:
+            def request(self, path, **kwargs):
+                if kwargs.get('method') == 'POST':
+                    raise AssertionError('Duplicate chain dispatch')
+                return {'workflow_runs': [
+                    {'id': 10, 'status': 'completed', 'display_title': 'old run'},
+                    {'id': 11, 'status': 'in_progress', 'display_title': 'manual start'}]}
+        with patch('scripts.github_research.api', return_value=Client()), \
+             patch('scripts.github_research.enabled', return_value=True):
+            continue_chain('10')
+
+    def test_current_run_can_dispatch_one_successor_from_checked_source(self):
+        from scripts.github_research import continue_chain
+        calls = []
+        class Client:
+            def request(self, path, **kwargs):
+                if kwargs.get('method') == 'POST':
+                    calls.append(kwargs['body'])
+                    return
+                return {'workflow_runs': [{'id': 10, 'status': 'in_progress', 'display_title': 'current'}]}
+        with patch('scripts.github_research.api', return_value=Client()), \
+             patch('scripts.github_research.enabled', return_value=True), \
+             patch('scripts.github_research.checked_revision', return_value='a' * 40):
+            continue_chain('10')
+        self.assertEqual(calls, [{'ref': 'master', 'inputs': {'handoff': 'after-10', 'runtime_ref': 'a' * 40}}])
+
+
 if __name__ == '__main__':
     unittest.main()

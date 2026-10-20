@@ -434,7 +434,10 @@ def upload_public_artifact(target: Path, repository: str, branch: str):
         git('remote', 'add', 'origin', repository)
         refs = git('ls-remote', '--heads', 'origin', f'refs/heads/{branch}').stdout
         if refs.strip():
-            git('fetch', 'origin', f'refs/heads/{branch}')
+            # Only the current parent is needed to append a normal commit.
+            # Keep remote history intact without downloading years of exports
+            # into each disposable publisher.
+            git('fetch', '--depth=1', 'origin', f'refs/heads/{branch}')
             git('checkout', '-b', branch, 'FETCH_HEAD')
         else:
             git('checkout', '--orphan', branch)
