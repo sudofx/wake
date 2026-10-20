@@ -362,7 +362,7 @@ class HostedState:
             # of the growing prefix before every provider attempt. Restoring
             # always performs the complete semantic/journal audit below.
             Record.open_read_only(record_directory / 'wake.sqlite').snapshot_to(backup)
-            manifest['nodes'][node] = {**record_identity(backup), 'blocks': self.put_file(backup, assets)}
+            manifest['nodes'][node] = {**verify_recovery(backup), 'blocks': self.put_file(backup, assets)}
             manifest['auxiliary'] = self.put_auxiliary(root, assets)
             self.save(manifest)
             # Bound release storage during long runs, not just on clean exit.

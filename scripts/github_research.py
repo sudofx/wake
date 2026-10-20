@@ -153,7 +153,12 @@ def run_batch(minutes, provider):
                 time.sleep(1)
             drained = request(root, {'action': 'stop'})
             if not drained.get('ok'):
-                raise RuntimeError('Hosted workers could not drain; checkpoint recovery remains available')
+                # Stop already closed new-call admission. A slow/dead worker
+                # cannot withhold the public mirror indefinitely. Terminate the
+                # owned processes below, retain their coherent native journals,
+                # and let the next bootstrap recover interrupted invocations.
+                print(json.dumps({'hosted_drain': 'bounded-shutdown',
+                                  'nodes': drained.get('nodes', {})}), flush=True)
         finally:
             process.terminate()
             try:
