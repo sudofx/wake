@@ -33,6 +33,7 @@ import zipfile
 
 from .installation_cli import NODE_IDS, _record_metadata
 from .kernel.record import Record
+from .kernel.storage import canonical_json
 from .report import atomic_write
 
 STATE_BRANCH = 'wake-hosted-state'
@@ -112,8 +113,34 @@ def record_identity(path):
 
 
 def _verified_snapshot(source, target):
-    Record.open_read_only(source).backup_to(target)
-    return record_identity(target)
+    Record.open_read_only(source).snapshot_to(target)
+    return _record_metadata(target)
+
+
+def verify_recovery(path):
+    """Verify all journals and bind the fast app projection to its last receipt.
+
+    Migration audits replay every application action. Subsequent authenticated
+    snapshots can use the native materialized state only when its canonical
+    digest equals the result digest in the independently replayed event chain.
+    This is not trust in the projection's self-reported checksum or a website.
+    """
+    from .application import WAKE_APPLICATION
+    from .kernel.applications import application_state
+    record = Record.open_read_only(path)
+    revision, history = record.full_replay()
+    projected_revision, projected = record.replay()
+    envelope = history.get('app:wake') or {}
+    events = envelope.get('events', [])
+    if revision != projected_revision or not events:
+        raise ValueError('Missing native WAKE application recovery history')
+    state = application_state(WAKE_APPLICATION, projected.get('app:wake'))
+    digest = hashlib.sha256(canonical_json(state).encode()).hexdigest()
+    if digest != events[-1].get('result_digest') or not (state or {}).get('state', {}).get('objective'):
+        raise ValueError('Recovery projection differs from the hash-linked application result')
+    record.invocation_history()
+    record.application_access_history()
+    return record_identity(path)
 
 
 class HostedState:
@@ -395,9 +422,9 @@ class HostedState:
                     value = manifest['nodes'][node]
                     self.get_file(value['blocks'], target)
                     if executor:
-                        pending[node] = executor.submit(_record_metadata, target)
+                        pending[node] = executor.submit(verify_recovery, target)
                     else:
-                        pending[node] = _record_metadata(target)
+                        pending[node] = verify_recovery(target)
                 for node, value in manifest['nodes'].items():
                     actual = pending[node].result() if executor else pending[node]
                     expected = {k: value[k] for k in ('revision', 'head', 'sha256')}

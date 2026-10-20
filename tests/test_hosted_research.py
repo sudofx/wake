@@ -10,7 +10,7 @@ import unittest
 from unittest.mock import patch
 
 from wake.engine import Engine, DEFAULTS
-from wake.hosted import HostedState, seal, unseal, FORMAT
+from wake.hosted import HostedState, verify_recovery
 from wake.installation_cli import NODE_IDS
 from wake.providers import Fixture
 from wake.record_store import RecordStore
@@ -167,6 +167,26 @@ class HostedTransportTests(unittest.TestCase):
 
 
 class EffectCheckpointTests(unittest.TestCase):
+    def test_recovery_rejects_a_self_consistent_projection_that_disagrees_with_receipt(self):
+        from wake.kernel.record import _decode_projection_state, _encode_projection_state
+        from wake.kernel.storage import canonical_json
+        import hashlib
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            store = RecordStore(root, initialize_empty=True)
+            Engine(root, dict(DEFAULTS), store=store).initialize()
+            store.close()
+            verify_recovery(root / 'wake.sqlite')
+            with sqlite3.connect(root / 'wake.sqlite') as connection:
+                raw = connection.execute('SELECT state FROM record_projection').fetchone()[0]
+                state = json.loads(_decode_projection_state(raw))
+                state['app:wake']['projection_state']['state']['objective'] = 'forged projection'
+                encoded = canonical_json(state)
+                connection.execute('UPDATE record_projection SET state=?,state_digest=?',
+                    (_encode_projection_state(encoded), hashlib.sha256(encoded.encode()).hexdigest()))
+            with self.assertRaisesRegex(ValueError, 'hash-linked application result'):
+                verify_recovery(root / 'wake.sqlite')
+
     def test_physical_snapshot_includes_committed_wal(self):
         from wake.kernel.record import Record
         with tempfile.TemporaryDirectory() as folder:

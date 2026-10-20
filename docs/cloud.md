@@ -212,7 +212,9 @@ an authoritative record. See [authority and recovery](architecture.md#hosted-exe
 
 ### Continuation and repair
 
-`hosted-research.yml` restores and fully verifies every native record, starts the
+`hosted-research.yml` restores every native record, verifies the full kernel and
+provider/access journals, checks application state against the result digest in
+the verified event chain, and starts the
 existing controller, runs for a bounded thirty-minute window, drains and saves
 all records, builds the existing filtered artifact, pushes `wake-public` and
 requests the Pages build. Its final job explicitly dispatches a successor through

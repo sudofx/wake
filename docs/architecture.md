@@ -486,8 +486,8 @@ attempts. Before an external effect, the owning native record is copied through
 SQLite's transactionally coherent snapshot API, encrypted and durably selected
 on GitHub. The running owner already verified authority; transport copies check
 physical integrity and restoration requires full semantic/journal verification. Failure
-prevents the effect. Recovery verifies every record and invocation/access journal
-before starting workers; abandoned invocations use normal native recovery.
+prevents the effect. Recovery verifies every kernel record and invocation/access journal and binds
+application state to the last hash-linked result digest before starting workers; abandoned invocations use normal native recovery.
 
 A dedicated `wake-hosted-state` Git ref selects encrypted current and previous
 manifests. Authenticated encrypted blocks live in the dedicated
