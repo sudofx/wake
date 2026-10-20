@@ -86,7 +86,8 @@ class HostedActivityPublisher:
                 if self.closed.is_set():
                     return
                 request = Request(ACTIVITY_ORIGIN + '/ingest', data=body,
-                    headers={'Authorization': 'Bearer ' + self.token, 'Content-Type': 'application/json'})
+                    headers={'Authorization': 'Bearer ' + self.token, 'Content-Type': 'application/json',
+                             'User-Agent': 'WAKE-activity-observer/1'})
                 with urlopen(request, timeout=3) as response:
                     response.read(1024)
                 state = 'connected'
