@@ -147,7 +147,8 @@ def import_records(root: Path, archive: Path) -> dict:
 
 
 _PUBLIC_OMIT = {'request', 'response', 'raw_response', 'system', 'credentials', 'api_key',
-                'authorization', 'private', 'token', 'draft_excerpt'}
+                'authorization', 'private', 'token', 'draft_excerpt',
+                'decision_memory', 'decision_memory_use', 'decision_state_capsule'}
 
 
 def _public_projection(value):

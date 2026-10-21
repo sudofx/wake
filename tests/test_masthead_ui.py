@@ -79,15 +79,12 @@ class MastheadPresentationTests(unittest.TestCase):
         for name, page in pages.items():
             with self.subTest(page=name):
                 nav = page.split('<nav class="compact-nav"', 1)[1].split('</nav>', 1)[0]
-                visible = nav.split('<!-- Read menu temporarily retired.', 1)[0]
-                self.assertNotIn('>Home</a>', visible)
-                self.assertNotIn('<summary>Read</summary>', visible)
-                self.assertIn('<!-- Read menu temporarily retired.', nav)
-                self.assertIn('<summary>Read</summary>', nav)
-                explore = visible.index('>Explore</a>')
-                research = visible.index('>Research</a>')
-                journal = visible.index('>Journal</a>')
-                blog = visible.index('>Bob’s Blog</a>')
+                self.assertNotIn('>Home</a>', nav)
+                self.assertNotIn('<summary>Read</summary>', nav)
+                explore = nav.index('>Explore</a>')
+                research = nav.index('>Research</a>')
+                journal = nav.index('>Journal</a>')
+                blog = nav.index('>Bob’s Blog</a>')
                 self.assertLess(explore, research)
                 self.assertLess(research, journal)
                 self.assertLess(journal, blog)

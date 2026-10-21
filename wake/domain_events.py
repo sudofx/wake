@@ -218,6 +218,11 @@ def reduce_event(state, event, historical=False):
         if "provider_requests_sent" in p:
             terminal["provider_requests_sent"] = p["provider_requests_sent"]
         diagnostics = p.get("metadata", p)
+        if (isinstance(state["invocations"][p["id"]].get("context_delivery", {}).get("decision_memory"), dict)
+                and isinstance(diagnostics.get("decision_memory_use"), dict)):
+            # Optional derived delivery/use telemetry, never a research action.
+            # Absent on historical events: their reconstruction stays unchanged.
+            terminal["decision_memory_use"] = diagnostics["decision_memory_use"]
         for key in ("provider_attempts", "skipped_models", "successful_model"):
             if key in diagnostics:
                 # Keep a reservation if persistence failed before its result was recorded.

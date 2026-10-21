@@ -37,6 +37,9 @@ from .event_format import canonical, digest, now
 from .experimental import adoption_payload, defaults as experimental_defaults, temporal_snapshot, validate as validate_controls
 from .trust import build_trust_compacts_shadow
 from .memory import ACTIVE_MEMORY_SYSTEM, active_retrieval_plan, build_active_memory
+from .decision_memory import (validate_settings as validate_decision_memory_settings,
+                              decision_context, rank_candidates, build_capsule,
+                              validate_capsule, reference_observation, DECISION_MEMORY_SYSTEM)
 from .attention import assessment as attention_assessment, plan as attention_plan
 from .matrix_campaign import (
     MATRIX_SIDECAR_SYSTEM,
@@ -121,6 +124,7 @@ DEFAULTS = {"timezone": "America/Los_Angeles", "objective": "Test durable contin
             "max_context_chars": 48000, "max_output_tokens": 4096, "timeout_seconds": 60,
             "free_tier_confirmed": False, "gemini_fallback_models": [], "gemini_fallback_requires_primary_daily_quota": False,
             "memory_mode": "shadow", "research_google_search": False, "same_wake_research": False, "inquiry_drive_enabled": False, "research_topics_file": "research-topics.toml",
+            "decision_memory_mode": "off", "decision_memory_policy": {},
             "observation_mode": False, "research_collection_budget": 2, "research_collection_wall_seconds": 45}
 
 def _topics(settings, config_path=None):
@@ -191,6 +195,7 @@ def config(path="wake.toml"):
     require(type(result["research_google_search"]) is bool, "research_google_search must be boolean")
     require(type(result["same_wake_research"]) is bool, "same_wake_research must be boolean")
     require(result["memory_mode"] in ("shadow", "active"), "memory_mode must be shadow or active")
+    validate_decision_memory_settings(result)
     require(type(result["inquiry_drive_enabled"]) is bool,
             "inquiry_drive_enabled must be true or false")
     require(type(result["observation_mode"]) is bool,
@@ -222,6 +227,7 @@ class Engine:
         self.effect_checkpoint = effect_checkpoint
         self.config = settings or config()
         require(self.config.get("memory_mode", "shadow") in ("shadow", "active"), "memory_mode must be shadow or active")
+        validate_decision_memory_settings(self.config)
         if self.config.get("mission"):
             if not self.config.get("research_topics"):
                 filename = self.config.get("research_topics_file")
@@ -2182,6 +2188,84 @@ class Engine:
         ]
 
         return context
+    def decision_memory_delivery(self, state, request, retrieval, question=None, phase="proposal"):
+        """Try optional recall transactionally after mandatory request fitting.
+
+        Shadow returns the original request byte-for-byte. Active tries a copy,
+        including existing source eligibility, schema generation and exact provider
+        rendering. Optional recall can never force mandatory memory out of context.
+        """
+        from copy import deepcopy
+        mode = self.config.get("decision_memory_mode", "off")
+        if mode == "off":
+            return request, None
+        started = perf_counter()
+        head = self.store.head()
+        policy = validate_decision_memory_settings(self.config)
+        plan = rank_candidates(state, active_retrieval_plan(state, retrieval),
+                               decision_context(state, question), policy)
+        ablate = None
+        # Only the frozen-record comparison harness sets this ephemeral flag.
+        # It is deliberately absent from operator/runtime configuration.
+        if getattr(self, "_decision_memory_ablation", False):
+            ablate = next(({k: c[k] for k in ("kind", "id")} for c in plan["candidates"]
+                           if not c.get("excluded_reason") and "open_commitment" not in c["categories"]), None)
+        optional = [c for c in plan["candidates"] if not c.get("excluded_reason")
+                    and c["kind"] != "commitment"
+                    and {k: c[k] for k in ("kind", "id")} != ablate][:policy["max_memories"]]
+        wanted = list(dict.fromkeys(identifier for c in optional for identifier in
+                      ([c["id"]] if c["kind"] == "evidence" else c.get("evidence_roots", []))))
+        budget = policy["capsule_chars"]
+        result = None
+        fits = False
+        # A bounded number of shrinking attempts, no provider calls or state writes.
+        for _ in range(2 * policy["max_memories"] + 4):
+            trial = deepcopy(request)
+            trial["system"] += DECISION_MEMORY_SYSTEM
+            trial["context"] = self.rehydrate_retrieval_context(
+                state, trial["context"], {"evidence_ids": wanted}, content_limit=900, max_records=3, force=True)
+            self.proposal_constraints(state, trial["context"])
+            if phase == "planning":
+                from .research import research_plan_schema
+                trial["response_schema"] = research_plan_schema(trial["context"])
+            else:
+                trial["response_schema"] = _provider_response_schema(trial["context"], bool(state.get("charter")))
+            eligible = {item["id"] for item in trial["context"].get("evidence", [])
+                        if item.get("content") and not item.get("content_omitted")
+                        and self.durable_notebook_source_payload(state, item["id"]) is not None}
+            result = build_capsule(state, head, plan, trial["context"], eligible_source_ids=eligible,
+                                   budget=max(0, budget), ablate=ablate)
+            capsule = result["capsule"]
+            if capsule is None:
+                break
+            trial["context"]["decision_state_capsule"] = capsule
+            overflow = provider_input_chars(trial) - self.config["max_context_chars"]
+            if overflow <= 0:
+                selected_roots = list(dict.fromkeys(identifier for m in capsule["selected_memories"]
+                                      for identifier in ([m["id"]] if m["kind"] == "evidence" else m["evidence_roots"])))
+                # Do not leave source prose from a budget-omitted memory in the
+                # trial. Rebuild from the untouched mandatory request, then verify.
+                if set(selected_roots) != set(wanted):
+                    wanted = selected_roots
+                    continue
+                validate_capsule(capsule, state, head)
+                fits = True
+                break
+            budget = min(budget - 1, len(canonical(capsule)) - overflow - 32)
+        require(self.store.head() == head, "Authority changed while preparing decision memory")
+        has_memory = fits and bool(result["capsule"]["selected_memories"])
+        hypothetical = trial if has_memory else request
+        receipt = {**result, "mode": mode, "source_version": state["version"], "source_head": head,
+                   "decision_context_id": digest(plan["decision_context"]),
+                   "selection_policy_version": 1, "selection_policy_digest": digest(policy),
+                   "fits": fits, "delivered": mode == "active" and has_memory,
+                   "ablation": ablate, "baseline_request_hash": digest(request),
+                   "hypothetical_request_hash": digest(hypothetical) if fits else None,
+                   "baseline_provider_chars": provider_input_chars(request),
+                   "hypothetical_provider_chars": provider_input_chars(hypothetical) if fits else None,
+                   "computation_ms": round((perf_counter() - started) * 1000, 3)}
+        return (trial if receipt["delivered"] else request), receipt
+
     def start(self, provider, model, charged=False, *, phase="proposal", question=None, research=None,
               peer_notes=None):
         started_at = perf_counter()
@@ -2499,6 +2583,10 @@ class Engine:
             self.fit_bounded_request(request, system_suffix=final_system_suffix)
         require(provider_input_chars(request) <= self.config["max_context_chars"],
                 "Context ceiling reached; human review required, no model call made")
+        request, decision_memory_receipt = self.decision_memory_delivery(
+            state, request, retrieval_shadow, question, phase)
+        require(provider_input_chars(request) <= self.config["max_context_chars"],
+                "Decision memory exceeded provider-input budget")
         compaction_ms = (perf_counter() - phase_at) * 1000
         shadow_chars = len(canonical(working_set_shadow))
         delivered_chars = len(canonical(request["context"]))
@@ -2531,6 +2619,7 @@ class Engine:
             "context_delivery": {
                 "mode": context_mode,
                 "memory_mode": "active" if routine_memory else "shadow",
+                **({"decision_memory": decision_memory_receipt} if decision_memory_receipt is not None else {}),
                 **({"deferred_continuity_coordinate": deferred_probe,
                     "recovery": "optional-sidecar-deferred"} if deferred_probe else {}),
                 "activation_reason": "operator-active-memory" if routine_memory else ("context-size" if context_mode == "bounded" else "rich-default"),
@@ -2603,7 +2692,14 @@ class Engine:
     def finish(self, invocation, raw, metadata=None, crash=False, *, activity=None):
         state = self.store.load()
         require(state["pending"] == invocation, "Response does not match the pending invocation")
+        decision_receipt = state["invocations"][invocation].get("context_delivery", {}).get("decision_memory")
+        def observed_metadata(proposal, outcome):
+            if decision_receipt is None:
+                return metadata or {}
+            return {**(metadata or {}), "decision_memory_use": reference_observation(
+                decision_receipt, proposal, outcome, state, result if outcome == "accepted" else None)}
         probe_response = None
+        proposal = None
         try:
             require(isinstance(raw, str) and len(raw) <= 64000, "Response exceeds 64,000 characters")
             proposal = json.loads(raw, parse_constant=lambda x: (_ for _ in ()).throw(ValueError("Nonfinite JSON")))
@@ -2621,7 +2717,7 @@ class Engine:
         except (ValueError, TypeError, KeyError, Rejected) as exc:
             reason = str(exc)[:1000]
             self.store.append("rejected", {"id": invocation, "reason": reason,
-                                          "raw_response": str(raw)[:64000], "metadata": metadata or {},
+                                          "raw_response": str(raw)[:64000], "metadata": observed_metadata(proposal, "rejected"),
                                           "observation_receipt": ({"would_have_been_flagged": True,
                                                                    "rule_reason": reason,
                                                                    "mode": "observation"}
@@ -2652,7 +2748,7 @@ class Engine:
             fields += ["projects", "notebooks", "research", "posts"]
         result_hash = digest({k: result[k] for k in fields})
         self.store.append("accepted", {"id": invocation, "proposal": proposal, "raw_response": raw,
-                                       "metadata": metadata or {},
+                                       "metadata": observed_metadata(proposal, "accepted"),
                                        **({"provider_requests_sent": metadata["provider_requests_sent"]}
                                           if metadata and "provider_requests_sent" in metadata else {}), "result_hash": result_hash, "hash_fields": fields,
                                        **({"editorial": editorial} if editorial else {}),

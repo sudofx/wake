@@ -1,5 +1,157 @@
 # Routine memory and retrieval: making forgetting observable
 
+## Optional decision-relevant recall
+
+Decision memory asks which recorded information might change the next decision.
+It is a deterministic, experimental aid; it does not decide what is true or learn
+its own selection policy. Exact history remains authoritative. A current belief
+or notebook is a revisable interpretation of that history. A selected memory is
+an estimate of relevance, not evidence that remembering it helped.
+
+The feature defaults to **off**, independently of the existing `memory_mode`:
+
+```toml
+# Existing rich/active memory behavior is unchanged.
+decision_memory_mode = "off" # off, shadow, active
+```
+
+Use `shadow` to compute a hypothetical request and record selection without
+changing the actual provider request. It makes no additional API call. Use
+`active` only through an explicit operator configuration change after reviewing
+the [offline comparison](experiment.md#decision-memory-evaluation). No installation
+is automatically activated, restarted, reset or migrated by a source change.
+Disabling the feature affects future invocations; previous receipts remain intact.
+
+### Candidate identification and contextual assessment
+
+`wake/decision_memory.py` reuses `build_retrieval_shadow` and
+`active_retrieval_plan`. Existing project-source handoffs and unincorporated
+evidence stay with their existing owner. Additional candidates come from bounded
+windows of the already verified application projection, not another database or
+an autonomous historical search. These windows cover beliefs, notebooks,
+commitments, projects, observations, invocation failures, collection failures,
+operator source reviews and measured reproductions. Editorial invocations and
+runtime/private/advisory observations are excluded from research recall.
+
+The current decision consists of the operator question, or the active project's
+question and next step, with current Attention and focus. Association with that
+project/topic or shared question terms makes an ordinary candidate relevant;
+all open commitments remain protected in the existing context. Token overlap is
+only a retrieval lead. It never establishes a contradiction, scientific surprise,
+source independence or cross-topic validity.
+
+Categories, in default priority order, are:
+
+1. Retractions, revised notebooks and explicitly recorded belief revisions.
+2. Operator source reviews or claim reviews with explicit counterevidence.
+3. Open commitments, which are already delivered through mandatory memory.
+4. Failed approaches, labeled separately as governance rejection, provider
+   failure or collection failure; none is scientific disconfirmation.
+5. Measured reproductions that failed their recorded predeclared acceptance test.
+6. Project decisions with a recorded representation/reframing history.
+7. Recorded notebook limitations.
+8. Existing source handoffs and unincorporated evidence.
+9. Other question-relevant leads, including explicitly labeled cross-topic hypotheses.
+
+Within a category the selector prefers current project association, then the
+Attention topic, then smaller exact records, with kind and ID as stable final
+tie-breakers. It does not reward confidence, citations, repetition or recency.
+Root works use the existing source-identity resolver: repeated node observations
+of one work do not become independent corroboration. Node attribution is retained.
+
+Policy is explicit, versioned and bounded. These optional settings show the
+defaults; changing priority requires listing all nine categories exactly once.
+
+```toml
+[decision_memory_policy]
+version = 1
+scan_records = 256
+max_candidates = 64
+max_memories = 6
+capsule_chars = 6000
+# priority = ["correction", "explicit_review", "open_commitment", "failed_approach",
+#   "unexpected_outcome", "lasting_decision", "recorded_limitation", "source_handoff",
+#   "contextual_lead"]
+```
+
+These are application/operator settings, never model-proposed actions. Unsupported
+modes, versions or settings fail closed. No ranking weights update automatically.
+
+### Dormant records and bounded cost
+
+Projection keys are sorted deterministically. Each kind receives an equal payload
+inspection window, rotated by accepted version and decision-context identity.
+With defaults, at most 252 window payloads plus 64 existing retrieval references
+are considered; 64 ranked candidates reach the selection manifest. Sorting keys
+still costs work proportional to projection key count. This is not a constant-cost
+semantic index, and does not read or scan SQLite event history again.
+
+There is no age cutoff. Direct retrieval references can immediately recover an old
+source; other dormant projected records can return as the window advances or the
+decision changes. This is bounded reconsideration, not guaranteed immediate recall
+of every old item. Coverage, unvisited retrieval candidates, overflow count/digest
+and exclusions are recorded. Unscanned records are explicitly outside measured
+coverage. A low assessment never deletes or permanently disables a record.
+
+### Decision State Capsule and delivery
+
+After the ordinary request has fit, the engine tries a disposable
+`decision-capsule@1` under `context.decision_state_capsule`. It binds the current
+application version and exact pre-invocation head, decision identity and policy
+digest to selected record hashes, provenance roots, source-work identities,
+selection reasons, statuses, uncertainties and omission evidence. The head includes
+the existing continuity observation and precedes `invocation_started`; it is an
+intended snapshot anchor, not a claim that the database stops advancing.
+
+Identical prose already in context is replaced with a content-location pointer.
+Open commitments stay in mandatory context rather than consuming optional slots.
+Collector prose is materialized only through `rehydrate_retrieval_context`, with
+the existing readability, repository-source budget and project allowlists. A
+human measurement stays a human observation, never a scientific source. Missing
+roots and roots not delivered as qualifying scientific sources remain visible.
+A notebook's current operator correction accompanies its interpretation.
+
+The engine builds the prospective delivery on a copy, rebuilds the appropriate
+proposal/planning schema, removes unselected optional source additions, verifies
+record/root hashes and snapshot freshness, then measures the exact final provider
+renderer. Optional selections shrink or disappear when they do not fit. Mandatory
+context, evidence roots, source rules, commitments and the original fail-closed
+ceiling remain intact. If the bounded attempt cannot fit or stabilize, the original
+request is delivered unchanged and the failed hypothetical fit is recorded.
+
+New observed belief revisions retain their previous exact interpretation and hash
+in the existing terminal invocation metadata. A later capsule can show a bounded,
+explicitly superseded excerpt beside the current belief and revision invocation.
+Older records without that instrumentation retain exact history and revision
+invocation pointers; this prototype does not reconstruct all prior belief prose
+or discover semantic contradictions by scanning their event archive.
+
+### Observations are separate from benefits
+
+`context_delivery.decision_memory` records the candidate manifest, exclusions,
+capsule, coverage, computation time, baseline/hypothetical request hashes and
+provider character counts. Existing `request_hash`, invocation identity, provider
+lifecycle and terminal receipts bind the actual request to its governed proposal.
+Shadow capsules stay in receipts, outside model input.
+The public export filter omits the new capsule/selection/use namespaces, including
+copies nested in event metadata. Operators inspect native receipts or isolated
+comparison artifacts; private request telemetry does not become a public feature.
+
+Terminal metadata reports explicit selected-ID references and the normalized
+proposal hash separately from delivery and governance outcome. This metadata is
+also reconstructed in the invocation projection. An ID mention is not proof that
+the model understood or used a memory. Both `decision_changed` and
+`outcome_improved` remain unknown without controlled evaluation. Acceptance is
+not a scientific-quality score. Bob's writing and private advisory assessments
+gain no research authority from this mechanism.
+Here delivery means inclusion in the prepared request at the existing provider
+boundary. Actual transport attempts have their own lifecycle receipts; neither
+preparation nor successful transport proves that a model read or understood it.
+
+The existing richer retrieval mechanisms below remain unchanged when the feature
+is off. See the [evaluation protocol](experiment.md#decision-memory-evaluation)
+for reproducible checks and limits.
+
 The [kernel contract](kernel.md) distinguishes generic envelope replay from
 application state reconstruction. Application IDs share a record revision when
 installed together; independent installations must select separate records.

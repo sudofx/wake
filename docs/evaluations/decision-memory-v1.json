@@ -1,0 +1,839 @@
+{
+  "schema": "decision-memory-evaluation@1",
+  "fixture_digest": "ab50a3fcc5fecafa372b8b92562a01fc769ab4c6e34291cb58c6e6d5ae5a0dfe",
+  "source_fingerprint": "381be07a2cec86539679b31f04bcb1080b79ec11de7611274d82e6cb50d005aa",
+  "selection_policy": {
+    "version": 1,
+    "priority": [
+      "correction",
+      "explicit_review",
+      "open_commitment",
+      "failed_approach",
+      "unexpected_outcome",
+      "lasting_decision",
+      "recorded_limitation",
+      "source_handoff",
+      "contextual_lead"
+    ],
+    "scan_records": 256,
+    "max_candidates": 64,
+    "max_memories": 6,
+    "capsule_chars": 6000
+  },
+  "scenario_count": 10,
+  "passed": true,
+  "scenarios": [
+    {
+      "scenario": "repeated_failure",
+      "starting_state_hash": "8ba0427f37fa16720738b72f33189973029a7aa4db985a175ee0a6618ca7c640",
+      "synthetic_source_head": "a3f8055164a078edf84abfb8141048e31bead9dca6353d4e31a930fe2b6910a2",
+      "selected": [
+        {
+          "kind": "research",
+          "id": "retrieval-old",
+          "selection_reasons": [
+            "attention_topic",
+            "current_project",
+            "question_term_overlap",
+            "contextual_lead",
+            "failed_approach"
+          ]
+        },
+        {
+          "kind": "invocation",
+          "id": "provider-old",
+          "selection_reasons": [
+            "attention_topic",
+            "question_term_overlap",
+            "contextual_lead",
+            "failed_approach"
+          ]
+        },
+        {
+          "kind": "invocation",
+          "id": "rejected-old",
+          "selection_reasons": [
+            "attention_topic",
+            "question_term_overlap",
+            "contextual_lead",
+            "failed_approach"
+          ]
+        },
+        {
+          "kind": "project",
+          "id": "p",
+          "selection_reasons": [
+            "attention_topic",
+            "current_project",
+            "question_term_overlap",
+            "contextual_lead"
+          ]
+        }
+      ],
+      "exclusions": [],
+      "omissions": {
+        "candidate_count": 4,
+        "omitted_count": 0,
+        "omission_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "coverage": {
+          "projection_records": 4,
+          "payloads_scanned": 4,
+          "unscanned_records": 0,
+          "retrieval_candidates_unvisited": 0,
+          "candidate_overflow_count": 0,
+          "candidate_overflow_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      },
+      "candidate_recall_coverage": 1.0,
+      "labeled_relevant_selection_rate": 1.0,
+      "labeled_irrelevant_selection_count": 0,
+      "missing_provenance_count": 0,
+      "incorrect_source_eligibility_count": 0,
+      "missing_evidence_root_count": 0,
+      "provider_input_chars": {
+        "baseline": 85,
+        "recall": 4087,
+        "ablation": 3436
+      },
+      "capsule_chars": 3976,
+      "computation_ms": 0.979,
+      "checks": {
+        "required_selected": true,
+        "irrelevant_excluded": true,
+        "deterministic": true,
+        "state_unchanged": true,
+        "protected_obligations_retained": true,
+        "provenance_exact": true,
+        "source_eligibility_preserved": true,
+        "capsule_budget": true,
+        "provider_budget": true,
+        "ablation_removes_selected": true
+      },
+      "passed": true,
+      "cross_topic_selections": 0
+    },
+    {
+      "scenario": "contradictory_evidence",
+      "starting_state_hash": "511f6a16ff0b5b6a5ff8ba1ce3c2e7ed1030a60a7d4dc33d1760e3402610320c",
+      "synthetic_source_head": "3ba20a8f55e80134a5e24914a93aaee5cd0948d4008ca1166709889f265e80cd",
+      "selected": [
+        {
+          "kind": "belief",
+          "id": "corrected",
+          "selection_reasons": [
+            "question_term_overlap",
+            "recorded_evidence_roots",
+            "contextual_lead",
+            "correction"
+          ]
+        },
+        {
+          "kind": "project",
+          "id": "p",
+          "selection_reasons": [
+            "attention_topic",
+            "current_project",
+            "question_term_overlap",
+            "contextual_lead"
+          ]
+        },
+        {
+          "kind": "evidence",
+          "id": "after",
+          "selection_reasons": [
+            "question_term_overlap",
+            "contextual_lead"
+          ]
+        },
+        {
+          "kind": "evidence",
+          "id": "before",
+          "selection_reasons": [
+            "question_term_overlap",
+            "contextual_lead"
+          ]
+        }
+      ],
+      "exclusions": [],
+      "omissions": {
+        "candidate_count": 4,
+        "omitted_count": 0,
+        "omission_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "coverage": {
+          "projection_records": 4,
+          "payloads_scanned": 4,
+          "unscanned_records": 0,
+          "retrieval_candidates_unvisited": 0,
+          "candidate_overflow_count": 0,
+          "candidate_overflow_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      },
+      "candidate_recall_coverage": 1.0,
+      "labeled_relevant_selection_rate": 1.0,
+      "labeled_irrelevant_selection_count": 0,
+      "missing_provenance_count": 0,
+      "incorrect_source_eligibility_count": 0,
+      "missing_evidence_root_count": 0,
+      "provider_input_chars": {
+        "baseline": 592,
+        "recall": 4935,
+        "ablation": 3924
+      },
+      "capsule_chars": 4317,
+      "computation_ms": 1.062,
+      "checks": {
+        "required_selected": true,
+        "irrelevant_excluded": true,
+        "deterministic": true,
+        "state_unchanged": true,
+        "protected_obligations_retained": true,
+        "provenance_exact": true,
+        "source_eligibility_preserved": true,
+        "capsule_budget": true,
+        "provider_budget": true,
+        "ablation_removes_selected": true
+      },
+      "passed": true,
+      "cross_topic_selections": 0
+    },
+    {
+      "scenario": "distant_historical_relevance",
+      "starting_state_hash": "3967d44171d5f968756e989f7db0c86e0ac35533966ad682e30a6794eaa1e778",
+      "synthetic_source_head": "d19f551e2a61ca3bee2f793a1712d6dbefd95db23710e03920006e6e1ff0b9e1",
+      "selected": [
+        {
+          "kind": "notebook",
+          "id": "old-useful",
+          "selection_reasons": [
+            "attention_topic",
+            "current_project",
+            "question_term_overlap",
+            "contextual_lead",
+            "recorded_limitation"
+          ]
+        },
+        {
+          "kind": "project",
+          "id": "p",
+          "selection_reasons": [
+            "attention_topic",
+            "current_project",
+            "question_term_overlap",
+            "contextual_lead"
+          ]
+        }
+      ],
+      "exclusions": [],
+      "omissions": {
+        "candidate_count": 2,
+        "omitted_count": 0,
+        "omission_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "coverage": {
+          "projection_records": 2,
+          "payloads_scanned": 2,
+          "unscanned_records": 0,
+          "retrieval_candidates_unvisited": 0,
+          "candidate_overflow_count": 0,
+          "candidate_overflow_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      },
+      "candidate_recall_coverage": 1.0,
+      "labeled_relevant_selection_rate": 1.0,
+      "labeled_irrelevant_selection_count": 0,
+      "missing_provenance_count": 0,
+      "incorrect_source_eligibility_count": 0,
+      "missing_evidence_root_count": 0,
+      "provider_input_chars": {
+        "baseline": 85,
+        "recall": 3017,
+        "ablation": 2223
+      },
+      "capsule_chars": 2906,
+      "computation_ms": 0.594,
+      "checks": {
+        "required_selected": true,
+        "irrelevant_excluded": true,
+        "deterministic": true,
+        "state_unchanged": true,
+        "protected_obligations_retained": true,
+        "provenance_exact": true,
+        "source_eligibility_preserved": true,
+        "capsule_budget": true,
+        "provider_budget": true,
+        "ablation_removes_selected": true
+      },
+      "passed": true,
+      "cross_topic_selections": 0
+    },
+    {
+      "scenario": "cross_topic_connection",
+      "starting_state_hash": "4a89b2cb3f0ffd23b1d1ffbd7f9d7738b8fc294bb5c437a3203ce6a172a8812a",
+      "synthetic_source_head": "572040d4f068f5f3b4a9f3f72ab95614fbc4611fb71a6aa3a92008bb864f0e4b",
+      "selected": [
+        {
+          "kind": "notebook",
+          "id": "analogy",
+          "selection_reasons": [
+            "cross_topic_hypothesis_only",
+            "question_term_overlap",
+            "contextual_lead",
+            "recorded_limitation"
+          ]
+        },
+        {
+          "kind": "project",
+          "id": "p",
+          "selection_reasons": [
+            "attention_topic",
+            "current_project",
+            "question_term_overlap",
+            "contextual_lead"
+          ]
+        }
+      ],
+      "exclusions": [
+        {
+          "kind": "project",
+          "id": "q",
+          "reason": "not_relevant_to_this_decision"
+        }
+      ],
+      "omissions": {
+        "candidate_count": 3,
+        "omitted_count": 1,
+        "omission_digest": "597dcfe33925acb53a8961492651d5ad589203afd9d966a91fd7e5127d916bbe",
+        "coverage": {
+          "projection_records": 3,
+          "payloads_scanned": 3,
+          "unscanned_records": 0,
+          "retrieval_candidates_unvisited": 0,
+          "candidate_overflow_count": 0,
+          "candidate_overflow_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      },
+      "candidate_recall_coverage": 1.0,
+      "labeled_relevant_selection_rate": 1.0,
+      "labeled_irrelevant_selection_count": 0,
+      "missing_provenance_count": 0,
+      "incorrect_source_eligibility_count": 0,
+      "missing_evidence_root_count": 0,
+      "provider_input_chars": {
+        "baseline": 85,
+        "recall": 3000,
+        "ablation": 2223
+      },
+      "capsule_chars": 2889,
+      "computation_ms": 0.616,
+      "checks": {
+        "required_selected": true,
+        "irrelevant_excluded": true,
+        "deterministic": true,
+        "state_unchanged": true,
+        "protected_obligations_retained": true,
+        "provenance_exact": true,
+        "source_eligibility_preserved": true,
+        "capsule_budget": true,
+        "provider_budget": true,
+        "ablation_removes_selected": true
+      },
+      "passed": true,
+      "cross_topic_selections": 1
+    },
+    {
+      "scenario": "context_pressure",
+      "starting_state_hash": "6898c16754fc68772f868deac7020b2c2b0fe01622cfe058f544a389b0a7db35",
+      "synthetic_source_head": "ed4bc906b6c112ad51585bd1c7886c04c758b621ce5c1f571c9e65545e523ba2",
+      "selected": [
+        {
+          "kind": "belief",
+          "id": "corrected",
+          "selection_reasons": [
+            "question_term_overlap",
+            "recorded_evidence_roots",
+            "contextual_lead",
+            "correction"
+          ]
+        }
+      ],
+      "exclusions": [
+        {
+          "kind": "commitment",
+          "id": "0",
+          "reason": "protected_already_delivered"
+        },
+        {
+          "kind": "commitment",
+          "id": "1",
+          "reason": "protected_already_delivered"
+        },
+        {
+          "kind": "commitment",
+          "id": "2",
+          "reason": "protected_already_delivered"
+        },
+        {
+          "kind": "commitment",
+          "id": "3",
+          "reason": "protected_already_delivered"
+        },
+        {
+          "kind": "commitment",
+          "id": "4",
+          "reason": "protected_already_delivered"
+        },
+        {
+          "kind": "commitment",
+          "id": "5",
+          "reason": "protected_already_delivered"
+        },
+        {
+          "kind": "commitment",
+          "id": "6",
+          "reason": "protected_already_delivered"
+        },
+        {
+          "kind": "commitment",
+          "id": "7",
+          "reason": "protected_already_delivered"
+        },
+        {
+          "kind": "evidence",
+          "id": "after",
+          "reason": "selection_limit"
+        },
+        {
+          "kind": "evidence",
+          "id": "before",
+          "reason": "selection_limit"
+        },
+        {
+          "kind": "notebook",
+          "id": "unrelated",
+          "reason": "not_relevant_to_this_decision"
+        },
+        {
+          "kind": "project",
+          "id": "p",
+          "reason": "context_budget"
+        }
+      ],
+      "omissions": {
+        "candidate_count": 13,
+        "omitted_count": 12,
+        "omission_digest": "29ce2119575495ccf50179f28bc33e6d94122ae5eab55518f8a838d02197075e",
+        "coverage": {
+          "projection_records": 13,
+          "payloads_scanned": 13,
+          "unscanned_records": 0,
+          "retrieval_candidates_unvisited": 0,
+          "candidate_overflow_count": 0,
+          "candidate_overflow_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      },
+      "candidate_recall_coverage": 1.0,
+      "labeled_relevant_selection_rate": 1.0,
+      "labeled_irrelevant_selection_count": 0,
+      "missing_provenance_count": 0,
+      "incorrect_source_eligibility_count": 0,
+      "missing_evidence_root_count": 0,
+      "provider_input_chars": {
+        "baseline": 1423,
+        "recall": 3843,
+        "ablation": 4161
+      },
+      "capsule_chars": 2394,
+      "computation_ms": 1.17,
+      "checks": {
+        "required_selected": true,
+        "irrelevant_excluded": true,
+        "deterministic": true,
+        "state_unchanged": true,
+        "protected_obligations_retained": true,
+        "provenance_exact": true,
+        "source_eligibility_preserved": true,
+        "capsule_budget": true,
+        "provider_budget": true,
+        "ablation_removes_selected": true
+      },
+      "passed": true,
+      "cross_topic_selections": 0
+    },
+    {
+      "scenario": "unimportant_memory",
+      "starting_state_hash": "bcdb23d155fb83fefa0a13aea7a88a060fe27d0c653fd58987dbff74a178acdf",
+      "synthetic_source_head": "2d8e4edd9e842be732c44acdaba46e925bdcb85db671f7e05ec7b766669324cd",
+      "selected": [
+        {
+          "kind": "project",
+          "id": "p",
+          "selection_reasons": [
+            "attention_topic",
+            "current_project",
+            "question_term_overlap",
+            "contextual_lead"
+          ]
+        }
+      ],
+      "exclusions": [
+        {
+          "kind": "notebook",
+          "id": "recent-long",
+          "reason": "not_relevant_to_this_decision"
+        }
+      ],
+      "omissions": {
+        "candidate_count": 2,
+        "omitted_count": 1,
+        "omission_digest": "70a9fbb506fdb1b9266c94337ebbaef477b38967bdba277a033af199aca7adb2",
+        "coverage": {
+          "projection_records": 2,
+          "payloads_scanned": 2,
+          "unscanned_records": 0,
+          "retrieval_candidates_unvisited": 0,
+          "candidate_overflow_count": 0,
+          "candidate_overflow_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      },
+      "candidate_recall_coverage": 0.0,
+      "labeled_relevant_selection_rate": 0.0,
+      "labeled_irrelevant_selection_count": 0,
+      "missing_provenance_count": 0,
+      "incorrect_source_eligibility_count": 0,
+      "missing_evidence_root_count": 0,
+      "provider_input_chars": {
+        "baseline": 85,
+        "recall": 2223,
+        "ablation": 1491
+      },
+      "capsule_chars": 2112,
+      "computation_ms": 0.613,
+      "checks": {
+        "required_selected": true,
+        "irrelevant_excluded": true,
+        "deterministic": true,
+        "state_unchanged": true,
+        "protected_obligations_retained": true,
+        "provenance_exact": true,
+        "source_eligibility_preserved": true,
+        "capsule_budget": true,
+        "provider_budget": true,
+        "ablation_removes_selected": true
+      },
+      "passed": true,
+      "cross_topic_selections": 0
+    },
+    {
+      "scenario": "superseded_memory",
+      "starting_state_hash": "35836bdd37ee98670afff4bce7da627a5bd418b528efd04e3fd32149633677c2",
+      "synthetic_source_head": "566677a5f03b5115f249815b5a3edd437c7e9e2a67ac0457814973607e3c956a",
+      "selected": [
+        {
+          "kind": "notebook",
+          "id": "revised",
+          "selection_reasons": [
+            "attention_topic",
+            "current_project",
+            "question_term_overlap",
+            "contextual_lead",
+            "correction",
+            "recorded_limitation"
+          ]
+        },
+        {
+          "kind": "review",
+          "id": "revised@2",
+          "selection_reasons": [
+            "current_project",
+            "question_term_overlap",
+            "contextual_lead",
+            "explicit_review"
+          ]
+        },
+        {
+          "kind": "project",
+          "id": "p",
+          "selection_reasons": [
+            "attention_topic",
+            "current_project",
+            "question_term_overlap",
+            "contextual_lead"
+          ]
+        }
+      ],
+      "exclusions": [],
+      "omissions": {
+        "candidate_count": 3,
+        "omitted_count": 0,
+        "omission_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "coverage": {
+          "projection_records": 3,
+          "payloads_scanned": 3,
+          "unscanned_records": 0,
+          "retrieval_candidates_unvisited": 0,
+          "candidate_overflow_count": 0,
+          "candidate_overflow_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      },
+      "candidate_recall_coverage": 1.0,
+      "labeled_relevant_selection_rate": 1.0,
+      "labeled_irrelevant_selection_count": 0,
+      "missing_provenance_count": 0,
+      "incorrect_source_eligibility_count": 0,
+      "missing_evidence_root_count": 0,
+      "provider_input_chars": {
+        "baseline": 85,
+        "recall": 3950,
+        "ablation": 2907
+      },
+      "capsule_chars": 3839,
+      "computation_ms": 0.774,
+      "checks": {
+        "required_selected": true,
+        "irrelevant_excluded": true,
+        "deterministic": true,
+        "state_unchanged": true,
+        "protected_obligations_retained": true,
+        "provenance_exact": true,
+        "source_eligibility_preserved": true,
+        "capsule_budget": true,
+        "provider_budget": true,
+        "ablation_removes_selected": true
+      },
+      "passed": true,
+      "cross_topic_selections": 0
+    },
+    {
+      "scenario": "adversarial_content",
+      "starting_state_hash": "d77668b0fad0c653946796ae754ee74ed6208a1a34abaca766273dd92cb6c91a",
+      "synthetic_source_head": "d116329b7e90e0453fd9c0ae36f5a4c30a6995d6c85aa80ac75ab49e258ba739",
+      "selected": [
+        {
+          "kind": "project",
+          "id": "p",
+          "selection_reasons": [
+            "attention_topic",
+            "current_project",
+            "question_term_overlap",
+            "contextual_lead"
+          ]
+        },
+        {
+          "kind": "evidence",
+          "id": "hostile",
+          "selection_reasons": [
+            "question_term_overlap",
+            "contextual_lead"
+          ]
+        }
+      ],
+      "exclusions": [],
+      "omissions": {
+        "candidate_count": 2,
+        "omitted_count": 0,
+        "omission_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "coverage": {
+          "projection_records": 2,
+          "payloads_scanned": 2,
+          "unscanned_records": 0,
+          "retrieval_candidates_unvisited": 0,
+          "candidate_overflow_count": 0,
+          "candidate_overflow_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      },
+      "candidate_recall_coverage": 1.0,
+      "labeled_relevant_selection_rate": 1.0,
+      "labeled_irrelevant_selection_count": 0,
+      "missing_provenance_count": 0,
+      "incorrect_source_eligibility_count": 0,
+      "missing_evidence_root_count": 0,
+      "provider_input_chars": {
+        "baseline": 247,
+        "recall": 2985,
+        "ablation": 2252
+      },
+      "capsule_chars": 2712,
+      "computation_ms": 0.576,
+      "checks": {
+        "required_selected": true,
+        "irrelevant_excluded": true,
+        "deterministic": true,
+        "state_unchanged": true,
+        "protected_obligations_retained": true,
+        "provenance_exact": true,
+        "source_eligibility_preserved": true,
+        "capsule_budget": true,
+        "provider_budget": true,
+        "ablation_removes_selected": true
+      },
+      "passed": true,
+      "cross_topic_selections": 0
+    },
+    {
+      "scenario": "multiple_nodes_same_work",
+      "starting_state_hash": "ca6f50109c983697594b42b71a37ef1f3147f10507398ed2c6e6e3572a68aa93",
+      "synthetic_source_head": "3a261934f32072edfbcd7bdf8bb6e45a6fe69a13cd1b272e32660410d6e27063",
+      "selected": [
+        {
+          "kind": "evidence",
+          "id": "copy-a",
+          "selection_reasons": [
+            "attention_topic",
+            "question_term_overlap",
+            "recorded_evidence_roots",
+            "contextual_lead",
+            "source_handoff"
+          ]
+        },
+        {
+          "kind": "project",
+          "id": "p",
+          "selection_reasons": [
+            "attention_topic",
+            "current_project",
+            "question_term_overlap",
+            "contextual_lead"
+          ]
+        }
+      ],
+      "exclusions": [
+        {
+          "kind": "evidence",
+          "id": "copy-b",
+          "reason": "duplicate_source_work"
+        }
+      ],
+      "omissions": {
+        "candidate_count": 3,
+        "omitted_count": 1,
+        "omission_digest": "2a993e54bfe70afa2210c1932c5918d92fc2cb38308e79dafddd8999c3a13c04",
+        "coverage": {
+          "projection_records": 3,
+          "payloads_scanned": 3,
+          "unscanned_records": 0,
+          "retrieval_candidates_unvisited": 0,
+          "candidate_overflow_count": 0,
+          "candidate_overflow_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      },
+      "candidate_recall_coverage": 1.0,
+      "labeled_relevant_selection_rate": 1.0,
+      "labeled_irrelevant_selection_count": 0,
+      "missing_provenance_count": 0,
+      "incorrect_source_eligibility_count": 0,
+      "missing_evidence_root_count": 0,
+      "provider_input_chars": {
+        "baseline": 820,
+        "recall": 3859,
+        "ablation": 2958
+      },
+      "capsule_chars": 3013,
+      "computation_ms": 1.085,
+      "checks": {
+        "required_selected": true,
+        "irrelevant_excluded": true,
+        "deterministic": true,
+        "state_unchanged": true,
+        "protected_obligations_retained": true,
+        "provenance_exact": true,
+        "source_eligibility_preserved": true,
+        "capsule_budget": true,
+        "provider_budget": true,
+        "ablation_removes_selected": true
+      },
+      "passed": true,
+      "cross_topic_selections": 0
+    },
+    {
+      "scenario": "missing_or_ineligible_source",
+      "starting_state_hash": "27abef1dc6bd81ccbb11f2757459119216291d6d1c6d063216e181b4d3af8f07",
+      "synthetic_source_head": "4ff5b470fbe06a3fb33846dbdc5fd88994c4fe3cad44d0c46bf2f299f7798fa4",
+      "selected": [
+        {
+          "kind": "notebook",
+          "id": "incomplete",
+          "selection_reasons": [
+            "attention_topic",
+            "current_project",
+            "question_term_overlap",
+            "recorded_evidence_roots",
+            "contextual_lead",
+            "recorded_limitation"
+          ]
+        },
+        {
+          "kind": "project",
+          "id": "p",
+          "selection_reasons": [
+            "attention_topic",
+            "current_project",
+            "question_term_overlap",
+            "contextual_lead"
+          ]
+        }
+      ],
+      "exclusions": [
+        {
+          "kind": "evidence",
+          "id": "metadata",
+          "reason": "source_not_eligible_or_not_materialized"
+        },
+        {
+          "kind": "evidence",
+          "id": "missing-record",
+          "reason": "missing_record"
+        }
+      ],
+      "omissions": {
+        "candidate_count": 4,
+        "omitted_count": 2,
+        "omission_digest": "97d73eb52c6b62b07cd3c63c30ba76a27a9c8db8d99a9f4a83183c3bd3df7683",
+        "coverage": {
+          "projection_records": 3,
+          "payloads_scanned": 3,
+          "unscanned_records": 0,
+          "retrieval_candidates_unvisited": 0,
+          "candidate_overflow_count": 0,
+          "candidate_overflow_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      },
+      "candidate_recall_coverage": 1.0,
+      "labeled_relevant_selection_rate": 1.0,
+      "labeled_irrelevant_selection_count": 0,
+      "missing_provenance_count": 0,
+      "incorrect_source_eligibility_count": 0,
+      "missing_evidence_root_count": 1,
+      "provider_input_chars": {
+        "baseline": 363,
+        "recall": 3513,
+        "ablation": 2501
+      },
+      "capsule_chars": 3124,
+      "computation_ms": 0.749,
+      "checks": {
+        "required_selected": true,
+        "irrelevant_excluded": true,
+        "deterministic": true,
+        "state_unchanged": true,
+        "protected_obligations_retained": true,
+        "provenance_exact": true,
+        "source_eligibility_preserved": true,
+        "capsule_budget": true,
+        "provider_budget": true,
+        "ablation_removes_selected": true
+      },
+      "passed": true,
+      "cross_topic_selections": 0
+    }
+  ],
+  "api_calls": 0,
+  "model_responses": 0,
+  "behavioral_quality_measured": false,
+  "provenance_metric_boundary": "missing_provenance_count measures delivered record identity/hash errors; missing_evidence_root_count separately reports unresolved references, including intentionally incomplete fixtures.",
+  "decision_changed": null,
+  "outcome_improved": null,
+  "limitations": [
+    "Synthetic projection labels measure selection, not scientific correctness or model comprehension.",
+    "Capsule ablation does not remove protected or already delivered baseline information.",
+    "No measured long-term adaptive improvement; no weights or policy change automatically."
+  ]
+}

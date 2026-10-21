@@ -308,6 +308,24 @@ The research charter adds project, research-request and notebook actions. It per
 
 ## Progressive abstraction and reversible lookup
 
+Optional decision-relevant memory is an application projection over this boundary,
+not a kernel authority or a separate store. `wake/decision_memory.py` ranks bounded
+record references against the current decision, and the engine assembles a
+version/head-bound Decision State Capsule only after mandatory context fits.
+`decision_memory_mode` defaults to `off`; `shadow` records a hypothetical delivery,
+while explicit `active` delivery reuses current source rehydration, eligibility,
+response schemas and exact provider-input limits. Optional recall never displaces
+protected obligations or provenance.
+
+Selection, delivery, explicit response references, controlled decision differences
+and independently evaluated benefits are different claims. Existing invocation
+and terminal receipts carry the first three observations and revision provenance;
+the latter two remain experimental questions. No historical receipt, governance
+rule, provider contract or kernel record schema changes. Older replay events
+without the optional metadata reconstruct as before. See
+[decision recall](retrieval.md#optional-decision-relevant-recall) and
+[controlled evaluation](experiment.md#decision-memory-evaluation).
+
 **WAKE✳︎** separates **retention fidelity** from **working fidelity**. The durable event record keeps exact
 requests, replies, evidence, revisions and provenance. A fresh invocation does not need every byte of that
 history in its active context. It receives a bounded working representation selected for the present task,

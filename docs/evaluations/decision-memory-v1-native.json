@@ -1,0 +1,49 @@
+{
+  "schema": "decision-memory-native-preparation@1",
+  "source_digest": "cd24eb539fa69a2b6319f2d25dd0cae862f3357b2fd4a6d0d17c6c92fad28135",
+  "baseline_head": "9c4234aa2a9df51a63dcdd44e2f3b42f289050a92d12205d23fb6327214d863e",
+  "baseline_state_hash": "a1249834645f85a69ebf96d9f76e720e70b86f5e6ea7d2922af605656af31a2a",
+  "trials": [
+    {
+      "arm": "baseline",
+      "starting_head": "9c4234aa2a9df51a63dcdd44e2f3b42f289050a92d12205d23fb6327214d863e",
+      "starting_state_hash": "a1249834645f85a69ebf96d9f76e720e70b86f5e6ea7d2922af605656af31a2a",
+      "request_hash": "bb696d00f124cb8eb7cd9fd85cedbb6c2394591e6bd3ae8ef01d11705fe5fc57",
+      "provider_input_chars": 15601,
+      "capsule_record_ids": [],
+      "status": "prepared_not_submitted",
+      "api_calls": 0
+    },
+    {
+      "arm": "recall",
+      "starting_head": "9c4234aa2a9df51a63dcdd44e2f3b42f289050a92d12205d23fb6327214d863e",
+      "starting_state_hash": "a1249834645f85a69ebf96d9f76e720e70b86f5e6ea7d2922af605656af31a2a",
+      "request_hash": "f140944e65d01e115c23b2f87f32880341e03e5e981efc0aec1d8cf290c5bdc9",
+      "provider_input_chars": 19602,
+      "capsule_record_ids": [
+        "comparison-baseline",
+        "comparison-counterexample",
+        "comparison-sensor"
+      ],
+      "status": "prepared_not_submitted",
+      "api_calls": 0
+    },
+    {
+      "arm": "ablation",
+      "starting_head": "9c4234aa2a9df51a63dcdd44e2f3b42f289050a92d12205d23fb6327214d863e",
+      "starting_state_hash": "a1249834645f85a69ebf96d9f76e720e70b86f5e6ea7d2922af605656af31a2a",
+      "request_hash": "d40226ac1b240e7c60e280b593ac8ba60088520e5f295515e23eddaed40050c9",
+      "provider_input_chars": 18978,
+      "capsule_record_ids": [
+        "comparison-counterexample",
+        "comparison-sensor"
+      ],
+      "status": "prepared_not_submitted",
+      "api_calls": 0
+    }
+  ],
+  "model_responses": 0,
+  "decision_changed": null,
+  "outcome_improved": null,
+  "limitation": "Prepared requests only. Baseline already delivers the counterexample; this is integration evidence, not a strong causal recall experiment."
+}

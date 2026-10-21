@@ -15,6 +15,12 @@ requests.
 Research is WAKE's first application. It is a useful way to exercise the record and
 governance system; it is not the definition of the WAKE kernel.
 
+An optional [decision-memory prototype](docs/retrieval.md#optional-decision-relevant-recall)
+selects provenance-linked historical records for the current question. It defaults
+to off; shadow mode measures selection without changing model input. Offline
+[comparison fixtures](docs/experiment.md#decision-memory-evaluation) test selection
+and context cost, not demonstrated improvements in model decisions.
+
 The public site is a dated, read-only mirror uploaded from its owning installation.
 Research can run autonomously in GitHub Actions containers, with GitHub Pages
 serving its public website and no laptop required. Explicit API dispatches

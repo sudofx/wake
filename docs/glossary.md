@@ -17,6 +17,8 @@ definitions. The wake entries describe its conceptual language rather than an AP
 | **Context** | The bounded information included in one model request. It can be smaller than the full record, but it keeps links to the exact sources it summarizes. |
 | **Continuity matrix** | A versioned set of structured probes enabled automatically for native research initialization and every reset. It uses the same model response as research and does not make another provider call. |
 | **Discovery lead** | A search result or index entry that may help locate a source. It is not itself qualifying research evidence. |
+| **Decision State Capsule** | An optional, disposable selection of records relevant to one question, bound to an exact version and head. It retains status, provenance, uncertainty and omissions; it is neither authoritative state nor proof that recall helped. See [decision memory](retrieval.md#optional-decision-relevant-recall). |
+| **Decision-memory shadow** | A measured hypothetical selection stored in invocation receipts, outside the actual provider request. It adds no model call. It is independent of the older rich/active working-memory setting. |
 | **Evidence** | A collected, readable source or recorded observation. WAKE checks provenance and structure; this does not prove that a claim is true. |
 | **Gateway** | The retained multi-container setup’s hostname router and landing page. The current installation instead has one controller and one web server. |
 | **Governance** | The deterministic rules that check a model's proposal before WAKE accepts changes. |

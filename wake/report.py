@@ -89,11 +89,6 @@ def _export_console_components(target):
         atomic_write(target / destination, content)
 
 
-def _pretty(value):
-    return json.dumps(value, indent=2, ensure_ascii=False, sort_keys=False)
-
-
-
 def _display_text(value):
     """Presentation-only WAKE wordmark normalization; canonical state stays untouched."""
     text = str(value).replace("WAKE✳️", "WAKE✳").replace("WAKE✳︎", "WAKE✳")
@@ -160,7 +155,7 @@ main{{position:relative;z-index:1;max-width:900px;margin:auto;padding:34px 22px 
 </style></head><body><div class=\"site-backdrop\" aria-hidden=\"true\"></div>
 <header class=\"masthead\">
   <div class=\"brand-lockup\"><a class=\"wordmark\" href=\"../index.html\">WAKE<span class=\"asterisk\">✳︎</span></a></div>
-  <nav class=\"compact-nav\" aria-label=\"Main navigation\"><a href=\"../index.html#discoveries\">Research</a><a href=\"../index.html#journal\">Journal</a><a href=\"../index.html#blog\">Bob’s Blog</a><!-- Read menu temporarily retired. <details class=\"nav-group\"><summary>Read</summary><div class=\"nav-dropdown\"><a href=\"../index.html#journal\">Journal</a><a href=\"../console.html?tool=projects\">Projects</a><a href=\"../index.html#blog\">Bob’s Blog</a></div></details> --></nav>
+  <nav class=\"compact-nav\" aria-label=\"Main navigation\"><a href=\"../index.html#discoveries\">Research</a><a href=\"../index.html#journal\">Journal</a><a href=\"../index.html#blog\">Bob’s Blog</a></nav>
   <div class=\"header-tools\"><a class=\"repo-link\" href=\"https://github.com/sudofx/wake\" aria-label=\"Open WAKE repository\" title=\"WAKE repository\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M12 .7a11.3 11.3 0 0 0-3.57 22c.57.1.77-.25.77-.55v-2.17c-3.14.68-3.8-1.33-3.8-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.03-.7.08-.69.08-.69 1.13.08 1.73 1.16 1.73 1.16 1.01 1.73 2.65 1.23 3.3.94.1-.73.39-1.23.72-1.51-2.51-.29-5.15-1.26-5.15-5.59 0-1.24.44-2.25 1.16-3.04-.12-.29-.5-1.44.11-3 0 0 .95-.3 3.11 1.16a10.8 10.8 0 0 1 5.66 0C17.03 5 17.98 5.3 17.98 5.3c.61 1.56.23 2.71.11 3 .72.79 1.16 1.8 1.16 3.04 0 4.34-2.65 5.3-5.17 5.58.41.35.77 1.04.77 2.1v3.13c0 .3.2.66.78.55A11.3 11.3 0 0 0 12 .7Z\"/></svg></a><a class=\"console-link\" href=\"../console.html\" aria-label=\"Open WAKE Console\" title=\"Console\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4.2 16.8a8.8 8.8 0 1 1 15.6 0\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/><path d=\"M6.8 14.3l-1.7-.8M8.2 9.8 7 8.5M12 8V6.2M15.8 9.8 17 8.5M17.2 14.3l1.7-.8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\"/><path d=\"M12 16l3.8-4.4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><circle cx=\"12\" cy=\"16\" r=\"1.35\" fill=\"currentColor\"/></svg></a><a class=\"actions-light\" href=\"https://github.com/sudofx/wake/actions\" aria-label=\"Open WAKE GitHub Actions\" title=\"Checking…\"><span class=\"actions-light-track\" aria-hidden=\"true\"><i></i></span><span class=\"actions-light-label\">Checking…</span></a></div>
 </header>
 <main><article class=\"reading-panel\"><div class=\"eyebrow\">{html.escape(eyebrow)}</div>{meta_html}<h1>{html.escape(title)}</h1><nav class=\"reading-links\"><a href=\"{html.escape(back_href)}\">WAKE site</a><a href=\"../map.html\">MAP</a><a href=\"{html.escape(record_href)}\">Open in WAKE</a></nav>{body}</article></main><script src=\"../nav.js\"></script></body></html>"""
@@ -363,34 +358,6 @@ def _blog_html(post, state):
 
 
 
-def _browser_route_shell(route, prefix="../"):
-    """Tiny compatibility page: preserve old URLs while rendering from current browser data."""
-    target = prefix + "index.html" + route
-    safe = json.dumps(target)
-    return (
-        '<!doctype html><html lang="en"><head><meta charset="utf-8">'
-        '<meta name="viewport" content="width=device-width,initial-scale=1">'
-        '<meta name="robots" content="noindex">'
-        '<title>WAKE✳︎</title></head><body data-wake-route-shell>'
-        '<p>Opening the current WAKE✳︎ record…</p>'
-        f'<script>location.replace({safe});</script>'
-        f'<noscript><a href="{html.escape(target)}">Open the current WAKE✳︎ record</a></noscript>'
-        '</body></html>'
-    )
-
-
-def _write_browser_route_shell(path, route, prefix="../"):
-    """Write a route shell once; later publications reuse it unchanged."""
-    path = Path(path)
-    if path.exists():
-        try:
-            if "data-wake-route-shell" in path.read_text(encoding="utf-8"):
-                return
-        except (OSError, UnicodeDecodeError):
-            pass
-    atomic_write(path, _browser_route_shell(route, prefix=prefix))
-
-
 def _flat_browser_shell(title, eyebrow, heading, description, kind, source):
     """Stable standalone shell whose facts are fetched from flat exports in-browser."""
     return f'''<!doctype html>
@@ -400,7 +367,7 @@ def _flat_browser_shell(title, eyebrow, heading, description, kind, source):
 <link rel="stylesheet" href="style.css"><link rel="stylesheet" href="nav.css?v=20261004-15"><link rel="stylesheet" href="theme.css?v=20261004-15"></head>
 <body data-flat-kind="{html.escape(kind)}" data-flat-source="{html.escape(source)}">
 <header class="masthead"><div class="brand-lockup"><a class="wordmark" href="index.html">WAKE<span class="asterisk">✳︎</span></a></div>
-<nav class="compact-nav" aria-label="Main navigation"><a href="index.html#discoveries">Research</a><a href="index.html#journal">Journal</a><a href="index.html#blog">Bob’s Blog</a><!-- Read menu temporarily retired. <details class="nav-group"><summary>Read</summary><div class="nav-dropdown"><a href="index.html#journal">Journal</a><a href="console.html?tool=projects">Projects</a><a href="index.html#blog">Bob’s Blog</a></div></details> --></nav><div class="header-tools"><a class="repo-link" href="https://github.com/sudofx/wake" aria-label="Open WAKE repository" title="WAKE repository"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .7a11.3 11.3 0 0 0-3.57 22c.57.1.77-.25.77-.55v-2.17c-3.14.68-3.8-1.33-3.8-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.03-.7.08-.69.08-.69 1.13.08 1.73 1.16 1.73 1.16 1.01 1.73 2.65 1.23 3.3.94.1-.73.39-1.23.72-1.51-2.51-.29-5.15-1.26-5.15-5.59 0-1.24.44-2.25 1.16-3.04-.12-.29-.5-1.44.11-3 0 0 .95-.3 3.11 1.16a10.8 10.8 0 0 1 5.66 0C17.03 5 17.98 5.3 17.98 5.3c.61 1.56.23 2.71.11 3 .72.79 1.16 1.8 1.16 3.04 0 4.34-2.65 5.3-5.17 5.58.41.35.77 1.04.77 2.1v3.13c0 .3.2.66.78.55A11.3 11.3 0 0 0 12 .7Z"/></svg></a><a class="console-link" href="console.html" aria-label="Open WAKE Console" title="Console"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.2 16.8a8.8 8.8 0 1 1 15.6 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M6.8 14.3l-1.7-.8M8.2 9.8 7 8.5M12 8V6.2M15.8 9.8 17 8.5M17.2 14.3l1.7-.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 16l3.8-4.4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="16" r="1.35" fill="currentColor"/></svg></a><a class="actions-light" href="https://github.com/sudofx/wake/actions" aria-label="Open WAKE GitHub Actions" title="Checking…"><span class="actions-light-track" aria-hidden="true"><i></i></span><span class="actions-light-label">Checking…</span></a></div></header>
+<nav class="compact-nav" aria-label="Main navigation"><a href="index.html#discoveries">Research</a><a href="index.html#journal">Journal</a><a href="index.html#blog">Bob’s Blog</a></nav><div class="header-tools"><a class="repo-link" href="https://github.com/sudofx/wake" aria-label="Open WAKE repository" title="WAKE repository"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .7a11.3 11.3 0 0 0-3.57 22c.57.1.77-.25.77-.55v-2.17c-3.14.68-3.8-1.33-3.8-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.03-.7.08-.69.08-.69 1.13.08 1.73 1.16 1.73 1.16 1.01 1.73 2.65 1.23 3.3.94.1-.73.39-1.23.72-1.51-2.51-.29-5.15-1.26-5.15-5.59 0-1.24.44-2.25 1.16-3.04-.12-.29-.5-1.44.11-3 0 0 .95-.3 3.11 1.16a10.8 10.8 0 0 1 5.66 0C17.03 5 17.98 5.3 17.98 5.3c.61 1.56.23 2.71.11 3 .72.79 1.16 1.8 1.16 3.04 0 4.34-2.65 5.3-5.17 5.58.41.35.77 1.04.77 2.1v3.13c0 .3.2.66.78.55A11.3 11.3 0 0 0 12 .7Z"/></svg></a><a class="console-link" href="console.html" aria-label="Open WAKE Console" title="Console"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.2 16.8a8.8 8.8 0 1 1 15.6 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M6.8 14.3l-1.7-.8M8.2 9.8 7 8.5M12 8V6.2M15.8 9.8 17 8.5M17.2 14.3l1.7-.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 16l3.8-4.4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="16" r="1.35" fill="currentColor"/></svg></a><a class="actions-light" href="https://github.com/sudofx/wake/actions" aria-label="Open WAKE GitHub Actions" title="Checking…"><span class="actions-light-track" aria-hidden="true"><i></i></span><span class="actions-light-label">Checking…</span></a></div></header>
 <main><div class="page-heading"><p class="eyebrow">{html.escape(eyebrow)}</p><h1>{html.escape(heading)}</h1><p>{html.escape(description)}</p></div><div id="flat-content"></div></main>
 <script src="flat-view.js"></script><script src="nav.js"></script></body></html>'''
 
@@ -514,7 +481,6 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             "nebula-desktop-1680x1050.webp",
             "nebula-ipad-landscape-2360x1640.webp",
             "nebula-iphone12mini-1080x2340.webp",
-            "nebula-console-mockup.webp",
             "console-globe.png",
             "console-cube.png",
             "console-graph.png",

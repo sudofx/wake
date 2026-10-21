@@ -38,18 +38,20 @@ def parser():
     quality = sub.add_parser("evidence-quality", help="Compute diagnostics from the full authoritative record, not clipped public text")
     quality.add_argument("--output", help="Write the complete diagnostic JSON")
     comparison = sub.add_parser("comparison", help="Controlled paired memory/model trials in isolated records")
-    comparison.add_argument("operation", choices=["init", "prepare", "complete", "run", "report"])
+    comparison.add_argument("operation", choices=["init", "prepare", "complete", "run", "report", "evaluate"])
     comparison.add_argument("--output", required=True, help="Dedicated comparison directory")
-    comparison.add_argument("--arm", choices=["rich", "active"])
+    comparison.add_argument("--arm", choices=["rich", "active", "baseline", "recall", "ablation"])
+    comparison.add_argument("--decision-memory", action="store_true", help="Initialize baseline/recall/ablation arms; no API calls")
     comparison.add_argument("--model")
     comparison.add_argument("--trial", help="Prepared trial key for completion")
     comparison.add_argument("--reply", help="Unedited manual JSON reply")
     comparison.add_argument("--fixture", action="store_true", help="Exercise plumbing without live-model evidence")
+    comparison.add_argument("--cases", help="Labeled decision-memory JSON fixtures for offline evaluation")
     sub.add_parser("correction-demo", help="Append an operator-controlled false-count correction and supersession; no API call")
     sub.add_parser("enable-continuity-matrix", help="Durably opt into continuity@1 without calling a provider")
     reset = sub.add_parser("reset", help="Start a new active WAKE generation at 0 while preserving prior wake history")
     reset.add_argument("--confirm", action="store_true",
-                       help="Confirm deletion of all accumulated WAKE state")
+                       help="Confirm a new active generation at cycle zero; preserve prior record history")
     reset.add_argument("--output", default="site",
                        help="Generated report directory to replace (default: site)")
     recover = sub.add_parser("recover", help="Rebuild a corrupt projection; close an interrupted invocation")
@@ -145,8 +147,15 @@ def execute(args):
     settings = config(args.config)
     if args.command == "comparison":
         from .comparison import create_comparison, prepare_trial, complete_trial, run_trial, comparison_report
+        if args.operation == "evaluate":
+            from .comparison import evaluate_decision_memory
+            require(args.cases, "Offline decision-memory evaluation requires --cases")
+            require(not Path(args.output).exists(), "Evaluation output must be new")
+            report = evaluate_decision_memory(args.cases)
+            atomic_write(args.output, json.dumps(report, indent=2))
+            return report
         if args.operation == "init":
-            return create_comparison(args.output, settings)
+            return create_comparison(args.output, settings, decision_memory=args.decision_memory)
         if args.operation == "report":
             return comparison_report(args.output)
         if args.operation == "complete":

@@ -4,6 +4,11 @@ For a first public website, follow [GitHub Pages setup](setup.md#2-github-pages-
 Pages displays exported snapshots. The separate Actions runtime described below
 runs research and requires verified encrypted records before it can start.
 
+The optional [decision-memory feature](retrieval.md#optional-decision-relevant-recall)
+defaults to off. A hypothetical shadow capsule is invocation telemetry, never a
+public snapshot or a source of research authority. Enabling active delivery is
+an explicit runtime configuration choice, separate from publishing source or Pages.
+
 ## Publish the local installation mirror
 
 Research runs in containers. Each node owns its durable SQLite record; the website

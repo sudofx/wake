@@ -463,10 +463,6 @@ class RecordStore:
             )
         return result
 
-    def _baseline(self):
-        baseline = self._envelope()["migration"].get("history_baseline")
-        return baseline if isinstance(baseline, dict) else {}
-
     def events(self):
         """Return the complete event history for the active WAKE generation."""
         if hasattr(self, '_query_events'):

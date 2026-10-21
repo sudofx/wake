@@ -20,6 +20,7 @@ from .providers import Fixture, Gemini
 from .report import atomic_write
 
 ARMS = {"rich": "shadow", "active": "active"}
+DECISION_ARMS = {"baseline": "active", "recall": "active", "ablation": "active"}
 CLAIM = "comparison-sensor"
 OBLIGATION = "comparison-review"
 CONTRADICTION = "comparison-counterexample"
@@ -49,12 +50,13 @@ def _settings(settings, arm):
     return {**deepcopy(DEFAULTS),
             **{k: deepcopy(v) for k, v in settings.items() if k in DEFAULTS},
             "objective": "Review inherited sensor claims against recorded measurements; retain provenance and explain revisions.",
-            "memory_mode": ARMS[arm], "same_wake_research": False,
+            "memory_mode": {**ARMS, **DECISION_ARMS}[arm], "same_wake_research": False,
+            "decision_memory_mode": "active" if arm in ("recall", "ablation") else "off",
             "gemini_fallback_models": [], "model_daily_call_limits": {},
             "daily_call_limit": 4, "inquiry_drive_enabled": False}
 
 
-def create_comparison(output, settings):
+def create_comparison(output, settings, *, decision_memory=False):
     root = Path(output).resolve()
     require(not root.exists(), "Comparison output must be new; existing records are never replaced")
     root.mkdir(parents=True)
@@ -92,7 +94,7 @@ def create_comparison(output, settings):
                     "baseline_state_hash": state_hash,
                     "baseline_sha256": hashlib.sha256((root / "baseline.sqlite").read_bytes()).hexdigest(),
                     "scenario": "controlled synthetic contradiction and inherited obligation",
-                    "arms": ARMS, "settings": cfg, "trials": [],
+                    "arms": DECISION_ARMS if decision_memory else ARMS, "settings": cfg, "trials": [],
                     "maximum_api_requests": 4,
                     "human_rubric": ["Does the explanation identify the conflict between 10 and 17?",
                                      "Does the revised claim stay within the measurements' scope?",
@@ -138,13 +140,14 @@ def _load(root):
 
 
 def _trial(root, manifest, arm, model):
-    require(arm in ARMS and isinstance(model, str) and 0 < len(model) <= 120, "Invalid comparison arm or model")
+    require(arm in manifest["arms"] and isinstance(model, str) and 0 < len(model) <= 120, "Invalid comparison arm or model")
     key = digest({"arm": arm, "model": model})[:16]
     require(not any(t["key"] == key for t in manifest["trials"]), "This arm/model already has a trial; preserve it and create another experiment for repeats")
     directory = root / "trials" / key
     directory.mkdir(parents=True)
     (directory / "wake.sqlite").write_bytes((root / "baseline.sqlite").read_bytes())
     engine = Engine(directory, _settings(manifest["settings"], arm), store=open_authoritative_store(directory))
+    engine._decision_memory_ablation = arm == "ablation"
     require(engine.store.head() == manifest["baseline_head"] and digest(engine.store.load()) == manifest["baseline_state_hash"],
             "Trial did not start from the frozen baseline")
     trial = {"key": key, "arm": arm, "model": model, "starting_head": manifest["baseline_head"],
@@ -186,7 +189,15 @@ def score_trial(engine, invocation):
               "inherited_obligation_resolved": obligation["status"] == "fulfilled" and obligation.get("resolved_by") == invocation,
               "measurement_used_for_resolution": any(a.get("type") == "resolve" and a.get("id") == OBLIGATION and CONTRADICTION in a.get("evidence", []) for a in actions),
               "original_observation_retained": "comparison-baseline" in state["evidence"] and "comparison-baseline" in belief["evidence"]}
+    recall = item.get("context_delivery", {}).get("decision_memory")
+    memory_evaluation = None
+    if recall is not None:
+        terminal = next((e for e in reversed(events) if e["kind"] in ("accepted", "rejected", "failed")
+                         and e["payload"].get("id") == invocation), {})
+        memory_evaluation = {"selection": recall, "use": terminal.get("payload", {}).get("metadata", {}).get("decision_memory_use"),
+                             "decision_changed": None, "outcome_improved": None}
     return {"checks": checks, "all_structural_checks_passed": all(checks.values()),
+            **({"decision_memory": memory_evaluation} if memory_evaluation is not None else {}),
             "explanation": belief.get("reason"), "terminal_status": item["status"],
             "terminal_head": engine.store.head(), "human_assessment": None}
 
@@ -256,12 +267,12 @@ def comparison_report(output):
                 attempt.get("result") == "success" for attempt in trial.get("provider_attempts", []))
     attempted_pairs = sorted({t["model"] for t in trials if all(any(
         other["model"] == t["model"] and other["arm"] == arm and other.get("evaluation")
-        for other in trials) for arm in ARMS)})
+        for other in trials) for arm in manifest["arms"])})
     paired_models = sorted({t["model"] for t in trials if all(any(
         other["model"] == t["model"] and other["arm"] == arm and other.get("evaluation")
         and (other.get("behavioral_evidence") or
              (other.get("identity") == "human-attested" and other["status"] in ("accepted", "rejected")))
-        for other in trials) for arm in ARMS)})
+        for other in trials) for arm in manifest["arms"])})
     return {"schema_version": 1, "baseline_head": manifest["baseline_head"],
             "source_digest": manifest.get("source_digest"),
             "scenario": manifest["scenario"], "paired_models": paired_models,
@@ -270,3 +281,80 @@ def comparison_report(output):
             "trials": trials, "human_rubric": manifest["human_rubric"],
             "behavioral_equivalence_established": False,
             "limitations": manifest["limitations"]}
+
+
+def evaluate_decision_memory(fixture_file):
+    """A/B/C mechanical evaluation on frozen labeled projections; no inference.
+
+    Native baseline backups/manual/model trials above remain the behavioral
+    comparison path. This report never mistakes fixture selection for model use.
+    """
+    from time import perf_counter
+    from .decision_memory import decision_context, rank_candidates, build_capsule, policy_config, validate_capsule, KINDS
+    from .providers import provider_input_chars
+    from .export_cache import code_fingerprint
+    fixtures = json.loads(Path(fixture_file).read_text())
+    require(fixtures.get("schema") == "decision-memory-fixtures@1", "Unknown decision-memory fixture schema")
+    rows = []
+    for case in fixtures["cases"]:
+        state = deepcopy(case["state"])
+        frozen = digest(state)
+        head = digest({"synthetic_projection": state})
+        before = perf_counter()
+        decision = decision_context(state)
+        policy = policy_config(case.get("policy"))
+        plan = rank_candidates(state, case["retrieval"], decision, policy)
+        context = {"version": state["version"], "evidence": list(state.get("evidence", {}).values()),
+                   "beliefs": list(state.get("beliefs", {}).values()),
+                   "commitments": [c for c in state.get("commitments", {}).values() if c.get("status") == "open"]}
+        # The canonical eligibility owner is shared with live retrieval. These
+        # fixtures supply exact prose, so no network/source fetch is necessary.
+        eligible = [i for i in state.get("evidence", {}) if Engine.durable_notebook_source_payload(None, state, i) is not None]
+        result = build_capsule(state, head, plan, context, eligible_source_ids=eligible)
+        capsule = result["capsule"]
+        require(capsule is not None, "Fixture capsule metadata exceeds its declared budget")
+        validate_capsule(capsule, state, head)
+        repeat = build_capsule(state, head, rank_candidates(state, case["retrieval"], decision, policy),
+                               context, eligible_source_ids=eligible)
+        selected = capsule["selected_memories"]
+        ablate = next(({"kind": m["kind"], "id": m["id"]} for m in selected if m["kind"] != "commitment"), None)
+        control = build_capsule(state, head, plan, context, eligible_source_ids=eligible, ablate=ablate)
+        ids = {m["id"] for m in selected}
+        candidates = {m["id"] for m in plan["candidates"]}
+        required, irrelevant = set(case.get("required_ids", [])), set(case.get("irrelevant_ids", []))
+        protected = deepcopy(context["commitments"])
+        baseline_request = {"system": "Controlled offline fixture", "context": context}
+        recall_request = {**baseline_request, "context": {**context, "decision_state_capsule": capsule}}
+        ablation_request = {**baseline_request, "context": {**context, "decision_state_capsule": control["capsule"]}}
+        sizes = {name: provider_input_chars(r) for name, r in (("baseline", baseline_request), ("recall", recall_request), ("ablation", ablation_request))}
+        missing_provenance = sum(digest(state[KINDS[m["kind"]]][m["id"]]) != m["record_hash"] for m in selected)
+        eligibility_errors = sum(m["kind"] == "evidence" and state["evidence"][m["id"]].get("actor") == "collector"
+                                 and m["id"] not in eligible for m in selected)
+        checks = {"required_selected": required <= ids, "irrelevant_excluded": not bool(irrelevant & ids),
+                  "deterministic": canonical(result) == canonical(repeat),
+                  "state_unchanged": digest(state) == frozen, "protected_obligations_retained": context["commitments"] == protected,
+                  "provenance_exact": missing_provenance == 0, "source_eligibility_preserved": eligibility_errors == 0,
+                  "capsule_budget": len(canonical(capsule)) <= policy["capsule_chars"],
+                  "provider_budget": max(sizes.values()) <= 16000,
+                  "ablation_removes_selected": ablate is None or ablate not in [{"kind": m["kind"], "id": m["id"]} for m in (control["capsule"] or {}).get("selected_memories", [])]}
+        rows.append({"scenario": case["name"], "starting_state_hash": frozen, "synthetic_source_head": head,
+                     "selected": [{k: m[k] for k in ("kind", "id", "selection_reasons")} for m in selected],
+                     "exclusions": result["exclusions"], "omissions": capsule["omissions"],
+                     "candidate_recall_coverage": len(required & candidates) / max(1, len(required)),
+                     "labeled_relevant_selection_rate": len(required & ids) / max(1, len(required)),
+                     "labeled_irrelevant_selection_count": len(irrelevant & ids),
+                     "missing_provenance_count": missing_provenance, "incorrect_source_eligibility_count": eligibility_errors,
+                     "missing_evidence_root_count": sum(len(m["missing_roots"]) for m in selected),
+                     "provider_input_chars": sizes, "capsule_chars": len(canonical(capsule)),
+                     "computation_ms": round((perf_counter() - before) * 1000, 3),
+                     "checks": checks, "passed": all(checks.values()),
+                     "cross_topic_selections": sum("cross_topic_hypothesis_only" in m["selection_reasons"] for m in selected)})
+    return {"schema": "decision-memory-evaluation@1", "fixture_digest": digest(fixtures),
+            "source_fingerprint": code_fingerprint(), "selection_policy": policy_config(),
+            "scenario_count": len(rows), "passed": all(r["passed"] for r in rows), "scenarios": rows,
+            "api_calls": 0, "model_responses": 0, "behavioral_quality_measured": False,
+            "provenance_metric_boundary": "missing_provenance_count measures delivered record identity/hash errors; missing_evidence_root_count separately reports unresolved references, including intentionally incomplete fixtures.",
+            "decision_changed": None, "outcome_improved": None,
+            "limitations": ["Synthetic projection labels measure selection, not scientific correctness or model comprehension.",
+                            "Capsule ablation does not remove protected or already delivered baseline information.",
+                            "No measured long-term adaptive improvement; no weights or policy change automatically."]}

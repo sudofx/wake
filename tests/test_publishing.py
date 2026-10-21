@@ -122,12 +122,10 @@ class PublishingTests(unittest.TestCase):
                 self.assertIn('name="theme-color" content="#000000"', map3d_page)
                 for rendered_page in (map_page, map3d_page):
                     nav = rendered_page.split('<nav class="compact-nav"', 1)[1].split('</nav>', 1)[0]
-                    visible = nav.split('<!-- Read menu temporarily retired.', 1)[0]
-                    self.assertNotIn('>Home</a>', visible)
-                    self.assertNotIn('<summary>Read</summary>', visible)
-                    self.assertIn('<!-- Read menu temporarily retired.', nav)
-                    self.assertLess(visible.index('>Research</a>'), visible.index('>Journal</a>'))
-                    self.assertLess(visible.index('>Journal</a>'), visible.index('>Bob’s Blog</a>'))
+                    self.assertNotIn('>Home</a>', nav)
+                    self.assertNotIn('<summary>Read</summary>', nav)
+                    self.assertLess(nav.index('>Research</a>'), nav.index('>Journal</a>'))
+                    self.assertLess(nav.index('>Journal</a>'), nav.index('>Bob’s Blog</a>'))
                 self.assertNotIn("control.js", map_page)
                 self.assertNotIn("control.js", map3d_page)
                 events_page = (root / "site/events.html").read_text()

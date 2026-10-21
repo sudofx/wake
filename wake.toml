@@ -14,6 +14,9 @@ daily_call_limit = 500
 model_daily_call_limits = { "gemini-3.1-flash-lite" = 500, "gemini-3.8-flash" = 20, "gemini-3.5-flash-lite" = 500, "gemini-3.6-flash" = 20 }
 # Routine derived working memory; shadow restores rich delivery with overflow fallback.
 memory_mode = "active"
+# Optional decision recall is independent of rich/active working memory.
+# shadow measures a hypothetical capsule; active delivers it within remaining space.
+decision_memory_mode = "off"
 max_context_chars = 48000
 max_output_tokens = 8192
 # Allow bounded planning and answer responses to finish during transient latency.

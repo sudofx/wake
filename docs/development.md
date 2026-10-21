@@ -130,6 +130,7 @@ verified operation.
 | Record adoption / domain bridge | `wake/authority.py`, `record_store.py`, `application.py`, `domain_events.py`, `event_format.py` | One writable authority; immutable historical meaning and hashes |
 | Generic record/runtime | `wake/kernel/` | Deterministic receipt, replay, access and invocation contracts |
 | Research orchestration / context | `engine.py`, `prompts.py`, `memory.py`, `retrieval.py`, `trust.py`, `attention.py` | Derived context cannot rewrite record or waive obligations |
+| Decision-relevant recall | `decision_memory.py`, `engine.py`, `comparison.py` | Optional snapshot-bound context; existing eligibility and budgets, no learned policy or second authority |
 | Domain policy | `application_policy.py`, `governance.py`, `experimental.py` | Models propose; deterministic policy accepts or rejects |
 | Providers / quota | `providers.py`, `scheduling.py`, native kernel lifecycle | Every effect reserved and accounted; no fabricated progress |
 | Collection / evidence | `research.py`, `evidence_quality.py` | Untrusted prose, bounded transport, source readiness separate from truth |

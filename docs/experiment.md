@@ -229,6 +229,68 @@ pending reports on hosted installations carry no live pulse.
 
 ## Paired memory and model comparison
 
+### Decision-memory evaluation
+
+The decision-memory milestone measures a deterministic selector before making any
+claim about better model decisions. The feature defaults to off. It adds no
+provider calls, autonomous policy updates or production experiments.
+
+Run the ten labeled synthetic projection scenarios without a provider:
+
+```bash
+python -m wake comparison evaluate \
+  --cases tests/fixtures/decision_memory.json \
+  --output /tmp/decision-memory-evaluation.json
+python -m unittest discover -s tests -p 'test_decision_memory.py' -v
+```
+
+Choose a new output filename each time. The report records fixture and source
+fingerprints, candidate coverage on explicit labels, relevant selections,
+irrelevant selections, missing provenance, source-eligibility errors, character
+costs for baseline/recall/ablation, deterministic reproduction, protected
+obligations, cross-topic selection counts and evaluation overhead. The cases cover
+repeated failures, correction, distant relevance, cross-topic leads, pressure,
+unimportant material, superseded interpretation, hostile content, shared works
+across nodes and missing/ineligible sources. Synthetic projection hashes are
+explicitly labeled; they are not native production receipt heads.
+
+The native comparison harness also supports three frozen-record arms. Initialize
+an isolated synthetic installation, then prepare requests without making API calls:
+
+```bash
+python -m wake comparison init --decision-memory --output /tmp/decision-memory-trial
+python -m wake comparison prepare --arm baseline --model manual-review \
+  --output /tmp/decision-memory-trial
+python -m wake comparison prepare --arm recall --model manual-review \
+  --output /tmp/decision-memory-trial
+python -m wake comparison prepare --arm ablation --model manual-review \
+  --output /tmp/decision-memory-trial
+python -m wake comparison report --output /tmp/decision-memory-trial
+```
+
+All arms restore the same checked native backup and use the same existing active
+memory setting. Baseline disables decision memory; recall enables it; ablation
+omits the highest-ranked optional candidate under the declared policy. The
+omission also excludes equivalent copies of the same underlying collector work.
+The
+ablation flag exists only inside the comparison harness, not runtime settings.
+It never removes protected or already delivered baseline information. If baseline
+already contains the relevant fact, this is a weak ablation; report that rather
+than treating capsule removal as fact removal. The original rich/active paired
+protocol is unchanged when `--decision-memory` is absent.
+
+Complete prepared replies through the existing manual protocol below. Fixture
+responses test plumbing only. Live model comparisons require separate explicit
+authorization, repeated samples, frozen model/settings and a predeclared,
+independent scoring rubric. Keep provider/governance failures as failures. Report
+explicit references separately from proposal changes and scientific quality.
+Neither acceptance nor a favorable single response establishes beneficial recall.
+
+The next useful experiment is repeated, blinded grading on held-out cases where
+the relevant optional record is absent from baseline input. Match provider
+settings and budget, inspect failures, and report sample size, uncertainty,
+request cost and independent scores before recommending routine activation.
+
 `comparison` creates an isolated, frozen synthetic sensor record with a provisional
 belief, an inherited review obligation and a later contradictory measurement.
 It never reads, copies or modifies the operator's research database. Rich (`shadow`)

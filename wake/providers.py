@@ -623,57 +623,6 @@ def _retry_after_seconds(details):
             return min(3600, max(1, int(float(match.group(1)))))
     return None
 
-def _safe_provider_value(value, depth=0):
-    """Bound provider error JSON and drop fields that could plausibly contain credentials."""
-    if depth > 5:
-        return "[truncated]"
-    if isinstance(value, dict):
-        result = {}
-        for key, item in value.items():
-            name = str(key)
-            if re.search(r"(api.?key|token|authorization|credential|secret)", name, re.I):
-                continue
-            result[name[:120]] = _safe_provider_value(item, depth + 1)
-            if len(result) >= 24:
-                break
-        return result
-    if isinstance(value, list):
-        return [_safe_provider_value(item, depth + 1) for item in value[:24]]
-    if isinstance(value, str):
-        secret = os.environ.get("GEMINI_API_KEY")
-        if secret:
-            value = value.replace(secret, "[redacted]")
-        value = re.sub(r"(?i)([?&](?:key|api_key|token)=)[^&\s]+", r"\1[redacted]", value)
-        return value[:2000]
-    if value is None or isinstance(value, (bool, int, float)):
-        return value
-    return str(value)[:500]
-
-def _http_error_details(exc, elapsed_ms, payload_bytes):
-    """Extract only bounded, non-secret diagnostics from a provider HTTP error."""
-    details = {
-        "http_status": int(exc.code),
-        "elapsed_ms": int(elapsed_ms),
-        "request_payload_bytes": int(payload_bytes),
-    }
-    retry_after = exc.headers.get("Retry-After") if exc.headers else None
-    if retry_after:
-        details["retry_after"] = str(retry_after)[:120]
-    try:
-        raw = exc.read(32_001)
-    except Exception:
-        raw = b""
-    if raw:
-        details["response_bytes_captured"] = min(len(raw), 32_000)
-        try:
-            parsed = json.loads(raw[:32_000].decode("utf-8", "replace"))
-        except (ValueError, TypeError):
-            details["response_text"] = _safe_provider_value(raw[:32_000].decode("utf-8", "replace"))
-        else:
-            error = parsed.get("error", parsed) if isinstance(parsed, dict) else parsed
-            details["provider_error"] = _safe_provider_value(error)
-    return details
-
 class Gemini:
     name = "gemini"
     charged = True
