@@ -46,6 +46,9 @@ class HostedPresentationTests(unittest.TestCase):
             self.assertIn('"instance_name": "103.wake"', nested)
             self.assertIn('src="../hosted-status.js?', nested)
             self.assertTrue((root / 'nodes/103.wake/hosted-status.js').exists())
+            for name in ('research.js', 'research.css'):
+                self.assertEqual((root / 'nodes/103.wake' / name).read_bytes(),
+                                 (Path(__file__).resolve().parents[1] / 'wake/assets' / name).read_bytes())
             bind_hosted_status(root, 'example/repo', 'b' * 40)
             self.assertEqual((root / 'index.html').read_text().count('class="actions-light"'), 1)
             self.assertEqual((root / 'index.html').read_text().count('src="hosted-status.js?'), 1)
