@@ -253,6 +253,8 @@ repeated failures, correction, distant relevance, cross-topic leads, pressure,
 unimportant material, superseded interpretation, hostile content, shared works
 across nodes and missing/ineligible sources. Synthetic projection hashes are
 explicitly labeled; they are not native production receipt heads.
+The focused tests additionally check exact audit-to-model view binding and net
+character savings including the compact view's instructions.
 
 The native comparison harness also supports three frozen-record arms. Initialize
 an isolated synthetic installation, then prepare requests without making API calls:

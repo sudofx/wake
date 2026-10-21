@@ -11,7 +11,7 @@ an estimate of relevance, not evidence that remembering it helped.
 The feature defaults to **off**, independently of the existing `memory_mode`:
 
 ```toml
-# Existing rich/active memory behavior is unchanged.
+# Independent of memory_mode; this controls optional historical recall.
 decision_memory_mode = "off" # off, shadow, active
 ```
 
@@ -136,12 +136,22 @@ coverage. A low assessment never deletes or permanently disables a record.
 ### Decision State Capsule and delivery
 
 After the ordinary request has fit, the engine tries a disposable
-`decision-capsule@1` under `context.decision_state_capsule`. It binds the current
+`decision-capsule@1` retained in the invocation receipt. It binds the current
 application version and exact pre-invocation head, decision identity and policy
 digest to selected record hashes, provenance roots, source-work identities,
 selection reasons, statuses, uncertainties and omission evidence. The head includes
 the existing continuity observation and precedes `invocation_started`; it is an
 intended snapshot anchor, not a claim that the database stops advancing.
+
+The model receives this capsule under `context.decision_state_capsule`, or a
+`decision-capsule-view@1` when the smaller view saves characters including its
+extra instructions. The view's `audit_capsule_hash` binds the complete capsule.
+It shares repeated uncertainty and omits audit-only verification/scan digests,
+while retaining selected record hashes, root IDs, underlying work identities,
+node attribution, availability, corrections and caveats. Omitted audit details
+are unavailable in that invocation, never implied evidence. View validation
+requires the complete audit capsule and verifies exact projection equality before
+the existing snapshot and source checks. Both formats remain untrusted advice.
 
 Identical prose already in context is replaced with a content-location pointer.
 Open commitments stay in mandatory context rather than consuming optional slots.

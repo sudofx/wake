@@ -40,7 +40,7 @@ from .memory import (ACTIVE_MEMORY_SYSTEM, active_retrieval_plan, build_active_m
                      compact_retrieved_records, planning_context, preserve_retrieved_views)
 from .decision_memory import (validate_settings as validate_decision_memory_settings,
                               decision_context, rank_candidates, build_capsule,
-                              validate_capsule, reference_observation, DECISION_MEMORY_SYSTEM)
+                              validate_capsule, capsule_delivery, reference_observation, DECISION_MEMORY_SYSTEM)
 from .attention import assessment as attention_assessment, plan as attention_plan
 from .matrix_campaign import (
     MATRIX_SIDECAR_SYSTEM,
@@ -2231,7 +2231,9 @@ class Engine:
             capsule = result["capsule"]
             if capsule is None:
                 break
-            trial["context"]["decision_state_capsule"] = capsule
+            working_view, view_instructions = capsule_delivery(capsule)
+            trial["context"]["decision_state_capsule"] = working_view
+            trial["system"] += view_instructions
             overflow = provider_input_chars(trial) - self.config["max_context_chars"]
             if overflow <= 0:
                 selected_roots = list(dict.fromkeys(identifier for m in capsule["selected_memories"]
@@ -2241,7 +2243,7 @@ class Engine:
                 if set(selected_roots) != set(wanted):
                     wanted = selected_roots
                     continue
-                validate_capsule(capsule, state, head)
+                validate_capsule(working_view, state, head, audit_capsule=capsule)
                 fits = True
                 break
             budget = min(budget - 1, len(canonical(capsule)) - overflow - 32)
@@ -2264,10 +2266,12 @@ class Engine:
                 capsule = result["capsule"]
                 if capsule is None:
                     break
-                trial["context"]["decision_state_capsule"] = capsule
+                working_view, view_instructions = capsule_delivery(capsule)
+                trial["context"]["decision_state_capsule"] = working_view
+                trial["system"] += view_instructions
                 overflow = provider_input_chars(trial) - self.config["max_context_chars"]
                 if overflow <= 0:
-                    validate_capsule(capsule, state, head)
+                    validate_capsule(working_view, state, head, audit_capsule=capsule)
                     fits = True
                     break
                 budget = min(budget - 1, len(canonical(capsule)) - overflow - 32)
@@ -2279,6 +2283,7 @@ class Engine:
                    "selection_policy_version": 1, "selection_policy_digest": digest(policy),
                    "fits": fits, "delivered": mode == "active" and has_memory,
                    "source_materialization": source_materialization,
+                   "hypothetical_capsule_schema": hypothetical["context"].get("decision_state_capsule", {}).get("schema"),
                    "ablation": ablate, "baseline_request_hash": digest(request),
                    "hypothetical_request_hash": digest(hypothetical) if fits else None,
                    "baseline_provider_chars": provider_input_chars(request),

@@ -23,6 +23,8 @@ and context cost, not demonstrated improvements in model decisions.
 Active working context shares identical supplied facts and includes instructions for
 the current task. Planning keeps evidence, corrections and obligations while omitting
 proposal/publication-only views; the complete record remains unchanged.
+Optional recall can use a smaller model-facing view bound to its complete durable
+audit capsule; source availability and corrections stay explicit.
 
 The public site is a dated, read-only mirror uploaded from its owning installation.
 Research can run autonomously in GitHub Actions containers, with GitHub Pages

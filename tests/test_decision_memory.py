@@ -9,7 +9,8 @@ from unittest.mock import patch
 from wake.comparison import (evaluate_decision_memory, create_comparison, prepare_trial,
                              complete_trial, comparison_report, DECISION_ARMS)
 from wake.decision_memory import (decision_context, rank_candidates, build_capsule,
-                                  policy_config, validate_capsule, reference_observation)
+                                  policy_config, validate_capsule, capsule_view, capsule_delivery,
+                                  CAPSULE_VIEW_SYSTEM, VIEW_SCHEMA, reference_observation)
 from wake.engine import DEFAULTS, Engine, config
 from wake.event_format import canonical, digest
 from wake.governance import Rejected
@@ -130,6 +131,45 @@ class SelectionTests(unittest.TestCase):
         with self.assertRaisesRegex(Rejected,'provenance changed'):
             validate_capsule(capsule,modified,head)
 
+    def test_model_view_is_bound_to_complete_audit_and_preserves_absence(self):
+        for case in self.cases():
+            result, _ = self.select(case)
+            audit = result['capsule']; before = deepcopy(audit)
+            view = capsule_view(audit)
+            self.assertEqual(view['schema'], VIEW_SCHEMA)
+            self.assertEqual(view['audit_capsule_hash'], digest(audit))
+            validate_capsule(view, case['state'], digest(case['state']), audit_capsule=audit)
+            self.assertEqual(audit, before)
+            for original, compact in zip(audit['selected_memories'], view['selected_memories']):
+                for key in ('id','kind','record_hash','status','revision','evidence_roots',
+                            'missing_roots','roots_not_delivered_as_scientific_sources',
+                            'excerpt','requires_exact_rehydration','prior_interpretation',
+                            'current_review','origin','content_location'):
+                    self.assertEqual(compact.get(key), original.get(key), key)
+                self.assertEqual(compact.get('root_origins', {}),
+                                 {r['id']:r['origin'] for r in original['root_records'] if r.get('origin')})
+                self.assertEqual(compact['root_works'],
+                                 {r['id']:r['source_work'] for r in original['root_records']})
+                self.assertEqual(compact.get('uncertainty', view.get('uncertainty')), original['uncertainty'])
+            with self.assertRaisesRegex(Rejected, 'differs from audit'):
+                validate_capsule(view, case['state'], digest(case['state']))
+            tampered = deepcopy(view);tampered['decision_context']['question'] = 'Invented replacement'
+            with self.assertRaisesRegex(Rejected, 'differs from audit'):
+                validate_capsule(tampered, case['state'], digest(case['state']), audit_capsule=audit)
+
+    def test_compact_delivery_saves_net_characters_and_small_capsule_falls_back(self):
+        audit, _ = self.select(self.cases()[0]);audit = audit['capsule']
+        view, instructions = capsule_delivery(audit)
+        self.assertEqual(instructions, CAPSULE_VIEW_SYSTEM)
+        baseline = dict(system='policy', context=dict(decision_state_capsule=audit))
+        compact = dict(system='policy'+instructions, context=dict(decision_state_capsule=view))
+        self.assertLess(provider_input_chars(compact), provider_input_chars(baseline))
+        small = deepcopy(audit);small['selected_memories'] = []
+        for key in ('decision_context_id','selection_policy_digest','protected_context_digest'):
+            small.pop(key)
+        small['omissions'] = dict(coverage={})
+        self.assertEqual(capsule_delivery(small), (small, ''))
+
     def test_explicit_prior_interpretation_is_marked_superseded_and_hashed(self):
         case=self.cases()[1];state=case['state'];current=state['beliefs']['corrected']
         old={**current,'statement':'sensor calibration is within range','status':'active','confidence':0.8,'evidence':['before']}
@@ -218,7 +258,9 @@ class InvocationTests(unittest.TestCase):
         capsule=request['context']['decision_state_capsule']
         item=self.store.load()['invocations'][invocation]
         receipt=item['context_delivery']['decision_memory']
-        self.assertTrue(receipt['delivered']);self.assertEqual(receipt['capsule'],capsule)
+        self.assertTrue(receipt['delivered'])
+        self.assertEqual(capsule_delivery(receipt['capsule'])[0],capsule)
+        self.assertEqual(receipt['hypothetical_capsule_schema'],capsule['schema'])
         self.assertEqual(receipt['hypothetical_request_hash'],digest(request))
         self.assertLessEqual(provider_input_chars(request),self.engine.config['max_context_chars'])
         before=self.store.load()['objective']
@@ -269,13 +311,14 @@ class InvocationTests(unittest.TestCase):
 
     def test_independent_records_cannot_reuse_each_others_capsule(self):
         self.engine.config['decision_memory_mode']='active'
-        _,request=self.engine.start('manual','first',question='sensor calibration')
+        invocation,request=self.engine.start('manual','first',question='sensor calibration')
+        audit=self.store.load()['invocations'][invocation]['context_delivery']['decision_memory']['capsule']
         other=RecordStore(self.root/'other-node',initialize_empty=True)
         try:
             engine=Engine(other.directory,dict(DEFAULTS),store=other);engine.initialize()
             engine.observe('Different sensor calibration result','fixture:other-node',evidence_id='old-measurement')
             with self.assertRaisesRegex(Rejected,'Stale'):
-                validate_capsule(request['context']['decision_state_capsule'],other.load(),other.head())
+                validate_capsule(request['context']['decision_state_capsule'],other.load(),other.head(),audit_capsule=audit)
         finally:other.close()
 
     def test_no_space_discards_only_optional_recall_and_state_is_unchanged(self):

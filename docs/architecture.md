@@ -316,6 +316,10 @@ version/head-bound Decision State Capsule only after mandatory context fits.
 while explicit `active` delivery reuses current source rehydration, eligibility,
 response schemas and exact provider-input limits. Optional recall never displaces
 protected obligations or provenance.
+The durable receipt retains the full capsule; a smaller model-facing projection
+may share repeated caveats and omit audit-only digests. Its hash binds the complete
+capsule, and validation checks the exact projection before source/snapshot checks.
+Root work identities, attribution and unavailable-source labels remain visible.
 
 Selection, delivery, explicit response references, controlled decision differences
 and independently evaluated benefits are different claims. Existing invocation
