@@ -87,6 +87,9 @@ the owning controller runs locally or in a GitHub Actions container.
 
 A research run explicitly asks the GitHub API to start its successor. A separate
 completion-event workflow repairs failed handoffs. This is independent of cron.
+Both use stable workflow identity and run numbers to avoid duplicate successors.
+Quota waits preserve API capacity for controls; a failed batch with no successor
+for fifteen minutes is shown as stalled, rather than indefinitely recovering.
 Encrypted blocks transport complete native records between disposable runners;
 they are not a second governance engine. See [hosted operation](cloud.md#run-research-on-github-without-a-laptop).
 

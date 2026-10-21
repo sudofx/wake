@@ -251,9 +251,11 @@ class ContinuationTests(unittest.TestCase):
             def request(self, path, **kwargs):
                 if kwargs.get('method') == 'POST':
                     raise AssertionError('Duplicate chain dispatch')
+                if path == 'actions/runs/10':
+                    return {'path': '.github/workflows/hosted-research.yml', 'head_branch': 'master', 'run_number': 10}
                 return {'workflow_runs': [
-                    {'id': 10, 'status': 'completed', 'display_title': 'old run'},
-                    {'id': 11, 'status': 'in_progress', 'display_title': 'manual start'}]}
+                    {'id': 10, 'run_number': 10, 'status': 'completed', 'display_title': 'old run'},
+                    {'id': 11, 'run_number': 11, 'status': 'completed', 'display_title': 'WAKE — Hosted research'}]}
         with patch('scripts.github_research.api', return_value=Client()), \
              patch('scripts.github_research.enabled', return_value=True):
             continue_chain('10')
@@ -266,7 +268,9 @@ class ContinuationTests(unittest.TestCase):
                 if kwargs.get('method') == 'POST':
                     calls.append(kwargs['body'])
                     return
-                return {'workflow_runs': [{'id': 10, 'status': 'in_progress', 'display_title': 'current'}]}
+                if path == 'actions/runs/10':
+                    return {'path': '.github/workflows/hosted-research.yml', 'head_branch': 'master', 'run_number': 10}
+                return {'workflow_runs': [{'id': 10, 'run_number': 10, 'status': 'in_progress', 'display_title': 'current'}]}
         with patch('scripts.github_research.api', return_value=Client()), \
              patch('scripts.github_research.enabled', return_value=True), \
              patch('scripts.github_research.checked_revision', return_value='a' * 40):

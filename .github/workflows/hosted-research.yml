@@ -1,5 +1,6 @@
 name: WAKE — Hosted research
-run-name: WAKE hosted ${{ inputs.handoff || github.run_id }}
+# Keep the event name stable for independent completion recovery. Successor
+# reconciliation uses monotonic workflow run numbers, not display titles.
 
 on:
   workflow_dispatch:
@@ -31,7 +32,7 @@ jobs:
   research:
     if: github.ref_name == 'master'
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 240
     container: python:3.13-bookworm
     env:
       GH_TOKEN: ${{ github.token }}
@@ -57,7 +58,7 @@ jobs:
     needs: research
     if: always() && !cancelled()
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 75
     concurrency:
       group: wake-hosted-handoff
       cancel-in-progress: false

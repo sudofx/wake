@@ -53,6 +53,7 @@ jobs:
         run: |
           node --test deploy/activity-relay/tests/relay.test.js
           node tests/browser/hosted-activity-unit.cjs
+          node tests/browser/hosted-status-unit.cjs
       - name: Simulate 100 WAKE cycles
         if: github.event_name != 'push'
         run: python -m wake --data /tmp/wake-experiment experiment --cycles 100 --output site

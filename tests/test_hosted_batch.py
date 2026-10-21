@@ -7,6 +7,7 @@ import tempfile
 from types import SimpleNamespace
 import unittest
 from unittest.mock import MagicMock, patch
+from urllib.error import HTTPError
 
 from wake.installation_cli import NODE_IDS
 from scripts.github_research import run_batch
@@ -27,7 +28,7 @@ class HostedBatchTests(unittest.TestCase):
         publish.assert_called_once()
 
     def test_partial_start_runs_confirmed_workers_and_no_ack_closes_but_both_publish(self):
-        for acknowledged in (True, False):
+        for acknowledged in (True, False, 'control-failure'):
             with self.subTest(acknowledged=acknowledged), tempfile.TemporaryDirectory() as directory:
                 root, artifact = Path(directory) / 'records', Path(directory) / 'public'
                 revision = 'a' * 40
@@ -53,7 +54,9 @@ class HostedBatchTests(unittest.TestCase):
                                'WAKE_HOSTED_ARTIFACT': str(artifact), 'GITHUB_RUN_ID': '123'}
                 with patch.dict(os.environ, environment), \
                      patch('scripts.github_research.api', return_value=client), \
-                     patch('scripts.github_research.enabled', return_value=True), \
+                     patch('scripts.github_research.enabled', side_effect=[True, True, HTTPError(
+                         'https://api.github.com', 403, 'Forbidden', {}, None)]
+                         if acknowledged == 'control-failure' else None, return_value=True), \
                      patch('scripts.github_research.HostedState.from_environment', return_value=transport), \
                      patch('scripts.github_research.subprocess.Popen', return_value=process), \
                      patch('scripts.github_research.ready'), \
@@ -63,10 +66,17 @@ class HostedBatchTests(unittest.TestCase):
                      patch('wake.hosted_presentation.bind_hosted_status'), \
                      patch('scripts.github_research.time.monotonic', side_effect=[0, 0, 0, 0, 61]), \
                      patch('scripts.github_research.time.sleep') as sleep, redirect_stdout(io.StringIO()):
-                    run_batch(1, 'fixture')
-                self.assertEqual(sleep.call_count, int(acknowledged))
+                    if acknowledged == 'control-failure':
+                        with self.assertRaises(HTTPError):
+                            run_batch(1, 'fixture')
+                    else:
+                        run_batch(1, 'fixture')
+                self.assertEqual(sleep.call_count, int(acknowledged is True))
                 self.assertEqual(transport.checkpoint_node.call_count, 24)
                 process.terminate.assert_called_once()
+                if acknowledged == 'control-failure':
+                    upload.assert_not_called()
+                    continue
                 upload.assert_called_once()
                 self.assertTrue(any(c.args == ('pages/builds',) and c.kwargs.get('method') == 'POST'
                                     for c in client.request.call_args_list))

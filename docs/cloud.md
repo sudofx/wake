@@ -237,6 +237,24 @@ completed exports before the successor retries. One unavailable worker cannot
 withhold the other records or their public mirror.
 The system does not write unreviewed source repairs or change its own research rules.
 
+GitHub's workflow token has a shared repository API allowance. Checkpoint transfers
+reserve 100 requests for controls and continuation, waiting for the service's reset
+time before further transfers. Safe reads honor explicit primary-limit or
+`Retry-After` headers, within a 61-minute wait budget per request; ordinary permission
+denials still fail visibly. Ambiguous writes are reconciled by content identity,
+never blindly replayed. Only numeric quota metadata is logged. A control-read
+failure closes admission, drains and captures all twelve records before reporting
+failure. It never treats unknown stop intent as permission to continue.
+
+Research keeps a stable workflow name so its completion event can trigger the
+independent recovery workflow. Both handoff paths serialize and compare workflow
+run numbers: an existing newer run, even if already completed, owns continuation.
+This prevents a delayed recovery from resurrecting an obsolete chain. Handoff jobs
+allow 75 minutes for quota recovery; research jobs allow four hours including
+checkpoint waits around the two-hour research window. Neither adds a cron trigger.
+For a read-only check of enabled intent and numeric API allowance, dispatch
+`hosted-control.yml` with `action=inspect`; it does not open records or providers.
+
 The dedicated release stores authenticated encrypted blocks. Unchanged blocks
 are reused and unreferenced ones are removed automatically. The dedicated
 `wake-hosted-state` ref rotates atomically with current and previous encrypted
@@ -263,7 +281,8 @@ The header light checks public GitHub Actions metadata without sign-in or a toke
 Green means a hosted batch is active, including restoration, quota waits and publication;
 it does not mean a provider call is in flight or research has been accepted. Yellow
 means queued, stopped, draining or awaiting automatic recovery. Blue means between
-successful batches; red means GitHub reports that attention is required. Gray means
+successful batches; red means GitHub requires attention or a failed batch has had
+no successor for fifteen minutes. Gray means
 status could not be confirmed. Tap or focus the light for its explanation and check time;
 its link opens the research workflow. Node dots and Console canvases remain dated snapshots.
 

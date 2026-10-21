@@ -58,7 +58,7 @@ def bind_hosted_status(site, repository, revision):
         page = page.replace('class="header-tools">', 'class="header-tools">' + light, 1)
         page = re.sub(r'((?:nav\.js|masthead\.css)\?v=)[^"<]+', r'\g<1>20261020-hosted-status', page)
         page = re.sub(r'<script src="[^\"]*hosted-status\.js[^\"]*"[^>]*></script>', '', page)
-        page = page.replace('</head>', f'<script src="{prefix}hosted-status.js?v=20261020-hosted-status" defer></script></head>', 1)
+        page = page.replace('</head>', f'<script src="{prefix}hosted-status.js?v=20261020-hosted-recovery" defer></script></head>', 1)
         page = re.sub(r'((?:runtime-activity\.js|installation-console\.js|process-field\.js|research\.js)\?v=)[^"<]+', r'\g<1>20261020-hosted-activity', page)
         path.write_text(page)
     if not roots:

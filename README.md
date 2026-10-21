@@ -180,6 +180,10 @@ runs the same twelve native records in disposable Actions containers, using
 encrypted recovery storage. The older executor branches remain untouched
 historical artifacts. Hosted research and website publication are separate
 observable outcomes. See [hosted operation](docs/cloud.md#run-research-on-github-without-a-laptop).
+Checkpoint transfers reserve GitHub API capacity for controls and pause for a
+reported quota reset without bypassing durability. Independent completion recovery
+uses a stable workflow name; a failed batch without recovery for fifteen minutes
+shows a red stalled light rather than promising recovery indefinitely.
 
 Legacy multi-container group status lights refresh every five seconds. Their colors follow the same
 order as the gateway key: red means operator or agent action is required; yellow

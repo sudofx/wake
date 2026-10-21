@@ -48,7 +48,11 @@
       else if(queued){state='waiting';label='Hosted batch queued';}
       else if(!runs.length){state='waiting';label='Waiting for the first hosted batch';}
       else if(runs[0].conclusion==='action_required'){state='blocked';label='GitHub requires attention';}
-      else if(runs[0].conclusion!=='success'){state='waiting';label='Waiting for automatic recovery after the last batch';}
+      else if(runs[0].conclusion!=='success'){
+        const finished=Date.parse(runs[0].updated_at);
+        if(Number.isFinite(finished) && Date.now()-finished>15*60*1000){state='blocked';label='Hosted research stalled; recovery needs attention';}
+        else{state='waiting';label='Waiting for automatic recovery after the last batch';}
+      }
       const value={state,label,checked:Date.now()};
       try{localStorage.setItem(key,JSON.stringify(value));}catch{}
       if(!document.hidden)apply(value);

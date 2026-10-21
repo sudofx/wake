@@ -7,7 +7,7 @@ on:
         description: Start continues existing records; stop drains without resetting.
         type: choice
         required: true
-        options: [start, stop]
+        options: [start, stop, inspect]
 
 permissions:
   contents: read
@@ -21,7 +21,7 @@ jobs:
   control:
     if: github.ref_name == 'master'
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 75
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
@@ -33,4 +33,9 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           ACTION: ${{ inputs.action }}
-        run: python scripts/github_research.py control "$ACTION"
+        run: |
+          if [ "$ACTION" = inspect ]; then
+            python scripts/github_research.py inspect
+          else
+            python scripts/github_research.py control "$ACTION"
+          fi

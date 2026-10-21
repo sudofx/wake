@@ -73,12 +73,31 @@ def unseal(key, data, purpose):
 
 
 class GitHub:
-    def __init__(self, repository, token):
+    def __init__(self, repository, token, *, reserve=0, rate_wait_limit=3660):
         if not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+', repository):
             raise ValueError('Expected owner/repository')
         if not token:
             raise ValueError('GitHub credential missing')
         self.repository, self.token = repository, token
+        self.reserve, self.rate_wait_limit = reserve, rate_wait_limit
+        self.rate = {}
+
+    def observe_rate(self, headers):
+        # Only numeric service limits are retained or logged, never response
+        # bodies, authentication headers, or arbitrary server diagnostics.
+        headers = headers or {}
+        self.rate = {name: int(headers.get('X-RateLimit-' + name))
+                     for name in ('Limit', 'Remaining', 'Reset')
+                     if str(headers.get('X-RateLimit-' + name, '')).isdigit()}
+
+    def wait_rate(self, delay, waited):
+        delay = max(1, delay)
+        if delay + waited > self.rate_wait_limit:
+            return False
+        print(json.dumps({'hosted_api': 'rate-wait', 'seconds': round(delay),
+                          'reserve': self.reserve, **self.rate}), flush=True)
+        time.sleep(delay)
+        return True
 
     def request(self, path, *, method='GET', body=None, binary=False, upload=False):
         host = 'https://uploads.github.com' if upload else 'https://api.github.com'
@@ -92,12 +111,44 @@ class GitHub:
                 body = encode(body)
         # Only safe reads retry automatically. Mutations reconcile their actual
         # result at the caller before retrying the same identity.
+        waited = 0
+        if self.rate.get('Remaining', self.reserve + 1) <= self.reserve and 'Reset' in self.rate:
+            delay = max(1, self.rate['Reset'] - time.time() + 1)
+            if self.wait_rate(delay, waited):
+                waited += delay
         for attempt in range(3):
             try:
                 with urlopen(Request(url, data=body, headers=headers, method=method), timeout=120) as response:
+                    self.observe_rate(response.headers)
                     data = response.read()
                 return data if binary else json.loads(data) if data else None
             except (HTTPError, URLError, TimeoutError) as error:
+                if isinstance(error, HTTPError):
+                    self.observe_rate(error.headers)
+                    # A forbidden request is not automatically a quota error.
+                    # GitHub can omit Retry-After for secondary limits. Classify
+                    # its bounded JSON message without ever logging that body.
+                    secondary = False
+                    if error.code == 403 and self.rate.get('Remaining') != 0:
+                        raw = error.read(8192)
+                        error.fp = io.BytesIO(raw)
+                        try:
+                            message = str(json.loads(raw).get('message', '')).lower()
+                            secondary = 'secondary rate limit' in message or 'abuse detection' in message
+                        except (ValueError, AttributeError):
+                            pass
+                    print(json.dumps({'hosted_api': 'request-failed', 'status': error.code,
+                                      'method': method, 'secondary_limit': secondary, **self.rate}), flush=True)
+                    retry_after = str((error.headers or {}).get('Retry-After', ''))
+                    delay = (max(1, self.rate['Reset'] - time.time() + 1)
+                             if self.rate.get('Remaining') == 0 and 'Reset' in self.rate
+                             else int(retry_after) if retry_after.isdigit() else 60 if error.code == 429 or secondary else None)
+                    if method == 'GET' and error.code in (403, 429) and delay is not None:
+                        if attempt < 2 and self.wait_rate(delay, waited):
+                            waited += max(1, delay)
+                            error.close()
+                            continue
+                        raise
                 transient = not isinstance(error, HTTPError) or error.code in (429, 500, 502, 503, 504)
                 if method != 'GET' or not transient or attempt == 2:
                     raise
@@ -147,7 +198,9 @@ def verify_recovery(path):
 class HostedState:
     def __init__(self, directory, repository, token, key):
         self.directory = Path(directory).resolve()
-        self.api = GitHub(repository, token)
+        # Data transfers share the workflow token with controls and handoff.
+        # Pause before exhausting that shared allowance; never skip a barrier.
+        self.api = GitHub(repository, token, reserve=100)
         self.key = bytes.fromhex(key) if isinstance(key, str) else key
         if len(self.key) != 32:
             raise ValueError('Hosted checkpoint key must contain 32 random bytes')

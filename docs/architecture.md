@@ -668,8 +668,12 @@ without a provider call.
 
 GitHub Pages serves the uploaded `wake-public` installation projection directly.
 The current hosted runner uses the same twelve-node controller and encrypted
-native-record checkpoints; the earlier hosted records remain historical and are
-not merged into the transferred installation. Mirrors hide the status lamp and perform no live-status
+native-record checkpoints. Checkpoint transport reserves API capacity for controls and waits on
+explicit quota evidence without bypassing pre-effect durability. Completion
+recovery uses a stable workflow name and serialized run-number reconciliation;
+an unreadable stop latch drains research and captures records before failure.
+Earlier hosted records remain historical and are not merged into the transferred
+installation. Unbound mirrors hide the status lamp and perform no live-status
 polling. Upload timestamps and node snapshot provenance remain visible.
 
 ### Expiring hosted activity observations

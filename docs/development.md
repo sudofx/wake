@@ -84,6 +84,10 @@ compatibility paths. The earlier GitHub executor branches remain historical
 records. The current [hosted installation](cloud.md#run-research-on-github-without-a-laptop)
 uses the same controller in Actions containers and its own encrypted native-record
 transport. Do not restart a transferred local installation as a second writer.
+For a hosted stall, inspect the failed step and numeric API-limit diagnostics first.
+The read-only `inspect` action of `hosted-control.yml` reports enabled intent and
+current allowance. Quota waits preserve checkpoints and stop authority; see
+[continuation and repair](cloud.md#continuation-and-repair).
 The new Codespace path needs its own actual remote acceptance evidence.
 
 ## Establish the target before editing

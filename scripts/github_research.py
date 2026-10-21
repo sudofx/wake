@@ -13,7 +13,7 @@ import sys
 import tempfile
 import threading
 import time
-from urllib.error import HTTPError
+from urllib.error import HTTPError, URLError
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
@@ -62,10 +62,18 @@ def continue_chain(predecessor):
         print('Hosted research is stopped; no successor dispatched.')
         return
     token = 'after-' + str(predecessor)
+    previous = client.request('actions/runs/' + str(int(predecessor)))
+    if previous['path'] != '.github/workflows/' + WORKFLOW or previous['head_branch'] != 'master':
+        raise ValueError('Handoff predecessor is not a master research run')
     # The normal handoff and completion-event recovery share one Actions
     # concurrency group. The dispatch identity makes retries idempotent.
     for page in range(1, 4):
         runs = client.request(f'actions/workflows/{WORKFLOW}/runs?per_page=100&page={page}')['workflow_runs']
+        if any(run['run_number'] > previous['run_number'] for run in runs):
+            # Run numbers survive static workflow naming and completed successors.
+            # A delayed recovery must never restart an obsolete chain.
+            print('A newer research run already owns continuation.')
+            return
         if any(run.get('display_title') == 'WAKE hosted ' + token for run in runs):
             print('Successor already exists for ' + str(predecessor))
             return
@@ -148,6 +156,9 @@ class PeriodicPublication:
 
 def run_batch(minutes, provider):
     client = api()
+    # An unreadable stop latch closes admission promptly. Checkpoint transport
+    # may wait for quota after draining, but research cannot assume intent.
+    client.rate_wait_limit = 0
     if not enabled(client):
         print('Hosted research disabled; no records or providers opened.')
         return
@@ -165,6 +176,7 @@ def run_batch(minutes, provider):
                       'generation': before['generation'],
                       'heads': {n: d['head'] for n, d in before['nodes'].items()}}), flush=True)
     stopped = False
+    control_error = None
     def stop_signal(*_):
         nonlocal stopped
         stopped = True
@@ -206,7 +218,14 @@ def run_batch(minutes, provider):
                 if process.poll() is not None:
                     raise RuntimeError('Hosted controller exited unexpectedly')
                 if time.monotonic() >= next_intent_check:
-                    if not enabled(client):
+                    try:
+                        continuing = enabled(client)
+                    except (HTTPError, URLError, TimeoutError) as error:
+                        control_error = error
+                        print(json.dumps({'hosted_control': 'unavailable',
+                                          'reason': type(error).__name__}), flush=True)
+                        break
+                    if not continuing:
                         break
                     next_intent_check = time.monotonic() + 60
                 time.sleep(1)
@@ -233,6 +252,10 @@ def run_batch(minutes, provider):
     # Native recovery is saved before waiting for independent delivery. Do not
     # race a final publication against a healthy periodic uploader.
     mirror.close()
+    if control_error is not None:
+        # Preserve all drained records and finish a healthy upload before
+        # reporting the control failure to the independent recovery workflow.
+        raise control_error
     # Publication is derived and independently recoverable. Preserve authority
     # before a rendering/upload error can fail the run.
     artifact = Path(os.environ['WAKE_HOSTED_ARTIFACT'])
@@ -260,10 +283,15 @@ def main():
     run.add_argument('--provider', choices=('fixture', 'gemini'), default='gemini')
     chain = commands.add_parser('continue')
     chain.add_argument('--predecessor', required=True)
+    commands.add_parser('inspect')
     command = commands.add_parser('control')
     command.add_argument('intent', choices=('start', 'stop'))
     args = parser.parse_args()
-    if args.action == 'continue':
+    if args.action == 'inspect':
+        client = api()
+        state = enabled(client)
+        print(json.dumps({'hosted_enabled': state, 'api_rate': client.rate}), flush=True)
+    elif args.action == 'continue':
         continue_chain(args.predecessor)
     elif args.action == 'control':
         control(args.intent)

@@ -21,7 +21,8 @@ notes and repeated source material retain their original attribution; another
 node's use of the same source does not create independent evidence. The kernel
 retrieval and authority boundaries are unchanged. The hosted Actions adapter uses
 the same controller and bounded contexts, with encrypted native-record transport
-between runners. GitHub Pages remains a same-origin exported view; it never
+between runners. Transport may wait for GitHub API quota while retaining the
+same native history and pre-effect durability requirement. GitHub Pages remains a same-origin exported view; it never
 becomes a retrieval authority or a provider gateway.
 
 `installation.json` combines exported node projections for inspection. It cannot

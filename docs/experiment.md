@@ -395,3 +395,5 @@ and cheaper physical projection compression change execution overhead without
 relaxing policy, context-delivery receipts or pre-effect durability. Compare
 provider attempts, terminal outcomes and accepted progress separately when
 measuring throughput; a green light or moving coordinate is not a result.
+GitHub API quota waits and handoff recovery are execution overhead and failure
+evidence. They neither count as accepted work nor justify relaxing acceptance.
