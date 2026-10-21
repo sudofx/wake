@@ -9,7 +9,7 @@ from unittest.mock import patch
 from wake.engine import Engine
 from wake.event_format import canonical, digest
 from wake.memory import build_active_memory, compact_retrieved_records, preserve_retrieved_views
-from wake.prompts import (BOUNDED_RESEARCH_SYSTEM, BOB_CHECKPOINT_SYSTEM, QUALITY_RESEARCH_SYSTEM,
+from wake.prompts import (SYSTEM, BOUNDED_SYSTEM, BOUNDED_RESEARCH_SYSTEM, BOB_CHECKPOINT_SYSTEM, QUALITY_RESEARCH_SYSTEM,
                           compact_request_instructions)
 from wake.providers import Fixture, provider_input_chars
 from wake.record_store import RecordStore
@@ -112,6 +112,20 @@ class RequestCompactionTests(unittest.TestCase):
         self.assertEqual(item['record_hash'], digest(supplied))
         self.assertTrue(item['context_excerpt'])
 
+    def test_later_source_omission_cannot_resurrect_collector_prose_through_memory(self):
+        source = dict(id='e', actor='collector', source='https://example.edu/paper',
+                      content='Exact source prose that the delivery budget omits')
+        item = dict(kind='evidence', id='e', record_hash=digest(source),
+                    content_location=dict(field='context.evidence', id='e'), value={})
+        context = dict(evidence=[deepcopy(source)], memory=dict(retrieved_records=[item]))
+        with preserve_retrieved_views(context):
+            context['evidence'] = []
+        self.assertNotIn('content_location', item)
+        self.assertNotIn('content', item['value'])
+        self.assertEqual(item['value']['source'], source['source'])
+        self.assertEqual(item['record_hash'], digest(source))
+        self.assertTrue(item['content_omitted'])
+
     def test_active_instruction_branches_follow_final_schema_and_can_reopen(self):
         ordinary = dict(properties=dict(actions=dict(items=dict(anyOf=[]))))
         context = dict(bob_reflection_due=False, research_quality_policy=3)
@@ -127,6 +141,20 @@ class RequestCompactionTests(unittest.TestCase):
         notebook['properties']['actions']['items']['anyOf'] = [dict(properties=dict(type=dict(enum=['notebook'])))]
         self.assertIn(QUALITY_RESEARCH_SYSTEM, compact_request_instructions(compact, context, notebook))
         self.assertEqual(ordinary, dict(properties=dict(actions=dict(items=dict(anyOf=[])))))
+
+    def test_active_requests_normalize_core_before_spending_optional_headroom(self):
+        context = dict(memory_mode='active', memory=dict(retrieved_records=[]),
+                       commitments=[dict(id='due', task='Preserve the obligation')],
+                       beliefs=[dict(id='b', evidence=['root'])])
+        original = deepcopy(context)
+        schema = dict(required=['base_version', 'actions'])
+        request = dict(system=SYSTEM + 'Operator suffix stays intact.', context=context, response_schema=deepcopy(schema))
+        self.assertLess(provider_input_chars(request), self.engine.config['max_context_chars'])
+        self.engine.prepare_active_request(request)
+        self.assertEqual(request['system'], BOUNDED_SYSTEM + 'Operator suffix stays intact.')
+        self.assertEqual(request['context'], original)
+        self.assertEqual(request['response_schema'], schema)
+        self.assertIn('80 characters', request['system'])
 
     def test_optional_recall_does_not_reintroduce_planning_only_omissions(self):
         self.engine.config['decision_memory_mode'] = 'active'

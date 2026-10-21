@@ -183,12 +183,16 @@ def preserve_retrieved_views(context):
         record = next((r for r in context.get(field, []) if isinstance(r, dict)
                        and r.get("id") == item["id"]), None)
         if record is not None and location.get("id") == item["id"]:
-            value = {**deepcopy(record), **value}
-        backups.append((item, value))
+            if not any(key in value and value[key] != record.get(key) for key in ("source", "evidence")):
+                value = {**deepcopy(record), **value}
+        collector = item["kind"] == "evidence" and value.get("actor") == "collector"
+        if collector:
+            value.pop("content", None)
+        backups.append((item, value, collector))
     try:
         yield
     finally:
-        for item, value in backups:
+        for item, value, collector in backups:
             location = item.get("content_location")
             if not location:
                 continue
@@ -198,3 +202,6 @@ def preserve_retrieved_views(context):
                 item["value"] = value
                 item.pop("content_location", None)
                 item["context_excerpt"] = True
+                if collector:
+                    item["content_omitted"] = True
+                    item["omission_reason"] = "Collector prose follows the existing source delivery budget."

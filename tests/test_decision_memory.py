@@ -287,6 +287,30 @@ class InvocationTests(unittest.TestCase):
         self.assertEqual(result,baseline);self.assertFalse(audit['delivered'])
         self.assertEqual(self.store.head(),head);self.assertEqual(self.store.load(),before)
 
+    def test_unfit_source_expansion_falls_back_without_changing_mandatory_context(self):
+        self.engine.config['decision_memory_mode'] = 'active'
+        state = self.store.load()
+        baseline = dict(system='Unchanged policy', context=dict(version=state['version'],
+            beliefs=[], commitments=[dict(id='due', task='Keep the original obligation')], evidence=[]),
+            response_schema=dict(type='object', required=['actions']))
+        self.engine.config['max_context_chars'] = provider_input_chars(baseline) + 5000
+        def expanded(state, context, *args, **kwargs):
+            context['optional_expansion'] = 'x' * 10000
+            return context
+        before = deepcopy(state);head = self.store.head()
+        with patch.object(self.engine, 'rehydrate_retrieval_context', side_effect=expanded):
+            request, receipt = self.engine.decision_memory_delivery(state, baseline, {'candidates': []}, question='sensor calibration')
+        self.assertTrue(receipt['delivered'])
+        self.assertEqual(receipt['source_materialization'], 'existing_context_only')
+        self.assertNotIn('optional_expansion', request['context'])
+        self.assertEqual(request['response_schema'], baseline['response_schema'])
+        for field in ('beliefs', 'commitments', 'evidence'):
+            self.assertEqual(request['context'][field], baseline['context'][field])
+        self.assertLessEqual(provider_input_chars(request), self.engine.config['max_context_chars'])
+        self.assertEqual(self.store.load(), before)
+        self.assertEqual(self.store.head(), head)
+        self.assertIsNone(receipt.get('outcome_improved'))
+
     def test_operator_modes_and_policy_fail_closed(self):
         for settings in ({'decision_memory_mode':'learn'}, {'decision_memory_policy':{'scan_records':0}},
                          {'decision_memory_policy':{'version':2}}, {'decision_memory_policy':{'ablation':True}}):

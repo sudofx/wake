@@ -25,6 +25,8 @@ Disabling the feature affects future invocations; previous receipts remain intac
 ### Make room without losing the record
 
 Active working memory compacts the request before it reaches the character ceiling.
+Its established compact core and trust instructions are normalized before optional
+space is allocated, so recovered room is available for useful record detail and recall.
 Identical fields in retrieved records use their existing `content_location` pointer
 rather than repeating supplied prose, IDs and source roots. Collector prose
 always follows the source-delivery owner in `context.evidence`; active retrieval
@@ -49,6 +51,13 @@ and its provenance remain recorded. Unstarted topics retain their seed.
 The default 48,000-character ceiling still covers the exact complete system and user
 text, including the response contract. Optional decision memory gets the room left
 after mandatory context, never authority to displace obligations or evidence gates.
+If optional source expansion would leave no room for recall, the engine also tries
+an existing-context-only capsule. Its source-root availability labels remain explicit;
+its response contract and scientific-source allowlists stay byte-for-byte unchanged.
+A remembered notebook does not qualify its unseen sources for citation. The private
+receipt distinguishes expanded-source delivery from this bounded fallback. Neither
+path makes an extra provider call.
+
 Planning and proposal receipts separately report explicit memory-ID mentions. A
 validated retrieval plan is recorded as `research_planned`, not accepted research.
 Smaller requests and identifier mentions do not establish better decisions.

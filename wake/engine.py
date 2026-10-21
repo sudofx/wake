@@ -570,8 +570,13 @@ class Engine:
     def prepare_active_request(self, request):
         """Share facts before budget pressure; shape the view to its current phase."""
         from .memory import BOUNDED_ACTIVE_MEMORY_SYSTEM
-        from .prompts import compact_request_instructions
+        from .prompts import BOUNDED_SYSTEM, compact_request_instructions
         context = request["context"]
+        if context.get("memory_mode") == "active" and request.get("system", "").startswith(SYSTEM):
+            # Normalize the established compact contract before allocating any
+            # optional budget; otherwise earlier savings merely preserve verbose
+            # copies of action shapes already present in the response schema.
+            request["system"] = BOUNDED_SYSTEM + request["system"][len(SYSTEM):]
         if context.get("research_phase") == "planning":
             planning_context(context)
         compact_retrieved_records(context)
@@ -2203,6 +2208,7 @@ class Engine:
         budget = policy["capsule_chars"]
         result = None
         fits = False
+        source_materialization = "expanded_eligible_sources"
         # A bounded number of shrinking attempts, no provider calls or state writes.
         for _ in range(2 * policy["max_memories"] + 4):
             trial = deepcopy(request)
@@ -2239,6 +2245,32 @@ class Engine:
                 fits = True
                 break
             budget = min(budget - 1, len(canonical(capsule)) - overflow - 32)
+        if not (fits and result["capsule"] and result["capsule"]["selected_memories"]):
+            # Recall and source expansion have different costs. If expansion
+            # crowds out every memory, try the finalized mandatory view alone.
+            # The capsule marks unseen roots, and no new citation ID becomes
+            # eligible merely because a historical interpretation was recalled.
+            fits = False
+            source_materialization = "existing_context_only"
+            budget = policy["capsule_chars"]
+            eligible = {item["id"] for item in request["context"].get("evidence", [])
+                        if item.get("content") and not item.get("content_omitted")
+                        and self.durable_notebook_source_payload(state, item["id"]) is not None}
+            for _ in range(2 * policy["max_memories"] + 4):
+                trial = deepcopy(request)
+                trial["system"] += DECISION_MEMORY_SYSTEM
+                result = build_capsule(state, head, plan, trial["context"], eligible_source_ids=eligible,
+                                       budget=max(0, budget), ablate=ablate)
+                capsule = result["capsule"]
+                if capsule is None:
+                    break
+                trial["context"]["decision_state_capsule"] = capsule
+                overflow = provider_input_chars(trial) - self.config["max_context_chars"]
+                if overflow <= 0:
+                    validate_capsule(capsule, state, head)
+                    fits = True
+                    break
+                budget = min(budget - 1, len(canonical(capsule)) - overflow - 32)
         require(self.store.head() == head, "Authority changed while preparing decision memory")
         has_memory = fits and bool(result["capsule"]["selected_memories"])
         hypothetical = trial if has_memory else request
@@ -2246,6 +2278,7 @@ class Engine:
                    "decision_context_id": digest(plan["decision_context"]),
                    "selection_policy_version": 1, "selection_policy_digest": digest(policy),
                    "fits": fits, "delivered": mode == "active" and has_memory,
+                   "source_materialization": source_materialization,
                    "ablation": ablate, "baseline_request_hash": digest(request),
                    "hypothetical_request_hash": digest(hypothetical) if fits else None,
                    "baseline_provider_chars": provider_input_chars(request),
@@ -2987,7 +3020,8 @@ class Engine:
                 checkpoint()
             return {"status":"editorial_completed", "id":invocation, "article":article, **request_counts()}
         if phase == "planning":
-            decision_receipt = self.store.load()["invocations"][invocation].get("context_delivery", {}).get("decision_memory")
+            planning_state = self.store.load()
+            decision_receipt = planning_state["invocations"][invocation].get("context_delivery", {}).get("decision_memory")
             if decision_receipt is not None:
                 try:
                     plan_proposal = json.loads(raw)
@@ -3000,7 +3034,7 @@ class Engine:
                 lifecycle.proposal_received(plan_id)
             from .research import validate_research_plan
             try:
-                requests = validate_research_plan(raw, request["context"], self.store.load())
+                requests = validate_research_plan(raw, request["context"], planning_state)
             except (Rejected, ValueError) as exc:
                 self.store.append("rejected", {"id": invocation, "reason": str(exc)[:1000],
                     "phase": "planning", "raw_response": str(raw)[:16000], "metadata": metadata,
