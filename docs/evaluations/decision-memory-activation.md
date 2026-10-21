@@ -3,8 +3,10 @@
 The operator explicitly requested active decision memory on October 21, 2026.
 Application and example configuration defaults remain off. The installation policy
 selects active mode for installation `fad200aaabe2b5c28ec5b45ed9428d3d`; the hosted
-runner applies that setting before admitting workers. Source selection follows
-successful master CI while retaining installation identity verification.
+runner applies that setting before admitting workers. After successful source CI,
+the installation is pinned to compatible runtime
+`0ac81e31eb02447e97db8eb92db13cccf0b835b8`, retaining installation identity
+verification and preventing unrelated source publication from changing runtime.
 
 Before promotion, checkpoint generation 2772 was restored into a disposable local
 directory. All twelve native records passed authenticated recovery and independent
@@ -17,6 +19,8 @@ Validation: 833 regression tests passed with three expected platform/browser
 skips; 12 hosted transport tests also passed, including opaque archive retention.
 No model calls were made for these checks. Tests for root configuration changes,
 source-pin retention, unpinned CI selection and rejected new retired events passed.
+GitHub CI additionally passed all 834 tests on both Python 3.11 and 3.13, with one
+opt-in browser skip in each environment.
 
 Offline requests against copies of current records confirm that active selection
 can deliver historical memories. Delivery remains conditional on relevance,
