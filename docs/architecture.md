@@ -699,3 +699,13 @@ Context construction may reuse one verified history inside a bounded read-only
 `RecordStore.history_view`. No history survives the scope, and event appends in
 the scope fail. Subsequent builds re-read the record. This changes query cost,
 not delivered history or application governance.
+
+### Task-specific memory delivery
+
+The application context owner in `engine.py` uses the same durable state to build
+planning and proposal views. `memory.py` shares equal retrieved fields through
+explicit supplied-record pointers; conflicting provenance stays visible.
+`prompts.py` selects instruction branches from the finalized response contract.
+These are disposable projections, not another authority or an adaptive policy.
+Source eligibility, invocation barriers, governance and exact history remain with
+their existing owners. See [context compaction](retrieval.md#make-room-without-losing-the-record).

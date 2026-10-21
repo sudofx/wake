@@ -22,6 +22,35 @@ the [offline comparison](experiment.md#decision-memory-evaluation). No installat
 is automatically activated, restarted, reset or migrated by a source change.
 Disabling the feature affects future invocations; previous receipts remain intact.
 
+### Make room without losing the record
+
+Active working memory compacts the request before it reaches the character ceiling.
+Identical fields in retrieved records use their existing `content_location` pointer
+rather than repeating supplied prose, IDs and source roots. Each pointer retains its
+exact record hash and retrieval reasons. Missing targets and conflicting source/root
+sets remain explicit; a reference never reconciles different records or supplies
+missing text. A decision capsule also reuses an identical supplied excerpt.
+
+A retrieval-planning request asks only which sources to collect. It retains the
+question, source excerpts, beliefs, open obligations, corrections and Attention,
+but omits proposal eligibility diagnostics and publication views. The subsequent
+proposal rebuilds its own constraints from the authoritative record. Planning is
+fitted against its actual plan schema before any proposal-specific emergency fit.
+Instructions for a due Bob checkpoint are included when that checkpoint is offered;
+notebook quality instructions follow the finalized notebook action choices. Existing
+trust, citation, uncertainty and governance boundaries remain in every relevant phase.
+
+Seed questions disappear once any durable project owns their topic, including parked
+or completed projects. Rich and bounded views share this rule; the configured seed
+and its provenance remain recorded. Unstarted topics retain their seed.
+
+The default 48,000-character ceiling still covers the exact complete system and user
+text, including the response contract. Optional decision memory gets the room left
+after mandatory context, never authority to displace obligations or evidence gates.
+Planning and proposal receipts separately report explicit memory-ID mentions. A
+validated retrieval plan is recorded as `research_planned`, not accepted research.
+Smaller requests and identifier mentions do not establish better decisions.
+
 ### Candidate identification and contextual assessment
 
 `wake/decision_memory.py` reuses `build_retrieval_shadow` and

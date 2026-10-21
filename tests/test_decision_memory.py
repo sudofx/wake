@@ -155,6 +155,19 @@ class SelectionTests(unittest.TestCase):
         self.assertNotIn('explicit_review',item['categories'])
         self.assertNotIn('unexpected_outcome',item['categories'])
 
+    def test_capsule_reuses_identical_clipped_prose_but_retains_exact_roots(self):
+        case = self.cases()[2]
+        record = case['state']['notebooks']['old-useful']
+        record['summary'] = 'Sensor calibration still requires careful independent checking. ' * 10
+        visible = {**record, 'summary': record['summary'][:239] + '…'}
+        result, _ = self.select(case, context=dict(notebooks=[visible], evidence=[], commitments=[]))
+        memory = next(m for m in result['capsule']['selected_memories'] if m['id'] == 'old-useful')
+        self.assertNotIn('summary', memory['excerpt'])
+        self.assertEqual(memory['content_location'], dict(field='context.notebooks', id='old-useful'))
+        self.assertEqual(memory['record_hash'], digest(record))
+        self.assertEqual(memory['evidence_roots'], sorted(record.get('evidence', [])))
+        validate_capsule(result['capsule'], case['state'], digest(case['state']))
+
     def test_reference_is_only_an_explicit_identifier_not_an_improvement_claim(self):
         result,_=self.select(self.cases()[1]);receipt={**result,'mode':'active','delivered':True}
         observation=reference_observation(receipt,dict(summary='See corrected for the revision'),'rejected')

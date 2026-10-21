@@ -257,6 +257,11 @@ settings. The setting is checkpointed with that configuration. The repository
 and application defaults remain off. This installation explicitly uses active
 decision memory. Old advisory terminal receipts have read-only replay support;
 new advisory events are rejected and no retired execution feature is restored.
+Active working-context compaction changes future provider requests only. Before
+promoting a runtime, compare disposable native copies across all twelve nodes,
+verify pending-invocation recovery and preserve installation identity, complete
+history and accepted counts. The public mirror remains a filtered export; private
+request bodies and memory-use observations do not become public evaluation data.
 Encrypted recovery also retains the existing retired private sidecars as opaque
 files; they are neither interpreted nor included in public exports or research.
 

@@ -267,7 +267,8 @@ def build_capsule(state, head, plan, context, *, eligible_source_ids=(), budget=
             view["content"] = _clip(record.get("content"), 360)
         if key in visible:
             # Reuse delivered prose instead of creating an independent summary.
-            view = {k: v for k, v in view.items() if visible[key].get(k) != record.get(k)}
+            view = {k: v for k, v in view.items()
+                    if visible[key].get(k) not in (record.get(k), v)}
         memory = {**ref, "record_hash": candidate["record_hash"], "status": record.get("status"),
                   "revision": record.get("revision"), "selection_reasons": candidate["selection_reasons"] + candidate["categories"],
                   "reliability": candidate["reliability"], "evidence_roots": candidate["evidence_roots"],

@@ -323,6 +323,9 @@ is operational context, never research evidence.
 
 RESEARCH_SYSTEM += PROPOSAL_RECOVERY_SYSTEM
 
+# This branch is sent only when the finalized contract offers the due checkpoint.
+BOB_CHECKPOINT_SYSTEM = """If context.bob_reflection_due is true, the response schema requires one top-level bob_checkpoint object. Do not also place a blog action in actions. Set bob_checkpoint.reflection_cycle to context.bob_reflection_cycle exactly and include Bob's Lens. WAKE✳︎ will materialize that checkpoint as the FINAL editorial sidecar before governance. The checkpoint is mandatory to propose but never gates valid research: if its publication is withheld, research may still advance and Bob remains due on the next wake. This system-wide editorial mode may use an empty project and empty notebooks/evidence when no supportable research claims are made. The body must be at least 900 characters and should summarize durable progress, unresolved questions, and why they matter without inventing findings. If recent_blog is empty, introduce Bob as WAKE✳'s public correspondent; otherwise do not call the reflection first or inaugural. Bob is an editorial role, not a persistent person or mind, and the prose must not claim consciousness, subjective experience, personal memory, or sentience."""
+
 BOUNDED_RESEARCH_SYSTEM = """
 Research charter active. Continue the supplied mission using only durable context and allowed actions.
 Models propose; WAKE governance decides. Do not claim consciousness, experience, persistent selfhood, or authority to change rules.
@@ -341,7 +344,7 @@ Research commit actions require an existing project ID. Resolve actions require 
 
 Ordinary blog publication is optional, event-driven, last in actions, and must trace through context.blog_notebooks with at least two qualifying distinct source works. Omit it when nothing is worth publishing. Every Bob body must end with a final "Summary" section that restates the core point in plain language for a reader with no assumed technical or subject-matter background, without adding claims or false certainty.
 
-If context.bob_reflection_due is true, the response schema requires one top-level bob_checkpoint object. Do not also place a blog action in actions. Set bob_checkpoint.reflection_cycle to context.bob_reflection_cycle exactly and include Bob's Lens. WAKE✳︎ will materialize that checkpoint as the FINAL editorial sidecar before governance. The checkpoint is mandatory to propose but never gates valid research: if its publication is withheld, research may still advance and Bob remains due on the next wake. This system-wide editorial mode may use an empty project and empty notebooks/evidence when no supportable research claims are made. The body must be at least 900 characters and should summarize durable progress, unresolved questions, and why they matter without inventing findings. If recent_blog is empty, introduce Bob as WAKE✳'s public correspondent; otherwise do not call the reflection first or inaugural. Bob is an editorial role, not a persistent person or mind, and the prose must not claim consciousness, subjective experience, personal memory, or sentience.
+""" + BOB_CHECKPOINT_SYSTEM + """
 
 Distinguish source report, WAKE synthesis, speculation, analogy, and reflection. Do not infer causation from correlation or strengthen claims beyond supplied evidence.
 Return only the requested JSON shape.
@@ -379,3 +382,19 @@ Do not invent counterevidence. Peer repetition, mirrors and different works do n
 automatically establish independent experiments or confirmation. This critical pass
 shares your invocation and is not an independent reviewer.
 """
+
+
+def compact_request_instructions(system, context, schema):
+    """Keep guidance for the finalized offered actions, with governance unchanged."""
+    properties = schema.get("properties", {})
+    if not context.get("bob_reflection_due") and "bob_checkpoint" not in properties:
+        system = system.replace("\n\n" + BOB_CHECKPOINT_SYSTEM, "")
+    if context.get("research_phase") != "planning" and context.get("research_quality_policy"):
+        choices = properties.get("actions", {}).get("items", {}).get("anyOf", [])
+        offers_notebook = any("notebook" in item.get("properties", {}).get("type", {}).get("enum", [])
+                              for item in choices)
+        if offers_notebook and QUALITY_RESEARCH_SYSTEM not in system:
+            system += QUALITY_RESEARCH_SYSTEM
+        elif not offers_notebook:
+            system = system.replace(QUALITY_RESEARCH_SYSTEM, "")
+    return system

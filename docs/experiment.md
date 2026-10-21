@@ -454,3 +454,25 @@ provider attempts, terminal outcomes and accepted progress separately when
 measuring throughput; a green light or moving coordinate is not a result.
 GitHub API quota waits and handoff recovery are execution overhead and failure
 evidence. They neither count as accepted work nor justify relaxing acceptance.
+
+### Physical-memory research as a design input
+
+The research application can propose useful engineering hypotheses without making
+its accepted interpretations established facts. For example,
+[Barnett and Crutchfield's epsilon-transducer analysis](https://arxiv.org/abs/1412.2690)
+asks which distinctions between histories are necessary to preserve a modeled
+input-output process's predictions. [Boyd, Mandal and Crutchfield's information
+engine](https://arxiv.org/abs/1606.08506) explicitly retains memory states and studies
+recovery from corrupted input. Those formal physical/process models motivate
+preserving useful distinctions and testing recovery; their optimality or energy
+results do not automatically transfer to an LLM or a character budget.
+
+WAKE's implemented step is narrower and reproducible: share identical delivered
+facts, retain corrections and obligations, and shape context to the current task.
+Source records remain recoverable. Tests must distinguish histories with different
+obligations, retractions or source eligibility even when their summaries look alike.
+Character savings are a delivery measurement. Predictive sufficiency, human-memory
+similarity and improved outcomes require separately controlled comparisons with
+independent correctness checks, repetition/recovery measures, elapsed time,
+provider-call counts and tokens. No learned state-merging or automatic ranking
+adaptation is enabled by request compaction.

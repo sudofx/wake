@@ -3,6 +3,7 @@
 Working views, compacts and retrieval plans remain untrusted model input. They
 never grant policy authority, mutate evidence, or form a separate memory store.
 """
+from contextlib import contextmanager
 from copy import deepcopy
 from .event_format import digest
 
@@ -131,3 +132,66 @@ def build_active_memory(state, compacts, retrieval, *, max_records=8, max_compac
                           'compact_count': max(0, len(ordered_compacts)-len(visible_compacts)),
                           'missing_records': missing},
             'selection_policy': 'Recent operator observations, retractions and their newest evidence, clipped beliefs, due work, revisions, then source handoffs and new observations.'}
+
+
+def compact_retrieved_records(context):
+    """Reuse a supplied record only for equal fields, never conflicting provenance.
+
+    The exact record hash and retrieval reasons stay on the pointer. A missing
+    target or a different source/root set must remain explicit for reconciliation.
+    """
+    fields = {"belief": "beliefs", "evidence": "evidence", "project": "projects",
+              "notebook": "notebooks", "commitment": "commitments", "research": "research"}
+    for item in context.get("memory", {}).get("retrieved_records", []):
+        field = fields.get(item["kind"])
+        record = next((r for r in context.get(field, []) if r.get("id") == item["id"]), None) if field else None
+        if record is None:
+            continue
+        value = item["value"]
+        if any(key in value and value[key] != record.get(key) for key in ("evidence", "source")):
+            continue
+        item["content_location"] = {"field": "context." + field, "id": item["id"]}
+        for key in list(value):
+            if key in record and value[key] == record[key]:
+                value.pop(key)
+
+
+def planning_context(context):
+    """Omit only proposal/editorial-only views from a retrieval-planning request.
+
+    Source excerpts, corrections, obligations, beliefs and Attention remain.
+    Complete diagnostics and proposal eligibility remain derivable from durable
+    state and are rebuilt for the proposal, never inferred from this view.
+    """
+    for key in ("blog_notebooks", "recent_blog", "editorial_notes", "bob_reflection_cycle",
+                "bob_reflection_due", "reflection_history", "proposal_constraints",
+                "proposal_recovery", "evidence_quality"):
+        context.pop(key, None)
+
+
+@contextmanager
+def preserve_retrieved_views(context):
+    """A later emergency focus must not leave a shared-record pointer dangling."""
+    backups = []
+    for item in context.get("memory", {}).get("retrieved_records", []):
+        value = deepcopy(item["value"])
+        location = item.get("content_location", {})
+        field = location.get("field", "").removeprefix("context.")
+        record = next((r for r in context.get(field, []) if isinstance(r, dict)
+                       and r.get("id") == item["id"]), None)
+        if record is not None and location.get("id") == item["id"]:
+            value = {**deepcopy(record), **value}
+        backups.append((item, value))
+    try:
+        yield
+    finally:
+        for item, value in backups:
+            location = item.get("content_location")
+            if not location:
+                continue
+            field = location.get("field", "").removeprefix("context.")
+            if not any(isinstance(r, dict) and r.get("id") == item["id"]
+                       for r in context.get(field, [])):
+                item["value"] = value
+                item.pop("content_location", None)
+                item["context_excerpt"] = True

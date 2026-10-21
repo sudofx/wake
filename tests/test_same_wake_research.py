@@ -73,8 +73,11 @@ class SameWakeTests(unittest.TestCase):
         self.assertIn('Information persistence', result['answer'])
         for request in provider.requests:
             self.assertEqual(request['context']['operator_question'], 'How does information survive?')
-            self.assertIn('uncited_readable_source_ids', request['context']['evidence_quality'])
-            self.assertIn('most_reused_works', request['context']['evidence_quality'])
+            if request['context'].get('research_phase') == 'planning':
+                self.assertNotIn('evidence_quality', request['context'])
+            else:
+                self.assertIn('uncited_readable_source_ids', request['context']['evidence_quality'])
+                self.assertIn('most_reused_works', request['context']['evidence_quality'])
         final = provider.requests[-1]['context']
         readable = {item['id'] for item in final['evidence'] if item.get('content')}
         self.assertTrue(set(result['same_wake_research']['evidence_ids']) <= readable)

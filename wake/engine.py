@@ -36,7 +36,8 @@ from .research import effective_evidence_role, effective_host_tier, source_obser
 from .event_format import canonical, digest, now
 from .experimental import adoption_payload, defaults as experimental_defaults, temporal_snapshot, validate as validate_controls
 from .trust import build_trust_compacts_shadow
-from .memory import ACTIVE_MEMORY_SYSTEM, active_retrieval_plan, build_active_memory
+from .memory import (ACTIVE_MEMORY_SYSTEM, active_retrieval_plan, build_active_memory,
+                     compact_retrieved_records, planning_context, preserve_retrieved_views)
 from .decision_memory import (validate_settings as validate_decision_memory_settings,
                               decision_context, rank_candidates, build_capsule,
                               validate_capsule, reference_observation, DECISION_MEMORY_SYSTEM)
@@ -559,6 +560,26 @@ class Engine:
             "notes": notes,
         } if notes else None)
 
+    def research_topics_context(self, state):
+        topics = state.get("research_topics") or self.config.get("research_topics", [])
+        started = {p.get("domain") for p in state.get("projects", {}).values()}
+        return [{key: value for key, value in topic.items()
+                 if key != "seed_question" or topic["id"] not in started}
+                for topic in topics if topic.get("enabled", True)]
+
+    def prepare_active_request(self, request):
+        """Share facts before budget pressure; shape the view to its current phase."""
+        from .memory import BOUNDED_ACTIVE_MEMORY_SYSTEM
+        from .prompts import compact_request_instructions
+        context = request["context"]
+        if context.get("research_phase") == "planning":
+            planning_context(context)
+        compact_retrieved_records(context)
+        request["system"] = request.get("system", "").replace(
+            ACTIVE_MEMORY_SYSTEM, BOUNDED_ACTIVE_MEMORY_SYSTEM, 1)
+        request["system"] = compact_request_instructions(
+            request["system"], context, request.get("response_schema", {}))
+
     def bounded_context(self, state, receipt, working_set, rich_context_chars, *, peer_notes=None):
         """Make the deterministic working set the bounded provider view.
 
@@ -683,7 +704,7 @@ class Engine:
                                          "intervening_experience": [item["id"] for item in list(state.get("evidence", {}).values())[-6:]]})
             context.update({
                 "mission": state["charter"], "pet_name": state["pet_name"],
-                "research_topics": state.get("research_topics") or self.config.get("research_topics", []),
+                "research_topics": self.research_topics_context(state),
                 "projects": [{
                     **{key: value for key, value in state["projects"][item["id"]].items()
                        if key not in ("title", "question", "next_step", "reason")},
@@ -870,6 +891,10 @@ class Engine:
         return True
 
     def fit_active_request(self, request):
+        with preserve_retrieved_views(request["context"]):
+            self._fit_active_request(request)
+
+    def _fit_active_request(self, request):
         """Fit working context into the allowance after instructions/schema/probe.
 
         Every comparison uses the exact provider renderer, including protected
@@ -880,24 +905,7 @@ class Engine:
         if "bounded_context" in context:
             context["bounded_context"]["omitted_categories"] = list(dict.fromkeys(
                 context["bounded_context"].get("omitted_categories", [])))
-        visible = {item["id"]: item for item in context.get("evidence", []) if item.get("content")}
-        for item in context["memory"]["retrieved_records"]:
-            if item["kind"] == "evidence" and item["id"] in visible:
-                item["value"].pop("content", None)
-                item["content_location"] = {"field": "context.evidence", "id": item["id"]}
-        # Retrieved working records can duplicate the same prose delivered in
-        # the mandatory working set. Retain their exact retrieval hashes and
-        # evidence roots, and point to the visible copy instead of paying for
-        # both. A record outside that view must keep its delivered value.
-        for kind, field in (("project", "projects"), ("notebook", "notebooks"),
-                            ("research", "research"), ("commitment", "commitments")):
-            working_ids = {item["id"] for item in context.get(field, [])}
-            for item in context["memory"]["retrieved_records"]:
-                if item["kind"] == kind and item["id"] in working_ids:
-                    item["value"] = {key: item["value"][key] for key in
-                                     ("id", "status", "evidence") if key in item["value"]}
-                    item["content_location"] = {"field": "context." + field, "id": item["id"]}
-                    item["context_excerpt"] = True
+        self.prepare_active_request(request)
         if provider_input_chars(request) <= self.config["max_context_chars"]:
             return
         # The detailed core prompt duplicates the response contract and research
@@ -908,16 +916,6 @@ class Engine:
             request["system"] = BOUNDED_SYSTEM + request["system"][len(SYSTEM):]
             context.setdefault("bounded_context", {}).setdefault("omitted_categories", []).append(
                 "core instruction prose compacted; response schema and governance unchanged")
-            if provider_input_chars(request) <= self.config["max_context_chars"]:
-                return
-        # Keep every memory trust/omission rule while avoiding a larger research
-        # or matrix omission merely to carry verbose explanatory instructions.
-        from .memory import BOUNDED_ACTIVE_MEMORY_SYSTEM
-        if ACTIVE_MEMORY_SYSTEM in request.get("system", ""):
-            request["system"] = request["system"].replace(
-                ACTIVE_MEMORY_SYSTEM, BOUNDED_ACTIVE_MEMORY_SYSTEM, 1)
-            context.setdefault("bounded_context", {}).setdefault("omitted_categories", []).append(
-                "active-memory instruction prose compacted; trust and retrieval boundaries unchanged")
             if provider_input_chars(request) <= self.config["max_context_chars"]:
                 return
         if context.pop("evidence_quality", None) is not None:
@@ -1116,29 +1114,13 @@ class Engine:
                 context["bounded_context"]["omitted_categories"] = list(dict.fromkeys(
                     COMPACT_OMISSION_LABELS.get(label, label)
                     for label in context["bounded_context"]["omitted_categories"]))
-        if provider_input_chars(request) > self.config["max_context_chars"]:
-            fields = {"belief": "beliefs", "evidence": "evidence",
-                      "project": "projects", "notebook": "notebooks",
-                      "commitment": "commitments", "research": "research"}
-            for item in context["memory"]["retrieved_records"]:
-                field = fields.get(item["kind"])
-                location = {"field": "context." + field, "id": item["id"]} if field else None
-                record = next((value for value in context.get(field, [])
-                               if value.get("id") == item["id"]), None) if field else None
-                if record is None or item.get("content_location") != location:
-                    continue
-                value = item["value"]
-                # Preserve conflicting provenance as explicit material. A full
-                # record pointer may replace identical fields, never a different
-                # source or evidence-root set that still needs reconciliation.
-                if any(key in value and value[key] != record.get(key)
-                       for key in ("evidence", "source")):
-                    continue
-                for key in list(value):
-                    if key in record and value[key] == record[key]:
-                        value.pop(key)
+        compact_retrieved_records(context)
 
     def fit_bounded_request(self, request, *, system_suffix=""):
+        with preserve_retrieved_views(request["context"]):
+            self._fit_bounded_request(request, system_suffix=system_suffix)
+
+    def _fit_bounded_request(self, request, *, system_suffix=""):
         """Deterministically shrink an already-bounded provider request below the hard ceiling.
 
         This is an emergency delivery adaptation only. Exact durable state is untouched.
@@ -1163,6 +1145,10 @@ class Engine:
         if isinstance(context.get("continuity_probe"), dict):
             request["system"] += MATRIX_SIDECAR_SYSTEM
         request["system"] += system_suffix
+        if context.get("memory_mode") == "active":
+            self.prepare_active_request(request)
+            if provider_input_chars(request) <= limit:
+                return
 
         def excerpt(value, size):
             value = str(value or "")
@@ -1446,6 +1432,9 @@ class Engine:
                 ),
             }
             request["response_schema"] = _provider_response_schema(context, True)
+
+        if context.get("memory_mode") == "active":
+            self.prepare_active_request(request)
 
     def inquiry_drive_shadow(self, state):
         """Score durable research work without granting it any decision authority.
@@ -1838,11 +1827,7 @@ class Engine:
             # repeated fixation instruction while retaining exact provenance in
             # the audited topic-configuration event.
             project_domains = {project.get("domain") for project in projects}
-            context["research_topics"] = [
-                {key: value for key, value in topic.items()
-                 if key != "seed_question" or topic["id"] not in project_domains}
-                for topic in topics
-            ]
+            context["research_topics"] = self.research_topics_context(state)
             context["seed_questions"] = [
                 {"topic": topic["id"], "question": topic["seed_question"]}
                 for topic in context["research_topics"] if topic.get("seed_question")
@@ -2230,6 +2215,8 @@ class Engine:
                 trial["response_schema"] = research_plan_schema(trial["context"])
             else:
                 trial["response_schema"] = _provider_response_schema(trial["context"], bool(state.get("charter")))
+            if self.config.get("memory_mode") == "active":
+                self.prepare_active_request(trial)
             eligible = {item["id"] for item in trial["context"].get("evidence", [])
                         if item.get("content") and not item.get("content_omitted")
                         and self.durable_notebook_source_payload(state, item["id"]) is not None}
@@ -2333,7 +2320,7 @@ class Engine:
             if hasattr(self.store, "continuity_matrix_progress")
             else None
         )
-        if matrix_progress and matrix_progress.get("next_coordinate_id"):
+        if phase != "planning" and matrix_progress and matrix_progress.get("next_coordinate_id"):
             probe_request = build_continuity_probe(
                 state,
                 self.store.head(),
@@ -2519,9 +2506,9 @@ class Engine:
                         context[key] = delivered_context[key]
             request["response_schema"] = _provider_response_schema(request["context"], bool(state.get("charter")))
             context_mode = "bounded"
-            if routine_memory:
+            if routine_memory and phase != "planning":
                 self.fit_active_request(request)
-            if not routine_memory and provider_input_chars(request) > self.config["max_context_chars"]:
+            if not routine_memory and phase != "planning" and provider_input_chars(request) > self.config["max_context_chars"]:
                 self.fit_bounded_request(request)
         final_system_suffix = ""
         if question:
@@ -3000,6 +2987,14 @@ class Engine:
                 checkpoint()
             return {"status":"editorial_completed", "id":invocation, "article":article, **request_counts()}
         if phase == "planning":
+            decision_receipt = self.store.load()["invocations"][invocation].get("context_delivery", {}).get("decision_memory")
+            if decision_receipt is not None:
+                try:
+                    plan_proposal = json.loads(raw)
+                except (ValueError, TypeError):
+                    plan_proposal = None
+                metadata = {**(metadata or {}), "decision_memory_use": reference_observation(
+                    decision_receipt, plan_proposal, "rejected")}
             plan_id = "wake-retrieval-plan-" + invocation
             if lifecycle is not None:
                 lifecycle.proposal_received(plan_id)
@@ -3016,6 +3011,9 @@ class Engine:
                 if checkpoint:
                     checkpoint()
                 return {"status": "rejected", "id": invocation, "phase": "planning", "reason": str(exc)}
+            if decision_receipt is not None:
+                metadata["decision_memory_use"] = reference_observation(
+                    decision_receipt, plan_proposal, "research_planned")
             self.store.append("research_planned", {"id": invocation, "requests": requests,
                 "raw": raw, "metadata": metadata, "reason": "Validated retrieval plan; no research transition committed",
                 **request_counts()})

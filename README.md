@@ -20,6 +20,9 @@ selects provenance-linked historical records for the current question. It defaul
 to off; shadow mode measures selection without changing model input. Offline
 [comparison fixtures](docs/experiment.md#decision-memory-evaluation) test selection
 and context cost, not demonstrated improvements in model decisions.
+Active working context shares identical supplied facts and includes instructions for
+the current task. Planning keeps evidence, corrections and obligations while omitting
+proposal/publication-only views; the complete record remains unchanged.
 
 The public site is a dated, read-only mirror uploaded from its owning installation.
 Research can run autonomously in GitHub Actions containers, with GitHub Pages
