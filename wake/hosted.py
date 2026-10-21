@@ -42,7 +42,10 @@ FORMAT = 'wake-hosted-state@1'
 BLOCK_SIZE = 4 * 1024 * 1024
 MAX_BLOCK_SIZE = 256 * 1024 * 1024
 MAX_DATABASE = 8 * 1024**3
-AUXILIARY = ('installation-id.json', 'provider-schedule.json')
+# The two retired private files are opaque archival payloads only. Transport
+# preserves their bytes; no runtime feature reads or updates their contents.
+AUXILIARY = ('installation-id.json', 'provider-schedule.json',
+             'private/.passenger.md', 'private/.passenger-state.json')
 
 
 def encode(value):

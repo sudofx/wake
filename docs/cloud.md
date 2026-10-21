@@ -222,11 +222,10 @@ an authoritative record. See [authority and recovery](architecture.md#hosted-exe
 
 ### Publish source without upgrading records
 
-Source publication and runtime promotion are separate. The existing hosted
-installation is bound in `hosted-runtime.json` to its verified runtime. Source,
-setup scripts and documentation can therefore be published without replacing
-that runtime or resetting its records. This binding is deliberate: new source
-may reject event kinds that still exist in the installation's history.
+Source publication and runtime promotion are separate. `hosted-runtime.json`
+binds settings to an installation identity and can include `source_revision` to
+hold that installation on a verified commit. Omitting that optional pin explicitly
+selects successful master CI, while retaining the installation identity check.
 
 Before changing a binding, test the candidate against disposable copies of all
 records, preserve their history and accepted counts, and verify any required
@@ -244,12 +243,22 @@ all records, builds the existing filtered artifact, pushes `wake-public` and
 requests the Pages build. Its final job explicitly dispatches a successor through
 `workflow_dispatch`, using a source revision with successful code CI.
 `hosted-runtime.json` can bind a repository and installation identity to a verified
-runtime commit. A bound installation stays on that commit even when newer source
+runtime commit. A source-pinned installation stays on that commit even when newer source
 passes CI; a missing successful check fails closed. Unbound repositories select
 the newest checked `master` revision. A fork does not inherit another repository’s
 runtime binding. `hosted-recovery.yml` handles failed or cancelled run-completion events
 and repairs a lost successor dispatch with the same identity. Duplicate handoffs
 are reconciled and installation execution is serialized. Neither uses cron.
+
+The operator may set `decision_memory_mode` to `off`, `shadow`, or `active` in that
+installation's policy. Before starting workers, the hosted runner applies this
+root setting to the restored private configuration, preserving topics and other
+settings. The setting is checkpointed with that configuration. The repository
+and application defaults remain off. This installation explicitly uses active
+decision memory. Old advisory terminal receipts have read-only replay support;
+new advisory events are rejected and no retired execution feature is restored.
+Encrypted recovery also retains the existing retired private sidecars as opaque
+files; they are neither interpreted nor included in public exports or research.
 
 The existing kernel invocation lifecycle calls the injected remote checkpoint
 before provider effects and at terminal boundaries. Each callback snapshots the

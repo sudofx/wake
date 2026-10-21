@@ -189,7 +189,10 @@ def reduce_event(state, event, historical=False):
         item["provider_requests_sent"] += 1
         if p["attempt"]["result"] == "success":
             item["successful_model"] = p["attempt"]["model"]
-    elif kind in ("accepted", "rejected", "failed", "deferred", "recovered", "research_planned", "editorial_completed"):
+    elif kind in ("accepted", "rejected", "failed", "deferred", "recovered", "research_planned", "editorial_completed", "advisory_completed"):
+        # Retired receipt compatibility only. Never admit a new advisory event.
+        if kind == "advisory_completed":
+            require(historical, "Retired advisory events are read-only history")
         require(state["pending"] == p["id"], "Invocation is not pending")
         if kind == "accepted":
             state = transition(state, p["proposal"], p["id"], historical=historical)
@@ -197,6 +200,10 @@ def reduce_event(state, event, historical=False):
             require(digest({k: state[k] for k in fields}) == p["result_hash"],
                     "Transition result hash mismatch")
         terminal = {"status": kind, "finished": event["time"], "reason": p.get("reason", "")}
+        if kind == "advisory_completed":
+            require(state["invocations"][p["id"]].get("phase") == "passenger", "Historical advisory phase mismatch")
+            require(p.get("outcome") in ("applied", "already-applied", "no-observations", "invalid-output", "stale", "unavailable"), "Invalid historical advisory outcome")
+            terminal["outcome"] = p["outcome"]
         if kind == "editorial_completed":
             require(state["invocations"][p["id"]].get("phase") == "group_editorial", "Editorial receipt requires its public synthesis phase")
             from .group_editorial import validate_article

@@ -56,6 +56,22 @@ class LocalState(HostedState):
 
 
 class HostedTransportTests(unittest.TestCase):
+    def test_retired_private_archives_round_trip_opaquely(self):
+        import zipfile
+        private = self.active / 'private'
+        saved = {'.passenger.md': b'RETIRED PRIVATE ARCHIVE\x00',
+                 '.passenger-state.json': b'{opaque historical bytes}'}
+        for name, data in saved.items():
+            (private / name).write_bytes(data)
+        assets = self.transport.assets()
+        refs = self.transport.put_auxiliary(self.active, assets)
+        archive_path = self.root / 'retained.zip'
+        self.transport.get_file(refs, archive_path)
+        with zipfile.ZipFile(archive_path) as archive:
+            for name, data in saved.items():
+                self.assertEqual(archive.read('private/' + name), data)
+            self.assertNotIn('private/.private.md', archive.namelist())
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.root = Path(self.temp.name)

@@ -83,6 +83,41 @@ class HostedBatchTests(unittest.TestCase):
 
 
 class HostedRuntimeSelectionTests(unittest.TestCase):
+    def test_operator_mode_changes_only_root_setting_and_preserves_topics(self):
+        import tomllib
+        from scripts.github_research import apply_decision_memory_policy
+        for initial in ('', 'decision_memory_mode = "off"\n'):
+            with tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                (root / 'config').mkdir()
+                path = root / 'config/wake.toml'
+                path.write_text(initial + 'memory_mode = "active"\n[topics]\nquestion = "persist"\n')
+                with redirect_stdout(io.StringIO()):
+                    apply_decision_memory_policy(root, {'decision_memory_mode': 'active'})
+                values = tomllib.loads(path.read_text())
+                self.assertEqual(values['decision_memory_mode'], 'active')
+                self.assertEqual(values['memory_mode'], 'active')
+                self.assertEqual(values['topics'], {'question': 'persist'})
+                before = path.read_bytes()
+                apply_decision_memory_policy(root, None)
+                self.assertEqual(before, path.read_bytes())
+                with self.assertRaises(ValueError):
+                    apply_decision_memory_policy(root, {'decision_memory_mode': 'invalid'})
+                self.assertEqual(before, path.read_bytes())
+
+    def test_unpinned_bound_installation_selects_successful_master(self):
+        import json
+        from scripts.github_research import checked_revision
+        client = SimpleNamespace(repository='example/repo', request=MagicMock(return_value={
+            'workflow_runs': [{'event': 'push', 'head_branch': 'master', 'head_sha': 'b' * 40}]}))
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'policy.json'
+            path.write_text(json.dumps({'schema': 1, 'installations': {'example/repo': {
+                'installation_id': '1' * 32, 'decision_memory_mode': 'active'}}}))
+            with patch('scripts.github_research.RUNTIME_POLICY', path):
+                self.assertEqual(checked_revision(client), 'b' * 40)
+            self.assertIn('branch=master', client.request.call_args.args[0])
+
     def policy_file(self, directory):
         import json
         path = Path(directory) / 'hosted-runtime.json'

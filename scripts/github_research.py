@@ -13,6 +13,7 @@ import sys
 import tempfile
 import threading
 import time
+import tomllib
 from urllib.error import HTTPError, URLError
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -48,7 +49,8 @@ def runtime_policy(client):
     if selected is None:
         return None
     if (not isinstance(selected, dict)
-            or not re.fullmatch('[0-9a-f]{40}', str(selected.get('source_revision', '')))
+            or (selected.get('source_revision') is not None and not re.fullmatch('[0-9a-f]{40}', str(selected['source_revision'])))
+            or selected.get('decision_memory_mode', 'off') not in ('off', 'shadow', 'active')
             or not re.fullmatch('[0-9a-f]{32}', str(selected.get('installation_id', '')))):
         raise ValueError('Invalid hosted installation binding')
     return selected
@@ -56,13 +58,40 @@ def runtime_policy(client):
 
 def checked_revision(client):
     policy = runtime_policy(client)
-    query = ('head_sha=' + policy['source_revision']) if policy else 'branch=master'
+    pinned = policy.get('source_revision') if policy else None
+    query = ('head_sha=' + pinned) if pinned else 'branch=master'
     runs = client.request('actions/workflows/test.yml/runs?' + query + '&status=success&per_page=20')['workflow_runs']
     for run in runs:
         if (run['event'] in ('push', 'workflow_dispatch') and run['head_branch'] == 'master'
-                and (not policy or run['head_sha'] == policy['source_revision'])):
+                and (not pinned or run['head_sha'] == pinned)):
             return run['head_sha']
     raise ValueError('The selected runtime has no successful master CI; refusing automatic promotion')
+
+
+def apply_decision_memory_policy(root, policy):
+    """Apply the operator's installation setting before any worker is admitted."""
+    if not policy or 'decision_memory_mode' not in policy:
+        return
+    from wake.report import atomic_write
+    mode = policy['decision_memory_mode']
+    if mode not in ('off', 'shadow', 'active'):
+        raise ValueError('Invalid hosted decision memory mode')
+    path = root / 'config/wake.toml'
+    original = path.read_text()
+    # Change only the root TOML key; preserve per-member topics and all tables.
+    lines = original.splitlines(keepends=True)
+    found = False
+    for index, line in enumerate(lines):
+        if line.lstrip().startswith('['):
+            break
+        if re.match(r'^\s*decision_memory_mode\s*=', line):
+            lines[index] = f'decision_memory_mode = "{mode}"\n'
+            found = True
+    updated = ''.join(lines) if found else f'decision_memory_mode = "{mode}"\n' + original
+    if tomllib.loads(updated).get('decision_memory_mode') != mode:
+        raise ValueError('Hosted decision memory configuration did not validate')
+    atomic_write(path, updated)
+    print(json.dumps({'decision_memory_mode': mode, 'scope': 'hosted-installation'}), flush=True)
 
 
 def control(action):
@@ -187,7 +216,7 @@ def run_batch(minutes, provider):
     if not re.fullmatch('[0-9a-f]{40}', revision):
         raise ValueError('Hosted source must be a complete commit identity')
     policy = runtime_policy(client)
-    if policy and revision != policy['source_revision']:
+    if policy and policy.get('source_revision') and revision != policy['source_revision']:
         raise ValueError('This installation requires its pinned runtime; record compatibility must be verified before promotion')
     checks = client.request(f'actions/workflows/test.yml/runs?head_sha={revision}&status=success&per_page=20')['workflow_runs']
     if not any(item['head_sha'] == revision and item['head_branch'] == 'master' for item in checks):
@@ -198,6 +227,7 @@ def run_batch(minutes, provider):
     before = transport.restore(root, workers=3)
     if policy and before['installation_id'] != policy['installation_id']:
         raise ValueError('Restored installation differs from the runtime binding; no controller started')
+    apply_decision_memory_policy(root, policy)
     print(json.dumps({'restored_installation': before['installation_id'],
                       'generation': before['generation'],
                       'heads': {n: d['head'] for n, d in before['nodes'].items()}}), flush=True)
