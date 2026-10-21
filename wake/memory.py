@@ -99,7 +99,10 @@ def build_active_memory(state, compacts, retrieval, *, max_records=8, max_compac
         value = {key: deepcopy(record[key]) for key in _FIELDS[kind] if key in record}
         omitted_content = (kind == 'evidence' and record.get('actor') == 'collector'
                            and visible_collector_ids is not None and identifier not in visible_collector_ids)
-        if omitted_content:
+        if kind == 'evidence' and record.get('actor') == 'collector' and visible_collector_ids is not None:
+            # The source-delivery owner supplies readable excerpts in context.evidence.
+            # Clipping the raw collector JSON here creates a second, often invalid
+            # source view and silently bypasses that owner's excerpt budget.
             value.pop('content', None)
         clipped = []
         for key, field in list(value.items()):

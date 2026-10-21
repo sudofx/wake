@@ -225,7 +225,8 @@ class ActiveMemoryTests(unittest.TestCase):
             record=dict(kind='evidence', id=identifier), evidence=[]) for identifier in state['evidence']])
         memory = build_active_memory(state, {'compacts': []}, retrieval, visible_collector_ids={'visible'})
         records = {item['id']: item for item in memory['retrieved_records']}
-        self.assertIn('content', records['visible']['value'])
+        self.assertNotIn('content', records['visible']['value'])
+        self.assertNotIn('content_omitted', records['visible'])
         for identifier in ('outside-budget', 'discovery'):
             self.assertNotIn('content', records[identifier]['value'])
             self.assertTrue(records[identifier]['content_omitted'])

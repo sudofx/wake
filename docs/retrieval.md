@@ -26,7 +26,9 @@ Disabling the feature affects future invocations; previous receipts remain intac
 
 Active working memory compacts the request before it reaches the character ceiling.
 Identical fields in retrieved records use their existing `content_location` pointer
-rather than repeating supplied prose, IDs and source roots. Each pointer retains its
+rather than repeating supplied prose, IDs and source roots. Collector prose
+always follows the source-delivery owner in `context.evidence`; active retrieval
+never adds a second clipped copy of the raw collector JSON. Each pointer retains its
 exact record hash and retrieval reasons. Missing targets and conflicting source/root
 sets remain explicit; a reference never reconciles different records or supplies
 missing text. A decision capsule also reuses an identical supplied excerpt.

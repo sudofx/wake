@@ -8,7 +8,7 @@ from unittest.mock import patch
 
 from wake.engine import Engine
 from wake.event_format import canonical, digest
-from wake.memory import compact_retrieved_records, preserve_retrieved_views
+from wake.memory import build_active_memory, compact_retrieved_records, preserve_retrieved_views
 from wake.prompts import (BOUNDED_RESEARCH_SYSTEM, BOB_CHECKPOINT_SYSTEM, QUALITY_RESEARCH_SYSTEM,
                           compact_request_instructions)
 from wake.providers import Fixture, provider_input_chars
@@ -79,6 +79,26 @@ class RequestCompactionTests(unittest.TestCase):
         once = canonical(context)
         compact_retrieved_records(context)
         self.assertEqual(canonical(context), once)
+
+    def test_collector_memory_reuses_source_delivery_instead_of_clipping_raw_json_again(self):
+        source = dict(id='source', actor='collector', scope='collected', source='https://example.edu/paper',
+                      content=canonical(dict(excerpt='Collected source prose ' * 200, evidence_role='source')))
+        state = dict(version=3, evidence=dict(source=source))
+        retrieval = dict(candidates=[dict(record=dict(kind='evidence', id='source'),
+                          trigger='project_source_handoff', evidence=['source'])])
+        memory = build_active_memory(state, dict(compacts=[]), retrieval, visible_collector_ids={'source'})
+        item = memory['retrieved_records'][0]
+        self.assertNotIn('content', item['value'])
+        self.assertEqual(item['record_hash'], digest(source))
+        context = dict(evidence=[deepcopy(source)], memory=memory)
+        compact_retrieved_records(context)
+        self.assertEqual(item['content_location'], dict(field='context.evidence', id='source'))
+        self.assertEqual(context['evidence'][0]['content'], source['content'])
+        hidden = build_active_memory(state, dict(compacts=[]), retrieval, visible_collector_ids=set())
+        self.assertTrue(hidden['retrieved_records'][0]['content_omitted'])
+        self.assertNotIn('content', hidden['retrieved_records'][0]['value'])
+        # Context-only legacy/shadow builders do not change their delivery contract.
+        self.assertIn('content', build_active_memory(state, dict(compacts=[]), retrieval)['retrieved_records'][0]['value'])
 
     def test_later_focus_cannot_leave_a_shared_record_pointer_without_its_content(self):
         supplied = dict(id='n', summary='The only surviving interpretation', evidence=['exact-root'])
