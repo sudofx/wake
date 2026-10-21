@@ -40,9 +40,23 @@ def enabled(client):
 
 def runtime_policy(client):
     """A source release does not implicitly upgrade a bound installation's records."""
-    if not RUNTIME_POLICY.exists():
-        return None
-    policy = json.loads(RUNTIME_POLICY.read_text())
+    if os.environ.get('GITHUB_ACTIONS') == 'true':
+        # Checkout intentionally selects runtime_ref, which cannot contain its
+        # own final commit hash. The dispatch's immutable workflow commit owns
+        # the operator binding; never substitute the candidate's older pin or a
+        # moving master read. A missing/unreadable binding fails before restore.
+        revision = os.environ.get('GITHUB_SHA', '')
+        if not re.fullmatch('[0-9a-f]{40}', revision):
+            raise ValueError('Hosted runtime policy requires its workflow commit')
+        blob = client.request('contents/hosted-runtime.json?ref=' + revision)
+        if (blob.get('type') != 'file' or blob.get('encoding') != 'base64'
+                or not isinstance(blob.get('content'), str) or len(blob['content']) > 32768):
+            raise ValueError('Hosted runtime policy is not a bounded file')
+        policy = json.loads(base64.b64decode(''.join(blob['content'].split()), validate=True))
+    else:
+        if not RUNTIME_POLICY.exists():
+            return None
+        policy = json.loads(RUNTIME_POLICY.read_text())
     if policy.get('schema') != 1 or not isinstance(policy.get('installations'), dict):
         raise ValueError('Invalid hosted runtime policy; refusing automatic promotion')
     selected = policy['installations'].get(client.repository)

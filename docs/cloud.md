@@ -8,6 +8,10 @@ The optional [decision-memory feature](retrieval.md#optional-decision-relevant-r
 defaults to off. A hypothetical shadow capsule is invocation telemetry, never a
 public snapshot or a source of research authority. Enabling active delivery is
 an explicit runtime configuration choice, separate from publishing source or Pages.
+Model-facing compact capsule views remain bound to the full private native receipt;
+neither format is added to public exports. A presentation-only refresh also copies
+the Console chart assets: each line chart fits its complete captured history to
+the panel width, without changing the captured research or inspection packets.
 
 ## Publish the local installation mirror
 
@@ -232,6 +236,11 @@ records, preserve their history and accepted counts, and verify any required
 migration. Never clear the binding merely to force an upgrade. A runtime source
 commit must also have successful `master` CI. The binding's installation ID must
 match the restored checkpoint before a new controller can start.
+In Actions, admission and successor selection read this binding from the immutable
+workflow commit (`GITHUB_SHA`), separately from the candidate runtime checkout.
+That permits a later binding commit to name a previously checked candidate without
+requiring a self-referencing source hash. An unreadable or malformed policy stops
+admission before opening hosted authority; it never falls back to an older pin.
 
 ### Continuation and repair
 

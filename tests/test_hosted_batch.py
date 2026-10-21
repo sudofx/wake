@@ -14,6 +14,7 @@ from scripts.github_research import run_batch
 from scripts.github_research import PeriodicPublication
 
 
+@patch.dict(os.environ, {'GITHUB_ACTIONS':'false'})
 class HostedBatchTests(unittest.TestCase):
     def test_periodic_publication_failure_does_not_own_research_or_final_capture(self):
         import threading
@@ -82,7 +83,38 @@ class HostedBatchTests(unittest.TestCase):
                                     for c in client.request.call_args_list))
 
 
+@patch.dict(os.environ, {'GITHUB_ACTIONS':'false'})
 class HostedRuntimeSelectionTests(unittest.TestCase):
+    def test_actions_uses_immutable_workflow_policy_instead_of_candidate_checkout(self):
+        import base64, json
+        from scripts.github_research import checked_revision
+        revision = 'b' * 40
+        policy = dict(schema=1, installations={'example/repo': dict(
+            installation_id='1'*32, source_revision=revision)})
+        client = SimpleNamespace(repository='example/repo', request=MagicMock(side_effect=[
+            dict(type='file', encoding='base64', content=base64.b64encode(json.dumps(policy).encode()).decode()),
+            {'workflow_runs': [{'event':'push','head_branch':'master','head_sha':revision}]}]))
+        with tempfile.TemporaryDirectory() as directory, \
+                patch('scripts.github_research.RUNTIME_POLICY', self.policy_file(directory)), \
+                patch.dict(os.environ, {'GITHUB_ACTIONS':'true','GITHUB_SHA':'c'*40}):
+            self.assertEqual(checked_revision(client), revision)
+        self.assertEqual(client.request.call_args_list[0].args,
+                         ('contents/hosted-runtime.json?ref='+'c'*40,))
+        self.assertIn('head_sha='+revision,client.request.call_args_list[1].args[0])
+
+    def test_actions_policy_read_failure_or_malformed_file_cannot_open_authority(self):
+        for result in (OSError('unavailable'), {}, {'type':'file','encoding':'base64','content':'!invalid!'}):
+            client = SimpleNamespace(repository='example/repo', request=MagicMock(
+                side_effect=result if isinstance(result,Exception) else None,
+                return_value=result if isinstance(result,dict) else None))
+            with patch.dict(os.environ, {'GITHUB_ACTIONS':'true','GITHUB_SHA':'c'*40,'WAKE_SOURCE_REVISION':'b'*40}), \
+                    patch('scripts.github_research.api',return_value=client), \
+                    patch('scripts.github_research.enabled',return_value=True), \
+                    patch('scripts.github_research.HostedState.from_environment') as transport:
+                with self.assertRaises((OSError,ValueError)):
+                    run_batch(1,'fixture')
+                transport.assert_not_called()
+
     def test_operator_mode_changes_only_root_setting_and_preserves_topics(self):
         import tomllib
         from scripts.github_research import apply_decision_memory_policy
