@@ -24,8 +24,9 @@ build/
 *.egg-info/
 .vscode/
 
-# Private installation advisory state must never be committed.
-**/.passenger*
+# Hidden private notes and sidecars must never be committed.
+**/.*.md
+**/.*-state.json
 
 # Human continuity notes are local, never source or public content.
 /.wake-continuity/

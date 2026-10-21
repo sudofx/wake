@@ -78,6 +78,19 @@ consequences into later work, even when the model that produced them is replaced
 theory, quantum computation, or an implemented function. Read
 [why WAKE](docs/why-wake.md) for the full explanation and its limits.
 
+## Install or develop WAKE
+
+Start with the [step-by-step setup guide](docs/setup.md): local Docker, GitHub
+Pages, desktop VS Code, and Codespaces. No model key is needed for inspection.
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/sudofx/wake/refs/heads/master/container_setup.sh | sh
+```
+
+This detects an existing managed container or downloads, builds and creates one.
+Research starts stopped on a new launch. Use `sh container_setup.sh recreate` to
+rebuild existing source and replace the container while retaining its records.
+
 ## Choose a guide
 
 | If you want to… | Start here |
@@ -133,22 +146,13 @@ recovers lost handshakes without repeating inference. Research being enabled is
 separate from accepted progress; see the [queue and recovery contract](docs/standalone.md#collect-quickly-through-one-shared-api-queue).
 
 ```sh
-cp .env.example .env
-# Configure your provider and edit research-topics.toml.
-./scripts/wake_installation build
-./scripts/wake_installation start
-./scripts/wake_installation shell
-wake-research status
-# Inside this installation, wake status returns the same controller status.
-# Inspect first. Enable research separately when ready:
-# wake-research start
+sh container_setup.sh
 ```
 
-Open `http://localhost/console.html` (host port 80 by default). Attach VS Code to
-`wake` for the writable `/workspace` and existing terminal prompt. The Console's
-selector opens an individual node's record. [Standalone setup](docs/standalone.md#run-one-installation-container)
-explains controls, destructive `RESET`, manual archives, serial API scheduling,
-LAN access, and the optional public mirror.
+Open `http://localhost:8080/console.html`. Then inspect with
+`docker exec wake wake-research status`. Configure topics and a provider separately;
+start research only when ready. The [setup guide](docs/setup.md#1-local-docker-installation)
+walks through each step, including environment changes and recreation.
 
 ### Compatibility launchers
 
@@ -179,7 +183,9 @@ GitHub Pages serves the uploaded public snapshot. The current hosted controller
 runs the same twelve native records in disposable Actions containers, using
 encrypted recovery storage. The older executor branches remain untouched
 historical artifacts. Hosted research and website publication are separate
-observable outcomes. See [hosted operation](docs/cloud.md#run-research-on-github-without-a-laptop).
+observable outcomes. `hosted-runtime.json` keeps a bound installation on its
+verified source while newer code and documentation are published. Promotion
+requires a separate record-compatibility check; it never implies resetting research. See [hosted operation](docs/cloud.md#run-research-on-github-without-a-laptop).
 Checkpoint transfers reserve GitHub API capacity for controls and pause for a
 reported quota reset without bypassing durability. Independent completion recovery
 uses a stable workflow name; a failed batch without recovery for fifteen minutes
@@ -245,7 +251,7 @@ required independently. New articles supply structured paragraphs and reference
 numbers; deterministic rendering adds citations and the Summary heading, retaining
 the exact provider response and a replay-verified rendering receipt. Existing dated
 node exports remain usable while a worker is unavailable.
-See the [editorial contract](docs/development.md#first-run-publication-and-passenger).
+See the [editorial contract](docs/development.md#first-run-publication).
 `./scripts/wake_publish --watch` delivers later accepted articles from immutable
 exports while preserving research controls.
 The homepage brings readers into an open question and Bob's latest story;
@@ -257,14 +263,6 @@ Compatible completed node pages are reused; incompatible pages rebuild from the
 captured snapshots. Local Console views defer hidden charts and share lightweight
 read-only status updates. See [website observation](docs/development.md#lightweight-website-observation)
 and [mirror capture](docs/cloud.md#publish-the-local-installation-mirror).
-Container installations also have **Passenger**, a private, installation-wide
-Markdown workspace for Bob's operational assessments and proposed changes.
-The current installation shares its private Passenger storage root; compatibility
-named groups share the project-root `.passenger.md`. First publication adds a
-factual receipt without another model call. Passenger cannot execute changes or govern research. See
-[first-run publication and Passenger](docs/development.md#first-run-publication-and-passenger)
-for persistence, privacy, shared storage and operator reset.
-
 ### Retained hosted reset
 
 Hosted Reset verifies the old authority and retains its exact checkpoint on a
@@ -277,9 +275,8 @@ Compatibility local in-place resets retain history. The current uppercase
 `wake-research RESET` instead destroys active records without a backup and leaves
 research stopped; existing manual exports survive.
 
-Bob’s public articles use plain prose, including the built-in welcome. Markdown
-is confined to Passenger. Public display removes legacy heading markers without
-rewriting historical receipts.
+Bob’s public articles use plain prose, including the built-in welcome. Public display removes legacy heading markers
+without rewriting historical receipts.
 
 Lossless storage compression preserves exact records, hashes and replay. Version 13
 shares repeated long strings within stored JSON values when that saves space.

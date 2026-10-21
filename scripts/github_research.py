@@ -21,6 +21,7 @@ from wake.hosted import GitHub, HostedState
 from wake.installation_cli import NODE_IDS, build_public_artifact, request, upload_public_artifact
 
 WORKFLOW = 'hosted-research.yml'
+RUNTIME_POLICY = Path(__file__).resolve().parents[1] / 'hosted-runtime.json'
 
 
 def api():
@@ -36,12 +37,32 @@ def enabled(client):
         raise
 
 
+def runtime_policy(client):
+    """A source release does not implicitly upgrade a bound installation's records."""
+    if not RUNTIME_POLICY.exists():
+        return None
+    policy = json.loads(RUNTIME_POLICY.read_text())
+    if policy.get('schema') != 1 or not isinstance(policy.get('installations'), dict):
+        raise ValueError('Invalid hosted runtime policy; refusing automatic promotion')
+    selected = policy['installations'].get(client.repository)
+    if selected is None:
+        return None
+    if (not isinstance(selected, dict)
+            or not re.fullmatch('[0-9a-f]{40}', str(selected.get('source_revision', '')))
+            or not re.fullmatch('[0-9a-f]{32}', str(selected.get('installation_id', '')))):
+        raise ValueError('Invalid hosted installation binding')
+    return selected
+
+
 def checked_revision(client):
-    runs = client.request('actions/workflows/test.yml/runs?branch=master&status=success&per_page=10')['workflow_runs']
+    policy = runtime_policy(client)
+    query = ('head_sha=' + policy['source_revision']) if policy else 'branch=master'
+    runs = client.request('actions/workflows/test.yml/runs?' + query + '&status=success&per_page=20')['workflow_runs']
     for run in runs:
-        if run['event'] in ('push', 'workflow_dispatch') and run['head_branch'] == 'master':
+        if (run['event'] in ('push', 'workflow_dispatch') and run['head_branch'] == 'master'
+                and (not policy or run['head_sha'] == policy['source_revision'])):
             return run['head_sha']
-    raise ValueError('No successfully checked master revision is available')
+    raise ValueError('The selected runtime has no successful master CI; refusing automatic promotion')
 
 
 def control(action):
@@ -165,6 +186,9 @@ def run_batch(minutes, provider):
     revision = os.environ['WAKE_SOURCE_REVISION']
     if not re.fullmatch('[0-9a-f]{40}', revision):
         raise ValueError('Hosted source must be a complete commit identity')
+    policy = runtime_policy(client)
+    if policy and revision != policy['source_revision']:
+        raise ValueError('This installation requires its pinned runtime; record compatibility must be verified before promotion')
     checks = client.request(f'actions/workflows/test.yml/runs?head_sha={revision}&status=success&per_page=20')['workflow_runs']
     if not any(item['head_sha'] == revision and item['head_branch'] == 'master' for item in checks):
         raise ValueError('Source revision has not passed repository CI')
@@ -172,6 +196,8 @@ def run_batch(minutes, provider):
     transport.open()
     root = Path(os.environ['WAKE_INSTALLATION_DATA']).resolve()
     before = transport.restore(root, workers=3)
+    if policy and before['installation_id'] != policy['installation_id']:
+        raise ValueError('Restored installation differs from the runtime binding; no controller started')
     print(json.dumps({'restored_installation': before['installation_id'],
                       'generation': before['generation'],
                       'heads': {n: d['head'] for n, d in before['nodes'].items()}}), flush=True)

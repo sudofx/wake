@@ -60,9 +60,9 @@ def wake_status(state, daily_call_limit=20, now=None, *, wait_provider_daily=Fal
     now = now or datetime.now(timezone.utc)
     items = sorted(state["invocations"].values(), key=lambda item: item["time"])
     accepted = [item for item in items if item["status"] == "accepted"]
-    # Private advisory calls and local editorial recovery do not replace the
+    # Editorial recovery does not replace the
     # primary workload's failure/deferral latch. All paid calls still count.
-    workload = [item for item in items if item.get("phase") not in ("passenger", "group_editorial")
+    workload = [item for item in items if item.get("phase") != "group_editorial"
                 and item.get("provider") != "editorial"]
     latest = workload[-1] if workload else None
 
@@ -128,8 +128,6 @@ def wake_status(state, daily_call_limit=20, now=None, *, wait_provider_daily=Fal
     # a successful fallback) clears it; a reservation with unknown outcome does not.
     provider_limited = False
     for item in items:
-        if item.get("phase") == "passenger":
-            continue
         attempts = item.get("provider_attempts", [])
         if not attempts and provider_quota_limited(item):
             provider_limited = True

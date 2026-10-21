@@ -1,10 +1,4 @@
-/*
- * WAKE✳︎ MAINTAINER NOTE
- *
- * Interface personality/experimental behavior kept separate from durable research mechanics. UI personality is not persistence or agency.
- *
- * Comments should preserve the boundary between presentation and the canonical durable record.
- */
+/* Homepage reading experience and browser-local Ask Bob interface. */
 
 window.WakePetReady=(async () => {
   'use strict';

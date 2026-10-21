@@ -1,6 +1,4 @@
-# WAKE✳︎ MAINTAINER NOTE
-# Runtime configuration. Provider, cadence, quota, and capacity values alter operation but must not silently redefine accepted history.
-# Comments here document operational intent so future maintainers do not mistake configuration for experimental evidence.
+# Runtime settings affect future work; recorded history retains its original meaning.
 
 timezone = "America/Los_Angeles"
 objective = "Test whether durable state and mechanically enforced rules can make fresh model invocations act as one accountable process."
@@ -10,7 +8,7 @@ model = "gemini-3.1-flash-lite"
 # preceding model's exact per-model daily free-tier quota is exhausted.
 gemini_fallback_models = ["gemini-3.5-flash-lite", "gemini-3.6-flash", "gemini-3.8-flash"]
 gemini_fallback_requires_primary_daily_quota = true
-# Match the current free-tier RPD buckets. Provider-reported daily exhaustion
+# Configured per-model ceilings. Provider-reported daily exhaustion
 # still advances the chain when calls outside WAKE used part of a model's quota.
 daily_call_limit = 500
 model_daily_call_limits = { "gemini-3.1-flash-lite" = 500, "gemini-3.8-flash" = 20, "gemini-3.5-flash-lite" = 500, "gemini-3.6-flash" = 20 }

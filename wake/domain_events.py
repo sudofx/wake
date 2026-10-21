@@ -33,30 +33,6 @@ def empty():
             "acquisition": {}, "representations": {}}
 
 
-# ---------------------------------------------------------------------------
-
-
-# STEP: reduce_event
-
-
-#
-
-
-# This step exists as an explicit seam so its behavior can be
-
-
-# inspected, tested, and replaced without giving a model hidden authority.
-
-
-# Inputs should already belong to the layer named above; outputs remain data
-
-
-# until the next boundary validates or records them. Callers may rely on this contract.
-
-
-# ---------------------------------------------------------------------------
-
-
 def reduce_event(state, event, historical=False):
     p, kind = event["payload"], event["kind"]
     if kind == "initialized":
@@ -213,7 +189,7 @@ def reduce_event(state, event, historical=False):
         item["provider_requests_sent"] += 1
         if p["attempt"]["result"] == "success":
             item["successful_model"] = p["attempt"]["model"]
-    elif kind in ("accepted", "rejected", "failed", "deferred", "recovered", "research_planned", "advisory_completed", "editorial_completed"):
+    elif kind in ("accepted", "rejected", "failed", "deferred", "recovered", "research_planned", "editorial_completed"):
         require(state["pending"] == p["id"], "Invocation is not pending")
         if kind == "accepted":
             state = transition(state, p["proposal"], p["id"], historical=historical)
@@ -239,10 +215,6 @@ def reduce_event(state, event, historical=False):
                             "Editorial rendering contract differs from invocation")
                     terminal["output_transform"] = transformation
             terminal.update(article=p["article"], input_digest=p["input_digest"], checkpoint=p["checkpoint"])
-        if kind == "advisory_completed":
-            require(state["invocations"][p["id"]].get("phase") == "passenger", "Advisory receipt requires its private phase")
-            require(p.get("outcome") in ("applied", "already-applied", "no-observations", "invalid-output", "stale", "unavailable"), "Invalid advisory outcome")
-            terminal["outcome"] = p["outcome"]
         if "provider_requests_sent" in p:
             terminal["provider_requests_sent"] = p["provider_requests_sent"]
         diagnostics = p.get("metadata", p)
@@ -264,29 +236,5 @@ def reduce_event(state, event, historical=False):
     else:
         raise Rejected(f"Unknown event kind: {kind}")
     return state
-
-
-# ---------------------------------------------------------------------------
-
-
-# OBJECT: IntegrityError
-
-
-#
-
-
-# This object groups state/behavior exists as an explicit seam so its behavior can be
-
-
-# inspected, tested, and replaced without giving a model hidden authority.
-
-
-# Inputs should already belong to the layer named above; outputs remain data
-
-
-# until the next boundary validates or records them. Callers may rely on this contract.
-
-
-# ---------------------------------------------------------------------------
 
 

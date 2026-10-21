@@ -12,7 +12,7 @@ class HostedActivityTests(unittest.TestCase):
             'activity_schema':1,'capabilities':{'live_activity':True},
             'activity':{'stage':'provider','active':True,'invocation_id':'w-'+'a'*16,'coordinate_id':'axis:1','prompt':'PRIVATE'},'reason':'PRIVATE'}
         packet = {'members':[{'id':node,'runtime':runtime} for node in NODES],
-            'coordinator':{'active':{'confirmed':False,'member':NODES[0],'token':'PRIVATE'},'queued':100},'passenger':'PRIVATE'}
+            'coordinator':{'active':{'confirmed':False,'member':NODES[0],'token':'PRIVATE'},'queued':100},'private':'PRIVATE'}
         result = public_sample(packet,'installation','123','a'*40)
         self.assertNotIn('PRIVATE',json.dumps(result));self.assertEqual(result['coordinator'],{'active':None,'queued':12})
         self.assertEqual(len(result['members']),12)

@@ -26,30 +26,6 @@ TRIGGER_DESCRIPTIONS = {
 }
 
 
-# ---------------------------------------------------------------------------
-
-
-# STEP: build_retrieval_shadow
-
-
-#
-
-
-# This step exists as an explicit seam so its behavior can be
-
-
-# inspected, tested, and replaced without giving a model hidden authority.
-
-
-# Inputs should already belong to the layer named above; outputs remain data
-
-
-# until the next boundary validates or records them. Callers may rely on this contract.
-
-
-# ---------------------------------------------------------------------------
-
-
 def build_retrieval_shadow(state, working_set, trust_compacts=None):
     """Return a bounded, deterministic plan for exact-record rehydration.
 
@@ -59,14 +35,6 @@ def build_retrieval_shadow(state, working_set, trust_compacts=None):
     """
     candidates = []
 
-    # ---------------------------------------------------------------------------
-    # STEP: add
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Callers may rely on this contract.
-    # ---------------------------------------------------------------------------
 
     def add(trigger, record_kind, record_id, reason, evidence=()):
         candidates.append({

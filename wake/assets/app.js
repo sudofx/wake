@@ -1,10 +1,4 @@
-/*
- * WAKE✳︎ MAINTAINER NOTE
- *
- * Main browser controller. It turns exported state into navigation/readable views and must not invent facts absent from the published record.
- *
- * Comments should preserve the boundary between presentation and the canonical durable record.
- */
+/* Render exported research records and reader navigation; browser interactions never mutate authority. */
 
 (async () => {
   'use strict';

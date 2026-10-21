@@ -11,6 +11,8 @@ COPY wake.toml example.research-topics.toml ./
 COPY . /tmp/wake-build-context/
 RUN if [ -f /tmp/wake-build-context/research-topics.toml ]; then cp /tmp/wake-build-context/research-topics.toml /app/research-topics.toml; fi \
     && rm -rf /tmp/wake-build-context \
+    # COPY preserves host modes; every shipped public asset must be readable by wake.
+    && chmod -R a+rX /app \
     && python -m pip install . \
     && groupadd --gid 10001 wake \
     && useradd --uid 10001 --gid wake --create-home --shell /bin/bash wake \

@@ -72,8 +72,8 @@ class HostedTransportTests(unittest.TestCase):
         (self.active / 'config').mkdir()
         (self.active / 'config/wake.toml').write_text('provider="fixture"\n')
         (self.active / 'private').mkdir()
-        (self.active / 'private/.passenger.md').write_text('PRIVATE PASSENGER CONTENT')
-        (self.active / 'private/.passenger-state.json').write_text('{"generation":0}')
+        (self.active / 'private/.private.md').write_text('PRIVATE SIDECAR CONTENT')
+        (self.active / 'private/.private-state.json').write_text('{"generation":0}')
         self.remote = self.root / 'remote.git'
         subprocess.run(['git', 'init', '--bare', '-q', str(self.remote)], check=True)
         LocalState.remote = self.remote
@@ -90,13 +90,13 @@ class HostedTransportTests(unittest.TestCase):
     def tearDown(self):
         self.temp.cleanup()
 
-    def test_transfer_and_successor_preserve_history_identity_and_private_workspace(self):
+    def test_transfer_and_successor_preserve_history_identity_and_exclude_private_files(self):
         successor = self.new_transport('successor')
         successor.open()
         restored = self.root / 'restored'
         manifest = successor.restore(restored)
         self.assertEqual(manifest['installation_id'], 'test-installation')
-        self.assertEqual((restored / 'private/.passenger.md').read_text(), 'PRIVATE PASSENGER CONTENT')
+        self.assertFalse((restored / 'private').exists())
         for node in NODE_IDS:
             source = RecordStore(self.active / 'nodes' / node / 'record')
             target = RecordStore(restored / 'nodes' / node / 'record')
@@ -125,7 +125,7 @@ class HostedTransportTests(unittest.TestCase):
         self.assertTrue((successor.checkout / 'previous.enc').exists())
         for item in self.assets.objects.values():
             self.assertNotIn(b'SQLite format', item['data'])
-            self.assertNotIn(b'PRIVATE PASSENGER', item['data'])
+            self.assertNotIn(b'PRIVATE SIDECAR', item['data'])
         self.assertNotIn(b'test-installation', (successor.checkout / 'current.enc').read_bytes())
         parents = successor.git('rev-list', '--parents', '-n', '1', 'HEAD').split()
         self.assertEqual(len(parents), 1)  # Bounded transport history, full record history.

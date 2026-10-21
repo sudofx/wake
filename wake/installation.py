@@ -530,7 +530,7 @@ class Controller:
                 WAKE_INSTALLATION_TOKEN=self.token, WAKE_GROUP_ID='wake',
                 WAKE_GROUP_INSTANCE=name, WAKE_PUBLIC_HOSTNAME=name,
                 WAKE_GROUP_PEERS=','.join(peers), WAKE_GROUP_COORDINATOR_URL=url + '/group/coordinator',
-                WAKE_PASSENGER_ROOT=str(self.root / 'private'), WAKE_PARENT_HOSTNAME='' if name == parent else parent)
+                WAKE_PARENT_HOSTNAME='' if name == parent else parent)
             topics = self.config.parent / '.wake-runner-topics' / (parent + '.toml')
             if topics.is_file():
                 env['WAKE_GROUP_TOPIC_FILE'] = str(topics)
@@ -718,7 +718,7 @@ class Controller:
                 # for the independent unified website renderer.
                 self.manifest_sample = None
                 if action == 'RESET':
-                    for directory in ('nodes', 'private', 'site'):
+                    for directory in ('nodes', 'site'):
                         target = self.root / directory
                         if target.exists():
                             shutil.rmtree(target)
@@ -726,8 +726,6 @@ class Controller:
                     import_records(self.root, backups / name)
                     if (self.root / 'site').exists():
                         shutil.rmtree(self.root / 'site')
-                    if (self.root / 'private').exists():
-                        shutil.rmtree(self.root / 'private')
                 self.site_signature = None
                 self.spawn()
                 result = self.control('stopped')

@@ -37,6 +37,12 @@ def main():
     if args.action == 'stop':
         if identity and alive(identity):
             os.kill(identity['pid'], signal.SIGTERM)
+            deadline = time.monotonic() + 300
+            while alive(identity):
+                if time.monotonic() >= deadline:
+                    raise RuntimeError('Installation is still draining; do not start a second controller')
+                time.sleep(0.5)
+            identity_file.unlink(missing_ok=True)
         return
     if identity and alive(identity):
         print('WAKE installation already running; use wake-research for controls')

@@ -29,8 +29,6 @@ def parser():
     p.add_argument("--config", default="wake.toml")
     sub = p.add_subparsers(dest="command", required=True)
     sub.add_parser("init", help="Initialize an empty record; never overwrite an existing one")
-    passenger = sub.add_parser("passenger-reset", help="Operator-only reset of private container advisory notes")
-    passenger.add_argument("--confirm", action="store_true", help="Confirm intentionally clearing the installation's Passenger")
     wake = sub.add_parser("wake", help="Run one bounded invocation")
     wake.add_argument("--provider", choices=["gemini", "fixture"])
     wake.add_argument("--model")
@@ -112,15 +110,6 @@ def execute(args):
         return result
     if args.data is None:
         args.data = "data"
-    if args.command == "passenger-reset":
-        from .passenger import resolve
-        require(args.confirm, "Passenger reset requires --confirm")
-        workspace = resolve()
-        require(workspace is not None, "Passenger is available only inside containers")
-        try:
-            return workspace.operator_reset()
-        except Exception:
-            raise Rejected("Passenger reset unavailable; no private details retained") from None
     if args.command == "schema":
         return SCHEMA
     if args.command == "serve":

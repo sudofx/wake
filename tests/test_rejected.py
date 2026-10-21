@@ -1,18 +1,3 @@
-# =============================================================================
-# TESTING INTENT — rejected
-#
-# This file is executable documentation. Passing cases define behavior WAKE✳︎
-# promises to preserve; rejection/failure cases define boundaries that future
-# refactors must not weaken merely to make CI green. Assertions should make the
-# protected invariant understandable to both human and AI maintainers.
-# =============================================================================
-# WAKE✳︎ MAINTAINER NOTE
-#
-# Executable specification for rejected.
-# Tests in WAKE✳︎ are part of the explanation of the system: successful cases show what authority is allowed,
-# while rejection/failure cases show the boundaries that must remain intact during refactors.
-# Prefer assertions that make the invariant obvious to a human or AI maintainer reading this file later.
-
 """Rejected drafts are readable without being promoted to accepted research."""
 import copy
 import json

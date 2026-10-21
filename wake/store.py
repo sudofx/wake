@@ -24,63 +24,7 @@ from .errors import IntegrityError
 from .governance import Rejected, require, transition
 
 
-# ---------------------------------------------------------------------------
-
-
-# STEP: empty
-
-
-#
-
-
-# This step exists as an explicit seam so its behavior can be
-
-
-# inspected, tested, and replaced without giving a model hidden authority.
-
-
-# Inputs should already belong to the layer named above; outputs remain data
-
-
-# until the next boundary validates or records them. Callers may rely on this contract.
-
-
-# ---------------------------------------------------------------------------
-
-
-# ---------------------------------------------------------------------------
-
-
-# OBJECT: Store
-
-
-#
-
-
-# This object groups state/behavior exists as an explicit seam so its behavior can be
-
-
-# inspected, tested, and replaced without giving a model hidden authority.
-
-
-# Inputs should already belong to the layer named above; outputs remain data
-
-
-# until the next boundary validates or records them. Callers may rely on this contract.
-
-
-# ---------------------------------------------------------------------------
-
-
 class Store:
-    # ---------------------------------------------------------------------------
-    # STEP: __init__
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Keep this helper narrow so private mechanics do not leak into policy.
-    # ---------------------------------------------------------------------------
     def __init__(self, directory):
         self.directory = Path(directory)
         self.directory.mkdir(parents=True, exist_ok=True)
@@ -109,27 +53,11 @@ class Store:
             "cached_copy_ms": 0.0,
         }
 
-    # ---------------------------------------------------------------------------
-    # STEP: close
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Callers may rely on this contract.
-    # ---------------------------------------------------------------------------
 
     def close(self):
         self.db.close()
 
     @contextmanager
-    # ---------------------------------------------------------------------------
-    # STEP: lock
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Callers may rely on this contract.
-    # ---------------------------------------------------------------------------
     def lock(self):
         with (self.directory / "writer.lock").open("a") as lock:
             try:
@@ -141,14 +69,6 @@ class Store:
             finally:
                 fcntl.flock(lock, fcntl.LOCK_UN)
 
-    # ---------------------------------------------------------------------------
-    # STEP: events
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Callers may rely on this contract.
-    # ---------------------------------------------------------------------------
 
     def events(self):
         return [{"seq": row[0], "time": row[1], "kind": row[2], "payload": json.loads(row[3]),
@@ -260,14 +180,6 @@ class Store:
             "trusted_projection_active": self._trusted is not None,
         }
 
-    # ---------------------------------------------------------------------------
-    # STEP: replay
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Callers may rely on this contract.
-    # ---------------------------------------------------------------------------
 
     def replay_record(self):
         """Verify history once and return the reconstructed state, head, and verified events."""
@@ -295,14 +207,6 @@ class Store:
         state, head, _ = self.replay_record()
         return state, head
 
-    # ---------------------------------------------------------------------------
-    # STEP: load
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Callers may rely on this contract.
-    # ---------------------------------------------------------------------------
 
     def load(self, repair=False):
         # Reads remain authoritative reconstruction points. The hot cache is used
@@ -329,14 +233,6 @@ class Store:
             self._remember(state, head, self.db.execute("SELECT COUNT(*) FROM events").fetchone()[0])
         return state
 
-    # ---------------------------------------------------------------------------
-    # STEP: reset
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Callers may rely on this contract.
-    # ---------------------------------------------------------------------------
 
     def reset(self):
         """Irreversibly clear durable history and rebuild the empty projection."""
@@ -349,14 +245,6 @@ class Store:
         (self.directory / "experiment.json").unlink(missing_ok=True)
         return self.load(repair=True)
 
-    # ---------------------------------------------------------------------------
-    # STEP: append
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Callers may rely on this contract.
-    # ---------------------------------------------------------------------------
 
     def append(self, kind, payload, crash=False):
         cached = self._cached_base()
@@ -381,14 +269,6 @@ class Store:
         self._remember(state, event["hash"], seq)
         return state
 
-    # ---------------------------------------------------------------------------
-    # STEP: backup
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Callers may rely on this contract.
-    # ---------------------------------------------------------------------------
 
     def backup(self, destination):
         path = Path(destination)

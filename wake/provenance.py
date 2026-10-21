@@ -14,27 +14,11 @@ COLLECTIONS = {"belief": "beliefs", "commitment": "commitments", "project": "pro
                "notebook": "notebooks", "research": "research", "blog": "posts", "evidence": "evidence"}
 ACTIONS = {"belief": "belief", "commit": "commitment", "resolve": "commitment",
            "project": "project", "notebook": "notebook", "research": "research", "blog": "blog"}
-# ---------------------------------------------------------------------------
-# STEP: build_map
-#
-# This step exists as an explicit seam so its behavior can be
-# inspected, tested, and replaced without giving a model hidden authority.
-# Inputs should already belong to the layer named above; outputs remain data
-# until the next boundary validates or records them. Callers may rely on this contract.
-# ---------------------------------------------------------------------------
 
 
 def build_map(state, events, head, replay_history=True):
     nodes, edges, journals, blogs = {}, {}, [], []
     by_invocation = {j["invocation"]: f"journal:{j['invocation']}" for j in state["journal"]}
-    # ---------------------------------------------------------------------------
-    # STEP: node
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Callers may rely on this contract.
-    # ---------------------------------------------------------------------------
 
     def node(key, kind, detail, title=None):
         if key not in nodes:
@@ -45,14 +29,6 @@ def build_map(state, events, head, replay_history=True):
                           "title": title or detail.get("title") or summary or detail.get("id", key),
                           "detail": deepcopy(detail)}
         return key
-    # ---------------------------------------------------------------------------
-    # STEP: edge
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Callers may rely on this contract.
-    # ---------------------------------------------------------------------------
 
     def edge(source, target, relation, record):
         if source in nodes and target in nodes:
@@ -86,14 +62,6 @@ def build_map(state, events, head, replay_history=True):
         for field in ("supersedes", "superseded_by"):
             if post.get(field):
                 edge(f"blog:{pid}", f"blog:{post[field]}", field.replace("_", " "), f"posts.{pid}.{field}")
-    # ---------------------------------------------------------------------------
-    # STEP: artifact
-    #
-    # This step exists as an explicit seam so its behavior can be
-    # inspected, tested, and replaced without giving a model hidden authority.
-    # Inputs should already belong to the layer named above; outputs remain data
-    # until the next boundary validates or records them. Callers may rely on this contract.
-    # ---------------------------------------------------------------------------
 
     def artifact(kind, identifier, snapshot, cycle, expanded):
         item = snapshot.get(COLLECTIONS[kind], {}).get(identifier)

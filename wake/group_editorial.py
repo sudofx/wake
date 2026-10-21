@@ -32,7 +32,7 @@ def input_snapshot(engine, group_id, member, *, record_snapshot=None):
                 'record_url': prefix + 'index.html#evidence/' + evidence_id}
     attempts = [subset(i, ('id', 'finished', 'phase', 'status', 'reason'), 100)
                 for i in sorted(state.get('invocations', {}).values(), key=lambda i: i.get('time', ''))
-                if i.get('phase') not in ('passenger', 'group_editorial')][-2:]
+                if i.get('phase') != 'group_editorial'][-2:]
     from collections import Counter
     activity = {'version': state['version'], 'attempts': attempts,
                 'notebooks': len(state.get('notebooks', {})),
@@ -456,24 +456,6 @@ def gateway_url(path):
     return coordinator.rsplit('/group/', 1)[0] + path if '/group/' in coordinator else None
 
 
-def _assess_group_note(engine, provider, published):
-    """One private note per shared publication; daily-quota deferrals survive retries."""
-    if not published or published['checkpoint'] <= 1:
-        return
-    state = engine.store.load()
-    previous = [i for i in state['invocations'].values()
-                if i.get('phase') == 'passenger' and i.get('group_checkpoint') == published['checkpoint']]
-    if previous:
-        latest = max(previous, key=lambda item: item['time'])
-        if latest.get('quota_exhausted') != 'free_tier_daily':
-            return
-        from datetime import datetime
-        from zoneinfo import ZoneInfo
-        if latest.get('quota_day') == datetime.now(ZoneInfo(engine.config['timezone'])).date().isoformat():
-            return
-    engine.assess_passenger(provider, group_packet=published['inputs'])
-
-
 def synchronize(engine, provider=None):
     """Called by the local scheduler. Paused nodes only ingest existing posts."""
     url = gateway_url('/group/bob-inputs.json')
@@ -574,9 +556,6 @@ def synchronize(engine, provider=None):
             engine.store.append('group_bob_published', {'publication':p})
         except Rejected as exc:
             engine.store.append('group_bob_withheld', {'publication_digest':digest(p), 'reason':str(exc)[:1000]})
-        else:
-            if not getattr(getattr(provider, 'request_gate', None), 'editorial_nonce', None):
-                _assess_group_note(engine, provider, p)
     return True
 
 

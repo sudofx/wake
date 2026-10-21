@@ -1,17 +1,3 @@
-# =============================================================================
-# TESTING INTENT — research
-#
-# This file is executable documentation. Passing cases define behavior WAKE✳︎
-# promises to preserve; rejection/failure cases define boundaries that future
-# refactors must not weaken merely to make CI green. Assertions should make the
-# protected invariant understandable to both human and AI maintainers.
-# =============================================================================
-# WAKE✳︎ MAINTAINER NOTE
-#
-# Executable specification for research.
-# Tests are documentation with teeth: passing cases define permitted behavior and rejection cases define protected boundaries.
-# When changing implementation, preserve the reason behind an assertion rather than weakening it merely to make CI green.
-
 """Exercise scientific provenance, bounded autonomy and durable cloud handoffs offline."""
 
 import json

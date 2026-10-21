@@ -1,4 +1,8 @@
-# Publish the container website mirror
+# GitHub Pages and hosted research
+
+For a first public website, follow [GitHub Pages setup](setup.md#2-github-pages-website).
+Pages displays exported snapshots. The separate Actions runtime described below
+runs research and requires verified encrypted records before it can start.
 
 ## Publish the local installation mirror
 
@@ -131,12 +135,12 @@ The homepage and blog link to this same-origin file; items use the canonical
 public reading URLs for the root or selected node. A feed is a dated publication
 view, with no research controls, email collection or provider request bodies.
 
-The unified website and all available node views retain the same interface. The node
-selector works from every page. Each view shows the upload date and reads only its
+The unified website and available node views share the same navigation. The node
+selector appears on Console pages. Each view shows the upload date and reads only its
 own uploaded JSON, including maps and their shards. Reader pages begin with a
 bounded overview and fetch exact details or older entries on demand. The separate
 `wake-data.json` archive carries the latest 400 events; History tools retain the full public event export as
-`events.jsonl` or its lossless gzip archive described below. Node records, accepted counts, and full-history metrics are unchanged. Provider bodies, Passenger,
+`events.jsonl` or its lossless gzip archive described below. Node records, accepted counts, and full-history metrics are unchanged. Provider bodies,
 databases, logs, and control sockets are excluded. Manual import archives are
 separate and never uploaded as the public website.
 
@@ -206,10 +210,24 @@ The first setup requires `GEMINI_API_KEY`, a random 32-byte hex
 and successful code CI. Keep an offline copy of the encryption key: losing it
 makes the private recovery data unreadable. Existing records are transferred
 only with operator authorization, after stopping all original writers. The
-installation identity, twelve historical heads, private workspace, topic files
+installation identity, twelve historical heads, topic files
 and shared quota state are preserved. Historical executor branches are untouched.
 Never seed a missing checkpoint automatically or import public website data as
 an authoritative record. See [authority and recovery](architecture.md#hosted-execution-and-durable-recovery).
+
+### Publish source without upgrading records
+
+Source publication and runtime promotion are separate. The existing hosted
+installation is bound in `hosted-runtime.json` to its verified runtime. Source,
+setup scripts and documentation can therefore be published without replacing
+that runtime or resetting its records. This binding is deliberate: new source
+may reject event kinds that still exist in the installation's history.
+
+Before changing a binding, test the candidate against disposable copies of all
+records, preserve their history and accepted counts, and verify any required
+migration. Never clear the binding merely to force an upgrade. A runtime source
+commit must also have successful `master` CI. The binding's installation ID must
+match the restored checkpoint before a new controller can start.
 
 ### Continuation and repair
 
@@ -219,14 +237,18 @@ the verified event chain, and starts the
 existing controller, runs for a bounded two-hour research window, drains and saves
 all records, builds the existing filtered artifact, pushes `wake-public` and
 requests the Pages build. Its final job explicitly dispatches a successor through
-`workflow_dispatch`, using the newest `master` source revision with successful
-code CI. `hosted-recovery.yml` handles failed or cancelled run-completion events
+`workflow_dispatch`, using a source revision with successful code CI.
+`hosted-runtime.json` can bind a repository and installation identity to a verified
+runtime commit. A bound installation stays on that commit even when newer source
+passes CI; a missing successful check fails closed. Unbound repositories select
+the newest checked `master` revision. A fork does not inherit another repository’s
+runtime binding. `hosted-recovery.yml` handles failed or cancelled run-completion events
 and repairs a lost successor dispatch with the same identity. Duplicate handoffs
 are reconciled and installation execution is serialized. Neither uses cron.
 
 The existing kernel invocation lifecycle calls the injected remote checkpoint
 before provider effects and at terminal boundaries. Each callback snapshots the
-owning node, preserves native replay/provenance and auxiliary private state, and
+owning node, preserves native replay/provenance and installation configuration, and
 commits the encrypted checkpoint before continuing. A crash after a request starts
 leaves an interrupted native invocation to recover, never a fabricated result.
 Free quota waits survive runner handover; no automatic reset or quota bypass exists.
@@ -319,7 +341,7 @@ stale or mismatched response. It does not fetch hosted authority or controls.
 The runner samples only its loopback `/runtime.json` in a bounded background task.
 `wake/hosted_activity.py` allowlists stage, worker identity, timestamps, public
 invocation/coordinate IDs and confirmed queue metadata before transmission. It
-excludes prompts, responses, source bodies, Passenger, provider errors and keys.
+excludes prompts, responses, source bodies, provider errors and keys.
 Observers never participate in checkpoint or provider-effect sequencing.
 
 The relay source is owned in `deploy/activity-relay/`. Its Sites Worker stores one

@@ -314,7 +314,7 @@ scientific-result gate. This exception cannot accept research or complete a
 project. A model-written editorial correction retains and supersedes the earlier
 article; its operator request, draft and invocation remain auditable. Readable
 prose and traceable references do not establish independent scientific validity.
-The [editorial contract](development.md#first-run-publication-and-passenger)
+The [editorial contract](development.md#first-run-publication)
 defines the aggregate three-posts-per-100-accepted-wakes cadence, quota-bounded retries and
 editorial language guidance. Forgiving Bob’s prose changes no research evidence
 qualification or accepted-cycle rule. Structured editorial responses supply explicit
@@ -327,11 +327,7 @@ A group WAKE01 introduction is a shared model synthesis of dated summaries from 
 parents and children. Its checkpoint is editorial metadata, not an added accepted
 research cycle or scientific result. Initial summaries may all have accepted version zero;
 one shared editorial invocation precedes ordinary group research requests. A recorded first-post operator exception does
-not qualify scientific evidence or alter continuity scores. Private Passenger assessments do
-not advance research transitions, Attention or continuity scores. The factual
-first-publication receipt also adds no research or model assessment. Their paid
-provider requests remain accounted under the ordinary quota. See
-[the first-run and advisory boundary](development.md#first-run-publication-and-passenger).
+not qualify scientific evidence or alter continuity scores.
 
 ### Container reset and public prose
 
@@ -339,9 +335,8 @@ Container reset is an explicit operator action on the selected installation.
 It leaves research stopped and starts an empty continuity campaign. Public uploads
 never reset records. Historical hosted archives remain unchanged.
 
-Bob’s public articles use plain prose, including the built-in welcome. Markdown
-is confined to Passenger. Public display removes legacy heading markers without
-rewriting historical receipts.
+Bob’s public articles use plain prose, including the built-in welcome. Public display removes legacy heading markers
+without rewriting historical receipts.
 
 Storage compression changes physical bytes only. It does not add accepted research, remove evidence, or change continuity results. See [kernel storage](kernel.md#physical-storage-and-compatibility).
 

@@ -278,56 +278,7 @@ class Engine:
         # instrument. Legacy migration/replay stores keep their historical bytes.
         if hasattr(self.store, 'record') and self.store.continuity_matrix_progress() is None:
             self.store.enable_continuity_matrix()
-        self._initialize_passenger()
         return self.store.load(repair=True)
-
-    def _initialize_passenger(self):
-        from . import passenger
-        try:
-            workspace = passenger.resolve()
-            if workspace is not None:
-                workspace.snapshot()
-        except Exception:
-            passenger.diagnostic("initialization-unavailable")
-
-    def _start_passenger(self, provider, private_request):
-        """Reserve the ordinary native invocation without retaining private text."""
-        state = self.store.load()
-        require(state["pending"] is None, "An invocation is already pending")
-        day = datetime.now(ZoneInfo(self.config["timezone"])).date().isoformat()
-        used = sum(charged_request_slots(i) for i in state["invocations"].values()
-                   if i["charged"] and i["quota_day"] == day)
-        require(not provider.charged or self.config.get('provider_managed_limits') or self.config.get("model_daily_call_limits")
-                or used < self.config["daily_call_limit"], "Daily call ceiling reached; no request sent")
-        require(provider_input_chars(private_request) <= self.config["max_context_chars"],
-                "Private advisory context ceiling; no request sent")
-        invocation = "w-" + uuid.uuid4().hex[:16]
-        public_request = {"context": {"version": state["version"], "private_advisory": True},
-                          "retention": "Private advisory input and output are not recorded or exported."}
-        self.store.append("invocation_started", {"id": invocation, "provider": provider.name,
-            "model": provider.model, "phase": "passenger", "charged": provider.charged,
-            **({'group_checkpoint': state['group_bob']['checkpoint']} if state.get('group_bob') else {}),
-            "quota_day": day, "base_version": state["version"], "request": public_request,
-            "request_hash": digest(public_request), "process_id": os.getpid()})
-        return invocation, public_request
-
-    def assess_passenger(self, provider, checkpoint=None, *, group_packet=None):
-        """Optional private lane. Caller holds the research writer lock."""
-        from . import passenger
-        try:
-            workspace = passenger.resolve()
-            if workspace is None:
-                return {"status": "disabled"}
-            snapshot = workspace.snapshot()
-            private_request = passenger.request(snapshot, self.store.load(), group_packet)
-            return self._run_invocation(provider, checkpoint=checkpoint, phase="passenger",
-                                        private_request=private_request,
-                                        passenger_submission=(workspace, snapshot["generation"]))
-        except Exception:
-            passenger.diagnostic("assessment-unavailable")
-            # Native invocation recovery remains the owner after an interrupted
-            # persistence boundary; private failure never becomes research progress.
-            return {"status": "unavailable"}
 
     def _complete_first_publication(self, result, checkpoint):
         from .introduction import pending, Editorial
@@ -2795,35 +2746,22 @@ class Engine:
                 if research:
                     result.setdefault("same_wake_research", research)
                 result = self._complete_first_publication(result, checkpoint)
-                # Sparse private assessment uses the same provider, quotas and
-                # effect barrier. It never shares context with public generation.
-                state = self.store.load()
-                previous = [i.get("base_version", 0) for i in state["invocations"].values()
-                            if i.get("phase") == "passenger"]
-                if (not state.get('group_bob') and result["status"] == "accepted"
-                        and state["version"] >= 15 and state["version"] - max(previous, default=0) >= 15):
-                    self.assess_passenger(provider, checkpoint)
                 return result
         finally:
             report_activity(activity, "idle")
 
     def _run_invocation(self, provider, crash_at=None, checkpoint=None, *, phase="proposal", question=None,
-                        research=None, activity=None, peer_notes=None, private_request=None, passenger_submission=None,
+                        research=None, activity=None, peer_notes=None,
                         editorial_request=None):
         # Disposable hosted runners inject transport at the existing native
-        # durability barrier, including editorial/private provider attempts.
+        # durability barrier, including editorial provider attempts.
         # A failed remote checkpoint must prevent the next external effect.
         checkpoint = checkpoint if checkpoint is not None else self.effect_checkpoint
         def request_counts():
-            counts = self._request_count(provider)
-            if private_request is None:
-                return counts
-            sent = counts.get("provider_requests_sent")
-            return {"provider_requests_sent": sent} if type(sent) is int and sent >= 0 else {}
+            return self._request_count(provider)
 
         report_activity(activity, "context")
         invocation, request = (self._start_group_editorial(provider, editorial_request) if phase == "group_editorial" else
-                              self._start_passenger(provider, private_request) if phase == "passenger" else
                               self.start(provider.name, provider.model, provider.charged, phase=phase,
                                          question=question, research=research, peer_notes=peer_notes))
         lifecycle = (
@@ -2853,9 +2791,6 @@ class Engine:
                 used = sum(charged_request_slots(i) for i in state["invocations"].values() if i["id"] != invocation and i["charged"] and i["quota_day"] == day)
                 provider.request_limit = min(len(provider.models), self.config["daily_call_limit"] - used)
             def record_attempt(phase, attempt):
-                if private_request is not None:
-                    attempt = {k: v for k, v in attempt.items() if k in
-                               ("model", "result", "http_status", "provider_call_made")}
                 self.store.append("provider_attempt_" + phase, {"id": invocation, "attempt": attempt})
                 if checkpoint:
                     checkpoint()
@@ -2880,12 +2815,12 @@ class Engine:
                 previous_observer = provider.request_activity
                 provider.request_activity = observe_request
                 try:
-                    return provider.propose(private_request if private_request is not None else request)
+                    return provider.propose(request)
                 finally:
                     provider.request_activity = previous_observer
             else:
                 observe_request('provider')
-            return provider.propose(private_request if private_request is not None else request)
+            return provider.propose(request)
         try:
             raw, metadata = self._invoke_external_effect(
                 lifecycle,
@@ -2895,15 +2830,15 @@ class Engine:
         except InvocationBarrierError as error:
             raise error.cause
         except TransientProviderError as exc:
-            reason = "Private advisory provider deferred" if private_request is not None else str(exc)[:1000]
-            details = {} if private_request is not None else exc.details
+            reason = str(exc)[:1000]
+            details = exc.details
             self.store.append("deferred", {"id": invocation, "reason": reason, "provider_error": details, **request_counts()})
             if checkpoint:
                 checkpoint()
             return {"status": "deferred", "id": invocation, "reason": reason, "provider_error": details, **request_counts()}
         except DailyQuotaExceeded as exc:
-            reason = "Private advisory quota exhausted" if private_request is not None else str(exc)[:1000]
-            details = {} if private_request is not None else exc.details
+            reason = str(exc)[:1000]
+            details = exc.details
             payload = {"id": invocation, "reason": reason, "provider_error": details,
                        "quota_exhausted": "free_tier_daily", **request_counts()}
             self.store.append("deferred", payload)
@@ -2912,8 +2847,8 @@ class Engine:
             return {"status": "deferred", "id": invocation, "reason": reason,
                     "provider_error": details, "quota_exhausted": "free_tier_daily", **request_counts()}
         except ConfiguredDailyLimitReached as exc:
-            reason = "Private advisory configured limit reached" if private_request is not None else str(exc)[:1000]
-            details = {} if private_request is not None else exc.details
+            reason = str(exc)[:1000]
+            details = exc.details
             payload = {"id": invocation, "reason": reason, "provider_error": details,
                        "quota_exhausted": "configured_daily_limit", **request_counts()}
             self.store.append("deferred", payload)
@@ -2922,16 +2857,15 @@ class Engine:
             return {"status": "deferred", "id": invocation, "reason": reason,
                     "provider_error": details, "quota_exhausted": "configured_daily_limit", **request_counts()}
         except ProviderRequestError as exc:
-            reason = "Private advisory provider failed" if private_request is not None else str(exc)[:1000]
+            reason = str(exc)[:1000]
             self.store.append("failed", {"id": invocation, "reason": reason,
-                                         "provider_error": {} if private_request is not None else exc.details, **request_counts()})
+                                         "provider_error": exc.details, **request_counts()})
             if checkpoint:
                 checkpoint()
             return {"status": "failed", "id": invocation, "reason": reason,
-                    "provider_error": {} if private_request is not None else exc.details, **request_counts()}
+                    "provider_error": exc.details, **request_counts()}
         except Exception as exc:
-            reason = ("Private advisory provider failed" if private_request is not None else
-                      str(exc)[:1000] if isinstance(exc, Rejected) else f"Provider failed ({type(exc).__name__}); no automatic retry")
+            reason = str(exc)[:1000] if isinstance(exc, Rejected) else f"Provider failed ({type(exc).__name__}); no automatic retry"
             self.store.append("failed", {"id": invocation, "reason": reason, **request_counts()})
             if checkpoint:
                 checkpoint()
@@ -2969,37 +2903,6 @@ class Engine:
             if checkpoint:
                 checkpoint()
             return {"status":"editorial_completed", "id":invocation, "article":article, **request_counts()}
-        if phase == "passenger":
-            from . import passenger
-            outcome = "invalid-output"
-            try:
-                require(isinstance(raw, str) and len(raw) <= passenger.MAX_UPDATE_CHARS, "Invalid private output")
-                data = json.loads(raw)
-                require(isinstance(data, dict) and set(data) == {"observations"}, "Invalid private output")
-                passenger.validate(data["observations"])
-            except Exception:
-                passenger.diagnostic("update-not-applied")
-            else:
-                try:
-                    workspace, generation = passenger_submission
-                    outcome = workspace.append(generation, invocation, data["observations"],
-                                               cycle=request['context']['version'])
-                except passenger.Unavailable as error:
-                    outcome = "stale" if str(error) == "stale" else "unavailable"
-                    passenger.diagnostic("update-not-applied")
-                except Exception:
-                    outcome = "unavailable"
-                    passenger.diagnostic("update-not-applied")
-            # Deliberately exclude raw text, metadata and hashes of private text.
-            self.store.append("advisory_completed", {"id": invocation, "outcome": outcome,
-                              "reason": "Private advisory assessment; no research transition.", **request_counts()})
-            if lifecycle is not None:
-                lifecycle.proposal_received("private-" + invocation)
-                lifecycle.governed("private-" + invocation, None, "accepted" if outcome in ("applied", "already-applied", "no-observations") else "rejected")
-                lifecycle.complete(proposal_id="private-" + invocation, detail=outcome)
-            if checkpoint:
-                checkpoint()
-            return {"status": outcome, "id": invocation}
         if phase == "planning":
             plan_id = "wake-retrieval-plan-" + invocation
             if lifecycle is not None:

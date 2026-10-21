@@ -69,11 +69,6 @@ operator procedures.
 - **First-post exception** — explicit operator permission for the exact first
   group introduction only. It is consumed once per member and cannot accept
   research, create scientific evidence or authorize later posts.
-- **Passenger** — private container Markdown for installation-wide operational
-  assessments and inert change proposals. It is advisory, cannot authorize work,
-  and stays out of public context and exports. Named groups share the project-root
-  file; its first-publication receipt contains facts rather than a model assessment. See
-  [the operating contract](development.md#first-run-publication-and-passenger).
 
 ### Public mirror
 
@@ -99,9 +94,8 @@ An explicit operator action on the selected installation. It leaves research
 stopped and enrolls an empty continuity campaign. Publishing never resets records.
 Historical hosted checkpoints and archives remain preserved.
 
-Bob’s public articles use plain prose, including the built-in welcome. Markdown
-is confined to Passenger. Public display removes legacy heading markers without
-rewriting historical receipts.
+Bob’s public articles use plain prose, including the built-in welcome. Public display removes legacy heading markers
+without rewriting historical receipts.
 
 **Lossless storage compression:** a smaller physical encoding that reconstructs the exact original record bytes. It is distinct from a model summary, which can omit detail. See [kernel storage](kernel.md#physical-storage-and-compatibility).
 

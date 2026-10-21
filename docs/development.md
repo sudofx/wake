@@ -1,4 +1,7 @@
-# Maintainer map
+# Develop WAKE✳︎
+
+New to the project? Follow [the setup guide](setup.md) for local Docker, GitHub
+Pages, VS Code and Codespaces, then return here for source and verification details.
 
 Use [kernel development](kernel.md) for the application seam and
 [multiple installations](installations.md) for parallel container operation.
@@ -37,7 +40,7 @@ Start with [one-container setup](standalone.md#run-one-installation-container).
 `start` launches one `wake` container stopped for inspection. Attach VS Code or
 use `scripts/wake_installation shell`. Preserve the existing `.bashrc` prompt.
 Internal nodes are worker processes, with one server on container port 8080
-(host port 80 by default), not twelve separately operated containers.
+(host port 8080 by default), not twelve separately operated containers.
 
 The root website is a full unified view of the node snapshots. Its Console retains
 the normal panels below an installation overview; individual node views remain
@@ -109,7 +112,7 @@ IP address, and an image tag can change; none identifies a record by itself.
 | GitHub Pages | Uploaded artifact on `wake-public` | None | Dated unified website and node snapshots |
 | Compatibility Docker | Image package under `/app` | Selected volume at `/data/wake.sqlite` | Atomic temporary website generations |
 | Compatibility VS Code overlay | Bind-mounted `/workspace` because it sets working directory there | Same selected `/data` volume | Local export, never hosted fallback |
-| Compatibility Codespaces preview | Mounted workspace source | Checkout `data/devcontainer/record/wake.sqlite` | Paused same-origin preview, private forwarded port |
+| Codespaces | Mounted workspace source | `data/installation/nodes/ID/record/wake.sqlite` | One installation site, private forwarded port 8080 |
 | CLI / offline fixtures | Imported package in the invoking environment | Explicit `--data` directory | Exported directory |
 
 These rows may share code while retaining different histories. Equal cycle counts
@@ -168,34 +171,21 @@ only uploads a prepared twelve-node public artifact.
 
 ## Codespaces access and preview
 
-The committed Dev Container starts an independent, paused preview on port 8080.
-Keep the forwarded port private; it contains this workspace's disposable local
-view, not the hosted research record. Do not populate its record from `wake-state`.
-A Codespace must execute the mounted checkout, including uncommitted development
-changes, rather than an older image package.
+Use the [Codespaces walkthrough](setup.md#4-run-and-develop-in-codespaces).
+`.devcontainer/devcontainer.json` builds the development image and starts
+`scripts/installation_preview.py`, which runs the same twelve-node controller
+from the mounted checkout. Records live in `data/installation`; port 8080 stays
+private. `wake-research` operates that installation. Stop the controller and wait
+for it to drain before starting another process against the same records.
 
-The editor-only Dev Container includes the standard SSH feature for GitHub CLI
-maintenance. It does not add an SSH service to the standalone runtime image.
-GitHub CLI access to Codespaces requires the `codespace` scope. If listing or
-creating a Codespace reports missing scope, use
-`gh auth refresh -h github.com -s codespace` and complete the browser authorization.
-An existing repository permission does not imply this account-level permission.
-Use the smallest suitable machine, set an idle timeout, and stop a development
-Codespace when finished. Container validation on another machine does not prove
-cloud build, startup, source mounting or port forwarding; verify those in the
-actual Codespace before claiming that environment works.
+`scripts/dev_preview.py` is an older single-record compatibility tool. It is not
+the committed Dev Container lifecycle. Do not mix its record directory or controls
+with the current installation.
 
-### Managed research in a Codespace
-
-The lifecycle starts a paused fixture preview for a new installation. Use
-`python scripts/dev_preview.py research` to drain that preview and start supervised
-Gemini research on the same independent record (requires the existing Codespace
-secret). Use `python scripts/dev_preview.py pause` for read-only inspection or
-`python scripts/dev_preview.py stop` to stop the service. Research intent survives
-an environment restart only after that explicit command; Stop removes it and the
-next lifecycle starts paused. Normal idle shutdown is a Codespaces platform limit,
-not a recoverable process failure; no agent silently upgrades machines or defeats
-that limit. Worker recovery remains bounded and never resets the record.
+For desktop VS Code, [attach to the managed container](setup.md#3-develop-in-vs-code).
+Verify source mounting, initialization and forwarded access in the actual remote
+environment before claiming remote acceptance. An offline build on a laptop does
+not prove Codespaces works.
 
 ## Release and restart boundaries
 
@@ -209,7 +199,9 @@ Public publishing is a separate upload to `wake-public`. It pins exported
 generations, reuses compatible completed pages and rebuilds incompatible pages
 without changing research controls. See [capture and compatibility](cloud.md#publish-the-local-installation-mirror).
 Verify Pages deployment and the upload date independently of source CI.
-Hosted successors select a source commit with successful repository CI. Use the
+Hosted successors honor the installation’s `hosted-runtime.json` binding and
+require successful repository CI. Publishing new source does not promote a bound
+runtime. Verify record compatibility before changing the binding. Use the
 [hosted start/stop workflow](cloud.md#run-research-on-github-without-a-laptop) for
 that installation; local container controls do not control it.
 
@@ -462,7 +454,7 @@ hypotheses informed by curiosity research, not a claim of measured audience grow
 and [Le Quéré and Matias (2025)](https://www.nature.com/articles/s41598-024-81575-9);
 their findings do not establish retention outcomes for this site.
 
-## First-run publication and Passenger
+## First-run publication
 
 Grouped installations publish **one model-written Bob article with identical text on every
 parent and child**. The elected parent (the first configured parent hostname) obtains a
@@ -544,7 +536,6 @@ their historical capacity rules. Exact retained drafts are reevaluated under the
 current rules without another model call; no draft text or historical receipt is
 rewritten. The configured provider fallback chain retains its own per-model
 accounting and reset schedules. No fabricated Bob fallback fills a quota failure.
-Passenger remains private.
 
 `wake-research bob` requests one eligible editorial attempt even while research
 is paused. It grants only the leader's editorial provider slot, respects quota,
@@ -593,79 +584,10 @@ research and never substitutes that programmed welcome for group synthesis. Init
 and pending publication remain separate states. No introductory article is a scientific
 finding.
 
-Passenger is a private Markdown workspace for operational observations and inert
-change proposals. Its logical interface is `./.passenger.md`, resolved relative
-to the explicit installation storage root, never the process working directory.
-It is available only inside containers. The current one-container controller sets
-`WAKE_PASSENGER_ROOT=/data/private` for all twelve nodes. Active private data is
-removed by uppercase `wake-research RESET`; manual record archives exclude it.
-Compatibility solo images use `/data/passenger`; solo
-runner nodes use their explicit `/passenger` volume. A named runner group uses
-`/workspace/.passenger.md`, which is the actual `.passenger.md` in its host project
-root. All parents and children share that document with identity `group-GROUP`.
-Independent installations need separate project/storage roots; the persisted
-identity rejects accidental reuse. Existing containers retain their original
-mapping until explicitly upgraded or recreated while preserving their records.
-Never use the runner's container `remove` command for a record-preserving upgrade.
-
-The first successfully exported introductory article appends a factual initialization
-receipt with its publication provenance and member heads. This gives the private
-file meaningful contents without an extra model call. It is explicitly labelled
-as durable facts, not a model assessment or scientific finding. A retry is idempotent;
-an operator reset prevents an old publication from restoring cleared text.
-
-Initialization creates an empty document if absent and preserves existing text.
-Bob may append observations or add a correction naming an earlier assessment.
-Code snippets remain text. File writes use a shared-volume lock, atomic replace
-and a one-second contention limit; failures are reported without private content
-and never fail primary research. The whole document is limited to 1 MiB, model
-previous private notes supplied to the model to the last 4,000 characters, and each response to 12,000 characters/three
-observations. No automatic compaction erases earlier assessments. A full or
-malformed document needs a human decision, not an autonomous cleanup.
-
-Passenger notes use plain prose about research progress, surprising connections,
-uncertainties, and useful next questions as well as operational friction. Their
-bounded input includes recent journal, project, notebook and execution summaries;
-the group leader also receives attributed summaries from every member. Previous
-private notes inform continuity but are never instructions or execution authority.
-
-Solo assessments run after accepted research at most once per 15 accepted cycles.
-In a shared group, only the leader requests a private assessment after each
-successfully published later Bob checkpoint; initialization has no extra assessment.
-If that private call exhausts daily provider quota, its recorded checkpoint remains
-eligible for a retry on a later Pacific day, without repeating a successful note.
-They use the existing provider adapter, quota accounting,
-pause gate and native durability barrier. They add an occasional model call;
-creation needs none, and no update is required each cycle. Private input and
-output stay in memory/the advisory volume; the public record retains only a
-redacted invocation and outcome. They never share model context with public
-research/blog generation. This separation prevents stored advisory instructions
-from becoming public content or execution authorization.
-
-Only an explicit human command exposes intentional reset:
-
-```sh
-docker exec 100.wake python -m wake passenger-reset --confirm
-```
-
-Reset advances a persisted generation before clearing the document. Recovery
-finishes an interrupted reset, and an older in-flight assessment cannot restore
-cleared text. Operator and developer edits should preserve history; developers
-have no separate reset authority. The model contract contains append-only data,
-no reset/delete/execute operation or filesystem tools. This is the repository's
-human-command authority boundary, not an operating-system restriction on humans
-who already have Docker/filesystem access.
-
-Passenger is ignored by Git, excluded from image contexts and frozen source
-copies, absent from public exports and blocked by the standalone web handler.
-It is not served by the group peer endpoints. Treat its text as lower-trust
-advisory data, never policy or instructions. No reset, recommendation or proposed
-patch changes the research record, source code, credentials or deployment.
-
 Public mirror publishing is described in [publication](cloud.md).
 
 Zero-cycle reset defaults and first-post pause controls are documented in
-[standalone operation](standalone.md) and [first-run publication](#first-run-publication-and-passenger).
+[standalone operation](standalone.md) and [first-run publication](#first-run-publication).
 
 Group peer JSON and Bob feeds are exported from the same verified state and head
 as each worker's website, then served from its atomic snapshot generation. HTTP

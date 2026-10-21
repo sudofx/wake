@@ -1,10 +1,4 @@
-/*
- * WAKE✳︎ MAINTAINER NOTE
- *
- * Shared navigation behavior isolated from research/state logic so interaction fixes cannot alter experiment semantics.
- *
- * Comments should preserve the boundary between presentation and the canonical durable record.
- */
+/* Shared masthead navigation and responsive layout for generated pages. */
 
 (() => {
   const domain=document.querySelector('.node-domain');

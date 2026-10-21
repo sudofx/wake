@@ -12,7 +12,7 @@ from urllib.request import urlopen
 
 
 COPIED_DOTFILES = ('.bashrc', '.bash_profile', '.profile', '.bash_aliases', '.inputrc', '.gitignore')
-BASHRC = r'''# WAKE terminal; no host dotfiles or private advisory content are loaded.
+BASHRC = r'''# WAKE terminal; uses the installation shell configuration, without host dotfiles.
 [[ $- == *i* ]] || return
 export PATH="/usr/local/bin:/usr/bin:/bin:$PATH"
 export HISTCONTROL=ignoreboth

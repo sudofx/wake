@@ -129,7 +129,7 @@ class InstallationArchiveTests(unittest.TestCase):
         (source / 'journal/receipt.html').write_text('<html>Journal</html>')
         (source / 'blog').mkdir()
         (source / 'blog/post.html').write_text('<html><head><script>window.WAKE_DEPLOYMENT={"schema":1,"mode":"standalone"};window.WAKE_STANDALONE=true;</script></head><body><a href="/runtime.json">Inspect local WAKE runtime</a><a class="actions-light" href="/runtime.json"><span><i></i></span></a></body></html>')
-        (source / '.passenger.md').write_text('passenger-secret')
+        (source / '.private.md').write_text('private-secret')
         (source / 'worker.log').write_text('log-secret')
         (source / 'blog.xml').write_text('<rss version="2.0"><channel><title>Bob</title></channel></rss>')
         (source / 'group').mkdir()
@@ -146,7 +146,7 @@ class InstallationArchiveTests(unittest.TestCase):
         self.assertIn('href="../installation.json"',(target / 'blog/post.html').read_text())
         self.assertIn("dataset.wakeSnapshotOnly='true'",(target / 'blog/post.html').read_text())
         self.assertNotIn('class="actions-light"', (target / 'blog/post.html').read_text())
-        self.assertFalse((target / '.passenger.md').exists())
+        self.assertFalse((target / '.private.md').exists())
         self.assertFalse((target / 'worker.log').exists())
         self.assertFalse((target / 'group' / 'bob-input.json').exists())
 

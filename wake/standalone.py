@@ -207,7 +207,7 @@ class Website(PublicSnapshotHandler):
     def do_GET(self):
         route = self.path.split('?', 1)[0]
         from urllib.parse import unquote
-        if any(part.startswith('.passenger') for part in unquote(route).split('/')):
+        if any(part.startswith('.') for part in unquote(route).split('/')):
             self.send_error(404)
             return
         if route in ('/group/bob-input.json', '/group/bob-publication.json',
@@ -274,8 +274,6 @@ def _publish(engine, root):
             for old in root.glob('snapshot-*'):
                 if old not in (target, previous):
                     shutil.rmtree(old)
-        from .passenger import record_initial_publication
-        record_initial_publication(engine.store.load())
     except Rejected as exc:
         if not installed:
             shutil.rmtree(target)

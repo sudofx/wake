@@ -28,10 +28,10 @@ from .export_cache import renderer_signature
 
 
 class PublicSnapshotHandler(SimpleHTTPRequestHandler):
-    """Private advisory files remain inaccessible even in a misconfigured root."""
+    """Hidden files remain inaccessible even in a misconfigured root."""
     def send_head(self):
         route = unquote(urlsplit(self.path).path)
-        if any(part.startswith('.passenger') for part in route.split('/')):
+        if any(part.startswith('.') for part in route.split('/')):
             self.send_error(404)
             return None
         return super().send_head()

@@ -42,11 +42,6 @@ count as research progress, fulfill commitments, alter evidence, or steer projec
 withheld without rejecting otherwise valid research. Keep Bob's Summary respectful, especially simple and
 plain-language, with no child-oriented label.
 
-Passenger is Bob's separate, private container advisory workspace. It accepts bounded additive
-operational assessments and inert change proposals, with no research, source, deployment or governance
-authority. Its input/output must never enter public provider requests, responses or exports. Use the
-explicit shared installation storage root and coordinated append/reset boundary in `wake/passenger.py`; only the
-operator CLI exposes reset. See `docs/development.md#first-run-publication-and-passenger`.
 
 
 `wake/application.py` is the application contract bridge.
@@ -191,7 +186,7 @@ not mount Docker's socket, authority data or provider credentials.
 The offline container acceptance workflow builds and tests but never publishes
 images, runs live providers, promotes runtime or touches hosted authority.
 
-Live Console inspection is optional, read-only and non-authoritative. Explicitly bound hosted activity may carry allowlisted native runtime observations through an expiring anonymous relay. Its storage is a disposable view, never research authority; it excludes provider bodies, Passenger, credentials and controls. GitHub Actions metadata alone remains batch status. Observers
+Live Console inspection is optional, read-only and non-authoritative. Explicitly bound hosted activity may carry allowlisted native runtime observations through an expiring anonymous relay. Its storage is a disposable view, never research authority; it excludes provider bodies, credentials and controls. GitHub Actions metadata alone remains batch status. Observers
 must not affect governance or provider-effect sequencing. Only an explicit native
 runtime capability bound to the installation may animate an in-flight matrix coordinate. Hosted pending
 snapshots are dated evidence, not live execution. Clear overlays on disconnect

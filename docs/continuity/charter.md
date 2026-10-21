@@ -25,8 +25,8 @@ Keep actual notes in the ignored repository-root `.wake-continuity/` directory:
 
 One checkpoint belongs to one context. Reference another context only when it is
 necessary and explicitly selected by the human preparing the handoff. Do not
-paste unrelated research into developer instructions. No loader, provider request,
-Passenger assessment or public export automatically consumes these notes.
+paste unrelated research into developer instructions. No loader, provider request
+or public export automatically consumes these notes.
 
 ## Record what is known and what is missing
 

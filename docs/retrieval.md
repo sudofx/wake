@@ -307,7 +307,7 @@ retained, and an oversized source URL is omitted rather than truncated into a
 false link. Recent attempts are selected by recorded time. Articles cite supplied
 story IDs; operator correction feedback and a bounded prior-draft excerpt reserve
 room inside the same provider input ceiling. See the
-[editorial contract](development.md#first-run-publication-and-passenger).
+[editorial contract](development.md#first-run-publication).
 
 Later group requests also compare current supplied story packets with the last
 accepted article's captured inputs and include bounded excerpts of that article.
@@ -315,13 +315,6 @@ These differences describe the delivered records, not semantic novelty or verifi
 scientific progress. Optional prior prose is shortened or omitted before current
 member summaries and citation identities. Earlier Bob prose remains presentation,
 never qualifying evidence. See [reader continuity](development.md#reader-experience-and-editorial-continuity).
-
-Passenger text, including its factual first-publication receipt, never enters
-research memory, retrieval or trust compacts. A
-separate bounded private advisory request may read its latest assessments as
-lower-trust data. It cannot supply scientific evidence, policy or authorization;
-private output stays outside the public record. See
-[the advisory privacy boundary](development.md#first-run-publication-and-passenger).
 
 Model-context summaries do not replace exact durable requests or responses. Storage-version 13 dictionaries compress repeated text losslessly; this changes storage, not delivered context or retrieval policy. See [kernel storage](kernel.md#physical-storage-and-compatibility).
 

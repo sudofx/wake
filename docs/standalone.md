@@ -1,4 +1,8 @@
-# Standalone WAKE✳︎
+# Local WAKE✳︎ operation
+
+For a first installation, follow [the simple setup guide](setup.md#1-local-docker-installation).
+It covers download, Docker, credentials, inspection, research controls and recreation.
+This page explains the operating contracts and retained compatibility launchers.
 
 ## Run one installation container
 
@@ -24,16 +28,16 @@ wake-research status
 ```
 
 **Every container launch starts research stopped.** Inspection does not enable
-research, Bob calls, or Passenger calls. The Console and shell are available first;
+research or Bob calls. The Console and shell are available first;
 use `wake-research start` only after inspecting the installation and configuration.
 The launcher neither pulls source nor switches branches. VS Code can attach to the
 running `wake` container; `/workspace` is writable and the existing WAKE `.bashrc`
 terminal prompt is retained.
 
-Open `http://localhost/console.html`. The container listens on port 8080; the
-launcher publishes it on host port 80 by default. Set `WAKE_PORT` before launch to
+Open `http://localhost:8080/console.html`. The container listens on port 8080; the
+launcher publishes it on host port 8080 by default. Set `WAKE_PORT` before launch to
 choose another host port. An iPhone on the same network uses the Mac's LAN IP,
-for example `http://192.168.1.20/console.html`. No DNS container is needed. The
+for example `http://192.168.1.20:8080/console.html`. No DNS container is needed. The
 fixed masthead selector opens the complete unified WAKE website or a node's complete
 exported view. The `wake` option includes the journal, research, maps and Bob's
 Blog. Its Console keeps the normal panels and adds the installation overview at
@@ -72,7 +76,7 @@ alone is not proof that a worker stopped.
 | `wake-research bob` | Request one eligible, bounded group editorial attempt from recorded inputs; keep research paused or running as selected. |
 | `wake-research pause` | Suspend automated research and drain its active work; preserve Console and explicitly submitted local Ask Bob questions. |
 | `wake-research restart` | Drain, recreate worker processes with current configuration, and enable research again; retain records. |
-| `wake-research RESET` | Drain, destroy active node records and private active data, initialize cycle zero, and leave research stopped. Uppercase is required. No backup is created. |
+| `wake-research RESET` | Drain, destroy active node records, initialize cycle zero, and leave research stopped. Uppercase is required. No backup is created. |
 | `wake-research export --name inspection.zip` | Drain and write a reloadable twelve-record archive to `./data/backups`; leave research stopped. |
 | `wake-research import inspection.zip` | Verify every archived record and its provenance before replacing active records; leave research stopped. |
 | `wake-research publish --output /tmp/wake-public` | Capture immutable exported pages without uploading or changing research controls. |
@@ -88,7 +92,7 @@ container. Node authority lives at `/data/nodes/ID/record/wake.sqlite`. The laun
 provides `./data/backups` as a link to this installation's manual archive directory.
 `RESET` deletes active data only: existing manual exports in the backups directory
 survive. It does not create a backup, delete source, or reset another installation.
-Imported archives contain records, not provider credentials or private Passenger
+Imported archives contain records, not provider credentials or private
 content. Import rejects incomplete, altered, or non-replayable archives.
 
 ### Collect quickly through one shared API queue
@@ -129,7 +133,7 @@ A local publish builds the complete unified website, node artifacts and an
 hosted Console uses the same node selector and shows the most recent successful
 upload, its date, and each node's snapshot identity. It has no local operator access,
 live execution claim, or writable authority. Public projections exclude credentials
-and Passenger input/output; manual reloadable archives are never the public mirror.
+and private input/output; manual reloadable archives are never the public mirror.
 
 On a Mac, `./scripts/wake_publish` uploads the container-generated artifact using
 the host’s existing Git credentials. Add `--watch` to keep delivering queued shared
@@ -145,14 +149,12 @@ separate from this installation and are never publication inputs.
 
 ### Codespaces and remote instances
 
-The single-server design also fits a Codespace: run the installation controller in
-the development container and forward port 8080 privately. Use GitHub's authenticated
-forwarded URL for remote access. Treat each Codespace as an independent installation
-with its own records and controls. Codespaces can stop after inactivity; use a
-separate hosting environment for continuous operation. Cloud execution of this new
-path still requires an actual Codespace acceptance run. The older preview helper
-below is a compatibility path, not evidence that the new twelve-node runtime has
-been verified remotely.
+Follow [Codespaces setup](setup.md#4-run-and-develop-in-codespaces) from creation
+through shutdown. The committed Dev Container runs the installation controller
+with its own twelve records and a private forwarded port 8080. Its lifecycle starts
+research stopped. Codespaces may stop after inactivity; they are development
+environments, not a substitute for continuous hosted research. Actual remote
+build and port forwarding must be checked in the Codespace itself.
 
 ## Earlier standalone and multi-container paths
 
@@ -166,7 +168,7 @@ For multiple independent installations, dynamic ports and optional hostname rout
 see [multiple installations](installations.md). The original single-installation
 Compose defaults remain available below.
 
-One installation owns one authoritative record. This Docker mode creates an independent
+Each earlier standalone installation owns one authoritative record. This Docker mode creates an independent
 WAKE with the existing runtime, research application, governance and website. It does
 not download the public installation's record or interact with GitHub operationally.
 Internet access is needed for live Gemini and public research sources; fixture mode

@@ -401,7 +401,7 @@ articles use a separate editorial sequence and attributed inputs from every
 member, rather than waiting for the slowest research ordinal. They may explain
 recorded questions, failures and provisional findings; scientific-result and
 project-completion support rules remain unchanged. See the
-[editorial contract](development.md#first-run-publication-and-passenger).
+[editorial contract](development.md#first-run-publication).
 Publication captures immutable export generations without reopening authority or
 changing research controls; [mirror delivery](cloud.md) queues accepted shared articles.
 
@@ -481,7 +481,7 @@ When Attention selects a parked topic while all three project slots are occupied
 The GitHub adapter runs `wake/installation.py` inside an Actions job container.
 The kernel, application actions, three parents, nine children and shared provider
 queue are unchanged. `Engine.effect_checkpoint` injects transport into the
-existing native invocation lifecycle, including research, editorial and Passenger
+existing native invocation lifecycle, including research and editorial
 attempts. Before an external effect, the owning native record is copied through
 SQLite's transactionally coherent snapshot API, encrypted and durably selected
 on GitHub. The running owner already verified authority; transport copies check
@@ -493,7 +493,7 @@ A dedicated `wake-hosted-state` Git ref selects encrypted current and previous
 manifests. Authenticated encrypted blocks live in the dedicated
 `wake-hosted-checkpoints` release. Content identities use a secret-key HMAC, and
 AES-256-GCM authenticates each compressed block and manifest. Raw databases,
-Passenger, provider bodies and configuration never enter public source or Pages.
+provider bodies and configuration never enter public source or Pages.
 Only the Actions secret grants decryption. The transport is not application
 state or an alternative authority engine. Old checkpoints may expire; each
 retained native record still contains its entire event history.
@@ -621,18 +621,7 @@ that transformation; it never infers missing support. Attribution failures close
 the native invocation as rejected and feed bounded repair context. Existing dated
 node exports remain editorial inputs when a worker is unavailable. Historical
 solo welcomes and rejected attempts remain replayable. See
-[the operating contract](development.md#first-run-publication-and-passenger).
-
-Bob additionally has a private container advisory role in Passenger. This role
-cannot advise research direction or grant authority: it appends operational
-assessments and inert proposed changes to one installation's shared Markdown
-storage root. Named groups use the project root shared by all members. First
-publication adds an explicitly factual receipt without a private model call. Advisory calls use the native invocation boundary but persist no private
-request, raw response, metadata or content hash. Their public receipt has only
-an outcome; they do not advance accepted research or Attention. Paid requests
-still consume the existing quota. Public and private generation have separate
-contexts. See [first-run publication and Passenger](development.md#first-run-publication-and-passenger)
-for storage, reset, coordination, resource and operator boundaries.
+[the operating contract](development.md#first-run-publication).
 
 ### Container reset and public prose
 
@@ -640,9 +629,8 @@ Container reset is an explicit operator action on the selected installation.
 It leaves research stopped and starts an empty continuity campaign. Public uploads
 never reset records. Historical hosted archives remain unchanged.
 
-Bob’s public articles use plain prose, including the built-in welcome. Markdown
-is confined to Passenger. Public display removes legacy heading markers without
-rewriting historical receipts.
+Bob’s public articles use plain prose, including the built-in welcome. Public display removes legacy heading markers
+without rewriting historical receipts.
 
 Local `reset_with_continuity` resets and enrolls in one governed action; historical
 `reset_to_zero` receipts retain their original replay meaning. Reset does not start research.

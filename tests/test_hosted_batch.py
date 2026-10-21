@@ -80,3 +80,52 @@ class HostedBatchTests(unittest.TestCase):
                 upload.assert_called_once()
                 self.assertTrue(any(c.args == ('pages/builds',) and c.kwargs.get('method') == 'POST'
                                     for c in client.request.call_args_list))
+
+
+class HostedRuntimeSelectionTests(unittest.TestCase):
+    def policy_file(self, directory):
+        import json
+        path = Path(directory) / 'hosted-runtime.json'
+        path.write_text(json.dumps({'schema': 1, 'installations': {'example/repo': {
+            'installation_id': '1' * 32, 'source_revision': 'a' * 40}}}))
+        return path
+
+    def test_pinned_installation_cannot_follow_newer_checked_source(self):
+        from scripts.github_research import checked_revision
+        client = SimpleNamespace(repository='example/repo', request=MagicMock(return_value={
+            'workflow_runs': [{'event': 'push', 'head_branch': 'master', 'head_sha': 'b' * 40},
+                              {'event': 'push', 'head_branch': 'master', 'head_sha': 'a' * 40}]}))
+        with tempfile.TemporaryDirectory() as directory, \
+                patch('scripts.github_research.RUNTIME_POLICY', self.policy_file(directory)):
+            self.assertEqual(checked_revision(client), 'a' * 40)
+        self.assertIn('head_sha=' + 'a' * 40, client.request.call_args.args[0])
+
+    def test_missing_pinned_ci_fails_closed_instead_of_falling_forward(self):
+        from scripts.github_research import checked_revision
+        client = SimpleNamespace(repository='example/repo', request=MagicMock(return_value={
+            'workflow_runs': [{'event': 'push', 'head_branch': 'master', 'head_sha': 'b' * 40}]}))
+        with tempfile.TemporaryDirectory() as directory, \
+                patch('scripts.github_research.RUNTIME_POLICY', self.policy_file(directory)):
+            with self.assertRaises(ValueError):
+                checked_revision(client)
+
+    def test_fork_has_its_own_checked_source_and_no_foreign_pin(self):
+        from scripts.github_research import checked_revision
+        client = SimpleNamespace(repository='another/fork', request=MagicMock(return_value={
+            'workflow_runs': [{'event': 'push', 'head_branch': 'master', 'head_sha': 'b' * 40}]}))
+        with tempfile.TemporaryDirectory() as directory, \
+                patch('scripts.github_research.RUNTIME_POLICY', self.policy_file(directory)):
+            self.assertEqual(checked_revision(client), 'b' * 40)
+        self.assertIn('branch=master', client.request.call_args.args[0])
+
+    def test_direct_incompatible_runtime_cannot_open_hosted_authority(self):
+        client = SimpleNamespace(repository='example/repo')
+        with tempfile.TemporaryDirectory() as directory, \
+                patch('scripts.github_research.RUNTIME_POLICY', self.policy_file(directory)), \
+                patch('scripts.github_research.api', return_value=client), \
+                patch('scripts.github_research.enabled', return_value=True), \
+                patch.dict(os.environ, {'WAKE_SOURCE_REVISION': 'b' * 40}), \
+                patch('scripts.github_research.HostedState.from_environment') as transport:
+            with self.assertRaises(ValueError):
+                run_batch(1, 'fixture')
+            transport.assert_not_called()

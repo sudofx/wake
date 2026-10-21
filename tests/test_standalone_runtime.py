@@ -448,7 +448,7 @@ process.stdin.on('end',async()=>{
                     errors.append(error)
                 finally:
                     done.set()
-            with patch('wake.passenger.record_initial_publication'), patch('wake.standalone.export', side_effect=export_first):
+            with patch('wake.standalone.export', side_effect=export_first):
                 publish(engine, root)
                 previous = (root / 'current').resolve()
                 with patch('wake.standalone.export', side_effect=export_next):

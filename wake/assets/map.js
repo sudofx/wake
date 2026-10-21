@@ -1,10 +1,4 @@
-/*
- * WAKE✳︎ MAINTAINER NOTE
- *
- * Interactive provenance map. Visual relationships must correspond to graph data emitted by provenance.py rather than browser-side inference.
- *
- * Comments should preserve the boundary between presentation and the canonical durable record.
- */
+/* Render relationships supplied by provenance.py; layout does not infer new evidence. */
 
 (async()=>{'use strict';
 async function loadMapData(){

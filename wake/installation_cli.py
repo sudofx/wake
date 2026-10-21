@@ -147,14 +147,14 @@ def import_records(root: Path, archive: Path) -> dict:
 
 
 _PUBLIC_OMIT = {'request', 'response', 'raw_response', 'system', 'credentials', 'api_key',
-                'authorization', 'passenger', 'private', 'token', 'draft_excerpt'}
+                'authorization', 'private', 'token', 'draft_excerpt'}
 
 
 def _public_projection(value):
     """Published receipt views retain identity/outcome, never provider bodies."""
     if isinstance(value, dict):
         return {key: _public_projection(item) for key, item in value.items()
-                if key.lower() not in _PUBLIC_OMIT and not key.lower().startswith('.passenger')}
+                if key.lower() not in _PUBLIC_OMIT and not key.startswith('.')}
     if isinstance(value, list):
         return [_public_projection(item) for item in value]
     return value

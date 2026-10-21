@@ -41,7 +41,6 @@ V1_EVENT_SOURCE = bytes.fromhex("7375646f66782d617574686f72697461746976652d77616
 V1_RESET_SOURCE = bytes.fromhex("7375646f66782d617574686f72697461746976652d77616b652d7265736574").decode("ascii")
 
 
-
 def _updated_envelope(current: JsonValue, *, state=None, migration=None) -> dict:
     """Replace WAKE core branches while preserving opt-in application extensions."""
     result = deepcopy(current) if isinstance(current, dict) else {}
@@ -194,7 +193,6 @@ def _state_for_legacy_event(state: dict, kind: str, payload: dict) -> dict:
         "deferred",
         "recovered",
         "research_planned",
-        "advisory_completed",
         "editorial_completed",
     }:
         invocations = dict(state.get("invocations", {}))

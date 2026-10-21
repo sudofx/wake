@@ -1,7 +1,3 @@
-# =============================================================================
-# AUDIT — independent replay from exported events. The point is distrust: verify sequence, previous hash, event hash and deterministic reduction rather than trusting a saved projection or a successful-looking website.
-# =============================================================================
-
 """Reconstruct from exported events alone, without SQLite or a saved projection."""
 
 import json

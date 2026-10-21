@@ -1,44 +1,131 @@
-#!/usr/bin/env bash
-# One local installation. Source is editable; launch never pulls or switches Git.
-set -euo pipefail
-repo_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-action="${1:-start}"
-build_proxy="${HTTPS_PROXY:-}"
-if [[ -z "$build_proxy" && "$(uname -s)" == Darwin ]]; then build_proxy=http://http.docker.internal:3128; fi
-case "$action" in
-  build) docker build --build-arg "HTTPS_PROXY=$build_proxy" --build-arg "HTTP_PROXY=$build_proxy" --target vscode -t wake-installation:vscode "$repo_dir" ;;
-  start)
-    if docker container inspect wake >/dev/null 2>&1; then
-      [[ "$(docker inspect wake --format '{{index .Config.Labels "com.sudofx.wake.installation"}}')" == true ]] || { echo 'Container wake is not this managed installation.' >&2; exit 1; }
-      docker start wake
-    else
-      mkdir -p "$repo_dir/data/installation/backups"
-      if [[ ! -e "$repo_dir/data/backups" && ! -L "$repo_dir/data/backups" ]]; then
+#!/bin/sh
+# One installation launcher: fixed source, explicit recreation, persistent records.
+set -eu
+repo_dir=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+action=${1:-start}
+image=wake-installation:vscode
+label=com.sudofx.wake.installation
+
+fail() { printf '%s\n' "$*" >&2; exit 1; }
+exists() { docker container inspect wake >/dev/null 2>&1; }
+managed() {
+    [ "$(docker inspect wake --format '{{index .Config.Labels "com.sudofx.wake.installation"}}')" = true ] ||
+        fail 'Container wake is not this managed installation.'
+    source_path=$(docker inspect wake --format '{{range .Mounts}}{{if eq .Destination "/workspace"}}{{.Source}}{{end}}{{end}}')
+    [ "$source_path" = "$repo_dir" ] || fail "Container wake uses another checkout: $source_path"
+}
+settings() {
+    # Only the operator's local shell file is sourced; it never enters the image.
+    if [ -f "$repo_dir/.env" ]; then set -a; . "$repo_dir/.env"; set +a; fi
+}
+build() {
+    echo 'Building the WAKE image; existing containers keep running.'
+    docker build --build-arg HTTP_PROXY --build-arg HTTPS_PROXY --build-arg NO_PROXY --target vscode -t "$image" "$repo_dir"
+}
+check_upgrade() {
+    docker run --rm --read-only --tmpfs /tmp:mode=1777 --entrypoint python \
+        --mount "type=bind,source=$repo_dir/data/installation,target=/data,readonly" \
+        --mount "type=bind,source=$repo_dir,target=/workspace,readonly" -w /workspace \
+        "$image" -m wake.upgrade --data /data
+}
+create() {
+    settings
+    mkdir -p "$repo_dir/data/installation/backups"
+    if [ ! -e "$repo_dir/data/backups" ] && [ ! -L "$repo_dir/data/backups" ]; then
         ln -s installation/backups "$repo_dir/data/backups"
-      fi
-      # Bash parses the operator's quoted .env; Docker --env-file does not.
-      if [[ -f "$repo_dir/.env" ]]; then set -a; source "$repo_dir/.env"; set +a; fi
-      if [[ -z "${HTTPS_PROXY:-}" && "$(uname -s)" == Darwin ]]; then export HTTPS_PROXY=http://http.docker.internal:3128; fi
-      docker run -d --name wake --hostname wake --init --user 10001:10001 \
-        --label com.sudofx.wake.installation=true --restart unless-stopped --stop-timeout 180 \
-        -p "${WAKE_PORT:-80}:8080" -w /workspace \
+    fi
+    # Initialize mount ownership on Linux without recursively changing record files.
+    docker run --rm --user 0:0 --entrypoint chown \
+        --mount "type=bind,source=$repo_dir/data/installation,target=/data" \
+        "$image" 10001:10001 /data /data/backups || return 1
+    docker run -d --name wake --hostname wake --init --user 10001:10001 \
+        --label "$label=true" --restart unless-stopped --stop-timeout 300 \
+        -p "${WAKE_PORT:-8080}:8080" -w /workspace \
         --mount "type=bind,source=$repo_dir,target=/workspace" \
         --mount "type=bind,source=$repo_dir/data/installation,target=/data" \
         --mount type=volume,source=wake-installation-home,target=/home/wake \
         -e GEMINI_API_KEY -e GEMINI_API_KEY_FILE -e HTTPS_PROXY -e HTTP_PROXY -e NO_PROXY \
         -e WAKE_PROVIDER="${WAKE_PROVIDER:-gemini}" -e WAKE_TERMINAL_ROLE=installation \
         -e WAKE_PUBLIC_HOSTNAME=wake -e WAKE_INSTALLATION_DATA=/data \
-        -e PYTHONPATH=/workspace \
-        -e WAKE_PUBLISH_REPOSITORY -e WAKE_PUBLISH_BRANCH \
-        wake-installation:vscode --config /workspace/wake.toml
-    fi ;;
-  stop|restart|status|shell)
-    [[ "$(docker inspect wake --format '{{index .Config.Labels "com.sudofx.wake.installation"}}')" == true ]] || { echo 'Managed wake installation not found.' >&2; exit 1; }
-    case "$action" in
-      stop) docker stop wake ;;
-      restart) docker restart wake ;;
-      status) docker exec wake wake-research status ;;
-      shell) docker exec -it wake bash ;;
-    esac ;;
-  *) echo 'Usage: scripts/wake_installation build|start|stop|restart|status|shell' >&2; exit 2 ;;
+        -e PYTHONPATH=/workspace -e WAKE_PUBLISH_REPOSITORY -e WAKE_PUBLISH_BRANCH \
+        "$image" --config /workspace/wake.toml
+}
+ready() {
+    tries=0
+    while [ "$tries" -lt 180 ]; do
+        if docker exec wake python -c 'import json,urllib.request; data=json.load(urllib.request.urlopen("http://127.0.0.1:8080/installation.json", timeout=3)); nodes=data.get("nodes",[]); assert len(nodes)==12 and all(n.get("available") and n.get("runtime",{}).get("state")=="stopped" for n in nodes)' >/dev/null 2>&1; then
+            echo 'WAKE is ready. Research is stopped; inspect before enabling it.'
+            docker port wake 8080/tcp
+            return 0
+        fi
+        [ "$(docker inspect --format '{{.State.Running}}' wake)" = true ] || break
+        tries=$((tries + 1))
+        sleep 2
+    done
+    echo 'WAKE has not become ready. Inspect: docker logs wake' >&2
+    return 1
+}
+command -v docker >/dev/null 2>&1 || fail 'Docker is required.'
+docker info >/dev/null 2>&1 || fail 'Start Docker before running this launcher.'
+case "$action" in
+    build|start|recreate|stop|restart)
+        mkdir -p "$repo_dir/data"
+        lock="$repo_dir/data/.container-launcher.lock"
+        mkdir "$lock" 2>/dev/null || fail "Another launcher is active (or left a lock): $lock"
+        trap 'rmdir "$lock"' EXIT
+        trap 'exit 130' HUP INT TERM ;;
+esac
+case "$action" in
+    build) build ;;
+    start)
+        if exists; then
+            managed
+            if [ "$(docker inspect --format '{{.State.Running}}' wake)" = true ]; then
+                echo 'WAKE is already running; research controls were not changed.'
+                docker port wake 8080/tcp
+                exit 0
+            fi
+            check_upgrade
+            docker start wake
+        else
+            docker image inspect "$image" >/dev/null 2>&1 || build
+            create
+        fi
+        ready ;;
+    recreate)
+        exists || fail 'No managed container exists. Use start first.'
+        managed
+        data_path=$(docker inspect wake --format '{{range .Mounts}}{{if eq .Destination "/data"}}{{.Source}}{{end}}{{end}}')
+        [ "$data_path" = "$repo_dir/data/installation" ] || fail 'Unexpected record mount; recreation stopped before changing anything.'
+        if [ -z "${WAKE_PORT:-}" ]; then
+            WAKE_PORT=$(docker inspect --format '{{(index (index .HostConfig.PortBindings "8080/tcp") 0).HostPort}}' wake)
+            export WAKE_PORT
+        fi
+        build
+        check_upgrade
+        if [ "$(docker inspect --format '{{.State.Running}}' wake)" = true ]; then
+            docker exec wake wake-research stop
+            docker stop wake
+        fi
+        backup="wake-recreate-backup-$(date +%Y%m%d%H%M%S)-$$"
+        # The final drained head may differ from the running preflight snapshot.
+        check_upgrade
+        docker rename wake "$backup"
+        # A failed replacement keeps both the original container and its data recoverable.
+        if create && ready; then
+            printf 'Previous container retained stopped as %s. Records remain at %s/data/installation.\n' "$backup" "$repo_dir"
+        else
+            printf 'Replacement failed. Original container is %s; records were retained. Inspect before retrying.\n' "$backup" >&2
+            exit 1
+        fi ;;
+    stop|restart|status|shell)
+        exists || fail 'Managed wake installation not found.'
+        managed
+        case "$action" in
+            stop) docker stop wake ;;
+            restart) check_upgrade; docker restart wake; ready ;;
+            status) docker exec wake wake-research status ;;
+            shell) docker exec -it wake bash ;;
+        esac ;;
+    *) fail 'Usage: scripts/wake_installation build|start|recreate|stop|restart|status|shell' ;;
 esac
