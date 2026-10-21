@@ -17,12 +17,13 @@ class MastheadPresentationTests(unittest.TestCase):
     def test_theme_switch_is_first_control(self):
         tools = self.html.split('class="header-tools"', 1)[1].split("</div>", 1)[0]
         self.assertIn('id="theme-toggle"', tools)
-        self.assertLess(tools.index('class="theme-switch"'), tools.index('class="repo-link"'))
+        self.assertLess(tools.index('class="theme-switch"'), tools.index('class="console-link"'))
 
     def test_actions_entry_has_repo_link_and_compact_status(self):
         header = self.html.split('<header class="masthead">', 1)[1].split('</header>', 1)[0]
         self.assertIn('href="https://github.com/sudofx/wake"', header)
-        self.assertIn('class="repo-link"', header)
+        self.assertNotIn('class="repo-link"', header)
+        self.assertIn('>GitHub</a>', header)
         self.assertIn('href="https://github.com/sudofx/wake/actions"', header)
         self.assertIn('class="actions-light"', header)
         self.assertNotIn('actions-light-label', header)
@@ -36,7 +37,7 @@ class MastheadPresentationTests(unittest.TestCase):
                           'data-owner-start', 'data-owner-stop', 'data-owner-reset'):
             self.assertNotIn(forbidden, header)
 
-    def test_console_is_an_instrument_glyph_beside_github_everywhere(self):
+    def test_console_is_an_instrument_glyph_without_repository_icon_everywhere(self):
         pages = {
             "index": (ASSETS / "index.html").read_text(),
             "map": (ASSETS / "map.html").read_text(),
@@ -55,8 +56,8 @@ class MastheadPresentationTests(unittest.TestCase):
                 self.assertIn('M4.2 16.8a8.8 8.8 0 1 1 15.6 0', header_tools)
                 self.assertIn('M12 16l3.8-4.4', header_tools)
                 self.assertNotIn('>About</a>', nav)
-                self.assertLess(header_tools.index('class="repo-link"'),
-                                header_tools.index('class="console-link"'))
+                self.assertNotIn('class="repo-link"', header_tools)
+                self.assertGreater(nav.rfind('>GitHub</a>'), nav.index('>Bob’s Blog</a>'))
                 self.assertLess(header_tools.index('class="console-link"'),
                                 header_tools.index('class="actions-light"'))
                 self.assertIn(stylesheet, page)

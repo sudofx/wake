@@ -694,6 +694,24 @@ def _export_reader_pages(target):
         atomic_write(target / filename, document)
 
 
+def _masthead_navigation(page):
+    """Keep the repository as the last text link in both main-menu layouts."""
+    def header(match):
+        content = match.group(0)
+        repository = re.search(r'<a\b[^>]*class="(?:repo-link|repository-menu-link)"[^>]*href="([^"]+)"', content)
+        if not repository:
+            return content
+        link = '<a class="repository-menu-link" href="' + repository.group(1) + '">GitHub</a>'
+        content = re.sub(r'<a\b[^>]*class="(?:repo-link|repository-menu-link)"[^>]*>.*?</a>', '', content, flags=re.S)
+        def navigation(nav):
+            body = nav.group(2)
+            body = re.sub(r'(<details class="nav-group mobile-nav-menu">.*?)(</div>\s*</details>)',
+                          lambda item: item.group(1) + link + item.group(2), body, flags=re.S)
+            return nav.group(1) + body + link + nav.group(3)
+        return re.sub(r'(<nav class="compact-nav"[^>]*>)(.*?)(</nav>)', navigation, content, flags=re.S)
+    return re.sub(r'<header class="[^"]*masthead[^"]*">.*?</header>', header, page, flags=re.S)
+
+
 def _deployment_site(target, *, standalone, installation=None):
     """Bind every generated page to its installation before any reader runs.
 
@@ -733,7 +751,7 @@ def _deployment_site(target, *, standalone, installation=None):
     for name in ("masthead.css", "site-theme.js", "console-light.css", "installation-console.js", "installation-console.css", "runtime-activity.js", "reader-theme.css", "page-routing.js", "reader-data.js"):
         atomic_write(target / name, (assets / name).read_text())
     shell = (assets / "index.html").read_text()
-    header = re.search(r'<header class="masthead">.*?</header>', shell, re.S).group(0)
+    header = _masthead_navigation(re.search(r'<header class="masthead">.*?</header>', shell, re.S).group(0))
     domain = html.escape(group_hostname.strip(), quote=True) if standalone else ""
     header = header.replace('</a>\n    </div>', '</a><span class="node-domain">' + domain + '</span>\n    </div>', 1)
     snapshot_path = target / "wake-data.json"
@@ -763,11 +781,11 @@ def _deployment_site(target, *, standalone, installation=None):
         page = re.sub(r'<script src="(?:console-theme|site-theme)\.js[^"]*"></script>', '', page)
         page = re.sub(r'<link rel="stylesheet" href="(?:\.\./)*masthead\.css[^"]*">', '', page)
         page = re.sub(r'<link rel="stylesheet" href="(?:\.\./)*console-light\.css[^"]*">', '', page)
-        # All exported views share the installation selector, including record
-        # pages below subdirectories. Its asset URL retains the node export root.
+        # All exported views share the installation observer; only Console creates
+        # its node selector. The asset URL retains each node export root.
         page = re.sub(r'<script src="(?:\.\./)*installation-console\.js[^"]*"[^>]*></script>', '', page)
         page = re.sub(r'<link rel="stylesheet" href="(?:\.\./)*installation-console\.css[^"]*">', '', page)
-        page = page.replace('</head>', f'<link rel="stylesheet" href="{prefix}installation-console.css?v=20261014-icon-picker"><script src="{prefix}installation-console.js?v=20261014-network-picker" defer></script></head>', 1)
+        page = page.replace('</head>', f'<link rel="stylesheet" href="{prefix}installation-console.css?v=20261014-icon-picker"><script src="{prefix}installation-console.js?v=20261020-masthead-menu" defer></script></head>', 1)
         page = page.replace('</head>', f'<link rel="stylesheet" href="{prefix}console-light.css?v=20261014-mobile-width"><script src="{prefix}site-theme.js?v=20261014-visible-theme"></script><link rel="stylesheet" href="{prefix}masthead.css?v=20261014-visible-theme"></head>', 1)
         if not path.name.startswith('console'):
             page = re.sub(r'<link rel="stylesheet" href="(?:\.\./)*reader-theme\.css[^"]*">', '', page)

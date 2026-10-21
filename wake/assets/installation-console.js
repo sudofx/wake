@@ -63,6 +63,9 @@
   return {state,description:state==='unknown'?'No uploaded status available':`Last uploaded status: ${stateNames[state]} · observed ${stamp(runtime.observed_at)}`};
  }
  function buildPicker(nodes,data){
+  const label=get('instance-name');if(label)label.textContent=nodeMatch?nodeMatch[2]:'wake';
+  const domain=document.querySelector('body>.masthead .node-domain');if(domain)domain.textContent=nodeMatch?nodeMatch[2]:'wake';
+  if(currentPage!=='console.html')return;
   document.querySelectorAll('#installation-selector,.console-overview .installation-node-picker').forEach(item=>item.remove());
   const masthead=document.querySelector('body>.masthead'),host=masthead?.querySelector('.header-tools')||masthead?.querySelector('.brand-lockup');if(!host)return;
   if(!picker){
@@ -82,8 +85,6 @@
   if(!same)picker.replaceChildren(...rows.map(row=>{const a=el('a');a.dataset.node=row.id;const light=el('span',undefined,'installation-node-status');light.setAttribute('aria-hidden','true');a.append(light,el('span',row.text,'installation-node-name'));return a;}));
   rows.forEach((row,index)=>{const a=picker.children[index],name=a.querySelector('.installation-node-name');if(name.textContent!==row.text)name.textContent=row.text;a.href=viewURL(row.id||null).href;a.querySelector('.installation-node-status').dataset.state=row.status.state;a.setAttribute('aria-label',`${row.text} · ${row.status.description}`);a.dataset.uiTooltip=`${row.text} · ${row.status.description}`;if((nodeMatch?.[2]||'')===row.id)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
   pickerIcon(nodeMatch?nodes.find(node=>node.id===nodeMatch[2]):null);
-  const label=get('instance-name');if(label)label.textContent=nodeMatch?nodeMatch[2]:'wake';
-  const domain=masthead.querySelector('.node-domain');if(domain)domain.textContent=nodeMatch?nodeMatch[2]:'wake';
   document.documentElement.style.setProperty('--wake-masthead-height',`${masthead.getBoundingClientRect().height}px`);
  }
  function listItem(list,node,text,detail){const item=el('li');if(node)item.dataset.node=node.id;if(node)item.append(link(node,node.id),' · ');item.append(document.createTextNode(text));if(detail)item.append(el('small',detail));list.append(item);}

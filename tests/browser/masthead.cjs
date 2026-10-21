@@ -29,7 +29,7 @@ const base=process.argv[2];if(!base)throw Error('Usage: node tests/browser/masth
     assert.equal(await page.locator('html').getAttribute('data-theme'),theme,`${width} ${theme} ${path}: ${errors.join('; ')}`);
     assert.equal(await page.locator('.actions-light-label').count(),0);
     const tools=await page.locator('.header-tools').evaluate(e=>[...e.children].filter(c=>getComputedStyle(c).display!=='none').map(c=>c.className));
-    assert.deepEqual(tools.slice(0,4),['actions-light','theme-switch','repo-link','console-link']);
+    assert.deepEqual(tools.slice(0,3),['actions-light','theme-switch','console-link']);
     assert.equal(await page.locator('.mobile-nav-menu').isVisible(),width<=1100);
     assert.equal(await page.locator('.compact-nav').isVisible(),width>1100);
     assert((await page.locator('.masthead').boundingBox()).height<=76);
@@ -38,7 +38,7 @@ const base=process.argv[2];if(!base)throw Error('Usage: node tests/browser/masth
     const glass=await page.locator('.masthead').evaluate(e=>{const s=getComputedStyle(e);return {background:s.backgroundColor,blur:s.backdropFilter,webkit:s.getPropertyValue("-webkit-backdrop-filter")||s.backdropFilter}});
     assert.match(glass.blur,/blur\(24px\)/);const alpha=Number(glass.background.match(/\/\s*([\d.]+)\)/)?.[1]);assert(alpha>0&&alpha<=.53,glass.background);
     assert.match(glass.webkit,/blur\(24px\)/);
-    assert.equal(await page.locator('.header-tools>*').first().getAttribute('class'),'theme-switch');
+    assert.equal(await page.locator('.header-tools>*').first().getAttribute('class'),'actions-light');
     const consoleStyle=await page.locator('.console-link').evaluate(e=>{const c=getComputedStyle(e);return [c.backgroundColor,c.borderWidth,c.boxShadow]});
     assert.deepEqual(consoleStyle,['rgba(0, 0, 0, 0)','0px','none']);
     await page.locator('.console-link').hover({timeout:3000}).catch(async error=>{console.error(width,theme,path,await page.locator('#details').evaluate(e=>({rect:e.getBoundingClientRect().toJSON(),position:getComputedStyle(e).position,z:getComputedStyle(e).zIndex})).catch(()=>null));throw error});
