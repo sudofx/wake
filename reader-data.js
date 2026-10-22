@@ -1,0 +1,84 @@
+/* Disposable same-origin reader views. No worker, record, or provider access. */
+(() => {
+  'use strict';
+  const timeout=()=>AbortSignal.timeout(8000);
+  const read=async path=>{
+    const response=await fetch(path,{cache:'no-cache',signal:timeout()});
+    if(!response.ok){const error=Error('Published view unavailable ('+response.status+')');error.status=response.status;throw error;}
+    return response.json();
+  };
+  window.WakeLiveUrl='reader-data.json';
+  window.WakeData=read(window.WakeLiveUrl).catch(error=>{
+    // Older completed exports have no bootstrap. A broken new export must be
+    // visible rather than silently downloading the complete archive instead.
+    if(![404,410].includes(error.status))throw error;
+    window.WakeLiveUrl='wake-data.json';return read(window.WakeLiveUrl);
+  }).then(data=>{data.public_cycle=Number(data.state?.version||0);return data;});
+  const loaded=new Set(),pages=new Map();
+  const recordPath=(collection,id)=>{
+    const hex=Array.from(new TextEncoder().encode(id),byte=>byte.toString(16).padStart(2,'0')).join('');
+    return 'reader-records/'+collection+'/'+hex.match(/.{1,64}/g).join('/')+'.json';
+  };
+  const merge=(data,packet)=>{
+    if(packet.head!==data.head)throw Error('The published snapshot changed. Reload to read its current details.');
+    if(packet.item){
+      if(packet.collection==='journal'){
+        if(!data.state.journal.some(row=>row.invocation===packet.item.invocation))data.state.journal.push(packet.item);
+      }else data.state[packet.collection][packet.item.id]=packet.collection==='posts'&&packet.article?
+        {...packet.item,_reader_article:packet.article}:packet.item;
+    }
+    for(const [name,items] of Object.entries(packet.related||{}))Object.assign(data.state[name]||={},items);
+    const known=new Set(data.events.map(event=>event.projection_id||event.hash));
+    for(const event of packet.events||[])if(!known.has(event.projection_id||event.hash))data.events.push(event);
+  };
+  window.WakeReader={
+    reset(){loaded.clear();pages.clear();},
+    async ensure(page,id){
+      const data=await window.WakeData;if(!data.reader_transport)return;
+      const listing=({journal:'journal',history:'events',evidence:'evidence'})[page];
+      if(listing && (!id||id.startsWith('filter:')||id.startsWith('topic:'))){if(!pages.has(listing))await this.more(listing);return;}
+      let collection=({blog:'posts',evidence:'evidence',history:'invocations',projects:'projects',journal:'journal'})[page];
+      if(!collection||!id||id.startsWith('topic:')||id.startsWith('filter:'))return;
+      if(page==='projects'&&id.startsWith('notebook:')){collection='notebooks';id=id.slice(9);}
+      const path=recordPath(collection,id),key=data.head+':'+path;if(loaded.has(key))return;
+      const packet=await read(path);
+      if(packet.collection!==collection||!packet.item||
+        (collection==='journal'?'cycle:'+packet.item.cycle:packet.item.id)!==id)throw Error('The exported detail does not match the selected record.');
+      merge(data,packet);loaded.add(key);
+    },
+    async more(collection){
+      const data=await window.WakeData;if(!data.reader_transport)return false;
+      const index=pages.get(collection)??0;if(index===null)return false;
+      const packet=await read('reader-records/pages/'+collection+'/'+index+'.json');
+      if(packet.collection!==collection||!Array.isArray(packet.rows))throw Error('The exported page does not match this list.');
+      merge(data,packet);
+      if(collection==='events'){
+        const known=new Set(data.events.map(event=>event.projection_id||event.hash));
+        data.events.push(...packet.rows.filter(event=>!known.has(event.projection_id||event.hash)));
+        data.events.sort((a,b)=>String(a.time).localeCompare(String(b.time)));
+      }else if(collection==='journal'){
+        const known=new Set(data.state.journal.map(row=>row.invocation));
+        data.state.journal.unshift(...packet.rows.filter(row=>!known.has(row.invocation)).reverse());
+      }else for(const item of packet.rows)data.state[collection][item.id]=item;
+      pages.set(collection,packet.next);return packet.next!==null;
+    }
+  };
+  window.WakeData.then(()=>{
+    if(window.WAKE_DEPLOYMENT?.snapshot_only===true)return;
+    let marker;
+    const poll=async()=>{
+      try{
+        if(!document.hidden){
+          // The full browser archive is never a live polling channel.
+          const response=await fetch('head.txt',{cache:'no-cache',signal:timeout()});
+          if(response.ok){const head=(await response.text()).trim();
+            if(marker&&head!==marker){const next=await read(window.WakeLiveUrl);window.WakeReader.reset();window.WakeApplyLive?.(next);}
+            marker=head;
+          }
+        }
+      }catch{}
+      setTimeout(poll,10000);
+    };
+    window.WakeData.then(data=>{marker=data.head;setTimeout(poll,10000);});
+  }).catch(()=>{});
+})();

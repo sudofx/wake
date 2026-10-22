@@ -1,0 +1,31 @@
+/* IPHONE SHARED FOOTER + TYPE — 2026-10-04 */
+@media(max-width:700px){
+  html{font-size:101.5%}
+}
+
+/* One glass action style, with the Console control radius. */
+body button.glyph-button,
+body.research-page .panel>.console-panel-heading .panel-actions button.glyph-button{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ width:32px!important;min-width:32px!important;max-width:32px!important;
+ height:32px!important;min-height:32px!important;padding:0!important;
+ border:1px solid rgba(143,211,255,.48)!important;border-radius:8px!important;
+ background:rgba(6,17,32,.5)!important;color:#8fa1c2!important;
+ -webkit-backdrop-filter:blur(16px) saturate(125%);backdrop-filter:blur(16px) saturate(125%);
+ font:700 15px/1 var(--mono,monospace)!important;letter-spacing:0!important;
+ text-decoration:none!important;cursor:pointer;
+}
+body button.glyph-button::before{content:none!important}
+body button.glyph-button:hover,body button.glyph-button:focus-visible,
+body.research-page .panel>.console-panel-heading .panel-actions button.glyph-button:hover,
+body.research-page .panel>.console-panel-heading .panel-actions button.glyph-button:focus-visible{
+ color:var(--cyan,#8fd3ff)!important;border-color:var(--cyan,#8fd3ff)!important;
+ background:rgba(143,211,255,.10)!important;
+}
+body button.glyph-button[aria-pressed=true],
+body.research-page .panel>.console-panel-heading .panel-actions button.glyph-button[aria-pressed=true]{
+ color:#ffb15c!important;border-color:rgba(255,154,50,.72)!important;background:rgba(255,154,50,.10)!important;
+}
+body button.glyph-button:disabled{opacity:.4;cursor:default}
+
+.data-inspector,#wake-detail{scroll-margin-top:20px}

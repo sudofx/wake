@@ -1,0 +1,207 @@
+{
+  "canonical_root": "https://sudofx.github.io/wake/inspect/",
+  "claims": [
+    {
+      "evidence_ids": [
+        "architecture",
+        "limitations"
+      ],
+      "id": "authority_boundary",
+      "kind": "architecture",
+      "text": "The architecture describes a single governed authority per node."
+    },
+    {
+      "evidence_ids": [
+        "demo",
+        "evidence",
+        "limitations"
+      ],
+      "id": "offline_demonstration",
+      "kind": "demonstrated_fixture",
+      "text": "The supplied fixture records and replays three task-list decisions."
+    }
+  ],
+  "deployment": {
+    "mode": "standalone",
+    "schema": 1,
+    "unified": true
+  },
+  "format": "wake-inspection@1",
+  "generated_at": "2026-10-22T20:17:21.682544+00:00",
+  "project": "WAKE✳︎",
+  "published_records": [],
+  "resources": [
+    {
+      "bytes": 2073,
+      "canonical_url": "https://sudofx.github.io/wake/inspect/README.md",
+      "description": "Start here: scope and how to inspect this packet.",
+      "id": "readme",
+      "sha256": "fc76573932adcebec9e482a5037b3c23418c430ca9ea4ed52aaede1713a8a20e",
+      "type": "text/markdown",
+      "url": "README.md"
+    },
+    {
+      "bytes": 2856,
+      "canonical_url": "https://sudofx.github.io/wake/inspect/architecture.md",
+      "description": "Authority, context and proposal boundaries.",
+      "id": "architecture",
+      "sha256": "cd7f405d46f9e562874e862c0fb34b6c7a78d21b7f758aace0be9961b0015479",
+      "type": "text/markdown",
+      "url": "architecture.md"
+    },
+    {
+      "bytes": 7673,
+      "canonical_url": "https://sudofx.github.io/wake/inspect/evidence.md",
+      "description": "Reproducible demonstration and dated public-export pointers.",
+      "id": "evidence",
+      "sha256": "082a82bb0ff8a46107aea39080c0189584ec04dba52c4ebd2012f71a25094280",
+      "type": "text/markdown",
+      "url": "evidence.md"
+    },
+    {
+      "bytes": 3133,
+      "canonical_url": "https://sudofx.github.io/wake/inspect/limitations.md",
+      "description": "What the demonstration and exported records cannot establish.",
+      "id": "limitations",
+      "sha256": "fb07b19e98c84ef6c2ef303b57b9c9596e83fa2fe7a5eeb14e605d4a0289181a",
+      "type": "text/markdown",
+      "url": "limitations.md"
+    },
+    {
+      "bytes": 3115,
+      "canonical_url": "https://sudofx.github.io/wake/inspect/evaluate.md",
+      "description": "Questions an external reviewer can evaluate independently.",
+      "id": "evaluate",
+      "sha256": "88001e7e87dc532d1677982bcebab3029c274a9041455d73c0d853e55cbe8be7",
+      "type": "text/markdown",
+      "url": "evaluate.md"
+    },
+    {
+      "bytes": 10038,
+      "canonical_url": "https://sudofx.github.io/wake/inspect/demo.json",
+      "description": "Actual offline task-list kernel events and replay result.",
+      "id": "demo",
+      "sha256": "83aff8e2b0b0f772d49a9fa0759c8ce18d3d71187956ef39ae065b3d70b8d2ba",
+      "type": "application/json",
+      "url": "demo.json"
+    },
+    {
+      "bytes": 29233,
+      "canonical_url": "https://sudofx.github.io/wake/inspect/packet.md",
+      "description": "Self-contained inspection document, including the exact offline demonstration.",
+      "id": "packet",
+      "sha256": "b6bc523798e5a27abdf9b6449aa9075083dc1bb9bb9b847cf0d2f37a4098e2d6",
+      "type": "text/markdown",
+      "url": "packet.md"
+    },
+    {
+      "bytes": 1228,
+      "canonical_url": "https://sudofx.github.io/wake/inspect/index.html",
+      "description": "Static inspection entry page; no JavaScript or service required.",
+      "id": "index",
+      "sha256": "e296e1f2055f2e90188a8c5dd392c858e985507145950feec820a589e3d36a0f",
+      "type": "text/html",
+      "url": "index.html"
+    }
+  ],
+  "snapshot": {
+    "authoritative": false,
+    "generated_at": "2026-10-22T20:17:20.592839+00:00",
+    "head": "snapshot:6ddd3df6e20357d7248a1388e2d8758e0ab2dc0b508d29181641ac99da70e7ee",
+    "node_heads": {
+      "100.wake": {
+        "generated": "2026-10-22T20:17:19.035922+00:00",
+        "head": "a936de2a12a3ea26d864ba11e0bd55dab4a988b16805426d655ad4b9d0108a6f",
+        "node": "100.wake",
+        "snapshot_digest": "93e8a3a9ab0b8997935b70efcfa3568839206ee44a3b79b0ec9b4a25be78506e",
+        "version": 0
+      },
+      "101.wake": {
+        "generated": "2026-10-22T20:17:19.185517+00:00",
+        "head": "c1cc10d391f97311a3b698b93ef49a7966c35e24cfa4e42e5507aeb63bd323d2",
+        "node": "101.wake",
+        "snapshot_digest": "7be4e8ca9c5522a13c0cb0ac4c78aea1a9b2573e1cf86c9d5e6070c4a73a75df",
+        "version": 0
+      },
+      "102.wake": {
+        "generated": "2026-10-22T20:17:19.321218+00:00",
+        "head": "e494a4f8146cebbea07eff32c40721fa971433c81ca38e12aa0b7dd372f42803",
+        "node": "102.wake",
+        "snapshot_digest": "40af29b07e1f2ada7b6ec3093241d2c70b62ec0a404c243c8a1f6519f5ffc03b",
+        "version": 0
+      },
+      "103.wake": {
+        "generated": "2026-10-22T20:17:19.463559+00:00",
+        "head": "82486e70de48ce7d6ebf29e6fed6d847c74f30049629ee9a2933250cc4aca561",
+        "node": "103.wake",
+        "snapshot_digest": "1a0b51ea18e5c01271cc618a4cb2d104007c2cd589ca38b5defe10c9e863a0a6",
+        "version": 0
+      },
+      "200.wake": {
+        "generated": "2026-10-22T20:17:19.604561+00:00",
+        "head": "61e3c54315bf9b0fd327d4bc204a0a07fc668a53f94934ae40c15cfe330c7f93",
+        "node": "200.wake",
+        "snapshot_digest": "f0585432098b7a1e6c38d24b4552d9a62f9963742526325fc8f8eaacfbb3c20b",
+        "version": 0
+      },
+      "201.wake": {
+        "generated": "2026-10-22T20:17:19.746301+00:00",
+        "head": "27224add2e799749ceea110bbc9d69d4ba19f284f35a2a080d5f3146eb1baefa",
+        "node": "201.wake",
+        "snapshot_digest": "0bed0b566188fa4836da41eeb1fde1beb5bec15ecac174b653d773e3ac80de86",
+        "version": 0
+      },
+      "202.wake": {
+        "generated": "2026-10-22T20:17:19.896010+00:00",
+        "head": "573eaa3beeb36a16dbb3a8ae888617827583b85b041f8de0932b6aa628a68ecb",
+        "node": "202.wake",
+        "snapshot_digest": "303b27ec47143ba0f9251fcc2e6d66f00ac339eba8ed2a58042bf14aa024266e",
+        "version": 0
+      },
+      "203.wake": {
+        "generated": "2026-10-22T20:17:20.038654+00:00",
+        "head": "29bab95d679edbbe9011bb1eee67ac867d4ab8885f1db6a7c61d67da04c25f4f",
+        "node": "203.wake",
+        "snapshot_digest": "aabeab3ab23365a8bfb49f08f44a3272d6b4ba817503c1a16acb7a21dd5c2867",
+        "version": 0
+      },
+      "300.wake": {
+        "generated": "2026-10-22T20:17:20.178540+00:00",
+        "head": "e110c9f918ddb9468168c6b3bf30cd54b7b3a42eda6e3249d94177f33551bfd8",
+        "node": "300.wake",
+        "snapshot_digest": "2b88c274463f9c5c8b3d203264e45046a9fa6ac6b6c10834ca63e60f448b646c",
+        "version": 0
+      },
+      "301.wake": {
+        "generated": "2026-10-22T20:17:20.317767+00:00",
+        "head": "c0348834c4643383a97bc76f8b207ecee7734795f536f7b86be4435ea21af7a3",
+        "node": "301.wake",
+        "snapshot_digest": "bfe2abe0e97df45192294daf287503944b6a63ef8ba909fb3eb1509104e43f3c",
+        "version": 0
+      },
+      "302.wake": {
+        "generated": "2026-10-22T20:17:20.454414+00:00",
+        "head": "3c0bdf81fb99f70dc0d107a1d4be0fd46d08534f12a1fa72ffe3c5a59820ada6",
+        "node": "302.wake",
+        "snapshot_digest": "1ac5f7b139cdf13bc777f875f7a3e1bc85c58811cddebb5b268a488500c220da",
+        "version": 0
+      },
+      "303.wake": {
+        "generated": "2026-10-22T20:17:20.592839+00:00",
+        "head": "1a091c670aa86a0a196d92771e592fa1adbff70e1110baeb4a8e23c9fffa720a",
+        "node": "303.wake",
+        "snapshot_digest": "43dfddd8c8702b33d09717a105a60ff2668c43d69d9c22e332687e9d6dd0e077",
+        "version": 0
+      }
+    },
+    "version": 0,
+    "version_meaning": "Sum of accepted node cycles; not one authoritative record version."
+  },
+  "source": {
+    "executing_revision": null,
+    "renderer": "5d66ad2ed195bb123f77d0495caaaba38ef98a6c4bb34ff32978e22ae1a29f8d",
+    "revision_status": "unknown"
+  },
+  "uploaded_at": null,
+  "version": 1
+}

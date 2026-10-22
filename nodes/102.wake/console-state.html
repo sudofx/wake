@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en" data-theme="light"><head><script>window.WAKE_DEPLOYMENT={"schema": 1, "mode": "standalone", "group": {"id": "wake", "instance": "102.wake", "hostname": "102.wake"}, "snapshot_only": true, "hosted_status": {"repository": "sudofx/wake", "workflow": "hosted-research.yml", "branch": "master"}, "hosted_activity": {"url": "https://wake-live-activity.coolgrove68.chatgpt.site/activity.json", "installation_id": "1fad15cb5b8b60b9d85dad462ceaaacf"}};document.documentElement.dataset.wakeHostedStatus='true';window.WAKE_STANDALONE=true;document.documentElement.dataset.wakeSnapshotOnly='true';</script><script src="runtime-activity.js?v=20261020-hosted-activity" defer></script><meta name="darkreader-lock"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>State / WAKE✳︎</title>
+
+<link rel="stylesheet" href="style.css?v=20261014-mobile-width"><link rel="stylesheet" href="nav.css?v=20261014-mobile-width"><link rel="stylesheet" href="theme.css?v=20261014-mobile-width"><link rel="stylesheet" href="console-component.css"><link rel="stylesheet" href="installation-console.css?v=20261014-icon-picker"><script src="installation-console.js?v=20261020-masthead-menu" defer></script><link rel="stylesheet" href="console-light.css?v=20261014-mobile-width"><script src="site-theme.js?v=20261014-visible-theme"></script><link rel="stylesheet" href="masthead.css?v=20261020-masthead-menu"><script src="hosted-status.js?v=20261020-hosted-recovery" defer></script></head>
+<body data-flat-kind="state" data-flat-source="state.json">
+<header class="masthead">
+  <div class="brand-lockup">
+    <a class="wordmark" href="index.html" aria-label="Reload WAKE✳︎ from the site root">WAKE<span class="asterisk">✳︎</span><small><span class="cycle-count">0</span> ACCEPTED WAKES</small></a><span class="node-domain">102.wake</span>
+    </div>
+  <nav class="compact-nav" aria-label="Main navigation">
+    <a href="index.html#home" data-nav="home">Explore</a>
+    <a href="index.html#discoveries" data-nav="discoveries" data-nav-section="research">Research</a>
+    <a href="index.html#journal" data-nav="journal">Journal</a>
+    <a href="index.html#blog" data-nav="blog">Bob’s Blog</a>
+    <details class="nav-group mobile-nav-menu">
+      <summary aria-label="Open site navigation">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </summary>
+      <div class="nav-dropdown">
+        <a href="index.html#home" data-nav="home">Explore</a>
+        <a href="index.html#discoveries" data-nav="discoveries" data-nav-section="research">Research</a>
+        <a href="index.html#journal" data-nav="journal">Journal</a>
+        <a href="index.html#blog" data-nav="blog">Bob’s Blog</a>
+      <a class="repository-menu-link" href="https://github.com/sudofx/wake">GitHub</a></div>
+    </details>
+
+  <a class="repository-menu-link" href="https://github.com/sudofx/wake">GitHub</a></nav>
+  <div class="header-tools"><a class="actions-light" href="https://github.com/sudofx/wake/actions" aria-label="Open WAKE GitHub Actions" title="Checking…">
+      <span class="actions-light-track" aria-hidden="true"><i></i></span>
+    </a><label class="theme-switch" data-ui-tooltip="Following system theme"><input id="theme-toggle" type="checkbox" role="switch" aria-label="Use dark theme"><span class="data-switch-track" aria-hidden="true"><i></i></span></label>
+
+    <a class="console-link" href="console.html" aria-label="Open WAKE Console" title="Console"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.2 16.8a8.8 8.8 0 1 1 15.6 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M6.8 14.3l-1.7-.8M8.2 9.8 7 8.5M12 8V6.2M15.8 9.8 17 8.5M17.2 14.3l1.7-.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 16l3.8-4.4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="16" r="1.35" fill="currentColor"/></svg></a>
+
+    
+  </div>
+</header>
+<main><p class="console-component-stamp">Published snapshot · state 0 · 2026-10-22T20:17:19.321218+00:00<br>Head e494a4f8146cebbea07eff32c40721fa971433c81ca38e12aa0b7dd372f42803</p><div class="page-heading"><p class="eyebrow">THE CURRENT DURABLE STATE</p><h1>Current state.</h1><p>Loaded from state.json when this page opens.</p></div><div id="flat-content"></div></main>
+<script>/*
+ * WAKE✳︎ flat-view controller.
+ * Standalone pages are stable shells; current facts are loaded from flat exports
+ * in the browser so publication cost does not grow with the record.
+ */
+(async()=>{
+  'use strict';
+  const root=document.getElementById('flat-content');
+  const kind=document.body.dataset.flatKind;
+  const source=document.body.dataset.flatSource;
+  const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const response=await fetch(source,{cache:'no-store'});
+  if(!response.ok)throw new Error('Published WAKE data could not be loaded');
+  if(kind==='state'){
+    const state=await response.json();
+    root.innerHTML='<pre>'+esc(JSON.stringify(state,null,2))+'</pre>';
+    return;
+  }
+  if(kind==='events'){
+    const bytes=new Uint8Array(await response.arrayBuffer());
+    // Direct .gz downloads may be served with or without Content-Encoding.
+    // Decode only bytes that still carry the gzip header after browser transport.
+    const text=bytes[0]===31&&bytes[1]===139?
+      await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).text():
+      new TextDecoder().decode(bytes);
+    const events=text.split(/\n+/).filter(Boolean).map(line=>JSON.parse(line)).reverse();
+    root.innerHTML=events.map(event=>{
+      const payload=event.payload||{},id=payload.id||'system';
+      return '<details class="entry record-panel"><summary class="record-panel-head"><div class="record-panel-meta"><span class="record-type">'+esc(event.kind)+'</span><time>'+esc(event.time)+'</time></div><h3>'+esc(id)+'</h3></summary><div class="record-panel-body"><pre>'+esc(JSON.stringify(payload,null,2))+'</pre><p class="subtle">Hash '+esc(event.hash)+'</p></div></details>';
+    }).join('')||'<p class="empty">No recorded events.</p>';
+    const closeEventDetails=()=>root.querySelectorAll('details.entry').forEach(item=>{item.open=false});
+    closeEventDetails();
+    window.addEventListener('pageshow',closeEventDetails);
+    return;
+  }
+  const data=await response.json();
+  const events=(data.events||[]).filter(event=>event.kind==='rejected').reverse();
+  root.innerHTML=events.map(event=>{
+    const payload=event.payload||{};
+    return '<article class="entry record-panel"><div class="record-panel-head"><div class="record-panel-meta"><span class="record-type">REJECTED</span><time>'+esc(event.time)+'</time></div><h3>'+esc(payload.id||'Proposal')+'</h3></div><div class="record-panel-body"><p>'+esc(payload.reason||'Rejected by governance')+'</p><pre>'+esc(JSON.stringify(payload.raw_response??payload.proposal??payload,null,2))+'</pre></div></article>';
+  }).join('')||'<p class="empty">No rejected proposals in the current record.</p>';
+})().catch(error=>{
+  console.error(error);
+  const root=document.getElementById('flat-content');
+  if(root){
+    root.innerHTML='<p class="empty">This published view could not load its flat data file.</p>';
+    const source=document.body.dataset.flatSource;
+    if(source){const link=document.createElement('a');link.href=source;link.textContent='Download published data';root.append(link);}
+  }
+});
+</script><script>/* Shared masthead navigation and responsive layout for generated pages. */
+
+(() => {
+  const domain=document.querySelector('.node-domain');
+  if(domain&&!domain.textContent.trim())domain.textContent=location.hostname;
+  const masthead=document.querySelector('body > .masthead');
+  if(masthead){
+    const tools=masthead.querySelector('.header-tools'),menu=masthead.querySelector('.mobile-nav-menu');
+    if(tools){
+      ['.actions-light','.theme-switch','.repo-link','.console-link'].forEach(selector=>{const control=masthead.querySelector(selector);if(control)tools.append(control);});
+      const nodePicker=masthead.querySelector('.installation-node-picker');if(nodePicker)tools.append(nodePicker);
+      if(menu){menu.querySelector('summary').setAttribute('aria-label','Open main menu');tools.append(menu);}
+    }
+    const reserveHeader=()=>document.documentElement.style.setProperty('--wake-masthead-height',`${masthead.getBoundingClientRect().height}px`);
+    reserveHeader();
+    new ResizeObserver(reserveHeader).observe(masthead);
+  }
+  const nav = document.querySelector('.compact-nav');
+  if (!nav) return;
+  const groups = () => [...(masthead||nav).querySelectorAll('.nav-group')];
+  const menuScope=masthead||nav;
+  function close(except) {
+    groups().forEach(group => { if (group !== except) group.open = false; });
+  }
+  // Node navigation is added after the installation manifest arrives.
+  menuScope.addEventListener('toggle', event => {
+    const group=event.target;if(group.matches('.nav-group')&&group.open)close(group);
+  }, true);
+  menuScope.addEventListener('click', event => {
+    if (event.target.closest('a')) close();
+  });
+  menuScope.addEventListener('keydown', event => {
+    const open = groups().find(group => group.open);
+    if (event.key === 'Escape' && open) {
+      event.preventDefault();
+      event.stopPropagation();
+      close();
+      open.querySelector('summary').focus();
+    }
+  });
+  document.addEventListener('focusin', event => {
+    if (!menuScope.contains(event.target)) close();
+  });
+  document.addEventListener('click', event => {
+    if (!menuScope.contains(event.target)) close();
+  });
+  window.addEventListener('hashchange', () => close());
+})();
+
+const actionsLight=document.querySelector('.actions-light');
+// Unknown installation identity must not display GitHub's status as local status.
+if(actionsLight && window.WAKE_DEPLOYMENT?.snapshot_only===true && !window.WAKE_DEPLOYMENT?.hosted_status){
+  document.documentElement.dataset.wakeSnapshotOnly='true';
+  actionsLight.hidden=true;
+}
+if(actionsLight && !window.WAKE_DEPLOYMENT?.hosted_status && window.WAKE_DEPLOYMENT?.mode!=='hosted' && window.WAKE_DEPLOYMENT?.snapshot_only!==true){
+  actionsLight.href='runtime.json';
+  const applyLocal=status=>{
+    const label=status.state==='standby'?(status.reason||'Provider quota reported; retrying on the regular schedule'):
+      ({running:'Running',waiting:'Waiting',idle:'Idle',paused:'Paused',stopped:'Stopped',blocked:'Blocked'})[status.state]||'Unknown';
+    actionsLight.dataset.state=status.state==='running'?'running':status.state==='paused'?'stopped':status.state;
+    actionsLight.title='Local WAKE · '+label;
+    actionsLight.setAttribute('aria-label','Inspect published WAKE snapshot · '+label);
+  };
+  const unavailable=()=>{actionsLight.removeAttribute('data-state');actionsLight.title='Local runtime unavailable';actionsLight.setAttribute('aria-label','Local runtime unavailable');};
+  const refreshLocal=()=>fetch(new URL('runtime.json',location.href),{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('Unavailable');return r.json();}).then(applyLocal).catch(unavailable);
+  let connected=false,fallbackTimer=null;
+  const connect=()=>{
+    if(connected||!window.WakeStatusChannel)return connected;
+    connected=true;clearInterval(fallbackTimer);
+    window.WakeStatusChannel.subscribe(packet=>{const status=window.WakeStatusChannel.view(packet);if(status)applyLocal(status);else unavailable();});
+    return true;
+  };
+  window.addEventListener('wake-status-ready',connect);
+  const fallback=()=>{if(connect())return;refreshLocal();fallbackTimer=setInterval(()=>{if(!connected&&!document.hidden)refreshLocal();},30000);};
+  if(!connect()){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fallback,{once:true});else queueMicrotask(fallback);}
+
+}
+/* Shared action glyphs and previews. Record names and metric values remain content. */
+(() => {
+  const icons={
+    refresh:['↻','Refresh record'], 'reset-console-layout':['↺','Reset Console view'],
+    'process-field-reset':['↺','Reset process field view'],
+    'cube-left':['↶','Rotate cube left'], 'cube-right':['↷','Rotate cube right'], 'cube-reset':['↺','Reset cube view'],
+    'latest-wake':['◷','Inspect latest wake'], 'close-inspector':['×','Close record inspector'],
+    'close-data-inspector':['×','Close referenced records'], 'show-projects':['□','Inspect projects'],
+    'show-latest-receipt':['▤','Inspect latest receipt'], 'expand-context':['⤢','Expand reader'],
+    clear:['×','Clear selection'], 'clear-detail':['×','Clear selection'], 'back-detail':['↶','Back up'],
+    'zoom-in-detail':['+','Zoom in'], 'zoom-out-detail':['−','Zoom out'],
+    'open-map-window':['↗','Open map window'], 'history-more':['↓','More events'],
+    'help-close':['×','Close explanation']
+  };
+  const tabs={summary:'≡',context:'▧',response:'↩',provider:'◇',receipt:'▤'};
+  const states={active:'▷',completed:'✓',parked:'Ⅱ',rejected:'×'};
+  function action(button){
+    if(button.id==='global-motion-toggle')return [button.getAttribute('aria-pressed')==='true'?'◉':'▷',button.getAttribute('aria-pressed')==='true'?'Disable presentation motion':'Enable presentation motion'];
+    if(icons[button.id])return icons[button.id];
+    const panelName=button.closest('.console-module')?.querySelector('h2')?.textContent.trim()||'panel';
+    if(button.matches('.module-drag'))return ['⠿',`Move ${panelName}`];
+    if(button.matches('.module-size'))return ['↔',`Resize ${panelName}`];
+    if(button.matches('.module-collapse'))return [button.closest('.module-collapsed')?'+':'−',`${button.closest('.module-collapsed')?'Expand':'Collapse'} ${panelName}`];
+    if(button.matches('.close-wake'))return ['×','Close wake reader'];
+    if(button.matches('.panel-popout'))return [button.closest('.panel-popout-target,.panel-popped-out')?'↙':'↗',button.getAttribute('aria-label')];
+    if(button.matches('.wake-tabs button'))return [tabs[button.dataset.wakeTab]||'≡',`Inspect ${button.dataset.wakeTab}`];
+    if(button.dataset.contextView)return [button.dataset.contextView==='sphere'?'◉':'◇',`${button.dataset.contextView==='sphere'?'Sphere':'3D'} context view`];
+    if(button.dataset.frontierState)return [states[button.dataset.frontierState],`${button.dataset.frontierState} frontier`];
+    if(button.dataset.kind)return [{project:'□',research:'◇',notebook:'▤',evidence:'●','belief,commitment':'△'}[button.dataset.kind],button.dataset.uiLabel||button.textContent.trim()];
+    if(button.matches('.help-trigger'))return ['?',button.getAttribute('aria-label')];
+    if(button.matches('.detail-links button, #wake-detail button[data-tool]'))return [button.hasAttribute('data-wake')?'◷':'↗',button.dataset.uiLabel||button.textContent.trim()];
+    // Existing glyph-only controls retain their symbols and accessible names.
+    if(button.getAttribute('aria-label')&&button.childElementCount===0&&button.textContent.trim().length>0&&button.textContent.trim().length<=3)return [button.textContent.trim(),button.getAttribute('aria-label')];
+    return null;
+  }
+  const tooltip=document.createElement('div');
+  tooltip.id='site-tooltip';tooltip.setAttribute('role','tooltip');tooltip.hidden=true;
+  document.body.append(tooltip);
+  let owner=null;
+  function decorate(element){
+    if(element===tooltip||element.tagName==='IFRAME'||element.closest('#node-popover,.constellation-node'))return;
+    const icon=element.tagName==='BUTTON'?action(element):null;
+    if(icon){
+      const [glyph,label]=icon;
+      if(!element.classList.contains('glyph-button'))element.classList.add('glyph-button');
+      if(element.dataset.uiLabel!==label)element.dataset.uiLabel=label;
+      if(element.getAttribute('aria-label')!==label)element.setAttribute('aria-label',label);
+      if(element.dataset.uiTooltip!==label)element.dataset.uiTooltip=label;
+      if(element.textContent!==glyph)element.textContent=glyph;
+    }
+    const title=element.getAttribute('title');
+    if(title){if(element.dataset.uiTooltip!==title)element.dataset.uiTooltip=title;element.removeAttribute('title');}
+    const svgTitle=element.matches('svg [role="button"]')?element.querySelector('title'):null;
+    if(svgTitle){element.dataset.uiTooltip=svgTitle.textContent;svgTitle.remove();}
+  }
+  function scan(root){
+    if(root.nodeType!==1)return;
+    decorate(root);
+    root.querySelectorAll('button,[title],svg [role="button"]').forEach(decorate);
+  }
+  scan(document.body);
+  function hide(){
+    if(owner){const ids=(owner.getAttribute('aria-describedby')||'').split(/\s+/).filter(id=>id&&id!==tooltip.id);if(ids.length)owner.setAttribute('aria-describedby',ids.join(' '));else owner.removeAttribute('aria-describedby');}
+    tooltip.hidden=true;owner=null;
+  }
+  function show(target){
+    const element=target.closest('[data-ui-tooltip],button[aria-label],a[aria-label],summary[aria-label]');
+    if(!element||element.closest('.constellation-node,#node-popover')||element.disabled)return hide();
+    const text=element.dataset.uiTooltip||element.getAttribute('aria-label');
+    if(!text)return hide();
+    if(owner!==element)hide();
+    owner=element;if(tooltip.textContent!==text)tooltip.textContent=text;tooltip.hidden=false;
+    const ids=new Set((element.getAttribute('aria-describedby')||'').split(/\s+/).filter(Boolean));ids.add(tooltip.id);element.setAttribute('aria-describedby',[...ids].join(' '));
+    const rect=element.getBoundingClientRect(),box=tooltip.getBoundingClientRect();
+    tooltip.style.left=`${Math.max(8,Math.min(innerWidth-box.width-8,rect.left+rect.width/2-box.width/2))}px`;
+    tooltip.style.top=`${rect.bottom+8+box.height<innerHeight?rect.bottom+8:Math.max(8,rect.top-box.height-8)}px`;
+  }
+  let touchTimer=null,touchOwner=null,touchShown=false,lastTouch=null;
+  const cancelTouch=()=>{clearTimeout(touchTimer);touchTimer=null;touchOwner=null;};
+  document.addEventListener('pointerdown',event=>{
+    if(event.pointerType!=='touch')return;
+    cancelTouch();touchShown=false;touchOwner=event.target;lastTouch=event.target;
+    touchTimer=setTimeout(()=>{show(touchOwner);touchShown=Boolean(owner);},450);
+  });
+  document.addEventListener('pointerup',()=>{cancelTouch();if(touchShown)setTimeout(hide,2500);});
+  document.addEventListener('pointercancel',()=>{cancelTouch();hide();});
+  document.addEventListener('pointermove',event=>{if(event.pointerType==='touch'&&!touchShown)cancelTouch();});
+  document.addEventListener('click',event=>{if(touchShown||(lastTouch===event.target&&event.target.closest('.actions-light'))){event.preventDefault();event.stopPropagation();show(event.target);touchShown=false;setTimeout(hide,2500);}else hide();lastTouch=null;},true);
+  document.addEventListener('pointerover',event=>{if(event.pointerType!=='touch')show(event.target);});
+  document.addEventListener('pointerout',event=>{if(event.pointerType!=='touch'&&owner&&!owner.contains(event.relatedTarget))hide();});
+  document.addEventListener('focusin',event=>show(event.target));
+  document.addEventListener('focusout',hide);
+
+  document.addEventListener('keydown',event=>{if(event.key==='Escape')hide();});
+  window.addEventListener('scroll',hide,true);window.addEventListener('resize',hide);
+  new MutationObserver(changes=>{
+    for(const change of changes){
+      if(change.type==='attributes')scan(change.target);
+      else {if(change.target.matches?.('button'))decorate(change.target);change.addedNodes.forEach(scan);}
+    }
+    if(owner&&(!owner.isConnected||owner.closest('[hidden]')))hide();
+    else if(owner)show(owner);
+  }).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['title','aria-label','aria-pressed','class','data-ui-tooltip']});
+})();
+
+// Recorded links stay within this installation on LAN and a Pages subpath.
+for(const link of document.querySelectorAll('[data-record-url]')){
+  const path=location.pathname,root=path.includes('/nodes/')?path.split('/nodes/')[0]+'/':path.split('/blog/')[0]+'/';
+  link.href=root+link.dataset.recordUrl.replace(/^\//,'');
+}
+</script><script>/* Every off-site destination opens separately; covers later rendered records. */
+(() => {
+  const apply = link => {
+    try {
+      const url = new URL(link.getAttribute('href'), location.href);
+      if (['http:', 'https:'].includes(url.protocol) && url.origin !== location.origin) {
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+      }
+    } catch { /* A missing or malformed destination remains inert. */ }
+  };
+  const scan = root => {
+    if (root.matches?.('a[href]')) apply(root);
+    root.querySelectorAll?.('a[href]').forEach(apply);
+  };
+  scan(document);
+  new MutationObserver(records => {
+    const roots = new Set();
+    records.forEach(record => {
+      if (record.type === 'attributes') roots.add(record.target);
+      else record.addedNodes.forEach(node => { if (node.nodeType === 1) roots.add(node); });
+    });
+    roots.forEach(scan);
+  }).observe(document.body, {subtree: true, childList: true, attributes: true, attributeFilter: ['href']});
+})();
+</script><script src="console-component.js"></script></body></html>

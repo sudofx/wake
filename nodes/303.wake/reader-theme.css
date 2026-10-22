@@ -1,0 +1,44 @@
+/* Reader palette and type from sudofx.github.io/sudofx (2026-10-16).
+   Export excludes this sheet from Console and every Console component.
+   Geometry remains owned by the existing page styles. */
+html:root[data-theme],html:root[data-theme] body,html:root[data-theme] .attention-home{
+  --bg:#0b1020!important;--paper:#0b1020!important;--surface:#11182b!important;
+  --surface-raised:#171f35!important;--surface-strong:#171f35!important;--pale:#171f35!important;
+  --ink:#f5f7fb!important;--fg:#f5f7fb!important;--muted:#aab4cc!important;--line:#29344d!important;
+  --primary:#7dd3fc!important;--secondary:#a78bfa!important;--accent:#34d399!important;
+  --cyan:#7dd3fc!important;--hot:#7dd3fc!important;--orange:#a78bfa!important;
+  --green:#34d399!important;--purple:#a78bfa!important;--violet:#a78bfa!important;
+  --danger:#fb7185!important;--red:#fb7185!important;--yellow:#fbbf24!important;
+  --sans:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+  --serif:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace!important;
+  --reader-accent:var(--primary)!important;--reader-surface:var(--surface)!important;
+  --reader-ink:var(--ink)!important;--reader-muted:var(--muted)!important;--reader-line:var(--line)!important;
+}
+html:root[data-theme=light],html:root[data-theme=light] body,html:root[data-theme=light] .attention-home{
+  --bg:#f6f8fc!important;--paper:#f6f8fc!important;--surface:#ffffff!important;
+  --surface-raised:#eef3fb!important;--surface-strong:#eef3fb!important;--pale:#eef3fb!important;
+  --ink:#0b1020!important;--fg:#0b1020!important;--muted:#53627a!important;--line:#d7dfeb!important;
+  --primary:#0369a1!important;--secondary:#6d28d9!important;--accent:#047857!important;
+  --cyan:#0369a1!important;--hot:#0369a1!important;--orange:#6d28d9!important;
+  --green:#047857!important;--purple:#6d28d9!important;--violet:#6d28d9!important;
+  --danger:#be123c!important;--red:#be123c!important;
+}
+html:root[data-theme],html:root[data-theme] body{background-color:var(--paper)!important;background-image:none!important;color:var(--ink)!important}
+html:root[data-theme] .site-backdrop,html:root[data-theme] .site-backdrop::after{background-image:none!important;background-color:var(--paper)!important}
+html:root[data-theme] body,html:root[data-theme] body :is(h1,h2,h3,h4,h5,h6,p,blockquote,.wordmark,.wake-mark){font-family:var(--sans)!important}
+html:root[data-theme] body :is(h1,h2,h3,h4,h5,h6){font-weight:700!important;font-style:normal!important;color:var(--ink)!important}
+html:root[data-theme] body :is(code,pre,.eyebrow,.record-panel-meta,.entry-meta,.subtle,.tiny-label){font-family:var(--mono)!important}
+html:root[data-theme] body :is(p,li,summary,blockquote,.small,.exact,.record-type){color:var(--muted)!important}
+html:root[data-theme] body :is(a,.eyebrow,.text-link,.metric strong,.page-heading em){color:var(--primary)!important}
+html:root[data-theme] body :is(h1 em,h2 em){color:var(--primary)!important;font-style:normal!important}
+html:root[data-theme] body :is(.masthead,.nav-dropdown,.masthead-menu,.help-panel,.panel,.reading-panel,.note-card,.topic-card,.project-card,.notebook-card,.blog-card,.blog-reading,.notebook-reading,.article-reading,.longform-panel,.record-panel,.record-panel-head,.record-panel-body,.evidence-card,.discovery-card,.topic-hub,.about-contract,.attention-feature,.metric-strip,.metric,.search,.data-card,.dashboard-panel){background:var(--surface)!important;border-color:var(--line)!important}
+html:root[data-theme] body :is(button,input,select,pre,.badge,.topic-tag,.blog-receipts,.decision,.research-note,.help-trigger){background-color:var(--pale)!important;color:var(--ink)!important;border-color:var(--line)!important}
+html:root[data-theme] body :is(.primary-link){background:var(--fg)!important;color:var(--bg)!important;border-color:var(--fg)!important}
+html:root[data-theme] body .primary-link:hover{background:var(--surface)!important;color:var(--primary)!important;border-color:var(--primary)!important}
+html:root[data-theme] body :is(.eyebrow,.tag,.tiny-label){color:var(--accent)!important}
+html:root[data-theme] body :is(.record-panel,.entry,.panel,.blog-receipts,.about-contract,footer,.attention-follow,.attention-story-trail,.attention-foundation,.attention-question-card){border-color:var(--line)!important}
+html:root[data-theme] body :is(a,button):hover{color:var(--primary)!important}
+
+html:root[data-theme] body .attention-home a.primary-link{color:var(--bg)!important}
+html:root[data-theme] body .attention-home a.primary-link:hover{color:var(--primary)!important}
