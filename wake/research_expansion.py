@@ -85,7 +85,8 @@ def observations(state, events):
                            'created_version', 'updated_by', 'updated_version')})
         questions[-1].update(
             origin='model-formulated project; novelty unassessed',
-            originating_node=deepcopy(project.get('origin')),
+            originating_node=(project.get('origin') or {}).get('node')
+                or (state.get('research_configuration') or {}).get('node'),
             configured_seed=topic.get('seed_question'),
             experiment_id=topic.get('experiment_id'),
             reframings=deepcopy(state.get('representations', {}).get(project['id'], [])),
@@ -93,13 +94,19 @@ def observations(state, events):
                        if n.get('project') == project['id']],
             requests=[r['id'] for r in state.get('research', {}).values()
                       if r.get('project') == project['id']])
-        origin = next((e for e in events if e['kind'] == 'accepted' and any(
+        origin = next((e for e in events if e['kind'] == 'accepted'
+            and e['payload'].get('proposal', {}).get('base_version', -2) + 1 == project.get('created_version') and any(
             a.get('type') == 'project' and a.get('id') == project['id']
             for a in e['payload'].get('proposal', {}).get('actions', []))), None)
         questions[-1]['origin_event'] = ({key: origin.get(key) for key in ('seq', 'time', 'hash')}
                                         if origin else None)
         questions[-1]['original_proposal'] = (next(a for a in origin['payload']['proposal']['actions']
             if a.get('type') == 'project' and a.get('id') == project['id']) if origin else None)
+        invocation = state.get('invocations', {}).get((origin or {}).get('payload', {}).get('id'), {})
+        questions[-1]['provider'] = invocation.get('provider')
+        questions[-1]['simulated'] = invocation.get('provider') == 'fixture'
+        if questions[-1]['simulated']:
+            questions[-1]['origin'] = 'fixture-generated project; not a live discovery'
     boundaries = [{'seq': e['seq'], 'time': e.get('time'), 'hash': e.get('hash'),
                    'configuration': e['payload']['configuration']}
                   for e in events if e['kind'] in ('charter_adopted', 'research_topics_changed')

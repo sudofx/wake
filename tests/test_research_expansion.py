@@ -15,6 +15,23 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class ExpansionTests(unittest.TestCase):
+    def test_report_never_mistakes_a_windowed_update_for_original_provenance(self):
+        project = {'id': 'p', 'domain': 'assumption_challenge', 'created_version': 1,
+                   'question': 'A new question', 'status': 'active'}
+        state = {'version': 30, 'projects': {'p': project},
+                 'research_configuration': {'node': '100.wake'},
+                 'invocations': {'i': {'provider': 'fixture'}}}
+        event = {'seq': 99, 'kind': 'accepted', 'payload': {'id': 'i',
+                 'proposal': {'base_version': 29, 'actions': [{'type': 'project', **project}]}}}
+        row = observations(state, [event])['questions'][0]
+        self.assertIsNone(row['original_proposal'])
+        self.assertIsNone(row['origin_event'])
+        self.assertEqual(row['originating_node'], '100.wake')
+        event['payload']['proposal']['base_version'] = 0
+        row = observations(state, [event])['questions'][0]
+        self.assertTrue(row['simulated'])
+        self.assertIn('not a live discovery', row['origin'])
+
     def test_fresh_catalog_has_exactly_three_experiments(self):
         topics = _topics({'research_topics_file': 'research-topics.toml'}, ROOT / 'wake.toml')
         by_id = {t['id']: t for t in topics}
