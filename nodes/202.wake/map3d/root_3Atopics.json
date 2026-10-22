@@ -1,1 +1,1 @@
-{"parent": "root:topics", "path": ["root:topics"], "self": null, "children": [], "child_ids": [], "total": 0}
+{"parent": "root:topics", "path": ["root:wake", "root:topics"], "self": null, "children": [{"id": "topic:assumption_challenge", "kind": "topic", "title": "What If Our Starting Assumptions Are Wrong?", "domain": "assumption_challenge", "detail": {"domain": "assumption_challenge"}}], "child_ids": ["topic:assumption_challenge"], "total": 1}
