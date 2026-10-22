@@ -65,6 +65,7 @@ def runtime_policy(client):
     if (not isinstance(selected, dict)
             or (selected.get('source_revision') is not None and not re.fullmatch('[0-9a-f]{40}', str(selected['source_revision'])))
             or selected.get('decision_memory_mode', 'off') not in ('off', 'shadow', 'active')
+            or ('research_expansion_enabled' in selected and type(selected['research_expansion_enabled']) is not bool)
             or not re.fullmatch('[0-9a-f]{32}', str(selected.get('installation_id', '')))):
         raise ValueError('Invalid hosted installation binding')
     return selected
@@ -242,6 +243,9 @@ def run_batch(minutes, provider):
     if policy and before['installation_id'] != policy['installation_id']:
         raise ValueError('Restored installation differs from the runtime binding; no controller started')
     apply_decision_memory_policy(root, policy)
+    if policy and 'research_expansion_enabled' in policy:
+        from wake.research_expansion import apply_hosted_configuration
+        apply_hosted_configuration(root, policy['research_expansion_enabled'])
     print(json.dumps({'restored_installation': before['installation_id'],
                       'generation': before['generation'],
                       'heads': {n: d['head'] for n, d in before['nodes'].items()}}), flush=True)

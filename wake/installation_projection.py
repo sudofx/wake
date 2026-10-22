@@ -216,7 +216,7 @@ def build_unified_projection(node_snapshots, node_research, installation_id):
             state['journal'].append({**_remap(item, node, known), 'origin': deepcopy(origin)})
         for topic in local.get('research_topics', []):
             semantic = json.dumps({key: topic.get(key) for key in (
-                'id', 'label', 'seed_question', 'kind', 'repository', 'enabled')}, sort_keys=True)
+                'id', 'label', 'seed_question', 'kind', 'repository', 'enabled', 'classification', 'experiment_id')}, sort_keys=True)
             qualified = _prefix(node, topic['id'])
             topic_origin = {**deepcopy(origin), 'id': topic['id']}
             if semantic in topic_groups:

@@ -68,16 +68,13 @@ class ArchitectureSeparationTests(unittest.TestCase):
         self.assertNotIn('location.replace(url.toString())', page)
         self.assertIn('window.WakeApplyLive = next =>', app)
 
-    def test_wake_zero_topics_are_the_operator_selected_ten(self):
+    def test_wake_zero_topics_are_the_operator_selected_experiments(self):
         topics = self.read('research-topics.toml')
         configured = tomllib.loads(topics)['topics']
-        self.assertEqual(len(configured), 10)
-        fixture_topics = [
-            {key: topic[key] for key in ('id', 'label', 'query', 'seed_question', 'enabled')}
-            for topic in TEST_RESEARCH_TOPICS
-            if topic.get('source_kind', 'web') == 'web'
-        ]
-        self.assertEqual(fixture_topics, configured)
+        self.assertEqual({topic['id'] for topic in configured},
+                         {'assumption_challenge', 'emergent_preferences', 'unassigned_problem'})
+        self.assertTrue(all(topic['enabled'] and topic['classification'] == 'experimental'
+                            for topic in configured))
 
     def test_bob_is_plain_language_scientific_interpreter_without_a_quota(self):
         provider = self.read('wake/providers.py')

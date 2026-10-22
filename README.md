@@ -15,6 +15,12 @@ requests.
 Research is WAKE's first application. It is a useful way to exercise the record and
 governance system; it is not the definition of the WAKE kernel.
 
+The [research expansion](docs/research-expansion.md) starts from three questions:
+challenging assumptions, experience-dependent preferences, and worthwhile unassigned
+problems. Questions are experimental inputs, not claims of consciousness or extra
+operational authority. The operator may explicitly discard a hosted installation
+and start at cycle zero; ordinary configuration changes continue preserving history.
+
 An optional [decision-memory prototype](docs/retrieval.md#optional-decision-relevant-recall)
 selects provenance-linked historical records for the current question. It defaults
 to off; shadow mode measures selection without changing model input. Offline

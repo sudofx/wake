@@ -47,6 +47,14 @@ GitHub performs its normal Pages build and deployment. The hosted adapter explic
 GitHub does not start branch-based Pages builds for pushes made with GITHUB_TOKEN.
 Code CI and offline container acceptance remain separate from live research.
 
+Checkpoint pruning refuses a stale rotating-ref checkout or an incomplete set of
+current/previous release blocks. A missing asset is a recovery failure, not
+permission to initialize or roll back a node. Inspect recoverable copies or obtain
+an explicit destructive reset decision. A separately authorized fresh hosted
+installation uses new native records, installation identity and cycle-zero exports;
+it must never be presented as continuity of the discarded history. See
+[research configuration and operator controls](research-expansion.md).
+
 On the host, configure the publishing destination in `.env`:
 
 ```bash

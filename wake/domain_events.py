@@ -47,6 +47,8 @@ def reduce_event(state, event, historical=False):
             state["research_topics"] = p["topics"]
         if "topic_colors" in p:
             state["topic_colors"] = p["topic_colors"]
+        if 'configuration' in p:
+            state['research_configuration'] = {**p['configuration'], 'event_seq': event['seq'], 'adopted_at': event['time']}
     elif kind == "introduction_required":
         require(state.get("charter") and not state.get("introduction_required")
                 and state["version"] == 0 and not state["posts"], "Introduction requires a fresh research installation")
@@ -62,6 +64,9 @@ def reduce_event(state, event, historical=False):
         state["research_topics"] = p["topics"]
         if "topic_colors" in p:
             state["topic_colors"] = p["topic_colors"]
+        if 'configuration' in p:
+            require(p.get('actor') == 'operator', 'Research configuration is operator-owned')
+            state['research_configuration'] = {**p['configuration'], 'event_seq': event['seq'], 'adopted_at': event['time']}
     elif kind == "experimental_regime_adopted":
         # This is an operator intervention, not an editable preference.  Older
         # histories deliberately lack this key: replay must not pretend their

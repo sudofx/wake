@@ -8,6 +8,11 @@ its own selection policy. Exact history remains authoritative. A current belief
 or notebook is a revisable interpretation of that history. A selected memory is
 an estimate of relevance, not evidence that remembering it helped.
 
+Experimental questions use these same retrieval rules, source qualifications and
+context budgets. Cross-topic recall does not qualify an unseen source for citation.
+A deliberately fresh installation has no memories from discarded records; no
+autobiographical narrative or substitute summary is injected during its reset.
+
 The feature defaults to **off**, independently of the existing `memory_mode`:
 
 ```toml

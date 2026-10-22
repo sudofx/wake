@@ -165,6 +165,24 @@ class HostedTransportTests(unittest.TestCase):
         self.transport.get_file(blocks, self.root / 'growing-restored.bin')
         self.assertEqual(source.read_bytes(), (self.root / 'growing-restored.bin').read_bytes())
 
+    def test_pruning_refuses_stale_ref_and_missing_recovery_blocks(self):
+        first, stale = self.new_transport('prune-first'), self.new_transport('prune-stale')
+        first.open()
+        stale.open()
+        first.restore(self.root / 'prune-root')
+        first.checkpoint_node(self.root / 'prune-root/nodes/100.wake/record')
+        before = set(self.assets.objects)
+        with stale.lease(), self.assertRaisesRegex(RuntimeError, 'stale hosted ref'):
+            stale.prune()
+        self.assertEqual(before, set(self.assets.objects))
+        current = first.read_manifest()
+        missing = current['nodes']['103.wake']['blocks'][0]['id']
+        del self.assets.objects[missing]
+        before = set(self.assets.objects)
+        with first.lease(), self.assertRaisesRegex(ValueError, 'Incomplete hosted recovery'):
+            first.prune()
+        self.assertEqual(before, set(self.assets.objects))
+
     def test_wrong_key_and_tampering_fail_closed(self):
         wrong = self.new_transport('wrong')
         wrong.key = b'z' * 32

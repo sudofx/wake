@@ -488,6 +488,9 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         ):
             (background_target / name).write_bytes((background_source / name).read_bytes())
         public_data = browser_projection(data)
+        from .research_expansion import observations
+        atomic_write(target / 'research-expansion.json', json.dumps(
+            observations(public_data['state'], public_data.get('events', [])), ensure_ascii=False))
         browser_data = json.dumps(public_data, ensure_ascii=False, separators=(",", ":"))
         atomic_write(target / "wake-data.json", browser_data)
         from .reader_transport import export_reader_transport

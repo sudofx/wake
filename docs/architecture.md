@@ -40,6 +40,15 @@ flowchart TB
 records and checks transitions, and each node owns one authoritative record. A
 website or Console is a view of records, not another source of truth.
 
+Research-topic configuration can classify experimental seeds and name their
+experiment. Existing charter/topic-change events retain configuration fingerprints,
+activation times, node/runtime/provider settings and accepted-version boundaries.
+Omitted topics normally become inactive catalog entries, preserving old navigation.
+An explicitly authorized complete installation reset instead creates new records
+and identity; it is not replay, migration or an authority merge. See the
+[research expansion](research-expansion.md). Model-formulated questions remain
+ordinary governed project/reframe actions, never configuration edits.
+
 [Public Ask Bob](ask-bob.md) is a browser-only explanation aid on the static
 mirror. It loads a pinned open model only after an explicit reader action, then
 uses bounded same-origin exact article/source shards. It verifies the displayed

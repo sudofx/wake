@@ -169,7 +169,7 @@ def _copy_public_site(source: Path, destination: Path, *, include_reader_inferen
     assets = Path(__file__).parent / 'assets'
     root_data = {'research-data.json', 'research.json', 'wake-data.json', 'state.json',
                  'events.jsonl', 'head.txt', 'map-data.json', 'map3d-data.json',
-                 'deployment.json', 'manifest.webmanifest', 'experiment.json', 'export-format.json', 'blog.xml'}
+                 'deployment.json', 'manifest.webmanifest', 'experiment.json', 'export-format.json', 'blog.xml', 'research-expansion.json'}
     for path in source.rglob('*'):
         relative = path.relative_to(source)
         if path.is_symlink():

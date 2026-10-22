@@ -425,15 +425,25 @@ class HostedState:
                 self.prune()
 
     def prune(self):
+        # A local process lease cannot protect against an obsolete runner.
+        # Never delete recovery blocks using a stale rotating-ref checkout.
+        remote = self.git('ls-remote', 'origin', 'refs/heads/' + STATE_BRANCH).split()
+        if not remote or remote[0] != self.git('rev-parse', 'HEAD'):
+            raise RuntimeError('Refusing checkpoint pruning from a stale hosted ref')
         referenced = set()
+        identities = {}
         for filename in ('current.enc', 'previous.enc'):
             if not (self.checkout / filename).exists():
                 continue
             value = self.read_manifest(filename)
             referenced.update(item['name'] for item in value['auxiliary'])
+            identities.update((item['name'], item['id']) for item in value['auxiliary'])
             for node in value['nodes'].values():
                 referenced.update(item['name'] for item in node['blocks'])
+                identities.update((item['name'], item['id']) for item in node['blocks'])
         assets = self.assets(refresh=True)
+        if any(assets.get(name) != identity for name, identity in identities.items()):
+            raise ValueError('Incomplete hosted recovery assets; refusing checkpoint pruning')
         for name, identity in list(assets.items()):
             if re.fullmatch(r'block-[0-9a-f]{64}\.bin', name) and name not in referenced:
                 try:
@@ -444,7 +454,7 @@ class HostedState:
                 assets.pop(name)
         atomic_write(self.directory / 'assets.json', json.dumps(assets))
 
-    def seed(self, root, *, workers=1):
+    def seed(self, root, *, workers=1, origin='operator-authorized transfer of stopped laptop installation'):
         root = Path(root)
         if not 1 <= workers <= 4:
             raise ValueError('Migration verification uses one to four processes')
@@ -452,7 +462,7 @@ class HostedState:
             self.open(initialize=True)
             manifest = {'format': FORMAT, 'generation': 0, 'nodes': {},
                         'installation_id': json.loads((root / 'installation-id.json').read_text())['id'],
-                        'origin': 'operator-authorized transfer of stopped laptop installation',
+                        'origin': origin,
                         'migrated_at': datetime.now(timezone.utc).isoformat()}
             assets = self.assets()
             context = (ProcessPoolExecutor(max_workers=workers, mp_context=multiprocessing.get_context('spawn'))

@@ -148,7 +148,7 @@ def _topics(settings, config_path=None):
         # A seed question is an operator-supplied starting coordinate, not a
         # permanent mission.  It is stored with the audited topic configuration
         # so old cycles remain truthful about whether a seed existed yet.
-        allowed = {"id", "label", "query", "seed_question", "enabled", "source_kind", "repository"}
+        allowed = {"id", "label", "query", "seed_question", "enabled", "source_kind", "repository", "classification", "experiment_id"}
         require(isinstance(item, dict) and {"id", "label", "query"} <= set(item) <= allowed,
                 "Each research topic needs id, label, query, and may include seed_question, enabled, source_kind, repository")
         require(isinstance(item["id"], str) and re.fullmatch(r"[a-zA-Z0-9_-]{1,80}", item["id"]),
@@ -157,6 +157,13 @@ def _topics(settings, config_path=None):
         text(item["query"], "Research topic query", 200)
         if "seed_question" in item:
             text(item["seed_question"], "Research topic seed question", 600)
+        if 'classification' in item:
+            require(item['classification'] in ('original', 'experimental'), 'Invalid research topic classification')
+        if 'experiment_id' in item:
+            require(item.get('classification') == 'experimental', 'Experiment ID requires experimental classification')
+            require(isinstance(item['experiment_id'], str) and re.fullmatch(r'[a-zA-Z0-9_-]{1,80}', item['experiment_id']), 'Invalid research experiment ID')
+        require(item.get('classification') != 'experimental' or 'experiment_id' in item,
+                'Experimental topics require an experiment ID')
         enabled = item.get("enabled", True)
         require(type(enabled) is bool, "Research topic enabled must be true or false")
         source_kind = item.get("source_kind", "web")
@@ -168,7 +175,7 @@ def _topics(settings, config_path=None):
         elif "repository" in item:
             require(False, "Only repository research topics may set repository")
         normalized.append({
-            **{key: item[key] for key in ("id", "label", "query", "seed_question", "repository") if key in item},
+            **{key: item[key] for key in ("id", "label", "query", "seed_question", "repository", "classification", "experiment_id") if key in item},
             "enabled": enabled,
             "source_kind": source_kind,
         })
@@ -250,6 +257,7 @@ class Engine:
             store = store_factory(directory)
         self.store = store
     def initialize(self):
+        from .research_expansion import retained_topics, configuration_receipt
         state, _ = self.store.replay()
         if not state["objective"]:
             state = self.store.append("initialized", {"objective": self.config["objective"], "governance": 1})
@@ -257,18 +265,20 @@ class Engine:
             state = self.store.append("charter_adopted", {"mission": self.config["mission"],
                                      "pet_name": self.config.get("project_name", self.config.get("pet_name", "WAKE✳")),
                                      "topics": self.config["research_topics"],
-                                     "topic_colors": _topic_colors(self.config["research_topics"]), "actor": "operator"})
+                                     "topic_colors": _topic_colors(self.config["research_topics"]), "actor": "operator",
+                                     "configuration": configuration_receipt(self.config['research_topics'], state, self.config)})
         # A branding change is part of the durable identity. Record it as an
         # auditable event instead of rewriting the original charter or history.
         desired_name = self.config.get("project_name", self.config.get("pet_name", "WAKE✳"))
         if state.get("charter") and state.get("pet_name") != desired_name:
             state = self.store.append("pet_renamed", {"pet_name": desired_name, "actor": "operator"})
-        desired_topics = self.config.get("research_topics", [])
+        desired_topics = retained_topics(self.config.get("research_topics", []), state.get('research_topics', []))
         topic_ids = {topic["id"] for topic in desired_topics}
         if state.get("charter") and (state.get("research_topics") != desired_topics
                                       or set(state.get("topic_colors", {})) != topic_ids):
             self.store.append("research_topics_changed", {"topics": desired_topics,
-                              "topic_colors": _topic_colors(desired_topics), "actor": "operator"})
+                              "topic_colors": _topic_colors(desired_topics), "actor": "operator",
+                              "configuration": configuration_receipt(desired_topics, state, self.config)})
         # A regime begins only when this version of WAKE is first run.  We append
         # that boundary instead of projecting controls backwards into old cycles.
         state = self.store.load(repair=True)
