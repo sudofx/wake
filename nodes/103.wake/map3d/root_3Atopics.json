@@ -1,1 +1,1 @@
-{"parent": "root:topics", "path": ["root:topics"], "self": null, "children": [], "child_ids": [], "total": 0}
+{"parent": "root:topics", "path": ["root:wake", "root:topics"], "self": null, "children": [{"id": "topic:unassigned_problem", "kind": "topic", "title": "What Should Intelligence Investigate Next?", "domain": "unassigned_problem", "detail": {"domain": "unassigned_problem"}}], "child_ids": ["topic:unassigned_problem"], "total": 1}
