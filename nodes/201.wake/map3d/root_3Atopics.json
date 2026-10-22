@@ -1,1 +1,1 @@
-{"parent": "root:topics", "path": ["root:topics"], "self": null, "children": [], "child_ids": [], "total": 0}
+{"parent": "root:topics", "path": ["root:wake", "root:topics"], "self": null, "children": [{"id": "topic:emergent_preferences", "kind": "topic", "title": "Can Experience Create Preferences?", "domain": "emergent_preferences", "detail": {"domain": "emergent_preferences"}}], "child_ids": ["topic:emergent_preferences"], "total": 1}
