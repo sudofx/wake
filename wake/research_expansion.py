@@ -9,9 +9,9 @@ import os
 from .event_format import digest
 
 EXPERIMENT_ID = 'research-expansion-2026-10'
-ASSIGNMENTS = {'100.wake': 'assumption_challenge',
-               '200.wake': 'emergent_preferences',
-               '300.wake': 'unassigned_problem'}
+ASSIGNMENTS = {'100.wake': ('assumption_challenge', 'unassigned_problem'),
+               '200.wake': ('emergent_preferences', 'assumption_challenge'),
+               '300.wake': ('unassigned_problem', 'emergent_preferences')}
 
 
 def apply_hosted_configuration(root, enabled):
@@ -27,7 +27,7 @@ def apply_hosted_configuration(root, enabled):
     source = Path(__file__).resolve().parents[1] / 'research-topics.toml'
     catalog = _topics({'research_topics_file': str(source)}, source.parent / 'wake.toml')
     experimental = {t['id']: t for t in catalog if t.get('experiment_id') == EXPERIMENT_ID}
-    if set(experimental) != set(ASSIGNMENTS.values()):
+    if set(experimental) != {topic for group in ASSIGNMENTS.values() for topic in group}:
         raise ValueError('Incomplete experimental research catalog')
     changes = []
     for parent, assigned in ASSIGNMENTS.items():
@@ -35,13 +35,14 @@ def apply_hosted_configuration(root, enabled):
         old = tomllib.loads(path.read_text())['topics']
         topics = deepcopy(old)
         known = {t['id']: t for t in topics}
-        if assigned in known and known[assigned].get('experiment_id') != EXPERIMENT_ID:
-            raise ValueError('Experimental topic would overwrite an existing identity')
-        if assigned not in known and enabled:
-            topics.append(deepcopy(experimental[assigned]))
+        for topic_id in assigned:
+            if topic_id in known and known[topic_id].get('experiment_id') != EXPERIMENT_ID:
+                raise ValueError('Experimental topic would overwrite an existing identity')
+            if topic_id not in known and enabled:
+                topics.append(deepcopy(experimental[topic_id]))
         for topic in topics:
             if topic.get('experiment_id') == EXPERIMENT_ID:
-                topic['enabled'] = enabled and topic['id'] == assigned
+                topic['enabled'] = enabled and topic['id'] in assigned
         _topics({'research_topics_file': str(path), 'research_topics': topics})
         text = '\n'.join('[[topics]]\n' + '\n'.join(
             key + ' = ' + json.dumps(value, ensure_ascii=False)

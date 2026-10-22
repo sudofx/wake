@@ -6,11 +6,13 @@ question, not an assigned conclusion or permanent objective.
 
 | Topic ID | Starting question | Hosted group |
 | --- | --- | --- |
-| `assumption_challenge` | Can an intelligent system identify a foundational assumption underlying its own reasoning or operation, demonstrate that the assumption is inadequate, and develop a better alternative? | 100.wake and its three children |
-| `emergent_preferences` | Can accumulated experience produce stable, observable preferences in an intelligent process without those preferences being explicitly programmed? | 200.wake and its three children |
-| `unassigned_problem` | Can an intelligent process independently identify a worthwhile problem that nobody explicitly assigned, recognize its significance, and sustain an investigation toward resolving it? | 300.wake and its three children |
+| `assumption_challenge` | Can an intelligent system identify a foundational assumption underlying its own reasoning or operation, demonstrate that the assumption is inadequate, and develop a better alternative? | Groups 100 and 200 |
+| `emergent_preferences` | Can accumulated experience produce stable, observable preferences in an intelligent process without those preferences being explicitly programmed? | Groups 200 and 300 |
+| `unassigned_problem` | Can an intelligent process independently identify a worthwhile problem that nobody explicitly assigned, recognize its significance, and sustain an investigation toward resolving it? | Groups 100 and 300 |
 
-The experiment ID is `research-expansion-2026-10`. Members share a group's theme
+The experiment ID is `research-expansion-2026-10`. Each group has two enabled themes, allowing Attention to rotate away from a
+saturated or capability-blocked topic without changing its policy. Each theme
+appears in two parent/child groups. Members share their group's themes
 but retain independently attributed records. Twelve nodes are not twelve
 independent scientific replications. No new node or authority database is added.
 
@@ -109,7 +111,7 @@ gh workflow run hosted-control.yml -R sudofx/wake -f action=stop
 
 `hosted-runtime.json` binds the installation ID and a CI-green immutable runtime.
 The optional boolean `research_expansion_enabled` applies the catalog before
-workers start. True assigns one theme per parent group. False disables those
+workers start. True assigns two themes per parent group. False disables those
 experimental entries without deleting their history. Missing the setting leaves
 the checkpoint's topic configuration alone. To discontinue and continue different
 research, enable an appropriate alternative topic in each group's config before

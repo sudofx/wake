@@ -20,7 +20,8 @@ class ExpansionTests(unittest.TestCase):
         by_id = {t['id']: t for t in topics}
         self.assertEqual(len(by_id), 3)
         self.assertTrue(all(t['enabled'] for t in topics))
-        self.assertEqual({t['id'] for t in topics if t.get('experiment_id') == EXPERIMENT_ID}, set(ASSIGNMENTS.values()))
+        self.assertEqual({t['id'] for t in topics if t.get('experiment_id') == EXPERIMENT_ID},
+                         {topic for group in ASSIGNMENTS.values() for topic in group})
         invalid = {**topics[-1], 'experiment_id': ''}
         with self.assertRaises(Rejected):
             _topics({'research_topics_file': 'unused', 'research_topics': [invalid]})
@@ -70,11 +71,19 @@ class ExpansionTests(unittest.TestCase):
             self.assertEqual(first, {p.name: p.read_bytes() for p in base.iterdir()})
             for parent, assigned in ASSIGNMENTS.items():
                 topics = tomllib.loads((base / (parent + '.toml')).read_text())['topics']
-                self.assertEqual([t['id'] for t in topics], ['old', assigned])
+                self.assertEqual([t['id'] for t in topics], ['old', *assigned])
                 self.assertTrue(topics[0]['enabled'])
+                # Saturation/capability rotation always has another coordinate.
+                from wake.attention import plan
+                state = {'charter': 'Research', 'research_topics': topics[1:],
+                         'projects': {}, 'invocations': {},
+                         'attention': {'attention': {'topic': assigned[0]},
+                                       'deferred': {assigned[0]: {'cause': 'attention_saturation'}}}}
+                self.assertEqual(plan(state)['selected_topic'], assigned[1])
             apply_hosted_configuration(root, False)
             for p in base.iterdir():
                 topics = tomllib.loads(p.read_text())['topics']
-                self.assertEqual(len(topics), 2)
+                self.assertEqual(len(topics), 3)
                 self.assertTrue(topics[0]['enabled'])
                 self.assertFalse(topics[1]['enabled'])
+                self.assertFalse(topics[2]['enabled'])
