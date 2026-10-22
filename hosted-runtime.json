@@ -2,9 +2,10 @@
   "schema": 1,
   "installations": {
     "sudofx/wake": {
-      "installation_id": "fad200aaabe2b5c28ec5b45ed9428d3d",
-      "source_revision": "f52c0b90a57a760777993614b8c7e71e57c77cd1",
-      "decision_memory_mode": "active"
+      "installation_id": "1fad15cb5b8b60b9d85dad462ceaaacf",
+      "source_revision": "e37bc1e264c2587ff0f1de50a0b61b20ae1d0c6a",
+      "decision_memory_mode": "active",
+      "research_expansion_enabled": true
     }
   }
 }
