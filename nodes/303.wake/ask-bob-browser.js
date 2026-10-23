@@ -313,13 +313,32 @@ export async function generateReply(candidate, options, {signal,progress = () =>
     globalThis.removeEventListener?.('pageshow',checkDeadline);
   }
 }
+export function focusContext(request, guide, selected) {
+  const sources=guide.sources.filter(source=>selected.matches.some(p=>p.source===source.id));
+  const data={article:{title:sources.find(s=>s.id==='S1')?.label||'',hash:guide.article.hash},
+    passages:selected.matches.map(p=>({source:p.source,text:p.text})),question:request.question};
+  // The small optional model rewrites retrieved passages, not an entire article
+  // plus ten untrusted answers. Bound actual UTF-8 input, including the system.
+  while(encoder.encode(SYSTEM+JSON.stringify(data)).length>6000 && data.passages.some(p=>p.text.length>100)) {
+    const longest=data.passages.reduce((a,b)=>a.text.length>b.text.length?a:b);
+    longest.text=longest.text.slice(0,-100);
+  }
+  if(encoder.encode(SYSTEM+JSON.stringify(data)).length>8000)throw Error('Try a shorter question for the optional device model.');
+  return {system:SYSTEM,prompt:JSON.stringify(data),sources,article:guide.article,
+    warnings:['Optional AI answer from retrieved excerpts; citation IDs do not verify its claims.'],missing:[],
+    metrics:{context_bytes:encoder.encode(SYSTEM+JSON.stringify(data)).length,source_records:sources.length}};
+}
 export async function answer(request, signal, progress = () => {}) {
   if (!ready()) throw Error('Bob is not ready. Send your question again to retry.');
   if (active) throw Error('Bob is answering another question.');
   active = true;
   const start = performance.now();
   try {
-    const prepared = await prepare(request,readPublic,signal);
+    const guideRuntime=await import(new URL('ask-bob-guide.js',BASE).href);
+    const guide=await guideRuntime.loadGuide(request,signal);
+    const selected=guideRuntime.search(guide,request.question,request.history);
+    if(!selected.matches.length)return guideRuntime.answer(request,signal,progress);
+    const prepared = focusContext(request,guide,selected);
     const schema = {type:'object',properties:{answer:{type:'string'},citations:{type:'array',items:{type:'string',enum:prepared.sources.map(s=>s.id)},minItems:1}},required:['answer','citations'],additionalProperties:false};
     const candidate = engine;
     const response = await generateReply(candidate,{messages:[{role:'system',content:prepared.system},{role:'user',content:prepared.prompt}],

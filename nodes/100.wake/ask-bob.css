@@ -22,3 +22,4 @@
 .ask-bob-status:empty{display:none}.ask-bob-privacy{margin-top:.8rem}.ask-bob summary{cursor:pointer}.ask-bob-message details{font-size:.8rem;margin:.5rem 0}
 @keyframes bob-spin{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){.ask-bob-spinner{animation:none;border-style:dotted}}
+.ask-bob-prompts{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0}.ask-bob-prompts button{font-size:.85rem;padding:.4rem .6rem}.ask-bob-privacy label{display:block;margin:.75rem 0}.ask-bob-privacy input{width:auto;margin-right:.5rem}.ask-bob-answer{white-space:pre-wrap;overflow-wrap:anywhere}
