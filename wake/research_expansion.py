@@ -85,9 +85,43 @@ def _question_actions(event):
         if isinstance(actions, list) else []
 
 
+def _activity_actions(event):
+    actions = _proposal(event).get('actions')
+    return [a for a in actions if isinstance(a, dict) and a.get('type') in
+            ('project', 'reframe', 'research', 'notebook')] if isinstance(actions, list) else []
+
+
+def _activity_digest(action):
+    # Compact export receipts carry the digest without duplicating notebook prose.
+    from .installation_cli import _public_projection
+    return action.get('content_digest') or digest({key: value for key, value in _public_projection(action).items()
+        if key not in ('id', 'project', 'type')})
+
+
+def _accepted_activity(events, node=None):
+    activity = {}
+    for event in events:
+        if event['kind'] != 'accepted':
+            continue
+        for action in _activity_actions(event):
+            project = action.get('id') if action['type'] == 'project' else action.get('project')
+            if project:
+                activity.setdefault(project, []).append({
+                    'seq': event.get('seq'), 'time': event.get('time'), 'hash': event.get('hash'),
+                    'node': (event.get('origin') or {}).get('node')
+                        or node,
+                    'accepted_cycle': (_proposal(event)['base_version'] + 1
+                        if type(_proposal(event).get('base_version')) is int else None),
+                    'invocation': event.get('payload', {}).get('id'),
+                    'type': action['type'], 'id': action.get('id'),
+                    'content_digest': _activity_digest(action)})
+    return activity
+
+
 def observations(state, events):
     """Trace formulations and later work; interpretation requires human review."""
     topics = {t['id']: t for t in state.get('research_topics', [])}
+    activity = _accepted_activity(events, (state.get('research_configuration') or {}).get('node'))
     questions = []
     for project in state.get('projects', {}).values():
         topic = topics.get(project['domain'], {})
@@ -100,6 +134,7 @@ def observations(state, events):
                 or (state.get('research_configuration') or {}).get('node'),
             configured_seed=topic.get('seed_question'),
             experiment_id=topic.get('experiment_id'),
+            accepted_activity=activity.get(project['id'], []),
             reframings=deepcopy(state.get('representations', {}).get(project['id'], [])),
             notebooks=[n['id'] for n in state.get('notebooks', {}).values()
                        if n.get('project') == project['id']],
@@ -151,7 +186,7 @@ def observation_event(event):
     from .installation_cli import _public_projection
     payload = event.get('payload', {})
     if (event['kind'] in ('charter_adopted', 'research_topics_changed') and payload.get('configuration')
-            or event['kind'] in ('accepted', 'rejected') and _question_actions(event)):
+            or event['kind'] in ('accepted', 'rejected') and _activity_actions(event)):
         receipt = {key: deepcopy(event[key]) for key in
                    ('seq', 'time', 'hash', 'kind', 'origin') if key in event}
         receipt['payload'] = {key: deepcopy(payload[key]) for key in
@@ -159,7 +194,10 @@ def observation_event(event):
         if 'proposal' in payload:
             receipt['payload']['proposal'] = {
                 'base_version': _proposal(event).get('base_version'),
-                'actions': deepcopy(_question_actions(event))}
+                'actions': [deepcopy(action) if action['type'] in ('project', 'reframe') else
+                    {**{key: action[key] for key in ('type', 'id', 'project') if key in action},
+                     'content_digest': _activity_digest(action)}
+                    for action in _activity_actions(event)]}
         return _public_projection(receipt)
     return None
 
@@ -177,15 +215,52 @@ def compare_observations(baseline, current):
         raise ValueError('Current report precedes the baseline on at least one node')
     old = {q['id']: q for q in baseline['questions']}
     new = {q['id']: q for q in current['questions']}
+    activity_available = all('accepted_activity' in question
+                             for question in [*old.values(), *new.values()])
     return {'baseline': deepcopy(old_source), 'current': deepcopy(new_source),
             'accepted_cycle_delta': current['accepted_cycles'] - baseline['accepted_cycles'],
             'added_questions': sorted(new.keys() - old.keys()),
             'absent_questions': sorted(old.keys() - new.keys()),
+            'activity_comparison_available': activity_available,
             'changed_questions': [identifier for identifier in sorted(old.keys() & new.keys())
                 if any(old[identifier].get(key) != new[identifier].get(key)
-                       for key in ('status', 'updated_version', 'notebooks', 'requests', 'reframings'))],
+                       for key in ('status', 'updated_version', 'notebooks', 'requests', 'reframings'))
+                or activity_available and old[identifier]['accepted_activity'] != new[identifier]['accepted_activity']],
             'limitations': ['Snapshot differences describe recorded activity, not novelty, quality or causal memory benefit.',
+                            'Notebook-only revisions are compared only when both reports include accepted_activity.',
                             'Matching installation and node identities does not prove event-chain ancestry; verify native receipts for that claim.']}
+
+
+def read_observation_history(path, node_heads):
+    """Check exported link metadata against a captured report, not native authority.
+
+    Filtered event bodies cannot authenticate the native hashes they retain.
+    Matching sequence/link metadata prevents accidental mixed-snapshot reviews.
+    """
+    import gzip
+    import json
+    if not node_heads:
+        raise ValueError('Complete history review requires captured node heads')
+    links, receipts = {}, []
+    opener = gzip.open if path.suffix == '.gz' else open
+    with opener(path, 'rt', encoding='utf-8') as stream:
+        for line in stream:
+            event = json.loads(line)
+            origin = event.get('origin') or {}
+            node = origin.get('node')
+            expected = node_heads.get(node)
+            if not expected or any(origin.get(key) != expected[key] for key in ('head', 'version')):
+                raise ValueError('Event stream belongs to different captured node heads')
+            seq, head = links.get(node, (0, '0' * 64))
+            if event.get('seq') != seq + 1 or event.get('prev_hash') != head:
+                raise ValueError('Exported event sequence/link metadata is incomplete')
+            links[node] = (event['seq'], event['hash'])
+            receipt = observation_event(event)
+            if receipt is not None:
+                receipts.append(receipt)
+    if set(links) != set(node_heads) or any(links[node][1] != head['head'] for node, head in node_heads.items()):
+        raise ValueError('Event stream does not reach every captured node head')
+    return receipts
 
 
 def main():
@@ -198,13 +273,25 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--baseline', type=Path,
                         help='Earlier research-expansion.json from this installation')
+    parser.add_argument('--events', type=Path,
+                        help='Complete exported events.jsonl[.gz] matching an observation report with captured node heads')
     args = parser.parse_args()
     data = json.loads(args.snapshot.read_text())
     if data.get('schema') == 'research-expansion-observations@1':
+        if args.events:
+            events = read_observation_history(args.events, data.get('source', {}).get('node_heads'))
+            activity = _accepted_activity(events)
+            for question in data['questions']:
+                question['accepted_activity'] = activity.get(question['id'], [])
+            data['source']['activity_history_scope'] = 'complete exported stream; sequence/link metadata checked against captured heads'
+            data['limitations'].append('Filtered event link metadata is not native cryptographic verification or application replay.')
         result = data
     else:
+        if args.events:
+            parser.error('--events requires an observation report with captured node heads')
         result = observations(data['state'], data.get('events', []))
         result['source'] = {key: data.get(key) for key in ('head', 'event_history', 'generated')}
+        result['source']['history_scope'] = 'snapshot event window'
         result['limitations'].append('Export filtering and event windows may omit private provenance or older boundaries; consult verified native copies for a full audit.')
     if args.baseline:
         result['comparison'] = compare_observations(json.loads(args.baseline.read_text()), result)

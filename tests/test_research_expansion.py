@@ -9,13 +9,83 @@ from wake.engine import Engine, _topics
 from wake.governance import Rejected, transition
 from wake.store import Store
 from wake.research_expansion import (ASSIGNMENTS, EXPERIMENT_ID, apply_hosted_configuration,
-                                     observations, compare_observations, observation_event)
+                                     observations, compare_observations, observation_event,
+                                     read_observation_history)
 from support import charter_settings
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 class ExpansionTests(unittest.TestCase):
+    def test_complete_history_review_rejects_mixed_truncated_or_broken_streams(self):
+        import gzip
+        heads = {'100': {'head': 'last', 'version': 1}}
+        events = [
+            {'seq': 1, 'prev_hash': '0' * 64, 'hash': 'first', 'kind': 'initialized',
+             'origin': {'node': '100', **heads['100']}, 'payload': {}},
+            {'seq': 2, 'prev_hash': 'first', 'hash': 'last', 'kind': 'accepted',
+             'origin': {'node': '100', **heads['100']},
+             'payload': {'proposal': {'base_version': 0, 'actions': [
+                 {'type': 'notebook', 'id': 'n', 'project': 'p', 'findings': 'Public finding'}]}}}]
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'events.jsonl.gz'
+            def write(rows):
+                with gzip.open(path, 'wt') as stream:
+                    stream.write(''.join(json.dumps(row) + '\n' for row in rows))
+            write(events)
+            self.assertEqual(len(read_observation_history(path, heads)), 1)
+            with self.assertRaises(ValueError):
+                read_observation_history(path, {'100': {'head': 'other', 'version': 1}})
+            for rows in (events[:1], events[1:], [events[0], {**events[1], 'prev_hash': 'wrong'}]):
+                write(rows)
+                with self.assertRaises(ValueError):
+                    read_observation_history(path, heads)
+
+    def test_activity_traces_later_notebook_changes_without_counting_rejections(self):
+        from copy import deepcopy
+        state = {'version': 4, 'projects': {'p': {'id': 'p', 'domain': 'topic', 'created_version': 1}},
+                 'research_configuration': {'node': '100.wake'}}
+        events = []
+        for cycle, findings, outcome in [(1, 'First result', 'accepted'),
+                                          (2, 'First result', 'accepted'),
+                                          (3, 'Corrected result', 'rejected'),
+                                          (4, 'Corrected result', 'accepted')]:
+            events.append({'seq': cycle, 'hash': 'receipt-' + str(cycle), 'kind': outcome,
+                'payload': {'id': 'wake-' + str(cycle), 'raw_response': 'PRIVATE RESPONSE',
+                    'proposal': {'base_version': cycle - 1, 'actions': [
+                        {'type': 'notebook', 'id': 'n', 'project': 'p', 'findings': findings}]}}})
+        before = deepcopy(events)
+        direct = observations(state, events)['questions'][0]['accepted_activity']
+        compact = [observation_event(e) for e in events]
+        self.assertEqual(observations(state, compact)['questions'][0]['accepted_activity'], direct)
+        self.assertEqual(events, before)
+        self.assertEqual([row['accepted_cycle'] for row in direct], [1, 2, 4])
+        self.assertEqual(direct[0]['content_digest'], direct[1]['content_digest'])
+        self.assertNotEqual(direct[1]['content_digest'], direct[2]['content_digest'])
+        self.assertEqual(direct[-1]['hash'], 'receipt-4')
+        encoded = json.dumps(compact)
+        self.assertNotIn('PRIVATE', encoded)
+        self.assertNotIn('Corrected result', encoded)
+        self.assertEqual(observations(state, compact)['proposal_outcomes'], [])
+        events[0]['payload']['proposal']['actions'][0]['private'] = 'PRIVATE NOTE'
+        self.assertEqual(observations(state, events)['questions'][0]['accepted_activity'][0], direct[0])
+
+    def test_notebook_only_activity_changes_are_visible_in_comparisons(self):
+        from copy import deepcopy
+        baseline = {'accepted_cycles': 2, 'questions': [{'id': 'p', 'accepted_activity': []}],
+                    'source': {'installation_id': 'one', 'node_heads': {'100': {'version': 2}}}}
+        current = deepcopy(baseline)
+        current['accepted_cycles'] = 3
+        current['source']['node_heads']['100']['version'] = 3
+        current['questions'][0]['accepted_activity'] = [{'type': 'notebook', 'hash': 'new'}]
+        report = compare_observations(baseline, current)
+        self.assertTrue(report['activity_comparison_available'])
+        self.assertEqual(report['changed_questions'], ['p'])
+        del baseline['questions'][0]['accepted_activity']
+        report = compare_observations(baseline, current)
+        self.assertFalse(report['activity_comparison_available'])
+        self.assertEqual(report['changed_questions'], [])
+
     def test_malformed_rejected_proposals_cannot_break_observation_exports(self):
         events = [{'kind': 'rejected', 'payload': {'proposal': proposal}}
                   for proposal in (None, [], {'actions': None}, {'actions': 'project'},

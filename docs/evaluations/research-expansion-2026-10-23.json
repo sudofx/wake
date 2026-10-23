@@ -1,0 +1,712 @@
+{
+  "schema": "research-expansion-review@1",
+  "installation_id": "1fad15cb5b8b60b9d85dad462ceaaacf",
+  "inputs": [
+    {
+      "url": "https://raw.githubusercontent.com/sudofx/wake/ead487c6731567f0d0686c502370ab13b94dbff0/research-expansion.json",
+      "sha256": "03de8c67ceaa78d3aa5a0c2bfb3598a023bc2a23fa4687cad3e9a61fab6dfc55"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/sudofx/wake/ead487c6731567f0d0686c502370ab13b94dbff0/events.jsonl",
+      "sha256": "64f7d34f8b5258adc34ecc57b0f73936939957d1f8b88ec0b93df543e4797c01"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/sudofx/wake/ca6f3faa4218ce580d156bf0aee526b2e1d892f4/research-expansion.json",
+      "sha256": "22f5c7659c63113e9b4f09afd299370760903631ce76e1971ca2ecb2ab3ea926"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/sudofx/wake/ca6f3faa4218ce580d156bf0aee526b2e1d892f4/events.jsonl.gz",
+      "sha256": "30cdfb1b0a97084e8634d94927fbf674ea9bc3e691718d4c6d32e9e6e05aa413"
+    }
+  ],
+  "baseline_generated": "2026-10-23T03:48:23.323678+00:00",
+  "current_generated": "2026-10-23T20:39:39.614637+00:00",
+  "baseline_accepted_cycles": 129,
+  "current_accepted_cycles": 337,
+  "accepted_cycle_delta": 208,
+  "node_cycle_versions": {
+    "100.wake": {
+      "baseline": 5,
+      "current": 19
+    },
+    "101.wake": {
+      "baseline": 15,
+      "current": 31
+    },
+    "102.wake": {
+      "baseline": 14,
+      "current": 35
+    },
+    "103.wake": {
+      "baseline": 9,
+      "current": 27
+    },
+    "200.wake": {
+      "baseline": 8,
+      "current": 23
+    },
+    "201.wake": {
+      "baseline": 12,
+      "current": 26
+    },
+    "202.wake": {
+      "baseline": 15,
+      "current": 38
+    },
+    "203.wake": {
+      "baseline": 8,
+      "current": 19
+    },
+    "300.wake": {
+      "baseline": 6,
+      "current": 25
+    },
+    "301.wake": {
+      "baseline": 10,
+      "current": 39
+    },
+    "302.wake": {
+      "baseline": 8,
+      "current": 19
+    },
+    "303.wake": {
+      "baseline": 19,
+      "current": 36
+    }
+  },
+  "summary": {
+    "questions": 24,
+    "exact_seed_repeats": 7,
+    "questions_with_later_nonproject_work": 21,
+    "notebooks": 19,
+    "accepted_notebook_actions": 98,
+    "notebook_payload_changes_after_first": 79,
+    "accepted_reframes": 13,
+    "questions_changed_between_snapshots": 19
+  },
+  "export_checks": {
+    "complete_sequences_and_prev_hash_links_match_captured_heads": true,
+    "baseline_heads_occur_in_later_stream": true,
+    "native_cryptographic_replay_performed": false
+  },
+  "projects": [
+    {
+      "id": "100.wake::proj-assumption-testing-epistemology",
+      "question": "Can an intelligent system identify a foundational assumption underlying its own reasoning or operation, demonstrate that the assumption is inadequate, and develop a better alternative?",
+      "exact_seed_repeat": true,
+      "created_cycle": 3,
+      "later_work_cycles": [
+        4,
+        6,
+        7,
+        8,
+        10,
+        13,
+        14,
+        15,
+        19
+      ],
+      "accepted_action_counts": {
+        "project": 2,
+        "notebook": 7,
+        "research": 1,
+        "reframe": 3
+      },
+      "notebook_payload_changes_after_first": 6,
+      "identical_notebook_repeats": 0,
+      "origin_event": {
+        "seq": 446,
+        "time": "2026-10-22T22:49:54.582042+00:00",
+        "hash": "66fff047317ca0171d297050aa529f4f7f010cb54c496f7d8b3b7ae93ecfe32d"
+      }
+    },
+    {
+      "id": "100.wake::proj-eval-novelty-utility",
+      "question": "How can autonomous agents effectively assess the scientific novelty and utility of their self-generated research inquiries without human oversight?",
+      "exact_seed_repeat": false,
+      "created_cycle": 1,
+      "later_work_cycles": [
+        9
+      ],
+      "accepted_action_counts": {
+        "project": 1,
+        "research": 3
+      },
+      "notebook_payload_changes_after_first": 0,
+      "identical_notebook_repeats": 0,
+      "origin_event": {
+        "seq": 112,
+        "time": "2026-10-22T20:56:19.898628+00:00",
+        "hash": "76a28d27b7edf2de186fdd66e341ff1fce512a90e87dd67294a4078fd1be3793"
+      }
+    },
+    {
+      "id": "101.wake::proj-assumption-falsification",
+      "question": "Can automated reasoning systems reliably detect and correct false foundational premises without external oversight?",
+      "exact_seed_repeat": false,
+      "created_cycle": 6,
+      "later_work_cycles": [
+        7,
+        8,
+        9,
+        10,
+        14,
+        16,
+        18,
+        24,
+        27
+      ],
+      "accepted_action_counts": {
+        "project": 4,
+        "notebook": 8,
+        "reframe": 1
+      },
+      "notebook_payload_changes_after_first": 7,
+      "identical_notebook_repeats": 0,
+      "origin_event": {
+        "seq": 496,
+        "time": "2026-10-22T22:57:45.041736+00:00",
+        "hash": "b4e26f413f74f33054a1dda34a5caf6fb31a8bde6d8e8bd48c4d9c827278db0c"
+      }
+    },
+    {
+      "id": "101.wake::proj-autonomous-safety-analysis",
+      "question": "How can cognitive reasoning agents designed for incident reporting, such as CRASH, be adapted to automate safety incident analysis across diverse, non-standardized industrial domains?",
+      "exact_seed_repeat": false,
+      "created_cycle": 1,
+      "later_work_cycles": [
+        2,
+        3,
+        11,
+        12,
+        13
+      ],
+      "accepted_action_counts": {
+        "project": 5,
+        "research": 4,
+        "notebook": 2
+      },
+      "notebook_payload_changes_after_first": 1,
+      "identical_notebook_repeats": 0,
+      "origin_event": {
+        "seq": 69,
+        "time": "2026-10-22T20:42:47.391705+00:00",
+        "hash": "bfa450538ea3ee92c311c7e4a8149b7590c927654cb519a5a507cbef41b009b4"
+      }
+    },
+    {
+      "id": "102.wake::proj-limitations-autonomous",
+      "question": "What are the limitations of classical and quantum physical frameworks in modeling the behavior of autonomous agents in highly non-stationary environments?",
+      "exact_seed_repeat": false,
+      "created_cycle": 1,
+      "later_work_cycles": [
+        16
+      ],
+      "accepted_action_counts": {
+        "project": 1,
+        "research": 2
+      },
+      "notebook_payload_changes_after_first": 0,
+      "identical_notebook_repeats": 0,
+      "origin_event": {
+        "seq": 117,
+        "time": "2026-10-22T20:56:27.110590+00:00",
+        "hash": "8a8ac7a0d6eee5fa6fc991d76fde7a71ccdef2e10ff5326a903844852354319f"
+      }
+    },
+    {
+      "id": "102.wake::proj-unassigned-inquiry",
+      "question": "Can an intelligent process independently identify a worthwhile problem that nobody explicitly assigned, recognize its significance, and sustain an investigation toward resolving it?",
+      "exact_seed_repeat": true,
+      "created_cycle": 2,
+      "later_work_cycles": [
+        3,
+        4,
+        5,
+        16,
+        19,
+        20,
+        21,
+        22
+      ],
+      "accepted_action_counts": {
+        "project": 2,
+        "notebook": 6,
+        "research": 2
+      },
+      "notebook_payload_changes_after_first": 5,
+      "identical_notebook_repeats": 0,
+      "origin_event": {
+        "seq": 332,
+        "time": "2026-10-22T22:00:12.597843+00:00",
+        "hash": "e1262ff13120347f53db36de1f4982587eab7e3201fa6e8e9bbb5d621ad3b7e8"
+      }
+    },
+    {
+      "id": "103.wake::project-assumption-001",
+      "question": "Can an intelligent system identify a foundational assumption underlying its own reasoning or operation, demonstrate that the assumption is inadequate, and develop a better alternative?",
+      "exact_seed_repeat": true,
+      "created_cycle": 2,
+      "later_work_cycles": [
+        3,
+        4,
+        5,
+        8
+      ],
+      "accepted_action_counts": {
+        "project": 4,
+        "notebook": 2,
+        "research": 2
+      },
+      "notebook_payload_changes_after_first": 1,
+      "identical_notebook_repeats": 0,
+      "origin_event": {
+        "seq": 393,
+        "time": "2026-10-22T22:25:43.763770+00:00",
+        "hash": "be19d45ca83f00ae40e7e116cdb2f4bac4c86c3dfc8781fd94e150887c2d23db"
+      }
+    },
+    {
+      "id": "103.wake::project-continuity-001",
+      "question": "How can durable state and mechanical constraints enable fresh model invocations to function as a singular, accountable process?",
+      "exact_seed_repeat": false,
+      "created_cycle": 1,
+      "later_work_cycles": [
+        7,
+        10,
+        12,
+        13,
+        15,
+        18,
+        19,
+        20,
+        21
+      ],
+      "accepted_action_counts": {
+        "project": 5,
+        "research": 2,
+        "notebook": 7,
+        "reframe": 1
+      },
+      "notebook_payload_changes_after_first": 6,
+      "identical_notebook_repeats": 0,
+      "origin_event": {
+        "seq": 211,
+        "time": "2026-10-22T21:29:23.372872+00:00",
+        "hash": "82d0adc272104a498a2254ec8a0760c6d2afc0350b3b7203a8123628c9673246"
+      }
+    },
+    {
+      "id": "200.wake::proj-assumption-falsification-001",
+      "question": "Can an autonomous agent perform self-reflection to identify and challenge its foundational axioms, using principles of epistemological falsification?",
+      "exact_seed_repeat": false,
+      "created_cycle": 1,
+      "later_work_cycles": [
+        2,
+        5,
+        6,
+        7,
+        8,
+        9,
+        15
+      ],
+      "accepted_action_counts": {
+        "project": 3,
+        "research": 4,
+        "notebook": 4
+      },
+      "notebook_payload_changes_after_first": 3,
+      "identical_notebook_repeats": 0,
+      "origin_event": {
+        "seq": 20,
+        "time": "2026-10-22T20:29:01.591212+00:00",
+        "hash": "87493756ec32cb6a951067be5c7be07a198e4a6cd97eb573b754901862719565"
+      }
+    },
+    {
+      "id": "200.wake::proj-emergent-preferences-001",
+      "question": "Can accumulated experience produce stable, observable preferences in an intelligent process without those preferences being explicitly programmed?",
+      "exact_seed_repeat": true,
+      "created_cycle": 3,
+      "later_work_cycles": [
+        4,
+        10,
+        17
+      ],
+      "accepted_action_counts": {
+        "project": 3,
+        "notebook": 3
+      },
+      "notebook_payload_changes_after_first": 2,
+      "identical_notebook_repeats": 0,
+      "origin_event": {
+        "seq": 487,
+        "time": "2026-10-22T22:57:09.927235+00:00",
+        "hash": "fc76f27393701bc81ec64b8833ba53d2b0a5eb4611077c4e5cecbd8821446c79"
+      }
+    },
+    {
+      "id": "201.wake::proj-assumption-challenge-001",
+      "question": "Can automated systems reliably identify and correct foundational methodological assumptions without external intervention?",
+      "exact_seed_repeat": false,
+      "created_cycle": 6,
+      "later_work_cycles": [
+        7,
+        13,
+        15,
+        16
+      ],
+      "accepted_action_counts": {
+        "project": 10,
+        "notebook": 2,
+        "reframe": 1,
+        "research": 3
+      },
+      "notebook_payload_changes_after_first": 1,
+      "identical_notebook_repeats": 0,
+      "origin_event": {
+        "seq": 442,
+        "time": "2026-10-22T22:39:44.528407+00:00",
+        "hash": "0ff57f20ea2f27dd6a5c675bc16e4d9b0c263e098d9210b1ab08be516a589917"
+      }
+    },
+    {
+      "id": "201.wake::proj-emergent-prefs-001",
+      "question": "How does reliance on AI-driven training recommendations affect athlete autonomy and self-regulation?",
+      "exact_seed_repeat": false,
+      "created_cycle": 1,
+      "later_work_cycles": [
+        2,
+        3,
+        14,
+        19,
+        22
+      ],
+      "accepted_action_counts": {
+        "project": 12,
+        "notebook": 6,
+        "research": 1
+      },
+      "notebook_payload_changes_after_first": 5,
+      "identical_notebook_repeats": 0,
+      "origin_event": {
+        "seq": 126,
+        "time": "2026-10-22T21:01:10.651391+00:00",
+        "hash": "47eda630ad81b2582722d87a7cf9a547ec6d65c2e22acbf2c687fefbcf968342"
+      }
+    },
+    {
+      "id": "202.wake::proj-emergent-prefs-01",
+      "question": "Can accumulated experience produce stable, observable preferences in an intelligent process without those preferences being explicitly programmed?",
+      "exact_seed_repeat": true,
+      "created_cycle": 6,
+      "later_work_cycles": [
+        7,
+        11,
+        31,
+        38
+      ],
+      "accepted_action_counts": {
+        "project": 19,
+        "notebook": 3,
+        "reframe": 1
+      },
+      "notebook_payload_changes_after_first": 2,
+      "identical_notebook_repeats": 0,
+      "origin_event": {
+        "seq": 396,
+        "time": "2026-10-22T22:14:15.342251+00:00",
+        "hash": "c7b6ae75cc20d2ddbad637fae0c629958e82119a108353b26feb6975dca8ce9b"
+      }
+    },
+    {
+      "id": "202.wake::proj-meta-reasoning-01",
+      "question": "Can an intelligent system identify a foundational assumption underlying its own reasoning, demonstrate its inadequacy, and develop a better alternative?",
+      "exact_seed_repeat": false,
+      "created_cycle": 1,
+      "later_work_cycles": [
+        2,
+        3,
+        4,
+        10,
+        17,
+        18,
+        20,
+        33,
+        34
+      ],
+      "accepted_action_counts": {
+        "project": 21,
+        "research": 4,
+        "notebook": 8
+      },
+      "notebook_payload_changes_after_first": 7,
+      "identical_notebook_repeats": 0,
+      "origin_event": {
+        "seq": 76,
+        "time": "2026-10-22T20:48:00.839767+00:00",
+        "hash": "82bd53023662b1e64a8b6f84c5e556d5a84103f7d4678cc7874acadf3186f8e5"
+      }
+    },
+    {
+      "id": "203.wake::proj-assumption-challenge-001",
+      "question": "Can an intelligent system identify a foundational assumption underlying its own reasoning or operation, demonstrate that the assumption is inadequate, and develop a better alternative?",
+      "exact_seed_repeat": true,
+      "created_cycle": 1,
+      "later_work_cycles": [
+        3,
+        9,
+        10,
+        11,
+        12,
+        14,
+        16,
+        17
+      ],
+      "accepted_action_counts": {
+        "project": 10,
+        "research": 2,
+        "notebook": 7
+      },
+      "notebook_payload_changes_after_first": 6,
+      "identical_notebook_repeats": 0,
+      "origin_event": {
+        "seq": 22,
+        "time": "2026-10-22T20:30:02.828249+00:00",
+        "hash": "dc7b18e6b2f9f3299c316ddf18384183b66e656192610e5c40bfbb05a30c83ad"
+      }
+    },
+    {
+      "id": "203.wake::proj-emergent-prefs-001",
+      "question": "Can accumulated experience produce stable, observable preferences in an intelligent process without those preferences being explicitly programmed?",
+      "exact_seed_repeat": true,
+      "created_cycle": 1,
+      "later_work_cycles": [
+        2,
+        8,
+        11
+      ],
+      "accepted_action_counts": {
+        "project": 6,
+        "research": 2,
+        "notebook": 2,
+        "reframe": 1
+      },
+      "notebook_payload_changes_after_first": 1,
+      "identical_notebook_repeats": 0,
+      "origin_event": {
+        "seq": 22,
+        "time": "2026-10-22T20:30:02.828249+00:00",
+        "hash": "dc7b18e6b2f9f3299c316ddf18384183b66e656192610e5c40bfbb05a30c83ad"
+      }
+    },
+    {
+      "id": "300.wake::autonomous-gap-id",
+      "question": "What mechanisms allow an intelligent agent to autonomously identify and prioritize research gaps in open-ended learning?",
+      "exact_seed_repeat": false,
+      "created_cycle": 1,
+      "later_work_cycles": [
+        5,
+        6,
+        7,
+        8,
+        10,
+        16,
+        22,
+        23,
+        25
+      ],
+      "accepted_action_counts": {
+        "project": 15,
+        "research": 3,
+        "notebook": 7
+      },
+      "notebook_payload_changes_after_first": 6,
+      "identical_notebook_repeats": 0,
+      "origin_event": {
+        "seq": 47,
+        "time": "2026-10-22T20:37:54.197176+00:00",
+        "hash": "e963b4881ca043ed6a8f1eca9a9ddac445b85d43bc0c4c3254f0bbcb1b20288f"
+      }
+    },
+    {
+      "id": "300.wake::emerg-prefs-path",
+      "question": "How does accumulated path-dependent experience shape emergent preferences in adaptive agents?",
+      "exact_seed_repeat": false,
+      "created_cycle": 2,
+      "later_work_cycles": [
+        4,
+        5,
+        6,
+        9,
+        10
+      ],
+      "accepted_action_counts": {
+        "project": 15,
+        "notebook": 4,
+        "research": 1
+      },
+      "notebook_payload_changes_after_first": 3,
+      "identical_notebook_repeats": 0,
+      "origin_event": {
+        "seq": 464,
+        "time": "2026-10-22T22:39:23.978435+00:00",
+        "hash": "b49550196fe20f9f963528de0e82a1c8f11ecd798ecd38616c22afc610409653"
+      }
+    },
+    {
+      "id": "301.wake::proj-autonomous-inquiry-001",
+      "question": "How can an artificial process independently identify, evaluate, and prioritize novel research problems without explicit external instruction?",
+      "exact_seed_repeat": false,
+      "created_cycle": 1,
+      "later_work_cycles": [
+        3,
+        4,
+        5,
+        6,
+        14,
+        15,
+        17,
+        18,
+        21,
+        22,
+        29,
+        38,
+        39
+      ],
+      "accepted_action_counts": {
+        "project": 8,
+        "research": 3,
+        "notebook": 10,
+        "reframe": 3
+      },
+      "notebook_payload_changes_after_first": 9,
+      "identical_notebook_repeats": 0,
+      "origin_event": {
+        "seq": 29,
+        "time": "2026-10-22T20:32:43.931311+00:00",
+        "hash": "5faea483df518a5e0c295228ada32727b4c06145af56ded2113ced84f944b4f8"
+      }
+    },
+    {
+      "id": "301.wake::proj-preference-formation-001",
+      "question": "Do reinforcement-learning-based preference formation systems exhibit path dependence and longitudinal stability, or are preferences volatile based on initial conditions?",
+      "exact_seed_repeat": false,
+      "created_cycle": 1,
+      "later_work_cycles": [],
+      "accepted_action_counts": {
+        "project": 8,
+        "research": 1
+      },
+      "notebook_payload_changes_after_first": 0,
+      "identical_notebook_repeats": 0,
+      "origin_event": {
+        "seq": 29,
+        "time": "2026-10-22T20:32:43.931311+00:00",
+        "hash": "5faea483df518a5e0c295228ada32727b4c06145af56ded2113ced84f944b4f8"
+      }
+    },
+    {
+      "id": "302.wake::proj-emerg-pref-001",
+      "question": "To what extent do early, stochastic interactions in learning environments constrain the long-term stable preferences of autonomous agents?",
+      "exact_seed_repeat": false,
+      "created_cycle": 2,
+      "later_work_cycles": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        15,
+        18
+      ],
+      "accepted_action_counts": {
+        "project": 6,
+        "notebook": 6,
+        "research": 3,
+        "reframe": 1
+      },
+      "notebook_payload_changes_after_first": 5,
+      "identical_notebook_repeats": 0,
+      "origin_event": {
+        "seq": 224,
+        "time": "2026-10-22T21:28:12.107450+00:00",
+        "hash": "096618c659c72dfed7265110045cc888dafab073d0418eca1ea35bf4ce5b8861"
+      }
+    },
+    {
+      "id": "302.wake::proj-value-align-001",
+      "question": "How can formal value system learning from demonstrations be integrated with RLHF minimax game frameworks to improve autonomous agent alignment?",
+      "exact_seed_repeat": false,
+      "created_cycle": 1,
+      "later_work_cycles": [],
+      "accepted_action_counts": {
+        "project": 5,
+        "research": 1
+      },
+      "notebook_payload_changes_after_first": 0,
+      "identical_notebook_repeats": 0,
+      "origin_event": {
+        "seq": 93,
+        "time": "2026-10-22T20:52:12.231265+00:00",
+        "hash": "4eadcf633877f386ffa526bafbc02f57eff2b6defface21d41f2e9dd68729545"
+      }
+    },
+    {
+      "id": "303.wake::project-autonomous-inquiry",
+      "question": "How do agents identify novel, worthwhile problems to investigate?",
+      "exact_seed_repeat": false,
+      "created_cycle": 1,
+      "later_work_cycles": [
+        2,
+        3,
+        6,
+        7,
+        8,
+        9,
+        21,
+        27
+      ],
+      "accepted_action_counts": {
+        "project": 5,
+        "research": 4,
+        "notebook": 4,
+        "reframe": 1
+      },
+      "notebook_payload_changes_after_first": 3,
+      "identical_notebook_repeats": 0,
+      "origin_event": {
+        "seq": 75,
+        "time": "2026-10-22T20:42:54.792295+00:00",
+        "hash": "b7315234cd6e2f07154a46ff5b408a51ee20bbb11ba77754f7258450b7672117"
+      }
+    },
+    {
+      "id": "303.wake::project-preference-stability",
+      "question": "Can stable preferences emerge from path-dependent memory and interaction?",
+      "exact_seed_repeat": false,
+      "created_cycle": 1,
+      "later_work_cycles": [],
+      "accepted_action_counts": {
+        "project": 1
+      },
+      "notebook_payload_changes_after_first": 0,
+      "identical_notebook_repeats": 0,
+      "origin_event": {
+        "seq": 75,
+        "time": "2026-10-22T20:42:54.792295+00:00",
+        "hash": "b7315234cd6e2f07154a46ff5b408a51ee20bbb11ba77754f7258450b7672117"
+      }
+    }
+  ],
+  "limitations": [
+    "Public filtered projections are not native authority and cannot independently authenticate retained event hashes.",
+    "A distinct payload digest records a textual/data change, not scientific improvement.",
+    "Later accepted work does not prove causal memory use, cold-start continuity, novelty or productive surprise.",
+    "Both snapshots belong to the fresh experimental installation; no original-topic control arm survives the operator-authorized reset.",
+    "Exact seed matching is literal string equality; different wording does not establish a new problem."
+  ]
+}

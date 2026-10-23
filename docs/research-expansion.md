@@ -78,6 +78,17 @@ provenance remains unknown rather than being labeled as a live result.
 Use verified native copies for
 complete audits; the report is a disposable view and never feeds governance.
 
+The [first observational review](evaluations/research-expansion-2026-10-23.md)
+compares immutable public snapshots at 129 and 337 aggregate accepted cycles.
+It finds recorded follow-up and reframing, while leaving novelty, cold-start
+continuity and causal memory benefit unproven.
+
+Each question's `accepted_activity` lists accepted project, research, notebook and
+reframe receipts, node-local cycles and content digests. This exposes notebook-only
+revisions without duplicating their bodies. Equal digests identify exact repeated
+submissions; different content is not automatically better content. Windowed
+exports can omit earlier activity. Rejected work never becomes accepted activity.
+
 For an offline report from an exported snapshot:
 
 ```sh
@@ -97,6 +108,14 @@ moving backward in accepted cycles. It reports cycle differences, added question
 and changes in project status or linked work. It does not certify event ancestry,
 independent discovery, quality, or causal memory benefit. Those require receipt
 verification and the independent assessment below.
+
+To include complete accepted activity in an older combined observation report,
+pass `--events PATH` with its matching exported `events.jsonl` or `events.jsonl.gz`.
+The report must contain captured node heads. The offline reader rejects different
+heads, incomplete sequences and broken previous-hash links. These metadata checks
+do not authenticate filtered bodies as native records. Comparison exposes
+`activity_comparison_available`; both reports need activity before notebook-only
+activity changes can be compared.
 
 The five assessment fields deliberately begin as null. Review them independently:
 

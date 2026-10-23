@@ -77,7 +77,12 @@ class InstallationProjectionTests(unittest.TestCase):
                                  'proposal': {'base_version': 0, 'actions': [
                                      {'type': 'project', 'id': 'p', 'question': 'Original ' + node}]}}},
                     *({'seq': seq, 'kind': 'invocation_started', 'payload': {'id': 'i'}}
-                      for seq in range(3, 450))]
+                      for seq in range(3, 450)),
+                    {'seq': 450, 'kind': 'accepted', 'hash': 'notebook-' + node,
+                     'payload': {'id': 'later', 'raw_response': 'PRIVATE RESPONSE',
+                                 'proposal': {'base_version': 1, 'actions': [
+                                     {'type': 'notebook', 'id': 'n', 'project': 'p',
+                                      'findings': 'A later finding'}]}}}]
                 packet['events'] = events[-1:]
                 generations[node] = root / node
                 generations[node].mkdir()
@@ -103,6 +108,8 @@ class InstallationProjectionTests(unittest.TestCase):
                 self.assertEqual(question['origin_event']['hash'], 'question-' + node)
                 self.assertEqual(question['original_proposal']['question'], 'Original ' + node)
                 self.assertTrue(question['simulated'])
+                self.assertEqual([a['type'] for a in question['accepted_activity']], ['project', 'notebook'])
+                self.assertEqual(question['accepted_activity'][-1]['hash'], 'notebook-' + node)
             self.assertEqual(len(report['proposal_outcomes']), 2)
 
     def test_namespaces_and_preserves_original_records_and_receipts(self):
