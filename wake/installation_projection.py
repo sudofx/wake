@@ -161,6 +161,8 @@ def build_unified_projection(node_snapshots, node_research, installation_id):
         state[collection] = {}
     state['journal'] = []
     state['research_topics'] = []
+    state.pop('research_configuration', None)
+    state['research_configurations'] = {}
     state['pending'] = None
     state['version'] = 0
     state['attention'] = {'counters': {}, 'deferred': {}}
@@ -170,6 +172,8 @@ def build_unified_projection(node_snapshots, node_research, installation_id):
     topic_aliases, topic_groups = {}, {}
     for node, packet in available.items():
         local = packet['state']
+        if local.get('research_configuration'):
+            state['research_configurations'][node] = deepcopy(local['research_configuration'])
         origin = {'node': node, 'head': packet.get('head'), 'version': local.get('version', 0)}
         origins[node] = origin
         heads[node] = {**deepcopy(origin), 'snapshot_digest': sha256(json.dumps(

@@ -488,9 +488,15 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         ):
             (background_target / name).write_bytes((background_source / name).read_bytes())
         public_data = browser_projection(data)
-        from .research_expansion import observations
+        from .research_expansion import observations, observation_event
+        observation_receipts = [receipt for event in events
+                                if (receipt := observation_event(event)) is not None]
+        observation_report = observations(public_data['state'], observation_receipts)
+        observation_report['source'] = {**(projection or {}).get('source', {}),
+                                      'head': head, 'generated': data['generated'],
+                                      'history_scope': 'supplied export events; may be a bounded window'}
         atomic_write(target / 'research-expansion.json', json.dumps(
-            observations(public_data['state'], public_data.get('events', [])), ensure_ascii=False))
+            observation_report, ensure_ascii=False))
         browser_data = json.dumps(public_data, ensure_ascii=False, separators=(",", ":"))
         atomic_write(target / "wake-data.json", browser_data)
         from .reader_transport import export_reader_transport

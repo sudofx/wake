@@ -51,7 +51,8 @@ def export_unified_history(generations, snapshots, target):
     from .installation_projection import _COLLECTIONS, _remap, _prefix
     from .installation_cli import _public_projection
     target = Path(target)
-    index, streams, known = [], {}, {}
+    from .research_expansion import observations, observation_event
+    index, streams, known, observation_receipts = [], {}, {}, []
     with ExitStack() as stack:
         for node, packet in snapshots.items():
             streams[node] = stack.enter_context((Path(generations[node]) / 'events.jsonl').open('rb'))
@@ -77,9 +78,18 @@ def export_unified_history(generations, snapshots, target):
                     'origin': {'node': node, 'head': packet['head'], 'version': packet['state']['version']},
                     'original_event': event, 'projection_only': True,
                     'projection_id': _prefix(node, event.get('hash') or event.get('seq'))}
+                receipt = observation_event(mapped)
+                if receipt is not None:
+                    observation_receipts.append(receipt)
                 output.write(json.dumps(mapped, ensure_ascii=False, separators=(',', ':')) + '\n')
     overview = json.loads((target / 'wake-data.json').read_text())
     overview['event_history'] = {'displayed': len(overview.get('events', [])),
                                  'total': len(index), 'complete_url': 'events.jsonl'}
     atomic_write(target / 'wake-data.json', json.dumps(overview, ensure_ascii=False, separators=(',', ':')))
+    report_path = target / 'research-expansion.json'
+    source = json.loads(report_path.read_text()).get('source', {})
+    report = observations(overview['state'], observation_receipts)
+    report['source'] = {**source, 'history_scope': 'complete exported node event streams',
+                        'event_count': len(index)}
+    atomic_write(report_path, json.dumps(report, ensure_ascii=False))
     return len(index)

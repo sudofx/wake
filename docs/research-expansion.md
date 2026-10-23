@@ -66,10 +66,16 @@ from self-reference or philosophical language.
 ## Assess observations
 
 Exports include `research-expansion.json`. It lists model-formulated projects,
-original accepted proposals where present in the supplied event window,
+original accepted proposals where present in the supplied history,
 configuration boundaries, linked requests/notebooks, reframings and recorded
-accepted/rejected question proposals. Older boundaries or private invocation
-material may be absent from a filtered snapshot. Use verified native copies for
+accepted/rejected question proposals. The combined website rebuilds this audit
+from the complete exported node event streams, independently of the browser's
+bounded overview. Configuration boundaries and current configurations retain
+per-node attribution; a summed installation version is not a node cycle.
+Private invocation material is excluded. A standalone bounded snapshot can omit
+older boundaries; the report's source states its history scope. Missing provider
+provenance remains unknown rather than being labeled as a live result.
+Use verified native copies for
 complete audits; the report is a disposable view and never feeds governance.
 
 For an offline report from an exported snapshot:
@@ -77,6 +83,20 @@ For an offline report from an exported snapshot:
 ```sh
 python -m wake.research_expansion --snapshot SITE/wake-data.json --output observations.json
 ```
+
+Save the published `research-expansion.json` at two observation times, then compare
+them offline without opening live records or calling a provider:
+
+```sh
+python -m wake.research_expansion --snapshot later/research-expansion.json \
+  --baseline earlier/research-expansion.json --output comparison.json
+```
+
+The comparison requires the same installation and captured node set, with no node
+moving backward in accepted cycles. It reports cycle differences, added questions,
+and changes in project status or linked work. It does not certify event ancestry,
+independent discovery, quality, or causal memory benefit. Those require receipt
+verification and the independent assessment below.
 
 The five assessment fields deliberately begin as null. Review them independently:
 

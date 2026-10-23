@@ -103,11 +103,16 @@ def observations(state, events):
         questions[-1]['original_proposal'] = (next(a for a in origin['payload']['proposal']['actions']
             if a.get('type') == 'project' and a.get('id') == project['id']) if origin else None)
         invocation = state.get('invocations', {}).get((origin or {}).get('payload', {}).get('id'), {})
+        questions[-1]['originating_invocation'] = (origin or {}).get('payload', {}).get('id')
         questions[-1]['provider'] = invocation.get('provider')
-        questions[-1]['simulated'] = invocation.get('provider') == 'fixture'
+        questions[-1]['model'] = invocation.get('successful_model') or invocation.get('model')
+        questions[-1]['simulated'] = (invocation['provider'] == 'fixture'
+                                      if invocation.get('provider') else None)
         if questions[-1]['simulated']:
             questions[-1]['origin'] = 'fixture-generated project; not a live discovery'
     boundaries = [{'seq': e['seq'], 'time': e.get('time'), 'hash': e.get('hash'),
+                   'origin': deepcopy(e.get('origin')),
+                   'topics': deepcopy(e['payload'].get('topics', e['payload'].get('research_topics', []))),
                    'configuration': e['payload']['configuration']}
                   for e in events if e['kind'] in ('charter_adopted', 'research_topics_changed')
                   and e['payload'].get('configuration')]
@@ -115,6 +120,7 @@ def observations(state, events):
                   'outcome': e['kind'], 'actions': [deepcopy(a) for a in
                   e['payload'].get('proposal', {}).get('actions', [])
                   if a.get('type') in ('project', 'reframe')],
+                  'origin': deepcopy(e.get('origin')),
                   'reason': e['payload'].get('reason')}
                  for e in events if e['kind'] in ('accepted', 'rejected') and any(
                      a.get('type') in ('project', 'reframe')
@@ -122,6 +128,7 @@ def observations(state, events):
     return {'schema': 'research-expansion-observations@1', 'accepted_cycles': state['version'],
             'boundaries': boundaries, 'questions': questions,
             'current_configuration': deepcopy(state.get('research_configuration')),
+            'current_configurations': deepcopy(state.get('research_configurations', {})),
             'proposal_outcomes': proposals,
             'assessment': {name: None for name in ('independent_question_formation',
                            'cross_cycle_continuity', 'independent_criticism',
@@ -132,6 +139,51 @@ def observations(state, events):
                            'Generated criticism and preferences require independent evidence review.']}
 
 
+def observation_event(event):
+    """Keep only receipts needed for question/configuration audits, never bodies."""
+    from .installation_cli import _public_projection
+    payload = event.get('payload', {})
+    if (event['kind'] in ('charter_adopted', 'research_topics_changed') and payload.get('configuration')
+            or event['kind'] in ('accepted', 'rejected') and any(
+                a.get('type') in ('project', 'reframe')
+                for a in payload.get('proposal', {}).get('actions', []))):
+        receipt = {key: deepcopy(event[key]) for key in
+                   ('seq', 'time', 'hash', 'kind', 'origin') if key in event}
+        receipt['payload'] = {key: deepcopy(payload[key]) for key in
+                              ('id', 'reason', 'configuration', 'topics', 'research_topics') if key in payload}
+        if 'proposal' in payload:
+            receipt['payload']['proposal'] = {
+                'base_version': payload['proposal'].get('base_version'),
+                'actions': [deepcopy(a) for a in payload['proposal'].get('actions', [])
+                            if a.get('type') in ('project', 'reframe')]}
+        return _public_projection(receipt)
+    return None
+
+
+def compare_observations(baseline, current):
+    """Describe recorded changes between dated views, without causal scoring."""
+    old_source, new_source = baseline.get('source', {}), current.get('source', {})
+    old_id, new_id = old_source.get('installation_id'), new_source.get('installation_id')
+    if not old_id or not new_id or old_id != new_id:
+        raise ValueError('Comparison requires reports from the same identified installation')
+    old_heads, new_heads = old_source.get('node_heads', {}), new_source.get('node_heads', {})
+    if set(old_heads) != set(new_heads) or not old_heads:
+        raise ValueError('Comparison requires the same captured node set')
+    if any(new_heads[node]['version'] < head['version'] for node, head in old_heads.items()):
+        raise ValueError('Current report precedes the baseline on at least one node')
+    old = {q['id']: q for q in baseline['questions']}
+    new = {q['id']: q for q in current['questions']}
+    return {'baseline': deepcopy(old_source), 'current': deepcopy(new_source),
+            'accepted_cycle_delta': current['accepted_cycles'] - baseline['accepted_cycles'],
+            'added_questions': sorted(new.keys() - old.keys()),
+            'absent_questions': sorted(old.keys() - new.keys()),
+            'changed_questions': [identifier for identifier in sorted(old.keys() & new.keys())
+                if any(old[identifier].get(key) != new[identifier].get(key)
+                       for key in ('status', 'updated_version', 'notebooks', 'requests', 'reframings'))],
+            'limitations': ['Snapshot differences describe recorded activity, not novelty, quality or causal memory benefit.',
+                            'Matching installation and node identities does not prove event-chain ancestry; verify native receipts for that claim.']}
+
+
 def main():
     """Report on a dated exported snapshot without opening authority or providers."""
     import argparse
@@ -140,11 +192,18 @@ def main():
     parser = argparse.ArgumentParser(description=main.__doc__)
     parser.add_argument('--snapshot', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--baseline', type=Path,
+                        help='Earlier research-expansion.json from this installation')
     args = parser.parse_args()
     data = json.loads(args.snapshot.read_text())
-    result = observations(data['state'], data.get('events', []))
-    result['source'] = {key: data.get(key) for key in ('head', 'event_history', 'generated')}
-    result['limitations'].append('Export filtering and event windows may omit private provenance or older boundaries; consult verified native copies for a full audit.')
+    if data.get('schema') == 'research-expansion-observations@1':
+        result = data
+    else:
+        result = observations(data['state'], data.get('events', []))
+        result['source'] = {key: data.get(key) for key in ('head', 'event_history', 'generated')}
+        result['limitations'].append('Export filtering and event windows may omit private provenance or older boundaries; consult verified native copies for a full audit.')
+    if args.baseline:
+        result['comparison'] = compare_observations(json.loads(args.baseline.read_text()), result)
     with args.output.open('x') as stream:
         json.dump(result, stream, indent=2)
 

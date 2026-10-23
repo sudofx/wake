@@ -8,7 +8,8 @@ import unittest
 from wake.engine import Engine, _topics
 from wake.governance import Rejected, transition
 from wake.store import Store
-from wake.research_expansion import ASSIGNMENTS, EXPERIMENT_ID, apply_hosted_configuration, observations
+from wake.research_expansion import (ASSIGNMENTS, EXPERIMENT_ID, apply_hosted_configuration,
+                                     observations, compare_observations)
 from support import charter_settings
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -26,11 +27,32 @@ class ExpansionTests(unittest.TestCase):
         row = observations(state, [event])['questions'][0]
         self.assertIsNone(row['original_proposal'])
         self.assertIsNone(row['origin_event'])
+        self.assertIsNone(row['simulated'])
         self.assertEqual(row['originating_node'], '100.wake')
         event['payload']['proposal']['base_version'] = 0
         row = observations(state, [event])['questions'][0]
         self.assertTrue(row['simulated'])
         self.assertIn('not a live discovery', row['origin'])
+
+    def test_comparison_requires_same_installation_nodes_and_forward_cycles(self):
+        from copy import deepcopy
+        baseline = {'accepted_cycles': 2, 'questions': [{'id': 'p', 'status': 'active'}],
+                    'source': {'installation_id': 'one', 'node_heads': {'100': {'version': 2}}}}
+        current = deepcopy(baseline)
+        current['accepted_cycles'] = 4
+        current['source']['node_heads']['100']['version'] = 4
+        current['questions'][0]['status'] = 'parked'
+        current['questions'].append({'id': 'new', 'status': 'active'})
+        report = compare_observations(baseline, current)
+        self.assertEqual(report['accepted_cycle_delta'], 2)
+        self.assertEqual(report['added_questions'], ['new'])
+        self.assertEqual(report['changed_questions'], ['p'])
+        for source in ({'installation_id': 'other', 'node_heads': {'100': {'version': 4}}},
+                       {'installation_id': 'one', 'node_heads': {}},
+                       {'installation_id': 'one', 'node_heads': {'100': {'version': 1}}}):
+            current['source'] = source
+            with self.assertRaises(ValueError):
+                compare_observations(baseline, current)
 
     def test_fresh_catalog_has_exactly_three_experiments(self):
         topics = _topics({'research_topics_file': 'research-topics.toml'}, ROOT / 'wake.toml')

@@ -56,6 +56,55 @@ class InstallationProjectionTests(unittest.TestCase):
             self.assertNotIn('raw_response', history[0]['original_event']['payload'])
             self.assertTrue(all(row['projection_only'] for row in history))
 
+    def test_question_audit_uses_complete_history_and_each_nodes_configuration(self):
+        from wake.installation_site import export_unified_site, export_unified_history
+        packets = {node: self.snapshot(node) for node in ('100', '101')}
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            generations = {}
+            for node, packet in packets.items():
+                configuration = {'node': node, 'id': 'config-' + node,
+                                 'effective_from_version': 0}
+                packet['state']['research_configuration'] = configuration
+                packet['state']['projects']['p'].update(created_version=1, question='Original ' + node)
+                events = [
+                    {'seq': 1, 'kind': 'charter_adopted', 'hash': 'charter-' + node,
+                     'payload': {'configuration': configuration,
+                                 'research_topics': packet['state']['research_topics']}},
+                    {'seq': 2, 'kind': 'accepted', 'hash': 'question-' + node,
+                     'payload': {'id': 'i', 'raw_response': 'PRIVATE RESPONSE',
+                                 'request': {'system': 'PRIVATE PROMPT'},
+                                 'proposal': {'base_version': 0, 'actions': [
+                                     {'type': 'project', 'id': 'p', 'question': 'Original ' + node}]}}},
+                    *({'seq': seq, 'kind': 'invocation_started', 'payload': {'id': 'i'}}
+                      for seq in range(3, 450))]
+                packet['events'] = events[-1:]
+                generations[node] = root / node
+                generations[node].mkdir()
+                (generations[node] / 'events.jsonl').write_text(
+                    ''.join(json.dumps(event) + '\n' for event in events))
+            views = {node: build_research_projection(p['state'], [], p['head'])
+                     for node, p in packets.items()}
+            projection = build_unified_projection(packets, views, 'installation')
+            target = root / 'unified'
+            export_unified_site(projection, target)
+            export_unified_history(generations, packets, target)
+            encoded = (target / 'research-expansion.json').read_text()
+            report = json.loads(encoded)
+            self.assertNotIn('PRIVATE', encoded)
+            self.assertIsNone(report['current_configuration'])
+            self.assertEqual(set(report['current_configurations']), {'100', '101'})
+            self.assertEqual(len(report['boundaries']), 2)
+            self.assertEqual({b['origin']['node'] for b in report['boundaries']}, {'100', '101'})
+            self.assertTrue(all(b['topics'] for b in report['boundaries']))
+            self.assertEqual(report['source']['history_scope'], 'complete exported node event streams')
+            for question in report['questions']:
+                node = question['originating_node']
+                self.assertEqual(question['origin_event']['hash'], 'question-' + node)
+                self.assertEqual(question['original_proposal']['question'], 'Original ' + node)
+                self.assertTrue(question['simulated'])
+            self.assertEqual(len(report['proposal_outcomes']), 2)
+
     def test_namespaces_and_preserves_original_records_and_receipts(self):
         packets, research, unified = self.build()
         before = deepcopy((packets, research))
