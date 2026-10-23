@@ -176,6 +176,10 @@ def bootstrap(directory, settings, *, enable_continuity_matrix=True, effect_chec
                 if not state['objective']:
                     raise ValueError('Existing authority is not initialized; refusing automatic bootstrap')
                 engine.recover()
+                # Trusted configuration must be adopted even while research is
+                # paused or waiting for quota. Publish its appended boundary
+                # before any provider effect, not only on the next research wake.
+                engine.initialize()
             if store.continuity_matrix_progress() is None:
                 store.enable_continuity_matrix()
             # A local continuity sentinel is not a second record or a state projection.

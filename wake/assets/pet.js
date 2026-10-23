@@ -11,8 +11,10 @@ window.WakePetReady=(async () => {
   const esc=v=>normalizeWake(v).replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
   const displayName=normalizeWake(s.pet_name||WAKE_TEXT);
   const names=Object.fromEntries((s.research_topics||[]).map(topic=>[topic.id,topic.label]));
+  const topicAliases=Object.fromEntries((s.research_topics||[]).flatMap(topic=>(topic.origins||[]).map(origin=>[origin.node+'::'+origin.id,topic.id])));
+  const canonicalTopic=id=>topicAliases[id]||id;
   const topicColors=s.topic_colors||{};
-  const topicName=id=>names[id]||String(id||'Unconfigured topic').replaceAll('_',' ');
+  const topicName=id=>names[canonicalTopic(id)]||String(id||'Unconfigured topic').replaceAll('_',' ');
   const topicTag=(id)=>`<a class="topic-tag" data-topic="${esc(id)}" style="--topic-color:${esc(topicColors[id]||'var(--cyan)')}" href="#projects/topic:${encodeURIComponent(id)}">${esc(topicName(id).toLowerCase())}</a>`;
   let projects=Object.values(s.projects||{}),books=Object.values(s.notebooks||{}).sort((a,b)=>b.updated_version-a.updated_version);
   let blogPosts=Object.values(s.posts||{});
@@ -93,7 +95,7 @@ window.WakePetReady=(async () => {
     if(page==='projects'){
       let output='';
       if(selected.startsWith('notebook:'))output=notebook(books.find(n=>n.id===selected.slice(9)));
-      else if(selected.startsWith('topic:')){const topic=decodeURIComponent(selected.slice(6)),topicProjects=projects.filter(p=>p.domain===topic),topicBooks=books.filter(n=>n.domain===topic);output=`<p class="topic-filter-note">Showing <strong>${esc(topicName(topic).toLowerCase())}</strong> · <a href="#projects">show all</a></p><div class="project-grid">${topicProjects.map((p,i)=>projectCard(p,i<2)).join('')||'<p class="empty">No projects match this topic.</p>'}</div><h2 class="shelf-title">Published notebooks</h2><div class="project-grid">${topicBooks.map((n,i)=>bookCard(n,i<2)).join('')||'<p class="empty">No published notebooks match this topic.</p>'}</div>`;}
+      else if(selected.startsWith('topic:')){const topic=canonicalTopic(decodeURIComponent(selected.slice(6))),topicProjects=projects.filter(p=>p.domain===topic),topicBooks=books.filter(n=>n.domain===topic);output=`<p class="topic-filter-note">Showing <strong>${esc(topicName(topic).toLowerCase())}</strong> · <a href="#projects">show all</a></p><div class="project-grid">${topicProjects.map((p,i)=>projectCard(p,i<2)).join('')||'<p class="empty">No projects match this topic.</p>'}</div><h2 class="shelf-title">Published notebooks</h2><div class="project-grid">${topicBooks.map((n,i)=>bookCard(n,i<2)).join('')||'<p class="empty">No published notebooks match this topic.</p>'}</div>`;}
       else if(selected){const p=projects.find(p=>p.id===selected);output=p?projectCard(p,true)+`<h2 class="shelf-title">The work so far</h2><div class="project-grid">${books.filter(n=>n.project===p.id).map((n,i)=>bookCard(n,i<2)).join('')||'<p class="empty">Still investigating. No notebook has been published for this question yet.</p>'}</div>`:'<p class="empty">Project not found.</p>';}
       else output=`<h2 class="shelf-title">The notebook shelf ${help('notebook_shelf')}</h2><div class="project-grid">${books.map((n,i)=>bookCard(n,i<2)).join('')||'<p class="empty">No research has been published yet. Finished work will appear here with its evidence and limitations.</p>'}</div><h2 class="shelf-title">Research notes</h2><div class="project-grid">${[...projects].sort((a,b)=>(b.status==='active')-(a.status==='active')||b.updated_version-a.updated_version).map((p,i)=>projectCard(p,i<2)).join('')||'<p class="empty">The first research question will appear after an autonomous wake.</p>'}</div>`;
       document.getElementById('pet-projects').innerHTML=output;return;

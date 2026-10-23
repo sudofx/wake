@@ -19,6 +19,13 @@ const server=http.createServer((req,res)=>{
  try{
   const page=await browser.newPage({viewport:{width:390,height:844}}),errors=[];page.on('pageerror',error=>errors.push(error.message));
   const base=`http://127.0.0.1:${server.address().port}/`;
+  const topic=(full.state.research_topics||[]).find(t=>(t.origins||[]).some(o=>o.node+'::'+o.id!==t.id));
+  if(topic){
+   const origin=topic.origins.find(o=>o.node+'::'+o.id!==topic.id);
+   await page.goto(base+'projects.html#projects/topic:'+encodeURIComponent(origin.node+'::'+origin.id));
+   await page.locator('#pet-projects .topic-filter-note').waitFor();
+   assert((await page.locator('#pet-projects .topic-filter-note').innerText()).includes(topic.label.toLowerCase()),'Historical node-qualified topic aliases resolve to the merged catalog');
+  }
   const started=Date.now();await page.goto(base,{waitUntil:'domcontentloaded'});await page.locator('#attention-question').waitFor();
   const ready=Date.now()-started;assert(ready<3000,`Reader ready in ${ready}ms despite unavailable observations`);
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Phone has no horizontal overflow');

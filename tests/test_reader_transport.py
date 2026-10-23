@@ -18,15 +18,22 @@ class ReaderTransportTests(unittest.TestCase):
         root = Path(__file__).resolve().parents[1]
         catalog = {t['id']: t for t in tomllib.loads((root / 'example.research-topics.toml').read_text())['topics']}
         packet = self.packet()
-        topics = [{**catalog[topic], 'id': node + '::' + topic}
-                  for parent, assigned in ASSIGNMENTS.items()
-                  for node in [parent, *(parent.split('.')[0][0] + str(i).zfill(2) + '.wake' for i in range(1, 4))]
-                  for topic in assigned]
-        packet['state']['research_topics'] = topics
+        from wake.installation_projection import build_unified_projection
+        packets = {}
+        for parent, assigned in ASSIGNMENTS.items():
+            for suffix in range(4):
+                node = parent[0] + str(suffix).zfill(2) + '.wake'
+                local = deepcopy(packet)
+                local['state']['research_topics'] = [catalog[t] for t in assigned]
+                packets[node] = local
+        projection = build_unified_projection(packets, {}, 'fixture')
+        packet['state']['research_topics'] = projection['state']['research_topics']
         with tempfile.TemporaryDirectory() as directory:
             result = export_reader_transport(packet, Path(directory))
-            self.assertEqual(result['state']['research_topics'], topics)
-            self.assertEqual(len(topics), 76)
+            topics = result['state']['research_topics']
+            self.assertEqual(len(topics), 16)
+            self.assertEqual(sum(len(t['origins']) for t in topics), 76)
+            self.assertEqual({t['id'].split('::')[-1] for t in topics}, set(catalog))
             self.assertLessEqual((Path(directory) / 'reader-data.json').stat().st_size, MAX_BOOTSTRAP_BYTES)
 
     def packet(self):

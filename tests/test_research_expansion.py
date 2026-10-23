@@ -17,6 +17,35 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class ExpansionTests(unittest.TestCase):
+    def test_restored_nodes_adopt_catalog_before_any_research_wake(self):
+        from unittest.mock import patch
+        from wake.standalone import bootstrap
+        catalog = {t['id']: t for t in _topics({'research_topics_file': 'research-topics.toml'}, ROOT / 'wake.toml')}
+        with tempfile.TemporaryDirectory() as directory:
+            for parent, assigned in ASSIGNMENTS.items():
+                for suffix in range(4):
+                    node = parent[0] + str(suffix).zfill(2) + '.wake'
+                    path = Path(directory) / node
+                    settings = charter_settings('Research')
+                    settings['research_topics'] = [catalog[t] for t in assigned[:2]]
+                    with patch.dict('os.environ', {'WAKE_GROUP_INSTANCE': node}):
+                        old = bootstrap(path, settings)
+                        before = old.store.load()
+                        prefix = json.dumps(old.store.events(), sort_keys=True)
+                        old.store.close()
+                        settings['research_topics'] = [catalog[t] for t in assigned]
+                        restored = bootstrap(path, settings)
+                        try:
+                            state = restored.store.load()
+                            self.assertEqual(state['version'], before['version'])
+                            self.assertEqual(json.dumps(restored.store.events()[:-1], sort_keys=True), prefix)
+                            self.assertEqual({t['id'] for t in state['research_topics']}, set(assigned))
+                            self.assertEqual(state['research_configuration']['active_experiments'], sorted(EXPERIMENT_IDS))
+                            self.assertEqual(state['research_configuration']['node'], node)
+                            self.assertEqual(restored.store.replay()[0], state)
+                        finally:
+                            restored.store.close()
+
     def test_native_catalog_upgrade_appends_a_boundary_without_rewriting_history(self):
         from wake.record_store import RecordStore
         topics = _topics({'research_topics_file': 'research-topics.toml'}, ROOT / 'wake.toml')

@@ -137,8 +137,10 @@
     });
   }
   const topicNames=Object.fromEntries((s.research_topics||[]).map(t=>[t.id,t.label]));
+  const topicAliases=Object.fromEntries((s.research_topics||[]).flatMap(t=>(t.origins||[]).map(o=>[o.node+'::'+o.id,t.id])));
+  const canonicalTopic=id=>topicAliases[id]||id;
   const topicColors=s.topic_colors||{};
-  const topicLabel=id=>topicNames[id]||String(id||'').replaceAll('_',' ');
+  const topicLabel=id=>topicNames[canonicalTopic(id)]||String(id||'').replaceAll('_',' ');
   const topicTag=(id,page,label=topicLabel(id))=>`<a class="topic-tag" href="#${page}/topic:${encodeURIComponent(id)}" data-topic="${esc(id)}" style="--topic-color:${esc(topicColors[id]||'var(--cyan)')}">${esc(String(label).toLowerCase())}</a>`;
   const journalTopics=j=>{
     const event=decisions[j.invocation],actions=event?.payload?.proposal?.actions||[],ids=[];
@@ -471,7 +473,7 @@
   function blog(selected='') {
     $('blog').classList.toggle('reading-story',Boolean(selected)&&!selected.startsWith('topic:'));
     if(selected.startsWith('topic:')){
-      const topic=decodeURIComponent(selected.slice(6));
+      const topic=canonicalTopic(decodeURIComponent(selected.slice(6)));
       const filtered=posts.filter(post=>postTopic(post)===topic);
       $('blog-content').innerHTML='<p class="topic-filter-note">Showing <strong>'+esc(topic==='reflection'?'reflection':topicLabel(topic).toLowerCase())+'</strong> · <a href="#blog">show all</a></p>'+(filtered.length?'<div class="blog-grid">'+filtered.map(post=>{const invocation=s.invocations[post.created_by];const reflection=postTopic(post)==='reflection';return '<article class="blog-card record-panel'+(reflection?' blog-card-reflection':'')+'"><div class="record-panel-head">'+postMeta(post,invocation)+'<h2><a href="#blog/'+encodeURIComponent(post.id)+'">'+esc(postTitle(post))+'</a></h2></div><div class="record-panel-body"><p>'+esc(post.lede)+'</p>'+(post.lens?'<blockquote>'+esc(post.lens)+'</blockquote>':'')+'<a class="text-link" href="#blog/'+encodeURIComponent(post.id)+'">Read Bob’s note →</a></div></article>';}).join('')+'</div>':'<p class="empty">No posts match this topic.</p>');
       return;

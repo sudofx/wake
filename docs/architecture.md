@@ -44,6 +44,9 @@ Research-topic configuration can classify experimental seeds and name their
 experiment. Existing charter/topic-change events retain configuration fingerprints,
 activation times, node/runtime/provider settings and accepted-version boundaries.
 Omitted topics normally become inactive catalog entries, preserving old navigation.
+Verified startup adopts trusted configuration changes before the first export,
+including on restored nodes waiting for quota. This appends the normal topic-change
+boundary without resetting accepted-cycle versions or waiting for inference.
 An explicitly authorized complete installation reset instead creates new records
 and identity; it is not replay, migration or an authority merge. See the
 [research expansion](research-expansion.md). Model-formulated questions remain

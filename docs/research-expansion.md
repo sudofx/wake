@@ -209,10 +209,18 @@ The stable IDs and group assignments follow the questions below:
 | 12 | `unassigned_inquiry` | 300 |
 | 13 | `question_abandonment` | 100 |
 
-The unified reader retains all 76 node-qualified topic entries (nineteen group
-assignments across four members each), including empty and inactive topics, within
-its existing 256 KiB overview budget. It no longer truncates navigation at 32
-entries. Existing links and project identities remain valid.
+The unified reader merges equivalent topics into sixteen cards, preserving all
+76 node attributions (nineteen group assignments across four members each).
+Individual node views show their six or seven topics. Empty and inactive topics
+remain visible within the existing 256 KiB overview budget; larger historical
+catalogs are no longer truncated at 32 entries. Existing links and project
+identities remain valid.
+Node-qualified topic links resolve through the recorded topic origins even when
+aggregation chooses a different representative node after a rollout.
+
+Restored nodes adopt the trusted configuration during verified startup, before
+their first export and before research admission. Adoption cannot depend on a
+provider call: a node waiting for quota must still publish its configured topics.
 
 The last question connects revisable research priorities to historical commitments.
 Studying it cannot waive an existing commitment or grant permission to change the
