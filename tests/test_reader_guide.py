@@ -28,6 +28,15 @@ class ReaderGuideTests(unittest.TestCase):
         post['body']='語'*100000
         guide=build_guide(post,state,'head')
         self.assertLessEqual(len(json.dumps(guide,ensure_ascii=False,separators=(',',':')).encode()),MAX_GUIDE_BYTES)
+    def test_clipped_structured_source_is_a_reference_not_raw_answer_text(self):
+        post,state=self.fixture()
+        state['evidence']['e'].update(source='https://example.org/paper',content='{"excerpt":"clipped')
+        guide=build_guide(post,state,'head')
+        source=next(row for row in guide['sources'] if row['record_id']=='e')
+        self.assertEqual(source['label'],'https://example.org/paper')
+        self.assertFalse(any(row['source']==source['id'] for row in guide['passages']))
+        self.assertTrue(any(row['reason']=='structured excerpt unavailable' for row in guide['omitted']))
+
     def test_shared_editorial_references_resolve_public_node_details(self):
         post,state=self.fixture()
         post.update(notebooks=[],evidence=[],project='')

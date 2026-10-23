@@ -31,6 +31,12 @@ def build_guide(post, state, head):
                 payload = json.loads(item.get('content', ''))
             except (ValueError, TypeError):
                 payload = None
+            item = {**item, 'title': item.get('title') or item.get('source') or item['id']}
+            if payload is None and str(item.get('content', '')).lstrip().startswith('{'):
+                # Unified public archives can retain a clipped structured body.
+                # Its source identity remains inspectable; partial JSON is not prose.
+                omitted.append({'collection': collection, 'id': item['id'], 'reason': 'structured excerpt unavailable'})
+                item = {**item, 'content': ''}
             if isinstance(payload, dict):
                 item = {**item, 'title': payload.get('title') or payload.get('url') or item.get('source') or item['id'],
                         'content': payload.get('excerpt', '')}

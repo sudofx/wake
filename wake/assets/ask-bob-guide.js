@@ -30,7 +30,7 @@ export function search(guide, question, history = []) {
     selected = article.filter(r=>r.p.field==='lede').slice(0,1);
     if (!selected.length) selected = article.slice(0,2);
   } else if(evidenceQuestion) {
-    selected=rows.filter((r,i,a)=>guide.sources.find(s=>s.id===r.p.source)?.collection==='evidence'&&a.findIndex(v=>v.p.source===r.p.source)===i).slice(0,4);
+    selected=guide.sources.filter(s=>s.collection==='evidence').slice(0,4).map(s=>({p:{source:s.id,field:'reference',text:s.label,terms:[]}}));
   } else {
     selected = rows.filter(r=>r.hits >= Math.min(2,q.size) && r.hits > 0).sort((a,b)=>b.score-a.score || a.index-b.index).slice(0,3);
   }
