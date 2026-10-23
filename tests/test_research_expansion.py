@@ -9,13 +9,21 @@ from wake.engine import Engine, _topics
 from wake.governance import Rejected, transition
 from wake.store import Store
 from wake.research_expansion import (ASSIGNMENTS, EXPERIMENT_ID, apply_hosted_configuration,
-                                     observations, compare_observations)
+                                     observations, compare_observations, observation_event)
 from support import charter_settings
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 class ExpansionTests(unittest.TestCase):
+    def test_malformed_rejected_proposals_cannot_break_observation_exports(self):
+        events = [{'kind': 'rejected', 'payload': {'proposal': proposal}}
+                  for proposal in (None, [], {'actions': None}, {'actions': 'project'},
+                                   {'actions': [None, 'project', 3]})]
+        report = observations({'version': 0}, events)
+        self.assertEqual(report['proposal_outcomes'], [])
+        self.assertTrue(all(observation_event(event) is None for event in events))
+
     def test_report_never_mistakes_a_windowed_update_for_original_provenance(self):
         project = {'id': 'p', 'domain': 'assumption_challenge', 'created_version': 1,
                    'question': 'A new question', 'status': 'active'}

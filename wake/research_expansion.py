@@ -74,6 +74,17 @@ def configuration_receipt(topics, state, config):
             'decision_memory_mode': config.get('decision_memory_mode', 'off')}
 
 
+def _proposal(event):
+    proposal = event.get('payload', {}).get('proposal')
+    return proposal if isinstance(proposal, dict) else {}
+
+
+def _question_actions(event):
+    actions = _proposal(event).get('actions')
+    return [a for a in actions if isinstance(a, dict) and a.get('type') in ('project', 'reframe')] \
+        if isinstance(actions, list) else []
+
+
 def observations(state, events):
     """Trace formulations and later work; interpretation requires human review."""
     topics = {t['id']: t for t in state.get('research_topics', [])}
@@ -95,12 +106,12 @@ def observations(state, events):
             requests=[r['id'] for r in state.get('research', {}).values()
                       if r.get('project') == project['id']])
         origin = next((e for e in events if e['kind'] == 'accepted'
-            and e['payload'].get('proposal', {}).get('base_version', -2) + 1 == project.get('created_version') and any(
+            and _proposal(e).get('base_version', -2) + 1 == project.get('created_version') and any(
             a.get('type') == 'project' and a.get('id') == project['id']
-            for a in e['payload'].get('proposal', {}).get('actions', []))), None)
+            for a in _question_actions(e))), None)
         questions[-1]['origin_event'] = ({key: origin.get(key) for key in ('seq', 'time', 'hash')}
                                         if origin else None)
-        questions[-1]['original_proposal'] = (next(a for a in origin['payload']['proposal']['actions']
+        questions[-1]['original_proposal'] = (next(a for a in _question_actions(origin)
             if a.get('type') == 'project' and a.get('id') == project['id']) if origin else None)
         invocation = state.get('invocations', {}).get((origin or {}).get('payload', {}).get('id'), {})
         questions[-1]['originating_invocation'] = (origin or {}).get('payload', {}).get('id')
@@ -117,14 +128,10 @@ def observations(state, events):
                   for e in events if e['kind'] in ('charter_adopted', 'research_topics_changed')
                   and e['payload'].get('configuration')]
     proposals = [{'seq': e['seq'], 'time': e.get('time'), 'hash': e.get('hash'),
-                  'outcome': e['kind'], 'actions': [deepcopy(a) for a in
-                  e['payload'].get('proposal', {}).get('actions', [])
-                  if a.get('type') in ('project', 'reframe')],
+                  'outcome': e['kind'], 'actions': deepcopy(_question_actions(e)),
                   'origin': deepcopy(e.get('origin')),
                   'reason': e['payload'].get('reason')}
-                 for e in events if e['kind'] in ('accepted', 'rejected') and any(
-                     a.get('type') in ('project', 'reframe')
-                     for a in e['payload'].get('proposal', {}).get('actions', []))]
+                 for e in events if e['kind'] in ('accepted', 'rejected') and _question_actions(e)]
     return {'schema': 'research-expansion-observations@1', 'accepted_cycles': state['version'],
             'boundaries': boundaries, 'questions': questions,
             'current_configuration': deepcopy(state.get('research_configuration')),
@@ -144,18 +151,15 @@ def observation_event(event):
     from .installation_cli import _public_projection
     payload = event.get('payload', {})
     if (event['kind'] in ('charter_adopted', 'research_topics_changed') and payload.get('configuration')
-            or event['kind'] in ('accepted', 'rejected') and any(
-                a.get('type') in ('project', 'reframe')
-                for a in payload.get('proposal', {}).get('actions', []))):
+            or event['kind'] in ('accepted', 'rejected') and _question_actions(event)):
         receipt = {key: deepcopy(event[key]) for key in
                    ('seq', 'time', 'hash', 'kind', 'origin') if key in event}
         receipt['payload'] = {key: deepcopy(payload[key]) for key in
                               ('id', 'reason', 'configuration', 'topics', 'research_topics') if key in payload}
         if 'proposal' in payload:
             receipt['payload']['proposal'] = {
-                'base_version': payload['proposal'].get('base_version'),
-                'actions': [deepcopy(a) for a in payload['proposal'].get('actions', [])
-                            if a.get('type') in ('project', 'reframe')]}
+                'base_version': _proposal(event).get('base_version'),
+                'actions': deepcopy(_question_actions(event))}
         return _public_projection(receipt)
     return None
 
