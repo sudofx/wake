@@ -30,14 +30,14 @@ export function search(guide, question, history = []) {
     selected = article.filter(r=>r.p.field==='lede').slice(0,1);
     if (!selected.length) selected = article.slice(0,2);
   } else if(evidenceQuestion) {
-    selected=rows.filter(r=>guide.sources.find(s=>s.id===r.p.source)?.collection==='evidence').slice(0,3);
+    selected=rows.filter((r,i,a)=>guide.sources.find(s=>s.id===r.p.source)?.collection==='evidence'&&a.findIndex(v=>v.p.source===r.p.source)===i).slice(0,4);
   } else {
     selected = rows.filter(r=>r.hits >= Math.min(2,q.size) && r.hits > 0).sort((a,b)=>b.score-a.score || a.index-b.index).slice(0,3);
   }
   // Exact source text is displayed as quotations, never as a synthesized answer.
   const unique = selected.filter((r,i,a)=>a.findIndex(v=>v.p.text===r.p.text)===i);
   const matches = unique.map(r=>({...r.p,source_info:guide.sources.find(s=>s.id===r.p.source)}));
-  return {matches,kind:summaryQuestion?'summary':'passages',query_terms:query};
+  return {matches,kind:summaryQuestion?'summary':evidenceQuestion?'sources':'passages',query_terms:query};
 }
 const pathFor = id => {
   const hex = Array.from(encoder.encode(id), b=>b.toString(16).padStart(2,'0')).join('');
@@ -64,7 +64,7 @@ export async function answer(request,signal,progress=()=>{}) {
   const result=search(guide,request.question,request.history);
   if(signal?.aborted)throw new DOMException('Cancelled','AbortError');
   const lead=result.matches.length ? (result.kind==='summary' ? 'Here is the article’s published summary:' : 'These published passages may help:') : 'I couldn’t find a passage that answers that in this article or its linked public sources. Try a specific term, or ask for the main point. This does not establish that the claim is false.';
-  const value=[lead,...result.matches.map(p=>'“'+p.text+'” ['+p.source+']')].join('\n\n');
+  const value=result.kind==='sources'&&result.matches.length ? 'These public source records are cited. Open each reference below to inspect it; citation alone does not verify a claim.\n\n'+result.matches.map(p=>p.source_info.label+' ['+p.source+']').join('\n\n') : [lead,...result.matches.map(p=>'“'+p.text+'” ['+p.source+']')].join('\n\n');
   return {ok:true,answer:value,article:guide.article,citations:guide.sources.filter(s=>result.matches.some(p=>p.source===s.id)),
     warnings:['Source excerpts, not a generated explanation or independent fact check.',...(guide.omitted?.length?['Some linked material exceeds the guide budget or is unavailable. Open the article’s source links for more.']:[])],missing:[],
     metrics:{mode:'published-passages',latency_ms:Math.round(performance.now()-start),model_bytes:0,passages:guide.passages.length}};

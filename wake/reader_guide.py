@@ -21,6 +21,19 @@ def build_guide(post, state, head):
     def size():
         return len(json.dumps(guide, ensure_ascii=False, separators=(',', ':')).encode())
     def add(collection, item):
+        if collection == 'evidence':
+            from .research_projection import _evidence_class
+            quality = _evidence_class(item)
+            if quality in ('receipt', 'metadata', 'discovery', 'background', 'unreadable'):
+                omitted.append({'collection': collection, 'id': item['id'], 'reason': quality + '; not readable source evidence'})
+                return
+            try:
+                payload = json.loads(item.get('content', ''))
+            except (ValueError, TypeError):
+                payload = None
+            if isinstance(payload, dict):
+                item = {**item, 'title': payload.get('title') or payload.get('url') or item.get('source') or item['id'],
+                        'content': payload.get('excerpt', '')}
         sid = 'S' + str(len(sources) + 1)
         route = {'posts': 'blog.html#blog/', 'notebooks': 'index.html#projects/notebook:',
                  'projects': 'index.html#projects/', 'evidence': 'index.html#evidence/'}[collection]
