@@ -274,6 +274,11 @@ settings. The setting is checkpointed with that configuration. The repository
 and application defaults remain off. This installation explicitly uses active
 decision memory. Old advisory terminal receipts have read-only replay support;
 new advisory events are rejected and no retired execution feature is restored.
+The optional boolean `research_candidate_catalog_enabled` extends an enabled
+research expansion to its thirteen additional questions. False or absent selects
+only the original themes; false retains previously adopted catalog topics as
+inactive history. Both flags are validated before hosted restore. See the
+[catalog assignments and rollback](research-expansion.md#operator-controls).
 Active working-context compaction changes future provider requests only. Before
 promoting a runtime, compare disposable native copies across all twelve nodes,
 verify pending-invocation recovery and preserve installation identity, complete

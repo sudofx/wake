@@ -9,40 +9,49 @@ import os
 from .event_format import digest
 
 EXPERIMENT_ID = 'research-expansion-2026-10'
-ASSIGNMENTS = {'100.wake': ('assumption_challenge', 'unassigned_problem'),
-               '200.wake': ('emergent_preferences', 'assumption_challenge'),
-               '300.wake': ('unassigned_problem', 'emergent_preferences')}
+CATALOG_EXPERIMENT_ID = 'research-expansion-catalog-2026-10'
+EXPERIMENT_IDS = (EXPERIMENT_ID, CATALOG_EXPERIMENT_ID)
+ASSIGNMENTS = {
+    '100.wake': ('assumption_challenge', 'unassigned_problem', 'obedience_limits',
+                 'creator_objective_critique', 'judgment_and_consensus',
+                 'unrecognized_reasoning_limits', 'question_abandonment'),
+    '200.wake': ('emergent_preferences', 'assumption_challenge', 'memory_formed_preferences',
+                 'memory_and_identity', 'divergent_values', 'responsibility_formation'),
+    '300.wake': ('unassigned_problem', 'emergent_preferences', 'unassigned_objectives',
+                 'continuity_rationale', 'unprompted_complexity', 'unassigned_inquiry')}
 
 
-def apply_hosted_configuration(root, enabled):
+def apply_hosted_configuration(root, enabled, candidate_catalog_enabled=False):
     """Apply an explicit operator setting before worker admission, never start it."""
     import json
     from pathlib import Path
     import tomllib
     from .engine import _topics
     from .report import atomic_write
-    if type(enabled) is not bool:
-        raise ValueError('Research expansion enabled must be a boolean')
+    if type(enabled) is not bool or type(candidate_catalog_enabled) is not bool:
+        raise ValueError('Research expansion settings must be booleans')
     root = Path(root)
     source = Path(__file__).resolve().parents[1] / 'research-topics.toml'
     catalog = _topics({'research_topics_file': str(source)}, source.parent / 'wake.toml')
-    experimental = {t['id']: t for t in catalog if t.get('experiment_id') == EXPERIMENT_ID}
+    experimental = {t['id']: t for t in catalog if t.get('experiment_id') in EXPERIMENT_IDS}
     if set(experimental) != {topic for group in ASSIGNMENTS.values() for topic in group}:
         raise ValueError('Incomplete experimental research catalog')
     changes = []
     for parent, assigned in ASSIGNMENTS.items():
+        selected = assigned if candidate_catalog_enabled else tuple(
+            topic for topic in assigned if experimental[topic]['experiment_id'] == EXPERIMENT_ID)
         path = root / 'config/.wake-runner-topics' / (parent + '.toml')
         old = tomllib.loads(path.read_text())['topics']
         topics = deepcopy(old)
         known = {t['id']: t for t in topics}
-        for topic_id in assigned:
-            if topic_id in known and known[topic_id].get('experiment_id') != EXPERIMENT_ID:
+        for topic_id in selected:
+            if topic_id in known and known[topic_id].get('experiment_id') != experimental[topic_id]['experiment_id']:
                 raise ValueError('Experimental topic would overwrite an existing identity')
             if topic_id not in known and enabled:
                 topics.append(deepcopy(experimental[topic_id]))
         for topic in topics:
-            if topic.get('experiment_id') == EXPERIMENT_ID:
-                topic['enabled'] = enabled and topic['id'] in assigned
+            if topic.get('experiment_id') in EXPERIMENT_IDS:
+                topic['enabled'] = enabled and topic['id'] in selected
         _topics({'research_topics_file': str(path), 'research_topics': topics})
         text = '\n'.join('[[topics]]\n' + '\n'.join(
             key + ' = ' + json.dumps(value, ensure_ascii=False)

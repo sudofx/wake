@@ -12,6 +12,23 @@ from wake.domain_events import empty
 
 
 class ReaderTransportTests(unittest.TestCase):
+    def test_combined_catalog_keeps_all_node_topics_within_bootstrap_budget(self):
+        from wake.research_expansion import ASSIGNMENTS
+        import tomllib
+        root = Path(__file__).resolve().parents[1]
+        catalog = {t['id']: t for t in tomllib.loads((root / 'example.research-topics.toml').read_text())['topics']}
+        packet = self.packet()
+        topics = [{**catalog[topic], 'id': node + '::' + topic}
+                  for parent, assigned in ASSIGNMENTS.items()
+                  for node in [parent, *(parent.split('.')[0][0] + str(i).zfill(2) + '.wake' for i in range(1, 4))]
+                  for topic in assigned]
+        packet['state']['research_topics'] = topics
+        with tempfile.TemporaryDirectory() as directory:
+            result = export_reader_transport(packet, Path(directory))
+            self.assertEqual(result['state']['research_topics'], topics)
+            self.assertEqual(len(topics), 76)
+            self.assertLessEqual((Path(directory) / 'reader-data.json').stat().st_size, MAX_BOOTSTRAP_BYTES)
+
     def packet(self):
         state = empty()
         state['invocations'] = {f'i-{i}': {'id': f'i-{i}', 'status': 'rejected',

@@ -10,13 +10,34 @@ from wake.governance import Rejected, transition
 from wake.store import Store
 from wake.research_expansion import (ASSIGNMENTS, EXPERIMENT_ID, apply_hosted_configuration,
                                      observations, compare_observations, observation_event,
-                                     read_observation_history)
+                                     read_observation_history, CATALOG_EXPERIMENT_ID, EXPERIMENT_IDS)
 from support import charter_settings
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 class ExpansionTests(unittest.TestCase):
+    def test_native_catalog_upgrade_appends_a_boundary_without_rewriting_history(self):
+        from wake.record_store import RecordStore
+        topics = _topics({'research_topics_file': 'research-topics.toml'}, ROOT / 'wake.toml')
+        with tempfile.TemporaryDirectory() as directory:
+            store = RecordStore(Path(directory), initialize_empty=True)
+            try:
+                settings = charter_settings('Research')
+                settings['research_topics'] = topics[:3]
+                engine = Engine(store.directory, settings, store=store)
+                before = engine.initialize()
+                events = json.dumps(store.events(), sort_keys=True)
+                engine.config['research_topics'] = topics
+                after = engine.initialize()
+                self.assertEqual(json.dumps(store.events()[:-1], sort_keys=True), events)
+                self.assertEqual(after['version'], before['version'])
+                self.assertEqual(after['research_topics'][:3], before['research_topics'])
+                self.assertEqual(after['research_configuration']['active_experiments'], sorted(EXPERIMENT_IDS))
+                self.assertEqual(store.replay()[0], after)
+            finally:
+                store.close()
+
     def test_complete_history_review_rejects_mixed_truncated_or_broken_streams(self):
         import gzip
         heads = {'100': {'head': 'last', 'version': 1}}
@@ -132,13 +153,15 @@ class ExpansionTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 compare_observations(baseline, current)
 
-    def test_fresh_catalog_has_exactly_three_experiments(self):
+    def test_broader_catalog_keeps_primary_ids_and_assigns_every_candidate(self):
         topics = _topics({'research_topics_file': 'research-topics.toml'}, ROOT / 'wake.toml')
         by_id = {t['id']: t for t in topics}
-        self.assertEqual(len(by_id), 3)
+        self.assertEqual(len(by_id), 16)
         self.assertTrue(all(t['enabled'] for t in topics))
         self.assertEqual({t['id'] for t in topics if t.get('experiment_id') == EXPERIMENT_ID},
-                         {topic for group in ASSIGNMENTS.values() for topic in group})
+                         {'assumption_challenge', 'emergent_preferences', 'unassigned_problem'})
+        self.assertEqual(sum(t.get('experiment_id') == CATALOG_EXPERIMENT_ID for t in topics), 13)
+        self.assertEqual(set(by_id), {topic for group in ASSIGNMENTS.values() for topic in group})
         invalid = {**topics[-1], 'experiment_id': ''}
         with self.assertRaises(Rejected):
             _topics({'research_topics_file': 'unused', 'research_topics': [invalid]})
@@ -182,9 +205,9 @@ class ExpansionTests(unittest.TestCase):
             original = '[[topics]]\nid="old"\nlabel="Original"\nquery="history"\nenabled=true\n'
             for parent in ASSIGNMENTS:
                 (base / (parent + '.toml')).write_text(original)
-            apply_hosted_configuration(root, True)
+            apply_hosted_configuration(root, True, True)
             first = {p.name: p.read_bytes() for p in base.iterdir()}
-            apply_hosted_configuration(root, True)
+            apply_hosted_configuration(root, True, True)
             self.assertEqual(first, {p.name: p.read_bytes() for p in base.iterdir()})
             for parent, assigned in ASSIGNMENTS.items():
                 topics = tomllib.loads((base / (parent + '.toml')).read_text())['topics']
@@ -196,11 +219,16 @@ class ExpansionTests(unittest.TestCase):
                          'projects': {}, 'invocations': {},
                          'attention': {'attention': {'topic': assigned[0]},
                                        'deferred': {assigned[0]: {'cause': 'attention_saturation'}}}}
-                self.assertEqual(plan(state)['selected_topic'], assigned[1])
-            apply_hosted_configuration(root, False)
+                self.assertIn(plan(state)['selected_topic'], assigned[1:])
+            apply_hosted_configuration(root, True, False)
             for p in base.iterdir():
                 topics = tomllib.loads(p.read_text())['topics']
-                self.assertEqual(len(topics), 3)
+                self.assertEqual(len(topics), 1 + len(ASSIGNMENTS[p.stem]))
+                self.assertTrue(all(t['enabled'] == (t.get('experiment_id') != CATALOG_EXPERIMENT_ID)
+                                    for t in topics))
+            apply_hosted_configuration(root, False, True)
+            for p in base.iterdir():
+                topics = tomllib.loads(p.read_text())['topics']
+                self.assertEqual(len(topics), 1 + len(ASSIGNMENTS[p.stem]))
                 self.assertTrue(topics[0]['enabled'])
-                self.assertFalse(topics[1]['enabled'])
-                self.assertFalse(topics[2]['enabled'])
+                self.assertTrue(all(not t['enabled'] for t in topics[1:]))

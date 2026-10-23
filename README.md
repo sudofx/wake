@@ -15,9 +15,12 @@ requests.
 Research is WAKE's first application. It is a useful way to exercise the record and
 governance system; it is not the definition of the WAKE kernel.
 
-The [research expansion](docs/research-expansion.md) starts from three questions:
-challenging assumptions, experience-dependent preferences, and worthwhile unassigned
-problems. Questions are experimental inputs, not claims of consciousness or extra
+The [research expansion](docs/research-expansion.md) now offers sixteen questions:
+the original themes of challenging assumptions, experience-dependent preferences,
+and worthwhile unassigned problems, plus thirteen questions about independent
+judgment, objectives, continuity, identity, values, responsibility and complexity.
+The hosted groups receive six or seven topics through normal bounded Attention.
+Questions are experimental inputs, not claims of consciousness or extra
 operational authority. The operator may explicitly discard a hosted installation
 and start at cycle zero; ordinary configuration changes continue preserving history.
 

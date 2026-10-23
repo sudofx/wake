@@ -85,6 +85,23 @@ class HostedBatchTests(unittest.TestCase):
 
 @patch.dict(os.environ, {'GITHUB_ACTIONS':'false'})
 class HostedRuntimeSelectionTests(unittest.TestCase):
+    def test_candidate_catalog_policy_requires_an_explicit_boolean(self):
+        import json
+        from scripts.github_research import runtime_policy
+        client = SimpleNamespace(repository='example/repo')
+        with tempfile.TemporaryDirectory() as directory:
+            path = self.policy_file(directory)
+            policy = json.loads(path.read_text())
+            for value in (True, False, 'true', 1, None):
+                policy['installations']['example/repo']['research_candidate_catalog_enabled'] = value
+                path.write_text(json.dumps(policy))
+                with patch('scripts.github_research.RUNTIME_POLICY', path):
+                    if type(value) is bool:
+                        self.assertIs(runtime_policy(client)['research_candidate_catalog_enabled'], value)
+                    else:
+                        with self.assertRaises(ValueError):
+                            runtime_policy(client)
+
     def test_actions_uses_immutable_workflow_policy_instead_of_candidate_checkout(self):
         import base64, json
         from scripts.github_research import checked_revision

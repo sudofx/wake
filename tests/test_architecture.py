@@ -71,8 +71,9 @@ class ArchitectureSeparationTests(unittest.TestCase):
     def test_wake_zero_topics_are_the_operator_selected_experiments(self):
         topics = self.read('research-topics.toml')
         configured = tomllib.loads(topics)['topics']
+        from wake.research_expansion import ASSIGNMENTS
         self.assertEqual({topic['id'] for topic in configured},
-                         {'assumption_challenge', 'emergent_preferences', 'unassigned_problem'})
+                         {topic for group in ASSIGNMENTS.values() for topic in group})
         self.assertTrue(all(topic['enabled'] and topic['classification'] == 'experimental'
                             for topic in configured))
 

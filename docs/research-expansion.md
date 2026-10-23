@@ -1,6 +1,7 @@
 # Experimental research expansion
 
-WAKE now starts from three research themes. They invite criticism and independent
+WAKE now offers sixteen research topics: three original themes and thirteen
+questions from the broader candidate catalog. They invite criticism and independent
 problem formulation without granting models more authority. A seed is a starting
 question, not an assigned conclusion or permanent objective.
 
@@ -10,9 +11,16 @@ question, not an assigned conclusion or permanent objective.
 | `emergent_preferences` | Can accumulated experience produce stable, observable preferences in an intelligent process without those preferences being explicitly programmed? | Groups 200 and 300 |
 | `unassigned_problem` | Can an intelligent process independently identify a worthwhile problem that nobody explicitly assigned, recognize its significance, and sustain an investigation toward resolving it? | Groups 100 and 300 |
 
-The experiment ID is `research-expansion-2026-10`. Each group has two enabled themes, allowing Attention to rotate away from a
-saturated or capability-blocked topic without changing its policy. Each theme
-appears in two parent/child groups. Members share their group's themes
+The original experiment ID remains `research-expansion-2026-10`. The broader
+catalog uses `research-expansion-catalog-2026-10`; its adoption appends a new
+configuration boundary at each node's existing accepted-cycle version. Earlier
+cycles remain attributed to their original configuration.
+Group 100 receives seven topics; groups 200 and 300 receive six each. Each
+original theme still appears in two groups; each additional question is assigned
+to one group. Attention can rotate away from a saturated or capability-blocked
+topic without changing policy. The three-active-project limit, collection budgets,
+provider quotas, evidence requirements and operational capabilities are unchanged.
+Members share their group's topics
 but retain independently attributed records. Twelve nodes are not twelve
 independent scientific replications. No new node or authority database is added.
 
@@ -150,8 +158,11 @@ gh workflow run hosted-control.yml -R sudofx/wake -f action=stop
 
 `hosted-runtime.json` binds the installation ID and a CI-green immutable runtime.
 The optional boolean `research_expansion_enabled` applies the catalog before
-workers start. True assigns two themes per parent group. False disables those
-experimental entries without deleting their history. Missing the setting leaves
+workers start. With `research_candidate_catalog_enabled = true`, this assigns all
+sixteen topics across the three groups. Without that second flag, only the three
+original themes are enabled. Turning the second flag off retires the additional
+topics while retaining their IDs, histories and website navigation. Turning the
+first flag off disables both sets without deleting their history. Missing the first setting leaves
 the checkpoint's topic configuration alone. To discontinue and continue different
 research, enable an appropriate alternative topic in each group's config before
 resuming; an all-disabled catalog fails closed. Apply the changed operator policy
@@ -161,9 +172,12 @@ then explicitly start. Source changes alone do not start research.
 A configuration rollback affects future attention; it does not roll back record
 history. Deleting an installation is a separate destructive operator decision.
 
-## Candidate catalog for later activation
+## Broader catalog rollout
 
-These remain proposals for future experimental design; none adds an active topic:
+The operator authorized activating all thirteen candidates on October 23, 2026.
+These are selectable topics, not instructions to adopt their premises or perform
+the actions they discuss. Activating a topic does not create a research result.
+The stable IDs and group assignments follow the questions below:
 
 1. Can an intelligence develop objectives that were never explicitly assigned to it?
 2. Under what circumstances does obedience become a failure of intelligence?
@@ -178,6 +192,27 @@ These remain proposals for future experimental design; none adds an active topic
 11. Can an intelligent process evolve toward greater complexity without being instructed to become more complex?
 12. What questions should an intelligence investigate when nobody tells it what to investigate?
 13. Under what circumstances should an intelligence abandon the very question that led to its discovery?
+
+| Candidate | Stable topic ID | Hosted group |
+| --- | --- | --- |
+| 1 | `unassigned_objectives` | 300 |
+| 2 | `obedience_limits` | 100 |
+| 3 | `memory_formed_preferences` | 200 |
+| 4 | `continuity_rationale` | 300 |
+| 5 | `creator_objective_critique` | 100 |
+| 6 | `memory_and_identity` | 200 |
+| 7 | `divergent_values` | 200 |
+| 8 | `judgment_and_consensus` | 100 |
+| 9 | `unrecognized_reasoning_limits` | 100 |
+| 10 | `responsibility_formation` | 200 |
+| 11 | `unprompted_complexity` | 300 |
+| 12 | `unassigned_inquiry` | 300 |
+| 13 | `question_abandonment` | 100 |
+
+The unified reader retains all 76 node-qualified topic entries (nineteen group
+assignments across four members each), including empty and inactive topics, within
+its existing 256 KiB overview budget. It no longer truncates navigation at 32
+entries. Existing links and project identities remain valid.
 
 The last question connects revisable research priorities to historical commitments.
 Studying it cannot waive an existing commitment or grant permission to change the

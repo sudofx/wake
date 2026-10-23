@@ -98,7 +98,9 @@ def export_reader_transport(data, target):
         small = {key: deepcopy(state[key]) for key in
                  ('version', 'charter', 'pet_name', 'objective', 'topic_colors', 'focus', 'pending')
                  if key in state}
-        small['research_topics'] = deepcopy(state.get('research_topics', [])[:32])
+        # Topic metadata owns navigation, including inactive historical topics.
+        # A combined installation can exceed 32 node-qualified coordinates.
+        small['research_topics'] = deepcopy(state.get('research_topics', []))
         for collection in COLLECTIONS:
             all_rows = ordered(collection)
             rows = all_rows[-limit:] if limit else []

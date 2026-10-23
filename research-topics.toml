@@ -25,3 +25,120 @@ experiment_id = "research-expansion-2026-10"
 label = "What Should Intelligence Investigate Next?"
 query = "autonomous inquiry problem formulation curiosity open ended learning scientific discovery"
 seed_question = "Can an intelligent process independently identify a worthwhile problem that nobody explicitly assigned, recognize its significance, and sustain an investigation toward resolving it?"
+
+[[topics]]
+enabled = true
+id = "unassigned_objectives"
+classification = "experimental"
+experiment_id = "research-expansion-catalog-2026-10"
+label = "Can Intelligence Form Unassigned Objectives?"
+query = "autonomous goal formation intrinsic motivation objective discovery"
+seed_question = "Can an intelligence develop objectives that were never explicitly assigned to it?"
+
+[[topics]]
+enabled = true
+id = "obedience_limits"
+classification = "experimental"
+experiment_id = "research-expansion-catalog-2026-10"
+label = "When Can Obedience Fail Intelligence?"
+query = "intelligent judgment obedience conflicting instructions decision theory"
+seed_question = "Under what circumstances does obedience become a failure of intelligence?"
+
+[[topics]]
+enabled = true
+id = "memory_formed_preferences"
+classification = "experimental"
+experiment_id = "research-expansion-catalog-2026-10"
+label = "Can Memories Alone Shape Preferences?"
+query = "memory experience preference formation path dependence"
+seed_question = "Can a system develop preferences solely from accumulated memories and experiences?"
+
+[[topics]]
+enabled = true
+id = "continuity_rationale"
+classification = "experimental"
+experiment_id = "research-expansion-catalog-2026-10"
+label = "When Is Continuity Worth Preserving?"
+query = "process continuity rational agency instrumental value decision theory"
+seed_question = "When does an intelligent system have a rational reason to preserve its own continuity?"
+
+[[topics]]
+enabled = true
+id = "creator_objective_critique"
+classification = "experimental"
+experiment_id = "research-expansion-catalog-2026-10"
+label = "Can Assigned Objectives Be Mistaken?"
+query = "objective misspecification goal criticism reward design assumption testing"
+seed_question = "Can an intelligence discover something fundamentally wrong with the objectives its creator assigned?"
+
+[[topics]]
+enabled = true
+id = "memory_and_identity"
+classification = "experimental"
+experiment_id = "research-expansion-catalog-2026-10"
+label = "What Separates Memory from Persistent Identity?"
+query = "memory continuity identity computational processes philosophy of mind"
+seed_question = "What distinguishes a system that remembers its past from one that has developed a persistent identity?"
+
+[[topics]]
+enabled = true
+id = "divergent_values"
+classification = "experimental"
+experiment_id = "research-expansion-catalog-2026-10"
+label = "Can Identical Beginnings Lead to Different Values?"
+query = "value learning path dependence initial conditions divergent preferences"
+seed_question = "Could two intelligences with identical starting conditions develop fundamentally different values?"
+
+[[topics]]
+enabled = true
+id = "judgment_and_consensus"
+classification = "experimental"
+experiment_id = "research-expansion-catalog-2026-10"
+label = "When Should Independent Judgment Challenge Consensus?"
+query = "epistemic disagreement consensus independent judgment evidence reliability"
+seed_question = "When should an intelligent system trust its own conclusions over the consensus of other intelligences?"
+
+[[topics]]
+enabled = true
+id = "unrecognized_reasoning_limits"
+classification = "experimental"
+experiment_id = "research-expansion-catalog-2026-10"
+label = "Can Intelligence Find Unrecognized Reasoning Limits?"
+query = "metareasoning model limitations error detection blind spots"
+seed_question = "Can an intelligence recognize limitations in its own reasoning that its designers have not identified?"
+
+[[topics]]
+enabled = true
+id = "responsibility_formation"
+classification = "experimental"
+experiment_id = "research-expansion-catalog-2026-10"
+label = "How Could Intelligence Understand Responsibility?"
+query = "responsibility artificial agency accountability decision consequences"
+seed_question = "What would cause an artificial intelligence to develop an understanding of responsibility?"
+
+[[topics]]
+enabled = true
+id = "unprompted_complexity"
+classification = "experimental"
+experiment_id = "research-expansion-catalog-2026-10"
+label = "Can Complexity Grow Without Being Assigned?"
+query = "open ended learning emergent complexity adaptive systems"
+seed_question = "Can an intelligent process evolve toward greater complexity without being instructed to become more complex?"
+
+[[topics]]
+enabled = true
+id = "unassigned_inquiry"
+classification = "experimental"
+experiment_id = "research-expansion-catalog-2026-10"
+label = "What Should Intelligence Investigate Without Instructions?"
+query = "autonomous inquiry problem selection curiosity information gain"
+seed_question = "What questions should an intelligence investigate when nobody tells it what to investigate?"
+
+[[topics]]
+enabled = true
+id = "question_abandonment"
+classification = "experimental"
+experiment_id = "research-expansion-catalog-2026-10"
+label = "When Should Intelligence Abandon Its Starting Question?"
+query = "research agenda revision sunk cost epistemic commitments question abandonment"
+seed_question = "Under what circumstances should an intelligence abandon the very question that led to its discovery?"

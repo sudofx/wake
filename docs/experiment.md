@@ -1,7 +1,7 @@
 # Experiment protocol
 
 The [experimental research expansion](research-expansion.md) defines the three
-current starting questions, per-group assignments, configuration boundaries and
+original starting questions and thirteen additional catalog questions, per-group assignments, configuration boundaries and
 observational assessment. An operator-authorized fresh installation is a new
 experimental baseline, not continuation of the discarded installation or a
 controlled comparison with it. No preserved pre-reset baseline is claimed.
