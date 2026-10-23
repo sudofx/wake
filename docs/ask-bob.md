@@ -2,22 +2,37 @@
 
 ## Use it on the public website
 
-Open an article in Bob's Blog, type a message in **Ask Bob**, and press **Send**.
-No sign-in, account, API key, cloud service setup or running WAKE installation is
-required. The first message automatically downloads and prepares Bob on the device;
-later messages and visits can reuse the saved model. Opening an article alone
-never downloads the model or starts inference. The chat shows your message
-immediately and keeps replies in a scrollable conversation. Recent same-article
-conversation is selected automatically; there are no context or comprehension
-selectors in the visitor interface.
+Open an article in Bob's Blog, type a question in **Ask Bob**, and press **Send**.
+The default finds relevant published passages, with links to their sources. It
+does not download a model, run inference, use a provider, or upload your question.
+Try **What is the main point?**, **What evidence is cited?**, or a specific term.
+A missing match is reported honestly; it is not proof that a claim is false.
 
-A three-stage line shows **Download → Prepare → Reply**. Download percentage
-comes from received bytes. Preparation and answering show activity and elapsed
-time rather than a fabricated time estimate. Keep the tab open while Bob works;
-a slower phone may need several minutes. **Stop** ends the current wait, and
-**Retry** or **Send** automatically prepares Bob again if necessary. No separate
-load button is needed.
-The public version uses Qwen2.5-0.5B-Instruct, an open model running in a browser
+Publication prepares an article-specific search guide from already filtered public
+article, notebook, evidence and project records. The guide is at most 96 KiB,
+with up to 180 literal passages and at most twenty-four directly linked records. The browser
+loads one guide on the first question and caches up to four guides in memory.
+It checks the displayed article hash and source snapshot heads. Search uses term
+coverage and rarity; short follow-ups may reuse the previous question, never its
+answer. Text is quoted, not synthesized. This improves latency and prevents the
+default path from inventing facts, but lexical search can miss paraphrases and
+quoting a published claim does not independently verify it. Passage and source
+budgets are disclosed; full records remain reachable through source links.
+
+Questions and replies stay in this browser. **Clear chat** removes saved turns;
+**Stop** cancels a pending read. A failed guide stays visible as an error, without
+automatically falling back to a model download. Normal reading and opening Ask Bob
+never initialize an inference engine. No research record or controls are accessed.
+
+## Optional device model
+
+Under **About this chat**, explicitly enable **Experimental AI answer on this
+device** to use the older generative mode. It is slower and can be inaccurate;
+valid citation IDs do not prove that an answer is supported. It is off by default.
+This mode downloads about 491 MB, shows **Download → Prepare → Reply**, and can
+take minutes on a phone. Stop/retry and the existing model cache remain available.
+
+The optional device mode uses Qwen2.5-0.5B-Instruct, an open model running in a browser
 worker through the vendored MIT-licensed wllama runtime. It does not use Gemini
 or consume Gemini API quota. The first model download is 491,400,032 bytes
 (about 491 MB decimal); browser storage may cache it. Browser/device memory and
@@ -56,11 +71,11 @@ Use browser site-storage controls to remove the model cache.
 
 The small model can be less reliable than cloud models. It receives an explicitly
 short-answer instruction: address the question directly in two to four sentences,
-at most 100 words, rather than repeating the whole article. It receives an
-excerpted current article, up to two directly linked exact exported records and
-bounded same-article history. Stable source text precedes the changing question
-so follow-ups can reuse unchanged model processing; each answer still validates
-the current article version and includes only the selected history.
+at most 100 words, rather than repeating the whole article. It receives question-relevant passages from the same publication-time guide instead
+of the old fixed article prefix and first two links. The normal focused input is
+bounded to 6,000 UTF-8 bytes (8,000 hard limit for unusually long questions),
+including the system instruction. Prior generated answers are excluded from model
+evidence. A missing passage uses the ordinary source-guide response.
 It never recursively browses or retrieves private
 data. The displayed article hash must match the fetched public article, and linked
 records must share its snapshot head. Missing/excerpted sources remain visible;
@@ -72,7 +87,7 @@ system instruction; the question is at most 2,000 characters. The public chat au
 (condition C). Internal A/B/C request support remains available to offline
 experiments, without visitor-facing selectors. These browser excerpts are a separate policy from the local
 provider experiment below; they are not an A/B/C answer-quality finding.
-Model output is bounded and validated before it enters browser history.
+Optional model output is bounded and structurally validated before it enters browser history.
 If the model reaches its reply limit or returns incomplete JSON, the reply is
 withheld with a plain-language suggestion to ask a narrower question. Partial
 text and invented source references are never used to repair a failed reply.

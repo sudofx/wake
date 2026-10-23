@@ -76,6 +76,8 @@ def bind_hosted_status(site, repository, revision):
             deployment['hosted_status'] = config
             deployment['hosted_activity'] = activity
             deployment_path.write_text(json.dumps(deployment))
+    from .reader_guide import refresh_public_reader
+    refresh_public_reader(site)
     manifest['presentation'] = {'source_revision': revision, 'hosted_status': config, 'hosted_activity': activity}
     encoded = json.dumps(manifest, sort_keys=True)
     for path in [site / 'installation.json', *site.glob('nodes/*/installation.json')]:

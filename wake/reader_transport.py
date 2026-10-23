@@ -27,6 +27,7 @@ def _json(value):
 def export_reader_transport(data, target):
     """Write views only; callers pass an already public-filtered browser packet."""
     from .reader_context import article_descriptor
+    from .reader_guide import build_guide
     target = Path(target)
     state = data['state']
     counts = {key: len(state.get(key, {})) for key in COLLECTIONS}
@@ -67,6 +68,9 @@ def export_reader_transport(data, target):
                 **({'article': article_descriptor(item, data['head'])} if collection == 'posts' else {}),
                 'events': [event for event in data.get('events', [])
                            if event.get('payload', {}).get('id') == item['id']]})
+    for post in state.get('posts', {}).values():
+        if post.get('id'):
+            write(record_path('guides', post['id']), build_guide(post, state, data['head']))
     for row in state.get('journal', []):
         identifier = row.get('invocation')
         write(record_path('journal', 'cycle:' + str(row['cycle'])), {

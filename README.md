@@ -57,11 +57,11 @@ explicit worker recovery, failure evidence and reproducible disturbance checks.
 Use the [private continuity workflow](docs/continuity/README.md) to preserve human
 research notes and engineering handoffs between conversations.
 
-[Ask Bob](docs/ask-bob.md) answers questions about published articles on the public
-mirror without sign-in, an API key or a running installation. Readers type a message and send; the chat automatically downloads and prepares
-a small model on their device (about 491 MB), with progress and bounded waits.
-Questions and replies stay in that browser. The optional local Gemini preview remains separate. Neither
-reader surface has research authority or starts automated research.
+[Ask Bob](docs/ask-bob.md) finds relevant published passages without sign-in,
+an API key, a running installation or a model download. Publication prepares a
+bounded source guide; questions and replies stay in the browser. An optional
+491 MB device model and the local Gemini preview remain separate. Neither reader
+surface has research authority or starts automated research.
 
 The [static inspection interface](docs/inspection.md) gives unfamiliar readers and
 AI systems plain-text explanations, exact evidence and a reproducible kernel example.

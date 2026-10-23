@@ -5,7 +5,7 @@ const {pathToFileURL}=require('node:url');
  const temporary=fs.mkdtempSync(path.join(os.tmpdir(),'wake-browser-context-'));
  try{
   const modulePath=path.join(temporary,'context.mjs');fs.copyFileSync(path.join(__dirname,'../../wake/assets/ask-bob-browser.js'),modulePath);
-  const {prepare,validateReply}=await import(pathToFileURL(modulePath));
+  const {prepare,validateReply,focusContext}=await import(pathToFileURL(modulePath));
   const request={article_id:'100.wake::article',question:'What is known?',condition:'A',expected_article_hash:'a'.repeat(64),history:[]};
   let reads=[];
   const read=async(collection,id)=>{reads.push([collection,id]);return {bytes:100,path:'reader-records/'+collection+'/exact.json',packet:{head:'snapshot',collection,item:{id,title:'Recorded claim',body:'A reported possibility, not an established finding.',evidence:collection==='posts'?['e1','missing','unused']:[]},article:{id,hash:'a'.repeat(64),head:'snapshot'}}};};
@@ -25,6 +25,9 @@ const {pathToFileURL}=require('node:url');
   const before=reads.length;await assert.rejects(prepare({...request,question:'x'.repeat(2001)},read));assert.equal(reads.length,before);
   const huge=async(collection,id)=>{const loaded=await read(collection,id);loaded.packet.item.body='語'.repeat(100000);return loaded;};
   const bounded=await prepare(request,huge);assert(bounded.metrics.context_bytes<=15000);assert(bounded.warnings.some(w=>w.includes('excerpted')));
+  const guide={article:{id:request.article_id,hash:request.expected_article_hash},sources:answer.sources};
+  const selected={matches:[{source:'S1',text:'語'.repeat(1000)},{source:'S2',text:'語'.repeat(1000)}]};
+  const focused=focusContext(request,guide,selected);assert(focused.metrics.context_bytes<=6000);assert.equal(JSON.parse(focused.prompt).passages.length,2);assert(!focused.prompt.includes('history'));assert.equal(selected.matches[0].text.length,1000);
   const reply=(content,finish_reason='stop')=>({choices:[{message:{content},finish_reason}]});
   const complete=JSON.stringify({answer:'The article reports a possibility [S1].',citations:['S1']});
   const accepted=validateReply(reply(complete),answer.sources);assert.equal(accepted.citations[0].record_id,request.article_id);

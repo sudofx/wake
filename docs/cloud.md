@@ -20,14 +20,14 @@ is a dated, read-only copy of the public data exported from those records. GitHu
 Pages executes no research and has no research controls. An explicitly bound hosted
 status light observes the GitHub Actions executor; ordinary mirrors have no execution light.
 
-[Ask Bob](ask-bob.md) runs its public model in each reader's browser. The mirror
-ships the inference engine; the first Send automatically downloads and prepares
-the pinned open model. No account, API key, answer server or local installation is required.
-Normal reading never loads inference or model weights. Questions and browser
-history are not uploaded. The optional local Gemini preview is a separate mode.
-The unified blog uses a private-memory inference build on Pages, so Safari needs
-no isolation headers. The newer shared-memory engines are reserved for isolated
-pages. Individual node pages do not mount Ask Bob and omit unused engine binaries.
+[Ask Bob](ask-bob.md) uses a small passage guide prepared during publication.
+The first question fetches at most 96 KiB of public source material, without a model
+download or answer server. Questions and history stay in the browser. An explicitly
+selected experimental device model retains the pinned 491 MB download and Safari
+private-memory engine; ordinary questions never load it. The optional local Gemini
+preview remains separate. Individual node pages do not mount Ask Bob and omit
+unused inference binaries. Public guide generation never calls providers or writes
+to authoritative records.
 
 The unified export also generates [static inspection resources](inspection.md)
 under `inspect/`. They require no JavaScript, authentication or live model; their
@@ -369,7 +369,10 @@ gh api --method POST repos/OWNER/REPO/pages/builds
 
 A changed parent fails closed: capture the newer artifact and retry. Research data, captured heads,
 `hosted_execution` and hashed inspection packets remain unchanged; `presentation`
-records the UI source revision separately. Normal hosted batches apply the same binding.
+records the UI source revision separately. The refresh also rebuilds the root
+Ask Bob passage guides from that exact public archive and replaces reader assets;
+it rejects mismatched archive/overview heads and leaves research and inspection
+bytes unchanged. Normal hosted batches apply the same binding.
 
 ### Watch live hosted node activity
 

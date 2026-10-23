@@ -212,7 +212,10 @@ application state reconstruction. Application IDs share a record revision when
 installed together; independent installations must select separate records.
 
 [Ask Bob](ask-bob.md#how-context-stays-bounded) separately retrieves a bounded
-current publication and directly linked exact public records. Its A/B/C browser
+current publication and directly linked exact public records. Its default passage
+index is prepared at publication, capped at 96 KiB and searched locally without
+inference. It preserves exact excerpts and source identities, not generated facts.
+The optional model's A/B/C browser
 conversation context is advisory; it never enters the research retrieval policy
 or creates accepted scientific memory.
 

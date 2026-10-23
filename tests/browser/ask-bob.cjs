@@ -55,6 +55,7 @@ const server=http.createServer((req,res)=>{
   browserMode=true;await page.goto(base+'/blog.html');await page.evaluate(()=>window.WAKE_DEPLOYMENT={snapshot_only:true});const publicBefore=requests.length;await mount('public-article');
   assert.equal(requests.length,publicBefore,'Reading never starts model download');assert(await page.getByRole('textbox',{name:'Message Bob'}).isVisible());assert(!(await page.getByRole('button',{name:'Send',exact:true}).isDisabled()));
   assert.equal(await page.locator('.ask-bob select').count(),0);assert.equal(await page.getByRole('button',{name:/Load Bob/}).count(),0);
+  await page.getByText('About this chat',{exact:true}).click();await page.getByRole('checkbox').check();
   await page.evaluate(()=>window.__holdBrowserLoad=true);await send('First question');
   await page.waitForFunction(()=>document.querySelector('.ask-bob progress').value===.4);
   assert.equal(await page.locator('.ask-bob-user p').innerText(),'First question');assert(await page.getByRole('button',{name:'Stop',exact:true}).isVisible());

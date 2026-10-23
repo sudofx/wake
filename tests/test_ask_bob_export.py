@@ -24,7 +24,7 @@ class AskBobExportTests(unittest.TestCase):
             self.assertNotIn('WakeAskBob', (site / 'console.html').read_text())
             mirror = root / 'mirror'
             _copy_public_site(site, mirror)
-            for name in ('ask-bob.js', 'ask-bob.css', 'ask-bob-browser.js', 'ask-bob-engine.js',
+            for name in ('ask-bob.js', 'ask-bob.css', 'ask-bob-browser.js', 'ask-bob-guide.js', 'ask-bob-engine.js',
                          'ask-bob-engine.wasm', 'ask-bob-engine-compat.js', 'ask-bob-engine-compat.wasm',
                          'ask-bob-engine.LICENSE.txt', 'ask-bob-engine.json', 'ask-bob-private.js',
                          'ask-bob-engine-private.js', 'ask-bob-engine-private.wasm', 'ask-bob-engine-private.LICENSE.txt'):

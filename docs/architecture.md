@@ -52,18 +52,15 @@ and identity; it is not replay, migration or an authority merge. See the
 [research expansion](research-expansion.md). Model-formulated questions remain
 ordinary governed project/reframe actions, never configuration edits.
 
-[Public Ask Bob](ask-bob.md) is a browser-only explanation aid on the static
-mirror. It loads a pinned open model only after an explicit reader action, then
-uses bounded same-origin exact article/source shards. It verifies the displayed
-article hash and source snapshot heads, keeps conversation in the browser, and
-cannot call research controls, submit transitions or read authority. The model
-is untrusted presentation, not an intelligence executing inside a WAKE worker.
-It creates no research receipts or progress and makes no remote generation call.
-Unisolated public pages use an actual private-memory single-thread build,
-including on Safari; no site-wide service worker or shared-memory permission is
-required. The vendored inference runtimes and their licenses/checksums ship as static assets;
-model weights download from their pinned public revision. No visitor identity,
-API key, hosting account or local installation is involved in answering.
+[Public Ask Bob](ask-bob.md) defaults to source retrieval on the static mirror.
+Publication derives a bounded passage index from already filtered public records;
+the browser verifies the displayed article hash and source heads and quotes matching
+passages. It makes no model call or download. Search matches are not scientific
+verification, generated explanations or research progress. Questions stay local.
+The optional device model requires a separate explicit choice, remains untrusted
+presentation, and retains its pinned weights, vendored runtime and private-memory
+Safari path. Neither mode can submit transitions, read authority, change Attention,
+or call research controls. No visitor account or provider key is involved.
 
 The optional local Gemini preview is a separate loopback reader surface.
 It uses completed public exports and the existing owning worker's native provider

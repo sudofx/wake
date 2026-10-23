@@ -29,8 +29,8 @@ For private human checkpoints and fresh-conversation recovery, use the
 research record without adding runtime state or automatic model context.
 
 For public browser-only answers and the optional host-loopback Gemini preview,
-see [Ask Bob](ask-bob.md). Public answers use static public shards and a model
-running on the reader's device. They require no owning worker or authentication.
+see [Ask Bob](ask-bob.md). Public answers default to quoted passages from a publication-time source guide;
+an optional generative model runs on the reader's device. They require no owning worker or authentication.
 Neither mode starts or resets research when opened.
 
 ## Current development path
