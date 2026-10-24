@@ -2,7 +2,12 @@
 
 ## Use it on the public website
 
-Open an article in Bob's Blog, type a question in **Ask Bob**, and press **Send**.
+Open an article in Bob’s Blog and select the chat-bubble **Ask Bob** button below
+the story title. It opens a separate chat window with that story selected. The
+window uses message bubbles and a fixed composer: Enter sends; Shift+Enter adds a
+line. On phones, the browser may open a full-screen tab. Reopening the same story’s
+chat focuses the existing window. There are no preset question buttons.
+
 Or open [Talk with Bob](https://wake-ask-bob.coolgrove68.chatgpt.site/) for a stable
 chat entry point independent of research snapshot publication. Select a published
 article as context; changing it clears the tab’s conversation. This standalone
