@@ -51,7 +51,7 @@ def build_guide(post, state, head):
             sources.pop()
             return
         # Field order makes a concise editorial summary available without inventing one.
-        fields = ('lede', 'body') if collection == 'posts' else ('question', 'summary', 'content', 'body', 'findings', 'limitations', 'uncertainties')
+        fields = ('lede', 'body') if collection == 'posts' else ('question', 'summary', 'limitations', 'uncertainties', 'content', 'body', 'findings')
         seen = set()
         source_passages = 0
         for field in fields:
@@ -111,6 +111,9 @@ def build_guide(post, state, head):
                 key = ('evidence', member + '::' + fragment[len('evidence/'):])
                 if key not in links:
                     links.append(key)
+    # Cover every linked notebook before spending the remaining source budget
+    # on raw evidence. Shared articles summarize all twelve nodes.
+    links.sort(key=lambda pair: pair[0] != 'notebooks')
     for collection, identifier in links[:MAX_LINKED]:
         item = state.get(collection, {}).get(identifier)
         if item:

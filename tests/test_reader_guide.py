@@ -15,7 +15,7 @@ class ReaderGuideTests(unittest.TestCase):
               'body':'First paragraph.\n\n'+('Unrelated background.\n\n'*30)+'Retrieval failed when the historical notebook was unavailable. The result remains uncertain.',
               'evidence':['e'],'notebooks':['n'],'project':'p'}
         state=empty();state.update(posts={'article':post},evidence={'e':{'id':'e','content':'The controlled trial compared recall with memory included and withheld.'}},
-             notebooks={'n':{'id':'n','body':'A revised notebook describes retrieval failures.'}},projects={'p':{'id':'p','question':'Does memory affect recall?'}})
+             notebooks={'n':{'id':'n','body':'A revised notebook describes retrieval failures.', 'limitations':'The evaluation assumes a fixed environment.'}},projects={'p':{'id':'p','question':'Does memory affect recall?'}})
         return post,state
     def test_export_is_bounded_literal_and_public_only(self):
         post,state=self.fixture();guide=build_guide(post,state,'head')
@@ -28,6 +28,18 @@ class ReaderGuideTests(unittest.TestCase):
         post['body']='語'*100000
         guide=build_guide(post,state,'head')
         self.assertLessEqual(len(json.dumps(guide,ensure_ascii=False,separators=(',',':')).encode()),MAX_GUIDE_BYTES)
+    def test_limitations_survive_large_findings_and_all_node_notebooks_are_included(self):
+        post,state=self.fixture()
+        state['notebooks']['n']['findings']='Finding.\n\n'*100
+        guide=build_guide(post,state,'head')
+        self.assertTrue(any(p['field']=='limitations' and 'fixed environment' in p['text'] for p in guide['passages']))
+        post.update(notebooks=[],evidence=[],project='',editorial_references=[])
+        for number in (100,101,102,103,200,201,202,203,300,301,302,303):
+            member=f'{number}.wake';identifier=member+'::n';state['notebooks'][identifier]={'id':identifier,'limitations':'Requires independent replication.'}
+            post['editorial_references'].append([{'member':member,'notebook_id':'n','sources':[{'record_url':f'/nodes/{member}/evidence.html#evidence/e1'},{'record_url':f'/nodes/{member}/evidence.html#evidence/e2'}]}])
+        guide=build_guide(post,state,'head')
+        self.assertEqual(len([source for source in guide['sources'] if source['collection']=='notebooks']),12)
+
     def test_clipped_structured_source_is_a_reference_not_raw_answer_text(self):
         post,state=self.fixture()
         state['evidence']['e'].update(source='https://example.org/paper',content='{"excerpt":"clipped')
