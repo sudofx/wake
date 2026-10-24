@@ -23,5 +23,3 @@
 @keyframes bob-spin{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){.ask-bob-spinner{animation:none;border-style:dotted}}
 .ask-bob-prompts{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0}.ask-bob-prompts button{font-size:.85rem;padding:.4rem .6rem}.ask-bob-privacy label{display:block;margin:.75rem 0}.ask-bob-privacy input{width:auto;margin-right:.5rem}.ask-bob-answer{white-space:pre-wrap;overflow-wrap:anywhere}
-
-.ask-bob-launch{display:inline-flex;align-items:center;gap:.45rem;padding:.55rem .9rem;margin:.3rem 0 1rem;border:1px solid currentColor;border-radius:999px;font:600 .9rem/1.3 system-ui,sans-serif;color:inherit;text-decoration:none;min-height:44px}.ask-bob-launch:hover{background:color-mix(in srgb,currentColor 7%,transparent)}.ask-bob-launch span{font-size:1.15rem}
