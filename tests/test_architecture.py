@@ -63,7 +63,7 @@ class ArchitectureSeparationTests(unittest.TestCase):
         loader = self.read('wake/assets/reader-data.js')
         app = self.read('wake/assets/app.js')
         self.assertNotIn('raw.githubusercontent.com', page)
-        self.assertIn('src="reader-data.js"', page)
+        self.assertRegex(page, r'src="reader-data\.js(?:\?[^"]+)?"')
         self.assertIn('window.WakeApplyLive?.(next)', loader)
         self.assertNotIn('location.replace(url.toString())', page)
         self.assertIn('window.WakeApplyLive = next =>', app)
