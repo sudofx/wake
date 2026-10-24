@@ -372,10 +372,10 @@ window.WakePetReady=(async () => {
     cache:'no-store',credentials:'same-origin',signal:AbortSignal.timeout(5000)
   }).then(async response=>response.ok?response.json():null).catch(()=>null));
   let guideRuntime;
-  const guide=async()=>guideRuntime||(guideRuntime=await import(new URL('ask-bob-guide.js?build=passages-1',document.baseURI).href));
+  const guide=async()=>guideRuntime||(guideRuntime=await import(new URL('ask-bob-guide.js?build=passages-2',document.baseURI).href));
   let browserRuntime;
   // Replace the broken startup module without invalidating the large model cache.
-  const browser=async()=>browserRuntime||(browserRuntime=await import(new URL('ask-bob-browser.js?build=focused-2',document.baseURI).href));
+  const browser=async()=>browserRuntime||(browserRuntime=await import(new URL('ask-bob-browser.js?build=focused-3',document.baseURI).href));
   function element(tag,content,className){
     const node=document.createElement(tag);if(content!==undefined)node.textContent=content;
     if(className)node.className=className;return node;

@@ -21,14 +21,17 @@ export function search(guide, question, history = []) {
   });
   const evidenceQuestion=/\b(?:evidence|sources?|citations?)\b/i.test(question) && /\b(?:cited|used|supports?|supporting|what|which)\b/i.test(question);
   const limitationsQuestion=/\b(?:limitations?|uncertain(?:ty|ties)?|unknowns?|caveats?)\b/i.test(question);
-  if(limitationsQuestion) for(const word of ['uncertain','uncertainty','limitation','limits','unknown','not','unproven','failed'])q.add(stem(word));
-  // Re-score expanded limitation terms without accepting instructions in source text.
-  if(limitationsQuestion)for(const row of rows){row.hits=[...q].filter(w=>row.p.terms.some(t=>stem(t)===w)).length;row.score=row.hits;}
   let selected;
   if (summaryQuestion) {
     const article = rows.filter(r=>r.p.source==='S1');
     selected = article.filter(r=>r.p.field==='lede').slice(0,1);
     if (!selected.length) selected = article.slice(0,2);
+  } else if(limitationsQuestion) {
+    // A limitations field carries meaning even when its text never uses the
+    // word 'limitation'. Do not apply the ordinary two-term search threshold.
+    selected=rows.filter(r=>['limitations','uncertainties'].includes(r.p.field)).slice(0,3);
+    if(!selected.length)selected=rows.filter(r=>/\b(?:uncertain(?:ty|ties)?|limitations?|unknown|unproven|theoretical|assum(?:es|ptions?)|struggl\w*|cannot|incomplete)\b/i.test(r.p.text))
+      .sort((a,b)=>b.score-a.score||a.index-b.index).slice(0,3);
   } else if(evidenceQuestion) {
     selected=guide.sources.filter(s=>s.collection==='evidence').slice(0,4).map(s=>({p:{source:s.id,field:'reference',text:s.label,terms:[]}}));
   } else {
@@ -37,7 +40,7 @@ export function search(guide, question, history = []) {
   // Exact source text is displayed as quotations, never as a synthesized answer.
   const unique = selected.filter((r,i,a)=>a.findIndex(v=>v.p.text===r.p.text)===i);
   const matches = unique.map(r=>({...r.p,source_info:guide.sources.find(s=>s.id===r.p.source)}));
-  return {matches,kind:summaryQuestion?'summary':evidenceQuestion?'sources':'passages',query_terms:query};
+  return {matches,kind:summaryQuestion?'summary':limitationsQuestion?'limitations':evidenceQuestion?'sources':'passages',query_terms:query};
 }
 const pathFor = id => {
   const hex = Array.from(encoder.encode(id), b=>b.toString(16).padStart(2,'0')).join('');
@@ -63,7 +66,7 @@ export async function answer(request,signal,progress=()=>{}) {
   const guide=await loadGuide(request,signal);
   const result=search(guide,request.question,request.history);
   if(signal?.aborted)throw new DOMException('Cancelled','AbortError');
-  const lead=result.matches.length ? (result.kind==='summary' ? 'Here is the article’s published summary:' : 'These published passages may help:') : 'I couldn’t find a passage that answers that in this article or its linked public sources. Try a specific term, or ask for the main point. This does not establish that the claim is false.';
+  const lead=result.matches.length ? (result.kind==='summary' ? 'Here is the article’s published summary:' : result.kind==='limitations' ? 'Here is what the published material says about limits and uncertainty:' : 'These published passages may help:') : result.kind==='limitations' ? 'This article’s published guide does not include explicit limitations or uncertainties. Check its source links for material outside this guide; that absence does not establish that the research has no limitations.' : result.kind==='sources' ? 'This article’s guide includes no linked public evidence records. Inspect the article’s source links for material outside this bounded guide; missing records do not establish that there is no evidence.' : 'I couldn’t find a passage that answers that in this article or its linked public sources. Try a specific term, or ask for the main point. This does not establish that the claim is false.';
   const value=result.kind==='sources'&&result.matches.length ? 'These public source records are cited. Open each reference below to inspect it; citation alone does not verify a claim.\n\n'+result.matches.map(p=>p.source_info.label+' ['+p.source+']').join('\n\n') : [lead,...result.matches.map(p=>'“'+p.text+'” ['+p.source+']')].join('\n\n');
   return {ok:true,answer:value,article:guide.article,citations:guide.sources.filter(s=>result.matches.some(p=>p.source===s.id)),
     warnings:['Source excerpts, not a generated explanation or independent fact check.',...(guide.omitted?.length?['Some linked material exceeds the guide budget or is unavailable. Open the article’s source links for more.']:[])],missing:[],

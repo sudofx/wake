@@ -334,7 +334,7 @@ export async function answer(request, signal, progress = () => {}) {
   active = true;
   const start = performance.now();
   try {
-    const guideRuntime=await import(new URL('ask-bob-guide.js',BASE).href);
+    const guideRuntime=await import(new URL('ask-bob-guide.js?build=passages-2',BASE).href);
     const guide=await guideRuntime.loadGuide(request,signal);
     const selected=guideRuntime.search(guide,request.question,request.history);
     if(!selected.matches.length)return guideRuntime.answer(request,signal,progress);
