@@ -66,7 +66,7 @@
   </section>
 </div>
 <footer><a class="footer-mark" href="index.html">WAKE✳︎</a><span>DURABLE WORK. REPLACEABLE INTELLIGENCE.</span><div><a href="about.html">About →</a><a href="state.html">State →</a><a href="events.html">History →</a></div><p>Made of evidence, not vibes. <span id="generated"></span></p></footer>
-<script src="reader-data.js"></script>
+<script src="reader-data.js?v=20261023-snapshot-recovery"></script>
 <script>
 // A resident older exporter can read this template before it adopts the new
 // asset list. Keep its completed pages usable; a damaged new export fails visibly.
@@ -465,12 +465,14 @@ window.WakePetReady=(async () => {
       conversation.replaceChildren();failedTurn=null;retry.hidden=true;status.textContent='Chat cleared.';refresh();
     });
     form.addEventListener('submit',async event=>{
-      event.preventDefault();if(submit.disabled||active||!valid())return;
+      event.preventDefault();if(submit.disabled||active)return;
+      if(!valid()){status.textContent='This article changed while the chat was open. Reload the article and send again. Your message is kept.';return;}
       const asked=question.value.trim();if(!asked)return;
       const requestEpoch=epoch,requestValid=()=>valid()&&requestEpoch===epoch;
       // Conversation policy is automatic. Prior answers stay untrusted and
       // bounded; no opening/typing event asserts reader comprehension.
       const modelMode=cap.browser&&useModel.checked;
+      steps.forEach((step,index)=>{step.textContent=(modelMode?['Download','Prepare','Reply']:['Sources','Find','Reply'])[index];});
       const body={article_id:post.id,question:asked,condition:'C',expected_article_hash:displayedHash,
         history:current.turns.slice(-MAX_TURNS).map(({mode,citations,...value})=>value),
         previous_article:priorHash?previous:{id:current.id,hash:current.hash||undefined,head:current.head,exposure:{opened:true},self_report:current.self_report}};
@@ -1136,9 +1138,13 @@ window.WakePetReady=(async () => {
     readerPagination(page,selected);
     };
     if(window.WakeReader && data.reader_transport && (selected||['journal','history','evidence'].includes(page))){
+      // A previous article's chat must not remain interactive under a new URL.
+      if(page==='blog'&&selected&&!selected.startsWith('topic:'))
+        $('blog-content').innerHTML='<p role="status">Opening this article…</p>';
       window.WakeReader.ensure(page,selected).then(()=>{refreshDerived();draw();}).catch(error=>{
         if(ticket!==routeTicket)return;
         const target=$(page);if(!target)return;
+        if(page==='blog'&&selected&&!selected.startsWith('topic:'))$('blog-content').replaceChildren();
         const message=document.createElement('p');message.className='research-note';message.textContent=error.message+' ';
         const retry=document.createElement('button');retry.type='button';retry.textContent='Retry loading details';retry.addEventListener('click',route);message.append(retry);
         target.querySelector('[data-reader-error]')?.remove();message.dataset.readerError='true';target.prepend(message);

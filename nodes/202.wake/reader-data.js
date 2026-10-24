@@ -44,6 +44,21 @@
       const packet=await read(path);
       if(packet.collection!==collection||!packet.item||
         (collection==='journal'?'cycle:'+packet.item.cycle:packet.item.id)!==id)throw Error('The exported detail does not match the selected record.');
+      if(packet.head!==data.head){
+        // Pages may serve a cached overview beside a newly published detail.
+        // Adopt only a matching bounded overview; never combine generations.
+        const next=await read('reader-data.json?head='+encodeURIComponent(packet.head));
+        if(!next?.state||next.authoritative===true||next.head!==packet.head||!next.reader_transport)
+          throw Error('The site is updating. Please retry opening this article.');
+        merge(next,packet);loaded.clear();pages.clear();loaded.add(next.head+':'+path);
+        if(typeof window.WakeApplyLive==='function')window.WakeApplyLive(next);
+        else{
+          const state=data.state;
+          for(const name of Object.keys(state))delete state[name];
+          Object.assign(state,next.state);Object.assign(data,next,{state});
+        }
+        return;
+      }
       merge(data,packet);loaded.add(key);
     },
     async more(collection){

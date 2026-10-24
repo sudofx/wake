@@ -148,12 +148,14 @@
       conversation.replaceChildren();failedTurn=null;retry.hidden=true;status.textContent='Chat cleared.';refresh();
     });
     form.addEventListener('submit',async event=>{
-      event.preventDefault();if(submit.disabled||active||!valid())return;
+      event.preventDefault();if(submit.disabled||active)return;
+      if(!valid()){status.textContent='This article changed while the chat was open. Reload the article and send again. Your message is kept.';return;}
       const asked=question.value.trim();if(!asked)return;
       const requestEpoch=epoch,requestValid=()=>valid()&&requestEpoch===epoch;
       // Conversation policy is automatic. Prior answers stay untrusted and
       // bounded; no opening/typing event asserts reader comprehension.
       const modelMode=cap.browser&&useModel.checked;
+      steps.forEach((step,index)=>{step.textContent=(modelMode?['Download','Prepare','Reply']:['Sources','Find','Reply'])[index];});
       const body={article_id:post.id,question:asked,condition:'C',expected_article_hash:displayedHash,
         history:current.turns.slice(-MAX_TURNS).map(({mode,citations,...value})=>value),
         previous_article:priorHash?previous:{id:current.id,hash:current.hash||undefined,head:current.head,exposure:{opened:true},self_report:current.self_report}};
