@@ -4,7 +4,7 @@
 <!-- WAKE public data contract: research stays public; operator actions live in GitHub Actions. -->
 <!doctype html>
 <html data-wake-page="journal" lang="en" data-theme="light">
-<head><script>window.WAKE_DEPLOYMENT={"schema": 1, "mode": "standalone", "snapshot_only": true, "hosted_status": {"repository": "sudofx/wake", "workflow": "hosted-research.yml", "branch": "master"}, "hosted_activity": {"url": "https://wake-live-activity.coolgrove68.chatgpt.site/activity.json", "installation_id": "1fad15cb5b8b60b9d85dad462ceaaacf"}};document.documentElement.dataset.wakeHostedStatus='true';window.WAKE_STANDALONE=true;document.documentElement.dataset.wakeSnapshotOnly='true';</script><script src="runtime-activity.js?v=20261020-hosted-activity" defer></script>
+<head><script>window.WAKE_DEPLOYMENT={"schema": 1, "mode": "standalone", "snapshot_only": true, "hosted_status": {"repository": "sudofx/wake", "workflow": "hosted-research.yml", "branch": "master"}, "hosted_activity": {"url": "https://wake-live-activity.coolgrove68.chatgpt.site/activity.json", "installation_id": "1fad15cb5b8b60b9d85dad462ceaaacf"}, "ask_bob": {"url": "https://wake-ask-bob.coolgrove68.chatgpt.site", "installation_id": "1fad15cb5b8b60b9d85dad462ceaaacf"}};document.documentElement.dataset.wakeHostedStatus='true';window.WAKE_STANDALONE=true;document.documentElement.dataset.wakeSnapshotOnly='true';</script><script src="runtime-activity.js?v=20261020-hosted-activity" defer></script>
 <!-- Reader data belongs to this exported snapshot. -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,7 +27,7 @@
 <a href="#main" class="skip">Skip to content</a>
 <header class="masthead">
   <div class="brand-lockup">
-    <a class="wordmark" href="index.html" aria-label="Reload WAKE✳︎ from the site root">WAKE<span class="asterisk">✳︎</span><small><span class="cycle-count">45</span> ACCEPTED WAKES</small></a><span class="node-domain">202.wake</span>
+    <a class="wordmark" href="index.html" aria-label="Reload WAKE✳︎ from the site root">WAKE<span class="asterisk">✳︎</span><small><span class="cycle-count">46</span> ACCEPTED WAKES</small></a><span class="node-domain">202.wake</span>
     </div>
   <nav class="compact-nav" aria-label="Main navigation">
     <a href="index.html" data-nav="home">Explore</a>
@@ -335,7 +335,7 @@ window.WakePetReady=(async () => {
   const turn=value=>({id:text(value?.id,100),article_id:text(value?.article_id,240),
     article_hash:hash(value?.article_hash),head:text(value?.head,100),
     question:text(value?.question,2000),answer:text(value?.answer,6000),
-    mode:value?.mode==='published-passages'?'published-passages':'generated',
+    mode:['published-passages','live-gemini'].includes(value?.mode)?value.mode:'generated',
     citations:(Array.isArray(value?.citations)?value.citations:[]).slice(0,4).map(source=>({id:text(source.id,20),label:text(source.label||source.title,240),url:text(source.url||source.path,2000)})),
     self_report:report(value?.self_report),understanding:report(value?.self_report)?'self_reported':'unknown',time:text(value?.time,100)});
   function bounded(value){
@@ -368,7 +368,9 @@ window.WakePetReady=(async () => {
       clear(){value={schema:1,articles:[]};damaged=false;try{localStorage.removeItem(key);}catch{available=false;}}};
   }
   let capability;
-  const capabilities=()=>capability||(capability=window.WAKE_DEPLOYMENT?.snapshot_only===true?
+  const capabilities=()=>capability||(capability=window.WAKE_DEPLOYMENT?.ask_bob?.url?
+    fetch(window.WAKE_DEPLOYMENT.ask_bob.url+'/v1/capabilities',{credentials:'omit',cache:'no-store',signal:AbortSignal.timeout(5000)})
+      .then(async response=>{if(!response.ok)throw Error('Bob unavailable');const cap=await response.json();return cap.installation_id===window.WAKE_DEPLOYMENT.ask_bob.installation_id?{...cap,enabled:true,unavailable:!cap.enabled,token:'anonymous',live:true,url:window.WAKE_DEPLOYMENT.ask_bob.url}:null;}).catch(()=>({enabled:true,token:'anonymous',live:true,url:window.WAKE_DEPLOYMENT.ask_bob.url,installation_id:window.WAKE_DEPLOYMENT.ask_bob.installation_id,unavailable:true})):window.WAKE_DEPLOYMENT?.snapshot_only===true?
     fetch('installation.json',{cache:'no-cache',credentials:'omit',signal:AbortSignal.timeout(5000)})
       .then(async response=>{
         const value=response.ok?await response.json():null;
@@ -417,7 +419,7 @@ window.WakePetReady=(async () => {
     const panel=element('section',undefined,'ask-bob');
     panel.setAttribute('aria-label','Ask Bob');
     panel.append(element('h2','Ask Bob'));
-    panel.append(element('p',cap.browser?
+    panel.append(element('p',cap.live?'Talk with Bob live about this article, WAKE, or your own questions. No sign-in required.':cap.browser?
       'Find answers in this article and its linked sources. Published passages appear without a model download.':
       'Talk about this article. Bob uses the article and your recent conversation.','ask-bob-note'));
     const conversation=element('div',undefined,'ask-bob-conversation');
@@ -434,7 +436,7 @@ window.WakePetReady=(async () => {
     const status=element('p','','ask-bob-status');status.setAttribute('role','status');panel.append(status);
     const form=element('form',undefined,'ask-bob-composer'),question=element('textarea');
     question.required=true;question.maxLength=2000;question.rows=2;
-    question.placeholder='Ask about this article…';question.setAttribute('aria-label','Message Bob');
+    question.placeholder=cap.live?'Talk to Bob…':'Ask about this article…';question.setAttribute('aria-label','Message Bob');
     const submit=element('button','Send');submit.type='submit';submit.disabled=!displayedHash;
     const cancel=element('button','Stop');cancel.type='button';cancel.hidden=true;cancel.addEventListener('click',()=>active?.abort());
     form.append(question,submit,cancel);panel.append(form);
@@ -443,13 +445,13 @@ window.WakePetReady=(async () => {
     const useModel=element('input');useModel.type='checkbox';
     const modelLabel=element('label');modelLabel.append(useModel,document.createTextNode(' Experimental AI answer on this device (491 MB download; slower and may be inaccurate)'));
     const privacy=element('details',undefined,'ask-bob-privacy');privacy.append(element('summary','About this chat'));
-    privacy.append(element('p',cap.browser?
+    privacy.append(element('p',cap.live?'Your message and recent conversation go to WAKE’s answer service and Google Gemini. Chat history is saved in this browser; our service stores only temporary request counters, not conversations. Do not send sensitive information. Bob can make mistakes and cannot change research records. Anonymous use has shared request limits.':cap.browser?
       'The site prepares a small searchable guide when it publishes each article. Your browser finds and quotes relevant passages; it does not generate new facts. Questions and saved replies stay here and never enter the research record. The optional AI answer downloads a model from Hugging Face and runs on this device.':
       'History stays in this browser. Questions and recent context go to the local answer service and its configured model, and are excluded from public exports. Bob can make mistakes; check the sources.'));
     if(cap.browser)privacy.append(modelLabel);
     const storageNote=element('p');privacy.append(storageNote);
     const clear=element('button','Clear chat');clear.type='button';privacy.append(clear);panel.append(privacy);
-    if(cap.browser){const prompts=element('div',undefined,'ask-bob-prompts');for(const label of ['What is the main point?','What evidence is cited?','What are the limitations?']){const button=element('button',label);button.type='button';button.addEventListener('click',()=>{if(!active){question.value=label;form.requestSubmit();}});prompts.append(button);}form.before(prompts);}
+    if(cap.browser||cap.live){const prompts=element('div',undefined,'ask-bob-prompts');for(const label of ['What is the main point?','What evidence is cited?','What are the limitations?']){const button=element('button',label);button.type='button';button.addEventListener('click',()=>{if(!active){question.value=label;form.requestSubmit();}});prompts.append(button);}form.before(prompts);}
     container.append(panel);
     function persist(){store.save();current=store.value.articles.find(row=>row.id===post.id)||current;}
     function refresh(){
@@ -462,12 +464,13 @@ window.WakePetReady=(async () => {
       const item=element('div',undefined,'ask-bob-turn');
       const user=element('div',undefined,'ask-bob-message ask-bob-user');user.append(element('strong','You'),element('p',value.question));item.append(user);
       if(value.answer){
-        const reply=element('div',undefined,'ask-bob-message ask-bob-reply');reply.append(element('strong',value.mode==='published-passages'?'Bob · source passages':'Bob · AI answer (unverified)'),element('p',value.answer,'ask-bob-answer'));item.append(reply);
+        const reply=element('div',undefined,'ask-bob-message ask-bob-reply');reply.append(element('strong',value.mode==='published-passages'?'Bob · source passages':value.mode==='live-gemini'?'Bob · live (AI)':'Bob · AI answer (unverified)'),element('p',value.answer,'ask-bob-answer'));item.append(reply);
         const links=element('ul',undefined,'ask-bob-sources');for(const source of value.citations||[]){const href=safeURL(source.url);if(!href)continue;const row=element('li'),link=element('a',source.id+' · '+source.label);link.href=href;link.rel='noopener noreferrer';row.append(link);links.append(row);}if(links.children.length)reply.append(links);
       }
       conversation.append(item);bottom();return item;
     }
     current.turns.forEach(display);refresh();
+    if(cap.unavailable)status.textContent='Bob is temporarily unavailable. You can try sending again shortly.';
     if(!displayedHash)status.textContent='This article has no verified display version. Reload a newly exported snapshot before asking a question.';
     clear.addEventListener('click',()=>{
       epoch++;active?.abort();previous=null;priorHash='';store.clear();current={id:text(post.id,240),hash:displayedHash,head:text(descriptor?.head||head,100),opened:true,encountered_at:new Date().toISOString(),self_report:null,turns:[],versions:[]};
@@ -485,6 +488,7 @@ window.WakePetReady=(async () => {
       const body={article_id:post.id,question:asked,condition:'C',expected_article_hash:displayedHash,
         history:current.turns.slice(-MAX_TURNS).map(({mode,citations,...value})=>value),
         previous_article:priorHash?previous:{id:current.id,hash:current.hash||undefined,head:current.head,exposure:{opened:true},self_report:current.self_report}};
+      if(cap.live)body.history=current.turns.slice(-6).map(value=>({question:text(value.question,1000),answer:text(value.answer,2000)}));
       if(priorHash)body.prior_article_hash=priorHash;
       failedTurn?.remove();failedTurn=null;const pending=display({question:asked});question.value='';
       retry.hidden=true;submit.disabled=true;cancel.hidden=false;activity.hidden=false;status.textContent='';
@@ -501,7 +505,7 @@ window.WakePetReady=(async () => {
         if(stage===0&&typeof detail.fraction==='number'){progressBar.value=detail.fraction;progressBar.setAttribute('aria-valuetext',Math.floor(detail.fraction*100)+'% downloaded');}
         else{progressBar.removeAttribute('value');progressBar.removeAttribute('aria-valuetext');}
         progressText.textContent=stage===0?(typeof detail.fraction==='number'?'Downloading Bob: '+Math.floor(detail.fraction*100)+'%':'Checking Bob’s saved download…'):
-          stage===1?'Preparing Bob on your device…':detail.characters?'Bob is writing… '+detail.characters+' characters generated':modelMode?'Bob is reading and thinking…':'Finding relevant published passages…';
+          stage===1?(cap.live?'Connecting to Bob…':'Preparing Bob on your device…'):detail.characters?'Bob is writing… '+detail.characters+' characters generated':modelMode||cap.live?'Bob is reading and thinking…':'Finding relevant published passages…';
       };
       const checkDeadline=()=>{if(Date.now()>=deadlineAt)controller.abort(new DOMException(phase==='prepare'?'Bob took too long to prepare.':'Bob took too long to answer.','TimeoutError'));};
       const setDeadline=ms=>{clearTimeout(deadline);deadlineAt=Date.now()+ms;deadline=setTimeout(checkDeadline,ms);};
@@ -514,7 +518,14 @@ window.WakePetReady=(async () => {
       try{
         const work=(async()=>{
           let result,responseOK=true;
-          if(cap.browser){
+          if(cap.live){
+            phase='answer';setDeadline(60000);
+            const response=await fetch(cap.url+'/v1/chat',{method:'POST',credentials:'omit',cache:'no-store',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),signal:controller.signal});
+            if(!response.ok){const value=await response.json();throw Error(({daily_limit:'Bob has reached today’s shared question allowance. Please try tomorrow.',rate_limited:'Please wait a minute before sending another message.',busy:'Bob is helping other readers. Try again shortly.',provider_quota:'Gemini’s shared quota is currently exhausted. Please try later.',article_changed:'This article changed. Reload it before sending again.',article_unavailable:'This article is no longer available. Reload the latest blog.'})[value.error]||'Bob is temporarily unavailable. Please try again later.');}
+            const reply=element('div',undefined,'ask-bob-message ask-bob-reply'),prose=element('p','','ask-bob-answer');reply.append(element('strong','Bob · live'),prose);pending.append(reply);
+            const reader=response.body.getReader(),decoder=new TextDecoder();let buffer='',partial='',done=false;
+            try{for(;;){const chunk=await reader.read();buffer+=decoder.decode(chunk.value||new Uint8Array(),{stream:!chunk.done});if(buffer.length>65536)throw Error('Bob sent an oversized reply.');const lines=buffer.split('\n');buffer=lines.pop();for(const line of lines){if(!line.trim())continue;const event=JSON.parse(line);if(event.type==='delta'){partial+=text(event.text,6000);prose.textContent=partial;showProgress('',{stage:'answer',characters:partial.length});bottom();}else if(event.type==='done'){result=event.result;done=true;}else if(event.type==='error')throw Error('Bob could not finish the reply. Please try again.');}if(chunk.done)break;}if(!done)throw Error('The connection ended before Bob finished.');}finally{await reader.cancel();}
+          }else if(cap.browser){
             if(!modelMode){phase='answer';setDeadline(15000);const runtime=await guide();return {result:await runtime.answer(body,controller.signal,showProgress),responseOK:true};}
             const runtime=await browser();
             if(controller.signal.aborted)throw controller.signal.reason;
