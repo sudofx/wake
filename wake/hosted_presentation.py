@@ -48,6 +48,7 @@ def bind_hosted_status(site, repository, revision):
             deployment = json.loads(match.group(1))
             deployment['hosted_status'] = config
             deployment['hosted_activity'] = activity
+            deployment['ask_bob'] = {'url': 'https://wake-ask-bob.coolgrove68.chatgpt.site', 'installation_id': manifest['installation_id']}
             return ('window.WAKE_DEPLOYMENT=' + json.dumps(deployment)
                     + ";document.documentElement.dataset.wakeHostedStatus='true';")
         from .report import _masthead_navigation
@@ -75,6 +76,7 @@ def bind_hosted_status(site, repository, revision):
             deployment = json.loads(deployment_path.read_text())
             deployment['hosted_status'] = config
             deployment['hosted_activity'] = activity
+            deployment['ask_bob'] = {'url': 'https://wake-ask-bob.coolgrove68.chatgpt.site', 'installation_id': manifest['installation_id']}
             deployment_path.write_text(json.dumps(deployment))
     from .reader_guide import refresh_public_reader
     refresh_public_reader(site)

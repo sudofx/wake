@@ -57,11 +57,11 @@ explicit worker recovery, failure evidence and reproducible disturbance checks.
 Use the [private continuity workflow](docs/continuity/README.md) to preserve human
 research notes and engineering handoffs between conversations.
 
-[Ask Bob](docs/ask-bob.md) finds relevant published passages without sign-in,
-an API key, a running installation or a model download. Publication prepares a
-bounded source guide; questions and replies stay in the browser. An optional
-491 MB device model and the local Gemini preview remain separate. Neither reader
-surface has research authority or starts automated research.
+[Ask Bob](docs/ask-bob.md) provides live anonymous conversation through a WAKE
+API with a server-held Gemini key. Replies stream into the browser, use published
+WAKE sources and recent conversation, and remain advisory. Shared server limits
+bound anonymous use. Unbound static exports retain local passage search and the
+optional device model. No Bob surface can change research records or controls.
 
 The [static inspection interface](docs/inspection.md) gives unfamiliar readers and
 AI systems plain-text explanations, exact evidence and a reproducible kernel example.

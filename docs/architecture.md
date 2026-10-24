@@ -52,21 +52,26 @@ and identity; it is not replay, migration or an authority merge. See the
 [research expansion](research-expansion.md). Model-formulated questions remain
 ordinary governed project/reframe actions, never configuration edits.
 
-[Public Ask Bob](ask-bob.md) defaults to source retrieval on the static mirror.
-Publication derives a bounded passage index from already filtered public records;
-the browser verifies the displayed article hash and source heads and quotes matching
-passages. It makes no model call or download. Search matches are not scientific
-verification, generated explanations or research progress. Questions stay local.
-The optional device model requires a separate explicit choice, remains untrusted
-presentation, and retains its pinned weights, vendored runtime and private-memory
-Safari path. Neither mode can submit transitions, read authority, change Attention,
-or call research controls. No visitor account or provider key is involved.
+[Public Ask Bob](ask-bob.md) uses a dedicated anonymous conversation API on the
+hosted website. The Worker owns the Gemini credential, model and instructions;
+clients submit bounded messages and recent turns, never tools or source URLs.
+The server verifies the displayed article against a fixed public guide URL and
+streams an advisory explanation. Conditional R2 writes enforce global admission,
+per-address counters and expiring concurrency leases across Worker instances.
+The disposable counter object is not research authority and stores no chat text.
+There is no visitor authentication. CORS constrains browsers, not arbitrary clients;
+shared server budgets limit abuse even when Origin is forged. Google project quota
+remains shared with any other caller using that project.
+
+Unbound static exports retain browser-local passage retrieval and an optional
+device model. Neither live nor local answers can submit transitions, read private
+authority, change Attention or call research controls.
 
 The optional local Gemini preview is a separate loopback reader surface.
 It uses completed public exports and the existing owning worker's native provider
 invocation journal. It never submits governed research changes or creates a second
 writer. Browser conversations remain local; operational hashes and outcomes remain
-in the existing record. Public Pages has no live conversation endpoint.
+in the existing record. Pages delegates live conversation to the separately hosted API.
 Reader invocation evidence uses the kernel's managed lifecycle scope, which
 protects an active same-process call from interruption recovery. It does not hold
 the application research turn lock or modify research state. The shared provider

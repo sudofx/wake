@@ -211,13 +211,15 @@ The [kernel contract](kernel.md) distinguishes generic envelope replay from
 application state reconstruction. Application IDs share a record revision when
 installed together; independent installations must select separate records.
 
-[Ask Bob](ask-bob.md#how-context-stays-bounded) separately retrieves a bounded
-current publication and directly linked exact public records. Its default passage
-index is prepared at publication, capped at 96 KiB and searched locally without
-inference. It preserves exact excerpts and source identities, not generated facts.
-The optional model's A/B/C browser
-conversation context is advisory; it never enters the research retrieval policy
-or creates accepted scientific memory.
+[Ask Bob](ask-bob.md) separately uses an article-specific public passage guide,
+capped at 96 KiB. The hosted conversation API verifies the displayed article hash
+and source heads, selects up to 18,000 characters from at most 24 passages, and
+passes these with recent conversation to Gemini. The browser keeps at most six
+recent turns for this path, clipping each submitted question to 1,000 characters
+and each prior answer to 2,000; the current question allows 2,000. The server never
+accepts client-selected source URLs, system prompts, tools or models. Unbound
+exports search the same guide locally. Every Bob mode is advisory and excluded
+from research retrieval, governance and accepted scientific memory.
 
 The separate [inspection reading path](inspection.md) offers a compact orientation,
 manifest and progressively deeper static evidence. It requires no model-specific

@@ -3,10 +3,43 @@
 ## Use it on the public website
 
 Open an article in Bob's Blog, type a question in **Ask Bob**, and press **Send**.
-The default finds relevant published passages, with links to their sources. It
-does not download a model, run inference, use a provider, or upload your question.
-Try **What is the main point?**, **What evidence is cited?**, or a specific term.
-A missing match is reported honestly; it is not proof that a claim is false.
+On the hosted WAKE website, Bob answers live through a dedicated WAKE API and
+streams his reply as Gemini generates it. Ask follow-up questions naturally, ask
+for a different explanation, challenge a claim, or discuss a broader idea. No
+account, login, visitor API key, or model download is required.
+
+Your question and up to six recent turns go to the WAKE answer service and Google
+Gemini. Chat history is saved in this browser. The service retains temporary
+request counters rather than conversations; Google processes the submitted text
+under the owning Gemini project's terms. Do not submit sensitive information.
+Bob can make mistakes. His explanations are advisory and never become research
+records, governed decisions, or accepted scientific progress.
+
+The server, rather than the visitor, owns the model, system instructions, source
+URLs and provider credential. It loads the exact article's already public guide,
+checks its displayed hash and snapshot head, and supplies up to 18,000 characters
+of passages. Recent conversation is untrusted context. Broader reasoning is
+allowed, with an explicit distinction between published WAKE claims and general
+knowledge or interpretation. Linked citations identify sources, not independent
+verification. Bob cannot inspect private records or control the installation.
+
+**Stop** cancels the connection; **Clear chat** removes local history. Quota,
+busy, changed-article and provider errors are visible and retain your message for
+retry. There is no automatic provider retry or silent switch to a different answer
+mode. The live service defaults to 100 attempts per UTC day across all visitors,
+20 per network address per day, four per minute, and two simultaneous requests.
+Failed attempts count too. Limits are enforced with conditional writes to a
+shared server-side object, rather than browser storage or per-process counters.
+Application counters keep network addresses only as daily salted hashes; the
+hosting provider may retain ordinary request metadata. The same Gemini project
+may also serve research, so Google's quota is shared; these limits bound Bob's
+calls, not reserve research capacity or guarantee free billing.
+
+## Passage mode on unbound static exports
+
+Exports without the hosted Bob API binding retain a browser-local passage mode.
+This mode makes no model call and does not transmit questions. It is distinct
+from the live hosted conversation described above.
 
 Publication prepares an article-specific search guide from already filtered public
 article, notebook, evidence and project records. The guide is at most 96 KiB,
@@ -34,8 +67,9 @@ records from absence of evidence.
 
 ## If Send does not answer
 
-Public Ask Bob does not use Gemini or its quota. A quota wait can pause live
-research while published article questions remain available.
+Live Ask Bob uses the server’s Gemini project quota. If Gemini is exhausted, Bob
+reports it and keeps the message for retry. Browser-local passage mode remains
+independent of Gemini.
 
 When Pages updates during navigation, the reader refetches its small overview
 and adopts the requested detail only if both belong to the same snapshot. If the
@@ -44,7 +78,7 @@ article. A stale chat reports that its article changed and keeps the typed messa
 it must never silently discard Send. No cache clearing or model download is needed
 for this recovery.
 
-## Optional device model
+## Optional device model on unbound static exports
 
 Under **About this chat**, explicitly enable **Experimental AI answer on this
 device** to use the older generative mode. It is slower and can be inaccurate;

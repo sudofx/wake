@@ -57,6 +57,7 @@ jobs:
       - name: Check hosted activity privacy and freshness
         run: |
           node --test deploy/activity-relay/tests/relay.test.js
+          node --test deploy/ask-bob/tests/api.test.js
           node tests/browser/hosted-activity-unit.cjs
           node tests/browser/hosted-status-unit.cjs
       - name: Simulate 100 WAKE cycles

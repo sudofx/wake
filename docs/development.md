@@ -28,10 +28,10 @@ For private human checkpoints and fresh-conversation recovery, use the
 [continuity workflow](continuity/README.md). It complements the authoritative
 research record without adding runtime state or automatic model context.
 
-For public browser-only answers and the optional host-loopback Gemini preview,
-see [Ask Bob](ask-bob.md). Public answers default to quoted passages from a publication-time source guide;
-an optional generative model runs on the reader's device. They require no owning worker or authentication.
-Neither mode starts or resets research when opened.
+For live anonymous Bob answers, static passage mode and the optional loopback
+preview, see [Ask Bob](ask-bob.md). `deploy/ask-bob/` owns the hosted API; its
+publication checkout is only a mirror. Test it with `node --test deploy/ask-bob/tests/api.test.js`.
+No reader mode starts or resets research.
 
 ## Current development path
 

@@ -20,14 +20,13 @@ is a dated, read-only copy of the public data exported from those records. GitHu
 Pages executes no research and has no research controls. An explicitly bound hosted
 status light observes the GitHub Actions executor; ordinary mirrors have no execution light.
 
-[Ask Bob](ask-bob.md) uses a small passage guide prepared during publication.
-The first question fetches at most 96 KiB of public source material, without a model
-download or answer server. Questions and history stay in the browser. An explicitly
-selected experimental device model retains the pinned 491 MB download and Safari
-private-memory engine; ordinary questions never load it. The optional local Gemini
-preview remains separate. Individual node pages do not mount Ask Bob and omit
-unused inference binaries. Public guide generation never calls providers or writes
-to authoritative records.
+[Ask Bob](ask-bob.md) on the hosted mirror calls a dedicated public Worker API
+owned in `deploy/ask-bob/`. Sites hosts this server component; GitHub Pages stays
+static. The Gemini key and address-hashing salt are runtime secrets, never browser
+assets. No visitor authentication or third-party identity service is used. Shared
+conditional counters bound provider admission; chat text is not persisted by the
+Worker. Opening a page does not call Gemini. Unbound exports retain local passage
+search. Public guide generation never calls providers or writes authority.
 
 The unified export also generates [static inspection resources](inspection.md)
 under `inspect/`. They require no JavaScript, authentication or live model; their

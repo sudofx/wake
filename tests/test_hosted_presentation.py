@@ -39,6 +39,8 @@ class HostedPresentationTests(unittest.TestCase):
             index.write_text(index.read_text().replace('<script src="nav.js?v=old" defer></script>', '<script>/* inline navigation */</script>'))
             bound = bind_hosted_status(root, 'example/repo', 'b' * 40)
             self.assertEqual(bound['record_heads'], manifest['record_heads'])
+            self.assertIn('https://wake-ask-bob.coolgrove68.chatgpt.site', (root / 'index.html').read_text())
+            self.assertIn('original-installation', (root / 'index.html').read_text())
             self.assertEqual(bound['hosted_execution'], manifest['hosted_execution'])
             self.assertEqual((root / 'inspect/index.html').read_bytes(), packet)
             self.assertEqual((root / 'reader-data.json').read_bytes(), b'{"private_bodies":false,"version":744}')
