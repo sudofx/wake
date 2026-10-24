@@ -5,7 +5,8 @@
 Open an article in Bob’s Blog and select the chat-bubble **Ask Bob** button below
 the story title. It opens a separate chat window with that story selected. The
 window uses message bubbles and a fixed composer: Enter sends; Shift+Enter adds a
-line. On phones, the browser may open a full-screen tab. Reopening the same story’s
+line. The window follows the visible screen as the phone keyboard opens and
+closes; only the message history scrolls. On phones, the browser may open a full-screen tab. Reopening the same story’s
 chat focuses the existing window. There are no preset question buttons.
 
 Or open [Talk with Bob](https://wake-ask-bob.coolgrove68.chatgpt.site/) for a stable
