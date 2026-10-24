@@ -27,7 +27,7 @@
 <a href="#main" class="skip">Skip to content</a>
 <header class="masthead">
   <div class="brand-lockup">
-    <a class="wordmark" href="index.html" aria-label="Reload WAKE✳︎ from the site root">WAKE<span class="asterisk">✳︎</span><small><span class="cycle-count">48</span> ACCEPTED WAKES</small></a><span class="node-domain">202.wake</span>
+    <a class="wordmark" href="index.html" aria-label="Reload WAKE✳︎ from the site root">WAKE<span class="asterisk">✳︎</span><small><span class="cycle-count">49</span> ACCEPTED WAKES</small></a><span class="node-domain">202.wake</span>
     </div>
   <nav class="compact-nav" aria-label="Main navigation">
     <a href="index.html" data-nav="home">Explore</a>
@@ -361,6 +361,7 @@ window.WakePetReady=(async () => {
     return {get value(){return value;},get available(){return available;},get damaged(){return damaged;},key,save,
       clear(){value={schema:1,articles:[]};damaged=false;try{localStorage.removeItem(key);}catch{available=false;}}};
   }
+  let popup, popupArticle;
   let capability;
   const capabilities=()=>capability||(capability=window.WAKE_DEPLOYMENT?.ask_bob?.url?
     fetch(window.WAKE_DEPLOYMENT.ask_bob.url+'/v1/capabilities',{credentials:'omit',cache:'no-store',signal:AbortSignal.timeout(5000)})
@@ -393,6 +394,18 @@ window.WakePetReady=(async () => {
     const cap=await capabilities();
     if(!valid()||!cap?.enabled||typeof cap.token!=='string'||!cap.token||typeof cap.installation_id!=='string'||!cap.installation_id)return;
     if(container.querySelector('.ask-bob'))return;
+    if(cap.live){
+      const launcher=element('a',undefined,'ask-bob-launch');
+      launcher.href=cap.url+'/?article='+encodeURIComponent(post.id)+'&hash='+hash(post._reader_article?.hash);launcher.target='_blank';launcher.rel='noopener';
+      const icon=element('span');icon.innerHTML='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M20 15a3 3 0 0 1-3 3H9l-5 4V6a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3Z"/><path d="M8 10h8M8 14h5"/></svg>';icon.setAttribute('aria-hidden','true');launcher.append(icon,document.createTextNode('Ask Bob'));
+      launcher.setAttribute('aria-label','Ask Bob · open chat window');
+      launcher.addEventListener('click',event=>{
+        if(popup&&!popup.closed&&popupArticle===post.id){event.preventDefault();popup.focus();return;}
+        const opened=window.open(launcher.href,'wake-bob-chat','popup,width=480,height=760,resizable=yes,scrollbars=yes');
+        if(opened){event.preventDefault();popup=opened;popupArticle=post.id;opened.focus();}
+      });
+      const title=container.querySelector('h1');if(title)title.after(launcher);else container.prepend(launcher);
+    }
     const store=storage(cap.installation_id);
     const descriptor=post._reader_article,displayedHash=hash(descriptor?.hash);
     let current=store.value.articles.find(row=>row.id===post.id);
@@ -445,7 +458,6 @@ window.WakePetReady=(async () => {
     if(cap.browser)privacy.append(modelLabel);
     const storageNote=element('p');privacy.append(storageNote);
     const clear=element('button','Clear chat');clear.type='button';privacy.append(clear);panel.append(privacy);
-    if(cap.browser||cap.live){const prompts=element('div',undefined,'ask-bob-prompts');for(const label of ['What is the main point?','What evidence is cited?','What are the limitations?']){const button=element('button',label);button.type='button';button.addEventListener('click',()=>{if(!active){question.value=label;form.requestSubmit();}});prompts.append(button);}form.before(prompts);}
     container.append(panel);
     function persist(){store.save();current=store.value.articles.find(row=>row.id===post.id)||current;}
     function refresh(){
