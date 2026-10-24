@@ -28,6 +28,8 @@ def parser():
     p.add_argument("--data", default=None, help="Durable state directory (default: data; installation status uses its controller)")
     p.add_argument("--config", default="wake.toml")
     sub = p.add_subparsers(dest="command", required=True)
+    from .improvement import configure_parser
+    configure_parser(sub)
     sub.add_parser("init", help="Initialize an empty record; never overwrite an existing one")
     wake = sub.add_parser("wake", help="Run one bounded invocation")
     wake.add_argument("--provider", choices=["gemini", "fixture"])
@@ -103,6 +105,9 @@ def parser():
     return p
 
 def execute(args):
+    if args.command == 'improve':
+        from .improvement import execute as execute_improvement
+        return execute_improvement(args)
     if args.command == "status" and args.data is None and os.environ.get("WAKE_TERMINAL_ROLE") == "installation":
         # Installation status has twelve authorities, never a default solo store.
         # A missing controller must fail visibly rather than opening another record.
@@ -280,7 +285,7 @@ def main():
         result = execute(args)
         if result is not None:
             print(json.dumps(result, indent=2))
-        if isinstance(result, dict) and result.get("status") in ("rejected", "failed"):
+        if isinstance(result, dict) and result.get("status") in ("rejected", "failed", "execution_failed", "cleanup_required"):
             return 2
         return 0
     except (Rejected, IntegrityError, RecordIntegrityError, OSError, sqlite3.DatabaseError, ValueError) as exc:

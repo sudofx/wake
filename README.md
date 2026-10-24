@@ -63,6 +63,12 @@ WAKE sources and recent conversation, and remain advisory. Shared server limits
 bound anonymous use. Unbound static exports retain local passage search and the
 optional device model. No Bob surface can change research records or controls.
 
+The local [improvement workflow](docs/improvements.md) turns captured research
+into versioned Python proposals and isolated baseline/candidate comparisons.
+Its kernel record preserves favorable and unfavorable results for human review;
+it never installs changes or counts experiments as research progress. The first
+task explores commitment-aware project context selection, not general intelligence.
+
 The [static inspection interface](docs/inspection.md) gives unfamiliar readers and
 AI systems plain-text explanations, exact evidence and a reproducible kernel example.
 

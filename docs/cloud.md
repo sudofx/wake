@@ -4,6 +4,10 @@ For a first public website, follow [GitHub Pages setup](setup.md#2-github-pages-
 Pages displays exported snapshots. The separate Actions runtime described below
 runs research and requires verified encrypted records before it can start.
 
+The [improvement workflow](improvements.md) is currently local and operator-run.
+Hosted research and Pages publication do not invoke candidate Python, apply its
+patches or consume its review receipts as deployment permission.
+
 The optional [decision-memory feature](retrieval.md#optional-decision-relevant-recall)
 defaults to off. A hypothetical shadow capsule is invocation telemetry, never a
 public snapshot or a source of research authority. Enabling active delivery is

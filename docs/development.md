@@ -33,6 +33,11 @@ preview, see [Ask Bob](ask-bob.md). `deploy/ask-bob/` owns the hosted API; its
 publication checkout is only a mirror. Test it with `node --test deploy/ask-bob/tests/api.test.js`.
 No reader mode starts or resets research.
 
+For research-backed code proposals, disposable-container comparisons and human
+review receipts, use the [improvement workflow](improvements.md). `wake improve`
+creates an explicit isolated experiment record; it never opens research authority
+or applies a proposed patch.
+
 ## Current development path
 
 Start with [one-container setup](standalone.md#run-one-installation-container).

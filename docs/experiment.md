@@ -1,5 +1,12 @@
 # Experiment protocol
 
+The separate [improvement workflow](improvements.md) captures research provenance
+and committed source for isolated paired Python comparisons. Its first task is
+commitment-aware context selection. A fixed development set and randomized
+holdout from the same task family measure interface/task performance, not general
+intelligence, scientific validity or production improvement. Keep all attempts,
+failures and operator decisions in its kernel record; they are not research cycles.
+
 The [experimental research expansion](research-expansion.md) defines the three
 original starting questions and thirteen additional catalog questions, per-group assignments, configuration boundaries and
 observational assessment. An operator-authorized fresh installation is a new

@@ -4,6 +4,12 @@ See [the reusable kernel contract](kernel.md) for application ownership and the
 non-research execution proof, and [installation boundaries](installations.md) for
 independent records and runtime lifecycles. These remain inside this repository.
 
+The local [improvement application](improvements.md) uses that same kernel contract
+in an explicitly new experiment record. Captured public research informs code
+proposals; it does not become writable research authority. Untrusted candidate
+code runs only in restricted disposable containers, while the host scores its
+outputs. An operator review receipt cannot apply code or grant release authority.
+
 > **Current specification.** This document explains why the present system is shaped this way: its trust boundary, durable record, governance model and known limits. Current local procedures belong in `standalone.md`; public mirror publishing belongs in `cloud.md`. Maintainer navigation, environment checks and reproducible validation guidance belong in `development.md`.
 
 **WAKE✳︎** is infrastructure for continuity of accountable work, not continuity of a model instance. Its stable sequence is **Record → Context → Proposal → Governance → Transition → Receipt**. Models, vendors, runtimes and human operators may change; the durable record, authority boundary, provenance and correction mechanisms carry the work forward. Research is the first application running on that structure.

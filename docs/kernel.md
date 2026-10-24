@@ -98,6 +98,12 @@ without the research package; a separately distributed wheel remains future work
 
 ## Durable application contract
 
+The local [improvement workflow](improvements.md) is another application on this
+contract: `wake-improvements@1`, implemented above the kernel. Its separate
+`improvements.sqlite` records proposed code, evaluation registration/results and
+operator review. Research context, Docker execution and task scoring remain
+outside the generic kernel. It grants no research mutation or deployment capability.
+
 Keep application IDs, versions, action names, and historical JSON meaning stable.
 An existing application's version cannot be renamed or replaced as a cosmetic
 cleanup. A changed interpretation needs an explicit, tested migration. Deterministic

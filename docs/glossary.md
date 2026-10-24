@@ -10,6 +10,8 @@ definitions. The wake entries describe its conceptual language rather than an AP
 | **Application** | The rules and behavior for a particular kind of work. Research is WAKE's current application. |
 | **Ask Bob** | An opt-in local reader experiment for bounded questions over published evidence. Conversation and reader self-reports never become accepted research or proof of comprehension. See [setup and limits](ask-bob.md). |
 | **Inspection interface** | Static text, a resource manifest and reproducible evidence for an independent observer. It offers reading access without research or execution authority. See [inspection](inspection.md). |
+| **Improvement proposal** | Research-linked code offered for an isolated comparison. Recording it does not execute it; passing a task qualifies it for human review, not installation. See [workflow](improvements.md). |
+| **Improvement holdout** | Task cases generated after a candidate is recorded, from the same published task family. Expected answers stay outside candidate containers. This measures that task, not general intelligence. |
 | **Authority / authoritative record** | The one database allowed to decide a node’s current state. The current installation has one governed record per node; its aggregate Console is a view, not another authority. |
 | **Blocked / red** | The runtime cannot continue without operator or agent action. |
 | **Bob** | The byline for selected plain-language summaries of already-recorded research. Bob does not make research decisions or change the record. |
