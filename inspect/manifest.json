@@ -27,36 +27,36 @@
     "unified": true
   },
   "format": "wake-inspection@1",
-  "generated_at": "2026-10-24T00:35:46.350213+00:00",
+  "generated_at": "2026-10-24T01:01:31.961107+00:00",
   "project": "WAKE✳︎",
   "published_records": [
     {
       "collection": "posts",
-      "head": "snapshot:d4deb301ca7319f2cc95c1cdb33eb8566f24944651e41b3b536700927198db9e",
+      "head": "snapshot:a0d2359313680eb3bc9c5fc4a3111d9c331b0ed1cff59a057ebfe51711059097",
       "id": "100.wake::group-bob-8",
       "url": "../reader-records/posts/3130302e77616b653a3a67726f75702d626f622d38.json"
     },
     {
       "collection": "posts",
-      "head": "snapshot:d4deb301ca7319f2cc95c1cdb33eb8566f24944651e41b3b536700927198db9e",
+      "head": "snapshot:a0d2359313680eb3bc9c5fc4a3111d9c331b0ed1cff59a057ebfe51711059097",
       "id": "100.wake::group-bob-9",
       "url": "../reader-records/posts/3130302e77616b653a3a67726f75702d626f622d39.json"
     },
     {
       "collection": "evidence",
-      "head": "snapshot:d4deb301ca7319f2cc95c1cdb33eb8566f24944651e41b3b536700927198db9e",
+      "head": "snapshot:a0d2359313680eb3bc9c5fc4a3111d9c331b0ed1cff59a057ebfe51711059097",
       "id": "101.wake::source-ecd42ccc186c468c",
       "url": "../reader-records/evidence/3130312e77616b653a3a736f757263652d656364343263636331383663343638/63.json"
     },
     {
       "collection": "evidence",
-      "head": "snapshot:d4deb301ca7319f2cc95c1cdb33eb8566f24944651e41b3b536700927198db9e",
+      "head": "snapshot:a0d2359313680eb3bc9c5fc4a3111d9c331b0ed1cff59a057ebfe51711059097",
       "id": "103.wake::r-d85af633ea7245dc",
       "url": "../reader-records/evidence/3130332e77616b653a3a722d64383561663633336561373234356463.json"
     },
     {
       "collection": "notebooks",
-      "head": "snapshot:d4deb301ca7319f2cc95c1cdb33eb8566f24944651e41b3b536700927198db9e",
+      "head": "snapshot:a0d2359313680eb3bc9c5fc4a3111d9c331b0ed1cff59a057ebfe51711059097",
       "id": "302.wake::notebook-proj-emerg-pref-001-1",
       "url": "../reader-records/notebooks/3330322e77616b653a3a6e6f7465626f6f6b2d70726f6a2d656d6572672d7072/65662d3030312d31.json"
     }
@@ -85,7 +85,7 @@
       "canonical_url": "https://sudofx.github.io/wake/inspect/evidence.md",
       "description": "Reproducible demonstration and dated public-export pointers.",
       "id": "evidence",
-      "sha256": "27dda03d68d4ae16015b479ca3e1f6853d1b3390ee031e58012c870962580fda",
+      "sha256": "79bff0375fae6a03267a289b5174d77c3fcdb94bc453b493898666dab6ea82b5",
       "type": "text/markdown",
       "url": "evidence.md"
     },
@@ -121,7 +121,7 @@
       "canonical_url": "https://sudofx.github.io/wake/inspect/packet.md",
       "description": "Self-contained inspection document, including the exact offline demonstration.",
       "id": "packet",
-      "sha256": "d541c99cfc8011eb91adb5ca4bec7df41d27330a95b5e24153d4e8190292b245",
+      "sha256": "adc761e3120e163d9cd868feffad92a459f136043d5eda5020021660424787b3",
       "type": "text/markdown",
       "url": "packet.md"
     },
@@ -137,14 +137,14 @@
   ],
   "snapshot": {
     "authoritative": false,
-    "generated_at": "2026-10-24T00:28:42.440548+00:00",
-    "head": "snapshot:d4deb301ca7319f2cc95c1cdb33eb8566f24944651e41b3b536700927198db9e",
+    "generated_at": "2026-10-24T00:46:09.929069+00:00",
+    "head": "snapshot:a0d2359313680eb3bc9c5fc4a3111d9c331b0ed1cff59a057ebfe51711059097",
     "node_heads": {
       "100.wake": {
-        "generated": "2026-10-24T00:28:42.440548+00:00",
-        "head": "7257b237dae749088ae155e54b9ddc57b791e0537caa168a65372e5ad703448a",
+        "generated": "2026-10-24T00:46:09.929069+00:00",
+        "head": "441c2bb214367844efd0f85aa156f53784bdc8f121d92527bd7d3399cd7942c3",
         "node": "100.wake",
-        "snapshot_digest": "161e0bdf4e1019d802fa2e0cb1b64a86fdafea951eb56acb942b84f8523f87d7",
+        "snapshot_digest": "bb99a71776b26bc0b3219730a0df878e2c8d51c1f5387d5f0ce6795721311b4c",
         "version": 19
       },
       "101.wake": {
