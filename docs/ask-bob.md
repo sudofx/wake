@@ -34,8 +34,18 @@ verification. Bob cannot inspect private records or control the installation.
 
 **Stop** cancels the connection; **Clear chat** removes local history. Quota,
 busy, changed-article and provider errors are visible and retain your message for
-retry. There is no automatic provider retry or silent switch to a different answer
-mode. The live service defaults to 100 attempts per UTC day across all visitors,
+retry. The standalone chat creates no empty reply for a failed request and reuses
+the pending question bubble when you retry. **Check availability** makes no model
+call; recovery never sends the question without your action. A known provider
+limit disables Send and shows the next retry time. Daily provider limits use
+Pacific midnight, independently of Bob's UTC admission counters.
+
+A confirmed, positive, model-specific daily free-tier limit may use a configured
+compatible Gemini fallback before any answer text is streamed. Minute, project,
+unknown and zero quotas stop further provider attempts temporarily. There is no
+fallback after partial text or a transport failure, and no silent switch to a
+different answer mode. Each attempted model counts against the same budget.
+See the [service setup](../deploy/ask-bob/README.md) for the bounded model pool. The live service defaults to 100 attempts per UTC day across all visitors,
 20 per network address per day, four per minute, and two simultaneous requests.
 Failed attempts count too. Limits are enforced with conditional writes to a
 shared server-side object, rather than browser storage or per-process counters.
@@ -77,7 +87,8 @@ records from absence of evidence.
 ## If Send does not answer
 
 Live Ask Bob uses the server’s Gemini project quota. If Gemini is exhausted, Bob
-reports it and keeps the message for retry. Browser-local passage mode remains
+reports the known retry time and keeps the message for retry. Availability checks
+do not consume Gemini quota. Browser-local passage mode remains
 independent of Gemini.
 
 When Pages updates during navigation, the reader refetches its small overview

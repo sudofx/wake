@@ -15,7 +15,18 @@ neither route calls Gemini. Standalone history lives only in tab memory.
 to six recent `{question, answer}` turns. It returns newline-delimited JSON:
 `delta` events carry `text`; `done` carries the complete `result`, exact article
 identity and cited source links; `error` means the partial answer is incomplete.
-HTTP failures return JSON error codes. No automatic retry consumes extra quota.
+HTTP failures return JSON error codes. Provider quota failures include `retry_at`
+and `quota_scope`. Only a structured, positive, model-specific daily free-tier
+quota failure permits trying the next configured compatible model (at most two
+fallbacks, before any text is streamed). Minute, project, unknown and zero quotas
+stop the whole service temporarily. Transport failures and partial answers never
+trigger fallback. Every provider attempt consumes admission budget.
+
+Quota cooldowns are shared across workers. Daily cooldowns last until Pacific
+midnight; shorter limits respect bounded Google RetryInfo. Availability checks
+make no Gemini call. The chat retains failed drafts, creates Bob's bubble only
+when text arrives, and reuses the pending user bubble on an explicit retry.
+Availability recovery never automatically resends a question.
 
 The server fixes the source origin to the WAKE Pages public guide archive and
 verifies the displayed article hash and source heads. It sends at most 18,000
@@ -25,11 +36,15 @@ Do not connect it to native record storage or the activity relay.
 
 Runtime values: secret `GEMINI_API_KEY`, secret `IP_SALT`, `BOB_ENABLED=true`,
 `GEMINI_MODEL=gemini-3.1-flash-lite`, and the owning `INSTALLATION_ID`.
+Optional `GEMINI_FALLBACK_MODELS=gemini-3.5-flash-lite,gemini-3.6-flash` is honored
+only with `BOB_FREE_TIER_CONFIRMED=true`. Recheck availability and free-tier pricing
+before changing this allowlisted model pool; this flag does not alter billing.
 Set `BOB_ENABLED=false` and redeploy to disable provider access. Use native Sites
 environment tools; never put secret values in the source or hosting manifest.
 
 R2 binding `BUCKET` holds one disposable `admission.json`: UTC day, attempt count,
-daily salted address hashes, burst counts and expiring concurrency leases. It
+daily salted address hashes, burst counts, sanitized provider quota cooldowns
+and expiring concurrency leases. It
 contains no questions, answers, raw IP addresses or research state. Hosting-provider
 request logs may still include ordinary connection metadata. Conditional
 writes serialize admission globally across Worker instances. Defaults: 100 total
