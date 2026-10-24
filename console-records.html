@@ -96,7 +96,7 @@
   </section>
 </div>
 <footer><a class="footer-mark" href="#home">WAKE✳︎</a><span>DURABLE WORK. REPLACEABLE INTELLIGENCE.</span><div><a href="#about">About →</a><a href="console-state.html">State →</a><a href="console-events.html">History →</a></div><p>Made of evidence, not vibes. <span id="generated"></span></p></footer>
-<script src="reader-data.js"></script>
+<script src="reader-data.js?v=20261023-snapshot-recovery"></script>
 <script>
 // A resident older exporter can read this template before it adopts the new
 // asset list. Keep its completed pages usable; a damaged new export fails visibly.
@@ -495,12 +495,14 @@ window.WakePetReady=(async () => {
       conversation.replaceChildren();failedTurn=null;retry.hidden=true;status.textContent='Chat cleared.';refresh();
     });
     form.addEventListener('submit',async event=>{
-      event.preventDefault();if(submit.disabled||active||!valid())return;
+      event.preventDefault();if(submit.disabled||active)return;
+      if(!valid()){status.textContent='This article changed while the chat was open. Reload the article and send again. Your message is kept.';return;}
       const asked=question.value.trim();if(!asked)return;
       const requestEpoch=epoch,requestValid=()=>valid()&&requestEpoch===epoch;
       // Conversation policy is automatic. Prior answers stay untrusted and
       // bounded; no opening/typing event asserts reader comprehension.
       const modelMode=cap.browser&&useModel.checked;
+      steps.forEach((step,index)=>{step.textContent=(modelMode?['Download','Prepare','Reply']:['Sources','Find','Reply'])[index];});
       const body={article_id:post.id,question:asked,condition:'C',expected_article_hash:displayedHash,
         history:current.turns.slice(-MAX_TURNS).map(({mode,citations,...value})=>value),
         previous_article:priorHash?previous:{id:current.id,hash:current.hash||undefined,head:current.head,exposure:{opened:true},self_report:current.self_report}};
@@ -789,7 +791,7 @@ window.WakePetReady=(async () => {
     $('entries').innerHTML=entries.slice(0,journalLimit).map(j => {
       const i=s.invocations[j.invocation]||{}, event=decisions[j.invocation], actions=event?.payload?.proposal?.actions;
       const changeLabel=Array.isArray(actions)?`${actions.length} recorded change${actions.length===1?'':'s'}`:'Change details outside the live history window';
-      return `<article class="entry record-panel" id="cycle-${esc(j.origin?.node?`${j.origin.node}-${j.cycle}`:j.cycle)}"><div class="record-panel-head"><div class="record-panel-meta journal-meta"><span class="record-type">JOURNAL · WAKE✳︎ ${String(j.cycle).padStart(3,'0')}</span><span class="record-status">${badge(i.provider==='fixture'?'simulated':'accepted',i.provider==='fixture'?'SIMULATED':'ACCEPTED')}</span><span class="record-topics journal-topics">${journalTopics(j).map(id=>topicTag(id,'journal')).join('')}</span><time datetime="${esc(i.time)}">${esc(fmt(i.time))}</time></div><h3><a href="#journal/cycle:${j.cycle}">${esc(j.title)}</a></h3></div><div class="record-panel-body"><p>${esc(j.summary)}</p><div class="entry-bottom"><span>${esc(i.provider)} / ${esc(i.model)}${j.origin?.node?` · <a href="nodes/${esc(encodeURIComponent(j.origin.node))}/console-records.html#journal/cycle:${j.cycle}">${esc(j.origin.node)}</a>`:''}</span><span>${esc(changeLabel)}</span></div><details class="lab-notes"><summary>LAB NOTES / ${Array.isArray(actions)?`${actions.length} RECORDED CHANGE${actions.length===1?'':'S'}`:'HISTORICAL CHANGE DETAILS'}</summary><div class="lab-notes-body">${Array.isArray(actions)?(actions.map(a=>`<div class="decision"><strong>${esc(a.type)} / ${esc(a.id)}</strong><p>${esc(a.statement||a.task||a.status)}</p><p>${esc(a.reason)}</p>${refs(a.evidence)}</div>`).join('') || '<p>No state changes proposed.</p>'):'<p>The journal entry is preserved, but its change details are outside the recent events included in this live view.</p>'}</div></details><a class="subtle" href="#history/${encodeURIComponent(j.invocation)}">Full invocation & decision →</a></div></article>`;
+      return `<article class="entry record-panel" id="cycle-${esc(j.origin?.node?`${j.origin.node}-${j.cycle}`:j.cycle)}"><div class="record-panel-head"><div class="record-panel-meta journal-meta"><span class="record-type">JOURNAL · WAKE✳︎ ${String(j.cycle).padStart(3,'0')}</span><span class="record-status">${badge(i.provider==='fixture'?'simulated':'accepted',i.provider==='fixture'?'SIMULATED':'ACCEPTED')}</span><span class="record-topics journal-topics">${journalTopics(j).map(id=>topicTag(id,'journal')).join('')}</span><time datetime="${esc(i.time)}">${esc(fmt(i.time))}</time></div><h3><a href="#journal/cycle:${j.cycle}">${esc(j.title)}</a></h3></div><div class="record-panel-body"><p>${esc(j.summary)}</p><div class="entry-bottom"><span>${esc(i.provider)} / ${esc(i.model)}${j.origin?.node?` · <a href="nodes/${esc(encodeURIComponent(j.origin.node))}/index.html#journal/cycle:${j.cycle}">${esc(j.origin.node)}</a>`:''}</span><span>${esc(changeLabel)}</span></div><details class="lab-notes"><summary>LAB NOTES / ${Array.isArray(actions)?`${actions.length} RECORDED CHANGE${actions.length===1?'':'S'}`:'HISTORICAL CHANGE DETAILS'}</summary><div class="lab-notes-body">${Array.isArray(actions)?(actions.map(a=>`<div class="decision"><strong>${esc(a.type)} / ${esc(a.id)}</strong><p>${esc(a.statement||a.task||a.status)}</p><p>${esc(a.reason)}</p>${refs(a.evidence)}</div>`).join('') || '<p>No state changes proposed.</p>'):'<p>The journal entry is preserved, but its change details are outside the recent events included in this live view.</p>'}</div></details><a class="subtle" href="#history/${encodeURIComponent(j.invocation)}">Full invocation & decision →</a></div></article>`;
     }).join('') || '<p class="empty">No matching entries. The tape is blank here.</p>';
     $('more').hidden=entries.length<=journalLimit;
   }
@@ -1083,7 +1085,7 @@ window.WakePetReady=(async () => {
       const earlier=position>=0?series[position+1]:null,later=position>0?series[position-1]:null;
       const continueReading='<nav class="blog-continue" aria-label="Continue the investigation">'+(earlier?'<div><p class="eyebrow">EARLIER IN THE INVESTIGATION</p><a href="#blog/'+encodeURIComponent(earlier.id)+'">'+esc(postTitle(earlier))+' →</a></div>':'')+(later?'<div><p class="eyebrow">THE NEXT PUBLISHED STORY</p><a href="#blog/'+encodeURIComponent(later.id)+'">'+esc(postTitle(later))+' →</a></div>':'')+'</nav>';
       const follow='<aside class="blog-follow"><strong>Follow the investigation.</strong> Get new Bob articles in your feed reader. <a href="blog.xml" type="application/rss+xml">Follow Bob via RSS →</a></aside>';
-      $('blog-content').innerHTML='<article class="blog-reading'+(postTopic(post)==='reflection'?' blog-reading-reflection':'')+'"><a class="subtle" href="#blog">← All posts</a>'+postMeta(post,invocation)+'<h1>'+esc(postTitle(post))+'</h1><p class="blog-lede">'+esc(post.lede)+'</p>'+correction+body+continueReading+follow+(post.lens?'<blockquote><span>BOB’S LENS / PHILOSOPHICAL REFLECTION</span>'+esc(post.lens)+'</blockquote>':'')+'<div class="blog-receipts"><p class="eyebrow">FOLLOW THE RECEIPTS</p>'+projectReceipt+'<div>'+notebooks+'</div><p>'+sources+'</p>'+attributed+(post.group_publication?'<p>Shared synthesis from '+post.group_publication.members.length+' parent and child nodes.</p><a class="subtle" href="console-events.html">Local publication receipt →</a>':'<a class="subtle" href="#history/'+encodeURIComponent(post.created_by)+'">Exact wake and decision →</a>')+'</div><p class="blog-disclosure">Bob is WAKE✳︎’s human-facing translation layer, not its mind or identity. This AI-authored note compresses the durable research record for conversation; research claims link back to evidence and philosophical reflections remain reflections.</p></article>';
+      $('blog-content').innerHTML='<article class="blog-reading'+(postTopic(post)==='reflection'?' blog-reading-reflection':'')+'"><a class="subtle" href="#blog">← All posts</a>'+postMeta(post,invocation)+'<h1>'+esc(postTitle(post))+'</h1><p class="blog-lede">'+esc(post.lede)+'</p>'+correction+body+continueReading+follow+(post.lens?'<blockquote><span>BOB’S LENS / PHILOSOPHICAL REFLECTION</span>'+esc(post.lens)+'</blockquote>':'')+'<div class="blog-receipts"><p class="eyebrow">FOLLOW THE RECEIPTS</p>'+projectReceipt+'<div>'+notebooks+'</div><p>'+sources+'</p>'+attributed+(post.group_publication?'<p>Shared synthesis from '+post.group_publication.members.length+' parent and child nodes.</p><a class="subtle" href="events.html">Local publication receipt →</a>':'<a class="subtle" href="#history/'+encodeURIComponent(post.created_by)+'">Exact wake and decision →</a>')+'</div><p class="blog-disclosure">Bob is WAKE✳︎’s human-facing translation layer, not its mind or identity. This AI-authored note compresses the durable research record for conversation; research claims link back to evidence and philosophical reflections remain reflections.</p></article>';
       window.WakeAskBob?.mount($('blog-content').querySelector('.blog-reading'),{post,head:data.head});
       return;
     }
@@ -1114,7 +1116,7 @@ window.WakePetReady=(async () => {
     const matchesFilter=e=>!filter||(filter==='rejected'?e.kind==='rejected':filter==='recovered'?recoveredIds.has(e.payload.id):filter==='inherited'?inheritedIds.has(e.payload.id):true);
     const exact=selected&&!filter?selected:'';
     const events=[...data.events].reverse().filter(e=>(!exact||e.payload.id===exact)&&matchesFilter(e)&&(kind==='all'||displayEventKind(e.kind)===kind)&&JSON.stringify(displayEvent(e)).toLowerCase().includes(query));
-    $('history-content').innerHTML=((selected)?'<p><a class="text-link" href="#history">← All events</a></p>':'')+events.slice(0,historyLimit).map(e=>`<details class="audit-row"><summary><span>#${String(e.seq).padStart(4,'0')}</span>${badge(displayEventKind(e.kind))}<time datetime="${esc(e.time)}">${esc(fmt(e.time))}</time><span class="event-id">${esc(e.payload.id||'system')}</span></summary>${e.payload.reason?`<p>${esc(e.payload.reason)}</p>`:''}${(e.kind==='rejected'||e.payload.editorial)?`<p><a class="text-link" href="console-rejected.html#${encodeURIComponent(e.payload.id)}">Read the draft and explanation →</a></p>`:''}${raw(e)}</details>`).join('')+(events.length?'':'<p class="empty">No events match.</p>');
+    $('history-content').innerHTML=((selected)?'<p><a class="text-link" href="#history">← All events</a></p>':'')+events.slice(0,historyLimit).map(e=>`<details class="audit-row"><summary><span>#${String(e.seq).padStart(4,'0')}</span>${badge(displayEventKind(e.kind))}<time datetime="${esc(e.time)}">${esc(fmt(e.time))}</time><span class="event-id">${esc(e.payload.id||'system')}</span></summary>${e.payload.reason?`<p>${esc(e.payload.reason)}</p>`:''}${(e.kind==='rejected'||e.payload.editorial)?`<p><a class="text-link" href="rejected.html#${encodeURIComponent(e.payload.id)}">Read the draft and explanation →</a></p>`:''}${raw(e)}</details>`).join('')+(events.length?'':'<p class="empty">No events match.</p>');
     $('history-more').hidden=events.length<=historyLimit;
   }
   let routeTicket=0;
@@ -1166,9 +1168,13 @@ window.WakePetReady=(async () => {
     readerPagination(page,selected);
     };
     if(window.WakeReader && data.reader_transport && (selected||['journal','history','evidence'].includes(page))){
+      // A previous article's chat must not remain interactive under a new URL.
+      if(page==='blog'&&selected&&!selected.startsWith('topic:'))
+        $('blog-content').innerHTML='<p role="status">Opening this article…</p>';
       window.WakeReader.ensure(page,selected).then(()=>{refreshDerived();draw();}).catch(error=>{
         if(ticket!==routeTicket)return;
         const target=$(page);if(!target)return;
+        if(page==='blog'&&selected&&!selected.startsWith('topic:'))$('blog-content').replaceChildren();
         const message=document.createElement('p');message.className='research-note';message.textContent=error.message+' ';
         const retry=document.createElement('button');retry.type='button';retry.textContent='Retry loading details';retry.addEventListener('click',route);message.append(retry);
         target.querySelector('[data-reader-error]')?.remove();message.dataset.readerError='true';target.prepend(message);
