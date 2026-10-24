@@ -370,7 +370,8 @@ gh api --method POST repos/OWNER/REPO/pages/builds
 A changed parent fails closed: capture the newer artifact and retry. Research data, captured heads,
 `hosted_execution` and hashed inspection packets remain unchanged; `presentation`
 records the UI source revision separately. The refresh also rebuilds the root
-Ask Bob passage guides from that exact public archive and replaces reader assets;
+Ask Bob passage guides from that exact public archive and replaces reader assets,
+including inline article navigation and the bounded reader transport;
 it rejects mismatched archive/overview heads and leaves research and inspection
 bytes unchanged. Normal hosted batches apply the same binding.
 

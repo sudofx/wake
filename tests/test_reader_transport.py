@@ -106,6 +106,14 @@ class ReaderTransportTests(unittest.TestCase):
             self.assertIn('a-latest',overview['state']['invocations'])
             self.assertIn('old-open',overview['state']['commitments'])
 
+    @unittest.skipUnless(shutil.which('node'), 'Node required for cold publication recovery')
+    def test_cold_reader_recovers_matching_snapshot_without_mixing_generations(self):
+        root=Path(__file__).parents[1]
+        result=subprocess.run(['node',str(root/'tests/browser/reader-snapshot-recovery.cjs'),
+                               str(root/'wake/assets/reader-data.js')],capture_output=True,text=True)
+        self.assertEqual(result.returncode,0,result.stderr)
+        self.assertIn('PASS',result.stdout)
+
     @unittest.skipUnless(shutil.which('node'), 'Node required for mixed exporter compatibility')
     def test_resident_old_exporter_template_does_not_break_before_runtime_adoption(self):
         source=Path(__file__).parents[1]/'wake/assets/index.html'

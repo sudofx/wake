@@ -584,9 +584,13 @@
     readerPagination(page,selected);
     };
     if(window.WakeReader && data.reader_transport && (selected||['journal','history','evidence'].includes(page))){
+      // A previous article's chat must not remain interactive under a new URL.
+      if(page==='blog'&&selected&&!selected.startsWith('topic:'))
+        $('blog-content').innerHTML='<p role="status">Opening this article…</p>';
       window.WakeReader.ensure(page,selected).then(()=>{refreshDerived();draw();}).catch(error=>{
         if(ticket!==routeTicket)return;
         const target=$(page);if(!target)return;
+        if(page==='blog'&&selected&&!selected.startsWith('topic:'))$('blog-content').replaceChildren();
         const message=document.createElement('p');message.className='research-note';message.textContent=error.message+' ';
         const retry=document.createElement('button');retry.type='button';retry.textContent='Retry loading details';retry.addEventListener('click',route);message.append(retry);
         target.querySelector('[data-reader-error]')?.remove();message.dataset.readerError='true';target.prepend(message);

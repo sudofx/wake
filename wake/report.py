@@ -463,7 +463,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         # Publish source styles alongside every HTML view: Pages and exports share
         # the same theme file rather than receiving copied inline palettes.
         for name in ("style.css", "nav.css", "map.css", "map3d.css", "theme.css",
-                     "nav.js", "map.js", "map3d.js", "flat-view.js", "ask-bob.js", "ask-bob.css", "ask-bob-browser.js", "ask-bob-guide.js", "ask-bob-private.js"):
+                     "nav.js", "map.js", "map3d.js", "flat-view.js", "app.js", "ask-bob.js", "ask-bob.css", "ask-bob-browser.js", "ask-bob-guide.js", "ask-bob-private.js"):
             atomic_write(target / name, (assets / name).read_text())
         # These static inference assets are loaded only after the reader opts in.
         # They contain no provider credentials and never open research authority.

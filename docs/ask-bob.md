@@ -24,6 +24,18 @@ Questions and replies stay in this browser. **Clear chat** removes saved turns;
 automatically falling back to a model download. Normal reading and opening Ask Bob
 never initialize an inference engine. No research record or controls are accessed.
 
+## If Send does not answer
+
+Public Ask Bob does not use Gemini or its quota. A quota wait can pause live
+research while published article questions remain available.
+
+When Pages updates during navigation, the reader refetches its small overview
+and adopts the requested detail only if both belong to the same snapshot. If the
+site is still updating or a fetch fails, a visible retry message replaces the old
+article. A stale chat reports that its article changed and keeps the typed message;
+it must never silently discard Send. No cache clearing or model download is needed
+for this recovery.
+
 ## Optional device model
 
 Under **About this chat**, explicitly enable **Experimental AI answer on this

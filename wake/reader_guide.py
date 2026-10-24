@@ -144,8 +144,15 @@ def refresh_public_reader(site):
     for page in site.glob('*.html'):
         text = page.read_text()
         if previous and previous in text:
-            page.write_text(text.replace(previous, current))
-    for name in ('ask-bob.js', 'ask-bob.css', 'ask-bob-guide.js', 'ask-bob-browser.js'):
+            text=text.replace(previous, current)
+        marker='/* Render exported research records and reader navigation; browser interactions never mutate authority. */'
+        start=text.find(marker)
+        if start>=0:
+            end=text.find('</script>',start)
+            if end<0:raise ValueError('Reader page has an incomplete application script')
+            text=text[:start]+(assets/'app.js').read_text()+text[end:]
+        page.write_text(text)
+    for name in ('ask-bob.js', 'ask-bob.css', 'ask-bob-guide.js', 'ask-bob-browser.js', 'reader-data.js', 'app.js'):
         (site / name).write_bytes((assets / name).read_bytes())
     for post in data['state'].get('posts', {}).values():
         guide = build_guide(post, data['state'], data['head'])
