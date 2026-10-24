@@ -76,8 +76,8 @@
     if(container.querySelector('.ask-bob'))return;
     if(cap.live){
       const launcher=element('a',undefined,'ask-bob-launch');
-      launcher.href=cap.url+'/?article='+encodeURIComponent(post.id);launcher.target='_blank';launcher.rel='noopener';
-      const icon=element('span');icon.innerHTML='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M20 11a8 8 0 0 1-8 8H7l-4 3v-7a8 8 0 1 1 17-4Z"/><path d="M8 10h8M8 14h5"/></svg>';icon.setAttribute('aria-hidden','true');launcher.append(icon,document.createTextNode('Ask Bob'));
+      launcher.href=cap.url+'/?article='+encodeURIComponent(post.id)+'&hash='+hash(post._reader_article?.hash);launcher.target='_blank';launcher.rel='noopener';
+      const icon=element('span');icon.innerHTML='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M20 15a3 3 0 0 1-3 3H9l-5 4V6a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3Z"/><path d="M8 10h8M8 14h5"/></svg>';icon.setAttribute('aria-hidden','true');launcher.append(icon,document.createTextNode('Ask Bob'));
       launcher.setAttribute('aria-label','Ask Bob · open chat window');
       launcher.addEventListener('click',event=>{
         if(popup&&!popup.closed&&popupArticle===post.id){event.preventDefault();popup.focus();return;}

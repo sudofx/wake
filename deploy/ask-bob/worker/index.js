@@ -141,8 +141,15 @@ export default {async fetch(request,env,ctx){
       const response=await fetch(PUBLIC+'reader-data.json',{redirect:'manual',signal:AbortSignal.timeout(8000)});
       if(!response.ok)throw Error();const value=await readJSON(response,262144);
       const articles=Object.values(value.state?.posts||{}).filter(p=>p._reader_article?.id===p.id&&/^[a-f0-9]{64}$/.test(p._reader_article.hash)).sort((a,b)=>String(b.published_at||'').localeCompare(String(a.published_at||''))).slice(0,100).map(p=>({id:p.id,hash:p._reader_article.hash,title:String(p.title||p.id).slice(0,240)}));
+      const query=new URL(request.url).searchParams;
+      if(query.has('article')||query.has('hash')){
+        const input=validate({article_id:query.get('article'),expected_article_hash:query.get('hash'),question:'Story context'});
+        const guide=await guideFor(input);
+        const selected={id:guide.article.id,hash:guide.article.hash,title:String(guide.sources.find(row=>row.id==='S1')?.label||guide.article.id).slice(0,240)};
+        const existing=articles.findIndex(row=>row.id===selected.id);if(existing>=0)articles.splice(existing,1);articles.unshift(selected);
+      }
       return reply(request,{schema:1,articles});
-    }catch{return reply(request,{error:'sources_unavailable'},503);}
+    }catch(error){return reply(request,{error:error instanceof Failure?error.code:'sources_unavailable'},error instanceof Failure?error.status:503);}
   }
   if(path!=='/v1/chat'||request.method!=='POST')return reply(request,{error:'not_found'},404);
   if(!enabled)return reply(request,{error:'service_unavailable'},503);

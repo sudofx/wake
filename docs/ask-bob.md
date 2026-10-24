@@ -66,12 +66,12 @@ Questions and replies stay in this browser. **Clear chat** removes saved turns;
 automatically falling back to a model download. Normal reading and opening Ask Bob
 never initialize an inference engine. No research record or controls are accessed.
 
-The suggested limitations question reads the explicit limitations and uncertainty
+A limitations question reads the explicit limitations and uncertainty
 fields before general keyword search. These fields are retained before longer
 findings, and shared articles include every linked node notebook before using the
 remaining source budget for raw evidence. When a guide has no explicit material,
 Bob says what is missing from that guide rather than claiming the research has no
-limitations. Suggested source questions likewise distinguish missing public
+limitations. Source questions likewise distinguish missing public
 records from absence of evidence.
 
 ## If Send does not answer
