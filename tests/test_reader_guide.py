@@ -53,10 +53,11 @@ class ReaderGuideTests(unittest.TestCase):
             original=json.dumps(packet).encode();(site/'wake-data.json').write_bytes(original)
             (site/'reader-data.json').write_text(json.dumps({'head':'same'}))
             (site/'ask-bob.js').write_text('/* old chat */')
-            (site/'blog.html').write_text('<script>/* old chat */</script>')
+            (site/'blog.html').write_text('<script src="reader-data.js"></script><script>/* old chat */</script>')
             refresh_public_reader(site)
             self.assertEqual((site/'wake-data.json').read_bytes(),original)
             self.assertIn('ask-bob-guide.js',(site/'blog.html').read_text())
+            self.assertIn('reader-data.js?v=20261023-snapshot-recovery',(site/'blog.html').read_text())
             self.assertTrue((site/record_path('guides',post['id'])).exists())
             (site/'reader-data.json').write_text(json.dumps({'head':'other'}))
             with self.assertRaisesRegex(ValueError,'captured snapshot'):
