@@ -168,14 +168,14 @@ This is dated exported presentation, not a live status query or a second authori
 ```json
 {
   "authoritative": false,
-  "generated_at": "2026-10-24T03:13:31.168561+00:00",
-  "head": "snapshot:862b3548e5f8158fa827b11a53b9bb065906f8b3deaf2a533d4b2d6cf0890dd0",
+  "generated_at": "2026-10-24T03:48:30.033273+00:00",
+  "head": "snapshot:763f794aa1d2f67de4bc1c1a48e282c17dd349162c7602d34f5910a8738f9833",
   "node_heads": {
     "100.wake": {
-      "generated": "2026-10-24T03:13:31.168561+00:00",
-      "head": "45a0467caff316f5c7a666e47eefbf0de10663dd574c94f0d58e63efe7545696",
+      "generated": "2026-10-24T03:48:30.033273+00:00",
+      "head": "647a479d59a9d7f19e8141b38c5a255cebb269acf268fc49cfc6436a4365bdeb",
       "node": "100.wake",
-      "snapshot_digest": "d11a95955ee9423a76fd780ddd3b0c6672fb374aa4da4740af08f074ca5b017f",
+      "snapshot_digest": "1b51b88716c4597852015ef82c47bf7585aaf56ed53d05f541607bdad37edd67",
       "version": 19
     },
     "101.wake": {
