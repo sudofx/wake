@@ -30,7 +30,7 @@ class ReaderGuideTests(unittest.TestCase):
         self.assertLessEqual(len(json.dumps(guide,ensure_ascii=False,separators=(',',':')).encode()),MAX_GUIDE_BYTES)
     def test_limitations_survive_large_findings_and_all_node_notebooks_are_included(self):
         post,state=self.fixture()
-        state['notebooks']['n']['findings']='Finding.\n\n'*100
+        state['notebooks']['n']['findings']='\n\n'.join(f'Finding {index}.' for index in range(100))
         guide=build_guide(post,state,'head')
         self.assertTrue(any(p['field']=='limitations' and 'fixed environment' in p['text'] for p in guide['passages']))
         post.update(notebooks=[],evidence=[],project='',editorial_references=[])
