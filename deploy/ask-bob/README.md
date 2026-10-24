@@ -6,6 +6,10 @@ Source is owned here; Sites stores only a publication mirror. The live API is
 `.openai/hosting.json`; do not register another deployment for updates.
 
 No visitor login, identity provider, browser API key or model download is used.
+`GET /` serves the stable standalone chat. It remains available when an older
+research batch republishes older Pages assets during release adoption.
+`GET /v1/articles` returns a bounded list from the fixed public reader overview;
+neither route calls Gemini. Standalone history lives only in tab memory.
 `GET /v1/capabilities` describes availability. `POST /v1/chat` takes JSON with
 `article_id`, `expected_article_hash`, `question` (up to 2,000 characters), and up
 to six recent `{question, answer}` turns. It returns newline-delimited JSON:

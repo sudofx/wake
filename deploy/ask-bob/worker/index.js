@@ -1,4 +1,5 @@
 // Bob is a public reader application. It has no native record or control capability.
+import {CHAT_HTML} from './chat.js';
 const PUBLIC = 'https://sudofx.github.io/wake/';
 const ORIGIN = 'https://sudofx.github.io';
 const encoder = new TextEncoder();
@@ -134,7 +135,15 @@ export default {async fetch(request,env,ctx){
   if(request.method==='OPTIONS')return new Response(null,{status:204,headers:headers(request)});
   const enabled=env.BOB_ENABLED==='true'&&!!env.GEMINI_API_KEY&&!!env.IP_SALT&&!!env.BUCKET;
   if(path==='/v1/capabilities'&&request.method==='GET')return reply(request,{schema:1,enabled,mode:'live-gemini',installation_id:env.INSTALLATION_ID,limits:LIMITS});
-  if(path==='/'&&request.method==='GET')return reply(request,{service:'WAKE Ask Bob',schema:1,chat:PUBLIC+'blog.html',authentication:'none'});
+  if(path==='/'&&request.method==='GET')return new Response(CHAT_HTML,{headers:{...headers(request),'Content-Type':'text/html; charset=utf-8','Content-Security-Policy':"default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'"}});
+  if(path==='/v1/articles'&&request.method==='GET'){
+    try{
+      const response=await fetch(PUBLIC+'reader-data.json',{redirect:'manual',signal:AbortSignal.timeout(8000)});
+      if(!response.ok)throw Error();const value=await readJSON(response,262144);
+      const articles=Object.values(value.state?.posts||{}).filter(p=>p._reader_article?.id===p.id&&/^[a-f0-9]{64}$/.test(p._reader_article.hash)).sort((a,b)=>String(b.published_at||'').localeCompare(String(a.published_at||''))).slice(0,100).map(p=>({id:p.id,hash:p._reader_article.hash,title:String(p.title||p.id).slice(0,240)}));
+      return reply(request,{schema:1,articles});
+    }catch{return reply(request,{error:'sources_unavailable'},503);}
+  }
   if(path!=='/v1/chat'||request.method!=='POST')return reply(request,{error:'not_found'},404);
   if(!enabled)return reply(request,{error:'service_unavailable'},503);
   if(!request.headers.get('content-type')?.startsWith('application/json'))return reply(request,{error:'json_required'},415);

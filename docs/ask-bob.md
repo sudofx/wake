@@ -3,6 +3,10 @@
 ## Use it on the public website
 
 Open an article in Bob's Blog, type a question in **Ask Bob**, and press **Send**.
+Or open [Talk with Bob](https://wake-ask-bob.coolgrove68.chatgpt.site/) for a stable
+chat entry point independent of research snapshot publication. Select a published
+article as context; changing it clears the tab’s conversation. This standalone
+page keeps recent turns in memory rather than saving them across reloads.
 On the hosted WAKE website, Bob answers live through a dedicated WAKE API and
 streams his reply as Gemini generates it. Ask follow-up questions naturally, ask
 for a different explanation, challenge a claim, or discuss a broader idea. No
