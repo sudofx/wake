@@ -65,3 +65,11 @@ Run `node --test tests/api.test.js`, `bash scripts/build.sh`, then
 `node scripts/validate-artifact.mjs`. Publish a copy through the Sites source
 helper and saved-version deployment workflow, preserving the public audience.
 The exact public blog flow must also be checked after Pages publication.
+
+The chat inherits the main reader’s theme through its launch URL, follows the system
+when opened directly, and offers a local light/dark switch. The shared WAKE theme
+tokens and safe Markdown formatter are in `wake/assets/`. The build embeds them
+without fetching browser dependencies. Publication mirrors carry exact generated
+copies as `worker/theme-tokens.css` and `worker/bob-markdown.js`; update those from
+the canonical assets before packaging. Formatted replies use allowlisted DOM
+elements, never source HTML. Raw reply text remains the conversation context.

@@ -1,6 +1,6 @@
 # Watch the digital ant farm
 
-Open **Ant Farm** in the site menu. The dedicated page shows 64 digital ants
+Open **Bob’s Ant Farm** in the site menu. The dedicated page shows 64 digital ants
 walking, resting, digging and carrying grains and food. **Observe** opens counts
 and recent changes. **Closer** magnifies the habitat without speeding it up.
 **Trails** reveals food signals; **Add food** scatters surface crumbs.
@@ -71,7 +71,10 @@ must be published. Local preview does not forward questions remotely.
 `ant-colony.js` owns the seeded tunnel graph, timed work and validated save format.
 `ant-drawing.js` draws the same anatomy at normal and enlarged scale. `ant-farm.js`
 owns one Canvas2D view with two cached buffers, HTML controls and text observations.
-No library or network assets are needed. Canvas keeps continuous movement cheap;
+No external libraries or third-party browser assets are needed. Generated macro
+soil and ant-body textures are bundled locally; animated legs and antennae remain
+procedural. The fallback drawing remains available if an image cannot load. See
+[art provenance and prompts](ant-farm-art.md). Canvas keeps continuous movement cheap;
 HTML keeps controls, focus and counts accessible. Cached terrain redraws after
 excavation or resize. Frames are capped at thirty per second, pixel ratio at two,
 nodes at 3,000, faces at twelve, food sources at 32 and saved samples at sixty.

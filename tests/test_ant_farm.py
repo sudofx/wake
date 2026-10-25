@@ -18,7 +18,7 @@ class AntFarmTests(unittest.TestCase):
                                                'events': []}, browser_only=True)
             mirror = Path(directory) / 'public'
             _copy_public_site(site, mirror)
-            for name in ('ant-farm.css', 'ant-colony.js', 'ant-drawing.js', 'ant-farm.js'):
+            for name in ('ant-farm.css', 'ant-colony.js', 'ant-drawing.js', 'ant-farm.js', 'bob-markdown.js'):
                 self.assertEqual((mirror / name).read_bytes(), (site / name).read_bytes())
             habitat = (mirror / 'ant-farm.html').read_text()
             self.assertIn('window.WAKE_DEPLOYMENT=', habitat)
@@ -30,6 +30,6 @@ class AntFarmTests(unittest.TestCase):
 
     @unittest.skipUnless(shutil.which('node'), 'Node is required')
     def test_colony_mechanisms_and_resume(self):
-        result = subprocess.run(['node', '--test', str(Path(__file__).parent / 'browser/ant-colony.cjs')],
+        result = subprocess.run(['node', '--test', str(Path(__file__).parent / 'browser/ant-colony.cjs'), str(Path(__file__).parent / 'browser/bob-markdown.cjs')],
                                 capture_output=True, text=True)
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)

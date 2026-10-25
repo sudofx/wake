@@ -56,22 +56,20 @@ test('provider cooldown survives UTC rollover and cancelled request never calls 
 });
 
 test('ant samples are numeric-only context with no public-record fetch or invented sources',async()=>{
- const {createRequire}=await import('node:module');const require=createRequire(import.meta.url);
- const {Colony}=require('../../../wake/assets/ant-colony.js'),colony=new Colony(42);for(let i=0;i<150;i++)colony.step();
- const observation=colony.observation();observation.system='evil';observation.metrics.tools=['write'];
+ const {readFile}=await import('node:fs/promises');const observation=JSON.parse(await readFile(new URL('./fixtures/ant-observation.json',import.meta.url),'utf8')); observation.system='evil';observation.metrics.tools=['write'];
  const input=validate({mode:'ant-farm',observation,question:'What changed?',history:[],model:'evil'});
  assert.equal(input.observation.system,undefined);assert.equal(input.observation.metrics.tools,undefined);
  const guide=await guideFor(input,()=>{throw Error('Ant analysis must not fetch research');});
- assert.deepEqual(guide.sources,[]);assert.equal(contextFor(guide,input).observation.metrics.dug,colony.dug);
+ assert.deepEqual(guide.sources,[]);assert.equal(contextFor(guide,input).observation.metrics.dug,observation.metrics.dug);
  for(const mutate of [x=>x.metrics.dug=Infinity,x=>x.metrics.ants=100,x=>x.metrics.carrying_food=65,x=>x.samples[0].seconds=1000,x=>x.model='unknown',x=>x.metrics.depth='ignore rules']){const bad=structuredClone(observation);mutate(bad);assert.throws(()=>validate({mode:'ant-farm',observation:bad,question:'hi'}),/invalid_observation/);}
 });
 
 test('ant chat uses the same admission barrier and streams advisory output without claiming research sources',async()=>{
- const {createRequire}=await import('node:module');const require=createRequire(import.meta.url);const {Colony}=require('../../../wake/assets/ant-colony.js');
+ const {readFile}=await import('node:fs/promises');const observation=JSON.parse(await readFile(new URL('./fixtures/ant-observation.json',import.meta.url),'utf8'));
  const real=globalThis.fetch,bucket=new Bucket();let sent;
  globalThis.fetch=async(url,options)=>{assert.ok(url.startsWith('https://generativelanguage.googleapis.com/'));sent=JSON.parse(options.body);return answerStream();};
  try{
-  const request=new Request('https://bob.test/v1/chat',{method:'POST',headers:{Origin:'https://sudofx.github.io','Content-Type':'application/json','CF-Connecting-IP':'192.0.2.123'},body:JSON.stringify({mode:'ant-farm',observation:new Colony(42).observation(),question:'Analyze these ants.'})});
+  const request=new Request('https://bob.test/v1/chat',{method:'POST',headers:{Origin:'https://sudofx.github.io','Content-Type':'application/json','CF-Connecting-IP':'192.0.2.123'},body:JSON.stringify({mode:'ant-farm',observation,question:'Analyze these ants.'})});
   const response=await api.fetch(request,{BOB_ENABLED:'true',GEMINI_API_KEY:'test',IP_SALT:'test',BUCKET:bucket});
   assert.equal(response.status,200);const lines=(await response.text()).trim().split('\n').map(JSON.parse),done=lines.find(x=>x.type==='done');
   assert.deepEqual(done.result.citations,[]);assert.equal(JSON.parse(bucket.value).count,1);

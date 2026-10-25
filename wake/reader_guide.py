@@ -155,9 +155,11 @@ def refresh_public_reader(site):
             end=text.find('</script>',start)
             if end<0:raise ValueError('Reader page has an incomplete application script')
             text=text[:start]+(assets/'app.js').read_text()+text[end:]
+        if 'WakeAskBob' in text and 'bob-markdown.js' not in text:
+            text=text.replace('</head>', '<script src="bob-markdown.js" defer></script></head>', 1)
         text=re.sub(r'(src="reader-data\.js)(?:\?[^"]*)?(")',r'\1?v=20261023-snapshot-recovery\2',text)
         page.write_text(text)
-    for name in ('ask-bob.js', 'ask-bob.css', 'ask-bob-guide.js', 'ask-bob-browser.js', 'reader-data.js', 'app.js'):
+    for name in ('ask-bob.js', 'ask-bob.css', 'ask-bob-guide.js', 'ask-bob-browser.js', 'reader-data.js', 'app.js', 'bob-markdown.js'):
         (site / name).write_bytes((assets / name).read_bytes())
     for post in data['state'].get('posts', {}).values():
         guide = build_guide(post, data['state'], data['head'])

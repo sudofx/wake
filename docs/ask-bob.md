@@ -339,3 +339,13 @@ This prototype does not certify scientific correctness or psychological
 understanding. The next useful increment is a blinded, repeatable A/B/C response
 study using fixed public source versions and a private review rubric, before
 changing retrieval policy or claiming contextual superiority.
+
+## Chat appearance and reply formatting
+
+The live chat uses the main site’s shared light/dark color tokens. Opening it from
+a story carries the current theme; direct visits follow the system until the reader
+chooses a theme. The chat’s theme switch retains that choice on its own origin.
+Headings, bold, italics, lists, quoted paragraphs and fenced code render as safe
+DOM elements during streaming and after completion. Raw text is retained for model
+context. Source HTML, image tags and non-HTTP links stay inert text. The formatter
+is a deliberately bounded Markdown subset, not a general HTML renderer.

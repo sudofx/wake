@@ -2,6 +2,7 @@
    nodes, gaster, head, mandibles and elbowed antennae. Same renderer at every zoom. */
 (function(root){
  'use strict';
+ const photo=typeof Image==='function'?new Image():null;if(photo){photo.onload=()=>root.dispatchEvent(new Event('wake-ant-art-ready'));photo.src='backgrounds/ant-body-v1.png';}
  function drawAnt(ctx,r,ant,gait,time){
   const c=ant.id%5,body=['#562c18','#482316','#60301a','#452318','#6a351c'][c],dark='#211710',light='#955b32';
   ctx.lineCap='round';ctx.lineJoin='round';
@@ -14,6 +15,8 @@
    ctx.strokeStyle=light;ctx.lineWidth=r*.035;ctx.beginPath();ctx.moveTo(hip,side*r*.28);ctx.lineTo(kneeX,kneeY);ctx.stroke();
   }
   const ellipse=(x,y,rx,ry,fill)=>{const shade=ctx.createRadialGradient((x-rx*.3)*r,(y-ry*.5)*r,r*.06,x*r,y*r,Math.max(rx,ry)*r);shade.addColorStop(0,fill);shade.addColorStop(.45,fill);shade.addColorStop(1,dark);ctx.fillStyle=shade;ctx.beginPath();ctx.ellipse(x*r,y*r,rx*r,ry*r,0,0,Math.PI*2);ctx.fill();};
+  const photographic=photo?.complete&&photo.naturalWidth>0;
+  if(photographic){ctx.drawImage(photo,0,photo.naturalHeight*.2,photo.naturalWidth,photo.naturalHeight*.6,-3.3*r,-1*r,5.5*r,2*r);}else{
   // Gaster is larger than the mesosoma and separated by a narrow two-node waist.
   ellipse(-2.12,0,1.15,.76,body);ellipse(-2.38,-.3,.43,.12,'#a5704233');
   ctx.strokeStyle='#b28a5c38';ctx.lineWidth=r*.035;for(const x of [-2.55,-2.1,-1.68]){ctx.beginPath();ctx.moveTo(x*r,-.58*r);ctx.quadraticCurveTo((x+.25)*r,0,x*r,.58*r);ctx.stroke();}
@@ -21,6 +24,7 @@
   ellipse(.04,0,.68,.43,body);ellipse(.42,-.08,.4,.4,body);
   ellipse(1.18,0,.67,.59,body);ellipse(1.18,-.27,.35,.13,'#a6764433');
   ellipse(1.22,-.54,.12,.13,'#191611');ellipse(1.22,.54,.12,.13,'#191611');
+  }
   const working=ant.work>=0,mandible=(working?Math.sin(time*5)*.1:0);
   ctx.strokeStyle=dark;ctx.lineWidth=r*.12;for(const side of [-1,1]){ctx.beginPath();ctx.moveTo(1.67*r,side*.34*r);ctx.lineTo(2.03*r,side*(.25+mandible)*r);ctx.lineTo(1.82*r,side*.08*r);ctx.stroke();}
   // Long scape, visible elbow and shorter forward-sweeping funiculus.

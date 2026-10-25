@@ -464,7 +464,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         # the same theme file rather than receiving copied inline palettes.
         for name in ("style.css", "nav.css", "map.css", "map3d.css", "theme.css",
                      "nav.js", "map.js", "map3d.js", "flat-view.js", "app.js", "ask-bob.js", "ask-bob.css", "ask-bob-browser.js", "ask-bob-guide.js", "ask-bob-private.js",
-                     "ant-farm.html", "ant-farm.css", "ant-colony.js", "ant-drawing.js", "ant-farm.js"):
+                     "ant-farm.html", "ant-farm.css", "ant-colony.js", "ant-drawing.js", "ant-farm.js", "bob-markdown.js"):
             atomic_write(target / name, (assets / name).read_text())
         # These static inference assets are loaded only after the reader opts in.
         # They contain no provider credentials and never open research authority.
@@ -485,7 +485,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             "console-globe.png",
             "console-cube.png",
             "console-graph.png",
-            "console-graph-alt.png",
+            "console-graph-alt.png", "ant-soil-v1.png", "ant-body-v1.png",
         ):
             (background_target / name).write_bytes((background_source / name).read_bytes())
         public_data = browser_projection(data)
@@ -677,7 +677,10 @@ def _masthead_navigation(page):
         repository = re.search(r'<a\b[^>]*class="(?:repo-link|repository-menu-link)"[^>]*href="([^"]+)"', content)
         if not repository:
             return content
-        link = '<a class="repository-menu-link" href="' + repository.group(1) + '">GitHub</a>'
+        prefix = re.search(r'href="((?:\.\./)*)(?:index|console)\.html', content)
+        farm = '<a href="' + (prefix.group(1) if prefix else '') + 'ant-farm.html">Bob&#39;s Ant Farm</a>'
+        content = re.sub(r'<a\b[^>]*href="(?:\.\./)*ant-farm\.html"[^>]*>.*?</a>', '', content, flags=re.S)
+        link = farm + '<a class="repository-menu-link" href="' + repository.group(1) + '">GitHub</a>'
         content = re.sub(r'<a\b[^>]*class="(?:repo-link|repository-menu-link)"[^>]*>.*?</a>', '', content, flags=re.S)
         def navigation(nav):
             body = nav.group(2)
@@ -747,6 +750,8 @@ def _deployment_site(target, *, standalone, installation=None):
         page = re.sub(r'(<html[^>]*)\sdata-theme=[\"\'][^\"\']*[\"\']', r'\1', page, count=1)
         page = re.sub(r'<html([^>]*)>', r'<html\1 data-theme="light">', page, count=1)
         prefix = "../" * len(path.relative_to(target).parts[:-1])
+        if "WakeAskBob" in page and "bob-markdown.js" not in page:
+            page = page.replace("</head>", f'<script src="{prefix}bob-markdown.js" defer></script></head>', 1)
         page = re.sub(r'href="((?:\.\./)*(?:style|nav|map|map3d|research|theme)\.css)(?:\?[^"]*)?"', r'href="\1?v=20261014-mobile-width"', page)
         page = re.sub(r'src="((?:\.\./)*nav\.js)(?:\?[^"]*)?"', r'src="\1?v=20261014-container-mirror"', page)
         if '<header class="' in page and 'masthead' in page:

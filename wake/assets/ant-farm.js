@@ -11,6 +11,8 @@
   colony ||= new Colony(crypto.getRandomValues(new Uint32Array(1))[0]);
   let paused=reduced.matches,speed=1,showTrails=false,previous=0,accumulator=0,lastDraw=0,lastSave=0,lastUI=0,zoom=1;
   let width=0,height=0,dpr=1,cw=0,ch=0,terrainDirty=true,terrain=document.createElement('canvas'),soil=document.createElement('canvas');
+  const soilPhoto=new Image();soilPhoto.onload=()=>resize();soilPhoto.src='backgrounds/ant-soil-v1.png';
+  window.addEventListener('wake-ant-art-ready',()=>draw());
   const soilCtx=soil.getContext('2d'),ground=terrain.getContext('2d');
   function save(){if(storageConflict)return;try{localStorage.setItem(KEY,JSON.stringify(colony.save()));storageReady=true;}catch{storageReady=false;}updateStorage();}
   function updateStorage(){get('save-status').textContent=storageReady?'Progress stays in this browser. The colony rests when this page is hidden.':'Saving is unavailable. You can watch now; this colony may not survive a reload.';}
@@ -19,6 +21,7 @@
     for(const layer of [canvas,terrain,soil]){layer.width=Math.round(width*dpr);layer.height=Math.round(height*dpr);layer.getContext('2d').setTransform(dpr,0,0,dpr,0,0);}
     // Stable texture is a cached substrate, independent of the simulation RNG.
     const sky=soilCtx.createLinearGradient(0,0,0,height);sky.addColorStop(0,'#1b2c23');sky.addColorStop(S/H-.008,'#354b33');sky.addColorStop(S/H,'#74664a');sky.addColorStop(.28,'#756048');sky.addColorStop(.67,'#564431');sky.addColorStop(1,'#382f25');soilCtx.fillStyle=sky;soilCtx.fillRect(0,0,width,height);
+    if(soilPhoto.complete&&soilPhoto.naturalWidth){soilCtx.drawImage(soilPhoto,0,S*ch,width,height-S*ch);const depth=soilCtx.createLinearGradient(0,S*ch,0,height);depth.addColorStop(0,'#20170a12');depth.addColorStop(1,'#090e10a0');soilCtx.fillStyle=depth;soilCtx.fillRect(0,S*ch,width,height-S*ch);}
     let textureSeed=colony.seed;const noise=()=>{textureSeed=(Math.imul(textureSeed,1664525)+1013904223)>>>0;return textureSeed/4294967296;};
     for(let i=0;i<width*height/120;i++){const x=noise()*width,y=S*ch+noise()*(height-S*ch),r=.3+noise()*1.4;soilCtx.fillStyle=noise()>.5?'#e0bf811a':'#1e1c2430';soilCtx.beginPath();soilCtx.ellipse(x,y,r*2,r,noise()*3,0,Math.PI*2);soilCtx.fill();}
     soilCtx.strokeStyle='#83945a';soilCtx.lineWidth=1;for(let x=0;x<width;x+=4+noise()*9){const y=(S-.3)*ch;soilCtx.beginPath();soilCtx.moveTo(x,y);soilCtx.lineTo(x-2+noise()*4,y-2-noise()*7);soilCtx.stroke();}
@@ -81,7 +84,7 @@
   get('confirm-reset').onclick=()=>{active?.abort();history=[];get('bob-log').replaceChildren();colony=new Colony(crypto.getRandomValues(new Uint32Array(1))[0]);accumulator=0;get('reset-confirm').hidden=true;save();resize();updateUI();};
   get('download').onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify(colony.observation(),null,2)],{type:'application/json'})),link=document.createElement('a');link.href=url;link.download='ant-colony-observation.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
   let active=null,history=[];
-  function message(who,text){const box=document.createElement('article'),label=document.createElement('strong'),p=document.createElement('p');label.textContent=who;p.textContent=text;box.append(label,p);get('bob-log').append(box);while(get('bob-log').children.length>12)get('bob-log').firstChild.remove();return p;}
+  function message(who,text){const box=document.createElement('article'),label=document.createElement('strong'),p=document.createElement(who==='You'?'p':'div');label.textContent=who;p.textContent=text;if(who==='Bob')p.className='bob-markdown';box.append(label,p);get('bob-log').append(box);while(get('bob-log').children.length>12)get('bob-log').firstChild.remove();return p;}
   get('stop-bob').onclick=()=>active?.abort();
   get('bob-form').onsubmit=async event=>{
     event.preventDefault();if(active)return;const question=get('bob-question').value.trim();if(!question)return;
@@ -94,7 +97,7 @@
       const response=await fetch(endpoint+'/v1/chat',{method:'POST',credentials:'omit',headers:{'Content-Type':'application/json'},body:JSON.stringify({mode:'ant-farm',observation:sample,question,history:history.slice(-4)}),signal:controller.signal});
       if(!response.ok){const detail=await response.json().catch(()=>({}));if(response.status===429)throw Error('Bob’s shared allowance is temporarily unavailable. Try later; your question is kept here.');if(detail.error==='invalid_request')throw Error('The answer service needs the ant farm update before Bob can read this sample.');throw Error('Bob is unavailable right now. Your question is kept here.');}
       const reader=response.body.getReader(),decoder=new TextDecoder();let buffer='';
-      try{for(;;){const {value,done}=await reader.read();buffer+=decoder.decode(value||new Uint8Array(),{stream:!done});if(buffer.length>65536)throw Error('The reply was too large.');const lines=buffer.split('\n');buffer=lines.pop();for(const line of lines){if(!line.trim())continue;const packet=JSON.parse(line);if(packet.type==='delta'){output+=packet.text;answer.textContent=output.slice(0,6000);}if(packet.type==='done'){complete=true;}if(packet.type==='error')throw Error('Bob’s reply was interrupted. Try again.');}if(done)break;}}finally{await reader.cancel().catch(()=>{});}
+      try{for(;;){const {value,done}=await reader.read();buffer+=decoder.decode(value||new Uint8Array(),{stream:!done});if(buffer.length>65536)throw Error('The reply was too large.');const lines=buffer.split('\n');buffer=lines.pop();for(const line of lines){if(!line.trim())continue;const packet=JSON.parse(line);if(packet.type==='delta'){output+=packet.text;WakeBobMarkdown.render(answer,output.slice(0,6000));}if(packet.type==='done'){complete=true;}if(packet.type==='error')throw Error('Bob’s reply was interrupted. Try again.');}if(done)break;}}finally{await reader.cancel().catch(()=>{});}
       if(!complete||!output)throw Error('Bob’s reply was interrupted. Try again.');history.push({question:question.slice(0,1000),answer:output.slice(0,2000)});history=history.slice(-4);get('bob-status').textContent=`Snapshot at ${elapsed(sample.metrics.seconds)} · ${sample.metrics.dug} tunnel segments dug. Bob does not see later changes until you ask again.`;
     }catch(error){get('bob-status').textContent=controller.signal.aborted?'Stopped. Your question is kept here.':error.message;if(!output)answer.parentElement.remove();asked.parentElement.dataset.incomplete='true';}
     finally{clearTimeout(timer);if(active===controller)active=null;get('ask-bob').disabled=false;get('stop-bob').hidden=true;}

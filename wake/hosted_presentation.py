@@ -78,6 +78,18 @@ def bind_hosted_status(site, repository, revision):
             deployment['hosted_activity'] = activity
             deployment['ask_bob'] = {'url': 'https://wake-ask-bob.coolgrove68.chatgpt.site', 'installation_id': manifest['installation_id']}
             deployment_path.write_text(json.dumps(deployment))
+    # Farm state stays browser-local; refresh its presentation with the reader shell.
+    farm_assets=('ant-farm.css','ant-colony.js','ant-drawing.js','ant-farm.js','bob-markdown.js')
+    for root in roots:
+        for name in farm_assets:
+            shutil.copyfile(assets/name,root/name)
+        (root/'backgrounds').mkdir(exist_ok=True)
+        for name in ('ant-soil-v1.png','ant-body-v1.png'):
+            shutil.copyfile(assets/'backgrounds'/name,root/'backgrounds'/name)
+        deployment=json.loads((root/'deployment.json').read_text()) if (root/'deployment.json').exists() else {'schema':1,'mode':'hosted','snapshot_only':True}
+        deployment['ask_bob']={'url':'https://wake-ask-bob.coolgrove68.chatgpt.site','installation_id':manifest['installation_id']}
+        farm=(assets/'ant-farm.html').read_text().replace('<head>', '<head><script>window.WAKE_DEPLOYMENT='+json.dumps(deployment)+';</script>',1)
+        (root/'ant-farm.html').write_text(farm)
     from .reader_guide import refresh_public_reader
     refresh_public_reader(site)
     manifest['presentation'] = {'source_revision': revision, 'hosted_status': config, 'hosted_activity': activity}

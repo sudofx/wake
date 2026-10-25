@@ -1,0 +1,33 @@
+# Ant farm artwork
+
+The built-in image-generation tool produced these synthetic assets for the farm;
+they are not photographs of observed ants or evidence for the simulation.
+
+- `wake/assets/backgrounds/ant-soil-v1.png`: compact sandy loam substrate.
+- `wake/assets/backgrounds/ant-body-v1.png`: transparent dorsal worker body.
+
+Both original PNGs are bundled unchanged. The renderer crops transparent padding
+when drawing the body and adds separately animated legs, antennae and carrying
+poses. The soil image is a cached background beneath procedurally excavated paths.
+An image-load failure retains the original procedural rendering.
+
+The final prompt set used the built-in tool, not the CLI:
+
+**Soil:** Photorealistic orthographic straight-on macro cross-section of compact
+natural sandy loam seen flush through clean invisible ant-farm glass. Entire frame
+solid unexcavated earth; no tunnels, ants, chambers, sky, plants, text or borders.
+Warm medium brown upper earth grading subtly into darker, slightly moist lower
+soil. Angular sand grains, mineral flecks, small pebbles, scattered fine roots,
+compacted strata and restrained natural mottling at multiple scales. Documentary
+macro illumination from upper left, readable texture and soft depth, no blur,
+repetitive noise or glossy render. Landscape 3:2. The simulation draws the tunnels.
+
+**Ant:** Transparent dorsal worker-ant body sprite, exactly from above,
+orthographic macro, head right and oval gaster left, body perfectly horizontal.
+Connected head, elongated mesosoma, two small petiole nodes and segmented gaster;
+black lateral compound eyes, mandibles, fine hairs, exoskeleton texture and glossy
+chestnut chitin with upper-left highlights. Only the body, without legs or antennae,
+which are animated separately. Single centered specimen, transparent padding,
+genuine alpha, no detached parts, labels, shadow beneath, extra insects, cartoon
+or vector treatment. Photographic entomology appearance and slender adult worker
+proportions.
