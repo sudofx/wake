@@ -63,7 +63,6 @@
     const node=document.createElement(tag);if(content!==undefined)node.textContent=content;
     if(className)node.className=className;return node;
   }
-  function markdown(node,value){if(window.WakeBobMarkdown)window.WakeBobMarkdown.render(node,value);else node.textContent=value;}
   function safeURL(value){
     if(typeof value!=='string')return null;
     try{const url=new URL(value,location.href);return ['http:','https:'].includes(url.protocol)?url.href:null;}catch{return null;}
@@ -77,12 +76,11 @@
     if(container.querySelector('.ask-bob'))return;
     if(cap.live){
       const launcher=element('a',undefined,'ask-bob-launch');
-      launcher.href=cap.url+'/?article='+encodeURIComponent(post.id)+'&hash='+hash(post._reader_article?.hash)+'&theme='+encodeURIComponent(document.documentElement.dataset.theme||'light');launcher.target='_blank';launcher.rel='noopener';
+      launcher.href=cap.url+'/?article='+encodeURIComponent(post.id)+'&hash='+hash(post._reader_article?.hash);launcher.target='_blank';launcher.rel='noopener';
       const icon=element('span');icon.innerHTML='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M20 15a3 3 0 0 1-3 3H9l-5 4V6a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3Z"/><path d="M8 10h8M8 14h5"/></svg>';icon.setAttribute('aria-hidden','true');launcher.append(icon,document.createTextNode('Ask Bob'));
       launcher.setAttribute('aria-label','Ask Bob · open chat window');
       launcher.addEventListener('click',event=>{
-        const themed=new URL(launcher.href);themed.searchParams.set('theme',document.documentElement.dataset.theme||'light');launcher.href=themed.href;
-        if(popup&&!popup.closed&&popupArticle===post.id){event.preventDefault();popup.postMessage({type:'wake-theme',theme:document.documentElement.dataset.theme||'light'},new URL(cap.url).origin);popup.focus();return;}
+        if(popup&&!popup.closed&&popupArticle===post.id){event.preventDefault();popup.focus();return;}
         const opened=window.open(launcher.href,'wake-bob-chat','popup,width=480,height=760,resizable=yes,scrollbars=yes');
         if(opened){event.preventDefault();popup=opened;popupArticle=post.id;opened.focus();}
       });
@@ -152,7 +150,7 @@
       const item=element('div',undefined,'ask-bob-turn');
       const user=element('div',undefined,'ask-bob-message ask-bob-user');user.append(element('strong','You'),element('p',value.question));item.append(user);
       if(value.answer){
-        const reply=element('div',undefined,'ask-bob-message ask-bob-reply');reply.append(element('strong',value.mode==='published-passages'?'Bob · source passages':value.mode==='live-gemini'?'Bob · live (AI)':'Bob · AI answer (unverified)'),element('div','','ask-bob-answer'));markdown(reply.querySelector('.ask-bob-answer'),value.answer);item.append(reply);
+        const reply=element('div',undefined,'ask-bob-message ask-bob-reply');reply.append(element('strong',value.mode==='published-passages'?'Bob · source passages':value.mode==='live-gemini'?'Bob · live (AI)':'Bob · AI answer (unverified)'),element('p',value.answer,'ask-bob-answer'));item.append(reply);
         const links=element('ul',undefined,'ask-bob-sources');for(const source of value.citations||[]){const href=safeURL(source.url);if(!href)continue;const row=element('li'),link=element('a',source.id+' · '+source.label);link.href=href;link.rel='noopener noreferrer';row.append(link);links.append(row);}if(links.children.length)reply.append(links);
       }
       conversation.append(item);bottom();return item;
@@ -210,9 +208,9 @@
             phase='answer';setDeadline(60000);
             const response=await fetch(cap.url+'/v1/chat',{method:'POST',credentials:'omit',cache:'no-store',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),signal:controller.signal});
             if(!response.ok){const value=await response.json();throw Error(({daily_limit:'Bob has reached today’s shared question allowance. Please try tomorrow.',rate_limited:'Please wait a minute before sending another message.',busy:'Bob is helping other readers. Try again shortly.',provider_quota:'Gemini’s shared quota is currently exhausted. Please try later.',article_changed:'This article changed. Reload it before sending again.',article_unavailable:'This article is no longer available. Reload the latest blog.'})[value.error]||'Bob is temporarily unavailable. Please try again later.');}
-            const reply=element('div',undefined,'ask-bob-message ask-bob-reply'),prose=element('div','','ask-bob-answer');reply.append(element('strong','Bob · live'),prose);pending.append(reply);
+            const reply=element('div',undefined,'ask-bob-message ask-bob-reply'),prose=element('p','','ask-bob-answer');reply.append(element('strong','Bob · live'),prose);pending.append(reply);
             const reader=response.body.getReader(),decoder=new TextDecoder();let buffer='',partial='',done=false;
-            try{for(;;){const chunk=await reader.read();buffer+=decoder.decode(chunk.value||new Uint8Array(),{stream:!chunk.done});if(buffer.length>65536)throw Error('Bob sent an oversized reply.');const lines=buffer.split('\n');buffer=lines.pop();for(const line of lines){if(!line.trim())continue;const event=JSON.parse(line);if(event.type==='delta'){partial+=text(event.text,6000);markdown(prose,partial);showProgress('',{stage:'answer',characters:partial.length});bottom();}else if(event.type==='done'){result=event.result;done=true;}else if(event.type==='error')throw Error('Bob could not finish the reply. Please try again.');}if(chunk.done)break;}if(!done)throw Error('The connection ended before Bob finished.');}finally{await reader.cancel();}
+            try{for(;;){const chunk=await reader.read();buffer+=decoder.decode(chunk.value||new Uint8Array(),{stream:!chunk.done});if(buffer.length>65536)throw Error('Bob sent an oversized reply.');const lines=buffer.split('\n');buffer=lines.pop();for(const line of lines){if(!line.trim())continue;const event=JSON.parse(line);if(event.type==='delta'){partial+=text(event.text,6000);prose.textContent=partial;showProgress('',{stage:'answer',characters:partial.length});bottom();}else if(event.type==='done'){result=event.result;done=true;}else if(event.type==='error')throw Error('Bob could not finish the reply. Please try again.');}if(chunk.done)break;}if(!done)throw Error('The connection ended before Bob finished.');}finally{await reader.cancel();}
           }else if(cap.browser){
             if(!modelMode){phase='answer';setDeadline(15000);const runtime=await guide();return {result:await runtime.answer(body,controller.signal,showProgress),responseOK:true};}
             const runtime=await browser();
