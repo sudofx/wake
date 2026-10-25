@@ -396,7 +396,7 @@ window.WakePetReady=(async () => {
     const route=location.href,valid=()=>container.isConnected&&location.href===route;
     const cap=await capabilities();
     if(!valid()||!cap?.enabled||typeof cap.token!=='string'||!cap.token||typeof cap.installation_id!=='string'||!cap.installation_id)return;
-    if(container.querySelector('.ask-bob'))return;
+    if(container.querySelector('.ask-bob')||container.querySelector(':scope > .ask-bob-launch'))return;
     if(cap.live){
       const launcher=element('a',undefined,'ask-bob-launch');
       launcher.href=cap.url+'/?article='+encodeURIComponent(post.id)+'&hash='+hash(post._reader_article?.hash)+'&theme='+encodeURIComponent(document.documentElement.dataset.theme||'light');launcher.target='_blank';launcher.rel='noopener';
@@ -409,6 +409,7 @@ window.WakePetReady=(async () => {
         if(opened){event.preventDefault();popup=opened;popupArticle=post.id;opened.focus();}
       });
       const title=container.querySelector('h1');if(title)title.after(launcher);else container.prepend(launcher);
+      return; // The live conversation opens above; no duplicate footer composer.
     }
     const store=storage(cap.installation_id);
     const descriptor=post._reader_article,displayedHash=hash(descriptor?.hash);
