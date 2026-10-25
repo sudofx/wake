@@ -30,5 +30,15 @@ test('malformed saves fail closed',()=>{
 });
 test('food interventions are bounded, measured, and do not destroy existing food',()=>{
  const c=new Colony(3),before=c.metrics().food_remaining;for(let i=0;i<100;i++)c.addFood();assert.equal(c.food.length,32);assert.equal(c.metrics().food_remaining,before+c.addedFood);
- assert.equal(c.observation().interventions.food_added,c.addedFood);assert.equal(c.observation().model,'pellet-tunnels@3');assert.ok(c.observation().samples.length<=12);
+ assert.equal(c.observation().interventions.food_added,c.addedFood);assert.equal(c.observation().model,'pellet-tunnels@4');assert.ok(c.observation().samples.length<=12);
+});
+
+test('seeds vary initial shafts and branch layouts while keeping deterministic saves',()=>{
+ const layouts=new Set(),exits=new Set(),depths=new Set(),counts=new Set();
+ for(let seed=1;seed<=32;seed++){
+  const c=new Colony(seed),same=new Colony(seed);assert.deepEqual(c.save(),same.save());
+  layouts.add(JSON.stringify(c.nodes));exits.add(c.exit);depths.add(c.nodes[c.nest].y.toFixed(1));counts.add(c.fronts.length);
+  assert.ok(c.distance.every(d=>d>=0));assert.deepEqual(Colony.restore(c.save()).save(),c.save());
+ }
+ assert.equal(layouts.size,32);assert.ok(exits.size>=12);assert.ok(depths.size>=12);assert.equal(counts.size,3);
 });

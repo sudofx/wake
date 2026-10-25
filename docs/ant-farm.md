@@ -87,7 +87,7 @@ Mobile uses the same world and touch controls, without hover or drag requirement
 Browser state uses `wake-ant-colony@2`. Earlier prototype `@1` saves are left
 untouched; they are not imported into the corrected model. No shared server colony,
 URL state or offline catch-up is provided. `wake-ant-observation@1` with model
-`pellet-tunnels@2` is bounded numeric advisory input. The API strips extra labels,
+`pellet-tunnels@2`, `@3` or `@4` is bounded numeric advisory input. The API strips extra labels,
 instructions, URLs and model choices. Samples remain unverified user input. Ant
 questions fetch no research articles and use existing admission, cooldown and
 provider restrictions.
@@ -130,3 +130,11 @@ tripods and shortened inside strides during curved walking.
 [Deeti et al. (2023)](https://pubmed.ncbi.nlm.nih.gov/37093284/) describes stops,
 body turns and fixations during scanning in the studied desert ants. These inform
 the movement vocabulary rather than supplying universal timing parameters.
+
+## Varied tunnel layouts
+
+Model `pellet-tunnels@4` uses seeded variation in entrance position, shaft bends
+and depth, two to four uneven starter branches, and the angles and timing of later
+branches. A seed still reproduces its own history. Existing @2-format saves keep
+all their existing nodes, ants and progress; future excavation uses the varied
+growth rules. No saved shaft is reshaped and no colony is reset by an update.
