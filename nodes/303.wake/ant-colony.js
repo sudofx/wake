@@ -1,7 +1,7 @@
 /* Research-inspired 2D habitat. Narrow graph tunnels, finite pellet work, no record access. */
 (function(root){
   'use strict';
-  const WIDTH=120,HEIGHT=96,SURFACE=13,COUNT=64,SCHEMA='wake-ant-colony@2',MODEL='pellet-tunnels@3';
+  const WIDTH=120,HEIGHT=96,SURFACE=13,COUNT=64,SCHEMA='wake-ant-colony@2',MODEL='pellet-tunnels@4';
   const PELLETS=10,WORK_SECONDS=7,MAX_NODES=3000;
   const pointDistance=(p,a,b)=>{const dx=b.x-a.x,dy=b.y-a.y,t=Math.max(0,Math.min(1,((p.x-a.x)*dx+(p.y-a.y)*dy)/(dx*dx+dy*dy||1)));return Math.hypot(p.x-a.x-t*dx,p.y-a.y-t*dy);};
   class Colony{
@@ -10,13 +10,26 @@
       this.food=[{x:20,y:SURFACE-1,left:240},{x:100,y:SURFACE-1,left:240}];
       // A small starter nest is provided; subsequent excavation is counted separately.
       for(let x=2;x<WIDTH-1;x++)this.node(x,SURFACE-1,x===2?null:this.nodes.length-1,'surface');
-      this.exit=58;let parent=this.exit;
-      for(let y=SURFACE;y<=25;y++)parent=this.node(60,y,parent,y===25?'chamber':'tunnel');
+      // Seeded asymmetry replaces the identical straight shaft and three-way fork.
+      for(let i=0;i<16;i++)this.random();
+      this.exit=38+Math.floor(this.random()*40);let parent=this.exit;
+      let shaftAngle=Math.PI*(.38+this.random()*.24);
+      const shaftLength=10+Math.floor(this.random()*8);
+      for(let k=0;k<shaftLength;k++){
+        shaftAngle=Math.max(.9,Math.min(2.24,shaftAngle+(this.random()-.5)*.3));
+        const p=this.nodes[parent];parent=this.node(p.x+Math.cos(shaftAngle)*1.35,p.y+Math.sin(shaftAngle)*1.35,parent,k===shaftLength-1?'chamber':'tunnel');
+      }
       this.nest=parent;
-      for(const angle of [Math.PI*.24,Math.PI*.5,Math.PI*.76]){let tip=this.nest;for(let k=0;k<3;k++){const p=this.nodes[tip];tip=this.node(p.x+Math.cos(angle)*1.7,p.y+Math.sin(angle)*1.7,tip,'tunnel');}this.fronts.push({node:tip,angle,effort:0,length:0,blocked:false});}
+      const branches=2+Math.floor(this.random()*3);
+      for(let j=0;j<branches;j++){
+        const angle=.3+j*(Math.PI-.6)/(branches-1)+(this.random()-.5)*.2;
+        let tip=this.nest;const length=3+Math.floor(this.random()*3);
+        for(let k=0;k<length;k++){const p=this.nodes[tip];tip=this.node(p.x+Math.cos(angle)*1.7,p.y+Math.sin(angle)*1.7,tip,'tunnel');}
+        this.fronts.push({node:tip,angle,effort:0,length:0,blocked:false});
+      }
       this.initialNodes=this.nodes.length;this.rebuild();
       this.ants=Array.from({length:COUNT},(_,id)=>{
-        const role=id<12?'dig':id<44?'forage':'rest',front=id%3;
+        const role=id<12?'dig':id<44?'forage':'rest',front=id%this.fronts.length;
         let workCell=this.fronts[front].node;for(let k=0;k<Math.floor(id/3)&&k<3;k++)workCell=this.nodes[workCell].parent;
         const cell=role==='dig'?workCell:role==='rest'&&id<52?this.nest:30+Math.floor(this.random()*60);
         return {id,cell,from:cell,dir:this.random()*Math.PI*2,phase:1,carrying:0,role,steps:0,wait:role==='rest'?50+this.random()*250:0,work:-1,workLeft:0,job:front,pace:.6+this.random()*.45};
@@ -31,7 +44,7 @@
     extend(index){
       const front=this.fronts[index],from=this.nodes[front.node];if(this.nodes.length>=MAX_NODES){front.blocked=true;return;}
       let chosen;
-      for(const bend of [(this.random()-.5)*.18,.25,-.25,.5,-.5]){
+      for(const bend of [(this.random()-.5)*.65,...(this.random()<.5?[.3,-.3,.65,-.65]:[-.3,.3,-.65,.65])]){
         const angle=Math.max(.12,Math.min(Math.PI-.12,front.angle+bend)),p={x:from.x+Math.cos(angle)*1.7,y:from.y+Math.sin(angle)*1.7};
         if(p.x<4||p.x>WIDTH-4||p.y>HEIGHT-5)continue;
         // Keep a soil wall between unrelated passages; attached ancestors are exempt.
@@ -41,7 +54,7 @@
       }
       if(!chosen){front.blocked=true;return;}
       const old=front.node;front.node=this.node(chosen.p.x,chosen.p.y,old);front.angle=chosen.angle;front.length++;front.effort=0;this.dug++;this.visits.push(0);this.trail.push(0);
-      if(front.length>=8&&front.length%8===0&&this.fronts.length<12&&this.random()<.28)this.fronts.push({node:old,angle:Math.max(.2,Math.min(Math.PI-.2,front.angle+(this.random()<.5?-.9:.9))),effort:0,length:0,blocked:false});
+      if(front.length>=6&&this.fronts.length<12&&this.random()<.065)this.fronts.push({node:old,angle:Math.max(.2,Math.min(Math.PI-.2,front.angle+(this.random()<.5?-1:1)*(.55+this.random()*.65))),effort:0,length:0,blocked:false});
       this.rebuild();
     }
     step(){

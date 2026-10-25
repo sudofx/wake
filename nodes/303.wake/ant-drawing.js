@@ -2,7 +2,8 @@
    nodes, gaster, head, mandibles and elbowed antennae. Same renderer at every zoom. */
 (function(root){
  'use strict';
- const photo=typeof Image==='function'?new Image():null;if(photo){photo.onload=()=>root.dispatchEvent(new Event('wake-ant-art-ready'));photo.src='backgrounds/ant-body-v1.png';}
+ let art=null;
+ const photo=typeof Image==='function'?new Image():null;if(photo){photo.onload=()=>{art=document.createElement('canvas');art.width=256;art.height=Math.round(256*photo.naturalHeight/photo.naturalWidth);art.getContext('2d').drawImage(photo,0,0,art.width,art.height);root.dispatchEvent(new Event('wake-ant-art-ready'));};photo.src='backgrounds/ant-body-v1.png';}
  function drawAnt(ctx,r,ant,gait,time){
   const c=ant.id%5,body=['#562c18','#482316','#60301a','#452318','#6a351c'][c],dark='#211710',light='#955b32';
   ctx.lineCap='round';ctx.lineJoin='round';
@@ -19,12 +20,12 @@
    ctx.strokeStyle=light;ctx.lineWidth=r*.035;ctx.beginPath();ctx.moveTo(hip,side*r*.28);ctx.lineTo(kneeX,kneeY);ctx.stroke();
   }
   const ellipse=(x,y,rx,ry,fill)=>{const shade=ctx.createRadialGradient((x-rx*.3)*r,(y-ry*.5)*r,r*.06,x*r,y*r,Math.max(rx,ry)*r);shade.addColorStop(0,fill);shade.addColorStop(.45,fill);shade.addColorStop(1,dark);ctx.fillStyle=shade;ctx.beginPath();ctx.ellipse(x*r,y*r,rx*r,ry*r,0,0,Math.PI*2);ctx.fill();};
-  const photographic=photo?.complete&&photo.naturalWidth>0;
+  const photographic=!!art;
   if(photographic){
-   const w=photo.naturalWidth,h=photo.naturalHeight,y=h*.2,headMotion=Math.sin(time*2.7+ant.id)*.08;
-   ctx.save();ctx.translate(-1.1*r,0);ctx.rotate(ant.moving?Math.sin(gait)*.035:0);ctx.drawImage(photo,0,y,w*.4,h*.6,-2.2*r,-r,2.2*r,2*r);ctx.restore();
-   ctx.drawImage(photo,w*.39,y,w*.36,h*.6,-1.155*r,-r,1.98*r,2*r);
-   ctx.save();ctx.translate(.77*r,0);ctx.rotate(headMotion);ctx.drawImage(photo,w*.73,y,w*.27,h*.6,-.055*r,-r,1.485*r,2*r);ctx.restore();
+   const w=art.width,h=art.height,y=h*.2,headMotion=Math.sin(time*2.7+ant.id)*.08;
+   ctx.save();ctx.translate(-1.1*r,0);ctx.rotate(ant.moving?Math.sin(gait)*.035:0);ctx.drawImage(art,0,y,w*.4,h*.6,-2.2*r,-r,2.2*r,2*r);ctx.restore();
+   ctx.drawImage(art,w*.39,y,w*.36,h*.6,-1.155*r,-r,1.98*r,2*r);
+   ctx.save();ctx.translate(.77*r,0);ctx.rotate(headMotion);ctx.drawImage(art,w*.73,y,w*.27,h*.6,-.055*r,-r,1.485*r,2*r);ctx.restore();
   }else{
   // Gaster is larger than the mesosoma and separated by a narrow two-node waist.
   ellipse(-2.12,0,1.15,.76,body);ellipse(-2.38,-.3,.43,.12,'#a5704233');

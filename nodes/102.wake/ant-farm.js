@@ -10,21 +10,17 @@
   try{const saved=localStorage.getItem(KEY);colony=saved?Colony.restore(JSON.parse(saved)):null;}catch{storageReady=false;}
   colony ||= new Colony(crypto.getRandomValues(new Uint32Array(1))[0]);
   let paused=reduced.matches,speed=1,showTrails=false,previous=0,accumulator=0,lastDraw=0,lastSave=0,lastUI=0,zoom=1,cameraX=.5,cameraY=.5;
-  let width=0,height=0,dpr=1,cw=0,ch=0,terrainDirty=true,terrain=document.createElement('canvas'),soil=document.createElement('canvas');
-  const soilPhoto=new Image();soilPhoto.onload=()=>resize();soilPhoto.src='backgrounds/ant-sand-v2.png';
-  window.addEventListener('wake-ant-art-ready',()=>draw());
+  let width=0,height=0,dpr=1,cw=0,ch=0,terrainDirty=true,needsDraw=true,frameInterval=1000/24,terrain=document.createElement('canvas'),soil=document.createElement('canvas');
+  window.addEventListener('wake-ant-art-ready',()=>{needsDraw=true;});
   const soilCtx=soil.getContext('2d'),ground=terrain.getContext('2d');
   function save(){if(storageConflict)return;try{localStorage.setItem(KEY,JSON.stringify(colony.save()));storageReady=true;}catch{storageReady=false;}updateStorage();}
   function updateStorage(){get('save-status').textContent=storageReady?'Progress stays in this browser. The colony rests when this page is hidden.':'Saving is unavailable. You can watch now; this colony may not survive a reload.';}
   function resize(){
-    const box=canvas.getBoundingClientRect();width=box.width;height=box.height;dpr=Math.min(devicePixelRatio||1,2);cw=width/W;ch=height/H;
+    const box=canvas.getBoundingClientRect();width=box.width;height=box.height;const mobile=matchMedia('(pointer: coarse)').matches||width<=600;dpr=Math.min(devicePixelRatio||1,mobile?1.25:1.5,Math.sqrt(1500000/(width*height)));frameInterval=1000/(mobile?20:24);cw=width/W;ch=height/H;
     for(const layer of [canvas,terrain,soil]){layer.width=Math.round(width*dpr);layer.height=Math.round(height*dpr);layer.getContext('2d').setTransform(dpr,0,0,dpr,0,0);}
-    // Stable texture is a cached substrate, independent of the simulation RNG.
-    const sky=soilCtx.createLinearGradient(0,0,0,height);sky.addColorStop(0,'#1b2c23');sky.addColorStop(S/H-.008,'#354b33');sky.addColorStop(S/H,'#e5d4ad');sky.addColorStop(.28,'#e4d2aa');sky.addColorStop(.67,'#daca9f');sky.addColorStop(1,'#cdbb91');soilCtx.fillStyle=sky;soilCtx.fillRect(0,0,width,height);
-    if(soilPhoto.complete&&soilPhoto.naturalWidth){soilCtx.drawImage(soilPhoto,0,S*ch,width,height-S*ch);const depth=soilCtx.createLinearGradient(0,S*ch,0,height);depth.addColorStop(0,'#fff8df08');depth.addColorStop(1,'#8b714414');soilCtx.fillStyle=depth;soilCtx.fillRect(0,S*ch,width,height-S*ch);}
-    let textureSeed=colony.seed;const noise=()=>{textureSeed=(Math.imul(textureSeed,1664525)+1013904223)>>>0;return textureSeed/4294967296;};
-    for(let i=0;i<width*height/120;i++){const x=noise()*width,y=S*ch+noise()*(height-S*ch),r=.3+noise()*1.4;soilCtx.fillStyle=noise()>.5?'#fff6dc18':'#836c3c12';soilCtx.beginPath();soilCtx.ellipse(x,y,r*2,r,noise()*3,0,Math.PI*2);soilCtx.fill();}
-    soilCtx.strokeStyle='#83945a';soilCtx.lineWidth=1;for(let x=0;x<width;x+=4+noise()*9){const y=(S-.3)*ch;soilCtx.beginPath();soilCtx.moveTo(x,y);soilCtx.lineTo(x-2+noise()*4,y-2-noise()*7);soilCtx.stroke();}
+    // Drawn colour fields stay quiet at every zoom; no enlarged photographic grains.
+    const sky=soilCtx.createLinearGradient(0,0,0,S*ch);sky.addColorStop(0,'#20342a');sky.addColorStop(1,'#526446');soilCtx.fillStyle=sky;soilCtx.fillRect(0,0,width,S*ch);
+    const earth=soilCtx.createLinearGradient(0,S*ch,0,height);earth.addColorStop(0,'#eadbb9');earth.addColorStop(1,'#d8c8a7');soilCtx.fillStyle=earth;soilCtx.fillRect(0,S*ch,width,height-S*ch);
     terrainDirty=true;draw();
   }
   function updateTerrain(){
@@ -36,17 +32,18 @@
     }
     ground.fillStyle='#c9b68f';ground.beginPath();const home=colony.nodes[colony.nest];ground.ellipse(home.x*cw,home.y*ch,2.2*cw,1.3*ch,0,0,Math.PI*2);ground.fill();
     // A warm nest chamber makes the homeward traffic legible.
-    const nest=ground.createRadialGradient(60*cw,25*ch,0,60*cw,25*ch,8*Math.max(cw,ch));nest.addColorStop(0,'#c7a36d18');nest.addColorStop(1,'#c7a36d00');ground.fillStyle=nest;ground.fillRect(56*cw,22*ch,8*cw,6*ch);terrainDirty=false;
+    const nest=ground.createRadialGradient(home.x*cw,home.y*ch,0,home.x*cw,home.y*ch,8*Math.max(cw,ch));nest.addColorStop(0,'#c7a36d18');nest.addColorStop(1,'#c7a36d00');ground.fillStyle=nest;ground.fillRect((home.x-4)*cw,(home.y-3)*ch,8*cw,6*ch);terrainDirty=false;
   }
   const facings=new Map(),strides=new Map();
   function draw(){
-    if(!width||!height)return;if(terrainDirty)updateTerrain();ctx.clearRect(0,0,width,height);
+    if(!width||!height)return;needsDraw=false;if(terrainDirty)updateTerrain();ctx.clearRect(0,0,width,height);
+    // Sample only the visible terrain into the fixed viewport before transforming ants.
+    ctx.drawImage(terrain,(cameraX-.5/zoom)*width*dpr,(cameraY-.5/zoom)*height*dpr,width*dpr/zoom,height*dpr/zoom,0,0,width,height);
     ctx.save();ctx.translate(width/2,height/2);ctx.scale(zoom,zoom);ctx.translate(-cameraX*width,-cameraY*height);
-    ctx.drawImage(terrain,0,0,width,height);
     if(showTrails){ctx.lineCap='round';ctx.lineWidth=Math.min(cw,ch)*.65;for(let i=0;i<colony.trail.length;i++)if(colony.trail[i]>.15){const n=colony.nodes[i],p=colony.nodes[n.parent];if(!p)continue;ctx.strokeStyle=`rgba(168,207,144,${Math.min(.62,colony.trail[i]/17)})`;ctx.beginPath();ctx.moveTo(n.x*cw,n.y*ch);ctx.lineTo(p.x*cw,p.y*ch);ctx.stroke();}}
     for(const f of colony.food){if(!f.left)continue;const x=f.x*cw,y=f.y*ch;ctx.fillStyle='#b3bb68';for(let j=0;j<Math.min(10,Math.ceil(f.left/24));j++){const angle=j*2.4,r=2+Math.sqrt(j)*1.3;ctx.beginPath();ctx.ellipse(x+Math.cos(angle)*r,y+Math.sin(angle)*r,1.2,.8,j,0,7);ctx.fill();}}
     // Deposited grains accumulate at the entrance; excavation requires a return trip.
-    ctx.fillStyle='#a7895c';for(let k=0;k<Math.min(70,colony.soilDelivered);k++){const x=(59+(k%2?1:-1)*(1+Math.sqrt(k)*.4))*cw,y=(S-.4-Math.floor(k/15)*.1)*ch;ctx.beginPath();ctx.ellipse(x,y,.7,.5,k,0,7);ctx.fill();}
+    ctx.fillStyle='#a7895c';for(let k=0;k<Math.min(70,colony.soilDelivered);k++){const x=(colony.nodes[colony.exit].x-1+(k%2?1:-1)*(1+Math.sqrt(k)*.4))*cw,y=(S-.4-Math.floor(k/15)*.1)*ch;ctx.beginPath();ctx.ellipse(x,y,.7,.5,k,0,7);ctx.fill();}
     const r=Math.max(1.3,Math.min(3.7,Math.min(cw,ch)*.4));
     for(const ant of colony.ants){const a=colony.nodes[ant.from],b=colony.nodes[ant.cell],length=Math.hypot(b.x-a.x,b.y-a.y)||1,t=Math.min(1,ant.phase+(!paused&&ant.wait<=0&&ant.phase<1?accumulator*ant.pace/length*(ant.carrying?.75:1):0));
       const lane=((ant.id%3)-1)*.13,spread=ant.id*2.39996,rad=.5+(ant.id%8)/8,offsetA=ant.from===colony.nest?1-t:0,offsetB=ant.cell===colony.nest?t:0,spreadWeight=offsetA+offsetB;
@@ -55,6 +52,8 @@
       const target=(a===b?ant.dir:Math.atan2((b.y-a.y)*ch,(b.x-a.x)*cw))+scanning,old=facings.get(ant.id)??target,turn=Math.atan2(Math.sin(target-old),Math.cos(target-old)),angle=old+Math.max(-.23,Math.min(.23,turn));facings.set(ant.id,angle);
       let pose=strides.get(ant.id);if(!pose)pose={x,y,gait:ant.id*2.39996};
       const distance=Math.hypot(x-pose.x,y-pose.y);if(moving&&distance<Math.max(cw,ch)*2)pose.gait+=distance/r*Math.PI*.55;pose.x=x;pose.y=y;strides.set(ant.id,pose);
+      const margin=r*5;
+      if(x<(cameraX-.5/zoom)*width-margin||x>(cameraX+.5/zoom)*width+margin||y<(cameraY-.5/zoom)*height-margin||y>(cameraY+.5/zoom)*height+margin)continue;
       ctx.save();ctx.translate(x,y);ctx.rotate(angle+(moving?Math.sin(pose.gait*2)*.018:0));drawAnt(ctx,r,{...ant,moving,turn},pose.gait,colony.time+(!paused?accumulator:0));ctx.restore();
     }
     ctx.restore();
@@ -72,21 +71,21 @@
   function animate(now){
     requestAnimationFrame(animate);if(document.hidden){previous=0;return;}if(!previous)previous=now;const delta=Math.min(.25,(now-previous)/1000);previous=now;
     if(!paused){accumulator+=delta*speed;let steps=0;while(accumulator>=.1&&steps++<20){const before=colony.dug;colony.step();terrainDirty ||= before!==colony.dug;accumulator-=.1;}}
-    if(now-lastDraw>=1000/30){draw();lastDraw=now;}if(now-lastUI>2000){updateUI();lastUI=now;}if(now-lastSave>10000){save();lastSave=now;}
+    if(now-lastDraw>=frameInterval&&(!paused||needsDraw)){draw();lastDraw=now;}if(now-lastUI>2000){updateUI();lastUI=now;}if(now-lastSave>10000){save();lastSave=now;}
   }
   function pause(value){paused=value;get('pause').textContent=paused?'Resume':'Pause';get('pause').setAttribute('aria-pressed',String(paused));get('scene-note').textContent=paused?'The colony is resting. Resume whenever you’re ready.':'Small steps. New tunnels. No master plan.';}
   get('pause').onclick=()=>pause(!paused);get('speed').onclick=()=>{speed=speed===1?2:speed===2?4:1;get('speed').textContent=speed+'×';get('speed').setAttribute('aria-label',`Simulation speed, currently ${speed} times`);};
   function cameraClamp(){cameraX=Math.max(.5/zoom,Math.min(1-.5/zoom,cameraX));cameraY=Math.max(.5/zoom,Math.min(1-.5/zoom,cameraY));}
-  function setZoom(value,point){const next=Math.max(1,Math.min(8,value));if(point){cameraX+=(point.x/width-.5)*(1/zoom-1/next);cameraY+=(point.y/height-.5)*(1/zoom-1/next);}else if(zoom===1&&next>1)cameraY=.20;zoom=next;cameraClamp();get('zoom').textContent='Closer +';get('zoom').disabled=zoom>=8;get('zoom-out').disabled=zoom<=1;get('zoom-view').textContent=zoom.toFixed(zoom%1?1:0)+'× view';get('scene-note').textContent=zoom>1?'Drag to explore · pinch or scroll to zoom · Fit returns to the whole colony.':'Small steps. New tunnels. No master plan.';draw();}
+  function setZoom(value,point){const next=Math.max(1,Math.min(4,value));if(point){cameraX+=(point.x/width-.5)*(1/zoom-1/next);cameraY+=(point.y/height-.5)*(1/zoom-1/next);}else if(zoom===1&&next>1){const home=colony.nodes[colony.nest];cameraX=home.x/W;cameraY=Math.max(.2,home.y/H-.06);}zoom=next;cameraClamp();get('zoom').textContent='Closer +';get('zoom').disabled=zoom>=4;get('zoom-out').disabled=zoom<=1;get('zoom-view').textContent=zoom.toFixed(zoom%1?1:0)+'× view';get('scene-note').textContent=zoom>1?'Drag to explore · pinch or scroll to zoom · Fit returns to the whole colony.':'Small steps. New tunnels. No master plan.';needsDraw=true;}
   get('zoom').onclick=()=>setZoom(zoom*2);get('zoom-out').onclick=()=>setZoom(zoom/2);get('zoom-fit').onclick=()=>{cameraX=.5;cameraY=.5;setZoom(1);};
   const pointers=new Map();let gesture=null;
   canvas.addEventListener('pointerdown',event=>{canvas.setPointerCapture(event.pointerId);pointers.set(event.pointerId,{x:event.clientX,y:event.clientY});gesture=null;});
-  canvas.addEventListener('pointermove',event=>{if(!pointers.has(event.pointerId))return;const previous=pointers.get(event.pointerId);pointers.set(event.pointerId,{x:event.clientX,y:event.clientY});if(pointers.size===1){cameraX-=(event.clientX-previous.x)/width/zoom;cameraY-=(event.clientY-previous.y)/height/zoom;cameraClamp();draw();}else{const [a,b]=[...pointers.values()],distance=Math.hypot(a.x-b.x,a.y-b.y),box=canvas.getBoundingClientRect();if(gesture)setZoom(zoom*distance/gesture,{x:(a.x+b.x)/2-box.left,y:(a.y+b.y)/2-box.top});gesture=distance;}});
+  canvas.addEventListener('pointermove',event=>{if(!pointers.has(event.pointerId))return;const previous=pointers.get(event.pointerId);pointers.set(event.pointerId,{x:event.clientX,y:event.clientY});if(pointers.size===1){cameraX-=(event.clientX-previous.x)/width/zoom;cameraY-=(event.clientY-previous.y)/height/zoom;cameraClamp();needsDraw=true;}else{const [a,b]=[...pointers.values()],distance=Math.hypot(a.x-b.x,a.y-b.y),box=canvas.getBoundingClientRect();if(gesture)setZoom(zoom*distance/gesture,{x:(a.x+b.x)/2-box.left,y:(a.y+b.y)/2-box.top});gesture=distance;}});
   for(const name of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(name,event=>{pointers.delete(event.pointerId);gesture=null;});
   canvas.addEventListener('wheel',event=>{event.preventDefault();const box=canvas.getBoundingClientRect();setZoom(zoom*Math.exp(-event.deltaY*.002),{x:event.clientX-box.left,y:event.clientY-box.top});},{passive:false});
-  canvas.addEventListener('keydown',event=>{if(['+','=','-','Home'].includes(event.key)){event.preventDefault();if(event.key==='Home'){cameraX=.5;cameraY=.5;setZoom(1);}else setZoom(zoom*(event.key==='-'?.5:2));}else if(event.key.startsWith('Arrow')){event.preventDefault();cameraX+=(event.key==='ArrowLeft'?-.08:event.key==='ArrowRight'?.08:0)/zoom;cameraY+=(event.key==='ArrowUp'?-.08:event.key==='ArrowDown'?.08:0)/zoom;cameraClamp();draw();}});
-  get('trails').onclick=()=>{showTrails=!showTrails;get('trails').setAttribute('aria-pressed',String(showTrails));draw();};
-  get('feed').onclick=()=>{const added=colony.addFood();save();updateUI();get('scene-note').textContent=added?'A few crumbs on the surface. Who will find them first?':'There are plenty of crumbs already. Give the foragers time to find them.';draw();};
+  canvas.addEventListener('keydown',event=>{if(['+','=','-','Home'].includes(event.key)){event.preventDefault();if(event.key==='Home'){cameraX=.5;cameraY=.5;setZoom(1);}else setZoom(zoom*(event.key==='-'?.5:2));}else if(event.key.startsWith('Arrow')){event.preventDefault();cameraX+=(event.key==='ArrowLeft'?-.08:event.key==='ArrowRight'?.08:0)/zoom;cameraY+=(event.key==='ArrowUp'?-.08:event.key==='ArrowDown'?.08:0)/zoom;cameraClamp();needsDraw=true;}});
+  get('trails').onclick=()=>{showTrails=!showTrails;get('trails').setAttribute('aria-pressed',String(showTrails));needsDraw=true;};
+  get('feed').onclick=()=>{const added=colony.addFood();save();updateUI();get('scene-note').textContent=added?'A few crumbs on the surface. Who will find them first?':'There are plenty of crumbs already. Give the foragers time to find them.';needsDraw=true;};
   function observe(open){get('observations').hidden=!open;get('observe').setAttribute('aria-expanded',String(open));updateUI();if(open)get('close-observations').focus();else get('observe').focus();}
   get('observe').onclick=()=>observe(get('observations').hidden);get('close-observations').onclick=()=>observe(false);document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!get('observations').hidden)observe(false);});
   get('fullscreen').hidden=!document.fullscreenEnabled;get('fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await get('farm').requestFullscreen();}catch{get('scene-note').textContent='Full screen is unavailable in this browser.';}};
