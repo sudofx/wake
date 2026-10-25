@@ -191,3 +191,27 @@ must not affect governance or provider-effect sequencing. Only an explicit nativ
 runtime capability bound to the installation may animate an in-flight matrix coordinate. Hosted pending
 snapshots are dated evidence, not live execution. Clear overlays on disconnect
 and keep score, selection, accepted progress and historical replay separate.
+
+## Development cadence and hosted releases
+
+Run long independent jobs in the background and continue other authorized work.
+Check their outcome before the next dependent publication or runtime change;
+do not spend an active session repeatedly polling an unchanged job. If all
+independent work is exhausted, report the pending dependency without claiming
+completion or promising unattended continuation that has no executor.
+
+Keep delivery boundaries independent. Presentation and Ask Bob changes need
+checks at their owning boundaries, not a research stop or a full native replay.
+For runtime candidates, start compatibility verification early on retained,
+authenticated encrypted inputs while the existing runtime continues. Each audit
+shard restores only its assigned node. Operational changes that leave record
+interpretation unchanged may use that completed background comparison; changes
+to record format, reducers, governance, migrations or dependencies require a
+final compatibility check against the drained installation before promotion.
+Unknown impact takes the stricter path. Preserve successful full-history gates;
+reduce duplicated work and downtime rather than skipping integrity checks.
+
+For an already-authorized runtime rollout, use an exact pending upgrade request
+and the completion workflow when appropriate. Do not leave research paused just
+because the chat stopped polling. Verification without that explicit request
+must never promote a runtime; a newer operator control supersedes the request.

@@ -10,6 +10,64 @@ import re
 import subprocess
 import sys
 import tempfile
+import shutil
+import zipfile
+
+
+def capture_snapshot(transport, destination):
+    """Retain encrypted inputs before replay; rotating recovery may then advance."""
+    from wake.hosted import unseal
+    destination = Path(destination)
+    if destination.exists():
+        raise ValueError('Snapshot destination must not exist')
+    with tempfile.TemporaryDirectory(dir=destination.parent) as temporary:
+        staged = Path(temporary)
+        manifest = transport.read_manifest()
+        shutil.copyfile(transport.checkout / 'current.enc', staged / 'current.enc')
+        blocks = {item['name']: item for value in manifest['nodes'].values() for item in value['blocks']}
+        blocks.update({item['name']: item for item in manifest['auxiliary']})
+        (staged / 'blocks').mkdir()
+        for name, item in blocks.items():
+            if not re.fullmatch(r'block-[0-9a-f]{64}\.bin', name):
+                raise ValueError('Invalid encrypted snapshot block name')
+            data = transport.api.request(f'releases/assets/{int(item["id"])}', binary=True)
+            unseal(transport.key, data, name)  # Never retain unauthenticated inputs.
+            (staged / 'blocks' / name).write_bytes(data)
+        # Publish only a complete capture; no decrypted records enter artifacts.
+        staged.rename(destination)
+    return manifest
+
+
+class SnapshotFiles:
+    """Offline, GET-only encrypted inputs; no GitHub or provider capability."""
+    def __init__(self, root, manifest):
+        self.root = Path(root)
+        self.names = {int(item['id']): item['name'] for value in manifest['nodes'].values() for item in value['blocks']}
+        self.names.update({int(item['id']): item['name'] for item in manifest['auxiliary']})
+
+    def request(self, path, *, binary=False):
+        if not binary or not re.fullmatch(r'releases/assets/[0-9]+', path):
+            raise ValueError('Snapshot permits encrypted block reads only')
+        name = self.names[int(path.rsplit('/', 1)[1])]
+        if not re.fullmatch(r'block-[0-9a-f]{64}\.bin', name):
+            raise ValueError('Invalid encrypted snapshot block name')
+        return (self.root / 'blocks' / name).read_bytes()
+
+
+def restore_audit_nodes(transport, manifest, records, nodes):
+    """Each shard verifies only its assigned records, never twelve copies each."""
+    from wake.hosted import verify_recovery
+    records = Path(records)
+    transport.get_file(manifest['auxiliary'], records / 'aux.zip')
+    with zipfile.ZipFile(records / 'aux.zip') as archive:
+        if json.loads(archive.read('installation-id.json'))['id'] != manifest['installation_id']:
+            raise ValueError('Installation identity mismatch')
+    for node in nodes:
+        value = manifest['nodes'][node]
+        target = records / 'nodes' / node / 'record/wake.sqlite'
+        transport.get_file(value['blocks'], target)
+        if verify_recovery(target) != {key: value[key] for key in ('revision', 'head', 'sha256')}:
+            raise ValueError('Restored node history differs from checkpoint: ' + node)
 
 
 def aggregate_reports(directory, *, candidate, policy, node_ids):
@@ -49,15 +107,34 @@ def aggregate_reports(directory, *, candidate, policy, node_ids):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--candidate', type=Path, required=True)
+    parser.add_argument('--candidate', type=Path)
+    parser.add_argument('--capture', type=Path, help='Capture encrypted audit inputs without replay or research controls')
+    parser.add_argument('--snapshot', type=Path, help='Audit retained encrypted inputs entirely offline')
     parser.add_argument('--baseline', type=Path)
     parser.add_argument('--node', help='Audit one node in a bounded workflow shard')
     parser.add_argument('--aggregate', type=Path, help='Directory of all twelve node reports')
     parser.add_argument('--policy', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
-    candidate = args.candidate.resolve()
     policy = json.loads(args.policy.read_text())['installations'][os.environ['GITHUB_REPOSITORY']]
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    from wake.hosted import HostedState
+    if args.capture:
+        if args.candidate or args.baseline or args.node or args.aggregate or args.snapshot:
+            parser.error('Capture does not run audits')
+        with tempfile.TemporaryDirectory(prefix='wake-upgrade-capture-') as temporary:
+            transport = HostedState(temporary, os.environ['GITHUB_REPOSITORY'],
+                                    os.environ['GH_TOKEN'], os.environ['WAKE_HOSTED_STATE_KEY'])
+            transport.open()
+            if transport.read_manifest()['installation_id'] != policy['installation_id']:
+                raise ValueError('Checkpoint installation differs from policy')
+            manifest = capture_snapshot(transport, args.capture.resolve())
+            args.output.write_text(json.dumps({'generation': manifest['generation'],
+                                               'installation_id': manifest['installation_id']}))
+        return 0
+    if not args.candidate:
+        parser.error('Audits require a candidate')
+    candidate = args.candidate.resolve()
     def revision(root):
         value = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=root, text=True).strip()
         if not re.fullmatch('[a-f0-9]{40}', value):
@@ -79,23 +156,26 @@ def main():
     baseline_sha = revision(baseline)
     if baseline_sha != policy['source_revision']:
         raise ValueError('Baseline differs from the bound runtime')
-    from wake.hosted import HostedState
     with tempfile.TemporaryDirectory(prefix='wake-upgrade-verification-') as temporary:
         root = Path(temporary)
         transport = HostedState(root / 'transport', os.environ['GITHUB_REPOSITORY'],
-                                os.environ['GH_TOKEN'], os.environ['WAKE_HOSTED_STATE_KEY'])
+                                'offline' if args.snapshot else os.environ['GH_TOKEN'], os.environ['WAKE_HOSTED_STATE_KEY'])
         # Read-only workflow permissions prevent any remote write. No controller,
         # provider, save, seed, prune, or research-start capability is invoked.
         print('Opening authenticated disposable recovery copies', flush=True)
-        transport.open()
+        if args.snapshot:
+            transport.checkout = args.snapshot.resolve()
+        else:
+            transport.open()
         checkpoint = transport.read_manifest()
         if checkpoint['installation_id'] != policy['installation_id']:
             raise ValueError('Checkpoint installation differs from policy')
         records = root / 'installation'
-        restored = transport.restore(records, workers=4)
-        if restored != checkpoint:
-            raise ValueError('Recovery checkpoint changed during restoration')
-        print('Restored and verified all twelve checkpoint identities', flush=True)
+        if args.snapshot:
+            transport.api = SnapshotFiles(args.snapshot, checkpoint)
+        selected = (args.node,) if args.node else NODE_IDS
+        restore_audit_nodes(transport, checkpoint, records, selected)
+        print('Restored and verified assigned checkpoint identities', flush=True)
         program = r'''
 import json,sys
 from pathlib import Path
@@ -136,7 +216,6 @@ print(json.dumps(result,sort_keys=True))
             return pair
         # Each pair owns a different disposable node; never audit the same copy
         # concurrently or open an operational controller. Bound replay memory.
-        selected = (args.node,) if args.node else NODE_IDS
         results = [{}, {}]
         with ThreadPoolExecutor(max_workers=2) as executor:
             for pair in executor.map(compare_node, selected):

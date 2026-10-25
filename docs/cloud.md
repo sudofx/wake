@@ -252,22 +252,61 @@ binds settings to an installation identity and can include `source_revision` to
 hold that installation on a verified commit. Omitting that optional pin explicitly
 selects successful master CI, while retaining the installation identity check.
 
-Before changing a binding, test the candidate against disposable copies of all
-records, preserve their history and accepted counts, and verify any required
-migration. Never clear the binding merely to force an upgrade. A runtime source
-commit must also have successful `master` CI. The binding's installation ID must
-match the restored checkpoint before a new controller can start.
-Run **Actions → WAKE — Verify hosted runtime upgrade** with the candidate's full
-commit hash. It restores disposable encrypted recovery copies and compares full
-baseline and candidate audits for all twelve nodes without provider calls or
-remote record writes. Each node runs both complete audits in its own bounded
-job; the final gate requires exactly twelve successful node reports with the same
-candidate, baseline, installation, checkpoint generation and manifest digest.
-Missing, duplicate or inconsistent reports fail the gate; partial artifacts never
-authorize promotion. Research must stay stopped while this frozen checkpoint is
-verified and promoted. Download its `upgrade-verification` artifact and check the
-candidate, baseline, installation identity and matching node histories before
-changing the binding.
+Start runtime verification as soon as the candidate is ready, while the current
+runtime continues research. Run **Actions → WAKE — Verify hosted runtime upgrade**
+with the candidate's full commit hash. The first job retains one authenticated,
+encrypted checkpoint as a short-lived Actions artifact. Audit jobs then work
+entirely offline, so later checkpoint rotation or pruning cannot change their
+inputs. No decrypted database, provider credential or record body is uploaded.
+If capture races pruning, it fails without publishing a partial input artifact;
+rerun capture against the current checkpoint rather than stopping research for
+an entire audit.
+
+Each of the twelve jobs restores and verifies only its assigned node, then
+compares complete baseline and candidate audits. Previously each job restored
+all twelve nodes: 144 record restorations for twelve comparisons. The final gate
+still requires exactly twelve successful reports with one candidate, baseline,
+installation, checkpoint generation and manifest digest. Missing, duplicate or
+inconsistent reports fail closed. No provider calls or remote record writes occur.
+
+Choose the release boundary from the actual diff:
+
+- **Website and Ask Bob:** verify and publish their own artifacts independently.
+  They do not require a research stop or a native replay merely to ship UI.
+- **Operational runtime changes with unchanged record interpretation:** complete
+  the background comparison, then drain and roll over the runtime. Review the
+  diff to establish that native formats, reducers, governance, migrations and
+  dependencies are unchanged; unknown impact uses the stricter path below.
+- **Record interpretation or migration changes:** prepare and test in the
+  background first. At the final rollout boundary, drain research and verify the
+  final checkpoint under both versions before changing the binding. An older
+  snapshot alone does not certify records appended after it was captured.
+
+Download the `upgrade-verification` artifact and check the candidate, baseline,
+installation identity and all twelve matching histories before promotion. The
+candidate must also have successful master CI, and the binding's installation
+ID must match recovery. Never clear a pin, reset records or skip a failed gate to
+speed up delivery. Stop only for the dependent rollout, not for unrelated page
+work or while an early audit runs.
+
+An explicitly approved upgrade can finish without an open chat. Add
+`pending_upgrade` to that installation's binding with the exact `candidate`,
+`baseline`, `verification_run`, frozen `checkpoint_ref`, `generation`, and the
+latest completed operator `control_run`. **Complete requested hosted upgrade**
+runs when verification completes successfully. It rechecks the full report,
+code CI, unchanged checkpoint, stopped writer and current operator intent, then
+changes only the runtime pin, requests the existing start control, and clears
+the pending request. Installation settings and grants are preserved. A newer
+operator control, changed checkpoint, missing node or failed check prevents
+promotion. Removing the pending request cancels automatic completion; running
+verification by itself never authorizes an upgrade.
+
+For a gate that finished before its request was published, dispatch the completion
+workflow with that exact verification run ID. Its restart request is a separate
+boundary from actual worker adoption: check fresh runtime observations after
+startup. A failed completion retains recoverable state; rerun it after resolving
+the reported condition rather than restarting from scratch or blindly replaying
+writes.
 
 An older pinned runner can replace newly published website assets during its
 next export. For a release that changes those assets, gracefully stop and drain

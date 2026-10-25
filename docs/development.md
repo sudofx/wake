@@ -24,6 +24,13 @@ Before changing anything, answer three questions:
 If you only need the key terms, use the [glossary](glossary.md). If you need a
 release procedure, go to [mirror publishing](cloud.md#development-and-release).
 
+Long verification and delivery jobs should run in the background while independent
+authorized work continues. Recheck the previous job before its next dependent
+publication or runtime operation. Do not repeatedly poll an unchanged job or
+rerun unaffected suites to fill the wait. Use the release boundaries in
+[hosted upgrades](cloud.md#publish-source-without-upgrading-records) to choose checks;
+full history replay is a record-compatibility gate, not a universal UI gate.
+
 For private human checkpoints and fresh-conversation recovery, use the
 [continuity workflow](continuity/README.md). It complements the authoritative
 research record without adding runtime state or automatic model context.

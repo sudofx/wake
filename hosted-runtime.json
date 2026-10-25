@@ -6,7 +6,15 @@
       "source_revision": "b67dcf52aff7dd8ff431c16db3f8145aa2451cdb",
       "decision_memory_mode": "active",
       "research_expansion_enabled": true,
-      "research_candidate_catalog_enabled": true
+      "research_candidate_catalog_enabled": true,
+      "pending_upgrade": {
+        "candidate": "785e7337c3ef3e2d8a64320d8dde394c12444c09",
+        "baseline": "b67dcf52aff7dd8ff431c16db3f8145aa2451cdb",
+        "verification_run": 40239799503,
+        "checkpoint_ref": "9b36d7d2cd66efc9fb829177e22ff28d28660f3f",
+        "generation": 19962,
+        "control_run": 40238635473
+      }
     }
   }
 }

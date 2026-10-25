@@ -1,0 +1,39 @@
+name: WAKE — Complete requested hosted upgrade
+on:
+  workflow_run:
+    workflows: [WAKE — Verify hosted runtime upgrade]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      verification_run:
+        description: Successful verifier run matching the explicit pending upgrade.
+        type: string
+        required: true
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: wake-upgrade-completion
+  cancel-in-progress: false
+jobs:
+  complete:
+    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'master')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - run: python -m pip install --disable-pip-version-check -e '.[hosted]'
+      - uses: actions/download-artifact@v6
+        with:
+          name: upgrade-verification
+          path: verification
+          run-id: ${{ github.event.workflow_run.id || inputs.verification_run }}
+          github-token: ${{ github.token }}
+      - name: Recheck exact proof, promote the requested binding, and request continuation
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERIFICATION_RUN: ${{ github.event.workflow_run.id || inputs.verification_run }}
+        run: python scripts/complete_hosted_upgrade.py --run-id "$VERIFICATION_RUN" --report verification/upgrade-verification.json
