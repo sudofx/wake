@@ -209,6 +209,52 @@ class HostedTransportTests(unittest.TestCase):
             successor.restore(self.active)
 
 
+    def test_quota_failed_upload_reconciles_absence_before_one_retry(self):
+        from urllib.error import HTTPError
+        base = self.assets.request
+        uploads = []
+        def quota_once(path, **kwargs):
+            if kwargs.get('upload'):
+                uploads.append(path)
+                if len(uploads) == 1:
+                    raise HTTPError('https://uploads.github.com',403,'Forbidden',{'X-RateLimit-Remaining':'0'},None)
+            return base(path, **kwargs)
+        with patch.object(self.assets, 'request', side_effect=quota_once):
+            result = self.transport.put_block(b'quota-retry-proof', self.transport.assets())
+        self.assertEqual(len(uploads),2)
+        self.assertEqual(uploads[0],uploads[1])
+        self.assertIn(result['id'],self.assets.objects)
+
+    def test_ambiguous_upload_reuses_acknowledged_identity_without_reposting(self):
+        from urllib.error import URLError
+        base = self.assets.request
+        uploads=[]
+        def lost_response(path, **kwargs):
+            result=base(path,**kwargs)
+            if kwargs.get('upload'):
+                uploads.append(path)
+                raise URLError('lost response')
+            return result
+        with patch.object(self.assets,'request',side_effect=lost_response):
+            result=self.transport.put_block(b'lost-response-proof',self.transport.assets())
+        self.assertEqual(len(uploads),1)
+        target=self.root/'reconciled.bin';self.transport.get_file([result],target)
+        self.assertEqual(target.read_bytes(),b'lost-response-proof')
+
+    def test_upload_permission_error_is_not_retried(self):
+        from urllib.error import HTTPError
+        base=self.assets.request;uploads=[]
+        def forbidden(path,**kwargs):
+            if kwargs.get('upload'):
+                uploads.append(path)
+                raise HTTPError('https://uploads.github.com',403,'Forbidden',{},None)
+            return base(path,**kwargs)
+        with patch.object(self.assets,'request',side_effect=forbidden):
+            with self.assertRaises(HTTPError):
+                self.transport.put_block(b'permission-proof',self.transport.assets())
+        self.assertEqual(len(uploads),1)
+
+
 class EffectCheckpointTests(unittest.TestCase):
     def test_recovery_rejects_a_self_consistent_projection_that_disagrees_with_receipt(self):
         from wake.kernel.record import _decode_projection_state, _encode_projection_state

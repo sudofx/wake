@@ -75,7 +75,7 @@ def unseal(key, data, purpose):
 
 
 class GitHub:
-    def __init__(self, repository, token, *, reserve=0, rate_wait_limit=3660):
+    def __init__(self, repository, token, *, reserve=0, rate_wait_limit=3660, rate_file=None):
         if not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+', repository):
             raise ValueError('Expected owner/repository')
         if not token:
@@ -83,14 +83,53 @@ class GitHub:
         self.repository, self.token = repository, token
         self.reserve, self.rate_wait_limit = reserve, rate_wait_limit
         self.rate = {}
+        self.rate_file = Path(rate_file) if rate_file else None
+        if self.rate_file:
+            self.rate_file.parent.mkdir(parents=True, exist_ok=True)
+
+    def _update_rate(self, incoming=None, *, debit=False):
+        """Share conservative numeric budget estimates, never credentials."""
+        def merge(left, right):
+            if not right:
+                return dict(left)
+            if right.get('Reset', 0) > left.get('Reset', 0):
+                return dict(right)
+            if right.get('Reset', left.get('Reset')) != left.get('Reset'):
+                return dict(left)
+            value = {**left, **right}
+            if 'Remaining' in left and 'Remaining' in right:
+                value['Remaining'] = min(left['Remaining'], right['Remaining'])
+            return value
+        def update():
+            state = dict(self.rate)
+            if self.rate_file and self.rate_file.exists():
+                saved = json.loads(self.rate_file.read_text())
+                if (not isinstance(saved, dict) or set(saved) - {'Limit', 'Remaining', 'Reset'}
+                        or any(type(v) is not int or v < 0 for v in saved.values())):
+                    raise ValueError('Invalid shared GitHub rate budget')
+                state = merge(state, saved)
+            if state.get('Reset', float('inf')) <= time.time():
+                state = {}
+            state = merge(state, incoming or {})
+            if debit and 'Remaining' in state:
+                state['Remaining'] = max(0, state['Remaining'] - 1)
+            self.rate = state
+            if self.rate_file:
+                atomic_write(self.rate_file, json.dumps(state))
+        if self.rate_file:
+            with self.rate_file.with_suffix('.lock').open('a') as lock:
+                fcntl.flock(lock, fcntl.LOCK_EX)
+                update()
+        else:
+            update()
 
     def observe_rate(self, headers):
-        # Only numeric service limits are retained or logged, never response
-        # bodies, authentication headers, or arbitrary server diagnostics.
+        # Uploads may omit these headers. Missing headers must not erase the
+        # budget shared by checkpoint workers, publication and control reads.
         headers = headers or {}
-        self.rate = {name: int(headers.get('X-RateLimit-' + name))
-                     for name in ('Limit', 'Remaining', 'Reset')
-                     if str(headers.get('X-RateLimit-' + name, '')).isdigit()}
+        self._update_rate({name: int(headers.get('X-RateLimit-' + name))
+                           for name in ('Limit', 'Remaining', 'Reset')
+                           if str(headers.get('X-RateLimit-' + name, '')).isdigit()})
 
     def wait_rate(self, delay, waited):
         delay = max(1, delay)
@@ -114,12 +153,17 @@ class GitHub:
         # Only safe reads retry automatically. Mutations reconcile their actual
         # result at the caller before retrying the same identity.
         waited = 0
-        if self.rate.get('Remaining', self.reserve + 1) <= self.reserve and 'Reset' in self.rate:
-            delay = max(1, self.rate['Reset'] - time.time() + 1)
+        self._update_rate()
+        budget = dict(self.rate)
+        if budget.get('Remaining', self.reserve + 1) <= self.reserve and 'Reset' in budget:
+            delay = max(1, budget['Reset'] - time.time() + 1)
             if self.wait_rate(delay, waited):
                 waited += delay
+            elif self.reserve:
+                raise RuntimeError('GitHub data budget wait exceeded its bound')
         for attempt in range(3):
             try:
+                self._update_rate(debit=True)
                 with urlopen(Request(url, data=body, headers=headers, method=method), timeout=120) as response:
                     self.observe_rate(response.headers)
                     data = response.read()
@@ -202,7 +246,7 @@ class HostedState:
         self.directory = Path(directory).resolve()
         # Data transfers share the workflow token with controls and handoff.
         # Pause before exhausting that shared allowance; never skip a barrier.
-        self.api = GitHub(repository, token, reserve=100)
+        self.api = GitHub(repository, token, reserve=100, rate_file=self.directory / 'github-rate.json')
         self.key = bytes.fromhex(key) if isinstance(key, str) else key
         if len(self.key) != 32:
             raise ValueError('Hosted checkpoint key must contain 32 random bytes')
@@ -308,16 +352,24 @@ class HostedState:
         if name not in assets:
             body = seal(self.key, gzip.compress(raw, compresslevel=6, mtime=0), name)
             release = self.release()
-            try:
-                item = self.api.request(f'releases/{release["id"]}/assets?name={quote(name)}',
-                                        method='POST', body=body, upload=True)
-            except (HTTPError, URLError, TimeoutError):
-                # The upload may have succeeded despite a lost response. Reuse
-                # its content identity; never create a second checkpoint block.
-                found = self.assets(refresh=True)
-                if name not in found:
-                    raise
-                item = {'id': found[name]}
+            for attempt in range(2):
+                try:
+                    item = self.api.request(f'releases/{release["id"]}/assets?name={quote(name)}',
+                                            method='POST', body=body, upload=True)
+                    break
+                except (HTTPError, URLError, TimeoutError) as error:
+                    quota = (isinstance(error, HTTPError) and error.code == 403
+                             and (str((error.headers or {}).get('X-RateLimit-Remaining')) == '0'
+                                  or getattr(self.api, 'rate', {}).get('Remaining') == 0))
+                    transient = not isinstance(error, HTTPError) or error.code in (429, 500, 502, 503, 504)
+                    # Reconcile the same content identity before any retry. A
+                    # safe listing waits for quota reset; permission errors do not.
+                    found = self.assets(refresh=True)
+                    if name in found:
+                        item = {'id': found[name]}
+                        break
+                    if attempt or not (quota or transient):
+                        raise
             if item.get('state', 'uploaded') != 'uploaded' or item.get('size', len(body)) != len(body):
                 raise ValueError('GitHub did not acknowledge a complete encrypted block')
             assets[name] = item['id']

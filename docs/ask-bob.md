@@ -40,6 +40,9 @@ allowed, with an explicit distinction between published WAKE claims and general
 knowledge or interpretation. Linked citations identify sources, not independent
 verification. Bob cannot inspect private records or control the installation.
 
+Live blog posts keep one Ask Bob launcher beside the title; the duplicate footer
+composer is omitted. The separate chat retains the article context.
+
 **Stop** cancels the connection; **Clear chat** removes local history. Quota,
 busy, changed-article and provider errors are visible and retain your message for
 retry. The standalone chat creates no empty reply for a failed request and reuses

@@ -745,3 +745,12 @@ explicit supplied-record pointers; conflicting provenance stays visible.
 These are disposable projections, not another authority or an adaptive policy.
 Source eligibility, invocation barriers, governance and exact history remain with
 their existing owners. See [context compaction](retrieval.md#make-room-without-losing-the-record).
+
+### Hosted observation and transport resilience
+
+Hosted API-budget estimates are shared numeric metadata in the disposable
+transport directory, outside native authority. They reserve control capacity and
+cannot waive a pre-effect durability barrier. Ambiguous uploads reconcile the
+same content identity before retry. Worker status-file errors retry independently;
+freshness expiry remains mandatory, and observer recovery never steers research.
+See [hosted recovery](cloud.md#continuation-and-repair).

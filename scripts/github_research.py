@@ -26,7 +26,9 @@ RUNTIME_POLICY = Path(__file__).resolve().parents[1] / 'hosted-runtime.json'
 
 
 def api():
-    return GitHub(os.environ['GITHUB_REPOSITORY'], os.environ['GH_TOKEN'])
+    directory = os.environ.get('WAKE_HOSTED_STATE_DIR')
+    return GitHub(os.environ['GITHUB_REPOSITORY'], os.environ['GH_TOKEN'],
+                  rate_file=Path(directory) / 'github-rate.json' if directory else None)
 
 
 def enabled(client):

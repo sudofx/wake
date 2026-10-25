@@ -138,3 +138,13 @@ and depth, two to four uneven starter branches, and the angles and timing of lat
 branches. A seed still reproduces its own history. Existing @2-format saves keep
 all their existing nodes, ants and progress; future excavation uses the varied
 growth rules. No saved shaft is reshaped and no colony is reset by an update.
+
+## Winding growth
+
+Model `pellet-tunnels@5` keeps the same save envelope and existing tunnel graph.
+New colonies begin with one to four irregularly angled branches. Future segments
+use a persistent seeded turn and a broad illustrative soil tendency, allowing
+winding, lateral and upward passages below the surface. Soil-wall clearance and
+fixed excavation length remain enforced. Branch intervals and origins vary, and
+returning diggers sometimes switch to a newer face. This adds variation without
+per-frame terrain calculations or reshaping a saved colony.

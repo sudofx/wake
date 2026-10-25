@@ -221,8 +221,8 @@ runs the same twelve native records in disposable Actions containers, using
 encrypted recovery storage. The older executor branches remain untouched
 historical artifacts. Hosted research and website publication are separate
 observable outcomes. `hosted-runtime.json` keeps a bound installation on its
-verified source while newer code and documentation are published. Promotion
-requires a separate record-compatibility check; it never implies resetting research. See [hosted operation](docs/cloud.md#run-research-on-github-without-a-laptop).
+verified source while newer code and documentation are published. Recovery
+workers share conservative numeric API-budget estimates. Promotion requires a separate record-compatibility check; it never implies resetting research. See [hosted operation](docs/cloud.md#run-research-on-github-without-a-laptop).
 Checkpoint transfers reserve GitHub API capacity for controls and pause for a
 reported quota reset without bypassing durability. Independent completion recovery
 uses a stable workflow name; a failed batch without recovery for fifteen minutes

@@ -357,6 +357,14 @@ manifests; it does not accumulate a Git history of database ciphertext. These
 are recovery snapshots of native SQLite, not a second writable research store.
 Every retained database includes its complete event history. Transport growth
 and GitHub service limits remain real constraints, not grounds to trim history.
+Checkpoint workers, publication and control reads share a numeric rate-budget
+ledger in the disposable transport directory. Missing upload headers retain the
+known allowance; concurrent requests debit it conservatively. Data transfers
+wait before spending the last 100 requests, leaving room for control checks.
+The ledger contains no credentials or research data and resets with the quota
+window. Permission denials are not treated as rate limits. A failed upload is
+reconciled by its existing content identity before one retry; a complete remote
+block is reused, and an unconfirmed block never satisfies the durability barrier.
 No Actions artifacts or caches are used for authority or publication.
 
 ### Verify actual progress
@@ -419,7 +427,9 @@ The runner samples only its loopback `/runtime.json` in a bounded background tas
 `wake/hosted_activity.py` allowlists stage, worker identity, timestamps, public
 invocation/coordinate IDs and confirmed queue metadata before transmission. It
 excludes prompts, responses, source bodies, provider errors and keys.
-Observers never participate in checkpoint or provider-effect sequencing.
+Observers never participate in checkpoint or provider-effect sequencing. A transient
+status-file write error is retried by the worker observer; its old sample still
+expires normally rather than being presented as fresh activity.
 
 The relay source is owned in `deploy/activity-relay/`. Its Sites Worker stores one
 expiring public JSON view in an R2 object; this is disposable presentation storage,

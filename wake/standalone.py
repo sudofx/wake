@@ -154,6 +154,28 @@ def _wait_for_control(stop, directory, seconds, mode, reset_id):
     return False
 
 
+def emit_runtime_status(server, target, stop):
+    """A transient observer write failure must not kill future observations."""
+    failed = False
+    while not stop.is_set():
+        try:
+            packet = {**server.runtime_status, **server.activity.snapshot(),
+                      'snapshot_generation': server.snapshot_generation}
+            if hasattr(server, 'control_ack'):
+                packet['control_ack'] = server.control_ack
+            temporary = target.with_suffix('.tmp')
+            temporary.write_text(json.dumps(packet))
+            os.replace(temporary, target)
+            if failed:
+                print(json.dumps({'runtime_observer': 'recovered'}), flush=True)
+            failed = False
+        except OSError as error:
+            if not failed:
+                print(json.dumps({'runtime_observer': 'unavailable', 'reason': type(error).__name__}), flush=True)
+            failed = True
+        stop.wait(.2)
+
+
 def bootstrap(directory, settings, *, enable_continuity_matrix=True, effect_checkpoint=None):
     """Only a genuinely unused volume may bootstrap; missing prior state is loss."""
     directory = Path(directory)
@@ -390,18 +412,8 @@ def run(args):
                     thread.start()
                 print(f'WAKE authority at {data / "wake.sqlite"}; headless={headless}', flush=True)
                 if headless:
-                    def emit_status():
-                        while not stop.is_set():
-                            packet = {**server.runtime_status, **server.activity.snapshot(),
-                                      'snapshot_generation': server.snapshot_generation}
-                            if hasattr(server, 'control_ack'):
-                                packet['control_ack'] = server.control_ack
-                            target = Path(args.runtime_file)
-                            temporary = target.with_suffix('.tmp')
-                            temporary.write_text(json.dumps(packet))
-                            os.replace(temporary, target)
-                            stop.wait(.2)
-                    threading.Thread(target=emit_status, daemon=True).start()
+                    threading.Thread(target=emit_runtime_status,
+                                     args=(server, Path(args.runtime_file), stop), daemon=True).start()
                 if source_root:
                     threading.Thread(target=watch_development_sources,
                                      args=(source_root, initial_source, stop, reload_requested,
