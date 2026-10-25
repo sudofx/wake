@@ -43,8 +43,11 @@ verification. Bob cannot inspect private records or control the installation.
 **Stop** cancels the connection; **Clear chat** removes local history. Quota,
 busy, changed-article and provider errors are visible and retain your message for
 retry. The standalone chat creates no empty reply for a failed request and reuses
-the pending question bubble when you retry. **Check availability** makes no model
-call; recovery never sends the question without your action. A known provider
+the pending question bubble when you retry. After ten seconds, an inline waiting
+message appears beside the question. Timeouts and failures stay there too, so a
+phone reader can see what happened without finding a separate status line.
+**Check availability** makes no model call; availability recovery never sends
+the question without your action. A known provider
 limit disables Send and shows the next retry time. Daily provider limits use
 Pacific midnight, independently of Bob's UTC admission counters.
 
@@ -52,7 +55,12 @@ A confirmed, positive, model-specific daily free-tier limit may use a configured
 compatible Gemini fallback before any answer text is streamed. Minute, project,
 unknown and zero quotas stop further provider attempts temporarily. There is no
 fallback after partial text or a transport failure, and no silent switch to a
-different answer mode. Each attempted model counts against the same budget.
+different answer mode. An explicit transient HTTP 500, 502, 503 or 504 may retry
+the same model once, after a short delay, before any answer is streamed. Both
+attempts share the 45-second provider deadline and count against the same
+admission budget. Network failures and partial streams are not retried. The
+browser ends a stalled request after 55 seconds, distinguishes this from Stop,
+and keeps the question for an explicit retry.
 See the [service setup](../deploy/ask-bob/README.md) for the bounded model pool. The live service defaults to 100 attempts per UTC day across all visitors,
 20 per network address per day, four per minute, and two simultaneous requests.
 Failed attempts count too. Limits are enforced with conditional writes to a
