@@ -29,11 +29,14 @@ and `quota_scope`. Only a structured, positive, model-specific daily free-tier
 quota failure permits trying the next configured compatible model (at most two
 fallbacks, before any text is streamed). Minute, project, unknown and zero quotas
 stop the whole service temporarily. Transport failures and partial answers never
-trigger fallback. Every provider attempt consumes admission budget.
+trigger fallback. An explicit transient HTTP 500/502/503/504 permits one short,
+bounded retry on the same model before streaming; that attempt is also charged
+to the existing admission budget and shares the 45-second provider deadline. Every provider attempt consumes admission budget.
 
 Quota cooldowns are shared across workers. Daily cooldowns last until Pacific
 midnight; shorter limits respect bounded Google RetryInfo. Availability checks
-make no Gemini call. The chat retains failed drafts, creates Bob's bubble only
+make no Gemini call. The chat shows a waiting message after ten seconds, distinguishes timeouts from
+user stops, and labels failed delivery as no completed reply. It retains failed drafts, creates Bob's bubble only
 when text arrives, and reuses the pending user bubble on an explicit retry.
 Availability recovery never automatically resends a question.
 

@@ -97,3 +97,15 @@ test('record retrieval bounds nested content and overview reads only the bounded
  const state={objective:'Published overview',notebooks:Object.fromEntries(Array.from({length:8},(_,i)=>['n'+i,{id:'n'+i,title:'Notebook '+i,claims:Array.from({length:3},()=>({statement:'x'.repeat(5000)}))}]))};
  const result=await guideFor(input,async url=>{target=url;return Response.json({head:input.expected_head,state});});assert.equal(target,'https://sudofx.github.io/wake/reader-data.json');assert.ok(result.sources.length<=12);assert.ok(result.passages.reduce((n,p)=>n+p.text.length,0)<=18000);assert.ok(result.passages.length<=72);
 });
+
+test('temporary provider 503 retries the same model once and accounts for both attempts',async()=>{
+ const real=globalThis.fetch,bucket=new Bucket();let calls=0;const models=[];
+ globalThis.fetch=async url=>{if(url.startsWith('https://sudofx'))return Response.json(guide);models.push(url);return ++calls===1?new Response('busy',{status:503}):answerStream();};
+ try{const response=await api.fetch(chatRequest(),environment(bucket));const events=(await response.text()).trim().split('\n').map(JSON.parse);assert.equal(events.at(-1).type,'done');assert.equal(events.at(-1).result.metrics.provider_attempts,2);assert.equal(models[0],models[1]);assert.equal(JSON.parse(bucket.value).count,2);}finally{globalThis.fetch=real;}
+});
+
+test('persistent provider 503 stops after one same-model retry and releases its lease',async()=>{
+ const real=globalThis.fetch,bucket=new Bucket();let calls=0;
+ globalThis.fetch=async url=>url.startsWith('https://sudofx')?Response.json(guide):(calls++,new Response('busy',{status:503}));
+ try{const response=await api.fetch(chatRequest(),environment(bucket));assert.equal(response.status,503);assert.equal(calls,2);assert.equal((await response.json()).error,'provider_unavailable');assert.equal(Object.keys(JSON.parse(bucket.value).leases).length,0);}finally{globalThis.fetch=real;}
+});

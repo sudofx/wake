@@ -36,7 +36,7 @@ chat.addEventListener('scroll',()=>{follow=chat.scrollHeight-chat.scrollTop-chat
 question.addEventListener('input',fitComposer);
 question.addEventListener('keydown',event=>{if(event.key==='Enter'&&!event.shiftKey&&!event.isComposing){event.preventDefault();if(!active&&!send.disabled)get('form').requestSubmit();}});
 let popup,popupArticle;get('popout').onclick=event=>{const url=currentContextURL();if(popup&&!popup.closed&&popupArticle===select.value){popup.focus();event.preventDefault();return;}popup=window.open(url.href,'wake-bob-chat','popup,width=480,height=760,resizable=yes,scrollbars=yes');if(popup){popupArticle=select.value;event.preventDefault();popup.focus();}};
-const errors={record_changed:'This published record changed. Reopen Ask Bob from its page.',record_unavailable:'This published record is unavailable. Reload its page and try again.',daily_limit:'Bob has reached today’s question allowance. Please try tomorrow.',rate_limited:'Please wait a minute before asking again.',busy:'Bob is helping other readers. Please try shortly.',provider_quota:'Gemini’s shared quota is exhausted. Please try later.',article_changed:'This article changed. Reload the page before trying again.',article_unavailable:'The article is unavailable. Reload the latest list.'};
+const errors={provider_timeout:'Gemini took too long to respond. Please try again.',provider_unavailable:'Gemini is temporarily unavailable. Please try again shortly.',sources_unavailable:'The published source could not be loaded. Please try again.',record_changed:'This published record changed. Reopen Ask Bob from its page.',record_unavailable:'This published record is unavailable. Reload its page and try again.',daily_limit:'Bob has reached today’s question allowance. Please try tomorrow.',rate_limited:'Please wait a minute before asking again.',busy:'Bob is helping other readers. Please try shortly.',provider_quota:'Gemini’s shared quota is exhausted. Please try later.',article_changed:'This article changed. Reload the page before trying again.',article_unavailable:'The article is unavailable. Reload the latest list.'};
 function message(who,text){get('welcome')?.remove();const box=document.createElement('article');if(who==='You')box.className='you';const label=document.createElement('strong'),p=document.createElement(who==='You'?'p':'div');label.textContent=who;p.className='ask-bob-answer';if(who==='You')p.className='';p.textContent=text;box.append(label,p);chat.append(box);bottom();return {box,p,raw:text};}
 let pendingUser=null,cooldownUntil=0,serviceUnavailable=false,retryTimer,waitDetails=null;
 const check=get('check-availability');
@@ -89,7 +89,9 @@ get('form').onsubmit=async event=>{
  if(samePending){pendingUser.reply?.box.remove();pendingUser.delivery?.remove();pendingUser.delivery=null;}else pendingUser={asked,article:article.id,user:message('You',asked)};
  const pending=pendingUser;let reply=null;
  const ensureReply=()=>{if(!reply){reply=message('Bob · live (AI)','');pending.reply=reply;}return reply;};
- const timer=setTimeout(()=>controller.abort(),60000);
+ let timedOut=false;
+ const waiting=setTimeout(()=>{if(active===controller){status.textContent='Still waiting for Gemini. You can stop or wait a little longer…';if(!pending.delivery){pending.delivery=document.createElement('small');pending.delivery.className='delivery';pending.user.box.append(pending.delivery);}pending.delivery.textContent=status.textContent;bottom();}},10000);
+ const timer=setTimeout(()=>{timedOut=true;controller.abort();},55000);
  try{
   const response=await fetch('/v1/chat',{method:'POST',credentials:'omit',headers:{'Content-Type':'application/json'},body:JSON.stringify({...(article.mode==='record'?{mode:'record',collection:article.collection,record_id:article.record_id,expected_head:article.expected_head,...(article.node?{node:article.node}:{})}:{article_id:article.id,expected_article_hash:article.hash}),question:asked,history:history.slice(-6).map(row=>({question:row.question.slice(0,1000),answer:row.answer.slice(0,2000)}))}),signal:controller.signal});
   if(!response.ok){const value=await response.json();if(value.retry_at)applyWait(value);const error=Error(value.retry_at?waitMessage(value):errors[value.error]||'Bob is temporarily unavailable. Please try later.');error.waiting=!!value.retry_at;throw error;}
@@ -98,14 +100,14 @@ get('form').onsubmit=async event=>{
   if(!result?.ok||result.article?.hash!==article.hash||result.article?.id!==article.id)throw Error('The reply did not finish for this article. Please try again.');
   ensureReply();reply.raw=result.answer;WakeBobMarkdown.render(reply.p,result.answer);history.push({question:asked,answer:result.answer});history=history.slice(-6);
   if(result.citations?.length){const list=document.createElement('ul');for(const source of result.citations){const url=new URL(source.url);if(url.origin!=='https://sudofx.github.io'||!url.pathname.startsWith('/wake/'))continue;const item=document.createElement('li'),link=document.createElement('a');link.href=url.href;link.textContent=source.id+' · '+source.label;link.rel='noopener noreferrer';item.append(link);list.append(item);}const sources=document.createElement('details'),summary=document.createElement('summary');summary.textContent='Sources · '+list.children.length;sources.append(summary,list);reply.box.append(sources);}
-  pendingUser=null;status.textContent='';bottom();
+  pending.delivery?.remove();pendingUser=null;status.textContent='';bottom();
  }catch(error){if(pending.user.box.isConnected){
-   status.textContent=(controller.signal.aborted?'Stopped.':error.message)+' Your question is kept below.';
+   status.textContent=(controller.signal.aborted?(timedOut?'Gemini did not finish in time. Please try again.':'Stopped.'):error.message)+' Your question is kept below.';
    if(reply?.p.textContent){WakeBobMarkdown.render(reply.p,reply.raw+'\n\n[Reply interrupted]');reply.box.dataset.incomplete='true';}else reply?.box.remove();
    if(!pending.delivery){pending.delivery=document.createElement('small');pending.delivery.className='delivery';pending.user.box.append(pending.delivery);}
-   pending.delivery.textContent='Not sent';
+   pending.delivery.textContent=status.textContent;
    if(!question.value)question.value=asked;fitComposer();bottom();
- }}finally{clearTimeout(timer);if(active===controller){active=null;send.disabled=serviceUnavailable||cooldownUntil>Date.now();select.disabled=false;get('stop').hidden=true;}}
+ }}finally{clearTimeout(waiting);clearTimeout(timer);if(active===controller){active=null;send.disabled=serviceUnavailable||cooldownUntil>Date.now();select.disabled=false;get('stop').hidden=true;}}
 
 };
 </script></body></html>

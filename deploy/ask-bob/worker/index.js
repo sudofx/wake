@@ -211,7 +211,16 @@ async function answer(request,env,ctx){
         if(request.signal.aborted)throw new Failure('cancelled',499);
         if(attempts)await reserve(env.BUCKET,address,Date.now(),id,true);
         model=candidate;attempts++;
-        try{upstream=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:streamGenerateContent?alt=sse`,{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':env.GEMINI_API_KEY},body:JSON.stringify({systemInstruction:{parts:[{text:SYSTEM}]},contents,generationConfig:{maxOutputTokens:1200,thinkingConfig:{thinkingLevel:'minimal'}}}),signal:controller.signal});}catch(error){console.warn('Bob provider transport',JSON.stringify({model,kind:error.name}));throw new Failure('provider_unavailable',503);}
+        // One same-model retry for explicit transient server failures, before
+        // any answer is exposed. Every attempt still passes global admission.
+        for(let retry=0;;retry++){
+          try{upstream=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:streamGenerateContent?alt=sse`,{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':env.GEMINI_API_KEY},body:JSON.stringify({systemInstruction:{parts:[{text:SYSTEM}]},contents,generationConfig:{maxOutputTokens:1200,thinkingConfig:{thinkingLevel:'minimal'}}}),signal:controller.signal});}catch(error){console.warn('Bob provider transport',JSON.stringify({model,kind:error.name}));throw new Failure(controller.signal.aborted?'provider_timeout':'provider_unavailable',503);}
+          if(retry||![500,502,503,504].includes(upstream.status))break;
+          await upstream.body?.cancel();
+          await new Promise(resolve=>setTimeout(resolve,750+Math.floor(Math.random()*250)));
+          if(controller.signal.aborted)throw new Failure('provider_timeout',503);
+          await reserve(env.BUCKET,address,Date.now(),id,true);attempts++;
+        }
         if(upstream.ok&&upstream.body)break;
         if(upstream.status!==429){await upstream.body?.cancel();console.warn('Bob provider refused',JSON.stringify({model,status:upstream.status}));throw new Failure('provider_unavailable',503);}
         let diagnostic;try{diagnostic=await readJSON(upstream,32768);}catch{diagnostic={};}
