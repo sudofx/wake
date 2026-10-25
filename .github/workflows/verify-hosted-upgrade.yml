@@ -12,6 +12,11 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 12
+      matrix:
+        node: [100.wake, 101.wake, 102.wake, 103.wake, 200.wake, 201.wake, 202.wake, 203.wake, 300.wake, 301.wake, 302.wake, 303.wake]
     steps:
       - uses: actions/checkout@v7
         with:
@@ -36,13 +41,44 @@ jobs:
         with:
           python-version: '3.13'
       - run: python -m pip install --disable-pip-version-check -e './candidate[hosted]'
-      - name: Restore disposable copies and compare all twelve full audits
+      - name: Restore disposable copies and compare full audits for this node
         env:
           GH_TOKEN: ${{ github.token }}
           WAKE_HOSTED_STATE_KEY: ${{ secrets.WAKE_HOSTED_STATE_KEY }}
-        run: python control/scripts/verify_hosted_upgrade.py --candidate candidate --baseline baseline --policy control/hosted-runtime.json --output upgrade-verification.json
+        run: python control/scripts/verify_hosted_upgrade.py --candidate candidate --baseline baseline --policy control/hosted-runtime.json --node "${{ matrix.node }}" --output "node-${{ matrix.node }}.json"
+      - uses: actions/upload-artifact@v6
+        with:
+          name: upgrade-node-${{ matrix.node }}
+          path: node-${{ matrix.node }}.json
+          if-no-files-found: error
+          retention-days: 7
+
+  aggregate:
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.sha }}
+          path: control
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.candidate }}
+          path: candidate
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - uses: actions/download-artifact@v6
+        with:
+          pattern: upgrade-node-*
+          path: node-reports
+          merge-multiple: true
+      - name: Require all twelve matching reports from one checkpoint
+        run: python control/scripts/verify_hosted_upgrade.py --candidate candidate --policy control/hosted-runtime.json --aggregate node-reports --output upgrade-verification.json
       - uses: actions/upload-artifact@v6
         with:
           name: upgrade-verification
           path: upgrade-verification.json
+          if-no-files-found: error
           retention-days: 7

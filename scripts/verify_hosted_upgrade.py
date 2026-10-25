@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Verify an upgrade on disposable recovery copies; never save hosted checkpoints."""
 import argparse
+import hashlib
 from concurrent.futures import ThreadPoolExecutor
 import json
 import os
@@ -11,26 +12,74 @@ import sys
 import tempfile
 
 
+def aggregate_reports(directory, *, candidate, policy, node_ids):
+    """Fail closed unless every node passed against one identical checkpoint."""
+    reports = [json.loads(path.read_text()) for path in sorted(directory.glob('*.json'))]
+    if len(reports) != len(node_ids):
+        raise ValueError('Expected exactly one report for each of the twelve nodes')
+    shared = ('candidate', 'baseline', 'installation_id', 'generation', 'checkpoint_sha256')
+    first = reports[0]
+    if (first['candidate'] != candidate or first['baseline'] != policy['source_revision']
+            or first['installation_id'] != policy['installation_id']
+            or type(first['generation']) is not int or first['generation'] < 1
+            or not re.fullmatch('[a-f0-9]{64}', first['checkpoint_sha256'])):
+        raise ValueError('Report differs from the requested candidate, policy or checkpoint')
+    nodes = {}
+    for report in reports:
+        if (report['status'] != 'verified-node'
+                or any(report[key] != first[key] for key in shared)
+                or report['provider_calls'] != 0 or report['remote_record_writes'] != 0
+                or len(report['nodes']) != 1):
+            raise ValueError('Incomplete or inconsistent node verification')
+        node, result = next(iter(report['nodes'].items()))
+        if node not in node_ids or node in nodes:
+            raise ValueError('Unexpected or duplicate node verification')
+        if (set(result) != {'head', 'version', 'native_head', 'revision'}
+                or any(not isinstance(result[key], str) or not re.fullmatch('[a-f0-9]{64}', result[key])
+                       for key in ('head', 'native_head'))
+                or any(type(result[key]) is not int or result[key] < 0
+                       for key in ('version', 'revision'))):
+            raise ValueError('Incomplete full audit result')
+        nodes[node] = result
+    if set(nodes) != set(node_ids):
+        raise ValueError('Missing node verification')
+    return {**{key: first[key] for key in shared}, 'status': 'verified',
+            'nodes': nodes, 'provider_calls': 0, 'remote_record_writes': 0}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--candidate', type=Path, required=True)
-    parser.add_argument('--baseline', type=Path, required=True)
+    parser.add_argument('--baseline', type=Path)
+    parser.add_argument('--node', help='Audit one node in a bounded workflow shard')
+    parser.add_argument('--aggregate', type=Path, help='Directory of all twelve node reports')
     parser.add_argument('--policy', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
-    candidate, baseline = args.candidate.resolve(), args.baseline.resolve()
+    candidate = args.candidate.resolve()
     policy = json.loads(args.policy.read_text())['installations'][os.environ['GITHUB_REPOSITORY']]
     def revision(root):
         value = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=root, text=True).strip()
         if not re.fullmatch('[a-f0-9]{40}', value):
             raise ValueError('Expected an immutable source revision')
         return value
-    candidate_sha, baseline_sha = revision(candidate), revision(baseline)
+    candidate_sha = revision(candidate)
+    # Node membership comes from the trusted workflow checkout, not its input.
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    from wake.installation_cli import NODE_IDS
+    if args.aggregate:
+        if args.node or args.baseline:
+            parser.error('Aggregation does not run audits')
+        report = aggregate_reports(args.aggregate, candidate=candidate_sha, policy=policy, node_ids=NODE_IDS)
+        args.output.write_text(json.dumps(report, indent=2, sort_keys=True) + '\n')
+        return 0
+    if not args.baseline or (args.node and args.node not in NODE_IDS):
+        parser.error('Audits require a baseline and a valid node')
+    baseline = args.baseline.resolve()
+    baseline_sha = revision(baseline)
     if baseline_sha != policy['source_revision']:
         raise ValueError('Baseline differs from the bound runtime')
-    sys.path.insert(0, str(candidate))
     from wake.hosted import HostedState
-    from wake.installation_cli import NODE_IDS
     with tempfile.TemporaryDirectory(prefix='wake-upgrade-verification-') as temporary:
         root = Path(temporary)
         transport = HostedState(root / 'transport', os.environ['GITHUB_REPOSITORY'],
@@ -43,7 +92,9 @@ def main():
         if checkpoint['installation_id'] != policy['installation_id']:
             raise ValueError('Checkpoint installation differs from policy')
         records = root / 'installation'
-        transport.restore(records, workers=4)
+        restored = transport.restore(records, workers=4)
+        if restored != checkpoint:
+            raise ValueError('Recovery checkpoint changed during restoration')
         print('Restored and verified all twelve checkpoint identities', flush=True)
         program = r'''
 import json,sys
@@ -78,19 +129,26 @@ print(json.dumps(result,sort_keys=True))
             if pair[0] != pair[1] or set(pair[0]) != {node}:
                 raise ValueError('Candidate and baseline disagree on ' + node)
             print('Matching full audits: ' + node, flush=True)
+            identity = checkpoint['nodes'][node]
+            if any(pair[1][node][key] != identity[field] for key, field in
+                   (('native_head', 'head'), ('revision', 'revision'))):
+                raise ValueError('Audit differs from the authenticated checkpoint: ' + node)
             return pair
         # Each pair owns a different disposable node; never audit the same copy
         # concurrently or open an operational controller. Bound replay memory.
+        selected = (args.node,) if args.node else NODE_IDS
         results = [{}, {}]
         with ThreadPoolExecutor(max_workers=2) as executor:
-            for pair in executor.map(compare_node, NODE_IDS):
+            for pair in executor.map(compare_node, selected):
                 for index in (0, 1):
                     results[index].update(pair[index])
-        if set(results[0]) != set(NODE_IDS) or results[0] != results[1]:
+        if set(results[0]) != set(selected) or results[0] != results[1]:
             raise ValueError('Candidate and baseline disagree on the twelve records')
-        report = {'status': 'verified', 'candidate': candidate_sha, 'baseline': baseline_sha,
+        report = {'status': 'verified-node' if args.node else 'verified', 'candidate': candidate_sha, 'baseline': baseline_sha,
                   'installation_id': checkpoint['installation_id'],
-                  'generation': checkpoint['generation'], 'nodes': results[1],
+                  'generation': checkpoint['generation'],
+                  'checkpoint_sha256': hashlib.sha256(json.dumps(checkpoint, sort_keys=True, separators=(',', ':')).encode()).hexdigest(),
+                  'nodes': results[1],
                   'provider_calls': 0, 'remote_record_writes': 0}
         args.output.write_text(json.dumps(report, indent=2, sort_keys=True) + '\n')
         print(json.dumps(report, sort_keys=True))

@@ -260,7 +260,12 @@ match the restored checkpoint before a new controller can start.
 Run **Actions → WAKE — Verify hosted runtime upgrade** with the candidate's full
 commit hash. It restores disposable encrypted recovery copies and compares full
 baseline and candidate audits for all twelve nodes without provider calls or
-remote record writes. Download its `upgrade-verification` artifact and check the
+remote record writes. Each node runs both complete audits in its own bounded
+job; the final gate requires exactly twelve successful node reports with the same
+candidate, baseline, installation, checkpoint generation and manifest digest.
+Missing, duplicate or inconsistent reports fail the gate; partial artifacts never
+authorize promotion. Research must stay stopped while this frozen checkpoint is
+verified and promoted. Download its `upgrade-verification` artifact and check the
 candidate, baseline, installation identity and matching node histories before
 changing the binding.
 
