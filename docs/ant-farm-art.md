@@ -43,3 +43,11 @@ tool. The original soil asset is retained for compatibility. Final prompt:
 > lighting. Low-contrast pale backdrop for dark reddish ants. No roots, clumps,
 > large rocks, strata, dark patches, plants, sky, ants, holes, tunnels, text,
 > borders, shadows or vignette. The application draws tunnels and ants on top.
+
+## Drawn ground and bounded rendering
+
+The active farm no longer loads either photographic ground image. It draws a
+simple cream colour field with a gentle depth gradient. The earlier soil and sand
+assets above remain provenance for the retired treatments. Ant body photography
+is retained, downsampled once to a 256-pixel atlas for repeated animated drawing.
+See [rendering limits](ant-farm.md#implementation-and-boundaries).

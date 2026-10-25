@@ -71,12 +71,16 @@ must be published. Local preview does not forward questions remotely.
 `ant-colony.js` owns the seeded tunnel graph, timed work and validated save format.
 `ant-drawing.js` draws the same anatomy at normal and enlarged scale. `ant-farm.js`
 owns one Canvas2D view with two cached buffers, HTML controls and text observations.
-No external libraries or third-party browser assets are needed. Generated macro
-soil and ant-body textures are bundled locally; animated legs and antennae remain
+No external libraries or third-party browser assets are needed. The ground uses simple drawn colour fields. The generated ant-body image is
+downsampled once into a small reusable atlas; animated legs and antennae remain
 procedural. The fallback drawing remains available if an image cannot load. See
 [art provenance and prompts](ant-farm-art.md). Canvas keeps continuous movement cheap;
 HTML keeps controls, focus and counts accessible. Cached terrain redraws after
-excavation or resize. Frames are capped at thirty per second, pixel ratio at two,
+excavation or resize. Phone rendering is capped at twenty frames per second and a 1.25 pixel ratio;
+desktop uses twenty-four frames and a 1.5 pixel ratio. Canvas buffers share a
+1.5-million-pixel ceiling, independently of zoom. Paused views redraw only on
+change, terrain is cropped to the viewport, and off-screen ants are not painted.
+The simulation still caps
 nodes at 3,000, faces at twelve, food sources at 32 and saved samples at sixty.
 Mobile uses the same world and touch controls, without hover or drag requirements.
 
@@ -107,8 +111,9 @@ output is mocked; these checks do not certify live answer quality or biology.
 
 ## Sand, closer inspection and movement
 
-The pale sand substrate and lighter tunnel interiors keep dark workers visible.
-Use **Closer +** up to 8×, **−** to zoom out, or **Fit** for the whole colony.
+A quiet, drawn cream background and lighter tunnel interiors keep dark workers visible,
+without photographic sand or enlarged grains.
+Use **Closer +** up to 4×, **−** to zoom out, or **Fit** for the whole colony.
 Drag to pan; pinch or scroll to zoom around a point. Keyboard users can focus
 the habitat, use plus/minus and arrow keys, and press Home to fit. Camera changes
 do not restart the saved colony or accelerate time.
