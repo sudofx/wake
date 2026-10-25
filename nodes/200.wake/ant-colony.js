@@ -1,7 +1,7 @@
 /* Research-inspired 2D habitat. Narrow graph tunnels, finite pellet work, no record access. */
 (function(root){
   'use strict';
-  const WIDTH=120,HEIGHT=96,SURFACE=13,COUNT=64,SCHEMA='wake-ant-colony@2',MODEL='pellet-tunnels@2';
+  const WIDTH=120,HEIGHT=96,SURFACE=13,COUNT=64,SCHEMA='wake-ant-colony@2',MODEL='pellet-tunnels@3';
   const PELLETS=10,WORK_SECONDS=7,MAX_NODES=3000;
   const pointDistance=(p,a,b)=>{const dx=b.x-a.x,dy=b.y-a.y,t=Math.max(0,Math.min(1,((p.x-a.x)*dx+(p.y-a.y)*dy)/(dx*dx+dy*dy||1)));return Math.hypot(p.x-a.x-t*dx,p.y-a.y-t*dy);};
   class Colony{
@@ -47,8 +47,8 @@
     step(){
       this.ticks++;this.time=this.ticks/10;
       for(const ant of this.ants){
-        if(ant.phase<1){const a=this.nodes[ant.from],b=this.nodes[ant.cell];ant.phase=Math.min(1,ant.phase+.1*ant.pace/(Math.hypot(b.x-a.x,b.y-a.y)||1)*(ant.carrying?.75:1));continue;}
         if(ant.wait>0){ant.wait=Math.max(0,ant.wait-.1);continue;}
+        if(ant.phase<1){const a=this.nodes[ant.from],b=this.nodes[ant.cell],tempo=.88+.12*Math.sin(this.time*3.1+ant.id*2.4);ant.phase=Math.min(1,ant.phase+.1*ant.pace*tempo/(Math.hypot(b.x-a.x,b.y-a.y)||1)*(ant.carrying?.75:1));continue;}
         if(ant.work>=0){
           ant.workLeft-=.1;if(ant.workLeft>0)continue;
           const front=this.fronts[ant.work];front.effort=Math.min(PELLETS,front.effort+1);ant.carrying=2;
@@ -77,7 +77,8 @@
         const occupants=this.ants.filter(a=>a.cell===next&&a.phase<1).length;
         if(occupants>=2&&current.kind!=='surface'&&this.random()<.7){ant.wait=.5+this.random()*2;continue;}
         if(!ant.carrying&&this.random()<(ant.role==='rest'?.3:.07)){ant.wait=ant.role==='rest'?10+this.random()*40:.5+this.random()*2.5;continue;}
-        ant.from=ant.cell;ant.cell=next;ant.phase=0;ant.steps++;ant.dir=Math.atan2(this.nodes[next].y-current.y,this.nodes[next].x-current.x);this.visits[next]++;
+        const direction=Math.atan2(this.nodes[next].y-current.y,this.nodes[next].x-current.x),turn=Math.abs(Math.atan2(Math.sin(direction-ant.dir),Math.cos(direction-ant.dir)));
+        ant.from=ant.cell;ant.cell=next;ant.phase=0;ant.steps++;ant.dir=direction;ant.wait=turn>.35?.12+turn*.16:0;this.visits[next]++;
         if(ant.carrying===1)this.trail[ant.from]=Math.min(12,this.trail[ant.from]+2);
       }
       if(this.ticks%10===0)this.trail=this.trail.map(n=>n*.99);
