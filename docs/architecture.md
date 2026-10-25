@@ -100,6 +100,10 @@ isolated kernel fixture for independent observers. Reading it grants no executio
 provider or record authority; its manifest is derived presentation.
 
 
+The [digital ant farm](ant-farm.md) owns browser-local simulation state only. Its
+bounded samples enter Bob as unverified advisory input, never native research
+authority, governance or autonomous improvement.
+
 ## One installation, internal nodes
 
 The current local runtime is `wake/installation.py`: one container supervises

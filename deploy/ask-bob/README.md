@@ -34,6 +34,11 @@ characters of source passages, 1,200 output tokens and a 45-second provider limi
 Bob is advisory and has no research, filesystem, database or control capability.
 Do not connect it to native record storage or the activity relay.
 
+Ant Farm questions use `mode: "ant-farm"` and a validated numeric-only
+`wake-ant-observation@1` sample instead of an article binding. They share all
+admission and provider limits. No research sources, record access or continuous
+watching are granted. See [the farm guide](../../docs/ant-farm.md).
+
 Runtime values: secret `GEMINI_API_KEY`, secret `IP_SALT`, `BOB_ENABLED=true`,
 `GEMINI_MODEL=gemini-3.1-flash-lite`, and the owning `INSTALLATION_ID`.
 Optional `GEMINI_FALLBACK_MODELS=gemini-3.5-flash-lite,gemini-3.6-flash` is honored

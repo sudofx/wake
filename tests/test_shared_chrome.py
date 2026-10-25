@@ -37,6 +37,12 @@ class SharedChromeTests(unittest.TestCase):
                         for asset in re.findall(r'(?:href|src)="([^"?]+)(?:\?[^\"]*)?"', page):
                             if asset.endswith(('masthead.css', 'site-theme.js')):
                                 self.assertTrue((path.parent / asset).is_file(), (path, asset))
+                        if path.name == 'ant-farm.html':
+                            self.assertIn('ant-farm.css', page)
+                            self.assertIn('window.WAKE_DEPLOYMENT=', page)
+                            self.assertNotIn('masthead.css', page)
+                            self.assertNotIn('runtime-activity.js', page)
+                            continue
                         self.assertIn('data-theme="light"', page, path)
                         self.assertNotIn('data-theme="dark"', page, path)
                         self.assertEqual(page.count('site-theme.js?v='), 1, path)

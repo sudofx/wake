@@ -463,7 +463,8 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         # Publish source styles alongside every HTML view: Pages and exports share
         # the same theme file rather than receiving copied inline palettes.
         for name in ("style.css", "nav.css", "map.css", "map3d.css", "theme.css",
-                     "nav.js", "map.js", "map3d.js", "flat-view.js", "app.js", "ask-bob.js", "ask-bob.css", "ask-bob-browser.js", "ask-bob-guide.js", "ask-bob-private.js"):
+                     "nav.js", "map.js", "map3d.js", "flat-view.js", "app.js", "ask-bob.js", "ask-bob.css", "ask-bob-browser.js", "ask-bob-guide.js", "ask-bob-private.js",
+                     "ant-farm.html", "ant-farm.css", "ant-colony.js", "ant-drawing.js", "ant-farm.js"):
             atomic_write(target / name, (assets / name).read_text())
         # These static inference assets are loaded only after the reader opts in.
         # They contain no provider credentials and never open research authority.
@@ -735,6 +736,13 @@ def _deployment_site(target, *, standalone, installation=None):
     header = re.sub(r'href="#([^"]+)"', r'href="index.html#\1"', header)
     for path in target.rglob('*.html'):
         page = path.read_text()
+        # The immersive toy habitat owns its canvas and controls. It needs the
+        # deployment binding, not the research masthead or runtime observers.
+        if path.name == 'ant-farm.html':
+            page = re.sub(r'<script>window\.WAKE_(?:DEPLOYMENT|STANDALONE)=[^<]*</script>', '', page)
+            page = page.replace('<head>', '<head>' + marker, 1)
+            atomic_write(path, page)
+            continue
         # The shared preference script can select dark; uninitialized views start light.
         page = re.sub(r'(<html[^>]*)\sdata-theme=[\"\'][^\"\']*[\"\']', r'\1', page, count=1)
         page = re.sub(r'<html([^>]*)>', r'<html\1 data-theme="light">', page, count=1)
@@ -750,7 +758,7 @@ def _deployment_site(target, *, standalone, installation=None):
                 shared = shared.replace('<i></i></span>\n    </a>', '<i id="execution-dot"></i></span>\n    </a>')
             # Relative navigation is derived from the artifact's directory,
             # never the machine, hosted branch, or another installation.
-            shared = re.sub(r'href="(index|console)\.html', lambda m: 'href="' + prefix + m.group(1) + '.html', shared)
+            shared = re.sub(r'href="(index|console|ant-farm)\.html', lambda m: 'href="' + prefix + m.group(1) + '.html', shared)
             page = re.sub(r'<header class="[^"]*masthead[^"]*">.*?</header>', lambda _: shared, page, count=1, flags=re.S)
         page = re.sub(r"<script>document.documentElement.dataset.theme='dark';try\{localStorage.setItem\('wake-theme','dark'\)\}catch\{\}</script>", '', page)
         page = re.sub(r'<script src="(?:console-theme|site-theme)\.js[^"]*"></script>', '', page)

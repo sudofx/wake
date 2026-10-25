@@ -23,6 +23,10 @@ neither format is added to public exports. A presentation-only refresh also copi
 the Console chart assets: each line chart fits its complete captured history to
 the panel width, without changing the captured research or inspection packets.
 
+The [ant farm](ant-farm.md) ships with filtered website exports. Its Bob mode
+also requires the matching `deploy/ask-bob/` service update; publishing source,
+website assets and the answer service remain separate operations.
+
 ## Publish the local installation mirror
 
 Research runs in containers. Each node owns its durable SQLite record; the website

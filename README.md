@@ -81,6 +81,10 @@ AI systems plain-text explanations, exact evidence and a reproducible kernel exa
 
 [Open the public site](https://sudofx.github.io/wake/) · [View source and releases](https://github.com/sudofx/wake) · [GitHub Actions](https://github.com/sudofx/wake/actions)
 
+The [digital ant farm](docs/ant-farm.md) is a separate browser habitat with saved
+local colonies and optional advisory observations from Bob. Watching it uses no
+model calls and never counts as research progress.
+
 ## The basic idea
 
 ```mermaid
