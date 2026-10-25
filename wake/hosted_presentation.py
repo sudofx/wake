@@ -91,7 +91,8 @@ def bind_hosted_status(site, repository, revision):
         farm=(assets/'ant-farm.html').read_text().replace('<head>', '<head><script>window.WAKE_DEPLOYMENT='+json.dumps(deployment)+';</script>',1)
         (root/'ant-farm.html').write_text(farm)
     from .reader_guide import refresh_public_reader
-    refresh_public_reader(site)
+    for root in roots:
+        refresh_public_reader(root)
     manifest['presentation'] = {'source_revision': revision, 'hosted_status': config, 'hosted_activity': activity}
     encoded = json.dumps(manifest, sort_keys=True)
     for path in [site / 'installation.json', *site.glob('nodes/*/installation.json')]:
