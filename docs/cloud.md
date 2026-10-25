@@ -257,6 +257,20 @@ records, preserve their history and accepted counts, and verify any required
 migration. Never clear the binding merely to force an upgrade. A runtime source
 commit must also have successful `master` CI. The binding's installation ID must
 match the restored checkpoint before a new controller can start.
+Run **Actions → WAKE — Verify hosted runtime upgrade** with the candidate's full
+commit hash. It restores disposable encrypted recovery copies and compares full
+baseline and candidate audits for all twelve nodes without provider calls or
+remote record writes. Download its `upgrade-verification` artifact and check the
+candidate, baseline, installation identity and matching node histories before
+changing the binding.
+
+An older pinned runner can replace newly published website assets during its
+next export. For a release that changes those assets, gracefully stop and drain
+the old runner, promote the verified runtime, then start it again. If presentation
+needs restoring during the upgrade, refresh the latest captured public parent;
+never republish an older research snapshot. Check the final public export after
+the old runner exits, because its final publication can also replace the assets.
+
 In Actions, admission and successor selection read this binding from the immutable
 workflow commit (`GITHUB_SHA`), separately from the candidate runtime checkout.
 That permits a later binding commit to name a previously checked candidate without

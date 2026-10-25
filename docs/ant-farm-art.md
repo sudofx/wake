@@ -31,3 +31,15 @@ which are animated separately. Single centered specimen, transparent padding,
 genuine alpha, no detached parts, labels, shadow beneath, extra insects, cartoon
 or vector treatment. Photographic entomology appearance and slender adult worker
 proportions.
+
+## Pale sand revision
+
+`wake/assets/backgrounds/ant-sand-v2.png` was generated with the built-in image
+tool. The original soil asset is retained for compatibility. Final prompt:
+
+> Straight-on orthographic macro cross-section of pale warm ivory/beige fine dry
+> quartz sand behind invisible clean glass. Uniformly packed unexcavated fine
+> light sand, subtle tiny grains and restrained mineral variation, flat diffuse
+> lighting. Low-contrast pale backdrop for dark reddish ants. No roots, clumps,
+> large rocks, strata, dark patches, plants, sky, ants, holes, tunnels, text,
+> borders, shadows or vignette. The application draws tunnels and ants on top.

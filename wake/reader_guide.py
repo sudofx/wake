@@ -144,11 +144,20 @@ def refresh_public_reader(site):
         raise ValueError('Reader refresh requires one captured snapshot')
     assets = Path(__file__).parent / 'assets'
     previous = (site / 'ask-bob.js').read_text() if (site / 'ask-bob.js').exists() else None
+    previous_pet = (site / 'pet.js').read_text() if (site / 'pet.js').exists() else None
     current = (assets / 'ask-bob.js').read_text()
     for page in site.glob('*.html'):
         text = page.read_text()
         if previous and previous in text:
             text=text.replace(previous, current)
+        if previous_pet and previous_pet in text:
+            text=text.replace(previous_pet, (assets / 'pet.js').read_text())
+        pet_marker='/* Homepage reading experience and browser-local Ask Bob interface. */'
+        pet_start=text.find(pet_marker)
+        if pet_start>=0:
+            pet_end=text.find('</script>',pet_start)
+            if pet_end<0:raise ValueError('Reader page has an incomplete research presentation script')
+            text=text[:pet_start]+(assets/'pet.js').read_text()+text[pet_end:]
         marker='/* Render exported research records and reader navigation; browser interactions never mutate authority. */'
         start=text.find(marker)
         if start>=0:
@@ -159,10 +168,20 @@ def refresh_public_reader(site):
             text=text.replace('</head>', '<script src="bob-markdown.js" defer></script></head>', 1)
         text=re.sub(r'(src="reader-data\.js)(?:\?[^"]*)?(")',r'\1?v=20261023-snapshot-recovery\2',text)
         page.write_text(text)
-    for name in ('ask-bob.js', 'ask-bob.css', 'ask-bob-guide.js', 'ask-bob-browser.js', 'reader-data.js', 'app.js', 'bob-markdown.js'):
+    for name in ('ask-bob.js', 'ask-bob.css', 'ask-bob-guide.js', 'ask-bob-browser.js', 'reader-data.js', 'app.js', 'pet.js', 'bob-markdown.js'):
         (site / name).write_bytes((assets / name).read_bytes())
     for post in data['state'].get('posts', {}).values():
         guide = build_guide(post, data['state'], data['head'])
         path = site / record_path('guides', post['id'])
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(guide, ensure_ascii=False, separators=(',', ':')))
+
+    # Invocation IDs keep journal chat context distinct across nodes that share a cycle number.
+    for row in data['state'].get('journal', []):
+        identifier = row.get('invocation')
+        if not identifier:
+            continue
+        path = site / record_path('journal', identifier)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        related = {'invocations': {identifier: data['state']['invocations'][identifier]}} if identifier in data['state'].get('invocations', {}) else {}
+        path.write_text(json.dumps({'head': data['head'], 'collection': 'journal', 'item': row, 'related': related}, ensure_ascii=False, separators=(',', ':')))

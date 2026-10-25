@@ -1,9 +1,11 @@
-# Ask Bob about a published article
+# Ask Bob about published WAKE work
 
 ## Use it on the public website
 
-Open an article in Bob’s Blog and select the chat-bubble **Ask Bob** button below
-the story title. It opens a separate chat window with that story selected. The
+Select **Ask Bob** beside a research finding, project, notebook, journal entry,
+evidence record or page overview. The selected published record becomes the
+conversation context. In Bob’s Blog, the chat-bubble button remains below the
+story title. It opens a separate chat window with that item selected. The
 window uses message bubbles and a fixed composer: Enter sends; Shift+Enter adds a
 line. The window follows the visible screen as the phone keyboard opens and
 closes; only the message history scrolls. On phones, the browser may open a full-screen tab. Reopening the same story’s
@@ -28,7 +30,12 @@ records, governed decisions, or accepted scientific progress.
 The server, rather than the visitor, owns the model, system instructions, source
 URLs and provider credential. It loads the exact article's already public guide,
 checks its displayed hash and snapshot head, and supplies up to 18,000 characters
-of passages. Recent conversation is untrusted context. Broader reasoning is
+of passages. For other records it fetches a fixed public detail shard and checks
+the displayed snapshot head and record identity. Journal context uses the
+invocation ID, so equal cycle numbers in different nodes cannot swap entries.
+Page overviews use the bounded reader bootstrap; a chat never downloads the full
+research archive. The server chooses source paths, allows only known record kinds
+and optional enrolled node IDs, and supplies bounded excerpts with source links. Recent conversation is untrusted context. Broader reasoning is
 allowed, with an explicit distinction between published WAKE claims and general
 knowledge or interpretation. Linked citations identify sources, not independent
 verification. Bob cannot inspect private records or control the installation.

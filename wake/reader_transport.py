@@ -73,12 +73,15 @@ def export_reader_transport(data, target):
             write(record_path('guides', post['id']), build_guide(post, state, data['head']))
     for row in state.get('journal', []):
         identifier = row.get('invocation')
-        write(record_path('journal', 'cycle:' + str(row['cycle'])), {
+        packet = {
             'head': data['head'], 'collection': 'journal', 'item': row,
             'related': {'invocations': {identifier: state['invocations'][identifier]}
                         if identifier in state.get('invocations', {}) else {}},
             'events': [event for event in data.get('events', [])
-                       if event.get('payload', {}).get('id') == identifier]})
+                       if event.get('payload', {}).get('id') == identifier]}
+        write(record_path('journal', 'cycle:' + str(row['cycle'])), packet)
+        if identifier:
+            write(record_path('journal', identifier), packet)
     for collection, rows in (
             *((key, ordered(key)) for key in COLLECTIONS),
             ('journal', state.get('journal', [])), ('events', data.get('events', []))):

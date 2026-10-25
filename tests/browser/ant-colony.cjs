@@ -30,5 +30,5 @@ test('malformed saves fail closed',()=>{
 });
 test('food interventions are bounded, measured, and do not destroy existing food',()=>{
  const c=new Colony(3),before=c.metrics().food_remaining;for(let i=0;i<100;i++)c.addFood();assert.equal(c.food.length,32);assert.equal(c.metrics().food_remaining,before+c.addedFood);
- assert.equal(c.observation().interventions.food_added,c.addedFood);assert.equal(c.observation().model,'pellet-tunnels@2');assert.ok(c.observation().samples.length<=12);
+ assert.equal(c.observation().interventions.food_added,c.addedFood);assert.equal(c.observation().model,'pellet-tunnels@3');assert.ok(c.observation().samples.length<=12);
 });

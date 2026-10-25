@@ -15,6 +15,15 @@ neither route calls Gemini. Standalone history lives only in tab memory.
 to six recent `{question, answer}` turns. It returns newline-delimited JSON:
 `delta` events carry `text`; `done` carries the complete `result`, exact article
 identity and cited source links; `error` means the partial answer is incomplete.
+Record chat uses `mode: "record"`, an allowlisted `collection`, `record_id`,
+`expected_head`, and an optional enrolled `node`. It fetches only a fixed public
+record shard (512 KiB maximum) or bounded page overview (256 KiB maximum), refuses
+changed identities/heads, and supplies at most 18,000 characters from twelve
+sources. Journal shards use invocation IDs to preserve cross-node identity.
+`GET /v1/articles?collection=...&record=...&head=...` initializes that context in
+the same popup; it makes no model call. Arbitrary source URLs, models and tools
+remain unavailable to visitors.
+
 HTTP failures return JSON error codes. Provider quota failures include `retry_at`
 and `quota_scope`. Only a structured, positive, model-specific daily free-tier
 quota failure permits trying the next configured compatible model (at most two

@@ -50,6 +50,19 @@ class ReaderTransportTests(unittest.TestCase):
         return {'state': state, 'events': [], 'head': 'a' * 64,
                 'generated': '2026-10-17T10:00:00Z', 'metrics': {'storage': {'event_count': 2000}}}
 
+    def test_journal_context_distinguishes_nodes_with_the_same_cycle(self):
+        packet = self.packet()
+        packet['state']['journal'] = [
+            {'cycle': 3, 'invocation': '100.wake::w-one', 'title': 'First node', 'summary': 'First summary'},
+            {'cycle': 3, 'invocation': '101.wake::w-two', 'title': 'Second node', 'summary': 'Second summary'},
+        ]
+        with tempfile.TemporaryDirectory() as directory:
+            export_reader_transport(packet, Path(directory))
+            for row in packet['state']['journal']:
+                detail = json.loads((Path(directory) / record_path('journal', row['invocation'])).read_text())
+                self.assertEqual(detail['item'], row)
+                self.assertEqual(detail['head'], packet['head'])
+
     def test_growing_evidence_and_attempt_bodies_do_not_travel_on_initial_load(self):
         packet = self.packet(); before = deepcopy(packet)
         with tempfile.TemporaryDirectory() as directory:

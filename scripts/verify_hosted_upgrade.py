@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Verify an upgrade on disposable recovery copies; never save hosted checkpoints."""
 import argparse
+from concurrent.futures import ThreadPoolExecutor
 import json
 import os
 from pathlib import Path
@@ -36,19 +37,21 @@ def main():
                                 os.environ['GH_TOKEN'], os.environ['WAKE_HOSTED_STATE_KEY'])
         # Read-only workflow permissions prevent any remote write. No controller,
         # provider, save, seed, prune, or research-start capability is invoked.
+        print('Opening authenticated disposable recovery copies', flush=True)
         transport.open()
         checkpoint = transport.read_manifest()
         if checkpoint['installation_id'] != policy['installation_id']:
             raise ValueError('Checkpoint installation differs from policy')
         records = root / 'installation'
         transport.restore(records, workers=4)
+        print('Restored and verified all twelve checkpoint identities', flush=True)
         program = r'''
 import json,sys
 from pathlib import Path
 from wake.authority import open_authoritative_store
 from wake.hosted import record_identity
 root=Path(sys.argv[1]);result={}
-for directory in sorted((root/'nodes').glob('*/record')):
+for directory in [root/'nodes'/sys.argv[2]/'record']:
     path=directory/'wake.sqlite'
     before=record_identity(path)
     store=open_authoritative_store(directory)
@@ -60,16 +63,29 @@ for directory in sorted((root/'nodes').glob('*/record')):
     if any(before[key]!=after[key] for key in ('head','revision')):raise ValueError('Audit changed native history')
 print(json.dumps(result,sort_keys=True))
 '''
-        results = []
-        for source in (baseline, candidate):
-            env = dict(os.environ, PYTHONPATH=str(source))
-            # Provider credentials are neither needed nor passed to the audits.
-            for key in tuple(env):
-                if any(marker in key for marker in ('API_KEY', 'STATE_KEY', 'INGEST_TOKEN')):
-                    env.pop(key)
-            output = subprocess.check_output([sys.executable, '-c', program, str(records)],
-                                             cwd=source, env=env, text=True)
-            results.append(json.loads(output))
+        def compare_node(node):
+            pair = []
+            for name, source in (('baseline', baseline), ('candidate', candidate)):
+                env = dict(os.environ, PYTHONPATH=str(source))
+                # Audits receive no provider, checkpoint or publication credential.
+                for key in tuple(env):
+                    if any(marker in key for marker in ('API_KEY', 'STATE_KEY', 'INGEST_TOKEN', 'GH_TOKEN', 'GITHUB_TOKEN')):
+                        env.pop(key)
+                print('Full ' + name + ' audit: ' + node, flush=True)
+                output = subprocess.check_output([sys.executable, '-c', program, str(records), node],
+                                                 cwd=source, env=env, text=True)
+                pair.append(json.loads(output))
+            if pair[0] != pair[1] or set(pair[0]) != {node}:
+                raise ValueError('Candidate and baseline disagree on ' + node)
+            print('Matching full audits: ' + node, flush=True)
+            return pair
+        # Each pair owns a different disposable node; never audit the same copy
+        # concurrently or open an operational controller. Bound replay memory.
+        results = [{}, {}]
+        with ThreadPoolExecutor(max_workers=2) as executor:
+            for pair in executor.map(compare_node, NODE_IDS):
+                for index in (0, 1):
+                    results[index].update(pair[index])
         if set(results[0]) != set(NODE_IDS) or results[0] != results[1]:
             raise ValueError('Candidate and baseline disagree on the twelve records')
         report = {'status': 'verified', 'candidate': candidate_sha, 'baseline': baseline_sha,

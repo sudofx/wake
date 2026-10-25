@@ -76,3 +76,24 @@ test('ant chat uses the same admission barrier and streams advisory output witho
   assert.ok(sent.contents[0].parts[0].text.includes('pellet-tunnels@2'));assert.ok(sent.systemInstruction.parts[0].text.includes('not real biology'));
  }finally{globalThis.fetch=real;}
 });
+
+test('record context is fetched from fixed public shards and bound to the displayed head',async()=>{
+ const input=validate({mode:'record',collection:'notebooks',record_id:'101.wake::nb-1',expected_head:'snapshot:'+'b'.repeat(64),question:'What are the limitations?',url:'http://localhost/secret',tools:['write']});
+ const packet={head:input.expected_head,collection:'notebooks',item:{id:input.record_id,title:'A bounded notebook',summary:'A provisional claim.',limitations:'No controlled comparison.'},related:{projects:{p1:{id:'p1',question:'Can it be reproduced?'}}}};
+ let target;const record=await guideFor(input,async url=>{target=url;return Response.json(packet);});
+ assert.ok(target.startsWith('https://sudofx.github.io/wake/reader-records/notebooks/'));assert.ok(!target.includes('localhost'));assert.equal(record.article.hash,input.expected_head);assert.match(record.sources[0].url,/projects.html#projects\/notebook:/);assert.ok(record.passages.some(p=>p.field==='limitations'));
+ assert.equal(record.sources.length,2);assert.ok(record.passages.every(p=>record.sources.some(s=>s.id===p.source)));
+ await assert.rejects(guideFor(input,async()=>Response.json({...packet,head:'a'.repeat(64)})),/record_changed/);
+ for(const patch of [{collection:'../../secret'},{record_id:'../../secret'},{node:'../private'},{collection:'overview',record_id:'https://evil.test'},{expected_head:'bad'}])assert.throws(()=>validate({...input,...patch}));
+});
+test('journal identity uses invocation and node scope so equal cycle numbers cannot swap context',async()=>{
+ const input=validate({mode:'record',collection:'journal',record_id:'w-12',node:'101.wake',expected_head:'c'.repeat(64),question:'Explain this entry.'});
+ let target;const packet={head:input.expected_head,collection:'journal',item:{invocation:'w-12',cycle:3,title:'Journal entry',summary:'Exact recorded summary.'}};
+ const result=await guideFor(input,async url=>{target=url;return Response.json(packet);});assert.ok(target.startsWith('https://sudofx.github.io/wake/nodes/101.wake/reader-records/journal/'));assert.equal(result.sources[0].url,'nodes/101.wake/journal.html#journal/cycle:3');
+ await assert.rejects(guideFor(input,async()=>Response.json({...packet,item:{...packet.item,invocation:'w-other'}})),/record_changed/);
+});
+test('record retrieval bounds nested content and overview reads only the bounded bootstrap',async()=>{
+ const input=validate({mode:'record',collection:'overview',record_id:'projects',expected_head:'d'.repeat(64),question:'What is being investigated?'});let target;
+ const state={objective:'Published overview',notebooks:Object.fromEntries(Array.from({length:8},(_,i)=>['n'+i,{id:'n'+i,title:'Notebook '+i,claims:Array.from({length:3},()=>({statement:'x'.repeat(5000)}))}]))};
+ const result=await guideFor(input,async url=>{target=url;return Response.json({head:input.expected_head,state});});assert.equal(target,'https://sudofx.github.io/wake/reader-data.json');assert.ok(result.sources.length<=12);assert.ok(result.passages.reduce((n,p)=>n+p.text.length,0)<=18000);assert.ok(result.passages.length<=72);
+});

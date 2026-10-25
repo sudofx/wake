@@ -257,5 +257,29 @@
       }
     });
   }
-  window.WakeAskBob={mount};
+  async function mountRecord(container,{collection,record_id,head=''}){
+    if(!container||!record_id||!head||container.querySelector(':scope > .ask-bob-record'))return;
+    const route=location.href,cap=await capabilities();
+    if(!container.isConnected||location.href!==route||!cap?.live||!cap.enabled)return;
+    if(container.querySelector(':scope > .ask-bob-record'))return;
+    const link=element('a','Ask Bob','ask-bob-launch ask-bob-record'),url=new URL('/',cap.url);
+    const node=location.pathname.match(/\/nodes\/((?:10[0-3]|20[0-3]|30[0-3])\.wake)\//)?.[1];
+    for(const [key,value] of Object.entries({collection,record:record_id,head,...(node?{node}:{})}))url.searchParams.set(key,value);
+    url.searchParams.set('theme',document.documentElement.dataset.theme||'light');link.href=url.href;link.target='_blank';link.rel='noopener';link.setAttribute('aria-label','Ask Bob about this '+(collection==='overview'?'page':collection==='notebooks'?'notebook':collection==='journal'?'journal entry':'record'));
+    const identity=[node||'',collection,record_id,head].join('|');
+    link.addEventListener('click',event=>{
+      const themed=new URL(link.href);themed.searchParams.set('theme',document.documentElement.dataset.theme||'light');link.href=themed.href;
+      if(popup&&!popup.closed&&popupArticle===identity){event.preventDefault();popup.postMessage({type:'wake-theme',theme:document.documentElement.dataset.theme||'light'},new URL(cap.url).origin);popup.focus();return;}
+      const opened=window.open(link.href,'wake-bob-chat','popup,width=480,height=760,resizable=yes,scrollbars=yes');if(opened){event.preventDefault();popup=opened;popupArticle=identity;opened.focus();}
+    });
+    const heading=container.querySelector(':scope > h1,:scope > h2')||container.querySelector(':scope > .record-panel-head,:scope > .record-panel-meta');if(heading)heading.after(link);else container.prepend(link);
+  }
+  function attachRecords(view,{page,head,selected=''}){
+    if(!view)return;
+    view.querySelectorAll('.ask-bob-record').forEach(node=>node.remove());
+    for(const card of view.querySelectorAll('[data-bob-collection][data-bob-id]'))mountRecord(card,{collection:card.dataset.bobCollection,record_id:card.dataset.bobId,head});
+    if(!(selected&&['projects','journal','evidence'].includes(page)&&!selected.startsWith('topic:'))&&['home','discoveries','topics','projects','journal','evidence','history','lab','metrics','about'].includes(page))mountRecord(view,{collection:'overview',record_id:page,head});
+  }
+
+  window.WakeAskBob={mount,mountRecord,attachRecords};
 })();

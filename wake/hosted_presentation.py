@@ -84,7 +84,7 @@ def bind_hosted_status(site, repository, revision):
         for name in farm_assets:
             shutil.copyfile(assets/name,root/name)
         (root/'backgrounds').mkdir(exist_ok=True)
-        for name in ('ant-soil-v1.png','ant-body-v1.png'):
+        for name in ('ant-soil-v1.png','ant-body-v1.png','ant-sand-v2.png'):
             shutil.copyfile(assets/'backgrounds'/name,root/'backgrounds'/name)
         deployment=json.loads((root/'deployment.json').read_text()) if (root/'deployment.json').exists() else {'schema':1,'mode':'hosted','snapshot_only':True}
         deployment['ask_bob']={'url':'https://wake-ask-bob.coolgrove68.chatgpt.site','installation_id':manifest['installation_id']}

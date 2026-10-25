@@ -104,3 +104,24 @@ Checks cover narrow fixed-width growth, gradual excavation, bounded locomotion,
 pauses, connected paths, food conservation, exact save/resume, malformed saves,
 filtered exports and advisory streaming through the existing budget. Provider
 output is mocked; these checks do not certify live answer quality or biology.
+
+## Sand, closer inspection and movement
+
+The pale sand substrate and lighter tunnel interiors keep dark workers visible.
+Use **Closer +** up to 8×, **−** to zoom out, or **Fit** for the whole colony.
+Drag to pan; pinch or scroll to zoom around a point. Keyboard users can focus
+the habitat, use plus/minus and arrow keys, and press Home to fit. Camera changes
+do not restart the saved colony or accelerate time.
+
+Movement model `pellet-tunnels@3` retains the excavation and save format from @2,
+with short heading-change pauses and individual walking-speed variation. The
+renderer advances alternating tripods with distance travelled, keeps feet planted
+through the longer stance phase, and uses a quicker lifted return. Head, gaster
+and antenna motion break up the rigid silhouette. These are illustrative choices,
+not measurements or a calibrated species model. Existing @2 browser saves resume.
+
+[Zollikofer (1994)](https://pubmed.ncbi.nlm.nih.gov/9317406/) reports alternating
+tripods and shortened inside strides during curved walking.
+[Deeti et al. (2023)](https://pubmed.ncbi.nlm.nih.gov/37093284/) describes stops,
+body turns and fixations during scanning in the studied desert ants. These inform
+the movement vocabulary rather than supplying universal timing parameters.

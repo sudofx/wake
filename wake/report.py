@@ -463,7 +463,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         # Publish source styles alongside every HTML view: Pages and exports share
         # the same theme file rather than receiving copied inline palettes.
         for name in ("style.css", "nav.css", "map.css", "map3d.css", "theme.css",
-                     "nav.js", "map.js", "map3d.js", "flat-view.js", "app.js", "ask-bob.js", "ask-bob.css", "ask-bob-browser.js", "ask-bob-guide.js", "ask-bob-private.js",
+                     "nav.js", "map.js", "map3d.js", "flat-view.js", "app.js", "pet.js", "ask-bob.js", "ask-bob.css", "ask-bob-browser.js", "ask-bob-guide.js", "ask-bob-private.js",
                      "ant-farm.html", "ant-farm.css", "ant-colony.js", "ant-drawing.js", "ant-farm.js", "bob-markdown.js"):
             atomic_write(target / name, (assets / name).read_text())
         # These static inference assets are loaded only after the reader opts in.
@@ -485,7 +485,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             "console-globe.png",
             "console-cube.png",
             "console-graph.png",
-            "console-graph-alt.png", "ant-soil-v1.png", "ant-body-v1.png",
+            "console-graph-alt.png", "ant-soil-v1.png", "ant-body-v1.png", "ant-sand-v2.png",
         ):
             (background_target / name).write_bytes((background_source / name).read_bytes())
         public_data = browser_projection(data)
