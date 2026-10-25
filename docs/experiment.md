@@ -7,6 +7,13 @@ holdout from the same task family measure interface/task performance, not genera
 intelligence, scientific validity or production improvement. Keep all attempts,
 failures and operator decisions in its kernel record; they are not research cycles.
 
+The [autonomous context experiment](autonomous-context.md) adds unattended
+native-record policy adaptation. It requires both fixed-task gains and a better
+choice in the current native state. The outcome monitor compares matched
+provider/model/phase windows with delivered context and excludes quota deferrals
+and transport failures. It is a conservative rollback observation, not causal
+evidence. Policy trials/adoptions/rollbacks do not increase research progress.
+
 The [experimental research expansion](research-expansion.md) defines the three
 original starting questions and thirteen additional catalog questions, per-group assignments, configuration boundaries and
 observational assessment. An operator-authorized fresh installation is a new

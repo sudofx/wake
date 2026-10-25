@@ -38,6 +38,12 @@ review receipts, use the [improvement workflow](improvements.md). `wake improve`
 creates an explicit isolated experiment record; it never opens research authority
 or applies a proposed patch.
 
+The [autonomous context lane](autonomous-context.md) instead generates and adopts
+a bounded policy on the owning native record. Its deployment grant is
+`autonomous_context_improvement = true` with active decision memory. The default
+is false. `wake improve autonomous-demo --output NEW_DIRECTORY` runs its complete
+native-record loop without a model, human proposal or per-change review.
+
 ## Current development path
 
 Start with [one-container setup](standalone.md#run-one-installation-container).

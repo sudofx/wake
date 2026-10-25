@@ -63,12 +63,26 @@ def _tokens(value):
     return set(re.findall(r"[a-z0-9]{4,}", str(value).lower())) - _STOP
 
 
-def decision_context(state, question=None):
+def decision_context(state, question=None, *, selection_policy=None):
     attention = state.get("attention") or {}
     topic = attention.get("selected_topic") or attention.get("current", {}).get("selected_topic")
     # Attention is a directive, not permission to select a different objective.
+    deadlines = {}
+    if selection_policy is not None:
+        if (not isinstance(selection_policy, dict) or set(selection_policy) != {'selector'}
+                or selection_policy['selector'] not in ('alphabetical', 'deadline-priority')):
+            raise ValueError('Unsupported context selection policy')
+        if selection_policy['selector'] == 'deadline-priority':
+            for commitment in state.get('commitments', {}).values():
+                due, project = commitment.get('due_cycle'), commitment.get('project')
+                if (commitment.get('status') == 'open' and isinstance(project, str)
+                        and type(due) is int and due <= state.get('version', 0) + 2):
+                    deadlines[project] = min(deadlines.get(project, due), due)
     active = sorted((p for p in state.get("projects", {}).values() if p.get("status") == "active"),
-                    key=lambda p: (p.get("domain") != topic, p["id"]))
+                    key=lambda p: ((0 if topic and p.get('domain') == topic else 1,
+                                    p['id'] not in deadlines, deadlines.get(p['id'], 0), p['id'])
+                                   if selection_policy and selection_policy['selector'] == 'deadline-priority'
+                                   else (p.get("domain") != topic, p["id"])))
     project = active[0] if active else {}
     return {"project_id": project.get("id"), "topic": topic or project.get("domain"),
             "question": _clip(question or project.get("question") or state.get("objective") or state.get("focus"), 1000),

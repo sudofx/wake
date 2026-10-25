@@ -3,6 +3,7 @@ from copy import deepcopy
 import json
 import os
 from pathlib import Path
+import subprocess
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -18,6 +19,23 @@ CANDIDATE = (ROOT / 'examples/improvement/commitment_candidate.py').read_text()
 
 
 class ImprovementTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        # Source-capture tests own a committed fixture checkout, so ordinary
+        # development edits cannot make unrelated workflow tests fail to prepare.
+        cls.checkout_temp = tempfile.TemporaryDirectory()
+        cls.checkout = Path(cls.checkout_temp.name)
+        (cls.checkout / 'wake').mkdir()
+        (cls.checkout / 'wake/decision_memory.py').write_bytes((ROOT / 'wake/decision_memory.py').read_bytes())
+        subprocess.run(['git', 'init', '-q', str(cls.checkout)], check=True, capture_output=True)
+        subprocess.run(['git', '-C', str(cls.checkout), 'add', 'wake/decision_memory.py'], check=True)
+        subprocess.run(['git', '-C', str(cls.checkout), '-c', 'user.name=Fixture', '-c', 'user.email=fixture@localhost',
+                        'commit', '-qm', 'Commit isolated baseline'], check=True, capture_output=True)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.checkout_temp.cleanup()
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
@@ -33,7 +51,7 @@ class ImprovementTests(unittest.TestCase):
         self.reader_file.write_text(json.dumps(self.reader))
         self.installation_file.write_text(json.dumps(self.installation))
         prepare(self.experiment, self.reader_file, self.installation_file,
-                ['commitments:100.wake::c'], checkout=ROOT)
+                ['commitments:100.wake::c'], checkout=self.checkout)
         self.context = host_at(self.experiment).context().state['context']
 
     def proposal(self, source=CANDIDATE):
@@ -67,6 +85,18 @@ class ImprovementTests(unittest.TestCase):
         bad['record_heads']['100.wake']['version'] = 2
         with self.assertRaisesRegex(ValueError, 'versions differ'):
             capture_research(self.reader, bad, ['commitments:100.wake::c'])
+
+    def test_uncommitted_baseline_is_not_mislabeled_as_a_source_commit(self):
+        target = self.checkout / 'wake/decision_memory.py'
+        original = target.read_bytes()
+        target.write_bytes(original + b'\n# uncommitted fixture change\n')
+        try:
+            with self.assertRaisesRegex(ValueError, 'uncommitted changes'):
+                prepare(self.root / 'another-experiment', self.reader_file, self.installation_file,
+                        ['commitments:100.wake::c'], checkout=self.checkout)
+            self.assertFalse((self.root / 'another-experiment').exists())
+        finally:
+            target.write_bytes(original)
 
     def test_submission_never_executes_candidate_and_rejection_has_kernel_receipt(self):
         sentinel = self.root / 'must-not-exist'

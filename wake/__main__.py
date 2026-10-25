@@ -241,10 +241,13 @@ def execute(args):
                 return engine.store.continuity_matrix_progress() or engine.store.enable_continuity_matrix()
             if args.command in ("status", "audit"):
                 state, head = engine.store.audit() if args.command == "audit" else engine.store.replay()
+                from .autonomous_context import status as autonomy_status
                 return {"valid": True, "cycles": state["version"], "head": head,
                         "pending": state["pending"], "beliefs": len(state["beliefs"]),
                         "open_commitments": sum(c["status"] == "open" for c in state["commitments"].values()),
-                        "invocations": len(state["invocations"])}
+                        "invocations": len(state["invocations"]),
+                        **({'autonomous_context': autonomy_status(state)}
+                           if state.get('autonomous_context') else {})}
             if args.command == "observe":
                 result = engine.observe(args.text, args.source)
                 return {"evidence": list(result["evidence"])[-1]}

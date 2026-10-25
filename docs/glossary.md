@@ -12,6 +12,7 @@ definitions. The wake entries describe its conceptual language rather than an AP
 | **Inspection interface** | Static text, a resource manifest and reproducible evidence for an independent observer. It offers reading access without research or execution authority. See [inspection](inspection.md). |
 | **Improvement proposal** | Research-linked code offered for an isolated comparison. Recording it does not execute it; passing a task qualifies it for human review, not installation. See [workflow](improvements.md). |
 | **Improvement holdout** | Task cases generated after a candidate is recorded, from the same published task family. Expected answers stay outside candidate containers. This measures that task, not general intelligence. |
+| **Autonomous context policy** | An installed, bounded capability that lets WAKE propose, measure and adopt a context-selector change without per-change human review. The native record owns it; automatic rollback quarantines a bad change. See [bounded autonomy](autonomous-context.md). |
 | **Authority / authoritative record** | The one database allowed to decide a node’s current state. The current installation has one governed record per node; its aggregate Console is a view, not another authority. |
 | **Blocked / red** | The runtime cannot continue without operator or agent action. |
 | **Bob** | The byline for selected plain-language summaries of already-recorded research. Bob does not make research decisions or change the record. |

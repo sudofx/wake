@@ -104,6 +104,12 @@ contract: `wake-improvements@1`, implemented above the kernel. Its separate
 operator review. Research context, Docker execution and task scoring remain
 outside the generic kernel. It grants no research mutation or deployment capability.
 
+The [autonomous context policy](autonomous-context.md) is WAKE domain behavior,
+kept above the kernel. Its versioned configuration/trial/rollback events append
+through the owning research application and never increment accepted research
+versions. Its installed interpreter, measurements and deployment grant are not
+candidate-controlled. The generic kernel gains no research imports or new powers.
+
 Keep application IDs, versions, action names, and historical JSON meaning stable.
 An existing application's version cannot be renamed or replaced as a cosmetic
 cleanup. A changed interpretation needs an explicit, tested migration. Deterministic

@@ -159,6 +159,10 @@ def build_research_projection(state, events, head, *, generated=None, metrics=No
                          'recorded_at': generated}
     accepted = [i for i in completed if i['status'] == 'accepted']
     actions = metrics.get('accepted_actions', {})
+    autonomy_status = None
+    if state.get('autonomous_context'):
+        from .autonomous_context import status
+        autonomy_status = status(state)
     return {
         'projection_schema': 1, 'projection_kind': 'disposable-research-view', 'authoritative': False,
         'recorded_activity': recorded_activity,
@@ -170,6 +174,7 @@ def build_research_projection(state, events, head, *, generated=None, metrics=No
                    'open_commitments': sum(x.get('status') == 'open' for x in state.get('commitments', {}).values()),
                    'pending': bool(state.get('pending')), 'next_eligible': (operation or {}).get('wake_status', {}).get('next_eligible'),
                    'attention_topic': state.get('attention', {}).get('attention', {}).get('topic'),
+                   **({'autonomous_context': autonomy_status} if autonomy_status else {}),
                    'regime': deepcopy(state.get('experimental', {}).get('controls', {}).get('time_dilation', {}))},
         'records': records, 'record_totals': totals,
         'evidence_quality': evidence_quality(state),

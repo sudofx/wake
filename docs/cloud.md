@@ -6,7 +6,13 @@ runs research and requires verified encrypted records before it can start.
 
 The [improvement workflow](improvements.md) is currently local and operator-run.
 Hosted research and Pages publication do not invoke candidate Python, apply its
-patches or consume its review receipts as deployment permission.
+patches or consume its review receipts as deployment permission. A compatible
+promoted runtime may separately receive `autonomous_context_improvement: true`
+and active decision memory through its immutable hosted runtime policy. This
+grants only the [bounded context selector](autonomous-context.md), with no model
+call or generated-code execution. An absent grant writes false into restored
+configuration. Source, runtime promotion, installation grant and observed adoption
+remain separate facts; this option alone does not update a pinned runtime.
 
 The optional [decision-memory feature](retrieval.md#optional-decision-relevant-recall)
 defaults to off. A hypothetical shadow capsule is invocation telemetry, never a

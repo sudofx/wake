@@ -69,6 +69,13 @@ Its kernel record preserves favorable and unfavorable results for human review;
 it never installs changes or counts experiments as research progress. The first
 task explores commitment-aware project context selection, not general intelligence.
 
+[Bounded autonomous context adaptation](docs/autonomous-context.md) now supplies an
+unattended lane on each node's native record. With an explicit installation grant,
+WAKE generates a one-field selector proposal, verifies benchmark and native-state
+gains, adopts it without human review, and automatically rolls back on context
+faults or matched-outcome deterioration. This first contract permits one forward
+adoption; executable code, evaluator, governance, quotas and permissions stay fixed.
+
 The [static inspection interface](docs/inspection.md) gives unfamiliar readers and
 AI systems plain-text explanations, exact evidence and a reproducible kernel example.
 

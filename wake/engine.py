@@ -126,6 +126,7 @@ DEFAULTS = {"timezone": "America/Los_Angeles", "objective": "Test durable contin
             "free_tier_confirmed": False, "gemini_fallback_models": [], "gemini_fallback_requires_primary_daily_quota": False,
             "memory_mode": "shadow", "research_google_search": False, "same_wake_research": False, "inquiry_drive_enabled": False, "research_topics_file": "research-topics.toml",
             "decision_memory_mode": "off", "decision_memory_policy": {},
+            "autonomous_context_improvement": False,
             "observation_mode": False, "research_collection_budget": 2, "research_collection_wall_seconds": 45}
 
 def _topics(settings, config_path=None):
@@ -204,6 +205,8 @@ def config(path="wake.toml"):
     require(type(result["same_wake_research"]) is bool, "same_wake_research must be boolean")
     require(result["memory_mode"] in ("shadow", "active"), "memory_mode must be shadow or active")
     validate_decision_memory_settings(result)
+    from .autonomous_context import validate_settings as validate_autonomous_context
+    validate_autonomous_context(result)
     require(type(result["inquiry_drive_enabled"]) is bool,
             "inquiry_drive_enabled must be true or false")
     require(type(result["observation_mode"]) is bool,
@@ -236,6 +239,8 @@ class Engine:
         self.config = settings or config()
         require(self.config.get("memory_mode", "shadow") in ("shadow", "active"), "memory_mode must be shadow or active")
         validate_decision_memory_settings(self.config)
+        from .autonomous_context import validate_settings as validate_autonomous_context
+        validate_autonomous_context(self.config)
         if self.config.get("mission"):
             if not self.config.get("research_topics"):
                 filename = self.config.get("research_topics_file")
@@ -2202,8 +2207,10 @@ class Engine:
         started = perf_counter()
         head = self.store.head()
         policy = validate_decision_memory_settings(self.config)
+        from .autonomous_context import policy_for
         plan = rank_candidates(state, active_retrieval_plan(state, retrieval),
-                               decision_context(state, question), policy)
+                               decision_context(state, question, selection_policy=policy_for(
+                                   state, self.config.get('autonomous_context_improvement', False))), policy)
         ablate = None
         # Only the frozen-record comparison harness sets this ephemeral flag.
         # It is deliberately absent from operator/runtime configuration.
@@ -2308,6 +2315,9 @@ class Engine:
         state = self.store.load()
         load_ms = (perf_counter() - phase_at) * 1000
         require(state["pending"] is None, "An invocation is already pending")
+        if self.config.get('autonomous_context_improvement') or state.get('autonomous_context'):
+            from .autonomous_context import advance
+            state = advance(self.store, self.config.get('autonomous_context_improvement', False))
         day = datetime.now(ZoneInfo(self.config["timezone"])).date().isoformat()
         used = sum(charged_request_slots(i) for i in state["invocations"].values()
                    if i["charged"] and i["quota_day"] == day)
@@ -2639,6 +2649,10 @@ class Engine:
         }
         self.store.append("invocation_started", {"id": invocation, "provider": provider, "model": model, "phase": phase,
             "charged": charged, "quota_day": day, "base_version": state["version"], "request": request,
+            **({'autonomous_context_revision': state['autonomous_context']['revision']
+                if self.config.get('autonomous_context_improvement') and decision_memory_receipt
+                and decision_memory_receipt.get('delivered') else 0}
+               if state.get('autonomous_context') else {}),
             "request_hash": digest(request), "process_id": os.getpid(),
             "working_set_shadow": working_set_shadow,
             "trust_compacts_shadow": trust_compacts_shadow,

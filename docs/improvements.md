@@ -1,5 +1,11 @@
 # Turn research into a proposed improvement
 
+For unattended generation, evaluation, adoption and rollback of the installed
+context-selector policy, use [bounded autonomy](autonomous-context.md). That lane
+works on the existing native research record and needs no per-change human review.
+The Python proposal workflow below remains a separate way to investigate changes
+outside that narrow installed capability.
+
 WAKE can preserve a research-backed Python proposal, compare it with captured
 existing code, and produce a review page. It does not install changes. This is a
 local first step toward governed self-improvement, not an autonomous source

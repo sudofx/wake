@@ -85,6 +85,44 @@ class HostedBatchTests(unittest.TestCase):
 
 @patch.dict(os.environ, {'GITHUB_ACTIONS':'false'})
 class HostedRuntimeSelectionTests(unittest.TestCase):
+    def test_autonomy_requires_explicit_boolean_grant_and_active_recall(self):
+        import json
+        from scripts.github_research import runtime_policy
+        client = SimpleNamespace(repository='example/repo')
+        with tempfile.TemporaryDirectory() as directory:
+            path = self.policy_file(directory)
+            policy = json.loads(path.read_text())
+            selected = policy['installations']['example/repo']
+            selected['decision_memory_mode'] = 'active'
+            for value in (True, False, 'true', 1, None):
+                selected['autonomous_context_improvement'] = value
+                path.write_text(json.dumps(policy))
+                with patch('scripts.github_research.RUNTIME_POLICY', path):
+                    if type(value) is bool:
+                        self.assertIs(runtime_policy(client)['autonomous_context_improvement'], value)
+                    else:
+                        with self.assertRaises(ValueError):
+                            runtime_policy(client)
+            selected.update(autonomous_context_improvement=True, decision_memory_mode='off')
+            path.write_text(json.dumps(policy))
+            with patch('scripts.github_research.RUNTIME_POLICY', path), self.assertRaises(ValueError):
+                runtime_policy(client)
+
+    def test_hosted_grant_writes_only_root_keys_and_absence_revokes_checkpoint_grant(self):
+        import tomllib
+        from scripts.github_research import apply_decision_memory_policy
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'config').mkdir()
+            path = root / 'config/wake.toml'
+            path.write_text('autonomous_context_improvement = false\n[topics]\nquestion = "retain"\n')
+            with redirect_stdout(io.StringIO()):
+                apply_decision_memory_policy(root, {'decision_memory_mode': 'active', 'autonomous_context_improvement': True})
+            self.assertIs(tomllib.loads(path.read_text())['autonomous_context_improvement'], True)
+            self.assertEqual(tomllib.loads(path.read_text())['topics'], {'question': 'retain'})
+            with redirect_stdout(io.StringIO()):
+                apply_decision_memory_policy(root, {'decision_memory_mode': 'active'})
+            self.assertIs(tomllib.loads(path.read_text())['autonomous_context_improvement'], False)
     def test_candidate_catalog_policy_requires_an_explicit_boolean(self):
         import json
         from scripts.github_research import runtime_policy

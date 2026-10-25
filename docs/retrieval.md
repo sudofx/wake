@@ -3,8 +3,11 @@
 ## Optional decision-relevant recall
 
 Decision memory asks which recorded information might change the next decision.
-It is a deterministic, experimental aid; it does not decide what is true or learn
-its own selection policy. Exact history remains authoritative. A current belief
+It is a deterministic, experimental aid; it does not decide what is true. An
+explicit [autonomous context grant](autonomous-context.md) can adapt one installed
+project selector after fixed-task and native-state measurement; the recall ranking,
+source qualification, budgets and governance remain outside that change allowance.
+Without that grant, selection remains fixed. Exact history remains authoritative. A current belief
 or notebook is a revisable interpretation of that history. A selected memory is
 an estimate of relevance, not evidence that remembering it helped.
 

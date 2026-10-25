@@ -35,7 +35,11 @@ def empty():
 
 def reduce_event(state, event, historical=False):
     p, kind = event["payload"], event["kind"]
-    if kind == "initialized":
+    if kind in ('autonomous_context_configured', 'autonomous_context_trial',
+                'autonomous_context_trial_failed', 'autonomous_context_rollback'):
+        from .autonomous_context import reduce
+        state['autonomous_context'] = reduce(state, event)
+    elif kind == "initialized":
         require(not state["objective"], "Duplicate initialization")
         state["objective"] = p["objective"]
     elif kind == "charter_adopted":

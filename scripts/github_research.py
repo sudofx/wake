@@ -67,6 +67,8 @@ def runtime_policy(client):
             or selected.get('decision_memory_mode', 'off') not in ('off', 'shadow', 'active')
             or ('research_expansion_enabled' in selected and type(selected['research_expansion_enabled']) is not bool)
             or ('research_candidate_catalog_enabled' in selected and type(selected['research_candidate_catalog_enabled']) is not bool)
+            or ('autonomous_context_improvement' in selected and type(selected['autonomous_context_improvement']) is not bool)
+            or (selected.get('autonomous_context_improvement') is True and selected.get('decision_memory_mode') != 'active')
             or not re.fullmatch('[0-9a-f]{32}', str(selected.get('installation_id', '')))):
         raise ValueError('Invalid hosted installation binding')
     return selected
@@ -92,6 +94,9 @@ def apply_decision_memory_policy(root, policy):
     mode = policy['decision_memory_mode']
     if mode not in ('off', 'shadow', 'active'):
         raise ValueError('Invalid hosted decision memory mode')
+    autonomy = policy.get('autonomous_context_improvement', False)
+    if type(autonomy) is not bool or (autonomy and mode != 'active'):
+        raise ValueError('Invalid hosted autonomous context grant')
     path = root / 'config/wake.toml'
     original = path.read_text()
     # Change only the root TOML key; preserve per-member topics and all tables.
@@ -104,10 +109,22 @@ def apply_decision_memory_policy(root, policy):
             lines[index] = f'decision_memory_mode = "{mode}"\n'
             found = True
     updated = ''.join(lines) if found else f'decision_memory_mode = "{mode}"\n' + original
+    lines = updated.splitlines(keepends=True)
+    found = False
+    for index, line in enumerate(lines):
+        if line.lstrip().startswith('['):
+            break
+        if re.match(r'^\s*autonomous_context_improvement\s*=', line):
+            lines[index] = 'autonomous_context_improvement = ' + str(autonomy).lower() + '\n'
+            found = True
+    updated = ''.join(lines) if found else 'autonomous_context_improvement = ' + str(autonomy).lower() + '\n' + updated
     if tomllib.loads(updated).get('decision_memory_mode') != mode:
         raise ValueError('Hosted decision memory configuration did not validate')
+    if tomllib.loads(updated).get('autonomous_context_improvement') is not autonomy:
+        raise ValueError('Hosted autonomous context configuration did not validate')
     atomic_write(path, updated)
-    print(json.dumps({'decision_memory_mode': mode, 'scope': 'hosted-installation'}), flush=True)
+    print(json.dumps({'decision_memory_mode': mode, 'autonomous_context_improvement': autonomy,
+                      'scope': 'hosted-installation'}), flush=True)
 
 
 def control(action):

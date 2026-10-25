@@ -450,6 +450,8 @@ Passing its task makes a candidate eligible for human review; it does not instal
 def configure_parser(subparsers):
     command = subparsers.add_parser('improve', help='Research-backed code proposals and isolated comparisons; never installs code')
     operations = command.add_subparsers(dest='improvement_operation', required=True)
+    p = operations.add_parser('autonomous-demo', help='Demonstrate automatic policy generation, evaluation and adoption in a new native fixture')
+    p.add_argument('--output', required=True)
     p = operations.add_parser('prepare', help='Create a new isolated experiment from dated public research')
     p.add_argument('--output', required=True)
     p.add_argument('--reader', required=True)
@@ -480,6 +482,9 @@ def configure_parser(subparsers):
 
 def execute(args):
     operation = args.improvement_operation
+    if operation == 'autonomous-demo':
+        from .autonomous_demo import demonstrate
+        return demonstrate(args.output)
     if operation == 'prepare':
         return prepare(args.output, args.reader, args.installation, args.record, checkout=args.checkout)
     if operation == 'submit':

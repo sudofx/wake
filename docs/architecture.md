@@ -10,6 +10,14 @@ proposals; it does not become writable research authority. Untrusted candidate
 code runs only in restricted disposable containers, while the host scores its
 outputs. An operator review receipt cannot apply code or grant release authority.
 
+The [autonomous context lane](autonomous-context.md) is a separate WAKE application
+policy on the existing per-node native authority. An installed capability permits
+one selector-field change, gated by recomputed fixed-task and current-native-state
+measurements. Proposal generation, adoption and rollback require no per-change
+human review. Metadata events preserve research versions and history; candidate
+data cannot replace the evaluator, widen permissions, modify code or create a
+competing research store. Native replay owns the policy after restart.
+
 > **Current specification.** This document explains why the present system is shaped this way: its trust boundary, durable record, governance model and known limits. Current local procedures belong in `standalone.md`; public mirror publishing belongs in `cloud.md`. Maintainer navigation, environment checks and reproducible validation guidance belong in `development.md`.
 
 **WAKE✳︎** is infrastructure for continuity of accountable work, not continuity of a model instance. Its stable sequence is **Record → Context → Proposal → Governance → Transition → Receipt**. Models, vendors, runtimes and human operators may change; the durable record, authority boundary, provenance and correction mechanisms carry the work forward. Research is the first application running on that structure.
