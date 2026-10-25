@@ -64,95 +64,95 @@ This is dated exported presentation, not a live status query or a second authori
 ```json
 {
   "authoritative": false,
-  "generated_at": "2026-10-25T15:46:33.130185+00:00",
-  "head": "snapshot:5be4918865338a47d617cb6f7ab017f0c34a37d05b00cd025a886466e44e1d6e",
+  "generated_at": "2026-10-25T16:27:14.851964+00:00",
+  "head": "snapshot:a49edcc72c022a639608e0c2cd7fdb5487cc09956e7a35f6825b358217b9840a",
   "node_heads": {
     "100.wake": {
-      "generated": "2026-10-25T15:35:20.146500+00:00",
-      "head": "4dfe6cee24f8230da979f9b339b1dffb395f1ef2b5d44cac90c2de9a7b31a5b9",
+      "generated": "2026-10-25T16:18:41.907214+00:00",
+      "head": "9cf0672f83fb0cf22581a13f6c6c6c44a8f724981cfad96fd4d74e2ad00b0a87",
       "node": "100.wake",
-      "snapshot_digest": "4f82baaa98ff5f97136715182a09f47cf9a613b0799d10d66c33408e7cde0e0e",
+      "snapshot_digest": "ca5da4611e616a6120f2dcec5072cd4ddcf8c2ffa74f5be5eea4d61ff2a3d212",
       "version": 27
     },
     "101.wake": {
-      "generated": "2026-10-25T15:36:12.009630+00:00",
-      "head": "f8b357e3ec1d26974fd41ca1432f33f2eef65acd83621283b47c0f2662c3f233",
+      "generated": "2026-10-25T16:20:56.957348+00:00",
+      "head": "929dad0f096bd1dd53f0a1bf45c4ee65b6f1b883678823303714e6a6c1eee613",
       "node": "101.wake",
-      "snapshot_digest": "214c69b3ca096f0d97fb4fdf8f2a92bc42c2bcd9e8a6acb8c3aa95b1c6fffd52",
+      "snapshot_digest": "e15c38f0932bf8b1b788c3fe0ded0c5140f8d9b7e952a2b8bcd6d494e13bf9d7",
       "version": 44
     },
     "102.wake": {
-      "generated": "2026-10-25T15:33:01.765622+00:00",
-      "head": "99bb6b3446a49decea2467f8ee8a26be99b4ca01bd4d810ff876a5ff81edbb99",
+      "generated": "2026-10-25T15:53:15.368140+00:00",
+      "head": "4af706a85578fb1724fedc89a8ce09df402b1fe8b57cd5c408cd06b7258d52b0",
       "node": "102.wake",
-      "snapshot_digest": "49240c7799c38080f543729c804458f4faf6122aad57221a1da6dc06a710d532",
+      "snapshot_digest": "e59911c9ebe726246c9329e1a181af1731f41ebd284b20bf725290cc48e279db",
       "version": 57
     },
     "103.wake": {
-      "generated": "2026-10-25T15:18:08.557235+00:00",
-      "head": "6bd5e1fcae65d778b16a90cadc970204e3cad3e74e6915f50f3966ac71e70052",
+      "generated": "2026-10-25T16:16:08.208690+00:00",
+      "head": "f1ea795180d7a024547bb230d495957bb9aaf463b81eb6c4faa160f0023a95a1",
       "node": "103.wake",
-      "snapshot_digest": "e9e19712eb372cef5fe4c5c48c82d5e02a53460d45bc4c0e4ddfd0e6191f7498",
+      "snapshot_digest": "a8e2db90efb9b2c1e303e237092190c64aa0bac0c9f9073245fa2458abba63a3",
       "version": 39
     },
     "200.wake": {
-      "generated": "2026-10-25T15:42:55.312977+00:00",
-      "head": "529eaf6bda2b46b322dab96de7b44a1d24a5d912511b22abe53b1c6add8ba967",
+      "generated": "2026-10-25T16:23:10.843783+00:00",
+      "head": "6fa265d3548bd08067a879eef50323c023069df02cc859e6ee8b30784e4f77bd",
       "node": "200.wake",
-      "snapshot_digest": "9281460a510b8e516fa7a9d83d0923c3fa1e0bf12983c66bf965d2bc1ca847df",
+      "snapshot_digest": "8ba8681f7973666cd30d5b00efa3ebf3a2b947f24f0a694b019d54e36266d207",
       "version": 34
     },
     "201.wake": {
-      "generated": "2026-10-25T15:18:09.880782+00:00",
-      "head": "94d07a2673ef0af6b4cae83e5036f1c8cfdd4b264432c46eb00866f19fc15f39",
+      "generated": "2026-10-25T16:09:05.766769+00:00",
+      "head": "eae1dc141d7ddc0b23478db888ff65e8d1f33b8d681099f507cb442445f85800",
       "node": "201.wake",
-      "snapshot_digest": "591d994824882330e2fe7cb59ca2535933a7b53a7ddf70fe36abb3c438421c06",
+      "snapshot_digest": "cf110ff1df4e9a8faba5279ba15a25accfe3284bf83a850b0026d8c006894af3",
       "version": 40
     },
     "202.wake": {
-      "generated": "2026-10-25T15:34:44.582605+00:00",
-      "head": "a413c25ebfabbb665f73721022b6299cbb41c3feaec41e0a703f2788c05fa066",
+      "generated": "2026-10-25T16:13:05.695469+00:00",
+      "head": "6e01aabbe7904543a4184935600d470022ffaf2224bab31fec2d67d41e1aa68f",
       "node": "202.wake",
-      "snapshot_digest": "bb8776794331f6476fd42dcf598da7d21af0d3b85334c694c60a27432a71dd0e",
+      "snapshot_digest": "556bb02cc3a6aa4418ed57f24e8bda1fa21b154f102773000e1dd1ada3de8b27",
       "version": 55
     },
     "203.wake": {
-      "generated": "2026-10-25T15:18:07.505340+00:00",
-      "head": "58f214295b3a9607bbd67d7385d3b9c2925e2e616051d690c272b100daffe2c1",
+      "generated": "2026-10-25T16:27:14.851964+00:00",
+      "head": "e9fd68132f4125e5d28078f73aa23c56eb66b322cd344a0b90a2836cdb170151",
       "node": "203.wake",
-      "snapshot_digest": "377dafe7560ab9e647c5330580054b2295188286843c5a7f660bee05bcf799d4",
-      "version": 30
+      "snapshot_digest": "d980a36f5968155efaff87b65242a2eca5a7ca8b3136fec1af8b0c8e0c2199e6",
+      "version": 31
     },
     "300.wake": {
-      "generated": "2026-10-25T15:18:08.295898+00:00",
-      "head": "9676b30729d72b311524b85eb8d0006abecc8fb28242d2874f14064208250770",
+      "generated": "2026-10-25T16:17:49.887614+00:00",
+      "head": "b652adda0a434e1ee6543859e68b2ef1813b47cd7ef7865d69f6a8f869e259b3",
       "node": "300.wake",
-      "snapshot_digest": "421a342fc858f6a96eb62c23344d986294560999f43646ba5303c3256746af66",
+      "snapshot_digest": "e3d3e3ec652d9003c4682a79ed9630864463567937f8a0d492ee6c435b0230a3",
       "version": 35
     },
     "301.wake": {
-      "generated": "2026-10-25T15:45:03.875821+00:00",
-      "head": "fb8fecd3dda3d6d0cbdf59c450729f13600660befd268298cb0f47b64ba5b24d",
+      "generated": "2026-10-25T16:23:59.487906+00:00",
+      "head": "7435e54c4f7785100d617c40a35fa192dd297f8c4e71bbb529c7fed1f2bf48f4",
       "node": "301.wake",
-      "snapshot_digest": "f4c399145876bc4dd95d0d0981b92a1665add61b71eb234e981eb89334c85d85",
+      "snapshot_digest": "3826e45319fc2427c1d76ece6342ea2c08735696ad214f24902b538ea050d07c",
       "version": 57
     },
     "302.wake": {
-      "generated": "2026-10-25T15:46:33.130185+00:00",
-      "head": "12979c17194aba7b1c85d13e6811d1e7ea034c4b77f98b3e607db8430de2b786",
+      "generated": "2026-10-25T16:25:52.206424+00:00",
+      "head": "af62cc5bfb3c25ca1679e6a58fb94cf8a86828cb2ab539815023829d78bcb0ee",
       "node": "302.wake",
-      "snapshot_digest": "afb489392d96edfa19f53f4ef9ca1775a8e2dc529d88454d1ed00c16ed40ca77",
+      "snapshot_digest": "fd70f4b92a3e569ce6c63758e6c3eaaa867b26383c60769104e3cd8663d5604b",
       "version": 39
     },
     "303.wake": {
-      "generated": "2026-10-25T15:37:06.945038+00:00",
-      "head": "19d2b4a94ca26271653d7a8deeca2b329985eb08a1130efea14677b25c6306f8",
+      "generated": "2026-10-25T16:09:19.954372+00:00",
+      "head": "448aed95f0e3b3d7172ba0829e3fef0bcafc7ef4194da83789633c570513e9ff",
       "node": "303.wake",
-      "snapshot_digest": "567b6d8458ecb8314973881322850c14bc47dca58c29d14b3ba2e061c79996e5",
+      "snapshot_digest": "9f550a9bd66424b46028af035c919ae8d0c2cab23fe4b2163717af02fee5d344",
       "version": 51
     }
   },
-  "version": 508,
+  "version": 509,
   "version_meaning": "Sum of accepted node cycles; not one authoritative record version."
 }
 ```
@@ -161,8 +161,8 @@ Selected exact public records (bounded examples, not an exhaustive evidence revi
 
 - [posts record](../reader-records/posts/3130302e77616b653a3a67726f75702d626f622d3135.json)
 - [posts record](../reader-records/posts/3130302e77616b653a3a67726f75702d626f622d3136.json)
-- [evidence record](../reader-records/evidence/3330322e77616b653a3a722d30346239396134383965623434343463.json)
-- [evidence record](../reader-records/evidence/3330322e77616b653a3a736f757263652d636136613535353665306235346532/37.json)
+- [evidence record](../reader-records/evidence/3330322e77616b653a3a722d63376535626233336561346534633339.json)
+- [evidence record](../reader-records/evidence/3330322e77616b653a3a736f757263652d656163653435363936346362343563/62.json)
 - [notebooks record](../reader-records/notebooks/3330322e77616b653a3a6e6f7465626f6f6b2d70726f6a2d76616c75652d616c/69676e2d3030312d31.json)
 
 For complete history, read the current `event_history.complete_url` in [the public export index](../wake-data.json); resolve that URL relative to the index, not this inspection directory. The stream may be packaged as gzip.
