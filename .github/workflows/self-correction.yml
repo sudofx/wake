@@ -104,9 +104,10 @@ jobs:
           cp example.research-topics.toml research-topics.toml
           docker run --rm --network none --read-only --cap-drop ALL \
             --security-opt no-new-privileges --pids-limit 256 --memory 4g --cpus 2 \
-            --tmpfs /tmp:rw,nosuid,size=3g \
+            --tmpfs /tmp:rw,nosuid,nodev,exec,size=3g,mode=1777 \
             --mount "type=bind,source=$GITHUB_WORKSPACE,target=/workspace,readonly" \
             --workdir /workspace --env PYTHONPATH=/workspace --env PYTHONDONTWRITEBYTECODE=1 \
+            --env WAKE_DEV_RELOAD=false --env HOME=/tmp \
             --env GIT_CONFIG_COUNT=1 --env GIT_CONFIG_KEY_0=safe.directory --env GIT_CONFIG_VALUE_0=/workspace \
             wake-correction-test python -m unittest discover -s tests -v
       - name: Preserve candidate diff for review

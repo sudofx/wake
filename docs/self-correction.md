@@ -66,8 +66,11 @@ candidate. Candidate tests run inside a non-root disposable Docker container
 with no network, provider credentials, research records, Docker socket or
 writable host mounts, plus a four-GiB memory limit, three-GiB disposable temporary
 filesystem, CPU/process limits and a read-only root. The temporary filesystem
-must hold the suite’s twelve-node export fixtures; a one-GiB limit is insufficient. The later
-write-capable job downloads the original immutable proposal artifact into a
+must hold the suite’s twelve-node export fixtures; a one-GiB limit is insufficient.
+Temporary test commands may execute only inside this isolated filesystem. The
+read-only checkout explicitly disables development reload, so recovery tests do
+not wait for an editor save.
+The later write-capable job downloads the original immutable proposal artifact into a
 fresh base checkout and revalidates it without executing the candidate. Docker
 is an isolation boundary, not proof against every runtime vulnerability.
 

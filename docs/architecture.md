@@ -590,15 +590,16 @@ Bob source packets to that commit. Bob popups and Console tools carry that
 selection. No model code or website scripts load from the public data branch.
 Initial discovery failure selects the bundled, explicitly limited dated overview
 with a notice; complete public archives stay on the GitHub data branch.
-after adopting a remote commit, missing packets fail instead of mixing versions.
+After adopting a remote commit, missing packets fail instead of mixing versions.
 Missing/invalid mode remains
 same-origin and Console reports it. A raw template cannot select a different installation from
 a LAN address or a missing flag. This protects data selection rather than authenticating
 an operator. Templates and generated pages are distinct lifecycle stages.
 
 Standalone publication builds all files in a new generation before atomically
-switching the website. Pages serves a filtered public artifact uploaded to `wake-public` and does
-not open SQLite or generate research. A public upload, data checkpoint and image rebuild
+switching the website. Pages serves the checked interface with bounded fallback
+views; complete public data remains on `wake-public`. Neither delivery path
+opens SQLite or generates research. A public upload, data checkpoint and image rebuild
 are independent operations. Browser rendering remains disposable in every case.
 
 ## Optional inspection activity
