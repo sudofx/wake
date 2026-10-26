@@ -7,6 +7,11 @@ on:
         description: Describe one concrete repair and the expected behavior (10–4000 characters).
         type: string
         required: true
+      model:
+        description: Gemini model for this bounded request.
+        type: string
+        required: true
+        default: gemini-3.1-flash-lite
       paths:
         description: One to four existing presentation/docs paths, separated by commas.
         type: string
@@ -42,6 +47,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           CORRECTION_REQUEST: ${{ inputs.request }}
           CORRECTION_PATHS: ${{ inputs.paths }}
+          CORRECTION_MODEL: ${{ inputs.model }}
         run: python scripts/self_correction.py generate --output /tmp/wake-correction
       - uses: actions/upload-artifact@v4
         with:

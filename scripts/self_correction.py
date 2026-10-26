@@ -23,7 +23,7 @@ MAX_FILES = 4
 MAX_FILE_BYTES = 96_000
 MAX_TOTAL_BYTES = 220_000
 MAX_RESPONSE_BYTES = 1_000_000
-MODEL = 'gemini-3.8-flash'
+MODEL = 'gemini-3.1-flash-lite'
 
 
 def require(condition, message):
@@ -151,6 +151,8 @@ def generate(root, paths, request, output):
     require(isinstance(request, str) and 10 <= len(request.strip()) <= 4000, 'Describe the correction in 10 to 4000 characters')
     require(not output.exists(), 'Output directory must be new')
     files = capture(root, paths)
+    model = os.environ.get('CORRECTION_MODEL', MODEL).strip()
+    require(bool(model), 'Choose a Gemini model')
     revision = git(root, 'rev-parse', 'HEAD')
     require(not git(root, 'status', '--porcelain', '--untracked-files=no'), 'Tracked source has local edits')
     key = os.environ.get('GEMINI_API_KEY', '').strip()
@@ -165,7 +167,7 @@ def generate(root, paths, request, output):
     # already used by the research adapter for this model. The model's default
     # dynamic thinking can exceed the bounded proposal-request deadline.
     _, call = build_gemini_request(api_key=key, request=GenerationRequest(
-        model=MODEL, prompt=json.dumps(prompt), temperature=0.1,
+        model=model, prompt=json.dumps(prompt), temperature=0.1,
         response_mime_type='application/json', max_output_tokens=8192,
         reasoning_effort='low'))
     try:
@@ -183,13 +185,13 @@ def generate(root, paths, request, output):
     parts = candidates[0].get('content', {}).get('parts', [])
     text = ''.join(p.get('text', '') for p in parts if not p.get('thought'))
     candidate = expand_edits(json.loads(text), files)
-    plan = {'schema': SCHEMA, 'base_revision': revision, 'request': request, 'model': MODEL, **candidate}
+    plan = {'schema': SCHEMA, 'base_revision': revision, 'request': request, 'model': model, **candidate}
     validate_plan(root, plan, base=revision, paths=paths)
     output.mkdir(parents=True)
     (output / 'proposal.json').write_text(json.dumps(plan, ensure_ascii=False, indent=2) + '\n')
     (output / 'receipt.json').write_text(json.dumps({'schema': SCHEMA, 'status': 'proposed',
         'base_revision': revision, 'proposal_sha256': sha((output / 'proposal.json').read_bytes()),
-        'model': MODEL, 'provider_calls': 1, 'research_records_opened': 0,
+        'model': model, 'provider_calls': 1, 'research_records_opened': 0,
         'changed_paths': [item['path'] for item in plan['changes']],
         'boundary': 'Untrusted source proposal; not tested, merged, published or installed.'}, indent=2) + '\n')
     print(json.dumps({'status': 'proposed', 'files': len(plan['changes']), 'base_revision': revision}))
