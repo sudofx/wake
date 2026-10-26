@@ -168,95 +168,95 @@ This is dated exported presentation, not a live status query or a second authori
 ```json
 {
   "authoritative": false,
-  "generated_at": "2026-10-26T15:48:48.221845+00:00",
-  "head": "snapshot:ef945305575466cde31ab8ba5228418817429862e042367636a876b5866c49d2",
+  "generated_at": "2026-10-26T16:26:26.685262+00:00",
+  "head": "snapshot:17a7397558da0dc0d99edbe93d81abdb16816af1fab91404769c5aa7594e838a",
   "node_heads": {
     "100.wake": {
-      "generated": "2026-10-26T15:29:56.303816+00:00",
-      "head": "278fff2a24ef7b3ac50333c4fca3e39c63d56da50ad6863c03a43de7fc34dff8",
+      "generated": "2026-10-26T16:11:04.429390+00:00",
+      "head": "c43123c92efb8e8371fee0ccbe77cbdb8a3f8cb787974610b5847febd4c456c0",
       "node": "100.wake",
-      "snapshot_digest": "bdfa66b3a8cf9812605228d585b55c0b2f8fff75178d4855eaf03bdf1be33581",
+      "snapshot_digest": "f1b9136a2a34df26908816019319d05e442a273acdb6ef0b31582711188b1276",
       "version": 31
     },
     "101.wake": {
-      "generated": "2026-10-26T15:46:25.831139+00:00",
-      "head": "73598691bd75e63647d406cad4a2dea21e7eae5f4575008aded1aa53792d8331",
+      "generated": "2026-10-26T16:23:18.862474+00:00",
+      "head": "ea86d1bc9ed9048997437314e4d4fd9c450321f23ab370c0ccebca751e412002",
       "node": "101.wake",
-      "snapshot_digest": "443fe661701cfca7a8d1ed2ae015927a1c51170d1943f7ac34738ff6a0f7e674",
+      "snapshot_digest": "1a62b99a604185f30a0014f3658089733b9cc68077f6e76d729857a6e6b7882d",
       "version": 48
     },
     "102.wake": {
-      "generated": "2026-10-26T15:34:19.452791+00:00",
-      "head": "d959626e59b779b8e0d91304e5ae12f354b3e17e0f52e604ebff067fb0b82a59",
+      "generated": "2026-10-26T16:14:28.489316+00:00",
+      "head": "4e7214e2647ed18701fa61bf2c1bd11e9700ca1574f8989829a48184a2e0ffb1",
       "node": "102.wake",
-      "snapshot_digest": "84f92f1665ba120342c3d2048bdabbd0682761ff9412fbf4352f64f3c7d5f083",
+      "snapshot_digest": "f0dfa388b29b330df32ae20ae230a3822fa60f82939a1e4d9a0c1bf24fb56f6a",
       "version": 63
     },
     "103.wake": {
-      "generated": "2026-10-26T15:48:48.221845+00:00",
-      "head": "265470ea60d8207b543f19f7075225f749f90f91107d6bf12453ee37efb96536",
+      "generated": "2026-10-26T16:26:26.685262+00:00",
+      "head": "5010922d8f6af7247168373e00e6204c8c47002a2d569ff7be1aab7c41062dde",
       "node": "103.wake",
-      "snapshot_digest": "4c023b73d0d0651557f530cda877b2d95bd91401350048099021e24ac0b92cd7",
+      "snapshot_digest": "442ded6f55aaabc6ecafc7f72ebf12cb74ecf00bf307a786f1e58c227f4e595e",
       "version": 45
     },
     "200.wake": {
-      "generated": "2026-10-26T15:36:07.230335+00:00",
-      "head": "484bf0a194fa3d000a783ecd0d12e68431e36dfa76887b4ad290efd33805ae61",
+      "generated": "2026-10-26T16:15:22.208429+00:00",
+      "head": "f53e6f1ac8642d7437fe317937cb062a4b58431250824f17a5d411fccee9925d",
       "node": "200.wake",
-      "snapshot_digest": "1da97bb4fcec6dba4ada5c4552cf41f467ae5fe32933523aa77af6b26b64378e",
+      "snapshot_digest": "e3d8ceed1e7b8c0f7d102ac2150910159e73ccddf324f67041b183b6762cf896",
       "version": 43
     },
     "201.wake": {
-      "generated": "2026-10-26T15:28:20.321326+00:00",
-      "head": "76733599a5a3466321ee3610890623e6ef37f12a89c941119bf5d85f8a045140",
+      "generated": "2026-10-26T16:07:54.638822+00:00",
+      "head": "ec03fb5638b09c6a0c26e8e8933366f657aebadd1c69a7a61abf363177e1c9d0",
       "node": "201.wake",
-      "snapshot_digest": "d69b14e4b7bd778c809aa09b45c6c6071a0f106390d8bc4871bd3a8767d147b9",
-      "version": 44
+      "snapshot_digest": "da289ed3fa1627a865d3e70b4b15358ee47dc4174f799916eb674e44cf48e15e",
+      "version": 45
     },
     "202.wake": {
-      "generated": "2026-10-26T15:37:54.671493+00:00",
-      "head": "71558a0079aa1a7808b08a2bb8d8e49698df276371b3305105cd84d91b611817",
+      "generated": "2026-10-26T15:56:14.027410+00:00",
+      "head": "f54f40fae8ed83e628801a69bd9c0d75ec3935ce472fa2a8b7e7d9bb8c47b342",
       "node": "202.wake",
-      "snapshot_digest": "d6c7e7291295bd2f4feb23751f2cf53445330cc423c00bb8a0a6e5f941ba79e4",
+      "snapshot_digest": "7fd64b7dc1e3649170adc28834bb7bc9600aff0991e7d71dca60a0e289685803",
       "version": 59
     },
     "203.wake": {
-      "generated": "2026-10-26T15:44:03.357877+00:00",
-      "head": "970d63c8ec37538cb1e46be7acbfa70a7071fd3892b0b89705f01730440ccefe",
+      "generated": "2026-10-26T16:19:41.002460+00:00",
+      "head": "4fbc321040f7348b353e5b7b1a4530f187d8b6e8b0c712176b6993b84a270148",
       "node": "203.wake",
-      "snapshot_digest": "ba73aeb08c46fd8d65fa4dce4aac4658df7386f27715d2c84097dc46e97aec27",
+      "snapshot_digest": "d0f80302b6d833cbea646ca67c65ed00e16006bbe62b55c9d969b196a03618f5",
       "version": 35
     },
     "300.wake": {
-      "generated": "2026-10-26T15:45:16.304183+00:00",
-      "head": "a905ff2b5d08d460de15d92013a799c5775e2eb3e1853a928f3c61533f9b7448",
+      "generated": "2026-10-26T16:19:59.560970+00:00",
+      "head": "7c5e9d614fdf9911395fb545fce90de600ca0ca718ab610b0710a2dbd7c58efe",
       "node": "300.wake",
-      "snapshot_digest": "ae439520283bae0760d3f15fce696f2f64a49d228e109927fd993be2dc42d236",
+      "snapshot_digest": "07d9ce47f95b5bcbed9801f2624c4c28a89104e45e0d1ac952fc0a77eb8a484b",
       "version": 38
     },
     "301.wake": {
-      "generated": "2026-10-26T15:08:46.419738+00:00",
-      "head": "690de83babfc5b2475e0acb081a79b8ecda3f0650b978c325975a57dac7d38fa",
+      "generated": "2026-10-26T15:51:29.429173+00:00",
+      "head": "08483a76a39a61c90f8301bc9326c89dd4f4283fc5b87835687caa9b5d98b390",
       "node": "301.wake",
-      "snapshot_digest": "0df125ab164dbd2934681f5ea809529895f6ab731eecb74498ac756baebc52a2",
+      "snapshot_digest": "2cac27927cf13c813ecd87fc5dfa4abb82d3e12e77d237d0dd9ec4e5255efc5f",
       "version": 65
     },
     "302.wake": {
-      "generated": "2026-10-26T15:22:42.438529+00:00",
-      "head": "ba7ca6d747ec5ff630a8cef0cd6fa6e96de65766320755d90ea7dbd652c229df",
+      "generated": "2026-10-26T16:17:54.467511+00:00",
+      "head": "ccceca3326c72fbc74d6f9a9be03601120602baf5ec966a1333e450fbd5dcd97",
       "node": "302.wake",
-      "snapshot_digest": "119cfc47de099b7f0deff962cd4ca988940eb4adcc35ed9a111f375fe94cc263",
+      "snapshot_digest": "b1635e418a17f978f8205f592f55c0b708e1a860300776bb2cc0dd95f31bb9c1",
       "version": 48
     },
     "303.wake": {
-      "generated": "2026-10-26T15:30:42.719153+00:00",
-      "head": "73e13824a988b6955922046dd8866e929d52ae34f19b2125982f20ed0d2330e2",
+      "generated": "2026-10-26T16:11:18.626966+00:00",
+      "head": "d419ff393ea3ff044fac9c34848c4446db0481e80e3b00f1a4987510773fe0e3",
       "node": "303.wake",
-      "snapshot_digest": "1452bd32b89c127e6e02181411840a08ab98999771f8e9ab4e52abd8894b28a0",
+      "snapshot_digest": "d9bd642e86eecfe5d8fe36f4d68febf7a78c57ae2cf01c06ac76855e71a02634",
       "version": 56
     }
   },
-  "version": 575,
+  "version": 576,
   "version_meaning": "Sum of accepted node cycles; not one authoritative record version."
 }
 ```
@@ -265,8 +265,8 @@ Selected exact public records (bounded examples, not an exhaustive evidence revi
 
 - [posts record](../reader-records/posts/3130302e77616b653a3a67726f75702d626f622d3137.json)
 - [posts record](../reader-records/posts/3130302e77616b653a3a67726f75702d626f622d3138.json)
-- [evidence record](../reader-records/evidence/3230332e77616b653a3a722d66613664366533303262323434653730.json)
-- [evidence record](../reader-records/evidence/3330302e77616b653a3a722d36343237613533393031633234313734.json)
+- [evidence record](../reader-records/evidence/3130332e77616b653a3a722d63366134343235643539396434643830.json)
+- [evidence record](../reader-records/evidence/3130332e77616b653a3a736f757263652d346465653633393962303237346162/62.json)
 - [notebooks record](../reader-records/notebooks/3330332e77616b653a3a6e6f7465626f6f6b2d6f626a6563746976652d646973/636f766572792d73796e.json)
 
 For complete history, read the current `event_history.complete_url` in [the public export index](../wake-data.json); resolve that URL relative to the index, not this inspection directory. The stream may be packaged as gzip.
