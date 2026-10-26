@@ -2,6 +2,7 @@
 from pathlib import Path
 import json
 import hashlib
+import os
 import shutil
 import subprocess
 import tempfile
@@ -33,6 +34,14 @@ class AskBobExportTests(unittest.TestCase):
                 else:
                     self.assertEqual((mirror / name).read_bytes(), (site / name).read_bytes())
             self.assertIn('window.WakeAskBob', (mirror / 'index.html').read_text())
+            for name in ('bob-chat.html', 'bob-chat.js', 'bob-chat.css', 'ask-bob-context.js',
+                         'ask-bob-gpu.js', 'ask-bob-gpu-worker.js', 'ask-bob-gpu-engine.js',
+                         'ask-bob-gpu-2b.wasm', 'ask-bob-gpu-4b.wasm'):
+                if name.endswith('.html'):
+                    self.assertIn('bob-chat.js', (mirror / name).read_text())
+                    self.assertIn('"snapshot_only": true', (mirror / name).read_text())
+                else:
+                    self.assertEqual((mirror / name).read_bytes(), (site / name).read_bytes())
             node_view = root / 'node-view'
             _copy_public_site(site, node_view, include_reader_inference=False)
             self.assertTrue((node_view / 'index.html').exists())
@@ -71,6 +80,30 @@ class AskBobExportTests(unittest.TestCase):
                 found_memory = True
             offset = start + length
         self.assertTrue(found_memory, 'Expected a defined private WASM memory')
+
+    def test_gpu_engine_and_models_are_pinned_with_verified_local_bytes(self):
+        assets = Path(__file__).resolve().parents[1] / 'wake/assets'
+        manifest = json.loads((assets / 'ask-bob-gpu-engine.json').read_text())
+        self.assertEqual(manifest['license'], 'Apache-2.0')
+        for name, digest in manifest['files'].items():
+            self.assertEqual(hashlib.sha256((assets / name).read_bytes()).hexdigest(), digest)
+        for model in manifest['models']:
+            self.assertRegex(model['revision'], r'^[a-f0-9]{40}$')
+            self.assertEqual((assets / model['model_lib']).read_bytes()[:4], b'\x00asm')
+            self.assertIn(model['revision'], (assets / 'ask-bob-gpu.js').read_text())
+
+    @unittest.skipUnless(shutil.which('node'), 'Node required for GPU lifecycle contracts')
+    def test_gpu_cancellation_and_citation_identity(self):
+        result = subprocess.run(['node', str(Path(__file__).parent / 'browser/bob-gpu.cjs')],
+                                capture_output=True, text=True, timeout=30)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+    @unittest.skipUnless(shutil.which('node') and os.environ.get('PLAYWRIGHT_MODULE'),
+                         'Opt-in popup acceptance requires Playwright')
+    def test_device_chat_lifecycle_and_private_context(self):
+        result = subprocess.run(['node', str(Path(__file__).parent / 'browser/bob-device.cjs')],
+                                capture_output=True, text=True, timeout=60)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
     @unittest.skipUnless(shutil.which('node'), 'Node is required for the browser context contract')
     def test_browser_context_uses_only_bounded_version_matched_public_sources(self):

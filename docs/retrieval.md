@@ -215,14 +215,18 @@ application state reconstruction. Application IDs share a record revision when
 installed together; independent installations must select separate records.
 
 [Ask Bob](ask-bob.md) separately uses an article-specific public passage guide,
-capped at 96 KiB. The hosted conversation API verifies the displayed article hash
-and source heads, selects up to 18,000 characters from at most 24 passages, and
-passes these with recent conversation to Gemini. The browser keeps at most six
-recent turns for this path, clipping each submitted question to 1,000 characters
-and each prior answer to 2,000; the current question allows 2,000. The server never
-accepts client-selected source URLs, system prompts, tools or models. Unbound
-exports search the same guide locally. Every Bob mode is advisory and excluded
-from research retrieval, governance and accepted scientific memory.
+capped at 96 KiB. Browser inference selects source passages and bounded recent
+same-context conversation into a compact prompt for an opt-in WebGPU model.
+Other reader contexts use exact same-origin record shards or the bounded overview,
+with source-head checks; no routine full-archive download is needed. Startup reads
+have deadlines. Unknown citation IDs are rejected; missing citations expose the
+material Bob read without implying that it supports every generated sentence.
+The selected source version scopes saved history. Prior answers remain untrusted,
+never evidence. Model files download from pinned revisions, while questions and
+replies stay on-device. Source search quotes the guide without inference. The
+former hosted conversation API remains retired; the loopback Gemini preview is
+separate. Every Bob mode is advisory and excluded from research retrieval,
+governance and accepted scientific memory.
 
 The separate [inspection reading path](inspection.md) offers a compact orientation,
 manifest and progressively deeper static evidence. It requires no model-specific

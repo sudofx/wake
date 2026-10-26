@@ -1,0 +1,33 @@
+{
+  "package": "@mlc-ai/web-llm",
+  "version": "0.2.86",
+  "source": "https://registry.npmjs.org/@mlc-ai/web-llm/-/web-llm-0.2.86.tgz",
+  "license": "Apache-2.0",
+  "build": "esbuild 0.25.12; bundle/minify ES2022 ESM; linked legal comments",
+  "files": {
+    "ask-bob-gpu-engine.LICENSE.txt": "87935f332472db09253871326ef23d5d6a45f4fd2e6c96772f72052866dfab0d",
+    "ask-bob-gpu-engine.js": "9ffc5c7d0854a7477a74d8b4fa0888b357ff43ab880c6ef419a76a0eb26de676",
+    "ask-bob-gpu-2b.wasm": "49cc4a96680ea6dad173f48ad90e219ac5f59f7b4bab61ac0029c94385720a2c",
+    "ask-bob-gpu-4b.wasm": "552152bd76fd5432c6b88750a948ac44d038a3c570be6aa0f0e744067a9e2a25"
+  },
+  "models": [
+    {
+      "id": "Qwen3.5-2B-q4f16_1-MLC",
+      "repository": "mlc-ai/Qwen3.5-2B-q4f16_1-MLC",
+      "revision": "dd74e9c8a20c4546df85c844103bff87b6dcacad",
+      "weight_bytes": 1059315328,
+      "model_lib": "ask-bob-gpu-2b.wasm",
+      "model_lib_source": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/00fe7a40e57e5e8eb9fef87526a4bf28ad5846c0/web-llm-models/v0_2_86/base/Qwen3.5-2B-q4f16_1_cs1k-webgpu.wasm",
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "Qwen3.5-4B-q4f16_1-MLC",
+      "repository": "mlc-ai/Qwen3.5-4B-q4f16_1-MLC",
+      "revision": "44b42469f9e192814bfd90440e3b377d89ba7a13",
+      "weight_bytes": 2367117312,
+      "model_lib": "ask-bob-gpu-4b.wasm",
+      "model_lib_source": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/00fe7a40e57e5e8eb9fef87526a4bf28ad5846c0/web-llm-models/v0_2_86/base/Qwen3.5-4B-q4f16_1_cs1k-webgpu.wasm",
+      "license": "Apache-2.0"
+    }
+  ]
+}

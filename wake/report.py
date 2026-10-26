@@ -465,7 +465,8 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         # the same theme file rather than receiving copied inline palettes.
         for name in ("style.css", "nav.css", "map.css", "map3d.css", "theme.css",
                      "nav.js", "map.js", "map3d.js", "flat-view.js", "app.js", "pet.js", "ask-bob.js", "ask-bob.css", "ask-bob-browser.js", "ask-bob-guide.js", "ask-bob-private.js",
-                     "ant-farm.html", "ant-farm.css", "ant-colony.js", "ant-drawing.js", "ant-farm.js", "bob-markdown.js"):
+                     "ant-farm.html", "ant-farm.css", "ant-colony.js", "ant-drawing.js", "ant-farm.js", "bob-markdown.js",
+                     "bob-chat.html", "bob-chat.css", "bob-chat.js", "ask-bob-context.js", "ask-bob-gpu.js", "ask-bob-gpu-worker.js"):
             atomic_write(target / name, (assets / name).read_text())
         # These static inference assets are loaded only after the reader opts in.
         # They contain no provider credentials and never open research authority.
@@ -474,6 +475,8 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
                      'ask-bob-engine-compat.wasm', 'ask-bob-engine.LICENSE.txt', 'ask-bob-engine.json',
                      'ask-bob-engine-private.js', 'ask-bob-engine-private.wasm', 'ask-bob-engine-private.LICENSE.txt'):
             (target / name).write_bytes((assets / name).read_bytes())
+        for path in assets.glob('ask-bob-gpu-*'):
+            (target / path.name).write_bytes(path.read_bytes())
         # Static Nebula artwork is presentation-only. Publish the responsive
         # source set alongside the generated shell without routing binaries through text IO.
         background_source = assets / "backgrounds"
@@ -488,6 +491,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             "console-cube.png",
             "console-graph.png",
             "console-graph-alt.png", "ant-soil-v1.png", "ant-body-v1.png", "ant-sand-v2.png",
+            "ant-room-day-v1.webp", "ant-room-night-v1.webp",
         ):
             (background_target / name).write_bytes((background_source / name).read_bytes())
         public_data = browser_projection(data)
@@ -743,7 +747,7 @@ def _deployment_site(target, *, standalone, installation=None):
         page = path.read_text()
         # The immersive toy habitat owns its canvas and controls. It needs the
         # deployment binding, not the research masthead or runtime observers.
-        if path.name == 'ant-farm.html' or 'self-correction' in path.relative_to(target).parts:
+        if path.name in ('ant-farm.html', 'bob-chat.html') or 'self-correction' in path.relative_to(target).parts:
             page = re.sub(r'<script>window\.WAKE_(?:DEPLOYMENT|STANDALONE)=[^<]*</script>', '', page)
             page = page.replace('<head>', '<head>' + marker, 1)
             atomic_write(path, page)

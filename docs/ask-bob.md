@@ -1,19 +1,52 @@
-# Ask Bob locally
+# Ask Bob
 
-Public anonymous Bob chat has been retired with its ChatGPT Sites hosting.
-The public website does not show live chat controls. Bob's published summaries,
-research citations and historical articles remain available from GitHub Pages.
+## Chat on this device
 
-A secret-bearing anonymous model server cannot run on static GitHub Pages.
-WAKE does not replace it with a new external hosting service or expose an API key
-in a visitor's browser. An optional local loopback reader can still use Google
-Gemini; its server holds the credential and reads only completed public exports.
-It has no authority to change research. The implementation is `wake/ask_bob.py`;
-start it only through its existing explicit local preview setup.
+Open **Ask Bob** on a published article, notebook, journal entry or reader page.
+A separate conversation window uses blue outgoing messages and gray Bob replies,
+follows the site theme, and keeps the composer visible as the phone keyboard opens.
+There are no preset questions.
 
-The retired public service source is retained in Git history. No active workflow
-publishes it, and no public deployment binding points to it. Existing browser
-conversation history is left untouched.
+1. Choose a model and select **Download Bob**. **Balanced** uses a 2B model
+   (about 1.1 GB); **More capable** uses a 4B model (about 2.4 GB), with slower
+   replies and greater memory requirements.
+2. Wait for the one-time download and preparation, then send a message. Replies
+   appear as Bob writes them. **Stop** cancels loading or generation and keeps
+   already downloaded files for retry.
+3. Ask follow-up questions in the same window. Bob receives bounded recent
+   conversation and excerpts from the selected, version-matched public material.
+   Open **Sources** to inspect the cited records.
+
+Inference uses WebGPU in a dedicated worker. A compatible browser, graphics
+processor, half-precision shader support and sufficient memory are required.
+Unsupported devices can use **source search** from an article instead: it quotes
+published passages without pretending to generate an explanation. There is no
+slow CPU fallback. The browser caches the model; returning still needs to load it
+into graphics memory. Closing the window releases that memory. Speed and answer
+quality depend on the model, device and question; this is a trial, not a promise
+of hosted-model quality.
+
+Questions and replies never go to an external answer service. Model files download
+from pinned Hugging Face revisions; the engine and compiled GPU libraries ship
+with the GitHub Pages site. The model host receives ordinary download requests,
+not conversation. There is no API key or account. Nothing downloads until the
+reader explicitly selects **Download Bob**. Normal reading only adds a launcher.
+Recent conversations are browser-local, scoped to installation and exact source
+version, and bounded to 20 contexts, ten turns per context and 32 KiB total.
+**Clear chat** removes the selected conversation; browser site-data controls can
+remove stored chats and model files. Unavailable storage leaves a memory-only chat.
+
+Bob reads completed public exports, never the authority databases. Article
+retrieval uses the published passage guide; other contexts load their exact
+same-origin record or bounded overview. Unknown source IDs are rejected, but
+valid IDs do not prove a claim is supported. Models can still misread sources or
+invent an explanation. Bob cannot change research, operate the self-correction
+workflow or establish scientific findings. Older conversations remain separate
+and untouched; changed source versions do not silently reuse their answers.
+
+The former ChatGPT Sites/Gemini anonymous public service remains retired. Its
+source is retained in Git history; no active binding or workflow restores it.
+The optional loopback Gemini reader below is a different, local operator surface.
 
 ## Optional Gemini preview on a Mac
 

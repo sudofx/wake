@@ -44,7 +44,7 @@
   let popup, popupArticle;
   let capability;
   const capabilities=()=>capability||(capability=window.WAKE_DEPLOYMENT?.snapshot_only===true?
-    Promise.resolve(null):fetch('/ask-bob/capabilities',{
+    Promise.resolve({enabled:true,browser:true,token:'device-local',installation_id:'public-reader'}):fetch('/ask-bob/capabilities',{
       cache:'no-store',credentials:'same-origin',signal:AbortSignal.timeout(5000)
     }).then(async response=>response.ok?response.json():null).catch(()=>null));
   let guideRuntime;
@@ -61,6 +61,23 @@
     if(typeof value!=='string')return null;
     try{const url=new URL(value,location.href);return ['http:','https:'].includes(url.protocol)?url.href:null;}catch{return null;}
   }
+  function browserLauncher(container,selection,title){
+    const node=location.pathname.match(/\/nodes\/((?:10[0-3]|20[0-3]|30[0-3])\.wake)\//)?.[1];
+    const url=new URL((node?'../../':'')+'bob-chat.html',document.baseURI);
+    for(const [key,value] of Object.entries({...selection,...(node?{node}:{})}))if(value)url.searchParams.set(key,value);
+    url.searchParams.set('theme',document.documentElement.dataset.theme||'light');
+    const link=element('a','Ask Bob','ask-bob-launch'+(selection.collection?' ask-bob-record':''));
+    link.href=url.href;link.target='_blank';link.rel='noopener';link.setAttribute('aria-label',title||'Ask Bob · open chat window');
+    const identity=url.searchParams.toString();
+    link.addEventListener('click',event=>{
+      const themed=new URL(link.href);themed.searchParams.set('theme',document.documentElement.dataset.theme||'light');link.href=themed.href;
+      if(popup&&!popup.closed&&popupArticle===identity){event.preventDefault();popup.postMessage({type:'wake-theme',theme:document.documentElement.dataset.theme||'light'},location.origin);popup.focus();return;}
+      const opened=window.open(link.href,'wake-bob-chat','popup,width=480,height=760,resizable=yes,scrollbars=yes');
+      if(opened){event.preventDefault();popup=opened;popupArticle=identity;opened.focus();}
+    });
+    const heading=container.querySelector(':scope > h1,:scope > h2')||container.querySelector(':scope > .record-panel-head,:scope > .record-panel-meta');
+    if(heading)heading.after(link);else container.prepend(link);
+  }
   async function mount(container,{post,head=''}){
     // The unified blog owns cross-node source IDs; individual node pages do not.
     if(!container||!post?.id||/\/nodes(?:\/|$)/.test(location.pathname))return;
@@ -68,6 +85,11 @@
     const cap=await capabilities();
     if(!valid()||!cap?.enabled||typeof cap.token!=='string'||!cap.token||typeof cap.installation_id!=='string'||!cap.installation_id)return;
     if(container.querySelector('.ask-bob')||container.querySelector(':scope > .ask-bob-launch'))return;
+    if(cap.browser&&window.WAKE_DEPLOYMENT?.snapshot_only===true){
+      const displayedHash=hash(post._reader_article?.hash);
+      if(displayedHash)browserLauncher(container,{article:post.id,hash:displayedHash});
+      return;
+    }
     if(cap.live){
       const launcher=element('a',undefined,'ask-bob-launch');
       launcher.href=cap.url+'/?article='+encodeURIComponent(post.id)+'&hash='+hash(post._reader_article?.hash)+'&theme='+encodeURIComponent(document.documentElement.dataset.theme||'light');launcher.target='_blank';launcher.rel='noopener';
@@ -254,8 +276,9 @@
   async function mountRecord(container,{collection,record_id,head=''}){
     if(!container||!record_id||!head||container.querySelector(':scope > .ask-bob-record'))return;
     const route=location.href,cap=await capabilities();
-    if(!container.isConnected||location.href!==route||!cap?.live||!cap.enabled)return;
+    if(!container.isConnected||location.href!==route||(!cap?.live&&!cap?.browser)||!cap.enabled)return;
     if(container.querySelector(':scope > .ask-bob-record'))return;
+    if(cap.browser&&window.WAKE_DEPLOYMENT?.snapshot_only===true){browserLauncher(container,{collection,record:record_id,head},'Ask Bob about this '+(collection==='overview'?'page':collection==='notebooks'?'notebook':collection==='journal'?'journal entry':'record'));return;}
     const link=element('a','Ask Bob','ask-bob-launch ask-bob-record'),url=new URL('/',cap.url);
     const node=location.pathname.match(/\/nodes\/((?:10[0-3]|20[0-3]|30[0-3])\.wake)\//)?.[1];
     for(const [key,value] of Object.entries({collection,record:record_id,head,...(node?{node}:{})}))url.searchParams.set(key,value);
