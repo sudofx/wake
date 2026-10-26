@@ -19,6 +19,11 @@ There are no preset questions.
 
 Inference uses WebGPU in a dedicated worker. A compatible browser, graphics
 processor, half-precision shader support and sufficient memory are required.
+
+Downloading model files and loading graphics memory are separate stages. If a
+phone reloads during preparation, reopen Bob and use the saved model if detected.
+If preparation repeatedly reloads the page, try Balanced or source search.
+
 Unsupported devices can use **source search** from an article instead: it quotes
 published passages without pretending to generate an explanation. There is no
 slow CPU fallback. The browser caches the model; returning still needs to load it
