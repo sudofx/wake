@@ -24,13 +24,15 @@
   const notice=()=>{
     const show=()=>{
       const node=document.createElement('p');node.id='public-data-notice';node.setAttribute('role','status');
-      node.textContent='Latest published data is unavailable. Showing the snapshot bundled with this website; current research activity is unknown.';
+      node.textContent=config.fallback==='recent-overview'?
+        'Latest published data is unavailable. Showing a limited dated overview. Full records and maps need the GitHub data connection; current research activity is unknown.':
+        'Latest published data is unavailable. Showing the snapshot bundled with this website; current research activity is unknown.';
       node.style.cssText='margin:1rem;padding:.7rem;border:1px solid currentColor;font:inherit';
       document.querySelector('main')?.prepend(node);
     };
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',show,{once:true});else show();
   };
-  const transport={revision:null,mode:'loading'};
+  const transport={revision:null,mode:'loading',limited:config.fallback==='recent-overview'};
   transport.ready=(async()=>{
     let pinned=Boolean(requested && requested!=='bundled');
     try{
@@ -88,10 +90,14 @@
   // Export/download links must identify the same evidence as the displayed UI.
   // This also covers links inserted later by the existing view renderers.
   transport.ready.then(root=>{
-    if(!root)return;
     const update=node=>{
       const links=node.matches?.('a[href]')?[node]:node.querySelectorAll?.('a[href]')||[];
       for(const link of links)try{
+        const url=new URL(link.href),relative=url.pathname.slice(site.pathname.length);
+        if(url.origin===site.origin && url.pathname.startsWith(site.pathname) && /^(?:nodes\/(?:10[0-3]|20[0-3]|30[0-3])\.wake\/)?(?:blog|journal)\.xml$/.test(relative)){
+          link.href='https://raw.githubusercontent.com/'+config.repository+'/wake-public/'+relative;link.target='_blank';link.rel='noopener';continue;
+        }
+        if(!root)continue;
         // The external inspection entry is a self-contained document. Read its
         // exact packet rather than loading executable HTML from a data branch.
         const input=/\/inspect\/index\.html$/.test(new URL(link.href).pathname)?new URL('packet.md',link.href):link.href;

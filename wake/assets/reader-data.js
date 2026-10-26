@@ -36,6 +36,7 @@
     async ensure(page,id){
       const data=await window.WakeData;if(!data.reader_transport)return;
       const listing=({journal:'journal',history:'events',evidence:'evidence'})[page];
+      if(listing && window.WakePublicData?.mode==='bundled' && window.WakePublicData.limited && (!id||id.startsWith('filter:')||id.startsWith('topic:')))return;
       if(listing && (!id||id.startsWith('filter:')||id.startsWith('topic:'))){if(!pages.has(listing))await this.more(listing);return;}
       let collection=({blog:'posts',evidence:'evidence',history:'invocations',projects:'projects',journal:'journal'})[page];
       if(!collection||!id||id.startsWith('topic:')||id.startsWith('filter:'))return;

@@ -64,7 +64,9 @@ The model-request job, candidate-test job and branch-publication job use separat
 runners. Dependencies are installed from trusted source before applying the
 candidate. Candidate tests run inside a non-root disposable Docker container
 with no network, provider credentials, research records, Docker socket or
-writable host mounts, plus resource limits and a read-only root. The later
+writable host mounts, plus a four-GiB memory limit, three-GiB disposable temporary
+filesystem, CPU/process limits and a read-only root. The temporary filesystem
+must hold the suite’s twelve-node export fixtures; a one-GiB limit is insufficient. The later
 write-capable job downloads the original immutable proposal artifact into a
 fresh base checkout and revalidates it without executing the candidate. Docker
 is an isolation boundary, not proof against every runtime vulnerability.

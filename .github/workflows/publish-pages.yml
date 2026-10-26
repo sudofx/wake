@@ -64,7 +64,7 @@ jobs:
         run: |
           mkdir public-site
           git -C captured archive HEAD | tar -x -C public-site
-          python source/scripts/prepare_pages.py --artifact public-site --repository '${{ github.repository }}' --revision '${{ steps.source.outputs.revision }}'
+          python source/scripts/prepare_pages.py --artifact public-site --repository '${{ github.repository }}' --revision '${{ steps.source.outputs.revision }}' --bounded-fallback
       - uses: actions/configure-pages@v5
         if: steps.delivery.outputs.needed == 'true'
       - uses: actions/upload-pages-artifact@v4

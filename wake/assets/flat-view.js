@@ -43,6 +43,7 @@
   console.error(error);
   const root=document.getElementById('flat-content');
   if(root){
+    if(window.WakePublicData?.mode==='bundled' && window.WakePublicData.limited){root.textContent='This complete record view needs the GitHub data connection. The dated overview is still available; reload when the connection returns.';return;}
     root.innerHTML='<p class="empty">This published view could not load its flat data file.</p>';
     const source=document.body.dataset.flatSource;
     if(source){const link=document.createElement('a');link.href=source;link.textContent='Download published data';root.append(link);}

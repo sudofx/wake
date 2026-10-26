@@ -127,6 +127,9 @@ def bind_hosted_status(site, repository, revision):
                 page=re.sub(r'window\.WAKE_DEPLOYMENT=(\{[^<]*?\});',data_binding,page)
             else:
                 continue
+            feed_base='https://raw.githubusercontent.com/'+repository+'/wake-public/'+public_data['prefix']
+            page=re.sub(r'href="(?:\.\./)*(blog|journal)\.xml"',
+                        lambda match:'href="'+feed_base+match.group(1)+'.xml"',page)
             # Load synchronously before any inline data consumer starts.
             page=re.sub(r'<script src="[^\"]*public-data\.js[^\"]*"[^>]*></script>','',page)
             prefix='../'*len(relative.parts[:-1])

@@ -588,7 +588,8 @@ bound hosted pages use `public-data.js` to resolve one public GitHub commit,
 validate the installation identity, and pin all readers, Console views, maps and
 Bob source packets to that commit. Bob popups and Console tools carry that
 selection. No model code or website scripts load from the public data branch.
-Initial discovery failure selects the bundled dated snapshot with a notice;
+Initial discovery failure selects the bundled, explicitly limited dated overview
+with a notice; complete public archives stay on the GitHub data branch.
 after adopting a remote commit, missing packets fail instead of mixing versions.
 Missing/invalid mode remains
 same-origin and Console reports it. A raw template cannot select a different installation from

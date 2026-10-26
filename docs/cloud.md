@@ -486,9 +486,18 @@ source no longer dispatches Pages from data publication, so a Pages request cann
 turn a successful upload into a failed research batch.
 
 When delivery is needed, the workflow captures `wake-public` and applies checked
-presentation with `scripts/prepare_pages.py`. It asserts that all twelve record
-heads and protected research/inspection bytes are unchanged before deploying the
-artifact. To explicitly publish or repair the interface, even when its revision
+presentation with `scripts/prepare_pages.py`. It verifies all twelve heads and
+protected research/inspection bytes before compacting the disposable Pages copy.
+The Pages payload keeps interface assets and bounded recent fallback views, with
+an 8 MiB data budget per root/node. It prioritizes the reader overview, installation
+identity, recent reader packets/guides and small first list pages. Full archives,
+unbounded map shards, older record packets and retired CPU engines are omitted
+from this interface bundle. Every retained data packet is hash-checked unchanged;
+complete public data stays on `wake-public`, and native records are never opened.
+Presentation metadata records the fallback's limited scope. In an outage the
+reader displays its recent overview; missing full records/maps fail visibly rather
+than substituting another snapshot. RSS links use the moving public GitHub feed,
+so new subscriptions can receive data updates without a Pages deployment. To explicitly publish or repair the interface, even when its revision
 is already recorded as deployed:
 
 ```sh

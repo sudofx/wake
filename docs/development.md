@@ -39,7 +39,8 @@ across a reset or rewrite accepted event meaning. Existing installations and
 their controls remain separate from ordinary source or interface delivery.
 
 The hosted website uses a stable Pages interface and `public-data.js` for pinned
-public GitHub snapshots. Data uploads do not require rebuilding that interface.
+public GitHub snapshots. Data uploads do not require rebuilding that interface. The Pages copy keeps a
+bounded recent fallback instead of duplicating the complete growing public archive.
 Successful source checks request delivery; unchanged interfaces are skipped.
 See [website delivery](cloud.md#independently-checked-website-delivery).
 

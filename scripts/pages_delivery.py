@@ -10,7 +10,7 @@ import urllib.request
 def presentation_path(path):
     return (path.startswith('wake/assets/') or path in {
         'wake/report.py', 'wake/reader_guide.py', 'wake/hosted_presentation.py',
-        'wake/installation_cli.py', 'scripts/prepare_pages.py',
+        'wake/installation_cli.py', 'scripts/prepare_pages.py', 'scripts/pages_bundle.py',
         '.github/workflows/publish-pages.yml'})
 
 

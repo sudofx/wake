@@ -35,7 +35,11 @@ if __name__ == '__main__':
     parser.add_argument('--artifact', type=Path, required=True)
     parser.add_argument('--repository', required=True)
     parser.add_argument('--revision', required=True)
+    parser.add_argument('--bounded-fallback', action='store_true', help='Ship bounded recent views instead of full public history')
     args = parser.parse_args()
     result = prepare(args.artifact, args.repository, args.revision)
+    if args.bounded_fallback:
+        from scripts.pages_bundle import compact
+        result = compact(args.artifact)
     print(json.dumps({'installation_id': result['installation_id'],
                       'presentation_revision': args.revision, 'record_heads_preserved': True}))

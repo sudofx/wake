@@ -103,8 +103,8 @@ jobs:
         run: |
           cp example.research-topics.toml research-topics.toml
           docker run --rm --network none --read-only --cap-drop ALL \
-            --security-opt no-new-privileges --pids-limit 256 --memory 2g --cpus 2 \
-            --tmpfs /tmp:rw,nosuid,size=1g \
+            --security-opt no-new-privileges --pids-limit 256 --memory 4g --cpus 2 \
+            --tmpfs /tmp:rw,nosuid,size=3g \
             --mount "type=bind,source=$GITHUB_WORKSPACE,target=/workspace,readonly" \
             --workdir /workspace --env PYTHONPATH=/workspace --env PYTHONDONTWRITEBYTECODE=1 \
             --env GIT_CONFIG_COUNT=1 --env GIT_CONFIG_KEY_0=safe.directory --env GIT_CONFIG_VALUE_0=/workspace \
