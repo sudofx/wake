@@ -47,8 +47,11 @@ The first source-correction contract, `wake-source-correction@1`, allows only
 existing top-level `wake/assets/` JavaScript, CSS and HTML files and top-level
 `docs/` Markdown files. The operator selects the exact files for each run. At most
 four files, 96,000 bytes per file and 220,000 total candidate bytes are accepted.
-The model returns complete replacement text with exact prior hashes, not shell
-commands. New files, binary assets, traversal paths, symlinks, unchanged content,
+The model returns small exact text replacements with prior file hashes, not shell
+commands. Each replacement must match exactly once and only the selected files
+may change. Trusted code expands the edits into complete replacement text for the
+existing hash-bound proposal contract. This avoids generating an entire large
+asset for a small repair. New files, binary assets, traversal paths, symlinks, unchanged content,
 stale bases and extra response fields are rejected before source writes.
 
 The model cannot modify Python runtime code, tests/evaluators, kernel, governance,
@@ -74,7 +77,7 @@ count and changed paths. This is source-development evidence, separate from each
 node’s append-only native research record; it never increments research progress.
 
 The proposal request uses the kernel's vendor request builder and an explicit low
-reasoning level, with a 180-second deadline. A timeout is a failed attempt, not an
+reasoning level, an 8,192-token output ceiling and a 180-second transport timeout. A timeout is a failed attempt, not an
 accepted proposal; starting a fresh run is a new explicit request.
 
 ## Automatic changes inside the native runtime

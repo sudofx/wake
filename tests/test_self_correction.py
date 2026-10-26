@@ -111,7 +111,10 @@ class SourceCorrectionTests(unittest.TestCase):
             correction.validate_plan(self.root, self.plan)
 
     def test_one_provider_call_records_exact_proposal_and_does_not_apply_it(self):
-        candidate = {key: self.plan[key] for key in ('title', 'summary', 'changes')}
+        candidate = {key: self.plan[key] for key in ('title', 'summary')}
+        candidate['changes'] = [{'path': 'wake/assets/reader.js',
+                                 'before_sha256': self.hash('wake/assets/reader.js'),
+                                 'edits': [{'before': 'reader = 1', 'after': 'reader = 2'}]}]
         response = {'candidates': [{'finishReason': 'STOP', 'content': {
             'parts': [{'text': json.dumps(candidate)}]}}]}
         from io import BytesIO
@@ -132,6 +135,20 @@ class SourceCorrectionTests(unittest.TestCase):
         self.assertEqual(receipt['provider_calls'], 1)
         self.assertEqual(receipt['proposal_sha256'], hashlib.sha256((output / 'proposal.json').read_bytes()).hexdigest())
         self.assertEqual((self.root / 'wake/assets/reader.js').read_text(), 'const reader = 1;\n')
+
+    def test_exact_edits_reject_ambiguity_and_unselected_paths(self):
+        files = {'docs/reader.md': b'# Reader\nReader\n'}
+        change = {'path': 'docs/reader.md', 'before_sha256': correction.sha(files['docs/reader.md']),
+                  'edits': [{'before': '# Reader', 'after': '# Public reader'}]}
+        candidate = {'title': 'Title', 'summary': 'Summary', 'changes': [change]}
+        result = correction.expand_edits(candidate, files)
+        self.assertEqual(result['changes'][0]['content'], '# Public reader\nReader\n')
+        change['edits'][0]['before'] = 'Reader'
+        with self.assertRaisesRegex(ValueError, 'exactly once'):
+            correction.expand_edits(candidate, files)
+        change['path'] = 'docs/other.md'
+        with self.assertRaisesRegex(ValueError, 'Unselected'):
+            correction.expand_edits(candidate, files)
 
     def test_generation_needs_secret_and_does_not_make_provider_call_when_missing(self):
         with patch.dict('os.environ', {}, clear=True), patch('urllib.request.urlopen') as call:
