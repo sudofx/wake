@@ -6,7 +6,14 @@
       "source_revision": "785e7337c3ef3e2d8a64320d8dde394c12444c09",
       "decision_memory_mode": "active",
       "research_expansion_enabled": true,
-      "research_candidate_catalog_enabled": true
+      "research_candidate_catalog_enabled": true,
+      "pending_upgrade": {
+        "candidate": "4f91bfc31031765d35c496c29e30dc5c29f88e04",
+        "baseline": "785e7337c3ef3e2d8a64320d8dde394c12444c09",
+        "verification_run": 40262936374,
+        "control_run": 40244286129,
+        "presentation_only": true
+      }
     }
   }
 }
