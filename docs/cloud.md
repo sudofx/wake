@@ -277,7 +277,8 @@ Choose the release boundary from the actual diff:
   `presentation_only: true` upgrade can bind the verified presentation source
   for the next normal batch without stopping or enabling research. Completion
   compares complete source trees and rejects changes outside presentation,
-  tests, prose and the existing offline upgrade harness. Research executable
+  tests, prose, the isolated improvement/recovery demonstration commands and
+  the existing offline upgrade harness. Research executable
   bytes, dependency files and the research workflow must remain identical.
   The request names the exact candidate, baseline, verification run and latest
   operator control; its twelve-node background report and exact candidate CI

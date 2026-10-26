@@ -109,7 +109,7 @@ Validated `@2` saves migrate in place, preserving tunnels, IDs, counters and
 elapsed time. New lifecycle and graph-connection fields receive deterministic defaults. Earlier prototype `@1` saves are left
 untouched; they are not imported into the corrected model. No shared server colony,
 URL state or offline catch-up is provided. `wake-ant-observation@1` with model
-`pellet-tunnels@2` through `@6` is bounded numeric advisory input. The API strips extra labels,
+`pellet-tunnels@2` through `@7` is bounded numeric advisory input. The API strips extra labels,
 instructions, URLs and model choices. Samples remain unverified user input. Ant
 questions fetch no research articles and use existing admission, cooldown and
 provider restrictions.
@@ -178,3 +178,15 @@ legacy-save preservation, rejected invalid identities/connections, abandoned-fac
 recovery, and four-hour seeded runs with periodic food additions. Those runs
 require late excavation, additional entrances, births and deaths together.
 Browser interaction and an actual phone’s performance remain separate checks.
+
+## Indoor container and connected passages
+
+The habitat is a thin upright indoor display case viewed through its clear front,
+with a lid, base and a small air space above simple drawn soil. It has no outdoor
+landscape or photographic sand. New colonies have an uneven soil surface; existing
+saves keep their original surface and all tunnel coordinates. Model `pellet-tunnels@7`
+adds validated graph junctions: workers can complete a connector into a nearby
+passage, producing circuits and small junction chambers instead of abandoning
+every approaching tunnel. Saved `@3` colonies from model `@6` acquire an empty
+junction list without losing population or excavation. The finite habitat and
+phone rendering bounds remain unchanged.

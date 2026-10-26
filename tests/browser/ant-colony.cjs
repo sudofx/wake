@@ -9,7 +9,7 @@ test('excavation lengthens narrow tunnels instead of erasing an area',()=>{
   assert.equal(c.nodes.length-c.initialNodes,c.dug);assert.equal(m.food_remaining+m.delivered+m.carrying_food,initialFood);
   assert.ok(m.active_diggers<=24);assert.ok(c.nodes.every((n,i)=>i===0||n.parent<i));assert.ok(c.distance.every(d=>d>=0));
   // New pieces have one parent, fixed length, and no excavated wide chamber.
-  for(let i=c.initialNodes;i<c.nodes.length;i++){const n=c.nodes[i],p=c.nodes[n.parent];assert.equal(n.kind,'tunnel');assert.ok(Math.hypot(n.x-p.x,n.y-p.y)<=3.5);}
+  for(let i=c.initialNodes;i<c.nodes.length;i++){const n=c.nodes[i],p=c.nodes[n.parent];assert.ok(['tunnel','chamber'].includes(n.kind));assert.ok(Math.hypot(n.x-p.x,n.y-p.y)<=3.5);}
   const incomplete=c.fronts.reduce((n,f)=>n+f.effort,0),carried=m.carrying_soil;
   assert.ok(m.soil_pellets+carried>=m.dug*PELLETS);// Abandoned digging faces also remove soil, without creating a new segment.
   assert.ok(m.soil_pellets+carried>=incomplete);
@@ -31,7 +31,7 @@ test('malformed saves fail closed',()=>{
 });
 test('food interventions are bounded, measured, and do not destroy existing food',()=>{
  const c=new Colony(3),before=c.metrics().food_remaining;for(let i=0;i<100;i++)c.addFood();assert.equal(c.food.length,32);assert.equal(c.metrics().food_remaining,before+c.addedFood);
- assert.equal(c.observation().interventions.food_added,c.addedFood);assert.equal(c.observation().model,'pellet-tunnels@6');assert.ok(c.observation().samples.length<=12);
+ assert.equal(c.observation().interventions.food_added,c.addedFood);assert.equal(c.observation().model,'pellet-tunnels@7');assert.ok(c.observation().samples.length<=12);
 });
 
 test('seeds vary initial shafts and branch layouts while keeping deterministic saves',()=>{
@@ -51,7 +51,7 @@ test('excavation can turn laterally and upward without rewriting starter tunnels
   assert.deepEqual(c.nodes.slice(0,initial.length),initial);
   for(const n of c.nodes.slice(initial.length)){
    const p=c.nodes[n.parent];upward ||= n.y<p.y;lateral ||= Math.abs(n.x-p.x)>Math.abs(n.y-p.y);
-   assert.ok(n.y>=12&&n.y<=96-5);
+   assert.ok(n.y>=c.surfaceAt(n.x)-1&&n.y<=96-5);
   }
  }
  assert.ok(upward,'Some seeded excavation should return upward within the ground');assert.ok(lateral);
@@ -75,7 +75,7 @@ test('multiple entrances, births, deaths and long-run excavation coexist',()=>{
  for(const seed of [1,42,7331]){
   const c=new Colony(seed);let recent;
   for(let i=0;i<144000;i++){if(i===108000)recent=c.dug;if(i%18000===0)c.addFood();c.step();}
-  assert.ok(c.exits.length>1,'Additional entrances must actually form');assert.ok(c.born>0);assert.ok(c.deaths>0);
+  assert.ok(c.exits.length>1,'Additional entrances must actually form');assert.ok(c.junctions.length>0,'Tunnels connect into circuits');assert.ok(c.born>0);assert.ok(c.deaths>0);
   assert.ok(c.ants.length>64&&c.ants.length<=MAX_ANTS);assert.ok(c.dug>recent,'Growth continues late in the run');
   assert.equal(new Set(c.ants.map(a=>a.id)).size,c.ants.length);assert.equal(c.nextAntId,64+c.born);
   const restored=Colony.restore(c.save());for(let i=0;i<100;i++){c.step();restored.step();}assert.deepEqual(restored.save(),c.save());
@@ -86,4 +86,11 @@ test('new save fields cannot introduce invalid links, population or reused ident
  for(const mutate of [s=>s.ants[1].id=0,s=>s.born++,s=>s.links=[[0,1]],s=>s.exits=[9999],s=>s.brood=[{ready:Infinity}],s=>s.ants[0].lifespan=-1,s=>s.recentDeaths=[{id:0,at:0,age:10,reason:'old age'}]]){
   const s=structuredClone(source);mutate(s);assert.throws(()=>Colony.restore(s));
  }
+});
+
+test('living v6 saves retain their surface, ants and excavation when circuit growth is added',()=>{
+ const old=require('../fixtures/ant-farm/colony-v3-v6.json'),c=Colony.restore(old);
+ for(const key of ['nodes','ants','fronts','ticks','dug','exits','born','deaths'])assert.deepEqual(c[key],old[key]);
+ assert.deepEqual(c.junctions,[]);assert.deepEqual(Colony.restore(c.save()).save(),c.save());
+ for(const mutate of [s=>s.junctions=[[1,0]],s=>s.junctions=[[9999,1]],s=>s.nodes[0].kind='tunnel']){const bad=structuredClone(c.save());mutate(bad);assert.throws(()=>Colony.restore(bad));}
 });

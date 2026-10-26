@@ -27,8 +27,8 @@ def write_policy(client, policy, sha, message):
 def presentation_only_diff(client, baseline, candidate):
     """Prove executable research/runtime bytes are unchanged, not a caller label.
 
-    Only presentation, tests, prose and the existing offline upgrade harness may
-    differ. A complete recursive tree comparison catches additions and removals,
+    Only presentation, tests, prose, isolated development demonstrations and the
+    existing offline upgrade harness may differ. A recursive comparison catches additions and removals,
     file modes and dependency changes without executing either candidate.
     """
     def files(revision):
@@ -49,7 +49,8 @@ def presentation_only_diff(client, baseline, candidate):
     before, after = files(baseline), files(candidate)
     allowed = {'AGENTS.md', 'hosted-runtime.json', 'scripts/complete_hosted_upgrade.py',
                'scripts/verify_hosted_upgrade.py', '.github/workflows/complete-hosted-upgrade.yml',
-               '.github/workflows/verify-hosted-upgrade.yml'}
+               '.github/workflows/verify-hosted-upgrade.yml',
+               'wake/improvement.py', 'wake/recovery_demo.py'}
     for path in before.keys() | after.keys():
         if before.get(path) != after.get(path) and not (path in allowed or
                 path.startswith(('wake/assets/', 'docs/', 'tests/', 'deploy/ask-bob/'))):

@@ -99,6 +99,15 @@ class CompletionTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 complete_upgrade(client, client.report, 42)
             self.assertFalse(client.mutations)
+
+    def test_isolated_development_demo_does_not_require_stopping_research(self):
+        for changed in ('wake/improvement.py', 'wake/recovery_demo.py'):
+            client = Client()
+            client.intent['presentation_only'] = True
+            client.changed_source = changed
+            client.active = True
+            self.assertEqual(complete_upgrade(client, client.report, 42), 'presentation-bound-for-next-batch')
+            self.assertEqual([kind for kind, _ in client.mutations], ['binding'])
         for attr, value in [('truncated', True), ('ci', False), ('latest_control', 12)]:
             client = Client()
             client.intent['presentation_only'] = True

@@ -116,3 +116,10 @@ test('living colony context accepts bounded births and deaths while rejecting in
  assert.equal(result.metrics.born,observation.metrics.born);assert.equal(result.metrics.deaths,observation.metrics.deaths);assert.equal(result.metrics.entrances,observation.metrics.entrances);
  for(const mutate of [x=>x.metrics.ants=129,x=>x.metrics.deaths++,x=>x.metrics.brood=129,x=>x.metrics.entrances=0,x=>x.metrics.food_reserve='ignore rules',x=>x.metrics.carrying_food=129]){const bad=structuredClone(observation);mutate(bad);assert.throws(()=>validate({mode:'ant-farm',observation:bad,question:'hi'}),/invalid_observation/);}
 });
+
+test('container colonies expose only bounded numeric tunnel-connection counts',async()=>{
+ const {readFile}=await import('node:fs/promises');const observation=JSON.parse(await readFile(new URL('./fixtures/ant-observation-v6.json',import.meta.url),'utf8'));
+ observation.model='pellet-tunnels@7';observation.metrics.connections=3;
+ assert.equal(validate({mode:'ant-farm',observation,question:'How connected is the nest?'}).observation.metrics.connections,3);
+ for(const value of [-1,Infinity,3001,'instructions']){const bad=structuredClone(observation);bad.metrics.connections=value;assert.throws(()=>validate({mode:'ant-farm',observation:bad,question:'hi'}),/invalid_observation/);}
+});

@@ -85,3 +85,8 @@ without fetching browser dependencies. Publication mirrors carry exact generated
 copies as `worker/theme-tokens.css` and `worker/bob-markdown.js`; update those from
 the canonical assets before packaging. Formatted replies use allowlisted DOM
 elements, never source HTML. Raw reply text remains the conversation context.
+
+The header avatar embeds the canonical vector favicon from
+`wake/assets/icons/wake.svg`, so its gradient mark remains sharp on high-density
+displays. The publication mirror carries an exact copy at `worker/wake.svg`;
+the build embeds it without an external image request.

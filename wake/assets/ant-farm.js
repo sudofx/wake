@@ -19,8 +19,11 @@
     const box=canvas.getBoundingClientRect();width=box.width;height=box.height;const mobile=matchMedia('(pointer: coarse)').matches||width<=600;dpr=Math.min(devicePixelRatio||1,mobile?1.25:1.5,Math.sqrt(1500000/(width*height)));frameInterval=1000/(reduced.matches?10:mobile?20:24);cw=width/W;ch=height/H;
     for(const layer of [canvas,terrain,soil]){layer.width=Math.round(width*dpr);layer.height=Math.round(height*dpr);layer.getContext('2d').setTransform(dpr,0,0,dpr,0,0);}
     // Drawn colour fields stay quiet at every zoom; no enlarged photographic grains.
-    const sky=soilCtx.createLinearGradient(0,0,0,S*ch);sky.addColorStop(0,'#20342a');sky.addColorStop(1,'#526446');soilCtx.fillStyle=sky;soilCtx.fillRect(0,0,width,S*ch);
-    const earth=soilCtx.createLinearGradient(0,S*ch,0,height);earth.addColorStop(0,'#eadbb9');earth.addColorStop(1,'#d8c8a7');soilCtx.fillStyle=earth;soilCtx.fillRect(0,S*ch,width,height-S*ch);
+    soilCtx.fillStyle='#edf0e5';soilCtx.fillRect(0,0,width,height);
+    const earth=soilCtx.createLinearGradient(0,0,0,height);earth.addColorStop(0,'#eee2c8');earth.addColorStop(1,'#d9c8a8');soilCtx.fillStyle=earth;
+    soilCtx.beginPath();soilCtx.moveTo(0,(colony.surfaceAt(2)+1)*ch);
+    for(const n of colony.nodes){if(n.kind==='surface')soilCtx.lineTo(n.x*cw,(n.y+1)*ch);}
+    soilCtx.lineTo(width,(colony.surfaceAt(W-2)+1)*ch);soilCtx.lineTo(width,height);soilCtx.lineTo(0,height);soilCtx.closePath();soilCtx.fill();
     terrainDirty=true;draw();
   }
   function updateTerrain(){
@@ -30,6 +33,7 @@
       if(node.parent===null||node.kind==='surface')continue;const parent=colony.nodes[node.parent];
       ground.lineWidth=Math.min(cw,ch)*1.45;ground.beginPath();ground.moveTo(parent.x*cw,parent.y*ch);ground.lineTo(node.x*cw,node.y*ch);ground.stroke();
     }
+    ground.fillStyle='#c9b68f';for(let i=0;i<colony.nodes.length;i++){const n=colony.nodes[i];if(n.kind==='chamber'&&i!==colony.nest){ground.beginPath();ground.ellipse(n.x*cw,n.y*ch,1.8*cw,1.1*ch,0,0,Math.PI*2);ground.fill();}}
     ground.fillStyle='#c9b68f';ground.beginPath();const home=colony.nodes[colony.nest];ground.ellipse(home.x*cw,home.y*ch,2.2*cw,1.3*ch,0,0,Math.PI*2);ground.fill();
     // A warm nest chamber makes the homeward traffic legible.
     const nest=ground.createRadialGradient(home.x*cw,home.y*ch,0,home.x*cw,home.y*ch,8*Math.max(cw,ch));nest.addColorStop(0,'#c7a36d18');nest.addColorStop(1,'#c7a36d00');ground.fillStyle=nest;ground.fillRect((home.x-4)*cw,(home.y-3)*ch,8*cw,6*ch);terrainDirty=false;
@@ -43,7 +47,7 @@
     if(showTrails){ctx.lineCap='round';ctx.lineWidth=Math.min(cw,ch)*.65;for(let i=0;i<colony.trail.length;i++)if(colony.trail[i]>.15){const n=colony.nodes[i],p=colony.nodes[n.parent];if(!p)continue;ctx.strokeStyle=`rgba(117,44,190,${Math.min(.85,.2+colony.trail[i]/15)})`;ctx.beginPath();ctx.moveTo(n.x*cw,n.y*ch);ctx.lineTo(p.x*cw,p.y*ch);ctx.stroke();}}
     for(const f of colony.food){if(!f.left)continue;const x=f.x*cw,y=f.y*ch;ctx.fillStyle='#b3bb68';for(let j=0;j<Math.min(10,Math.ceil(f.left/24));j++){const angle=j*2.4,r=2+Math.sqrt(j)*1.3;ctx.beginPath();ctx.ellipse(x+Math.cos(angle)*r,y+Math.sin(angle)*r,1.2,.8,j,0,7);ctx.fill();}}
     // Deposited grains accumulate at the entrance; excavation requires a return trip.
-    ctx.fillStyle='#a7895c';for(let k=0;k<Math.min(70,colony.soilDelivered);k++){const x=(colony.nodes[colony.exit].x-1+(k%2?1:-1)*(1+Math.sqrt(k)*.4))*cw,y=(S-.4-Math.floor(k/15)*.1)*ch;ctx.beginPath();ctx.ellipse(x,y,.7,.5,k,0,7);ctx.fill();}
+    ctx.fillStyle='#a7895c';for(let k=0;k<Math.min(70,colony.soilDelivered);k++){const x=(colony.nodes[colony.exit].x-1+(k%2?1:-1)*(1+Math.sqrt(k)*.4))*cw,y=(colony.nodes[colony.exit].y+.5-Math.floor(k/15)*.1)*ch;ctx.beginPath();ctx.ellipse(x,y,.7,.5,k,0,7);ctx.fill();}
     const r=Math.max(1.3,Math.min(3.7,Math.min(cw,ch)*.4));
     for(const ant of colony.ants){const a=colony.nodes[ant.from],b=colony.nodes[ant.cell],length=Math.hypot(b.x-a.x,b.y-a.y)||1,t=Math.min(1,ant.phase+(!paused&&ant.wait<=0&&ant.phase<1?accumulator*ant.pace/length*(ant.carrying?.75:1):0));
       const lane=((ant.id%3)-1)*.13,spread=ant.id*2.39996,rad=.5+(ant.id%8)/8,offsetA=ant.from===colony.nest?1-t:0,offsetB=ant.cell===colony.nest?t:0,spreadWeight=offsetA+offsetB;
@@ -63,7 +67,7 @@
   const elapsed=seconds=>`${Math.floor(seconds/60).toString().padStart(2,'0')}:${(seconds%60).toString().padStart(2,'0')}`;
   function updateUI(){
     const m=colony.metrics();get('colony-clock').textContent=elapsed(m.seconds);get('seed-label').textContent=`Colony ${colony.seed.toString(16).toUpperCase()} · saved on this device`;
-    const values=[['Living ants',m.ants],['Brood developing',m.brood],['Born',m.born],['Died naturally',m.deaths],['Entrances',m.entrances],['Active digging sites',m.tunnel_tips],['Tunnel segments dug',m.dug],['Food brought home',m.delivered],['Food in nest',m.food_reserve],['Soil pellets carried out',m.soil_pellets]];
+    const values=[['Living ants',m.ants],['Brood developing',m.brood],['Born',m.born],['Died naturally',m.deaths],['Entrances',m.entrances],['Tunnel connections',m.connections],['Active digging sites',m.tunnel_tips],['Tunnel segments dug',m.dug],['Food brought home',m.delivered],['Food in nest',m.food_reserve],['Soil pellets carried out',m.soil_pellets]];
     const nodes=values.map(([label,value])=>{const block=document.createElement('div'),dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value.toLocaleString();block.append(dt,dd);return block;});get('metrics').replaceChildren(...nodes);
     const old=colony.samples.find(s=>s.seconds>=m.seconds-120)||colony.samples[0],span=m.seconds-old.seconds;
     get('pattern').textContent=span>=10?`Over the last ${span} simulation seconds: ${m.dug-old.dug} new tunnel segments and ${m.delivered-old.delivered} food deliveries. ${m.carrying_soil} ants are carrying soil to the entrance. Turn on Trails to see where returning foragers leave signals.`:'The colony is settling in. Let it explore for a little while, then look for repeated routes and new branches.';
