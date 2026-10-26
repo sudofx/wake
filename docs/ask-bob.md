@@ -43,7 +43,9 @@ remove stored chats and model files. Unavailable storage leaves a memory-only ch
 
 Bob reads completed public exports, never the authority databases. Article
 retrieval uses the published passage guide; other contexts load their exact
-same-origin record or bounded overview. Unknown source IDs are rejected, but
+record or bounded overview from the page’s selected public snapshot. Hosted
+popups inherit the exact public GitHub commit selected by the source page; they
+do not substitute newer or bundled records under an existing conversation. Unknown source IDs are rejected, but
 valid IDs do not prove a claim is supported. Models can still misread sources or
 invent an explanation. Bob cannot change research, operate the self-correction
 workflow or establish scientific findings. Older conversations remain separate

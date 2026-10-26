@@ -51,13 +51,16 @@ flowchart LR
   C --> R[(Per-node durable records)]
   R --> E[Filtered public export]
   E -->|operator or interval upload| P[wake-public]
-  P --> G[GitHub Pages mirror]
+  S -->|checked interface| G[GitHub Pages]
+  G --> B[Browser reader]
+  P -->|pinned public data| B
 ```
 
-Pages serves the root of `wake-public`, with `.nojekyll`, using branch publishing.
-GitHub performs its normal Pages build and deployment. The hosted adapter explicitly requests the native Pages build after its upload:
-GitHub does not start branch-based Pages builds for pushes made with GITHUB_TOKEN.
-Code CI and offline container acceptance remain separate from live research.
+Pages serves an independently checked interface and a bundled dated fallback.
+Bound hosted readers discover the latest `wake-public` commit and fetch public
+JSON directly from that immutable GitHub revision. Routine data uploads do not
+need a Pages build. Code CI and offline container acceptance remain separate
+from live research. See [website delivery](#independently-checked-website-delivery).
 
 Checkpoint pruning refuses a stale rotating-ref checkout or an incomplete set of
 current/previous release blocks. A missing asset is a recovery failure, not
@@ -455,30 +458,50 @@ GitHub rate limits can make the light unavailable without stopping research.
 
 ### Independently checked website delivery
 
-The Pages source is GitHub Actions. `publish-pages.yml` captures the newest
-`wake-public` export, selects the latest successful master code-check revision,
-and applies its presentation with `scripts/prepare_pages.py`. It asserts that
-all twelve record heads and protected research/inspection bytes are preserved,
-then uploads and deploys a Pages artifact. Research completion and code-check
-completion both trigger delivery; manual delivery uses:
+GitHub Pages hosts the checked interface. `public-data.js` reads a single public
+GitHub commit for each document, while local and unbound exports stay same-origin.
+The explicit binding names the repository, `wake-public` branch and expected
+installation identity. Discovery uses one anonymous GitHub commit lookup, shared
+across pages for three minutes; metadata reads have eight-second timeouts and
+size limits. Data reads omit credentials and referrers and have bounded timeouts.
+All overview, detail, pagination, Console and map reads use that immutable commit.
+Bob popups and Console tools inherit it. Opening a new page after the discovery
+cache expires can adopt a newer export without rebuilding the interface.
+
+The data branch supplies JSON and record packets, never executable website
+assets. Download links resolve to that same selected commit; the external
+inspection entry opens its self-contained Markdown packet. Remote identity mismatch or initial discovery failure selects the bundled
+dated snapshot before any data loads and displays a notice. Once a remote commit
+is adopted, a missing packet fails visibly rather than combining generations.
+A popup with an explicit source revision fails if that revision is unavailable.
+These are public observations, not native record access or live activity.
+
+`publish-pages.yml` selects the latest successful master code-check revision and
+uses `scripts/pages_delivery.py` to skip an already deployed interface or source
+changes that do not affect presentation. Failed checks and research completion
+do not trigger interface delivery. Older pinned runners may still dispatch the
+workflow after an upload; no-input dispatches skip the job without allocating a
+runner. New runner
+source no longer dispatches Pages from data publication, so a Pages request cannot
+turn a successful upload into a failed research batch.
+
+When delivery is needed, the workflow captures `wake-public` and applies checked
+presentation with `scripts/prepare_pages.py`. It asserts that all twelve record
+heads and protected research/inspection bytes are unchanged before deploying the
+artifact. To explicitly publish or repair the interface, even when its revision
+is already recorded as deployed:
 
 ```sh
-gh workflow run publish-pages.yml --ref master
+gh workflow run publish-pages.yml --ref master -f force=true
 ```
 
-Publication has its own serialized workflow. Older pinned research batches may
-still export older assets to `wake-public`; the website always reapplies the
-checked presentation before serving them. Their legacy Pages build request can
-fail after the export/checkpoint succeeds; the completion event still starts
-website delivery. The public branch is a captured data input, not the served UI
-owner. `hosted_execution` remains the research source identity; `presentation`
-records the separately checked interface revision. No native record is opened.
-
-The presentation refresh also rebuilds passage guides from that exact public
-archive and replaces reader assets, including inline article navigation. It
-rejects mismatched archive/overview heads and leaves hashed inspection packets
-unchanged. The public site offers a device-local Bob launcher with no answer server.
-For browser model setup and optional loopback Gemini preview, see [Ask Bob](ask-bob.md).
+The public branch is a captured data input, not the served UI owner.
+`hosted_execution` identifies the research source; `presentation` identifies the
+separately checked interface. No native record is opened. Research can keep
+exporting data while interface development and publishing proceed independently.
+The presentation refresh rebuilds passage guides from the captured public archive
+and leaves hashed inspection packets unchanged. See [Ask Bob](ask-bob.md) for the
+on-device model and optional loopback preview.
 
 ### Hosted execution observations
 
@@ -489,17 +512,14 @@ installations retain their same-origin runtime observation channel; no relay is
 required for local inspection. Missing live activity must not be drawn as current
 execution or accepted research progress.
 
-## Independent website delivery
+## Unattended operation boundaries
 
-`publish-pages.yml` deploys the latest public research snapshot with the newest
-successful master presentation checks. A research worker's pinned runtime cannot
-roll the served interface back to its older bundled assets. The deployment keeps
-all research/inspection packets and captured record heads byte-for-byte; a
-presentation mismatch fails before upload. Research completion, successful code
-checks and explicit workflow dispatch can request delivery. Periodic exports
-from an upgraded runner dispatch this workflow directly. GitHub Pages uses its
-GitHub Actions publishing source, rather than branch-based legacy builds.
-
-Older runners may still request a legacy Pages build while draining their current
-batch. Those requests cannot deploy over the Actions-owned website. Their native
-checkpoints remain independent of presentation delivery.
+The existing successor dispatcher and independent completion-event recovery
+reconcile newer runs before retrying, so a delayed event cannot create a second
+writer. Website delivery does not gate their continuation. GitHub availability,
+API capacity, Actions limits, credentials, provider availability and valid
+checkpoints still matter; a configured model key alone cannot guarantee years of
+uninterrupted operation. Public snapshot freshness and the status light expose
+unavailable or stalled observations without inventing progress. Source correction
+still produces tested draft changes for review; it does not autonomously merge or
+upgrade the research runtime.

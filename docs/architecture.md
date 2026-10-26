@@ -431,7 +431,7 @@ A hash chain detects modifications relative to a trusted head. An administrator 
 
 Full local exports verify state before rendering and remain useful for audit and offline fixtures. GitHub Pages serves the complete filtered artifact uploaded from containers. Its dated snapshots are disposable presentation and never outrank the node records.
 
-Console is an isolated static page with page-scoped CSS and JavaScript. `wake/research_projection.py` derives a bounded presentation from verified state and existing provenance edges; it never opens storage or participates in provider context, scheduling, or governance. Live construction classifies evidence before content clipping, separates runtime receipts and discovery/metadata from readable source material, and preserves collector work identities. Source readiness is not claim support or publication eligibility. The compact overview excludes editorial records; graph positions are layout only. `research-data.json` is exported alongside the other node projections; readers use the same-origin snapshot with its recorded head and version.
+Console is an isolated static page with page-scoped CSS and JavaScript. `wake/research_projection.py` derives a bounded presentation from verified state and existing provenance edges; it never opens storage or participates in provider context, scheduling, or governance. Live construction classifies evidence before content clipping, separates runtime receipts and discovery/metadata from readable source material, and preserves collector work identities. Source readiness is not claim support or publication eligibility. The compact overview excludes editorial records; graph positions are layout only. `research-data.json` is exported alongside the other node projections; readers use their selected immutable snapshot with its recorded head and version.
 
 Normal reads use the atomically hash-bound materialized projection; explicit full replay reconstructs from genesis. Signed `wake-checkpoint@1` exports provide a separate, operator-owned replay seed without changing authority. Creation fully verifies semantic, invocation and access journals in one read transaction and materializes the WAKE application projection. An explicitly retained public key verifies the Ed25519 signature. Fast replay checks the retained boundary and every new semantic event/result digest; full checkpoint verification also reconstructs the trusted prefix and verifies complete invocation/access journals. Fast replay does not detect interior prefix tampering or attest later non-semantic journal entries. Checkpoints never erase events, replace authority or change historical event bytes. External retention/publication and signing-key custody are operator responsibilities; this implementation does not claim external notarization.
 
@@ -583,7 +583,14 @@ Neither equal counters nor a matching web view establishes that two records are 
 
 Export owns the complete installation artifact, including `deployment.json`, early
 `WAKE_DEPLOYMENT` configuration, local operator links and bounded record views. All
-browser readers use same-origin exported files. Missing/invalid mode remains
+local and unbound browser readers use same-origin exported files. Explicitly
+bound hosted pages use `public-data.js` to resolve one public GitHub commit,
+validate the installation identity, and pin all readers, Console views, maps and
+Bob source packets to that commit. Bob popups and Console tools carry that
+selection. No model code or website scripts load from the public data branch.
+Initial discovery failure selects the bundled dated snapshot with a notice;
+after adopting a remote commit, missing packets fail instead of mixing versions.
+Missing/invalid mode remains
 same-origin and Console reports it. A raw template cannot select a different installation from
 a LAN address or a missing flag. This protects data selection rather than authenticating
 an operator. Templates and generated pages are distinct lifecycle stages.
@@ -596,7 +603,7 @@ are independent operations. Browser rendering remains disposable in every case.
 ## Optional inspection activity
 
 Browser delivery is separate from retained history and worker liveness. Reader
-pages use a 256 KiB bootstrap and same-origin paged/detail exports. Console uses a
+pages use a 256 KiB bootstrap and paged/detail exports from their selected snapshot. Console uses a
 compact overview and optional wake detail files. The installation comparison
 serves completed summary observations rather than fanning out during HTTP reads.
 Operator reset/import invalidates those comparisons and primes them from the

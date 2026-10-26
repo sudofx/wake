@@ -155,7 +155,15 @@ A bind-mounted checkout and an installed image may execute different code. Prese
 existing edits and record volumes; source synchronization never authorizes record copying.
 
 Local and hosted records are independent. Never reconcile their counters by importing
-one into the other. Research browser transport reads only same-origin exported files. An explicitly bound hosted status light may read public GitHub Actions metadata anonymously; those observations never enter research state, per-node runtime animation or governance. Missing installation identity must stay same-origin and be visible in Console.
+one into the other. Local and unbound browser transport reads only same-origin
+exported files. An explicitly bound hosted presentation may read its identified
+installation from one immutable `wake-public` GitHub commit through `public-data.js`.
+Every reader, Console and Bob source packet in that document uses the same commit;
+never mix a remote packet with a bundled fallback. Discovery failure may select
+the dated bundled snapshot before any data loads, with a visible notice. An
+explicitly bound hosted status light may read public GitHub Actions metadata
+anonymously; those observations never enter research state, per-node runtime
+animation or governance. Missing installation identity stays same-origin.
 Export owns deployment identity and local operator links as well as data and assets;
 raw HTML templates must not replace generated pages. Verify the actual snapshot
 head/version and transport on LAN access, not only appearance or HTTP success.
@@ -196,8 +204,8 @@ on disconnect and keep score, selection, accepted progress and historical replay
 
 ## Development cadence and hosted releases
 
-Run long independent jobs in the background and continue other authorized work.
-Check their outcome before the next dependent publication or runtime change;
+Run long independent jobs in the background and pick up other authorized work.
+Check completion only when reaching a dependent change, publication or runtime operation;
 do not spend an active session repeatedly polling an unchanged job. If all
 independent work is exhausted, report the pending dependency without claiming
 completion or promising unattended continuation that has no executor.

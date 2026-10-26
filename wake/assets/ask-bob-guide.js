@@ -47,7 +47,7 @@ const pathFor = id => {
   return 'reader-records/guides/' + hex.match(/.{1,64}/g).join('/') + '.json';
 };
 const cache = new Map();
-export async function loadGuide(request, signal, read = fetch) {
+export async function loadGuide(request, signal, read = (globalThis.WakePublicData?.fetch || fetch)) {
   if (typeof request.article_id !== 'string' || !request.article_id || request.article_id.length>240 || !/^[a-f0-9]{64}$/.test(request.expected_article_hash)) throw Error('Reload a verified article before asking.');
   const key=request.article_id+':'+request.expected_article_hash;
   if(cache.has(key))return cache.get(key);

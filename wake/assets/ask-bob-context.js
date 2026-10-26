@@ -11,7 +11,7 @@ export const recordPath = (collection, id) => {
 export async function readJSON(path, signal, limit = 262144, root = BASE) {
   const url = new URL(path, root);
   if (url.origin !== BASE.origin || !url.pathname.startsWith(BASE.pathname)) throw Error('Only this site’s published records can be read.');
-  const response = await fetch(url, {credentials:'omit', cache:'no-cache', signal});
+  const response = await (globalThis.WakePublicData?.fetch || fetch)(url, {credentials:'omit', cache:'no-cache', signal});
   if (!response.ok || !response.body) throw Error('This published view is unavailable. Reload the latest page.');
   const reader = response.body.getReader(), chunks = []; let size = 0;
   try {

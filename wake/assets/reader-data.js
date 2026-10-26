@@ -3,7 +3,7 @@
   'use strict';
   const timeout=()=>AbortSignal.timeout(8000);
   const read=async path=>{
-    const response=await fetch(path,{cache:'no-cache',signal:timeout()});
+    const response=await (window.WakePublicData?.fetch || fetch)(path,{cache:'no-cache',signal:timeout()});
     if(!response.ok){const error=Error('Published view unavailable ('+response.status+')');error.status=response.status;throw error;}
     return response.json();
   };
@@ -85,7 +85,7 @@
       try{
         if(!document.hidden){
           // The full browser archive is never a live polling channel.
-          const response=await fetch('head.txt',{cache:'no-cache',signal:timeout()});
+          const response=await (window.WakePublicData?.fetch || fetch)('head.txt',{cache:'no-cache',signal:timeout()});
           if(response.ok){const head=(await response.text()).trim();
             if(marker&&head!==marker){const next=await read(window.WakeLiveUrl);window.WakeReader.reset();window.WakeApplyLive?.(next);}
             marker=head;

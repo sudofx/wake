@@ -217,7 +217,7 @@ installed together; independent installations must select separate records.
 [Ask Bob](ask-bob.md) separately uses an article-specific public passage guide,
 capped at 96 KiB. Browser inference selects source passages and bounded recent
 same-context conversation into a compact prompt for an opt-in WebGPU model.
-Other reader contexts use exact same-origin record shards or the bounded overview,
+Other reader contexts use exact record shards or the bounded overview from their selected snapshot,
 with source-head checks; no routine full-archive download is needed. Startup reads
 have deadlines. Unknown citation IDs are rejected; missing citations expose the
 material Bob read without implying that it supports every generated sentence.
@@ -241,7 +241,7 @@ node's use of the same source does not create independent evidence. The kernel
 retrieval and authority boundaries are unchanged. The hosted Actions adapter uses
 the same controller and bounded contexts, with encrypted native-record transport
 between runners. Transport may wait for GitHub API quota while retaining the
-same native history and pre-effect durability requirement. GitHub Pages remains a same-origin exported view; it never
+same native history and pre-effect durability requirement. GitHub Pages remains a derived exported view; it never
 becomes a retrieval authority or a provider gateway.
 
 `installation.json` combines exported node projections for inspection. It cannot
@@ -313,7 +313,10 @@ Current source eligibility requires nonempty readable collected material. Publis
 
 ### Browser views and exact detail
 
-Research transport always reads same-origin exported files. An explicitly bound
+Local and unbound browser transport reads same-origin exported files. Explicitly
+bound hosted pages read one installation-validated immutable public GitHub
+commit for all overview/detail packets, with a dated bundled fallback only before
+remote data adoption. See [website delivery](cloud.md#independently-checked-website-delivery). An explicitly bound
 hosted header light separately reads public GitHub Actions metadata; batch execution
 is not research progress or a live per-node capability. See
 [hosted status](cloud.md#read-the-hosted-status-light) for freshness and failure behavior.
@@ -543,7 +546,7 @@ Under forward quality policy, notebook proposals supply structured claims and om
 
 Source delivery compacts the parsed source packet rather than cutting serialized JSON. Bounded views preserve source classification and select exact substantive prose ahead of titles, authors and PDF front matter. Escaped JSON stays within the provider budget, and successive shortening retains a quotation surface. These are incomplete derived views; full source records, IDs, provenance and exact-passage validation remain authoritative.
 
-The public mirror uses completed same-origin exports and a GitHub Actions status
+The public mirror uses completed exports from its selected immutable public snapshot and a GitHub Actions status
 light. Live node stages are available only from a local installation's native
 runtime channel; they never update accepted counts.
 Context tail queries reuse verified history for one read-only context build only;

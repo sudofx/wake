@@ -17,7 +17,7 @@ window.WakeRuntimeActivityView = status => {
 window.WakeViewData=(()=>{
   let current=null,pending=null,legacy=false;
   const details=new Map();
-  const get=async (url,json=true)=>{const response=await fetch(url,{cache:'no-store',signal:AbortSignal.timeout(12000)});if(!response.ok){const error=Error(`HTTP ${response.status}`);error.status=response.status;throw error;}return json?response.json():response.text();};
+  const get=async (url,json=true)=>{const response=await (window.WakePublicData?.fetch || fetch)(url,{cache:'no-store',signal:AbortSignal.timeout(12000)});if(!response.ok){const error=Error(`HTTP ${response.status}`);error.status=response.status;throw error;}return json?response.json():response.text();};
   const overview=async()=>{
     if(legacy)return get('research-data.json');
     try{return await get('research-overview.json');}

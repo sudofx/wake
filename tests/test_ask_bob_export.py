@@ -48,6 +48,13 @@ class AskBobExportTests(unittest.TestCase):
             self.assertFalse(list(node_view.glob('ask-bob-engine*')))
             self.assertFalse(list(node_view.glob('ask-bob-gpu-*')))
             self.assertEqual((node_view / 'ask-bob.js').read_bytes(), (site / 'ask-bob.js').read_bytes())
+            # A captured older export may already contain duplicated engines.
+            (node_view / 'ask-bob-engine.wasm').write_bytes(b'old-derived-engine')
+            (node_view / 'ask-bob-gpu-old.wasm').write_bytes(b'old-derived-engine')
+            from wake.reader_guide import refresh_public_reader
+            refresh_public_reader(node_view, include_reader_inference=False)
+            self.assertFalse(list(node_view.glob('ask-bob-engine*')))
+            self.assertFalse(list(node_view.glob('ask-bob-gpu-*')))
 
     def test_vendored_browser_engine_has_verified_bytes_and_license(self):
         assets = Path(__file__).resolve().parents[1] / 'wake/assets'

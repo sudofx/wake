@@ -211,7 +211,8 @@ def publish_hosted_snapshot(client, root, artifact, revision):
                       GIT_CONFIG_VALUE_0='AUTHORIZATION: basic ' + authorization)
     upload_public_artifact(artifact, 'https://github.com/' + client.repository + '.git',
                            'wake-public', expected_head=parent)
-    client.request('actions/workflows/publish-pages.yml/dispatches', method='POST', body={'ref': 'master'})
+    # Readers discover this immutable public commit directly. Data publication
+    # must not queue an interface deployment or fail because Pages is busy.
     return manifest
 
 

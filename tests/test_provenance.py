@@ -135,7 +135,6 @@ class ProvenanceTests(unittest.TestCase):
         self.assertEqual(map3d_shell["meta"]["topic_labels"]["information_survival"], "How Does Information Survive?")
         self.assertEqual(map3d_shell["meta"]["schema_version"], 2)
         self.assertIn("map3d-data.json?wake=", map3d_js)
-        self.assertIn("fetch(branchUrl(id)", map3d_js)
         topic_shard = json.loads((self.root/'site/map3d'/map3d_shard_filename('root:topics')).read_text())
         self.assertTrue(any(item["title"] == "How Does Information Survive?" for item in topic_shard["children"]))
         project_shard = json.loads((self.root/'site/map3d'/map3d_shard_filename('project:p@1')).read_text())

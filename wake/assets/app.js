@@ -6,7 +6,7 @@
   if(window.WAKE_DEPLOYMENT?.group?.id && !data.reader_transport){
     const groupId=window.WAKE_DEPLOYMENT.group.id;
     try{
-      const response=await fetch(new URL('group/bob.json?wake_group='+Date.now(),location.href),{cache:'no-store'});
+      const response=await (window.WakePublicData?.fetch || fetch)(new URL('group/bob.json?wake_group='+Date.now(),location.href),{cache:'no-store'});
       if(!response.ok)throw Error('Group Bob is unavailable');
       const shared=await response.json();
       if(shared?.schema!==1||shared.group_id!==groupId||shared.available!==true||!Array.isArray(shared.posts))
@@ -25,7 +25,7 @@
   // borrow only the bounded aggregate block from the current Pages snapshot.
   if(!data.metrics){
     try{
-      const response=await fetch('wake-data.json?wake_metrics='+Date.now(),{cache:'no-store'});
+      const response=await (window.WakePublicData?.fetch || fetch)('wake-data.json?wake_metrics='+Date.now(),{cache:'no-store'});
       if(response.ok){
         const fallback=await response.json();
         if(fallback.metrics)data.metrics=fallback.metrics;

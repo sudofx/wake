@@ -25,11 +25,40 @@ If you only need the key terms, use the [glossary](glossary.md). If you need a
 release procedure, go to [mirror publishing](cloud.md#development-and-release).
 
 Long verification and delivery jobs should run in the background while independent
-authorized work continues. Recheck the previous job before its next dependent
+authorized work continues. Check completion only when reaching its next dependent
 publication or runtime operation. Do not repeatedly poll an unchanged job or
 rerun unaffected suites to fill the wait. Use the release boundaries in
 [hosted upgrades](cloud.md#publish-source-without-upgrading-records) to choose checks;
 full history replay is a record-compatibility gate, not a universal UI gate.
+
+Current experimental research is a development workload. Do not add historical
+compatibility code, archives or backups solely to preserve disposable development
+data. Prefer a simple implementation; an explicitly selected installation can be
+reset when that materially simplifies an approved change. Never infer continuity
+across a reset or rewrite accepted event meaning. Existing installations and
+their controls remain separate from ordinary source or interface delivery.
+
+The hosted website uses a stable Pages interface and `public-data.js` for pinned
+public GitHub snapshots. Data uploads do not require rebuilding that interface.
+Successful source checks request delivery; unchanged interfaces are skipped.
+See [website delivery](cloud.md#independently-checked-website-delivery).
+
+## Working with another coding agent
+
+Development requires this repository, its `AGENTS.md`, the normal Python/Node
+tools and your chosen GitHub access. No Codex, ChatGPT subscription or private
+chat history is needed to build, test or publish the site. Start a replacement
+agent at the existing checkout, inspect the branch and pending diff, and read
+this guide before changing source. Supply unfinished objectives separately;
+do not let a fresh agent infer work or deployment permission from a roadmap.
+
+The generic `wake.kernel.generation.GenerationProvider` contract is the model
+boundary; a provider receives bounded input and returns untrusted output. The
+current unattended installation CLI supports `gemini` and the test-only `fixture`
+provider. Other vendors are not operational drop-in choices yet: they need a
+tested adapter plus installation configuration and accounting integration. The
+source-correction workflow independently selects a Gemini model per request.
+Switching development agents does not require changing that research provider.
 
 For private human checkpoints and fresh-conversation recovery, use the
 [continuity workflow](continuity/README.md). It complements the authoritative
@@ -183,7 +212,8 @@ Avoid duplicating obvious syntax or embedding operator conversation in source.
 
 `wake.report.export` defaults to standalone mode and produces a complete artifact: templates, transformed pages,
 record views, Console components and `deployment.json`. `_deployment_site` places
-`WAKE_DEPLOYMENT` before reader scripts in generated pages. All modes read same-origin JSON. Live containers may read `/runtime.json`,
+`WAKE_DEPLOYMENT` before reader scripts in generated pages. Local and unbound exports read same-origin JSON; explicitly bound hosted pages
+read their identified immutable public GitHub snapshot. Live containers may read `/runtime.json`,
 including through LAN addresses; snapshot-only public exports have no runtime
 capability. Only an explicit `hosted_status` presentation binding enables a separate,
 read-only public Actions observer for the header light; ordinary mirrors do not poll

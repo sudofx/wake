@@ -65,6 +65,7 @@
     const node=location.pathname.match(/\/nodes\/((?:10[0-3]|20[0-3]|30[0-3])\.wake)\//)?.[1];
     const url=new URL((node?'../../':'')+'bob-chat.html',document.baseURI);
     for(const [key,value] of Object.entries({...selection,...(node?{node}:{})}))if(value)url.searchParams.set(key,value);
+    window.WakePublicData?.pin(url);
     url.searchParams.set('theme',document.documentElement.dataset.theme||'light');
     const link=element('a','Ask Bob','ask-bob-launch'+(selection.collection?' ask-bob-record':''));
     link.href=url.href;link.target='_blank';link.rel='noopener';link.setAttribute('aria-label',title||'Ask Bob · open chat window');

@@ -221,7 +221,10 @@ The current installation uses fixed worker code until an explicit restart;
 `wake-research restart` also enables research, while a container restart returns
 to stopped inspection. Its public mirror is a locally prepared read-only export. See
 [installation operation](docs/standalone.md#run-one-installation-container).
-GitHub Pages serves the uploaded public snapshot. The current hosted controller
+GitHub Pages serves the checked website interface and a dated fallback snapshot.
+Bound hosted readers load current public data directly from one immutable
+`wake-public` commit, so routine data updates do not require a Pages deployment.
+The current hosted controller
 runs the same twelve native records in disposable Actions containers, using
 encrypted recovery storage. The older executor branches remain untouched
 historical artifacts. Hosted research and website publication are separate

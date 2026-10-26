@@ -105,7 +105,7 @@
       message='Installation identity is missing. Showing only this server’s snapshot; regenerate the website with export. '+(message||'');
     $('notice').hidden=!message; $('notice').textContent=message || '';
   }
-  async function json(url) { const r=await fetch(url,{cache:'no-store',signal:AbortSignal.timeout(12000)});if(!r.ok){const error=new Error(`HTTP ${r.status}`);error.status=r.status;throw error;}return r.json(); }
+  async function json(url) { const r=await (window.WakePublicData?.fetch || fetch)(url,{cache:'no-store',signal:AbortSignal.timeout(12000)});if(!r.ok){const error=new Error(`HTTP ${r.status}`);error.status=r.status;throw error;}return r.json(); }
   async function overview(){try{return await json('research-overview.json');}catch(error){if(![404,410].includes(error.status))throw error;return json('research-data.json');}}
   function validate(d) {
     if(d?.projection_schema!==1 || d?.projection_kind!=='disposable-research-view' || d.authoritative!==false || !d.head || !Array.isArray(d.graph?.nodes) || !Array.isArray(d.graph?.edges) || !d.records || !Array.isArray(d.activity) || !Array.isArray(d.topics) || !d.metrics || !d.evidence || !d.status)throw new Error('Unsupported research projection');

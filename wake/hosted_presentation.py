@@ -97,8 +97,45 @@ def bind_hosted_status(site, repository, revision):
     from .reader_guide import refresh_public_reader
     for root in roots:
         refresh_public_reader(root, include_reader_inference=root == site)
+    # The served interface and public data have separate delivery lifecycles.
+    # Bind only hosted exports; ordinary/local readers never discover GitHub.
+    data_assets=('public-data.js','map.js','map3d.js','flat-view.js','console-tools.js')
+    for root in roots:
+        for name in data_assets:
+            shutil.copyfile(assets/name,root/name)
+        public_data={'repository':repository,'branch':'wake-public',
+                     'installation_id':manifest['installation_id'],
+                     'prefix':root.relative_to(site).as_posix().strip('.')}
+        if public_data['prefix']:
+            public_data['prefix']+='/'
+        deployment_path=root/'deployment.json'
+        deployment=json.loads(deployment_path.read_text()) if deployment_path.exists() else {'schema':1,'mode':'hosted','snapshot_only':True}
+        deployment['public_data']=public_data
+        deployment_path.write_text(json.dumps(deployment))
+        for page_path in root.rglob('*.html'):
+            relative=page_path.relative_to(root)
+            if 'inspect' in relative.parts or 'nodes' in relative.parts or 'self-correction' in relative.parts:
+                continue
+            page=page_path.read_text()
+            if page_path.name=='bob-chat.html':
+                page=re.sub(r'<script>window\.WAKE_DEPLOYMENT=[^<]*</script>','',page)
+                page=page.replace('<head>','<head><script>window.WAKE_DEPLOYMENT='+json.dumps(deployment)+';</script>',1)
+            elif 'window.WAKE_DEPLOYMENT=' in page:
+                def data_binding(match):
+                    bound=json.loads(match.group(1));bound['public_data']=public_data
+                    return 'window.WAKE_DEPLOYMENT='+json.dumps(bound)+';'
+                page=re.sub(r'window\.WAKE_DEPLOYMENT=(\{[^<]*?\});',data_binding,page)
+            else:
+                continue
+            # Load synchronously before any inline data consumer starts.
+            page=re.sub(r'<script src="[^\"]*public-data\.js[^\"]*"[^>]*></script>','',page)
+            prefix='../'*len(relative.parts[:-1])
+            page=re.sub(r'(window\.WAKE_DEPLOYMENT=\{[^<]*?\};[^<]*</script>)',
+                        lambda match:match.group(1)+f'<script src="{prefix}public-data.js"></script>',page,count=1)
+            page_path.write_text(page)
     shutil.copytree(assets / 'self-correction', site / 'self-correction', dirs_exist_ok=True)
-    manifest['presentation'] = {'source_revision': revision, 'hosted_status': config}
+    manifest['presentation'] = {'source_revision': revision, 'hosted_status': config,
+                                'data_transport':'github-pinned@1'}
     encoded = json.dumps(manifest, sort_keys=True)
     for path in [site / 'installation.json', *site.glob('nodes/*/installation.json')]:
         path.write_text(encoded)

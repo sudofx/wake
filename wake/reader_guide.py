@@ -171,13 +171,16 @@ def refresh_public_reader(site, *, include_reader_inference=True):
     for name in ('ask-bob.js', 'ask-bob.css', 'ask-bob-guide.js', 'ask-bob-browser.js', 'reader-data.js', 'app.js', 'pet.js', 'bob-markdown.js',
                  'bob-chat.html', 'bob-chat.css', 'bob-chat.js', 'ask-bob-context.js', 'ask-bob-gpu.js', 'ask-bob-gpu-worker.js', 'site-theme.js'):
         (site / name).write_bytes((assets / name).read_bytes())
-    for path in assets.glob('ask-bob-gpu-*'):
-        if include_reader_inference:
+    if include_reader_inference:
+        for path in assets.glob('ask-bob-gpu-*'):
             (site / path.name).write_bytes(path.read_bytes())
-        elif (site / path.name).exists():
-            # Node launchers open the unified popup. Retire only derived engine
-            # assets; source packets and their hashes remain untouched.
-            (site / path.name).unlink()
+    else:
+        # Captures from older runners can still carry the retired CPU engines.
+        # Node launchers use the unified root. Retire only derived engines;
+        # source packets and their hashes remain untouched.
+        for path in site.iterdir():
+            if path.name.startswith(('ask-bob-engine', 'ask-bob-gpu-')) and path.is_file():
+                path.unlink()
     for post in data['state'].get('posts', {}).values():
         guide = build_guide(post, data['state'], data['head'])
         path = site / record_path('guides', post['id'])

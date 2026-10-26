@@ -145,7 +145,7 @@
  async function load(){
   if(loading)return;loading=true;
   clearTimeout(timer);
-  try{const response=await fetch(new URL('installation.json',asset),{cache:'no-store',credentials:'same-origin'});if(!response.ok)throw Error(`HTTP ${response.status}`);const data=await response.json();if(data.schema!==1||!Array.isArray(data.nodes))throw Error('Unsupported installation snapshot');if(window.WAKE_DEPLOYMENT?.snapshot_only===true)data.live=false;manifest=data;window.WakeInstallationSnapshot=data;window.dispatchEvent(new CustomEvent('wake-installation-snapshot',{detail:data}));render(data);if(dashboard)get('installation-notice').hidden=true;}
+  try{const response=await (window.WakePublicData?.fetch || fetch)(new URL('installation.json',asset),{cache:'no-store',credentials:'same-origin'});if(!response.ok)throw Error(`HTTP ${response.status}`);const data=await response.json();if(data.schema!==1||!Array.isArray(data.nodes))throw Error('Unsupported installation snapshot');if(window.WAKE_DEPLOYMENT?.snapshot_only===true)data.live=false;manifest=data;window.WakeInstallationSnapshot=data;window.dispatchEvent(new CustomEvent('wake-installation-snapshot',{detail:data}));render(data);if(dashboard)get('installation-notice').hidden=true;}
   catch(error){
    if(manifest)render({...manifest,live:false,disconnected:true});
    if(dashboard){const notice=get('installation-notice');notice.hidden=false;notice.textContent=manifest?'Connection unavailable. Showing the last received snapshot; current activity is unknown.':'Installation snapshot unavailable. No node activity or counts inferred.';if(manifest)get('installation-freshness').textContent=`Disconnected · last snapshot ${stamp(manifest.generated)} · ${age(manifest.generated)}`;}

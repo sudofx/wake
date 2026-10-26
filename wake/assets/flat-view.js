@@ -9,7 +9,7 @@
   const kind=document.body.dataset.flatKind;
   const source=document.body.dataset.flatSource;
   const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const response=await fetch(source,{cache:'no-store'});
+  const response=await (window.WakePublicData?.fetch || fetch)(source,{cache:'no-store'});
   if(!response.ok)throw new Error('Published WAKE data could not be loaded');
   if(kind==='state'){
     const state=await response.json();
