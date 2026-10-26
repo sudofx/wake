@@ -132,3 +132,33 @@ Maintain the fault tests and examine real recovery episodes before adding anothe
 control. Production recovery distributions, saturation behavior and live-model
 comparisons need a defined experiment and appropriate runtime authorization.
 Source tests and mirror delivery do not establish resident-runtime adoption.
+
+## Try bounded operational self-correction in isolation
+
+```sh
+python -m wake improve recovery-demo --output /tmp/wake-recovery-new
+```
+
+The output directory must be new. Open `recovery.html` for results and inspect
+`result.json` plus the five native fixture records for exact observations and
+governance receipts. This command never opens research records, calls models,
+changes installed controls, or grants autonomous context improvement.
+
+The installed fixture policy accepts only two fixed responses after two matching
+failure observations: retry delay from one to four seconds for rate limiting,
+or concurrent requests from two to one for timeouts. It permits one temporary
+adjustment at a time. Two completed fixture requests verify recovery; two
+subsequent failures, a guardrail failure, operator pause, or the 30-second lease
+expiry revert the change. A 60-second cooldown limits oscillation. Lease expiry
+is checked on the next observation/control tick; a stopped controller does not
+magically execute rollback. Production adoption would need an independently
+enforced lease and trusted operational observations at the existing supervisor.
+
+The independent synthetic service owns its availability deadline. The fixed
+baseline gets three rate-limit responses, while the adjusted caller gets two
+and completes later. This demonstrates a bounded pressure/latency tradeoff,
+not faster recovery, general reliability or a deployed self-healing system.
+Permanent failure, pause, guardrail failure and missing observations are separate
+recorded scenarios. Forbidden setting proposals are rejected and receipted.
+Settings, observations and reversion replay through the existing kernel; the
+fixture adds no competing authority engine or production recovery loop.

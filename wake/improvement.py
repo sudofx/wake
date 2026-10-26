@@ -452,6 +452,8 @@ def configure_parser(subparsers):
     operations = command.add_subparsers(dest='improvement_operation', required=True)
     p = operations.add_parser('autonomous-demo', help='Demonstrate automatic policy generation, evaluation and adoption in a new native fixture')
     p.add_argument('--output', required=True)
+    p = operations.add_parser('recovery-demo', help='Demonstrate bounded operational recovery in new isolated fixture records')
+    p.add_argument('--output', required=True)
     p = operations.add_parser('prepare', help='Create a new isolated experiment from dated public research')
     p.add_argument('--output', required=True)
     p.add_argument('--reader', required=True)
@@ -482,6 +484,9 @@ def configure_parser(subparsers):
 
 def execute(args):
     operation = args.improvement_operation
+    if operation == 'recovery-demo':
+        from .recovery_demo import demonstrate
+        return demonstrate(args.output)
     if operation == 'autonomous-demo':
         from .autonomous_demo import demonstrate
         return demonstrate(args.output)

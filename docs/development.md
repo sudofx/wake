@@ -51,6 +51,11 @@ a bounded policy on the owning native record. Its deployment grant is
 is false. `wake improve autonomous-demo --output NEW_DIRECTORY` runs its complete
 native-record loop without a model, human proposal or per-change review.
 
+For an isolated, governed operational adjustment with failure and rollback
+scenarios, run `wake improve recovery-demo --output NEW_DIRECTORY`; see
+[bounded recovery](resilience.md#try-bounded-operational-self-correction-in-isolation).
+It changes only synthetic fixture callers, never installed research settings.
+
 For the browser-local digital colony and its bounded Bob observation contract,
 see [Ant Farm](ant-farm.md).
 
