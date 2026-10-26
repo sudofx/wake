@@ -2,8 +2,8 @@
 
 Open **Bob’s Ant Farm** in the site menu. **Observe** opens live counts, an
 individual-ant selector and colony options. **+** and **−** magnify the habitat or step back to the whole case. Drag with
-one finger or the mouse to pan while magnified; two fingers pinch and pan
-together. **⛶** enters full screen, and the same button returns to the tabletop.
+the mouse to pan while magnified. On a phone, pinch and pan use normal browser
+page zoom, scaling the case, controls and background together. **⛶** enters full screen, and the same button returns to the tabletop.
 Browsers without native fullscreen use the available page viewport. **Trails** toggles visible purple
 food signals; **Add food** scatters surface crumbs.
 
@@ -89,7 +89,7 @@ window. At 1× the scenery follows local wall time, with continuous dawn/dusk
 lighting; faster speeds add their extra elapsed time to the scenery. The ant
 movement baseline remains four times the original simulation pace. **+** expands
 observation across the viewport; **−** returns through the zoom levels to the
-whole container. Drag or pinch to explore. The purple trails are brighter and
+whole container. Mouse drag explores the magnified colony. Pinch zoom scales the whole webpage. The purple trails are brighter and
 half the previous width. Existing browser saves are preserved.
 
 ## Implementation and boundaries
@@ -141,8 +141,9 @@ output is mocked; these checks do not certify live answer quality or biology.
 
 A quiet, drawn cream background and lighter tunnel interiors keep dark workers visible,
 without photographic sand or enlarged grains.
-Use **Closer +** up to 4×, **−** to zoom out, or **Fit** for the whole colony.
-Drag to pan; pinch or scroll to zoom around a point. Keyboard users can focus
+Use **+** up to 6× or **−** to return to the whole colony.
+Mouse drag pans; the mouse wheel zooms around a point. Touch pinch and trackpad
+page zoom remain browser gestures that scale the whole page. Keyboard users can focus
 the habitat, use plus/minus and arrow keys, and press Home to fit. Camera changes
 do not restart the saved colony or accelerate time.
 
@@ -222,5 +223,5 @@ time to carry it home. Hidden pages still pause, so absence never starves a colo
 Existing colony saves retain their tunnels, identities and counters; previously
 saved colonies begin the new nutrition tracking with no assumed hidden hunger.
 `node tests/browser/ant-farm.cjs` checks real browser glass transparency, day/night
-visibility, mouse/touch panning, pinch zoom, fullscreen and phone layout. A physical
+visibility, mouse panning, native page pinch zoom, browser touch handling, fullscreen and phone layout. A physical
 phone remains a separate acceptance check.

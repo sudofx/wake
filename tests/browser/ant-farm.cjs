@@ -1,4 +1,4 @@
-/* Real browser checks: transparent glass, one sky light, drag/pinch and fullscreen. */
+/* Real browser checks: transparent glass, one sky light, mouse pan, native page pinch and fullscreen. */
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
 const assert=require('node:assert/strict'),fs=require('node:fs'),http=require('node:http'),path=require('node:path');
 const assets=path.resolve(__dirname,'../../wake/assets');
@@ -30,11 +30,14 @@ const server=http.createServer((req,res)=>{
   await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:touches(x-70,x+70)});
   await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:touches(x-110,x+110)});
   await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await page.waitForTimeout(100);
-  const pinched=await page.evaluate(()=>window.__view);assert.ok(pinched[2]<moved[2],'Two-finger pinch must magnify the colony');
+  const pinched=await page.evaluate(()=>window.__view);assert.deepEqual(pinched,moved,'Touch pinch must not change the internal colony camera');
   await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:touches(x)});
   await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:touches(x-100)});
   await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await page.waitForTimeout(100);
-  const dragged=await page.evaluate(()=>window.__view);assert.ok(Math.abs(dragged[0]-pinched[0])>10,'One-finger drag after pinch must pan');
+  const dragged=await page.evaluate(()=>window.__view);assert.deepEqual(dragged,pinched,'Touch pan belongs to the browser, not the colony camera');
+  assert.equal(await canvas.evaluate(el=>getComputedStyle(el).touchAction),'auto');
+  assert.equal(await canvas.evaluate(el=>{const event=new WheelEvent('wheel',{deltaY:-100,ctrlKey:true,cancelable:true});el.dispatchEvent(event);return event.defaultPrevented;}),false,'Trackpad page zoom must not be cancelled');
+  await cdp.send('Emulation.setPageScaleFactor',{pageScaleFactor:1});
   await page.getByRole('button',{name:'Enter full screen',exact:true}).click();await page.waitForTimeout(100);
   assert.equal(await page.locator('#farm').evaluate(el=>el.classList.contains('is-fullscreen')),true);
   const full=await canvas.boundingBox();assert.ok(full.width>=1190&&full.height>=890);
@@ -45,6 +48,17 @@ const server=http.createServer((req,res)=>{
   assert.equal(await page.locator('.sun').isVisible(),false);assert.equal(await page.locator('.moon').isVisible(),true);
   await page.setViewportSize({width:390,height:844});await page.waitForTimeout(100);
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Phone controls must fit without document overflow');
-  assert.deepEqual(errors,[]);console.log(JSON.stringify({result:'PASS',checks:'transparent glass, single day/night light, mouse pan, pinch, touch pan, fullscreen enter/exit, phone width'}));
+  const phone=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true}),mobile=await phone.newPage();
+  await mobile.goto(base);await mobile.getByRole('button',{name:'Pause',exact:true}).click();
+  const session=await phone.newCDPSession(mobile),habitat=await mobile.locator('#habitat').boundingBox();
+  const before=await mobile.evaluate(()=>({scale:visualViewport.scale,header:document.querySelector('.farm-header').getBoundingClientRect().width,farm:document.querySelector('#farm').className}));
+  await session.send('Input.synthesizePinchGesture',{x:habitat.x+habitat.width/2,y:habitat.y+habitat.height/2,scaleFactor:1.7,relativeSpeed:800,gestureSourceType:'touch'});
+  await mobile.waitForTimeout(250);
+  const after=await mobile.evaluate(()=>({scale:visualViewport.scale,header:document.querySelector('.farm-header').getBoundingClientRect().width,farm:document.querySelector('#farm').className}));
+  assert.ok(after.scale>before.scale*1.3,'Native pinch must enlarge the whole visual viewport');
+  assert.equal(after.header,before.header,'Page zoom must preserve the layout of all elements');
+  assert.equal(after.farm,before.farm,'Native pinch must not engage the internal zoom layout');
+  await phone.close();
+  assert.deepEqual(errors,[]);console.log(JSON.stringify({result:'PASS',checks:'transparent glass, single day/night light, mouse pan, native page pinch, browser touch pan, trackpad zoom, fullscreen enter/exit, phone width'}));
  }finally{await browser.close();server.close();}
 })().catch(error=>{console.error(error);server.close();process.exitCode=1;});

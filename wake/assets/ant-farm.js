@@ -121,16 +121,16 @@
   function cameraClamp(){cameraX=Math.max(.5/zoom,Math.min(1-.5/zoom,cameraX));cameraY=Math.max(.5/zoom,Math.min(1-.5/zoom,cameraY));}
   function setZoom(value,point){
     const next=Math.max(1,Math.min(6,value)),before=canvas.getBoundingClientRect();
-    // Preserve the habitat coordinate beneath the fingers across the case's
-    // tabletop/fullscreen layout change, as well as ordinary zoom and pinch pan.
-    const anchor=point?{x:cameraX+((point.fromX??point.clientX)-before.left-width/2)/width/zoom,y:cameraY+((point.fromY??point.clientY)-before.top-height/2)/height/zoom}:null;
+    // Preserve the habitat coordinate beneath the pointer across the case's
+    // tabletop/fullscreen layout change and mouse-wheel zoom.
+    const anchor=point?{x:cameraX+(point.clientX-before.left-width/2)/width/zoom,y:cameraY+(point.clientY-before.top-height/2)/height/zoom}:null;
     if(!point&&zoom===1&&next>1){const home=colony.nodes[colony.nest];cameraX=home.x/W;cameraY=Math.max(.2,home.y/H-.06);}
     zoom=next;
     get('farm').classList.toggle('is-zoomed',zoom>1);
     if(anchor){const after=canvas.getBoundingClientRect();cameraX=anchor.x-(point.clientX-after.left-width/2)/width/zoom;cameraY=anchor.y-(point.clientY-after.top-height/2)/height/zoom;}
     cameraClamp();
     get('zoom').disabled=zoom>=6;get('zoom-out').disabled=zoom<=1;
-    get('scene-note').textContent=zoom>1?'Pinch to zoom. Drag to explore the colony.':'Small steps. New tunnels. No master plan.';
+    get('scene-note').textContent=zoom>1?'Use + and − for colony detail. Pinch to zoom the whole page.':'Small steps. New tunnels. No master plan.';
     needsDraw=true;
   }
   get('zoom').onclick=()=>setZoom(zoom*2);get('zoom-out').onclick=()=>setZoom(zoom/2);
@@ -141,33 +141,31 @@
     else{fullscreenState(true);try{if(farm.requestFullscreen)await farm.requestFullscreen();}catch{/* Embedded and iPhone browsers still get the full-viewport layout. */}}
   };
   document.addEventListener('fullscreenchange',()=>fullscreenState(!!document.fullscreenElement));
-  const pointers=new Map();let gesture=null;
-  function pinch(){const [a,b]=[...pointers.values()];return a&&b?{distance:Math.max(1,Math.hypot(a.x-b.x,a.y-b.y)),x:(a.x+b.x)/2,y:(a.y+b.y)/2}:null;}
+  // Touch gestures belong to the browser, including whole-page pinch zoom.
+  const pointers=new Map();let dragged=false;
   canvas.addEventListener('pointerdown',event=>{
-    if(event.pointerType==='mouse'&&event.button!==0)return;
-    event.preventDefault();canvas.setPointerCapture(event.pointerId);pointers.set(event.pointerId,{x:event.clientX,y:event.clientY,startX:event.clientX,startY:event.clientY,tapped:true});
-    if(pointers.size>1){following=false;for(const point of pointers.values())point.tapped=false;gesture=pinch();}
+    if(event.pointerType!=='mouse'||event.button!==0)return;
+    dragged=false;
+    event.preventDefault();canvas.setPointerCapture(event.pointerId);pointers.set(event.pointerId,{x:event.clientX,y:event.clientY,startX:event.clientX,startY:event.clientY});
   });
   canvas.addEventListener('pointermove',event=>{
     if(!pointers.has(event.pointerId))return;event.preventDefault();const previous=pointers.get(event.pointerId);
     pointers.set(event.pointerId,{...previous,x:event.clientX,y:event.clientY});
-    if(pointers.size===1){if(Math.hypot(event.clientX-previous.startX,event.clientY-previous.startY)>6){following=false;pointers.get(event.pointerId).tapped=false;}
-      cameraX-=(event.clientX-previous.x)/width/zoom;cameraY-=(event.clientY-previous.y)/height/zoom;cameraClamp();needsDraw=true;
-    }else{const current=pinch();if(gesture)setZoom(zoom*current.distance/gesture.distance,{clientX:current.x,clientY:current.y,fromX:gesture.x,fromY:gesture.y});gesture=current;}
+    if(Math.hypot(event.clientX-previous.startX,event.clientY-previous.startY)>6){following=false;dragged=true;}
+    cameraX-=(event.clientX-previous.x)/width/zoom;cameraY-=(event.clientY-previous.y)/height/zoom;cameraClamp();needsDraw=true;
   });
   for(const name of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(name,event=>{
-    const down=pointers.get(event.pointerId);
-    if(name==='pointerup'&&pointers.size===1&&down?.tapped&&Math.hypot(event.clientX-down.startX,event.clientY-down.startY)<6){
-      const box=canvas.getBoundingClientRect(),x=(cameraX+(event.clientX-box.left-width/2)/width/zoom)*W,y=(cameraY+(event.clientY-box.top-height/2)/height/zoom)*H;
-      let nearest=null,distance=14;
-      for(const dead of colony.recentDeaths){if(!Number.isFinite(dead.x)||colony.time-dead.at>120)continue;ctx.save();ctx.translate(dead.x*cw,dead.y*ch);ctx.rotate(dead.dir);ctx.globalAlpha=.65*(1-(colony.time-dead.at)/120);drawAnt(ctx,r,{id:dead.id,dead:true,moving:false,work:-1,carrying:0},0,colony.time);ctx.restore();}
-    for(const ant of colony.ants){const a=colony.nodes[ant.from],b=colony.nodes[ant.cell],d=Math.hypot((a.x+(b.x-a.x)*ant.phase-x)*cw*zoom,(a.y+(b.y-a.y)*ant.phase-y)*ch*zoom);if(d<distance){nearest=ant;distance=d;}}
-      if(nearest){selectedId=nearest.id;get('ant-select').value=String(selectedId);updateUI();needsDraw=true;}
-    }
-    pointers.delete(event.pointerId);gesture=pinch();
+    pointers.delete(event.pointerId);
   });
-  canvas.addEventListener('wheel',event=>{event.preventDefault();const box=canvas.getBoundingClientRect();setZoom(zoom*Math.exp(-event.deltaY*.002),{clientX:event.clientX,clientY:event.clientY});},{passive:false});
-  canvas.addEventListener('keydown',event=>{if(['+','=','-','Home'].includes(event.key)){event.preventDefault();if(event.key==='Home'){cameraX=.5;cameraY=.5;setZoom(1);}else setZoom(zoom*(event.key==='-'?.5:2));}else if(event.key.startsWith('Arrow')){event.preventDefault();cameraX+=(event.key==='ArrowLeft'?-.08:event.key==='ArrowRight'?.08:0)/zoom;cameraY+=(event.key==='ArrowUp'?-.08:event.key==='ArrowDown'?.08:0)/zoom;cameraClamp();needsDraw=true;}});
+  canvas.addEventListener('click',event=>{
+    if(dragged){dragged=false;return;}
+    const box=canvas.getBoundingClientRect(),x=(cameraX+(event.clientX-box.left-width/2)/width/zoom)*W,y=(cameraY+(event.clientY-box.top-height/2)/height/zoom)*H;
+    let nearest=null,distance=14;
+    for(const ant of colony.ants){const a=colony.nodes[ant.from],b=colony.nodes[ant.cell],d=Math.hypot((a.x+(b.x-a.x)*ant.phase-x)*cw*zoom,(a.y+(b.y-a.y)*ant.phase-y)*ch*zoom);if(d<distance){nearest=ant;distance=d;}}
+    if(nearest){selectedId=nearest.id;get('ant-select').value=String(selectedId);updateUI();needsDraw=true;}
+  });
+  canvas.addEventListener('wheel',event=>{if(event.ctrlKey||event.metaKey)return;event.preventDefault();setZoom(zoom*Math.exp(-event.deltaY*.002),{clientX:event.clientX,clientY:event.clientY});},{passive:false});
+  canvas.addEventListener('keydown',event=>{if(event.ctrlKey||event.metaKey)return;if(['+','=','-','Home'].includes(event.key)){event.preventDefault();if(event.key==='Home'){cameraX=.5;cameraY=.5;setZoom(1);}else setZoom(zoom*(event.key==='-'?.5:2));}else if(event.key.startsWith('Arrow')){event.preventDefault();cameraX+=(event.key==='ArrowLeft'?-.08:event.key==='ArrowRight'?.08:0)/zoom;cameraY+=(event.key==='ArrowUp'?-.08:event.key==='ArrowDown'?.08:0)/zoom;cameraClamp();needsDraw=true;}});
   get('trails').onclick=()=>{showTrails=!showTrails;get('trails').setAttribute('aria-pressed',String(showTrails));get('scene-note').textContent=showTrails?'Purple trails show returning foragers’ food signals.':'Food trails hidden.';needsDraw=true;};
   get('feed').onclick=()=>{const added=colony.addFood();save();updateUI();get('scene-note').textContent=added?'A few crumbs on the surface. Who will find them first?':'There are plenty of crumbs already. Give the foragers time to find them.';needsDraw=true;};
   function observe(open){get('observations').hidden=!open;get('observe').setAttribute('aria-expanded',String(open));updateUI();if(open)get('close-observations').focus();else get('observe').focus();}
