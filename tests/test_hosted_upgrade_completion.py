@@ -29,8 +29,22 @@ class Client:
         self.writers = []
         self.ci = True
         self.active = False
+        self.changed_source = 'wake/assets/ant-farm.js'
+        self.truncated = False
 
     def request(self, path, *, method='GET', body=None):
+        if path.startswith('git/commits/'):
+            return {'tree': {'sha': path.rsplit('/', 1)[1]}}
+        if path.startswith('git/trees/'):
+            rows = [{'path': p, 'sha': '0' * 40, 'mode': '100644', 'type': 'blob'} for p in
+                    ('wake/record_store.py', 'wake/kernel/record.py', 'scripts/github_research.py', 'pyproject.toml', 'wake/assets/ant-farm.js')]
+            if '/a' in path:
+                for row in rows:
+                    if row['path'] == self.changed_source:
+                        row['sha'] = '1' * 40
+                if self.changed_source not in {r['path'] for r in rows}:
+                    rows.append({'path': self.changed_source, 'sha': '1' * 40, 'mode': '100644', 'type': 'blob'})
+            return {'tree': rows, 'truncated': self.truncated}
         if path.startswith('contents/hosted-runtime.json'):
             if method == 'PUT':
                 if body['sha'] != str(self.sha):
@@ -62,6 +76,37 @@ class Client:
 
 
 class CompletionTests(unittest.TestCase):
+    def test_presentation_binding_preserves_active_writer_and_operator_intent(self):
+        for enabled in (False, True):
+            client = Client()
+            client.intent['presentation_only'] = True
+            del client.intent['generation']
+            del client.intent['checkpoint_ref']
+            client.active = enabled
+            client.writers = [{'id': 2}]
+            client.checkpoint = '0' * 40  # Fresh history need not be frozen for identical runtime bytes.
+            self.assertEqual(complete_upgrade(client, client.report, 42), 'presentation-bound-for-next-batch')
+            self.assertEqual([kind for kind, _ in client.mutations], ['binding'])
+            self.assertEqual(client.active, enabled)
+            self.assertNotIn('pending_upgrade', client.policy['installations'][client.repository])
+
+    def test_presentation_label_cannot_bypass_protected_source_ci_or_operator_controls(self):
+        for changed in ('wake/kernel/record.py', 'wake/application_policy.py', 'pyproject.toml',
+                        '.github/workflows/hosted-research.yml', 'scripts/github_research.py', 'Dockerfile'):
+            client = Client()
+            client.intent['presentation_only'] = True
+            client.changed_source = changed
+            with self.assertRaises(ValueError):
+                complete_upgrade(client, client.report, 42)
+            self.assertFalse(client.mutations)
+        for attr, value in [('truncated', True), ('ci', False), ('latest_control', 12)]:
+            client = Client()
+            client.intent['presentation_only'] = True
+            setattr(client, attr, value)
+            with self.assertRaises(ValueError):
+                complete_upgrade(client, client.report, 42)
+            self.assertFalse(client.mutations)
+
     def test_exact_request_promotes_preserving_settings_then_dispatches_and_clears_intent(self):
         client = Client()
         before = copy.deepcopy(client.policy['installations'][client.repository])

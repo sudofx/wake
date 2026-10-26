@@ -273,6 +273,18 @@ Choose the release boundary from the actual diff:
 
 - **Website and Ask Bob:** verify and publish their own artifacts independently.
   They do not require a research stop or a native replay merely to ship UI.
+- **Presentation carried by an older pinned batch:** an explicitly requested
+  `presentation_only: true` upgrade can bind the verified presentation source
+  for the next normal batch without stopping or enabling research. Completion
+  compares complete source trees and rejects changes outside presentation,
+  tests, prose and the existing offline upgrade harness. Research executable
+  bytes, dependency files and the research workflow must remain identical.
+  The request names the exact candidate, baseline, verification run and latest
+  operator control; its twelve-node background report and exact candidate CI
+  must pass. The report supplies the shared captured generation; this special
+  case does not claim a frozen current checkpoint. A newer operator control
+  supersedes it. Current workers retain their immutable source until the normal
+  serialized successor adopts the new binding.
 - **Operational runtime changes with unchanged record interpretation:** complete
   the background comparison, then drain and roll over the runtime. Review the
   diff to establish that native formats, reducers, governance, migrations and

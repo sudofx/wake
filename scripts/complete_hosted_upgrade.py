@@ -24,6 +24,38 @@ def write_policy(client, policy, sha, message):
         'content': base64.b64encode((json.dumps(policy, indent=2) + '\n').encode()).decode()})
 
 
+def presentation_only_diff(client, baseline, candidate):
+    """Prove executable research/runtime bytes are unchanged, not a caller label.
+
+    Only presentation, tests, prose and the existing offline upgrade harness may
+    differ. A complete recursive tree comparison catches additions and removals,
+    file modes and dependency changes without executing either candidate.
+    """
+    def files(revision):
+        commit = client.request('git/commits/' + revision)
+        tree = client.request('git/trees/' + commit['tree']['sha'] + '?recursive=1')
+        if tree.get('truncated') is not False:
+            raise ValueError('Incomplete source tree cannot prove presentation-only impact')
+        result = {}
+        for item in tree['tree']:
+            if item['type'] == 'tree':
+                continue
+            if item['type'] not in ('blob', 'commit') or item['path'] in result:
+                raise ValueError('Invalid source tree')
+            result[item['path']] = (item['sha'], item['mode'], item['type'])
+        if not {'wake/record_store.py', 'wake/kernel/record.py', 'scripts/github_research.py', 'pyproject.toml'} <= result.keys():
+            raise ValueError('Missing runtime source identity')
+        return result
+    before, after = files(baseline), files(candidate)
+    allowed = {'AGENTS.md', 'hosted-runtime.json', 'scripts/complete_hosted_upgrade.py',
+               'scripts/verify_hosted_upgrade.py', '.github/workflows/complete-hosted-upgrade.yml',
+               '.github/workflows/verify-hosted-upgrade.yml'}
+    for path in before.keys() | after.keys():
+        if before.get(path) != after.get(path) and not (path in allowed or
+                path.startswith(('wake/assets/', 'docs/', 'tests/', 'deploy/ask-bob/'))):
+            raise ValueError('Presentation-only request changes protected source: ' + path)
+
+
 def complete_upgrade(client, report, run_id):
     policy, sha = read_policy(client)
     binding = policy['installations'][client.repository]
@@ -31,11 +63,16 @@ def complete_upgrade(client, report, run_id):
     if not intent or intent['verification_run'] != run_id:
         return 'no-matching-request'
     candidate, baseline = intent['candidate'], intent['baseline']
-    if (not all(re.fullmatch('[a-f0-9]{40}', value) for value in (candidate, baseline, intent['checkpoint_ref']))
+    presentation_only = intent.get('presentation_only', False)
+    if type(presentation_only) is not bool:
+        raise ValueError('Invalid presentation-only request')
+    if (not all(re.fullmatch('[a-f0-9]{40}', value) for value in (candidate, baseline))
+            or (not presentation_only and not re.fullmatch('[a-f0-9]{40}', intent['checkpoint_ref']))
             or report.get('status') != 'verified'
             or report.get('candidate') != candidate or report.get('baseline') != baseline
             or report.get('installation_id') != binding['installation_id']
-            or report.get('generation') != intent['generation']
+            or type(report.get('generation')) is not int or report['generation'] < 1
+            or (not presentation_only and report['generation'] != intent['generation'])
             or not re.fullmatch('[a-f0-9]{64}', report.get('checkpoint_sha256', ''))
             or report.get('provider_calls') != 0 or report.get('remote_record_writes') != 0
             or set(report.get('nodes', {})) != set(NODE_IDS)):
@@ -54,6 +91,19 @@ def complete_upgrade(client, report, run_id):
     if not any(item['head_sha'] == candidate and item['head_branch'] == 'master'
                and item['event'] in ('push', 'workflow_dispatch') for item in checks):
         raise ValueError('Candidate has no successful master code checks')
+    if presentation_only:
+        presentation_only_diff(client, baseline, candidate)
+        controls = client.request('actions/workflows/hosted-control.yml/runs?per_page=1')['workflow_runs']
+        if not controls or controls[0]['id'] != intent['control_run']:
+            raise ValueError('A newer operator control superseded this upgrade request')
+        if binding['source_revision'] not in (baseline, candidate):
+            raise ValueError('Runtime binding changed since the request')
+        # Current workers keep their immutable source. The existing serialized
+        # successor adopts the new assets normally; never enable or stop research.
+        binding['source_revision'] = candidate
+        del binding['pending_upgrade']
+        write_policy(client, policy, sha, 'Bind verified presentation for the next hosted batch')
+        return 'presentation-bound-for-next-batch'
     if binding['source_revision'] == baseline:
         controls = client.request('actions/workflows/hosted-control.yml/runs?per_page=1')['workflow_runs']
         if not controls or controls[0]['id'] != intent['control_run']:
