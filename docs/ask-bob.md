@@ -22,7 +22,12 @@ processor, half-precision shader support and sufficient memory are required.
 Unsupported devices can use **source search** from an article instead: it quotes
 published passages without pretending to generate an explanation. There is no
 slow CPU fallback. The browser caches the model; returning still needs to load it
-into graphics memory. Closing the window releases that memory. Speed and answer
+into graphics memory. The setup checks the actual model cache and offers **Use saved Bob**
+when files are present, restores your selected model, and requests persistent
+browser storage when you open a model. It does not start a GPU worker automatically
+on a page reload. Clearing or browser eviction of site data can require missing
+files to download again; a saved-model indicator is not a guarantee that every
+file remains available. Closing the window releases graphics memory. Speed and answer
 quality depend on the model, device and question; this is a trial, not a promise
 of hosted-model quality.
 

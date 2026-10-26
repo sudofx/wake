@@ -96,7 +96,7 @@ def bind_hosted_status(site, repository, revision):
         (root/'ant-farm.html').write_text(farm)
     from .reader_guide import refresh_public_reader
     for root in roots:
-        refresh_public_reader(root)
+        refresh_public_reader(root, include_reader_inference=root == site)
     shutil.copytree(assets / 'self-correction', site / 'self-correction', dirs_exist_ok=True)
     manifest['presentation'] = {'source_revision': revision, 'hosted_status': config}
     encoded = json.dumps(manifest, sort_keys=True)

@@ -128,7 +128,7 @@ def build_guide(post, state, head):
     return guide
 
 
-def refresh_public_reader(site):
+def refresh_public_reader(site, *, include_reader_inference=True):
     """Refresh derived reader assets from the exact captured public archive only."""
     import json
     import re
@@ -172,7 +172,12 @@ def refresh_public_reader(site):
                  'bob-chat.html', 'bob-chat.css', 'bob-chat.js', 'ask-bob-context.js', 'ask-bob-gpu.js', 'ask-bob-gpu-worker.js', 'site-theme.js'):
         (site / name).write_bytes((assets / name).read_bytes())
     for path in assets.glob('ask-bob-gpu-*'):
-        (site / path.name).write_bytes(path.read_bytes())
+        if include_reader_inference:
+            (site / path.name).write_bytes(path.read_bytes())
+        elif (site / path.name).exists():
+            # Node launchers open the unified popup. Retire only derived engine
+            # assets; source packets and their hashes remain untouched.
+            (site / path.name).unlink()
     for post in data['state'].get('posts', {}).values():
         guide = build_guide(post, data['state'], data['head'])
         path = site / record_path('guides', post['id'])

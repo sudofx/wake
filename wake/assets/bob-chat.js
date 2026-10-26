@@ -7,6 +7,18 @@ const selection = params.has('article') ? {article:params.get('article'),hash:pa
 const identity = selection.article || [selection.node,selection.collection,selection.record].join('/');
 const version = selection.hash || selection.head;
 let contextReady = false, mode = 'model', active, history = [], storageKey, allChats = {}, epoch = 0;
+const modelPreference = 'wake-bob-device-model';
+let cacheCheck = 0;
+async function modelSetup() {
+  const check = ++cacheCheck, choice = $('model').value;
+  $('download').textContent = 'Checking saved Bob…';$('download').disabled = true;
+  const saved = await gpu.cached(choice);
+  if(check !== cacheCheck) return;
+  $('download').textContent = saved ? 'Use saved Bob' : saved === false ? 'Download Bob' : 'Open Bob';
+  $('setup-note').textContent = saved ? 'Saved model files found. Open Bob to load them into your graphics processor. Any missing files are fetched again.' : saved === false ? 'Download once, then reuse saved files in this browser. Browser storage can be cleared or evicted; speed and memory needs depend on your device.' : 'Browser storage could not be checked. Bob will reuse available files and download any missing ones.';
+  $('download').disabled = Boolean(active);
+  status(saved ? 'Bob’s model is saved on this device.' : 'Choose a model to start.');
+}
 const state = () => { $('send').disabled = !contextReady || Boolean(active); $('download').disabled = Boolean(active); $('model').disabled = Boolean(active); $('search-mode').disabled = Boolean(active); $('change-model').disabled = Boolean(active); $('stop').hidden = !active; $('chat').setAttribute('aria-busy',String(Boolean(active))); };
 const status = value => { $('status').textContent = value; };
 const nearBottom = () => $('chat').scrollHeight - $('chat').scrollTop - $('chat').clientHeight < 100;
@@ -86,12 +98,17 @@ $('question').oninput = () => {$('question').style.height = 'auto';$('question')
 $('question').onkeydown = event => {if(event.key === 'Enter' && !event.shiftKey && !event.isComposing && matchMedia('(pointer:fine)').matches){event.preventDefault();$('form').requestSubmit();}};
 $('stop').onclick = () => active?.abort();
 $('clear').onclick = () => {epoch++;active?.abort();history = [];if(storageKey){delete allChats[identity];try{localStorage.setItem(storageKey,JSON.stringify(allChats));}catch{}}$('chat').replaceChildren();status('Chat cleared.');};
-$('change-model').onclick = () => {gpu.stop();mode = 'model';$('setup').hidden = false;$('model-setup').hidden = false;$('presence').textContent = 'On your device · WAKE✳︎';status('Choose a model, then download Bob.');};
+$('change-model').onclick = () => {gpu.stop();mode = 'model';$('setup').hidden = false;$('model-setup').hidden = false;$('presence').textContent = 'On your device · WAKE✳︎';void modelSetup();};
+$('model').onchange = () => {try{localStorage.setItem(modelPreference,$('model').value);}catch{}void modelSetup();};
 $('search-mode').onclick = () => {
   if(!selection.article){status('Source search is available from a blog article. Open Bob’s Blog to choose one.');return;}
   mode = 'search';$('setup').hidden = true;$('presence').textContent = 'Source search · no model';status('Source search quotes published passages.');$('question').focus();
 };
 async function download() {
+  cacheCheck++;
+  try{localStorage.setItem(modelPreference,$('model').value);}catch{}
+  // Ask for persistence from the user's click. Denial must not block use.
+  try{navigator.storage?.persist?.().catch(() => {});}catch{}
   const controller = new AbortController(); active = controller;state();$('progress').hidden = false;$('progress').removeAttribute('value');
   try {
     await gpu.load($('model').value,(message,report) => {status(message);if(Number.isFinite(report.progress))$('progress').value = report.progress;},controller.signal);
@@ -103,7 +120,7 @@ $('download').onclick = download;
 $('form').onsubmit = async event => {
   event.preventDefault();if(active || !contextReady) return;
   const question = $('question').value.trim();if(!question)return;
-  if(mode === 'model' && !gpu.ready()){status('Choose a model and download Bob first, or use source search.');$('setup').hidden = false;return;}
+  if(mode === 'model' && !gpu.ready()){$('setup').hidden = false;await modelSetup();status('Open Bob using the setup button, or use source search.');return;}
   const controller = new AbortController(), revision = epoch;active = controller;state();
   bubble('You',question);const row = bubble('Bob','…');$('question').value = '';$('question').style.height = '44px';status(mode === 'search' ? 'Finding published passages…' : 'Reading the sources…');
   try {
@@ -131,4 +148,10 @@ try {
   const link = prepared.sources[0]?.url;if(link)$('source-page').href = link;
   await restore();contextReady = true;state();status('Choose a model to start.');
   if(!await gpu.supported()){$('model-setup').hidden = true;status('GPU Bob is unavailable in this browser. Source search is still available for articles.');}
+  else {
+    let preferred;try{preferred=localStorage.getItem(modelPreference);}catch{}
+    if(Object.hasOwn(gpu.MODELS,preferred))$('model').value=preferred;
+    else if(!await gpu.cached('best') && await gpu.cached('capable'))$('model').value='capable';
+    await modelSetup();
+  }
 } catch(error) {status(error.message);$('setup').hidden = true;}

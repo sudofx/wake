@@ -46,6 +46,7 @@ class AskBobExportTests(unittest.TestCase):
             _copy_public_site(site, node_view, include_reader_inference=False)
             self.assertTrue((node_view / 'index.html').exists())
             self.assertFalse(list(node_view.glob('ask-bob-engine*')))
+            self.assertFalse(list(node_view.glob('ask-bob-gpu-*')))
             self.assertEqual((node_view / 'ask-bob.js').read_bytes(), (site / 'ask-bob.js').read_bytes())
 
     def test_vendored_browser_engine_has_verified_bytes_and_license(self):

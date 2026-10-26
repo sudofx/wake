@@ -6,6 +6,19 @@ export const MODELS = Object.freeze({
 });
 let worker, engine, loading = false, answering = false, selected, revision = 0;
 export const ready = () => Boolean(engine);
+function appConfig(choice) {
+  const model = MODELS[choice];
+  return {cacheBackend:'cache',model_list:[{model_id:model.id,model:'https://huggingface.co/mlc-ai/' + model.id + '/resolve/' + model.revision + '/',model_lib:new URL(model.file,BASE).href,required_features:['shader-f16'],overrides:{context_window_size:4096,max_history_size:1}}]};
+}
+// Ask the engine's cache, not a localStorage flag that survives eviction. This
+// never creates a worker, requests a GPU, or downloads model weights.
+export async function cached(choice) {
+  if (!Object.hasOwn(MODELS,choice)) return false;
+  try {
+    const {hasModelInCache} = await import('./ask-bob-gpu-engine.js');
+    return await bounded(() => hasModelInCache(MODELS[choice].id,appConfig(choice)),{timeout:8000,onStop:() => {}});
+  } catch {return null;}
+}
 export async function supported() {
   if (!navigator.gpu || !globalThis.Worker) return false;
   try {
@@ -56,7 +69,7 @@ export async function load(choice = 'best',progress = () => {},signal) {
       const model = MODELS[choice];
       const candidateWorker = new Worker(new URL('ask-bob-gpu-worker.js',BASE),{type:'module'}); worker = candidateWorker;
       const candidate = new WebWorkerMLCEngine(candidateWorker,{
-        appConfig:{useIndexedDBCache:false,model_list:[{model_id:model.id,model:'https://huggingface.co/mlc-ai/' + model.id + '/resolve/' + model.revision + '/',model_lib:new URL(model.file,BASE).href,required_features:['shader-f16'],overrides:{context_window_size:4096,max_history_size:1}}]},
+        appConfig:appConfig(choice),
         initProgressCallback:report => {if(!cancelled())progress(report.text,{progress:report.progress});},logLevel:'ERROR'
       });
       const crashed = new Promise((_,reject) => {candidateWorker.onerror = () => reject(Error('Bob’s browser worker stopped. Try again with the smaller download.'));});

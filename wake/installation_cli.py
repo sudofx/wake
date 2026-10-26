@@ -176,7 +176,7 @@ def _copy_public_site(source: Path, destination: Path, *, include_reader_inferen
             raise ValueError('Public sites may not contain symlink assets')
         # Only the unified blog mounts Ask Bob. Avoid duplicating the large
         # browser engines in twelve node views that cannot use them.
-        if not include_reader_inference and path.name.startswith('ask-bob-engine'):
+        if not include_reader_inference and path.name.startswith(('ask-bob-engine', 'ask-bob-gpu-')):
             continue
         if not path.is_file() or any(part.startswith('.') for part in relative.parts):
             continue
