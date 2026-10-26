@@ -91,3 +91,22 @@ The header avatar embeds the canonical vector favicon from
 `wake/assets/icons/wake.svg`, so its gradient mark remains sharp on high-density
 displays. The publication mirror carries an exact copy at `worker/wake.svg`;
 the build embeds it without an external image request.
+
+## Public self-correction demonstration
+
+`GET /self-correction` serves the completed isolated recovery demonstration.
+`GET /self-correction/result.json` returns its synthetic results; the page shows
+the SHA-256 of those exact response bytes. Both routes are static, work without
+provider credentials, and make no provider, storage or research-control calls.
+They do not activate operational self-correction on the hosted installation.
+
+Regenerate the publication module from a completed approved fixture with:
+
+```sh
+node deploy/ask-bob/scripts/import-recovery-report.mjs ABSOLUTE_FIXTURE_DIRECTORY
+```
+
+Run that command from the WAKE checkout, then use the normal service checks,
+build and publication workflow. The importer publishes only HTML and synthetic
+JSON. SQLite fixture files remain local. The public page links its source
+revision and labels its demonstration scope explicitly.

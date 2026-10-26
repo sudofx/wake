@@ -135,6 +135,10 @@ Source tests and mirror delivery do not establish resident-runtime adoption.
 
 ## Try bounded operational self-correction in isolation
 
+[Open the published self-correction demonstration](https://wake-ask-bob.coolgrove68.chatgpt.site/self-correction).
+It presents an isolated synthetic run and downloadable results; it has no live
+research controls and does not enable the demonstrated adjustments in production.
+
 ```sh
 python -m wake improve recovery-demo --output /tmp/wake-recovery-new
 ```

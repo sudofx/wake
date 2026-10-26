@@ -11,4 +11,7 @@ if(markdown.includes('`')||markdown.includes('${'))throw Error('Inline formatter
 ui=ui.replace('/* BOB_MARKDOWN */',markdown).replace('/* BOB_THEME_TOKENS */',tokens).replace('<!-- BOB_ICON -->',icon);
 const seam="import {CHAT_HTML} from './chat.js';";
 if(!entry.includes(seam))throw Error('Missing chat module seam');
-await writeFile(new URL('dist/server/index.js',root),entry.replace(seam,ui.replace('export const CHAT_HTML','const CHAT_HTML')));
+const reportSeam="import {RECOVERY_HTML,RECOVERY_RESULT} from './recovery-report.js';";
+if(!entry.includes(reportSeam))throw Error('Missing recovery report module seam');
+const report=(await readFile(new URL('worker/recovery-report.js',root),'utf8')).replace(/^export const /gm,'const ');
+await writeFile(new URL('dist/server/index.js',root),entry.replace(seam,ui.replace('export const CHAT_HTML','const CHAT_HTML')).replace(reportSeam,()=>report));

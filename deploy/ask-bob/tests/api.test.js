@@ -123,3 +123,22 @@ test('container colonies expose only bounded numeric tunnel-connection counts',a
  assert.equal(validate({mode:'ant-farm',observation,question:'How connected is the nest?'}).observation.metrics.connections,3);
  for(const value of [-1,Infinity,3001,'instructions']){const bad=structuredClone(observation);bad.metrics.connections=value;assert.throws(()=>validate({mode:'ant-farm',observation:bad,question:'hi'}),/invalid_observation/);}
 });
+
+test('published recovery demonstration is static and cannot invoke providers, storage or controls',async()=>{
+ const {createHash}=await import('node:crypto');const real=globalThis.fetch;let calls=0;
+ globalThis.fetch=async()=>{calls++;throw Error('No network is permitted for a static report');};
+ const storage={get(){throw Error('No storage reads permitted');},put(){throw Error('No storage writes permitted');}};
+ try{
+  const env={BUCKET:storage,BOB_ENABLED:'true',IP_SALT:'test',GEMINI_API_KEY:'test'};
+  const response=await api.fetch(new Request('https://bob.test/self-correction'),env),html=await response.text();
+  assert.equal(response.status,200);assert.match(html,/CONTROLLED DEMONSTRATION/);assert.match(html,/does not enable these adjustments on live research/);
+  assert.ok(response.headers.get('Content-Security-Policy').includes("default-src 'none'"));
+  const data=await api.fetch(new Request('https://bob.test/self-correction/result.json'),env),raw=await data.text(),result=JSON.parse(raw);
+  assert.equal(result.fixture,true);assert.equal(result.model_calls,0);assert.equal(result.production_changes,0);assert.equal(result.research_records_opened,0);
+  assert.equal(Object.keys(result.scenarios).length,5);assert.ok(Object.values(result.scenarios).every(s=>s.replay_verified));
+  assert.ok(html.includes(createHash('sha256').update(raw).digest('hex')));
+  assert.equal((await api.fetch(new Request('https://bob.test/self-correction/'),{})).status,200);
+  assert.equal((await api.fetch(new Request('https://bob.test/self-correction',{method:'POST'}),env)).status,404);
+  assert.equal(calls,0);assert.ok(!html.includes('/Users/'));assert.ok(!raw.includes('/private/'));
+ }finally{globalThis.fetch=real;}
+});

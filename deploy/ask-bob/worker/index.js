@@ -1,5 +1,6 @@
 // Bob is a public reader application. It has no native record or control capability.
 import {CHAT_HTML} from './chat.js';
+import {RECOVERY_HTML,RECOVERY_RESULT} from './recovery-report.js';
 const PUBLIC = 'https://sudofx.github.io/wake/';
 const ORIGIN = 'https://sudofx.github.io';
 const encoder = new TextEncoder();
@@ -272,6 +273,8 @@ export default {async fetch(request,env,ctx){
   const path=new URL(request.url).pathname,origin=request.headers.get('Origin');
   if(origin&&origin!==ORIGIN&&origin!==new URL(request.url).origin)return reply(request,{error:'origin_rejected'},403);
   if(request.method==='OPTIONS')return new Response(null,{status:204,headers:headers(request)});
+  if((path==='/self-correction'||path==='/self-correction/')&&request.method==='GET')return new Response(RECOVERY_HTML,{headers:{...headers(request),'Content-Type':'text/html; charset=utf-8','Content-Security-Policy':"default-src 'none'; style-src 'unsafe-inline'; form-action 'none'; base-uri 'none'; frame-ancestors 'none'"}});
+  if(path==='/self-correction/result.json'&&request.method==='GET')return reply(request,RECOVERY_RESULT);
   const enabled=env.BOB_ENABLED==='true'&&!!env.GEMINI_API_KEY&&!!env.IP_SALT&&!!env.BUCKET;
   if(path==='/v1/capabilities'&&request.method==='GET'){
     let availability={state:enabled?'ready':'disabled'};
