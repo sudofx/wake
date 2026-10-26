@@ -10,8 +10,11 @@
   const site=new URL(prefix?'../../':'./',own),key='wake-public-snapshot:'+config.repository+':'+config.installation_id;
   const requested=new URL(location.href).searchParams.get('public_revision');
   const nativeFetch=globalThis.fetch.bind(globalThis);
+  // Leave time inside readers' eight-second request budget to read the bundled
+  // fallback. Discovery and manifest validation share one deadline.
+  const discoveryDeadline=AbortSignal.timeout(6000);
   const json=async(url,limit)=>{
-    const response=await nativeFetch(url,{credentials:'omit',referrerPolicy:'no-referrer',cache:'no-cache',signal:AbortSignal.timeout(8000)});
+    const response=await nativeFetch(url,{credentials:'omit',referrerPolicy:'no-referrer',cache:'no-cache',signal:discoveryDeadline});
     if(!response.ok || !response.body)throw Error('Public snapshot unavailable');
     const reader=response.body.getReader(),chunks=[];let size=0;
     try{for(;;){const {done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>limit)throw Error('Public snapshot metadata exceeds limit');chunks.push(value);}}finally{await reader.cancel();}
@@ -29,6 +32,7 @@
   };
   const transport={revision:null,mode:'loading'};
   transport.ready=(async()=>{
+    let pinned=Boolean(requested && requested!=='bundled');
     try{
       if(requested==='bundled'){transport.mode='bundled';notice();return null;}
       if(requested && !/^[a-f0-9]{40}$/.test(requested))throw Error('Invalid snapshot revision');
@@ -36,7 +40,7 @@
       if(!revision && window.parent!==window){
         try{
           const parent=window.parent.WakePublicData;
-          if(parent){await parent.ready;if(parent.mode==='bundled'){transport.mode='bundled';notice();return null;}revision=parent.revision;}
+          if(parent){pinned=true;await parent.ready;if(parent.mode==='bundled'){transport.mode='bundled';notice();return null;}revision=parent.revision;}
         }catch{throw Error('Parent snapshot unavailable');}
       }
       if(!revision){
@@ -58,7 +62,7 @@
     }catch(error){
       // A popup must read the source version its opener selected. Falling back
       // here would present a different context under the same conversation.
-      if(requested){transport.mode='unavailable';throw Error('The selected published snapshot is unavailable. Reopen Bob from a current page.');}
+      if(pinned){transport.mode='unavailable';throw Error('The selected published snapshot is unavailable. Reopen this view from a current page.');}
       transport.mode='bundled';notice();return null;
     }
   })();

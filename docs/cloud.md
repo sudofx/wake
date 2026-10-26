@@ -462,8 +462,8 @@ GitHub Pages hosts the checked interface. `public-data.js` reads a single public
 GitHub commit for each document, while local and unbound exports stay same-origin.
 The explicit binding names the repository, `wake-public` branch and expected
 installation identity. Discovery uses one anonymous GitHub commit lookup, shared
-across pages for three minutes; metadata reads have eight-second timeouts and
-size limits. Data reads omit credentials and referrers and have bounded timeouts.
+across pages for three minutes; discovery and metadata validation share a six-second deadline with
+size limits, leaving time for the bundled fallback inside normal reader budgets. Data reads omit credentials and referrers and have bounded timeouts.
 All overview, detail, pagination, Console and map reads use that immutable commit.
 Bob popups and Console tools inherit it. Opening a new page after the discovery
 cache expires can adopt a newer export without rebuilding the interface.

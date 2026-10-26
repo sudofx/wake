@@ -13,7 +13,7 @@ const server=http.createServer((req,res)=>{
  const base=`http://127.0.0.1:${server.address().port}/wake/`,browser=await chromium.launch({headless:true,...(process.env.CHROME_EXECUTABLE?{executablePath:process.env.CHROME_EXECUTABLE}:{})});
  try{
   const context=await browser.newContext(),page=await context.newPage(),seen=[];let latest='a'.repeat(40),failDiscovery=false,wrongIdentity=false;
-  await context.route('https://api.github.com/**',route=>{seen.push(route.request().url());return route.fulfill({status:failDiscovery?403:200,json:{object:{sha:latest,type:'commit'}}});});
+  await context.route('https://api.github.com/**',route=>{if(failDiscovery==='slow')return;seen.push(route.request().url());return route.fulfill({status:failDiscovery?403:200,json:{object:{sha:latest,type:'commit'}}});});
   await context.route('https://raw.githubusercontent.com/**',route=>{
    const url=new URL(route.request().url());seen.push(url.href);
    if(url.pathname.endsWith('/installation.json'))return route.fulfill({json:{schema:1,installation_id:wrongIdentity?'other':'fixture',live:false,nodes:Array(12).fill({}),record_heads:Object.fromEntries(Array.from({length:12},(_,i)=>[i,{}]))}});
@@ -41,12 +41,14 @@ const server=http.createServer((req,res)=>{
   for(const url of ['https://outside.invalid/data.json','../secret.json','runtime.json','reader-records/execute.js','inspect/index.html']){
    assert(await page.evaluate(async url=>{try{await WakePublicData.fetch(url);return false;}catch{return true;}},url));
   }
+  wrongIdentity=true;await page.evaluate(()=>{const frame=document.createElement('iframe');frame.src='./';document.body.append(frame);});await page.waitForFunction(()=>document.querySelector('iframe').contentWindow.WakePublicData?.mode==='unavailable');assert.equal(await page.evaluate(()=>WakePublicData.mode),'published');await page.evaluate(()=>document.querySelector('iframe').remove());wrongIdentity=false;
   // A bounded initial discovery failure selects one readable bundled generation.
   failDiscovery=true;await page.evaluate(()=>localStorage.clear());await page.reload();await page.evaluate(()=>WakePublicData.ready);
   assert.equal(await page.evaluate(()=>WakePublicData.mode),'bundled');assert.equal((await read()).version,'bundled');await page.locator('#public-data-notice').waitFor();
   const bundled=await page.evaluate(()=>WakePublicData.pin(new URL('bob-chat.html',location.href)).href);
   failDiscovery=false;const fallbackLookups=seen.length;await popup.goto(bundled);await popup.evaluate(()=>WakePublicData.ready);assert.equal(await popup.evaluate(()=>WakePublicData.mode),'bundled');assert.equal(seen.length,fallbackLookups);
   await page.evaluate(()=>{const frame=document.createElement('iframe');frame.src='./';document.body.append(frame);});await page.waitForFunction(()=>document.querySelector('iframe').contentWindow.WakePublicData?.mode==='bundled');assert.equal(seen.length,fallbackLookups);
+  failDiscovery='slow';await page.evaluate(()=>localStorage.clear());await page.reload();const slow=await page.evaluate(async()=>{const response=await WakePublicData.fetch('reader-data.json',{signal:AbortSignal.timeout(8000)});return response.json();});assert.equal(slow.version,'bundled','Slow discovery must leave time to read the fallback');failDiscovery=false;
   wrongIdentity=true;await page.reload();await page.evaluate(()=>WakePublicData.ready);assert.equal(await page.evaluate(()=>WakePublicData.mode),'bundled');
   await popup.goto(pinned);assert(await popup.evaluate(async()=>{try{await WakePublicData.ready;return false;}catch{return true;}}),'An unavailable pinned popup must not substitute other sources');
   console.log(JSON.stringify({result:'PASS',checks:'unchanged interface reads new data, immutable document version, shared discovery cache, popup version, missing packet isolation, identity validation, readable failure fallback'}));
