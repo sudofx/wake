@@ -12,7 +12,8 @@
         "baseline": "785e7337c3ef3e2d8a64320d8dde394c12444c09",
         "verification_run": 40262936374,
         "control_run": 40244286129,
-        "presentation_only": true
+        "presentation_only": true,
+        "presentation_revision": "54b9d9e04b07ba633ff09c496990f9bc6f58337f"
       }
     }
   }
