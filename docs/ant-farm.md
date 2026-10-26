@@ -1,9 +1,10 @@
 # Watch the digital ant farm
 
 Open **Bob’s Ant Farm** in the site menu. **Observe** opens live counts, an
-individual-ant selector and colony options. **+** and **−** magnify the habitat or step back to the whole case. Drag with
-the mouse to pan while magnified. On a phone, pinch and pan use normal browser
-page zoom, scaling the case, controls and background together. **⛶** enters full screen, and the same button returns to the tabletop.
+individual-ant selector and colony options. Pinch and pan use normal browser
+page zoom, scaling the case, sand, controls and background together. There are
+no separate colony zoom buttons, wheel zoom or following camera. Ant selection
+highlights the ant in place. **⛶** enters full screen, and the same button returns to the tabletop.
 Browsers without native fullscreen use the available page viewport. **Trails** toggles visible purple
 food signals; **Add food** scatters surface crumbs.
 
@@ -42,8 +43,8 @@ There are no predators in this version. Add food to sustain an aging colony.
 Food outside and food brought home remain separate counts.
 
 Each worker keeps a non-reused number, scoped by the colony seed. Choose its
-number or tap it in the habitat to inspect role, age and activity. **Follow ant**
-centers the enlarged view on that worker; dragging takes camera control back.
+number or tap it in the habitat to inspect role, age and activity. The selected
+ant is highlighted in place without moving or magnifying the habitat.
 The most recent 64 natural deaths remain available for an already-selected ant.
 Only the selected ant is labeled on the canvas to limit visual clutter and cost.
 
@@ -87,9 +88,8 @@ tracking ants and saving observations make no provider calls.
 The unzoomed farm is a thin indoor container on a wooden table in front of a
 window. At 1× the scenery follows local wall time, with continuous dawn/dusk
 lighting; faster speeds add their extra elapsed time to the scenery. The ant
-movement baseline remains four times the original simulation pace. **+** expands
-observation across the viewport; **−** returns through the zoom levels to the
-whole container. Mouse drag explores the magnified colony. Pinch zoom scales the whole webpage. The purple trails are brighter and
+movement baseline remains four times the original simulation pace. Pinch zoom
+scales the whole webpage; the scene never zooms independently inside its frame. The purple trails are brighter and
 half the previous width. Existing browser saves are preserved.
 
 ## Implementation and boundaries
@@ -102,10 +102,12 @@ downsampled once into a small reusable atlas; animated legs and antennae remain
 procedural. The fallback drawing remains available if an image cannot load. See
 [art provenance and prompts](ant-farm-art.md). Canvas keeps continuous movement cheap;
 HTML keeps controls, focus and counts accessible. Cached terrain redraws after
-excavation or resize. Phone rendering is capped at twenty frames per second and a 1.25 pixel ratio;
-desktop uses twenty-four frames and a 1.5 pixel ratio. Canvas buffers share a
-1.5-million-pixel ceiling, independently of zoom. Paused views redraw only on
-change, terrain is cropped to the viewport, and off-screen ants are not painted.
+excavation or resize. Phone rendering is capped at twenty frames per second;
+desktop uses twenty-four. Canvas detail tracks the device pixel ratio and native
+page zoom, up to an eight-times pixel ratio and four million pixels per buffer.
+Pinching in redraws the ants at higher resolution, including while paused;
+pinching out releases the larger buffers. Scene coordinates and frame geometry
+stay unchanged. Paused views redraw only on change.
 The simulation still caps
 nodes at 3,000, faces at twelve, food sources at 32 and saved samples at sixty.
 Mobile uses the same world and touch controls, without hover or drag requirements.
@@ -141,11 +143,10 @@ output is mocked; these checks do not certify live answer quality or biology.
 
 A quiet, drawn cream background and lighter tunnel interiors keep dark workers visible,
 without photographic sand or enlarged grains.
-Use **+** up to 6× or **−** to return to the whole colony.
-Mouse drag pans; the mouse wheel zooms around a point. Touch pinch and trackpad
-page zoom remain browser gestures that scale the whole page. Keyboard users can focus
-the habitat, use plus/minus and arrow keys, and press Home to fit. Camera changes
-do not restart the saved colony or accelerate time.
+Use the browser’s normal page zoom to inspect the ants. Phone pinch zoom and
+desktop browser zoom scale the whole scene together, while the canvas increases
+its drawing resolution within a bounded pixel budget. Zooming does not restart
+the saved colony or accelerate time.
 
 Movement model `pellet-tunnels@3` retains the excavation and save format from @2,
 with short heading-change pauses and individual walking-speed variation. The
@@ -223,5 +224,6 @@ time to carry it home. Hidden pages still pause, so absence never starves a colo
 Existing colony saves retain their tunnels, identities and counters; previously
 saved colonies begin the new nutrition tracking with no assumed hidden hunger.
 `node tests/browser/ant-farm.cjs` checks real browser glass transparency, day/night
-visibility, mouse panning, native page pinch zoom, browser touch handling, fullscreen and phone layout. A physical
+visibility, native whole-page pinch zoom, canvas/frame alignment, increasing ant
+detail, bounded buffers, browser wheel handling, fullscreen and phone layout. A physical
 phone remains a separate acceptance check.

@@ -26,14 +26,17 @@
   let colony,persistence,storageReady=true,storageConflict=false,unreadableSave=false;
   try{persistence=new ColonyPersistence(localStorage,KEY);const saved=persistence.value;colony=saved?Colony.restore(JSON.parse(saved)):null;}catch{storageReady=false;unreadableSave=true;}
   colony ||= new Colony(crypto.getRandomValues(new Uint32Array(1))[0]);
-  let paused=false,speed=1,showTrails=true,previous=0,accumulator=0,lastDraw=0,lastSave=0,lastUI=0,zoom=1,cameraX=.5,cameraY=.5,selectedId=null,following=false,antSignature='';
+  let paused=false,speed=1,showTrails=true,previous=0,accumulator=0,lastDraw=0,lastSave=0,lastUI=0,selectedId=null,antSignature='';
   let width=0,height=0,dpr=1,cw=0,ch=0,terrainDirty=true,needsDraw=true,frameInterval=1000/24,terrain=document.createElement('canvas'),soil=document.createElement('canvas');
   window.addEventListener('wake-ant-art-ready',()=>{needsDraw=true;});
   const soilCtx=soil.getContext('2d'),ground=terrain.getContext('2d');
   function save(){if(storageConflict||unreadableSave)return;try{if(!persistence.save(colony.save())){storageConflict=true;pause(true);}else storageReady=true;}catch{storageReady=false;}updateStorage();}
   function updateStorage(){get('save-status').textContent=unreadableSave?'Your saved colony could not be read and has been kept untouched. This temporary colony will not replace it.':storageConflict?'Another tab updated this colony. Reload to pick up its progress.':storageReady?'Progress stays in this browser. The colony rests when this page is hidden.':'Saving is unavailable. You can watch now; this colony may not survive a reload.';}
   function resize(){
-    const box=canvas.getBoundingClientRect();width=box.width;height=box.height;const mobile=matchMedia('(pointer: coarse)').matches||width<=600;dpr=Math.min(devicePixelRatio||1,mobile?1.25:1.5,Math.sqrt(1500000/(width*height)));frameInterval=1000/(reduced.matches?10:mobile?20:24);cw=width/W;ch=height/H;
+    const box=canvas.getBoundingClientRect();width=box.width;height=box.height;const mobile=matchMedia('(pointer: coarse)').matches||width<=600;
+    // Increase backing detail for browser page zoom without changing scene coordinates.
+    const pageScale=Math.max(1,window.visualViewport?.scale||1);
+    dpr=Math.min((devicePixelRatio||1)*pageScale,8,Math.sqrt(4000000/(width*height)));frameInterval=1000/(reduced.matches?10:mobile?20:24);cw=width/W;ch=height/H;
     for(const layer of [canvas,terrain,soil]){layer.width=Math.round(width*dpr);layer.height=Math.round(height*dpr);layer.getContext('2d').setTransform(dpr,0,0,dpr,0,0);}
     // Drawn colour fields stay quiet at every zoom; no enlarged photographic grains.
     soilCtx.clearRect(0,0,width,height);
@@ -58,9 +61,7 @@
   const facings=new Map(),strides=new Map();
   function draw(){
     if(!width||!height)return;needsDraw=false;if(terrainDirty)updateTerrain();ctx.clearRect(0,0,width,height);
-    // Sample only the visible terrain into the fixed viewport before transforming ants.
-    ctx.drawImage(terrain,(cameraX-.5/zoom)*width*dpr,(cameraY-.5/zoom)*height*dpr,width*dpr/zoom,height*dpr/zoom,0,0,width,height);
-    ctx.save();ctx.translate(width/2,height/2);ctx.scale(zoom,zoom);ctx.translate(-cameraX*width,-cameraY*height);
+    ctx.drawImage(terrain,0,0,width,height);
     if(showTrails){ctx.lineCap='round';ctx.lineWidth=Math.min(cw,ch)*.325;for(let i=0;i<colony.trail.length;i++)if(colony.trail[i]>.15){const n=colony.nodes[i],p=colony.nodes[n.parent];if(!p)continue;ctx.strokeStyle=`rgba(185,57,255,${Math.min(1,.55+colony.trail[i]/12)})`;ctx.beginPath();ctx.moveTo(n.x*cw,n.y*ch);ctx.lineTo(p.x*cw,p.y*ch);ctx.stroke();}}
     for(const f of colony.food){if(!f.left)continue;const x=f.x*cw,y=f.y*ch;ctx.fillStyle='#b3bb68';for(let j=0;j<Math.min(10,Math.ceil(f.left/24));j++){const angle=j*2.4,r=2+Math.sqrt(j)*1.3;ctx.beginPath();ctx.ellipse(x+Math.cos(angle)*r,y+Math.sin(angle)*r,1.2,.8,j,0,7);ctx.fill();}}
     // Deposited grains accumulate at the entrance; excavation requires a return trip.
@@ -74,12 +75,9 @@
       const target=(a===b?ant.dir:Math.atan2((b.y-a.y)*ch,(b.x-a.x)*cw))+scanning,old=facings.get(ant.id)??target,turn=Math.atan2(Math.sin(target-old),Math.cos(target-old)),angle=old+Math.max(-.23,Math.min(.23,turn));facings.set(ant.id,angle);
       let pose=strides.get(ant.id);if(!pose)pose={x,y,gait:ant.id*2.39996};
       const distance=Math.hypot(x-pose.x,y-pose.y);if(moving&&distance<Math.max(cw,ch)*2)pose.gait+=distance/r*Math.PI*.55;pose.x=x;pose.y=y;strides.set(ant.id,pose);
-      const margin=r*5;
-      if(x<(cameraX-.5/zoom)*width-margin||x>(cameraX+.5/zoom)*width+margin||y<(cameraY-.5/zoom)*height-margin||y>(cameraY+.5/zoom)*height+margin)continue;
       ctx.save();ctx.translate(x,y);ctx.rotate(angle+(moving?Math.sin(pose.gait*2)*.018:0));drawAnt(ctx,r,{...ant,moving,turn},pose.gait,colony.time+(!paused?accumulator:0));ctx.restore();
-      if(ant.id===selectedId){ctx.strokeStyle='#6925ac';ctx.lineWidth=1/zoom;ctx.beginPath();ctx.arc(x,y,r*5,0,Math.PI*2);ctx.stroke();ctx.fillStyle='#351448';ctx.font=`${11/zoom}px system-ui`;ctx.fillText('#'+ant.id,x+r*6,y-r*3);}
+      if(ant.id===selectedId){ctx.strokeStyle='#6925ac';ctx.lineWidth=1;ctx.beginPath();ctx.arc(x,y,r*5,0,Math.PI*2);ctx.stroke();ctx.fillStyle='#351448';ctx.font='11px system-ui';ctx.fillText('#'+ant.id,x+r*6,y-r*3);}
     }
-    ctx.restore();
     const vignette=ctx.createRadialGradient(width*.5,height*.45,width*.12,width*.5,height*.5,Math.max(width,height)*.75);vignette.addColorStop(0,'#0000');vignette.addColorStop(1,'#5d492018');ctx.fillStyle=vignette;ctx.fillRect(0,0,width,height);
   }
   const elapsed=seconds=>`${Math.floor(seconds/60).toString().padStart(2,'0')}:${(seconds%60).toString().padStart(2,'0')}`;
@@ -95,7 +93,6 @@
     if(signature!==antSignature){antSignature=signature;const live=new Set(colony.ants.map(a=>a.id));for(const id of facings.keys())if(!live.has(id)){facings.delete(id);strides.delete(id);}const options=colony.ants.map(a=>{const o=document.createElement('option');o.value=a.id;o.textContent='#'+a.id;return o;});const empty=document.createElement('option');empty.value='';empty.textContent='Choose an ant';get('ant-select').replaceChildren(empty,...options);get('ant-select').value=selectedId===null?'':String(selectedId);}
     const ant=colony.ants.find(a=>a.id===selectedId),dead=colony.recentDeaths.find(a=>a.id===selectedId);
     get('ant-detail').textContent=ant?`Ant ${colony.seed.toString(16).toUpperCase()}:#${ant.id} · ${ant.role==='dig'?'digger':ant.role==='forage'?'forager':'resting worker'} · age ${elapsed(Math.floor(colony.time-ant.bornAt))} · ${ant.work>=0?'excavating':ant.carrying===2?'carrying soil':ant.carrying===1?'carrying food':ant.wait>0?'resting':'walking'}.`:dead?`Ant #${dead.id} died of ${dead.reason} at age ${elapsed(dead.age)}.`:selectedId!==null?`Ant #${selectedId} is no longer alive.`:'Choose an ant or tap one in the habitat. Its number stays with it for life.';
-    get('follow-ant').disabled=!ant;get('follow-ant').setAttribute('aria-pressed',String(following&&!!ant));if(!ant)following=false;
   }
   let sceneryOffset=0,lastScenery=0;
   function updateScenery(){
@@ -111,29 +108,11 @@
     requestAnimationFrame(animate);if(document.hidden){previous=0;return;}if(!previous)previous=now;const delta=Math.min(.25,(now-previous)/1000);previous=now;
     sceneryOffset+=delta*1000*(speed-1);if(now-lastScenery>15000){updateScenery();lastScenery=now;}
     if(!paused){accumulator=Math.min(2,accumulator+delta*speed*4);let steps=0;while(accumulator>=.1&&steps++<20){const before=colony.dug;colony.step();terrainDirty ||= before!==colony.dug;accumulator-=.1;}}
-    if(following){const a=colony.ants.find(a=>a.id===selectedId);if(a){const from=colony.nodes[a.from],to=colony.nodes[a.cell];cameraX=(from.x+(to.x-from.x)*a.phase)/W;cameraY=(from.y+(to.y-from.y)*a.phase)/H;cameraClamp();}}
     if(now-lastDraw>=frameInterval&&(!paused||needsDraw)){draw();lastDraw=now;}if(now-lastUI>2000){updateUI();lastUI=now;}if(now-lastSave>10000){save();lastSave=now;}
   }
   function pause(value){paused=value;get('pause').textContent=paused?'Resume':'Pause';get('pause').setAttribute('aria-pressed',String(paused));get('scene-note').textContent=paused?'The colony is resting. Resume whenever you’re ready.':'Small steps. New tunnels. No master plan.';}
   get('pause').onclick=()=>pause(!paused);get('speed').onclick=()=>{speed=speed===1?2:speed===2?4:1;get('speed').textContent=speed+'×';get('speed').setAttribute('aria-label',`Simulation speed, currently ${speed} times`);};
-  get('ant-select').onchange=()=>{selectedId=get('ant-select').value===''?null:Number(get('ant-select').value);following=false;updateUI();needsDraw=true;};
-  get('follow-ant').onclick=()=>{following=!following;if(following&&zoom<2)setZoom(2);updateUI();needsDraw=true;};
-  function cameraClamp(){cameraX=Math.max(.5/zoom,Math.min(1-.5/zoom,cameraX));cameraY=Math.max(.5/zoom,Math.min(1-.5/zoom,cameraY));}
-  function setZoom(value,point){
-    const next=Math.max(1,Math.min(6,value)),before=canvas.getBoundingClientRect();
-    // Preserve the habitat coordinate beneath the pointer across the case's
-    // tabletop/fullscreen layout change and mouse-wheel zoom.
-    const anchor=point?{x:cameraX+(point.clientX-before.left-width/2)/width/zoom,y:cameraY+(point.clientY-before.top-height/2)/height/zoom}:null;
-    if(!point&&zoom===1&&next>1){const home=colony.nodes[colony.nest];cameraX=home.x/W;cameraY=Math.max(.2,home.y/H-.06);}
-    zoom=next;
-    get('farm').classList.toggle('is-zoomed',zoom>1);
-    if(anchor){const after=canvas.getBoundingClientRect();cameraX=anchor.x-(point.clientX-after.left-width/2)/width/zoom;cameraY=anchor.y-(point.clientY-after.top-height/2)/height/zoom;}
-    cameraClamp();
-    get('zoom').disabled=zoom>=6;get('zoom-out').disabled=zoom<=1;
-    get('scene-note').textContent=zoom>1?'Use + and − for colony detail. Pinch to zoom the whole page.':'Small steps. New tunnels. No master plan.';
-    needsDraw=true;
-  }
-  get('zoom').onclick=()=>setZoom(zoom*2);get('zoom-out').onclick=()=>setZoom(zoom/2);
+  get('ant-select').onchange=()=>{selectedId=get('ant-select').value===''?null:Number(get('ant-select').value);updateUI();needsDraw=true;};
   function fullscreenState(active){get('farm').classList.toggle('is-fullscreen',active);get('fullscreen').setAttribute('aria-pressed',String(active));get('fullscreen').setAttribute('aria-label',active?'Exit full screen':'Enter full screen');get('fullscreen').textContent=active?'Exit full screen':'Full screen';resize();}
   get('fullscreen').onclick=async()=>{
     const farm=get('farm'),active=farm.classList.contains('is-fullscreen');
@@ -141,39 +120,24 @@
     else{fullscreenState(true);try{if(farm.requestFullscreen)await farm.requestFullscreen();}catch{/* Embedded and iPhone browsers still get the full-viewport layout. */}}
   };
   document.addEventListener('fullscreenchange',()=>fullscreenState(!!document.fullscreenElement));
-  // Touch gestures belong to the browser, including whole-page pinch zoom.
-  const pointers=new Map();let dragged=false;
-  canvas.addEventListener('pointerdown',event=>{
-    if(event.pointerType!=='mouse'||event.button!==0)return;
-    dragged=false;
-    event.preventDefault();canvas.setPointerCapture(event.pointerId);pointers.set(event.pointerId,{x:event.clientX,y:event.clientY,startX:event.clientX,startY:event.clientY});
-  });
-  canvas.addEventListener('pointermove',event=>{
-    if(!pointers.has(event.pointerId))return;event.preventDefault();const previous=pointers.get(event.pointerId);
-    pointers.set(event.pointerId,{...previous,x:event.clientX,y:event.clientY});
-    if(Math.hypot(event.clientX-previous.startX,event.clientY-previous.startY)>6){following=false;dragged=true;}
-    cameraX-=(event.clientX-previous.x)/width/zoom;cameraY-=(event.clientY-previous.y)/height/zoom;cameraClamp();needsDraw=true;
-  });
-  for(const name of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(name,event=>{
-    pointers.delete(event.pointerId);
-  });
+  // The browser owns all page zoom and panning. A tap only selects an ant.
   canvas.addEventListener('click',event=>{
-    if(dragged){dragged=false;return;}
-    const box=canvas.getBoundingClientRect(),x=(cameraX+(event.clientX-box.left-width/2)/width/zoom)*W,y=(cameraY+(event.clientY-box.top-height/2)/height/zoom)*H;
+    const box=canvas.getBoundingClientRect(),x=(event.clientX-box.left)/width*W,y=(event.clientY-box.top)/height*H;
     let nearest=null,distance=14;
-    for(const ant of colony.ants){const a=colony.nodes[ant.from],b=colony.nodes[ant.cell],d=Math.hypot((a.x+(b.x-a.x)*ant.phase-x)*cw*zoom,(a.y+(b.y-a.y)*ant.phase-y)*ch*zoom);if(d<distance){nearest=ant;distance=d;}}
+    for(const ant of colony.ants){const a=colony.nodes[ant.from],b=colony.nodes[ant.cell],d=Math.hypot((a.x+(b.x-a.x)*ant.phase-x)*cw,(a.y+(b.y-a.y)*ant.phase-y)*ch);if(d<distance){nearest=ant;distance=d;}}
     if(nearest){selectedId=nearest.id;get('ant-select').value=String(selectedId);updateUI();needsDraw=true;}
   });
-  canvas.addEventListener('wheel',event=>{if(event.ctrlKey||event.metaKey)return;event.preventDefault();setZoom(zoom*Math.exp(-event.deltaY*.002),{clientX:event.clientX,clientY:event.clientY});},{passive:false});
-  canvas.addEventListener('keydown',event=>{if(event.ctrlKey||event.metaKey)return;if(['+','=','-','Home'].includes(event.key)){event.preventDefault();if(event.key==='Home'){cameraX=.5;cameraY=.5;setZoom(1);}else setZoom(zoom*(event.key==='-'?.5:2));}else if(event.key.startsWith('Arrow')){event.preventDefault();cameraX+=(event.key==='ArrowLeft'?-.08:event.key==='ArrowRight'?.08:0)/zoom;cameraY+=(event.key==='ArrowUp'?-.08:event.key==='ArrowDown'?.08:0)/zoom;cameraClamp();needsDraw=true;}});
   get('trails').onclick=()=>{showTrails=!showTrails;get('trails').setAttribute('aria-pressed',String(showTrails));get('scene-note').textContent=showTrails?'Purple trails show returning foragers’ food signals.':'Food trails hidden.';needsDraw=true;};
   get('feed').onclick=()=>{const added=colony.addFood();save();updateUI();get('scene-note').textContent=added?'A few crumbs on the surface. Who will find them first?':'There are plenty of crumbs already. Give the foragers time to find them.';needsDraw=true;};
   function observe(open){get('observations').hidden=!open;get('observe').setAttribute('aria-expanded',String(open));updateUI();if(open)get('close-observations').focus();else get('observe').focus();}
   get('observe').onclick=()=>observe(get('observations').hidden);get('close-observations').onclick=()=>observe(false);document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!get('observations').hidden)observe(false);});
   get('new-colony').onclick=()=>{get('reset-confirm').hidden=false;get('confirm-reset').focus();get('options-status').textContent='Choose Start fresh to replace this colony, or Keep it to cancel.';};get('cancel-reset').onclick=()=>{get('reset-confirm').hidden=true;get('options-status').textContent='Your colony is unchanged.';};
-  get('confirm-reset').onclick=()=>{if(storageConflict||unreadableSave){get('options-status').textContent='Reload or recover the saved colony before replacing it.';return;}colony=new Colony(crypto.getRandomValues(new Uint32Array(1))[0]);selectedId=null;following=false;accumulator=0;get('reset-confirm').hidden=true;pause(false);save();resize();updateUI();get('options-status').textContent='New colony started.';};
+  get('confirm-reset').onclick=()=>{if(storageConflict||unreadableSave){get('options-status').textContent='Reload or recover the saved colony before replacing it.';return;}colony=new Colony(crypto.getRandomValues(new Uint32Array(1))[0]);selectedId=null;accumulator=0;get('reset-confirm').hidden=true;pause(false);save();resize();updateUI();get('options-status').textContent='New colony started.';};
   get('download').onclick=()=>{const text=JSON.stringify(colony.observation(),null,2),url=URL.createObjectURL(new Blob([text],{type:'application/json'})),link=document.createElement('a');link.href=url;link.download='ant-colony-observation.json';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);get('observation-export').value=text;get('export-preview').hidden=false;get('options-status').textContent='Observation prepared. If no download appears, copy the text below.';};
-  document.addEventListener('visibilitychange',()=>{previous=0;accumulator=0;if(document.hidden)save();});window.addEventListener('pagehide',save);window.addEventListener('resize',resize);
+  document.addEventListener('visibilitychange',()=>{previous=0;accumulator=0;if(document.hidden)save();});window.addEventListener('pagehide',save);window.addEventListener('resize',scheduleResize);
+  let resizeFrame;
+  function scheduleResize(){if(!resizeFrame)resizeFrame=requestAnimationFrame(()=>{resizeFrame=0;resize();});}
+  window.visualViewport?.addEventListener('resize',scheduleResize);
   reduced.addEventListener('change',()=>{resize();});
   // Multiple tabs must not silently overwrite the same colony.
   window.addEventListener('storage',event=>{try{if(persistence?.observe(event)){pause(true);storageConflict=true;updateStorage();}}catch{storageReady=false;updateStorage();}});
