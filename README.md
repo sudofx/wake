@@ -42,9 +42,8 @@ continue the workload; completion events recover failed handoffs. See
 [autonomous hosted operation](docs/cloud.md#run-research-on-github-without-a-laptop).
 The hosted header light reports public Actions batch status separately from dated
 research snapshots; it requires no sign-in or token.
-Hosted Console activity can also use an explicitly bound, expiring native-runtime
-feed. Node stages and confirmed provider calls update separately from captured
-research counts. Visitors need no sign-in; unavailable samples clear live marks.
+Hosted execution status reads GitHub Actions directly. The public Console shows dated
+research snapshots; live hosted activity streaming is no longer enabled.
 Use [publication instructions](docs/cloud.md#publish-the-local-installation-mirror)
 to upload the current unified website and available node views.
 Enabled mirror delivery uploads changed exports every 30 minutes by default and
@@ -57,11 +56,12 @@ explicit worker recovery, failure evidence and reproducible disturbance checks.
 Use the [private continuity workflow](docs/continuity/README.md) to preserve human
 research notes and engineering handoffs between conversations.
 
-[Ask Bob](docs/ask-bob.md) provides live anonymous conversation through a WAKE
-API with a server-held Gemini key. Replies stream into the browser, use published
-WAKE sources and recent conversation, and remain advisory. Shared server limits
-bound anonymous use. Unbound static exports retain local passage search and the
-optional device model. No Bob surface can change research records or controls.
+The public website and its ant farm depend only on GitHub Pages. Public live Bob
+chat and the former hosted activity relay have been retired. The optional local
+[Ask Bob preview](docs/ask-bob.md) can use Google Gemini through a loopback server;
+API keys never enter public assets. Bob's published research summaries remain.
+The [self-correction demonstration](https://sudofx.github.io/wake/self-correction/)
+is static and does not enable production self-correction.
 
 The local [improvement workflow](docs/improvements.md) turns captured research
 into versioned Python proposals and isolated baseline/candidate comparisons.

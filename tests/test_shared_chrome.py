@@ -43,6 +43,12 @@ class SharedChromeTests(unittest.TestCase):
                             self.assertNotIn('masthead.css', page)
                             self.assertNotIn('runtime-activity.js', page)
                             continue
+                        if 'self-correction' in path.relative_to(site).parts:
+                            self.assertIn('CONTROLLED DEMONSTRATION', page)
+                            self.assertIn('href="result.json"', page)
+                            self.assertIn('window.WAKE_DEPLOYMENT=', page)
+                            self.assertNotIn('runtime-activity.js', page)
+                            continue
                         self.assertIn('data-theme="light"', page, path)
                         self.assertNotIn('data-theme="dark"', page, path)
                         self.assertEqual(page.count('site-theme.js?v='), 1, path)

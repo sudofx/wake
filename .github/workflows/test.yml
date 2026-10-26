@@ -54,11 +54,8 @@ jobs:
         run: sh -n container_setup.sh scripts/wake_installation
       - name: Check that code and architecture rules still work
         run: python -m unittest discover -s tests -v
-      - name: Check hosted activity privacy and freshness
+      - name: Check GitHub status observations
         run: |
-          node --test deploy/activity-relay/tests/relay.test.js
-          node --test deploy/ask-bob/tests/api.test.js
-          node tests/browser/hosted-activity-unit.cjs
           node tests/browser/hosted-status-unit.cjs
       - name: Simulate 100 WAKE cycles
         if: github.event_name != 'push'

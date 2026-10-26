@@ -26,7 +26,7 @@ class HostedPresentationTests(unittest.TestCase):
                                            ('nodes/103.wake/blog/post.html', '../', '103.wake')]:
                 path = root / relative
                 path.parent.mkdir(parents=True, exist_ok=True)
-                deployment = {'schema': 1, 'snapshot_only': True, 'mode': 'standalone', 'instance_name': name}
+                deployment = {'schema': 1, 'snapshot_only': True, 'mode': 'standalone', 'instance_name': name, 'ask_bob': {'url': 'https://retired.invalid'}, 'hosted_activity': {'url': 'https://retired.invalid'}}
                 page = ('<html><head><script>window.WAKE_DEPLOYMENT=' + json.dumps(deployment)
                         + ';window.WAKE_STANDALONE=true;</script>'
                         + f'<script src="{prefix}nav.js?v=old" defer></script>'
@@ -39,8 +39,9 @@ class HostedPresentationTests(unittest.TestCase):
             index.write_text(index.read_text().replace('<script src="nav.js?v=old" defer></script>', '<script>/* inline navigation */</script>'))
             bound = bind_hosted_status(root, 'example/repo', 'b' * 40)
             self.assertEqual(bound['record_heads'], manifest['record_heads'])
-            self.assertIn('https://wake-ask-bob.coolgrove68.chatgpt.site', (root / 'index.html').read_text())
-            self.assertIn('original-installation', (root / 'index.html').read_text())
+            self.assertNotIn('retired.invalid', (root / 'index.html').read_text())
+            self.assertNotIn('chatgpt.site', (root / 'index.html').read_text())
+            self.assertTrue((root / 'self-correction/index.html').exists())
             self.assertEqual(bound['hosted_execution'], manifest['hosted_execution'])
             self.assertEqual((root / 'inspect/index.html').read_bytes(), packet)
             self.assertEqual((root / 'reader-data.json').read_bytes(), b'{"private_bodies":false,"version":744}')

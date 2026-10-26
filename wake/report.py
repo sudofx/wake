@@ -18,6 +18,7 @@ import json
 import os
 import re
 import secrets
+import shutil
 from pathlib import Path
 from zoneinfo import ZoneInfo
 from urllib.parse import unquote, urlsplit
@@ -468,6 +469,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             atomic_write(target / name, (assets / name).read_text())
         # These static inference assets are loaded only after the reader opts in.
         # They contain no provider credentials and never open research authority.
+        shutil.copytree(assets / 'self-correction', target / 'self-correction', dirs_exist_ok=True)
         for name in ('ask-bob-engine.js', 'ask-bob-engine.wasm', 'ask-bob-engine-compat.js',
                      'ask-bob-engine-compat.wasm', 'ask-bob-engine.LICENSE.txt', 'ask-bob-engine.json',
                      'ask-bob-engine-private.js', 'ask-bob-engine-private.wasm', 'ask-bob-engine-private.LICENSE.txt'):
@@ -741,7 +743,7 @@ def _deployment_site(target, *, standalone, installation=None):
         page = path.read_text()
         # The immersive toy habitat owns its canvas and controls. It needs the
         # deployment binding, not the research masthead or runtime observers.
-        if path.name == 'ant-farm.html':
+        if path.name == 'ant-farm.html' or 'self-correction' in path.relative_to(target).parts:
             page = re.sub(r'<script>window\.WAKE_(?:DEPLOYMENT|STANDALONE)=[^<]*</script>', '', page)
             page = page.replace('<head>', '<head>' + marker, 1)
             atomic_write(path, page)

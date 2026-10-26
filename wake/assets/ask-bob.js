@@ -43,17 +43,10 @@
   }
   let popup, popupArticle;
   let capability;
-  const capabilities=()=>capability||(capability=window.WAKE_DEPLOYMENT?.ask_bob?.url?
-    fetch(window.WAKE_DEPLOYMENT.ask_bob.url+'/v1/capabilities',{credentials:'omit',cache:'no-store',signal:AbortSignal.timeout(5000)})
-      .then(async response=>{if(!response.ok)throw Error('Bob unavailable');const cap=await response.json();return cap.installation_id===window.WAKE_DEPLOYMENT.ask_bob.installation_id?{...cap,enabled:true,unavailable:!cap.enabled,token:'anonymous',live:true,url:window.WAKE_DEPLOYMENT.ask_bob.url}:null;}).catch(()=>({enabled:true,token:'anonymous',live:true,url:window.WAKE_DEPLOYMENT.ask_bob.url,installation_id:window.WAKE_DEPLOYMENT.ask_bob.installation_id,unavailable:true})):window.WAKE_DEPLOYMENT?.snapshot_only===true?
-    fetch('installation.json',{cache:'no-cache',credentials:'omit',signal:AbortSignal.timeout(5000)})
-      .then(async response=>{
-        const value=response.ok?await response.json():null;
-        return typeof value?.installation_id==='string'&&value.installation_id?
-          {enabled:true,token:'browser-only',installation_id:value.installation_id,browser:true}:null;
-      }).catch(()=>null):fetch('/ask-bob/capabilities',{
-    cache:'no-store',credentials:'same-origin',signal:AbortSignal.timeout(5000)
-  }).then(async response=>response.ok?response.json():null).catch(()=>null));
+  const capabilities=()=>capability||(capability=window.WAKE_DEPLOYMENT?.snapshot_only===true?
+    Promise.resolve(null):fetch('/ask-bob/capabilities',{
+      cache:'no-store',credentials:'same-origin',signal:AbortSignal.timeout(5000)
+    }).then(async response=>response.ok?response.json():null).catch(()=>null));
   let guideRuntime;
   const guide=async()=>guideRuntime||(guideRuntime=await import(new URL('ask-bob-guide.js?build=passages-2',document.baseURI).href));
   let browserRuntime;

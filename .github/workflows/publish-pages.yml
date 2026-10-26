@@ -1,0 +1,58 @@
+name: WAKE — Publish website
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["WAKE — Hosted research", "WAKE✳︎ — Check code · automatic"]
+    types: [completed]
+permissions:
+  contents: read
+  actions: read
+  pages: write
+  id-token: write
+concurrency:
+  group: wake-pages-delivery
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.head_branch == 'master'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Select the latest checked master presentation
+        id: source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          sha=$(gh api "repos/${{ github.repository }}/actions/workflows/test.yml/runs?branch=master&status=success&per_page=20" --jq '.workflow_runs | map(select(.head_branch == "master" and (.event == "push" or .event == "workflow_dispatch"))) | first | .head_sha')
+          test "$sha" != null
+          echo "revision=$sha" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ steps.source.outputs.revision }}
+          path: source
+          persist-credentials: false
+      - uses: actions/checkout@v7
+        with:
+          ref: wake-public
+          path: captured
+          fetch-depth: 1
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - run: python -m pip install --disable-pip-version-check -e ./source
+      - name: Keep research bytes and apply the independently checked interface
+        run: |
+          mkdir public-site
+          git -C captured archive HEAD | tar -x -C public-site
+          python source/scripts/prepare_pages.py --artifact public-site --repository '${{ github.repository }}' --revision '${{ steps.source.outputs.revision }}'
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: public-site
+      - name: Publish the checked website
+        id: deployment
+        uses: actions/deploy-pages@v4

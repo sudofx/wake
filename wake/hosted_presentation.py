@@ -22,8 +22,6 @@ def bind_hosted_status(site, repository, revision):
             or not manifest.get('installation_id') or len(manifest.get('record_heads', {})) != 12):
         raise ValueError('Hosted status requires an identified twelve-node hosted snapshot')
     config = {'repository': repository, 'workflow': 'hosted-research.yml', 'branch': 'master'}
-    from .hosted_activity import ACTIVITY_ORIGIN
-    activity = {'url': ACTIVITY_ORIGIN + '/activity.json', 'installation_id': manifest['installation_id']}
     assets = Path(__file__).parent / 'assets'
     shell = (assets / 'index.html').read_text()
     light = re.search(r'<a\b[^>]*class="actions-light"[^>]*>.*?</a>', shell, re.S).group(0)
@@ -47,8 +45,8 @@ def bind_hosted_status(site, repository, revision):
         def binding(match):
             deployment = json.loads(match.group(1))
             deployment['hosted_status'] = config
-            deployment['hosted_activity'] = activity
-            deployment['ask_bob'] = {'url': 'https://wake-ask-bob.coolgrove68.chatgpt.site', 'installation_id': manifest['installation_id']}
+            deployment.pop('hosted_activity', None)
+            deployment.pop('ask_bob', None)
             return ('window.WAKE_DEPLOYMENT=' + json.dumps(deployment)
                     + ";document.documentElement.dataset.wakeHostedStatus='true';")
         from .report import _masthead_navigation
@@ -75,8 +73,8 @@ def bind_hosted_status(site, repository, revision):
         if deployment_path.exists():
             deployment = json.loads(deployment_path.read_text())
             deployment['hosted_status'] = config
-            deployment['hosted_activity'] = activity
-            deployment['ask_bob'] = {'url': 'https://wake-ask-bob.coolgrove68.chatgpt.site', 'installation_id': manifest['installation_id']}
+            deployment.pop('hosted_activity', None)
+            deployment.pop('ask_bob', None)
             deployment_path.write_text(json.dumps(deployment))
     # Farm state stays browser-local; refresh its presentation with the reader shell.
     farm_assets=('ant-farm.css','ant-colony.js','ant-drawing.js','ant-farm.js','bob-markdown.js')
@@ -87,13 +85,15 @@ def bind_hosted_status(site, repository, revision):
         for name in ('ant-soil-v1.png','ant-body-v1.png','ant-sand-v2.png'):
             shutil.copyfile(assets/'backgrounds'/name,root/'backgrounds'/name)
         deployment=json.loads((root/'deployment.json').read_text()) if (root/'deployment.json').exists() else {'schema':1,'mode':'hosted','snapshot_only':True}
-        deployment['ask_bob']={'url':'https://wake-ask-bob.coolgrove68.chatgpt.site','installation_id':manifest['installation_id']}
+        deployment.pop('hosted_activity', None)
+        deployment.pop('ask_bob', None)
         farm=(assets/'ant-farm.html').read_text().replace('<head>', '<head><script>window.WAKE_DEPLOYMENT='+json.dumps(deployment)+';</script>',1)
         (root/'ant-farm.html').write_text(farm)
     from .reader_guide import refresh_public_reader
     for root in roots:
         refresh_public_reader(root)
-    manifest['presentation'] = {'source_revision': revision, 'hosted_status': config, 'hosted_activity': activity}
+    shutil.copytree(assets / 'self-correction', site / 'self-correction', dirs_exist_ok=True)
+    manifest['presentation'] = {'source_revision': revision, 'hosted_status': config}
     encoded = json.dumps(manifest, sort_keys=True)
     for path in [site / 'installation.json', *site.glob('nodes/*/installation.json')]:
         path.write_text(encoded)

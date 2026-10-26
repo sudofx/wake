@@ -35,10 +35,10 @@ For private human checkpoints and fresh-conversation recovery, use the
 [continuity workflow](continuity/README.md). It complements the authoritative
 research record without adding runtime state or automatic model context.
 
-For live anonymous Bob answers, static passage mode and the optional loopback
-preview, see [Ask Bob](ask-bob.md). `deploy/ask-bob/` owns the hosted API; its
-publication checkout is only a mirror. Test it with `node --test deploy/ask-bob/tests/api.test.js`.
-No reader mode starts or resets research.
+Public live Bob chat and the hosted activity relay are retired. The optional
+loopback Gemini reader remains documented in [Ask Bob](ask-bob.md). Public
+presentation must use GitHub Pages; runtime research uses GitHub and Google Gemini.
+Any additional service requires the user's explicit approval.
 
 For research-backed code proposals, disposable-container comparisons and human
 review receipts, use the [improvement workflow](improvements.md). `wake improve`
@@ -371,7 +371,7 @@ must not navigate, reload projections or clear record selections. Buttons belong
 the left-aligned action row directly beneath each heading, including isolated windows.
 
 The provider overlay uses a current native runtime capability, locally or through
-the explicitly bound hosted activity relay. `context` means
+the same-origin local runtime channel. `context` means
 preparation; `provider` means the context-bearing request is in flight and a proposal
 is awaited; `governance` means the response arrived and is being checked. The outbound
 and inbound connector effects distinguish those phases. They do not imply visibility
@@ -628,10 +628,6 @@ then set `research` to `running`. The target is a publication lower bound, not a
 requested research cycle: Bob follows the aggregate three-per-100-wake cadence above. Each member pauses
 once it durably imports the newer shared post, before another research request.
 
-For the hosted live-activity sender and relay, start with
-[the public activity contract](cloud.md#watch-live-hosted-node-activity).
-`deploy/activity-relay/` owns the Worker source; its publication checkout is only
-a delivery mirror. Keep the ingestion token in GitHub/Sites secrets, never source
-or browser bindings. Run `node --test tests/relay.test.js` in that directory and
-`node tests/browser/hosted-activity-unit.cjs` at the repository root alongside the
-Python checks. These checks exercise expiry and privacy without live providers.
+Public hosted activity streaming is retired. Check the direct GitHub status
+observer with `node tests/browser/hosted-status-unit.cjs`. Local runtime observation
+retains the same-origin privacy and freshness checks.

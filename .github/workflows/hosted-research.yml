@@ -43,7 +43,6 @@ jobs:
       WAKE_HOSTED_ARTIFACT: /tmp/wake-hosted-public
       WAKE_DEV_RELOAD: 'false'
       WAKE_HOSTED_STATE_KEY: ${{ secrets.WAKE_HOSTED_STATE_KEY }}
-      WAKE_ACTIVITY_INGEST_TOKEN: ${{ secrets.WAKE_ACTIVITY_INGEST_TOKEN }}
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       BATCH_MINUTES: ${{ inputs.minutes }}
     steps:

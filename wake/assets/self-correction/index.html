@@ -1,0 +1,277 @@
+<!doctype html><html lang="en" data-theme="light"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>WAKE✳︎ · Self-correction</title>
+<style>body{font:16px/1.6 system-ui;max-width:900px;margin:auto;padding:28px;background:#f5f4ef;color:#24372f}h1{line-height:1.15}table{border-collapse:collapse;width:100%;background:white}td,th{text-align:left;padding:12px;border-bottom:1px solid #ddd}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px}.publication{display:flex;justify-content:space-between;gap:16px;margin-bottom:28px;font-weight:600}.publication a,a{color:#315a46}.demo-label{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;padding:6px 10px;border:1px solid #b8c9bb;border-radius:6px;background:#e8eee6}td{overflow-wrap:anywhere}footer{border-top:1px solid #cdd8cd;margin-top:28px;padding-top:18px;font-size:13px}code{overflow-wrap:anywhere}@media(max-width:600px){body{padding:18px}td,th{padding:8px;font-size:13px}}
+</style></head><body><nav class="publication" aria-label="Page navigation"><a href="https://sudofx.github.io/wake/">WAKE✳︎</a><span>Self-correction</span></nav><p class="demo-label">CONTROLLED DEMONSTRATION</p><p>This page presents results from isolated synthetic services. Publishing it does not enable these adjustments on live research.</p>
+<h1>A small, reversible place to correct itself</h1><p>WAKE detected two synthetic rate-limit failures,
+raised its retry delay from 1 to 4 seconds, then observed two completed fixture requests.
+The independent service owns availability; the adjustment cannot change its responses.</p>
+<p>The fixed baseline received three rate-limit failures; the adjusted caller received two and recovered later.
+This is a tradeoff between request pressure and latency, not proof of faster recovery or production reliability.</p>
+<p>Only retry delay and reduced concurrency are allowed. One change at a time, a 30-second lease,
+automatic reversion, a 60-second cooldown, and operator pause. Governance, records, models,
+prompts, credentials and spending ceilings are outside the allowlist.</p>
+<table><tr><th>Disturbance</th><th>Recorded changes</th><th>Record replay</th></tr><tr><td>temporary rate limit</td><td>applied, verified, reverted</td><td>Verified</td></tr><tr><td>persistent failure</td><td>applied, reverted</td><td>Verified</td></tr><tr><td>operator pause</td><td>applied, reverted</td><td>Verified</td></tr><tr><td>guardrail failure</td><td>applied, reverted</td><td>Verified</td></tr><tr><td>missing observation</td><td>applied, reverted</td><td>Verified</td></tr></table>
+<p>Zero model calls, production changes or research-record access. Each scenario uses a new native fixture record.
+Missing observations cause lease expiry at the next control tick; this does not prove recovery if the controller itself stops.</p>
+<details><summary>Exact fixture results</summary><pre>{
+  &quot;schema&quot;: &quot;wake-operational-recovery-demo@1&quot;,
+  &quot;fixture&quot;: true,
+  &quot;model_calls&quot;: 0,
+  &quot;production_changes&quot;: 0,
+  &quot;research_records_opened&quot;: 0,
+  &quot;replay_verified&quot;: true,
+  &quot;baseline&quot;: {
+    &quot;retry_delay_seconds&quot;: 1,
+    &quot;max_concurrent_requests&quot;: 2
+  },
+  &quot;lease_seconds&quot;: 30,
+  &quot;cooldown_seconds&quot;: 60,
+  &quot;forbidden_proposal_status&quot;: &quot;rejected&quot;,
+  &quot;scenarios&quot;: {
+    &quot;temporary_rate_limit&quot;: {
+      &quot;observations&quot;: [
+        {
+          &quot;at&quot;: 0,
+          &quot;signal&quot;: &quot;rate_limited&quot;
+        },
+        {
+          &quot;at&quot;: 1,
+          &quot;signal&quot;: &quot;rate_limited&quot;
+        },
+        {
+          &quot;at&quot;: 5,
+          &quot;signal&quot;: &quot;completed&quot;
+        },
+        {
+          &quot;at&quot;: 9,
+          &quot;signal&quot;: &quot;completed&quot;
+        }
+      ],
+      &quot;state&quot;: {
+        &quot;changes&quot;: [
+          {
+            &quot;after&quot;: {
+              &quot;max_concurrent_requests&quot;: 2,
+              &quot;retry_delay_seconds&quot;: 4
+            },
+            &quot;at&quot;: 1,
+            &quot;before&quot;: {
+              &quot;max_concurrent_requests&quot;: 2,
+              &quot;retry_delay_seconds&quot;: 1
+            },
+            &quot;expires_at&quot;: 31,
+            &quot;reason&quot;: &quot;rate_limited&quot;,
+            &quot;status&quot;: &quot;applied&quot;
+          },
+          {
+            &quot;at&quot;: 9,
+            &quot;reason&quot;: &quot;two_completed_fixture_requests&quot;,
+            &quot;status&quot;: &quot;verified&quot;
+          },
+          {
+            &quot;after&quot;: {
+              &quot;max_concurrent_requests&quot;: 2,
+              &quot;retry_delay_seconds&quot;: 1
+            },
+            &quot;at&quot;: 32,
+            &quot;before&quot;: {
+              &quot;max_concurrent_requests&quot;: 2,
+              &quot;retry_delay_seconds&quot;: 4
+            },
+            &quot;reason&quot;: &quot;lease_expired&quot;,
+            &quot;status&quot;: &quot;reverted&quot;
+          }
+        ],
+        &quot;cooldown_until&quot;: 92,
+        &quot;enabled&quot;: true,
+        &quot;failures&quot;: 0,
+        &quot;observed_at&quot;: 32,
+        &quot;settings&quot;: {
+          &quot;max_concurrent_requests&quot;: 2,
+          &quot;retry_delay_seconds&quot;: 1
+        },
+        &quot;signal&quot;: &quot;no_observation&quot;,
+        &quot;trial&quot;: null
+      },
+      &quot;baseline_rate_limited_requests&quot;: 3,
+      &quot;adjusted_rate_limited_requests&quot;: 2,
+      &quot;replay_verified&quot;: true
+    },
+    &quot;persistent_failure&quot;: {
+      &quot;state&quot;: {
+        &quot;changes&quot;: [
+          {
+            &quot;after&quot;: {
+              &quot;max_concurrent_requests&quot;: 2,
+              &quot;retry_delay_seconds&quot;: 4
+            },
+            &quot;at&quot;: 1,
+            &quot;before&quot;: {
+              &quot;max_concurrent_requests&quot;: 2,
+              &quot;retry_delay_seconds&quot;: 1
+            },
+            &quot;expires_at&quot;: 31,
+            &quot;reason&quot;: &quot;rate_limited&quot;,
+            &quot;status&quot;: &quot;applied&quot;
+          },
+          {
+            &quot;after&quot;: {
+              &quot;max_concurrent_requests&quot;: 2,
+              &quot;retry_delay_seconds&quot;: 1
+            },
+            &quot;at&quot;: 9,
+            &quot;before&quot;: {
+              &quot;max_concurrent_requests&quot;: 2,
+              &quot;retry_delay_seconds&quot;: 4
+            },
+            &quot;reason&quot;: &quot;adjustment_did_not_recover_service&quot;,
+            &quot;status&quot;: &quot;reverted&quot;
+          }
+        ],
+        &quot;cooldown_until&quot;: 69,
+        &quot;enabled&quot;: true,
+        &quot;failures&quot;: 1,
+        &quot;observed_at&quot;: 9,
+        &quot;settings&quot;: {
+          &quot;max_concurrent_requests&quot;: 2,
+          &quot;retry_delay_seconds&quot;: 1
+        },
+        &quot;signal&quot;: &quot;rate_limited&quot;,
+        &quot;trial&quot;: null
+      },
+      &quot;replay_verified&quot;: true
+    },
+    &quot;operator_pause&quot;: {
+      &quot;state&quot;: {
+        &quot;changes&quot;: [
+          {
+            &quot;after&quot;: {
+              &quot;max_concurrent_requests&quot;: 1,
+              &quot;retry_delay_seconds&quot;: 1
+            },
+            &quot;at&quot;: 1,
+            &quot;before&quot;: {
+              &quot;max_concurrent_requests&quot;: 2,
+              &quot;retry_delay_seconds&quot;: 1
+            },
+            &quot;expires_at&quot;: 31,
+            &quot;reason&quot;: &quot;timeout&quot;,
+            &quot;status&quot;: &quot;applied&quot;
+          },
+          {
+            &quot;after&quot;: {
+              &quot;max_concurrent_requests&quot;: 2,
+              &quot;retry_delay_seconds&quot;: 1
+            },
+            &quot;at&quot;: 2,
+            &quot;before&quot;: {
+              &quot;max_concurrent_requests&quot;: 1,
+              &quot;retry_delay_seconds&quot;: 1
+            },
+            &quot;reason&quot;: &quot;operator_pause&quot;,
+            &quot;status&quot;: &quot;reverted&quot;
+          }
+        ],
+        &quot;cooldown_until&quot;: 62,
+        &quot;enabled&quot;: false,
+        &quot;failures&quot;: 0,
+        &quot;observed_at&quot;: 2,
+        &quot;settings&quot;: {
+          &quot;max_concurrent_requests&quot;: 2,
+          &quot;retry_delay_seconds&quot;: 1
+        },
+        &quot;signal&quot;: &quot;no_observation&quot;,
+        &quot;trial&quot;: null
+      },
+      &quot;replay_verified&quot;: true
+    },
+    &quot;guardrail_failure&quot;: {
+      &quot;state&quot;: {
+        &quot;changes&quot;: [
+          {
+            &quot;after&quot;: {
+              &quot;max_concurrent_requests&quot;: 1,
+              &quot;retry_delay_seconds&quot;: 1
+            },
+            &quot;at&quot;: 1,
+            &quot;before&quot;: {
+              &quot;max_concurrent_requests&quot;: 2,
+              &quot;retry_delay_seconds&quot;: 1
+            },
+            &quot;expires_at&quot;: 31,
+            &quot;reason&quot;: &quot;timeout&quot;,
+            &quot;status&quot;: &quot;applied&quot;
+          },
+          {
+            &quot;after&quot;: {
+              &quot;max_concurrent_requests&quot;: 2,
+              &quot;retry_delay_seconds&quot;: 1
+            },
+            &quot;at&quot;: 2,
+            &quot;before&quot;: {
+              &quot;max_concurrent_requests&quot;: 1,
+              &quot;retry_delay_seconds&quot;: 1
+            },
+            &quot;reason&quot;: &quot;guardrail_failure&quot;,
+            &quot;status&quot;: &quot;reverted&quot;
+          }
+        ],
+        &quot;cooldown_until&quot;: 62,
+        &quot;enabled&quot;: true,
+        &quot;failures&quot;: 0,
+        &quot;observed_at&quot;: 2,
+        &quot;settings&quot;: {
+          &quot;max_concurrent_requests&quot;: 2,
+          &quot;retry_delay_seconds&quot;: 1
+        },
+        &quot;signal&quot;: &quot;guardrail_failure&quot;,
+        &quot;trial&quot;: null
+      },
+      &quot;replay_verified&quot;: true
+    },
+    &quot;missing_observation&quot;: {
+      &quot;state&quot;: {
+        &quot;changes&quot;: [
+          {
+            &quot;after&quot;: {
+              &quot;max_concurrent_requests&quot;: 1,
+              &quot;retry_delay_seconds&quot;: 1
+            },
+            &quot;at&quot;: 1,
+            &quot;before&quot;: {
+              &quot;max_concurrent_requests&quot;: 2,
+              &quot;retry_delay_seconds&quot;: 1
+            },
+            &quot;expires_at&quot;: 31,
+            &quot;reason&quot;: &quot;timeout&quot;,
+            &quot;status&quot;: &quot;applied&quot;
+          },
+          {
+            &quot;after&quot;: {
+              &quot;max_concurrent_requests&quot;: 2,
+              &quot;retry_delay_seconds&quot;: 1
+            },
+            &quot;at&quot;: 32,
+            &quot;before&quot;: {
+              &quot;max_concurrent_requests&quot;: 1,
+              &quot;retry_delay_seconds&quot;: 1
+            },
+            &quot;reason&quot;: &quot;lease_expired&quot;,
+            &quot;status&quot;: &quot;reverted&quot;
+          }
+        ],
+        &quot;cooldown_until&quot;: 92,
+        &quot;enabled&quot;: true,
+        &quot;failures&quot;: 0,
+        &quot;observed_at&quot;: 32,
+        &quot;settings&quot;: {
+          &quot;max_concurrent_requests&quot;: 2,
+          &quot;retry_delay_seconds&quot;: 1
+        },
+        &quot;signal&quot;: &quot;no_observation&quot;,
+        &quot;trial&quot;: null
+      },
+      &quot;replay_verified&quot;: true
+    }
+  }
+}</pre></details><footer><p><a href="result.json" download="wake-self-correction-results.json">Download the complete results</a> · <a href="https://github.com/sudofx/wake/blob/98c5e4353efa2fdf4cdf299fd3f46a455a282664/docs/resilience.md#try-bounded-operational-self-correction-in-isolation">Reproduce the demonstration</a></p><p>Published results SHA-256: <code>a7a2e3b1ca7621cbfb5b2e0437b5f19b2453359d82529ecdabb72819f23b6066</code></p></footer></body></html>

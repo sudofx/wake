@@ -7,5 +7,33 @@
 
 .ant-inspector{border-top:1px solid #d0d6b924;padding-top:20px;margin-top:20px}.ant-inspector label{display:block;font-size:12px;margin-bottom:8px}.ant-inspector select{font:inherit;font-size:16px;min-height:44px;padding:8px;color:#f3eedf;background:#101a14;border:1px solid #b6c2a64a;border-radius:8px;max-width:50%}.ant-inspector button{font-size:12px;margin-left:8px}#export-preview label{font-size:12px}#observation-export{font:11px/1.5 ui-monospace,monospace;min-height:120px}#options-status{border-left:2px solid #b1bf81;padding-left:10px}.colony-options button{position:relative;z-index:1}button:disabled{cursor:default}
 
-/* A thin indoor display case, seen straight through its clear front. */
-body{background:#d9ddd5}#farm{background:radial-gradient(ellipse at 50% 25%,#f0f1eb,#d9ddd5 75%)}.farm-header{background:transparent;color:#293a30}.back span{color:#577c54}.farm-title p{color:#607063}.farm-header>button{background:#f1f3ec;color:#293a30;border-color:#aab5a6}.habitat-case{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);width:min(94vw,1200px);height:min(calc(100svh - 240px),64vw);min-height:180px;border:9px solid #6f8266;border-radius:14px;background:#eef0e5;box-shadow:3px 3px 0 #aebba5,7px 12px 0 #788c6e,12px 24px 34px #24351e38}.habitat-case #habitat{border-radius:5px}.case-lid{position:absolute;z-index:1;left:-12px;right:-12px;top:-18px;height:15px;border-radius:8px 8px 3px 3px;background:linear-gradient(#b4c99c,#8ba674);box-shadow:0 2px 0 #526c49;pointer-events:none}.case-base{position:absolute;left:-9px;right:-9px;bottom:-27px;height:23px;background:#8da778;color:#344b2d;border-radius:0 0 10px 10px;display:grid;place-items:center;font-size:9px;font-weight:600;letter-spacing:3px;pointer-events:none}.habitat-label{top:auto;bottom:104px;color:#53644d;text-shadow:none}.scene-note{color:#53644d;text-shadow:none}.farm-controls{box-shadow:0 4px 14px #23331e25}@media(max-width:600px){.habitat-case{border-width:6px;top:43%;width:calc(100vw - 26px);height:64vw}.case-lid{left:-9px;right:-9px;top:-15px;height:13px}.case-base{left:-6px;right:-6px;bottom:-25px}.habitat-label{top:auto;bottom:108px}.scene-note{bottom:140px}}@media(max-height:540px){.habitat-case{height:calc(100svh - 190px);top:47%}.habitat-label{display:none}}
+/* A thin display case on a wooden table in front of a local-time window. */
+#farm{--daylight:1;--dusk:0;background:#242a31;isolation:isolate}
+.room-scene{position:absolute;inset:0;overflow:hidden;background:linear-gradient(#c7c9b9,#e7ddc3);z-index:-1}
+.room-window{position:absolute;left:13%;right:13%;top:-8%;height:77%;border:18px solid #e4dcc5;border-radius:4px;background:#b6d6dc;box-shadow:0 0 0 2px #686b5c,12px 16px 32px #272d2440;overflow:hidden}
+.window-sky{position:absolute;inset:0;background:linear-gradient(#101a36,#39485d)}
+.window-sky::before{content:"";position:absolute;inset:0;background:linear-gradient(#80bfdc,#dae9dd);opacity:var(--daylight)}
+.window-sky::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent,#d88b6a);opacity:var(--dusk)}
+.sun,.moon{position:absolute;width:60px;height:60px;border-radius:50%;left:var(--sun-x,65%);top:20%}
+.sun{background:#fff4c9;box-shadow:0 0 70px 25px #fff2c68c;opacity:var(--daylight)}
+.moon{left:72%;top:16%;width:32px;height:32px;background:#d3dcdd;box-shadow:0 0 40px #cad5ed40;opacity:calc(1 - var(--daylight))}
+.distant-hills,.near-hills{position:absolute;left:-10%;right:-10%;height:43%;bottom:-7%;border-radius:50% 70% 0 0/75% 80% 0 0;background:#526e69;transform:rotate(-7deg)}
+.near-hills{bottom:-18%;height:40%;background:#3a5549;transform:rotate(9deg)}
+.window-cross{position:absolute;inset:0;background:linear-gradient(90deg,transparent calc(50% - 5px),#e4dcc5 calc(50% - 5px),#e4dcc5 calc(50% + 5px),transparent calc(50% + 5px)),linear-gradient(transparent calc(48% - 5px),#e4dcc5 calc(48% - 5px),#e4dcc5 calc(48% + 5px),transparent calc(48% + 5px));box-shadow:inset 0 0 16px #28392950}
+.window-sill{position:absolute;left:11%;right:11%;top:68%;height:13px;background:#bdb49c;box-shadow:0 8px 15px #2a312833}
+.table-top{position:absolute;top:72%;left:-15%;right:-15%;height:30%;background:repeating-linear-gradient(3deg,#9d754f18 0 2px,transparent 2px 15px),linear-gradient(#b48a61,#c49b70);transform:perspective(600px) rotateX(28deg);transform-origin:top}
+.table-front{position:absolute;top:91%;inset-inline:0;bottom:0;background:linear-gradient(#815b3e,#6e4a32);border-top:8px solid #ba9063}
+.room-shade{position:absolute;inset:0;background:#0b172a;opacity:calc(.62 * (1 - var(--daylight)));pointer-events:none}
+.farm-header{background:linear-gradient(#101b25a8,transparent);color:#f3eedf}.back span{color:#c7dbad}.farm-title p{color:#e0e5d9}.farm-header>button{background:#202b26c9}
+.habitat-case{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);width:min(88vw,1100px);height:min(calc(100svh - 245px),54vw);min-height:180px;border:9px solid #6f8266;border-radius:14px;background:#eef0e5;box-shadow:3px 3px 0 #aebba5,7px 12px 0 #788c6e,12px 24px 34px #18221870}
+.habitat-case #habitat{border-radius:5px}
+.case-lid{position:absolute;z-index:1;left:-12px;right:-12px;top:-18px;height:15px;border-radius:8px 8px 3px 3px;background:linear-gradient(#b4c99c,#8ba674);box-shadow:0 2px 0 #526c49;pointer-events:none}
+.case-base{position:absolute;left:-9px;right:-9px;bottom:-27px;height:23px;background:#8da778;color:#344b2d;border-radius:0 0 10px 10px;display:grid;place-items:center;font-size:9px;font-weight:600;letter-spacing:3px;pointer-events:none}
+.habitat-label{top:auto;bottom:104px;color:#f3eedf;background:#19271bd9;border-color:#c6d6b52b}.habitat-label .dot{background:#b7d789}.scene-note{color:#fff3de;text-shadow:0 1px 4px #172316}.farm-controls{box-shadow:0 4px 14px #17241650}
+.is-zoomed .habitat-case{inset:0;transform:none;width:100%;height:100%;min-height:0;border:0;border-radius:0;box-shadow:none}
+.is-zoomed .case-lid,.is-zoomed .case-base,.is-zoomed .room-scene{display:none}
+.is-zoomed .habitat-case #habitat{border-radius:0}.is-zoomed .habitat-label{display:none}
+.is-zoomed .farm-header{background:linear-gradient(#132018b0,transparent)}
+.is-zoomed .scene-note{background:#18241bc9;border-radius:20px;left:50%;right:auto;transform:translateX(-50%);padding:5px 12px;white-space:nowrap}
+@media(max-width:600px){.habitat-case{border-width:6px;top:46%;width:calc(100vw - 28px);height:70vw}.case-lid{left:-9px;right:-9px;top:-15px;height:13px}.case-base{left:-6px;right:-6px;bottom:-25px}.room-window{left:6%;right:6%;border-width:12px;height:73%}.window-sill{left:3%;right:3%;top:64%}.table-top{top:69%}.habitat-label{bottom:106px}.scene-note{bottom:141px}.is-zoomed .habitat-case{width:100%;height:100%;top:0}.is-zoomed .scene-note{bottom:83px}}
+@media(max-height:540px){.habitat-case{height:calc(100svh - 190px);top:47%}.habitat-label{display:none}.is-zoomed .habitat-case{height:100%;top:0}}

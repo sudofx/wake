@@ -66,20 +66,10 @@ and identity; it is not replay, migration or an authority merge. See the
 [research expansion](research-expansion.md). Model-formulated questions remain
 ordinary governed project/reframe actions, never configuration edits.
 
-[Public Ask Bob](ask-bob.md) uses a dedicated anonymous conversation API on the
-hosted website. The Worker owns the Gemini credential, model and instructions;
-clients submit bounded messages and recent turns, never tools or source URLs.
-The server verifies the displayed article against a fixed public guide URL and
-streams an advisory explanation. Conditional R2 writes enforce global admission,
-per-address counters and expiring concurrency leases across Worker instances.
-The disposable counter object is not research authority and stores no chat text.
-There is no visitor authentication. CORS constrains browsers, not arbitrary clients;
-shared server budgets limit abuse even when Origin is forged. Google project quota
-remains shared with any other caller using that project.
-
-Unbound static exports retain browser-local passage retrieval and an optional
-device model. Neither live nor local answers can submit transitions, read private
-authority, change Attention or call research controls.
+Public Bob conversations and the hosted activity relay are retired. The public
+website serves static exports from GitHub Pages; autonomous research runs through
+GitHub Actions and Google Gemini. The static recovery demonstration has no live
+control or model capability. Public pages contain no model credentials.
 
 The optional local Gemini preview is a separate loopback reader surface.
 It uses completed public exports and the existing owning worker's native provider
@@ -718,18 +708,12 @@ Earlier hosted records remain historical and are not merged into the transferred
 installation. Unbound mirrors hide the status lamp and perform no live-status
 polling. Upload timestamps and node snapshot provenance remain visible.
 
-### Expiring hosted activity observations
+### Hosted execution observations
 
-The hosted activity relay is a read-only view of native worker observations,
-separate from Actions batch metadata and research transport. The runner strips
-all but the allowlisted activity fields before its asynchronous sender runs.
-A relay outage never interrupts research, a durability barrier or final capture.
-The Sites Worker stores only one bounded expiring JSON object and accepts writes
-using a scoped ingestion secret. It has no record, provider or control access.
-Browsers bind it to the exact installation, reject stale samples, and clear live
-marks on disconnect. Native capability samples may animate current activity;
-accepted scores, selection and historical replay remain captured research data.
-See [live hosted activity](cloud.md#watch-live-hosted-node-activity).
+Public execution status uses GitHub Actions metadata. Research views retain their
+captured timestamps and heads. No external hosted activity relay is required.
+Local runtime observation remains same-origin and read-only; it never supplies
+accepted scores, selection or historical replay.
 
 Context construction may reuse one verified history inside a bounded read-only
 `RecordStore.history_view`. No history survives the scope, and event appends in

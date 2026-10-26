@@ -79,7 +79,8 @@ class HostedBatchTests(unittest.TestCase):
                     upload.assert_not_called()
                     continue
                 upload.assert_called_once()
-                self.assertTrue(any(c.args == ('pages/builds',) and c.kwargs.get('method') == 'POST'
+                self.assertTrue(any(c.args == ('actions/workflows/publish-pages.yml/dispatches',) and c.kwargs.get('method') == 'POST'
+                                    and c.kwargs.get('body') == {'ref': 'master'}
                                     for c in client.request.call_args_list))
 
 

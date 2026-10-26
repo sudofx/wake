@@ -1,4 +1,4 @@
-/* Canvas owns the habitat; HTML owns controls, observations and conversation. */
+/* Canvas owns the habitat; HTML owns controls and observations. */
 (() => {
   'use strict';
   class ColonyPersistence{
@@ -61,7 +61,7 @@
     // Sample only the visible terrain into the fixed viewport before transforming ants.
     ctx.drawImage(terrain,(cameraX-.5/zoom)*width*dpr,(cameraY-.5/zoom)*height*dpr,width*dpr/zoom,height*dpr/zoom,0,0,width,height);
     ctx.save();ctx.translate(width/2,height/2);ctx.scale(zoom,zoom);ctx.translate(-cameraX*width,-cameraY*height);
-    if(showTrails){ctx.lineCap='round';ctx.lineWidth=Math.min(cw,ch)*.65;for(let i=0;i<colony.trail.length;i++)if(colony.trail[i]>.15){const n=colony.nodes[i],p=colony.nodes[n.parent];if(!p)continue;ctx.strokeStyle=`rgba(117,44,190,${Math.min(.85,.2+colony.trail[i]/15)})`;ctx.beginPath();ctx.moveTo(n.x*cw,n.y*ch);ctx.lineTo(p.x*cw,p.y*ch);ctx.stroke();}}
+    if(showTrails){ctx.lineCap='round';ctx.lineWidth=Math.min(cw,ch)*.325;for(let i=0;i<colony.trail.length;i++)if(colony.trail[i]>.15){const n=colony.nodes[i],p=colony.nodes[n.parent];if(!p)continue;ctx.strokeStyle=`rgba(185,57,255,${Math.min(1,.55+colony.trail[i]/12)})`;ctx.beginPath();ctx.moveTo(n.x*cw,n.y*ch);ctx.lineTo(p.x*cw,p.y*ch);ctx.stroke();}}
     for(const f of colony.food){if(!f.left)continue;const x=f.x*cw,y=f.y*ch;ctx.fillStyle='#b3bb68';for(let j=0;j<Math.min(10,Math.ceil(f.left/24));j++){const angle=j*2.4,r=2+Math.sqrt(j)*1.3;ctx.beginPath();ctx.ellipse(x+Math.cos(angle)*r,y+Math.sin(angle)*r,1.2,.8,j,0,7);ctx.fill();}}
     // Deposited grains accumulate at the entrance; excavation requires a return trip.
     ctx.fillStyle='#a7895c';for(let k=0;k<Math.min(70,colony.soilDelivered);k++){const x=(colony.nodes[colony.exit].x-1+(k%2?1:-1)*(1+Math.sqrt(k)*.4))*cw,y=(colony.nodes[colony.exit].y+.5-Math.floor(k/15)*.1)*ch;ctx.beginPath();ctx.ellipse(x,y,.7,.5,k,0,7);ctx.fill();}
@@ -95,8 +95,19 @@
     get('ant-detail').textContent=ant?`Ant ${colony.seed.toString(16).toUpperCase()}:#${ant.id} · ${ant.role==='dig'?'digger':ant.role==='forage'?'forager':'resting worker'} · age ${elapsed(Math.floor(colony.time-ant.bornAt))} · ${ant.work>=0?'excavating':ant.carrying===2?'carrying soil':ant.carrying===1?'carrying food':ant.wait>0?'resting':'walking'}.`:dead?`Ant #${dead.id} died of ${dead.reason} at age ${elapsed(dead.age)}.`:selectedId!==null?`Ant #${selectedId} is no longer alive.`:'Choose an ant or tap one in the habitat. Its number stays with it for life.';
     get('follow-ant').disabled=!ant;get('follow-ant').setAttribute('aria-pressed',String(following&&!!ant));if(!ant)following=false;
   }
+  let sceneryOffset=0,lastScenery=0;
+  function updateScenery(){
+    const now=new Date(Date.now()+sceneryOffset),hour=now.getHours()+now.getMinutes()/60;
+    const daylight=Math.max(0,Math.min(1,(Math.sin((hour-6)*Math.PI/12)+.16)/.65));
+    const dusk=Math.max(0,1-Math.abs(daylight-.35)*3);
+    get('farm').style.setProperty('--daylight',daylight.toFixed(3));
+    get('farm').style.setProperty('--dusk',dusk.toFixed(3));
+    get('farm').style.setProperty('--sun-x',`${8+((hour+18)%24)/24*84}%`);
+    get('farm').dataset.timeOfDay=daylight>.5?'day':'night';
+  }
   function animate(now){
     requestAnimationFrame(animate);if(document.hidden){previous=0;return;}if(!previous)previous=now;const delta=Math.min(.25,(now-previous)/1000);previous=now;
+    sceneryOffset+=delta*1000*(speed-1);if(now-lastScenery>15000){updateScenery();lastScenery=now;}
     if(!paused){accumulator=Math.min(2,accumulator+delta*speed*4);let steps=0;while(accumulator>=.1&&steps++<20){const before=colony.dug;colony.step();terrainDirty ||= before!==colony.dug;accumulator-=.1;}}
     if(following){const a=colony.ants.find(a=>a.id===selectedId);if(a){const from=colony.nodes[a.from],to=colony.nodes[a.cell];cameraX=(from.x+(to.x-from.x)*a.phase)/W;cameraY=(from.y+(to.y-from.y)*a.phase)/H;cameraClamp();}}
     if(now-lastDraw>=frameInterval&&(!paused||needsDraw)){draw();lastDraw=now;}if(now-lastUI>2000){updateUI();lastUI=now;}if(now-lastSave>10000){save();lastSave=now;}
@@ -106,8 +117,17 @@
   get('ant-select').onchange=()=>{selectedId=get('ant-select').value===''?null:Number(get('ant-select').value);following=false;updateUI();needsDraw=true;};
   get('follow-ant').onclick=()=>{following=!following;if(following&&zoom<2)setZoom(2);updateUI();needsDraw=true;};
   function cameraClamp(){cameraX=Math.max(.5/zoom,Math.min(1-.5/zoom,cameraX));cameraY=Math.max(.5/zoom,Math.min(1-.5/zoom,cameraY));}
-  function setZoom(value,point){const next=Math.max(1,Math.min(4,value));if(point){cameraX+=(point.x/width-.5)*(1/zoom-1/next);cameraY+=(point.y/height-.5)*(1/zoom-1/next);}else if(zoom===1&&next>1){const home=colony.nodes[colony.nest];cameraX=home.x/W;cameraY=Math.max(.2,home.y/H-.06);}zoom=next;cameraClamp();get('zoom').textContent='Closer +';get('zoom').disabled=zoom>=4;get('zoom-out').disabled=zoom<=1;get('zoom-view').textContent=zoom.toFixed(zoom%1?1:0)+'× view';get('scene-note').textContent=zoom>1?'Drag to explore · pinch or scroll to zoom · Fit returns to the whole colony.':'Small steps. New tunnels. No master plan.';needsDraw=true;}
-  get('zoom').onclick=()=>setZoom(zoom*2);get('zoom-out').onclick=()=>setZoom(zoom/2);get('zoom-fit').onclick=()=>{cameraX=.5;cameraY=.5;setZoom(1);};
+  function setZoom(value,point){
+    const next=Math.max(1,Math.min(4,value));
+    if(point){cameraX+=(point.x/width-.5)*(1/zoom-1/next);cameraY+=(point.y/height-.5)*(1/zoom-1/next);}
+    else if(zoom===1&&next>1){const home=colony.nodes[colony.nest];cameraX=home.x/W;cameraY=Math.max(.2,home.y/H-.06);}
+    const expanded=zoom>1;zoom=next;cameraClamp();
+    get('farm').classList.toggle('is-zoomed',zoom>1);
+    get('zoom').disabled=zoom>=4;get('zoom-out').disabled=zoom<=1;
+    get('scene-note').textContent=zoom>1?'Drag to explore the colony.':'Small steps. New tunnels. No master plan.';
+    if(expanded!==(zoom>1))resize();else needsDraw=true;
+  }
+  get('zoom').onclick=()=>setZoom(zoom*2);get('zoom-out').onclick=()=>setZoom(zoom/2);
   const pointers=new Map();let gesture=null;
   canvas.addEventListener('pointerdown',event=>{canvas.setPointerCapture(event.pointerId);pointers.set(event.pointerId,{x:event.clientX,y:event.clientY,startX:event.clientX,startY:event.clientY});gesture=null;});
   canvas.addEventListener('pointermove',event=>{if(!pointers.has(event.pointerId))return;const previous=pointers.get(event.pointerId);pointers.set(event.pointerId,{...previous,x:event.clientX,y:event.clientY});if(pointers.size===1){if(Math.hypot(event.clientX-previous.startX,event.clientY-previous.startY)>6)following=false;cameraX-=(event.clientX-previous.x)/width/zoom;cameraY-=(event.clientY-previous.y)/height/zoom;cameraClamp();needsDraw=true;}else{const [a,b]=[...pointers.values()],distance=Math.hypot(a.x-b.x,a.y-b.y),box=canvas.getBoundingClientRect();if(gesture)setZoom(zoom*distance/gesture,{x:(a.x+b.x)/2-box.left,y:(a.y+b.y)/2-box.top});gesture=distance;}});
@@ -127,32 +147,12 @@
   get('feed').onclick=()=>{const added=colony.addFood();save();updateUI();get('scene-note').textContent=added?'A few crumbs on the surface. Who will find them first?':'There are plenty of crumbs already. Give the foragers time to find them.';needsDraw=true;};
   function observe(open){get('observations').hidden=!open;get('observe').setAttribute('aria-expanded',String(open));updateUI();if(open)get('close-observations').focus();else get('observe').focus();}
   get('observe').onclick=()=>observe(get('observations').hidden);get('close-observations').onclick=()=>observe(false);document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!get('observations').hidden)observe(false);});
-  get('fullscreen').hidden=!document.fullscreenEnabled;get('fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await get('farm').requestFullscreen();}catch{get('scene-note').textContent='Full screen is unavailable in this browser.';}};
   get('new-colony').onclick=()=>{get('reset-confirm').hidden=false;get('confirm-reset').focus();get('options-status').textContent='Choose Start fresh to replace this colony, or Keep it to cancel.';};get('cancel-reset').onclick=()=>{get('reset-confirm').hidden=true;get('options-status').textContent='Your colony is unchanged.';};
-  get('confirm-reset').onclick=()=>{if(storageConflict||unreadableSave){get('options-status').textContent='Reload or recover the saved colony before replacing it.';return;}active?.abort();history=[];get('bob-log').replaceChildren();colony=new Colony(crypto.getRandomValues(new Uint32Array(1))[0]);selectedId=null;following=false;accumulator=0;get('reset-confirm').hidden=true;pause(false);save();resize();updateUI();get('options-status').textContent='New colony started.';};
+  get('confirm-reset').onclick=()=>{if(storageConflict||unreadableSave){get('options-status').textContent='Reload or recover the saved colony before replacing it.';return;}colony=new Colony(crypto.getRandomValues(new Uint32Array(1))[0]);selectedId=null;following=false;accumulator=0;get('reset-confirm').hidden=true;pause(false);save();resize();updateUI();get('options-status').textContent='New colony started.';};
   get('download').onclick=()=>{const text=JSON.stringify(colony.observation(),null,2),url=URL.createObjectURL(new Blob([text],{type:'application/json'})),link=document.createElement('a');link.href=url;link.download='ant-colony-observation.json';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);get('observation-export').value=text;get('export-preview').hidden=false;get('options-status').textContent='Observation prepared. If no download appears, copy the text below.';};
-  let active=null,history=[];
-  function message(who,text){const box=document.createElement('article'),label=document.createElement('strong'),p=document.createElement(who==='You'?'p':'div');label.textContent=who;p.textContent=text;if(who==='Bob')p.className='bob-markdown';box.append(label,p);get('bob-log').append(box);while(get('bob-log').children.length>12)get('bob-log').firstChild.remove();return p;}
-  get('stop-bob').onclick=()=>active?.abort();
-  get('bob-form').onsubmit=async event=>{
-    event.preventDefault();if(active)return;const question=get('bob-question').value.trim();if(!question)return;
-    const endpoint=window.WAKE_DEPLOYMENT?.ask_bob?.url||(location.hostname==='sudofx.github.io'?'https://wake-ask-bob.coolgrove68.chatgpt.site':null);
-    if(!endpoint){get('bob-status').textContent='Bob connects on the published WAKE site. You can save this observation to review or share.';return;}
-    const controller=new AbortController();active=controller;get('ask-bob').disabled=true;get('stop-bob').hidden=false;get('bob-status').textContent='Sharing a snapshot with Bob…';
-    const sample=colony.observation(),asked=message('You',question),answer=message('Bob','');let output='',complete=false;
-    let timedOut=false;const waiting=setTimeout(()=>{get('bob-status').textContent='Bob is still preparing a reply…';},10000),timer=setTimeout(()=>{timedOut=true;controller.abort();},60000);
-    try{
-      const response=await fetch(endpoint+'/v1/chat',{method:'POST',credentials:'omit',headers:{'Content-Type':'application/json'},body:JSON.stringify({mode:'ant-farm',observation:sample,question,history:history.slice(-4)}),signal:controller.signal});
-      if(!response.ok){const detail=await response.json().catch(()=>({}));if(response.status===429)throw Error('Bob’s shared allowance is temporarily unavailable. Try later; your question is kept here.');if(detail.error==='invalid_request')throw Error('The answer service needs the ant farm update before Bob can read this sample.');throw Error('Bob is unavailable right now. Your question is kept here.');}
-      const reader=response.body.getReader(),decoder=new TextDecoder();let buffer='';
-      try{for(;;){const {value,done}=await reader.read();buffer+=decoder.decode(value||new Uint8Array(),{stream:!done});if(buffer.length>65536)throw Error('The reply was too large.');const lines=buffer.split('\n');buffer=lines.pop();for(const line of lines){if(!line.trim())continue;const packet=JSON.parse(line);if(packet.type==='delta'){output+=packet.text;WakeBobMarkdown.render(answer,output.slice(0,6000));}if(packet.type==='done'){complete=true;}if(packet.type==='error')throw Error('Bob’s reply was interrupted. Try again.');}if(done)break;}}finally{await reader.cancel().catch(()=>{});}
-      if(!complete||!output)throw Error('Bob’s reply was interrupted. Try again.');history.push({question:question.slice(0,1000),answer:output.slice(0,2000)});history=history.slice(-4);get('bob-status').textContent=`Snapshot at ${elapsed(sample.metrics.seconds)} · ${sample.metrics.dug} tunnel segments dug. Bob does not see later changes until you ask again.`;
-    }catch(error){get('bob-status').textContent=controller.signal.aborted?(timedOut?'Bob did not finish in time. Your question is kept here; try again.':'Stopped. Your question is kept here.'):error.message;if(!output)answer.parentElement.remove();asked.parentElement.dataset.incomplete='true';}
-    finally{clearTimeout(waiting);clearTimeout(timer);if(active===controller)active=null;get('ask-bob').disabled=false;get('stop-bob').hidden=true;}
-  };
   document.addEventListener('visibilitychange',()=>{previous=0;accumulator=0;if(document.hidden)save();});window.addEventListener('pagehide',save);window.addEventListener('resize',resize);
   reduced.addEventListener('change',()=>{resize();});
   // Multiple tabs must not silently overwrite the same colony.
   window.addEventListener('storage',event=>{try{if(persistence?.observe(event)){pause(true);storageConflict=true;updateStorage();}}catch{storageReady=false;updateStorage();}});
-  pause(paused);updateStorage();resize();updateUI();requestAnimationFrame(animate);
+  updateScenery();pause(paused);updateStorage();resize();updateUI();requestAnimationFrame(animate);
 })();

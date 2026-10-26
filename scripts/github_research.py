@@ -211,7 +211,7 @@ def publish_hosted_snapshot(client, root, artifact, revision):
                       GIT_CONFIG_VALUE_0='AUTHORIZATION: basic ' + authorization)
     upload_public_artifact(artifact, 'https://github.com/' + client.repository + '.git',
                            'wake-public', expected_head=parent)
-    client.request('pages/builds', method='POST', body={})
+    client.request('actions/workflows/publish-pages.yml/dispatches', method='POST', body={'ref': 'master'})
     return manifest
 
 
@@ -284,10 +284,7 @@ def run_batch(minutes, provider):
             '--config', str(root / 'config/wake.toml'), '--host', '127.0.0.1', '--port', '0',
             '--provider', provider], stdout=log, stderr=log,
             env=dict(os.environ, WAKE_DEV_RELOAD='false'))
-        from wake.hosted_activity import HostedActivityPublisher
-        activity = HostedActivityPublisher(root, before['installation_id'], os.environ.get('GITHUB_RUN_ID'), revision)
         mirror = PeriodicPublication(client, root, revision)
-        activity.start()
         try:
             ready(root, process)
             # Bootstrap can recover interrupted native invocations. Persist that
@@ -333,7 +330,6 @@ def run_batch(minutes, provider):
                 print(json.dumps({'hosted_drain': 'bounded-shutdown',
                                   'nodes': drained.get('nodes', {})}), flush=True)
         finally:
-            activity.close()
             process.terminate()
             try:
                 process.wait(timeout=210)

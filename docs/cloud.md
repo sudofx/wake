@@ -23,9 +23,8 @@ neither format is added to public exports. A presentation-only refresh also copi
 the Console chart assets: each line chart fits its complete captured history to
 the panel width, without changing the captured research or inspection packets.
 
-The [ant farm](ant-farm.md) ships with filtered website exports. Its Bob mode
-also requires the matching `deploy/ask-bob/` service update; publishing source,
-website assets and the answer service remain separate operations.
+The [ant farm](ant-farm.md) ships with filtered website exports and runs entirely
+in the browser. Its former conversation panel is removed.
 
 ## Publish the local installation mirror
 
@@ -34,13 +33,11 @@ is a dated, read-only copy of the public data exported from those records. GitHu
 Pages executes no research and has no research controls. An explicitly bound hosted
 status light observes the GitHub Actions executor; ordinary mirrors have no execution light.
 
-[Ask Bob](ask-bob.md) on the hosted mirror calls a dedicated public Worker API
-owned in `deploy/ask-bob/`. Sites hosts this server component; GitHub Pages stays
-static. The Gemini key and address-hashing salt are runtime secrets, never browser
-assets. No visitor authentication or third-party identity service is used. Shared
-conditional counters bound provider admission; chat text is not persisted by the
-Worker. Opening a page does not call Gemini. Unbound exports retain local passage
-search. Public guide generation never calls providers or writes authority.
+The public mirror has no anonymous model-chat server. Its former ChatGPT Sites
+Bob service and hosted live-activity relay are retired. Pages serves completed
+research, the browser-local ant simulation, and the static self-correction demo.
+GitHub Actions executes research with Google Gemini. No ChatGPT subscription or
+Sites hosting is required by these published features.
 
 The unified export also generates [static inspection resources](inspection.md)
 under `inspect/`. They require no JavaScript, authentication or live model; their
@@ -271,7 +268,7 @@ inconsistent reports fail closed. No provider calls or remote record writes occu
 
 Choose the release boundary from the actual diff:
 
-- **Website and Ask Bob:** verify and publish their own artifacts independently.
+- **Website and local Ask Bob:** verify their own boundaries independently.
   They do not require a research stop or a native replay merely to ship UI.
 - **Presentation carried by an older pinned batch:** an explicitly requested
   `presentation_only: true` upgrade can bind the verified presentation source
@@ -454,58 +451,53 @@ shares a short cache across pages, bounds each read to eight seconds, clears sta
 or offline observations, and never reads private records or changes research controls.
 GitHub rate limits can make the light unavailable without stopping research.
 
-A presentation-only refresh can use an existing `wake-public` artifact without opening
-authority. Capture its exact Git head, extract the generated artifact without `.git`,
-then publish with the normal repository settings:
+### Independently checked website delivery
+
+The Pages source is GitHub Actions. `publish-pages.yml` captures the newest
+`wake-public` export, selects the latest successful master code-check revision,
+and applies its presentation with `scripts/prepare_pages.py`. It asserts that
+all twelve record heads and protected research/inspection bytes are preserved,
+then uploads and deploys a Pages artifact. Research completion and code-check
+completion both trigger delivery; manual delivery uses:
 
 ```sh
-WAKE_PUBLISH_REPOSITORY=https://github.com/OWNER/REPO \
-WAKE_PUBLISH_BRANCH=wake-public \
-python scripts/publish_pages.py --artifact SITE \
-  --refresh-hosted-status --expected-head CAPTURED_SHA
-gh api --method POST repos/OWNER/REPO/pages/builds
+gh workflow run publish-pages.yml --ref master
 ```
 
-A changed parent fails closed: capture the newer artifact and retry. Research data, captured heads,
-`hosted_execution` and hashed inspection packets remain unchanged; `presentation`
-records the UI source revision separately. The refresh also rebuilds the root
-Ask Bob passage guides from that exact public archive and replaces reader assets,
-including inline article navigation and the bounded reader transport;
-it rejects mismatched archive/overview heads and leaves research and inspection
-bytes unchanged. Normal hosted batches apply the same binding.
+Publication has its own serialized workflow. Older pinned research batches may
+still export older assets to `wake-public`; the website always reapplies the
+checked presentation before serving them. Their legacy Pages build request can
+fail after the export/checkpoint succeeds; the completion event still starts
+website delivery. The public branch is a captured data input, not the served UI
+owner. `hosted_execution` remains the research source identity; `presentation`
+records the separately checked interface revision. No native record is opened.
 
-### Watch live hosted node activity
+The presentation refresh also rebuilds passage guides from that exact public
+archive and replaces reader assets, including inline article navigation. It
+rejects mismatched archive/overview heads and leaves hashed inspection packets
+unchanged. The public site has no live Bob launcher. For optional loopback Gemini
+preview, see [Ask Bob locally](ask-bob.md).
 
-Console can show current node stages and confirmed shared-queue provider calls
-while its research counts remain a dated export. The explicit `hosted_activity`
-binding names the relay and owning installation. The browser polls it every three
-seconds while visible, without credentials, and clears activity after a failed,
-stale or mismatched response. It does not fetch hosted authority or controls.
+### Hosted execution observations
 
-The runner samples only its loopback `/runtime.json` in a bounded background task.
-`wake/hosted_activity.py` allowlists stage, worker identity, timestamps, public
-invocation/coordinate IDs and confirmed queue metadata before transmission. It
-excludes prompts, responses, source bodies, provider errors and keys.
-Observers never participate in checkpoint or provider-effect sequencing. A transient
-status-file write error is retried by the worker observer; its old sample still
-expires normally rather than being presented as fresh activity.
+The header light reads GitHub Actions batch metadata directly. Public Console
+counts and process/matrix views are dated snapshots. The former external live
+activity relay, its ingestion secret and browser binding are retired. Local
+installations retain their same-origin runtime observation channel; no relay is
+required for local inspection. Missing live activity must not be drawn as current
+execution or accepted research progress.
 
-The relay source is owned in `deploy/activity-relay/`. Its Sites Worker stores one
-expiring public JSON view in an R2 object; this is disposable presentation storage,
-not research authority or a recovery source. It rejects another installation,
-requires the runner's write credential for ingestion, and exposes no controls.
-An observation expires after twelve seconds; browser overlays expire sooner.
-The relay can disappear without changing research or record recovery.
+## Independent website delivery
 
-The Sites environment requires secret `INGEST_TOKEN` and the public
-`INSTALLATION_ID`. The corresponding GitHub Actions secret is
-`WAKE_ACTIVITY_INGEST_TOKEN`. Visitors receive neither secret. Follow the Sites
-source/build/publish workflow for the tracked Worker; a publication mirror is
-not a second implementation owner. Verify anonymous `/activity.json`, then a
-real worker sample and Console disconnect behavior before claiming live delivery.
+`publish-pages.yml` deploys the latest public research snapshot with the newest
+successful master presentation checks. A research worker's pinned runtime cannot
+roll the served interface back to its older bundled assets. The deployment keeps
+all research/inspection packets and captured record heads byte-for-byte; a
+presentation mismatch fails before upload. Research completion, successful code
+checks and explicit workflow dispatch can request delivery. Periodic exports
+from an upgraded runner dispatch this workflow directly. GitHub Pages uses its
+GitHub Actions publishing source, rather than branch-based legacy builds.
 
-Two-hour hosted batches use a three-hour job deadline, leaving time for drain,
-final capture and publication. Required pre-effect saves remain in place. The
-public mirror uploads pinned completed exports every thirty minutes during work
-and again after final capture. Upload failures do not stop research, and a changed
-public parent rejects a stale artifact. Live observations do not advance research counts.
+Older runners may still request a legacy Pages build while draining their current
+batch. Those requests cannot deploy over the Actions-owned website. Their native
+checkpoints remain independent of presentation delivery.

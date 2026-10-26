@@ -1,8 +1,8 @@
 # Watch the digital ant farm
 
 Open **Bob’s Ant Farm** in the site menu. **Observe** opens live counts, an
-individual-ant selector, Bob’s observation desk and colony options. **Closer**
-magnifies the habitat without speeding it up. **Trails** toggles visible purple
+individual-ant selector and colony options. **+** expands the habitat to the
+viewport and magnifies it; **−** steps back to the whole case. **Trails** toggles visible purple
 food signals; **Add food** scatters surface crumbs.
 
 Default **1×** now runs at the previous **4×** pace: four simulation seconds per
@@ -74,21 +74,21 @@ natural death follow simplified display rules. The
 provided starter nest is excluded from the excavation counter. Progress now takes
 minutes to hours. A tunnel segment is a model unit, not a physical measurement.
 
-## Ask Bob about what happened
+## Observe and save
 
-In **Observe**, ask a question at Bob’s observation desk. Each question captures
-the current counts and at most twelve recent ten-second samples, plus the total
-food added. Bob receives that sample and a bounded recent conversation. He can
-compare changes and discuss hypotheses. He does not watch between questions or
-control the ants. **Save observation** prepares a download and a copyable text fallback.
-Colony replacement focuses an explicit confirmation; canceling preserves progress.
+**Observe** shows colony counts, recent changes and individual ant IDs.
+**Save observation** prepares a download and a copyable text fallback. Colony
+replacement requires its inline confirmation; canceling preserves progress.
+The former Bob conversation panel is removed. Watching, digging, feeding,
+tracking ants and saving observations make no provider calls.
 
-Questions use the existing shared Ask Bob limits. Watching, walking, digging,
-saving and local observations make no provider calls. Chat text and the sample
-go to the hosted WAKE answer service and Google Gemini only on submission. Recent
-chat stays in page memory; the service retains admission counters, not colonies
-or conversations. Both website assets and the matching answer-service update
-must be published. Local preview does not forward questions remotely.
+The unzoomed farm is a thin indoor container on a wooden table in front of a
+window. At 1× the scenery follows local wall time, with continuous dawn/dusk
+lighting; faster speeds add their extra elapsed time to the scenery. The ant
+movement baseline remains four times the original simulation pace. **+** expands
+observation across the viewport; **−** returns through the zoom levels to the
+whole container. Drag or pinch to explore. The purple trails are brighter and
+half the previous width. Existing browser saves are preserved.
 
 ## Implementation and boundaries
 
@@ -127,7 +127,7 @@ Run focused checks from the repository root:
 
 ```sh
 python -m unittest tests.test_ant_farm tests.test_shared_chrome
-node --test tests/browser/ant-colony.cjs deploy/ask-bob/tests/api.test.js
+node --test tests/browser/ant-colony.cjs tests/browser/ant-storage.cjs
 ```
 
 Checks cover narrow fixed-width growth, gradual excavation, bounded locomotion,

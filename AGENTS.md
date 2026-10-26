@@ -186,11 +186,13 @@ not mount Docker's socket, authority data or provider credentials.
 The offline container acceptance workflow builds and tests but never publishes
 images, runs live providers, promotes runtime or touches hosted authority.
 
-Live Console inspection is optional, read-only and non-authoritative. Explicitly bound hosted activity may carry allowlisted native runtime observations through an expiring anonymous relay. Its storage is a disposable view, never research authority; it excludes provider bodies, credentials and controls. GitHub Actions metadata alone remains batch status. Observers
+Live Console inspection is optional, read-only and non-authoritative. It uses
+only the local installation's native runtime capability. The public mirror has
+no live activity relay; GitHub Actions metadata remains batch status. Observers
 must not affect governance or provider-effect sequencing. Only an explicit native
-runtime capability bound to the installation may animate an in-flight matrix coordinate. Hosted pending
-snapshots are dated evidence, not live execution. Clear overlays on disconnect
-and keep score, selection, accepted progress and historical replay separate.
+runtime capability bound to the installation may animate an in-flight matrix coordinate.
+Hosted pending snapshots are dated evidence, not live execution. Clear overlays
+on disconnect and keep score, selection, accepted progress and historical replay separate.
 
 ## Development cadence and hosted releases
 
@@ -215,3 +217,10 @@ For an already-authorized runtime rollout, use an exact pending upgrade request
 and the completion workflow when appropriate. Do not leave research paused just
 because the chat stopped polling. Verification without that explicit request
 must never promote a runtime; a newer operator control supersedes the request.
+
+## Approved external services
+
+WAKE runtime and public delivery may depend on GitHub and Google Gemini only.
+Do not add or reintroduce ChatGPT Sites, another hosted service, a browser model
+download or an external identity service without the user's explicit approval.
+Public model credentials must never be embedded in static browser assets.

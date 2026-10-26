@@ -118,8 +118,8 @@ def main():
     args = parser.parse_args()
     policy = json.loads(args.policy.read_text())['installations'][os.environ['GITHUB_REPOSITORY']]
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-    from wake.hosted import HostedState
     if args.capture:
+        from wake.hosted import HostedState
         if args.candidate or args.baseline or args.node or args.aggregate or args.snapshot:
             parser.error('Capture does not run audits')
         with tempfile.TemporaryDirectory(prefix='wake-upgrade-capture-') as temporary:
@@ -156,6 +156,7 @@ def main():
     baseline_sha = revision(baseline)
     if baseline_sha != policy['source_revision']:
         raise ValueError('Baseline differs from the bound runtime')
+    from wake.hosted import HostedState
     with tempfile.TemporaryDirectory(prefix='wake-upgrade-verification-') as temporary:
         root = Path(temporary)
         transport = HostedState(root / 'transport', os.environ['GITHUB_REPOSITORY'],

@@ -539,9 +539,8 @@ Under forward quality policy, notebook proposals supply structured claims and om
 
 Source delivery compacts the parsed source packet rather than cutting serialized JSON. Bounded views preserve source classification and select exact substantive prose ahead of titles, authors and PDF front matter. Escaped JSON stays within the provider budget, and successive shortening retains a quotation surface. These are incomplete derived views; full source records, IDs, provenance and exact-passage validation remain authoritative.
 
-An explicit hosted activity binding can additionally observe the owning native
-runtime through the [expiring relay](cloud.md#watch-live-hosted-node-activity).
-This channel carries current stages, not research records or provider content;
-research still loads same-origin exports. It never updates accepted counts.
+The public mirror uses completed same-origin exports and a GitHub Actions status
+light. Live node stages are available only from a local installation's native
+runtime channel; they never update accepted counts.
 Context tail queries reuse verified history for one read-only context build only;
 the next build checks the record again.
