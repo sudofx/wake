@@ -1,0 +1,148 @@
+name: WAKE — Source self-correction
+
+on:
+  workflow_dispatch:
+    inputs:
+      request:
+        description: Describe one concrete repair and the expected behavior (10–4000 characters).
+        type: string
+        required: true
+      paths:
+        description: One to four existing presentation/docs paths, separated by commas.
+        type: string
+        required: true
+        default: wake/assets/ant-farm.js
+
+permissions:
+  contents: read
+
+concurrency:
+  group: wake-source-self-correction
+  cancel-in-progress: false
+
+jobs:
+  propose:
+    if: github.ref_name == 'master'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    outputs:
+      base: ${{ steps.base.outputs.revision }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - id: base
+        name: Bind the exact source revision
+        run: echo "revision=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Generate one bounded source proposal
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          CORRECTION_REQUEST: ${{ inputs.request }}
+          CORRECTION_PATHS: ${{ inputs.paths }}
+        run: python scripts/self_correction.py generate --output /tmp/wake-correction
+      - uses: actions/upload-artifact@v4
+        with:
+          name: source-correction-proposal
+          path: /tmp/wake-correction/
+          retention-days: 30
+          if-no-files-found: error
+
+  test:
+    needs: propose
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    # Candidate execution receives no secrets and no write-capable token.
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.propose.outputs.base }}
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - uses: actions/download-artifact@v4
+        with:
+          name: source-correction-proposal
+          path: /tmp/wake-correction
+      - name: Build the test image from trusted source before applying candidate
+        run: |
+          cat > /tmp/wake-correction.Dockerfile <<'DOCKER'
+          FROM python:3.13-bookworm
+          COPY --from=node:22-bookworm-slim /usr/local/bin/node /usr/local/bin/node
+          RUN node --version && git --version
+          COPY pyproject.toml /build/pyproject.toml
+          COPY wake /build/wake
+          RUN python -m pip install --disable-pip-version-check '/build[hosted]'
+          USER 65534:65534
+          DOCKER
+          docker build --file /tmp/wake-correction.Dockerfile --tag wake-correction-test .
+      - name: Apply validated candidate text
+        run: python scripts/self_correction.py apply --plan /tmp/wake-correction/proposal.json
+      - name: Check changed JavaScript syntax
+        run: |
+          python - <<'PY'
+          import json, subprocess
+          from pathlib import Path
+          plan = json.loads(Path('/tmp/wake-correction/proposal.json').read_text())
+          for item in plan['changes']:
+              if item['path'].endswith('.js'):
+                  subprocess.run(['node', '--input-type=module', '--check'], input=Path(item['path']).read_bytes(), check=True)
+          PY
+      - name: Run candidate checks without credentials, network or writable host mounts
+        run: |
+          cp example.research-topics.toml research-topics.toml
+          docker run --rm --network none --read-only --cap-drop ALL \
+            --security-opt no-new-privileges --pids-limit 256 --memory 2g --cpus 2 \
+            --tmpfs /tmp:rw,nosuid,size=1g \
+            --mount "type=bind,source=$GITHUB_WORKSPACE,target=/workspace,readonly" \
+            --workdir /workspace --env PYTHONPATH=/workspace --env PYTHONDONTWRITEBYTECODE=1 \
+            --env GIT_CONFIG_COUNT=1 --env GIT_CONFIG_KEY_0=safe.directory --env GIT_CONFIG_VALUE_0=/workspace \
+            wake-correction-test python -m unittest discover -s tests -v
+      - name: Preserve candidate diff for review
+        if: always()
+        run: git diff --no-ext-diff > /tmp/wake-correction.diff
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: source-correction-test-diff
+          path: /tmp/wake-correction.diff
+          retention-days: 30
+
+  review:
+    needs: [propose, test]
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.propose.outputs.base }}
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - uses: actions/download-artifact@v4
+        with:
+          name: source-correction-proposal
+          path: /tmp/wake-correction
+      - name: Prepare review description
+        env:
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: python scripts/self_correction.py review-body --plan /tmp/wake-correction/proposal.json --output /tmp/wake-correction-review.md --run-url "$RUN_URL"
+      - id: publish
+        name: Open or recover the exact draft source change for review
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          CORRECTION_BRANCH: wake-correction/${{ github.run_id }}
+        run: |
+          gh auth setup-git
+          python scripts/self_correction.py publish --plan /tmp/wake-correction/proposal.json \
+            --branch "$CORRECTION_BRANCH" --body-file /tmp/wake-correction-review.md

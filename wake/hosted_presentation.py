@@ -51,6 +51,11 @@ def bind_hosted_status(site, repository, revision):
                     + ";document.documentElement.dataset.wakeHostedStatus='true';")
         from .report import _masthead_navigation
         page = _masthead_navigation(page)
+        # Existing exported Console pages keep their generated data bindings.
+        # Add the current correction entry without replacing their HTML shell.
+        if path.name == 'console.html' and 'class="self-correction-console-link"' not in page:
+            entry = f'<a class="self-correction-console-link" href="{prefix}self-correction/">Self-correction →</a>'
+            page = page.replace('<button id="reset-console-layout"', entry + '<button id="reset-console-layout"', 1)
         page = page.replace("document.documentElement.dataset.wakeHostedStatus='true';", '')
         page, count = re.subn(r'window\.WAKE_DEPLOYMENT=(\{[^<]*?\});', binding, page)
         if count != 1:
@@ -82,7 +87,7 @@ def bind_hosted_status(site, repository, revision):
         for name in farm_assets:
             shutil.copyfile(assets/name,root/name)
         (root/'backgrounds').mkdir(exist_ok=True)
-        for name in ('ant-soil-v1.png','ant-body-v1.png','ant-sand-v2.png'):
+        for name in ('ant-soil-v1.png','ant-body-v1.png','ant-sand-v2.png','ant-room-day-v1.webp','ant-room-night-v1.webp'):
             shutil.copyfile(assets/'backgrounds'/name,root/'backgrounds'/name)
         deployment=json.loads((root/'deployment.json').read_text()) if (root/'deployment.json').exists() else {'schema':1,'mode':'hosted','snapshot_only':True}
         deployment.pop('hosted_activity', None)

@@ -66,16 +66,27 @@ and identity; it is not replay, migration or an authority merge. See the
 [research expansion](research-expansion.md). Model-formulated questions remain
 ordinary governed project/reframe actions, never configuration edits.
 
-Public Bob conversations and the hosted activity relay are retired. The public
-website serves static exports from GitHub Pages; autonomous research runs through
-GitHub Actions and Google Gemini. The static recovery demonstration has no live
-control or model capability. Public pages contain no model credentials.
+The public website serves completed exports from GitHub Pages. Browser Bob runs
+an opt-in downloaded model on the reader’s WebGPU device, with a dedicated worker,
+streamed replies, version-matched public context and bounded local conversation.
+The pinned model download uses Hugging Face; questions never leave the device.
+The former hosted conversation API and activity relay remain retired. Autonomous
+research continues through GitHub Actions and Google Gemini. Public pages contain
+no model credentials. See [Ask Bob](ask-bob.md).
+
+[Source self-correction](self-correction.md) is an operator-triggered GitHub workflow:
+one bounded Gemini proposal over selected presentation/docs files, candidate
+validation against exact source hashes, credential-free isolated tests and a draft
+review branch. The model cannot change its evaluator, governance, permissions,
+records or runtime grant. Source merge, publication and runtime promotion remain
+separate boundaries. The public page observes real workflow state and dated
+installation snapshots; historical fixture recovery results remain labeled as such.
 
 The optional local Gemini preview is a separate loopback reader surface.
 It uses completed public exports and the existing owning worker's native provider
 invocation journal. It never submits governed research changes or creates a second
 writer. Browser conversations remain local; operational hashes and outcomes remain
-in the existing record. Pages delegates live conversation to the separately hosted API.
+in the existing record. The public browser-model path has no answer API and does not use this worker.
 Reader invocation evidence uses the kernel's managed lifecycle scope, which
 protects an active same-process call from interruption recovery. It does not hold
 the application research turn lock or modify research state. The shared provider

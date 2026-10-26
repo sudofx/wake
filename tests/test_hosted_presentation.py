@@ -23,7 +23,8 @@ class HostedPresentationTests(unittest.TestCase):
             packet = b'<html><head></head><body>hashed packet</body></html>'
             (root / 'inspect/index.html').write_bytes(packet)
             for relative, prefix, name in [('index.html', '', 'wake'),
-                                           ('nodes/103.wake/blog/post.html', '../', '103.wake')]:
+                                           ('nodes/103.wake/blog/post.html', '../', '103.wake'),
+                                           ('console.html', '', 'wake')]:
                 path = root / relative
                 path.parent.mkdir(parents=True, exist_ok=True)
                 deployment = {'schema': 1, 'snapshot_only': True, 'mode': 'standalone', 'instance_name': name, 'ask_bob': {'url': 'https://retired.invalid'}, 'hosted_activity': {'url': 'https://retired.invalid'}}
@@ -32,7 +33,8 @@ class HostedPresentationTests(unittest.TestCase):
                         + f'<script src="{prefix}nav.js?v=old" defer></script>'
                         + f'<link rel="stylesheet" href="{prefix}masthead.css?v=old"></head>'
                         + '<body><header class="masthead"><nav class="compact-nav"></nav>'
-                        + '<div class="header-tools"><label class="theme-switch"></label></div></header></body></html>')
+                        + '<div class="header-tools"><label class="theme-switch"></label></div></header>'
+                        + '<button id="reset-console-layout" type="button">Reset Console view</button></body></html>')
                 path.write_text(page)
             # Reader pages inline shared navigation, unlike Console pages.
             index = root / 'index.html'
@@ -42,6 +44,8 @@ class HostedPresentationTests(unittest.TestCase):
             self.assertNotIn('retired.invalid', (root / 'index.html').read_text())
             self.assertNotIn('chatgpt.site', (root / 'index.html').read_text())
             self.assertTrue((root / 'self-correction/index.html').exists())
+            self.assertIn('href="self-correction/"', (root / 'console.html').read_text())
+            self.assertTrue((root / 'self-correction/self-correction.js').exists())
             self.assertEqual(bound['hosted_execution'], manifest['hosted_execution'])
             self.assertEqual((root / 'inspect/index.html').read_bytes(), packet)
             self.assertEqual((root / 'reader-data.json').read_bytes(), b'{"private_bodies":false,"version":744}')
@@ -54,6 +58,7 @@ class HostedPresentationTests(unittest.TestCase):
                                  (Path(__file__).resolve().parents[1] / 'wake/assets' / name).read_bytes())
             bind_hosted_status(root, 'example/repo', 'b' * 40)
             self.assertEqual((root / 'index.html').read_text().count('class="actions-light"'), 1)
+            self.assertEqual((root / 'console.html').read_text().count('class="self-correction-console-link"'), 1)
             self.assertEqual((root / 'index.html').read_text().count('src="hosted-status.js?'), 1)
             self.assertEqual((root / 'inspect/index.html').read_bytes(), packet)
 

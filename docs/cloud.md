@@ -34,8 +34,10 @@ Pages executes no research and has no research controls. An explicitly bound hos
 status light observes the GitHub Actions executor; ordinary mirrors have no execution light.
 
 The public mirror has no anonymous model-chat server. Its former ChatGPT Sites
-Bob service and hosted live-activity relay are retired. Pages serves completed
-research, the browser-local ant simulation, and the static self-correction demo.
+Bob service and hosted live-activity relay remain retired. Pages serves completed
+research, the browser-local ant simulation, opt-in device-local Bob chat and the
+[self-correction observations and workflow guide](self-correction.md). Browser
+model files download from pinned Hugging Face revisions; inference stays on-device.
 GitHub Actions executes research with Google Gemini. No ChatGPT subscription or
 Sites hosting is required by these published features.
 
@@ -475,8 +477,8 @@ records the separately checked interface revision. No native record is opened.
 The presentation refresh also rebuilds passage guides from that exact public
 archive and replaces reader assets, including inline article navigation. It
 rejects mismatched archive/overview heads and leaves hashed inspection packets
-unchanged. The public site has no live Bob launcher. For optional loopback Gemini
-preview, see [Ask Bob locally](ask-bob.md).
+unchanged. The public site offers a device-local Bob launcher with no answer server.
+For browser model setup and optional loopback Gemini preview, see [Ask Bob](ask-bob.md).
 
 ### Hosted execution observations
 

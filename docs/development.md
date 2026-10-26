@@ -35,10 +35,17 @@ For private human checkpoints and fresh-conversation recovery, use the
 [continuity workflow](continuity/README.md). It complements the authoritative
 research record without adding runtime state or automatic model context.
 
-Public live Bob chat and the hosted activity relay are retired. The optional
-loopback Gemini reader remains documented in [Ask Bob](ask-bob.md). Public
-presentation must use GitHub Pages; runtime research uses GitHub and Google Gemini.
+The former hosted Bob service and activity relay are retired. Public [Ask Bob](ask-bob.md)
+uses an opt-in downloaded WebGPU model on the reader’s device; pinned model files
+come from Hugging Face, with no conversation sent there. The optional loopback
+Gemini reader is separate. Public presentation uses GitHub Pages; runtime research
+uses GitHub and Google Gemini.
 Any additional service requires the user's explicit approval.
+
+For a real bounded source repair, open **Self-correction** from Console and run
+the [source-correction workflow](self-correction.md). WAKE generates selected
+presentation/docs edits, tests them in isolation and creates a draft pull request.
+Merge, website publication and runtime promotion remain separate decisions.
 
 For research-backed code proposals, disposable-container comparisons and human
 review receipts, use the [improvement workflow](improvements.md). `wake improve`

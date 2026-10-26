@@ -1,5 +1,10 @@
 # Turn research into a proposed improvement
 
+For an executable source-development lane that prepares a real branch and draft
+pull request for selected presentation/docs repairs, use
+[Source self-correction](self-correction.md). The research-linked comparison below
+remains the separate workflow for Python candidates outside that allowance.
+
 For unattended generation, evaluation, adoption and rollback of the installed
 context-selector policy, use [bounded autonomy](autonomous-context.md). That lane
 works on the existing native research record and needs no per-change human review.
