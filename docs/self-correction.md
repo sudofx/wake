@@ -73,6 +73,10 @@ artifact records the base revision, exact proposal digest, model, provider-call
 count and changed paths. This is source-development evidence, separate from each
 node’s append-only native research record; it never increments research progress.
 
+The proposal request uses the kernel's vendor request builder and an explicit low
+reasoning level, with a 180-second deadline. A timeout is a failed attempt, not an
+accepted proposal; starting a fresh run is a new explicit request.
+
 ## Automatic changes inside the native runtime
 
 The separate [native context adaptation](autonomous-context.md) capability can

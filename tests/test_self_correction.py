@@ -124,6 +124,8 @@ class SourceCorrectionTests(unittest.TestCase):
         self.assertTrue(request.full_url.startswith('https://generativelanguage.googleapis.com/'))
         self.assertNotIn('fixture-not-a-key', request.full_url)
         self.assertNotIn('fixture-not-a-key', request.data.decode())
+        self.assertEqual(json.loads(request.data)['generationConfig']['thinkingConfig'],
+                         {'thinkingLevel': 'low'})
         plan = json.loads((output / 'proposal.json').read_text())
         correction.validate_plan(self.root, plan)
         receipt = json.loads((output / 'receipt.json').read_text())

@@ -11,8 +11,12 @@ import os
 from pathlib import Path, PurePosixPath
 import re
 import subprocess
+import sys
 import urllib.error
 import urllib.request
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from wake.kernel.generation import GenerationRequest, build_gemini_request
 
 SCHEMA = 'wake-source-correction@1'
 MAX_FILES = 4
@@ -124,11 +128,13 @@ def generate(root, paths, request, output):
         'base_revision': revision,
         'files': [{'path': p, 'before_sha256': sha(data), 'content': data.decode('utf-8')} for p, data in files.items()]
     }
-    body = {'contents': [{'role': 'user', 'parts': [{'text': json.dumps(prompt)}]}],
-            'generationConfig': {'temperature': 0.1, 'responseMimeType': 'application/json', 'maxOutputTokens': 32768}}
-    call = urllib.request.Request(
-        f'https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent',
-        data=json.dumps(body).encode(), headers={'Content-Type': 'application/json', 'x-goog-api-key': key})
+    # Use the owning vendor request contract, including the low reasoning level
+    # already used by the research adapter for this model. The model's default
+    # dynamic thinking can exceed the bounded proposal-request deadline.
+    _, call = build_gemini_request(api_key=key, request=GenerationRequest(
+        model=MODEL, prompt=json.dumps(prompt), temperature=0.1,
+        response_mime_type='application/json', max_output_tokens=32768,
+        reasoning_effort='low'))
     try:
         with urllib.request.urlopen(call, timeout=180) as response:
             raw = response.read(MAX_RESPONSE_BYTES + 1)
