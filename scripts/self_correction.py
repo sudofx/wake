@@ -23,7 +23,7 @@ MAX_FILES = 4
 MAX_FILE_BYTES = 96_000
 MAX_TOTAL_BYTES = 220_000
 MAX_RESPONSE_BYTES = 1_000_000
-MODEL = 'gemini-3.1-flash-lite'
+MODEL = 'gemini-3.5-flash-lite'
 
 
 def require(condition, message):
