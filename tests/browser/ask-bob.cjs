@@ -53,27 +53,8 @@ const server=http.createServer((req,res)=>{
   const clear=async()=>{await page.getByText('About this chat',{exact:true}).click();await page.getByRole('button',{name:'Clear chat',exact:true}).click();};
   enabled=true;await page.goto(base+'/blog.html');await page.evaluate(()=>window.WAKE_DEPLOYMENT={snapshot_only:true});const before=requests.length;await mount('missing-installation');assert.equal(await page.locator('.ask-bob').count(),0);assert.equal(requests.length,before);assert.equal(await state(),null);
   browserMode=true;await page.goto(base+'/blog.html');await page.evaluate(()=>window.WAKE_DEPLOYMENT={snapshot_only:true});const publicBefore=requests.length;await mount('public-article');
-  assert.equal(requests.length,publicBefore,'Reading never starts model download');assert(await page.getByRole('textbox',{name:'Message Bob'}).isVisible());assert(!(await page.getByRole('button',{name:'Send',exact:true}).isDisabled()));
-  assert.equal(await page.locator('.ask-bob select').count(),0);assert.equal(await page.getByRole('button',{name:/Load Bob/}).count(),0);
-  await page.getByText('About this chat',{exact:true}).click();await page.getByRole('checkbox').check();
-  await page.evaluate(()=>window.__holdBrowserLoad=true);await send('First question');
-  await page.waitForFunction(()=>document.querySelector('.ask-bob progress').value===.4);
-  assert.equal(await page.locator('.ask-bob-user p').innerText(),'First question');assert(await page.getByRole('button',{name:'Stop',exact:true}).isVisible());
-  if(process.env.WAKE_BROWSER_ARTIFACT_DIR)await page.screenshot({path:path.join(process.env.WAKE_BROWSER_ARTIFACT_DIR,'chat-downloading-phone.png')});
-  await page.getByRole('button',{name:'Stop',exact:true}).click();await done();assert((await page.locator('.ask-bob-status').innerText()).includes('Stopped'));assert.equal(await page.locator('.ask-bob-answer').count(),0);assert(await page.locator('.ask-bob-activity').isHidden());
-  await page.evaluate(()=>window.__holdBrowserLoad=false);await page.getByRole('button',{name:'Retry',exact:true}).click();await done();assert.equal(await page.locator('.ask-bob-answer').innerText(),'Browser-only answer [S1]');
-  await ask('A second question');assert.equal(await page.locator('.ask-bob-answer').count(),2);
-  if(process.env.WAKE_BROWSER_ARTIFACT_DIR)await page.screenshot({path:path.join(process.env.WAKE_BROWSER_ARTIFACT_DIR,'chat-replies-phone.png')});assert.equal(await page.evaluate(()=>window.__body.condition),'C');assert.equal(await page.evaluate(()=>window.__body.history.length),1);
-  await page.evaluate(()=>window.__holdBrowserAnswer=true);await send('Cancel this draft');await page.waitForFunction(()=>document.querySelector('.ask-bob-progress-line').textContent.includes('12 characters'));
-  await page.getByRole('button',{name:'Stop',exact:true}).click();await done();assert.equal(await page.locator('.ask-bob-answer').count(),2);
-  await page.evaluate(()=>window.__holdBrowserAnswer=false);await page.getByRole('button',{name:'Retry',exact:true}).click();await done();assert.equal(await page.locator('.ask-bob-answer').count(),3);
-  // Safari can suspend timers. Resuming must enforce the original wall-clock
-  // deadline even when a module/worker promise never settles or honors abort.
-  await page.evaluate(()=>window.__holdBrowserLoad=true);await send('Timeout while preparing');
-  await page.evaluate(()=>{window.__realNow=Date.now;Date.now=()=>window.__realNow()+600001;document.dispatchEvent(new Event('visibilitychange'));});
-  await done();assert((await page.locator('.ask-bob-status').innerText()).includes('too long to prepare'));assert(await page.locator('.ask-bob-activity').isHidden());
-  await page.evaluate(()=>{Date.now=window.__realNow;window.__holdBrowserLoad=false;});await page.getByRole('button',{name:'Retry',exact:true}).click();await done();
-  assert.deepEqual(requests.slice(publicBefore),[{browserRuntime:true}],'No answer API in public browser mode');
+  assert.equal(await page.locator('.ask-bob').count(),0,'Public snapshots have no chat launcher');
+  assert.equal(requests.length,publicBefore,'Public reading never loads a model or answer API');
   await page.evaluate(()=>localStorage.clear());browserMode=false;enabled=false;await page.goto(base+'/blog.html');await mount('p1');assert.equal(await page.locator('.ask-bob').count(),0);
   enabled=true;await page.goto(base+'/nodes/100.wake/blog.html');const nodeBefore=requests.length;await mount('p1');assert.equal(await page.locator('.ask-bob').count(),0);assert.equal(requests.length,nodeBefore);
   await page.goto(base+'/blog.html');await mount('p1');assert((await state()).value.articles[0].hash==='a'.repeat(64));
@@ -91,6 +72,6 @@ const server=http.createServer((req,res)=>{
   installation='another-installation';await page.goto(base+'/blog.html');await mount('isolated');assert.equal(await page.locator('.ask-bob-turn').count(),0);
   await page.evaluate(()=>{const key=Object.keys(localStorage).find(key=>key.endsWith('another-installation'));localStorage.setItem(key,'{broken');});await page.goto(base+'/blog.html');await mount('after-corruption');await page.getByText('About this chat',{exact:true}).click();assert((await page.locator('.ask-bob-privacy').innerText()).includes('could not be read'));await ask('After missing context');assert.equal(await page.locator('.ask-bob-turn').count(),1);
   const blocked=await browser.newPage();blocked.on('pageerror',error=>errors.push(error.message));await blocked.goto(base+'/blog.html');await blocked.evaluate(async()=>{for(const key of ['getItem','setItem','removeItem'])Storage.prototype[key]=()=>{throw new DOMException('Blocked','SecurityError');};await window.WakeAskBob.mount(document.querySelector('#article'),{post:{id:'blocked',_reader_article:{hash:'a'.repeat(64),head:'h'.repeat(64)}}});});await blocked.getByRole('textbox',{name:'Message Bob'}).fill('In memory');await blocked.getByRole('button',{name:'Send',exact:true}).click();await blocked.locator('.ask-bob-answer').waitFor();await blocked.getByText('About this chat',{exact:true}).click();assert((await blocked.locator('.ask-bob-privacy').innerText()).includes('storage is unavailable'));await blocked.close();
-  assert.deepEqual(errors,[]);console.log(JSON.stringify({result:'PASS',checks:'automatic first-send loading, real download progress, no selectors, stop and automatic retry, preparation deadline on resume despite ignored abort, same-article chat context, no public answer API, source URL/text safety, clear/navigation, bounded storage, phone width and scrolling'}));
+  assert.deepEqual(errors,[]);console.log(JSON.stringify({result:'PASS',checks:'retired public chat stays absent, same-article local chat context, no public model or answer API, source URL/text safety, clear/navigation, bounded storage, phone width and scrolling'}));
  }finally{await browser.close();server.close();}
 })().catch(error=>{console.error(error);server.close();process.exitCode=1;});
