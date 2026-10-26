@@ -1,19 +1,36 @@
 /* Canvas owns the habitat; HTML owns controls, observations and conversation. */
 (() => {
   'use strict';
+  class ColonyPersistence{
+    constructor(storage,key){this.storage=storage;this.key=key;this.value=storage.getItem(key);this.conflict=false;}
+    save(colony){
+      if(this.conflict)return false;
+      if(this.storage.getItem(this.key)!==this.value){this.conflict=true;return false;}
+      const previous=this.value;this.value=JSON.stringify(colony);
+      try{this.storage.setItem(this.key,this.value);}catch(error){this.value=previous;throw error;}
+      return true;
+    }
+    observe(event){
+      if((event.key!==this.key&&event.key!==null)||event.newValue===this.value)return false;
+      // A delayed event from the pre-reload document is not a competing writer.
+      if(this.storage.getItem(this.key)!==event.newValue)return false;
+      this.conflict=true;return true;
+    }
+  }
+  if(typeof module!=='undefined'&&module.exports){module.exports={ColonyPersistence};return;}
   const drawAnt=window.WakeDrawAnt;
   const {Colony,WIDTH:W,HEIGHT:H,SURFACE:S}=window.WakeAntColony;
   const get=id=>document.getElementById(id),canvas=get('habitat'),ctx=canvas.getContext('2d');
   if(!ctx){get('scene-note').textContent='This browser cannot draw the habitat. Try a browser with Canvas support.';return;}
   const KEY='wake-ant-colony@2',reduced=matchMedia('(prefers-reduced-motion: reduce)');
-  let colony,storageReady=true,storageConflict=false,unreadableSave=false;
-  try{const saved=localStorage.getItem(KEY);colony=saved?Colony.restore(JSON.parse(saved)):null;}catch{storageReady=false;unreadableSave=true;}
+  let colony,persistence,storageReady=true,storageConflict=false,unreadableSave=false;
+  try{persistence=new ColonyPersistence(localStorage,KEY);const saved=persistence.value;colony=saved?Colony.restore(JSON.parse(saved)):null;}catch{storageReady=false;unreadableSave=true;}
   colony ||= new Colony(crypto.getRandomValues(new Uint32Array(1))[0]);
   let paused=false,speed=1,showTrails=true,previous=0,accumulator=0,lastDraw=0,lastSave=0,lastUI=0,zoom=1,cameraX=.5,cameraY=.5,selectedId=null,following=false,antSignature='';
   let width=0,height=0,dpr=1,cw=0,ch=0,terrainDirty=true,needsDraw=true,frameInterval=1000/24,terrain=document.createElement('canvas'),soil=document.createElement('canvas');
   window.addEventListener('wake-ant-art-ready',()=>{needsDraw=true;});
   const soilCtx=soil.getContext('2d'),ground=terrain.getContext('2d');
-  function save(){if(storageConflict||unreadableSave)return;try{localStorage.setItem(KEY,JSON.stringify(colony.save()));storageReady=true;}catch{storageReady=false;}updateStorage();}
+  function save(){if(storageConflict||unreadableSave)return;try{if(!persistence.save(colony.save())){storageConflict=true;pause(true);}else storageReady=true;}catch{storageReady=false;}updateStorage();}
   function updateStorage(){get('save-status').textContent=unreadableSave?'Your saved colony could not be read and has been kept untouched. This temporary colony will not replace it.':storageConflict?'Another tab updated this colony. Reload to pick up its progress.':storageReady?'Progress stays in this browser. The colony rests when this page is hidden.':'Saving is unavailable. You can watch now; this colony may not survive a reload.';}
   function resize(){
     const box=canvas.getBoundingClientRect();width=box.width;height=box.height;const mobile=matchMedia('(pointer: coarse)').matches||width<=600;dpr=Math.min(devicePixelRatio||1,mobile?1.25:1.5,Math.sqrt(1500000/(width*height)));frameInterval=1000/(reduced.matches?10:mobile?20:24);cw=width/W;ch=height/H;
@@ -136,6 +153,6 @@
   document.addEventListener('visibilitychange',()=>{previous=0;accumulator=0;if(document.hidden)save();});window.addEventListener('pagehide',save);window.addEventListener('resize',resize);
   reduced.addEventListener('change',()=>{resize();});
   // Multiple tabs must not silently overwrite the same colony.
-  window.addEventListener('storage',event=>{if(event.key===KEY){pause(true);storageConflict=true;get('save-status').textContent='Another tab updated this colony. Reload to pick up its progress.';}});
+  window.addEventListener('storage',event=>{try{if(persistence?.observe(event)){pause(true);storageConflict=true;updateStorage();}}catch{storageReady=false;updateStorage();}});
   pause(paused);updateStorage();resize();updateUI();requestAnimationFrame(animate);
 })();
