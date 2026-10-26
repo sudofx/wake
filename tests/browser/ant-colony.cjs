@@ -31,7 +31,7 @@ test('malformed saves fail closed',()=>{
 });
 test('food interventions are bounded, measured, and do not destroy existing food',()=>{
  const c=new Colony(3),before=c.metrics().food_remaining;for(let i=0;i<100;i++)c.addFood();assert.equal(c.food.length,32);assert.equal(c.metrics().food_remaining,before+c.addedFood);
- assert.equal(c.observation().interventions.food_added,c.addedFood);assert.equal(c.observation().model,'pellet-tunnels@7');assert.ok(c.observation().samples.length<=12);
+ assert.equal(c.observation().interventions.food_added,c.addedFood);assert.equal(c.observation().model,'pellet-tunnels@8');assert.ok(c.observation().samples.length<=12);
 });
 
 test('seeds vary initial shafts and branch layouts while keeping deterministic saves',()=>{
@@ -93,4 +93,22 @@ test('living v6 saves retain their surface, ants and excavation when circuit gro
  for(const key of ['nodes','ants','fronts','ticks','dug','exits','born','deaths'])assert.deepEqual(c[key],old[key]);
  assert.deepEqual(c.junctions,[]);assert.deepEqual(Colony.restore(c.save()).save(),c.save());
  for(const mutate of [s=>s.junctions=[[1,0]],s=>s.junctions=[[9999,1]],s=>s.nodes[0].kind='tunnel']){const bad=structuredClone(c.save());mutate(bad);assert.throws(()=>Colony.restore(bad));}
+});
+
+
+test('food deprivation causes starvation, reduced work and persistent death reasons',()=>{
+ const c=new Colony(42);c.food.forEach(f=>f.left=0);c.foodReserve=0;c.brood=[];
+ for(let i=0;i<13000;i++)c.step();
+ assert.ok(c.starved>0);assert.ok(c.starvationSeconds>=1200);assert.ok(c.metrics().hungry);
+ assert.ok(c.recentDeaths.some(a=>a.reason==='starvation'));
+ const restored=Colony.restore(structuredClone(c.save()));
+ for(let i=0;i<100;i++){c.step();restored.step();}assert.deepEqual(c.save(),restored.save());
+ for(let i=0;i<12000;i++)c.step();assert.equal(c.ants.length,0);assert.equal(c.starved,64);
+});
+test('food deliveries restore a hungry colony before irreversible starvation',()=>{
+ const c=new Colony(42);c.food.forEach(f=>f.left=0);c.foodReserve=0;c.brood=[];
+ for(let i=0;i<6000;i++)c.step();assert.ok(c.metrics().hungry);
+ c.foodReserve=20;
+ for(let i=0;i<1300;i++)c.step();assert.equal(c.starvationSeconds,0);assert.equal(c.starved,0);assert.equal(c.ants.length,64);
+ const bad=c.save();bad.starvationSeconds=-1;assert.throws(()=>Colony.restore(bad));
 });

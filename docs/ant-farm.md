@@ -1,8 +1,10 @@
 # Watch the digital ant farm
 
 Open **Bob’s Ant Farm** in the site menu. **Observe** opens live counts, an
-individual-ant selector and colony options. **+** expands the habitat to the
-viewport and magnifies it; **−** steps back to the whole case. **Trails** toggles visible purple
+individual-ant selector and colony options. **+** and **−** magnify the habitat or step back to the whole case. Drag with
+one finger or the mouse to pan while magnified; two fingers pinch and pan
+together. **⛶** enters full screen, and the same button returns to the tabletop.
+Browsers without native fullscreen use the available page viewport. **Trails** toggles visible purple
 food signals; **Add food** scatters surface crumbs.
 
 Default **1×** now runs at the previous **4×** pace: four simulation seconds per
@@ -186,11 +188,39 @@ Browser interaction and an actual phone’s performance remain separate checks.
 ## Indoor container and connected passages
 
 The habitat is a thin upright indoor display case viewed through its clear front,
-with a lid, base and a small air space above simple drawn soil. It has no outdoor
-landscape or photographic sand. New colonies have an uneven soil surface; existing
+with a lid, base and a small air space above simple drawn soil. The room window shows an outdoor landscape; the habitat itself contains
+no outdoor landscape or photographic sand. New colonies have an uneven soil surface; existing
 saves keep their original surface and all tunnel coordinates. Model `pellet-tunnels@7`
 adds validated graph junctions: workers can complete a connector into a nearby
 passage, producing circuits and small junction chambers instead of abandoning
 every approaching tunnel. Saved `@3` colonies from model `@6` acquire an empty
 junction list without losing population or excavation. The finite habitat and
 phone rendering bounds remain unchanged.
+
+
+## Clear glass, room scenery and feeding
+
+The air space above the soil is transparent: the room window and scenery remain
+visible through the glass. The window follows local device time with one sun in
+the daytime or one moon at night. Clouds, distant hills, trees, a houseplant and
+wood grain give the room depth. Matching generated photographic day/night
+backdrops now supply these room materials and scenery; the case, soil and
+individually animated ants remain independent live layers.
+
+Model `pellet-tunnels@8` adds food dependence to the existing aging and brood
+cycle. Workers share the nest reserve. Once it is empty, hungry diggers and
+resting workers join the search for food; prolonged hunger reduces walking speed.
+After 20–40 simulation minutes without replenishment, workers can die of
+starvation. Individual tolerances vary deterministically. Food brought to the
+nest lets surviving workers recover; it cannot revive ants that have died.
+Brood is started only with enough food to retain a small reserve. Briefly visible
+bodies have folded legs; Observe separates total deaths from starvation losses.
+These timings and population rules are illustrative, compressed life history,
+not a calibrated biological model. Feed using **Add food** and allow foragers
+time to carry it home. Hidden pages still pause, so absence never starves a colony.
+
+Existing colony saves retain their tunnels, identities and counters; previously
+saved colonies begin the new nutrition tracking with no assumed hidden hunger.
+`node tests/browser/ant-farm.cjs` checks real browser glass transparency, day/night
+visibility, mouse/touch panning, pinch zoom, fullscreen and phone layout. A physical
+phone remains a separate acceptance check.

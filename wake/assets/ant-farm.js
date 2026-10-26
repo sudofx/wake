@@ -36,7 +36,7 @@
     const box=canvas.getBoundingClientRect();width=box.width;height=box.height;const mobile=matchMedia('(pointer: coarse)').matches||width<=600;dpr=Math.min(devicePixelRatio||1,mobile?1.25:1.5,Math.sqrt(1500000/(width*height)));frameInterval=1000/(reduced.matches?10:mobile?20:24);cw=width/W;ch=height/H;
     for(const layer of [canvas,terrain,soil]){layer.width=Math.round(width*dpr);layer.height=Math.round(height*dpr);layer.getContext('2d').setTransform(dpr,0,0,dpr,0,0);}
     // Drawn colour fields stay quiet at every zoom; no enlarged photographic grains.
-    soilCtx.fillStyle='#edf0e5';soilCtx.fillRect(0,0,width,height);
+    soilCtx.clearRect(0,0,width,height);
     const earth=soilCtx.createLinearGradient(0,0,0,height);earth.addColorStop(0,'#eee2c8');earth.addColorStop(1,'#d9c8a8');soilCtx.fillStyle=earth;
     soilCtx.beginPath();soilCtx.moveTo(0,(colony.surfaceAt(2)+1)*ch);
     for(const n of colony.nodes){if(n.kind==='surface')soilCtx.lineTo(n.x*cw,(n.y+1)*ch);}
@@ -66,7 +66,8 @@
     // Deposited grains accumulate at the entrance; excavation requires a return trip.
     ctx.fillStyle='#a7895c';for(let k=0;k<Math.min(70,colony.soilDelivered);k++){const x=(colony.nodes[colony.exit].x-1+(k%2?1:-1)*(1+Math.sqrt(k)*.4))*cw,y=(colony.nodes[colony.exit].y+.5-Math.floor(k/15)*.1)*ch;ctx.beginPath();ctx.ellipse(x,y,.7,.5,k,0,7);ctx.fill();}
     const r=Math.max(1.3,Math.min(3.7,Math.min(cw,ch)*.4));
-    for(const ant of colony.ants){const a=colony.nodes[ant.from],b=colony.nodes[ant.cell],length=Math.hypot(b.x-a.x,b.y-a.y)||1,t=Math.min(1,ant.phase+(!paused&&ant.wait<=0&&ant.phase<1?accumulator*ant.pace/length*(ant.carrying?.75:1):0));
+    for(const dead of colony.recentDeaths){if(!Number.isFinite(dead.x)||colony.time-dead.at>120)continue;ctx.save();ctx.translate(dead.x*cw,dead.y*ch);ctx.rotate(dead.dir);ctx.globalAlpha=.65*(1-(colony.time-dead.at)/120);drawAnt(ctx,r,{id:dead.id,dead:true,moving:false,work:-1,carrying:0},0,colony.time);ctx.restore();}
+    for(const ant of colony.ants){const a=colony.nodes[ant.from],b=colony.nodes[ant.cell],length=Math.hypot(b.x-a.x,b.y-a.y)||1,t=Math.min(1,ant.phase+(!paused&&ant.wait<=0&&ant.phase<1?accumulator*ant.pace/length*(ant.carrying?.75:1)*(colony.starvationSeconds>600?.65:1):0));
       const lane=((ant.id%3)-1)*.13,spread=ant.id*2.39996,rad=.5+(ant.id%8)/8,offsetA=ant.from===colony.nest?1-t:0,offsetB=ant.cell===colony.nest?t:0,spreadWeight=offsetA+offsetB;
       const x=(a.x+(b.x-a.x)*t+Math.cos(spread)*rad*1.5*spreadWeight)*cw+Math.sin(ant.dir)*lane*cw,y=(a.y+(b.y-a.y)*t+Math.sin(spread)*rad*.65*spreadWeight)*ch-Math.cos(ant.dir)*lane*ch;
       const moving=ant.phase<1&&ant.wait<=0,scanning=!moving&&ant.work<0&&ant.wait>.8?[0,.35,0,-.3][Math.floor(colony.time*.7+ant.id*1.61)%4]:0;
@@ -84,10 +85,11 @@
   const elapsed=seconds=>`${Math.floor(seconds/60).toString().padStart(2,'0')}:${(seconds%60).toString().padStart(2,'0')}`;
   function updateUI(){
     const m=colony.metrics();get('colony-clock').textContent=elapsed(m.seconds);get('seed-label').textContent=`Colony ${colony.seed.toString(16).toUpperCase()} · saved on this device`;
-    const values=[['Living ants',m.ants],['Brood developing',m.brood],['Born',m.born],['Died naturally',m.deaths],['Entrances',m.entrances],['Tunnel connections',m.connections],['Active digging sites',m.tunnel_tips],['Tunnel segments dug',m.dug],['Food brought home',m.delivered],['Food in nest',m.food_reserve],['Soil pellets carried out',m.soil_pellets]];
+    const values=[['Living ants',m.ants],['Brood developing',m.brood],['Born',m.born],['Deaths',m.deaths],['Lost to starvation',m.starved],['Entrances',m.entrances],['Tunnel connections',m.connections],['Active digging sites',m.tunnel_tips],['Tunnel segments dug',m.dug],['Food brought home',m.delivered],['Food in nest',m.food_reserve],['Soil pellets carried out',m.soil_pellets]];
     const nodes=values.map(([label,value])=>{const block=document.createElement('div'),dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value.toLocaleString();block.append(dt,dd);return block;});get('metrics').replaceChildren(...nodes);
     const old=colony.samples.find(s=>s.seconds>=m.seconds-120)||colony.samples[0],span=m.seconds-old.seconds;
     get('pattern').textContent=span>=10?`Over the last ${span} simulation seconds: ${m.dug-old.dug} new tunnel segments and ${m.delivered-old.delivered} food deliveries. ${m.carrying_soil} ants are carrying soil to the entrance. Turn on Trails to see where returning foragers leave signals.`:'The colony is settling in. Let it explore for a little while, then look for repeated routes and new branches.';
+    if(m.hungry)get('pattern').textContent='The nest has run out of food. Workers are searching for crumbs; prolonged hunger slows them and eventually causes starvation. Add food to help the colony recover.';
     if(!get('observations').hidden)get('accessible-status').textContent=`${m.ants} ants; ${m.dug} tunnel segments dug; ${m.delivered} food deliveries; ${elapsed(m.seconds)} elapsed.`;
     const signature=colony.ants.map(a=>a.id).join(',');
     if(signature!==antSignature){antSignature=signature;const live=new Set(colony.ants.map(a=>a.id));for(const id of facings.keys())if(!live.has(id)){facings.delete(id);strides.delete(id);}const options=colony.ants.map(a=>{const o=document.createElement('option');o.value=a.id;o.textContent='#'+a.id;return o;});const empty=document.createElement('option');empty.value='';empty.textContent='Choose an ant';get('ant-select').replaceChildren(empty,...options);get('ant-select').value=selectedId===null?'':String(selectedId);}
@@ -103,7 +105,7 @@
     get('farm').style.setProperty('--daylight',daylight.toFixed(3));
     get('farm').style.setProperty('--dusk',dusk.toFixed(3));
     get('farm').style.setProperty('--sun-x',`${8+((hour+18)%24)/24*84}%`);
-    get('farm').dataset.timeOfDay=daylight>.5?'day':'night';
+    get('farm').dataset.timeOfDay=hour>=6&&hour<18?'day':'night';
   }
   function animate(now){
     requestAnimationFrame(animate);if(document.hidden){previous=0;return;}if(!previous)previous=now;const delta=Math.min(.25,(now-previous)/1000);previous=now;
@@ -118,30 +120,53 @@
   get('follow-ant').onclick=()=>{following=!following;if(following&&zoom<2)setZoom(2);updateUI();needsDraw=true;};
   function cameraClamp(){cameraX=Math.max(.5/zoom,Math.min(1-.5/zoom,cameraX));cameraY=Math.max(.5/zoom,Math.min(1-.5/zoom,cameraY));}
   function setZoom(value,point){
-    const next=Math.max(1,Math.min(4,value));
-    if(point){cameraX+=(point.x/width-.5)*(1/zoom-1/next);cameraY+=(point.y/height-.5)*(1/zoom-1/next);}
-    else if(zoom===1&&next>1){const home=colony.nodes[colony.nest];cameraX=home.x/W;cameraY=Math.max(.2,home.y/H-.06);}
-    const expanded=zoom>1;zoom=next;cameraClamp();
+    const next=Math.max(1,Math.min(6,value)),before=canvas.getBoundingClientRect();
+    // Preserve the habitat coordinate beneath the fingers across the case's
+    // tabletop/fullscreen layout change, as well as ordinary zoom and pinch pan.
+    const anchor=point?{x:cameraX+((point.fromX??point.clientX)-before.left-width/2)/width/zoom,y:cameraY+((point.fromY??point.clientY)-before.top-height/2)/height/zoom}:null;
+    if(!point&&zoom===1&&next>1){const home=colony.nodes[colony.nest];cameraX=home.x/W;cameraY=Math.max(.2,home.y/H-.06);}
+    zoom=next;
     get('farm').classList.toggle('is-zoomed',zoom>1);
-    get('zoom').disabled=zoom>=4;get('zoom-out').disabled=zoom<=1;
-    get('scene-note').textContent=zoom>1?'Drag to explore the colony.':'Small steps. New tunnels. No master plan.';
-    if(expanded!==(zoom>1))resize();else needsDraw=true;
+    if(anchor){const after=canvas.getBoundingClientRect();cameraX=anchor.x-(point.clientX-after.left-width/2)/width/zoom;cameraY=anchor.y-(point.clientY-after.top-height/2)/height/zoom;}
+    cameraClamp();
+    get('zoom').disabled=zoom>=6;get('zoom-out').disabled=zoom<=1;
+    get('scene-note').textContent=zoom>1?'Pinch to zoom. Drag to explore the colony.':'Small steps. New tunnels. No master plan.';
+    needsDraw=true;
   }
   get('zoom').onclick=()=>setZoom(zoom*2);get('zoom-out').onclick=()=>setZoom(zoom/2);
+  function fullscreenState(active){get('farm').classList.toggle('is-fullscreen',active);get('fullscreen').setAttribute('aria-pressed',String(active));get('fullscreen').setAttribute('aria-label',active?'Exit full screen':'Enter full screen');get('fullscreen').textContent=active?'Exit full screen':'Full screen';resize();}
+  get('fullscreen').onclick=async()=>{
+    const farm=get('farm'),active=farm.classList.contains('is-fullscreen');
+    if(active){if(document.fullscreenElement)await document.exitFullscreen();fullscreenState(false);}
+    else{fullscreenState(true);try{if(farm.requestFullscreen)await farm.requestFullscreen();}catch{/* Embedded and iPhone browsers still get the full-viewport layout. */}}
+  };
+  document.addEventListener('fullscreenchange',()=>fullscreenState(!!document.fullscreenElement));
   const pointers=new Map();let gesture=null;
-  canvas.addEventListener('pointerdown',event=>{canvas.setPointerCapture(event.pointerId);pointers.set(event.pointerId,{x:event.clientX,y:event.clientY,startX:event.clientX,startY:event.clientY});gesture=null;});
-  canvas.addEventListener('pointermove',event=>{if(!pointers.has(event.pointerId))return;const previous=pointers.get(event.pointerId);pointers.set(event.pointerId,{...previous,x:event.clientX,y:event.clientY});if(pointers.size===1){if(Math.hypot(event.clientX-previous.startX,event.clientY-previous.startY)>6)following=false;cameraX-=(event.clientX-previous.x)/width/zoom;cameraY-=(event.clientY-previous.y)/height/zoom;cameraClamp();needsDraw=true;}else{const [a,b]=[...pointers.values()],distance=Math.hypot(a.x-b.x,a.y-b.y),box=canvas.getBoundingClientRect();if(gesture)setZoom(zoom*distance/gesture,{x:(a.x+b.x)/2-box.left,y:(a.y+b.y)/2-box.top});gesture=distance;}});
+  function pinch(){const [a,b]=[...pointers.values()];return a&&b?{distance:Math.max(1,Math.hypot(a.x-b.x,a.y-b.y)),x:(a.x+b.x)/2,y:(a.y+b.y)/2}:null;}
+  canvas.addEventListener('pointerdown',event=>{
+    if(event.pointerType==='mouse'&&event.button!==0)return;
+    event.preventDefault();canvas.setPointerCapture(event.pointerId);pointers.set(event.pointerId,{x:event.clientX,y:event.clientY,startX:event.clientX,startY:event.clientY,tapped:true});
+    if(pointers.size>1){following=false;for(const point of pointers.values())point.tapped=false;gesture=pinch();}
+  });
+  canvas.addEventListener('pointermove',event=>{
+    if(!pointers.has(event.pointerId))return;event.preventDefault();const previous=pointers.get(event.pointerId);
+    pointers.set(event.pointerId,{...previous,x:event.clientX,y:event.clientY});
+    if(pointers.size===1){if(Math.hypot(event.clientX-previous.startX,event.clientY-previous.startY)>6){following=false;pointers.get(event.pointerId).tapped=false;}
+      cameraX-=(event.clientX-previous.x)/width/zoom;cameraY-=(event.clientY-previous.y)/height/zoom;cameraClamp();needsDraw=true;
+    }else{const current=pinch();if(gesture)setZoom(zoom*current.distance/gesture.distance,{clientX:current.x,clientY:current.y,fromX:gesture.x,fromY:gesture.y});gesture=current;}
+  });
   for(const name of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(name,event=>{
     const down=pointers.get(event.pointerId);
-    if(name==='pointerup'&&pointers.size===1&&down&&Math.hypot(event.clientX-down.startX,event.clientY-down.startY)<6){
+    if(name==='pointerup'&&pointers.size===1&&down?.tapped&&Math.hypot(event.clientX-down.startX,event.clientY-down.startY)<6){
       const box=canvas.getBoundingClientRect(),x=(cameraX+(event.clientX-box.left-width/2)/width/zoom)*W,y=(cameraY+(event.clientY-box.top-height/2)/height/zoom)*H;
       let nearest=null,distance=14;
-      for(const ant of colony.ants){const a=colony.nodes[ant.from],b=colony.nodes[ant.cell],d=Math.hypot((a.x+(b.x-a.x)*ant.phase-x)*cw*zoom,(a.y+(b.y-a.y)*ant.phase-y)*ch*zoom);if(d<distance){nearest=ant;distance=d;}}
+      for(const dead of colony.recentDeaths){if(!Number.isFinite(dead.x)||colony.time-dead.at>120)continue;ctx.save();ctx.translate(dead.x*cw,dead.y*ch);ctx.rotate(dead.dir);ctx.globalAlpha=.65*(1-(colony.time-dead.at)/120);drawAnt(ctx,r,{id:dead.id,dead:true,moving:false,work:-1,carrying:0},0,colony.time);ctx.restore();}
+    for(const ant of colony.ants){const a=colony.nodes[ant.from],b=colony.nodes[ant.cell],d=Math.hypot((a.x+(b.x-a.x)*ant.phase-x)*cw*zoom,(a.y+(b.y-a.y)*ant.phase-y)*ch*zoom);if(d<distance){nearest=ant;distance=d;}}
       if(nearest){selectedId=nearest.id;get('ant-select').value=String(selectedId);updateUI();needsDraw=true;}
     }
-    pointers.delete(event.pointerId);gesture=null;
+    pointers.delete(event.pointerId);gesture=pinch();
   });
-  canvas.addEventListener('wheel',event=>{event.preventDefault();const box=canvas.getBoundingClientRect();setZoom(zoom*Math.exp(-event.deltaY*.002),{x:event.clientX-box.left,y:event.clientY-box.top});},{passive:false});
+  canvas.addEventListener('wheel',event=>{event.preventDefault();const box=canvas.getBoundingClientRect();setZoom(zoom*Math.exp(-event.deltaY*.002),{clientX:event.clientX,clientY:event.clientY});},{passive:false});
   canvas.addEventListener('keydown',event=>{if(['+','=','-','Home'].includes(event.key)){event.preventDefault();if(event.key==='Home'){cameraX=.5;cameraY=.5;setZoom(1);}else setZoom(zoom*(event.key==='-'?.5:2));}else if(event.key.startsWith('Arrow')){event.preventDefault();cameraX+=(event.key==='ArrowLeft'?-.08:event.key==='ArrowRight'?.08:0)/zoom;cameraY+=(event.key==='ArrowUp'?-.08:event.key==='ArrowDown'?.08:0)/zoom;cameraClamp();needsDraw=true;}});
   get('trails').onclick=()=>{showTrails=!showTrails;get('trails').setAttribute('aria-pressed',String(showTrails));get('scene-note').textContent=showTrails?'Purple trails show returning foragers’ food signals.':'Food trails hidden.';needsDraw=true;};
   get('feed').onclick=()=>{const added=colony.addFood();save();updateUI();get('scene-note').textContent=added?'A few crumbs on the surface. Who will find them first?':'There are plenty of crumbs already. Give the foragers time to find them.';needsDraw=true;};

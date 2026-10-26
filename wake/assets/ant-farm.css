@@ -25,15 +25,62 @@
 .table-front{position:absolute;top:91%;inset-inline:0;bottom:0;background:linear-gradient(#815b3e,#6e4a32);border-top:8px solid #ba9063}
 .room-shade{position:absolute;inset:0;background:#0b172a;opacity:calc(.62 * (1 - var(--daylight)));pointer-events:none}
 .farm-header{background:linear-gradient(#101b25a8,transparent);color:#f3eedf}.back span{color:#c7dbad}.farm-title p{color:#e0e5d9}.farm-header>button{background:#202b26c9}
-.habitat-case{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);width:min(88vw,1100px);height:min(calc(100svh - 245px),54vw);min-height:180px;border:9px solid #6f8266;border-radius:14px;background:#eef0e5;box-shadow:3px 3px 0 #aebba5,7px 12px 0 #788c6e,12px 24px 34px #18221870}
+.habitat-case{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);width:min(88vw,1100px);height:min(calc(100svh - 245px),54vw);min-height:180px;border:9px solid #6f8266;border-radius:14px;background:transparent;box-shadow:3px 3px 0 #aebba5,7px 12px 0 #788c6e,12px 24px 34px #18221870}
 .habitat-case #habitat{border-radius:5px}
 .case-lid{position:absolute;z-index:1;left:-12px;right:-12px;top:-18px;height:15px;border-radius:8px 8px 3px 3px;background:linear-gradient(#b4c99c,#8ba674);box-shadow:0 2px 0 #526c49;pointer-events:none}
 .case-base{position:absolute;left:-9px;right:-9px;bottom:-27px;height:23px;background:#8da778;color:#344b2d;border-radius:0 0 10px 10px;display:grid;place-items:center;font-size:9px;font-weight:600;letter-spacing:3px;pointer-events:none}
 .habitat-label{top:auto;bottom:104px;color:#f3eedf;background:#19271bd9;border-color:#c6d6b52b}.habitat-label .dot{background:#b7d789}.scene-note{color:#fff3de;text-shadow:0 1px 4px #172316}.farm-controls{box-shadow:0 4px 14px #17241650}
-.is-zoomed .habitat-case{inset:0;transform:none;width:100%;height:100%;min-height:0;border:0;border-radius:0;box-shadow:none}
-.is-zoomed .case-lid,.is-zoomed .case-base,.is-zoomed .room-scene{display:none}
-.is-zoomed .habitat-case #habitat{border-radius:0}.is-zoomed .habitat-label{display:none}
-.is-zoomed .farm-header{background:linear-gradient(#132018b0,transparent)}
-.is-zoomed .scene-note{background:#18241bc9;border-radius:20px;left:50%;right:auto;transform:translateX(-50%);padding:5px 12px;white-space:nowrap}
-@media(max-width:600px){.habitat-case{border-width:6px;top:46%;width:calc(100vw - 28px);height:70vw}.case-lid{left:-9px;right:-9px;top:-15px;height:13px}.case-base{left:-6px;right:-6px;bottom:-25px}.room-window{left:6%;right:6%;border-width:12px;height:73%}.window-sill{left:3%;right:3%;top:64%}.table-top{top:69%}.habitat-label{bottom:106px}.scene-note{bottom:141px}.is-zoomed .habitat-case{width:100%;height:100%;top:0}.is-zoomed .scene-note{bottom:83px}}
-@media(max-height:540px){.habitat-case{height:calc(100svh - 190px);top:47%}.habitat-label{display:none}.is-zoomed .habitat-case{height:100%;top:0}}
+.is-fullscreen .habitat-case{inset:0;transform:none;width:100%;height:100%;min-height:0;border:0;border-radius:0;box-shadow:none}
+.is-fullscreen .case-lid,.is-fullscreen .case-base,.is-fullscreen .room-scene{display:none}
+.is-fullscreen .habitat-case #habitat{border-radius:0}.is-fullscreen .habitat-label{display:none}
+.is-fullscreen .farm-header{background:linear-gradient(#132018b0,transparent)}
+.is-fullscreen .scene-note{background:#18241bc9;border-radius:20px;left:50%;right:auto;transform:translateX(-50%);padding:5px 12px;white-space:nowrap}
+@media(max-width:600px){.habitat-case{border-width:6px;top:46%;width:calc(100vw - 28px);height:70vw}.case-lid{left:-9px;right:-9px;top:-15px;height:13px}.case-base{left:-6px;right:-6px;bottom:-25px}.room-window{left:6%;right:6%;border-width:12px;height:73%}.window-sill{left:3%;right:3%;top:64%}.table-top{top:69%}.habitat-label{bottom:106px}.scene-note{bottom:141px}.is-fullscreen .habitat-case{width:100%;height:100%;top:0}.is-fullscreen .scene-note{bottom:83px}}
+@media(max-height:540px){.habitat-case{height:calc(100svh - 190px);top:47%}.habitat-label{display:none}.is-fullscreen .habitat-case{height:100%;top:0}}
+
+/* Glass has highlights, not an opaque white backing. The live canvas stays clear
+   above the soil, so the actual room remains visible through the air space. */
+.habitat-case::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:5px;box-shadow:inset 2px 0 3px #ffffffe0,inset -3px 0 4px #263c3440;background:linear-gradient(114deg,#ffffff0e 0 16%,#ffffff00 17% 68%,#ffffff12 69% 71%,#ffffff00 72%)}
+#farm[data-time-of-day=day] .moon,#farm[data-time-of-day=night] .sun{display:none}
+.sun{opacity:1;background:radial-gradient(circle at 40% 35%,#fffdf3,#fff0bf 70%,#f6d49b);filter:blur(.3px)}
+.moon{opacity:1;background:radial-gradient(ellipse at 36% 28%,#9faeb733 0 9%,transparent 10%),radial-gradient(ellipse at 68% 60%,#71859644 0 13%,transparent 14%),radial-gradient(circle at 30% 30%,#f1f0df,#b5bec9 70%,#8290a0);box-shadow:0 0 28px #cad5ed24}
+.room-scene{background:repeating-linear-gradient(92deg,#fff4df06 0 1px,#2e302b04 1px 3px,transparent 3px 9px),linear-gradient(110deg,#c3c8bd,#e9e2ce 48%,#d6ccb2)}
+.room-window{border-color:#d9d2bd;box-shadow:0 0 0 2px #646b5b,inset 0 0 0 2px #fdf4db,14px 17px 28px #272d2455}
+.window-cross{background:linear-gradient(90deg,transparent calc(50% - 6px),#a7a590 calc(50% - 6px),#f2ead6 calc(50% - 3px),#d5ceba calc(50% + 5px),#969c88 calc(50% + 6px),transparent calc(50% + 7px)),linear-gradient(transparent calc(48% - 6px),#a5aa96 calc(48% - 6px),#efe7d1 calc(48% - 3px),#cec8b4 calc(48% + 5px),transparent calc(48% + 6px));box-shadow:inset 0 0 18px #28392940}
+.window-sill{background:linear-gradient(#f0e6cc,#c8bea3 35%,#b7ad95 90%,#8c907b);height:18px;box-shadow:0 10px 18px #2a312840}
+.stars{position:absolute;inset:0;opacity:calc(1 - var(--daylight));background:radial-gradient(circle at 16% 13%,#f5f6efb0 0 .7px,transparent 1px),radial-gradient(circle at 34% 29%,#f5f6ef99 0 .8px,transparent 1.2px),radial-gradient(circle at 56% 9%,#f5f6efb0 0 .7px,transparent 1px),radial-gradient(circle at 82% 33%,#f5f6ef80 0 .8px,transparent 1.2px),radial-gradient(circle at 91% 8%,#f5f6efb0 0 .6px,transparent 1px)}
+.cloud{position:absolute;width:50%;height:15%;top:13%;left:-4%;opacity:calc(.12 + var(--daylight)*.52);background:radial-gradient(ellipse at 20% 67%,#f7faf2 0 17%,transparent 19%),radial-gradient(ellipse at 38% 52%,#f7faf2 0 25%,transparent 27%),radial-gradient(ellipse at 62% 62%,#f7faf2 0 22%,transparent 25%),radial-gradient(ellipse at 78% 72%,#f7faf2 0 15%,transparent 17%);filter:blur(4px)}
+.cloud-two{left:51%;top:33%;width:39%;height:10%;opacity:calc(.07 + var(--daylight)*.35)}
+.distant-hills{background:linear-gradient(170deg,#6e8c83,#526e69 60%,#3c5e57);box-shadow:0 -7px 12px #b8caca33}
+.near-hills{background:repeating-linear-gradient(92deg,#284f3a00 0 11px,#284f3a22 11px 15px,#284f3a00 15px 32px),linear-gradient(165deg,#537153,#344e3c 70%);box-shadow:0 -2px 4px #425f4a66}
+.tree-line{position:absolute;left:-3%;right:-3%;bottom:0;height:25%;background:linear-gradient(90deg,transparent 0 5%,#304e3e 5% 6%,transparent 6% 9%,#2c4939 9% 10%,transparent 10% 26%,#365340 26% 27%,transparent 27% 57%,#2e4c3a 57% 58%,transparent 58% 83%,#294733 83% 84%,transparent 84%);clip-path:polygon(0 100%,0 68%,4% 68%,2% 42%,5% 51%,5% 11%,8% 41%,10% 35%,8% 60%,12% 57%,10% 77%,24% 81%,22% 60%,25% 65%,27% 28%,30% 64%,32% 57%,31% 87%,55% 81%,53% 52%,56% 57%,57% 19%,60% 49%,62% 43%,61% 79%,80% 85%,78% 57%,82% 62%,84% 8%,87% 54%,90% 48%,88% 85%,100% 77%,100% 100%)}
+.table-top{background:radial-gradient(ellipse at 77% 35%,transparent 0 3%,#69402430 3.5% 4%,transparent 4.5% 6%,#f2d5a42b 6.5% 7%,transparent 7.5% 10%,#70472b24 10.5% 11%,transparent 11.5%),repeating-linear-gradient(178deg,transparent 0 3px,#55311c19 4px,#edc48f20 5px,transparent 7px 13px),repeating-linear-gradient(1deg,#5b3b2212 0 1px,transparent 2px 18px),linear-gradient(100deg,#a57750,#ccaa7d 48%,#b28759);box-shadow:inset 0 10px 15px #503a2226}
+.table-front{background:repeating-linear-gradient(0deg,transparent 0 3px,#2e211420 3px 4px,transparent 4px 11px),linear-gradient(100deg,#6e4930,#946d47 48%,#704c32);border-top:7px solid #b38b61;box-shadow:inset 0 4px 6px #3d2c1c66}
+.room-plant{position:absolute;right:1.5%;bottom:17%;width:13%;height:27%;filter:drop-shadow(4px 5px 3px #18231844)}
+.room-plant::before{content:"";position:absolute;width:3%;height:84%;left:51%;top:6%;background:linear-gradient(90deg,#365b38,#779157);transform:rotate(7deg);border-radius:50%}
+.room-plant i{position:absolute;left:15%;top:20%;width:41%;height:14%;border-radius:2% 100% 2% 100%;background:linear-gradient(28deg,#234c36,#547846 50%,#8e9b62 53%,#41653b 57%);transform:rotate(16deg);box-shadow:inset -2px -2px 3px #1e3f2e55}
+.room-plant i:nth-child(2){left:52%;top:35%;transform:scaleX(-1) rotate(11deg)}
+.room-plant i:nth-child(3){left:19%;top:49%;transform:rotate(3deg);width:37%}
+.room-plant i:nth-child(4){left:51%;top:9%;transform:scaleX(-1) rotate(40deg);width:34%}
+.room-plant i:nth-child(5){left:30%;top:1%;transform:rotate(49deg);width:30%}
+.plant-pot{position:absolute;bottom:0;left:28%;width:51%;height:27%;background:linear-gradient(90deg,#77513e,#c88d64 45%,#936248);clip-path:polygon(0 0,100% 0,87% 100%,14% 100%);border-top:6px solid #714b37;box-shadow:inset 0 5px 9px #54372344}
+.is-fullscreen .habitat-case{background:linear-gradient(#b7cbd4,#e4dfcb 32%,#d8c4a2)}
+.is-fullscreen .habitat-case::after{display:none}
+#farm:fullscreen{height:100dvh;width:100vw}
+@media(max-width:600px){.room-plant{right:0;bottom:20%;width:17%;height:23%}.sun{width:43px;height:43px}.table-top{height:35%}}
+
+.moon{display:none}#farm[data-time-of-day=night] .moon{display:block}
+
+/* Matching photographic day/night geometry sits behind the clear live case. */
+.room-scene{background:#353e38 url('backgrounds/ant-room-day-v1.webp') center bottom/cover no-repeat}
+.room-scene::before{content:"";position:absolute;inset:0;background:url('backgrounds/ant-room-night-v1.webp') center bottom/cover no-repeat;opacity:calc(1 - var(--daylight));pointer-events:none}
+.room-window{inset:0 0 auto;height:73%;border:0;border-radius:0;background:transparent;box-shadow:none;overflow:hidden}
+.window-sky{background:transparent}
+.window-sky::before,.window-sky::after,.window-cross,.window-sill,.table-top,.table-front,.room-plant,.room-shade,.stars,.cloud,.distant-hills,.near-hills,.tree-line{display:none}
+.sun{width:38px;height:38px;top:18%;box-shadow:0 0 45px 15px #fff2c64a}
+.moon{top:18%;width:26px;height:26px}
+@media(max-width:600px){.habitat-case{top:auto;bottom:23%;transform:translateX(-50%);height:90vw;max-height:58svh}.sun{width:28px;height:28px}}
+
+@media(max-width:420px){.farm-controls button{padding-inline:7px;min-width:32px}.farm-controls #fullscreen{font-size:10px;padding-inline:8px}}
+
+.is-fullscreen .room-scene{display:block}.is-fullscreen .habitat-case{background:transparent}

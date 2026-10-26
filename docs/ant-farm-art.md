@@ -51,3 +51,24 @@ simple cream colour field with a gentle depth gradient. The earlier soil and san
 assets above remain provenance for the retired treatments. Ant body photography
 is retained, downsampled once to a 256-pixel atlas for repeated animated drawing.
 See [rendering limits](ant-farm.md#implementation-and-boundaries).
+
+
+## Window and glass treatment
+
+The active room uses generated photographic day and night backdrops,
+`backgrounds/ant-room-day-v1.webp` and `backgrounds/ant-room-night-v1.webp`.
+They show an empty walnut desk with visible grain, a painted window frame,
+a garden and distant hills. Matching geometry permits a stationary local-time
+crossfade. They contain no sun/moon disk, case or ants; the application draws
+exactly one celestial object and the independent live habitat over them.
+The case and canvas above the soil remain transparent with restrained glass-edge
+highlights. The animated anatomical body atlas and articulated legs remain the
+active ant artwork. These assets ship with Pages; viewing needs no image service.
+
+The day image was generated using the built-in image tool as a front-facing,
+photorealistic empty desk and window, with wood grain, fine frame texture, soft
+clouds and realistic garden foliage; no text, people, ant farm or celestial disk.
+The night edit retained the same framing and material geometry, with a dark blue
+sky and warm off-frame interior lighting. Both were encoded as WebP at quality
+88 for the static site. Earlier CSS landscape layers remain inert compatibility
+markup; they do not add a second horizon, window frame, sun or moon.

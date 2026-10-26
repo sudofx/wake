@@ -1,7 +1,7 @@
 /* Research-inspired 2D habitat. Narrow graph tunnels, finite pellet work, no record access. */
 (function(root){
   'use strict';
-  const WIDTH=120,HEIGHT=96,SURFACE=13,COUNT=64,MAX_ANTS=128,SCHEMA='wake-ant-colony@3',MODEL='pellet-tunnels@7';
+  const WIDTH=120,HEIGHT=96,SURFACE=13,COUNT=64,MAX_ANTS=128,SCHEMA='wake-ant-colony@3',MODEL='pellet-tunnels@8';
   const PELLETS=10,WORK_SECONDS=7,MAX_NODES=3000;
   const pointDistance=(p,a,b)=>{const dx=b.x-a.x,dy=b.y-a.y,t=Math.max(0,Math.min(1,((p.x-a.x)*dx+(p.y-a.y)*dy)/(dx*dx+dy*dy||1)));return Math.hypot(p.x-a.x-t*dx,p.y-a.y-t*dy);};
   class Colony{
@@ -31,7 +31,7 @@
         for(let k=0;k<length;k++){const p=this.nodes[tip];tip=this.node(p.x+Math.cos(angle)*1.7,p.y+Math.sin(angle)*1.7,tip,'tunnel');}
         this.fronts.push({node:tip,angle,effort:0,length:0,blocked:false,turn:(this.random()-.5)*.4,branchAt:4+Math.floor(this.random()*10)});
       }
-      this.links=[];this.junctions=[];this.exits=[this.exit];this.nextAntId=COUNT;this.born=0;this.deaths=0;this.foodReserve=20;this.brood=[];this.recentDeaths=[];this.lastExpansion=0;
+      this.links=[];this.junctions=[];this.exits=[this.exit];this.nextAntId=COUNT;this.born=0;this.deaths=0;this.foodReserve=20;this.brood=[];this.recentDeaths=[];this.lastExpansion=0;this.starvationSeconds=0;this.starved=0;
       this.initialNodes=this.nodes.length;this.rebuild();
       this.ants=Array.from({length:COUNT},(_,id)=>{
         const role=id<12?'dig':id<44?'forage':'rest',front=id%this.fronts.length;
@@ -67,9 +67,14 @@
       return false;
     }
     lifecycle(){
+      // The shared nest reserve represents food exchanged through the colony.
+      // Life stages and starvation are compressed illustrative times, not species measurements.
+      if(this.ticks%6000===0)this.foodReserve=Math.max(0,this.foodReserve-Math.ceil(this.ants.length/16));
+      this.starvationSeconds=this.foodReserve>0?Math.max(0,this.starvationSeconds-8):Math.min(3600,this.starvationSeconds+1);
       const survivors=[];
       for(const ant of this.ants){
-        if(this.time-ant.bornAt>=ant.lifespan){this.deaths++;this.recentDeaths.push({id:ant.id,at:this.time,age:Math.floor(this.time-ant.bornAt),reason:'old age'});}else survivors.push(ant);
+        const reason=this.starvationSeconds>=1200+(ant.id*137%1200)?'starvation':this.time-ant.bornAt>=ant.lifespan?'old age':null;
+        if(reason){const from=this.nodes[ant.from],to=this.nodes[ant.cell];this.deaths++;if(reason==='starvation')this.starved++;this.recentDeaths.push({id:ant.id,at:this.time,age:Math.floor(this.time-ant.bornAt),reason,x:from.x+(to.x-from.x)*ant.phase,y:from.y+(to.y-from.y)*ant.phase,dir:ant.dir});}else survivors.push(ant);
       }
       this.ants=survivors;this.recentDeaths=this.recentDeaths.slice(-64);
       for(const egg of this.brood.filter(e=>e.ready<=this.time)){
@@ -77,8 +82,7 @@
         this.ants.push({id,cell:this.nest,from:this.nest,dir:this.random()*Math.PI*2,phase:1,carrying:0,role,steps:0,wait:1,work:-1,workLeft:0,job:id%this.fronts.length,pace:.6+this.random()*.45,bornAt:this.time,lifespan:3600+this.random()*3600});this.born++;
       }
       this.brood=this.brood.filter(e=>e.ready>this.time);
-      if(this.ticks%300===0&&this.foodReserve>=2&&this.ants.length+this.brood.length<MAX_ANTS){this.foodReserve-=2;this.brood.push({ready:this.time+180});}
-      if(this.ticks%6000===0)this.foodReserve=Math.max(0,this.foodReserve-Math.ceil(this.ants.length/32));
+      if(this.ticks%300===0&&this.foodReserve>=8&&this.ants.length+this.brood.length<MAX_ANTS){this.foodReserve-=2;this.brood.push({ready:this.time+180});}
     }
     weighted(rows,weight){if(!rows.length)return null;let total=0;const weights=rows.map(row=>{const w=weight(row);total+=w;return w;});let n=this.random()*total;for(let i=0;i<rows.length;i++){n-=weights[i];if(n<=0)return rows[i];}return rows.at(-1);}
     extend(index){
@@ -127,8 +131,10 @@
       if(this.ticks%10===0)this.lifecycle();
       if(this.ticks%300===0&&this.fronts.filter(f=>!f.blocked).length<12){this.seekFace();this.lastExpansion=this.time;}
       for(const ant of this.ants){
+        const hungry=this.starvationSeconds>120,foraging=ant.role==='forage'||hungry;
+        if(hungry&&ant.wait>3)ant.wait=3;
         if(ant.wait>0){ant.wait=Math.max(0,ant.wait-.1);continue;}
-        if(ant.phase<1){const a=this.nodes[ant.from],b=this.nodes[ant.cell],tempo=.88+.12*Math.sin(this.time*3.1+ant.id*2.4);ant.phase=Math.min(1,ant.phase+.1*ant.pace*tempo/(Math.hypot(b.x-a.x,b.y-a.y)||1)*(ant.carrying?.75:1));continue;}
+        if(ant.phase<1){const a=this.nodes[ant.from],b=this.nodes[ant.cell],tempo=.88+.12*Math.sin(this.time*3.1+ant.id*2.4);ant.phase=Math.min(1,ant.phase+.1*ant.pace*tempo*(this.starvationSeconds>600?.65:1)/(Math.hypot(b.x-a.x,b.y-a.y)||1)*(ant.carrying?.75:1));continue;}
         if(ant.work>=0){
           ant.workLeft-=.1;if(ant.workLeft>0)continue;
           const front=this.fronts[ant.work];front.effort=Math.min(PELLETS,front.effort+1);ant.carrying=2;
@@ -138,8 +144,8 @@
         const current=this.nodes[ant.cell],neighbors=this.adj[ant.cell];
         if(ant.carrying===2&&this.exits.includes(ant.cell)){this.soilDelivered++;ant.carrying=0;ant.wait=1+this.random()*2;if(ant.role==='dig'&&this.random()<.5){const choices=this.fronts.map((f,i)=>i).filter(i=>!this.fronts[i].blocked);const job=this.weighted(choices,i=>1/(1+this.fronts[i].length/5));if(job!==null)ant.job=job;}continue;}
         if(ant.carrying===1&&ant.cell===this.nest){this.delivered++;this.foodReserve++;ant.carrying=0;ant.wait=1+this.random()*4;continue;}
-        if(!ant.carrying&&ant.role==='forage'){const food=this.food.find(f=>f.left>0&&Math.hypot(f.x-current.x,f.y-current.y)<1.5);if(food){food.left--;ant.carrying=1;ant.wait=.7;continue;}}
-        if(!ant.carrying&&ant.role==='dig'){
+        if(!ant.carrying&&foraging){const food=this.food.find(f=>f.left>0&&Math.hypot(f.x-current.x,f.y-current.y)<1.5);if(food){food.left--;ant.carrying=1;ant.wait=.7;continue;}}
+        if(!ant.carrying&&ant.role==='dig'&&!hungry){
           let front=this.fronts[ant.job];if(!front||front.blocked){const choices=this.fronts.map((f,i)=>i).filter(i=>!this.fronts[i].blocked);if(!choices.length){ant.wait=30;continue;}ant.job=choices[Math.floor(this.random()*choices.length)];front=this.fronts[ant.job];}
           if(ant.cell===front.node){
             // At most two workers at one face; others give way instead of widening walls.
@@ -148,7 +154,7 @@
           }
         }
         let next;
-        const route=ant.carrying===2?this.toExit:ant.carrying===1?this.distance:ant.role==='dig'?this.routes[ant.job]:current.kind!=='surface'?this.toExit:null;
+        const route=ant.carrying===2?this.toExit:ant.carrying===1?this.distance:ant.role==='dig'&&!hungry?this.routes[ant.job]:current.kind!=='surface'?this.toExit:null;
         if(route)next=this.weighted(neighbors.filter(n=>route[n]<route[ant.cell]),()=>1);
         if(next===null||next===undefined){
           next=this.weighted(neighbors,n=>{const p=this.nodes[n],angle=Math.atan2(p.y-current.y,p.x-current.x),straight=1+Math.cos(angle-ant.dir)*.75;return straight*(current.kind==='surface'?1:1+this.trail[n]*2)/(1+this.visits[n]*.002);});
@@ -156,7 +162,7 @@
         if(next===null)continue;
         const occupants=this.ants.filter(a=>a.cell===next&&a.phase<1).length;
         if(occupants>=2&&current.kind!=='surface'&&this.random()<.7){ant.wait=.5+this.random()*2;continue;}
-        if(!ant.carrying&&this.random()<(ant.role==='rest'?.3:.07)){ant.wait=ant.role==='rest'?10+this.random()*40:.5+this.random()*2.5;continue;}
+        if(!ant.carrying&&!hungry&&this.random()<(ant.role==='rest'?.3:.07)){ant.wait=ant.role==='rest'?10+this.random()*40:.5+this.random()*2.5;continue;}
         const direction=Math.atan2(this.nodes[next].y-current.y,this.nodes[next].x-current.x),turn=Math.abs(Math.atan2(Math.sin(direction-ant.dir),Math.cos(direction-ant.dir)));
         ant.from=ant.cell;ant.cell=next;ant.phase=0;ant.steps++;ant.dir=direction;ant.wait=turn>.35?.12+turn*.16:0;this.visits[next]++;
         if(ant.carrying===1)this.trail[ant.from]=Math.min(12,this.trail[ant.from]+2);
@@ -165,10 +171,10 @@
       if(this.time-this.lastSample>=10){this.sample();this.lastSample=this.time;}
     }
     sample(){const m=this.metrics();this.samples.push({seconds:m.seconds,dug:m.dug,delivered:m.delivered,explored:m.explored});if(this.samples.length>60)this.samples.shift();return m;}
-    metrics(){const underground=this.nodes.map((n,i)=>n.kind==='surface'?null:i).filter(i=>i!==null);return {seconds:Math.floor(this.time),ants:this.ants.length,connections:this.junctions.length,born:this.born,deaths:this.deaths,brood:this.brood.length,entrances:this.exits.length,food_reserve:this.foodReserve,dug:this.dug,delivered:this.delivered,explored:underground.filter(i=>this.visits[i]>0).length,depth:Math.round(Math.max(...this.nodes.map(n=>n.y))-SURFACE),carrying_food:this.ants.filter(a=>a.carrying===1).length,carrying_soil:this.ants.filter(a=>a.carrying===2).length,food_remaining:this.food.reduce((n,f)=>n+f.left,0),busiest_visits:Math.max(0,...this.visits),total_visits:this.visits.reduce((n,v)=>n+v,0),soil_pellets:this.soilDelivered,active_diggers:this.ants.filter(a=>a.work>=0).length,resting:this.ants.filter(a=>a.wait>0).length,tunnel_tips:this.fronts.filter(f=>!f.blocked).length};}
+    metrics(){const underground=this.nodes.map((n,i)=>n.kind==='surface'?null:i).filter(i=>i!==null);return {seconds:Math.floor(this.time),ants:this.ants.length,connections:this.junctions.length,born:this.born,deaths:this.deaths,starved:this.starved,hungry:this.starvationSeconds>120,starvation_seconds:this.starvationSeconds,brood:this.brood.length,entrances:this.exits.length,food_reserve:this.foodReserve,dug:this.dug,delivered:this.delivered,explored:underground.filter(i=>this.visits[i]>0).length,depth:Math.round(Math.max(...this.nodes.map(n=>n.y))-SURFACE),carrying_food:this.ants.filter(a=>a.carrying===1).length,carrying_soil:this.ants.filter(a=>a.carrying===2).length,food_remaining:this.food.reduce((n,f)=>n+f.left,0),busiest_visits:Math.max(0,...this.visits),total_visits:this.visits.reduce((n,v)=>n+v,0),soil_pellets:this.soilDelivered,active_diggers:this.ants.filter(a=>a.work>=0).length,resting:this.ants.filter(a=>a.wait>0).length,tunnel_tips:this.fronts.filter(f=>!f.blocked).length};}
     observation(){return {schema:'wake-ant-observation@1',seed:this.seed,model:MODEL,captured_at:new Date().toISOString(),metrics:this.metrics(),samples:this.samples.slice(-12),interventions:{food_added:this.addedFood},scope:'Local browser research-inspired simulation, not calibrated biology or WAKE research. Simulation rests offscreen.'};}
     addFood(){if(this.food.length>=32){const empty=this.food.findIndex(f=>!f.left);if(empty<0)return false;this.food.splice(empty,1);}this.food.push({x:8+Math.floor(this.random()*104),y:0,left:100});this.food.at(-1).y=this.surfaceAt(this.food.at(-1).x);this.addedFood+=100;return true;}
-    save(){const result={schema:SCHEMA};for(const key of ['seed','rng','ticks','dug','delivered','soilDelivered','addedFood','nodes','fronts','nest','exit','initialNodes','visits','trail','ants','food','samples','lastSample','links','exits','nextAntId','born','deaths','foodReserve','brood','recentDeaths','lastExpansion','junctions'])result[key]=this[key];return result;}
+    save(){const result={schema:SCHEMA};for(const key of ['seed','rng','ticks','dug','delivered','soilDelivered','addedFood','nodes','fronts','nest','exit','initialNodes','visits','trail','ants','food','samples','lastSample','links','exits','nextAntId','born','deaths','foodReserve','brood','recentDeaths','lastExpansion','junctions','starvationSeconds','starved'])result[key]=this[key];return result;}
     static restore(v){
       const integer=(n,max)=>Number.isSafeInteger(n)&&n>=0&&n<=max,finite=(n,max)=>Number.isFinite(n)&&n>=0&&n<=max;
       if(!v||![SCHEMA,'wake-ant-colony@2'].includes(v.schema)||!integer(v.seed,4294967295)||!v.seed||!integer(v.rng,4294967295)||!integer(v.ticks,1e10)||!['dug','delivered','soilDelivered','addedFood','initialNodes'].every(k=>integer(v[k],1e9))||!finite(v.lastSample,v.ticks/10)||!Array.isArray(v.nodes)||v.nodes.length>MAX_NODES||v.nodes.length<130||v.nodes.length!==v.initialNodes+v.dug)throw Error('Invalid colony');
@@ -185,9 +191,11 @@
         Object.assign(v,{links:[],junctions:[],exits:[v.exit],nextAntId:COUNT,born:0,deaths:0,foodReserve:20,brood:[],recentDeaths:[],lastExpansion:v.ticks/10});
         for(const a of v.ants){a.bornAt=v.ticks/10-(a.id*71%1800);a.lifespan=3600+a.id*53%3600;}
       }
+      v.starvationSeconds ??=0;v.starved ??=0;
+      if(!integer(v.starvationSeconds,3600)||!integer(v.starved,v.deaths))throw Error('Invalid nutrition');
       if(!['nextAntId','born','deaths','foodReserve'].every(k=>integer(v[k],1e9))||v.nextAntId!==COUNT+v.born||v.ants.length!==COUNT+v.born-v.deaths||!finite(v.lastExpansion,v.ticks/10)||v.ants.some(a=>a.id>=v.nextAntId||!Number.isFinite(a.bornAt)||a.bornAt< -1800||a.bornAt>v.ticks/10||!finite(a.lifespan,7200)||a.lifespan<3600))throw Error('Invalid population');
       if(!Array.isArray(v.brood)||v.brood.length+v.ants.length>MAX_ANTS||v.brood.some(e=>!e||!Number.isFinite(e.ready)||e.ready<=v.ticks/10||e.ready>v.ticks/10+180))throw Error('Invalid brood');
-      if(!Array.isArray(v.recentDeaths)||v.recentDeaths.length>64||v.recentDeaths.length>v.deaths||new Set(v.recentDeaths.map(a=>a?.id)).size!==v.recentDeaths.length||v.recentDeaths.some(a=>!a||!integer(a.id,v.nextAntId-1)||v.ants.some(live=>live.id===a.id)||!finite(a.at,v.ticks/10)||!integer(a.age,1e9)||a.reason!=='old age'))throw Error('Invalid deaths');
+      if(!Array.isArray(v.recentDeaths)||v.recentDeaths.length>64||v.recentDeaths.length>v.deaths||new Set(v.recentDeaths.map(a=>a?.id)).size!==v.recentDeaths.length||v.recentDeaths.some(a=>!a||!integer(a.id,v.nextAntId-1)||v.ants.some(live=>live.id===a.id)||!finite(a.at,v.ticks/10)||!integer(a.age,1e9)||!['old age','starvation'].includes(a.reason)||('x' in a&&(!finite(a.x,WIDTH)||!finite(a.y,HEIGHT)||!Number.isFinite(a.dir)))))throw Error('Invalid deaths');
       v.junctions ??=[];
       if(!Array.isArray(v.junctions)||v.junctions.length>MAX_NODES||v.junctions.some(e=>!Array.isArray(e)||e.length!==2||!integer(e[0],v.nodes.length-1)||!integer(e[1],e[0]-1)||v.nodes[e[0]].kind==='surface'||v.nodes[e[1]].kind==='surface'||Math.hypot(v.nodes[e[0]].x-v.nodes[e[1]].x,v.nodes[e[0]].y-v.nodes[e[1]].y)>.01)||new Set(v.junctions.map(e=>e[0])).size!==v.junctions.length)throw Error('Invalid junctions');
       if(!Array.isArray(v.exits)||!v.exits.length||v.exits.length>16||!v.exits.includes(v.exit)||new Set(v.exits).size!==v.exits.length||v.exits.some(i=>!integer(i,v.nodes.length-1)||v.nodes[i].kind!=='surface'))throw Error('Invalid entrances');
