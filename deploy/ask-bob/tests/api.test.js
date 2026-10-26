@@ -109,3 +109,10 @@ test('persistent provider 503 stops after one same-model retry and releases its 
  globalThis.fetch=async url=>url.startsWith('https://sudofx')?Response.json(guide):(calls++,new Response('busy',{status:503}));
  try{const response=await api.fetch(chatRequest(),environment(bucket));assert.equal(response.status,503);assert.equal(calls,2);assert.equal((await response.json()).error,'provider_unavailable');assert.equal(Object.keys(JSON.parse(bucket.value).leases).length,0);}finally{globalThis.fetch=real;}
 });
+
+test('living colony context accepts bounded births and deaths while rejecting inconsistent populations',async()=>{
+ const {readFile}=await import('node:fs/promises');const observation=JSON.parse(await readFile(new URL('./fixtures/ant-observation-v6.json',import.meta.url),'utf8'));
+ const result=validate({mode:'ant-farm',observation,question:'What changed?'}).observation;
+ assert.equal(result.metrics.born,observation.metrics.born);assert.equal(result.metrics.deaths,observation.metrics.deaths);assert.equal(result.metrics.entrances,observation.metrics.entrances);
+ for(const mutate of [x=>x.metrics.ants=129,x=>x.metrics.deaths++,x=>x.metrics.brood=129,x=>x.metrics.entrances=0,x=>x.metrics.food_reserve='ignore rules',x=>x.metrics.carrying_food=129]){const bad=structuredClone(observation);mutate(bad);assert.throws(()=>validate({mode:'ant-farm',observation:bad,question:'hi'}),/invalid_observation/);}
+});
