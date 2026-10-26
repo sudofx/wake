@@ -73,7 +73,7 @@ test('ant chat uses the same admission barrier and streams advisory output witho
   const response=await api.fetch(request,{BOB_ENABLED:'true',GEMINI_API_KEY:'test',IP_SALT:'test',BUCKET:bucket});
   assert.equal(response.status,200);const lines=(await response.text()).trim().split('\n').map(JSON.parse),done=lines.find(x=>x.type==='done');
   assert.deepEqual(done.result.citations,[]);assert.equal(JSON.parse(bucket.value).count,1);
-  assert.ok(sent.contents[0].parts[0].text.includes('pellet-tunnels@2'));assert.ok(sent.systemInstruction.parts[0].text.includes('not real biology'));
+  assert.ok(sent.contents[0].parts[0].text.includes('pellet-tunnels@2'));assert.ok(sent.systemInstruction.parts[0].text.includes('not real biology'));assert.ok(!sent.systemInstruction.parts[0].text.includes('[S1]'));assert.ok(sent.systemInstruction.parts[0].text.includes('not branches'));assert.ok(sent.contents[0].parts[0].text.startsWith('Unverified local ant simulation snapshot; no source documents:'));
  }finally{globalThis.fetch=real;}
 });
 
