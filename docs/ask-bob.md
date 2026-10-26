@@ -23,9 +23,11 @@ Unsupported devices can use **source search** from an article instead: it quotes
 published passages without pretending to generate an explanation. There is no
 slow CPU fallback. The browser caches the model; returning still needs to load it
 into graphics memory. The setup checks the actual model cache and offers **Use saved Bob**
-when files are present, restores your selected model, and requests persistent
-browser storage when you open a model. It does not start a GPU worker automatically
-on a page reload. Clearing or browser eviction of site data can require missing
+when files are present and restores your selected model. You can select
+**Use saved Bob**, or type a message and press **Send**: Bob opens the saved model
+and answers that message without another setup click. Loading shows progress
+and can be stopped. Opening a model also requests persistent browser storage.
+It does not start a GPU worker automatically on a page reload. Clearing or browser eviction of site data can require missing
 files to download again; a saved-model indicator is not a guarantee that every
 file remains available. Closing the window releases graphics memory. Speed and answer
 quality depend on the model, device and question; this is a trial, not a promise
@@ -34,8 +36,9 @@ of hosted-model quality.
 Questions and replies never go to an external answer service. Model files download
 from pinned Hugging Face revisions; the engine and compiled GPU libraries ship
 with the GitHub Pages site. The model host receives ordinary download requests,
-not conversation. There is no API key or account. Nothing downloads until the
-reader explicitly selects **Download Bob**. Normal reading only adds a launcher.
+not conversation. There is no API key or account. The first download requires
+**Download Bob**. Sending to a saved model reuses its cache; files evicted since the cache check may need downloading again.
+Normal reading only adds a launcher.
 Recent conversations are browser-local, scoped to installation and exact source
 version, and bounded to 20 contexts, ten turns per context and 32 KiB total.
 **Clear chat** removes the selected conversation; browser site-data controls can

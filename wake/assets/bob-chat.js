@@ -104,26 +104,47 @@ $('search-mode').onclick = () => {
   if(!selection.article){status('Source search is available from a blog article. Open Bob’s Blog to choose one.');return;}
   mode = 'search';$('setup').hidden = true;$('presence').textContent = 'Source search · no model';status('Source search quotes published passages.');$('question').focus();
 };
-async function download() {
+async function openModel(controller) {
   cacheCheck++;
   try{localStorage.setItem(modelPreference,$('model').value);}catch{}
   // Ask for persistence from the user's click. Denial must not block use.
   try{navigator.storage?.persist?.().catch(() => {});}catch{}
-  const controller = new AbortController(); active = controller;state();$('progress').hidden = false;$('progress').removeAttribute('value');
+  $('progress').hidden = false;$('progress').removeAttribute('value');
+  status('Opening Bob on this device…');
   try {
     await gpu.load($('model').value,(message,report) => {status(message);if(Number.isFinite(report.progress))$('progress').value = report.progress;},controller.signal);
-    mode = 'model';$('setup').hidden = true;$('presence').textContent = 'On device · ready';status('Bob is ready. Ask away.');$('question').focus();
+    mode = 'model';$('setup').hidden = true;$('presence').textContent = 'On device · ready';
+  } finally {$('progress').hidden = true;$('download').textContent = 'Open Bob';}
+}
+async function download() {
+  if(active)return;
+  const controller = new AbortController();active = controller;state();
+  try {
+    await openModel(controller);status('Bob is ready. Ask away.');$('question').focus();
   } catch(error) {status(error.name === 'AbortError' ? 'Stopped. Downloaded files are kept for retry.' : error.message);}
-  finally {if(active === controller)active = undefined;$('progress').hidden = true;state();}
+  finally {if(active === controller)active = undefined;state();}
 }
 $('download').onclick = download;
 $('form').onsubmit = async event => {
   event.preventDefault();if(active || !contextReady) return;
   const question = $('question').value.trim();if(!question)return;
-  if(mode === 'model' && !gpu.ready()){$('setup').hidden = false;await modelSetup();status('Open Bob using the setup button, or use source search.');return;}
   const controller = new AbortController(), revision = epoch;active = controller;state();
-  bubble('You',question);const row = bubble('Bob','…');$('question').value = '';$('question').style.height = '44px';status(mode === 'search' ? 'Finding published passages…' : 'Reading the sources…');
+  cacheCheck++;let row;
   try {
+    if(mode === 'model' && !gpu.ready()) {
+      status('Checking saved Bob before opening…');
+      const saved = await gpu.cached($('model').value,controller.signal);
+      if(controller.signal.aborted)throw controller.signal.reason;
+      if(!saved) {
+        $('setup').hidden = false;
+        $('download').textContent = saved === false ? 'Download Bob' : 'Open Bob';
+        status(saved === false ? 'Download Bob using the setup button first. Your message is kept.' : 'Saved files could not be checked. Open Bob using the setup button. Your message is kept.');
+        return;
+      }
+      await openModel(controller);
+    }
+    if(revision !== epoch || controller.signal.aborted)return;
+    bubble('You',question);row = bubble('Bob','…');$('question').value = '';$('question').style.height = '44px';status(mode === 'search' ? 'Finding published passages…' : 'Reading the sources…');
     let answer,refs,metrics,complete = true,sourceLabel = 'Sources';
     if(mode === 'search') {
       const result = await searchAnswer({article_id:selection.article,expected_article_hash:selection.hash,question,history},controller.signal);
@@ -139,14 +160,14 @@ $('form').onsubmit = async event => {
     else {row.classList.add('incomplete');status('Reply reached its length limit. Ask Bob to focus on one part.');}
     bottom();
   } catch(error) {
-    if(revision === epoch){row.classList.add('incomplete');if(row.querySelector('.prose').textContent === '…')row.remove();status(error.name === 'AbortError' ? 'Stopped. Your earlier replies are kept.' : error.message);if(!$('question').value)$('question').value = question;}
+    if(revision === epoch){if(row){row.classList.add('incomplete');if(row.querySelector('.prose').textContent === '…')row.remove();}status(error.name === 'AbortError' ? 'Stopped. Your earlier replies are kept.' : error.message);if(!$('question').value)$('question').value = question;}
   } finally {if(active === controller)active = undefined;state();}
 };
 try {
   const prepared = await prepareContext(selection,'What is this about?',[],AbortSignal.timeout(15000));
   $('context-title').textContent = prepared.title;
   const link = prepared.sources[0]?.url;if(link)$('source-page').href = link;
-  await restore();contextReady = true;state();status('Choose a model to start.');
+  await restore();status('Choose a model to start.');
   if(!await gpu.supported()){$('model-setup').hidden = true;status('GPU Bob is unavailable in this browser. Source search is still available for articles.');}
   else {
     let preferred;try{preferred=localStorage.getItem(modelPreference);}catch{}
@@ -154,4 +175,5 @@ try {
     else if(!await gpu.cached('best') && await gpu.cached('capable'))$('model').value='capable';
     await modelSetup();
   }
+  contextReady = true;state();
 } catch(error) {status(error.message);$('setup').hidden = true;}

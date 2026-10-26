@@ -12,12 +12,15 @@ function appConfig(choice) {
 }
 // Ask the engine's cache, not a localStorage flag that survives eviction. This
 // never creates a worker, requests a GPU, or downloads model weights.
-export async function cached(choice) {
+export async function cached(choice,signal) {
   if (!Object.hasOwn(MODELS,choice)) return false;
   try {
-    const {hasModelInCache} = await import('./ask-bob-gpu-engine.js');
-    return await bounded(() => hasModelInCache(MODELS[choice].id,appConfig(choice)),{timeout:8000,onStop:() => {}});
-  } catch {return null;}
+    return await bounded(async () => {
+      const {hasModelInCache} = await import('./ask-bob-gpu-engine.js');
+      if(signal?.aborted)throw signal.reason;
+      return hasModelInCache(MODELS[choice].id,appConfig(choice));
+    },{signal,timeout:8000,onStop:() => {}});
+  } catch(error) {if(signal?.aborted)throw signal.reason;return null;}
 }
 export async function supported() {
   if (!navigator.gpu || !globalThis.Worker) return false;
