@@ -14,6 +14,10 @@ The colony saves locally about every ten seconds and when hidden, then rests
 while offscreen. It never invents activity during absence. Another tab writing
 the same colony pauses this tab and prevents stale writes. An unreadable save
 is preserved untouched; a temporary colony cannot silently replace it.
+Delayed or duplicate storage notifications after reload are ignored only when
+they match the loaded value or are no longer current. Every write also compares
+the stored value with the last known value, so a real competing tab still blocks
+stale overwrites.
 
 ## How the ants build and live
 

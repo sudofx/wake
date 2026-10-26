@@ -286,6 +286,13 @@ Choose the release boundary from the actual diff:
   case does not claim a frozen current checkpoint. A newer operator control
   supersedes it. Current workers retain their immutable source until the normal
   serialized successor adopts the new binding.
+  A request may also name a separate `presentation_revision`. It requires its
+  own exact successful master CI and a second complete tree comparison against
+  the audited candidate. Every runtime/record and development-module byte must
+  match; only the explicitly allowlisted presentation/harness paths can differ.
+  The full twelve-node report remains bound to its original candidate and
+  checkpoint. This keeps a small HTML/control repair from restarting the same
+  native-history replay while preserving the actual executable-code boundary.
 - **Operational runtime changes with unchanged record interpretation:** complete
   the background comparison, then drain and roll over the runtime. Review the
   diff to establish that native formats, reducers, governance, migrations and

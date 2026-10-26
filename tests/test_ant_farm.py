@@ -30,6 +30,6 @@ class AntFarmTests(unittest.TestCase):
 
     @unittest.skipUnless(shutil.which('node'), 'Node is required')
     def test_colony_mechanisms_and_resume(self):
-        result = subprocess.run(['node', '--test', str(Path(__file__).parent / 'browser/ant-colony.cjs'), str(Path(__file__).parent / 'browser/bob-markdown.cjs')],
+        result = subprocess.run(['node', '--test', str(Path(__file__).parent / 'browser/ant-colony.cjs'), str(Path(__file__).parent / 'browser/ant-storage.cjs'), str(Path(__file__).parent / 'browser/bob-markdown.cjs')],
                                 capture_output=True, text=True)
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)

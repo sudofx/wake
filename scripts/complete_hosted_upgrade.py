@@ -24,7 +24,7 @@ def write_policy(client, policy, sha, message):
         'content': base64.b64encode((json.dumps(policy, indent=2) + '\n').encode()).decode()})
 
 
-def presentation_only_diff(client, baseline, candidate):
+def presentation_only_diff(client, baseline, candidate, *, allow_development=True):
     """Prove executable research/runtime bytes are unchanged, not a caller label.
 
     Only presentation, tests, prose, isolated development demonstrations and the
@@ -49,8 +49,9 @@ def presentation_only_diff(client, baseline, candidate):
     before, after = files(baseline), files(candidate)
     allowed = {'AGENTS.md', 'hosted-runtime.json', 'scripts/complete_hosted_upgrade.py',
                'scripts/verify_hosted_upgrade.py', '.github/workflows/complete-hosted-upgrade.yml',
-               '.github/workflows/verify-hosted-upgrade.yml',
-               'wake/improvement.py', 'wake/recovery_demo.py'}
+               '.github/workflows/verify-hosted-upgrade.yml'}
+    if allow_development:
+        allowed.update(('wake/improvement.py', 'wake/recovery_demo.py'))
     for path in before.keys() | after.keys():
         if before.get(path) != after.get(path) and not (path in allowed or
                 path.startswith(('wake/assets/', 'docs/', 'tests/', 'deploy/ask-bob/'))):
@@ -67,6 +68,9 @@ def complete_upgrade(client, report, run_id):
     presentation_only = intent.get('presentation_only', False)
     if type(presentation_only) is not bool:
         raise ValueError('Invalid presentation-only request')
+    presentation = intent.get('presentation_revision', candidate)
+    if not re.fullmatch('[a-f0-9]{40}', str(presentation)) or (presentation != candidate and not presentation_only):
+        raise ValueError('Invalid separate presentation revision')
     if (not all(re.fullmatch('[a-f0-9]{40}', value) for value in (candidate, baseline))
             or (not presentation_only and not re.fullmatch('[a-f0-9]{40}', intent['checkpoint_ref']))
             or report.get('status') != 'verified'
@@ -94,14 +98,22 @@ def complete_upgrade(client, report, run_id):
         raise ValueError('Candidate has no successful master code checks')
     if presentation_only:
         presentation_only_diff(client, baseline, candidate)
+        if presentation != candidate:
+            # Reuse the twelve full audits only when the new presentation has
+            # byte-identical runtime/record code, including development modules.
+            presentation_only_diff(client, candidate, presentation, allow_development=False)
+            presentation_checks = client.request(f'actions/workflows/test.yml/runs?head_sha={presentation}&status=success&per_page=20')['workflow_runs']
+            if not any(item['head_sha'] == presentation and item['head_branch'] == 'master'
+                       and item['event'] in ('push', 'workflow_dispatch') for item in presentation_checks):
+                raise ValueError('Presentation revision has no successful master code checks')
         controls = client.request('actions/workflows/hosted-control.yml/runs?per_page=1')['workflow_runs']
         if not controls or controls[0]['id'] != intent['control_run']:
             raise ValueError('A newer operator control superseded this upgrade request')
-        if binding['source_revision'] not in (baseline, candidate):
+        if binding['source_revision'] not in (baseline, candidate, presentation):
             raise ValueError('Runtime binding changed since the request')
         # Current workers keep their immutable source. The existing serialized
         # successor adopts the new assets normally; never enable or stop research.
-        binding['source_revision'] = candidate
+        binding['source_revision'] = presentation
         del binding['pending_upgrade']
         write_policy(client, policy, sha, 'Bind verified presentation for the next hosted batch')
         return 'presentation-bound-for-next-batch'

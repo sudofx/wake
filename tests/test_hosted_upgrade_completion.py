@@ -31,6 +31,8 @@ class Client:
         self.active = False
         self.changed_source = 'wake/assets/ant-farm.js'
         self.truncated = False
+        self.presentation_changed_source = 'wake/assets/ant-farm.js'
+        self.no_ci_for = None
 
     def request(self, path, *, method='GET', body=None):
         if path.startswith('git/commits/'):
@@ -44,6 +46,12 @@ class Client:
                         row['sha'] = '1' * 40
                 if self.changed_source not in {r['path'] for r in rows}:
                     rows.append({'path': self.changed_source, 'sha': '1' * 40, 'mode': '100644', 'type': 'blob'})
+            if '/c' in path:
+                for row in rows:
+                    if row['path'] == self.presentation_changed_source:
+                        row['sha'] = '2' * 40
+                if self.presentation_changed_source not in {r['path'] for r in rows}:
+                    rows.append({'path': self.presentation_changed_source, 'sha': '2' * 40, 'mode': '100644', 'type': 'blob'})
             return {'tree': rows, 'truncated': self.truncated}
         if path.startswith('contents/hosted-runtime.json'):
             if method == 'PUT':
@@ -58,7 +66,8 @@ class Client:
             return {'status': 'completed', 'conclusion': 'success', 'head_branch': 'master',
                     'event': 'workflow_dispatch', 'path': '.github/workflows/verify-hosted-upgrade.yml'}
         if path.startswith('actions/workflows/test.yml/runs?'):
-            return {'workflow_runs': [{'head_sha': 'a' * 40, 'head_branch': 'master', 'event': 'push'}] if self.ci else []}
+            requested = path.split('head_sha=')[1].split('&')[0]
+            return {'workflow_runs': [{'head_sha': requested, 'head_branch': 'master', 'event': 'push'}] if self.ci and requested != self.no_ci_for else []}
         if path == 'actions/workflows/hosted-research.yml':
             return {'state': 'active' if self.active else 'disabled_manually'}
         if path.startswith('actions/workflows/hosted-research.yml/runs?'):
@@ -76,6 +85,24 @@ class Client:
 
 
 class CompletionTests(unittest.TestCase):
+    def test_new_presentation_reuses_full_audits_only_with_identical_runtime_and_own_ci(self):
+        client = Client()
+        client.intent.update(presentation_only=True, presentation_revision='c' * 40)
+        self.assertEqual(complete_upgrade(client, client.report, 42), 'presentation-bound-for-next-batch')
+        self.assertEqual(client.policy['installations'][client.repository]['source_revision'], 'c' * 40)
+        for changed in ('wake/kernel/record.py', 'wake/improvement.py', 'pyproject.toml'):
+            client = Client()
+            client.intent.update(presentation_only=True, presentation_revision='c' * 40)
+            client.presentation_changed_source = changed
+            with self.assertRaises(ValueError):
+                complete_upgrade(client, client.report, 42)
+            self.assertFalse(client.mutations)
+        client = Client()
+        client.intent.update(presentation_only=True, presentation_revision='c' * 40)
+        client.no_ci_for = 'c' * 40
+        with self.assertRaises(ValueError):
+            complete_upgrade(client, client.report, 42)
+        self.assertFalse(client.mutations)
     def test_presentation_binding_preserves_active_writer_and_operator_intent(self):
         for enabled in (False, True):
             client = Client()
