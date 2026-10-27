@@ -44,6 +44,32 @@ bounded recent fallback instead of duplicating the complete growing public archi
 Successful source checks request delivery; unchanged interfaces are skipped.
 See [website delivery](cloud.md#independently-checked-website-delivery).
 
+## Preview website edits immediately
+
+From the checkout, run:
+
+```sh
+python scripts/web_preview.py
+```
+
+Open `http://127.0.0.1:8081/`. The preview uses disposable sample content and the
+real website exporter. Editing Python or website assets rebuilds the fixture in a
+fresh Python process; open pages reload automatically. No commit, GitHub job,
+Docker installation, model credential or research process is required. Stop with
+Ctrl-C. Temporary preview files are removed on exit; failed builds leave the last
+working preview available and print the error in the terminal.
+
+Use `--port 8082` for another port, or `--host 0.0.0.0` inside a development
+container with a private forwarded port. This does not replace the installation
+preview when testing actual research controls. Run focused tests locally with,
+for example, `python -m unittest tests.test_reader_transport tests.test_reader_guide`.
+
+A local browser check on October 26 measured 501 ms for the initial export and
+773 ms from a stylesheet edit to the automatically refreshed page. It recorded
+zero external requests, Actions runs or Pages builds. These are local timings,
+not a guarantee for every machine. Repeat with a real edit and browser inspection
+when changing the preview path.
+
 ## Working with another coding agent
 
 Development requires this repository, its `AGENTS.md`, the normal Python/Node
