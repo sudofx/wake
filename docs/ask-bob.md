@@ -7,40 +7,52 @@ A separate conversation window uses blue outgoing messages and gray Bob replies,
 follows the site theme, and keeps the composer visible as the phone keyboard opens.
 There are no preset questions.
 
-1. Choose a model and select **Download Bob**. **Balanced** uses a 2B model
-   (about 1.1 GB); **More capable** uses a 4B model (about 2.4 GB), with slower
-   replies and greater memory requirements.
-2. Wait for the one-time download and preparation, then send a message. Replies
-   appear as Bob writes them. **Stop** cancels loading or generation and keeps
-   already downloaded files for retry.
-3. Ask follow-up questions in the same window. Bob receives bounded recent
-   conversation and excerpts from the selected, version-matched public material.
-   Open **Sources** to inspect the cited records.
+Type a question as soon as the window opens. There are no download buttons,
+model choices or setup questions. Basic introductions to WAKE, its rules and the
+purpose of the research answer immediately from the published inspection guide;
+those replies are labeled **Published introduction**. They are editorial source
+explanations, not a claim that a model is already running.
 
-Inference uses WebGPU in a dedicated worker. A compatible browser, graphics
-processor, half-precision shader support and sufficient memory are required.
+A compact Qwen3 0.6B model (about 335 MB of weights, plus tokenizer and engine)
+prepares automatically while the reader can use those introductions. It then
+handles open-ended questions and follow-ups. The session keeps that one compact
+model throughout the conversation. It does not prefetch or automatically open
+the larger 1.1 GB model between replies. This limits automatic memory demand;
+it does not certify that the remaining engine fits every iPhone. Replies stream
+as they are generated.
 
-Downloading model files and loading graphics memory are separate stages. If a
-phone reloads during preparation, reopen Bob and use the saved model if detected.
-If preparation repeatedly reloads the page, try Balanced or source search.
+Inference uses WebGPU in one dedicated worker at a time. A compatible browser,
+graphics processor, half-precision shader support and sufficient memory are
+required. Preparation works while the page is active; browsers may
+suspend a hidden or locked phone. First use still depends on connection speed
+and device preparation; there is no promise of instant open-ended inference.
+Cached files are reused without a preliminary cache-check gate, including when
+browser cache inspection fails. Browser eviction can require missing files again.
+A saved download still needs graphics memory when the chat opens. Downloading
+model files and loading them for an answer are separate stages; a cached file
+does not establish that the device has enough memory to run it.
+**Stop** cancels the current answer or its preparation and keeps earlier replies.
+The pending question is kept locally for retry, including across a page reload.
 
-Unsupported devices can use **source search** from an article instead: it quotes
-published passages without pretending to generate an explanation. There is no
-slow CPU fallback. The browser caches the model; returning still needs to load it
-into graphics memory. The setup checks the actual model cache and offers **Use saved Bob**
-when files are present, restores your selected model, and requests persistent
-browser storage when you open a model. It does not start a GPU worker automatically
-on a page reload. Clearing or browser eviction of site data can require missing
-files to download again; a saved-model indicator is not a guarantee that every
-file remains available. Closing the window releases graphics memory. Speed and answer
-quality depend on the model, device and question; this is a trial, not a promise
-of hosted-model quality.
+When GPU preparation fails, the published introductions still work; article
+questions can fall back to explicitly labeled published passages. A failed or
+stopped question keeps one visible message pair; sending the same question again
+retries that pair instead of adding duplicate unanswered bubbles. There is no CPU
+inference fallback or hidden server answering questions. Physical iPhone Safari
+stability and explanation quality require separate device acceptance.
+
+Bob explains at the level of a thoughtful 15-year-old: familiar language, defined
+technical terms, short examples and respectful tone. Models still make mistakes.
+The 79 MB SmolLM2 135M and 207 MB SmolLM2 360M candidates were rejected after
+local source-grounding checks produced misleading explanations; smaller downloads
+alone did not meet the explanation requirement. This does not establish a general
+benchmark or physical iPhone performance.
 
 Questions and replies never go to an external answer service. Model files download
 from pinned Hugging Face revisions; the engine and compiled GPU libraries ship
 with the GitHub Pages site. The model host receives ordinary download requests,
-not conversation. There is no API key or account. Nothing downloads until the
-reader explicitly selects **Download Bob**. Normal reading only adds a launcher.
+not conversation. There is no API key or account. Opening the conversation starts automatic preparation and model downloads. No conversation is sent to the model host.
+Normal reading only adds a launcher.
 Recent conversations are browser-local, scoped to installation and exact source
 version, and bounded to 20 contexts, ten turns per context and 32 KiB total.
 **Clear chat** removes the selected conversation; browser site-data controls can

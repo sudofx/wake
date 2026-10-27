@@ -137,7 +137,7 @@ def export_reader_transport(data, target):
         small['attention'] = {'counters': {}, 'deferred': {}}
         small['representations'] = {}
         view.update(state=small, events=[], reader_transport={'schema': 1,
-            'counts': counts, 'page_size': PAGE_SIZE, 'scope': 'Recent overview; open a record or load older entries for details.'})
+            'counts': counts, 'page_size': PAGE_SIZE, 'scope': 'Recent overview; open a record or scroll for older entries.'})
         return view
 
     for limit in (16, 12, 8, 4, 2, 1, 0):

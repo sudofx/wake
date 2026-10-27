@@ -34,9 +34,9 @@ class AskBobExportTests(unittest.TestCase):
                 else:
                     self.assertEqual((mirror / name).read_bytes(), (site / name).read_bytes())
             self.assertIn('window.WakeAskBob', (mirror / 'index.html').read_text())
-            for name in ('bob-chat.html', 'bob-chat.js', 'bob-chat.css', 'ask-bob-context.js',
+            for name in ('bob-chat.html', 'bob-chat.js', 'bob-chat.css', 'ask-bob-session.js', 'ask-bob-context.js',
                          'ask-bob-gpu.js', 'ask-bob-gpu-worker.js', 'ask-bob-gpu-engine.js',
-                         'ask-bob-gpu-2b.wasm', 'ask-bob-gpu-4b.wasm'):
+                         'ask-bob-gpu-starter.wasm', 'ask-bob-gpu-2b.wasm', 'ask-bob-gpu-4b.wasm'):
                 if name.endswith('.html'):
                     self.assertIn('bob-chat.js', (mirror / name).read_text())
                     self.assertIn('"snapshot_only": true', (mirror / name).read_text())

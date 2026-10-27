@@ -1,0 +1,57 @@
+name: Bob — Maintain shared ant farm
+
+on:
+  schedule:
+    - cron: '17,47 * * * *'
+  workflow_dispatch:
+    inputs:
+      bootstrap:
+        description: Initialize Bob's dedicated farm only if its branch does not exist.
+        type: boolean
+        default: false
+  workflow_run:
+    workflows: ['WAKE✳︎ — Check code · automatic']
+    types: [completed]
+    branches: [master]
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: wake-bob-ant-farm
+  cancel-in-progress: false
+
+jobs:
+  maintain:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Select a checked source version
+        id: source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          revision=$(gh api "repos/${{ github.repository }}/actions/workflows/test.yml/runs?branch=master&status=success&per_page=20" --jq '.workflow_runs | map(select(.head_branch == "master" and (.event == "push" or .event == "workflow_dispatch"))) | first | .head_sha')
+          test "$revision" != null
+          echo "revision=$revision" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ steps.source.outputs.revision }}
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+      - name: Advance a bounded interval and record care
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          SOURCE_REVISION: ${{ steps.source.outputs.revision }}
+          BOOTSTRAP: ${{ inputs.bootstrap || false }}
+        run: |
+          if [ "$BOOTSTRAP" = true ]; then
+            node scripts/bob_ant_farm.cjs publish --source-revision "$SOURCE_REVISION" --ticks 6000 --bootstrap
+          else
+            node scripts/bob_ant_farm.cjs publish --source-revision "$SOURCE_REVISION" --ticks 6000
+          fi

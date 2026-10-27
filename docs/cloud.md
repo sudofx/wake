@@ -23,8 +23,66 @@ neither format is added to public exports. A presentation-only refresh also copi
 the Console chart assets: each line chart fits its complete captured history to
 the panel width, without changing the captured research or inspection packets.
 
-The [ant farm](ant-farm.md) ships with filtered website exports and runs entirely
-in the browser. Its former conversation panel is removed.
+The [ant farm](ant-farm.md) ships with filtered website exports. My farm runs
+and saves in each visitor’s browser. [Bob’s shared farm](bob-ant-farm.md) has a
+separate, bounded GitHub checkpoint maintained by a provider-free Actions job;
+visitors only replay its dated observations. Its notebook is presentation and
+never changes native research articles or records. Its former conversation panel
+is removed.
+
+The October 26 data-only demonstration used the already deployed `c4986cf`
+interface, generated ten deterministic retrieval fixture results and published
+only data commit `6b6965c`. A fresh browser displayed result
+`publication-check-20261027T055140Z` after **13.9 seconds**. Pages run
+`40457497721` remained the latest deployment before and after the update: **zero
+new Pages builds**, no website source change during the demonstration, and zero
+provider calls. This validates publication plumbing, not a knowledge benefit.
+
+## Experimental execution measurements and reset
+
+The failed hosted run [40444574830](https://github.com/sudofx/wake/actions/runs/40444574830)
+measured about 5 seconds in queue, 12 seconds creating its container, 4 seconds
+installing dependencies and 41.5 seconds restoring state. It later spent the full
+180-second Start acknowledgment limit with no confirmed worker. Its successor
+job took 145 seconds, including an explicit 120-second failure backoff. These
+measurements point to startup/control and remote state transfers before changing
+hosting. Stage timings now report restore, startup, Start, drain, final state
+transfer and data publication separately.
+
+Standard GitHub runners remain the default: they need no always-on operator
+computer and [standard public-repository usage is free](https://docs.github.com/en/billing/concepts/product-billing/github-actions).
+An existing local container avoids workflow queues after launch but depends on
+that host remaining available; a new persistent hosted service has not been
+measured or approved. No new subscription is required.
+
+For a deliberate hosted cycle-zero reset, dispatch `hosted-research.yml` with the
+checked pinned `runtime_ref` and `reset=true`. It drains workers, uses the existing
+native reset, replaces the transferred cycle-zero state and records a dated
+`experimental_reset` marker in operational/public installation metadata. It does
+not archive the discarded experiment or retain its preceding encrypted snapshot.
+Normal research dispatches omit reset. Local installations use `wake-research RESET`.
+
+## Publish controlled evaluation results
+
+The Lab page (`lab.html`) reads `latest.json` from the separate `wake-evaluations`
+data branch when opened. This small experimental-output stream is independent
+of the twelve-node research snapshot and the checked Pages interface. It never
+changes native records or research counters. Local previews read `evaluation.json`
+from their own server instead.
+
+Publish an explicit JSON report using the existing GitHub CLI login:
+
+```sh
+python scripts/publish_evaluation.py /tmp/evaluation.json --repository sudofx/wake --initialize
+```
+
+`--initialize` permits creating a missing data branch once; later updates omit
+it. The report uses `schema: "wake-evaluation@1"`, a unique `result_id`,
+`generated_at`, `title`, `summary`, `metrics` (name/value rows), and `limitations`.
+Label deterministic fixture results plainly. The publisher limits reports to
+2 MiB, writes only `latest.json`, rejects competing non-fast-forward updates,
+and dispatches no workflow or Pages build. No provider key enters the report.
+This data branch is disposable experiment output, not a recovery archive.
 
 ## Publish the local installation mirror
 
@@ -380,13 +438,16 @@ request bodies and memory-use observations do not become public evaluation data.
 Encrypted recovery also retains the existing retired private sidecars as opaque
 files; they are neither interpreted nor included in public exports or research.
 
-The existing kernel invocation lifecycle calls the injected remote checkpoint
-before provider effects and at terminal boundaries. Each callback snapshots the
-owning node, preserves native replay/provenance and installation configuration, and
-commits the encrypted checkpoint before continuing. A crash after a request starts
-leaves an interrupted native invocation to recover, never a fabricated result.
+Experimental workers commit their native SQLite invocation state before provider
+effects. Remote state transfer now occurs at the end of a bounded batch, rather
+than before and after every model call or once again before Start. This removes
+GitHub uploads from the per-call path. An abruptly lost runner may lose work
+since its last completed batch transfer; that disposable work is not presented
+as continuously preserved. Ordinary process recovery still uses native records.
 Free quota waits survive runner handover; no automatic reset or quota bypass exists.
 Worker failures are recovered from verified records in the next bounded run.
+Start is acknowledged when the worker reads its command, before editorial or
+provider preparation. Stop/reset acknowledgments still require drainage.
 Missing Start acknowledgments are reported explicitly. Confirmed workers may
 continue a partial batch; if none confirm, the batch closes and publishes its
 completed exports before the successor retries. One unavailable worker cannot
@@ -471,7 +532,7 @@ cache expires can adopt a newer export without rebuilding the interface.
 The data branch supplies JSON and record packets, never executable website
 assets. Download links resolve to that same selected commit; the external
 inspection entry opens its self-contained Markdown packet. Remote identity mismatch or initial discovery failure selects the bundled
-dated snapshot before any data loads and displays a notice. Once a remote commit
+dated snapshot before any data loads, without inserting a site-wide banner. Once a remote commit
 is adopted, a missing packet fails visibly rather than combining generations.
 A popup with an explicit source revision fails if that revision is unavailable.
 These are public observations, not native record access or live activity.

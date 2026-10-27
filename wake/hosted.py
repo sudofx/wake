@@ -44,7 +44,7 @@ MAX_BLOCK_SIZE = 256 * 1024 * 1024
 MAX_DATABASE = 8 * 1024**3
 # The two retired private files are opaque archival payloads only. Transport
 # preserves their bytes; no runtime feature reads or updates their contents.
-AUXILIARY = ('installation-id.json', 'provider-schedule.json',
+AUXILIARY = ('installation-id.json', 'provider-schedule.json', 'experimental-reset.json',
              'private/.passenger.md', 'private/.passenger-state.json')
 
 
@@ -428,17 +428,17 @@ class HostedState:
                         archive.write(path, str(path.relative_to(root)))
             return self.put_file(target, assets)
 
-    def save(self, manifest):
+    def save(self, manifest, *, retain_previous=True):
         previous = self.checkout / 'current.enc'
         base = self.git('rev-parse', 'HEAD') if previous.exists() else ''
-        if previous.exists():
+        if previous.exists() and retain_previous:
             shutil.copyfile(previous, self.checkout / 'previous.enc')
+        elif not retain_previous:
+            (self.checkout / 'previous.enc').unlink(missing_ok=True)
         manifest['generation'] += 1
         manifest['captured_at'] = datetime.now(timezone.utc).isoformat()
         atomic_bytes(previous, seal(self.key, encode(manifest), FORMAT))
-        self.git('add', 'current.enc')
-        if (self.checkout / 'previous.enc').exists():
-            self.git('add', 'previous.enc')
+        self.git('add', '--all')
         tree = self.git('write-tree')
         commit = self.git('commit-tree', tree, '-m', 'Checkpoint native WAKE installation')
         ref = 'refs/heads/' + STATE_BRANCH
@@ -453,6 +453,35 @@ class HostedState:
                 raise
         self.git('reset', '--hard', commit)
         return commit
+
+    def reset(self, root, reason):
+        """Replace stopped cycle-zero experiment state, with no retained old copy."""
+        from .record_store import RecordStore
+        root = Path(root)
+        with self.lease(), tempfile.TemporaryDirectory(dir=self.directory) as temporary:
+            manifest = self.read_manifest()
+            assets = self.assets()
+            nodes = {}
+            for node in NODE_IDS:
+                source = root/'nodes'/node/'record'
+                store = RecordStore(source)
+                try:
+                    if store.load()['version'] != 0:
+                        raise ValueError('Reset requires every node stopped at cycle zero')
+                finally:
+                    store.close()
+                target = Path(temporary)/(node+'.sqlite')
+                identity = _verified_snapshot(source/'wake.sqlite', target)
+                nodes[node] = {**identity, 'blocks': self.put_file(target, assets)}
+            reset = {'id': os.urandom(16).hex(), 'at': datetime.now(timezone.utc).isoformat(),
+                     'reason': reason, 'previous_generation': manifest['generation']}
+            atomic_write(root/'experimental-reset.json', json.dumps(reset))
+            manifest.update(nodes=nodes, experimental_reset=reset,
+                            origin='Explicit experimental reset; earlier results discarded')
+            manifest['auxiliary'] = self.put_auxiliary(root, assets)
+            self.save(manifest, retain_previous=False)
+            self.prune()
+            return reset
 
     def checkpoint_node(self, record_directory):
         record_directory = Path(record_directory).resolve()

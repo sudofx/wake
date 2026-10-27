@@ -59,7 +59,7 @@ research notes and engineering handoffs between conversations.
 The public website and ant farm run on GitHub Pages. [Ask Bob](docs/ask-bob.md)
 can download a model and answer on the reader’s graphics processor in a separate
 chat window; conversations stay on the device. The engine ships with the site,
-and model files download from pinned Hugging Face revisions after explicit opt-in.
+and opening the chat automatically downloads model files from pinned Hugging Face revisions.
 The former hosted Bob service and activity relay remain retired. An optional local
 Gemini preview keeps its credential server-side.
 The [self-correction page](https://sudofx.github.io/wake/self-correction/) shows

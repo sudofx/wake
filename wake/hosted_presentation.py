@@ -63,6 +63,8 @@ def bind_hosted_status(site, repository, revision):
         page = re.sub(r'<a\b[^>]*class="[^"]*actions-light[^"]*"[^>]*>.*?</a>', '', page, flags=re.S)
         page = page.replace('class="header-tools">', 'class="header-tools">' + light, 1)
         page = re.sub(r'((?:nav\.js|masthead\.css)\?v=)[^"<]+', r'\g<1>20261020-masthead-menu', page)
+        page = re.sub(r'(href="(?:\.\./)*theme\.css)(?:\?[^"]*)?"',
+                      lambda match: match.group(1)+'?v='+revision[:12]+'"', page)
         page = re.sub(r'<script src="[^\"]*hosted-status\.js[^\"]*"[^>]*></script>', '', page)
         page = page.replace('</head>', f'<script src="{prefix}hosted-status.js?v=20261020-hosted-recovery" defer></script></head>', 1)
         page = re.sub(r'((?:runtime-activity\.js|installation-console\.js|process-field\.js|research\.js)\?v=)[^"<]+', r'\g<1>20261020-hosted-activity', page)
@@ -72,7 +74,7 @@ def bind_hosted_status(site, repository, revision):
     if not roots:
         raise ValueError('No generated hosted pages found')
     for root in roots:
-        for name in ('nav.js', 'masthead.css', 'hosted-status.js', 'runtime-activity.js', 'installation-console.js', 'process-field.js', 'research.js', 'research.css'):
+        for name in ('theme.css', 'nav.js', 'masthead.css', 'hosted-status.js', 'runtime-activity.js', 'installation-console.js', 'process-field.js', 'research.js', 'research.css'):
             shutil.copyfile(assets / name, root / name)
         deployment_path = root / 'deployment.json'
         if deployment_path.exists():
@@ -81,8 +83,8 @@ def bind_hosted_status(site, repository, revision):
             deployment.pop('hosted_activity', None)
             deployment.pop('ask_bob', None)
             deployment_path.write_text(json.dumps(deployment))
-    # Farm state stays browser-local; refresh its presentation with the reader shell.
-    farm_assets=('ant-farm.css','ant-colony.js','ant-drawing.js','ant-farm.js','bob-markdown.js')
+    # Personal colonies stay browser-local; Bob’s dedicated shared checkpoint is a separate read-only presentation.
+    farm_assets=('ant-farm.css','ant-colony.js','ant-drawing.js','ant-farm.js','bob-ant-farm.js','bob-markdown.js')
     for root in roots:
         for name in farm_assets:
             shutil.copyfile(assets/name,root/name)
@@ -134,7 +136,7 @@ def bind_hosted_status(site, repository, revision):
             page=re.sub(r'<script src="[^\"]*public-data\.js[^\"]*"[^>]*></script>','',page)
             prefix='../'*len(relative.parts[:-1])
             page=re.sub(r'(window\.WAKE_DEPLOYMENT=\{[^<]*?\};[^<]*</script>)',
-                        lambda match:match.group(1)+f'<script src="{prefix}public-data.js"></script>',page,count=1)
+                        lambda match:match.group(1)+f'<script src="{prefix}public-data.js?v={revision[:12]}"></script>',page,count=1)
             page_path.write_text(page)
     shutil.copytree(assets / 'self-correction', site / 'self-correction', dirs_exist_ok=True)
     manifest['presentation'] = {'source_revision': revision, 'hosted_status': config,

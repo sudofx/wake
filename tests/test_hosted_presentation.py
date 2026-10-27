@@ -31,6 +31,7 @@ class HostedPresentationTests(unittest.TestCase):
                 page = ('<html><head><script>window.WAKE_DEPLOYMENT=' + json.dumps(deployment)
                         + ';window.WAKE_STANDALONE=true;</script>'
                         + f'<script src="{prefix}nav.js?v=old" defer></script>'
+                        + f'<link rel="stylesheet" href="{prefix}theme.css?v=old">'
                         + f'<link rel="stylesheet" href="{prefix}masthead.css?v=old"></head>'
                         + '<body><header class="masthead"><nav class="compact-nav"></nav>'
                         + '<div class="header-tools"><label class="theme-switch"></label></div></header>'
@@ -53,7 +54,8 @@ class HostedPresentationTests(unittest.TestCase):
             self.assertIn('"instance_name": "103.wake"', nested)
             self.assertIn('src="../hosted-status.js?', nested)
             self.assertTrue((root / 'nodes/103.wake/hosted-status.js').exists())
-            for name in ('research.js', 'research.css'):
+            self.assertIn('href="../theme.css?v='+('b'*12)+'"', nested)
+            for name in ('theme.css', 'research.js', 'research.css'):
                 self.assertEqual((root / 'nodes/103.wake' / name).read_bytes(),
                                  (Path(__file__).resolve().parents[1] / 'wake/assets' / name).read_bytes())
             bind_hosted_status(root, 'example/repo', 'b' * 40)

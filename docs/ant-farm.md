@@ -1,18 +1,29 @@
 # Watch the digital ant farm
 
 Open **Bob’s Ant Farm** in the site menu. **Observe** opens live counts, an
-individual-ant selector and colony options. **+** and **−** magnify the habitat or step back to the whole case. Drag with
-one finger or the mouse to pan while magnified; two fingers pinch and pan
-together. **⛶** enters full screen, and the same button returns to the tabletop.
-Browsers without native fullscreen use the available page viewport. **Trails** toggles visible purple
-food signals; **Add food** scatters surface crumbs.
+individual-ant selector and colony options. Pinch and pan use normal browser
+page zoom, scaling the case, sand, controls and background together. There are
+no separate colony zoom buttons, wheel zoom or following camera. Ant selection
+highlights the ant in place. **⛶** enters full screen, and the same button returns to the tabletop.
+Browsers without native fullscreen use the available page viewport. The habitat
+fills the available window height; fullscreen soil extends to the bottom.
+**Trails** starts off and toggles purple food signals. Play/pause and fullscreen
+use labelled icons. Button flashes and glowing food marks show actions immediately.
+**Add food** scatters surface crumbs in My farm.
+
+The selector starts with **Bob’s farm**, a shared, maintained, observer-only
+colony. **My farm** resumes this browser’s editable personal save. Switching
+farms never copies the shared recording over that save. Bob’s dated care and
+observation notebook appears separately in his blog. See [shared farm upkeep](bob-ant-farm.md).
+If the shared recording is unavailable, the page says so; it never invents a
+substitute shared colony.
 
 Default **1×** now runs at the previous **4×** pace: four simulation seconds per
 visible elapsed second. The **2×** and **4×** controls multiply that new baseline.
 This is a viewing preference, not a biological speed calibration. Reload resumes
 movement automatically, including with reduced motion enabled; that preference
 reduces painting to ten frames per second. Pause remains available explicitly.
-The colony saves locally about every ten seconds and when hidden, then rests
+My farm saves locally about every ten seconds and when hidden, then rests
 while offscreen. It never invents activity during absence. Another tab writing
 the same colony pauses this tab and prevents stale writes. An unreadable save
 is preserved untouched; a temporary colony cannot silently replace it.
@@ -33,8 +44,11 @@ soil return through the available entrances. The habitat remains finite; growth
 cannot continue after every viable site or the node budget is exhausted.
 
 The colony begins with 64 workers and supports at most 128 workers plus brood.
-Delivered food supports new brood, which matures after three simulation minutes;
-well-fed colonies can grow while older workers die naturally. Worker lifetimes
+A separate, visibly larger queen lays eggs when nest reserves and nursing
+permit. Eggs, larvae and pupae take at least 90, 180 and 180 simulation seconds
+respectively, with slower development when care or food is missing. Larvae need
+protein as well as sugar. Nurses tend the nursery; newly emerged workers begin
+as pale callows. Well-fed colonies can grow while older workers die naturally. Worker lifetimes
 are one to two simulation hours, with staggered ages among starting workers.
 Food reserves also pay a bounded maintenance cost. These compressed life stages
 make population turnover observable; they do not reproduce real colony biology.
@@ -42,8 +56,8 @@ There are no predators in this version. Add food to sustain an aging colony.
 Food outside and food brought home remain separate counts.
 
 Each worker keeps a non-reused number, scoped by the colony seed. Choose its
-number or tap it in the habitat to inspect role, age and activity. **Follow ant**
-centers the enlarged view on that worker; dragging takes camera control back.
+number or tap it in the habitat to inspect role, age and activity. The selected
+ant is highlighted in place without moving or magnifying the habitat.
 The most recent 64 natural deaths remain available for an already-selected ant.
 Only the selected ant is labeled on the canvas to limit visual clutter and cost.
 
@@ -71,7 +85,8 @@ The implementation is an illustrative 2D model informed by these observations,
 not a validated species simulation. Worker fractions, walking pace, grain count,
 dig duration, separation rules and branch probability are chosen for this display;
 they are not measured biological constants. It does not solve granular mechanics,
-moisture, collapse, detailed brood care or realistic colony energetics. Birth and
+moisture, collapse or realistic colony energetics. Brood care is a bounded
+role-and-resource rule rather than a biological mechanism. Birth and
 natural death follow simplified display rules. The
 provided starter nest is excluded from the excavation counter. Progress now takes
 minutes to hours. A tunnel segment is a model unit, not a physical measurement.
@@ -87,9 +102,8 @@ tracking ants and saving observations make no provider calls.
 The unzoomed farm is a thin indoor container on a wooden table in front of a
 window. At 1× the scenery follows local wall time, with continuous dawn/dusk
 lighting; faster speeds add their extra elapsed time to the scenery. The ant
-movement baseline remains four times the original simulation pace. **+** expands
-observation across the viewport; **−** returns through the zoom levels to the
-whole container. Drag or pinch to explore. The purple trails are brighter and
+movement baseline remains four times the original simulation pace. Pinch zoom
+scales the whole webpage; the scene never zooms independently inside its frame. The purple trails are brighter and
 half the previous width. Existing browser saves are preserved.
 
 ## Implementation and boundaries
@@ -102,23 +116,23 @@ downsampled once into a small reusable atlas; animated legs and antennae remain
 procedural. The fallback drawing remains available if an image cannot load. See
 [art provenance and prompts](ant-farm-art.md). Canvas keeps continuous movement cheap;
 HTML keeps controls, focus and counts accessible. Cached terrain redraws after
-excavation or resize. Phone rendering is capped at twenty frames per second and a 1.25 pixel ratio;
-desktop uses twenty-four frames and a 1.5 pixel ratio. Canvas buffers share a
-1.5-million-pixel ceiling, independently of zoom. Paused views redraw only on
-change, terrain is cropped to the viewport, and off-screen ants are not painted.
+excavation or resize. Phone rendering is capped at twenty frames per second;
+desktop uses twenty-four. Canvas detail tracks the device pixel ratio and native
+page zoom, up to an eight-times pixel ratio and four million pixels per buffer.
+Pinching in redraws the ants at higher resolution, including while paused;
+pinching out releases the larger buffers. Scene coordinates and frame geometry
+stay unchanged. Paused views redraw only on change.
 The simulation still caps
 nodes at 3,000, faces at twelve, food sources at 32 and saved samples at sixty.
 Mobile uses the same world and touch controls, without hover or drag requirements.
 
-Browser storage keeps the `wake-ant-colony@2` key; new saves use schema `@3`.
-Validated `@2` saves migrate in place, preserving tunnels, IDs, counters and
+Browser storage keeps the `wake-ant-colony@2` key; new saves use schema `@4`.
+Validated `@2` and `@3` saves migrate in place, preserving tunnels, IDs, counters and
 elapsed time. New lifecycle and graph-connection fields receive deterministic defaults. Earlier prototype `@1` saves are left
-untouched; they are not imported into the corrected model. No shared server colony,
-URL state or offline catch-up is provided. `wake-ant-observation@1` with model
-`pellet-tunnels@2` through `@7` is bounded numeric advisory input. The API strips extra labels,
-instructions, URLs and model choices. Samples remain unverified user input. Ant
-questions fetch no research articles and use existing admission, cooldown and
-provider restrictions.
+untouched; they are not imported into the corrected model. The shared farm uses its own read-only GitHub checkpoint, never personal browser
+storage or native research records. Personal saves never catch up offline.
+Observation downloads contain bounded simulation counts and explicitly identify
+their scope; they confer no research or governance authority.
 
 The exporter ships a dedicated presentation page with deployment binding but no
 research masthead, runtime observer, record transport or control plane. Nothing
@@ -129,22 +143,22 @@ Run focused checks from the repository root:
 
 ```sh
 python -m unittest tests.test_ant_farm tests.test_shared_chrome
-node --test tests/browser/ant-colony.cjs tests/browser/ant-storage.cjs
+node --test tests/browser/ant-colony.cjs tests/browser/ant-storage.cjs tests/browser/bob-ant-farm.cjs
 ```
 
 Checks cover narrow fixed-width growth, gradual excavation, bounded locomotion,
 pauses, connected paths, food conservation, exact save/resume, malformed saves,
-filtered exports and advisory streaming through the existing budget. Provider
-output is mocked; these checks do not certify live answer quality or biology.
+filtered exports, caretaker replay and personal/shared isolation. These checks
+do not certify physical-phone performance or biology.
 
 ## Sand, closer inspection and movement
 
 A quiet, drawn cream background and lighter tunnel interiors keep dark workers visible,
 without photographic sand or enlarged grains.
-Use **Closer +** up to 4×, **−** to zoom out, or **Fit** for the whole colony.
-Drag to pan; pinch or scroll to zoom around a point. Keyboard users can focus
-the habitat, use plus/minus and arrow keys, and press Home to fit. Camera changes
-do not restart the saved colony or accelerate time.
+Use the browser’s normal page zoom to inspect the ants. Phone pinch zoom and
+desktop browser zoom scale the whole scene together, while the canvas increases
+its drawing resolution within a bounded pixel budget. Zooming does not restart
+the saved colony or accelerate time.
 
 Movement model `pellet-tunnels@3` retains the excavation and save format from @2,
 with short heading-change pauses and individual walking-speed variation. The
@@ -222,5 +236,16 @@ time to carry it home. Hidden pages still pause, so absence never starves a colo
 Existing colony saves retain their tunnels, identities and counters; previously
 saved colonies begin the new nutrition tracking with no assumed hidden hunger.
 `node tests/browser/ant-farm.cjs` checks real browser glass transparency, day/night
-visibility, mouse/touch panning, pinch zoom, fullscreen and phone layout. A physical
+visibility, native whole-page pinch zoom, canvas/frame alignment, increasing ant
+detail, bounded buffers, browser wheel handling, fullscreen and phone layout. A physical
 phone remains a separate acceptance check.
+
+## Queen, nursery and task balance
+
+Model `pellet-tunnels@9` and save schema `wake-ant-colony@4` add a separate
+queen, staged developing young, nursing, protein reserves and food-trail
+recruitment. Existing tunnels, worker IDs and counters remain intact on migration.
+Age and distance bias nursing allocation, while low food reserves retain an
+available collector even with one worker left. Larger hungry colonies keep
+nurses and foragers together. These are illustrative compressed rules, not
+measured population dynamics or a validated Lasius simulation.

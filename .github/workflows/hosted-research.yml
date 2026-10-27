@@ -13,6 +13,10 @@ on:
         description: Full source commit with successful code CI.
         type: string
         required: true
+      reset:
+        description: Discard experimental results and restart at cycle zero, without an archive.
+        type: boolean
+        default: false
       minutes:
         description: Bounded batch duration; automatic successors use 120 minutes.
         type: number
@@ -21,7 +25,6 @@ on:
 permissions:
   contents: write
   actions: write
-  pages: write
 
 # One writer for the whole installation, including restore and final capture.
 concurrency:
@@ -45,6 +48,7 @@ jobs:
       WAKE_HOSTED_STATE_KEY: ${{ secrets.WAKE_HOSTED_STATE_KEY }}
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       BATCH_MINUTES: ${{ inputs.minutes }}
+      RESET_EXPERIMENT: ${{ inputs.reset || false }}
     steps:
       - uses: actions/checkout@v7
         with:
@@ -52,7 +56,12 @@ jobs:
       - name: Install hosted transport and native application
         run: python -m pip install --disable-pip-version-check -e '.[hosted]'
       - name: Restore, research, checkpoint, and publish
-        run: python scripts/github_research.py run --minutes "$BATCH_MINUTES"
+        run: |
+          if [ "$RESET_EXPERIMENT" = true ]; then
+            python scripts/github_research.py run --minutes "$BATCH_MINUTES" --reset
+          else
+            python scripts/github_research.py run --minutes "$BATCH_MINUTES"
+          fi
   continue:
     needs: research
     if: always() && !cancelled()

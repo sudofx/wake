@@ -71,7 +71,7 @@ class ReaderGuideTests(unittest.TestCase):
             self.assertIn('ask-bob-guide.js',(site/'blog.html').read_text())
             self.assertIn('data-bob-collection="notebooks"',(site/'blog.html').read_text())
             self.assertNotIn('oldPet()', (site/'blog.html').read_text())
-            self.assertIn('reader-data.js?v=20261023-snapshot-recovery',(site/'blog.html').read_text())
+            self.assertIn('reader-data.js?v=20261027-autoload',(site/'blog.html').read_text())
             self.assertTrue((site/record_path('guides',post['id'])).exists())
             (site/'reader-data.json').write_text(json.dumps({'head':'other'}))
             with self.assertRaisesRegex(ValueError,'captured snapshot'):

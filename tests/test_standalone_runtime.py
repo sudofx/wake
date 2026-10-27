@@ -118,10 +118,15 @@ class StandaloneRuntimeTests(unittest.TestCase):
                 'members':['100.wake','101.wake'], 'leader':'100.wake', 'member':'101.wake'})
             args = SimpleNamespace(interval=1, config='unused', provider='fixture',
                 data=directory, paused=False, enable_continuity_matrix=False,
-                host='127.0.0.1', port=0, model='test')
+                host='127.0.0.1', port=0, model='test', headless=True, runtime_file=str(Path(directory)/'runtime.json'))
+            (Path(directory)/'.wake-runner-control.json').write_text(json.dumps({'research':'running','command_id':'start-before-editorial'}))
             server, stop = MagicMock(), MagicMock()
             stop.is_set.return_value = False
-            with patch.dict(os.environ, {'WAKE_GROUP_ID':'wake','WAKE_PUBLIC_HOSTNAME':'101.wake',
+            def synchronize(*args, **kwargs):
+                self.assertEqual(server.control_ack, 'start-before-editorial')
+                self.assertEqual(server.runtime_status['state'], 'waiting')
+                return False
+            with patch('wake.standalone.SimpleNamespace', return_value=server), patch.dict(os.environ, {'WAKE_GROUP_ID':'wake','WAKE_PUBLIC_HOSTNAME':'101.wake',
                                         'WAKE_INSTALLATION_WORKER':'1','WAKE_CONTROLLER_PID':str(os.getppid())}), \
                  patch('ctypes.CDLL',return_value=SimpleNamespace(prctl=lambda *args:0)), \
                  patch('wake.standalone.config', return_value=dict(DEFAULTS)), \
@@ -132,7 +137,7 @@ class StandaloneRuntimeTests(unittest.TestCase):
                  patch('wake.standalone.threading.Event', return_value=stop), \
                  patch('wake.standalone._wait_for_control', return_value=True), \
                  patch('wake.standalone.collect_group_peer_research', return_value={}), \
-                 patch('wake.group_editorial.synchronize',return_value=False), \
+                 patch('wake.group_editorial.synchronize',side_effect=synchronize), \
                  patch.object(engine,'run',return_value={'status':'accepted'}) as cycle:
                 run(args)
             cycle.assert_called_once()
