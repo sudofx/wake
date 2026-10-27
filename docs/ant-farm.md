@@ -3,9 +3,11 @@
 Open **Bob’s Ant Farm** in the site menu. **Observe** opens live counts, an
 individual-ant selector and colony options. Phone pinch uses normal browser
 page zoom, scaling the case, sand, controls and background together. On desktop,
-the mouse wheel zooms the habitat at the pointer from 1× to 6×; Ctrl-wheel keeps
-normal browser zoom. There are no separate zoom buttons. Ant selection
-highlights the ant in place. **⛶** enters full screen, and the same button returns to the tabletop.
+the mouse wheel zooms the habitat at the pointer from 1× to 16×; Ctrl-wheel keeps
+normal browser zoom. The lens button doubles magnification and **Whole farm**
+returns to the complete habitat. Observe also provides a continuous magnification
+slider. Drag a magnified habitat to explore it; native page pinch remains available.
+Ant selection highlights the ant in place. **⛶** enters full screen, and the same button returns to the tabletop.
 Browsers without native fullscreen use the available page viewport. The habitat
 fills the available window height; fullscreen soil extends to the bottom.
 **Trails** starts off and toggles purple food signals. Play/pause and fullscreen
@@ -62,7 +64,10 @@ Food outside and food brought home remain separate counts.
 
 Each worker keeps a non-reused number, scoped by the colony seed. Choose its
 number or tap it in the habitat to inspect role, age and activity. The selected
-ant is highlighted in place without moving or magnifying the habitat.
+ant is highlighted in place. Nurses, foragers, diggers and resting workers have
+separate selector groups. **View up close** magnifies to 12× and follows that ant;
+dragging or changing the magnification releases the follow view. Taps use the
+same displayed positions as rendering, including nurses tending the brood.
 The most recent 64 natural deaths remain available for an already-selected ant.
 Only the selected ant is labeled on the canvas to limit visual clutter and cost.
 
@@ -263,3 +268,22 @@ measured population dynamics or a validated Lasius simulation.
 and WebKit at desktop, phone and bounded pinch-resolution scales. It flood-fills
 the actual terrain pixels from the nest and verifies that underground nodes remain
 connected. An optional argument supplies a captured shared-farm JSON packet.
+
+## Close viewing
+
+The habitat lens redraws the visible terrain at its current magnification rather
+than enlarging a low-resolution picture. A fixed seeded field of angular grains,
+subtle strata, curved passages and uneven shaded chambers provides increasing
+detail while retaining the excavated graph. Spatial buckets limit texture work
+to the visible soil. Ants use articulated six-leg anatomy, distance-driven tripod
+strides, frame-time turning and smoothed positions. Macro views resolve antenna
+joints, tarsal claws, fine setae, compound-eye highlights and shell texture. Nurses
+have small tending motions beside the brood, separate from the queen. These are
+illustrative visual behaviors, not a calibrated biological model.
+
+Rendering preserves the four-million-pixel buffer limit at every lens setting.
+Shared recordings and personal saves use the same unmodified simulation contract;
+visual detail does not rewrite colony checkpoints. Browser tests cover nurse
+selection and taps, 12× following, 16× viewing, return to the whole farm, native
+page pinch and Chromium/WebKit tunnel connectivity. Physical iPad performance
+and the subjective feel of holding a real farm still require device observation.

@@ -30,6 +30,8 @@
   let paused=false,speed=1,showTrails=false,previous=0,accumulator=0,lastDraw=0,lastSave=0,lastUI=0,selectedId=null,antSignature='';
   const foodFlashes=[];
   const camera={zoom:1,x:0,y:0};
+  let following=false,lastPoseTime=0;
+  const positions=new Map();
   let width=0,height=0,dpr=1,cw=0,ch=0,terrainDirty=true,needsDraw=true,frameInterval=1000/24,terrain=document.createElement('canvas'),soil=document.createElement('canvas');
   window.addEventListener('wake-ant-art-ready',()=>{needsDraw=true;});
   const soilCtx=soil.getContext('2d'),ground=terrain.getContext('2d');
@@ -47,7 +49,7 @@
     clearTimeout(button.feedbackTimer);button.feedbackTimer=setTimeout(()=>button.classList.remove('is-activated'),750);
     if(message){get('scene-note').textContent=message;get('accessible-status').textContent=message;}
   }
-  function useColony(value){colony=value;selectedId=null;antSignature='';facings.clear();strides.clear();accumulator=0;terrainDirty=true;needsDraw=true;resize();updateUI();}
+  function useColony(value){colony=value;selectedId=null;antSignature='';facings.clear();strides.clear();positions.clear();following=false;accumulator=0;terrainDirty=true;needsDraw=true;resize();updateUI();}
   function resetReplay(){useColony(Colony.restore(bobPacket.replay.start));}
   function stepColony(){
     if(mode==='bob'){
@@ -119,7 +121,9 @@
   function updateTerrain(){
     // Excavation may open another entrance; rebuild the same visible contour.
     soilCtx.clearRect(0,0,width,height);const earth=soilCtx.createLinearGradient(0,0,0,height);earth.addColorStop(0,'#eee2c8');earth.addColorStop(1,'#d9c8a8');soilCtx.fillStyle=earth;soilOutline(soilCtx);soilCtx.fill();
-    ground.clearRect(0,0,width,height);ground.drawImage(soil,0,0,width,height);
+    ground.setTransform(dpr,0,0,dpr,0,0);ground.clearRect(0,0,width,height);
+    ground.save();ground.translate(camera.x,camera.y);ground.scale(camera.zoom,camera.zoom);ground.drawImage(soil,0,0,width,height);
+    drawSoilDetail(ground);
     ground.save();soilOutline(ground);ground.clip();
     ground.strokeStyle='#c9b68f';ground.lineCap='round';ground.lineJoin='round';
     // One stroke unions the connected passages. Separate strokes leave visible
@@ -127,12 +131,13 @@
     ground.lineWidth=Math.min(cw,ch)*1.45;ground.beginPath();
     for(const node of colony.nodes){
       if(node.parent===null||node.kind==='surface')continue;const parent=colony.nodes[node.parent];
-      ground.moveTo(parent.x*cw,parent.y*ch);ground.lineTo(node.x*cw,node.y*ch);
+      const dx=node.x-parent.x,dy=node.y-parent.y,bend=Math.sin(node.x*7.3+node.y*3.1)*.055;ground.moveTo(parent.x*cw,parent.y*ch);ground.quadraticCurveTo((parent.x+dx*.5-dy*bend)*cw,(parent.y+dy*.5+dx*bend)*ch,node.x*cw,node.y*ch);
     }
     for(const [a,b] of [...colony.links,...colony.junctions]){const from=colony.nodes[a],to=colony.nodes[b];ground.moveTo(from.x*cw,from.y*ch);ground.lineTo(to.x*cw,to.y*ch);}
-    ground.stroke();
-    ground.fillStyle='#c9b68f';for(let i=0;i<colony.nodes.length;i++){const n=colony.nodes[i];if(n.kind==='chamber'&&i!==colony.nest){ground.beginPath();ground.ellipse(n.x*cw,n.y*ch,1.8*cw,1.1*ch,0,0,Math.PI*2);ground.fill();}}
-    ground.fillStyle='#c9b68f';ground.beginPath();const home=colony.nodes[colony.nest];ground.ellipse(home.x*cw,home.y*ch,4.9*cw,2.7*ch,0,0,Math.PI*2);ground.fill();
+    ground.strokeStyle='#8f754e';ground.lineWidth=Math.min(cw,ch)*1.68;ground.stroke();
+    ground.strokeStyle='#c9b68f';ground.lineWidth=Math.min(cw,ch)*1.35;ground.stroke();
+    for(let i=0;i<colony.nodes.length;i++){const n=colony.nodes[i];if(n.kind==='chamber'&&i!==colony.nest)drawChamber(ground,n.x*cw,n.y*ch,1.8*cw,1.1*ch,i);}
+    const home=colony.nodes[colony.nest];drawChamber(ground,home.x*cw,home.y*ch,4.9*cw,2.7*ch,colony.nest);
     // A warm nest chamber makes the homeward traffic legible.
     const nest=ground.createRadialGradient(home.x*cw,home.y*ch,0,home.x*cw,home.y*ch,8*Math.max(cw,ch));nest.addColorStop(0,'#c7a36d18');nest.addColorStop(1,'#c7a36d00');ground.fillStyle=nest;ground.fillRect((home.x-4)*cw,(home.y-3)*ch,8*cw,6*ch);for(const id of colony.exits){const n=colony.nodes[id],y=surfaceY(n.x)*ch;
       ground.strokeStyle='#b59b70';ground.lineWidth=.65*Math.min(cw,ch);ground.beginPath();ground.moveTo(n.x*cw,y);ground.lineTo(n.x*cw,n.y*ch);ground.stroke();
@@ -140,12 +145,67 @@
       ground.strokeStyle='#b69a6d';ground.lineWidth=Math.max(.65,cw*.08);ground.beginPath();ground.ellipse(n.x*cw,y+.04*ch,.66*cw,.27*ch,0,0,Math.PI);ground.stroke();
       ground.fillStyle='#b99d70';for(let k=0;k<26;k++){const dx=(k%2?1:-1)*(.9+(k%13)*.18),x=n.x+dx;ground.beginPath();ground.ellipse(x*cw,(surfaceY(x)+.15+(k%3)*.13)*ch,.09*cw,.06*ch,k,0,7);ground.fill();}
     }
-    ground.restore();terrainDirty=false;
+    ground.restore();ground.restore();terrainDirty=false;
   }
+  function drawChamber(layer,x,y,rx,ry,seed){
+    const points=Array.from({length:24},(_,i)=>{const angle=i*Math.PI/12,wave=1+.035*Math.sin(i*2.7+seed)+.025*Math.cos(i*1.3-seed);return{x:x+Math.cos(angle)*rx*wave,y:y+Math.sin(angle)*ry*wave};});
+    layer.beginPath();for(let i=0;i<points.length;i++){const a=points[i],b=points[(i+1)%points.length];if(i===0)layer.moveTo((a.x+b.x)/2,(a.y+b.y)/2);else layer.quadraticCurveTo(a.x,a.y,(a.x+b.x)/2,(a.y+b.y)/2);}const a=points[0],b=points[1];layer.quadraticCurveTo(a.x,a.y,(a.x+b.x)/2,(a.y+b.y)/2);layer.closePath();
+    const shade=layer.createRadialGradient(x-rx*.2,y+ry*.25,0,x,y,rx);shade.addColorStop(0,'#cbbb98');shade.addColorStop(.7,'#c1ae85');shade.addColorStop(1,'#aa9065');layer.fillStyle=shade;layer.fill();
+    layer.save();layer.clip();
+    for(let i=0;i<95;i++){const angle=i*2.39996+seed,radius=Math.sqrt((i+.5)/95),xx=x+Math.cos(angle)*radius*rx,yy=y+Math.sin(angle)*radius*ry;layer.fillStyle=i%3?'#f8e9c52b':'#6d543522';layer.beginPath();layer.ellipse(xx,yy,rx*.006,ry*.008,i,0,Math.PI*2);layer.fill();}
+    layer.restore();
+  }
+  function antPosition(ant){
+    const a=colony.nodes[ant.from],b=colony.nodes[ant.cell],length=Math.hypot(b.x-a.x,b.y-a.y)||1;
+    const t=Math.min(1,ant.phase+(!paused&&ant.wait<=0&&ant.phase<1?accumulator*ant.pace/length*(ant.carrying?.75:1)*(colony.starvationSeconds>600?.65:1):0));
+    const surface=a.kind==='surface'&&b.kind==='surface',lane=surface?0:((ant.id%3)-1)*.13,spread=ant.id*2.39996,rad=.5+(ant.id%8)/8,weight=(ant.from===colony.nest?1-t:0)+(ant.cell===colony.nest?t:0);
+    let worldX=a.x+(b.x-a.x)*t+Math.cos(spread)*rad*1.5*weight;
+    let worldY=(surface?surfaceY(worldX):(a.kind==='surface'?surfaceY(a.x):a.y)*(1-t)+(b.kind==='surface'?surfaceY(b.x):b.y)*t+Math.sin(spread)*rad*.65*weight);
+    if(ant.role==='nurse'&&ant.cell===colony.nest&&ant.phase>=1){
+      // Small tending paths stay beside the brood, clear of the queen's body.
+      const home=colony.nodes[colony.nest],time=colony.time+(!paused?accumulator:0),motion=reduced.matches?0:Math.sin(time*.18+ant.id)*.15;
+      worldX=home.x+1.65+Math.cos(spread)*1.25+motion;worldY=home.y+Math.sin(spread)*1.1+motion*.5;
+    }
+    return {x:worldX*cw+Math.sin(ant.dir)*lane*cw,y:worldY*ch-Math.cos(ant.dir)*lane*ch,worldX,surface};
+  }
+  let soilGrains=null,soilSeed=null;
+  function drawSoilDetail(layer){
+    if(soilSeed!==colony.seed){
+      soilSeed=colony.seed;let seed=colony.seed||1;const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
+      soilGrains=Array.from({length:480},()=>[]);for(let i=0;i<96000;i++){const grain={x:random()*W,y:random()*H,r:.008+Math.pow(random(),6)*.11,shade:random(),angle:random()*Math.PI};soilGrains[Math.min(19,Math.floor(grain.y/H*20))*24+Math.min(23,Math.floor(grain.x/W*24))].push(grain);}
+    }
+    layer.save();soilOutline(layer);layer.clip();
+    for(let i=0;i<8;i++){const y=(29+i*9)*ch;layer.fillStyle=i%2?'#96774908':'#fff8df17';layer.beginPath();layer.moveTo(0,y);layer.bezierCurveTo(width*.25,y-2*ch,width*.65,y+2*ch,width,y-ch);layer.lineTo(width,y+2*ch);layer.bezierCurveTo(width*.65,y+5*ch,width*.25,y,width,y+ch);layer.lineTo(0,y+3*ch);layer.fill();}
+    const scale=camera.zoom,left=-camera.x/scale,right=(width-camera.x)/scale,top=-camera.y/scale,bottom=(height-camera.y)/scale;
+    const firstCol=Math.max(0,Math.floor(left/width*24)),lastCol=Math.min(23,Math.floor(right/width*24)),firstRow=Math.max(0,Math.floor(top/height*20)),lastRow=Math.min(19,Math.floor(bottom/height*20));
+    for(let row=firstRow;row<=lastRow;row++)for(let col=firstCol;col<=lastCol;col++)for(const grain of soilGrains[row*24+col]){const x=grain.x*cw,y=grain.y*ch,r=grain.r*Math.min(cw,ch);if(x<left-r||x>right+r||y<top-r||y>bottom+r||r*scale*dpr<.3)continue;
+      layer.fillStyle=grain.shade<.18?'#76634355':grain.shade<.48?'#b4a17e88':grain.shade<.85?'#f7edd699':'#fff9e7bb';layer.beginPath();for(let i=0;i<5;i++){const angle=grain.angle+i*Math.PI*2/5,rx=r*(.7+.25*Math.sin(i*2.3+grain.angle));if(i===0)layer.moveTo(x+Math.cos(angle)*rx,y+Math.sin(angle)*rx*.72);else layer.lineTo(x+Math.cos(angle)*rx,y+Math.sin(angle)*rx*.72);}layer.closePath();layer.fill();
+      if(r*scale>1.4){layer.strokeStyle='#8d795733';layer.lineWidth=.025*Math.min(cw,ch);layer.stroke();}
+    }
+    layer.restore();
+  }
+  function zoomTo(value,x=width/2,y=height/2){
+    const next=Math.max(1,Math.min(16,value)),ratio=next/camera.zoom;
+    camera.x=x-(x-camera.x)*ratio;camera.y=y-(y-camera.y)*ratio;camera.zoom=next;clampCamera();terrainDirty=true;needsDraw=true;
+    canvas.style.touchAction=next>1?'pinch-zoom':'auto';get('magnification').value=next;get('zoom-label').textContent=next.toFixed(1)+'×';get('zoom-reset').hidden=next===1;
+  }
+  get('magnification').oninput=event=>{following=false;zoomTo(Number(event.target.value));};
+  get('zoom-in').onclick=()=>{following=false;zoomTo(camera.zoom>=16?1:camera.zoom*2);};
+  get('zoom-reset').onclick=()=>{following=false;zoomTo(1);};
+  get('view-ant').onclick=()=>{if(!positions.has(selectedId))return;following=true;zoomTo(12);observe(false);};
+  let drag=null,dragMoved=false;
+  canvas.addEventListener('pointerdown',event=>{dragMoved=false;if(camera.zoom<=1)return;drag={id:event.pointerId,x:event.clientX,y:event.clientY,startX:camera.x,startY:camera.y};canvas.setPointerCapture(event.pointerId);});
+  canvas.addEventListener('pointermove',event=>{if(!drag||drag.id!==event.pointerId)return;const dx=event.clientX-drag.x,dy=event.clientY-drag.y;if(Math.hypot(dx,dy)<5&&!dragMoved)return;dragMoved=true;following=false;camera.x=drag.startX+dx;camera.y=drag.startY+dy;clampCamera();terrainDirty=true;needsDraw=true;});
+  canvas.addEventListener('pointerup',()=>{drag=null;});canvas.addEventListener('pointercancel',()=>{drag=null;});
   const facings=new Map(),strides=new Map();
   function draw(){
-    if(!width||!height)return;needsDraw=false;if(terrainDirty)updateTerrain();ctx.clearRect(0,0,width,height);
-    ctx.save();ctx.translate(camera.x,camera.y);ctx.scale(camera.zoom,camera.zoom);ctx.drawImage(terrain,0,0,width,height);
+    if(!width||!height)return;needsDraw=false;
+    const poseTime=colony.time+(!paused?accumulator:0),poseDelta=Math.min(.15,Math.max(0,(performance.now()-lastPoseTime)/1000));lastPoseTime=performance.now();
+    for(const ant of colony.ants){const point=antPosition(ant),old=positions.get(ant.id);if(old&&!paused&&Math.hypot(point.x-old.x,point.y-old.y)<Math.max(cw,ch)*2){const blend=1-Math.exp(-poseDelta*18);point.x=old.x+(point.x-old.x)*blend;point.y=old.y+(point.y-old.y)*blend;}positions.set(ant.id,point);}const aliveIds=new Set(colony.ants.map(a=>a.id));for(const id of positions.keys())if(id!=='queen'&&!aliveIds.has(id))positions.delete(id);
+    const homePosition=colony.nodes[colony.nest];positions.set('queen',{x:(homePosition.x-1.7)*cw,y:homePosition.y*ch});
+    if(following&&positions.has(selectedId)){const point=positions.get(selectedId);const oldX=camera.x,oldY=camera.y;camera.x=width/2-point.x*camera.zoom;camera.y=height/2-point.y*camera.zoom;clampCamera();terrainDirty ||= oldX!==camera.x||oldY!==camera.y;}
+    if(terrainDirty)updateTerrain();ctx.clearRect(0,0,width,height);ctx.drawImage(terrain,0,0,width,height);
+    ctx.save();ctx.translate(camera.x,camera.y);ctx.scale(camera.zoom,camera.zoom);
     if(showTrails){ctx.lineCap='round';ctx.lineWidth=Math.min(cw,ch)*.325;for(let i=0;i<colony.trail.length;i++)if(colony.trail[i]>.15){const n=colony.nodes[i],p=colony.nodes[n.parent];if(!p)continue;ctx.strokeStyle=`rgba(185,57,255,${Math.min(1,.55+colony.trail[i]/12)})`;ctx.beginPath();ctx.moveTo(n.x*cw,n.y*ch);ctx.lineTo(p.x*cw,p.y*ch);ctx.stroke();}}
     for(const f of colony.food){if(!f.left)continue;const x=f.x*cw,y=surfaceY(f.x)*ch;ctx.fillStyle=f.kind==='protein'?'#a76b47':'#9ca74c';for(let j=0;j<Math.min(10,Math.ceil(f.left/24));j++){const angle=j*2.4,r=2+Math.sqrt(j)*1.3;ctx.beginPath();ctx.ellipse(x+Math.cos(angle)*r,y+Math.sin(angle)*r,1.5,1,j,0,7);ctx.fill();}}
     const flashNow=performance.now();
@@ -162,21 +222,18 @@
       ctx.restore();
     }
     for(const dead of colony.recentDeaths){if(!Number.isFinite(dead.x)||colony.time-dead.at>120)continue;ctx.save();ctx.translate(dead.x*cw,dead.y*ch);ctx.rotate(dead.dir);ctx.globalAlpha=.65*(1-(colony.time-dead.at)/120);drawAnt(ctx,r,{id:dead.id,dead:true,moving:false,work:-1,carrying:0},0,colony.time);ctx.restore();}
-    for(const ant of colony.ants){const a=colony.nodes[ant.from],b=colony.nodes[ant.cell],length=Math.hypot(b.x-a.x,b.y-a.y)||1,t=Math.min(1,ant.phase+(!paused&&ant.wait<=0&&ant.phase<1?accumulator*ant.pace/length*(ant.carrying?.75:1)*(colony.starvationSeconds>600?.65:1):0));
-      const surface=a.kind==='surface'&&b.kind==='surface',lane=surface?0:((ant.id%3)-1)*.13,spread=ant.id*2.39996,rad=.5+(ant.id%8)/8,offsetA=ant.from===colony.nest?1-t:0,offsetB=ant.cell===colony.nest?t:0,spreadWeight=offsetA+offsetB;
-      const worldX=a.x+(b.x-a.x)*t+Math.cos(spread)*rad*1.5*spreadWeight;
-      const x=worldX*cw+Math.sin(ant.dir)*lane*cw,y=(surface?surfaceY(worldX):(a.kind==='surface'?surfaceY(a.x):a.y)*(1-t)+(b.kind==='surface'?surfaceY(b.x):b.y)*t+Math.sin(spread)*rad*.65*spreadWeight)*ch-Math.cos(ant.dir)*lane*ch;
-      const moving=ant.phase<1&&ant.wait<=0,scanning=!moving&&ant.work<0&&ant.wait>.8?[0,.35,0,-.3][Math.floor(colony.time*.7+ant.id*1.61)%4]:0;
-      const direction=Math.sign(b.x-a.x)||1,target=(a===b?ant.dir:surface?Math.atan2((surfaceY(worldX+.08*direction)-surfaceY(worldX-.08*direction))*ch,.16*direction*cw):Math.atan2(((b.kind==='surface'?surfaceY(b.x):b.y)-(a.kind==='surface'?surfaceY(a.x):a.y))*ch,(b.x-a.x)*cw))+scanning,old=facings.get(ant.id)??target,turn=Math.atan2(Math.sin(target-old),Math.cos(target-old)),angle=old+Math.max(-.23,Math.min(.23,turn));facings.set(ant.id,angle);
+    for(const ant of colony.ants){const a=colony.nodes[ant.from],b=colony.nodes[ant.cell],{x,y,worldX,surface}=positions.get(ant.id);
+      const moving=ant.phase<1&&ant.wait<=0||ant.role==='nurse'&&ant.cell===colony.nest&&!reduced.matches,scanning=!moving&&ant.work<0&&ant.wait>.8?[0,.35,0,-.3][Math.floor(colony.time*.7+ant.id*1.61)%4]:0;
+      const direction=Math.sign(b.x-a.x)||1,target=(a===b?ant.dir:surface?Math.atan2((surfaceY(worldX+.08*direction)-surfaceY(worldX-.08*direction))*ch,.16*direction*cw):Math.atan2(((b.kind==='surface'?surfaceY(b.x):b.y)-(a.kind==='surface'?surfaceY(a.x):a.y))*ch,(b.x-a.x)*cw))+scanning,old=facings.get(ant.id)??target,turn=Math.atan2(Math.sin(target-old),Math.cos(target-old)),angle=old+turn*(1-Math.exp(-poseDelta*9));facings.set(ant.id,angle);
       let pose=strides.get(ant.id);if(!pose)pose={x,y,gait:ant.id*2.39996};
-      const distance=Math.hypot(x-pose.x,y-pose.y);if(moving&&distance<Math.max(cw,ch)*2)pose.gait+=distance/r*Math.PI*.55;pose.x=x;pose.y=y;strides.set(ant.id,pose);
-      ctx.save();ctx.translate(x,y);ctx.rotate(angle+(moving?Math.sin(pose.gait*2)*.018:0));drawAnt(ctx,r,{...ant,moving,turn,callow:colony.time-ant.bornAt<180},pose.gait,colony.time+(!paused?accumulator:0));ctx.restore();
-      if(ant.id===selectedId){ctx.strokeStyle='#6925ac';ctx.lineWidth=1;ctx.beginPath();ctx.arc(x,y,r*5,0,Math.PI*2);ctx.stroke();ctx.fillStyle='#351448';ctx.font='11px system-ui';ctx.fillText('#'+ant.id,x+r*6,y-r*3);}
+      const distance=Math.hypot(x-pose.x,y-pose.y);if(!paused&&moving&&distance<Math.max(cw,ch)*2)pose.gait+=distance/r*Math.PI*.55;pose.x=x;pose.y=y;strides.set(ant.id,pose);
+      ctx.save();ctx.translate(x,y);ctx.rotate(angle+(moving?Math.sin(pose.gait*2)*.018:0));drawAnt(ctx,r,{...ant,moving,turn,detail:r*camera.zoom,callow:colony.time-ant.bornAt<180},pose.gait,colony.time+(!paused?accumulator:0));ctx.restore();
+      if(ant.id===selectedId){ctx.strokeStyle='#876838aa';ctx.lineWidth=1/camera.zoom;ctx.beginPath();ctx.arc(x,y,r*3.5,0,Math.PI*2);ctx.stroke();ctx.fillStyle='#3e3020';ctx.font=(12/camera.zoom)+'px system-ui';ctx.fillText('#'+ant.id,x+r*6,y-r*3);}
     }
     if(colony.queen){
       const time=colony.time+(!paused?accumulator:0),alive=colony.queen.alive,motion=alive&&!reduced.matches?1:0,x=(home.x-1.7)*cw+Math.sin(time*.38)*r*.23*motion,y=home.y*ch+Math.sin(time*.51)*r*.14*motion;
-      ctx.save();ctx.translate(x,y);ctx.rotate(Math.sin(time*.32)*.055*motion);ctx.scale(1+Math.sin(time*1.1)*.012*motion,1);drawAnt(ctx,r*1.85,{id:-1,queen:true,dead:!alive,restingMotion:motion,moving:false,work:-1,carrying:0},0,time);ctx.restore();
-      if(selectedId==='queen'){ctx.strokeStyle='#9b6725';ctx.lineWidth=1.5;ctx.beginPath();ctx.ellipse(x,y,r*6.4,r*4,0,0,Math.PI*2);ctx.stroke();}
+      ctx.save();ctx.translate(x,y);ctx.rotate(Math.sin(time*.32)*.055*motion);ctx.scale(1+Math.sin(time*1.1)*.012*motion,1);drawAnt(ctx,r*1.85,{id:-1,queen:true,dead:!alive,restingMotion:motion,detail:r*camera.zoom*1.85,moving:false,work:-1,carrying:0},0,time);ctx.restore();
+      if(selectedId==='queen'){ctx.strokeStyle='#9b672599';ctx.lineWidth=1.5/camera.zoom;ctx.beginPath();ctx.ellipse(x,y,r*6.4,r*4,0,0,Math.PI*2);ctx.stroke();}
     }
     ctx.restore();
     const vignette=ctx.createRadialGradient(width*.5,height*.45,width*.12,width*.5,height*.5,Math.max(width,height)*.75);vignette.addColorStop(0,'#0000');vignette.addColorStop(1,'#5d492018');ctx.fillStyle=vignette;ctx.fillRect(0,0,width,height);
@@ -192,8 +249,9 @@
     get('pattern').textContent=span>=10?`Over the last ${span} simulation seconds: ${m.dug-old.dug} new tunnel segments and ${m.delivered-old.delivered} food deliveries. ${m.carrying_soil} ants are carrying soil to the entrance. Turn on Trails to see where returning foragers leave signals.`:'The colony is settling in. Let it explore for a little while, then look for repeated routes and new branches.';
     if(m.hungry)get('pattern').textContent=mode==='bob'?'This recorded interval includes a food shortage. Bob’s care visits and feedings are recorded with the shared farm.':'The nest has run out of food. Workers are searching for crumbs; prolonged hunger slows them and eventually causes starvation. Add food to help the colony recover.';
     if(!get('observations').hidden)get('accessible-status').textContent=`${m.ants} ants; ${m.dug} tunnel segments dug; ${m.delivered} food deliveries; ${elapsed(m.seconds)} elapsed.`;
-    const signature=(colony.queen?'queen,':'')+colony.ants.map(a=>a.id).join(',');
-    if(signature!==antSignature){antSignature=signature;const live=new Set(colony.ants.map(a=>a.id));for(const id of facings.keys())if(!live.has(id)){facings.delete(id);strides.delete(id);}const options=colony.ants.map(a=>{const o=document.createElement('option');o.value=a.id;o.textContent='#'+a.id;return o;});if(colony.queen){const queen=document.createElement('option');queen.value='queen';queen.textContent='Queen';options.unshift(queen);}const empty=document.createElement('option');empty.value='';empty.textContent='Choose an ant';get('ant-select').replaceChildren(empty,...options);get('ant-select').value=selectedId===null?'':String(selectedId);}
+    const signature=(colony.queen?'queen,':'')+colony.ants.map(a=>a.id+':'+a.role).join(',');
+    if(signature!==antSignature){antSignature=signature;const live=new Set(colony.ants.map(a=>a.id));for(const id of facings.keys())if(!live.has(id)){facings.delete(id);strides.delete(id);}const options=[];if(colony.queen){const queen=document.createElement('option');queen.value='queen';queen.textContent='Queen';options.push(queen);}for(const [role,label] of [['nurse','Nurses'],['forage','Foragers'],['dig','Diggers'],['rest','Resting workers']]){const ants=colony.ants.filter(a=>a.role===role);if(!ants.length)continue;const group=document.createElement('optgroup');group.label=label+' ('+ants.length+')';for(const ant of ants){const o=document.createElement('option');o.value=ant.id;o.textContent='#'+ant.id+' · '+(role==='nurse'?'nurse':role==='forage'?'forager':role==='dig'?'digger':'resting');group.append(o);}options.push(group);}const empty=document.createElement('option');empty.value='';empty.textContent='Choose an ant';get('ant-select').replaceChildren(empty,...options);get('ant-select').value=selectedId===null?'':String(selectedId);}
+    get('view-ant').disabled=selectedId===null||!positions.has(selectedId);
     const ant=colony.ants.find(a=>a.id===selectedId),dead=colony.recentDeaths.find(a=>a.id===selectedId);
     get('ant-detail').textContent=selectedId==='queen'?`The queen stays near the nursery and lays eggs; workers tend her and the brood. She does not direct the colony’s jobs. ${colony.queen?.alive?'':'This colony’s queen has died.'}`:ant?`Ant ${colony.seed.toString(16).toUpperCase()}:#${ant.id} · ${ant.role==='dig'?'digger':ant.role==='forage'?'forager':ant.role==='nurse'?'nurse':'resting worker'} · age ${elapsed(Math.floor(colony.time-ant.bornAt))} · ${ant.work>=0?'excavating':ant.carrying===2?'carrying soil':ant.carrying===1?'carrying food':ant.role==='nurse'?'tending the nursery':ant.wait>0?'resting':'walking'}.`:dead?`Ant #${dead.id} died of ${dead.reason} at age ${elapsed(dead.age)}.`:selectedId!==null?`Ant #${selectedId} is no longer alive.`:'Choose an ant or tap one in the habitat. Its number stays with it for life.';
   }
@@ -234,15 +292,13 @@
   canvas.addEventListener('wheel',event=>{
     if(event.ctrlKey||!matchMedia('(pointer: fine)').matches)return;
     event.preventDefault();const box=canvas.getBoundingClientRect(),x=event.clientX-box.left,y=event.clientY-box.top;
-    const delta=event.deltaY*(event.deltaMode===1?16:event.deltaMode===2?height:1),next=Math.max(1,Math.min(6,camera.zoom*Math.exp(-delta*.0015))),ratio=next/camera.zoom;
-    camera.x=x-(x-camera.x)*ratio;camera.y=y-(y-camera.y)*ratio;camera.zoom=next;clampCamera();needsDraw=true;
+    const delta=event.deltaY*(event.deltaMode===1?16:event.deltaMode===2?height:1);following=false;zoomTo(camera.zoom*Math.exp(-delta*.0015),x,y);
   },{passive:false});
   canvas.addEventListener('click',event=>{
     const box=canvas.getBoundingClientRect(),x=(event.clientX-box.left-camera.x)/camera.zoom/cw,y=(event.clientY-box.top-camera.y)/camera.zoom/ch;
-    let nearest=null,distance=14;
-    const home=colony.nodes[colony.nest];if(colony.queen&&Math.hypot((home.x-1.7-x)*cw,(home.y-y)*ch)<18){selectedId='queen';get('ant-select').value='queen';updateUI();needsDraw=true;return;}
-    for(const ant of colony.ants){const a=colony.nodes[ant.from],b=colony.nodes[ant.cell],d=Math.hypot((a.x+(b.x-a.x)*ant.phase-x)*cw,(a.y+(b.y-a.y)*ant.phase-y)*ch);if(d<distance){nearest=ant;distance=d;}}
-    if(nearest){selectedId=nearest.id;get('ant-select').value=String(selectedId);updateUI();needsDraw=true;}
+    if(dragMoved)return;let nearest=null,distance=Infinity;
+    for(const [id,point] of positions){const radius=id==='queen'?6:2.5,d=Math.hypot(x*cw-point.x,y*ch-point.y);if(d<Math.max(14/camera.zoom,radius*Math.min(cw,ch)*.4)&&d<distance){nearest=id;distance=d;}}
+    if(nearest!==null){selectedId=nearest;get('ant-select').value=String(selectedId);updateUI();needsDraw=true;}
   });
   get('trails').onclick=()=>{showTrails=!showTrails;get('trails').setAttribute('aria-pressed',String(showTrails));feedback(get('trails'),showTrails?'Purple trails show returning foragers’ food signals.':'Food trails hidden.');needsDraw=true;};
   get('feed').onclick=()=>{if(mode!=='mine')return;const before=colony.food.length,added=colony.addFood();if(added){const fresh=colony.food.slice(before);for(const food of fresh)foodFlashes.push({x:food.x,y:food.y,at:performance.now()});}save();updateUI();feedback(get('feed'),added?'Food added — watch the glowing crumbs on the surface.':'There are plenty of crumbs already. Give the foragers time to find them.');needsDraw=true;};

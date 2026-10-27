@@ -6,10 +6,9 @@ they are not photographs of observed ants or evidence for the simulation.
 - `wake/assets/backgrounds/ant-soil-v1.png`: compact sandy loam substrate.
 - `wake/assets/backgrounds/ant-body-v1.png`: transparent dorsal worker body.
 
-Both original PNGs are bundled unchanged. The renderer crops transparent padding
-when drawing the body and adds separately animated legs, antennae and carrying
-poses. The soil image is a cached background beneath procedurally excavated paths.
-An image-load failure retains the original procedural rendering.
+Both original PNGs are retained unchanged as artwork provenance. Earlier renderers
+cropped the body and used the soil image under excavated paths. The active macro
+renderer described below uses vector anatomy and seeded soil grains instead.
 
 The final prompt set used the built-in tool, not the CLI:
 
@@ -46,10 +45,9 @@ tool. The original soil asset is retained for compatibility. Final prompt:
 
 ## Drawn ground and bounded rendering
 
-The active farm no longer loads either photographic ground image. It draws a
-simple cream colour field with a gentle depth gradient. The earlier soil and sand
-assets above remain provenance for the retired treatments. Ant body photography
-is retained, downsampled once to a 256-pixel atlas for repeated animated drawing.
+The active farm does not load either photographic ground image. Its cream depth
+gradient now carries seeded vector grains. The earlier soil, sand and ant body
+assets remain provenance for retired treatments.
 See [rendering limits](ant-farm.md#implementation-and-boundaries).
 
 
@@ -62,7 +60,7 @@ a garden and distant hills. Matching geometry permits a stationary local-time
 crossfade. They contain no sun/moon disk, case or ants; the application draws
 exactly one celestial object and the independent live habitat over them.
 The case and canvas above the soil remain transparent with restrained glass-edge
-highlights. The animated anatomical body atlas and articulated legs remain the
+highlights. The procedural anatomical body and articulated legs are the
 active ant artwork. These assets ship with Pages; viewing needs no image service.
 
 The day image was generated using the built-in image tool as a front-facing,
@@ -72,3 +70,13 @@ The night edit retained the same framing and material geometry, with a dark blue
 sky and warm off-frame interior lighting. Both were encoded as WebP at quality
 88 for the static site. Earlier CSS landscape layers remain inert compatibility
 markup; they do not add a second horizon, window frame, sun or moon.
+
+## Macro renderer
+
+The active renderer now uses procedural anatomy from `ant-drawing.js`, including
+articulated legs and antennae. The earlier body PNG is retained as artwork
+provenance and is not loaded by this renderer. Likewise, the ground now uses
+seeded vector grains, restrained strata and shaded chambers, rather than the
+retired flat colour-only treatment or photographic soil. Day/night room WebP
+assets remain active. The vector details redraw at habitat magnification without
+a larger full-world raster or an image-service dependency.

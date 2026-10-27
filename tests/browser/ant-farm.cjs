@@ -18,6 +18,12 @@ const server=http.createServer((req,res)=>{
  try{
   const context=await browser.newContext({viewport:{width:1200,height:900},timezoneId:'America/Los_Angeles',hasTouch:false}),page=await context.newPage(),errors=[];
   page.on('pageerror',e=>errors.push(e.message));await context.addInitScript(value=>localStorage.setItem('wake-ant-colony@2',value),JSON.stringify(mine));
+  await page.addInitScript(()=>{
+   let drawing;window.__antPoses={};
+   Object.defineProperty(window,'WakeDrawAnt',{get:()=>drawing,set:fn=>{drawing=(ctx,r,ant,...args)=>{
+    const m=ctx.getTransform();window.__antPoses[ant.queen?'queen':ant.id]={x:m.e/devicePixelRatio,y:m.f/devicePixelRatio,role:ant.role};return fn(ctx,r,ant,...args);
+   };}});
+  });
   await page.clock.install({time:new Date('2026-10-26T19:00:00Z')});const base=`http://127.0.0.1:${server.address().port}/ant-farm.html`;
   await page.goto(base);await page.locator('#habitat').waitFor({state:'visible'});
   assert.equal(await page.locator('#farm-choice').inputValue(),'bob');assert.equal(await page.locator('#trails').getAttribute('aria-pressed'),'false');
@@ -40,6 +46,20 @@ const server=http.createServer((req,res)=>{
   await page.getByRole('button',{name:'Add food',exact:true}).click();assert.equal(await page.locator('#feed').evaluate(el=>el.classList.contains('is-activated')),true);assert.match(await page.locator('#scene-note').innerText(),/Food added/);
   await page.locator('#trails').click();assert.equal(await page.locator('#trails').getAttribute('aria-pressed'),'true');
   await page.locator('#observe').click();await page.locator('#ant-select').selectOption('queen');assert.match(await page.locator('#ant-detail').innerText(),/does not direct/);await page.locator('#close-observations').click();
+  await page.locator('#observe').click();
+  const nurse=await page.locator('#ant-select optgroup').filter({has:page.locator('option')}).evaluateAll(groups=>{
+   const group=groups.find(g=>g.label.startsWith('Nurses'));return group?.querySelector('option').value;
+  });
+  assert(nurse,'Nurses have a distinct selection group');await page.locator('#ant-select').selectOption(nurse);assert.match(await page.locator('#ant-detail').innerText(),/nurse/);
+  await page.locator('#view-ant').click();await page.clock.runFor(100);
+  assert.equal(await page.locator('#magnification').inputValue(),'12');assert.equal(await page.locator('#observations').isVisible(),false);
+  await page.screenshot({path:'/tmp/wake-ant-macro-nurse.png'});
+  const box=await canvas.boundingBox();
+  await page.locator('#observe').click();await page.locator('#ant-select').selectOption('queen');await page.locator('#close-observations').click();
+  await page.clock.runFor(100);const point=await page.evaluate(id=>window.__antPoses[id],nurse);await page.mouse.click(box.x+point.x,box.y+point.y);await page.locator('#observe').click();assert.equal(await page.locator('#ant-select').inputValue(),nurse,'Tapping the rendered nurse selects that nurse');
+  await page.locator('#magnification').fill('16');await page.clock.runFor(100);assert.equal(await page.locator('#zoom-label').innerText(),'16.0×');
+  const buffers=await canvas.evaluate(el=>el.width*el.height);assert(buffers<4100000,'Macro lens keeps its pixel budget');
+  await page.locator('#close-observations').click();await page.locator('#zoom-reset').click();await page.clock.runFor(100);assert.equal(await page.locator('#magnification').inputValue(),'1');
   const saved=await page.evaluate(()=>localStorage.getItem('wake-ant-colony@2'));assert.equal(JSON.parse(saved).seed,9876);
   await page.locator('#farm-choice').selectOption('bob');await page.waitForTimeout(80);assert.equal(await page.evaluate(()=>localStorage.getItem('wake-ant-colony@2')),saved,'Shared playback never overwrites personal save');
   await page.locator('#farm-choice').selectOption('mine');await page.getByRole('button',{name:'Pause simulation',exact:true}).click();assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('wake-ant-colony@2')).seed),9876);
