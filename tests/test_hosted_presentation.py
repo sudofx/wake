@@ -11,6 +11,34 @@ from wake.installation_cli import NODE_IDS, upload_public_artifact
 
 
 class HostedPresentationTests(unittest.TestCase):
+    def test_retired_help_removed_from_captured_pages_but_not_inspection(self):
+        from wake.reader_presentation import remove_retired_reader
+        old = ('<html><head><script>/*\n * WAKE✳︎ plain-language help.\n */'
+               'window.WakeHelp={};</script><script src="../help.js?v=old"></script></head>'
+               '<body><button class="help-trigger" data-help="blog">?</button>'
+               '<div id="help-layer" hidden><section id="help-panel">'
+               '<div class="help-copy">obsolete explanation</div></section></div>'
+               '<section id="evidence-content">Why does this happen?</section></body></html>')
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            for relative in ('index.html', 'nodes/103.wake/index.html', 'inspect/index.html'):
+                page = root / relative
+                page.parent.mkdir(parents=True, exist_ok=True)
+                page.write_text(old)
+            (root / 'help.js').write_text('retired')
+            remove_retired_reader(root)
+            self.assertFalse((root / 'help.js').exists())
+            for relative in ('index.html', 'nodes/103.wake/index.html'):
+                page = (root / relative).read_text()
+                self.assertNotIn('help-', page)
+                self.assertNotIn('WakeHelp', page)
+                self.assertNotIn('help.js', page)
+                self.assertIn('Why does this happen?', page)
+                self.assertIn('evidence-content', page)
+            self.assertEqual((root / 'inspect/index.html').read_text(), old)
+            remove_retired_reader(root)
+            self.assertEqual((root / 'inspect/index.html').read_text(), old)
+
     def test_refresh_preserves_snapshot_packets_and_nested_installation_identity(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

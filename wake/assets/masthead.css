@@ -113,7 +113,7 @@ body>.skip:focus,body>.skip-link:focus{top:12px}
 .console-panel-window .masthead{display:none!important}
 
 /* Only same-window transient surfaces may cover shared navigation. */
-.help-layer,#site-tooltip,.data-inspector,.console-tools{z-index:var(--wake-popup-layer)!important}
+#site-tooltip,.data-inspector,.console-tools{z-index:var(--wake-popup-layer)!important}
 html:is(.console-panel-window,.console-tool-window) body{padding-top:0!important}
 
 /* Node and main navigation share the same disclosure and link surfaces. */

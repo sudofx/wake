@@ -6,12 +6,13 @@ from pathlib import Path
 
 def retired_reader_asset(path):
     """Identify derived assets removed from already captured public snapshots."""
-    return (path.name.startswith(('ask-bob', 'bob-chat', 'bob-markdown'))
+    return (path.name == 'help.js'
+            or path.name.startswith(('ask-bob', 'bob-chat', 'bob-markdown'))
             or ('reader-records' in path.parts and 'guides' in path.parts))
 
 
 def remove_retired_reader(site):
-    """Retire the old conversation UI without changing research/inspection bytes."""
+    """Retire removed reader UI without changing research/inspection bytes."""
     site = Path(site)
     marker = '/* Private browser conversation views; never research authority or exported state. */'
     app = '/* Render exported research records and reader navigation; browser interactions never mutate authority. */'
@@ -31,6 +32,11 @@ def remove_retired_reader(site):
                     raise ValueError('Incomplete retired reader script')
                 text = text[:start] + text[end:]
             text = re.sub(r'<(?:script|link)\b[^>]*(?:ask-bob|bob-chat|bob-markdown)[^>]*>(?:</script>)?', '', text)
+            # Older exports inline this retired feature, including on node pages.
+            text = re.sub(r'<script\b[^>]*>\s*/\*\s*\*?\s*WAKE✳︎ plain-language help\..*?</script>', '', text, flags=re.S)
+            text = re.sub(r'<script\b[^>]*src="[^"]*\bhelp\.js(?:\?[^"]*)?"[^>]*>\s*</script>', '', text)
+            text = re.sub(r'<button\b[^>]*\bdata-help="[^"]*"[^>]*>.*?</button>', '', text, flags=re.S)
+            text = re.sub(r'<div\b[^>]*\bid="help-layer"[^>]*>.*?</section>\s*</div>', '', text, flags=re.S)
             path.write_text(text)
 
 def refresh_public_reader(site):
@@ -67,7 +73,8 @@ def refresh_public_reader(site):
                     lambda match: '<p id="'+match.group(1)+'" class="more" role="status" hidden>Scroll for more</p>', text, flags=re.S)
         text=re.sub(r'(src="reader-data\.js)(?:\?[^"]*)?(")',r'\1?v=20261027-autoload\2',text)
         page.write_text(text)
-    for name in ('evaluation-view.js','reader-data.js','app.js','pet.js',
+    for name in ('style.css','console-light.css','reader-theme.css',
+                 'evaluation-view.js','reader-data.js','app.js','pet.js',
                  'bob-ant-farm.js','ant-colony.js','site-theme.js'):
         (site/name).write_bytes((assets/name).read_bytes())
     # Invocation IDs keep journal detail identity distinct across nodes that share a cycle number.

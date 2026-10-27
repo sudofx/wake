@@ -16,7 +16,7 @@ class FrontendHygieneTests(unittest.TestCase):
             (ASSETS / name).read_text()
             for name in (
                 "index.html", "map.html", "map3d.html",
-                "app.js", "pet.js", "help.js", "nav.js",
+                "app.js", "pet.js", "nav.js",
                 "map.js", "map3d.js", "flat-view.js",
             )
         )

@@ -502,7 +502,6 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         page = template.replace("/* WAKE_STYLE */", "").replace("/* NAV_STYLE */", "")
         page = page.replace("/* NAV_SCRIPT */", (assets / "nav.js").read_text())
         page = page.replace("/* WAKE_SCRIPT */", (assets / "app.js").read_text())
-        page = page.replace("/* HELP_SCRIPT */", (assets / "help.js").read_text())
         page = page.replace("/* PET_SCRIPT */", (assets / "pet.js").read_text())
         # Browser UX is HTML-first. Do not publish duplicate Markdown projections.
         if browser_only:

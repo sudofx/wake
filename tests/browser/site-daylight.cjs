@@ -10,12 +10,11 @@ for(const width of [1440,390]){
  for(const route of ['home','journal','discoveries','topics','blog','projects','lab','metrics','evidence','history','about']){
   await page.goto(new URL('index.html#'+route,base).href);await page.waitForLoadState('networkidle');await page.waitForTimeout(100);
   assert.equal(await page.locator('html').getAttribute('data-theme'),'light');
-  if(route==='journal'){await page.locator('.help-trigger:visible').first().click();await page.locator('#help-panel').waitFor();}
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,`${width} ${route}: horizontal overflow`);
   const failures=await page.evaluate(()=>{
    const rgb=value=>{if(value.startsWith('color(srgb'))return value.match(/[\d.]+/g).map(Number).map((n,i)=>i<3?n*255:n);return value.match(/[\d.]+/g)?.map(Number)||[0,0,0,0]},lum=c=>c.slice(0,3).map(n=>n/255).map(n=>n<=.04045?n/12.92:((n+.055)/1.055)**2.4).reduce((s,n,i)=>s+n*[.2126,.7152,.0722][i],0),mix=(fg,bg)=>fg.slice(0,3).map((n,i)=>n*(fg[3]??1)+bg[i]*(1-(fg[3]??1)));
    const result=[];
-   for(const el of document.querySelectorAll('main *,footer *,#help-panel *')){
+   for(const el of document.querySelectorAll('main *,footer *')){
     if(![...el.childNodes].some(n=>n.nodeType===3&&n.textContent.trim())||el.closest('svg,[aria-hidden=true]')||!el.getClientRects().length)continue;
     const style=getComputedStyle(el),fg=rgb(style.color);if(style.visibility==='hidden'||Number(style.opacity)===0||(fg[3]??1)===0)continue;
     const chain=[];for(let p=el;p;p=p.parentElement)chain.unshift(p);
@@ -27,7 +26,6 @@ for(const width of [1440,390]){
    return result;
   });
   assert.deepEqual(failures,[],`${width} ${route}: rendered text contrast`);
-  if(await page.locator('#help-close').isVisible())await page.locator('#help-close').click();
  }
  await page.goto(new URL('index.html#home',base).href);await page.waitForLoadState('networkidle');
  assert.equal(await page.locator('.attention-opening h1').count(),1);
