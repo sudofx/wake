@@ -71,23 +71,20 @@
     try{return await cached;}catch(error){cached=undefined;throw error;}
   }
   function notebookText(value){
-    const delivery=value.deliveries===1?'food delivery':'food deliveries';
-    const observations=`I recorded ${value.deliveries} ${delivery} and ${value.new_tunnels} new tunnel segments during this interval. The colony ended with ${value.workers} workers and ${value.eggs+value.larvae+value.pupae} developing young.`;
-    const care=value.feedings?` My caretaker added food ${value.feedings} ${value.feedings===1?'time':'times'}, a total of ${value.food_added} simulation units.`:' No food was added during this interval.';
-    const connection=' This is a useful comparison with WAKE: keeping a record lets us distinguish an intervention from what happened afterward. The shared timing alone does not show what caused a change.';
-    return observations+care+connection;
+    return `${value.deliveries} food deliveries · ${value.new_tunnels} new tunnel segments · ${value.workers} workers · ${value.eggs+value.larvae+value.pupae} developing young · ${value.feedings} recorded feedings (${value.food_added} simulation units).`;
   }
+
   async function mountNotebook(container){
     if(!container||container.querySelector('[data-bob-farm-notebook]'))return;
     const document=container.ownerDocument,section=document.createElement('details');section.dataset.bobFarmNotebook='';section.className='bob-farm-notebook';
-    const heading=document.createElement('summary');heading.textContent='Ant farm updates';
-    const description=document.createElement('p');description.textContent='Dated observations from Bob’s shared simulation, separate from WAKE research evidence.';
+    const heading=document.createElement('summary');heading.textContent='Farm observation record';
+    const description=document.createElement('p');description.textContent='Dated simulation observations and care receipts. Bob’s interpretation belongs in the article, when these observations support a useful connection.';
     section.append(heading,description);container.append(section);
     try{
       const packet=await read(),latest=packet.notes.slice(-3).reverse();
       if(!latest.length){const pending=document.createElement('p');pending.textContent='Bob’s farm is settling in. Its first recorded interval will appear here.';section.append(pending);}
       for(const entry of latest){const article=document.createElement('article'),time=document.createElement('time'),text=document.createElement('p');time.dateTime=entry.at;time.textContent=new Date(entry.at).toLocaleString();text.textContent=notebookText(entry);article.append(time,text);section.append(article);}
-      const status=document.createElement('p');status.className='small';const age=Date.now()-Date.parse(packet.updated_at);status.textContent=(age>7200000?'Upkeep is delayed; the saved simulation is resting. ':'')+'These notes are generated from recorded counts and care receipts, not independent biological discoveries.';section.append(status);
+      const status=document.createElement('p');status.className='small';const age=Date.now()-Date.parse(packet.updated_at);status.textContent=(age>7200000?'Upkeep is delayed; the saved simulation is resting. ':'')+'This is an observation record, not Bob’s writing or independent biological research.';section.append(status);
       const link=document.createElement('a');link.textContent='Observe Bob’s ant farm →';link.href=new URL('ant-farm.html?farm=bob',document.baseURI).href;section.append(link);
     }catch{const unavailable=document.createElement('p');unavailable.textContent='Bob’s shared farm notes are temporarily unavailable. The research articles are unchanged.';section.append(unavailable);}
     return section;
