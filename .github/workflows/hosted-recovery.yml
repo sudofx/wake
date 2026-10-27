@@ -2,7 +2,7 @@ name: WAKE — Recover hosted handoff
 
 on:
   workflow_run:
-    workflows: ['WAKE — Hosted research']
+    workflows: ['WAKE — Research worker']
     types: [completed]
     branches: [master]
   workflow_dispatch:
@@ -19,14 +19,14 @@ permissions:
 # Serialize with normal successor dispatch; duplicate completion events cannot
 # create a second writer. No cron trigger is used.
 concurrency:
-  group: wake-hosted-handoff
+  group: wake-research-handoff
   cancel-in-progress: false
 
 jobs:
   recover:
     if: >-
       github.event_name == 'workflow_dispatch' ||
-      (github.event.workflow_run.path == '.github/workflows/hosted-research.yml' &&
+      (github.event.workflow_run.path == '.github/workflows/research-worker.yml' &&
        github.event.workflow_run.conclusion != 'success')
     runs-on: ubuntu-latest
     timeout-minutes: 75

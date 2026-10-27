@@ -372,6 +372,17 @@ class EffectCheckpointTests(unittest.TestCase):
 
 
 class ContinuationTests(unittest.TestCase):
+    def test_retired_workflow_completion_cannot_start_the_replacement(self):
+        from scripts.github_research import continue_chain
+        client = unittest.mock.Mock()
+        client.request.return_value = {'path': '.github/workflows/hosted-research.yml',
+                                      'head_branch': 'master', 'run_number': 10}
+        with patch('scripts.github_research.api', return_value=client), \
+             patch('scripts.github_research.enabled', return_value=True), \
+             self.assertRaisesRegex(ValueError, 'not a master research run'):
+            continue_chain('10')
+        client.request.assert_called_once_with('actions/runs/10')
+
     def test_late_recovery_does_not_seed_a_second_chain_after_manual_start(self):
         from scripts.github_research import continue_chain
         class Client:
@@ -379,10 +390,10 @@ class ContinuationTests(unittest.TestCase):
                 if kwargs.get('method') == 'POST':
                     raise AssertionError('Duplicate chain dispatch')
                 if path == 'actions/runs/10':
-                    return {'path': '.github/workflows/hosted-research.yml', 'head_branch': 'master', 'run_number': 10}
+                    return {'path': '.github/workflows/research-worker.yml', 'head_branch': 'master', 'run_number': 10}
                 return {'workflow_runs': [
                     {'id': 10, 'run_number': 10, 'status': 'completed', 'display_title': 'old run'},
-                    {'id': 11, 'run_number': 11, 'status': 'completed', 'display_title': 'WAKE — Hosted research'}]}
+                    {'id': 11, 'run_number': 11, 'status': 'completed', 'display_title': 'WAKE — Research worker'}]}
         with patch('scripts.github_research.api', return_value=Client()), \
              patch('scripts.github_research.enabled', return_value=True):
             continue_chain('10')
@@ -396,7 +407,7 @@ class ContinuationTests(unittest.TestCase):
                     calls.append(kwargs['body'])
                     return
                 if path == 'actions/runs/10':
-                    return {'path': '.github/workflows/hosted-research.yml', 'head_branch': 'master', 'run_number': 10}
+                    return {'path': '.github/workflows/research-worker.yml', 'head_branch': 'master', 'run_number': 10}
                 return {'workflow_runs': [
                     {'id': 10, 'run_number': 10, 'status': 'in_progress', 'display_title': 'current'},
                     {'id': 9, 'run_number': 9, 'status': 'queued', 'display_title': 'stale older start'}]}

@@ -40,6 +40,16 @@ provider calls. This validates publication plumbing, not a knowledge benefit.
 
 ## Experimental execution measurements and reset
 
+The active research workflow is **WAKE — Research worker** (`research-worker.yml`).
+Its predecessor, `hosted-research.yml`, is permanently retired after GitHub left
+zero-job runs queued while rejecting both cancellation endpoints. Before the
+replacement starts, disable the predecessor. Its checked worker versions consult
+that live workflow state before opening any record or provider; a delayed old run
+therefore exits. The replacement uses fresh authority and handoff concurrency
+names while retaining the same checked-runtime and installation binding. Never
+re-enable the predecessor to clear its stale queue. GitHub may still list those
+entries; that listing is not evidence of an executing worker.
+
 The failed hosted run [40444574830](https://github.com/sudofx/wake/actions/runs/40444574830)
 measured about 5 seconds in queue, 12 seconds creating its container, 4 seconds
 installing dependencies and 41.5 seconds restoring state. It later spent the full
@@ -60,7 +70,7 @@ An existing local container avoids workflow queues after launch but depends on
 that host remaining available; a new persistent hosted service has not been
 measured or approved. No new subscription is required.
 
-For a deliberate hosted cycle-zero reset, dispatch `hosted-research.yml` with the
+For a deliberate hosted cycle-zero reset, dispatch `research-worker.yml` with the
 checked pinned `runtime_ref` and `reset=true`. The installation writer is serialized.
 Reset restores trusted setup and provider limits while skipping discarded native
 databases, then bootstraps stopped fresh records. It verifies cycle zero before
@@ -293,7 +303,7 @@ flowchart LR
 Open **Actions → WAKE — Start or stop hosted research → Run workflow** on
 `master`. Choose `start` to continue the existing records or `stop` to prevent
 successors and drain the active run. The active controller checks stop intent
-at least once per minute. This never resets records. The enabled/disabled state of **WAKE — Hosted research** is the native
+at least once per minute. This never resets records. The enabled/disabled state of **WAKE — Research worker** is the native
 continuation switch. Disabled or missing means stopped; the built-in Actions
 token can operate it without an expiring personal credential.
 Manual cancellation alone is recoverable failure, not the durable stop switch.
@@ -406,7 +416,7 @@ admission before opening hosted authority; it never falls back to an older pin.
 
 ### Continuation and repair
 
-`hosted-research.yml` restores every native record, verifies the full kernel and
+`research-worker.yml` restores every native record, verifies the full kernel and
 provider/access journals, checks application state against the result digest in
 the verified event chain, and starts the
 existing controller, runs for a bounded two-hour research window, drains and saves
@@ -494,7 +504,7 @@ No Actions artifacts or caches are used for authority or publication.
 
 ### Verify actual progress
 
-Inspect **WAKE — Hosted research** runs and their summaries for source revision,
+Inspect **WAKE — Research worker** runs and their summaries for source revision,
 checkpoint generation, record heads and accepted versions. A successful run can
 still contain rejected or deferred proposals. Confirm actual accepted progress
 from successive record heads and versions. Check the Pages deployment separately,

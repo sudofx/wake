@@ -68,9 +68,9 @@ class Client:
         if path.startswith('actions/workflows/test.yml/runs?'):
             requested = path.split('head_sha=')[1].split('&')[0]
             return {'workflow_runs': [{'head_sha': requested, 'head_branch': 'master', 'event': 'push'}] if self.ci and requested != self.no_ci_for else []}
-        if path == 'actions/workflows/hosted-research.yml':
+        if path == 'actions/workflows/research-worker.yml':
             return {'state': 'active' if self.active else 'disabled_manually'}
-        if path.startswith('actions/workflows/hosted-research.yml/runs?'):
+        if path.startswith('actions/workflows/research-worker.yml/runs?'):
             return {'workflow_runs': self.writers}
         if path == 'actions/workflows/hosted-control.yml/runs?per_page=1':
             return {'workflow_runs': [{'id': self.latest_control}]}
@@ -119,7 +119,7 @@ class CompletionTests(unittest.TestCase):
 
     def test_presentation_label_cannot_bypass_protected_source_ci_or_operator_controls(self):
         for changed in ('wake/kernel/record.py', 'wake/application_policy.py', 'pyproject.toml',
-                        '.github/workflows/hosted-research.yml', 'scripts/github_research.py', 'Dockerfile'):
+                        '.github/workflows/research-worker.yml', 'scripts/github_research.py', 'Dockerfile'):
             client = Client()
             client.intent['presentation_only'] = True
             client.changed_source = changed

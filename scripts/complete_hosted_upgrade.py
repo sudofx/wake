@@ -121,10 +121,10 @@ def complete_upgrade(client, report, run_id):
         controls = client.request('actions/workflows/hosted-control.yml/runs?per_page=1')['workflow_runs']
         if not controls or controls[0]['id'] != intent['control_run']:
             raise ValueError('A newer operator control superseded this upgrade request')
-        if client.request('actions/workflows/hosted-research.yml')['state'] != 'disabled_manually':
+        if client.request('actions/workflows/research-worker.yml')['state'] != 'disabled_manually':
             raise ValueError('Research must be drained before the final frozen-checkpoint promotion')
         for status in ('in_progress', 'queued'):
-            if client.request(f'actions/workflows/hosted-research.yml/runs?status={status}&per_page=1')['workflow_runs']:
+            if client.request(f'actions/workflows/research-worker.yml/runs?status={status}&per_page=1')['workflow_runs']:
                 raise ValueError('Research has an outstanding writer')
         if client.request('git/ref/heads/wake-hosted-state')['object']['sha'] != intent['checkpoint_ref']:
             raise ValueError('Final checkpoint changed after verification')
@@ -133,7 +133,7 @@ def complete_upgrade(client, report, run_id):
     elif binding['source_revision'] != candidate:
         raise ValueError('Runtime binding changed since the request')
     # On an interrupted rerun, a dispatched start/active successor is enough.
-    active = client.request('actions/workflows/hosted-research.yml')['state'] == 'active'
+    active = client.request('actions/workflows/research-worker.yml')['state'] == 'active'
     if not active:
         for status in ('queued', 'in_progress'):
             if client.request(f'actions/workflows/hosted-control.yml/runs?status={status}&per_page=1')['workflow_runs']:

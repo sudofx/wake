@@ -1,4 +1,4 @@
-name: WAKE — Hosted research
+name: WAKE — Research worker
 # Keep the event name stable for independent completion recovery. Successor
 # reconciliation uses monotonic workflow run numbers, not display titles.
 
@@ -27,8 +27,10 @@ permissions:
   actions: write
 
 # One writer for the whole installation, including restore and final capture.
+# The retired hosted-research workflow stays disabled: its unstarted runs consult
+# that live stop latch before opening records or admitting provider effects.
 concurrency:
-  group: wake-hosted-authority
+  group: wake-research-authority
   cancel-in-progress: false
 
 jobs:
@@ -68,7 +70,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 75
     concurrency:
-      group: wake-hosted-handoff
+      group: wake-research-handoff
       cancel-in-progress: false
     steps:
       - uses: actions/checkout@v7

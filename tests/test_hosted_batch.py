@@ -16,6 +16,19 @@ from scripts.github_research import PeriodicPublication
 
 @patch.dict(os.environ, {'GITHUB_ACTIONS':'false'})
 class HostedBatchTests(unittest.TestCase):
+    def test_disabled_workflow_exits_before_records_or_model_configuration(self):
+        client = SimpleNamespace()
+        with patch('scripts.github_research.api', return_value=client), \
+             patch('scripts.github_research.enabled', return_value=False), \
+             patch('scripts.github_research.runtime_policy') as policy, \
+             patch('scripts.github_research.HostedState.from_environment') as transport, \
+             patch('scripts.github_research.subprocess.Popen') as process, \
+             redirect_stdout(io.StringIO()):
+            run_batch(5, 'gemini', reset=True)
+        policy.assert_not_called()
+        transport.assert_not_called()
+        process.assert_not_called()
+
     def test_periodic_publication_failure_does_not_own_research_or_final_capture(self):
         import threading
         observed = threading.Event()

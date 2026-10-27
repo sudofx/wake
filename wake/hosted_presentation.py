@@ -23,7 +23,7 @@ def bind_hosted_status(site, repository, revision):
             or not manifest.get('installation_id') or len(manifest.get('record_heads', {})) != 12):
         raise ValueError('Hosted status requires an identified twelve-node hosted snapshot')
     remove_retired_reader(site)
-    config = {'repository': repository, 'workflow': 'hosted-research.yml', 'branch': 'master'}
+    config = {'repository': repository, 'workflow': 'research-worker.yml', 'branch': 'master'}
     assets = Path(__file__).parent / 'assets'
     shell = (assets / 'index.html').read_text()
     light = re.search(r'<a\b[^>]*class="actions-light"[^>]*>.*?</a>', shell, re.S).group(0)

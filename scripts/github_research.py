@@ -22,7 +22,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from wake.hosted import GitHub, HostedState
 from wake.installation_cli import NODE_IDS, build_public_artifact, request, upload_public_artifact
 
-WORKFLOW = 'hosted-research.yml'
+WORKFLOW = 'research-worker.yml'
 RUNTIME_POLICY = Path(__file__).resolve().parents[1] / 'hosted-runtime.json'
 
 
