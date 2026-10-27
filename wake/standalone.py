@@ -154,6 +154,24 @@ def _wait_for_control(stop, directory, seconds, mode, reset_id):
     return False
 
 
+def acknowledge_research_start(server, directory, mode, reset_id, handled_reset_id):
+    """Acknowledge start admission before slow editorial/network preparation.
+
+    Stop/reset acknowledgments still follow completed drainage. This receipt says
+    the worker read start intent, not that a provider call or research succeeded.
+    """
+    if mode != 'running' or reset_id != handled_reset_id:
+        return
+    path = Path(directory) / _CONTROL_FILE
+    control = json.loads(path.read_text()) if path.exists() else {}
+    command = control.get('command_id')
+    if control.get('research') != 'running' or not command or getattr(server, 'control_ack', None) == command:
+        return
+    server.control_ack = command
+    server.runtime_status = {'mode': 'standalone', 'state': 'waiting',
+                             'reason': 'Preparing the next research step'}
+
+
 def emit_runtime_status(server, target, stop):
     """A transient observer write failure must not kill future observations."""
     failed = False
@@ -370,12 +388,10 @@ def run(args):
             fcntl.flock(lease, fcntl.LOCK_EX | fcntl.LOCK_NB)
         except BlockingIOError:
             raise ValueError('Another standalone runtime owns this data volume') from None
-        effect_checkpoint = None
-        if os.environ.get('WAKE_HOSTED_STATE_DIR'):
-            from .hosted import HostedState
-            transport = HostedState.from_environment()
-            effect_checkpoint = lambda: transport.checkpoint_node(data)
-        engine = bootstrap(data, settings, effect_checkpoint=effect_checkpoint)
+        # Disposable hosted runners carry state at batch boundaries. Native
+        # SQLite still commits before provider effects; remote uploads do not
+        # sit on every model call's critical path.
+        engine = bootstrap(data, settings)
         server = None
         reader_service = None
         try:
@@ -427,6 +443,8 @@ def run(args):
                     if _reader_drain_pending(reader_service, server, research_mode, reset_id, handled_reset_id):
                         stop.wait(.05)
                         continue
+                    if headless:
+                        acknowledge_research_start(server, data, research_mode, reset_id, handled_reset_id)
                     if os.environ.get('WAKE_GROUP_ID') and time.monotonic() - last_group_editorial >= 15:
                         last_group_editorial = time.monotonic()
                         from .group_editorial import synchronize, fetch, gateway_url

@@ -2,6 +2,15 @@
 
 WAKE✳︎ is infrastructure for durable, accountable work across interchangeable intelligences. In this repository, that infrastructure is currently realized as a standalone WAKE research application running on its owned kernel in `wake/kernel/`; it must not grow a competing authority engine.
 
+## Experimental development priority
+
+The current workload is disposable experimental data. Explicit operator requests
+may reset it to cycle zero or remove obsolete compatibility without migration or
+archives. Keep normal-operation native state coherent and mark resets distinctly;
+do not spend development time preserving discarded experimental results. Prefer
+local preview and focused tests before source publication. Data-only publication
+must not dispatch Pages. Continue independent work while remote checks execute.
+
 ## Current authority model
 
 Each container node owns `/data/nodes/ID/record/wake.sqlite`. GitHub Pages is a

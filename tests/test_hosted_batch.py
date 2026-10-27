@@ -73,7 +73,7 @@ class HostedBatchTests(unittest.TestCase):
                     else:
                         run_batch(1, 'fixture')
                 self.assertEqual(sleep.call_count, int(acknowledged is True))
-                self.assertEqual(transport.checkpoint_node.call_count, 24)
+                self.assertEqual(transport.checkpoint_node.call_count, 12)
                 process.terminate.assert_called_once()
                 if acknowledged == 'control-failure':
                     upload.assert_not_called()

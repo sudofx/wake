@@ -2,6 +2,7 @@
 """Run the existing container installation on GitHub and explicitly hand it on."""
 import argparse
 import base64
+from contextlib import contextmanager
 from datetime import datetime, timezone
 import json
 import os
@@ -191,6 +192,16 @@ def ready(root, process, timeout=900):
     raise TimeoutError('Hosted node startup did not finish within fifteen minutes')
 
 
+@contextmanager
+def measured_stage(name):
+    start = time.perf_counter()
+    try:
+        yield
+    finally:
+        print(json.dumps({'hosted_stage': name,
+                          'elapsed_seconds': round(time.perf_counter()-start, 3)}), flush=True)
+
+
 def capture_all(transport, root):
     for node in NODE_IDS:
         transport.checkpoint_node(root / 'nodes' / node / 'record')
@@ -200,6 +211,8 @@ def publish_hosted_snapshot(client, root, artifact, revision):
     """Publish pinned completed exports without stopping workers or opening records."""
     parent = client.request('git/ref/heads/wake-public')['object']['sha']
     manifest = build_public_artifact(root, artifact, progress=lambda message: print(message, flush=True))
+    if (root/'experimental-reset.json').exists():
+        manifest['experimental_reset'] = json.loads((root/'experimental-reset.json').read_text())
     manifest['hosted_execution'] = {'source_revision': revision,
         'run_id': os.environ.get('GITHUB_RUN_ID'), 'captured_at': datetime.now(timezone.utc).isoformat()}
     for path in [artifact / 'installation.json', *[artifact / 'nodes' / n / 'installation.json' for n in NODE_IDS]]:
@@ -240,7 +253,7 @@ class PeriodicPublication:
             self.thread.join()
 
 
-def run_batch(minutes, provider):
+def run_batch(minutes, provider, *, reset=False):
     client = api()
     # An unreadable stop latch closes admission promptly. Checkpoint transport
     # may wait for quota after draining, but research cannot assume intent.
@@ -260,7 +273,8 @@ def run_batch(minutes, provider):
     transport = HostedState.from_environment()
     transport.open()
     root = Path(os.environ['WAKE_INSTALLATION_DATA']).resolve()
-    before = transport.restore(root, workers=3)
+    with measured_stage('restore'):
+        before = transport.restore(root, workers=3)
     if policy and before['installation_id'] != policy['installation_id']:
         raise ValueError('Restored installation differs from the runtime binding; no controller started')
     apply_decision_memory_policy(root, policy)
@@ -287,12 +301,18 @@ def run_batch(minutes, provider):
             env=dict(os.environ, WAKE_DEV_RELOAD='false'))
         mirror = PeriodicPublication(client, root, revision)
         try:
-            ready(root, process)
-            # Bootstrap can recover interrupted native invocations. Persist that
-            # recovery before admitting any new provider call.
-            capture_all(transport, root)
+            with measured_stage('startup'):
+                ready(root, process)
+            if reset:
+                result = request(root, {'action': 'RESET'})
+                if not result.get('ok'):
+                    raise RuntimeError('Experimental reset did not reach cycle zero')
+                print(json.dumps({'experimental_reset': transport.reset(root, 'Operator-requested cycle-zero reset')}), flush=True)
+            # Recovery is committed in the owning SQLite record. The batch's
+            # final state transfer carries it to the next runner.
             if enabled(client) and not stopped:
-                start = request(root, {'action': 'start'})
+                with measured_stage('start-acknowledgment'):
+                    start = request(root, {'action': 'start'})
                 if not start.get('ok'):
                     # Admission is already running. Preserve healthy workers
                     # while keeping unavailable/late acknowledgments visible.
@@ -322,7 +342,8 @@ def run_batch(minutes, provider):
                         break
                     next_intent_check = time.monotonic() + 60
                 time.sleep(1)
-            drained = request(root, {'action': 'stop'})
+            with measured_stage('drain'):
+                drained = request(root, {'action': 'stop'})
             if not drained.get('ok'):
                 # Stop already closed new-call admission. A slow/dead worker
                 # cannot withhold the public mirror indefinitely. Terminate the
@@ -340,7 +361,8 @@ def run_batch(minutes, provider):
             mirror.close(wait=False)
     if process.returncode != 0:
         raise RuntimeError('Hosted controller did not shut down cleanly')
-    capture_all(transport, root)
+    with measured_stage('final-checkpoint'):
+        capture_all(transport, root)
     # Native recovery is saved before waiting for independent delivery. Do not
     # race a final publication against a healthy periodic uploader.
     mirror.close()
@@ -351,7 +373,8 @@ def run_batch(minutes, provider):
     # Publication is derived and independently recoverable. Preserve authority
     # before a rendering/upload error can fail the run.
     artifact = Path(os.environ['WAKE_HOSTED_ARTIFACT'])
-    manifest = publish_hosted_snapshot(client, root, artifact, revision)
+    with measured_stage('data-publication'):
+        manifest = publish_hosted_snapshot(client, root, artifact, revision)
     with transport.lease():
         transport.prune()
     after = transport.read_manifest()
@@ -373,6 +396,7 @@ def main():
     run = commands.add_parser('run')
     run.add_argument('--minutes', type=float, default=120)
     run.add_argument('--provider', choices=('fixture', 'gemini'), default='gemini')
+    run.add_argument('--reset', action='store_true', help='Discard experimental results and start at cycle zero; no archive')
     chain = commands.add_parser('continue')
     chain.add_argument('--predecessor', required=True)
     commands.add_parser('inspect')
@@ -390,7 +414,7 @@ def main():
     else:
         if not 0 < args.minutes <= 180:
             raise ValueError('Hosted run must have a bounded duration')
-        run_batch(args.minutes, args.provider)
+        run_batch(args.minutes, args.provider, reset=args.reset)
 
 
 if __name__ == '__main__':

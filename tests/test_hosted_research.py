@@ -106,6 +106,31 @@ class HostedTransportTests(unittest.TestCase):
     def tearDown(self):
         self.temp.cleanup()
 
+    def test_explicit_reset_replaces_only_cycle_zero_state_without_retaining_old_checkpoint(self):
+        import shutil
+        fresh = self.root/'fresh'
+        for node in NODE_IDS:
+            folder = fresh/'nodes'/node/'record'
+            store = RecordStore(folder, initialize_empty=True)
+            Engine(folder, dict(DEFAULTS), store=store).initialize()
+            store.close()
+        (fresh/'installation-id.json').write_text('{"id":"test-installation"}')
+        shutil.copytree(self.active/'config', fresh/'config')
+        reset = self.transport.reset(fresh, 'Disposable experiment reset test')
+        self.assertFalse((self.transport.checkout/'previous.enc').exists())
+        self.assertEqual(self.transport.read_manifest()['experimental_reset'], reset)
+        successor = self.new_transport('after-reset')
+        successor.open()
+        restored = self.root/'reset-restored'
+        successor.restore(restored)
+        self.assertEqual(json.loads((restored/'experimental-reset.json').read_text()), reset)
+        for node in NODE_IDS:
+            store = RecordStore(restored/'nodes'/node/'record')
+            self.assertEqual(store.load()['version'], 0)
+            store.close()
+        with self.assertRaisesRegex(ValueError, 'cycle zero'):
+            self.transport.reset(self.active, 'Must reject a non-reset experiment')
+
     def test_transfer_and_successor_preserve_history_identity_and_exclude_private_files(self):
         successor = self.new_transport('successor')
         successor.open()

@@ -538,14 +538,12 @@ When Attention selects a parked topic while all three project slots are occupied
 
 The GitHub adapter runs `wake/installation.py` inside an Actions job container.
 The kernel, application actions, three parents, nine children and shared provider
-queue are unchanged. `Engine.effect_checkpoint` injects transport into the
-existing native invocation lifecycle, including research and editorial
-attempts. Before an external effect, the owning native record is copied through
-SQLite's transactionally coherent snapshot API, encrypted and durably selected
-on GitHub. The running owner already verified authority; transport copies check
-physical integrity and restoration requires full semantic/journal verification. Failure
-prevents the effect. Recovery verifies every kernel record and invocation/access journal and binds
-application state to the last hash-linked result digest before starting workers; abandoned invocations use normal native recovery.
+queue are unchanged. Native SQLite commits retain the pre-effect durability
+boundary. Experimental workers no longer attach remote state uploads to every
+provider call. Drained batch-end transfers carry coherent state between disposable
+runners. A lost runner can discard its untransferred experimental work; an explicit
+cycle-zero reset records a new dated reset marker instead of implying continuity.
+Recovery authenticates the retained state before starting workers.
 
 A dedicated `wake-hosted-state` Git ref selects encrypted current and previous
 manifests. Authenticated encrypted blocks live in the dedicated
@@ -564,11 +562,11 @@ The source laptop must be stopped before an authorized authority transfer, and
 must not resume the transferred records independently.
 
 A normal run drains, saves records, publishes the filtered snapshot, explicitly
-requests the Pages build and dispatches its successor. A separate completion-event
+dispatches its successor without requesting a Pages build. A separate completion-event
 workflow reconciles failed successor dispatches before retrying. No cron is used.
 Start acknowledgment failures remain visible: confirmed workers may proceed,
 while a batch with no confirmed worker closes and publishes before its successor
-retries. This does not bypass a node's native pre-effect checkpoint or admission gate.
+retries. This retains the native SQLite pre-effect commit and admission gate.
 The research workflow's native enabled/disabled state is the stop switch; it is checked before startup,
 before successor dispatch and at most once per minute while running. Stop drains
 active work and retains records. GitHub/platform outages, revoked credentials,
