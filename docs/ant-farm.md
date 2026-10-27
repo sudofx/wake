@@ -287,3 +287,9 @@ visual detail does not rewrite colony checkpoints. Browser tests cover nurse
 selection and taps, 12× following, 16× viewing, return to the whole farm, native
 page pinch and Chromium/WebKit tunnel connectivity. Physical iPad performance
 and the subjective feel of holding a real farm still require device observation.
+
+Mandibles are separate toothed blades hinged at the front of the head. Their
+tips meet near the mouth: excavation and nursing open and close them, while a
+carried crumb or soil pellet holds a narrower grip. Idle ants move them
+intermittently; pause freezes the pose. The head texture excludes its baked-in
+jaws, and its photographed eyes are used without a second drawn pair.

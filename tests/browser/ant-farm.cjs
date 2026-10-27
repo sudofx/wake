@@ -60,6 +60,12 @@ const server=http.createServer((req,res)=>{
   await page.locator('#magnification').fill('16');await page.clock.runFor(100);assert.equal(await page.locator('#zoom-label').innerText(),'16.0×');
   const buffers=await canvas.evaluate(el=>el.width*el.height);assert(buffers<4100000,'Macro lens keeps its pixel budget');
   await page.locator('#close-observations').click();await page.locator('#zoom-reset').click();await page.clock.runFor(100);assert.equal(await page.locator('#magnification').inputValue(),'1');
+  const jaws=await page.evaluate(()=>{
+   const surface=document.createElement('canvas');surface.width=240;surface.height=220;const ctx=surface.getContext('2d');
+   const mouth=(time,carrying)=>{ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,240,220);ctx.translate(50,110);window.WakeDrawAnt(ctx,50,{id:4,phase:1,work:0,carrying,moving:false,detail:50},0,time);return Array.from(ctx.getImageData(142,95,35,30).data).join(',');};
+   return {workingMoves:mouth(0,0)!==mouth(.6,0),gripStable:mouth(0,1)===mouth(.6,1)};
+  });
+  assert(jaws.workingMoves,'Working mandibles visibly open and close');assert(jaws.gripStable,'Mandibles hold a steady grip around carried food');
   const saved=await page.evaluate(()=>localStorage.getItem('wake-ant-colony@2'));assert.equal(JSON.parse(saved).seed,9876);
   await page.locator('#farm-choice').selectOption('bob');await page.waitForTimeout(80);assert.equal(await page.evaluate(()=>localStorage.getItem('wake-ant-colony@2')),saved,'Shared playback never overwrites personal save');
   await page.locator('#farm-choice').selectOption('mine');await page.getByRole('button',{name:'Pause simulation',exact:true}).click();assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('wake-ant-colony@2')).seed),9876);
