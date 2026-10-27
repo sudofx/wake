@@ -7,15 +7,7 @@
       "decision_memory_mode": "active",
       "research_expansion_enabled": true,
       "research_candidate_catalog_enabled": true,
-      "autonomous_context_improvement": true,
-      "pending_upgrade": {
-        "candidate": "d9521543cf2795a2b4af63df5f704c1ba58417a3",
-        "baseline": "59cd14954b28f32c2e6fab6374a215cce27600d6",
-        "verification_run": 40540376873,
-        "control_run": 40539762759,
-        "checkpoint_ref": "a6d1c2f85b46d4bb23e7a0e9ca1dcabb8c92e775",
-        "generation": 24506
-      }
+      "autonomous_context_improvement": true
     }
   }
 }
