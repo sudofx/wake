@@ -41,6 +41,14 @@ The fixture adapter selected all four required sets with accumulated context and
 none with limited context. That is a plumbing check designed around input
 availability, not a measured live-model benefit.
 
+A separate [live Gemini run](https://github.com/sudofx/wake/actions/runs/40459125616)
+made eight `gemini-3.5-flash-lite` requests on October 26 (October 27 UTC).
+Limited context selected the required sets in 0/4 cases; accumulated context in
+4/4, with no response failures. The [published report](https://raw.githubusercontent.com/sudofx/wake/wake-evaluations/latest.json)
+identifies result `knowledge-use-20261027T060644083474Z`, its frozen protocol and
+exact inputs/responses. This single synthetic trial supports retrieval use under
+these conditions; it does not establish learning, reasoning gains or emergence.
+
 The separate [improvement workflow](improvements.md) captures research provenance
 and committed source for isolated paired Python comparisons. Its first task is
 commitment-aware context selection. A fixed development set and randomized
