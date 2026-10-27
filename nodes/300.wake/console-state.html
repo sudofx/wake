@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="en" data-theme="light"><head><script>window.WAKE_DEPLOYMENT={"schema": 1, "mode": "standalone", "snapshot_only": true, "hosted_status": {"repository": "sudofx/wake", "workflow": "research-worker.yml", "branch": "master"}, "public_data": {"repository": "sudofx/wake", "branch": "wake-public", "installation_id": "1fad15cb5b8b60b9d85dad462ceaaacf", "prefix": "nodes/300.wake/"}};document.documentElement.dataset.wakeHostedStatus='true';window.WAKE_STANDALONE=true;document.documentElement.dataset.wakeSnapshotOnly='true';</script><script src="public-data.js?v=59cd14954b28"></script><script src="runtime-activity.js?v=20261020-hosted-activity" defer></script><meta name="darkreader-lock"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en" data-theme="light"><head><script>window.WAKE_DEPLOYMENT={"schema": 1, "mode": "standalone", "snapshot_only": true, "hosted_status": {"repository": "sudofx/wake", "workflow": "research-worker.yml", "branch": "master"}, "public_data": {"repository": "sudofx/wake", "branch": "wake-public", "installation_id": "1fad15cb5b8b60b9d85dad462ceaaacf", "prefix": "nodes/300.wake/"}};document.documentElement.dataset.wakeHostedStatus='true';window.WAKE_STANDALONE=true;document.documentElement.dataset.wakeSnapshotOnly='true';</script><script src="public-data.js?v=d9521543cf27"></script><script src="runtime-activity.js?v=20261020-hosted-activity" defer></script><meta name="darkreader-lock"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>State / WAKE✳︎</title>
 
-<link rel="stylesheet" href="style.css?v=20261014-mobile-width"><link rel="stylesheet" href="nav.css?v=20261014-mobile-width"><link rel="stylesheet" href="theme.css?v=59cd14954b28"><link rel="stylesheet" href="console-component.css"><link rel="stylesheet" href="installation-console.css?v=20261014-icon-picker"><script src="installation-console.js?v=20261020-masthead-menu" defer></script><link rel="stylesheet" href="console-light.css?v=20261014-mobile-width"><script src="site-theme.js?v=20261014-visible-theme"></script><link rel="stylesheet" href="masthead.css?v=20261020-masthead-menu"><script src="hosted-status.js?v=20261020-hosted-recovery" defer></script></head>
+<link rel="stylesheet" href="style.css?v=20261014-mobile-width"><link rel="stylesheet" href="nav.css?v=20261014-mobile-width"><link rel="stylesheet" href="theme.css?v=d9521543cf27"><link rel="stylesheet" href="console-component.css"><link rel="stylesheet" href="installation-console.css?v=20261014-icon-picker"><script src="installation-console.js?v=20261020-masthead-menu" defer></script><link rel="stylesheet" href="console-light.css?v=20261014-mobile-width"><script src="site-theme.js?v=20261014-visible-theme"></script><link rel="stylesheet" href="masthead.css?v=20261020-masthead-menu"><script src="hosted-status.js?v=20261020-hosted-recovery" defer></script></head>
 <body data-flat-kind="state" data-flat-source="state.json">
 <header class="masthead">
   <div class="brand-lockup">
@@ -37,7 +37,7 @@
     
   </div>
 </header>
-<main><p class="console-component-stamp">Published snapshot · state 15 · 2026-10-27T16:19:11.862370+00:00<br>Head 231d9dbcf59b44bcbb7e2841603ecb25321c7d414a32807d470bae701e5b0151</p><div class="page-heading"><p class="eyebrow">THE CURRENT DURABLE STATE</p><h1>Current state.</h1><p>Loaded from state.json when this page opens.</p></div><div id="flat-content"></div></main>
+<main><p class="console-component-stamp">Published snapshot · state 15 · 2026-10-27T17:00:45.654411+00:00<br>Head e1cbaf2726cc54a4c25f638dd8251aba811ff038a7e4697289a5d66e34b8451c</p><div class="page-heading"><p class="eyebrow">THE CURRENT DURABLE STATE</p><h1>Current state.</h1><p>Loaded from state.json when this page opens.</p></div><div id="flat-content"></div></main>
 <script>/*
  * WAKE✳︎ flat-view controller.
  * Standalone pages are stable shells; current facts are loaded from flat exports
@@ -196,7 +196,6 @@ if(actionsLight && !window.WAKE_DEPLOYMENT?.hosted_status && window.WAKE_DEPLOYM
     if(button.dataset.contextView)return [button.dataset.contextView==='sphere'?'◉':'◇',`${button.dataset.contextView==='sphere'?'Sphere':'3D'} context view`];
     if(button.dataset.frontierState)return [states[button.dataset.frontierState],`${button.dataset.frontierState} frontier`];
     if(button.dataset.kind)return [{project:'□',research:'◇',notebook:'▤',evidence:'●','belief,commitment':'△'}[button.dataset.kind],button.dataset.uiLabel||button.textContent.trim()];
-    if(button.matches('.help-trigger'))return ['?',button.getAttribute('aria-label')];
     if(button.matches('.detail-links button, #wake-detail button[data-tool]'))return [button.hasAttribute('data-wake')?'◷':'↗',button.dataset.uiLabel||button.textContent.trim()];
     // Existing glyph-only controls retain their symbols and accessible names.
     if(button.getAttribute('aria-label')&&button.childElementCount===0&&button.textContent.trim().length>0&&button.textContent.trim().length<=3)return [button.textContent.trim(),button.getAttribute('aria-label')];

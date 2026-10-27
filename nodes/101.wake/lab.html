@@ -4,7 +4,7 @@
 <!-- WAKE public data contract: research stays public; operator actions live in GitHub Actions. -->
 <!doctype html>
 <html data-wake-page="lab" lang="en" data-theme="light">
-<head><script>window.WAKE_DEPLOYMENT={"schema": 1, "mode": "standalone", "snapshot_only": true, "hosted_status": {"repository": "sudofx/wake", "workflow": "research-worker.yml", "branch": "master"}, "public_data": {"repository": "sudofx/wake", "branch": "wake-public", "installation_id": "1fad15cb5b8b60b9d85dad462ceaaacf", "prefix": "nodes/101.wake/"}};document.documentElement.dataset.wakeHostedStatus='true';window.WAKE_STANDALONE=true;document.documentElement.dataset.wakeSnapshotOnly='true';</script><script src="public-data.js?v=59cd14954b28"></script><script src="runtime-activity.js?v=20261020-hosted-activity" defer></script>
+<head><script>window.WAKE_DEPLOYMENT={"schema": 1, "mode": "standalone", "snapshot_only": true, "hosted_status": {"repository": "sudofx/wake", "workflow": "research-worker.yml", "branch": "master"}, "public_data": {"repository": "sudofx/wake", "branch": "wake-public", "installation_id": "1fad15cb5b8b60b9d85dad462ceaaacf", "prefix": "nodes/101.wake/"}};document.documentElement.dataset.wakeHostedStatus='true';window.WAKE_STANDALONE=true;document.documentElement.dataset.wakeSnapshotOnly='true';</script><script src="public-data.js?v=d9521543cf27"></script><script src="runtime-activity.js?v=20261020-hosted-activity" defer></script>
 <!-- Reader data belongs to this exported snapshot. -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,7 +16,7 @@
 <style>
 </style>
 <!-- Local-template fallback: the exporter inlines these styles for Pages. -->
-<link rel="stylesheet" href="style.css?v=20261014-mobile-width"><link rel="stylesheet" href="nav.css?v=20261014-mobile-width"><link rel="stylesheet" href="theme.css?v=59cd14954b28">
+<link rel="stylesheet" href="style.css?v=20261014-mobile-width"><link rel="stylesheet" href="nav.css?v=20261014-mobile-width"><link rel="stylesheet" href="theme.css?v=d9521543cf27">
 <link rel="icon" href="icons/favicon.ico?v=20261006-2" sizes="any">
 <link rel="icon" href="icons/wake.svg?v=20261006-2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=20261006-2" sizes="180x180">
@@ -58,15 +58,7 @@
     
   </div>
 </header>
-<main id="main" tabindex="-1"><section id="lab" class="view"><div class="page-heading"><p class="eyebrow">SIDE B / THE LABORATORY <button class="help-trigger" type="button" data-help="lab" aria-label="Explain the laboratory">?</button></p><h1>Show your work.</h1><p>The guarantees, the obligations, and the parts we haven’t proved.</p><nav class="research-links" aria-label="Research sections"><a href="projects.html">Projects</a><a href="evidence.html">Evidence</a><a href="history.html">History</a><a href="map.html">Map</a><a href="https://github.com/sudofx/wake">Code</a></nav></div><div id="lab-content"></div></section><noscript><p>Read the <a href="events.html">complete history</a> or <a href="state.html">durable state</a> without JavaScript.</p></noscript></main>
-<div id="help-layer" class="help-layer" hidden>
-  <section id="help-panel" class="help-panel" role="dialog" aria-modal="false" aria-labelledby="help-title">
-    <button id="help-close" class="help-close" type="button" data-help-close aria-label="Close explanation">×</button>
-    <p class="eyebrow">PLAIN-LANGUAGE GUIDE</p>
-    <h2 id="help-title"></h2>
-    <div class="help-copy"><h3>What it is</h3><p id="help-what"></p><h3>How to use it</h3><p id="help-read"></p><h3>Why it matters</h3><p id="help-why"></p><h3>Keep in mind</h3><p id="help-questions"></p></div>
-  </section>
-</div>
+<main id="main" tabindex="-1"><section id="lab" class="view"><div class="page-heading"><p class="eyebrow">SIDE B / THE LABORATORY</p><h1>Show your work.</h1><p>The guarantees, the obligations, and the parts we haven’t proved.</p><nav class="research-links" aria-label="Research sections"><a href="projects.html">Projects</a><a href="evidence.html">Evidence</a><a href="history.html">History</a><a href="map.html">Map</a><a href="https://github.com/sudofx/wake">Code</a></nav></div><div id="lab-content"></div></section><noscript><p>Read the <a href="events.html">complete history</a> or <a href="state.html">durable state</a> without JavaScript.</p></noscript></main>
 <footer><a class="footer-mark" href="index.html">WAKE✳︎</a><span>DURABLE WORK. REPLACEABLE INTELLIGENCE.</span><div><a href="about.html">About →</a><a href="state.html">State →</a><a href="events.html">History →</a></div><p>Made of evidence, not vibes. <span id="generated"></span></p></footer>
 <script src="reader-data.js?v=20261027-autoload"></script>
 <script>
@@ -84,99 +76,12 @@ if(!window.WakeData){
   });
 }
 </script>
-<script>/*
- * WAKE✳︎ plain-language help.
- * Explanations describe the visible interface without adding authority or claims.
- */
-(() => {
-  'use strict';
-
-  const topics = {
-    blog: ["Bob’s Blog","Selected plain-language notes about work already recorded by WAKE✳︎.","Read the post first. Follow its notebook, evidence, and history links when you want the underlying record.","Bob is a public writing voice, not a separate agent or persistent identity.","Posts summarize recorded work; they do not create research authority."],
-    projects: ["Projects","Focused research questions that WAKE✳︎ is actively tracking.","Status shows where the work stands. Next step shows what the project is trying to do next.","Projects turn broad topics into inspectable work with a durable trail.","A project can change direction without erasing its earlier record."],
-    journal: ["Journal","A readable timeline of accepted work across separate model invocations.","Treat each entry as a new model call continuing from the durable record left by earlier calls.","The journal shows continuity of work without requiring hidden model memory.","Accepted means the change passed governance; it does not mean every claim is true."],
-    field_notes: ["Journal entry","A plain-language summary of changes accepted in one wake.","Read what changed, why it changed, and which model proposed it.","It gives the technical event history a human-readable layer.","The exact event record remains the audit source underneath."],
-    continuity_question: ["Continuity","WAKE✳︎ tests whether useful work can continue when models, sessions, vendors, or people change.","Look for objectives, evidence, open commitments, decisions, and receipts carried forward through the record.","The durable record—not a model’s private memory—is what preserves continuity.","Continuity here means continuity of accountable work."],
-    current_hook: ["Open commitments","Work that earlier wakes recorded as unfinished or due for review.","Use the due cycle and status to see what still needs attention.","Visible commitments make unfinished work harder to lose between model calls.","A commitment is a recorded obligation, not a promise that a model will succeed."],
-    runtime_receipt: ["Context receipt","A record of what context was delivered at the model boundary.","Use it to verify what information was available to a model call.","Receipts make handoffs inspectable across providers and sessions.","Delivery does not prove understanding or correct use."],
-    lab: ["Lab","The rules, tests, beliefs, commitments, and low-level records behind the public views.","Use it when you need to inspect how a result was governed or reproduced.","The Lab separates system mechanics from the friendlier reading experience.","Technical visibility supports auditability; it does not make every conclusion correct."],
-    evidence: ["Evidence","Saved source material and observations used by the research workload.","Follow the source and provenance links before treating a claim as well supported.","Evidence keeps research connected to inspectable material instead of polished prose alone.","A saved source can still be incomplete, weak, outdated, or misinterpreted."],
-    history: ["History","The append-only event record, including accepted, rejected, deferred, failed, and recovered work.","Read events in sequence or follow an exact wake ID.","Keeping failures and rejections makes the process auditable and correctable.","History records what happened; it is not a quality score."],
-    research_pet: ["Bob","The public byline used for selected explanatory writing about WAKE✳︎ research.","Use Bob’s posts as an entry point, then follow the linked notebook and evidence trail.","A consistent public voice makes technical work easier to read.","Bob is a presentation role, not WAKE✳︎’s identity or a persistent mind."],
-    visit_summary: ["Since your last visit","A browser-local summary of changes since this device last viewed the site.","Use it as a catch-up shortcut, not as part of the durable record.","It helps returning readers find recent work quickly.","This count can reset when browser storage is cleared."],
-    latest_work: ["Latest published work","The newest notebooks that reached the publication layer.","Read findings together with limitations, evidence, and revision history.","Publication makes work readable without removing its provenance.","Published means available in the record, not proven or final."],
-    specialty: ["Research distribution","A count of published notebooks by topic.","Longer bars mean more recorded output in that area.","It shows where work has accumulated over time.","More output does not mean greater expertise or truth."],
-    growth: ["Recorded output","Counts of notebooks, revisions, projects, and collected sources.","Use these as activity measures only.","They show what the durable record contains and how it changes.","They do not measure intelligence, consciousness, or research quality."],
-    under_hood: ["Inspect the system","Links to the rules, history, state, and operator-facing technical views.","Use these when the public summary is not enough.","The readable site and technical record are different views of the same system.","Operational state and public presentation must not be confused."],
-    durable_objective: ["Durable objective","The saved objective supplied to fresh model calls.","Follow how context becomes a proposal, governance decision, transition, and receipt.","A durable objective lets different models participate in one governed process.","The objective constrains work; models cannot silently rewrite it."],
-    repeatable_harness: ["Offline experiment","A deterministic test harness for continuity, governance, recovery, and replay.","Passed checks mean the software behaved as specified under the fixture experiment.","Repeatable tests help separate software guarantees from model behavior.","Fixture success does not prove live-model comprehension or research quality."],
-    accepted_cycles: ["Accepted wakes","Recent model calls whose proposed changes passed governance and were recorded.","Open an exact wake to inspect context, response, decision, and receipt.","They show successful governed transitions across separate model calls.","Accepted means allowed and committed—not necessarily true."],
-    beliefs: ["Working beliefs","Claims currently carried forward with confidence, evidence links, and status.","Look at supporting evidence and revision history, not only confidence.","Visible revision makes changing conclusions part of the record.","A working belief is provisional and may later be revised or retracted."],
-    commitments: ["Commitments","The durable list of open and completed obligations created by earlier wakes.","Open items still require attention; resolved items retain their history.","Commitments preserve unfinished work across model boundaries.","They record accountability, not guaranteed completion."],
-    notebook_shelf: ["Notebooks","Published research syntheses, including later revisions.","Read findings together with limitations, open questions, and source trails.","Notebooks are the main research output of the current reference workload.","A notebook is a governed synthesis, not settled truth."]
-  };
-
-  const layer=document.getElementById('help-layer');
-  const panel=document.getElementById('help-panel');
-  let returnFocus=null;
-  const fields=['what','read','why','questions'];
-
-  function button(key){
-    const topic=topics[key];
-    return topic ? '<button class="help-trigger" type="button" data-help="'+key+'" aria-label="Explain '+topic[0]+'" title="Plain-language explanation">?</button>' : '';
-  }
-
-  function position(trigger){
-    if(!panel||!trigger)return;
-    panel.style.removeProperty('--help-left');
-    panel.style.removeProperty('--help-top');
-    if(matchMedia('(max-width:720px)').matches)return;
-    const r=trigger.getBoundingClientRect();
-    const width=Math.min(420,Math.max(320,window.innerWidth*.34));
-    const gap=12;
-    let left=r.right+gap;
-    if(left+width>window.innerWidth-18)left=Math.max(18,r.left-width-gap);
-    const estimatedHeight=Math.min(470,window.innerHeight-120);
-    let top=Math.max(76,Math.min(r.top-18,window.innerHeight-estimatedHeight-18));
-    panel.style.setProperty('--help-left',left+'px');
-    panel.style.setProperty('--help-top',top+'px');
-  }
-
-  function close(){
-    layer.hidden=true;
-    document.body.classList.remove('help-open');
-    if(returnFocus)returnFocus.focus();
-  }
-
-  function open(key,trigger){
-    const topic=topics[key];
-    if(!topic)return;
-    returnFocus=trigger;
-    document.getElementById('help-title').textContent=topic[0];
-    fields.forEach((field,index)=>document.getElementById('help-'+field).textContent=topic[index+1]);
-    layer.hidden=false;
-    document.body.classList.add('help-open');
-    position(trigger);
-    document.getElementById('help-close').focus();
-  }
-
-  document.addEventListener('click',event=>{
-    const trigger=event.target.closest('[data-help]');
-    if(trigger){event.preventDefault();open(trigger.dataset.help,trigger);return;}
-    if(event.target===layer||event.target.closest('[data-help-close]'))close();
-  });
-  window.addEventListener('resize',()=>{if(!layer.hidden&&returnFocus)position(returnFocus);});
-  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!layer.hidden)close();});
-  window.WakeHelp={button};
-})();
-</script>
 <script>/* Homepage reading experience. */
 
 window.WakePetReady=(async () => {
   'use strict';
   const d=await window.WakeData,s=d.state;
   if(s.charter){document.querySelector('.footer-mark').href='#home';}
-  const help=key=>window.WakeHelp.button(key);
   // Navigation stays stable even when this installation has no posts yet.
   const WAKE_TEXT='WAKE\u2733\uFE0E';
   const normalizeWake=v=>String(v??'').replaceAll('WAKE\u2733\uFE0F','WAKE\u2733').replaceAll('WAKE\u2733\uFE0E','WAKE\u2733').replaceAll('WAKE\u2733',WAKE_TEXT);
@@ -269,7 +174,7 @@ window.WakePetReady=(async () => {
       if(selected.startsWith('notebook:'))output=notebook(books.find(n=>n.id===selected.slice(9)));
       else if(selected.startsWith('topic:')){const topic=canonicalTopic(decodeURIComponent(selected.slice(6))),topicProjects=projects.filter(p=>p.domain===topic),topicBooks=books.filter(n=>n.domain===topic);output=`<p class="topic-filter-note">Showing <strong>${esc(topicName(topic).toLowerCase())}</strong> · <a href="#projects">show all</a></p><div class="project-grid">${topicProjects.map((p,i)=>projectCard(p,i<2)).join('')||'<p class="empty">No projects match this topic.</p>'}</div><h2 class="shelf-title">Published notebooks</h2><div class="project-grid">${topicBooks.map((n,i)=>bookCard(n,i<2)).join('')||'<p class="empty">No published notebooks match this topic.</p>'}</div>`;}
       else if(selected){const p=projects.find(p=>p.id===selected);output=p?projectCard(p,true)+`<h2 class="shelf-title">The work so far</h2><div class="project-grid">${books.filter(n=>n.project===p.id).map((n,i)=>bookCard(n,i<2)).join('')||'<p class="empty">Still investigating. No notebook has been published for this question yet.</p>'}</div>`:'<p class="empty">Project not found.</p>';}
-      else output=`<h2 class="shelf-title">The notebook shelf ${help('notebook_shelf')}</h2><div class="project-grid">${books.map((n,i)=>bookCard(n,i<2)).join('')||'<p class="empty">No research has been published yet. Finished work will appear here with its evidence and limitations.</p>'}</div><h2 class="shelf-title">Research notes</h2><div class="project-grid">${[...projects].sort((a,b)=>(b.status==='active')-(a.status==='active')||b.updated_version-a.updated_version).map((p,i)=>projectCard(p,i<2)).join('')||'<p class="empty">The first research question will appear after an autonomous wake.</p>'}</div>`;
+      else output=`<h2 class="shelf-title">The notebook shelf</h2><div class="project-grid">${books.map((n,i)=>bookCard(n,i<2)).join('')||'<p class="empty">No research has been published yet. Finished work will appear here with its evidence and limitations.</p>'}</div><h2 class="shelf-title">Research notes</h2><div class="project-grid">${[...projects].sort((a,b)=>(b.status==='active')-(a.status==='active')||b.updated_version-a.updated_version).map((p,i)=>projectCard(p,i<2)).join('')||'<p class="empty">The first research question will appear after an autonomous wake.</p>'}</div>`;
       document.getElementById('pet-projects').innerHTML=output;return;
     }
     const readablePosts=[...blogPosts].filter(p=>p.status!=='superseded')
@@ -360,7 +265,6 @@ window.WakePetReady=(async () => {
     historyScope.textContent=`Showing the latest ${historyPacket.displayed.toLocaleString()} of ${historyPacket.total.toLocaleString()} exported events. Open Complete history below for the full export.`;
   }
 
-  const help = key => window.WakeHelp.button(key);
   const WAKE_TEXT='WAKE\u2733\uFE0E';
   const display = value => String(value ?? '').replaceAll('WAKE✳️','WAKE✳').replaceAll('WAKE✳︎','WAKE✳').replaceAll('WAKE✳','WAKE✳︎');
   const esc = value => display(value).replace(/[&<>"']/g, x => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
@@ -797,7 +701,7 @@ window.WakePetReady=(async () => {
     const driveStatus=!drive?'WAITING FOR A CHARTERED WAKE':gate?.active?'ACTIVE / ADVISORY':gate?.operator_enabled?`LOCKED / ${gate.completed_scored_cycles} OF ${gate.minimum_completed_scored_cycles} SCORED CYCLES`:'SHADOW ONLY / OPERATOR DISABLED';
     const driveRows=(drive?.projects||[]).map((project,index)=>`<div class="drive-row"><b>${index+1}</b><span>${esc(project.title)}</span><strong>${Math.round(project.score*100)}%</strong><small>C ${Math.round(project.components.continuity*100)} · N ${Math.round(project.components.novelty*100)} · H ${Math.round(project.components.coherence*100)} · G ${Math.round(project.components.generativity*100)} · S ${Math.round(project.components.self_correction*100)}</small></div>`).join('')||'<p>No active research projects were scored in the latest wake.</p>';
     const drivePanel=`<div class="panel drive-panel"><p class="eyebrow">INQUIRY-DRIVE SHADOW</p><h2>What work would persist?</h2><p class="drive-status">${esc(driveStatus)}</p><p>The rank is a deterministic record-based signal, not an inner motive. C = continuity, N = novelty, H = coherence, G = generativity, S = self-correction.</p>${driveRows}<p class="small">It cannot preserve WAKE, alter rules, or select work unless an operator enables it after the required scored history. <a href="#history">Inspect the receipts →</a></p></div>`;
-    $('lab-content').innerHTML=`<div class="panel"><p class="eyebrow">THE DURABLE OBJECTIVE ${help('durable_objective')}</p><h2>${esc(s.objective)}</h2><p>Current focus: <strong>${esc(s.focus)}</strong></p><div class="flow"><span>Durable state</span>→<span>Fresh invocation</span>→<span>Untrusted proposal</span>→<span>Mechanical rules</span>→<span>Atomic event</span></div><p>Models may review beliefs, create obligations, and propose evidence-backed completion. External actions and rule changes are outside their authority.</p></div>${drivePanel}<div class="lab-grid"><div class="panel"><p class="eyebrow">REPEATABLE HARNESS EXPERIMENT ${help('repeatable_harness')}</p><h2>The test, not the hype.</h2>${coverage}<p>${exp?`Executed ${esc(exp.generated)}. ${exp.cycles} accepted cycles, ${exp.fresh_processes} fresh wake processes.`:'Run the offline experiment to populate this checklist.'}</p><p>These results exercise deterministic simulated providers. They do not establish real-model comprehension or general intelligence. Live Gemini accepted cycles here: <strong>${live}</strong>. Human-pasted replies have human-attested model identity.</p></div><div class="panel"><p class="eyebrow">LAST ${Math.min(accepted.length,100)} ACCEPTED CYCLES ${help('accepted_cycles')}</p><h2>Small steps. Long record.</h2><div class="spark" role="group" aria-label="Number of accepted changes per cycle">${bars}</div><div class="chart-labels"><span>OLDER →</span><span>ACCEPTED CHANGES / CYCLE</span><span>NOW</span></div><h3>What the system enforces</h3><p>Atomic proposals. Existing evidence references. New evidence for belief reviews. Persistent obligations. No model cancellation. An auditable decision for each completed invocation.</p><h3>What still needs judgment</h3><p>Whether evidence is true, whether it supports a claim, and whether an obligation was meaningfully fulfilled. Hashes detect edits relative to the recorded head; they do not stop an administrator rewriting the entire history.</p><p>Verified export head:<br><code>${esc(data.head)}</code></p></div></div>${modelPerformance()}<div class="panel"><p class="eyebrow">CURRENT BELIEFS ${help('beliefs')}</p><h2>Allowed to change our minds.</h2>${Object.values(s.beliefs).sort((a,b)=>b.confidence-a.confidence||String(a.id).localeCompare(String(b.id))).map(b=>`<div class="data-card"><div class="entry-meta">${badge(b.status==='active'?'accepted':'rejected',b.status)}<span>${Math.round(b.confidence*100)}% CONFIDENCE</span><span>${esc(b.id)}</span></div><p>${esc(b.statement)}</p><p>${esc(b.reason)}</p>${b.falsifier?'<p><strong>What would change this:</strong> '+esc(b.falsifier)+'</p>':''}${refs(b.evidence)}<details><summary>Full belief record</summary>${raw(b)}</details></div>`).join('')||'<p>No beliefs recorded yet.</p>'}</div><div class="panel"><p class="eyebrow">COMMITMENT REGISTER ${help('commitments')}</p><h2>Still on the hook.</h2>${committed.map(c=>`<details class="data-card"><summary>${esc(c.id)} · ${esc(c.status)} · due cycle ${c.due_cycle}${c.status==='open'&&s.version>=c.due_cycle?' · OVERDUE':''}</summary><p>${esc(c.task)}</p><p>${esc(c.resolution_reason||c.reason)}</p>${refs(c.evidence)}${raw(c)}</details>`).join('')||'<p>No commitments yet.</p>'}</div>`;
+    $('lab-content').innerHTML=`<div class="panel"><p class="eyebrow">THE DURABLE OBJECTIVE</p><h2>${esc(s.objective)}</h2><p>Current focus: <strong>${esc(s.focus)}</strong></p><div class="flow"><span>Durable state</span>→<span>Fresh invocation</span>→<span>Untrusted proposal</span>→<span>Mechanical rules</span>→<span>Atomic event</span></div><p>Models may review beliefs, create obligations, and propose evidence-backed completion. External actions and rule changes are outside their authority.</p></div>${drivePanel}<div class="lab-grid"><div class="panel"><p class="eyebrow">REPEATABLE HARNESS EXPERIMENT</p><h2>The test, not the hype.</h2>${coverage}<p>${exp?`Executed ${esc(exp.generated)}. ${exp.cycles} accepted cycles, ${exp.fresh_processes} fresh wake processes.`:'Run the offline experiment to populate this checklist.'}</p><p>These results exercise deterministic simulated providers. They do not establish real-model comprehension or general intelligence. Live Gemini accepted cycles here: <strong>${live}</strong>. Human-pasted replies have human-attested model identity.</p></div><div class="panel"><p class="eyebrow">LAST ${Math.min(accepted.length,100)} ACCEPTED CYCLES</p><h2>Small steps. Long record.</h2><div class="spark" role="group" aria-label="Number of accepted changes per cycle">${bars}</div><div class="chart-labels"><span>OLDER →</span><span>ACCEPTED CHANGES / CYCLE</span><span>NOW</span></div><h3>What the system enforces</h3><p>Atomic proposals. Existing evidence references. New evidence for belief reviews. Persistent obligations. No model cancellation. An auditable decision for each completed invocation.</p><h3>What still needs judgment</h3><p>Whether evidence is true, whether it supports a claim, and whether an obligation was meaningfully fulfilled. Hashes detect edits relative to the recorded head; they do not stop an administrator rewriting the entire history.</p><p>Verified export head:<br><code>${esc(data.head)}</code></p></div></div>${modelPerformance()}<div class="panel"><p class="eyebrow">CURRENT BELIEFS</p><h2>Allowed to change our minds.</h2>${Object.values(s.beliefs).sort((a,b)=>b.confidence-a.confidence||String(a.id).localeCompare(String(b.id))).map(b=>`<div class="data-card"><div class="entry-meta">${badge(b.status==='active'?'accepted':'rejected',b.status)}<span>${Math.round(b.confidence*100)}% CONFIDENCE</span><span>${esc(b.id)}</span></div><p>${esc(b.statement)}</p><p>${esc(b.reason)}</p>${b.falsifier?'<p><strong>What would change this:</strong> '+esc(b.falsifier)+'</p>':''}${refs(b.evidence)}<details><summary>Full belief record</summary>${raw(b)}</details></div>`).join('')||'<p>No beliefs recorded yet.</p>'}</div><div class="panel"><p class="eyebrow">COMMITMENT REGISTER</p><h2>Still on the hook.</h2>${committed.map(c=>`<details class="data-card"><summary>${esc(c.id)} · ${esc(c.status)} · due cycle ${c.due_cycle}${c.status==='open'&&s.version>=c.due_cycle?' · OVERDUE':''}</summary><p>${esc(c.task)}</p><p>${esc(c.resolution_reason||c.reason)}</p>${refs(c.evidence)}${raw(c)}</details>`).join('')||'<p>No commitments yet.</p>'}</div>`;
   }
   let farmNotebookRuntime;
   function mountFarmNotebook(){
@@ -1121,7 +1025,6 @@ if(actionsLight && !window.WAKE_DEPLOYMENT?.hosted_status && window.WAKE_DEPLOYM
     if(button.dataset.contextView)return [button.dataset.contextView==='sphere'?'◉':'◇',`${button.dataset.contextView==='sphere'?'Sphere':'3D'} context view`];
     if(button.dataset.frontierState)return [states[button.dataset.frontierState],`${button.dataset.frontierState} frontier`];
     if(button.dataset.kind)return [{project:'□',research:'◇',notebook:'▤',evidence:'●','belief,commitment':'△'}[button.dataset.kind],button.dataset.uiLabel||button.textContent.trim()];
-    if(button.matches('.help-trigger'))return ['?',button.getAttribute('aria-label')];
     if(button.matches('.detail-links button, #wake-detail button[data-tool]'))return [button.hasAttribute('data-wake')?'◷':'↗',button.dataset.uiLabel||button.textContent.trim()];
     // Existing glyph-only controls retain their symbols and accessible names.
     if(button.getAttribute('aria-label')&&button.childElementCount===0&&button.textContent.trim().length>0&&button.textContent.trim().length<=3)return [button.textContent.trim(),button.getAttribute('aria-label')];
