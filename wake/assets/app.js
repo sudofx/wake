@@ -459,7 +459,16 @@
       }));
     }
   }
+  let evaluationRuntime;
+  function mountEvaluation(){
+    evaluationRuntime ||= new Promise((resolve,reject)=>{
+      const script=document.createElement('script');script.src=new URL('evaluation-view.js?v=20261027',document.baseURI).href;
+      script.onload=()=>resolve(window.WakeEvaluation);script.onerror=reject;document.head.append(script);
+    });
+    evaluationRuntime.then(api=>api.mount($('lab-content'))).catch(()=>{});
+  }
   function lab() {
+    queueMicrotask(mountEvaluation);
     const exp=data.experiment;
     const coverage=Object.entries(proofNames).map(([key,label])=>`<div class="check"><span>${label}</span><b class="${exp?.checks[key]?.passed?'':'pending'}">${exp?.checks[key]?.passed?'PASS · FIXTURE':'NOT RUN'}</b></div>`).join('');
     const committed=Object.values(s.commitments).sort((a,b)=> (a.status==='open'?-1:1)-(b.status==='open'?-1:1)||b.created_version-a.created_version);

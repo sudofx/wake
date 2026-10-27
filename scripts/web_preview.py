@@ -34,6 +34,12 @@ def build(destination):
     export(destination=destination, projection={'state': state, 'head': '0'*64,
            'events': [], 'generated': '2026-10-26T00:00:00Z'}, browser_only=True,
            standalone=False)
+    (Path(destination)/'evaluation.json').write_text(json.dumps({
+        'schema': 'wake-evaluation@1', 'result_id': 'local-preview',
+        'title': 'Local evaluation fixture', 'generated_at': '2026-10-26T00:00:00Z',
+        'summary': 'Sample report for editing the evaluation view.',
+        'metrics': [{'name': 'Fixture cases', 'value': 1}],
+        'limitations': ['Fixture only; no model behavior or intelligence was measured.']}))
 
 
 def fingerprint():

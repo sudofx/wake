@@ -30,6 +30,28 @@ visitors only replay its dated observations. Its notebook is presentation and
 never changes native research articles or records. Its former conversation panel
 is removed.
 
+## Publish controlled evaluation results
+
+The Lab page (`lab.html`) reads `latest.json` from the separate `wake-evaluations`
+data branch when opened. This small experimental-output stream is independent
+of the twelve-node research snapshot and the checked Pages interface. It never
+changes native records or research counters. Local previews read `evaluation.json`
+from their own server instead.
+
+Publish an explicit JSON report using the existing GitHub CLI login:
+
+```sh
+python scripts/publish_evaluation.py /tmp/evaluation.json --repository sudofx/wake --initialize
+```
+
+`--initialize` permits creating a missing data branch once; later updates omit
+it. The report uses `schema: "wake-evaluation@1"`, a unique `result_id`,
+`generated_at`, `title`, `summary`, `metrics` (name/value rows), and `limitations`.
+Label deterministic fixture results plainly. The publisher limits reports to
+2 MiB, writes only `latest.json`, rejects competing non-fast-forward updates,
+and dispatches no workflow or Pages build. No provider key enters the report.
+This data branch is disposable experiment output, not a recovery archive.
+
 ## Publish the local installation mirror
 
 Research runs in containers. Each node owns its durable SQLite record; the website
