@@ -6,7 +6,7 @@
   if(window.WAKE_DEPLOYMENT?.group?.id && !data.reader_transport){
     const groupId=window.WAKE_DEPLOYMENT.group.id;
     try{
-      const response=await fetch(new URL('group/bob.json?wake_group='+Date.now(),location.href),{cache:'no-store'});
+      const response=await (window.WakePublicData?.fetch || fetch)(new URL('group/bob.json?wake_group='+Date.now(),location.href),{cache:'no-store'});
       if(!response.ok)throw Error('Group Bob is unavailable');
       const shared=await response.json();
       if(shared?.schema!==1||shared.group_id!==groupId||shared.available!==true||!Array.isArray(shared.posts))
@@ -25,7 +25,7 @@
   // borrow only the bounded aggregate block from the current Pages snapshot.
   if(!data.metrics){
     try{
-      const response=await fetch('wake-data.json?wake_metrics='+Date.now(),{cache:'no-store'});
+      const response=await (window.WakePublicData?.fetch || fetch)('wake-data.json?wake_metrics='+Date.now(),{cache:'no-store'});
       if(response.ok){
         const fallback=await response.json();
         if(fallback.metrics)data.metrics=fallback.metrics;
@@ -69,6 +69,7 @@
     const target=document.getElementById('bob-reference-'+link.dataset.bobReference);
     if(!target)return;
     event.preventDefault();
+    const disclosure=target.closest('details');if(disclosure)disclosure.open=true;
     target.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
     target.setAttribute('tabindex','-1');target.focus({preventScroll:true});
   });
@@ -210,11 +211,10 @@
       return `<article data-bob-collection="journal" data-bob-id="${esc(j.invocation)}" class="entry record-panel" id="cycle-${esc(j.origin?.node?`${j.origin.node}-${j.cycle}`:j.cycle)}"><div class="record-panel-head"><div class="record-panel-meta journal-meta"><span class="record-type">JOURNAL · WAKE✳︎ ${String(j.cycle).padStart(3,'0')}</span><span class="record-status">${badge(i.provider==='fixture'?'simulated':'accepted',i.provider==='fixture'?'SIMULATED':'ACCEPTED')}</span><span class="record-topics journal-topics">${journalTopics(j).map(id=>topicTag(id,'journal')).join('')}</span><time datetime="${esc(i.time)}">${esc(fmt(i.time))}</time></div><h3><a href="#journal/cycle:${j.cycle}">${esc(j.title)}</a></h3></div><div class="record-panel-body"><p>${esc(j.summary)}</p><div class="entry-bottom"><span>${esc(i.provider)} / ${esc(i.model)}${j.origin?.node?` · <a href="nodes/${esc(encodeURIComponent(j.origin.node))}/index.html#journal/cycle:${j.cycle}">${esc(j.origin.node)}</a>`:''}</span><span>${esc(changeLabel)}</span></div><details class="lab-notes"><summary>LAB NOTES / ${Array.isArray(actions)?`${actions.length} RECORDED CHANGE${actions.length===1?'':'S'}`:'HISTORICAL CHANGE DETAILS'}</summary><div class="lab-notes-body">${Array.isArray(actions)?(actions.map(a=>`<div class="decision"><strong>${esc(a.type)} / ${esc(a.id)}</strong><p>${esc(a.statement||a.task||a.status)}</p><p>${esc(a.reason)}</p>${refs(a.evidence)}</div>`).join('') || '<p>No state changes proposed.</p>'):'<p>The journal entry is preserved, but its change details are outside the recent events included in this live view.</p>'}</div></details><a class="subtle" href="#history/${encodeURIComponent(j.invocation)}">Full invocation & decision →</a></div></article>`;
     }).join('') || '<p class="empty">No matching entries. The tape is blank here.</p>';
     $('more').hidden=entries.length<=journalLimit;
-    window.WakeAskBob?.attachRecords($('journal'),{page:'journal',head:data.head,selected});
+    watchListEnd('more',()=>{journalLimit+=8;route();});
   }
-  $('search')?.addEventListener('input',()=>{journalLimit=8;journal();});
-  providerSelect?.addEventListener('change',()=>{journalLimit=8;journal();});
-  $('more')?.addEventListener('click',()=>{journalLimit+=8;journal();});
+  $('search')?.addEventListener('input',()=>{journalLimit=8;route();});
+  providerSelect?.addEventListener('change',()=>{journalLimit=8;route();});
   if($('open-commitments'))$('open-commitments').innerHTML=open.slice(0,3).map(c=>`<div class="obligation"><span class="dot"></span><div>${esc(c.task)}<small>DUE / CYCLE ${c.due_cycle}${(c.origin?.version??s.version)>=c.due_cycle?' · OVERDUE':''}</small></div></div>`).join('')||'<p class="small">No open obligations. Nothing quietly dropped.</p>';
   function modelPerformance() {
     const attempts=[];
@@ -459,7 +459,16 @@
       }));
     }
   }
+  let evaluationRuntime;
+  function mountEvaluation(){
+    evaluationRuntime ||= new Promise((resolve,reject)=>{
+      const script=document.createElement('script');script.src=new URL('evaluation-view.js?v=20261027',document.baseURI).href;
+      script.onload=()=>resolve(window.WakeEvaluation);script.onerror=reject;document.head.append(script);
+    });
+    evaluationRuntime.then(api=>api.mount($('lab-content'))).catch(()=>{});
+  }
   function lab() {
+    queueMicrotask(mountEvaluation);
     const exp=data.experiment;
     const coverage=Object.entries(proofNames).map(([key,label])=>`<div class="check"><span>${label}</span><b class="${exp?.checks[key]?.passed?'':'pending'}">${exp?.checks[key]?.passed?'PASS · FIXTURE':'NOT RUN'}</b></div>`).join('');
     const committed=Object.values(s.commitments).sort((a,b)=> (a.status==='open'?-1:1)-(b.status==='open'?-1:1)||b.created_version-a.created_version);
@@ -471,7 +480,19 @@
     const drivePanel=`<div class="panel drive-panel"><p class="eyebrow">INQUIRY-DRIVE SHADOW</p><h2>What work would persist?</h2><p class="drive-status">${esc(driveStatus)}</p><p>The rank is a deterministic record-based signal, not an inner motive. C = continuity, N = novelty, H = coherence, G = generativity, S = self-correction.</p>${driveRows}<p class="small">It cannot preserve WAKE, alter rules, or select work unless an operator enables it after the required scored history. <a href="#history">Inspect the receipts →</a></p></div>`;
     $('lab-content').innerHTML=`<div class="panel"><p class="eyebrow">THE DURABLE OBJECTIVE ${help('durable_objective')}</p><h2>${esc(s.objective)}</h2><p>Current focus: <strong>${esc(s.focus)}</strong></p><div class="flow"><span>Durable state</span>→<span>Fresh invocation</span>→<span>Untrusted proposal</span>→<span>Mechanical rules</span>→<span>Atomic event</span></div><p>Models may review beliefs, create obligations, and propose evidence-backed completion. External actions and rule changes are outside their authority.</p></div>${drivePanel}<div class="lab-grid"><div class="panel"><p class="eyebrow">REPEATABLE HARNESS EXPERIMENT ${help('repeatable_harness')}</p><h2>The test, not the hype.</h2>${coverage}<p>${exp?`Executed ${esc(exp.generated)}. ${exp.cycles} accepted cycles, ${exp.fresh_processes} fresh wake processes.`:'Run the offline experiment to populate this checklist.'}</p><p>These results exercise deterministic simulated providers. They do not establish real-model comprehension or general intelligence. Live Gemini accepted cycles here: <strong>${live}</strong>. Human-pasted replies have human-attested model identity.</p></div><div class="panel"><p class="eyebrow">LAST ${Math.min(accepted.length,100)} ACCEPTED CYCLES ${help('accepted_cycles')}</p><h2>Small steps. Long record.</h2><div class="spark" role="group" aria-label="Number of accepted changes per cycle">${bars}</div><div class="chart-labels"><span>OLDER →</span><span>ACCEPTED CHANGES / CYCLE</span><span>NOW</span></div><h3>What the system enforces</h3><p>Atomic proposals. Existing evidence references. New evidence for belief reviews. Persistent obligations. No model cancellation. An auditable decision for each completed invocation.</p><h3>What still needs judgment</h3><p>Whether evidence is true, whether it supports a claim, and whether an obligation was meaningfully fulfilled. Hashes detect edits relative to the recorded head; they do not stop an administrator rewriting the entire history.</p><p>Verified export head:<br><code>${esc(data.head)}</code></p></div></div>${modelPerformance()}<div class="panel"><p class="eyebrow">CURRENT BELIEFS ${help('beliefs')}</p><h2>Allowed to change our minds.</h2>${Object.values(s.beliefs).sort((a,b)=>b.confidence-a.confidence||String(a.id).localeCompare(String(b.id))).map(b=>`<div class="data-card"><div class="entry-meta">${badge(b.status==='active'?'accepted':'rejected',b.status)}<span>${Math.round(b.confidence*100)}% CONFIDENCE</span><span>${esc(b.id)}</span></div><p>${esc(b.statement)}</p><p>${esc(b.reason)}</p>${b.falsifier?'<p><strong>What would change this:</strong> '+esc(b.falsifier)+'</p>':''}${refs(b.evidence)}<details><summary>Full belief record</summary>${raw(b)}</details></div>`).join('')||'<p>No beliefs recorded yet.</p>'}</div><div class="panel"><p class="eyebrow">COMMITMENT REGISTER ${help('commitments')}</p><h2>Still on the hook.</h2>${committed.map(c=>`<details class="data-card"><summary>${esc(c.id)} · ${esc(c.status)} · due cycle ${c.due_cycle}${c.status==='open'&&s.version>=c.due_cycle?' · OVERDUE':''}</summary><p>${esc(c.task)}</p><p>${esc(c.resolution_reason||c.reason)}</p>${refs(c.evidence)}${raw(c)}</details>`).join('')||'<p>No commitments yet.</p>'}</div>`;
   }
+  let farmNotebookRuntime;
+  function mountFarmNotebook(){
+    const host=$('blog-content');if(!host||host.querySelector('.farm-notebook'))return;
+    const article=host.querySelector('.blog-reading'),section=document.createElement('section');section.className='farm-notebook'+(article?'':' panel');
+    if(article)article.insertBefore(section,article.querySelector('.blog-receipts'));else host.append(section);
+    const script=name=>new Promise((resolve,reject)=>{const node=document.createElement('script');node.src=new URL(name+'?v=20261027-farm-notes',document.baseURI).href;node.onload=resolve;node.onerror=reject;document.head.append(node);});
+    farmNotebookRuntime ||= (async()=>{if(!window.WakeAntColony)await script('ant-colony.js');if(!window.WakeBobFarm)await script('bob-ant-farm.js');return window.WakeBobFarm;})();
+    farmNotebookRuntime.then(api=>{if(section.isConnected)api.mountNotebook(section);}).catch(()=>{if(section.isConnected)section.remove();});
+  }
   function blog(selected='') {
+    // These dated farm observations are presentation, not native article bodies,
+    // their content hashes, evidence lists or accepted research.
+    queueMicrotask(mountFarmNotebook);
     $('blog').classList.toggle('reading-story',Boolean(selected)&&!selected.startsWith('topic:'));
     if(selected.startsWith('topic:')){
       const topic=canonicalTopic(decodeURIComponent(selected.slice(6)));
@@ -502,8 +523,7 @@
       const earlier=position>=0?series[position+1]:null,later=position>0?series[position-1]:null;
       const continueReading='<nav class="blog-continue" aria-label="Continue the investigation">'+(earlier?'<div><p class="eyebrow">EARLIER IN THE INVESTIGATION</p><a href="#blog/'+encodeURIComponent(earlier.id)+'">'+esc(postTitle(earlier))+' →</a></div>':'')+(later?'<div><p class="eyebrow">THE NEXT PUBLISHED STORY</p><a href="#blog/'+encodeURIComponent(later.id)+'">'+esc(postTitle(later))+' →</a></div>':'')+'</nav>';
       const follow='<aside class="blog-follow"><strong>Follow the investigation.</strong> Get new Bob articles in your feed reader. <a href="blog.xml" type="application/rss+xml">Follow Bob via RSS →</a></aside>';
-      $('blog-content').innerHTML='<article class="blog-reading'+(postTopic(post)==='reflection'?' blog-reading-reflection':'')+'"><a class="subtle" href="#blog">← All posts</a>'+postMeta(post,invocation)+'<h1>'+esc(postTitle(post))+'</h1><p class="blog-lede">'+esc(post.lede)+'</p>'+correction+body+continueReading+follow+(post.lens?'<blockquote><span>BOB’S LENS / PHILOSOPHICAL REFLECTION</span>'+esc(post.lens)+'</blockquote>':'')+'<div class="blog-receipts"><p class="eyebrow">FOLLOW THE RECEIPTS</p>'+projectReceipt+'<div>'+notebooks+'</div><p>'+sources+'</p>'+attributed+(post.group_publication?'<p>Shared synthesis from '+post.group_publication.members.length+' parent and child nodes.</p><a class="subtle" href="events.html">Local publication receipt →</a>':'<a class="subtle" href="#history/'+encodeURIComponent(post.created_by)+'">Exact wake and decision →</a>')+'</div><p class="blog-disclosure">Bob is WAKE✳︎’s human-facing translation layer, not its mind or identity. This AI-authored note compresses the durable research record for conversation; research claims link back to evidence and philosophical reflections remain reflections.</p></article>';
-      window.WakeAskBob?.mount($('blog-content').querySelector('.blog-reading'),{post,head:data.head});
+      $('blog-content').innerHTML='<article class="blog-reading'+(postTopic(post)==='reflection'?' blog-reading-reflection':'')+'"><a class="subtle" href="#blog">← All posts</a>'+postMeta(post,invocation)+'<h1>'+esc(postTitle(post))+'</h1><p class="blog-lede">'+esc(post.lede)+'</p>'+correction+body+continueReading+follow+(post.lens?'<blockquote><span>BOB’S LENS / PHILOSOPHICAL REFLECTION</span>'+esc(post.lens)+'</blockquote>':'')+'<details class="blog-receipts"><summary>Sources and records</summary>'+projectReceipt+'<div>'+notebooks+'</div><p>'+sources+'</p>'+attributed+(post.group_publication?'<p>Shared synthesis from '+post.group_publication.members.length+' parent and child nodes.</p><a class="subtle" href="events.html">Local publication receipt →</a>':'<a class="subtle" href="#history/'+encodeURIComponent(post.created_by)+'">Exact wake and decision →</a>')+'</details><p class="blog-disclosure">Bob is WAKE✳︎’s human-facing translation layer, not its mind or identity. This AI-authored note compresses the durable research record for conversation; research claims link back to evidence and philosophical reflections remain reflections.</p></article>';
       return;
     }
     const seriesHeading='<div class="blog-follow"><strong>Stay with the investigation.</strong> Get new stories in your feed reader. <a href="blog.xml" type="application/rss+xml">Follow Bob via RSS →</a></div>';
@@ -535,27 +555,54 @@
     const events=[...data.events].reverse().filter(e=>(!exact||e.payload.id===exact)&&matchesFilter(e)&&(kind==='all'||displayEventKind(e.kind)===kind)&&JSON.stringify(displayEvent(e)).toLowerCase().includes(query));
     $('history-content').innerHTML=((selected)?'<p><a class="text-link" href="#history">← All events</a></p>':'')+events.slice(0,historyLimit).map(e=>`<details class="audit-row"><summary><span>#${String(e.seq).padStart(4,'0')}</span>${badge(displayEventKind(e.kind))}<time datetime="${esc(e.time)}">${esc(fmt(e.time))}</time><span class="event-id">${esc(e.payload.id||'system')}</span></summary>${e.payload.reason?`<p>${esc(e.payload.reason)}</p>`:''}${(e.kind==='rejected'||e.payload.editorial)?`<p><a class="text-link" href="rejected.html#${encodeURIComponent(e.payload.id)}">Read the draft and explanation →</a></p>`:''}${raw(e)}</details>`).join('')+(events.length?'':'<p class="empty">No events match.</p>');
     $('history-more').hidden=events.length<=historyLimit;
+    watchListEnd('history-more',()=>{historyLimit+=35;route();});
   }
   let routeTicket=0;
+  let paginationObserver;
+  const listObservers=new Map();
+  function watchListEnd(id,load){
+    listObservers.get(id)?.disconnect();
+    const marker=$(id);if(!marker||marker.hidden)return;
+    marker.textContent='Scroll for more';marker.setAttribute('role','status');
+    const ticket=routeTicket;
+    const observer=new IntersectionObserver(entries=>{
+      if(ticket!==routeTicket||!entries.some(entry=>entry.isIntersecting)||marker.hidden)return;
+      observer.disconnect();load();
+    },{rootMargin:'0px 0px 180px 0px'});
+    listObservers.set(id,observer);observer.observe(marker);
+  }
   function readerPagination(page,selected){
-    $('reader-pagination')?.remove();
+    paginationObserver?.disconnect();$('reader-pagination')?.remove();
     if(!data.reader_transport||(selected&&!selected.startsWith('topic:')))return;
     const collections=({blog:['posts'],journal:['journal'],history:['events'],evidence:['evidence'],projects:['notebooks','projects'],discoveries:['notebooks']})[page];
     if(!collections)return;
+    const remaining=collections.filter(collection=>data.reader_transport.counts[collection]&&window.WakeReader.hasMore(collection));
+    if(!remaining.length)return;
     const panel=document.createElement('div');panel.id='reader-pagination';panel.className='research-note';
     const text=document.createElement('p');text.textContent=data.reader_transport.scope;panel.append(text);
-    for(const collection of collections){
-      if(!data.reader_transport.counts[collection])continue;
-      const button=document.createElement('button');button.type='button';button.textContent='Load older '+collection;
-      button.addEventListener('click',async()=>{
-        button.disabled=true;
-        try{const more=await window.WakeReader.more(collection);refreshDerived();
-          if(collection==='journal')journalLimit+=24;if(collection==='events')historyLimit+=24;
-          route();if(!more)document.querySelector('#reader-pagination [data-collection="'+collection+'"]')?.remove();
-        }catch(error){button.disabled=false;text.textContent=error.message;}
-      });button.dataset.collection=collection;panel.append(button);
-    }
-    $(page)?.append(panel);
+    const marker=document.createElement('p');marker.textContent='Older entries load as you scroll.';marker.setAttribute('role','status');panel.append(marker);$(page)?.append(panel);
+    const ticket=routeTicket;let observer;
+    const load=async()=>{
+      observer.disconnect();
+      if(ticket!==routeTicket)return;
+      // Reveal already-loaded journal/event rows before requesting another page.
+      if(page==='journal'&&!$('more').hidden){journalLimit+=8;route();return;}
+      if(page==='history'&&!$('history-more').hidden){historyLimit+=35;route();return;}
+      marker.textContent='Loading older entries…';
+      try{
+        await window.WakeReader.more(remaining[0]);
+        if(ticket!==routeTicket)return;
+        refreshDerived();
+        if(remaining[0]==='journal')journalLimit+=24;if(remaining[0]==='events')historyLimit+=24;
+        route();
+      }catch(error){
+        if(ticket!==routeTicket)return;
+        marker.textContent=error.message+' ';
+        const retry=document.createElement('button');retry.type='button';retry.textContent='Retry';retry.onclick=load;marker.append(retry);
+      }
+    };
+    observer=new IntersectionObserver(entries=>{if(entries.some(entry=>entry.isIntersecting))void load();},{rootMargin:'0px 0px 180px 0px'});
+    paginationObserver=observer;observer.observe(panel);
   }
   function route() {
     const [part,id]=location.hash.slice(1).split('/');
@@ -583,7 +630,6 @@
     emphasizeWake(document);
     document.title=`${WAKE_TEXT} / ${page==='home'?'Explore':page==='journal'?'Read':page[0].toUpperCase()+page.slice(1)}`;
     readerPagination(page,selected);
-    window.WakeAskBob?.attachRecords($(page),{page,head:data.head,selected});
     };
     if(window.WakeReader && data.reader_transport && (selected||['journal','history','evidence'].includes(page))){
       // A previous article's chat must not remain interactive under a new URL.
@@ -602,7 +648,6 @@
   $('evidence-search')?.addEventListener('input',route);
   $('history-search')?.addEventListener('input',()=>{historyLimit=35;route();});
   $('event-filter')?.addEventListener('change',()=>{historyLimit=35;route();});
-  $('history-more')?.addEventListener('click',()=>{historyLimit+=35;route();});
   const resetPageScroll=()=>requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo(0,0)));
   window.addEventListener('hashchange',()=>{historyLimit=35;for(const id of ['evidence-search','history-search','event-filter']){if($(id))$(id).value=id==='event-filter'?'all':'';}route();resetPageScroll();});
   const projectionDate=()=>{

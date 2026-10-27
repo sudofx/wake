@@ -3,7 +3,7 @@
   'use strict';
   const timeout=()=>AbortSignal.timeout(8000);
   const read=async path=>{
-    const response=await fetch(path,{cache:'no-cache',signal:timeout()});
+    const response=await (window.WakePublicData?.fetch || fetch)(path,{cache:'no-cache',signal:timeout()});
     if(!response.ok){const error=Error('Published view unavailable ('+response.status+')');error.status=response.status;throw error;}
     return response.json();
   };
@@ -24,8 +24,7 @@
     if(packet.item){
       if(packet.collection==='journal'){
         if(!data.state.journal.some(row=>row.invocation===packet.item.invocation))data.state.journal.push(packet.item);
-      }else data.state[packet.collection][packet.item.id]=packet.collection==='posts'&&packet.article?
-        {...packet.item,_reader_article:packet.article}:packet.item;
+      }else data.state[packet.collection][packet.item.id]=packet.item;
     }
     for(const [name,items] of Object.entries(packet.related||{}))Object.assign(data.state[name]||={},items);
     const known=new Set(data.events.map(event=>event.projection_id||event.hash));
@@ -36,6 +35,7 @@
     async ensure(page,id){
       const data=await window.WakeData;if(!data.reader_transport)return;
       const listing=({journal:'journal',history:'events',evidence:'evidence'})[page];
+      if(listing && window.WakePublicData?.mode==='bundled' && window.WakePublicData.limited && (!id||id.startsWith('filter:')||id.startsWith('topic:')))return;
       if(listing && (!id||id.startsWith('filter:')||id.startsWith('topic:'))){if(!pages.has(listing))await this.more(listing);return;}
       let collection=({blog:'posts',evidence:'evidence',history:'invocations',projects:'projects',journal:'journal'})[page];
       if(!collection||!id||id.startsWith('topic:')||id.startsWith('filter:'))return;
@@ -61,6 +61,7 @@
       }
       merge(data,packet);loaded.add(key);
     },
+    hasMore(collection){return pages.get(collection)!==null;},
     async more(collection){
       const data=await window.WakeData;if(!data.reader_transport)return false;
       const index=pages.get(collection)??0;if(index===null)return false;
@@ -85,7 +86,7 @@
       try{
         if(!document.hidden){
           // The full browser archive is never a live polling channel.
-          const response=await fetch('head.txt',{cache:'no-cache',signal:timeout()});
+          const response=await (window.WakePublicData?.fetch || fetch)('head.txt',{cache:'no-cache',signal:timeout()});
           if(response.ok){const head=(await response.text()).trim();
             if(marker&&head!==marker){const next=await read(window.WakeLiveUrl);window.WakeReader.reset();window.WakeApplyLive?.(next);}
             marker=head;

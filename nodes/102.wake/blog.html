@@ -4,7 +4,7 @@
 <!-- WAKE public data contract: research stays public; operator actions live in GitHub Actions. -->
 <!doctype html>
 <html data-wake-page="blog" lang="en" data-theme="light">
-<head><script>window.WAKE_DEPLOYMENT={"schema": 1, "mode": "standalone", "snapshot_only": true, "hosted_status": {"repository": "sudofx/wake", "workflow": "hosted-research.yml", "branch": "master"}, "hosted_activity": {"url": "https://wake-live-activity.coolgrove68.chatgpt.site/activity.json", "installation_id": "1fad15cb5b8b60b9d85dad462ceaaacf"}, "ask_bob": {"url": "https://wake-ask-bob.coolgrove68.chatgpt.site", "installation_id": "1fad15cb5b8b60b9d85dad462ceaaacf"}};document.documentElement.dataset.wakeHostedStatus='true';window.WAKE_STANDALONE=true;document.documentElement.dataset.wakeSnapshotOnly='true';</script><script src="runtime-activity.js?v=20261020-hosted-activity" defer></script>
+<head><script>window.WAKE_DEPLOYMENT={"schema": 1, "mode": "standalone", "snapshot_only": true, "hosted_status": {"repository": "sudofx/wake", "workflow": "hosted-research.yml", "branch": "master"}, "public_data": {"repository": "sudofx/wake", "branch": "wake-public", "installation_id": "1fad15cb5b8b60b9d85dad462ceaaacf", "prefix": "nodes/102.wake/"}};document.documentElement.dataset.wakeHostedStatus='true';window.WAKE_STANDALONE=true;document.documentElement.dataset.wakeSnapshotOnly='true';</script><script src="public-data.js?v=b81e375f3ba2"></script><script src="runtime-activity.js?v=20261020-hosted-activity" defer></script>
 <!-- Reader data belongs to this exported snapshot. -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,12 +16,12 @@
 <style>
 </style>
 <!-- Local-template fallback: the exporter inlines these styles for Pages. -->
-<link rel="stylesheet" href="style.css?v=20261014-mobile-width"><link rel="stylesheet" href="nav.css?v=20261014-mobile-width"><link rel="stylesheet" href="theme.css?v=20261014-mobile-width">
+<link rel="stylesheet" href="style.css?v=20261014-mobile-width"><link rel="stylesheet" href="nav.css?v=20261014-mobile-width"><link rel="stylesheet" href="theme.css?v=b81e375f3ba2">
 <link rel="icon" href="icons/favicon.ico?v=20261006-2" sizes="any">
 <link rel="icon" href="icons/wake.svg?v=20261006-2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png?v=20261006-2" sizes="180x180">
 <link rel="manifest" href="manifest.webmanifest?v=20261006-2">
-<link rel="stylesheet" href="ask-bob.css"><script src="bob-markdown.js" defer></script><link rel="stylesheet" href="installation-console.css?v=20261014-icon-picker"><script src="installation-console.js?v=20261020-masthead-menu" defer></script><link rel="stylesheet" href="console-light.css?v=20261014-mobile-width"><script src="site-theme.js?v=20261014-visible-theme"></script><link rel="stylesheet" href="masthead.css?v=20261020-masthead-menu"><link rel="stylesheet" href="reader-theme.css?v=20261016-reader2"><script src="page-routing.js?v=20261016-reader2"></script><script src="hosted-status.js?v=20261020-hosted-recovery" defer></script></head>
+<link rel="stylesheet" href="installation-console.css?v=20261014-icon-picker"><script src="installation-console.js?v=20261020-masthead-menu" defer></script><link rel="stylesheet" href="console-light.css?v=20261014-mobile-width"><script src="site-theme.js?v=20261014-visible-theme"></script><link rel="stylesheet" href="masthead.css?v=20261020-masthead-menu"><link rel="stylesheet" href="reader-theme.css?v=20261016-reader2"><script src="page-routing.js?v=20261016-reader2"></script><script src="hosted-status.js?v=20261020-hosted-recovery" defer></script></head>
 <body>
 <div class="site-backdrop" aria-hidden="true"></div>
 <a href="#main" class="skip">Skip to content</a>
@@ -68,7 +68,7 @@
   </section>
 </div>
 <footer><a class="footer-mark" href="index.html">WAKE✳︎</a><span>DURABLE WORK. REPLACEABLE INTELLIGENCE.</span><div><a href="about.html">About →</a><a href="state.html">State →</a><a href="events.html">History →</a></div><p>Made of evidence, not vibes. <span id="generated"></span></p></footer>
-<script src="reader-data.js?v=20261023-snapshot-recovery"></script>
+<script src="reader-data.js?v=20261027-autoload"></script>
 <script>
 // A resident older exporter can read this template before it adopts the new
 // asset list. Keep its completed pages usable; a damaged new export fails visibly.
@@ -170,7 +170,7 @@ if(!window.WakeData){
   window.WakeHelp={button};
 })();
 </script>
-<script>/* Homepage reading experience and browser-local Ask Bob interface. */
+<script>/* Homepage reading experience. */
 
 window.WakePetReady=(async () => {
   'use strict';
@@ -290,7 +290,7 @@ window.WakePetReady=(async () => {
             <p class="eyebrow">AN OPEN INVESTIGATION</p>
             <h1 id="attention-question">What makes something<br><em>a memory?</em></h1>
             <p class="attention-deck">A mark can remain after an event. When does it actually change what happens next?</p>
-            <a class="primary-link" href="${storyLink}">${latest?'Start with Bob’s latest story':'Explore Bob’s Blog'} <span aria-hidden="true">↗</span></a>
+            <div class="attention-actions"><a class="primary-link" href="${storyLink}">${latest?'Start with Bob’s latest story':'Explore Bob’s Blog'} <span aria-hidden="true">↗</span></a></div>
             <p class="attention-context">WAKE✳︎ builds infrastructure for durable, accountable work across interchangeable intelligences. Research is its first application. Bob explains the recorded work for curious readers.</p>
           </div>
           <article class="attention-feature" aria-label="Bob’s latest story">
@@ -303,7 +303,7 @@ window.WakePetReady=(async () => {
         </section>
         <section class="attention-follow" aria-labelledby="attention-follow-title">
           <div><p class="eyebrow">FOLLOW THE INVESTIGATION</p><h2 id="attention-follow-title">A good question stays with you.</h2><p>Get each new Bob article in your feed reader. Every story follows recorded work, including uncertainty and changes of direction.</p></div>
-          <div><a class="primary-link" href="blog.xml" type="application/rss+xml">Follow Bob via RSS <span aria-hidden="true">↗</span></a><details><summary>How does following work?</summary><p>Add this page’s <a href="blog.xml">Bob feed</a> to an RSS reader. Your reader checks for new articles. No account or email address is needed here.</p></details></div>
+          <div><a class="primary-link" href="https://raw.githubusercontent.com/sudofx/wake/wake-public/nodes/102.wake/blog.xml" type="application/rss+xml">Follow Bob via RSS <span aria-hidden="true">↗</span></a><details><summary>How does following work?</summary><p>Add this page’s <a href="https://raw.githubusercontent.com/sudofx/wake/wake-public/nodes/102.wake/blog.xml">Bob feed</a> to an RSS reader. Your reader checks for new articles. No account or email address is needed here.</p></details></div>
         </section>
         <section class="attention-questions" aria-labelledby="attention-open-title">
           <div class="attention-section-heading"><div><p class="eyebrow">QUESTIONS STILL OPEN</p><h2 id="attention-open-title">Where the work leads next.</h2></div><a class="text-link" href="#discoveries">Explore the research →</a></div>
@@ -317,294 +317,7 @@ window.WakePetReady=(async () => {
   return window.WakePet;
 })();
 </script>
-<script>/* Private browser conversation views; never research authority or exported state. */
-(() => {
-  'use strict';
-  const MAX_BYTES=32768,MAX_ARTICLES=20,MAX_TURNS=10;
-  const bytes=value=>new TextEncoder().encode(JSON.stringify(value)).length;
-  const text=(value,limit)=>typeof value==='string'?Array.from(value).slice(0,limit).join(''):'';
-  const hash=value=>typeof value==='string'&&/^[a-f0-9]{64}$/.test(value)?value:'';
-  const report=value=>['understood','unsure'].includes(value)?value:null;
-  const turn=value=>({id:text(value?.id,100),article_id:text(value?.article_id,240),
-    article_hash:hash(value?.article_hash),head:text(value?.head,100),
-    question:text(value?.question,2000),answer:text(value?.answer,6000),
-    mode:['published-passages','live-gemini'].includes(value?.mode)?value.mode:'generated',
-    citations:(Array.isArray(value?.citations)?value.citations:[]).slice(0,4).map(source=>({id:text(source.id,20),label:text(source.label||source.title,240),url:text(source.url||source.path,2000)})),
-    self_report:report(value?.self_report),understanding:report(value?.self_report)?'self_reported':'unknown',time:text(value?.time,100)});
-  function bounded(value){
-    const entries=Array.isArray(value?.articles)?value.articles:[];
-    const seen=new Set();
-    const articles=entries.slice(-MAX_ARTICLES).filter(row=>{
-      if(!row||!text(row.id,240)||seen.has(row.id))return false;
-      seen.add(row.id);return true;
-    }).map(row=>({id:text(row.id,240),hash:hash(row.hash),head:text(row.head,100),
-      opened:true,encountered_at:text(row.encountered_at,100),self_report:report(row.self_report),
-      versions:(Array.isArray(row.versions)?row.versions:[]).slice(-3).map(version=>({hash:hash(version?.hash),head:text(version?.head,100),encountered_at:text(version?.encountered_at,100)})).filter(version=>version.hash),
-      turns:(Array.isArray(row.turns)?row.turns:[]).slice(-MAX_TURNS).map(turn).filter(value=>value.article_id&&value.article_hash)}));
-    const result={schema:1,articles};
-    // Evict whole oldest turns, then oldest articles. Never silently rewrite an answer.
-    while(bytes(result)>MAX_BYTES&&articles.length){
-      const oldest=articles.find(row=>row.turns.length);
-      if(oldest)oldest.turns.shift();else articles.shift();
-    }
-    return result;
-  }
-  function storage(installation){
-    const key='wake-ask-bob:'+encodeURIComponent(location.origin)+':'+encodeURIComponent(installation);
-    let value={schema:1,articles:[]},available=true,damaged=false;
-    try{value=bounded(JSON.parse(localStorage.getItem(key)||'null'));}catch(error){if(error instanceof SyntaxError)damaged=true;else available=false;}
-    const save=()=>{
-      value=bounded(value);
-      try{localStorage.setItem(key,JSON.stringify(value));}catch{available=false;}
-    };
-    return {get value(){return value;},get available(){return available;},get damaged(){return damaged;},key,save,
-      clear(){value={schema:1,articles:[]};damaged=false;try{localStorage.removeItem(key);}catch{available=false;}}};
-  }
-  let popup, popupArticle;
-  let capability;
-  const capabilities=()=>capability||(capability=window.WAKE_DEPLOYMENT?.ask_bob?.url?
-    fetch(window.WAKE_DEPLOYMENT.ask_bob.url+'/v1/capabilities',{credentials:'omit',cache:'no-store',signal:AbortSignal.timeout(5000)})
-      .then(async response=>{if(!response.ok)throw Error('Bob unavailable');const cap=await response.json();return cap.installation_id===window.WAKE_DEPLOYMENT.ask_bob.installation_id?{...cap,enabled:true,unavailable:!cap.enabled,token:'anonymous',live:true,url:window.WAKE_DEPLOYMENT.ask_bob.url}:null;}).catch(()=>({enabled:true,token:'anonymous',live:true,url:window.WAKE_DEPLOYMENT.ask_bob.url,installation_id:window.WAKE_DEPLOYMENT.ask_bob.installation_id,unavailable:true})):window.WAKE_DEPLOYMENT?.snapshot_only===true?
-    fetch('installation.json',{cache:'no-cache',credentials:'omit',signal:AbortSignal.timeout(5000)})
-      .then(async response=>{
-        const value=response.ok?await response.json():null;
-        return typeof value?.installation_id==='string'&&value.installation_id?
-          {enabled:true,token:'browser-only',installation_id:value.installation_id,browser:true}:null;
-      }).catch(()=>null):fetch('/ask-bob/capabilities',{
-    cache:'no-store',credentials:'same-origin',signal:AbortSignal.timeout(5000)
-  }).then(async response=>response.ok?response.json():null).catch(()=>null));
-  let guideRuntime;
-  const guide=async()=>guideRuntime||(guideRuntime=await import(new URL('ask-bob-guide.js?build=passages-2',document.baseURI).href));
-  let browserRuntime;
-  // Replace the broken startup module without invalidating the large model cache.
-  const browser=async()=>browserRuntime||(browserRuntime=await import(new URL('ask-bob-browser.js?build=focused-3',document.baseURI).href));
-  function element(tag,content,className){
-    const node=document.createElement(tag);if(content!==undefined)node.textContent=content;
-    if(className)node.className=className;return node;
-  }
-  function markdown(node,value){if(window.WakeBobMarkdown)window.WakeBobMarkdown.render(node,value);else node.textContent=value;}
-  function safeURL(value){
-    if(typeof value!=='string')return null;
-    try{const url=new URL(value,location.href);return ['http:','https:'].includes(url.protocol)?url.href:null;}catch{return null;}
-  }
-  async function mount(container,{post,head=''}){
-    // The unified blog owns cross-node source IDs; individual node pages do not.
-    if(!container||!post?.id||/\/nodes(?:\/|$)/.test(location.pathname))return;
-    const route=location.href,valid=()=>container.isConnected&&location.href===route;
-    const cap=await capabilities();
-    if(!valid()||!cap?.enabled||typeof cap.token!=='string'||!cap.token||typeof cap.installation_id!=='string'||!cap.installation_id)return;
-    if(container.querySelector('.ask-bob')||container.querySelector(':scope > .ask-bob-launch'))return;
-    if(cap.live){
-      const launcher=element('a',undefined,'ask-bob-launch');
-      launcher.href=cap.url+'/?article='+encodeURIComponent(post.id)+'&hash='+hash(post._reader_article?.hash)+'&theme='+encodeURIComponent(document.documentElement.dataset.theme||'light');launcher.target='_blank';launcher.rel='noopener';
-      const icon=element('span');icon.innerHTML='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M20 15a3 3 0 0 1-3 3H9l-5 4V6a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3Z"/><path d="M8 10h8M8 14h5"/></svg>';icon.setAttribute('aria-hidden','true');launcher.append(icon,document.createTextNode('Ask Bob'));
-      launcher.setAttribute('aria-label','Ask Bob · open chat window');
-      launcher.addEventListener('click',event=>{
-        const themed=new URL(launcher.href);themed.searchParams.set('theme',document.documentElement.dataset.theme||'light');launcher.href=themed.href;
-        if(popup&&!popup.closed&&popupArticle===post.id){event.preventDefault();popup.postMessage({type:'wake-theme',theme:document.documentElement.dataset.theme||'light'},new URL(cap.url).origin);popup.focus();return;}
-        const opened=window.open(launcher.href,'wake-bob-chat','popup,width=480,height=760,resizable=yes,scrollbars=yes');
-        if(opened){event.preventDefault();popup=opened;popupArticle=post.id;opened.focus();}
-      });
-      const title=container.querySelector('h1');if(title)title.after(launcher);else container.prepend(launcher);
-      return; // The live conversation opens above; no duplicate footer composer.
-    }
-    const store=storage(cap.installation_id);
-    const descriptor=post._reader_article,displayedHash=hash(descriptor?.hash);
-    let current=store.value.articles.find(row=>row.id===post.id);
-    let previous=current?{id:current.id,hash:current.hash,head:current.head,exposure:{opened:true},self_report:current.self_report}:null;
-    let priorHash=previous?.hash&&displayedHash&&previous.hash!==displayedHash?previous.hash:'';
-    if(!current){current={id:text(post.id,240),hash:displayedHash,head:text(descriptor?.head||head,100),opened:true,self_report:null,turns:[],versions:[]};store.value.articles.push(current);}
-    else{store.value.articles.splice(store.value.articles.indexOf(current),1);store.value.articles.push(current);}
-    if(displayedHash){
-      if(current.hash!==displayedHash){
-        if(current.hash)(current.versions||=[]).push({hash:current.hash,head:current.head,encountered_at:current.encountered_at});
-        current.self_report=null;
-      }
-      current.hash=displayedHash;current.head=text(descriptor?.head||head,100);
-    }
-    current.encountered_at=new Date().toISOString();
-    persist();
-    let epoch=0,active,failedTurn;
-    const panel=element('section',undefined,'ask-bob');
-    panel.setAttribute('aria-label','Ask Bob');
-    panel.append(element('h2','Ask Bob'));
-    panel.append(element('p',cap.live?'Talk with Bob live about this article, WAKE, or your own questions. No sign-in required.':cap.browser?
-      'Find answers in this article and its linked sources. Published passages appear without a model download.':
-      'Talk about this article. Bob uses the article and your recent conversation.','ask-bob-note'));
-    const conversation=element('div',undefined,'ask-bob-conversation');
-    conversation.setAttribute('role','log');conversation.setAttribute('aria-label','Conversation with Bob');
-    conversation.setAttribute('aria-live','polite');conversation.tabIndex=0;panel.append(conversation);
-    const activity=element('div',undefined,'ask-bob-activity');activity.hidden=true;
-    const stages=element('ol',undefined,'ask-bob-stages');stages.setAttribute('aria-label','Bob progress');
-    const steps=['Download','Prepare','Reply'].map(title=>{const step=element('li',title);stages.append(step);return step;});
-    const progressBar=element('progress');progressBar.max=1;progressBar.setAttribute('aria-label','Bob download progress');
-    const spinner=element('span',undefined,'ask-bob-spinner');spinner.setAttribute('aria-hidden','true');
-    const progressText=element('span'),elapsed=element('span',undefined,'ask-bob-elapsed');elapsed.setAttribute('aria-hidden','true');
-    const progressLine=element('div',undefined,'ask-bob-progress-line');progressLine.setAttribute('role','status');progressLine.append(spinner,progressText,elapsed);
-    activity.append(stages,progressBar,progressLine);panel.append(activity);
-    const status=element('p','','ask-bob-status');status.setAttribute('role','status');panel.append(status);
-    const form=element('form',undefined,'ask-bob-composer'),question=element('textarea');
-    question.required=true;question.maxLength=2000;question.rows=2;
-    question.placeholder=cap.live?'Talk to Bob…':'Ask about this article…';question.setAttribute('aria-label','Message Bob');
-    const submit=element('button','Send');submit.type='submit';submit.disabled=!displayedHash;
-    const cancel=element('button','Stop');cancel.type='button';cancel.hidden=true;cancel.addEventListener('click',()=>active?.abort());
-    form.append(question,submit,cancel);panel.append(form);
-    const retry=element('button','Retry');retry.type='button';retry.hidden=true;panel.append(retry);
-    retry.addEventListener('click',()=>form.requestSubmit());
-    const useModel=element('input');useModel.type='checkbox';
-    const modelLabel=element('label');modelLabel.append(useModel,document.createTextNode(' Experimental AI answer on this device (491 MB download; slower and may be inaccurate)'));
-    const privacy=element('details',undefined,'ask-bob-privacy');privacy.append(element('summary','About this chat'));
-    privacy.append(element('p',cap.live?'Your message and recent conversation go to WAKE’s answer service and Google Gemini. Chat history is saved in this browser; our service stores only temporary request counters, not conversations. Do not send sensitive information. Bob can make mistakes and cannot change research records. Anonymous use has shared request limits.':cap.browser?
-      'The site prepares a small searchable guide when it publishes each article. Your browser finds and quotes relevant passages; it does not generate new facts. Questions and saved replies stay here and never enter the research record. The optional AI answer downloads a model from Hugging Face and runs on this device.':
-      'History stays in this browser. Questions and recent context go to the local answer service and its configured model, and are excluded from public exports. Bob can make mistakes; check the sources.'));
-    if(cap.browser)privacy.append(modelLabel);
-    const storageNote=element('p');privacy.append(storageNote);
-    const clear=element('button','Clear chat');clear.type='button';privacy.append(clear);panel.append(privacy);
-    container.append(panel);
-    function persist(){store.save();current=store.value.articles.find(row=>row.id===post.id)||current;}
-    function refresh(){
-      storageNote.textContent=!store.available?'Browser storage is unavailable. This chat works in memory and may be lost when you leave.':
-        store.damaged?'Saved chat could not be read. Starting a new chat; missing messages have not been reconstructed.':
-        'Chat is saved only in this browser. Clearing chat keeps any optional model download.';
-    }
-    function bottom(){conversation.scrollTop=conversation.scrollHeight;}
-    function display(value){
-      const item=element('div',undefined,'ask-bob-turn');
-      const user=element('div',undefined,'ask-bob-message ask-bob-user');user.append(element('strong','You'),element('p',value.question));item.append(user);
-      if(value.answer){
-        const reply=element('div',undefined,'ask-bob-message ask-bob-reply');reply.append(element('strong',value.mode==='published-passages'?'Bob · source passages':value.mode==='live-gemini'?'Bob · live (AI)':'Bob · AI answer (unverified)'),element('div','','ask-bob-answer'));markdown(reply.querySelector('.ask-bob-answer'),value.answer);item.append(reply);
-        const links=element('ul',undefined,'ask-bob-sources');for(const source of value.citations||[]){const href=safeURL(source.url);if(!href)continue;const row=element('li'),link=element('a',source.id+' · '+source.label);link.href=href;link.rel='noopener noreferrer';row.append(link);links.append(row);}if(links.children.length)reply.append(links);
-      }
-      conversation.append(item);bottom();return item;
-    }
-    current.turns.forEach(display);refresh();
-    if(cap.unavailable)status.textContent='Bob is temporarily unavailable. You can try sending again shortly.';
-    if(!displayedHash)status.textContent='This article has no verified display version. Reload a newly exported snapshot before asking a question.';
-    clear.addEventListener('click',()=>{
-      epoch++;active?.abort();previous=null;priorHash='';store.clear();current={id:text(post.id,240),hash:displayedHash,head:text(descriptor?.head||head,100),opened:true,encountered_at:new Date().toISOString(),self_report:null,turns:[],versions:[]};
-      conversation.replaceChildren();failedTurn=null;retry.hidden=true;status.textContent='Chat cleared.';refresh();
-    });
-    form.addEventListener('submit',async event=>{
-      event.preventDefault();if(submit.disabled||active)return;
-      if(!valid()){status.textContent='This article changed while the chat was open. Reload the article and send again. Your message is kept.';return;}
-      const asked=question.value.trim();if(!asked)return;
-      const requestEpoch=epoch,requestValid=()=>valid()&&requestEpoch===epoch;
-      // Conversation policy is automatic. Prior answers stay untrusted and
-      // bounded; no opening/typing event asserts reader comprehension.
-      const modelMode=cap.browser&&useModel.checked;
-      steps.forEach((step,index)=>{step.textContent=(modelMode?['Download','Prepare','Reply']:['Sources','Find','Reply'])[index];});
-      const body={article_id:post.id,question:asked,condition:'C',expected_article_hash:displayedHash,
-        history:current.turns.slice(-MAX_TURNS).map(({mode,citations,...value})=>value),
-        previous_article:priorHash?previous:{id:current.id,hash:current.hash||undefined,head:current.head,exposure:{opened:true},self_report:current.self_report}};
-      if(cap.live)body.history=current.turns.slice(-6).map(value=>({question:text(value.question,1000),answer:text(value.answer,2000)}));
-      if(priorHash)body.prior_article_hash=priorHash;
-      failedTurn?.remove();failedTurn=null;const pending=display({question:asked});question.value='';
-      retry.hidden=true;submit.disabled=true;cancel.hidden=false;activity.hidden=false;status.textContent='';
-      conversation.setAttribute('aria-busy','true');
-      const controller=new AbortController();active=controller;
-      let phase='prepare',started=Date.now(),deadlineAt=started+(modelMode?600000:120000),deadline,ticker;
-      let rejectStopped;
-      const stopped=new Promise((_,reject)=>{rejectStopped=reject;});
-      const showProgress=(message,detail={})=>{
-        if(!requestValid()||controller.signal.aborted)return;
-        const stage=detail.stage==='download'?0:detail.stage==='answer'||detail.stage==='ready'?2:1;
-        steps.forEach((step,index)=>{step.className=index<stage?'complete':index===stage?'current':'';if(index===stage)step.setAttribute('aria-current','step');else step.removeAttribute('aria-current');});
-        progressBar.hidden=stage!==0;
-        if(stage===0&&typeof detail.fraction==='number'){progressBar.value=detail.fraction;progressBar.setAttribute('aria-valuetext',Math.floor(detail.fraction*100)+'% downloaded');}
-        else{progressBar.removeAttribute('value');progressBar.removeAttribute('aria-valuetext');}
-        progressText.textContent=stage===0?(typeof detail.fraction==='number'?'Downloading Bob: '+Math.floor(detail.fraction*100)+'%':'Checking Bob’s saved download…'):
-          stage===1?(cap.live?'Connecting to Bob…':'Preparing Bob on your device…'):detail.characters?'Bob is writing… '+detail.characters+' characters generated':modelMode||cap.live?'Bob is reading and thinking…':'Finding relevant published passages…';
-      };
-      const checkDeadline=()=>{if(Date.now()>=deadlineAt)controller.abort(new DOMException(phase==='prepare'?'Bob took too long to prepare.':'Bob took too long to answer.','TimeoutError'));};
-      const setDeadline=ms=>{clearTimeout(deadline);deadlineAt=Date.now()+ms;deadline=setTimeout(checkDeadline,ms);};
-      const stop=()=>{if(phase==='prepare')browserRuntime?.cancelLoad?.();rejectStopped(controller.signal.reason||new DOMException('Stopped','AbortError'));};
-      controller.signal.addEventListener('abort',stop,{once:true});
-      const leave=()=>controller.abort();window.addEventListener('hashchange',leave,{once:true});
-      document.addEventListener('visibilitychange',checkDeadline);window.addEventListener('pageshow',checkDeadline);
-      ticker=setInterval(()=>{checkDeadline();if(requestValid())elapsed.textContent=Math.floor((Date.now()-started)/1000)+'s elapsed';},1000);
-      elapsed.textContent='0s elapsed';showProgress('',{stage:modelMode?'download':'answer'});setDeadline(modelMode?600000:120000);
-      try{
-        const work=(async()=>{
-          let result,responseOK=true;
-          if(cap.live){
-            phase='answer';setDeadline(60000);
-            const response=await fetch(cap.url+'/v1/chat',{method:'POST',credentials:'omit',cache:'no-store',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),signal:controller.signal});
-            if(!response.ok){const value=await response.json();throw Error(({daily_limit:'Bob has reached today’s shared question allowance. Please try tomorrow.',rate_limited:'Please wait a minute before sending another message.',busy:'Bob is helping other readers. Try again shortly.',provider_quota:'Gemini’s shared quota is currently exhausted. Please try later.',article_changed:'This article changed. Reload it before sending again.',article_unavailable:'This article is no longer available. Reload the latest blog.'})[value.error]||'Bob is temporarily unavailable. Please try again later.');}
-            const reply=element('div',undefined,'ask-bob-message ask-bob-reply'),prose=element('div','','ask-bob-answer');reply.append(element('strong','Bob · live'),prose);pending.append(reply);
-            const reader=response.body.getReader(),decoder=new TextDecoder();let buffer='',partial='',done=false;
-            try{for(;;){const chunk=await reader.read();buffer+=decoder.decode(chunk.value||new Uint8Array(),{stream:!chunk.done});if(buffer.length>65536)throw Error('Bob sent an oversized reply.');const lines=buffer.split('\n');buffer=lines.pop();for(const line of lines){if(!line.trim())continue;const event=JSON.parse(line);if(event.type==='delta'){partial+=text(event.text,6000);markdown(prose,partial);showProgress('',{stage:'answer',characters:partial.length});bottom();}else if(event.type==='done'){result=event.result;done=true;}else if(event.type==='error')throw Error('Bob could not finish the reply. Please try again.');}if(chunk.done)break;}if(!done)throw Error('The connection ended before Bob finished.');}finally{await reader.cancel();}
-          }else if(cap.browser){
-            if(!modelMode){phase='answer';setDeadline(15000);const runtime=await guide();return {result:await runtime.answer(body,controller.signal,showProgress),responseOK:true};}
-            const runtime=await browser();
-            if(controller.signal.aborted)throw controller.signal.reason;
-            await runtime.load(showProgress,controller.signal);
-            if(controller.signal.aborted)throw controller.signal.reason;
-            phase='answer';setDeadline(300000);showProgress('',{stage:'answer'});
-            result=await runtime.answer(body,controller.signal,showProgress);
-          }else{
-            phase='answer';
-            const response=await fetch('/ask-bob',{method:'POST',credentials:'same-origin',cache:'no-store',
-              headers:{'Content-Type':'application/json','X-Wake-Reader-Token':cap.token},body:JSON.stringify(body),signal:controller.signal});
-            responseOK=response.ok;result=await response.json();
-          }
-          checkDeadline();if(controller.signal.aborted)throw controller.signal.reason;
-          return {result,responseOK};
-        })();
-        const {result,responseOK}=await Promise.race([work,stopped]);
-        if(!requestValid())return;
-        if(!responseOK||result.ok===false){
-          const unavailable={busy:'Bob is busy. Try again shortly.',busy_or_unavailable:'Bob is busy or unavailable. Try again shortly.',paused:'Reader questions are paused.',session_limit:'This local preview has reached its question limit.',provider_deferred_or_failed:'Bob could not complete this answer. Try again later.',invalid_or_unavailable_article:'This article is unavailable or has changed. Reload it before asking again.'};
-          throw Error(unavailable[result.error]||'Bob could not complete this question. Try again later.');
-        }
-        if(typeof result.answer!=='string'||result.article?.id!==post.id||result.article?.hash!==displayedHash)throw Error('The answer did not identify this article version.');
-        current.hash=result.article.hash;current.head=text(result.article.head,100);
-        const value=turn({id:crypto.randomUUID(),article_id:post.id,article_hash:current.hash,head:current.head,question:asked,answer:result.answer,mode:result.metrics?.mode,citations:result.citations,self_report:current.self_report,time:new Date().toISOString()});
-        if(!store.value.articles.includes(current))store.value.articles.push(current);
-        current.turns.push(value);persist();pending.remove();const completed=display(value);priorHash='';previous=null;
-        const notices=[...(Array.isArray(result.missing)?result.missing:[]),...(Array.isArray(result.warnings)?result.warnings:[])];
-        const note=notices.map(value=>typeof value==='string'?text(value,500):[text(value?.collection,50),text(value?.id,240),text(value?.reason,300)].filter(Boolean).join(': ')).filter(Boolean).join(' ');
-        if(note){const notes=element('details');notes.append(element('summary','Source notes'),element('p',note));completed.querySelector('.ask-bob-reply').append(notes);}
-        status.textContent='';bottom();refresh();
-      }catch(error){if(requestValid()){
-        failedTurn=pending;pending.classList.add('ask-bob-failed');
-        const reason=controller.signal.reason?.name==='TimeoutError'?controller.signal.reason.message:error.name==='AbortError'?'Stopped.':text(error.message,500)||'Bob could not answer.';
-        status.textContent=reason+' You can send again to retry. Your earlier replies are kept.';
-        if(!question.value)question.value=asked;retry.hidden=false;
-      }}finally{
-        clearTimeout(deadline);clearInterval(ticker);controller.signal.removeEventListener('abort',stop);
-        window.removeEventListener('hashchange',leave);document.removeEventListener('visibilitychange',checkDeadline);window.removeEventListener('pageshow',checkDeadline);
-        if(active===controller){active=null;if(valid()){activity.hidden=true;cancel.hidden=true;submit.disabled=!displayedHash;conversation.setAttribute('aria-busy','false');}}
-      }
-    });
-  }
-  async function mountRecord(container,{collection,record_id,head=''}){
-    if(!container||!record_id||!head||container.querySelector(':scope > .ask-bob-record'))return;
-    const route=location.href,cap=await capabilities();
-    if(!container.isConnected||location.href!==route||!cap?.live||!cap.enabled)return;
-    if(container.querySelector(':scope > .ask-bob-record'))return;
-    const link=element('a','Ask Bob','ask-bob-launch ask-bob-record'),url=new URL('/',cap.url);
-    const node=location.pathname.match(/\/nodes\/((?:10[0-3]|20[0-3]|30[0-3])\.wake)\//)?.[1];
-    for(const [key,value] of Object.entries({collection,record:record_id,head,...(node?{node}:{})}))url.searchParams.set(key,value);
-    url.searchParams.set('theme',document.documentElement.dataset.theme||'light');link.href=url.href;link.target='_blank';link.rel='noopener';link.setAttribute('aria-label','Ask Bob about this '+(collection==='overview'?'page':collection==='notebooks'?'notebook':collection==='journal'?'journal entry':'record'));
-    const identity=[node||'',collection,record_id,head].join('|');
-    link.addEventListener('click',event=>{
-      const themed=new URL(link.href);themed.searchParams.set('theme',document.documentElement.dataset.theme||'light');link.href=themed.href;
-      if(popup&&!popup.closed&&popupArticle===identity){event.preventDefault();popup.postMessage({type:'wake-theme',theme:document.documentElement.dataset.theme||'light'},new URL(cap.url).origin);popup.focus();return;}
-      const opened=window.open(link.href,'wake-bob-chat','popup,width=480,height=760,resizable=yes,scrollbars=yes');if(opened){event.preventDefault();popup=opened;popupArticle=identity;opened.focus();}
-    });
-    const heading=container.querySelector(':scope > h1,:scope > h2')||container.querySelector(':scope > .record-panel-head,:scope > .record-panel-meta');if(heading)heading.after(link);else container.prepend(link);
-  }
-  function attachRecords(view,{page,head,selected=''}){
-    if(!view)return;
-    view.querySelectorAll('.ask-bob-record').forEach(node=>node.remove());
-    for(const card of view.querySelectorAll('[data-bob-collection][data-bob-id]'))mountRecord(card,{collection:card.dataset.bobCollection,record_id:card.dataset.bobId,head});
-    if(!(selected&&['projects','journal','evidence'].includes(page)&&!selected.startsWith('topic:'))&&['home','discoveries','topics','projects','journal','evidence','history','lab','metrics','about'].includes(page))mountRecord(view,{collection:'overview',record_id:page,head});
-  }
-
-  window.WakeAskBob={mount,mountRecord,attachRecords};
-})();
-
-/* Render exported research records and reader navigation; browser interactions never mutate authority. */
+<script>/* Render exported research records and reader navigation; browser interactions never mutate authority. */
 
 (async () => {
   'use strict';
@@ -612,7 +325,7 @@ window.WakePetReady=(async () => {
   if(window.WAKE_DEPLOYMENT?.group?.id && !data.reader_transport){
     const groupId=window.WAKE_DEPLOYMENT.group.id;
     try{
-      const response=await fetch(new URL('group/bob.json?wake_group='+Date.now(),location.href),{cache:'no-store'});
+      const response=await (window.WakePublicData?.fetch || fetch)(new URL('group/bob.json?wake_group='+Date.now(),location.href),{cache:'no-store'});
       if(!response.ok)throw Error('Group Bob is unavailable');
       const shared=await response.json();
       if(shared?.schema!==1||shared.group_id!==groupId||shared.available!==true||!Array.isArray(shared.posts))
@@ -631,7 +344,7 @@ window.WakePetReady=(async () => {
   // borrow only the bounded aggregate block from the current Pages snapshot.
   if(!data.metrics){
     try{
-      const response=await fetch('wake-data.json?wake_metrics='+Date.now(),{cache:'no-store'});
+      const response=await (window.WakePublicData?.fetch || fetch)('wake-data.json?wake_metrics='+Date.now(),{cache:'no-store'});
       if(response.ok){
         const fallback=await response.json();
         if(fallback.metrics)data.metrics=fallback.metrics;
@@ -675,6 +388,7 @@ window.WakePetReady=(async () => {
     const target=document.getElementById('bob-reference-'+link.dataset.bobReference);
     if(!target)return;
     event.preventDefault();
+    const disclosure=target.closest('details');if(disclosure)disclosure.open=true;
     target.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
     target.setAttribute('tabindex','-1');target.focus({preventScroll:true});
   });
@@ -816,11 +530,10 @@ window.WakePetReady=(async () => {
       return `<article data-bob-collection="journal" data-bob-id="${esc(j.invocation)}" class="entry record-panel" id="cycle-${esc(j.origin?.node?`${j.origin.node}-${j.cycle}`:j.cycle)}"><div class="record-panel-head"><div class="record-panel-meta journal-meta"><span class="record-type">JOURNAL · WAKE✳︎ ${String(j.cycle).padStart(3,'0')}</span><span class="record-status">${badge(i.provider==='fixture'?'simulated':'accepted',i.provider==='fixture'?'SIMULATED':'ACCEPTED')}</span><span class="record-topics journal-topics">${journalTopics(j).map(id=>topicTag(id,'journal')).join('')}</span><time datetime="${esc(i.time)}">${esc(fmt(i.time))}</time></div><h3><a href="#journal/cycle:${j.cycle}">${esc(j.title)}</a></h3></div><div class="record-panel-body"><p>${esc(j.summary)}</p><div class="entry-bottom"><span>${esc(i.provider)} / ${esc(i.model)}${j.origin?.node?` · <a href="nodes/${esc(encodeURIComponent(j.origin.node))}/index.html#journal/cycle:${j.cycle}">${esc(j.origin.node)}</a>`:''}</span><span>${esc(changeLabel)}</span></div><details class="lab-notes"><summary>LAB NOTES / ${Array.isArray(actions)?`${actions.length} RECORDED CHANGE${actions.length===1?'':'S'}`:'HISTORICAL CHANGE DETAILS'}</summary><div class="lab-notes-body">${Array.isArray(actions)?(actions.map(a=>`<div class="decision"><strong>${esc(a.type)} / ${esc(a.id)}</strong><p>${esc(a.statement||a.task||a.status)}</p><p>${esc(a.reason)}</p>${refs(a.evidence)}</div>`).join('') || '<p>No state changes proposed.</p>'):'<p>The journal entry is preserved, but its change details are outside the recent events included in this live view.</p>'}</div></details><a class="subtle" href="#history/${encodeURIComponent(j.invocation)}">Full invocation & decision →</a></div></article>`;
     }).join('') || '<p class="empty">No matching entries. The tape is blank here.</p>';
     $('more').hidden=entries.length<=journalLimit;
-    window.WakeAskBob?.attachRecords($('journal'),{page:'journal',head:data.head,selected});
+    watchListEnd('more',()=>{journalLimit+=8;route();});
   }
-  $('search')?.addEventListener('input',()=>{journalLimit=8;journal();});
-  providerSelect?.addEventListener('change',()=>{journalLimit=8;journal();});
-  $('more')?.addEventListener('click',()=>{journalLimit+=8;journal();});
+  $('search')?.addEventListener('input',()=>{journalLimit=8;route();});
+  providerSelect?.addEventListener('change',()=>{journalLimit=8;route();});
   if($('open-commitments'))$('open-commitments').innerHTML=open.slice(0,3).map(c=>`<div class="obligation"><span class="dot"></span><div>${esc(c.task)}<small>DUE / CYCLE ${c.due_cycle}${(c.origin?.version??s.version)>=c.due_cycle?' · OVERDUE':''}</small></div></div>`).join('')||'<p class="small">No open obligations. Nothing quietly dropped.</p>';
   function modelPerformance() {
     const attempts=[];
@@ -1065,7 +778,16 @@ window.WakePetReady=(async () => {
       }));
     }
   }
+  let evaluationRuntime;
+  function mountEvaluation(){
+    evaluationRuntime ||= new Promise((resolve,reject)=>{
+      const script=document.createElement('script');script.src=new URL('evaluation-view.js?v=20261027',document.baseURI).href;
+      script.onload=()=>resolve(window.WakeEvaluation);script.onerror=reject;document.head.append(script);
+    });
+    evaluationRuntime.then(api=>api.mount($('lab-content'))).catch(()=>{});
+  }
   function lab() {
+    queueMicrotask(mountEvaluation);
     const exp=data.experiment;
     const coverage=Object.entries(proofNames).map(([key,label])=>`<div class="check"><span>${label}</span><b class="${exp?.checks[key]?.passed?'':'pending'}">${exp?.checks[key]?.passed?'PASS · FIXTURE':'NOT RUN'}</b></div>`).join('');
     const committed=Object.values(s.commitments).sort((a,b)=> (a.status==='open'?-1:1)-(b.status==='open'?-1:1)||b.created_version-a.created_version);
@@ -1077,7 +799,19 @@ window.WakePetReady=(async () => {
     const drivePanel=`<div class="panel drive-panel"><p class="eyebrow">INQUIRY-DRIVE SHADOW</p><h2>What work would persist?</h2><p class="drive-status">${esc(driveStatus)}</p><p>The rank is a deterministic record-based signal, not an inner motive. C = continuity, N = novelty, H = coherence, G = generativity, S = self-correction.</p>${driveRows}<p class="small">It cannot preserve WAKE, alter rules, or select work unless an operator enables it after the required scored history. <a href="#history">Inspect the receipts →</a></p></div>`;
     $('lab-content').innerHTML=`<div class="panel"><p class="eyebrow">THE DURABLE OBJECTIVE ${help('durable_objective')}</p><h2>${esc(s.objective)}</h2><p>Current focus: <strong>${esc(s.focus)}</strong></p><div class="flow"><span>Durable state</span>→<span>Fresh invocation</span>→<span>Untrusted proposal</span>→<span>Mechanical rules</span>→<span>Atomic event</span></div><p>Models may review beliefs, create obligations, and propose evidence-backed completion. External actions and rule changes are outside their authority.</p></div>${drivePanel}<div class="lab-grid"><div class="panel"><p class="eyebrow">REPEATABLE HARNESS EXPERIMENT ${help('repeatable_harness')}</p><h2>The test, not the hype.</h2>${coverage}<p>${exp?`Executed ${esc(exp.generated)}. ${exp.cycles} accepted cycles, ${exp.fresh_processes} fresh wake processes.`:'Run the offline experiment to populate this checklist.'}</p><p>These results exercise deterministic simulated providers. They do not establish real-model comprehension or general intelligence. Live Gemini accepted cycles here: <strong>${live}</strong>. Human-pasted replies have human-attested model identity.</p></div><div class="panel"><p class="eyebrow">LAST ${Math.min(accepted.length,100)} ACCEPTED CYCLES ${help('accepted_cycles')}</p><h2>Small steps. Long record.</h2><div class="spark" role="group" aria-label="Number of accepted changes per cycle">${bars}</div><div class="chart-labels"><span>OLDER →</span><span>ACCEPTED CHANGES / CYCLE</span><span>NOW</span></div><h3>What the system enforces</h3><p>Atomic proposals. Existing evidence references. New evidence for belief reviews. Persistent obligations. No model cancellation. An auditable decision for each completed invocation.</p><h3>What still needs judgment</h3><p>Whether evidence is true, whether it supports a claim, and whether an obligation was meaningfully fulfilled. Hashes detect edits relative to the recorded head; they do not stop an administrator rewriting the entire history.</p><p>Verified export head:<br><code>${esc(data.head)}</code></p></div></div>${modelPerformance()}<div class="panel"><p class="eyebrow">CURRENT BELIEFS ${help('beliefs')}</p><h2>Allowed to change our minds.</h2>${Object.values(s.beliefs).sort((a,b)=>b.confidence-a.confidence||String(a.id).localeCompare(String(b.id))).map(b=>`<div class="data-card"><div class="entry-meta">${badge(b.status==='active'?'accepted':'rejected',b.status)}<span>${Math.round(b.confidence*100)}% CONFIDENCE</span><span>${esc(b.id)}</span></div><p>${esc(b.statement)}</p><p>${esc(b.reason)}</p>${b.falsifier?'<p><strong>What would change this:</strong> '+esc(b.falsifier)+'</p>':''}${refs(b.evidence)}<details><summary>Full belief record</summary>${raw(b)}</details></div>`).join('')||'<p>No beliefs recorded yet.</p>'}</div><div class="panel"><p class="eyebrow">COMMITMENT REGISTER ${help('commitments')}</p><h2>Still on the hook.</h2>${committed.map(c=>`<details class="data-card"><summary>${esc(c.id)} · ${esc(c.status)} · due cycle ${c.due_cycle}${c.status==='open'&&s.version>=c.due_cycle?' · OVERDUE':''}</summary><p>${esc(c.task)}</p><p>${esc(c.resolution_reason||c.reason)}</p>${refs(c.evidence)}${raw(c)}</details>`).join('')||'<p>No commitments yet.</p>'}</div>`;
   }
+  let farmNotebookRuntime;
+  function mountFarmNotebook(){
+    const host=$('blog-content');if(!host||host.querySelector('.farm-notebook'))return;
+    const article=host.querySelector('.blog-reading'),section=document.createElement('section');section.className='farm-notebook'+(article?'':' panel');
+    if(article)article.insertBefore(section,article.querySelector('.blog-receipts'));else host.append(section);
+    const script=name=>new Promise((resolve,reject)=>{const node=document.createElement('script');node.src=new URL(name+'?v=20261027-farm-notes',document.baseURI).href;node.onload=resolve;node.onerror=reject;document.head.append(node);});
+    farmNotebookRuntime ||= (async()=>{if(!window.WakeAntColony)await script('ant-colony.js');if(!window.WakeBobFarm)await script('bob-ant-farm.js');return window.WakeBobFarm;})();
+    farmNotebookRuntime.then(api=>{if(section.isConnected)api.mountNotebook(section);}).catch(()=>{if(section.isConnected)section.remove();});
+  }
   function blog(selected='') {
+    // These dated farm observations are presentation, not native article bodies,
+    // their content hashes, evidence lists or accepted research.
+    queueMicrotask(mountFarmNotebook);
     $('blog').classList.toggle('reading-story',Boolean(selected)&&!selected.startsWith('topic:'));
     if(selected.startsWith('topic:')){
       const topic=canonicalTopic(decodeURIComponent(selected.slice(6)));
@@ -1107,12 +841,11 @@ window.WakePetReady=(async () => {
       const series=posts.filter(p=>p.status!=='superseded'),position=series.findIndex(p=>p.id===post.id);
       const earlier=position>=0?series[position+1]:null,later=position>0?series[position-1]:null;
       const continueReading='<nav class="blog-continue" aria-label="Continue the investigation">'+(earlier?'<div><p class="eyebrow">EARLIER IN THE INVESTIGATION</p><a href="#blog/'+encodeURIComponent(earlier.id)+'">'+esc(postTitle(earlier))+' →</a></div>':'')+(later?'<div><p class="eyebrow">THE NEXT PUBLISHED STORY</p><a href="#blog/'+encodeURIComponent(later.id)+'">'+esc(postTitle(later))+' →</a></div>':'')+'</nav>';
-      const follow='<aside class="blog-follow"><strong>Follow the investigation.</strong> Get new Bob articles in your feed reader. <a href="blog.xml" type="application/rss+xml">Follow Bob via RSS →</a></aside>';
-      $('blog-content').innerHTML='<article class="blog-reading'+(postTopic(post)==='reflection'?' blog-reading-reflection':'')+'"><a class="subtle" href="#blog">← All posts</a>'+postMeta(post,invocation)+'<h1>'+esc(postTitle(post))+'</h1><p class="blog-lede">'+esc(post.lede)+'</p>'+correction+body+continueReading+follow+(post.lens?'<blockquote><span>BOB’S LENS / PHILOSOPHICAL REFLECTION</span>'+esc(post.lens)+'</blockquote>':'')+'<div class="blog-receipts"><p class="eyebrow">FOLLOW THE RECEIPTS</p>'+projectReceipt+'<div>'+notebooks+'</div><p>'+sources+'</p>'+attributed+(post.group_publication?'<p>Shared synthesis from '+post.group_publication.members.length+' parent and child nodes.</p><a class="subtle" href="events.html">Local publication receipt →</a>':'<a class="subtle" href="#history/'+encodeURIComponent(post.created_by)+'">Exact wake and decision →</a>')+'</div><p class="blog-disclosure">Bob is WAKE✳︎’s human-facing translation layer, not its mind or identity. This AI-authored note compresses the durable research record for conversation; research claims link back to evidence and philosophical reflections remain reflections.</p></article>';
-      window.WakeAskBob?.mount($('blog-content').querySelector('.blog-reading'),{post,head:data.head});
+      const follow='<aside class="blog-follow"><strong>Follow the investigation.</strong> Get new Bob articles in your feed reader. <a href="https://raw.githubusercontent.com/sudofx/wake/wake-public/nodes/102.wake/blog.xml" type="application/rss+xml">Follow Bob via RSS →</a></aside>';
+      $('blog-content').innerHTML='<article class="blog-reading'+(postTopic(post)==='reflection'?' blog-reading-reflection':'')+'"><a class="subtle" href="#blog">← All posts</a>'+postMeta(post,invocation)+'<h1>'+esc(postTitle(post))+'</h1><p class="blog-lede">'+esc(post.lede)+'</p>'+correction+body+continueReading+follow+(post.lens?'<blockquote><span>BOB’S LENS / PHILOSOPHICAL REFLECTION</span>'+esc(post.lens)+'</blockquote>':'')+'<details class="blog-receipts"><summary>Sources and records</summary>'+projectReceipt+'<div>'+notebooks+'</div><p>'+sources+'</p>'+attributed+(post.group_publication?'<p>Shared synthesis from '+post.group_publication.members.length+' parent and child nodes.</p><a class="subtle" href="events.html">Local publication receipt →</a>':'<a class="subtle" href="#history/'+encodeURIComponent(post.created_by)+'">Exact wake and decision →</a>')+'</details><p class="blog-disclosure">Bob is WAKE✳︎’s human-facing translation layer, not its mind or identity. This AI-authored note compresses the durable research record for conversation; research claims link back to evidence and philosophical reflections remain reflections.</p></article>';
       return;
     }
-    const seriesHeading='<div class="blog-follow"><strong>Stay with the investigation.</strong> Get new stories in your feed reader. <a href="blog.xml" type="application/rss+xml">Follow Bob via RSS →</a></div>';
+    const seriesHeading='<div class="blog-follow"><strong>Stay with the investigation.</strong> Get new stories in your feed reader. <a href="https://raw.githubusercontent.com/sudofx/wake/wake-public/nodes/102.wake/blog.xml" type="application/rss+xml">Follow Bob via RSS →</a></div>';
     $('blog-content').innerHTML=posts.length?seriesHeading+'<div class="blog-grid">'+posts.map(post=>{const invocation=s.invocations[post.created_by];const reflection=postTopic(post)==='reflection';return '<article class="blog-card record-panel'+(reflection?' blog-card-reflection':'')+'"><div class="record-panel-head">'+postMeta(post,invocation)+'<h2><a href="#blog/'+encodeURIComponent(post.id)+'">'+esc(postTitle(post))+'</a></h2></div><div class="record-panel-body"><p>'+esc(post.lede)+'</p>'+(post.lens?'<blockquote>'+esc(post.lens)+'</blockquote>':'')+'<a class="text-link" href="#blog/'+encodeURIComponent(post.id)+'">Read Bob’s note →</a></div></article>';}).join('')+'</div><p class="blog-disclosure">'+(data.groupBobMembers?'Group Bob articles synthesize dated summaries from every parent and child. The same article is published in each member’s independent record.':'Bob is the public translation layer. Underneath, WAKE✳︎ is a sequence of fresh model calls working from a durable, auditable record—not a persistent person or experiencing self.')+'</p>':data.groupBobUnavailable?'<div class="empty blog-empty"><strong>The group Bob feed is temporarily unavailable.</strong><br>Try again when a group member is reachable.</div>':'<div class="empty blog-empty"><strong>Bob has nothing worth posting yet.</strong><br>The journal still records every wake. The blog waits for something genuinely interesting.</div>';
   }
   function evidence(selected='') {
@@ -1141,27 +874,54 @@ window.WakePetReady=(async () => {
     const events=[...data.events].reverse().filter(e=>(!exact||e.payload.id===exact)&&matchesFilter(e)&&(kind==='all'||displayEventKind(e.kind)===kind)&&JSON.stringify(displayEvent(e)).toLowerCase().includes(query));
     $('history-content').innerHTML=((selected)?'<p><a class="text-link" href="#history">← All events</a></p>':'')+events.slice(0,historyLimit).map(e=>`<details class="audit-row"><summary><span>#${String(e.seq).padStart(4,'0')}</span>${badge(displayEventKind(e.kind))}<time datetime="${esc(e.time)}">${esc(fmt(e.time))}</time><span class="event-id">${esc(e.payload.id||'system')}</span></summary>${e.payload.reason?`<p>${esc(e.payload.reason)}</p>`:''}${(e.kind==='rejected'||e.payload.editorial)?`<p><a class="text-link" href="rejected.html#${encodeURIComponent(e.payload.id)}">Read the draft and explanation →</a></p>`:''}${raw(e)}</details>`).join('')+(events.length?'':'<p class="empty">No events match.</p>');
     $('history-more').hidden=events.length<=historyLimit;
+    watchListEnd('history-more',()=>{historyLimit+=35;route();});
   }
   let routeTicket=0;
+  let paginationObserver;
+  const listObservers=new Map();
+  function watchListEnd(id,load){
+    listObservers.get(id)?.disconnect();
+    const marker=$(id);if(!marker||marker.hidden)return;
+    marker.textContent='Scroll for more';marker.setAttribute('role','status');
+    const ticket=routeTicket;
+    const observer=new IntersectionObserver(entries=>{
+      if(ticket!==routeTicket||!entries.some(entry=>entry.isIntersecting)||marker.hidden)return;
+      observer.disconnect();load();
+    },{rootMargin:'0px 0px 180px 0px'});
+    listObservers.set(id,observer);observer.observe(marker);
+  }
   function readerPagination(page,selected){
-    $('reader-pagination')?.remove();
+    paginationObserver?.disconnect();$('reader-pagination')?.remove();
     if(!data.reader_transport||(selected&&!selected.startsWith('topic:')))return;
     const collections=({blog:['posts'],journal:['journal'],history:['events'],evidence:['evidence'],projects:['notebooks','projects'],discoveries:['notebooks']})[page];
     if(!collections)return;
+    const remaining=collections.filter(collection=>data.reader_transport.counts[collection]&&window.WakeReader.hasMore(collection));
+    if(!remaining.length)return;
     const panel=document.createElement('div');panel.id='reader-pagination';panel.className='research-note';
     const text=document.createElement('p');text.textContent=data.reader_transport.scope;panel.append(text);
-    for(const collection of collections){
-      if(!data.reader_transport.counts[collection])continue;
-      const button=document.createElement('button');button.type='button';button.textContent='Load older '+collection;
-      button.addEventListener('click',async()=>{
-        button.disabled=true;
-        try{const more=await window.WakeReader.more(collection);refreshDerived();
-          if(collection==='journal')journalLimit+=24;if(collection==='events')historyLimit+=24;
-          route();if(!more)document.querySelector('#reader-pagination [data-collection="'+collection+'"]')?.remove();
-        }catch(error){button.disabled=false;text.textContent=error.message;}
-      });button.dataset.collection=collection;panel.append(button);
-    }
-    $(page)?.append(panel);
+    const marker=document.createElement('p');marker.textContent='Older entries load as you scroll.';marker.setAttribute('role','status');panel.append(marker);$(page)?.append(panel);
+    const ticket=routeTicket;let observer;
+    const load=async()=>{
+      observer.disconnect();
+      if(ticket!==routeTicket)return;
+      // Reveal already-loaded journal/event rows before requesting another page.
+      if(page==='journal'&&!$('more').hidden){journalLimit+=8;route();return;}
+      if(page==='history'&&!$('history-more').hidden){historyLimit+=35;route();return;}
+      marker.textContent='Loading older entries…';
+      try{
+        await window.WakeReader.more(remaining[0]);
+        if(ticket!==routeTicket)return;
+        refreshDerived();
+        if(remaining[0]==='journal')journalLimit+=24;if(remaining[0]==='events')historyLimit+=24;
+        route();
+      }catch(error){
+        if(ticket!==routeTicket)return;
+        marker.textContent=error.message+' ';
+        const retry=document.createElement('button');retry.type='button';retry.textContent='Retry';retry.onclick=load;marker.append(retry);
+      }
+    };
+    observer=new IntersectionObserver(entries=>{if(entries.some(entry=>entry.isIntersecting))void load();},{rootMargin:'0px 0px 180px 0px'});
+    paginationObserver=observer;observer.observe(panel);
   }
   function route() {
     const [part,id]=location.hash.slice(1).split('/');
@@ -1189,7 +949,6 @@ window.WakePetReady=(async () => {
     emphasizeWake(document);
     document.title=`${WAKE_TEXT} / ${page==='home'?'Explore':page==='journal'?'Read':page[0].toUpperCase()+page.slice(1)}`;
     readerPagination(page,selected);
-    window.WakeAskBob?.attachRecords($(page),{page,head:data.head,selected});
     };
     if(window.WakeReader && data.reader_transport && (selected||['journal','history','evidence'].includes(page))){
       // A previous article's chat must not remain interactive under a new URL.
@@ -1208,7 +967,6 @@ window.WakePetReady=(async () => {
   $('evidence-search')?.addEventListener('input',route);
   $('history-search')?.addEventListener('input',()=>{historyLimit=35;route();});
   $('event-filter')?.addEventListener('change',()=>{historyLimit=35;route();});
-  $('history-more')?.addEventListener('click',()=>{historyLimit+=35;route();});
   const resetPageScroll=()=>requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo(0,0)));
   window.addEventListener('hashchange',()=>{historyLimit=35;for(const id of ['evidence-search','history-search','event-filter']){if($(id))$(id).value=id==='event-filter'?'all':'';}route();resetPageScroll();});
   const projectionDate=()=>{

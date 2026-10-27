@@ -91,13 +91,13 @@
  function render(data){
   const nodes=data.nodes.filter(validNode).slice(0,100);buildPicker(nodes,data);if(!dashboard)return;
   get('installation-name').textContent='wake';
-  get('installation-freshness').textContent=`${data.hosted_activity?'Live hosted activity · research data captured':data.live===true?'Local installation snapshot':'Last uploaded data · dated snapshot'} · ${stamp(data.generated)} · ${age(data.generated)}`;
+  get('installation-freshness').textContent=`${data.live===true?'Local installation snapshot':'Last uploaded data · dated snapshot'} · ${stamp(data.generated)} · ${age(data.generated)}`;
   const available=nodes.filter(n=>n.available===true&&n.research);
   const values=available.map(n=>number(n.research.status?.accepted_cycles??n.snapshot?.version));
   const total=values.every(v=>v!==null)?values.reduce((a,b)=>a+b,0):null;
   const pending=available.map(n=>n.research.status?.pending);
   const summary=get('installation-summary');summary.replaceChildren();
-  [[`${available.length} / ${nodes.length}`,'Nodes with snapshots'],[count(total),`Accepted wakes · ${available.length===nodes.length?'all nodes':'available nodes only'}`],[pending.every(v=>typeof v==='boolean')?String(pending.filter(Boolean).length):'—','Nodes with pending attempts'],[data.live===true?(data.hosted_activity?'Hosted live':'Local'):'Mirror','Observation mode']].forEach(([value,label])=>{const cell=el('div');cell.append(el('strong',value),el('span',label));summary.append(cell);});
+  [[`${available.length} / ${nodes.length}`,'Nodes with snapshots'],[count(total),`Accepted wakes · ${available.length===nodes.length?'all nodes':'available nodes only'}`],[pending.every(v=>typeof v==='boolean')?String(pending.filter(Boolean).length):'—','Nodes with pending attempts'],[data.live===true?'Local':'Mirror','Observation mode']].forEach(([value,label])=>{const cell=el('div');cell.append(el('strong',value),el('span',label));summary.append(cell);});
   const rows=get('installation-nodes'),watch=get('installation-watch'),live=get('installation-live'),receipts=get('installation-receipts');[rows,watch,live,receipts].forEach(item=>item.replaceChildren());
   if(data.live===true&&data.coordinator){const coordinator=data.coordinator,active=coordinator.active;listItem(live,null,active?`API request in flight · ${active.member||'node unknown'} · ${active.model||'model unknown'}`:'No API request in flight.',`Shared queue: ${count(coordinator.queued)} waiting. Local response processing can continue separately.`);Object.entries(coordinator.models||{}).slice(0,20).forEach(([model,state])=>{if(state.daily)listItem(watch,null,`${model} · daily quota exhausted.`,state.probe_at?`Next shared eligibility check: ${stamp(new Date(state.probe_at*1000).toISOString())}.`:'Recovery check time unavailable.');else if(state.blocked)listItem(watch,null,`${model} · access blocked.`, 'Provider access needs attention before this model can receive more calls.');else if(state.retry_at)listItem(watch,null,`${model} · temporary rate limit.`, `Eligible again: ${stamp(new Date(state.retry_at*1000).toISOString())}.`);});}
   const history=[];
@@ -120,9 +120,8 @@
    recent.slice(0,12).forEach(a=>{if(!['accepted','rejected','deferred','failed','recovered','research_planned'].includes(a.status))return;const wake=wakes.find(w=>w.id===a.id);history.push({node,id:a.id,status:a.status,time:a.time,model:a.model,receipt:wake?.receipt});});
   });
   if(!watch.children.length)listItem(watch,null,'No watch conditions in the available snapshot.','This view is bounded; it does not establish scientific support or overall system health.');
-  const hostedUnavailable=Boolean(window.WAKE_DEPLOYMENT?.hosted_activity)&&data.live!==true;
-  get('installation-live-note').textContent=data.live===true?'Sampled runtime stages may lag or disappear. They do not change accepted counts.':hostedUnavailable?'Hosted activity is unavailable. Captured research remains available; current execution is unknown.':'This public mirror contains no live execution capability. Recorded pending attempts do not imply current activity.';
-  if(data.live!==true)listItem(live,null,hostedUnavailable?'Waiting for fresh hosted activity.':'Live activity unavailable in a published mirror.');else if(!live.children.length)listItem(live,null,'No current node observations available.');
+  get('installation-live-note').textContent=data.live===true?'Sampled runtime stages may lag or disappear. They do not change accepted counts.':'This public mirror contains no live execution capability. Recorded pending attempts do not imply current activity.';
+  if(data.live!==true)listItem(live,null,'Live activity unavailable in a published mirror.');else if(!live.children.length)listItem(live,null,'No current node observations available.');
   history.sort((a,b)=>(Date.parse(b.time)||0)-(Date.parse(a.time)||0)).slice(0,36).forEach(a=>{const item=el('li'),details=el('div');item.append(el('span',a.status.replaceAll('_',' '),'receipt-outcome'));details.append(link(a.node,`${a.node.id} · ${a.id}`,a.id),el('small',`${stamp(a.time)}${a.model?' · '+a.model:''}`));details.append(el('small',a.receipt?.available?`Receipt ${a.receipt.seq??'sequence unknown'} · ${a.receipt.hash||'hash unavailable'}`:'Receipt details available through the node Console.'));item.append(details);receipts.append(item);});
   if(!history.length)listItem(receipts,null,'No terminal outcomes in this snapshot.');
   get('installation-provenance').textContent=`Derived installation view · ${data.installation_id||'identity unavailable'} · each row names its source snapshot. Totals add node work; they do not count independent scientific confirmations.`;
@@ -131,23 +130,22 @@
  const connectStatus=()=>{
   if(statusConnected||!window.WakeStatusChannel)return;statusConnected=true;
   window.WakeStatusChannel.subscribe(packet=>{
-   const hosted=window.WAKE_DEPLOYMENT?.hosted_activity;
-   if(!manifest||(manifest.live!==true&&!hosted))return;
+   if(!manifest||manifest.live!==true)return;
    if(!packet){lastStatusShape='';render({...manifest,live:false,disconnected:true});return;}
-   if(!Array.isArray(packet.members)||(hosted&&packet.installation_id!==manifest.installation_id))return;
+   if(!Array.isArray(packet.members)||(packet.installation_id&&packet.installation_id!==manifest.installation_id))return;
    clearTimeout(timer);
    const fresh=new Map(packet.members.map(member=>[member.id,member]));
-   const data={...manifest,live:true,hosted_activity:Boolean(hosted),coordinator:packet.coordinator,disconnected:false,nodes:manifest.nodes.map(node=>({...node,runtime:fresh.get(node.id)?.runtime||{state:'unavailable'}}))};
+   const data={...manifest,live:true,coordinator:packet.coordinator,disconnected:false,nodes:manifest.nodes.map(node=>({...node,runtime:fresh.get(node.id)?.runtime||{state:'unavailable'}}))};
    const shape=data.nodes.map(node=>`${node.id}:${node.runtime.runtime_id||''}:${node.runtime.state}:${node.runtime.activity?.stage||''}:${node.runtime.activity?.active}`).join('|')+JSON.stringify(packet.coordinator||{});
    manifest=data;window.WakeInstallationSnapshot=data;
    if(shape!==lastStatusShape){lastStatusShape=shape;render(data);}else{buildPicker(data.nodes,data);if(dashboard)for(const node of data.nodes){const note=get('installation-live').querySelector(`li[data-node="${node.id}"] small`),observed=node.runtime.observed_at;if(note)note.textContent=stale(observed)?`Observation ${age(observed)}; no live activity inferred.`:`Sampled ${stamp(observed)} · ${age(observed)}. This is an observation, not a receipt.`;}}
-   if(!hosted&&lastExportHead&&packet.head&&packet.head!==lastExportHead&&!refreshTimer){const refresh=()=>{if(loading){refreshTimer=setTimeout(refresh,3000);return;}refreshTimer=null;load();};refreshTimer=setTimeout(refresh,3000);}if(packet.head)lastExportHead=packet.head;
+   if(lastExportHead&&packet.head&&packet.head!==lastExportHead&&!refreshTimer){const refresh=()=>{if(loading){refreshTimer=setTimeout(refresh,3000);return;}refreshTimer=null;load();};refreshTimer=setTimeout(refresh,3000);}if(packet.head)lastExportHead=packet.head;
   });
  };
  async function load(){
   if(loading)return;loading=true;
   clearTimeout(timer);
-  try{const response=await fetch(new URL('installation.json',asset),{cache:'no-store',credentials:'same-origin'});if(!response.ok)throw Error(`HTTP ${response.status}`);const data=await response.json();if(data.schema!==1||!Array.isArray(data.nodes))throw Error('Unsupported installation snapshot');if(window.WAKE_DEPLOYMENT?.snapshot_only===true)data.live=false;manifest=data;window.WakeInstallationSnapshot=data;window.dispatchEvent(new CustomEvent('wake-installation-snapshot',{detail:data}));render(data);if(dashboard)get('installation-notice').hidden=true;}
+  try{const response=await (window.WakePublicData?.fetch || fetch)(new URL('installation.json',asset),{cache:'no-store',credentials:'same-origin'});if(!response.ok)throw Error(`HTTP ${response.status}`);const data=await response.json();if(data.schema!==1||!Array.isArray(data.nodes))throw Error('Unsupported installation snapshot');if(window.WAKE_DEPLOYMENT?.snapshot_only===true)data.live=false;manifest=data;window.WakeInstallationSnapshot=data;window.dispatchEvent(new CustomEvent('wake-installation-snapshot',{detail:data}));render(data);if(dashboard)get('installation-notice').hidden=true;}
   catch(error){
    if(manifest)render({...manifest,live:false,disconnected:true});
    if(dashboard){const notice=get('installation-notice');notice.hidden=false;notice.textContent=manifest?'Connection unavailable. Showing the last received snapshot; current activity is unknown.':'Installation snapshot unavailable. No node activity or counts inferred.';if(manifest)get('installation-freshness').textContent=`Disconnected · last snapshot ${stamp(manifest.generated)} · ${age(manifest.generated)}`;}

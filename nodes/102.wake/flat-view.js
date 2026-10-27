@@ -9,7 +9,7 @@
   const kind=document.body.dataset.flatKind;
   const source=document.body.dataset.flatSource;
   const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const response=await fetch(source,{cache:'no-store'});
+  const response=await (window.WakePublicData?.fetch || fetch)(source,{cache:'no-store'});
   if(!response.ok)throw new Error('Published WAKE data could not be loaded');
   if(kind==='state'){
     const state=await response.json();
@@ -43,6 +43,7 @@
   console.error(error);
   const root=document.getElementById('flat-content');
   if(root){
+    if(window.WakePublicData?.mode==='bundled' && window.WakePublicData.limited){root.textContent='This complete record view needs the GitHub data connection. The dated overview is still available; reload when the connection returns.';return;}
     root.innerHTML='<p class="empty">This published view could not load its flat data file.</p>';
     const source=document.body.dataset.flatSource;
     if(source){const link=document.createElement('a');link.href=source;link.textContent='Download published data';root.append(link);}

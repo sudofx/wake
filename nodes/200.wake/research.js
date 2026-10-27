@@ -105,7 +105,7 @@
       message='Installation identity is missing. Showing only this server’s snapshot; regenerate the website with export. '+(message||'');
     $('notice').hidden=!message; $('notice').textContent=message || '';
   }
-  async function json(url) { const r=await fetch(url,{cache:'no-store',signal:AbortSignal.timeout(12000)});if(!r.ok){const error=new Error(`HTTP ${r.status}`);error.status=r.status;throw error;}return r.json(); }
+  async function json(url) { const r=await (window.WakePublicData?.fetch || fetch)(url,{cache:'no-store',signal:AbortSignal.timeout(12000)});if(!r.ok){const error=new Error(`HTTP ${r.status}`);error.status=r.status;throw error;}return r.json(); }
   async function overview(){try{return await json('research-overview.json');}catch(error){if(![404,410].includes(error.status))throw error;return json('research-data.json');}}
   function validate(d) {
     if(d?.projection_schema!==1 || d?.projection_kind!=='disposable-research-view' || d.authoritative!==false || !d.head || !Array.isArray(d.graph?.nodes) || !Array.isArray(d.graph?.edges) || !d.records || !Array.isArray(d.activity) || !Array.isArray(d.topics) || !d.metrics || !d.evidence || !d.status)throw new Error('Unsupported research projection');
@@ -404,7 +404,7 @@
     if(detailPending)body=wakeDetail.status==='failed'?'<p class="empty">The selected wake detail could not be loaded. Its recorded summary remains available.</p><button type="button" data-retry-wake-detail>Retry wake details</button>':'<p class="empty" role="status">Loading the selected wake details…</p>';
     $('wake-detail').innerHTML=`<div class="wake-reader-toolbar"><div class="wake-tabs inspector-tabs">${["summary","context","response","provider","receipt"].map(t=>`<button type="button" data-wake-tab="${t}" aria-pressed="${t===wakeTab}">${t}</button>`).join("")}<button class="close-wake" type="button" aria-label="Close wake reader">×</button></div><h3 id="wake-inspector-title" tabindex="-1">${esc(w.id)}</h3></div>${story}<p class="caption">${esc(stamp(w.time,true))} PT → ${esc(stamp(w.finished))} · base state ${w.base_version==null?'not reported':count(w.base_version)}</p>${body}`;
     $('live-story').textContent=deployment?.snapshot_only===true
-      ?`Uploaded snapshot state ${count(data.version)}. Completed wakes are historical receipts. ${deployment?.hosted_activity?'Current activity is shown separately; reload for the latest uploaded research data.':'This dated public view has no live activity or automatic refresh; reload to read the latest uploaded data.'}`
+      ?`Uploaded snapshot state ${count(data.version)}. Completed wakes are historical receipts. This dated public view has no live activity or automatic refresh; reload to read the latest uploaded data.`
       :`Snapshot state ${count(data.version)}. Completed wakes are historical receipts; the status light separately reports execution now. Snapshot checks every minute; supported live activity checks every three seconds.`;
   }
   function controls() {

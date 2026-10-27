@@ -2,7 +2,7 @@
 
 (async()=>{'use strict';
 async function loadMapData(){
-  const response=await fetch('map-data.json?wake='+Date.now(),{cache:'no-store'});
+  const response=await (window.WakePublicData?.fetch || fetch)('map-data.json?wake='+Date.now(),{cache:'no-store'});
   if(!response.ok)throw new Error('Snapshot map data unavailable');
   return response.json();
 }

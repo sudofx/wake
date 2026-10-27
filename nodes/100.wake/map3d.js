@@ -4,6 +4,7 @@
  if(!control)return;
  control.addEventListener('click',()=>{
   const url=new URL(location.href);
+  window.WakePublicData?.pin(url);
   url.searchParams.set('popout','1');
   const opened=window.open(url.href,'wake-map3d','popup=yes,width='+Math.min(1500,Math.max(320,screen.availWidth-80))+',height='+Math.min(1000,Math.max(320,screen.availHeight-80)));
   if(opened)opened.focus();else location.assign(url.href);
@@ -13,7 +14,7 @@
 /* Progressive, data-bound constellation. Spatial placement is a reading aid, not causal distance. */
 (async()=>{'use strict';
 async function loadMap3dData(){
-  const response=await fetch('map3d-data.json?wake='+Date.now(),{cache:'no-store'});
+  const response=await (window.WakePublicData?.fetch || fetch)('map3d-data.json?wake='+Date.now(),{cache:'no-store'});
   if(!response.ok)throw new Error('Snapshot map data unavailable');
   return response.json();
 }
@@ -42,7 +43,7 @@ async function ensureBranch(id){
  if(loadedChildren.has(id))return true;
  if(loading.has(id))return loading.get(id);
  stage.setAttribute('aria-busy','true');
- const request=fetch(branchUrl(id),{cache:'no-store'}).then(response=>{
+ const request=(window.WakePublicData?.fetch || fetch)(branchUrl(id),{cache:'no-store'}).then(response=>{
    if(!response.ok)throw new Error(`HTTP ${response.status}`);
    return response.json();
  }).then(shard=>{

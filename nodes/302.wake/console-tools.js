@@ -5,7 +5,7 @@ window.WakeConsoleTools = () => {
   const destination=(tool,hash='')=>{
     if(!(tool in files))return null;
     const route=hash||(['map','map3d','events','state','rejected'].includes(tool)?'':`#${tool==='records'?'projects':tool}`);
-    return new URL(files[tool]+route,location.href);
+    const url=new URL(files[tool]+route,location.href);return window.WakePublicData?.pin(url)||url;
   };
   const open=(tool,hash='')=>{
     const url=destination(tool,hash);

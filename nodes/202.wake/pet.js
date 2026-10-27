@@ -1,4 +1,4 @@
-/* Homepage reading experience and browser-local Ask Bob interface. */
+/* Homepage reading experience. */
 
 window.WakePetReady=(async () => {
   'use strict';
@@ -118,7 +118,7 @@ window.WakePetReady=(async () => {
             <p class="eyebrow">AN OPEN INVESTIGATION</p>
             <h1 id="attention-question">What makes something<br><em>a memory?</em></h1>
             <p class="attention-deck">A mark can remain after an event. When does it actually change what happens next?</p>
-            <a class="primary-link" href="${storyLink}">${latest?'Start with Bob’s latest story':'Explore Bob’s Blog'} <span aria-hidden="true">↗</span></a>
+            <div class="attention-actions"><a class="primary-link" href="${storyLink}">${latest?'Start with Bob’s latest story':'Explore Bob’s Blog'} <span aria-hidden="true">↗</span></a></div>
             <p class="attention-context">WAKE✳︎ builds infrastructure for durable, accountable work across interchangeable intelligences. Research is its first application. Bob explains the recorded work for curious readers.</p>
           </div>
           <article class="attention-feature" aria-label="Bob’s latest story">

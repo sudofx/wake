@@ -2305,3 +2305,11 @@ html[data-theme=light] .attention-home .primary-link:hover{color:var(--reader-ac
 #blog.reading-story #blog-content{padding-top:24px}
 #blog-content [id^="bob-reference-"]{scroll-margin-top:100px}
 #blog-content .inline-source-citation{color:var(--cyan);text-decoration:underline;text-underline-offset:3px}
+
+.attention-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px}@media(max-width:600px){.attention-actions{align-items:stretch;flex-direction:column}.attention-actions>a{justify-content:center}}
+
+#blog-content .blog-reading .farm-notebook{margin-top:32px;padding:0;border:0}
+#blog-content .blog-reading .blog-receipts{margin-top:18px;padding-top:18px}
+.bob-farm-notebook>summary,.blog-receipts>summary{cursor:pointer;font-weight:600;min-height:44px;align-content:center}
+.bob-farm-notebook[open]>summary,.blog-receipts[open]>summary{margin-bottom:14px}
+.bob-farm-notebook article{margin-top:20px}.bob-farm-notebook time{font-size:12px;color:var(--muted)}

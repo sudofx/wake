@@ -273,7 +273,7 @@
   });
   async function loadProjection(){
     try{
-      const load=async()=>{let response=await fetch('research-overview.json',{cache:'no-store'});if([404,410].includes(response.status))response=await fetch('research-data.json',{cache:'no-store'});if(!response.ok)throw Error(`HTTP ${response.status}`);return response.json();};
+      const load=async()=>{let response=await (window.WakePublicData?.fetch || fetch)('research-overview.json',{cache:'no-store'});if([404,410].includes(response.status))response=await (window.WakePublicData?.fetch || fetch)('research-data.json',{cache:'no-store'});if(!response.ok)throw Error(`HTTP ${response.status}`);return response.json();};
       const next=window.WakeViewData?await window.WakeViewData.research():await load();
       if(next?.projection_kind!=='disposable-research-view'||!Array.isArray(next.graph?.nodes)||!Array.isArray(next.graph?.edges))throw new Error('Unsupported projection');
       receive(next);
