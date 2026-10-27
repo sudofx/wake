@@ -139,7 +139,9 @@ their scope; they confer no research or governance authority.
 
 The sand contour and surface workers share one path, including the raised,
 cratered entrance mounds. Tunnel caps are clipped below the sand surface. These
-are presentation changes; saved paths and colony timing are unchanged.
+are presentation changes; saved paths and colony timing are unchanged. The tunnel
+network is painted in one joined stroke, including its extra entrances and
+junctions. This avoids the separated stroke caps produced by WebKit.
 
 The exporter ships a dedicated presentation page with deployment binding but no
 research masthead, runtime observer, record transport or control plane. Nothing
@@ -256,3 +258,8 @@ Age and distance bias nursing allocation, while low food reserves retain an
 available collector even with one worker left. Larger hungry colonies keep
 nurses and foragers together. These are illustrative compressed rules, not
 measured population dynamics or a validated Lasius simulation.
+
+`node tests/browser/ant-tunnels.cjs` checks rendered tunnel connectivity in Chromium
+and WebKit at desktop, phone and bounded pinch-resolution scales. It flood-fills
+the actual terrain pixels from the nest and verifies that underground nodes remain
+connected. An optional argument supplies a captured shared-farm JSON packet.

@@ -122,10 +122,15 @@
     ground.clearRect(0,0,width,height);ground.drawImage(soil,0,0,width,height);
     ground.save();soilOutline(ground);ground.clip();
     ground.strokeStyle='#c9b68f';ground.lineCap='round';ground.lineJoin='round';
+    // One stroke unions the connected passages. Separate strokes leave visible
+    // cap seams in WebKit, especially at the high backing scale used for pinch zoom.
+    ground.lineWidth=Math.min(cw,ch)*1.45;ground.beginPath();
     for(const node of colony.nodes){
       if(node.parent===null||node.kind==='surface')continue;const parent=colony.nodes[node.parent];
-      ground.lineWidth=Math.min(cw,ch)*1.45;ground.beginPath();ground.moveTo(parent.x*cw,parent.y*ch);ground.lineTo(node.x*cw,node.y*ch);ground.stroke();
+      ground.moveTo(parent.x*cw,parent.y*ch);ground.lineTo(node.x*cw,node.y*ch);
     }
+    for(const [a,b] of [...colony.links,...colony.junctions]){const from=colony.nodes[a],to=colony.nodes[b];ground.moveTo(from.x*cw,from.y*ch);ground.lineTo(to.x*cw,to.y*ch);}
+    ground.stroke();
     ground.fillStyle='#c9b68f';for(let i=0;i<colony.nodes.length;i++){const n=colony.nodes[i];if(n.kind==='chamber'&&i!==colony.nest){ground.beginPath();ground.ellipse(n.x*cw,n.y*ch,1.8*cw,1.1*ch,0,0,Math.PI*2);ground.fill();}}
     ground.fillStyle='#c9b68f';ground.beginPath();const home=colony.nodes[colony.nest];ground.ellipse(home.x*cw,home.y*ch,4.9*cw,2.7*ch,0,0,Math.PI*2);ground.fill();
     // A warm nest chamber makes the homeward traffic legible.
