@@ -446,7 +446,7 @@ class ResearchTests(unittest.TestCase):
             self.engine.store.append("recovered", {"id": invocation, "reason": "Test cleanup"})
 
         self.assertIn("wake-src", request["context"]["project_evidence"]["p-wake"])
-        self.assertNotIn("neuro-src", request["context"]["project_evidence"]["p-wake"])
+        self.assertIn("neuro-src", request["context"]["project_evidence"]["p-wake"])
         self.assertIn("neuro-src", request["context"]["project_evidence"]["p-neuro"])
         self.assertIn("wake-src", request["context"]["project_evidence"]["p-neuro"])
 
@@ -1452,6 +1452,48 @@ class ResearchTests(unittest.TestCase):
         finally:
             self.engine = original
             other.store.close()
+
+    def test_repository_notebook_can_compare_collected_cross_topic_evidence(self):
+        self.source("r1", "https://raw.githubusercontent.com/sudofx/wake/master/wake/record_store.py")
+        self.source("s2", "https://example.org/independent-memory-research")
+        action = project(); action["domain"] = "self_study"
+        self.assertEqual(self.propose([action, notebook(["r1", "s2"])])["status"], "accepted")
+
+    def test_source_search_returns_bounded_numbered_context(self):
+        from wake.research import source_search_excerpt, query_url
+        source = '\n'.join('line '+str(i) for i in range(500)) + '\ndef important_transition():\n    return receipt'
+        excerpt, truncated = source_search_excerpt(source, 'important_transition')
+        self.assertIn('501: def important_transition', excerpt)
+        self.assertTrue(truncated)
+        self.assertNotIn('1: line 0', excerpt)
+        missing, _ = source_search_excerpt(source, 'absent_symbol')
+        self.assertIn('No matching source lines', missing)
+        topic = {'source_kind': 'repository', 'repository': 'sudofx/wake'}
+        route = query_url('wake/kernel/record.py transition', 'self_study', topic)
+        self.assertIn('/master/wake/kernel/record.py#search=', route)
+
+    def test_repository_collection_pins_revision_and_retains_raw_fingerprint(self):
+        from unittest.mock import MagicMock
+        from hashlib import sha256
+        revision = 'a' * 40
+        url = 'https://raw.githubusercontent.com/sudofx/wake/master/wake/kernel/record.py#search=transition'
+        canonical = url.replace('/master/', '/' + revision + '/')
+        raw = b'# Immutable source fixture with enough readable text to qualify as a source.\ndef transition():\n    return receipt\n'
+        response = MagicMock()
+        response.__enter__.return_value = response
+        response.url = canonical
+        response.headers = {'Content-Type': 'text/plain'}
+        response.read.return_value = raw
+        opener = MagicMock(); opener.open.return_value = response
+        with patch('wake.research.repository_revision', return_value=revision), patch(
+                'wake.research.urllib.request.build_opener', return_value=opener):
+            observation = fetch_source(url)
+        self.assertEqual(opener.open.call_args.args[0].full_url, canonical)
+        self.assertEqual(observation['url'], canonical)
+        self.assertEqual(observation['requested_url'], url)
+        self.assertEqual(observation['source_revision'], revision)
+        self.assertEqual(observation['source_sha256'], sha256(raw).hexdigest())
+        self.assertIn('2: def transition', observation['excerpt'])
 
     def test_wake_analysis_notebook_schema_excludes_external_evidence(self):
         context = {

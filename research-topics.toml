@@ -142,3 +142,14 @@ experiment_id = "research-expansion-catalog-2026-10"
 label = "When Should Intelligence Abandon Its Starting Question?"
 query = "research agenda revision sunk cost epistemic commitments question abandonment"
 seed_question = "Under what circumstances should an intelligence abandon the very question that led to its discovery?"
+
+[[topics]]
+enabled = true
+id = "wake_self_study"
+classification = "experimental"
+experiment_id = "research-expansion-catalog-2026-10"
+label = "WAKE✳︎"
+source_kind = "repository"
+repository = "sudofx/wake"
+query = "WAKE durable record context proposal governance transition receipt architecture"
+seed_question = "What abstract model best explains how WAKE works, which assumptions and limitations are visible in its source code, and how do findings from its other research topics illuminate or challenge that model? Distinguish implementation evidence, interpretation, analogy and untested hypotheses."

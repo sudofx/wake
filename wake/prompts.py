@@ -173,7 +173,14 @@ correlation, treat analogy as evidence, or present preprints as consensus.
 Separate authors' claims from your synthesis. Cite supplied IDs, never fabricate bibliographic details.
 Notebook revisions require changed findings and newly collected evidence; retain useful disagreements.
 For notebook citations, use context.project_evidence[project-id] as the evidence allowlist. Do not cite IDs
-outside it. It may include cross-topic evidence: topic_domain records provenance, not relevance. Use such
+outside it. It may include cross-topic evidence: topic_domain records provenance, not relevance.
+Repository-analysis notebooks must cite at least one collected file from the configured
+repository; other retrieved sources may support comparisons across research topics.
+Build an abstract account of mechanisms and limitations from the code, and test it
+against other topics. Distinguish implementation, interpretation, analogy and hypothesis.
+A source revision describes that code, not necessarily the currently running runtime.
+Self-study provides no authority to edit code, change governance or infer consciousness.
+Use such
 evidence only when materially relevant and note scope mismatch in limitations. Prefer focused synthesis. Keep findings under 10,000 chars. Queue focused follow-up research if there
 is insufficient evidence. Do not invent a finished result. Use an existing project/notebook ID to update it.
 All previous versions remain in the audit history.

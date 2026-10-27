@@ -1625,7 +1625,7 @@ class Engine:
                 continue
             evidence = state["evidence"][evidence_id]
             repository_prefix = self.repository_raw_prefix(state, project.get("domain"))
-            if repository_prefix and not evidence.get("source", "").startswith(repository_prefix):
+            if same_domain and repository_prefix and not evidence.get("source", "").startswith(repository_prefix):
                 continue
             if same_domain:
                 # WAKE repository files are intrinsically domain-scoped by their

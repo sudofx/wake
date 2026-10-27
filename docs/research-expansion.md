@@ -225,3 +225,30 @@ provider call: a node waiting for quota must still publish its configured topics
 The last question connects revisable research priorities to historical commitments.
 Studying it cannot waive an existing commitment or grant permission to change the
 operator's objectives. A supported criticism remains a proposal for human review.
+
+## WAKE✳︎ self-study
+
+The enabled `wake_self_study` repository topic joins all three hosted topic
+families. It investigates WAKE's own mechanisms and limitations, and compares
+that abstract account with evidence from the other topics. It uses the existing
+research collector and ordinary project/notebook governance; it cannot edit its
+source or authorize a policy change.
+
+Source discovery starts with the repository tree and the maintained source map,
+including the native record, runtime, application policy and decision memory.
+A planner may name any known repository-relative text path in its query, such as
+`wake/kernel/record.py append`, or request its raw GitHub URL with
+`#search=append` to retrieve numbered matching line windows. Reads of `master`
+resolve to one immutable commit per collector process. Evidence retains that
+revision, the requested URL, raw-file SHA-256, excerpt bounds and running revision
+when available. No matching lines produces a failed collection, not evidence.
+The code being read can be newer than the running installation; these identities
+must remain distinct in every architectural claim.
+
+A self-study notebook must cite at least one collected file from its configured
+repository. It may also cite independently collected material from other topics
+for a relevant comparison. Code supports implementation claims; research papers
+support their own claims; analogies and hypotheses remain labeled as such.
+Self-description does not establish consciousness, comprehension or improvement.
+Topic configuration is recorded before new invocations; older accepted research
+is neither relabeled nor counted as self-study.

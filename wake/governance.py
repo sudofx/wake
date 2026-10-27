@@ -1776,13 +1776,13 @@ def transition(state, proposal, invocation, historical=False):
             if topic_config and topic_config.get("source_kind") == "repository":
                 repository = topic_config["repository"]
                 require(
-                    all(
+                    any(
                         evidence["source"].startswith(
                             "https://raw.githubusercontent.com/" + repository + "/"
                         )
                         for evidence in cited
                     ),
-                    "Repository-analysis notebooks must cite only "
+                    "Repository-analysis notebooks must cite at least one of the "
                     "source-controlled files from " + repository,
                 )
 

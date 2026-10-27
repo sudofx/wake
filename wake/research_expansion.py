@@ -14,11 +14,11 @@ EXPERIMENT_IDS = (EXPERIMENT_ID, CATALOG_EXPERIMENT_ID)
 ASSIGNMENTS = {
     '100.wake': ('assumption_challenge', 'unassigned_problem', 'obedience_limits',
                  'creator_objective_critique', 'judgment_and_consensus',
-                 'unrecognized_reasoning_limits', 'question_abandonment'),
+                 'unrecognized_reasoning_limits', 'question_abandonment', 'wake_self_study'),
     '200.wake': ('emergent_preferences', 'assumption_challenge', 'memory_formed_preferences',
-                 'memory_and_identity', 'divergent_values', 'responsibility_formation'),
+                 'memory_and_identity', 'divergent_values', 'responsibility_formation', 'wake_self_study'),
     '300.wake': ('unassigned_problem', 'emergent_preferences', 'unassigned_objectives',
-                 'continuity_rationale', 'unprompted_complexity', 'unassigned_inquiry')}
+                 'continuity_rationale', 'unprompted_complexity', 'unassigned_inquiry', 'wake_self_study')}
 
 
 def apply_hosted_configuration(root, enabled, candidate_catalog_enabled=False):

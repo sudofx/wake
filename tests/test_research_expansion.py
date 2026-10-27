@@ -185,11 +185,11 @@ class ExpansionTests(unittest.TestCase):
     def test_broader_catalog_keeps_primary_ids_and_assigns_every_candidate(self):
         topics = _topics({'research_topics_file': 'research-topics.toml'}, ROOT / 'wake.toml')
         by_id = {t['id']: t for t in topics}
-        self.assertEqual(len(by_id), 16)
+        self.assertEqual(len(by_id), 17)
         self.assertTrue(all(t['enabled'] for t in topics))
         self.assertEqual({t['id'] for t in topics if t.get('experiment_id') == EXPERIMENT_ID},
                          {'assumption_challenge', 'emergent_preferences', 'unassigned_problem'})
-        self.assertEqual(sum(t.get('experiment_id') == CATALOG_EXPERIMENT_ID for t in topics), 13)
+        self.assertEqual(sum(t.get('experiment_id') == CATALOG_EXPERIMENT_ID for t in topics), 14)
         self.assertEqual(set(by_id), {topic for group in ASSIGNMENTS.values() for topic in group})
         invalid = {**topics[-1], 'experiment_id': ''}
         with self.assertRaises(Rejected):
