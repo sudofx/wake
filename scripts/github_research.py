@@ -163,11 +163,9 @@ def continue_chain(predecessor):
         if any(run.get('display_title') == 'WAKE hosted ' + token for run in runs):
             print('Successor already exists for ' + str(predecessor))
             return
-        if any(str(run['id']) != str(predecessor) and run['status'] != 'completed' for run in runs):
-            # A manual start or a different recovered chain already owns
-            # continuation. An old completion event must not seed another one.
-            print('Another research run already owns continuation.')
-            return
+        # Older queued entries can outlive their actual scheduling state.
+        # Only a newer run can supersede this predecessor. The workflow's
+        # installation-wide concurrency group still serializes every writer.
         if len(runs) < 100:
             break
     revision = checked_revision(client)

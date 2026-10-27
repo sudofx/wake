@@ -375,7 +375,9 @@ class ContinuationTests(unittest.TestCase):
                     return
                 if path == 'actions/runs/10':
                     return {'path': '.github/workflows/hosted-research.yml', 'head_branch': 'master', 'run_number': 10}
-                return {'workflow_runs': [{'id': 10, 'run_number': 10, 'status': 'in_progress', 'display_title': 'current'}]}
+                return {'workflow_runs': [
+                    {'id': 10, 'run_number': 10, 'status': 'in_progress', 'display_title': 'current'},
+                    {'id': 9, 'run_number': 9, 'status': 'queued', 'display_title': 'stale older start'}]}
         with patch('scripts.github_research.api', return_value=Client()), \
              patch('scripts.github_research.enabled', return_value=True), \
              patch('scripts.github_research.checked_revision', return_value='a' * 40):
