@@ -63,6 +63,8 @@ def bind_hosted_status(site, repository, revision):
         page = re.sub(r'<a\b[^>]*class="[^"]*actions-light[^"]*"[^>]*>.*?</a>', '', page, flags=re.S)
         page = page.replace('class="header-tools">', 'class="header-tools">' + light, 1)
         page = re.sub(r'((?:nav\.js|masthead\.css)\?v=)[^"<]+', r'\g<1>20261020-masthead-menu', page)
+        page = re.sub(r'(href="(?:\.\./)*theme\.css)(?:\?[^"]*)?"',
+                      lambda match: match.group(1)+'?v='+revision[:12]+'"', page)
         page = re.sub(r'<script src="[^\"]*hosted-status\.js[^\"]*"[^>]*></script>', '', page)
         page = page.replace('</head>', f'<script src="{prefix}hosted-status.js?v=20261020-hosted-recovery" defer></script></head>', 1)
         page = re.sub(r'((?:runtime-activity\.js|installation-console\.js|process-field\.js|research\.js)\?v=)[^"<]+', r'\g<1>20261020-hosted-activity', page)
@@ -72,7 +74,7 @@ def bind_hosted_status(site, repository, revision):
     if not roots:
         raise ValueError('No generated hosted pages found')
     for root in roots:
-        for name in ('nav.js', 'masthead.css', 'hosted-status.js', 'runtime-activity.js', 'installation-console.js', 'process-field.js', 'research.js', 'research.css'):
+        for name in ('theme.css', 'nav.js', 'masthead.css', 'hosted-status.js', 'runtime-activity.js', 'installation-console.js', 'process-field.js', 'research.js', 'research.css'):
             shutil.copyfile(assets / name, root / name)
         deployment_path = root / 'deployment.json'
         if deployment_path.exists():
