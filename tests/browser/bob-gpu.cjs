@@ -12,6 +12,14 @@ const {pathToFileURL}=require('node:url'),assets=path.resolve(__dirname,'../../w
   const adapter={features:new Set(['shader-f16']),limits:{maxStorageBufferBindingSize:268435456}};
   Object.defineProperty(globalThis,'navigator',{configurable:true,value:{gpu:{requestAdapter:async()=>adapter}}});
   const gpu=await import(pathToFileURL(path.join(root,'ask-bob-gpu.js')));
+  // Prefetch uses the engine's disk cache, sends no chat and creates no GPU.
+  const stores=new Map(),fetched=[];
+  globalThis.caches={open:async name=>{if(!stores.has(name))stores.set(name,new Map());const rows=stores.get(name);return{match:async url=>rows.get(url)?.clone(),put:async(url,response)=>rows.set(url,response)};}};
+  globalThis.fetch=async(url,options)=>{fetched.push(url);assert.equal(options.credentials,'omit');return new Response(url.endsWith('mlc-chat-config.json')?JSON.stringify({tokenizer_files:['tokenizer.json']}):url.endsWith('tensor-cache.json')?JSON.stringify({records:[{dataPath:'params_shard_0.bin',nbytes:gpu.MODELS.starter.bytes}]}):'fixture');};
+  await gpu.prefetch('starter');assert.equal(created,0);assert.equal(fetched.length,4);assert(stores.get('webllm/model').size===3);assert(stores.get('webllm/config').size===1);
+  await gpu.prefetch('starter');assert.equal(fetched.length,4,'Existing engine-cache files must not download again');
+  const controller=new AbortController();globalThis.fetch=async(url,{signal})=>new Promise((resolve,reject)=>signal.addEventListener('abort',()=>reject(signal.reason),{once:true}));
+  const stoppedPrefetch=gpu.prefetch('best',controller.signal);setTimeout(()=>controller.abort(),5);await assert.rejects(stoppedPrefetch,e=>e.name==='AbortError');assert.equal(created,0);
   assert.equal(gpu.visibleReply(' \n<think>private'),'');assert.equal(gpu.visibleReply('<thi'),'');assert.equal(gpu.visibleReply('<think>private</think>\nHello'),'Hello');
   await assert.rejects(gpu.load('unknown'),/available models/);
   const cancel=new AbortController(),loading=gpu.load('best',()=>{},cancel.signal);setTimeout(()=>cancel.abort(),5);
@@ -21,6 +29,8 @@ const {pathToFileURL}=require('node:url'),assets=path.resolve(__dirname,'../../w
   gpu.stop();assert(!gpu.ready());assert.equal(terminated,1);
   let release;globalThis.__reload=()=>new Promise(r=>release=r);const other=new AbortController(),pending=gpu.load('best',()=>{},other.signal);await new Promise(r=>setTimeout(r,5));other.abort();await assert.rejects(pending,e=>e.name==='AbortError');release();await new Promise(r=>setTimeout(r,5));assert(!gpu.ready(),'Cancelled worker must not be adopted after a late reload');assert.equal(terminated,2);
   const context=await import(pathToFileURL(path.join(root,'ask-bob-context.js'))),sources=[{id:'S1'},{id:'S2'}];
+  assert(context.quickReply('What is WAKE?').answer.includes('lab notebook'));
+  assert.equal(context.quickReply('What is WAKE doing in this particular experiment?'),null,'A specific research question must not be replaced by a generic introduction');
   assert.deepEqual(context.citedSources('Both [S1, S2].',sources),sources);assert.throws(()=>context.citedSources('Unknown [S1, S99]',sources),/not supplied/);
   console.log(JSON.stringify({result:'PASS',checks:'no late worker after cancelled import/reload, streamed prose without thinking, explicit model allowlist, grouped citation identity'}));
  }finally{fs.rmSync(root,{recursive:true,force:true});}

@@ -466,9 +466,9 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         for name in ("style.css", "nav.css", "map.css", "map3d.css", "theme.css",
                      "nav.js", "map.js", "map3d.js", "flat-view.js", "app.js", "pet.js", "ask-bob.js", "ask-bob.css", "ask-bob-browser.js", "ask-bob-guide.js", "ask-bob-private.js",
                      "ant-farm.html", "ant-farm.css", "ant-colony.js", "ant-drawing.js", "ant-farm.js", "bob-markdown.js",
-                     "bob-chat.html", "bob-chat.css", "bob-chat.js", "ask-bob-context.js", "ask-bob-gpu.js", "ask-bob-gpu-worker.js"):
+                     "bob-chat.html", "bob-chat.css", "bob-chat.js", "ask-bob-session.js", "ask-bob-context.js", "ask-bob-gpu.js", "ask-bob-gpu-worker.js"):
             atomic_write(target / name, (assets / name).read_text())
-        # These static inference assets are loaded only after the reader opts in.
+        # These static inference assets are loaded when the reader opens Bob.
         # They contain no provider credentials and never open research authority.
         shutil.copytree(assets / 'self-correction', target / 'self-correction', dirs_exist_ok=True)
         for name in ('ask-bob-engine.js', 'ask-bob-engine.wasm', 'ask-bob-engine-compat.js',

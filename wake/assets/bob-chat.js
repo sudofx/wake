@@ -1,25 +1,15 @@
 /* Device-local conversation window over exact published source versions. */
-import * as gpu from './ask-bob-gpu.js';
-import {prepareContext,readJSON,recordPath,citedSources} from './ask-bob-context.js';
+import {createBobSession} from './ask-bob-session.js?v=20261026-automatic';
+import {prepareContext,readJSON,citedSources,quickReply} from './ask-bob-context.js?v=20261026-automatic';
 import {answer as searchAnswer} from './ask-bob-guide.js';
 const $ = id => document.getElementById(id), params = new URLSearchParams(location.search);
 const selection = params.has('article') ? {article:params.get('article'),hash:params.get('hash')} : {collection:params.get('collection') || 'overview',record:params.get('record') || 'home',head:params.get('head'),node:params.get('node') || ''};
 const identity = selection.article || [selection.node,selection.collection,selection.record].join('/');
 const version = selection.hash || selection.head;
-let contextReady = false, mode = 'model', active, history = [], storageKey, allChats = {}, epoch = 0;
-const modelPreference = 'wake-bob-device-model';
-let cacheCheck = 0;
-async function modelSetup() {
-  const check = ++cacheCheck, choice = $('model').value;
-  $('download').textContent = 'Checking saved Bob…';$('download').disabled = true;
-  const saved = await gpu.cached(choice);
-  if(check !== cacheCheck) return;
-  $('download').textContent = saved ? 'Use saved Bob' : saved === false ? 'Download Bob' : 'Open Bob';
-  $('setup-note').textContent = saved ? 'Saved model files found. Open Bob to load them into your graphics processor. Any missing files are fetched again.' : saved === false ? 'Download once, then reuse saved files in this browser. Browser storage can be cleared or evicted; speed and memory needs depend on your device.' : 'Browser storage could not be checked. Bob will reuse available files and download any missing ones.';
-  $('download').disabled = Boolean(active);
-  status(saved ? 'Bob’s model is saved on this device.' : 'Choose a model to start.');
-}
-const state = () => { $('send').disabled = !contextReady || Boolean(active); $('download').disabled = Boolean(active); $('model').disabled = Boolean(active); $('search-mode').disabled = Boolean(active); $('change-model').disabled = Boolean(active); $('stop').hidden = !active; $('chat').setAttribute('aria-busy',String(Boolean(active))); };
+const draftKey = 'wake-bob-draft:' + identity + ':' + version;
+try {const draft=sessionStorage.getItem(draftKey);if(draft && draft.length<=2000)$('question').value=draft;}catch{}
+let contextReady = true, active, history = [], storageKey, allChats = {}, epoch = 0;
+const state = () => { $('send').disabled = !contextReady || Boolean(active); $('stop').hidden = !active; $('chat').setAttribute('aria-busy',String(Boolean(active))); };
 const status = value => { $('status').textContent = value; };
 const nearBottom = () => $('chat').scrollHeight - $('chat').scrollTop - $('chat').clientHeight < 100;
 const bottom = () => {$('chat').scrollTop = $('chat').scrollHeight;};
@@ -54,7 +44,7 @@ function normalizedChats(value) {
         if(url.origin!==location.origin || !['http:','https:'].includes(url.protocol))return [];
         return [{id:source.id,label:source.label,url:url.href}];
       });
-      return [{question:turn.question,answer:turn.answer,sources:references,mode:turn.mode==='search'?'search':'model',sourceLabel:turn.sourceLabel==='Sources Bob read'?'Sources Bob read':'Sources'}];
+      return [{question:turn.question,answer:turn.answer,sources:references,mode:turn.mode==='search'?'search':'model',sourceLabel:['Sources Bob read','Published introduction','Published passages'].includes(turn.sourceLabel)?turn.sourceLabel:'Sources'}];
     });
     rows.push([key,{version:row.version,turns,time:row.time}]);
   }
@@ -73,14 +63,18 @@ function save() {
   try {localStorage.setItem(storageKey,JSON.stringify(allChats));} catch {$('storage-note').textContent = 'Browser storage is unavailable. This conversation stays in memory until you close it.';}
 }
 async function restore() {
+  const restoringEpoch = epoch;
   try {
     const installation = await readJSON('installation.json',AbortSignal.timeout(8000),524288);
     if (typeof installation.installation_id !== 'string' || !installation.installation_id) return;
     storageKey = 'wake-bob-device-chat:' + installation.installation_id;
     const stored = localStorage.getItem(storageKey);if(stored && new TextEncoder().encode(stored).length <= 32768)allChats = normalizedChats(JSON.parse(stored));
+    if(restoringEpoch !== epoch){delete allChats[identity];localStorage.setItem(storageKey,JSON.stringify(allChats));return;}
     const saved = allChats[identity];
-    if (saved?.version === version && Array.isArray(saved.turns)) history = saved.turns.slice(-10).filter(t => typeof t.question === 'string' && t.question.length <= 2000 && typeof t.answer === 'string' && t.answer.length <= 10000);
-    for (const turn of history) {bubble('You',turn.question); const row = bubble('Bob',turn.answer);sources(row,Array.isArray(turn.sources) ? turn.sources : [],turn.sourceLabel);}
+    const earlier = saved?.version === version && Array.isArray(saved.turns) ? saved.turns.slice(-10) : [];
+    const first = $('chat').querySelector('article');
+    for (const turn of earlier) {const you=bubble('You',turn.question),row=bubble('Bob',turn.answer);sources(row,turn.sources,turn.sourceLabel);if(first){$('chat').insertBefore(you,first);$('chat').insertBefore(row,first);}}
+    const newTurns = history.length;history = [...earlier,...history].slice(-10);if(newTurns)save();
   } catch {$('storage-note').textContent = 'Saved chat is unavailable. This conversation works in memory; unreadable history is not reconstructed.';}
 }
 function fitKeyboard() {
@@ -94,69 +88,43 @@ window.visualViewport?.addEventListener('resize',fitKeyboard);window.visualViewp
 if (['dark','light'].includes(params.get('theme'))) document.documentElement.dataset.theme = params.get('theme');
 window.addEventListener('message',event => {if(event.origin === location.origin && event.source === window.opener && event.data?.type === 'wake-theme' && ['dark','light'].includes(event.data.theme))document.documentElement.dataset.theme = event.data.theme;});
 $('theme').onclick = () => {const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';document.documentElement.dataset.theme = next;try {localStorage.setItem('wake-site-theme',next);}catch{}};
-$('question').oninput = () => {$('question').style.height = 'auto';$('question').style.height = Math.min(128,$('question').scrollHeight) + 'px';};
+$('question').oninput = () => {try{sessionStorage.setItem(draftKey,$('question').value);}catch{}$('question').style.height = 'auto';$('question').style.height = Math.min(128,$('question').scrollHeight) + 'px';};
 $('question').onkeydown = event => {if(event.key === 'Enter' && !event.shiftKey && !event.isComposing && matchMedia('(pointer:fine)').matches){event.preventDefault();$('form').requestSubmit();}};
 $('stop').onclick = () => active?.abort();
-$('clear').onclick = () => {epoch++;active?.abort();history = [];if(storageKey){delete allChats[identity];try{localStorage.setItem(storageKey,JSON.stringify(allChats));}catch{}}$('chat').replaceChildren();status('Chat cleared.');};
-$('change-model').onclick = () => {gpu.stop();mode = 'model';$('setup').hidden = false;$('model-setup').hidden = false;$('presence').textContent = 'On your device · WAKE✳︎';void modelSetup();};
-$('model').onchange = () => {try{localStorage.setItem(modelPreference,$('model').value);}catch{}void modelSetup();};
-$('search-mode').onclick = () => {
-  if(!selection.article){status('Source search is available from a blog article. Open Bob’s Blog to choose one.');return;}
-  mode = 'search';$('setup').hidden = true;$('presence').textContent = 'Source search · no model';status('Source search quotes published passages.');$('question').focus();
-};
-async function openModel(controller) {
-  cacheCheck++;
-  try{localStorage.setItem(modelPreference,$('model').value);}catch{}
-  // Ask for persistence from the user's click. Denial must not block use.
-  try{navigator.storage?.persist?.().catch(() => {});}catch{}
-  $('progress').hidden = false;$('progress').removeAttribute('value');
-  status('Opening Bob on this device…');
-  try {
-    await gpu.load($('model').value,(message,report) => {status(message);if(Number.isFinite(report.progress))$('progress').value = report.progress;},controller.signal);
-    mode = 'model';$('setup').hidden = true;$('presence').textContent = 'On device · ready';
-  } finally {$('progress').hidden = true;$('download').textContent = 'Open Bob';}
-}
-async function download() {
-  if(active)return;
-  const controller = new AbortController();active = controller;state();
-  try {
-    await openModel(controller);status('Bob is ready. Ask away.');$('question').focus();
-  } catch(error) {status(error.name === 'AbortError' ? 'Stopped. Downloaded files are kept for retry.' : error.message);}
-  finally {if(active === controller)active = undefined;state();}
-}
-$('download').onclick = download;
+$('clear').onclick = () => {epoch++;active?.abort();history = [];try{sessionStorage.removeItem(draftKey);}catch{}if(storageKey){delete allChats[identity];try{localStorage.setItem(storageKey,JSON.stringify(allChats));}catch{}}$('chat').replaceChildren();status('Chat cleared.');};
+const session = createBobSession(value => {if(!active)status(value);});
+window.addEventListener('pagehide',event => {if(!event.persisted)session.close();});
+state();
+void restore();
+void session.start().catch(() => {});
 $('form').onsubmit = async event => {
   event.preventDefault();if(active || !contextReady) return;
   const question = $('question').value.trim();if(!question)return;
+  try{sessionStorage.setItem(draftKey,question);navigator.storage?.persist?.().catch(() => {});}catch{}
   const controller = new AbortController(), revision = epoch;active = controller;state();
-  cacheCheck++;let row;
+  let row;
   try {
-    if(mode === 'model' && !gpu.ready()) {
-      status('Checking saved Bob before opening…');
-      const saved = await gpu.cached($('model').value,controller.signal);
-      if(controller.signal.aborted)throw controller.signal.reason;
-      if(!saved) {
-        $('setup').hidden = false;
-        $('download').textContent = saved === false ? 'Download Bob' : 'Open Bob';
-        status(saved === false ? 'Download Bob using the setup button first. Your message is kept.' : 'Saved files could not be checked. Open Bob using the setup button. Your message is kept.');
-        return;
-      }
-      await openModel(controller);
-    }
     if(revision !== epoch || controller.signal.aborted)return;
-    bubble('You',question);row = bubble('Bob','…');$('question').value = '';$('question').style.height = '44px';status(mode === 'search' ? 'Finding published passages…' : 'Reading the sources…');
-    let answer,refs,metrics,complete = true,sourceLabel = 'Sources';
-    if(mode === 'search') {
-      const result = await searchAnswer({article_id:selection.article,expected_article_hash:selection.hash,question,history},controller.signal);
-      answer = result.answer;refs = result.citations;
+    bubble('You',question);row = bubble('Bob','…');$('question').value = '';$('question').style.height = '44px';status('Reading the sources…');
+    let answer,refs,metrics,complete = true,sourceLabel = 'Sources',mode = 'model';
+    const immediate = quickReply(question);
+    if(immediate) {
+      ({answer,sources:refs,sourceLabel} = immediate);
     } else {
       const prepared = await prepareContext(selection,question,history,controller.signal);
-      const result = await gpu.generate(prepared.messages,{signal:controller.signal,onText:value => {if(revision !== epoch || controller.signal.aborted)return;const pinned = nearBottom();render(row.querySelector('.prose'),value);if(pinned)bottom();status('Bob is writing…');}});
-      answer = result.answer;refs = citedSources(answer,prepared.sources);if(!refs.length){refs=prepared.sources;sourceLabel='Sources Bob read';}metrics = result.metrics;complete = result.complete;
+      try {
+        const result = await session.answer(prepared.messages,{signal:controller.signal,onText:value => {if(revision !== epoch || controller.signal.aborted)return;const pinned = nearBottom();render(row.querySelector('.prose'),value);if(pinned)bottom();status('Bob is writing…');}});
+        answer = result.answer;refs = citedSources(answer,prepared.sources);if(!refs.length){refs=prepared.sources;sourceLabel='Sources Bob read';}metrics = result.metrics;complete = result.complete;
+      } catch(error) {
+        if(controller.signal.aborted || !selection.article)throw error;
+        const result = await searchAnswer({article_id:selection.article,expected_article_hash:selection.hash,question,history},controller.signal);
+        answer = result.answer;refs = result.citations;sourceLabel = 'Published passages';mode = 'search';
+      }
     }
     if (revision !== epoch || controller.signal.aborted) return;
+    try{if(sessionStorage.getItem(draftKey)===question)sessionStorage.removeItem(draftKey);}catch{}
     render(row.querySelector('.prose'),answer);sources(row,refs,sourceLabel);
-    if(complete) {history.push({question,answer,sources:refs,mode,sourceLabel});save();status(metrics ? 'On device · ' + (metrics.latency_ms/1000).toFixed(1) + 's' : 'Published source passages');}
+    if(complete) {history.push({question,answer,sources:refs,mode,sourceLabel});save();status(immediate ? 'Published introduction · deeper answers prepare automatically' : metrics ? 'On device · ' + (metrics.latency_ms/1000).toFixed(1) + 's' : 'Published source passages');}
     else {row.classList.add('incomplete');status('Reply reached its length limit. Ask Bob to focus on one part.');}
     bottom();
   } catch(error) {
@@ -167,13 +135,4 @@ try {
   const prepared = await prepareContext(selection,'What is this about?',[],AbortSignal.timeout(15000));
   $('context-title').textContent = prepared.title;
   const link = prepared.sources[0]?.url;if(link)$('source-page').href = link;
-  await restore();status('Choose a model to start.');
-  if(!await gpu.supported()){$('model-setup').hidden = true;status('GPU Bob is unavailable in this browser. Source search is still available for articles.');}
-  else {
-    let preferred;try{preferred=localStorage.getItem(modelPreference);}catch{}
-    if(Object.hasOwn(gpu.MODELS,preferred))$('model').value=preferred;
-    else if(!await gpu.cached('best') && await gpu.cached('capable'))$('model').value='capable';
-    await modelSetup();
-  }
-  contextReady = true;state();
-} catch(error) {status(error.message);$('setup').hidden = true;}
+} catch(error) {status(error.message);}

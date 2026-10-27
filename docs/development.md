@@ -66,7 +66,7 @@ For private human checkpoints and fresh-conversation recovery, use the
 research record without adding runtime state or automatic model context.
 
 The former hosted Bob service and activity relay are retired. Public [Ask Bob](ask-bob.md)
-uses an opt-in downloaded WebGPU model on the reader’s device; pinned model files
+automatically prepares a WebGPU model when the reader opens its chat; pinned model files
 come from Hugging Face, with no conversation sent there. The optional loopback
 Gemini reader is separate. Public presentation uses GitHub Pages; runtime research
 uses GitHub and Google Gemini.
