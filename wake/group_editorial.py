@@ -17,6 +17,57 @@ INTRO_ID = 'group-wake-introduction'
 MAX_PACKET = 240_000
 ARTICLE_FIELDS = ('title', 'lede', 'body', 'lens')
 PARAGRAPH_CONTRACT = 'group-editorial-paragraphs@1'
+MEMBER_BUDGET = 3000
+SYNTHESIS_CONTRACT = 'bob-system-synthesis@1'
+
+
+def bound_member_input(packet):
+    """Keep every topic pointer and attribution before optional prose detail."""
+    def size():
+        return len(json.dumps(packet))
+    if size() > MEMBER_BUDGET:
+        packet['projects'] = []
+        packet['charter'] = ''
+        for topic in packet['topics']:
+            topic['question'] = ''
+    if size() > MEMBER_BUDGET:
+        for story in packet['stories'][1:]:
+            for key in ('title', 'summary', 'limitations', 'next_questions', 'findings'):
+                if key in story:
+                    story[key] = story[key][:120]
+    while size() > MEMBER_BUDGET and len(packet['stories']) > 2:
+        packet['stories'].pop(1)
+    overview = packet['stories'][0].get('statement', {}).get('topic_overview', [])
+    for limit in (120, 60, 30, 0):
+        if size() <= MEMBER_BUDGET:
+            break
+        for row in overview:
+            row['summary'] = row['summary'][:limit]
+            row['limitations'] = row['limitations'][:limit]
+            row['excerpted'] = True
+    while size() > MEMBER_BUDGET and len(packet['stories']) > 1:
+        packet['stories'].pop(1)
+    farm = packet['stories'][0].get('statement', {}).get('farm_observation', {})
+    while size() > MEMBER_BUDGET and len(farm.get('recent_intervals', [])) > 1:
+        farm['recent_intervals'].pop(0)
+    require(size() <= MEMBER_BUDGET, 'Member editorial summary ceiling reached')
+    return packet
+
+
+def with_farm_observation(packet, observation):
+    """Attach a read-only external source to the leader's attributed overview."""
+    packet = deepcopy(packet)
+    leader = next(item for item in packet['inputs'] if item['member'] == packet['leader'])
+    elsewhere = {topic['label'] for item in packet['inputs'] if item is not leader for topic in item.get('topics', [])}
+    leader['topics'] = [topic for topic in leader['topics'] if topic['label'] not in elsewhere]
+    activity = leader['stories'][0]
+    activity['statement']['farm_observation'] = deepcopy(observation)
+    if observation.get('status') == 'available':
+        activity.setdefault('sources', []).append({'id': 'farm-' + observation['revision'],
+            'source': observation['source'], 'time': observation['captured_at'],
+            'scope': 'programmed-simulation-only'})
+    bound_member_input(leader)
+    return validate_inputs(packet)
 
 
 def input_snapshot(engine, group_id, member, *, record_snapshot=None):
@@ -37,14 +88,42 @@ def input_snapshot(engine, group_id, member, *, record_snapshot=None):
     activity = {'version': state['version'], 'attempts': attempts,
                 'notebooks': len(state.get('notebooks', {})),
                 'claim_labels': dict(Counter(c.get('certainty', 'unlabelled') for n in state.get('notebooks', {}).values() for c in n.get('claims', [])))}
+    # An overview of the latest recorded interpretation in every studied topic,
+    # rather than letting only the last two notebooks define Bob's horizon.
+    latest = {}
+    for notebook in sorted(state.get('notebooks', {}).values(), key=lambda n: (n.get('updated_version', n.get('created_version', 0)), n['id'])):
+        domain = state.get('projects', {}).get(notebook.get('project'), {}).get('domain')
+        if domain:
+            latest[domain] = notebook
+    activity['topic_overview'] = [{'domain': domain, 'notebook_id': notebook['id'],
+        'revision': notebook.get('revision', 0),
+        'summary': str(notebook.get('summary', ''))[:180],
+        'limitations': str(notebook.get('limitations', ''))[:180], 'excerpted': True,
+        'certainty': sorted({str(claim.get('certainty', 'unlabelled')) for claim in notebook.get('claims', [])})}
+        for domain, notebook in sorted(latest.items())]
+    from .autonomous_context import status
+    adapter = status(state)
+    activity['self_observation'] = {key: adapter[key] for key in
+        ('enabled', 'policy', 'revision', 'adoptions', 'rollbacks', 'quarantined')}
     stories = [{'id': member + ':activity', 'kind': 'recorded-activity',
                 'record_url': prefix + 'events.html', 'statement': activity}]
-    for notebook in sorted(state.get('notebooks', {}).values(), key=lambda n: (n.get('updated_version', n.get('created_version', 0)), n['id']))[-2:]:
+    recent = sorted(latest.values(), key=lambda n: (n.get('updated_version', n.get('created_version', 0)), n['id']))
+    repositories = {topic['id'] for topic in state.get('research_topics', []) if topic.get('source_kind') == 'repository'}
+    self_studies = [n for n in recent if state.get('projects', {}).get(n.get('project'), {}).get('domain') in repositories]
+    selected = recent[-2:]
+    if self_studies:
+        study = self_studies[-1]
+        others = [n for n in recent if n is not study]
+        selected = others[-1:] + [study]
+    # Legacy projections without project metadata still retain their recent detail.
+    if not recent:
+        selected = sorted(state.get('notebooks', {}).values(), key=lambda n: (n.get('updated_version', n.get('created_version', 0)), n['id']))[-2:]
+    for notebook in selected:
         receipt = state.get('invocations', {}).get(notebook.get('updated_by'), {})
         stories.append({
             'id': member + ':notebook:' + notebook['id'], 'kind': 'provisional-notebook',
             **subset(notebook, ('title', 'summary', 'limitations', 'next_questions'), 250),
-            'excerpted': True,
+            'excerpted': True, 'findings': str(notebook.get('findings', ''))[:300],
             'notebook_id': notebook['id'], 'revision': notebook.get('revision', 0),
             'recorded_at': receipt.get('finished', receipt.get('time', '')),
             'record_url': prefix + 'index.html#projects/notebook:' + notebook['id'],
@@ -57,7 +136,7 @@ def input_snapshot(engine, group_id, member, *, record_snapshot=None):
                         for e in list(dict.fromkeys([v.get('evidence') for c in notebook.get('claims', [])[:1] for v in c.get('support', [])] + notebook.get('evidence', [])))[:2]],
         })
     packet = {
-        'schema': 1, 'editorial_schema': 2, 'group_id': group_id, 'member': member, 'head': head,
+        'schema': 1, 'editorial_schema': 2, 'synthesis_contract': SYNTHESIS_CONTRACT, 'group_id': group_id, 'member': member, 'head': head,
         'version': state['version'], 'activity': {'version': state['version'], 'attempt_digest': digest([{k: i.get(k) for k in ('phase', 'status', 'reason')} for i in attempts])},
         'charter': str(state.get('charter', ''))[:200],
         'topics': [{'label': t['label'], 'question': t.get('seed_question', '')[:120]}
@@ -66,24 +145,8 @@ def input_snapshot(engine, group_id, member, *, record_snapshot=None):
                      for p in sorted(state.get('projects', {}).values(), key=lambda p: p.get('updated_version', p.get('created_version', 0)))[-1:]],
         'stories': stories,
     }
-    # Trim whole older stories, never attribution, certainty labels or URLs.
-    while len(json.dumps(packet)) > 3200 and len(stories) > 2:
-        stories.pop(1)
-    if len(json.dumps(packet)) > 3200:
-        packet['projects'] = []
-    if len(json.dumps(packet)) > 3200:
-        packet['charter'] = packet['charter'][:100]
-        for topic in packet['topics']:
-            topic['question'] = topic['question'][:80]
-        for story in stories[1:]:
-            story['summary'] = story['summary'][:120]
-            story['next_questions'] = story['next_questions'][:120]
-    if len(json.dumps(packet)) > 3500:
-        packet['charter'] = ''
-        for topic in packet['topics']:
-            topic['question'] = ''
-    require(len(json.dumps(packet)) <= 3500, 'Member editorial summary ceiling reached')
-    return packet
+    return bound_member_input(packet)
+
 
 
 def validate_inputs(packet):
@@ -142,6 +205,7 @@ def editorial_continuity(packet, previous):
 def request(packet, checkpoint, repair=None, *, previous=None, max_context_chars=None):
     validate_inputs(packet)
     modern = all(i.get('editorial_schema') == 2 for i in packet['inputs'])
+    from .prompts import BOB_SYNTHESIS_SYSTEM
     result = {
         'system': (
             "You are Bob, WAKE's public translation voice. Write one shared group blog post by synthesizing "
@@ -158,6 +222,7 @@ def request(packet, checkpoint, repair=None, *, previous=None, max_context_chars
             "Put the plain final heading Summary on its own line INSIDE the body string, "
             "with a blank line before the heading and before its summary paragraphs. "
             "Return exactly four keys: title, lede, body, lens. Never add a summary key."
+            "\n" + BOB_SYNTHESIS_SYSTEM
         ),
         'context': {'checkpoint': checkpoint, 'group': packet},
         'enforce_response_schema': True,
@@ -192,7 +257,7 @@ def request(packet, checkpoint, repair=None, *, previous=None, max_context_chars
             "Explain competing interpretations and why the distinction matters when the supplied records support it. "
             "Before Summary, leave the reader with a specific unresolved question from the supplied stories. "
             "Do not invent suspense, breakthroughs, experiments, future commitments or a publication date. "
-            " This is a progress explanation, not a new scientific result. Write for a curious 15-year-old "
+            " This is an attributed synthesis, not a new scientific result. Write for a curious 15-year-old "
             "who knows none of the research vocabulary. Never label the audience as children or teens. "
             "Explain unfamiliar terms before or as they appear. Use a concrete everyday example explicitly "
             "labelled as an analogy, not evidence. Tell a connected story about who did what, where and when, "
@@ -542,6 +607,8 @@ def synchronize(engine, provider=None):
             {'article': group['publication']['article'], 'reason': revision['reason']} if revision else
             {'article': {'body': recent[-1].get('editorial', {}).get('draft_excerpt', '')},
              'reason': recent[-1].get('reason', 'Previous synthesis did not complete')} if recent else None)
+        from .bob_observation import farm_observation
+        packet = with_farm_observation(packet, farm_observation())
         result = engine.synthesize_group(provider, packet, checkpoint, repair=repair,
                                          previous=group.get('publication'))
         if result['status'] != 'editorial_completed':
@@ -576,9 +643,26 @@ def editorial_due(group, packet, *, now=None):
     old = {i['member']: i for i in previous}
     require(all(i['version'] >= old.get(i['member'], {}).get('version', 0) for i in packet['inputs']),
             'Member research generation regressed; operator reconciliation required')
-    return bool(group.get('revision_requested')) or (
-        sum(i['version'] for i in packet['inputs']) * 3 // 100
-        > sum(i['version'] for i in previous) * 3 // 100)
+    if group.get('revision_requested'):
+        return True
+    opportunity = (sum(i['version'] for i in packet['inputs']) * 3 // 100
+                   > sum(i['version'] for i in previous) * 3 // 100)
+    if not opportunity:
+        return False
+    if not all(item.get('synthesis_contract') == SYNTHESIS_CONTRACT for item in packet['inputs']):
+        return True  # Earlier input contracts retain their own cadence.
+    def meaning(inputs):
+        result = []
+        for item in inputs:
+            statement = item.get('stories', [{}])[0].get('statement', {})
+            result.append({'member': item['member'],
+                'notebooks': sorted((row['domain'], row['notebook_id'], row.get('revision', 0))
+                                    for row in statement.get('topic_overview', [])),
+                'self_observation': statement.get('self_observation')})
+        return result
+    # Neither completed-call counters nor routine feedings manufacture a story.
+    # Notebook revisions and recorded system adaptations can justify a synthesis.
+    return meaning(packet['inputs']) != meaning(previous)
 
 
 def reference_links(article, packet):

@@ -43,7 +43,8 @@ test('identity, recorded care, metrics, notes and model compatibility are checke
   reject(p=>p.colony_id='someone-else');reject(p=>p.model='unreviewed');reject(p=>p.checkpoint.seed++);reject(p=>p.replay.ticks++);reject(p=>p.replay.care[0].tick=p.checkpoint.ticks);reject(p=>p.replay.care[0].action='eval');reject(p=>p.observation.after.ants++);reject(p=>p.observation.food_added++);reject(p=>p.notes[0].html='<img onerror=alert(1)>');reject(p=>p.notes[0].workers++);reject(p=>p.notes[0].feedings=100000);reject(p=>p.source_revision='main');
   assert.equal(client.validDate('2026-02-31T00:00:00Z'),false);
   assert(client.notebookText(valid.notes[0]).includes(String(valid.notes[0].deliveries)+' food'));
-  assert(client.notebookText(valid.notes[0]).includes('does not show what caused'));
+  assert(!client.notebookText(valid.notes[0]).includes('I recorded'));
+  assert(!client.notebookText(valid.notes[0]).includes('useful comparison'));
 });
 
 test('reader uses only fixed GitHub or explicit same-origin preview and enforces bounds',async()=>{

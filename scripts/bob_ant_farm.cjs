@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* Bob's presentation-only colony. Never opens research records or credentials. */
+/* Separate deterministic caretaker; never a Bob model tool or research writer. */
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
 const {Colony}=require('../wake/assets/ant-colony.js');

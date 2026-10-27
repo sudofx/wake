@@ -23,8 +23,8 @@ use labelled icons. Button flashes and glowing food marks show actions immediate
 
 The selector starts with **Bob’s farm**, a shared, maintained, observer-only
 colony. **My farm** resumes this browser’s editable personal save. Switching
-farms never copies the shared recording over that save. Bob’s dated care and
-observation notebook appears in a collapsed **Ant farm updates** list inside each
+farms never copies the shared recording over that save. The dated care and
+observation record appears in a collapsed **Farm observation record** inside each
 blog article, above the collapsed **Sources and records** list. See [shared farm upkeep](bob-ant-farm.md).
 If the shared recording is unavailable, the page says so; it never invents a
 substitute shared colony.

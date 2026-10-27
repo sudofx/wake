@@ -264,6 +264,8 @@ class GroupEditorialTests(unittest.TestCase):
         now = datetime.now(timezone.utc)
         packet = deepcopy(self.packet)
         group = {'publication': {'inputs': deepcopy(packet)}, 'published_at': now.isoformat()}
+        packet['inputs'][0]['stories'][0]['statement']['topic_overview'] = [
+            {'domain':'memory', 'notebook_id':'n', 'revision':1}]
         self.assertFalse(editorial_due(group, packet, now=now + timedelta(hours=2)))
         # Two existing wakes: neither 32 nor 33 is due; 34 is, with an idle peer.
         packet['inputs'][0]['version'] += 30
@@ -280,6 +282,7 @@ class GroupEditorialTests(unittest.TestCase):
         packet['inputs'][0]['version'] += 2
         self.assertFalse(editorial_due(group, packet, now=now))
         packet['inputs'][1]['version'] += 1
+        packet['inputs'][0]['stories'][0]['statement']['topic_overview'][0]['revision'] = 2
         self.assertTrue(editorial_due(group, packet, now=now))
         packet = deepcopy(group['publication']['inputs'])
         packet['inputs'][0]['activity']['attempt_digest'] = 'new failed attempt'
@@ -296,10 +299,87 @@ class GroupEditorialTests(unittest.TestCase):
         milestones = []
         for total in range(3, 201):
             packet['inputs'][0]['version'] = total - 1
+            packet['inputs'][0]['stories'][0]['statement']['topic_overview'] = [
+                {'domain':'memory', 'notebook_id':'n', 'revision':total}]
             if editorial_due(group, packet):
                 milestones.append(total)
                 group['publication']['inputs'] = deepcopy(packet)
         self.assertEqual(milestones, [34, 67, 100, 134, 167, 200])
+
+    def test_counters_and_routine_care_alone_do_not_manufacture_a_story(self):
+        from wake.group_editorial import editorial_due
+        packet = deepcopy(self.packet)
+        group = {'publication': {'inputs': deepcopy(packet)}}
+        packet['inputs'][0]['version'] += 100
+        statement = packet['inputs'][0]['stories'][0]['statement']
+        statement['farm_observation'] = {'feedings': 12, 'food_added': 1200}
+        self.assertFalse(editorial_due(group, packet))
+        statement['topic_overview'] = [{'domain':'wake_self_study', 'notebook_id':'new-note', 'revision':1}]
+        self.assertTrue(editorial_due(group, packet))
+        group['publication']['inputs'] = deepcopy(packet)
+        packet['inputs'][0]['version'] += 100
+        self.assertFalse(editorial_due(group, packet))
+        statement['self_observation']['revision'] += 1
+        self.assertTrue(editorial_due(group, packet))
+
+    def test_overview_includes_older_topics_and_observation_is_bound_to_publication(self):
+        from wake.group_editorial import with_farm_observation
+        state = deepcopy(self.engines[0].store.load())
+        state['projects'] = {f'p{i}': {'id':f'p{i}', 'domain':domain}
+                             for i,domain in enumerate(('memory','preferences','wake_self_study','inquiry'))}
+        state['notebooks'] = {f'n{i}': {'id':f'n{i}', 'project':f'p{i}', 'title':domain,
+            'summary':'A recorded interpretation of '+domain, 'limitations':'The comparison is provisional.',
+            'revision':1, 'updated_version':i, 'evidence':[], 'claims':[]}
+            for i,domain in enumerate(('memory','preferences','wake_self_study','inquiry'))}
+        summary = input_snapshot(None, 'wake', self.members[0], record_snapshot=(state, 'a'*64))
+        self.assertEqual({n['domain'] for n in summary['stories'][0]['statement']['topic_overview']},
+                         {'memory','preferences','wake_self_study','inquiry'})
+        observation = {'schema':'bob-farm-observation@1','status':'available','scope':'programmed-simulation-only',
+            'revision':'b'*40,'source':'https://raw.githubusercontent.com/sudofx/wake/'+('b'*40)+'/farm.json',
+            'captured_at':'2026-10-27T17:00:00Z','before':{'ants':64},'after':{'ants':65}}
+        packet = with_farm_observation(self.packet, observation)
+        self.assertNotIn('farm_observation', self.packet['inputs'][0]['stories'][0]['statement'])
+        writer = StructuredWriter(); engine = self.engines[0]; before = deepcopy(engine.store.load())
+        with engine.store.lock():
+            result = engine.synthesize_group(writer, packet, 1)
+        self.assertEqual(result['status'], 'editorial_completed')
+        supplied = writer.request['context']['group']['inputs'][0]['stories'][0]
+        self.assertEqual(supplied['statement']['farm_observation'], observation)
+        self.assertEqual(supplied['sources'][0]['source'], observation['source'])
+        p = publication(packet, 1, result['article'], result['id'], {'name':'fixture','model':writer.model})
+        self.grant(engine,p); engine.store.append('group_bob_published', {'publication':p})
+        after = engine.store.load()
+        for key in ('version','journal','evidence','notebooks','attention','commitments','projects'):
+            self.assertEqual(after[key], before[key])
+        self.assertEqual(engine.store.audit()[0], after)
+
+    def test_full_installation_keeps_topic_overviews_and_farm_within_provider_budget(self):
+        from wake.group_editorial import request, with_farm_observation
+        from wake.providers import provider_input_chars
+        state = deepcopy(self.engines[0].store.load())
+        domains = ['assumptions','preferences','objectives','memory','continuity','responsibility','judgment','wake_self_study']
+        state['research_topics'] = [{'id':d,'label':'Research into '+d,'seed_question':'Which observations challenge this interpretation?'} for d in domains]
+        state['projects'] = {'p'+d:{'id':'p'+d,'domain':d} for d in domains}
+        state['notebooks'] = {'n'+d:{'id':'n'+d,'project':'p'+d,'title':'An interpretation of '+d,
+            'summary':'A bounded recorded interpretation. '*20, 'limitations':'Independent confirmation is missing. '*20,
+            'next_questions':'What evidence would change this?', 'revision':2,'updated_version':i,
+            'claims':[],'evidence':[]} for i,d in enumerate(domains)}
+        members = [str(parent*100+child)+'.wake' for parent in (1,2,3) for child in range(4)]
+        packet = {'schema':1,'group_id':'wake','members':members,'leader':members[0],
+            'inputs':[input_snapshot(None,'wake',member,record_snapshot=(state,'a'*64)) for member in members]}
+        observation = {'schema':'bob-farm-observation@1','status':'available','scope':'programmed-simulation-only',
+            'source':'https://raw.githubusercontent.com/sudofx/wake/'+('b'*40)+'/farm.json',
+            'revision':'b'*40,'sha256':'c'*64,'model_source_revision':'d'*40,
+            'captured_at':'2026-10-27T17:00:00Z','before':{'ants':64,'dug':10,'delivered':3},
+            'after':{'ants':65,'dug':12,'delivered':4},'recent_intervals':[
+                {'from_tick':i*6000,'to_tick':(i+1)*6000,'workers':64,'deliveries':3,'new_tunnels':2,'feedings':1} for i in range(4)]}
+        packet = with_farm_observation(packet,observation)
+        result = request(packet,2,max_context_chars=48000)
+        self.assertLessEqual(provider_input_chars(result),48000)
+        for item in result['context']['group']['inputs']:
+            self.assertEqual({row['domain'] for row in item['stories'][0]['statement']['topic_overview']},set(domains))
+        self.assertEqual(result['context']['group']['inputs'][0]['stories'][0]['statement']['farm_observation']['status'],'available')
+        self.assertNotIn('actions',result['response_schema']['properties'])
 
     def test_retained_grouped_citations_and_informal_language_publish_without_inference(self):
         from wake.group_editorial import synchronize, validate_grounding

@@ -5,11 +5,11 @@ browser and keeps its existing local save. **Bob’s farm** is a shared colony
 maintained on GitHub. Visitors can observe its recorded interval but cannot feed,
 reset or change its saved state. Playback does not become a new shared history.
 
-The caretaker is a small deterministic policy under Bob’s editorial role. It
+The caretaker is a separate deterministic policy, not Bob’s writing model. It
 checks food availability and nest reserves and adds mixed food at the entrance
-when needed. It does not use a model, Gemini key or research authority. Bob’s
-notebook describes actual counts and recorded interventions; its explanations
-are editorial analogies, not claims that an AI performed a scientific discovery.
+when needed. It does not use a model, Gemini key or research authority. The
+observation record contains counts and interventions. It does not manufacture
+first-person Bob prose or repeat a fixed lesson.
 
 ## What is shared
 
@@ -91,8 +91,8 @@ select Bob’s farm, but cannot choose the JSON URL.
 
 ## Blog integration and evidence boundary
 
-`WakeBobFarm.mountNotebook(container)` renders a dated farm notebook using actual
-numeric observations and care receipts. Within an article it sits inside the main
+`WakeBobFarm.mountNotebook(container)` renders a collapsed **Farm observation
+record** with dated numeric observations and care receipts. Within an article it sits inside the main
 reading container, above **Sources and records**. Both lists start collapsed and
 expand on click; article citation links also open the relevant sources list. It uses text nodes,
 not source-provided HTML, and labels the material as simulation observations.
@@ -100,10 +100,38 @@ No native blog body, article hash, evidence record, research counter or governan
 decision changes. This allows farm notes to appear alongside Bob’s articles
 without pretending that an old article originally contained a newer observation.
 
-Model-written inline farm references in the native research blog would require
-a reviewed editorial context integration and separately verified runtime adoption.
-Publishing the browser notebook does not prove the executing research runtime
-has adopted new context or that a model has learned from the farm.
+Bob is the central public synthesis voice across the supplied research topics,
+recorded self-study and system adaptations, and this farm. His eyes receive
+attributed observations; his mouth publishes an interpretation. He has no research,
+source-editing, governance or colony-control tools. The caretaker stays separate.
+
+The existing group editorial path receives every member's dated overview, including
+the latest notebook interpretation in each studied topic and its limitations.
+The leader also reads a bounded public farm packet through two GET requests: resolve
+the fixed farm branch once, then read `farm.json` at that immutable commit. The
+editorial context retains the revision, raw SHA-256, capture time, model identity,
+interval, before/after counts and bounded recent intervals. Metric/receipt
+disagreement or unavailable data produces an explicit unavailable observation,
+never a fabricated lesson. No untrusted farm prose is delivered to the model.
+
+This source enters the leader's attributed story and the exact native editorial
+invocation/publication digest. It is never imported as qualifying research evidence.
+The writing model may connect or challenge an interpretation, explain where an
+analogy fails, or formulate a useful public question. It must distinguish a
+programmed simulation from a biological experiment and a speculative comparison
+from a research finding. A connection is optional when the supplied material
+does not support one. Previous Bob prose remains reading continuity, not evidence.
+
+Regular publication opportunities require a new notebook/revision or a recorded
+system-adaptation change; accepted-cycle counters and routine feedings alone
+do not justify another article. Operator editorial revisions remain explicit.
+The provider still returns only attributed article fields, and publication changes
+no research version, journal, evidence, Attention, commitments or farm state.
+
+The browser observation record may be newer than a displayed article. Its
+publication alone does not prove runtime adoption, model comprehension or a
+scientific discovery. Source checks, the hosted runtime upgrade and actual
+editorial receipts remain separate verification boundaries.
 
 Run the focused checks:
 

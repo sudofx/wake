@@ -100,7 +100,7 @@ provider or record authority; its manifest is derived presentation.
 The [digital ant farm](ant-farm.md) keeps each visitor’s editable colony in
 browser storage. [Bob’s observer-only colony](bob-ant-farm.md) uses a separate
 append-only Git branch with bounded checkpoints and recorded care. Browser replay
-and the dated blog notebook are derived simulation presentation. They never write
+and the dated farm observation record are derived simulation presentation. They never write
 native research articles, evidence, governance or autonomous improvement state;
 publishing them does not establish runtime editorial-context adoption.
 
@@ -444,8 +444,10 @@ person, persona, identity, consciousness, feelings, or subjective experience.
 
 Bob's Blog is a separate reader-facing translation layer. Bob is intentionally a persona/byline, not
 **WAKE✳︎**'s mind, self, identity, consciousness, mechanism, collaborator or research participant. Bob does
-not converse with WAKE✳︎, steer it, advise it, or write its journal. Bob observes the durable research record
-after the fact and translates what WAKE✳︎ is doing, what changed, what it found, what remains uncertain, and
+not converse with WAKE✳︎, steer it, advise it, or write its journal. Bob receives a system-wide editorial overview of research, recorded self-study,
+operational adaptations and pinned farm observations. His synthesis connects
+interpretations and questions across those sources. He observes the durable research record
+after the fact and explains what WAKE✳︎ is doing, what changed, what it found, what remains uncertain, and
 the who/what/where/when/why/how a nontechnical reader needs. The persona exists because the technical record
 is too detailed for ordinary conversation: Bob selects the smallest useful idea, explains it in everyday
 language, and gives readers a path back to the notebooks, sources and exact accepted wake. Every Bob post

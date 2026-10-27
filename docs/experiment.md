@@ -443,7 +443,8 @@ project. A model-written editorial correction retains and supersedes the earlier
 article; its operator request, draft and invocation remain auditable. Readable
 prose and traceable references do not establish independent scientific validity.
 The [editorial contract](development.md#first-run-publication)
-defines the aggregate three-posts-per-100-accepted-wakes cadence, quota-bounded retries and
+defines three publication opportunities per 100 accepted wakes, guarded by
+changed research or recorded system adaptations for synthesis inputs, quota-bounded retries and
 editorial language guidance. Forgiving Bob’s prose changes no research evidence
 qualification or accepted-cycle rule. Structured editorial responses supply explicit
 paragraph references and a separate summary; deterministic rendering is recorded

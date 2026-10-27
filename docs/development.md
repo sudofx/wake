@@ -575,9 +575,12 @@ uses one parent model invocation to introduce the initialized records of all mem
 even when their accepted research versions are still zero. Children make no research
 requests during this startup stage. A legacy failed initial synthesis retains its historical single-attempt rule.
 New attributed editorial packets use an independent sequence: the next article is
-scheduled three times per 100 aggregate accepted wakes (34, 67, 100, then
+eligible at three opportunities per 100 aggregate accepted wakes (34, 67, 100, then
 134, 167, 200, and so on) across all nodes. The last publication’s captured inputs are the durable watermark.
-A missed milestone remains due until publication succeeds; one catch-up article
+For `bob-system-synthesis@1` inputs, a new notebook/revision or recorded system
+adaptation must also exist. Counters and routine farm feedings alone do not
+manufacture a post. An explicit operator revision remains eligible.
+A meaningful missed opportunity remains due until publication succeeds; one catch-up article
 covers accumulated work without fabricating backdated posts. Failed attempts,
 wall time and Bob’s receipts do not count. Research never waits for the article.
 All twelve dated exports are required, but members need not advance equally or
@@ -587,6 +590,9 @@ receipts and changing export heads cannot manufacture news. Regressing a member'
 research version fails closed for operator review; a reset is never inferred from
 an editorial cadence.
 
+Each bounded input includes a per-topic notebook overview and recorded context
+adaptations. The leader adds a pinned, read-only farm observation with its source
+link; unavailable data is explicit. See [Bob’s synthesis boundary](bob-ant-farm.md#blog-integration-and-evidence-boundary).
 Each input supplies attributed story IDs, node/record links, notebook revisions,
 dates, recorded claim labels and limitations, plus bounded source URLs. The model
 returns paragraph reference numbers pointing to those supplied IDs; the renderer
