@@ -214,19 +214,6 @@ The [kernel contract](kernel.md) distinguishes generic envelope replay from
 application state reconstruction. Application IDs share a record revision when
 installed together; independent installations must select separate records.
 
-[Ask Bob](ask-bob.md) separately uses an article-specific public passage guide,
-capped at 96 KiB. Browser inference selects source passages and bounded recent
-same-context conversation into a compact prompt for an opt-in WebGPU model.
-Other reader contexts use exact record shards or the bounded overview from their selected snapshot,
-with source-head checks; no routine full-archive download is needed. Startup reads
-have deadlines. Unknown citation IDs are rejected; missing citations expose the
-material Bob read without implying that it supports every generated sentence.
-The selected source version scopes saved history. Prior answers remain untrusted,
-never evidence. Model files download from pinned revisions, while questions and
-replies stay on-device. Source search quotes the guide without inference. The
-former hosted conversation API remains retired; the loopback Gemini preview is
-separate. Every Bob mode is advisory and excluded from research retrieval,
-governance and accepted scientific memory.
 
 The separate [inspection reading path](inspection.md) offers a compact orientation,
 manifest and progressively deeper static evidence. It requires no model-specific

@@ -24,8 +24,7 @@
     if(packet.item){
       if(packet.collection==='journal'){
         if(!data.state.journal.some(row=>row.invocation===packet.item.invocation))data.state.journal.push(packet.item);
-      }else data.state[packet.collection][packet.item.id]=packet.collection==='posts'&&packet.article?
-        {...packet.item,_reader_article:packet.article}:packet.item;
+      }else data.state[packet.collection][packet.item.id]=packet.item;
     }
     for(const [name,items] of Object.entries(packet.related||{}))Object.assign(data.state[name]||={},items);
     const known=new Set(data.events.map(event=>event.projection_id||event.hash));

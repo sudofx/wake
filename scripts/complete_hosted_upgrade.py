@@ -54,7 +54,7 @@ def presentation_only_diff(client, baseline, candidate, *, allow_development=Tru
         allowed.update(('wake/improvement.py', 'wake/recovery_demo.py'))
     for path in before.keys() | after.keys():
         if before.get(path) != after.get(path) and not (path in allowed or
-                path.startswith(('wake/assets/', 'docs/', 'tests/', 'deploy/ask-bob/'))):
+                path.startswith(('wake/assets/', 'docs/', 'tests/'))):
             raise ValueError('Presentation-only request changes protected source: ' + path)
 
 

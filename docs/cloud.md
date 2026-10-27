@@ -91,12 +91,8 @@ is a dated, read-only copy of the public data exported from those records. GitHu
 Pages executes no research and has no research controls. An explicitly bound hosted
 status light observes the GitHub Actions executor; ordinary mirrors have no execution light.
 
-The public mirror has no anonymous model-chat server. Its former ChatGPT Sites
-Bob service and hosted live-activity relay remain retired. Pages serves completed
-research, the browser-local ant simulation, opt-in device-local Bob chat and the
-[self-correction observations and workflow guide](self-correction.md). Browser
-model files download from pinned Hugging Face revisions; inference stays on-device.
-GitHub Actions executes research with Google Gemini. No ChatGPT subscription or
+The public mirror serves the research pages, ant farm and self-correction status
+from GitHub Pages. GitHub Actions executes research with Google Gemini. No ChatGPT subscription or
 Sites hosting is required by these published features.
 
 The unified export also generates [static inspection resources](inspection.md)
@@ -331,7 +327,7 @@ inconsistent reports fail closed. No provider calls or remote record writes occu
 
 Choose the release boundary from the actual diff:
 
-- **Website and local Ask Bob:** verify their own boundaries independently.
+- **Website:** verify their own boundaries independently.
   They do not require a research stop or a native replay merely to ship UI.
 - **Presentation carried by an older pinned batch:** an explicitly requested
   `presentation_only: true` upgrade can bind the verified presentation source
@@ -552,7 +548,7 @@ protected research/inspection bytes before compacting the disposable Pages copy.
 The Pages payload keeps interface assets and bounded recent fallback views, with
 an 8 MiB data budget per root/node. It prioritizes the reader overview, installation
 identity, recent reader packets/guides and small first list pages. Full archives,
-unbounded map shards, older record packets and retired CPU engines are omitted
+unbounded map shards and older record packets are omitted
 from this interface bundle. Every retained data packet is hash-checked unchanged;
 complete public data stays on `wake-public`, and native records are never opened.
 Presentation metadata records the fallback's limited scope. In an outage the
@@ -569,9 +565,8 @@ The public branch is a captured data input, not the served UI owner.
 `hosted_execution` identifies the research source; `presentation` identifies the
 separately checked interface. No native record is opened. Research can keep
 exporting data while interface development and publishing proceed independently.
-The presentation refresh rebuilds passage guides from the captured public archive
-and leaves hashed inspection packets unchanged. See [Ask Bob](ask-bob.md) for the
-on-device model and optional loopback preview.
+The presentation refresh uses the captured public archive and leaves hashed
+inspection packets unchanged.
 
 ### Hosted execution observations
 

@@ -464,19 +464,10 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         # Publish source styles alongside every HTML view: Pages and exports share
         # the same theme file rather than receiving copied inline palettes.
         for name in ("style.css", "nav.css", "map.css", "map3d.css", "theme.css",
-                     "nav.js", "map.js", "map3d.js", "flat-view.js", "app.js", "pet.js", "ask-bob.js", "ask-bob.css", "ask-bob-browser.js", "ask-bob-guide.js", "ask-bob-private.js",
-                     "evaluation-view.js", "ant-farm.html", "ant-farm.css", "ant-colony.js", "ant-drawing.js", "ant-farm.js", "bob-ant-farm.js", "bob-markdown.js",
-                     "bob-chat.html", "bob-chat.css", "bob-chat.js", "ask-bob-session.js", "ask-bob-context.js", "ask-bob-gpu.js", "ask-bob-gpu-worker.js"):
+                     "nav.js", "map.js", "map3d.js", "flat-view.js", "app.js", "pet.js",
+                     "evaluation-view.js", "ant-farm.html", "ant-farm.css", "ant-colony.js", "ant-drawing.js", "ant-farm.js", "bob-ant-farm.js"):
             atomic_write(target / name, (assets / name).read_text())
-        # These static inference assets are loaded when the reader opens Bob.
-        # They contain no provider credentials and never open research authority.
         shutil.copytree(assets / 'self-correction', target / 'self-correction', dirs_exist_ok=True)
-        for name in ('ask-bob-engine.js', 'ask-bob-engine.wasm', 'ask-bob-engine-compat.js',
-                     'ask-bob-engine-compat.wasm', 'ask-bob-engine.LICENSE.txt', 'ask-bob-engine.json',
-                     'ask-bob-engine-private.js', 'ask-bob-engine-private.wasm', 'ask-bob-engine-private.LICENSE.txt'):
-            (target / name).write_bytes((assets / name).read_bytes())
-        for path in assets.glob('ask-bob-gpu-*'):
-            (target / path.name).write_bytes(path.read_bytes())
         # Static Nebula artwork is presentation-only. Publish the responsive
         # source set alongside the generated shell without routing binaries through text IO.
         background_source = assets / "backgrounds"
@@ -510,8 +501,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         export_reader_transport(public_data, target)
         page = template.replace("/* WAKE_STYLE */", "").replace("/* NAV_STYLE */", "")
         page = page.replace("/* NAV_SCRIPT */", (assets / "nav.js").read_text())
-        page = page.replace("/* WAKE_SCRIPT */", (assets / "ask-bob.js").read_text() + "\n" + (assets / "app.js").read_text())
-        page = page.replace("</head>", '<link rel="stylesheet" href="ask-bob.css"></head>', 1)
+        page = page.replace("/* WAKE_SCRIPT */", (assets / "app.js").read_text())
         page = page.replace("/* HELP_SCRIPT */", (assets / "help.js").read_text())
         page = page.replace("/* PET_SCRIPT */", (assets / "pet.js").read_text())
         # Browser UX is HTML-first. Do not publish duplicate Markdown projections.
@@ -747,7 +737,7 @@ def _deployment_site(target, *, standalone, installation=None):
         page = path.read_text()
         # The immersive toy habitat owns its canvas and controls. It needs the
         # deployment binding, not the research masthead or runtime observers.
-        if path.name in ('ant-farm.html', 'bob-chat.html') or 'self-correction' in path.relative_to(target).parts:
+        if path.name in ('ant-farm.html',) or 'self-correction' in path.relative_to(target).parts:
             page = re.sub(r'<script>window\.WAKE_(?:DEPLOYMENT|STANDALONE)=[^<]*</script>', '', page)
             page = page.replace('<head>', '<head>' + marker, 1)
             atomic_write(path, page)
@@ -756,8 +746,6 @@ def _deployment_site(target, *, standalone, installation=None):
         page = re.sub(r'(<html[^>]*)\sdata-theme=[\"\'][^\"\']*[\"\']', r'\1', page, count=1)
         page = re.sub(r'<html([^>]*)>', r'<html\1 data-theme="light">', page, count=1)
         prefix = "../" * len(path.relative_to(target).parts[:-1])
-        if "WakeAskBob" in page and "bob-markdown.js" not in page:
-            page = page.replace("</head>", f'<script src="{prefix}bob-markdown.js" defer></script></head>', 1)
         page = re.sub(r'href="((?:\.\./)*(?:style|nav|map|map3d|research|theme)\.css)(?:\?[^"]*)?"', r'href="\1?v=20261014-mobile-width"', page)
         page = re.sub(r'src="((?:\.\./)*nav\.js)(?:\?[^"]*)?"', r'src="\1?v=20261014-container-mirror"', page)
         if '<header class="' in page and 'masthead' in page:

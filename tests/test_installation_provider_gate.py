@@ -159,13 +159,11 @@ class InstallationProviderGateTests(unittest.TestCase):
             thread.join(timeout=1)
             server.server_close()
 
-    def test_research_pause_allows_only_the_authenticated_owner_reader_role(self):
+    def test_research_requires_running_mode(self):
         from wake.installation import provider_admitted
         for mode in ('paused', 'stopped'):
             self.assertFalse(provider_admitted(mode, '100.wake', {}))
-            self.assertFalse(provider_admitted(mode, '101.wake', {'purpose': 'reader'}))
-        self.assertTrue(provider_admitted('paused', '100.wake', {'purpose': 'reader'}))
-        self.assertFalse(provider_admitted('stopped', '100.wake', {'purpose': 'reader'}))
+            self.assertFalse(provider_admitted(mode, '101.wake', {}))
         self.assertTrue(provider_admitted('running', '101.wake', {}))
 
     def test_shared_limit_returns_immediately_and_cancels_queue(self):

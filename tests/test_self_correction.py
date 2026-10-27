@@ -39,7 +39,7 @@ class SourceCorrectionTests(unittest.TestCase):
         self.assertEqual(correction.validate_plan(self.root, self.plan, paths={'wake/assets/reader.js'}), self.plan)
         for path in ('../README.md', '/tmp/a.js', 'wake/assets/../engine.py', 'wake/kernel/record.py',
                      'wake/engine.py', 'tests/test_reader.py', '.github/workflows/test.yml',
-                     'wake/assets/ask-bob-engine.json', 'docs/nested/a.md', './docs/reader.md', 'new.js'):
+                     'wake/assets/manifest.webmanifest', 'docs/nested/a.md', './docs/reader.md', 'new.js'):
             with self.subTest(path=path), self.assertRaises(ValueError):
                 correction.allowed_path(path)
         with self.assertRaisesRegex(ValueError, 'Unselected'):

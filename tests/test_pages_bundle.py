@@ -29,25 +29,19 @@ class PagesBundleTests(unittest.TestCase):
 
     def test_keep_recent_packets_and_assets_without_full_archives(self):
         root=self.site
-        for relative in [record_path('posts','latest'),record_path('guides','latest'),
+        for relative in [record_path('posts','latest'),
                          'reader-records/pages/journal/0.json',record_path('posts','old')]:
             path=root/relative;path.parent.mkdir(parents=True,exist_ok=True);path.write_text('{"captured":"exact bytes"}')
         (root/'wake-data.json').write_text('complete archive')
         (root/'events.jsonl').write_text('complete events')
-        (root/'ask-bob-engine.wasm').write_bytes(b'old CPU')
-        (root/'ask-bob-gpu-old.wasm').write_bytes(b'old GPU')
-        (root/'ask-bob-gpu-2b.wasm').write_bytes(b'GPU')
-        (root/'ask-bob-gpu-engine.json').write_text('{"files":{"ask-bob-gpu-2b.wasm":"hash"}}')
         before=(root/record_path('posts','latest')).read_bytes()
         result=compact(root)
         self.assertEqual(result['record_heads'],self.manifest['record_heads'])
         self.assertEqual((root/record_path('posts','latest')).read_bytes(),before)
-        self.assertTrue((root/record_path('guides','latest')).exists())
         self.assertTrue((root/'reader-records/pages/journal/0.json').exists())
-        for name in ('wake-data.json','events.jsonl','ask-bob-engine.wasm','ask-bob-gpu-old.wasm',record_path('posts','old')):
-            self.assertFalse((root/name).exists(),name)
-        self.assertEqual((root/'ask-bob-gpu-2b.wasm').read_bytes(),b'GPU')
         self.assertIn('recent-overview',(root/'index.html').read_text())
+        for name in ('wake-data.json', 'events.jsonl', record_path('posts','old')):
+            self.assertFalse((root/name).exists(),name)
         self.assertEqual(json.loads((root/'nodes/100.wake/installation.json').read_text()),result)
 
     def test_optional_details_cannot_exceed_fixed_byte_limits(self):

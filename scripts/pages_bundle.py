@@ -55,8 +55,6 @@ def compact(site):
         for collection in COLLECTIONS:
             for identifier in data['state'].get(collection, {}):
                 retain(record_path(collection, identifier), DETAIL_LIMIT)
-                if collection == 'posts':
-                    retain(record_path('guides', identifier), DETAIL_LIMIT)
         for row in data['state'].get('journal', []):
             retain(record_path('journal', 'cycle:' + str(row['cycle'])), DETAIL_LIMIT)
             if row.get('invocation'):
@@ -65,23 +63,15 @@ def compact(site):
         for path in sorted((root / 'inspect').glob('*')):
             if path.is_file():
                 retain(str(path.relative_to(root)), DETAIL_LIMIT)
-        gpu_manifest=root/'ask-bob-gpu-engine.json'
-        gpu_files=set(json.loads(gpu_manifest.read_text())['files']) if gpu_manifest.exists() else set()
         for path in root.rglob('*'):
             if not path.is_file():
                 continue
             relative = path.relative_to(root)
             if 'nodes' in relative.parts:
                 continue
-            if path.name.startswith('ask-bob-engine'):
-                continue  # Retired CPU inference is not the public chat path.
-            if path.name.startswith('ask-bob-gpu-') and path.suffix=='.wasm' and path.name not in gpu_files:
-                continue
             if path.suffix in ASSET_SUFFIXES or path.name.endswith('.LICENSE.txt'):
                 keep.add(path)
             elif path.suffix == '.html' and (path.parent == root or 'self-correction' in relative.parts):
-                keep.add(path)
-            elif path.name == 'ask-bob-gpu-engine.json':
                 keep.add(path)
         plans.append((root, keep, used))
     # Resolve every mandatory file/budget before deleting anything.

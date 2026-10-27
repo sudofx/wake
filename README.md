@@ -56,12 +56,7 @@ explicit worker recovery, failure evidence and reproducible disturbance checks.
 Use the [private continuity workflow](docs/continuity/README.md) to preserve human
 research notes and engineering handoffs between conversations.
 
-The public website and ant farm run on GitHub Pages. [Ask Bob](docs/ask-bob.md)
-can download a model and answer on the reader’s graphics processor in a separate
-chat window; conversations stay on the device. The engine ships with the site,
-and opening the chat automatically downloads model files from pinned Hugging Face revisions.
-The former hosted Bob service and activity relay remain retired. An optional local
-Gemini preview keeps its credential server-side.
+The public website and ant farm run on GitHub Pages.
 The [self-correction page](https://sudofx.github.io/wake/self-correction/) shows
 current GitHub correction runs, draft source changes and dated installation evidence.
 The [source correction workflow](docs/self-correction.md) can generate bounded

@@ -10,7 +10,8 @@
   // planted stance are illustrative gait choices, not calibrated stride data.
   for(const side of [-1,1])for(let leg=0;leg<3;leg++){
    const moving=ant.moving??ant.phase<1,phase=((gait/(Math.PI*2)+(leg%2?.5:0)+(side<0?.5:0))%1+1)%1;
-   const swing=moving?(phase<.68?1.22-2.44*phase/.68:-1.22+2.44*(phase-.68)/.32):0;
+   const rest=queen&&!ant.dead?(ant.restingMotion||0)*Math.sin(time*.7+leg*1.9+side)*.12:0;
+   const swing=moving?(phase<.68?1.22-2.44*phase/.68:-1.22+2.44*(phase-.68)/.32):rest;
    const lift=moving&&phase>=.68?Math.sin((phase-.68)/.32*Math.PI):0;
    const stride=1-Math.max(0,side*(ant.turn||0))*.3;
    const hip=(.55-leg*.55)*r,kneeX=(.95-leg*.95+swing*.36*stride)*r,kneeY=side*(1.05+Math.abs(leg-1)*.12-lift*.12)*r;

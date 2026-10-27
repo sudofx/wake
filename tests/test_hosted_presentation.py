@@ -40,7 +40,25 @@ class HostedPresentationTests(unittest.TestCase):
             # Reader pages inline shared navigation, unlike Console pages.
             index = root / 'index.html'
             index.write_text(index.read_text().replace('<script src="nav.js?v=old" defer></script>', '<script>/* inline navigation */</script>'))
+            # Captured snapshots still contain the removed conversation bundle.
+            retired = root / 'ask-bob-engine.wasm'
+            retired.write_bytes(b'retired model engine')
+            (root / 'bob-chat.html').write_text('<html><head></head></html>')
+            guide = root / 'reader-records/guides/old.json'
+            guide.parent.mkdir(parents=True)
+            guide.write_text('{"obsolete":"derived conversation passages"}')
+            index.write_text(index.read_text().replace('</head>',
+                '<link rel="stylesheet" href="ask-bob.css"><script>'
+                '/* Private browser conversation views; never research authority or exported state. */'
+                'window.WakeAskBob={};'
+                '/* Render exported research records and reader navigation; browser interactions never mutate authority. */'
+                '</script></head>'))
             bound = bind_hosted_status(root, 'example/repo', 'b' * 40)
+            self.assertFalse(retired.exists())
+            self.assertFalse((root / 'bob-chat.html').exists())
+            self.assertFalse(guide.exists())
+            self.assertNotIn('WakeAskBob', index.read_text())
+            self.assertNotIn('ask-bob.css', index.read_text())
             self.assertEqual(bound['record_heads'], manifest['record_heads'])
             self.assertNotIn('retired.invalid', (root / 'index.html').read_text())
             self.assertNotIn('chatgpt.site', (root / 'index.html').read_text())

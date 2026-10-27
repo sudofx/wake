@@ -91,8 +91,10 @@ select Bob’s farm, but cannot choose the JSON URL.
 
 ## Blog integration and evidence boundary
 
-`WakeBobFarm.mountNotebook(container)` renders a separate dated farm-notebook
-section using actual numeric observations and care receipts. It uses text nodes,
+`WakeBobFarm.mountNotebook(container)` renders a dated farm notebook using actual
+numeric observations and care receipts. Within an article it sits inside the main
+reading container, above **Sources and records**. Both lists start collapsed and
+expand on click; article citation links also open the relevant sources list. It uses text nodes,
 not source-provided HTML, and labels the material as simulation observations.
 No native blog body, article hash, evidence record, research counter or governance
 decision changes. This allows farm notes to appear alongside Bob’s articles

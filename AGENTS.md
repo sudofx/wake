@@ -219,7 +219,7 @@ do not spend an active session repeatedly polling an unchanged job. If all
 independent work is exhausted, report the pending dependency without claiming
 completion or promising unattended continuation that has no executor.
 
-Keep delivery boundaries independent. Presentation and Ask Bob changes need
+Keep delivery boundaries independent. Presentation changes need
 checks at their owning boundaries, not a research stop or a full native replay.
 For runtime candidates, start compatibility verification early on retained,
 authenticated encrypted inputs while the existing runtime continues. Each audit

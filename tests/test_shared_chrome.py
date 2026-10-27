@@ -43,13 +43,6 @@ class SharedChromeTests(unittest.TestCase):
                             self.assertNotIn('masthead.css', page)
                             self.assertNotIn('runtime-activity.js', page)
                             continue
-                        if path.name == 'bob-chat.html':
-                            self.assertIn('bob-chat.css', page)
-                            self.assertIn('window.WAKE_DEPLOYMENT=', page)
-                            self.assertNotIn('reader-theme.css', page)
-                            self.assertNotIn('console-light.css', page)
-                            self.assertNotIn('runtime-activity.js', page)
-                            continue
                         if 'self-correction' in path.relative_to(site).parts:
                             self.assertIn('Latest runs', page)
                             self.assertIn('Earlier operational recovery experiment', page)

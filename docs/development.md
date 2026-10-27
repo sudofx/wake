@@ -62,7 +62,7 @@ working preview available and print the error in the terminal.
 Use `--port 8082` for another port, or `--host 0.0.0.0` inside a development
 container with a private forwarded port. This does not replace the installation
 preview when testing actual research controls. Run focused tests locally with,
-for example, `python -m unittest tests.test_reader_transport tests.test_reader_guide`.
+for example, `python -m unittest tests.test_reader_transport tests.test_hosted_presentation`.
 
 A local browser check on October 26 measured 501 ms for the initial export and
 773 ms from a stylesheet edit to the automatically refreshed page. It recorded
@@ -91,12 +91,8 @@ For private human checkpoints and fresh-conversation recovery, use the
 [continuity workflow](continuity/README.md). It complements the authoritative
 research record without adding runtime state or automatic model context.
 
-The former hosted Bob service and activity relay are retired. Public [Ask Bob](ask-bob.md)
-automatically prepares a WebGPU model when the reader opens its chat; pinned model files
-come from Hugging Face, with no conversation sent there. The optional loopback
-Gemini reader is separate. Public presentation uses GitHub Pages; runtime research
-uses GitHub and Google Gemini.
-Any additional service requires the user's explicit approval.
+Public presentation uses GitHub Pages; runtime research uses GitHub and Google
+Gemini. Any additional service requires the user's explicit approval.
 
 For a real bounded source repair, open **Self-correction** from Console and run
 the [source-correction workflow](self-correction.md). WAKE generates selected
@@ -517,8 +513,7 @@ record fragments stay within that page. GitHub Pages needs no rewrite service.
 Older reader lists load their next 24-row public packet when the reader scrolls
 to the list end. Already loaded journal/history rows appear first. Loading stops
 at the recorded end, keeps the same snapshot head and never fetches the full
-archive. An unavailable packet shows a retry action. The homepage Ask Bob link
-sits beside the latest-story link, stacking on narrow screens.
+archive. An unavailable packet shows a retry action.
 The reader-only `reader-theme.css` uses sudofx's light/dark palette and sans/mono
 font stacks without changing page geometry. Console and its embedded components
 never load that stylesheet or the reader navigation script. The dark reader

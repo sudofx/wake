@@ -15,14 +15,14 @@ from wake.installation import Controller, InstallationHTTP, read_json, worker_ru
 
 
 class InstallationObserverTests(unittest.TestCase):
-    def test_paused_reader_http_admission_preserves_authentication_and_quota(self):
-        self.controller.mode = 'paused'
+    def test_research_http_admission_preserves_authentication_and_quota(self):
+        self.controller.mode = 'running'
         server = ThreadingHTTPServer(('127.0.0.1', 0), partial(InstallationHTTP, directory=str(self.root)))
         server.controller = self.controller
         thread = threading.Thread(target=server.serve_forever, daemon=True)
         thread.start()
         packet = {'action': 'acquire', 'member': '100.wake', 'request_id': 'a' * 32,
-                  'purpose': 'reader', 'model': 'fixture'}
+                  'model': 'fixture'}
         def post(body, token=None):
             headers = {'Content-Type': 'application/json',
                        'Authorization': 'Bearer ' + (token or self.controller.token)}
@@ -32,8 +32,7 @@ class InstallationObserverTests(unittest.TestCase):
                 return json.load(response)
         try:
             for body, token, status in ((packet, 'invalid', 403),
-                    ({k: v for k, v in packet.items() if k != 'purpose'}, None, 409),
-                    ({**packet, 'member': '101.wake'}, None, 409)):
+                    ({**packet, 'member': 'unknown'}, None, 400)):
                 with self.assertRaises(HTTPError) as error:
                     post(body, token)
                 self.assertEqual(error.exception.code, status)

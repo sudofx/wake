@@ -17,10 +17,12 @@ def bind_hosted_status(site, repository, revision):
         raise ValueError('Expected a GitHub repository')
     if not re.fullmatch(r'[0-9a-f]{40}', revision):
         raise ValueError('Expected a complete presentation source revision')
+    from .reader_presentation import remove_retired_reader
     manifest = json.loads((site / 'installation.json').read_text())
     if (manifest.get('live') is not False or not manifest.get('hosted_execution')
             or not manifest.get('installation_id') or len(manifest.get('record_heads', {})) != 12):
         raise ValueError('Hosted status requires an identified twelve-node hosted snapshot')
+    remove_retired_reader(site)
     config = {'repository': repository, 'workflow': 'hosted-research.yml', 'branch': 'master'}
     assets = Path(__file__).parent / 'assets'
     shell = (assets / 'index.html').read_text()
@@ -84,7 +86,7 @@ def bind_hosted_status(site, repository, revision):
             deployment.pop('ask_bob', None)
             deployment_path.write_text(json.dumps(deployment))
     # Personal colonies stay browser-local; Bob’s dedicated shared checkpoint is a separate read-only presentation.
-    farm_assets=('ant-farm.css','ant-colony.js','ant-drawing.js','ant-farm.js','bob-ant-farm.js','bob-markdown.js')
+    farm_assets=('ant-farm.css','ant-colony.js','ant-drawing.js','ant-farm.js','bob-ant-farm.js')
     for root in roots:
         for name in farm_assets:
             shutil.copyfile(assets/name,root/name)
@@ -96,9 +98,9 @@ def bind_hosted_status(site, repository, revision):
         deployment.pop('ask_bob', None)
         farm=(assets/'ant-farm.html').read_text().replace('<head>', '<head><script>window.WAKE_DEPLOYMENT='+json.dumps(deployment)+';</script>',1)
         (root/'ant-farm.html').write_text(farm)
-    from .reader_guide import refresh_public_reader
+    from .reader_presentation import refresh_public_reader
     for root in roots:
-        refresh_public_reader(root, include_reader_inference=root == site)
+        refresh_public_reader(root)
     # The served interface and public data have separate delivery lifecycles.
     # Bind only hosted exports; ordinary/local readers never discover GitHub.
     data_assets=('public-data.js','map.js','map3d.js','flat-view.js','console-tools.js')
@@ -119,10 +121,7 @@ def bind_hosted_status(site, repository, revision):
             if 'inspect' in relative.parts or 'nodes' in relative.parts or 'self-correction' in relative.parts:
                 continue
             page=page_path.read_text()
-            if page_path.name=='bob-chat.html':
-                page=re.sub(r'<script>window\.WAKE_DEPLOYMENT=[^<]*</script>','',page)
-                page=page.replace('<head>','<head><script>window.WAKE_DEPLOYMENT='+json.dumps(deployment)+';</script>',1)
-            elif 'window.WAKE_DEPLOYMENT=' in page:
+            if 'window.WAKE_DEPLOYMENT=' in page:
                 def data_binding(match):
                     bound=json.loads(match.group(1));bound['public_data']=public_data
                     return 'window.WAKE_DEPLOYMENT='+json.dumps(bound)+';'

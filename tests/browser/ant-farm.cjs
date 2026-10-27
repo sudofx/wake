@@ -16,7 +16,7 @@ const server=http.createServer((req,res)=>{
  await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
  const browser=await chromium.launch({headless:true,...(process.env.CHROME_EXECUTABLE?{executablePath:process.env.CHROME_EXECUTABLE}:{})});
  try{
-  const context=await browser.newContext({viewport:{width:1200,height:900},timezoneId:'America/Los_Angeles',hasTouch:true}),page=await context.newPage(),errors=[];
+  const context=await browser.newContext({viewport:{width:1200,height:900},timezoneId:'America/Los_Angeles',hasTouch:false}),page=await context.newPage(),errors=[];
   page.on('pageerror',e=>errors.push(e.message));await context.addInitScript(value=>localStorage.setItem('wake-ant-colony@2',value),JSON.stringify(mine));
   await page.clock.install({time:new Date('2026-10-26T19:00:00Z')});const base=`http://127.0.0.1:${server.address().port}/ant-farm.html`;
   await page.goto(base);await page.locator('#habitat').waitFor({state:'visible'});
@@ -32,7 +32,11 @@ const server=http.createServer((req,res)=>{
   assert.equal(await page.locator('.habitat-case').evaluate(el=>getComputedStyle(el).backgroundColor),'rgba(0, 0, 0, 0)');
   assert.equal(await page.locator('.sun').isVisible(),true);assert.equal(await page.locator('.moon').isVisible(),false);
   const canvas=page.locator('#habitat');assert.equal(await page.locator('#zoom,#zoom-out,#follow-ant').count(),0);assert.equal(await canvas.evaluate(el=>getComputedStyle(el).touchAction),'auto');
-  for(const ctrlKey of [false,true])assert.equal(await canvas.evaluate((el,ctrlKey)=>{const event=new WheelEvent('wheel',{deltaY:-100,ctrlKey,cancelable:true});el.dispatchEvent(event);return event.defaultPrevented;},ctrlKey),false);
+  const beforeZoom=await canvas.evaluate(el=>{window.__farmPixelsBefore=el.getContext('2d').getImageData(0,0,el.width,el.height).data;return el.toDataURL();});
+  for(const ctrlKey of [false,true])assert.equal(await canvas.evaluate((el,ctrlKey)=>{const box=el.getBoundingClientRect(),event=new WheelEvent('wheel',{deltaY:-400,clientX:box.x+box.width/2,clientY:box.y+box.height/2,ctrlKey,cancelable:true});el.dispatchEvent(event);return event.defaultPrevented;},ctrlKey),!ctrlKey);
+  await page.clock.runFor(100);assert.notEqual(await canvas.evaluate(el=>el.toDataURL()),beforeZoom,'Desktop wheel visibly zooms a paused farm');
+  await canvas.evaluate(el=>el.dispatchEvent(new WheelEvent('wheel',{deltaY:400,clientX:el.getBoundingClientRect().x+el.clientWidth/2,clientY:el.getBoundingClientRect().y+el.clientHeight/2,cancelable:true})));await page.clock.runFor(100);
+  assert.ok(await canvas.evaluate(el=>{const current=el.getContext('2d').getImageData(0,0,el.width,el.height).data;let changed=0;for(let i=0;i<current.length;i+=4)if(Math.abs(current[i]-__farmPixelsBefore[i])+Math.abs(current[i+1]-__farmPixelsBefore[i+1])+Math.abs(current[i+2]-__farmPixelsBefore[i+2])>32)changed++;return changed/(current.length/4)<.02;}),'Wheel zoom returns to the whole farm');
   await page.getByRole('button',{name:'Add food',exact:true}).click();assert.equal(await page.locator('#feed').evaluate(el=>el.classList.contains('is-activated')),true);assert.match(await page.locator('#scene-note').innerText(),/Food added/);
   await page.locator('#trails').click();assert.equal(await page.locator('#trails').getAttribute('aria-pressed'),'true');
   await page.locator('#observe').click();await page.locator('#ant-select').selectOption('queen');assert.match(await page.locator('#ant-detail').innerText(),/does not direct/);await page.locator('#close-observations').click();
@@ -55,6 +59,6 @@ const server=http.createServer((req,res)=>{
   assert(after.scale>before.scale*1.3);assert.equal(after.header,before.header);assert.deepEqual(after.box,before.box);assert.deepEqual(after.frame,before.frame);assert(after.pixels>before.pixels*1.3);assert(after.pixels*after.pixelHeight<4100000);
   await session.send('Input.synthesizePinchGesture',{x:100,y:180,scaleFactor:.5,relativeSpeed:800,gestureSourceType:'touch'});await mobile.waitForTimeout(250);const out=await snapshot();assert(out.scale<after.scale);assert(out.pixels<after.pixels);
   await mobile.screenshot({path:'/tmp/wake-ant-living-phone.png'});await phone.close();assert.deepEqual(errors,[]);
-  console.log(JSON.stringify({result:'PASS',checks:'trails off, automatic Bob readonly replay, personal save preservation, unavailable shared state, visible action feedback, SVG play/pause/fullscreen, queen inspector, taller responsive phone habitat, fullscreen bottom coverage, native page pinch, bounded rendering, transparent glass and day/night'}));
+  console.log(JSON.stringify({result:'PASS',checks:'trails off, automatic Bob readonly replay, personal save preservation, unavailable shared state, visible action feedback, SVG play/pause/fullscreen, queen inspector, taller responsive phone habitat, fullscreen bottom coverage, desktop wheel zoom, native page pinch, bounded rendering, transparent glass and day/night'}));
  }finally{await browser.close();server.close();}
 })().catch(error=>{console.error(error);server.close();process.exitCode=1;});

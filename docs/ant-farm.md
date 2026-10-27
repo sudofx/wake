@@ -1,9 +1,10 @@
 # Watch the digital ant farm
 
 Open **Bob’s Ant Farm** in the site menu. **Observe** opens live counts, an
-individual-ant selector and colony options. Pinch and pan use normal browser
-page zoom, scaling the case, sand, controls and background together. There are
-no separate colony zoom buttons, wheel zoom or following camera. Ant selection
+individual-ant selector and colony options. Phone pinch uses normal browser
+page zoom, scaling the case, sand, controls and background together. On desktop,
+the mouse wheel zooms the habitat at the pointer from 1× to 6×; Ctrl-wheel keeps
+normal browser zoom. There are no separate zoom buttons. Ant selection
 highlights the ant in place. **⛶** enters full screen, and the same button returns to the tabletop.
 Browsers without native fullscreen use the available page viewport. The habitat
 fills the available window height; fullscreen soil extends to the bottom.
@@ -14,7 +15,8 @@ use labelled icons. Button flashes and glowing food marks show actions immediate
 The selector starts with **Bob’s farm**, a shared, maintained, observer-only
 colony. **My farm** resumes this browser’s editable personal save. Switching
 farms never copies the shared recording over that save. Bob’s dated care and
-observation notebook appears separately in his blog. See [shared farm upkeep](bob-ant-farm.md).
+observation notebook appears in a collapsed **Ant farm updates** list inside each
+blog article, above the collapsed **Sources and records** list. See [shared farm upkeep](bob-ant-farm.md).
 If the shared recording is unavailable, the page says so; it never invents a
 substitute shared colony.
 
@@ -45,7 +47,10 @@ cannot continue after every viable site or the node budget is exhausted.
 
 The colony begins with 64 workers and supports at most 128 workers plus brood.
 A separate, visibly larger queen lays eggs when nest reserves and nursing
-permit. Eggs, larvae and pupae take at least 90, 180 and 180 simulation seconds
+permit. She has no canvas label; gentle body shifts, breathing, leg flexes and
+antenna sweeps keep her visibly alive while she stays near the nursery. Pause
+freezes her pose, and reduced motion removes the added body and leg movement.
+Eggs, larvae and pupae take at least 90, 180 and 180 simulation seconds
 respectively, with slower development when care or food is missing. Larvae need
 protein as well as sugar. Nurses tend the nursery; newly emerged workers begin
 as pale callows. Well-fed colonies can grow while older workers die naturally. Worker lifetimes
@@ -103,7 +108,7 @@ The unzoomed farm is a thin indoor container on a wooden table in front of a
 window. At 1× the scenery follows local wall time, with continuous dawn/dusk
 lighting; faster speeds add their extra elapsed time to the scenery. The ant
 movement baseline remains four times the original simulation pace. Pinch zoom
-scales the whole webpage; the scene never zooms independently inside its frame. The purple trails are brighter and
+scales the whole webpage; desktop mouse-wheel zoom stays inside the frame. The purple trails are brighter and
 half the previous width. Existing browser saves are preserved.
 
 ## Implementation and boundaries
@@ -111,9 +116,7 @@ half the previous width. Existing browser saves are preserved.
 `ant-colony.js` owns the seeded tunnel graph, timed work and validated save format.
 `ant-drawing.js` draws the same anatomy at normal and enlarged scale. `ant-farm.js`
 owns one Canvas2D view with two cached buffers, HTML controls and text observations.
-No external libraries or third-party browser assets are needed. The ground uses simple drawn colour fields. The generated ant-body image is
-downsampled once into a small reusable atlas; animated legs and antennae remain
-procedural. The fallback drawing remains available if an image cannot load. See
+No external libraries or third-party browser assets are needed. The ground uses simple drawn colour fields. Ant bodies, legs and antennae are procedural. See
 [art provenance and prompts](ant-farm-art.md). Canvas keeps continuous movement cheap;
 HTML keeps controls, focus and counts accessible. Cached terrain redraws after
 excavation or resize. Phone rendering is capped at twenty frames per second;
@@ -133,6 +136,10 @@ untouched; they are not imported into the corrected model. The shared farm uses 
 storage or native research records. Personal saves never catch up offline.
 Observation downloads contain bounded simulation counts and explicitly identify
 their scope; they confer no research or governance authority.
+
+The sand contour and surface workers share one path, including the raised,
+cratered entrance mounds. Tunnel caps are clipped below the sand surface. These
+are presentation changes; saved paths and colony timing are unchanged.
 
 The exporter ships a dedicated presentation page with deployment binding but no
 research masthead, runtime observer, record transport or control plane. Nothing

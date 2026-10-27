@@ -34,7 +34,7 @@ const server=http.createServer((req,res)=>{
   await page.evaluate(()=>{const a=document.createElement('a');a.id='download';a.href='installation.json';a.textContent='Download';document.body.append(a);});await page.waitForFunction(()=>document.querySelector('#download').href.startsWith('https://raw.githubusercontent.com/'));assert((await page.locator('#download').getAttribute('href')).includes('b'.repeat(40)));
   await page.evaluate(()=>{const a=document.createElement('a');a.id='inspection';a.href='inspect/index.html';document.body.append(a);});await page.waitForFunction(()=>document.querySelector('#inspection').href.endsWith('/inspect/packet.md'));
   await page.evaluate(()=>{const a=document.createElement('a');a.id='feed';a.href='blog.xml';document.body.append(a);});await page.waitForFunction(()=>document.querySelector('#feed').href.endsWith('/wake-public/blog.xml'));
-  const pinned=await page.evaluate(()=>WakePublicData.pin(new URL('bob-chat.html',location.href)).href);
+  const pinned=await page.evaluate(()=>WakePublicData.pin(new URL('blog.html',location.href)).href);
   latest='c'.repeat(40);const before=seen.filter(s=>s.includes('api.github.com')).length;
   const popup=await context.newPage();await popup.goto(pinned);await popup.evaluate(()=>WakePublicData.ready);
   assert.equal(await popup.evaluate(()=>WakePublicData.revision),'b'.repeat(40));assert.equal(seen.filter(s=>s.includes('api.github.com')).length,before);
@@ -46,7 +46,7 @@ const server=http.createServer((req,res)=>{
   // A bounded initial discovery failure selects one readable bundled generation.
   failDiscovery=true;await page.evaluate(()=>localStorage.clear());await page.reload();await page.evaluate(()=>WakePublicData.ready);
   assert.equal(await page.evaluate(()=>WakePublicData.mode),'bundled');assert.equal((await read()).version,'bundled');assert.equal(await page.locator('#public-data-notice').count(),0);assert.equal(await page.locator('main').innerText(),'Unchanged interface');
-  const bundled=await page.evaluate(()=>WakePublicData.pin(new URL('bob-chat.html',location.href)).href);
+  const bundled=await page.evaluate(()=>WakePublicData.pin(new URL('blog.html',location.href)).href);
   failDiscovery=false;const fallbackLookups=seen.length;await popup.goto(bundled);await popup.evaluate(()=>WakePublicData.ready);assert.equal(await popup.evaluate(()=>WakePublicData.mode),'bundled');assert.equal(seen.length,fallbackLookups);assert.equal(await popup.locator('#public-data-notice').count(),0);
   await page.evaluate(()=>{const frame=document.createElement('iframe');frame.src='./';document.body.append(frame);});await page.waitForFunction(()=>document.querySelector('iframe').contentWindow.WakePublicData?.mode==='bundled');assert.equal(seen.length,fallbackLookups);
   failDiscovery='slow';await page.evaluate(()=>localStorage.clear());await page.reload();const slow=await page.evaluate(async()=>{const response=await WakePublicData.fetch('reader-data.json',{signal:AbortSignal.timeout(8000)});return response.json();});assert.equal(slow.version,'bundled','Slow discovery must leave time to read the fallback');failDiscovery=false;

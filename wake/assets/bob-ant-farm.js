@@ -79,8 +79,8 @@
   }
   async function mountNotebook(container){
     if(!container||container.querySelector('[data-bob-farm-notebook]'))return;
-    const document=container.ownerDocument,section=document.createElement('section');section.dataset.bobFarmNotebook='';section.className='bob-farm-notebook';
-    const heading=document.createElement('h2');heading.textContent='From Bob’s ant farm';
+    const document=container.ownerDocument,section=document.createElement('details');section.dataset.bobFarmNotebook='';section.className='bob-farm-notebook';
+    const heading=document.createElement('summary');heading.textContent='Ant farm updates';
     const description=document.createElement('p');description.textContent='Dated observations from Bob’s shared simulation, separate from WAKE research evidence.';
     section.append(heading,description);container.append(section);
     try{

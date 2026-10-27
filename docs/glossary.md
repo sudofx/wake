@@ -8,7 +8,6 @@ definitions. The wake entries describe its conceptual language rather than an AP
 | --- | --- |
 | **Accepted cycle** | A research attempt whose proposed changes passed WAKE's rules and were recorded. A workflow can succeed even when its attempt is rejected or deferred. |
 | **Application** | The rules and behavior for a particular kind of work. Research is WAKE's current application. |
-| **Ask Bob** | An opt-in device-local chat over published evidence, using a downloaded browser model or article source search. A separate loopback Gemini preview is also available. Conversation and reader self-reports never become accepted research or proof of comprehension. See [setup and limits](ask-bob.md). |
 | **Inspection interface** | Static text, a resource manifest and reproducible evidence for an independent observer. It offers reading access without research or execution authority. See [inspection](inspection.md). |
 | **Improvement proposal** | Research-linked code offered for an isolated comparison. Recording it does not execute it; passing a task qualifies it for human review, not installation. See [workflow](improvements.md). |
 | **Improvement holdout** | Task cases generated after a candidate is recorded, from the same published task family. Expected answers stay outside candidate containers. This measures that task, not general intelligence. |

@@ -31,14 +31,8 @@ ASSETS = Path(__file__).parent / 'assets'
 
 
 def provider_admitted(mode, member, packet, editorial_nonce=None):
-    """Separate explicit reader questions from automatic research admission.
-
-    Packets arrive only through the authenticated internal worker boundary.
-    The reader role belongs to the owning worker; it grants no quota exemption.
-    STOP still closes reader admission, while PAUSE leaves manual questions usable.
-    """
+    """Admit automatic research or one explicitly requested editorial attempt."""
     return (mode == 'running'
-            or (mode == 'paused' and member == NODE_IDS[0] and packet.get('purpose') == 'reader')
             or bool(member == NODE_IDS[0] and editorial_nonce
                     and packet.get('editorial_nonce') == editorial_nonce))
 

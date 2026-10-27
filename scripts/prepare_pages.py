@@ -8,6 +8,7 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from wake.hosted_presentation import bind_hosted_status
+from wake.reader_presentation import retired_reader_asset
 
 
 def protected_files(root):
@@ -17,7 +18,7 @@ def protected_files(root):
             (p.suffix in ('.json', '.jsonl', '.txt') or 'inspect' in p.relative_to(root).parts)
             and p.name not in ('deployment.json', 'installation.json')
             and 'self-correction' not in p.relative_to(root).parts
-            and not p.name.startswith('ask-bob-')}
+            and not retired_reader_asset(p)}
 
 
 def prepare(root, repository, revision):

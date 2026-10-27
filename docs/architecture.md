@@ -66,13 +66,9 @@ and identity; it is not replay, migration or an authority merge. See the
 [research expansion](research-expansion.md). Model-formulated questions remain
 ordinary governed project/reframe actions, never configuration edits.
 
-The public website serves completed exports from GitHub Pages. Browser Bob runs
-an opt-in downloaded model on the reader’s WebGPU device, with a dedicated worker,
-streamed replies, version-matched public context and bounded local conversation.
-The pinned model download uses Hugging Face; questions never leave the device.
-The former hosted conversation API and activity relay remain retired. Autonomous
+The public website serves completed exports from GitHub Pages. Autonomous
 research continues through GitHub Actions and Google Gemini. Public pages contain
-no model credentials. See [Ask Bob](ask-bob.md).
+no model credentials.
 
 [Source self-correction](self-correction.md) is an operator-triggered GitHub workflow:
 one bounded Gemini proposal over selected presentation/docs files, candidate

@@ -66,11 +66,6 @@ software boundaries with deterministic inputs. Its results are not research cycl
 or cross-model evidence. Independent container verification is documented in
 [multiple installations](installations.md#verification-and-maintenance).
 
-The separate [Ask Bob A/B/C protocol](ask-bob.md#compare-context-conditions)
-compares no history, rich relevant conversation and compressed contextual
-continuity. Its provider-free fixture measures input and retrieval costs only;
-response quality, comprehension and energy savings are not implied.
-
 [Inspection evaluation](inspection.md) asks a fresh observer to reconstruct the
 architecture and critique evidence. A reproducible kernel fixture and valid links
 are automated checks; unfamiliar-model accuracy requires a separate recorded

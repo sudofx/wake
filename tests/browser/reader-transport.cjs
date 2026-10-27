@@ -29,10 +29,6 @@ const server=http.createServer((req,res)=>{
   const started=Date.now();await page.goto(base,{waitUntil:'domcontentloaded'});await page.locator('#attention-question').waitFor();
   const ready=Date.now()-started;assert(ready<3000,`Reader ready in ${ready}ms despite unavailable observations`);
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Phone has no horizontal overflow');
-  await page.locator('[data-bob-home-actions] .ask-bob-launch').waitFor();
-  assert.equal(await page.locator('#home .ask-bob-record').count(),1);
-  const mobileActions=await page.locator('[data-bob-home-actions] > a').evaluateAll(nodes=>nodes.map(node=>node.getBoundingClientRect().y));assert(mobileActions[1]>mobileActions[0]);
-  await page.setViewportSize({width:1400,height:1000});const desktopActions=await page.locator('[data-bob-home-actions] > a').evaluateAll(nodes=>nodes.map(node=>node.getBoundingClientRect().y));assert(Math.abs(desktopActions[0]-desktopActions[1])<3);
   await page.screenshot({path:'/tmp/wake-five-home-desktop.png'});await page.setViewportSize({width:390,height:844});
   const post=Object.values(full.state.posts).find(post=>post.status!=='superseded');
   if(post){

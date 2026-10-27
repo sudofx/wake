@@ -26,8 +26,6 @@ def _json(value):
 
 def export_reader_transport(data, target):
     """Write views only; callers pass an already public-filtered browser packet."""
-    from .reader_context import article_descriptor
-    from .reader_guide import build_guide
     target = Path(target)
     state = data['state']
     counts = {key: len(state.get(key, {})) for key in COLLECTIONS}
@@ -65,12 +63,8 @@ def export_reader_transport(data, target):
                 continue
             write(record_path(collection, item['id']), {'head': data['head'],
                 'collection': collection, 'item': item, 'related': related(item),
-                **({'article': article_descriptor(item, data['head'])} if collection == 'posts' else {}),
                 'events': [event for event in data.get('events', [])
                            if event.get('payload', {}).get('id') == item['id']]})
-    for post in state.get('posts', {}).values():
-        if post.get('id'):
-            write(record_path('guides', post['id']), build_guide(post, state, data['head']))
     for row in state.get('journal', []):
         identifier = row.get('invocation')
         packet = {
@@ -125,8 +119,6 @@ def export_reader_transport(data, target):
                     item = {key: value for key, value in item.items() if key in
                             ('id', 'time', 'source', 'actor', 'origin')}
                 small[collection][item['id']] = deepcopy(item)
-                if collection == 'posts':
-                    small[collection][item['id']]['_reader_article'] = article_descriptor(item, data['head'])
         small['journal'] = deepcopy(state.get('journal', [])[-limit:])
         for row in small['journal']:
             identifier = row.get('invocation')

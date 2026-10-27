@@ -69,6 +69,7 @@
     const target=document.getElementById('bob-reference-'+link.dataset.bobReference);
     if(!target)return;
     event.preventDefault();
+    const disclosure=target.closest('details');if(disclosure)disclosure.open=true;
     target.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
     target.setAttribute('tabindex','-1');target.focus({preventScroll:true});
   });
@@ -211,7 +212,6 @@
     }).join('') || '<p class="empty">No matching entries. The tape is blank here.</p>';
     $('more').hidden=entries.length<=journalLimit;
     watchListEnd('more',()=>{journalLimit+=8;route();});
-    window.WakeAskBob?.attachRecords($('journal'),{page:'journal',head:data.head,selected});
   }
   $('search')?.addEventListener('input',()=>{journalLimit=8;route();});
   providerSelect?.addEventListener('change',()=>{journalLimit=8;route();});
@@ -483,8 +483,9 @@
   let farmNotebookRuntime;
   function mountFarmNotebook(){
     const host=$('blog-content');if(!host||host.querySelector('.farm-notebook'))return;
-    const section=document.createElement('section');section.className='farm-notebook panel';host.append(section);
-    const script=name=>new Promise((resolve,reject)=>{const node=document.createElement('script');node.src=new URL(name+'?v=20261026-shared-colony',document.baseURI).href;node.onload=resolve;node.onerror=reject;document.head.append(node);});
+    const article=host.querySelector('.blog-reading'),section=document.createElement('section');section.className='farm-notebook'+(article?'':' panel');
+    if(article)article.insertBefore(section,article.querySelector('.blog-receipts'));else host.append(section);
+    const script=name=>new Promise((resolve,reject)=>{const node=document.createElement('script');node.src=new URL(name+'?v=20261027-farm-notes',document.baseURI).href;node.onload=resolve;node.onerror=reject;document.head.append(node);});
     farmNotebookRuntime ||= (async()=>{if(!window.WakeAntColony)await script('ant-colony.js');if(!window.WakeBobFarm)await script('bob-ant-farm.js');return window.WakeBobFarm;})();
     farmNotebookRuntime.then(api=>{if(section.isConnected)api.mountNotebook(section);}).catch(()=>{if(section.isConnected)section.remove();});
   }
@@ -522,8 +523,7 @@
       const earlier=position>=0?series[position+1]:null,later=position>0?series[position-1]:null;
       const continueReading='<nav class="blog-continue" aria-label="Continue the investigation">'+(earlier?'<div><p class="eyebrow">EARLIER IN THE INVESTIGATION</p><a href="#blog/'+encodeURIComponent(earlier.id)+'">'+esc(postTitle(earlier))+' →</a></div>':'')+(later?'<div><p class="eyebrow">THE NEXT PUBLISHED STORY</p><a href="#blog/'+encodeURIComponent(later.id)+'">'+esc(postTitle(later))+' →</a></div>':'')+'</nav>';
       const follow='<aside class="blog-follow"><strong>Follow the investigation.</strong> Get new Bob articles in your feed reader. <a href="blog.xml" type="application/rss+xml">Follow Bob via RSS →</a></aside>';
-      $('blog-content').innerHTML='<article class="blog-reading'+(postTopic(post)==='reflection'?' blog-reading-reflection':'')+'"><a class="subtle" href="#blog">← All posts</a>'+postMeta(post,invocation)+'<h1>'+esc(postTitle(post))+'</h1><p class="blog-lede">'+esc(post.lede)+'</p>'+correction+body+continueReading+follow+(post.lens?'<blockquote><span>BOB’S LENS / PHILOSOPHICAL REFLECTION</span>'+esc(post.lens)+'</blockquote>':'')+'<div class="blog-receipts"><p class="eyebrow">FOLLOW THE RECEIPTS</p>'+projectReceipt+'<div>'+notebooks+'</div><p>'+sources+'</p>'+attributed+(post.group_publication?'<p>Shared synthesis from '+post.group_publication.members.length+' parent and child nodes.</p><a class="subtle" href="events.html">Local publication receipt →</a>':'<a class="subtle" href="#history/'+encodeURIComponent(post.created_by)+'">Exact wake and decision →</a>')+'</div><p class="blog-disclosure">Bob is WAKE✳︎’s human-facing translation layer, not its mind or identity. This AI-authored note compresses the durable research record for conversation; research claims link back to evidence and philosophical reflections remain reflections.</p></article>';
-      window.WakeAskBob?.mount($('blog-content').querySelector('.blog-reading'),{post,head:data.head});
+      $('blog-content').innerHTML='<article class="blog-reading'+(postTopic(post)==='reflection'?' blog-reading-reflection':'')+'"><a class="subtle" href="#blog">← All posts</a>'+postMeta(post,invocation)+'<h1>'+esc(postTitle(post))+'</h1><p class="blog-lede">'+esc(post.lede)+'</p>'+correction+body+continueReading+follow+(post.lens?'<blockquote><span>BOB’S LENS / PHILOSOPHICAL REFLECTION</span>'+esc(post.lens)+'</blockquote>':'')+'<details class="blog-receipts"><summary>Sources and records</summary>'+projectReceipt+'<div>'+notebooks+'</div><p>'+sources+'</p>'+attributed+(post.group_publication?'<p>Shared synthesis from '+post.group_publication.members.length+' parent and child nodes.</p><a class="subtle" href="events.html">Local publication receipt →</a>':'<a class="subtle" href="#history/'+encodeURIComponent(post.created_by)+'">Exact wake and decision →</a>')+'</details><p class="blog-disclosure">Bob is WAKE✳︎’s human-facing translation layer, not its mind or identity. This AI-authored note compresses the durable research record for conversation; research claims link back to evidence and philosophical reflections remain reflections.</p></article>';
       return;
     }
     const seriesHeading='<div class="blog-follow"><strong>Stay with the investigation.</strong> Get new stories in your feed reader. <a href="blog.xml" type="application/rss+xml">Follow Bob via RSS →</a></div>';
@@ -630,7 +630,6 @@
     emphasizeWake(document);
     document.title=`${WAKE_TEXT} / ${page==='home'?'Explore':page==='journal'?'Read':page[0].toUpperCase()+page.slice(1)}`;
     readerPagination(page,selected);
-    window.WakeAskBob?.attachRecords($(page),{page,head:data.head,selected});
     };
     if(window.WakeReader && data.reader_transport && (selected||['journal','history','evidence'].includes(page))){
       // A previous article's chat must not remain interactive under a new URL.
