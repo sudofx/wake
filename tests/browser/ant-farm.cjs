@@ -4,6 +4,8 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),http=require('n
 const assets=path.resolve(__dirname,'../../wake/assets'),{Colony}=require(path.join(assets,'ant-colony.js'));
 const mine=new Colony(9876).save(),caretaker=require('../../scripts/bob_ant_farm.cjs');
 const packet=caretaker.advancePacket(caretaker.bootstrap({sourceRevision:'a'.repeat(40),at:'2026-10-26T18:00:00Z'}),{sourceRevision:'a'.repeat(40),at:'2026-10-26T19:00:00Z',ticks:120});
+// Real shared recordings can contain signals well below the former .15 cutoff.
+mine.trail.fill(.01,20,34);
 const server=http.createServer((req,res)=>{
  const url=new URL(req.url,'http://localhost');
  if(url.pathname==='/bob-ant-farm.json'){res.setHeader('Content-Type','application/json');res.end(JSON.stringify(packet));return;}
@@ -37,14 +39,17 @@ const server=http.createServer((req,res)=>{
   const alpha=await page.locator('#habitat').evaluate(canvas=>canvas.getContext('2d').getImageData(20,5,1,1).data[3]);assert.ok(alpha<60,'Glass above the soil reveals room scenery');
   assert.equal(await page.locator('.habitat-case').evaluate(el=>getComputedStyle(el).backgroundColor),'rgba(0, 0, 0, 0)');
   assert.equal(await page.locator('.sun').isVisible(),true);assert.equal(await page.locator('.moon').isVisible(),false);
-  const canvas=page.locator('#habitat');assert.equal(await page.locator('#zoom,#zoom-out,#follow-ant').count(),0);assert.equal(await canvas.evaluate(el=>getComputedStyle(el).touchAction),'auto');
+  const canvas=page.locator('#habitat');assert.equal(await page.locator('#zoom,#follow-ant').count(),0);assert(await page.locator('#zoom-out').isDisabled());assert.equal(await canvas.evaluate(el=>getComputedStyle(el).touchAction),'auto');
   const beforeZoom=await canvas.evaluate(el=>{window.__farmPixelsBefore=el.getContext('2d').getImageData(0,0,el.width,el.height).data;return el.toDataURL();});
   for(const ctrlKey of [false,true])assert.equal(await canvas.evaluate((el,ctrlKey)=>{const box=el.getBoundingClientRect(),event=new WheelEvent('wheel',{deltaY:-400,clientX:box.x+box.width/2,clientY:box.y+box.height/2,ctrlKey,cancelable:true});el.dispatchEvent(event);return event.defaultPrevented;},ctrlKey),!ctrlKey);
   await page.clock.runFor(100);assert.notEqual(await canvas.evaluate(el=>el.toDataURL()),beforeZoom,'Desktop wheel visibly zooms a paused farm');
   await canvas.evaluate(el=>el.dispatchEvent(new WheelEvent('wheel',{deltaY:400,clientX:el.getBoundingClientRect().x+el.clientWidth/2,clientY:el.getBoundingClientRect().y+el.clientHeight/2,cancelable:true})));await page.clock.runFor(100);
   assert.ok(await canvas.evaluate(el=>{const current=el.getContext('2d').getImageData(0,0,el.width,el.height).data;let changed=0;for(let i=0;i<current.length;i+=4)if(Math.abs(current[i]-__farmPixelsBefore[i])+Math.abs(current[i+1]-__farmPixelsBefore[i+1])+Math.abs(current[i+2]-__farmPixelsBefore[i+2])>32)changed++;return changed/(current.length/4)<.02;}),'Wheel zoom returns to the whole farm');
   await page.getByRole('button',{name:'Add food',exact:true}).click();assert.equal(await page.locator('#feed').evaluate(el=>el.classList.contains('is-activated')),true);assert.match(await page.locator('#scene-note').innerText(),/Food added/);
-  await page.locator('#trails').click();assert.equal(await page.locator('#trails').getAttribute('aria-pressed'),'true');
+  const purple=()=>canvas.evaluate(el=>{const pixels=el.getContext('2d').getImageData(0,0,el.width,el.height).data;let count=0;for(let i=0;i<pixels.length;i+=4)if(pixels[i]>60&&pixels[i+2]>pixels[i]*1.05&&pixels[i+2]>pixels[i+1]*1.2&&pixels[i+3]>160)count++;return count;});
+  const trailsOff=await purple();await page.locator('#trails').click();await page.clock.runFor(100);assert.equal(await page.locator('#trails').getAttribute('aria-pressed'),'true');assert(await purple()>trailsOff+30,'Faint food signals below the old cutoff produce visible purple pixels');
+  await page.locator('#trails').click();await page.clock.runFor(100);assert(Math.abs(await purple()-trailsOff)<10,'Turning trails off removes the overlay');await page.locator('#trails').click();
+  await page.locator('#zoom-in').click();assert.equal(await page.locator('#magnification').inputValue(),'2');assert(await page.locator('#zoom-out').isEnabled());await page.locator('#zoom-out').click();assert.equal(await page.locator('#magnification').inputValue(),'1');assert(await page.locator('#zoom-out').isDisabled());
   await page.locator('#observe').click();await page.locator('#ant-select').selectOption('queen');assert.match(await page.locator('#ant-detail').innerText(),/does not direct/);await page.locator('#close-observations').click();
   await page.locator('#observe').click();
   const nurse=await page.locator('#ant-select optgroup').filter({has:page.locator('option')}).evaluateAll(groups=>{
@@ -58,6 +63,7 @@ const server=http.createServer((req,res)=>{
   await page.locator('#observe').click();await page.locator('#ant-select').selectOption('queen');await page.locator('#close-observations').click();
   await page.clock.runFor(100);const point=await page.evaluate(id=>window.__antPoses[id],nurse);await page.mouse.click(box.x+point.x,box.y+point.y);await page.locator('#observe').click();assert.equal(await page.locator('#ant-select').inputValue(),nurse,'Tapping the rendered nurse selects that nurse');
   await page.locator('#magnification').fill('16');await page.clock.runFor(100);assert.equal(await page.locator('#zoom-label').innerText(),'16.0×');
+  assert(await page.locator('#zoom-in').isDisabled());await page.locator('#zoom-out').click();assert.equal(await page.locator('#magnification').inputValue(),'8');assert(await page.locator('#zoom-in').isEnabled());
   const buffers=await canvas.evaluate(el=>el.width*el.height);assert(buffers<4100000,'Macro lens keeps its pixel budget');
   await page.locator('#close-observations').click();await page.locator('#zoom-reset').click();await page.clock.runFor(100);assert.equal(await page.locator('#magnification').inputValue(),'1');
   const jaws=await page.evaluate(()=>{
@@ -82,6 +88,7 @@ const server=http.createServer((req,res)=>{
   await mobile.locator('#fullscreen').click();await mobile.waitForTimeout(100);const mobileFull=await mobile.locator('#habitat').boundingBox();assert.ok(Math.abs(mobileFull.y+mobileFull.height-844)<2);assert.ok(mobileFull.height>=840);
   assert.equal(await mobile.evaluate(()=>window.__nativeFullscreenCalls),0,'Touch fullscreen must not invoke the native swipe-to-exit mode');
   await mobile.locator('#zoom-in').click();await mobile.waitForTimeout(100);
+  assert(await mobile.locator('.farm-controls button:visible').evaluateAll(buttons=>buttons.every(button=>{const b=button.getBoundingClientRect();return b.left>=0&&b.right<=innerWidth;})),'Zoomed phone controls remain within the viewport');
   const dragStart=await mobile.locator('#habitat').evaluate(el=>el.toDataURL()),touch=await phone.newCDPSession(mobile);
   await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:195,y:300}]});
   for(let y=315;y<=480;y+=15)await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:195,y}]});
@@ -96,6 +103,6 @@ const server=http.createServer((req,res)=>{
   assert(after.scale>before.scale*1.3);assert.equal(after.header,before.header);assert.deepEqual(after.box,before.box);assert.deepEqual(after.frame,before.frame);assert(after.pixels>before.pixels*1.3);assert(after.pixels*after.pixelHeight<4100000);
   await session.send('Input.synthesizePinchGesture',{x:100,y:180,scaleFactor:.5,relativeSpeed:800,gestureSourceType:'touch'});await mobile.waitForTimeout(250);const out=await snapshot();assert(out.scale<after.scale);assert(out.pixels<after.pixels);
   await mobile.screenshot({path:'/tmp/wake-ant-living-phone.png'});await phone.close();assert.deepEqual(errors,[]);
-  console.log(JSON.stringify({result:'PASS',checks:'trails off, automatic Bob readonly replay, personal save preservation, unavailable shared state, visible action feedback, SVG play/pause/fullscreen, queen inspector, taller responsive phone habitat, fullscreen bottom coverage, downward touch drag without native exit, desktop wheel zoom, native page pinch, bounded rendering, transparent glass and day/night'}));
+  console.log(JSON.stringify({result:'PASS',checks:'visible faint trails toggle on/off, bounded zoom in/out, trails off by default, automatic Bob readonly replay, personal save preservation, unavailable shared state, visible action feedback, SVG play/pause/fullscreen, queen inspector, taller responsive phone habitat, fullscreen bottom coverage, downward touch drag without native exit, desktop wheel zoom, native page pinch, bounded rendering, transparent glass and day/night'}));
  }finally{await browser.close();server.close();}
 })().catch(error=>{console.error(error);server.close();process.exitCode=1;});

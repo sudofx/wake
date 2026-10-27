@@ -197,10 +197,11 @@
   function zoomTo(value,x=width/2,y=height/2){
     const next=Math.max(1,Math.min(16,value)),ratio=next/camera.zoom;
     camera.x=x-(x-camera.x)*ratio;camera.y=y-(y-camera.y)*ratio;camera.zoom=next;clampCamera();terrainDirty=true;needsDraw=true;
-    canvas.style.touchAction=next>1?'pinch-zoom':'auto';get('magnification').value=next;get('zoom-label').textContent=next.toFixed(1)+'×';get('zoom-reset').hidden=next===1;
+    canvas.style.touchAction=next>1?'pinch-zoom':'auto';get('magnification').value=next;get('zoom-label').textContent=next.toFixed(1)+'×';get('zoom-reset').hidden=next===1;get('zoom-out').disabled=next<=1;get('zoom-in').disabled=next>=16;
   }
   get('magnification').oninput=event=>{following=false;zoomTo(Number(event.target.value));};
-  get('zoom-in').onclick=()=>{following=false;zoomTo(camera.zoom>=16?1:camera.zoom*2);};
+  get('zoom-in').onclick=()=>{following=false;zoomTo(camera.zoom*2);};
+  get('zoom-out').onclick=()=>{following=false;zoomTo(camera.zoom/2);};
   get('zoom-reset').onclick=()=>{following=false;zoomTo(1);};
   get('view-ant').onclick=()=>{if(!positions.has(selectedId))return;following=true;zoomTo(12);observe(false);};
   let drag=null,dragMoved=false;
@@ -216,7 +217,17 @@
     if(following&&positions.has(selectedId)){const point=positions.get(selectedId);const oldX=camera.x,oldY=camera.y;camera.x=width/2-point.x*camera.zoom;camera.y=height/2-point.y*camera.zoom;clampCamera();terrainDirty ||= oldX!==camera.x||oldY!==camera.y;}
     if(terrainDirty)updateTerrain();ctx.clearRect(0,0,width,height);ctx.drawImage(terrain,0,0,width,height);
     ctx.save();ctx.translate(camera.x,camera.y);ctx.scale(camera.zoom,camera.zoom);
-    if(showTrails){ctx.lineCap='round';ctx.lineWidth=Math.min(cw,ch)*.325;for(let i=0;i<colony.trail.length;i++)if(colony.trail[i]>.15){const n=colony.nodes[i],p=colony.nodes[n.parent];if(!p)continue;ctx.strokeStyle=`rgba(185,57,255,${Math.min(1,.55+colony.trail[i]/12)})`;ctx.beginPath();ctx.moveTo(n.x*cw,n.y*ch);ctx.lineTo(p.x*cw,p.y*ch);ctx.stroke();}}
+    if(showTrails){
+      const strongest=Math.max(0,...colony.trail);ctx.save();ctx.lineCap='round';ctx.lineJoin='round';
+      const route=(n,p)=>{const y=point=>point.kind==='surface'?surfaceY(point.x):point.y;ctx.beginPath();ctx.moveTo(n.x*cw,y(n)*ch);ctx.lineTo(p.x*cw,y(p)*ch);};
+      // Visits and food signals are different observations. Show the former as
+      // dashes even when pheromones have faded, without inventing food signals.
+      ctx.strokeStyle='#8136b4b8';ctx.lineWidth=Math.max(1.4/camera.zoom,Math.min(cw,ch)*.18);ctx.setLineDash([Math.max(3/camera.zoom,Math.min(cw,ch)*.5),Math.max(2.5/camera.zoom,Math.min(cw,ch)*.3)]);
+      for(let i=0;i<colony.nodes.length;i++){const n=colony.nodes[i],p=colony.nodes[n.parent];if(!p||!colony.visits[i]||!colony.visits[n.parent])continue;route(n,p);ctx.stroke();}
+      ctx.setLineDash([]);ctx.lineWidth=Math.max(2/camera.zoom,Math.min(cw,ch)*.325);
+      if(strongest>0)for(let i=0;i<colony.trail.length;i++){const strength=colony.trail[i];if(strength<=0)continue;const n=colony.nodes[i],p=colony.nodes[n.parent];if(!p)continue;ctx.strokeStyle=`rgba(185,57,255,${.45+.5*Math.sqrt(strength/strongest)})`;route(n,p);ctx.stroke();}
+      ctx.restore();
+    }
     for(const f of colony.food){if(!f.left)continue;const x=f.x*cw,y=surfaceY(f.x)*ch;ctx.fillStyle=f.kind==='protein'?'#a76b47':'#9ca74c';for(let j=0;j<Math.min(10,Math.ceil(f.left/24));j++){const angle=j*2.4,r=2+Math.sqrt(j)*1.3;ctx.beginPath();ctx.ellipse(x+Math.cos(angle)*r,y+Math.sin(angle)*r,1.5,1,j,0,7);ctx.fill();}}
     const flashNow=performance.now();
     for(let i=foodFlashes.length-1;i>=0;i--){const flash=foodFlashes[i],age=(flashNow-flash.at)/1600;if(age>=1){foodFlashes.splice(i,1);continue;}ctx.save();ctx.globalAlpha=1-age;ctx.strokeStyle='#f7f4a4';ctx.lineWidth=2;ctx.beginPath();ctx.arc(flash.x*cw,flash.y*ch,reduced.matches?12:8+age*24,0,Math.PI*2);ctx.stroke();ctx.fillStyle='#fff7ba';ctx.beginPath();ctx.arc(flash.x*cw,flash.y*ch,3,0,Math.PI*2);ctx.fill();ctx.restore();needsDraw=true;}
@@ -314,7 +325,7 @@
     for(const [id,point] of positions){const radius=id==='queen'?6:2.5,d=Math.hypot(x*cw-point.x,y*ch-point.y);if(d<Math.max(14/camera.zoom,radius*Math.min(cw,ch)*.4)&&d<distance){nearest=id;distance=d;}}
     if(nearest!==null){selectedId=nearest;get('ant-select').value=String(selectedId);updateUI();needsDraw=true;}
   });
-  get('trails').onclick=()=>{showTrails=!showTrails;get('trails').setAttribute('aria-pressed',String(showTrails));feedback(get('trails'),showTrails?'Purple trails show returning foragers’ food signals.':'Food trails hidden.');needsDraw=true;};
+  get('trails').onclick=()=>{showTrails=!showTrails;get('trails').setAttribute('aria-pressed',String(showTrails));feedback(get('trails'),showTrails?(colony.trail.some(n=>n>0)||colony.visits.some(n=>n>0)?'Dashed purple marks show visited routes. Brighter lines show relative food signals.':'No trails yet. Let the ants explore and carry food home.'):'Trails hidden.');needsDraw=true;};
   get('feed').onclick=()=>{if(mode!=='mine')return;const before=colony.food.length,added=colony.addFood();if(added){const fresh=colony.food.slice(before);for(const food of fresh)foodFlashes.push({x:food.x,y:food.y,at:performance.now()});}save();updateUI();feedback(get('feed'),added?'Food added — watch the glowing crumbs on the surface.':'There are plenty of crumbs already. Give the foragers time to find them.');needsDraw=true;};
   get('farm-choice').onchange=()=>{void switchMode(get('farm-choice').value==='mine'?'mine':'bob');};
   function observe(open){get('observations').hidden=!open;get('observe').setAttribute('aria-expanded',String(open));updateUI();if(open)get('close-observations').focus();else get('observe').focus();}

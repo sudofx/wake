@@ -4,7 +4,8 @@ Open **Bob’s Ant Farm** in the site menu. **Observe** opens live counts, an
 individual-ant selector and colony options. Phone pinch uses normal browser
 page zoom, scaling the case, sand, controls and background together. On desktop,
 the mouse wheel zooms the habitat at the pointer from 1× to 16×; Ctrl-wheel keeps
-normal browser zoom. The lens button doubles magnification and **Whole farm**
+normal browser zoom. The plus lens doubles magnification; the minus lens halves it. Both stop at
+the 1× and 16× bounds. **Whole farm**
 returns to the complete habitat. Observe also provides a continuous magnification
 slider. Drag a magnified habitat to explore it; native page pinch remains available.
 Ant selection highlights the ant in place. **⛶** enters full screen, and the same button returns to the tabletop.
@@ -12,7 +13,11 @@ Touch devices use the available page viewport, with the fullscreen button to
 exit; downward drags pan the magnified habitat rather than leaving fullscreen.
 Desktop browsers can use native fullscreen. The habitat
 fills the available window height; fullscreen soil extends to the bottom.
-**Trails** starts off and toggles purple food signals. Play/pause and fullscreen
+**Trails** starts off. It shows visited routes as dashed purple marks and
+remaining food signals as brighter continuous lines. Signal brightness is scaled
+relative to the strongest current signal so faint residual signals remain
+visible. An empty colony reports that no trails exist yet; it does not invent
+food signals. Play/pause and fullscreen
 use labelled icons. Button flashes and glowing food marks show actions immediately.
 **Add food** scatters surface crumbs in My farm.
 

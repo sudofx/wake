@@ -107,3 +107,5 @@
 .case-base{left:-10px;right:-10px;bottom:-29px;height:26px;background:linear-gradient(#458c47,#2f783b 20%,#286937 70%,#17502e);color:#c5ddad;border-top:1px solid #91ba7180;border-bottom:2px solid #18492c;border-radius:0 0 8px 8px;box-shadow:0 3px 1px #18452a,0 9px 10px #17271644;text-shadow:0 1px 1px #103f24}
 .habitat-case::after{box-shadow:inset 2px 0 3px #edffe6aa,inset -2px -1px 4px #233c2c55,inset 0 2px 2px #fff9;background:linear-gradient(112deg,#ffffff07,transparent 13%,transparent 85%,#ffffff05)}
 .is-fullscreen .habitat-case{border:0;box-shadow:none}
+
+.farm-controls{width:max-content;flex-wrap:wrap;justify-content:center}.farm-controls button{white-space:nowrap}
