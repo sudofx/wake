@@ -81,8 +81,8 @@ def bind_hosted_status(site, repository, revision):
             deployment.pop('hosted_activity', None)
             deployment.pop('ask_bob', None)
             deployment_path.write_text(json.dumps(deployment))
-    # Farm state stays browser-local; refresh its presentation with the reader shell.
-    farm_assets=('ant-farm.css','ant-colony.js','ant-drawing.js','ant-farm.js','bob-markdown.js')
+    # Personal colonies stay browser-local; Bob’s dedicated shared checkpoint is a separate read-only presentation.
+    farm_assets=('ant-farm.css','ant-colony.js','ant-drawing.js','ant-farm.js','bob-ant-farm.js','bob-markdown.js')
     for root in roots:
         for name in farm_assets:
             shutil.copyfile(assets/name,root/name)

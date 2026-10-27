@@ -168,7 +168,7 @@ def refresh_public_reader(site, *, include_reader_inference=True):
             text=text.replace('</head>', '<script src="bob-markdown.js" defer></script></head>', 1)
         text=re.sub(r'(src="reader-data\.js)(?:\?[^"]*)?(")',r'\1?v=20261023-snapshot-recovery\2',text)
         page.write_text(text)
-    for name in ('ask-bob.js', 'ask-bob.css', 'ask-bob-guide.js', 'ask-bob-browser.js', 'reader-data.js', 'app.js', 'pet.js', 'bob-markdown.js',
+    for name in ('ask-bob.js', 'ask-bob.css', 'ask-bob-guide.js', 'ask-bob-browser.js', 'reader-data.js', 'app.js', 'pet.js', 'bob-markdown.js', 'bob-ant-farm.js', 'ant-colony.js',
                  'bob-chat.html', 'bob-chat.css', 'bob-chat.js', 'ask-bob-session.js', 'ask-bob-context.js', 'ask-bob-gpu.js', 'ask-bob-gpu-worker.js', 'site-theme.js'):
         (site / name).write_bytes((assets / name).read_bytes())
     if include_reader_inference:

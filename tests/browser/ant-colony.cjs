@@ -31,7 +31,7 @@ test('malformed saves fail closed',()=>{
 });
 test('food interventions are bounded, measured, and do not destroy existing food',()=>{
  const c=new Colony(3),before=c.metrics().food_remaining;for(let i=0;i<100;i++)c.addFood();assert.equal(c.food.length,32);assert.equal(c.metrics().food_remaining,before+c.addedFood);
- assert.equal(c.observation().interventions.food_added,c.addedFood);assert.equal(c.observation().model,'pellet-tunnels@8');assert.ok(c.observation().samples.length<=12);
+ assert.equal(c.observation().interventions.food_added,c.addedFood);assert.equal(c.observation().model,'pellet-tunnels@9');assert.ok(c.observation().samples.length<=12);
 });
 
 test('seeds vary initial shafts and branch layouts while keeping deterministic saves',()=>{
@@ -111,4 +111,37 @@ test('food deliveries restore a hungry colony before irreversible starvation',()
  c.foodReserve=20;
  for(let i=0;i<1300;i++)c.step();assert.equal(c.starvationSeconds,0);assert.equal(c.starved,0);assert.equal(c.ants.length,64);
  const bad=c.save();bad.starvationSeconds=-1;assert.throws(()=>Colony.restore(bad));
+});
+
+test('queen is distinct from worker identities and brood needs nursing and protein',()=>{
+ const c=new Colony(42);assert.equal(c.queen.cell,c.nest);assert(c.queen.alive);assert.equal(c.ants.length,64);assert.deepEqual(c.ants.map(a=>a.id),Array.from({length:64},(_,i)=>i));
+ assert(c.brood.some(b=>b.stage==='egg')&&c.brood.some(b=>b.stage==='larva')&&c.brood.some(b=>b.stage==='pupa'));
+ const before=c.born;for(let i=0;i<1000;i++)c.step();assert(c.born>before,'Cared-for starter pupae should emerge');assert(c.metrics().brood_care_seconds>0);
+ const hungryLarvae=new Colony(42);hungryLarvae.food.forEach(f=>f.left=0);hungryLarvae.foodReserve=100;hungryLarvae.proteinReserve=0;hungryLarvae.queen.alive=false;hungryLarvae.brood=[{stage:'larva',progress:0,ready:180,neglect:0}];
+ for(let i=0;i<600;i++)hungryLarvae.step();assert.equal(hungryLarvae.brood[0].progress,0,'Larvae cannot develop on sugar alone');
+ hungryLarvae.proteinReserve=4;for(let i=0;i<600;i++)hungryLarvae.step();assert(hungryLarvae.brood[0].progress>0);
+ const noCare=new Colony(42);noCare.ants=[];noCare.queen.alive=false;noCare.brood=[{stage:'egg',progress:0,ready:90,neglect:0}];for(let i=0;i<600;i++)noCare.step();assert.equal(noCare.brood[0].progress,0,'An unattended brood is not an automatic birth timer');
+});
+test('hunger retains nursing workers while other ants forage',()=>{
+ const c=new Colony(42);c.food.forEach(f=>f.left=0);c.foodReserve=0;
+ for(let i=0;i<1500;i++)c.step();assert(c.metrics().hungry);assert(c.metrics().nurses>=2);assert(c.ants.some(a=>a.role==='forage'));
+});
+test('food trails influence outbound surface choices and decay without reinforcement',()=>{
+ const inspect=signal=>{const c=new Colony(42),ant=c.ants[12];Object.assign(ant,{cell:50,from:50,phase:1,carrying:0,role:'forage',wait:0,dir:0});c.ants=[ant];c.food=[];c.trail[51]=signal;let weights;const native=c.weighted.bind(c);c.weighted=(rows,weight)=>{weights=rows.map(n=>[n,weight(n)]);return native(rows,weight);};c.step();return new Map(weights);};
+ const baseline=inspect(0),signaled=inspect(12);assert(signaled.get(51)/baseline.get(51)>10,'Surface recruitment must use the deposited signal');
+ const c=new Colony(42);c.ants=[];c.trail[50]=10;for(let i=0;i<100;i++)c.step();assert(c.trail[50]<10&&c.trail[50]>0);
+});
+test('new life-history fields reject invalid queens and impossible brood',()=>{
+ const c=new Colony(42);
+ for(const mutate of [s=>s.queen.cell=0,s=>s.queen.alive='yes',s=>s.queen.eggsLaid=-1,s=>s.proteinReserve=-1,s=>s.brood[0].stage='worker',s=>s.brood[0].progress=90,s=>s.brood[0].neglect=900]){const s=structuredClone(c.save());mutate(s);assert.throws(()=>Colony.restore(s));}
+});
+
+test('a lone surviving nurse retrieves surface food and rescues the queen',()=>{
+ const c=new Colony(41),ant=c.ants[0];
+ Object.assign(ant,{cell:c.nest,from:c.nest,phase:1,role:'nurse',wait:0,bornAt:0,lifespan:7200});
+ c.ants=[ant];c.deaths=63;c.foodReserve=0;c.addFood(c.nodes[c.exit].x);
+ for(let i=0;i<30100;i++)c.step();
+ assert(c.delivered>0,'A last nurse must switch to foraging before starving');
+ assert(c.queen.alive);assert(c.ants.length>0);assert.equal(c.starved,0);
+ assert.deepEqual(Colony.restore(c.save()).save(),c.save());
 });
