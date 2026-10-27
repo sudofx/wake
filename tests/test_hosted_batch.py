@@ -28,7 +28,7 @@ class HostedBatchTests(unittest.TestCase):
             mirror.close()
         publish.assert_called_once()
 
-    def test_partial_start_runs_confirmed_workers_and_no_ack_closes_but_both_publish(self):
+    def test_partial_start_runs_and_no_ack_fails_after_both_safely_publish(self):
         for acknowledged in (True, False, 'control-failure'):
             with self.subTest(acknowledged=acknowledged), tempfile.TemporaryDirectory() as directory:
                 root, artifact = Path(directory) / 'records', Path(directory) / 'public'
@@ -69,6 +69,9 @@ class HostedBatchTests(unittest.TestCase):
                      patch('scripts.github_research.time.sleep') as sleep, redirect_stdout(io.StringIO()):
                     if acknowledged == 'control-failure':
                         with self.assertRaises(HTTPError):
+                            run_batch(1, 'fixture')
+                    elif acknowledged is False:
+                        with self.assertRaisesRegex(RuntimeError, 'No research worker acknowledged'):
                             run_batch(1, 'fixture')
                     else:
                         run_batch(1, 'fixture')

@@ -205,7 +205,7 @@ def capture_all(transport, root):
         transport.checkpoint_node(root / 'nodes' / node / 'record')
 
 
-def publish_hosted_snapshot(client, root, artifact, revision):
+def publish_hosted_snapshot(client, root, artifact, revision, *, research_start=None):
     """Publish pinned completed exports without stopping workers or opening records."""
     parent = client.request('git/ref/heads/wake-public')['object']['sha']
     manifest = build_public_artifact(root, artifact, progress=lambda message: print(message, flush=True))
@@ -213,6 +213,8 @@ def publish_hosted_snapshot(client, root, artifact, revision):
         manifest['experimental_reset'] = json.loads((root/'experimental-reset.json').read_text())
     manifest['hosted_execution'] = {'source_revision': revision,
         'run_id': os.environ.get('GITHUB_RUN_ID'), 'captured_at': datetime.now(timezone.utc).isoformat()}
+    if research_start is not None:
+        manifest['hosted_execution']['research_start'] = research_start
     for path in [artifact / 'installation.json', *[artifact / 'nodes' / n / 'installation.json' for n in NODE_IDS]]:
         path.write_text(json.dumps(manifest, sort_keys=True))
     from wake.hosted_presentation import bind_hosted_status
@@ -285,6 +287,8 @@ def run_batch(minutes, provider, *, reset=False):
                       'heads': {n: d['head'] for n, d in before['nodes'].items()}}), flush=True)
     stopped = False
     control_error = None
+    start_error = None
+    research_start = None
     def stop_signal(*_):
         nonlocal stopped
         stopped = True
@@ -310,6 +314,9 @@ def run_batch(minutes, provider, *, reset=False):
             if enabled(client) and not stopped:
                 with measured_stage('start-acknowledgment'):
                     start = request(root, {'action': 'start'})
+                research_start = {'ok': bool(start.get('ok')),
+                    'acknowledged_nodes': sorted(node for node, value in start.get('nodes', {}).items()
+                                                 if value.get('state') == 'acknowledged')}
                 if not start.get('ok'):
                     # Admission is already running. Preserve healthy workers
                     # while keeping unavailable/late acknowledgments visible.
@@ -340,6 +347,7 @@ def run_batch(minutes, provider, *, reset=False):
                     if not any(value.get('state') == 'acknowledged'
                                for value in start.get('nodes', {}).values()):
                         stopped = True
+                        start_error = RuntimeError('No research worker acknowledged Start; state and public data were retained')
             if not stopped:
                 mirror.thread.start()
             deadline = time.monotonic() + minutes * 60
@@ -391,7 +399,7 @@ def run_batch(minutes, provider, *, reset=False):
     # before a rendering/upload error can fail the run.
     artifact = Path(os.environ['WAKE_HOSTED_ARTIFACT'])
     with measured_stage('data-publication'):
-        manifest = publish_hosted_snapshot(client, root, artifact, revision)
+        manifest = publish_hosted_snapshot(client, root, artifact, revision, research_start=research_start)
     with transport.lease():
         transport.prune()
     after = transport.read_manifest()
@@ -405,6 +413,10 @@ def run_batch(minutes, provider, *, reset=False):
             stream.write('Source: `' + revision + '`\n')
             for node, value in manifest['record_heads'].items():
                 stream.write(f'- {node}: version {value["version"]}, head `{value["head"]}`\n')
+    if start_error is not None:
+        # Recovery sees a failed batch after its safe capture/publication,
+        # rather than a green workflow that never admitted research.
+        raise start_error
 
 
 def main():
