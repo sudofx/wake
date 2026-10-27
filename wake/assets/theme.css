@@ -2305,3 +2305,5 @@ html[data-theme=light] .attention-home .primary-link:hover{color:var(--reader-ac
 #blog.reading-story #blog-content{padding-top:24px}
 #blog-content [id^="bob-reference-"]{scroll-margin-top:100px}
 #blog-content .inline-source-citation{color:var(--cyan);text-decoration:underline;text-underline-offset:3px}
+
+.attention-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px}.attention-actions .ask-bob-launch{margin:0;min-height:48px;justify-content:center}@media(max-width:600px){.attention-actions{align-items:stretch;flex-direction:column}.attention-actions>a{justify-content:center}}

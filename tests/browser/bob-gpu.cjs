@@ -30,6 +30,7 @@ const {pathToFileURL}=require('node:url'),assets=path.resolve(__dirname,'../../w
   let release;globalThis.__reload=()=>new Promise(r=>release=r);const other=new AbortController(),pending=gpu.load('best',()=>{},other.signal);await new Promise(r=>setTimeout(r,5));other.abort();await assert.rejects(pending,e=>e.name==='AbortError');release();await new Promise(r=>setTimeout(r,5));assert(!gpu.ready(),'Cancelled worker must not be adopted after a late reload');assert.equal(terminated,2);
   const context=await import(pathToFileURL(path.join(root,'ask-bob-context.js'))),sources=[{id:'S1'},{id:'S2'}];
   assert(context.quickReply('What is WAKE?').answer.includes('lab notebook'));
+  assert(context.quickReply('What does this site do?').answer.includes('lab notebook'));
   assert.equal(context.quickReply('What is WAKE doing in this particular experiment?'),null,'A specific research question must not be replaced by a generic introduction');
   assert.deepEqual(context.citedSources('Both [S1, S2].',sources),sources);assert.throws(()=>context.citedSources('Unknown [S1, S99]',sources),/not supplied/);
   console.log(JSON.stringify({result:'PASS',checks:'no late worker after cancelled import/reload, streamed prose without thinking, explicit model allowlist, grouped citation identity'}));

@@ -62,6 +62,7 @@
       }
       merge(data,packet);loaded.add(key);
     },
+    hasMore(collection){return pages.get(collection)!==null;},
     async more(collection){
       const data=await window.WakeData;if(!data.reader_transport)return false;
       const index=pages.get(collection)??0;if(index===null)return false;

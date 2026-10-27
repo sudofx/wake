@@ -488,6 +488,11 @@ Each document contains only its own view, visible before exported data loads.
 Legacy `index.html#section/record` links redirect to the corresponding page;
 record fragments stay within that page. GitHub Pages needs no rewrite service.
 `report.py` owns page generation and `page-routing.js` owns legacy-link compatibility.
+Older reader lists load their next 24-row public packet when the reader scrolls
+to the list end. Already loaded journal/history rows appear first. Loading stops
+at the recorded end, keeps the same snapshot head and never fetches the full
+archive. An unavailable packet shows a retry action. The homepage Ask Bob link
+sits beside the latest-story link, stacking on narrow screens.
 The reader-only `reader-theme.css` uses sudofx's light/dark palette and sans/mono
 font stacks without changing page geometry. Console and its embedded components
 never load that stylesheet or the reader navigation script. The dark reader

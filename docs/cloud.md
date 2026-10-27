@@ -23,8 +23,12 @@ neither format is added to public exports. A presentation-only refresh also copi
 the Console chart assets: each line chart fits its complete captured history to
 the panel width, without changing the captured research or inspection packets.
 
-The [ant farm](ant-farm.md) ships with filtered website exports and runs entirely
-in the browser. Its former conversation panel is removed.
+The [ant farm](ant-farm.md) ships with filtered website exports. My farm runs
+and saves in each visitor’s browser. [Bob’s shared farm](bob-ant-farm.md) has a
+separate, bounded GitHub checkpoint maintained by a provider-free Actions job;
+visitors only replay its dated observations. Its notebook is presentation and
+never changes native research articles or records. Its former conversation panel
+is removed.
 
 ## Publish the local installation mirror
 

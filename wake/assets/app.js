@@ -210,11 +210,11 @@
       return `<article data-bob-collection="journal" data-bob-id="${esc(j.invocation)}" class="entry record-panel" id="cycle-${esc(j.origin?.node?`${j.origin.node}-${j.cycle}`:j.cycle)}"><div class="record-panel-head"><div class="record-panel-meta journal-meta"><span class="record-type">JOURNAL · WAKE✳︎ ${String(j.cycle).padStart(3,'0')}</span><span class="record-status">${badge(i.provider==='fixture'?'simulated':'accepted',i.provider==='fixture'?'SIMULATED':'ACCEPTED')}</span><span class="record-topics journal-topics">${journalTopics(j).map(id=>topicTag(id,'journal')).join('')}</span><time datetime="${esc(i.time)}">${esc(fmt(i.time))}</time></div><h3><a href="#journal/cycle:${j.cycle}">${esc(j.title)}</a></h3></div><div class="record-panel-body"><p>${esc(j.summary)}</p><div class="entry-bottom"><span>${esc(i.provider)} / ${esc(i.model)}${j.origin?.node?` · <a href="nodes/${esc(encodeURIComponent(j.origin.node))}/index.html#journal/cycle:${j.cycle}">${esc(j.origin.node)}</a>`:''}</span><span>${esc(changeLabel)}</span></div><details class="lab-notes"><summary>LAB NOTES / ${Array.isArray(actions)?`${actions.length} RECORDED CHANGE${actions.length===1?'':'S'}`:'HISTORICAL CHANGE DETAILS'}</summary><div class="lab-notes-body">${Array.isArray(actions)?(actions.map(a=>`<div class="decision"><strong>${esc(a.type)} / ${esc(a.id)}</strong><p>${esc(a.statement||a.task||a.status)}</p><p>${esc(a.reason)}</p>${refs(a.evidence)}</div>`).join('') || '<p>No state changes proposed.</p>'):'<p>The journal entry is preserved, but its change details are outside the recent events included in this live view.</p>'}</div></details><a class="subtle" href="#history/${encodeURIComponent(j.invocation)}">Full invocation & decision →</a></div></article>`;
     }).join('') || '<p class="empty">No matching entries. The tape is blank here.</p>';
     $('more').hidden=entries.length<=journalLimit;
+    watchListEnd('more',()=>{journalLimit+=8;route();});
     window.WakeAskBob?.attachRecords($('journal'),{page:'journal',head:data.head,selected});
   }
-  $('search')?.addEventListener('input',()=>{journalLimit=8;journal();});
-  providerSelect?.addEventListener('change',()=>{journalLimit=8;journal();});
-  $('more')?.addEventListener('click',()=>{journalLimit+=8;journal();});
+  $('search')?.addEventListener('input',()=>{journalLimit=8;route();});
+  providerSelect?.addEventListener('change',()=>{journalLimit=8;route();});
   if($('open-commitments'))$('open-commitments').innerHTML=open.slice(0,3).map(c=>`<div class="obligation"><span class="dot"></span><div>${esc(c.task)}<small>DUE / CYCLE ${c.due_cycle}${(c.origin?.version??s.version)>=c.due_cycle?' · OVERDUE':''}</small></div></div>`).join('')||'<p class="small">No open obligations. Nothing quietly dropped.</p>';
   function modelPerformance() {
     const attempts=[];
@@ -546,27 +546,54 @@
     const events=[...data.events].reverse().filter(e=>(!exact||e.payload.id===exact)&&matchesFilter(e)&&(kind==='all'||displayEventKind(e.kind)===kind)&&JSON.stringify(displayEvent(e)).toLowerCase().includes(query));
     $('history-content').innerHTML=((selected)?'<p><a class="text-link" href="#history">← All events</a></p>':'')+events.slice(0,historyLimit).map(e=>`<details class="audit-row"><summary><span>#${String(e.seq).padStart(4,'0')}</span>${badge(displayEventKind(e.kind))}<time datetime="${esc(e.time)}">${esc(fmt(e.time))}</time><span class="event-id">${esc(e.payload.id||'system')}</span></summary>${e.payload.reason?`<p>${esc(e.payload.reason)}</p>`:''}${(e.kind==='rejected'||e.payload.editorial)?`<p><a class="text-link" href="rejected.html#${encodeURIComponent(e.payload.id)}">Read the draft and explanation →</a></p>`:''}${raw(e)}</details>`).join('')+(events.length?'':'<p class="empty">No events match.</p>');
     $('history-more').hidden=events.length<=historyLimit;
+    watchListEnd('history-more',()=>{historyLimit+=35;route();});
   }
   let routeTicket=0;
+  let paginationObserver;
+  const listObservers=new Map();
+  function watchListEnd(id,load){
+    listObservers.get(id)?.disconnect();
+    const marker=$(id);if(!marker||marker.hidden)return;
+    marker.textContent='Scroll for more';marker.setAttribute('role','status');
+    const ticket=routeTicket;
+    const observer=new IntersectionObserver(entries=>{
+      if(ticket!==routeTicket||!entries.some(entry=>entry.isIntersecting)||marker.hidden)return;
+      observer.disconnect();load();
+    },{rootMargin:'0px 0px 180px 0px'});
+    listObservers.set(id,observer);observer.observe(marker);
+  }
   function readerPagination(page,selected){
-    $('reader-pagination')?.remove();
+    paginationObserver?.disconnect();$('reader-pagination')?.remove();
     if(!data.reader_transport||(selected&&!selected.startsWith('topic:')))return;
     const collections=({blog:['posts'],journal:['journal'],history:['events'],evidence:['evidence'],projects:['notebooks','projects'],discoveries:['notebooks']})[page];
     if(!collections)return;
+    const remaining=collections.filter(collection=>data.reader_transport.counts[collection]&&window.WakeReader.hasMore(collection));
+    if(!remaining.length)return;
     const panel=document.createElement('div');panel.id='reader-pagination';panel.className='research-note';
     const text=document.createElement('p');text.textContent=data.reader_transport.scope;panel.append(text);
-    for(const collection of collections){
-      if(!data.reader_transport.counts[collection])continue;
-      const button=document.createElement('button');button.type='button';button.textContent='Load older '+collection;
-      button.addEventListener('click',async()=>{
-        button.disabled=true;
-        try{const more=await window.WakeReader.more(collection);refreshDerived();
-          if(collection==='journal')journalLimit+=24;if(collection==='events')historyLimit+=24;
-          route();if(!more)document.querySelector('#reader-pagination [data-collection="'+collection+'"]')?.remove();
-        }catch(error){button.disabled=false;text.textContent=error.message;}
-      });button.dataset.collection=collection;panel.append(button);
-    }
-    $(page)?.append(panel);
+    const marker=document.createElement('p');marker.textContent='Older entries load as you scroll.';marker.setAttribute('role','status');panel.append(marker);$(page)?.append(panel);
+    const ticket=routeTicket;let observer;
+    const load=async()=>{
+      observer.disconnect();
+      if(ticket!==routeTicket)return;
+      // Reveal already-loaded journal/event rows before requesting another page.
+      if(page==='journal'&&!$('more').hidden){journalLimit+=8;route();return;}
+      if(page==='history'&&!$('history-more').hidden){historyLimit+=35;route();return;}
+      marker.textContent='Loading older entries…';
+      try{
+        await window.WakeReader.more(remaining[0]);
+        if(ticket!==routeTicket)return;
+        refreshDerived();
+        if(remaining[0]==='journal')journalLimit+=24;if(remaining[0]==='events')historyLimit+=24;
+        route();
+      }catch(error){
+        if(ticket!==routeTicket)return;
+        marker.textContent=error.message+' ';
+        const retry=document.createElement('button');retry.type='button';retry.textContent='Retry';retry.onclick=load;marker.append(retry);
+      }
+    };
+    observer=new IntersectionObserver(entries=>{if(entries.some(entry=>entry.isIntersecting))void load();},{rootMargin:'0px 0px 180px 0px'});
+    paginationObserver=observer;observer.observe(panel);
   }
   function route() {
     const [part,id]=location.hash.slice(1).split('/');
@@ -613,7 +640,6 @@
   $('evidence-search')?.addEventListener('input',route);
   $('history-search')?.addEventListener('input',()=>{historyLimit=35;route();});
   $('event-filter')?.addEventListener('change',()=>{historyLimit=35;route();});
-  $('history-more')?.addEventListener('click',()=>{historyLimit+=35;route();});
   const resetPageScroll=()=>requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo(0,0)));
   window.addEventListener('hashchange',()=>{historyLimit=35;for(const id of ['evidence-search','history-search','event-filter']){if($(id))$(id).value=id==='event-filter'?'all':'';}route();resetPageScroll();});
   const projectionDate=()=>{

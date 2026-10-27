@@ -35,25 +35,25 @@ const server=http.createServer((req,res)=>{
   await page.waitForFunction(()=>document.querySelectorAll('.bob details').length===2&&!document.querySelector('#send').disabled);
   assert.deepEqual(await page.evaluate(()=>window.__loads),['starter']);assert.deepEqual(await page.evaluate(()=>window.__answerModels),['starter']);
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
-  // An upgrade cannot cut a streamed reply in half or drop its history.
-  await page.getByRole('textbox',{name:'Message Bob'}).fill('slow');await page.getByRole('button',{name:'Send',exact:true}).click();await page.waitForFunction(()=>window.__finishReply&&window.__finishPrefetch);
-  await page.evaluate(()=>window.__finishPrefetch());await page.waitForTimeout(30);assert.deepEqual(await page.evaluate(()=>window.__loads),['starter']);
-  await page.evaluate(()=>window.__finishReply());await page.waitForFunction(()=>window.__loads.includes('best')&&!document.querySelector('#send').disabled);
-  assert.equal(await page.locator('.bob').count(),3);
+  // Keep one compact engine across replies, with no background larger download.
+  await page.getByRole('textbox',{name:'Message Bob'}).fill('slow');await page.getByRole('button',{name:'Send',exact:true}).click();await page.waitForFunction(()=>window.__finishReply);
+  assert.equal(await page.evaluate(()=>window.__prefetches),undefined);
+  await page.evaluate(()=>window.__finishReply());await page.waitForFunction(()=>!document.querySelector('#send').disabled);
+  assert.deepEqual(await page.evaluate(()=>window.__loads),['starter']);
   await page.getByRole('textbox',{name:'Message Bob'}).fill('Why?');await page.getByRole('button',{name:'Send',exact:true}).click();await page.waitForFunction(()=>document.querySelectorAll('.bob details').length===4&&!document.querySelector('#send').disabled);
-  assert.equal(await page.evaluate(()=>window.__answerModels.at(-1)),'best');
+  assert.equal(await page.evaluate(()=>window.__answerModels.at(-1)),'starter');
   const messages=await page.evaluate(()=>window.__messages);assert.equal(messages.filter(m=>m.role==='assistant').length,3);assert(messages[0].content.includes('15-year-old'));assert(messages.at(-1).content.includes('historical notebook was unavailable'));
   const stored=await page.evaluate(()=>localStorage.getItem('wake-bob-device-chat:device-fixture'));assert.equal(JSON.parse(stored).story.turns.length,4);assert(Buffer.byteLength(stored)<=32768);
   // Restore labels and chat without waiting for preparation or checking cache.
   await page.reload();await page.waitForFunction(()=>document.querySelectorAll('.bob').length===4);assert.equal(await page.locator('.bob summary').first().innerText(),'Published introduction');
   await page.getByRole('button',{name:'Clear chat',exact:true}).click();assert.equal(await page.locator('article').count(),0);
   await page.getByRole('textbox',{name:'Message Bob'}).fill('Keep this question');await page.getByRole('button',{name:'Send',exact:true}).click();await page.getByRole('button',{name:'Stop',exact:true}).click();await page.waitForFunction(()=>!document.querySelector('#send').disabled);assert.equal(await page.locator('#question').inputValue(),'Keep this question');
-  // A killed larger-model preparation must not be retried on every reload.
+  // Retrying an interrupted question reuses its pair of bubbles.
+  const userCount=await page.locator('.you').count();
+  await page.getByRole('button',{name:'Send',exact:true}).click();await page.getByRole('button',{name:'Stop',exact:true}).click();await page.waitForFunction(()=>!document.querySelector('#send').disabled);
+  assert.equal(await page.locator('.you').count(),userCount);
   await page.evaluate(()=>localStorage.setItem('wake-bob-upgrade-opening',String(Date.now())));await page.reload();await page.waitForFunction(()=>window.__openStarter);await page.evaluate(()=>{window.__slowStartup=false;window.__openStarter();});await page.waitForTimeout(50);assert.equal(await page.evaluate(()=>window.__prefetches),undefined);
   await page.getByRole('textbox',{name:'Message Bob'}).fill('uncited');await page.getByRole('button',{name:'Send',exact:true}).click();await page.waitForFunction(()=>document.querySelector('.bob summary')?.textContent==='Sources Bob read');
-  // Rejected upgrade leaves the compact model available and history intact.
-  await page.evaluate(()=>localStorage.removeItem('wake-bob-upgrade-opening'));await page.reload();await page.waitForFunction(()=>window.__openStarter);await page.evaluate(()=>{window.__slowStartup=false;window.__upgradeFailure=true;window.__openStarter();});await page.waitForFunction(()=>window.__finishPrefetch);await page.evaluate(()=>window.__finishPrefetch());await page.waitForFunction(()=>window.__loads.length===3);assert.deepEqual(await page.evaluate(()=>window.__loads),['starter','best','starter']);
-  await page.getByRole('textbox',{name:'Message Bob'}).fill('Try again');await page.getByRole('button',{name:'Send',exact:true}).click();await page.waitForFunction(()=>!document.querySelector('#send').disabled);assert.equal(await page.evaluate(()=>window.__answerModels.at(-1)),'starter');
   const journal=await page.evaluate(async({head})=>{const {prepareContext}=await import('./ask-bob-context.js');return prepareContext({collection:'journal',record:'100.wake::w-journal',head},'What changed?',[]);},{head});assert.equal(new URL(journal.sources[0].url).pathname,'/nodes/100.wake/index.html');
   await page.evaluate(({hash})=>localStorage.setItem('wake-bob-device-chat:device-fixture',JSON.stringify({other:null,bad:{time:'invalid',version:hash,turns:[]},kept:{time:1,version:hash,turns:[{question:'Earlier',answer:'Earlier answer',sources:[null,{id:'S1',label:'Hostile',url:'https://outside.invalid/'}]}]}})),{hash});
   await page.reload();await page.waitForFunction(()=>window.__openStarter);await page.evaluate(()=>{window.__slowStartup=false;window.__openStarter();});
@@ -64,6 +64,6 @@ const server=http.createServer((req,res)=>{
   await page.goto(base+'/bob-chat.html');await page.evaluate(async()=>{window.WAKE_DEPLOYMENT={snapshot_only:true};const s=document.createElement('script');s.src='ask-bob.js';document.body.append(s);await new Promise(r=>s.onload=r);document.body.insertAdjacentHTML('beforeend','<div id="fixture"><h1>Story</h1></div>');await WakeAskBob.mount(document.querySelector('#fixture'),{post:{id:'story',_reader_article:{hash:'a'.repeat(64)}}});});
   const opened=page.waitForEvent('popup');await page.locator('.ask-bob-launch').click();const popup=await opened;assert.equal(new URL(popup.url()).pathname,'/bob-chat.html');assert.equal(new URL(popup.url()).searchParams.get('article'),'story');await popup.close();
   assert(!requests.some(p=>p.startsWith('/ask-bob/')));assert.deepEqual(errors,[]);
-  console.log(JSON.stringify({result:'PASS',checks:'automatic start, no setup/model controls, immediate grounded introduction, queued first question, cache-denied path, idle-only upgrade, history continuity, upgrade rollback/crash marker, cancellation, source labels, exact node citation, mobile layout'}));
+  console.log(JSON.stringify({result:'PASS',checks:'automatic start, no setup/model controls, immediate grounded introduction, queued first question, cache-denied path, single compact engine without upgrades, history continuity, retry bubble identity, cancellation, source labels, exact node citation, mobile layout'}));
  }finally{await browser.close();server.close();}
 })().catch(error=>{console.error(error);server.close();process.exitCode=1;});

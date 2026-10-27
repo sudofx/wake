@@ -29,6 +29,11 @@ const server=http.createServer((req,res)=>{
   const started=Date.now();await page.goto(base,{waitUntil:'domcontentloaded'});await page.locator('#attention-question').waitFor();
   const ready=Date.now()-started;assert(ready<3000,`Reader ready in ${ready}ms despite unavailable observations`);
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Phone has no horizontal overflow');
+  await page.locator('[data-bob-home-actions] .ask-bob-launch').waitFor();
+  assert.equal(await page.locator('#home .ask-bob-record').count(),1);
+  const mobileActions=await page.locator('[data-bob-home-actions] > a').evaluateAll(nodes=>nodes.map(node=>node.getBoundingClientRect().y));assert(mobileActions[1]>mobileActions[0]);
+  await page.setViewportSize({width:1400,height:1000});const desktopActions=await page.locator('[data-bob-home-actions] > a').evaluateAll(nodes=>nodes.map(node=>node.getBoundingClientRect().y));assert(Math.abs(desktopActions[0]-desktopActions[1])<3);
+  await page.screenshot({path:'/tmp/wake-five-home-desktop.png'});await page.setViewportSize({width:390,height:844});
   const post=Object.values(full.state.posts).find(post=>post.status!=='superseded');
   if(post){
    failDetails=true;await page.goto(base+'blog.html#blog/'+encodeURIComponent(post.id));
@@ -37,14 +42,31 @@ const server=http.createServer((req,res)=>{
    await page.locator('.blog-reading').waitFor();assert((await page.locator('.blog-reading').innerText()).includes(post.title));
   }
   await page.goto(base+'journal.html');await page.locator('#entries .entry').first().waitFor();
-  if(full.state.journal.length>24){const before=await page.locator('#entries .entry').count();await page.getByRole('button',{name:'Load older journal'}).click();await page.waitForFunction(before=>document.querySelectorAll('#entries .entry').length>before,before);}
+  if(full.state.journal.length>24){const before=await page.locator('#entries .entry').count();await page.locator('#more').scrollIntoViewIfNeeded();await page.waitForFunction(before=>document.querySelectorAll('#entries .entry').length>before,before);}
+  assert.equal(await page.getByRole('button',{name:/Load older|More from the archive|More events/}).count(),0);
+  // Keep loading one bounded dataset on each visit to the list end, then stop.
+  for(let i=0;i<25&&await page.locator('#entries .entry').count()<full.state.journal.length;i++){
+    const before=await page.locator('#entries .entry').count();
+    await page.evaluate(()=>window.scrollTo(0,document.documentElement.scrollHeight));
+    await page.waitForFunction(before=>document.querySelectorAll('#entries .entry').length>before,before);
+  }
+  assert.equal(await page.locator('#entries .entry').count(),full.state.journal.length);
+  await page.goto(base+'blog.html');await page.locator('.blog-card').first().waitFor();
+  for(let i=0;i<10&&await page.locator('.blog-card').count()<Object.keys(full.state.posts).length;i++){
+    const before=await page.locator('.blog-card').count();await page.evaluate(()=>window.scrollTo(0,document.documentElement.scrollHeight));
+    await page.waitForFunction(before=>document.querySelectorAll('.blog-card').length>before,before);
+  }
+  assert.equal(await page.locator('.blog-card').count(),Object.keys(full.state.posts).length);
+  assert.equal(await page.locator('#reader-pagination').count(),0);
+  const journalPages=requests.filter(url=>url.startsWith('/reader-records/pages/journal/'));
+  assert.equal(journalPages.length,Math.ceil(full.state.journal.length/24));assert.equal(new Set(journalPages).size,journalPages.length);
   const evidence=Object.values(full.state.evidence)[0];
   if(evidence){await page.goto(base+'evidence.html#evidence/'+encodeURIComponent(evidence.id));await page.locator('.evidence-card').first().waitFor();assert((await page.locator('.evidence-card').first().innerText()).includes(evidence.source));}
-  const notebook=Object.values(full.state.notebooks)[0];
+  const notebook=Object.values(full.state.notebooks||{})[0];
   if(notebook){await page.goto(base+'projects.html#projects/notebook:'+encodeURIComponent(notebook.id));await page.locator('.notebook-reading').waitFor();assert((await page.locator('.notebook-reading').innerText()).includes(notebook.title));}
   assert(!requests.some(url=>/^\/(wake-data|research-data)\.json$/.test(url)),'No full archive downloaded for ordinary reader navigation');
   assert(!requests.some(url=>url==='/group/bob.json'),'Accepted reader posts do not wait for group transport');
   assert.deepEqual(errors,[]);
-  console.log(JSON.stringify({result:'PASS',homepage_ready_ms:ready,reader_bytes:fs.statSync(path.join(site,'reader-data.json')).size,full_archive_bytes:fs.statSync(path.join(site,'wake-data.json')).size,checks:'phone home, exact blog/evidence/notebook details, journal, unavailable nodes, no archive fetch'}));
+  console.log(JSON.stringify({result:'PASS',homepage_ready_ms:ready,reader_bytes:fs.statSync(path.join(site,'reader-data.json')).size,full_archive_bytes:fs.statSync(path.join(site,'wake-data.json')).size,checks:'phone home, exact blog/evidence/notebook details, all journal/blog pages on scroll, pagination exhaustion, no duplicate page reads, desktop/phone home actions, unavailable nodes, no archive fetch'}));
  }finally{await browser.close();server.close();}
 })().catch(error=>{console.error(error);server.close();process.exitCode=1;});

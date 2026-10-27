@@ -15,18 +15,15 @@ explanations, not a claim that a model is already running.
 
 A compact Qwen3 0.6B model (about 335 MB of weights, plus tokenizer and engine)
 prepares automatically while the reader can use those introductions. It then
-handles open-ended questions and follow-ups. After it is ready, Bob fetches the
-more capable Qwen3.5 2B model (about 1.1 GB of weights) into the engine's native
-browser cache in the background, one file at a time. Downloading does not create
-a second inference worker or allocate the larger model on the GPU. When the
-conversation is between replies, Bob releases the compact model and opens the
-larger one. History, selected public version and source boundaries stay the same.
-New questions arriving during a switch wait for it; a reply already being written
-is never interrupted by an upgrade. Replies stream as they are generated.
+handles open-ended questions and follow-ups. The session keeps that one compact
+model throughout the conversation. It does not prefetch or automatically open
+the larger 1.1 GB model between replies. This limits automatic memory demand;
+it does not certify that the remaining engine fits every iPhone. Replies stream
+as they are generated.
 
 Inference uses WebGPU in one dedicated worker at a time. A compatible browser,
 graphics processor, half-precision shader support and sufficient memory are
-required. Background fetching works while the page is active; browsers may
+required. Preparation works while the page is active; browsers may
 suspend a hidden or locked phone. First use still depends on connection speed
 and device preparation; there is no promise of instant open-ended inference.
 Cached files are reused without a preliminary cache-check gate, including when
@@ -34,13 +31,12 @@ browser cache inspection fails. Browser eviction can require missing files again
 **Stop** cancels the current answer or its preparation and keeps earlier replies.
 The pending question is kept locally for retry, including across a page reload.
 
-A failed upgrade falls back to the compact model. A local marker remains until
-the larger model successfully answers; if the browser kills the page during
-preparation or inference, reopening uses the compact model and avoids another
-upgrade for 24 hours. This is bounded recovery, not proof that the larger model
-fits every iPhone. When GPU preparation fails, the published introductions still
-work; article questions can fall back to explicitly labeled published passages.
-There is no CPU inference fallback or hidden server answering questions.
+When GPU preparation fails, the published introductions still work; article
+questions can fall back to explicitly labeled published passages. A failed or
+stopped question keeps one visible message pair; sending the same question again
+retries that pair instead of adding duplicate unanswered bubbles. There is no CPU
+inference fallback or hidden server answering questions. Physical iPhone Safari
+stability and explanation quality require separate device acceptance.
 
 Bob explains at the level of a thoughtful 15-year-old: familiar language, defined
 technical terms, short examples and respectful tone. Models still make mistakes.

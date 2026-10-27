@@ -101,9 +101,12 @@ isolated kernel fixture for independent observers. Reading it grants no executio
 provider or record authority; its manifest is derived presentation.
 
 
-The [digital ant farm](ant-farm.md) owns browser-local simulation state only. Its
-bounded samples enter Bob as unverified advisory input, never native research
-authority, governance or autonomous improvement.
+The [digital ant farm](ant-farm.md) keeps each visitor’s editable colony in
+browser storage. [Bob’s observer-only colony](bob-ant-farm.md) uses a separate
+append-only Git branch with bounded checkpoints and recorded care. Browser replay
+and the dated blog notebook are derived simulation presentation. They never write
+native research articles, evidence, governance or autonomous improvement state;
+publishing them does not establish runtime editorial-context adoption.
 
 ## One installation, internal nodes
 

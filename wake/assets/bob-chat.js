@@ -1,6 +1,6 @@
 /* Device-local conversation window over exact published source versions. */
-import {createBobSession} from './ask-bob-session.js?v=20261026-automatic';
-import {prepareContext,readJSON,citedSources,quickReply} from './ask-bob-context.js?v=20261026-automatic';
+import {createBobSession} from './ask-bob-session.js?v=20261027-phone-recovery';
+import {prepareContext,readJSON,citedSources,quickReply} from './ask-bob-context.js?v=20261027-phone-recovery';
 import {answer as searchAnswer} from './ask-bob-guide.js';
 const $ = id => document.getElementById(id), params = new URLSearchParams(location.search);
 const selection = params.has('article') ? {article:params.get('article'),hash:params.get('hash')} : {collection:params.get('collection') || 'overview',record:params.get('record') || 'home',head:params.get('head'),node:params.get('node') || ''};
@@ -8,7 +8,7 @@ const identity = selection.article || [selection.node,selection.collection,selec
 const version = selection.hash || selection.head;
 const draftKey = 'wake-bob-draft:' + identity + ':' + version;
 try {const draft=sessionStorage.getItem(draftKey);if(draft && draft.length<=2000)$('question').value=draft;}catch{}
-let contextReady = true, active, history = [], storageKey, allChats = {}, epoch = 0;
+let contextReady = true, active, history = [], storageKey, allChats = {}, epoch = 0, failedTurn;
 const state = () => { $('send').disabled = !contextReady || Boolean(active); $('stop').hidden = !active; $('chat').setAttribute('aria-busy',String(Boolean(active))); };
 const status = value => { $('status').textContent = value; };
 const nearBottom = () => $('chat').scrollHeight - $('chat').scrollTop - $('chat').clientHeight < 100;
@@ -91,7 +91,7 @@ $('theme').onclick = () => {const next = document.documentElement.dataset.theme 
 $('question').oninput = () => {try{sessionStorage.setItem(draftKey,$('question').value);}catch{}$('question').style.height = 'auto';$('question').style.height = Math.min(128,$('question').scrollHeight) + 'px';};
 $('question').onkeydown = event => {if(event.key === 'Enter' && !event.shiftKey && !event.isComposing && matchMedia('(pointer:fine)').matches){event.preventDefault();$('form').requestSubmit();}};
 $('stop').onclick = () => active?.abort();
-$('clear').onclick = () => {epoch++;active?.abort();history = [];try{sessionStorage.removeItem(draftKey);}catch{}if(storageKey){delete allChats[identity];try{localStorage.setItem(storageKey,JSON.stringify(allChats));}catch{}}$('chat').replaceChildren();status('Chat cleared.');};
+$('clear').onclick = () => {epoch++;active?.abort();history = [];failedTurn = undefined;try{sessionStorage.removeItem(draftKey);}catch{}if(storageKey){delete allChats[identity];try{localStorage.setItem(storageKey,JSON.stringify(allChats));}catch{}}$('chat').replaceChildren();status('Chat cleared.');};
 const session = createBobSession(value => {if(!active)status(value);});
 window.addEventListener('pagehide',event => {if(!event.persisted)session.close();});
 state();
@@ -102,10 +102,13 @@ $('form').onsubmit = async event => {
   const question = $('question').value.trim();if(!question)return;
   try{sessionStorage.setItem(draftKey,question);navigator.storage?.persist?.().catch(() => {});}catch{}
   const controller = new AbortController(), revision = epoch;active = controller;state();
-  let row;
+  let row, you;
   try {
     if(revision !== epoch || controller.signal.aborted)return;
-    bubble('You',question);row = bubble('Bob','…');$('question').value = '';$('question').style.height = '44px';status('Reading the sources…');
+    if(failedTurn?.question === question && failedTurn.you.isConnected && failedTurn.row === $('chat').lastElementChild) {
+      ({you,row} = failedTurn);row.classList.remove('incomplete');row.querySelectorAll('details').forEach(node => node.remove());render(row.querySelector('.prose'),'…');
+    } else {you = bubble('You',question);row = bubble('Bob','…');}
+    failedTurn = undefined;$('question').value = '';$('question').style.height = '44px';status('Reading the sources…');
     let answer,refs,metrics,complete = true,sourceLabel = 'Sources',mode = 'model';
     const immediate = quickReply(question);
     if(immediate) {
@@ -128,7 +131,7 @@ $('form').onsubmit = async event => {
     else {row.classList.add('incomplete');status('Reply reached its length limit. Ask Bob to focus on one part.');}
     bottom();
   } catch(error) {
-    if(revision === epoch){if(row){row.classList.add('incomplete');if(row.querySelector('.prose').textContent === '…')row.remove();}status(error.name === 'AbortError' ? 'Stopped. Your earlier replies are kept.' : error.message);if(!$('question').value)$('question').value = question;}
+    if(revision === epoch){if(row){row.classList.add('incomplete');if(row.querySelector('.prose').textContent === '…')render(row.querySelector('.prose'),error.name === 'AbortError' ? 'Reply stopped. Send again to retry.' : 'This reply did not finish. Send again to retry.');failedTurn = {question,you,row};}status(error.name === 'AbortError' ? 'Stopped. Your earlier replies are kept.' : error.message);if(!$('question').value)$('question').value = question;}
   } finally {if(active === controller)active = undefined;state();}
 };
 try {
