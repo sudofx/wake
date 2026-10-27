@@ -1,7 +1,7 @@
 /* Public Actions observations never enter the research transport or live canvases. */
 (() => {
   const config=window.WAKE_DEPLOYMENT?.hosted_status, light=document.querySelector('.actions-light');
-  if(!light || !config || !/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(config.repository || '') || config.workflow!=='hosted-research.yml' || config.branch!=='master')return;
+  if(!light || !config || !/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(config.repository || '') || config.workflow!=='research-worker.yml' || config.branch!=='master')return;
   const base=`https://api.github.com/repos/${config.repository}/actions/workflows/${config.workflow}`;
   const link=`https://github.com/${config.repository}/actions/workflows/${config.workflow}`;
   const interval=180000, key=`wake-hosted-status@1:${config.repository}`, stale=240000;
@@ -40,7 +40,7 @@
     try{
       const [workflow,result]=await Promise.all([read(base),read(`${base}/runs?branch=master&per_page=5`)]);
       if(!['active','disabled_manually','disabled_inactivity','disabled_fork'].includes(workflow.state) || !Array.isArray(result.workflow_runs))throw new Error('Invalid status');
-      const runs=result.workflow_runs.filter(run=>run.head_branch==='master' && run.path==='.github/workflows/hosted-research.yml');
+      const runs=result.workflow_runs.filter(run=>run.head_branch==='master' && run.path==='.github/workflows/research-worker.yml');
       const active=runs.find(run=>run.status==='in_progress'), queued=runs.find(run=>['queued','waiting','requested','pending'].includes(run.status));
       let state='idle',label='Between hosted batches';
       if(workflow.state!=='active'){state='stopped';label=active?'Stopping; current batch is draining':'Stopped';}
