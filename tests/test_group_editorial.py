@@ -370,8 +370,11 @@ class GroupEditorialTests(unittest.TestCase):
         observation = {'schema':'bob-farm-observation@1','status':'available','scope':'programmed-simulation-only',
             'source':'https://raw.githubusercontent.com/sudofx/wake/'+('b'*40)+'/farm.json',
             'revision':'b'*40,'sha256':'c'*64,'model_source_revision':'d'*40,
-            'captured_at':'2026-10-27T17:00:00Z','before':{'ants':64,'dug':10,'delivered':3},
-            'after':{'ants':65,'dug':12,'delivered':4},'recent_intervals':[
+            'captured_at':'2026-10-27T17:00:00Z','model':'pellet-tunnels@9',
+            'interval':{'from_tick':150000,'to_tick':156000},
+            'before':{'ants':91,'dug':288,'delivered':1388,'food_reserve':239,'protein_reserve':27,'queen_alive':True,'brood':8},
+            'after':{'ants':95,'dug':296,'delivered':1400,'food_reserve':249,'protein_reserve':49,'queen_alive':True,'brood':8},
+            'feedings':1,'food_added':100,'recent_intervals':[
                 {'from_tick':i*6000,'to_tick':(i+1)*6000,'workers':64,'deliveries':3,'new_tunnels':2,'feedings':1} for i in range(4)]}
         packet = with_farm_observation(packet,observation)
         result = request(packet,2,max_context_chars=48000)

@@ -507,8 +507,8 @@ usage remain separate provider measurements. No extra provider call is required.
 
 Group Bob requests carry bounded attributed per-topic overviews and notebook
 excerpts from every member, including self-study and recorded context-policy
-adaptations. Each member stays within a 3,000-character summary budget. The
-leader receives a pinned public farm observation as editorial context only;
+adaptations. Members have a 3,000-character summary budget, with 4,000 for the leader
+including the farm source. The leader receives a pinned public farm observation as editorial context only;
 redundant topic labels are deduplicated before optional prose is shortened.
 No member, native identifier, certainty label or source URL is silently truncated.
 These inputs carry record heads and versions identifying their dated origins. Excerpting must not drop

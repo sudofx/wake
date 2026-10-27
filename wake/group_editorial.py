@@ -18,39 +18,40 @@ MAX_PACKET = 240_000
 ARTICLE_FIELDS = ('title', 'lede', 'body', 'lens')
 PARAGRAPH_CONTRACT = 'group-editorial-paragraphs@1'
 MEMBER_BUDGET = 3000
+FARM_MEMBER_BUDGET = 4000
 SYNTHESIS_CONTRACT = 'bob-system-synthesis@1'
 
 
-def bound_member_input(packet):
+def bound_member_input(packet, *, budget=MEMBER_BUDGET):
     """Keep every topic pointer and attribution before optional prose detail."""
     def size():
         return len(json.dumps(packet))
-    if size() > MEMBER_BUDGET:
+    if size() > budget:
         packet['projects'] = []
         packet['charter'] = ''
         for topic in packet['topics']:
             topic['question'] = ''
-    if size() > MEMBER_BUDGET:
+    if size() > budget:
         for story in packet['stories'][1:]:
             for key in ('title', 'summary', 'limitations', 'next_questions', 'findings'):
                 if key in story:
                     story[key] = story[key][:120]
-    while size() > MEMBER_BUDGET and len(packet['stories']) > 2:
+    while size() > budget and len(packet['stories']) > 2:
         packet['stories'].pop(1)
     overview = packet['stories'][0].get('statement', {}).get('topic_overview', [])
     for limit in (120, 60, 30, 0):
-        if size() <= MEMBER_BUDGET:
+        if size() <= budget:
             break
         for row in overview:
             row['summary'] = row['summary'][:limit]
             row['limitations'] = row['limitations'][:limit]
             row['excerpted'] = True
-    while size() > MEMBER_BUDGET and len(packet['stories']) > 1:
+    while size() > budget and len(packet['stories']) > 1:
         packet['stories'].pop(1)
     farm = packet['stories'][0].get('statement', {}).get('farm_observation', {})
-    while size() > MEMBER_BUDGET and len(farm.get('recent_intervals', [])) > 1:
+    while size() > budget and len(farm.get('recent_intervals', [])) > 1:
         farm['recent_intervals'].pop(0)
-    require(size() <= MEMBER_BUDGET, 'Member editorial summary ceiling reached')
+    require(size() <= budget, 'Member editorial summary ceiling reached')
     return packet
 
 
@@ -66,7 +67,7 @@ def with_farm_observation(packet, observation):
         activity.setdefault('sources', []).append({'id': 'farm-' + observation['revision'],
             'source': observation['source'], 'time': observation['captured_at'],
             'scope': 'programmed-simulation-only'})
-    bound_member_input(leader)
+    bound_member_input(leader, budget=FARM_MEMBER_BUDGET)
     return validate_inputs(packet)
 
 
