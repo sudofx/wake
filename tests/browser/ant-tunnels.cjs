@@ -29,7 +29,7 @@ const server=http.createServer((req,res)=>{
    await page.goto(process.env.ANT_FARM_URL||`http://127.0.0.1:${server.address().port}/ant-farm.html`);
    await page.locator('#habitat').waitFor({state:'visible'});await page.locator('#pause').click();
    const result=await page.evaluate(state=>{
-    const canvas=__terrainBuffers[0],ctx=canvas.getContext('2d'),w=canvas.width,h=canvas.height;
+    const habitat=document.querySelector('#habitat'),canvas=__terrainBuffers.find(c=>c.width===habitat.width&&c.height===habitat.height),ctx=canvas.getContext('2d'),w=canvas.width,h=canvas.height;
     const pixels=ctx.getImageData(0,0,w,h).data,cw=w/120,ch=h/96,home=state.nodes[state.nest];
     const visited=new Uint8Array(w*h),queue=new Int32Array(w*h);let head=0,tail=0;
     const pass=i=>i>=0&&i<w*h&&pixels[i*4+3]>240&&pixels[i*4]<220&&pixels[i*4+1]<205&&pixels[i*4+2]<174;

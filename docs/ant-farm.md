@@ -272,10 +272,10 @@ connected. An optional argument supplies a captured shared-farm JSON packet.
 ## Close viewing
 
 The habitat lens redraws the visible terrain at its current magnification rather
-than enlarging a low-resolution picture. A fixed seeded field of angular grains,
+than enlarging a low-resolution picture. A fixed seeded field of fine grain relief and angular grains,
 subtle strata, curved passages and uneven shaded chambers provides increasing
 detail while retaining the excavated graph. Spatial buckets limit texture work
-to the visible soil. Ants use articulated six-leg anatomy, distance-driven tripod
+to the visible soil. Ants use textured chitin on articulated six-leg anatomy, distance-driven tripod
 strides, frame-time turning and smoothed positions. Macro views resolve antenna
 joints, tarsal claws, fine setae, compound-eye highlights and shell texture. Nurses
 have small tending motions beside the brood, separate from the queen. These are

@@ -134,8 +134,15 @@
       const dx=node.x-parent.x,dy=node.y-parent.y,bend=Math.sin(node.x*7.3+node.y*3.1)*.055;ground.moveTo(parent.x*cw,parent.y*ch);ground.quadraticCurveTo((parent.x+dx*.5-dy*bend)*cw,(parent.y+dy*.5+dx*bend)*ch,node.x*cw,node.y*ch);
     }
     for(const [a,b] of [...colony.links,...colony.junctions]){const from=colony.nodes[a],to=colony.nodes[b];ground.moveTo(from.x*cw,from.y*ch);ground.lineTo(to.x*cw,to.y*ch);}
-    ground.strokeStyle='#8f754e';ground.lineWidth=Math.min(cw,ch)*1.68;ground.stroke();
-    ground.strokeStyle='#c9b68f';ground.lineWidth=Math.min(cw,ch)*1.35;ground.stroke();
+    ground.strokeStyle='#8f754e';ground.lineWidth=Math.min(cw,ch)*1.54;ground.stroke();
+    ground.strokeStyle='#c9b68f';ground.lineWidth=Math.min(cw,ch)*1.42;ground.stroke();ground.save();ground.globalAlpha=.24;ground.strokeStyle=sandPattern;ground.stroke();ground.restore();
+    // Fine displaced grains soften the excavated edges without breaking joins.
+    for(let id=0;id<colony.nodes.length;id++){const n=colony.nodes[id],p=colony.nodes[n.parent];if(!p||n.kind==='surface')continue;const dx=n.x-p.x,dy=n.y-p.y,length=Math.hypot(dx,dy)||1;
+      for(let i=0;i<8;i++){const t=(i+.5)/8,side=i%2?1:-1,offset=.71+Math.sin(id*3.7+i*8.1)*.055,x=(p.x+dx*t-dy/length*offset*side)*cw,y=(p.y+dy*t+dx/length*offset*side)*ch;
+        if(x*camera.zoom+camera.x<0||x*camera.zoom+camera.x>width||y*camera.zoom+camera.y<0||y*camera.zoom+camera.y>height)continue;
+        ground.fillStyle=i%3?'#dfcba299':'#8a704677';ground.beginPath();ground.ellipse(x,y,cw*(.025+(i%3)*.012),ch*.025,id+i,0,Math.PI*2);ground.fill();
+      }
+    }
     for(let i=0;i<colony.nodes.length;i++){const n=colony.nodes[i];if(n.kind==='chamber'&&i!==colony.nest)drawChamber(ground,n.x*cw,n.y*ch,1.8*cw,1.1*ch,i);}
     const home=colony.nodes[colony.nest];drawChamber(ground,home.x*cw,home.y*ch,4.9*cw,2.7*ch,colony.nest);
     // A warm nest chamber makes the homeward traffic legible.
@@ -151,7 +158,7 @@
     const points=Array.from({length:24},(_,i)=>{const angle=i*Math.PI/12,wave=1+.035*Math.sin(i*2.7+seed)+.025*Math.cos(i*1.3-seed);return{x:x+Math.cos(angle)*rx*wave,y:y+Math.sin(angle)*ry*wave};});
     layer.beginPath();for(let i=0;i<points.length;i++){const a=points[i],b=points[(i+1)%points.length];if(i===0)layer.moveTo((a.x+b.x)/2,(a.y+b.y)/2);else layer.quadraticCurveTo(a.x,a.y,(a.x+b.x)/2,(a.y+b.y)/2);}const a=points[0],b=points[1];layer.quadraticCurveTo(a.x,a.y,(a.x+b.x)/2,(a.y+b.y)/2);layer.closePath();
     const shade=layer.createRadialGradient(x-rx*.2,y+ry*.25,0,x,y,rx);shade.addColorStop(0,'#cbbb98');shade.addColorStop(.7,'#c1ae85');shade.addColorStop(1,'#aa9065');layer.fillStyle=shade;layer.fill();
-    layer.save();layer.clip();
+    layer.save();layer.clip();if(sandPattern){layer.save();layer.globalAlpha=.22;layer.fillStyle=sandPattern;layer.fillRect(x-rx,y-ry,rx*2,ry*2);layer.restore();}
     for(let i=0;i<95;i++){const angle=i*2.39996+seed,radius=Math.sqrt((i+.5)/95),xx=x+Math.cos(angle)*radius*rx,yy=y+Math.sin(angle)*radius*ry;layer.fillStyle=i%3?'#f8e9c52b':'#6d543522';layer.beginPath();layer.ellipse(xx,yy,rx*.006,ry*.008,i,0,Math.PI*2);layer.fill();}
     layer.restore();
   }
@@ -168,14 +175,17 @@
     }
     return {x:worldX*cw+Math.sin(ant.dir)*lane*cw,y:worldY*ch-Math.cos(ant.dir)*lane*ch,worldX,surface};
   }
-  let soilGrains=null,soilSeed=null;
+  let soilGrains=null,soilSeed=null,sandPattern=null;
   function drawSoilDetail(layer){
     if(soilSeed!==colony.seed){
       soilSeed=colony.seed;let seed=colony.seed||1;const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
-      soilGrains=Array.from({length:480},()=>[]);for(let i=0;i<96000;i++){const grain={x:random()*W,y:random()*H,r:.008+Math.pow(random(),6)*.11,shade:random(),angle:random()*Math.PI};soilGrains[Math.min(19,Math.floor(grain.y/H*20))*24+Math.min(23,Math.floor(grain.x/W*24))].push(grain);}
+      const tile=document.createElement('canvas');tile.width=tile.height=256;const material=tile.getContext('2d'),pixels=material.createImageData(256,256);
+      let previous=.5;for(let i=0;i<pixels.data.length;i+=4){const value=random(),relief=(value-previous)*17,brightness=(value-.5)*23+relief;pixels.data[i]=205+brightness;pixels.data[i+1]=189+brightness;pixels.data[i+2]=155+brightness;pixels.data[i+3]=150;previous=value;}material.putImageData(pixels,0,0);sandPattern=layer.createPattern(tile,'repeat');
+      soilGrains=Array.from({length:480},()=>[]);for(let i=0;i<96000;i++){const grain={x:random()*W,y:random()*H,r:.008+Math.pow(random(),6)*.065,shade:random(),angle:random()*Math.PI};soilGrains[Math.min(19,Math.floor(grain.y/H*20))*24+Math.min(23,Math.floor(grain.x/W*24))].push(grain);}
     }
     layer.save();soilOutline(layer);layer.clip();
-    for(let i=0;i<8;i++){const y=(29+i*9)*ch;layer.fillStyle=i%2?'#96774908':'#fff8df17';layer.beginPath();layer.moveTo(0,y);layer.bezierCurveTo(width*.25,y-2*ch,width*.65,y+2*ch,width,y-ch);layer.lineTo(width,y+2*ch);layer.bezierCurveTo(width*.65,y+5*ch,width*.25,y,width,y+ch);layer.lineTo(0,y+3*ch);layer.fill();}
+    sandPattern.setTransform(new DOMMatrix().scale(cw*8/256,ch*8/256));layer.fillStyle=sandPattern;layer.fillRect(0,0,width,height);
+    for(let i=0;i<8;i++){const y=(29+i*9)*ch;layer.fillStyle=i%2?'#96774907':'#fff8df0b';layer.beginPath();layer.moveTo(0,y);layer.bezierCurveTo(width*.25,y-2*ch,width*.65,y+2*ch,width,y-ch);layer.lineTo(width,y+2*ch);layer.bezierCurveTo(width*.65,y+5*ch,width*.25,y,width,y+ch);layer.lineTo(0,y+3*ch);layer.fill();}
     const scale=camera.zoom,left=-camera.x/scale,right=(width-camera.x)/scale,top=-camera.y/scale,bottom=(height-camera.y)/scale;
     const firstCol=Math.max(0,Math.floor(left/width*24)),lastCol=Math.min(23,Math.floor(right/width*24)),firstRow=Math.max(0,Math.floor(top/height*20)),lastRow=Math.min(19,Math.floor(bottom/height*20));
     for(let row=firstRow;row<=lastRow;row++)for(let col=firstCol;col<=lastCol;col++)for(const grain of soilGrains[row*24+col]){const x=grain.x*cw,y=grain.y*ch,r=grain.r*Math.min(cw,ch);if(x<left-r||x>right+r||y<top-r||y>bottom+r||r*scale*dpr<.3)continue;

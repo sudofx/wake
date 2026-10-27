@@ -47,7 +47,7 @@ tool. The original soil asset is retained for compatibility. Final prompt:
 
 The active farm does not load either photographic ground image. Its cream depth
 gradient now carries seeded vector grains. The earlier soil, sand and ant body
-assets remain provenance for retired treatments.
+assets remain artwork provenance; the macro renderer reuses the body texture.
 See [rendering limits](ant-farm.md#implementation-and-boundaries).
 
 
@@ -73,10 +73,13 @@ markup; they do not add a second horizon, window frame, sun or moon.
 
 ## Macro renderer
 
-The active renderer now uses procedural anatomy from `ant-drawing.js`, including
-articulated legs and antennae. The earlier body PNG is retained as artwork
-provenance and is not loaded by this renderer. Likewise, the ground now uses
-seeded vector grains, restrained strata and shaded chambers, rather than the
-retired flat colour-only treatment or photographic soil. Day/night room WebP
+The active renderer combines procedural anatomy from `ant-drawing.js` with
+chitin texture from the existing body PNG. Separate head, thorax and gaster
+patches are clipped into live anatomical shapes from one 1024×512 atlas; legs,
+antennae, mandibles and carrying poses remain articulated. A failed image load
+keeps the procedural body available. The ground combines deterministic fine
+grain relief, sparse angular vector grains, restrained strata and textured
+chambers. Molded green rails and a clear glass edge follow the physical-farm
+references. This replaces the retired flat colour-only ground treatment. Day/night room WebP
 assets remain active. The vector details redraw at habitat magnification without
 a larger full-world raster or an image-service dependency.

@@ -2,6 +2,15 @@
    the warm highlight is a viewing aid, not a claim about caste coloration. */
 (function(root){
  'use strict';
+ let shellAtlas=null;
+ if(typeof document!=='undefined'){
+  const source=new Image();source.onload=()=>{
+   // One bounded atlas supplies chitin texture; articulated anatomy stays live.
+   const atlas=document.createElement('canvas');atlas.width=1024;atlas.height=512;
+   atlas.getContext('2d').drawImage(source,0,0,1024,512);shellAtlas=atlas;
+   window.dispatchEvent(new Event('wake-ant-art-ready'));
+  };source.src=new URL('backgrounds/ant-body-v1.png',document.currentScript.src).href;
+ }
  function drawAnt(ctx,r,ant,gait,time){
   const queen=Boolean(ant.queen),pale=Boolean(ant.callow),c=((ant.id%5)+5)%5;
   const detail=(ant.detail||0)>7,macro=(ant.detail||0)>15;
@@ -29,16 +38,24 @@
    }
   }
   const ellipse=(x,y,rx,ry,fill)=>{const shade=ctx.createRadialGradient((x-rx*.3)*r,(y-ry*.5)*r,r*.06,x*r,y*r,Math.max(rx,ry)*r);shade.addColorStop(0,fill);shade.addColorStop(.45,fill);shade.addColorStop(1,dark);ctx.fillStyle=shade;ctx.beginPath();ctx.ellipse(x*r,y*r,rx*r,ry*r,0,0,Math.PI*2);ctx.fill();};
+  const shell=(x,y,rx,ry,part)=>{
+   if(!shellAtlas)return;const box=part==='gaster'?[.012,.235,.304,.495]:part==='head'?[.735,.25,.25,.5]:[.455,.34,.278,.305];
+   ctx.save();ctx.beginPath();ctx.ellipse(x*r,y*r,rx*r,ry*r,0,0,Math.PI*2);ctx.clip();ctx.globalAlpha=pale?.3:.86;
+   ctx.drawImage(shellAtlas,box[0]*1024,box[1]*512,box[2]*1024,box[3]*512,(x-rx)*r,(y-ry)*r,rx*2*r,ry*2*r);ctx.restore();
+  };
   // A single petiole separates the gaster from the mesosoma in this formicine
   // silhouette. The queen has a fuller thorax and a distinctly enlarged gaster.
   ellipse(queen?-2.25:-2.05,0,queen?1.5:1.08,queen?1.04:.72,body);
+  shell(queen?-2.25:-2.05,0,queen?1.5:1.08,queen?1.04:.72,'gaster');
   ellipse(queen?-2.55:-2.3,-.28,queen?.56:.4,.12,queen?'#d6b57944':'#a58b5433');
   ctx.strokeStyle=queen?'#d2ad6a66':'#a58b5438';ctx.lineWidth=r*.045;
   for(const x of queen?[-2.95,-2.35,-1.75]:[-2.55,-2.1,-1.68]){ctx.beginPath();ctx.moveTo(x*r,-(queen?.83:.53)*r);ctx.quadraticCurveTo((x+.2)*r,0,x*r,(queen?.83:.53)*r);ctx.stroke();}
   ellipse(-.72,0,.23,.24,body);
   ellipse(.03,0,queen?.9:.65,queen?.6:.42,body);ellipse(.43,-.05,queen?.55:.38,queen?.56:.38,body);
+  shell(.14,0,queen?1.02:.78,queen?.6:.42,'thorax');
   if(queen){ctx.strokeStyle='#cfad6a88';ctx.lineWidth=r*.06;ctx.beginPath();ctx.moveTo(-.35*r,-.38*r);ctx.quadraticCurveTo(.1*r,-.48*r,.5*r,-.33*r);ctx.stroke();}
   ellipse(1.2,0,.64,.57,body);ellipse(1.17,-.25,.32,.12,queen?'#b9924c66':'#9f895033');
+  shell(1.2,0,.64,.57,'head');
   ellipse(1.24,-.52,.1,.12,'#15130f');ellipse(1.24,.52,.1,.12,'#15130f');
   if(detail){
    ctx.strokeStyle=queen?'#ead3a466':'#d8c6a344';ctx.lineWidth=r*.018;

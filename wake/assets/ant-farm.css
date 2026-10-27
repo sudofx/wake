@@ -100,3 +100,10 @@
 #habitat{cursor:crosshair}#habitat[style*="pinch-zoom"]{cursor:grab}#habitat:active{cursor:grabbing}
 #zoom-label{float:right;font-variant-numeric:tabular-nums}#magnification{width:100%;accent-color:#d6bc7d;min-height:44px}.ant-inspector select{max-width:100%;width:100%;margin-bottom:8px}.ant-inspector #view-ant{margin:4px 0 16px}#zoom-in{font-size:23px;line-height:1;padding-inline:13px}#zoom-reset{font-size:10px}
 .habitat-case::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;box-shadow:inset 2px 0 5px #fff7,inset -2px 0 6px #42321d33;background:linear-gradient(114deg,#fff1,transparent 17%,transparent 82%,#ffffff08)}
+
+/* Molded rails and a narrow glass edge give the case physical thickness. */
+.habitat-case{border-color:#247541;border-width:10px;border-radius:10px;box-shadow:inset 0 0 0 1px #ecffe255,1px 1px 0 #87b16b,4px 3px 0 #194d2e,7px 10px 0 #28613b,12px 20px 22px #17231566}
+.case-lid{left:-13px;right:-13px;top:-19px;height:19px;border-radius:7px 7px 3px 3px;background:linear-gradient(#78b35a,#438b43 20%,#28733b 62%,#175c31 89%,#124d2b);box-shadow:inset 0 2px 1px #c8e5a877,0 2px 1px #113d22,3px 3px 2px #183f2580}
+.case-base{left:-10px;right:-10px;bottom:-29px;height:26px;background:linear-gradient(#458c47,#2f783b 20%,#286937 70%,#17502e);color:#c5ddad;border-top:1px solid #91ba7180;border-bottom:2px solid #18492c;border-radius:0 0 8px 8px;box-shadow:0 3px 1px #18452a,0 9px 10px #17271644;text-shadow:0 1px 1px #103f24}
+.habitat-case::after{box-shadow:inset 2px 0 3px #edffe6aa,inset -2px -1px 4px #233c2c55,inset 0 2px 2px #fff9;background:linear-gradient(112deg,#ffffff07,transparent 13%,transparent 85%,#ffffff05)}
+.is-fullscreen .habitat-case{border:0;box-shadow:none}
