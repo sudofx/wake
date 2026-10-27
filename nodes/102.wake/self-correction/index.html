@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head><script>window.WAKE_DEPLOYMENT={"schema": 1, "mode": "standalone", "snapshot_only": true};window.WAKE_STANDALONE=true;document.documentElement.dataset.wakeSnapshotOnly='true';</script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark"><title>WAKE✳︎ · Self-correction</title>
+<link rel="icon" href="../icons/wake.svg" type="image/svg+xml">
+<script src="../site-theme.js?v=20261012-light-default"></script>
+<link rel="stylesheet" href="self-correction.css?v=20261026-live">
+<script src="self-correction.js?v=20261026-live" defer></script>
+</head>
+<body>
+<nav class="navigation" aria-label="Page navigation"><a class="wordmark" href="../index.html">WAKE✳︎</a><a href="../console.html">← Console</a><a href="https://github.com/sudofx/wake/actions/workflows/self-correction.yml">Correction runs ↗</a></nav>
+<main>
+<header class="intro"><p class="eyebrow">OBSERVE → PROPOSE → TEST → REVIEW</p><h1>Self-correction,<br>with a visible record.</h1><p class="lede">WAKE can prepare a real change to its own presentation code, test it in isolation, and open a draft for review. Follow what ran, what passed, and what is still waiting.</p><p class="boundary">A passing candidate is a proposed source change. A merge, website publication and research-runtime upgrade are separate steps.</p></header>
+<section class="card" aria-labelledby="correction-title"><div class="section-heading"><div><p class="eyebrow">SOURCE CORRECTION</p><h2 id="correction-title">Latest runs</h2></div><button id="refresh" type="button">Refresh</button></div><p id="workflow-status" role="status">Checking the correction workflow…</p><ol id="correction-runs" class="runs"></ol><p class="subtle" id="workflow-observed"></p><h3>Proposed changes</h3><p id="review-status" role="status">Checking review branches…</p><ol id="correction-reviews" class="runs"></ol><p><a href="https://github.com/sudofx/wake/actions/workflows/self-correction.yml">Open all correction runs →</a> <span class="separator">·</span> <a href="https://github.com/sudofx/wake/pulls?q=is%3Apr+head%3Awake-correction%2F">Review proposed changes →</a></p></section>
+<section class="card" aria-labelledby="use-title"><p class="eyebrow">MAKE A CORRECTION</p><h2 id="use-title">Describe one repair. WAKE prepares the candidate.</h2><ol class="instructions"><li><strong>Open the correction workflow.</strong> Sign in to GitHub with permission to run this repository’s workflows. Choose <strong>Run workflow</strong> on <strong>master</strong>.</li><li><strong>Describe the problem and expected behavior.</strong> In <strong>request</strong>, explain one concrete repair. In <strong>paths</strong>, list one to four existing files separated by commas. This first capability covers <code>wake/assets/*.js</code>, <code>*.css</code>, <code>*.html</code> and <code>docs/*.md</code>.</li><li><strong>Run it.</strong> WAKE sends only that request and those selected source files to Gemini. It validates the returned edits, runs checks in a separate container with no credentials or network, then opens a draft pull request if checks pass.</li><li><strong>Review the result.</strong> Open the draft’s diff and linked run. Check the behavior and limitations. Merge an acceptable change through GitHub; publish the website through its normal release process. Failed runs keep their logs and any proposal artifact.</li></ol><p><a class="primary" href="https://github.com/sudofx/wake/actions/workflows/self-correction.yml">Start a source correction ↗</a></p><details><summary>Example request and file paths</summary><p><strong>request</strong></p><pre>Fix the ant-farm zoom controls so a two-finger pinch magnifies the habitat around the midpoint of the gesture. Preserve saved colonies, one-finger panning, and keyboard zoom.</pre><p><strong>paths</strong></p><pre>wake/assets/ant-farm.js, wake/assets/ant-farm.css</pre></details><p class="subtle">The repository needs its existing <code>GEMINI_API_KEY</code> Actions secret and GitHub’s setting allowing Actions to create pull requests. Requests, proposal artifacts and review branches are public repository material; do not include secrets. There is one bounded model request per run. This page never receives a credential or submits a privileged command.</p></section>
+<section class="card" aria-labelledby="native-title"><p class="eyebrow">INSTALLED BEHAVIOR ADAPTATION</p><h2 id="native-title">What the research installation has recorded</h2><p>There is also a native capability that can choose a deadline-priority context policy, evaluate it and adopt or roll it back automatically. It requires an installation grant. The table reads the latest published node snapshots; it does not enable that grant.</p><p id="snapshot-status" role="status">Loading the installation snapshot…</p><div class="table-scroll"><table><thead><tr><th>Node</th><th>Recorded grant</th><th>Policy</th><th>Trials / adoptions / rollbacks</th><th>Evidence</th></tr></thead><tbody id="adaptation-nodes"></tbody></table></div><p class="subtle" id="snapshot-identity"></p><p><a href="https://github.com/sudofx/wake/blob/master/docs/autonomous-context.md">How native automatic adoption works →</a></p></section>
+<section class="card" aria-labelledby="limits-title"><p class="eyebrow">THE CHANGE BOUNDARY</p><h2 id="limits-title">What can change, and what cannot</h2><p>The source workflow can write a bounded review branch. It cannot edit the kernel, governance, authority records, provider credentials, dependencies, tests, deployment bindings or this workflow. Its evaluator is installed code, outside the model’s edit allowance.</p><p>The native policy lane can change only its installed context-selector setting after its own evidence checks. Neither lane can erase earlier receipts, count its own changes as research progress, change spending limits or grant itself broader permission.</p><p>Review does not require you to copy code by hand: the proposed files are already on the draft branch. Broader runtime self-modification needs a separately versioned capability and compatible runtime release.</p></section>
+<details class="historical"><summary>Earlier operational recovery experiment</summary><p>The earlier rate-limit/retry example remains available as <a href="result.json">exact fixture results</a>. It used synthetic services and made zero production changes. Those results are historical test evidence, separate from the correction runs and installation observations above.</p><p><a href="https://github.com/sudofx/wake/blob/master/docs/resilience.md#try-bounded-operational-self-correction-in-isolation">Reproduce that isolated experiment →</a></p></details>
+<footer><p>Public observations refresh every three minutes while this page is visible. GitHub Actions state can change between checks; published research snapshots retain their captured dates and heads.</p><p><a href="https://github.com/sudofx/wake/blob/master/docs/self-correction.md">Full guide and boundaries</a> · <a href="../console.html">Console</a></p></footer>
+</main>
+<script>/* Every off-site destination opens separately; covers later rendered records. */
+(() => {
+  const apply = link => {
+    try {
+      const url = new URL(link.getAttribute('href'), location.href);
+      if (['http:', 'https:'].includes(url.protocol) && url.origin !== location.origin) {
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+      }
+    } catch { /* A missing or malformed destination remains inert. */ }
+  };
+  const scan = root => {
+    if (root.matches?.('a[href]')) apply(root);
+    root.querySelectorAll?.('a[href]').forEach(apply);
+  };
+  scan(document);
+  new MutationObserver(records => {
+    const roots = new Set();
+    records.forEach(record => {
+      if (record.type === 'attributes') roots.add(record.target);
+      else record.addedNodes.forEach(node => { if (node.nodeType === 1) roots.add(node); });
+    });
+    roots.forEach(scan);
+  }).observe(document.body, {subtree: true, childList: true, attributes: true, attributeFilter: ['href']});
+})();
+</script></body></html>

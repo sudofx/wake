@@ -37,7 +37,7 @@
     
   </div>
 </header>
-<main><p class="console-component-stamp">Published snapshot · state 59 · 2026-10-27T05:55:26.559470+00:00<br>Head d36a570df60d8ff28354645ca071a48962a8362223d9b33041d0440eff1f676a</p><div class="page-heading"><p class="eyebrow">THE APPEND-ONLY RECORD</p><h1>Exact history.</h1><p>Loaded from events.jsonl when this page opens.</p></div><div id="flat-content"></div></main>
+<main><p class="console-component-stamp">Published snapshot · state 59 · 2026-10-27T11:29:57.285408+00:00<br>Head 45e1a9d89e33ee14387848a9fd1c501d8f7dbfe99a92f3f6608e5e8f107db739</p><div class="page-heading"><p class="eyebrow">THE APPEND-ONLY RECORD</p><h1>Exact history.</h1><p>Loaded from events.jsonl when this page opens.</p></div><div id="flat-content"></div></main>
 <script>/*
  * WAKE✳︎ flat-view controller.
  * Standalone pages are stable shells; current facts are loaded from flat exports
@@ -49,7 +49,7 @@
   const kind=document.body.dataset.flatKind;
   const source=document.body.dataset.flatSource;
   const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const response=await fetch(source,{cache:'no-store'});
+  const response=await (window.WakePublicData?.fetch || fetch)(source,{cache:'no-store'});
   if(!response.ok)throw new Error('Published WAKE data could not be loaded');
   if(kind==='state'){
     const state=await response.json();
@@ -83,6 +83,7 @@
   console.error(error);
   const root=document.getElementById('flat-content');
   if(root){
+    if(window.WakePublicData?.mode==='bundled' && window.WakePublicData.limited){root.textContent='This complete record view needs the GitHub data connection. The dated overview is still available; reload when the connection returns.';return;}
     root.innerHTML='<p class="empty">This published view could not load its flat data file.</p>';
     const source=document.body.dataset.flatSource;
     if(source){const link=document.createElement('a');link.href=source;link.textContent='Download published data';root.append(link);}
