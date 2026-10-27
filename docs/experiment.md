@@ -1,5 +1,46 @@
 # Experiment protocol
 
+## Run the small limited/accumulated-context evaluation
+
+```sh
+python scripts/evaluate_knowledge.py --provider fixture --output /tmp/knowledge-evaluation.json
+```
+
+This uses four existing labeled decision-memory cases: repeated failure,
+contradictory evidence, distant relevant work and superseded memory. The limited
+arm receives only the immediate decision. The accumulated arm receives the same
+decision plus the existing bounded WAKE retrieval capsule. The initial report
+freezes case labels, prompt hashes, scoring rules, request settings and alternating
+arm order before any provider call. Every request is stateless. No operator
+record, research control or governance rule is changed.
+
+The measured task is selecting the required prior record IDs without citing
+unavailable or labeled irrelevant IDs. Reports show task completion, relevant
+recall, response failures, prompt size and latency for both arms. This does not
+grade prose, semantic reasoning or scientific correctness. Because the limited
+arm deliberately lacks history, a gain can show information availability/use;
+it cannot establish learning, emergence or general intelligence. One sample per
+condition cannot support statistical or cross-provider conclusions. Negative
+results and incomplete provider attempts remain explicit.
+
+`--provider gemini --model gemini-3.5-flash-lite` uses the existing
+`GEMINI_API_KEY` through the generic `GenerationProvider` contract. The maximum
+is eight requests with no hidden retry or fallback. Other adapters implement
+that same contract; tests substitute two deterministic implementations without
+changing evaluation or governance. This is not live Anthropic/OpenAI validation.
+
+The manual **WAKE — Controlled knowledge evaluation** GitHub workflow uses the
+repository secret and requires successful source CI. Choose `provider=gemini`
+for a live run. Its optional `publish=true` step updates evaluation data only;
+[Lab](https://sudofx.github.io/wake/lab.html) reads it without a Pages deployment.
+Raw responses and exact inputs are retained in the bounded synthetic report;
+no provider credential is included. Re-running replaces the explicit output
+file with a new result ID, without an archival pipeline.
+
+The fixture adapter selected all four required sets with accumulated context and
+none with limited context. That is a plumbing check designed around input
+availability, not a measured live-model benefit.
+
 The separate [improvement workflow](improvements.md) captures research provenance
 and committed source for isolated paired Python comparisons. Its first task is
 commitment-aware context selection. A fixed development set and randomized

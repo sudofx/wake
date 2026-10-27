@@ -1,0 +1,54 @@
+name: WAKE — Controlled knowledge evaluation
+on:
+  workflow_dispatch:
+    inputs:
+      provider:
+        description: Deterministic fixture or at most eight Gemini requests.
+        type: choice
+        options: [fixture, gemini]
+        default: fixture
+      model:
+        type: string
+        default: gemini-3.5-flash-lite
+      publish:
+        description: Publish only the evaluation data; no Pages deployment.
+        type: boolean
+        default: false
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: wake-knowledge-evaluation
+  cancel-in-progress: false
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v7
+      - name: Require successful source checks
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          count=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/test.yml/runs?head_sha=$GITHUB_SHA&status=success" --jq '.workflow_runs | length')
+          test "$count" -gt 0
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - run: python -m pip install --disable-pip-version-check -e .
+      - name: Run the frozen paired protocol
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          EVALUATION_PROVIDER: ${{ inputs.provider }}
+          EVALUATION_MODEL: ${{ inputs.model }}
+        run: python scripts/evaluate_knowledge.py --provider "$EVALUATION_PROVIDER" --model "$EVALUATION_MODEL" --output evaluation.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: controlled-evaluation
+          path: evaluation.json
+      - name: Publish evaluation data only
+        if: inputs.publish == true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/publish_evaluation.py evaluation.json --repository "$GITHUB_REPOSITORY"
