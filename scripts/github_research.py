@@ -272,7 +272,7 @@ def run_batch(minutes, provider, *, reset=False):
     transport.open()
     root = Path(os.environ['WAKE_INSTALLATION_DATA']).resolve()
     with measured_stage('restore'):
-        before = transport.restore(root, workers=3)
+        before = transport.restore(root, workers=3, fresh_experiment=reset)
     if policy and before['installation_id'] != policy['installation_id']:
         raise ValueError('Restored installation differs from the runtime binding; no controller started')
     apply_decision_memory_policy(root, policy)
@@ -302,9 +302,8 @@ def run_batch(minutes, provider, *, reset=False):
             with measured_stage('startup'):
                 ready(root, process)
             if reset:
-                result = request(root, {'action': 'RESET'})
-                if not result.get('ok'):
-                    raise RuntimeError('Experimental reset did not reach cycle zero')
+                # Explicit reset restored setup only. The stopped controller
+                # bootstrapped fresh records; never restore/audit discarded data.
                 print(json.dumps({'experimental_reset': transport.reset(root, 'Operator-requested cycle-zero reset')}), flush=True)
             # Recovery is committed in the owning SQLite record. The batch's
             # final state transfer carries it to the next runner.
@@ -318,6 +317,26 @@ def run_batch(minutes, provider, *, reset=False):
                     # its saved exports; the successor retries from checkpoints.
                     print(json.dumps({'hosted_start': 'degraded',
                                       'nodes': start.get('nodes', {})}), flush=True)
+                    # Inspect only bounded operational controls/observations.
+                    # No native record, provider body or credential enters logs.
+                    controls = {}
+                    for node in NODE_IDS:
+                        base = root / 'nodes' / node
+                        def observation(path, fields):
+                            try:
+                                with path.open('rb') as stream:
+                                    value = json.loads(stream.read(32769))
+                                if not isinstance(value, dict):
+                                    return {'unavailable': True}
+                                return {key: value[key] for key in fields if key in value}
+                            except (OSError, ValueError):
+                                return {'unavailable': True}
+                        controls[node] = {
+                            'control': observation(base / 'record' / '.wake-runner-control.json',
+                                ('research', 'command_id', 'pause_at', 'pause_after_group_checkpoint', 'pause_after_group_introduction')),
+                            'runtime': observation(base / 'runtime.json',
+                                ('state', 'control_ack', 'observed_at', 'reason'))}
+                    print(json.dumps({'hosted_start_observations': controls}), flush=True)
                     if not any(value.get('state') == 'acknowledged'
                                for value in start.get('nodes', {}).values()):
                         stopped = True

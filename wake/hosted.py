@@ -562,7 +562,8 @@ class HostedState:
             manifest['auxiliary'] = self.put_auxiliary(root, assets)
             return self.save(manifest)
 
-    def restore(self, root, *, workers=1):
+    def restore(self, root, *, workers=1, fresh_experiment=False):
+        """Restore records, or only trusted setup for an explicit disposable reset."""
         root = Path(root)
         if not 1 <= workers <= 4:
             raise ValueError('Recovery verification uses one to four processes')
@@ -575,7 +576,7 @@ class HostedState:
                        if workers > 1 else nullcontext(None))
             with context as executor:
                 pending = {}
-                for node in NODE_IDS:
+                for node in (() if fresh_experiment else NODE_IDS):
                     target = root / 'nodes' / node / 'record/wake.sqlite'
                     value = manifest['nodes'][node]
                     self.get_file(value['blocks'], target)
@@ -583,7 +584,7 @@ class HostedState:
                         pending[node] = executor.submit(verify_recovery, target)
                     else:
                         pending[node] = verify_recovery(target)
-                for node, value in manifest['nodes'].items():
+                for node, value in (() if fresh_experiment else manifest['nodes'].items()):
                     actual = pending[node].result() if executor else pending[node]
                     expected = {k: value[k] for k in ('revision', 'head', 'sha256')}
                     if actual != expected:
@@ -602,6 +603,8 @@ class HostedState:
                         raise ValueError('Unexpected auxiliary checkpoint path')
                     if entry.file_size > 16 * 1024 * 1024:
                         raise ValueError('Auxiliary checkpoint file exceeds limit')
+                    if fresh_experiment and marker:
+                        continue  # A fresh record must bootstrap as unused.
                     target = root / name
                     target.parent.mkdir(parents=True, exist_ok=True)
                     with target.open('xb') as output:

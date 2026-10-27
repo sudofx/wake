@@ -49,6 +49,11 @@ measurements point to startup/control and remote state transfers before changing
 hosting. Stage timings now report restore, startup, Start, drain, final state
 transfer and data publication separately.
 
+Continuation compares monotonic workflow run numbers. A newer run supersedes an
+old handoff; an older stale queued entry cannot withhold the current run's
+successor. The installation-wide workflow concurrency group serializes research
+writers, and normal public pushes reject an advanced captured parent.
+
 Standard GitHub runners remain the default: they need no always-on operator
 computer and [standard public-repository usage is free](https://docs.github.com/en/billing/concepts/product-billing/github-actions).
 An existing local container avoids workflow queues after launch but depends on
@@ -56,8 +61,10 @@ that host remaining available; a new persistent hosted service has not been
 measured or approved. No new subscription is required.
 
 For a deliberate hosted cycle-zero reset, dispatch `hosted-research.yml` with the
-checked pinned `runtime_ref` and `reset=true`. It drains workers, uses the existing
-native reset, replaces the transferred cycle-zero state and records a dated
+checked pinned `runtime_ref` and `reset=true`. The installation writer is serialized.
+Reset restores trusted setup and provider limits while skipping discarded native
+databases, then bootstraps stopped fresh records. It verifies cycle zero before
+research starts, replaces transferred state and records a dated
 `experimental_reset` marker in operational/public installation metadata. It does
 not archive the discarded experiment or retain its preceding encrypted snapshot.
 Normal research dispatches omit reset. Local installations use `wake-research RESET`.

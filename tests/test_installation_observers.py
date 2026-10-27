@@ -15,6 +15,20 @@ from wake.installation import Controller, InstallationHTTP, read_json, worker_ru
 
 
 class InstallationObserverTests(unittest.TestCase):
+    def test_explicit_start_consumes_expired_pause_timer_but_keeps_future_timer(self):
+        now = datetime.now(timezone.utc)
+        for node, deadline in [('100.wake', now - timedelta(hours=1)),
+                               ('101.wake', now + timedelta(hours=1))]:
+            path = self.root / 'nodes' / node / 'record' / '.wake-runner-control.json'
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(json.dumps({'research': 'stopped', 'pause_at': deadline.isoformat()}))
+        self.controller.set_controls('running')
+        expired = read_json(self.root / 'nodes/100.wake/record/.wake-runner-control.json')
+        future = read_json(self.root / 'nodes/101.wake/record/.wake-runner-control.json')
+        self.assertEqual(expired['research'], 'running')
+        self.assertNotIn('pause_at', expired)
+        self.assertIn('pause_at', future)
+
     def test_research_http_admission_preserves_authentication_and_quota(self):
         self.controller.mode = 'running'
         server = ThreadingHTTPServer(('127.0.0.1', 0), partial(InstallationHTTP, directory=str(self.root)))

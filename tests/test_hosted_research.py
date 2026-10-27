@@ -14,6 +14,7 @@ from wake.hosted import HostedState, verify_recovery
 from wake.installation_cli import NODE_IDS
 from wake.providers import Fixture
 from wake.record_store import RecordStore
+from wake.standalone import bootstrap
 
 
 class Assets:
@@ -56,6 +57,27 @@ class LocalState(HostedState):
 
 
 class HostedTransportTests(unittest.TestCase):
+    def test_explicit_fresh_experiment_restores_setup_without_discarded_record_downloads(self):
+        target = self.root / 'fresh-experiment'
+        successor = self.new_transport('fresh-setup')
+        successor.open()
+        with patch.object(successor, 'get_file', wraps=successor.get_file) as download:
+            manifest = successor.restore(target, fresh_experiment=True)
+        self.assertEqual(download.call_count, 1)  # Authenticated auxiliary setup only.
+        self.assertEqual(json.loads((target / 'installation-id.json').read_text())['id'], manifest['installation_id'])
+        self.assertTrue((target / 'config/wake.toml').exists())
+        self.assertFalse(list(target.rglob('wake.sqlite')))
+        self.assertFalse(list(target.rglob('.standalone-initialized')))
+        for node in NODE_IDS:
+            record = target / 'nodes' / node / 'record'
+            engine = bootstrap(record, dict(DEFAULTS))
+            try:
+                self.assertEqual(engine.store.load()['version'], 0)
+            finally:
+                engine.store.close()
+        reset = successor.reset(target, 'Explicit disposable fresh experiment')
+        self.assertEqual(successor.read_manifest()['experimental_reset'], reset)
+
     def test_retired_private_archives_round_trip_opaquely(self):
         import zipfile
         private = self.active / 'private'

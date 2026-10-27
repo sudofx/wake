@@ -391,6 +391,12 @@ class Controller:
             record.mkdir(parents=True, exist_ok=True)
             path = record / '.wake-runner-control.json'
             control = read_json(path) if path.exists() else {}
+            if mode == 'running' and control.get('pause_at'):
+                # A completed timer belongs to the preceding run. A deliberate
+                # new Start must not immediately pause every restored worker.
+                deadline = datetime.fromisoformat(control['pause_at'])
+                if deadline.tzinfo is not None and deadline <= datetime.now(timezone.utc):
+                    control.pop('pause_at')
             control.update(research=mode, command_id=command_id)
             atomic_write(path, json.dumps(control))
         return command_id
