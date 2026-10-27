@@ -294,7 +294,11 @@
     const farm=get('farm'),active=farm.classList.contains('is-fullscreen');
     feedback(get('fullscreen'));
     if(active){if(document.fullscreenElement)await document.exitFullscreen();fullscreenState(false);}
-    else{fullscreenState(true);try{if(farm.requestFullscreen)await farm.requestFullscreen();}catch{/* Embedded and iPhone browsers still get the full-viewport layout. */}}
+    else{fullscreenState(true);try{
+      // Touch browsers reserve downward swipes to leave native fullscreen.
+      // Keep touch exploration in our viewport layout so those swipes can pan.
+      if(!navigator.maxTouchPoints&&!matchMedia('(pointer: coarse)').matches&&farm.requestFullscreen)await farm.requestFullscreen();
+    }catch{/* Embedded browsers still get the full-viewport layout. */}}
   };
   document.addEventListener('fullscreenchange',()=>fullscreenState(!!document.fullscreenElement));
   // Desktop wheel zoom stays anchored to the pointer. Touch and Ctrl-wheel

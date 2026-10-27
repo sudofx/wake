@@ -75,9 +75,20 @@ const server=http.createServer((req,res)=>{
   await page.clock.setFixedTime(new Date('2026-10-27T02:00:00Z'));await page.reload();await canvas.waitFor({state:'visible'});assert.equal(await page.locator('.sun').isVisible(),false);assert.equal(await page.locator('.moon').isVisible(),true);assert.equal(await page.locator('#trails').getAttribute('aria-pressed'),'false');
   // A missing shared packet must not invent a substitute or consume the personal save.
   const failed=await context.newPage();await failed.addInitScript(()=>{window.__failBob=true;});await failed.goto(base);await failed.waitForFunction(()=>document.querySelector('#scene-note').textContent.includes('unavailable'));assert.equal(await failed.locator('#habitat').isVisible(),false);await failed.locator('#farm-choice').selectOption('mine');await failed.locator('#habitat').waitFor({state:'visible'});await failed.close();
-  const phone=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:3,isMobile:true,hasTouch:true}),mobile=await phone.newPage();mobile.on('pageerror',e=>errors.push(e.message));await mobile.goto(base+'?farm=mine');await mobile.getByRole('button',{name:'Pause simulation',exact:true}).click();
+  const phone=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:3,isMobile:true,hasTouch:true}),mobile=await phone.newPage();mobile.on('pageerror',e=>errors.push(e.message));
+  await mobile.addInitScript(()=>{window.__nativeFullscreenCalls=0;Element.prototype.requestFullscreen=async()=>{window.__nativeFullscreenCalls++;};});
+  await mobile.goto(base+'?farm=mine');await mobile.getByRole('button',{name:'Pause simulation',exact:true}).click();
   assert(await mobile.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));const initial=await mobile.locator('#habitat').boundingBox();assert(initial.height>844*.65,'Phone habitat uses the available vertical space');
-  await mobile.locator('#fullscreen').click();await mobile.waitForTimeout(100);const mobileFull=await mobile.locator('#habitat').boundingBox();assert.ok(Math.abs(mobileFull.y+mobileFull.height-844)<2);assert.ok(mobileFull.height>=840);await mobile.locator('#fullscreen').click();
+  await mobile.locator('#fullscreen').click();await mobile.waitForTimeout(100);const mobileFull=await mobile.locator('#habitat').boundingBox();assert.ok(Math.abs(mobileFull.y+mobileFull.height-844)<2);assert.ok(mobileFull.height>=840);
+  assert.equal(await mobile.evaluate(()=>window.__nativeFullscreenCalls),0,'Touch fullscreen must not invoke the native swipe-to-exit mode');
+  await mobile.locator('#zoom-in').click();await mobile.waitForTimeout(100);
+  const dragStart=await mobile.locator('#habitat').evaluate(el=>el.toDataURL()),touch=await phone.newCDPSession(mobile);
+  await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:195,y:300}]});
+  for(let y=315;y<=480;y+=15)await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:195,y}]});
+  await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await mobile.waitForTimeout(100);
+  assert(await mobile.locator('#farm').evaluate(el=>el.classList.contains('is-fullscreen')),'A downward canvas drag stays fullscreen');
+  assert.notEqual(await mobile.locator('#habitat').evaluate(el=>el.toDataURL()),dragStart,'Downward touch dragging pans the magnified habitat');
+  await mobile.locator('#zoom-reset').click();await mobile.locator('#fullscreen').click();assert.equal(await mobile.locator('#farm').evaluate(el=>el.classList.contains('is-fullscreen')),false,'The exit button still leaves fullscreen');
   await mobile.setViewportSize({width:390,height:700});await mobile.waitForTimeout(100);const shorter=await mobile.locator('#habitat').boundingBox();assert(shorter.height<initial.height-100,'Changing available height resizes the habitat');await mobile.setViewportSize({width:390,height:844});await mobile.waitForTimeout(100);
   const session=await phone.newCDPSession(mobile),habitat=await mobile.locator('#habitat').boundingBox();
   const snapshot=()=>mobile.evaluate(()=>{const c=document.querySelector('#habitat'),b=c.getBoundingClientRect(),f=document.querySelector('.habitat-case').getBoundingClientRect();return{scale:visualViewport.scale,header:document.querySelector('.farm-header').getBoundingClientRect().width,pixels:c.width,pixelHeight:c.height,box:{x:b.x,y:b.y,width:b.width,height:b.height},frame:{x:f.x,y:f.y,width:f.width,height:f.height}};});
@@ -85,6 +96,6 @@ const server=http.createServer((req,res)=>{
   assert(after.scale>before.scale*1.3);assert.equal(after.header,before.header);assert.deepEqual(after.box,before.box);assert.deepEqual(after.frame,before.frame);assert(after.pixels>before.pixels*1.3);assert(after.pixels*after.pixelHeight<4100000);
   await session.send('Input.synthesizePinchGesture',{x:100,y:180,scaleFactor:.5,relativeSpeed:800,gestureSourceType:'touch'});await mobile.waitForTimeout(250);const out=await snapshot();assert(out.scale<after.scale);assert(out.pixels<after.pixels);
   await mobile.screenshot({path:'/tmp/wake-ant-living-phone.png'});await phone.close();assert.deepEqual(errors,[]);
-  console.log(JSON.stringify({result:'PASS',checks:'trails off, automatic Bob readonly replay, personal save preservation, unavailable shared state, visible action feedback, SVG play/pause/fullscreen, queen inspector, taller responsive phone habitat, fullscreen bottom coverage, desktop wheel zoom, native page pinch, bounded rendering, transparent glass and day/night'}));
+  console.log(JSON.stringify({result:'PASS',checks:'trails off, automatic Bob readonly replay, personal save preservation, unavailable shared state, visible action feedback, SVG play/pause/fullscreen, queen inspector, taller responsive phone habitat, fullscreen bottom coverage, downward touch drag without native exit, desktop wheel zoom, native page pinch, bounded rendering, transparent glass and day/night'}));
  }finally{await browser.close();server.close();}
 })().catch(error=>{console.error(error);server.close();process.exitCode=1;});

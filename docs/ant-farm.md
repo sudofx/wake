@@ -8,7 +8,9 @@ normal browser zoom. The lens button doubles magnification and **Whole farm**
 returns to the complete habitat. Observe also provides a continuous magnification
 slider. Drag a magnified habitat to explore it; native page pinch remains available.
 Ant selection highlights the ant in place. **⛶** enters full screen, and the same button returns to the tabletop.
-Browsers without native fullscreen use the available page viewport. The habitat
+Touch devices use the available page viewport, with the fullscreen button to
+exit; downward drags pan the magnified habitat rather than leaving fullscreen.
+Desktop browsers can use native fullscreen. The habitat
 fills the available window height; fullscreen soil extends to the bottom.
 **Trails** starts off and toggles purple food signals. Play/pause and fullscreen
 use labelled icons. Button flashes and glowing food marks show actions immediately.
