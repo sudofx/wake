@@ -101,6 +101,7 @@ jobs:
           pattern: upgrade-node-*
           path: node-reports
           merge-multiple: true
+      - run: python -m pip install --disable-pip-version-check -e './control[hosted]'
       - name: Require all twelve matching reports from one checkpoint
         run: python control/scripts/verify_hosted_upgrade.py --candidate candidate --policy control/hosted-runtime.json --aggregate node-reports --output upgrade-verification.json
       - uses: actions/upload-artifact@v6

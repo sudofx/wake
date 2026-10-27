@@ -31,8 +31,8 @@ class ReaderTransportTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             result = export_reader_transport(packet, Path(directory))
             topics = result['state']['research_topics']
-            self.assertEqual(len(topics), 16)
-            self.assertEqual(sum(len(t['origins']) for t in topics), 76)
+            self.assertEqual(len(topics), 17)
+            self.assertEqual(sum(len(t['origins']) for t in topics), 88)
             self.assertEqual({t['id'].split('::')[-1] for t in topics}, set(catalog))
             self.assertLessEqual((Path(directory) / 'reader-data.json').stat().st_size, MAX_BOOTSTRAP_BYTES)
 
