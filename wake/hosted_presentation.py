@@ -136,7 +136,7 @@ def bind_hosted_status(site, repository, revision):
             page=re.sub(r'<script src="[^\"]*public-data\.js[^\"]*"[^>]*></script>','',page)
             prefix='../'*len(relative.parts[:-1])
             page=re.sub(r'(window\.WAKE_DEPLOYMENT=\{[^<]*?\};[^<]*</script>)',
-                        lambda match:match.group(1)+f'<script src="{prefix}public-data.js"></script>',page,count=1)
+                        lambda match:match.group(1)+f'<script src="{prefix}public-data.js?v={revision[:12]}"></script>',page,count=1)
             page_path.write_text(page)
     shutil.copytree(assets / 'self-correction', site / 'self-correction', dirs_exist_ok=True)
     manifest['presentation'] = {'source_revision': revision, 'hosted_status': config,

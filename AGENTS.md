@@ -160,7 +160,7 @@ exported files. An explicitly bound hosted presentation may read its identified
 installation from one immutable `wake-public` GitHub commit through `public-data.js`.
 Every reader, Console and Bob source packet in that document uses the same commit;
 never mix a remote packet with a bundled fallback. Discovery failure may select
-the dated bundled snapshot before any data loads, with a visible notice. An
+the dated bundled snapshot before any data loads, without a site-wide banner. An
 explicitly bound hosted status light may read public GitHub Actions metadata
 anonymously; those observations never enter research state, per-node runtime
 animation or governance. Missing installation identity stays same-origin.

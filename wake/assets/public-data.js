@@ -21,28 +21,17 @@
     const bytes=new Uint8Array(size);let offset=0;for(const value of chunks){bytes.set(value,offset);offset+=value.length;}
     return JSON.parse(new TextDecoder().decode(bytes));
   };
-  const notice=()=>{
-    const show=()=>{
-      const node=document.createElement('p');node.id='public-data-notice';node.setAttribute('role','status');
-      node.textContent=config.fallback==='recent-overview'?
-        'Latest published data is unavailable. Showing a limited dated overview. Full records and maps need the GitHub data connection; current research activity is unknown.':
-        'Latest published data is unavailable. Showing the snapshot bundled with this website; current research activity is unknown.';
-      node.style.cssText='margin:1rem;padding:.7rem;border:1px solid currentColor;font:inherit';
-      document.querySelector('main')?.prepend(node);
-    };
-    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',show,{once:true});else show();
-  };
   const transport={revision:null,mode:'loading',limited:config.fallback==='recent-overview'};
   transport.ready=(async()=>{
     let pinned=Boolean(requested && requested!=='bundled');
     try{
-      if(requested==='bundled'){transport.mode='bundled';notice();return null;}
+      if(requested==='bundled'){transport.mode='bundled';return null;}
       if(requested && !/^[a-f0-9]{40}$/.test(requested))throw Error('Invalid snapshot revision');
       let revision=requested,discovered=false;
       if(!revision && window.parent!==window){
         try{
           const parent=window.parent.WakePublicData;
-          if(parent){pinned=true;await parent.ready;if(parent.mode==='bundled'){transport.mode='bundled';notice();return null;}revision=parent.revision;}
+          if(parent){pinned=true;await parent.ready;if(parent.mode==='bundled'){transport.mode='bundled';return null;}revision=parent.revision;}
         }catch{throw Error('Parent snapshot unavailable');}
       }
       if(!revision){
@@ -65,7 +54,7 @@
       // A popup must read the source version its opener selected. Falling back
       // here would present a different context under the same conversation.
       if(pinned){transport.mode='unavailable';throw Error('The selected published snapshot is unavailable. Reopen this view from a current page.');}
-      transport.mode='bundled';notice();return null;
+      transport.mode='bundled';return null;
     }
   })();
   const targetFor=(input,root)=>{

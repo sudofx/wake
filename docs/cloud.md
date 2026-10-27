@@ -475,7 +475,7 @@ cache expires can adopt a newer export without rebuilding the interface.
 The data branch supplies JSON and record packets, never executable website
 assets. Download links resolve to that same selected commit; the external
 inspection entry opens its self-contained Markdown packet. Remote identity mismatch or initial discovery failure selects the bundled
-dated snapshot before any data loads and displays a notice. Once a remote commit
+dated snapshot before any data loads, without inserting a site-wide banner. Once a remote commit
 is adopted, a missing packet fails visibly rather than combining generations.
 A popup with an explicit source revision fails if that revision is unavailable.
 These are public observations, not native record access or live activity.
