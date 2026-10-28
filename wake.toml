@@ -12,6 +12,9 @@ gemini_fallback_requires_primary_daily_quota = true
 # still advances the chain when calls outside WAKE used part of a model's quota.
 daily_call_limit = 500
 model_daily_call_limits = { "gemini-3.1-flash-lite" = 500, "gemini-3.8-flash" = 20, "gemini-3.5-flash-lite" = 500, "gemini-3.6-flash" = 20 }
+# Shared installation pacing: 832 routine calls over 24h, 208 reserved for
+# experiments and reader features. Counts include failed confirmed attempts.
+provider_pacing = { enabled = true, target_hours = 24, reserve_calls = 208 }
 # Routine derived working memory; shadow restores rich delivery with overflow fallback.
 memory_mode = "active"
 # Optional decision recall is independent of rich/active working memory.

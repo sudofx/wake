@@ -63,7 +63,7 @@ class InstallationSlotUnavailable(Exception):
 class InstallationCallCoordinator:
     """A thread-safe, single-flight FIFO shared by every installation node."""
 
-    def __init__(self, *, clock=time.time, queue_ttl=30.0):
+    def __init__(self, *, clock=time.time, queue_ttl=30.0, pacing=None):
         self.clock = clock
         self.queue_ttl = queue_ttl
         self.lock = threading.Lock()
@@ -71,6 +71,7 @@ class InstallationCallCoordinator:
         self.tickets = {}
         self.active = None
         self.models = {}
+        self.pacing = pacing
 
     def _prune(self, now, *, reservations=True):
         if (reservations and self.active and not self.active.get('confirmed', True)
@@ -91,16 +92,18 @@ class InstallationCallCoordinator:
             return now + 300
         return start.timestamp()
 
-    def _eligibility(self, model, now):
+    def _eligibility(self, model, now, purpose='research'):
         state = self.models.get(model, {})
         if state.get("blocked"):
             return False, 300.0, "access_blocked"
         until = max(state.get("retry_at", 0), state.get("probe_at", 0))
         if until > now:
             return False, until - now, "daily_quota" if state.get("daily") else "rate_limited"
+        if self.pacing:
+            return self.pacing.check(model,purpose,now)
         return True, 0, "ready"
 
-    def acquire(self, key, model, lease_seconds=120, *, confirmation_required=False):
+    def acquire(self, key, model, lease_seconds=120, *, confirmation_required=False,purpose='research'):
         """Poll a stable request key; lease_seconds never permits overlapping calls."""
         key = tuple(key)
         if len(key) != 3 or not all(isinstance(part, str) and part for part in key):
@@ -109,28 +112,31 @@ class InstallationCallCoordinator:
             raise ValueError("Expected model name")
         if type(confirmation_required) is not bool:
             raise ValueError('Invalid confirmation mode')
+        if purpose not in ('research','reader','experiment'):raise ValueError('Invalid provider purpose')
         with self.lock:
             now = self.clock()
             self._prune(now)
             if self.active and self.active["key"] == key:
                 if (self.active["model"] != model
+                        or self.active.get('purpose','research')!=purpose
                         or self.active.get('confirmation_required', False) != confirmation_required):
                     raise ValueError("An active request cannot change model")
                 return self._grant_packet()
             ticket = self.tickets.get(key)
             if ticket is None:
-                ticket = {"model": model, "seen": now, 'confirmation_required': confirmation_required}
+                ticket = {"model": model, "seen": now, 'confirmation_required': confirmation_required,'purpose':purpose}
                 self.tickets[key] = ticket
                 self.queue.append(key)
-            elif ticket["model"] != model or ticket['confirmation_required'] != confirmation_required:
+            elif ticket["model"] != model or ticket['confirmation_required'] != confirmation_required or ticket['purpose']!=purpose:
                 raise ValueError("A queued request cannot change model")
             ticket["seen"] = now
-            eligible, delay, reason = self._eligibility(model, now)
+            eligible, delay, reason = self._eligibility(model, now,purpose)
             first = next((item for item in self.queue
-                          if self._eligibility(self.tickets[item]["model"], now)[0]), None)
+                          if self._eligibility(self.tickets[item]["model"], now,self.tickets[item]['purpose'])[0]), None)
             if self.active is None and eligible and first == key:
                 token = secrets.token_urlsafe(24)
                 self.active = {"key": key, "model": model, "token": token, "started": now,
+                               'purpose':purpose,
                                'confirmed': not ticket['confirmation_required'],
                                'confirmation_required': ticket['confirmation_required']}
                 self.queue.remove(key)
@@ -138,6 +144,7 @@ class InstallationCallCoordinator:
                 state = self.models.get(model, {})
                 if state.get("daily") and self.active['confirmed']:
                     state["probe_at"] = now + 300
+                if self.pacing and self.active['confirmed']:self.pacing.consume(model,purpose,now)
                 return self._grant_packet()
             return {"status": "queued", "retry_after": max(0.1, delay or 1.0),
                     "reason": reason if not eligible else "busy" if self.active else "fifo"}
@@ -157,6 +164,7 @@ class InstallationCallCoordinator:
                 return False
             if not self.active.get('confirmed', True):
                 self.active['confirmed'] = True
+                if self.pacing:self.pacing.consume(self.active['model'],self.active['purpose'],now)
                 state = self.models.get(self.active['model'], {})
                 if state.get('daily'):
                     state['probe_at'] = now + 300
@@ -189,8 +197,7 @@ class InstallationCallCoordinator:
                 state["retry_at"] = now + facts.get("retry_after_seconds", 60)
             if persist is not None:
                 self.active["release_unresolved"] = True
-                persist({"version": 1, "models": {name: dict(limit)
-                    for name, limit in self.models.items() if limit}})
+                persist(self._state_packet())
             self.active = None
             return True
 
@@ -210,8 +217,11 @@ class InstallationCallCoordinator:
     def dump_state(self):
         """Persist only shared scheduling limits, without leases or worker data."""
         with self.lock:
-            return {"version": 1, "models": {model: dict(state)
-                                             for model, state in self.models.items() if state}}
+            return self._state_packet()
+
+    def _state_packet(self):
+        return {"version":1,"models":{model:dict(state) for model,state in self.models.items() if state},
+                **({'pacing':self.pacing.dump()} if self.pacing else {})}
 
     def restore_state(self, packet):
         """Restore limits before spawning workers; old workers must already be dead."""
@@ -240,6 +250,7 @@ class InstallationCallCoordinator:
         with self.lock:
             if self.active or self.queue:
                 raise RuntimeError("Cannot restore limits while requests exist")
+            if self.pacing and 'pacing' in packet:self.pacing.restore(packet['pacing'])
             self.models = restored
 
     def cancel_member(self, member):
@@ -276,4 +287,5 @@ class InstallationCallCoordinator:
                           'confirmed': self.active.get('confirmed', True),
                           "release_unresolved": self.active.get("release_unresolved", False)}
             return {"active": active, "queued": len(self.queue),
+                    **({'pacing':self.pacing.status(now)} if self.pacing else {}),
                     "models": {model: dict(state) for model, state in self.models.items() if state}}

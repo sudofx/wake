@@ -2928,6 +2928,8 @@ class Engine:
                     if item["id"] == invocation or not item["charged"] or item["quota_day"] != day:
                         continue
                     for attempt in item.get("provider_attempts", []):
+                        if attempt.get('provider_call_made') is False:
+                            continue
                         model = attempt.get("model")
                         if model:
                             used_by_model[model] = used_by_model.get(model, 0) + 1

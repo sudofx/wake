@@ -543,3 +543,5 @@ light. Live node stages are available only from a local installation's native
 runtime channel; they never update accepted counts.
 Context tail queries reuse verified history for one read-only context build only;
 the next build checks the record again.
+
+Request pacing operates after context preparation at the shared provider-effect boundary. It does not change which historical information is available, alter retrieval scoring, or create accepted research while a request waits. See [shared daily admission](cloud.md#spread-provider-calls-across-the-day).

@@ -74,6 +74,10 @@ def runtime_policy(client):
             or (selected.get('autonomous_context_improvement') is True and selected.get('decision_memory_mode') != 'active')
             or not re.fullmatch('[0-9a-f]{32}', str(selected.get('installation_id', '')))):
         raise ValueError('Invalid hosted installation binding')
+    if 'provider_pacing' in selected:
+        from wake.provider_pacing import CallPacing
+        limits=tomllib.loads((Path(__file__).resolve().parents[1]/'wake.toml').read_text())['model_daily_call_limits']
+        CallPacing(selected['provider_pacing'],limits)
     return selected
 
 
@@ -128,6 +132,26 @@ def apply_decision_memory_policy(root, policy):
     atomic_write(path, updated)
     print(json.dumps({'decision_memory_mode': mode, 'autonomous_context_improvement': autonomy,
                       'scope': 'hosted-installation'}), flush=True)
+
+
+def apply_provider_pacing_policy(root,policy):
+    """Apply an explicit scheduling grant without rewriting retained records."""
+    if not policy or 'provider_pacing' not in policy:return
+    from wake.provider_pacing import CallPacing
+    from wake.report import atomic_write
+    path=Path(root)/'config/wake.toml'
+    original=path.read_text();settings=tomllib.loads(original)
+    value=policy['provider_pacing']
+    CallPacing(value,settings.get('model_daily_call_limits'))
+    replacement='provider_pacing = { enabled = '+str(value['enabled']).lower()+', target_hours = '+str(value['target_hours'])+', reserve_calls = '+str(value['reserve_calls'])+' }\n'
+    lines=original.splitlines(keepends=True);found=False
+    for index,line in enumerate(lines):
+        if line.lstrip().startswith('['):break
+        if re.match(r'^\s*provider_pacing\s*=',line):lines[index]=replacement;found=True
+    updated=''.join(lines) if found else replacement+original
+    if tomllib.loads(updated).get('provider_pacing')!=value:raise ValueError('Hosted provider pacing did not validate')
+    atomic_write(path,updated)
+    print(json.dumps({'provider_pacing':value,'scope':'hosted-installation'}),flush=True)
 
 
 def control(action):
@@ -278,6 +302,7 @@ def run_batch(minutes, provider, *, reset=False):
     if policy and before['installation_id'] != policy['installation_id']:
         raise ValueError('Restored installation differs from the runtime binding; no controller started')
     apply_decision_memory_policy(root, policy)
+    apply_provider_pacing_policy(root,policy)
     if policy and 'research_expansion_enabled' in policy:
         from wake.research_expansion import apply_hosted_configuration
         apply_hosted_configuration(root, policy['research_expansion_enabled'],

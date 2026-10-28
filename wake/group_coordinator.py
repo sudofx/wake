@@ -96,6 +96,7 @@ class GroupProviderGate:
 
     def _acquire(self, request_id, model):
         deadline = time.monotonic() + self.wait_seconds
+        pacing_deadline = time.monotonic() + 3600
         while time.monotonic() < deadline:
             self._check_pause()
             packet = self._request_reliably({
@@ -103,8 +104,8 @@ class GroupProviderGate:
                 "request_id": request_id, "model": model,
                 "lease_seconds": self.lease_seconds,
                 "confirmation_required": True,
+                "purpose":getattr(self,'purpose','research'),
                 **({"editorial_nonce": self.editorial_nonce} if getattr(self, "editorial_nonce", None) else {}),
-                **({"purpose": "reader"} if getattr(self, "purpose", None) == 'reader' else {}),
             })
             if packet.get("status") == "granted" and isinstance(packet.get("token"), str):
                 if packet.get('confirmation_required') is True:
@@ -131,8 +132,12 @@ class GroupProviderGate:
                 return packet["token"]
             if packet.get("status") != "queued":
                 raise ValueError("group coordinator returned an unknown status")
-            if packet.get("reason") in {"daily_quota", "rate_limited", "access_blocked"}:
+            if packet.get("reason") in {"daily_quota", "rate_limited", "access_blocked","research_budget"}:
                 raise InstallationSlotUnavailable(packet["reason"], packet.get("retry_after", 300))
+            if packet.get('reason')=='pacing':
+                # Twelve fair turns at the 24-hour cadence can exceed the old
+                # latency-only allowance. Extend waiting, never an API timeout.
+                deadline=max(deadline,min(pacing_deadline,time.monotonic()+1800))
             # Installation HTTP long-polls for a slot change. After a bounded
             # empty response, retry promptly rather than adding another second.
             if os.environ.get('WAKE_INSTALLATION_WORKER') == '1':

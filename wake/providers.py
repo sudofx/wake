@@ -838,10 +838,12 @@ class Gemini:
                 # Eligibility was decided without a provider effect. Other
                 # configured models may still have allowance in this queue.
                 error = TransientProviderError('Gemini shared slot unavailable; trying eligible fallback')
-                if exc.outcome.get('result') == 'daily_quota':
+                if exc.outcome.get('result') in ('daily_quota','research_budget'):
                     remaining = self.models[self.models.index(model) + 1:]
                     if not remaining:
-                        error = DailyQuotaExceeded('Gemini daily quotas exhausted; shared recovery scheduled')
+                        error = (ConfiguredDailyLimitReached('Configured installation provider budget reserved until Pacific midnight')
+                                 if exc.outcome.get('result')=='research_budget' else
+                                 DailyQuotaExceeded('Gemini daily quotas exhausted; shared recovery scheduled'))
 
             except ProviderCallPaused as exc:
                 attempt.update(result="operator_paused", provider_call_made=False)

@@ -7,7 +7,8 @@
       "decision_memory_mode": "active",
       "research_expansion_enabled": true,
       "research_candidate_catalog_enabled": true,
-      "autonomous_context_improvement": true
+      "autonomous_context_improvement": true,
+      "provider_pacing": {"enabled": true, "target_hours": 24, "reserve_calls": 208}
     }
   }
 }

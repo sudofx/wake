@@ -122,3 +122,7 @@ presentation/docs, validate and test them in isolation, and open a draft source
 review. It cannot merge itself, change its evaluator or grant broader permissions.
 The public page displays workflow observations separately from dated native-policy
 adaptation records. See [the guide](self-correction.md).
+
+### Provider pacing and capacity reserve
+
+Provider pacing spaces routine API calls across all nodes in an installation. The capacity reserve keeps part of the configured daily allowance for experimental and reader requests. These are transport limits; neither confirms provider quota availability or scientific success. See [the operational contract](cloud.md#spread-provider-calls-across-the-day).

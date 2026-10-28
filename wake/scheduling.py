@@ -21,7 +21,7 @@ TRANSIENT_RETRY_DELAY = timedelta(seconds=15)
 def charged_request_slots(item):
     """Count known attempts plus unresolved reservations conservatively."""
     if "provider_attempts" in item:
-        return len(item["provider_attempts"])
+        return sum(attempt.get('provider_call_made') is not False for attempt in item['provider_attempts'])
     return item.get("provider_requests_sent", 1)
 
 

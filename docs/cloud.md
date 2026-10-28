@@ -615,3 +615,36 @@ uninterrupted operation. Public snapshot freshness and the status light expose
 unavailable or stalled observations without inventing progress. Source correction
 still produces tested draft changes for review; it does not autonomously merge or
 upgrade the research runtime.
+
+## Spread provider calls across the day
+
+The shared installation queue can pace routine research across 24 hours while
+retaining capacity for other work. The configured model ceilings total 1,040
+calls per Pacific calendar day. `provider_pacing = { enabled = true,
+target_hours = 24, reserve_calls = 208 }` reserves 208 for reader and experimental
+requests, leaving 832 for routine planning, research proposals and editorial
+calls. Routine requests start at least 103.85 seconds apart across all twelve
+nodes. This is one installation-wide rate, not a separate rate per node.
+
+The controller admits only one provider effect at a time. A reserved feature
+request can pass a research request waiting for its pacing deadline, but cannot
+pass an active effect or exceed its own reserve or the configured model ceiling.
+Failed confirmed attempts consume allowance. A queue denial with no provider
+call does not. An unavailable or depleted model can advance the configured
+fallback chain without spending an API call.
+
+`provider-schedule.json` retains counters and the next admission deadline across
+worker batches. At controller startup, native invocation receipts conservatively
+backfill any known current-day usage missing from that scheduling cache. Idle
+time never earns a burst of catch-up calls. Pacific midnight renews calendar-day
+allowances while preserving spacing across the boundary. These counters govern
+transport only; the native record remains scientific authority. Calls made by
+other applications using the same Google project can still deplete provider
+quota earlier than these local allowances predict.
+
+The hosted installation explicitly binds this policy in `hosted-runtime.json`.
+The worker applies it to restored configuration before starting its controller.
+Inspect `coordinator.pacing` in the installation runtime snapshot for the
+adopted policy, counts and next-call delay. A source change or successful CI run
+alone does not establish runtime adoption. Already-consumed calls cannot be
+recovered; the first partial day may reach its routine allowance sooner.

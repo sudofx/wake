@@ -757,3 +757,7 @@ cannot waive a pre-effect durability barrier. Ambiguous uploads reconcile the
 same content identity before retry. Worker status-file errors retry independently;
 freshness expiry remains mandatory, and observer recovery never steers research.
 See [hosted recovery](cloud.md#continuation-and-repair).
+
+### Shared provider pacing
+
+The installation coordinator also owns optional request pacing and capacity reserves. Confirmation consumes an operational allowance before inference; persistence occurs before the provider effect. A restart retains deadlines and conservatively reconciles known native usage. Scientific governance and kernel state do not depend on this scheduling cache. See [daily pacing](cloud.md#spread-provider-calls-across-the-day).

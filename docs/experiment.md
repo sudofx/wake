@@ -564,3 +564,7 @@ They do not authorize new providers, live experiments, source mutation by Bob,
 or rewriting native history. The [farm comparison tasks](ant-farm.md#coordination-follow-up-tasks)
 provide a distinct simulation workload; visual route formation alone cannot prove
 that WAKE's architecture improves research.
+
+### Research rate and experimental capacity
+
+Routine installation work can be spread across the day with a separate reserve for computational research and reader requests. Confirmed provider attempts and zero-effect queue denials are counted separately; pacing is an operational constraint, not scientific progress. See [the current policy](cloud.md#spread-provider-calls-across-the-day).

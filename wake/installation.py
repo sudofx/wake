@@ -21,6 +21,7 @@ import sys
 import tempfile
 import threading
 import time
+import tomllib
 from urllib.parse import unquote, urlsplit
 
 from .installation_gate import InstallationCallCoordinator
@@ -250,12 +251,12 @@ class InstallationHTTP(PublicSnapshotHandler):
                     deadline = time.monotonic() + 5
                     while True:
                         result = controller.coordinator.acquire(key, packet['model'], packet.get('lease_seconds', 120),
-                            confirmation_required=packet.get('confirmation_required', False))
-                        if (result.get('status') == 'granted' or result.get('reason') not in ('busy', 'fifo')
+                            confirmation_required=packet.get('confirmation_required', False),purpose=packet.get('purpose','research'))
+                        if (result.get('status') == 'granted' or result.get('reason') not in ('busy', 'fifo','pacing')
                                 or time.monotonic() >= deadline
                                 or not provider_admitted(controller.mode, member, packet, controller.editorial_nonce)):
                             break
-                        controller.slot_condition.wait(timeout=max(.01, deadline - time.monotonic()))
+                        controller.slot_condition.wait(timeout=max(.01,min(deadline-time.monotonic(),result.get('retry_after',5))))
                     if result.get('status') == 'granted' and not result.get('confirmation_required'):
                         controller.persist_schedule()
             elif packet['action'] == 'confirm':
@@ -312,7 +313,12 @@ class Controller:
         self.editorial_nonce = None
         self.mirror_lock = threading.Lock()
         self.token = secrets.token_urlsafe(32)
-        self.coordinator = InstallationCallCoordinator()
+        settings=tomllib.loads(self.config.read_text()) if self.config.is_file() else {}
+        pacing=None
+        if settings.get('provider_pacing'):
+            from .provider_pacing import CallPacing
+            pacing=CallPacing(settings['provider_pacing'],settings.get('model_daily_call_limits'))
+        self.coordinator = InstallationCallCoordinator(pacing=pacing)
         self.command_lock = threading.Lock()
         self.schedule_lock = threading.Lock()
         self.slot_condition = threading.Condition()
@@ -333,6 +339,32 @@ class Controller:
                 if state.get('daily') and state.get('probe_at', 0) <= time.time():
                     state['probe_at'] = time.time() + 300
             self.coordinator.restore_state(saved)
+        if pacing:
+            pacing.status(time.time())
+            # The scheduling cache can be new while the native records already
+            # contain today's effects. Recover known use before admitting calls.
+            from .record_store import RecordStore
+            from .scheduling import charged_request_slots
+            usage={}
+            for node in NODE_IDS:
+                directory=self.root/'nodes'/node/'record'
+                if not (directory/'wake.sqlite').is_file():continue
+                store=RecordStore(directory)
+                try:
+                    for invocation in store.load().get('invocations',{}).values():
+                        if not invocation.get('charged') or invocation.get('quota_day')!=pacing.day:continue
+                        attempts=invocation.get('provider_attempts')
+                        if attempts is not None:
+                            for attempt in attempts:
+                                if attempt.get('provider_call_made') is False:continue
+                                model=attempt.get('model',invocation['model'])
+                                usage[model]=usage.get(model,0)+1
+                        else:
+                            model=invocation.get('successful_model',invocation['model'])
+                            usage[model]=usage.get(model,0)+charged_request_slots(invocation)
+                finally:store.close()
+            pacing.seed(pacing.day,usage)
+            self.persist_schedule()
         identity = self.root / 'installation-id.json'
         if not identity.exists():
             atomic_write(identity, json.dumps({'id': secrets.token_hex(16)}))
