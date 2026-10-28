@@ -27,5 +27,23 @@ const tick=()=>new Promise(resolve=>setImmediate(resolve));
   callbacks['wake-installation-snapshot']({detail:{live:false,hosted_execution:{research_start:{ok:false}},nodes:Array.from({length:12},(_,i)=>node(i))}});
   assert.notEqual(light.dataset.state,'standby','missing start acknowledgement cannot claim quota recovery');
  }
+ // Green requires fresh running-node evidence belonging to the active batch.
+ for(const [runId,nodeState,age,workflow,expected] of [
+  ['55','running',0,'active','running'],
+  ['54','running',0,'active',undefined],
+  ['55','running',31,'active',undefined],
+  ['55','standby',0,'active',undefined],
+  ['55','running',0,'disabled_manually','stopped'],
+ ]){
+  const callbacks={},light={dataset:{},setAttribute(k,v){this[k]=v;},removeAttribute(k){if(k==='data-state')delete this.dataset.state;}};
+  const context={window:{WAKE_DEPLOYMENT:{hosted_status:{repository:'example/repo',workflow:'research-worker.yml',branch:'master'}},addEventListener(k,fn){callbacks[k]=fn;}},
+   document:{hidden:false,querySelector:()=>light,addEventListener(){}},navigator:{onLine:true},localStorage:{getItem:()=>context.saved||null,setItem(k,v){context.saved=v;}},Date,JSON,AbortController,
+   setTimeout:()=>0,clearTimeout(){},fetch:async url=>({ok:true,json:async()=>url.includes('/runs?')?{workflow_runs:[{id:55,path:'.github/workflows/research-worker.yml',head_branch:'master',status:'in_progress'}]}:{state:workflow}})};
+  vm.runInNewContext(source,context);await tick();
+  assert.notEqual(light.dataset.state,'running','An Actions batch alone cannot establish node execution');
+  callbacks['wake-installation-snapshot']({detail:{live:false,hosted_execution:{run_id:runId},nodes:Array.from({length:12},(_,i)=>({available:true,recorded_runtime:{state:i===0?nodeState:'standby',observed_at:new Date(Date.now()-age*60000).toISOString()}}))}});
+  assert.equal(light.dataset.state,expected,`${runId}, ${nodeState}, ${age}, ${workflow}`);
+  if(expected==='running')assert.match(light['aria-label'],/1 of 12 nodes recorded running/);
+ }
  console.log('PASS: hosted recovery and quota-deferred stopped worker cases.');
 })().catch(error=>{console.error(error);process.exitCode=1;});

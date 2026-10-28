@@ -22,6 +22,19 @@
     }))return null;
     return Math.min(...times);
   }
+  function confirmedRunning(value){
+    const data=quotaObservation;
+    // A previous batch's observations cannot make a new restoring batch green.
+    if(!value?.activeRun || !data || data.live!==false ||
+       String(data.hosted_execution?.run_id)!==String(value.activeRun) ||
+       !Array.isArray(data.nodes) || data.nodes.length!==12)return null;
+    const running=data.nodes.filter(node=>{
+      const at=Date.parse(node.recorded_runtime?.observed_at);
+      return node.available!==false && node.recorded_runtime?.state==='running' &&
+        Number.isFinite(at) && at<=Date.now()+60000 && Date.now()-at<30*60000;
+    });
+    return running.length?{count:running.length,checked:Math.min(...running.map(node=>Date.parse(node.recorded_runtime.observed_at)))}:null;
+  }
   window.addEventListener('wake-installation-snapshot',event=>{
     quotaObservation=event.detail;
     const checked=confirmedQuota();
@@ -39,7 +52,11 @@
     if(!value || !Number.isFinite(value.checked) || Date.now()-value.checked>stale || value.checked>Date.now()+5000)return false;
     const observed=confirmedQuota();
     if(observed && value.state!=='stopped' && value.state!=='blocked')show('standby','All 12 nodes: confirmed provider quota standby (published observation)',observed);
-    else show(value.state,value.label,value.checked);
+    else {
+      const running=confirmedRunning(value);
+      if(running)show('running',`Hosted batch active; ${running.count} of 12 nodes recorded running in its latest snapshot`,running.checked);
+      else show(value.state,value.label,value.checked);
+    }
     return true;
   }
   function cached(){try{return JSON.parse(localStorage.getItem(key));}catch{return null;}}
@@ -78,7 +95,7 @@
         if(Number.isFinite(finished) && Date.now()-finished>15*60*1000){state='blocked';label='Hosted research stalled; recovery needs attention';}
         else{state='waiting';label='Waiting for automatic recovery after the last batch';}
       }
-      const value={state,label,checked:Date.now()};
+      const value={state,label,checked:Date.now(),...(workflow.state==='active' && active?{activeRun:active.id}:{})};
       try{localStorage.setItem(key,JSON.stringify(value));}catch{}
       if(!document.hidden)apply(value);
     }catch{
