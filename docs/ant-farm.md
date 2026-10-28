@@ -43,26 +43,6 @@ they match the loaded value or are no longer current. Every write also compares
 the stored value with the last known value, so a real competing tab still blocks
 stale overwrites.
 
-## Sand, excavation and walking detail
-
-Packed sand is drawn from seeded angular mineral grains of mixed sizes and tones,
-with small highlights and darker inclusions. Grains stay fixed in habitat space:
-zooming reveals the same material rather than enlarging screen noise. The broad
-soil layers and sparse larger grains remain separate from the finer packed texture.
-
-Passages have spatially varying widths and irregular walls. Chamber contours have
-broad lobes and smaller excavated notches. Filled overlapping contours connect
-shafts, branches and chambers without drawing cap seams through their openings.
-Recessed shoulders, a shaded interior and displaced wall grains suggest depth;
-these are viewing effects, not a granular-physics or tunnel-collapse simulation.
-Excavation geometry is cached until the graph or viewport dimensions change.
-
-Workers follow the same curved passage centerlines used by the renderer. Display
-interpolation includes the simulation's variable walking tempo and load slowdown.
-Leg phase follows distance traveled, while the head can turn independently during
-steering and stationary antenna checks. These refinements preserve the existing
-simulation clock, save format and shared recording, including its pauses and care.
-
 ## How the ants build and live
 
 A varied starter shaft, chamber and one to four branches are provided. Workers
@@ -194,19 +174,33 @@ do not certify physical-phone performance or biology.
 
 ## Sand, closer inspection and movement
 
-A quiet, drawn cream background and lighter tunnel interiors keep dark workers visible,
-without photographic sand or enlarged grains.
+Packed sand is drawn from seeded angular mineral grains of mixed sizes and tones,
+with small highlights and darker inclusions. Grains stay fixed in habitat space:
+zooming reveals the same material rather than enlarging screen noise. The broad
+soil layers and sparse larger grains remain separate from the finer packed texture.
+
+Passages have spatially varying widths and irregular walls. Chamber contours have
+broad lobes and smaller excavated notches. Filled overlapping contours connect
+shafts, branches and chambers without drawing cap seams through their openings.
+Recessed shoulders, a shaded interior and displaced wall grains suggest depth;
+these are viewing effects, not a granular-physics or tunnel-collapse simulation.
+Excavation geometry is cached until the graph or viewport dimensions change.
+
+Workers follow the same curved passage centerlines used by the renderer. Display
+interpolation includes the simulation's variable walking tempo and load slowdown.
+Leg phase follows distance traveled, while the head can turn independently during
+steering and stationary antenna checks. These refinements preserve the existing
+simulation clock, save format and shared recording, including its pauses and care.
+
 Use the browser’s normal page zoom to inspect the ants. Phone pinch zoom and
 desktop browser zoom scale the whole scene together, while the canvas increases
 its drawing resolution within a bounded pixel budget. Zooming does not restart
-the saved colony or accelerate time.
+the saved colony or accelerate time. Existing saved colonies retain their graph
+and progress.
 
-Movement model `pellet-tunnels@3` retains the excavation and save format from @2,
-with short heading-change pauses and individual walking-speed variation. The
-renderer advances alternating tripods with distance travelled, keeps feet planted
-through the longer stance phase, and uses a quicker lifted return. Head, gaster
-and antenna motion break up the rigid silhouette. These are illustrative choices,
-not measurements or a calibrated species model. Existing @2 browser saves resume.
+The renderer advances alternating tripods with distance travelled, keeps feet
+planted through the longer stance phase, and uses a quicker lifted return. These
+are illustrative choices, not measurements or a calibrated species model.
 
 [Zollikofer (1994)](https://pubmed.ncbi.nlm.nih.gov/9317406/) reports alternating
 tripods and shortened inside strides during curved walking.
