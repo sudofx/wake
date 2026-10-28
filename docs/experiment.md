@@ -543,3 +543,24 @@ similarity and improved outcomes require separately controlled comparisons with
 independent correctness checks, repetition/recovery measures, elapsed time,
 provider-call counts and tokens. No learned state-merging or automatic ranking
 adaptation is enabled by request compaction.
+
+### Planned adaptive-coordination comparisons
+
+The ant coordination discussion suggests a research direction, not evidence that
+WAKE has acquired collective intelligence. The following tasks remain planned:
+
+- [ ] Compare one model working independently, several models working independently
+  with their answers combined, and the same models working through WAKE's shared
+  context, governance and durable record. Match tasks, provider calls and token
+  budgets; use independent correctness checks and repeated trials.
+- [ ] Measure successful outcomes, correction rates, elapsed time and cost, then
+  repeat with an unavailable worker or a previously useful source removed.
+- [ ] Compare retrieval policies that reduce an obsolete strategy's operational
+  influence while preserving its recorded history, using adaptation time and
+  recovery outcomes rather than record size as the success criterion.
+
+These comparisons require separately specified protocols and execution budgets.
+They do not authorize new providers, live experiments, source mutation by Bob,
+or rewriting native history. The [farm comparison tasks](ant-farm.md#coordination-follow-up-tasks)
+provide a distinct simulation workload; visual route formation alone cannot prove
+that WAKE's architecture improves research.

@@ -43,6 +43,26 @@ they match the loaded value or are no longer current. Every write also compares
 the stored value with the last known value, so a real competing tab still blocks
 stale overwrites.
 
+## Sand, excavation and walking detail
+
+Packed sand is drawn from seeded angular mineral grains of mixed sizes and tones,
+with small highlights and darker inclusions. Grains stay fixed in habitat space:
+zooming reveals the same material rather than enlarging screen noise. The broad
+soil layers and sparse larger grains remain separate from the finer packed texture.
+
+Passages have spatially varying widths and irregular walls. Chamber contours have
+broad lobes and smaller excavated notches. Filled overlapping contours connect
+shafts, branches and chambers without drawing cap seams through their openings.
+Recessed shoulders, a shaded interior and displaced wall grains suggest depth;
+these are viewing effects, not a granular-physics or tunnel-collapse simulation.
+Excavation geometry is cached until the graph or viewport dimensions change.
+
+Workers follow the same curved passage centerlines used by the renderer. Display
+interpolation includes the simulation's variable walking tempo and load slowdown.
+Leg phase follows distance traveled, while the head can turn independently during
+steering and stationary antenna checks. These refinements preserve the existing
+simulation clock, save format and shared recording, including its pauses and care.
+
 ## How the ants build and live
 
 A varied starter shaft, chamber and one to four branches are provided. Workers
@@ -300,3 +320,25 @@ tips meet near the mouth: excavation and nursing open and close them, while a
 carried crumb or soil pellet holds a narrower grip. Idle ants move them
 intermittently; pause freezes the pose. The head texture excludes its baked-in
 jaws, and its photographed eyes are used without a second drawn pair.
+
+## Coordination follow-up tasks
+
+These questions extend the farm's current reinforcement, decay and local task
+rules. They are planned comparisons, not demonstrated collective capabilities.
+
+- [ ] Compare repeated seeded runs with trail reinforcement enabled and disabled,
+  holding food placement and simulation duration fixed. Measure delivery, travel
+  and congestion rather than judging the pattern by appearance.
+- [ ] Deplete or relocate a food patch and measure how quickly traffic leaves the
+  old route and reaches the available patch. Keep past visits distinct from the
+  current decaying food signal.
+- [ ] Compare local task adaptation and recovery when workers or resources become
+  unavailable, with identical initial conditions and an explicit intervention log.
+- [ ] Let Bob discuss those dated comparisons alongside attributed research and
+  source observations when supplied, including null results and limits. His
+  writing does not control the colony or certify emergence.
+
+The broader matched-budget WAKE comparisons are listed in
+[the experiment guide](experiment.md#planned-adaptive-coordination-comparisons).
+Body bridges and rafts from the discussion are a different physical workload;
+they are not represented by this sand-nest model.

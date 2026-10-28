@@ -30,7 +30,7 @@
   let paused=false,speed=1,showTrails=false,previous=0,accumulator=0,lastDraw=0,lastSave=0,lastUI=0,selectedId=null,antSignature='';
   const foodFlashes=[];
   const camera={zoom:1,x:0,y:0};
-  let following=false,lastPoseTime=0;
+  let following=false,lastPoseTime=0,excavationCache=null;
   const positions=new Map();
   let width=0,height=0,dpr=1,cw=0,ch=0,terrainDirty=true,needsDraw=true,frameInterval=1000/24,terrain=document.createElement('canvas'),soil=document.createElement('canvas');
   window.addEventListener('wake-ant-art-ready',()=>{needsDraw=true;});
@@ -49,7 +49,7 @@
     clearTimeout(button.feedbackTimer);button.feedbackTimer=setTimeout(()=>button.classList.remove('is-activated'),750);
     if(message){get('scene-note').textContent=message;get('accessible-status').textContent=message;}
   }
-  function useColony(value){colony=value;selectedId=null;antSignature='';facings.clear();strides.clear();positions.clear();following=false;accumulator=0;terrainDirty=true;needsDraw=true;resize();updateUI();}
+  function useColony(value){colony=value;selectedId=null;antSignature='';excavationCache=null;facings.clear();strides.clear();positions.clear();following=false;accumulator=0;terrainDirty=true;needsDraw=true;resize();updateUI();}
   function resetReplay(){useColony(Colony.restore(bobPacket.replay.start));}
   function stepColony(){
     if(mode==='bob'){
@@ -124,29 +124,30 @@
     ground.setTransform(dpr,0,0,dpr,0,0);ground.clearRect(0,0,width,height);
     ground.save();ground.translate(camera.x,camera.y);ground.scale(camera.zoom,camera.zoom);ground.drawImage(soil,0,0,width,height);
     drawSoilDetail(ground);
-    ground.save();soilOutline(ground);ground.clip();
-    ground.strokeStyle='#c9b68f';ground.lineCap='round';ground.lineJoin='round';
-    // One stroke unions the connected passages. Separate strokes leave visible
-    // cap seams in WebKit, especially at the high backing scale used for pinch zoom.
-    ground.lineWidth=Math.min(cw,ch)*1.45;ground.beginPath();
-    for(const node of colony.nodes){
-      if(node.parent===null||node.kind==='surface')continue;const parent=colony.nodes[node.parent];
-      const dx=node.x-parent.x,dy=node.y-parent.y,bend=Math.sin(node.x*7.3+node.y*3.1)*.055;ground.moveTo(parent.x*cw,parent.y*ch);ground.quadraticCurveTo((parent.x+dx*.5-dy*bend)*cw,(parent.y+dy*.5+dx*bend)*ch,node.x*cw,node.y*ch);
-    }
-    for(const [a,b] of [...colony.links,...colony.junctions]){const from=colony.nodes[a],to=colony.nodes[b];ground.moveTo(from.x*cw,from.y*ch);ground.lineTo(to.x*cw,to.y*ch);}
-    ground.strokeStyle='#8f754e';ground.lineWidth=Math.min(cw,ch)*1.54;ground.stroke();
-    ground.strokeStyle='#c9b68f';ground.lineWidth=Math.min(cw,ch)*1.42;ground.stroke();ground.save();ground.globalAlpha=.24;ground.strokeStyle=sandPattern;ground.stroke();ground.restore();
-    // Fine displaced grains soften the excavated edges without breaking joins.
-    for(let id=0;id<colony.nodes.length;id++){const n=colony.nodes[id],p=colony.nodes[n.parent];if(!p||n.kind==='surface')continue;const dx=n.x-p.x,dy=n.y-p.y,length=Math.hypot(dx,dy)||1;
-      for(let i=0;i<8;i++){const t=(i+.5)/8,side=i%2?1:-1,offset=.71+Math.sin(id*3.7+i*8.1)*.055,x=(p.x+dx*t-dy/length*offset*side)*cw,y=(p.y+dy*t+dx/length*offset*side)*ch;
-        if(x*camera.zoom+camera.x<0||x*camera.zoom+camera.x>width||y*camera.zoom+camera.y<0||y*camera.zoom+camera.y>height)continue;
-        ground.fillStyle=i%3?'#dfcba299':'#8a704677';ground.beginPath();ground.ellipse(x,y,cw*(.025+(i%3)*.012),ch*.025,id+i,0,Math.PI*2);ground.fill();
+    ground.save();soilOutline(ground);ground.clip();ground.lineCap='round';ground.lineJoin='round';
+    // Filled, overlapping contours form one excavation: no outlined segment caps
+    // or chamber rims across a connected passage. Width follows stable soil relief.
+    const geometryKey=[colony.seed,colony.nodes.length,colony.links.length,colony.junctions.length,cw,ch].join(':');
+    if(excavationCache?.key!==geometryKey)excavationCache={key:geometryKey,walls:excavationShape(1),shoulder:excavationShape(.93),interior:excavationShape(.84)};
+    const {walls,shoulder,interior}=excavationCache;
+    ground.fillStyle='#907653';ground.fill(walls);ground.fillStyle='#ad9067';ground.fill(shoulder);
+    ground.save();ground.clip(walls);
+    const cavity=ground.createLinearGradient(0,0,0,height);
+    cavity.addColorStop(0,'#c5ae86');cavity.addColorStop(.5,'#b49a70');cavity.addColorStop(1,'#a48b64');
+    ground.fillStyle=cavity;ground.save();ground.translate(0,.10*ch);ground.fill(interior);ground.restore();
+    // Fine grains remain on the back wall; cavity grain contrast is lower than
+    // packed soil, with scattered fallen particles on the lower edges.
+    ground.globalAlpha=.17;ground.fillStyle=sandPattern;ground.fill(walls);ground.globalAlpha=1;
+    for(let id=117;id<colony.nodes.length;id++){
+      const n=colony.nodes[id],p=colony.nodes[n.parent];if(!p)continue;
+      for(let i=0;i<5;i++){const t=(i+.3)/5,point=passagePoint(p,n,t),angle=Math.atan2((n.y-p.y)*ch,(n.x-p.x)*cw),radius=passageRadius(p,n,t),side=i%2?1:-1;
+        const x=point.x*cw-Math.sin(angle)*radius*cw*side*.93,y=point.y*ch+Math.cos(angle)*radius*ch*side*.93;
+        ground.fillStyle=i%2?'#eed6a96b':'#614c365e';ground.beginPath();ground.ellipse(x,y,cw*(.027+(id%3)*.009),ch*.024,id+i,0,Math.PI*2);ground.fill();
       }
     }
-    for(let i=0;i<colony.nodes.length;i++){const n=colony.nodes[i];if(n.kind==='chamber'&&i!==colony.nest)drawChamber(ground,n.x*cw,n.y*ch,1.8*cw,1.1*ch,i);}
-    const home=colony.nodes[colony.nest];drawChamber(ground,home.x*cw,home.y*ch,4.9*cw,2.7*ch,colony.nest);
+    ground.restore();
     // A warm nest chamber makes the homeward traffic legible.
-    const nest=ground.createRadialGradient(home.x*cw,home.y*ch,0,home.x*cw,home.y*ch,8*Math.max(cw,ch));nest.addColorStop(0,'#c7a36d18');nest.addColorStop(1,'#c7a36d00');ground.fillStyle=nest;ground.fillRect((home.x-4)*cw,(home.y-3)*ch,8*cw,6*ch);for(const id of colony.exits){const n=colony.nodes[id],y=surfaceY(n.x)*ch;
+    const home=colony.nodes[colony.nest],nest=ground.createRadialGradient(home.x*cw,home.y*ch,0,home.x*cw,home.y*ch,8*Math.max(cw,ch));nest.addColorStop(0,'#c7a36d18');nest.addColorStop(1,'#c7a36d00');ground.fillStyle=nest;ground.fillRect((home.x-4)*cw,(home.y-3)*ch,8*cw,6*ch);for(const id of colony.exits){const n=colony.nodes[id],y=surfaceY(n.x)*ch;
       ground.strokeStyle='#b59b70';ground.lineWidth=.65*Math.min(cw,ch);ground.beginPath();ground.moveTo(n.x*cw,y);ground.lineTo(n.x*cw,n.y*ch);ground.stroke();
       ground.fillStyle='#5e4a2e';ground.beginPath();ground.ellipse(n.x*cw,y,.58*cw,.23*ch,0,0,Math.PI*2);ground.fill();
       ground.strokeStyle='#b69a6d';ground.lineWidth=Math.max(.65,cw*.08);ground.beginPath();ground.ellipse(n.x*cw,y+.04*ch,.66*cw,.27*ch,0,0,Math.PI);ground.stroke();
@@ -154,37 +155,72 @@
     }
     ground.restore();ground.restore();terrainDirty=false;
   }
-  function drawChamber(layer,x,y,rx,ry,seed){
-    const points=Array.from({length:24},(_,i)=>{const angle=i*Math.PI/12,wave=1+.035*Math.sin(i*2.7+seed)+.025*Math.cos(i*1.3-seed);return{x:x+Math.cos(angle)*rx*wave,y:y+Math.sin(angle)*ry*wave};});
-    layer.beginPath();for(let i=0;i<points.length;i++){const a=points[i],b=points[(i+1)%points.length];if(i===0)layer.moveTo((a.x+b.x)/2,(a.y+b.y)/2);else layer.quadraticCurveTo(a.x,a.y,(a.x+b.x)/2,(a.y+b.y)/2);}const a=points[0],b=points[1];layer.quadraticCurveTo(a.x,a.y,(a.x+b.x)/2,(a.y+b.y)/2);layer.closePath();
-    const shade=layer.createRadialGradient(x-rx*.2,y+ry*.25,0,x,y,rx);shade.addColorStop(0,'#cbbb98');shade.addColorStop(.7,'#c1ae85');shade.addColorStop(1,'#aa9065');layer.fillStyle=shade;layer.fill();
-    layer.save();layer.clip();if(sandPattern){layer.save();layer.globalAlpha=.22;layer.fillStyle=sandPattern;layer.fillRect(x-rx,y-ry,rx*2,ry*2);layer.restore();}
-    for(let i=0;i<95;i++){const angle=i*2.39996+seed,radius=Math.sqrt((i+.5)/95),xx=x+Math.cos(angle)*radius*rx,yy=y+Math.sin(angle)*radius*ry;layer.fillStyle=i%3?'#f8e9c52b':'#6d543522';layer.beginPath();layer.ellipse(xx,yy,rx*.006,ry*.008,i,0,Math.PI*2);layer.fill();}
-    layer.restore();
+  function passagePoint(a,b,t){
+    const dx=b.x-a.x,dy=b.y-a.y,bend=a.kind==='surface'&&b.kind==='surface'?0:Math.sin((a.x+b.x)*3.65+(a.y+b.y)*1.55)*.07*(a.x<b.x||a.x===b.x&&a.y<b.y?1:-1);
+    return{x:a.x+dx*t-dy*bend*2*t*(1-t),y:a.y+dy*t+dx*bend*2*t*(1-t)};
+  }
+  function passageRadius(a,b,t){
+    const point=passagePoint(a,b,t);
+    return .64+.09*Math.sin(point.x*.83+point.y*.57)+.035*Math.sin(point.x*4.7-point.y*3.2);
+  }
+  function excavationShape(inset){
+    const path=new Path2D();
+    const segment=(a,b)=>{
+      const dx=b.x-a.x,dy=b.y-a.y,length=Math.hypot(dx,dy)||1,steps=Math.max(6,Math.ceil(length*7));
+      for(const side of [-1,1])for(let k=0;k<=steps;k++){
+        const t=side<0?k/steps:1-k/steps,point=passagePoint(a,b,t),r=passageRadius(a,b,t)*inset;
+        const x=(point.x-dy/length*r*side)*cw,y=(point.y+dx/length*r*side)*ch;
+        if(side===-1&&k===0)path.moveTo(x,y);else path.lineTo(x,y);
+      }
+      path.closePath();
+    };
+    for(const n of colony.nodes){const p=colony.nodes[n.parent];if(p&&n.kind!=='surface')segment(p,n);}
+    for(const [a,b]of [...colony.links,...colony.junctions])segment(colony.nodes[a],colony.nodes[b]);
+    for(let id=117;id<colony.nodes.length;id++){
+      const n=colony.nodes[id],r=passageRadius(n,n,0)*inset;
+      path.moveTo((n.x+r)*cw,n.y*ch);path.ellipse(n.x*cw,n.y*ch,r*cw,r*ch,0,0,Math.PI*2);
+      if(n.kind!=='chamber'&&id!==colony.nest)continue;
+      const home=id===colony.nest,rx=(home?4.9:1.8)-(1-inset)*.8,ry=(home?2.7:1.1)-(1-inset)*.8;
+      // Broad lobes, small excavated notches and an uneven floor replace ovals.
+      for(let k=0;k<=64;k++){const angle=k*Math.PI/32,wave=1+.085*Math.sin(angle*3+id)+.045*Math.sin(angle*7-id*.7)+.018*Math.sin(angle*17+id),x=(n.x+Math.cos(angle)*rx*wave)*cw,y=(n.y+Math.sin(angle)*ry*wave)*ch;if(!k)path.moveTo(x,y);else path.lineTo(x,y);}path.closePath();
+    }
+    return path;
   }
   function antPosition(ant){
     const a=colony.nodes[ant.from],b=colony.nodes[ant.cell],length=Math.hypot(b.x-a.x,b.y-a.y)||1;
-    const t=Math.min(1,ant.phase+(!paused&&ant.wait<=0&&ant.phase<1?accumulator*ant.pace/length*(ant.carrying?.75:1)*(colony.starvationSeconds>600?.65:1):0));
-    const surface=a.kind==='surface'&&b.kind==='surface',lane=surface?0:((ant.id%3)-1)*.13,spread=ant.id*2.39996,rad=.5+(ant.id%8)/8,weight=(ant.from===colony.nest?1-t:0)+(ant.cell===colony.nest?t:0);
-    let worldX=a.x+(b.x-a.x)*t+Math.cos(spread)*rad*1.5*weight;
-    let worldY=(surface?surfaceY(worldX):(a.kind==='surface'?surfaceY(a.x):a.y)*(1-t)+(b.kind==='surface'?surfaceY(b.x):b.y)*t+Math.sin(spread)*rad*.65*weight);
+    const tempo=.88+.12*Math.sin((colony.time+.1)*3.1+ant.id*2.4);
+    const t=Math.min(1,ant.phase+(!paused&&ant.wait<=0&&ant.phase<1?accumulator*ant.pace*tempo/length*(ant.carrying?.75:1)*(colony.starvationSeconds>600?.65:1):0));
+    const surface=a.kind==='surface'&&b.kind==='surface',lane=surface?0:((ant.id%3)-1)*.11*Math.sin(Math.PI*t),spread=ant.id*2.39996,rad=.5+(ant.id%8)/8,weight=(ant.from===colony.nest?1-t:0)+(ant.cell===colony.nest?t:0);
+    const center=passagePoint(a,b,t),tangent=passagePoint(a,b,Math.min(1,t+.01)),behind=passagePoint(a,b,Math.max(0,t-.01));
+    let worldX=center.x+Math.cos(spread)*rad*1.5*weight;
+    let worldY=(surface?surfaceY(worldX):center.y+(a.kind==='surface'?(surfaceY(a.x)-a.y)*(1-t):0)+(b.kind==='surface'?(surfaceY(b.x)-b.y)*t:0)+Math.sin(spread)*rad*.65*weight);
     if(ant.role==='nurse'&&ant.cell===colony.nest&&ant.phase>=1){
       // Small tending paths stay beside the brood, clear of the queen's body.
       const home=colony.nodes[colony.nest],time=colony.time+(!paused?accumulator:0),motion=reduced.matches?0:Math.sin(time*.18+ant.id)*.15;
       worldX=home.x+1.65+Math.cos(spread)*1.25+motion;worldY=home.y+Math.sin(spread)*1.1+motion*.5;
     }
-    return {x:worldX*cw+Math.sin(ant.dir)*lane*cw,y:worldY*ch-Math.cos(ant.dir)*lane*ch,worldX,surface};
+    return {x:worldX*cw+Math.sin(ant.dir)*lane*cw,y:worldY*ch-Math.cos(ant.dir)*lane*ch,worldX,surface,heading:Math.atan2((tangent.y-behind.y)*ch,(tangent.x-behind.x)*cw)};
   }
   let soilGrains=null,soilSeed=null,sandPattern=null;
   function drawSoilDetail(layer){
     if(soilSeed!==colony.seed){
       soilSeed=colony.seed;let seed=colony.seed||1;const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
-      const tile=document.createElement('canvas');tile.width=tile.height=256;const material=tile.getContext('2d'),pixels=material.createImageData(256,256);
-      let previous=.5;for(let i=0;i<pixels.data.length;i+=4){const value=random(),relief=(value-previous)*17,brightness=(value-.5)*23+relief;pixels.data[i]=205+brightness;pixels.data[i+1]=189+brightness;pixels.data[i+2]=155+brightness;pixels.data[i+3]=150;previous=value;}material.putImageData(pixels,0,0);sandPattern=layer.createPattern(tile,'repeat');
+      const tile=document.createElement('canvas');tile.width=tile.height=768;const material=tile.getContext('2d');
+      material.fillStyle='#d0bd97';material.fillRect(0,0,768,768);
+      // Close-packed, differently sized mineral grains, with a consistent light
+      // direction. The texture is fixed in world space, so zoom reveals grains.
+      const colors=['#a38b65','#b59b72','#c5ad84','#d5c29d','#e4d3b1','#ecdfc1','#f4e8cc'];
+      for(let i=0;i<85000;i++){
+        const x=random()*768,y=random()*768,r=.65+Math.pow(random(),2)*2.15,angle=random()*Math.PI,shade=Math.floor(random()*colors.length);
+        material.fillStyle=colors[shade];material.beginPath();
+        for(let k=0;k<6;k++){const a=angle+k*Math.PI/3,rr=r*(.72+random()*.28);if(!k)material.moveTo(x+Math.cos(a)*rr,y+Math.sin(a)*rr*.8);else material.lineTo(x+Math.cos(a)*rr,y+Math.sin(a)*rr*.8);}material.closePath();material.fill();
+        if(r>1.7){material.strokeStyle='#6e543329';material.lineWidth=.3;material.stroke();material.fillStyle='#fff5db55';material.fillRect(x-r*.35,y-r*.4,r*.55,.35);}
+      }
+      sandPattern=layer.createPattern(tile,'repeat');
       soilGrains=Array.from({length:480},()=>[]);for(let i=0;i<96000;i++){const grain={x:random()*W,y:random()*H,r:.008+Math.pow(random(),6)*.065,shade:random(),angle:random()*Math.PI};soilGrains[Math.min(19,Math.floor(grain.y/H*20))*24+Math.min(23,Math.floor(grain.x/W*24))].push(grain);}
     }
     layer.save();soilOutline(layer);layer.clip();
-    sandPattern.setTransform(new DOMMatrix().scale(cw*8/256,ch*8/256));layer.fillStyle=sandPattern;layer.fillRect(0,0,width,height);
+    sandPattern.setTransform(new DOMMatrix().scale(cw*24/768,ch*24/768));layer.fillStyle=sandPattern;layer.fillRect(0,0,width,height);
     for(let i=0;i<8;i++){const y=(29+i*9)*ch;layer.fillStyle=i%2?'#96774907':'#fff8df0b';layer.beginPath();layer.moveTo(0,y);layer.bezierCurveTo(width*.25,y-2*ch,width*.65,y+2*ch,width,y-ch);layer.lineTo(width,y+2*ch);layer.bezierCurveTo(width*.65,y+5*ch,width*.25,y,width,y+ch);layer.lineTo(0,y+3*ch);layer.fill();}
     const scale=camera.zoom,left=-camera.x/scale,right=(width-camera.x)/scale,top=-camera.y/scale,bottom=(height-camera.y)/scale;
     const firstCol=Math.max(0,Math.floor(left/width*24)),lastCol=Math.min(23,Math.floor(right/width*24)),firstRow=Math.max(0,Math.floor(top/height*20)),lastRow=Math.min(19,Math.floor(bottom/height*20));
@@ -212,7 +248,7 @@
   function draw(){
     if(!width||!height)return;needsDraw=false;
     const poseTime=colony.time+(!paused?accumulator:0),poseDelta=Math.min(.15,Math.max(0,(performance.now()-lastPoseTime)/1000));lastPoseTime=performance.now();
-    for(const ant of colony.ants){const point=antPosition(ant),old=positions.get(ant.id);if(old&&!paused&&Math.hypot(point.x-old.x,point.y-old.y)<Math.max(cw,ch)*2){const blend=1-Math.exp(-poseDelta*18);point.x=old.x+(point.x-old.x)*blend;point.y=old.y+(point.y-old.y)*blend;}positions.set(ant.id,point);}const aliveIds=new Set(colony.ants.map(a=>a.id));for(const id of positions.keys())if(id!=='queen'&&!aliveIds.has(id))positions.delete(id);
+    for(const ant of colony.ants){const point=antPosition(ant),old=positions.get(ant.id);if(old&&!paused&&Math.hypot(point.x-old.x,point.y-old.y)<Math.max(cw,ch)*2){const blend=1-Math.exp(-poseDelta*32);point.x=old.x+(point.x-old.x)*blend;point.y=old.y+(point.y-old.y)*blend;}positions.set(ant.id,point);}const aliveIds=new Set(colony.ants.map(a=>a.id));for(const id of positions.keys())if(id!=='queen'&&!aliveIds.has(id))positions.delete(id);
     const homePosition=colony.nodes[colony.nest];positions.set('queen',{x:(homePosition.x-1.7)*cw,y:homePosition.y*ch});
     if(following&&positions.has(selectedId)){const point=positions.get(selectedId);const oldX=camera.x,oldY=camera.y;camera.x=width/2-point.x*camera.zoom;camera.y=height/2-point.y*camera.zoom;clampCamera();terrainDirty ||= oldX!==camera.x||oldY!==camera.y;}
     if(terrainDirty)updateTerrain();ctx.clearRect(0,0,width,height);ctx.drawImage(terrain,0,0,width,height);
@@ -243,12 +279,12 @@
       ctx.restore();
     }
     for(const dead of colony.recentDeaths){if(!Number.isFinite(dead.x)||colony.time-dead.at>120)continue;ctx.save();ctx.translate(dead.x*cw,dead.y*ch);ctx.rotate(dead.dir);ctx.globalAlpha=.65*(1-(colony.time-dead.at)/120);drawAnt(ctx,r,{id:dead.id,dead:true,moving:false,work:-1,carrying:0},0,colony.time);ctx.restore();}
-    for(const ant of colony.ants){const a=colony.nodes[ant.from],b=colony.nodes[ant.cell],{x,y,worldX,surface}=positions.get(ant.id);
+    for(const ant of colony.ants){const a=colony.nodes[ant.from],b=colony.nodes[ant.cell],{x,y,worldX,surface,heading}=positions.get(ant.id);
       const moving=ant.phase<1&&ant.wait<=0||ant.role==='nurse'&&ant.cell===colony.nest&&!reduced.matches,scanning=!moving&&ant.work<0&&ant.wait>.8?[0,.35,0,-.3][Math.floor(colony.time*.7+ant.id*1.61)%4]:0;
-      const direction=Math.sign(b.x-a.x)||1,target=(a===b?ant.dir:surface?Math.atan2((surfaceY(worldX+.08*direction)-surfaceY(worldX-.08*direction))*ch,.16*direction*cw):Math.atan2(((b.kind==='surface'?surfaceY(b.x):b.y)-(a.kind==='surface'?surfaceY(a.x):a.y))*ch,(b.x-a.x)*cw))+scanning,old=facings.get(ant.id)??target,turn=Math.atan2(Math.sin(target-old),Math.cos(target-old)),angle=old+turn*(1-Math.exp(-poseDelta*9));facings.set(ant.id,angle);
+      const direction=Math.sign(b.x-a.x)||1,target=(a===b?ant.dir:surface?Math.atan2((surfaceY(worldX+.08*direction)-surfaceY(worldX-.08*direction))*ch,.16*direction*cw):heading),old=facings.get(ant.id)??target,turn=Math.atan2(Math.sin(target-old),Math.cos(target-old)),angle=old+turn*(1-Math.exp(-poseDelta*9));facings.set(ant.id,angle);
       let pose=strides.get(ant.id);if(!pose)pose={x,y,gait:ant.id*2.39996};
       const distance=Math.hypot(x-pose.x,y-pose.y);if(!paused&&moving&&distance<Math.max(cw,ch)*2)pose.gait+=distance/r*Math.PI*.55;pose.x=x;pose.y=y;strides.set(ant.id,pose);
-      ctx.save();ctx.translate(x,y);ctx.rotate(angle+(moving?Math.sin(pose.gait*2)*.018:0));drawAnt(ctx,r,{...ant,moving,turn,detail:r*camera.zoom,callow:colony.time-ant.bornAt<180},pose.gait,colony.time+(!paused?accumulator:0));ctx.restore();
+      ctx.save();ctx.translate(x,y);ctx.rotate(angle+(moving?Math.sin(pose.gait*2)*.018:0));drawAnt(ctx,r,{...ant,moving,turn,detail:r*camera.zoom,callow:colony.time-ant.bornAt<180,headYaw:Math.max(-.22,Math.min(.22,turn*.32))+(!moving&&ant.work<0?Math.sin(poseTime*1.2+ant.id)*.065+scanning*.45:0)},pose.gait,colony.time+(!paused?accumulator:0));ctx.restore();
       if(ant.id===selectedId){ctx.strokeStyle='#876838aa';ctx.lineWidth=1/camera.zoom;ctx.beginPath();ctx.arc(x,y,r*3.5,0,Math.PI*2);ctx.stroke();ctx.fillStyle='#3e3020';ctx.font=(12/camera.zoom)+'px system-ui';ctx.fillText('#'+ant.id,x+r*6,y-r*3);}
     }
     if(colony.queen){
