@@ -504,13 +504,15 @@ No Actions artifacts or caches are used for authority or publication.
 
 ### Verify actual progress
 
-The header and node picker use the same dated installation snapshot. When all
-12 nodes report running, the header is green while GitHub confirms an active
-batch, including during a batch handoff or delayed upload. The tooltip preserves
-the observation time. Partial running observations additionally require a
-matching batch and an observation within 30 minutes. An active Actions job alone
-remains unconfirmed; an explicitly disabled workflow remains stopped. Green does
-not establish a live provider call or accepted research progress.
+The header and node picker use one aggregate of the same dated installation
+snapshot. A blocked node makes the aggregate red; otherwise any running node
+makes it green, including a mix of running and idle workers. With no running
+nodes, the priority is waiting, provider standby, paused, stopped, then idle.
+Gray means unavailable observations, not merely a mix of known states. The
+header applies this aggregate while GitHub confirms an active batch, and an
+explicitly disabled workflow remains stopped. Tooltips retain state counts and
+observation times. These colors do not establish live provider calls or accepted
+research progress.
 
 Inspect **WAKE — Research worker** runs and their summaries for source revision,
 checkpoint generation, record heads and accepted versions. A successful run can

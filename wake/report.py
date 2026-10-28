@@ -766,7 +766,7 @@ def _deployment_site(target, *, standalone, installation=None):
         # its node selector. The asset URL retains each node export root.
         page = re.sub(r'<script src="(?:\.\./)*installation-console\.js[^"]*"[^>]*></script>', '', page)
         page = re.sub(r'<link rel="stylesheet" href="(?:\.\./)*installation-console\.css[^"]*">', '', page)
-        page = page.replace('</head>', f'<link rel="stylesheet" href="{prefix}installation-console.css?v=20261014-icon-picker"><script src="{prefix}installation-console.js?v=20261020-masthead-menu" defer></script></head>', 1)
+        page = page.replace('</head>', f'<link rel="stylesheet" href="{prefix}installation-console.css?v=20261014-icon-picker"><script src="{prefix}installation-console.js?v=20261028-aggregate-status" defer></script></head>', 1)
         page = page.replace('</head>', f'<link rel="stylesheet" href="{prefix}console-light.css?v=20261014-mobile-width"><script src="{prefix}site-theme.js?v=20261014-visible-theme"></script><link rel="stylesheet" href="{prefix}masthead.css?v=20261014-visible-theme"></head>', 1)
         if not path.name.startswith('console'):
             page = re.sub(r'<link rel="stylesheet" href="(?:\.\./)*reader-theme\.css[^"]*">', '', page)

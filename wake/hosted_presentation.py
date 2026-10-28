@@ -68,7 +68,7 @@ def bind_hosted_status(site, repository, revision):
         page = re.sub(r'(href="(?:\.\./)*theme\.css)(?:\?[^"]*)?"',
                       lambda match: match.group(1)+'?v='+revision[:12]+'"', page)
         page = re.sub(r'<script src="[^\"]*hosted-status\.js[^\"]*"[^>]*></script>', '', page)
-        page = page.replace('</head>', f'<script src="{prefix}hosted-status.js?v=20261028-status-snapshot-replay" defer></script></head>', 1)
+        page = page.replace('</head>', f'<script src="{prefix}hosted-status.js?v=20261028-aggregate-status" defer></script></head>', 1)
         page = re.sub(r'((?:runtime-activity\.js|installation-console\.js|process-field\.js|research\.js)\?v=)[^"<]+', r'\g<1>20261020-hosted-activity', page)
         page = re.sub(r'((?:research\.js|research\.css)\?v=)[^"<]+', r'\g<1>20261021-fit-history', page)
         page = re.sub(r'(installation-console\.js\?v=)[^"<]+', r'\g<1>20261020-masthead-menu', page)

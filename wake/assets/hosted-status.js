@@ -59,6 +59,10 @@
   }
   function apply(value){
     if(!value || !Number.isFinite(value.checked) || Date.now()-value.checked>stale || value.checked>Date.now()+5000)return false;
+    const aggregate=window.WakeInstallationAggregate?.(quotaObservation);
+    if(value.activeRun && aggregate && aggregate.state!=='unknown'){
+      show(aggregate.state,aggregate.description,aggregate.checked);return true;
+    }
     const observed=confirmedQuota();
     if(observed && value.state!=='stopped' && value.state!=='blocked')show('standby','All 12 nodes: confirmed provider quota standby (published observation)',observed);
     else {

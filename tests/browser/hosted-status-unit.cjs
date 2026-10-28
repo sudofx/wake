@@ -60,5 +60,29 @@ const tick=()=>new Promise(resolve=>setImmediate(resolve));
   vm.runInNewContext(source,context);await tick();
   assert.equal(light.dataset.state,'running','A unanimous dated node snapshot must keep the same aggregate color through a handoff or delayed upload');
  }
+ // Exercise the actual picker aggregation in the header, including the reported
+ // ten-running/two-idle snapshot. Differing known states must not mean unknown.
+ {
+  const installation=fs.readFileSync('wake/assets/installation-console.js','utf8');
+  const owner={window:{},Date,stamp:value=>value};
+  vm.runInNewContext(installation.slice(installation.indexOf(' const validNode='),installation.indexOf(' function buildPicker(')),owner);
+  const aggregate=owner.window.WakeInstallationAggregate;
+  for(const [states,expected]of [
+   [[...Array(10).fill('running'),'idle','idle'],'running'],
+   [['running','blocked'],'blocked'],[['idle','idle'],'idle'],
+   [['standby','idle'],'standby'],[['stopped','stopped'],'stopped'],
+   [['unknown','unknown'],'unknown']
+  ]){
+   const snapshot={live:false,nodes:states.map((state,i)=>({id:String(i),recorded_runtime:{state,observed_at:new Date().toISOString()}}))};
+   assert.equal(aggregate(snapshot).state,expected);
+   const light={dataset:{},setAttribute(k,v){this[k]=v;},removeAttribute(k){if(k==='data-state')delete this.dataset.state;}};
+   const context={window:{WakeInstallationAggregate:aggregate,WakeInstallationSnapshot:snapshot,WAKE_DEPLOYMENT:{hosted_status:{repository:'example/repo',workflow:'research-worker.yml',branch:'master'}},addEventListener(){}},
+    document:{hidden:false,querySelector:()=>light,addEventListener(){}},navigator:{onLine:true},localStorage:{getItem:()=>null,setItem(){}},Date,JSON,AbortController,
+    setTimeout:()=>0,clearTimeout(){},fetch:async url=>({ok:true,json:async()=>url.includes('/runs?')?{workflow_runs:[{id:55,path:'.github/workflows/research-worker.yml',head_branch:'master',status:'in_progress'}]}:{state:'active'}})};
+   vm.runInNewContext(source,context);await tick();
+   assert.equal(light.dataset.state,expected==='unknown'?undefined:expected);
+   if(states.length===12)assert.match(light['aria-label'],/10 running, 2 idle/);
+  }
+ }
  console.log('PASS: hosted recovery and quota-deferred stopped worker cases.');
 })().catch(error=>{console.error(error);process.exitCode=1;});
