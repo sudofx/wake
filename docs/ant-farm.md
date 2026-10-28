@@ -13,11 +13,15 @@ Touch devices use the available page viewport, with the fullscreen button to
 exit; downward drags pan the magnified habitat rather than leaving fullscreen.
 Desktop browsers can use native fullscreen. The habitat
 fills the available window height; fullscreen soil extends to the bottom.
-**Trails** starts off. It shows visited routes as dashed purple marks and
-remaining food signals as brighter continuous lines. Signal brightness is scaled
-relative to the strongest current signal so faint residual signals remain
-visible. An empty colony reports that no trails exist yet; it does not invent
-food signals. Play/pause and fullscreen
+**Trails** starts off. Purple dashed trails show recently observed digger and
+excavator routes; green solid trails show foragers and recorded food signals.
+The colors remain visible together on shared routes. Food-signal brightness is
+scaled relative to the strongest current signal so faint residuals remain visible.
+Role routes track only portions traversed during this viewing session (including
+in-progress movement in a loaded recording), fade over 300 simulation seconds,
+and restart when changing farms or replay intervals. Old aggregate visit counts
+cannot identify a worker's role and are not assigned a fabricated color. An empty
+colony reports that no trails exist yet. Play/pause and fullscreen
 use labelled icons. Button flashes and glowing food marks show actions immediately.
 **Add food** scatters surface crumbs in My farm.
 
@@ -120,8 +124,7 @@ The unzoomed farm is a thin indoor container on a wooden table in front of a
 window. At 1× the scenery follows local wall time, with continuous dawn/dusk
 lighting; faster speeds add their extra elapsed time to the scenery. The ant
 movement baseline remains four times the original simulation pace. Pinch zoom
-scales the whole webpage; desktop mouse-wheel zoom stays inside the frame. The purple trails are brighter and
-half the previous width. Existing browser saves are preserved.
+scales the whole webpage; desktop mouse-wheel zoom stays inside the frame. Purple excavation trails are dashed; green foraging trails are solid. Existing browser saves are preserved.
 
 ## Implementation and boundaries
 

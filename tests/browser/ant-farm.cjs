@@ -6,6 +6,8 @@ const mine=new Colony(9876).save(),caretaker=require('../../scripts/bob_ant_farm
 const packet=caretaker.advancePacket(caretaker.bootstrap({sourceRevision:'a'.repeat(40),at:'2026-10-26T18:00:00Z'}),{sourceRevision:'a'.repeat(40),at:'2026-10-26T19:00:00Z',ticks:120});
 // Real shared recordings can contain signals well below the former .15 cutoff.
 mine.trail.fill(.01,20,34);
+// Loaded in-progress diggers provide attributed excavation traces.
+for(const ant of mine.ants.filter(a=>a.role==='dig')){ant.from=mine.nodes[ant.cell].parent;ant.phase=.9;ant.wait=0;ant.work=-1;}
 const server=http.createServer((req,res)=>{
  const url=new URL(req.url,'http://localhost');
  if(url.pathname==='/bob-ant-farm.json'){res.setHeader('Content-Type','application/json');res.end(JSON.stringify(packet));return;}
@@ -46,9 +48,9 @@ const server=http.createServer((req,res)=>{
   await canvas.evaluate(el=>el.dispatchEvent(new WheelEvent('wheel',{deltaY:400,clientX:el.getBoundingClientRect().x+el.clientWidth/2,clientY:el.getBoundingClientRect().y+el.clientHeight/2,cancelable:true})));await page.clock.runFor(100);
   assert.ok(await canvas.evaluate(el=>{const current=el.getContext('2d').getImageData(0,0,el.width,el.height).data;let changed=0;for(let i=0;i<current.length;i+=4)if(Math.abs(current[i]-__farmPixelsBefore[i])+Math.abs(current[i+1]-__farmPixelsBefore[i+1])+Math.abs(current[i+2]-__farmPixelsBefore[i+2])>32)changed++;return changed/(current.length/4)<.02;}),'Wheel zoom returns to the whole farm');
   await page.getByRole('button',{name:'Add food',exact:true}).click();assert.equal(await page.locator('#feed').evaluate(el=>el.classList.contains('is-activated')),true);assert.match(await page.locator('#scene-note').innerText(),/Food added/);
-  const purple=()=>canvas.evaluate(el=>{const pixels=el.getContext('2d').getImageData(0,0,el.width,el.height).data;let count=0;for(let i=0;i<pixels.length;i+=4)if(pixels[i]>60&&pixels[i+2]>pixels[i]*1.05&&pixels[i+2]>pixels[i+1]*1.2&&pixels[i+3]>160)count++;return count;});
-  const trailsOff=await purple();await page.locator('#trails').click();await page.clock.runFor(100);assert.equal(await page.locator('#trails').getAttribute('aria-pressed'),'true');assert(await purple()>trailsOff+30,'Faint food signals below the old cutoff produce visible purple pixels');
-  await page.locator('#trails').click();await page.clock.runFor(100);assert(Math.abs(await purple()-trailsOff)<10,'Turning trails off removes the overlay');await page.locator('#trails').click();
+  const trailPixels=()=>canvas.evaluate(el=>{const pixels=el.getContext('2d').getImageData(0,0,el.width,el.height).data;let purple=0,green=0;for(let i=0;i<pixels.length;i+=4){if(pixels[i]>60&&pixels[i+2]>pixels[i]*1.05&&pixels[i+2]>pixels[i+1]*1.2&&pixels[i+3]>160)purple++;if(pixels[i+1]>pixels[i]*1.2&&pixels[i+1]>pixels[i+2]*1.2&&pixels[i+3]>160)green++;}return{purple,green};});
+  const trailsOff=await trailPixels();await page.locator('#trails').click();await page.clock.runFor(100);assert.equal(await page.locator('#trails').getAttribute('aria-pressed'),'true');const trailsOn=await trailPixels();assert(trailsOn.purple>trailsOff.purple+15,'Observed diggers produce purple routes');assert(trailsOn.green>trailsOff.green+30,'Faint foraging signals produce green routes');assert.match(await page.locator('#scene-note').innerText(),/Purple: diggers.*Green: foragers/);
+  await page.locator('#trails').click();await page.clock.runFor(100);const hidden=await trailPixels();assert(Math.abs(hidden.purple-trailsOff.purple)<10&&Math.abs(hidden.green-trailsOff.green)<10,'Turning trails off removes both colors');await page.locator('#trails').click();
   await page.locator('#zoom-in').click();assert.equal(await page.locator('#magnification').inputValue(),'2');assert(await page.locator('#zoom-out').isEnabled());await page.locator('#zoom-out').click();assert.equal(await page.locator('#magnification').inputValue(),'1');assert(await page.locator('#zoom-out').isDisabled());
   await page.locator('#observe').click();await page.locator('#ant-select').selectOption('queen');assert.match(await page.locator('#ant-detail').innerText(),/does not direct/);await page.locator('#close-observations').click();
   await page.locator('#observe').click();

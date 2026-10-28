@@ -31,7 +31,7 @@
   const foodFlashes=[];
   const camera={zoom:1,x:0,y:0};
   let following=false,lastPoseTime=0,excavationCache=null;
-  const positions=new Map();
+  const positions=new Map(),roleTrails={dig:new Map(),forage:new Map()};
   let width=0,height=0,dpr=1,cw=0,ch=0,terrainDirty=true,needsDraw=true,frameInterval=1000/24,terrain=document.createElement('canvas'),soil=document.createElement('canvas');
   window.addEventListener('wake-ant-art-ready',()=>{needsDraw=true;});
   const soilCtx=soil.getContext('2d'),ground=terrain.getContext('2d');
@@ -49,7 +49,7 @@
     clearTimeout(button.feedbackTimer);button.feedbackTimer=setTimeout(()=>button.classList.remove('is-activated'),750);
     if(message){get('scene-note').textContent=message;get('accessible-status').textContent=message;}
   }
-  function useColony(value){colony=value;selectedId=null;antSignature='';excavationCache=null;facings.clear();strides.clear();positions.clear();following=false;accumulator=0;terrainDirty=true;needsDraw=true;resize();updateUI();}
+  function useColony(value){colony=value;selectedId=null;antSignature='';excavationCache=null;roleTrails.dig.clear();roleTrails.forage.clear();facings.clear();strides.clear();positions.clear();following=false;accumulator=0;terrainDirty=true;needsDraw=true;rememberRoleTrails();resize();updateUI();}
   function resetReplay(){useColony(Colony.restore(bobPacket.replay.start));}
   function stepColony(){
     if(mode==='bob'){
@@ -57,7 +57,21 @@
       if(colony.ticks>=bobPacket.replay.start.ticks+bobPacket.replay.ticks)resetReplay();
       for(const event of bobPacket.replay.care)if(event.tick===colony.ticks)colony.addFood(event.x);
     }
-    colony.step();
+    colony.step();rememberRoleTrails();
+  }
+  function rememberRoleTrails(){
+    // Display-only observations: old aggregate visits have no caste attribution.
+    // Keep exact observed portions, including non-parent junction traversals.
+    for(const ant of colony.ants){
+      if(ant.from===ant.cell||ant.phase<=0||ant.phase>=1)continue;
+      const role=ant.carrying===2?'dig':ant.carrying===1||ant.role==='forage'||colony.starvationSeconds>120&&ant.role!=='nurse'?'forage':ant.role==='dig'?'dig':null;
+      if(!role)continue;
+      const a=Math.min(ant.from,ant.cell),b=Math.max(ant.from,ant.cell),key=a+':'+b;
+      const start=ant.from===a?0:1-ant.phase,end=ant.from===a?ant.phase:1;
+      const old=roleTrails[role].get(key);
+      roleTrails[role].set(key,{a,b,start:Math.min(start,old?.start??1),end:Math.max(end,old?.end??0),at:colony.time});
+    }
+    for(const routes of Object.values(roleTrails))for(const[key,route]of routes)if(colony.time-route.at>300)routes.delete(key);
   }
   async function switchMode(next){
     const request=++modeRequest;
@@ -256,12 +270,18 @@
     if(showTrails){
       const strongest=Math.max(0,...colony.trail);ctx.save();ctx.lineCap='round';ctx.lineJoin='round';
       const route=(n,p)=>{const y=point=>point.kind==='surface'?surfaceY(point.x):point.y;ctx.beginPath();ctx.moveTo(n.x*cw,y(n)*ch);ctx.lineTo(p.x*cw,y(p)*ch);};
-      // Visits and food signals are different observations. Show the former as
-      // dashes even when pheromones have faded, without inventing food signals.
-      ctx.strokeStyle='#8136b4b8';ctx.lineWidth=Math.max(1.4/camera.zoom,Math.min(cw,ch)*.18);ctx.setLineDash([Math.max(3/camera.zoom,Math.min(cw,ch)*.5),Math.max(2.5/camera.zoom,Math.min(cw,ch)*.3)]);
-      for(let i=0;i<colony.nodes.length;i++){const n=colony.nodes[i],p=colony.nodes[n.parent];if(!p||!colony.visits[i]||!colony.visits[n.parent])continue;route(n,p);ctx.stroke();}
+      // Existing food signals are foraging evidence, not excavator history.
       ctx.setLineDash([]);ctx.lineWidth=Math.max(2/camera.zoom,Math.min(cw,ch)*.325);
-      if(strongest>0)for(let i=0;i<colony.trail.length;i++){const strength=colony.trail[i];if(strength<=0)continue;const n=colony.nodes[i],p=colony.nodes[n.parent];if(!p)continue;ctx.strokeStyle=`rgba(185,57,255,${.45+.5*Math.sqrt(strength/strongest)})`;route(n,p);ctx.stroke();}
+      if(strongest>0)for(let i=0;i<colony.trail.length;i++){const strength=colony.trail[i];if(strength<=0)continue;const n=colony.nodes[i],p=colony.nodes[n.parent];if(!p)continue;ctx.strokeStyle=`rgba(48,190,92,${.45+.5*Math.sqrt(strength/strongest)})`;route(n,p);ctx.stroke();}
+      for(const role of ['forage','dig']){
+        const dig=role==='dig';ctx.lineWidth=Math.max((dig?1.4:2)/camera.zoom,Math.min(cw,ch)*(dig?.18:.325));
+        ctx.setLineDash(dig?[Math.max(3/camera.zoom,Math.min(cw,ch)*.5),Math.max(2.5/camera.zoom,Math.min(cw,ch)*.3)]:[]);
+        for(const trace of roleTrails[role].values()){
+          const alpha=.35+.6*Math.max(0,1-(colony.time-trace.at)/300);ctx.strokeStyle=dig?`rgba(177,62,242,${alpha})`:`rgba(48,190,92,${alpha})`;
+          const a=colony.nodes[trace.a],b=colony.nodes[trace.b];ctx.beginPath();
+          for(let k=0;k<=12;k++){const t=trace.start+(trace.end-trace.start)*k/12,p=passagePoint(a,b,t),x=p.x*cw,y=(a.kind==='surface'&&b.kind==='surface'?surfaceY(p.x):p.y)*ch;if(k===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);}ctx.stroke();
+        }
+      }
       ctx.restore();
     }
     for(const f of colony.food){if(!f.left)continue;const x=f.x*cw,y=surfaceY(f.x)*ch;ctx.fillStyle=f.kind==='protein'?'#a76b47':'#9ca74c';for(let j=0;j<Math.min(10,Math.ceil(f.left/24));j++){const angle=j*2.4,r=2+Math.sqrt(j)*1.3;ctx.beginPath();ctx.ellipse(x+Math.cos(angle)*r,y+Math.sin(angle)*r,1.5,1,j,0,7);ctx.fill();}}
@@ -361,7 +381,7 @@
     for(const [id,point] of positions){const radius=id==='queen'?6:2.5,d=Math.hypot(x*cw-point.x,y*ch-point.y);if(d<Math.max(14/camera.zoom,radius*Math.min(cw,ch)*.4)&&d<distance){nearest=id;distance=d;}}
     if(nearest!==null){selectedId=nearest;get('ant-select').value=String(selectedId);updateUI();needsDraw=true;}
   });
-  get('trails').onclick=()=>{showTrails=!showTrails;get('trails').setAttribute('aria-pressed',String(showTrails));feedback(get('trails'),showTrails?(colony.trail.some(n=>n>0)||colony.visits.some(n=>n>0)?'Dashed purple marks show visited routes. Brighter lines show relative food signals.':'No trails yet. Let the ants explore and carry food home.'):'Trails hidden.');needsDraw=true;};
+  get('trails').onclick=()=>{showTrails=!showTrails;get('trails').setAttribute('aria-pressed',String(showTrails));feedback(get('trails'),showTrails?(colony.trail.some(n=>n>0)||roleTrails.dig.size||roleTrails.forage.size?'Purple: diggers and excavators. Green: foragers. Recent routes fade as the simulation advances.':'No trails yet. Let the ants explore and carry food home.'):'Trails hidden.');needsDraw=true;};
   get('feed').onclick=()=>{if(mode!=='mine')return;const before=colony.food.length,added=colony.addFood();if(added){const fresh=colony.food.slice(before);for(const food of fresh)foodFlashes.push({x:food.x,y:food.y,at:performance.now()});}save();updateUI();feedback(get('feed'),added?'Food added — watch the glowing crumbs on the surface.':'There are plenty of crumbs already. Give the foragers time to find them.');needsDraw=true;};
   get('farm-choice').onchange=()=>{void switchMode(get('farm-choice').value==='mine'?'mine':'bob');};
   function observe(open){get('observations').hidden=!open;get('observe').setAttribute('aria-expanded',String(open));updateUI();if(open)get('close-observations').focus();else get('observe').focus();}
