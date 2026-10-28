@@ -59,8 +59,17 @@
    const runtime=node.runtime||{},state=stateNames[runtime.state]?runtime.state:'unknown';
    return {state,description:`Current status: ${stateNames[state]}`};
   }
-  const runtime=node.recorded_runtime||{},state=stateNames[runtime.state]?runtime.state:'unknown';
-  return {state,description:state==='unknown'?'No uploaded status available':`Last uploaded status: ${stateNames[state]} · observed ${stamp(runtime.observed_at)}`};
+  const runtime=node.recorded_runtime||{},raw=stateNames[runtime.state]?runtime.state:'unknown';
+  const latest=node.research?.status?.latest, observed=Date.parse(runtime.observed_at), attempted=Date.parse(latest?.time);
+  // Hosted disposable workers can exit after a quota deferral. Do not equate
+  // worker exit with operator-stop when the captured start was acknowledged.
+  const quota=data.hosted_execution?.research_start?.ok===true && raw==='stopped' &&
+    latest?.status==='deferred' && /quota/i.test(latest.reason||'') &&
+    Number.isFinite(observed) && observed<=Date.now()+60000 && Date.now()-observed<30*60000 &&
+    Number.isFinite(attempted) && attempted<=Date.now()+60000 && Date.now()-attempted<30*60000;
+  const state=quota?'standby':raw;
+  return {state,description:quota?`Last uploaded research: Provider quota standby; worker stopped · observed ${stamp(runtime.observed_at)}`:
+    state==='unknown'?'No uploaded status available':`Last uploaded status: ${stateNames[state]} · observed ${stamp(runtime.observed_at)}`};
  }
  function buildPicker(nodes,data){
   const label=get('instance-name');if(label)label.textContent=nodeMatch?nodeMatch[2]:'wake';
