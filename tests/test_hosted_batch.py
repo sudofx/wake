@@ -50,7 +50,9 @@ class HostedBatchTests(unittest.TestCase):
                     return_value={'object':{'sha':'b'*40}, 'workflow_runs': [{'head_sha': revision, 'head_branch': 'master'}]}))
                 transport = MagicMock()
                 def restore(path, **_):
-                    path.mkdir();return {'installation_id': 'original', 'generation': 1, 'nodes': {}}
+                    path.mkdir();(path/'config').mkdir()
+                    (path/'config/wake.toml').write_text('# Restored fixture configuration\n')
+                    return {'installation_id': 'original', 'generation': 1, 'nodes': {}}
                 transport.restore.side_effect = restore
                 transport.read_manifest.return_value = {'generation': 25}
                 transport.lease.side_effect = nullcontext

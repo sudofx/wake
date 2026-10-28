@@ -8,7 +8,11 @@ SYSTEM = '''
 Experimental research is enabled through wake-scientific-research@1. Literature is background,
 not a substitute for a test. When computation can challenge an uncertainty, propose a
 hypothesis then an experiment using the scientific_research contract in context. Each action
-has type, id, project, definition; definition is a finite JSON object. Hypotheses
+has type, id, project, definition; definition is a finite JSON object. Accuracy,
+probe_accuracy and holdout_accuracy are numeric fractions: predict value 1, not
+boolean true. Choose seeds absent from consumed_holdout_seeds for the selected
+instance; previous protocol inputs and seeds are supplied with each experiment.
+Hypotheses
 and protocols are immutable; change a hypothesis with a superseding revision and give every
 experiment a new ID. For a revision REUSE the SAME hypothesis action id and set supersedes
 to its existing integer revision. For a NEW hypothesis OMIT supersedes completely.
@@ -62,7 +66,7 @@ def context(state):
           'hidden-relationship@1':{'inputs':{'instance':17,'probes':[3,5,8],'holdout_size':8},
             'delivery':'inputs.observations are initial x,y pairs; inputs.probes are your chosen x values; inputs.holdout contains id,x. Return {probe_predictions:[y],holdout_predictions:[y]} in input order. The scorer reveals observed responses only for your probes, and aggregate accuracy for holdout. Use fresh seeds in follow-ups. The mechanism is unknown to you; infer it from observations, never presume a revised explanation.'},
           'historical-correction@1':{'instrument':'model-comparison','inputs':{'cases_per_seed':6},
-            'delivery':'Author preparation code def experiment(inputs): return inputs["trials"]. Trusted runtime runs each frozen randomized A/B/C task using the same provider/model, then scores independent known answers. Six cases need 18 provider calls per seed; budget.provider_calls must cover this and never exceed 48. Metrics A_accuracy,B_accuracy,C_accuracy,accuracy_gain_B_over_A,accuracy_gain_C_over_B plus error detection/correction/false correction/evidence selection. The primary causal contrast must be frozen in your hypothesis.'},
+            'delivery':'Preparation must return the unchanged inputs.trials list or unchanged inputs object. Trusted runtime runs each frozen randomized A/B/C task using the same provider/model, then scores independent known answers. Six cases need 18 provider calls per seed; budget.provider_calls must cover this and never exceed 48. Metrics A_accuracy,B_accuracy,C_accuracy,accuracy_gain_B_over_A,accuracy_gain_C_over_B plus error detection/correction/false correction/evidence selection. The primary causal contrast must be frozen in your hypothesis.'},
           'replication':{'definition':{'schema':c.PROTOCOL,'replicates':'evaluated experiment ID'},
             'meaning':'Use a NEW experiment action id. Runtime copies the exact preserved protocol; do not reconstruct omitted code or parameters.'}},
         'research_direction':{'required':['next','reason','uncertainty','cost','stop'],
@@ -72,8 +76,16 @@ def context(state):
         'serialization':'Every action definition is a JSON object matching response_schema. Return the outer proposal as JSON with base_version,title,summary,actions. Do not use markdown fences. Use only exact field names and enum values above.',
         'hypotheses':[],'experiments':[],'recent_directions':deepcopy(science.get('directions',[])[-2:]),
         'convergence_decisions':deepcopy(science.get('decisions',[])[-3:]),
-        'convergence_evidence':[convergence(science,h) for h in hypotheses]}
+        'convergence_evidence':[convergence(science,h) for h in hypotheses],
+        'consumed_holdout_seeds':{str(instance):sorted({seed for e in science['experiments'].values()
+            if e['protocol']['evaluator']['id']=='hidden-relationship@1' and e['protocol']['inputs']['instance']==instance
+            for seed in e['protocol']['seeds']})
+            for instance in {e['protocol']['inputs']['instance'] for e in science['experiments'].values()
+                             if e['protocol']['evaluator']['id']=='hidden-relationship@1'}}}
     prior=[i for i in state.get('invocations',{}).values() if i.get('status')=='rejected']
+    if science.get('instrument_binding'):
+        result['instrument_binding']=deepcopy(science['instrument_binding'])
+        result['actions']['experiment']['hidden-relationship@1']['inputs']['instance']=science['instrument_binding']['instance']
     result['recent_rejection_feedback']=[{'reason':i.get('reason'),'invocation':i['id']} for i in prior[-2:]]
     for h in hypotheses:
         result['hypotheses'].append({'id':h['id'],'project':h['project'],'status':h['status'],
@@ -89,6 +101,8 @@ def context(state):
         result['experiments'].append({'id':e['id'],'project':e['project'],'status':e['status'],
             'hypothesis':e['protocol']['hypothesis'],'revision':e['protocol']['revision'],
             'protocol_digest':e['protocol']['protocol_digest'],'predictions':e['predictions'],
+            'protocol_inputs':deepcopy(e['protocol']['inputs']),'protocol_seeds':e['protocol']['seeds'],
+            'evaluator':e['protocol']['evaluator']['id'],
             'source_excerpt':e['protocol']['source'][:1600],
             'evaluation':evaluation,
             'blocked_reason':e.get('review',{}).get('reason') if e['status']=='blocked' else None,

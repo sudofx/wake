@@ -548,6 +548,20 @@ def schema_for_context(context):
                 from .science.schemas import action_definition
                 choice['properties']['definition']=action_definition(kind)
                 choice['properties']['project']['enum']=projects
+                if kind=='hypothesis':
+                    # New hypotheses and revisions have different identities.
+                    # Expose the exact native revision action, not a suggested
+                    # ID derived from the model's new explanation.
+                    for hypothesis in context['scientific_research'].get('hypotheses',[]):
+                        if hypothesis['project'] not in projects:continue
+                        revision=deepcopy(choice)
+                        revision['properties']['id']={'type':'string','enum':[hypothesis['id']]}
+                        revision['properties']['project']={'type':'string','enum':[hypothesis['project']]}
+                        definition=revision['properties']['definition']
+                        definition['properties']['supersedes']={'type':'integer','enum':[hypothesis['revision']]}
+                        definition['required'].append('supersedes')
+                        choices.append(revision)
+                    choice['properties']['definition']['properties'].pop('supersedes',None)
                 choices.append(choice)
     return schema
 

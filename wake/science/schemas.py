@@ -18,10 +18,10 @@ HYPOTHESIS=obj({'schema':{'type':'string','enum':[c.HYPOTHESIS]},'statement':TEX
     'dependent_variables':TEXTS,'controls':TEXTS,'supersedes':{'type':'integer','minimum':1}},
     ('alternative','independent_variables','dependent_variables','controls','supersedes'))
 PROTOCOL=obj({'schema':{'type':'string','enum':[c.PROTOCOL]},'hypothesis':{'type':'string'},
-    'revision':{'type':'integer','minimum':1},'method':TEXT,'instrument':{'type':'string'},
+    'revision':{'type':'integer','minimum':1},'method':TEXT,'instrument':{'type':'string','enum':['python','model-comparison']},
     'source':{'type':'string','maxLength':c.MAX_CODE},'inputs':{'type':'object'},
     'seeds':{'type':'array','items':{'type':'integer','minimum':0,'maximum':2**32-1},'minItems':1,'maxItems':32},
-    'evaluator':obj({'id':{'type':'string'}}),'success':TEXT,'stop':TEXT,
+    'evaluator':obj({'id':{'type':'string','enum':['sort-correctness@1','numeric-observation@1','hidden-relationship@1','historical-correction@1']}}),'success':TEXT,'stop':TEXT,
     'budget':obj({'seconds':{'type':'integer','minimum':1,'maximum':60},
                   'provider_calls':{'type':'integer','minimum':0,'maximum':48}}),'replicates':{'type':'string'}},('replicates',))
 

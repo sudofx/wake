@@ -94,7 +94,9 @@ def evaluate(item):
             comparisons.append({'prediction':prediction,'measurement':None,'satisfied':None})
             continue
         target,tolerance=prediction['value'],prediction['tolerance']
-        satisfied=(measured==target if type(target) in (str,bool) else measured>=target-tolerance if prediction['operator']=='gte' else
+        same_category=(type(measured) is type(target) if type(target) in (str,bool)
+                       else type(measured) in (int,float))
+        satisfied=same_category and (measured==target if type(target) in (str,bool) else measured>=target-tolerance if prediction['operator']=='gte' else
                    measured<=target+tolerance if prediction['operator']=='lte' else abs(measured-target)<=tolerance)
         comparisons.append({'prediction':prediction,'measurement':measured,'satisfied':satisfied})
     outcome='inconclusive'

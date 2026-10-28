@@ -54,6 +54,11 @@ def apply_action(state, action, invocation):
                       if key not in ('source_digest','inputs_digest','protocol_digest','replicates')},
                    'replicates':value['replicates']}
         value = c.protocol(value)
+        binding=science.get('instrument_binding')
+        if binding:
+            require(value['evaluator']['id']==binding['evaluator'] and
+                    value['inputs'].get('instance')==binding['instance'],
+                    'Experiment must use the operator-bound benchmark instrument and instance')
         from .instruments import INSTRUMENTS, prepare
         if value['instrument'] in INSTRUMENTS and value['evaluator']['id'] in INSTRUMENTS[value['instrument']]:
             prepare(value)  # Pure design validation, never an execution or provider effect.
@@ -116,9 +121,17 @@ def reduce(state, event):
             'Scientific event schema/version mismatch')
     require(state.get('pending') is None, 'Experiment transitions require an idle research writer')
     if kind == 'scientific_configured':
-        c.fields(p, ('schema','base_version','actor','enabled'))
+        c.fields(p, ('schema','base_version','actor','enabled'),('instrument_binding',))
         require(state.get('charter') and p['actor']=='operator' and type(p['enabled']) is bool, 'Experimental capability is operator-owned')
         science['enabled'] = p['enabled']
+        if 'instrument_binding' in p:
+            c.fields(p['instrument_binding'],('evaluator','instance'))
+            require(p['instrument_binding']['evaluator']=='hidden-relationship@1' and
+                    type(p['instrument_binding']['instance']) is int and 0<=p['instrument_binding']['instance']<2**32,
+                    'Invalid benchmark instrument binding')
+            require(not science['experiments'] and not science.get('instrument_binding'),
+                    'A benchmark binding must be frozen before any experiment')
+            science['instrument_binding']=deepcopy(p['instrument_binding'])
         return science
     c.identifier(p.get('id'))
     item = science['experiments'].get(p['id'])

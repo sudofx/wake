@@ -13,6 +13,28 @@ from wake.installation_cli import _copy_public_site
 
 
 class ScientificCLITests(unittest.TestCase):
+    def test_benchmark_binding_rejects_a_different_instance_before_execution(self):
+        import json
+        from wake.science.cli import initialize
+        from wake.engine import DEFAULTS
+        from test_scientific_research import hypothesis,protocol
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary)/'bound'
+            engine=initialize(root,DEFAULTS,'Fixture question about instance 81',
+                {'evaluator':'hidden-relationship@1','instance':81})
+            try:
+                invocation,request=engine.start('fixture','binding-test')
+                p=protocol();p.update(evaluator={'id':'hidden-relationship@1'},
+                    inputs={'instance':17,'probes':[3],'holdout_size':4})
+                actions=[{'type':kind,'id':key,'project':'investigation','definition':definition}
+                    for kind,key,definition in [('hypothesis','h-sort',hypothesis()),('experiment','wrong-instance',p)]]
+                result=engine.finish(invocation,json.dumps({'base_version':request['context']['version'],
+                    'title':'Mismatched instrument fixture','summary':'Must be rejected before execution.','actions':actions}))
+                self.assertEqual(result['status'],'rejected')
+                self.assertIn('operator-bound',result['reason'])
+                self.assertFalse(engine.store.audit()[0]['science']['experiments'])
+            finally:engine.store.close()
+
     def run_benchmark(self,kind,instance):
         temporary=tempfile.TemporaryDirectory();self.addCleanup(temporary.cleanup)
         root=Path(temporary.name)/kind

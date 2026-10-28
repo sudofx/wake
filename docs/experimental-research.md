@@ -31,11 +31,12 @@ fixture-driven revision on three hidden-system instances, paired A/B/C
 correction trials, replication and interruption recovery. Fixtures validate
 machinery and cannot establish live model discovery or comprehension.
 
-Live model-authored code has also executed and produced an independently scored
-negative result. A subsequent live revision has not yet passed validation.
-Proposal-format and supersession failures remain visible; they are engineering
-failures, not experimental evidence. Hosted experimental execution, a live
-paired correction study and live autonomous revision remain release gates.
+Release acceptance also requires live model-authored execution, a retained
+contradiction followed by a model-authored revision that improves unseen
+predictions, independent replication, and a live paired correction study.
+Proposal-format, supersession and instrument-binding failures remain visible;
+they are engineering failures, not scientific findings. Hosted execution and
+actual runtime adoption require their own verified rollout.
 
 ## Run a bounded investigation
 
@@ -130,6 +131,20 @@ installation recovers those paid effects into its feature budget if the derived
 scheduling cache is lost. Explicit zero-effect queue denials do not consume it.
 
 The installable wheel includes the science application modules. Code CI checks
-actual restricted Docker execution on Python 3.13 in addition to ordinary unit
-checks. Neither packaging nor CI proves a live model revised a hypothesis or
+actual restricted Docker execution on Python 3.11 and 3.13 as part of the full
+suite. The pinned image is pulled before those checks. Neither packaging nor CI proves a live model revised a hypothesis or
 that the hosted installation adopted the scientific grant.
+
+The hidden-mechanism CLI freezes its selected evaluator and instance through an
+operator-owned native binding before any experiment. Governance rejects another
+instance rather than allowing a sample protocol to silently replace the question.
+The provider context includes exact prior protocol inputs, consumed holdout seeds
+and native revision identities; follow-ups must use fresh seeds. No hidden
+mechanism or holdout labels accompany that guidance.
+
+The paired instrument accepts an unchanged trial list or the unchanged input
+object containing that list; either representation must preserve every task,
+condition and ordering. A candidate cannot change them or the paid-call count.
+Before each trial, native current-day usage also checks the frozen model's daily
+ceiling. A study stopped at that boundary retains completed trial evidence and
+has no scientific evaluation for its incomplete measurements.

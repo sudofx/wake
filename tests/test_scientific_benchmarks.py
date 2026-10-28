@@ -33,6 +33,21 @@ class CorrectionProviderFixture:
 
 
 class ScientificBenchmarkTests(ScientificFixtureCase):
+    def test_trial_calls_obey_frozen_model_native_daily_limit(self):
+        p=protocol('def experiment(inputs):\n return inputs["trials"]')
+        p.update(instrument='model-comparison',evaluator={'id':'historical-correction@1'},
+                 inputs={'cases_per_seed':6},seeds=[64],budget={'seconds':20,'provider_calls':18})
+        self.assertEqual(self.submit([self.action('hypothesis','h-sort',hypothesis()),
+            self.action('experiment','bounded-trial',p)])['status'],'accepted')
+        provider=CorrectionProviderFixture();provider.charged=True
+        provider.config={'model_daily_call_limits':{provider.model:1}}
+        result=advance(self.engine.store,DockerWorkbench(provider,self.engine.store))
+        self.assertEqual(result['status'],'failed')
+        self.assertEqual(len(provider.requests),1)
+        state,_=self.engine.store.audit()
+        self.assertEqual(len(state['science']['experiments']['bounded-trial']['attempts'][0]['inference']),1)
+        self.assertNotIn('evaluation',state['science']['experiments']['bounded-trial'])
+
     def test_interrupted_child_trial_retains_responses_and_never_replays_effects(self):
         class InterruptedProvider(CorrectionProviderFixture):
             charged=True
@@ -97,7 +112,7 @@ class ScientificBenchmarkTests(ScientificFixtureCase):
         self.assertNotIn('oracle_digest',json.dumps(audit))
 
     def test_paired_correction_runs_real_preparation_and_independent_scoring(self):
-        p=protocol('def experiment(inputs):\n return inputs["trials"]')
+        p=protocol('def experiment(inputs):\n return {"trials":inputs["trials"]}')
         p.update(instrument='model-comparison',evaluator={'id':'historical-correction@1'},
                  inputs={'cases_per_seed':6},seeds=[64],budget={'seconds':20,'provider_calls':18})
         h=hypothesis();h['statement']='Relevant history improves accuracy over the paired no-history condition.'

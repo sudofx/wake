@@ -82,6 +82,28 @@ class ScientificResearchTests(ScientificFixtureCase):
         self.assertEqual(signal()['stage'],'test_design_needed')
         self.assertTrue(signal()['remaining_uncertainty'])
 
+    def test_boolean_prediction_cannot_pass_from_numeric_one(self):
+        h=hypothesis();h['predictions']=[{'metric':'accuracy','operator':'eq','value':True,'tolerance':0}]
+        self.assertEqual(self.submit([self.action('hypothesis','h-sort',h),
+            self.action('experiment','e-sort',protocol())])['status'],'accepted')
+        advance(self.engine.store,RecordedWorkbench())
+        evaluation=advance(self.engine.store,RecordedWorkbench())['evaluation']
+        self.assertEqual(evaluation['metrics']['accuracy'],1)
+        self.assertEqual(evaluation['outcome'],'contradicted')
+
+    def test_response_contract_distinguishes_new_hypotheses_from_exact_revisions(self):
+        from wake.providers import schema_for_context
+        self.propose()
+        invocation,request=self.engine.start('fixture','revision-contract')
+        variants=[a for a in schema_for_context(request['context'])['properties']['actions']['items']['anyOf']
+                  if a['properties']['type']['enum']==['hypothesis']]
+        revisions=[a for a in variants if 'enum' in a['properties']['id']]
+        self.assertEqual(revisions[0]['properties']['id']['enum'],['h-sort'])
+        self.assertEqual(revisions[0]['properties']['definition']['properties']['supersedes']['enum'],[1])
+        new=[a for a in variants if 'enum' not in a['properties']['id']]
+        self.assertNotIn('supersedes',new[0]['properties']['definition']['properties'])
+        self.engine.finish(invocation,'{}')
+
     def test_protocol_frozen_revision_and_replayed_native_history(self):
         self.propose();before=deepcopy(self.engine.store.load()['science'])
         changed=protocol();changed['success']='Make it look good after seeing the answer.'

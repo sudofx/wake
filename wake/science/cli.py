@@ -34,7 +34,7 @@ def configure_parser(sub):
     report.add_argument('--output', required=True)
 
 
-def initialize(root, settings, question):
+def initialize(root, settings, question, instrument_binding=None):
     require(not root.exists(), 'Scientific investigation output must be new; existing records are never overwritten')
     root.mkdir(parents=True)
     experiment_settings = {**DEFAULTS, **settings, 'experimental_research_enabled': True,
@@ -56,12 +56,18 @@ def initialize(root, settings, question):
                 'next_step':'Formulate a falsifiable hypothesis and propose a computational test.',
                 'reason':'Explicit bounded scientific investigation'}]}))
         require(result['status']=='accepted', 'Scientific question initialization rejected: '+str(result))
+        if instrument_binding:
+            from .contracts import SCHEMA
+            state=engine.store.load()
+            engine.store.append('scientific_configured',{'schema':SCHEMA,'base_version':state['version'],
+                'actor':'operator','enabled':True,'instrument_binding':instrument_binding})
     return engine
 
 
 def investigate(output, settings, *, question=None, instance=17, calls=4, provider=None):
     require(type(calls) is int and 1<=calls<=12, 'Use an explicit budget of 1–12 planning calls')
     require(type(instance) is int and 0<=instance<2**32, 'Invalid hidden-system instance')
+    instrument_binding={'evaluator':'hidden-relationship@1','instance':instance} if question is None else None
     question = question or (
         f'What input-output relationship governs artificial instrument instance {instance}? '
         f'Initial observations: {json.dumps(observations(instance))}. '
@@ -72,7 +78,7 @@ def investigate(output, settings, *, question=None, instance=17, calls=4, provid
         'and design a fresh-seed follow-up. The true mechanism is withheld. Do not claim discovery from a favorable finite test alone. '
         'Interpret actual results, state uncertainty, then propose a replication or close/suspend with a reason.')
     root=Path(output).resolve()
-    engine=initialize(root,settings,question)
+    engine=initialize(root,settings,question,instrument_binding)
     provider=provider or Gemini(engine.config)
     return drive(engine,root,question,calls,provider)
 

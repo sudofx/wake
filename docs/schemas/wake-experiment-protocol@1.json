@@ -21,7 +21,11 @@
       "maxLength": 4000
     },
     "instrument": {
-      "type": "string"
+      "type": "string",
+      "enum": [
+        "python",
+        "model-comparison"
+      ]
     },
     "source": {
       "type": "string",
@@ -44,7 +48,13 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "sort-correctness@1",
+            "numeric-observation@1",
+            "hidden-relationship@1",
+            "historical-correction@1"
+          ]
         }
       },
       "required": [

@@ -57,7 +57,7 @@ class DockerWorkbench:
         if item['protocol']['instrument']!='model-comparison' or result['status']!='completed':return result
         # Candidate code can prepare data only. It cannot change randomized
         # tasks, prompt conditions, scorer, provider config or paid-call count.
-        if result['outputs']!=attempt['execution_inputs']['trials']:
+        if result['outputs'] not in (attempt['execution_inputs']['trials'],attempt['execution_inputs']):
             return {'status':'failed','reason':'Preparation code altered the frozen paired trial inputs'}
         from .correction import request
         rows=[]
@@ -72,6 +72,14 @@ class DockerWorkbench:
         try:
             if gate:gate.purpose='experiment'
             for trial in attempt['execution_inputs']['trials']:
+                limits=getattr(provider,'config',{}).get('model_daily_call_limits',{})
+                if provider.charged and provider.model in limits:
+                    from datetime import datetime
+                    from ..provider_pacing import native_usage, PACIFIC
+                    day=datetime.now(PACIFIC).date().isoformat()
+                    usage,_=native_usage(self.store.load(),day)
+                    if usage.get(provider.model,0)>=limits[provider.model]:
+                        raise ValueError('Frozen trial model daily allowance exhausted; no new trial call made')
                 transport_attempts=[]
                 def account(phase,evidence):
                     if phase=='started':transport_attempts.append(dict(evidence))
