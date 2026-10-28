@@ -8,7 +8,23 @@
       "research_expansion_enabled": true,
       "research_candidate_catalog_enabled": true,
       "autonomous_context_improvement": true,
-      "provider_pacing": {"enabled": true, "target_hours": 24, "reserve_calls": 208}
+      "provider_pacing": {
+        "enabled": true,
+        "target_hours": 24,
+        "reserve_calls": 208
+      },
+      "pending_upgrade": {
+        "candidate": "9c2b2de3f89bd61d60e55f47172b96eb10be3c1e",
+        "baseline": "49c9c2bd058c851768320143edc4cf6d6d1e85d4",
+        "verification_run": 40733949718,
+        "control_run": 40730817033,
+        "checkpoint_ref": "5192101ef46136546054529a6ea06209c050646e",
+        "generation": 24638,
+        "drained_run": 40727390618,
+        "superseded_queued_runs": [
+          40554824224
+        ]
+      }
     }
   }
 }
