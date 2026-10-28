@@ -6,7 +6,7 @@ const assets=path.resolve(__dirname,'../../wake/assets');
  const browser=await chromium.launch({headless:true,...(process.env.CHROME_EXECUTABLE?{executablePath:process.env.CHROME_EXECUTABLE}:{})});
  try{
   const cases=[
-   ['active','in_progress',null,'running','Hosted batch active'],
+   ['active','in_progress',null,null,'research state unconfirmed'],
    ['disabled_manually','in_progress',null,'stopped','draining'],
    ['active','queued',null,'waiting','queued'],
    ['active','completed','success','idle','Between hosted batches'],
@@ -28,15 +28,15 @@ const assets=path.resolve(__dirname,'../../wake/assets');
     throw new Error('Unexpected research/runtime request: '+url.href);
    });
    await page.goto('https://wake.test/index.html');
-   await page.waitForFunction(state=>document.querySelector('.actions-light').dataset.state===state,state);
+   await page.waitForFunction(state=>document.querySelector('.actions-light').dataset.state===(state||undefined),state);
    const light=page.locator('.actions-light');assert.notEqual(await light.evaluate(e=>getComputedStyle(e).display),'none');
    assert.match(await light.getAttribute('aria-label'),new RegExp(label));assert.equal(requests.length,2);
    assert.equal(await light.getAttribute('href'),'https://github.com/example/repo/actions/workflows/research-worker.yml');
-   if(state==='running'){
-    await page.reload();await page.waitForFunction(()=>document.querySelector('.actions-light').dataset.state==='running');assert.equal(requests.length,2,'navigation reuses bounded cache');
+   if(status==='in_progress' && workflow==='active'){
+    await page.reload();await page.waitForFunction(()=>document.querySelector('.actions-light').getAttribute('data-state')===null);assert.equal(requests.length,2,'navigation reuses bounded cache');
     await page.clock.fastForward(120000);assert.equal(requests.length,2);
     fail=true;await page.clock.fastForward(61000);await page.waitForFunction(()=>document.querySelector('.actions-light').getAttribute('aria-label').includes('Status unavailable'));
-    assert.equal(await light.getAttribute('data-state'),null,'failed reads clear cached green');assert.equal(requests.length,4);
+    assert.equal(await light.getAttribute('data-state'),null,'failed reads remain unconfirmed');assert.equal(requests.length,4);
     await page.reload();await page.waitForFunction(()=>document.querySelector('.actions-light').getAttribute('aria-label').includes('Status unavailable'));assert.equal(requests.length,4,'unavailable observations also back off across navigation');
    }
    await page.close();
