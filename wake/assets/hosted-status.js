@@ -7,13 +7,19 @@
   const interval=180000, key=`wake-hosted-status@1:${config.repository}`, stale=240000;
   let timer, pending=false, quotaObservation=null;
   // Installation snapshots contain dated node observations, not live provider calls.
-  // Use them only while recent, and only if all twelve independently report standby.
+  // Use them only while recent; temporary workers may stop after quota deferral.
   function confirmedQuota(){
     const data=quotaObservation;
     if(!data || data.live!==false || !Array.isArray(data.nodes) || data.nodes.length!==12)return null;
     const times=data.nodes.map(n=>Date.parse(n.recorded_runtime?.observed_at));
     if(times.some(t=>!Number.isFinite(t)||t>Date.now()+60000||Date.now()-t>30*60000))return null;
-    if(!data.nodes.every(n=>n.recorded_runtime?.state==='standby' && /quota/i.test(n.research?.status?.latest?.reason||'')))return null;
+    if(!data.nodes.every(n=>{
+      const state=n.recorded_runtime?.state, latest=n.research?.status?.latest;
+      return (state==='standby'||(state==='stopped' && data.hosted_execution?.research_start?.ok===true)) &&
+        latest?.status==='deferred' && /quota/i.test(latest.reason||'') &&
+        Number.isFinite(Date.parse(latest.time)) && Date.parse(latest.time)<=Date.now()+60000 &&
+        Date.now()-Date.parse(latest.time)<30*60000;
+    }))return null;
     return Math.min(...times);
   }
   window.addEventListener('wake-installation-snapshot',event=>{
@@ -32,7 +38,7 @@
   function apply(value){
     if(!value || !Number.isFinite(value.checked) || Date.now()-value.checked>stale || value.checked>Date.now()+5000)return false;
     const observed=confirmedQuota();
-    if(observed)show('standby','All 12 nodes: confirmed provider quota standby (published observation)',observed);
+    if(observed && value.state!=='stopped' && value.state!=='blocked')show('standby','All 12 nodes: confirmed provider quota standby (published observation)',observed);
     else show(value.state,value.label,value.checked);
     return true;
   }
