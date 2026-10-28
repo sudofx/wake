@@ -20,6 +20,7 @@
     quotaObservation=event.detail;
     const checked=confirmedQuota();
     if(checked)show('standby','All 12 nodes: confirmed provider quota standby (published observation)',checked);
+    else if(!apply(cached()))show(null,'Research status unconfirmed; node observations unavailable or mixed');
   });
   light.hidden=false;light.href=link;
   function show(state,label,checked){
