@@ -75,6 +75,9 @@ def context(state):
         'investigation_decision':{'required':['hypothesis','decision','uncertainty','reason','next_experiment','cost','stop_condition'],'decisions':['continue','suspend','close']}},
         'serialization':'Every action definition is a JSON object matching response_schema. Return the outer proposal as JSON with base_version,title,summary,actions. Do not use markdown fences. Use only exact field names and enum values above.',
         'hypotheses':[],'experiments':[],'recent_directions':deepcopy(science.get('directions',[])[-2:]),
+        'experiment_index':[{'id':e['id'],'status':e['status'],'hypothesis':e['protocol']['hypothesis'],
+            'revision':e['protocol']['revision']} for e in
+            sorted(science['experiments'].values(),key=lambda e:e['accepted_version'])[-16:]],
         'convergence_decisions':deepcopy(science.get('decisions',[])[-3:]),
         'convergence_evidence':[convergence(science,h) for h in hypotheses],
         'consumed_holdout_seeds':{str(instance):sorted({seed for e in science['experiments'].values()

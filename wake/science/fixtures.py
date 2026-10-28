@@ -18,6 +18,7 @@ class BenchmarkFixture:
         if 'historical_observations' in context:return self.correct(context),{'fixture':True}
         science=context['scientific_research']
         experiments={e['id']:e for e in science['experiments']}
+        known={e['id'] for e in science.get('experiment_index',science['experiments'])}
         def action(kind,key,definition):return {'type':kind,'id':key,'project':'investigation','definition':definition}
         h={'schema':c.HYPOTHESIS,'kind':'empirical','statement':'The scripted candidate predicts held-out instrument responses.',
            'assumptions':['A deterministic synthetic instrument; this is a pipeline fixture.'],
@@ -44,9 +45,9 @@ class BenchmarkFixture:
  def f(x):return m*x+c
  return {'probe_predictions':[f(x) for x in inputs['probes']],'holdout_predictions':[f(r['x']) for r in inputs['holdout']]}
 '''
-        if not experiments:
+        if not known:
             actions=[action('hypothesis','fixture-hypothesis',h),action('experiment','fixture-initial',p)]
-        elif self.benchmark=='revision' and 'fixture-revised' not in experiments:
+        elif self.benchmark=='revision' and 'fixture-revised' not in known:
             measured=experiments['fixture-initial']['evaluation']['measurement_details']['observations']
             # A deliberately programmed fitting strategy for the fixture. Never
             # supplied to a live model or reported as autonomous hypothesis discovery.
@@ -64,21 +65,9 @@ class BenchmarkFixture:
                 'limitations':'Programmed fixture fitting strategy, not live model discovery.',
                 'next_step':'Run the scripted revised candidate on a fresh held-out seed.'}),
                 action('hypothesis','fixture-hypothesis',h),action('experiment','fixture-revised',p)]
-        elif 'fixture-replication' not in experiments:
-            # The context intentionally contains only a source excerpt. Fixture
-            # replication gets its exact source from the preserved scripted
-            # specification, not an invented continuation of omitted source.
-            if self.benchmark=='revision':
-                from .hidden_system import observations
-                initial=observations(self.instance)
-                measured=experiments['fixture-initial']['evaluation']['measurement_details']['observations']
-                slope=(initial[-1]['y']-initial[0]['y'])/4;intercept=initial[1]['y']
-                bend=measured[0]['observed']-slope*3-intercept
-                p.update(revision=2,seeds=[self.instance+2000],source=f'''def experiment(inputs):
- def f(x):return {slope}*x+{intercept}+{bend}*max(0,x-2)**2
- return {{'probe_predictions':[f(x) for x in inputs['probes']],'holdout_predictions':[f(r['x']) for r in inputs['holdout']]}}
-''')
-            p['replicates']='fixture-revised' if self.benchmark=='revision' else 'fixture-initial'
+        elif 'fixture-replication' not in known:
+            # The exact native protocol survives omitted context details.
+            p={'schema':c.PROTOCOL,'replicates':'fixture-revised' if self.benchmark=='revision' else 'fixture-initial'}
             actions=[action('experiment','fixture-replication',p)]
         else:
             actions=[action('investigation_decision','fixture-close',{'hypothesis':'fixture-hypothesis','decision':'close',
