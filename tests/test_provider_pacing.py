@@ -7,6 +7,8 @@ from pathlib import Path
 import tempfile
 import unittest
 from contextlib import redirect_stdout
+from contextlib import contextmanager
+from unittest.mock import patch
 from zoneinfo import ZoneInfo
 
 from wake.installation_gate import InstallationCallCoordinator
@@ -146,3 +148,42 @@ class ProviderPacingTests(unittest.TestCase):
         self.assertEqual(charged_request_slots({'provider_attempts':[
             {'result':'research_budget','provider_call_made':False},{'result':'success'},
             {'result':'unknown'}]}),2)
+
+    def test_budget_denial_advances_models_without_sending_or_charging_an_api_call(self):
+        from wake.engine import Engine, DEFAULTS
+        from wake.record_store import RecordStore
+        from wake.providers import Gemini
+        from wake.installation_gate import InstallationSlotUnavailable
+        from wake.kernel.generation import GenerationResponse
+        from wake.scheduling import charged_request_slots
+        class Gate:
+            url='http://fixture-coordinator'
+            all_blocked=False
+            @contextmanager
+            def request(self,model):
+                if self.all_blocked or model=='gemini-3.1-flash-lite':
+                    raise InstallationSlotUnavailable('research_budget',3600)
+                yield True
+        with tempfile.TemporaryDirectory() as directory, patch.dict('os.environ',{'GEMINI_API_KEY':'fixture-key'}):
+            settings={**DEFAULTS,'model':'gemini-3.1-flash-lite','gemini_fallback_models':['gemini-3.5-flash-lite'],
+                'free_tier_confirmed':True,'gemini_fallback_requires_primary_daily_quota':True}
+            engine=Engine(directory,settings,store=RecordStore(directory,initialize_empty=True))
+            try:
+                provider=Gemini(settings);provider.request_gate=Gate()
+                response=GenerationResponse('gemini','gemini-3.5-flash-lite','{}',{})
+                with patch('wake.providers.GeminiGenerationProvider.generate',return_value=response) as send:
+                    result=engine.run(provider)
+                    self.assertEqual(send.call_count,1,result)
+                invocation=list(engine.store.load()['invocations'].values())[-1]
+                self.assertEqual(charged_request_slots(invocation),1)
+                self.assertEqual(invocation['provider_requests_sent'],1)
+                provider.request_gate.all_blocked=True
+                with patch('wake.providers.GeminiGenerationProvider.generate') as send:
+                    result=engine.run(provider);send.assert_not_called()
+                self.assertEqual(result['status'],'deferred')
+                self.assertEqual(result['quota_exhausted'],'configured_daily_limit')
+                invocation=engine.store.load()['invocations'][result['id']]
+                self.assertEqual(charged_request_slots(invocation),0)
+                self.assertEqual(invocation['provider_requests_sent'],0)
+                self.assertEqual(engine.store.audit()[0],engine.store.load())
+            finally:engine.store.close()

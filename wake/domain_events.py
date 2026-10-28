@@ -184,7 +184,7 @@ def reduce_event(state, event, historical=False):
         require(not any(a["model"] == p["attempt"]["model"] for a in attempts),
                 "Model already attempted in this invocation")
         require(not attempts or attempts[-1]["result"] in (
-                    "transient_failure", "daily_quota", "rate_limited"),
+                    "transient_failure", "daily_quota", "rate_limited", "research_budget"),
                 "Failover requires a transient availability or model-quota failure")
         attempts.append(p["attempt"])
         item.setdefault("provider_requests_sent", 0)
@@ -195,7 +195,10 @@ def reduce_event(state, event, historical=False):
         require(attempts and attempts[-1]["result"] == "unknown"
                 and attempts[-1]["model"] == p["attempt"]["model"], "Attempt does not match reservation")
         attempts[-1] = p["attempt"]
-        item["provider_requests_sent"] += 1
+        # Older event bytes retain their original accounting on replay. New
+        # effect-aware receipts distinguish a denied slot from a sent request.
+        if p.get('effect_accounting') != 1 or p['attempt'].get('provider_call_made') is not False:
+            item["provider_requests_sent"] += 1
         if p["attempt"]["result"] == "success":
             item["successful_model"] = p["attempt"]["model"]
     elif kind in ("accepted", "rejected", "failed", "deferred", "recovered", "research_planned", "editorial_completed", "advisory_completed"):

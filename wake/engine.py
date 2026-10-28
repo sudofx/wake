@@ -2938,7 +2938,8 @@ class Engine:
                 used = sum(charged_request_slots(i) for i in state["invocations"].values() if i["id"] != invocation and i["charged"] and i["quota_day"] == day)
                 provider.request_limit = min(len(provider.models), self.config["daily_call_limit"] - used)
             def record_attempt(phase, attempt):
-                self.store.append("provider_attempt_" + phase, {"id": invocation, "attempt": attempt})
+                self.store.append("provider_attempt_" + phase, {"id": invocation, "attempt": attempt,
+                    **({'effect_accounting':1} if phase=='finished' else {})})
                 if checkpoint:
                     checkpoint()
             provider.record_attempt = record_attempt
