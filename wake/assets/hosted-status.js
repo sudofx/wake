@@ -44,7 +44,11 @@
       const active=runs.find(run=>run.status==='in_progress'), queued=runs.find(run=>['queued','waiting','requested','pending'].includes(run.status));
       let state='idle',label='Between hosted batches';
       if(workflow.state!=='active'){state='stopped';label=active?'Stopping; current batch is draining':'Stopped';}
-      else if(active){state='running';label='Hosted batch active';}
+      else if(active){
+        // An Actions batch may only restore, publish or wait on quota. Its
+        // activity is not evidence of a live provider call or research progress.
+        state=null;label='Hosted batch active; research state unconfirmed';
+      }
       else if(queued){state='waiting';label='Hosted batch queued';}
       else if(!runs.length){state='waiting';label='Waiting for the first hosted batch';}
       else if(runs[0].conclusion==='action_required'){state='blocked';label='GitHub requires attention';}
