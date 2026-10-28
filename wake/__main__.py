@@ -30,6 +30,8 @@ def parser():
     sub = p.add_subparsers(dest="command", required=True)
     from .improvement import configure_parser
     configure_parser(sub)
+    from .science.cli import configure_parser as configure_science_parser
+    configure_science_parser(sub)
     sub.add_parser("init", help="Initialize an empty record; never overwrite an existing one")
     wake = sub.add_parser("wake", help="Run one bounded invocation")
     wake.add_argument("--provider", choices=["gemini", "fixture"])
@@ -105,6 +107,9 @@ def parser():
     return p
 
 def execute(args):
+    if args.command == 'science':
+        from .science.cli import execute as execute_science
+        return execute_science(args)
     if args.command == 'improve':
         from .improvement import execute as execute_improvement
         return execute_improvement(args)

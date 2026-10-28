@@ -409,6 +409,11 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
                     "metrics": _full_history_metrics(store, state, events)}
         target = Path(destination)
         target.mkdir(parents=True, exist_ok=True)
+        from .science.projection import project as scientific_audit, write_report as write_scientific_report
+        if state.get('science'):
+            science = scientific_audit(state, head)
+            atomic_write(target / 'scientific-research.json', json.dumps(science, ensure_ascii=False))
+            write_scientific_report(science, target / 'scientific-research.html')
         atomic_write(target / "export-format.json", json.dumps({"schema": 1, "renderer": renderer_signature()}))
         group_id = os.environ.get("WAKE_GROUP_ID", "")
         member = os.environ.get("WAKE_PUBLIC_HOSTNAME", "")
@@ -726,6 +731,8 @@ def _deployment_site(target, *, standalone, installation=None):
         atomic_write(target / name, (assets / name).read_text())
     shell = (assets / "index.html").read_text()
     header = _masthead_navigation(re.search(r'<header class="masthead">.*?</header>', shell, re.S).group(0))
+    if (target/'scientific-research.json').is_file():
+        header=header.replace('>Research</a>','>Research</a><a href="scientific-research.html">Experiments</a>')
     domain = html.escape(group_hostname.strip(), quote=True) if standalone else ""
     header = header.replace('</a>\n    </div>', '</a><span class="node-domain">' + domain + '</span>\n    </div>', 1)
     snapshot_path = target / "wake-data.json"

@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "wake-hypothesis@1",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "type": "string",
+      "enum": [
+        "wake-hypothesis@1"
+      ]
+    },
+    "statement": {
+      "type": "string",
+      "maxLength": 4000
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "empirical",
+        "exploratory"
+      ]
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 4000
+      },
+      "maxItems": 16
+    },
+    "predictions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "metric": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "operator": {
+            "type": "string",
+            "enum": [
+              "gte",
+              "lte",
+              "eq"
+            ]
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "tolerance": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "metric",
+          "operator",
+          "value",
+          "tolerance"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 16
+    },
+    "falsification": {
+      "type": "string",
+      "maxLength": 4000
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 4000
+      },
+      "maxItems": 16
+    },
+    "uncertainty": {
+      "type": "string",
+      "maxLength": 4000
+    },
+    "alternative": {
+      "type": "string",
+      "maxLength": 4000
+    },
+    "independent_variables": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 4000
+      },
+      "maxItems": 16
+    },
+    "dependent_variables": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 4000
+      },
+      "maxItems": 16
+    },
+    "controls": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 4000
+      },
+      "maxItems": 16
+    },
+    "supersedes": {
+      "type": "integer",
+      "minimum": 1
+    }
+  },
+  "required": [
+    "schema",
+    "statement",
+    "kind",
+    "assumptions",
+    "predictions",
+    "falsification",
+    "provenance",
+    "uncertainty"
+  ],
+  "additionalProperties": false
+}

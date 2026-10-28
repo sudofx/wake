@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "wake-experiment-evaluation@1",
+  "type": "object",
+  "required": [
+    "schema",
+    "protocol_digest",
+    "evaluator",
+    "execution_valid",
+    "outputs_digest",
+    "replication_status",
+    "measurement_validity",
+    "outcome",
+    "metrics"
+  ],
+  "properties": {
+    "schema": {
+      "const": "wake-experiment-evaluation@1"
+    },
+    "protocol_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "outputs_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "evaluator": {
+      "type": "string"
+    },
+    "execution_valid": {
+      "const": true
+    },
+    "measurement_validity": {
+      "enum": [
+        "validated",
+        "unvalidated",
+        "invalid"
+      ]
+    },
+    "outcome": {
+      "enum": [
+        "provisionally_supported",
+        "contradicted",
+        "inconclusive",
+        "invalid_measurement"
+      ]
+    },
+    "replication_status": {
+      "enum": [
+        "not_attempted",
+        "replicated",
+        "replication_failed",
+        "inconclusive"
+      ]
+    },
+    "metrics": {
+      "type": "object"
+    }
+  }
+}

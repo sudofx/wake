@@ -126,7 +126,7 @@ DEFAULTS = {"timezone": "America/Los_Angeles", "objective": "Test durable contin
             "free_tier_confirmed": False, "gemini_fallback_models": [], "gemini_fallback_requires_primary_daily_quota": False,
             "memory_mode": "shadow", "research_google_search": False, "same_wake_research": False, "inquiry_drive_enabled": False, "research_topics_file": "research-topics.toml",
             "decision_memory_mode": "off", "decision_memory_policy": {},
-            "autonomous_context_improvement": False,
+            "autonomous_context_improvement": False, "experimental_research_enabled": False,
             "observation_mode": False, "research_collection_budget": 2, "research_collection_wall_seconds": 45}
 
 def _topics(settings, config_path=None):
@@ -201,6 +201,7 @@ def config(path="wake.toml"):
     require(result["timezone"] == "America/Los_Angeles", "Daily quota timezone must be America/Los_Angeles")
     for key, low, high in (("max_context_chars", 4000, 64000), ("max_output_tokens", 256, 8192), ("timeout_seconds", 1, 120)):
         require(type(result[key]) is int and low <= result[key] <= high, f"Invalid {key}")
+    require(type(result.get("experimental_research_enabled", False)) is bool, "experimental_research_enabled must be boolean")
     require(type(result["research_google_search"]) is bool, "research_google_search must be boolean")
     require(type(result["same_wake_research"]) is bool, "same_wake_research must be boolean")
     require(result["memory_mode"] in ("shadow", "active"), "memory_mode must be shadow or active")
@@ -324,6 +325,8 @@ class Engine:
     def _start_group_editorial(self, provider, request):
         state = self.store.load()
         require(state["pending"] is None, "An invocation is already pending")
+        from .science.planner import configure as configure_science
+        state = configure_science(self.store, self.config.get('experimental_research_enabled', False))
         day = datetime.now(ZoneInfo(self.config["timezone"])).date().isoformat()
         used = sum(charged_request_slots(i) for i in state["invocations"].values()
                    if i["charged"] and i["quota_day"] == day)
@@ -1156,6 +1159,9 @@ class Engine:
         # Under overflow, keep the same model-facing contract in compressed form;
         # deterministic governance remains the authority after generation.
         request["system"] = BOUNDED_SYSTEM + BOUNDED_RESEARCH_SYSTEM
+        if context.get('scientific_research', {}).get('enabled'):
+            from .science.planner import SYSTEM as SCIENTIFIC_SYSTEM
+            request['system'] += SCIENTIFIC_SYSTEM
         if context.get("research_quality_policy"):
             from .prompts import QUALITY_RESEARCH_SYSTEM
             request["system"] += QUALITY_RESEARCH_SYSTEM
@@ -2355,6 +2361,10 @@ class Engine:
         from .providers import RESEARCH_SYSTEM
         phase_at = perf_counter()
         delivered_context = self.context(state, receipt)
+        from .science.planner import context as scientific_context
+        science_context = scientific_context(state)
+        if science_context and phase != 'planning':
+            delivered_context['scientific_research'] = science_context
         peer_notes_context = self._peer_notes_context(peer_notes)
         if peer_notes_context:
             delivered_context["peer_research_notes"] = peer_notes_context
@@ -2394,6 +2404,9 @@ class Engine:
                 "projects": inquiry_drive_shadow["projects"],
             }
         provider_system = SYSTEM + (RESEARCH_SYSTEM if state.get("charter") else "")
+        if science_context and phase != 'planning':
+            from .science.planner import SYSTEM as SCIENTIFIC_SYSTEM
+            provider_system += SCIENTIFIC_SYSTEM
         if continuity_probe_context is not None:
             provider_system += MATRIX_SIDECAR_SYSTEM
         request = {
@@ -2568,6 +2581,11 @@ class Engine:
                 self.fit_active_request(request)
             if not routine_memory and phase != "planning" and provider_input_chars(request) > self.config["max_context_chars"]:
                 self.fit_bounded_request(request)
+        if science_context and phase != 'planning':
+            request['context']['scientific_research'] = science_context
+            from .science.planner import SYSTEM as SCIENTIFIC_SYSTEM
+            if SCIENTIFIC_SYSTEM not in request['system']:
+                request['system'] += SCIENTIFIC_SYSTEM
         final_system_suffix = ""
         if question:
             text(question, "Operator question", 1000)
@@ -2795,6 +2813,8 @@ class Engine:
         fields = ["version", "beliefs", "commitments", "journal"]
         if state.get("charter"):
             fields += ["projects", "notebooks", "research", "posts"]
+        if 'science' in result:
+            fields += ['science']
         result_hash = digest({k: result[k] for k in fields})
         self.store.append("accepted", {"id": invocation, "proposal": proposal, "raw_response": raw,
                                        "metadata": observed_metadata(proposal, "accepted"),
@@ -2868,13 +2888,21 @@ class Engine:
                     from .claim_support import POLICY_VERSION
                     if self.store.load().get("research_quality_policy", 0) < POLICY_VERSION:
                         self.store.append("research_quality_adopted", {"actor": "operator", "version": POLICY_VERSION})
+                if self.config.get('experimental_research_enabled') or self.store.load().get('science'):
+                    from .science.workbench import advance as advance_science
+                    scientific = advance_science(self.store, enabled=self.config.get('experimental_research_enabled', False),
+                        checkpoint=checkpoint or self.effect_checkpoint,provider=provider)
+                    if scientific:
+                        return {**scientific, 'status':'experiment_'+scientific['status'], 'scientific_research':True}
                 if peer_research:
                     from .group_peers import import_group_peer_evidence
                     import_group_peer_evidence(self, peer_research)
                 require(not question or (collector is not None and self.store.load().get("charter")),
                         "Immediate questions require a research collector and charter")
                 research = None
-                if collector and (self.config.get("same_wake_research") or question):
+                from .science.planner import prefer_experiment
+                experiment_route = not question and prefer_experiment(self.store.load())
+                if collector and not experiment_route and (self.config.get("same_wake_research") or question):
                     from .research import collect_planned
                     plan = self._run_invocation(provider, checkpoint=checkpoint, phase="planning", question=question,
                                                 activity=activity, peer_notes=peer_research)
@@ -2883,7 +2911,7 @@ class Engine:
                     report_activity(activity, "collecting")
                     evidence_ids = collect_planned(self, plan["requests"])
                     research = {"planning_invocation": plan["id"], "requests": plan["requests"], "evidence_ids": evidence_ids}
-                elif collector:
+                elif collector and not experiment_route:
                     report_activity(activity, "collecting")
                     collector(self)
                 result = self._run_invocation(provider, crash_at, checkpoint, question=question, research=research,

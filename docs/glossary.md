@@ -126,3 +126,7 @@ adaptation records. See [the guide](self-correction.md).
 ### Provider pacing and capacity reserve
 
 Provider pacing spaces routine API calls across all nodes in an installation. The capacity reserve keeps part of the configured daily allowance for experimental and reader requests. These are transport limits; neither confirms provider quota availability or scientific success. See [the operational contract](cloud.md#spread-provider-calls-across-the-day).
+
+### Hypothesis, protocol and scientific outcome
+
+A hypothesis states a claim and what would count against it. An experimental protocol freezes code, parameters, predictions and scoring rules before execution. Execution success means the instrument ran; validated measurements, contradiction, provisional support, inconclusive evidence and replication are separate outcomes. A model interpretation is attributed prose and cannot change the independent verdict. See [experimental research](experimental-research.md).

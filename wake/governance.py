@@ -847,7 +847,7 @@ def _enforce_attention_rotation(state, invocation, action, candidate, historical
         domain = action.get("domain")
     elif kind == "research":
         domain = action.get("domain")
-    elif kind in ("notebook", "reframe", "blog"):
+    elif kind in ("notebook", "reframe", "blog", "hypothesis", "experiment", "experiment_interpretation", "investigation_decision", "research_direction"):
         if kind == "blog" and action.get("reflection_cycle"):
             # Mandatory milestone reflection is system-wide editorial work.
             # It may be anchored to an existing project without consuming the
@@ -1031,7 +1031,10 @@ def transition(state, proposal, invocation, historical=False):
         # BELIEF
         # ===================================================================
 
-        if kind == "belief":
+        if kind in ('hypothesis','experiment','experiment_interpretation','investigation_decision','research_direction'):
+            from .science.state import apply_action
+            result = apply_action(result, action, invocation)
+        elif kind == "belief":
 
             belief_fields = (
                 "type id statement confidence status evidence reason falsifier"

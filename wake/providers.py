@@ -540,6 +540,15 @@ def schema_for_context(context):
             # Any due editorial checkpoint remains a separate top-level field.
             choices[:] = parking
             schema["properties"]["actions"].update({"minItems": 1, "maxItems": 1})
+    if context.get('scientific_research', {}).get('enabled') and not constraints.get('required_next_step'):
+        projects = [p['id'] for p in context.get('projects', []) if not enforced_topic or p.get('domain')==enforced_topic]
+        if projects:
+            for kind in ('hypothesis','experiment','experiment_interpretation','investigation_decision','research_direction'):
+                choice=action_schema(kind, 'id project definition')
+                from .science.schemas import action_definition
+                choice['properties']['definition']=action_definition(kind)
+                choice['properties']['project']['enum']=projects
+                choices.append(choice)
     return schema
 
 def retractable_quotes(post):

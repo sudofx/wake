@@ -12,7 +12,7 @@ from unittest.mock import patch
 from zoneinfo import ZoneInfo
 
 from wake.installation_gate import InstallationCallCoordinator
-from wake.provider_pacing import CallPacing
+from wake.provider_pacing import CallPacing, native_usage
 
 
 LIMITS={'lite-a':500,'lite-b':500,'flash-a':20,'flash-b':20}
@@ -106,6 +106,54 @@ class ProviderPacingTests(unittest.TestCase):
         self.assertEqual(self.pacing.research_used,500)
         self.pacing.seed('2000-01-01',{'lite-a':500})
         self.assertEqual(self.pacing.research_used,500)
+
+    def test_scientific_usage_recovers_features_and_interrupted_effects(self):
+        started=datetime.fromtimestamp(self.now,ZoneInfo('UTC')).isoformat()
+        trial={'model':'lite-a','started_at':started,'status':'started'}
+        state={'science':{'experiments':{'e':{'review':{'environment':{'provider_charged':True}},
+            'attempts':[{'inference':[trial,
+                {**trial,'response':{'metadata':{'provider_attempts':[{'provider_call_made':False}]}}},
+                {**trial,'response':{'metadata':{'provider_attempts':[], 'provider_requests_sent':0}}},
+                {**trial,'response':{'metadata':{'provider_attempts':[{'result':'http_failure'}]}}}]}]}}}}
+        self.pacing.status(self.now)
+        usage,features=native_usage(state,self.pacing.day)
+        self.assertEqual(usage,{'lite-a':2});self.assertEqual(features,usage)
+        self.pacing.seed(self.pacing.day,usage,features)
+        self.assertEqual(self.pacing.feature_used,2);self.assertEqual(self.pacing.research_used,0)
+        self.pacing.seed(self.pacing.day,usage,features)
+        self.assertEqual(self.pacing.feature_used,2)
+        # A retained cache can overestimate interrupted effects, never erase them.
+        self.pacing.seed(self.pacing.day,{'lite-a':5},features)
+        self.assertEqual(sum(self.pacing.usage.values()),5)
+        self.assertEqual(self.pacing.research_used,3)
+
+    def test_hosted_schedule_inspection_reads_only_bounded_dated_counters(self):
+        import zipfile
+        from scripts.github_research import inspect_provider_schedule
+        self.pacing.status(self.now)
+        class Transport:
+            def read_manifest(inner):
+                return {'auxiliary':[],'installation_id':'fixture','generation':9,'captured_at':'dated-fixture'}
+            def get_file(inner,blocks,destination):
+                with zipfile.ZipFile(destination,'w') as archive:
+                    archive.writestr('provider-schedule.json',json.dumps({'pacing':self.pacing.dump()}))
+                    archive.writestr('private/.passenger.md','must not be returned or extracted')
+        result=inspect_provider_schedule(Transport(),{'provider_pacing':POLICY})
+        self.assertEqual(result['feature_remaining_at_capture'],208)
+        self.assertEqual(result['captured_at'],'dated-fixture')
+        self.assertNotIn('passenger',json.dumps(result))
+
+    def test_hosted_scientific_grant_defaults_off_and_preserves_config_tables(self):
+        from scripts.github_research import apply_experimental_research_policy
+        import tomllib
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary);(root/'config').mkdir()
+            path=root/'config/wake.toml';path.write_text('experimental_research_enabled = true\n[untouched]\nvalue = 3\n')
+            with redirect_stdout(io.StringIO()):apply_experimental_research_policy(root,{})
+            self.assertFalse(tomllib.loads(path.read_text())['experimental_research_enabled'])
+            with redirect_stdout(io.StringIO()):apply_experimental_research_policy(root,{'experimental_research_enabled':True})
+            self.assertTrue(tomllib.loads(path.read_text())['experimental_research_enabled'])
+            self.assertEqual(tomllib.loads(path.read_text())['untouched'],{'value':3})
 
     def test_malformed_policy_or_state_fails_closed(self):
         for changes in ({'reserve_calls':1040},{'target_hours':0},{'enabled':'true'}):

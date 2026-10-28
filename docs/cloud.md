@@ -645,7 +645,12 @@ quota earlier than these local allowances predict.
 The hosted installation explicitly binds this policy in `hosted-runtime.json`.
 The worker applies it to restored configuration before starting its controller.
 Inspect `coordinator.pacing` in the installation runtime snapshot for the
-adopted policy, counts and next-call delay. A source change or successful CI run
+adopted policy, counts and next-call delay. Worker logs retain bounded admission
+counters at startup and drain. The `inspect` hosted control also reads the
+authenticated scheduling file from the most recent checkpoint, without restoring
+or opening native records. Its capacity is explicitly dated; later and external
+API use can reduce it. Scientific trial receipts backfill feature usage after
+scheduling-cache loss, including conservative interrupted-effect accounting. A source change or successful CI run
 alone does not establish runtime adoption. Already-consumed calls cannot be
 recovered; the first partial day may reach its routine allowance sooner.
 
@@ -657,3 +662,7 @@ binding and empty job list before classifying it as a scheduling artifact.
 Unidentified entries, active jobs, newer runs and incomplete listings still
 block promotion. The frozen checkpoint and all twelve native audits remain
 mandatory; the historical Actions entry is retained.
+
+### Computational research capability
+
+Experimental research is separately opt-in through `experimental_research_enabled`. Its Python instruments require the reviewed pinned Docker image and a compatible Docker runtime; the worker uses a Python 3.13 runner with Docker available and checks the real restricted executor before opening research records. This workflow shape alone does not establish deployed capability. Missing isolation is recorded as blocked and never falls back to host Python. Hosting this workbench requires a separately verified runtime rollout; the request-pacing release does not enable it. Trial inference uses the reserved `experiment` queue purpose while retaining single-flight admission and per-model limits. See [the workbench and current gates](experimental-research.md).

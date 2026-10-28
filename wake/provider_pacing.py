@@ -6,6 +6,42 @@ from zoneinfo import ZoneInfo
 PACIFIC=ZoneInfo('America/Los_Angeles')
 
 
+def native_usage(state, day):
+    """Recover paid effects from native research and scientific trial receipts.
+
+    An interrupted scientific reservation counts conservatively when transport
+    completion is unknown. Explicit queue denials consume no allowance.
+    """
+    from .scheduling import charged_request_slots
+    usage={};features={}
+    for invocation in state.get('invocations',{}).values():
+        if not invocation.get('charged') or invocation.get('quota_day')!=day:continue
+        attempts=invocation.get('provider_attempts')
+        if attempts is None:
+            model=invocation.get('successful_model',invocation['model'])
+            usage[model]=usage.get(model,0)+charged_request_slots(invocation)
+        else:
+            for attempt in attempts:
+                if attempt.get('provider_call_made') is False:continue
+                model=attempt.get('model',invocation['model'])
+                usage[model]=usage.get(model,0)+1
+    for experiment in (state.get('science') or {}).get('experiments',{}).values():
+        environment=experiment.get('review',{}).get('environment',{})
+        if not environment.get('provider_charged',environment.get('provider')=='gemini'):continue
+        for attempt in experiment.get('attempts',[]):
+            for trial in attempt.get('inference',[]):
+                started=trial.get('started_at',attempt.get('started'))
+                if not started or datetime.fromisoformat(started).astimezone(PACIFIC).date().isoformat()!=day:continue
+                metadata=trial.get('response',{}).get('metadata',{})
+                transports=metadata.get('provider_attempts')
+                count=(sum(t.get('provider_call_made') is not False for t in transports)
+                       if transports else metadata.get('provider_requests_sent',1))
+                model=trial['model']
+                usage[model]=usage.get(model,0)+count
+                features[model]=features.get(model,0)+count
+    return usage,features
+
+
 class CallPacing:
     def __init__(self,policy,limits):
         if not isinstance(policy,dict) or set(policy)!={'enabled','target_hours','reserve_calls'}:
@@ -52,7 +88,7 @@ class CallPacing:
             self.research_used+=1
             self.next_at=now+self.interval
 
-    def seed(self,day,usage):
+    def seed(self,day,usage,feature_usage=None):
         """Conservatively include known native attempts before this policy existed."""
         if day!=self.day:return
         for model,count in usage.items():
@@ -60,6 +96,12 @@ class CallPacing:
                 difference=max(0,count-self.usage.get(model,0))
                 self.usage[model]=max(count,self.usage.get(model,0))
                 self.research_used+=difference
+        # Classification comes from native trial receipts; preserve any higher
+        # cached count, including confirmed calls interrupted before a response.
+        known_features=sum(count for model,count in (feature_usage or {}).items()
+                           if model in self.limits and type(count) is int and count>=0)
+        recovered=min(max(0,known_features-self.feature_used),self.research_used)
+        self.feature_used+=recovered;self.research_used-=recovered
 
     def dump(self):
         return {'day':self.day,'usage':dict(self.usage),'research_used':self.research_used,

@@ -70,10 +70,25 @@ def cleanup_containers(names):
         except (OSError, subprocess.TimeoutExpired) as error:
             raise CleanupError('Disposable container cleanup unconfirmed: ' + name) from error
         if result.returncode and b'No such container' not in result.stderr:
-            raise CleanupError('Disposable container cleanup unconfirmed: ' + name)
+            # --rm and explicit recovery can race during container teardown.
+            # An ambiguous removal is confirmed only by observing this exact
+            # reserved identity absent; other Docker failures remain failures.
+            absent = False
+            for _ in range(3):
+                try:
+                    check = subprocess.run(['docker', 'container', 'inspect', name, '--format', '{{.State.Status}}'],
+                                           stdin=subprocess.DEVNULL, capture_output=True, timeout=5, check=False)
+                except (OSError,subprocess.TimeoutExpired) as error:
+                    raise CleanupError('Disposable container cleanup unconfirmed: '+name) from error
+                if check.returncode and (b'No such container' in check.stderr or b'No such object' in check.stderr):
+                    absent = True
+                    break
+                time.sleep(.1)
+            if not absent:
+                raise CleanupError('Disposable container cleanup unconfirmed: ' + name)
 
 
-def run_program(source, inputs, image_id, *, timeout=20, name=None):
+def run_program(source, inputs, image_id, *, timeout=20, name=None, runner=RUNNER):
     """Bound process lifetime AND stdout/stderr before parsing any untrusted JSON."""
     if not 0 < timeout <= 60:
         raise ValueError('Evaluation timeout must be between zero and 60 seconds')
@@ -84,7 +99,7 @@ def run_program(source, inputs, image_id, *, timeout=20, name=None):
     with tempfile.TemporaryDirectory(prefix='wake-improve-') as temp:
         root = Path(temp)
         root.chmod(0o755)
-        for filename, value in [('program.py', source), ('runner.py', RUNNER),
+        for filename, value in [('program.py', source), ('runner.py', runner),
                                 ('inputs.json', json.dumps(inputs, allow_nan=False))]:
             path = root / filename
             path.write_text(value)
@@ -116,6 +131,7 @@ def run_program(source, inputs, image_id, *, timeout=20, name=None):
                     raise ValueError('Container exited unsuccessfully: ' + output['stderr'].decode(errors='replace')[:1200])
             results = json.loads(output['stdout'], parse_constant=lambda s: (_ for _ in ()).throw(ValueError(s)))
             return {'status': 'completed', 'outputs': results,
+                    'cleanup_confirmed': True,
                     'wall_seconds': round(time.monotonic() - started, 4),
                     'output_bytes': len(output['stdout'])}
         except (OSError, ValueError, TimeoutError, subprocess.TimeoutExpired) as error:
@@ -130,4 +146,5 @@ def run_program(source, inputs, image_id, *, timeout=20, name=None):
                 # Killing the client alone does not guarantee container death.
                 cleanup_containers([name])
         return {'status': 'failed', 'reason': failure,
+                'cleanup_confirmed': True,
                 'wall_seconds': round(time.monotonic() - started, 4)}

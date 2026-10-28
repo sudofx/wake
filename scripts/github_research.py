@@ -15,6 +15,7 @@ import tempfile
 import threading
 import time
 import tomllib
+import zipfile
 from urllib.error import HTTPError, URLError
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -71,6 +72,7 @@ def runtime_policy(client):
             or ('research_expansion_enabled' in selected and type(selected['research_expansion_enabled']) is not bool)
             or ('research_candidate_catalog_enabled' in selected and type(selected['research_candidate_catalog_enabled']) is not bool)
             or ('autonomous_context_improvement' in selected and type(selected['autonomous_context_improvement']) is not bool)
+            or ('experimental_research_enabled' in selected and type(selected['experimental_research_enabled']) is not bool)
             or (selected.get('autonomous_context_improvement') is True and selected.get('decision_memory_mode') != 'active')
             or not re.fullmatch('[0-9a-f]{32}', str(selected.get('installation_id', '')))):
         raise ValueError('Invalid hosted installation binding')
@@ -132,6 +134,48 @@ def apply_decision_memory_policy(root, policy):
     atomic_write(path, updated)
     print(json.dumps({'decision_memory_mode': mode, 'autonomous_context_improvement': autonomy,
                       'scope': 'hosted-installation'}), flush=True)
+
+
+def apply_experimental_research_policy(root,policy):
+    """Only an explicit operator binding grants isolated scientific execution."""
+    from wake.report import atomic_write
+    enabled=(policy or {}).get('experimental_research_enabled',False)
+    if type(enabled) is not bool:raise ValueError('Invalid hosted scientific grant')
+    path=root/'config/wake.toml'
+    lines=path.read_text().splitlines(keepends=True)
+    replacement='experimental_research_enabled = '+str(enabled).lower()+'\n'
+    found=False
+    for index,line in enumerate(lines):
+        if line.lstrip().startswith('['):break
+        if re.match(r'^\s*experimental_research_enabled\s*=',line):lines[index]=replacement;found=True
+    updated=''.join(lines) if found else replacement+''.join(lines)
+    if tomllib.loads(updated).get('experimental_research_enabled') is not enabled:
+        raise ValueError('Hosted scientific grant did not validate')
+    atomic_write(path,updated)
+    print(json.dumps({'experimental_research_enabled':enabled,'scope':'hosted-installation'}),flush=True)
+
+
+def inspect_provider_schedule(transport,policy):
+    """Read only the authenticated scheduling file; never restore authority."""
+    from wake.provider_pacing import CallPacing
+    manifest=transport.read_manifest()
+    with tempfile.TemporaryDirectory() as temporary:
+        path=Path(temporary)/'aux.zip'
+        transport.get_file(manifest['auxiliary'],path)
+        with zipfile.ZipFile(path) as archive:
+            matches=[e for e in archive.infolist() if e.filename=='provider-schedule.json']
+            if len(matches)!=1 or matches[0].file_size>32768:
+                raise ValueError('A single bounded scheduling checkpoint is required')
+            saved=json.loads(archive.read(matches[0]))
+    limits=tomllib.loads((Path(__file__).resolve().parents[1]/'wake.toml').read_text())['model_daily_call_limits']
+    pacing=CallPacing(policy['provider_pacing'],limits)
+    pacing.restore(saved['pacing'])
+    return {'installation_id':manifest['installation_id'],'generation':manifest['generation'],
+        'captured_at':manifest['captured_at'],'pacing':pacing.dump(),
+        'configured_daily_calls':pacing.total,'reserved_daily_calls':pacing.policy['reserve_calls'],
+        'remaining_at_capture_by_model':{m:max(0,n-pacing.usage.get(m,0)) for m,n in limits.items()},
+        'feature_remaining_at_capture':max(0,pacing.policy['reserve_calls']-pacing.feature_used),
+        'limits':'Dated scheduling evidence; later or outside API use can reduce capacity.'}
 
 
 def apply_provider_pacing_policy(root,policy):
@@ -303,6 +347,7 @@ def run_batch(minutes, provider, *, reset=False):
         raise ValueError('Restored installation differs from the runtime binding; no controller started')
     apply_decision_memory_policy(root, policy)
     apply_provider_pacing_policy(root,policy)
+    apply_experimental_research_policy(root,policy)
     if policy and 'research_expansion_enabled' in policy:
         from wake.research_expansion import apply_hosted_configuration
         apply_hosted_configuration(root, policy['research_expansion_enabled'],
@@ -330,6 +375,7 @@ def run_batch(minutes, provider, *, reset=False):
         try:
             with measured_stage('startup'):
                 ready(root, process)
+            print(json.dumps({'hosted_provider_admission':request(root,{'action':'status'}).get('coordinator',{})}),flush=True)
             if reset:
                 # Explicit reset restored setup only. The stopped controller
                 # bootstrapped fresh records; never restore/audit discarded data.
@@ -394,6 +440,7 @@ def run_batch(minutes, provider, *, reset=False):
                 time.sleep(1)
             with measured_stage('drain'):
                 drained = request(root, {'action': 'stop'})
+            print(json.dumps({'hosted_provider_admission':request(root,{'action':'status'}).get('coordinator',{})}),flush=True)
             if not drained.get('ok'):
                 # Stop already closed new-call admission. A slow/dead worker
                 # cannot withhold the public mirror indefinitely. Terminate the
@@ -461,6 +508,11 @@ def main():
         client = api()
         state = enabled(client)
         print(json.dumps({'hosted_enabled': state, 'api_rate': client.rate}), flush=True)
+        if os.environ.get('WAKE_HOSTED_STATE_KEY'):
+            with tempfile.TemporaryDirectory(prefix='wake-schedule-inspect-') as directory:
+                transport=HostedState(directory,client.repository,client.token,os.environ['WAKE_HOSTED_STATE_KEY'])
+                transport.open()
+                print(json.dumps({'hosted_provider_schedule':inspect_provider_schedule(transport,runtime_policy(client))}),flush=True)
     elif args.action == 'continue':
         continue_chain(args.predecessor)
     elif args.action == 'control':

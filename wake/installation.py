@@ -344,26 +344,18 @@ class Controller:
             # The scheduling cache can be new while the native records already
             # contain today's effects. Recover known use before admitting calls.
             from .record_store import RecordStore
-            from .scheduling import charged_request_slots
-            usage={}
+            from .provider_pacing import native_usage
+            usage={};features={}
             for node in NODE_IDS:
                 directory=self.root/'nodes'/node/'record'
                 if not (directory/'wake.sqlite').is_file():continue
                 store=RecordStore(directory)
                 try:
-                    for invocation in store.load().get('invocations',{}).values():
-                        if not invocation.get('charged') or invocation.get('quota_day')!=pacing.day:continue
-                        attempts=invocation.get('provider_attempts')
-                        if attempts is not None:
-                            for attempt in attempts:
-                                if attempt.get('provider_call_made') is False:continue
-                                model=attempt.get('model',invocation['model'])
-                                usage[model]=usage.get(model,0)+1
-                        else:
-                            model=invocation.get('successful_model',invocation['model'])
-                            usage[model]=usage.get(model,0)+charged_request_slots(invocation)
+                    node_usage,node_features=native_usage(store.load(),pacing.day)
+                    for model,count in node_usage.items():usage[model]=usage.get(model,0)+count
+                    for model,count in node_features.items():features[model]=features.get(model,0)+count
                 finally:store.close()
-            pacing.seed(pacing.day,usage)
+            pacing.seed(pacing.day,usage,features)
             self.persist_schedule()
         identity = self.root / 'installation-id.json'
         if not identity.exists():

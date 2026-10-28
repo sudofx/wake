@@ -545,3 +545,7 @@ Context tail queries reuse verified history for one read-only context build only
 the next build checks the record again.
 
 Request pacing operates after context preparation at the shared provider-effect boundary. It does not change which historical information is available, alter retrieval scoring, or create accepted research while a request waits. See [shared daily admission](cloud.md#spread-provider-calls-across-the-day).
+
+### Experimental context
+
+Enabled experimental research supplies a bounded view of recent hypotheses, immutable protocol references, actual negative evidence and convergence decisions. Protected answers and hidden generative mechanisms never enter that view. A scientific `research_direction` action chooses external collection or computational work, so further retrieval is not compulsory when an executable test is preferable. Complete evidence stays in the native record; clipped source excerpts are not executable source authority. See [the scientific contract](experimental-research.md).

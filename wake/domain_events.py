@@ -35,7 +35,12 @@ def empty():
 
 def reduce_event(state, event, historical=False):
     p, kind = event["payload"], event["kind"]
-    if kind in ('autonomous_context_configured', 'autonomous_context_trial',
+    if kind in ('scientific_configured','experiment_reviewed','experiment_started',
+                'experiment_executed','experiment_evaluated','experiment_interrupted',
+                'experiment_inference_started','experiment_inference_finished'):
+        from .science.state import reduce
+        state['science'] = reduce(state, event)
+    elif kind in ('autonomous_context_configured', 'autonomous_context_trial',
                 'autonomous_context_trial_failed', 'autonomous_context_rollback'):
         from .autonomous_context import reduce
         state['autonomous_context'] = reduce(state, event)

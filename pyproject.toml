@@ -21,7 +21,7 @@ wake = "wake.__main__:main"
 wake-research = "wake.installation_cli:main"
 
 [tool.setuptools]
-packages = ["wake", "wake.kernel"]
+packages = ["wake", "wake.kernel", "wake.science"]
 include-package-data = true
 
 [tool.setuptools.package-data]

@@ -38,7 +38,6 @@ jobs:
     if: github.ref_name == 'master'
     runs-on: ubuntu-latest
     timeout-minutes: 240
-    container: python:3.13-bookworm
     env:
       GH_TOKEN: ${{ github.token }}
       GITHUB_REPOSITORY: ${{ github.repository }}
@@ -55,8 +54,17 @@ jobs:
       - uses: actions/checkout@v7
         with:
           ref: ${{ inputs.runtime_ref }}
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
       - name: Install hosted transport and native application
         run: python -m pip install --disable-pip-version-check -e '.[hosted]'
+      - name: Verify isolated computational instruments
+        run: |
+          if [ -f tests/test_scientific_isolation.py ]; then
+            docker pull python@sha256:a1165e272e578941b84abc79e4ab38a0305cd12803a5c4247979ac7655f4d641
+            PYTHONPATH=tests python -m unittest test_scientific_isolation -v
+          fi
       - name: Restore, research, checkpoint, and publish
         run: |
           if [ "$RESET_EXPERIMENT" = true ]; then

@@ -57,6 +57,11 @@ jobs:
       - name: Check GitHub status observations
         run: |
           node tests/browser/hosted-status-unit.cjs
+      - name: Verify real restricted scientific execution
+        if: matrix.python == '3.13'
+        run: |
+          docker pull python@sha256:a1165e272e578941b84abc79e4ab38a0305cd12803a5c4247979ac7655f4d641
+          PYTHONPATH=tests python -m unittest test_scientific_isolation test_scientific_research test_scientific_benchmarks test_scientific_cli -v
       - name: Simulate 100 WAKE cycles
         if: github.event_name != 'push'
         run: python -m wake --data /tmp/wake-experiment experiment --cycles 100 --output site

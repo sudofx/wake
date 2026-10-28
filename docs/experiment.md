@@ -568,3 +568,7 @@ that WAKE's architecture improves research.
 ### Research rate and experimental capacity
 
 Routine installation work can be spread across the day with a separate reserve for computational research and reader requests. Confirmed provider attempts and zero-effect queue denials are counted separately; pacing is an operational constraint, not scientific progress. See [the current policy](cloud.md#spread-provider-calls-across-the-day).
+
+### Executable scientific investigations
+
+The [scientific workbench](experimental-research.md) distinguishes exploratory questions, falsifiable hypotheses, frozen predictions, actual execution, measurement validity and interpretation. The correction benchmark pairs no history, relevant history and compressed relevant history across six error families, including information-availability and information-use controls. The hidden-system benchmark preserves failed predictions before fresh-seed follow-ups. Scripted fixture providers validate this machinery and are labelled synthetic; they do not establish live model discovery. A live model-authored negative result demonstrates execution and scoring, while live autonomous revision remains unverified.

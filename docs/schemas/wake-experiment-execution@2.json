@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "wake-experiment-execution@2",
+  "type": "object",
+  "required": [
+    "schema",
+    "status",
+    "protocol_digest",
+    "source_digest",
+    "environment_digest",
+    "inputs_digest",
+    "attempt_id"
+  ],
+  "properties": {
+    "schema": {
+      "const": "wake-experiment-execution@2"
+    },
+    "status": {
+      "enum": [
+        "completed",
+        "failed"
+      ]
+    },
+    "protocol_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "source_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "environment_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "inputs_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "outputs_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "attempt_id": {
+      "type": "string"
+    },
+    "outputs": {},
+    "reason": {
+      "type": "string",
+      "maxLength": 4000
+    },
+    "wall_seconds": {
+      "type": "number",
+      "minimum": 0
+    },
+    "output_bytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "cleanup_confirmed": {
+      "type": "boolean"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "completed"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "outputs",
+          "outputs_digest"
+        ]
+      }
+    }
+  ]
+}

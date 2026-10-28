@@ -27,12 +27,13 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: '3.13'
-      - run: python -m pip install --disable-pip-version-check -e .
+      - run: python -m pip install --disable-pip-version-check -e '.[hosted]'
       - name: Change hosted research intent without touching records
         env:
           GH_TOKEN: ${{ github.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           ACTION: ${{ inputs.action }}
+          WAKE_HOSTED_STATE_KEY: ${{ inputs.action == 'inspect' && secrets.WAKE_HOSTED_STATE_KEY || '' }}
         run: |
           if [ "$ACTION" = inspect ]; then
             python scripts/github_research.py inspect

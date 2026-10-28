@@ -185,7 +185,7 @@ def _copy_public_site(source: Path, destination: Path):
                        'console-events.html', 'console-state.html', 'console-rejected.html',
                        'research.html', 'topics.html', 'blog.html', 'projects.html',
                        'journal.html', 'lab.html', 'metrics.html', 'evidence.html',
-                       'history.html', 'about.html'}))
+                       'history.html', 'about.html','scientific-research.html','scientific-research.json'}))
         allowed = allowed or (relative.parts[0] in {'icons', 'backgrounds', 'self-correction'} and (assets / relative).is_file())
         allowed = allowed or (relative.parts[0] in {'blog', 'notebooks', 'journal'} and path.suffix == '.html')
         allowed = allowed or (relative.parts[0] == 'map3d' and path.suffix == '.json')

@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "wake-experiment-protocol@1",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "type": "string",
+      "enum": [
+        "wake-experiment-protocol@1"
+      ]
+    },
+    "hypothesis": {
+      "type": "string"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "method": {
+      "type": "string",
+      "maxLength": 4000
+    },
+    "instrument": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string",
+      "maxLength": 16000
+    },
+    "inputs": {
+      "type": "object"
+    },
+    "seeds": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 4294967295
+      },
+      "minItems": 1,
+      "maxItems": 32
+    },
+    "evaluator": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "additionalProperties": false
+    },
+    "success": {
+      "type": "string",
+      "maxLength": 4000
+    },
+    "stop": {
+      "type": "string",
+      "maxLength": 4000
+    },
+    "budget": {
+      "type": "object",
+      "properties": {
+        "seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "provider_calls": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 48
+        }
+      },
+      "required": [
+        "seconds",
+        "provider_calls"
+      ],
+      "additionalProperties": false
+    },
+    "replicates": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema",
+    "hypothesis",
+    "revision",
+    "method",
+    "instrument",
+    "source",
+    "inputs",
+    "seeds",
+    "evaluator",
+    "success",
+    "stop",
+    "budget"
+  ],
+  "additionalProperties": false
+}
