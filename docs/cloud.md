@@ -504,13 +504,13 @@ No Actions artifacts or caches are used for authority or publication.
 
 ### Verify actual progress
 
-The header turns green only when GitHub reports an active research batch and a
-snapshot from that same run contains a running node observed within 30 minutes.
-The tooltip reports how many nodes were observed running and when. An active
-Actions job alone remains unconfirmed: it may be restoring, saving or waiting.
-Old-run, stale and missing observations cannot establish green; an explicitly
-disabled workflow remains stopped. Green is dated execution evidence, not proof
-of a successful provider response or accepted research progress.
+The header and node picker use the same dated installation snapshot. When all
+12 nodes report running, the header is green while GitHub confirms an active
+batch, including during a batch handoff or delayed upload. The tooltip preserves
+the observation time. Partial running observations additionally require a
+matching batch and an observation within 30 minutes. An active Actions job alone
+remains unconfirmed; an explicitly disabled workflow remains stopped. Green does
+not establish a live provider call or accepted research progress.
 
 Inspect **WAKE — Research worker** runs and their summaries for source revision,
 checkpoint generation, record heads and accepted versions. A successful run can

@@ -55,6 +55,10 @@ const tick=()=>new Promise(resolve=>setImmediate(resolve));
   vm.runInNewContext(source,context);await tick();
   assert.equal(light.dataset.state,'running','The header must reuse the node picker snapshot without needing a second event');
   assert.match(light['aria-label'],/12 of 12 nodes recorded running/);
+  snapshot.hosted_execution.run_id='54';
+  snapshot.nodes.forEach(node=>node.recorded_runtime.observed_at=new Date(Date.now()-35*60000).toISOString());
+  vm.runInNewContext(source,context);await tick();
+  assert.equal(light.dataset.state,'running','A unanimous dated node snapshot must keep the same aggregate color through a handoff or delayed upload');
  }
  console.log('PASS: hosted recovery and quota-deferred stopped worker cases.');
 })().catch(error=>{console.error(error);process.exitCode=1;});

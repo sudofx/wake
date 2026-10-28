@@ -26,10 +26,17 @@
   }
   function confirmedRunning(value){
     const data=quotaObservation;
-    // A previous batch's observations cannot make a new restoring batch green.
+    // The picker reports dated snapshot states. When all twelve agree, use
+    // that same aggregate even across a batch handoff or delayed upload.
+    // Partial execution evidence still requires a recent, matching batch.
     if(!value?.activeRun || !data || data.live!==false ||
-       String(data.hosted_execution?.run_id)!==String(value.activeRun) ||
        !Array.isArray(data.nodes) || data.nodes.length!==12)return null;
+    const allRunning=data.nodes.every(node=>node.available!==false &&
+      node.recorded_runtime?.state==='running' &&
+      Number.isFinite(Date.parse(node.recorded_runtime?.observed_at)) &&
+      Date.parse(node.recorded_runtime.observed_at)<=Date.now()+60000);
+    if(allRunning)return{count:12,checked:Math.min(...data.nodes.map(node=>Date.parse(node.recorded_runtime.observed_at)))};
+    if(String(data.hosted_execution?.run_id)!==String(value.activeRun))return null;
     const running=data.nodes.filter(node=>{
       const at=Date.parse(node.recorded_runtime?.observed_at);
       return node.available!==false && node.recorded_runtime?.state==='running' &&
