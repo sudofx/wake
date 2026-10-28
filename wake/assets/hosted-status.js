@@ -5,7 +5,9 @@
   const base=`https://api.github.com/repos/${config.repository}/actions/workflows/${config.workflow}`;
   const link=`https://github.com/${config.repository}/actions/workflows/${config.workflow}`;
   const interval=180000, key=`wake-hosted-status@1:${config.repository}`, stale=240000;
-  let timer, pending=false, quotaObservation=null;
+  // Safari may finish the cached installation read before this deferred script.
+  // Consume the same snapshot as the node picker even when its event has passed.
+  let timer, pending=false, quotaObservation=window.WakeInstallationSnapshot||null;
   // Installation snapshots contain dated node observations, not live provider calls.
   // Use them only while recent; temporary workers may stop after quota deferral.
   function confirmedQuota(){

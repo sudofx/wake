@@ -45,5 +45,16 @@ const tick=()=>new Promise(resolve=>setImmediate(resolve));
   assert.equal(light.dataset.state,expected,`${runId}, ${nodeState}, ${age}, ${workflow}`);
   if(expected==='running')assert.match(light['aria-label'],/1 of 12 nodes recorded running/);
  }
+ // A cached installation can finish before the deferred header script in Safari.
+ {
+  const now=new Date().toISOString(),light={dataset:{},setAttribute(k,v){this[k]=v;},removeAttribute(k){if(k==='data-state')delete this.dataset.state;}};
+  const snapshot={live:false,hosted_execution:{run_id:'55'},nodes:Array.from({length:12},()=>({available:true,recorded_runtime:{state:'running',observed_at:now}}))};
+  const context={window:{WakeInstallationSnapshot:snapshot,WAKE_DEPLOYMENT:{hosted_status:{repository:'example/repo',workflow:'research-worker.yml',branch:'master'}},addEventListener(){}},
+   document:{hidden:false,querySelector:()=>light,addEventListener(){}},navigator:{onLine:true},localStorage:{getItem:()=>null,setItem(){}},Date,JSON,AbortController,
+   setTimeout:()=>0,clearTimeout(){},fetch:async url=>({ok:true,json:async()=>url.includes('/runs?')?{workflow_runs:[{id:55,path:'.github/workflows/research-worker.yml',head_branch:'master',status:'in_progress'}]}:{state:'active'}})};
+  vm.runInNewContext(source,context);await tick();
+  assert.equal(light.dataset.state,'running','The header must reuse the node picker snapshot without needing a second event');
+  assert.match(light['aria-label'],/12 of 12 nodes recorded running/);
+ }
  console.log('PASS: hosted recovery and quota-deferred stopped worker cases.');
 })().catch(error=>{console.error(error);process.exitCode=1;});
