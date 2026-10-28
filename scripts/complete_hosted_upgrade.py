@@ -58,6 +58,38 @@ def presentation_only_diff(client, baseline, candidate, *, allow_development=Tru
             raise ValueError('Presentation-only request changes protected source: ' + path)
 
 
+def writer_outstanding(client, summary, intent, installation_id=None):
+    """Reconcile only an explicitly identified, superseded, jobless queue entry.
+
+    GitHub can retain a pre-queue run which has no jobs and rejects both cancel
+    operations. A newer successful drained writer plus an exact operator intent
+    distinguishes that scheduler artifact from an executable research worker.
+    Active, newer, job-bearing and unidentified entries still block promotion.
+    """
+    drained_id=intent.get('drained_run')
+    allowed=intent.get('superseded_queued_runs',[])
+    if (type(drained_id) is not int or not isinstance(allowed,list) or len(allowed)>10
+            or summary.get('id') not in allowed):return True
+    run=client.request('actions/runs/'+str(summary['id']))
+    if run['status']=='completed':return False
+    if run['status']!='queued':return True
+    drained=client.request('actions/runs/'+str(drained_id))
+    path='.github/workflows/research-worker.yml'
+    if (drained.get('status')!='completed' or drained.get('conclusion')!='success'
+            or drained.get('path')!=path or run.get('path')!=path
+            or drained.get('head_branch')!='master' or run.get('head_branch')!='master'
+            or not re.fullmatch('[a-f0-9]{40}',str(run.get('head_sha','')))
+            or run.get('head_sha')==intent.get('candidate')
+            or type(run.get('run_number')) is not int or type(drained.get('run_number')) is not int
+            or run['run_number']>=drained['run_number']):return True
+    blob=client.request('contents/hosted-runtime.json?ref='+run['head_sha'])
+    original=json.loads(base64.b64decode(blob['content']))['installations'][client.repository]
+    if (original.get('source_revision')!=intent.get('baseline') or
+            installation_id is not None and original.get('installation_id')!=installation_id):return True
+    jobs=client.request('actions/runs/'+str(summary['id'])+'/jobs?per_page=1')
+    return jobs.get('total_count')!=0 or jobs.get('jobs')!=[]
+
+
 def complete_upgrade(client, report, run_id):
     policy, sha = read_policy(client)
     binding = policy['installations'][client.repository]
@@ -124,7 +156,11 @@ def complete_upgrade(client, report, run_id):
         if client.request('actions/workflows/research-worker.yml')['state'] != 'disabled_manually':
             raise ValueError('Research must be drained before the final frozen-checkpoint promotion')
         for status in ('in_progress', 'queued'):
-            if client.request(f'actions/workflows/research-worker.yml/runs?status={status}&per_page=1')['workflow_runs']:
+            listing=client.request(f'actions/workflows/research-worker.yml/runs?status={status}&per_page=100')
+            rows=listing['workflow_runs']
+            if listing.get('total_count',len(rows))>len(rows):
+                raise ValueError('Outstanding writer listing is incomplete')
+            if any(writer_outstanding(client,row,intent,binding['installation_id']) for row in rows):
                 raise ValueError('Research has an outstanding writer')
         if client.request('git/ref/heads/wake-hosted-state')['object']['sha'] != intent['checkpoint_ref']:
             raise ValueError('Final checkpoint changed after verification')

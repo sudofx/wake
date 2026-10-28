@@ -3,7 +3,7 @@ import base64
 import copy
 import json
 import unittest
-from scripts.complete_hosted_upgrade import complete_upgrade
+from scripts.complete_hosted_upgrade import complete_upgrade, writer_outstanding
 from wake.installation_cli import NODE_IDS
 
 
@@ -85,6 +85,30 @@ class Client:
 
 
 class CompletionTests(unittest.TestCase):
+    def test_only_explicitly_superseded_jobless_queue_entries_can_be_reconciled(self):
+        class Runs:
+            repository='example/repo'
+            def __init__(self):
+                self.old={'status':'queued','path':'.github/workflows/research-worker.yml','head_branch':'master','run_number':1,'head_sha':'b'*40}
+                self.drained={**self.old,'status':'completed','conclusion':'success','run_number':5}
+                self.jobs={'total_count':0,'jobs':[]}
+            def request(self,path):
+                if path.startswith('contents/'):
+                    return {'content':base64.b64encode(json.dumps({'installations':{self.repository:{'source_revision':'b'*40,'installation_id':'installation'}}}).encode()).decode()}
+                return self.old if path=='actions/runs/1' else self.drained if path=='actions/runs/100' else self.jobs
+        intent={'drained_run':100,'superseded_queued_runs':[1],'baseline':'b'*40,'candidate':'a'*40}
+        client=Runs()
+        self.assertFalse(writer_outstanding(client,{'id':1},intent))
+        self.assertTrue(writer_outstanding(client,{'id':1},{}))
+        self.assertTrue(writer_outstanding(client,{'id':2},intent))
+        for changes in ({'status':'in_progress'},{'run_number':6},{'head_branch':'other'},{'head_sha':'a'*40}):
+            client=Runs();client.old.update(changes)
+            self.assertTrue(writer_outstanding(client,{'id':1},intent))
+        client=Runs();client.jobs={'total_count':1,'jobs':[{'status':'queued'}]}
+        self.assertTrue(writer_outstanding(client,{'id':1},intent))
+        client=Runs();client.drained['conclusion']='failure'
+        self.assertTrue(writer_outstanding(client,{'id':1},intent))
+
     def test_new_presentation_reuses_full_audits_only_with_identical_runtime_and_own_ci(self):
         client = Client()
         client.intent.update(presentation_only=True, presentation_revision='c' * 40)

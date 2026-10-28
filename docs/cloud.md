@@ -648,3 +648,12 @@ Inspect `coordinator.pacing` in the installation runtime snapshot for the
 adopted policy, counts and next-call delay. A source change or successful CI run
 alone does not establish runtime adoption. Already-consumed calls cannot be
 recovered; the first partial day may reach its routine allowance sooner.
+
+A final upgrade normally requires no queued or running research writer. GitHub
+can retain a jobless pre-queue entry after newer research runs have completed.
+An upgrade intent may name that exact superseded entry and the newer successful
+drained run. Completion checks their ordering, original installation/runtime
+binding and empty job list before classifying it as a scheduling artifact.
+Unidentified entries, active jobs, newer runs and incomplete listings still
+block promotion. The frozen checkpoint and all twelve native audits remain
+mandatory; the historical Actions entry is retained.
