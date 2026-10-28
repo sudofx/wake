@@ -59,9 +59,29 @@
    const runtime=node.runtime||{},state=stateNames[runtime.state]?runtime.state:'unknown';
    return {state,description:`Current status: ${stateNames[state]}`};
   }
-  const runtime=node.recorded_runtime||{},state=stateNames[runtime.state]?runtime.state:'unknown';
-  return {state,description:state==='unknown'?'No uploaded status available':`Last uploaded status: ${stateNames[state]} · observed ${stamp(runtime.observed_at)}`};
+  const runtime=node.recorded_runtime||{},raw=stateNames[runtime.state]?runtime.state:'unknown';
+  const latest=node.research?.status?.latest, observed=Date.parse(runtime.observed_at), attempted=Date.parse(latest?.time);
+  // Hosted disposable workers can exit after a quota deferral. Do not equate
+  // worker exit with operator-stop when the captured start was acknowledged.
+  const quota=data.hosted_execution?.research_start?.ok===true && raw==='stopped' &&
+    latest?.status==='deferred' && /quota/i.test(latest.reason||'') &&
+    Number.isFinite(observed) && observed<=Date.now()+60000 && Date.now()-observed<30*60000 &&
+    Number.isFinite(attempted) && attempted<=Date.now()+60000 && Date.now()-attempted<30*60000;
+  const state=quota?'standby':raw;
+  return {state,description:quota?`Last uploaded research: Provider quota standby; worker stopped · observed ${stamp(runtime.observed_at)}`:
+    state==='unknown'?'No uploaded status available':`Last uploaded status: ${stateNames[state]} · observed ${stamp(runtime.observed_at)}`};
  }
+ function aggregateStatus(data){
+  const nodes=(data?.nodes||[]).filter(validNode),states=nodes.map(node=>pickerState(node,data));
+  // Idle workers do not cancel active work elsewhere in the installation.
+  // Gray is reserved for unavailable observations, not differing known states.
+  const priority=['blocked','running','waiting','standby','paused','stopped','idle'];
+  const state=data?.disconnected?'unknown':priority.find(value=>states.some(item=>item.state===value))||'unknown';
+  const counts=priority.map(value=>{const count=states.filter(item=>item.state===value).length;return count?`${count} ${stateNames[value].toLowerCase()}`:null;}).filter(Boolean);
+  const times=nodes.map(node=>Date.parse((data.live===true?node.runtime:node.recorded_runtime)?.observed_at)).filter(Number.isFinite);
+  return{state,description:`${data.live===true?'Current node states':'Last uploaded node states'}: ${counts.join(', ')||'unavailable'}`,checked:times.length?Math.min(...times):null};
+ }
+ window.WakeInstallationAggregate=aggregateStatus;
  function buildPicker(nodes,data){
   const label=get('instance-name');if(label)label.textContent=nodeMatch?nodeMatch[2]:'wake';
   const domain=document.querySelector('body>.masthead .node-domain');if(domain)domain.textContent=nodeMatch?nodeMatch[2]:'wake';
@@ -77,7 +97,7 @@
    picker.addEventListener('click',event=>{const choice=event.target.closest('a[data-node]');if(choice)choice.href=viewURL(choice.dataset.node||null).href;});
   }
   const states=nodes.map(node=>pickerState(node,data));
-  const unique=new Set(states.map(item=>item.state)),whole=unique.size===1?states[0]:{state:'mixed',description:data.live===true?'Current status: Mixed node states':'Last uploaded statuses: Mixed node states'};
+  const whole=aggregateStatus(data);
   const rows=[{id:'',text:'wake',status:whole||{state:'unknown',description:'Status unavailable'}},...nodes.map((node,index)=>({id:node.id,text:`${node.role==='child'?'↳ ':''}${node.id}${node.available===false?' · unavailable':''}`,status:states[index]}))];
   const current=[...picker.children];
   // Steady polling updates lights without replacing focused menu links.

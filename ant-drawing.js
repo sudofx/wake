@@ -54,6 +54,7 @@
   ellipse(.03,0,queen?.9:.65,queen?.6:.42,body);ellipse(.43,-.05,queen?.55:.38,queen?.56:.38,body);
   shell(.14,0,queen?1.02:.78,queen?.6:.42,'thorax');
   if(queen){ctx.strokeStyle='#cfad6a88';ctx.lineWidth=r*.06;ctx.beginPath();ctx.moveTo(-.35*r,-.38*r);ctx.quadraticCurveTo(.1*r,-.48*r,.5*r,-.33*r);ctx.stroke();}
+  ctx.save();ctx.translate(.72*r,0);ctx.rotate(ant.dead?0:(ant.headYaw||0));ctx.translate(-.72*r,0);
   ellipse(1.2,0,.64,.57,body);ellipse(1.17,-.25,.32,.12,queen?'#b9924c66':'#9f895033');
   shell(1.2,0,.64,.57,'head');
   if(!shellAtlas){ellipse(1.24,-.52,.1,.12,'#15130f');ellipse(1.24,.52,.1,.12,'#15130f');}
@@ -88,6 +89,7 @@
    if(detail){ctx.strokeStyle=light;ctx.lineWidth=r*.025;for(let joint=0;joint<8;joint++){const t=joint/8,x=(2.02+sweep+.78*t)*r,y=side*(1.02+(sweep-.12)*t)*r;ctx.beginPath();ctx.moveTo(x,y-r*.045);ctx.lineTo(x,y+r*.045);ctx.stroke();}}
   }
   if(ant.carrying){ctx.fillStyle=ant.carrying===1?(ant.carryingKind==='protein'?'#a96a45':'#b7bf73'):'#ae9165';ctx.beginPath();ctx.ellipse(2.2*r,0,.38*r,.27*r,.4,0,Math.PI*2);ctx.fill();}
+  ctx.restore();
  }
  if(typeof module!=='undefined'&&module.exports)module.exports=drawAnt;else root.WakeDrawAnt=drawAnt;
 })(typeof globalThis!=='undefined'?globalThis:this);

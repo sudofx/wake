@@ -5,7 +5,51 @@
   const base=`https://api.github.com/repos/${config.repository}/actions/workflows/${config.workflow}`;
   const link=`https://github.com/${config.repository}/actions/workflows/${config.workflow}`;
   const interval=180000, key=`wake-hosted-status@1:${config.repository}`, stale=240000;
-  let timer, pending=false;
+  // Safari may finish the cached installation read before this deferred script.
+  // Consume the same snapshot as the node picker even when its event has passed.
+  let timer, pending=false, quotaObservation=window.WakeInstallationSnapshot||null;
+  // Installation snapshots contain dated node observations, not live provider calls.
+  // Use them only while recent; temporary workers may stop after quota deferral.
+  function confirmedQuota(){
+    const data=quotaObservation;
+    if(!data || data.live!==false || !Array.isArray(data.nodes) || data.nodes.length!==12)return null;
+    const times=data.nodes.map(n=>Date.parse(n.recorded_runtime?.observed_at));
+    if(times.some(t=>!Number.isFinite(t)||t>Date.now()+60000||Date.now()-t>30*60000))return null;
+    if(!data.nodes.every(n=>{
+      const state=n.recorded_runtime?.state, latest=n.research?.status?.latest;
+      return (state==='standby'||(state==='stopped' && data.hosted_execution?.research_start?.ok===true)) &&
+        latest?.status==='deferred' && /quota/i.test(latest.reason||'') &&
+        Number.isFinite(Date.parse(latest.time)) && Date.parse(latest.time)<=Date.now()+60000 &&
+        Date.now()-Date.parse(latest.time)<30*60000;
+    }))return null;
+    return Math.min(...times);
+  }
+  function confirmedRunning(value){
+    const data=quotaObservation;
+    // The picker reports dated snapshot states. When all twelve agree, use
+    // that same aggregate even across a batch handoff or delayed upload.
+    // Partial execution evidence still requires a recent, matching batch.
+    if(!value?.activeRun || !data || data.live!==false ||
+       !Array.isArray(data.nodes) || data.nodes.length!==12)return null;
+    const allRunning=data.nodes.every(node=>node.available!==false &&
+      node.recorded_runtime?.state==='running' &&
+      Number.isFinite(Date.parse(node.recorded_runtime?.observed_at)) &&
+      Date.parse(node.recorded_runtime.observed_at)<=Date.now()+60000);
+    if(allRunning)return{count:12,checked:Math.min(...data.nodes.map(node=>Date.parse(node.recorded_runtime.observed_at)))};
+    if(String(data.hosted_execution?.run_id)!==String(value.activeRun))return null;
+    const running=data.nodes.filter(node=>{
+      const at=Date.parse(node.recorded_runtime?.observed_at);
+      return node.available!==false && node.recorded_runtime?.state==='running' &&
+        Number.isFinite(at) && at<=Date.now()+60000 && Date.now()-at<30*60000;
+    });
+    return running.length?{count:running.length,checked:Math.min(...running.map(node=>Date.parse(node.recorded_runtime.observed_at)))}:null;
+  }
+  window.addEventListener('wake-installation-snapshot',event=>{
+    quotaObservation=event.detail;
+    const checked=confirmedQuota();
+    if(checked)show('standby','All 12 nodes: confirmed provider quota standby (published observation)',checked);
+    else if(!apply(cached()))show(null,'Research status unconfirmed; node observations unavailable or mixed');
+  });
   light.hidden=false;light.href=link;
   function show(state,label,checked){
     if(state)light.dataset.state=state;else light.removeAttribute('data-state');
@@ -15,7 +59,18 @@
   }
   function apply(value){
     if(!value || !Number.isFinite(value.checked) || Date.now()-value.checked>stale || value.checked>Date.now()+5000)return false;
-    show(value.state,value.label,value.checked);return true;
+    const aggregate=window.WakeInstallationAggregate?.(quotaObservation);
+    if(value.activeRun && aggregate && aggregate.state!=='unknown'){
+      show(aggregate.state,aggregate.description,aggregate.checked);return true;
+    }
+    const observed=confirmedQuota();
+    if(observed && value.state!=='stopped' && value.state!=='blocked')show('standby','All 12 nodes: confirmed provider quota standby (published observation)',observed);
+    else {
+      const running=confirmedRunning(value);
+      if(running)show('running',`Hosted batch active; ${running.count} of 12 nodes recorded running in its latest snapshot`,running.checked);
+      else show(value.state,value.label,value.checked);
+    }
+    return true;
   }
   function cached(){try{return JSON.parse(localStorage.getItem(key));}catch{return null;}}
   async function read(url){
@@ -36,7 +91,7 @@
     }
     pending=true;
     // Never leave a green observation on screen while a new read is unresolved.
-    show(null,'Checking hosted execution');
+    if(!confirmedQuota())show(null,'Checking hosted execution');
     try{
       const [workflow,result]=await Promise.all([read(base),read(`${base}/runs?branch=master&per_page=5`)]);
       if(!['active','disabled_manually','disabled_inactivity','disabled_fork'].includes(workflow.state) || !Array.isArray(result.workflow_runs))throw new Error('Invalid status');
@@ -44,7 +99,7 @@
       const active=runs.find(run=>run.status==='in_progress'), queued=runs.find(run=>['queued','waiting','requested','pending'].includes(run.status));
       let state='idle',label='Between hosted batches';
       if(workflow.state!=='active'){state='stopped';label=active?'Stopping; current batch is draining':'Stopped';}
-      else if(active){state='running';label='Hosted batch active';}
+      else if(active){state=null;label='Hosted batch active; research state unconfirmed';}
       else if(queued){state='waiting';label='Hosted batch queued';}
       else if(!runs.length){state='waiting';label='Waiting for the first hosted batch';}
       else if(runs[0].conclusion==='action_required'){state='blocked';label='GitHub requires attention';}
@@ -53,13 +108,14 @@
         if(Number.isFinite(finished) && Date.now()-finished>15*60*1000){state='blocked';label='Hosted research stalled; recovery needs attention';}
         else{state='waiting';label='Waiting for automatic recovery after the last batch';}
       }
-      const value={state,label,checked:Date.now()};
+      const value={state,label,checked:Date.now(),...(workflow.state==='active' && active?{activeRun:active.id}:{})};
       try{localStorage.setItem(key,JSON.stringify(value));}catch{}
       if(!document.hidden)apply(value);
     }catch{
       const value={state:null,label:'Status unavailable; open GitHub for details',checked:Date.now()};
       try{localStorage.setItem(key,JSON.stringify(value));}catch{}
-      show(null,value.label,value.checked);
+      if(confirmedQuota())show('standby','All 12 nodes: confirmed provider quota standby (published observation)',confirmedQuota());
+      else show(null,value.label,value.checked);
     }
     finally{pending=false;if(!document.hidden)timer=setTimeout(refresh,interval);}
   }
