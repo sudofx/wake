@@ -54,7 +54,7 @@
     }
     pending=true;
     // Never leave a green observation on screen while a new read is unresolved.
-    show(null,'Checking hosted execution');
+    if(!confirmedQuota())show(null,'Checking hosted execution');
     try{
       const [workflow,result]=await Promise.all([read(base),read(`${base}/runs?branch=master&per_page=5`)]);
       if(!['active','disabled_manually','disabled_inactivity','disabled_fork'].includes(workflow.state) || !Array.isArray(result.workflow_runs))throw new Error('Invalid status');
@@ -77,7 +77,8 @@
     }catch{
       const value={state:null,label:'Status unavailable; open GitHub for details',checked:Date.now()};
       try{localStorage.setItem(key,JSON.stringify(value));}catch{}
-      show(null,value.label,value.checked);
+      if(confirmedQuota())show('standby','All 12 nodes: confirmed provider quota standby (published observation)',confirmedQuota());
+      else show(null,value.label,value.checked);
     }
     finally{pending=false;if(!document.hidden)timer=setTimeout(refresh,interval);}
   }
