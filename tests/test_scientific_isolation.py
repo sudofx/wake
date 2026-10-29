@@ -61,6 +61,8 @@ def experiment(inputs):
                 r=self.run_code(source,seconds)
                 self.assertEqual(r['status'],'failed',r)
                 self.assertIn('reason',r)
+                self.assertIn('captured_stdout_digest',r['diagnostics'])
+                self.assertLessEqual(len(r['diagnostics']['stdout_prefix']),4096)
     def test_process_limit_prevents_unbounded_child_creation(self):
         r=self.run_code('''import os,time
 def experiment(inputs):

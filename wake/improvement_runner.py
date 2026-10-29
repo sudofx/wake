@@ -6,6 +6,7 @@ an isolation boundary, not proof against container-runtime/kernel vulnerabilitie
 There is intentionally no subprocess-on-host fallback.
 """
 import json
+import hashlib
 import os
 from pathlib import Path
 import re
@@ -147,4 +148,10 @@ def run_program(source, inputs, image_id, *, timeout=20, name=None, runner=RUNNE
                 cleanup_containers([name])
         return {'status': 'failed', 'reason': failure,
                 'cleanup_confirmed': True,
+                'diagnostics': {'stdout_prefix':bytes(output['stdout'][:4096]).decode(errors='replace'),
+                    'stderr_prefix':bytes(output['stderr'][:4096]).decode(errors='replace'),
+                    'captured_stdout_digest':hashlib.sha256(output['stdout']).hexdigest(),
+                    'captured_stderr_digest':hashlib.sha256(output['stderr']).hexdigest(),
+                    'captured_bytes':sum(map(len,output.values())),
+                    'truncated':any(len(value)>4096 for value in output.values())},
                 'wall_seconds': round(time.monotonic() - started, 4)}

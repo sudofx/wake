@@ -156,3 +156,11 @@ reviews retain their original comparison behavior for replay. Native trial
 accounting records per-trial time envelopes. Recovery conservatively charges
 both Pacific days when an effect envelope crosses midnight, rather than lose a
 confirmed or possibly interrupted call after scheduling-cache loss.
+
+Ordinary planning and public request totals include native scientific trial calls;
+trial reservations with unknown transport outcomes remain separately unresolved.
+The same counts enforce per-model limits before ordinary planning resumes, so a
+completed experiment does not restore spent allowance. Failed preparation keeps
+its bounded output and digest. Failed container programs retain bounded stdout
+and stderr prefixes plus captured-stream digests. Missing historical duration
+stays unknown; the audit distinguishes known elapsed time from a complete total.

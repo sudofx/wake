@@ -53,6 +53,8 @@ def build_research_projection(state, events, head, *, generated=None, metrics=No
     generated = generated or datetime.now(timezone.utc).isoformat()
     metrics = metrics or {}
     invocations = sorted(state.get('invocations', {}).values(), key=lambda x: x.get('time', ''))
+    from .provider_pacing import scientific_request_totals
+    trial_requests,unresolved_trials=scientific_request_totals(state)
     completed = [x for x in invocations if x.get('status') in ('accepted', 'rejected', 'deferred', 'failed')]
     outcomes = dict(Counter(x['status'] for x in completed))
     records = {}
@@ -194,8 +196,9 @@ def build_research_projection(state, events, head, *, generated=None, metrics=No
                     'rejection_reasons': sorted(({'reason': k, 'count': v} for k, v in metrics.get('rejection_reasons', {}).items()), key=lambda x: -x['count'])[:6],
                     'hourly': series, 'history_start': completed[0].get('time') if completed else None,
                     'history_end': latest.get('finished') or latest.get('time'),
-                    'provider_requests': sum(x.get('provider_requests_sent', 0) for x in invocations),
-                    'provider_requests_complete': all('provider_requests_sent' in x for x in invocations),
+                    'provider_requests': sum(x.get('provider_requests_sent', 0) for x in invocations)+trial_requests,
+                    'provider_requests_complete': not unresolved_trials and all('provider_requests_sent' in x for x in invocations),
+                    **({'provider_trial_requests':trial_requests,'provider_trial_requests_unresolved':unresolved_trials} if state.get('science') else {}),
                     'storage': deepcopy(metrics.get('storage', {}))},
         'activity': activity, 'activity_total': len(completed),
         'wakes': traces, 'matrix': matrix,

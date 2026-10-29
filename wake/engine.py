@@ -2951,19 +2951,15 @@ class Engine:
                 provider.model_request_limits = None
                 provider.request_limit = len(provider.models)
             elif self.config.get("model_daily_call_limits"):
-                used_by_model = {}
-                for item in state["invocations"].values():
-                    if item["id"] == invocation or not item["charged"] or item["quota_day"] != day:
-                        continue
-                    for attempt in item.get("provider_attempts", []):
-                        if attempt.get('provider_call_made') is False:
-                            continue
-                        model = attempt.get("model")
-                        if model:
-                            used_by_model[model] = used_by_model.get(model, 0) + 1
+                from .provider_pacing import native_usage
+                used_by_model,_=native_usage({**state,'invocations':{
+                    key:item for key,item in state['invocations'].items() if key!=invocation}},day)
                 provider.model_request_limits = {model: max(0, self.config["model_daily_call_limits"].get(model, self.config["daily_call_limit"]) - used_by_model.get(model, 0)) for model in provider.models}
             else:
-                used = sum(charged_request_slots(i) for i in state["invocations"].values() if i["id"] != invocation and i["charged"] and i["quota_day"] == day)
+                from .provider_pacing import native_usage
+                usage,_=native_usage({**state,'invocations':{
+                    key:item for key,item in state['invocations'].items() if key!=invocation}},day)
+                used=sum(usage.values())
                 provider.request_limit = min(len(provider.models), self.config["daily_call_limit"] - used)
             def record_attempt(phase, attempt):
                 self.store.append("provider_attempt_" + phase, {"id": invocation, "attempt": attempt,

@@ -6,6 +6,7 @@ from pathlib import Path
 
 from ..event_format import digest
 from .planner import convergence
+from ..provider_pacing import scientific_request_totals
 
 
 def project(state, head=None):
@@ -13,7 +14,8 @@ def project(state, head=None):
     hypotheses=science.get('hypotheses',{})
     experiments=science.get('experiments',{})
     rows=[]
-    cost=0
+    cost=0;unknown_durations=0
+    trial_requests,unresolved_trials=scientific_request_totals(state)
     for item in experiments.values():
         invocation=state.get('invocations',{}).get(item['invocation'],{})
         delivery=invocation.get('context_delivery',{})
@@ -22,7 +24,12 @@ def project(state, head=None):
             ('mode','memory_digest','delivered_context_chars','delivered_request_chars')}
         evaluation=item.get('evaluation',{})
         attempts=item['attempts']
-        cost+=sum(a.get('receipt',{}).get('wall_seconds',0) for a in attempts)
+        for attempt in attempts:
+            duration=attempt.get('receipt',{}).get('wall_seconds')
+            if duration is None:
+                unknown_durations+=1
+                cost+=sum(t.get('response',{}).get('wall_seconds',0) for t in attempt.get('inference',[]))
+            else:cost+=duration
         rows.append({'id':item['id'],'project':item['project'],
             'proposer':proposer,
             'question':state['projects'][item['project']]['question'],
@@ -57,7 +64,10 @@ def project(state, head=None):
             'open_uncertainties':sum(h.get('investigation_status')!='close' for h in hypotheses.values()),
             'closed_investigations':sum(h.get('investigation_status')=='close' for h in hypotheses.values()),
             'recorded_uncertainties':len(hypotheses),
-            'execution_seconds':round(cost,4),'execution_seconds_per_interpretable_result':cost/interpretable if interpretable else None},
+            'provider_trial_requests':trial_requests,'provider_trial_requests_unresolved':unresolved_trials,
+            'known_execution_seconds':round(cost,4),'unknown_execution_durations':unknown_durations,
+            'execution_seconds':None if unknown_durations else round(cost,4),
+            'execution_seconds_per_interpretable_result':cost/interpretable if interpretable and not unknown_durations else None},
         'limits':['Finite computational evidence does not establish a general theorem or natural-science discovery.',
                   'Closing an investigation is an administrative stop; its recorded scientific uncertainty remains.',
                   'Execution validity, measurement validity, model interpretation and replication are separate fields.',

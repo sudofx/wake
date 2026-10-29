@@ -18,6 +18,7 @@ from .instruments import RUNNER, prepare, evaluate
 TRUSTED_SOURCE_DIGESTS={name:hashlib.sha256((Path(__file__).parent/name).read_bytes()).hexdigest()
     for name in ('workbench.py','contracts.py','state.py','instruments.py','hidden_system.py','correction.py')}
 SOURCE_REVISION=os.environ.get('WAKE_SOURCE_REVISION')
+TRANSPORT_SOURCE_DIGEST=hashlib.sha256((Path(__file__).parent.parent/'improvement_runner.py').read_bytes()).hexdigest()
 
 
 class DockerWorkbench:
@@ -43,6 +44,7 @@ class DockerWorkbench:
                 'output_limit':65536,'runtime_limit_seconds':60,'runner_digest':digest(RUNNER),
                 'receipt_schema':c.EXECUTION,'replication_criterion':'measurement-profile@1',
                 'prediction_comparison':'typed-scalars@1',
+                'transport_source_digest':TRANSPORT_SOURCE_DIGEST,
                 'trusted_source_digests':dict(TRUSTED_SOURCE_DIGESTS),'source_revision':SOURCE_REVISION}
         if self.provider:
             provider=self.trial_provider()
@@ -52,24 +54,29 @@ class DockerWorkbench:
         return environment
 
     def execute(self, item):
+        execution_started=time.monotonic()
         attempt=item['attempts'][-1]
         result=run_program(item['protocol']['source'],attempt['execution_inputs'],item['review']['environment']['image_id'],
             timeout=item['protocol']['budget']['seconds'],name=attempt['containers'][0],runner=RUNNER)
         if item['protocol']['instrument']!='model-comparison' or result['status']!='completed':return result
+        def failed(reason):
+            return {'status':'failed','reason':reason,'wall_seconds':round(time.monotonic()-execution_started,4),
+                'cleanup_confirmed':result['cleanup_confirmed'],
+                'preparation_outputs':result['outputs'],'preparation_outputs_digest':digest(result['outputs'])}
         # Candidate code can prepare data only. It cannot change randomized
         # tasks, prompt conditions, scorer, provider config or paid-call count.
         if result['outputs'] not in (attempt['execution_inputs']['trials'],attempt['execution_inputs']):
-            return {'status':'failed','reason':'Preparation code altered the frozen paired trial inputs'}
+            return failed('Preparation code altered the frozen paired trial inputs')
         from .correction import request
         rows=[]
         try:provider=self.trial_provider(item['review']['environment']['model'])
-        except ValueError as error:return {'status':'failed','reason':str(error)}
+        except ValueError as error:return failed(str(error))
         previous=getattr(provider,'record_attempt',None)
         gate=getattr(provider,'request_gate',None)
         previous_purpose=getattr(gate,'purpose',None) if gate else None
         # One provider implementation/model, one request per trial; no fallback.
         if hasattr(provider,'models') and provider.models!=[provider.model]:
-            return {'status':'failed','reason':'Paired trials require a single model without fallback'}
+            return failed('Paired trials require a single model without fallback')
         try:
             if gate:gate.purpose='experiment'
             for trial in attempt['execution_inputs']['trials']:
@@ -113,7 +120,7 @@ class DockerWorkbench:
                 if self.checkpoint:self.checkpoint()
                 rows.append({'id':trial['id'],'answer':json.loads(raw),'metadata':metadata,'wall_seconds':elapsed})
         except Exception as error:
-            return {'status':'failed','reason':'Inference trial failed: '+type(error).__name__+': '+str(error)[:500]}
+            return failed('Inference trial failed: '+type(error).__name__+': '+str(error)[:500])
         finally:
             if hasattr(provider,'record_attempt'):provider.record_attempt=previous
             if gate:
@@ -121,7 +128,7 @@ class DockerWorkbench:
                     del gate.purpose
                 else:gate.purpose=previous_purpose
         return {'status':'completed','outputs':{'trials':rows},'cleanup_confirmed':result['cleanup_confirmed'],
-                'wall_seconds':sum(r['wall_seconds'] for r in rows)}
+                'wall_seconds':round(time.monotonic()-execution_started,4)}
 
     def cleanup(self, names):
         cleanup_containers(names)

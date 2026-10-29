@@ -59,6 +59,14 @@
     },
     "cleanup_confirmed": {
       "type": "boolean"
+    },
+    "preparation_outputs": {},
+    "preparation_outputs_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "diagnostics": {
+      "type": "object"
     }
   },
   "allOf": [

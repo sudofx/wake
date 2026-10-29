@@ -211,6 +211,9 @@ def reduce(state, event):
         require(receipt.get('protocol_digest')==p['protocol_digest'] and
                 receipt.get('inputs_digest')==item['attempts'][-1]['inputs_digest'], 'Receipt provenance mismatch')
         require(receipt.get('status') in ('completed','failed','interrupted','cleanup_required'), 'Invalid execution status')
+        if 'preparation_outputs' in receipt:
+            require(receipt.get('preparation_outputs_digest')==digest(receipt['preparation_outputs']),
+                    'Preparation output artifact hash mismatch')
         if kind=='experiment_interrupted':
             require(receipt['status'] in ('interrupted','cleanup_required'), 'Recovery cannot invent an execution result')
         else:

@@ -6,6 +6,32 @@ from zoneinfo import ZoneInfo
 PACIFIC=ZoneInfo('America/Los_Angeles')
 
 
+def trial_request_usage(trial):
+    """Known effects and unresolved reservations from one durable trial."""
+    metadata=trial.get('response',{}).get('metadata',{})
+    count=metadata.get('provider_requests_sent')
+    if type(count) is int and count>=0:return count,0
+    attempts=metadata.get('provider_attempts')
+    if not attempts:return 0,1
+    known=unknown=0
+    for attempt in attempts:
+        if attempt.get('provider_call_made') is False:continue
+        if attempt.get('result') in (None,'unknown'):unknown+=1
+        else:known+=1
+    return known,unknown
+
+
+def scientific_request_totals(state):
+    known=unknown=0
+    for experiment in (state.get('science') or {}).get('experiments',{}).values():
+        environment=experiment.get('review',{}).get('environment',{})
+        if not environment.get('provider_charged',environment.get('provider')=='gemini'):continue
+        for attempt in experiment.get('attempts',[]):
+            for trial in attempt.get('inference',[]):
+                calls,unresolved=trial_request_usage(trial);known+=calls;unknown+=unresolved
+    return known,unknown
+
+
 def native_usage(state, day):
     """Recover paid effects from native research and scientific trial receipts.
 
@@ -27,12 +53,12 @@ def native_usage(state, day):
         if not invocation.get('charged') or not intersects(invocation.get('time'),invocation.get('finished'),invocation.get('quota_day')):continue
         attempts=invocation.get('provider_attempts')
         if attempts is None:
-            model=invocation.get('successful_model',invocation['model'])
+            model=invocation.get('successful_model') or invocation['model']
             usage[model]=usage.get(model,0)+charged_request_slots(invocation)
         else:
             for attempt in attempts:
                 if attempt.get('provider_call_made') is False:continue
-                model=attempt.get('model',invocation['model'])
+                model=attempt.get('model') or invocation['model']
                 usage[model]=usage.get(model,0)+1
     for experiment in (state.get('science') or {}).get('experiments',{}).values():
         environment=experiment.get('review',{}).get('environment',{})
@@ -41,10 +67,8 @@ def native_usage(state, day):
             for trial in attempt.get('inference',[]):
                 started=trial.get('started_at',attempt.get('started'))
                 if not intersects(started,trial.get('finished_at',attempt.get('finished'))):continue
-                metadata=trial.get('response',{}).get('metadata',{})
-                transports=metadata.get('provider_attempts')
-                count=(sum(t.get('provider_call_made') is not False for t in transports)
-                       if transports else metadata.get('provider_requests_sent',1))
+                known,unresolved=trial_request_usage(trial)
+                count=known+unresolved
                 model=trial['model']
                 usage[model]=usage.get(model,0)+count
                 features[model]=features.get(model,0)+count

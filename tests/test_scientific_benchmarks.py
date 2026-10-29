@@ -47,6 +47,25 @@ class ScientificBenchmarkTests(ScientificFixtureCase):
         state,_=self.engine.store.audit()
         self.assertEqual(len(state['science']['experiments']['bounded-trial']['attempts'][0]['inference']),1)
         self.assertNotIn('evaluation',state['science']['experiments']['bounded-trial'])
+        from wake.providers import ConfiguredDailyLimitReached
+        class ParentBudgetGuard(CorrectionProviderFixture):
+            charged=True;record_attempt=None;provider_requests_sent=0
+            models=['history-reader'];request_limit=1;model_request_limits=None
+            def propose(inner,request):
+                self.assertEqual(inner.model_request_limits,{'history-reader':0})
+                raise ConfiguredDailyLimitReached('Fixture daily cap; no provider effect')
+        self.engine.config.update(free_tier_confirmed=True,model_daily_call_limits={'history-reader':1})
+        self.assertEqual(self.engine.run(ParentBudgetGuard())['status'],'deferred')
+        from wake.science.projection import project
+        from wake.research_projection import build_research_projection
+        state,head=self.engine.store.audit()
+        public=build_research_projection(state,self.engine.store.events(),head)
+        self.assertEqual(public['metrics']['provider_trial_requests'],1)
+        legacy=deepcopy(state)
+        legacy['science']['experiments']['bounded-trial']['attempts'][0]['receipt'].pop('wall_seconds')
+        metrics=project(legacy)['metrics']
+        self.assertIsNone(metrics['execution_seconds'])
+        self.assertEqual(metrics['unknown_execution_durations'],1)
 
     def test_interrupted_child_trial_retains_responses_and_never_replays_effects(self):
         class InterruptedProvider(CorrectionProviderFixture):
@@ -73,6 +92,8 @@ class ScientificBenchmarkTests(ScientificFixtureCase):
         from datetime import datetime
         day=datetime.fromisoformat(item['attempts'][0]['started']).astimezone(PACIFIC).date().isoformat()
         self.assertEqual(native_usage(state,day)[1],{'history-reader':2})
+        from wake.provider_pacing import scientific_request_totals
+        self.assertEqual(scientific_request_totals(state),(1,1))
 
     def test_hidden_system_negative_then_fixture_revision_and_fresh_holdout(self):
         for instance in (17,81,304):

@@ -30,7 +30,8 @@ EXECUTION={'type':'object','required':['schema','status','protocol_digest','sour
     'properties':{'schema':{'const':c.EXECUTION},'status':{'enum':['completed','failed']},
         **{key:DIGEST for key in ('protocol_digest','source_digest','environment_digest','inputs_digest','outputs_digest')},
         'attempt_id':{'type':'string'},'outputs':{},'reason':TEXT,'wall_seconds':{'type':'number','minimum':0},
-        'output_bytes':{'type':'integer','minimum':0},'cleanup_confirmed':{'type':'boolean'}},
+        'output_bytes':{'type':'integer','minimum':0},'cleanup_confirmed':{'type':'boolean'},
+        'preparation_outputs':{},'preparation_outputs_digest':DIGEST,'diagnostics':{'type':'object'}},
     'allOf':[{'if':{'properties':{'status':{'const':'completed'}}},'then':{'required':['outputs','outputs_digest']}}]}
 EVALUATION={'type':'object','required':['schema','protocol_digest','evaluator','execution_valid','outputs_digest',
     'replication_status','measurement_validity','outcome','metrics'],
