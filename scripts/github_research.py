@@ -305,7 +305,9 @@ class PeriodicPublication:
         self.thread = threading.Thread(target=self.run, daemon=True)
 
     def run(self):
-        while not self.closed.wait(self.interval):
+        # Publish acknowledged startup promptly; the first interval must not
+        # hide a healthy restart behind the previous batch's observations.
+        while not self.closed.is_set():
             try:
                 with tempfile.TemporaryDirectory(prefix='wake-hosted-mirror-') as temporary:
                     publish_hosted_snapshot(self.client, self.root, Path(temporary) / 'site', self.revision)
@@ -314,6 +316,8 @@ class PeriodicPublication:
                 # A concurrent public refresh or transient upload error cannot
                 # stop research. The next interval or final capture retries.
                 print(json.dumps({'hosted_mirror': 'unavailable', 'reason': type(error).__name__}), flush=True)
+            if self.closed.wait(self.interval):
+                break
 
     def close(self, *, wait=True):
         self.closed.set()

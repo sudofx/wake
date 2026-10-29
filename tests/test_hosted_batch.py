@@ -41,6 +41,16 @@ class HostedBatchTests(unittest.TestCase):
             mirror.close()
         publish.assert_called_once()
 
+    def test_first_upload_precedes_the_interval_without_blocking_start(self):
+        mirror = PeriodicPublication(SimpleNamespace(), Path('/fixture'), 'a'*40)
+        with patch.object(mirror.closed, 'wait', return_value=True) as interval, \
+             patch('scripts.github_research.publish_hosted_snapshot') as publish, \
+             redirect_stdout(io.StringIO()):
+            publish.side_effect = lambda *_: self.assertFalse(interval.called)
+            mirror.run()
+        publish.assert_called_once()
+        interval.assert_called_once_with(1800)
+
     def test_partial_start_runs_and_no_ack_fails_after_both_safely_publish(self):
         for acknowledged in (True, False, 'control-failure'):
             with self.subTest(acknowledged=acknowledged), tempfile.TemporaryDirectory() as directory:
@@ -75,6 +85,7 @@ class HostedBatchTests(unittest.TestCase):
                          if acknowledged == 'control-failure' else None, return_value=True), \
                      patch('scripts.github_research.HostedState.from_environment', return_value=transport), \
                      patch('scripts.github_research.subprocess.Popen', return_value=process), \
+                     patch('scripts.github_research.PeriodicPublication') as mirror, \
                      patch('scripts.github_research.ready'), \
                      patch('scripts.github_research.request', side_effect=request), \
                      patch('scripts.github_research.build_public_artifact', side_effect=build), \
@@ -92,6 +103,7 @@ class HostedBatchTests(unittest.TestCase):
                         run_batch(1, 'fixture')
                 self.assertEqual(sleep.call_count, int(acknowledged is True))
                 self.assertEqual(transport.checkpoint_node.call_count, 12)
+                self.assertEqual(mirror.return_value.thread.start.called, acknowledged is not False)
                 process.terminate.assert_called_once()
                 if acknowledged == 'control-failure':
                     upload.assert_not_called()

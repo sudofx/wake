@@ -528,6 +528,9 @@ checkpoint, provider outcome, website upload and Pages serving are separate clai
 ### Read the hosted status light
 
 The header light checks public GitHub Actions metadata without sign-in or a token.
+Hosted batches upload their first snapshot as soon as Start is acknowledged,
+on the independent publication thread, then use the normal thirty-minute interval.
+Startup and research do not wait for that upload; shutdown lets a healthy upload finish.
 Green combines an active hosted batch with recorded node-running observations;
 it does not mean a provider call is in flight or research has been accepted. Yellow
 means queued, stopped, draining, awaiting automatic recovery, or an active batch
