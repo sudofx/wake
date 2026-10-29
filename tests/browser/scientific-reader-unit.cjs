@@ -1,4 +1,6 @@
 'use strict';
+// Run public narrative/metric checks alongside the existing audit-reader checks.
+require('./scientific-story-unit.cjs');
 // No browser or network: isolated transport and safe-DOM contract checks.
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 const {loadReports,renderRecord}=require('../../wake/assets/scientific-research.js');
