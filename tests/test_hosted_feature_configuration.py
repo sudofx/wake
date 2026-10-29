@@ -6,9 +6,11 @@ import base64
 import json
 import tomllib
 import unittest
+import zipfile
+from types import SimpleNamespace
 from unittest.mock import patch
 
-from scripts.configure_hosted_features import FEATURES, configure, feature_configuration, restart
+from scripts.configure_hosted_features import FEATURES, audit, configure, feature_configuration, probe_grounding, restart
 from wake.installation_cli import NODE_IDS
 
 
@@ -155,6 +157,37 @@ class FeatureConfigurationTests(unittest.TestCase):
         restart(client, 31)
         self.assertEqual(client.calls[-1], ('actions/workflows/hosted-control.yml/dispatches', {
             'method': 'POST', 'body': {'ref': 'master', 'inputs': {'action': 'start'}}}))
+
+    def test_audit_reads_only_whitelisted_settings_without_restoring_records(self):
+        transport = Transport()
+        def get_file(_blocks, path):
+            with zipfile.ZipFile(path, 'w') as archive:
+                archive.writestr('config/wake.toml', 'memory_mode = "active"\nresearch_google_search = false\napi_secret = "private fixture"\n')
+        transport.get_file = get_file
+        with patch.object(transport, 'restore') as restore:
+            report = audit(transport)
+        self.assertEqual(report['configured']['memory_mode'], 'active')
+        self.assertFalse(report['configured']['research_google_search'])
+        self.assertNotIn('private fixture', json.dumps(report))
+        self.assertIsNone(transport.saved)
+        restore.assert_not_called()
+
+    def test_grounding_probe_does_not_report_provider_bodies_or_research_progress(self):
+        provider = SimpleNamespace(provider_requests_sent=1, provider_attempts=[{
+            'model': 'fixture', 'result': 'success', 'http_status': 200,
+            'web_evidence': {'search_queries': ['private fixture']},
+            'request_body': 'private fixture', 'response_body': 'private fixture'}])
+        with patch('wake.providers.Gemini', return_value=provider) as constructor, \
+             patch('wake.engine.Engine._run_invocation', return_value={'status': 'planned'}):
+            report = probe_grounding()
+        settings = constructor.call_args.args[0]
+        self.assertTrue(settings['research_google_search'])
+        self.assertEqual(settings['gemini_fallback_models'], [])
+        self.assertEqual(settings['timeout_seconds'], 45)
+        self.assertTrue(report['request_accepted'])
+        self.assertEqual(report['search_query_count'], 1)
+        self.assertFalse(report['hosted_research_progress'])
+        self.assertNotIn('private fixture', json.dumps(report))
 
 
 if __name__ == '__main__':

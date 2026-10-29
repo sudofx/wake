@@ -11,6 +11,7 @@ import sys
 import tempfile
 import time
 import tomllib
+import zipfile
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from scripts.complete_hosted_upgrade import read_policy, writer_outstanding
@@ -26,6 +27,53 @@ FEATURES = {
     'same_wake_research': True,
     'research_quality_policy': True,
 }
+
+
+def audit(transport):
+    """Read only public-feature switches from the private saved configuration."""
+    transport.open()
+    manifest = transport.read_manifest()
+    with tempfile.TemporaryDirectory(prefix='wake-feature-audit-') as directory:
+        path = Path(directory) / 'auxiliary.zip'
+        transport.get_file(manifest['auxiliary'], path)
+        with zipfile.ZipFile(path) as archive:
+            entries = [entry for entry in archive.infolist() if entry.filename == 'config/wake.toml']
+            if len(entries) != 1 or entries[0].file_size > 65536:
+                raise ValueError('A single bounded saved root configuration is required')
+            settings = tomllib.loads(archive.read(entries[0]).decode())
+    keys = (*FEATURES, 'research_google_search', 'observation_mode', 'wait_for_daily_quota_reset',
+            'free_tier_confirmed')
+    return {'installation_id': manifest['installation_id'], 'generation': manifest['generation'],
+            'configured': {key: settings.get(key) for key in keys}, 'native_records_changed': False}
+
+
+def probe_grounding():
+    """One public planning request in a disposable record; never hosted research."""
+    from wake.engine import Engine, config
+    from wake.providers import Gemini
+    from wake.record_store import RecordStore
+    settings = config('wake.toml')
+    settings.update(research_google_search=True, gemini_fallback_models=[], timeout_seconds=45)
+    with tempfile.TemporaryDirectory(prefix='wake-grounding-capability-') as directory:
+        store = RecordStore(Path(directory) / 'probe', initialize_empty=True)
+        engine = Engine(Path(directory) / 'probe', settings, store=store)
+        provider = Gemini(settings)
+        try:
+            with store.lock():
+                engine.initialize()
+                result = engine._run_invocation(provider, phase='planning', question=
+                    'Use Google Search to locate the current official TOML boolean syntax documentation. '
+                    'Return a research plan using the official specification URL.')
+            attempts = getattr(provider, 'provider_attempts', [])
+            return {'kind': 'operator-capability-probe', 'hosted_research_progress': False,
+                    'provider_requests': getattr(provider, 'provider_requests_sent', 0),
+                    'status': result['status'],
+                    'request_accepted': any(item.get('result') == 'success' for item in attempts),
+                    'search_query_count': sum(len(item.get('web_evidence', {}).get('search_queries', [])) for item in attempts),
+                    'attempts': [{key: item.get(key) for key in ('model', 'result', 'http_status', 'category', 'quota_ids')}
+                                 for item in attempts]}
+        finally:
+            store.close()
 
 
 def feature_configuration(original):
@@ -131,11 +179,29 @@ def restart(client, control_run):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--control-run', type=int, required=True)
-    parser.add_argument('--drained-run', type=int, required=True)
+    parser.add_argument('--control-run', type=int)
+    parser.add_argument('--drained-run', type=int)
     parser.add_argument('--restart', action='store_true')
+    parser.add_argument('--audit', action='store_true')
+    parser.add_argument('--probe-grounding', action='store_true')
     args = parser.parse_args()
     client = GitHub(os.environ['GITHUB_REPOSITORY'], os.environ['GH_TOKEN'])
+    if args.audit:
+        result = audit(HostedState.from_environment())
+        policy, _ = read_policy(client)
+        binding = policy['installations'][client.repository]
+        if binding['installation_id'] != result['installation_id']:
+            raise ValueError('Saved configuration differs from the operator installation')
+        result['operator_policy'] = {key: binding.get(key) for key in (
+            'source_revision', 'experimental_research_enabled', 'decision_memory_mode',
+            'autonomous_context_improvement', 'research_expansion_enabled',
+            'research_candidate_catalog_enabled')}
+        if args.probe_grounding:
+            result['grounding_probe'] = probe_grounding()
+        print(json.dumps(result), flush=True)
+        return
+    if args.control_run is None or args.drained_run is None:
+        parser.error('configuration and restart require exact control and drained run IDs')
     if args.restart:
         restart(client, args.control_run)
         return

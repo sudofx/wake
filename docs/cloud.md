@@ -486,6 +486,14 @@ scientific grant is required, and an outstanding writer or changed checkpoint
 prevents configuration. Google Search grounding is a separate provider capability;
 this action does not change its quota-dependent setting.
 
+**Audit hosted feature settings** reads a bounded whitelist of switches from the
+encrypted saved configuration, without restoring records or changing controls.
+Its optional grounding probe makes at most one public planning request using the
+hosted Gemini key in a separate disposable record. It reports transport success
+and search-query counts, never response bodies, private configuration, or research
+progress. This distinguishes a disabled optional tool from an unavailable
+provider capability before changing the live research configuration.
+
 GitHub's workflow token has a shared repository API allowance. Checkpoint transfers
 reserve 100 requests for controls and continuation, waiting for the service's reset
 time before further transfers. Safe reads honor explicit primary-limit or
