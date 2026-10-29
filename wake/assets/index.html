@@ -31,7 +31,7 @@
     </div>
   <nav class="compact-nav" aria-label="Main navigation">
     <a href="#home" data-nav="home">Explore</a>
-    <a href="#discoveries" data-nav="discoveries" data-nav-section="research">Research</a>
+    <a href="scientific-research.html">Experiments</a><a href="#discoveries" data-nav="discoveries" data-nav-section="research">Research</a>
     <a href="#journal" data-nav="journal">Journal</a>
     <a href="#blog" data-nav="blog">Bob’s Blog</a>
     <a href="ant-farm.html">Bob's Ant Farm</a>
@@ -59,7 +59,16 @@
   </div>
 </header>
 <main id="main" tabindex="-1">
-<section id="home" class="view" hidden><div id="pet-home"></div></section>
+<section id="home" class="view" hidden>
+  <div class="science-front" style="margin:2rem 0 1.25rem;padding:clamp(1.5rem,4vw,3rem);border:1px solid var(--line);border-radius:20px;background:var(--surface);display:grid;grid-template-columns:minmax(0,2fr) minmax(150px,1fr);gap:1.5rem;align-items:center">
+    <div><p class="eyebrow">WAKE✳︎ / RESEARCH, OPEN TO INSPECTION</p><h1 style="font-size:clamp(2.3rem,5vw,4rem);line-height:1.07;letter-spacing:-.04em;margin:0 0 1rem">What are we testing? <em style="color:var(--orange)">What did we learn?</em></h1>
+    <p style="max-width:54ch">Follow real hypotheses, executed experiments, independently evaluated measurements, and what happened next. If there are no verified findings, we'll say so.</p>
+    <a class="text-link" href="scientific-research.html">Explore experimental research →</a>
+    <p class="small" style="margin-top:1.2rem">Full experimental records and technical diagnostics remain available for verification.</p></div>
+    <svg viewBox="0 0 200 210" aria-labelledby="front-figure" role="img" style="width:100%;height:auto;max-width:260px"><title id="front-figure">A hypothesis tested against observed measurements</title><g fill="none" stroke="var(--orange)" stroke-width="2"><circle cx="100" cy="105" r="80" stroke-dasharray="4 6"/><path d="M36 148L70 111L105 128L141 54L173 85"/><circle cx="36" cy="148" r="6" fill="var(--surface)"/><circle cx="70" cy="111" r="6" fill="var(--surface)"/><circle cx="105" cy="128" r="6" fill="var(--surface)"/><circle cx="141" cy="54" r="6" fill="var(--surface)"/><circle cx="173" cy="85" r="6" fill="var(--surface)"/></g></svg>
+  </div>
+  <div id="pet-home"></div>
+</section>
 <section id="discoveries" class="view" hidden><div class="page-heading"><p class="eyebrow">WHAT THE RECORD HAS PRODUCED</p><h1>Discoveries.</h1><p>Research findings translated for people first, with the notebook, evidence, limitations, and exact record one layer deeper.</p></div><div id="discoveries-content"></div></section>
 <section id="topics" class="view" hidden><div class="page-heading"><p class="eyebrow">RESEARCH LANDSCAPE</p><h1>Follow a question.</h1><p>Enter WAKE✳︎ through a subject you care about. Topics connect questions, findings, notebooks, evidence, and recent work.</p></div><div id="topics-content"></div></section>
 <section id="blog" class="view" hidden><div class="page-heading"><p class="eyebrow">BOB’S BLOG</p><h1>Follow a question.<br>See where it leads.</h1><p>Bob is the public byline for selected plain-language explanations of WAKE✳︎ research. Every post points back to governed notebooks, evidence, and history.</p><p><a class="text-link" href="rejected.html">Read rejected &amp; withheld drafts →</a></p></div><div id="blog-content"></div></section>
