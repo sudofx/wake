@@ -62,6 +62,56 @@
     section(doc,article,'Next step and remaining uncertainty',record.next_steps);
     parent.append(article);
   }
+
+  // Public narrative uses only independently recorded fields; never infer discovery from activity.
+  function story(doc, root, node, record) {
+    const article=doc.createElement('article');article.className='study';
+    const eyebrow=doc.createElement('p');eyebrow.className='eyebrow';eyebrow.textContent=node+' · recorded investigation';article.append(eyebrow);
+    const question=doc.createElement('p');question.className='study-question';question.textContent=record.question||'Question not recorded';article.append(question);
+    const revision=record.hypothesis?.revisions?.[(record.protocol?.revision||1)-1];
+    const claim=revision?.definition?.statement;
+    const add=(label,value)=>{
+      const title=doc.createElement('strong');title.textContent=label;article.append(title);
+      const p=doc.createElement('p');p.textContent=value;article.append(p);
+    };
+    add('Hypothesis',claim||'No hypothesis statement recorded.');
+    const evaluation=record.evaluation||{};
+    const validity=evaluation.measurement_validity||'not evaluated';
+    const outcome=evaluation.outcome||'not evaluated';
+    add('Measured outcome',outcome.replaceAll('_',' ')+' · measurement: '+validity.replaceAll('_',' '));
+    const predictions=Array.isArray(evaluation.predictions)?evaluation.predictions:[];
+    const checked=predictions.filter(p=>p.satisfied===true).length;
+    if(predictions.length)add('Frozen predictions checked',checked+' of '+predictions.length+' satisfied under the recorded evaluator.');
+    const steps=Array.isArray(record.next_steps)?record.next_steps:[];
+    add('What changed next',steps.length?'Recorded follow-up decisions: '+steps.length+'. See the audit for whether they were executed.':'No subsequent decision recorded. The effect on future research has not been demonstrated.');
+    const details=doc.createElement('details'),summary=doc.createElement('summary');
+    summary.textContent='Verify experiment, measurement, provenance and interpretation';
+    details.append(summary);const pre=doc.createElement('pre');pre.textContent=JSON.stringify({
+      hypothesis:revision,predictions:record.frozen_predictions,protocol:record.protocol,
+      executions:record.executions,evaluation:record.evaluation,interpretations:record.interpretations,
+      next_steps:record.next_steps,proposer:record.proposer
+    },null,2);details.append(pre);article.append(details);root.append(article);
+  }
+  function metrics(doc,root,reports){
+    const keys=[
+      ['Falsifiable hypotheses','falsifiable_hypotheses'],
+      ['Completed executions','completed_executions'],
+      ['Validated measurements','valid_measurements'],
+      ['Revisions after negative evidence','revisions_after_negative_evidence'],
+      ['Independently replicated','successful_replications'],
+      ['Verified revisions','verified_hypothesis_revisions']
+    ];
+    root.replaceChildren();
+    const totals=Object.create(null);
+    for(const {data} of reports)for(const [,key] of keys)totals[key]=(totals[key]||0)+(Number(data.metrics?.[key])||0);
+    for(const [label,key] of keys){
+      const card=doc.createElement('div');card.className='card';
+      const value=doc.createElement('strong');value.textContent=String(totals[key]||0);
+      const name=doc.createElement('span');name.textContent=label;
+      card.append(value,name);root.append(card);
+    }
+  }
+
   if(typeof module==='object' && module.exports)module.exports={loadReports,renderRecord};
   if(typeof window==='undefined')return;
   const read=async path=>{
@@ -80,6 +130,18 @@
   const node=window.WAKE_DEPLOYMENT?.public_data?.prefix?.match(/^nodes\/([^/]+)\/$/)?.[1] ||
     new URL(location.href).pathname.match(/\/nodes\/(10[0-3]\.wake|20[0-3]\.wake|30[0-3]\.wake)\/scientific-research\.html$/)?.[1] || null;
   loadReports(read,{node}).then(({manifest,reports,unavailable,absent})=>{
+    const stories=document.getElementById('science-stories');
+    const highlights=document.getElementById('science-highlights');
+    if(stories && highlights){
+      metrics(document,highlights,reports);
+      const studies=reports.flatMap(({node,data})=>(data.investigations||[]).map(record=>({node,record})));
+      if(!studies.length){
+        const p=document.createElement('p');
+        p.textContent='No completed scientific investigations are published in this snapshot. No discovery is claimed.';
+        stories.append(p);
+      } else for(const {node,record} of studies.slice(-40).reverse())story(document,stories,node,record);
+    }
+
     for(const {node,data} of reports){
       if(data.schema!=='wake-scientific-audit@1' || !Array.isArray(data.investigations))throw Error('Unsupported scientific report');
       section(document,parent,node+' · record provenance',data.source,true);
