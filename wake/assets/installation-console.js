@@ -112,6 +112,10 @@
   const nodes=data.nodes.filter(validNode).slice(0,100);buildPicker(nodes,data);if(!dashboard)return;
   get('installation-name').textContent='wake';
   get('installation-freshness').textContent=`${data.live===true?'Local installation snapshot':'Last uploaded data · dated snapshot'} · ${stamp(data.generated)} · ${age(data.generated)}`;
+  const aggregate=aggregateStatus(data);
+  let health=get('installation-state-summary');
+  if(!health){health=el('p',undefined,'installation-state-summary');health.id='installation-state-summary';health.setAttribute('role','status');get('installation-freshness').after(health);}
+  health.textContent=aggregate.description+(aggregate.checked?` · observed ${stamp(aggregate.checked)}`:'');
   const available=nodes.filter(n=>n.available===true&&n.research);
   const values=available.map(n=>number(n.research.status?.accepted_cycles??n.snapshot?.version));
   const total=values.every(v=>v!==null)?values.reduce((a,b)=>a+b,0):null;
@@ -129,9 +133,10 @@
    const outcomeText=known?['accepted','rejected','deferred','failed'].map(key=>`${key} ${count(outcomes[key])}`).join(' · '):'Unavailable';
    const snapshotCell=el('td');snapshotCell.append(el('span',known?age(snapshot.generated||research.generated):'Unavailable'));
    if(known)snapshotCell.append(el('small',`Version ${count(snapshot.version??research.version)} · head ${snapshot.head||research.head||'unknown'}`));
-   [data.live===true?state:'Not live',known?count(status.accepted_cycles??snapshot.version):'—',known?(typeof status.pending==='boolean'?(status.pending?'Yes':'No'):'Unknown'):'—',outcomeText].forEach(text=>row.append(el('td',text)));row.append(snapshotCell);rows.append(row);
+   [data.live===true?state:`${stateNames[pickerState(node,data).state]||'Unknown'} · recorded`,known?count(status.accepted_cycles??snapshot.version):'—',known?(typeof status.pending==='boolean'?(status.pending?'Yes':'No'):'Unknown'):'—',outcomeText].forEach(text=>row.append(el('td',text)));row.append(snapshotCell);rows.append(row);
    if(!known){listItem(watch,node,'Snapshot unavailable.','No counts inferred; the node’s record may still exist.');return;}
    if(data.live===true&&stale(snapshot.generated||research.generated))listItem(watch,node,'Snapshot is stale or its age is unknown.',`Last export: ${stamp(snapshot.generated||research.generated)}.`);
+   if(pickerState(node,data).state==='blocked')listItem(watch,node,data.live===true?'Research is blocked.':'Blocked at the last status upload.',`Observed ${stamp((data.live===true?runtime:node.recorded_runtime)?.observed_at)}.`);
    if(status.pending===true)listItem(watch,node,'An attempt is pending in the record.','Pending is not accepted progress or proof of an active API call.');
    const recent=Array.isArray(research.activity)?research.activity:[];
    if(recent.slice(0,3).filter(a=>a.status==='failed').length>=2)listItem(watch,node,'Multiple recent recorded failures.','Inspect the receipts to distinguish provider errors from other failures.');

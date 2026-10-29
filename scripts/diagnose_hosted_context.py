@@ -36,7 +36,7 @@ try:
     if store.load().get('pending') is not None:
         result['status']='pending_invocation_not_modified'
     else:
-        invocation,request=engine.start('diagnostic','no-provider',False,phase=phase)
+        invocation,request=engine.start('gemini',settings['model'],False,phase=phase)
         result.update(status='fits',input_chars=provider_input_chars(request))
 except Exception as error:
     reason=str(error)
@@ -58,10 +58,14 @@ def probe_node(source, record, config, *, node, runner=subprocess.check_output):
             with sqlite3.connect(record.resolve().as_uri() + '?mode=ro', uri=True) as before:
                 with sqlite3.connect(destination / 'wake.sqlite') as after:
                     before.backup(after)
-            env = {key: os.environ[key] for key in ('PATH', 'LANG', 'LC_ALL', 'TZ') if key in os.environ}
+            env = {key: os.environ[key] for key in ('PATH', 'LANG', 'LC_ALL', 'TZ', 'LD_LIBRARY_PATH', 'DYLD_LIBRARY_PATH') if key in os.environ}
             env.update(PYTHONPATH=str(source.resolve()), PYTHONDONTWRITEBYTECODE='1',
                        HOME=temporary, WAKE_DEV_RELOAD='false', WAKE_GROUP_INSTANCE=node,
                        WAKE_PARENT_HOSTNAME='' if node[:3].endswith('00') else node[0] + '00.wake')
+            parent = node[0] + '00.wake'
+            topics = config.parent / '.wake-runner-topics' / (parent + '.toml')
+            if topics.is_file():
+                env['WAKE_GROUP_TOPIC_FILE'] = str(topics)
             try:
                 output = runner([sys.executable, '-c', PROGRAM, str(destination), str(config), phase],
                                 cwd=source, env=env, text=True, timeout=600, stderr=subprocess.PIPE)
@@ -103,8 +107,19 @@ def main():
             selected = [entry for entry in archive.infolist() if entry.filename == 'config/wake.toml']
             if len(selected) != 1 or selected[0].file_size > 1_000_000:
                 raise ValueError('Bounded saved configuration required')
-            configuration = root / 'wake.toml'
-            configuration.write_bytes(archive.read(selected[0]))
+            required = {'config/wake.toml', 'config/research-topics.toml',
+                        'config/.wake-runner-topics/' + args.node[0] + '00.wake.toml'}
+            found = set()
+            for entry in archive.infolist():
+                if entry.filename not in required:
+                    continue
+                if entry.filename in found or entry.file_size > 1_000_000:
+                    raise ValueError('Duplicate or oversized saved configuration')
+                found.add(entry.filename)
+                target = root / entry.filename
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_bytes(archive.read(entry))
+            configuration = root / 'config/wake.toml'
         result = {'schema':'wake-context-capacity-diagnostic@1','installation_id':manifest['installation_id'],
                   'generation':manifest['generation'],'captured_at':manifest['captured_at'],
                   'node':args.node,'source_revision':revision,'remote_record_writes':0,

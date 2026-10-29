@@ -27,3 +27,5 @@
 #installation-freshness{color:var(--muted);font-size:12px}
 .installation-page .research-footer{display:flex;gap:20px;flex-wrap:wrap}
 @media(max-width:700px){.installation-page main{padding:18px 12px}.installation-intro{align-items:stretch;flex-direction:column;gap:12px}.installation-summary{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.installation-summary>div{padding:13px}.installation-columns{grid-template-columns:1fr;gap:0}.installation-table td,.installation-table th{padding:12px}.installation-table tr[data-role=child] td:first-child{padding-left:22px}.installation-receipts li{grid-template-columns:1fr;gap:4px}}
+
+.installation-state-summary{color:var(--text);font-size:14px;line-height:1.55;margin:10px 0 18px}
