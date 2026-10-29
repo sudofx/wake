@@ -92,7 +92,7 @@
       next_steps:record.next_steps,proposer:record.proposer
     },null,2);details.append(pre);article.append(details);root.append(article);
   }
-  function metrics(doc,root,reports){
+  function metrics(doc,root,reports,chart){
     const keys=[
       ['Falsifiable hypotheses','falsifiable_hypotheses'],
       ['Completed executions','completed_executions'],
@@ -104,6 +104,21 @@
     root.replaceChildren();
     const totals=Object.create(null);
     for(const {data} of reports)for(const [,key] of keys)totals[key]=(totals[key]||0)+(Number(data.metrics?.[key])||0);
+    if(chart){
+      chart.replaceChildren();
+      const max=Math.max(1,...keys.map(([,key])=>totals[key]||0));
+      for(const [label,key] of keys){
+        const row=doc.createElement('div');row.className='metric-row';
+        const name=doc.createElement('span');name.textContent=label;
+        const track=doc.createElement('div');track.className='metric-track';
+        const fill=doc.createElement('div');fill.className='metric-fill';
+        fill.style.width=((totals[key]||0)/max*100).toFixed(1)+'%';
+        track.append(fill);
+        const value=doc.createElement('strong');value.textContent=String(totals[key]||0);
+        row.append(name,track,value);chart.append(row);
+      }
+      chart.setAttribute('aria-label','Reported counts in this snapshot: '+keys.map(([label,key])=>label+' '+(totals[key]||0)).join('; '));
+    }
     for(const [label,key] of keys){
       const card=doc.createElement('div');card.className='card';
       const value=doc.createElement('strong');value.textContent=String(totals[key]||0);
@@ -112,7 +127,7 @@
     }
   }
 
-  if(typeof module==='object' && module.exports)module.exports={loadReports,renderRecord};
+  if(typeof module==='object' && module.exports)module.exports={loadReports,renderRecord,story,metrics};
   if(typeof window==='undefined')return;
   const read=async path=>{
     const response=await (window.WakePublicData?.fetch || fetch)(path,{
@@ -133,11 +148,11 @@
     const stories=document.getElementById('science-stories');
     const highlights=document.getElementById('science-highlights');
     if(stories && highlights){
-      metrics(document,highlights,reports);
+      metrics(document,highlights,reports,document.getElementById('science-chart'));
       const studies=reports.flatMap(({node,data})=>(data.investigations||[]).map(record=>({node,record})));
       if(!studies.length){
         const p=document.createElement('p');
-        p.textContent='No completed scientific investigations are published in this snapshot. No discovery is claimed.';
+        p.textContent='No scientific investigations are published in this snapshot. No discovery is claimed.';
         stories.append(p);
       } else for(const {node,record} of studies.slice(-40).reverse())story(document,stories,node,record);
     }
