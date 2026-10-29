@@ -1,0 +1,42 @@
+name: WAKE — Enable published research features
+on:
+  workflow_dispatch:
+    inputs:
+      control_run:
+        description: Exact successful stop control which owns this configuration.
+        type: string
+        required: true
+      drained_run:
+        description: Exact worker to drain and preserve before configuration.
+        type: string
+        required: true
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: wake-hosted-feature-configuration
+  cancel-in-progress: false
+jobs:
+  configure:
+    if: github.ref_name == 'master'
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_REPOSITORY: ${{ github.repository }}
+      CONTROL_RUN: ${{ inputs.control_run }}
+      DRAINED_RUN: ${{ inputs.drained_run }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - run: python -m pip install --disable-pip-version-check -e '.[hosted]'
+      - name: Preserve drained records and enable published research features
+        env:
+          WAKE_HOSTED_STATE_KEY: ${{ secrets.WAKE_HOSTED_STATE_KEY }}
+          WAKE_HOSTED_STATE_DIR: /tmp/wake-feature-configuration
+        run: python scripts/configure_hosted_features.py --control-run "$CONTROL_RUN" --drained-run "$DRAINED_RUN"
+      - name: Resume research unless a newer operator control superseded this request
+        if: always() && !cancelled()
+        run: python scripts/configure_hosted_features.py --control-run "$CONTROL_RUN" --drained-run "$DRAINED_RUN" --restart
