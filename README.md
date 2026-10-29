@@ -15,6 +15,13 @@ requests.
 Research is WAKE's first application. It is a useful way to exercise the record and
 governance system; it is not the definition of the WAKE kernel.
 
+The human-facing direction is to help people observe, question, test explanations
+and choose independently. The [optional ant-farm comparison](docs/ant-farm.md#predict-and-compare)
+offers one small example: freeze a prediction, compare two simulated colonies,
+inspect the measurements, and leave freely. It needs no model call or account and
+collects no visitor responses. Whether it improves reasoning beyond the page is
+an [open evaluation question](docs/evaluations/human-reasoning-protocol.md).
+
 The [research expansion](docs/research-expansion.md) now offers sixteen questions:
 the original themes of challenging assumptions, experience-dependent preferences,
 and worthwhile unassigned problems, plus thirteen questions about independent

@@ -120,6 +120,39 @@ replacement requires its inline confirmation; canceling preserves progress.
 The former Bob conversation panel is removed. Watching, digging, feeding,
 tracking ants and saving observations make no provider calls.
 
+## Predict and compare
+
+Open **Observe → Predict and test** for an optional question: does placing food
+closer to the entrance increase delivery to the nest? The separate
+`ant-experiment.html` page runs two disposable copies of the actual `Colony`
+simulation. It never opens a personal save, Bob's checkpoint or a research record.
+
+Choose a prediction, then freeze it with the seed before running. Both colonies
+start with identical workers, tunnels, reserves and random state. Both lose the
+starter patches and receive the same 100 food units; only placement differs.
+After 1,800 steps (180 simulation seconds), the instrument counts deliveries and
+checks conservation across delivered, carried and remaining food. A gap below
+two food units is inconclusive for a directional prediction. The cutoff is an
+illustrative prespecified rule, not a significance test. Repeating a seed repeats
+the run; changing it tests a new starting layout without rewriting an old result.
+
+The page retains the prediction, method and measurements until you leave, with a
+copyable receipt if requested. Published source links pin the presentation
+revision. There are no provider calls, storage writes, telemetry or external data
+reads. Stop cancels the remaining computation; leaving requires no confirmation.
+Personal/shared farms continue to use their existing independent contracts.
+
+The result describes the simulation, not real ants or improved human reasoning.
+An optional final prompt suggests comparing explanations outside the screen.
+See the [human-reasoning evaluation protocol](evaluations/human-reasoning-protocol.md)
+for how educational benefit could later be tested. No human-study data is
+collected by this feature.
+
+Run `node --test tests/browser/ant-experiment-unit.cjs` for deterministic comparison,
+contradicted/inconclusive outcomes, corruption rejection and cancellation/privacy
+guardrails. These offline checks do not establish browser accessibility or
+physical-phone acceptance.
+
 The unzoomed farm is a thin indoor container on a wooden table in front of a
 window. At 1× the scenery follows local wall time, with continuous dawn/dusk
 lighting; faster speeds add their extra elapsed time to the scenery. The ant

@@ -18,18 +18,24 @@ class AntFarmTests(unittest.TestCase):
                                                'events': []}, browser_only=True)
             mirror = Path(directory) / 'public'
             _copy_public_site(site, mirror)
-            for name in ('ant-farm.css', 'ant-colony.js', 'ant-drawing.js', 'ant-farm.js', 'bob-ant-farm.js'):
+            for name in ('ant-farm.css', 'ant-colony.js', 'ant-drawing.js', 'ant-farm.js', 'bob-ant-farm.js', 'ant-experiment.css', 'ant-experiment.js'):
                 self.assertEqual((mirror / name).read_bytes(), (site / name).read_bytes())
             habitat = (mirror / 'ant-farm.html').read_text()
             self.assertIn('window.WAKE_DEPLOYMENT=', habitat)
             self.assertNotIn('runtime-activity.js', habitat)
             self.assertNotIn('masthead.css', habitat)
             self.assertIn('snapshot_only', habitat)
+            experiment = (mirror / 'ant-experiment.html').read_text()
+            self.assertIn('href="ant-experiment.html"', habitat)
+            self.assertIn('window.WAKE_DEPLOYMENT=', experiment)
+            self.assertNotIn('runtime-activity.js', experiment)
+            self.assertNotIn('public-data.js', experiment)
+            self.assertNotIn('masthead.css', experiment)
             self.assertIn('href="ant-farm.html"', (mirror / 'index.html').read_text())
             self.assertIn('href="ant-farm.html"', (mirror / 'blog.html').read_text())
 
     @unittest.skipUnless(shutil.which('node'), 'Node is required')
     def test_colony_mechanisms_and_resume(self):
-        result = subprocess.run(['node', '--test', str(Path(__file__).parent / 'browser/ant-colony.cjs'), str(Path(__file__).parent / 'browser/ant-storage.cjs'), str(Path(__file__).parent / 'browser/bob-ant-farm.cjs')],
+        result = subprocess.run(['node', '--test', str(Path(__file__).parent / 'browser/ant-colony.cjs'), str(Path(__file__).parent / 'browser/ant-storage.cjs'), str(Path(__file__).parent / 'browser/bob-ant-farm.cjs'), str(Path(__file__).parent / 'browser/ant-experiment-unit.cjs')],
                                 capture_output=True, text=True)
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)

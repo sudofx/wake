@@ -90,7 +90,8 @@ def bind_hosted_status(site, repository, revision):
             deployment.pop('ask_bob', None)
             deployment_path.write_text(json.dumps(deployment))
     # Personal colonies stay browser-local; Bob’s dedicated shared checkpoint is a separate read-only presentation.
-    farm_assets=('ant-farm.css','ant-colony.js','ant-drawing.js','ant-farm.js','bob-ant-farm.js')
+    farm_assets=('ant-farm.css','ant-colony.js','ant-drawing.js','ant-farm.js','bob-ant-farm.js',
+                 'ant-experiment.css','ant-experiment.js')
     for root in roots:
         for name in farm_assets:
             shutil.copyfile(assets/name,root/name)
@@ -102,6 +103,8 @@ def bind_hosted_status(site, repository, revision):
         deployment.pop('ask_bob', None)
         farm=(assets/'ant-farm.html').read_text().replace('<head>', '<head><script>window.WAKE_DEPLOYMENT='+json.dumps(deployment)+';</script>',1)
         (root/'ant-farm.html').write_text(farm)
+        experiment=(assets/'ant-experiment.html').read_text().replace('<head>', '<head><script>window.WAKE_DEPLOYMENT='+json.dumps({**deployment, 'presentation_revision': revision})+';</script>',1)
+        (root/'ant-experiment.html').write_text(experiment)
     from .reader_presentation import refresh_public_reader
     for root in roots:
         refresh_public_reader(root)
@@ -133,7 +136,7 @@ def bind_hosted_status(site, repository, revision):
         deployment_path.write_text(json.dumps(deployment))
         for page_path in root.rglob('*.html'):
             relative=page_path.relative_to(root)
-            if 'inspect' in relative.parts or 'nodes' in relative.parts or 'self-correction' in relative.parts:
+            if 'inspect' in relative.parts or 'nodes' in relative.parts or 'self-correction' in relative.parts or page_path.name=='ant-experiment.html':
                 continue
             page=page_path.read_text()
             if 'window.WAKE_DEPLOYMENT=' in page:

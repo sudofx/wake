@@ -471,7 +471,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         # the same theme file rather than receiving copied inline palettes.
         for name in ("style.css", "nav.css", "map.css", "map3d.css", "theme.css",
                      "nav.js", "map.js", "map3d.js", "flat-view.js", "app.js", "pet.js",
-                     "evaluation-view.js", "scientific-research.html", "scientific-research.js", "ant-farm.html", "ant-farm.css", "ant-colony.js", "ant-drawing.js", "ant-farm.js", "bob-ant-farm.js"):
+                     "evaluation-view.js", "scientific-research.html", "scientific-research.js", "ant-experiment.html", "ant-experiment.css", "ant-experiment.js", "ant-farm.html", "ant-farm.css", "ant-colony.js", "ant-drawing.js", "ant-farm.js", "bob-ant-farm.js"):
             atomic_write(target / name, (assets / name).read_text())
         shutil.copytree(assets / 'self-correction', target / 'self-correction', dirs_exist_ok=True)
         # Static Nebula artwork is presentation-only. Publish the responsive
@@ -742,9 +742,9 @@ def _deployment_site(target, *, standalone, installation=None, pages=None):
     header = re.sub(r'href="#([^"]+)"', r'href="index.html#\1"', header)
     for path in target.rglob('*.html') if pages is None else pages:
         page = path.read_text()
-        # The immersive toy habitat owns its canvas and controls. It needs the
+        # The colony and its disposable experiment own their controls. They need the
         # deployment binding, not the research masthead or runtime observers.
-        if path.name in ('ant-farm.html',) or 'self-correction' in path.relative_to(target).parts:
+        if path.name in ('ant-farm.html', 'ant-experiment.html') or 'self-correction' in path.relative_to(target).parts:
             page = re.sub(r'<script>window\.WAKE_(?:DEPLOYMENT|STANDALONE)=[^<]*</script>', '', page)
             page = page.replace('<head>', '<head>' + marker, 1)
             atomic_write(path, page)

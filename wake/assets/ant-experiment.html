@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#171b16">
+<title>A shorter trip? · WAKE✳︎</title><link rel="icon" href="icons/wake.svg" type="image/svg+xml"><link rel="stylesheet" href="ant-farm.css?v=20261028-distance-v1"><link rel="stylesheet" href="ant-experiment.css?v=20261028-distance-v1">
+<script src="ant-colony.js?v=20261028-distance-v1" defer></script><script src="ant-experiment.js?v=20261028-distance-v1" defer></script></head>
+<body class="experiment-page"><main class="experiment-sheet">
+<nav aria-label="Return"><a href="ant-farm.html">← Back to the farm</a><a href="index.html">WAKE✳︎</a></nav>
+<p class="eyebrow">A SMALL INVESTIGATION</p><h1>A shorter trip?</h1>
+<p class="lead">Will more food reach the nest if the same food is placed closer to its entrance?</p>
+<p>Try two separate copies of the farm’s simulation. Both start with the same workers, tunnels and reserves. Only the food location changes. Your saved farm and Bob’s farm are untouched.</p>
+<form id="prediction-form" novalidate>
+<fieldset><legend>Before you test, what do you expect?</legend>
+<label><input type="radio" name="prediction" value="near"> The closer patch will deliver more.</label>
+<label><input type="radio" name="prediction" value="far"> The farther patch will deliver more.</label>
+<label><input type="radio" name="prediction" value="similar"> There will be little difference.</label></fieldset>
+<details><summary>Inspect the method before running</summary>
+<p>The original two food patches are removed in both copies. Each gets 100 food units, with the same sugar/protein mix. One patch is placed at the original entrance, the other near the opposite edge. Nest reserves stay the same.</p>
+<p>Each copy runs 1,800 fixed steps: three simulation minutes. We count food units actually delivered to the nest, not ants near a patch. A gap of two units is the preset rule for a directional result; a smaller gap leaves that question inconclusive. This is an illustrative cutoff, not a statistical significance test.</p>
+<p>The seed fixes the starting layout and random sequence. Repeating it reproduces the comparison. Different locations can make later behavior and random draws diverge. This is one controlled example, not a general finding.</p>
+<label class="seed-label" for="experiment-seed">Colony seed</label><input id="experiment-seed" type="number" inputmode="numeric" min="1" max="4294967295" step="1" value="481" aria-describedby="seed-help"><p id="seed-help" class="small">Use the same seed to repeat a run. Trying a different seed tests how far the finding holds.</p>
+<p>Inspect the <a data-experiment-source href="https://github.com/sudofx/wake/blob/master/wake/assets/ant-colony.js">colony rules</a> and <a data-experiment-source href="https://github.com/sudofx/wake/blob/master/wake/assets/ant-experiment.js">comparison and counting rules</a>. On the published site these links identify the exact presentation revision. Unbound local previews link to current source.</p></details>
+<button type="submit" id="run-test" disabled>Freeze prediction &amp; run</button></form>
+<button id="stop-test" type="button" hidden disabled>Stop comparison</button>
+<div class="experiment-progress"><label id="progress-label" for="experiment-progress">0 of 180 simulation seconds</label><progress id="experiment-progress" value="0" max="1800"></progress></div>
+<p id="experiment-status" role="status">The experiment is unavailable until its scripts load. If this remains, reload the page.</p>
+<section id="result" hidden aria-labelledby="result-title"><h2 id="result-title" tabindex="-1"></h2>
+<p>Your frozen prediction: <strong id="frozen-prediction"></strong></p>
+<table><caption>Food delivered after three simulation minutes</caption><thead><tr><th scope="col">Food placement</th><th scope="col">Food units</th></tr></thead><tbody><tr><th scope="row">Closer to the entrance</th><td id="near-result"></td></tr><tr><th scope="row">Farther from the entrance</th><td id="far-result"></td></tr></tbody></table>
+<p id="result-detail"></p><details><summary>Inspect this run’s evidence</summary><p id="method-result"></p><button id="save-result" type="button" disabled>Show copyable result</button><div id="result-copy" hidden><pre id="result-text" tabindex="0" aria-label="Copyable experiment result"></pre></div></details>
+<p>What else might explain it? Travel time, initial worker positions, local food sensing and trail signals can all matter. This test changes location; it does not isolate each mechanism.</p>
+<p>These are measurements of a simplified simulation. They do not establish how real ants behave, prove that ants understand distance, or show that this activity improves human reasoning.</p>
+<div class="outside"><h3>Take the question outside</h3><p>Pick an ordinary pattern you notice. Think of two possible explanations. What observation would count against each one? You can investigate without this page, and “I don’t know yet” is a useful answer.</p><a href="ant-farm.html">Finish and return to the farm →</a></div></section>
+<p class="small">No account, AI calls, tracking or saved answers. You can stop or leave whenever you choose.</p>
+<noscript><p>This optional comparison needs JavaScript to run the simulation. You can still <a href="ant-farm.html">return to the farm</a> or try the observation question outside.</p></noscript>
+</main></body></html>
