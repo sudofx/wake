@@ -94,7 +94,7 @@ class FeatureConfigurationTests(unittest.TestCase):
         parsed = tomllib.loads(updated)
         self.assertEqual({key: parsed[key] for key in FEATURES}, FEATURES)
         self.assertEqual(before['memory_mode'], 'shadow')
-        self.assertFalse(parsed['research_google_search'])
+        self.assertTrue(parsed['research_google_search'])
         self.assertEqual(parsed['private'], {'value': 'retained', 'inquiry_drive_enabled': False})
         self.assertIn('# Retain comments', updated)
         self.assertEqual(feature_configuration(updated)[0], updated)

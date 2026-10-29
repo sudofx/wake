@@ -475,7 +475,7 @@ control's run ID and the worker's run ID. This operator workflow waits for a
 successful drained checkpoint. It restores and verifies all twelve records, then
 changes only the saved root configuration: active working memory, active decision
 recall, automatic context adaptation, experimental execution, inquiry drive,
-same-wake source collection, and research-quality enforcement. All native database
+same-wake source collection, Google Search discovery, and research-quality enforcement. All native database
 identities, topic settings, provider limits and other saved files remain intact.
 Inquiry drive still requires its twenty completed scored cycles before activation.
 
@@ -483,8 +483,9 @@ The workflow requests the normal Start control after configuration, including on
 failure so an unsuccessful configuration does not silently strand stopped
 research. A newer operator control supersedes that automatic restart. An explicit
 scientific grant is required, and an outstanding writer or changed checkpoint
-prevents configuration. Google Search grounding is a separate provider capability;
-this action does not change its quota-dependent setting.
+prevents configuration. Google Search grounding is enabled for planning, but
+provider quota and availability can still block a request. Configuration does
+not bypass provider limits or establish successful research.
 
 **Audit hosted feature settings** reads a bounded whitelist of switches from the
 encrypted saved configuration, without restoring records or changing controls.

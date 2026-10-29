@@ -25,6 +25,7 @@ FEATURES = {
     'experimental_research_enabled': True,
     'inquiry_drive_enabled': True,
     'same_wake_research': True,
+    'research_google_search': True,
     'research_quality_policy': True,
 }
 
