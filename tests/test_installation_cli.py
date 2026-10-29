@@ -14,6 +14,16 @@ from wake.installation_cli import NODE_IDS, export_records, import_records, veri
 from wake.kernel.record import Record
 
 
+class PublicRuntimeReasonTests(unittest.TestCase):
+    def test_closed_categories_never_publish_arbitrary_worker_error_text(self):
+        from wake.installation_cli import _public_runtime_reason
+        self.assertEqual(_public_runtime_reason({'state':'blocked','reason':'Context ceiling reached; human review required, no model call made'}), 'context_budget')
+        self.assertEqual(_public_runtime_reason({'state':'blocked','reason':'Provider access requires operator repair'}), 'provider_access')
+        self.assertEqual(_public_runtime_reason({'state':'blocked','reason':'SECRET private payload'}), 'needs_attention')
+        self.assertIsNone(_public_runtime_reason({'state':'running','reason':'SECRET private payload'}))
+        self.assertEqual(_public_runtime_reason({'state':'standby','reason':'Shared provider allowance unavailable'}), 'provider_allowance')
+
+
 class InstallationArchiveTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()

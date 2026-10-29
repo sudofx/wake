@@ -161,6 +161,23 @@ def _public_projection(value):
     return value
 
 
+def _public_runtime_reason(runtime):
+    """Publish a closed diagnostic category, never arbitrary exception text."""
+    reason = runtime.get('reason')
+    if runtime.get('state') == 'blocked':
+        if reason == 'Context ceiling reached; human review required, no model call made':
+            return 'context_budget'
+        if reason == 'Provider access requires operator repair':
+            return 'provider_access'
+        return 'needs_attention'
+    if runtime.get('state') == 'standby':
+        if reason in ('Provider API quota reported; retrying on the regular schedule',
+                      'Configured API request limit reached; research resumes at midnight Pacific time',
+                      'Shared provider allowance unavailable'):
+            return 'provider_allowance'
+    return None
+
+
 def _copy_public_site(source: Path, destination: Path):
     from .reader_presentation import retired_reader_asset
     inspection = source / 'inspect'
@@ -404,8 +421,11 @@ def build_public_artifact(root: Path, destination: Path, *, progress=None) -> di
                         from datetime import datetime
                         if datetime.fromisoformat(observed).utcoffset() is None:
                             raise ValueError('Runtime observation needs a timezone')
-                        (pinned / 'nodes' / node / 'recorded-runtime.json').write_text(
-                            json.dumps({'state': state, 'observed_at': observed}))
+                        observation = {'state': state, 'observed_at': observed}
+                        reason_code = _public_runtime_reason(runtime)
+                        if reason_code:
+                            observation['reason_code'] = reason_code
+                        (pinned / 'nodes' / node / 'recorded-runtime.json').write_text(json.dumps(observation))
             except (OSError, ValueError, TypeError):
                 pass
         if not any((pinned / 'nodes' / node / 'site/current').exists() for node in NODE_IDS):

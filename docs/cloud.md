@@ -742,3 +742,10 @@ is reported without being modified. Live peer notes are not reconstructed;
 a successful check does not rule out a later overflow with added peer notes or
 same-wake collected material. Use the reported capture date and generation when
 comparing the result with public node warnings.
+
+
+Uploaded runtime observations may include an optional closed `reason_code`:
+`context_budget`, `provider_access`, `provider_allowance` or `needs_attention`.
+Raw worker reasons, exception text and provider responses are not published.
+The Console displays these dated categories when present; older snapshots keep
+an unknown blocking reason rather than inferring one from unrelated receipts.

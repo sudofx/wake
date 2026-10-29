@@ -52,6 +52,8 @@
   const icon=document.querySelector('.installation-picker-icon');
   if(icon)icon.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><path d="M12 8v4M5 16v-4h14v4"/></svg>';
  }
+ const reasonNames={context_budget:'Request context limit reached',provider_access:'Provider access needs attention',provider_allowance:'Waiting for provider allowance',needs_attention:'Needs attention'};
+ const reasonName=code=>Object.hasOwn(reasonNames,code)?reasonNames[code]:null;
  const stateNames={running:'Running',waiting:'Waiting',idle:'Idle',paused:'Paused',stopped:'Stopped',standby:'Waiting for provider',blocked:'Blocked',unavailable:'Unavailable',unknown:'Unknown',mixed:'Mixed node states'};
  function pickerState(node,data){
   if(data.disconnected)return {state:'unknown',description:'Current status unavailable; connection lost'};
@@ -68,8 +70,9 @@
     Number.isFinite(observed) && observed<=Date.now()+60000 && Date.now()-observed<30*60000 &&
     Number.isFinite(attempted) && attempted<=Date.now()+60000 && Date.now()-attempted<30*60000;
   const state=quota?'standby':raw;
+  const detail=reasonName(runtime.reason_code)?` · ${reasonName(runtime.reason_code)}`:'';
   return {state,description:quota?`Last uploaded research: Provider quota standby; worker stopped · observed ${stamp(runtime.observed_at)}`:
-    state==='unknown'?'No uploaded status available':`Last uploaded status: ${stateNames[state]} · observed ${stamp(runtime.observed_at)}`};
+    state==='unknown'?'No uploaded status available':`Last uploaded status: ${stateNames[state]}${detail} · observed ${stamp(runtime.observed_at)}`};
  }
  function aggregateStatus(data){
   const nodes=(data?.nodes||[]).filter(validNode),states=nodes.map(node=>pickerState(node,data));
@@ -136,7 +139,7 @@
    [data.live===true?state:`${stateNames[pickerState(node,data).state]||'Unknown'} · recorded`,known?count(status.accepted_cycles??snapshot.version):'—',known?(typeof status.pending==='boolean'?(status.pending?'Yes':'No'):'Unknown'):'—',outcomeText].forEach(text=>row.append(el('td',text)));row.append(snapshotCell);rows.append(row);
    if(!known){listItem(watch,node,'Snapshot unavailable.','No counts inferred; the node’s record may still exist.');return;}
    if(data.live===true&&stale(snapshot.generated||research.generated))listItem(watch,node,'Snapshot is stale or its age is unknown.',`Last export: ${stamp(snapshot.generated||research.generated)}.`);
-   if(pickerState(node,data).state==='blocked')listItem(watch,node,data.live===true?'Research is blocked.':'Blocked at the last status upload.',`Observed ${stamp((data.live===true?runtime:node.recorded_runtime)?.observed_at)}.`);
+   if(pickerState(node,data).state==='blocked')listItem(watch,node,data.live===true?'Research is blocked.':'Blocked at the last status upload.',`${reasonName(node.recorded_runtime?.reason_code)||'Blocking reason was not included in this upload'} · observed ${stamp((data.live===true?runtime:node.recorded_runtime)?.observed_at)}.`);
    if(status.pending===true)listItem(watch,node,'An attempt is pending in the record.','Pending is not accepted progress or proof of an active API call.');
    const recent=Array.isArray(research.activity)?research.activity:[];
    if(recent.slice(0,3).filter(a=>a.status==='failed').length>=2)listItem(watch,node,'Multiple recent recorded failures.','Inspect the receipts to distinguish provider errors from other failures.');
