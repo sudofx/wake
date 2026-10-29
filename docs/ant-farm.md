@@ -193,8 +193,10 @@ are presentation changes; saved paths and colony timing are unchanged. The tunne
 network is painted in one joined stroke, including its extra entrances and
 junctions. This avoids the separated stroke caps produced by WebKit.
 
-The exporter ships a dedicated presentation page with deployment binding but no
-research masthead, runtime observer, record transport or control plane. Nothing
+The exporter gives the habitat and its optional experiment the shared site
+masthead and phone menu. They retain their dark palette and farm controls, with
+no research runtime observer, record transport or control plane. The habitat
+reserves space below the fixed masthead, including its expanded view. Nothing
 reads local colony state into native records, research progress, Attention,
 governance or autonomous improvement.
 

@@ -50,7 +50,10 @@ measurements. Keep meaningful limitations readable, not hidden in tiny footnotes
 
 ## Layout
 
-The farm retains its full-height habitat. The experiment is a separate, naturally
+The farm retains its viewport-height habitat below the shared fixed masthead.
+The exporter owns shared navigation; `masthead.css` and `nav.js` own its geometry
+and keyboard/phone menu behavior. The farm and field notebook retain their dark
+palette and omit the inapplicable theme and research-status controls. The experiment is a separate, naturally
 scrolling document, bounded at 740px with 18px phone margins. Its signature is the
 visitor's frozen prediction immediately above the measured comparison. Native
 radio buttons, progress and a two-row table carry the interaction. No dashboard

@@ -40,7 +40,7 @@ class SharedChromeTests(unittest.TestCase):
                         if path.name in ('ant-farm.html', 'ant-experiment.html'):
                             self.assertIn('ant-farm.css', page)
                             self.assertIn('window.WAKE_DEPLOYMENT=', page)
-                            self.assertNotIn('masthead.css', page)
+                            self.assertIn('masthead.css', page)
                             self.assertNotIn('runtime-activity.js', page)
                             continue
                         if 'self-correction' in path.relative_to(site).parts:

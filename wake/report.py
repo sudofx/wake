@@ -742,9 +742,24 @@ def _deployment_site(target, *, standalone, installation=None, pages=None):
     header = re.sub(r'href="#([^"]+)"', r'href="index.html#\1"', header)
     for path in target.rglob('*.html') if pages is None else pages:
         page = path.read_text()
-        # The colony and its disposable experiment own their controls. They need the
-        # deployment binding, not the research masthead or runtime observers.
-        if path.name in ('ant-farm.html', 'ant-experiment.html') or 'self-correction' in path.relative_to(target).parts:
+        # Historical demos retain their own chrome.
+        if 'self-correction' in path.relative_to(target).parts:
+            page = re.sub(r'<script>window\.WAKE_(?:DEPLOYMENT|STANDALONE)=[^<]*</script>', '', page)
+            page = page.replace('<head>', '<head>' + marker, 1)
+            atomic_write(path, page)
+            continue
+        if path.name in ('ant-farm.html', 'ant-experiment.html'):
+            # Share navigation without adding research observers or changing the
+            # colony's fixed dark palette, saved state or simulation controls.
+            shared = re.sub(r'<label class="theme-switch".*?</label>', '', header, flags=re.S)
+            shared = re.sub(r'<a class="actions-light".*?</a>', '', shared, flags=re.S)
+            if '<header class="masthead"' in page:
+                page = re.sub(r'<header class="masthead">.*?</header>', lambda _: shared, page, count=1, flags=re.S)
+            else:
+                page = re.sub(r'(<body[^>]*>)', lambda m: m.group(1) + shared, page, count=1)
+            page = re.sub(r'<link rel="stylesheet" href="masthead\.css[^"]*">', '', page)
+            page = re.sub(r'<script src="nav\.js[^"]*"[^>]*></script>', '', page)
+            page = page.replace('</head>', '<link rel="stylesheet" href="masthead.css?v=20261029-farm-navigation"><script src="nav.js?v=20261029-farm-navigation" defer></script></head>', 1)
             page = re.sub(r'<script>window\.WAKE_(?:DEPLOYMENT|STANDALONE)=[^<]*</script>', '', page)
             page = page.replace('<head>', '<head>' + marker, 1)
             atomic_write(path, page)
