@@ -73,6 +73,12 @@ preparation code. Usage and monetary cost remain unavailable when not reported.
 - A changed hypothesis reuses its stable ID with explicit supersession. An
   experiment always receives a new ID; exact replication copies its protocol.
   A hidden-system holdout seed cannot be reused for follow-up optimization.
+- Context keeps all hypothesis revision identities and a compact, deduplicated
+  set of revealed hidden-system probe observations with experiment provenance,
+  even when older full protocols no longer fit. Conflicting observations remain
+  separate. Hidden mechanisms and holdout labels remain excluded. Essential
+  evidence may exceed the local packing target; the engine's full-request limit
+  still blocks an oversized provider request rather than silently erasing it.
 - Scientific report JSON is generated only when native science state
   exists; the stable audit reader is always exported. They expose recorded results and clearly labelled interpretation.
   They do not establish hosted adoption or physical-device rendering.

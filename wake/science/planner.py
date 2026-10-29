@@ -18,6 +18,10 @@ experiment a new ID. For a revision REUSE the SAME hypothesis action id and set 
 to its existing integer revision. For a NEW hypothesis OMIT supersedes completely.
 For a new experiment OMIT replicates unless copying an evaluated protocol exactly.
 The runtime independently freezes, executes and scores approved work.
+Use revealed_observations from earlier tests when revising an explanation. Check
+that the proposed code implements that explanation consistently on the revealed
+observations. Use the SAME prediction rule for probes and unseen holdout inputs;
+do not write unrelated rules for the two output lists or tune against holdout labels.
 Never claim to have run code or supply an execution receipt. Receive actual results on later
 wakes, distinguish failure/invalid measurement/inconclusive/contradiction/support, retain
 negative evidence, then propose an interpretation, revision, replication, next test, or an
@@ -93,6 +97,29 @@ def configure(store, enabled):
     return store.load()
 
 
+def _revealed_observations(science):
+    """Keep measured probe responses even when older protocols no longer fit.
+
+    Only this evaluator's explicitly revealed probe fields may cross the model
+    boundary. Never copy execution inputs, scorer artifacts or holdout labels.
+    Identical observations retain every source; conflicting values stay separate.
+    """
+    rows = {}
+    for experiment in science['experiments'].values():
+        protocol = experiment['protocol']
+        evaluation = experiment.get('evaluation', {})
+        if (protocol['evaluator']['id'] != 'hidden-relationship@1'
+                or not evaluation.get('execution_valid')
+                or evaluation.get('measurement_validity') != 'validated'):
+            continue
+        for observation in evaluation.get('measurement_details', {}).get('observations', []):
+            row = {'project': experiment['project'], 'instance': protocol['inputs']['instance'],
+                   'x': observation['x'], 'observed': observation['observed']}
+            key = canonical(row)
+            rows.setdefault(key, {**row, 'experiments': []})['experiments'].append(experiment['id'])
+    return list(rows.values())
+
+
 def context(state):
     science=state.get('science')
     if not science or not science['enabled']:
@@ -131,7 +158,8 @@ def context(state):
         'serialization':'Every action definition is a JSON object matching response_schema. Return the outer proposal as JSON with base_version,title,summary,actions. Do not use markdown fences. Use only exact field names and enum values above.',
         'hypotheses':[],'experiments':[],'recent_directions':deepcopy(science.get('directions',[])[-2:]),
         'hypothesis_index':[{'id':h['id'],'project':h['project'],'revision':len(h['revisions']),
-            'status':h['status']} for h in hypotheses],
+            'status':h['status']} for h in science['hypotheses'].values()],
+        'revealed_observations':_revealed_observations(science),
         'experiment_index':[{'id':e['id'],'status':e['status'],'hypothesis':e['protocol']['hypothesis'],
             'revision':e['protocol']['revision']} for e in
             sorted(science['experiments'].values(),key=lambda e:e['accepted_version'])[-16:]],

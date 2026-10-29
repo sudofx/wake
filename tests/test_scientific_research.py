@@ -303,6 +303,40 @@ class AlternatePlannerFixture:
 
 
 class ScientificIntegrationTests(ScientificFixtureCase):
+    def test_context_retains_older_distinct_probes_and_revision_ids_without_hidden_fields(self):
+        from wake.science.planner import context
+        self.propose(); runner=RecordedWorkbench(bad=True)
+        advance(self.engine.store,runner);advance(self.engine.store,runner)
+        state=deepcopy(self.engine.store.load()); science=state['science']
+        original=science['experiments'].pop('e-sort')
+        hypothesis=science['hypotheses']['h-sort']
+        # Synthetic projection inputs exercise clipping and privacy; these are
+        # not measurements from the sorting instrument or a live discovery.
+        for index in range(6):
+            h=deepcopy(hypothesis);h['id']='h-'+str(index)
+            h['revisions'][-1]['accepted_version']=index+100
+            h['revisions'][-1]['definition']['uncertainty']='Unresolved. '*100
+            science['hypotheses'][h['id']]=h
+            e=deepcopy(original);e['id']='probe-'+str(index);e['accepted_version']=index+100
+            e['protocol'].update(hypothesis=h['id'],evaluator={'id':'hidden-relationship@1'},inputs={'instance':81})
+            e['evaluation']['measurement_details']={'observations':[
+                {'x':index,'observed':index*2,'prediction':999},
+                {'x':20,'observed':40,'prediction':999}],
+                'holdout_labels':['PRIVATE-HOLDOUT'], 'mechanism':'PRIVATE-MECHANISM'}
+            science['experiments'][e['id']]=e
+        # Same input with conflicting observations must not be silently merged.
+        science['experiments']['probe-5']['evaluation']['measurement_details']['observations'].append({'x':0,'observed':1})
+        before=deepcopy(state); result=context(state)
+        rows=result['revealed_observations']
+        for index in range(6):
+            self.assertTrue(any(r['x']==index and r['observed']==index*2 and r['experiments']==['probe-'+str(index)] for r in rows))
+        self.assertEqual(next(r for r in rows if r['x']==20)['experiments'],['probe-'+str(i) for i in range(6)])
+        self.assertTrue(any(r['x']==0 and r['observed']==1 for r in rows))
+        self.assertEqual({h['id'] for h in result['hypothesis_index']},set(science['hypotheses']))
+        self.assertLess(len(result['experiments']),6,'Fixture must exercise discarded full protocols')
+        self.assertNotIn('PRIVATE-',json.dumps(rows))
+        self.assertEqual(state,before)
+
     def test_context_pressure_keeps_measured_failure_before_redundant_definitions(self):
         from wake.science.planner import context
         from wake.event_format import canonical
