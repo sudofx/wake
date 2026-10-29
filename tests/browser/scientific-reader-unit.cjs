@@ -1,7 +1,7 @@
 'use strict';
 // No browser or network: isolated transport and safe-DOM contract checks.
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
-const {loadReports,renderRecord}=require('../../wake/assets/scientific-research.js');
+const {loadReports,renderRecord,renderReport}=require('../../wake/assets/scientific-research.js');
 const ids=[100,101,102,103,200,201,202,203,300,301,302,303].map(n=>n+'.wake');
 const head='a'.repeat(64),revision='b'.repeat(40);
 const manifest={schema:1,live:false,installation_id:'fixture',nodes:ids.map(id=>({id,available:true})),
@@ -46,6 +46,22 @@ const report={schema:'wake-scientific-audit@1',source:{head},investigations:[{id
   const nodes=[];const walk=n=>{nodes.push(n);n.children.forEach(walk);};walk(root);
   assert(nodes.some(n=>n.tag==='pre'&&n.textContent.includes('<img')&&n.textContent.includes('alert(1)')));
   assert(!nodes.some(n=>n.tag==='img'||n.tag==='script'));
+  const friendly=new Element('main');
+  renderReport(doc,friendly,'100.wake',{source:{head},metrics:{hypotheses_formulated:1,completed_executions:1},limits:['Synthetic evidence only.'],investigations:[{
+    id:'internal-identity',question:'Does history help correct an error?',evidence_kind:'synthetic_benchmark',
+    hypothesis:{revisions:[{definition:{statement:'Relevant history helps.',uncertainty:'Other tasks remain untested.'}}]},
+    protocol:{revision:1},frozen_predictions:[{metric:'accuracy_gain_B_over_A',operator:'gte',value:.25}],
+    evaluation:{execution_valid:true,measurement_validity:'validated',outcome:'provisionally_supported',replication_status:'not_attempted',
+      metrics:{A_accuracy:.5,B_accuracy:1,C_accuracy:1}},next_steps:[],interpretations:[]}]});
+  const visible=[],technical=[];
+  function inspect(node,inside=false){const hidden=inside||node.tag==='details';(hidden?technical:visible).push(node);node.children.forEach(child=>inspect(child,hidden));}
+  inspect(friendly);
+  assert(!visible.some(n=>n.tag==='pre'),'raw JSON must never be part of the ordinary reading view');
+  assert(visible.some(n=>n.textContent==='50%'));assert(visible.some(n=>n.textContent==='100%'));
+  assert(visible.some(n=>n.textContent.includes('25 percentage points')));
+  assert(!visible.some(n=>/internal-identity|A_accuracy|[a-f0-9]{40}/.test(n.textContent)));
+  assert(visible.some(n=>n.textContent.includes('has not been replicated')));
+  assert(technical.some(n=>n.tag==='pre'&&n.textContent.includes('internal-identity')),'technical evidence remains inspectable');
   // Exercise the real public transport with only fake responses. New audit
   // data must resolve through the same selected immutable commit as readers.
   const location=new URL('https://sudofx.github.io/wake/scientific-research.html?public_revision='+revision);

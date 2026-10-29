@@ -44,7 +44,8 @@ test('visitor flow freezes choices, cancels stale work, and touches no storage o
   submit();input.value='far';while(timers.length)timers.shift()();
   assert.equal(get('frozen-prediction').textContent,e.predictions.near,'the selected prediction is captured before execution');
   assert.match(get('result-title').textContent,/supported/);assert.equal(get('near-result').textContent,'30');
-  get('save-result').events.click();const receipt=JSON.parse(get('result-text').textContent);assert.equal(receipt.prediction,e.predictions.near);assert.equal(receipt.presentation_revision,null);
+  get('save-result').events.click();assert.match(get('result-text').textContent,/30 food units/);assert(!get('result-text').textContent.includes('presentation_revision'));
+  const receipt=JSON.parse(get('technical-result').textContent);assert.equal(receipt.prediction,e.predictions.near);assert.equal(receipt.presentation_revision,null);
   seed.value='-1';submit();assert.match(get('experiment-status').textContent,/whole-number/);assert.equal(timers.length,0);
   seed.value='481';submit();handlers.pagehide();while(timers.length)timers.shift()();assert.equal(get('result').hidden,true);
 });

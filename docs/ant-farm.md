@@ -137,7 +137,9 @@ illustrative prespecified rule, not a significance test. Repeating a seed repeat
 the run; changing it tests a new starting layout without rewriting an old result.
 
 The page retains the prediction, method and measurements until you leave, with a
-copyable receipt if requested. Published source links pin the presentation
+copyable plain-language note if requested. A separately labeled technical record
+retains the machine-readable receipt for researchers and developers, closed by
+default. Published source links pin the presentation
 revision. There are no provider calls, storage writes, telemetry or external data
 reads. Stop cancels the remaining computation; leaving requires no confirmation.
 Personal/shared farms continue to use their existing independent contracts.

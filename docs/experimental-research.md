@@ -165,6 +165,11 @@ its bounded output and digest. Failed container programs retain bounded stdout
 and stderr prefixes plus captured-stream digests. Missing historical duration
 stays unknown; the audit distinguishes known elapsed time from a complete total.
 
+The website reader leads with plain-language questions, predictions, measured
+results, replication status and remaining uncertainty. Raw JSON, code, internal
+identities and hashes stay inside explicitly labeled researcher/developer
+disclosures, closed by default. The canonical JSON export remains complete.
+
 The website audit reader is delivered with the interface, including before the
 first experiment. It reads scientific JSON through the same immutable public
 snapshot as the other readers. Source-only presentation refresh also delivers

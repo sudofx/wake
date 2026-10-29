@@ -58,7 +58,8 @@
     const labels={supported:'Your prediction was supported in this run.',contradicted:'Your prediction was contradicted in this run.',inconclusive:'This run cannot settle your prediction.','matched-small-difference':'You predicted a small difference, and this run matched it.'};
     $('result-title').textContent=labels[verdict];
     $('result-detail').textContent=`Closer minus farther: ${m.difference} food units. ${Math.abs(m.difference)<PROTOCOL.threshold?'The gap is below the preset two-unit threshold. This does not establish that distance has no effect.':'The gap reached the preset two-unit threshold. This does not show that the same outcome holds for other seeds or real ants.'}`;
-    $('method-result').textContent=`Seed ${result.seed}; ${PROTOCOL.model}; ${PROTOCOL.ticks} steps in each colony; food positions ${result.positions.near} and ${result.positions.far} habitat units. All 100 food units in each arm are accounted for as delivered, still outside, or carried.`;
+    $('method-result').textContent=`Both colonies ran for three simulation minutes with the same starting conditions and 100 food units each. We counted food delivered to the nest. Food still outside or being carried is counted separately, so none is missing.`;
+    $('technical-result').textContent=JSON.stringify(last,null,2);
     $('save-result').disabled=false;$('result').hidden=false;$('result-title').focus({preventScroll:true});$('result-title').scrollIntoView({block:'start'});active=null;unlock();status('Comparison complete. There is no next step you have to take.');
   }
   function frame(run,prediction,token){
@@ -88,8 +89,8 @@
   root.addEventListener('pagehide',()=>{generation++;active=null;});
   $('save-result').addEventListener('click',()=>{
     if(!last)return;
-    $('result-text').textContent=JSON.stringify(last,null,2);$('result-copy').hidden=false;
-    status('The complete result is below. Copy it if you want to keep it. Nothing has been uploaded.');
+    $('result-text').textContent=`A shorter trip?\n\nMy prediction: ${last.prediction}\n\nWhat happened: ${last.measurements.near.delivered} food units reached the nest from the closer patch, and ${last.measurements.far.delivered} from the farther patch.\n\n${$('result-title').textContent}\n\nThe colonies started alike, apart from food location, and ran for three simulation minutes. This is one simulation run. It does not establish how real ants behave or what happens in every layout.\n\nTo repeat this starting layout, use ${last.seed}.`;$('result-copy').hidden=false;
+    status('Your short summary is below. Copy it if you want to keep it. Nothing has been uploaded.');
   });
   unlock();status('Ready. Your prediction stays on this page and is never sent anywhere.');
 })(typeof globalThis!=='undefined'?globalThis:this);

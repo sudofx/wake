@@ -79,6 +79,10 @@ No shared CRUD, notification service, account, or locale framework is introduced
 ## Do's and Don'ts
 
 - Explain a result through visible counts and its frozen method.
+- Ordinary visitor views use plain-language questions, findings, measurements and limits.
+  Never display JSON, schema keys, hashes or internal IDs as the default explanation.
+  Raw records and code belong in explicitly labeled researcher/developer disclosures.
+  A visitor's copyable summary is prose, not a serialized technical receipt.
 - Preserve keyboard access, touch targets, reflow and a clear return link.
 - Label simulation, fixture, model interpretation and human-study evidence distinctly.
 - Never present a completion click as proof of learning or an invitation to surveillance.
