@@ -511,7 +511,9 @@ nodes, the priority is waiting, provider standby, paused, stopped, then idle.
 Gray means unavailable observations, not merely a mix of known states. The
 header applies this aggregate while GitHub confirms an active batch, and an
 explicitly disabled workflow remains stopped. Tooltips retain state counts and
-observation times. These colors do not establish live provider calls or accepted
+observation times. The header dates uploaded node observations separately from
+the current GitHub check and identifies observations from a previous batch.
+These colors do not establish live provider calls or accepted
 research progress.
 
 Inspect **WAKE — Research worker** runs and their summaries for source revision,

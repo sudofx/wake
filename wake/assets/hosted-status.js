@@ -62,7 +62,11 @@
     if(value.unavailable || (value.state===null&&!value.activeRun)){showUnavailable(value);return true;}
     const aggregate=window.WakeInstallationAggregate?.(quotaObservation);
     if(value.activeRun && aggregate && aggregate.state!=='unknown'){
-      show(aggregate.state,aggregate.description,aggregate.checked);return true;
+      const previous=quotaObservation?.hosted_execution?.run_id &&
+        String(quotaObservation.hosted_execution.run_id)!==String(value.activeRun);
+      const observed=Number.isFinite(aggregate.checked)?
+        '. '+(previous?'Previous batch observation ':'Published observation ')+new Date(aggregate.checked).toLocaleString():'';
+      show(aggregate.state,'Hosted batch active; '+aggregate.description+observed,value.checked);return true;
     }
     const observed=confirmedQuota();
     if(observed && value.state!=='stopped' && value.state!=='blocked')show('standby','All 12 nodes: confirmed provider quota standby (published observation)',observed);

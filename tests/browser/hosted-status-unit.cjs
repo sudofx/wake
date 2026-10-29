@@ -106,14 +106,20 @@ const tick=()=>new Promise(resolve=>setImmediate(resolve));
    [['standby','idle'],'standby'],[['stopped','stopped'],'stopped'],
    [['unknown','unknown'],'unknown']
   ]){
-   const snapshot={live:false,nodes:states.map((state,i)=>({id:String(i),recorded_runtime:{state,observed_at:new Date().toISOString()}}))};
+   const observed=new Date(Date.now()-3600000).toISOString();
+   const snapshot={live:false,hosted_execution:{run_id:'54'},nodes:states.map((state,i)=>({id:String(i),recorded_runtime:{state,observed_at:observed}}))};
    assert.equal(aggregate(snapshot).state,expected);
    const light={dataset:{},setAttribute(k,v){this[k]=v;},removeAttribute(k){if(k==='data-state')delete this.dataset.state;}};
    const context={window:{WakeInstallationAggregate:aggregate,WakeInstallationSnapshot:snapshot,WAKE_DEPLOYMENT:{hosted_status:{repository:'example/repo',workflow:'research-worker.yml',branch:'master'}},addEventListener(){}},
-    document:{hidden:false,querySelector:()=>light,addEventListener(){}},navigator:{onLine:true},localStorage:{getItem:()=>null,setItem(){}},Date,JSON,AbortController,
+    document:{hidden:false,querySelector:()=>light,addEventListener(){}},navigator:{onLine:true},localStorage:{getItem:()=>null,setItem(k,v){context.saved=v;}},Date,JSON,AbortController,
     setTimeout:()=>0,clearTimeout(){},fetch:async url=>({ok:true,json:async()=>url.includes('/runs?')?{workflow_runs:[{id:55,path:'.github/workflows/research-worker.yml',head_branch:'master',status:'in_progress'}]}:{state:'active'}})};
    vm.runInNewContext(source,context);await tick();
    assert.equal(light.dataset.state,expected==='unknown'?'waiting':expected);
+   if(expected!=='unknown'){
+    assert.match(light['aria-label'],/Hosted batch active/);
+    assert.ok(light['aria-label'].includes('Previous batch observation '+new Date(observed).toLocaleString()),'Old node observations must carry their own full date');
+    assert.ok(light['aria-label'].includes('Checked '+new Date(JSON.parse(context.saved).checked).toLocaleTimeString()),'GitHub check time must not be replaced by the old snapshot time');
+   }
    if(states.length===12)assert.match(light['aria-label'],/10 running, 2 idle/);
   }
  }
