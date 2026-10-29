@@ -29,6 +29,61 @@ establishes accuracy only for its recorded cases. Novelty and acceptance counts 
 '''
 
 
+def _fit_context(result, limit=10000):
+    """Prefer measured consequences over repeated prose and code excerpts.
+
+    Full definitions and protocols remain on the native record. The index keeps
+    revision identities available when an older definition cannot fit.
+    """
+    if len(canonical(result)) <= limit:
+        return result
+    result['context_omissions'] = []
+    for row in result['convergence_evidence']:
+        # These repeat hypothesis uncertainty and the fixed decision rule.
+        row.pop('remaining_uncertainty', None)
+        row.pop('decision_rule', None)
+    result['context_omissions'].append('Repeated convergence prose; see hypothesis definitions and native decisions.')
+    for experiment in result['experiments']:
+        source = experiment['source_excerpt']
+        if len(source) > 320:
+            experiment['source_excerpt'] = source[:320]
+            experiment['source_excerpt_truncated'] = True
+        evaluation = experiment.get('evaluation')
+        if evaluation:
+            # Preserve exact metrics, frozen comparisons and measurement meaning,
+            # including causal subgroups and limits; omit duplicated integrity
+            # metadata. Per-trial detail was already removed above.
+            experiment['evaluation'] = {key: deepcopy(evaluation[key]) for key in
+                ('execution_valid', 'measurement_validity', 'outcome', 'metrics',
+                 'predictions', 'replication_status') if key in evaluation}
+            experiment['evaluation']['measurement_details'] = deepcopy(evaluation.get('measurement_details', {}))
+            experiment['evaluation_details_omitted'] = True
+    # A blocked latest design must not displace the measurements it was meant
+    # to address. Recent evaluated experiments come first under pressure.
+    result['experiments'].sort(key=lambda row: not bool(row.get('evaluation')))
+    while len(canonical(result)) > limit and len(result['hypotheses']) > 1:
+        result['hypotheses'].pop()
+        if 'Older hypothesis definitions; revision identities remain in hypothesis_index.' not in result['context_omissions']:
+            result['context_omissions'].append('Older hypothesis definitions; revision identities remain in hypothesis_index.')
+    while len(canonical(result)) > limit and len(result['experiments']) > 1:
+        result['experiments'].pop()
+        if 'Older experiment details; identities remain in experiment_index.' not in result['context_omissions']:
+            result['context_omissions'].append('Older experiment details; identities remain in experiment_index.')
+    # Optional prose goes before the final measured result, never after it.
+    for field in ('recent_directions', 'convergence_decisions', 'convergence_evidence', 'recent_rejection_feedback'):
+        while len(canonical(result)) > limit and result[field]:
+            result[field].pop(0)
+            marker = 'Older '+field+' omitted; complete history remains on the native record.'
+            if marker not in result['context_omissions']:
+                result['context_omissions'].append(marker)
+    if len(canonical(result)) > limit:
+        # The complete request still has Engine's hard admission check before
+        # a provider effect. Never meet a local size target by erasing the only
+        # observation needed to challenge the next proposal.
+        result['context_target_exceeded'] = True
+    return result
+
+
 def configure(store, enabled):
     state=store.load()
     current=state.get('science')
@@ -75,6 +130,8 @@ def context(state):
         'investigation_decision':{'required':['hypothesis','decision','uncertainty','reason','next_experiment','cost','stop_condition'],'decisions':['continue','suspend','close']}},
         'serialization':'Every action definition is a JSON object matching response_schema. Return the outer proposal as JSON with base_version,title,summary,actions. Do not use markdown fences. Use only exact field names and enum values above.',
         'hypotheses':[],'experiments':[],'recent_directions':deepcopy(science.get('directions',[])[-2:]),
+        'hypothesis_index':[{'id':h['id'],'project':h['project'],'revision':len(h['revisions']),
+            'status':h['status']} for h in hypotheses],
         'experiment_index':[{'id':e['id'],'status':e['status'],'hypothesis':e['protocol']['hypothesis'],
             'revision':e['protocol']['revision']} for e in
             sorted(science['experiments'].values(),key=lambda e:e['accepted_version'])[-16:]],
@@ -112,10 +169,7 @@ def context(state):
             'last_execution':({key:value for key,value in e['attempts'][-1].get('receipt',{}).items()
                               if key in ('status','reason','wall_seconds','outputs_digest')} if e['attempts'] else None)})
     # Protected labels, hidden parameters and scorer artifacts never enter model context.
-    while len(canonical(result))>10000 and (result['experiments'] or result['hypotheses']):
-        if result['experiments']:result['experiments'].pop()
-        else:result['hypotheses'].pop()
-    return result
+    return _fit_context(result)
 
 
 def convergence(science,hypothesis):

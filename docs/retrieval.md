@@ -552,4 +552,12 @@ Enabled experimental research supplies a bounded view of recent hypotheses, immu
 
 A compact scientific experiment index retains recent identities, hypothesis revisions and lifecycle status even when detailed observations or source excerpts are omitted for space. Exact replication references the retained native protocol rather than reconstructing omitted code.
 
+When scientific context reaches its local size target, it retains a recent
+evaluated result before redundant prose, older hypothesis definitions or blocked
+design details. Exact metrics, frozen comparisons and revealed probe observations
+remain together. A hypothesis index preserves stable revision identities for
+omitted definitions, and the context names its omissions. Essential evidence is
+never silently discarded just to meet that local target; the complete request
+still faces the hard provider-input admission check before any model effect.
+
 Controlled scientific CLI benchmarks can select an explicitly recorded scientific focus: their question, memory, constraints and native scientific evidence remain, while unrelated context and the optional continuity sidecar are omitted and identified as such. Application governance is unchanged.

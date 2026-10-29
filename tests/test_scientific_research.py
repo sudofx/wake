@@ -303,6 +303,38 @@ class AlternatePlannerFixture:
 
 
 class ScientificIntegrationTests(ScientificFixtureCase):
+    def test_context_pressure_keeps_measured_failure_before_redundant_definitions(self):
+        from wake.science.planner import context
+        from wake.event_format import canonical
+        self.propose();runner=RecordedWorkbench(bad=True)
+        advance(self.engine.store,runner);advance(self.engine.store,runner)
+        state=deepcopy(self.engine.store.load());science=state['science']
+        # Revealed measurements are context fixtures here, not a claim about
+        # this sorting executor or live scientific behavior.
+        revealed=[{'x':3,'prediction':5,'observed':8}]
+        science['experiments']['e-sort']['evaluation']['measurement_details']['observations']=deepcopy(revealed)
+        science['experiments']['e-sort']['evaluation']['measurement_details']['limitations']=['This result is limited to the controlled task family.']
+        original=science['hypotheses']['h-sort']
+        original['revisions'][-1]['definition']['uncertainty']='Unresolved beyond these tested inputs. '*45
+        for index in (1,2):
+            h=deepcopy(original);h['id']='h-later-'+str(index);h['accepted_version']=index+100
+            h['revisions'][-1]['accepted_version']=index+100
+            science['hypotheses'][h['id']]=h
+            experiment=deepcopy(science['experiments']['e-sort']);experiment['id']='blocked-'+str(index)
+            experiment['accepted_version']=index+100;experiment['protocol']['hypothesis']=h['id']
+            experiment['status']='blocked';experiment.pop('evaluation',None)
+            experiment['protocol']['source']='# Long unexecuted source excerpt\n'+'# explanatory comment\n'*70
+            science['experiments'][experiment['id']]=experiment
+        before=deepcopy(state);result=context(state)
+        self.assertLessEqual(len(canonical(result)),10000)
+        self.assertTrue(any(e.get('evaluation',{}).get('outcome')=='contradicted' for e in result['experiments']))
+        retained=next(e for e in result['experiments'] if e.get('evaluation',{}).get('outcome')=='contradicted')
+        self.assertEqual(retained['evaluation']['measurement_details']['observations'],revealed)
+        self.assertEqual(retained['evaluation']['measurement_details']['limitations'],['This result is limited to the controlled task family.'])
+        self.assertEqual({h['id'] for h in result['hypothesis_index']},set(science['hypotheses']))
+        self.assertTrue(result['context_omissions'])
+        self.assertEqual(state,before,'Context packing cannot change authoritative evidence')
+
     def test_scientific_contract_and_negative_evidence_fit_the_hosted_context_budget(self):
         from wake.providers import provider_input_budget
         self.propose();runner=RecordedWorkbench(bad=True)

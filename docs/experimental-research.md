@@ -182,7 +182,16 @@ explicit; it cannot select a different snapshot as fallback. A node's own audit
 uses that node's report and checks it against the same installation manifest.
 
 `science investigate` and `science resume` use a bounded benchmark focus. The
-request retains the question, projects, scientific state, working memory and
+scientific context prioritizes recorded measurements over repeated prose and
+source excerpts. Under its 10,000-character target, a blocked recent design cannot
+displace the only evaluated result. Compact indexes retain hypothesis revision
+and experiment identities when older full definitions are omitted. Exact metrics,
+frozen comparisons and revealed probe observations remain attached to the retained
+result; hidden holdout answers never enter this view. Omissions are explicit. If
+essential evidence exceeds the local target, the complete request still faces the
+existing hard provider-input check before any model call.
+
+The request retains the question, projects, scientific state, working memory and
 applicable constraints, while its omitted categories and deferred continuity
 sidecar are recorded. It offers scientific actions instead of unrelated source
 collection or editorial work; this CLI has no external collection caller. This
