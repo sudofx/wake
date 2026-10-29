@@ -1,10 +1,61 @@
 name: WAKE — Diagnose hosted context capacity
 on:
   workflow_dispatch:
+    inputs:
+      candidate:
+        description: Optional full candidate commit for disposable comparison only; leaves runtime unchanged.
+        type: string
+        required: false
+        default: ''
+  workflow_run:
+    workflows: ["WAKE — Research worker"]
+    types: [completed]
 permissions:
   contents: read
+concurrency:
+  group: wake-context-diagnostics
+  cancel-in-progress: false
 jobs:
+  detect:
+    if: github.ref_name == 'master' && (github.event_name != 'workflow_run' || (github.event.workflow_run.head_branch == 'master' && github.event.workflow_run.head_repository.full_name == github.repository))
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    outputs:
+      needed: ${{ steps.observation.outputs.needed }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - run: python -m pip install --disable-pip-version-check -e '.[hosted]'
+      - id: observation
+        name: Check for matching published node warnings without changing research intent
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PYTHON'
+          import base64,json,os,subprocess
+          from pathlib import Path
+          from scripts.diagnose_hosted_context import blocked_observation
+          event=json.load(open(os.environ['GITHUB_EVENT_PATH']))
+          needed=os.environ['GITHUB_EVENT_NAME']=='workflow_dispatch'
+          if not needed:
+              repo=os.environ['GITHUB_REPOSITORY']
+              policy=json.load(open('hosted-runtime.json'))['installations'][repo]
+              ref=json.loads(subprocess.check_output(['gh','api',f'repos/{repo}/git/ref/heads/wake-public'],text=True))['object']['sha']
+              packet=json.loads(subprocess.check_output(['gh','api',f'repos/{repo}/contents/installation.json?ref={ref}'],text=True))
+              if packet.get('size',2000001)>2000000:raise ValueError('Oversized public observation')
+              manifest=json.loads(base64.b64decode(packet['content'],validate=False))
+              nodes=blocked_observation(manifest,policy,event['workflow_run']['id'])
+              needed=bool(nodes)
+              print(json.dumps({'observed_blocked_nodes':nodes,'public_revision':ref,'authority':'Observation triggers read-only diagnosis only.'}))
+          with open(os.environ['GITHUB_OUTPUT'],'a') as out:out.write('needed='+str(needed).lower()+'\n')
+          PYTHON
   capture:
+    needs: detect
+    if: needs.detect.outputs.needed == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -41,11 +92,15 @@ jobs:
         with:
           path: control
       - id: policy
+        env:
+          CANDIDATE: ${{ inputs.candidate }}
         run: |
           python - <<'PYTHON'
-          import json,os
+          import json,os,re
           p=json.load(open('control/hosted-runtime.json'))['installations'][os.environ['GITHUB_REPOSITORY']]
-          with open(os.environ['GITHUB_OUTPUT'],'a') as out:out.write('revision='+p['source_revision']+'\n')
+          candidate=os.environ.get('CANDIDATE','')
+          if candidate and not re.fullmatch('[a-f0-9]{40}',candidate):raise ValueError('Candidate must be a full source revision')
+          with open(os.environ['GITHUB_OUTPUT'],'a') as out:out.write('revision='+(candidate or p['source_revision'])+'\n')
           PYTHON
       - uses: actions/checkout@v7
         with:
@@ -62,7 +117,13 @@ jobs:
       - name: Build bounded requests without provider or control credentials
         env:
           WAKE_HOSTED_STATE_KEY: ${{ secrets.WAKE_HOSTED_STATE_KEY }}
-        run: python control/scripts/diagnose_hosted_context.py --snapshot checkpoint --source runtime --policy control/hosted-runtime.json --node '${{ matrix.node }}' --output 'context-${{ matrix.node }}.json'
+          CANDIDATE_PROBE: ${{ inputs.candidate != '' }}
+        run: |
+          if [ "$CANDIDATE_PROBE" = true ]; then
+            python control/scripts/diagnose_hosted_context.py --snapshot checkpoint --source runtime --policy control/hosted-runtime.json --node '${{ matrix.node }}' --output 'context-${{ matrix.node }}.json' --candidate
+          else
+            python control/scripts/diagnose_hosted_context.py --snapshot checkpoint --source runtime --policy control/hosted-runtime.json --node '${{ matrix.node }}' --output 'context-${{ matrix.node }}.json'
+          fi
       - uses: actions/upload-artifact@v4
         if: success()
         with:

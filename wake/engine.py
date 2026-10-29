@@ -920,9 +920,23 @@ class Engine:
         }
         return True
 
+    def fit_inquiry_advisory(self, request):
+        """Keep the enabled ranking while moving repeated scoring detail to its receipt."""
+        if provider_input_chars(request) <= self.config['max_context_chars']:
+            return
+        advisory = request['context'].get('inquiry_drive')
+        if not isinstance(advisory, dict) or advisory.get('detail_omitted'):
+            return
+        # Use new dictionaries: the delivered list shares its original objects
+        # with inquiry_drive_shadow, which must remain exact in the receipt.
+        advisory['projects'] = [{key: item[key] for key in ('id', 'score') if key in item}
+                                for item in advisory.get('projects', [])]
+        advisory['detail_omitted'] = 'Component breakdown retained in inquiry_drive_shadow; ranking and governance unchanged.'
+
     def fit_active_request(self, request):
         with preserve_retrieved_views(request["context"]):
             self._fit_active_request(request)
+        self.fit_inquiry_advisory(request)
 
     def _fit_active_request(self, request):
         """Fit working context into the allowance after instructions/schema/probe.
@@ -936,6 +950,7 @@ class Engine:
             context["bounded_context"]["omitted_categories"] = list(dict.fromkeys(
                 context["bounded_context"].get("omitted_categories", [])))
         self.prepare_active_request(request)
+        self.fit_inquiry_advisory(request)
         if provider_input_chars(request) <= self.config["max_context_chars"]:
             return
         # The detailed core prompt duplicates the response contract and research
@@ -1149,6 +1164,8 @@ class Engine:
     def fit_bounded_request(self, request, *, system_suffix=""):
         with preserve_retrieved_views(request["context"]):
             self._fit_bounded_request(request, system_suffix=system_suffix)
+        # Restoring shared retrieval views can grow the final envelope again.
+        self.fit_inquiry_advisory(request)
 
     def _fit_bounded_request(self, request, *, system_suffix=""):
         """Deterministically shrink an already-bounded provider request below the hard ceiling.

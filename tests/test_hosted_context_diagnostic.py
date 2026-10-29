@@ -37,6 +37,16 @@ class ContextDiagnosticTests(unittest.TestCase):
         self.assertTrue(all(value['status'] == 'fits' for value in result), result)
         self.assertEqual(record_identity(self.record), before)
 
+    def test_only_matching_warning_observations_trigger_automatic_diagnosis(self):
+        from wake.installation_cli import NODE_IDS
+        policy={'installation_id':'fixture'}
+        observation={'schema':1,'live':False,'installation_id':'fixture','hosted_execution':{'run_id':'42'},
+                     'nodes':[{'id':node,'recorded_runtime':{'state':'blocked' if node=='202.wake' else 'running'}} for node in NODE_IDS]}
+        self.assertEqual(diag.blocked_observation(observation,policy,42), ['202.wake'])
+        self.assertEqual(diag.blocked_observation(observation,policy,41), [])
+        self.assertEqual(diag.blocked_observation({**observation,'installation_id':'other'},policy,42), [])
+        self.assertEqual(diag.blocked_observation({**observation,'live':True},policy,42), [])
+
     def test_saved_configuration_dependencies_are_available_to_request_builder(self):
         config = self.root / 'config/wake.toml'
         config.parent.mkdir()

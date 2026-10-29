@@ -80,6 +80,19 @@ def probe_node(source, record, config, *, node, runner=subprocess.check_output):
     return results
 
 
+def blocked_observation(manifest, policy, run_id):
+    """A public warning can trigger investigation, never a record/control change."""
+    if (manifest.get('schema') != 1 or manifest.get('live') is not False
+            or manifest.get('installation_id') != policy['installation_id']
+            or str(manifest.get('hosted_execution', {}).get('run_id')) != str(run_id)
+            or not isinstance(manifest.get('nodes'), list)
+            or {node.get('id') for node in manifest['nodes']} != set(NODE_IDS)
+            or len(manifest['nodes']) != len(NODE_IDS)):
+        return []
+    return [node['id'] for node in manifest['nodes']
+            if node.get('recorded_runtime', {}).get('state') == 'blocked']
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--snapshot', type=Path, required=True)
@@ -87,11 +100,12 @@ def main():
     parser.add_argument('--policy', type=Path, required=True)
     parser.add_argument('--node', choices=NODE_IDS, required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--candidate', action='store_true', help='Explicit offline candidate comparison; never promotes it')
     args = parser.parse_args()
     repository = os.environ['GITHUB_REPOSITORY']
     policy = json.loads(args.policy.read_text())['installations'][repository]
     revision = subprocess.check_output(['git', '-C', str(args.source), 'rev-parse', 'HEAD'], text=True).strip()
-    if revision != policy['source_revision']:
+    if revision != policy['source_revision'] and not args.candidate:
         raise ValueError('Diagnostic must use the actual bound runtime source')
     with tempfile.TemporaryDirectory(prefix='wake-context-restore-') as temporary:
         root = Path(temporary)
@@ -122,7 +136,8 @@ def main():
             configuration = root / 'config/wake.toml'
         result = {'schema':'wake-context-capacity-diagnostic@1','installation_id':manifest['installation_id'],
                   'generation':manifest['generation'],'captured_at':manifest['captured_at'],
-                  'node':args.node,'source_revision':revision,'remote_record_writes':0,
+                  'node':args.node,'source_revision':revision,'bound_revision':policy['source_revision'],
+                  'candidate_probe':args.candidate,'remote_record_writes':0,
                   'boundary':'Disposable checkpoint copies only; no live-worker diagnosis or provider attempt.',
                   'requests':probe_node(args.source, records / 'nodes' / args.node / 'record/wake.sqlite', configuration, node=args.node)}
         args.output.write_text(json.dumps(result, indent=2) + '\n')

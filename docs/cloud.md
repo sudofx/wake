@@ -728,7 +728,10 @@ Scientific child calls remain part of native provider accounting. Shared admissi
 
 ### Diagnose blocked request construction
 
-**WAKE — Diagnose hosted context capacity** captures one authenticated encrypted
+**WAKE — Diagnose hosted context capacity** automatically investigates a completed
+research batch when its matching published installation observation reports blocked
+nodes. The observation can trigger only this read-only investigation; it cannot
+change records or research controls. An optional manual dispatch also exists. It captures one authenticated encrypted
 checkpoint without stopping research. Each node builds planning and proposal
 requests on disposable SQLite copies using the bound runtime and saved root
 configuration. The request builders receive no credentials and have socket
@@ -749,3 +752,8 @@ Uploaded runtime observations may include an optional closed `reason_code`:
 Raw worker reasons, exception text and provider responses are not published.
 The Console displays these dated categories when present; older snapshots keep
 an unknown blocking reason rather than inferring one from unrelated receipts.
+
+An optional full `candidate` source revision builds requests on the same kind of
+disposable copies for comparison. Reports label it as a candidate and retain the
+actual bound revision. This neither promotes source nor starts research; full
+CI and all twelve native-record upgrade checks remain separate requirements.

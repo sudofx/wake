@@ -168,6 +168,39 @@ class RequestCompactionTests(unittest.TestCase):
         self.assertEqual(self.store.load()['version'], before)
         self.assertLessEqual(provider_input_chars(request), self.engine.config['max_context_chars'])
 
+    def test_advisory_details_can_compact_without_disabling_inquiry_or_changing_receipt(self):
+        projects = [dict(id=f'project-{i}', score=0.75, title='Repeated project title ' * 20,
+                         components=dict(continuity=1, novelty=0.5, coherence=0.5, generativity=1, self_correction=0.5),
+                         signals=dict(collected_research=4, queued_research=2, notebooks=1)) for i in range(3)]
+        shadow = dict(projects=projects)
+        unchanged = deepcopy(shadow)
+        request = dict(system=BOUNDED_SYSTEM, response_schema={'type':'object'}, context=dict(
+            inquiry_drive=dict(mode='operator-activated advisory ranking', boundary='Governance unchanged.', projects=projects),
+            evidence=[dict(id='e', source='record:exact', content='Protected readable evidence.')]))
+        before = deepcopy(request['context']['evidence'])
+        self.engine.config['max_context_chars'] = provider_input_chars(request) - 206
+        self.engine.fit_inquiry_advisory(request)
+        self.assertLessEqual(provider_input_chars(request), self.engine.config['max_context_chars'])
+        self.assertEqual(request['context']['inquiry_drive']['projects'], [dict(id=item['id'],score=item['score']) for item in projects])
+        self.assertEqual(shadow, unchanged)
+        self.assertEqual(request['context']['evidence'], before)
+        self.assertEqual(request['context']['inquiry_drive']['mode'], 'operator-activated advisory ranking')
+
+    def test_final_fit_accounts_for_protected_view_restoration(self):
+        project = dict(id='p', source='record:project', question='Exact preserved question ' * 50)
+        context = dict(projects=[project], memory=dict(retrieved_records=[dict(kind='project',id='p',
+            value={}, content_location=dict(field='context.projects',id='p'))]),
+            inquiry_drive=dict(mode='operator-activated advisory ranking',boundary='Governance unchanged.',
+                projects=[dict(id='p', score=1, title='Repeated advisory title ' * 40, components=dict(continuity=1))]))
+        request = dict(system=BOUNDED_SYSTEM,response_schema={'type':'object'},context=context)
+        expected = deepcopy(request)
+        with preserve_retrieved_views(expected['context']):expected['context']['projects'] = []
+        self.engine.config['max_context_chars'] = provider_input_chars(expected) - 206
+        with patch.object(self.engine, '_fit_bounded_request', side_effect=lambda request, **kwargs: request['context'].update(projects=[])):
+            self.engine.fit_bounded_request(request)
+        self.assertEqual(request['context']['memory']['retrieved_records'][0]['value'], project)
+        self.assertLessEqual(provider_input_chars(request), self.engine.config['max_context_chars'])
+
     def test_planning_reference_receipt_never_claims_accepted_research(self):
         from wake.decision_memory import DECISION_MEMORY_SYSTEM
         self.engine.config['decision_memory_mode'] = 'active'

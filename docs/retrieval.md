@@ -561,3 +561,12 @@ never silently discarded just to meet that local target; the complete request
 still faces the hard provider-input admission check before any model effect.
 
 Controlled scientific CLI benchmarks can select an explicitly recorded scientific focus: their question, memory, constraints and native scientific evidence remain, while unrelated context and the optional continuity sidecar are omitted and identified as such. Application governance is unchanged.
+
+
+When an enabled inquiry ranking would overflow the final provider envelope,
+delivery may replace its repeated project titles, component breakdowns and signal
+counts with the same ordered project IDs and scores. The full breakdown remains
+in the invocation's `inquiry_drive_shadow`. The ranking's advisory boundary,
+retrieved evidence, source pointers, governance and configured ceiling remain
+unchanged. This final check also runs after protected shared views are restored,
+so an otherwise safe restoration cannot leave a small unhandled overflow.
