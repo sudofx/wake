@@ -30,9 +30,9 @@ const tick=()=>new Promise(resolve=>setImmediate(resolve));
  // Green requires fresh running-node evidence belonging to the active batch.
  for(const [runId,nodeState,age,workflow,expected] of [
   ['55','running',0,'active','running'],
-  ['54','running',0,'active',undefined],
-  ['55','running',31,'active',undefined],
-  ['55','standby',0,'active',undefined],
+  ['54','running',0,'active','waiting'],
+  ['55','running',31,'active','waiting'],
+  ['55','standby',0,'active','waiting'],
   ['55','running',0,'disabled_manually','stopped'],
  ]){
   const callbacks={},light={dataset:{},setAttribute(k,v){this[k]=v;},removeAttribute(k){if(k==='data-state')delete this.dataset.state;}};
@@ -80,7 +80,7 @@ const tick=()=>new Promise(resolve=>setImmediate(resolve));
     document:{hidden:false,querySelector:()=>light,addEventListener(){}},navigator:{onLine:true},localStorage:{getItem:()=>null,setItem(){}},Date,JSON,AbortController,
     setTimeout:()=>0,clearTimeout(){},fetch:async url=>({ok:true,json:async()=>url.includes('/runs?')?{workflow_runs:[{id:55,path:'.github/workflows/research-worker.yml',head_branch:'master',status:'in_progress'}]}:{state:'active'}})};
    vm.runInNewContext(source,context);await tick();
-   assert.equal(light.dataset.state,expected==='unknown'?undefined:expected);
+   assert.equal(light.dataset.state,expected==='unknown'?'waiting':expected);
    if(states.length===12)assert.match(light['aria-label'],/10 running, 2 idle/);
   }
  }

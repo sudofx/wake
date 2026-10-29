@@ -99,7 +99,7 @@
       const active=runs.find(run=>run.status==='in_progress'), queued=runs.find(run=>['queued','waiting','requested','pending'].includes(run.status));
       let state='idle',label='Between hosted batches';
       if(workflow.state!=='active'){state='stopped';label=active?'Stopping; current batch is draining':'Stopped';}
-      else if(active){state=null;label='Hosted batch active; research state unconfirmed';}
+      else if(active){state='waiting';label='Hosted batch active; waiting for current node observations';}
       else if(queued){state='waiting';label='Hosted batch queued';}
       else if(!runs.length){state='waiting';label='Waiting for the first hosted batch';}
       else if(runs[0].conclusion==='action_required'){state='blocked';label='GitHub requires attention';}

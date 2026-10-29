@@ -6,7 +6,7 @@ const assets=path.resolve(__dirname,'../../wake/assets');
  const browser=await chromium.launch({headless:true,...(process.env.CHROME_EXECUTABLE?{executablePath:process.env.CHROME_EXECUTABLE}:{})});
  try{
   const cases=[
-   ['active','in_progress',null,null,'research state unconfirmed'],
+   ['active','in_progress',null,'waiting','waiting for current node observations'],
    ['disabled_manually','in_progress',null,'stopped','draining'],
    ['active','queued',null,'waiting','queued'],
    ['active','completed','success','idle','Between hosted batches'],
@@ -33,7 +33,7 @@ const assets=path.resolve(__dirname,'../../wake/assets');
    assert.match(await light.getAttribute('aria-label'),new RegExp(label));assert.equal(requests.length,2);
    assert.equal(await light.getAttribute('href'),'https://github.com/example/repo/actions/workflows/research-worker.yml');
    if(status==='in_progress' && workflow==='active'){
-    await page.reload();await page.waitForFunction(()=>document.querySelector('.actions-light').getAttribute('data-state')===null);assert.equal(requests.length,2,'navigation reuses bounded cache');
+    await page.reload();await page.waitForFunction(()=>document.querySelector('.actions-light').getAttribute('data-state')==='waiting');assert.equal(requests.length,2,'navigation reuses bounded cache');
     await page.clock.fastForward(120000);assert.equal(requests.length,2);
     fail=true;await page.clock.fastForward(61000);await page.waitForFunction(()=>document.querySelector('.actions-light').getAttribute('aria-label').includes('Status unavailable'));
     assert.equal(await light.getAttribute('data-state'),null,'failed reads clear cached green');assert.equal(requests.length,4);

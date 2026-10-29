@@ -120,6 +120,12 @@ def bind_hosted_status(site, repository, revision):
         _deployment_site(root, standalone=deployment.get('mode')=='standalone',
                          installation={**deployment, 'presentation_revision': revision},
                          pages=[page, root/'ant-farm.html', root/'ant-experiment.html'])
+        # The refreshed audit reader is created after the captured-page pass.
+        # Give it the same hosted observer instead of silently losing its light.
+        audit = page.read_text().replace('class="header-tools">', 'class="header-tools">' + light, 1)
+        audit = audit.replace('</head>', '<script>document.documentElement.dataset.wakeHostedStatus="true";</script>'
+                              '<script src="hosted-status.js" defer></script></head>', 1)
+        page.write_text(audit)
     # The served interface and public data have separate delivery lifecycles.
     # Bind only hosted exports; ordinary/local readers never discover GitHub.
     data_assets=('public-data.js','map.js','map3d.js','flat-view.js','console-tools.js')
@@ -155,6 +161,10 @@ def bind_hosted_status(site, repository, revision):
             prefix='../'*len(relative.parts[:-1])
             page=re.sub(r'(window\.WAKE_DEPLOYMENT=\{[^<]*?\};[^<]*</script>)',
                         lambda match:match.group(1)+f'<script src="{prefix}public-data.js?v={revision[:12]}"></script>',page,count=1)
+            # Browser caches must not retain an older status/aggregation contract
+            # after a presentation release, especially across Safari navigation.
+            page=re.sub(r'((?:nav\.js|masthead\.css|installation-console\.js|hosted-status\.js))(?:\?v=[^"<]+)?"',
+                        lambda match:match.group(1)+'?v='+revision[:12]+'"',page)
             page_path.write_text(page)
     shutil.copytree(assets / 'self-correction', site / 'self-correction', dirs_exist_ok=True)
     manifest['presentation'] = {'source_revision': revision, 'hosted_status': config,

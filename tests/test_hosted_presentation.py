@@ -111,6 +111,9 @@ class HostedPresentationTests(unittest.TestCase):
                 self.assertIn('original-installation', audit)
                 self.assertIn('public-data.js?v='+('b'*12), audit)
                 self.assertIn('scientific-research.js', audit)
+                self.assertEqual(audit.count('class="actions-light"'), 1)
+                self.assertIn('hosted-status.js?v='+('b'*12), audit)
+                self.assertIn('installation-console.js?v='+('b'*12), audit)
                 self.assertTrue((root / prefix / 'scientific-research.js').exists())
                 self.assertFalse((root / prefix / 'scientific-research.json').exists())
             self.assertEqual((root / 'inspect/index.html').read_bytes(), packet)
@@ -118,6 +121,7 @@ class HostedPresentationTests(unittest.TestCase):
             nested = (root / 'nodes/103.wake/blog/post.html').read_text()
             self.assertIn('"instance_name": "103.wake"', nested)
             self.assertIn('src="../hosted-status.js?', nested)
+            self.assertIn('src="../hosted-status.js?v='+('b'*12)+'"', nested)
             self.assertTrue((root / 'nodes/103.wake/hosted-status.js').exists())
             self.assertIn('href="../theme.css?v='+('b'*12)+'"', nested)
             for name in ('theme.css', 'research.js', 'research.css'):

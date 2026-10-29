@@ -528,7 +528,8 @@ checkpoint, provider outcome, website upload and Pages serving are separate clai
 The header light checks public GitHub Actions metadata without sign-in or a token.
 Green means a hosted batch is active, including restoration, quota waits and publication;
 it does not mean a provider call is in flight or research has been accepted. Yellow
-means queued, stopped, draining or awaiting automatic recovery. Blue means between
+means queued, stopped, draining, awaiting automatic recovery, or an active batch
+waiting for current node observations. Blue means between
 successful batches; red means GitHub requires attention or a failed batch has had
 no successor for fifteen minutes. Gray means
 status could not be confirmed. Tap or focus the light for its explanation and check time;
