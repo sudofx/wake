@@ -67,7 +67,9 @@ def validate_claims(action, state):
             material = source_material_text(_evidence_payload(evidence))
             normalize = lambda value: ' '.join(value.split())
             require(len(item['passage'].strip()) >= 40 and normalize(item['passage']) in normalize(material),
-                    'Supporting passage must be a substantive exact excerpt of the collected source')
+                    'Supporting passage must be a substantive exact excerpt of the collected source '
+                    f'({item["evidence"]}). Copy at least 40 characters directly from its collected excerpt; '
+                    'a paraphrase, title or summary is not a quotation.')
     require(action['findings'] == render_findings(claims), 'Findings must match the enumerated supported claims exactly')
 
 
@@ -76,6 +78,12 @@ def claim_schema(version=POLICY_VERSION, measured_results=()):
     support = {'type': 'object', 'additionalProperties': False,
                'required': ['evidence', 'passage', 'explanation'],
                'properties': {k: string for k in ('evidence', 'passage', 'explanation')}}
+    support['properties']['passage'] = {
+        'type': 'string', 'minLength': 40, 'maxLength': 1800,
+        'description': 'Copy a contiguous passage verbatim from the collected excerpt of the named evidence. '
+                       'Use decoded excerpt text, not a title, summary, paraphrase or invented quotation. '
+                       'Explain its relevance separately in explanation. If no delivered passage supports '
+                       'the claim, collect suitable evidence instead of inventing support.'}
     properties = {'statement': string, 'support': {'type': 'array', 'minItems': 1, 'maxItems': 4, 'items': support}}
     required = ['statement', 'support']
     if version >= 2:
