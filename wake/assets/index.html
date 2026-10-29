@@ -135,6 +135,36 @@ if(!window.WakeData){
   });
 }
 </script>
+<script>
+/* Homepage scientific counts: only matching record heads qualify. No invented data. */
+(async function(){
+ const grid=document.getElementById('rf-proof-grid'),status=document.getElementById('rf-proof-status');
+ if(!grid||!status)return;
+ const keys=[['Falsifiable hypotheses','falsifiable_hypotheses'],['Completed experiments','completed_executions'],['Validated measurements','valid_measurements'],['Verified revisions','verified_hypothesis_revisions']];
+ const read=async path=>{const res=await (window.WakePublicData?.fetch||fetch)(path,{cache:'no-cache',credentials:'omit',signal:AbortSignal.timeout(9000)});if(res.status===404)return null;if(!res.ok)throw Error('Published snapshot unavailable');return res.json();};
+ try{
+   const manifest=await read('installation.json');
+   if(!manifest||manifest.schema!==1||!Array.isArray(manifest.nodes))throw Error('Installation manifest unavailable');
+   const totals=Object.fromEntries(keys.map(([,key])=>[key,0]));
+   let matched=0,missing=0;
+   for(const node of manifest.nodes){
+     if(!/^(?:10[0-3]|20[0-3]|30[0-3])\.wake$/.test(node.id)||node.available===false){missing++;continue;}
+     try{
+       const data=await read('nodes/'+node.id+'/scientific-research.json');
+       if(!data){missing++;continue;}
+       if(data.schema!=='wake-scientific-audit@1'||data.source?.head!==manifest.record_heads?.[node.id]?.head)throw Error('Evidence head mismatch');
+       matched++;
+       for(const [,key] of keys){const value=data.metrics?.[key];if(!Number.isSafeInteger(value)||value<0)throw Error('Invalid scientific metric');totals[key]+=value;}
+     }catch{missing++;}
+   }
+   if(!matched){status.textContent='No verified experimental report is available in the selected public snapshot. No discovery is claimed.';return;}
+   if(missing){status.textContent='Partial scientific snapshot: '+matched+' node reports verified, '+missing+' missing or unavailable. Counts withheld to avoid misleading totals.';return;}
+   grid.replaceChildren();
+   for(const [label,key] of keys){const box=document.createElement('div'),value=document.createElement('strong'),caption=document.createElement('span');box.className='rf-number';value.textContent=String(totals[key]);caption.textContent=label;box.append(value,caption);grid.append(box);}
+   status.textContent='Verified against '+matched+' published node records. These counts describe recorded work, not scientific discoveries.';
+ }catch(error){status.textContent='Research totals unavailable: '+error.message+'. No unverified numbers are shown.';}
+})();
+</script>
 <script>/* PET_SCRIPT */</script>
 <script>/* WAKE_SCRIPT */</script>
 <script>/* NAV_SCRIPT */</script>
