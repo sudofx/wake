@@ -2960,7 +2960,9 @@ class Engine:
                 usage,_=native_usage({**state,'invocations':{
                     key:item for key,item in state['invocations'].items() if key!=invocation}},day)
                 used=sum(usage.values())
-                provider.request_limit = min(len(provider.models), self.config["daily_call_limit"] - used)
+                remaining=max(0,self.config['daily_call_limit']-used)
+                provider.request_limit = min(len(provider.models),remaining)
+                provider.model_request_limits = ({model:0 for model in provider.models} if not remaining else None)
             def record_attempt(phase, attempt):
                 self.store.append("provider_attempt_" + phase, {"id": invocation, "attempt": attempt,
                     **({'effect_accounting':1} if phase=='finished' else {})})

@@ -56,6 +56,8 @@ class ScientificBenchmarkTests(ScientificFixtureCase):
                 raise ConfiguredDailyLimitReached('Fixture daily cap; no provider effect')
         self.engine.config.update(free_tier_confirmed=True,model_daily_call_limits={'history-reader':1})
         self.assertEqual(self.engine.run(ParentBudgetGuard())['status'],'deferred')
+        self.engine.config.update(model_daily_call_limits={},daily_call_limit=1)
+        self.assertEqual(self.engine.run(ParentBudgetGuard())['status'],'deferred')
         from wake.science.projection import project
         from wake.research_projection import build_research_projection
         state,head=self.engine.store.audit()
