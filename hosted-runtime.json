@@ -12,7 +12,8 @@
         "enabled": true,
         "target_hours": 24,
         "reserve_calls": 208
-      }
+      },
+      "experimental_research_enabled": true
     }
   }
 }
