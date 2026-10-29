@@ -171,6 +171,7 @@ def build_research_projection(state, events, head, *, generated=None, metrics=No
         'head': head, 'version': state['version'], 'generated': generated, 'source': deepcopy(source or {}),
         'topics': [{'id': t['id'], 'label': t.get('label', t['id'])} for t in state.get('research_topics', [])],
         'status': {'accepted_cycles': state['version'], 'latest': activity[0] if activity else None,
+                   'experimental_research': {'enabled': bool(state.get('science', {}).get('enabled', False))},
                    'last_accepted': {'id': accepted[-1]['id'], 'time': accepted[-1].get('finished') or accepted[-1].get('time')} if accepted else None,
                    'active_projects': sum(x.get('status') == 'active' for x in state.get('projects', {}).values()),
                    'open_commitments': sum(x.get('status') == 'open' for x in state.get('commitments', {}).values()),

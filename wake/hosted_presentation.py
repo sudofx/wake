@@ -163,7 +163,7 @@ def bind_hosted_status(site, repository, revision):
                         lambda match:match.group(1)+f'<script src="{prefix}public-data.js?v={revision[:12]}"></script>',page,count=1)
             # Browser caches must not retain an older status/aggregation contract
             # after a presentation release, especially across Safari navigation.
-            page=re.sub(r'((?:nav\.js|masthead\.css|installation-console\.js|hosted-status\.js))(?:\?v=[^"<]+)?"',
+            page=re.sub(r'((?:nav\.js|masthead\.css|installation-console\.js|hosted-status\.js|scientific-research\.js))(?:\?v=[^"<]+)?"',
                         lambda match:match.group(1)+'?v='+revision[:12]+'"',page)
             page_path.write_text(page)
     shutil.copytree(assets / 'self-correction', site / 'self-correction', dirs_exist_ok=True)

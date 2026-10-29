@@ -1,13 +1,17 @@
 'use strict';
 // No browser or network: isolated transport and safe-DOM contract checks.
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
-const {loadReports,renderRecord,renderReport}=require('../../wake/assets/scientific-research.js');
+const {loadReports,renderRecord,renderReport,emptyStatus}=require('../../wake/assets/scientific-research.js');
 const ids=[100,101,102,103,200,201,202,203,300,301,302,303].map(n=>n+'.wake');
 const head='a'.repeat(64),revision='b'.repeat(40);
 const manifest={schema:1,live:false,installation_id:'fixture',nodes:ids.map(id=>({id,available:true})),
   record_heads:Object.fromEntries(ids.map(id=>[id,{head}]))};
 const report={schema:'wake-scientific-audit@1',source:{head},investigations:[{id:'same-local-id'}]};
 (async()=>{
+  assert.match(emptyStatus({nodes:[{research:{status:{experimental_research:{enabled:false}}}}]}),/switched off/);
+  assert.match(emptyStatus({nodes:[{research:{status:{experimental_research:{enabled:true}}}}]}),/Enabled does not mean a test is currently running/);
+  assert.match(emptyStatus({nodes:[{},{}]}),/does not report/);
+  assert.match(emptyStatus({nodes:[{}, {research:{status:{experimental_research:{enabled:false}}}}]}),/does not report/);
   let active=0,maximum=0;const reads=[];
   const loaded=await loadReports(async path=>{
     reads.push(path);if(path==='installation.json')return manifest;

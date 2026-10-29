@@ -82,6 +82,9 @@ preparation code. Usage and monetary cost remain unavailable when not reported.
 - Scientific report JSON is generated only when native science state
   exists; the stable audit reader is always exported. They expose recorded results and clearly labelled interpretation.
   They do not establish hosted adoption or physical-device rendering.
+  Node status reports the recorded experiment grant separately. An empty reader
+  distinguishes disabled execution, enabled execution without published results,
+  and older snapshots that do not report the capability; enabled is not running.
 - The hosted worker pulls the pinned image and runs the adversarial isolation checks before opening research. Its experimental grant still defaults off and requires explicit installation policy. Docker availability must be established separately on the deployed worker.
   An unavailable capability blocks work explicitly; it never falls back to
   running generated code on the host.

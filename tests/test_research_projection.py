@@ -16,6 +16,14 @@ from wake.report import export
 
 
 class ResearchProjectionTests(unittest.TestCase):
+    def test_experiment_capability_is_derived_without_changing_authority(self):
+        for enabled in (False,True):
+            state=empty();state['science']={'enabled':enabled}
+            before=deepcopy(state)
+            report=build_research_projection(state,[], 'a'*64)
+            self.assertEqual(report['status']['experimental_research']['enabled'],enabled)
+            self.assertEqual(state,before)
+
     def state(self):
         state = empty()
         state['version'] = 2

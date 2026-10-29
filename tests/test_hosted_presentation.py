@@ -111,6 +111,7 @@ class HostedPresentationTests(unittest.TestCase):
                 self.assertIn('original-installation', audit)
                 self.assertIn('public-data.js?v='+('b'*12), audit)
                 self.assertIn('scientific-research.js', audit)
+                self.assertIn('scientific-research.js?v='+('b'*12), audit)
                 self.assertEqual(audit.count('class="actions-light"'), 1)
                 self.assertIn('hosted-status.js?v='+('b'*12), audit)
                 self.assertIn('installation-console.js?v='+('b'*12), audit)

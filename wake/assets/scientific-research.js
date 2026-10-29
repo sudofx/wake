@@ -134,7 +134,14 @@
     section(doc,report,'Report metadata for researchers and developers',{node,source:data.source,metrics:data.metrics,convergence:data.convergence_evidence,limits:data.limits},true);
     parent.append(report);
   }
-  if(typeof module==='object' && module.exports)module.exports={loadReports,renderRecord,renderReport};
+  function emptyStatus(manifest){
+    const nodes=manifest?.nodes||[],states=nodes.map(node=>node.research?.status?.experimental_research?.enabled);
+    const enabled=states.filter(value=>value===true).length;
+    if(enabled)return 'Experiment execution is recorded as enabled on '+enabled+' '+(enabled===1?'node':'nodes')+', but no experiment results have been published yet. Enabled does not mean a test is currently running.';
+    if(states.length&&states.every(value=>value===false))return 'Experiment execution is switched off in this snapshot. No experiment results have been published.';
+    return 'No experiment results have been published. This snapshot does not report whether experiment execution is enabled.';
+  }
+  if(typeof module==='object' && module.exports)module.exports={loadReports,renderRecord,renderReport,emptyStatus};
   if(typeof window==='undefined')return;
   const read=async path=>{
     const response=await (window.WakePublicData?.fetch || fetch)(path,{
@@ -157,7 +164,7 @@
       renderReport(document,parent,node,data);
     }
     status.textContent=reports.length?'Results from '+reports.length+' published research '+(reports.length===1?'report.':'reports.'):
-      'No experiment results have been published in this snapshot yet.';
+      emptyStatus(manifest);
     if(manifest?.generated){const date=new Date(manifest.generated);if(!Number.isNaN(date.getTime()))status.textContent+=' Updated '+date.toLocaleString()+'.';}
     if(unavailable.length)status.textContent+=' Some reports could not be loaded; this view may be incomplete.';
     else if(reports.length&&absent.length)status.textContent+=' Some reports have not been published yet.';
