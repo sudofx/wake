@@ -3,6 +3,20 @@ const vm=require('node:vm'),fs=require('node:fs'),assert=require('node:assert/st
 const source=fs.readFileSync('wake/assets/hosted-status.js','utf8');
 const tick=()=>new Promise(resolve=>setImmediate(resolve));
 (async()=>{
+ {
+  const windowEvents={},documentEvents={},light={dataset:{},setAttribute(k,v){this[k]=v;},removeAttribute(k){if(k==='data-state')delete this.dataset.state;}};
+  let saved=null,reads=0;
+  const context={window:{WAKE_DEPLOYMENT:{hosted_status:{repository:'example/repo',workflow:'research-worker.yml',branch:'master'}},addEventListener(k,fn){windowEvents[k]=fn;}},
+   document:{hidden:false,querySelector:()=>light,addEventListener(k,fn){documentEvents[k]=fn;}},navigator:{onLine:true},localStorage:{getItem:()=>saved,setItem(k,v){saved=v;}},Date,JSON,AbortController,
+   setTimeout:()=>0,clearTimeout(){},fetch:async url=>{reads++;return {ok:true,json:async()=>url.includes('/runs?')?{workflow_runs:[{id:55,path:'.github/workflows/research-worker.yml',head_branch:'master',status:'in_progress'}]}:{state:'active'}};}};
+  vm.runInNewContext(source,context);await tick();
+  assert.equal(light.dataset.state,'waiting');
+  context.document.hidden=true;documentEvents.visibilitychange();assert.equal(light.dataset.state,undefined);
+  // A Safari page restore can become visible without another visibility event.
+  context.document.hidden=false;windowEvents.pageshow();await tick();
+  assert.equal(light.dataset.state,'waiting','Restoring a visible page must not retain hidden-page grey');
+  assert.equal(reads,2,'Page restoration must retain anonymous-request backoff');
+ }
  for(const [age,state] of [[1,'waiting'],[16,'blocked']]){
   const light={dataset:{},setAttribute(k,v){this[k]=v;},removeAttribute(k){if(k==='data-state')delete this.dataset.state;}};
   const context={window:{WAKE_DEPLOYMENT:{hosted_status:{repository:'example/repo',workflow:'research-worker.yml',branch:'master'}},addEventListener(){}},

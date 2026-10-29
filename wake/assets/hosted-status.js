@@ -120,6 +120,9 @@
     finally{pending=false;if(!document.hidden)timer=setTimeout(refresh,interval);}
   }
   window.addEventListener('offline',()=>show(null,'Offline; status unavailable'));
+  // Safari may restore a frozen page without a visibilitychange transition.
+  // Reapply the bounded cache or restart its expired check on that lifecycle.
+  window.addEventListener('pageshow',()=>{if(!document.hidden)refresh();});
   document.addEventListener('visibilitychange',()=>{clearTimeout(timer);if(document.hidden)show(null,'Status not checked while this page is hidden');else refresh();});
   refresh();
 })();
