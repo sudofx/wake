@@ -3,7 +3,7 @@
   "installations": {
     "sudofx/wake": {
       "installation_id": "1fad15cb5b8b60b9d85dad462ceaaacf",
-      "source_revision": "9c2b2de3f89bd61d60e55f47172b96eb10be3c1e",
+      "source_revision": "ee57de0c85a74d34f479da446b4f4eb3feae9a40",
       "decision_memory_mode": "active",
       "research_expansion_enabled": true,
       "research_candidate_catalog_enabled": true,
