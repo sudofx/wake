@@ -38,10 +38,12 @@ jobs:
       base: ${{ steps.check.outputs.base }}
       mode: ${{ steps.check.outputs.mode }}
       outcome: ${{ steps.check.outputs.outcome }}
+      require_improvement: ${{ steps.check.outputs.require_improvement }}
     steps:
       - uses: actions/checkout@v7
         with:
           ref: ${{ github.sha }}
+          fetch-depth: 2
           persist-credentials: false
       - uses: actions/setup-python@v7
         with:
@@ -137,6 +139,17 @@ jobs:
           USER 65534:65534
           DOCKER
           docker build --file /tmp/wake-correction.Dockerfile --tag wake-correction-test .
+      - name: Record the complete trusted baseline in the same restricted environment
+        run: |
+          cp example.research-topics.toml research-topics.toml
+          docker run --rm --network none --read-only --cap-drop ALL \
+            --security-opt no-new-privileges --pids-limit 256 --memory 4g --cpus 2 \
+            --tmpfs /tmp:rw,nosuid,nodev,exec,size=3g,mode=1777 \
+            --mount "type=bind,source=$GITHUB_WORKSPACE,target=/workspace,readonly" \
+            --workdir /workspace --env PYTHONPATH=/workspace --env PYTHONDONTWRITEBYTECODE=1 \
+            --env WAKE_DEV_RELOAD=false --env HOME=/tmp \
+            --env GIT_CONFIG_COUNT=1 --env GIT_CONFIG_KEY_0=safe.directory --env GIT_CONFIG_VALUE_0=/workspace \
+            wake-correction-test python scripts/self_correction_checks.py record > /tmp/wake-baseline-tests.log
       - name: Apply validated candidate text
         if: needs.inspect.outputs.mode == 'model'
         run: python scripts/self_correction.py apply --plan /tmp/wake-correction/proposal.json
@@ -164,7 +177,17 @@ jobs:
             --workdir /workspace --env PYTHONPATH=/workspace --env PYTHONDONTWRITEBYTECODE=1 \
             --env WAKE_DEV_RELOAD=false --env HOME=/tmp \
             --env GIT_CONFIG_COUNT=1 --env GIT_CONFIG_KEY_0=safe.directory --env GIT_CONFIG_VALUE_0=/workspace \
-            wake-correction-test python -m unittest discover -s tests -v
+            wake-correction-test python scripts/self_correction_checks.py record > /tmp/wake-candidate-tests.log
+      - name: Reject every regression against the trusted restricted baseline
+        env:
+          REQUIRE_IMPROVEMENT: ${{ needs.inspect.outputs.require_improvement }}
+        run: python scripts/self_correction_checks.py compare --baseline /tmp/wake-baseline-tests.log --candidate /tmp/wake-candidate-tests.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: source-correction-test-reports
+          path: /tmp/wake-*-tests.log
+          retention-days: 30
       - name: Preserve candidate diff for review
         if: always()
         run: git diff --no-ext-diff > /tmp/wake-correction.diff
@@ -183,6 +206,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+      actions: read
     steps:
       - uses: actions/checkout@v7
         with:
@@ -212,6 +236,8 @@ jobs:
 
 
   repair:
+    outputs:
+      head: ${{ steps.apply.outputs.head }}
     needs: [inspect, test]
     if: always() && needs.inspect.outputs.mode == 'mechanical' && needs.test.result == 'success'
     runs-on: ubuntu-latest
@@ -231,12 +257,35 @@ jobs:
         with:
           name: automatic-correction-check
           path: /tmp/wake-auto-correction
-      - name: Recompute trusted repair and advance source without forcing concurrent work
+      - name: Require full code checks for the exact source base
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/automatic_self_correction.py verify-base
+      - id: apply
+        name: Recompute trusted repair and advance source without forcing concurrent work
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh auth setup-git
           python scripts/automatic_self_correction.py publish-mechanical
+
+  request-check:
+    needs: [inspect, repair]
+    if: always() && (needs.repair.result == 'success' || (needs.inspect.result == 'success' && needs.inspect.outputs.mode == 'check_source'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    permissions:
+      contents: read
+      actions: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.repair.outputs.head || needs.inspect.outputs.base }}
+          persist-credentials: false
+      - name: Request independent CI for the applied source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run test.yml --ref master
 
   republish:
     needs: inspect
@@ -251,11 +300,11 @@ jobs:
       id-token: write
 
   outcome:
-    needs: [inspect, propose, test, review, repair, republish]
+    needs: [inspect, propose, test, review, repair, republish, request-check]
     if: always() && needs.inspect.result != 'skipped'
     runs-on: ubuntu-latest
     timeout-minutes: 2
-    name: "Outcome: ${{ needs.repair.result == 'success' && 'repaired' || needs.republish.result == 'success' && 'republished' || needs.review.result == 'success' && 'review_required' || needs.propose.outputs.outcome == 'provider_wait' && 'provider_wait' || (needs.inspect.result == 'success' && needs.inspect.outputs.mode == 'none' && needs.inspect.outputs.outcome) || 'failed' }}"
+    name: "Outcome: ${{ needs.repair.result == 'success' && 'repaired' || needs.republish.result == 'success' && 'republished' || needs.review.result == 'success' && 'review_required' || needs.propose.outputs.outcome == 'provider_wait' && 'provider_wait' || needs.request-check.result == 'success' && 'delivery_wait' || (needs.inspect.result == 'success' && needs.inspect.outputs.mode == 'none' && needs.inspect.outputs.outcome) || 'failed' }}"
     steps:
       - name: Record the actual outcome
         env:
@@ -265,10 +314,11 @@ jobs:
           REPUBLISH: ${{ needs.republish.result }}
           REVIEW: ${{ needs.review.result }}
           PROVIDER: ${{ needs.propose.outputs.outcome }}
+          DELIVERY: ${{ needs.request-check.result }}
         run: |
           python - <<'PYTHON'
           import json, os
           from pathlib import Path
-          record = {key.lower(): os.environ[key] for key in ('DIAGNOSIS', 'MODE', 'REPAIR', 'REPUBLISH', 'REVIEW', 'PROVIDER')}
+          record = {key.lower(): os.environ[key] for key in ('DIAGNOSIS', 'MODE', 'REPAIR', 'REPUBLISH', 'REVIEW', 'PROVIDER', 'DELIVERY')}
           Path(os.environ['GITHUB_STEP_SUMMARY']).write_text('Automatic correction outcome\n\n```json\n' + json.dumps(record, indent=2) + '\n```\nNo native research record was changed. A repaired source still needs independent CI and website delivery.\n')
           PYTHON

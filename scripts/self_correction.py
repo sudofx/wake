@@ -215,7 +215,7 @@ def review_body(plan_path, output, run_url):
                f"{plan['summary']}\n\n"
                f"Base revision: `{plan['base_revision']}`. Model: `{plan['model']}`.\n\n"
                'Changed files:\n' + ''.join(f"- `{c['path']}`\n" for c in plan['changes']) +
-               f"\nValidation: the separate candidate job completed the installed Python suite and changed-JavaScript syntax checks. [Run and artifacts]({run_url}).\n\n"
+               f"\nValidation: the separate candidate job ran the complete Python suite against the unchanged base and candidate in identical restricted containers, rejected new failures or skips, and checked changed-JavaScript syntax. Retained baseline instrument failures remain visible in the reports and are not passing tests. [Run and artifacts]({run_url}).\n\n"
                'This is a draft for source review. Passing checks does not establish answer quality, visual correctness, scientific validity, or production compatibility. Merge/publication/runtime promotion remain separate decisions. No research record was opened and no installed runtime was changed.\n')
     Path(output).write_text(content)
 

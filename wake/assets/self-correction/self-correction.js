@@ -48,7 +48,7 @@
   }
   const outcomes={healthy:'healthy — no repair needed',repaired:'repair applied',republished:'website republished',
     review_required:'proposal needs review',provider_wait:'waiting for provider',outside_scope:'outside repair scope',
-    budget_wait:'waiting for budget',failed:'check failed'};
+    budget_wait:'waiting for budget',delivery_wait:'waiting for delivery checks',failed:'check failed'};
   async function workflow(){
     try{
       const observation=await metadata(`${API}/actions/workflows/self-correction.yml/runs?per_page=6`,'runs',256*1024),data=observation.data;

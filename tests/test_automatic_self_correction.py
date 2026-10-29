@@ -38,6 +38,7 @@ class AutomaticCorrectionTests(unittest.TestCase):
     def fix_cache(self):
         plan = auto.mechanical_plan(self.root)
         (self.root / auto.INDEX).write_text(plan['content'])
+        (self.root / 'fixture.txt').write_text('Checked fixture base, not an automatic repair commit.')
         self.commit()
 
     def test_exact_transform_does_not_authorize_other_source_changes(self):
@@ -111,6 +112,60 @@ class AutomaticCorrectionTests(unittest.TestCase):
         self.assertEqual(report['mode'], 'none')
         self.assertEqual(report['outcome'], 'budget_wait')
 
+    def test_applied_mechanical_head_recovers_missing_ci_without_reapplying(self):
+        plan = auto.mechanical_plan(self.root)
+        (self.root / auto.INDEX).write_text(plan['content'])
+        self.commit()
+        base = source.git(self.root, 'rev-parse', 'HEAD')
+        self.assertTrue(auto.mechanical_head(self.root, base))
+        with patch.object(auto, 'api', return_value={'workflow_runs': []}):
+            report = auto.inspect(self.root, self.output, {}, repository='sudofx/wake')
+        self.assertEqual((report['mode'], report['outcome']), ('check_source', 'pending'))
+        runs = {'workflow_runs': [{'head_sha': base, 'head_branch': 'master', 'event': 'workflow_dispatch',
+                                  'status': 'in_progress', 'conclusion': None}]}
+        with patch.object(auto, 'api', return_value=runs):
+            report = auto.inspect(self.root, self.output, {}, repository='sudofx/wake')
+        self.assertEqual((report['mode'], report['outcome']), ('none', 'delivery_wait'))
+        runs['workflow_runs'][0].update(status='completed', conclusion='failure')
+        with patch.object(auto, 'api', return_value=runs):
+            report = auto.inspect(self.root, self.output, {}, repository='sudofx/wake')
+        self.assertEqual(report['outcome'], 'outside_scope')
+
+    def test_publication_requires_exact_full_ci_even_if_other_source_passed(self):
+        with patch.object(auto, 'api', return_value={'workflow_runs': [{'head_sha': '0' * 40, 'head_branch': 'master', 'event': 'push'}]}):
+            with self.assertRaisesRegex(ValueError, 'Exact source base'):
+                auto.verify_base(self.root, 'sudofx/wake')
+        with patch.object(auto, 'api', return_value={'workflow_runs': [{'head_sha': self.base, 'head_branch': 'master', 'event': 'push'}]}):
+            auto.verify_base(self.root, 'sudofx/wake')
+
+    def test_failed_current_ci_selects_only_a_wholly_allowed_commit(self):
+        self.fix_cache()
+        (self.root / 'wake/assets/reader.js').write_text('const reader = 2;\n')
+        self.commit()
+        base = source.git(self.root, 'rev-parse', 'HEAD')
+        event = {'workflow_run': {'name': 'WAKE✳︎ — Check code · automatic',
+                                 'head_sha': base, 'conclusion': 'failure', 'id': 42}}
+        jobs = {'jobs': [{'steps': [{'name': 'Existing regression suite', 'conclusion': 'failure'}]}]}
+        with patch.object(auto, 'api', return_value=jobs), patch.object(auto, 'model_budget', return_value=(True, 'capacity')):
+            report = auto.inspect(self.root, self.output, event, repository='sudofx/wake')
+        self.assertEqual(report['mode'], 'model')
+        self.assertEqual(report['outcome'], 'pending')
+        self.assertEqual(report['paths'], 'wake/assets/reader.js')
+        self.assertIn('Existing regression suite', report['request'])
+        (self.root / 'wake/engine.py').write_text('# runtime is outside source allowance\n')
+        self.commit()
+        event['workflow_run']['head_sha'] = source.git(self.root, 'rev-parse', 'HEAD')
+        with patch.object(auto, 'api') as api:
+            report = auto.inspect(self.root, self.output, event, repository='sudofx/wake')
+        self.assertEqual(report['outcome'], 'outside_scope')
+        api.assert_not_called()
+
+    def test_diagnosis_never_claims_a_known_fault_is_healthy(self):
+        with patch.object(auto, 'recent_attempts', return_value=[]):
+            report = auto.inspect(self.root, self.output, {}, repository='sudofx/wake')
+        self.assertEqual(report['mode'], 'mechanical')
+        self.assertEqual(report['outcome'], 'pending')
+
     def test_daily_model_cap_and_same_source_attempts_include_failures(self):
         now = datetime(2026, 10, 29, tzinfo=timezone.utc)
         with patch.object(auto, 'recent_attempts', return_value=[('propose', str(i)) for i in range(4)]):
@@ -148,6 +203,7 @@ class AutomaticCorrectionTests(unittest.TestCase):
         self.assertIn('workflow_run:', workflow)
         self.assertIn('required: false', workflow)
         self.assertIn('head_repository.full_name == github.repository', workflow)
+        self.assertIn('fetch-depth: 2', workflow, 'CI diagnosis needs the committed parent')
         self.assertNotIn('pull_request_target', workflow)
         self.assertIn('--network none --read-only --cap-drop ALL', workflow)
         self.assertIn('uses: ./.github/workflows/publish-pages.yml', workflow)

@@ -9,6 +9,9 @@ latest check, repair, publication or review outcome and links to its evidence.
 
 This is bounded automation. It checks JavaScript syntax in eligible top-level
 presentation files and content-based cache keys for the self-correction page.
+It also attempts a reviewed repair when current CI fails after a commit confined
+to the allowed source files; failing check-step names are supplied as untrusted
+diagnostics, without pretending that they establish a cause.
 It is not a general detector of scientific mistakes, visual defects or arbitrary
 runtime faults. A failed research workflow without a supported source diagnosis
 is reported as outside this repair allowance; it cannot authorize a runtime rewrite.
@@ -19,8 +22,12 @@ is reported as outside this repair allowance; it cannot authorize a runtime rewr
   its existing local asset. This exact mechanical transformation is tested in
   isolation, recomputed in a clean base checkout and applied without human review.
   A normal, non-forced source update rejects concurrent master changes. Independent
-  CI is explicitly requested; the existing checked website publisher then owns delivery.
-- A JavaScript syntax error in eligible source selects its own file and a bounded
+  The applied source is recorded before a separate job requests CI; the existing checked
+  website publisher then owns delivery. A later automatic check recognizes the exact
+  repair tree and recovers a missing CI request. It reports pending delivery checks
+  separately from a healthy check or a completed website publication.
+- A JavaScript syntax error, or current failing CI after changes confined to
+  eligible source, selects its own files and a bounded
   repair request. Gemini gets one attempt. WAKE validates and tests the candidate,
   then opens a draft pull request for source review. It does not require you to
   diagnose the fault or copy the proposed code. Model-authored executable changes
@@ -86,7 +93,16 @@ No model can edit Python runtime code, kernel, governance, native records,
 credentials, dependencies, tests, workflows or deployment bindings. It gets no
 write token or filesystem tool. Model generation, testing and branch publication
 use separate runners. Dependencies are installed from trusted source before a
-candidate is applied. Candidate tests run in a non-root disposable Docker
+candidate is applied. Both the unchanged base and candidate run the complete test suite in separate,
+identically restricted containers. Their discovered test identities and counts
+must match; no previously passing check may fail, and no new skip is accepted.
+Existing restricted-environment failures, including unavailable Docker instruments,
+remain explicitly recorded rather than being relabeled as passing. A repair
+diagnosed from failing CI must resolve at least one baseline failure. Automatic
+source application additionally requires successful full CI for the exact
+unmodified base; a failed base can still produce an untrusted reviewed proposal.
+
+Candidate tests run in a non-root disposable Docker
 container with no network, credentials, native records, Docker socket or writable
 host mounts; the root is read-only with four-GiB memory, three-GiB temporary
 filesystem and CPU/process limits. Development reload is disabled.

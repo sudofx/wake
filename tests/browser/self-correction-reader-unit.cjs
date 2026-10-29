@@ -67,7 +67,7 @@ async function page({bound=true,pin='',store=new Map(),outcome='healthy',apiFail
  const cache=new Map([[storageKey,JSON.stringify({revision,time:0})]]);p=await page({apiFails:true,store:cache});assert.equal(p.window.WakePublicData.revision,revision,'API failure recovers last verified public snapshot');
  assert.equal(p.nodes.get('adaptation-nodes').children[0].children[1].textContent,'Enabled');
  const failedAgain=await page({apiFails:true,store:cache});assert(!failedAgain.calls.some(url=>url.includes('/actions/')||url.includes('/pulls')),'Failed metadata reads also respect ten-minute backoff');
- for(const [outcome,label] of [['repaired','repair applied'],['republished','website republished'],['review_required','proposal needs review'],['provider_wait','waiting for provider'],['outside_scope','outside repair scope'],['budget_wait','waiting for budget'],['failed','check failed']]){
+ for(const [outcome,label] of [['repaired','repair applied'],['republished','website republished'],['review_required','proposal needs review'],['provider_wait','waiting for provider'],['outside_scope','outside repair scope'],['budget_wait','waiting for budget'],['delivery_wait','waiting for delivery checks'],['failed','check failed']]){
   p=await page({outcome});assert.equal(p.nodes.get('correction-runs').children[0].children[1].textContent,label);
  }
  p=await page({outcome:'unknown'});assert.equal(p.nodes.get('correction-runs').children[0].children[1].textContent,'success');assert.match(p.nodes.get('workflow-observed').textContent,/does not establish a repair/);
