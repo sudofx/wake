@@ -200,7 +200,8 @@
     const query=$('search').value.toLowerCase(), provider=providerSelect.value;
     const routeMatch=location.hash.match(/^#journal\/(topic:|cycle:)([^/]+)/);
     const selectedKind=routeMatch?.[1]||'', selected=decodeURIComponent(routeMatch?.[2]||'');
-    const entries=[...s.journal].reverse().filter(j =>
+    const recordedTime=j=>Date.parse(s.invocations[j.invocation]?.finished||s.invocations[j.invocation]?.time||j.time)||0;
+    const entries=[...s.journal].sort((a,b)=>recordedTime(b)-recordedTime(a)).filter(j =>
       (provider==='all'||s.invocations[j.invocation]?.provider===provider) &&
       (!selected||(selectedKind==='topic:'?journalTopics(j).includes(selected):String(j.cycle)===selected)) &&
       `${j.title} ${j.summary} ${j.invocation} ${j.cycle} ${journalTopics(j).map(topicLabel).join(' ')}`.toLowerCase().includes(query));

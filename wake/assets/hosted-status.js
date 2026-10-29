@@ -59,6 +59,7 @@
   }
   function apply(value){
     if(!value || !Number.isFinite(value.checked) || Date.now()-value.checked>stale || value.checked>Date.now()+5000)return false;
+    if(value.unavailable || (value.state===null&&!value.activeRun)){showUnavailable(value);return true;}
     const aggregate=window.WakeInstallationAggregate?.(quotaObservation);
     if(value.activeRun && aggregate && aggregate.state!=='unknown'){
       show(aggregate.state,aggregate.description,aggregate.checked);return true;
@@ -72,19 +73,34 @@
     }
     return true;
   }
+  function showUnavailable(value){
+    const aggregate=quotaObservation?.live===false?window.WakeInstallationAggregate?.(quotaObservation):null;
+    if(aggregate && aggregate.state!=='unknown' && Number.isFinite(aggregate.checked) && aggregate.checked<=Date.now()+60000){
+      show('waiting',value.label+'. Current status is unconfirmed; '+aggregate.description+
+        '. Published observation '+new Date(aggregate.checked).toLocaleString(),value.checked);
+    }else show(null,value.label+'; no published node status is available',value.checked);
+  }
+  function failureLabel(error){
+    if(error?.rateLimited)return 'GitHub public status limit reached';
+    if(error?.status)return 'GitHub status request failed (HTTP '+error.status+')';
+    if(error?.name==='AbortError'||error?.name==='TimeoutError')return 'GitHub status request timed out';
+    if(error?.name==='SyntaxError'||error?.message==='Invalid status')return 'GitHub returned unusable status data';
+    return 'Could not reach GitHub to check current status';
+  }
   function cached(){try{return JSON.parse(localStorage.getItem(key));}catch{return null;}}
   async function read(url){
     const controller=new AbortController(), timeout=setTimeout(()=>controller.abort(),8000);
     try{
       const response=await fetch(url,{signal:controller.signal,credentials:'omit',referrerPolicy:'no-referrer',headers:{Accept:'application/vnd.github+json'}});
-      if(!response.ok)throw new Error('Status unavailable');
+      if(!response.ok){const error=new Error('GitHub status request failed');error.status=response.status;
+        error.rateLimited=response.status===429||(response.status===403&&response.headers?.get?.('x-ratelimit-remaining')==='0');throw error;}
       return await response.json();
     }finally{clearTimeout(timeout);}
   }
   async function refresh(){
     clearTimeout(timer);
     if(document.hidden || pending)return;
-    if(navigator.onLine===false){show(null,'Offline; status unavailable');timer=setTimeout(refresh,interval);return;}
+    if(navigator.onLine===false){showUnavailable({label:'Offline; current status cannot be checked',checked:Date.now()});timer=setTimeout(refresh,interval);return;}
     const previous=cached();
     if(previous && Date.now()-previous.checked<interval && apply(previous)){
       timer=setTimeout(refresh,Math.max(1000,interval-(Date.now()-previous.checked)));return;
@@ -111,15 +127,14 @@
       const value={state,label,checked:Date.now(),...(workflow.state==='active' && active?{activeRun:active.id}:{})};
       try{localStorage.setItem(key,JSON.stringify(value));}catch{}
       if(!document.hidden)apply(value);
-    }catch{
-      const value={state:null,label:'Status unavailable; open GitHub for details',checked:Date.now()};
+    }catch(error){
+      const value={state:null,unavailable:true,label:failureLabel(error),checked:Date.now()};
       try{localStorage.setItem(key,JSON.stringify(value));}catch{}
-      if(confirmedQuota())show('standby','All 12 nodes: confirmed provider quota standby (published observation)',confirmedQuota());
-      else show(null,value.label,value.checked);
+      showUnavailable(value);
     }
     finally{pending=false;if(!document.hidden)timer=setTimeout(refresh,interval);}
   }
-  window.addEventListener('offline',()=>show(null,'Offline; status unavailable'));
+  window.addEventListener('offline',()=>showUnavailable({label:'Offline; current status cannot be checked',checked:Date.now()}));
   // Safari may restore a frozen page without a visibilitychange transition.
   // Reapply the bounded cache or restart its expired check on that lifecycle.
   window.addEventListener('pageshow',()=>{if(!document.hidden)refresh();});

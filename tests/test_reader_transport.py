@@ -12,6 +12,29 @@ from wake.domain_events import empty
 
 
 class ReaderTransportTests(unittest.TestCase):
+    @unittest.skipUnless(shutil.which('node'), 'Node required for public reader recovery')
+    def test_public_discovery_and_recent_journal_recovery(self):
+        root=Path(__file__).resolve().parents[1]
+        for name in ('public-data-cache-unit.cjs','journal-recent-unit.cjs'):
+            result=subprocess.run(['node',str(root/'tests/browser'/name)],cwd=root,capture_output=True,text=True)
+            self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+
+    def test_cross_node_journal_uses_receipt_time_in_bootstrap_and_pages(self):
+        packet=self.packet();state=packet['state']
+        state['journal']=[{'cycle':100,'invocation':'303.wake::old','origin':{'node':'303.wake'}},
+                          {'cycle':1,'invocation':'100.wake::new','origin':{'node':'100.wake'}}]
+        state['invocations'].update({
+            '303.wake::old':{'id':'303.wake::old','finished':'2026-10-28T12:00:00Z'},
+            '100.wake::new':{'id':'100.wake::new','finished':'2026-10-29T06:58:00-07:00'}})
+        before=deepcopy(packet)
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);result=export_reader_transport(packet,root)
+            self.assertEqual(result['state']['journal'][-1]['invocation'],'100.wake::new')
+            page=json.loads((root/'reader-records/pages/journal/0.json').read_text())
+            self.assertEqual(page['rows'][0]['invocation'],'100.wake::new')
+            self.assertEqual(page['related']['invocations']['100.wake::new']['finished'],'2026-10-29T06:58:00-07:00')
+        self.assertEqual(packet,before,'Chronology belongs to the derived view, not authority')
+
     def test_combined_catalog_keeps_all_node_topics_within_bootstrap_budget(self):
         from wake.research_expansion import ASSIGNMENTS
         import tomllib

@@ -17,6 +17,25 @@ const tick=()=>new Promise(resolve=>setImmediate(resolve));
   assert.equal(light.dataset.state,'waiting','Restoring a visible page must not retain hidden-page grey');
   assert.equal(reads,2,'Page restoration must retain anonymous-request backoff');
  }
+ {
+  const installation=fs.readFileSync('wake/assets/installation-console.js','utf8'),owner={window:{},Date,stamp:value=>value};
+  vm.runInNewContext(installation.slice(installation.indexOf(' const validNode='),installation.indexOf(' function buildPicker(')),owner);
+  for(const [kind,label] of [['rate','public status limit'],['forbidden','HTTP 403'],['timeout','timed out'],['network','Could not reach GitHub'],['json','unusable status data']]){
+   const light={dataset:{},setAttribute(k,v){this[k]=v;},removeAttribute(k){if(k==='data-state')delete this.dataset.state;}};
+   let saved=null,reads=0;
+   const snapshot={live:false,nodes:[{id:'100.wake',recorded_runtime:{state:'running',observed_at:new Date(Date.now()-3600000).toISOString()}}]};
+   const context={window:{WakeInstallationAggregate:owner.window.WakeInstallationAggregate,WakeInstallationSnapshot:snapshot,WAKE_DEPLOYMENT:{hosted_status:{repository:'example/repo',workflow:'research-worker.yml',branch:'master'}},addEventListener(){}},
+    document:{hidden:false,querySelector:()=>light,addEventListener(){}},navigator:{onLine:true},localStorage:{getItem:()=>saved,setItem(k,v){saved=v}},Date,JSON,AbortController,setTimeout:()=>0,clearTimeout(){},
+    fetch:async()=>{reads++;if(kind==='network')throw TypeError('Network');if(kind==='timeout'){const e=Error('Timeout');e.name='TimeoutError';throw e;}
+      if(kind==='json')return {ok:true,json:async()=>{throw SyntaxError('Malformed')}};
+      return {ok:false,status:403,headers:{get:()=>kind==='rate'?'0':null}};}};
+   vm.runInNewContext(source,context);await tick();
+   assert.equal(light.dataset.state,'waiting','Failed live checks must not turn dated running observations green');
+   assert.match(light['aria-label'],new RegExp(label));assert.match(light['aria-label'],/Current status is unconfirmed/);
+   assert.match(light['aria-label'],/Published observation/);
+   const before=reads;vm.runInNewContext(source,context);await tick();assert.equal(reads,before,'Unavailable reads retain backoff across pages');
+  }
+ }
  for(const [age,state] of [[1,'waiting'],[16,'blocked']]){
   const light={dataset:{},setAttribute(k,v){this[k]=v;},removeAttribute(k){if(k==='data-state')delete this.dataset.state;}};
   const context={window:{WAKE_DEPLOYMENT:{hosted_status:{repository:'example/repo',workflow:'research-worker.yml',branch:'master'}},addEventListener(){}},

@@ -13,8 +13,8 @@
   // Leave time inside readers' eight-second request budget to read the bundled
   // fallback. Discovery and manifest validation share one deadline.
   const discoveryDeadline=AbortSignal.timeout(6000);
-  const json=async(url,limit)=>{
-    const response=await nativeFetch(url,{credentials:'omit',referrerPolicy:'no-referrer',cache:'no-cache',signal:discoveryDeadline});
+  const json=async(url,limit,signal=discoveryDeadline)=>{
+    const response=await nativeFetch(url,{credentials:'omit',referrerPolicy:'no-referrer',cache:'no-cache',signal});
     if(!response.ok || !response.body)throw Error('Public snapshot unavailable');
     const reader=response.body.getReader(),chunks=[];let size=0;
     try{for(;;){const {done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>limit)throw Error('Public snapshot metadata exceeds limit');chunks.push(value);}}finally{await reader.cancel();}
@@ -27,7 +27,7 @@
     try{
       if(requested==='bundled'){transport.mode='bundled';return null;}
       if(requested && !/^[a-f0-9]{40}$/.test(requested))throw Error('Invalid snapshot revision');
-      let revision=requested,discovered=false;
+      let revision=requested,discovered=false,recovered=false,cached=null;
       if(!revision && window.parent!==window){
         try{
           const parent=window.parent.WakePublicData;
@@ -35,18 +35,35 @@
         }catch{throw Error('Parent snapshot unavailable');}
       }
       if(!revision){
-        try{const cached=JSON.parse(localStorage.getItem(key));if(cached?.time<=Date.now() && Date.now()-cached.time<180000 && /^[a-f0-9]{40}$/.test(cached.revision))revision=cached.revision;}catch{}
+        try{cached=JSON.parse(localStorage.getItem(key));}catch{}
+        if(!(cached?.time<=Date.now() && /^[a-f0-9]{40}$/.test(cached.revision)))cached=null;
+        if(cached && Date.now()-cached.time<180000)revision=cached.revision;
         if(!revision){
-          const head=await json('https://api.github.com/repos/'+config.repository+'/git/ref/heads/'+config.branch,16384);
-          if(head.object?.type!=='commit' || !/^[a-f0-9]{40}$/.test(head.object.sha))throw Error('Invalid public revision');revision=head.object.sha;discovered=true;
+          if(cached?.failedAt<=Date.now() && Date.now()-cached.failedAt<180000){revision=cached.revision;recovered=true;}
+          else try{
+            const head=await json('https://api.github.com/repos/'+config.repository+'/git/ref/heads/'+config.branch,16384,AbortSignal.timeout(3000));
+            if(head.object?.type!=='commit' || !/^[a-f0-9]{40}$/.test(head.object.sha))throw Error('Invalid public revision');revision=head.object.sha;discovered=true;
+          }catch(error){
+            if(!cached)throw error;
+            // Recover one previously verified immutable snapshot, never a
+            // mixture of new branch files and an older bundled overview.
+            revision=cached.revision;recovered=true;
+            try{localStorage.setItem(key,JSON.stringify({...cached,failedAt:Date.now()}));}catch{}
+          }
         }
       }
       const root=new URL('https://raw.githubusercontent.com/'+config.repository+'/'+revision+'/');
-      const manifest=await json(new URL('installation.json',root),524288);
+      const [manifest,bundled]=await Promise.all([json(new URL('installation.json',root),524288),
+        recovered?json(new URL('installation.json',site),524288).catch(()=>null):null]);
       if(manifest.schema!==1 || manifest.installation_id!==config.installation_id || manifest.live!==false ||
          !Array.isArray(manifest.nodes) || manifest.nodes.length!==12 || Object.keys(manifest.record_heads||{}).length!==12)
         throw Error('Public installation changed');
+      if(recovered && bundled?.installation_id===config.installation_id &&
+         Date.parse(bundled.generated)>Date.parse(manifest.generated)){
+        transport.mode='bundled';return null;
+      }
       transport.revision=revision;transport.mode='published';
+      transport.discovery=recovered?'last-verified-snapshot':'current-or-cached-revision';
       // Navigating must not extend discovery's TTL indefinitely.
       if(discovered)try{localStorage.setItem(key,JSON.stringify({revision,time:Date.now()}));}catch{}
       return root;

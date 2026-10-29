@@ -4,6 +4,7 @@ The complete exported snapshot remains an archive. Reading a homepage must never
 transfer the accumulated evidence and provider history merely to show one story.
 """
 from copy import deepcopy
+from datetime import datetime
 import json
 from pathlib import Path
 
@@ -24,10 +25,29 @@ def _json(value):
     return json.dumps(value, ensure_ascii=False, separators=(',', ':'))
 
 
+def ordered_journal(state):
+    """Order derived journal views by their recorded invocation, across nodes.
+
+    Native journal rows need not duplicate receipt timestamps. A node's local
+    cycle number cannot establish chronology across independent records.
+    """
+    rows=deepcopy(state.get('journal', []))
+    def key(row):
+        receipt=state.get('invocations', {}).get(row.get('invocation'), {})
+        when=row.get('time') or receipt.get('finished') or receipt.get('time')
+        try:
+            when=datetime.fromisoformat(str(when or '').replace('Z','+00:00'))
+            stamp=when.timestamp() if when.tzinfo is not None else float('-inf')
+        except ValueError:stamp=float('-inf')
+        return stamp,str(row.get('origin',{}).get('node','')),row.get('cycle',0)
+    return sorted(rows,key=key)
+
+
 def export_reader_transport(data, target):
     """Write views only; callers pass an already public-filtered browser packet."""
     target = Path(target)
     state = data['state']
+    journal = ordered_journal(state)
     counts = {key: len(state.get(key, {})) for key in COLLECTIONS}
     counts.update(journal=len(state.get('journal', [])), events=len(data.get('events', [])))
 
@@ -65,7 +85,7 @@ def export_reader_transport(data, target):
                 'collection': collection, 'item': item, 'related': related(item),
                 'events': [event for event in data.get('events', [])
                            if event.get('payload', {}).get('id') == item['id']]})
-    for row in state.get('journal', []):
+    for row in journal:
         identifier = row.get('invocation')
         packet = {
             'head': data['head'], 'collection': 'journal', 'item': row,
@@ -78,7 +98,7 @@ def export_reader_transport(data, target):
             write(record_path('journal', identifier), packet)
     for collection, rows in (
             *((key, ordered(key)) for key in COLLECTIONS),
-            ('journal', state.get('journal', [])), ('events', data.get('events', []))):
+            ('journal', journal), ('events', data.get('events', []))):
         rows = list(reversed(rows))
         for offset in range(0, len(rows), PAGE_SIZE):
             batch = rows[offset:offset + PAGE_SIZE]
@@ -119,7 +139,7 @@ def export_reader_transport(data, target):
                     item = {key: value for key, value in item.items() if key in
                             ('id', 'time', 'source', 'actor', 'origin')}
                 small[collection][item['id']] = deepcopy(item)
-        small['journal'] = deepcopy(state.get('journal', [])[-limit:])
+        small['journal'] = deepcopy(journal[-limit:]) if limit else []
         for row in small['journal']:
             identifier = row.get('invocation')
             item = state.get('invocations', {}).get(identifier)

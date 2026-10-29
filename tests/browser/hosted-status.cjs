@@ -35,9 +35,9 @@ const assets=path.resolve(__dirname,'../../wake/assets');
    if(status==='in_progress' && workflow==='active'){
     await page.reload();await page.waitForFunction(()=>document.querySelector('.actions-light').getAttribute('data-state')==='waiting');assert.equal(requests.length,2,'navigation reuses bounded cache');
     await page.clock.fastForward(120000);assert.equal(requests.length,2);
-    fail=true;await page.clock.fastForward(61000);await page.waitForFunction(()=>document.querySelector('.actions-light').getAttribute('aria-label').includes('Status unavailable'));
+    fail=true;await page.clock.fastForward(61000);await page.waitForFunction(()=>document.querySelector('.actions-light').getAttribute('aria-label').includes('GitHub status request failed'));
     assert.equal(await light.getAttribute('data-state'),null,'failed reads clear cached green');assert.equal(requests.length,4);
-    await page.reload();await page.waitForFunction(()=>document.querySelector('.actions-light').getAttribute('aria-label').includes('Status unavailable'));assert.equal(requests.length,4,'unavailable observations also back off across navigation');
+    await page.reload();await page.waitForFunction(()=>document.querySelector('.actions-light').getAttribute('aria-label').includes('GitHub status request failed'));assert.equal(requests.length,4,'unavailable observations also back off across navigation');
    }
    await page.close();
   }

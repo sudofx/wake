@@ -2,23 +2,64 @@
 (() => {
   'use strict';
   const timeout=()=>AbortSignal.timeout(8000);
-  const read=async path=>{
-    const response=await (window.WakePublicData?.fetch || fetch)(path,{cache:'no-cache',signal:timeout()});
+  const read=async(path,signal=timeout())=>{
+    const response=await (window.WakePublicData?.fetch || fetch)(path,{cache:'no-cache',signal});
     if(!response.ok){const error=Error('Published view unavailable ('+response.status+')');error.status=response.status;throw error;}
     return response.json();
   };
+  const recordPath=(collection,id)=>{
+    const hex=Array.from(new TextEncoder().encode(id),byte=>byte.toString(16).padStart(2,'0')).join('');
+    return 'reader-records/'+collection+'/'+hex.match(/.{1,64}/g).join('/')+'.json';
+  };
+  async function recentJournal(data){
+    if(!data.reader_transport || window.WAKE_DEPLOYMENT?.unified!==true || window.WAKE_DEPLOYMENT?.snapshot_only!==true)return data;
+    const signal=AbortSignal.timeout(5000);
+    try{
+      // Older unified exporters sorted timestamp-free journal rows by node.
+      // Recover a bounded recent window from those same snapshot's node records.
+      const manifest=await read('installation.json',signal),candidates=new Map();
+      if(manifest.schema!==1 || manifest.live!==false || !Array.isArray(manifest.nodes) || manifest.nodes.length!==12 ||
+         manifest.installation_id!==window.WAKE_DEPLOYMENT.public_data?.installation_id)return data;
+      for(const node of manifest.nodes){
+        if(!/^(?:10[0-3]|20[0-3]|30[0-3])\.wake$/.test(node.id) || !/^[a-f0-9]{64}$/.test(manifest.record_heads?.[node.id]?.head||''))continue;
+        const status=node.research?.status;
+        for(const row of [status?.last_accepted,...(node.research?.activity||[]).filter(row=>row.status==='accepted')]){
+          if(!row || !/^[A-Za-z0-9._-]{1,160}$/.test(row.id||''))continue;
+          const stamp=Date.parse(row.time);if(!Number.isFinite(stamp)||stamp>Date.now()+60000)continue;
+          candidates.set(node.id+'::'+row.id,{node:node.id,id:row.id,stamp});
+        }
+      }
+      const known=new Set(data.state.journal.map(row=>row.invocation));
+      const queue=[...candidates.values()].sort((a,b)=>b.stamp-a.stamp).slice(0,8).filter(row=>!known.has(row.node+'::'+row.id));
+      async function worker(){
+        while(queue.length){
+          const row=queue.shift(),qualified=row.node+'::'+row.id;
+          try{
+            const packet=await read('nodes/'+row.node+'/'+recordPath('journal',row.id),signal);
+            const receipt=packet.related?.invocations?.[row.id];
+            if(packet.head!==manifest.record_heads[row.node].head || packet.collection!=='journal' ||
+               packet.item?.invocation!==row.id || receipt?.status!=='accepted')continue;
+            const origin={node:row.node,...manifest.record_heads[row.node]};
+            data.state.journal.push({...packet.item,invocation:qualified,origin});
+            data.state.invocations[qualified]={...Object.fromEntries(Object.entries(receipt).filter(([key])=>
+              ['time','finished','status','provider','model','phase'].includes(key))),id:qualified,origin};
+          }catch{}
+        }
+      }
+      await Promise.all(Array.from({length:Math.min(3,queue.length)},worker));
+      const stamp=row=>Date.parse(data.state.invocations[row.invocation]?.finished||data.state.invocations[row.invocation]?.time||row.time)||0;
+      data.state.journal.sort((a,b)=>stamp(a)-stamp(b));
+    }catch{}
+    return data;
+  }
   window.WakeLiveUrl='reader-data.json';
   window.WakeData=read(window.WakeLiveUrl).catch(error=>{
     // Older completed exports have no bootstrap. A broken new export must be
     // visible rather than silently downloading the complete archive instead.
     if(![404,410].includes(error.status))throw error;
     window.WakeLiveUrl='wake-data.json';return read(window.WakeLiveUrl);
-  }).then(data=>{data.public_cycle=Number(data.state?.version||0);return data;});
+  }).then(recentJournal).then(data=>{data.public_cycle=Number(data.state?.version||0);return data;});
   const loaded=new Set(),pages=new Map();
-  const recordPath=(collection,id)=>{
-    const hex=Array.from(new TextEncoder().encode(id),byte=>byte.toString(16).padStart(2,'0')).join('');
-    return 'reader-records/'+collection+'/'+hex.match(/.{1,64}/g).join('/')+'.json';
-  };
   const merge=(data,packet)=>{
     if(packet.head!==data.head)throw Error('The published snapshot changed. Reload to read its current details.');
     if(packet.item){

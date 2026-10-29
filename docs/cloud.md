@@ -526,13 +526,15 @@ checkpoint, provider outcome, website upload and Pages serving are separate clai
 ### Read the hosted status light
 
 The header light checks public GitHub Actions metadata without sign-in or a token.
-Green means a hosted batch is active, including restoration, quota waits and publication;
+Green combines an active hosted batch with recorded node-running observations;
 it does not mean a provider call is in flight or research has been accepted. Yellow
 means queued, stopped, draining, awaiting automatic recovery, or an active batch
 waiting for current node observations. Blue means between
 successful batches; red means GitHub requires attention or a failed batch has had
-no successor for fifteen minutes. Gray means
-status could not be confirmed. Tap or focus the light for its explanation and check time;
+no successor for fifteen minutes. A failed current-status check with an available
+published node snapshot shows yellow, names the failure and dates that observation;
+it never turns an old running snapshot green. Gray means neither the current
+check nor a published node observation is available. Tap or focus the light for its explanation and check time;
 its link opens the research workflow. Node dots and Console canvases remain dated snapshots.
 
 Only exports explicitly bound by `wake.hosted_presentation.bind_hosted_status` enable
@@ -547,7 +549,8 @@ GitHub Pages hosts the checked interface. `public-data.js` reads a single public
 GitHub commit for each document, while local and unbound exports stay same-origin.
 The explicit binding names the repository, `wake-public` branch and expected
 installation identity. Discovery uses one anonymous GitHub commit lookup, shared
-across pages for three minutes; discovery and metadata validation share a six-second deadline with
+across pages for three minutes; the API lookup is bounded to three seconds and
+discovery plus metadata validation share a six-second deadline with
 size limits, leaving time for the bundled fallback inside normal reader budgets. Data reads omit credentials and referrers and have bounded timeouts.
 All overview, detail, pagination, Console and map reads use that immutable commit.
 Bob popups and Console tools inherit it. Opening a new page after the discovery
@@ -555,7 +558,11 @@ cache expires can adopt a newer export without rebuilding the interface.
 
 The data branch supplies JSON and record packets, never executable website
 assets. Download links resolve to that same selected commit; the external
-inspection entry opens its self-contained Markdown packet. Remote identity mismatch or initial discovery failure selects the bundled
+inspection entry opens its self-contained Markdown packet. If API discovery fails,
+the reader may reuse its last verified immutable revision after rechecking the
+installation identity, unless the bundled snapshot is newer. The original cache
+age is preserved, and failed discovery retries back off across navigation.
+Remote identity mismatch or discovery failure without a usable cached revision selects the bundled
 dated snapshot before any data loads, without inserting a site-wide banner. Once a remote commit
 is adopted, a missing packet fails visibly rather than combining generations.
 A popup with an explicit source revision fails if that revision is unavailable.

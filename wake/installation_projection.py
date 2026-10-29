@@ -275,7 +275,8 @@ def build_unified_projection(node_snapshots, node_research, installation_id):
     metrics.setdefault('accepted_actions', {})['by_topic'] = topic_metrics
     state['pending'] = pending_nodes[0]['invocation'] if pending_nodes else None
     state['pending_nodes'] = pending_nodes
-    state['journal'].sort(key=lambda row: (str(row.get('time', '')), str(row['origin']['node']), row.get('cycle', 0)))
+    from .reader_transport import ordered_journal
+    state['journal'] = ordered_journal(state)
     events.sort(key=lambda event: (str(event.get('time', '')), event['origin']['node'], event.get('seq', 0)))
     head = 'snapshot:' + sha256(json.dumps(heads, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
     generated = max((str(p.get('generated') or '') for p in available.values()), default='') or None

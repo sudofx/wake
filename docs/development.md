@@ -514,6 +514,12 @@ Older reader lists load their next 24-row public packet when the reader scrolls
 to the list end. Already loaded journal/history rows appear first. Loading stops
 at the recorded end, keeps the same snapshot head and never fetches the full
 archive. An unavailable packet shows a retry action.
+Unified journals are ordered by their recorded invocation times, not node names
+or local cycle numbers. A bounded recent window can be recovered from up to eight
+node journal packets in the same selected snapshot, with three reads at a time.
+Every recovered packet must match its node's published head and an accepted
+receipt. This keeps newer work visible while older exporters remain installed,
+without rewriting authority or loading the full archive.
 The reader-only `reader-theme.css` uses sudofx's light/dark palette and sans/mono
 font stacks without changing page geometry. Console and its embedded components
 never load that stylesheet or the reader navigation script. The dark reader
