@@ -1,111 +1,124 @@
-# Ask WAKE to repair its own presentation source
+# Automatic self-correction
 
-Open [Self-correction](https://sudofx.github.io/wake/self-correction/) from the
-Console. It shows current GitHub correction runs and the latest published native
-adaptation observations. Workflow status comes directly from GitHub; native
-research evidence remains a dated export, with its installation, captured source
-revision and per-node heads visible. Missing observations remain unknown.
+WAKE checks its supported presentation source automatically when code checks,
+website publication or a research batch finishes. You do not need to describe a
+bug or select files to start those checks. The
+[Self-correction page](https://sudofx.github.io/wake/self-correction/) shows the
+latest check, repair, publication or review outcome and links to its evidence.
+**Run a check now** is an optional extra check; leave its repair fields blank.
 
-## Start a real source correction
+This is bounded automation. It checks JavaScript syntax in eligible top-level
+presentation files and content-based cache keys for the self-correction page.
+It is not a general detector of scientific mistakes, visual defects or arbitrary
+runtime faults. A failed research workflow without a supported source diagnosis
+is reported as outside this repair allowance; it cannot authorize a runtime rewrite.
+
+## What happens automatically
+
+- A stale self-correction asset cache key is replaced with the content digest of
+  its existing local asset. This exact mechanical transformation is tested in
+  isolation, recomputed in a clean base checkout and applied without human review.
+  A normal, non-forced source update rejects concurrent master changes. Independent
+  CI is explicitly requested; the existing checked website publisher then owns delivery.
+- A JavaScript syntax error in eligible source selects its own file and a bounded
+  repair request. Gemini gets one attempt. WAKE validates and tests the candidate,
+  then opens a draft pull request for source review. It does not require you to
+  diagnose the fault or copy the proposed code. Model-authored executable changes
+  require review before merging.
+- A failed website publication can retry once per source revision per UTC day,
+  using the existing website publisher and independently checked current source.
+  It does not stop research, restore native records or invent a replacement snapshot.
+- A healthy check records that no supported fault was found. Provider waits,
+  exhausted attempt capacity, failed checks and faults outside the allowance stay visible.
+
+The workflow uses completion events, not a research cron or a perpetual watcher.
+It does not trigger itself. Checks run serially without canceling an active
+correction. A candidate is tested at most once per source revision per UTC day;
+there are at most four automatic model attempts per UTC day, including failed or
+interrupted attempts, and no repeated model attempt for the same source revision
+that day. Incomplete attempt history fails closed. Native provider quotas and
+billing policy remain unchanged; source requests are separate development calls,
+not accepted research or experimental results.
+
+An applied source repair, a passing CI run, website delivery and runtime adoption
+are separate evidence. The page reads named outcome jobs, rather than interpreting
+any successful workflow as a repair. A mechanical repair is reported as applied
+when source advances; it still needs its independent CI and website delivery.
+A failed subsequent publication is visible as its own event and bounded recovery.
+
+## Optional advanced request
+
+For a specific source issue beyond the automatic detector:
 
 1. Open [Source self-correction in GitHub Actions](https://github.com/sudofx/wake/actions/workflows/self-correction.yml).
-2. Sign in with repository workflow permissions. Choose **Run workflow** on
-   **master**.
-3. In **request**, describe one concrete problem and its expected behavior in
-   10–4,000 characters. In **paths**, enter one to four existing files separated
-   by commas. For example: `wake/assets/ant-farm.js, wake/assets/ant-farm.css`.
-4. Run the workflow. WAKE captures the source revision and hashes, sends the
-   request and selected files to Gemini once, validates its proposed edits, and
-   compares the exact base hashes before writing candidate text.
-5. Open the resulting run. If syntax and regression checks pass, the workflow
-   creates a **draft pull request** with the changed files and evidence links.
-   Review the diff and behavior, then merge an acceptable change through GitHub.
-   Website publication and research-runtime upgrades use their existing separate
-   release paths.
+2. Choose **Run workflow** on **master**. In **request**, describe one concrete
+   problem and its expected behavior in 10–4,000 characters. In **paths**, enter
+   one to four existing files, for example
+   `wake/assets/ant-farm.js, wake/assets/ant-farm.css`.
+3. A valid, passing model candidate appears on `wake-correction/RUN_ID` as a draft
+   pull request. Review it before merging. A failed attempt retains its check and
+   any proposal artifacts; it never silently merges a substitute.
 
-Use only public source context in the request: workflow inputs, proposal artifacts
-and review branches are visible to repository readers. Do not include secrets.
+The optional model defaults to `gemini-3.5-flash-lite`. Changing this advanced
+input does not change research models or installed settings. Explicit requests
+are separate operator attempts, rather than automatic retries.
+Use public source context only: workflow inputs, artifacts and branches are public.
+The page never receives credentials or submits privileged commands.
 
-The repository needs its existing `GEMINI_API_KEY` Actions secret and the
-repository Actions setting **Allow GitHub Actions to create and approve pull
-requests**. The workflow creates draft requests, never approvals. If that setting
-blocks the review step, the proposal artifact and test logs remain available;
-there is no silent merge fallback. A repository owner can enable creation and
-rerun the failed review job against the retained proposal.
+## Scope and execution boundaries
 
-You do not have to copy suggested source changes by hand: the proposed files are
-already written on a branch named `wake-correction/RUN_ID`. A failed test prevents
-branch publication. Passing checks qualifies the candidate for human source
-review; it does not establish visual quality, answer quality, scientific validity
-or runtime compatibility. Pull requests created with the workflow token may not
-trigger ordinary PR CI automatically; the explicit candidate test job is the
-recorded check, and normal release gates still apply.
+The model contract remains `wake-source-correction@1`: existing top-level
+`wake/assets/` JavaScript, CSS and HTML, and top-level `docs/` Markdown.
+At most four files, 96,000 bytes per file and 220,000 total candidate bytes are
+accepted. Automatic syntax detection uses the same file allowance and size bound.
+The model returns small exact replacements and prior file hashes, never commands.
+New files, traversal, symlinks, stale bases, unchanged content and extra fields
+are rejected before any source writes. Each edit must match exactly once.
 
-## What this capability can modify
+The separate trusted mechanical contract, `wake-automatic-correction@1`, permits
+only the two existing local JS/CSS query keys in
+`wake/assets/self-correction/index.html`. Candidate text must equal the exact
+transformation recomputed from committed source. It cannot add markup, change
+asset destinations or grant the model this nested path. The write-capable job
+executes trusted code only and never executes candidate source.
 
-The first source-correction contract, `wake-source-correction@1`, allows only
-existing top-level `wake/assets/` JavaScript, CSS and HTML files and top-level
-`docs/` Markdown files. The operator selects the exact files for each run. At most
-four files, 96,000 bytes per file and 220,000 total candidate bytes are accepted.
-The model returns small exact text replacements with prior file hashes, not shell
-commands. Each replacement must match exactly once and only the selected files
-may change. Trusted code expands the edits into complete replacement text for the
-existing hash-bound proposal contract. This avoids generating an entire large
-asset for a small repair. New files, binary assets, traversal paths, symlinks, unchanged content,
-stale bases and extra response fields are rejected before source writes.
+No model can edit Python runtime code, kernel, governance, native records,
+credentials, dependencies, tests, workflows or deployment bindings. It gets no
+write token or filesystem tool. Model generation, testing and branch publication
+use separate runners. Dependencies are installed from trusted source before a
+candidate is applied. Candidate tests run in a non-root disposable Docker
+container with no network, credentials, native records, Docker socket or writable
+host mounts; the root is read-only with four-GiB memory, three-GiB temporary
+filesystem and CPU/process limits. Development reload is disabled.
 
-The model cannot modify Python runtime code, tests/evaluators, kernel, governance,
-records, dependencies, workflows, deployment bindings or credentials. It receives
-no research authority, source-write token or filesystem tool. The workflow can
-create one review branch; it cannot merge it or promote the runtime. A wider
-allowance requires a reviewed versioned contract, not a model-supplied permission.
+The proposal uses the existing repository `GEMINI_API_KEY` secret, the kernel
+vendor request builder, low reasoning, an 8,192-token output ceiling and a
+180-second timeout. Missing credentials, quota failures, malformed responses and
+failed tests stop visibly without a provider retry loop. A quota/availability
+failure is reported as provider wait, not a successful correction. Draft creation
+requires the existing Actions permission to create pull requests; failure leaves
+artifacts and never triggers a merge fallback. A wider source allowance needs a
+reviewed versioned contract.
 
-The model-request job, candidate-test job and branch-publication job use separate
-runners. Dependencies are installed from trusted source before applying the
-candidate. Candidate tests run inside a non-root disposable Docker container
-with no network, provider credentials, research records, Docker socket or
-writable host mounts, plus a four-GiB memory limit, three-GiB disposable temporary
-filesystem, CPU/process limits and a read-only root. The temporary filesystem
-must hold the suite’s twelve-node export fixtures; a one-GiB limit is insufficient.
-Temporary test commands may execute only inside this isolated filesystem. The
-read-only checkout explicitly disables development reload, so recovery tests do
-not wait for an editor save.
-The later write-capable job downloads the original immutable proposal artifact into a
-fresh base checkout and revalidates it without executing the candidate. Docker
-is an isolation boundary, not proof against every runtime vulnerability.
-
-One run makes at most one Gemini request. Missing secrets, provider quota,
-malformed/truncated responses and failed checks stop visibly. There is no
-provider retry loop or autonomous recurring source-edit trigger. The receipt
-artifact records the base revision, exact proposal digest, model, provider-call
-count and changed paths. This is source-development evidence, separate from each
-node’s append-only native research record; it never increments research progress.
-
-The model is an operator input, defaulting to `gemini-3.5-flash-lite`, a
-configured lightweight research model. Changing it does not change research
-models or their installation settings.
-
-The proposal request uses the kernel's vendor request builder and an explicit low
-reasoning level, an 8,192-token output ceiling and a 180-second transport timeout. A timeout is a failed attempt, not an
-accepted proposal; starting a fresh run is a new explicit request.
-
-## Automatic changes inside the native runtime
+## Native automatic context adaptation
 
 The separate [native context adaptation](autonomous-context.md) capability can
-propose, measure, adopt, monitor and roll back the installed context-selector
-policy without per-change human review, once a deployment grants permission.
-It cannot rewrite arbitrary source. The Self-correction page displays each node’s
-reported enablement, current policy and trial/adoption/rollback counts. A missing
-field is **not reported**, rather than an invented zero or an inferred grant.
+propose, measure, adopt, monitor and roll back an installed context-selector
+policy without per-change human review when the installation grants permission.
+It cannot rewrite arbitrary source. The page shows each node's reported grant,
+policy and trial/adoption/rollback counts from one immutable, identified public
+snapshot. **Not reported** means unknown. A dated observation is not a live
+runtime connection or proof of improvement.
 
-Neither the public page nor a source correction enables that deployment grant.
-Changing or promoting hosted runtime policy remains an explicit compatible
-runtime operation. Source, CI, a merged change, the public mirror and the actual
-executing runtime each need their own evidence.
+The hosted reader uses the shared public-data transport to select that snapshot;
+its explicit revision pin and offline cached-revision rules match other readers.
+Refresh reloads the document to select a coherent snapshot, rather than mixing
+new data into an old document. GitHub correction metadata is observed separately
+and cached for ten minutes, including unavailable responses.
 
 ## Earlier recovery experiment
 
-The earlier static retry-delay/concurrency demonstration is retained under
-**Earlier operational recovery experiment** with its exact `result.json`. Those
-synthetic-service results made zero production changes. They are not relabeled
-as current behavior. [Reproduce that experiment](resilience.md#try-bounded-operational-self-correction-in-isolation).
+The earlier static retry-delay/concurrency demonstration remains under **Earlier
+operational recovery experiment** with its exact `result.json`. Those synthetic
+results made zero production changes and are not relabeled as current behavior.
+[Reproduce that experiment](resilience.md#try-bounded-operational-self-correction-in-isolation).

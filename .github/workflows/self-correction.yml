@@ -1,63 +1,107 @@
 name: WAKE — Source self-correction
 
 on:
+  workflow_run:
+    workflows: ["WAKE✳︎ — Check code · automatic", "WAKE — Publish website", "WAKE — Research worker"]
+    types: [completed]
   workflow_dispatch:
     inputs:
       request:
-        description: Describe one concrete repair and the expected behavior (10–4000 characters).
+        description: Optional advanced repair request. Leave empty to check and correct automatically.
         type: string
-        required: true
+        required: false
       model:
         description: Gemini model for this bounded request.
         type: string
-        required: true
+        required: false
         default: gemini-3.5-flash-lite
       paths:
         description: One to four existing presentation/docs paths, separated by commas.
         type: string
-        required: true
-        default: wake/assets/ant-farm.js
+        required: false
+        default: ''
 
 permissions:
   contents: read
+  actions: read
 
 concurrency:
   group: wake-source-self-correction
   cancel-in-progress: false
 
 jobs:
-  propose:
-    if: github.ref_name == 'master'
+  inspect:
+    if: github.ref_name == 'master' && (github.event_name != 'workflow_run' || (github.event.workflow_run.head_branch == 'master' && github.event.workflow_run.head_repository.full_name == github.repository))
     runs-on: ubuntu-latest
     timeout-minutes: 8
     outputs:
-      base: ${{ steps.base.outputs.revision }}
+      base: ${{ steps.check.outputs.base }}
+      mode: ${{ steps.check.outputs.mode }}
+      outcome: ${{ steps.check.outputs.outcome }}
     steps:
       - uses: actions/checkout@v7
         with:
+          ref: ${{ github.sha }}
           persist-credentials: false
       - uses: actions/setup-python@v7
         with:
           python-version: '3.13'
-      - id: base
-        name: Bind the exact source revision
-        run: echo "revision=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-      - name: Generate one bounded source proposal
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      - id: check
+        name: Diagnose source without model calls or research records
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CORRECTION_REQUEST: ${{ inputs.request }}
+          CORRECTION_PATHS: ${{ inputs.paths }}
+          CORRECTION_MODEL: ${{ inputs.model }}
+        run: python scripts/automatic_self_correction.py inspect
+      - uses: actions/upload-artifact@v4
+        with:
+          name: automatic-correction-check
+          path: /tmp/wake-auto-correction/
+          retention-days: 30
+          if-no-files-found: error
+
+  propose:
+    needs: inspect
+    if: needs.inspect.outputs.mode == 'model'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    outputs:
+      base: ${{ needs.inspect.outputs.base }}
+      outcome: ${{ steps.generate.outputs.outcome }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.inspect.outputs.base }}
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - uses: actions/download-artifact@v4
+        with:
+          name: automatic-correction-check
+          path: /tmp/wake-auto-correction
+      - id: generate
+        name: Generate one bounded source proposal
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           CORRECTION_REQUEST: ${{ inputs.request }}
           CORRECTION_PATHS: ${{ inputs.paths }}
           CORRECTION_MODEL: ${{ inputs.model }}
-        run: python scripts/self_correction.py generate --output /tmp/wake-correction
+        run: python scripts/automatic_self_correction.py prepare
       - uses: actions/upload-artifact@v4
         with:
           name: source-correction-proposal
-          path: /tmp/wake-correction/
+          path: /tmp/wake-auto-correction/proposal/
           retention-days: 30
           if-no-files-found: error
 
   test:
-    needs: propose
+    needs: [inspect, propose]
+    if: always() && needs.inspect.result == 'success' && (needs.inspect.outputs.mode == 'mechanical' || needs.propose.result == 'success')
     runs-on: ubuntu-latest
     timeout-minutes: 25
     # Candidate execution receives no secrets and no write-capable token.
@@ -66,15 +110,21 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: ${{ needs.propose.outputs.base }}
+          ref: ${{ needs.inspect.outputs.base }}
           persist-credentials: false
       - uses: actions/setup-python@v7
         with:
           python-version: '3.13'
       - uses: actions/download-artifact@v4
+        if: needs.inspect.outputs.mode == 'model'
         with:
           name: source-correction-proposal
           path: /tmp/wake-correction
+      - uses: actions/download-artifact@v4
+        if: needs.inspect.outputs.mode == 'mechanical'
+        with:
+          name: automatic-correction-check
+          path: /tmp/wake-auto-correction
       - name: Build the test image from trusted source before applying candidate
         run: |
           cat > /tmp/wake-correction.Dockerfile <<'DOCKER'
@@ -88,8 +138,13 @@ jobs:
           DOCKER
           docker build --file /tmp/wake-correction.Dockerfile --tag wake-correction-test .
       - name: Apply validated candidate text
+        if: needs.inspect.outputs.mode == 'model'
         run: python scripts/self_correction.py apply --plan /tmp/wake-correction/proposal.json
+      - name: Apply only the recomputed trusted cache repair
+        if: needs.inspect.outputs.mode == 'mechanical'
+        run: python scripts/automatic_self_correction.py apply-mechanical
       - name: Check changed JavaScript syntax
+        if: needs.inspect.outputs.mode == 'model'
         run: |
           python - <<'PY'
           import json, subprocess
@@ -121,7 +176,8 @@ jobs:
           retention-days: 30
 
   review:
-    needs: [propose, test]
+    needs: [inspect, propose, test]
+    if: always() && needs.propose.result == 'success' && needs.test.result == 'success' && needs.inspect.outputs.mode == 'model'
     runs-on: ubuntu-latest
     timeout-minutes: 8
     permissions:
@@ -153,3 +209,66 @@ jobs:
           gh auth setup-git
           python scripts/self_correction.py publish --plan /tmp/wake-correction/proposal.json \
             --branch "$CORRECTION_BRANCH" --body-file /tmp/wake-correction-review.md
+
+
+  repair:
+    needs: [inspect, test]
+    if: always() && needs.inspect.outputs.mode == 'mechanical' && needs.test.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.inspect.outputs.base }}
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - uses: actions/download-artifact@v4
+        with:
+          name: automatic-correction-check
+          path: /tmp/wake-auto-correction
+      - name: Recompute trusted repair and advance source without forcing concurrent work
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh auth setup-git
+          python scripts/automatic_self_correction.py publish-mechanical
+
+  republish:
+    needs: inspect
+    if: needs.inspect.outputs.mode == 'republish'
+    uses: ./.github/workflows/publish-pages.yml
+    with:
+      force: true
+    permissions:
+      contents: read
+      actions: read
+      pages: write
+      id-token: write
+
+  outcome:
+    needs: [inspect, propose, test, review, repair, republish]
+    if: always() && needs.inspect.result != 'skipped'
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    name: "Outcome: ${{ needs.repair.result == 'success' && 'repaired' || needs.republish.result == 'success' && 'republished' || needs.review.result == 'success' && 'review_required' || needs.propose.outputs.outcome == 'provider_wait' && 'provider_wait' || (needs.inspect.result == 'success' && needs.inspect.outputs.mode == 'none' && needs.inspect.outputs.outcome) || 'failed' }}"
+    steps:
+      - name: Record the actual outcome
+        env:
+          DIAGNOSIS: ${{ needs.inspect.outputs.outcome }}
+          MODE: ${{ needs.inspect.outputs.mode }}
+          REPAIR: ${{ needs.repair.result }}
+          REPUBLISH: ${{ needs.republish.result }}
+          REVIEW: ${{ needs.review.result }}
+          PROVIDER: ${{ needs.propose.outputs.outcome }}
+        run: |
+          python - <<'PYTHON'
+          import json, os
+          from pathlib import Path
+          record = {key.lower(): os.environ[key] for key in ('DIAGNOSIS', 'MODE', 'REPAIR', 'REPUBLISH', 'REVIEW', 'PROVIDER')}
+          Path(os.environ['GITHUB_STEP_SUMMARY']).write_text('Automatic correction outcome\n\n```json\n' + json.dumps(record, indent=2) + '\n```\nNo native research record was changed. A repaired source still needs independent CI and website delivery.\n')
+          PYTHON

@@ -104,6 +104,18 @@ class HostedPresentationTests(unittest.TestCase):
             self.assertTrue((root / 'self-correction/index.html').exists())
             self.assertIn('href="self-correction/"', (root / 'console.html').read_text())
             self.assertTrue((root / 'self-correction/self-correction.js').exists())
+            correction = (root / 'self-correction/index.html').read_text()
+            import re
+            correction_binding = json.loads(re.search(r'window\.WAKE_DEPLOYMENT=(\{[^<]*?\});', correction).group(1))
+            self.assertEqual(set(correction_binding), {'schema', 'snapshot_only', 'public_data'})
+            self.assertTrue(correction_binding['snapshot_only'])
+            self.assertEqual(correction_binding['public_data'], {'repository': 'example/repo',
+                'branch': 'wake-public', 'installation_id': manifest['installation_id'], 'prefix': ''})
+            transport_tag = '<script src="../public-data.js?v=' + 'b' * 12 + '"></script>'
+            self.assertIn(transport_tag, correction, 'Transport must load synchronously')
+            self.assertLess(correction.index(transport_tag), correction.index('src="self-correction.js'))
+            self.assertIn('src="self-correction.js?v=' + 'b' * 12 + '"', correction)
+            self.assertNotIn('window.WAKE_DEPLOYMENT', (Path(__file__).resolve().parents[1] / 'wake/assets/self-correction/index.html').read_text())
             self.assertEqual(bound['hosted_execution'], manifest['hosted_execution'])
             for prefix in ('', 'nodes/103.wake/'):
                 audit = (root / prefix / 'scientific-research.html').read_text()
@@ -118,6 +130,7 @@ class HostedPresentationTests(unittest.TestCase):
                 self.assertTrue((root / prefix / 'scientific-research.js').exists())
                 self.assertFalse((root / prefix / 'scientific-research.json').exists())
             self.assertEqual((root / 'inspect/index.html').read_bytes(), packet)
+
             self.assertEqual((root / 'reader-data.json').read_bytes(), b'{"private_bodies":false,"version":744}')
             nested = (root / 'nodes/103.wake/blog/post.html').read_text()
             self.assertIn('"instance_name": "103.wake"', nested)
@@ -133,6 +146,22 @@ class HostedPresentationTests(unittest.TestCase):
             self.assertEqual((root / 'console.html').read_text().count('class="self-correction-console-link"'), 1)
             self.assertEqual((root / 'index.html').read_text().count('src="hosted-status.js?'), 1)
             self.assertEqual((root / 'inspect/index.html').read_bytes(), packet)
+
+    def test_correction_binding_escapes_manifest_identity(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            identity = 'installation</script><script>untrusted()</script>&'
+            (root / 'installation.json').write_text(json.dumps({'live': False, 'installation_id': identity,
+                'record_heads': {node: {} for node in NODE_IDS}, 'hosted_execution': {'run_id': '1'}}))
+            (root / 'index.html').write_text('<html><head><script>window.WAKE_DEPLOYMENT={"snapshot_only":true};</script>'
+                '<link href="masthead.css" rel="stylesheet"></head><body><div class="header-tools"></div></body></html>')
+            bind_hosted_status(root, 'example/repo', 'a' * 40)
+            correction = (root / 'self-correction/index.html').read_text()
+            import re
+            encoded = re.search(r'window\.WAKE_DEPLOYMENT=(\{[^<]*?\});', correction).group(1)
+            self.assertNotIn('<', encoded)
+            self.assertNotIn('&', encoded)
+            self.assertEqual(json.loads(encoded)['public_data']['installation_id'], identity)
 
     def test_presentation_refresh_rejects_an_advanced_public_parent(self):
         with tempfile.TemporaryDirectory() as directory:

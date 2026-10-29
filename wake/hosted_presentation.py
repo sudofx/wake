@@ -167,6 +167,19 @@ def bind_hosted_status(site, repository, revision):
                         lambda match:match.group(1)+'?v='+revision[:12]+'"',page)
             page_path.write_text(page)
     shutil.copytree(assets / 'self-correction', site / 'self-correction', dirs_exist_ok=True)
+    # This independent reader has no generated masthead binding. Give it only
+    # the identified root snapshot transport, never operator/runtime controls.
+    correction = site / 'self-correction/index.html'
+    correction_binding = {'schema': 1, 'snapshot_only': True,
+                          'public_data': {'repository': repository, 'branch': 'wake-public',
+                                          'installation_id': manifest['installation_id'], 'prefix': ''}}
+    encoded_binding = json.dumps(correction_binding).replace('<', '\\u003c').replace('>', '\\u003e').replace('&', '\\u0026')
+    page = correction.read_text().replace('<head>', '<head><script>window.WAKE_DEPLOYMENT='
+            + encoded_binding + ';</script><script src="../public-data.js?v='
+            + revision[:12] + '"></script>', 1)
+    page = re.sub(r'((?:self-correction\.js|self-correction\.css))(?:\?v=[^"<]+)?"',
+                  lambda match: match.group(1) + '?v=' + revision[:12] + '"', page)
+    correction.write_text(page)
     manifest['presentation'] = {'source_revision': revision, 'hosted_status': config,
                                 'data_transport':'github-pinned@1'}
     encoded = json.dumps(manifest, sort_keys=True)

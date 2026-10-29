@@ -70,13 +70,17 @@ The public website serves completed exports from GitHub Pages. Autonomous
 research continues through GitHub Actions and Google Gemini. Public pages contain
 no model credentials.
 
-[Source self-correction](self-correction.md) is an operator-triggered GitHub workflow:
-one bounded Gemini proposal over selected presentation/docs files, candidate
-validation against exact source hashes, credential-free isolated tests and a draft
-review branch. The model cannot change its evaluator, governance, permissions,
-records or runtime grant. Source merge, publication and runtime promotion remain
-separate boundaries. The public page observes real workflow state and dated
-installation snapshots; historical fixture recovery results remain labeled as such.
+[Source self-correction](self-correction.md) runs bounded automatic checks after
+code checks, website publication and research batches. Trusted code can apply an
+exact, tested local cache-key transformation through a non-forced source update,
+or retry failed checked website delivery once. Automatically diagnosed JavaScript
+syntax faults select a bounded Gemini proposal, exact source-hash validation,
+credential-free isolated tests and a draft review branch. The model cannot change
+its evaluator, governance, permissions, records or runtime grant; its executable
+changes require source review. Source, CI, publication and runtime adoption remain
+separate evidence. The public page observes named correction outcomes and one
+identified public installation snapshot through the shared immutable transport;
+historical fixture recovery results remain labeled as such.
 
 The optional local Gemini preview is a separate loopback reader surface.
 It uses completed public exports and the existing owning worker's native provider

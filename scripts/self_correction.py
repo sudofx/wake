@@ -211,7 +211,7 @@ def apply(root, plan_path):
 def review_body(plan_path, output, run_url):
     plan = load_plan(plan_path)
     # A review artifact is plain Markdown, never a shell argument or an execution instruction.
-    content = (f"WAKE generated this bounded source correction from an operator request.\n\n"
+    content = (f"WAKE generated this bounded source correction from a bounded repair request.\n\n"
                f"{plan['summary']}\n\n"
                f"Base revision: `{plan['base_revision']}`. Model: `{plan['model']}`.\n\n"
                'Changed files:\n' + ''.join(f"- `{c['path']}`\n" for c in plan['changes']) +

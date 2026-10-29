@@ -66,9 +66,12 @@ research notes and engineering handoffs between conversations.
 The public website and ant farm run on GitHub Pages.
 The [self-correction page](https://sudofx.github.io/wake/self-correction/) shows
 current GitHub correction runs, draft source changes and dated installation evidence.
-The [source correction workflow](docs/self-correction.md) can generate bounded
-presentation/docs edits, test them in isolation and open a draft pull request.
-It does not merge, deploy or grant itself research-runtime authority.
+The [source correction workflow](docs/self-correction.md) automatically checks
+supported presentation source after code checks, publication and research batches.
+It tests and applies exact cache-key repairs, retries failed checked website
+publication once, and generates tested review proposals for detected JavaScript
+syntax faults. Model-authored changes require review; research authority stays
+with the installed runtime.
 
 The local [improvement workflow](docs/improvements.md) turns captured research
 into versioned Python proposals and isolated baseline/candidate comparisons.
