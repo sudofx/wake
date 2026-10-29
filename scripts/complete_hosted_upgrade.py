@@ -84,8 +84,24 @@ def writer_outstanding(client, summary, intent, installation_id=None):
             or run['run_number']>=drained['run_number']):return True
     blob=client.request('contents/hosted-runtime.json?ref='+run['head_sha'])
     original=json.loads(base64.b64decode(blob['content']))['installations'][client.repository]
-    if (original.get('source_revision')!=intent.get('baseline') or
-            installation_id is not None and original.get('installation_id')!=installation_id):return True
+    if installation_id is not None and original.get('installation_id')!=installation_id:return True
+    if original.get('source_revision')!=intent.get('baseline'):
+        # A jobless scheduler entry can survive more than one verified upgrade.
+        # Require an explicitly named original binding, its proven ancestry and
+        # a later drained worker whose policy actually names today's baseline.
+        declared=intent.get('superseded_queued_baselines',{})
+        prior=original.get('source_revision');baseline=intent.get('baseline')
+        if (not isinstance(declared,dict) or declared.get(str(summary['id']))!=prior
+                or not re.fullmatch('[a-f0-9]{40}',str(prior))
+                or not re.fullmatch('[a-f0-9]{40}',str(baseline))
+                or not re.fullmatch('[a-f0-9]{40}',str(drained.get('head_sha','')))):return True
+        later_blob=client.request('contents/hosted-runtime.json?ref='+drained['head_sha'])
+        later=json.loads(base64.b64decode(later_blob['content']))['installations'][client.repository]
+        if (later.get('source_revision')!=baseline or
+                later.get('installation_id')!=original.get('installation_id')):return True
+        ancestry=client.request('compare/'+prior+'...'+baseline+'?per_page=1')
+        if (ancestry.get('status')!='ahead' or ancestry.get('base_commit',{}).get('sha')!=prior
+                or ancestry.get('merge_base_commit',{}).get('sha')!=prior):return True
     jobs=client.request('actions/runs/'+str(summary['id'])+'/jobs?per_page=1')
     return jobs.get('total_count')!=0 or jobs.get('jobs')!=[]
 

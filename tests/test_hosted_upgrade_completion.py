@@ -85,6 +85,36 @@ class Client:
 
 
 class CompletionTests(unittest.TestCase):
+    def test_jobless_entry_from_an_explicit_ancestor_binding_needs_complete_proof(self):
+        class Runs:
+            repository='example/repo'
+            def __init__(self):
+                self.old={'status':'queued','path':'.github/workflows/research-worker.yml','head_branch':'master','run_number':1,'head_sha':'d'*40}
+                self.drained={**self.old,'status':'completed','conclusion':'success','run_number':5,'head_sha':'e'*40}
+                self.original={'source_revision':'c'*40,'installation_id':'installation'}
+                self.later={'source_revision':'b'*40,'installation_id':'installation'}
+                self.ancestry={'status':'ahead','base_commit':{'sha':'c'*40},'merge_base_commit':{'sha':'c'*40}}
+                self.jobs={'total_count':0,'jobs':[]}
+            def request(self,path):
+                if path.startswith('contents/'):
+                    policy=self.original if path.endswith('d'*40) else self.later
+                    return {'content':base64.b64encode(json.dumps({'installations':{self.repository:policy}}).encode()).decode()}
+                if path.startswith('compare/'):return self.ancestry
+                return self.old if path=='actions/runs/1' else self.drained if path=='actions/runs/100' else self.jobs
+        intent={'drained_run':100,'superseded_queued_runs':[1],'baseline':'b'*40,'candidate':'a'*40,
+                'superseded_queued_baselines':{'1':'c'*40}}
+        self.assertFalse(writer_outstanding(Runs(),{'id':1},intent,'installation'))
+        missing=copy.deepcopy(intent);del missing['superseded_queued_baselines']
+        self.assertTrue(writer_outstanding(Runs(),{'id':1},missing,'installation'))
+        for field,value in [('status','diverged'),('base_commit',{'sha':'f'*40}),('merge_base_commit',{'sha':'f'*40})]:
+            client=Runs();client.ancestry[field]=value
+            self.assertTrue(writer_outstanding(client,{'id':1},intent,'installation'))
+        for changes in ({'source_revision':'f'*40},{'installation_id':'other'}):
+            client=Runs();client.later.update(changes)
+            self.assertTrue(writer_outstanding(client,{'id':1},intent,'installation'))
+        client=Runs();client.jobs={'total_count':1,'jobs':[{'status':'in_progress'}]}
+        self.assertTrue(writer_outstanding(client,{'id':1},intent,'installation'))
+
     def test_only_explicitly_superseded_jobless_queue_entries_can_be_reconciled(self):
         class Runs:
             repository='example/repo'

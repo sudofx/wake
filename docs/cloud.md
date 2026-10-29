@@ -666,6 +666,10 @@ binding and empty job list before classifying it as a scheduling artifact.
 Unidentified entries, active jobs, newer runs and incomplete listings still
 block promotion. The frozen checkpoint and all twelve native audits remain
 mandatory; the historical Actions entry is retained.
+If an entry predates an earlier runtime upgrade, the request must also name its
+original runtime in `superseded_queued_baselines`, keyed by run ID. Completion
+proves that runtime is an ancestor of the current baseline, verifies the later
+drained worker's installation and baseline binding, and still requires zero jobs.
 
 ### Computational research capability
 
