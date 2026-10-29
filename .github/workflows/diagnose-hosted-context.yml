@@ -44,11 +44,18 @@ jobs:
           if not needed:
               repo=os.environ['GITHUB_REPOSITORY']
               policy=json.load(open('hosted-runtime.json'))['installations'][repo]
-              ref=json.loads(subprocess.check_output(['gh','api',f'repos/{repo}/git/ref/heads/wake-public'],text=True))['object']['sha']
-              packet=json.loads(subprocess.check_output(['gh','api',f'repos/{repo}/contents/installation.json?ref={ref}'],text=True))
-              if packet.get('size',2000001)>2000000:raise ValueError('Oversized public observation')
-              manifest=json.loads(base64.b64decode(packet['content'],validate=False))
-              nodes=blocked_observation(manifest,policy,event['workflow_run']['id'])
+              revisions=json.loads(subprocess.check_output(['gh','api',f'repos/{repo}/commits?sha=wake-public&per_page=4'],text=True))
+              nodes=[];ref=None
+              # Final shutdown can replace a blocked runtime observation with
+              # stopped. Inspect only four immutable public revisions from the
+              # completed batch; observations still grant no mutation authority.
+              for revision in revisions:
+                  ref=revision['sha']
+                  packet=json.loads(subprocess.check_output(['gh','api',f'repos/{repo}/contents/installation.json?ref={ref}'],text=True))
+                  if packet.get('size',2000001)>2000000:raise ValueError('Oversized public observation')
+                  manifest=json.loads(base64.b64decode(packet['content'],validate=False))
+                  nodes=blocked_observation(manifest,policy,event['workflow_run']['id'])
+                  if nodes:break
               needed=bool(nodes)
               print(json.dumps({'observed_blocked_nodes':nodes,'public_revision':ref,'authority':'Observation triggers read-only diagnosis only.'}))
           with open(os.environ['GITHUB_OUTPUT'],'a') as out:out.write('needed='+str(needed).lower()+'\n')

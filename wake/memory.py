@@ -159,6 +159,30 @@ def compact_retrieved_records(context):
                 value.pop(key)
 
 
+def excerpt_restored_memory(context, size):
+    """Shorten optional retrieved prose, retaining exact identities and provenance.
+
+    Restoration can reinstate the original 900-character memory excerpts after
+    an emergency focus. Operator evidence content is never shortened here.
+    """
+    prose = {'project': ('title', 'question', 'next_step'),
+             'notebook': ('title', 'summary', 'findings', 'limitations'),
+             'belief': ('statement', 'reason', 'falsifier'),
+             'commitment': ('task',)}
+    for item in context.get('memory', {}).get('retrieved_records', []):
+        value = dict(item['value'])
+        clipped = []
+        for field in prose.get(item['kind'], ()):
+            text = value.get(field)
+            if isinstance(text, str) and len(text) > size:
+                value[field] = text[:size - 1] + '…'
+                clipped.append(field)
+        if clipped:
+            item['value'] = value
+            item['context_excerpt'] = True
+            item['clipped_fields'] = sorted(set(item.get('clipped_fields', [])) | set(clipped))
+
+
 def planning_context(context):
     """Omit only proposal/editorial-only views from a retrieval-planning request.
 

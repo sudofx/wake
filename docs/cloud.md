@@ -730,7 +730,9 @@ Scientific child calls remain part of native provider accounting. Shared admissi
 
 **WAKE — Diagnose hosted context capacity** automatically investigates a completed
 research batch when its matching published installation observation reports blocked
-nodes. The observation can trigger only this read-only investigation; it cannot
+nodes. It checks up to four immutable public revisions because final shutdown
+can replace an earlier blocked observation with stopped. The observation can
+trigger only this read-only investigation; it cannot
 change records or research controls. An optional manual dispatch also exists. It captures one authenticated encrypted
 checkpoint without stopping research. Each node builds planning and proposal
 requests on disposable SQLite copies using the bound runtime and saved root

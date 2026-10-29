@@ -570,3 +570,12 @@ in the invocation's `inquiry_drive_shadow`. The ranking's advisory boundary,
 retrieved evidence, source pointers, governance and configured ceiling remain
 unchanged. This final check also runs after protected shared views are restored,
 so an otherwise safe restoration cannot leave a small unhandled overflow.
+
+If restoring shared memory values still exceeds the final envelope, retrieved
+project, notebook, belief and commitment prose can use 180- or 80-character
+excerpts. Each affected field is marked in `clipped_fields` and the record remains
+an explicit excerpt. Exact record hashes, IDs, source/evidence roots, status,
+confidence, revision, due dates and creation versions remain intact. Operator
+evidence content is not shortened by this step. Native history is unchanged;
+missing prose must never be invented. An envelope that still cannot safely fit
+retains the hard limit and makes no provider call.

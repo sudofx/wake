@@ -933,10 +933,20 @@ class Engine:
                                 for item in advisory.get('projects', [])]
         advisory['detail_omitted'] = 'Component breakdown retained in inquiry_drive_shadow; ranking and governance unchanged.'
 
+    def fit_restored_memory(self, request):
+        # Fitting inside preserve_retrieved_views cannot see the final restored
+        # values. Apply the established excerpt contract to that actual envelope.
+        from .memory import excerpt_restored_memory
+        for size in (180, 80):
+            if provider_input_chars(request) <= self.config['max_context_chars']:
+                break
+            excerpt_restored_memory(request['context'], size)
+
     def fit_active_request(self, request):
         with preserve_retrieved_views(request["context"]):
             self._fit_active_request(request)
         self.fit_inquiry_advisory(request)
+        self.fit_restored_memory(request)
 
     def _fit_active_request(self, request):
         """Fit working context into the allowance after instructions/schema/probe.
@@ -1166,6 +1176,7 @@ class Engine:
             self._fit_bounded_request(request, system_suffix=system_suffix)
         # Restoring shared retrieval views can grow the final envelope again.
         self.fit_inquiry_advisory(request)
+        self.fit_restored_memory(request)
 
     def _fit_bounded_request(self, request, *, system_suffix=""):
         """Deterministically shrink an already-bounded provider request below the hard ceiling.

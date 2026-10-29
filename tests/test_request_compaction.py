@@ -201,6 +201,29 @@ class RequestCompactionTests(unittest.TestCase):
         self.assertEqual(request['context']['memory']['retrieved_records'][0]['value'], project)
         self.assertLessEqual(provider_input_chars(request), self.engine.config['max_context_chars'])
 
+    def test_restored_prose_respects_final_budget_without_clipping_roots_or_operator_evidence(self):
+        from wake.memory import excerpt_restored_memory
+        value=dict(id='p',domain='information_survival',status='active',source='record:exact',
+                   evidence=['source-one','source-two'],question='Long project question ' * 40,next_step='Next step ' * 90)
+        human=dict(id='observation',actor='human',source='operator:measurement',content='Exact observation ' * 60)
+        items=[dict(kind='project',id='p',record_hash='exact-native-hash',triggers=['project_source_handoff'],value=deepcopy(value)),
+               dict(kind='evidence',id='observation',record_hash='human-native-hash',triggers=['recent_observation'],value=deepcopy(human))]
+        original=deepcopy(items)
+        request=dict(system=BOUNDED_SYSTEM,response_schema={'type':'object'},context=dict(memory=dict(retrieved_records=items)))
+        self.engine.config['max_context_chars']=provider_input_chars(request)-500
+        self.engine.fit_restored_memory(request)
+        self.assertLessEqual(provider_input_chars(request),self.engine.config['max_context_chars'])
+        self.assertEqual(items[1],original[1])
+        self.assertEqual(items[0]['record_hash'],'exact-native-hash')
+        self.assertEqual(items[0]['value']['source'],value['source'])
+        self.assertEqual(items[0]['value']['evidence'],value['evidence'])
+        self.assertEqual(items[0]['value']['status'],value['status'])
+        self.assertTrue(items[0]['context_excerpt'])
+        self.assertIn('question',items[0]['clipped_fields'])
+        self.assertEqual(value['question'],'Long project question ' * 40)
+        once=canonical(request);self.engine.fit_restored_memory(request)
+        self.assertEqual(canonical(request),once)
+
     def test_planning_reference_receipt_never_claims_accepted_research(self):
         from wake.decision_memory import DECISION_MEMORY_SYSTEM
         self.engine.config['decision_memory_mode'] = 'active'
