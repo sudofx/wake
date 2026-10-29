@@ -724,3 +724,21 @@ record heads against its installation manifest. Missing reports stay explicit;
 publishing this interface neither enables experiments nor changes native records.
 
 Scientific child calls remain part of native provider accounting. Shared admission, unbound per-model planning limits and public request totals include those calls; unresolved effects remain visible rather than counted as known zero.
+
+
+### Diagnose blocked request construction
+
+**WAKE — Diagnose hosted context capacity** captures one authenticated encrypted
+checkpoint without stopping research. Each node builds planning and proposal
+requests on disposable SQLite copies using the bound runtime and saved root
+configuration. The request builders receive no credentials and have socket
+creation disabled. Reports contain only phase, input size, limit and an error
+category; they never include context text, provider responses or private records.
+The restored source record's identity must remain unchanged. No report counts
+as research or changes an installation setting.
+
+This diagnoses saved request capacity, not a live worker. A pending invocation
+is reported without being modified. Live peer notes are not reconstructed;
+a successful check does not rule out a later overflow with added peer notes or
+same-wake collected material. Use the reported capture date and generation when
+comparing the result with public node warnings.

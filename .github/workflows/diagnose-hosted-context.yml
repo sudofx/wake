@@ -1,0 +1,71 @@
+name: WAKE — Diagnose hosted context capacity
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.sha }}
+          path: control
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - run: python -m pip install --disable-pip-version-check -e './control[hosted]'
+      - name: Retain one authenticated encrypted snapshot without stopping research
+        env:
+          GH_TOKEN: ${{ github.token }}
+          WAKE_HOSTED_STATE_KEY: ${{ secrets.WAKE_HOSTED_STATE_KEY }}
+        run: python control/scripts/verify_hosted_upgrade.py --capture checkpoint --policy control/hosted-runtime.json --output checkpoint-summary.json
+      - uses: actions/upload-artifact@v6
+        with:
+          name: encrypted-upgrade-inputs
+          path: checkpoint/
+          if-no-files-found: error
+          retention-days: 1
+  diagnose:
+    needs: capture
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 12
+      matrix:
+        node: [100.wake, 101.wake, 102.wake, 103.wake, 200.wake, 201.wake, 202.wake, 203.wake, 300.wake, 301.wake, 302.wake, 303.wake]
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          path: control
+      - id: policy
+        run: |
+          python - <<'PYTHON'
+          import json,os
+          p=json.load(open('control/hosted-runtime.json'))['installations'][os.environ['GITHUB_REPOSITORY']]
+          with open(os.environ['GITHUB_OUTPUT'],'a') as out:out.write('revision='+p['source_revision']+'\n')
+          PYTHON
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ steps.policy.outputs.revision }}
+          path: runtime
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - run: python -m pip install --disable-pip-version-check -e './control[hosted]'
+      - uses: actions/download-artifact@v6
+        with:
+          name: encrypted-upgrade-inputs
+          path: checkpoint
+      - name: Build bounded requests without provider or control credentials
+        env:
+          WAKE_HOSTED_STATE_KEY: ${{ secrets.WAKE_HOSTED_STATE_KEY }}
+        run: python control/scripts/diagnose_hosted_context.py --snapshot checkpoint --source runtime --policy control/hosted-runtime.json --node '${{ matrix.node }}' --output 'context-${{ matrix.node }}.json'
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: context-${{ matrix.node }}
+          path: context-${{ matrix.node }}.json
+          retention-days: 7
