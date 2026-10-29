@@ -59,7 +59,7 @@
     $('result-title').textContent=labels[verdict];
     $('result-detail').textContent=`Closer minus farther: ${m.difference} food units. ${Math.abs(m.difference)<PROTOCOL.threshold?'The gap is below the preset two-unit threshold. This does not establish that distance has no effect.':'The gap reached the preset two-unit threshold. This does not show that the same outcome holds for other seeds or real ants.'}`;
     $('method-result').textContent=`Seed ${result.seed}; ${PROTOCOL.model}; ${PROTOCOL.ticks} steps in each colony; food positions ${result.positions.near} and ${result.positions.far} habitat units. All 100 food units in each arm are accounted for as delivered, still outside, or carried.`;
-    $('save-result').disabled=false;$('result').hidden=false;$('result-title').focus();active=null;unlock();status('Comparison complete. There is no next step you have to take.');
+    $('save-result').disabled=false;$('result').hidden=false;$('result-title').focus({preventScroll:true});$('result-title').scrollIntoView({block:'start'});active=null;unlock();status('Comparison complete. There is no next step you have to take.');
   }
   function frame(run,prediction,token){
     if(token!==generation)return;

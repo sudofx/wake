@@ -30,7 +30,7 @@ test('visitor flow freezes choices, cancels stale work, and touches no storage o
   const nodes=new Map(),timers=[],handlers={};
   const input={value:'near',disabled:false,focus(){this.focused=true;}},seed={value:'481',disabled:false,focus(){this.focused=true;}};
   const controls=[input,seed,{disabled:false}];
-  function get(id){if(!nodes.has(id))nodes.set(id,{hidden:false,textContent:'',value:0,disabled:false,events:{},addEventListener(k,fn){this.events[k]=fn;},focus(){this.focused=true;}});return nodes.get(id);}
+  function get(id){if(!nodes.has(id))nodes.set(id,{hidden:false,textContent:'',value:0,disabled:false,events:{},addEventListener(k,fn){this.events[k]=fn;},focus(){this.focused=true;},scrollIntoView(){this.scrolled=true;}});return nodes.get(id);}
   const form=get('prediction-form');form.querySelectorAll=()=>controls;form.querySelector=()=>input;
   nodes.set('experiment-seed',seed);
   const context={WakeAntColony:require('../../wake/assets/ant-colony.js'),document:{getElementById:get,querySelectorAll:()=>[]},setTimeout:fn=>timers.push(fn),addEventListener:(k,fn)=>handlers[k]=fn};
