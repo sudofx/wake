@@ -81,6 +81,7 @@ class CallPacing:
         tomorrow=(datetime.fromtimestamp(now,PACIFIC).replace(hour=0,minute=0,second=0,microsecond=0)+timedelta(days=1)).timestamp()
         if model not in self.limits:return False,300,'access_blocked'
         feature=purpose in ('reader','experiment')
+        if sum(self.usage.values())>=self.total:return False,tomorrow-now,'research_budget'
         if self.usage.get(model,0)>=self.limits[model]:return False,tomorrow-now,'research_budget'
         if feature:
             if self.feature_used>=self.policy['reserve_calls']:return False,tomorrow-now,'research_budget'

@@ -140,6 +140,14 @@ class ProviderPacingTests(unittest.TestCase):
             self.assertEqual(features,{'lite-b':1})
         self.assertEqual(native_usage(state,'2026-10-29'),({},{}))
 
+    def test_historical_model_overrun_cannot_expand_the_installation_daily_cap(self):
+        self.pacing.status(self.now)
+        self.pacing.seed(self.pacing.day,{'lite-a':501,'lite-b':498,'flash-a':20,'flash-b':20})
+        key,grant=self.take(1,'lite-b','experiment');self.assertEqual(grant['status'],'granted')
+        self.release(key,grant)
+        self.assertEqual(sum(self.pacing.usage.values()),1040)
+        self.assertEqual(self.take(2,'lite-b','experiment')[1]['reason'],'research_budget')
+
     def test_hosted_schedule_inspection_reads_only_bounded_dated_counters(self):
         import zipfile
         from scripts.github_research import inspect_provider_schedule
