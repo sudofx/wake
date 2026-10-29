@@ -13,6 +13,7 @@ const tick=()=>new Promise(resolve=>setImmediate(resolve));
   assert.equal(light.dataset.state,'waiting');
   context.document.hidden=true;documentEvents.visibilitychange();assert.equal(light.dataset.state,undefined);
   // A Safari page restore can become visible without another visibility event.
+  saved=JSON.stringify({...JSON.parse(saved),checked:Date.now()-240000});
   context.document.hidden=false;windowEvents.pageshow();await tick();
   assert.equal(light.dataset.state,'waiting','Restoring a visible page must not retain hidden-page grey');
   assert.equal(reads,2,'Page restoration must retain anonymous-request backoff');

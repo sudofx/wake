@@ -37,9 +37,9 @@
       if(!revision){
         try{cached=JSON.parse(localStorage.getItem(key));}catch{}
         if(!(cached?.time<=Date.now() && /^[a-f0-9]{40}$/.test(cached.revision)))cached=null;
-        if(cached && Date.now()-cached.time<180000)revision=cached.revision;
+        if(cached && Date.now()-cached.time<300000)revision=cached.revision;
         if(!revision){
-          if(cached?.failedAt<=Date.now() && Date.now()-cached.failedAt<180000){revision=cached.revision;recovered=true;}
+          if(cached?.failedAt<=Date.now() && Date.now()-cached.failedAt<300000){revision=cached.revision;recovered=true;}
           else try{
             const head=await json('https://api.github.com/repos/'+config.repository+'/git/ref/heads/'+config.branch,16384,AbortSignal.timeout(3000));
             if(head.object?.type!=='commit' || !/^[a-f0-9]{40}$/.test(head.object.sha))throw Error('Invalid public revision');revision=head.object.sha;discovered=true;

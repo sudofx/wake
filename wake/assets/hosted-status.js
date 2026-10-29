@@ -4,7 +4,8 @@
   if(!light || !config || !/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(config.repository || '') || config.workflow!=='research-worker.yml' || config.branch!=='master')return;
   const base=`https://api.github.com/repos/${config.repository}/actions/workflows/${config.workflow}`;
   const link=`https://github.com/${config.repository}/actions/workflows/${config.workflow}`;
-  const interval=180000, key=`wake-hosted-status@1:${config.repository}`, stale=240000;
+  // Leave anonymous API capacity for snapshot discovery and shared networks.
+  const interval=300000, key=`wake-hosted-status@1:${config.repository}`, stale=360000;
   // Safari may finish the cached installation read before this deferred script.
   // Consume the same snapshot as the node picker even when its event has passed.
   let timer, pending=false, quotaObservation=window.WakeInstallationSnapshot||null;

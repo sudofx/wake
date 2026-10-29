@@ -543,9 +543,11 @@ check nor a published node observation is available. Tap or focus the light for 
 its link opens the research workflow. Node dots and Console canvases remain dated snapshots.
 
 Only exports explicitly bound by `wake.hosted_presentation.bind_hosted_status` enable
-this observer. It makes two anonymous reads at most every three minutes while visible,
+this observer. It makes two anonymous reads at most every five minutes while visible,
 shares a short cache across pages, bounds each read to eight seconds, clears stale
 or offline observations, and never reads private records or changes research controls.
+Together with snapshot discovery's five-minute cache, this leaves anonymous API
+capacity for other reads instead of consuming the full allowance through polling.
 GitHub rate limits can make the light unavailable without stopping research.
 
 ### Independently checked website delivery
@@ -554,7 +556,7 @@ GitHub Pages hosts the checked interface. `public-data.js` reads a single public
 GitHub commit for each document, while local and unbound exports stay same-origin.
 The explicit binding names the repository, `wake-public` branch and expected
 installation identity. Discovery uses one anonymous GitHub commit lookup, shared
-across pages for three minutes; the API lookup is bounded to three seconds and
+across pages for five minutes; the API lookup is bounded to three seconds and
 discovery plus metadata validation share a six-second deadline with
 size limits, leaving time for the bundled fallback inside normal reader budgets. Data reads omit credentials and referrers and have bounded timeouts.
 All overview, detail, pagination, Console and map reads use that immutable commit.
