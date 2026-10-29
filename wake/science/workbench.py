@@ -42,10 +42,11 @@ class DockerWorkbench:
                 'user':'65534:65534','memory_bytes':134217728,'cpus':.5,'process_limit':32,
                 'output_limit':65536,'runtime_limit_seconds':60,'runner_digest':digest(RUNNER),
                 'receipt_schema':c.EXECUTION,'replication_criterion':'measurement-profile@1',
+                'prediction_comparison':'typed-scalars@1',
                 'trusted_source_digests':dict(TRUSTED_SOURCE_DIGESTS),'source_revision':SOURCE_REVISION}
         if self.provider:
             provider=self.trial_provider()
-            environment.update(provider=provider.name,model=provider.model,provider_charged=provider.charged,trial_accounting=1,
+            environment.update(provider=provider.name,model=provider.model,provider_charged=provider.charged,trial_accounting=2,
                 provider_configuration_digest=digest({key:value for key,value in getattr(provider,'config',{}).items()
                     if key in ('max_output_tokens','timeout_seconds','model','gemini_fallback_models')}))
         return environment
@@ -198,6 +199,13 @@ def advance(store, workbench=None, *, enabled=None, checkpoint=None, crash_at=No
             item=store.load()['science']['experiments'][item['id']]
         else:
             inputs,_=prepare(item['protocol'])
+            try:
+                current_environment=workbench.environment()
+                if current_environment!=item['review']['environment']:
+                    raise ValueError('Trusted execution environment changed after review; no effect was started')
+            except (ValueError,Rejected,OSError) as error:
+                _append(store,'experiment_reviewed',item,decision='blocked',reason=str(error)[:1000],environment={},protected={})
+                return {'status':'blocked','id':item['id'],'reason':str(error)[:1000]}
         attempt=uuid.uuid4().hex
         name='wake-improve-science-'+attempt
         _append(store,'experiment_started',item,attempt=attempt,containers=[name],execution_inputs=inputs,inputs_digest=digest(inputs))

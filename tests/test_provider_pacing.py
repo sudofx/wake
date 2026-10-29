@@ -127,6 +127,19 @@ class ProviderPacingTests(unittest.TestCase):
         self.assertEqual(sum(self.pacing.usage.values()),5)
         self.assertEqual(self.pacing.research_used,3)
 
+    def test_cache_loss_midnight_envelope_never_loses_paid_effects(self):
+        before='2026-10-28T06:59:59+00:00';after='2026-10-28T07:00:01+00:00'
+        state={'invocations':{'i':{'charged':True,'quota_day':'2026-10-27',
+            'time':before,'finished':after,'model':'lite-a','provider_attempts':[{}]}},
+            'science':{'experiments':{'e':{'review':{'environment':{'provider_charged':True}},
+                'attempts':[{'inference':[{'model':'lite-b','started_at':before,'finished_at':after,
+                    'response':{'metadata':{'provider_requests_sent':1}}}]}]}}}}
+        for day in ('2026-10-27','2026-10-28'):
+            usage,features=native_usage(state,day)
+            self.assertEqual(usage,{'lite-a':1,'lite-b':1})
+            self.assertEqual(features,{'lite-b':1})
+        self.assertEqual(native_usage(state,'2026-10-29'),({},{}))
+
     def test_hosted_schedule_inspection_reads_only_bounded_dated_counters(self):
         import zipfile
         from scripts.github_research import inspect_provider_schedule

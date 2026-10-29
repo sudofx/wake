@@ -650,7 +650,10 @@ counters at startup and drain. The `inspect` hosted control also reads the
 authenticated scheduling file from the most recent checkpoint, without restoring
 or opening native records. Its capacity is explicitly dated; later and external
 API use can reduce it. Scientific trial receipts backfill feature usage after
-scheduling-cache loss, including conservative interrupted-effect accounting. A source change or successful CI run
+scheduling-cache loss, including conservative interrupted-effect accounting.
+An invocation or trial spanning Pacific midnight can count against both days
+when its exact effect time is unknown; recovery may understate available
+capacity but must not erase a potentially paid effect. A source change or successful CI run
 alone does not establish runtime adoption. Already-consumed calls cannot be
 recovered; the first partial day may reach its routine allowance sooner.
 

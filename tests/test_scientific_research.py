@@ -38,7 +38,7 @@ class RecordedWorkbench:
         self.bad=bad
         self.calls=0
     def environment(self):
-        return {'image_id':'fixture-transport','fixture':True}
+        return {'image_id':'fixture-transport','fixture':True,'prediction_comparison':'typed-scalars@1'}
     def execute(self,item):
         self.calls+=1
         values=item['attempts'][-1]['execution_inputs']['trials']
@@ -68,6 +68,18 @@ class ScientificFixtureCase(unittest.TestCase):
 
 
 class ScientificResearchTests(ScientificFixtureCase):
+    def test_changed_environment_blocks_a_previously_approved_effect(self):
+        from wake.science.instruments import prepare
+        from wake.science.workbench import _append
+        self.propose();item=self.engine.store.load()['science']['experiments']['e-sort']
+        _append(self.engine.store,'experiment_reviewed',item,decision='approved',reason='Fixture prior runtime review',
+                environment={'image_id':'prior-fixture'},protected=prepare(item['protocol'])[1])
+        runner=RecordedWorkbench()
+        result=advance(self.engine.store,runner)
+        self.assertEqual(result['status'],'blocked');self.assertEqual(runner.calls,0)
+        self.assertIn('changed after review',result['reason'])
+        self.engine.store.audit()
+
     def test_convergence_uses_current_revision_evidence_and_retains_uncertainty(self):
         from wake.science.planner import convergence
         self.propose()
@@ -90,6 +102,9 @@ class ScientificResearchTests(ScientificFixtureCase):
         evaluation=advance(self.engine.store,RecordedWorkbench())['evaluation']
         self.assertEqual(evaluation['metrics']['accuracy'],1)
         self.assertEqual(evaluation['outcome'],'contradicted')
+        legacy=deepcopy(self.engine.store.load()['science']['experiments']['e-sort'])
+        legacy['review']['environment'].pop('prediction_comparison')
+        self.assertEqual(evaluate(legacy)['outcome'],'provisionally_supported')
 
     def test_response_contract_distinguishes_new_hypotheses_from_exact_revisions(self):
         from wake.providers import schema_for_context

@@ -139,7 +139,8 @@ def reduce(state, event):
     base = ('schema','base_version','id','protocol_digest')
     if kind == 'experiment_reviewed':
         c.fields(p, (*base,'decision','reason','environment','protected'))
-        require(science['enabled'] and item['status'] in ('proposed','blocked'), 'Experiment cannot be reviewed in this state')
+        require(science['enabled'] and (item['status'] in ('proposed','blocked') or
+                item['status']=='approved' and p['decision']=='blocked'), 'Experiment cannot be reviewed in this state')
         require(p['decision'] in ('approved','blocked'), 'Invalid deterministic design review')
         c.text(p['reason'], 'Review reason')
         require(isinstance(p['protected'], dict) and len(canonical(p['protected'])) <= 32000, 'Protected scoring input is bounded')
@@ -193,13 +194,15 @@ def reduce(state, event):
             require(p['evidence']['provider']==environment.get('provider') and p['evidence']['model']==environment.get('model'),
                     'Paired trial provider/model must match approved environment')
             trials.append({'id':p['trial'],'status':'started',
-                **({'started_at':event['time']} if environment.get('trial_accounting')==1 else {}),
+                **({'started_at':event['time']} if environment.get('trial_accounting') in (1,2) else {}),
                 **deepcopy(p['evidence'])})
         else:
             require(trials and trials[-1]['id']==p['trial'] and trials[-1]['status']=='started', 'Stale or duplicate inference response')
             require(isinstance(p['evidence'],dict) and len(canonical(p['evidence']))<=16000,'Inference receipt exceeds its bound')
             c.fields(p['evidence'],('raw','metadata','wall_seconds'))
             trials[-1].update(status='completed',response=deepcopy(p['evidence']))
+            if item['review']['environment'].get('trial_accounting')==2:
+                trials[-1]['finished_at']=event['time']
     elif kind in ('experiment_executed','experiment_interrupted'):
         c.fields(p, (*base,'attempt','receipt'))
         require((item['status']=='running' or kind=='experiment_interrupted' and item['status']=='cleanup_required') and item['attempts'][-1]['id']==p['attempt'], 'Stale or replayed execution receipt')

@@ -148,3 +148,11 @@ condition and ordering. A candidate cannot change them or the paid-call count.
 Before each trial, native current-day usage also checks the frozen model's daily
 ceiling. A study stopped at that boundary retains completed trial evidence and
 has no scientific evaluation for its incomplete measurements.
+
+Execution reviews freeze the trusted runtime identity as well as generated code.
+A previously approved attempt is blocked if that environment changes before an
+effect starts. New reviews record `typed-scalars@1` comparison semantics; older
+reviews retain their original comparison behavior for replay. Native trial
+accounting records per-trial time envelopes. Recovery conservatively charges
+both Pacific days when an effect envelope crosses midnight, rather than lose a
+confirmed or possibly interrupted call after scheduling-cache loss.

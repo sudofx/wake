@@ -13,9 +13,18 @@ def native_usage(state, day):
     completion is unknown. Explicit queue denials consume no allowance.
     """
     from .scheduling import charged_request_slots
+    def intersects(start,finish,fallback=None):
+        if not start:return fallback==day
+        first=datetime.fromisoformat(start).astimezone(PACIFIC).date().isoformat()
+        last=(datetime.fromisoformat(finish).astimezone(PACIFIC).date().isoformat()
+              if finish else max(first,datetime.now(PACIFIC).date().isoformat()))
+        # The provider effect can fall anywhere inside its durable envelope.
+        # Charge both days when it crosses midnight rather than lose usage
+        # after cache loss. This can conservatively understate capacity.
+        return first<=day<=last
     usage={};features={}
     for invocation in state.get('invocations',{}).values():
-        if not invocation.get('charged') or invocation.get('quota_day')!=day:continue
+        if not invocation.get('charged') or not intersects(invocation.get('time'),invocation.get('finished'),invocation.get('quota_day')):continue
         attempts=invocation.get('provider_attempts')
         if attempts is None:
             model=invocation.get('successful_model',invocation['model'])
@@ -31,7 +40,7 @@ def native_usage(state, day):
         for attempt in experiment.get('attempts',[]):
             for trial in attempt.get('inference',[]):
                 started=trial.get('started_at',attempt.get('started'))
-                if not started or datetime.fromisoformat(started).astimezone(PACIFIC).date().isoformat()!=day:continue
+                if not intersects(started,trial.get('finished_at',attempt.get('finished'))):continue
                 metadata=trial.get('response',{}).get('metadata',{})
                 transports=metadata.get('provider_attempts')
                 count=(sum(t.get('provider_call_made') is not False for t in transports)
