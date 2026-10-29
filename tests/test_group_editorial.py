@@ -258,7 +258,7 @@ class GroupEditorialTests(unittest.TestCase):
         self.assertNotIn('revision_requested', after['group_bob'])
         self.assertEqual(leader.store.audit()[0], after)
 
-    def test_progress_cadence_requires_three_per_hundred_without_time_expiry(self):
+    def test_progress_cadence_allows_material_twelve_hour_catchup(self):
         from datetime import datetime, timedelta, timezone
         from wake.group_editorial import editorial_due
         now = datetime.now(timezone.utc)
@@ -271,7 +271,7 @@ class GroupEditorialTests(unittest.TestCase):
         packet['inputs'][0]['version'] += 30
         self.assertFalse(editorial_due(group, packet, now=now))
         packet['inputs'][0]['version'] += 1
-        self.assertFalse(editorial_due(group, packet, now=now + timedelta(days=2)))
+        self.assertTrue(editorial_due(group, packet, now=now + timedelta(days=2)))
         packet['inputs'][0]['version'] += 1
         self.assertTrue(editorial_due(group, packet, now=now))
         # One catch-up at 97 covers earlier milestones; next obligation is 100.
@@ -289,6 +289,26 @@ class GroupEditorialTests(unittest.TestCase):
         self.assertFalse(editorial_due(group, packet, now=now + timedelta(days=2)))
         packet['inputs'][0]['version'] = -1
         with self.assertRaises(Rejected): editorial_due(group, packet, now=now)
+
+    def test_time_backstop_requires_new_material_and_a_valid_publication_time(self):
+        from datetime import datetime, timedelta, timezone
+        from wake.group_editorial import editorial_due
+        now=datetime.now(timezone.utc);packet=deepcopy(self.packet)
+        group={'publication':{'inputs':deepcopy(packet)},'published_at':now.isoformat()}
+        self.assertFalse(editorial_due(group,packet,now=now+timedelta(days=2)))
+        packet['inputs'][0]['version']+=1
+        packet['inputs'][0]['activity']['attempt_digest']='new failed attempt'
+        self.assertFalse(editorial_due(group,packet,now=now+timedelta(days=2)))
+        packet['inputs'][0]['stories'][0]['statement']['topic_overview']=[
+            {'domain':'memory','notebook_id':'new-note','revision':1}]
+        self.assertFalse(editorial_due(group,packet,now=now+timedelta(hours=12,seconds=-1)))
+        self.assertTrue(editorial_due(group,packet,now=now+timedelta(hours=12)))
+        for timestamp in (None,'invalid',now.replace(tzinfo=None).isoformat(),(now+timedelta(days=3)).isoformat()):
+            group['published_at']=timestamp
+            self.assertFalse(editorial_due(group,packet,now=now+timedelta(days=2)))
+        group['published_at']=(now-timedelta(days=2)).isoformat()
+        packet['inputs'][0]['synthesis_contract']='earlier-contract'
+        self.assertFalse(editorial_due(group,packet,now=now),'Time fallback cannot reinterpret legacy packets')
 
     def test_three_publication_opportunities_in_each_hundred_accepted_wakes(self):
         from wake.group_editorial import editorial_due

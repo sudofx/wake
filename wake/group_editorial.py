@@ -632,11 +632,12 @@ def _time(value):
 
 
 def editorial_due(group, packet, *, now=None):
-    """Three article opportunities per hundred aggregate accepted wakes.
+    """Milestone articles, plus a twelve-hour catch-up for material new work.
 
     Publication's captured inputs are the durable watermark. An overdue article
     covers accumulated work once; it does not invent historical milestone posts.
-    Wall time, failed attempts and Bob's own receipts cannot advance the count.
+    Wall time never creates research or a story; the catch-up still requires
+    changed notebook or system-observation content since the last publication.
     """
     previous = group.get('publication', {}).get('inputs', {}).get('inputs', [])
     if not previous:
@@ -649,9 +650,15 @@ def editorial_due(group, packet, *, now=None):
     opportunity = (sum(i['version'] for i in packet['inputs']) * 3 // 100
                    > sum(i['version'] for i in previous) * 3 // 100)
     if not opportunity:
-        return False
+        published = group.get('published_at')
+        try:
+            elapsed = ((now or datetime.now(timezone.utc)) - _time(published)).total_seconds()
+        except (TypeError, ValueError, AttributeError):
+            return False
+        if elapsed < 12 * 3600:
+            return False
     if not all(item.get('synthesis_contract') == SYNTHESIS_CONTRACT for item in packet['inputs']):
-        return True  # Earlier input contracts retain their own cadence.
+        return opportunity  # Earlier input contracts retain their own cadence.
     def meaning(inputs):
         result = []
         for item in inputs:

@@ -580,9 +580,13 @@ eligible at three opportunities per 100 aggregate accepted wakes (34, 67, 100, t
 For `bob-system-synthesis@1` inputs, a new notebook/revision or recorded system
 adaptation must also exist. Counters and routine farm feedings alone do not
 manufacture a post. An explicit operator revision remains eligible.
+Modern packets also permit a catch-up after twelve hours without a publication,
+provided a notebook/revision or recorded system adaptation has changed since the
+last published inputs. Time, failed calls and routine care alone never create an
+article opportunity. Legacy packets retain their milestone-only schedule.
 A meaningful missed opportunity remains due until publication succeeds; one catch-up article
 covers accumulated work without fabricating backdated posts. Failed attempts,
-wall time and Bob’s receipts do not count. Research never waits for the article.
+wall time and Bob’s receipts do not count as research. Research never waits for the article.
 All twelve dated exports are required, but members need not advance equally or
 have a currently running worker. An unavailable worker's existing exported stories
 remain usable with their captured date, head and version. Bob's own

@@ -57,7 +57,9 @@ operator procedures.
   The older solo `wake-introduction` contract remains replayable.
 - **Editorial sequence** — Bob's article number, separate from every member's
   research count. Three posts are scheduled per 100 aggregate accepted wakes (34, 67, 100),
-  or after a recorded operator correction. Missed milestones remain due; one
+  or after a recorded operator correction. Modern inputs also allow a twelve-hour
+  catch-up when material recorded work has changed; time alone creates no story.
+  Missed milestones remain due; one
   catch-up covers accumulated work. All members supply inputs even when progress
   differs. Bob’s language guidance does not alter research evidence rules.
 - **Editorial rendering receipt** — a versioned description and hashes linking
