@@ -26,10 +26,14 @@ from wake.providers import provider_input_chars
 root=Path(sys.argv[1]);settings=module.config(sys.argv[2]);phase=sys.argv[3]
 store=open_authoritative_store(root)
 engine=module.Engine(root,settings,store=store)
-last=[None]
+last=[None];parts={}
 original=module.provider_input_chars
 def counted(request):
-    size=original(request);last[0]=size;return size
+    size=original(request);last[0]=size
+    parts.clear();parts.update(system=len(request.get('system','')),response_schema=len(module.canonical(request.get('response_schema',{}))),
+        context_fields={key:len(module.canonical(value)) for key,value in request.get('context',{}).items()},
+        memory_fields={key:len(module.canonical(value)) for key,value in request.get('context',{}).get('memory',{}).items()})
+    return size
 module.provider_input_chars=counted
 result={'phase':phase,'limit':settings['max_context_chars'],'provider_calls':0}
 try:
@@ -42,7 +46,7 @@ except Exception as error:
     reason=str(error)
     category=('context_ceiling' if 'Context ceiling reached' in reason else
               'decision_memory_budget' if 'Decision memory exceeded' in reason else 'request_build_failed')
-    result.update(status=category,error_class=type(error).__name__,input_chars=last[0])
+    result.update(status=category,error_class=type(error).__name__,input_chars=last[0],parts=parts)
 finally:store.close()
 print(json.dumps(result,sort_keys=True))
 '''

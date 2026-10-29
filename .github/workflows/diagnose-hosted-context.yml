@@ -7,6 +7,11 @@ on:
         type: string
         required: false
         default: ''
+      node:
+        description: Optional single node for diagnosis; automatic checks cover all twelve.
+        type: choice
+        default: all
+        options: [all, 100.wake, 101.wake, 102.wake, 103.wake, 200.wake, 201.wake, 202.wake, 203.wake, 300.wake, 301.wake, 302.wake, 303.wake]
   workflow_run:
     workflows: ["WAKE — Research worker"]
     types: [completed]
@@ -93,7 +98,7 @@ jobs:
       fail-fast: false
       max-parallel: 12
       matrix:
-        node: [100.wake, 101.wake, 102.wake, 103.wake, 200.wake, 201.wake, 202.wake, 203.wake, 300.wake, 301.wake, 302.wake, 303.wake]
+        node: ${{ inputs.node != '' && inputs.node != 'all' && fromJson(format('["{0}"]', inputs.node)) || fromJson('["100.wake","101.wake","102.wake","103.wake","200.wake","201.wake","202.wake","203.wake","300.wake","301.wake","302.wake","303.wake"]') }}
     steps:
       - uses: actions/checkout@v7
         with:
