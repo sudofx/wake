@@ -28,6 +28,7 @@ def bind_hosted_status(site, repository, revision):
     shell = (assets / 'index.html').read_text()
     light = re.search(r'<a\b[^>]*class="actions-light"[^>]*>.*?</a>', shell, re.S).group(0)
     roots = set()
+    bindings = {}
     for path in site.rglob('*.html'):
         if 'inspect' in path.relative_to(site).parts:
             continue  # Reviewed packet bytes and hashes are immutable.
@@ -40,6 +41,8 @@ def bind_hosted_status(site, repository, revision):
         if not stylesheet:
             raise ValueError('Hosted page is missing its generated masthead binding')
         prefix = stylesheet.group(1)
+        if 'scientific-research.html' not in page:
+            page = page.replace('>Research</a>', '>Research</a><a href="'+prefix+'scientific-research.html">Experiments</a>')
         root = (path.parent / prefix).resolve()
         if not root.is_relative_to(site):
             raise ValueError('Navigation assets must remain inside the public artifact')
@@ -49,6 +52,7 @@ def bind_hosted_status(site, repository, revision):
             deployment['hosted_status'] = config
             deployment.pop('hosted_activity', None)
             deployment.pop('ask_bob', None)
+            bindings.setdefault(root, deployment)
             return ('window.WAKE_DEPLOYMENT=' + json.dumps(deployment)
                     + ";document.documentElement.dataset.wakeHostedStatus='true';")
         from .report import _masthead_navigation
@@ -101,6 +105,17 @@ def bind_hosted_status(site, repository, revision):
     from .reader_presentation import refresh_public_reader
     for root in roots:
         refresh_public_reader(root)
+        # Deliver the reader independently of runtime adoption. Reuse the
+        # exporter binding so captured installation identity and operator links
+        # survive; presentation refresh must not generate scientific results.
+        from .report import _deployment_site
+        deployment_path = root/'deployment.json'
+        deployment = json.loads(deployment_path.read_text()) if deployment_path.exists() else bindings[root]
+        page = root/'scientific-research.html'
+        page.write_bytes((assets/page.name).read_bytes())
+        (root/'scientific-research.js').write_bytes((assets/'scientific-research.js').read_bytes())
+        _deployment_site(root, standalone=deployment.get('mode')=='standalone',
+                         installation=deployment, pages=[page])
     # The served interface and public data have separate delivery lifecycles.
     # Bind only hosted exports; ordinary/local readers never discover GitHub.
     data_assets=('public-data.js','map.js','map3d.js','flat-view.js','console-tools.js')

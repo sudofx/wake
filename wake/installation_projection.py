@@ -157,6 +157,10 @@ def build_unified_projection(node_snapshots, node_research, installation_id):
                  if isinstance(packet, dict) and isinstance(packet.get('state'), dict)}
     leader = next(iter(available), None)
     state = deepcopy(available[leader]['state']) if leader else empty()
+    # Scientific protocols retain local identities and frozen bytes. The audit
+    # reader loads each node's report, rather than transplanting a leader's
+    # science objects into this remapped, non-authoritative state.
+    state.pop('science',None)
     for collection in _COLLECTIONS:
         state[collection] = {}
     state['journal'] = []
@@ -283,6 +287,13 @@ def build_unified_projection(node_snapshots, node_research, installation_id):
               'unavailable_nodes': sorted(set(map(str, node_snapshots)) - set(available))}
     research = build_research_projection(state, [], head, generated=generated,
                                         metrics=metrics, source=source)
+    if any(packet['state'].get('science') for packet in available.values()):
+        from .provider_pacing import scientific_request_totals
+        totals=[scientific_request_totals(packet['state']) for packet in available.values()]
+        known=sum(row[0] for row in totals);unresolved=sum(row[1] for row in totals)
+        research['metrics']['provider_requests']+=known
+        research['metrics'].update(provider_trial_requests=known,provider_trial_requests_unresolved=unresolved,
+            provider_requests_complete=research['metrics']['provider_requests_complete'] and not unresolved)
     # Preserve source projections' recorded traces and graph identities. A node
     # cycle coordinate must not become a fictitious shared experiment result.
     for collection in ('activity', 'wakes'):

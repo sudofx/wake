@@ -68,6 +68,24 @@ class ScientificFixtureCase(unittest.TestCase):
 
 
 class ScientificResearchTests(ScientificFixtureCase):
+    def test_unified_export_does_not_transplant_local_scientific_identities(self):
+        from wake.installation_projection import build_unified_projection
+        from wake.installation_site import export_unified_site
+        from wake.research_projection import build_research_projection
+        self.propose();advance(self.engine.store,RecordedWorkbench());advance(self.engine.store,RecordedWorkbench())
+        state,head=self.engine.store.audit()
+        events=self.engine.store.events()
+        view=build_unified_projection({'100.wake':{'state':state,'head':head,'events':events}},
+            {'100.wake':build_research_projection(state,events,head)},'fixture')
+        self.assertNotIn('science',view['state'])
+        self.assertIn('science',state)
+        target=self.root/'unified';target.mkdir()
+        (target/'scientific-research.json').write_text('{"stale":"previous export"}')
+        export_unified_site(view,target)
+        self.assertTrue((target/'scientific-research.html').exists())
+        self.assertTrue((target/'scientific-research.js').exists())
+        self.assertFalse((target/'scientific-research.json').exists())
+
     def test_changed_environment_blocks_a_previously_approved_effect(self):
         from wake.science.instruments import prepare
         from wake.science.workbench import _append

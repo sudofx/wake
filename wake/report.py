@@ -409,11 +409,12 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
                     "metrics": _full_history_metrics(store, state, events)}
         target = Path(destination)
         target.mkdir(parents=True, exist_ok=True)
-        from .science.projection import project as scientific_audit, write_report as write_scientific_report
+        from .science.projection import project as scientific_audit
         if state.get('science'):
             science = scientific_audit(state, head)
             atomic_write(target / 'scientific-research.json', json.dumps(science, ensure_ascii=False))
-            write_scientific_report(science, target / 'scientific-research.html')
+        else:
+            (target / 'scientific-research.json').unlink(missing_ok=True)
         atomic_write(target / "export-format.json", json.dumps({"schema": 1, "renderer": renderer_signature()}))
         group_id = os.environ.get("WAKE_GROUP_ID", "")
         member = os.environ.get("WAKE_PUBLIC_HOSTNAME", "")
@@ -470,7 +471,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         # the same theme file rather than receiving copied inline palettes.
         for name in ("style.css", "nav.css", "map.css", "map3d.css", "theme.css",
                      "nav.js", "map.js", "map3d.js", "flat-view.js", "app.js", "pet.js",
-                     "evaluation-view.js", "ant-farm.html", "ant-farm.css", "ant-colony.js", "ant-drawing.js", "ant-farm.js", "bob-ant-farm.js"):
+                     "evaluation-view.js", "scientific-research.html", "scientific-research.js", "ant-farm.html", "ant-farm.css", "ant-colony.js", "ant-drawing.js", "ant-farm.js", "bob-ant-farm.js"):
             atomic_write(target / name, (assets / name).read_text())
         shutil.copytree(assets / 'self-correction', target / 'self-correction', dirs_exist_ok=True)
         # Static Nebula artwork is presentation-only. Publish the responsive
@@ -691,14 +692,15 @@ def _masthead_navigation(page):
     return re.sub(r'<header class="[^"]*masthead[^"]*">.*?</header>', header, page, flags=re.S)
 
 
-def _deployment_site(target, *, standalone, installation=None):
+def _deployment_site(target, *, standalone, installation=None, pages=None):
     """Bind every generated page to its installation before any reader runs.
 
     Templates are not deployable pages: export also selects data transport and
     operator links. Missing identity must never opt a LAN preview into GitHub.
     Keep this transform common to full exports and public snapshot rendering.
     """
-    _export_reader_pages(target)
+    if pages is None:
+        _export_reader_pages(target)
     mode = 'standalone' if standalone else 'hosted'
     deployment = {'schema': 1, 'mode': mode}
     if not standalone:
@@ -731,15 +733,14 @@ def _deployment_site(target, *, standalone, installation=None):
         atomic_write(target / name, (assets / name).read_text())
     shell = (assets / "index.html").read_text()
     header = _masthead_navigation(re.search(r'<header class="masthead">.*?</header>', shell, re.S).group(0))
-    if (target/'scientific-research.json').is_file():
-        header=header.replace('>Research</a>','>Research</a><a href="scientific-research.html">Experiments</a>')
+    header=header.replace('>Research</a>','>Research</a><a href="scientific-research.html">Experiments</a>')
     domain = html.escape(group_hostname.strip(), quote=True) if standalone else ""
     header = header.replace('</a>\n    </div>', '</a><span class="node-domain">' + domain + '</span>\n    </div>', 1)
-    snapshot_path = target / "wake-data.json"
+    snapshot_path = target / ("reader-data.json" if pages is not None else "wake-data.json")
     snapshot = json.loads(snapshot_path.read_text()) if snapshot_path.exists() else {}
     header = header.replace("WAKE_CYCLE_COUNT", str(snapshot.get("state", {}).get("version", "—")))
     header = re.sub(r'href="#([^"]+)"', r'href="index.html#\1"', header)
-    for path in target.rglob('*.html'):
+    for path in target.rglob('*.html') if pages is None else pages:
         page = path.read_text()
         # The immersive toy habitat owns its canvas and controls. It needs the
         # deployment binding, not the research masthead or runtime observers.

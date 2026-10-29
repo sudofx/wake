@@ -105,6 +105,11 @@ def _provider_response_schema(context, research):
     """Build the ordinary proposal contract plus an enabled continuity sidecar."""
     if research:
         base = schema_for_context(context)
+        if context.get('benchmark_focus',{}).get('mode')=='bounded-scientific-benchmark':
+            from .science.state import MODEL_ACTIONS
+            choices=base['properties']['actions']['items']['anyOf']
+            base['properties']['actions']['items']['anyOf']=[choice for choice in choices
+                if choice['properties']['type']['enum'][0] in MODEL_ACTIONS]
     else:
         # A generic reference workload has no research charter. Offering its
         # domain actions would confound model behavior with a forbidden schema.
@@ -127,6 +132,7 @@ DEFAULTS = {"timezone": "America/Los_Angeles", "objective": "Test durable contin
             "memory_mode": "shadow", "research_google_search": False, "same_wake_research": False, "inquiry_drive_enabled": False, "research_topics_file": "research-topics.toml",
             "decision_memory_mode": "off", "decision_memory_policy": {},
             "autonomous_context_improvement": False, "experimental_research_enabled": False,
+            "scientific_benchmark_focus": False,
             "observation_mode": False, "research_collection_budget": 2, "research_collection_wall_seconds": 45}
 
 def _topics(settings, config_path=None):
@@ -202,6 +208,7 @@ def config(path="wake.toml"):
     for key, low, high in (("max_context_chars", 4000, 64000), ("max_output_tokens", 256, 8192), ("timeout_seconds", 1, 120)):
         require(type(result[key]) is int and low <= result[key] <= high, f"Invalid {key}")
     require(type(result.get("experimental_research_enabled", False)) is bool, "experimental_research_enabled must be boolean")
+    require(type(result['scientific_benchmark_focus']) is bool,'scientific_benchmark_focus must be boolean')
     require(type(result["research_google_search"]) is bool, "research_google_search must be boolean")
     require(type(result["same_wake_research"]) is bool, "same_wake_research must be boolean")
     require(result["memory_mode"] in ("shadow", "active"), "memory_mode must be shadow or active")
@@ -2639,6 +2646,27 @@ class Engine:
             # exact envelope too, including deduplication of repeated receipts.
             if routine_memory:
                 self.fit_active_request(request)
+        if science_context and self.config.get('scientific_benchmark_focus') is True and phase!='planning':
+            from .science.planner import SYSTEM as SCIENTIFIC_SYSTEM
+            from .science.state import MODEL_ACTIONS
+            choices=request['response_schema']['properties']['actions']['items']['anyOf']
+            scientific_choices=[choice for choice in choices if choice['properties']['type']['enum'][0] in MODEL_ACTIONS]
+            if scientific_choices:
+                original=request['context']
+                kept=('version','objective','projects','attention','constraints','scientific_research','memory')
+                request['context']={key:original[key] for key in kept if key in original}
+                request['context']['benchmark_focus']={'mode':'bounded-scientific-benchmark',
+                    'omitted_categories':sorted(set(original)-set(kept)),
+                    'boundary':'Context focus only; native history and application governance remain unchanged. No external collection caller is available in this benchmark.'}
+                request['context']['bounded_context']={'omitted_categories':request['context']['benchmark_focus']['omitted_categories'],
+                    'provenance_policy':'Native scientific references and measured results; omitted records remain authoritative.'}
+                request['system']=SCIENTIFIC_SYSTEM+'\nReturn only base_version, title, summary and actions as JSON. Choose scientific actions for this bounded computational benchmark; do not request external collection.\n'
+                request['response_schema']['properties']['actions']['items']['anyOf']=scientific_choices
+                request['response_schema']['properties'].pop('continuity_probe',None)
+                request['response_schema']['required']=[key for key in request['response_schema']['required'] if key!='continuity_probe']
+                if continuity_probe_context:
+                    deferred_probe=continuity_probe_context['campaign']['coordinate_id']
+                    continuity_probe_context=None
         # Fit the complete final envelope, after questions, same-wake research,
         # continuity deferral and the rebuilt response schema. Earlier fits only
         # see a partial request and cannot guarantee this provider boundary.
@@ -2944,7 +2972,9 @@ class Engine:
             if hasattr(self.store, "begin_invocation_lifecycle")
             else None
         )
+        previous_limits = None
         if hasattr(provider, "record_attempt"):
+            previous_limits = (provider.request_limit, provider.model_request_limits)
             state = self.store.load()
             day = state["invocations"][invocation]["quota_day"]
             if self.config.get('provider_managed_limits'):
@@ -2961,8 +2991,11 @@ class Engine:
                     key:item for key,item in state['invocations'].items() if key!=invocation}},day)
                 used=sum(usage.values())
                 remaining=max(0,self.config['daily_call_limit']-used)
-                provider.request_limit = min(len(provider.models),remaining)
-                provider.model_request_limits = ({model:0 for model in provider.models} if not remaining else None)
+                # The shared ceiling can tighten caller-supplied limits, never
+                # make an exhausted model eligible again.
+                provider.request_limit = min(provider.request_limit,len(provider.models),remaining)
+                if not remaining:
+                    provider.model_request_limits = {model:0 for model in provider.models}
             def record_attempt(phase, attempt):
                 self.store.append("provider_attempt_" + phase, {"id": invocation, "attempt": attempt,
                     **({'effect_accounting':1} if phase=='finished' else {})})
@@ -3044,6 +3077,11 @@ class Engine:
             if checkpoint:
                 checkpoint()
             return {"status": "failed", "id": invocation, "reason": reason}
+        finally:
+            # Native daily usage is recalculated for every invocation. Do not
+            # leave a derived zero allowance on a reused adapter after midnight.
+            if previous_limits is not None:
+                provider.request_limit, provider.model_request_limits = previous_limits
         if phase == "group_editorial":
             from .group_editorial import PARAGRAPH_CONTRACT, render_response, validate_grounding
             proposal_id = "group-editorial-" + invocation

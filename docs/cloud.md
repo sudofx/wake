@@ -670,4 +670,10 @@ mandatory; the historical Actions entry is retained.
 
 Experimental research is separately opt-in through `experimental_research_enabled`. Its Python instruments require the reviewed pinned Docker image and a compatible Docker runtime; the worker uses a Python 3.13 runner with Docker available and checks the real restricted executor before opening research records. This workflow shape alone does not establish deployed capability. Missing isolation is recorded as blocked and never falls back to host Python. Hosting this workbench requires a separately verified runtime rollout; the request-pacing release does not enable it. Trial inference uses the reserved `experiment` queue purpose while retaining single-flight admission and per-model limits. See [the workbench and current gates](experimental-research.md).
 
+The **Experiments** audit reader ships through the independent presentation
+refresh even when the running installation has no scientific records yet. It
+reads node reports from the selected immutable public snapshot and checks their
+record heads against its installation manifest. Missing reports stay explicit;
+publishing this interface neither enables experiments nor changes native records.
+
 Scientific child calls remain part of native provider accounting. Shared admission, unbound per-model planning limits and public request totals include those calls; unresolved effects remain visible rather than counted as known zero.

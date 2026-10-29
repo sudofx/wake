@@ -38,6 +38,7 @@ def initialize(root, settings, question, instrument_binding=None):
     require(not root.exists(), 'Scientific investigation output must be new; existing records are never overwritten')
     root.mkdir(parents=True)
     experiment_settings = {**DEFAULTS, **settings, 'experimental_research_enabled': True,
+        'scientific_benchmark_focus':True,
         'same_wake_research': False, 'research_google_search': False,
         'research_topics': [{'id':'experimental-methods','label':'Experimental methods',
             'query':'computational experimental methods','seed_question':question[:600],'source_kind':'web','enabled':True}],
@@ -135,6 +136,7 @@ def execute(args):
         require((root/'settings.json').is_file() and (root/'record/wake.sqlite').is_file(),
                 'Resume requires an existing scientific investigation and its saved settings')
         settings=json.loads((root/'settings.json').read_text())
+        settings.setdefault('scientific_benchmark_focus',True)
         if args.model:
             approved=config(args.config)
             require(args.model in {approved['model'],*approved.get('gemini_fallback_models',[])},'Model is not in approved chain')

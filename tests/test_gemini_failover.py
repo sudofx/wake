@@ -290,6 +290,7 @@ class FailoverTests(unittest.TestCase):
             "gemini-3.5-flash": 0,
             "gemini-3.1-flash-lite": 500,
         }
+        original_limits = dict(provider.model_request_limits)
 
         def send(req, **kwargs):
             self.assertIn("gemini-3.1-flash-lite:generateContent", req.full_url)
@@ -313,6 +314,17 @@ class FailoverTests(unittest.TestCase):
             ],
         )
         self.assertEqual(item["provider_attempts"][0]["model"], "gemini-3.1-flash-lite")
+        self.assertEqual(provider.model_request_limits, original_limits)
+
+    def test_shared_daily_allowance_preserves_a_narrower_caller_request_limit(self):
+        provider = Gemini(self.settings)
+        provider.request_limit = 1
+        with patch('urllib.request.urlopen', side_effect=failure(503)) as network:
+            result = self.engine.run(provider)
+        self.assertEqual(result['status'], 'deferred')
+        self.assertEqual(network.call_count, 1)
+        self.assertEqual(provider.request_limit, 1)
+        self.assertIsNone(provider.model_request_limits)
 
     def test_engine_reconstructs_daily_exhaustion_and_goes_straight_to_lite(self):
         self.settings["model_daily_call_limits"] = {

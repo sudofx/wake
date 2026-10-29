@@ -59,6 +59,7 @@ jobs:
       - name: Check GitHub status observations
         run: |
           node tests/browser/hosted-status-unit.cjs
+          node tests/browser/scientific-reader-unit.cjs
       - name: Simulate 100 WAKE cycles
         if: github.event_name != 'push'
         run: python -m wake --data /tmp/wake-experiment experiment --cycles 100 --output site

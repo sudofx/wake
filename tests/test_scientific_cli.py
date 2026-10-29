@@ -24,6 +24,12 @@ class ScientificCLITests(unittest.TestCase):
                 {'evaluator':'hidden-relationship@1','instance':81})
             try:
                 invocation,request=engine.start('fixture','binding-test')
+                from wake.providers import provider_input_chars
+                self.assertLess(provider_input_chars(request),32000)
+                self.assertEqual(request['context']['benchmark_focus']['mode'],'bounded-scientific-benchmark')
+                self.assertNotIn('continuity_probe',request['context'])
+                choices=request['response_schema']['properties']['actions']['items']['anyOf']
+                self.assertTrue(all(choice['properties']['type']['enum'][0]!='research' for choice in choices))
                 p=protocol();p.update(evaluator={'id':'hidden-relationship@1'},
                     inputs={'instance':17,'probes':[3],'holdout_size':4})
                 actions=[{'type':kind,'id':key,'project':'investigation','definition':definition}
@@ -69,8 +75,9 @@ class ScientificCLITests(unittest.TestCase):
         public=root/'public';_copy_public_site(site,public)
         self.assertTrue((public/'scientific-research.json').is_file())
         page=(public/'scientific-research.html').read_text()
-        self.assertIn('synthetic_benchmark',page)
+        self.assertIn('synthetic_benchmark',(public/'scientific-research.json').read_text())
         self.assertIn('Independent evaluation',page)
+        self.assertIn('scientific-research.js',page)
         self.assertNotIn('decision_state_capsule',page)
         self.assertNotIn('oracle_digest',page)
         self.assertEqual(result['evidence']['investigations'][0]['evaluation']['metrics']['B_accuracy'],1)

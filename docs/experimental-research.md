@@ -73,8 +73,8 @@ preparation code. Usage and monetary cost remain unavailable when not reported.
 - A changed hypothesis reuses its stable ID with explicit supersession. An
   experiment always receives a new ID; exact replication copies its protocol.
   A hidden-system holdout seed cannot be reused for follow-up optimization.
-- Public scientific audit files are generated only when native science state
-  exists. They expose recorded results and clearly labelled interpretation.
+- Scientific report JSON is generated only when native science state
+  exists; the stable audit reader is always exported. They expose recorded results and clearly labelled interpretation.
   They do not establish hosted adoption or physical-device rendering.
 - The hosted worker pulls the pinned image and runs the adversarial isolation checks before opening research. Its experimental grant still defaults off and requires explicit installation policy. Docker availability must be established separately on the deployed worker.
   An unavailable capability blocks work explicitly; it never falls back to
@@ -164,3 +164,23 @@ completed experiment does not restore spent allowance. Failed preparation keeps
 its bounded output and digest. Failed container programs retain bounded stdout
 and stderr prefixes plus captured-stream digests. Missing historical duration
 stays unknown; the audit distinguishes known elapsed time from a complete total.
+
+The website audit reader is delivered with the interface, including before the
+first experiment. It reads scientific JSON through the same immutable public
+snapshot as the other readers. Source-only presentation refresh also delivers
+this reader without enabling experimental execution or inventing reports.
+The unified page checks each node report against
+that snapshot's record head and retains node-qualified presentation rather than
+merging local scientific identities. Data-only uploads therefore expose new
+studies without rebuilding Pages. A missing or mismatched node report remains
+explicit; it cannot select a different snapshot as fallback. A node's own audit
+uses that node's report and checks it against the same installation manifest.
+
+`science investigate` and `science resume` use a bounded benchmark focus. The
+request retains the question, projects, scientific state, working memory and
+applicable constraints, while its omitted categories and deferred continuity
+sidecar are recorded. It offers scientific actions instead of unrelated source
+collection or editorial work; this CLI has no external collection caller. This
+is context selection inside the existing application invocation, not another
+research engine or weaker governance. Ordinary installations retain their full
+research routing.
