@@ -99,7 +99,7 @@
       const active=runs.find(run=>run.status==='in_progress'), queued=runs.find(run=>['queued','waiting','requested','pending'].includes(run.status));
       let state='idle',label='Between hosted batches';
       if(workflow.state!=='active'){state='stopped';label=active?'Stopping; current batch is draining':'Stopped';}
-      else if(active){state=null;label='Hosted batch active; research state unconfirmed';}
+      else if(active){state='waiting';label='Hosted batch active; waiting for current node observations';}
       else if(queued){state='waiting';label='Hosted batch queued';}
       else if(!runs.length){state='waiting';label='Waiting for the first hosted batch';}
       else if(runs[0].conclusion==='action_required'){state='blocked';label='GitHub requires attention';}
@@ -120,6 +120,9 @@
     finally{pending=false;if(!document.hidden)timer=setTimeout(refresh,interval);}
   }
   window.addEventListener('offline',()=>show(null,'Offline; status unavailable'));
+  // Safari may restore a frozen page without a visibilitychange transition.
+  // Reapply the bounded cache or restart its expired check on that lifecycle.
+  window.addEventListener('pageshow',()=>{if(!document.hidden)refresh();});
   document.addEventListener('visibilitychange',()=>{clearTimeout(timer);if(document.hidden)show(null,'Status not checked while this page is hidden');else refresh();});
   refresh();
 })();

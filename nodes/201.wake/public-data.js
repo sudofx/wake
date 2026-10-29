@@ -61,7 +61,7 @@
     const url=new URL(input,location.href);
     if(url.origin!==site.origin || !url.pathname.startsWith(site.pathname))throw Error('Public data must belong to this installation');
     const relative=url.pathname.slice(site.pathname.length);
-    if(!/^(?:nodes\/(?:10[0-3]|20[0-3]|30[0-3])\.wake\/)?(?:(?:reader-records|research-details|research|map3d|group)\/[A-Za-z0-9_./-]+\.json|inspect\/[A-Za-z0-9_./-]+\.(?:json|md)|(?:installation|reader-data|wake-data|research-overview|research-data|research-expansion|map-data|map3d-data|state|export-format)\.json|head\.txt|events\.jsonl(?:\.gz)?)$/.test(relative))throw Error('Not a published data path');
+    if(!/^(?:nodes\/(?:10[0-3]|20[0-3]|30[0-3])\.wake\/)?(?:(?:reader-records|research-details|research|map3d|group)\/[A-Za-z0-9_./-]+\.json|inspect\/[A-Za-z0-9_./-]+\.(?:json|md)|(?:installation|reader-data|wake-data|research-overview|research-data|research-expansion|scientific-research|map-data|map3d-data|state|export-format)\.json|head\.txt|events\.jsonl(?:\.gz)?)$/.test(relative))throw Error('Not a published data path');
     return root?new URL(relative,root):url;
   };
   transport.resolve=async input=>targetFor(input,await transport.ready).href;

@@ -135,3 +135,10 @@ html:is(.console-panel-window,.console-tool-window) body{padding-top:0!important
 .masthead .installation-node-status[data-state=idle]{background:#58a6ff}
 .masthead .installation-node-status[data-state=standby]{background:#a970ff}
 .masthead .installation-node-status[data-state=blocked]{background:#dc5261}
+
+/* The habitat and field notebook keep their established dark palette. */
+body:has(>#farm)>.masthead,body.experiment-page>.masthead{--surface:#171b16;--ink:#f3eedf;--muted:#bdc6b6;--cyan:#d8ddba;--line:#75816a}
+body:has(>#farm)>#farm{height:calc(100svh - var(--wake-masthead-height))}
+body:has(>#farm)>#farm.is-fullscreen{top:var(--wake-masthead-height);height:calc(100dvh - var(--wake-masthead-height))}
+/* Native fullscreen owns a separate top layer without the document masthead. */
+body:has(>#farm)>#farm:fullscreen{top:0;height:100dvh}
