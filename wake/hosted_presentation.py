@@ -118,7 +118,8 @@ def bind_hosted_status(site, repository, revision):
         page.write_bytes((assets/page.name).read_bytes())
         (root/'scientific-research.js').write_bytes((assets/'scientific-research.js').read_bytes())
         _deployment_site(root, standalone=deployment.get('mode')=='standalone',
-                         installation=deployment, pages=[page])
+                         installation={**deployment, 'presentation_revision': revision},
+                         pages=[page, root/'ant-farm.html', root/'ant-experiment.html'])
     # The served interface and public data have separate delivery lifecycles.
     # Bind only hosted exports; ordinary/local readers never discover GitHub.
     data_assets=('public-data.js','map.js','map3d.js','flat-view.js','console-tools.js')

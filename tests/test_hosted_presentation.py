@@ -92,6 +92,12 @@ class HostedPresentationTests(unittest.TestCase):
             self.assertIn('"presentation_revision": "' + 'b' * 40 + '"', experiment)
             self.assertNotIn('src="public-data.js', experiment)
             self.assertNotIn('runtime-activity.js', experiment)
+            for name in ('ant-farm.html', 'ant-experiment.html', 'scientific-research.html'):
+                page = (root / name).read_text()
+                self.assertEqual(page.count('<header class="masthead">'), 1, name)
+                self.assertIn('src="nav.js?', page, name)
+                for label in ('Explore', 'Research', 'Experiments', 'Journal', 'Bob’s Blog', 'GitHub'):
+                    self.assertIn('>' + label + '</a>', page, (name, label))
             self.assertTrue((root / 'ant-experiment.js').is_file())
             self.assertNotIn('retired.invalid', (root / 'index.html').read_text())
             self.assertNotIn('chatgpt.site', (root / 'index.html').read_text())
