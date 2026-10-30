@@ -168,14 +168,14 @@ This is dated exported presentation, not a live status query or a second authori
 ```json
 {
   "authoritative": false,
-  "generated_at": "2026-10-30T09:07:38.045084+00:00",
-  "head": "snapshot:9c575d052ed62806d18831aaf7cafbc568cd7fa5b2437872e948cf7b590c8536",
+  "generated_at": "2026-10-30T09:42:23.510821+00:00",
+  "head": "snapshot:e71a257031859376ee4220d2bf7d72768e3f029f644d7d0ab5dad809045cd5fa",
   "node_heads": {
     "100.wake": {
-      "generated": "2026-10-30T09:02:22.430565+00:00",
-      "head": "457586eed29a8e2aa55c27bb76fe478e28c493b5ba9a1bba25ef0d6dc22329ca",
+      "generated": "2026-10-30T09:38:44.500527+00:00",
+      "head": "2b8b02afef847296fef4d603d22ec93424e4b739c219cc976aca8b6fa8e96483",
       "node": "100.wake",
-      "snapshot_digest": "54f5643fb6fc9a754aa95ab842e93bbd7a273e47a4c4c9fe768e743e903e8cf7",
+      "snapshot_digest": "98dd3e0b4fb7fba9032364a7ababee89f70f116b091220d1137c5170c28df1ec",
       "version": 23
     },
     "101.wake": {
@@ -207,10 +207,10 @@ This is dated exported presentation, not a live status query or a second authori
       "version": 39
     },
     "201.wake": {
-      "generated": "2026-10-30T09:07:38.045084+00:00",
-      "head": "b4cf524c181ce165499a0675d1c559073a0e945a4ab4d763b02413c560e37aa4",
+      "generated": "2026-10-30T09:37:02.081399+00:00",
+      "head": "a821f0dfc5cdf0b6fa2ffe20d30347d5fb973b23f4d2894963bb85e79148d250",
       "node": "201.wake",
-      "snapshot_digest": "7b5795ee6939a6918cdc5e87978200f65f72abe81ada377fd03ce814225d992d",
+      "snapshot_digest": "b2e2ad8b1e18debc93a17c4c05daf0f5cb14162581ed5305d57c635cfa1e7eb1",
       "version": 26
     },
     "202.wake": {
@@ -235,17 +235,17 @@ This is dated exported presentation, not a live status query or a second authori
       "version": 25
     },
     "301.wake": {
-      "generated": "2026-10-30T09:05:58.813540+00:00",
-      "head": "46ebb983839d9b409f9eb3d13a827a8062eeaf1d918a7da447d167dca33df949",
+      "generated": "2026-10-30T09:40:42.677661+00:00",
+      "head": "57eaa6a2aa4f65523d3fbf124cb7a12449f5ce11e2e77613f81991dcc7b2bfc5",
       "node": "301.wake",
-      "snapshot_digest": "4eb3dfad2e88831a23d0635cbe6d977b7da9a8954b46e9562df12d0ac3d793d2",
+      "snapshot_digest": "53fbea5a349dc7606526cf7a7edb1691ed4f267230c05bda17e98f93ff616719",
       "version": 19
     },
     "302.wake": {
-      "generated": "2026-10-30T09:03:58.866224+00:00",
-      "head": "544b22c93356afd7899610632fa54bd6600b818fb80abcdf7b7120a33662a0e7",
+      "generated": "2026-10-30T09:42:23.510821+00:00",
+      "head": "bcd0ea671437c83f4c8ba61004887b5e7f212b552e1cdb9fbb9bc1e3d9177eb1",
       "node": "302.wake",
-      "snapshot_digest": "cef29a66cec67b672cb424439d4cd962a06f8a4786005ea9ad693a3aa6281afd",
+      "snapshot_digest": "36984e859c023aae9e0a62e3102d0909baac72f9f8fb996f1d161b56b7246b9e",
       "version": 29
     },
     "303.wake": {
@@ -265,8 +265,8 @@ Selected exact public records (bounded examples, not an exhaustive evidence revi
 
 - [posts record](../reader-records/posts/3130302e77616b653a3a67726f75702d626f622d38.json)
 - [posts record](../reader-records/posts/3130302e77616b653a3a67726f75702d626f622d39.json)
-- [evidence record](../reader-records/evidence/3330312e77616b653a3a722d37373962393766663637323934616633.json)
-- [evidence record](../reader-records/evidence/3330322e77616b653a3a722d36663132306439626436313134333636.json)
+- [evidence record](../reader-records/evidence/3330322e77616b653a3a722d32333864376564343833636334623939.json)
+- [evidence record](../reader-records/evidence/3330322e77616b653a3a722d62666235633735636563666334333235.json)
 - [notebooks record](../reader-records/notebooks/3230302e77616b653a3a6e622d77616b652d6172636869746563747572652d30/31.json)
 
 For complete history, read the current `event_history.complete_url` in [the public export index](../wake-data.json); resolve that URL relative to the index, not this inspection directory. The stream may be packaged as gzip.
