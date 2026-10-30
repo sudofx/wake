@@ -459,7 +459,7 @@ class FailoverTests(unittest.TestCase):
     def test_repository_configuration_preserves_current_provider_policy(self):
         settings = config(Path(__file__).resolve().parents[1] / "wake.toml")
         self.assertEqual(settings["model"], "gemini-3.1-flash-lite")
-        self.assertTrue(settings["gemini_fallback_requires_primary_daily_quota"])
+        self.assertFalse(settings["gemini_fallback_requires_primary_daily_quota"])
         self.assertEqual(settings["gemini_fallback_models"], [
             "gemini-3.5-flash-lite", "gemini-3.6-flash", "gemini-3.8-flash",
         ])
