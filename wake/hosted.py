@@ -603,8 +603,11 @@ class HostedState:
                         raise ValueError('Unexpected auxiliary checkpoint path')
                     if entry.file_size > 16 * 1024 * 1024:
                         raise ValueError('Auxiliary checkpoint file exceeds limit')
-                    if fresh_experiment and marker:
-                        continue  # A fresh record must bootstrap as unused.
+                    if fresh_experiment and (marker or name == 'provider-schedule.json'):
+                        # A cycle-zero reset discards old worker identity and quota/cooldown
+                        # observations. Keep provider configuration and limits, not stale
+                        # scheduler state that could block new Gemini requests.
+                        continue
                     target = root / name
                     target.parent.mkdir(parents=True, exist_ok=True)
                     with target.open('xb') as output:
