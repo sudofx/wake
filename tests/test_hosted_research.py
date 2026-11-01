@@ -128,6 +128,26 @@ class HostedTransportTests(unittest.TestCase):
     def tearDown(self):
         self.temp.cleanup()
 
+    def test_fresh_experiment_drops_stale_provider_schedule(self):
+        # Ordinary restores retain quota observations, but cycle zero must
+        # not inherit yesterday's provider cooldown or exhausted flags.
+        schedule = {'version': 1, 'models': {
+            'gemini-3.1-flash-lite': {'daily': True, 'probe_at': 4102444800.0}
+        }}
+        (self.active / 'provider-schedule.json').write_text(json.dumps(schedule))
+        with self.transport.lease():
+            manifest = self.transport.read_manifest()
+            assets = self.transport.assets()
+            manifest['auxiliary'] = self.transport.put_auxiliary(self.active, assets)
+            self.transport.save(manifest)
+        restored = self.root / 'fresh-no-schedule'
+        self.transport.restore(restored, fresh_experiment=True)
+        self.assertFalse((restored / 'provider-schedule.json').exists())
+        self.assertTrue((restored / 'config').is_dir())
+        normal = self.root / 'normal-with-schedule'
+        self.transport.restore(normal)
+        self.assertEqual(json.loads((normal / 'provider-schedule.json').read_text()), schedule)
+
     def test_explicit_reset_replaces_only_cycle_zero_state_without_retaining_old_checkpoint(self):
         import shutil
         fresh = self.root/'fresh'
