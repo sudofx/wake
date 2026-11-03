@@ -64,14 +64,14 @@ This is dated exported presentation, not a live status query or a second authori
 ```json
 {
   "authoritative": false,
-  "generated_at": "2026-11-03T20:57:06.929830+00:00",
-  "head": "snapshot:f5d4e81322c7db1311819f5a432f1f1f441140aebe601f446ca4e252910581f3",
+  "generated_at": "2026-11-03T21:21:32.694170+00:00",
+  "head": "snapshot:9fa90e71ea83e4674611193f61d2f3aae14439b04914fb4e0534886ace923315",
   "node_heads": {
     "100.wake": {
-      "generated": "2026-11-03T20:57:06.736440+00:00",
-      "head": "91c34bc9d0cde1c2550d237907236ee80b0a93d1c0b44931b4385126b23ec357",
+      "generated": "2026-11-03T21:02:25.509177+00:00",
+      "head": "d92ecf41455bf75b9c9319cdc7cdb35c48790947fba881cd82bd279a23ae5284",
       "node": "100.wake",
-      "snapshot_digest": "559422fedd3262e5bc64b022bbb1a2df3b2afbf2a4912f2e94bde743357fbcd5",
+      "snapshot_digest": "010f3e69ba03300f936884a9620baf3d88ef546f70325996dc61bdcf39844133",
       "version": 0
     },
     "101.wake": {
@@ -110,11 +110,11 @@ This is dated exported presentation, not a live status query or a second authori
       "version": 0
     },
     "202.wake": {
-      "generated": "2026-11-03T20:57:06.789088+00:00",
-      "head": "15066623bb483bdf3237bf35f98ba427da540504286ebfc823ad2dd83f24e3bb",
+      "generated": "2026-11-03T21:21:32.694170+00:00",
+      "head": "355e6f519fa44c072b72c0b363eb6ab9cdec1d84e868612dffc4136739ee4dca",
       "node": "202.wake",
-      "snapshot_digest": "220b96b1d9d424ca0a1bd7f5eb2287d0abbc07be65ccbde656addc06f6d08d17",
-      "version": 0
+      "snapshot_digest": "78d2343a28b5843f6fd9e4f6a2decb8540265479c87fa310db60c7b36dbf5b7a",
+      "version": 1
     },
     "203.wake": {
       "generated": "2026-11-03T20:57:06.800173+00:00",
@@ -152,13 +152,15 @@ This is dated exported presentation, not a live status query or a second authori
       "version": 0
     }
   },
-  "version": 0,
+  "version": 1,
   "version_meaning": "Sum of accepted node cycles; not one authoritative record version."
 }
 ```
 
 Selected exact public records (bounded examples, not an exhaustive evidence review):
 
-No matching bounded example records were available.
+- [posts record](../reader-records/posts/3130302e77616b653a3a67726f75702d77616b652d696e74726f64756374696f/6e.json)
+- [evidence record](../reader-records/evidence/3230322e77616b653a3a736f757263652d393532656664643937626638346133/64.json)
+- [evidence record](../reader-records/evidence/3230322e77616b653a3a736f757263652d633665623636376130653433346335/65.json)
 
 For complete history, read the current `event_history.complete_url` in [the public export index](../wake-data.json); resolve that URL relative to the index, not this inspection directory. The stream may be packaged as gzip.

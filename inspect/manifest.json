@@ -27,9 +27,28 @@
     "unified": true
   },
   "format": "wake-inspection@1",
-  "generated_at": "2026-11-03T20:57:09.698902+00:00",
+  "generated_at": "2026-11-03T21:27:37.038983+00:00",
   "project": "WAKE✳︎",
-  "published_records": [],
+  "published_records": [
+    {
+      "collection": "posts",
+      "head": "snapshot:9fa90e71ea83e4674611193f61d2f3aae14439b04914fb4e0534886ace923315",
+      "id": "100.wake::group-wake-introduction",
+      "url": "../reader-records/posts/3130302e77616b653a3a67726f75702d77616b652d696e74726f64756374696f/6e.json"
+    },
+    {
+      "collection": "evidence",
+      "head": "snapshot:9fa90e71ea83e4674611193f61d2f3aae14439b04914fb4e0534886ace923315",
+      "id": "202.wake::source-952efdd97bf84a3d",
+      "url": "../reader-records/evidence/3230322e77616b653a3a736f757263652d393532656664643937626638346133/64.json"
+    },
+    {
+      "collection": "evidence",
+      "head": "snapshot:9fa90e71ea83e4674611193f61d2f3aae14439b04914fb4e0534886ace923315",
+      "id": "202.wake::source-c6eb667a0e434c5e",
+      "url": "../reader-records/evidence/3230322e77616b653a3a736f757263652d633665623636376130653433346335/65.json"
+    }
+  ],
   "resources": [
     {
       "bytes": 2073,
@@ -50,11 +69,11 @@
       "url": "architecture.md"
     },
     {
-      "bytes": 7673,
+      "bytes": 7978,
       "canonical_url": "https://sudofx.github.io/wake/inspect/evidence.md",
       "description": "Reproducible demonstration and dated public-export pointers.",
       "id": "evidence",
-      "sha256": "3b767772cef5147934228ab50259fdfb94eeff0d0dc4ef61df327bdbc5a56918",
+      "sha256": "5b9b16a1a45bdd84709b5ac23b9148e45efe214e2ab809f932a7ce30e0f25a4b",
       "type": "text/markdown",
       "url": "evidence.md"
     },
@@ -86,11 +105,11 @@
       "url": "demo.json"
     },
     {
-      "bytes": 29233,
+      "bytes": 29538,
       "canonical_url": "https://sudofx.github.io/wake/inspect/packet.md",
       "description": "Self-contained inspection document, including the exact offline demonstration.",
       "id": "packet",
-      "sha256": "59e2ac744a5787e9ddd78976621586f681f0e86f50593a660e02c7624dd19279",
+      "sha256": "434c38d9da692cf4cba1ea48a62c52717569837048131db3ef8e25e3459c04f2",
       "type": "text/markdown",
       "url": "packet.md"
     },
@@ -106,14 +125,14 @@
   ],
   "snapshot": {
     "authoritative": false,
-    "generated_at": "2026-11-03T20:57:06.929830+00:00",
-    "head": "snapshot:f5d4e81322c7db1311819f5a432f1f1f441140aebe601f446ca4e252910581f3",
+    "generated_at": "2026-11-03T21:21:32.694170+00:00",
+    "head": "snapshot:9fa90e71ea83e4674611193f61d2f3aae14439b04914fb4e0534886ace923315",
     "node_heads": {
       "100.wake": {
-        "generated": "2026-11-03T20:57:06.736440+00:00",
-        "head": "91c34bc9d0cde1c2550d237907236ee80b0a93d1c0b44931b4385126b23ec357",
+        "generated": "2026-11-03T21:02:25.509177+00:00",
+        "head": "d92ecf41455bf75b9c9319cdc7cdb35c48790947fba881cd82bd279a23ae5284",
         "node": "100.wake",
-        "snapshot_digest": "559422fedd3262e5bc64b022bbb1a2df3b2afbf2a4912f2e94bde743357fbcd5",
+        "snapshot_digest": "010f3e69ba03300f936884a9620baf3d88ef546f70325996dc61bdcf39844133",
         "version": 0
       },
       "101.wake": {
@@ -152,11 +171,11 @@
         "version": 0
       },
       "202.wake": {
-        "generated": "2026-11-03T20:57:06.789088+00:00",
-        "head": "15066623bb483bdf3237bf35f98ba427da540504286ebfc823ad2dd83f24e3bb",
+        "generated": "2026-11-03T21:21:32.694170+00:00",
+        "head": "355e6f519fa44c072b72c0b363eb6ab9cdec1d84e868612dffc4136739ee4dca",
         "node": "202.wake",
-        "snapshot_digest": "220b96b1d9d424ca0a1bd7f5eb2287d0abbc07be65ccbde656addc06f6d08d17",
-        "version": 0
+        "snapshot_digest": "78d2343a28b5843f6fd9e4f6a2decb8540265479c87fa310db60c7b36dbf5b7a",
+        "version": 1
       },
       "203.wake": {
         "generated": "2026-11-03T20:57:06.800173+00:00",
@@ -194,7 +213,7 @@
         "version": 0
       }
     },
-    "version": 0,
+    "version": 1,
     "version_meaning": "Sum of accepted node cycles; not one authoritative record version."
   },
   "source": {
