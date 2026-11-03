@@ -1,1 +1,1 @@
-{"parent": "root:evidence", "path": ["root:evidence"], "self": null, "children": [], "child_ids": [], "total": 0}
+{"parent": "root:evidence", "path": ["root:wake", "root:evidence"], "self": null, "children": [{"id": "evidence:r-a9eb3443686b4785", "kind": "evidence", "title": "Continuity receipt", "detail": {"id": "r-a9eb3443686b4785", "time": "2026-11-03T21:16:21.364583+00:00", "version": 0}}], "child_ids": ["evidence:r-a9eb3443686b4785"], "total": 1}

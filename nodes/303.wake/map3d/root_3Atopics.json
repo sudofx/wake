@@ -1,1 +1,1 @@
-{"parent": "root:topics", "path": ["root:topics"], "self": null, "children": [], "child_ids": [], "total": 0}
+{"parent": "root:topics", "path": ["root:wake", "root:topics"], "self": null, "children": [{"id": "topic:unprompted_complexity", "kind": "topic", "title": "Can Complexity Grow Without Being Assigned?", "domain": "unprompted_complexity", "detail": {"domain": "unprompted_complexity"}}], "child_ids": ["topic:unprompted_complexity"], "total": 1}

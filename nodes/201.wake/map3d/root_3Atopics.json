@@ -1,1 +1,1 @@
-{"parent": "root:topics", "path": ["root:topics"], "self": null, "children": [], "child_ids": [], "total": 0}
+{"parent": "root:topics", "path": ["root:wake", "root:topics"], "self": null, "children": [{"id": "topic:responsibility_formation", "kind": "topic", "title": "How Could Intelligence Understand Responsibility?", "domain": "responsibility_formation", "detail": {"domain": "responsibility_formation"}}], "child_ids": ["topic:responsibility_formation"], "total": 1}

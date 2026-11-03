@@ -1,1 +1,1 @@
-{"parent": "root:topics", "path": ["root:topics"], "self": null, "children": [], "child_ids": [], "total": 0}
+{"parent": "root:topics", "path": ["root:wake", "root:topics"], "self": null, "children": [{"id": "topic:wake_self_study", "kind": "topic", "title": "WAKE✳︎", "domain": "wake_self_study", "detail": {"domain": "wake_self_study"}}], "child_ids": ["topic:wake_self_study"], "total": 1}

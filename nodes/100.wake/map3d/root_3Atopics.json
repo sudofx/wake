@@ -1,1 +1,1 @@
-{"parent": "root:topics", "path": ["root:topics"], "self": null, "children": [], "child_ids": [], "total": 0}
+{"parent": "root:topics", "path": ["root:wake", "root:topics"], "self": null, "children": [{"id": "topic:judgment_and_consensus", "kind": "topic", "title": "When Should Independent Judgment Challenge Consensus?", "domain": "judgment_and_consensus", "detail": {"domain": "judgment_and_consensus"}}], "child_ids": ["topic:judgment_and_consensus"], "total": 1}
