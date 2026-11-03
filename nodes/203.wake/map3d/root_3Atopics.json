@@ -1,1 +1,1 @@
-{"parent": "root:topics", "path": ["root:topics"], "self": null, "children": [], "child_ids": [], "total": 0}
+{"parent": "root:topics", "path": ["root:wake", "root:topics"], "self": null, "children": [{"id": "topic:divergent_values", "kind": "topic", "title": "Can Identical Beginnings Lead to Different Values?", "domain": "divergent_values", "detail": {"domain": "divergent_values"}}], "child_ids": ["topic:divergent_values"], "total": 1}
