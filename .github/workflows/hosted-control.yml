@@ -1,13 +1,13 @@
-name: WAKE — Start or stop hosted research
+name: research-control
 
 on:
   workflow_dispatch:
     inputs:
       action:
-        description: Start continues existing records; stop drains without resetting.
+        description: Choose the research operation.
         type: choice
         required: true
-        options: [start, stop, inspect]
+        options: [start, stop, stop-reset-restart, inspect]
 
 permissions:
   contents: read
@@ -28,7 +28,7 @@ jobs:
         with:
           python-version: '3.13'
       - run: python -m pip install --disable-pip-version-check -e '.[hosted]'
-      - name: Change hosted research intent without touching records
+      - name: Apply the selected research operation
         env:
           GH_TOKEN: ${{ github.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}

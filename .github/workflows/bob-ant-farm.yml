@@ -1,4 +1,4 @@
-name: Bob — Maintain shared ant farm
+name: maintain-ant-farm
 
 on:
   schedule:

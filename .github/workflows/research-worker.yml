@@ -1,26 +1,15 @@
-name: WAKE — Research worker
+name: research-worker
 # Keep the event name stable for independent completion recovery. Successor
 # reconciliation uses monotonic workflow run numbers, not display titles.
 
 on:
   workflow_dispatch:
     inputs:
-      handoff:
-        description: Internal successor identity; leave empty for a manual start.
-        type: string
-        default: ''
-      runtime_ref:
-        description: Full source commit with successful code CI.
-        type: string
-        required: true
-      reset:
-        description: Discard experimental results and restart at cycle zero, without an archive.
-        type: boolean
-        default: false
-      minutes:
-        description: Bounded batch duration; automatic successors use 120 minutes.
-        type: number
-        default: 120
+      mode:
+        description: Continue existing research or start from cycle zero.
+        type: choice
+        options: [continue, reset]
+        default: continue
 
 permissions:
   contents: write
@@ -41,19 +30,23 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
       GITHUB_REPOSITORY: ${{ github.repository }}
-      WAKE_SOURCE_REVISION: ${{ inputs.runtime_ref }}
       WAKE_HOSTED_STATE_DIR: /tmp/wake-hosted-transport
       WAKE_INSTALLATION_DATA: /tmp/wake-hosted-installation
       WAKE_HOSTED_ARTIFACT: /tmp/wake-hosted-public
       WAKE_DEV_RELOAD: 'false'
       WAKE_HOSTED_STATE_KEY: ${{ secrets.WAKE_HOSTED_STATE_KEY }}
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-      BATCH_MINUTES: ${{ inputs.minutes }}
-      RESET_EXPERIMENT: ${{ inputs.reset || false }}
+      RESET_EXPERIMENT: ${{ inputs.mode == 'reset' }}
     steps:
+      - name: Select the runtime bound to this workflow revision
+        id: runtime
+        run: |
+          revision=$(gh api "repos/$GITHUB_REPOSITORY/contents/hosted-runtime.json?ref=$GITHUB_SHA" --jq .content |
+            base64 -d | jq -er --arg repo "$GITHUB_REPOSITORY" '.installations[$repo].source_revision | select(test("^[a-f0-9]{40}$"))')
+          echo "revision=$revision" >> "$GITHUB_OUTPUT"
       - uses: actions/checkout@v7
         with:
-          ref: ${{ inputs.runtime_ref }}
+          ref: ${{ steps.runtime.outputs.revision }}
       - uses: actions/setup-python@v7
         with:
           python-version: '3.13'
@@ -66,11 +59,13 @@ jobs:
             PYTHONPATH=tests python -m unittest test_scientific_isolation -v
           fi
       - name: Restore, research, checkpoint, and publish
+        env:
+          WAKE_SOURCE_REVISION: ${{ steps.runtime.outputs.revision }}
         run: |
           if [ "$RESET_EXPERIMENT" = true ]; then
-            python scripts/github_research.py run --minutes "$BATCH_MINUTES" --reset
+            python scripts/github_research.py run --reset
           else
-            python scripts/github_research.py run --minutes "$BATCH_MINUTES"
+            python scripts/github_research.py run
           fi
   continue:
     needs: research

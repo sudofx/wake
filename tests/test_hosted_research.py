@@ -435,7 +435,7 @@ class ContinuationTests(unittest.TestCase):
              patch('scripts.github_research.enabled', return_value=True), \
              patch('scripts.github_research.checked_revision', return_value='a' * 40):
             continue_chain('10')
-        self.assertEqual(calls, [{'ref': 'master', 'inputs': {'handoff': 'after-10', 'runtime_ref': 'a' * 40}}])
+        self.assertEqual(calls, [{'ref': 'master', 'inputs': {'mode': 'continue'}}])
 
 
 if __name__ == '__main__':

@@ -1,4 +1,4 @@
-name: WAKE — Publish website
+name: publish-pages
 on:
   workflow_call:
     inputs:

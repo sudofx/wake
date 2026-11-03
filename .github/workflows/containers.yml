@@ -1,4 +1,4 @@
-name: WAKE — Offline container acceptance
+name: check-containers
 
 on:
   pull_request:

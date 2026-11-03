@@ -1,4 +1,4 @@
-name: WAKE — Diagnose hosted context capacity
+name: diagnose-context
 on:
   workflow_dispatch:
     inputs:
@@ -13,7 +13,7 @@ on:
         default: all
         options: [all, 100.wake, 101.wake, 102.wake, 103.wake, 200.wake, 201.wake, 202.wake, 203.wake, 300.wake, 301.wake, 302.wake, 303.wake]
   workflow_run:
-    workflows: ["WAKE — Research worker"]
+    workflows: ["research-worker"]
     types: [completed]
 permissions:
   contents: read

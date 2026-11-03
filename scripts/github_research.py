@@ -45,7 +45,7 @@ def enabled(client):
 def runtime_policy(client):
     """A source release does not implicitly upgrade a bound installation's records."""
     if os.environ.get('GITHUB_ACTIONS') == 'true':
-        # Checkout intentionally selects runtime_ref, which cannot contain its
+        # Checkout intentionally selects the pinned runtime, which cannot contain its
         # own final commit hash. The dispatch's immutable workflow commit owns
         # the operator binding; never substitute the candidate's older pin or a
         # moving master read. A missing/unreadable binding fails before restore.
@@ -200,14 +200,23 @@ def apply_provider_pacing_policy(root,policy):
 
 def control(action):
     client = api()
-    operation = 'enable' if action == 'start' else 'disable'
-    client.request(f'actions/workflows/{WORKFLOW}/{operation}', method='PUT')
-    if action == 'start':
-        revision = checked_revision(client)
-        client.request(f'actions/workflows/{WORKFLOW}/dispatches', method='POST', body={
-            'ref': 'master', 'inputs': {'handoff': 'start-' + os.environ['GITHUB_RUN_ID'],
-                                     'runtime_ref': revision}})
-    print('Hosted research ' + action + ' requested. Existing records are preserved.')
+    if action in ('stop', 'stop-reset-restart'):
+        client.request(f'actions/workflows/{WORKFLOW}/disable', method='PUT')
+    if action == 'stop':
+        print('Hosted stop requested. The current batch drains and publishes.')
+        return
+    checked_revision(client)
+    if action == 'stop-reset-restart':
+        deadline = time.monotonic() + 55 * 60
+        while client.request(f'actions/workflows/{WORKFLOW}/runs?status=in_progress&per_page=1')['workflow_runs']:
+            if time.monotonic() >= deadline:
+                raise TimeoutError('The prior writer did not drain; reset was not dispatched')
+            time.sleep(30)
+    client.request(f'actions/workflows/{WORKFLOW}/enable', method='PUT')
+    inputs = {'mode': 'reset' if action == 'stop-reset-restart' else 'continue'}
+    client.request(f'actions/workflows/{WORKFLOW}/dispatches', method='POST',
+                   body={'ref': 'master', 'inputs': inputs})
+    print('Hosted research ' + action + ' requested.')
 
 
 def continue_chain(predecessor):
@@ -215,7 +224,6 @@ def continue_chain(predecessor):
     if not enabled(client):
         print('Hosted research is stopped; no successor dispatched.')
         return
-    token = 'after-' + str(predecessor)
     previous = client.request('actions/runs/' + str(int(predecessor)))
     if previous['path'] != '.github/workflows/' + WORKFLOW or previous['head_branch'] != 'master':
         raise ValueError('Handoff predecessor is not a master research run')
@@ -228,9 +236,6 @@ def continue_chain(predecessor):
             # A delayed recovery must never restart an obsolete chain.
             print('A newer research run already owns continuation.')
             return
-        if any(run.get('display_title') == 'WAKE hosted ' + token for run in runs):
-            print('Successor already exists for ' + str(predecessor))
-            return
         # Older queued entries can outlive their actual scheduling state.
         # Only a newer run can supersede this predecessor. The workflow's
         # installation-wide concurrency group still serializes every writer.
@@ -238,7 +243,7 @@ def continue_chain(predecessor):
             break
     revision = checked_revision(client)
     client.request(f'actions/workflows/{WORKFLOW}/dispatches', method='POST', body={
-        'ref': 'master', 'inputs': {'handoff': token, 'runtime_ref': revision}})
+        'ref': 'master', 'inputs': {'mode': 'continue'}})
     print('Dispatched successor from checked source ' + revision)
 
 
@@ -511,7 +516,7 @@ def main():
     chain.add_argument('--predecessor', required=True)
     commands.add_parser('inspect')
     command = commands.add_parser('control')
-    command.add_argument('intent', choices=('start', 'stop'))
+    command.add_argument('intent', choices=('start', 'stop', 'stop-reset-restart'))
     args = parser.parse_args()
     if args.action == 'inspect':
         client = api()

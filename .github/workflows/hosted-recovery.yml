@@ -1,16 +1,10 @@
-name: WAKE — Recover hosted handoff
+name: recover-research
 
 on:
   workflow_run:
-    workflows: ['WAKE — Research worker']
+    workflows: ['research-worker']
     types: [completed]
     branches: [master]
-  workflow_dispatch:
-    inputs:
-      predecessor:
-        description: Research run whose successor needs recovery.
-        type: string
-        required: true
 
 permissions:
   contents: read
@@ -25,9 +19,8 @@ concurrency:
 jobs:
   recover:
     if: >-
-      github.event_name == 'workflow_dispatch' ||
-      (github.event.workflow_run.path == '.github/workflows/research-worker.yml' &&
-       github.event.workflow_run.conclusion != 'success')
+      github.event.workflow_run.path == '.github/workflows/research-worker.yml' &&
+      github.event.workflow_run.conclusion != 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 75
     steps:
@@ -43,5 +36,5 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-          PREDECESSOR: ${{ inputs.predecessor || github.event.workflow_run.id }}
+          PREDECESSOR: ${{ github.event.workflow_run.id }}
         run: python scripts/github_research.py continue --predecessor "$PREDECESSOR"

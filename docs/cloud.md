@@ -40,7 +40,7 @@ provider calls. This validates publication plumbing, not a knowledge benefit.
 
 ## Experimental execution measurements and reset
 
-The active research workflow is **WAKE — Research worker** (`research-worker.yml`).
+The active research workflow is **research-worker** (`research-worker.yml`).
 Its predecessor, `hosted-research.yml`, is permanently retired after GitHub left
 zero-job runs queued while rejecting both cancellation endpoints. Before the
 replacement starts, disable the predecessor. Its checked worker versions consult
@@ -70,14 +70,13 @@ An existing local container avoids workflow queues after launch but depends on
 that host remaining available; a new persistent hosted service has not been
 measured or approved. No new subscription is required.
 
-For a deliberate hosted cycle-zero reset, dispatch `research-worker.yml` with the
-checked pinned `runtime_ref` and `reset=true`. The installation writer is serialized.
-Reset restores trusted setup and provider limits while skipping discarded native
-databases, then bootstraps stopped fresh records. It verifies cycle zero before
-research starts, replaces transferred state and records a dated
-`experimental_reset` marker in operational/public installation metadata. It does
-not archive the discarded experiment or retain its preceding encrypted snapshot.
-Normal research dispatches omit reset. Local installations use `wake-research RESET`.
+Open **research-control** in GitHub Actions and choose **start**, **stop**, or
+**stop-reset-restart**. Stop closes admission and lets the current batch finish
+publishing. The reset option waits for that writer to finish, then starts the
+checked runtime at cycle zero. It restores the installation identity and topic
+assignments, applies the checked provider settings, and publishes a cycle-zero
+snapshot before admitting research. The active encrypted checkpoint replaces
+the discarded experiment. Local installations use `wake-research RESET`.
 
 ## Publish controlled evaluation results
 
@@ -300,10 +299,10 @@ flowchart LR
 
 ### Start and stop
 
-Open **Actions → WAKE — Start or stop hosted research → Run workflow** on
+Open **Actions → research-control → Run workflow** on
 `master`. Choose `start` to continue the existing records or `stop` to prevent
 successors and drain the active run. The active controller checks stop intent
-at least once per minute. This never resets records. The enabled/disabled state of **WAKE — Research worker** is the native
+at least once per minute. This never resets records. The enabled/disabled state of **research-worker** is the native
 continuation switch. Disabled or missing means stopped; the built-in Actions
 token can operate it without an expiring personal credential.
 Manual cancellation alone is recoverable failure, not the durable stop switch.
@@ -544,7 +543,7 @@ the current GitHub check and identifies observations from a previous batch.
 These colors do not establish live provider calls or accepted
 research progress.
 
-Inspect **WAKE — Research worker** runs and their summaries for source revision,
+Inspect **research-worker** runs and their summaries for source revision,
 checkpoint generation, record heads and accepted versions. A successful run can
 still contain rejected or deferred proposals. Confirm actual accepted progress
 from successive record heads and versions. Check the Pages deployment separately,
