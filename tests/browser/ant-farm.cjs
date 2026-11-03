@@ -21,7 +21,7 @@ const server=http.createServer((req,res)=>{
  const browser=await chromium.launch({headless:true,...(process.env.CHROME_EXECUTABLE?{executablePath:process.env.CHROME_EXECUTABLE}:{})});
  try{
   const context=await browser.newContext({viewport:{width:1200,height:900},timezoneId:'America/Los_Angeles',hasTouch:false}),page=await context.newPage(),errors=[];
-  page.on('pageerror',e=>errors.push(e.message));await context.addInitScript(value=>localStorage.setItem('wake-ant-colony@2',value),JSON.stringify(mine));
+  page.on('pageerror',e=>errors.push(e.message));await context.addInitScript(value=>localStorage.setItem('wake-ant-colony@5',value),JSON.stringify(mine));
   await page.addInitScript(()=>{
    let drawing;window.__antPoses={};
    Object.defineProperty(window,'WakeDrawAnt',{get:()=>drawing,set:fn=>{drawing=(ctx,r,ant,...args)=>{
@@ -34,9 +34,9 @@ const server=http.createServer((req,res)=>{
   assert.equal(await page.locator('#feed').evaluate(el=>el.hidden&&el.disabled),true);assert.equal(await page.locator('#new-colony').evaluate(el=>el.hidden),true);
   assert.equal(await page.locator('#pause').innerText(),'');assert.equal(await page.locator('#fullscreen').innerText(),'');assert.equal(await page.locator('#pause svg,#fullscreen svg').count(),2);
   await page.getByRole('button',{name:'Pause playback',exact:true}).click();assert.equal(await page.getByRole('button',{name:'Play playback',exact:true}).count(),1);
-  const untouched=await page.evaluate(()=>localStorage.getItem('wake-ant-colony@2')),originalPacket=await page.evaluate(()=>JSON.stringify(window.__bobPacket));
+  const untouched=await page.evaluate(()=>localStorage.getItem('wake-ant-colony@5')),originalPacket=await page.evaluate(()=>JSON.stringify(window.__bobPacket));
   await page.evaluate(()=>{document.querySelector('#feed').onclick();document.querySelector('#confirm-reset').onclick();});await page.waitForTimeout(150);
-  assert.equal(await page.evaluate(()=>localStorage.getItem('wake-ant-colony@2')),untouched);assert.equal(await page.evaluate(()=>JSON.stringify(window.__bobPacket)),originalPacket);
+  assert.equal(await page.evaluate(()=>localStorage.getItem('wake-ant-colony@5')),untouched);assert.equal(await page.evaluate(()=>JSON.stringify(window.__bobPacket)),originalPacket);
   await page.locator('#farm-choice').selectOption('mine');await page.getByRole('button',{name:'Pause simulation',exact:true}).click();
   const alpha=await page.locator('#habitat').evaluate(canvas=>canvas.getContext('2d').getImageData(20,5,1,1).data[3]);assert.ok(alpha<60,'Glass above the soil reveals room scenery');
   assert.equal(await page.locator('.habitat-case').evaluate(el=>getComputedStyle(el).backgroundColor),'rgba(0, 0, 0, 0)');
@@ -74,9 +74,9 @@ const server=http.createServer((req,res)=>{
    return {workingMoves:mouth(0,0)!==mouth(.6,0),gripStable:mouth(0,1)===mouth(.6,1)};
   });
   assert(jaws.workingMoves,'Working mandibles visibly open and close');assert(jaws.gripStable,'Mandibles hold a steady grip around carried food');
-  const saved=await page.evaluate(()=>localStorage.getItem('wake-ant-colony@2'));assert.equal(JSON.parse(saved).seed,9876);
-  await page.locator('#farm-choice').selectOption('bob');await page.waitForTimeout(80);assert.equal(await page.evaluate(()=>localStorage.getItem('wake-ant-colony@2')),saved,'Shared playback never overwrites personal save');
-  await page.locator('#farm-choice').selectOption('mine');await page.getByRole('button',{name:'Pause simulation',exact:true}).click();assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('wake-ant-colony@2')).seed),9876);
+  const saved=await page.evaluate(()=>localStorage.getItem('wake-ant-colony@5'));assert.equal(JSON.parse(saved).seed,9876);
+  await page.locator('#farm-choice').selectOption('bob');await page.waitForTimeout(80);assert.equal(await page.evaluate(()=>localStorage.getItem('wake-ant-colony@5')),saved,'Shared playback never overwrites personal save');
+  await page.locator('#farm-choice').selectOption('mine');await page.getByRole('button',{name:'Pause simulation',exact:true}).click();assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('wake-ant-colony@5')).seed),9876);
   await page.getByRole('button',{name:'Enter full screen',exact:true}).click();await page.waitForTimeout(80);const full=await canvas.boundingBox();assert.ok(full.width>=1190&&full.height>=890);assert.ok(Math.abs(full.y+full.height-900)<2,'Fullscreen sand reaches viewport bottom');
   await page.getByRole('button',{name:'Exit full screen',exact:true}).click();assert.equal(await page.locator('#farm').evaluate(el=>el.classList.contains('is-fullscreen')),false);
   if(process.env.ANT_FARM_SCREENSHOT)await page.screenshot({path:process.env.ANT_FARM_SCREENSHOT});

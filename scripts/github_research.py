@@ -384,6 +384,8 @@ def run_batch(minutes, provider, *, reset=False):
                 # Explicit reset restored setup only. The stopped controller
                 # bootstrapped fresh records; never restore/audit discarded data.
                 print(json.dumps({'experimental_reset': transport.reset(root, 'Operator-requested cycle-zero reset')}), flush=True)
+                with measured_stage('cycle-zero-publication'):
+                    publish_hosted_snapshot(client, root, Path(os.environ['WAKE_HOSTED_ARTIFACT']), revision)
             # Recovery is committed in the owning SQLite record. The batch's
             # final state transfer carries it to the next runner.
             if enabled(client) and not stopped:

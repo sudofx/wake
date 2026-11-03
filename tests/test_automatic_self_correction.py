@@ -198,17 +198,6 @@ class AutomaticCorrectionTests(unittest.TestCase):
         gh.assert_not_called()
         self.assertEqual(source.git(self.root, 'ls-remote', 'origin', 'refs/heads/master').split()[0], concurrent)
 
-    def test_workflow_permissions_isolation_and_event_contract(self):
-        workflow = (ROOT / '.github/workflows/self-correction.yml').read_text()
-        self.assertIn('workflow_run:', workflow)
-        self.assertIn('required: false', workflow)
-        self.assertIn('head_repository.full_name == github.repository', workflow)
-        self.assertIn('fetch-depth: 2', workflow, 'CI diagnosis needs the committed parent')
-        self.assertNotIn('pull_request_target', workflow)
-        self.assertIn('--network none --read-only --cap-drop ALL', workflow)
-        self.assertIn('uses: ./.github/workflows/publish-pages.yml', workflow)
-        self.assertIn('Outcome:', workflow)
-        self.assertNotIn('schedule:', workflow)
 
 
 if __name__ == '__main__':

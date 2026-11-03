@@ -22,9 +22,9 @@
   const {Colony,WIDTH:W,HEIGHT:H,SURFACE:S}=window.WakeAntColony;
   const get=id=>document.getElementById(id),canvas=get('habitat'),ctx=canvas.getContext('2d');
   if(!ctx){get('scene-note').textContent='This browser cannot draw the habitat. Try a browser with Canvas support.';return;}
-  const KEY='wake-ant-colony@2',reduced=matchMedia('(prefers-reduced-motion: reduce)');
+  const KEY='wake-ant-colony@5',reduced=matchMedia('(prefers-reduced-motion: reduce)');
   let colony,persistence,storageReady=true,storageConflict=false,unreadableSave=false;
-  try{persistence=new ColonyPersistence(localStorage,KEY);const saved=persistence.value;colony=saved?Colony.restore(JSON.parse(saved)):null;}catch{storageReady=false;unreadableSave=true;}
+  try{localStorage.removeItem('wake-ant-colony@2');persistence=new ColonyPersistence(localStorage,KEY);const saved=persistence.value;colony=saved?Colony.restore(JSON.parse(saved)):null;}catch{storageReady=false;unreadableSave=true;}
   colony ||= new Colony(crypto.getRandomValues(new Uint32Array(1))[0]);
   let mine=colony,mode='bob',bobPacket=null,bobError='',modeRequest=0,bobRefreshAt=0,bobRefreshing=false;
   let paused=false,speed=1,showTrails=false,previous=0,accumulator=0,lastDraw=0,lastSave=0,lastUI=0,selectedId=null,antSignature='';
