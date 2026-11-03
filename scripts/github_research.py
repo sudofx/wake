@@ -349,6 +349,9 @@ def run_batch(minutes, provider, *, reset=False):
         before = transport.restore(root, workers=3, fresh_experiment=reset)
     if policy and before['installation_id'] != policy['installation_id']:
         raise ValueError('Restored installation differs from the runtime binding; no controller started')
+    if reset:
+        from wake.report import atomic_write
+        atomic_write(root / 'config/wake.toml', (RUNTIME_POLICY.parent / 'wake.toml').read_text())
     apply_decision_memory_policy(root, policy)
     apply_provider_pacing_policy(root,policy)
     apply_experimental_research_policy(root,policy)

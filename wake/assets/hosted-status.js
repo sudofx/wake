@@ -9,22 +9,6 @@
   // Safari may finish the cached installation read before this deferred script.
   // Consume the same snapshot as the node picker even when its event has passed.
   let timer, pending=false, quotaObservation=window.WakeInstallationSnapshot||null;
-  // Installation snapshots contain dated node observations, not live provider calls.
-  // Use them only while recent; temporary workers may stop after quota deferral.
-  function confirmedQuota(){
-    const data=quotaObservation;
-    if(!data || data.live!==false || !Array.isArray(data.nodes) || data.nodes.length!==12)return null;
-    const times=data.nodes.map(n=>Date.parse(n.recorded_runtime?.observed_at));
-    if(times.some(t=>!Number.isFinite(t)||t>Date.now()+60000||Date.now()-t>30*60000))return null;
-    if(!data.nodes.every(n=>{
-      const state=n.recorded_runtime?.state, latest=n.research?.status?.latest;
-      return (state==='standby'||(state==='stopped' && data.hosted_execution?.research_start?.ok===true)) &&
-        latest?.status==='deferred' && /quota/i.test(latest.reason||'') &&
-        Number.isFinite(Date.parse(latest.time)) && Date.parse(latest.time)<=Date.now()+60000 &&
-        Date.now()-Date.parse(latest.time)<30*60000;
-    }))return null;
-    return Math.min(...times);
-  }
   function confirmedRunning(value){
     const data=quotaObservation;
     // The picker reports dated snapshot states. When all twelve agree, use
@@ -47,9 +31,7 @@
   }
   window.addEventListener('wake-installation-snapshot',event=>{
     quotaObservation=event.detail;
-    const checked=confirmedQuota();
-    if(checked)show('standby','All 12 nodes: confirmed provider quota standby (published observation)',checked);
-    else if(!apply(cached()))show(null,'Research status unconfirmed; node observations unavailable or mixed');
+    if(!apply(cached()))show(null,'Research status unconfirmed; node observations unavailable or mixed');
   });
   light.hidden=false;light.href=link;
   function show(state,label,checked){
@@ -67,15 +49,11 @@
         String(quotaObservation.hosted_execution.run_id)!==String(value.activeRun);
       const observed=Number.isFinite(aggregate.checked)?
         '. '+(previous?'Previous batch observation ':'Published observation ')+new Date(aggregate.checked).toLocaleString():'';
-      show(aggregate.state,'Hosted batch active; '+aggregate.description+observed,value.checked);return true;
+      show(aggregate.state==='standby'?'waiting':aggregate.state,'Hosted batch active; '+aggregate.description+observed,value.checked);return true;
     }
-    const observed=confirmedQuota();
-    if(observed && value.state!=='stopped' && value.state!=='blocked')show('standby','All 12 nodes: confirmed provider quota standby (published observation)',observed);
-    else {
-      const running=confirmedRunning(value);
-      if(running)show('running',`Hosted batch active; ${running.count} of 12 nodes recorded running in its latest snapshot`,running.checked);
-      else show(value.state,value.label,value.checked);
-    }
+    const running=confirmedRunning(value);
+    if(running)show('running',`Hosted batch active; ${running.count} of 12 nodes recorded running in its latest snapshot`,running.checked);
+    else show(value.state,value.label,value.checked);
     return true;
   }
   function showUnavailable(value){
@@ -112,7 +90,7 @@
     }
     pending=true;
     // Never leave a green observation on screen while a new read is unresolved.
-    if(!confirmedQuota())show(null,'Checking hosted execution');
+    show(null,'Checking hosted execution');
     try{
       const [workflow,result]=await Promise.all([read(base),read(`${base}/runs?branch=master&per_page=5`)]);
       if(!['active','disabled_manually','disabled_inactivity','disabled_fork'].includes(workflow.state) || !Array.isArray(result.workflow_runs))throw new Error('Invalid status');

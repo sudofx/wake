@@ -47,7 +47,7 @@ const tick=()=>new Promise(resolve=>setImmediate(resolve));
   assert.match(light['aria-label'],new RegExp(state==='blocked'?'stalled; recovery needs attention':'Waiting for automatic recovery'));
  }
 
- // Disposable hosted workers stop after quota deferral; the research condition remains standby.
+ // A dated deferral is not an independent source of current Gemini usage.
  {
   const callbacks={},light={dataset:{},setAttribute(k,v){this[k]=v;},removeAttribute(k){if(k==='data-state')delete this.dataset.state;}};
   const context={window:{WAKE_DEPLOYMENT:{hosted_status:{repository:'example/repo',workflow:'research-worker.yml',branch:'master'}},addEventListener(k,fn){callbacks[k]=fn;}},
@@ -57,7 +57,7 @@ const tick=()=>new Promise(resolve=>setImmediate(resolve));
   const now=new Date().toISOString();
   const node=i=>({id:String(i),recorded_runtime:{state:'stopped',observed_at:now},research:{status:{latest:{status:'deferred',time:now,reason:'Gemini daily quotas exhausted; shared recovery scheduled'}}}});
   callbacks['wake-installation-snapshot']({detail:{live:false,hosted_execution:{research_start:{ok:true}},nodes:Array.from({length:12},(_,i)=>node(i))}});
-  assert.equal(light.dataset.state,'standby','stopped workers with verified quota defer show purple');
+  assert.notEqual(light.dataset.state,'standby','a dated provider deferral must not override Actions status');
   callbacks['wake-installation-snapshot']({detail:{live:false,hosted_execution:{research_start:{ok:false}},nodes:Array.from({length:12},(_,i)=>node(i))}});
   assert.notEqual(light.dataset.state,'standby','missing start acknowledgement cannot claim quota recovery');
  }
@@ -115,7 +115,7 @@ const tick=()=>new Promise(resolve=>setImmediate(resolve));
     document:{hidden:false,querySelector:()=>light,addEventListener(){}},navigator:{onLine:true},localStorage:{getItem:()=>null,setItem(k,v){context.saved=v;}},Date,JSON,AbortController,
     setTimeout:()=>0,clearTimeout(){},fetch:async url=>({ok:true,json:async()=>url.includes('/runs?')?{workflow_runs:[{id:55,path:'.github/workflows/research-worker.yml',head_branch:'master',status:'in_progress'}]}:{state:'active'}})};
    vm.runInNewContext(source,context);await tick();
-   assert.equal(light.dataset.state,expected==='unknown'?'waiting':expected);
+   assert.equal(light.dataset.state,['unknown','standby'].includes(expected)?'waiting':expected);
    if(expected!=='unknown'){
     assert.match(light['aria-label'],/Hosted batch active/);
     assert.ok(light['aria-label'].includes('Previous batch observation '+new Date(observed).toLocaleString()),'Old node observations must carry their own full date');
