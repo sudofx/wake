@@ -13,7 +13,15 @@
         "target_hours": 0,
         "reserve_calls": 0
       },
-      "experimental_research_enabled": true
+      "experimental_research_enabled": true,
+      "pending_upgrade": {
+        "candidate": "5ba3fa0a7c65f980375119cb6eb8ed26a111e29a",
+        "baseline": "5fe89cd8b14079372d13ec49df2b7e25bafcbe8e",
+        "verification_run": 41815613877,
+        "checkpoint_ref": "931c25709f6e9cadf4295b1cf1671ea9413bfde3",
+        "generation": 25498,
+        "control_run": 41812972874
+      }
     }
   }
 }
