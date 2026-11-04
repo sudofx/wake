@@ -2698,6 +2698,11 @@ class Engine:
         # Fit the complete final envelope, after questions, same-wake research,
         # continuity deferral and the rebuilt response schema. Earlier fits only
         # see a partial request and cannot guarantee this provider boundary.
+        if provider_input_chars(request) > self.config["max_context_chars"]:
+            # Save space in the instruction text before discarding any more
+            # evidence. Record the renderer choice with the new request so old
+            # durable invocations still render exactly as before.
+            request["compact_response_contract"] = True
         if provider_input_chars(request) > self.config["max_context_chars"] and phase != "planning":
             self.fit_bounded_request(request, system_suffix=final_system_suffix)
         require(provider_input_chars(request) <= self.config["max_context_chars"],

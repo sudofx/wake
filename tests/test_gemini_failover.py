@@ -13,7 +13,7 @@ from wake.store import Store
 from wake.governance import Rejected
 from wake.providers import (
     Gemini, Fixture, FREE_TIER_DAILY_QUOTA_ID,
-    FREE_TIER_MINUTE_QUOTA_ID, provider_input_budget,
+    FREE_TIER_MINUTE_QUOTA_ID, provider_input_budget, provider_input_text,
 )
 from wake.scheduling import wake_status
 from wake.report import export
@@ -102,6 +102,31 @@ class FailoverTests(unittest.TestCase):
             with self.assertRaisesRegex(Rejected, "no model call made"):
                 Gemini(settings).propose(request)
         network.assert_not_called()
+
+    def test_compact_contract_preserves_schema_and_uses_the_exact_delivery_budget(self):
+        citation = {"type": "string", "enum": ["evidence-" + "x" * 80]}
+        schema = {"type": "object", "properties": dict.fromkeys(("first", "second", "third"), citation)}
+        request = {"system": "System", "context": {"version": 1}, "response_schema": schema,
+                   "enforce_response_schema": True}
+        previous, _ = provider_input_text(request)
+        self.assertEqual(json.loads(previous.split("\n")[-1]), schema)
+
+        request["compact_response_contract"] = True
+        system, prompt = provider_input_text(request)
+        contract = json.loads(system.split("\n")[-1])
+        definitions = contract.pop("$defs")
+        for key, item in contract["properties"].items():
+            contract["properties"][key] = definitions[item["$ref"].rsplit("/", 1)[1]]
+        self.assertEqual(contract, schema)
+        self.assertLess(len(system), len(previous))
+        budget = provider_input_budget(request, len(system) + len(prompt))
+        self.assertEqual(budget["remaining_chars"], 0)
+        response = Response("{}")
+        with patch("urllib.request.urlopen", return_value=response) as network:
+            Gemini({**self.settings, "max_context_chars": budget["limit_chars"]}).propose(request)
+        body = json.loads(network.call_args.args[0].data)
+        self.assertEqual(body["systemInstruction"]["parts"][0]["text"], system)
+        self.assertEqual(body["generationConfig"]["responseJsonSchema"], schema)
 
     def test_primary_success(self):
         result, state, item, network = self.run_chain(["valid"])

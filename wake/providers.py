@@ -4,6 +4,7 @@
 
 """Provider boundary: one JSON request in, one untrusted proposal out."""
 
+from collections import Counter
 from copy import deepcopy
 import errno
 import json
@@ -67,6 +68,57 @@ SCHEMA = {"type": "object", "additionalProperties": False, "properties": {
     ]}}}, "required": ["base_version", "title", "summary", "actions"]}
 
 
+def compact_response_contract(schema):
+    """Factor repeated subschemas in the model-readable copy of the contract."""
+    def children(node):
+        for key in ("properties", "patternProperties"):
+            yield from (child for child in node.get(key, {}).values() if isinstance(child, dict))
+        for key in ("items", "additionalProperties", "contains", "not", "if", "then", "else"):
+            if isinstance(node.get(key), dict):
+                yield node[key]
+        for key in ("anyOf", "oneOf", "allOf", "prefixItems"):
+            yield from (child for child in node.get(key, ()) if isinstance(child, dict))
+
+    def walk(node):
+        yield node
+        for child in children(node):
+            yield from walk(child)
+
+    nodes = list(walk(schema))
+    original = canonical(schema)
+    if any("$ref" in node or "$defs" in node or "$id" in node for node in nodes):
+        return original
+    copies = Counter(canonical(node) for node in nodes[1:])
+    names = {
+        value: str(index)
+        for index, value in enumerate(
+            sorted(value for value, count in copies.items()
+                   if count > 1 and len(value) > 56)
+        )
+    }
+    if not names:
+        return original
+
+    compacted = json.loads(original)
+    definitions = {}
+
+    def replace_children(node):
+        for child in children(node):
+            value = canonical(child)
+            if value in names:
+                name = names[value]
+                definitions.setdefault(name, json.loads(value))
+                child.clear()
+                child["$ref"] = "#/$defs/" + name
+            else:
+                replace_children(child)
+
+    replace_children(compacted)
+    compacted["$defs"] = definitions
+    result = canonical(compacted)
+    return result if len(result) < len(original) else original
+
+
 def provider_input_text(request):
     """Render identical model-visible text for budgeting and provider delivery.
 
@@ -78,7 +130,10 @@ def provider_input_text(request):
     """
     system = request.get("system", "")
     if "response_schema" in request:
-        system += "\nResponse contract (JSON Schema):\n" + canonical(request["response_schema"])
+        schema = request["response_schema"]
+        contract = (compact_response_contract(schema)
+                    if request.get("compact_response_contract") is True else canonical(schema))
+        system += "\nResponse contract (JSON Schema):\n" + contract
     return system, canonical(request["context"])
 
 

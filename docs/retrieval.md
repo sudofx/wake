@@ -490,6 +490,12 @@ remain governed by the existing retention rules; impossible requests still fail
 closed. An optional probe that cannot fit remains untested rather than receiving
 a fabricated result.
 
+When the final request is too large, its model-readable response contract can
+use local JSON Schema references for identical repeated definitions. The
+request records that rendering choice so the budget and Gemini receive the
+same text. Gemini's separate structured-output schema retains the full
+definitions. Older requests retain their original rendering.
+
 New invocation receipts carry `context_delivery.provider_input_budget`, with a
 versioned measurement basis, exact rendered-input hash and size, reserved
 instruction/probe sizes, working-context allowance and usage, and remaining room.
