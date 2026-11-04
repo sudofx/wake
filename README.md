@@ -126,6 +126,12 @@ This detects an existing managed container or downloads, builds and creates one.
 Research starts stopped on a new launch. Use `sh container_setup.sh recreate` to
 rebuild existing source and replace the container while retaining its records.
 
+For a source-only development clone:
+
+```sh
+git clone --single-branch --branch master --depth 1 --no-tags https://github.com/sudofx/wake.git
+```
+
 ## Choose a guide
 
 | If you want to… | Start here |

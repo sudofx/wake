@@ -479,6 +479,9 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         background_source = assets / "backgrounds"
         background_target = target / "backgrounds"
         background_target.mkdir(parents=True, exist_ok=True)
+        from .reader_presentation import RETIRED_FARM_BACKGROUNDS
+        for name in RETIRED_FARM_BACKGROUNDS:
+            (background_target / name).unlink(missing_ok=True)
         for name in (
             "nebula-ultrawide-3440x1440.webp",
             "nebula-desktop-1680x1050.webp",
@@ -487,7 +490,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
             "console-globe.png",
             "console-cube.png",
             "console-graph.png",
-            "console-graph-alt.png", "ant-soil-v1.png", "ant-body-v1.png", "ant-sand-v2.png",
+            "console-graph-alt.png", "ant-body-v1.png",
             "ant-room-day-v1.webp", "ant-room-night-v1.webp",
         ):
             (background_target / name).write_bytes((background_source / name).read_bytes())
@@ -634,7 +637,7 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
 _READER_PAGES = {
     'home': 'index.html', 'discoveries': 'research.html', 'topics': 'topics.html',
     'blog': 'blog.html', 'projects': 'projects.html', 'journal': 'journal.html',
-    'lab': 'lab.html', 'metrics': 'metrics.html', 'evidence': 'evidence.html',
+    'evidence': 'evidence.html',
     'history': 'history.html', 'about': 'about.html',
 }
 
@@ -661,7 +664,8 @@ def _export_reader_pages(target):
     if len(sections) < 2:
         return  # Deployment binding can be repeated on an already split export.
     main = re.search(r'<main\b[^>]*>.*?</main>', source, re.S)
-    if not main or set(sections) != set(_READER_PAGES):
+    from .reader_presentation import CONSOLE_DIAGNOSTICS
+    if not main or set(sections) != set(_READER_PAGES) | CONSOLE_DIAGNOSTICS.keys():
         raise ValueError('Reader shell does not contain the expected page sections')
     for name, filename in _READER_PAGES.items():
         section = re.sub(r' hidden(?=[ >])', '', sections[name], count=1)
@@ -701,6 +705,7 @@ def _deployment_site(target, *, standalone, installation=None, pages=None):
     """
     if pages is None:
         _export_reader_pages(target)
+    from .reader_presentation import CONSOLE_DIAGNOSTICS, bind_console_diagnostics
     mode = 'standalone' if standalone else 'hosted'
     deployment = {'schema': 1, 'mode': mode}
     if not standalone:
@@ -740,6 +745,8 @@ def _deployment_site(target, *, standalone, installation=None, pages=None):
     header = header.replace("WAKE_CYCLE_COUNT", str(snapshot.get("state", {}).get("version", "—")))
     header = re.sub(r'href="#([^"]+)"', r'href="index.html#\1"', header)
     for path in target.rglob('*.html') if pages is None else pages:
+        if path.parent == target and path.stem in CONSOLE_DIAGNOSTICS:
+            continue
         page = path.read_text()
         if path.name in ('ant-farm.html', 'ant-experiment.html'):
             # Share navigation without adding research observers or changing the
@@ -791,6 +798,8 @@ def _deployment_site(target, *, standalone, installation=None, pages=None):
             def reader_link(match):
                 route = match.group(2)
                 section = route.split('/')[0]
+                if section in CONSOLE_DIAGNOSTICS:
+                    return 'href="' + match.group(1) + 'console-records.html#' + route + '"'
                 filename = _READER_PAGES.get(section)
                 if not filename:
                     return match.group(0)
@@ -811,3 +820,5 @@ def _deployment_site(target, *, standalone, installation=None, pages=None):
         if deployment.get('snapshot_only'):
             page = re.sub(r'<a\b[^>]*class="[^"]*actions-light[^"]*"[^>]*>.*?</a>', '', page, flags=re.S)
         atomic_write(path, page)
+    if pages is None:
+        bind_console_diagnostics(target)

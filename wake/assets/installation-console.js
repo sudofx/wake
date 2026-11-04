@@ -1,6 +1,7 @@
 /* One disposable installation manifest; record authority remains with its nodes. */
 (()=>{
  'use strict';
+ if(!document.body)return;
  const dashboard=document.body.classList.contains('installation-page');
  // The asset URL identifies the export root even on nested record pages.
  const asset=new URL(document.currentScript?.src||'installation-console.js',location.href);
@@ -82,7 +83,7 @@
   const state=data?.disconnected?'unknown':priority.find(value=>states.some(item=>item.state===value))||'unknown';
   const counts=priority.map(value=>{const count=states.filter(item=>item.state===value).length;return count?`${count} ${stateNames[value].toLowerCase()}`:null;}).filter(Boolean);
   const times=nodes.map(node=>Date.parse((data.live===true?node.runtime:node.recorded_runtime)?.observed_at)).filter(Number.isFinite);
-  return{state,description:`${data.live===true?'Current node states':'Last uploaded node states'}: ${counts.join(', ')||'unavailable'}`,checked:times.length?Math.min(...times):null};
+  return{state,description:`${data?.live===true?'Current node states':'Last uploaded node states'}: ${counts.join(', ')||'unavailable'}`,checked:times.length?Math.min(...times):null};
  }
  window.WakeInstallationAggregate=aggregateStatus;
  function buildPicker(nodes,data){

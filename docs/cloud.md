@@ -26,9 +26,9 @@ the panel width, without changing the captured research packets.
 The [ant farm](ant-farm.md) ships with filtered website exports. My farm runs
 and saves in each visitor’s browser. [Bob’s shared farm](bob-ant-farm.md) has a
 separate, bounded GitHub checkpoint maintained by a provider-free Actions job;
-visitors only replay its dated observations. Its notebook is presentation and
-never changes native research articles or records. Its former conversation panel
-is removed.
+visitors replay its dated observations. The farm does not discover research
+snapshots. My Farm and the browser comparison use local state, and Bob’s Farm
+fetches only its caretaker packet.
 
 The October 26 data-only demonstration used the already deployed `c4986cf`
 interface, generated ten deterministic retrieval fixture results and published
@@ -84,7 +84,8 @@ Local installations use `wake-research` for their own controls.
 
 ## Publish controlled evaluation results
 
-The Lab page (`lab.html`) reads `latest.json` from the separate `wake-evaluations`
+Open **Research diagnostics** in Console, then **Lab evaluations**. The report
+reads `latest.json` from the separate `wake-evaluations`
 data branch when opened. This small experimental-output stream is independent
 of the twelve-node research snapshot and the checked Pages interface. It never
 changes native records or research counters. Local previews read `evaluation.json`
@@ -468,33 +469,16 @@ completed exports before the successor retries. One unavailable worker cannot
 withhold the other records or their public mirror.
 The system does not write unreviewed source repairs or change its own research rules.
 
-### Enable the published research capabilities
+### Configure hosted research capabilities
 
-After explicitly granting experimental research in `hosted-runtime.json`, request
-a normal stop and dispatch **Enable published research features** with that stop
-control's run ID and the worker's run ID. This operator workflow waits for a
-successful drained checkpoint. It restores and verifies all twelve records, then
-changes only the saved root configuration: active working memory, active decision
-recall, automatic context adaptation, experimental execution, inquiry drive,
-same-wake source collection, Google Search discovery, and research-quality enforcement. All native database
-identities, topic settings, provider limits and other saved files remain intact.
-Inquiry drive still requires its twenty completed scored cycles before activation.
+The checked source and the installation binding in `hosted-runtime.json` own
+hosted capability settings. The worker applies the binding when it restores
+its configuration. Changes to the runtime pin follow the [verified upgrade
+procedure](#publish-source-without-upgrading-records).
 
-The workflow requests the normal Start control after configuration, including on
-failure so an unsuccessful configuration does not silently strand stopped
-research. A newer operator control supersedes that automatic restart. An explicit
-scientific grant is required, and an outstanding writer or changed checkpoint
-prevents configuration. Google Search grounding is enabled for planning, but
-provider quota and availability can still block a request. Configuration does
-not bypass provider limits or establish successful research.
-
-**Audit hosted feature settings** reads a bounded whitelist of switches from the
-encrypted saved configuration, without restoring records or changing controls.
-Its optional grounding probe makes at most one public planning request using the
-hosted Gemini key in a separate disposable record. It reports transport success
-and search-query counts, never response bodies, private configuration, or research
-progress. This distinguishes a disabled optional tool from an unavailable
-provider capability before changing the live research configuration.
+Use **Inspect** in **research-control** to read the saved provider schedule.
+The public Console shows the dated per-node context-adaptation and experiment
+grants reported by the installation.
 
 GitHub's workflow token has a shared repository API allowance. Checkpoint transfers
 reserve 100 requests for controls and continuation, waiting for the service's reset
@@ -589,6 +573,8 @@ across pages for five minutes; the API lookup is bounded to three seconds and
 discovery plus metadata validation share a six-second deadline with
 size limits, leaving time for the bundled fallback inside normal reader budgets. Data reads omit credentials and referrers and have bounded timeouts.
 All overview, detail, pagination, Console and map reads use that immutable commit.
+Within a document, reader and picker requests for the root installation manifest
+reuse the copy already verified during discovery.
 Bob popups and Console tools inherit it. Opening a new page after the discovery
 cache expires can adopt a newer export without rebuilding the interface.
 
@@ -613,8 +599,10 @@ presentation with `scripts/prepare_pages.py`. It verifies all twelve heads and
 protected research bytes before compacting the disposable Pages copy.
 The Pages payload keeps interface assets and bounded recent fallback views, with
 an 8 MiB data budget per root/node. It prioritizes the reader overview, installation
-identity, recent reader packets/guides and small first list pages. Full archives,
-unbounded map shards and older record packets are omitted
+identity, recent reader packets, and small first list pages. Identical artwork,
+styles, and eligible scripts use shared asset URLs across node pages. Scripts
+that resolve node-relative data keep their node-local URLs.
+Full archives, unbounded map shards and older record packets are omitted
 from this interface bundle. Every retained data packet is hash-checked unchanged;
 complete public data stays on `wake-public`, and native records are never opened.
 Presentation metadata records the fallback's limited scope. In an outage the

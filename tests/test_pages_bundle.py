@@ -51,6 +51,28 @@ class PagesBundleTests(unittest.TestCase):
         self.assertFalse(detail.exists())
         self.assertTrue((self.site/'reader-data.json').exists())
 
+    def test_share_equal_assets_and_keep_node_relative_transports(self):
+        node = self.site / 'nodes/100.wake'
+        for root in (self.site, node):
+            (root/'backgrounds').mkdir()
+            (root/'backgrounds/common.png').write_bytes(b'shared artwork')
+            (root/'backgrounds/variant.png').write_bytes(root.name.encode())
+            (root/'theme.css').write_text('body{background:url(backgrounds/common.png?v=1)}')
+            (root/'variant.css').write_text('body{background:url(backgrounds/variant.png)}')
+            (root/'public-data.js').write_text('/* node-relative transport */')
+        page = node/'index.html'
+        page.write_text(page.read_text() + '<link href="theme.css?v=2"><link href="variant.css">'
+                        '<script src="public-data.js"></script>')
+        result = compact(self.site)
+        self.assertEqual(result['presentation']['fallback']['shared_asset_files'], 2)
+        self.assertIn('href="../../theme.css?v=2"', page.read_text())
+        self.assertIn('href="variant.css"', page.read_text())
+        self.assertIn('src="public-data.js"', page.read_text())
+        self.assertFalse((node/'theme.css').exists())
+        self.assertFalse((node/'backgrounds/common.png').exists())
+        self.assertTrue((node/'backgrounds/variant.png').exists())
+        self.assertTrue((node/'public-data.js').exists())
+
     def test_refuse_native_records_before_any_pruning(self):
         (self.site/'record.sqlite').write_bytes(b'not a public export')
         (self.site/'wake-data.json').write_text('keep on rejection')

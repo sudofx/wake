@@ -32,6 +32,10 @@ class SharedChromeTests(unittest.TestCase):
                     _deployment_site(site, standalone=True)
                     for path in site.rglob('*.html'):
                         page = path.read_text()
+                        if path.name in ('lab.html', 'metrics.html'):
+                            self.assertIn(f'href="console-records.html#{path.stem}"', page)
+                            self.assertNotIn('reader-data.js', page)
+                            continue
                         if '</head>' not in page:
                             continue
                         for asset in re.findall(r'(?:href|src)="([^"?]+)(?:\?[^\"]*)?"', page):

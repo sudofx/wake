@@ -242,9 +242,13 @@ Install Git, VS Code and its **Dev Containers** extension. Clone your fork to a
 new directory, or use the existing Git checkout you intend to develop:
 
 ```sh
-git clone https://github.com/YOUR-NAME/wake.git
+git clone --single-branch --branch master --depth 1 --no-tags https://github.com/YOUR-NAME/wake.git
 cd wake
 ```
+
+This downloads the current source tip. Public snapshots, hosted checkpoints and
+tags are fetched only when you explicitly request them. For full source history,
+run `git fetch --unshallow origin master` from this checkout.
 
 ### Step 2 — Start the local development container
 

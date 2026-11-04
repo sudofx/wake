@@ -21,6 +21,13 @@ const server=http.createServer((req,res)=>{
    return route.fulfill({json:{version:url.pathname.split('/')[3]}});
   });
   await page.goto(base);await page.evaluate(()=>WakePublicData.ready);
+  assert.deepEqual(await page.evaluate(async()=>{
+   const copies=await Promise.all([WakePublicData.fetch('installation.json'),WakePublicData.fetch('installation.json')]);
+   const manifests=await Promise.all(copies.map(response=>response.json()));
+   return manifests.map(manifest=>manifest.installation_id);
+  }),['fixture','fixture']);
+  assert.equal(seen.filter(url=>url.endsWith('/installation.json')).length,1,
+    'Readers share the already verified installation manifest within a document');
   const read=()=>page.evaluate(async()=>{const r=await WakePublicData.fetch('reader-data.json');return r.json();});
   assert.equal((await read()).version,'a'.repeat(40));
   latest='b'.repeat(40);assert.equal((await read()).version,'a'.repeat(40),'A document must never mix public commits');

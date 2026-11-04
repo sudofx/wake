@@ -67,8 +67,11 @@ class PublishingTests(unittest.TestCase):
                 self.assertEqual(json.loads((root / "site/deployment.json").read_text()),
                                  {"schema": 1, "mode": "hosted", "snapshot_only": True})
                 for page in (root / "site").glob('*.html'):
-                    if '<head>' in page.read_text():
-                        self.assertIn('"mode": "hosted"', page.read_text())
+                    content = page.read_text()
+                    if page.name in ('lab.html', 'metrics.html'):
+                        self.assertIn(f'href="console-records.html#{page.stem}"', content)
+                    elif '<head>' in content:
+                        self.assertIn('"mode": "hosted"', content)
                 self.assertEqual(engine.store.performance_snapshot()["full_replays"], before)
                 rendered = json.loads((root / "site/wake-data.json").read_text())
                 self.assertEqual(rendered["head"], payload["head"])

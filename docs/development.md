@@ -500,7 +500,11 @@ rolling an executable backward against an upgraded volume.
 
 Reader navigation uses separate static documents: `index.html` (Explore),
 `research.html`, `journal.html`, `blog.html`, and the remaining named section pages.
-Each document contains only its own view, visible before exported data loads.
+Each document contains its own view, visible before exported data loads. Explore
+leads with the latest notebook question and links to the recorded evidence and
+limitations. Before the first notebook, it can show an active project or a seed
+question. Console’s **Research diagnostics** opens the Metrics and Lab reports
+in its full-page record workspace. Old Lab and Metrics addresses redirect there.
 Legacy `index.html#section/record` links redirect to the corresponding page;
 record fragments stay within that page. GitHub Pages needs no rewrite service.
 `report.py` owns page generation and `page-routing.js` owns legacy-link compatibility.

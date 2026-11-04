@@ -334,7 +334,11 @@ class StandaloneRuntimeTests(unittest.TestCase):
             head = engine.store.head()
             publish(engine, root)
             for page in (root / 'current').rglob('*.html'):
-                self.assertIn('window.WAKE_STANDALONE=true', page.read_text())
+                content = page.read_text()
+                if page.parent == root / 'current' and page.name in ('lab.html', 'metrics.html'):
+                    self.assertIn(f'href="console-records.html#{page.stem}"', content)
+                else:
+                    self.assertIn('window.WAKE_STANDALONE=true', content)
             self.assertEqual(json.loads((root / 'current' / 'deployment.json').read_text()),
                              {'schema': 1, 'mode': 'standalone'})
             self.assertEqual((root / 'current' / 'head.txt').read_text().strip(), head)

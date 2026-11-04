@@ -4,6 +4,8 @@ from pathlib import Path
 import re
 import shutil
 
+FARM_PAGES = ('ant-farm.html', 'ant-experiment.html')
+
 
 def bind_hosted_status(site, repository, revision):
     """Change presentation only; keep research, capture provenance and hashed packets.
@@ -87,19 +89,21 @@ def bind_hosted_status(site, repository, revision):
         for name in farm_assets:
             shutil.copyfile(assets/name,root/name)
         (root/'backgrounds').mkdir(exist_ok=True)
-        for name in ('ant-soil-v1.png','ant-body-v1.png','ant-sand-v2.png','ant-room-day-v1.webp','ant-room-night-v1.webp'):
+        for name in ('ant-body-v1.png','ant-room-day-v1.webp','ant-room-night-v1.webp'):
             shutil.copyfile(assets/'backgrounds'/name,root/'backgrounds'/name)
-        for name in ('ant-farm.html', 'ant-experiment.html'):
+        for name in FARM_PAGES:
             shutil.copyfile(assets/name,root/name)
-    from .reader_presentation import refresh_public_reader
+    from .reader_presentation import bind_console_diagnostics, refresh_public_reader
     for root in roots:
         refresh_public_reader(root)
+        bind_console_diagnostics(root)
         from .report import _deployment_site
         deployment_path = root/'deployment.json'
         deployment = json.loads(deployment_path.read_text()) if deployment_path.exists() else bindings[root]
+        deployment.pop('public_data', None)
         _deployment_site(root, standalone=deployment.get('mode')=='standalone',
                          installation={**deployment, 'presentation_revision': revision},
-                         pages=[root/'ant-farm.html', root/'ant-experiment.html'])
+                         pages=[root/name for name in FARM_PAGES])
     # The served interface and public data have separate delivery lifecycles.
     # Bind only hosted exports; ordinary/local readers never discover GitHub.
     data_assets=('public-data.js','map.js','map3d.js','flat-view.js','console-tools.js')
@@ -117,24 +121,26 @@ def bind_hosted_status(site, repository, revision):
         deployment_path.write_text(json.dumps(deployment))
         for page_path in root.rglob('*.html'):
             relative=page_path.relative_to(root)
-            if 'nodes' in relative.parts or page_path.name=='ant-experiment.html':
+            if 'nodes' in relative.parts:
                 continue
             page=page_path.read_text()
-            if 'window.WAKE_DEPLOYMENT=' in page:
+            # The shared farm reads only its caretaker packet; My Farm and
+            # the comparison use browser-local state.
+            if relative.as_posix() not in FARM_PAGES:
+                if 'window.WAKE_DEPLOYMENT=' not in page:
+                    continue
                 def data_binding(match):
                     bound=json.loads(match.group(1));bound['public_data']=public_data
                     return 'window.WAKE_DEPLOYMENT='+json.dumps(bound)+';'
                 page=re.sub(r'window\.WAKE_DEPLOYMENT=(\{[^<]*?\});',data_binding,page)
-            else:
-                continue
-            feed_base='https://raw.githubusercontent.com/'+repository+'/wake-public/'+public_data['prefix']
-            page=re.sub(r'href="(?:\.\./)*(blog|journal)\.xml"',
-                        lambda match:'href="'+feed_base+match.group(1)+'.xml"',page)
-            # Load synchronously before any inline data consumer starts.
-            page=re.sub(r'<script src="[^\"]*public-data\.js[^\"]*"[^>]*></script>','',page)
-            prefix='../'*len(relative.parts[:-1])
-            page=re.sub(r'(window\.WAKE_DEPLOYMENT=\{[^<]*?\};[^<]*</script>)',
-                        lambda match:match.group(1)+f'<script src="{prefix}public-data.js?v={revision[:12]}"></script>',page,count=1)
+                feed_base='https://raw.githubusercontent.com/'+repository+'/wake-public/'+public_data['prefix']
+                page=re.sub(r'href="(?:\.\./)*(blog|journal)\.xml"',
+                            lambda match:'href="'+feed_base+match.group(1)+'.xml"',page)
+                # Load synchronously before any inline data consumer starts.
+                page=re.sub(r'<script src="[^\"]*public-data\.js[^\"]*"[^>]*></script>','',page)
+                prefix='../'*len(relative.parts[:-1])
+                page=re.sub(r'(window\.WAKE_DEPLOYMENT=\{[^<]*?\};[^<]*</script>)',
+                            lambda match:match.group(1)+f'<script src="{prefix}public-data.js?v={revision[:12]}"></script>',page,count=1)
             # Browser caches must not retain an older status/aggregation contract
             # after a presentation release, especially across Safari navigation.
             page=re.sub(r'((?:nav\.js|masthead\.css|installation-console\.js|hosted-status\.js|reader-data\.js|ant-farm\.js|bob-ant-farm\.js))(?:\?v=[^"<]+)?"',

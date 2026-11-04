@@ -7,6 +7,8 @@ from pathlib import Path
 # This paragraph appeared in Bob's introductory article. Omit it only in
 # reader views so its original publication and citation receipts still replay.
 RETIRED_FARM_PARAGRAPH = 'To better understand how order arises from simple rules, we look at a simulation of an ant colony.'
+RETIRED_FARM_BACKGROUNDS = ('ant-soil-v1.png', 'ant-sand-v2.png')
+CONSOLE_DIAGNOSTICS = {'lab': 'Lab evaluations', 'metrics': 'Research metrics'}
 
 
 def blog_display_body(body):
@@ -14,10 +16,35 @@ def blog_display_body(body):
                        if not part.lstrip().startswith(RETIRED_FARM_PARAGRAPH))
 
 
+def bind_console_diagnostics(site):
+    """Refresh the Console disclosure and keep historical reader URLs useful."""
+    site = Path(site)
+    if not (site / 'console-records.html').is_file():
+        return
+    console = site / 'console.html'
+    if console.is_file():
+        page = console.read_text()
+        if 'id="research-diagnostics"' not in page:
+            shell = (Path(__file__).parent / 'assets/console.html').read_text()
+            panel = re.search(r'<details id="research-diagnostics"[^>]*>.*?</details>', shell, re.S).group()
+            page = re.sub(r'(<section\b[^>]*\bid="status-band"[^>]*>.*?</section>)(</div>)',
+                          lambda match: match[1] + '\n' + panel + '\n' + match[2], page, count=1, flags=re.S)
+            console.write_text(page)
+    for route, label in CONSOLE_DIAGNOSTICS.items():
+        destination = 'console-records.html#' + route
+        (site / f'{route}.html').write_text(f'''<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>{label} · WAKE✳︎ Console</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>const target=new URL('{destination}',location.href);target.search=location.search;location.replace(target.href);</script>
+</head><body><p><a href="{destination}">Open {label} in Console</a></p></body></html>
+''')
+
+
 def retired_reader_asset(path):
     """Identify derived assets removed from already captured public snapshots."""
     return (path.name == 'help.js'
             or path.name in ('scientific-research.html', 'scientific-research.js')
+            or (path.parent.name == 'backgrounds' and path.name in RETIRED_FARM_BACKGROUNDS)
             or bool({'inspect', 'self-correction'}.intersection(path.parts))
             or path.name.startswith(('ask-bob', 'bob-chat', 'bob-markdown'))
             or ('reader-records' in path.parts and 'guides' in path.parts))
@@ -90,8 +117,7 @@ def refresh_public_reader(site):
         text=re.sub(r'(src="reader-data\.js)(?:\?[^"]*)?(")',r'\1?v=20261027-autoload\2',text)
         page.write_text(text)
     for name in ('style.css','console-light.css','reader-theme.css',
-                 'evaluation-view.js','reader-data.js','app.js','pet.js',
-                 'bob-ant-farm.js','ant-colony.js','site-theme.js'):
+                 'evaluation-view.js','reader-data.js','app.js','pet.js','site-theme.js'):
         (site/name).write_bytes((assets/name).read_bytes())
     # Invocation IDs keep journal detail identity distinct across nodes that share a cycle number.
     for row in data['state'].get('journal', []):

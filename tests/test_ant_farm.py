@@ -14,8 +14,12 @@ class AntFarmTests(unittest.TestCase):
     def test_habitat_and_navigation_survive_filtered_public_export(self):
         with tempfile.TemporaryDirectory() as directory:
             site = Path(directory) / 'site'
+            old_ground = site / 'backgrounds/ant-soil-v1.png'
+            old_ground.parent.mkdir(parents=True)
+            old_ground.write_bytes(b'old generated terrain')
             export(destination=site, projection={'state': empty(), 'head': 'a' * 64,
                                                'events': []}, browser_only=True)
+            self.assertFalse(old_ground.exists())
             mirror = Path(directory) / 'public'
             _copy_public_site(site, mirror)
             for name in ('ant-farm.css', 'ant-colony.js', 'ant-drawing.js', 'ant-farm.js', 'bob-ant-farm.js', 'ant-experiment.css', 'ant-experiment.js'):

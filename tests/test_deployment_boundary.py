@@ -110,6 +110,9 @@ class ExportIdentityTests(unittest.TestCase):
                 self.assertEqual(engine.store.head(), head)
                 for page in (root / 'site').rglob('*.html'):
                     content = page.read_text()
+                    if page.parent == root / 'site' and page.name in ('lab.html', 'metrics.html'):
+                        self.assertIn(f'href="console-records.html#{page.stem}"', content)
+                        continue
                     if '<head>' in content:
                         self.assertIn('window.WAKE_DEPLOYMENT', content)
                         self.assertIn('window.WAKE_STANDALONE=true', content)

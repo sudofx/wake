@@ -12,6 +12,8 @@ colors:
 typography:
   body:
     fontFamily: "ui-sans-serif, system-ui, sans-serif"
+  console:
+    fontFamily: "Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
   experiment-title:
     fontFamily: "Georgia, serif"
   measurements:
@@ -26,6 +28,10 @@ omitted:
 # WAKE presentation context
 
 ## Overview
+
+Explore leads with a recorded research question and one path into the notebook.
+Console owns detailed metrics and evaluation reports through an optional
+disclosure. Both use the existing typography and page layouts.
 
 The reader explains recorded work. The digital colony invites observation. The
 optional experiment is a small field notebook beside that colony, usable by a

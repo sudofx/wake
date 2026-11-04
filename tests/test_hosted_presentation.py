@@ -54,6 +54,11 @@ class HostedPresentationTests(unittest.TestCase):
             (root / 'self-correction/index.html').write_bytes(packet)
             (root / 'scientific-research.html').write_bytes(packet)
             (root / 'scientific-research.json').write_bytes(b'{"retained":true}')
+            for prefix in (root, root / 'nodes/103.wake'):
+                backgrounds = prefix / 'backgrounds'
+                backgrounds.mkdir(parents=True)
+                for name in ('ant-soil-v1.png', 'ant-sand-v2.png'):
+                    (backgrounds / name).write_bytes(b'retired terrain')
             for relative, prefix, name in [('index.html', '', 'wake'),
                                            ('nodes/103.wake/blog/post.html', '../', '103.wake'),
                                            ('console.html', '', 'wake')]:
@@ -102,8 +107,15 @@ class HostedPresentationTests(unittest.TestCase):
                 page = (root / name).read_text()
                 self.assertEqual(page.count('<header class="masthead">'), 1, name)
                 self.assertIn('src="nav.js?', page, name)
+                self.assertNotIn('src="public-data.js', page, name)
+                self.assertNotIn('"public_data"', page, name)
                 for label in ('Explore', 'Research', 'Journal', 'Bob’s Blog', 'GitHub'):
                     self.assertIn('>' + label + '</a>', page, (name, label))
+            self.assertIn('src="public-data.js', index.read_text())
+            self.assertIn('src="ant-farm.js?v=' + 'b' * 12, (root / 'ant-farm.html').read_text())
+            self.assertFalse(list(root.rglob('ant-soil-v1.png')))
+            self.assertFalse(list(root.rglob('ant-sand-v2.png')))
+            self.assertTrue((root / 'backgrounds/ant-body-v1.png').is_file())
             self.assertTrue((root / 'ant-experiment.js').is_file())
             self.assertNotIn('retired.invalid', (root / 'index.html').read_text())
             self.assertNotIn('chatgpt.site', (root / 'index.html').read_text())
