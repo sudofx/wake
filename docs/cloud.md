@@ -714,9 +714,10 @@ category; they never include context text, provider responses or private records
 The restored source record's identity must remain unchanged. No report counts
 as research or changes an installation setting.
 
-This diagnoses saved request capacity, not a live worker. A pending invocation
-is reported without being modified. Live peer notes and actual collected sources
-are outside the replay. Use the reported capture date and generation when
+This diagnoses saved request capacity, not a live worker. Installed-runtime
+diagnosis reports pending invocations as-is. A candidate comparison exercises
+normal restart recovery on the disposable copy before building requests. Live
+peer notes and actual collected sources are outside the replay. Use the reported capture date and generation when
 comparing the result with public node warnings.
 
 

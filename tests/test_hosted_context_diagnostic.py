@@ -37,6 +37,19 @@ class ContextDiagnosticTests(unittest.TestCase):
         self.assertTrue(all(value['status'] == 'fits' for value in result), result)
         self.assertEqual(record_identity(self.record), before)
 
+    def test_candidate_replays_startup_recovery_on_copies_of_pending_records(self):
+        store = RecordStore(self.record.parent)
+        try:
+            Engine(self.record.parent, settings(), store=store).start('gemini', 'fixture')
+        finally:
+            store.close()
+        before = record_identity(self.record)
+        installed = diag.probe_node(ROOT, self.record, ROOT / 'wake.toml', node='101.wake')
+        self.assertTrue(all(row['status'] == 'pending_invocation_not_modified' for row in installed))
+        candidate = diag.probe_node(ROOT, self.record, ROOT / 'wake.toml', node='101.wake', recover_pending=True)
+        self.assertTrue(all(row['status'] == 'fits' and row['recovered_on_disposable_copy'] for row in candidate), candidate)
+        self.assertEqual(record_identity(self.record), before)
+
     def test_only_matching_warning_observations_trigger_automatic_diagnosis(self):
         from wake.installation_cli import NODE_IDS
         policy={'installation_id':'fixture'}

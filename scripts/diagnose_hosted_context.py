@@ -16,7 +16,7 @@ from wake.installation_cli import NODE_IDS
 from scripts.verify_hosted_upgrade import SnapshotFiles, restore_audit_nodes
 
 PROGRAM = r'''
-import json,socket,sys,ssl
+import json,os,socket,sys,ssl
 from pathlib import Path
 def forbidden(*args,**kwargs):raise RuntimeError('Network disabled for request-capacity diagnostic')
 socket.socket=forbidden
@@ -39,10 +39,14 @@ def counted(request):
 module.provider_input_chars=counted
 result={'phase':scenario,'limit':settings['max_context_chars'],'provider_calls':0}
 try:
-    if store.load().get('pending') is not None:
+    pending=store.load().get('pending') is not None
+    if pending and os.environ['WAKE_DIAGNOSTIC_RECOVER']!='1':
         result['status']='pending_invocation_not_modified'
     else:
         state=engine.initialize()
+        if pending:
+            state=engine.recover()
+            result['recovered_on_disposable_copy']=True
         research=None
         if scenario=='proposal_after_planning':
             # Exercise the collector handoff with the planner's largest valid
@@ -63,7 +67,7 @@ print(json.dumps(result,sort_keys=True))
 '''
 
 
-def probe_node(source, record, config, *, node, runner=subprocess.check_output):
+def probe_node(source, record, config, *, node, recover_pending=False, runner=subprocess.check_output):
     results = []
     original = record_identity(record)
     with tempfile.TemporaryDirectory(prefix='wake-context-probe-') as temporary:
@@ -76,6 +80,7 @@ def probe_node(source, record, config, *, node, runner=subprocess.check_output):
             env = {key: os.environ[key] for key in ('PATH', 'LANG', 'LC_ALL', 'TZ', 'LD_LIBRARY_PATH', 'DYLD_LIBRARY_PATH') if key in os.environ}
             env.update(PYTHONPATH=str(source.resolve()), PYTHONDONTWRITEBYTECODE='1',
                        HOME=temporary, WAKE_DEV_RELOAD='false', WAKE_GROUP_ID='wake', WAKE_GROUP_INSTANCE=node,
+                       WAKE_DIAGNOSTIC_RECOVER='1' if recover_pending else '0',
                        WAKE_PARENT_HOSTNAME='' if node[:3].endswith('00') else node[0] + '00.wake')
             parent = node[0] + '00.wake'
             topics = config.parent / '.wake-runner-topics' / (parent + '.toml')
@@ -154,7 +159,8 @@ def main():
                   'node':args.node,'source_revision':revision,'bound_revision':policy['source_revision'],
                   'candidate_probe':args.candidate,'remote_record_writes':0,
                   'boundary':'Disposable checkpoint copies only; no live-worker diagnosis or provider attempt.',
-                  'requests':probe_node(args.source, records / 'nodes' / args.node / 'record/wake.sqlite', configuration, node=args.node)}
+                  'requests':probe_node(args.source, records / 'nodes' / args.node / 'record/wake.sqlite',
+                                        configuration, node=args.node, recover_pending=args.candidate)}
         args.output.write_text(json.dumps(result, indent=2) + '\n')
         print(json.dumps(result))
 
