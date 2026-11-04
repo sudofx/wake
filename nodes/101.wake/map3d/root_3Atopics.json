@@ -1,1 +1,1 @@
-{"parent": "root:topics", "path": ["root:topics"], "self": null, "children": [], "child_ids": [], "total": 0}
+{"parent": "root:topics", "path": ["root:wake", "root:topics"], "self": null, "children": [{"id": "topic:obedience_limits", "kind": "topic", "title": "When Can Obedience Fail Intelligence?", "domain": "obedience_limits", "detail": {"domain": "obedience_limits"}}], "child_ids": ["topic:obedience_limits"], "total": 1}
