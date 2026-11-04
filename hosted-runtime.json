@@ -13,7 +13,24 @@
         "target_hours": 0,
         "reserve_calls": 0
       },
-      "experimental_research_enabled": true
+      "experimental_research_enabled": true,
+      "pending_upgrade": {
+        "candidate": "b865ecade0d903b264998b8918661bcba69edf54",
+        "baseline": "5ba3fa0a7c65f980375119cb6eb8ed26a111e29a",
+        "verification_run": 41851626985,
+        "checkpoint_ref": "797014e8302c87860cdb7e8eb18bb1555c8c6481",
+        "generation": 25502,
+        "control_run": 41851047172,
+        "drained_run": 41840177831,
+        "superseded_queued_runs": [
+          40923544318,
+          40554824224
+        ],
+        "superseded_queued_baselines": {
+          "40923544318": "ee57de0c85a74d34f479da446b4f4eb3feae9a40",
+          "40554824224": "49c9c2bd058c851768320143edc4cf6d6d1e85d4"
+        }
+      }
     }
   }
 }
