@@ -78,7 +78,7 @@
     const url=new URL(input,location.href);
     if(url.origin!==site.origin || !url.pathname.startsWith(site.pathname))throw Error('Public data must belong to this installation');
     const relative=url.pathname.slice(site.pathname.length);
-    if(!/^(?:nodes\/(?:10[0-3]|20[0-3]|30[0-3])\.wake\/)?(?:(?:reader-records|research-details|research|map3d|group)\/[A-Za-z0-9_./-]+\.json|inspect\/[A-Za-z0-9_./-]+\.(?:json|md)|(?:installation|reader-data|wake-data|research-overview|research-data|research-expansion|scientific-research|map-data|map3d-data|state|export-format)\.json|head\.txt|events\.jsonl(?:\.gz)?)$/.test(relative))throw Error('Not a published data path');
+    if(!/^(?:nodes\/(?:10[0-3]|20[0-3]|30[0-3])\.wake\/)?(?:(?:reader-records|research-details|research|map3d|group)\/[A-Za-z0-9_./-]+\.json|(?:installation|reader-data|wake-data|research-overview|research-data|research-expansion|scientific-research|map-data|map3d-data|state|export-format)\.json|head\.txt|events\.jsonl(?:\.gz)?)$/.test(relative))throw Error('Not a published data path');
     return root?new URL(relative,root):url;
   };
   transport.resolve=async input=>targetFor(input,await transport.ready).href;
@@ -104,10 +104,7 @@
           link.href='https://raw.githubusercontent.com/'+config.repository+'/wake-public/'+relative;link.target='_blank';link.rel='noopener';continue;
         }
         if(!root)continue;
-        // The external inspection entry is a self-contained document. Read its
-        // exact packet rather than loading executable HTML from a data branch.
-        const input=/\/inspect\/index\.html$/.test(new URL(link.href).pathname)?new URL('packet.md',link.href):link.href;
-        const target=targetFor(input,root);if(target.href!==link.href){link.href=target.href;link.target='_blank';link.rel='noopener';}
+        const target=targetFor(link.href,root);if(target.href!==link.href){link.href=target.href;link.target='_blank';link.rel='noopener';}
       }catch{}
     };
     const watch=()=>{

@@ -6,6 +6,7 @@
   const link=`https://github.com/${config.repository}/actions/workflows/${config.workflow}`;
   // Leave anonymous API capacity for snapshot discovery and shared networks.
   const interval=300000, key=`wake-hosted-status@1:${config.repository}`, stale=360000;
+  const recentUpload=35*60000; // Hosted snapshots are normally uploaded every 30 minutes.
   // Safari may finish the cached installation read before this deferred script.
   // Consume the same snapshot as the node picker even when its event has passed.
   let timer, pending=false, quotaObservation=window.WakeInstallationSnapshot||null;
@@ -59,7 +60,8 @@
   function showUnavailable(value){
     const aggregate=quotaObservation?.live===false?window.WakeInstallationAggregate?.(quotaObservation):null;
     if(aggregate && aggregate.state!=='unknown' && Number.isFinite(aggregate.checked) && aggregate.checked<=Date.now()+60000){
-      show('waiting',value.label+'. Current status is unconfirmed; '+aggregate.description+
+      const state=aggregate.state==='running' && Date.now()-aggregate.checked<=recentUpload?'running':'waiting';
+      show(state,value.label+'. Current status is unconfirmed; '+aggregate.description+
         '. Published observation '+new Date(aggregate.checked).toLocaleString(),value.checked);
     }else show(null,value.label+'; no published node status is available',value.checked);
   }

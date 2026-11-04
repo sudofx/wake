@@ -70,25 +70,6 @@
     })();
     try{return await cached;}catch(error){cached=undefined;throw error;}
   }
-  function notebookText(value){
-    return `${value.deliveries} food deliveries · ${value.new_tunnels} new tunnel segments · ${value.workers} workers · ${value.eggs+value.larvae+value.pupae} developing young · ${value.feedings} recorded feedings (${value.food_added} simulation units).`;
-  }
-
-  async function mountNotebook(container){
-    if(!container||container.querySelector('[data-bob-farm-notebook]'))return;
-    const document=container.ownerDocument,section=document.createElement('details');section.dataset.bobFarmNotebook='';section.className='bob-farm-notebook';
-    const heading=document.createElement('summary');heading.textContent='Farm observation record';
-    const description=document.createElement('p');description.textContent='Dated simulation observations and care receipts. Bob’s interpretation belongs in the article, when these observations support a useful connection.';
-    section.append(heading,description);container.append(section);
-    try{
-      const packet=await read(),latest=packet.notes.slice(-3).reverse();
-      if(!latest.length){const pending=document.createElement('p');pending.textContent='Bob’s farm is settling in. Its first recorded interval will appear here.';section.append(pending);}
-      for(const entry of latest){const article=document.createElement('article'),time=document.createElement('time'),text=document.createElement('p');time.dateTime=entry.at;time.textContent=new Date(entry.at).toLocaleString();text.textContent=notebookText(entry);article.append(time,text);section.append(article);}
-      const status=document.createElement('p');status.className='small';const age=Date.now()-Date.parse(packet.updated_at);status.textContent=(age>7200000?'Upkeep is delayed; the saved simulation is resting. ':'')+'This is an observation record, not Bob’s writing or independent biological research.';section.append(status);
-      const link=document.createElement('a');link.textContent='Observe Bob’s ant farm →';link.href=new URL('ant-farm.html?farm=bob',document.baseURI).href;section.append(link);
-    }catch{const unavailable=document.createElement('p');unavailable.textContent='Bob’s shared farm notes are temporarily unavailable. The research articles are unchanged.';section.append(unavailable);}
-    return section;
-  }
-  const api={read,validate,createReplay,applyReplayStep,mountNotebook,notebookText,sourceURL,validDate,MAX_BYTES,SCHEMA,MODEL,COLONY_ID,SEED};
+  const api={read,validate,createReplay,applyReplayStep,sourceURL,validDate,MAX_BYTES,SCHEMA,MODEL,COLONY_ID,SEED};
   if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.WakeBobFarm=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
