@@ -20,7 +20,16 @@
         "verification_run": 41815613877,
         "checkpoint_ref": "931c25709f6e9cadf4295b1cf1671ea9413bfde3",
         "generation": 25498,
-        "control_run": 41812972874
+        "control_run": 41812972874,
+        "drained_run": 41784162424,
+        "superseded_queued_runs": [
+          40923544318,
+          40554824224
+        ],
+        "superseded_queued_baselines": {
+          "40923544318": "ee57de0c85a74d34f479da446b4f4eb3feae9a40",
+          "40554824224": "49c9c2bd058c851768320143edc4cf6d6d1e85d4"
+        }
       }
     }
   }
