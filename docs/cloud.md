@@ -544,6 +544,11 @@ The header light checks public GitHub Actions metadata without sign-in or a toke
 Hosted batches upload their first snapshot as soon as Start is acknowledged,
 on the independent publication thread, then use the normal thirty-minute interval.
 Startup and research do not wait for that upload; shutdown lets a healthy upload finish.
+Before each public upload, the worker commits all twelve native backups through
+one checkpoint ref update. If the ref update fails, the previous recovery
+generation stays selected and the new public upload is withheld. The worker
+retries a failed ref push once only if GitHub confirms the original checkpoint
+is still current.
 Green combines an active hosted batch with recorded node-running observations;
 it does not mean a provider call is in flight or research has been accepted. Yellow
 means queued, stopped, draining, awaiting automatic recovery, or an active batch

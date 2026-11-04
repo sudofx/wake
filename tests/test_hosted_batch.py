@@ -11,7 +11,7 @@ from urllib.error import HTTPError
 
 from wake.installation_cli import NODE_IDS
 from scripts.github_research import run_batch
-from scripts.github_research import PeriodicPublication
+from scripts.github_research import PeriodicPublication, publish_hosted_snapshot
 
 
 @patch.dict(os.environ, {'GITHUB_ACTIONS':'false'})
@@ -32,8 +32,8 @@ class HostedBatchTests(unittest.TestCase):
     def test_periodic_publication_failure_does_not_own_research_or_final_capture(self):
         import threading
         observed = threading.Event()
-        mirror = PeriodicPublication(SimpleNamespace(), Path('/fixture'), 'a'*40, interval=.001)
-        def failed(*_):
+        mirror = PeriodicPublication(SimpleNamespace(), Path('/fixture'), 'a'*40, MagicMock(), interval=.001)
+        def failed(*_, **__):
             mirror.closed.set();observed.set();raise OSError('fixture network failure')
         with patch('scripts.github_research.publish_hosted_snapshot',side_effect=failed) as publish, redirect_stdout(io.StringIO()):
             mirror.thread.start()
@@ -42,14 +42,33 @@ class HostedBatchTests(unittest.TestCase):
         publish.assert_called_once()
 
     def test_first_upload_precedes_the_interval_without_blocking_start(self):
-        mirror = PeriodicPublication(SimpleNamespace(), Path('/fixture'), 'a'*40)
+        checkpoint = MagicMock()
+        mirror = PeriodicPublication(SimpleNamespace(), Path('/fixture'), 'a'*40, checkpoint)
         with patch.object(mirror.closed, 'wait', return_value=True) as interval, \
              patch('scripts.github_research.publish_hosted_snapshot') as publish, \
              redirect_stdout(io.StringIO()):
-            publish.side_effect = lambda *_: self.assertFalse(interval.called)
+            publish.side_effect = lambda *_, **kw: self.assertFalse(interval.called)
             mirror.run()
         publish.assert_called_once()
+        self.assertIs(publish.call_args.kwargs['before_upload'], checkpoint)
         interval.assert_called_once_with(1800)
+
+    def test_periodic_export_cannot_publish_before_native_checkpoint(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            artifact = root / 'site'
+            for node in NODE_IDS:
+                (artifact / 'nodes' / node).mkdir(parents=True)
+            client = SimpleNamespace(repository='example/repo', token='fixture',
+                                     request=MagicMock(return_value={'object': {'sha': 'a' * 40}}))
+            checkpoint = MagicMock(side_effect=RuntimeError('checkpoint push failed'))
+            with patch('scripts.github_research.build_public_artifact', return_value={}), \
+                 patch('wake.hosted_presentation.bind_hosted_status'), \
+                 patch('scripts.github_research.upload_public_artifact') as upload:
+                with self.assertRaisesRegex(RuntimeError, 'checkpoint push failed'):
+                    publish_hosted_snapshot(client, root, artifact, 'a' * 40, before_upload=checkpoint)
+            checkpoint.assert_called_once()
+            upload.assert_not_called()
 
     def test_partial_start_runs_and_no_ack_fails_after_both_safely_publish(self):
         for acknowledged in (True, False, 'control-failure'):
@@ -102,7 +121,7 @@ class HostedBatchTests(unittest.TestCase):
                     else:
                         run_batch(1, 'fixture')
                 self.assertEqual(sleep.call_count, int(acknowledged is True))
-                self.assertEqual(transport.checkpoint_node.call_count, 12)
+                transport.checkpoint_installation.assert_called_once_with(root.resolve())
                 self.assertEqual(mirror.return_value.thread.start.called, acknowledged is not False)
                 process.terminate.assert_called_once()
                 if acknowledged == 'control-failure':

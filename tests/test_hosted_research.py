@@ -223,6 +223,43 @@ class HostedTransportTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, 'Git operation failed'):
             stale.checkpoint_node(self.root / 'stale-root/nodes/100.wake/record')
 
+    def test_installation_checkpoint_retries_one_ref_update_for_all_nodes(self):
+        transport = self.new_transport('atomic-batch')
+        transport.open()
+        root = self.root / 'atomic-root'
+        initial = transport.restore(root)
+        git = transport.git
+        pushes = []
+
+        def transient_push(*args):
+            if args[0] == 'push':
+                pushes.append(args)
+                if len(pushes) == 1:
+                    raise RuntimeError('Git operation failed: push')
+            return git(*args)
+
+        with patch.object(transport, 'git', side_effect=transient_push):
+            transport.checkpoint_installation(root)
+        self.assertEqual(len(pushes), 2)
+        self.assertEqual(pushes[0], pushes[1])
+        current = transport.read_manifest()
+        self.assertEqual(current['generation'], initial['generation'] + 1)
+        self.assertEqual(set(current['nodes']), set(NODE_IDS))
+        self.assertEqual(transport.read_manifest('previous.enc'), initial)
+
+        def rejected_push(*args):
+            if args[0] == 'push':
+                raise RuntimeError('Git operation failed: push')
+            return git(*args)
+
+        with patch.object(transport, 'git', side_effect=rejected_push):
+            with self.assertRaisesRegex(RuntimeError, 'Git operation failed'):
+                transport.checkpoint_installation(root)
+        self.assertEqual(transport.read_manifest(), current)
+        observer = self.new_transport('atomic-observer')
+        observer.open()
+        self.assertEqual(observer.read_manifest(), current)
+
     def test_growing_records_automatically_use_larger_blocks_without_losing_bytes(self):
         source = self.root / 'growing.bin'
         source.write_bytes(bytes(range(256)) * 1024)

@@ -446,11 +446,22 @@ class HostedState:
         # The previous complete checkpoint is a separate file in the same tree;
         # historical branches are never touched. Lease failure stops effects.
         try:
-            self.git('push', 'origin', '--force-with-lease=' + ref + ':' + base, commit + ':' + ref)
-        except RuntimeError:
-            remote = self.git('ls-remote', 'origin', ref).split()
-            if not remote or remote[0] != commit:
-                raise
+            for attempt in range(2):
+                try:
+                    self.git('push', 'origin', '--force-with-lease=' + ref + ':' + base, commit + ':' + ref)
+                    break
+                except (RuntimeError, subprocess.TimeoutExpired):
+                    remote = self.git('ls-remote', 'origin', ref).split()
+                    head = remote[0] if remote else ''
+                    if head == commit:
+                        break
+                    if head != base or attempt:
+                        raise
+        except (RuntimeError, subprocess.TimeoutExpired):
+            if base:
+                # Keep the next attempt on the last confirmed local manifest.
+                self.git('reset', '--hard', base)
+            raise
         self.git('reset', '--hard', commit)
         return commit
 
@@ -489,16 +500,26 @@ class HostedState:
         root = record_directory.parents[2]
         if node not in NODE_IDS or record_directory != root / 'nodes' / node / 'record':
             raise ValueError('Checkpoint requires an owned installation node')
+        self._checkpoint(root, (node,))
+
+    def checkpoint_installation(self, root):
+        """Publish all native records under one compare-and-swap."""
+        self._checkpoint(Path(root).resolve(), NODE_IDS)
+
+    def _checkpoint(self, root, nodes):
         with self.lease(), tempfile.TemporaryDirectory(dir=self.directory) as temporary:
             manifest = self.read_manifest()
             assets = self.assets()
-            backup = Path(temporary) / 'wake.sqlite'
             # This process already runs verified authority and native appends.
             # Transport needs a coherent physical image, not another full replay
             # of the growing prefix before every provider attempt. Restoring
             # always performs the complete semantic/journal audit below.
-            Record.open_read_only(record_directory / 'wake.sqlite').snapshot_to(backup)
-            manifest['nodes'][node] = {**verify_recovery(backup), 'blocks': self.put_file(backup, assets)}
+            for node in nodes:
+                backup = Path(temporary) / (node + '.sqlite')
+                source = root / 'nodes' / node / 'record' / 'wake.sqlite'
+                Record.open_read_only(source).snapshot_to(backup)
+                manifest['nodes'][node] = {**verify_recovery(backup), 'blocks': self.put_file(backup, assets)}
+                backup.unlink()
             manifest['auxiliary'] = self.put_auxiliary(root, assets)
             self.save(manifest)
             # Bound release storage during long runs, not just on clean exit.

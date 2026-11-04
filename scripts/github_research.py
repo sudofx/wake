@@ -280,12 +280,7 @@ def measured_stage(name):
                           'elapsed_seconds': round(time.perf_counter()-start, 3)}), flush=True)
 
 
-def capture_all(transport, root):
-    for node in NODE_IDS:
-        transport.checkpoint_node(root / 'nodes' / node / 'record')
-
-
-def publish_hosted_snapshot(client, root, artifact, revision, *, research_start=None):
+def publish_hosted_snapshot(client, root, artifact, revision, *, research_start=None, before_upload=None):
     """Publish pinned completed exports without stopping workers or opening records."""
     parent = client.request('git/ref/heads/wake-public')['object']['sha']
     manifest = build_public_artifact(root, artifact, progress=lambda message: print(message, flush=True))
@@ -299,6 +294,8 @@ def publish_hosted_snapshot(client, root, artifact, revision, *, research_start=
         path.write_text(json.dumps(manifest, sort_keys=True))
     from wake.hosted_presentation import bind_hosted_status
     bind_hosted_status(artifact, client.repository, revision)
+    if before_upload is not None:
+        before_upload()
     authorization = base64.b64encode(('x-access-token:' + client.token).encode()).decode()
     os.environ.update(GIT_CONFIG_COUNT='1', GIT_CONFIG_KEY_0='http.https://github.com/.extraheader',
                       GIT_CONFIG_VALUE_0='AUTHORIZATION: basic ' + authorization)
@@ -311,8 +308,9 @@ def publish_hosted_snapshot(client, root, artifact, revision, *, research_start=
 
 class PeriodicPublication:
     """Independent mirror delivery; final publication waits for a healthy upload."""
-    def __init__(self, client, root, revision, interval=1800):
+    def __init__(self, client, root, revision, checkpoint, interval=1800):
         self.client, self.root, self.revision, self.interval = client, root, revision, interval
+        self.checkpoint = checkpoint
         self.closed = threading.Event()
         self.thread = threading.Thread(target=self.run, daemon=True)
 
@@ -322,7 +320,11 @@ class PeriodicPublication:
         while not self.closed.is_set():
             try:
                 with tempfile.TemporaryDirectory(prefix='wake-hosted-mirror-') as temporary:
-                    publish_hosted_snapshot(self.client, self.root, Path(temporary) / 'site', self.revision)
+                    # Stage an immutable public export first. Its records came
+                    # from this installation, so the subsequent native backups
+                    # include those events even if research has advanced.
+                    publish_hosted_snapshot(self.client, self.root, Path(temporary) / 'site', self.revision,
+                                            before_upload=self.checkpoint)
                 print(json.dumps({'hosted_mirror': 'published'}), flush=True)
             except Exception as error:
                 # A concurrent public refresh or transient upload error cannot
@@ -390,7 +392,7 @@ def run_batch(minutes, provider, *, reset=False):
             '--config', str(root / 'config/wake.toml'), '--host', '127.0.0.1', '--port', '0',
             '--provider', provider], stdout=log, stderr=log,
             env=dict(os.environ, WAKE_DEV_RELOAD='false'))
-        mirror = PeriodicPublication(client, root, revision)
+        mirror = PeriodicPublication(client, root, revision, lambda: transport.checkpoint_installation(root))
         try:
             with measured_stage('startup'):
                 ready(root, process)
@@ -479,11 +481,10 @@ def run_batch(minutes, provider, *, reset=False):
             mirror.close(wait=False)
     if process.returncode != 0:
         raise RuntimeError('Hosted controller did not shut down cleanly')
-    with measured_stage('final-checkpoint'):
-        capture_all(transport, root)
-    # Native recovery is saved before waiting for independent delivery. Do not
-    # race a final publication against a healthy periodic uploader.
+    # Finish any periodic checkpoint and upload before the final capture.
     mirror.close()
+    with measured_stage('final-checkpoint'):
+        transport.checkpoint_installation(root)
     if control_error is not None:
         # Preserve all drained records and finish a healthy upload before
         # reporting the control failure to the independent recovery workflow.
