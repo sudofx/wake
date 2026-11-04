@@ -158,6 +158,8 @@ class StandaloneRuntimeTests(unittest.TestCase):
                 engine.store.close()
 
     def test_context_limit_keeps_website_available_without_retrying(self):
+        from wake.engine import ContextBudgetExceeded
+
         with tempfile.TemporaryDirectory() as directory:
             engine = bootstrap(directory, dict(DEFAULTS))
             args = SimpleNamespace(interval=1, config='unused', provider='fixture',
@@ -174,12 +176,14 @@ class StandaloneRuntimeTests(unittest.TestCase):
                  patch('wake.standalone.ThreadingHTTPServer', return_value=server), \
                  patch('wake.standalone.threading.Thread'), \
                  patch('wake.standalone.threading.Event', return_value=stop), \
-                 patch.object(engine, 'run', side_effect=Rejected(reason)) as cycle:
+                 patch.object(engine, 'run', side_effect=ContextBudgetExceeded('proposal', 48010, 48000)) as cycle:
                 run(args)
             cycle.assert_called_once()
             stop.wait.assert_called_once()
             self.assertEqual(server.runtime_status['state'], 'blocked')
             self.assertEqual(server.runtime_status['reason'], reason)
+            self.assertEqual(server.runtime_status['context_budget'],
+                             {'phase': 'proposal', 'input_chars': 48010, 'limit_chars': 48000})
 
     def test_permanent_provider_failure_stays_visible_without_repeating_calls(self):
         with tempfile.TemporaryDirectory() as directory:

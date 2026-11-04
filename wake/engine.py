@@ -52,6 +52,12 @@ from .matrix_campaign import (
 )
 
 
+class ContextBudgetExceeded(Rejected):
+    def __init__(self, phase, input_chars, limit_chars):
+        super().__init__("Context ceiling reached; human review required, no model call made")
+        self.details = {"phase": phase, "input_chars": input_chars, "limit_chars": limit_chars}
+
+
 def report_activity(observer, stage, **details):
     """Best-effort presentation telemetry, never permission or durable authority.
 
@@ -2728,8 +2734,10 @@ class Engine:
             # the space left by the actual request, preserving observations.
             fit_context(scientific, len(canonical(scientific)) - overflow)
             request["response_schema"] = _provider_response_schema(request["context"], bool(state.get("charter")))
-        require(provider_input_chars(request) <= self.config["max_context_chars"],
-                "Context ceiling reached; human review required, no model call made")
+        size = provider_input_chars(request)
+        limit = self.config["max_context_chars"]
+        if size > limit:
+            raise ContextBudgetExceeded(phase, size, limit)
         request, decision_memory_receipt = self.decision_memory_delivery(
             state, request, retrieval_shadow, question, phase)
         require(provider_input_chars(request) <= self.config["max_context_chars"],

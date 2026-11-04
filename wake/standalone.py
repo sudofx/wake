@@ -19,7 +19,7 @@ import time
 from types import SimpleNamespace
 
 from .authority import open_authoritative_store, verify_existing_record
-from .engine import Engine, config
+from .engine import ContextBudgetExceeded, Engine, config
 from .group_peers import collect_group_peer_research, group_bob_snapshot, group_research_snapshot
 from .governance import Rejected
 from .providers import Fixture, Gemini
@@ -572,9 +572,10 @@ def run(args):
                                             activity=server.activity.update,
                                             peer_research=collect_group_peer_research())
                     except Rejected as exc:
-                        if str(exc) == 'Context ceiling reached; human review required, no model call made':
+                        if isinstance(exc, ContextBudgetExceeded):
                             server.runtime_status = {'mode': 'standalone', 'state': 'blocked',
-                                                     'reason': str(exc), 'action': 'Review context budget and restart'}
+                                                     'reason': str(exc), 'context_budget': exc.details,
+                                                     'action': 'Review context budget and restart'}
                             print(json.dumps(server.runtime_status), flush=True)
                             # Keep the read-only website available without retrying
                             # an impossible request or spending provider quota.

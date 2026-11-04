@@ -707,22 +707,24 @@ trigger only this read-only investigation; it cannot
 change records or research controls. An optional manual dispatch also exists. It captures one authenticated encrypted
 checkpoint without stopping research. Each node builds planning and proposal
 requests on disposable SQLite copies using the bound runtime and saved root
-configuration. The request builders receive no credentials and have socket
+and group configuration. A third case adds a synthetic maximum-length planner
+handoff to the proposal. The request builders receive no credentials and have socket
 creation disabled. Reports contain only phase, input size, limit and an error
 category; they never include context text, provider responses or private records.
 The restored source record's identity must remain unchanged. No report counts
 as research or changes an installation setting.
 
 This diagnoses saved request capacity, not a live worker. A pending invocation
-is reported without being modified. Live peer notes are not reconstructed;
-a successful check does not rule out a later overflow with added peer notes or
-same-wake collected material. Use the reported capture date and generation when
+is reported without being modified. Live peer notes and actual collected sources
+are outside the replay. Use the reported capture date and generation when
 comparing the result with public node warnings.
 
 
 Uploaded runtime observations may include an optional closed `reason_code`:
 `context_budget`, `provider_access`, `provider_allowance` or `needs_attention`.
 Raw worker reasons, exception text and provider responses are not published.
+For a context-budget block, newer workers also report the failing phase, exact
+rendered character count and configured limit.
 The Console displays these dated categories when present; older snapshots keep
 an unknown blocking reason rather than inferring one from unrelated receipts.
 

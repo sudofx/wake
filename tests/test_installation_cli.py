@@ -23,6 +23,13 @@ class PublicRuntimeReasonTests(unittest.TestCase):
         self.assertIsNone(_public_runtime_reason({'state':'running','reason':'SECRET private payload'}))
         self.assertEqual(_public_runtime_reason({'state':'standby','reason':'Shared provider allowance unavailable'}), 'provider_allowance')
 
+    def test_public_context_budget_contains_only_phase_and_character_counts(self):
+        from wake.installation_cli import _public_context_budget
+        detail = {'phase': 'proposal', 'input_chars': 48010, 'limit_chars': 48000}
+        self.assertEqual(_public_context_budget({'context_budget': {**detail, 'system': 'private'}}), detail)
+        self.assertIsNone(_public_context_budget({'context_budget': {**detail, 'phase': 'private'}}))
+        self.assertIsNone(_public_context_budget({'context_budget': {**detail, 'input_chars': 1}}))
+
 
 class InstallationArchiveTests(unittest.TestCase):
     def setUp(self):

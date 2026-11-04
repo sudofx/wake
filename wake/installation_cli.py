@@ -178,6 +178,16 @@ def _public_runtime_reason(runtime):
     return None
 
 
+def _public_context_budget(runtime):
+    value = runtime.get('context_budget')
+    if not isinstance(value, dict) or value.get('phase') not in ('planning', 'proposal'):
+        return None
+    size, limit = value.get('input_chars'), value.get('limit_chars')
+    if type(size) is int and type(limit) is int and size > limit > 0:
+        return {'phase': value['phase'], 'input_chars': size, 'limit_chars': limit}
+    return None
+
+
 def _copy_public_site(source: Path, destination: Path):
     from .reader_presentation import retired_reader_asset
     assets = Path(__file__).parent / 'assets'
@@ -413,6 +423,8 @@ def build_public_artifact(root: Path, destination: Path, *, progress=None) -> di
                         reason_code = _public_runtime_reason(runtime)
                         if reason_code:
                             observation['reason_code'] = reason_code
+                        if reason_code == 'context_budget' and (budget := _public_context_budget(runtime)):
+                            observation['context_budget'] = budget
                         (pinned / 'nodes' / node / 'recorded-runtime.json').write_text(json.dumps(observation))
             except (OSError, ValueError, TypeError):
                 pass
