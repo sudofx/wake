@@ -142,6 +142,34 @@ class RequestCompactionTests(unittest.TestCase):
         self.assertIn(QUALITY_RESEARCH_SYSTEM, compact_request_instructions(compact, context, notebook))
         self.assertEqual(ordinary, dict(properties=dict(actions=dict(items=dict(anyOf=[])))))
 
+    def test_final_advisory_fit_preserves_schema_science_and_source_handoff(self):
+        request = {
+            'system': 'Keep the measured result and provenance.',
+            'response_schema': {'type': 'object', 'required': ['actions']},
+            'context': {
+                'evidence': [{'id': 'source', 'content': 'exact supplied passage'}],
+                'scientific_research': {'revealed_observations': [{'observed': 17}]},
+                'recent_blog': [{'id': 'old', 'body': 'retired ' * 100}, {'id': 'latest', 'title': 'Latest'}],
+                'same_wake_research': {'planning_invocation': 'plan', 'evidence_ids': ['source'],
+                                       'requests': [{'query': 'test the limit', 'url': 'x' * 300}]},
+                'memory': {'retrieved_records': [{'kind': 'notebook', 'id': 'prior', 'record_hash': 'exact-hash',
+                                                  'value': {'summary': 'old prose ' * 50, 'evidence': ['root']}}]},
+            },
+        }
+        original = deepcopy(request)
+        self.engine.config['max_context_chars'] = provider_input_chars(request) - 1300
+        self.engine.fit_final_advisories(request)
+        self.assertLessEqual(provider_input_chars(request), self.engine.config['max_context_chars'])
+        self.assertEqual(request['response_schema'], original['response_schema'])
+        context = request['context']
+        self.assertEqual(context['scientific_research'], original['context']['scientific_research'])
+        self.assertEqual(context['evidence'], original['context']['evidence'])
+        self.assertEqual(context['same_wake_research'], {'planning_invocation': 'plan', 'evidence_ids': ['source'],
+                                                        'requests': [{'query': 'test the limit'}]})
+        notebook = context['memory']['retrieved_records'][0]
+        self.assertEqual((notebook['id'], notebook['record_hash'], notebook['value']),
+                         ('prior', 'exact-hash', {'evidence': ['root']}))
+
     def test_active_requests_normalize_core_before_spending_optional_headroom(self):
         context = dict(memory_mode='active', memory=dict(retrieved_records=[]),
                        commitments=[dict(id='due', task='Preserve the obligation')],

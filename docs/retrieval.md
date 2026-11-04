@@ -499,6 +499,10 @@ pressure, the proposal keeps topic names and seeds it can act on and omits
 collector query metadata. The science packet uses the space left in the full
 request, prioritizing measured outcomes and revealed observations over older
 protocol details and repeated prose.
+When more room is needed, the final fit removes older editorial prose, transport
+details already in the planning receipt, and optional retrieved project and
+notebook prose. It keeps the current question, source excerpts, evidence roots,
+and action contract available.
 
 New invocation receipts carry `context_delivery.provider_input_budget`, with a
 versioned measurement basis, exact rendered-input hash and size, reserved

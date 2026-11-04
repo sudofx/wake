@@ -183,6 +183,22 @@ def excerpt_restored_memory(context, size):
             item['clipped_fields'] = sorted(set(item.get('clipped_fields', [])) | set(clipped))
 
 
+def omit_optional_retrieved_prose(context):
+    """Keep retrieval pointers and roots when no room remains for old prose."""
+    prose = {'project': ('title', 'question', 'next_step'),
+             'notebook': ('title', 'summary', 'findings', 'limitations')}
+    changed = False
+    for item in context.get('memory', {}).get('retrieved_records', []):
+        omitted = set(item['value']).intersection(prose.get(item['kind'], ()))
+        if not omitted:
+            continue
+        item['value'] = {key: value for key, value in item['value'].items() if key not in omitted}
+        item['context_excerpt'] = True
+        item['clipped_fields'] = sorted(set(item.get('clipped_fields', [])) | omitted)
+        changed = True
+    return changed
+
+
 def planning_context(context):
     """Omit only proposal/editorial-only views from a retrieval-planning request.
 

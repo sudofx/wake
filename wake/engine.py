@@ -1184,6 +1184,36 @@ class Engine:
         self.fit_inquiry_advisory(request)
         self.fit_restored_memory(request)
 
+    def fit_final_advisories(self, request):
+        """Make room after packing measured evidence and the exact action contract."""
+        limit = self.config["max_context_chars"]
+        context = request["context"]
+        if provider_input_chars(request) <= limit:
+            return
+        omissions = context.setdefault("bounded_context", {}).setdefault("omitted_categories", [])
+        if context.get("recent_blog"):
+            last = context["recent_blog"][-1]
+            # Keep continuity for a due editorial checkpoint, including the
+            # distinction between an inaugural and a subsequent article.
+            context["recent_blog"] = [{key: last[key] for key in ("id", "title", "status") if key in last}]
+            omissions.append("older editorial history")
+        if provider_input_chars(request) <= limit:
+            return
+        handoff = context.get("same_wake_research")
+        if handoff and handoff.get("requests"):
+            # The recorded planning invocation already identifies the original
+            # requests. Keep the question and delivered evidence usable here.
+            handoff["requests"] = [
+                {key: item[key] for key in ("query", "domain", "project") if key in item}
+                for item in handoff["requests"]
+            ]
+            omissions.append("planner transport details retained in the planning receipt")
+        if provider_input_chars(request) <= limit:
+            return
+        from .memory import omit_optional_retrieved_prose
+        if omit_optional_retrieved_prose(context):
+            omissions.append("retrieved project and notebook prose; identities and roots retained")
+
     def _fit_bounded_request(self, request, *, system_suffix=""):
         """Deterministically shrink an already-bounded provider request below the hard ceiling.
 
@@ -2726,7 +2756,8 @@ class Engine:
             ]
             context.setdefault("bounded_context", {}).setdefault("omitted_categories", []).append(
                 "topic catalog metadata and seeds outside the eligible domain")
-            overflow = provider_input_chars(request) - self.config["max_context_chars"]
+        self.fit_final_advisories(request)
+        overflow = provider_input_chars(request) - self.config["max_context_chars"]
         scientific = context.get("scientific_research")
         if overflow > 0 and scientific:
             from .science.planner import fit_context
