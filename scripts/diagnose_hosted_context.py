@@ -23,7 +23,8 @@ socket.socket=forbidden
 import wake.engine as module
 from wake.authority import open_authoritative_store
 from wake.providers import provider_input_chars
-root=Path(sys.argv[1]);settings=module.config(sys.argv[2]);phase=sys.argv[3]
+root=Path(sys.argv[1]);settings=module.config(sys.argv[2]);scenario=sys.argv[3]
+phase='proposal' if scenario=='proposal_after_planning' else scenario
 settings['provider_managed_limits']=True
 store=open_authoritative_store(root)
 engine=module.Engine(root,settings,store=store)
@@ -36,13 +37,21 @@ def counted(request):
         memory_fields={key:len(module.canonical(value)) for key,value in request.get('context',{}).get('memory',{}).items()})
     return size
 module.provider_input_chars=counted
-result={'phase':phase,'limit':settings['max_context_chars'],'provider_calls':0}
+result={'phase':scenario,'limit':settings['max_context_chars'],'provider_calls':0}
 try:
     if store.load().get('pending') is not None:
         result['status']='pending_invocation_not_modified'
     else:
-        engine.initialize()
-        invocation,request=engine.start('gemini',settings['model'],False,phase=phase)
+        state=engine.initialize()
+        research=None
+        if scenario=='proposal_after_planning':
+            # Exercise the collector handoff with the planner's largest valid
+            # query and URL shapes. No collection or provider call is made.
+            topic=next((row['id'] for row in state.get('research_topics',[]) if row.get('enabled',True)), 'fixture')
+            research={'planning_invocation':'w-fixture-plan','evidence_ids':[], 'requests':[
+                {'query':str(i)+'x'*999,'domain':topic,'project':'','url':'https://example.invalid/'+'x'*1976}
+                for i in range(2)]}
+        invocation,request=engine.start('gemini',settings['model'],False,phase=phase,research=research)
         result.update(status='fits',input_chars=provider_input_chars(request))
 except Exception as error:
     reason=str(error)
@@ -58,7 +67,7 @@ def probe_node(source, record, config, *, node, runner=subprocess.check_output):
     results = []
     original = record_identity(record)
     with tempfile.TemporaryDirectory(prefix='wake-context-probe-') as temporary:
-        for phase in ('planning', 'proposal'):
+        for phase in ('planning', 'proposal', 'proposal_after_planning'):
             destination = Path(temporary) / phase
             destination.mkdir()
             with sqlite3.connect(record.resolve().as_uri() + '?mode=ro', uri=True) as before:

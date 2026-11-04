@@ -32,7 +32,7 @@ class ContextDiagnosticTests(unittest.TestCase):
     def test_real_requests_build_only_on_copies_and_source_head_is_unchanged(self):
         before = record_identity(self.record)
         result = diag.probe_node(ROOT, self.record, ROOT / 'wake.toml', node='101.wake')
-        self.assertEqual([value['phase'] for value in result], ['planning', 'proposal'])
+        self.assertEqual([value['phase'] for value in result], ['planning', 'proposal', 'proposal_after_planning'])
         self.assertTrue(all(value['provider_calls'] == 0 for value in result))
         self.assertTrue(all(value['status'] == 'fits' for value in result), result)
         self.assertEqual(record_identity(self.record), before)
