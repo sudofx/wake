@@ -337,7 +337,7 @@ class ScientificIntegrationTests(ScientificFixtureCase):
         self.assertEqual(state,before)
 
     def test_context_pressure_keeps_measured_failure_before_redundant_definitions(self):
-        from wake.science.planner import context
+        from wake.science.planner import context, fit_context
         from wake.event_format import canonical
         self.propose();runner=RecordedWorkbench(bad=True)
         advance(self.engine.store,runner);advance(self.engine.store,runner)
@@ -366,6 +366,12 @@ class ScientificIntegrationTests(ScientificFixtureCase):
         self.assertEqual(retained['evaluation']['measurement_details']['limitations'],['This result is limited to the controlled task family.'])
         self.assertEqual({h['id'] for h in result['hypothesis_index']},set(science['hypotheses']))
         self.assertTrue(result['context_omissions'])
+        omissions = set(result['context_omissions'])
+        size = len(canonical(result))
+        fit_context(result, size - 200)
+        self.assertLess(len(canonical(result)), size)
+        self.assertTrue(omissions.issubset(result['context_omissions']))
+        self.assertIn(retained, result['experiments'])
         self.assertEqual(state,before,'Context packing cannot change authoritative evidence')
 
     def test_scientific_contract_and_negative_evidence_fit_the_hosted_context_budget(self):

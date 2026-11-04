@@ -33,7 +33,7 @@ establishes accuracy only for its recorded cases. Novelty and acceptance counts 
 '''
 
 
-def _fit_context(result, limit=10000):
+def fit_context(result, limit=10000):
     """Prefer measured consequences over repeated prose and code excerpts.
 
     Full definitions and protocols remain on the native record. The index keeps
@@ -41,12 +41,17 @@ def _fit_context(result, limit=10000):
     """
     if len(canonical(result)) <= limit:
         return result
-    result['context_omissions'] = []
+    omissions = result.setdefault('context_omissions', [])
+
+    def mark(message):
+        if message not in omissions:
+            omissions.append(message)
+
     for row in result['convergence_evidence']:
         # These repeat hypothesis uncertainty and the fixed decision rule.
         row.pop('remaining_uncertainty', None)
         row.pop('decision_rule', None)
-    result['context_omissions'].append('Repeated convergence prose; see hypothesis definitions and native decisions.')
+    mark('Repeated convergence prose; see hypothesis definitions and native decisions.')
     for experiment in result['experiments']:
         source = experiment['source_excerpt']
         if len(source) > 320:
@@ -67,19 +72,15 @@ def _fit_context(result, limit=10000):
     result['experiments'].sort(key=lambda row: not bool(row.get('evaluation')))
     while len(canonical(result)) > limit and len(result['hypotheses']) > 1:
         result['hypotheses'].pop()
-        if 'Older hypothesis definitions; revision identities remain in hypothesis_index.' not in result['context_omissions']:
-            result['context_omissions'].append('Older hypothesis definitions; revision identities remain in hypothesis_index.')
+        mark('Older hypothesis definitions; revision identities remain in hypothesis_index.')
     while len(canonical(result)) > limit and len(result['experiments']) > 1:
         result['experiments'].pop()
-        if 'Older experiment details; identities remain in experiment_index.' not in result['context_omissions']:
-            result['context_omissions'].append('Older experiment details; identities remain in experiment_index.')
+        mark('Older experiment details; identities remain in experiment_index.')
     # Optional prose goes before the final measured result, never after it.
     for field in ('recent_directions', 'convergence_decisions', 'convergence_evidence', 'recent_rejection_feedback'):
         while len(canonical(result)) > limit and result[field]:
             result[field].pop(0)
-            marker = 'Older '+field+' omitted; complete history remains on the native record.'
-            if marker not in result['context_omissions']:
-                result['context_omissions'].append(marker)
+            mark('Older '+field+' omitted; complete history remains on the native record.')
     if len(canonical(result)) > limit:
         # The complete request still has Engine's hard admission check before
         # a provider effect. Never meet a local size target by erasing the only
@@ -197,7 +198,7 @@ def context(state):
             'last_execution':({key:value for key,value in e['attempts'][-1].get('receipt',{}).items()
                               if key in ('status','reason','wall_seconds','outputs_digest')} if e['attempts'] else None)})
     # Protected labels, hidden parameters and scorer artifacts never enter model context.
-    return _fit_context(result)
+    return fit_context(result)
 
 
 def convergence(science,hypothesis):

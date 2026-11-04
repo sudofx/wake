@@ -2705,6 +2705,14 @@ class Engine:
             request["compact_response_contract"] = True
         if provider_input_chars(request) > self.config["max_context_chars"] and phase != "planning":
             self.fit_bounded_request(request, system_suffix=final_system_suffix)
+        overflow = provider_input_chars(request) - self.config["max_context_chars"]
+        scientific = request["context"].get("scientific_research")
+        if overflow > 0 and scientific:
+            from .science.planner import fit_context
+            # The standalone science packet has its own allowance. Fit it to
+            # the space left by the actual request, preserving observations.
+            fit_context(scientific, len(canonical(scientific)) - overflow)
+            request["response_schema"] = _provider_response_schema(request["context"], bool(state.get("charter")))
         require(provider_input_chars(request) <= self.config["max_context_chars"],
                 "Context ceiling reached; human review required, no model call made")
         request, decision_memory_receipt = self.decision_memory_delivery(

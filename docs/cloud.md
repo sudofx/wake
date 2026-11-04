@@ -547,10 +547,13 @@ Startup and research do not wait for that upload; shutdown lets a healthy upload
 Green combines an active hosted batch with recorded node-running observations;
 it does not mean a provider call is in flight or research has been accepted. Yellow
 means queued, stopped, draining, awaiting automatic recovery, or an active batch
-waiting for current node observations. Blue means between
-successful batches; red means GitHub requires attention or a failed batch has had
-no successor for fifteen minutes. A failed current-status check with an available
-published node snapshot shows yellow, names the failure and dates that observation;
+waiting for current node observations. Blue means between successful batches.
+Red means at least one node was reported blocked while a hosted batch is active,
+GitHub requires attention, or a failed batch has had no successor for fifteen
+minutes. Other nodes can still be running while the light is red. Open the
+node picker for the blocked node's last uploaded reason. A failed current-status
+check with an available published node snapshot shows yellow, names the failure
+and dates that observation;
 it never turns an old running snapshot green. Gray means neither the current
 check nor a published node observation is available. Tap or focus the light for its explanation and check time;
 its link opens the research workflow. Node dots and Console canvases remain dated snapshots.
