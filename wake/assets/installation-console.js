@@ -119,7 +119,7 @@
   const aggregate=aggregateStatus(data);
   let health=get('installation-state-summary');
   if(!health){health=el('p',undefined,'installation-state-summary');health.id='installation-state-summary';health.setAttribute('role','status');get('installation-freshness').after(health);}
-  health.textContent=aggregate.description+(aggregate.checked?` · observed ${stamp(aggregate.checked)}`:'');
+  health.textContent=aggregate.description+(Number.isFinite(aggregate.checked)?` · observed ${new Date(aggregate.checked).toLocaleString()}`:'');
   const available=nodes.filter(n=>n.available===true&&n.research);
   const values=available.map(n=>number(n.research.status?.accepted_cycles??n.snapshot?.version));
   const total=values.every(v=>v!==null)?values.reduce((a,b)=>a+b,0):null;
