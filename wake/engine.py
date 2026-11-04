@@ -2706,7 +2706,22 @@ class Engine:
         if provider_input_chars(request) > self.config["max_context_chars"] and phase != "planning":
             self.fit_bounded_request(request, system_suffix=final_system_suffix)
         overflow = provider_input_chars(request) - self.config["max_context_chars"]
-        scientific = request["context"].get("scientific_research")
+        context = request["context"]
+        if overflow > 0 and phase != "planning" and context.get("research_topics"):
+            # Catalog query and experiment metadata already belong to the
+            # collector and record. Keep the available domains and all seeds
+            # the current proposal can act on.
+            attention = context.get("attention", {})
+            selected = attention.get("selected_topic") if attention.get("enforce_selected_topic") else None
+            context["research_topics"] = [
+                {key: topic[key] for key in ("id", "label", "seed_question")
+                 if key in topic and (key != "seed_question" or selected in (None, topic["id"]))}
+                for topic in context["research_topics"]
+            ]
+            context.setdefault("bounded_context", {}).setdefault("omitted_categories", []).append(
+                "topic catalog metadata and seeds outside the eligible domain")
+            overflow = provider_input_chars(request) - self.config["max_context_chars"]
+        scientific = context.get("scientific_research")
         if overflow > 0 and scientific:
             from .science.planner import fit_context
             # The standalone science packet has its own allowance. Fit it to

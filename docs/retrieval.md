@@ -494,10 +494,11 @@ When the final request is too large, its model-readable response contract can
 use local JSON Schema references for identical repeated definitions. The
 request records that rendering choice so the budget and Gemini receive the
 same text. Gemini's separate structured-output schema retains the full
-definitions. Older requests retain their original rendering. If the final
-proposal still overflows, the science packet uses the space left in the full
-request. Its packing favors measured outcomes and revealed observations over
-older protocol details and repeated prose.
+definitions. Older requests retain their original rendering. Under further
+pressure, the proposal keeps topic names and seeds it can act on and omits
+collector query metadata. The science packet uses the space left in the full
+request, prioritizing measured outcomes and revealed observations over older
+protocol details and repeated prose.
 
 New invocation receipts carry `context_delivery.provider_input_budget`, with a
 versioned measurement basis, exact rendered-input hash and size, reserved
