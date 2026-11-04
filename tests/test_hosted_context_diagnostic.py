@@ -69,4 +69,5 @@ class ContextDiagnosticTests(unittest.TestCase):
             diag.probe_node(ROOT, self.record, ROOT / 'wake.toml', node='101.wake', runner=runner)
         self.assertTrue(observed)
         self.assertTrue(all(env.get('LD_LIBRARY_PATH') == '/fixture/python/lib' for env in observed))
+        self.assertTrue(all(env.get('WAKE_GROUP_ID') == 'wake' for env in observed))
         self.assertTrue(all(not any('KEY' in key or 'TOKEN' in key or 'SECRET' in key for key in env) for env in observed))

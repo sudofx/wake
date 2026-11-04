@@ -24,6 +24,7 @@ import wake.engine as module
 from wake.authority import open_authoritative_store
 from wake.providers import provider_input_chars
 root=Path(sys.argv[1]);settings=module.config(sys.argv[2]);phase=sys.argv[3]
+settings['provider_managed_limits']=True
 store=open_authoritative_store(root)
 engine=module.Engine(root,settings,store=store)
 last=[None];parts={}
@@ -40,6 +41,7 @@ try:
     if store.load().get('pending') is not None:
         result['status']='pending_invocation_not_modified'
     else:
+        engine.initialize()
         invocation,request=engine.start('gemini',settings['model'],False,phase=phase)
         result.update(status='fits',input_chars=provider_input_chars(request))
 except Exception as error:
@@ -64,7 +66,7 @@ def probe_node(source, record, config, *, node, runner=subprocess.check_output):
                     before.backup(after)
             env = {key: os.environ[key] for key in ('PATH', 'LANG', 'LC_ALL', 'TZ', 'LD_LIBRARY_PATH', 'DYLD_LIBRARY_PATH') if key in os.environ}
             env.update(PYTHONPATH=str(source.resolve()), PYTHONDONTWRITEBYTECODE='1',
-                       HOME=temporary, WAKE_DEV_RELOAD='false', WAKE_GROUP_INSTANCE=node,
+                       HOME=temporary, WAKE_DEV_RELOAD='false', WAKE_GROUP_ID='wake', WAKE_GROUP_INSTANCE=node,
                        WAKE_PARENT_HOSTNAME='' if node[:3].endswith('00') else node[0] + '00.wake')
             parent = node[0] + '00.wake'
             topics = config.parent / '.wake-runner-topics' / (parent + '.toml')
