@@ -81,8 +81,8 @@ class CallPacing:
             raise ValueError('provider_pacing requires enabled, target_hours, reserve_calls')
         if type(policy['enabled']) is not bool:
             raise ValueError('Provider pacing enabled must be boolean')
-        if type(policy['target_hours']) not in (int,float) or not math.isfinite(policy['target_hours']) or not 1<=policy['target_hours']<=24:
-            raise ValueError('Provider pacing target_hours must be 1–24')
+        if type(policy['target_hours']) not in (int,float) or not math.isfinite(policy['target_hours']) or not 0<=policy['target_hours']<=24:
+            raise ValueError('Provider pacing target_hours must be 0–24')
         if not isinstance(limits,dict) or not limits or any(not isinstance(k,str) or not k or type(v) is not int or v<1 for k,v in limits.items()):
             raise ValueError('Provider pacing requires explicit positive per-model daily limits')
         total=sum(limits.values())
@@ -104,14 +104,14 @@ class CallPacing:
         if not self.policy['enabled']:return True,0,'ready'
         tomorrow=(datetime.fromtimestamp(now,PACIFIC).replace(hour=0,minute=0,second=0,microsecond=0)+timedelta(days=1)).timestamp()
         if model not in self.limits:return False,300,'access_blocked'
-        feature=purpose in ('reader','experiment')
+        reserved = purpose == 'reader' or (purpose == 'experiment' and self.policy['reserve_calls'] > 0)
         if sum(self.usage.values())>=self.total:return False,tomorrow-now,'research_budget'
         if self.usage.get(model,0)>=self.limits[model]:return False,tomorrow-now,'research_budget'
-        if feature:
+        if reserved:
             if self.feature_used>=self.policy['reserve_calls']:return False,tomorrow-now,'research_budget'
         elif self.research_used>=self.research_budget:
             return False,tomorrow-now,'research_budget'
-        elif self.next_at>now:return False,self.next_at-now,'pacing'
+        elif self.interval and self.next_at>now:return False,self.next_at-now,'pacing'
         return True,0,'ready'
 
     def consume(self,model,purpose,now):
@@ -120,7 +120,7 @@ class CallPacing:
         if purpose in ('reader','experiment'):self.feature_used+=1
         else:
             self.research_used+=1
-            self.next_at=now+self.interval
+            self.next_at=now+self.interval if self.interval else 0
 
     def seed(self,day,usage,feature_usage=None):
         """Conservatively include known native attempts before this policy existed."""
@@ -156,7 +156,7 @@ class CallPacing:
         if sum(state['usage'].values())!=state['research_used']+state['feature_used']:
             raise ValueError('Pacing counts do not reconcile')
         self.day=state['day'];self.usage=dict(state['usage']);self.research_used=state['research_used']
-        self.feature_used=state['feature_used'];self.next_at=state['next_at']
+        self.feature_used=state['feature_used'];self.next_at=state['next_at'] if self.interval else 0
 
     def status(self,now):
         self._roll(now)

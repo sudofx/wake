@@ -180,10 +180,6 @@ def _public_runtime_reason(runtime):
 
 def _copy_public_site(source: Path, destination: Path):
     from .reader_presentation import retired_reader_asset
-    inspection = source / 'inspect'
-    if inspection.exists():
-        from .inspection import validate_inspection
-        validate_inspection(source, allow_unlisted=True)
     assets = Path(__file__).parent / 'assets'
     root_data = {'research-data.json', 'research.json', 'wake-data.json', 'state.json',
                  'events.jsonl', 'head.txt', 'map-data.json', 'map3d-data.json',
@@ -202,23 +198,17 @@ def _copy_public_site(source: Path, destination: Path):
                        'console-events.html', 'console-state.html', 'console-rejected.html',
                        'research.html', 'topics.html', 'blog.html', 'projects.html',
                        'journal.html', 'lab.html', 'metrics.html', 'evidence.html',
-                       'history.html', 'about.html','scientific-research.html','scientific-research.json'}))
-        allowed = allowed or (relative.parts[0] in {'icons', 'backgrounds', 'self-correction'} and (assets / relative).is_file())
+                       'history.html', 'about.html','scientific-research.json'}))
+        allowed = allowed or (relative.parts[0] in {'icons', 'backgrounds'} and (assets / relative).is_file())
         allowed = allowed or (relative.parts[0] in {'blog', 'notebooks', 'journal'} and path.suffix == '.html')
         allowed = allowed or (relative.parts[0] == 'map3d' and path.suffix == '.json')
         allowed = allowed or relative.as_posix() in {'group/bob-publication.json', 'group/bob.json', 'reader-data.json', 'research-overview.json'}
         allowed = allowed or (relative.parts[0] in {'reader-records', 'research-details'} and path.suffix == '.json')
-        if len(relative.parts) == 2 and relative.parts[0] == 'inspect':
-            from .inspection import PUBLIC_FILES
-            allowed = allowed or relative.name in PUBLIC_FILES
         if not allowed:
             continue
         target = destination / relative
         target.parent.mkdir(parents=True, exist_ok=True)
-        if relative.parts[0] == 'inspect':
-            # Preserve the reviewed static bundle's exact hashed bytes.
-            shutil.copyfile(path, target)
-        elif path.suffix == '.json':
+        if path.suffix == '.json':
             value = _public_projection(json.loads(path.read_text()))
             if path.name == 'wake-data.json' and isinstance(value.get('events'), list):
                 # The overview duplicates history already published in events.jsonl.
@@ -344,8 +334,6 @@ def _build_public_artifact(root: Path, destination: Path, *, progress=None) -> d
         for node in snapshots:
             (staging / 'nodes' / node / 'installation.json').write_text(encoded)
         package_public_history(staging)
-        from .inspection import validate_inspection
-        validate_inspection(staging)
         (staging / '.nojekyll').touch()
         staging.rename(destination)
     return manifest

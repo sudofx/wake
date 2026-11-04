@@ -64,15 +64,6 @@ Use the [private continuity workflow](docs/continuity/README.md) to preserve hum
 research notes and engineering handoffs between conversations.
 
 The public website and ant farm run on GitHub Pages.
-The [self-correction page](https://sudofx.github.io/wake/self-correction/) shows
-current GitHub correction runs, draft source changes and dated installation evidence.
-The [source correction workflow](docs/self-correction.md) automatically checks
-supported presentation source after code checks, publication and research batches.
-It tests and applies exact cache-key repairs, retries failed checked website
-publication once, and generates tested review proposals for detected JavaScript
-syntax faults. Model-authored changes require review; research authority stays
-with the installed runtime.
-
 The local [improvement workflow](docs/improvements.md) turns captured research
 into versioned Python proposals and isolated baseline/candidate comparisons.
 Its kernel record preserves favorable and unfavorable results for human review;
@@ -86,13 +77,10 @@ gains, adopts it without human review, and automatically rolls back on context
 faults or matched-outcome deterioration. This first contract permits one forward
 adoption; executable code, evaluator, governance, quotas and permissions stay fixed.
 
-The [static inspection interface](docs/inspection.md) gives unfamiliar readers and
-AI systems plain-text explanations, exact evidence and a reproducible kernel example.
-
 [Open the public site](https://sudofx.github.io/wake/) · [View source and releases](https://github.com/sudofx/wake) · [GitHub Actions](https://github.com/sudofx/wake/actions)
 
 The [digital ant farm](docs/ant-farm.md) is a separate browser habitat with saved
-local colonies and optional advisory observations from Bob. Watching it uses no
+local colonies and Bob’s shared recording. Watching it uses no
 model calls and never counts as research progress.
 
 ## The basic idea
@@ -341,6 +329,6 @@ Under forward quality policy, notebook proposals supply structured claims and om
 
 Source delivery compacts the parsed source packet rather than cutting serialized JSON. Bounded views preserve source classification and select exact substantive prose ahead of titles, authors and PDF front matter. Escaped JSON stays within the provider budget, and successive shortening retains a quotation surface. These are incomplete derived views; full source records, IDs, provenance and exact-passage validation remain authoritative.
 
-Routine installation research can use [shared request pacing](docs/cloud.md#spread-provider-calls-across-the-day): 832 of the configured 1,040 daily calls spread over 24 hours, with 208 reserved for experiments and reader features. Provider availability and accepted research remain separate outcomes.
+The [shared provider queue](docs/cloud.md#share-the-daily-provider-allowance) admits research calls one at a time, with no scheduled gap and no feature reserve. The configured model ceilings add up to 1,040 calls per Pacific day.
 
 An opt-in [experimental research workbench](docs/experimental-research.md) freezes hypotheses and protocols in the native record, runs bounded Python instruments in reviewed Docker containers, and independently scores supported measurements. Reproducible fixtures exercise negative results, revision and replication; live autonomous revision and hosted computational execution remain release gates.

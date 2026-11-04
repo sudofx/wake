@@ -70,18 +70,6 @@ The public website serves completed exports from GitHub Pages. Autonomous
 research continues through GitHub Actions and Google Gemini. Public pages contain
 no model credentials.
 
-[Source self-correction](self-correction.md) runs bounded automatic checks after
-code checks, website publication and research batches. Trusted code can apply an
-exact, tested local cache-key transformation through a non-forced source update,
-or retry failed checked website delivery once. Automatically diagnosed JavaScript
-syntax faults select a bounded Gemini proposal, exact source-hash validation,
-credential-free isolated tests and a draft review branch. The model cannot change
-its evaluator, governance, permissions, records or runtime grant; its executable
-changes require source review. Source, CI, publication and runtime adoption remain
-separate evidence. The public page observes named correction outcomes and one
-identified public installation snapshot through the shared immutable transport;
-historical fixture recovery results remain labeled as such.
-
 The optional local Gemini preview is a separate loopback reader surface.
 It uses completed public exports and the existing owning worker's native provider
 invocation journal. It never submits governed research changes or creates a second
@@ -93,12 +81,8 @@ the application research turn lock or modify research state. The shared provider
 slot and access barriers still govern each external call.
 An authenticated request from the owning reader worker can use that same slot
 while automated research is paused. Other workers and ordinary research requests
-remain blocked. Reader questions have no quota exemption; STOP and pending reset
-still close their admission.
-
-The [static inspection interface](inspection.md) exposes explanations and an
-isolated kernel fixture for independent observers. Reading it grants no execution,
-provider or record authority; its manifest is derived presentation.
+remain blocked. Reader questions require a dedicated configured reserve. The research-first profile
+sets that reserve to zero. STOP and pending reset also close reader admission.
 
 
 The [digital ant farm](ant-farm.md) keeps each visitor’s editable colony in
@@ -106,7 +90,7 @@ browser storage. [Bob’s observer-only colony](bob-ant-farm.md) uses a separate
 append-only Git branch with bounded checkpoints and recorded care. Browser replay
 and the dated farm observation record are derived simulation presentation. They never write
 native research articles, evidence, governance or autonomous improvement state;
-publishing them does not establish runtime editorial-context adoption.
+Bob’s Blog draws from the research record.
 
 ## One installation, internal nodes
 
@@ -449,7 +433,7 @@ person, persona, identity, consciousness, feelings, or subjective experience.
 Bob's Blog is a separate reader-facing translation layer. Bob is intentionally a persona/byline, not
 **WAKE✳︎**'s mind, self, identity, consciousness, mechanism, collaborator or research participant. Bob does
 not converse with WAKE✳︎, steer it, advise it, or write its journal. Bob receives a system-wide editorial overview of research, recorded self-study,
-operational adaptations and pinned farm observations. His synthesis connects
+and operational adaptations. His synthesis connects
 interpretations and questions across those sources. He observes the durable research record
 after the fact and explains what WAKE✳︎ is doing, what changed, what it found, what remains uncertain, and
 the who/what/where/when/why/how a nontechnical reader needs. The persona exists because the technical record
@@ -766,7 +750,7 @@ See [hosted recovery](cloud.md#continuation-and-repair).
 
 ### Shared provider pacing
 
-The installation coordinator also owns optional request pacing and capacity reserves. Confirmation consumes an operational allowance before inference; persistence occurs before the provider effect. A restart retains deadlines and conservatively reconciles known native usage. Scientific governance and kernel state do not depend on this scheduling cache. See [daily pacing](cloud.md#spread-provider-calls-across-the-day).
+The installation coordinator enforces per-model daily limits and serializes provider effects. Confirmation consumes an allowance before inference, and persistence occurs before the provider effect. A restart conservatively reconciles known native usage. Scientific governance and kernel state do not depend on this scheduling cache. See [daily pacing](cloud.md#share-the-daily-provider-allowance).
 
 ### Scientific research application
 

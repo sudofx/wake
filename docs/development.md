@@ -83,8 +83,7 @@ The generic `wake.kernel.generation.GenerationProvider` contract is the model
 boundary; a provider receives bounded input and returns untrusted output. The
 current unattended installation CLI supports `gemini` and the test-only `fixture`
 provider. Other vendors are not operational drop-in choices yet: they need a
-tested adapter plus installation configuration and accounting integration. The
-source-correction workflow independently selects a Gemini model per request.
+tested adapter plus installation configuration and accounting integration.
 Switching development agents does not require changing that research provider.
 
 For private human checkpoints and fresh-conversation recovery, use the
@@ -93,11 +92,6 @@ research record without adding runtime state or automatic model context.
 
 Public presentation uses GitHub Pages; runtime research uses GitHub and Google
 Gemini. Any additional service requires the user's explicit approval.
-
-For a real bounded source repair, open **Self-correction** from Console and run
-the [source-correction workflow](self-correction.md). WAKE generates selected
-presentation/docs edits, tests them in isolation and creates a draft pull request.
-Merge, website publication and runtime promotion remain separate decisions.
 
 For research-backed code proposals, disposable-container comparisons and human
 review receipts, use the [improvement workflow](improvements.md). `wake improve`
@@ -115,7 +109,7 @@ scenarios, run `wake improve recovery-demo --output NEW_DIRECTORY`; see
 [bounded recovery](resilience.md#try-bounded-operational-self-correction-in-isolation).
 It changes only synthetic fixture callers, never installed research settings.
 
-For the browser-local digital colony and its bounded Bob observation contract,
+For the browser-local digital colony and shared playback,
 see [Ant Farm](ant-farm.md).
 
 ## Current development path
@@ -601,8 +595,7 @@ research version fails closed for operator review; a reset is never inferred fro
 an editorial cadence.
 
 Each bounded input includes a per-topic notebook overview and recorded context
-adaptations. The leader adds a pinned, read-only farm observation with its source
-link; unavailable data is explicit. See [Bob’s synthesis boundary](bob-ant-farm.md#blog-integration-and-evidence-boundary).
+adaptations.
 Each input supplies attributed story IDs, node/record links, notebook revisions,
 dates, recorded claim labels and limitations, plus bounded source URLs. The model
 returns paragraph reference numbers pointing to those supplied IDs; the renderer

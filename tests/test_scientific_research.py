@@ -82,8 +82,7 @@ class ScientificResearchTests(ScientificFixtureCase):
         target=self.root/'unified';target.mkdir()
         (target/'scientific-research.json').write_text('{"stale":"previous export"}')
         export_unified_site(view,target)
-        self.assertTrue((target/'scientific-research.html').exists())
-        self.assertTrue((target/'scientific-research.js').exists())
+        self.assertFalse((target/'scientific-research.html').exists())
         self.assertFalse((target/'scientific-research.json').exists())
 
     def test_changed_environment_blocks_a_previously_approved_effect(self):

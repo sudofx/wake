@@ -1,15 +1,11 @@
 name: WAKE — Verify hosted runtime upgrade
 on:
   workflow_dispatch:
-    inputs:
-      candidate:
-        description: Full candidate commit; verification never starts research.
-        type: string
-        required: true
 permissions:
   contents: read
 jobs:
   capture:
+    if: github.ref_name == 'master'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -55,7 +51,7 @@ jobs:
           PY
       - uses: actions/checkout@v7
         with:
-          ref: ${{ inputs.candidate }}
+          ref: ${{ github.sha }}
           path: candidate
       - uses: actions/checkout@v7
         with:
@@ -91,7 +87,7 @@ jobs:
           path: control
       - uses: actions/checkout@v7
         with:
-          ref: ${{ inputs.candidate }}
+          ref: ${{ github.sha }}
           path: candidate
       - uses: actions/setup-python@v7
         with:

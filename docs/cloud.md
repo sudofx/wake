@@ -21,7 +21,7 @@ an explicit runtime configuration choice, separate from publishing source or Pag
 Model-facing compact capsule views remain bound to the full private native receipt;
 neither format is added to public exports. A presentation-only refresh also copies
 the Console chart assets: each line chart fits its complete captured history to
-the panel width, without changing the captured research or inspection packets.
+the panel width, without changing the captured research packets.
 
 The [ant farm](ant-farm.md) ships with filtered website exports. My farm runs
 and saves in each visitor’s browser. [Bob’s shared farm](bob-ant-farm.md) has a
@@ -70,13 +70,17 @@ An existing local container avoids workflow queues after launch but depends on
 that host remaining available; a new persistent hosted service has not been
 measured or approved. No new subscription is required.
 
-Open **research-control** in GitHub Actions and choose **start**, **stop**, or
-**stop-reset-restart**. Stop closes admission and lets the current batch finish
-publishing. The reset option waits for that writer to finish, then starts the
-checked runtime at cycle zero. It restores the installation identity and topic
-assignments, applies the checked provider settings, and publishes a cycle-zero
-snapshot before admitting research. The active encrypted checkpoint replaces
-the discarded experiment. Local installations use `wake-research RESET`.
+Open **research-control** in GitHub Actions and choose an action from the dropdown.
+
+- **inspect** reads the control state and latest authenticated scheduling checkpoint.
+- **start** enables research on the checked runtime.
+- **stop** closes admission and lets the current batch drain and publish.
+- **restart** drains and starts again with the existing records.
+- **reset** drains, discards the active experiment, publishes cycle zero, and starts
+  the checked runtime with the existing installation identity and topic assignments.
+
+The **research-worker** workflow receives internal dispatches from Actions.
+Local installations use `wake-research` for their own controls.
 
 ## Publish controlled evaluation results
 
@@ -107,13 +111,9 @@ is a dated, read-only copy of the public data exported from those records. GitHu
 Pages executes no research and has no research controls. An explicitly bound hosted
 status light observes the GitHub Actions executor; ordinary mirrors have no execution light.
 
-The public mirror serves the research pages, ant farm and self-correction status
+The public mirror serves the research pages and the ant farm
 from GitHub Pages. GitHub Actions executes research with Google Gemini. No ChatGPT subscription or
 Sites hosting is required by these published features.
-
-The unified export also generates [static inspection resources](inspection.md)
-under `inspect/`. They require no JavaScript, authentication or live model; their
-manifest identifies dated export evidence rather than operational authority.
 
 ```mermaid
 flowchart LR
@@ -393,8 +393,10 @@ operator control, changed checkpoint, missing node or failed check prevents
 promotion. Removing the pending request cancels automatic completion; running
 verification by itself never authorizes an upgrade.
 
-For a gate that finished before its request was published, dispatch the completion
-workflow with that exact verification run ID. Its restart request is a separate
+Run **Verify hosted runtime upgrade** on master to audit the immutable revision
+selected by that dispatch. For a gate that finished before its request was
+published, run **Complete requested hosted upgrade**. It reads the exact
+verification run from the pending request. Its restart request is a separate
 boundary from actual worker adoption: check fresh runtime observations after
 startup. A failed completion retains recoverable state; rerun it after resolving
 the reported condition rather than restarting from scratch or blindly replaying
@@ -591,8 +593,7 @@ Bob popups and Console tools inherit it. Opening a new page after the discovery
 cache expires can adopt a newer export without rebuilding the interface.
 
 The data branch supplies JSON and record packets, never executable website
-assets. Download links resolve to that same selected commit; the external
-inspection entry opens its self-contained Markdown packet. If API discovery fails,
+assets. Download links resolve to that same selected commit. If API discovery fails,
 the reader may reuse its last verified immutable revision after rechecking the
 installation identity, unless the bundled snapshot is newer. The original cache
 age is preserved, and failed discovery retries back off across navigation.
@@ -605,15 +606,11 @@ These are public observations, not native record access or live activity.
 `publish-pages.yml` selects the latest successful master code-check revision and
 uses `scripts/pages_delivery.py` to skip an already deployed interface or source
 changes that do not affect presentation. Failed checks and research completion
-do not trigger interface delivery. Older pinned runners may still dispatch the
-workflow after an upload; no-input dispatches skip the job without allocating a
-runner. New runner
-source no longer dispatches Pages from data publication, so a Pages request cannot
-turn a successful upload into a failed research batch.
+do not trigger interface delivery. Research data uploads do not dispatch Pages.
 
 When delivery is needed, the workflow captures `wake-public` and applies checked
 presentation with `scripts/prepare_pages.py`. It verifies all twelve heads and
-protected research/inspection bytes before compacting the disposable Pages copy.
+protected research bytes before compacting the disposable Pages copy.
 The Pages payload keeps interface assets and bounded recent fallback views, with
 an 8 MiB data budget per root/node. It prioritizes the reader overview, installation
 identity, recent reader packets/guides and small first list pages. Full archives,
@@ -627,15 +624,15 @@ so new subscriptions can receive data updates without a Pages deployment. To exp
 is already recorded as deployed:
 
 ```sh
-gh workflow run publish-pages.yml --ref master -f force=true
+gh workflow run publish-pages.yml --ref master
 ```
 
 The public branch is a captured data input, not the served UI owner.
 `hosted_execution` identifies the research source; `presentation` identifies the
 separately checked interface. No native record is opened. Research can keep
 exporting data while interface development and publishing proceed independently.
-The presentation refresh uses the captured public archive and leaves hashed
-inspection packets unchanged.
+The presentation refresh uses the captured public archive and leaves retained
+research packets unchanged.
 
 ### Hosted execution observations
 
@@ -654,50 +651,35 @@ writer. Website delivery does not gate their continuation. GitHub availability,
 API capacity, Actions limits, credentials, provider availability and valid
 checkpoints still matter; a configured model key alone cannot guarantee years of
 uninterrupted operation. Public snapshot freshness and the status light expose
-unavailable or stalled observations without inventing progress. Source correction
-still produces tested draft changes for review; it does not autonomously merge or
-upgrade the research runtime.
+unavailable or stalled observations without inventing progress.
 
-## Spread provider calls across the day
+## Share the daily provider allowance
 
-The shared installation queue can pace routine research across 24 hours while
-retaining capacity for other work. The configured model ceilings total 1,040
-calls per Pacific calendar day. `provider_pacing = { enabled = true,
-target_hours = 24, reserve_calls = 208 }` reserves 208 for reader and experimental
-requests, leaving 832 for routine planning, research proposals and editorial
-calls. Routine requests start at least 103.85 seconds apart across all twelve
-nodes. This is one installation-wide rate, not a separate rate per node.
+The twelve nodes share one queue. Each eligible request can proceed as soon as
+the previous request releases its slot. The configured per-model ceilings total
+1,040 calls per Pacific calendar day. The research-first profile uses
+`provider_pacing = { enabled = true, target_hours = 0, reserve_calls = 0 }` to
+enforce those ceilings with no scheduled delay and no separate feature budget.
+Approved computational research trials use the same pool. Reader calls require
+a reserve and receive no slots under this profile.
 
-The controller admits only one provider effect at a time. A reserved feature
-request can pass a research request waiting for its pacing deadline, but cannot
-pass an active effect or exceed its own reserve or the configured model ceiling.
-Failed confirmed attempts consume allowance. A queue denial with no provider
-call does not. An unavailable or depleted model can advance the configured
-fallback chain without spending an API call.
+Failed confirmed attempts consume allowance. A queue denial with no provider call
+does not. A rate-limited, unavailable or depleted model can advance the configured
+fallback chain. When the daily allowance is exhausted, WAKE can wait until the
+next Pacific quota day. Other applications using the same Gemini project can
+reduce actual provider capacity.
 
-`provider-schedule.json` retains counters and the next admission deadline across
-worker batches. At controller startup, native invocation receipts conservatively
-backfill any known current-day usage missing from that scheduling cache. Idle
-time never earns a burst of catch-up calls. Pacific midnight renews calendar-day
-allowances while preserving spacing across the boundary. These counters govern
-transport only; the native record remains scientific authority. Calls made by
-other applications using the same Google project can still deplete provider
-quota earlier than these local allowances predict.
+`provider-schedule.json` retains the counters across worker batches. Switching to
+zero spacing clears a retained pacing deadline and preserves already-used calls.
+At startup, native research and trial receipts conservatively recover missing
+current-day usage. An effect that could have crossed midnight may count against
+both days when the exact time is unknown.
 
-The hosted installation explicitly binds this policy in `hosted-runtime.json`.
-The worker applies it to restored configuration before starting its controller.
-Inspect `coordinator.pacing` in the installation runtime snapshot for the
-adopted policy, counts and next-call delay. Worker logs retain bounded admission
-counters at startup and drain. The `inspect` hosted control also reads the
-authenticated scheduling file from the most recent checkpoint, without restoring
-or opening native records. Its capacity is explicitly dated; later and external
-API use can reduce it. Scientific trial receipts backfill feature usage after
-scheduling-cache loss, including conservative interrupted-effect accounting.
-An invocation or trial spanning Pacific midnight can count against both days
-when its exact effect time is unknown; recovery may understate available
-capacity but must not erase a potentially paid effect. A source change or successful CI run
-alone does not establish runtime adoption. Already-consumed calls cannot be
-recovered; the first partial day may reach its routine allowance sooner.
+Hosted policy lives in `hosted-runtime.json` and is applied before the controller
+starts. Check `coordinator.pacing` in the installation runtime observation for
+the adopted limits, counters and any next-call delay. The hosted `inspect` control
+can read the authenticated scheduling file from the latest checkpoint. Its counts
+describe that capture time.
 
 A final upgrade normally requires no queued or running research writer. GitHub
 can retain a jobless pre-queue entry after newer research runs have completed.
@@ -714,13 +696,7 @@ drained worker's installation and baseline binding, and still requires zero jobs
 
 ### Computational research capability
 
-Experimental research is separately opt-in through `experimental_research_enabled`. Its Python instruments require the reviewed pinned Docker image and a compatible Docker runtime; the worker uses a Python 3.13 runner with Docker available and checks the real restricted executor before opening research records. This workflow shape alone does not establish deployed capability. Missing isolation is recorded as blocked and never falls back to host Python. Hosting this workbench requires a separately verified runtime rollout; the request-pacing release does not enable it. Trial inference uses the reserved `experiment` queue purpose while retaining single-flight admission and per-model limits. See [the workbench and current gates](experimental-research.md).
-
-The **Experiments** audit reader ships through the independent presentation
-refresh even when the running installation has no scientific records yet. It
-reads node reports from the selected immutable public snapshot and checks their
-record heads against its installation manifest. Missing reports stay explicit;
-publishing this interface neither enables experiments nor changes native records.
+Experimental research is separately opt-in through `experimental_research_enabled`. Its Python instruments require the reviewed pinned Docker image and a compatible Docker runtime; the worker uses a Python 3.13 runner with Docker available and checks the real restricted executor before opening research records. This workflow shape alone does not establish deployed capability. Missing isolation is recorded as blocked and never falls back to host Python. Hosting this workbench requires a separately verified runtime rollout; the request-pacing release does not enable it. Trial inference uses the shared research allowance with single-flight admission and per-model limits. See [the workbench and current gates](experimental-research.md).
 
 Scientific child calls remain part of native provider accounting. Shared admission, unbound per-model planning limits and public request totals include those calls; unresolved effects remain visible rather than counted as known zero.
 

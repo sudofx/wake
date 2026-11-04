@@ -4,11 +4,6 @@ on:
     workflows: [WAKE — Verify hosted runtime upgrade, 'WAKE✳︎ — Check code · automatic']
     types: [completed]
   workflow_dispatch:
-    inputs:
-      verification_run:
-        description: Successful verifier run matching the explicit pending upgrade.
-        type: string
-        required: true
 permissions:
   contents: write
   actions: write
@@ -17,7 +12,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   complete:
-    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'master')
+    if: github.ref_name == 'master' && (github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'master'))
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -34,22 +29,21 @@ jobs:
           EVENT_WORKFLOW: ${{ github.event.workflow_run.name }}
           EVENT_RUN: ${{ github.event.workflow_run.id }}
           EVENT_SHA: ${{ github.event.workflow_run.head_sha }}
-          MANUAL_RUN: ${{ inputs.verification_run }}
         run: |
           python - <<'PY'
           import os
           from scripts.complete_hosted_upgrade import read_policy
           from wake.hosted import GitHub
           client = GitHub(os.environ['GITHUB_REPOSITORY'], os.environ['GH_TOKEN'])
-          if os.environ['EVENT_NAME'] == 'workflow_dispatch':
-              run_id = int(os.environ['MANUAL_RUN'])
-          elif os.environ['EVENT_WORKFLOW'] == 'WAKE — Verify hosted runtime upgrade':
-              run_id = int(os.environ['EVENT_RUN'])
-          else:
-              policy, _ = read_policy(client)
-              intent = policy['installations'][client.repository].get('pending_upgrade')
-              run_id = int(intent['verification_run']) if intent and os.environ['EVENT_SHA'] in (
-                  intent['candidate'], intent.get('presentation_revision')) else 0
+          policy, _ = read_policy(client)
+          intent = policy['installations'][client.repository].get('pending_upgrade')
+          run_id = int(intent['verification_run']) if intent else 0
+          if run_id and os.environ['EVENT_NAME'] == 'workflow_run':
+              if os.environ['EVENT_WORKFLOW'] == 'WAKE — Verify hosted runtime upgrade':
+                  if int(os.environ['EVENT_RUN']) != run_id:
+                      run_id = 0
+              elif os.environ['EVENT_SHA'] not in (intent['candidate'], intent.get('presentation_revision')):
+                  run_id = 0
           if run_id:
               audit = client.request('actions/runs/' + str(run_id))
               if audit['status'] != 'completed' or audit['conclusion'] != 'success':

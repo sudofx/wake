@@ -11,6 +11,8 @@ import re
 from urllib.parse import quote
 import xml.etree.ElementTree as ET
 
+from .reader_presentation import blog_display_body
+
 HOME = "https://sudofx.github.io/wake/"
 LIMIT = 100
 ATOM = "http://www.w3.org/2005/Atom"
@@ -84,7 +86,7 @@ def build_feeds(state, *, reader_routes=False, base_url=HOME):
                 if entry.get("status", "current") not in ("current", "superseded"):
                     continue
                 url = blog_url(entry['id'])
-                body = paragraphs(entry["lede"]) + paragraphs(entry["body"])
+                body = paragraphs(entry["lede"]) + paragraphs(blog_display_body(entry["body"]))
                 if entry.get("lens"):
                     body += "<h3>Bob’s Lens — philosophical reflection</h3>" + paragraphs(entry["lens"])
                 for field, label in (("supersedes", "Corrects an earlier post"), ("superseded_by", "Read the newer correction")):

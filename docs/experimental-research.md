@@ -79,12 +79,10 @@ preparation code. Usage and monetary cost remain unavailable when not reported.
   separate. Hidden mechanisms and holdout labels remain excluded. Essential
   evidence may exceed the local packing target; the engine's full-request limit
   still blocks an oversized provider request rather than silently erasing it.
-- Scientific report JSON is generated only when native science state
-  exists; the stable audit reader is always exported. They expose recorded results and clearly labelled interpretation.
-  They do not establish hosted adoption or physical-device rendering.
-  Node status reports the recorded experiment grant separately. An empty reader
-  distinguishes disabled execution, enabled execution without published results,
-  and older snapshots that do not report the capability; enabled is not running.
+- Scientific report JSON is generated when native science state exists.
+  The operator can render a report with `wake science report`. Node status reports
+  the experiment grant separately from measured results.
+
 - The hosted worker pulls the pinned image and runs the adversarial isolation checks before opening research. Its experimental grant still defaults off and requires explicit installation policy. Docker availability must be established separately on the deployed worker.
   An unavailable capability blocks work explicitly; it never falls back to
   running generated code on the host.
@@ -174,21 +172,9 @@ its bounded output and digest. Failed container programs retain bounded stdout
 and stderr prefixes plus captured-stream digests. Missing historical duration
 stays unknown; the audit distinguishes known elapsed time from a complete total.
 
-The website reader leads with plain-language questions, predictions, measured
-results, replication status and remaining uncertainty. Raw JSON, code, internal
-identities and hashes stay inside explicitly labeled researcher/developer
-disclosures, closed by default. The canonical JSON export remains complete.
-
-The website audit reader is delivered with the interface, including before the
-first experiment. It reads scientific JSON through the same immutable public
-snapshot as the other readers. Source-only presentation refresh also delivers
-this reader without enabling experimental execution or inventing reports.
-The unified page checks each node report against
-that snapshot's record head and retains node-qualified presentation rather than
-merging local scientific identities. Data-only uploads therefore expose new
-studies without rebuilding Pages. A missing or mismatched node report remains
-explicit; it cannot select a different snapshot as fallback. A node's own audit
-uses that node's report and checks it against the same installation manifest.
+The operator report groups questions, predictions, measurements, replication and
+remaining uncertainty. The JSON export retains node attribution and the source
+record head.
 
 `science investigate` and `science resume` use a bounded benchmark focus. The
 scientific context prioritizes recorded measurements over repeated prose and

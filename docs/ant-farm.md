@@ -27,9 +27,8 @@ use labelled icons. Button flashes and glowing food marks show actions immediate
 
 The selector starts with **Bob’s farm**, a shared, maintained, observer-only
 colony. **My farm** resumes this browser’s editable personal save. Switching
-farms never copies the shared recording over that save. The dated care and
-observation record appears in a collapsed **Farm observation record** inside each
-blog article, above the collapsed **Sources and records** list. See [shared farm upkeep](bob-ant-farm.md).
+farms never copies the shared recording over that save. Open **Observe** and **Colony options** to download a dated observation.
+See [shared farm upkeep](bob-ant-farm.md).
 If the shared recording is unavailable, the page says so; it never invents a
 substitute shared colony.
 
@@ -165,13 +164,14 @@ scales the whole webpage; desktop mouse-wheel zoom stays inside the frame. Purpl
 
 `ant-colony.js` owns the seeded tunnel graph, timed work and validated save format.
 `ant-drawing.js` draws the same anatomy at normal and enlarged scale. `ant-farm.js`
-owns one Canvas2D view with two cached buffers, HTML controls and text observations.
-No external libraries or third-party browser assets are needed. The ground uses simple drawn colour fields. Ant bodies, legs and antennae are procedural. See
+owns one Canvas2D view with one cached terrain buffer, HTML controls and text observations.
+No external libraries or third-party browser assets are needed. The ground uses a repeating grain texture. Worker poses are cached at overview scale and drawn in full detail when enlarged. See
 [art provenance and prompts](ant-farm-art.md). Canvas keeps continuous movement cheap;
 HTML keeps controls, focus and counts accessible. Cached terrain redraws after
-excavation or resize. Phone rendering is capped at twenty frames per second;
+excavation or resize. Phone rendering is capped at eighteen frames per second;
 desktop uses twenty-four. Canvas detail tracks the device pixel ratio and native
-page zoom, up to an eight-times pixel ratio and four million pixels per buffer.
+page zoom, with an overview cap of 2× on phones and 2.5× on desktop, and a
+two-million-pixel budget per buffer.
 Pinching in redraws the ants at higher resolution, including while paused;
 pinching out releases the larger buffers. Scene coordinates and frame geometry
 stay unchanged. Paused views redraw only on change.
@@ -214,10 +214,9 @@ do not certify physical-phone performance or biology.
 
 ## Sand, closer inspection and movement
 
-Packed sand is drawn from seeded angular mineral grains of mixed sizes and tones,
-with small highlights and darker inclusions. Grains stay fixed in habitat space:
-zooming reveals the same material rather than enlarging screen noise. The broad
-soil layers and sparse larger grains remain separate from the finer packed texture.
+Packed sand uses a reusable tile with several grain sizes and tones. The tile
+stays fixed in habitat space through zoom and pan. Broader soil layers and the
+shaded tunnel walls sit over the texture.
 
 Passages have spatially varying widths and irregular walls. Chamber contours have
 broad lobes and smaller excavated notches. Filled overlapping contours connect

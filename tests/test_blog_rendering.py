@@ -14,10 +14,10 @@ class BlogRenderingTests(unittest.TestCase):
 const fs=require('node:fs'),vm=require('node:vm');
 const source=fs.readFileSync(process.argv[1]+'/app.js','utf8');
 const helpers=source.slice(source.indexOf('  const postResearchTopic='),source.indexOf('  const proofNames ='));
-const render=source.slice(source.indexOf('  let farmNotebookRuntime;'),source.indexOf('  function evidence('));
+const render=source.slice(source.indexOf('  function blog('),source.indexOf('  function evidence('));
 const results=[];
 for(const mode of ['shared','ordinary','no-time']){
- const post={id:'group-introduction',title:'Welcome',lede:'Hello',body:'A shared article.\n\nSummary\n\nPlain words.',created_version:0,created_by:'leader-invocation',notebooks:[],evidence:[],group_publication:{members:['100.wake','101.wake']}};
+ const post={id:'group-introduction',title:'Welcome',lede:'Hello',body:'A shared article.\n\nTo better understand how order arises from simple rules, we look at a simulation of an ant colony. Historical farm note.\n\nSummary\n\nPlain words.',created_version:0,created_by:'leader-invocation',notebooks:[],evidence:[],group_publication:{members:['100.wake','101.wake']}};
  if(mode==='shared'){post.published_at='2026-10-11T21:20:24Z';post.editorial_references=[[{member:'100.wake',title:'A dated notebook',revision:2,record_url:'/nodes/100.wake/index.html#projects/notebook:n'}]];}
  const s={projects:{},notebooks:{},invocations:mode==='ordinary'?{'leader-invocation':{time:'2026-10-11T21:20:23Z'}}:{}};
  const nodes={'blog-content':{innerHTML:''},blog:{classList:{toggle(){}}}};
@@ -26,6 +26,7 @@ for(const mode of ['shared','ordinary','no-time']){
  for(const route of ['', 'topic:reflection','group-introduction']){
   vm.runInContext(helpers+render+'blog('+JSON.stringify(route)+');',vm.createContext({...env}));
   const html=nodes['blog-content'].innerHTML;
+  if(html.includes('Historical farm note.')||html.includes('farm-notebook'))throw Error('Retired farm review rendered');
   if(!html.includes('Welcome'))throw Error('Article missing in '+mode+' '+route);
   if(mode==='shared'&&route==='group-introduction'&&(!html.includes('/wake/nodes/100.wake/index.html')||!html.includes('<h3>Summary</h3>')))throw Error('Attribution or Summary missing');
   if(mode==='shared'&&!html.includes(post.published_at))throw Error('Publication time missing');

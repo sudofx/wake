@@ -77,6 +77,28 @@ class ProviderPacingTests(unittest.TestCase):
         self.assertEqual(gate.acquire(('wake','c','next'),'lite-b')['reason'],'pacing')
         self.assertEqual(gate.pacing.research_used,2)
 
+    def test_research_first_policy_discards_old_wait_but_keeps_shared_usage(self):
+        key,grant=self.take(1);self.release(key,grant)
+        gate=InstallationCallCoordinator(clock=lambda:self.now,
+            pacing=CallPacing({**POLICY,'target_hours':0,'reserve_calls':0},LIMITS))
+        gate.restore_state(self.gate.dump_state())
+        self.assertEqual(gate.pacing.status(self.now)['next_research_in_seconds'],0)
+        self.assertEqual(gate.pacing.usage,{'lite-a':1})
+        self.assertEqual(gate.pacing.check('lite-a','reader',self.now)[2],'research_budget')
+        for index in range(1039):
+            model='lite-a' if index<499 else 'lite-b' if index<999 else 'flash-a' if index<1019 else 'flash-b'
+            key=('wake',str(index%12),str(index))
+            purpose='experiment' if index==0 else 'research'
+            grant=gate.acquire(key,model,purpose=purpose)
+            self.assertEqual(grant['status'],'granted')
+            if not index:
+                self.assertEqual(gate.acquire(('wake','next','next'),'lite-b')['reason'],'busy')
+                gate.cancel_request(('wake','next','next'))
+            self.assertTrue(gate.release(key,grant['token'],{'result':'success'}))
+        self.assertEqual(gate.pacing.feature_used,1)
+        self.assertEqual(gate.pacing.research_used,1039)
+        self.assertEqual(gate.acquire(('wake','last','last'),'lite-b')['reason'],'research_budget')
+
     def test_reserved_feature_can_bypass_a_paced_head_without_overlapping(self):
         key,grant=self.take(1);self.release(key,grant)
         self.assertEqual(self.take(2)[1]['reason'],'pacing')
@@ -177,7 +199,7 @@ class ProviderPacingTests(unittest.TestCase):
             self.assertEqual(tomllib.loads(path.read_text())['untouched'],{'value':3})
 
     def test_malformed_policy_or_state_fails_closed(self):
-        for changes in ({'reserve_calls':1040},{'target_hours':0},{'enabled':'true'}):
+        for changes in ({'reserve_calls':1040},{'target_hours':-1},{'enabled':'true'}):
             with self.assertRaises(ValueError):CallPacing({**POLICY,**changes},LIMITS)
         self.pacing.status(self.now);bad=self.pacing.dump();bad['research_used']=1
         with self.assertRaises(ValueError):self.pacing.restore(bad)

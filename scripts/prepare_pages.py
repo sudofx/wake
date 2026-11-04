@@ -12,13 +12,12 @@ from wake.reader_presentation import retired_reader_asset
 
 
 def protected_files(root):
-    """Research and inspection packets must survive a presentation release exactly."""
+    """Research packets must survive a presentation release exactly."""
     return {str(p.relative_to(root)): hashlib.sha256(p.read_bytes()).hexdigest()
             for p in root.rglob('*') if p.is_file() and
-            (p.suffix in ('.json', '.jsonl', '.txt') or 'inspect' in p.relative_to(root).parts)
+            p.suffix in ('.json', '.jsonl', '.txt')
             and p.name not in ('deployment.json', 'installation.json')
-            and 'self-correction' not in p.relative_to(root).parts
-            and not retired_reader_asset(p)}
+            and not retired_reader_asset(p.relative_to(root))}
 
 
 def prepare(root, repository, revision):
@@ -27,7 +26,7 @@ def prepare(root, repository, revision):
     original = json.loads((root / 'installation.json').read_text())
     result = bind_hosted_status(root, repository, revision)
     if result['record_heads'] != original['record_heads'] or protected_files(root) != before:
-        raise ValueError('Presentation changed a research or inspection packet')
+        raise ValueError('Presentation changed a research packet')
     return result
 
 

@@ -18,7 +18,6 @@ MAX_PACKET = 240_000
 ARTICLE_FIELDS = ('title', 'lede', 'body', 'lens')
 PARAGRAPH_CONTRACT = 'group-editorial-paragraphs@1'
 MEMBER_BUDGET = 3000
-FARM_MEMBER_BUDGET = 4000
 SYNTHESIS_CONTRACT = 'bob-system-synthesis@1'
 
 
@@ -48,27 +47,8 @@ def bound_member_input(packet, *, budget=MEMBER_BUDGET):
             row['excerpted'] = True
     while size() > budget and len(packet['stories']) > 1:
         packet['stories'].pop(1)
-    farm = packet['stories'][0].get('statement', {}).get('farm_observation', {})
-    while size() > budget and len(farm.get('recent_intervals', [])) > 1:
-        farm['recent_intervals'].pop(0)
     require(size() <= budget, 'Member editorial summary ceiling reached')
     return packet
-
-
-def with_farm_observation(packet, observation):
-    """Attach a read-only external source to the leader's attributed overview."""
-    packet = deepcopy(packet)
-    leader = next(item for item in packet['inputs'] if item['member'] == packet['leader'])
-    elsewhere = {topic['label'] for item in packet['inputs'] if item is not leader for topic in item.get('topics', [])}
-    leader['topics'] = [topic for topic in leader['topics'] if topic['label'] not in elsewhere]
-    activity = leader['stories'][0]
-    activity['statement']['farm_observation'] = deepcopy(observation)
-    if observation.get('status') == 'available':
-        activity.setdefault('sources', []).append({'id': 'farm-' + observation['revision'],
-            'source': observation['source'], 'time': observation['captured_at'],
-            'scope': 'programmed-simulation-only'})
-    bound_member_input(leader, budget=FARM_MEMBER_BUDGET)
-    return validate_inputs(packet)
 
 
 def input_snapshot(engine, group_id, member, *, record_snapshot=None):
@@ -608,8 +588,6 @@ def synchronize(engine, provider=None):
             {'article': group['publication']['article'], 'reason': revision['reason']} if revision else
             {'article': {'body': recent[-1].get('editorial', {}).get('draft_excerpt', '')},
              'reason': recent[-1].get('reason', 'Previous synthesis did not complete')} if recent else None)
-        from .bob_observation import farm_observation
-        packet = with_farm_observation(packet, farm_observation())
         result = engine.synthesize_group(provider, packet, checkpoint, repair=repair,
                                          previous=group.get('publication'))
         if result['status'] != 'editorial_completed':

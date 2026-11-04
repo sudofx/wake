@@ -4,10 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: Choose the research operation.
+        description: Restart keeps records. Reset discards the active experiment and starts at cycle zero.
         type: choice
         required: true
-        options: [start, stop, stop-reset-restart, inspect]
+        default: inspect
+        options: [inspect, start, stop, restart, reset]
 
 permissions:
   contents: read

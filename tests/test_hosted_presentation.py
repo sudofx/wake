@@ -11,7 +11,7 @@ from wake.installation_cli import NODE_IDS, upload_public_artifact
 
 
 class HostedPresentationTests(unittest.TestCase):
-    def test_retired_help_removed_from_captured_pages_but_not_inspection(self):
+    def test_retired_help_removed_from_captured_pages_and_inspection_retired(self):
         from wake.reader_presentation import remove_retired_reader
         old = ('<html><head><script>/*\n * WAKE✳︎ plain-language help.\n */'
                'window.WakeHelp={};</script><script src="../help.js?v=old"></script></head>'
@@ -35,9 +35,9 @@ class HostedPresentationTests(unittest.TestCase):
                 self.assertNotIn('help.js', page)
                 self.assertIn('Why does this happen?', page)
                 self.assertIn('evidence-content', page)
-            self.assertEqual((root / 'inspect/index.html').read_text(), old)
+            self.assertFalse((root / 'inspect/index.html').exists())
             remove_retired_reader(root)
-            self.assertEqual((root / 'inspect/index.html').read_text(), old)
+            self.assertFalse((root / 'inspect/index.html').exists())
 
     def test_refresh_preserves_snapshot_packets_and_nested_installation_identity(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -50,6 +50,10 @@ class HostedPresentationTests(unittest.TestCase):
             (root / 'inspect').mkdir()
             packet = b'<html><head></head><body>hashed packet</body></html>'
             (root / 'inspect/index.html').write_bytes(packet)
+            (root / 'self-correction').mkdir()
+            (root / 'self-correction/index.html').write_bytes(packet)
+            (root / 'scientific-research.html').write_bytes(packet)
+            (root / 'scientific-research.json').write_bytes(b'{"retained":true}')
             for relative, prefix, name in [('index.html', '', 'wake'),
                                            ('nodes/103.wake/blog/post.html', '../', '103.wake'),
                                            ('console.html', '', 'wake')]:
@@ -64,7 +68,9 @@ class HostedPresentationTests(unittest.TestCase):
                         + '<body><header class="masthead"><nav class="compact-nav"></nav>'
                         + '<div class="header-tools"><label class="theme-switch"></label></div></header>'
                         + '<button id="reset-console-layout" type="button">Reset Console view</button></body></html>')
-                path.write_text(page)
+                path.write_text(page.replace('</body>', '<a href="inspect/index.html">Inspection</a>'
+                    '<a href="self-correction/">Self-correction</a>'
+                    '<a href="scientific-research.html">Experiments</a></body>'))
             # Reader pages inline shared navigation, unlike Console pages.
             index = root / 'index.html'
             index.write_text(index.read_text().replace('<script src="nav.js?v=old" defer></script>', '<script>/* inline navigation */</script>'))
@@ -92,45 +98,15 @@ class HostedPresentationTests(unittest.TestCase):
             self.assertIn('"presentation_revision": "' + 'b' * 40 + '"', experiment)
             self.assertNotIn('src="public-data.js', experiment)
             self.assertNotIn('runtime-activity.js', experiment)
-            for name in ('ant-farm.html', 'ant-experiment.html', 'scientific-research.html'):
+            for name in ('ant-farm.html', 'ant-experiment.html'):
                 page = (root / name).read_text()
                 self.assertEqual(page.count('<header class="masthead">'), 1, name)
                 self.assertIn('src="nav.js?', page, name)
-                for label in ('Explore', 'Research', 'Experiments', 'Journal', 'Bob’s Blog', 'GitHub'):
+                for label in ('Explore', 'Research', 'Journal', 'Bob’s Blog', 'GitHub'):
                     self.assertIn('>' + label + '</a>', page, (name, label))
             self.assertTrue((root / 'ant-experiment.js').is_file())
             self.assertNotIn('retired.invalid', (root / 'index.html').read_text())
             self.assertNotIn('chatgpt.site', (root / 'index.html').read_text())
-            self.assertTrue((root / 'self-correction/index.html').exists())
-            self.assertIn('href="self-correction/"', (root / 'console.html').read_text())
-            self.assertTrue((root / 'self-correction/self-correction.js').exists())
-            correction = (root / 'self-correction/index.html').read_text()
-            import re
-            correction_binding = json.loads(re.search(r'window\.WAKE_DEPLOYMENT=(\{[^<]*?\});', correction).group(1))
-            self.assertEqual(set(correction_binding), {'schema', 'snapshot_only', 'public_data'})
-            self.assertTrue(correction_binding['snapshot_only'])
-            self.assertEqual(correction_binding['public_data'], {'repository': 'example/repo',
-                'branch': 'wake-public', 'installation_id': manifest['installation_id'], 'prefix': ''})
-            transport_tag = '<script src="../public-data.js?v=' + 'b' * 12 + '"></script>'
-            self.assertIn(transport_tag, correction, 'Transport must load synchronously')
-            self.assertLess(correction.index(transport_tag), correction.index('src="self-correction.js'))
-            self.assertIn('src="self-correction.js?v=' + 'b' * 12 + '"', correction)
-            self.assertNotIn('window.WAKE_DEPLOYMENT', (Path(__file__).resolve().parents[1] / 'wake/assets/self-correction/index.html').read_text())
-            self.assertEqual(bound['hosted_execution'], manifest['hosted_execution'])
-            for prefix in ('', 'nodes/103.wake/'):
-                audit = (root / prefix / 'scientific-research.html').read_text()
-                self.assertIn('window.WAKE_DEPLOYMENT=', audit)
-                self.assertIn('original-installation', audit)
-                self.assertIn('public-data.js?v='+('b'*12), audit)
-                self.assertIn('scientific-research.js', audit)
-                self.assertIn('scientific-research.js?v='+('b'*12), audit)
-                self.assertEqual(audit.count('class="actions-light"'), 1)
-                self.assertIn('hosted-status.js?v='+('b'*12), audit)
-                self.assertIn('installation-console.js?v='+('b'*12), audit)
-                self.assertTrue((root / prefix / 'scientific-research.js').exists())
-                self.assertFalse((root / prefix / 'scientific-research.json').exists())
-            self.assertEqual((root / 'inspect/index.html').read_bytes(), packet)
-
             self.assertEqual((root / 'reader-data.json').read_bytes(), b'{"private_bodies":false,"version":744}')
             nested = (root / 'nodes/103.wake/blog/post.html').read_text()
             self.assertIn('"instance_name": "103.wake"', nested)
@@ -143,25 +119,15 @@ class HostedPresentationTests(unittest.TestCase):
                                  (Path(__file__).resolve().parents[1] / 'wake/assets' / name).read_bytes())
             bind_hosted_status(root, 'example/repo', 'b' * 40)
             self.assertEqual((root / 'index.html').read_text().count('class="actions-light"'), 1)
-            self.assertEqual((root / 'console.html').read_text().count('class="self-correction-console-link"'), 1)
+            self.assertNotIn('self-correction-console-link', (root / 'console.html').read_text())
             self.assertEqual((root / 'index.html').read_text().count('src="hosted-status.js?'), 1)
-            self.assertEqual((root / 'inspect/index.html').read_bytes(), packet)
-
-    def test_correction_binding_escapes_manifest_identity(self):
-        with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
-            identity = 'installation</script><script>untrusted()</script>&'
-            (root / 'installation.json').write_text(json.dumps({'live': False, 'installation_id': identity,
-                'record_heads': {node: {} for node in NODE_IDS}, 'hosted_execution': {'run_id': '1'}}))
-            (root / 'index.html').write_text('<html><head><script>window.WAKE_DEPLOYMENT={"snapshot_only":true};</script>'
-                '<link href="masthead.css" rel="stylesheet"></head><body><div class="header-tools"></div></body></html>')
-            bind_hosted_status(root, 'example/repo', 'a' * 40)
-            correction = (root / 'self-correction/index.html').read_text()
-            import re
-            encoded = re.search(r'window\.WAKE_DEPLOYMENT=(\{[^<]*?\});', correction).group(1)
-            self.assertNotIn('<', encoded)
-            self.assertNotIn('&', encoded)
-            self.assertEqual(json.loads(encoded)['public_data']['installation_id'], identity)
+            self.assertFalse((root / 'inspect/index.html').exists())
+            self.assertNotIn('inspect/index.html', index.read_text())
+            self.assertNotIn('self-correction/', index.read_text())
+            self.assertNotIn('scientific-research.html', index.read_text())
+            self.assertEqual((root / 'scientific-research.json').read_bytes(), b'{"retained":true}')
+            self.assertFalse((root / 'self-correction/index.html').exists())
+            self.assertFalse((root / 'scientific-research.html').exists())
 
     def test_presentation_refresh_rejects_an_advanced_public_parent(self):
         with tempfile.TemporaryDirectory() as directory:

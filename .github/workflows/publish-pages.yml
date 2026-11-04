@@ -1,16 +1,6 @@
 name: publish-pages
 on:
-  workflow_call:
-    inputs:
-      force:
-        type: boolean
-        default: false
   workflow_dispatch:
-    inputs:
-      force:
-        description: Rebuild the checked interface even when already deployed.
-        type: boolean
-        default: false
   workflow_run:
     workflows: ["WAKE✳︎ — Check code · automatic"]
     types: [completed]
@@ -24,7 +14,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   publish:
-    if: (github.event_name == 'workflow_dispatch') || (github.event_name == 'workflow_run' && inputs.force == true) || (github.event_name == 'workflow_run' && github.event.workflow_run.head_branch == 'master' && github.event.workflow_run.conclusion == 'success')
+    if: github.ref_name == 'master' && (github.event_name == 'workflow_dispatch' || (github.event.workflow_run.head_branch == 'master' && github.event.workflow_run.conclusion == 'success'))
     runs-on: ubuntu-latest
     timeout-minutes: 20
     environment:
@@ -49,7 +39,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           PRESENTATION_REVISION: ${{ steps.source.outputs.revision }}
-          PAGES_FORCE: ${{ inputs.force || 'false' }}
+          PAGES_FORCE: ${{ github.event_name == 'workflow_dispatch' }}
         run: python source/scripts/pages_delivery.py
       - uses: actions/checkout@v7
         if: steps.delivery.outputs.needed == 'true'

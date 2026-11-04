@@ -49,18 +49,14 @@ history; starting another would require an explicit operator choice.
 
 ## Bootstrap and verify
 
-First finish code checks on the exact source that includes the reviewed model
-and caretaker. Then initialize the dedicated branch once:
-
-```sh
-gh workflow run bob-ant-farm.yml --repo sudofx/wake --ref master -f bootstrap=true
-```
-
-Subsequent manual upkeep uses the default, with no reset or bootstrap:
+Run the maintainer for the existing shared branch:
 
 ```sh
 gh workflow run bob-ant-farm.yml --repo sudofx/wake --ref master
 ```
+
+Initial branch creation is an explicit maintainer operation through
+`scripts/bob_ant_farm.cjs publish --bootstrap` on checked source.
 
 The workflow selects a successfully checked master revision and serializes all
 farm writers under its own concurrency group. Its token can write contents and
@@ -89,49 +85,9 @@ An explicitly source-bound local preview may set
 an identified hosted deployment may bind its own repository. A page query can
 select Bob’s farm, but cannot choose the JSON URL.
 
-## Blog integration and evidence boundary
-
-`WakeBobFarm.mountNotebook(container)` renders a collapsed **Farm observation
-record** with dated numeric observations and care receipts. Within an article it sits inside the main
-reading container, above **Sources and records**. Both lists start collapsed and
-expand on click; article citation links also open the relevant sources list. It uses text nodes,
-not source-provided HTML, and labels the material as simulation observations.
-No native blog body, article hash, evidence record, research counter or governance
-decision changes. This allows farm notes to appear alongside Bob’s articles
-without pretending that an old article originally contained a newer observation.
-
-Bob is the central public synthesis voice across the supplied research topics,
-recorded self-study and system adaptations, and this farm. His eyes receive
-attributed observations; his mouth publishes an interpretation. He has no research,
-source-editing, governance or colony-control tools. The caretaker stays separate.
-
-The existing group editorial path receives every member's dated overview, including
-the latest notebook interpretation in each studied topic and its limitations.
-The leader also reads a bounded public farm packet through two GET requests: resolve
-the fixed farm branch once, then read `farm.json` at that immutable commit. The
-editorial context retains the revision, raw SHA-256, capture time, model identity,
-interval, before/after counts and bounded recent intervals. Metric/receipt
-disagreement or unavailable data produces an explicit unavailable observation,
-never a fabricated lesson. No untrusted farm prose is delivered to the model.
-
-This source enters the leader's attributed story and the exact native editorial
-invocation/publication digest. It is never imported as qualifying research evidence.
-The writing model may connect or challenge an interpretation, explain where an
-analogy fails, or formulate a useful public question. It must distinguish a
-programmed simulation from a biological experiment and a speculative comparison
-from a research finding. A connection is optional when the supplied material
-does not support one. Previous Bob prose remains reading continuity, not evidence.
-
-Regular publication opportunities require a new notebook/revision or a recorded
-system-adaptation change; accepted-cycle counters and routine feedings alone
-do not justify another article. Operator editorial revisions remain explicit.
-The provider still returns only attributed article fields, and publication changes
-no research version, journal, evidence, Attention, commitments or farm state.
-
-The browser observation record may be newer than a displayed article. Its
-publication alone does not prove runtime adoption, model comprehension or a
-scientific discovery. Source checks, the hosted runtime upgrade and actual
-editorial receipts remain separate verification boundaries.
+The farm runs independently of Bob’s Blog. Its player shows the recorded interval
+and can export the observation from **Colony options**. Bob’s articles draw on
+research across the nodes, including recorded self-study and operational changes.
 
 Run the focused checks:
 

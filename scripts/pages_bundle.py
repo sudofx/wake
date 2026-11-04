@@ -59,10 +59,6 @@ def compact(site):
             retain(record_path('journal', 'cycle:' + str(row['cycle'])), DETAIL_LIMIT)
             if row.get('invocation'):
                 retain(record_path('journal', row['invocation']), DETAIL_LIMIT)
-        # The self-contained inspection demonstration is small, dated evidence.
-        for path in sorted((root / 'inspect').glob('*')):
-            if path.is_file():
-                retain(str(path.relative_to(root)), DETAIL_LIMIT)
         for path in root.rglob('*'):
             if not path.is_file():
                 continue
@@ -71,13 +67,13 @@ def compact(site):
                 continue
             if path.suffix in ASSET_SUFFIXES or path.name.endswith('.LICENSE.txt'):
                 keep.add(path)
-            elif path.suffix == '.html' and (path.parent == root or 'self-correction' in relative.parts):
+            elif path.suffix == '.html' and path.parent == root:
                 keep.add(path)
         plans.append((root, keep, used))
     # Resolve every mandatory file/budget before deleting anything.
     hashes={path:hashlib.sha256(path.read_bytes()).digest() for root,keep,_ in plans for path in keep
             if path.name not in ('installation.json','deployment.json') and
-            (path.suffix in ('.json','.txt','.md') or 'inspect' in path.relative_to(root).parts)}
+            path.suffix in ('.json','.txt','.md')}
     removed = 0
     for root, keep, used in plans:
         for path in root.rglob('*'):
@@ -87,7 +83,7 @@ def compact(site):
         deployment['public_data']['fallback'] = 'recent-overview'
         (root / 'deployment.json').write_text(json.dumps(deployment))
         for path in keep:
-            if path.suffix != '.html' or 'inspect' in path.relative_to(root).parts:
+            if path.suffix != '.html':
                 continue
             def binding(match):
                 bound = json.loads(match.group(1))

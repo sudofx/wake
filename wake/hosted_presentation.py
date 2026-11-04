@@ -30,8 +30,6 @@ def bind_hosted_status(site, repository, revision):
     roots = set()
     bindings = {}
     for path in site.rglob('*.html'):
-        if 'inspect' in path.relative_to(site).parts:
-            continue  # Reviewed packet bytes and hashes are immutable.
         page = path.read_text()
         if 'class="header-tools"' not in page:
             continue
@@ -41,8 +39,6 @@ def bind_hosted_status(site, repository, revision):
         if not stylesheet:
             raise ValueError('Hosted page is missing its generated masthead binding')
         prefix = stylesheet.group(1)
-        if 'scientific-research.html' not in page:
-            page = page.replace('>Research</a>', '>Research</a><a href="'+prefix+'scientific-research.html">Experiments</a>')
         root = (path.parent / prefix).resolve()
         if not root.is_relative_to(site):
             raise ValueError('Navigation assets must remain inside the public artifact')
@@ -57,11 +53,6 @@ def bind_hosted_status(site, repository, revision):
                     + ";document.documentElement.dataset.wakeHostedStatus='true';")
         from .report import _masthead_navigation
         page = _masthead_navigation(page)
-        # Existing exported Console pages keep their generated data bindings.
-        # Add the current correction entry without replacing their HTML shell.
-        if path.name == 'console.html' and 'class="self-correction-console-link"' not in page:
-            entry = f'<a class="self-correction-console-link" href="{prefix}self-correction/">Self-correction →</a>'
-            page = page.replace('<button id="reset-console-layout"', entry + '<button id="reset-console-layout"', 1)
         page = page.replace("document.documentElement.dataset.wakeHostedStatus='true';", '')
         page, count = re.subn(r'window\.WAKE_DEPLOYMENT=(\{[^<]*?\});', binding, page)
         if count != 1:
@@ -98,34 +89,17 @@ def bind_hosted_status(site, repository, revision):
         (root/'backgrounds').mkdir(exist_ok=True)
         for name in ('ant-soil-v1.png','ant-body-v1.png','ant-sand-v2.png','ant-room-day-v1.webp','ant-room-night-v1.webp'):
             shutil.copyfile(assets/'backgrounds'/name,root/'backgrounds'/name)
-        deployment=json.loads((root/'deployment.json').read_text()) if (root/'deployment.json').exists() else {'schema':1,'mode':'hosted','snapshot_only':True}
-        deployment.pop('hosted_activity', None)
-        deployment.pop('ask_bob', None)
-        farm=(assets/'ant-farm.html').read_text().replace('<head>', '<head><script>window.WAKE_DEPLOYMENT='+json.dumps(deployment)+';</script>',1)
-        (root/'ant-farm.html').write_text(farm)
-        experiment=(assets/'ant-experiment.html').read_text().replace('<head>', '<head><script>window.WAKE_DEPLOYMENT='+json.dumps({**deployment, 'presentation_revision': revision})+';</script>',1)
-        (root/'ant-experiment.html').write_text(experiment)
+        for name in ('ant-farm.html', 'ant-experiment.html'):
+            shutil.copyfile(assets/name,root/name)
     from .reader_presentation import refresh_public_reader
     for root in roots:
         refresh_public_reader(root)
-        # Deliver the reader independently of runtime adoption. Reuse the
-        # exporter binding so captured installation identity and operator links
-        # survive; presentation refresh must not generate scientific results.
         from .report import _deployment_site
         deployment_path = root/'deployment.json'
         deployment = json.loads(deployment_path.read_text()) if deployment_path.exists() else bindings[root]
-        page = root/'scientific-research.html'
-        page.write_bytes((assets/page.name).read_bytes())
-        (root/'scientific-research.js').write_bytes((assets/'scientific-research.js').read_bytes())
         _deployment_site(root, standalone=deployment.get('mode')=='standalone',
                          installation={**deployment, 'presentation_revision': revision},
-                         pages=[page, root/'ant-farm.html', root/'ant-experiment.html'])
-        # The refreshed audit reader is created after the captured-page pass.
-        # Give it the same hosted observer instead of silently losing its light.
-        audit = page.read_text().replace('class="header-tools">', 'class="header-tools">' + light, 1)
-        audit = audit.replace('</head>', '<script>document.documentElement.dataset.wakeHostedStatus="true";</script>'
-                              '<script src="hosted-status.js" defer></script></head>', 1)
-        page.write_text(audit)
+                         pages=[root/'ant-farm.html', root/'ant-experiment.html'])
     # The served interface and public data have separate delivery lifecycles.
     # Bind only hosted exports; ordinary/local readers never discover GitHub.
     data_assets=('public-data.js','map.js','map3d.js','flat-view.js','console-tools.js')
@@ -143,7 +117,7 @@ def bind_hosted_status(site, repository, revision):
         deployment_path.write_text(json.dumps(deployment))
         for page_path in root.rglob('*.html'):
             relative=page_path.relative_to(root)
-            if 'inspect' in relative.parts or 'nodes' in relative.parts or 'self-correction' in relative.parts or page_path.name=='ant-experiment.html':
+            if 'nodes' in relative.parts or page_path.name=='ant-experiment.html':
                 continue
             page=page_path.read_text()
             if 'window.WAKE_DEPLOYMENT=' in page:
@@ -163,23 +137,9 @@ def bind_hosted_status(site, repository, revision):
                         lambda match:match.group(1)+f'<script src="{prefix}public-data.js?v={revision[:12]}"></script>',page,count=1)
             # Browser caches must not retain an older status/aggregation contract
             # after a presentation release, especially across Safari navigation.
-            page=re.sub(r'((?:nav\.js|masthead\.css|installation-console\.js|hosted-status\.js|scientific-research\.js|reader-data\.js))(?:\?v=[^"<]+)?"',
+            page=re.sub(r'((?:nav\.js|masthead\.css|installation-console\.js|hosted-status\.js|reader-data\.js|ant-farm\.js|bob-ant-farm\.js))(?:\?v=[^"<]+)?"',
                         lambda match:match.group(1)+'?v='+revision[:12]+'"',page)
             page_path.write_text(page)
-    shutil.copytree(assets / 'self-correction', site / 'self-correction', dirs_exist_ok=True)
-    # This independent reader has no generated masthead binding. Give it only
-    # the identified root snapshot transport, never operator/runtime controls.
-    correction = site / 'self-correction/index.html'
-    correction_binding = {'schema': 1, 'snapshot_only': True,
-                          'public_data': {'repository': repository, 'branch': 'wake-public',
-                                          'installation_id': manifest['installation_id'], 'prefix': ''}}
-    encoded_binding = json.dumps(correction_binding).replace('<', '\\u003c').replace('>', '\\u003e').replace('&', '\\u0026')
-    page = correction.read_text().replace('<head>', '<head><script>window.WAKE_DEPLOYMENT='
-            + encoded_binding + ';</script><script src="../public-data.js?v='
-            + revision[:12] + '"></script>', 1)
-    page = re.sub(r'((?:self-correction\.js|self-correction\.css))(?:\?v=[^"<]+)?"',
-                  lambda match: match.group(1) + '?v=' + revision[:12] + '"', page)
-    correction.write_text(page)
     manifest['presentation'] = {'source_revision': revision, 'hosted_status': config,
                                 'data_transport':'github-pinned@1'}
     encoded = json.dumps(manifest, sort_keys=True)

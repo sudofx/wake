@@ -342,8 +342,7 @@ class GroupEditorialTests(unittest.TestCase):
         statement['self_observation']['revision'] += 1
         self.assertTrue(editorial_due(group, packet))
 
-    def test_overview_includes_older_topics_and_observation_is_bound_to_publication(self):
-        from wake.group_editorial import with_farm_observation
+    def test_overview_includes_older_topics_and_is_bound_to_publication(self):
         state = deepcopy(self.engines[0].store.load())
         state['projects'] = {f'p{i}': {'id':f'p{i}', 'domain':domain}
                              for i,domain in enumerate(('memory','preferences','wake_self_study','inquiry'))}
@@ -354,18 +353,13 @@ class GroupEditorialTests(unittest.TestCase):
         summary = input_snapshot(None, 'wake', self.members[0], record_snapshot=(state, 'a'*64))
         self.assertEqual({n['domain'] for n in summary['stories'][0]['statement']['topic_overview']},
                          {'memory','preferences','wake_self_study','inquiry'})
-        observation = {'schema':'bob-farm-observation@1','status':'available','scope':'programmed-simulation-only',
-            'revision':'b'*40,'source':'https://raw.githubusercontent.com/sudofx/wake/'+('b'*40)+'/farm.json',
-            'captured_at':'2026-10-27T17:00:00Z','before':{'ants':64},'after':{'ants':65}}
-        packet = with_farm_observation(self.packet, observation)
-        self.assertNotIn('farm_observation', self.packet['inputs'][0]['stories'][0]['statement'])
+        packet = self.packet
         writer = StructuredWriter(); engine = self.engines[0]; before = deepcopy(engine.store.load())
         with engine.store.lock():
             result = engine.synthesize_group(writer, packet, 1)
         self.assertEqual(result['status'], 'editorial_completed')
         supplied = writer.request['context']['group']['inputs'][0]['stories'][0]
-        self.assertEqual(supplied['statement']['farm_observation'], observation)
-        self.assertEqual(supplied['sources'][0]['source'], observation['source'])
+        self.assertNotIn('farm_observation', supplied['statement'])
         p = publication(packet, 1, result['article'], result['id'], {'name':'fixture','model':writer.model})
         self.grant(engine,p); engine.store.append('group_bob_published', {'publication':p})
         after = engine.store.load()
@@ -373,8 +367,8 @@ class GroupEditorialTests(unittest.TestCase):
             self.assertEqual(after[key], before[key])
         self.assertEqual(engine.store.audit()[0], after)
 
-    def test_full_installation_keeps_topic_overviews_and_farm_within_provider_budget(self):
-        from wake.group_editorial import request, with_farm_observation
+    def test_full_installation_keeps_topic_overviews_within_provider_budget(self):
+        from wake.group_editorial import request
         from wake.providers import provider_input_chars
         state = deepcopy(self.engines[0].store.load())
         domains = ['assumptions','preferences','objectives','memory','continuity','responsibility','judgment','wake_self_study']
@@ -387,21 +381,10 @@ class GroupEditorialTests(unittest.TestCase):
         members = [str(parent*100+child)+'.wake' for parent in (1,2,3) for child in range(4)]
         packet = {'schema':1,'group_id':'wake','members':members,'leader':members[0],
             'inputs':[input_snapshot(None,'wake',member,record_snapshot=(state,'a'*64)) for member in members]}
-        observation = {'schema':'bob-farm-observation@1','status':'available','scope':'programmed-simulation-only',
-            'source':'https://raw.githubusercontent.com/sudofx/wake/'+('b'*40)+'/farm.json',
-            'revision':'b'*40,'sha256':'c'*64,'model_source_revision':'d'*40,
-            'captured_at':'2026-10-27T17:00:00Z','model':'pellet-tunnels@9',
-            'interval':{'from_tick':150000,'to_tick':156000},
-            'before':{'ants':91,'dug':288,'delivered':1388,'food_reserve':239,'protein_reserve':27,'queen_alive':True,'brood':8},
-            'after':{'ants':95,'dug':296,'delivered':1400,'food_reserve':249,'protein_reserve':49,'queen_alive':True,'brood':8},
-            'feedings':1,'food_added':100,'recent_intervals':[
-                {'from_tick':i*6000,'to_tick':(i+1)*6000,'workers':64,'deliveries':3,'new_tunnels':2,'feedings':1} for i in range(4)]}
-        packet = with_farm_observation(packet,observation)
         result = request(packet,2,max_context_chars=48000)
         self.assertLessEqual(provider_input_chars(result),48000)
         for item in result['context']['group']['inputs']:
             self.assertEqual({row['domain'] for row in item['stories'][0]['statement']['topic_overview']},set(domains))
-        self.assertEqual(result['context']['group']['inputs'][0]['stories'][0]['statement']['farm_observation']['status'],'available')
         self.assertNotIn('actions',result['response_schema']['properties'])
 
     def test_retained_grouped_citations_and_informal_language_publish_without_inference(self):

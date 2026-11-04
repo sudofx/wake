@@ -8,7 +8,6 @@ definitions. The wake entries describe its conceptual language rather than an AP
 | --- | --- |
 | **Accepted cycle** | A research attempt whose proposed changes passed WAKE's rules and were recorded. A workflow can succeed even when its attempt is rejected or deferred. |
 | **Application** | The rules and behavior for a particular kind of work. Research is WAKE's current application. |
-| **Inspection interface** | Static text, a resource manifest and reproducible evidence for an independent observer. It offers reading access without research or execution authority. See [inspection](inspection.md). |
 | **Improvement proposal** | Research-linked code offered for an isolated comparison. Recording it does not execute it; passing a task qualifies it for human review, not installation. See [workflow](improvements.md). |
 | **Improvement holdout** | Task cases generated after a candidate is recorded, from the same published task family. Expected answers stay outside candidate containers. This measures that task, not general intelligence. |
 | **Autonomous context policy** | An installed, bounded capability that lets WAKE propose, measure and adopt a context-selector change without per-change human review. The native record owns it; automatic rollback quarantines a bad change. See [bounded autonomy](autonomous-context.md). |
@@ -117,17 +116,9 @@ The former Sites service carried short-lived sampled worker observations. It is
 no longer a public dependency. The GitHub Actions light reports batch status;
 local installations retain native runtime inspection. See [hosted observation](cloud.md#hosted-execution-observations).
 
-### Source self-correction
+### Shared provider allowance
 
-An operator-triggered workflow that lets WAKE propose bounded edits to its own
-presentation/docs, validate and test them in isolation, and open a draft source
-review. It cannot merge itself, change its evaluator or grant broader permissions.
-The public page displays workflow observations separately from dated native-policy
-adaptation records. See [the guide](self-correction.md).
-
-### Provider pacing and capacity reserve
-
-Provider pacing spaces routine API calls across all nodes in an installation. The capacity reserve keeps part of the configured daily allowance for experimental and reader requests. These are transport limits; neither confirms provider quota availability or scientific success. See [the operational contract](cloud.md#spread-provider-calls-across-the-day).
+The installation shares one daily Gemini allowance across its nodes. The research-first profile admits one request at a time with no feature reserve or time-based spacing. The configured per-model ceilings govern admission. See [the operational contract](cloud.md#share-the-daily-provider-allowance).
 
 ### Hypothesis, protocol and scientific outcome
 

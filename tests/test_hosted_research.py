@@ -413,7 +413,8 @@ class ContinuationTests(unittest.TestCase):
                     return {'path': '.github/workflows/research-worker.yml', 'head_branch': 'master', 'run_number': 10}
                 return {'workflow_runs': [
                     {'id': 10, 'run_number': 10, 'status': 'completed', 'display_title': 'old run'},
-                    {'id': 11, 'run_number': 11, 'status': 'completed', 'display_title': 'WAKE — Research worker'}]}
+                    {'id': 11, 'run_number': 11, 'status': 'completed', 'display_title': 'WAKE — Research worker',
+                     'head_branch': 'master', 'actor': {'login': 'github-actions[bot]'}}]}
         with patch('scripts.github_research.api', return_value=Client()), \
              patch('scripts.github_research.enabled', return_value=True):
             continue_chain('10')
@@ -430,7 +431,9 @@ class ContinuationTests(unittest.TestCase):
                     return {'path': '.github/workflows/research-worker.yml', 'head_branch': 'master', 'run_number': 10}
                 return {'workflow_runs': [
                     {'id': 10, 'run_number': 10, 'status': 'in_progress', 'display_title': 'current'},
-                    {'id': 9, 'run_number': 9, 'status': 'queued', 'display_title': 'stale older start'}]}
+                    {'id': 9, 'run_number': 9, 'status': 'queued', 'display_title': 'stale older start'},
+                    {'id': 11, 'run_number': 11, 'status': 'completed',
+                     'head_branch': 'master', 'actor': {'login': 'human'}}]}
         with patch('scripts.github_research.api', return_value=Client()), \
              patch('scripts.github_research.enabled', return_value=True), \
              patch('scripts.github_research.checked_revision', return_value='a' * 40):

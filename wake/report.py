@@ -293,7 +293,8 @@ def _blog_html_text(value, post, state):
 
 def _blog_body_html(post, state):
     """Lay out an explicit final Summary marker without changing stored prose."""
-    body = str(post["body"])
+    from .reader_presentation import blog_display_body
+    body = blog_display_body(str(post["body"]))
     def paragraphs(value):
         return "".join(f"<p>{_blog_html_text(part, post, state)}</p>"
                        for part in re.split(r"\n\s*\n", value) if part.strip())
@@ -334,7 +335,7 @@ def _blog_html(post, state):
                 label += ' · revision ' + str(item['revision'])
             links.append('<a href="../index.html" data-record-url="' + html.escape(item['record_url'], quote=True) + '">' + html.escape(label) + '</a>')
             for source in item.get('sources', []):
-                if source.get('source', '').startswith('https://'):
+                if not source.get('id', '').startswith('farm-') and source.get('source', '').startswith('https://'):
                     links.append('<a href="' + html.escape(source['source'], quote=True) + '">source</a>')
         attributed += '<p>[' + str(number) + '] ' + '; '.join(links) + '</p>'
     body = (
@@ -471,9 +472,8 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         # the same theme file rather than receiving copied inline palettes.
         for name in ("style.css", "nav.css", "map.css", "map3d.css", "theme.css",
                      "nav.js", "map.js", "map3d.js", "flat-view.js", "app.js", "pet.js",
-                     "evaluation-view.js", "scientific-research.html", "scientific-research.js", "ant-experiment.html", "ant-experiment.css", "ant-experiment.js", "ant-farm.html", "ant-farm.css", "ant-colony.js", "ant-drawing.js", "ant-farm.js", "bob-ant-farm.js"):
+                     "evaluation-view.js", "ant-experiment.html", "ant-experiment.css", "ant-experiment.js", "ant-farm.html", "ant-farm.css", "ant-colony.js", "ant-drawing.js", "ant-farm.js", "bob-ant-farm.js"):
             atomic_write(target / name, (assets / name).read_text())
-        shutil.copytree(assets / 'self-correction', target / 'self-correction', dirs_exist_ok=True)
         # Static Nebula artwork is presentation-only. Publish the responsive
         # source set alongside the generated shell without routing binaries through text IO.
         background_source = assets / "backgrounds"
@@ -733,7 +733,6 @@ def _deployment_site(target, *, standalone, installation=None, pages=None):
         atomic_write(target / name, (assets / name).read_text())
     shell = (assets / "index.html").read_text()
     header = _masthead_navigation(re.search(r'<header class="masthead">.*?</header>', shell, re.S).group(0))
-    header=header.replace('>Research</a>','>Research</a><a href="scientific-research.html">Experiments</a>')
     domain = html.escape(group_hostname.strip(), quote=True) if standalone else ""
     header = header.replace('</a>\n    </div>', '</a><span class="node-domain">' + domain + '</span>\n    </div>', 1)
     snapshot_path = target / ("reader-data.json" if pages is not None else "wake-data.json")
@@ -742,12 +741,6 @@ def _deployment_site(target, *, standalone, installation=None, pages=None):
     header = re.sub(r'href="#([^"]+)"', r'href="index.html#\1"', header)
     for path in target.rglob('*.html') if pages is None else pages:
         page = path.read_text()
-        # Historical demos retain their own chrome.
-        if 'self-correction' in path.relative_to(target).parts:
-            page = re.sub(r'<script>window\.WAKE_(?:DEPLOYMENT|STANDALONE)=[^<]*</script>', '', page)
-            page = page.replace('<head>', '<head>' + marker, 1)
-            atomic_write(path, page)
-            continue
         if path.name in ('ant-farm.html', 'ant-experiment.html'):
             # Share navigation without adding research observers or changing the
             # colony's fixed dark palette, saved state or simulation controls.

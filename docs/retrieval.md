@@ -215,10 +215,6 @@ application state reconstruction. Application IDs share a record revision when
 installed together; independent installations must select separate records.
 
 
-The separate [inspection reading path](inspection.md) offers a compact orientation,
-manifest and progressively deeper static evidence. It requires no model-specific
-protocol or JavaScript and never reads public presentation back as runtime truth.
-
 ## Internal nodes and Console aggregation
 
 In the current one-container installation, three parents and nine children each
@@ -544,7 +540,7 @@ runtime channel; they never update accepted counts.
 Context tail queries reuse verified history for one read-only context build only;
 the next build checks the record again.
 
-Request pacing operates after context preparation at the shared provider-effect boundary. It does not change which historical information is available, alter retrieval scoring, or create accepted research while a request waits. See [shared daily admission](cloud.md#spread-provider-calls-across-the-day).
+Request pacing operates after context preparation at the shared provider-effect boundary. It does not change which historical information is available, alter retrieval scoring, or create accepted research while a request waits. See [shared daily admission](cloud.md#share-the-daily-provider-allowance).
 
 ### Experimental context
 

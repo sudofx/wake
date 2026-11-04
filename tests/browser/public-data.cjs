@@ -32,7 +32,6 @@ const server=http.createServer((req,res)=>{
   await page.evaluate(()=>localStorage.clear());await page.reload();await page.evaluate(()=>WakePublicData.ready);
   assert.equal((await read()).version,'b'.repeat(40),'New data must load without changing the interface');
   await page.evaluate(()=>{const a=document.createElement('a');a.id='download';a.href='installation.json';a.textContent='Download';document.body.append(a);});await page.waitForFunction(()=>document.querySelector('#download').href.startsWith('https://raw.githubusercontent.com/'));assert((await page.locator('#download').getAttribute('href')).includes('b'.repeat(40)));
-  await page.evaluate(()=>{const a=document.createElement('a');a.id='inspection';a.href='inspect/index.html';document.body.append(a);});await page.waitForFunction(()=>document.querySelector('#inspection').href.endsWith('/inspect/packet.md'));
   await page.evaluate(()=>{const a=document.createElement('a');a.id='feed';a.href='blog.xml';document.body.append(a);});await page.waitForFunction(()=>document.querySelector('#feed').href.endsWith('/wake-public/blog.xml'));
   const pinned=await page.evaluate(()=>WakePublicData.pin(new URL('blog.html',location.href)).href);
   latest='c'.repeat(40);const before=seen.filter(s=>s.includes('api.github.com')).length;

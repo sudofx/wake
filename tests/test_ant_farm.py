@@ -31,11 +31,11 @@ class AntFarmTests(unittest.TestCase):
             self.assertNotIn('runtime-activity.js', experiment)
             self.assertNotIn('public-data.js', experiment)
             self.assertIn('masthead.css', experiment)
-            for page in (habitat, experiment, (mirror / 'scientific-research.html').read_text()):
+            for page in (habitat, experiment):
                 self.assertEqual(page.count('<header class="masthead">'), 1)
                 self.assertIn('src="nav.js?', page)
                 header = page.split('<header class="masthead">', 1)[1].split('</header>', 1)[0]
-                for label in ('Explore', 'Research', 'Experiments', 'Journal', 'Bob’s Blog', 'GitHub'):
+                for label in ('Explore', 'Research', 'Journal', 'Bob’s Blog', 'GitHub'):
                     self.assertEqual(header.count('>' + label + '</a>'), 2, label)
                 self.assertIn('class="nav-group mobile-nav-menu"', header)
             self.assertIn('href="ant-farm.html"', (mirror / 'index.html').read_text())

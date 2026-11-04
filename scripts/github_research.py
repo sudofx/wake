@@ -200,20 +200,25 @@ def apply_provider_pacing_policy(root,policy):
 
 def control(action):
     client = api()
-    if action in ('stop', 'stop-reset-restart'):
-        client.request(f'actions/workflows/{WORKFLOW}/disable', method='PUT')
     if action == 'stop':
+        client.request(f'actions/workflows/{WORKFLOW}/disable', method='PUT')
         print('Hosted stop requested. The current batch drains and publishes.')
         return
     checked_revision(client)
-    if action == 'stop-reset-restart':
+    if action in ('restart', 'reset'):
+        client.request(f'actions/workflows/{WORKFLOW}/disable', method='PUT')
         deadline = time.monotonic() + 55 * 60
         while client.request(f'actions/workflows/{WORKFLOW}/runs?status=in_progress&per_page=1')['workflow_runs']:
             if time.monotonic() >= deadline:
-                raise TimeoutError('The prior writer did not drain; reset was not dispatched')
-            time.sleep(30)
+                raise TimeoutError(f'The prior writer did not drain; {action} was not dispatched')
+            time.sleep(15)
+    elif enabled(client):
+        running = client.request(f'actions/workflows/{WORKFLOW}/runs?status=in_progress&per_page=100')
+        if any(run.get('actor', {}).get('login') == 'github-actions[bot]' for run in running['workflow_runs']):
+            print('Hosted research already has an active run.')
+            return
     client.request(f'actions/workflows/{WORKFLOW}/enable', method='PUT')
-    inputs = {'mode': 'reset' if action == 'stop-reset-restart' else 'continue'}
+    inputs = {'mode': 'reset' if action == 'reset' else 'continue'}
     client.request(f'actions/workflows/{WORKFLOW}/dispatches', method='POST',
                    body={'ref': 'master', 'inputs': inputs})
     print('Hosted research ' + action + ' requested.')
@@ -231,7 +236,9 @@ def continue_chain(predecessor):
     # concurrency group. The dispatch identity makes retries idempotent.
     for page in range(1, 4):
         runs = client.request(f'actions/workflows/{WORKFLOW}/runs?per_page=100&page={page}')['workflow_runs']
-        if any(run['run_number'] > previous['run_number'] for run in runs):
+        if any(run['run_number'] > previous['run_number']
+               and run.get('actor', {}).get('login') == 'github-actions[bot]'
+               and run.get('head_branch') == 'master' for run in runs):
             # Run numbers survive static workflow naming and completed successors.
             # A delayed recovery must never restart an obsolete chain.
             print('A newer research run already owns continuation.')
@@ -516,7 +523,7 @@ def main():
     chain.add_argument('--predecessor', required=True)
     commands.add_parser('inspect')
     command = commands.add_parser('control')
-    command.add_argument('intent', choices=('start', 'stop', 'stop-reset-restart'))
+    command.add_argument('intent', choices=('start', 'stop', 'restart', 'reset'))
     args = parser.parse_args()
     if args.action == 'inspect':
         client = api()

@@ -2,11 +2,11 @@ name: diagnose-context
 on:
   workflow_dispatch:
     inputs:
-      candidate:
-        description: Optional full candidate commit for disposable comparison only; leaves runtime unchanged.
-        type: string
-        required: false
-        default: ''
+      source:
+        description: Compare the current master revision or inspect the installed runtime.
+        type: choice
+        default: installed
+        options: [installed, current-master]
       node:
         description: Optional single node for diagnosis; automatic checks cover all twelve.
         type: choice
@@ -105,7 +105,7 @@ jobs:
           path: control
       - id: policy
         env:
-          CANDIDATE: ${{ inputs.candidate }}
+          CANDIDATE: ${{ inputs.source == 'current-master' && github.sha || '' }}
         run: |
           python - <<'PYTHON'
           import json,os,re
@@ -129,7 +129,7 @@ jobs:
       - name: Build bounded requests without provider or control credentials
         env:
           WAKE_HOSTED_STATE_KEY: ${{ secrets.WAKE_HOSTED_STATE_KEY }}
-          CANDIDATE_PROBE: ${{ inputs.candidate != '' }}
+          CANDIDATE_PROBE: ${{ inputs.source == 'current-master' }}
         run: |
           if [ "$CANDIDATE_PROBE" = true ]; then
             python control/scripts/diagnose_hosted_context.py --snapshot checkpoint --source runtime --policy control/hosted-runtime.json --node '${{ matrix.node }}' --output 'context-${{ matrix.node }}.json' --candidate

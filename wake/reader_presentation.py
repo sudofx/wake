@@ -4,22 +4,35 @@ import re
 from pathlib import Path
 
 
+# This paragraph appeared in Bob's introductory article. Omit it only in
+# reader views so its original publication and citation receipts still replay.
+RETIRED_FARM_PARAGRAPH = 'To better understand how order arises from simple rules, we look at a simulation of an ant colony.'
+
+
+def blog_display_body(body):
+    return '\n\n'.join(part for part in body.split('\n\n')
+                       if not part.lstrip().startswith(RETIRED_FARM_PARAGRAPH))
+
+
 def retired_reader_asset(path):
     """Identify derived assets removed from already captured public snapshots."""
     return (path.name == 'help.js'
+            or path.name in ('scientific-research.html', 'scientific-research.js')
+            or bool({'inspect', 'self-correction'}.intersection(path.parts))
             or path.name.startswith(('ask-bob', 'bob-chat', 'bob-markdown'))
             or ('reader-records' in path.parts and 'guides' in path.parts))
 
 
 def remove_retired_reader(site):
-    """Retire removed reader UI without changing research/inspection bytes."""
+    """Retire removed reader UI without changing research packets."""
     site = Path(site)
     marker = '/* Private browser conversation views; never research authority or exported state. */'
     app = '/* Render exported research records and reader navigation; browser interactions never mutate authority. */'
     for path in site.rglob('*'):
-        if not path.is_file() or 'inspect' in path.relative_to(site).parts:
+        if not path.is_file():
             continue
-        if retired_reader_asset(path):
+        relative = path.relative_to(site)
+        if retired_reader_asset(relative):
             path.unlink()
         elif path.suffix == '.html':
             text = path.read_text()
@@ -37,6 +50,9 @@ def remove_retired_reader(site):
             text = re.sub(r'<script\b[^>]*src="[^"]*\bhelp\.js(?:\?[^"]*)?"[^>]*>\s*</script>', '', text)
             text = re.sub(r'<button\b[^>]*\bdata-help="[^"]*"[^>]*>.*?</button>', '', text, flags=re.S)
             text = re.sub(r'<div\b[^>]*\bid="help-layer"[^>]*>.*?</section>\s*</div>', '', text, flags=re.S)
+            text = re.sub(r'<a\b[^>]*href="(?:\.\./)*(?:inspect/(?:index\.html)?|self-correction/(?:index\.html)?|scientific-research\.html)"[^>]*>[^<]*</a>', '', text)
+            if 'blog' in relative.parts:
+                text = re.sub(r'<p>\s*' + re.escape(RETIRED_FARM_PARAGRAPH) + r'[^<]*</p>', '', text)
             path.write_text(text)
 
 def refresh_public_reader(site):

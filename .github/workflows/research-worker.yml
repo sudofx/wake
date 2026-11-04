@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: Continue existing research or start from cycle zero.
+        description: Internal worker dispatch. Use research-control to operate WAKE.
         type: choice
         options: [continue, reset]
         default: continue
@@ -24,7 +24,7 @@ concurrency:
 
 jobs:
   research:
-    if: github.ref_name == 'master'
+    if: github.ref_name == 'master' && github.actor == 'github-actions[bot]' && github.triggering_actor == 'github-actions[bot]'
     runs-on: ubuntu-latest
     timeout-minutes: 240
     env:
@@ -69,7 +69,7 @@ jobs:
           fi
   continue:
     needs: research
-    if: always() && !cancelled()
+    if: always() && !cancelled() && needs.research.result != 'skipped'
     runs-on: ubuntu-latest
     timeout-minutes: 75
     concurrency:

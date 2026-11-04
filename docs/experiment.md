@@ -74,11 +74,6 @@ software boundaries with deterministic inputs. Its results are not research cycl
 or cross-model evidence. Independent container verification is documented in
 [multiple installations](installations.md#verification-and-maintenance).
 
-[Inspection evaluation](inspection.md) asks a fresh observer to reconstruct the
-architecture and critique evidence. A reproducible kernel fixture and valid links
-are automated checks; unfamiliar-model accuracy requires a separate recorded
-evaluation and must not be inferred from those checks.
-
 > **Current evaluation protocol.** This defines how live and comparative **WAKE✳︎** runs should be interpreted. Observations and proposed mechanisms remain separate, and rejected, deferred and failed attempts stay in the experimental record.
 
 ## Interpret the internal-node workload
@@ -567,7 +562,7 @@ that WAKE's architecture improves research.
 
 ### Research rate and experimental capacity
 
-Routine installation work can be spread across the day with a separate reserve for computational research and reader requests. Confirmed provider attempts and zero-effect queue denials are counted separately; pacing is an operational constraint, not scientific progress. See [the current policy](cloud.md#spread-provider-calls-across-the-day).
+The research-first profile shares a single daily allowance across research and computational trials. Confirmed provider attempts and zero-effect queue denials are counted separately. See [the current policy](cloud.md#share-the-daily-provider-allowance).
 
 ### Executable scientific investigations
 

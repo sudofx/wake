@@ -135,14 +135,6 @@ Source tests and mirror delivery do not establish resident-runtime adoption.
 
 ## Try bounded operational self-correction in isolation
 
-[Open Self-correction](https://sudofx.github.io/wake/self-correction/) for current
-source-correction runs and dated native adaptation observations. Its
-**Earlier operational recovery experiment** section retains the exact synthetic
-results described below. For actual presentation/docs source repairs, use the
-[source-correction workflow](self-correction.md).
-That historical section presents an isolated synthetic run and downloadable
-results. It does not enable the demonstrated adjustments in production.
-
 ```sh
 python -m wake improve recovery-demo --output /tmp/wake-recovery-new
 ```
