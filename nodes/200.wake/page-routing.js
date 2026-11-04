@@ -1,21 +1,24 @@
 /* Separate static reader documents; old shared links remain valid on Pages. */
 (() => {
   'use strict';
-  const pages={home:'index.html',discoveries:'research.html',topics:'topics.html',blog:'blog.html',projects:'projects.html',journal:'journal.html',lab:'lab.html',metrics:'metrics.html',evidence:'evidence.html',history:'history.html',about:'about.html'};
+  const consoleRecords='console-records.html';
+  const pages={home:'index.html',discoveries:'research.html',topics:'topics.html',blog:'blog.html',projects:'projects.html',journal:'journal.html',lab:consoleRecords,metrics:consoleRecords,evidence:'evidence.html',history:'history.html',about:'about.html'};
   const script=document.currentScript;
   const root=new URL('.',script.src);
   const current=document.documentElement.dataset.wakePage;
   const redirect=()=>{
-    if(!current)return;
+    if(!current)return false;
     const section=location.hash.slice(1).split('/')[0];
     if(pages[section] && section!==current){
       const url=new URL(pages[section],root);url.search=location.search;
-      if(location.hash.includes('/'))url.hash=location.hash;
+      if(location.hash.includes('/')||pages[section]===consoleRecords)url.hash=location.hash;
       document.documentElement.style.visibility='hidden';
       location.replace(url.href);
+      return true;
     }
+    return false;
   };
-  redirect();
+  if(redirect())return;
   window.addEventListener('hashchange',redirect);
   const rewrite=container=>{
     const links=container.matches?.('a[href]')?[container]:container.querySelectorAll?.('a[href]')||[];
@@ -26,11 +29,12 @@
       if(!pages[section] || !/\/(?:index\.html)?$/.test(url.pathname) && !Object.values(pages).some(page=>url.pathname.endsWith('/'+page)))continue;
       const filename=pages[section];
       url.pathname=url.pathname.slice(0,url.pathname.lastIndexOf('/')+1)+filename;
-      if(!route.includes('/'))url.hash='';
+      if(!route.includes('/')&&filename!==consoleRecords)url.hash='';
       if(link.href!==url.href)link.href=url.href;
     }
   };
   document.addEventListener('DOMContentLoaded',()=>{
+    if(!document.body)return;
     rewrite(document);
     new MutationObserver(records=>{for(const record of records){if(record.type==='attributes')rewrite(record.target);else for(const node of record.addedNodes)if(node.nodeType===1)rewrite(node);}}).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['href']});
   });

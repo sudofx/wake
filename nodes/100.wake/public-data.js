@@ -22,6 +22,7 @@
     return JSON.parse(new TextDecoder().decode(bytes));
   };
   const transport={revision:null,mode:'loading',limited:config.fallback==='recent-overview'};
+  let verifiedManifestURL,verifiedManifestBody;
   transport.ready=(async()=>{
     let pinned=Boolean(requested && requested!=='bundled');
     try{
@@ -62,6 +63,8 @@
          Date.parse(bundled.generated)>Date.parse(manifest.generated)){
         transport.mode='bundled';return null;
       }
+      verifiedManifestURL=new URL('installation.json',root).href;
+      verifiedManifestBody=JSON.stringify(manifest);
       transport.revision=revision;transport.mode='published';
       transport.discovery=recovered?'last-verified-snapshot':'current-or-cached-revision';
       // Navigating must not extend discovery's TTL indefinitely.
@@ -84,6 +87,12 @@
   transport.resolve=async input=>targetFor(input,await transport.ready).href;
   transport.fetch=async(input,options={})=>{
     const target=await transport.resolve(input);
+    if(target===verifiedManifestURL){
+      if(options.signal?.aborted)throw options.signal.reason;
+      // Picker and reader retries share the exact immutable manifest that
+      // discovery already verified. Give each reader its own response body.
+      return new Response(verifiedManifestBody,{headers:{'Content-Type':'application/json'}});
+    }
     const settings={...options,credentials:'omit',referrerPolicy:'no-referrer',signal:options.signal||AbortSignal.timeout(12000)};
     delete settings.headers;delete settings.body;settings.method='GET';
     return nativeFetch(target,settings);

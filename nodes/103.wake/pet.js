@@ -107,6 +107,17 @@ window.WakePetReady=(async () => {
     });
     const latest=stories[0],storyLink=latest?'#blog/'+encodeURIComponent(latest.id):'#blog';
     const stamp=latest?.published_at||s.invocations?.[latest?.created_by]?.finished||s.invocations?.[latest?.created_by]?.time;
+    // The reader overview orders notebook revisions by recorded time across
+    // nodes. Their local accepted-cycle numbers cannot establish chronology.
+    const recentNotebook=Object.values(s.notebooks||{}).at(-1);
+    const leadProject=projects.filter(p=>p.status==='active'&&p.question).at(-1);
+    const seed=(s.research_topics||[]).find(topic=>topic.enabled!==false&&topic.seed_question);
+    const recordedQuestion=recentNotebook?.next_questions?.match(/[^\n?]*\?/u)?.[0]?.trim();
+    const leadQuestion=recentNotebook?(s.projects?.[recentNotebook.project]?.question||recordedQuestion||recentNotebook.title):
+      leadProject?.question||seed?.seed_question;
+    const leadLink=recentNotebook?'#projects/notebook:'+encodeURIComponent(recentNotebook.id):
+      leadProject?'#projects/'+encodeURIComponent(leadProject.id):'#topics';
+    const leadLabel=recentNotebook?'RECENT RESEARCH':leadProject?'OPEN INVESTIGATION':seed?'STARTING QUESTION':'EXPLORE WAKE';
     const questionTopics=new Set();
     const questions=books.filter(n=>{if(!n.next_questions||questionTopics.has(n.domain))return false;questionTopics.add(n.domain);return true;}).slice(0,3);
     const readingMinutes=latest?Math.max(1,Math.ceil(String(latest.body).split(/\s+/).length/200)):0;
@@ -114,10 +125,10 @@ window.WakePetReady=(async () => {
       <div class="attention-home">
         <section class="attention-opening" aria-labelledby="attention-question">
           <div class="attention-invitation">
-            <p class="eyebrow">AN OPEN INVESTIGATION</p>
-            <h1 id="attention-question">What makes something<br><em>a memory?</em></h1>
-            <p class="attention-deck">A mark can remain after an event. When does it actually change what happens next?</p>
-            <div class="attention-actions"><a class="primary-link" href="${storyLink}">${latest?'Start with Bob’s latest story':'Explore Bob’s Blog'} <span aria-hidden="true">↗</span></a></div>
+            <p class="eyebrow">${leadLabel}</p>
+            <h1 id="attention-question">${esc(leadQuestion||'Follow the research.')}</h1>
+            <p class="attention-deck">${esc(recentNotebook?.summary||'Follow the questions, evidence, and decisions in WAKE’s research record.')}</p>
+            <div class="attention-actions"><a class="primary-link" href="${leadLink}">${recentNotebook?'Read the notebook':leadProject?'Open the research project':'Explore research topics'} <span aria-hidden="true">↗</span></a></div>
             <p class="attention-context">WAKE✳︎ builds infrastructure for durable, accountable work across interchangeable intelligences. Research is its first application. Bob explains the recorded work for curious readers.</p>
           </div>
           <article class="attention-feature" aria-label="Bob’s latest story">

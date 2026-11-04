@@ -1287,3 +1287,12 @@ body.research-page #main{box-sizing:border-box;width:100%!important;max-width:no
 html{--console-edge:20px}
 html.console-iphone{--console-edge:10px}
 body.research-page #main{padding-inline:var(--console-edge)!important}
+
+.research-diagnostics{margin:16px 0;padding:16px 20px}
+.research-diagnostics summary{cursor:pointer;font-weight:650;min-height:44px;align-content:center;list-style:none}
+.research-diagnostics summary::-webkit-details-marker{display:none}
+.research-diagnostics summary::before{content:'+';display:inline-block;width:1.3em;color:var(--cyan)}
+.research-diagnostics[open] summary::before{content:'−'}
+.research-diagnostics p{margin:10px 0}
+.research-diagnostics nav{display:flex;gap:8px 20px;flex-wrap:wrap}
+.research-diagnostics a{display:inline-flex;align-items:center;min-height:44px;text-decoration:underline}
