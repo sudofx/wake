@@ -67,6 +67,39 @@ jobs:
           else
             python scripts/github_research.py run
           fi
+      - name: Report bounded startup failure diagnostics
+        if: failure()
+        run: |
+          python - <<'PY'
+          import json, os, re
+          from pathlib import Path
+          root = Path(os.environ['WAKE_INSTALLATION_DATA'])
+          for path in [root / 'controller.log', *sorted(root.glob('nodes/*/worker.log'))]:
+              with path.open('rb') as stream:
+                  stream.seek(max(0, path.stat().st_size - 32768))
+                  lines = stream.read(32768).decode('utf-8', errors='replace').splitlines()
+              # Only source locations and exception classes. Never log request
+              # bodies, exception messages, credentials or authority contents.
+              frames = []
+              errors = []
+              for line in lines:
+                  frame = re.fullmatch(r'  File ".*?/(wake|scripts)/([A-Za-z0-9_/.]+\\.py)", line ([0-9]+), in ([A-Za-z0-9_<>]+)', line)
+                  if frame:
+                      frames.append({'source': frame[1] + '/' + frame[2], 'line': int(frame[3]), 'function': frame[4]})
+                  error = re.match(r'^([A-Za-z_][A-Za-z0-9_]*(?:Error|Exception)):', line)
+                  if error:
+                      errors.append(error[1])
+              print(json.dumps({'hosted_failure_log': str(path.relative_to(root)),
+                                'bytes': path.stat().st_size, 'frames': frames[-12:], 'errors': errors[-4:]}))
+          for path in sorted(root.glob('nodes/*/runtime.json')):
+              try:
+                  value = json.loads(path.read_bytes()[:32768])
+                  state = value.get('state')
+                  print(json.dumps({'hosted_failure_node': path.parent.name,
+                                    'state': state if state in ('stopped','paused','running','waiting','standby','blocked','unavailable') else 'unknown'}))
+              except (OSError, ValueError):
+                  pass
+          PY
   continue:
     needs: research
     if: always() && !cancelled() && needs.research.result != 'skipped'
