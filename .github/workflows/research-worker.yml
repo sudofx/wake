@@ -83,7 +83,7 @@ jobs:
               frames = []
               errors = []
               for line in lines:
-                  frame = re.fullmatch(r'  File ".*?/(wake|scripts)/([A-Za-z0-9_/.]+\\.py)", line ([0-9]+), in ([A-Za-z0-9_<>]+)', line)
+                  frame = re.fullmatch(r'  File ".*?/(wake|scripts)/([A-Za-z0-9_/.]+\.py)", line ([0-9]+), in ([A-Za-z0-9_<>]+)', line)
                   if frame:
                       frames.append({'source': frame[1] + '/' + frame[2], 'line': int(frame[3]), 'function': frame[4]})
                   error = re.match(r'^([A-Za-z_][A-Za-z0-9_]*(?:Error|Exception)):', line)
