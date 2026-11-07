@@ -50,10 +50,17 @@ def main():
                 '--config', str(root / 'config/wake.toml'), '--host', '127.0.0.1', '--port', '0', '--provider', 'fixture'],
                 env=env, stdout=log, stderr=log, start_new_session=True)
             try:
-                process.wait(timeout=60)
+                process.wait(timeout=300)
             except subprocess.TimeoutExpired:
                 pass
             finally:
+                children = Path(f'/proc/{process.pid}/task/{process.pid}/children')
+                for pid in ([str(process.pid)] + (children.read_text().split() if children.exists() else [])):
+                    path = Path('/proc') / pid / 'status'
+                    if path.exists():
+                        fields = {line.split(':')[0]: line.split(':', 1)[1].strip() for line in path.read_text().splitlines()
+                                  if line.split(':')[0] in ('State', 'VmRSS', 'VmHWM', 'Threads')}
+                        print(json.dumps({'startup_process': pid, **fields}), flush=True)
                 for node in NODE_IDS:
                     base = root / 'nodes' / node
                     print(json.dumps({'startup_node': node, 'runtime': (base / 'runtime.json').exists(),

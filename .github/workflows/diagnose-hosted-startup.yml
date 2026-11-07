@@ -1,5 +1,5 @@
 name: diagnose-startup
-# Include numeric record and export sizes in the isolated startup observation.
+# Observe completed startup or its late failure, including bounded process memory.
 on:
   workflow_dispatch:
   push:
