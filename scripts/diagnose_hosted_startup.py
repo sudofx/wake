@@ -30,6 +30,15 @@ def main():
         from wake.research_expansion import apply_hosted_configuration
         apply_hosted_configuration(root, policy['research_expansion_enabled'], policy.get('research_candidate_catalog_enabled', False))
     print(json.dumps({'diagnostic_generation': manifest['generation'], 'provider_calls': 0, 'remote_record_writes': 0}), flush=True)
+    from wake.record_store import RecordStore
+    from wake.installation import NODE_IDS
+    for node in NODE_IDS:
+        store = RecordStore(root / 'nodes' / node / 'record')
+        state = store.load()
+        print(json.dumps({'startup_record': node, 'bytes': Path(store.path).stat().st_size,
+            'counts': {key: len(state.get(key, {})) for key in ('invocations', 'evidence', 'journal', 'notebooks', 'research')}}), flush=True)
+        store.close()
+        del state, store
     with tempfile.TemporaryDirectory() as temporary:
         # Inject stack sampling without changing the installed runtime. Never
         # pass provider credentials or checkpoint capabilities to the processes.
@@ -41,10 +50,15 @@ def main():
                 '--config', str(root / 'config/wake.toml'), '--host', '127.0.0.1', '--port', '0', '--provider', 'fixture'],
                 env=env, stdout=log, stderr=log, start_new_session=True)
             try:
-                process.wait(timeout=100)
+                process.wait(timeout=60)
             except subprocess.TimeoutExpired:
                 pass
             finally:
+                for node in NODE_IDS:
+                    base = root / 'nodes' / node
+                    print(json.dumps({'startup_node': node, 'runtime': (base / 'runtime.json').exists(),
+                        'export': (base / 'site/current').exists(),
+                        'largest_files': sorted([p.stat().st_size for p in (base / 'site').rglob('*') if p.is_file()], reverse=True)[:5]}), flush=True)
                 os.killpg(process.pid, signal.SIGTERM)
                 try:
                     process.wait(timeout=20)
