@@ -21,6 +21,10 @@ MEMBER_BUDGET = 3000
 SYNTHESIS_CONTRACT = 'bob-system-synthesis@1'
 
 
+class MemberInputBudgetExceeded(Rejected):
+    """Even the required attribution does not fit this editorial packet."""
+
+
 def bound_member_input(packet, *, budget=MEMBER_BUDGET):
     """Keep every topic pointer and attribution before optional prose detail."""
     def size():
@@ -47,7 +51,12 @@ def bound_member_input(packet, *, budget=MEMBER_BUDGET):
             row['excerpted'] = True
     while size() > budget and len(packet['stories']) > 1:
         packet['stories'].pop(1)
-    require(size() <= budget, 'Member editorial summary ceiling reached')
+    if size() > budget:
+        activity = packet['stories'][0].get('statement', {})
+        if activity.get('attempts'):
+            activity['attempts_omitted'] = len(activity.pop('attempts'))
+    if size() > budget:
+        raise MemberInputBudgetExceeded('Member editorial summary ceiling reached')
     return packet
 
 

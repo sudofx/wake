@@ -421,17 +421,23 @@ def export(store=None, destination="site", experiment=None, operation=None, brow
         member = os.environ.get("WAKE_PUBLIC_HOSTNAME", "")
         instance_id = os.environ.get("WAKE_GROUP_INSTANCE", "")
         if standalone and group_id and member and instance_id:
-            from .group_editorial import input_snapshot
+            from .group_editorial import MemberInputBudgetExceeded, input_snapshot
             from .group_peers import group_bob_snapshot, group_research_snapshot
             # All peer views share the export's verified head. HTTP serves these
             # disposable files without opening authority or competing with work.
             snapshot = (state, head)
             packets = {
-                "bob-input.json": input_snapshot(None, group_id, member, record_snapshot=snapshot),
                 "bob-publication.json": state.get("group_bob", {}).get("publication"),
                 "bob.json": group_bob_snapshot(None, group_id, instance_id, record_snapshot=snapshot),
                 "research.json": group_research_snapshot(None, group_id, instance_id, record_snapshot=snapshot),
             }
+            try:
+                packets['bob-input.json'] = input_snapshot(None, group_id, member, record_snapshot=snapshot)
+            except MemberInputBudgetExceeded:
+                # The editorial gateway requires a complete group. Withhold
+                # this packet rather than serving stale input or blocking the
+                # node's research views and startup on an optional article.
+                (target / 'group/bob-input.json').unlink(missing_ok=True)
             for name, packet in packets.items():
                 atomic_write(target / "group" / name, json.dumps(packet, separators=(",", ":")))
         assets = Path(__file__).parent / "assets"

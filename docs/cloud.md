@@ -498,13 +498,10 @@ checkpoint waits around the two-hour research window. Neither adds a cron trigge
 For a read-only check of enabled intent and numeric API allowance, dispatch
 `hosted-control.yml` with `action=inspect`; it does not open records or providers.
 
-Full node website exports share two installation-wide rendering slots. Each
-export reads complete history; bounding concurrent renderers avoids multiplying
-their temporary memory across twelve workers during startup. The slots cover
-presentation work only and release automatically when a renderer exits. Hosted
-startup reports an owned worker's exit code immediately instead of waiting for
-the fifteen-minute readiness timeout. Negative exit codes identify OS signals;
-they do not, by themselves, explain why the operating system sent the signal.
+Hosted startup reports an owned worker's exit code immediately instead of waiting
+for the readiness timeout. A Bob input that exceeds its size limit is withheld
+from the editorial gateway. That prevents partial group synthesis and lets the
+node finish exporting research, retain its last published article and start work.
 
 The dedicated release stores authenticated encrypted blocks. Unchanged blocks
 are reused and unreferenced ones are removed automatically. The dedicated

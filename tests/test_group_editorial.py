@@ -387,6 +387,27 @@ class GroupEditorialTests(unittest.TestCase):
             self.assertEqual({row['domain'] for row in item['stories'][0]['statement']['topic_overview']},set(domains))
         self.assertNotIn('actions',result['response_schema']['properties'])
 
+    def test_oversized_bob_packet_does_not_block_research_export(self):
+        from wake.group_editorial import bound_member_input
+        from wake.report import export
+        engine = self.engines[0]
+        before, head = engine.store.replay()
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory)
+            packet = target / 'group/bob-input.json'
+            packet.parent.mkdir()
+            packet.write_text('{"stale": true}')
+            with patch.dict(os.environ, {'WAKE_GROUP_ID': 'wake',
+                    'WAKE_PUBLIC_HOSTNAME': self.members[0], 'WAKE_GROUP_INSTANCE': self.members[0]}), \
+                    patch('wake.group_editorial.bound_member_input', side_effect=lambda value: bound_member_input(value, budget=1)):
+                result = export(engine.store, target, standalone=True)
+            self.assertEqual(result['head'], head)
+            self.assertEqual((target / 'head.txt').read_text().strip(), head)
+            self.assertTrue((target / 'group/research.json').is_file())
+            self.assertTrue((target / 'group/bob-publication.json').is_file())
+            self.assertFalse(packet.exists())
+        self.assertEqual(engine.store.replay(), (before, head))
+
     def test_retained_grouped_citations_and_informal_language_publish_without_inference(self):
         from wake.group_editorial import synchronize, validate_grounding
         class ExactWriter(Writer):

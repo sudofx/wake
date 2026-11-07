@@ -549,7 +549,6 @@ class Controller:
             url = f'http://127.0.0.1:{self.port}'
             env = dict(os.environ, WAKE_RUNTIME_CHILD='1', WAKE_DEV_RELOAD='false',
                 WAKE_INSTALLATION_WORKER='1', WAKE_INSTALLATION_URL=url,
-                WAKE_INSTALLATION_EXPORT_SLOTS=str(self.root / 'export-slots'),
                 WAKE_INSTALLATION_SCHEDULE_FILE=str(self.root / 'provider-schedule.json'),
                 WAKE_CONTROLLER_PID=str(os.getpid()),
                 WAKE_INSTALLATION_TOKEN=self.token, WAKE_GROUP_ID='wake',

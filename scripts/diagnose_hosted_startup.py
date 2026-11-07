@@ -34,7 +34,9 @@ except Exception as exc:
             frames.append({'file':str(path.relative_to(source)), 'line':frame.lineno, 'function':frame.name})
     print(json.dumps({'failure':type(exc).__name__,'phase':phase,'frames':frames}),flush=True)
     sys.exit(1)
-print(json.dumps({'startup_export':'verified','node':'300.wake'}),flush=True)
+packet=site/'current/group/bob-input.json'
+print(json.dumps({'startup_export':'verified','node':'300.wake',
+    'bob_input_bytes':packet.stat().st_size if packet.exists() else None}),flush=True)
 '''
 
 

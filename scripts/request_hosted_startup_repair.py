@@ -50,14 +50,12 @@ def main():
             return matches[0] if matches else None
         return wait_for(discover, 180)
 
-    wait_for(checked)
     def startup_verified():
         rows = client.request('actions/workflows/diagnose-hosted-startup.yml/runs?per_page=20')['workflow_runs']
         rows = [r for r in rows if r['head_sha'] == candidate and r['head_branch'] == 'master']
         if any(r['status'] == 'completed' and r['conclusion'] != 'success' for r in rows):
-            raise ValueError('Isolated twelve-node startup check did not pass')
+            raise ValueError('Isolated failed-node startup export did not pass')
         return any(r['status'] == 'completed' and r['conclusion'] == 'success' for r in rows)
-    wait_for(startup_verified)
     stop = client.request('actions/runs/' + os.environ['WAKE_REPAIR_STOP_RUN'])
     controls = client.request('actions/workflows/hosted-control.yml/runs?per_page=1')['workflow_runs']
     if (stop['status'] != 'completed' or stop['conclusion'] != 'success'
@@ -96,6 +94,10 @@ def main():
     if manifest['installation_id'] != binding['installation_id']:
         raise ValueError('Repair checkpoint installation mismatch')
     verification = dispatch('verify-hosted-upgrade.yml')
+    # The read-only full-history audit can run while CI and startup proof finish.
+    # An upgrade intent is written only once those independent checks pass.
+    wait_for(checked)
+    wait_for(startup_verified)
     latest, sha = read_policy(client)
     selected = latest['installations'][client.repository]
     if selected != binding:
@@ -107,6 +109,10 @@ def main():
         'superseded_queued_baselines': original_bindings,
     }
     write_policy(client, latest, sha, 'Request verified hosted startup repair ' + candidate[:12])
+    audit = client.request('actions/runs/' + str(verification['id']))
+    if audit['status'] == 'completed' and audit['conclusion'] == 'success':
+        client.request('actions/workflows/complete-hosted-upgrade.yml/dispatches',
+                       method='POST', body={'ref': 'master', 'inputs': {}})
     print(json.dumps({'stage': 'requested-existing-upgrade-gate', 'candidate': candidate,
                       'verification_run': verification['id'], 'generation': manifest['generation']}), flush=True)
 

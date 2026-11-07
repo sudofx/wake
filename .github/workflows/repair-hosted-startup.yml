@@ -23,7 +23,7 @@ jobs:
         with:
           python-version: '3.13'
       - run: python -m pip install --disable-pip-version-check -e '.[hosted]'
-      - name: Require checked startup and the exact drained operator control before requesting existing audit gates
+      - name: Audit the drained checkpoint and require exact startup proof before requesting promotion
         env:
           GH_TOKEN: ${{ github.token }}
           WAKE_HOSTED_STATE_KEY: ${{ secrets.WAKE_HOSTED_STATE_KEY }}
