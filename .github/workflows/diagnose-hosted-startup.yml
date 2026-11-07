@@ -1,0 +1,31 @@
+name: diagnose-startup
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths: ['.github/workflows/diagnose-hosted-startup.yml']
+permissions:
+  contents: read
+concurrency:
+  group: wake-startup-diagnostic
+  cancel-in-progress: false
+jobs:
+  diagnose:
+    if: github.ref_name == 'master'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - run: python -m pip install --disable-pip-version-check -e '.[hosted]'
+      - name: Sample stopped startup on disposable native copies
+        env:
+          GH_TOKEN: ${{ github.token }}
+          WAKE_HOSTED_STATE_KEY: ${{ secrets.WAKE_HOSTED_STATE_KEY }}
+          WAKE_HOSTED_STATE_DIR: /tmp/wake-startup-transport
+          WAKE_INSTALLATION_DATA: /tmp/wake-startup-copy
+        run: python scripts/diagnose_hosted_startup.py
