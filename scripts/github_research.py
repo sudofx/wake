@@ -261,6 +261,10 @@ def ready(root, process, timeout=900):
             raise RuntimeError('Hosted installation exited during startup')
         try:
             status = request(root, {'action': 'status'})
+            exited = [node for node in status['nodes'] if node.get('process', {}).get('state') == 'exited']
+            if exited:
+                raise RuntimeError('Hosted startup worker exited: ' + ', '.join(
+                    node['id'] + ' (exit ' + str(node['process']['exit_code']) + ')' for node in exited))
             if all(node.get('available') and node.get('runtime', {}).get('state') in ('stopped', 'paused')
                    for node in status['nodes']):
                 return

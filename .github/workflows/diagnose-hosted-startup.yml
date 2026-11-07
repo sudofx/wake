@@ -1,10 +1,9 @@
 name: diagnose-startup
-# Observe completed startup or its late failure, including bounded process memory.
 on:
   workflow_dispatch:
   push:
     branches: [master]
-    paths: ['.github/workflows/diagnose-hosted-startup.yml']
+    paths: ['.github/workflows/diagnose-hosted-startup.yml', 'wake/export_admission.py', 'wake/standalone.py', 'wake/installation.py', 'scripts/diagnose_hosted_startup.py']
 permissions:
   contents: read
 concurrency:
@@ -14,7 +13,7 @@ jobs:
   diagnose:
     if: github.ref_name == 'master'
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v7
         with:

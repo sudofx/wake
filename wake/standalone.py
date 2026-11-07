@@ -319,8 +319,9 @@ def _publish(engine, root):
 def publish(engine, root):
     # Serialize builders separately; capture never needs to wait for rendering.
     import fcntl
+    from .export_admission import export_slot
     root = Path(root).resolve()
-    with (root / '.export-build.lock').open('a') as lease:
+    with export_slot(os.environ.get('WAKE_INSTALLATION_EXPORT_SLOTS')), (root / '.export-build.lock').open('a') as lease:
         fcntl.flock(lease, fcntl.LOCK_EX)
         return _publish(engine, root)
 

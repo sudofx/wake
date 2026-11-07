@@ -11,11 +11,22 @@ from urllib.error import HTTPError
 
 from wake.installation_cli import NODE_IDS
 from scripts.github_research import run_batch
-from scripts.github_research import PeriodicPublication, publish_hosted_snapshot
+from scripts.github_research import PeriodicPublication, publish_hosted_snapshot, ready
 
 
 @patch.dict(os.environ, {'GITHUB_ACTIONS':'false'})
 class HostedBatchTests(unittest.TestCase):
+    def test_startup_reports_owned_worker_exit_without_waiting_fifteen_minutes(self):
+        process = MagicMock()
+        process.poll.return_value = None
+        status = {'nodes': [{'id': '300.wake', 'available': False,
+                             'process': {'state': 'exited', 'exit_code': -9}}]}
+        with patch('scripts.github_research.request', return_value=status), \
+             patch('scripts.github_research.time.sleep') as sleep:
+            with self.assertRaisesRegex(RuntimeError, r'300.wake \(exit -9\)'):
+                ready(Path('/fixture'), process)
+        sleep.assert_not_called()
+
     def test_disabled_workflow_exits_before_records_or_model_configuration(self):
         client = SimpleNamespace()
         with patch('scripts.github_research.api', return_value=client), \

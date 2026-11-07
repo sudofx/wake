@@ -1,9 +1,9 @@
-"""Inspect stopped startup on disposable checkpoint copies; emit locations only."""
+"""Compare stopped startup on disposable copies; emit numeric observations only."""
 import json
 import os
 from pathlib import Path
-import re
 import signal
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -11,8 +11,64 @@ import time
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from wake.hosted import HostedState
+from wake.installation_cli import request
 from scripts.github_research import (apply_decision_memory_policy,
     apply_provider_pacing_policy, apply_experimental_research_policy)
+
+
+def memory_events():
+    path = Path('/sys/fs/cgroup/memory.events')
+    if not path.exists():
+        return {}
+    return {key: int(value) for key, value in (line.split() for line in path.read_text().splitlines())}
+
+
+def sample(root, *, bounded):
+    before = memory_events()
+    started = time.monotonic()
+    result = {'bounded_exports': bounded, 'ready': False, 'exited': []}
+    with tempfile.TemporaryDirectory() as temporary:
+        inject = 'import faulthandler\nfaulthandler.dump_traceback_later(60, repeat=True)\n'
+        if not bounded:
+            # Reproduce the old unbounded export behavior on the same source and
+            # records. This override exists only in the disposable diagnostic.
+            inject += "import contextlib\nimport wake.export_admission as a\na.export_slot = lambda directory: contextlib.nullcontext()\n"
+        Path(temporary, 'sitecustomize.py').write_text(inject)
+        env = {key: os.environ[key] for key in ('PATH', 'LANG', 'LC_ALL', 'LD_LIBRARY_PATH') if key in os.environ}
+        env.update(PYTHONPATH=temporary + os.pathsep + str(Path.cwd()), WAKE_DEV_RELOAD='false')
+        with (root / 'controller.log').open('wb') as log:
+            process = subprocess.Popen([sys.executable, '-m', 'wake.installation', '--data', str(root),
+                '--config', str(root / 'config/wake.toml'), '--host', '127.0.0.1', '--port', '0', '--provider', 'fixture'],
+                env=env, stdout=log, stderr=log, start_new_session=True)
+            try:
+                deadline = started + 600
+                while time.monotonic() < deadline:
+                    if process.poll() is not None:
+                        raise RuntimeError('Isolated diagnostic controller exited')
+                    if (root / 'runtime-endpoint.json').exists():
+                        status = request(root, {'action': 'status'})
+                        result['exited'] = [{'id': n['id'], 'exit_code': n['process']['exit_code']}
+                                            for n in status['nodes'] if n.get('process', {}).get('state') == 'exited']
+                        result['ready'] = all(n.get('available') and n.get('runtime', {}).get('state') in ('stopped', 'paused')
+                                              for n in status['nodes'])
+                        if result['exited'] or result['ready']:
+                            break
+                    time.sleep(2)
+            finally:
+                os.killpg(process.pid, signal.SIGTERM)
+                try:
+                    process.wait(timeout=20)
+                except subprocess.TimeoutExpired:
+                    pass
+                try:
+                    os.killpg(process.pid, signal.SIGKILL)
+                except ProcessLookupError:
+                    pass
+    result['seconds'] = round(time.monotonic() - started, 3)
+    after = memory_events()
+    result['memory_events_delta'] = {key: value - before.get(key, 0) for key, value in after.items()}
+    print(json.dumps({'startup_comparison': result}), flush=True)
+    return result
 
 
 def main():
@@ -30,65 +86,13 @@ def main():
         from wake.research_expansion import apply_hosted_configuration
         apply_hosted_configuration(root, policy['research_expansion_enabled'], policy.get('research_candidate_catalog_enabled', False))
     print(json.dumps({'diagnostic_generation': manifest['generation'], 'provider_calls': 0, 'remote_record_writes': 0}), flush=True)
-    from wake.record_store import RecordStore
-    from wake.installation import NODE_IDS
-    for node in NODE_IDS:
-        store = RecordStore(root / 'nodes' / node / 'record')
-        state = store.load()
-        print(json.dumps({'startup_record': node, 'bytes': Path(store.path).stat().st_size,
-            'counts': {key: len(state.get(key, {})) for key in ('invocations', 'evidence', 'journal', 'notebooks', 'research')}}), flush=True)
-        store.close()
-        del state, store
-    with tempfile.TemporaryDirectory() as temporary:
-        # Inject stack sampling without changing the installed runtime. Never
-        # pass provider credentials or checkpoint capabilities to the processes.
-        Path(temporary, 'sitecustomize.py').write_text('import faulthandler\nfaulthandler.dump_traceback_later(30, repeat=True)\n')
-        env = {key: os.environ[key] for key in ('PATH', 'LANG', 'LC_ALL', 'LD_LIBRARY_PATH') if key in os.environ}
-        env.update(PYTHONPATH=temporary + os.pathsep + str(Path.cwd()), WAKE_DEV_RELOAD='false')
-        with (root / 'controller.log').open('wb') as log:
-            process = subprocess.Popen([sys.executable, '-m', 'wake.installation', '--data', str(root),
-                '--config', str(root / 'config/wake.toml'), '--host', '127.0.0.1', '--port', '0', '--provider', 'fixture'],
-                env=env, stdout=log, stderr=log, start_new_session=True)
-            try:
-                process.wait(timeout=300)
-            except subprocess.TimeoutExpired:
-                pass
-            finally:
-                children = Path(f'/proc/{process.pid}/task/{process.pid}/children')
-                for pid in ([str(process.pid)] + (children.read_text().split() if children.exists() else [])):
-                    path = Path('/proc') / pid / 'status'
-                    if path.exists():
-                        fields = {line.split(':')[0]: line.split(':', 1)[1].strip() for line in path.read_text().splitlines()
-                                  if line.split(':')[0] in ('State', 'VmRSS', 'VmHWM', 'Threads')}
-                        print(json.dumps({'startup_process': pid, **fields}), flush=True)
-                for node in NODE_IDS:
-                    base = root / 'nodes' / node
-                    print(json.dumps({'startup_node': node, 'runtime': (base / 'runtime.json').exists(),
-                        'export': (base / 'site/current').exists(),
-                        'largest_files': sorted([p.stat().st_size for p in (base / 'site').rglob('*') if p.is_file()], reverse=True)[:5]}), flush=True)
-                os.killpg(process.pid, signal.SIGTERM)
-                try:
-                    process.wait(timeout=20)
-                except subprocess.TimeoutExpired:
-                    pass
-                try:
-                    os.killpg(process.pid, signal.SIGKILL)
-                except ProcessLookupError:
-                    pass
-    for path in [root / 'controller.log', *sorted(root.glob('nodes/*/worker.log'))]:
-        with path.open('rb') as stream:
-            stream.seek(max(0, path.stat().st_size - 32768))
-            lines = stream.read(32768).decode('utf-8', errors='replace').splitlines()
-        frames, errors = [], []
-        for line in lines:
-            frame = re.fullmatch(r'  File ".*?/(wake|scripts)/([A-Za-z0-9_/.]+\.py)", line ([0-9]+)(?:,? in ([A-Za-z0-9_<>]+))', line)
-            if frame:
-                frames.append({'source': frame[1] + '/' + frame[2], 'line': int(frame[3]), 'function': frame[4]})
-            error = re.match(r'^([A-Za-z_][A-Za-z0-9_]*(?:Error|Exception)):', line)
-            if error:
-                errors.append(error[1])
-        print(json.dumps({'log': str(path.relative_to(root)), 'bytes': path.stat().st_size,
-                          'frames': frames[-30:], 'errors': errors[-4:]}), flush=True)
+    baseline_root = root.with_name(root.name + '-unbounded')
+    shutil.copytree(root, baseline_root)
+    baseline = sample(baseline_root, bounded=False)
+    candidate = sample(root, bounded=True)
+    if not candidate['ready'] or candidate['exited']:
+        raise RuntimeError('Bounded candidate did not bring all twelve stopped workers online')
+    print(json.dumps({'startup_repair': 'verified', 'baseline': baseline, 'candidate': candidate}), flush=True)
 
 
 if __name__ == '__main__':
