@@ -1,99 +1,68 @@
-"""Compare stopped startup on disposable copies; emit numeric observations only."""
+"""Reproduce the failed node's startup on one verified disposable copy."""
 import json
 import os
 from pathlib import Path
-import signal
-import shutil
 import subprocess
 import sys
-import tempfile
-import time
+import zipfile
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from wake.hosted import HostedState
-from wake.installation_cli import request
+from scripts.verify_hosted_upgrade import restore_audit_nodes
 from scripts.github_research import (apply_decision_memory_policy,
     apply_provider_pacing_policy, apply_experimental_research_policy)
 
-
-def memory_events():
-    path = Path('/sys/fs/cgroup/memory.events')
-    if not path.exists():
-        return {}
-    return {key: int(value) for key, value in (line.split() for line in path.read_text().splitlines())}
-
-
-def sample(root, *, bounded):
-    before = memory_events()
-    started = time.monotonic()
-    result = {'bounded_exports': bounded, 'ready': False, 'exited': []}
-    with tempfile.TemporaryDirectory() as temporary:
-        inject = 'import faulthandler\nfaulthandler.dump_traceback_later(60, repeat=True)\n'
-        if not bounded:
-            # Reproduce the old unbounded export behavior on the same source and
-            # records. This override exists only in the disposable diagnostic.
-            inject += "import contextlib\nimport wake.export_admission as a\na.export_slot = lambda directory: contextlib.nullcontext()\n"
-        Path(temporary, 'sitecustomize.py').write_text(inject)
-        env = {key: os.environ[key] for key in ('PATH', 'LANG', 'LC_ALL', 'LD_LIBRARY_PATH') if key in os.environ}
-        env.update(PYTHONPATH=temporary + os.pathsep + str(Path.cwd()), WAKE_DEV_RELOAD='false')
-        with (root / 'controller.log').open('wb') as log:
-            process = subprocess.Popen([sys.executable, '-m', 'wake.installation', '--data', str(root),
-                '--config', str(root / 'config/wake.toml'), '--host', '127.0.0.1', '--port', '0', '--provider', 'fixture'],
-                env=env, stdout=log, stderr=log, start_new_session=True)
-            try:
-                deadline = started + 600
-                while time.monotonic() < deadline:
-                    if process.poll() is not None:
-                        raise RuntimeError('Isolated diagnostic controller exited')
-                    if (root / 'runtime-endpoint.json').exists():
-                        status = request(root, {'action': 'status'})
-                        result['exited'] = [{'id': n['id'], 'exit_code': n['process']['exit_code']}
-                                            for n in status['nodes'] if n.get('process', {}).get('state') == 'exited']
-                        result['ready'] = all(n.get('available') and n.get('runtime', {}).get('state') in ('stopped', 'paused')
-                                              for n in status['nodes'])
-                        if result['exited'] or result['ready']:
-                            break
-                    time.sleep(2)
-            finally:
-                os.killpg(process.pid, signal.SIGTERM)
-                try:
-                    process.wait(timeout=20)
-                except subprocess.TimeoutExpired:
-                    pass
-                try:
-                    os.killpg(process.pid, signal.SIGKILL)
-                except ProcessLookupError:
-                    pass
-    result['seconds'] = round(time.monotonic() - started, 3)
-    after = memory_events()
-    result['memory_events_delta'] = {key: value - before.get(key, 0) for key, value in after.items()}
-    print(json.dumps({'startup_comparison': result}), flush=True)
-    return result
+PROGRAM = r'''
+import json,sys,traceback
+from pathlib import Path
+from wake.standalone import bootstrap, publish, config
+root=Path(sys.argv[1]);record=root/'nodes/300.wake/record'
+phase='bootstrap'
+try:
+    settings=config(root/'config/wake.toml')
+    settings['provider_managed_limits']=True
+    engine=bootstrap(record,settings)
+    phase='export'
+    site=root/'site';site.mkdir()
+    if not publish(engine,site):raise RuntimeError('Startup publication not completed')
+except Exception as exc:
+    source=Path.cwd()
+    frames=[]
+    for frame in traceback.extract_tb(exc.__traceback__):
+        path=Path(frame.filename)
+        if path.is_relative_to(source/'wake'):
+            frames.append({'file':str(path.relative_to(source)), 'line':frame.lineno, 'function':frame.name})
+    print(json.dumps({'failure':type(exc).__name__,'phase':phase,'frames':frames}),flush=True)
+    sys.exit(1)
+print(json.dumps({'startup_export':'verified','node':'300.wake'}),flush=True)
+'''
 
 
 def main():
-    transport = HostedState.from_environment()
-    transport.open()
-    root = Path(os.environ['WAKE_INSTALLATION_DATA'])
-    manifest = transport.restore(root, workers=1)
-    policy = json.loads(Path('hosted-runtime.json').read_text())['installations'][os.environ['GITHUB_REPOSITORY']]
-    if manifest['installation_id'] != policy['installation_id']:
-        raise ValueError('Diagnostic installation identity mismatch')
-    apply_decision_memory_policy(root, policy)
-    apply_provider_pacing_policy(root, policy)
-    apply_experimental_research_policy(root, policy)
-    if 'research_expansion_enabled' in policy:
-        from wake.research_expansion import apply_hosted_configuration
-        apply_hosted_configuration(root, policy['research_expansion_enabled'], policy.get('research_candidate_catalog_enabled', False))
-    print(json.dumps({'diagnostic_generation': manifest['generation'], 'provider_calls': 0, 'remote_record_writes': 0}), flush=True)
-    baseline_root = root.with_name(root.name + '-unbounded')
-    shutil.copytree(root, baseline_root)
-    baseline = sample(baseline_root, bounded=False)
-    candidate = sample(root, bounded=True)
-    if not candidate['ready'] or candidate['exited']:
-        raise RuntimeError('Bounded candidate did not bring all twelve stopped workers online')
-    print(json.dumps({'startup_repair': 'verified', 'baseline': baseline, 'candidate': candidate}), flush=True)
+    transport=HostedState.from_environment();transport.open()
+    manifest=transport.read_manifest()
+    root=Path(os.environ['WAKE_INSTALLATION_DATA'])
+    policy=json.loads(Path('hosted-runtime.json').read_text())['installations'][os.environ['GITHUB_REPOSITORY']]
+    if manifest['installation_id']!=policy['installation_id']:raise ValueError('Diagnostic identity mismatch')
+    restore_audit_nodes(transport,manifest,root,('300.wake',))
+    with zipfile.ZipFile(root/'aux.zip') as archive:
+        for entry in archive.infolist():
+            path=Path(entry.filename)
+            if path.parts[:1]!=('config',) or path.suffix!='.toml':continue
+            if '..' in path.parts or entry.file_size>1_000_000:raise ValueError('Invalid diagnostic configuration')
+            target=root/path;target.parent.mkdir(parents=True,exist_ok=True)
+            with target.open('xb') as output:output.write(archive.read(entry))
+    apply_decision_memory_policy(root,policy)
+    apply_provider_pacing_policy(root,policy)
+    apply_experimental_research_policy(root,policy)
+    from wake.research_expansion import apply_hosted_configuration
+    apply_hosted_configuration(root,policy['research_expansion_enabled'],policy['research_candidate_catalog_enabled'])
+    env={key:os.environ[key] for key in ('PATH','LANG','LC_ALL','LD_LIBRARY_PATH') if key in os.environ}
+    env.update(PYTHONPATH=str(Path.cwd()),WAKE_GROUP_ID='wake',WAKE_GROUP_INSTANCE='300.wake',
+               WAKE_PUBLIC_HOSTNAME='300.wake',WAKE_GROUP_PEERS='100.wake,200.wake,301.wake,302.wake,303.wake',
+               WAKE_PARENT_HOSTNAME='',WAKE_GROUP_TOPIC_FILE=str(root/'config/.wake-runner-topics/300.wake.toml'),
+               WAKE_INSTALLATION_WORKER='1',WAKE_DEV_RELOAD='false')
+    print(json.dumps({'diagnostic_generation':manifest['generation'],'provider_calls':0,'remote_record_writes':0}),flush=True)
+    return subprocess.run([sys.executable,'-c',PROGRAM,str(root)],env=env,timeout=180).returncode
 
-
-if __name__ == '__main__':
-    main()
+if __name__=='__main__':sys.exit(main())
