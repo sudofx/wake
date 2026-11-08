@@ -1,6 +1,12 @@
 name: recover-research
 
 on:
+  push:
+    branches: [master]
+    paths: ['.github/workflows/hosted-recovery.yml']
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+  workflow_dispatch:
   workflow_run:
     workflows: ['research-worker']
     types: [completed]
@@ -11,7 +17,7 @@ permissions:
   actions: write
 
 # Serialize with normal successor dispatch; duplicate completion events cannot
-# create a second writer. No cron trigger is used.
+# create a second writer. The scheduled check repairs missing handoffs.
 concurrency:
   group: wake-research-handoff
   cancel-in-progress: false
@@ -19,6 +25,7 @@ concurrency:
 jobs:
   recover:
     if: >-
+      github.event_name == 'workflow_run' &&
       github.event.workflow_run.path == '.github/workflows/research-worker.yml' &&
       github.event.workflow_run.actor.login == 'github-actions[bot]' &&
       contains(fromJSON('["failure","cancelled","timed_out"]'), github.event.workflow_run.conclusion)
@@ -39,3 +46,50 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
           PREDECESSOR: ${{ github.event.workflow_run.id }}
         run: python scripts/github_research.py continue --predecessor "$PREDECESSOR"
+  watchdog:
+    if: github.ref_name == 'master' && github.event_name != 'workflow_run'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Recover an enabled worker with a missing or stalled handoff
+        run: |
+          api="repos/$GITHUB_REPOSITORY/actions"
+          worker="$api/workflows/research-worker.yml"
+          control="$api/workflows/hosted-control.yml"
+          can_dispatch() {
+            local state status active
+            state=$(gh api "$worker" --jq .state) || return 2
+            if [ "$state" != active ]; then return 1; fi
+            for status in queued in_progress; do
+              active=$(gh api "$control/runs?status=$status&per_page=1" --jq .total_count) || return 2
+              if [ "$active" != 0 ]; then return 1; fi
+            done
+            active=$(gh api "$worker/runs?status=in_progress&per_page=1" --jq .total_count) || return 2
+            if [ "$active" != 0 ]; then return 1; fi
+          }
+          can_dispatch || { result=$?; if [ "$result" = 1 ]; then exit 0; fi; exit "$result"; }
+          latest=$(gh api "$worker/runs?branch=master&actor=github-actions%5Bbot%5D&per_page=1" --jq '.workflow_runs[0] // empty')
+          if [ -n "$latest" ]; then
+            status=$(jq -er .status <<< "$latest")
+            case "$status" in
+              queued|completed) ;;
+              *) exit 0 ;;
+            esac
+            updated=$(jq -er '.updated_at | fromdateiso8601' <<< "$latest")
+            grace=300
+            if [ "$status" = queued ]; then grace=180; fi
+            if [ "$(($(date +%s) - updated))" -lt "$grace" ]; then exit 0; fi
+            if [ "$status" = queued ]; then
+              run_id=$(jq -er .id <<< "$latest")
+              title=$(jq -er .display_title <<< "$latest")
+              # This exact pre-label run was dispatched by the verified start control.
+              if [ "$title" != "research-worker / continue" ] && [ "$run_id" != 42485130659 ]; then exit 0; fi
+              job_count=$(gh api "$api/runs/$run_id/jobs?per_page=1" --jq .total_count)
+              if [ "$job_count" != 0 ]; then exit 0; fi
+            fi
+          fi
+          can_dispatch || { result=$?; if [ "$result" = 1 ]; then exit 0; fi; exit "$result"; }
+          gh api --method POST "$worker/dispatches" -f ref=master -f 'inputs[mode]=continue'
+          echo 'Requested a worker after a missing or jobless handoff.'
