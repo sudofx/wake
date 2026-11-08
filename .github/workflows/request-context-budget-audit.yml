@@ -1,20 +1,27 @@
-name: Request hosted context budget audit
+name: Queue drained hosted context budget rollout
 on:
   push:
     branches: [master]
     paths: ['.github/workflows/request-context-budget-audit.yml']
 permissions:
-  contents: read
+  contents: write
   actions: write
 jobs:
   request:
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    timeout-minutes: 35
     env:
       GH_TOKEN: ${{ github.token }}
+      WAKE_HOSTED_STATE_KEY: ${{ secrets.WAKE_HOSTED_STATE_KEY }}
+      WAKE_HOSTED_STATE_DIR: /tmp/wake-context-rollout
+      WAKE_REPAIR_STOP_RUN: '42509719710'
     steps:
-      - name: Dispatch read-only verification for this candidate
-        run: |
-          head=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/master" --jq .object.sha)
-          test "$head" = "$GITHUB_SHA"
-          gh api --method POST "repos/$GITHUB_REPOSITORY/actions/workflows/verify-hosted-upgrade.yml/dispatches" -f ref=master
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - run: python -m pip install --disable-pip-version-check -e '.[hosted]'
+      - name: Wait for the stopped worker to drain and request verified rollout
+        run: python scripts/request_hosted_context_rollout.py
