@@ -413,7 +413,9 @@ the old runner exits, because its final publication can also replace the assets.
 In Actions, admission and successor selection read this binding from the immutable
 workflow commit (`GITHUB_SHA`), separately from the candidate runtime checkout.
 That permits a later binding commit to name a previously checked candidate without
-requiring a self-referencing source hash. An unreadable or malformed policy stops
+requiring a self-referencing source hash. The optional hosted `max_context_chars` setting overrides the restored root TOML
+budget before workers start. The installation uses 50,000 model-visible characters.
+An unreadable or malformed policy stops
 admission before opening hosted authority; it never falls back to an older pin.
 
 ### Continuation and repair

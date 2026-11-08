@@ -76,6 +76,8 @@ def runtime_policy(client):
             or (selected.get('autonomous_context_improvement') is True and selected.get('decision_memory_mode') != 'active')
             or not re.fullmatch('[0-9a-f]{32}', str(selected.get('installation_id', '')))):
         raise ValueError('Invalid hosted installation binding')
+    if 'max_context_chars' in selected:
+        validate_context_budget(selected['max_context_chars'])
     if 'provider_pacing' in selected:
         from wake.provider_pacing import CallPacing
         limits=tomllib.loads((Path(__file__).resolve().parents[1]/'wake.toml').read_text())['model_daily_call_limits']
@@ -176,6 +178,37 @@ def inspect_provider_schedule(transport,policy):
         'remaining_at_capture_by_model':{m:max(0,n-pacing.usage.get(m,0)) for m,n in limits.items()},
         'feature_remaining_at_capture':max(0,pacing.policy['reserve_calls']-pacing.feature_used),
         'limits':'Dated scheduling evidence; later or outside API use can reduce capacity.'}
+
+
+def validate_context_budget(limit):
+    if type(limit) is not int or not 1 <= limit <= 64000:
+        raise ValueError('Hosted max_context_chars must be an integer from 1 to 64000')
+
+
+def apply_context_budget_policy(root, policy):
+    """Apply the installation's explicit budget to restored worker settings."""
+    if not policy or 'max_context_chars' not in policy:
+        return
+    from wake.report import atomic_write
+
+    limit = policy['max_context_chars']
+    validate_context_budget(limit)
+    path = root / 'config/wake.toml'
+    lines = path.read_text().splitlines(keepends=True)
+    replacement = f'max_context_chars = {limit}\n'
+    for index, line in enumerate(lines):
+        if line.lstrip().startswith('['):
+            break
+        if re.match(r'^\s*max_context_chars\s*=', line):
+            lines[index] = replacement
+            break
+    if replacement not in lines:
+        lines.insert(0, replacement)
+    updated = ''.join(lines)
+    if tomllib.loads(updated).get('max_context_chars') != limit:
+        raise ValueError('Hosted context budget configuration did not validate')
+    atomic_write(path, updated)
+    print(json.dumps({'max_context_chars': limit, 'scope': 'hosted-installation'}), flush=True)
 
 
 def apply_provider_pacing_policy(root,policy):
@@ -372,6 +405,7 @@ def run_batch(minutes, provider, *, reset=False):
         atomic_write(root / 'config/wake.toml', (RUNTIME_POLICY.parent / 'wake.toml').read_text())
     apply_decision_memory_policy(root, policy)
     apply_provider_pacing_policy(root,policy)
+    apply_context_budget_policy(root, policy)
     apply_experimental_research_policy(root,policy)
     if policy and 'research_expansion_enabled' in policy:
         from wake.research_expansion import apply_hosted_configuration

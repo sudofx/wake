@@ -1,0 +1,20 @@
+name: Request hosted context budget audit
+on:
+  push:
+    branches: [master]
+    paths: ['.github/workflows/request-context-budget-audit.yml']
+permissions:
+  contents: read
+  actions: write
+jobs:
+  request:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Dispatch read-only verification for this candidate
+        run: |
+          head=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/master" --jq .object.sha)
+          test "$head" = "$GITHUB_SHA"
+          gh workflow run verify-hosted-upgrade.yml --ref master
