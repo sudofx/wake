@@ -17,4 +17,4 @@ jobs:
         run: |
           head=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/master" --jq .object.sha)
           test "$head" = "$GITHUB_SHA"
-          gh workflow run verify-hosted-upgrade.yml --ref master
+          gh api --method POST "repos/$GITHUB_REPOSITORY/actions/workflows/verify-hosted-upgrade.yml/dispatches" -f ref=master
