@@ -7,6 +7,8 @@ on:
     workflows: [WAKE — Verify hosted runtime upgrade, 'WAKE✳︎ — Check code · automatic']
     types: [completed]
   workflow_dispatch:
+  schedule:
+    - cron: '23,53 * * * *'
 permissions:
   contents: write
   actions: write
@@ -15,15 +17,10 @@ concurrency:
   cancel-in-progress: false
 jobs:
   complete:
-    if: github.ref_name == 'master' && (github.event_name == 'workflow_dispatch' || github.event_name == 'push' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'master'))
+    if: github.ref_name == 'master' && (github.event_name == 'workflow_dispatch' || github.event_name == 'push' || github.event_name == 'schedule' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'master'))
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-python@v7
-        with:
-          python-version: '3.13'
-      - run: python -m pip install --disable-pip-version-check -e '.[hosted]'
       - name: Resolve the exact approved audit once both dependencies are ready
         id: ready
         env:
@@ -33,27 +30,29 @@ jobs:
           EVENT_RUN: ${{ github.event.workflow_run.id }}
           EVENT_SHA: ${{ github.event.workflow_run.head_sha }}
         run: |
-          python - <<'PY'
-          import os
-          from scripts.complete_hosted_upgrade import read_policy
-          from wake.hosted import GitHub
-          client = GitHub(os.environ['GITHUB_REPOSITORY'], os.environ['GH_TOKEN'])
-          policy, _ = read_policy(client)
-          intent = policy['installations'][client.repository].get('pending_upgrade')
-          run_id = int(intent['verification_run']) if intent else 0
-          if run_id and os.environ['EVENT_NAME'] == 'workflow_run':
-              if os.environ['EVENT_WORKFLOW'] == 'WAKE — Verify hosted runtime upgrade':
-                  if int(os.environ['EVENT_RUN']) != run_id:
-                      run_id = 0
-              elif os.environ['EVENT_SHA'] not in (intent['candidate'], intent.get('presentation_revision')):
-                  run_id = 0
-          if run_id:
-              audit = client.request('actions/runs/' + str(run_id))
-              if audit['status'] != 'completed' or audit['conclusion'] != 'success':
-                  run_id = 0
-          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
-              output.write('run_id=' + (str(run_id) if run_id else '') + '\n')
-          PY
+          policy=$(gh api "repos/$GITHUB_REPOSITORY/contents/hosted-runtime.json?ref=master" --jq .content | base64 -d)
+          intent=$(jq -c --arg repo "$GITHUB_REPOSITORY" '.installations[$repo].pending_upgrade // empty' <<< "$policy")
+          if [ -z "$intent" ]; then exit 0; fi
+          run_id=$(jq -er '.verification_run | select(type == "number" and . > 0 and floor == .)' <<< "$intent")
+          if [ "$EVENT_NAME" = workflow_run ]; then
+            if [ "$EVENT_WORKFLOW" = 'WAKE — Verify hosted runtime upgrade' ]; then
+              if [ "$EVENT_RUN" != "$run_id" ]; then exit 0; fi
+            elif ! jq -e --arg sha "$EVENT_SHA" '.candidate == $sha or .presentation_revision == $sha' <<< "$intent" >/dev/null; then
+              exit 0
+            fi
+          fi
+          result=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run_id" --jq '.status + "/" + (.conclusion // "")')
+          if [ "$result" = completed/success ]; then
+            echo "run_id=$run_id" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/checkout@v7
+        if: steps.ready.outputs.run_id != ''
+      - uses: actions/setup-python@v7
+        if: steps.ready.outputs.run_id != ''
+        with:
+          python-version: '3.13'
+      - if: steps.ready.outputs.run_id != ''
+        run: python -m pip install --disable-pip-version-check -e '.[hosted]'
       - uses: actions/download-artifact@v6
         if: steps.ready.outputs.run_id != ''
         with:
