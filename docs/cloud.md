@@ -431,7 +431,8 @@ passes CI; a missing successful check fails closed. Unbound repositories select
 the newest checked `master` revision. A fork does not inherit another repository’s
 runtime binding. `hosted-recovery.yml` handles failed or cancelled run-completion events
 and repairs a lost successor dispatch with the same identity. Duplicate handoffs
-are reconciled and installation execution is serialized. Neither uses cron.
+are reconciled and installation execution is serialized. A scheduled fallback checks for
+an enabled installation with a missing successor or a stale continuation with no job.
 
 The operator may set `decision_memory_mode` to `off`, `shadow`, or `active` in that
 installation's policy. Before starting workers, the hosted runner applies this
@@ -494,7 +495,9 @@ independent recovery workflow. Both handoff paths serialize and compare workflow
 run numbers: an existing newer run, even if already completed, owns continuation.
 This prevents a delayed recovery from resurrecting an obsolete chain. Handoff jobs
 allow 75 minutes for quota recovery; research jobs allow four hours including
-checkpoint waits around the two-hour research window. Neither adds a cron trigger.
+checkpoint waits around the two-hour research window. The fallback checks only GitHub run
+metadata before requesting a successor. Release completion also periodically checks for
+a pending request with a successful audit, and installs dependencies only when it can proceed.
 For a read-only check of enabled intent and numeric API allowance, dispatch
 `hosted-control.yml` with `action=inspect`; it does not open records or providers.
 

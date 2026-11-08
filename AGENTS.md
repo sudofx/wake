@@ -83,7 +83,7 @@ A migration convenience is not sufficient reason to weaken governance, provenanc
 
 Research runs in containers: either an explicitly selected local installation or
 the hosted GitHub Actions installation. Hosted continuation uses explicit API
-dispatches, with completion-event recovery; it never relies on cron.
+dispatches, with completion-event recovery and a scheduled fallback that respects the stop switch.
 `wake-hosted-state` and the encrypted `wake-hosted-checkpoints` release carry
 verified native-record recovery snapshots. Only that dedicated rotating ref may
 use compare-and-swap replacement; preserve all historical hosted branches.

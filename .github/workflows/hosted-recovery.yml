@@ -1,9 +1,6 @@
 name: recover-research
 
 on:
-  push:
-    branches: [master]
-    paths: ['.github/workflows/hosted-recovery.yml']
   schedule:
     - cron: '7,22,37,52 * * * *'
   workflow_dispatch:
@@ -84,8 +81,7 @@ jobs:
             if [ "$status" = queued ]; then
               run_id=$(jq -er .id <<< "$latest")
               title=$(jq -er .display_title <<< "$latest")
-              # This exact pre-label run was dispatched by the verified start control.
-              if [ "$title" != "research-worker / continue" ] && [ "$run_id" != 42485130659 ]; then exit 0; fi
+              if [ "$title" != "research-worker / continue" ]; then exit 0; fi
               job_count=$(gh api "$api/runs/$run_id/jobs?per_page=1" --jq .total_count)
               if [ "$job_count" != 0 ]; then exit 0; fi
             fi
