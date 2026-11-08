@@ -1,5 +1,8 @@
 name: WAKE — Complete requested hosted upgrade
 on:
+  push:
+    branches: [master]
+    paths: ['hosted-runtime.json', '.github/workflows/complete-hosted-upgrade.yml']
   workflow_run:
     workflows: [WAKE — Verify hosted runtime upgrade, 'WAKE✳︎ — Check code · automatic']
     types: [completed]
@@ -12,7 +15,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   complete:
-    if: github.ref_name == 'master' && (github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'master'))
+    if: github.ref_name == 'master' && (github.event_name == 'workflow_dispatch' || github.event_name == 'push' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'master'))
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
