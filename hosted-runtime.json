@@ -14,7 +14,26 @@
         "reserve_calls": 0
       },
       "experimental_research_enabled": true,
-      "max_context_chars": 50000
+      "max_context_chars": 50000,
+      "pending_upgrade": {
+        "candidate": "8e6574128486bc628b98e8b43e90544bd0d50569",
+        "baseline": "b84702ce847b8350db27c026fa8b8188f37ad48c",
+        "verification_run": 42510595522,
+        "checkpoint_ref": "1014e1a51067066b733e20449b4dbd2ef308d914",
+        "generation": 25552,
+        "control_run": 42509719710,
+        "drained_run": 42491883484,
+        "superseded_queued_runs": [
+          42485130659,
+          40923544318,
+          40554824224
+        ],
+        "superseded_queued_baselines": {
+          "42485130659": "b84702ce847b8350db27c026fa8b8188f37ad48c",
+          "40923544318": "ee57de0c85a74d34f479da446b4f4eb3feae9a40",
+          "40554824224": "49c9c2bd058c851768320143edc4cf6d6d1e85d4"
+        }
+      }
     }
   }
 }
