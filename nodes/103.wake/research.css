@@ -1288,7 +1288,7 @@ html{--console-edge:20px}
 html.console-iphone{--console-edge:10px}
 body.research-page #main{padding-inline:var(--console-edge)!important}
 
-.research-diagnostics{margin:16px 0;padding:16px 20px}
+.research-diagnostics{margin:12px 0;padding:8px 0;border-block:1px solid var(--line)}
 .research-diagnostics summary{cursor:pointer;font-weight:650;min-height:44px;align-content:center;list-style:none}
 .research-diagnostics summary::-webkit-details-marker{display:none}
 .research-diagnostics summary::before{content:'+';display:inline-block;width:1.3em;color:var(--cyan)}
