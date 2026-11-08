@@ -1,4 +1,5 @@
 name: research-worker
+run-name: research-worker / ${{ inputs.mode }}
 # Keep the event name stable for independent completion recovery. Successor
 # reconciliation uses monotonic workflow run numbers, not display titles.
 
